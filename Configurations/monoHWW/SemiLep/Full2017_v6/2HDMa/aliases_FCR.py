@@ -197,8 +197,8 @@ aliases['bReqSF'] = {
 }
 
 aliases['btagSF'] = {
-    #'expr': '(bVetoSF[0]*bVeto[0] + bReqSF[0]*bReq[0])',
-    'expr': '(1.)',
+    'expr': '(bVetoSF[0]*bVeto[0] + bReqSF[0]*bReq[0])',
+    #'expr': '(1.)',
     'samples': mc
 }
 
@@ -267,18 +267,29 @@ aliases['Top_pTrw'] = {
 
 
 # PU jet Id SF
-
-puidSFSource = '%s/src/LatinoAnalysis/NanoGardener/python/data/JetPUID_effcyandSF.root' % os.getenv('CMSSW_BASE')
+puidSFSource = '{}/src/PlotsConfigurations/Configurations/patches/PUID_81XTraining_EffSFandUncties.root'.format(os.getenv('CMSSW_BASE'))
 
 aliases['PUJetIdSF'] = {
     'linesToAdd': [
         'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
-        '.L %s/src/PlotsConfigurations/Configurations/patches/pujetidsf_event.cc+' % os.getenv('CMSSW_BASE')
+        '.L %s/src/PlotsConfigurations/Configurations/patches/pujetidsf_event_new.cc+' % os.getenv('CMSSW_BASE')
     ],
-    'class': 'PUJetIdEventSF',
+    'class': 'PUJetIdEventSFnew',
     'args': (puidSFSource, '2017', 'loose'),
     'samples': mc
 }
+
+#puidSFSource = '%s/src/LatinoAnalysis/NanoGardener/python/data/JetPUID_effcyandSF.root' % os.getenv('CMSSW_BASE')
+#
+#aliases['PUJetIdSF'] = {
+#    'linesToAdd': [
+#        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
+#        '.L %s/src/PlotsConfigurations/Configurations/patches/pujetidsf_event.cc+' % os.getenv('CMSSW_BASE')
+#    ],
+#    'class': 'PUJetIdEventSF',
+#    'args': (puidSFSource, '2017', 'loose'),
+#    'samples': mc
+#}
 
 # WJets Xsec fix
 aliases['WJets_0J_xsFix'] = {
@@ -358,6 +369,23 @@ for mu_et in [20]:
         'expr': '((TMath::Abs(Lepton_pdgId[0]) == 13)*(FW_mu'+str(mu_et-10)+'_el35[0]/FW_mu'+str(mu_et)+'_el35[0]) + (TMath::Abs(Lepton_pdgId[0]) == 11))',
         'samples': ["FAKE"]
     }
+
+aliases['FWglobalSF'] = {
+    'expr': '((TMath::Abs(Lepton_pdgId[0]) == 13)*3.61 + (TMath::Abs(Lepton_pdgId[0]) == 11)*2.06)',
+    'samples': ["FAKE"]
+}
+
+aliases['AdphiLmet'] = {
+    'expr': 'TMath::Abs(Lepton_phi[0] - PuppiMET_phi)',
+}
+aliases['dphiLmet'] = {
+    'expr': '(AdphiLmet < 3.141592653)*AdphiLmet + (AdphiLmet >= 3.141592653)*TMath::Abs(AdphiLmet - 2*3.141592653)',
+}
+aliases['ptLmet'] = {
+    'expr': 'Lepton_pt[0] + TMath::Cos(dphiLmet)*PuppiMET_pt',
+}
+
+
 
 aliases['WptOvHak4M_OTF'] = {
     'expr': 'TMath::Min(MHlnjj_pt_lmet, MHlnjj_pt_jj)/MHlnjj_m_lmetjj'

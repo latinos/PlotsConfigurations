@@ -2,7 +2,7 @@
 
 treeName = 'Events'
 
-tag = 'vbf_2018_14_06'
+tag = 'vbf_2018_03_08'
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFile'
@@ -23,7 +23,7 @@ samplesFile = 'samples.py'
 plotFile = 'plot.py' 
 
 # luminosity to normalize to (in 1/fb)
-lumi = 59.74
+lumi = 41.53
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
@@ -37,3 +37,6 @@ structureFile = 'structure.py'
 
 # nuisances file for mkDatacards and for mkShape
 nuisancesFile = 'nuisances.py'
+
+# input files
+# /eos/cms/store/group/phys_higgs/cmshww/amassiro/Full2016_Apr17/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC__wwSel

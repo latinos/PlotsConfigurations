@@ -4,6 +4,12 @@ variables['events']  = {   'name': '1',
                            'fold' : 3
                        }
 
+variables['nvtx']  = {   'name': '1',
+                         'range' : (30,0,50),
+                         'xaxis' : 'events',
+                         'fold' : 3
+                     }
+
 variables['pt1']  = {   'name': 'Lepton_pt[0]',     
                         'range' : (40,0,600),   
                         'xaxis' : 'p_{T} 1st lep',
@@ -71,19 +77,19 @@ variables['nbjet']  = {    'name': 'nbJet',
                        }
                 
 variables['mblt']  = {   'name': 'mblt',
-                         'range' : (40,0,800),
+                         'range' : (40,0,1000),
                          'xaxis' : 'm_{bl}^{t} [GeV]',
                          'fold' : 3
                      } 
 
 variables['jetpt1']  = {    'name': '(Sum$(CleanJet_pt>30)>0)*(Alt$(CleanJet_pt[0], 0)) - (Sum$(CleanJet_pt>30)==0)*99',     
-                            'range' : (40,0,500),   
+                            'range' : (40,0,600),   
                             'xaxis' : 'p_{T} 1st jet',
                             'fold' : 3
                         }
 
 variables['jetpt2']  = {    'name': '(Sum$(CleanJet_pt>30)>1)*(Alt$(CleanJet_pt[1], 0)) - (Sum$(CleanJet_pt>30)<=1)*99',     
-                            'range' : (40,0,500),   
+                            'range' : (40,0,600),   
                             'xaxis' : 'p_{T} 2nd jet',
                             'fold' : 3
                         }
@@ -102,7 +108,7 @@ variables['jeteta2']  = {  'name': '(Sum$(CleanJet_pt>30)>1)*(Alt$(CleanJet_eta[
 
 #Discriminating variables
 variables['mll']  = {   'name': 'mll',
-                        'range' : (40,0,800),
+                        'range' : (40,0,1000),
                         'xaxis' : 'm_{ll} [GeV]',
                         'fold' : 3
                     }
@@ -120,19 +126,19 @@ variables['pfmet']  = {   'name': 'MET_pt',
                       }
 
 variables['MET_significance']  = {   'name': 'MET_significance',
-                                     'range' : (40,0,300),
+                                     'range' : (40,0,500),
                                      'xaxis' : 'MET significance',
                                      'fold'  : 3
                                  }
 
 variables['mt2ll']  = {   'name': 'mt2ll',
-                          'range' : (40,0,220),
+                          'range' : (40,0,300),
                           'xaxis' : 'm_{T2}^{ll} [GeV]',
                           'fold'  : 3
                       }
 
 variables['mt2bl']  = {   'name': 'mt2bl',
-                          'range' : (40,0,800),
+                          'range' : (40,0,1000),
                           'xaxis' : 'm_{T2}^{bl} [GeV]',
                           'fold'  : 3
                       }
@@ -150,7 +156,7 @@ variables['cosphill']  = {   'name': 'cosphill',
                         }
 
 variables['massT']  = {   'name': 'massT',
-                          'range' : (40,0,1800),
+                          'range' : (40,0,2000),
                           'xaxis' : 'massT [GeV]',
                           'fold'  : 3
                       }
@@ -162,13 +168,13 @@ variables['totalET']  = {   'name': 'totalET',
                         }
 
 variables['dark_pt']  = {   'name': 'dark_pt',
-                            'range' : (40,0,1500),
+                            'range' : (40,0,1800),
                             'xaxis' : 'dark 15_{T} [GeV]',
                             'fold'  : 3
                         }
 
 variables['overlapping_factor']  = {   'name': 'overlapping_factor',
-                                       'range' : (40,0,20),
+                                       'range' : (40,0,25),
                                        'xaxis' : 'Overlapping factor R',
                                        'fold'  : 3
                                    }
@@ -197,3 +203,4 @@ variables['r2l4j'] = {   'name': 'PuppiMET_pt / (Lepton_pt[0] + Lepton_pt[1] + A
                        'xaxis': 'r2l4j',
                        'fold': 3
 }
+

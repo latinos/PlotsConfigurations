@@ -335,6 +335,7 @@ samples['VVV'] = {
 signals = []
 
 #### ggH -> WW
+'''
 samples['ggH_hww'] = {
     #'name': nanoGetSampleFiles(mcDirectory, 'GluGluHToWWTo2L2NuPowheg_M125'),
     'name': nanoGetSampleFiles(mcDirectory, 'GluGluHToWWTo2L2Nu_M125'),
@@ -342,6 +343,17 @@ samples['ggH_hww'] = {
     'FilesPerJob': 1,
     'linesToAdd': ['.L %s/Differential/weight2MINLO.cc+' % configurations]
 }
+
+signals.append('ggH_hww')
+'''
+
+samples['ggH_hww'] = {
+    'name': nanoGetSampleFiles(mcDirectory, 'GluGluHToWWTo2L2Nu_M125')+nanoGetSampleFiles(mcDirectory, 'GGHjjToWWTo2L2Nu_minloHJJ_M125'),
+    'weight': mcCommonWeight,
+    'FilesPerJob': 4,
+}
+addSampleWeight(samples, 'ggH_hww', 'GluGluHToWWTo2L2Nu_M125', '(HTXS_stage1_1_cat_pTjet30GeV<107)*Weight2MINLO*1092.7640/1073.2567') #only non GE2J categories with the weight to NNLOPS and renormalize integral                          
+addSampleWeight(samples, 'ggH_hww', 'GGHjjToWWTo2L2Nu_minloHJJ_M125', '(HTXS_stage1_1_cat_pTjet30GeV>106)*1092.7640/1073.2567')
 
 signals.append('ggH_hww')
 
@@ -466,3 +478,4 @@ for _, sd in DataRun:
     files = nanoGetSampleFiles(dataDirectory, pd + '_' + sd)
     samples['DATA']['name'].extend(files)
     samples['DATA']['weights'].extend([DataTrig[pd]] * len(files))
+

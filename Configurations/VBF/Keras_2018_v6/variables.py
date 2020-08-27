@@ -5,6 +5,8 @@
 #'fold' : # 0 = not fold (default), 1 = fold underflowbin, 2 = fold overflow bin, 3 = fold underflow and overflow
 
 
+
+
 variables['classvbf'] = { 
      'name': 'vbfdnn',
      'range' : ([0.25,0.4,0.5,0.55,0.6,0.65,0.7,0.75,0.8,0.85,0.9,1.0],),
@@ -15,7 +17,7 @@ variables['classvbf'] = {
 
 variables['classtop'] = { 
      'name': 'topdnn',
-     'range' : (15,0.25,1.),
+    'range' : (15,0.25,1.),
      'xaxis' : 'DNN discriminant top',
      'fold'  : 3,
 }
@@ -32,6 +34,7 @@ variables['classww'] = {
 variables['classggh'] = { 
      'name': 'gghdnn',
      'range' : ([0.25,0.4,0.5,0.55,0.6,0.65,0.7,0.75,0.8,0.85,0.9,1.0],),
+     #'range' : (15,0.25,1.),
      'xaxis' : 'DNN discriminant ggh',
      'fold'  : 3,
 }
@@ -44,7 +47,7 @@ variables['class0'] = {
      'range' : ([0.25,0.4,0.5,0.55,0.6,0.65,0.7,0.75,0.8,0.85,0.9,1.0],),
      'xaxis' : 'MVA discriminant vbf',
      'fold' : 3,
-     'linesToAdd' : ['.L /afs/cern.ch/work/r/rceccare/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/VBF/Keras_2018_v6/evaluate_multiclass.C+']
+     'linesToAdd' : ['.L /afs/cern.ch/work/r/rceccare/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/VBF/Keras_2017_v6/evaluate_multiclass.C+']
 }
 
 variables['class1'] = {
@@ -52,24 +55,24 @@ variables['class1'] = {
      'range' : (15,0.25,1.),
      'xaxis' : 'MVA discriminant top',
      'fold' : 3,
-     'linesToAdd' : ['.L /afs/cern.ch/work/r/rceccare/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/VBF/Keras_2018_v6/evaluate_multiclass.C+']
+     'linesToAdd' : ['.L /afs/cern.ch/work/r/rceccare/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/VBF/Keras_2017_v6/evaluate_multiclass.C+']
 }
 variables['class2'] = {
      'name': 'evaluate_multiclass(Entry$,2)',
      'range' : (15,0.25,1.),
      'xaxis' : 'MVA discriminant ww',
      'fold' : 3,
-     'linesToAdd' : ['.L /afs/cern.ch/work/r/rceccare/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/VBF/Keras_2018_v6/evaluate_multiclass.C+']
+     'linesToAdd' : ['.L /afs/cern.ch/work/r/rceccare/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/VBF/Keras_2017_v6/evaluate_multiclass.C+']
 }
 variables['class3'] = {
      'name': 'evaluate_multiclass(Entry$,3)',
      'range' : (15,0.25,1.),
      'xaxis' : 'MVA discriminant ggh',
      'fold' : 3,
-     'linesToAdd' : ['.L /afs/cern.ch/work/r/rceccare/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/VBF/Keras_2018_v6/evaluate_multiclass.C+']
+     'linesToAdd' : ['.L /afs/cern.ch/work/r/rceccare/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/VBF/Keras_2017_v6/evaluate_multiclass.C+']
 }
-
 '''
+
 
 
 variables['events']  = {   'name': '1',      

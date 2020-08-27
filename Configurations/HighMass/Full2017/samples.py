@@ -248,6 +248,8 @@ else:
                            + getSampleFiles(directory,'DYJetsToLL_M-4to50_HT-600toInf',False,'nanoLatino_') \
                            + getSampleFiles(directory,'DYJetsToLL_M-4to50_HT-600toInf_ext1',False,'nanoLatino_')
     CombineBaseW(samples, 'DY', ['DYJetsToLL_M-50_HT-200to400', 'DYJetsToLL_M-50_HT-200to400_ext1'])
+    CombineBaseW(samples, 'DY', ['DYJetsToLL_M-4to50_HT-100to200', 'DYJetsToLL_M-4to50_HT-100to200_ext1'])
+    CombineBaseW(samples, 'DY', ['DYJetsToLL_M-4to50_HT-200to400', 'DYJetsToLL_M-4to50_HT-200to400_ext1'])
     CombineBaseW(samples, 'DY', ['DYJetsToLL_M-4to50_HT-400to600', 'DYJetsToLL_M-4to50_HT-400to600_ext1'])
     CombineBaseW(samples, 'DY', ['DYJetsToLL_M-4to50_HT-600toInf', 'DYJetsToLL_M-4to50_HT-600toInf_ext1'])
     addSampleWeight(samples,'DY','DYJetsToLL_M-50',                      '(LHE_HT < 70)')

@@ -191,12 +191,13 @@ for shift in ['jes','lf','hf','lfstats1','lfstats2','hfstats1','hfstats2','cferr
     }
 
 # PU jet Id SF
-puidSFSource = '%s/src/LatinoAnalysis/NanoGardener/python/data/JetPUID_effcyandSF.root' % os.getenv('CMSSW_BASE')
+#puidSFSource = '%s/src/LatinoAnalysis/NanoGardener/python/data/JetPUID_effcyandSF.root' % os.getenv('CMSSW_BASE')
+puidSFSource = '{}/patches/PUID_80XTraining_EffSFandUncties.root'.format(configurations)
 
 aliases['PUJetIdSF'] = {
     'linesToAdd': [
         'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
-        '.L %s/patches/pujetidsf_event.cc+' % configurations
+        '.L %s/patches/pujetidsf_event_new.cc+' % configurations
     ],
     'class': 'PUJetIdEventSF',
     'args': (puidSFSource, '2018', 'loose'),
@@ -270,6 +271,13 @@ aliases['nCleanGenJet'] = {
     'linesToAdd': ['.L %s/Differential/ngenjet.cc+' % configurations],
     'class': 'CountGenJet',
     'samples': mc
+}
+
+aliases['Weight2MINLO'] = {
+    'class': 'Weight2MINLO',
+    'args': '%s/src/LatinoAnalysis/Gardener/python/data/powheg2minlo/NNLOPS_reweight.root' % os.getenv('CMSSW_BASE'),
+    'linesToAdd': ['.L %s/Differential/weight2MINLO.cc+' % configurations],
+    'samples' : [skey for skey in samples if 'ggH_hww' in skey],
 }
 
 
@@ -365,6 +373,7 @@ for thu in thusQQ:
         'samples': ['qqH_hww'],
         'nominalOnly': True
     }
+
 
 
 

@@ -17,23 +17,30 @@ def addcut(name, exprs):
 
 is_el    = ['abs(Lepton_pdgId[0])==11']
 is_mu    = ['abs(Lepton_pdgId[0])==13']
-#bVeto    = ['bVeto']
-#IbVeto   = ['bReq']
+bVeto    = ['bVeto']
+IbVeto   = ['bReq']
 #QCDf    = ['mtw1 > 20', 'PuppiMET_pt > 20']
 IQCDf    = ['mtw1 < 20', 'PuppiMET_pt < 20']
 mtw      = ['mtw1 > 50']
+mtwH     = ['mtw1 > 50', 'PuppiMET_pt > 50']
 
 SC       = super_cut
 FCR      = combinecut([IQCDf, super_cut])
 MTW      = combinecut([mtw, super_cut])
+NoB      = combinecut([ bVeto, mtwH, super_cut])
+YeB      = combinecut([IbVeto, mtwH, super_cut])
 
 # Electron
 addcut('ElCh_SC' , combinecut([is_el, SC]))
 addcut('ElCh_FCR', combinecut([is_el, FCR]))
 addcut('ElCh_MTW', combinecut([is_el, MTW]))
+addcut('ElCh_NoB', combinecut([is_el, NoB]))
+addcut('ElCh_YeB', combinecut([is_el, YeB]))
 
 # Muon
 addcut('MuCh_SC'  , combinecut([is_mu, SC]))
 addcut('MuCh_FCR' , combinecut([is_mu, FCR]))
 addcut('MuCh_MTW' , combinecut([is_mu, MTW]))
+addcut('MuCh_NoB' , combinecut([is_mu, NoB]))
+addcut('MuCh_YeB' , combinecut([is_mu, YeB]))
 

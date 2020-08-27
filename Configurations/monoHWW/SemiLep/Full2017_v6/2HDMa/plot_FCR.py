@@ -50,6 +50,12 @@ groupPlot['DY'] = {
     'color': 418,    # kGreen+2
     'samples'  : ['DY']
 }
+groupPlot['DYlow'] = {
+    'nameHR' : "DYlow",
+    'isSignal' : 0,
+    'color': 416,    # kGreen+2
+    'samples'  : ['DYlow']
+}
 
 groupPlot['FAKE'] = {
     'nameHR' : "Fake",
@@ -145,6 +151,12 @@ for mp in signal:
 #
 plot['DY']  = {
     'color': 418,    # kGreen+2
+    'isSignal' : 0,
+    'isData'   : 0,
+    'scale'    : 1.0,
+}
+plot['DYlow']  = {
+    'color': 416,    # kGreen+2
     'isSignal' : 0,
     'isData'   : 0,
     'scale'    : 1.0,

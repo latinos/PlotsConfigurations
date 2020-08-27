@@ -4,6 +4,12 @@ variables['events']  = {   'name': '1',
                            'fold' : 3
                        }
 
+variables['nvtx']  = {   'name': '1',
+                         'range' : (30,0,50),
+                         'xaxis' : 'events',
+                         'fold' : 3
+                     }
+
 variables['pt1']  = {   'name': 'Lepton_pt[0]',     
                         'range' : (40,0,600),   
                         'xaxis' : 'p_{T} 1st lep',
@@ -126,7 +132,7 @@ variables['MET_significance']  = {   'name': 'MET_significance',
                                  }
 
 variables['mt2ll']  = {   'name': 'mt2ll',
-                          'range' : (40,0,220),
+                          'range' : (40,0,300),
                           'xaxis' : 'm_{T2}^{ll} [GeV]',
                           'fold'  : 3
                       }
@@ -200,8 +206,11 @@ variables['r2l4j'] = {   'name': 'PuppiMET_pt / (Lepton_pt[0] + Lepton_pt[1] + A
 
 #DNN/BDT variables
 trainings = [{"tag": "scalar_LO_Mchi_1_Mphi_100_default", "shortName": "scalar_default"},
-             {"tag": "scalar_LO_Mchi_1_Mphi_100_twomore", "shortName": "scalar_twomore"},
-             {"tag": "scalar_LO_Mchi_1_Mphi_100_fivemore", "shortName": "scalar_fiveMore"}]
+             {"tag": "scalar_LO_Mchi_1_Mphi_100_step2", "shortName": "scalar_step2"},
+             {"tag": "scalar_LO_Mchi_1_Mphi_100_step3", "shortName": "scalar_step3"},
+             {"tag": "scalar_LO_Mchi_1_Mphi_100_step4", "shortName": "scalar_step4"},
+             {"tag": "scalar_LO_Mchi_1_Mphi_100_step5", "shortName": "scalar_step5"},
+             {"tag": "scalar_LO_Mchi_1_Mphi_100_step6", "shortName": "scalar_step6"}]
 
 for training in trainings:
     variables['BDT_signal0_' + training['shortName']]  = {   'name': 'BDT_output_signal0_' + training['tag'],
