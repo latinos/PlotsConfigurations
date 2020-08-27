@@ -189,12 +189,12 @@ variables['dphi_ljj_met']  = {
 #                        'xaxis' : '#DeltaR(l,met)',
 #                        'fold'  : 3,
 #                        }
-#variables['dphi_l_met']  = {
-#                        'name': 'MHlnjj_dphi_lVmet',
-#                        'range' : (25,0,3.14),
-#                        'xaxis' : '#Delta#phi(l,met)',
-#                        'fold'  : 3,
-#                        }
+variables['dphi_l_met']  = {
+                        'name': 'MHlnjj_dphi_lVmet',
+                        'range' : (25,0,3.14),
+                        'xaxis' : '#Delta#phi(l,met)',
+                        'fold'  : 3,
+                        }
 #variables['deta_l_met']  = {
 #                        'name': 'MHlnjj_deta_lVmet',
 #                        'range' : (25,0,3),
@@ -233,12 +233,12 @@ variables['dphi_l_jj']  = {
 #                        }
 #
 #
-#variables['dphi_j_j']  = {
-#                        'name': 'MHlnjj_dphi_jVj',
-#                        'range' : (25,0,3.14),
-#                        'xaxis' : '#Delta#phi(j1,j2)',
-#                        'fold'  : 3
-#                        }
+variables['dphi_j_j']  = {
+                        'name': 'MHlnjj_dphi_jVj',
+                        'range' : (25,0,3.14),
+                        'xaxis' : '#Delta#phi(j1,j2)',
+                        'fold'  : 3
+                        }
 #
 #
 #variables['deta_j_j']  = {

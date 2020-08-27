@@ -394,19 +394,34 @@ addSampleWeight(samples, 'Wjets', 'WJetsToLNu-0J', '0.90209625793*1.0176') # 492
 addSampleWeight(samples, 'Wjets', 'WJetsToLNu-1J', '0.92350828667*1.0176') # 8280.36/8966.2   = 0.92350828667 
 addSampleWeight(samples, 'Wjets', 'WJetsToLNu-2J', '0.85588177166*1.0176') # 3118.08/3643.12  = 0.85588177166
 
-# samples['Wjets'] = {
-#     'name':   nanoGetSampleFiles(mcDirectory,'WJetsToLNu_HT70_100',False,'nanoLatino_')
-#             + nanoGetSampleFiles(mcDirectory,'WJetsToLNu_HT100_200',False,'nanoLatino_')
-#             + nanoGetSampleFiles(mcDirectory,'WJetsToLNu_HT200_400',False,'nanoLatino_')
-#             + nanoGetSampleFiles(mcDirectory,'WJetsToLNu_HT400_600',False,'nanoLatino_')
-#             + nanoGetSampleFiles(mcDirectory,'WJetsToLNu_HT600_800',False,'nanoLatino_')
-#             + nanoGetSampleFiles(mcDirectory,'WJetsToLNu_HT800_1200',False,'nanoLatino_')
-#             + nanoGetSampleFiles(mcDirectory,'WJetsToLNu_HT1200_2500',False,'nanoLatino_')
-#             + nanoGetSampleFiles(mcDirectory,'WJetsToLNu_HT2500_inf',False,'nanoLatino_'),
-#     'weight': mcCommonWeight,
-#     'FilesPerJob': 4,
-# }
+#files = nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-LO'         ) +\
+#        nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_HT100_200'  ) +\
+#        nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_HT200_400'  ) +\
+#        nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_HT400_600'  ) +\
+#        nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_HT600_800'  ) +\
+#        nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_HT800_1200' ) +\
+#        nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_HT1200_2500') +\
+#        nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_HT2500_inf' )
+#        #+ nanoGetSampleFiles(samples, 'WJetsToLNu-LO_ext1')
+#        #+ nanoGetSampleFiles(samples, 'WJetsToLNu_HT100_200_ext1')
+#        #+ nanoGetSampleFiles(samples, 'WJetsToLNu_HT100_200_ext2')
+#        #+ nanoGetSampleFiles(samples, 'WJetsToLNu_HT200_400_ext1')
+#        #+ nanoGetSampleFiles(samples, 'WJetsToLNu_HT200_400_ext2')
+#        #+ nanoGetSampleFiles(samples, 'WJetsToLNu_HT400_600_ext1')
+#        #+ nanoGetSampleFiles(samples, 'WJetsToLNu_HT600_800_ext1')
+#        #+ nanoGetSampleFiles(samples, 'WJetsToLNu_HT800_1200_ext1')
+#        #+ nanoGetSampleFiles(samples, 'WJetsToLNu_HT1200_2500_ext1')
+#        #+ nanoGetSampleFiles(samples, 'WJetsToLNu_HT2500_inf_ext1'),
+#
+#samples['Wjets'] = { 
+#    'name' : files,   
+#    #'weight': mcCommonWeight +'*EWKnloW[0]', 
+#    'weight' : mcCommonWeight, 
+#    'FilesPerJob' : 2,
+#}
 
+# Fix Wjets binned + LO 
+addSampleWeight(samples,'Wjets', 'WJetsToLNu-LO', 'LHE_HT < 100')
 
 ####### Vg ########
 files = nanoGetSampleFiles(mcDirectory, 'Wg_MADGRAPHMLM')
@@ -580,7 +595,6 @@ DataTrig = {
 
 ########### FAKE ###########
 
-#fakeW_mu20 = 'FW_mu20_el35[0]'
 fakeW_mu20 = 'FW_mu20_el35[0]*FWglobalSF[0]'
 samples['FAKE'] = {
   'name': [],

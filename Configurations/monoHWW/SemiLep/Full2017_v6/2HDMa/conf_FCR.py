@@ -19,10 +19,10 @@ variablesFile = 'variables_FCR.py'
 cutsFile = 'cuts_FCR.py'
 
 # file with list of samples
-samplesFile = 'samples.py'
+samplesFile = 'samples_FCR.py'
 
 # file with list of samples
-plotFile = 'plot.py'
+plotFile = 'plot_FCR.py'
 
 # luminosity to normalize to (in 1/fb)
 lumi = 41.5

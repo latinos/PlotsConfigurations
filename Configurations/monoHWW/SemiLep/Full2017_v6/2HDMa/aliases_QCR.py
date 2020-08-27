@@ -267,18 +267,29 @@ aliases['Top_pTrw'] = {
 
 
 # PU jet Id SF
-
-puidSFSource = '%s/src/LatinoAnalysis/NanoGardener/python/data/JetPUID_effcyandSF.root' % os.getenv('CMSSW_BASE')
+puidSFSource = '{}/src/PlotsConfigurations/Configurations/patches/PUID_81XTraining_EffSFandUncties.root'.format(os.getenv('CMSSW_BASE'))
 
 aliases['PUJetIdSF'] = {
     'linesToAdd': [
         'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
-        '.L %s/src/PlotsConfigurations/Configurations/patches/pujetidsf_event.cc+' % os.getenv('CMSSW_BASE')
+        '.L %s/src/PlotsConfigurations/Configurations/patches/pujetidsf_event_new.cc+' % os.getenv('CMSSW_BASE')
     ],
-    'class': 'PUJetIdEventSF',
+    'class': 'PUJetIdEventSFnew',
     'args': (puidSFSource, '2017', 'loose'),
     'samples': mc
 }
+
+#puidSFSource = '%s/src/LatinoAnalysis/NanoGardener/python/data/JetPUID_effcyandSF.root' % os.getenv('CMSSW_BASE')
+#
+#aliases['PUJetIdSF'] = {
+#    'linesToAdd': [
+#        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
+#        '.L %s/src/PlotsConfigurations/Configurations/patches/pujetidsf_event.cc+' % os.getenv('CMSSW_BASE')
+#    ],
+#    'class': 'PUJetIdEventSF',
+#    'args': (puidSFSource, '2017', 'loose'),
+#    'samples': mc
+#}
 
 # WJets Xsec fix
 aliases['WJets_0J_xsFix'] = {
