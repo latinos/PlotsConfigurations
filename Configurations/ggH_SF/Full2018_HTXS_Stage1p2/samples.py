@@ -2,8 +2,8 @@ import os
 import inspect
 
 configurations = os.path.realpath(inspect.getfile(inspect.currentframe())) # this file
-configurations = os.path.dirname(configurations) # ggH2018
-configurations = os.path.dirname(configurations) # Differential
+configurations = os.path.dirname(configurations) # Full2018_HTXS_Stage1p2
+configurations = os.path.dirname(configurations) # ggH_SF
 configurations = os.path.dirname(configurations) # Configurations
 
 from LatinoAnalysis.Tools.commonTools import getSampleFiles, addSampleWeight, getBaseWnAOD
@@ -307,24 +307,26 @@ if os.path.exists('HTXS_stage1_categories.py') :
 
 ## STXS bins                    
 
+
+### TO BE FIXED: GluGluH sample has not computed the ggH uncertainties while GGHJJ has them. In order to run, we have remove GGHJJ but should be included!  
+
 for cat,num in HTXSStage1_1Categories.iteritems():
     ## ggH
     if 'GG2H_' in cat:
         if 'PTH_GT200' not in cat:
-            samples['ggH_hww_'+cat.replace('GG2H_','')]  = {  'name': nanoGetSampleFiles(mcDirectory,'GluGluHToWWTo2L2Nu_M125')+nanoGetSampleFiles(mcDirectory, 'GGHjjToWWTo2L2Nu_minloHJJ_M125'),
+            samples['ggH_hww_'+cat.replace('GG2H_','')]  = {  'name': nanoGetSampleFiles(mcDirectory,'GluGluHToWWTo2L2Nu_M125'),#+nanoGetSampleFiles(mcDirectory, 'GGHjjToWWTo2L2Nu_minloHJJ_M125'),
                                                               'weight': mcCommonWeight+'*(HTXS_stage1_1_cat_pTjet30GeV=='+str(num)+')',
                                                               'FilesPerJob': 1,
                                                               'suppressNegative' :['all'],
                                                               'suppressNegativeNuisances' :['all'],
             }
             addSampleWeight(samples, 'ggH_hww_'+cat.replace('GG2H_',''), 'GluGluHToWWTo2L2Nu_M125', '(HTXS_stage1_1_cat_pTjet30GeV<107)*Weight2MINLO*1092.7640/1073.2567')
-            addSampleWeight(samples, 'ggH_hww_'+cat.replace('GG2H_',''), 'GGHjjToWWTo2L2Nu_minloHJJ_M125', '(HTXS_stage1_1_cat_pTjet30GeV>106)*1092.7640/1073.2567')
+            #addSampleWeight(samples, 'ggH_hww_'+cat.replace('GG2H_',''), 'GGHjjToWWTo2L2Nu_minloHJJ_M125', '(HTXS_stage1_1_cat_pTjet30GeV>106)*1092.7640/1073.2567')
             signals.append('ggH_hww_'+cat.replace('GG2H_',''))
 
 
 
 # Stage 1.2 binning for high pTH bin                                                                                                         
-                                                                                                                                              
 samples['ggH_hww_PTH_200_300']  = {  'name': nanoGetSampleFiles(mcDirectory,'GluGluHToWWTo2L2Nu_M125'),
                                      'weight': mcCommonWeight+'*(HTXS_stage1_1_cat_pTjet30GeV==101)*(HTXS_Higgs_pt>200)*(HTXS_Higgs_pt<=300)*Weight2MINLO',
                                      'FilesPerJob': 1,
