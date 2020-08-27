@@ -1,18 +1,22 @@
 # cuts
 
 #Different trainings to be considered in the cuts
-trainings = [{"tag": "scalar_LO_Mchi_1_Mphi_100_default", "shortName": "scalar_default"}, 
-             {"tag": "scalar_LO_Mchi_1_Mphi_100_twomore", "shortName": "scalar_twomore"},
-             {"tag": "scalar_LO_Mchi_1_Mphi_100_fivemore", "shortName": "scalar_fiveMore"}]
+trainings = [{"tag": "scalar_LO_Mchi_1_Mphi_100_default", "shortName": "scalar_default"},
+             {"tag": "scalar_LO_Mchi_1_Mphi_100_step2", "shortName": "scalar_step2"},
+             {"tag": "scalar_LO_Mchi_1_Mphi_100_step3", "shortName": "scalar_step3"},
+             {"tag": "scalar_LO_Mchi_1_Mphi_100_step4", "shortName": "scalar_step4"},
+             {"tag": "scalar_LO_Mchi_1_Mphi_100_step5", "shortName": "scalar_step5"},
+             {"tag": "scalar_LO_Mchi_1_Mphi_100_step6", "shortName": "scalar_step6"}]
 
 supercut = """Lepton_pt[0] > 25. && Lepton_pt[1] > 20. \
 && (nLepton>=2 && Alt$(Lepton_pt[2],0)<10) \
 && (Lepton_pdgId[0]*Lepton_pdgId[1]) < 0 \
-&& abs(Lepton_eta[0])<2.5 && abs(Lepton_eta[1])<2.5 \
+&& abs(Lepton_eta[0])<2.4 && abs(Lepton_eta[1])<2.4 \
 && (mll > 20.) \
 && (Lepton_pdgId[0] * Lepton_pdgId[1] == -11*13 || PuppiMET_pt > 50.) \
 && (Lepton_pdgId[0] * Lepton_pdgId[1] == -11*13 || (mll < 76 || mll > 106)) \
-&& (Sum$(CleanJet_pt >= 30. && abs(CleanJet_eta) < 2.4) >= 1) && nbJet > 0"""
+&& mt2ll > 40. \
+&& nbJet > 0 && (Sum$(CleanJet_pt >= 30. && abs(CleanJet_eta) < 2.4) >= 1)"""
 
 cuts['topCR_ll']  = '1'
 cuts['topCR_df']  = '(Lepton_pdgId[0] * Lepton_pdgId[1] == -11*13)'
