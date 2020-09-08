@@ -15,18 +15,28 @@ supercut = '   mll > 12 \
 dymvaVH  = 'dymva_alt_dnn_VH  > 0.825'
 dymvaVBF = 'dymva_alt_dnn_VBF > 0.970'
 
+
+## HWW signal region        - split based on STXS Stage 1.2 EWK qqH definition
+## HAccNum (DY numerator)   - split based on STXS Stage 1.2 EWK qqH definition
+## wwAcc   (WW numerator)   - split in VH, VBF and high pt regions
+## AccDen  (DY denominator) - split in VH, VBF and high pt regions
+## DYin    (DY peak)        - split in VH, VBF and high pt regions
+## top control region       - split in VH, VBF and high pt regions
+## WW  control region       - split in VH, VBF and high pt regions
+
+
 ## Higgs signal region
 cuts['hww2l2v_13TeV'] = {
    'expr': 'sr && Higgs_qq && multiJet' ,
    'categories' : {
        'mjj65_105_ee'           : 'mjj >= 65 && mjj <= 105 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && ' +dymvaVH,
        'mjj65_105_mm'           : 'mjj >= 65 && mjj <= 105 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && ' +dymvaVH,
-       'mjj350_700_pthLT200_ee' : 'mjj > 350 && mjj <= 700 && ptWW <= 200 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && ' +dymvaVBF,
-       'mjj350_700_pthLT200_mm' : 'mjj > 350 && mjj <= 700 && ptWW <= 200 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && ' +dymvaVBF,
-       'mjjGT700_pthLT200_ee'   : 'mjj > 700 && ptWW <= 200 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && ' +dymvaVBF,
-       'mjjGT700_pthLT200_mm'   : 'mjj > 700 && ptWW <= 200 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && ' +dymvaVBF,
-       'mjjGT350_pthGT200_ee'   : 'mjj > 350 && ptWW >  200 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && ' +dymvaVBF,
-       'mjjGT350_pthGT200_mm'   : 'mjj > 350 && ptWW >  200 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && ' +dymvaVBF,
+       'mjj350_700_pthLT200_ee' : 'mjj > 350 && mjj <= 700 && pTWW <= 200 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && ' +dymvaVBF,
+       'mjj350_700_pthLT200_mm' : 'mjj > 350 && mjj <= 700 && pTWW <= 200 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && ' +dymvaVBF,
+       'mjjGT700_pthLT200_ee'   : 'mjj > 700 && pTWW <= 200 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && ' +dymvaVBF,
+       'mjjGT700_pthLT200_mm'   : 'mjj > 700 && pTWW <= 200 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && ' +dymvaVBF,
+       'mjjGT350_pthGT200_ee'   : 'mjj > 350 && pTWW >  200 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && ' +dymvaVBF,
+       'mjjGT350_pthGT200_mm'   : 'mjj > 350 && pTWW >  200 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && ' +dymvaVBF,
    }
 }
 
@@ -36,12 +46,12 @@ cuts['hww2l2v_13TeV_HAccNum'] = {
    'categories' : {
        'mjj65_105_ee'           : 'mjj >= 65 && mjj <= 105 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && dymva_alt_dnn_VH > 0.8',
        'mjj65_105_mm'           : 'mjj >= 65 && mjj <= 105 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && dymva_alt_dnn_VH > 0.8',
-       'mjj350_700_pthLT200_ee' : 'mjj > 350 && mjj <= 700 && ptWW <= 200 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && dymva_alt_dnn_VBF > 0.9',
-       'mjj350_700_pthLT200_mm' : 'mjj > 350 && mjj <= 700 && ptWW <= 200 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && dymva_alt_dnn_VBF > 0.9',
-       'mjjGT700_pthLT200_ee'   : 'mjj > 700 && ptWW <= 200 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && dymva_alt_dnn_VBF > 0.9',
-       'mjjGT700_pthLT200_mm'   : 'mjj > 700 && ptWW <= 200 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && dymva_alt_dnn_VBF > 0.9',
-       'mjjGT350_pthGT200_ee'   : 'mjj > 350 && ptWW >  200 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && dymva_alt_dnn_VBF > 0.9',
-       'mjjGT350_pthGT200_mm'   : 'mjj > 350 && ptWW >  200 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && dymva_alt_dnn_VBF > 0.9',
+       'mjj350_700_pthLT200_ee' : 'mjj > 350 && mjj <= 700 && pTWW <= 200 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && dymva_alt_dnn_VBF > 0.9',
+       'mjj350_700_pthLT200_mm' : 'mjj > 350 && mjj <= 700 && pTWW <= 200 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && dymva_alt_dnn_VBF > 0.9',
+       'mjjGT700_pthLT200_ee'   : 'mjj > 700 && pTWW <= 200 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && dymva_alt_dnn_VBF > 0.9',
+       'mjjGT700_pthLT200_mm'   : 'mjj > 700 && pTWW <= 200 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && dymva_alt_dnn_VBF > 0.9',
+       'mjjGT350_pthGT200_ee'   : 'mjj > 350 && pTWW >  200 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && dymva_alt_dnn_VBF > 0.9',
+       'mjjGT350_pthGT200_mm'   : 'mjj > 350 && pTWW >  200 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && dymva_alt_dnn_VBF > 0.9',
    }
 }
 
@@ -51,10 +61,10 @@ cuts['hww2l2v_13TeV_top']  = {
    'categories' : {
       '2j_vh_ee'  : 'mjj >= 65 && mjj  <= 105 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && ' +dymvaVH,
       '2j_vh_mm'  : 'mjj >= 65 && mjj  <= 105 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && ' +dymvaVH,
-      '2j_vbf_ee' : 'mjj > 350 && ptWW <= 200 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && ' +dymvaVBF,
-      '2j_vbf_mm' : 'mjj > 350 && ptWW <= 200 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && ' +dymvaVBF,
-      '2j_hpt_ee' : 'mjj > 350 && ptWW >  200 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && ' +dymvaVBF,
-      '2j_hpt_mm' : 'mjj > 350 && ptWW >  200 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && ' +dymvaVBF,
+      '2j_vbf_ee' : 'mjj > 350 && pTWW <= 200 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && ' +dymvaVBF,
+      '2j_vbf_mm' : 'mjj > 350 && pTWW <= 200 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && ' +dymvaVBF,
+      '2j_hpt_ee' : 'mjj > 350 && pTWW >  200 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && ' +dymvaVBF,
+      '2j_hpt_mm' : 'mjj > 350 && pTWW >  200 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && ' +dymvaVBF,
    }
 }
 
@@ -64,10 +74,10 @@ cuts['hww2l2v_13TeV_WW']  = {
    'categories' : {
       '2j_vh_ee'  : 'mjj >= 65 && mjj  <= 105 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && ' +dymvaVH,
       '2j_vh_mm'  : 'mjj >= 65 && mjj  <= 105 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && ' +dymvaVH,
-      '2j_vbf_ee' : 'mjj > 350 && ptWW <= 200 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && ' +dymvaVBF,
-      '2j_vbf_mm' : 'mjj > 350 && ptWW <= 200 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && ' +dymvaVBF,
-      '2j_hpt_ee' : 'mjj > 350 && ptWW >  200 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && ' +dymvaVBF,
-      '2j_hpt_mm' : 'mjj > 350 && ptWW >  200 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && ' +dymvaVBF,
+      '2j_vbf_ee' : 'mjj > 350 && pTWW <= 200 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && ' +dymvaVBF,
+      '2j_vbf_mm' : 'mjj > 350 && pTWW <= 200 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && ' +dymvaVBF,
+      '2j_hpt_ee' : 'mjj > 350 && pTWW >  200 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && ' +dymvaVBF,
+      '2j_hpt_mm' : 'mjj > 350 && pTWW >  200 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && ' +dymvaVBF,
    }
 }
 
@@ -77,10 +87,10 @@ cuts['hww2l2v_13TeV_wwAcc']  = {
    'categories' : {
       '2j_vh_ee'  : 'mjj >= 65 && mjj  <= 105 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && dymva_alt_dnn_VH  > 0.8',
       '2j_vh_mm'  : 'mjj >= 65 && mjj  <= 105 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && dymva_alt_dnn_VH  > 0.8',
-      '2j_vbf_ee' : 'mjj > 350 && ptWW <= 200 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && dymva_alt_dnn_VBF > 0.9',
-      '2j_vbf_mm' : 'mjj > 350 && ptWW <= 200 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && dymva_alt_dnn_VBF > 0.9',
-      '2j_hpt_ee' : 'mjj > 350 && ptWW >  200 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && dymva_alt_dnn_VBF > 0.9',
-      '2j_hpt_mm' : 'mjj > 350 && ptWW >  200 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && dymva_alt_dnn_VBF > 0.9',
+      '2j_vbf_ee' : 'mjj > 350 && pTWW <= 200 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && dymva_alt_dnn_VBF > 0.9',
+      '2j_vbf_mm' : 'mjj > 350 && pTWW <= 200 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && dymva_alt_dnn_VBF > 0.9',
+      '2j_hpt_ee' : 'mjj > 350 && pTWW >  200 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && dymva_alt_dnn_VBF > 0.9',
+      '2j_hpt_mm' : 'mjj > 350 && pTWW >  200 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && dymva_alt_dnn_VBF > 0.9',
    }
 } 
 
@@ -90,10 +100,10 @@ cuts['hww2l2v_13TeV_AccDen']  = {
    'categories' : {
       '2j_vh_ee'  : 'mjj >= 65 && mjj  <= 105 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && dymva_alt_dnn_VH  > 0.8',
       '2j_vh_mm'  : 'mjj >= 65 && mjj  <= 105 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && dymva_alt_dnn_VH  > 0.8',
-      '2j_vbf_ee' : 'mjj > 350 && ptWW <= 200 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && dymva_alt_dnn_VBF > 0.9',
-      '2j_vbf_mm' : 'mjj > 350 && ptWW <= 200 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && dymva_alt_dnn_VBF > 0.9',
-      '2j_hpt_ee' : 'mjj > 350 && ptWW >  200 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && dymva_alt_dnn_VBF > 0.9',
-      '2j_hpt_mm' : 'mjj > 350 && ptWW >  200 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && dymva_alt_dnn_VBF > 0.9',
+      '2j_vbf_ee' : 'mjj > 350 && pTWW <= 200 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && dymva_alt_dnn_VBF > 0.9',
+      '2j_vbf_mm' : 'mjj > 350 && pTWW <= 200 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && dymva_alt_dnn_VBF > 0.9',
+      '2j_hpt_ee' : 'mjj > 350 && pTWW >  200 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && dymva_alt_dnn_VBF > 0.9',
+      '2j_hpt_mm' : 'mjj > 350 && pTWW >  200 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && dymva_alt_dnn_VBF > 0.9',
    }
 }
 
@@ -104,11 +114,11 @@ cuts['hww2l2v_13TeV_DYin']  = {
       '2j_vh_ee'  : 'mjj >= 65 && mjj  <= 105 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && ' +dymvaVH,
       '2j_vh_mm'  : 'mjj >= 65 && mjj  <= 105 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && ' +dymvaVH,
       '2j_vh_df'  : 'mjj >= 65 && mjj  <= 105 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13) && ' +dymvaVH,
-      '2j_vbf_ee' : 'mjj > 350 && ptWW <= 200 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && ' +dymvaVBF,
-      '2j_vbf_mm' : 'mjj > 350 && ptWW <= 200 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && ' +dymvaVBF,
-      '2j_vbf_df' : 'mjj > 350 && ptWW <= 200 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13) && ' +dymvaVBF,
-      '2j_hpt_ee' : 'mjj > 350 && ptWW >  200 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && ' +dymvaVBF,
-      '2j_hpt_mm' : 'mjj > 350 && ptWW >  200 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && ' +dymvaVBF,
-      '2j_hpt_df' : 'mjj > 350 && ptWW >  200 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13) && ' +dymvaVBF,
+      '2j_vbf_ee' : 'mjj > 350 && pTWW <= 200 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && ' +dymvaVBF,
+      '2j_vbf_mm' : 'mjj > 350 && pTWW <= 200 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && ' +dymvaVBF,
+      '2j_vbf_df' : 'mjj > 350 && pTWW <= 200 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13) && ' +dymvaVBF,
+      '2j_hpt_ee' : 'mjj > 350 && pTWW >  200 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && ' +dymvaVBF,
+      '2j_hpt_mm' : 'mjj > 350 && pTWW >  200 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && ' +dymvaVBF,
+      '2j_hpt_df' : 'mjj > 350 && pTWW >  200 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13) && ' +dymvaVBF,
    }
 }
