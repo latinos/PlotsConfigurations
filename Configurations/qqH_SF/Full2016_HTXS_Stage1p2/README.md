@@ -1,4 +1,4 @@
-The following instructions correspond to the VBF and VH SF HWW analysis.
+The following instructions correspond to the VBF and VH SF HWW STXS Stage 1.2 analysis.
 
 # Produce a valid VOMS proxy
 
