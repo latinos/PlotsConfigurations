@@ -314,6 +314,7 @@ aliases['nCleanGenJet'] = {
 }
 
 
+# Let's comment for the moment to avoid problems with ggH samples v6
 # GGHUncertaintyProducer wasn't run for GluGluHToWWTo2L2Nu_M125
 thus = [
     'ggH_mu',
@@ -327,14 +328,14 @@ thus = [
     'ggH_qmtop'
 ]
 
-for thu in thus:
-    aliases[thu] = {
-        'linesToAdd': ['.L %s/Differential/gghuncertainty.cc+' % configurations],
-        'class': 'GGHUncertainty',
-        'args': (thu,),
-        'samples': [skey for skey in samples if 'ggH_hww' in skey],
-        'nominalOnly': True
-    }
+# for thu in thus:
+#     aliases[thu] = {
+#         'linesToAdd': ['.L %s/Differential/gghuncertainty.cc+' % configurations],
+#         'class': 'GGHUncertainty',
+#         'args': (thu,),
+#         'samples': [skey for skey in samples if 'ggH_hww' in skey],
+#         'nominalOnly': True
+#     }
 
 
 thusQQ = [
