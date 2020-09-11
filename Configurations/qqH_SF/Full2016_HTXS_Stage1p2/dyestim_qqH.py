@@ -49,7 +49,7 @@ RAndKff['DYmva0p9'] = {
 
 
 ## DYestim in the signal regions
-DYestim['hww2l2v_13TeV_mjj65_105_ee'] = {
+DYestim['hww2l2v_13TeV_2j_mjj65_105_ee'] = {
                                  'rinout'  : 'DYmva0p8',
                                  'rsyst'   : 0.05,
                                  'ksyst'   : 0.02,
@@ -63,12 +63,12 @@ DYestim['hww2l2v_13TeV_mjj65_105_ee'] = {
                                  'DFinDa'  : 'DATA',
                                  'DFinMC'  : ['VZ','Vg','VgS_L','VgS_H'],
                                  'NPname'  : 'DYeenormvh',
-                                 'AccNum'  : 'hww2l2v_13TeV_HAccNum_mjj65_105_ee/events/histo_DY',
+                                 'AccNum'  : 'hww2l2v_13TeV_HAccNum_2j_mjj65_105_ee/events/histo_DY',
                                  'AccDen'  : 'hww2l2v_13TeV_AccDen_2j_vh_ee/events/histo_DY',
                                  'asyst'   : 0.16,
                                 }
 
-DYestim['hww2l2v_13TeV_mjj65_105_mm'] = {
+DYestim['hww2l2v_13TeV_2j_mjj65_105_mm'] = {
                                  'rinout'  : 'DYmva0p8',
                                  'rsyst'   : 0.02,
                                  'ksyst'   : 0.03,
@@ -82,12 +82,12 @@ DYestim['hww2l2v_13TeV_mjj65_105_mm'] = {
                                  'DFinDa'  : 'DATA',
                                  'DFinMC'  : ['VZ','Vg','VgS_L','VgS_H'],
                                  'NPname'  : 'DYmmnormvh',
-                                 'AccNum'  : 'hww2l2v_13TeV_HAccNum_mjj65_105_mm/events/histo_DY',
+                                 'AccNum'  : 'hww2l2v_13TeV_HAccNum_2j_mjj65_105_mm/events/histo_DY',
                                  'AccDen'  : 'hww2l2v_13TeV_AccDen_2j_vh_mm/events/histo_DY',
                                  'asyst'   : 0.01,
                                 }
 
-DYestim['hww2l2v_13TeV_mjj350_700_pthLT200_ee'] = {
+DYestim['hww2l2v_13TeV_2j_mjj350_700_pthLT200_ee'] = {
                                  'rinout'  : 'DYmva0p9',
                                  'rsyst'   : 0.01,
                                  'ksyst'   : 0.01,
@@ -101,12 +101,12 @@ DYestim['hww2l2v_13TeV_mjj350_700_pthLT200_ee'] = {
                                  'DFinDa'  : 'DATA',
                                  'DFinMC'  : ['VZ','Vg','VgS_L','VgS_H'],
                                  'NPname'  : 'DYeenormvbf',
-                                 'AccNum'  : 'hww2l2v_13TeV_HAccNum_mjj350_700_pthLT200_ee/events/histo_DY',
+                                 'AccNum'  : 'hww2l2v_13TeV_HAccNum_2j_mjj350_700_pthLT200_ee/events/histo_DY',
                                  'AccDen'  : 'hww2l2v_13TeV_AccDen_2j_vbf_ee/events/histo_DY',
                                  'asyst'   : 0.20,
                                 }
 
-DYestim['hww2l2v_13TeV_mjj350_700_pthLT200_mm'] = {
+DYestim['hww2l2v_13TeV_2j_mjj350_700_pthLT200_mm'] = {
                                  'rinout'  : 'DYmva0p9',
                                  'rsyst'   : 0.01,
                                  'ksyst'   : 0.01,
@@ -120,12 +120,12 @@ DYestim['hww2l2v_13TeV_mjj350_700_pthLT200_mm'] = {
                                  'DFinDa'  : 'DATA',
                                  'DFinMC'  : ['VZ','Vg','VgS_L','VgS_H'],
                                  'NPname'  : 'DYmmnormvbf',
-                                 'AccNum'  : 'hww2l2v_13TeV_HAccNum_mjj350_700_pthLT200_mm/events/histo_DY',
+                                 'AccNum'  : 'hww2l2v_13TeV_HAccNum_2j_mjj350_700_pthLT200_mm/events/histo_DY',
                                  'AccDen'  : 'hww2l2v_13TeV_AccDen_2j_vbf_mm/events/histo_DY',
                                  'asyst'   : 0.01,
                                 }
 
-DYestim['hww2l2v_13TeV_mjjGT700_pthLT200_ee'] = {
+DYestim['hww2l2v_13TeV_2j_mjjGT700_pthLT200_ee'] = {
                                  'rinout'  : 'DYmva0p9',
                                  'rsyst'   : 0.01,
                                  'ksyst'   : 0.01,
@@ -139,12 +139,12 @@ DYestim['hww2l2v_13TeV_mjjGT700_pthLT200_ee'] = {
                                  'DFinDa'  : 'DATA',
                                  'DFinMC'  : ['VZ','Vg','VgS_L','VgS_H'],
                                  'NPname'  : 'DYeenormvbf',
-                                 'AccNum'  : 'hww2l2v_13TeV_HAccNum_mjjGT700_pthLT200_ee/events/histo_DY',
+                                 'AccNum'  : 'hww2l2v_13TeV_HAccNum_2j_mjjGT700_pthLT200_ee/events/histo_DY',
                                  'AccDen'  : 'hww2l2v_13TeV_AccDen_2j_vbf_ee/events/histo_DY',
                                  'asyst'   : 0.20,
                                 }
 
-DYestim['hww2l2v_13TeV_mjjGT700_pthLT200_mm'] = {
+DYestim['hww2l2v_13TeV_2j_mjjGT700_pthLT200_mm'] = {
                                  'rinout'  : 'DYmva0p9',
                                  'rsyst'   : 0.01,
                                  'ksyst'   : 0.01,
@@ -158,12 +158,12 @@ DYestim['hww2l2v_13TeV_mjjGT700_pthLT200_mm'] = {
                                  'DFinDa'  : 'DATA',
                                  'DFinMC'  : ['VZ','Vg','VgS_L','VgS_H'],
                                  'NPname'  : 'DYmmnormvbf',
-                                 'AccNum'  : 'hww2l2v_13TeV_HAccNum_mjjGT700_pthLT200_mm/events/histo_DY',
+                                 'AccNum'  : 'hww2l2v_13TeV_HAccNum_2j_mjjGT700_pthLT200_mm/events/histo_DY',
                                  'AccDen'  : 'hww2l2v_13TeV_AccDen_2j_vbf_mm/events/histo_DY',
                                  'asyst'   : 0.01,
                                 }
 
-DYestim['hww2l2v_13TeV_mjjGT350_pthGT200_ee'] = {
+DYestim['hww2l2v_13TeV_2j_mjjGT350_pthGT200_ee'] = {
                                  'rinout'  : 'DYmva0p9',
                                  'rsyst'   : 0.01,
                                  'ksyst'   : 0.01,
@@ -177,12 +177,12 @@ DYestim['hww2l2v_13TeV_mjjGT350_pthGT200_ee'] = {
                                  'DFinDa'  : 'DATA',
                                  'DFinMC'  : ['VZ','Vg','VgS_L','VgS_H'],
                                  'NPname'  : 'DYeenormvbf',
-                                 'AccNum'  : 'hww2l2v_13TeV_HAccNum_mjjGT350_pthGT200_ee/events/histo_DY',
+                                 'AccNum'  : 'hww2l2v_13TeV_HAccNum_2j_mjjGT350_pthGT200_ee/events/histo_DY',
                                  'AccDen'  : 'hww2l2v_13TeV_AccDen_2j_hpt_ee/events/histo_DY',
                                  'asyst'   : 0.20,
                                 }
 
-DYestim['hww2l2v_13TeV_mjjGT350_pthGT200_mm'] = {
+DYestim['hww2l2v_13TeV_2j_mjjGT350_pthGT200_mm'] = {
                                  'rinout'  : 'DYmva0p9',
                                  'rsyst'   : 0.01,
                                  'ksyst'   : 0.01,
@@ -196,7 +196,7 @@ DYestim['hww2l2v_13TeV_mjjGT350_pthGT200_mm'] = {
                                  'DFinDa'  : 'DATA',
                                  'DFinMC'  : ['VZ','Vg','VgS_L','VgS_H'],
                                  'NPname'  : 'DYmmnormvbf',
-                                 'AccNum'  : 'hww2l2v_13TeV_HAccNum_mjjGT350_pthGT200_mm/events/histo_DY',
+                                 'AccNum'  : 'hww2l2v_13TeV_HAccNum_2j_mjjGT350_pthGT200_mm/events/histo_DY',
                                  'AccDen'  : 'hww2l2v_13TeV_AccDen_2j_hpt_mm/events/histo_DY',
                                  'asyst'   : 0.01,
                                 }
