@@ -13,7 +13,17 @@ The following instructions correspond to the VBF and VH SF HWW STXS Stage 1.2 an
 
     mkShapesMulti.py --pycfg=configuration.py --doHadd=1 --batchSplit=Samples,Files --doNotCleanup --nThreads=8
 
-# Data-driven DY estimation
+# Produce histograms for data-driven DY estimation
+
+    mkShapesMulti.py --pycfg=configuration_DYEST080.py --doBatch=1 --batchSplit=Samples,Files --batchQueue=testmatch 
+    mkShapesMulti.py --pycfg=configuration_DYEST090.py --doBatch=1 --batchSplit=Samples,Files --batchQueue=testmatch 
+
+# Group (hadd) data-driven DY estimation histograms
+
+    mkShapesMulti.py --pycfg=configuration_DYEST080.py --doHadd=1 --batchSplit=Samples,Files --doNotCleanup --nThreads=8   
+    mkShapesMulti.py --pycfg=configuration_DYEST090.py --doHadd=1 --batchSplit=Samples,Files --doNotCleanup --nThreads=8   
+
+# Perform the data-driven DY estimation
 
     mkDYestim_data.py --pycfg=configuration.py --dycfg=dyestim_qqH.py --inputFile=rootFile/plots_STXS_qqH_SF_2016.root
 
