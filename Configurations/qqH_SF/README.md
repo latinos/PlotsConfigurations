@@ -9,6 +9,23 @@ The following instructions correspond to the VBF and VH SF HWW analysis.
 
     mkShapesMulti.py --pycfg=configuration.py --doBatch=1 --batchSplit=Samples,Files --batchQueue=testmatch
 
+# Check job status
+
+    condor_q
+
+If needed, you can check the (automatically produced) configuration files of all the submitted jobs, and even submit manually some of them for debugging or test purposes.
+
+    ls $HOME/cms/HWW2015/jobs
+    
+If you need to cancel all the submitted jobs,
+
+    condor_rm [YourUsername]
+
+# Resubmit failed jobs
+
+    cd $HOME/cms/HWW2015/jobs/mkShapes__VH2j_2017
+    for i in *jid; do condor_submit ${i/jid/jds}; done
+
 # Group (hadd) histograms
 
     mkShapesMulti.py --pycfg=configuration.py --doHadd=1 --batchSplit=Samples,Files --doNotCleanup --nThreads=8
