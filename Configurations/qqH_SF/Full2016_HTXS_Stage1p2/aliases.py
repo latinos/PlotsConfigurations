@@ -195,17 +195,17 @@ for shift in ['jes','lf','hf','lfstats1','lfstats2','hfstats1','hfstats2','cferr
 
 # data/MC scale factors
 
-### puidSFSource = '{}/patches/PUID_80XTraining_EffSFandUncties.root'.format(configurations)
-### 
-### aliases['PUJetIdSF'] = {
-###     'linesToAdd': [
-###         'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
-###         '.L %s/patches/pujetidsf_event_new.cc+' % configurations
-###     ],
-###     'class': 'PUJetIdEventSF',
-###     'args': (puidSFSource, '2016', 'loose'),
-###     'samples': mc
-### }
+puidSFSource = '{}/patches/PUID_80XTraining_EffSFandUncties.root'.format(configurations)
+
+aliases['PUJetIdSF'] = {
+    'linesToAdd': [
+        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
+        '.L %s/patches/pujetidsf_event_new.cc+' % configurations
+    ],
+    'class': 'PUJetIdEventSF',
+    'args': (puidSFSource, '2016', 'loose'),
+    'samples': mc
+}
 
 aliases['ttHMVA_SF_2l'] = {   'linesToAdd': ['.L %s/patches/compute_SF.C+' % configurations],
                         'class': 'compute_SF',
@@ -282,6 +282,13 @@ aliases['lhe_mW1'] = {
 aliases['lhe_mW2'] = {
     'expr': 'TMath::Sqrt(2. * LHEPart_pt[2] * LHEPart_pt[3] * (TMath::CosH(LHEPart_eta[2] - LHEPart_eta[3]) - TMath::Cos(LHEPart_phi[2] - LHEPart_phi[3])))',
     'samples': ['WWewk']
+}
+
+aliases['Weight2MINLO'] = {
+    'linesToAdd': ['.L %s/Differential/weight2MINLO.cc+' % configurations],
+    'class': 'Weight2MINLO',
+    'args': '%s/src/LatinoAnalysis/Gardener/python/data/powheg2minlo/NNLOPS_reweight.root' % os.getenv('CMSSW_BASE'),
+    'samples' : [skey for skey in samples if 'ggH_hww' in skey],
 }
 
 aliases['nCleanGenJet'] = {
