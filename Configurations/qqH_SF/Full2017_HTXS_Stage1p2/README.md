@@ -1,25 +1,3 @@
-To do:
-
-comb_qqH.py
-dyestim_qqH.py
-
-
-
-
-Done:
-configuration.py - looks OK
-cuts.py          - taken from Full2017_HTXS_Stage1p2  
-nuisances.py     - same as Full2017_v6
-aliases          - same as Full2017_v6 - added weight2minlo alias
-structure        - same as Full2016_HTXS_Stage1p2 and Full2017_v6 (signals from https://github.com/latinos/PlotsConfigurations/blob/master/Configurations/ggH/Full2017_v6/HTXS_Stage1p2_ggHVBFVH/structure.py)
-variables.py     - just 'events' ;)
-samples.py       - signals from https://github.com/latinos/PlotsConfigurations/blob/master/Configurations/ggH/Full2017_v6/HTXS_Stage1p2_ggHVBFVH/samples.py#L297-L458
-cuts_DYEST.py    - looks like it is the same everywhere
-
-
-Tested:
-
-
 # Common tools for analysis:
   
     voms-proxy-init -voms cms -rfc --valid 168:0
