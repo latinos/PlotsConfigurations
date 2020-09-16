@@ -46,3 +46,7 @@ Drop bogus nuisances:
 ## Create the workspace from the datacard
 
     python doWorkspace.py
+
+## Perform the fit on the workspace
+
+    python doFit.py
