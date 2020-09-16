@@ -1,0 +1,63 @@
+To do:
+
+comb_qqH.py
+dyestim_qqH.py
+
+
+
+
+Done:
+configuration.py - looks OK
+cuts.py          - taken from Full2017_HTXS_Stage1p2  
+nuisances.py     - same as Full2017_v6
+aliases          - same as Full2017_v6 - added weight2minlo alias
+structure        - same as Full2016_HTXS_Stage1p2 and Full2017_v6 (signals from https://github.com/latinos/PlotsConfigurations/blob/master/Configurations/ggH/Full2017_v6/HTXS_Stage1p2_ggHVBFVH/structure.py)
+variables.py     - just 'events' ;)
+samples.py       - signals from https://github.com/latinos/PlotsConfigurations/blob/master/Configurations/ggH/Full2017_v6/HTXS_Stage1p2_ggHVBFVH/samples.py#L297-L458
+cuts_DYEST.py    - looks like it is the same everywhere
+
+
+Tested:
+
+
+# Common tools for analysis:
+  
+    voms-proxy-init -voms cms -rfc --valid 168:0
+
+## Produce distributions using mkShapesMulti.py in batch mode
+  
+    mkShapesMulti.py --pycfg=configuration.py --doBatch=1 --batchSplit=Samples,Files --batchQueue=testmatch
+
+## Hadd files
+
+    mkShapesMulti.py --pycfg=configuration.py --doHadd=1 --batchSplit=Samples,Files --doNotCleanup --nThreads=8
+
+## Produce distributions for data-driven DY estimation using mkShapesMulti.py in batch mode 
+
+    mkShapesMulti.py --pycfg=configuration_DYEST080.py --doBatch=1 --batchSplit=Samples,Files --batchQueue=testmatch 
+    mkShapesMulti.py --pycfg=configuration_DYEST080.py --doHadd=1 --batchSplit=Samples,Files --doNotCleanup --nThreads=8
+
+    mkShapesMulti.py --pycfg=configuration_DYEST090.py --doBatch=1 --batchSplit=Samples,Files --batchQueue=testmatch 
+    mkShapesMulti.py --pycfg=configuration_DYEST090.py --doHadd=1 --batchSplit=Samples,Files --doNotCleanup --nThreads=8
+
+## Perfrm data-driven DY estimation
+
+    mkDYestim_data.py --pycfg=configuration.py --dycfg=dyestim_qqH.py --inputFile=rootFile/plots_STXS_qqH_SF_2017.root
+
+Or, by using condor:
+
+    python doDY.py --pycfg=configuration.py --dycfg=dyestim_qqH.py --inputFile=rootFile/plots_STXS_qqH_SF_2017.root
+
+## Produce datacards:
+
+    mkDatacards.py \
+        --pycfg=configuration.py \
+	--inputFile=rootFile/plots_STXS_qqH_SF_2017_DYEstimDATA.root.GOOD \
+	--cardList=hww2l2v_13TeV_mjj65_105_ee,hww2l2v_13TeV_mjj65_105_mm,hww2l2v_13TeV_mjj350_700_pthLT200_ee,hww2l2v_13TeV_mjj350_700_pthLT200_mm,hww2l2v_13TeV_mjjGT700_pthLT200_ee,hww2l2v_13TeV_mjjGT700_pthLT200_mm,hww2l2v_13TeV_mjjGT350_pthGT200_ee,hww2l2v_13TeV_mjjGT350_pthGT200_mm,hww2l2v_13TeV_top_2j_vh_ee,hww2l2v_13TeV_top_2j_vh_mm,hww2l2v_13TeV_top_2j_vbf_ee,hww2l2v_13TeV_top_2j_vbf_mm,hww2l2v_13TeV_top_2j_hpt_ee,hww2l2v_13TeV_top_2j_hpt_mm,hww2l2v_13TeV_WW_2j_vh_ee,hww2l2v_13TeV_WW_2j_vh_mm,hww2l2v_13TeV_WW_2j_vbf_ee,hww2l2v_13TeV_WW_2j_vbf_mm,hww2l2v_13TeV_WW_2j_hpt_ee,hww2l2v_13TeV_WW_2j_hpt_mm
+
+## Combine datacards:
+
+Just combine all the datacards in one:
+
+    mkComb.py --pycfg=configuration.py --combineLocation=../../../../../../../combine/CMSSW_10_2_13/src/ --combcfg=comb_qqH.py
+
