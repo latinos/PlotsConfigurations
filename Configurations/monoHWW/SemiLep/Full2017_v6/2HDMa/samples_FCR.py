@@ -51,6 +51,7 @@ dataReco = 'Run2017_102X_nAODv5_Full2017v6'
 #dataSteps = 'DATAl1loose2017v6__Semilep2017__MHSemiLepVars'
 dataSteps = 'DATAl1loose2017v6__Semilep2017__MHSemiLepVarsMVA'
 fakeSteps = 'DATAl1loose2017v6__Semilep2017__MHSemiLepVarsMVA'
+#fakeSteps = 'DATAl1loose2017v6__MHSemiLepVarsMVAfake'
 
 
 mcProduction = 'Fall2017_102X_nAODv5_Full2017v6'
@@ -134,6 +135,7 @@ files = nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-4to50_HT-100to200') + \
 samples['DYlow'] = {
     'name': files,
     'weight': mcCommonWeight + '*(Sum$(GenPart_pdgId == 22 && TMath::Odd(GenPart_statusFlags) && GenPart_pt > 20.) == 0)',
+    #'weight': mcCommonWeight + '*(Sum$(GenPart_pdgId == 22 && TMath::Odd(GenPart_statusFlags) && GenPart_pt > 20.) == 0)*DYlowglobalSF[0]',
     'FilesPerJob': 3,
 }
 
@@ -167,6 +169,16 @@ files = nanoGetSampleFiles(mcDirectory, 'TTToSemiLeptonic_PSweights') + \
 samples['top'] = {
     'name': files,
     'weight': mcCommonWeight,
+    #'weight': mcCommonWeight + '*TOPglobalSF[0]',
+    'FilesPerJob': 3,
+}
+
+files = nanoGetSampleFiles(mcDirectory, 'TTTo2L2Nu') + \
+        nanoGetSampleFiles(mcDirectory, 'TTZjets_ext1')
+
+samples['missing_top'] = {
+    'name': files,
+    'weight': mcCommonWeight,
     'FilesPerJob': 3,
 }
 
@@ -174,6 +186,9 @@ samples['top'] = {
 # https://twiki.cern.ch/twiki/bin/viewauth/CMS/TopPtReweighting
 # https://indico.cern.ch/event/904971/contributions/3857701/attachments/2036949/3410728/TopPt_20.05.12.pdf
 addSampleWeight(samples,'top','TTToSemiLeptonic_PSweights','Top_pTrw')  # https://indico.cern.ch/event/904971/contributions/3857701/attachments/2036949/3410728/TopPt_20.05.12.pdf
+addSampleWeight(samples,'top','TTWjets','Top_pTrw')
+addSampleWeight(samples,'missing_top','TTTo2L2Nu','Top_pTrw')
+addSampleWeight(samples,'missing_top','TTZjets_ext1','Top_pTrw')
 
 
 # Xsec correction single top s and t channel: xsec in tree is leptonDecays, but sample is inclusiveDecays
@@ -200,6 +215,7 @@ samples['VBF-V']  = {
 ###### WW ########
 
 files = nanoGetSampleFiles(mcDirectory_per, 'WWToLNuQQ')
+files+= nanoGetSampleFiles(mcDirectory, 'WWTo2L2Nu')
 
 samples['WW'] = {
     'name': files,
@@ -421,7 +437,7 @@ addSampleWeight(samples, 'Wjets', 'WJetsToLNu-2J', '0.85588177166*1.0176') # 311
 #}
 
 # Fix Wjets binned + LO 
-addSampleWeight(samples,'Wjets', 'WJetsToLNu-LO', 'LHE_HT < 100')
+#addSampleWeight(samples,'Wjets', 'WJetsToLNu-LO', 'LHE_HT < 100')
 
 ####### Vg ########
 files = nanoGetSampleFiles(mcDirectory, 'Wg_MADGRAPHMLM')
@@ -595,6 +611,7 @@ DataTrig = {
 
 ########### FAKE ###########
 
+#fakeW_mu20 = 'FW_mu20_el35[0]'
 fakeW_mu20 = 'FW_mu20_el35[0]*FWglobalSF[0]'
 samples['FAKE'] = {
   'name': [],

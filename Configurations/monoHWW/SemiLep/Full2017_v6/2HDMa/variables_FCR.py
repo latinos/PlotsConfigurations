@@ -24,7 +24,7 @@ variables['Puppimet']  = {
 #                        }
 
 variables['l1_pt']  = {   'name': 'Lepton_pt[0]',     
-                        'range' : (100,20,200),   
+                        'range' : (100,20,100),   
                         'xaxis' : 'p_{T}^{l_{1}}',
                         'fold'  : 3
                         }

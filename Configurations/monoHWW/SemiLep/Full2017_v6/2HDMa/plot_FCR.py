@@ -31,10 +31,17 @@
 #}
 
 groupPlot['multiB'] = {
-    'nameHR' : 'multiB',
+    'nameHR' : 'other multiB',
     'isSignal' : 0,
     'color': 857, # kAzure -3  
-    'samples'  : ['WW', 'WWewk', 'ggWW', 'VBF-V', 'WZqcd', 'WZewk', 'ZZ', 'VVV', 'Vg', 'VgS_L', 'VgS_H', 'ggH_hww', 'qqH_hww', 'ZH_hww', 'WH_hww', 'ttH_hww', 'ggH_htt', 'ZH_htt']
+    'samples'  : ['WWewk', 'ggWW', 'VBF-V', 'WZqcd', 'WZewk', 'ZZ', 'VVV', 'Vg', 'VgS_L', 'VgS_H', 'ggH_hww', 'qqH_hww', 'ZH_hww', 'WH_hww', 'ttH_hww', 'ggH_htt', 'ZH_htt']
+}
+
+groupPlot['WW'] = {
+    'nameHR' : 'multiB',
+    'isSignal' : 0,
+    'color': 858, # kAzure -3  
+    'samples'  : ['WW']
 }
 
 groupPlot['top'] = {
@@ -42,6 +49,13 @@ groupPlot['top'] = {
     'isSignal' : 0,
     'color': 400,   # kYellow
     'samples'  : ['top']
+}
+groupPlot['missing_top'] = {
+    'nameHR' : 'TTtoll, TTZ',
+    #'isSignal' : 0,
+    'isSignal' : 1,
+    'color': 401,   # kYellow
+    'samples'  : ['missing_top']
 }
 
 groupPlot['DY'] = {
@@ -53,6 +67,7 @@ groupPlot['DY'] = {
 groupPlot['DYlow'] = {
     'nameHR' : "DYlow",
     'isSignal' : 0,
+#    'isSignal' : 1,
     'color': 416,    # kGreen+2
     'samples'  : ['DYlow']
 }
@@ -125,22 +140,23 @@ groupPlot['Wjets'] = {
 #    'samples': ['ggH_hww', 'qqH_hww', 'ZH_hww', 'WH_hww', 'ttH_hww', 'ggH_htt', 'ZH_htt'] #, 'ggZH_hww'] #, 'ggZH_htt'] #, 'WH_htt'] 
 #}
 
-# SIGNAL
-if os.path.exists(signal_file) :
-    handle = open(signal_file,'r')
-    exec(handle)
-    handle.close()
-else:
-    raise IOError('FILE NOT FOUND: '+signal_file+'does not exist.')
-
-for mp in signal:
-    groupPlot[mp] = {
-    'nameHR'   : signal[mp]['plot_name'],
-    'isSignal' : 2,
-    'color'    : signal[mp]['color'],   # kViolet + 1
-    'samples'  : [mp],
-    #'scale'    : 100000,
-    }
+## SIGNAL
+#if os.path.exists(signal_file) :
+#    handle = open(signal_file,'r')
+#    exec(handle)
+#    handle.close()
+#else:
+#    raise IOError('FILE NOT FOUND: '+signal_file+'does not exist.')
+#
+#for mp in signal:
+#    groupPlot[mp] = {
+#    'nameHR'   : signal[mp]['plot_name'],
+#    #'isSignal' : 2,
+#    'isSignal' : 1,
+#    'color'    : signal[mp]['color'],   # kViolet + 1
+#    'samples'  : [mp],
+#    #'scale'    : 100000,
+#    }
 
 #groupPlot['DATA'] = {
 
@@ -158,6 +174,7 @@ plot['DY']  = {
 plot['DYlow']  = {
     'color': 416,    # kGreen+2
     'isSignal' : 0,
+#    'isSignal' : 1,
     'isData'   : 0,
     'scale'    : 1.0,
 }
@@ -170,6 +187,14 @@ plot['top'] = {
     'scale'    : 1.0,
 }
 
+plot['missing_top'] = {
+    'nameHR' : 'TTtoll, TTZ',
+    'color': 401,   # kYellow
+    #'isSignal' : 0,
+    'isSignal' : 1,
+    'isData'   : 0,
+    'scale'    : 1.0,
+}
 
 plot['WW']  = {
     'color': 851, # kAzure -9
@@ -361,16 +386,17 @@ plot['ZH_htt']  = {
 #     'scale'    : 1.0,
 # }
 
-# Signal
-for mp in signal:
-    plot[mp] = {
-    'nameHR'   : signal[mp]['plot_name'],
-    'isSignal' : 2,
-    'isData'   : 0,
-    'color'    : signal[mp]['color'],   # kViolet + 1
-    'samples'  : [mp],
-    #'scale'    : 100000,
-    }
+## Signal
+#for mp in signal:
+#    plot[mp] = {
+#    'nameHR'   : signal[mp]['plot_name'],
+#    #'isSignal' : 2,
+#    'isSignal' : 1,
+#    'isData'   : 0,
+#    'color'    : signal[mp]['color'],   # kViolet + 1
+#    'samples'  : [mp],
+#    #'scale'    : 100000,
+#    }
 
 # data
 
