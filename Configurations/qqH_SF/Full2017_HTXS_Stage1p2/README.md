@@ -30,7 +30,7 @@ Or, by using condor:
 
     mkDatacards.py \
         --pycfg=configuration.py \
-	--inputFile=rootFile/plots_STXS_qqH_SF_2017_DYEstimDATA.root.GOOD \
+	--inputFile=rootFile/plots_STXS_qqH_SF_2017_DYEstimDATA.root \
 	--cardList=hww2l2v_13TeV_mjj65_105_ee,hww2l2v_13TeV_mjj65_105_mm,hww2l2v_13TeV_mjj350_700_pthLT200_ee,hww2l2v_13TeV_mjj350_700_pthLT200_mm,hww2l2v_13TeV_mjjGT700_pthLT200_ee,hww2l2v_13TeV_mjjGT700_pthLT200_mm,hww2l2v_13TeV_mjjGT350_pthGT200_ee,hww2l2v_13TeV_mjjGT350_pthGT200_mm,hww2l2v_13TeV_top_2j_vh_ee,hww2l2v_13TeV_top_2j_vh_mm,hww2l2v_13TeV_top_2j_vbf_ee,hww2l2v_13TeV_top_2j_vbf_mm,hww2l2v_13TeV_top_2j_hpt_ee,hww2l2v_13TeV_top_2j_hpt_mm,hww2l2v_13TeV_WW_2j_vh_ee,hww2l2v_13TeV_WW_2j_vh_mm,hww2l2v_13TeV_WW_2j_vbf_ee,hww2l2v_13TeV_WW_2j_vbf_mm,hww2l2v_13TeV_WW_2j_hpt_ee,hww2l2v_13TeV_WW_2j_hpt_mm
 
 ## Combine datacards:
@@ -39,3 +39,10 @@ Just combine all the datacards in one:
 
     mkComb.py --pycfg=configuration.py --combineLocation=../../../../../../../combine/CMSSW_10_2_13/src/ --combcfg=comb_qqH.py
 
+Drop bogus nuisances:
+
+    ./dropNuisance.sh 
+
+## Create the workspace from the datacard
+
+   python doWorkspace.py
