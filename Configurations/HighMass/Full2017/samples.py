@@ -459,7 +459,7 @@ for mass in massggh:
 
   if INToverSBI:
     samples['GGHINT_'+mass+model_name]  = {  'name'   :   getSampleFiles(directoryHM,'GluGluHToWWTo2L2Nu_M'+mass,True,'nanoLatino_'),
-                        'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*'+noSMxsec+'*'+'('+model_I+'*(abs('+model_I+')<50))' , # abs<100 cut removes 0.035% of all events, abs<50 cut Removes 0.074% of all events
+                        'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*'+noSMxsec+'*'+'('+model_I+'*(abs('+model_I+')<20))' , # abs<100 cut removes 0.035% of all events, abs<50 cut removes 0.074% of all events, abs<20 cut removes 0.180% of all events
                         'FilesPerJob' : 10,
                         'EventsPerJob' : 70000,
                      }
@@ -483,7 +483,7 @@ for mass in massggh:
                         'suppressNegativeNuisances' :['all'],
                      }
 
-    addSampleWeight(samples, 'GGHSBI_'+mass+model_name, 'GluGluHToWWTo2L2Nu_M'+mass, noSMxsec+'*'+'('+model+' + '+model_I+'*(abs('+model_I+')<50))')
+    addSampleWeight(samples, 'GGHSBI_'+mass+model_name, 'GluGluHToWWTo2L2Nu_M'+mass, noSMxsec+'*'+'('+model+' + '+model_I+'*(abs('+model_I+')<20))')
     addSampleWeight(samples, 'GGHSBI_'+mass+model_name, 'GluGluToWWToENEN', '1.53/1.4'+embed_tautauveto)
     addSampleWeight(samples, 'GGHSBI_'+mass+model_name, 'GluGluToWWToENMN', '1.53/1.4'+embed_tautauveto)
     addSampleWeight(samples, 'GGHSBI_'+mass+model_name, 'GluGluToWWToENTN', '1.53/1.4'+embed_tautauveto)
@@ -524,7 +524,7 @@ for mass in massvbf:
 
   if INToverSBI:
     samples['QQHINT_'+mass+model_name]  = {  'name'   :   getSampleFiles(directoryHM,'VBFHToWWTo2L2Nu_M'+mass,True,'nanoLatino_'),
-                        'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*'+noSMxsec+'*'+'('+model_I+'*(abs('+model_I+')<50))' ,
+                        'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*'+noSMxsec+'*'+'('+model_I+'*(abs('+model_I+')<20))' ,
                         'FilesPerJob' : 10,
                         'EventsPerJob' : 70000,
                      }
@@ -540,7 +540,7 @@ for mass in massvbf:
                         'suppressNegativeNuisances' :['all'],
                      }
 
-    addSampleWeight(samples, 'QQHSBI_'+mass+model_name, 'VBFHToWWTo2L2Nu_M'+mass, noSMxsec+'*'+'('+model+' + '+model_I+'*(abs('+model_I+')<50))')
+    addSampleWeight(samples, 'QQHSBI_'+mass+model_name, 'VBFHToWWTo2L2Nu_M'+mass, noSMxsec+'*'+'('+model+' + '+model_I+'*(abs('+model_I+')<20))')
     addSampleWeight(samples, 'QQHSBI_'+mass+model_name, 'WpWmJJ_QCD_noTop', '(mjjGen_OTF>100)*(GenLHE)'+embed_tautauveto)
 
   if mass in ['4000', '5000']: # Just to be sure, recalculate baseW with new cross sections

@@ -419,8 +419,8 @@ nuisances['PS_ISR']  = {
         'WH_htt' : ['1.000668369771863*(nCleanGenJet==0) + 1.0016815623453736*(nCleanGenJet==1) + 1.0013707389683542*(nCleanGenJet==2) + 0.9915138785231363*(nCleanGenJet>=3)', '0.9991668459690679*(nCleanGenJet==0) + 0.9978760956386513*(nCleanGenJet==1) + 0.9981171739879867*(nCleanGenJet==2) + 1.0105488300114145*(nCleanGenJet>=3)'], # From HWplusJ_HToTauTau_M125
     },
 }
-# PS Weight exist only for Top, WW and ggWW (also ggH400,750; VBF250,400,750)
-for alpha in ["top", "WW", "ggWW"]:
+# PS Weight exist only for WW and ggWW (also ggH400,750; VBF250,400,750), and also some Top samples but no all
+for alpha in ["WW", "ggWW"]:
   nuisances['PS_ISR']['samples'].update({alpha: ['PSWeight[2]', 'PSWeight[0]']})
 for m in massggh:
   PSup = PSunc['GGF'+m]['ISRup']
@@ -464,7 +464,7 @@ nuisances['PS_FSR']  = {
         'WH_htt' : ['0.9951849276795807*(nCleanGenJet==0) + 0.9971109709655758*(nCleanGenJet==1) + 1.0089023169085682*(nCleanGenJet==2) + 1.0177364980737993*(nCleanGenJet>=3)', '1.0080916898956942*(nCleanGenJet==0) + 1.003439195368276*(nCleanGenJet==1) + 0.9870860759068387*(nCleanGenJet==2) + 0.9778888209017473*(nCleanGenJet>=3)'],
     },
 }
-for alpha in ["top", "WW", "ggWW"]:
+for alpha in ["WW", "ggWW"]:
   nuisances['PS_FSR']['samples'].update({alpha: ['PSWeight[3]', 'PSWeight[1]']})
 for m in massggh:
   PSup = PSunc['GGF'+m]['FSRup']
@@ -600,6 +600,11 @@ for m in massggh:
   nuisances['QCDscale3in']['samples'].update({'GGH_'+m+model_name: STUncString})
   nuisances['QCDscale3in']['samples'].update({'GGHINT_'+m+model_name: STUncString})
 
+# Don't need ST for combined ggF category:
+for m in massggh:
+  nuisances['QCDscale_ggH']['samples'].update({'GGH_'+m+model_name: HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ggH',int(m),'scale','bsm')})
+  nuisances['QCDscale_ggH']['samples'].update({'GGHINT_'+m+model_name: HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ggH',int(m),'scale','bsm')})
+
 
 nuisances['QCDscale_qqH']  = {
                'name'  : 'QCDscale_qqH', 
@@ -703,10 +708,11 @@ nuisances['QCDscale_VH_ACCEPT']  = {
 # If there's a difference between the DY M-50 and M-10to50 sample, use the syntax corresponding to the M-50 sample.
 # There's next to no contribution from M-10to50 anyway.
 # 2017:
-if EMorEEorMM=="em": #DYJetsToTT_MuEle_M-50
-  variations = ['LHEScaleWeight[%d]' % i for i in [0, 1, 3, 4, 6, 7]]
-else: #DYJetsToLL_M-50_ext1
-  variations = ['LHEScaleWeight[%d]' % i for i in [0, 1, 3, 5, 7, 8]]
+#if EMorEEorMM=="em": #DYJetsToTT_MuEle_M-50
+#  variations = ['LHEScaleWeight[%d]' % i for i in [0, 1, 3, 4, 6, 7]]
+#else: #DYJetsToLL_M-50_ext1
+#  variations = ['LHEScaleWeight[%d]' % i for i in [0, 1, 3, 5, 7, 8]]
+variations = ['LHEScaleWeight[0]', 'LHEScaleWeight[1]', 'LHEScaleWeight[3]', 'LHEScaleWeight[Length$(LHEScaleWeight)-4]', 'LHEScaleWeight[Length$(LHEScaleWeight)-2]', 'LHEScaleWeight[Length$(LHEScaleWeight)-1]']
 
 nuisances['QCDscale_V']  = {
                 'name'  : 'QCDscale_V',

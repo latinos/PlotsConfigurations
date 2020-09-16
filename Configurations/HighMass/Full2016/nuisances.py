@@ -627,6 +627,11 @@ for m in massggh:
   nuisances['QCDscale3in']['samples'].update({'GGH_'+m+model_name: STUncString})
   nuisances['QCDscale3in']['samples'].update({'GGHINT_'+m+model_name: STUncString})
 
+# Don't need ST for combined ggF category:
+for m in massggh:
+  nuisances['QCDscale_ggH']['samples'].update({'GGH_'+m+model_name: HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ggH',int(m),'scale','bsm')})
+  nuisances['QCDscale_ggH']['samples'].update({'GGHINT_'+m+model_name: HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ggH',int(m),'scale','bsm')})
+
 
 nuisances['QCDscale_qqH']  = {
                'name'  : 'QCDscale_qqH', 
@@ -730,7 +735,8 @@ nuisances['QCDscale_VH_ACCEPT']  = {
 # If there's a difference between the DY M-50 and M-10to50 sample, use the syntax corresponding to the M-50 sample.
 # There's next to no contribution from M-10to50 anyway.
 # 2016: Consistent!
-variations = ['LHEScaleWeight[%d]' % i for i in [0, 1, 3, 5, 7, 8]]
+#variations = ['LHEScaleWeight[%d]' % i for i in [0, 1, 3, 5, 7, 8]]
+variations = ['LHEScaleWeight[0]', 'LHEScaleWeight[1]', 'LHEScaleWeight[3]', 'LHEScaleWeight[Length$(LHEScaleWeight)-4]', 'LHEScaleWeight[Length$(LHEScaleWeight)-2]', 'LHEScaleWeight[Length$(LHEScaleWeight)-1]']
 
 nuisances['QCDscale_V']  = {
                 'name'  : 'QCDscale_V',
@@ -771,13 +777,14 @@ nuisances['QCDscale_VV']  = {
                    }
 }
 
+# ST_tW_top and ST_tW_antitop samples have no LHEScaleWeight entries. Use this hack to fix missing entries:
 nuisances['QCDscale_ttbar']  = {
                'name'  : 'QCDscale_ttbar', 
                 'skipCMS' : 1,
                 'kind'  : 'weight_envelope',
                 'type'  : 'shape',
                 'samples'  : {
-                   'top' : variations,
+                   'top' : ['(LHEScaleWeight[%d]) * ( abs(Xsec-35.60) >= 1.0e-05 ) + 1.0 * ( abs(Xsec-35.60) < 1.0e-05 )' % i for i in [0, 1, 3, 5, 7, 8]],
                    }
 }
 
