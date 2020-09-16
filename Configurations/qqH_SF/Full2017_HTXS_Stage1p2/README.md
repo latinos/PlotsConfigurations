@@ -45,4 +45,4 @@ Drop bogus nuisances:
 
 ## Create the workspace from the datacard
 
-   python doWorkspace.py
+    python doWorkspace.py
