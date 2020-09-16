@@ -9,13 +9,14 @@
 # imported from cuts.py
 # cuts
 
+
 from LatinoAnalysis.Tools.commonTools import getSampleFiles, getBaseW, addSampleWeight
 
 def nanoGetSampleFiles(inputDir, Sample):
     return getSampleFiles(inputDir, Sample, False, 'nanoLatino_')
 
 try:
-    mc = [skey for skey in mc_emb if skey != 'Dyemb']
+    mc = [skey for skey in samples if skey != 'DATA' and not skey.startswith('Fake')]
 except NameError:
     mc = []
     cuts = {}
@@ -160,17 +161,17 @@ nuisances['eff_e'] = {
     'samples': dict((skey, ['SFweightEleUp', 'SFweightEleDown']) for skey in mc),
 }
 
-nuisances['electronpt'] = {
-    'name': 'CMS_scale_e_2016',
-    'kind': 'suffix',
-    'type': 'shape',
-    'mapUp' : 'ElepTup',
-    'mapDown': 'ElepTdo',
-    'samples': dict((skey, ['1', '1']) for skey in mc),
-    'folderUp': makeMCDirectory('ElepTup_suffix'),
-    'folderDown': makeMCDirectory('ElepTdo_suffix'),
-    'AsLnN': '1'
-}
+# nuisances['electronpt'] = {
+#     'name': 'CMS_scale_e_2016',
+#     'kind': 'suffix',
+#     'type': 'shape',
+#     'mapUp' : 'ElepTup',
+#     'mapDown': 'ElepTdo',
+#     'samples': dict((skey, ['1', '1']) for skey in mc if 'DH' not in skey),
+#     'folderUp': makeMCDirectory('ElepTup_suffix'),
+#     'folderDown': makeMCDirectory('ElepTdo_suffix'),
+#     'AsLnN': '1'
+# }
 
 
 
@@ -183,49 +184,48 @@ nuisances['eff_m'] = {
     'samples': dict((skey, ['SFweightMuUp', 'SFweightMuDown']) for skey in mc),
 }
 
-nuisances['muonpt'] = {
-    'name': 'CMS_scale_m_2016',
-    'kind': 'suffix',
-    'type': 'shape',
-    'mapUp': 'MupTup',
-    'mapDown': 'MupTdo',
-    'samples': dict((skey, ['1', '1']) for skey in mc),
-    'folderUp': makeMCDirectory('MupTup_suffix'),
-    'folderDown': makeMCDirectory('MupTdo_suffix'),
-    'AsLnN': '1'
-}
+# nuisances['muonpt'] = {
+#     'name': 'CMS_scale_m_2016',
+#     'kind': 'suffix',
+#     'type': 'shape',
+#     'mapUp': 'MupTup',
+#     'mapDown': 'MupTdo',
+#     'samples': dict((skey, ['1', '1']) for skey in mc if 'DH' not in skey),
+#     'folderUp': makeMCDirectory('MupTup_suffix'),
+#     'folderDown': makeMCDirectory('MupTdo_suffix'),
+#     'AsLnN': '1'
+# }
 
 
+# ##### Jet energy scale
+# jes_systs = ['JESAbsolute','JESAbsolute_2016','JESBBEC1','JESBBEC1_2016','JESEC2','JESEC2_2016','JESFlavorQCD','JESHF','JESHF_2016','JESRelativeBal','JESRelativeSample_2016']
 
-##### Jet energy scale
-jes_systs = ['JESAbsolute','JESAbsolute_2016','JESBBEC1','JESBBEC1_2016','JESEC2','JESEC2_2016','JESFlavorQCD','JESHF','JESHF_2016','JESRelativeBal','JESRelativeSample_2016']
+# for js in jes_systs:
+#   nuisances[js] = {
+#       'name': 'CMS_scale_'+js,
+#       'kind': 'suffix',
+#       'type': 'shape',
+#       'mapUp': js+'up',
+#       'mapDown': js+'do',
+#       'samples': dict((skey, ['1', '1']) for skey in mc if 'DH' not in skey),
+#       'folderUp': makeMCDirectory('JESup_suffix'),
+#       'folderDown': makeMCDirectory('JESdo_suffix'),
+#       'AsLnN': '1'
+#   }
 
-for js in jes_systs:
-  nuisances[js] = {
-      'name': 'CMS_scale_'+js,
-      'kind': 'suffix',
-      'type': 'shape',
-      'mapUp': js+'up',
-      'mapDown': js+'do',
-      'samples': dict((skey, ['1', '1']) for skey in mc),
-      'folderUp': makeMCDirectory('JESup_suffix'),
-      'folderDown': makeMCDirectory('JESdo_suffix'),
-      'AsLnN': '1'
-  }
+# ##### MET energy scale
 
-##### MET energy scale
-
-nuisances['met'] = {
-    'name': 'CMS_scale_met_2016',
-    'kind': 'suffix',
-    'type': 'shape',
-    'mapUp': 'METup',
-    'mapDown': 'METdo',
-    'samples': dict((skey, ['1', '1']) for skey in mc),
-    'folderUp': makeMCDirectory('METup_suffix'),
-    'folderDown': makeMCDirectory('METdo_suffix'),
-    'AsLnN': '1'
-}
+# nuisances['met'] = {
+#     'name': 'CMS_scale_met_2016',
+#     'kind': 'suffix',
+#     'type': 'shape',
+#     'mapUp': 'METup',
+#     'mapDown': 'METdo',
+#     'samples': dict((skey, ['1', '1']) for skey in mc if 'DH' not in skey),
+#     'folderUp': makeMCDirectory('METup_suffix'),
+#     'folderDown': makeMCDirectory('METdo_suffix'),
+#     'AsLnN': '1'
+# }
 
 
 ##### Pileup
@@ -663,146 +663,42 @@ nuisances['stat'] = {
 }
 
 ## rate parameters
-# nuisances['DYttnorm0j']  = {
-#                'name'  : 'CMS_hww_DYttnorm0j',
-#                'samples'  : {
-#                    'DY' : '1.00',
-#                    },
-#                'type'  : 'rateParam',
-#                'cuts'  : cuts0j
-#               }
-
-# nuisances['DYttnorm1j']  = {
-#                'name'  : 'CMS_hww_DYttnorm1j',
-#                'samples'  : {
-#                    'DY' : '1.00',
-#                    },
-#                'type'  : 'rateParam',
-#                'cuts'  : cuts1j
-#               }
-
-# nuisances['DYttnorm2j']  = {
-#                  'name'  : 'CMS_hww_DYttnorm2j',
-#                  'samples'  : {
-#                    'DY' : '1.00',
-#                      },
-#                  'type'  : 'rateParam',
-#                  'cuts'  : cuts2j
-#                 }
-
-# nuisances['DYembnorm0j']  = {
-#                'name'  : 'CMS_hww_DYttnorm0j',
-#                'samples'  : {
-#                    'Dyemb' : '1.00',
-#                    },
-#                'type'  : 'rateParam',
-#                'cuts'  : cuts0j
-#               }
-
-# nuisances['DYembnorm1j']  = {
-#                'name'  : 'CMS_hww_DYttnorm1j',
-#                'samples'  : {
-#                    'Dyemb' : '1.00',
-#                    },
-#                'type'  : 'rateParam',
-#                'cuts'  : cuts1j
-#               }
-
-# nuisances['DYembnorm2j']  = {
-#                  'name'  : 'CMS_hww_DYttnorm2j',
-#                  'samples'  : {
-#                    'Dyemb' : '1.00',
-#                      },
-#                  'type'  : 'rateParam',
-#                  'cuts'  : cuts2j
-#                 }
+nuisances['Topnorm']  = {
+               'name'  : 'Topnorm',
+               'samples'  : {
+                   'top' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : [
+                   'SR_Incl',
+                   'TopCR_Incl',
+                   ]
+              }
 
 
+nuisances['WWnorm']  = {
+               'name'  : 'WWnorm',
+               'samples'  : {
+                   'WW' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : [
+                   'SR_Incl',
+                   'WWCR_Incl',
+                   ]
+              }
 
-# nuisances['WWnorm0j']  = {
-#                'name'  : 'CMS_hww_WWnorm0j',
-#                'samples'  : {
-#                    'WW' : '1.00',
-#                    },
-#                'type'  : 'rateParam',
-#                'cuts'  : cuts0j
-#               }
-
-# nuisances['ggWWnorm0j']  = {
-#                'name'  : 'CMS_hww_WWnorm0j',
-#                'samples'  : {
-#                    'ggWW' : '1.00',
-#                    },
-#                'type'  : 'rateParam',
-#                'cuts'  : cuts0j
-#               }
-
-
-# nuisances['WWnorm1j']  = {
-#                'name'  : 'CMS_hww_WWnorm1j',
-#                'samples'  : {
-#                    'WW' : '1.00',
-#                    },
-#                'type'  : 'rateParam',
-#                'cuts'  : cuts1j
-#               }
-
-# nuisances['ggWWnorm1j']  = {
-#                'name'  : 'CMS_hww_WWnorm1j',
-#                'samples'  : {
-#                    'ggWW' : '1.00',
-#                    },
-#                'type'  : 'rateParam',
-#                'cuts'  : cuts1j
-#               }
-
-
-# nuisances['WWnorm2j']  = {
-#                'name'  : 'CMS_hww_WWnorm2j',
-#                'samples'  : {
-#                    'WW' : '1.00',
-#                    },
-#                'type'  : 'rateParam',
-#                'cuts'  : cuts2j
-#               }
-
-
-# nuisances['ggWWnorm2j']  = {
-#                'name'  : 'CMS_hww_WWnorm2j',
-#                'samples'  : {
-#                    'ggWW' : '1.00',
-#                    },
-#                'type'  : 'rateParam',
-#                'cuts'  : cuts2j
-#               }
-
-
-# nuisances['Topnorm0j']  = {
-#                'name'  : 'CMS_hww_Topnorm0j',
-#                'samples'  : {
-#                    'top' : '1.00',
-#                    },
-#                'type'  : 'rateParam',
-#                'cuts'  : cuts0j
-#               }
-
-# nuisances['Topnorm1j']  = {
-#                'name'  : 'CMS_hww_Topnorm1j',
-#                'samples'  : {
-#                    'top' : '1.00',
-#                    },
-#                'type'  : 'rateParam',
-#                'cuts'  : cuts1j
-#               }
-
-# nuisances['Topnorm2j']  = {
-#                'name'  : 'CMS_hww_Topnorm2j',
-#                'samples'  : {
-#                    'top' : '1.00',
-#                    },
-#                'type'  : 'rateParam',
-#                'cuts'  : cuts2j
-#               }
+nuisances['DYnorm']  = {
+               'name'  : 'WWnorm',
+               'samples'  : {
+                   'DY' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : [
+                   'SR_Incl',
+                   'DYttCR_Incl',
+                   ]
+              }
 
 
 
