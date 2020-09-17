@@ -177,17 +177,17 @@ nuisances['eff_e'] = {
     'samples': dict((skey, ['SFweightEleUp', 'SFweightEleDown']) for skey in mc),
 }
 
-nuisances['electronpt'] = {
-    'name': 'CMS_scale_e_2017',
-    'kind': 'suffix',
-    'type': 'shape',
-    'mapUp': 'ElepTup',
-    'mapDown': 'ElepTdo',
-    'samples': dict((skey, ['1', '1']) for skey in mc),
-    'folderUp': makeMCDirectory('ElepTup_suffix'),
-    'folderDown': makeMCDirectory('ElepTdo_suffix'),
-    'AsLnN': '1'
-}
+# nuisances['electronpt'] = {
+#     'name': 'CMS_scale_e_2017',
+#     'kind': 'suffix',
+#     'type': 'shape',
+#     'mapUp': 'ElepTup',
+#     'mapDown': 'ElepTdo',
+#     'samples': dict((skey, ['1', '1']) for skey in mc if 'DH' not in skey),
+#     'folderUp': makeMCDirectory('ElepTup_suffix'),
+#     'folderDown': makeMCDirectory('ElepTdo_suffix'),
+#     'AsLnN': '1'
+# }
 
 ##### Muon Efficiency and energy scale
 
@@ -198,47 +198,47 @@ nuisances['eff_m'] = {
     'samples': dict((skey, ['SFweightMuUp', 'SFweightMuDown']) for skey in mc),
 }
 
-nuisances['muonpt'] = {
-    'name': 'CMS_scale_m_2017',
-    'kind': 'suffix',
-    'type': 'shape',
-    'mapUp': 'MupTup',
-    'mapDown': 'MupTdo',
-    'samples': dict((skey, ['1', '1']) for skey in mc),
-    'folderUp': makeMCDirectory('MupTup_suffix'),
-    'folderDown': makeMCDirectory('MupTdo_suffix'),
-    'AsLnN': '1'
-}
+# nuisances['muonpt'] = {
+#     'name': 'CMS_scale_m_2017',
+#     'kind': 'suffix',
+#     'type': 'shape',
+#     'mapUp': 'MupTup',
+#     'mapDown': 'MupTdo',
+#     'samples': dict((skey, ['1', '1']) for skey in mc if 'DH' not in skey),
+#     'folderUp': makeMCDirectory('MupTup_suffix'),
+#     'folderDown': makeMCDirectory('MupTdo_suffix'),
+#     'AsLnN': '1'
+# }
 
 ##### Jet energy scale
-jes_systs = ['JESAbsolute','JESAbsolute_2017','JESBBEC1','JESBBEC1_2017','JESEC2','JESEC2_2017','JESFlavorQCD','JESHF','JESHF_2017','JESRelativeBal','JESRelativeSample_2017']
+# jes_systs = ['JESAbsolute','JESAbsolute_2017','JESBBEC1','JESBBEC1_2017','JESEC2','JESEC2_2017','JESFlavorQCD','JESHF','JESHF_2017','JESRelativeBal','JESRelativeSample_2017']
 
-for js in jes_systs:
-  nuisances[js] = {
-      'name': 'CMS_scale_'+js,
-      'kind': 'suffix',
-      'type': 'shape',
-      'mapUp': js+'up',
-      'mapDown': js+'do',
-      'samples': dict((skey, ['1', '1']) for skey in mc),
-      'folderUp': makeMCDirectory('JESup_suffix'),
-      'folderDown': makeMCDirectory('JESdo_suffix'),
-      'AsLnN': '1'
-  }
+# for js in jes_systs:
+#   nuisances[js] = {
+#       'name': 'CMS_scale_'+js,
+#       'kind': 'suffix',
+#       'type': 'shape',
+#       'mapUp': js+'up',
+#       'mapDown': js+'do',
+#       'samples': dict((skey, ['1', '1']) for skey in mc if 'DH' not in skey),
+#       'folderUp': makeMCDirectory('JESup_suffix'),
+#       'folderDown': makeMCDirectory('JESdo_suffix'),
+#       'AsLnN': '1'
+#   }
 
-##### MET energy scale
+# ##### MET energy scale
 
-nuisances['met'] = {
-    'name': 'CMS_scale_met_2017',
-    'kind': 'suffix',
-    'type': 'shape',
-    'mapUp': 'METup',
-    'mapDown': 'METdo',
-    'samples': dict((skey, ['1', '1']) for skey in mc),
-    'folderUp': makeMCDirectory('METup_suffix'),
-    'folderDown': makeMCDirectory('METdo_suffix'),
-    'AsLnN': '1'
-}
+# nuisances['met'] = {
+#     'name': 'CMS_scale_met_2017',
+#     'kind': 'suffix',
+#     'type': 'shape',
+#     'mapUp': 'METup',
+#     'mapDown': 'METdo',
+#     'samples': dict((skey, ['1', '1']) for skey in mc if 'DH' not in skey),
+#     'folderUp': makeMCDirectory('METup_suffix'),
+#     'folderDown': makeMCDirectory('METdo_suffix'),
+#     'AsLnN': '1'
+# }
 
 ##### Pileup
 
@@ -645,114 +645,44 @@ nuisances['WWqscale']  = {
 
 
 # ## rate parameters
-# nuisances['DYttnorm0j']  = {
-#                'name'  : 'CMS_hww_DYttnorm0j',
-#                'samples'  : {
-#                    'DY' : '1.00',
-#                    },
-#                'type'  : 'rateParam',
-#                'cuts'  : cuts0j 
-#               }
 
-# nuisances['DYttnorm1j']  = {
-#                'name'  : 'CMS_hww_DYttnorm1j',
-#                'samples'  : {
-#                    'DY' : '1.00',
-#                    },
-#                'type'  : 'rateParam',
-#                'cuts'  : cuts1j
-#               }
-
-# nuisances['DYttnorm2j']  = {
-#                  'name'  : 'CMS_hww_DYttnorm2j',
-#                  'samples'  : {
-#                      'DY' : '1.00',
-#                      },
-#                  'type'  : 'rateParam',
-#                  'cuts'  : cuts2j
-#                 }
+nuisances['Topnorm']  = {
+               'name'  : 'Topnorm',
+               'samples'  : {
+                   'top' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : [
+                   'SR_Incl',
+                   'TopCR_Incl',
+                   ]
+              }
 
 
-# nuisances['WWnorm0j']  = {
-#                'name'  : 'CMS_hww_WWnorm0j',
-#                'samples'  : {
-#                    'WW' : '1.00',
-#                    },
-#                'type'  : 'rateParam',
-#                'cuts'  : cuts0j
-#               }
+nuisances['WWnorm']  = {
+               'name'  : 'WWnorm',
+               'samples'  : {
+                   'WW' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : [
+                   'SR_Incl',
+                   'WWCR_Incl',
+                   ]
+              }
 
-# nuisances['ggWWnorm0j']  = {
-#                'name'  : 'CMS_hww_WWnorm0j',
-#                'samples'  : {
-#                    'ggWW' : '1.00',
-#                    },
-#                'type'  : 'rateParam',
-#                'cuts'  : cuts0j
-#               }
+nuisances['DYnorm']  = {
+               'name'  : 'WWnorm',
+               'samples'  : {
+                   'DY' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : [
+                   'SR_Incl',
+                   'DYttCR_Incl',
+                   ]
+              }
 
-# nuisances['WWnorm1j']  = {
-#                'name'  : 'CMS_hww_WWnorm1j',
-#                'samples'  : {
-#                    'WW' : '1.00',
-#                    },
-#                'type'  : 'rateParam',
-#                'cuts'  : cuts1j
-#               }
-
-# nuisances['ggWWnorm1j']  = {
-#                'name'  : 'CMS_hww_WWnorm1j',
-#                'samples'  : {
-#                    'ggWW' : '1.00',
-#                    },
-#                'type'  : 'rateParam',
-#                'cuts'  : cuts1j
-#               }
-
-# nuisances['WWnorm2j']  = {
-#                'name'  : 'CMS_hww_WWnorm2j',
-#                'samples'  : {
-#                    'WW' : '1.00',
-#                    },
-#                'type'  : 'rateParam',
-#                'cuts'  : cuts2j
-#               }
-
-# nuisances['ggWWnorm2j']  = {
-#                'name'  : 'CMS_hww_WWnorm2j',
-#                'samples'  : {
-#                    'ggWW' : '1.00',
-#                    },
-#                'type'  : 'rateParam',
-#                'cuts'  : cuts2j
-#               }
-
-# nuisances['Topnorm0j']  = {
-#                'name'  : 'CMS_hww_Topnorm0j',
-#                'samples'  : {
-#                    'top' : '1.00',
-#                    },
-#                'type'  : 'rateParam',
-#                'cuts'  : cuts0j
-#               }
-
-# nuisances['Topnorm1j']  = {
-#                'name'  : 'CMS_hww_Topnorm1j',
-#                'samples'  : {
-#                    'top' : '1.00',
-#                    },
-#                'type'  : 'rateParam',
-#                'cuts'  : cuts1j
-#               }
-
-# nuisances['Topnorm2j']  = {
-#                'name'  : 'CMS_hww_Topnorm2j',
-#                'samples'  : {
-#                    'top' : '1.00',
-#                    },
-#                'type'  : 'rateParam',
-#                'cuts'  : cuts2j
-#               }
 
 
 ## Use the following if you want to apply the automatic combine MC stat nuisances.

@@ -372,7 +372,7 @@ CombineBaseW(samples, 'VZ', ['ZZTo4L', 'ZZTo4L_ext1', 'ZZTo4L_ext2'])
 # TODO: This needs no GenLepMatch. Why?
 samples['Vg']  = {  'name'   :   getSampleFiles(directory,'Wg_MADGRAPHMLM',False,'nanoLatino_')
                                + getSampleFiles(directory,'ZGToLLG',False,'nanoLatino_'),
-                    'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC+'*(!(Gen_ZGstar_mass > 0))'+embed_tautauveto,
+                    'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC+'*(Gen_ZGstar_mass <= 0)'+embed_tautauveto,
                     'FilesPerJob' : 10,
                     'EventsPerJob' : 70000,
                     'suppressNegative' :['all'],
@@ -401,7 +401,7 @@ samples['VgS']  =  {  'name'   :   getSampleFiles(directory,'Wg_MADGRAPHMLM',Fal
 
 addSampleWeight(samples,'VgS','Wg_MADGRAPHMLM', '(Gen_ZGstar_mass > 0 && Gen_ZGstar_mass < 0.1)')
 #0.448 needed in v5 and should be removed in v6
-#addSampleWeight(samples,'VgS','ZGToLLG', '(Gen_ZGstar_mass > 0)*0.448')
+addSampleWeight(samples,'VgS','ZGToLLG', '(Gen_ZGstar_mass > 0)') #*0.448
 addSampleWeight(samples,'VgS','WZTo3LNu_mllmin01', '(Gen_ZGstar_mass > 0.1)')
 
 
