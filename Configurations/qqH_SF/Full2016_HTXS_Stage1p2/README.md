@@ -37,61 +37,23 @@ The following instructions correspond to the VBF and VH SF HWW STXS Stage 1.2 an
 
 It can happen that some nuisance has negative norm. To drop it (and prevent combine from crashing) open `dropNuisance.sh` and add a line similar to the following one.
 
-    echo "nuisance edit drop Vg hww2l2v_13TeV_top_2j_vbf_mm QCDscale_VV" >> datacards/hww2l2v_13TeV_VBF/comb/datacard.txt
+    echo "nuisance edit drop Vg hww2l2v_13TeV_top_2j_hpt_mm QCDscale_VV" >> datacards/Full2016_SF_qqH_HTXS_Stage1p2/comb/datacard.txt
 
 Don't forget to run it.
 
     ./dropNuisance.sh
 
-# Significance and best fit
+# Create the workspace from the datacard
 
-    mkOptim.py --pycfg=configuration.py --combineLocation=$HOME/combine/CMSSW_10_2_13/src/ --combcfg=comb_qqH.py --fomList=SExpPre,BestFit
-
-Check the significance and best fit values.
-
-    grep "Significance:" datacards/*/comb/SExpPre_*
-    grep "Best fit r:"   datacards/*/comb/BestFit_*
-
-# Significance and best fit (alternative method)
-
-    pushd $HOME/combine/CMSSW_10_2_13/src/
+    pushd ~piedra/combine/CMSSW_10_2_13/src/
     cmsenv
     popd
 
-Significance.
+    mkdir Combination
 
-    combine datacards/hww2l2v_13TeV_VBF/comb/datacard.txt -M Significance --rMin=-6 --rMax=20 -t -1 --expectSignal=1
-    combine datacards/hww2l2v_13TeV_VH/comb/datacard.txt  -M Significance --rMin=-6 --rMax=20 -t -1 --expectSignal=1
+    python doWorkspace.py
 
-Signal strength.
+# Perform the fit on the workspace
 
-    combine datacards/hww2l2v_13TeV_VBF/comb/datacard.txt -M FitDiagnostics --rMin=-6 --rMax=20 -t -1 --expectSignal=1 --robustFit=1 --cminDefaultMinimizerStrategy 0
-    combine datacards/hww2l2v_13TeV_VH/comb/datacard.txt  -M FitDiagnostics --rMin=-6 --rMax=20 -t -1 --expectSignal=1 --robustFit=1 --cminDefaultMinimizerStrategy 0
-
-# Make yield tables
-
-    grep "proc"  datacards/hww2l2v_13TeV_*/events/datacard.txt > yield.txt
-    grep "rate " datacards/hww2l2v_13TeV_*/events/datacard.txt >> yield.txt
-    column -t yield.txt > yield_organized.txt
-
-# Draw distributions
-
-    mkPlot.py --inputFile=rootFile/plots_STXS_qqH_SF_2016_DYEstimDATA.root --logOnly    --fileFormats=png --onlyPlot=cratio --minLogCratio=0.1 --maxLogCratio=1000
-    mkPlot.py --inputFile=rootFile/plots_STXS_qqH_SF_2016_DYEstimDATA.root --linearOnly --fileFormats=png --onlyPlot=cratio
-
-To produce blinded distributions (no data) open `plot.py` and set the variable `isBlind` to 1 for `DATA`. Then you will have to produce again the signal region plots.
-
-    mkPlot.py --onlyCut=hww2l2v_13TeV_2j_vh_ee  --inputFile=rootFile/plots_qqH2017_v6_DYEstimDATA.root --linearOnly --fileFormats=png --onlyPlot=cratio
-    mkPlot.py --onlyCut=hww2l2v_13TeV_2j_vh_mm  --inputFile=rootFile/plots_qqH2017_v6_DYEstimDATA.root --linearOnly --fileFormats=png --onlyPlot=cratio
-    mkPlot.py --onlyCut=hww2l2v_13TeV_2j_vbf_ee --inputFile=rootFile/plots_qqH2017_v6_DYEstimDATA.root --linearOnly --fileFormats=png --onlyPlot=cratio
-    mkPlot.py --onlyCut=hww2l2v_13TeV_2j_vbf_mm --inputFile=rootFile/plots_qqH2017_v6_DYEstimDATA.root --linearOnly --fileFormats=png --onlyPlot=cratio
-
-# Make impacts
-
-    text2workspace.py datacard.txt -o workspace.root
-
-    combineTool.py -M Impacts -d workspace_0j.root -m 125 --doInitialFit -t -1 --expectSignal=1 --robustFit=1
-    combineTool.py -M Impacts -d workspace_0j.root -m 125 -t -1 --expectSignal=1 --robustFit=1 --doFits
-    combineTool.py -M Impacts -d workspace_0j.root -m 125 -o impacts_0j.json -t -1
-    plotImpacts.py -i impacts_0j.json -o Impact_0j
+    python doFit.py
 

@@ -51,6 +51,7 @@ dataReco = 'Run2017_102X_nAODv5_Full2017v6'
 #dataSteps = 'DATAl1loose2017v6__Semilep2017__MHSemiLepVars'
 dataSteps = 'DATAl1loose2017v6__Semilep2017__MHSemiLepVarsMVA'
 fakeSteps = 'DATAl1loose2017v6__Semilep2017__MHSemiLepVarsMVA'
+#fakeSteps = 'DATAl1loose2017v6__MHSemiLepVarsMVAfake'
 
 
 mcProduction = 'Fall2017_102X_nAODv5_Full2017v6'
@@ -156,6 +157,7 @@ addSampleWeight(samples,'DYlow','DYJetsToLL_M-10to50-LO',ptllDYW_LO+'*(LHE_HT<10
 
 ###### Top #######
 
+# Missing TTTo2L2Nu, TTZjets(_ext1)
 files = nanoGetSampleFiles(mcDirectory, 'TTToSemiLeptonic_PSweights') + \
         nanoGetSampleFiles(mcDirectory, 'TTWjets') + \
         nanoGetSampleFiles(mcDirectory, 'ST_s-channel') + \
@@ -170,10 +172,22 @@ samples['top'] = {
     'FilesPerJob': 3,
 }
 
+files = nanoGetSampleFiles(mcDirectory, 'TTTo2L2Nu') + \
+        nanoGetSampleFiles(mcDirectory, 'TTZjets_ext1')
+
+samples['missing_top'] = {
+    'name': files,
+    'weight': mcCommonWeight,
+    'FilesPerJob': 3,
+}
+
 # ttbar pT re-weighting
 # https://twiki.cern.ch/twiki/bin/viewauth/CMS/TopPtReweighting
 # https://indico.cern.ch/event/904971/contributions/3857701/attachments/2036949/3410728/TopPt_20.05.12.pdf
 addSampleWeight(samples,'top','TTToSemiLeptonic_PSweights','Top_pTrw')  # https://indico.cern.ch/event/904971/contributions/3857701/attachments/2036949/3410728/TopPt_20.05.12.pdf
+addSampleWeight(samples,'top','TTWjets','Top_pTrw')
+addSampleWeight(samples,'missing_top','TTTo2L2Nu','Top_pTrw')
+addSampleWeight(samples,'missing_top','TTZjets_ext1','Top_pTrw')
 
 
 # Xsec correction single top s and t channel: xsec in tree is leptonDecays, but sample is inclusiveDecays
@@ -200,6 +214,7 @@ samples['VBF-V']  = {
 ###### WW ########
 
 files = nanoGetSampleFiles(mcDirectory_per, 'WWToLNuQQ')
+files+= nanoGetSampleFiles(mcDirectory, 'WWTo2L2Nu')
 
 samples['WW'] = {
     'name': files,

@@ -22,6 +22,10 @@ structure['top'] = {
     'isSignal' : 0,
     'isData'   : 0
 }
+structure['missing_top'] = {
+    'isSignal' : 0,
+    'isData'   : 0
+}
 
 
 structure['WW']  = {

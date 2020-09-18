@@ -88,7 +88,6 @@ DNNneut::evaluate(unsigned)
 
   input.push_back(*PuppiMET_pt->Get() * TMath::Cos(*PuppiMET_phi->Get()));
   input.push_back(*PuppiMET_pt->Get() * TMath::Sin(*PuppiMET_phi->Get()));
-  input.push_back(*dphilmet->Get());
   input.push_back(*dphilmet1->Get());
   input.push_back(*dphilmet2->Get());
   input.push_back(*mll->Get());

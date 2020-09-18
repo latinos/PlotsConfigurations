@@ -31,9 +31,10 @@ mc = [skey for skey in samples if skey not in ('FAKE', 'DATA')]
 new_mc = []
 for mp in signal:
     new_mc.append(mp)
-new_mc += ['WW', 'WZqcd', 'VBF-V', 'ZZ'] #WWewk
+new_mc += ['WW', 'WZqcd', 'VBF-V', 'ZZ', 'missing_top'] #WWewk
 old_mc = [sample for sample in mc if sample not in new_mc]
 
+#new_samples = new_mc + ['FAKE']
 new_samples = new_mc
 old_samples = [skey for skey in samples if skey not in new_samples]
 
@@ -144,6 +145,7 @@ aliases['GenLHE'] = {
 #bJetR_req = '(CleanJet_pt > 30 && abs(CleanJet_eta) < 2.5 && CleanJet_jetIdx != CleanJet_jetIdx[idx_j1] && CleanJet_jetIdx != CleanJet_jetIdx[idx_j2])'
 
 # Clash fix
+print('new_samples', new_samples)
 aliases['idx_j1'] = {
     'expr': 'HM_idx_j1',
     'samples': new_samples
@@ -164,16 +166,16 @@ aliases['ori_idx_j2'] = {
 
 aliases['Jet_btagSF_shape'] = {
     'expr': 'Jet_btagSF_deepcsv_shape',
-    'samples': new_samples
+    'samples': new_mc
 }
 for shift in ['jes','lf','hf','lfstats1','lfstats2','hfstats1','hfstats2','cferr1','cferr2']:
     aliases['Jet_btagSF_shape_up_'+shift] = {
         'expr': 'Jet_btagSF_deepcsv_shape_up_'+shift,
-        'samples': new_samples
+        'samples': new_mc
     }
     aliases['Jet_btagSF_shape_down_'+shift] = {
         'expr': 'Jet_btagSF_deepcsv_shape_down_'+shift,
-        'samples': new_samples
+        'samples': new_mc
     }
 
 bJetV_req = '(CleanJet_pt > 20 && abs(CleanJet_eta) < 2.5)'
@@ -233,22 +235,22 @@ lastcopy = (1 << 13)
 
 aliases['isTTbar'] = {
     'expr': 'Sum$(TMath::Abs(GenPart_pdgId) == 6 && (GenPart_statusFlags & %d)) == 2' % lastcopy,
-    'samples': ['top']
+    'samples': ['top', 'missing_top']
 }
 
 aliases['isSingleTop'] = {
     'expr': 'Sum$(TMath::Abs(GenPart_pdgId) == 6 && (GenPart_statusFlags & %d)) == 1' % lastcopy,
-    'samples': ['top']
+    'samples': ['top', 'missing_top']
 }
 
 aliases['topGenPtOTF'] = {
     'expr': 'Sum$((GenPart_pdgId == 6 && (GenPart_statusFlags & %d)) * GenPart_pt)' % lastcopy,
-    'samples': ['top']
+    'samples': ['top', 'missing_top']
 }
 
 aliases['antitopGenPtOTF'] = {
     'expr': 'Sum$((GenPart_pdgId == -6 && (GenPart_statusFlags & %d)) * GenPart_pt)' % lastcopy,
-    'samples': ['top']
+    'samples': ['top', 'missing_top']
 }
 
 TF_a = '-2.02274e-01'
@@ -261,7 +263,7 @@ aliases['Top_pTrw'] = {
     # top pt re-weighting: https://indico.cern.ch/event/904971/contributions/3857701/attachments/2036949/3410728/TopPt_20.05.12.pdf
     'expr': '(topGenPtOTF * antitopGenPtOTF > 0.) * (TMath::Sqrt(TMath::Exp('+TF_a+' + '+TF_b+'*topGenPtOTF + '+TF_c+'*topGenPtOTF*topGenPtOTF + '+TF_d+'/(topGenPtOTF+'+TF_e+')) * TMath::Exp('+TF_a+' + '+TF_b+'*antitopGenPtOTF + '+TF_c+'*antitopGenPtOTF*antitopGenPtOTF + '+TF_d+'/(antitopGenPtOTF+'+TF_e+')))) + (topGenPtOTF * antitopGenPtOTF <= 0.)',
     #'expr': '(topGenPtOTF * antitopGenPtOTF > 0.) * (TMath::Sqrt(TMath::Exp(-2.02274e-01 + 1.09734e-04*topGenPtOTF - 1.30088e-07*topGenPtOTF*topGenPtOTF + 5.83494e+01/(topGenPtOTF+1.96252e+02)) * TMath::Exp(-2.02274e-01 + 1.09734e-04*antitopGenPtOTF - 1.30088e-07*antitopGenPtOTF*antitopGenPtOTF + 5.83494e+01/(antitopGenPtOTF+1.96252e+02)))) + (topGenPtOTF * antitopGenPtOTF <= 0.)',
-    'samples': ['top']
+    'samples': ['top', 'missing_top']
 }
 
 
@@ -373,6 +375,16 @@ for mu_et in [20]:
 aliases['FWglobalSF'] = {
     'expr': '((TMath::Abs(Lepton_pdgId[0]) == 13)*3.61 + (TMath::Abs(Lepton_pdgId[0]) == 11)*2.06)',
     'samples': ["FAKE"]
+}
+
+aliases['DYlowglobalSF'] = {
+    'expr': '((TMath::Abs(Lepton_pdgId[0]) == 13)*25.6 + (TMath::Abs(Lepton_pdgId[0]) == 11)*19.6)',
+    'samples': ["DYlow"]
+}
+
+aliases['TOPglobalSF'] = {
+    'expr': '(1.6)',
+    'samples': ["top"]
 }
 
 aliases['AdphiLmet'] = {

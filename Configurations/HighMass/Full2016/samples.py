@@ -24,7 +24,7 @@ elif  'cern' in SITE :
 
 directory = treeBaseDir+'Summer16_102X_nAODv5_Full2016v6/MCl1loose2016v6__MCCorr2016v6__l2loose__l2tightOR2016v6'
 directoryV6 = treeBaseDir+'Summer16_102X_nAODv6_Full2016v6/MCl1loose2016v6__MCCorr2016v6__l2loose__l2tightOR2016v6__HM'
-directoryHM = treeBaseDir+'Summer16_102X_nAODv6_Full2016v6/MCl1loose2016v6__MCCorr2016v6__l2loose__l2tightOR2016v6__BWReweight'
+directoryHM = treeBaseDir+'Summer16_102X_nAODv6_Full2016v6/MCl1loose2016v6__MCCorr2016v6__l2loose__l2tightOR2016v6__BWReweight__btagPerJet2016' # "__btagPerJet2016" appendix: btagSF branch names were different for some reason; fixed them here
 
 ################################################
 ############### Lepton WP ######################
@@ -121,7 +121,7 @@ useDYHT = False
 if EMorEEorMM in ['ee', 'mm']:
   useEmbeddedDY = False
   useDYtt = False
-  useDYHT = False # FIXME
+  useDYHT = True
 
 embed_tautauveto = '' #Setup
 if useEmbeddedDY:
@@ -461,7 +461,7 @@ for mass in massggh:
 
   if INToverSBI:
     samples['GGHINT_'+mass+model_name]  = {  'name'   :   getSampleFiles(directoryHM,'GluGluHToWWTo2L2Nu'+jhugen+'_M'+mass,True,'nanoLatino_'),
-                        'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*'+noSMxsec+'*'+'('+model_I+'*(abs('+model_I+')<50))' , # abs<100 cut removes 0.035% of all events, abs<50 cut Removes 0.074% of all events
+                        'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*'+noSMxsec+'*'+'('+model_I+'*(abs('+model_I+')<20))' , # abs<100 cut removes 0.035% of all events, abs<50 cut removes 0.074% of all events, abs<20 cut removes 0.180% of all events
                         'FilesPerJob' : 10,
                         'EventsPerJob' : 70000,
                      }
@@ -477,7 +477,7 @@ for mass in massggh:
                         'suppressNegativeNuisances' :['all'],
                      }
 
-    addSampleWeight(samples, 'GGHSBI_'+mass+model_name, 'GluGluHToWWTo2L2Nu'+jhugen+'_M'+mass, noSMxsec+'*'+'('+model+' + '+model_I+'*(abs('+model_I+')<50))')
+    addSampleWeight(samples, 'GGHSBI_'+mass+model_name, 'GluGluHToWWTo2L2Nu'+jhugen+'_M'+mass, noSMxsec+'*'+'('+model+' + '+model_I+'*(abs('+model_I+')<20))')
     addSampleWeight(samples, 'GGHSBI_'+mass+model_name, 'GluGluWWTo2L2Nu_MCFM', '1.53/1.4'+embed_tautauveto)
     addSampleWeight(samples, 'GGHSBI_'+mass+model_name, 'GluGluHToWWTo2L2Nu_alternative_M125', 'MINLO')
 
@@ -515,7 +515,7 @@ for mass in massvbf:
 
   if INToverSBI:
     samples['QQHINT_'+mass+model_name]  = {  'name'   :   getSampleFiles(directoryHM,'VBFHToWWTo2L2Nu'+jhugen+'_M'+mass,True,'nanoLatino_'),
-                        'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*'+noSMxsec+'*'+'('+model_I+'*(abs('+model_I+')<50))' ,
+                        'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*'+noSMxsec+'*'+'('+model_I+'*(abs('+model_I+')<20))' ,
                         'FilesPerJob' : 10,
                         'EventsPerJob' : 70000,
                      }
@@ -532,7 +532,7 @@ for mass in massvbf:
                      }
 
   # Using nAODv6 for WpWmJJ_QCD_noTop, because too low statistics in nAODv5 sample!
-    addSampleWeight(samples, 'QQHSBI_'+mass+model_name, 'VBFHToWWTo2L2Nu'+jhugen+'_M'+mass, noSMxsec+'*'+'('+model+' + '+model_I+'*(abs('+model_I+')<50))')
+    addSampleWeight(samples, 'QQHSBI_'+mass+model_name, 'VBFHToWWTo2L2Nu'+jhugen+'_M'+mass, noSMxsec+'*'+'('+model+' + '+model_I+'*(abs('+model_I+')<20))')
     addSampleWeight(samples, 'QQHSBI_'+mass+model_name, 'WpWmJJ_QCD_noTop', '(mjjGen_OTF>100)*(GenLHE)'+embed_tautauveto)
 
   if mass in ['4000', '5000']: # Just to be sure, recalculate baseW with new cross sections
