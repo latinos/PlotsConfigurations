@@ -1007,7 +1007,7 @@ nuisances['DYeenorm2j']  = {
       'DY'    : ['1.','1.'] ,
       },
    #'cuts'     : [cut for cut in cuts2j if 'ee' in cut]
-   'cutspost' : lambda self, cuts: [cut for cut in cuts if '2j' in cut and 'ee' in cut and 'vh' not in cut and 'vbf' not in cut]
+   'cutspost' : lambda self, cuts: [cut for cut in cuts if '2j' in cut and 'ee' in cut and 'vh' not in cut and 'vbf' not in cut and 'hpt' not in cut]
 }
 
 nuisances['DYmmnorm2j']  = {
@@ -1018,7 +1018,7 @@ nuisances['DYmmnorm2j']  = {
       'DY'    : ['1.','1.'] ,
       },
    #'cuts'     : [cut for cut in cuts2j if 'mm' in cut]
-   'cutspost' : lambda self, cuts: [cut for cut in cuts if '2j' in cut and 'mm' in cut and 'vh' not in cut and 'vbf' not in cut]
+   'cutspost' : lambda self, cuts: [cut for cut in cuts if '2j' in cut and 'mm' in cut and 'vh' not in cut and 'vbf' not in cut and 'hpt' not in cut]
 }
 
 nuisances['DYeenormhpt']  = {
