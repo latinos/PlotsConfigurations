@@ -17,27 +17,25 @@ supercut = '(   (abs(Lepton_pdgId[0])==11 && Lepton_pt[0]>35)\
 # ###############|          Resolved category       |######################
 # ###############|----------------------------------|######################
 # #########################################################################
-
-#####################################
-##  W-onshell, bveto --> Signal
-
 # cuts["res_sig_dnnall_ele"] = 'VBS_category==1 \
 #                                 && abs(Lepton_pdgId[0])==11 \
 #                                 && vjet_0_pt > 30 && vjet_1_pt > 30 \
 #                                 && mjj_vjet > 65 && mjj_vjet < 105 \
 #                                 && bVeto \
 #                                 && whad_pt < 200 \
+#                                 && ( abs(Lepton_eta[0])<1.49 || Electron_sip3d[Lepton_electronIdx[0]] < sip3d_cut ) \
 #                                 '
 
 
-# cuts["res_sig_dnnhigh_ele"] = 'VBS_category==1 \
-#                                 && abs(Lepton_pdgId[0])==11 \
-#                                 && vjet_0_pt > 30 && vjet_1_pt > 30 \
-#                                 && mjj_vjet > 65 && mjj_vjet < 105 \
-#                                 && bVeto \
-#                                 && whad_pt < 200 \
-#                                 && DNNoutput_resolved > 0.3 \
-#                                 '
+# # cuts["res_sig_dnnhigh_ele"] = 'VBS_category==1 \
+# #                                 && abs(Lepton_pdgId[0])==11 \
+# #                                 && vjet_0_pt > 30 && vjet_1_pt > 30 \
+# #                                 && mjj_vjet > 65 && mjj_vjet < 105 \
+# #                                 && bVeto \
+# #                                 && whad_pt < 200 \
+# #                                 && DNNoutput_resolved > 0.3 \
+# #                                 && ( abs(Lepton_eta[0])<1.49 || Electron_sip3d[Lepton_electronIdx[0]] < sip3d_cut ) \
+# #                                 '
 
 
 # cuts["res_sig_dnnall_mu"] = 'VBS_category==1 \
@@ -50,14 +48,14 @@ supercut = '(   (abs(Lepton_pdgId[0])==11 && Lepton_pt[0]>35)\
 
 
 
-# cuts["res_sig_dnnhigh_mu"] = 'VBS_category==1 \
-#                                 && abs(Lepton_pdgId[0])==13 \
-#                                 && vjet_0_pt > 30 && vjet_1_pt > 30 \
-#                                 && mjj_vjet > 65 && mjj_vjet < 105 \
-#                                 && bVeto \
-#                                 && whad_pt < 200 \
-#                                 && DNNoutput_resolved > 0.3 \
-#                                 '
+# # cuts["res_sig_dnnhigh_mu"] = 'VBS_category==1 \
+# #                                 && abs(Lepton_pdgId[0])==13 \
+# #                                 && vjet_0_pt > 30 && vjet_1_pt > 30 \
+# #                                 && mjj_vjet > 65 && mjj_vjet < 105 \
+# #                                 && bVeto \
+# #                                 && whad_pt < 200 \
+# #                                 && DNNoutput_resolved > 0.3 \
+# #                                 '
 
 
 
@@ -70,17 +68,19 @@ supercut = '(   (abs(Lepton_pdgId[0])==11 && Lepton_pt[0]>35)\
 #                                 && (mjj_vjet <= 65 || mjj_vjet >= 105) \
 #                                 && bVeto \
 #                                 && whad_pt < 200 \
+#                                 && ( abs(Lepton_eta[0])<1.49 || Electron_sip3d[Lepton_electronIdx[0]] < sip3d_cut ) \
 #                                 '
 
 
-# cuts["res_wjetcr_dnnhigh_ele"] = 'VBS_category==1 \
-#                                 && abs(Lepton_pdgId[0])==11 \
-#                                 && vjet_0_pt > 30 && vjet_1_pt > 30 \
-#                                 && (mjj_vjet <= 65 || mjj_vjet >= 105) \
-#                                 && bVeto \
-#                                 && whad_pt < 200 \
-#                                 && DNNoutput_resolved > 0.3 \
-#                                 '
+# # cuts["res_wjetcr_dnnhigh_ele"] = 'VBS_category==1 \
+# #                                 && abs(Lepton_pdgId[0])==11 \
+# #                                 && vjet_0_pt > 30 && vjet_1_pt > 30 \
+# #                                 && (mjj_vjet <= 65 || mjj_vjet >= 105) \
+# #                                 && bVeto \
+# #                                 && whad_pt < 200 \
+# #                                 && DNNoutput_resolved > 0.3 \
+# #                                 && ( abs(Lepton_eta[0])<1.49 || Electron_sip3d[Lepton_electronIdx[0]] < sip3d_cut ) \
+# #                                 '
 
 
 # cuts["res_wjetcr_dnnall_mu"] = 'VBS_category==1 \
@@ -114,15 +114,17 @@ cuts["boost_sig_dnnall_ele"] = 'VBS_category==0 \
                             && vjet_0_pt > 200 \
                             && mjj_vjet > 65 && mjj_vjet < 105 \
                             && bVeto \
+                            && ( abs(Lepton_eta[0])<1.49 || Electron_sip3d[Lepton_electronIdx[0]] < sip3d_cut ) \
                             '
 
-cuts["boost_sig_dnnhigh_ele"] = 'VBS_category==0 \
-                            && abs(Lepton_pdgId[0])==11 \
-                            && vjet_0_pt > 200 \
-                            && mjj_vjet > 65 && mjj_vjet < 105 \
-                            && bVeto \
-                            && DNNoutput_boosted > 0.3 \
-                            '
+# cuts["boost_sig_dnnhigh_ele"] = 'VBS_category==0 \
+#                             && abs(Lepton_pdgId[0])==11 \
+#                             && vjet_0_pt > 200 \
+#                             && mjj_vjet > 65 && mjj_vjet < 105 \
+#                             && bVeto \
+#                             && DNNoutput_boosted > 0.3 \
+#                             && ( abs(Lepton_eta[0])<1.49 || Electron_sip3d[Lepton_electronIdx[0]] < sip3d_cut ) \
+#                             '
 
 cuts["boost_sig_dnnall_mu"] = 'VBS_category==0 \
                             && abs(Lepton_pdgId[0])==13 \
@@ -132,13 +134,13 @@ cuts["boost_sig_dnnall_mu"] = 'VBS_category==0 \
                             '
 
 
-cuts["boost_sig_dnnhigh_mu"] = 'VBS_category==0 \
-                            && abs(Lepton_pdgId[0])==13 \
-                            && vjet_0_pt > 200 \
-                            && mjj_vjet > 65 && mjj_vjet < 105 \
-                            && bVeto \
-                            && DNNoutput_boosted > 0.3 \
-                            '
+# cuts["boost_sig_dnnhigh_mu"] = 'VBS_category==0 \
+#                             && abs(Lepton_pdgId[0])==13 \
+#                             && vjet_0_pt > 200 \
+#                             && mjj_vjet > 65 && mjj_vjet < 105 \
+#                             && bVeto \
+#                             && DNNoutput_boosted > 0.3 \
+#                             '
 
 # ###############################################
 # # Wjets
@@ -148,16 +150,18 @@ cuts["boost_wjetcr_dnnall_ele"] = 'VBS_category==0 \
                             && vjet_0_pt > 200 \
                             && (mjj_vjet <= 65 || mjj_vjet >= 105)  \
                             && bVeto \
+                            && ( abs(Lepton_eta[0])<1.49 || Electron_sip3d[Lepton_electronIdx[0]] < sip3d_cut ) \
                             '
 
 
-cuts["boost_wjetcr_dnnhigh_ele"] = 'VBS_category==0 \
-                            && abs(Lepton_pdgId[0])==11 \
-                            && vjet_0_pt > 200 \
-                            && mjj_vjet >= 60  && (mjj_vjet <= 65 || mjj_vjet >= 105)  \
-                            && bVeto \
-                            && DNNoutput_boosted > 0.3 \
-                            '
+# cuts["boost_wjetcr_dnnhigh_ele"] = 'VBS_category==0 \
+#                             && abs(Lepton_pdgId[0])==11 \
+#                             && vjet_0_pt > 200 \
+#                             && mjj_vjet >= 60  && (mjj_vjet <= 65 || mjj_vjet >= 105)  \
+#                             && bVeto \
+#                             && DNNoutput_boosted > 0.3 \
+#                             && ( abs(Lepton_eta[0])<1.49 || Electron_sip3d[Lepton_electronIdx[0]] < sip3d_cut ) \
+#                             '
 
 cuts["boost_wjetcr_dnnall_mu"] = 'VBS_category==0 \
                             && abs(Lepton_pdgId[0])==13 \
@@ -166,13 +170,13 @@ cuts["boost_wjetcr_dnnall_mu"] = 'VBS_category==0 \
                             && bVeto \
                             '
 
-cuts["boost_wjetcr_dnnhigh_mu"] = 'VBS_category==0 \
-                            && abs(Lepton_pdgId[0])==13 \
-                            && vjet_0_pt > 200 \
-                            && mjj_vjet >= 60  && (mjj_vjet <= 65 || mjj_vjet >= 105)  \
-                            && bVeto \
-                            && DNNoutput_boosted > 0.3 \
-                            '
+# cuts["boost_wjetcr_dnnhigh_mu"] = 'VBS_category==0 \
+#                             && abs(Lepton_pdgId[0])==13 \
+#                             && vjet_0_pt > 200 \
+#                             && mjj_vjet >= 60  && (mjj_vjet <= 65 || mjj_vjet >= 105)  \
+#                             && bVeto \
+#                             && DNNoutput_boosted > 0.3 \
+#                             '
 
 
 # ###############################################
@@ -187,16 +191,18 @@ cuts["boost_wjetcr_dnnhigh_mu"] = 'VBS_category==0 \
 #                                 && mjj_vjet > 65 && mjj_vjet < 105 \
 #                                 && bReqTight \
 #                                 && whad_pt < 200 \
+#                                 && ( abs(Lepton_eta[0])<1.49 || Electron_sip3d[Lepton_electronIdx[0]] < sip3d_cut ) \
 #                                 '
 
-# cuts["res_topcr_dnnhigh_ele"] = 'VBS_category==1 \
-#                                 && abs(Lepton_pdgId[0])==11 \
-#                                 && vjet_0_pt > 30 && vjet_1_pt > 30 \
-#                                 && mjj_vjet > 65 && mjj_vjet < 105 \
-#                                 && bReqTight \
-#                                 && whad_pt < 200 \
-#                                 && DNNoutput_resolved > 0.3 \
-#                                 '
+# # cuts["res_topcr_dnnhigh_ele"] = 'VBS_category==1 \
+# #                                 && abs(Lepton_pdgId[0])==11 \
+# #                                 && vjet_0_pt > 30 && vjet_1_pt > 30 \
+# #                                 && mjj_vjet > 65 && mjj_vjet < 105 \
+# #                                 && bReqTight \
+# #                                 && whad_pt < 200 \
+# #                                 && DNNoutput_resolved > 0.3 \
+# #                                 && ( abs(Lepton_eta[0])<1.49 || Electron_sip3d[Lepton_electronIdx[0]] < sip3d_cut ) \
+# #                                 '
 
 # cuts["res_topcr_dnnall_mu"] = 'VBS_category==1 \
 #                                 && abs(Lepton_pdgId[0])==13 \
@@ -222,15 +228,17 @@ cuts["boost_topcr_dnnall_ele"] = 'VBS_category==0 \
                             && vjet_0_pt > 200 \
                             && mjj_vjet > 65 && mjj_vjet < 105 \
                             && bReqTight \
+                            && ( abs(Lepton_eta[0])<1.49 || Electron_sip3d[Lepton_electronIdx[0]] < sip3d_cut ) \
                             '
 
-cuts["boost_topcr_dnnhigh_ele"] = 'VBS_category==0 \
-                            && abs(Lepton_pdgId[0])==11 \
-                            && vjet_0_pt > 200 \
-                            && mjj_vjet > 65 && mjj_vjet < 105 \
-                            && bReqTight \
-                            && DNNoutput_boosted > 0.3 \
-                            '
+# cuts["boost_topcr_dnnhigh_ele"] = 'VBS_category==0 \
+#                             && abs(Lepton_pdgId[0])==11 \
+#                             && vjet_0_pt > 200 \
+#                             && mjj_vjet > 65 && mjj_vjet < 105 \
+#                             && bReqTight \
+#                             && DNNoutput_boosted > 0.3 \
+#                             && ( abs(Lepton_eta[0])<1.49 || Electron_sip3d[Lepton_electronIdx[0]] < sip3d_cut ) \
+#                             '
 
 
 cuts["boost_topcr_dnnall_mu"] = 'VBS_category==0 \
@@ -242,10 +250,10 @@ cuts["boost_topcr_dnnall_mu"] = 'VBS_category==0 \
 
 
 
-cuts["boost_topcr_dnnhigh_mu"] = 'VBS_category==0 \
-                            && abs(Lepton_pdgId[0])==13 \
-                            && vjet_0_pt > 200 \
-                            && mjj_vjet > 65 && mjj_vjet < 105 \
-                            && bReqTight \
-                            && DNNoutput_boosted > 0.3 \
-                             '
+# cuts["boost_topcr_dnnhigh_mu"] = 'VBS_category==0 \
+#                             && abs(Lepton_pdgId[0])==13 \
+#                             && vjet_0_pt > 200 \
+#                             && mjj_vjet > 65 && mjj_vjet < 105 \
+#                             && bReqTight \
+#                             && DNNoutput_boosted > 0.3 \
+#                              '

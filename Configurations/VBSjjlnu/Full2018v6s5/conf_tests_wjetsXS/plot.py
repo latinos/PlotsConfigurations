@@ -50,7 +50,8 @@ palette = {
     "Wjets_deta1": (247, 235, 7), #f7eb07
 '''
 
-samplesWjets = ["Wjets_NLO_0J", "Wjets_NLO_1J","Wjets_NLO_2J","Wjets_LO",
+samplesWjets = ["Wjets_LO_1J", "Wjets_LO_2J", 
+"Wjets_LO_3J","Wjets_LO_4J", "Wjets_NLO_0J", "Wjets_NLO_1J","Wjets_NLO_2J","Wjets_LO",
       "Wjets_HT70_100", "Wjets_HT100_200","Wjets_HT200_400", "Wjets_HT400_600",
        "Wjets_HT600_800", "Wjets_HT800_1200", "Wjets_HT1200_2500", "Wjets_HT2500_inf",
       "Wjets_Pt50to100", "Wjets_Pt100to250", "Wjets_Pt400to600", "Wjets_Pt600toInf"]
@@ -58,7 +59,7 @@ samplesWjets = ["Wjets_NLO_0J", "Wjets_NLO_1J","Wjets_NLO_2J","Wjets_LO",
 for w in samplesWjets:
     groupPlot[w]  = {  
                             'nameHR' : w,
-                            'isSignal' : 0,
+                            'isSignal' : 2,
                             'color':   palette[choice(list(palette.keys()))],
                             'samples'  :[w],
                             'fill': 1001
@@ -74,16 +75,17 @@ for w in samplesWjets:
 for w in samplesWjets:
     plot[w]  = { 
                     'color': colors["kAzure"] -3,    
-                    'isSignal' : 1,
+                    'isSignal' : 2,
                     'isData'   : 0,
                     'scale'    : 1.0
                     }
 
+plot["Wjets_LO"]['isSignal']=0
 
 
 # additional options
 
-legend['lumi'] = 'L = 59.74/fb'
+legend['lumi'] = 'L = 1/fb'
 
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
 

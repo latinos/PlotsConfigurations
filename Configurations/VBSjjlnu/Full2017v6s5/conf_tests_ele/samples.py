@@ -156,6 +156,9 @@ samples['top'] = {
             'FilesPerJob' : 3,
                  }
 
+addSampleWeight(samples,'top','ST_t-channel_top',  "100. / 32.4 ") # N.B We are using inclusive sample with leptonic-only XS
+addSampleWeight(samples,'top','ST_t-channel_antitop',  "100. / 32.4")
+
 
 samples['Wjets'] = { 'name' :   
           # nanoGetSampleFiles(directory_bkg, 'WJetsToLNu-LO')
@@ -187,6 +190,13 @@ samples['Wjets'] = { 'name' :
 #
 # Fix Wjets binned + LO 
 addSampleWeight(samples,'Wjets', 'WJetsToLNu-LO_ext1', '(LHE_HT < 100)') 
+addSampleWeight(samples,'Wjets', 'WJetsToLNu_HT100_200', '0.993') 
+addSampleWeight(samples,'Wjets', 'WJetsToLNu_HT200_400', '1.002') 
+addSampleWeight(samples,'Wjets', 'WJetsToLNu_HT400_600', '1.009') 
+addSampleWeight(samples,'Wjets', 'WJetsToLNu_HT600_800', '1.120') 
+addSampleWeight(samples,'Wjets', 'WJetsToLNu_HT800_1200', '1.202') 
+addSampleWeight(samples,'Wjets', 'WJetsToLNu_HT1200_2500', '1.332') 
+addSampleWeight(samples,'Wjets', 'WJetsToLNu_HT2500_inf', '4.200') 
 
 
 #################################################

@@ -3,7 +3,7 @@
 
 # # name of samples here must match keys in samples.py 
 
-mc =["DY", "top", "VV", "VVV", "VBF-V", "top", "VBS", "Wjets_HT", "Wjets_LO", "Wjets_njetsLO"]
+mc =["DY", "top", "VV", "VVV", "VBF-V", "Vg", "VgS", "top", "VBS", "Wjets_HT", "Wjets_LO", "Wjets_njetsLO"]
 
 
 phase_spaces_boost = []
@@ -198,7 +198,7 @@ nuisances['electronpt']  = {
                 'name'  : 'CMS_scale_e_2018',
                 'kind'  : 'tree',
                 'type'  : 'shape',
-                'samples'  : dict((skey, ['1', '1']) for skey in mc),
+                'samples'  : dict((skey, ['1', '1']) for skey in mc if skey not in ["Vg", "VgS"] ),
                 'folderUp'   :  directory_bkg +"_ElepTup",
                 'folderDown' : directory_bkg +"_ElepTdo",
                 'cuts': phase_spaces_tot_ele
@@ -213,7 +213,7 @@ nuisances['eff_m']  = {
                 'name'  : 'CMS_eff_m_2018',
                 'kind'  : 'weight',
                 'type'  : 'shape',
-                'samples'  : dict((skey, id_syst_mu) for skey in mc),
+                'samples'  : dict((skey, id_syst_mu) for skey in mc if skey not in ["Vg", "VgS"]),
                 'cuts': phase_spaces_tot_mu
 }
 
@@ -221,7 +221,7 @@ nuisances['muonpt']  = {
                 'name'  : 'CMS_scale_m_2018',
                 'kind'  : 'tree',
                 'type'  : 'shape',
-                'samples'  : dict((skey, ['1', '1']) for skey in mc),
+                'samples'  : dict((skey, ['1', '1']) for skey in mc if skey not in ["Vg", "VgS"]),
                 'folderUp'   : directory_bkg +"_MupTup",
                 'folderDown' : directory_bkg +"_MupTdo",
                 'cuts': phase_spaces_tot_mu
@@ -234,7 +234,7 @@ nuisances['jes_others']  = {
                 'name'  : 'CMS_scale_j_2018_others',
                 'kind'  : 'tree',
                 'type'  : 'shape',
-                'samples'  : dict((skey, ['1', '1']) for skey in mc if skey not in ["Wjets_NLO", "Wjets_HT","Wjets_LO","Wjets_njetsLO","DY", "top", "VBS", "DY_NLO", "VV", "VBF-V"]),
+                'samples'  : dict((skey, ['1', '1']) for skey in mc if skey not in ["Wjets_NLO", "Wjets_HT","Wjets_LO","Wjets_njetsLO","DY", "top", "VBS", "DY_NLO", "VV", "VBF-V", "Vg", "VgS"]),
                 'folderUp'   : directory_bkg +"_JESup",
                 'folderDown' : directory_bkg +"_JESdo",
 }
@@ -305,7 +305,7 @@ nuisances['fatjet_jes']  = {
                 'name'  : 'CMS_scale_fatj_2018',
                 'kind'  : 'tree',
                 'type'  : 'shape',
-                'samples'  : dict((skey, ['1', '1']) for skey in mc),
+                'samples'  : dict((skey, ['1', '1']) for skey in mc if skey not in ["VgS"]),
                 'folderUp'   : directory_bkg +"_fatjet_JESup",
                 'folderDown' : directory_bkg +"_fatjet_JESdo",
 }
@@ -314,7 +314,7 @@ nuisances['fatjet_jms']  = {
                 'name'  : 'CMS_mass_fatj_2018',
                 'kind'  : 'tree',
                 'type'  : 'shape',
-                'samples'  : dict((skey, ['1', '1']) for skey in mc),
+                'samples'  : dict((skey, ['1', '1']) for skey in mc if skey not in ["VgS"]),
                 'folderUp'   : directory_bkg +"_fatjet_JMSup",
                 'folderDown' : directory_bkg +"_fatjet_JMSdo",
 }
@@ -327,7 +327,7 @@ nuisances['met']  = {
                 'name'  : 'CMS_scale_met_2018',
                 'kind'  : 'tree',
                 'type'  : 'shape',
-                 'samples'  : dict((skey, ['1', '1']) for skey in mc),
+                 'samples'  : dict((skey, ['1', '1']) for skey in mc if skey not in ["VgS"]),
                 'folderUp'   : directory_bkg +"_METup",
                 'folderDown' : directory_bkg +"_METdo",
 }

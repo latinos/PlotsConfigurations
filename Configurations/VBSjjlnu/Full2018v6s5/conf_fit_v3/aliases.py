@@ -18,6 +18,11 @@ aliases['whad_pt'] = {
             ]           
 }
 
+aliases["sip3d_cut"]= {
+    'expr': '-2.22222*abs( Alt$(Electron_eta[Lepton_electronIdx[0]], 0) ) + 6.33333'
+}
+
+
 ############################################
 # DNN reader - Updated to 2018 specific
 

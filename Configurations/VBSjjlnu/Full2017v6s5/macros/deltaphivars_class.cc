@@ -31,6 +31,9 @@ protected:
                    deltaphi_lep_vbsjets,
                    deltaphi_lep_jet0,
                    deltaphi_lep_ww,
+                   deltaphi_lep_alljets,
+                   deltaeta_lep_alljets,
+                   deltaR_lep_alljets,
                    nVarTypes
   };
   
@@ -88,6 +91,12 @@ DeltaPhiVars::DeltaPhiVars(char const* _type) :
     returnVar_ = deltaphi_lep_jet0;
   else if (type == "deltaphi_lep_ww")
     returnVar_ = deltaphi_lep_ww;
+  else if (type == "deltaphi_lep_alljets")
+    returnVar_ = deltaphi_lep_alljets;
+  else if (type == "deltaeta_lep_alljets")
+    returnVar_ = deltaeta_lep_alljets;
+  else if (type == "deltaR_lep_alljets")
+    returnVar_ = deltaR_lep_alljets;
   else
     throw std::runtime_error("unknown return type " + type);
   
@@ -113,7 +122,7 @@ DeltaPhiVars::bindTree_(multidraw::FunctionLibrary& _library)
     _library.bindBranch(luminosityBlock, "luminosityBlock");
     _library.bindBranch(event, "event");
 
-    _library.bindBranch(nJets, "nJet");
+    _library.bindBranch(nJets, "nCleanJet");
     _library.bindBranch(Jet_pt, "CleanJet_pt");
     _library.bindBranch(Jet_eta, "CleanJet_eta");
     _library.bindBranch(Jet_phi, "CleanJet_phi");
@@ -177,6 +186,19 @@ DeltaPhiVars::setValues(UInt_t _run, UInt_t _luminosityBlock, ULong64_t _event)
     whad += v;
   }
 
+  TLorentzVector total_jet;
+  cout << "njets " << *(nJets->Get()) <<endl;
+  for (int ij=0; ij < *(nJets->Get()); ij++){
+    TLorentzVector v;
+    float pt = Jet_pt->At(ij);
+    float eta = Jet_eta->At(ij);
+    float phi = Jet_phi->At(ij);
+    float mass = Jet_mass->At(Jet_idx->At(ij));
+    v.SetPtEtaPhiM(pt,eta,phi, mass);
+    total_jet += v;
+  }
+  cout << total_jet.Pt() << endl;
+
   TLorentzVector lep; 
   lep.SetPtEtaPhiM(Lepton_pt->At(0), Lepton_eta->At(0), Lepton_phi->At(0), 0.);
 
@@ -187,5 +209,7 @@ DeltaPhiVars::setValues(UInt_t _run, UInt_t _luminosityBlock, ULong64_t _event)
   returnValues[deltaphi_lep_vbsjets] = abs(lep.DeltaPhi(vbsjets));
   returnValues[deltaphi_lep_ww] = abs(lep.DeltaPhi(whad+vbsjets));
   returnValues[deltaphi_lep_jet0] = abs(lep.DeltaPhi(jet0));
-
+  returnValues[deltaphi_lep_alljets] = abs(lep.DeltaPhi(total_jet));
+  returnValues[deltaeta_lep_alljets] = abs(lep.Eta() - total_jet.Eta());
+  returnValues[deltaR_lep_alljets] = abs(lep.DeltaR(total_jet));
 }

@@ -200,7 +200,7 @@ plot['Wjets'] = {
                  'color': colors['kAzure']-1,
                  'isSignal' : 0,
                  'isData'   : 0, 
-                 'scale'    : 1.27706  #normalized to inclusive cut
+                 'scale'    : 1.2342  #normalized to inclusive cut
                  }
 
 plot['VBS']  = {

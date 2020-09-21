@@ -200,14 +200,14 @@ plot['Wjets_LO'] = {
                  'color': colors['kAzure']-1,
                  'isSignal' : 0,
                  'isData'   : 0, 
-                 'scale'    : 1.2497  #normalized to inclusive cut loweta
+                 'scale'    : 1.20195  #normalized to inclusive cut loweta
                  }
 
 plot['Wjets_njetsLO'] = {   
                  'color': colors['kAzure']-1,
                  'isSignal' : 0,
                  'isData'   : 0, 
-                 'scale'    : 1.2497 #normalized to inclusive cut loweta
+                 'scale'    : 1.20195 #normalized to inclusive cut loweta
                  }
 
 

@@ -18,8 +18,10 @@ aliases['whad_pt'] = {
             ]           
 }
 
+
 aliases["sip3d_cut"]= {
-    'expr': '-2.22222*abs(Electron_eta[0]) + 6.33333'
+    'expr': '(abs(Lepton_pdgId[0])==13)*1 + \
+             (abs(Lepton_pdgId[0])==11)*(-2.22222*abs(Electron_eta[Lepton_electronIdx[0]]) + 6.33333)'
 }
 
 aliases['gstarLow'] = {

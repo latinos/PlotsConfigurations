@@ -497,55 +497,26 @@ nuisances['Top_norm_res']  = {
 for wjbin in Wjets_bins:
     for fl in ["ele", "mu"]:
         if "boost" in wjbin:
-            nuisances["Wjets_{}_norm_{}_boost_2018_njets".format(wjbin, fl)]  = {
+            nuisances["Wjets_{}_norm_{}_boost_2018".format(wjbin, fl)]  = {
                 'name'  : 'CMS_Wjets_{}_norm_{}_boost_2018'.format(wjbin, fl),
                 'samples'  : { 
-                            # "Wjets_HT_"+wjbin: '1.00',
-                              "Wjets_njetsLO_"+wjbin: '1.00',
-                            #   "Wjets_LO_"+wjbin: '1.00' 
+                             "Wjets_HT_"+wjbin: '1.00',
+                             
                             },
                 'type'  : 'rateParam',
                 'cuts'  : [f+"_"+fl for f in phase_spaces_dict["boost"]]
             }
         else:
-            nuisances["Wjets_{}_norm_{}_res_2018_njets".format(wjbin, fl)] = {
+            nuisances["Wjets_{}_norm_{}_res_2018".format(wjbin, fl)] = {
                 'name'  : 'CMS_Wjets_{}_norm_{}_res_2018'.format(wjbin, fl),
                 'samples'  : { 
-                             # "Wjets_HT_"+wjbin: '1.00',
-                               "Wjets_njetsLO_"+wjbin: '1.00',
-                             #  "Wjets_LO_"+wjbin: '1.00' 
+                             "Wjets_HT_"+wjbin: '1.00',
+                            
                              },
                 'type'  : 'rateParam',
                 'cuts'  : [f+"_"+fl for f in phase_spaces_dict["res"]]
             }
            
-
-
-for wjbin in Wjets_bins:
-    for fl in ["ele", "mu"]:
-        if "boost" in wjbin:
-            nuisances["Wjets_{}_norm_{}_boost_2018_LO".format(wjbin, fl)]  = {
-                'name'  : 'CMS_Wjets_{}_norm_{}_boost_2018'.format(wjbin, fl),
-                'samples'  : { 
-                            # "Wjets_HT_"+wjbin: '1.00',
-                            #  "Wjets_njetsLO_"+wjbin: '1.00',
-                               "Wjets_LO_"+wjbin: '1.00' },
-                'type'  : 'rateParam',
-                'cuts'  : [f+"_"+fl for f in phase_spaces_dict["boost"]]
-            }
-           
-        else:
-            nuisances["Wjets_{}_norm_{}_res_2018_LO".format(wjbin, fl)] = {
-                'name'  : 'CMS_Wjets_{}_norm_{}_res_2018'.format(wjbin, fl),
-                'samples'  : { 
-                             # "Wjets_HT_"+wjbin: '1.00',
-                            # "Wjets_njetsLO_"+wjbin: '1.00',
-                               "Wjets_LO_"+wjbin: '1.00' },
-                'type'  : 'rateParam',
-                'cuts'  : [f+"_"+fl for f in phase_spaces_dict["res"]]
-            }
-            
-
 
 
 ## Use the following if you want to apply the automatic combine MC stat nuisances.

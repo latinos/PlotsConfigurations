@@ -203,4 +203,30 @@ samples['Wjets_Pt600toInf'] = { 'name' :
 
 
 
-samples = {   key:v for key,v in samples.items() if "Wjets" in key}
+samples["Wjets_LO_1J"] = {
+	'name': nanoGetSampleFiles(directory_bkg, 'WJetsToLNu-LO_1J'),
+	'weight': '1.',
+	'FilesPerJob' : 6, 
+}
+
+samples["Wjets_LO_2J"] = {
+	'name': nanoGetSampleFiles(directory_bkg, 'WJetsToLNu-LO_2J'),
+	'weight': '1.',
+	'FilesPerJob' : 6, 
+}
+
+samples["Wjets_LO_3J"] = {
+	'name': nanoGetSampleFiles(directory_bkg, 'WJetsToLNu-LO_3J'),
+	'weight': '1.',
+	'FilesPerJob' : 6, 
+}
+
+samples["Wjets_LO_4J"] = {
+	'name': nanoGetSampleFiles(directory_bkg, 'WJetsToLNu-LO_4J'),
+	'weight': '1.',
+	'FilesPerJob' : 6, 
+}
+
+
+
+#samples = {   key:v for key,v in samples.items() if key in ["Wjets_LO_3J"]}

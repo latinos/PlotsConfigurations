@@ -18,7 +18,8 @@ variablesFile = direc+'/variables.py'
 cutsFile = direc +'/cuts.py' 
 
 # file with list of samples
-samplesFile = direc+'/samples.py' 
+samplesFile = direc+'/samples_join.py' 
+#samplesFile = direc+'/samples.py'
 
 #t file with list of samples
 plotFile = direc+'/plot.py' 
@@ -34,6 +35,7 @@ outputDirPlots = 'plot_'+tag  +"/Wjets_HT"
 
 # used by mkDatacards to define output directory for datacards
 #outputDirDatacard = 'datacards_'+tag 
+#outputDirDatacard = 'datacards_'+tag + "/Wjets_njets"
 outputDirDatacard = 'datacards_'+tag + "/Wjets_njets"
 
 # structure file for datacard
@@ -42,5 +44,5 @@ structureFile = direc+'/structure.py'
 
 # nuisances file for mkDatacards and for mkShape
 #nuisancesFile = direc+'/nuisances.py'
-nuisancesFile = direc+'/nuisances_datacard.py'
+nuisancesFile = direc+'/nuisances_datacard_join.py'
 #nuisancesFile = direc + '/nuisances_datacard.py'

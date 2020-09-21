@@ -3,7 +3,7 @@ import copy
 import inspect
 
 configurations = os.getenv("CMSSW_BASE") + "/src/PlotsConfigurations/Configurations/"
-conf_folder = configurations +"/VBSjjlnu/Full2018v6s5"
+conf_folder = configurations +"/VBSjjlnu/Full2016v6s5"
 
 #aliases = {}
 
@@ -18,6 +18,10 @@ aliases['whad_pt'] = {
             ]           
 }
 
+aliases["sip3d_cut"]= {
+    'expr': '(abs(Lepton_pdgId[0])==13)*1 + \
+             (abs(Lepton_pdgId[0])==11)*(-2.22222*abs(Electron_eta[Lepton_electronIdx[0]]) + 6.33333)'
+}
 ############################################
 # DNN reader - Updated to 2018 specific
 
@@ -65,21 +69,24 @@ aliases['whad_pt'] = {
 # }
 
 
-############################################
-# B tagging
-#loose 0.1241
-# tight 0.7527
+##################################
+# BTag
+
+bAlgo = 'DeepB'
+bWP = ' 0.2217 '
+bWPtight = '0.8953'
 
 aliases['bVeto'] = {
-    'expr': '(Sum$(CleanJet_pt > 20. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.1241) == 0)'
+    'expr': '(Sum$(CleanJet_pt > 20. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] >  0.2217 ) == 0)'
 }
 
 aliases['bReq'] = {
-    'expr': '(Sum$(CleanJet_pt > 30. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.1241) >= 1)'
+    'expr': '(Sum$(CleanJet_pt > 30. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] >  0.2217 ) >= 1)'
 }
 
+
 aliases['bReqTight'] = {
-    'expr': '(Sum$(CleanJet_pt > 30. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.7527) >= 1)'
+    'expr': '(Sum$(CleanJet_pt > 30. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] >  0.8953 ) >= 1)'
 }
 
 aliases['bVetoSF'] = {
@@ -91,7 +98,6 @@ aliases['bReqSF'] = {
     'expr': 'TMath::Exp(Sum$(TMath::Log((CleanJet_pt>30 && abs(CleanJet_eta)<2.5)*Jet_btagSF_shape[CleanJet_jetIdx]+1*(CleanJet_pt<=30 || abs(CleanJet_eta)>=2.5))))',
     'samples': mc
 }
-
 
 aliases['btagSF'] = {
     'expr': 'bVeto*bVetoSF + bReqTight *bReqSF',
@@ -110,9 +116,36 @@ for s in systs:
 ################################################################################################
 
 
-# PostProcessing did not create (anti)topGenPt for ST samples with _ext1
-lastcopy = (1 << 13)
+puidSFSource = '{}/patches/PUID_81XTraining_EffSFandUncties.root'.format(configurations)
 
+aliases['PUJetIdSF'] = {
+    'linesToAdd': [
+        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
+        '.L %s/patches/pujetidsf_event_new.cc+' % configurations
+    ],
+    'class': 'PUJetIdEventSF',
+    'args': (puidSFSource, '2016', 'loose'),
+    'samples': mc
+}
+
+aliases['fake_weight_corrected'] = {
+    'class': 'FakeWeightCorrector',
+    'args': ("%s/VBSjjlnu/Full2017v6/corrections/fakeweight_correction.root" % configurations, 
+                "mva_90p_Iso2016", "fakeW_ele_mva_90p_Iso2016_mu_cut_Tight80x_mu10_ele35", 
+                os.getenv('CMSSW_BASE') + "/src/LatinoAnalysis/NanoGardener/python/data/fake_prompt_rates/Full2016v6/mva90pIso2016/EleFR_jet35.root",
+                os.getenv('CMSSW_BASE') + "/src/LatinoAnalysis/NanoGardener/python/data/fake_prompt_rates/Full2016v6/mva90pIso2016/ElePR.root"),
+    'linesToAdd' : [
+        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+        '.L %s/patches/fakeweight_corrector.cc+' % configurations
+     ],
+    'samples': ["Fake"]
+}
+
+#LastProcessing did not create (anti)topGenPt for ST samples with _ext1
+
+
+# top weight from 2017/2018
+lastcopy = (1 << 13)
 aliases['isTTbar'] = {
     'expr': 'Sum$(TMath::Abs(GenPart_pdgId) == 6 && TMath::Odd(GenPart_statusFlags / %d)) == 2' % lastcopy,
     'samples': ['top']
@@ -120,80 +153,64 @@ aliases['isTTbar'] = {
 
 aliases['isSingleTop'] = {
     'expr': 'Sum$(TMath::Abs(GenPart_pdgId) == 6 && TMath::Odd(GenPart_statusFlags / %d)) == 1' % lastcopy,
-    'samples': ['top']
+     'samples': ['top']
 }
 
 aliases['topGenPtOTF'] = {
     'expr': 'Sum$((GenPart_pdgId == 6 && TMath::Odd(GenPart_statusFlags / %d)) * GenPart_pt)' % lastcopy,
-    'samples': ['top']
+     'samples': ['top']
 }
 
 aliases['antitopGenPtOTF'] = {
     'expr': 'Sum$((GenPart_pdgId == -6 && TMath::Odd(GenPart_statusFlags / %d)) * GenPart_pt)' % lastcopy,
+     'samples': ['top']
+}
+
+aliases['Top_pTrw'] = {
+    #'expr': '(topGenPt * antitopGenPt > 0.) * (TMath::Sqrt(TMath::Exp(0.0615 - 0.0005 * topGenPt) * TMath::Exp(0.0615 - 0.0005 * antitopGenPt))) + (topGenPt * antitopGenPt <= 0.)',
+    'expr': '(topGenPtOTF * antitopGenPtOTF > 0.) * (TMath::Sqrt(TMath::Exp(-0.158631 + 2.00214e-04*topGenPtOTF - 3.09496e-07*topGenPtOTF*topGenPtOTF + 34.93/(topGenPtOTF+135.633)) * TMath::Exp(-0.158631 + 2.00214e-04*antitopGenPtOTF - 3.09496e-07*antitopGenPtOTF*antitopGenPtOTF + 34.93/(antitopGenPtOTF+135.633)))) + (topGenPtOTF * antitopGenPtOTF <= 0.)',
     'samples': ['top']
 }
 
-# aliases['Top_pTrw'] = {
-#     'expr': '(TMath::Sqrt(TMath::Exp(-2.02274e-01 + 1.09734e-04*topGenPtOTF - 1.30088e-07*topGenPtOTF*topGenPtOTF + 5.83494e+01/(topGenPtOTF+1.96252e+02)) * TMath::Exp(-2.02274e-01 + 1.09734e-04*antitopGenPtOTF - 1.30088e-07*antitopGenPtOTF*antitopGenPtOTF + 5.83494e+01/(antitopGenPtOTF+1.96252e+02))))',
-#     'samples': ['top']
-# }
 
-# aliases['fake_weight_corrected'] = {
-#     'class': 'FakeWeightCorrector',
-#     'args': ("%s/corrections/fakeweight_correction_2018.root" % conf_folder, 
-#                 "mvaFall17V1Iso_WP90", "fakeW_ele_mvaFall17V1Iso_WP90_mu_cut_Tight_HWWW_mu10_ele35", 
-#                 os.getenv('CMSSW_BASE') + "/src/LatinoAnalysis/NanoGardener/python/data/fake_prompt_rates/Full2018v6/mvaFall17V1IsoWP90/EleFR_jet35.root",
-#                 os.getenv('CMSSW_BASE') + "/src/LatinoAnalysis/NanoGardener/python/data/fake_prompt_rates/Full2018v6/mvaFall17V1IsoWP90/ElePR.root"),
-#     'linesToAdd' : [
-#         'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-#         '.L %s/patches/fakeweight_corrector.cc+' % configurations
-#      ],
-#     'samples': ["Fake"]
-# }
-
-# # PU jet Id SF
-
-# puidSFSource = '{}/patches/PUID_80XTraining_EffSFandUncties.root'.format(configurations)
-
-# aliases['PUJetIdSF'] = {
-#     'linesToAdd': [
-#         'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
-#         '.L %s/patches/pujetidsf_event_new.cc+' % configurations
-#     ],
-#     'class': 'PUJetIdEventSF',
-#     'args': (puidSFSource, '2018', 'loose'),
-#     'samples': mc
-# }
+aliases['Wtagging_SF_nominal'] = {
+    'linesToAdd': [
+        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
+        '.L {}/VBSjjlnu/Full2016v6s5/corrections/Wtagging_SF.cc+'.format(configurations)
+    ],
+    'class': 'Wtagging_SF',
+    'args': ('nominal', '2016'),
+    'samples': mc
+}
 
 
-# aliases['Wtagging_SF_nominal'] = {
-#     'linesToAdd': [
-#         'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
-#         '.L {}/VBSjjlnu/Full2018v6s5/corrections/Wtagging_SF.cc+'.format(configurations)
-#     ],
-#     'class': 'Wtagging_SF',
-#     'args': ('nominal','2018'),
-#     'samples': mc
-# }
+aliases['Wtagging_SF_up'] = {
+    'linesToAdd': [
+        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
+        '.L {}/VBSjjlnu/Full2016v6s5/corrections/Wtagging_SF.cc+'.format(configurations)
+    ],
+    'class': 'Wtagging_SF',
+    'args': ('up', '2016'),
+    'samples': mc
+}
 
 
-# aliases['Wtagging_SF_up'] = {
-#     'linesToAdd': [
-#         'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
-#         '.L {}/VBSjjlnu/Full2018v6s5/corrections/Wtagging_SF.cc+'.format(configurations)
-#     ],
-#     'class': 'Wtagging_SF',
-#     'args': ('up', '2018'),
-#     'samples': mc
-# }
+aliases['Wtagging_SF_down'] = {
+    'linesToAdd': [
+        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
+        '.L {}/VBSjjlnu/Full2016v6s5/corrections/Wtagging_SF.cc+'.format(configurations)
+    ],
+    'class': 'Wtagging_SF',
+    'args': ('down', '2016'),
+    'samples': mc
+}
 
 
-# aliases['Wtagging_SF_down'] = {
-#     'linesToAdd': [
-#         'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
-#         '.L {}/VBSjjlnu/Full2018v6s5/corrections/Wtagging_SF.cc+'.format(configurations)
-#     ],
-#     'class': 'Wtagging_SF',
-#     'args': ('down', '2018'),
-#     'samples': mc
-# }
+aliases["nearestEleJet"]= {
+    'class': "NearestJetDR",
+    'args': (),
+    'linesToAdd': [
+        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+        '.L %s/conf_tests_ele/nearest_jet_dR.cc+' % conf_folder
+    ]
+}

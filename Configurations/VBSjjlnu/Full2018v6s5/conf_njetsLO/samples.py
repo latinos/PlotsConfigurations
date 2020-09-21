@@ -160,7 +160,7 @@ samples['top'] = {
                        + nanoGetSampleFiles(directory_bkg,'TTZjets') 
                        + nanoGetSampleFiles(directory_bkg,'TTWJetsToLNu'),
             'weight' :  XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch + '*Top_pTrw * btagSF' , # New top pt reweighting
-            'FilesPerJob' : 6,
+            'FilesPerJob' : 4,
 }
 
 

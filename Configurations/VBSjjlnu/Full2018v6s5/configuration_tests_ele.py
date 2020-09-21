@@ -21,7 +21,7 @@ cutsFile = direc +'/cuts.py'
 samplesFile = direc+'/samples.py' 
 
 # file with list of samples
-plotFile = direc+'/plot.py' 
+plotFile = direc+'/plot_ht.py' 
 #plotFile = direc +'/plot_boostcaled_ele.py'
 
 
@@ -32,7 +32,7 @@ lumi = 59.74
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
 #outputDirPlots = 'plot_'+tag +"caled/detajpt_ext"
-outputDirPlots = 'plot_'+tag +"/rescaled_loweta"
+outputDirPlots = 'plot_'+tag +"/Wjets_HT/rescaled_loweta"
 
 # used by mkDatacards to define output directory for datacards
 outputDirDatacard = 'datacards_'+tag

@@ -23,13 +23,22 @@ variables['events']  = {   'name': '1',
                         }
 
 
-variables['DNNoutput'] = {
+variables['DNNoutput_res'] = {
     'name': 'DNNoutput',
     'range': (40,0.,1),
-    'xaxis': 'DNN output',
+    'xaxis': 'DNN output, resolved',
     'fold': 0 ,
+    'cuts':  phase_spaces_res,
     'blind': { c:[0.6,1] for c in phase_spaces_tot if "_sig_" in c},
-    'cuts': list(filter(lambda c: "dnnall" in c, phase_spaces_tot))
+}
+
+variables['DNNoutput_boost'] = {
+    'name': 'DNNoutput_boosted',
+    'range': (14,0.,1),
+    'xaxis': 'DNN output, boosted',
+    'fold': 0 ,
+    'cuts': phase_spaces_boost,
+    'blind': { c:[0.6,1] for c in phase_spaces_tot if "_sig_" in c},
 }
 
 

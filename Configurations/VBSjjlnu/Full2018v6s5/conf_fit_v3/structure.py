@@ -18,19 +18,18 @@ for fl in ["ele", "mu"]:
 
 
 for wbin in Wjets_bins:
-    for ws in ["Wjets_njetsLO","Wjets_LO"]:
-        if 'boost' in wbin:
-            structure[ws+"_"+wbin] = {
-                        'isSignal' : 0,
-                        'isData'   : 0 ,
-                        'removeFromCuts': phase_spaces_res 
-            }
-        else:
-            structure[ws+"_"+wbin] = {
-                        'isSignal' : 0,
-                        'isData'   : 0 ,
-                        'removeFromCuts': phase_spaces_boost 
-            }
+    if 'boost' in wbin:
+        structure["Wjets_njets_"+wbin] = {
+                    'isSignal' : 0,
+                    'isData'   : 0 ,
+                    'removeFromCuts': phase_spaces_res 
+        }
+    else:
+        structure["Wjets_njets_"+wbin] = {
+                    'isSignal' : 0,
+                    'isData'   : 0 ,
+                    'removeFromCuts': phase_spaces_boost 
+        }
 
 # structure['Wjets']  = {  
 #                   'isSignal' : 0,

@@ -103,12 +103,8 @@ ptllDYW_LO = '((0.632927+0.0456956*gen_ptll-0.00154485*gen_ptll*gen_ptll+2.64397
 
 #DY_photon_filter = '(Sum$(GenPart_pdgId == 22 && TMath::Odd(GenPart_statusFlags) && GenPart_pt > 20.) == 0)'
 
-samples['DY'] = {    'name'   :   
-    nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-4to50_HT-100to200_ext1')
-  + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-4to50_HT-200to400_ext1')
-  + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-4to50_HT-400to600_ext1')
-  + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-4to50_HT-600toInf_ext1')
-  + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-5to50-LO')
+samples['DY_mllhigh'] = {    'name'   :   
+   nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-5to50-LO')
   + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-50_ext1')
   # + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-50_HT-70to100') # to be added
   + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-50_HT-100to200')
@@ -123,20 +119,33 @@ samples['DY'] = {    'name'   :
         'FilesPerJob' : 3,
                   }
 
-addSampleWeight(samples,'DY','DYJetsToLL_M-4to50_HT-100to200_ext1', ptllDYW_LO  )
-addSampleWeight(samples,'DY','DYJetsToLL_M-4to50_HT-200to400_ext1', ptllDYW_LO  )
-addSampleWeight(samples,'DY','DYJetsToLL_M-4to50_HT-400to600_ext1', ptllDYW_LO  )
-addSampleWeight(samples,'DY','DYJetsToLL_M-4to50_HT-600toInf_ext1', ptllDYW_LO  )
-addSampleWeight(samples,'DY','DYJetsToLL_M-5to50-LO',               ptllDYW_LO  + '*(LHE_HT<100)') # ewknloW not yet processed
-addSampleWeight(samples,'DY','DYJetsToLL_M-50_ext1',                ptllDYW_NLO + '*(LHE_HT<100)') # "*ewknloW" not yet processed
+
+samples['DY_mlllow'] = {    'name'   :   
+    nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-4to50_HT-100to200_ext1')
+  + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-4to50_HT-200to400_ext1')
+  + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-4to50_HT-400to600_ext1')
+  + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-4to50_HT-600toInf_ext1')
+  + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-5to50-LO')
+                                ,
+        'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch +'* btagSF ' , # ewknloW ADD ME, admin
+        'FilesPerJob' : 3,
+                  }
+
+
+addSampleWeight(samples,'DY_mlllow','DYJetsToLL_M-4to50_HT-100to200_ext1', ptllDYW_LO  )
+addSampleWeight(samples,'DY_mlllow','DYJetsToLL_M-4to50_HT-200to400_ext1', ptllDYW_LO  )
+addSampleWeight(samples,'DY_mlllow','DYJetsToLL_M-4to50_HT-400to600_ext1', ptllDYW_LO  )
+addSampleWeight(samples,'DY_mlllow','DYJetsToLL_M-4to50_HT-600toInf_ext1', ptllDYW_LO  )
+addSampleWeight(samples,'DY_mlllow','DYJetsToLL_M-5to50-LO',               ptllDYW_LO  + '*(LHE_HT<100)') # ewknloW not yet processed
+addSampleWeight(samples,'DY_mllhigh','DYJetsToLL_M-50_ext1',                ptllDYW_NLO + '*(LHE_HT<100)') # "*ewknloW" not yet processed
 # addSampleWeight(samples,'DY','DYJetsToLL_M-50',                     ptllDYW_NLO +'*(LHE_HT<100)')
-addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-100to200',         ptllDYW_LO  )
-addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-200to400_ext1',    ptllDYW_LO  )
-addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-400to600_ext1',    ptllDYW_LO  )
-addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-600to800',         ptllDYW_LO  )
-addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-800to1200',        ptllDYW_LO  )
-addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-1200to2500',       ptllDYW_LO  )
-addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-2500toInf',        ptllDYW_LO  )
+addSampleWeight(samples,'DY_mllhigh','DYJetsToLL_M-50_HT-100to200',         ptllDYW_LO  )
+addSampleWeight(samples,'DY_mllhigh','DYJetsToLL_M-50_HT-200to400_ext1',    ptllDYW_LO  )
+addSampleWeight(samples,'DY_mllhigh','DYJetsToLL_M-50_HT-400to600_ext1',    ptllDYW_LO  )
+addSampleWeight(samples,'DY_mllhigh','DYJetsToLL_M-50_HT-600to800',         ptllDYW_LO  )
+addSampleWeight(samples,'DY_mllhigh','DYJetsToLL_M-50_HT-800to1200',        ptllDYW_LO  )
+addSampleWeight(samples,'DY_mllhigh','DYJetsToLL_M-50_HT-1200to2500',       ptllDYW_LO  )
+addSampleWeight(samples,'DY_mllhigh','DYJetsToLL_M-50_HT-2500toInf',        ptllDYW_LO  )
 
 
 
@@ -152,9 +161,14 @@ samples['top'] = {
                       +  nanoGetSampleFiles(directory_bkg,'TTTo2L2Nu') 
                       +  nanoGetSampleFiles(directory_bkg,'TTWjets_ext1')
                       +  nanoGetSampleFiles(directory_bkg,'TTZjets_ext1'),  
-            'weight' :  XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch +'*Top_pTrw * btagSF ',
+            'weight' :  XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch +'* btagSF ',
             'FilesPerJob' : 3,
                  }
+
+addSampleWeight(samples,'top','ST_t-channel_top',  "100. / 32.4 ") # N.B We are using inclusive sample with leptonic-only XS
+addSampleWeight(samples,'top','ST_t-channel_antitop',  "100. / 32.4")
+addSampleWeight(samples, 'top','TTToSemiLeptonic', 'Top_pTrw')
+addSampleWeight(samples, 'top','TTTo2L2Nu', 'Top_pTrw')
 
 
 samples['Wjets_HT'] = { 'name' :   
@@ -187,49 +201,57 @@ samples['Wjets_HT'] = { 'name' :
 #
 # Fix Wjets binned + LO 
 addSampleWeight(samples,'Wjets_HT', 'WJetsToLNu-LO_ext1', '(LHE_HT < 100)')
+addSampleWeight(samples,'Wjets_HT', 'WJetsToLNu-HT100_200', '0.993') 
+addSampleWeight(samples,'Wjets_HT', 'WJetsToLNu-HT200_400', '1.002') 
+addSampleWeight(samples,'Wjets_HT', 'WJetsToLNu-HT400_600', '1.009') 
+addSampleWeight(samples,'Wjets_HT', 'WJetsToLNu-HT600_800', '1.120') 
+addSampleWeight(samples,'Wjets_HT', 'WJetsToLNu-HT800_1200', '1.202') 
+addSampleWeight(samples,'Wjets_HT', 'WJetsToLNu-HT1200_2500', '1.332') 
+addSampleWeight(samples,'Wjets_HT', 'WJetsToLNu-HT2500_inf', '4.200') 
+ 
 
 
 
-samples["Wjets_LO"] = { 'name' :   
-          nanoGetSampleFiles(directory_bkg, 'WJetsToLNu-LO') ,
-      'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch +'* btagSF',
-      'FilesPerJob' : 4, 
-      'subsamples': {
-          "boost1" : "(VBS_category==0) && (deltaeta_vbs < 5)",
-          "boost2" : "(VBS_category==0) && (deltaeta_vbs >= 5)",
-          "deta1_jpt1": "(VBS_category==1) && (deltaeta_vbs < 5 ) && vbs_1_pt < 75",
-          "deta2_jpt1": "(VBS_category==1) && (deltaeta_vbs >= 5) && vbs_1_pt < 75",
+# samples["Wjets_LO"] = { 'name' :   
+#           nanoGetSampleFiles(directory_bkg, 'WJetsToLNu-LO') ,
+#       'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch +'* btagSF',
+#       'FilesPerJob' : 4, 
+#       'subsamples': {
+#           "boost1" : "(VBS_category==0) && (deltaeta_vbs < 5)",
+#           "boost2" : "(VBS_category==0) && (deltaeta_vbs >= 5)",
+#           "deta1_jpt1": "(VBS_category==1) && (deltaeta_vbs < 5 ) && vbs_1_pt < 75",
+#           "deta2_jpt1": "(VBS_category==1) && (deltaeta_vbs >= 5) && vbs_1_pt < 75",
           
-          "deta1_jpt2": "(VBS_category==1) && (deltaeta_vbs < 4 ) &&  ( vbs_1_pt >= 75 && vbs_1_pt <150)",
-          "deta2_jpt2": "(VBS_category==1) && (deltaeta_vbs >= 4) &&  ( vbs_1_pt >= 75 && vbs_1_pt <150)",
+#           "deta1_jpt2": "(VBS_category==1) && (deltaeta_vbs < 4 ) &&  ( vbs_1_pt >= 75 && vbs_1_pt <150)",
+#           "deta2_jpt2": "(VBS_category==1) && (deltaeta_vbs >= 4) &&  ( vbs_1_pt >= 75 && vbs_1_pt <150)",
 
-          "jpt3": "(VBS_category==1) && ( vbs_1_pt >= 150)"    
-        }
-  }
+#           "jpt3": "(VBS_category==1) && ( vbs_1_pt >= 150)"    
+#         }
+#   }
 
-addSampleWeight(samples,'Wjets_LO','WJetsToLNu-LO',  "LHE_Njets == 0")
+# addSampleWeight(samples,'Wjets_LO','WJetsToLNu-LO',  "LHE_Njets == 0")
 
 
-samples['Wjets_njetsLO'] = { 'name' :   
-        nanoGetSampleFiles(directory_bkg, 'WJetsToLNu-LO_1J')
-        + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu-LO_2J')
-        + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu-LO_3J')
-        + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu-LO_4J')
-        ,
-      'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch +'* btagSF_new' ,
-      'FilesPerJob' : 3, 
-      'subsamples': {
-          "boost1" : "(VBS_category==0) && (deltaeta_vbs < 5)",
-          "boost2" : "(VBS_category==0) && (deltaeta_vbs >= 5)",
-          "deta1_jpt1": "(VBS_category==1) && (deltaeta_vbs < 5 ) && vbs_1_pt < 75",
-          "deta2_jpt1": "(VBS_category==1) && (deltaeta_vbs >= 5) && vbs_1_pt < 75",
+# samples['Wjets_njetsLO'] = { 'name' :   
+#         nanoGetSampleFiles(directory_bkg, 'WJetsToLNu-LO_1J')
+#         + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu-LO_2J')
+#         + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu-LO_3J')
+#         + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu-LO_4J')
+#         ,
+#       'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch +'* btagSF_new' ,
+#       'FilesPerJob' : 3, 
+#       'subsamples': {
+#           "boost1" : "(VBS_category==0) && (deltaeta_vbs < 5)",
+#           "boost2" : "(VBS_category==0) && (deltaeta_vbs >= 5)",
+#           "deta1_jpt1": "(VBS_category==1) && (deltaeta_vbs < 5 ) && vbs_1_pt < 75",
+#           "deta2_jpt1": "(VBS_category==1) && (deltaeta_vbs >= 5) && vbs_1_pt < 75",
           
-          "deta1_jpt2": "(VBS_category==1) && (deltaeta_vbs < 4 ) &&  ( vbs_1_pt >= 75 && vbs_1_pt <150)",
-          "deta2_jpt2": "(VBS_category==1) && (deltaeta_vbs >= 4) &&  ( vbs_1_pt >= 75 && vbs_1_pt <150)",
+#           "deta1_jpt2": "(VBS_category==1) && (deltaeta_vbs < 4 ) &&  ( vbs_1_pt >= 75 && vbs_1_pt <150)",
+#           "deta2_jpt2": "(VBS_category==1) && (deltaeta_vbs >= 4) &&  ( vbs_1_pt >= 75 && vbs_1_pt <150)",
 
-          "jpt3": "(VBS_category==1) && ( vbs_1_pt >= 150)"
-        }
-  }
+#           "jpt3": "(VBS_category==1) && ( vbs_1_pt >= 150)"
+#         }
+#   }
 
 
 
@@ -330,4 +352,5 @@ for Run in DataRun :
                         samples['DATA']['name'].append(iFile)
                         samples['DATA']['weights'].append(DataTrig[DataSet])
 
-#samples = {   key:v for key,v in samples.items() if key  in ["DATA", "Fake"]}
+#samples = {   key:v for key,v in samples.items() if key  in ["DY_mlllow", "DY_mllhigh"]}
+samples = {   key:v for key,v in samples.items() if key not in ["DY"]}

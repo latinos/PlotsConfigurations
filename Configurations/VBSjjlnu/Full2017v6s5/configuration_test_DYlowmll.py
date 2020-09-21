@@ -2,8 +2,8 @@
 treeName= 'Events'
 
 
-tag = 'fit_v3_2017'
-direc ='conf_fit_v3'
+tag = 'test_DYlowmll'
+direc ='conf_test_DYlowmll'
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFile_'+tag 

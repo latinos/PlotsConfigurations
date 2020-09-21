@@ -18,35 +18,39 @@ aliases['whad_pt'] = {
             ]           
 }
 
+aliases["sip3d_cut"]= {
+    'expr': '(abs(Lepton_pdgId[0])==13)*1 + \
+             (abs(Lepton_pdgId[0])==11)*(-2.22222*abs(Electron_eta[Lepton_electronIdx[0]]) + 6.33333)'
+}
 ############################################
 # DNN reader - Updated to 2018 specific
 
-mva_reader_path = os.getenv('CMSSW_BASE') + '/src/PlotsConfigurations/Configurations/VBSjjlnu/Full2018v6s5/mva/'
-models_path = '/eos/home-d/dvalsecc/www/VBSPlots/DNN_archive/FullRun2/'
+# mva_reader_path = os.getenv('CMSSW_BASE') + '/src/PlotsConfigurations/Configurations/VBSjjlnu/Full2018v6s5/mva/'
+# models_path = '/eos/home-d/dvalsecc/www/VBSPlots/DNN_archive/FullRun2/'
 
-aliases['DNNoutput_boosted'] = {
-    'class': 'MVAReaderBoosted_v5',
-    'args': ( models_path +'boost_sig/models/v5/',  mva_reader_path + 'cumulative_signal_boosted_v5.root', False, 0),
-    'linesToAdd':[
-        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-        'gSystem->Load("libDNNEvaluator.so")',
-        '.L ' + mva_reader_path + 'mva_reader_boosted_v5.cc+', 
-    ],
-}
+# aliases['DNNoutput_boosted'] = {
+#     'class': 'MVAReaderBoosted_v5',
+#     'args': ( models_path +'boost_sig/models/v5/',  mva_reader_path + 'cumulative_signal_boosted_v5.root', False, 0),
+#     'linesToAdd':[
+#         'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+#         'gSystem->Load("libDNNEvaluator.so")',
+#         '.L ' + mva_reader_path + 'mva_reader_boosted_v5.cc+', 
+#     ],
+# }
 
-aliases['DNNoutput_resolved'] = {
-    'class': 'MVAReaderResolved_v29',
-    'args': ( models_path+ 'res_sig/models/v29/', mva_reader_path + 'cumulative_signal_resolved_v29.root', False, 1),
-    'linesToAdd':[
-        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-        'gSystem->Load("libDNNEvaluator.so")',
-        '.L ' + mva_reader_path + 'mva_reader_resolved_v29.cc+', 
-    ],
-}
+# aliases['DNNoutput_resolved'] = {
+#     'class': 'MVAReaderResolved_v29',
+#     'args': ( models_path+ 'res_sig/models/v29/', mva_reader_path + 'cumulative_signal_resolved_v29.root', False, 1),
+#     'linesToAdd':[
+#         'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+#         'gSystem->Load("libDNNEvaluator.so")',
+#         '.L ' + mva_reader_path + 'mva_reader_resolved_v29.cc+', 
+#     ],
+# }
 
-aliases['DNNoutput'] = {
-    'expr': '(VBS_category==0)*(DNNoutput_boosted) + (VBS_category==1)*(DNNoutput_resolved)'
-}
+# aliases['DNNoutput'] = {
+#     'expr': '(VBS_category==0)*(DNNoutput_boosted) + (VBS_category==1)*(DNNoutput_resolved)'
+# }
 
 
 # aliases['detavbs_jetpt_bin'] = {
@@ -135,6 +139,7 @@ aliases['Top_pTrw'] = {
     'expr': '(TMath::Sqrt(TMath::Exp(-2.02274e-01 + 1.09734e-04*topGenPtOTF - 1.30088e-07*topGenPtOTF*topGenPtOTF + 5.83494e+01/(topGenPtOTF+1.96252e+02)) * TMath::Exp(-2.02274e-01 + 1.09734e-04*antitopGenPtOTF - 1.30088e-07*antitopGenPtOTF*antitopGenPtOTF + 5.83494e+01/(antitopGenPtOTF+1.96252e+02))))',
     'samples': ['top']
 }
+
 
 aliases['fake_weight_corrected'] = {
     'class': 'FakeWeightCorrector',
