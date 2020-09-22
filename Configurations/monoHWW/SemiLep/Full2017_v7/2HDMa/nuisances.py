@@ -615,8 +615,8 @@ nuisances['EWKnloW_Wjets'] = {
     'kind'  : 'weight',
     'type'  : 'shape',
     'samples': {
-        'Wjets': ['1./ewknloW', 'ewknloW'],
-        #'Wjets': ['1./EWKnloW[0]', 'EWKnloW[0]'],
+        #'Wjets': ['1./ewknloW', 'ewknloW'],
+        'Wjets': ['1./EWKnloW[0]', 'EWKnloW[0]'],
     }
 }
 

@@ -34,9 +34,7 @@ groupPlot['multiB'] = {
     'nameHR' : 'multiB',
     'isSignal' : 0,
     'color': 857, # kAzure -3  
-    #'samples'  : ['WW', 'WWewk', 'ggWW', 'VBF-V', 'WZqcd', 'WZewk', 'ZZ', 'VVV', 'Vg', 'VgS_L', 'VgS_H', 'Higgs']
-    #'samples'  : ['WW', 'WWewk', 'ggWW', 'VBF-V', 'WZqcd', 'WZewk', 'ZZ', 'VVV', 'Vg', 'VgS_L', 'VgS_H', 'ggH_hww', 'qqH_hww', 'ZH_hww', 'WH_hww', 'ttH_hww', 'ggH_htt', 'ZH_htt']
-    'samples'  : ['WW', 'WWewk', 'ggWW', 'WZqcd', 'WZewk', 'ZZ', 'VVV', 'Vg', 'VgS_L', 'VgS_H', 'ggH_hww', 'qqH_hww', 'ZH_hww', 'WH_hww', 'ttH_hww', 'ggH_htt', 'ZH_htt']
+    'samples'  : ['WW', 'WWewk', 'ggWW', 'VBF-V', 'WZqcd', 'WZewk', 'ZZ', 'VVV', 'Vg', 'VgS_L', 'VgS_H', 'ggH_hww', 'qqH_hww', 'ZH_hww', 'WH_hww', 'ttH_hww', 'ggH_htt', 'ZH_htt']
 }
 
 groupPlot['DY'] = {
@@ -232,12 +230,12 @@ plot['VgS_L'] = {
     'scale'    : 1.0
 }
 
-#plot['VBF-V']  = {
-#    'color': 859, # kAzure -2
-#    'isSignal' : 0,
-#    'isData'   : 0,
-#    'scale'    : 1.0
-#}
+plot['VBF-V']  = {
+    'color': 859, # kAzure -2
+    'isSignal' : 0,
+    'isData'   : 0,
+    'scale'    : 1.0
+}
 
 plot['WZqcd']  = {
     'color': 858, # kAzure -2
@@ -282,14 +280,6 @@ plot['FAKE']  = {
 
 
 # HWW
-
-#plot['Higgs'] = {
-#    'nameHR' : 'SM Higgs',
-#    'color': 632+3, # kRed+3
-#    'isSignal' : 0,
-#    'isData'   : 0,
-#    'scale'    : 1    #
-#}
 
 #plot['H_hww'] = {
 #                  'nameHR' : 'Hww',
@@ -399,7 +389,7 @@ plot['DATA']  = {
 
 
 # additional options
-legend['lumi'] = 'L = 35.9/fb'
+legend['lumi'] = 'L = 41.5/fb'
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
 
 

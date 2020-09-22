@@ -4,7 +4,7 @@
 
 treeName = 'Events'
 
-tag = '2HDMa_2016v7'
+tag = '2HDMa_2017v7'
 
 # used by mkShape to define output directory for root files
 outputDir = '2HDMa_root'
@@ -25,7 +25,7 @@ samplesFile = 'samples.py'
 plotFile = 'plot.py'
 
 # luminosity to normalize to (in 1/fb)
-lumi = 35.9
+lumi = 41.5
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
