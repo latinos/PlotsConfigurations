@@ -19,10 +19,16 @@ mc_emb = [skey for skey in samples if skey not in ('Fake', 'DATA')]
 eleWP = 'mva_90p_Iso2016'
 muWP = 'cut_Tight80x'
 newMuWP = 'cut_Tight80x_tthmva_80'
+#newMuWP = 'cut_Tight80x'
 
 aliases['LepWPCut'] = {
     'expr': 'LepCut2l__ele_'+eleWP+'__mu_'+muWP+'*( (abs(Lepton_pdgId[0])==11 || Muon_mvaTTH[Lepton_muonIdx[0]]>0.8) && (abs(Lepton_pdgId[1])==11 || Muon_mvaTTH[Lepton_muonIdx[1]]>0.8) )',
+ #   'expr': 'LepCut2l__ele_'+eleWP+'__mu_'+muWP,
     'samples': mc_emb + ['DATA']
+}
+aliases['LepSF2l'] = {
+    'expr':' LepSF2l__ele_'+eleWP+'__mu_'+muWP,
+    'samples': mc
 }
 
 aliases['gstarLow'] = {
@@ -134,8 +140,11 @@ aliases['wwcr'] = {
 # SR definition
 
 aliases['sr'] = {
-#    'expr': 'mth>60 && mtw2>30 && bVeto'
     'expr': 'mll>20 && bVeto'
+}
+
+aliases['sr1'] = {
+    'expr': 'mth>60 && mtw2>30 && bVeto'
 }
 
 aliases['bVetoSF'] = {
@@ -185,6 +194,7 @@ aliases['PUJetIdSF'] = {
     'samples': mc
 }
 
+
 aliases['ttHMVA_SF_2l'] = {'linesToAdd': ['.L %s/patches/compute_SF.C+' % configurations],
                            'class': 'compute_SF',
                            'args' : ('2016', 2, 'total_SF'),
@@ -194,6 +204,7 @@ aliases['ttHMVA_SF_2l'] = {'linesToAdd': ['.L %s/patches/compute_SF.C+' % config
 # data/MC scale factors
 aliases['SFweight'] = {
     'expr': ' * '.join(['SFweight2l', 'ttHMVA_SF_2l', 'LepWPCut', 'btagSF', 'PrefireWeight','PUJetIdSF']),
+#   'expr': ' * '.join(['SFweight2l', 'LepWPCut', 'LepSF2l', 'btagSF', 'PrefireWeight','PUJetIdSF']),
     'samples': mc
 }
 

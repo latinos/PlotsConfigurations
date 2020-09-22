@@ -254,11 +254,41 @@ aliases['ttHMVA_2l_mu_SF_Down'] = {'expr' : '(ttHMVA_SF_Down_0*(TMath::Abs(Lepto
                                    'samples': mc_emb
                                   }
 
+aliases['Weight2MINLO'] = {
+    'class': 'Weight2MINLO',
+    'args': '%s/src/LatinoAnalysis/Gardener/python/data/powheg2minlo/NNLOPS_reweight.root' % os.getenv('CMSSW_BASE'),
+    'linesToAdd': ['.L %s/Differential/weight2MINLO.cc+' % configurations],
+    'samples' : [skey for skey in samples if 'ggH_hww' in skey],
+}
+
+
 aliases['nCleanGenJet'] = {
     'linesToAdd': ['.L %s/Differential/ngenjet.cc+' % configurations],
     'class': 'CountGenJet',
     'samples': mc
 }
+
+# GGHUncertaintyProducer wasn't run for GluGluHToWWTo2L2Nu_M125
+thus = [
+    'ggH_mu',
+    'ggH_res',
+    'ggH_mig01',
+    'ggH_mig12',
+    'ggH_VBF2j',
+    'ggH_VBF3j',
+    'ggH_pT60',
+    'ggH_pT120',
+    'ggH_qmtop'
+]
+
+for thu in thus:
+    aliases[thu] = {
+        'linesToAdd': ['.L %s/Differential/gghuncertainty.cc+' % configurations],
+        'class': 'GGHUncertainty',
+        'args': (thu,),
+        'samples': [skey for skey in samples if 'ggH_hww' in skey],
+        'nominalOnly': True
+    }
 
 thusQQ = [
   "qqH_YIELD",

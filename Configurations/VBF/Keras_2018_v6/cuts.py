@@ -19,8 +19,6 @@ cuts['hww2l2v_13TeV_of2j_vbf']  = ' (mth>=60 && mth<125) \
                                       && mtw2>30 \
                                       '
 
-
-
 cuts['hww2l2v_13TeV_of2j_DNN_vbf']  = ' (mth>=60 && mth<125) \
                                       && (abs(CleanJet_eta[0])<4.7) && (abs(CleanJet_eta[1])<4.7) \
                                       && vbflike \
@@ -52,11 +50,11 @@ cuts['hww2l2v_13TeV_of2j_DNN_ggh']  = ' (mth>=60 && mth<125) \
                                       && mtw2>30 \
                                       '
 
+
 ## Control regions
 
 cuts['hww2l2v_13TeV_top_of2j']  = ' topcr \
                                   '
-
 cuts['hww2l2v_13TeV_dytt_of2j']  = ' mth<60 \
                                     && mll>40 && mll<80 \
                                     && bVeto \

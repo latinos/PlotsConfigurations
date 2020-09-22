@@ -20,12 +20,6 @@ variables['mjj_vs_mTi']  = {   'name': 'mjj:mTi',            #   variable name
                         'fold' :3
                         }
 
-variables['mjj_vs_mTi_v2']  = {   'name': 'mjj:mTi',            #   variable name    
-                        'range' : ([100,250,400,600,1000],[500,1000,1500,2000],),    #   variable range
-                        'xaxis' : 'mjj:mTi',  #   x axis name
-                        'fold' :3
-                        }
-
 variables['mTi']  = {   'name': 'mTi',            #   variable name    
                         'range' : ([100,150,200,250,300,350,400,450,500,600,800,1000],),    #   variable range
                         'xaxis' : 'm_{T,i} [GeV]',  #   x axis name
@@ -56,8 +50,8 @@ variables['mjj']  = {   'name': 'mjj',            #   variable name
                         'fold' :3
                         }
 
-variables['mjj_v2']  = {   'name': 'mjj',            #   variable name    
-                        'range' : (20,500,3000),    #   variable range
+variables['mjj_merged']  = {   'name': 'mjj',            #   variable name    
+                        'range' : ([500, 750., 1000., 1500., 2000., 3000],),    #   variable range
                         'xaxis' : 'm_{jj} [GeV]',  #   x axis name
                         'fold' :3
                         }
@@ -67,7 +61,6 @@ variables['detajj']  = {   'name': 'detajj',            #   variable name
                            'xaxis' : '#Delta #eta jj',  #   x axis name
                            'fold' :0
                            }
-
 
 variables['Zepp_1l']  = {  'name': 'Lepton_eta[0]-0.5*(CleanJet_eta[0]+CleanJet_eta[1])',            #   variable name    
                            'range' : (10,-5,5),    #   variable range
@@ -149,6 +142,7 @@ variables['pt_3j']  = {   'name': 'Alt$(CleanJet_pt[2], 0)',            #   vari
                         'xaxis' : 'pT 3rd jet [GeV]',  #   x axis name
                         'fold' :3
                         }
+
 variables['eta_1j']  = {   'name': 'CleanJet_eta[0]',            #   variable name    
                         'range' : (10,-5,5),    #   variable range
                         'xaxis' : '#eta 1st jet',  #   x axis name

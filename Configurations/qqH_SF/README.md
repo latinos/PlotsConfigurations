@@ -1,6 +1,30 @@
+The following instructions correspond to the VBF and VH SF HWW analysis.
+
+# Produce a valid VOMS proxy
+
+    voms-proxy-init -voms cms -rfc --valid 168:0
+    cmsenv
+    
 # Produce histograms
 
     mkShapesMulti.py --pycfg=configuration.py --doBatch=1 --batchSplit=Samples,Files --batchQueue=testmatch
+
+# Check job status
+
+    condor_q
+
+If needed, you can check the (automatically produced) configuration files of all the submitted jobs, and even submit manually some of them for debugging or test purposes.
+
+    ls $HOME/cms/HWW2015/jobs
+    
+If you need to cancel all the submitted jobs,
+
+    condor_rm [YourUsername]
+
+# Resubmit failed jobs
+
+    cd $HOME/cms/HWW2015/jobs/mkShapes__VH2j_2017
+    for i in *jid; do condor_submit ${i/jid/jds}; done
 
 # Group (hadd) histograms
 
@@ -8,14 +32,15 @@
 
 # Data-driven DY estimation
 
+    mkDYestim_data.py --pycfg=configuration.py --dycfg=dyestim_qqH.py --inputFile=rootFile/plots_qqH2016_v6.root
     mkDYestim_data.py --pycfg=configuration.py --dycfg=dyestim_qqH.py --inputFile=rootFile/plots_qqH2017_v6.root
+    mkDYestim_data.py --pycfg=configuration.py --dycfg=dyestim_qqH.py --inputFile=rootFile/plots_qqH2018_v6.root
 
 # Make datacards
 
-    mkDatacards.py \
-        --pycfg=configuration.py \
-        --inputFile=rootFile/plots_qqH2017_v6_DYEstimDATA.root \
-        --cardList=hww2l2v_13TeV_2j_vbf_ee,hww2l2v_13TeV_2j_vbf_mm,hww2l2v_13TeV_2j_vh_ee,hww2l2v_13TeV_2j_vh_mm,hww2l2v_13TeV_WW_2j_vbf_ee,hww2l2v_13TeV_WW_2j_vbf_mm,hww2l2v_13TeV_WW_2j_vh_ee,hww2l2v_13TeV_WW_2j_vh_mm,hww2l2v_13TeV_top_2j_vbf_ee,hww2l2v_13TeV_top_2j_vbf_mm,hww2l2v_13TeV_top_2j_vh_ee,hww2l2v_13TeV_top_2j_vh_mm
+    mkDatacards.py --pycfg=configuration.py --inputFile=rootFile/plots_qqH2016_v6_DYEstimDATA.root --cardList=hww2l2v_13TeV_2j_vbf_ee,hww2l2v_13TeV_2j_vbf_mm,hww2l2v_13TeV_2j_vh_ee,hww2l2v_13TeV_2j_vh_mm,hww2l2v_13TeV_WW_2j_vbf_ee,hww2l2v_13TeV_WW_2j_vbf_mm,hww2l2v_13TeV_WW_2j_vh_ee,hww2l2v_13TeV_WW_2j_vh_mm,hww2l2v_13TeV_top_2j_vbf_ee,hww2l2v_13TeV_top_2j_vbf_mm,hww2l2v_13TeV_top_2j_vh_ee,hww2l2v_13TeV_top_2j_vh_mm
+    mkDatacards.py --pycfg=configuration.py --inputFile=rootFile/plots_qqH2017_v6_DYEstimDATA.root --cardList=hww2l2v_13TeV_2j_vbf_ee,hww2l2v_13TeV_2j_vbf_mm,hww2l2v_13TeV_2j_vh_ee,hww2l2v_13TeV_2j_vh_mm,hww2l2v_13TeV_WW_2j_vbf_ee,hww2l2v_13TeV_WW_2j_vbf_mm,hww2l2v_13TeV_WW_2j_vh_ee,hww2l2v_13TeV_WW_2j_vh_mm,hww2l2v_13TeV_top_2j_vbf_ee,hww2l2v_13TeV_top_2j_vbf_mm,hww2l2v_13TeV_top_2j_vh_ee,hww2l2v_13TeV_top_2j_vh_mm
+    mkDatacards.py --pycfg=configuration.py --inputFile=rootFile/plots_qqH2018_v6_DYEstimDATA.root --cardList=hww2l2v_13TeV_2j_vbf_ee,hww2l2v_13TeV_2j_vbf_mm,hww2l2v_13TeV_2j_vh_ee,hww2l2v_13TeV_2j_vh_mm,hww2l2v_13TeV_WW_2j_vbf_ee,hww2l2v_13TeV_WW_2j_vbf_mm,hww2l2v_13TeV_WW_2j_vh_ee,hww2l2v_13TeV_WW_2j_vh_mm,hww2l2v_13TeV_top_2j_vbf_ee,hww2l2v_13TeV_top_2j_vbf_mm,hww2l2v_13TeV_top_2j_vh_ee,hww2l2v_13TeV_top_2j_vh_mm
 
 # Combine channels/categories
 

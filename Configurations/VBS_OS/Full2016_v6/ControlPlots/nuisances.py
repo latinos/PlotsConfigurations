@@ -84,21 +84,21 @@ nuisances['lumi_Ghosts'] = {
 #### FAKES
 
 ## FIXME: check the 30% lnN
-nuisances['fake_syst_em'] = {
-    'name': 'CMS_fake_syst_em',
+nuisances['fake_syst_e'] = {
+    'name': 'CMS_fake_syst_e',
     'type': 'lnN',
     'samples': {
-        'Fake_em': '1.3'
+        'Fake_e': '1.3'
     },
     #'cutspost': lambda self, cuts: [cut for cut in cuts if '20me' not in cut],
     #'perRecoBin': True
 }
 
-nuisances['fake_syst_me'] = {
-    'name': 'CMS_fake_syst_me',
+nuisances['fake_syst_m'] = {
+    'name': 'CMS_fake_syst_m',
     'type': 'lnN',
     'samples': {
-        'Fake_me': '1.3'
+        'Fake_m': '1.3'
     },
     #'cutspost': lambda self, cuts: [cut for cut in cuts if '20em' not in cut],
     #'perRecoBin': True
@@ -204,8 +204,8 @@ nuisances['electronpt_WW'] = {
     'mapUp' : 'ElepTup',
     'mapDown': 'ElepTdo',
     'samples': dict(('WW', ['1', '1'])),
-    'folderUp': makeMCDirectory_v6('ElepTup_suffix'),
-    'folderDown': makeMCDirectory_v6('ElepTdo_suffix'),
+    'folderUp': treeBaseDir + '/Summer16_102X_nAODv6_Full2016v6/MCl1loose2016v6__MCCorr2016v6__l2loose__l2tightOR2016v6__ElepTup_suffix/',
+    'folderDown': treeBaseDir + '/Summer16_102X_nAODv6_Full2016v6/MCl1loose2016v6__MCCorr2016v6__l2loose__l2tightOR2016v6__ElepTdo_suffix/',
     'AsLnN': '1'
 }
 ##### Muon Efficiency and energy scale
@@ -236,12 +236,12 @@ nuisances['muonpt_WW'] = {
     'mapUp': 'MupTup',
     'mapDown': 'MupTdo',
     'samples': dict(('WW', ['1', '1'])),
-    'folderUp': makeMCDirectory_v6('MupTup_suffix'),
-    'folderDown': makeMCDirectory_v6('MupTdo_suffix'),
+    'folderUp': treeBaseDir + '/Summer16_102X_nAODv6_Full2016v6/MCl1loose2016v6__MCCorr2016v6__l2loose__l2tightOR2016v6__MupTup_suffix/',
+    'folderDown': treeBaseDir + '/Summer16_102X_nAODv6_Full2016v6/MCl1loose2016v6__MCCorr2016v6__l2loose__l2tightOR2016v6__MupTdo_suffix/',
     'AsLnN': '1'
 }
 ##### Jet energy scale
-
+'''
 nuisances['jes'] = {
     'name': 'CMS_scale_j_2016',
     'kind': 'suffix',
@@ -261,10 +261,38 @@ nuisances['jes_WW'] = {
     'mapUp': 'JESup',
     'mapDown': 'JESdo',
     'samples': dict(('WW', ['1', '1'])),
-    'folderUp': makeMCDirectory_v6('JESup_suffix'),
-    'folderDown': makeMCDirectory_v6('JESdo_suffix'),
+    'folderUp': treeBaseDir + '/Summer16_102X_nAODv6_Full2016v6/MCl1loose2016v6__MCCorr2016v6__l2loose__l2tightOR2016v6__JESup_suffix/',
+    'folderDown': treeBaseDir + '/Summer16_102X_nAODv6_Full2016v6/MCl1loose2016v6__MCCorr2016v6__l2loose__l2tightOR2016v6__JESdo_suffix/',
     'AsLnN': '1'
 }
+'''
+jes_systs = ['JESAbsolute','JESAbsolute_2016','JESBBEC1','JESBBEC1_2016','JESEC2','JESEC2_2016','JESFlavorQCD','JESHF','JESHF_2016','JESRelativeBal','JESRelativeSample_2016']
+
+for js in jes_systs:
+  nuisances[js] = {
+      'name': 'CMS_scale_'+js,
+      'kind': 'suffix',
+      'type': 'shape',
+      'mapUp': js+'up',
+      'mapDown': js+'do',
+      'samples': dict((skey, ['1', '1']) for skey in mc if skey!= 'WW'),
+      'folderUp': makeMCDirectory('JESup_suffix'),
+      'folderDown': makeMCDirectory('JESdo_suffix'),
+      'AsLnN': '1'
+  }
+
+  nuisances[js+'_WW'] = {
+      'name': 'CMS_scale_'+js,
+      'kind': 'suffix',
+      'type': 'shape',
+      'mapUp': js+'up',
+      'mapDown': js+'do',
+      'samples': dict(('WW', ['1', '1'])),
+      'folderUp': treeBaseDir + '/Summer16_102X_nAODv6_Full2016v6/MCl1loose2016v6__MCCorr2016v6__l2loose__l2tightOR2016v6__JESup_suffix/',
+      'folderDown': treeBaseDir + '/Summer16_102X_nAODv6_Full2016v6/MCl1loose2016v6__MCCorr2016v6__l2loose__l2tightOR2016v6__JESdo_suffix/',
+      'AsLnN': '1'
+  }
+
 ##### MET energy scale
 
 nuisances['met'] = {
@@ -286,8 +314,8 @@ nuisances['met_WW'] = {
     'mapUp': 'METup',
     'mapDown': 'METdo',
     'samples': dict(('WW', ['1', '1'])),
-    'folderUp': makeMCDirectory('METup_suffix'),
-    'folderDown': makeMCDirectory('METdo_suffix'),
+    'folderUp': treeBaseDir + '/Summer16_102X_nAODv6_Full2016v6/MCl1loose2016v6__MCCorr2016v6__l2loose__l2tightOR2016v6__METup_suffix/',
+    'folderDown': treeBaseDir + '/Summer16_102X_nAODv6_Full2016v6/MCl1loose2016v6__MCCorr2016v6__l2loose__l2tightOR2016v6__METdo_suffix/',
     'AsLnN': '1'
 }
 ##### Pileup
@@ -512,6 +540,8 @@ nuisances['QCDscale_VV'] = {
 ## This should work for samples with either 8 or 9 LHE scale weights (Length$(LHEScaleWeight) == 8 or 9)
 variations = ['LHEScaleWeight[0]', 'LHEScaleWeight[1]', 'LHEScaleWeight[3]', 'LHEScaleWeight[Length$(LHEScaleWeight)-4]', 'LHEScaleWeight[Length$(LHEScaleWeight)-2]', 'LHEScaleWeight[Length$(LHEScaleWeight)-1]']
 
+VBSvariations = ['LHEScaleWeight[0]/LHEScaleWeight[1]/1.0597', 'LHEScaleWeight[2]/LHEScaleWeight[1]/0.9946']
+
 nuisances['QCDscale_V'] = {
     'name': 'QCDscale_V',
     'skipCMS': 1,
@@ -713,13 +743,22 @@ nuisances['QCDscale_ttH'] = {
     },
     'type': 'lnN',
 }
-
+'''
 nuisances['QCDscale_WWewk'] = {
     'name': 'QCDscale_WWewk',
     'samples': {
         'WWewk': '1.11',
     },
     'type': 'lnN'
+}
+'''
+nuisances['QCDscale_WWewk'] = {
+    'name': 'QCDscale_WWewk',
+    'kind': 'weight_envelope',
+    'type': 'shape',
+    'samples': {
+        'WWewk': VBSvariations
+    }
 }
 
 #FIXME: these come from HIG-16-042, maybe should be recomputed?
@@ -779,8 +818,8 @@ nuisances['DYttnorm1j']  = {
                'cuts'  : cuts1j
               }
 '''
-nuisances['DYttnorm2j']  = {
-                 'name'  : 'CMS_hww_DYttnorm2j',
+nuisances['DYnorm2j']  = {
+                 'name'  : 'CMS_hww_DYnorm2j_2016',
                  'samples'  : {
                      'DY' : '1.00',
                      },

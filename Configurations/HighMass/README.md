@@ -1,6 +1,13 @@
+# First time setup
+
+Do "git clone https://github.com/UniMiBAnalyses/NNEvaluation" into your src directory and compile with scram. This is needed for the DNNs.
+
+
+# Running the analysis
+
 1. Make the Shapes, make sure the bool in Step5 is "False"!
 
-    mkShapesMulti.py --pycfg=configuration_em.py --inputDir=/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Autumn18_102X_nAODv6_Full2018v6/MCl1loose2018v6__MCCorr2018v6__l2loose__l2tightOR2018v6 --batchSplit=AsMuchAsPossible --doBatch=True --batchQueue=workday
+    mkShapesMulti.py --pycfg=configuration_em.py --inputDir=/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Autumn18_102X_nAODv6_Full2018v6/MCl1loose2018v6__MCCorr2018v6__l2loose__l2tightOR2018v6 --batchSplit=AsMuchAsPossible --doBatch=True --batchQueue=workday --treeName=Events
 
 2. hadd output
 

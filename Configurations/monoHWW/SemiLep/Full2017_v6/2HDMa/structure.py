@@ -22,6 +22,10 @@ structure['top'] = {
     'isSignal' : 0,
     'isData'   : 0
 }
+structure['missing_top'] = {
+    'isSignal' : 0,
+    'isData'   : 0
+}
 
 
 structure['WW']  = {
@@ -39,15 +43,15 @@ structure['ggWW']  = {
     'isData'   : 0
 }
 
-structure['qqWWqq']  = {
-    'isSignal' : 0,
-    'isData'   : 0
-}
-
-structure['WW2J']  = {
-    'isSignal' : 0,
-    'isData'   : 0
-}
+#structure['qqWWqq']  = {
+#    'isSignal' : 0,
+#    'isData'   : 0
+#}
+#
+#structure['WW2J']  = {
+#    'isSignal' : 0,
+#    'isData'   : 0
+#}
 
 # structure['Wg']  = {
 #                   'isSignal' : 0,
@@ -79,7 +83,19 @@ structure['VgS_H'] = {
 #                   'isData'   : 0
 #                   }
 
-structure['VZ']  = {
+structure['VBF-V']  = {
+                  'isSignal' : 0,
+                  'isData'   : 0
+                  }
+structure['WZqcd']  = {
+                  'isSignal' : 0,
+                  'isData'   : 0
+                  }
+structure['WZewk']  = {
+                  'isSignal' : 0,
+                  'isData'   : 0
+                  }
+structure['ZZ']  = {
                   'isSignal' : 0,
                   'isData'   : 0
                   }
@@ -90,7 +106,7 @@ structure['VVV']  = {
                   'isData'   : 0
                   }
 
-structure['QCD'] = {
+structure['FAKE'] = {
     'isSignal' : 0,
     'isData'   : 0
 }

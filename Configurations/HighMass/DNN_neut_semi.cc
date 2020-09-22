@@ -92,11 +92,8 @@ DNNneut::evaluate(unsigned)
     wr2phi = 0.0;
     vbfjet.push_back(0);
     vbfjet.push_back(1);
-  }else{
+  }else if (*HM_idx_j1->Get() != -1){
     wpt = *HM_Whad_pt->Get();
-    if (wpt < 0.0){
-      return 0.0;
-    }
     weta = *HM_Whad_eta->Get();
     wphi = *HM_Whad_phi->Get();
     wmass = *HM_Whad_mass->Get();
@@ -111,36 +108,46 @@ DNNneut::evaluate(unsigned)
     wr2pt = CleanJet_pt->At(wjet2);
     wr2eta = CleanJet_eta->At(wjet2);
     wr2phi = CleanJet_phi->At(wjet2);
-    for (unsigned i{0}; i != 4; ++i) {
-      if (i != wjet1 and i != wjet2){
-        vbfjet.push_back(i);
-      }
-    }
+    //for (unsigned i{0}; i != 4; ++i) {
+    //  if (i != wjet1 and i != wjet2){
+    //    vbfjet.push_back(i);
+    //  }
+    //}
+    // Mistake: Fix this later in next (final) DNN version
+    vbfjet.push_back(0);
+    vbfjet.push_back(1);
+  }else{
+    return 0.0;
+  }
+
+  float jetpt1 = 0.0;
+  float jeteta1 = 0.0;
+  float jetphi1 = 0.0;
+  float jetpt2 = 0.0;
+  float jeteta2 = 0.0;
+  float jetphi2 = 0.0;
+  unsigned nCJ{*nCleanJet->Get()};
+  if (nCJ >= 1+vbfjet[0]){
+    jetpt1 = CleanJet_pt->At(vbfjet[0]);
+    jeteta1 = CleanJet_eta->At(vbfjet[0]);
+    jetphi1 = CleanJet_phi->At(vbfjet[0]);
+  }
+  if (nCJ >= 1+vbfjet[1]){
+    jetpt2 = CleanJet_pt->At(vbfjet[1]);
+    jeteta2 = CleanJet_eta->At(vbfjet[1]);
+    jetphi2 = CleanJet_phi->At(vbfjet[1]);
   }
 
   input.push_back(Lepton_pt->At(0) * TMath::Cos(Lepton_phi->At(0)));
   input.push_back(Lepton_pt->At(0) * TMath::Sin(Lepton_phi->At(0)));
   input.push_back(Lepton_pt->At(0) * TMath::SinH(Lepton_eta->At(0)));
 
-  unsigned nCJ{*nCleanJet->Get()};
-  if (nCJ >= 1+vbfjet[0]){
-    input.push_back(CleanJet_pt->At(vbfjet[0]) * TMath::Cos(CleanJet_phi->At(vbfjet[0])));
-    input.push_back(CleanJet_pt->At(vbfjet[0]) * TMath::Sin(CleanJet_phi->At(vbfjet[0])));
-    input.push_back(CleanJet_pt->At(vbfjet[0]) * TMath::SinH(CleanJet_eta->At(vbfjet[0])));
-  }else{
-    input.push_back(0.0);
-    input.push_back(0.0);
-    input.push_back(0.0);
-  }
-  if (nCJ >= 1+vbfjet[1]){
-    input.push_back(CleanJet_pt->At(vbfjet[1]) * TMath::Cos(CleanJet_phi->At(vbfjet[1])));
-    input.push_back(CleanJet_pt->At(vbfjet[1]) * TMath::Sin(CleanJet_phi->At(vbfjet[1])));
-    input.push_back(CleanJet_pt->At(vbfjet[1]) * TMath::SinH(CleanJet_eta->At(vbfjet[1])));
-  }else{
-    input.push_back(0.0);
-    input.push_back(0.0);
-    input.push_back(0.0);
-  }
+  input.push_back(jetpt1 * TMath::Cos(jetphi1));
+  input.push_back(jetpt1 * TMath::Sin(jetphi1));
+  input.push_back(jetpt1 * TMath::SinH(jeteta1));
+  input.push_back(jetpt2 * TMath::Cos(jetphi2));
+  input.push_back(jetpt2 * TMath::Sin(jetphi2));
+  input.push_back(jetpt2 * TMath::SinH(jeteta2));
 
   input.push_back(wpt * TMath::Cos(wphi));
   input.push_back(wpt * TMath::Sin(wphi));
@@ -187,24 +194,24 @@ DNNneut::bindTree_(multidraw::FunctionLibrary& _library)
   _library.bindBranch(PuppiMET_pt, "PuppiMET_pt");
   _library.bindBranch(PuppiMET_phi, "PuppiMET_phi");
   _library.bindBranch(nCleanJet, "nCleanJet");
-  _library.bindBranch(HM_nCleanFatJetPassMBoosted, "nCleanFatJetPassMBoosted");
-  _library.bindBranch(HM_CleanFatJetPassMBoosted_pt, "CleanFatJetPassMBoosted_pt");
-  _library.bindBranch(HM_CleanFatJetPassMBoosted_eta, "CleanFatJetPassMBoosted_eta");
-  _library.bindBranch(HM_CleanFatJetPassMBoosted_phi, "CleanFatJetPassMBoosted_phi");
-  _library.bindBranch(HM_CleanFatJetPassMBoosted_mass, "CleanFatJetPassMBoosted_mass");
-  _library.bindBranch(HM_CleanFatJetPassMBoosted_HlnFat_mass, "CleanFatJetPassMBoosted_HlnFat_mass");
-  _library.bindBranch(HM_CleanFatJetPassMBoosted_WptOvHfatM, "CleanFatJetPassMBoosted_WptOvHfatM");
-  _library.bindBranch(HM_CleanFatJetPassMBoosted_tau21, "CleanFatJetPassMBoosted_tau21");
-  _library.bindBranch(HM_Whad_pt, "Whad_pt");
-  _library.bindBranch(HM_Whad_eta, "Whad_eta");
-  _library.bindBranch(HM_Whad_phi, "Whad_phi");
-  _library.bindBranch(HM_Whad_mass, "Whad_mass");
-  _library.bindBranch(HM_Wlep_pt_Puppi, "Wlep_pt_Puppi");
-  _library.bindBranch(HM_Wlep_eta_Puppi, "Wlep_eta_Puppi");
-  _library.bindBranch(HM_Wlep_phi_Puppi, "Wlep_phi_Puppi");
-  _library.bindBranch(HM_Wlep_mass_Puppi, "Wlep_mass_Puppi");
-  _library.bindBranch(HM_Hlnjj_mass, "Hlnjj_mass");
-  _library.bindBranch(HM_WptOvHak4M, "WptOvHak4M");
-  _library.bindBranch(HM_idx_j1, "idx_j1");
-  _library.bindBranch(HM_idx_j2, "idx_j2");
+  _library.bindBranch(HM_nCleanFatJetPassMBoosted, "HM_nCleanFatJetPassMBoosted");
+  _library.bindBranch(HM_CleanFatJetPassMBoosted_pt, "HM_CleanFatJetPassMBoosted_pt");
+  _library.bindBranch(HM_CleanFatJetPassMBoosted_eta, "HM_CleanFatJetPassMBoosted_eta");
+  _library.bindBranch(HM_CleanFatJetPassMBoosted_phi, "HM_CleanFatJetPassMBoosted_phi");
+  _library.bindBranch(HM_CleanFatJetPassMBoosted_mass, "HM_CleanFatJetPassMBoosted_mass");
+  _library.bindBranch(HM_CleanFatJetPassMBoosted_HlnFat_mass, "HM_CleanFatJetPassMBoosted_HlnFat_mass");
+  _library.bindBranch(HM_CleanFatJetPassMBoosted_WptOvHfatM, "HM_CleanFatJetPassMBoosted_WptOvHfatM");
+  _library.bindBranch(HM_CleanFatJetPassMBoosted_tau21, "HM_CleanFatJetPassMBoosted_tau21");
+  _library.bindBranch(HM_Whad_pt, "HM_Whad_pt");
+  _library.bindBranch(HM_Whad_eta, "HM_Whad_eta");
+  _library.bindBranch(HM_Whad_phi, "HM_Whad_phi");
+  _library.bindBranch(HM_Whad_mass, "HM_Whad_mass");
+  _library.bindBranch(HM_Wlep_pt_Puppi, "HM_Wlep_pt_Puppi");
+  _library.bindBranch(HM_Wlep_eta_Puppi, "HM_Wlep_eta_Puppi");
+  _library.bindBranch(HM_Wlep_phi_Puppi, "HM_Wlep_phi_Puppi");
+  _library.bindBranch(HM_Wlep_mass_Puppi, "HM_Wlep_mass_Puppi");
+  _library.bindBranch(HM_Hlnjj_mass, "HM_Hlnjj_mass");
+  _library.bindBranch(HM_WptOvHak4M, "HM_WptOvHak4M");
+  _library.bindBranch(HM_idx_j1, "HM_idx_j1");
+  _library.bindBranch(HM_idx_j2, "HM_idx_j2");
 }

@@ -9,6 +9,7 @@ structure['DY']  = {
                   'isData'   : 0
               }
 
+
 structure['Dyemb']  = {
                   'isSignal' : 0,
                   'isData'   : 0
@@ -215,8 +216,6 @@ structure['DATA']  = {
                   'isData'   : 1 
               }
 
-
-
 print "INSTRUCTURE"
 print cuts
 #print nuisances['WWresum0j']
@@ -229,3 +228,5 @@ for nuis in nuisances.itervalues():
 
     print nuis
 '''
+
+

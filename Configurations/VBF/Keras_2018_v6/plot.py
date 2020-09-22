@@ -75,10 +75,11 @@ groupPlot['Higgs']  = {
                   'nameHR' : 'Higgs',
                   'isSignal' : 1,
                   'color': 632, # kRed 
-                  #'samples'  : ['H_htt', 'H_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'ggH_hww','bbH_hww','ttH_hww','ZH_htt', 'ggZH_htt', 'WH_htt', 'ggH_htt','bbH_htt','ttH_htt' ]
+                  #'samples'  : ['H_htt', 'H_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'ggH_hww','bbH_hww',   'ttH_hww','ZH_htt', 'ggZH_htt', 'WH_htt', 'ggH_htt','bbH_htt','ttH_htt' ]
+                  #'samples'  : ['ZH_hww', 'ggZH_hww', 'WH_hww', 'ggH_hww','bbH_hww','ttH_hww', 'ggH_htt' ]
                   'samples' : ['ZH_hww', 'ggZH_hww', 'WH_hww', 'ggH_hww','bbH_hww','ttH_hww','ZH_htt', 'ggZH_htt', 'WH_htt', 'ggH_htt','bbH_htt','ttH_htt' ]
-
-                  #'samples'  : ['H_htt', 'H_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'ggH_hww','bbH_hww','ttH_hww', 'ggH_htt' ]
+                                    
+                  #'samples'  : ['H_htt', 'H_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'ggH_hww','bbH_hww',  'ttH_hww', 'ggH_htt' ]
               }
 
 groupPlot['VBF']  = {
@@ -95,7 +96,8 @@ groupPlot['VBF']  = {
 #plot = {}
 
 # keys here must match keys in samples.py    
-#                    
+#
+
 plot['DY']  = {  
                   'color': 418,    # kGreen+2
                   'isSignal' : 0,
@@ -116,14 +118,14 @@ plot['DY']  = {
                         #},
 
               }
-
 if useEmbeddedDY:
-  plot['Dyemb']  = {  
+  plot['Dyemb']  = {   
                   'color': 418,    # kGreen+2
                   'isSignal' : 0,
-                  'isData'   : 0, 
+                  'isData'   : 0,  
                   'scale'    : 1.0,
               }
+
 
 
 plot['Fake_me']  = {  
@@ -141,7 +143,7 @@ plot['Fake_em']  = {
                   'scale'    : 1.0                  
               }
 
-              
+          
 plot['top'] = {   
                   'nameHR' : 'tW and t#bar{t}',
                   'color': 400,   # kYellow

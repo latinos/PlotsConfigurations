@@ -2,7 +2,9 @@
 
 treeName = 'Events'
 
-tag = 'WW2016_v6'
+#tag = 'WW2016_v6'
+#tag = 'WW2016_cutbased'
+tag = 'WW2016_tthMVA'
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFile'
@@ -27,10 +29,10 @@ lumi = 35.867
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'plots'
+outputDirPlots = 'plots'+tag
 
 # used by mkDatacards to define output directory for datacards
-outputDirDatacard = 'datacards'
+outputDirDatacard = 'datacards'+tag
 
 # structure file for datacard
 structureFile = 'structure.py'

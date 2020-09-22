@@ -9,6 +9,10 @@ supercut = 'mll>12 \
             && PuppiMET_pt>20 \
             && mjj>200 \
             '
+'''
+            abs(Lepton_eta[0]) < abs(CleanJet_eta[0]) && abs(Lepton_eta[0]) < abs(CleanJet_eta[1]) 
+            abs(Lepton_eta[1]) < abs(CleanJet_eta[0]) && abs(Lepton_eta[1]) < abs(CleanJet_eta[1]) 
+'''
 
 ## Signal regions
 

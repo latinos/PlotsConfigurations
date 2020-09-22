@@ -11,12 +11,12 @@ groupPlot['DY']  = {
 		   'samples' : ['DY']
 }
 
-groupPlot['WW']  = {
-  		   'nameHR' : 'WW',
-		   'color': 632,    # kRed
-		   'isSignal' : 0,
-		   'samples' : ['WW','WWewk','ggWW']
-}
+#groupPlot['WW']  = {
+#  		   'nameHR' : 'WW',
+#		   'color': 632,    # kRed
+#		   'isSignal' : 0,
+#		   'samples' : ['WW','WWewk','ggWW']
+#}
 
 groupPlot['Zg']  = {
                   'nameHR' : 'Zg',
@@ -239,7 +239,7 @@ plot['DATA']  = {
                   'color': 1 ,  
                   'isSignal' : 0,
                   'isData'   : 1 ,
-                  'isBlind'  : 1
+                  'isBlind'  : 0
               }
 
 # additional options

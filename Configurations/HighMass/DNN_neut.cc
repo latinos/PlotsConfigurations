@@ -33,7 +33,6 @@ protected:
   FloatValueReader* PuppiMET_pt;
   FloatValueReader* PuppiMET_phi;
   UIntValueReader* nCleanJet;
-  FloatValueReader* dphilmet;
   FloatValueReader* dphilmet1;
   FloatValueReader* dphilmet2;
   FloatValueReader* mll;
@@ -42,6 +41,8 @@ protected:
   FloatValueReader* mtw1;
   FloatValueReader* mtw2;
   FloatValueReader* ht;
+  FloatValueReader* vht_pt;
+  FloatValueReader* vht_phi;
 
 };
 
@@ -49,8 +50,8 @@ DNNneut::DNNneut() :
   TTreeFunction()
 {
   std::string cmsswbase(gSystem->Getenv("CMSSW_BASE"));
-  dnn_tensorflow0 = new DNNEvaluator(cmsswbase + "/src/PlotsConfigurations/Configurations/HighMass/DNNs/Neut_0/", 0, false);
-  dnn_tensorflow1 = new DNNEvaluator(cmsswbase + "/src/PlotsConfigurations/Configurations/HighMass/DNNs/Neut_1/", 0, false);
+  dnn_tensorflow0 = new DNNEvaluator(cmsswbase + "/src/PlotsConfigurations/Configurations/HighMass/DNNs/Neut_0/", false);
+  dnn_tensorflow1 = new DNNEvaluator(cmsswbase + "/src/PlotsConfigurations/Configurations/HighMass/DNNs/Neut_1/", false);
 }
 
 double
@@ -87,7 +88,6 @@ DNNneut::evaluate(unsigned)
 
   input.push_back(*PuppiMET_pt->Get() * TMath::Cos(*PuppiMET_phi->Get()));
   input.push_back(*PuppiMET_pt->Get() * TMath::Sin(*PuppiMET_phi->Get()));
-  input.push_back(*dphilmet->Get());
   input.push_back(*dphilmet1->Get());
   input.push_back(*dphilmet2->Get());
   input.push_back(*mll->Get());
@@ -96,6 +96,8 @@ DNNneut::evaluate(unsigned)
   input.push_back(*mtw1->Get());
   input.push_back(*mtw2->Get());
   input.push_back(*ht->Get());
+  input.push_back(*vht_pt->Get() * TMath::Cos(*vht_phi->Get()));
+  input.push_back(*vht_pt->Get() * TMath::Sin(*vht_phi->Get()));
 
   auto ev{*event->Get()};
   if (ev % 2 == 0){
@@ -119,7 +121,6 @@ DNNneut::bindTree_(multidraw::FunctionLibrary& _library)
   _library.bindBranch(PuppiMET_pt, "PuppiMET_pt");
   _library.bindBranch(PuppiMET_phi, "PuppiMET_phi");
   _library.bindBranch(nCleanJet, "nCleanJet");
-  _library.bindBranch(dphilmet, "dphilmet");
   _library.bindBranch(dphilmet1, "dphilmet1");
   _library.bindBranch(dphilmet2, "dphilmet2");
   _library.bindBranch(mll, "mll");
@@ -128,4 +129,6 @@ DNNneut::bindTree_(multidraw::FunctionLibrary& _library)
   _library.bindBranch(mtw1, "mtw1");
   _library.bindBranch(mtw2, "mtw2");
   _library.bindBranch(ht, "ht");
+  _library.bindBranch(vht_pt, "vht_pt");
+  _library.bindBranch(vht_phi, "vht_phi");
 }

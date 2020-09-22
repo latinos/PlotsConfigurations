@@ -76,10 +76,8 @@ groupPlot['Higgs']  = {
                   'isSignal' : 1,
                   'color': 632, # kRed 
 		  #'samples'  : ['H_htt', 'H_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww','bbH_hww','ttH_hww','ZH_htt', 'ggZH_htt', 'WH_htt', 'qqH_htt', 'ggH_htt','bbH_htt','ttH_htt' ]
-		  'samples'  : ['H_htt', 'H_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww','bbH_hww','ttH_hww', 'qqH_htt', 'ggH_htt' ]
+		  'samples'  : ['H_htt', 'H_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww','bbH_hww','ttH_hww', 'qqH_htt', 'ggH_htt', 'ggH_hww_PTH_200_300', 'ggH_hww_PTH_300_450', 'ggH_hww_PTH_450_650', 'ggH_hww_PTH_GT650']
               }
-
-
 
 
 
@@ -309,14 +307,47 @@ plot['qqH_hww'] = {
                   'scale'    : 1    #
                   }
 
-
-plot['ggH_hww'] = {
-                  'nameHR' : 'ggH',
-                  'color': 632, # kRed 
+# ggH_hww
+plot['ggH_hww_PTH_200_300'] = {
+                  'nameHR' : 'ggH_hww_PTH_200_300',
+                  'color': 632, # kRed
                   'isSignal' : 1,
                   'isData'   : 0,    
                   'scale'    : 1    #
                   }
+
+plot['ggH_hww_PTH_300_450'] = {
+                  'nameHR' : 'ggH_hww_PTH_300_450',
+                  'color': 632, # kRed
+                  'isSignal' : 1,
+                  'isData'   : 0,    
+                  'scale'    : 1    #
+                  }
+
+plot['ggH_hww_PTH_450_650'] = {
+                  'nameHR' : 'ggH_hww_PTH_450_650',
+                  'color': 632, # kRed
+                  'isSignal' : 1,
+                  'isData'   : 0,    
+                  'scale'    : 1    #
+                  }
+
+plot['ggH_hww_PTH_GT650'] = {
+                  'nameHR' : 'ggH_hww_PTH_GT650',
+                  'color': 632, # kRed
+                  'isSignal' : 1,
+                  'isData'   : 0,    
+                  'scale'    : 1    #
+                  }
+
+
+# plot['ggH_hww'] = {
+#                   'nameHR' : 'ggH',
+#                   'color': 632, # kRed 
+#                   'isSignal' : 1,
+#                   'isData'   : 0,    
+#                   'scale'    : 1    #
+#                   }
 
 #plot['bbH_hww'] = {
 #                  'nameHR' : 'bbH',
@@ -350,7 +381,7 @@ plot['DATA']  = {
 
 # additional options
 
-legend['lumi'] = 'L = 35.9/fb'
+legend['lumi'] = 'L = 59.74/fb'
 
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
 

@@ -80,23 +80,59 @@ groupPlot['SMHiggs']  = {
 		  'samples'  : ['ZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww', 'ZH_htt', 'WH_htt', 'qqH_htt', 'ggH_htt']
               }
 
-groupPlot['HM_200']  = {  
-                  'nameHR' : '200 GeV',
+#groupPlot['HM_200']  = {  
+#                  'nameHR' : '200 GeV',
+#                  'isSignal' : 2,
+#                  'color': 2, # kRed
+#                  'samples'  : ['GGH_200'+model_name, 'QQH_200'+model_name]
+#              }
+#groupPlot['HM_800']  = {  
+#                  'nameHR' : '800 GeV (x10)',
+#                  'isSignal' : 2,
+#                  'color': 3, # kGreen
+#                  'samples'  : ['GGH_800'+model_name, 'QQH_800'+model_name]
+#              }
+#groupPlot['HM_2000']  = {  
+#                  'nameHR' : '2000 GeV (x200)',
+#                  'isSignal' : 2,
+#                  'color': 4, # kBlue
+#                  'samples'  : ['GGH_2000'+model_name, 'QQH_2000'+model_name]
+#              }
+groupPlot['GGH_200']  = {  
+                  'nameHR' : 'ggF 200',
                   'isSignal' : 2,
-                  'color': 2, # kRed 
-                  'samples'  : ['GGH_200'+model_name, 'QQH_200'+model_name]
+                  'color': 2, # kRed
+                  'samples'  : ['GGH_200'+model_name]
               }
-groupPlot['HM_800']  = {  
-                  'nameHR' : '800 GeV (x10)',
+groupPlot['QQH_200']  = {  
+                  'nameHR' : 'VBF 200',
                   'isSignal' : 2,
-                  'color': 3, # kRed 
-                  'samples'  : ['GGH_800'+model_name, 'QQH_800'+model_name]
+                  'color': 45, # kRed 
+                  'samples'  : ['QQH_200'+model_name]
               }
-groupPlot['HM_2000']  = {  
-                  'nameHR' : '2000 GeV (x200)',
+groupPlot['GGH_800']  = {  
+                  'nameHR' : 'ggF 800 (x10)',
                   'isSignal' : 2,
-                  'color': 4, # kRed 
-                  'samples'  : ['GGH_2000'+model_name, 'QQH_2000'+model_name]
+                  'color': 3, # kGreen
+                  'samples'  : ['GGH_800'+model_name]
+              }
+groupPlot['QQH_800']  = {  
+                  'nameHR' : 'VBF 800 (x10)',
+                  'isSignal' : 2,
+                  'color': 30, # kGreen
+                  'samples'  : ['QQH_800'+model_name]
+              }
+groupPlot['GGH_2000']  = {  
+                  'nameHR' : 'ggF 2000 (x200)',
+                  'isSignal' : 2,
+                  'color': 4, # kBlue
+                  'samples'  : ['GGH_2000'+model_name]
+              }
+groupPlot['QQH_2000']  = {  
+                  'nameHR' : 'VBF 2000 (x200)',
+                  'isSignal' : 2,
+                  'color': 38, # kBlue
+                  'samples'  : ['QQH_2000'+model_name]
               }
 
 

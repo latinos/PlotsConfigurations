@@ -11,12 +11,12 @@ groupPlot['DY']  = {
 		   'samples' : ['DY']
 }
 
-groupPlot['WW']  = {
-  		   'nameHR' : 'WW',
-		   'color': 632,    # kRed
-		   'isSignal' : 0,
-		   'samples' : ['WW','WWewk','ggWW']
-}
+#groupPlot['WW']  = {
+#  		   'nameHR' : 'WW',
+#		   'color': 632,    # kRed
+#		   'isSignal' : 0,
+#		   'samples' : ['WW','WWewk','ggWW']
+#}
 
 groupPlot['Zg']  = {
                   'nameHR' : 'Zg',
@@ -93,29 +93,29 @@ plot['DY']  = {
                   'scale'    : 1.0
                   }
 
-plot['WW']  = { 
-                  'nameHR' : 'WW',
-                  'color': 858, # kAzure -2  
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  'scale'    : 1.0
-                  }
+#plot['WW']  = { 
+#                  'nameHR' : 'WW',
+#                  'color': 858, # kAzure -2  
+#                  'isSignal' : 0,
+#                  'isData'   : 0,
+#                  'scale'    : 1.0
+#                  }
 
-plot['WWewk']  = { 
-                  'nameHR' : 'WWewk',
-                  'color': 858, # kAzure -2  
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  'scale'    : 1.0
-                  }
+#plot['WWewk']  = { 
+#                  'nameHR' : 'WWewk',
+#                  'color': 858, # kAzure -2  
+#                  'isSignal' : 0,
+#                  'isData'   : 0,
+#                  'scale'    : 1.0
+#                  }
 
-plot['ggWW']  = { 
-                  'nameHR' : 'ggWW',
-                  'color': 858, # kAzure -2  
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  'scale'    : 1.0
-                  }
+#plot['ggWW']  = { 
+#                  'nameHR' : 'ggWW',
+#                  'color': 858, # kAzure -2  
+#                  'isSignal' : 0,
+#                  'isData'   : 0,
+#                  'scale'    : 1.0
+#                  }
 
 plot['Zg']  = { 
                   'nameHR' : 'Zg',
@@ -239,7 +239,7 @@ plot['DATA']  = {
                   'color': 1 ,  
                   'isSignal' : 0,
                   'isData'   : 1 ,
-                  'isBlind'  : 1
+                  'isBlind'  : 0
               }
 
 # additional options
