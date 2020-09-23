@@ -9,7 +9,7 @@ variables['events']  = {
 
 
 variables['mll']  = {   'name': 'mll',
-                        'range' : (30, 12,76),
+                        'range' : (30, 12,80),
                         'xaxis' : 'm_{ll} [GeV]',
                         'fold' : 3
                         }
@@ -21,7 +21,7 @@ variables['mllnocut']  = {   'name': 'mll',
                         }
 
 variables['mll_WWCR']  = {   'name': 'mll',
-                             'range' : (30, 76,300),
+                             'range' : (30, 80,300),
                         'xaxis' : 'm_{ll} [GeV]',
                         'fold' : 3
                         }
@@ -62,7 +62,7 @@ variables['mthnocut']  = {   'name': 'mth',
 
 
 variables['mth']  = {   'name': 'mth',
-                        'range' : (30, 40,400),
+                        'range' : (30, 50,400),
                         'xaxis' : 'm_{T}^{ll+MET} [GeV]',
                         'fold' : 3
                         }
@@ -71,6 +71,13 @@ variables['mtw2']  = {   'name': 'mtw2',
                         'range' : (30, 20,300),
                          'xaxis' : 'm_{T}^{l2+MET} [GeV]',
                         'fold' : 3
+                        }
+
+
+variables['mtw2_forFit']  = {   'name': 'mtw2',
+                                'range' : ([0,50,75,100,125,163,300],),
+                                'xaxis' : 'm_{T}^{l2+MET} [GeV]',
+                                'fold' : 3
                         }
 
 # variables['mT2']  = {   'name': 'mT2',

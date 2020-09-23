@@ -154,17 +154,17 @@ nuisances['eff_e'] = {
     'samples': dict((skey, ['SFweightEleUp', 'SFweightEleDown']) for skey in mc)
 }
 
-# nuisances['electronpt'] = {
-#     'name': 'CMS_scale_e_2018',
-#     'kind': 'suffix',
-#     'type': 'shape',
-#     'mapUp': 'ElepTup',
-#     'mapDown': 'ElepTdo',
-#     'samples': dict((skey, ['1', '1']) for skey in mc if 'DH' not in skey),
-#     'folderUp': makeMCDirectory('ElepTup_suffix'),
-#     'folderDown': makeMCDirectory('ElepTdo_suffix'),
-#     'AsLnN': '1'
-# }
+nuisances['electronpt'] = {
+    'name': 'CMS_scale_e_2018',
+    'kind': 'suffix',
+    'type': 'shape',
+    'mapUp': 'ElepTup',
+    'mapDown': 'ElepTdo',
+    'samples': dict((skey, ['1', '1']) for skey in mc if 'DH' in skey),
+    'folderUp': makeMCDirectory('ElepTup_suffix'),
+    'folderDown': makeMCDirectory('ElepTdo_suffix'),
+    'AsLnN': '1'
+}
 
 ##### Muon Efficiency and energy scale
 
@@ -175,17 +175,17 @@ nuisances['eff_m'] = {
     'samples': dict((skey, ['SFweightMuUp', 'SFweightMuDown']) for skey in mc)
 }
 
-# nuisances['muonpt'] = {
-#     'name': 'CMS_scale_m_2018',
-#     'kind': 'suffix',
-#     'type': 'shape',
-#     'mapUp': 'MupTup',
-#     'mapDown': 'MupTdo',
-#     'samples': dict((skey, ['1', '1']) for skey in mc if 'DH' not in skey),
-#     'folderUp': makeMCDirectory('MupTup_suffix'),
-#     'folderDown': makeMCDirectory('MupTdo_suffix'),
-#     'AsLnN': '1'
-# }
+nuisances['muonpt'] = {
+    'name': 'CMS_scale_m_2018',
+    'kind': 'suffix',
+    'type': 'shape',
+    'mapUp': 'MupTup',
+    'mapDown': 'MupTdo',
+    'samples': dict((skey, ['1', '1']) for skey in mc if 'DH' in skey),
+    'folderUp': makeMCDirectory('MupTup_suffix'),
+    'folderDown': makeMCDirectory('MupTdo_suffix'),
+    'AsLnN': '1'
+}
 
 # ##### Jet energy scale
 # jes_systs = ['JESAbsolute','JESAbsolute_2018','JESBBEC1','JESBBEC1_2018','JESEC2','JESEC2_2018','JESFlavorQCD','JESHF','JESHF_2018','JESRelativeBal','JESRelativeSample_2018']
@@ -197,25 +197,25 @@ nuisances['eff_m'] = {
 #       'type': 'shape',
 #       'mapUp': js+'up',
 #       'mapDown': js+'do',
-#       'samples': dict((skey, ['1', '1']) for skey in mc if 'DH' not in skey),
+#       'samples': dict((skey, ['1', '1']) for skey in mc),
 #       'folderUp': makeMCDirectory('JESup_suffix'),
 #       'folderDown': makeMCDirectory('JESdo_suffix'),
 #       'AsLnN': '1'
 #   }
 
-##### MET energy scale
+# MET energy scale
 
-# nuisances['met'] = {
-#     'name': 'CMS_scale_met_2018',
-#     'kind': 'suffix',
-#     'type': 'shape',
-#     'mapUp': 'METup',
-#     'mapDown': 'METdo',
-#     'samples': dict((skey, ['1', '1']) for skey in mc if 'DH' not in skey),
-#     'folderUp': makeMCDirectory('METup_suffix'),
-#     'folderDown': makeMCDirectory('METdo_suffix'),
-#     'AsLnN': '1'
-# }
+nuisances['met'] = {
+    'name': 'CMS_scale_met_2018',
+    'kind': 'suffix',
+    'type': 'shape',
+    'mapUp': 'METup',
+    'mapDown': 'METdo',
+    'samples': dict((skey, ['1', '1']) for skey in mc if 'DH' in skey),
+    'folderUp': makeMCDirectory('METup_suffix'),
+    'folderDown': makeMCDirectory('METdo_suffix'),
+    'AsLnN': '1'
+}
 
 # ##### Pileup
 
@@ -274,20 +274,20 @@ nuisances['UE']  = {
                 'samples': dict((skey, '1.015') for skey in mc), 
 }
 
-nuisances['UE']  = {
-               'name'  : 'UE_CP5',
-               'skipCMS' : 1,
-               'kind'  : 'tree',
-               'type'  : 'shape',
-               'samples'  : {
-                 'WW'      : ['1.0017139', '0.99350287'],
-                 'ggH_hww' : ['1.0272226', '1.0123689'],
-                 'qqH_hww' : ['1.0000192', '0.98367442']
-               },
-               'folderUp': makeMCDirectory('UEup'),
-               'folderDown': makeMCDirectory('UEdo'),
-               'AsLnN'      : '1',
-}
+# nuisances['UE']  = {
+#                'name'  : 'UE_CP5',
+#                'skipCMS' : 1,
+#                'kind'  : 'tree',
+#                'type'  : 'shape',
+#                'samples'  : {
+#                  'WW'      : ['1.0017139', '0.99350287'],
+#                  'ggH_hww' : ['1.0272226', '1.0123689'],
+#                  'qqH_hww' : ['1.0000192', '0.98367442']
+#                },
+#                'folderUp': makeMCDirectory('UEup'),
+#                'folderDown': makeMCDirectory('UEdo'),
+#                'AsLnN'      : '1',
+# }
 
 # ####### Generic "cross section uncertainties"
 
@@ -625,7 +625,7 @@ nuisances['stat'] = {
 }
 
 # ##rate parameters
-nuisances['Topnorm']  = {
+nuisances['Topnorm_2018']  = {
                'name'  : 'Topnorm',
                'samples'  : {
                    'top' : '1.00',
@@ -638,7 +638,7 @@ nuisances['Topnorm']  = {
               }
 
 
-nuisances['WWnorm']  = {
+nuisances['WWnorm_2018']  = {
                'name'  : 'WWnorm',
                'samples'  : {
                    'WW' : '1.00',
@@ -650,8 +650,8 @@ nuisances['WWnorm']  = {
                    ]
               }
 
-nuisances['DYnorm']  = {
-               'name'  : 'WWnorm',
+nuisances['DYnorm_2018']  = {
+               'name'  : 'DYnorm',
                'samples'  : {
                    'DY' : '1.00',
                    },

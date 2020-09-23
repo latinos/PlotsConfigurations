@@ -177,17 +177,17 @@ nuisances['eff_e'] = {
     'samples': dict((skey, ['SFweightEleUp', 'SFweightEleDown']) for skey in mc),
 }
 
-# nuisances['electronpt'] = {
-#     'name': 'CMS_scale_e_2017',
-#     'kind': 'suffix',
-#     'type': 'shape',
-#     'mapUp': 'ElepTup',
-#     'mapDown': 'ElepTdo',
-#     'samples': dict((skey, ['1', '1']) for skey in mc if 'DH' not in skey),
-#     'folderUp': makeMCDirectory('ElepTup_suffix'),
-#     'folderDown': makeMCDirectory('ElepTdo_suffix'),
-#     'AsLnN': '1'
-# }
+nuisances['electronpt'] = {
+    'name': 'CMS_scale_e_2017',
+    'kind': 'suffix',
+    'type': 'shape',
+    'mapUp': 'ElepTup',
+    'mapDown': 'ElepTdo',
+    'samples': dict((skey, ['1', '1']) for skey in mc),
+    'folderUp': makeMCDirectory('ElepTup_suffix'),
+    'folderDown': makeMCDirectory('ElepTdo_suffix'),
+    'AsLnN': '1'
+}
 
 ##### Muon Efficiency and energy scale
 
@@ -198,19 +198,19 @@ nuisances['eff_m'] = {
     'samples': dict((skey, ['SFweightMuUp', 'SFweightMuDown']) for skey in mc),
 }
 
-# nuisances['muonpt'] = {
-#     'name': 'CMS_scale_m_2017',
-#     'kind': 'suffix',
-#     'type': 'shape',
-#     'mapUp': 'MupTup',
-#     'mapDown': 'MupTdo',
-#     'samples': dict((skey, ['1', '1']) for skey in mc if 'DH' not in skey),
-#     'folderUp': makeMCDirectory('MupTup_suffix'),
-#     'folderDown': makeMCDirectory('MupTdo_suffix'),
-#     'AsLnN': '1'
-# }
+nuisances['muonpt'] = {
+    'name': 'CMS_scale_m_2017',
+    'kind': 'suffix',
+    'type': 'shape',
+    'mapUp': 'MupTup',
+    'mapDown': 'MupTdo',
+    'samples': dict((skey, ['1', '1']) for skey in mc if 'DH' not in skey),
+    'folderUp': makeMCDirectory('MupTup_suffix'),
+    'folderDown': makeMCDirectory('MupTdo_suffix'),
+    'AsLnN': '1'
+}
 
-##### Jet energy scale
+# #Jet energy scale
 # jes_systs = ['JESAbsolute','JESAbsolute_2017','JESBBEC1','JESBBEC1_2017','JESEC2','JESEC2_2017','JESFlavorQCD','JESHF','JESHF_2017','JESRelativeBal','JESRelativeSample_2017']
 
 # for js in jes_systs:
@@ -220,25 +220,25 @@ nuisances['eff_m'] = {
 #       'type': 'shape',
 #       'mapUp': js+'up',
 #       'mapDown': js+'do',
-#       'samples': dict((skey, ['1', '1']) for skey in mc if 'DH' not in skey),
+#       'samples': dict((skey, ['1', '1']) for skey in mc),
 #       'folderUp': makeMCDirectory('JESup_suffix'),
 #       'folderDown': makeMCDirectory('JESdo_suffix'),
 #       'AsLnN': '1'
 #   }
 
-# ##### MET energy scale
+##### MET energy scale
 
-# nuisances['met'] = {
-#     'name': 'CMS_scale_met_2017',
-#     'kind': 'suffix',
-#     'type': 'shape',
-#     'mapUp': 'METup',
-#     'mapDown': 'METdo',
-#     'samples': dict((skey, ['1', '1']) for skey in mc if 'DH' not in skey),
-#     'folderUp': makeMCDirectory('METup_suffix'),
-#     'folderDown': makeMCDirectory('METdo_suffix'),
-#     'AsLnN': '1'
-# }
+nuisances['met'] = {
+    'name': 'CMS_scale_met_2017',
+    'kind': 'suffix',
+    'type': 'shape',
+    'mapUp': 'METup',
+    'mapDown': 'METdo',
+    'samples': dict((skey, ['1', '1']) for skey in mc),
+    'folderUp': makeMCDirectory('METup_suffix'),
+    'folderDown': makeMCDirectory('METdo_suffix'),
+    'AsLnN': '1'
+}
 
 ##### Pileup
 
@@ -646,7 +646,7 @@ nuisances['WWqscale']  = {
 
 # ## rate parameters
 
-nuisances['Topnorm']  = {
+nuisances['Topnorm_2017']  = {
                'name'  : 'Topnorm',
                'samples'  : {
                    'top' : '1.00',
@@ -659,7 +659,7 @@ nuisances['Topnorm']  = {
               }
 
 
-nuisances['WWnorm']  = {
+nuisances['WWnorm_2017']  = {
                'name'  : 'WWnorm',
                'samples'  : {
                    'WW' : '1.00',
@@ -671,8 +671,8 @@ nuisances['WWnorm']  = {
                    ]
               }
 
-nuisances['DYnorm']  = {
-               'name'  : 'WWnorm',
+nuisances['DYnorm_2017']  = {
+               'name'  : 'DYnorm',
                'samples'  : {
                    'DY' : '1.00',
                    },

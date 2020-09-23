@@ -138,7 +138,7 @@ files = nanoGetSampleFiles(mcDirectory, 'TTTo2L2Nu') + \
 samples['top'] = {
     'name': files,
     'weight': mcCommonWeight,
-    'FilesPerJob': 2,
+    'FilesPerJob': 1,
 }
 
 addSampleWeight(samples,'top','TTTo2L2Nu','Top_pTrw')
