@@ -30,17 +30,17 @@ cuts['hww2l2v_13TeV'] = {
    'expr': 'sr && Higgs_qq && multiJet' ,
    'categories' : {
        # 65 < mjj < 105
-       'mjj65_105_ee'           : 'mjj >= 65 && mjj <= 105 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && ' +dymvaVH,
-       'mjj65_105_mm'           : 'mjj >= 65 && mjj <= 105 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && ' +dymvaVH,
+       '2j_mjj65_105_ee'           : 'mjj >= 65 && mjj <= 105 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && ' +dymvaVH,
+       '2j_mjj65_105_mm'           : 'mjj >= 65 && mjj <= 105 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && ' +dymvaVH,
        # 350 < mjj < 700, pTH < 200
-       'mjj350_700_pthLT200_ee' : 'mjj > 350 && mjj <= 700 && pTWW <= 200 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && ' +dymvaVBF,
-       'mjj350_700_pthLT200_mm' : 'mjj > 350 && mjj <= 700 && pTWW <= 200 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && ' +dymvaVBF,
+       '2j_mjj350_700_pthLT200_ee' : 'mjj > 350 && mjj <= 700 && pTWW <= 200 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && ' +dymvaVBF,
+       '2j_mjj350_700_pthLT200_mm' : 'mjj > 350 && mjj <= 700 && pTWW <= 200 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && ' +dymvaVBF,
        # mjj > 700, pTH < 200
-       'mjjGT700_pthLT200_ee'   : 'mjj > 700 && pTWW <= 200 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && ' +dymvaVBF,
-       'mjjGT700_pthLT200_mm'   : 'mjj > 700 && pTWW <= 200 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && ' +dymvaVBF,
+       '2j_mjjGT700_pthLT200_ee'   : 'mjj > 700 && pTWW <= 200 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && ' +dymvaVBF,
+       '2j_mjjGT700_pthLT200_mm'   : 'mjj > 700 && pTWW <= 200 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && ' +dymvaVBF,
        # mjj > 350, pTH > 200
-       'mjjGT350_pthGT200_ee'   : 'mjj > 350 && pTWW >  200 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && ' +dymvaVBF,
-       'mjjGT350_pthGT200_mm'   : 'mjj > 350 && pTWW >  200 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && ' +dymvaVBF,
+       '2j_mjjGT350_pthGT200_ee'   : 'mjj > 350 && pTWW >  200 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && ' +dymvaVBF,
+       '2j_mjjGT350_pthGT200_mm'   : 'mjj > 350 && pTWW >  200 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && ' +dymvaVBF,
    }
 }
 
@@ -49,17 +49,17 @@ cuts['hww2l2v_13TeV_HAccNum'] = {
    'expr': 'sr && Higgs_qq && multiJet' ,
    'categories' : {
        # 65 < mjj < 105
-       'mjj65_105_ee'           : 'mjj >= 65 && mjj <= 105 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && dymva_alt_dnn_VH > 0.8',
-       'mjj65_105_mm'           : 'mjj >= 65 && mjj <= 105 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && dymva_alt_dnn_VH > 0.8',
+       '2j_mjj65_105_ee'           : 'mjj >= 65 && mjj <= 105 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && dymva_alt_dnn_VH > 0.8',
+       '2j_mjj65_105_mm'           : 'mjj >= 65 && mjj <= 105 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && dymva_alt_dnn_VH > 0.8',
        # 350 < mjj < 700, pTH < 200
-       'mjj350_700_pthLT200_ee' : 'mjj > 350 && mjj <= 700 && pTWW <= 200 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && dymva_alt_dnn_VBF > 0.9',
-       'mjj350_700_pthLT200_mm' : 'mjj > 350 && mjj <= 700 && pTWW <= 200 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && dymva_alt_dnn_VBF > 0.9',
+       '2j_mjj350_700_pthLT200_ee' : 'mjj > 350 && mjj <= 700 && pTWW <= 200 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && dymva_alt_dnn_VBF > 0.9',
+       '2j_mjj350_700_pthLT200_mm' : 'mjj > 350 && mjj <= 700 && pTWW <= 200 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && dymva_alt_dnn_VBF > 0.9',
        # mjj > 700, pTH < 200
-       'mjjGT700_pthLT200_ee'   : 'mjj > 700 && pTWW <= 200 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && dymva_alt_dnn_VBF > 0.9',
-       'mjjGT700_pthLT200_mm'   : 'mjj > 700 && pTWW <= 200 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && dymva_alt_dnn_VBF > 0.9',
+       '2j_mjjGT700_pthLT200_ee'   : 'mjj > 700 && pTWW <= 200 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && dymva_alt_dnn_VBF > 0.9',
+       '2j_mjjGT700_pthLT200_mm'   : 'mjj > 700 && pTWW <= 200 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && dymva_alt_dnn_VBF > 0.9',
        # mjj > 350, pTH > 200
-       'mjjGT350_pthGT200_ee'   : 'mjj > 350 && pTWW >  200 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && dymva_alt_dnn_VBF > 0.9',
-       'mjjGT350_pthGT200_mm'   : 'mjj > 350 && pTWW >  200 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && dymva_alt_dnn_VBF > 0.9',
+       '2j_mjjGT350_pthGT200_ee'   : 'mjj > 350 && pTWW >  200 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && dymva_alt_dnn_VBF > 0.9',
+       '2j_mjjGT350_pthGT200_mm'   : 'mjj > 350 && pTWW >  200 && (Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && dymva_alt_dnn_VBF > 0.9',
    }
 }
 
