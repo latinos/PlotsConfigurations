@@ -6,6 +6,12 @@
   
     mkShapesMulti.py --pycfg=configuration.py --doBatch=1 --batchSplit=Samples,Files --batchQueue=testmatch
 
+Resubmit failed jobs:
+
+    cd $HOME/scripts/jobs/mkShapes__STXS_qqH_SF_2017/
+    for i in *jid; do condor_submit ${i/jid/jds}; done
+    cd -
+
 ## Hadd files
 
     mkShapesMulti.py --pycfg=configuration.py --doHadd=1 --batchSplit=Samples,Files --doNotCleanup --nThreads=8
@@ -44,6 +50,16 @@ Drop bogus nuisances:
     ./dropNuisance.sh 
 
 ## Create the workspace from the datacard
+
+Source combine:
+
+    cd $HOME/work/combine/CMSSW_10_2_13/src/
+
+    cmsenv
+
+    cd -
+
+Run the script for workspace creation:
 
     python doWorkspace.py
 
