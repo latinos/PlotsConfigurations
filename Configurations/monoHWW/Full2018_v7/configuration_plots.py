@@ -8,13 +8,13 @@ tag = 'darkHiggs2018_v7'
 #tag = 'Top2018_v7'
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFile'
+outputDir = 'rootFile_plots'
 
 # file with TTree aliases
 aliasesFile = 'aliases.py'
 
 # file with list of variables
-variablesFile = 'variables.py'
+variablesFile = 'variables_plots.py'
 
 # file with list of cuts
 cutsFile = 'cuts.py' 
@@ -34,7 +34,7 @@ lumi = 59.74
 outputDirPlots = 'plots'
 
 # used by mkDatacards to define output directory for datacards
-outputDirDatacard = 'datacards_2018'
+outputDirDatacard = 'datacards'
 
 # structure file for datacard
 structureFile = 'structure.py'

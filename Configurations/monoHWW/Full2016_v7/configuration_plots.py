@@ -4,17 +4,17 @@ treeName = 'Events'
 
 #tag = 'DY2018_v7'
 #tag = 'DY2018_v7_INCL_v1'
-tag = 'darkHiggs2018_v7'
+tag = 'darkHiggs2016_v7'
 #tag = 'Top2018_v7'
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFile'
+outputDir = 'rootFile_plots'
 
 # file with TTree aliases
 aliasesFile = 'aliases.py'
 
 # file with list of variables
-variablesFile = 'variables.py'
+variablesFile = 'variables_plots.py'
 
 # file with list of cuts
 cutsFile = 'cuts.py' 
@@ -27,14 +27,14 @@ samplesFile = 'samples.py'
 plotFile = 'plot.py' 
 
 # luminosity to normalize to (in 1/fb)
-lumi = 59.74
+lumi = 35.867
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
 outputDirPlots = 'plots'
 
 # used by mkDatacards to define output directory for datacards
-outputDirDatacard = 'datacards_2018'
+outputDirDatacard = 'datacards'
 
 # structure file for datacard
 structureFile = 'structure.py'

@@ -198,7 +198,7 @@ files = nanoGetSampleFiles(mcDirectory, 'Wg_MADGRAPHMLM') + \
 samples['VgS'] = {
     'name': files,
     'weight': mcCommonWeight + ' * (gstarLow * 0.94 + gstarHigh * 1.14)',
-    'FilesPerJob': 15,
+    'FilesPerJob': 4,
     'subsamples': {
       'L': 'gstarLow',
       'H': 'gstarHigh'
