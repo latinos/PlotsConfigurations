@@ -90,14 +90,17 @@ aliases['bReqTight'] = {
 
 aliases['bVetoSF'] = {
     'expr': 'TMath::Exp(Sum$(TMath::Log((CleanJet_pt>20 && abs(CleanJet_eta)<2.5)*Jet_btagSF_deepcsv_shape[CleanJet_jetIdx]+1*(CleanJet_pt<=20 || abs(CleanJet_eta)>=2.5))))',
+    'samples': mc
 }
 
 aliases['bReqSF'] = {
     'expr': 'TMath::Exp(Sum$(TMath::Log((CleanJet_pt>30 && abs(CleanJet_eta)<2.5)*Jet_btagSF_deepcsv_shape[CleanJet_jetIdx]+1*(CleanJet_pt<=30 || abs(CleanJet_eta)>=2.5))))',
+    'samples': mc
 }
 
 aliases['btagSF'] = {
     'expr': 'bVeto*bVetoSF + bReqTight *bReqSF',
+    'samples': mc
 }
 
 
@@ -124,9 +127,18 @@ aliases['isSingleTop'] = {
     'samples': ['top']
 }
 
+aliases['topGenPtOTF'] = {
+    'expr': 'Sum$((GenPart_pdgId == 6 && TMath::Odd(GenPart_statusFlags / %d)) * GenPart_pt)' % lastcopy,
+    'samples': ['top']
+}
+
+aliases['antitopGenPtOTF'] = {
+    'expr': 'Sum$((GenPart_pdgId == -6 && TMath::Odd(GenPart_statusFlags / %d)) * GenPart_pt)' % lastcopy,
+    'samples': ['top']
+}
 
 aliases['Top_pTrw'] = {
-    'expr': 'isTTbar * (TMath::Sqrt((0.103*TMath::Exp(-0.0118*topGenPt) - 0.000134*topGenPt + 0.973) * (0.103*TMath::Exp(-0.0118*antitopGenPt) - 0.000134*antitopGenPt + 0.973))) + isSingleTop',
+    'expr': 'isTTbar * (TMath::Sqrt((0.103*TMath::Exp(-0.0118*topGenPtOTF) - 0.000134*topGenPtOTF + 0.973) * (0.103*TMath::Exp(-0.0118*antitopGenPtOTF) - 0.000134*antitopGenPtOTF + 0.973))) + isSingleTop',
     'samples': ['top']
 }
 
@@ -161,16 +173,18 @@ aliases['DY_LO_pTllrw'] = {
 
 aliases['fake_weight_corrected'] = {
     'class': 'FakeWeightCorrector',
-    'args': ("%s/corrections/fakeweight_correction_2018.root" % conf_folder, 
-                "mvaFall17V1Iso_WP90", "fakeW_ele_mvaFall17V1Iso_WP90_mu_cut_Tight_HWWW_mu10_ele35", 
-                os.getenv('CMSSW_BASE') + "/src/LatinoAnalysis/NanoGardener/python/data/fake_prompt_rates/Full2018v7/mvaFall17V1IsoWP90/EleFR_jet35.root",
-                os.getenv('CMSSW_BASE') + "/src/LatinoAnalysis/NanoGardener/python/data/fake_prompt_rates/Full2018v7/mvaFall17V1IsoWP90/ElePR.root"),
+    'args': ("%s/corrections/fakeweight_correction_2018_v2.root" % conf_folder, 
+                "mvaFall17V1Iso_WP90", "fakeW_ele_mvaFall17V1Iso_WP90_mu_cut_Tight_HWWW_1l_mu20_ele35", 
+                os.getenv('CMSSW_BASE') + "/src/LatinoAnalysis/NanoGardener/python/data/fake_prompt_rates/Full2018v7/mvaFall17V1Iso_WP90/EleFR_jet35.root",
+                os.getenv('CMSSW_BASE') + "/src/LatinoAnalysis/NanoGardener/python/data/fake_prompt_rates/Full2018v7/mvaFall17V1Iso_WP90/ElePR.root"),
     'linesToAdd' : [
         'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
         '.L %s/patches/fakeweight_corrector.cc+' % configurations
      ],
     'samples': ["Fake"]
 }
+
+####################################
 
 # PU jet Id SF
 

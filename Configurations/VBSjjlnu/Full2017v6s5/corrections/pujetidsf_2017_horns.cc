@@ -20,6 +20,17 @@
 class PUJetIdEventSF : public multidraw::TTreeFunction {
 public:
   PUJetIdEventSF(char const* filename, char const* yr, char const* wp);
+  ~PUJetIdEventSF()
+  {
+    for (auto& sms : sfMapSets) {
+            for (auto& sfMap : sms)
+              sfMap.reset();
+    }
+    for (auto& sms : effMapSets) {
+      for (auto& efMap : sms)
+        efMap.reset();
+    }
+  }
 
   char const* getName() const override { return "PUJetIdEventSF"; }
   TTreeFunction* clone() const override { return new PUJetIdEventSF(filename_.c_str(), year.c_str(), wpStr_.c_str()); }
@@ -115,6 +126,7 @@ PUJetIdEventSF::evaluate(unsigned)
 {
   return custom_scalefactor;
 }
+
 
 
 void
@@ -237,7 +249,7 @@ PUJetIdEventSF::bindTree_(multidraw::FunctionLibrary& _library)
     _library.bindBranch(Lepton_eta, "Lepton_eta");
     _library.bindBranch(Lepton_phi, "Lepton_phi");
     _library.bindBranch(Jet_genJetIdx, "Jet_genJetIdx");
-    _library.bindBranch(Jet_puId, "Jet_jetId");
+    _library.bindBranch(Jet_puId, "Jet_puId");
 
     _library.addDestructorCallback([]() {
         currentEntry = -2;

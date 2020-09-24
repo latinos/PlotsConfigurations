@@ -480,32 +480,33 @@ variables['jet_4_pt'] = {   'name': 'Alt$(CleanJet_pt[CleanJetNotFat_jetIdx[4]],
                         }
 
 
-variables['jet_0_eta'] = {   'name': 'abs(Alt$(CleanJet_eta[CleanJetNotFat_jetIdx[0]], -1))',      
+variables['jet_0_eta'] = {   'name': 'abs(Alt$(CleanJet_eta[CleanJetNotFat_jetIdx[0]], -999))',      
                         'range' : (40,0,5),  
                         'xaxis' : 'Jet 1 eta', 
-                        'fold' : 2
+                        'fold' : 0
                         }
 
-variables['jet_1_eta'] = {   'name': 'abs(Alt$(CleanJet_eta[CleanJetNotFat_jetIdx[1]], -1))',      
+variables['jet_1_eta'] = {   'name': 'abs(Alt$(CleanJet_eta[CleanJetNotFat_jetIdx[1]], -999))',      
                         'range' :  (40,0,5),  
                         'xaxis' : 'Jet 2 eta', 
                         'fold' : 2
                         }
 
-variables['jet_2_eta'] = {   'name': 'abs(Alt$(CleanJet_eta[CleanJetNotFat_jetIdx[2]], -1))',      
+variables['jet_2_eta'] = {   'name': 'abs(Alt$(CleanJet_eta[CleanJetNotFat_jetIdx[2]], -999))',      
                         'range' :  (40,0,5),  
                         'xaxis' : 'Jet 3 eta', 
-                        'fold' : 2
+                        'fold' : 0
                         }
 
-variables['jet_3_eta'] = {   'name': 'abs(Alt$(CleanJet_eta[CleanJetNotFat_jetIdx[3]], -1))',      
+variables['jet_3_eta'] = {   'name': 'abs(Alt$(CleanJet_eta[CleanJetNotFat_jetIdx[3]], -999))',      
                         'range' :  (40,0,5),  
                         'xaxis' : 'Jet 4 eta', 
-                        'fold' : 2
+                        'fold' : 0
                         }
 
-variables['jet_4_eta'] = {   'name': 'abs(Alt$(CleanJet_eta[CleanJetNotFat_jetIdx[4]], -1))',      
+variables['jet_4_eta'] = {   'name': 'abs(Alt$(CleanJet_eta[CleanJetNotFat_jetIdx[4]], -999))',      
                         'range' :  (40,0,5),  
                         'xaxis' : 'Jet 5 eta', 
-                        'fold' : 2
+                        'fold' : 0
                         }
+                        

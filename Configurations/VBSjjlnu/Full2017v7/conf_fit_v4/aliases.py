@@ -126,22 +126,33 @@ aliases['nCleanGenJet'] = {
     'samples': mc
 }
 
+aliases['topGenPtOTF'] = {
+    'expr': 'Sum$((GenPart_pdgId == 6 && TMath::Odd(GenPart_statusFlags / %d)) * GenPart_pt)' % lastcopy,
+    'samples': ['top']
+}
+
+aliases['antitopGenPtOTF'] = {
+    'expr': 'Sum$((GenPart_pdgId == -6 && TMath::Odd(GenPart_statusFlags / %d)) * GenPart_pt)' % lastcopy,
+    'samples': ['top']
+}
+
 ##### Top pT reweighting
 aliases['Top_pTrw'] = {
     # Mine:
     #'expr': '(topGenPt * antitopGenPt > 0.) * (TMath::Sqrt(TMath::Exp(-2.02274e-01 + 1.09734e-04*topGenPt - 1.30088e-07*topGenPt*topGenPt + 5.83494e+01/(topGenPt+1.96252e+02)) * TMath::Exp(-2.02274e-01 + 1.09734e-04*antitopGenPt - 1.30088e-07*antitopGenPt*antitopGenPt + 5.83494e+01/(antitopGenPt+1.96252e+02)))) + (topGenPt * antitopGenPt <= 0.)',
 
     # New Top PAG
-    'expr': '(topGenPt * antitopGenPt > 0.) * (TMath::Sqrt((0.103*TMath::Exp(-0.0118*topGenPt) - 0.000134*topGenPt + 0.973) * (0.103*TMath::Exp(-0.0118*antitopGenPt) - 0.000134*antitopGenPt + 0.973))) + (topGenPt * antitopGenPt <= 0.)',
+    'expr': '(topGenPtOTF * antitopGenPtOTF > 0.) * (TMath::Sqrt((0.103*TMath::Exp(-0.0118*topGenPtOTF) - 0.000134*topGenPtOTF + 0.973) * (0.103*TMath::Exp(-0.0118*antitopGenPtOTF) - 0.000134*antitopGenPtOTF + 0.973))) + (topGenPtOTF * antitopGenPtOTF <= 0.)',
     'samples': ['top']
 }
 
-##### DY Z pT reweighting
+#### DY Z pT reweighting
 aliases['getGenZpt_OTF'] = {
     'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/patches/getGenZpt.cc+' % os.getenv('CMSSW_BASE')],
     'class': 'getGenZpt',
     'samples': ['DY']
 }
+
 handle = open('%s/src/PlotsConfigurations/Configurations/patches/DYrew30.py' % os.getenv('CMSSW_BASE'),'r')
 exec(handle)
 handle.close()
@@ -159,9 +170,9 @@ aliases['DY_LO_pTllrw'] = {
 aliases['fake_weight_corrected'] = {
     'class': 'FakeWeightCorrector',
     'args': ("%s/VBSjjlnu/Full2017v6/corrections/fakeweight_correction.root" % configurations, 
-                "mvaFall17V1Iso_WP90", "fakeW_ele_mvaFall17V1Iso_WP90_mu_cut_Tight_HWWW_mu10_ele35", 
-                os.getenv('CMSSW_BASE') + "/src/LatinoAnalysis/NanoGardener/python/data/fake_prompt_rates/Full2017v5/mvaFall17V1Iso_WP90/EleFR_jet35.root",
-                os.getenv('CMSSW_BASE') + "/src/LatinoAnalysis/NanoGardener/python/data/fake_prompt_rates/Full2017v5/mvaFall17V1Iso_WP90/ElePR.root"),
+                "mvaFall17V1Iso_WP90", "fakeW_ele_mvaFall17V1Iso_WP90_mu_cut_Tight_HWWW_1l_mu20_ele35", 
+                os.getenv('CMSSW_BASE') + "/src/LatinoAnalysis/NanoGardener/python/data/fake_prompt_rates/Full2017v7/mvaFall17V1Iso_WP90/EleFR_jet35.root",
+                os.getenv('CMSSW_BASE') + "/src/LatinoAnalysis/NanoGardener/python/data/fake_prompt_rates/Full2017v7/mvaFall17V1Iso_WP90/ElePR.root"),
     'linesToAdd' : [
         'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
         '.L %s/patches/fakeweight_corrector.cc+' % configurations
@@ -180,7 +191,7 @@ aliases['PUJetIdSF'] = {
     ],
     'class': 'PUJetIdEventSF',
     'args': (puidSFSource, '2017', 'loose'),
-    'samples': mc
+    'samples': [ s for s in mc if s not in ["DY"]]
 }
 
 

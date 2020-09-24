@@ -36,6 +36,7 @@ palette = {
     "DarkBlue": (8, 103, 136), #086788
     "Green": (47, 181, 85), #2fb555
     "Green2": (55, 183, 76),  #37b74c
+    "Green3": (16,235,52),#10eb34
     "LightGreen" : (82, 221, 135), #52dd87
     "Violet": (242, 67, 114), #f24372  
     "Pink": (247, 191, 223)
@@ -73,6 +74,21 @@ groupPlot['vbfV+VV+VVV']  = {
                   'fill': 1001
               }
 
+groupPlot['Vg']  = {  
+                  'nameHR' : "V#gamma",
+                  'isSignal' : 0,
+                  'color'    : palette["Green3"],
+                  'samples'  : ['Vg'],
+                  'fill': 1001
+              }
+
+groupPlot['VgS']  = {  
+                  'nameHR' : "V#gamma*",
+                  'isSignal' : 0,
+                  'color'    : palette["Orange"],
+                  'samples'  : ['VgS'],
+                  'fill': 1001
+              }
 
 groupPlot['DY']  = {  
                 'nameHR' : "DY",
@@ -97,7 +113,7 @@ groupPlot["Wjets"]  = {
                         'nameHR' : 'W+Jets',
                         'isSignal' : 0,
                         'color':   palette["Yellow"],
-                        'samples'  : wjets_bins,
+                        'samples'  : ["Wjets_HT"],
                         'fill': 1001
                 }
 
@@ -150,6 +166,21 @@ plot['VBF-V']  = {
                   'scale'    : 1.   ,
               }
 
+plot['Vg']  = {
+                  'color': colors['kGreen']+3,  
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.   ,
+              }   
+         
+
+
+plot['VgS']  = {  
+                'color': colors['kMagenta']+1,
+                'isSignal' : 0,
+                'isData'   : 0, 
+                'scale'    : 1.0,
+            }
 
 plot['Fake']  = {  
                 'color': colors['kTeal'],
@@ -166,20 +197,20 @@ plot['top'] = {
                  'scale'    : 1.0 
                  }
 
-# plot['Wjets'] = {   
-#                  'color': colors['kAzure']-1,
-#                  'isSignal' : 0,
-#                  'isData'   : 0, 
-#                  'scale'    : 1.0 
-#                  }
+plot['Wjets_HT'] = {   
+                 'color': colors['kAzure']-1,
+                 'isSignal' : 0,
+                 'isData'   : 0, 
+                 'scale'    : 1.0 
+                 }
 
-for wjetbin in wjets_bins:
-    plot[wjetbin] = {   
-                    'color': colors['kAzure']-1,
-                    'isSignal' : 0,
-                    'isData'   : 0, 
-                    'scale'    : 1.0 
-                    }
+# for wjetbin in wjets_bins:
+#     plot[wjetbin] = {   
+#                     'color': colors['kAzure']-1,
+#                     'isSignal' : 0,
+#                     'isData'   : 0, 
+#                     'scale'    : 1.0 
+#                     }
 
 plot['VBS']  = {
                   'color': colors["kCyan"]+1, 
