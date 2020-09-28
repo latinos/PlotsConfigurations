@@ -639,8 +639,8 @@ nuisances['WWqscale']  = {
 
 # ## rate parameters
 
-nuisances['Topnorm_2017']  = {
-               'name'  : 'Topnorm',
+nuisances['Topnorm']  = {
+               'name'  : 'Topnorm_2017',
                'samples'  : {
                    'top' : '1.00',
                    },
@@ -652,8 +652,8 @@ nuisances['Topnorm_2017']  = {
               }
 
 
-nuisances['WWnorm_2017']  = {
-               'name'  : 'WWnorm',
+nuisances['WWnorm']  = {
+               'name'  : 'WWnorm_2017',
                'samples'  : {
                    'WW' : '1.00',
                    },
@@ -664,8 +664,8 @@ nuisances['WWnorm_2017']  = {
                    ]
               }
 
-nuisances['DYnorm_2017']  = {
-               'name'  : 'DYnorm',
+nuisances['DYnorm']  = {
+               'name'  : 'DYnorm_2017',
                'samples'  : {
                    'DY' : '1.00',
                    },

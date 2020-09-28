@@ -618,8 +618,8 @@ nuisances['stat'] = {
 }
 
 # ##rate parameters
-nuisances['Topnorm_2018']  = {
-               'name'  : 'Topnorm',
+nuisances['Topnorm']  = {
+               'name'  : 'Topnorm_2018',
                'samples'  : {
                    'top' : '1.00',
                    },
@@ -631,8 +631,8 @@ nuisances['Topnorm_2018']  = {
               }
 
 
-nuisances['WWnorm_2018']  = {
-               'name'  : 'WWnorm',
+nuisances['WWnorm']  = {
+               'name'  : 'WWnorm_2018',
                'samples'  : {
                    'WW' : '1.00',
                    },
@@ -643,8 +643,8 @@ nuisances['WWnorm_2018']  = {
                    ]
               }
 
-nuisances['DYnorm_2018']  = {
-               'name'  : 'DYnorm',
+nuisances['DYnorm']  = {
+               'name'  : 'DYnorm_2018',
                'samples'  : {
                    'DY' : '1.00',
                    },

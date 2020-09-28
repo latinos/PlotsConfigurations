@@ -686,7 +686,7 @@ nuisances['stat'] = {
 
 ## rate parameters
 nuisances['Topnorm']  = {
-               'name'  : 'Topnorm',
+               'name'  : 'Topnorm_2016',
                'samples'  : {
                    'top' : '1.00',
                    },
@@ -699,7 +699,7 @@ nuisances['Topnorm']  = {
 
 
 nuisances['WWnorm']  = {
-               'name'  : 'WWnorm',
+               'name'  : 'WWnorm_2016',
                'samples'  : {
                    'WW' : '1.00',
                    },
@@ -711,7 +711,7 @@ nuisances['WWnorm']  = {
               }
 
 nuisances['DYnorm']  = {
-               'name'  : 'DYnorm',
+               'name'  : 'DYnorm_2016',
                'samples'  : {
                    'DY' : '1.00',
                    },
