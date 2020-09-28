@@ -197,21 +197,21 @@ nuisances['muonpt'] = {
 }
 
 
-# ##### Jet energy scale
-# jes_systs = ['JESAbsolute','JESAbsolute_2016','JESBBEC1','JESBBEC1_2016','JESEC2','JESEC2_2016','JESFlavorQCD','JESHF','JESHF_2016','JESRelativeBal','JESRelativeSample_2016']
+##### Jet energy scale
+jes_systs = ['JESAbsolute','JESAbsolute_2016','JESBBEC1','JESBBEC1_2016','JESEC2','JESEC2_2016','JESFlavorQCD','JESHF','JESHF_2016','JESRelativeBal','JESRelativeSample_2016']
 
-# for js in jes_systs:
-#   nuisances[js] = {
-#       'name': 'CMS_scale_'+js,
-#       'kind': 'suffix',
-#       'type': 'shape',
-#       'mapUp': js+'up',
-#       'mapDown': js+'do',
-#       'samples': dict((skey, ['1', '1']) for skey in mc),
-#       'folderUp': makeMCDirectory('JESup_suffix'),
-#       'folderDown': makeMCDirectory('JESdo_suffix'),
-#       'AsLnN': '1'
-#   }
+for js in jes_systs:
+  nuisances[js] = {
+      'name': 'CMS_scale_'+js,
+      'kind': 'suffix',
+      'type': 'shape',
+      'mapUp': js+'up',
+      'mapDown': js+'do',
+      'samples': dict((skey, ['1', '1']) for skey in mc),
+      'folderUp': makeMCDirectory('JESup_suffix'),
+      'folderDown': makeMCDirectory('JESdo_suffix'),
+      'AsLnN': '1'
+  }
 
 ##### MET energy scale
 
@@ -238,8 +238,7 @@ nuisances['PU'] = {
         'DY': ['0.993259983266*(puWeightUp/puWeight)', '0.997656381501*(puWeightDown/puWeight)'],
         'top': ['1.00331969187*(puWeightUp/puWeight)', '0.999199609528*(puWeightDown/puWeight)'],
         'WW': ['1.0033022059*(puWeightUp/puWeight)', '0.997085330608*(puWeightDown/puWeight)'],
-        'ggH_hww': ['1.0036768006*(puWeightUp/puWeight)', '0.995996570285*(puWeightDown/puWeight)'],
-        'qqH_hww': ['1.00374694528*(puWeightUp/puWeight)', '0.995878596852*(puWeightDown/puWeight)'],
+        'Higgs': ['1.0036768006*(puWeightUp/puWeight)', '0.995996570285*(puWeightDown/puWeight)'],
     },
     'AsLnN': '1',
 }
@@ -253,10 +252,7 @@ nuisances['PS_ISR']  = {
         'WW'     : '1.0004147/0.9990865',
         'top'    : '1.0038372/0.9949470',
         'DY'     : '1.0040364/0.9947131',
-        'ggH_hww': '1.0024342/0.9966181',
-        'qqH_hww': '1.0004923/0.9995787',
-        'WH_hww' : '1.0012062/0.9985316',
-        'ZH_hww' : '1.0007957/0.9989884',
+        'Higgs'  : '1.0024342/0.9966181',
     },
 }
 
@@ -267,10 +263,7 @@ nuisances['PS_FSR']  = {
         'WW'     : '0.9968231/1.0051404',
         'top'    : '0.9705783/1.0474730',
         'DY'     : '0.9974074/1.0048384',
-        'ggH_hww': '0.9955678/1.0060251',
-        'qqH_hww': '0.9866768/1.0239547',
-        'WH_hww' : '0.9891188/1.0215866',
-        'ZH_hww' : '0.9896471/1.0173018',
+        'Higgs'  : '0.9955678/1.0060251',
     },
 }
 
