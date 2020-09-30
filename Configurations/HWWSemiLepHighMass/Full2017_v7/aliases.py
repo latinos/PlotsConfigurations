@@ -13,12 +13,20 @@ configurations = os.path.dirname(configurations) # Configurations
 # imported from samples.py:
 # samples, signals
 
-mc = [skey for skey in samples if skey not in ('Fake', 'DATA')]
+mc = [skey for skey in samples if skey not in ('FAKE', 'DATA')]
 
 
 eleWP    = 'mvaFall17V1Iso_WP90'
 muWP     = 'cut_Tight_HWWW'
 
+aliases['DNN_isVBF_OTF'] = {
+    'class': 'DNNprod',
+    'linesToAdd':[
+        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+        'gSystem->Load("libDNNEvaluator.so")',
+        '.L %s/src/PlotsConfigurations/Configurations/HighMass/DNN_prod_semi.cc+' % os.getenv('CMSSW_BASE'),
+    ],
+}
 
 
 aliases['mjjGen_OTF'] = {
@@ -41,11 +49,12 @@ aliases['Lep1WPCut'] = {
     'expr': '(Alt$(Lepton_isTightElectron_'+eleWP+'[1], 0) > 0.5 \
             || Alt$(Lepton_isTightMuon_'+muWP+'[1], 0) > 0.5)'
 }
+aliases['nTightLep'] = {
+    'expr': '(Sum$(Lepton_isTightElectron_'+eleWP+') + Sum$(Lepton_isTightMuon_'+muWP+'))',
+}
 
 
 aliases['WlepMT'] = {
-    # 'expr': 'TMath::Sqrt( 2*Lepton_pt[0]*PuppiMET_pt \
-    # *( 1-TMath::Cos(Lepton_phi[0]-PuppiMET_phi) ) )'
     'expr': 'HM_Wlep_mt'
 }
 # aliases['boostHiggsMT'] = {
@@ -53,20 +62,15 @@ aliases['WlepMT'] = {
 #     *( 1-TMath::Cos(HM_Wlep_phi_Puppi-Alt$(HM_CleanFatJetPassMBoosted_phi[0], 0)) ) )'
 # }
 aliases['resolvHiggsMT'] = {
-    # 'expr': 'TMath::Sqrt( 2*HM_Wlep_pt_Puppi*HM_Whad_pt \
-    # *( 1-TMath::Cos(HM_Wlep_phi_Puppi-HM_Whad_phi) ) )'
-    'expr': 'HM_Hlnjj_mt'
+    # 'expr': 'HM_Hlnjj_mt'
+    'expr': 'TMath::Sqrt( 2*Lepton_pt[0]*PuppiMET_pt \
+    *( 1-TMath::Cos(Lepton_phi[0]-PuppiMET_phi) ) )'
 }
-
 
 aliases['idxCleanFatJetW'] = {
-    # 'linesToAdd': ['.L %s/HWWSemiLepHighMass/indexWFatJet.cc+' % hmdir],
-    # 'class': 'FindBoostWIndex'
-    'expr': 'HM_idxWfat_noTau21Cut'
+    'expr': '(HM_idxWfat_noTau21Cut*(HM_idxWfat_noTau21Cut>=0) + 999*(HM_idxWfat_noTau21Cut<0))'
 }
 aliases['manualHfatM'] = {
-    # 'linesToAdd': ['.L %s/HWWSemiLepHighMass/boostHiggsMass.cc+' % hmdir],
-    # 'class': 'CalcBoostHiggsMass',
     'expr': 'HM_HlnFatMass_noTau21Cut'
 }
 
@@ -94,14 +98,6 @@ aliases['boostedNoTau21'] = {
 
 aliases['resolved'] = {
     'expr': '!boosted[0] \
-            && PuppiMET_pt > 30 \
-            && HM_WptOvHak4M > 0.35 \
-            && resolvHiggsMT > 60 \
-            && HM_Whad_pt > 30'
-}
-aliases['resolvedTEST'] = {
-    'expr': 'boostedNoTau21[0] \
-            && !tau21Cut \
             && PuppiMET_pt > 30 \
             && HM_WptOvHak4M > 0.35 \
             && resolvHiggsMT > 60 \
@@ -185,7 +181,7 @@ aliases['dPhi_LNu'] = {
 aliases['LHEPartWlepPt'] = {
     'linesToAdd': ['.L %s/HWWSemiLepHighMass/LHEPartWlepPt.cc+' % configurations],
     'class': 'LHEPartWlepPt',
-    'samples': ['Wjets-1+2J',] #['Wjets-0J', 'Wjets-1+2J']
+    'samples': ['Wjets-0J', 'Wjets-1+2J']
 }
 data = np.genfromtxt(os.getenv('CMSSW_BASE')+'/src/LatinoAnalysis/Gardener/python/data/ewk/kewk_w.dat', skip_header=2, skip_footer=7)
 
@@ -207,15 +203,15 @@ uncert_string=uncert_string[:-1]+")"
 
 aliases['EWK_W_correction'] = {
     'expr': weight_string,
-    'samples': ['Wjets-1+2J',] #['Wjets-0J', 'Wjets-1+2J']
+    # 'samples': ['Wjets-1+2J',]
+    'samples': ['Wjets-0J', 'Wjets-1+2J']
 }
 aliases['EWK_W_correction_uncert'] = {
     'expr': uncert_string,
     # 'samples': 'Wjets'
-    'samples': ['Wjets-1+2J',] #['Wjets-0J', 'Wjets-1+2J']
+    # 'samples': ['Wjets-1+2J',]
+    'samples': ['Wjets-0J', 'Wjets-1+2J']
 }
-
-
 
 
 
@@ -231,38 +227,39 @@ aliases['gstarHigh'] = {
 
 
 
-
-
 aliases['GenLHE'] = {
 'expr': '(Sum$(LHEPart_pdgId == 21) == 0)',
 'samples': ['qqWWqq', 'WW2J']
 }
 
 
+
+
 # # B-Stuff
 boostedJetBVetoCondition = '(\
 CleanJet_pt[CleanJetNotFat_jetIdx] > 20 \
-&& abs(CleanJet_eta[CleanJetNotFat_jetIdx]) < 2.5\
+&& abs(CleanJet_eta[CleanJetNotFat_jetIdx]) < 2.5 \
 )'
 resolvedJetBVetoCondition = '(\
-resolved[0] \
+HM_idx_j1 >= 0 && HM_idx_j2 >= 0\
 && CleanJet_pt > 20 && abs(CleanJet_eta) < 2.5 \
 && CleanJet_jetIdx != CleanJet_jetIdx[HM_idx_j1] \
 && CleanJet_jetIdx != CleanJet_jetIdx[HM_idx_j2] \
 )'
+oldJetBVetoCondition = '(\
+CleanJet_pt > 20 && abs(CleanJet_eta) < 2.5 \
+)'
 
 aliases['bVetoBoosted'] = {
-    'expr': '(Sum$(Jet_btagDeepB[CleanJet_jetIdx[CleanJetNotFat_jetIdx]] > bWP[0] \
-                    && {0} \
-                ) == 0)'.format(boostedJetBVetoCondition)
+    'expr': '(Sum$(Jet_btagDeepB[CleanJet_jetIdx[CleanJetNotFat_jetIdx]] > bWP[0] && {0}) == 0)'\
+            .format(boostedJetBVetoCondition)
 }
 aliases['bVetoResolved'] = {
-    'expr': '(Sum$(Jet_btagDeepB[CleanJet_jetIdx] > bWP[0] \
-                    && {0} \
-                ) == 0)'.format(resolvedJetBVetoCondition)
+    'expr': '(Sum$(Jet_btagDeepB[CleanJet_jetIdx] > bWP[0] && {0}) == 0)'\
+            .format(resolvedJetBVetoCondition)
 }
 aliases['bVeto'] = {
-    'expr': '((boosted[0]*bVetoBoosted) || (!boosted[0]*resolved[0]*bVetoResolved))'
+    'expr': '((boosted[0]*bVetoBoosted) || (resolved[0]*bVetoResolved))'
 }
 aliases['bReq'] = {
     'expr': '!bVeto[0]'
@@ -272,8 +269,7 @@ aliases['bReq'] = {
 
 aliases['btagBoostedSF'] = {
     'expr': 'TMath::Exp(Sum$(TMath::Log( \
-    {0} * Jet_btagSF_deepcsv_shape[CleanJet_jetIdx] \
-    +!{0} * 1 \
+    {0} * Jet_btagSF_deepcsv_shape[CleanJet_jetIdx] + !{0} * 1 \
     )))'.format(boostedJetBVetoCondition),
     'samples': mc
 }
@@ -286,32 +282,35 @@ aliases['btagResolvedSF'] = {
 
 
 aliases['btagSF'] = {
-    'expr': '(boosted[0]*btagBoostedSF[0] + !boosted[0]*resolved[0]*btagResolvedSF[0])',
+    'expr': '(boosted[0]*btagBoostedSF[0] + resolved[0]*btagResolvedSF[0])',
     'samples': mc
 }
-
+aliases['OLDbtagSF'] = {
+    'expr': 'TMath::Exp(Sum$(TMath::Log( \
+    {0} * Jet_btagSF_deepcsv_shape[CleanJet_jetIdx] + !{0} * 1 \
+    )))'.format(oldJetBVetoCondition),
+    'samples': mc
+}
 
 for shift in ['jes','lf','hf','lfstats1','lfstats2','hfstats1','hfstats2','cferr1','cferr2']:
 
     # for targ in ['bVeto', 'btagn']:
     for targ in ['btagResolved', 'btagBoosted']:
         alias = aliases['%sSF%sup' % (targ, shift)] = copy.deepcopy(aliases['%sSF' % targ])
-        alias['expr'] = alias['expr'].replace('btagSF_shape', 'btagSF_shape_up_%s' % shift)
-        # alias['expr'] = alias['expr'].replace('btagSF_shapeFix', 'btagSF_shapeFix_up_%s' % shift)
+        alias['expr'] = alias['expr'].replace('btagSF_deepcsv_shape', 'btagSF_deepcsv_shape_up_%s' % shift)
 
         alias = aliases['%sSF%sdown' % (targ, shift)] = copy.deepcopy(aliases['%sSF' % targ])
-        alias['expr'] = alias['expr'].replace('btagSF_shape', 'btagSF_shape_down_%s' % shift)
-        # alias['expr'] = alias['expr'].replace('btagSF_shapeFix', 'btagSF_shapeFix_down_%s' % shift)
+        alias['expr'] = alias['expr'].replace('btagSF_deepcsv_shape', 'btagSF_deepcsv_shape_down_%s' % shift)
 
 
     aliases['btagSF%sup' % shift] = {
         'expr': 'boosted[0]*btagBoostedSF{shift}up[0] \
-         + !boosted[0]*resolved[0]*btagResolvedSF{shift}up[0]'.format(shift = shift),
+         + resolved[0]*btagResolvedSF{shift}up[0]'.format(shift = shift),
         'samples': mc
     }
     aliases['btagSF%sdown' % shift] = {
         'expr': 'boosted[0]*btagBoostedSF{shift}down[0] \
-         + !boosted[0]*resolved[0]*btagResolvedSF{shift}down[0]'.format(shift = shift),
+         + resolved[0]*btagResolvedSF{shift}down[0]'.format(shift = shift),
         'samples': mc
     }
 
@@ -364,32 +363,8 @@ aliases['SFweightMuDown'] = {
 
 
 
-# No SF present for (Loose && !Tight) leptons -> set to 1
-aliases['LeptonSF_full'] = {
-    'expr': '(LepWPCut[0]*LepWPSF + !LepWPCut[0])',
-    'samples': mc
-}
-aliases['SFweightEleUp_full'] = {
-    'expr': '(LepWPCut[0]*SFweightEleUp + !LepWPCut[0])',
-    'samples': mc
-}
-aliases['SFweightEleDown_full'] = {
-    'expr': '(LepWPCut[0]*SFweightEleDown + !LepWPCut[0])',
-    'samples': mc
-}
-aliases['SFweightMuUp_full'] = {
-    'expr': '(LepWPCut[0]*SFweightMuUp + !LepWPCut[0])',
-    'samples': mc
-}
-aliases['SFweightMuDown_full'] = {
-    'expr': '(LepWPCut[0]*SFweightMuDown + !LepWPCut[0])',
-    'samples': mc
-}
-
-
-
 # PU jet Id SF
-
+# old
 puidSFSource = '{}/patches/PUID_80XTraining_EffSFandUncties.root'.format(configurations)
 
 aliases['PUJetIdSF'] = {
@@ -402,15 +377,28 @@ aliases['PUJetIdSF'] = {
     'samples': mc
 }
 
+# New:
+#puidSFSource = '%s/src/PlotsConfigurations/Configurations/patches/PUID_81XTraining_EffSFandUncties.root' % os.getenv('CMSSW_BASE')
+#
+#aliases['PUJetIdSF'] = {
+#    'linesToAdd': [
+#        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
+#        '.L %s/src/PlotsConfigurations/Configurations/patches/pujetidsf_event_new.cc+' % os.getenv('CMSSW_BASE')
+#    ],
+#    'class': 'PUJetIdEventSF',
+#    'args': (puidSFSource, '2017', 'loose'),
+#    'samples': mc
+#}
 
-# ,'LeptonSF_full[0]'
+
+
 # # data/MC scale factors
 # aliases['SFweight'] = {
 #     'expr': ' * '.join(['puWeight','TriggerEffWeight_1l', 'EMTFbug_veto','PrefireWeight','LepWPSF[0]','btagSF[0]','PUJetIdSF[0]','WtagSF[0]']),
 #     'samples': mc
 # }
 aliases['SFweight'] = {
-    'expr': ' * '.join(['puWeight','TriggerEffWeight_1l', 'EMTFbug_veto','PrefireWeight','LepWPSF[0]','btagSF[0]','PUJetIdSF[0]','WtagSF[0]']),
+    'expr': ' * '.join(['puWeight', 'TriggerEffWeight_1l', 'EMTFbug_veto',  'PrefireWeight', 'LepWPSF[0]', 'OLDbtagSF[0]', 'PUJetIdSF[0]', 'WtagSF[0]']),
     'samples': mc
 }
 
@@ -440,8 +428,8 @@ aliases['antitopGenPtOTF'] = {
 
 
 
-# Dennis Roy for 2017/2018
+
 aliases['Top_pTrw'] = {# New Top PAG
-    'expr': '((topGenPtOTF * antitopGenPtOTF > 0.) * (TMath::Sqrt((0.103*TMath::Exp(-0.0118*topGenPtOTF) - 0.000134*topGenPtOTF + 0.973) * (0.103*TMath::Exp(-0.0118*antitopGenPtOTF) - 0.000134*antitopGenPtOTF + 0.973))) + (topGenPtOTF * antitopGenPt <= 0.))',
+    'expr': '((topGenPtOTF * antitopGenPtOTF > 0.) * (TMath::Sqrt((0.103*TMath::Exp(-0.0118*topGenPtOTF) - 0.000134*topGenPtOTF + 0.973) * (0.103*TMath::Exp(-0.0118*antitopGenPtOTF) - 0.000134*antitopGenPtOTF + 0.973))) + (topGenPtOTF * antitopGenPtOTF <= 0.))',
     'samples': ['top']
 }

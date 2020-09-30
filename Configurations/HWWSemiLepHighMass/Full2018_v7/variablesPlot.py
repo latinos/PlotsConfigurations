@@ -1,14 +1,21 @@
 # # variables
 #
 # #variables = {}
-
-
-# variables['events']  = {
-#     'name' : '1',
-#     'range': (1,0,2),
-#     'xaxis': 'events',
+#
+#
+# variables['dnntest']  = {
+#     'name' : 'DNN_test',
+#     'range': (45,-1,2),
+#     'xaxis': 'DNN',
 #     'fold' : 3
 # }
+
+variables['events']  = {
+    'name' : '1',
+    'range': (1,0,2),
+    'xaxis': 'events',
+    'fold' : 3
+}
 
 #####################################################
 ############  High Mass category ideas  #############
@@ -39,13 +46,13 @@
 #     'fold' : 3
 # }
 # variables['fatJetPt'] = {
-#     'name' : 'Alt$(HM_CleanFatJetPassMBoosted_pt[0], -9099)',
+#     'name' : 'Alt$(CleanFatJetPassMBoosted_pt[0], -9099)',
 #     'range': (24,0,1200),
 #     'xaxis': '(boosted) W ',
 #     'fold' : 3
 # }
 # variables['pt_sum_boosted'] = {
-#     'name' : 'Lepton_pt[0] + PuppiMET_pt + Alt$(HM_CleanFatJetPassMBoosted_pt[0], -9099)',
+#     'name' : 'Lepton_pt[0] + PuppiMET_pt + Alt$(CleanFatJetPassMBoosted_pt[0], -9099)',
 #     'range': (50,0,2500),
 #     'xaxis': '(boosted) sum(pT)',
 #     'fold' : 3
@@ -68,12 +75,12 @@ variables['lepton0_eta'] = {
     # 'divideByBinWidth' : 1,
     'fold' : 0
 }
-# variables['lepton0_phi'] = {
-#     'name' : 'Lepton_phi[0]',
-#     'range': (12, -3.142, 3.142),
-#     'xaxis': 'lepton[0] phi',
-#     'fold' : 0
-# }
+variables['lepton0_phi'] = {
+    'name' : 'Lepton_phi[0]',
+    'range': (12, -3.142, 3.142),
+    'xaxis': 'lepton[0] phi',
+    'fold' : 0
+}
 
 
 #####################################################
@@ -111,12 +118,12 @@ variables['met_pt'] = {
     'xaxis': 'MET pt',
     'fold' : 3
 }
-# variables['met_phi'] = {
-#     'name' : 'PuppiMET_phi',
-#     'range': (12, -3.142, 3.142),
-#     'xaxis': 'MET phi',
-#     'fold' : 0
-# }
+variables['met_phi'] = {
+    'name' : 'PuppiMET_phi',
+    'range': (12, -3.142, 3.142),
+    'xaxis': 'MET phi',
+    'fold' : 0
+}
 
 
 #####################################################
@@ -136,12 +143,12 @@ variables['jet0_eta'] = {
     # 'divideByBinWidth' : 1,
     'fold' : 3
 }
-# variables['jet0_phi'] = {
-#     'name' : 'Alt$(CleanJet_phi[0], -99)',
-#     'range': (12, -3.142, 3.142),
-#     'xaxis': 'lepton[0] phi',
-#     'fold' : 0
-# }
+variables['jet0_phi'] = {
+    'name' : 'Alt$(CleanJet_phi[0], -99)',
+    'range': (12, -3.142, 3.142),
+    'xaxis': 'lepton[0] phi',
+    'fold' : 0
+}
 
 # variables['jet1_pt'] = {
 #    'name' : 'Alt$(CleanJet_pt[1], -1)',
@@ -162,32 +169,32 @@ variables['jet0_eta'] = {
 #############  High Mass HWW variables  ############
 #####################################################
 
-# variables['resolvHiggsMass'] = {
-#     'name' : 'HM_Hlnjj_mass',
-#     # 'range': ([0, 200, 250, 300, 350, 400, 450, 500, 550, 600,
-#     #           650, 700, 750, 800, 900, 1100, 1500, 2500],),
-#     'range': ([0, 200, 250, 290, 330, 370, 420, 470, 520,
-#                570, 620, 670, 720, 775, 875, 1050, 2000],),
-#     'xaxis': 'reconstr. H mass',
-#     'fold' : 3
-# }
-# variables['boostHiggsMass'] = {
-#     'name' : 'HM_CleanFatJetPassMBoosted_HlnFat_mass[0]',
-#     # 'range': ([0, 200, 300, 350, 400, 450, 500, 550, 600, 650, 700, 750, 800,
-#     #           900, 1000, 1100, 1200, 1350, 1500, 1700, 2000, 3000, 5000],),
-#     'range': ([0, 220, 300, 350, 400, 450, 490, 530, 580, 630, 680,
-#                730, 780, 840, 950, 1075, 1175, 1370, 1900, 5000],),
-#     'xaxis': 'reconstr. H mass',
-#     'fold' : 3
-# }
-# variables['hmHiggsMass'] = {
-#     'name' : 'HM_CleanFatJetPassMBoosted_HlnFat_mass[0]',
-#     # 'range': ([0, 900, 1000, 1100, 1200, 1350, 1500, 1700, 2000, 3000, 5000],),
-#     # 'range': ([0, 900, 1000, 1100, 1200, 1325, 1580, 2050, 5000],),
-#     'range': ([0, 900, 990, 1085, 1185, 1300, 1550, 2000, 5000],),
-#     'xaxis': 'reconstr. H mass',
-#     'fold' : 3
-# }
+variables['resolvHiggsMass'] = {
+    'name' : 'Hlnjj_mass',
+    # 'range': ([0, 200, 250, 300, 350, 400, 450, 500, 550, 600,
+    #           650, 700, 750, 800, 900, 1100, 1500, 2500],),
+    'range': ([0, 200, 250, 290, 330, 370, 420, 470, 520,
+               570, 620, 670, 720, 775, 875, 1050, 2000],),
+    'xaxis': 'reconstr. H mass',
+    'fold' : 3
+}
+variables['boostHiggsMass'] = {
+    'name' : 'CleanFatJetPassMBoosted_HlnFat_mass[0]',
+    # 'range': ([0, 200, 300, 350, 400, 450, 500, 550, 600, 650, 700, 750, 800,
+    #           900, 1000, 1100, 1200, 1350, 1500, 1700, 2000, 3000, 5000],),
+    'range': ([0, 220, 300, 350, 400, 450, 490, 530, 580, 630, 680,
+               730, 780, 840, 950, 1075, 1175, 1370, 1900, 5000],),
+    'xaxis': 'reconstr. H mass',
+    'fold' : 3
+}
+variables['hmHiggsMass'] = {
+    'name' : 'CleanFatJetPassMBoosted_HlnFat_mass[0]',
+    # 'range': ([0, 900, 1000, 1100, 1200, 1350, 1500, 1700, 2000, 3000, 5000],),
+    # 'range': ([0, 900, 1000, 1100, 1200, 1325, 1580, 2050, 5000],),
+    'range': ([0, 900, 990, 1085, 1185, 1300, 1550, 2000, 5000],),
+    'xaxis': 'reconstr. H mass',
+    'fold' : 3
+}
 # variables['resolvDNN_mth'] = {
 #     'name' : 'DNN_mth_OTF',
 #     'range': ([0, 200, 250, 290, 330, 370, 420, 470, 520,
@@ -211,30 +218,30 @@ variables['jet0_eta'] = {
 
 
 # variables['plot_resolvHMass'] = {
-#     'name' : 'HM_Hlnjj_mass',
+#     'name' : 'Hlnjj_mass',
 #     'range': (24, 0, 1200),
 #     'xaxis': '(resolv) reconstr. H mass [GeV]',
 #     'fold' : 3
 # }
 # variables['plot_boostHMass'] = {
-#     'name' : 'HM_CleanFatJetPassMBoosted_HlnFat_mass[0]',
+#     'name' : 'CleanFatJetPassMBoosted_HlnFat_mass[0]',
 #     'range': (40, 0, 2000),
 #     'xaxis': '(boost) reconstr. H mass [GeV]',
 #     'fold' : 3
 # }
 #
-# variables['resolvWhadMass'] = {
-#     'name' : 'HM_Whad_mass',
-#     'range': (25, 0, 250),
-#     'xaxis': 'resolv W had mass',
-#     'fold' : 3
-# }
-# variables['boostWhadMass'] = {
-#     'name' : 'HM_CleanFatJetPassMBoosted_mass[0]',
-#     'range': (25, 0, 250),
-#     'xaxis': 'boosted W had mass',
-#     'fold' : 3
-# }
+variables['resolvWhadMass'] = {
+    'name' : 'Whad_mass',
+    'range': (25, 0, 250),
+    'xaxis': 'resolv W had mass',
+    'fold' : 3
+}
+variables['boostWhadMass'] = {
+    'name' : 'CleanFatJetPassMBoosted_mass[0]',
+    'range': (25, 0, 250),
+    'xaxis': 'boosted W had mass',
+    'fold' : 3
+}
 
 
 
@@ -249,13 +256,13 @@ variables['jet0_eta'] = {
 #     'fold': 0
 # }
 # variables['boostWptOvHM'] = {
-#     'name': 'Alt$(HM_CleanFatJetPassMBoosted_WptOvHfatM[0], 0)',
+#     'name': 'Alt$(CleanFatJetPassMBoosted_WptOvHfatM[0], 0)',
 #     'range': (40, 0.0, 1.0),
 #     'xaxis': 'Wpt / m_H',
 #     'fold': 3
 # }
 # variables['resolvWptOvHM'] = {
-#     'name': 'HM_WptOvHak4M',
+#     'name': 'WptOvHak4M',
 #     'range': (40, 0.0, 1.0),
 #     'fold': 3
 # }
@@ -276,20 +283,18 @@ variables['jet0_eta'] = {
 #     'range': (6, -1.5, 4.5),
 #     'xaxis': 'idx'
 # }
-
 # variables['WlepMT'] = {
 #     'name': 'WlepMT[0]',
 #     'range': (15, 0.0, 150.0),
 #     'xaxis': 'WlepMT',
 #     'fold': 3
 # }
-# variables['WlepPT'] = {
-#     'name': 'TMath::Sqrt( TMath::Power(Lepton_pt[0], 2) + TMath::Power(PuppiMET_pt, 2) + 2*Lepton_pt[0]*PuppiMET_pt*TMath::Cos(Lepton_phi[0]-PuppiMET_phi) )',
-#     'range': (20, 0.0, 400.0),
-#     'xaxis': 'Wlep pT',
-#     'fold': 3
-# }
-
+variables['WlepPT'] = {
+    'name': 'TMath::Sqrt( TMath::Power(Lepton_pt[0], 2) + TMath::Power(PuppiMET_pt, 2) + 2*Lepton_pt[0]*PuppiMET_pt*TMath::Cos(Lepton_phi[0]-PuppiMET_phi) )',
+    'range': (20, 0.0, 400.0),
+    'xaxis': 'Wlep pT',
+    'fold': 3
+}
 # variables['boostHiggsMT'] = {
 #     'name' : 'boostHiggsMT[0]',
 #     'range': (24, 0, 1200),
@@ -316,43 +321,7 @@ variables['jet0_eta'] = {
 #     'fold' : 0
 # }
 
-# variables['Electron_dxy'] = {
-#     'name' : 'Electron_dxy[0]',
-#     'range': (30, -0.05, 0.05),
-#     'xaxis': 'Electron dxy',
-#     'fold' : 0
-# }
-# variables['Electron_dz'] = {
-#     'name' : 'Electron_dz[0]',
-#     'range': (30, -0.1, 0.1),
-#     'xaxis': 'Electron dz',
-#     'fold' : 0
-# }
-# variables['Electron_dxyErr'] = {
-#     'name' : 'Electron_dxyErr[0]',
-#     'range': (30, -0.05, 0.05),
-#     'xaxis': 'Electron dxyErr',
-#     'fold' : 0
-# }
-# variables['Electron_dzErr'] = {
-#     'name' : 'Electron_dzErr[0]',
-#     'range': (30, -0.1, 0.1),
-#     'xaxis': 'Electron dzErr',
-#     'fold' : 0
-# }
-# variables['Electron_sip3d_EB'] = {
-#     'name' : 'Electron_sip3d[0]*(abs(Lepton_eta[0])<=1.49)',
-#     'range': (30, 0.01, 20),
-#     'xaxis': 'EB Electron sip3d',
-#     'fold' : 0
-# }
-# variables['Electron_sip3d_EE'] = {
-#     'name' : 'Electron_sip3d[0]*(abs(Lepton_eta[0])>1.49)',
-#     'range': (30, 0.01, 20),
-#     'xaxis': 'EE Electron sip3d',
-#     'fold' : 0
-# }
-#
+
 # variables['nCleanJet'] = {
 #     'name' : 'nCleanJet',
 #     'range': ([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],),
@@ -365,70 +334,3 @@ variables['jet0_eta'] = {
 #     'xaxis': 'nCleanFatJet',
 #     'fold' : 3
 # }
-
-variables['btagSF'] = {
-    'name' : 'btagSF',
-    'range': (40, -1, 3),
-    'xaxis': 'btagSF',
-    'fold' : 3
-}
-variables['puWeight'] = {
-    'name' : 'puWeight',
-    'range': (40, -1, 3),
-    'xaxis': 'puWeight',
-    'fold' : 3
-}
-variables['TriggerEffWeight_1l'] = {
-    'name' : 'TriggerEffWeight_1l',
-    'range': (40, -1, 3),
-    'xaxis': 'TriggerEffWeight_1l',
-    'fold' : 3
-}
-variables['EMTFbug_veto'] = {
-    'name' : 'EMTFbug_veto',
-    'range': (40, -1, 3),
-    'xaxis': 'EMTFbug_veto',
-    'fold' : 3
-}
-variables['PrefireWeight'] = {
-    'name' : 'PrefireWeight',
-    'range': (40, -1, 3),
-    'xaxis': 'PrefireWeight',
-    'fold' : 3
-}
-variables['LepWPSF[0]'] = {
-    'name' : 'LepWPSF[0]',
-    'range': (40, -1, 3),
-    'xaxis': 'LepWPSF[0]',
-    'fold' : 3
-}
-variables['PUJetIdSF[0]'] = {
-    'name' : 'PUJetIdSF[0]',
-    'range': (40, -1, 3),
-    'xaxis': 'PUJetIdSF[0]',
-    'fold' : 3
-}
-variables['WtagSF[0]'] = {
-    'name' : 'WtagSF[0]',
-    'range': (40, -1, 3),
-    'xaxis': 'WtagSF[0]',
-    'fold' : 3
-}
-variables['XSWeight'] = {
-    'name' : 'XSWeight',
-    'range': (40, -1, 3),
-    'xaxis': 'XSWeight',
-    'fold' : 3
-}
-variables['Lepton_promptgenmatched[0]'] = {
-    'name' : 'Lepton_promptgenmatched[0]',
-    'range': (40, -1, 3),
-    'xaxis': 'Lepton_promptgenmatched[0]',
-    'fold' : 3
-}
-variables['METFilter_MC[0]'] = {
-    'name' : 'METFilter_MC[0]',
-    'range': (40, -1, 3),
-    'xaxis': 'METFilter_MC[0]',
-    'fold' : 3
-}

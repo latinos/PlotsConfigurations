@@ -16,43 +16,31 @@ else:
 #
 
 groupPlot['top']  = {
-    'nameHR' : 'tW and t#bar{t}',
+    'nameHR' : 't#bar{t} and ST',
     'isSignal' : 0,
     'color': 400,   # kYellow
     'samples'  : ['top']
 }
 
-# groupPlot['Wjets'] = {
-#     'nameHR' : "W+jets",
-#     'isSignal' : 0,
-#     'color': 921,      # kGray + 1
-#     'samples'  : ['Wjets']
-# }
-# groupPlot['Wjets 0J'] = {
-#     'nameHR' : "W+jets 0J",
-#     'isSignal' : 0,
-#     'color': 921,      # kGray + 1
-#     'samples'  : ['Wjets-0J']
-# }
-groupPlot['Wjets 1+2J'] = {
-    'nameHR' : "W+jets 1+2J",
+groupPlot['Wjets'] = {
+    'nameHR' : "W+jets",
     'isSignal' : 0,
-    'color': 925,      # kGray + 5
-    'samples'  : ['Wjets-1+2J']
+    'color': 921,      # kGray + 1
+    'samples'  : ['Wjets']
 }
-
-# groupPlot['QCD_Tight'] = {
-#     'nameHR' : "QCD_Tight",
-#     'isSignal' : 0,
-#     'color'    : 617,   # kViolet + 1
-#     'samples'  : ['QCD_Tight']
-# }
 
 groupPlot['QCD'] = {
     'nameHR' : "QCD",
     'isSignal' : 0,
     'color'    : 617,   # kViolet + 1
     'samples'  : ['QCD']
+}
+
+groupPlot['FAKE'] = {
+    'nameHR' : "Fake",
+    'isSignal' : 0,
+    'color'    : 617,   # kViolet + 1
+    'samples'  : ['FAKE']
 }
 
 groupPlot['DY']  = {
@@ -66,8 +54,8 @@ groupPlot['multiboson']  = {
     'nameHR' : 'multiboson',
     'isSignal' : 0,
     'color': 857, # kAzure -3
-    # 'samples'  : ['WW', 'ggWW', 'WWewk', 'qqWWqq', 'WW2J', 'VVV', 'VZ', 'Vg', 'VgS_H',  'VgS_L']
-    'samples'  : ['WW', 'WWewk', 'qqWWqq', 'WW2J', 'VVV', 'VZ', 'Vg', 'VgS_H',  'VgS_L']
+    'samples'  : ['WW', 'ggWW', 'WWewk', 'qqWWqq', 'WW2J', 'VVV', 'VZ', 'Vg', 'VgS_H',  'VgS_L']
+    # 'samples'  : ['WW', 'WWewk', 'qqWWqq', 'WW2J', 'VVV', 'VZ', 'Vg', 'VgS_H',  'VgS_L']
 }
 
 groupPlot['SM Higgs'] = {
@@ -77,13 +65,13 @@ groupPlot['SM Higgs'] = {
     'samples'  : ['ggH_hww', 'qqH_hww', 'ZH_hww', 'WH_hww', 'ggH_htt', 'qqH_htt', 'ZH_htt', 'WH_htt']
 }
 
-# for counter, MX in enumerate(plotmasses):
-#     groupPlot['Higgs{}'.format(MX)] = {
-#         'nameHR'  : 'Higgs {}'.format(MX),
-#         'isSignal': 2,
-#         'color'   : counter+1,
-#         'samples' : ['GGH_{}_RelW002'.format(MX), 'QQH_{}_RelW002'.format(MX)]
-#     }
+for counter, MX in enumerate(plotmasses):
+    groupPlot['Higgs{}'.format(MX)] = {
+        'nameHR'  : 'Higgs {}'.format(MX),
+        'isSignal': 2,
+        'color'   : counter+1,
+        'samples' : ['GGH_{}_RelW002'.format(MX), 'QQH_{}_RelW002'.format(MX)]
+    }
 
 
 
@@ -93,6 +81,22 @@ groupPlot['SM Higgs'] = {
 
 # keys here must match keys in samples.py
 #
+
+plot['FAKE']  = {
+    'color': 855, # kAzure -5
+    'isSignal' : 0,
+    'isData'   : 0,
+    'scale'    : 1.0
+}
+
+plot['QCD']  = {
+    'color': 1,
+    'isSignal' : 0,
+    'isData'   : 0 ,
+    'isBlind'   :  0 ,
+    'scale'    : 1.0
+}
+
 plot['DY']  = {
     'color': 418,    # kGreen+2
     'isSignal' : 0,
@@ -113,21 +117,21 @@ plot['WW']  = {
     'color': 851, # kAzure -9
     'isSignal' : 0,
     'isData'   : 0,
-    'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
+    'scale'    : 1.0
 }
 
-# plot['ggWW']  = {
-#     'color': 850, # kAzure -10
-#     'isSignal' : 0,
-#     'isData'   : 0,
-#     'scale'    : 1.0
-# }
+plot['ggWW']  = {
+    'color': 850, # kAzure -10
+    'isSignal' : 0,
+    'isData'   : 0,
+    'scale'    : 1.0
+}
 
 plot['WWewk']  = {
     'color': 851, # kAzure -9
     'isSignal' : 0,
     'isData'   : 0,
-    'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
+    'scale'    : 1.0
 }
 
 plot['qqWWqq']  = {
@@ -179,47 +183,13 @@ plot['VVV']  = {
     'scale'    : 1.0
 }
 
-# plot['Wjets']  = {
-#     'color': 856, # kAzure -4
-#     'isSignal' : 0,
-#     'isData'   : 0,
-#     'scale'    : 1.0
-# }
-# plot['Wjets-0J']  = {
-#     'color': 856, # kAzure -4
-#     'isSignal' : 0,
-#     'isData'   : 0,
-#     'scale'    : 1.0
-# }
-
-plot['Wjets-1+2J']  = {
+plot['Wjets']  = {
     'color': 856, # kAzure -4
     'isSignal' : 0,
     'isData'   : 0,
     'scale'    : 1.0
 }
 
-
-# plot['QCD_Tight']  = {
-#     'color': 855, # kAzure -5
-#     'isSignal' : 0,
-#     'isData'   : 0,
-#     'scale'    : 1.0
-# }
-# plot['QCD_NotTight']  = {
-#     'color': 1,
-#     'isSignal' : 0,
-#     'isData'   : 1 ,
-#     'isBlind'   :  0 ,
-#     'scale'    : 1.0
-# }
-plot['QCD']  = {
-    'color': 1,
-    'isSignal' : 0,
-    'isData'   : 0 ,
-    'isBlind'   :  0 ,
-    'scale'    : 1.0
-}
 
 
 # HWW
@@ -299,43 +269,43 @@ plot['WH_htt']  = {
 
 
 
-# # Signal
-# for MX in plotmasses:
-#     xs_ggf = HiggsXS.GetHiggsXS4Sample('YR4','13TeV','GluGluHToWWToLNuQQ_M{}'.format(MX))['xs']
-#     xs_vbf = HiggsXS.GetHiggsXS4Sample('YR4','13TeV','VBFHToWWToLNuQQ_M{}'.format(MX))['xs']
-#     plot['QQH_{}_RelW002'.format(MX)] = {
-#         'nameHR'  : 'qqH{}'.format(MX),
-#         'color'   : 1,
-#         'isSignal': 1,
-#         'isData'  : 0,
-#         'scale'   : 1 * xs_ggf
-#     }
-#     plot['GGH_{}_RelW002'.format(MX)] = {
-#         'nameHR'  : 'ggH{}'.format(MX),
-#         'color'   : 1,
-#         'isSignal': 1,
-#         'isData'  : 0,
-#         'scale'   : 1 * xs_vbf
-#     }
+# Signal
+for MX in plotmasses:
+    xs_ggf = HiggsXS.GetHiggsXS4Sample('YR4','13TeV','GluGluHToWWToLNuQQ_M{}'.format(MX))['xs']
+    xs_vbf = HiggsXS.GetHiggsXS4Sample('YR4','13TeV','VBFHToWWToLNuQQ_M{}'.format(MX))['xs']
+    plot['QQH_{}_RelW002'.format(MX)] = {
+        'nameHR'  : 'qqH{}'.format(MX),
+        'color'   : 1,
+        'isSignal': 1,
+        'isData'  : 0,
+        'scale'   : 1 * xs_ggf
+    }
+    plot['GGH_{}_RelW002'.format(MX)] = {
+        'nameHR'  : 'ggH{}'.format(MX),
+        'color'   : 1,
+        'isSignal': 1,
+        'isData'  : 0,
+        'scale'   : 1 * xs_vbf
+    }
 
 
 
 
 # data
 
-# plot['DATA']  = {
-#     'nameHR' : 'Data',
-#     'color': 1 ,
-#     'isSignal' : 0,
-#     'isData'   : 1 ,
-#     'isBlind'  : 1
-# }
+plot['DATA']  = {
+    'nameHR' : 'Data',
+    'color': 1 ,
+    'isSignal' : 0,
+    'isData'   : 1 ,
+    'isBlind'  : 0
+}
 
 
 
 
 # additional options
 
-legend['lumi'] = 'L = 41.5/fb'
+legend['lumi'] = 'L = 35.9/fb'
 
 legend['sqrt'] = '#sqrt{s} = 13 TeV'

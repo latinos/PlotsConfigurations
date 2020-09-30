@@ -1,20 +1,19 @@
 # cuts
 cuts = {}
 # this should be checked in postprocessing, just to be sure
-supercut = 'LepWPCut[0] \
-         && Alt$(Lepton_pt[1],0)<=10 \
-         && abs(Lepton_eta[0])<2.5 \
-         && !Lep1WPCut[0] \
-         '
+supercut = '\
+    Alt$(Lepton_pt[1],0)<=10 \
+&&  abs(Lepton_eta[0])<2.5 \
+'
 # LepWPCut already implemented in Steps.py
 
 ##=== Define categories ===###
 LepCats={}
-# LepCats['incl_']='( (abs(Lepton_pdgId[0])==11) && Lepton_pt[0]>38 \
-#                  || (abs(Lepton_pdgId[0])==13) && Lepton_pt[0]>30 )'
-LepCats['ElCh_']='( (abs(Lepton_pdgId[0])==11) && Lepton_pt[0]>38 )'
-LepCats['MuCh_']='( (abs(Lepton_pdgId[0])==13) && Lepton_pt[0]>30 )'
-
+# LepCats['incl_']='( (abs(Lepton_pdgId[0])==11) && Lepton_pt[0]>30 \
+#                  || (abs(Lepton_pdgId[0])==13) && Lepton_pt[0]>27 )'
+LepCats['ElCh_']='( (abs(Lepton_pdgId[0])==11) && Lepton_pt[0]>30 )'
+LepCats['MuCh_']='( (abs(Lepton_pdgId[0])==13) && Lepton_pt[0]>27 )'
+# FIXME: probably need to cut > 35 for ele due to fakeW calculation
 
 
 BoostProcCats={}
@@ -43,28 +42,11 @@ BoostCats['BoostedTopCR_']='1 \
 
 
 # High Mass category
-# dPhiLNuCut ='&& abs(dPhi_LNu[0]) < 0.7'
 dPhiWWCut  ='&& abs(dPhi_WW_boosted[0]) > 2.2'
-# fatJetPtCut='&& Alt$(CleanFatJetPassMBoosted_pt[0], -999) > 400'
 sumPtCut   ='&& Lepton_pt[0] + PuppiMET_pt + Alt$(CleanFatJetPassMBoosted_pt[0], -9999) > 850'
 
 HMProcCats={}
-# HMProcCats['050_'] = 'tau21DDT < 0.45'
-# HMProcCats['050_'] = 'tau21DDT < 0.5'
-# HMProcCats['055_'] = 'tau21DDT < 0.55'
-# HMProcCats['060_'] = 'tau21DDT < 0.6'
-# HMProcCats['all5_']= 'tau21DDT < 0.55' +dPhiLNuCut+dPhiWWCut+fatJetPtCut+sumPtCut
-# HMProcCats['all6_']= 'tau21DDT < 0.6' +dPhiLNuCut+dPhiWWCut+fatJetPtCut+sumPtCut
 
-# HMProcCats['LNu']='1'+dPhiLNuCut
-# HMProcCats['notLNu']='tau21DDT<0.55'+dPhiWWCut+fatJetPtCut+sumPtCut
-# HMProcCats['WW']='1'+dPhiWWCut
-# HMProcCats['jetpt']='1'+fatJetPtCut
-# HMProcCats['notjetpt']='tau21DDT<0.55'+dPhiWWCut+sumPtCut+dPhiLNuCut
-# HMProcCats['sumpt']='1'+sumPtCut
-# HMProcCats['notTauDDT']='1'+dPhiWWCut+fatJetPtCut+sumPtCut
-# HMProcCats['notWW']='tau21DDT<0.55'+sumPtCut
-# HMProcCats['notsumpt']='tau21DDT<0.55'+dPhiWWCut
 HMProcCats['58']='tau21DDT<0.58'+dPhiWWCut+sumPtCut
 HMProcCats['55']='tau21DDT<0.55'+dPhiWWCut+sumPtCut
 HMProcCats['52']='tau21DDT<0.52'+dPhiWWCut+sumPtCut
@@ -96,14 +78,6 @@ ResolveCats['ResolvedSB_']='resolved[0] \
                            && !resolvedSignalWMass[0] \
                            && resolvedSidebandWMass[0] \
                            && bVeto[0]'
-# ResolveCats['ResolvedSB___low']='resolved[0] \
-#                             && !resolvedSignalWMass[0] \
-#                             && lowResolvedSidebandWMass[0] \
-#                             && bVeto[0]'
-# ResolveCats['ResolvedSB___high']='resolved[0] \
-#                             && !resolvedSignalWMass[0] \
-#                             && highResolvedSidebandWMass[0] \
-#                             && bVeto[0]'
 ResolveCats['ResolvedTopCR_']='resolved[0] && resolvedSignalWMass[0] && !bVeto[0]'
 
 
