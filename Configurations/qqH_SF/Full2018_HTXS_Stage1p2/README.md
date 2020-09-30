@@ -32,6 +32,10 @@ Or, by using condor:
 
     python doDY.py --pycfg=configuration.py --dycfg=dyestim_qqH.py --inputFile=rootFile/plots_STXS_qqH_SF_2018.root
 
+## Plot distributions:
+
+    mkPlot.py --inputFile=rootFile/plots_STXS_qqH_SF_2018_DYEstimDATA.root --linearOnly --fileFormats=png --onlyPlot=cratio
+
 ## Produce datacards:
 
     mkDatacards.py \
