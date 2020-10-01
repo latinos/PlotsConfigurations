@@ -168,16 +168,14 @@ if useEmbeddedDY:
 
                          'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*'+'(1-embed_tautauveto)',
                          'FilesPerJob' : 1, # There's some error about not finding sample-specific variables like "nllW" when mixing different samples into a single job; so split them all up instead
-                         'suppressNegative' :['all'],
-                         'suppressNegativeNuisances' :['all'],
                       }
   CombineBaseW(samples, 'DYveto', ['TTTo2L2Nu', 'TTTo2L2Nu_PSWeights'])
   #CombineBaseW(samples, 'DYveto', ['ST_tW_antitop', 'ST_tW_antitop_PSweights'])
   #CombineBaseW(samples, 'DYveto', ['ST_tW_top', 'ST_tW_top_PSweights'])
   CombineBaseW(samples, 'DYveto', ['ZZTo4L', 'ZZTo4L_ext1', 'ZZTo4L_ext2'])
 
-  veto_dict = {'TTTo2L2Nu'               : '(topGenPt * antitopGenPt > 0.) * (TMath::Sqrt((0.103*TMath::Exp(-0.0118*topGenPt) - 0.000134*topGenPt + 0.973) * (0.103*TMath::Exp(-0.0118*antitopGenPt) - 0.000134*antitopGenPt + 0.973))) * (TMath::Sqrt(TMath::Exp(1.61468e-03 + 3.46659e-06*topGenPt - 8.90557e-08*topGenPt*topGenPt) * TMath::Exp(1.61468e-03 + 3.46659e-06*antitopGenPt - 8.90557e-08*antitopGenPt*antitopGenPt))) + (topGenPt * antitopGenPt <= 0.)' ,
-               'TTTo2L2Nu_PSWeights'     : '(topGenPt * antitopGenPt > 0.) * (TMath::Sqrt((0.103*TMath::Exp(-0.0118*topGenPt) - 0.000134*topGenPt + 0.973) * (0.103*TMath::Exp(-0.0118*antitopGenPt) - 0.000134*antitopGenPt + 0.973))) * (TMath::Sqrt(TMath::Exp(1.61468e-03 + 3.46659e-06*topGenPt - 8.90557e-08*topGenPt*topGenPt) * TMath::Exp(1.61468e-03 + 3.46659e-06*antitopGenPt - 8.90557e-08*antitopGenPt*antitopGenPt))) + (topGenPt * antitopGenPt <= 0.)' ,
+  veto_dict = {'TTTo2L2Nu'               : '(topGenPt * antitopGenPt > 0.) * (TMath::Sqrt((0.103*TMath::Exp(-0.0118*topGenPt) - 0.000134*topGenPt + 0.973) * (0.103*TMath::Exp(-0.0118*antitopGenPt) - 0.000134*antitopGenPt + 0.973))) + (topGenPt * antitopGenPt <= 0.)' ,
+               'TTTo2L2Nu_PSWeights'     : '(topGenPt * antitopGenPt > 0.) * (TMath::Sqrt((0.103*TMath::Exp(-0.0118*topGenPt) - 0.000134*topGenPt + 0.973) * (0.103*TMath::Exp(-0.0118*antitopGenPt) - 0.000134*antitopGenPt + 0.973))) + (topGenPt * antitopGenPt <= 0.)' ,
                'ST_tW_antitop'           : '1' ,
                #'ST_tW_antitop_PSweights' : '1' ,
                'ST_tW_top'               : '1' ,

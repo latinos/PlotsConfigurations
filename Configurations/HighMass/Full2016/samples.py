@@ -170,8 +170,6 @@ if useEmbeddedDY:
 
                          'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*'+'(1-embed_tautauveto)',
                          'FilesPerJob' : 1, # There's some error about not finding sample-specific variables like "nllW" when mixing different samples into a single job; so split them all up instead
-                         'suppressNegative' :['all'],
-                         'suppressNegativeNuisances' :['all'],
                       }
   CombineBaseW(samples, 'DYveto', ['ZZTo2L2Nu', 'ZZTo2L2Nu_ext1'])
   CombineBaseW(samples, 'DYveto', ['ZZTo4L', 'ZZTo4L_ext1'])

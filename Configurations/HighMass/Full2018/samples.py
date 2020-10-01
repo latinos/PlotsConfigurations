@@ -164,14 +164,12 @@ if useEmbeddedDY:
 
                          'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*'+'(1-embed_tautauveto)',
                          'FilesPerJob' : 1, # There's some error about not finding sample-specific variables like "nllW" when mixing different samples into a single job; so split them all up instead
-                         'suppressNegative' :['all'],
-                         'suppressNegativeNuisances' :['all'],
                       }
   CombineBaseW(samples, 'DYveto', ['WpWmJJ_QCD_noTop', 'WpWmJJ_QCD_noTop_ext1'])
   CombineBaseW(samples, 'DYveto', ['ZZTo2L2Nu_ext1', 'ZZTo2L2Nu_ext2'])
   CombineBaseW(samples, 'DYveto', ['ZZTo4L_ext1', 'ZZTo4L_ext2'])
 
-  veto_dict = {'TTTo2L2Nu'          : 'isTTbar * (TMath::Sqrt((0.103*TMath::Exp(-0.0118*topGenPt) - 0.000134*topGenPt + 0.973) * (0.103*TMath::Exp(-0.0118*antitopGenPt) - 0.000134*antitopGenPt + 0.973))) * (TMath::Sqrt(TMath::Exp(1.61468e-03 + 3.46659e-06*topGenPt - 8.90557e-08*topGenPt*topGenPt) * TMath::Exp(1.61468e-03 + 3.46659e-06*antitopGenPt - 8.90557e-08*antitopGenPt*antitopGenPt))) + isSingleTop',
+  veto_dict = {'TTTo2L2Nu'          : 'isTTbar * (TMath::Sqrt((0.103*TMath::Exp(-0.0118*topGenPt) - 0.000134*topGenPt + 0.973) * (0.103*TMath::Exp(-0.0118*antitopGenPt) - 0.000134*antitopGenPt + 0.973))) + isSingleTop',
                'ST_tW_antitop_ext1' : '1' ,
                'ST_tW_top_ext1'     : '1' ,
 
