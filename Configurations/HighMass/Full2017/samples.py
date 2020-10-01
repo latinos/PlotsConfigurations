@@ -203,7 +203,7 @@ if useEmbeddedDY:
 if useDYtt :
     samples['DY'] = {    'name'   :   getSampleFiles(directory,'DYJetsToTT_MuEle_M-50',False,'nanoLatino_')
                                     + getSampleFiles(directory,'DYJetsToLL_M-10to50-LO',False,'nanoLatino_'), #Don't use LO_ext1! DYMVA Training!
-                         'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+embed_tautauveto+"*( !(Sum$(PhotonGen_isPrompt==1 && PhotonGen_pt>10 && abs(PhotonGen_eta)<2.6) > 0 && Sum$(LeptonGen_isPrompt==1 && LeptonGen_pt>15)>=2) )" ,# To remove some overlap between DY/Vg
+                         'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+embed_tautauveto+"*( !(Sum$(PhotonGen_isPrompt==1 && PhotonGen_pt>15 && abs(PhotonGen_eta)<2.6) > 0 && Sum$(LeptonGen_isPrompt==1 && LeptonGen_pt>15)>=2) )" ,# To remove some overlap between DY/Vg
                          'FilesPerJob' : 10,
                          'EventsPerJob' : 80000,
                          'suppressNegative' :['all'],
@@ -216,7 +216,7 @@ else:
   samples['DY'] = {    'name'   :   getSampleFiles(directory,'DYJetsToLL_M-50',False,'nanoLatino_') #Don't use LO_ext1! DYMVA Training!
                                   + getSampleFiles(directory,'DYJetsToLL_M-50_ext1',False,'nanoLatino_')
                                   + getSampleFiles(directory,'DYJetsToLL_M-10to50-LO',False,'nanoLatino_'), #Don't use LO_ext1! DYMVA Training!
-                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+embed_tautauveto+"*( !(Sum$(PhotonGen_isPrompt==1 && PhotonGen_pt>10 && abs(PhotonGen_eta)<2.6) > 0 && Sum$(LeptonGen_isPrompt==1 && LeptonGen_pt>15)>=2) )" ,
+                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+embed_tautauveto+"*( !(Sum$(PhotonGen_isPrompt==1 && PhotonGen_pt>15 && abs(PhotonGen_eta)<2.6) > 0 && Sum$(LeptonGen_isPrompt==1 && LeptonGen_pt>15)>=2) )" ,
                        'FilesPerJob' : 10,
                        'EventsPerJob' : 80000,
                        'suppressNegative' :['all'],
@@ -296,6 +296,10 @@ CombineBaseW(samples, 'top', ['TTTo2L2Nu', 'TTTo2L2Nu_PSWeights'])
 
 addSampleWeight(samples,'top','TTTo2L2Nu','Top_pTrw')
 addSampleWeight(samples,'top','TTTo2L2Nu_PSWeights','Top_pTrw')
+# Wrong XSec in t-channel: Samples are for inclusive W decay; our XSec is for leptonic only
+lepD_to_incD = '(100./(10.75 + 10.57 + 11.25))' # 100% / (W->e+nu & W->mu+nu & W->tau+nu)
+addSampleWeight(samples,'top','ST_t-channel_antitop', lepD_to_incD)
+addSampleWeight(samples,'top','ST_t-channel_top',     lepD_to_incD)
 
 ############ WW ############
 
