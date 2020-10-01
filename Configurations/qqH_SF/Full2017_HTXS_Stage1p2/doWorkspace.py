@@ -33,6 +33,7 @@ for cat in HTXSStage1_1Categories:
     sampleNames.append(cat.replace('BBH','bbH_hww'))
 
 #os.chdir('Combination')
+os.system("mkdir -p Combination")
 
 sampleNames.append('ggH_hww_PTH_200_300')
 sampleNames.append('ggH_hww_PTH_300_450')
@@ -46,7 +47,11 @@ for s in sampleNames:
 print("============")
 
 #No merging
-command="text2workspace.py datacards/Full2017_SF_qqH_HTXS_Stage1p2/comb/datacard.txt -o Combination/Full2017_SF_qqH_HTXS_Stage1p2.root -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel --PO verbose "
+
+#command="text2workspace.py Full2017_ggH_HTXS_Stage1p2_2j_EDIT.txt -o Full2017_ggH_HTXS_Stage1p2_2j_merged.root -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel --PO verbose --PO 'map=.*mjjGT700.*/Vg:0' --PO 'map=.*pth450.*/Fake.*:0' --PO 'map=.*pthGT650.*/Fake.*:0' --PO 'map=.*pthGT200.*/Fake.*:0' --PO 'map=.*pthLT200.*/VVV.*:0' "
+
+command="text2workspace.py datacards/Full2017_SF_qqH_HTXS_Stage1p2/comb/datacard.txt -o Combination/Full2017_SF_qqH_HTXS_Stage1p2.root -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel --PO verbose --PO 'map=.*top.*/Fake.*:0' "
+
 for sample in sampleNames:
   if 'FWDH'    in sample: continue
   if '0J'      in sample or '1J' in sample: continue
