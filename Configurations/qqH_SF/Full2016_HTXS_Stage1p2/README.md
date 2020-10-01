@@ -27,6 +27,14 @@ The following instructions correspond to the VBF and VH SF HWW STXS Stage 1.2 an
 
     mkDYestim_data.py --pycfg=configuration.py --dycfg=dyestim_qqH.py --inputFile=rootFile/plots_STXS_qqH_SF_2016.root
 
+Or, by using condor:
+
+    python doDY.py --pycfg=configuration.py --dycfg=dyestim_qqH.py --inputFile=rootFile/plots_STXS_qqH_SF_2016.root
+
+# Plot distributions
+
+    mkPlot.py --inputFile=rootFile/plots_STXS_qqH_SF_2016_DYEstimDATA.root --linearOnly --fileFormats=png --onlyPlot=cratio
+
 # Make datacards
 
     mkDatacards.py --pycfg=configuration.py --inputFile=rootFile/plots_STXS_qqH_SF_2016_DYEstimDATA.root --cardList=hww2l2v_13TeV_2j_mjj65_105_ee,hww2l2v_13TeV_2j_mjj65_105_mm,hww2l2v_13TeV_2j_mjj350_700_pthLT200_ee,hww2l2v_13TeV_2j_mjj350_700_pthLT200_mm,hww2l2v_13TeV_2j_mjjGT700_pthLT200_ee,hww2l2v_13TeV_2j_mjjGT700_pthLT200_mm,hww2l2v_13TeV_2j_mjjGT350_pthGT200_ee,hww2l2v_13TeV_2j_mjjGT350_pthGT200_mm,hww2l2v_13TeV_top_2j_vh_ee,hww2l2v_13TeV_top_2j_vh_mm,hww2l2v_13TeV_top_2j_vbf_ee,hww2l2v_13TeV_top_2j_vbf_mm,hww2l2v_13TeV_top_2j_hpt_ee,hww2l2v_13TeV_top_2j_hpt_mm,hww2l2v_13TeV_WW_2j_vh_ee,hww2l2v_13TeV_WW_2j_vh_mm,hww2l2v_13TeV_WW_2j_vbf_ee,hww2l2v_13TeV_WW_2j_vbf_mm,hww2l2v_13TeV_WW_2j_hpt_ee,hww2l2v_13TeV_WW_2j_hpt_mm
