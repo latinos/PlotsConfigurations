@@ -3,9 +3,6 @@
 mc = [skey for skey in samples if skey not in ('Fake_em', 'Fake_me', 'Fake_ee', 'Fake_mm', 'DATA', 'DYemb')]
 mc_sbi = [skey for skey in samples if "SBI" in skey]
 
-bAlgo = 'DeepB'
-bWP = '0.1241'
-
 if EMorEEorMM == 'em':
   print "Final state is ElMu!"
   aliases['finalstate'] = {
@@ -156,11 +153,11 @@ aliases['HighMass'] = {
 }
 
 aliases['VBFcut'] = {
-    'expr': '( DNN_isVBF_OTF>0.77 )' 
+    'expr': '( DNN_isVBF_OTF>0.77 )'
 }
 
 aliases['VBFcut_HM'] = {
-    'expr': '( DNN_isVBF_OTF>0.68 )' 
+    'expr': '( DNN_isVBF_OTF>0.68 )'
 }
 
 aliases['SBI_isSMggh'] = {
@@ -463,28 +460,28 @@ for shift in ['jes','lf','hf','lfstats1','lfstats2','hfstats1','hfstats2','cferr
 # PU jet Id SF
 
 # New:
-#puidSFSource = '%s/src/PlotsConfigurations/Configurations/patches/PUID_81XTraining_EffSFandUncties.root' % os.getenv('CMSSW_BASE')
-#
-#aliases['PUJetIdSF'] = {
-#    'linesToAdd': [
-#        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
-#        '.L %s/src/PlotsConfigurations/Configurations/patches/pujetidsf_event_new.cc+' % os.getenv('CMSSW_BASE')
-#    ],
-#    'class': 'PUJetIdEventSF',
-#    'args': (puidSFSource, '2018', 'loose'),
-#    'samples': mc
-#}
-
-# Old:
-puidSFSource = '%s/src/LatinoAnalysis/NanoGardener/python/data/JetPUID_effcyandSF.root' % os.getenv('CMSSW_BASE')
+puidSFSource = '%s/src/PlotsConfigurations/Configurations/patches/PUID_81XTraining_EffSFandUncties.root' % os.getenv('CMSSW_BASE')
 
 aliases['PUJetIdSF'] = {
     'linesToAdd': [
         'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
-        '.L %s/src/PlotsConfigurations/Configurations/patches/pujetidsf_event.cc+' % os.getenv('CMSSW_BASE')
+        '.L %s/src/PlotsConfigurations/Configurations/patches/pujetidsf_event_new.cc+' % os.getenv('CMSSW_BASE')
     ],
     'class': 'PUJetIdEventSF',
     'args': (puidSFSource, '2018', 'loose'),
     'samples': mc
 }
+
+# Old:
+#puidSFSource = '%s/src/LatinoAnalysis/NanoGardener/python/data/JetPUID_effcyandSF.root' % os.getenv('CMSSW_BASE')
+#
+#aliases['PUJetIdSF'] = {
+#    'linesToAdd': [
+#        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
+#        '.L %s/src/PlotsConfigurations/Configurations/patches/pujetidsf_event.cc+' % os.getenv('CMSSW_BASE')
+#    ],
+#    'class': 'PUJetIdEventSF',
+#    'args': (puidSFSource, '2018', 'loose'),
+#    'samples': mc
+#}
 
