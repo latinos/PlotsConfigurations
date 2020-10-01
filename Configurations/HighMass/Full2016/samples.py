@@ -170,8 +170,6 @@ if useEmbeddedDY:
 
                          'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*'+'(1-embed_tautauveto)',
                          'FilesPerJob' : 1, # There's some error about not finding sample-specific variables like "nllW" when mixing different samples into a single job; so split them all up instead
-                         'suppressNegative' :['all'],
-                         'suppressNegativeNuisances' :['all'],
                       }
   CombineBaseW(samples, 'DYveto', ['ZZTo2L2Nu', 'ZZTo2L2Nu_ext1'])
   CombineBaseW(samples, 'DYveto', ['ZZTo4L', 'ZZTo4L_ext1'])
@@ -297,6 +295,10 @@ samples['top'] = {    'name'   :   getSampleFiles(directory,'TTTo2L2Nu',False,'n
                  }
 
 addSampleWeight(samples,'top','TTTo2L2Nu','Top_pTrw')
+# Wrong XSec in t-channel: Samples are for inclusive W decay; our XSec is for leptonic only
+lepD_to_incD = '(100./(10.75 + 10.57 + 11.25))' # 100% / (W->e+nu & W->mu+nu & W->tau+nu)
+addSampleWeight(samples,'top','ST_t-channel_antitop', lepD_to_incD)
+addSampleWeight(samples,'top','ST_t-channel_top',     lepD_to_incD)
 
 ############ WW ############
 

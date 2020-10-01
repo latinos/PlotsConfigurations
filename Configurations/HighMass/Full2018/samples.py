@@ -164,14 +164,12 @@ if useEmbeddedDY:
 
                          'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*'+'(1-embed_tautauveto)',
                          'FilesPerJob' : 1, # There's some error about not finding sample-specific variables like "nllW" when mixing different samples into a single job; so split them all up instead
-                         'suppressNegative' :['all'],
-                         'suppressNegativeNuisances' :['all'],
                       }
   CombineBaseW(samples, 'DYveto', ['WpWmJJ_QCD_noTop', 'WpWmJJ_QCD_noTop_ext1'])
   CombineBaseW(samples, 'DYveto', ['ZZTo2L2Nu_ext1', 'ZZTo2L2Nu_ext2'])
   CombineBaseW(samples, 'DYveto', ['ZZTo4L_ext1', 'ZZTo4L_ext2'])
 
-  veto_dict = {'TTTo2L2Nu'          : 'isTTbar * (TMath::Sqrt((0.103*TMath::Exp(-0.0118*topGenPt) - 0.000134*topGenPt + 0.973) * (0.103*TMath::Exp(-0.0118*antitopGenPt) - 0.000134*antitopGenPt + 0.973))) * (TMath::Sqrt(TMath::Exp(1.61468e-03 + 3.46659e-06*topGenPt - 8.90557e-08*topGenPt*topGenPt) * TMath::Exp(1.61468e-03 + 3.46659e-06*antitopGenPt - 8.90557e-08*antitopGenPt*antitopGenPt))) + isSingleTop',
+  veto_dict = {'TTTo2L2Nu'          : 'isTTbar * (TMath::Sqrt((0.103*TMath::Exp(-0.0118*topGenPt) - 0.000134*topGenPt + 0.973) * (0.103*TMath::Exp(-0.0118*antitopGenPt) - 0.000134*antitopGenPt + 0.973))) + isSingleTop',
                'ST_tW_antitop_ext1' : '1' ,
                'ST_tW_top_ext1'     : '1' ,
 
@@ -271,6 +269,10 @@ samples['top'] = {    'name'   :   getSampleFiles(directory,'TTTo2L2Nu',False,'n
                  }
 
 addSampleWeight(samples,'top','TTTo2L2Nu','Top_pTrw')
+# Wrong XSec in t-channel: Samples are for inclusive W decay; our XSec is for leptonic only
+lepD_to_incD = '(100./(10.75 + 10.57 + 11.25))' # 100% / (W->e+nu & W->mu+nu & W->tau+nu)
+addSampleWeight(samples,'top','ST_t-channel_antitop', lepD_to_incD)
+addSampleWeight(samples,'top','ST_t-channel_top',     lepD_to_incD)
 
 ############ WW ############
 
@@ -522,7 +524,7 @@ for mass in massvbf:
       addSampleWeight(samples, 'QQHSBI_'+mass+model_name, 'VBFHToWWTo2L2Nu_M'+mass, '( '+noSMxsec+'*'+'('+model+' + '+model_I+'*(abs('+model_I+')<20)) ) + 1')
     else:
       samples['QQHSBI_'+mass+model_name]['name'] += getSampleFiles(directory,'VBFHToWWTo2L2Nu_M125',False,'nanoLatino_')
-      addSampleWeight(samples, 'QQHSBI_'+mass+model_name, 'VBFHToWWTo2L2Nu_M'+mass, noSMxsec+'*'+'('+model+' + '+model_I+'*(abs('+model_I+')<50))')
+      addSampleWeight(samples, 'QQHSBI_'+mass+model_name, 'VBFHToWWTo2L2Nu_M'+mass, noSMxsec+'*'+'('+model+' + '+model_I+'*(abs('+model_I+')<20))')
     addSampleWeight(samples, 'QQHSBI_'+mass+model_name, 'WpWmJJ_QCD_noTop', '(mjjGen_OTF>100)*(GenLHE)'+embed_tautauveto)
     addSampleWeight(samples, 'QQHSBI_'+mass+model_name, 'WpWmJJ_QCD_noTop_ext1', '(mjjGen_OTF>100)*(GenLHE)'+embed_tautauveto)
 
