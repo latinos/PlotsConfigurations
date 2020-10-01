@@ -34,7 +34,25 @@ Or, by using condor:
 
 ## Plot distributions
 
+Before data-driven DY corrections:
+
+    mkPlot.py --inputFile=rootFile/plots_STXS_qqH_SF_2017.root --linearOnly --fileFormats=png --onlyPlot=cratio --outputDirPlots=plots_STXS_qqH_SF_2017_noDY
+
+With corrections:
+
     mkPlot.py --inputFile=rootFile/plots_STXS_qqH_SF_2017_DYEstimDATA.root --linearOnly --fileFormats=png --onlyPlot=cratio
+
+Repeat, but with data-blind signal region. Put to 1 the 'isBlind' flag in plot.py and:
+
+    mkPlot.py --onlyCut=hww2l2v_13TeV_2j_mjj65_105_ee            --inputFile=rootFile/plots_STXS_qqH_SF_2017_DYEstimDATA.root --linearOnly --fileFormats=png --onlyPlot=cratio
+    mkPlot.py --onlyCut=hww2l2v_13TeV_2j_mjj350_700_pthLT200_ee  --inputFile=rootFile/plots_STXS_qqH_SF_2017_DYEstimDATA.root --linearOnly --fileFormats=png --onlyPlot=cratio
+    mkPlot.py --onlyCut=hww2l2v_13TeV_2j_2j_mjjGT700_pthLT200_ee --inputFile=rootFile/plots_STXS_qqH_SF_2017_DYEstimDATA.root --linearOnly --fileFormats=png --onlyPlot=cratio
+    mkPlot.py --onlyCut=hww2l2v_13TeV_2j_2j_mjjGT350_pthGT200_ee --inputFile=rootFile/plots_STXS_qqH_SF_2017_DYEstimDATA.root --linearOnly --fileFormats=png --onlyPlot=cratio
+
+    mkPlot.py --onlyCut=hww2l2v_13TeV_2j_mjj65_105_mm            --inputFile=rootFile/plots_STXS_qqH_SF_2017_DYEstimDATA.root --linearOnly --fileFormats=png --onlyPlot=cratio
+    mkPlot.py --onlyCut=hww2l2v_13TeV_2j_mjj350_700_pthLT200_mm  --inputFile=rootFile/plots_STXS_qqH_SF_2017_DYEstimDATA.root --linearOnly --fileFormats=png --onlyPlot=cratio
+    mkPlot.py --onlyCut=hww2l2v_13TeV_2j_2j_mjjGT700_pthLT200_mm --inputFile=rootFile/plots_STXS_qqH_SF_2017_DYEstimDATA.root --linearOnly --fileFormats=png --onlyPlot=cratio
+    mkPlot.py --onlyCut=hww2l2v_13TeV_2j_2j_mjjGT350_pthGT200_mm --inputFile=rootFile/plots_STXS_qqH_SF_2017_DYEstimDATA.root --linearOnly --fileFormats=png --onlyPlot=cratio
 
 ## Produce datacards:
 
