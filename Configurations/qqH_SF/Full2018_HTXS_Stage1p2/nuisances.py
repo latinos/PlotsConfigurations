@@ -1019,27 +1019,27 @@ nuisances['Topnorm2j']  = {
 
 ##### DY norms
 
-# nuisances['DYeenorm2j']  = {
-#    'name'     : 'DYeenorm2j',
-#    'kind'     : 'weight',
-#    'type'     : 'shape',
-#    'samples'  : {
-#       'DY'    : ['1.','1.'] ,
-#       },
-#    #'cuts'     : [cut for cut in cuts2j if 'ee' in cut and 'vbf' not in cut and 'vh' not in cut]
-#    'cutspost' : lambda self, cuts: [cut for cut in cuts if '2j' in cut and 'ee' in cut and 'vh' not in cut and 'vbf' not in cut and 'hpt' not in cut]
-# }
+nuisances['DYeenorm2j']  = {
+   'name'     : 'DYeenorm2j',
+   'kind'     : 'weight',
+   'type'     : 'shape',
+   'samples'  : {
+      'DY'    : ['1.','1.'] ,
+      },
+   #'cuts'     : [cut for cut in cuts2j if 'ee' in cut and 'vbf' not in cut and 'vh' not in cut]
+   'cutspost' : lambda self, cuts: [cut for cut in cuts if '2j' in cut and 'ee' in cut] # and 'vh' not in cut and 'vbf' not in cut and 'hpt' not in cut]
+}
 
-# nuisances['DYmmnorm2j']  = {
-#    'name'     : 'DYmmnorm2j',
-#    'kind'     : 'weight',
-#    'type'     : 'shape',
-#    'samples'  : {
-#       'DY'    : ['1.','1.'] ,
-#       },
-#    #'cuts'     : [cut for cut in cuts2j if 'mm' in cut and 'vbf' not in cut and 'vh' not in cut]
-#    'cutspost' : lambda self, cuts: [cut for cut in cuts if '2j' in cut and 'mm' in cut and 'vh' not in cut and 'vbf' not in cut and 'hpt' not in cut]
-# }
+nuisances['DYmmnorm2j']  = {
+   'name'     : 'DYmmnorm2j',
+   'kind'     : 'weight',
+   'type'     : 'shape',
+   'samples'  : {
+      'DY'    : ['1.','1.'] ,
+      },
+   #'cuts'     : [cut for cut in cuts2j if 'mm' in cut and 'vbf' not in cut and 'vh' not in cut]
+   'cutspost' : lambda self, cuts: [cut for cut in cuts if '2j' in cut and 'mm' in cut] # and 'vh' not in cut and 'vbf' not in cut and 'hpt' not in cut]
+}
 
 # nuisances['DYeenormvh']  = {
 #    'name'     : 'DYeenormvh',

@@ -33,6 +33,7 @@ for cat in HTXSStage1_1Categories:
     sampleNames.append(cat.replace('BBH','bbH_hww'))
 
 #os.chdir('Combination')
+os.system("mkdir -p Combination")
 
 sampleNames.append('ggH_hww_PTH_200_300')
 sampleNames.append('ggH_hww_PTH_300_450')
