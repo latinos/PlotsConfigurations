@@ -297,7 +297,7 @@ thus = [
 ]
 
 for thu in thus:
-    aliases[thu] = {
+    aliases[thu+'_OTF'] = {
         'linesToAdd': ['.L %s/Differential/gghuncertainty.cc+' % configurations],
         'class': 'GGHUncertainty',
         'args': (thu,),
@@ -306,30 +306,49 @@ for thu in thus:
     }
 
 
-
-
-
-
+'''
 aliases['vbfdnn'] = {
-        'linesToAdd': ['.L /afs/cern.ch/work/r/rceccare/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/VBF/Keras_2018_v6/evaluate_multiclass.cc+'],
+        'linesToAdd': ['.L /afs/cern.ch/work/r/rceccare/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/VBF/Keras_2018_v6/evaluate_multiclass_tris.cc+'],
         'class': 'evaluate_multiclass',
         'args': 0,
 }
 
 aliases['topdnn'] = {
-        'linesToAdd': ['.L /afs/cern.ch/work/r/rceccare/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/VBF/Keras_2018_v6/evaluate_multiclass.cc+'],
+        'linesToAdd': ['.L /afs/cern.ch/work/r/rceccare/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/VBF/Keras_2018_v6/evaluate_multiclass_tris.cc+'],
+        'class': 'evaluate_multiclass',
+        'args': 1,
+}
+
+
+
+aliases['gghdnn'] = {
+        'linesToAdd': ['.L /afs/cern.ch/work/r/rceccare/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/VBF/Keras_2018_v6/evaluate_multiclass_tris.cc+'],
+        'class': 'evaluate_multiclass',
+        'args': 2,
+}
+
+
+'''
+aliases['vbfdnn'] = {
+        'linesToAdd': ['.L /afs/cern.ch/work/r/rceccare/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/VBF/Keras_2018_v6/extended/evaluate_multiclass.cc+'],
+        'class': 'evaluate_multiclass',
+        'args': 0,
+}
+
+aliases['topdnn'] = {
+        'linesToAdd': ['.L /afs/cern.ch/work/r/rceccare/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/VBF/Keras_2018_v6/extended/evaluate_multiclass.cc+'],
         'class': 'evaluate_multiclass',
         'args': 1,
 }
 
 aliases['wwdnn'] = {
-        'linesToAdd': ['.L /afs/cern.ch/work/r/rceccare/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/VBF/Keras_2018_v6/evaluate_multiclass.cc+'],
+        'linesToAdd': ['.L /afs/cern.ch/work/r/rceccare/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/VBF/Keras_2018_v6/extended/evaluate_multiclass.cc+'],
         'class': 'evaluate_multiclass',
         'args': 2,
 }
 
 aliases['gghdnn'] = {
-        'linesToAdd': ['.L /afs/cern.ch/work/r/rceccare/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/VBF/Keras_2018_v6/evaluate_multiclass.cc+'],
+        'linesToAdd': ['.L /afs/cern.ch/work/r/rceccare/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/VBF/Keras_2018_v6/extended/evaluate_multiclass.cc+'],
         'class': 'evaluate_multiclass',
         'args': 3,
 }
@@ -349,6 +368,22 @@ aliases['wwlike'] = {
 aliases['gghlike'] = { 
         'expr': 'gghdnn>vbfdnn && gghdnn>topdnn && gghdnn>wwdnn',
 }
+
+'''
+
+aliases['vbflike'] = { 
+        'expr': 'vbfdnn>gghdnn && vbfdnn>topdnn',
+}
+
+aliases['toplike'] = { 
+        'expr': 'topdnn>gghdnn && topdnn>vbfdnn',
+}
+
+
+aliases['gghlike'] = { 
+        'expr': 'gghdnn>vbfdnn && gghdnn>topdnn',
+}
+'''
 
 
 thusQQ = [
