@@ -34,7 +34,7 @@ outputDirPlots = 'plots'
 
 
 # used by mkDatacards to define output directory for datacards
-outputDirDatacard = 'datacards'
+outputDirDatacard = 'datacards_2017'
 
 
 # structure file for datacard

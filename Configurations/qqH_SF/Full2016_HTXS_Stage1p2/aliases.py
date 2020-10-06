@@ -296,3 +296,95 @@ aliases['nCleanGenJet'] = {
     'class': 'CountGenJet',
     'samples': mc
 }
+
+# GGHUncertaintyProducer wasn't run for 2016 nAODv5 non-private
+thus = [
+    'ggH_mu',
+    'ggH_res',
+    'ggH_mig01',
+    'ggH_mig12',
+    'ggH_VBF2j',
+    'ggH_VBF3j',
+    'ggH_pT60',
+    'ggH_pT120',
+    'ggH_qmtop'
+]
+
+for thu in thus:
+    aliases[thu] = {
+        'linesToAdd': ['.L %s/Differential/gghuncertainty.cc+' % configurations],
+        'class': 'GGHUncertainty',
+        'args': (thu,),
+        'samples': [skey for skey in samples if 'ggH_hww' in skey],
+        'nominalOnly': True
+    }
+
+
+
+aliases['vbfdnn_mjjhigh'] = {
+    'linesToAdd': ['.L %s/ggH/Full2016_v6/HTXS_Stage1p2_ggHVBFVH/evaluate_multiclass_3rdjet_mjjhigh.cc+' % configurations],
+    'class': 'evaluate_multiclass_3rdjet_mjjhigh',
+    'args': 0,
+}
+
+aliases['topdnn_mjjhigh'] = {
+    'linesToAdd': ['.L %s/ggH/Full2016_v6/HTXS_Stage1p2_ggHVBFVH/evaluate_multiclass_3rdjet_mjjhigh.cc+' % configurations],
+    'class': 'evaluate_multiclass_3rdjet_mjjhigh',
+    'args': 1,
+}
+
+aliases['wwdnn_mjjhigh'] = {
+    'linesToAdd': ['.L %s/ggH/Full2016_v6/HTXS_Stage1p2_ggHVBFVH/evaluate_multiclass_3rdjet_mjjhigh.cc+' % configurations],
+    'class': 'evaluate_multiclass_3rdjet_mjjhigh',
+    'args': 2,
+}
+
+aliases['gghdnn_mjjhigh'] = {
+    'linesToAdd': ['.L %s/ggH/Full2016_v6/HTXS_Stage1p2_ggHVBFVH/evaluate_multiclass_3rdjet_mjjhigh.cc+' % configurations],
+    'class': 'evaluate_multiclass_3rdjet_mjjhigh',
+    'args': 3,
+}
+
+
+
+
+aliases['gghlike_mjjhigh'] = {
+    'expr': 'gghdnn_mjjhigh>vbfdnn_mjjhigh && gghdnn_mjjhigh>topdnn_mjjhigh && gghdnn_mjjhigh>wwdnn_mjjhigh',
+}
+
+aliases['vbflike_mjjhigh'] = {
+    'expr': 'vbfdnn_mjjhigh>gghdnn_mjjhigh && vbfdnn_mjjhigh>topdnn_mjjhigh && vbfdnn_mjjhigh>wwdnn_mjjhigh',
+}
+
+
+aliases['toplike_mjjhigh'] = {
+    'expr': 'topdnn_mjjhigh>gghdnn_mjjhigh && topdnn_mjjhigh>vbfdnn_mjjhigh && topdnn_mjjhigh>wwdnn_mjjhigh',
+}
+
+
+aliases['wwlike_mjjhigh'] = {
+    'expr': 'wwdnn_mjjhigh>gghdnn_mjjhigh && wwdnn_mjjhigh>topdnn_mjjhigh && wwdnn_mjjhigh>vbfdnn_mjjhigh',
+}
+
+thusQQ = [
+  "qqH_YIELD",
+  "qqH_PTH200",
+  "qqH_Mjj60",
+  "qqH_Mjj120",
+  "qqH_Mjj350",
+  "qqH_Mjj700",
+  "qqH_Mjj1000",
+  "qqH_Mjj1500",
+  "qqH_PTH25",
+  "qqH_JET01",
+  "qqH_EWK",
+]
+
+for thu in thusQQ:
+    aliases[thu] = {
+        'linesToAdd': ['.L %s/patches/qqhuncertainty.cc+' % configurations],
+        'class': 'QQHUncertainty',
+        'args': (thu,),
+        'samples': [skey for skey in samples if 'qqH_hww' in skey],
+        'nominalOnly': True
+    }

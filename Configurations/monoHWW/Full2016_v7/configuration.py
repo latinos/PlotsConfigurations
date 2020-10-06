@@ -34,7 +34,7 @@ lumi = 35.867
 outputDirPlots = 'plots'
 
 # used by mkDatacards to define output directory for datacards
-outputDirDatacard = 'datacards'
+outputDirDatacard = 'datacards_2016'
 
 # structure file for datacard
 structureFile = 'structure.py'

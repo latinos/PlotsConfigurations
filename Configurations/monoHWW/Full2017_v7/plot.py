@@ -80,17 +80,17 @@ groupPlot['Higgs']  = {
 
 mhs = ['160']
 mDM = ['100']
-mZp = ['195','200','295','300','400','500','800','1000','1200','1500']
+mZp = ['300','400','500','800','1000','1200','1500']
 
 j=0
 for hs in mhs:
     for DM in mDM:
         for Zp in mZp:
-            j+=1
+            j+=100
             groupPlot['DH_' + hs  +  '_'   + DM + '_' + Zp]  = {
                 'nameHR' : 'DH_' + hs  + '_' + DM + '_' + Zp ,
                 'isSignal' : 2,
-                'color': 632 + 2*j, # kRed
+                'color':  1 + j, # kRed
                 'samples'  : ['DH_mhs_' + hs + '_mx_' + DM +  '_mZp_' + Zp]
             }
 
@@ -225,9 +225,9 @@ j=0
 for hs in mhs:
     for DM in mDM:
         for Zp in mZp:
-            j+=1
+            j+=100
             plot['DH_mhs_' + hs + '_mx_' + DM  + '_mZp_' + Zp]  = {
-                'color': 632 + 2*j, # kRed
+                'color': 1 + j, # kRed
                 'isSignal' : 2,
                 'isData'   : 0,
                 'scale'    : 1.0
@@ -241,7 +241,7 @@ plot['DATA']  = {
                   'color': 1 ,  
                   'isSignal' : 0,
                   'isData'   : 1 ,
-                  'isBlind'  : 0
+                  'isBlind'  : 1
               }
 
 

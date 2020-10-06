@@ -61,6 +61,7 @@ nuisances['lumi_CurrCalib'] = {
 }
 """
 #### FAKES
+
 """
 nuisances['fake_syst'] = {
     'name': 'CMS_fake_syst',
@@ -105,6 +106,7 @@ nuisances['fake_mu_stat'] = {
         'Fake': ['fakeWStatMuUp', 'fakeWStatMuDown'],
     }
 }
+"""
 
 ##### B-tagger
 
@@ -141,7 +143,7 @@ nuisances['eff_e'] = {
     'type': 'shape',
     'samples': dict((skey, ['SFweightEleUp', 'SFweightEleDown']) for skey in mc)
 }
-
+"""
 nuisances['electronpt'] = {
     'name': 'CMS_scale_e_2018',
     'kind': 'suffix',
@@ -153,7 +155,7 @@ nuisances['electronpt'] = {
     'folderDown': makeMCDirectory('ElepTdo_suffix'),
     'AsLnN': '1'
 }
-
+"""
 ##### Muon Efficiency and energy scale
 
 nuisances['eff_m'] = {
@@ -163,7 +165,7 @@ nuisances['eff_m'] = {
     'samples': dict((skey, ['SFweightMuUp', 'SFweightMuDown']) for skey in mc)
     #'samples': dict((skey, ['ttHMVA_2l_mu_SF_Up', 'ttHMVA_2l_mu_SF_Down']) for skey in mc)
 }
-
+"""
 nuisances['muonpt'] = {
     'name': 'CMS_scale_m_2018',
     'kind': 'suffix',
@@ -205,7 +207,7 @@ nuisances['met'] = {
     'folderDown': makeMCDirectory('METdo_suffix'),
     'AsLnN': '1'
 }
-
+"""
 ##### Pileup
 
 nuisances['PU'] = {
@@ -239,6 +241,7 @@ nuisances['PS_FSR']  = {
 }
 
 ## PS nuisances computed by hand as a function of nCleanGenJets using alternative samples (when available). Needed if nominal samples have buggy PSWeights
+"""
 nuisances['PS_ISR_ForBuggySamples']  = {
     'name': 'PS_ISR',
     'kind': 'weight',
@@ -258,7 +261,7 @@ nuisances['PS_FSR_ForBuggySamples']  = {
         'VgS'    : ['0.9976593177227735*(nCleanGenJet==0) + 1.0016125187585532*(nCleanGenJet==1) + 1.0049344618055556*(nCleanGenJet==2) + 1.0195631514301164*(nCleanGenJet>=3)', '1.0026951855766457*(nCleanGenJet==0) + 1.0008132148661049*(nCleanGenJet==1) + 1.003949291087963*(nCleanGenJet==2) + 0.9708160910230832*(nCleanGenJet>=3)'],
     },
 }
-
+"""
 
 # An overall 1.5% UE uncertainty will cover all the UEup/UEdo variations
 # And we don't observe any dependency of UE variations on njet
@@ -582,6 +585,7 @@ nuisances['QCDscale_gg_ACCEPT'] = {
 }
 
 ## Use the following if you want to apply the automatic combine MC stat nuisances.
+
 nuisances['stat'] = {
     'type': 'auto',
     'maxPoiss': '10',
@@ -590,11 +594,9 @@ nuisances['stat'] = {
     #  nuisance ['includeSignal'] =  Include MC stat nuisances on signal processes (1=True, 0=False)
     'samples': {}
 }
-
 ##rate parameter
 
 for n in nuisances.values():
     n['skipCMS'] = 1
 
 print ' '.join(nuis['name'] for nname, nuis in nuisances.iteritems() if nname not in ('lumi', 'stat'))
-"""
