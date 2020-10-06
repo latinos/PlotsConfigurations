@@ -1,16 +1,6 @@
-# nuisances
-
-#nuisances = {}
-
-# name of samples here must match keys in samples.py 
-
-# imported from samples.py:
-# samples, treeBaseDir, mcProduction, mcSteps
-# imported from cuts.py
-# cuts
-
 #### FAKES
 
+## FIXME: check the 30% lnN
 nuisances['fake_syst'] = {
     'name': 'CMS_fake_syst',
     'type': 'lnN',
@@ -20,7 +10,7 @@ nuisances['fake_syst'] = {
 }
 
 nuisances['fake_ele'] = {
-    'name': 'CMS_fake_e_2017',
+    'name': 'CMS_fake_e_2018',
     'kind': 'weight',
     'type': 'shape',
     'samples': {
@@ -29,7 +19,7 @@ nuisances['fake_ele'] = {
 }
 
 nuisances['fake_ele_stat'] = {
-    'name': 'CMS_fake_stat_e_2017',
+    'name': 'CMS_fake_stat_e_2018',
     'kind': 'weight',
     'type': 'shape',
     'samples': {
@@ -38,7 +28,7 @@ nuisances['fake_ele_stat'] = {
 }
 
 nuisances['fake_mu'] = {
-    'name': 'CMS_fake_m_2017',
+    'name': 'CMS_fake_m_2018',
     'kind': 'weight',
     'type': 'shape',
     'samples': {
@@ -47,11 +37,10 @@ nuisances['fake_mu'] = {
 }
 
 nuisances['fake_mu_stat'] = {
-    'name': 'CMS_fake_stat_m_2017',
+    'name': 'CMS_fake_stat_m_2018',
     'kind': 'weight',
     'type': 'shape',
     'samples': {
         'Fake': ['fakeWStatMuUp', 'fakeWStatMuDown'],
     }
 }
-

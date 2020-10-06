@@ -452,9 +452,25 @@ for mass in massggh:
   if int(mass) >= 300: jhugen = '_JHUGen698'
   if int(mass) >= 4000: jhugen = '_JHUGen714'
 
+  # TEMP FIX FOR v6! Fix norm for 2% width scenario!
+  if mass == '4000':
+    SFtemp = 1./0.597551154054
+  elif mass == '135':
+    SFtemp = 1./1.28680753431
+  elif mass == '155':
+    SFtemp = 1./2.50536833984
+  elif mass == '165':
+    SFtemp = 1./1.15606865079
+  elif mass == '170':
+    SFtemp = 1./1.07582832112
+  elif mass == '175':
+    SFtemp = 1./1.08320993948
+  else:
+    SFtemp = 1.
+
   # Xsec*BR is applied in later step, so remove "SM"-Xsec*BR 
   samples['GGH_'+mass+model_name]  = {  'name'   :   getSampleFiles(directoryHM,'GluGluHToWWTo2L2Nu'+jhugen+'_M'+mass,True,'nanoLatino_'),
-                        'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*'+noSMxsec+'*'+model ,
+                        'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*'+noSMxsec+'*'+model+'*'+str(SFtemp) ,
                         'FilesPerJob' : 10,
                         'EventsPerJob' : 70000,
                         'suppressNegative' :['all'],
@@ -479,7 +495,7 @@ for mass in massggh:
                         'suppressNegativeNuisances' :['all'],
                      }
 
-    addSampleWeight(samples, 'GGHSBI_'+mass+model_name, 'GluGluHToWWTo2L2Nu'+jhugen+'_M'+mass, noSMxsec+'*'+'('+model+' + '+model_I+'*(abs('+model_I+')<20))')
+    addSampleWeight(samples, 'GGHSBI_'+mass+model_name, 'GluGluHToWWTo2L2Nu'+jhugen+'_M'+mass, noSMxsec+'*'+'('+model+' + '+model_I+'*(abs('+model_I+')<20))'+'*'+str(SFtemp))
     addSampleWeight(samples, 'GGHSBI_'+mass+model_name, 'GluGluWWTo2L2Nu_MCFM', '1.53/1.4'+embed_tautauveto)
     addSampleWeight(samples, 'GGHSBI_'+mass+model_name, 'GluGluHToWWTo2L2Nu_alternative_M125', 'MINLO')
 
@@ -506,9 +522,25 @@ for mass in massvbf:
   if int(mass) >= 300: jhugen = '_JHUGen698'
   if int(mass) >= 4000: jhugen = '_JHUGen714'
 
+  # TEMP FIX FOR v6! Fix norm for 2% width scenario!
+  if mass == '124':
+    SFtemp = 1./1.42095796352
+  elif mass == '126':
+    SFtemp = 1./1.20088100615
+  elif mass == '140':
+    SFtemp = 1./1.9545698879
+  elif mass == '160':
+    SFtemp = 1./2.21864762518
+  elif mass == '170':
+    SFtemp = 1./1.12753722089
+  elif mass == '180':
+    SFtemp = 1./1.0645049973
+  else:
+    SFtemp = 1.
+
   # Xsec*BR is applied in later step, so remove "SM"-Xsec*BR 
   samples['QQH_'+mass+model_name]  = {  'name'   :   getSampleFiles(directoryHM,'VBFHToWWTo2L2Nu'+jhugen+'_M'+mass,True,'nanoLatino_'),
-                        'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*'+noSMxsec+'*'+model ,
+                        'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*'+noSMxsec+'*'+model+'*'+str(SFtemp) ,
                         'FilesPerJob' : 10,
                         'EventsPerJob' : 70000,
                         'suppressNegative' :['all'],
@@ -534,7 +566,7 @@ for mass in massvbf:
                      }
 
   # Using nAODv6 for WpWmJJ_QCD_noTop, because too low statistics in nAODv5 sample!
-    addSampleWeight(samples, 'QQHSBI_'+mass+model_name, 'VBFHToWWTo2L2Nu'+jhugen+'_M'+mass, noSMxsec+'*'+'('+model+' + '+model_I+'*(abs('+model_I+')<20))')
+    addSampleWeight(samples, 'QQHSBI_'+mass+model_name, 'VBFHToWWTo2L2Nu'+jhugen+'_M'+mass, noSMxsec+'*'+'('+model+' + '+model_I+'*(abs('+model_I+')<20))'+'*'+str(SFtemp))
     addSampleWeight(samples, 'QQHSBI_'+mass+model_name, 'WpWmJJ_QCD_noTop', '(mjjGen_OTF>100)*(GenLHE)'+embed_tautauveto)
 
   if mass in ['4000', '5000']: # Just to be sure, recalculate baseW with new cross sections
