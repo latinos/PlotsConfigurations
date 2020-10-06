@@ -71,15 +71,22 @@ groupPlot['VgS']  = {
 
 
 
+# groupPlot['Higgs']  = {  
+#                   'nameHR' : 'Higgs',
+#                   'isSignal' : 1,
+#                   'color': 632, # kRed 
+# 		  #'samples'  : ['H_htt', 'H_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww','bbH_hww','ttH_hww','ZH_htt', 'ggZH_htt', 'WH_htt', 'qqH_htt', 'ggH_htt','bbH_htt','ttH_htt' ]
+# 		  'samples'  : ['H_htt', 'H_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww','bbH_hww','ttH_hww', 'qqH_htt', 'ggH_htt' ]
+#               }
+
+
+print signals
 groupPlot['Higgs']  = {  
                   'nameHR' : 'Higgs',
                   'isSignal' : 1,
                   'color': 632, # kRed 
-		  #'samples'  : ['H_htt', 'H_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww','bbH_hww','ttH_hww','ZH_htt', 'ggZH_htt', 'WH_htt', 'qqH_htt', 'ggH_htt','bbH_htt','ttH_htt' ]
-		  'samples'  : ['H_htt', 'H_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww','bbH_hww','ttH_hww', 'qqH_htt', 'ggH_htt' ]
+                  'samples'  : signals,
               }
-
-
 
 
 
@@ -205,6 +212,19 @@ plot['VVV']  = {
                   'scale'    : 1.0
                   }
 
+
+
+# HWW 
+for signal in signals:
+    plot[signal] = {
+                  'nameHR' : signal,
+                  'color': 632, # kRed
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  'scale'    : 1    #
+                  }
+
+
 # Htautau
 
 #plot['ZH_htt'] = {
@@ -276,47 +296,47 @@ plot['VVV']  = {
 #                  'scale'    : 1    #
 #                  }
 
-plot['ZH_hww'] = {
-                  'nameHR' : 'ZH',
-                  'color': 632+3, # kRed+3 
-                  'isSignal' : 1,
-                  'isData'   : 0,    
-                  'scale'    : 1    #
-                  }
+# plot['ZH_hww'] = {
+#                   'nameHR' : 'ZH',
+#                   'color': 632+3, # kRed+3 
+#                   'isSignal' : 1,
+#                   'isData'   : 0,    
+#                   'scale'    : 1    #
+#                   }
 
-plot['ggZH_hww'] = {
-                  'nameHR' : 'ggZH',
-                  'color': 632+4, # kRed+4
-                  'isSignal' : 1,
-                  'isData'   : 0,    
-                  'scale'    : 1    #
-                  }
+# plot['ggZH_hww'] = {
+#                   'nameHR' : 'ggZH',
+#                   'color': 632+4, # kRed+4
+#                   'isSignal' : 1,
+#                   'isData'   : 0,    
+#                   'scale'    : 1    #
+#                   }
 
-plot['WH_hww'] = {
-                  'nameHR' : 'WH',
-                  'color': 632+2, # kRed+2 
-                  'isSignal' : 1,
-                  'isData'   : 0,    
-                  'scale'    : 1    #
-                  }
-
-
-plot['qqH_hww'] = {
-                  'nameHR' : 'qqH',
-                  'color': 632+1, # kRed+1 
-                  'isSignal' : 1,
-                  'isData'   : 0,    
-                  'scale'    : 1    #
-                  }
+# plot['WH_hww'] = {
+#                   'nameHR' : 'WH',
+#                   'color': 632+2, # kRed+2 
+#                   'isSignal' : 1,
+#                   'isData'   : 0,    
+#                   'scale'    : 1    #
+#                   }
 
 
-plot['ggH_hww'] = {
-                  'nameHR' : 'ggH',
-                  'color': 632, # kRed 
-                  'isSignal' : 1,
-                  'isData'   : 0,    
-                  'scale'    : 1    #
-                  }
+# plot['qqH_hww'] = {
+#                   'nameHR' : 'qqH',
+#                   'color': 632+1, # kRed+1 
+#                   'isSignal' : 1,
+#                   'isData'   : 0,    
+#                   'scale'    : 1    #
+#                   }
+
+
+# plot['ggH_hww'] = {
+#                   'nameHR' : 'ggH',
+#                   'color': 632, # kRed 
+#                   'isSignal' : 1,
+#                   'isData'   : 0,    
+#                   'scale'    : 1    #
+#                   }
 
 #plot['bbH_hww'] = {
 #                  'nameHR' : 'bbH',
