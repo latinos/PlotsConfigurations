@@ -1278,22 +1278,22 @@ if StatSwitch:
 
                      'ggWW': {
                            'typeStat' : 'bbb',
-                           'zeroMCError' : '0',
+                           'zeroMCError' : '1',
                            'correlate': []
                      },
                      'ggH_hww':{
                            'typeStat' : 'bbb',
-                           'zeroMCError' : '0',
+                           'zeroMCError' : '1',
                            'correlate': []
                      },
                      'qqWWqq': {
                           'typeStat' : 'bbb',
-                           'zeroMCError' : '0',
+                           'zeroMCError' : '1',
                            'correlate': []
                      },
                      'qqH_hww':{
                            'typeStat' : 'bbb',
-                           'zeroMCError' : '0',
+                           'zeroMCError' : '1',
                            'correlate': []
                      },
 
@@ -1303,13 +1303,13 @@ if StatSwitch:
                 }
 
   for m in massggh:
-    nuisances['stat']['samples']['GGH_'+m+model_name] = { 'typeStat' : 'bbb', 'zeroMCError' : '0', 'correlate': [] }
+    nuisances['stat']['samples']['GGH_'+m+model_name] = { 'typeStat' : 'bbb', 'zeroMCError' : '1', 'correlate': [] }
     nuisances['stat']['samples']['ggWW']["correlate"].append('GGHSBI_'+m+model_name)
     nuisances['stat']['samples']['ggH_hww']["correlate"].append('GGHSBI_'+m+model_name)
     nuisances['stat']['samples']['GGH_'+m+model_name]['correlate'].append('GGHSBI_'+m+model_name)
 
   for m in massvbf:
-    nuisances['stat']['samples']['QQH_'+m+model_name] = { 'typeStat' : 'bbb', 'zeroMCError' : '0', 'correlate': [] }
+    nuisances['stat']['samples']['QQH_'+m+model_name] = { 'typeStat' : 'bbb', 'zeroMCError' : '1', 'correlate': [] }
     nuisances['stat']['samples']['qqWWqq']["correlate"].append('QQHSBI_'+m+model_name)
     nuisances['stat']['samples']['qqH_hww']["correlate"].append('QQHSBI_'+m+model_name)
     nuisances['stat']['samples']['QQH_'+m+model_name]['correlate'].append('QQHSBI_'+m+model_name)

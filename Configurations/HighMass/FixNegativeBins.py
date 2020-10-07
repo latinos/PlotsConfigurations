@@ -4,8 +4,9 @@ import os
 import re
 
 
-signameFormat1 = "histo_(|MSSM)(GGH|QQH)(|SBI)_([0-9]+)_RelW([0-9]+)_ibin(|MSSM)(GGH|QQH)_([0-9]+)_RelW([0-9]+)_([0-9]+)_stat(Up|Down)" # bbb to signal
-signameFormat2 = "histo_(|MSSM)(GGH|QQH)(|SBI)_([0-9]+)_RelW([0-9]+)_ibin(ggH_hww|ggWW|qqH_hww|qqWWqq)_([0-9]+)_stat(Up|Down)" # bbb to background
+signameFormat1 = "histo_(GGH|QQH)(|SBI)_([0-9]+)_RelW([0-9]+)_ibin(GGH|QQH)_([0-9]+)_RelW([0-9]+)_([0-9]+)_stat(Up|Down)"
+signameFormat2 = "histo_(GGH|QQH)(|SBI)_([0-9]+)_RelW([0-9]+)_ibin(ggH_hww|ggWW|qqH_hww|qqWWqq)_([0-9]+)_stat(Up|Down)"
+signameFormat3 = "histo_(ggH_hww|ggWW|qqH_hww|qqWWqq)_ibin(ggH_hww|ggWW|qqH_hww|qqWWqq)_([0-9]+)_stat(Up|Down)"
 
 try:
   rootfile = sys.argv[1]
@@ -91,16 +92,21 @@ for categories in newfile.GetListOfKeys(): # Cut directory
           #  histo.SetBinContent(i+1,0.0)
 
         # RENAME BBB SIGNAL SHAPES!
-        #signameFormat1 = "histo_(|MSSM)(GGH|QQH)(|SBI)_([0-9]+)_RelW([0-9]+)_ibin(|MSSM)(GGH|QQH)_([0-9]+)_RelW([0-9]+)_([0-9]+)_stat(Up|Down)"
-        #signameFormat2 = "histo_(|MSSM)(GGH|QQH)(|SBI)_([0-9]+)_RelW([0-9]+)_ibin(ggH_hww|ggWW|qqH_hww|qqWWqq)_([0-9]+)_stat(Up|Down)"
+        #signameFormat1 = "histo_(GGH|QQH)(|SBI)_([0-9]+)_RelW([0-9]+)_ibin(GGH|QQH)_([0-9]+)_RelW([0-9]+)_([0-9]+)_stat(Up|Down)"
+        #signameFormat2 = "histo_(GGH|QQH)(|SBI)_([0-9]+)_RelW([0-9]+)_ibin(ggH_hww|ggWW|qqH_hww|qqWWqq)_([0-9]+)_stat(Up|Down)"
+        #signameFormat3 = "histo_(ggH_hww|ggWW|qqH_hww|qqWWqq)_ibin(ggH_hww|ggWW|qqH_hww|qqWWqq)_([0-9]+)_stat(Up|Down)"
         pattern = re.match(signameFormat1, histoname)
         if not pattern == None:
           #if (pattern.group(1) != pattern.group(6)) or (pattern.group(2) != pattern.group(7)) or (pattern.group(5) != pattern.group(9)) or (pattern.group(4) != pattern.group(8)): print "WHAT???", histoname # Shouldn't happen
-          newname = "histo_"+pattern.group(1)+pattern.group(2)+pattern.group(3)+"_"+pattern.group(4)+"_RelW"+pattern.group(5)+"_CMS_hww"+state+"_"+categ+"_"+year+"_correlbin_"+pattern.group(6)+pattern.group(7)+"_RelW"+pattern.group(9)+"_"+pattern.group(10)+"_stat"+pattern.group(11)
+          newname = "histo_"+pattern.group(1)+pattern.group(2)+"_"+pattern.group(3)+"_RelW"+pattern.group(4)+"_CMS_hww"+state+"_"+categ+"_"+year+"_correlbin_"+pattern.group(5)+"_RelW"+pattern.group(7)+"_"+pattern.group(8)+"_stat"+pattern.group(9)
           histo.SetNameTitle(newname, newname)
         pattern = re.match(signameFormat2, histoname)
         if not pattern == None:
-          newname = "histo_"+pattern.group(1)+pattern.group(2)+pattern.group(3)+"_"+pattern.group(4)+"_RelW"+pattern.group(5)+"_CMS_hww"+state+"_"+categ+"_"+year+"_correlbin_"+pattern.group(6)+"_"+pattern.group(7)+"_stat"+pattern.group(8)
+          newname = "histo_"+pattern.group(1)+pattern.group(2)+"_"+pattern.group(3)+"_RelW"+pattern.group(4)+"_CMS_hww"+state+"_"+categ+"_"+year+"_correlbin_"+pattern.group(5)+"_"+pattern.group(6)+"_stat"+pattern.group(7)
+          histo.SetNameTitle(newname, newname)
+        pattern = re.match(signameFormat3, histoname)
+        if not pattern == None:
+          newname = "histo_"+pattern.group(1)+"_CMS_hww"+state+"_"+categ+"_"+year+"_correlbin_"+pattern.group(2)+"_"+pattern.group(3)+"_stat"+pattern.group(4)
           histo.SetNameTitle(newname, newname)
 
         # Also rename DATA -> data_obs
