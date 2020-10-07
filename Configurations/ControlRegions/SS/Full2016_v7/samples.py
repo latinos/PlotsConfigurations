@@ -153,7 +153,7 @@ else:
                                          Sum$(LeptonGen_isPrompt==1 && LeptonGen_pt>15)>=2) )",
         'FilesPerJob': 8,
     }
-    addSampleWeight(samples,'DY','DYJetsToLL_M-50','DY_NLO_pTllrw')
+    addSampleWeight(samples,'DY','DYJetsToLL_M-50_ext2','DY_NLO_pTllrw')
     addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO','DY_LO_pTllrw')
 
 

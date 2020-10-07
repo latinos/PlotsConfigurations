@@ -140,6 +140,6 @@ aliases['multiJet'] = {
 
 # data/MC scale factors
 aliases['SFweight'] = {
-    'expr': ' * '.join(['SFweight2l', 'LepWPCut', 'Jet_PUIDSF_loose']),
+    'expr': ' * '.join(['SFweight2l', 'LepWPCut', 'LepSF2l__ele_' + eleWP + '__mu_' + muWP, 'Jet_PUIDSF_loose']),
     'samples': mc
 }

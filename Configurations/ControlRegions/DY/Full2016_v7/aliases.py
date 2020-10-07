@@ -13,19 +13,20 @@ configurations = os.path.dirname(configurations) # Configurations
 # imported from samples.py:
 # samples, signals
 
-mc = [skey for skey in samples if skey not in ('Fake', 'DATA')]
+mc = [skey for skey in samples if skey not in ('Fake', 'DATA', 'Dyemb')]
+mc_emb = [skey for skey in samples if skey not in ('Fake', 'DATA')]
 
 eleWP = 'mva_90p_Iso2016'
 muWP = 'cut_Tight80x_tthmva_80'
 
 aliases['LepWPCut'] = {
     'expr': 'LepCut2l__ele_'+eleWP+'__mu_'+muWP,
-    'samples': mc + ['DATA']
+    'samples': mc_emb + ['DATA']
 }
 
 aliases['LepWPSF'] = {
     'expr': 'LepSF2l__ele_'+eleWP+'__mu_'+muWP,
-    'samples': mc
+    'samples': mc_emb
 }
 
 aliases['gstarLow'] = {
@@ -82,6 +83,12 @@ aliases['fakeWStatMuDown'] = {
     'samples': ['Fake']
 }
 
+aliases['nCleanGenJet'] = {
+    'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/Differential/ngenjet.cc+' % os.getenv('CMSSW_BASE')],
+    'class': 'CountGenJet',
+    'samples': mc
+}
+
 # gen-matching to prompt only (GenLepMatch2l matches to *any* gen lepton)
 aliases['PromptGenLepMatch2l'] = {
     'expr': 'Alt$(Lepton_promptgenmatched[0]*Lepton_promptgenmatched[1], 0)',
@@ -89,10 +96,29 @@ aliases['PromptGenLepMatch2l'] = {
 }
 
 aliases['Top_pTrw'] = {
-    #'expr': '(topGenPt * antitopGenPt > 0.) * (TMath::Sqrt(TMath::Exp(0.0615 - 0.0005 * topGenPt) * TMath::Exp(0.0615 - 0.0005 * antitopGenPt))) + (topGenPt * antitopGenPt <= 0.)',
-    'expr': '(topGenPt * antitopGenPt > 0.) * (TMath::Sqrt(TMath::Exp(-0.158631 + 2.00214e-04*topGenPt - 3.09496e-07*topGenPt*topGenPt + 34.93/(topGenPt+135.633)) * TMath::Exp(-0.158631 + 2.00214e-04*antitopGenPt - 3.09496e-07*antitopGenPt*antitopGenPt + 34.93/(antitopGenPt+135.633)))) + (topGenPt * antitopGenPt <= 0.)',
+    'expr': '(topGenPt * antitopGenPt > 0.) * (TMath::Sqrt((0.103*TMath::Exp(-0.0118*topGenPt) - 0.000134*topGenPt + 0.973) * (0.103*TMath::Exp(-0.0118*antitopGenPt) - 0.000134*antitopGenPt + 0.973))) * (TMath::Sqrt(TMath::Exp(1.61468e-03 + 3.46659e-06*topGenPt - 8.90557e-08*topGenPt*topGenPt) * TMath::Exp(1.61468e-03 + 3.46659e-06*antitopGenPt - 8.90557e-08*antitopGenPt*antitopGenPt))) + (topGenPt * antitopGenPt <= 0.)', # Same Reweighting as other years, but with additional fix for tune CUET -> CP5
     'samples': ['top']
 }
+
+
+##### DY Z pT reweighting
+aliases['getGenZpt_OTF'] = {
+    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/patches/getGenZpt.cc+' % os.getenv('CMSSW_BASE')],
+    'class': 'getGenZpt',
+    'samples': ['DY']
+}
+handle = open('%s/src/PlotsConfigurations/Configurations/patches/DYrew30.py' % os.getenv('CMSSW_BASE'),'r')
+exec(handle)
+handle.close()
+aliases['DY_NLO_pTllrw'] = {
+    'expr': '('+DYrew['2016']['NLO'].replace('x', 'getGenZpt_OTF')+')*(nCleanGenJet == 0)+1.0*(nCleanGenJet > 0)',
+    'samples': ['DY']
+}
+aliases['DY_LO_pTllrw'] = {
+    'expr': '('+DYrew['2016']['LO'].replace('x', 'getGenZpt_OTF')+')*(nCleanGenJet == 0)+1.0*(nCleanGenJet > 0)',
+    'samples': ['DY']
+}
+
 
 # Jet bins
 # using Alt$(CleanJet_pt[n], 0) instead of Sum$(CleanJet_pt >= 30) because jet pt ordering is not strictly followed in JES-varied samples
@@ -110,20 +136,28 @@ aliases['multiJet'] = {
     'expr': 'Alt$(CleanJet_pt[1], 0) > 30.'
 }
 
-# B tagging
-
-aliases['bVeto'] = {
-    'expr': 'Sum$(CleanJet_pt > 20. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.2217) == 0'
-}
-
-aliases['bReq'] = {
-    'expr': 'Sum$(CleanJet_pt > 30. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.2217) >= 1'
-}
-
 # data/MC scale factors
 aliases['SFweight'] = {
-    'expr': ' * '.join(['SFweight2l','LepWPCut','LepWPSF','PrefireWeight','Jet_PUIDSF_loose']),
+    'expr': ' * '.join(['SFweight2l', 'LepWPCut', 'LepWPSF','PrefireWeight','Jet_PUIDSF_loose']),
     'samples': mc
+}
+
+# variations
+aliases['SFweightEleUp'] = {
+    'expr': 'LepSF2l__ele_'+eleWP+'__Up',
+    'samples': mc_emb
+}
+aliases['SFweightEleDown'] = {
+    'expr': 'LepSF2l__ele_'+eleWP+'__Do',
+    'samples': mc_emb
+}
+aliases['SFweightMuUp'] = {
+    'expr': 'LepSF2l__mu_'+muWP+'__Up',
+    'samples': mc_emb
+}
+aliases['SFweightMuDown'] = {
+    'expr': 'LepSF2l__mu_'+muWP+'__Do',
+    'samples': mc_emb
 }
 
 # In WpWmJJ_EWK events, partons [0] and [1] are always the decay products of the first W

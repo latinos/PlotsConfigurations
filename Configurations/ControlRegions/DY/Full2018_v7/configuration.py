@@ -2,10 +2,7 @@
 
 treeName = 'Events'
 
-#tag = 'DY2018_v7'
-#tag = 'DY2018_v7_INCL_v1'
-tag = 'DY2018_onlyMC_noPUSF'
-#tag = 'Top2018_v7'
+tag = 'DY2018_v7'
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFile'+tag

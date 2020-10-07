@@ -146,65 +146,9 @@ aliases['bReq'] = {
     'expr': 'Sum$(CleanJet_pt > 30. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.2217) >= 1'
 }
 
-# CR definitions
-
-aliases['topcr'] = {
-    'expr': 'mtw2>30 && mll>50 && ((zeroJet && !bVeto) || bReq)'
-}
-
-aliases['dycr'] = {
-    'expr': 'mth<60 && mll>40 && mll<80 && bVeto'
-}
-
-aliases['wwcr'] = {
-    'expr': 'mth>60 && mtw2>30 && mll>100 && bVeto'
-}
-
-# SR definition
-
-aliases['sr'] = {
-    'expr': 'mth>60 && mtw2>30 && bVeto'
-}
-
-aliases['bVetoSF'] = {
-    'expr': 'TMath::Exp(Sum$(TMath::Log((CleanJet_pt>20 && abs(CleanJet_eta)<2.5)*Jet_btagSF_deepcsv_shape[CleanJet_jetIdx]+1*(CleanJet_pt<20 || abs(CleanJet_eta)>2.5))))',
-    'samples': mc
-}
-
-aliases['bReqSF'] = {
-    'expr': 'TMath::Exp(Sum$(TMath::Log((CleanJet_pt>30 && abs(CleanJet_eta)<2.5)*Jet_btagSF_deepcsv_shape[CleanJet_jetIdx]+1*(CleanJet_pt<30 || abs(CleanJet_eta)>2.5))))',
-    'samples': mc
-}
-
-aliases['btagSF'] = {
-    'expr': '(bVeto || (topcr && zeroJet))*bVetoSF + (topcr && !zeroJet)*bReqSF',
-    'samples': mc
-}
-
-for shift in ['jes','lf','hf','lfstats1','lfstats2','hfstats1','hfstats2','cferr1','cferr2']:
-
-
-    for targ in ['bVeto', 'bReq']:
-        alias = aliases['%sSF%sup' % (targ, shift)] = copy.deepcopy(aliases['%sSF' % targ])
-        alias['expr'] = alias['expr'].replace('btagSF_deepcsv_shape', 'btagSF_deepcsv_shape_up_%s' % shift)
-
-        alias = aliases['%sSF%sdown' % (targ, shift)] = copy.deepcopy(aliases['%sSF' % targ])
-        alias['expr'] = alias['expr'].replace('btagSF_deepcsv_shape', 'btagSF_deepcsv_shape_down_%s' % shift)
-
-    aliases['btagSF%sup' % shift] = {
-        'expr': aliases['btagSF']['expr'].replace('SF', 'SF' + shift + 'up'),
-        'samples': mc
-    }
-
-    aliases['btagSF%sdown' % shift] = {
-        'expr': aliases['btagSF']['expr'].replace('SF', 'SF' + shift + 'down'),
-        'samples': mc
-    }
-
-
 # data/MC scale factors
 aliases['SFweight'] = {
-    'expr': ' * '.join(['SFweight2l', 'LepWPCut', 'LepWPSF', 'btagSF', 'PrefireWeight','Jet_PUIDSF_loose']),
+    'expr': ' * '.join(['SFweight2l', 'LepWPCut', 'LepWPSF', 'PrefireWeight','Jet_PUIDSF_loose']),
     'samples': mc
 }
 
