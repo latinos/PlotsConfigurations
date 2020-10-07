@@ -24,7 +24,7 @@ Resubmit failed jobs:
     mkShapesMulti.py --pycfg=configuration_DYEST090.py --doBatch=1 --batchSplit=Samples,Files --batchQueue=testmatch 
     mkShapesMulti.py --pycfg=configuration_DYEST090.py --doHadd=1 --batchSplit=Samples,Files --doNotCleanup --nThreads=8
 
-## Perfrm data-driven DY estimation
+## Perform data-driven DY estimation
 
     mkDYestim_data.py --pycfg=configuration.py --dycfg=dyestim_qqH.py --inputFile=rootFile/plots_STXS_qqH_SF_2018.root
 
@@ -46,13 +46,13 @@ Repeat, but with data-blind signal region. Put to 1 the 'isBlind' flag in plot.p
 
     mkPlot.py --onlyCut=hww2l2v_13TeV_2j_mjj65_105_ee            --inputFile=rootFile/plots_STXS_qqH_SF_2018_DYEstimDATA.root --linearOnly --fileFormats=png --onlyPlot=cratio
     mkPlot.py --onlyCut=hww2l2v_13TeV_2j_mjj350_700_pthLT200_ee  --inputFile=rootFile/plots_STXS_qqH_SF_2018_DYEstimDATA.root --linearOnly --fileFormats=png --onlyPlot=cratio
-    mkPlot.py --onlyCut=hww2l2v_13TeV_2j_2j_mjjGT700_pthLT200_ee --inputFile=rootFile/plots_STXS_qqH_SF_2018_DYEstimDATA.root --linearOnly --fileFormats=png --onlyPlot=cratio
-    mkPlot.py --onlyCut=hww2l2v_13TeV_2j_2j_mjjGT350_pthGT200_ee --inputFile=rootFile/plots_STXS_qqH_SF_2018_DYEstimDATA.root --linearOnly --fileFormats=png --onlyPlot=cratio
+    mkPlot.py --onlyCut=hww2l2v_13TeV_2j_mjjGT700_pthLT200_ee --inputFile=rootFile/plots_STXS_qqH_SF_2018_DYEstimDATA.root --linearOnly --fileFormats=png --onlyPlot=cratio
+    mkPlot.py --onlyCut=hww2l2v_13TeV_2j_mjjGT350_pthGT200_ee --inputFile=rootFile/plots_STXS_qqH_SF_2018_DYEstimDATA.root --linearOnly --fileFormats=png --onlyPlot=cratio
 
     mkPlot.py --onlyCut=hww2l2v_13TeV_2j_mjj65_105_mm            --inputFile=rootFile/plots_STXS_qqH_SF_2018_DYEstimDATA.root --linearOnly --fileFormats=png --onlyPlot=cratio
     mkPlot.py --onlyCut=hww2l2v_13TeV_2j_mjj350_700_pthLT200_mm  --inputFile=rootFile/plots_STXS_qqH_SF_2018_DYEstimDATA.root --linearOnly --fileFormats=png --onlyPlot=cratio
-    mkPlot.py --onlyCut=hww2l2v_13TeV_2j_2j_mjjGT700_pthLT200_mm --inputFile=rootFile/plots_STXS_qqH_SF_2018_DYEstimDATA.root --linearOnly --fileFormats=png --onlyPlot=cratio
-    mkPlot.py --onlyCut=hww2l2v_13TeV_2j_2j_mjjGT350_pthGT200_mm --inputFile=rootFile/plots_STXS_qqH_SF_2018_DYEstimDATA.root --linearOnly --fileFormats=png --onlyPlot=cratio
+    mkPlot.py --onlyCut=hww2l2v_13TeV_2j_mjjGT700_pthLT200_mm --inputFile=rootFile/plots_STXS_qqH_SF_2018_DYEstimDATA.root --linearOnly --fileFormats=png --onlyPlot=cratio
+    mkPlot.py --onlyCut=hww2l2v_13TeV_2j_mjjGT350_pthGT200_mm --inputFile=rootFile/plots_STXS_qqH_SF_2018_DYEstimDATA.root --linearOnly --fileFormats=png --onlyPlot=cratio
 
 ## Produce datacards:
 
