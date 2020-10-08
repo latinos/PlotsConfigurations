@@ -20,7 +20,8 @@ BoostProcCats={}
 BoostProcCats['']='1'
 # BoostProcCats['Untagged_']='!IsVbfFat'
 # BoostProcCats['VBF_']='IsVbfFat'
-# BoostProcCats['DNNVBF_']='DNN_isVBF_OTF[0]'
+# BoostProcCats['DNNVBF_']='DNN_isVBF_OTF[0] > 0.75'
+# BoostProcCats['DNNGGF_']='DNN_isVBF_OTF[0] <= 0.75'
 
 
 BoostCats={}
@@ -86,7 +87,8 @@ ResolveProcCats={}
 ResolveProcCats['']='1'
 # ResolveProcCats['Untagged_']='!IsVbfjj'
 # ResolveProcCats['VBF_']='IsVbfjj'
-# ResolveProcCats['DNNVBF_']='DNN_isVBF_OTF'
+# ResolveProcCats['DNNVBF_']='DNN_isVBF_OTF[0] > 0.75'
+# ResolveProcCats['DNNGGF_']='DNN_isVBF_OTF[0] <= 0.75'
 
 ResolveCats={}
 # ResolveCats['Resolved']='resolved[0]'

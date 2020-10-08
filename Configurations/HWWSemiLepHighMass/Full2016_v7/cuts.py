@@ -18,9 +18,8 @@ LepCats['MuCh_']='( (abs(Lepton_pdgId[0])==13) && Lepton_pt[0]>27 )'
 
 BoostProcCats={}
 BoostProcCats['']='1'
-# BoostProcCats['Untagged_']='!IsVbfFat'
-# BoostProcCats['VBF_']='IsVbfFat'
-# BoostProcCats['DNNVBF_']='DNN_isVBF_OTF[0]'
+BoostProcCats['VBF_']='(DNN_isVBF_OTF[0] > 0.70)'
+BoostProcCats['GGF_']='(DNN_isVBF_OTF[0] <= 0.70)'
 
 
 BoostCats={}
@@ -42,20 +41,21 @@ BoostCats['BoostedTopCR_']='1 \
 
 
 # High Mass category
-dPhiWWCut  ='&& abs(dPhi_WW_boosted[0]) > 2.2'
-sumPtCut   ='&& Lepton_pt[0] + PuppiMET_pt + Alt$(CleanFatJetPassMBoosted_pt[0], -9999) > 850'
+dPhiWWCut  ='&& (abs(dPhi_WW_boosted[0]) > 2.2)'
+sumPtCut   ='&& (Lepton_pt[0] + PuppiMET_pt + Alt$(HM_CleanFatJetPassMBoosted_pt[0], -9999) > 850)'
 
 HMProcCats={}
 
-HMProcCats['58']='tau21DDT<0.58'+dPhiWWCut+sumPtCut
-HMProcCats['55']='tau21DDT<0.55'+dPhiWWCut+sumPtCut
-HMProcCats['52']='tau21DDT<0.52'+dPhiWWCut+sumPtCut
+# HMProcCats['58']='tau21DDT<0.58'+dPhiWWCut+sumPtCut
+HMProcCats['55_VBF']='(DNN_isVBF_OTF[0]  > 0.68) && (tau21DDT<0.55)'+dPhiWWCut+sumPtCut
+HMProcCats['55_GGF']='(DNN_isVBF_OTF[0] <= 0.68) && (tau21DDT<0.55)'+dPhiWWCut+sumPtCut
+# HMProcCats['52']='tau21DDT<0.52'+dPhiWWCut+sumPtCut
 
 
 HMCats={}
-# HMCats['HMSR_']='boostedNoTau21[0] \
-#                 && boostedSignalWMassNoTau21[0] \
-#                 && bVeto[0]'
+HMCats['HMSR_']='boostedNoTau21[0] \
+                && boostedSignalWMassNoTau21[0] \
+                && bVeto[0]'
 # HMCats['HMSB_']='boostedNoTau21[0] \
 #                && !boostedSignalWMassNoTau21[0] \
 #                && boostedSidebandWMassNoTau21[0] \
@@ -67,9 +67,8 @@ HMCats={}
 
 ResolveProcCats={}
 ResolveProcCats['']='1'
-# ResolveProcCats['Untagged_']='!IsVbfjj'
-# ResolveProcCats['VBF_']='IsVbfjj'
-# ResolveProcCats['DNNVBF_']='DNN_isVBF_OTF'
+ResolveProcCats['DNNVBF_']='DNN_isVBF_OTF[0] > 0.75'
+ResolveProcCats['DNNGGF_']='DNN_isVBF_OTF[0] <= 0.75'
 
 ResolveCats={}
 # ResolveCats['Resolved']='resolved[0]'
@@ -95,11 +94,11 @@ for Lep in LepCats:
                                 +'&&'+BoostProcCats[BProcCat]\
                                 +'&&'+LepCats[Lep]
 
-    # for HCat in HMCats:
-    #     for HProcCat in HMProcCats:
-    #         cuts[Lep+HProcCat+HCat]=  HMCats[HCat]\
-    #                             +'&&'+HMProcCats[HProcCat]\
-    #                             +'&&'+LepCats[Lep]
+    for HCat in HMCats:
+        for HProcCat in HMProcCats:
+            cuts[Lep+HProcCat+HCat]=  HMCats[HCat]\
+                                +'&&'+HMProcCats[HProcCat]\
+                                +'&&'+LepCats[Lep]
 
     for RCat in ResolveCats:
         for RProcCat in ResolveProcCats:

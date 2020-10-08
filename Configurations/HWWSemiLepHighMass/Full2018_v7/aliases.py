@@ -19,12 +19,20 @@ mc = [skey for skey in samples if skey not in ('FAKE', 'DATA')]
 eleWP    = 'mvaFall17V1Iso_WP90'
 muWP     = 'cut_Tight_HWWW'
 
+aliases['DNN_isVBF_OTF'] = {
+    'class': 'DNNprod',
+    'linesToAdd':[
+        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+        'gSystem->Load("libDNNEvaluator.so")',
+        '.L %s/src/PlotsConfigurations/Configurations/HighMass/DNN_prod_semi.cc+' % os.getenv('CMSSW_BASE'),
+    ],
+}
 
 
 aliases['mjjGen_OTF'] = {
     'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/HighMass/HMvars_mjjgen.cc+' % os.getenv('CMSSW_BASE')],
     'class': 'HMvarsmjjgen',
-    'samples': ['WW', 'qqWWqq', 'WW2J', 'DYveto']
+    'samples': [skey for skey in samples if "QQHSBI" in skey or skey in ['WW', 'qqWWqq', 'WW2J', 'DYveto']]
 }
 
 aliases['bWP'] = {
@@ -47,9 +55,7 @@ aliases['nTightLep'] = {
 
 
 aliases['WlepMT'] = {
-    # 'expr': 'HM_Wlep_mt'
-    'expr': 'TMath::Sqrt( 2*Lepton_pt[0]*PuppiMET_pt \
-    *( 1-TMath::Cos(Lepton_phi[0]-PuppiMET_phi) ) )'
+    'expr': 'HM_Wlep_mt'
 }
 # aliases['boostHiggsMT'] = {
 #     'expr': 'TMath::Sqrt( 2*HM_Wlep_pt_Puppi*Alt$(HM_CleanFatJetPassMBoosted_pt[0], 0) \
@@ -227,66 +233,54 @@ aliases['GenLHE'] = {
 
 
 # # B-Stuff
+vetoThreshold = 20
+reqThreshold  = 30
 boostedJetBVetoCondition = '(\
-CleanJet_pt[CleanJetNotFat_jetIdx] > 20 \
+CleanJet_pt[CleanJetNotFat_jetIdx] > {threshold} \
 && abs(CleanJet_eta[CleanJetNotFat_jetIdx]) < 2.5 \
 )'
 resolvedJetBVetoCondition = '(\
 HM_idx_j1 >= 0 && HM_idx_j2 >= 0\
-&& CleanJet_pt > 20 && abs(CleanJet_eta) < 2.5 \
+&& CleanJet_pt > {threshold} && abs(CleanJet_eta) < 2.5 \
 && CleanJet_jetIdx != CleanJet_jetIdx[HM_idx_j1] \
 && CleanJet_jetIdx != CleanJet_jetIdx[HM_idx_j2] \
 )'
-oldJetBVetoCondition = '(\
-CleanJet_pt > 20 && abs(CleanJet_eta) < 2.5 \
-)'
 
-aliases['bVetoBoosted'] = {
-    'expr': '(Sum$(Jet_btagDeepB[CleanJet_jetIdx[CleanJetNotFat_jetIdx]] > bWP[0] && {0}) == 0)'\
-            .format(boostedJetBVetoCondition)
-}
-aliases['bVetoResolved'] = {
-    'expr': '(Sum$(Jet_btagDeepB[CleanJet_jetIdx] > bWP[0] && {0}) == 0)'\
-            .format(resolvedJetBVetoCondition)
-}
+bTagBoosted = '(Sum$(Jet_btagDeepB[CleanJet_jetIdx[CleanJetNotFat_jetIdx]] > bWP[0] \
+    && {0}) == 0)'.format(boostedJetBVetoCondition)
+bTagResolved = '(Sum$(Jet_btagDeepB[CleanJet_jetIdx] > bWP[0] && {0}) == 0)'\
+                .format(resolvedJetBVetoCondition)
+
+bTemplate = '((boosted[0]*{0}) || (resolved[0]*{1}))'.format(bTagBoosted, bTagResolved)
+
 aliases['bVeto'] = {
-    'expr': '((boosted[0]*bVetoBoosted) || (resolved[0]*bVetoResolved))'
+    'expr': bTemplate.format(threshold=vetoThreshold)
 }
 aliases['bReq'] = {
-    'expr': '!bVeto[0]'
+    'expr': '!'+bTemplate.format(threshold=reqThreshold)
 }
 
-
-
-aliases['btagBoostedSF'] = {
-    'expr': 'TMath::Exp(Sum$(TMath::Log( \
+bSF = 'TMath::Exp(Sum$(TMath::Log( \
     {0} * Jet_btagSF_deepcsv_shape[CleanJet_jetIdx] + !{0} * 1 \
-    )))'.format(boostedJetBVetoCondition),
+    )))'.format('(CleanJet_pt > {threshold} && abs(CleanJet_eta) < 2.5)')
+
+aliases['bVetoSF'] = {
+    'expr': bSF.format(threshold=vetoThreshold),
     'samples': mc
 }
-aliases['btagResolvedSF'] = {
-    'expr': 'TMath::Exp(Sum$(TMath::Log( \
-    {0} * Jet_btagSF_deepcsv_shape[CleanJet_jetIdx] + !{0} * 1 \
-    )))'.format(resolvedJetBVetoCondition),
+aliases['bReqSF'] = {
+    'expr': bSF.format(threshold=reqThreshold),
     'samples': mc
 }
-
 
 aliases['btagSF'] = {
-    'expr': '(boosted[0]*btagBoostedSF[0] + resolved[0]*btagResolvedSF[0])',
-    'samples': mc
-}
-aliases['OLDbtagSF'] = {
-    'expr': 'TMath::Exp(Sum$(TMath::Log( \
-    {0} * Jet_btagSF_deepcsv_shape[CleanJet_jetIdx] + !{0} * 1 \
-    )))'.format(oldJetBVetoCondition),
+    'expr': 'bVeto*bVetoSF + bReq*bReqSF + (!bVeto && !bReq)'
     'samples': mc
 }
 
 for shift in ['jes','lf','hf','lfstats1','lfstats2','hfstats1','hfstats2','cferr1','cferr2']:
 
-    # for targ in ['bVeto', 'btagn']:
-    for targ in ['btagResolved', 'btagBoosted']:
+    for targ in ['bVeto', 'bReq']:
         alias = aliases['%sSF%sup' % (targ, shift)] = copy.deepcopy(aliases['%sSF' % targ])
         alias['expr'] = alias['expr'].replace('btagSF_deepcsv_shape', 'btagSF_deepcsv_shape_up_%s' % shift)
 
@@ -295,13 +289,13 @@ for shift in ['jes','lf','hf','lfstats1','lfstats2','hfstats1','hfstats2','cferr
 
 
     aliases['btagSF%sup' % shift] = {
-        'expr': 'boosted[0]*btagBoostedSF{shift}up[0] \
-         + resolved[0]*btagResolvedSF{shift}up[0]'.format(shift = shift),
+        'expr': 'bVeto*bVetoSF{shift}up + bReq*bReqSF{shift}up + (!bVeto && !bReq)'\
+                .format(shift = shift),
         'samples': mc
     }
     aliases['btagSF%sdown' % shift] = {
-        'expr': 'boosted[0]*btagBoostedSF{shift}down[0] \
-         + resolved[0]*btagResolvedSF{shift}down[0]'.format(shift = shift),
+        'expr': 'bVeto*bVetoSF{shift}down + bReq*bReqSF{shift}down + (!bVeto && !bReq)'\
+                .format(shift = shift),
         'samples': mc
     }
 
@@ -355,41 +349,23 @@ aliases['SFweightMuDown'] = {
 
 
 # PU jet Id SF
-# old
-puidSFSource = '{}/patches/PUID_80XTraining_EffSFandUncties.root'.format(configurations)
+puidSFSource = '%s/src/PlotsConfigurations/Configurations/patches/PUID_81XTraining_EffSFandUncties.root' % os.getenv('CMSSW_BASE')
 
 aliases['PUJetIdSF'] = {
     'linesToAdd': [
         'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
-        '.L %s/patches/pujetidsf_event_new.cc+' % configurations
+        '.L %s/src/PlotsConfigurations/Configurations/patches/pujetidsf_event_new.cc+' % os.getenv('CMSSW_BASE')
     ],
     'class': 'PUJetIdEventSF',
-    'args': (puidSFSource, '2017', 'loose'),
+    'args': (puidSFSource, '2018', 'loose'),
     'samples': mc
 }
-
-# New:
-#puidSFSource = '%s/src/PlotsConfigurations/Configurations/patches/PUID_81XTraining_EffSFandUncties.root' % os.getenv('CMSSW_BASE')
-#
-#aliases['PUJetIdSF'] = {
-#    'linesToAdd': [
-#        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
-#        '.L %s/src/PlotsConfigurations/Configurations/patches/pujetidsf_event_new.cc+' % os.getenv('CMSSW_BASE')
-#    ],
-#    'class': 'PUJetIdEventSF',
-#    'args': (puidSFSource, '2018', 'loose'),
-#    'samples': mc
-#}
 
 
 
 # # data/MC scale factors
-# aliases['SFweight'] = {
-#     'expr': ' * '.join(['puWeight','TriggerEffWeight_1l', 'EMTFbug_veto','PrefireWeight','LepWPSF[0]','btagSF[0]','PUJetIdSF[0]','WtagSF[0]']),
-#     'samples': mc
-# }
 aliases['SFweight'] = {
-    'expr': ' * '.join(['puWeight', 'TriggerEffWeight_1l', 'EMTFbug_veto', 'LepWPSF[0]', 'OLDbtagSF[0]', 'PUJetIdSF[0]', 'WtagSF[0]']),
+    'expr': ' * '.join(['puWeight', 'TriggerEffWeight_1l', 'EMTFbug_veto', 'LepWPSF[0]', 'btagSF[0]', 'PUJetIdSF[0]', 'WtagSF[0]']),
     'samples': mc
 }
 
@@ -423,4 +399,52 @@ aliases['antitopGenPtOTF'] = {
 aliases['Top_pTrw'] = {# New Top PAG
     'expr': '((topGenPtOTF * antitopGenPtOTF > 0.) * (TMath::Sqrt((0.103*TMath::Exp(-0.0118*topGenPtOTF) - 0.000134*topGenPtOTF + 0.973) * (0.103*TMath::Exp(-0.0118*antitopGenPtOTF) - 0.000134*antitopGenPtOTF + 0.973))) + (topGenPtOTF * antitopGenPtOTF <= 0.))',
     'samples': ['top']
+}
+
+
+aliases['nCleanGenJet'] = {
+    'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/Differential/ngenjet.cc+' % os.getenv('CMSSW_BASE')],
+    'class': 'CountGenJet',
+    'samples': mc
+}
+
+##### DY Z pT reweighting
+aliases['getGenZpt_OTF'] = {
+    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/patches/getGenZpt.cc+' % os.getenv('CMSSW_BASE')],
+    'class': 'getGenZpt',
+    'samples': ['DY']
+}
+handle = open('%s/src/PlotsConfigurations/Configurations/patches/DYrew30.py' % os.getenv('CMSSW_BASE'),'r')
+exec(handle)
+handle.close()
+aliases['DY_NLO_pTllrw'] = {
+    'expr': '('+DYrew['2018']['NLO'].replace('x', 'getGenZpt_OTF')+')*(nCleanGenJet == 0)+1.0*(nCleanGenJet > 0)',
+    'samples': ['DY']
+}
+aliases['DY_LO_pTllrw'] = {
+    'expr': '('+DYrew['2018']['LO'].replace('x', 'getGenZpt_OTF')+')*(nCleanGenJet == 0)+1.0*(nCleanGenJet > 0)',
+    'samples': ['DY']
+}
+
+
+mc_sbi = [skey for skey in samples if "SBI" in skey]
+aliases['SBI_isSMggh'] = {
+    'expr': '( abs(Xsec-1.091343e+00) < 1.0e-06 )',
+    'samples': mc_sbi
+}
+aliases['SBI_isSMVBF'] = {
+    'expr': '( abs(Xsec-8.496211e-02) < 1.0e-08 )',
+    'samples': mc_sbi
+}
+aliases['SBI_isggWW'] = {
+    'expr': '( abs(Xsec-6.387000e-02) < 1.0e-08 )',
+    'samples': mc_sbi
+}
+aliases['SBI_isqqWWqq'] = {
+    'expr': '( abs(Xsec-2.160000e+00) < 1.0e-06 )',
+    'samples': mc_sbi
+}
+aliases['SBI_isHM'] = {
+    'expr': '( !SBI_isSMggh && !SBI_isSMVBF && !SBI_isggWW && !SBI_isqqWWqq )',
+    'samples': mc_sbi
 }

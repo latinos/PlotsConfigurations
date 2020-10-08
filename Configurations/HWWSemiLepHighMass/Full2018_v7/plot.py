@@ -55,7 +55,6 @@ groupPlot['multiboson']  = {
     'isSignal' : 0,
     'color': 857, # kAzure -3
     'samples'  : ['WW', 'ggWW', 'WWewk', 'qqWWqq', 'WW2J', 'VVV', 'VZ', 'Vg', 'VgS_H',  'VgS_L']
-    # 'samples'  : ['WW', 'WWewk', 'qqWWqq', 'WW2J', 'VVV', 'VZ', 'Vg', 'VgS_H',  'VgS_L']
 }
 
 groupPlot['SM Higgs'] = {
@@ -70,7 +69,7 @@ for counter, MX in enumerate(plotmasses):
         'nameHR'  : 'Higgs {}'.format(MX),
         'isSignal': 2,
         'color'   : counter+1,
-        'samples' : ['GGH_{}_RelW002'.format(MX), 'QQH_{}_RelW002'.format(MX)]
+        'samples' : ['GGH_{}_RelW002'.format(MX), 'GGHINT_{}_RelW002'.format(MX), 'QQH_{}_RelW002'.format(MX),'QQHINT_{}_RelW002'.format(MX)]
     }
 
 
@@ -200,8 +199,6 @@ plot['qqH_hww'] = {
     'isData'   : 0,
     'scale'    : 1    #
 }
-
-
 plot['ggH_hww'] = {
     # 'nameHR' : 'ggH',
     'color': 632, # kRed
@@ -209,7 +206,6 @@ plot['ggH_hww'] = {
     'isData'   : 0,
     'scale'    : 1    #
 }
-
 plot['ZH_hww'] = {
     # 'nameHR' : 'ZH',
     'color': 632+3, # kRed+3
@@ -217,15 +213,6 @@ plot['ZH_hww'] = {
     'isData'   : 0,
     'scale'    : 1    #
 }
-
-# plot['ggZH_hww'] = {
-#     # 'nameHR' : 'ggZH',
-#     'color': 632+4, # kRed+4
-#     'isSignal' : 0,
-#     'isData'   : 0,
-#     'scale'    : 1    #
-# }
-
 plot['WH_hww'] = {
     # 'nameHR' : 'WH',
     'color': 632+2, # kRed+2
@@ -234,13 +221,6 @@ plot['WH_hww'] = {
     'scale'    : 1    #
 }
 
-# plot['ttH_hww'] = {
-#     # 'nameHR' : 'ttH',
-#     'color': 632+6, # kRed+6
-#     'isSignal' : 0,
-#     'isData'   : 0,
-#     'scale'    : 1    #
-# }
 
 plot['ggH_htt']  = {
     'color': 428,    # kGreen+12
@@ -278,14 +258,28 @@ for MX in plotmasses:
         'color'   : 1,
         'isSignal': 1,
         'isData'  : 0,
-        'scale'   : 1 * xs_ggf
+        'scale'   : 1.0 * xs_ggf
+    }
+    plot['QQHINT_{}_RelW002'.format(MX)] = {
+        'nameHR'  : 'qqH{}'.format(MX),
+        'color'   : 1,
+        'isSignal': 1,
+        'isData'  : 0,
+        'scale'   : 1.0 * xs_ggf
     }
     plot['GGH_{}_RelW002'.format(MX)] = {
         'nameHR'  : 'ggH{}'.format(MX),
         'color'   : 1,
         'isSignal': 1,
         'isData'  : 0,
-        'scale'   : 1 * xs_vbf
+        'scale'   : 1.0 * xs_vbf
+    }
+    plot['GGHINT_{}_RelW002'.format(MX)] = {
+        'nameHR'  : 'ggH{}'.format(MX),
+        'color'   : 1,
+        'isSignal': 1,
+        'isData'  : 0,
+        'scale'   : 1.0 * xs_vbf
     }
 
 

@@ -14,6 +14,7 @@ else:
 # Groups of samples to improve the plots.
 # If not defined, normal plots is used
 #
+reweightedWjets = True
 
 groupPlot['top']  = {
     'nameHR' : 't#bar{t} and ST',
@@ -21,13 +22,20 @@ groupPlot['top']  = {
     'color': 400,   # kYellow
     'samples'  : ['top']
 }
-
-groupPlot['Wjets'] = {
-    'nameHR' : "W+jets",
-    'isSignal' : 0,
-    'color': 921,      # kGray + 1
-    'samples'  : ['Wjets']
-}
+if reweightedWjets:
+    groupPlot['Wjets'] = {
+        'nameHR' : "W+jets",
+        'isSignal' : 0,
+        'color': 921,      # kGray + 1
+        'samples'  : ['Wjets_rew']
+    }
+else:
+    groupPlot['Wjets'] = {
+        'nameHR' : "W+jets",
+        'isSignal' : 0,
+        'color': 921,      # kGray + 1
+        'samples'  : ['Wjets']
+    }
 
 groupPlot['QCD'] = {
     'nameHR' : "QCD",
@@ -70,23 +78,19 @@ for counter, MX in enumerate(plotmasses):
         'nameHR'  : 'Higgs {}'.format(MX),
         'isSignal': 2,
         'color'   : counter+1,
-        'samples' : ['GGH_{}_RelW002'.format(MX), 'QQH_{}_RelW002'.format(MX)]
+        'samples' : ['GGH_{}_RelW002'.format(MX), 'GGHINT_{}_RelW002'.format(MX), 'QQH_{}_RelW002'.format(MX),'QQHINT_{}_RelW002'.format(MX)]
     }
-
-
 
 
 
 #plot = {}
 
 # keys here must match keys in samples.py
-#
-
+#/
 plot['FAKE']  = {
     'color': 855, # kAzure -5
     'isSignal' : 0,
     'isData'   : 0,
-    'scale'    : 1.0
 }
 
 plot['QCD']  = {
@@ -94,14 +98,12 @@ plot['QCD']  = {
     'isSignal' : 0,
     'isData'   : 0 ,
     'isBlind'   :  0 ,
-    'scale'    : 1.0
 }
 
 plot['DY']  = {
     'color': 418,    # kGreen+2
     'isSignal' : 0,
     'isData'   : 0,
-    'scale'    : 1.0,
 }
 
 plot['top'] = {
@@ -109,7 +111,6 @@ plot['top'] = {
     'color': 400,   # kYellow
     'isSignal' : 0,
     'isData'   : 0,
-    'scale'    : 1.0,
 }
 
 
@@ -117,79 +118,72 @@ plot['WW']  = {
     'color': 851, # kAzure -9
     'isSignal' : 0,
     'isData'   : 0,
-    'scale'    : 1.0
 }
 
 plot['ggWW']  = {
     'color': 850, # kAzure -10
     'isSignal' : 0,
     'isData'   : 0,
-    'scale'    : 1.0
 }
 
 plot['WWewk']  = {
     'color': 851, # kAzure -9
     'isSignal' : 0,
     'isData'   : 0,
-    'scale'    : 1.0
 }
 
 plot['qqWWqq']  = {
     'color': 852, # kAzure -8
     'isSignal' : 0,
     'isData'   : 0,
-    'scale'    : 1.0
 }
 
 plot['WW2J']  = {
     'color': 852, # kAzure -8
     'isSignal' : 0,
     'isData'   : 0,
-    'scale'    : 1.0
 }
 
 plot['Vg']  = {
     'color': 859, # kAzure -1
     'isSignal' : 0,
     'isData'   : 0,
-    'scale'    : 1.0
 }
 
 plot['VgS_H'] = {
     'color'    : 617,   # kViolet + 1
     'isSignal' : 0,
     'isData'   : 0,
-    'scale'    : 1.0
 }
 
 plot['VgS_L'] = {
     'color'    : 617,   # kViolet + 1
     'isSignal' : 0,
     'isData'   : 0,
-    'scale'    : 1.0
 }
 
 plot['VZ']  = {
     'color': 858, # kAzure -2
     'isSignal' : 0,
     'isData'   : 0,
-    'scale'    : 1.0
 }
 
 plot['VVV']  = {
     'color': 857, # kAzure -3
     'isSignal' : 0,
     'isData'   : 0,
-    'scale'    : 1.0
 }
 
 plot['Wjets']  = {
     'color': 856, # kAzure -4
     'isSignal' : 0,
     'isData'   : 0,
-    'scale'    : 1.0
 }
-
+plot['Wjets_rew']  = {
+    'color': 856, # kAzure -4
+    'isSignal' : 0,
+    'isData'   : 0,
+}
 
 
 # HWW
@@ -197,77 +191,47 @@ plot['qqH_hww'] = {
     # 'nameHR' : 'qqH',
     'color': 632+1, # kRed+1
     'isSignal' : 0,
-    'isData'   : 0,
-    'scale'    : 1    #
+    'isData'   : 0,#
 }
-
-
 plot['ggH_hww'] = {
     # 'nameHR' : 'ggH',
     'color': 632, # kRed
     'isSignal' : 0,
     'isData'   : 0,
-    'scale'    : 1    #
 }
-
 plot['ZH_hww'] = {
     # 'nameHR' : 'ZH',
     'color': 632+3, # kRed+3
     'isSignal' : 0,
     'isData'   : 0,
-    'scale'    : 1    #
 }
-
-# plot['ggZH_hww'] = {
-#     # 'nameHR' : 'ggZH',
-#     'color': 632+4, # kRed+4
-#     'isSignal' : 0,
-#     'isData'   : 0,
-#     'scale'    : 1    #
-# }
-
 plot['WH_hww'] = {
     # 'nameHR' : 'WH',
     'color': 632+2, # kRed+2
     'isSignal' : 0,
     'isData'   : 0,
-    'scale'    : 1    #
 }
-
-# plot['ttH_hww'] = {
-#     # 'nameHR' : 'ttH',
-#     'color': 632+6, # kRed+6
-#     'isSignal' : 0,
-#     'isData'   : 0,
-#     'scale'    : 1    #
-# }
 
 plot['ggH_htt']  = {
     'color': 428,    # kGreen+12
     'isSignal' : 0,
     'isData'   : 0,
-    'scale'    : 1.0,
 }
 plot['qqH_htt']  = {
     'color': 428,    # kGreen+12
     'isSignal' : 0,
     'isData'   : 0,
-    'scale'    : 1.0,
 }
 plot['ZH_htt']  = {
     'color': 428,    # kGreen+12
     'isSignal' : 0,
     'isData'   : 0,
-    'scale'    : 1.0,
 }
 plot['WH_htt']  = {
     'color': 428,    # kGreen+12
     'isSignal' : 0,
     'isData'   : 0,
-    'scale'    : 1.0,
 }
-
-
 
 # Signal
 for MX in plotmasses:
@@ -278,14 +242,28 @@ for MX in plotmasses:
         'color'   : 1,
         'isSignal': 1,
         'isData'  : 0,
-        'scale'   : 1 * xs_ggf
+        'scale'   : 1.0 * xs_ggf
+    }
+    plot['QQHINT_{}_RelW002'.format(MX)] = {
+        'nameHR'  : 'qqH{}'.format(MX),
+        'color'   : 1,
+        'isSignal': 1,
+        'isData'  : 0,
+        'scale'   : 1.0 * xs_ggf
     }
     plot['GGH_{}_RelW002'.format(MX)] = {
         'nameHR'  : 'ggH{}'.format(MX),
         'color'   : 1,
         'isSignal': 1,
         'isData'  : 0,
-        'scale'   : 1 * xs_vbf
+        'scale'   : 1.0 * xs_vbf
+    }
+    plot['GGHINT_{}_RelW002'.format(MX)] = {
+        'nameHR'  : 'ggH{}'.format(MX),
+        'color'   : 1,
+        'isSignal': 1,
+        'isData'  : 0,
+        'scale'   : 1.0 * xs_vbf
     }
 
 
