@@ -102,17 +102,18 @@ ptllDYW_NLO = '(((0.623108 + 0.0722934*gen_ptll - 0.00364918*gen_ptll*gen_ptll +
 ptllDYW_LO = '((0.632927+0.0456956*gen_ptll-0.00154485*gen_ptll*gen_ptll+2.64397e-05*gen_ptll*gen_ptll*gen_ptll-2.19374e-07*gen_ptll*gen_ptll*gen_ptll*gen_ptll+6.99751e-10*gen_ptll*gen_ptll*gen_ptll*gen_ptll*gen_ptll)*(gen_ptll>0)*(gen_ptll<100)+(1.41713-0.00165342*gen_ptll)*(gen_ptll>=100)*(gen_ptll<300)+1*(gen_ptll>=300))'
 
 files = nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50') + \
-        nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-10to50-LO')
-    
+        nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-10to50-LO_ext1')
+   
+""" 
 samples['DY'] = {
     'name': files,
     'weight': mcCommonWeight + "*( !(Sum$(PhotonGen_isPrompt==1 && PhotonGen_pt>15 && abs(PhotonGen_eta)<2.6) > 0 && Sum$(LeptonGen_isPrompt==1 && LeptonGen_pt>15)>=2) )",
-    'FilesPerJob': 8,
+    'FilesPerJob': 1,
 }
 addSampleWeight(samples,'DY','DYJetsToLL_M-50',ptllDYW_NLO)
 addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO',ptllDYW_LO)
-
 """
+
 filesDYHT = nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-10to50-LO_ext1') + \
 nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-4to50_HT-100to200_newpmx') + \
 nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-4to50_HT-200to400_newpmx') + \
@@ -130,12 +131,25 @@ nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-2500toInf')
 samples['DY'] = {
     'name': filesDYHT,
     'weight': mcCommonWeight,# + '*( !(Sum$(PhotonGen_isPrompt==1 && PhotonGen_pt>15 && abs(PhotonGen_eta)<2.6) > 0 && Sum$(LeptonGen_isPrompt==1 && LeptonGen_pt>15)>=2) )',                                 
-    'FilesPerJob': 20,
+    'FilesPerJob': 2,
 }
 
 addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO_ext1',  'LHE_HT<100.0')
 addSampleWeight(samples,'DY','DYJetsToLL_M-50-LO_ext1',  'LHE_HT<100.0')
-"""
+
+addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO_ext1',ptllDYW_LO)
+addSampleWeight(samples,'DY','DYJetsToLL_M-4to50_HT-100to200_newpmx',ptllDYW_LO)
+addSampleWeight(samples,'DY','DYJetsToLL_M-4to50_HT-200to400_newpmx',ptllDYW_LO)
+addSampleWeight(samples,'DY','DYJetsToLL_M-4to50_HT-400to600',ptllDYW_LO)
+addSampleWeight(samples,'DY','DYJetsToLL_M-4to50_HT-600toInf',ptllDYW_LO)
+addSampleWeight(samples,'DY','DYJetsToLL_M-50-LO_ext1',ptllDYW_LO)
+addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-100to200',ptllDYW_LO)
+addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-200to400',ptllDYW_LO)
+addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-400to600_newpmx',ptllDYW_LO)
+addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-600to800',ptllDYW_LO)
+addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-800to1200',ptllDYW_LO)
+addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-1200to2500',ptllDYW_LO)
+addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-2500toInf',ptllDYW_LO)
 
 ###### Top #######
 
@@ -166,19 +180,19 @@ addSampleWeight(samples,'singleTop','ST_t-channel_top','3.068')
 samples['TTToSemiLeptonic'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'TTToSemiLeptonic'),
     'weight': mcCommonWeight,
-    'FilesPerJob': 2,
+    'FilesPerJob': 1,
 }
 
 samples['ttW'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'TTWjets'),
     'weight': mcCommonWeight,
-    'FilesPerJob': 2,
+    'FilesPerJob': 1,
 }
 
 samples['ttZ'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'TTZjets'),
     'weight': mcCommonWeight,
-    'FilesPerJob': 2,
+    'FilesPerJob': 1,
 }
 
 
@@ -198,19 +212,19 @@ files = nanoGetSampleFiles(mcDirectory, 'Wg_MADGRAPHMLM') + \
 samples['Vg'] = {
     'name': files,
     'weight': mcCommonWeightNoMatch + '*!(Gen_ZGstar_mass > 0)',
-    'FilesPerJob': 2
+    'FilesPerJob': 1
 }
 
 ######## VgS ########
 
 files = nanoGetSampleFiles(mcDirectory, 'Wg_MADGRAPHMLM') + \
-    nanoGetSampleFiles(mcDirectory, 'ZGToLLG') + \
-    nanoGetSampleFiles(mcDirectory, 'WZTo3LNu_mllmin01')
+    nanoGetSampleFiles(mcDirectory, 'ZGToLLG')
+    #nanoGetSampleFiles(mcDirectory, 'WZTo3LNu_mllmin01') #Not working for now
 
 samples['VgS'] = {
     'name': files,
     'weight': mcCommonWeight + ' * (gstarLow * 0.94 + gstarHigh * 1.14)',
-    'FilesPerJob': 5,
+    'FilesPerJob': 1,
     'subsamples': {
       'L': 'gstarLow',
       'H': 'gstarHigh'
@@ -253,7 +267,7 @@ samples['VVV'] = {
 samples['MCFake'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'TTToSemiLeptonic'),
     'weight': mcCommonWeightNoMatch,
-    'FilesPerJob': 2,
+    'FilesPerJob': 1
 }
 
 """

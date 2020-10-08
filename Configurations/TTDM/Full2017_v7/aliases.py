@@ -38,19 +38,6 @@ aliases['gstarHigh'] = {
     'samples': 'VgS'
 }
 
-aliases['zeroJet'] = {
-    'expr': 'Alt$(CleanJet_pt[0], 0) < 30.'
-}
-
-aliases['oneJet'] = {
-    'expr': 'Alt$(CleanJet_pt[0], 0) > 30.'
-}
-
-aliases['multiJet'] = {
-    'expr': 'Alt$(CleanJet_pt[1], 0) > 30.'
-}
-
-
 aliases['bVeto'] = {
     'expr': 'Sum$(CleanJet_pt > 20. && abs(CleanJet_eta) < 2.4 && Jet_btagDeepB[CleanJet_jetIdx] > 0.1522) == 0'
 }
@@ -92,6 +79,31 @@ for shift in ['jes', 'lf', 'hf', 'lfstats1', 'lfstats2', 'hfstats1', 'hfstats2',
         'samples': mc
     }
 
+aliases['nCleanGenJet'] = {
+    'linesToAdd': ['.L %s/Differential/ngenjet.cc+' % configurations],
+    'class': 'CountGenJet',
+    'samples': mc
+}
+
+##### DY Z pT reweighting
+aliases['getGenZpt_OTF'] = {
+    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/patches/getGenZpt.cc+' % os.getenv('CMSSW_BASE')],
+    'class': 'getGenZpt',
+    'samples': ['DY']
+}
+
+handle = open('%s/src/PlotsConfigurations/Configurations/patches/DYrew30.py' % os.getenv('CMSSW_BASE'),'r')
+exec(handle)
+handle.close()
+aliases['DY_NLO_pTllrw'] = {
+    'expr': '('+DYrew['2017']['NLO'].replace('x', 'getGenZpt_OTF')+')*(nCleanGenJet == 0)+1.0*(nCleanGenJet > 0)',
+    'samples': ['DY']
+}
+
+aliases['DY_LO_pTllrw'] = {
+    'expr': '('+DYrew['2017']['LO'].replace('x', 'getGenZpt_OTF')+')*(nCleanGenJet == 0)+1.0*(nCleanGenJet > 0)',
+    'samples': ['DY']
+}
 
 # Fake leptons transfer factor
 aliases['fakeW'] = {
@@ -164,6 +176,7 @@ aliases['SFweight'] = {
     'expr': ' * '.join(['SFweight2l','LepWPCut','LepWPSF','PrefireWeight', 'btagSF','Jet_PUIDSF_loose']),
     'samples': mc
 }
+
 # variations
 aliases['SFweightEleUp'] = {
     'expr': 'LepSF2l__ele_'+eleWP+'__Up',

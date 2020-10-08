@@ -36,7 +36,7 @@ groupPlot['ttW']  = {
 groupPlot['ttZ']  = {
     'nameHR' : 'ttZ',
     'isSignal' : 0,
-    'color': 405,
+    'color': 404,
     'samples'  : ['ttZ']
 }
 
@@ -100,13 +100,14 @@ plot['DY']  = {
     'scale'    : 1.0,
 }
 
+"""
 plot['Fake']  = {  
     'color': 921,
     'isSignal' : 0,
     'isData'   : 0,
     'scale'    : 1.0                  
 }
-
+"""
 plot['MCFake']  = {  
     'color': 921,
     'isSignal' : 0,
@@ -148,7 +149,7 @@ plot['ttW'] = {
 
 plot['ttZ'] = {
     'nameHR' : 'ttZ',
-    'color': 405,
+    'color': 404,
     'isSignal' : 0,
     'isData'   : 0,
     'scale'    : 1.0
