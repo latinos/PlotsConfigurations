@@ -2,9 +2,9 @@ import os
 import inspect
 
 configurations = os.path.realpath(inspect.getfile(inspect.currentframe())) # this file
-configurations = os.path.dirname(configurations) # DYMVA
-configurations = os.path.dirname(configurations) # ggH2016
-configurations = os.path.dirname(configurations) # Differential
+configurations = os.path.dirname(configurations) # DYMVA_SYS
+configurations = os.path.dirname(configurations) # Full2016_v6
+configurations = os.path.dirname(configurations) # ggH_SF
 configurations = os.path.dirname(configurations) # Configurations
 
 from LatinoAnalysis.Tools.commonTools import getSampleFiles, getBaseW, addSampleWeight
@@ -34,12 +34,14 @@ except NameError:
 #mcProduction = 'Summer16_102X_nAODv5_SigOnly_Full2016v5'
 mcProduction = 'Summer16_102X_nAODv5_Full2016v6'
 
+fakeReco = 'Run2016_102X_nAODv5_Full2016v6_ForNewWPs'
+
 dataReco = 'Run2016_102X_nAODv5_Full2016v6'
 
 #mcSteps = 'MCl1loose2016v5__MCCorr2016v5__l2loose__l2tightOR2016v5{var}'
 mcSteps = 'MCl1loose2016v6__MCCorr2016v6__l2loose__l2tightOR2016v6{var}'
 
-fakeSteps = 'DATAl1loose2016v6__l2loose__fakeW'
+fakeSteps = 'DATAl1loose2016v6__l2loose__fakeW__DYMVA'
 
 dataSteps = 'DATAl1loose2016v6__l2loose__l2tightOR2016v6'
 
@@ -62,7 +64,7 @@ def makeMCDirectory(var=''):
         #return '/afs/cern.ch/user/y/yiiyama/public/hwwvirtual/Summer16/l2tightOR'
 
 mcDirectory = makeMCDirectory()
-fakeDirectory = os.path.join(treeBaseDir, dataReco, fakeSteps)
+fakeDirectory = os.path.join(treeBaseDir, fakeReco, fakeSteps)
 dataDirectory = os.path.join(treeBaseDir, dataReco, dataSteps)
 
 ################################################
@@ -157,7 +159,7 @@ else:
 
     if useDYHT :
         # Remove high HT from inclusive samples
-        addSampleWeight(samples,'DY','DYJetsToLL_M-50'  , 'LHE_HT<70.0')
+        addSampleWeight(samples,'DY','DYJetsToLL_M-50'    , 'LHE_HT<70.0')
         addSampleWeight(samples,'DY','DYJetsToLL_M-10to50', 'LHE_HT<70.0')
         # pt_ll weight
         addSampleWeight(samples,'DY','DYJetsToLL_M-5to50_HT-70to100'       ,ptllDYW_LO)
@@ -199,8 +201,8 @@ addSampleWeight(samples,'top','TTTo2L2Nu','Top_pTrw')
 
 samples['WW'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'WWTo2L2Nu'),
-    #'weight': mcCommonWeight + '*nllW', # temporary - nllW module not run on PS and UE variation samples
-    'weight': mcCommonWeight + '*nllWOTF', # temporary
+    'weight': mcCommonWeight + '*nllW', # temporary - nllW module not run on PS and UE variation samples
+    #'weight': mcCommonWeight + '*nllWOTF', # temporary
     'suppressNegative' :['all'],
     'suppressNegativeNuisances' :['all'],
     'FilesPerJob': 1
@@ -268,7 +270,7 @@ samples['VZ'] = {
     'weight': mcCommonWeight + '*1.11',
     'suppressNegative' :['all'],
     'suppressNegativeNuisances' :['all'],
-    'FilesPerJob': 4
+    'FilesPerJob': 2
 }
 
 ########## VVV #########
@@ -455,11 +457,9 @@ for _, sd in DataRun:
     # only this file is v3
     if ('2016E' in sd and 'MuonEG' in pd):
       files = nanoGetSampleFiles(dataDirectory, pd + '_' + sd.replace('v1', 'v3'))
-      print(files)
 
     else:
       files = nanoGetSampleFiles(dataDirectory, pd + '_' + sd)
-      print(files)
     
     samples['DATA']['name'].extend(files)
     samples['DATA']['weights'].extend([DataTrig[pd]] * len(files))
