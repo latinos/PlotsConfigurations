@@ -112,7 +112,7 @@ samples['DY'] = {
     'FilesPerJob': 6,
 }
 addSampleWeight(samples,'DY','DYJetsToTT_MuEle_M-50','DY_NLO_pTllrw')
-addSampleWeight(samples,'DY','DYJetsToLL_M-50_ext','DY_NLO_pTllrw')
+addSampleWeight(samples,'DY','DYJetsToLL_M-50_ext2','DY_NLO_pTllrw')
 addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO','DY_LO_pTllrw')
 
 ###### Top #######
