@@ -125,7 +125,7 @@ samples['DY'] = {    'name'   :   nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M
                                   + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-4to50_HT-400to600')
                                   + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-4to50_HT-600toInf'),
                        'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + '*' + DY_photon_filter,
-                       'FilesPerJob' : 6,
+                       'FilesPerJob' : 8,
                        'EventsPerJob' : 70000,
                        'suppressNegative' :['all'],
                        'suppressNegativeNuisances' :['all'],
@@ -166,7 +166,7 @@ samples['top'] = {    'name'   :   nanoGetSampleFiles(directory_bkg,'TTTo2L2Nu')
                                  + nanoGetSampleFiles(directory_bkg,'TTWjets'),
                                 # +  nanoGetSampleFiles(directory_bkg,'TTWJetsToLNu'), #also this is available
                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-                     'FilesPerJob' : 4,
+                     'FilesPerJob' : 7,
                      'EventsPerJob' : 70000,
                      'suppressNegative' :['all'],
                      'suppressNegativeNuisances' :['all'],
@@ -174,8 +174,8 @@ samples['top'] = {    'name'   :   nanoGetSampleFiles(directory_bkg,'TTTo2L2Nu')
 
 addSampleWeight(samples,'top','TTTo2L2Nu','Top_pTrw')
 addSampleWeight(samples,'top','TTToSemiLeptonic','Top_pTrw')
-#addSampleWeight(samples,'top','TTZjets','Top_pTrw')
-#addSampleWeight(samples,'top','TTWjets','Top_pTrw')
+addSampleWeight(samples,'top','TTZjets','Top_pTrw')
+addSampleWeight(samples,'top','TTWjets','Top_pTrw')
 
 #Not corrected in baseW, so we should correct the XS here
 addSampleWeight(samples,'top','ST_t-channel_top',  "100. / 32.4 ") # N.B We are using inclusive sample with leptonic-only XS
@@ -198,8 +198,8 @@ samples['Wjets_HT'] = { 'name' :
           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT1200_2500')
           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT2500_inf')
           ,
-				'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch,
-				'FilesPerJob' : 5,
+				'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch+ '* ewknloW',
+				'FilesPerJob' : 10,
         'EventsPerJob' : 70000
         # 'subsamples': {
         #   "boost1" : "(VBS_category==0) && (deltaeta_vbs < 5)",
@@ -243,7 +243,7 @@ samples['VV']  = { 'name' :
                nanoGetSampleFiles(directory_signal,'WpToLNu_ZTo2J_QCD',) +
                nanoGetSampleFiles(directory_signal,'ZTo2L_ZTo2J_QCD',  ) ,
         'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch , # TO BE CORRECTED: + '* ewknloW',
-        'FilesPerJob' : 8,
+        'FilesPerJob' : 10,
         'EventsPerJob' : 70000,
 }
 
@@ -331,20 +331,48 @@ samples['VBS']  = { 'name' :
 #fakeW = 'fakeW_ele_mvaFall17V1Iso_WP90_mu_cut_Tight_HWWW_mu20_ele35'
 
 ### Fakes
-samples['Fake'] = {
+samples['Fake10'] = {
   'name': [],
-  'weight': METFilter_DATA+'* fake_weight_corrected',
+  'weight': METFilter_DATA+'* FW_mu10_el10',
   'weights': [],
   'isData': ['all'],
-  'FilesPerJob' : 10,
+  'FilesPerJob' : 20,
 }
 
-for _, sd in DataRun:
-  for pd in DataSets:
-    # BE Careful --> we use directory_data because the Lepton tight cut was not applied in post-processing
-    files = nanoGetSampleFiles(directory_data, pd + '_' + sd)
-    samples['Fake']['name'].extend(files)
-    samples['Fake']['weights'].extend([DataTrig[pd]] * len(files))
+### Fakes
+samples['Fake25'] = {
+  'name': [],
+  'weight': METFilter_DATA+'* FW_mu25_el25',
+  'weights': [],
+  'isData': ['all'],
+  'FilesPerJob' : 20,
+}
+
+### Fakes
+samples['Fake35'] = {
+  'name': [],
+  'weight': METFilter_DATA+'* FW_mu35_el35',
+  'weights': [],
+  'isData': ['all'],
+  'FilesPerJob' : 20,
+}
+
+### Fakes
+samples['Fake45'] = {
+  'name': [],
+  'weight': METFilter_DATA+'* FW_mu45_el45',
+  'weights': [],
+  'isData': ['all'],
+  'FilesPerJob' : 20,
+}
+
+for et in [10,25,35,45]:
+  for _, sd in DataRun:
+    for pd in DataSets:
+      # BE Careful --> we use directory_data because the Lepton tight cut was not applied in post-processing
+      files = nanoGetSampleFiles(directory_data, pd + '_' + sd)
+      samples['Fake'+str(et)]['name'].extend(files)
+      samples['Fake'+str(et)]['weights'].extend([DataTrig[pd]] * len(files))
 
 
 #########################################
@@ -355,7 +383,7 @@ samples['DATA']  = {   'name': [ ] ,
                        'weight' : METFilter_DATA+'*'+LepWPCut,
                        'weights' : [ ],
                        'isData': ['all'],
-                       'FilesPerJob' : 10,
+                       'FilesPerJob' : 15,
                   }
 
 for Run in DataRun :
@@ -365,4 +393,4 @@ for Run in DataRun :
                         samples['DATA']['name'].append(iFile)
                         samples['DATA']['weights'].append(DataTrig[DataSet])
 
-samples = {   key:v for key,v in samples.items() if key  in ["VgS"]}
+samples = {   key:v for key,v in samples.items() if key in ['Fake'+ str(et) for et in [10,25,35,45]] }
