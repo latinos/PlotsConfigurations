@@ -72,6 +72,22 @@ aliases['fakeWStatMuDown'] = {
     'samples': ['Fake']
 }
 
+# Jet bins
+# using Alt$(CleanJet_pt[n], 0) instead of Sum$(CleanJet_pt >= 30) because jet pt ordering is not strictly followed in JES-varied samples
+
+# No jet with pt > 30 GeV
+aliases['zeroJet'] = {
+    'expr': 'Alt$(CleanJet_pt[0], 0) < 30.'
+}
+
+aliases['oneJet'] = {
+    'expr': 'Alt$(CleanJet_pt[0], 0) > 30.'
+}
+
+aliases['multiJet'] = {
+    'expr': 'Alt$(CleanJet_pt[1], 0) > 30.'
+}
+
 # gen-matching to prompt only (GenLepMatch2l matches to *any* gen lepton)
 aliases['PromptGenLepMatch2l'] = {
     'expr': 'Alt$(Lepton_promptgenmatched[0]*Lepton_promptgenmatched[1], 0)',
