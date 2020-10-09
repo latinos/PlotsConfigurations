@@ -230,7 +230,7 @@ aliases['Weight2MINLO'] = {
     'samples' : [skey for skey in samples if 'ggH_hww' in skey],
 }
 
-# GGHUncertaintyProducer wasn't run for GluGluHToWWTo2L2Nu_Powheg_M125 
+## GGHUncertaintyProducer wasn't run for GluGluHToWWTo2L2Nu_Powheg_M125 
 thus = [
     'ggH_mu',
     'ggH_res',
@@ -244,7 +244,7 @@ thus = [
 ]
 
 for thu in thus:
-    aliases[thu] = {
+    aliases[thu+'_2'] = {
         'linesToAdd': ['.L %s/Differential/gghuncertainty.cc+' % configurations],
         'class': 'GGHUncertainty',
         'args': (thu,),

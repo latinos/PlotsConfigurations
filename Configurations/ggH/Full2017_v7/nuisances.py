@@ -261,11 +261,27 @@ for js in jes_systs:
       'type': 'shape',
       'mapUp': js+'up',
       'mapDown': js+'do',
-      'samples': dict((skey, ['1', '1']) for skey in mc),
+      'samples': dict((skey, ['1', '1']) for skey in mc if not skey in ['top','VZ','VgS','Vg']),
       'folderUp': makeMCDirectory('JESup_suffix'),
       'folderDown': makeMCDirectory('JESdo_suffix'),
       'AsLnN': '1'
   }
+
+##### Jet energy resolution
+nuisances['JER'] = {
+    'name': 'CMS_res_j_2017',
+    'kind': 'suffix',
+    'type': 'shape',
+    'mapUp': 'JERup',
+    'mapDown': 'JERdo',
+    'samples': dict((skey, ['1', '1']) for skey in mc),
+    'folderUp': makeMCDirectory('JERup_suffix'),
+    'folderDown': makeMCDirectory('JERdo_suffix'),
+    'AsLnN': '1'
+}
+
+
+
 
 ##### MET energy scale
 
@@ -655,15 +671,15 @@ nuisances['CRSR_accept_top'] = {
 #   see https://twiki.cern.ch/twiki/bin/viewauth/CMS/HiggsWG/SignalModelingTools
 
 thus = [
-    ('THU_ggH_Mu', 'ggH_mu'),
-    ('THU_ggH_Res', 'ggH_res'),
-    ('THU_ggH_Mig01', 'ggH_mig01'),
-    ('THU_ggH_Mig12', 'ggH_mig12'),
-    ('THU_ggH_VBF2j', 'ggH_VBF2j'),
-    ('THU_ggH_VBF3j', 'ggH_VBF3j'),
-    ('THU_ggH_PT60', 'ggH_pT60'),
-    ('THU_ggH_PT120', 'ggH_pT120'),
-    ('THU_ggH_qmtop', 'ggH_qmtop')
+    ('THU_ggH_Mu', 'ggH_mu_2'),
+    ('THU_ggH_Res', 'ggH_res_2'),
+    ('THU_ggH_Mig01', 'ggH_mig01_2'),
+    ('THU_ggH_Mig12', 'ggH_mig12_2'),
+    ('THU_ggH_VBF2j', 'ggH_VBF2j_2'),
+    ('THU_ggH_VBF3j', 'ggH_VBF3j_2'),
+    ('THU_ggH_PT60', 'ggH_pT60_2'),
+    ('THU_ggH_PT120', 'ggH_pT120_2'),
+    ('THU_ggH_qmtop', 'ggH_qmtop_2')
 ]
 
 for name, vname in thus:
