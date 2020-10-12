@@ -675,7 +675,8 @@ for lepton in leptons:
         }
 
 ##### FW E_T up down var Electron
-for syst in ['El', 'statEl', 'Mu', 'statMu']:
+#for syst in ['El', 'statEl', 'Mu', 'statMu']:
+for syst in ['El', 'Mu']:
     nuisances['fakeW_Et_'+syst] = {
         'name': 'CMS_fakeW_Et_'+syst,
         'kind': 'weight',

@@ -35,6 +35,9 @@ aliases['WPTight'] = {
     'expr': LepWPCut,
 }
 
+aliases['WPTight1'] = {
+    'expr': Lep1WPCut,
+}
 
 ###### PromptGenMatch ######
 

@@ -79,3 +79,10 @@ variables['pt_lmet']  = {
                         'fold'  : 3
                         }
 
+variables['pt_genW']  = {
+                        'name': 'LHE_Vpt',
+                        'range' : (100,0,300),
+                        'xaxis' : 'p_{T}^{genW} [GeV]',
+                        'fold'  : 3
+                        }
+

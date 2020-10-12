@@ -2,6 +2,7 @@ import os
 import time
 import copy
 import ROOT
+import array
 
 ROOT.gStyle.SetOptStat(0)
 
@@ -23,8 +24,40 @@ def re_roll_2Dh(h1D, xbin, xmin, xmax, ybin, ymin, ymax, name=None, title=None, 
     for ib in range(h1D.GetNbinsX()):
         x = xmin + (ib//ybin)*xstep + xstep/2.
         y = ymin + (ib%ybin)*ystep  + ystep/2.
-        if not invert: h2D.SetBinContent(h2D.FindBin(x,y), h1D.GetBinContent(ib+1))
-        else: h2D.SetBinContent(h2D.FindBin(y,x), h1D.GetBinContent(ib+1))
+        if not invert: 
+            h2D.SetBinContent(h2D.FindBin(x,y), h1D.GetBinContent(ib+1))
+            h2D.SetBinError(h2D.FindBin(x,y), h1D.GetBinError(ib+1))
+        else: 
+            h2D.SetBinContent(h2D.FindBin(y,x), h1D.GetBinContent(ib+1))
+            h2D.SetBinError(h2D.FindBin(y,x), h1D.GetBinError(ib+1))
+    return h2D
+
+def re_roll_2Dh_array(h1D, xbins, ybins, name=None, title=None, invert=False):
+    x_array = array.array('d', xbins)
+    y_array = array.array('d', ybins)
+    if name is None:
+        name_1D = h1D.GetName()
+        name_2D = name_1D+'_2D_'+str(time.time()).replace('.', '_')
+    else: name_2D = name
+    if title is None:
+        title_1D = h1D.GetTitle()
+        title_2D = title_1D+' 2D'
+    else: title_2D = title
+
+    if not invert: h2D = ROOT.TH2D(name_2D, title_2D, len(x_array)-1, x_array, len(y_array)-1, y_array)
+    else: h2D = ROOT.TH2D(name_2D, title_2D, len(y_array)-1, y_array, len(x_array)-1, x_array)
+
+    for ib in range(h1D.GetNbinsX()):
+        ix = ib//(len(ybins)-1)
+        iy = ib%(len(ybins)-1)
+        x = xbins[ix] + (xbins[ix+1] - xbins[ix])/2.
+        y = ybins[iy] + (ybins[iy+1] - ybins[iy])/2.
+        if not invert: 
+            h2D.SetBinContent(h2D.FindBin(x,y), h1D.GetBinContent(ib+1))
+            h2D.SetBinError(h2D.FindBin(x,y), h1D.GetBinError(ib+1))
+        else: 
+            h2D.SetBinContent(h2D.FindBin(y,x), h1D.GetBinContent(ib+1))
+            h2D.SetBinError(h2D.FindBin(y,x), h1D.GetBinError(ib+1))
     return h2D
 
 cfg = 'conf_FR.py'
@@ -111,39 +144,60 @@ for cut in clean_cuts:
         histograms_fr[h_name_total_ewk].Divide(histograms_l[h_name_total_ewk])
 
         if ':' in variables[var]['name']:
-            time.sleep(0.01)
-            histograms_fr[h_name_total_ewk+'_2D'] = re_roll_2Dh(
-                histograms_fr[h_name_total_ewk], 
-                variables[var]['range'][0], variables[var]['range'][1], variables[var]['range'][2], 
-                variables[var]['range'][3], variables[var]['range'][4], variables[var]['range'][5], 
-                name = 'FW_ewk_'+cut+'_'+var,
-                title = 'FW_ewk_'+cut+'_'+var,
-                invert = True,
-                )
-            time.sleep(0.01)
-            histograms_fr[h_name_total+'_2D'] = re_roll_2Dh(
-                histograms_fr[h_name_total], 
-                variables[var]['range'][0], variables[var]['range'][1], variables[var]['range'][2], 
-                variables[var]['range'][3], variables[var]['range'][4], variables[var]['range'][5], 
-                name = 'FW_no_ewk_'+cut+'_'+var,
-                title = 'FW_no_ewk_'+cut+'_'+var,
-                invert = True,
-                )
+            if len(variables[var]['range']) == 6:
+                time.sleep(0.01)
+                histograms_fr[h_name_total_ewk+'_2D'] = re_roll_2Dh(
+                    histograms_fr[h_name_total_ewk], 
+                    variables[var]['range'][0], variables[var]['range'][1], variables[var]['range'][2], 
+                    variables[var]['range'][3], variables[var]['range'][4], variables[var]['range'][5], 
+                    name = 'FW_ewk_'+cut+'_'+var,
+                    title = 'FW_ewk_'+cut+'_'+var,
+                    invert = True,
+                    )
+                time.sleep(0.01)
+                histograms_fr[h_name_total+'_2D'] = re_roll_2Dh(
+                    histograms_fr[h_name_total], 
+                    variables[var]['range'][0], variables[var]['range'][1], variables[var]['range'][2], 
+                    variables[var]['range'][3], variables[var]['range'][4], variables[var]['range'][5], 
+                    name = 'FW_no_ewk_'+cut+'_'+var,
+                    title = 'FW_no_ewk_'+cut+'_'+var,
+                    invert = True,
+                    )
+            elif len(variables[var]['range']) == 2:
+                time.sleep(0.01)
+                histograms_fr[h_name_total_ewk+'_2D'] = re_roll_2Dh_array(
+                    histograms_fr[h_name_total_ewk], 
+                    variables[var]['range'][0], 
+                    variables[var]['range'][1], 
+                    name = 'FW_ewk_'+cut+'_'+var,
+                    title = 'FW_ewk_'+cut+'_'+var,
+                    invert = True,
+                    )
+                time.sleep(0.01)
+                histograms_fr[h_name_total+'_2D'] = re_roll_2Dh_array(
+                    histograms_fr[h_name_total], 
+                    variables[var]['range'][0], 
+                    variables[var]['range'][1], 
+                    name = 'FW_no_ewk_'+cut+'_'+var,
+                    title = 'FW_no_ewk_'+cut+'_'+var,
+                    invert = True,
+                    )
 
 
 print('Create plots')
 
+fr_dir = 'FRnew'
 canvas = ROOT.TCanvas('canvas', 'FW canvas', 600, 600)
 for fw in histograms_fr:
     name = 'plot'+fw[1:].replace('_total', '_fw')
     if fw.endswith('_2D'):
-        tmp_file = ROOT.TFile('FR/'+name+'.root', 'RECREATE')
+        tmp_file = ROOT.TFile(fr_dir+'/'+name+'.root', 'RECREATE')
         histograms_fr[fw].SetName('FR_pT_eta_EWKcorr') #For reading script
         histograms_fr[fw].Write()
         tmp_file.Close()
         histograms_fr[fw].Draw('colz text')
     else: histograms_fr[fw].Draw()
     canvas.Update()
-    canvas.SaveAs('FR/'+name+'.png')
+    canvas.SaveAs(fr_dir+'/'+name+'.png')
 
 
