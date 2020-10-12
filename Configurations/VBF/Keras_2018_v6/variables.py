@@ -9,7 +9,7 @@
 
 variables['classvbf'] = { 
      'name': 'vbfdnn',
-     'range' : ([0.25,0.4,0.5,0.55,0.6,0.65,0.7,0.75,0.8,0.85,0.9,1.0],),
+     'range' : ([0.25,0.4,0.5,0.55,0.6,0.65,0.7,0.75,0.8,0.85,0.9,0.95,1.0],),
      'xaxis' : 'DNN discriminant vbf',
      'fold'  : 3,
 }
@@ -17,7 +17,7 @@ variables['classvbf'] = {
 
 variables['classtop'] = { 
      'name': 'topdnn',
-    'range' : (15,0.25,1.),
+     'range' : (15,0.25,1.),
      'xaxis' : 'DNN discriminant top',
      'fold'  : 3,
 }
@@ -40,6 +40,21 @@ variables['classggh'] = {
 }
 
 
+variables['Ctot'] = {
+     'name': 'log((abs(2*Lepton_eta[0]-CleanJet_eta[0]-CleanJet_eta[1])+abs(2*Lepton_eta[1]-CleanJet_eta[0]-CleanJet_eta[1]))/detajj)',
+     'range' : ([20,-4.,6.],),
+     #'range' : (15,0.25,1.),
+     'xaxis' : 'Ctot',
+     'fold'  : 3,
+}
+
+variables['mlj12'] = {
+     'name': 'mlj(Lepton_pt[0], Lepton_eta[0], Lepton_phi[0], CleanJet_pt[0], CleanJet_eta[0], CleanJet_phi[0])',
+     'range' : ([28,0.,1400.],),
+     #'range' : (15,0.25,1.),
+     'xaxis' : 'mlj12',
+     'fold'  : 3,
+}
 
 '''
 variables['class0'] = {

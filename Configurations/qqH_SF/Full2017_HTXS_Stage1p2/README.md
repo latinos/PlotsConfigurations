@@ -32,12 +32,34 @@ Or, by using condor:
 
     python doDY.py --pycfg=configuration.py --dycfg=dyestim_qqH.py --inputFile=rootFile/plots_STXS_qqH_SF_2017.root
 
+## Plot distributions
+
+Before data-driven DY corrections:
+
+    mkPlot.py --inputFile=rootFile/plots_STXS_qqH_SF_2017.root --linearOnly --fileFormats=png --onlyPlot=cratio --outputDirPlots=plots_STXS_qqH_SF_2017_noDY
+
+With corrections:
+
+    mkPlot.py --inputFile=rootFile/plots_STXS_qqH_SF_2017_DYEstimDATA.root --linearOnly --fileFormats=png --onlyPlot=cratio
+
+Repeat, but with data-blind signal region. Put to 1 the 'isBlind' flag in plot.py and:
+
+    mkPlot.py --onlyCut=hww2l2v_13TeV_2j_mjj65_105_ee            --inputFile=rootFile/plots_STXS_qqH_SF_2017_DYEstimDATA.root --linearOnly --fileFormats=png --onlyPlot=cratio
+    mkPlot.py --onlyCut=hww2l2v_13TeV_2j_mjj350_700_pthLT200_ee  --inputFile=rootFile/plots_STXS_qqH_SF_2017_DYEstimDATA.root --linearOnly --fileFormats=png --onlyPlot=cratio
+    mkPlot.py --onlyCut=hww2l2v_13TeV_2j_mjjGT700_pthLT200_ee --inputFile=rootFile/plots_STXS_qqH_SF_2017_DYEstimDATA.root --linearOnly --fileFormats=png --onlyPlot=cratio
+    mkPlot.py --onlyCut=hww2l2v_13TeV_2j_mjjGT350_pthGT200_ee --inputFile=rootFile/plots_STXS_qqH_SF_2017_DYEstimDATA.root --linearOnly --fileFormats=png --onlyPlot=cratio
+
+    mkPlot.py --onlyCut=hww2l2v_13TeV_2j_mjj65_105_mm            --inputFile=rootFile/plots_STXS_qqH_SF_2017_DYEstimDATA.root --linearOnly --fileFormats=png --onlyPlot=cratio
+    mkPlot.py --onlyCut=hww2l2v_13TeV_2j_mjj350_700_pthLT200_mm  --inputFile=rootFile/plots_STXS_qqH_SF_2017_DYEstimDATA.root --linearOnly --fileFormats=png --onlyPlot=cratio
+    mkPlot.py --onlyCut=hww2l2v_13TeV_2j_mjjGT700_pthLT200_mm --inputFile=rootFile/plots_STXS_qqH_SF_2017_DYEstimDATA.root --linearOnly --fileFormats=png --onlyPlot=cratio
+    mkPlot.py --onlyCut=hww2l2v_13TeV_2j_mjjGT350_pthGT200_mm --inputFile=rootFile/plots_STXS_qqH_SF_2017_DYEstimDATA.root --linearOnly --fileFormats=png --onlyPlot=cratio
+
 ## Produce datacards:
 
     mkDatacards.py \
         --pycfg=configuration.py \
 	--inputFile=rootFile/plots_STXS_qqH_SF_2017_DYEstimDATA.root \
-	--cardList=hww2l2v_13TeV_mjj65_105_ee,hww2l2v_13TeV_mjj65_105_mm,hww2l2v_13TeV_mjj350_700_pthLT200_ee,hww2l2v_13TeV_mjj350_700_pthLT200_mm,hww2l2v_13TeV_mjjGT700_pthLT200_ee,hww2l2v_13TeV_mjjGT700_pthLT200_mm,hww2l2v_13TeV_mjjGT350_pthGT200_ee,hww2l2v_13TeV_mjjGT350_pthGT200_mm,hww2l2v_13TeV_top_2j_vh_ee,hww2l2v_13TeV_top_2j_vh_mm,hww2l2v_13TeV_top_2j_vbf_ee,hww2l2v_13TeV_top_2j_vbf_mm,hww2l2v_13TeV_top_2j_hpt_ee,hww2l2v_13TeV_top_2j_hpt_mm,hww2l2v_13TeV_WW_2j_vh_ee,hww2l2v_13TeV_WW_2j_vh_mm,hww2l2v_13TeV_WW_2j_vbf_ee,hww2l2v_13TeV_WW_2j_vbf_mm,hww2l2v_13TeV_WW_2j_hpt_ee,hww2l2v_13TeV_WW_2j_hpt_mm
+	--cardList=hww2l2v_13TeV_2j_mjj65_105_ee,hww2l2v_13TeV_2j_mjj65_105_mm,hww2l2v_13TeV_2j_mjj350_700_pthLT200_ee,hww2l2v_13TeV_2j_mjj350_700_pthLT200_mm,hww2l2v_13TeV_2j_mjjGT700_pthLT200_ee,hww2l2v_13TeV_2j_mjjGT700_pthLT200_mm,hww2l2v_13TeV_2j_mjjGT350_pthGT200_ee,hww2l2v_13TeV_2j_mjjGT350_pthGT200_mm,hww2l2v_13TeV_top_2j_vh_ee,hww2l2v_13TeV_top_2j_vh_mm,hww2l2v_13TeV_top_2j_vbf_ee,hww2l2v_13TeV_top_2j_vbf_mm,hww2l2v_13TeV_top_2j_hpt_ee,hww2l2v_13TeV_top_2j_hpt_mm,hww2l2v_13TeV_WW_2j_vh_ee,hww2l2v_13TeV_WW_2j_vh_mm,hww2l2v_13TeV_WW_2j_vbf_ee,hww2l2v_13TeV_WW_2j_vbf_mm,hww2l2v_13TeV_WW_2j_hpt_ee,hww2l2v_13TeV_WW_2j_hpt_mm
 
 ## Combine datacards:
 

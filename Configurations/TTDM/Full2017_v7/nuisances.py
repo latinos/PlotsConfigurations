@@ -210,22 +210,23 @@ nuisances['muonpt'] = {
     'AsLnN': '1'
 }
 
+"""
 # #Jet energy scale
-# jes_systs = ['JESAbsolute','JESAbsolute_2017','JESBBEC1','JESBBEC1_2017','JESEC2','JESEC2_2017','JESFlavorQCD','JESHF','JESHF_2017','JESRelativeBal','JESRelativeSample_2017']
+jes_systs = ['JESAbsolute','JESAbsolute_2017','JESBBEC1','JESBBEC1_2017','JESEC2','JESEC2_2017','JESFlavorQCD','JESHF','JESHF_2017','JESRelativeBal','JESRelativeSample_2017']
 
-# for js in jes_systs:
-#   nuisances[js] = {
-#       'name': 'CMS_scale_'+js,
-#       'kind': 'suffix',
-#       'type': 'shape',
-#       'mapUp': js+'up',
-#       'mapDown': js+'do',
-#       'samples': dict((skey, ['1', '1']) for skey in mc),
-#       'folderUp': makeMCDirectory('JESup_suffix'),
-#       'folderDown': makeMCDirectory('JESdo_suffix'),
-#       'AsLnN': '1'
-#   }
-
+for js in jes_systs:
+    nuisances[js] = {
+        'name': 'CMS_scale_'+js,
+        'kind': 'suffix',
+        'type': 'shape',
+        'mapUp': js+'up',
+        'mapDown': js+'do',
+        'samples': dict((skey, ['1', '1']) for skey in mc),
+        'folderUp': makeMCDirectory('JESup_suffix'),
+        'folderDown': makeMCDirectory('JESdo_suffix'),
+        'AsLnN': '1'
+    }
+"""
 ##### MET energy scale
 
 nuisances['met'] = {

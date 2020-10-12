@@ -4,7 +4,9 @@ import os
 import re
 
 
-signameFormat = "histo_(|MSSM)(GGH|QQH)(|SBI)_([0-9]+)_RelW([0-9]+)_ibin(|MSSM)(GGH|QQH)_([0-9]+)_RelW([0-9]+)_([0-9]+)_stat(Up|Down)"
+signameFormat1 = "histo_(GGH|QQH)(|SBI)_([0-9]+)_RelW([0-9]+)_ibin(GGH|QQH)_([0-9]+)_RelW([0-9]+)_([0-9]+)_stat(Up|Down)"
+signameFormat2 = "histo_(GGH|QQH)(|SBI)_([0-9]+)_RelW([0-9]+)_ibin(ggH_hww|ggWW|qqH_hww|qqWWqq)_([0-9]+)_stat(Up|Down)"
+signameFormat3 = "histo_(ggH_hww|ggWW|qqH_hww|qqWWqq)_ibin(ggH_hww|ggWW|qqH_hww|qqWWqq)_([0-9]+)_stat(Up|Down)"
 
 try:
   rootfile = sys.argv[1]
@@ -21,6 +23,11 @@ except IndexError:
 #    os.system("cp "+origfile+" "+rootfile)
 #  print "Copy done"
 
+for y in ['2016', '2017', '2018']:
+  if y in rootfile: year = y
+for s in ['_em', '_mm', '_ee']:
+  if s in rootfile: state = s
+
 if not os.path.exists(rootfile): exit()
 newfile = ROOT.TFile(rootfile, 'read')
 newfile2 = ROOT.TFile(rootfile.replace(".root", "_new.root"), 'recreate')
@@ -29,6 +36,8 @@ for categories in newfile.GetListOfKeys(): # Cut directory
   category = newfile.GetDirectory(categories.GetName())
   newfile2.cd()
   newfile2.mkdir(categories.GetName())
+  for c in ['ggh', 'vbf', '0j', '1j', '2j']:
+    if c in categories.GetName(): categ = c
 
   for variables in category.GetListOfKeys(): # Variable directory
     isCR = 1 if ("top" in categories.GetName() or "dy" in categories.GetName() or "TopCR" in categories.GetName() or "SB" in categories.GetName()) else 0
@@ -42,10 +51,12 @@ for categories in newfile.GetListOfKeys(): # Cut directory
     histnames = {}
     for histoname_ in variable.GetListOfKeys(): # nominal Histograms
       histoname = histoname_.GetName()
+      if "histo_DYveto" in histoname: continue
       if not (histoname.endswith("Up") or histoname.endswith("Down")) and not ("INT" in histoname) and not (histoname.endswith("Var")): histnames[histoname] = []
 
     for histoname_ in variable.GetListOfKeys(): # up/down Histograms
       histoname = histoname_.GetName()
+      if "histo_DYveto" in histoname: continue
       if histoname.endswith("Up"):
         for key,val in histnames.iteritems():
           if histoname.startswith(key):
@@ -81,11 +92,21 @@ for categories in newfile.GetListOfKeys(): # Cut directory
           #  histo.SetBinContent(i+1,0.0)
 
         # RENAME BBB SIGNAL SHAPES!
-        #signameFormat = "histo_(|MSSM)(GGH|QQH)(|SBI)_([0-9]+)_RelW([0-9]+)_ibin(|MSSM)(GGH|QQH)_([0-9]+)_RelW([0-9]+)_([0-9]+)_stat(Up|Down)"
-        pattern = re.match(signameFormat, histoname)
+        #signameFormat1 = "histo_(GGH|QQH)(|SBI)_([0-9]+)_RelW([0-9]+)_ibin(GGH|QQH)_([0-9]+)_RelW([0-9]+)_([0-9]+)_stat(Up|Down)"
+        #signameFormat2 = "histo_(GGH|QQH)(|SBI)_([0-9]+)_RelW([0-9]+)_ibin(ggH_hww|ggWW|qqH_hww|qqWWqq)_([0-9]+)_stat(Up|Down)"
+        #signameFormat3 = "histo_(ggH_hww|ggWW|qqH_hww|qqWWqq)_ibin(ggH_hww|ggWW|qqH_hww|qqWWqq)_([0-9]+)_stat(Up|Down)"
+        pattern = re.match(signameFormat1, histoname)
         if not pattern == None:
           #if (pattern.group(1) != pattern.group(6)) or (pattern.group(2) != pattern.group(7)) or (pattern.group(5) != pattern.group(9)) or (pattern.group(4) != pattern.group(8)): print "WHAT???", histoname # Shouldn't happen
-          newname = "histo_"+pattern.group(1)+pattern.group(2)+pattern.group(3)+"_"+pattern.group(4)+"_RelW"+pattern.group(5)+"_ibin"+pattern.group(6)+pattern.group(7)+"_RelW"+pattern.group(9)+"_"+pattern.group(10)+"_stat"+pattern.group(11)
+          newname = "histo_"+pattern.group(1)+pattern.group(2)+"_"+pattern.group(3)+"_RelW"+pattern.group(4)+"_CMS_hww"+state+"_"+categ+"_"+year+"_correlbin_"+pattern.group(5)+"_RelW"+pattern.group(7)+"_"+pattern.group(8)+"_stat"+pattern.group(9)
+          histo.SetNameTitle(newname, newname)
+        pattern = re.match(signameFormat2, histoname)
+        if not pattern == None:
+          newname = "histo_"+pattern.group(1)+pattern.group(2)+"_"+pattern.group(3)+"_RelW"+pattern.group(4)+"_CMS_hww"+state+"_"+categ+"_"+year+"_correlbin_"+pattern.group(5)+"_"+pattern.group(6)+"_stat"+pattern.group(7)
+          histo.SetNameTitle(newname, newname)
+        pattern = re.match(signameFormat3, histoname)
+        if not pattern == None:
+          newname = "histo_"+pattern.group(1)+"_CMS_hww"+state+"_"+categ+"_"+year+"_correlbin_"+pattern.group(2)+"_"+pattern.group(3)+"_stat"+pattern.group(4)
           histo.SetNameTitle(newname, newname)
 
         # Also rename DATA -> data_obs

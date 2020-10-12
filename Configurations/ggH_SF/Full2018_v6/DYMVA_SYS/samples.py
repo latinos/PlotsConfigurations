@@ -1,10 +1,11 @@
 import os
 import inspect
 
+# /afs/cern.ch/work/n/ntrevisa/latinos/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/ggH_SF/Full2018_v6/DYMVA_SYS
 configurations = os.path.realpath(inspect.getfile(inspect.currentframe())) # this file
-configurations = os.path.dirname(configurations) # Pre-selection
-configurations = os.path.dirname(configurations) # ggH2018
-configurations = os.path.dirname(configurations) # Differential
+configurations = os.path.dirname(configurations) # DYMVA_SYS
+configurations = os.path.dirname(configurations) # Full2018_v6
+configurations = os.path.dirname(configurations) # ggH_SF
 configurations = os.path.dirname(configurations) # Configurations
 
 from LatinoAnalysis.Tools.commonTools import getSampleFiles, addSampleWeight, getBaseWnAOD
@@ -33,11 +34,13 @@ except NameError:
 mcProduction = 'Autumn18_102X_nAODv6_Full2018v6'
 dataReco = 'Run2018_102X_nAODv6_Full2018v6'
 
-mcSteps = 'MCl1loose2018v6__MCCorr2018v6__l2loose__l2tightOR2018v6__DYMVA_alt{var}'
+fakeReco = 'Run2018_102X_nAODv6_Full2018v6_ForNewWPs'
 
-fakeSteps = 'DATAl1loose2018v6__l2loose__fakeW__DYMVA_alt'
+mcSteps = 'MCl1loose2018v6__MCCorr2018v6__l2loose__l2tightOR2018v6{var}'
 
-dataSteps = 'DATAl1loose2018v6__l2loose__l2tightOR2018v6__DYMVA_alt'
+fakeSteps = 'DATAl1loose2018v6__l2loose__fakeW__DYMVA'
+
+dataSteps = 'DATAl1loose2018v6__l2loose__l2tightOR2018v6'
 
 ##############################################
 ###### Tree base directory for the site ######
@@ -56,8 +59,10 @@ def makeMCDirectory(var=''):
         return os.path.join(treeBaseDir, mcProduction, mcSteps.format(var=''))
 
 mcDirectory = makeMCDirectory()
-fakeDirectory = os.path.join(treeBaseDir, dataReco, fakeSteps)
+fakeDirectory = os.path.join(treeBaseDir, fakeReco, fakeSteps)
 dataDirectory = os.path.join(treeBaseDir, dataReco, dataSteps)
+
+
 
 ################################################
 ############ DATA DECLARATION ##################
@@ -228,7 +233,7 @@ samples['ggWW'] = {
 ######## Vg ########
 
 files = nanoGetSampleFiles(mcDirectory, 'Wg_MADGRAPHMLM') + \
-    nanoGetSampleFiles(mcDirectory, 'Zg')
+    nanoGetSampleFiles(mcDirectory, 'ZGToLLG')
 
 samples['Vg'] = {
     'name': files,
@@ -238,12 +243,12 @@ samples['Vg'] = {
     'FilesPerJob': 4
 }
 # the following is needed in both v5 and v6
-addSampleWeight(samples, 'Vg', 'Zg', '0.448')
+addSampleWeight(samples, 'Vg', 'ZGToLLG', '0.448')
 
 ######## VgS ########
 
 files = nanoGetSampleFiles(mcDirectory, 'Wg_MADGRAPHMLM') + \
-    nanoGetSampleFiles(mcDirectory, 'Zg') + \
+    nanoGetSampleFiles(mcDirectory, 'ZGToLLG') + \
     nanoGetSampleFiles(mcDirectory, 'WZTo3LNu_mllmin01')
 
 samples['VgS'] = {
@@ -258,7 +263,7 @@ samples['VgS'] = {
     }
 }
 addSampleWeight(samples, 'VgS', 'Wg_MADGRAPHMLM', '(Gen_ZGstar_mass > 0 && Gen_ZGstar_mass < 0.1)')
-addSampleWeight(samples, 'VgS', 'Zg', '(Gen_ZGstar_mass > 0)*0.448')
+addSampleWeight(samples, 'VgS', 'ZGToLLG', '(Gen_ZGstar_mass > 0)*0.448')
 addSampleWeight(samples, 'VgS', 'WZTo3LNu_mllmin01', '(Gen_ZGstar_mass > 0.1)')
 
 ############ VZ ############
@@ -370,45 +375,46 @@ signals.append('ttH_hww')
 
 ############ H->TauTau ############
 
-#samples['ggH_htt'] = {
-#    'name': nanoGetSampleFiles(mcDirectory, 'GluGluHToTauTau_M125'),
-#    'weight': mcCommonWeight,
-#    'suppressNegative' :['all'],
-#    'suppressNegativeNuisances' :['all'],
-#    'FilesPerJob': 20
-#}
+samples['ggH_htt'] = {
+    'name': nanoGetSampleFiles(mcDirectory, 'GluGluHToTauTau_M125'),
+    'weight': mcCommonWeight,
+    'suppressNegative' :['all'],
+    'suppressNegativeNuisances' :['all'],
+    'FilesPerJob': 20
+}
 
-#signals.append('ggH_htt')
+signals.append('ggH_htt')
 
-#samples['qqH_htt'] = {
-#    'name': nanoGetSampleFiles(mcDirectory, 'VBFHToTauTau_M125'),
-#    'weight': mcCommonWeight,
-#    'suppressNegative' :['all'],
-#    'suppressNegativeNuisances' :['all'],
-#    'FilesPerJob': 12
-#}
+samples['qqH_htt'] = {
+    'name': nanoGetSampleFiles(mcDirectory, 'VBFHToTauTau_M125'),
+    'weight': mcCommonWeight,
+    'suppressNegative' :['all'],
+    'suppressNegativeNuisances' :['all'],
+    'FilesPerJob': 10
+}
 
-#signals.append('qqH_htt')
-#
-#samples['ZH_htt'] = {
-#    'name': nanoGetSampleFiles(mcDirectory, 'HZJ_HToTauTau_M125'),
-#    'weight': mcCommonWeight,
-#    'suppressNegative' :['all'],
-#    'suppressNegativeNuisances' :['all'],
-#    'FilesPerJob': 4
-#}
-#
-#signals.append('ZH_htt')
-#
-#samples['WH_htt'] = {
-#    'name':  nanoGetSampleFiles(mcDirectory, 'HWplusJ_HToTauTau_M125') + nanoGetSampleFiles(mcDirectory, 'HWminusJ_HToTauTau_M125'),
-#    'weight': mcCommonWeight,
-#    'suppressNegative' :['all'],
-#    'suppressNegativeNuisances' :['all'],
-#    'FilesPerJob': 4
-#}
-#
-#signals.append('WH_htt')
+signals.append('qqH_htt')
+
+samples['ZH_htt'] = {
+    'name': nanoGetSampleFiles(mcDirectory, 'HZJ_HToTauTau_M125'),
+    'weight': mcCommonWeight,
+    'suppressNegative' :['all'],
+    'suppressNegativeNuisances' :['all'],
+    'FilesPerJob': 4
+}
+
+signals.append('ZH_htt')
+
+samples['WH_htt'] = {
+    'name':  nanoGetSampleFiles(mcDirectory, 'HWplusJ_HToTauTau_M125') + nanoGetSampleFiles(mcDirectory, 'HWminusJ_HToTauTau_M125'),
+    'weight': mcCommonWeight,
+    'suppressNegative' :['all'],
+    'suppressNegativeNuisances' :['all'],
+    'FilesPerJob': 4
+}
+
+signals.append('WH_htt')
+
 
 ###########################################
 ################## FAKE ###################
@@ -421,7 +427,7 @@ samples['Fake'] = {
   'isData': ['all'],
    'suppressNegative' :['all'],
    'suppressNegativeNuisances' :['all'],
-  'FilesPerJob': 80
+  'FilesPerJob': 50
 }
 
 for _, sd in DataRun:
@@ -445,7 +451,7 @@ samples['DATA'] = {
   'weight': 'METFilter_DATA*LepWPCut',
   'weights': [],
   'isData': ['all'],
-  'FilesPerJob': 120
+  'FilesPerJob': 50
 }
 
 for _, sd in DataRun:

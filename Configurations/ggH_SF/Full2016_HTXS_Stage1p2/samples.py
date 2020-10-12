@@ -311,7 +311,7 @@ for cat,num in HTXSStage1_1Categories.iteritems():
                                                               'suppressNegativeNuisances' :['all'],
                                                               'linesToAdd': ['.L %s/Differential/weight2MINLO.cc+' % configurations]
                                                           }
-            signals.append('ggH_hww'+cat.replace('GG2H_',''))
+            signals.append('ggH_hww_'+cat.replace('GG2H_',''))
 
 # Stage 1.2 binning for high pTH bin      
 
