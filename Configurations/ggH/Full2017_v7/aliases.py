@@ -250,3 +250,18 @@ for thu in thus:
         'args': (thu,),
         'samples': ['ggH_hww']
     }
+
+
+# Needed for top QCD scale uncertainty
+lastcopy = (1 << 13)
+
+aliases['isTTbar'] = {
+    'expr': 'Sum$(TMath::Abs(GenPart_pdgId) == 6 && TMath::Odd(GenPart_statusFlags / %d)) == 2' % lastcopy,
+    'samples': ['top']
+}
+
+aliases['isSingleTop'] = {
+    'expr': 'Sum$(TMath::Abs(GenPart_pdgId) == 6 && TMath::Odd(GenPart_statusFlags / %d)) == 1' % lastcopy,
+    'samples': ['top']
+}
+

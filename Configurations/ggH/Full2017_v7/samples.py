@@ -103,6 +103,11 @@ mcCommonWeight = 'XSWeight*SFweight*PromptGenLepMatch2l*METFilter_MC'
 useEmbeddedDY = True
 useDYtt = True
 
+# The Dyveto sample is used to estimate one piece of the Dyemb uncertainty
+# To avoid running it all the times, it was run once and the uncertainty was converted into a lnN (see nuisances.py)
+runDYveto = False
+
+
 embed_tautauveto = '' #Setup
 if useEmbeddedDY:
   embed_tautauveto = '*embed_tautauveto'
@@ -122,38 +127,39 @@ if useEmbeddedDY:
       samples['Dyemb']['name'].extend(files)
       samples['Dyemb']['weights'].extend(['Trigger_ElMu'] * len(files))
 
-  # Vetoed MC: Needed for uncertainty
-  files = nanoGetSampleFiles(mcDirectory, 'TTTo2L2Nu_PSWeights') + \
-      nanoGetSampleFiles(mcDirectory, 'ST_tW_antitop') + \
-      nanoGetSampleFiles(mcDirectory, 'ST_tW_top') + \
-      nanoGetSampleFiles(mcDirectory, 'WWTo2L2Nu') + \
-      nanoGetSampleFiles(mcDirectory, 'WpWmJJ_EWK_noTop') + \
-      nanoGetSampleFiles(mcDirectory, 'GluGluToWWToTNTN') + \
-      nanoGetSampleFiles(mcDirectory, 'ZZTo2L2Nu') + \
-      nanoGetSampleFiles(mcDirectory, 'ZZTo2L2Q') + \
-      nanoGetSampleFiles(mcDirectory, 'ZZTo4L') + \
-      nanoGetSampleFiles(mcDirectory, 'WZTo2L2Q') + \
-      nanoGetSampleFiles(mcDirectory, 'ZGToLLG') + \
-      nanoGetSampleFiles(mcDirectory, 'WZTo3LNu_mllmin01')
-
-  samples['Dyveto'] = {
-      'name': files,
-      'weight': '(1-embed_tautauveto)',
-      'FilesPerJob': 1, # There's some error about not finding sample-specific variables like "nllW" when mixing different samples into a single job; so split them all up instead
-  }
-
-  addSampleWeight(samples, 'Dyveto', 'TTTo2L2Nu_PSWeights', mcCommonWeight + '*((topGenPt * antitopGenPt > 0.) * (TMath::Sqrt((0.103*TMath::Exp(-0.0118*topGenPt) - 0.000134*topGenPt + 0.973) * (0.103*TMath::Exp(-0.0118*antitopGenPt) - 0.000134*antitopGenPt + 0.973))) + (topGenPt * antitopGenPt <= 0.))')
-  addSampleWeight(samples, 'Dyveto', 'ST_tW_antitop', mcCommonWeight)
-  addSampleWeight(samples, 'Dyveto', 'ST_tW_top', mcCommonWeight)
-  addSampleWeight(samples, 'Dyveto', 'WWTo2L2Nu', mcCommonWeight + '*nllW')
-  addSampleWeight(samples, 'Dyveto', 'WpWmJJ_EWK_noTop', mcCommonWeight + '*(Sum$(abs(GenPart_pdgId)==6 || GenPart_pdgId==25)==0)')
-  addSampleWeight(samples, 'Dyveto', 'GluGluToWWToTNTN', mcCommonWeight + '*1.53/1.4')
-  addSampleWeight(samples, 'Dyveto', 'ZZTo2L2Nu', mcCommonWeight + '*1.11')
-  addSampleWeight(samples, 'Dyveto', 'ZZTo2L2Q', mcCommonWeight + '*1.11')
-  addSampleWeight(samples, 'Dyveto', 'ZZTo4L', mcCommonWeight + '*1.11')
-  addSampleWeight(samples, 'Dyveto', 'WZTo2L2Q', mcCommonWeight + '*1.11')
-  addSampleWeight(samples, 'Dyveto', 'ZGToLLG', ' ( ' + mcCommonWeightNoMatch + '*(!(Gen_ZGstar_mass > 0))' + ' ) + ( ' + mcCommonWeight + ' * ((Gen_ZGstar_mass >0 && Gen_ZGstar_mass < 4) * 0.94 + (Gen_ZGstar_mass <0 || Gen_ZGstar_mass > 4) * 1.14) * (Gen_ZGstar_mass > 0)' + ' ) ') # Vg contribution + VgS contribution
-  addSampleWeight(samples, 'Dyveto', 'WZTo3LNu_mllmin01', mcCommonWeight + '*((Gen_ZGstar_mass >0 && Gen_ZGstar_mass < 4) * 0.94 + (Gen_ZGstar_mass <0 || Gen_ZGstar_mass > 4) * 1.14) * (Gen_ZGstar_mass > 0.1)')
+  if runDYveto:
+      # Vetoed MC: Needed for uncertainty
+      files = nanoGetSampleFiles(mcDirectory, 'TTTo2L2Nu_PSWeights') + \
+          nanoGetSampleFiles(mcDirectory, 'ST_tW_antitop') + \
+          nanoGetSampleFiles(mcDirectory, 'ST_tW_top') + \
+          nanoGetSampleFiles(mcDirectory, 'WWTo2L2Nu') + \
+          nanoGetSampleFiles(mcDirectory, 'WpWmJJ_EWK_noTop') + \
+          nanoGetSampleFiles(mcDirectory, 'GluGluToWWToTNTN') + \
+          nanoGetSampleFiles(mcDirectory, 'ZZTo2L2Nu') + \
+          nanoGetSampleFiles(mcDirectory, 'ZZTo2L2Q') + \
+          nanoGetSampleFiles(mcDirectory, 'ZZTo4L') + \
+          nanoGetSampleFiles(mcDirectory, 'WZTo2L2Q') + \
+          nanoGetSampleFiles(mcDirectory, 'ZGToLLG') + \
+          nanoGetSampleFiles(mcDirectory, 'WZTo3LNu_mllmin01')
+    
+      samples['Dyveto'] = {
+          'name': files,
+          'weight': '(1-embed_tautauveto)',
+          'FilesPerJob': 1, # There's some error about not finding sample-specific variables like "nllW" when mixing different samples into a single job; so split them all up instead
+      }
+    
+      addSampleWeight(samples, 'Dyveto', 'TTTo2L2Nu_PSWeights', mcCommonWeight + '*((topGenPt * antitopGenPt > 0.) * (TMath::Sqrt((0.103*TMath::Exp(-0.0118*topGenPt) - 0.000134*topGenPt + 0.973) * (0.103*TMath::Exp(-0.0118*antitopGenPt) - 0.000134*antitopGenPt + 0.973))) + (topGenPt * antitopGenPt <= 0.))')
+      addSampleWeight(samples, 'Dyveto', 'ST_tW_antitop', mcCommonWeight)
+      addSampleWeight(samples, 'Dyveto', 'ST_tW_top', mcCommonWeight)
+      addSampleWeight(samples, 'Dyveto', 'WWTo2L2Nu', mcCommonWeight + '*nllW')
+      addSampleWeight(samples, 'Dyveto', 'WpWmJJ_EWK_noTop', mcCommonWeight + '*(Sum$(abs(GenPart_pdgId)==6 || GenPart_pdgId==25)==0)')
+      addSampleWeight(samples, 'Dyveto', 'GluGluToWWToTNTN', mcCommonWeight + '*1.53/1.4')
+      addSampleWeight(samples, 'Dyveto', 'ZZTo2L2Nu', mcCommonWeight + '*1.11')
+      addSampleWeight(samples, 'Dyveto', 'ZZTo2L2Q', mcCommonWeight + '*1.11')
+      addSampleWeight(samples, 'Dyveto', 'ZZTo4L', mcCommonWeight + '*1.11')
+      addSampleWeight(samples, 'Dyveto', 'WZTo2L2Q', mcCommonWeight + '*1.11')
+      addSampleWeight(samples, 'Dyveto', 'ZGToLLG', ' ( ' + mcCommonWeightNoMatch + '*(!(Gen_ZGstar_mass > 0))' + ' ) + ( ' + mcCommonWeight + ' * ((Gen_ZGstar_mass >0 && Gen_ZGstar_mass < 4) * 0.94 + (Gen_ZGstar_mass <0 || Gen_ZGstar_mass > 4) * 1.14) * (Gen_ZGstar_mass > 0)' + ' ) ') # Vg contribution + VgS contribution
+      addSampleWeight(samples, 'Dyveto', 'WZTo3LNu_mllmin01', mcCommonWeight + '*((Gen_ZGstar_mass >0 && Gen_ZGstar_mass < 4) * 0.94 + (Gen_ZGstar_mass <0 || Gen_ZGstar_mass > 4) * 1.14) * (Gen_ZGstar_mass > 0.1)')
 
 
 ###### DY MC ######
@@ -254,7 +260,7 @@ files = nanoGetSampleFiles(mcDirectory, 'Wg_MADGRAPHMLM') + \
 samples['VgS'] = {
     'name': files,
     'weight': mcCommonWeight+embed_tautauveto + ' * (gstarLow * 0.94 + gstarHigh * 1.14)',
-    'FilesPerJob': 15,
+    'FilesPerJob': 5,
     'subsamples': {
       'L': 'gstarLow',
       'H': 'gstarHigh'
@@ -399,7 +405,7 @@ samples['Fake'] = {
   'weight': 'METFilter_DATA*fakeW',
   'weights': [],
   'isData': ['all'],
-  'FilesPerJob': 30
+  'FilesPerJob': 40
 }
 
 for _, sd in DataRun:

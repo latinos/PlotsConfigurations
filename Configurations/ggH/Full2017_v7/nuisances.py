@@ -32,12 +32,12 @@ cuts0j = []
 cuts1j = []
 cuts2j = []
 
-for k in cuts:
-  for cat in cuts[k]['categories']:
-    if '0j' in cat: cuts0j.append(k+'_'+cat)
-    elif '1j' in cat: cuts1j.append(k+'_'+cat)
-    elif '2j' in cat: cuts2j.append(k+'_'+cat)
-    else: print 'WARNING: name of category does not contain on either 0j,1j,2j'
+#for k in cuts:
+#  for cat in cuts[k]['categories']:
+#    if '0j' in cat: cuts0j.append(k+'_'+cat)
+#    elif '1j' in cat: cuts1j.append(k+'_'+cat)
+#    elif '2j' in cat: cuts2j.append(k+'_'+cat)
+#    else: print 'WARNING: name of category does not contain on either 0j,1j,2j'
 
 ################################ EXPERIMENTAL UNCERTAINTIES  #################################
 
@@ -299,15 +299,56 @@ nuisances['met'] = {
 
 ##### Di-Tau vetoing for embedding
 if useEmbeddedDY: 
-  nuisances['embedveto']  = {
-                  'name'  : 'CMS_embed_veto_2017',
-                  'kind'  : 'weight',
-                  'type'  : 'shape',
-                  'samples'  : {
-                     'Dyemb'    : ['1', '1'],
-                     'Dyveto'   : ['0.1', '-0.1'],
-                  }
-  }
+  if runDYveto:
+    nuisances['embedveto']  = {
+                    'name'  : 'CMS_embed_veto_2017',
+                    'kind'  : 'weight',
+                    'type'  : 'shape',
+                    'samples'  : {
+                       'Dyemb'    : ['1', '1'],
+                       'Dyveto'   : ['0.1', '-0.1'],
+                    }
+             }
+  else:
+    # These hardcoded numbers have been obtained by running the full Dyveto (with runDYveto=True in samples.py) 
+    # and computing the lnN uncertainty as variation of the up/down integral with respect to the nominal Dyemb integral
+    unc_dict = {}
+    unc_dict['hww2l2v_13TeV_me_pm_0j_pt2lt20']   =  '1.01407' 
+    unc_dict['hww2l2v_13TeV_em_pm_0j_pt2ge20']   =  '1.02195'
+    unc_dict['hww2l2v_13TeV_me_mp_0j_pt2ge20']   =  '1.02491'
+    unc_dict['hww2l2v_13TeV_em_mp_0j_pt2lt20']   =  '1.01688'
+    unc_dict['hww2l2v_13TeV_em_pm_0j_pt2lt20']   =  '1.03110'
+    unc_dict['hww2l2v_13TeV_em_mp_0j_pt2ge20']   =  '1.02300'
+    unc_dict['hww2l2v_13TeV_me_pm_0j_pt2ge20']   =  '1.02149'
+    unc_dict['hww2l2v_13TeV_me_mp_0j_pt2lt20']   =  '1.02521'
+    unc_dict['hww2l2v_13TeV_me_pm_1j_pt2lt20']   =  '1.01241'
+    unc_dict['hww2l2v_13TeV_me_pm_1j_pt2ge20']   =  '1.01400'
+    unc_dict['hww2l2v_13TeV_me_mp_1j_pt2ge20']   =  '1.01162'
+    unc_dict['hww2l2v_13TeV_em_mp_1j_pt2lt20']   =  '1.00842'
+    unc_dict['hww2l2v_13TeV_em_pm_1j_pt2lt20']   =  '1.00516'
+    unc_dict['hww2l2v_13TeV_em_pm_1j_pt2ge20']   =  '1.01565'
+    unc_dict['hww2l2v_13TeV_em_mp_1j_pt2ge20']   =  '1.01445'
+    unc_dict['hww2l2v_13TeV_me_mp_1j_pt2lt20']   =  '1.00711'
+    unc_dict['hww2l2v_13TeV_2j']                 =  '1.01211'
+    unc_dict['hww2l2v_13TeV_dytt_0j']            =  '1.00339'
+    unc_dict['hww2l2v_13TeV_dytt_1j']            =  '1.00172'
+    unc_dict['hww2l2v_13TeV_dytt_2j']            =  '1.00267'
+    unc_dict['hww2l2v_13TeV_top_0j']             =  '1.01575'
+    unc_dict['hww2l2v_13TeV_top_1j']             =  '1.02345'
+    unc_dict['hww2l2v_13TeV_top_2j']             =  '1.05881'
+    unc_dict['hww2l2v_13TeV_ww_0j']              =  '1.06107'
+    unc_dict['hww2l2v_13TeV_ww_1j']              =  '1.05379'
+    unc_dict['hww2l2v_13TeV_ww_2j']              =  '1.03267'
+
+    for category,uncertainty in unc_dict.iteritems():
+      nuisances['embedveto_'+category]  = {
+                      'name'  : 'CMS_embed_veto_2017',
+                      'type'  : 'lnN',
+                      'samples'  : {
+                         'Dyemb'    : uncertainty,
+                         },
+                      'cutspost' :  lambda self, category : [category]
+                     }
 
 ##### Pileup
 
@@ -536,16 +577,54 @@ nuisances['pdf_qqbar_ACCEPT'] = {
 
 ## This should work for samples with either 8 or 9 LHE scale weights (Length$(LHEScaleWeight) == 8 or 9)
 variations = ['LHEScaleWeight[0]', 'LHEScaleWeight[1]', 'LHEScaleWeight[3]', 'LHEScaleWeight[Length$(LHEScaleWeight)-4]', 'LHEScaleWeight[Length$(LHEScaleWeight)-2]', 'LHEScaleWeight[Length$(LHEScaleWeight)-1]']
+topvars0j = []
+topvars1j = []
+topvars2j = []
 
-nuisances['QCDscale_top']  = {
-    'name'  : 'QCDscale_top',
+## Factors computed to renormalize the top scale variations such that the integral is not changed in each RECO jet bin (we have rateParams for that)
+topScaleNormFactors0j = {'LHEScaleWeight[3]': 1.0008829637654995, 'LHEScaleWeight[0]': 1.070761703863844, 'LHEScaleWeight[1]': 1.0721982065714528, 'LHEScaleWeight[Length$(LHEScaleWeight)-1]': 0.9270717138194097, 'LHEScaleWeight[Length$(LHEScaleWeight)-4]': 1.002515087891841, 'LHEScaleWeight[Length$(LHEScaleWeight)-2]': 0.9270080603942781}
+topScaleNormFactors1j = {'LHEScaleWeight[3]': 1.0079221754798773, 'LHEScaleWeight[0]': 1.0846741444664376, 'LHEScaleWeight[1]': 1.0806432359691847, 'LHEScaleWeight[Length$(LHEScaleWeight)-1]': 0.9129672863490275, 'LHEScaleWeight[Length$(LHEScaleWeight)-4]': 0.9960603215169435, 'LHEScaleWeight[Length$(LHEScaleWeight)-2]': 0.9198946095840594}
+topScaleNormFactors2j = {'LHEScaleWeight[3]': 1.0224795274718796, 'LHEScaleWeight[0]': 1.1209941307567444, 'LHEScaleWeight[1]': 1.103222357530683, 'LHEScaleWeight[Length$(LHEScaleWeight)-1]': 0.8840173265167147, 'LHEScaleWeight[Length$(LHEScaleWeight)-4]': 0.9829374807746288, 'LHEScaleWeight[Length$(LHEScaleWeight)-2]': 0.9038880068177306}
+
+for var in variations:
+  topvars0j.append(var+'/'+str(topScaleNormFactors0j[var]))
+  topvars1j.append(var+'/'+str(topScaleNormFactors1j[var]))
+  topvars2j.append(var+'/'+str(topScaleNormFactors2j[var]))
+
+## QCD scale nuisances for top are decorrelated for each RECO jet bin: the QCD scale is different for different jet multiplicities so it doesn't make sense to correlate them
+nuisances['QCDscale_top_0j']  = {
+    'name'  : 'QCDscale_top_0j',
     'skipCMS' : 1,
     'kind'  : 'weight_envelope',
     'type'  : 'shape',
+    'cutspost' : lambda self, cuts: [cut for cut in cuts if '0j' in cut],
     'samples'  : {
-       'top' : variations,
+       'top' : topvars0j,
     }
 }
+
+nuisances['QCDscale_top_1j']  = {
+    'name'  : 'QCDscale_top_1j',
+    'skipCMS' : 1,
+    'kind'  : 'weight_envelope',
+    'type'  : 'shape',
+    'cutspost' : lambda self, cuts: [cut for cut in cuts if '1j' in cut],
+    'samples'  : {
+       'top' : topvars1j,
+    }
+}
+
+nuisances['QCDscale_top_2j']  = {
+    'name'  : 'QCDscale_top_2j',
+    'skipCMS' : 1,
+    'kind'  : 'weight_envelope',
+    'type'  : 'shape',
+    'cutspost' : lambda self, cuts: [cut for cut in cuts if '2j' in cut],
+    'samples'  : {
+       'top' : topvars2j,
+    }
+}
+
 
 nuisances['QCDscale_V'] = {
     'name': 'QCDscale_V',
@@ -961,3 +1040,4 @@ for n in nuisances.values():
     n['skipCMS'] = 1
 
 print ' '.join(nuis['name'] for nname, nuis in nuisances.iteritems() if nname not in ('lumi', 'stat'))
+
