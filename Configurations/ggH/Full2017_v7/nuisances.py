@@ -347,9 +347,8 @@ if useEmbeddedDY:
                       'samples'  : {
                          'Dyemb'    : uncertainty,
                          },
-                      'cutspost' :  lambda self, category : [category]
+                       'cuts': [category],
                      }
-
 ##### Pileup
 
 nuisances['PU'] = {
