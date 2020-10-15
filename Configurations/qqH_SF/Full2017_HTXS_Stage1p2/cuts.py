@@ -12,8 +12,8 @@ supercut = '   mll > 12 \
            '
 
 ## DYMVA cuts
-dymvaVH  = 'dymva_alt_dnn_VH  > 0.825'
-dymvaVBF = 'dymva_alt_dnn_VBF > 0.970'
+dymvaVH  = 'dymva_alt_dnn_VH  > 0.840'
+dymvaVBF = 'dymva_alt_dnn_VBF > 0.975'
 
 
 ## HWW signal region        - split based on STXS Stage 1.2 EWK qqH definition
