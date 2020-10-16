@@ -1,3 +1,6 @@
 *.root
+*.pcm
+*.d
+*.so
 *.png
-!plot.py
+

@@ -162,9 +162,9 @@ plot['Fake']  = {
 plot['top'] = {   
                  'color': colors['kAzure']-1,
                  'isSignal' : 0,
-                 'isData'   : 0, 
-                 'scale'    : 1.0 #1.08
+                 'isData'   : 0, 'scale'    : 1.   ,
                  }
+
 
 
 
@@ -173,9 +173,53 @@ for wjetbin in wjets_bins:
                     'color':  colors['kRed']-3,
                     'isSignal' : 0,
                     'isData'   : 0,
-                    'scale': 1.0
+                    'scale'    : 1.   ,
                 }
 
+
+# top_factors = {
+#     "boost": 0.96,
+#     "res":  1.04
+# }
+
+
+# plot['top'] = {   
+#                  'color': colors['kAzure']-1,
+#                  'isSignal' : 0,
+#                  'isData'   : 0, 
+#                  'cuts':
+#                     { cut: top_factors["boost"] if "boost" in cut else top_factors["res"]  for cut in cuts  }
+#                  }
+
+
+# wfactors_ele = {
+#   "Wjets_deta1_jpt1": 1.03 ,
+#   "Wjets_deta2_jpt1": 1.34  ,
+#   "Wjets_deta1_jpt2": 0.91 ,
+#   "Wjets_deta2_jpt2": 1.17 ,
+#   "Wjets_jpt3": 0.75 ,
+#   "Wjets_boost1": 0.81,
+#   "Wjets_boost2": 0.71,
+# }
+
+# wfactors_mu = {
+#   "Wjets_deta1_jpt1": 1.08 ,
+#   "Wjets_deta2_jpt1": 1.26,
+#   "Wjets_deta1_jpt2": 0.89,
+#   "Wjets_deta2_jpt2": 1.04 ,
+#   "Wjets_jpt3": 0.62,
+#   "Wjets_boost1": 0.73,
+#   "Wjets_boost2": 0.94 
+# }
+
+# for wjetbin in wjets_bins:
+#     plot[wjetbin] = {  
+#                     'color':  colors['kRed']-3,
+#                     'isSignal' : 0,
+#                     'isData'   : 0,
+#                     'cuts':
+#                     { cut: wfactors_ele[wjetbin] if "ele" in cut else wfactors_mu[wjetbin]  for cut in cuts  }
+#                 }
 
 plot['VBS']  = {
                   'color': colors["kCyan"]+1, 

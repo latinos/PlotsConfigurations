@@ -96,7 +96,7 @@ groupPlot['top']  = {
 
 
 groupPlot["Wjets_njetsLO"]  = {  
-                        'nameHR' : 'W+Jets njets LO',
+                        'nameHR' : 'W+Jets',
                         'isSignal' : 0,
                         'color':   palette["Yellow"],
                         'samples'  : ["Wjets_njetsLO", "Wjets_LO"],

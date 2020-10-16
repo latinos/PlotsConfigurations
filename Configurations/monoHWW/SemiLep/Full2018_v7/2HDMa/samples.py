@@ -51,7 +51,7 @@ dataSteps = 'DATAl1loose2018v7__DATACombJJLNu2018'
 fakeSteps = 'DATAl1loose2018v7__DATACombJJLNu2018'
 
 
-mcProduction = 'Summer16_102X_nAODv7_Full2018v7'
+mcProduction = 'Autumn18_102X_nAODv7_Full2018v7'
 mcSteps = 'MCl1loose2018v7__MCCorr2018v7__MCCombJJLNu2018'
 
 ##############################################

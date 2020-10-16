@@ -1,6 +1,7 @@
 from __future__ import print_function
 import ROOT as R 
 import argparse
+import pandas as pd
 
 
 '''
@@ -10,6 +11,7 @@ for the requested samples.
 
 parser = argparse.ArgumentParser()
 parser.add_argument("-i","--input", help="input file", type=str)
+parser.add_argument("-o","--output", help="output file", type=str)
 parser.add_argument("-v", "--vars", help="Variables", nargs="+", type=str)
 parser.add_argument("--cuts", help="cuts to analyze", nargs="+", type=str)
 parser.add_argument("-s", "--samples", help="Samples to analyzer", nargs="+", type=str)
@@ -18,6 +20,8 @@ args = parser.parse_args()
 
 
 iF = R.TFile(args.input, "READ")
+
+results = []
 
 for cut in args.cuts: 
     
@@ -58,6 +62,9 @@ for cut in args.cuts:
                 
                 w = data_hist.GetBinContent(ibin) / reweight_hist.GetBinContent(ibin)
                 weights.append(w)
+                if w != 1.0:
+                    results.append((cut, sample, w))
+
             sample_weights[sample] = weights
 
         print(">>>Samples: ", "".join(["{:>20}".format(s) for s,w in sample_weights.items()]))
@@ -69,3 +76,8 @@ for cut in args.cuts:
     R.gDirectory.Cd("..")
 iF.Write()
 iF.Close()
+
+
+df = pd.DataFrame(results, columns=["channel", "bin", "weight"])
+print(df)
+df.to_csv(args.output, sep=";", index=False)

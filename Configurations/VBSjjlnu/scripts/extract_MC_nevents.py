@@ -43,6 +43,7 @@ for file in samples[args.sample]["name"]:
         f_events = h.Integral()
         f_pos_events = h.GetBinContent(2)
         f_neg_events = h.GetBinContent(1)
+        tree.Draw("events>>h(2,-10,10)", "XSWeight", "goff")
     else:
         f_events, f_pos_events, f_neg_events = 0,0,0
 

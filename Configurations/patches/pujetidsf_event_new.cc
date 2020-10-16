@@ -220,7 +220,7 @@ PUJetIdEventSF::bindTree_(multidraw::FunctionLibrary& _library)
     _library.bindBranch(Lepton_eta, "Lepton_eta");
     _library.bindBranch(Lepton_phi, "Lepton_phi");
     _library.bindBranch(Jet_genJetIdx, "Jet_genJetIdx");
-    _library.bindBranch(Jet_puId, "Jet_jetId");
+    _library.bindBranch(Jet_puId, "Jet_puId");
 
     _library.addDestructorCallback([]() {
         currentEntry = -2;

@@ -4,10 +4,11 @@
 // #include <vector>
 
 #include "TGraph.h"
+#include "Math/Vector4Dfwd.h"
 #include "Math/GenVector/LorentzVector.h"
 #include "Math/GenVector/PtEtaPhiM4D.h"
 
-// #include <iostream>
+//#include <iostream>
 
 class EWKnloW : public multidraw::TTreeFunction {
 public:
@@ -28,7 +29,7 @@ protected:
   FloatArrayReader* LHEPart_phi{};
   IntArrayReader* LHEPart_pdgId{};
 
-  TGraph* Wpt_map=new TGraph("/afs/cern.ch/user/s/svanputt/work/monoHiggs/CMSSW_10_6_4/src/LatinoAnalysis/Gardener/python/data/ewk/kewk_w_for_python.txt");
+  TGraph* Wpt_map=new TGraph("/afs/cern.ch/work/d/dvalsecc/private/CMSSW_10_6_4/src/LatinoAnalysis/Gardener/python/data/ewk/kewk_w_for_python.txt");
 };
 
 EWKnloW::EWKnloW() :
@@ -80,6 +81,7 @@ EWKnloW::evaluate(unsigned)
 
   //return Wlep_pt;
   double weight{Wpt_map->Eval(Wlep_pt)};
+
   return weight;
 }
 

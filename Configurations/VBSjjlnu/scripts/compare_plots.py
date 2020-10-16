@@ -16,6 +16,8 @@ fA = R.TFile(args.a)
 fB = R.TFile(args.b)
 
 hA = fA.Get(args.cut +"/"+ args.var +"/histo_"+ args.sample)
+
+
 hB = fB.Get(args.cut +"/"+ args.var +"/histo_"+ args.sample)
 hA.SetLineColor(R.kBlue)
 hB.SetLineColor(R.kRed)
