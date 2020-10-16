@@ -22,7 +22,7 @@ iF = R.TFile(args.input, "READ")
 
 R.gStyle.SetOptStat(0)
 c = R.TCanvas()
-l = R.TLegend(0.2,0.2,0.5, 0.5)
+l = R.TLegend(0.15,0.15,0.45, 0.45)
 notdraw = True
 cache = []
 
@@ -36,6 +36,7 @@ for cut in args.cuts:
     
     cache.append(hc)
     l.AddEntry(hc, cut,"l")
+    hc.SetTitle("Lepton Pt threshold efficiency;Lepton Pt; % Lepton Pt > x")
 
     print("Category: {}".format(cut))
     for t in args.thresholds:

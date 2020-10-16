@@ -9,7 +9,7 @@ mc =["DY", "top", "VV", "VVV", "VBF-V", "top", "VBS", "Wjets"]
 phase_spaces_boost = []
 phase_spaces_res = []
 
-for d in ["all","high","low"]:
+for d in ["all","high","low", "high_mvint", "high_mvext"]:
     for cat in ["sig", "wjetcr", "topcr"]:
         phase_spaces_boost.append("boost_{}_dnn{}".format(cat, d))
         phase_spaces_res.append("res_{}_dnn{}".format(cat, d))

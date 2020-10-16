@@ -22,15 +22,16 @@ def run_jobs(conf):
 
 tag = "fit_v2.2"
 years = ["2018"]
-datacard_name = "fit_v2.2_2018"
+datacard_name = "fit_v2.2_2018_v3"
 #cuts = ["res_wjetcr_dnnhigh_ele","res_sig_dnnhigh_ele","res_topcr_dnnhigh_ele"]
 cuts = ["boost_topcr_dnnhigh_ele","boost_wjetcr_dnnhigh_ele","res_topcr_dnnhigh_ele","res_wjetcr_dnnhigh_ele",
-        "boost_sig_dnnhigh_ele", "res_sig_dnnhigh_ele"]
-vars = ["deltaeta_vbs", "DNNoutput_high_res", "DNNoutput_high_boost", "events", "vbs_1_pt"]
-samples =  ["Wjets", "top", "VBS", "VBF-V", "DY"]
+        "boost_sig_dnnhigh_ele", "res_sig_dnnhigh_ele","boost_topcr_dnnhigh_mu","boost_wjetcr_dnnhigh_mu","res_topcr_dnnhigh_mu","res_wjetcr_dnnhigh_mu",
+        "boost_sig_dnnhigh_mu", "res_sig_dnnhigh_mu"]
+vars = ["deltaeta_vbs", "DNNoutput_high_res", "DNNoutput_high_boost", "events", "vbs_1_pt", "deta_jetpt_CR_res", "deta_CR_boost"]
+samples =  ["Wjets", "top", "VBS", "VBF-V"]
 #samples = ["DY", "VVV", "VV"]
 
-outputdir = "/eos/user/d/dvalsecc/www/VBSPlots/FullRun2/fits_results/fit_v2.2_tests/nuisances_effects"
+outputdir = "/eos/user/d/dvalsecc/www/VBSPlots/FullRun2/fits_results/fit_v2.2_tests_v2/nuisances_effects"
 
 jobs = []
 for year,cut,var,sample in product(years,cuts,vars,samples):

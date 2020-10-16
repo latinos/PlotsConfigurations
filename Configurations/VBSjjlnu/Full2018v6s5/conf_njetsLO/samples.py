@@ -160,51 +160,51 @@ samples['top'] = {
                        + nanoGetSampleFiles(directory_bkg,'TTZjets') 
                        + nanoGetSampleFiles(directory_bkg,'TTWJetsToLNu'),
             'weight' :  XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch + '*Top_pTrw * btagSF' , # New top pt reweighting
-            'FilesPerJob' : 6,
+            'FilesPerJob' : 4,
 }
 
 
-samples['Wjets_HT'] = { 'name' :   
-          # nanoGetSampleFiles(directory_bkg, 'WJetsToLNu-LO_ext1')
-           nanoGetSampleFiles(directory_bkg, 'WJetsToLNu-LO')
-          + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT70_100')
-          + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT100_200')
-          + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT200_400')
-          + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT400_600')
-          + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT600_800')
-          + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT800_1200')
-          + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT1200_2500')
-          + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT2500_inf')
-          ,
-				'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch+'* btagSF',
-				'FilesPerJob' : 4,     
-		}
+# samples['Wjets_HT'] = { 'name' :   
+#           # nanoGetSampleFiles(directory_bkg, 'WJetsToLNu-LO_ext1')
+#            nanoGetSampleFiles(directory_bkg, 'WJetsToLNu-LO')
+#           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT70_100')
+#           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT100_200')
+#           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT200_400')
+#           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT400_600')
+#           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT600_800')
+#           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT800_1200')
+#           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT1200_2500')
+#           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT2500_inf')
+#           ,
+# 				'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch+'* btagSF',
+# 				'FilesPerJob' : 4,     
+# 		}
 
-# Fix Wjets binned + LO 
-addSampleWeight(samples,'Wjets_HT', 'WJetsToLNu-LO', '(LHE_HT < 70)') # remove ewknloW
-############
-# N.B XS correction! It was 1.0 in the sampleCrossSection in postprocessing --> this should be fixed
-addSampleWeight(samples,'Wjets_HT', 'WJetsToLNu-HT70_100', '(1292.0)') #######ADD ME ewknloW
+# # Fix Wjets binned + LO 
+# addSampleWeight(samples,'Wjets_HT', 'WJetsToLNu-LO', '(LHE_HT < 70)') # remove ewknloW
+# ############
+# # N.B XS correction! It was 1.0 in the sampleCrossSection in postprocessing --> this should be fixed
+# addSampleWeight(samples,'Wjets_HT', 'WJetsToLNu-HT70_100', '(1292.0)') #######ADD ME ewknloW
 
-# ## Little hack to be able to use deepcsv shape branch
-# samples["Wjets_LO"] = { 'name' :   
-#           nanoGetSampleFiles(directory_bkg, 'WJetsToLNu-LO') ,
-#       'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch +'* btagSF',
-#       'FilesPerJob' : 4, 
-#   }
+## Little hack to be able to use deepcsv shape branch
+samples["Wjets_LO"] = { 'name' :   
+          nanoGetSampleFiles(directory_bkg, 'WJetsToLNu-LO') ,
+      'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch +'* btagSF',
+      'FilesPerJob' : 4, 
+  }
 
-# addSampleWeight(samples,'Wjets_LO','WJetsToLNu-LO',  "LHE_Njets == 0")
+addSampleWeight(samples,'Wjets_LO','WJetsToLNu-LO',  "LHE_Njets == 0")
 
 
-# samples['Wjets_njetsLO'] = { 'name' :   
-#         nanoGetSampleFiles(directory_bkg, 'WJetsToLNu-LO_1J')
-#         + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu-LO_2J')
-#         + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu-LO_3J')
-#         + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu-LO_4J')
-#         ,
-#       'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch +'* btagSF_new' ,
-#       'FilesPerJob' : 3, 
-#   }
+samples['Wjets_njetsLO'] = { 'name' :   
+        nanoGetSampleFiles(directory_bkg, 'WJetsToLNu-LO_1J')
+        + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu-LO_2J')
+        + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu-LO_3J')
+        + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu-LO_4J')
+        ,
+      'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch +'* btagSF_new' ,
+      'FilesPerJob' : 3, 
+  }
 
 
 
