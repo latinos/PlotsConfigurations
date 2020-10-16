@@ -50,49 +50,41 @@ Repeat, but with data-blind signal region. Put to 1 the 'isBlind' flag in plot.p
     mkPlot.py --onlyCut=hww2l2v_13TeV_1j_mm --inputFile=rootFile/plots_ggH2016_v6_DYEstimDATA.root --linearOnly --fileFormats=png --onlyPlot=cratio
     mkPlot.py --onlyCut=hww2l2v_13TeV_2j_mm --inputFile=rootFile/plots_ggH2016_v6_DYEstimDATA.root --linearOnly --fileFormats=png --onlyPlot=cratio
 
-
-
-
 # Create datacards
 
-mkDatacards.py --pycfg=configuration.py --inputFile=rootFile/plots_ggH2016_v6_DYEstimDATA.root --cardList=hww2l2v_13TeV_0j_ee,hww2l2v_13TeV_WW_0j_ee,hww2l2v_13TeV_top_0j_ee,hww2l2v_13TeV_0j_mm,hww2l2v_13TeV_WW_0j_mm,hww2l2v_13TeV_top_0j_mm,hww2l2v_13TeV_1j_ee,hww2l2v_13TeV_WW_1j_ee,hww2l2v_13TeV_top_1j_ee,hww2l2v_13TeV_1j_mm,hww2l2v_13TeV_WW_1j_mm,hww2l2v_13TeV_top_1j_mm,hww2l2v_13TeV_2j_ee,hww2l2v_13TeV_WW_2j_ee,hww2l2v_13TeV_top_2j_ee,hww2l2v_13TeV_2j_mm,hww2l2v_13TeV_WW_2j_mm,hww2l2v_13TeV_top_2j_mm
+    mkDatacards.py --pycfg=configuration.py --inputFile=rootFile/plots_ggH2016_v6_DYEstimDATA.root --cardList=hww2l2v_13TeV_0j_ee,hww2l2v_13TeV_WW_0j_ee,hww2l2v_13TeV_top_0j_ee,hww2l2v_13TeV_0j_mm,hww2l2v_13TeV_WW_0j_mm,hww2l2v_13TeV_top_0j_mm,hww2l2v_13TeV_1j_ee,hww2l2v_13TeV_WW_1j_ee,hww2l2v_13TeV_top_1j_ee,hww2l2v_13TeV_1j_mm,hww2l2v_13TeV_WW_1j_mm,hww2l2v_13TeV_top_1j_mm,hww2l2v_13TeV_2j_ee,hww2l2v_13TeV_WW_2j_ee,hww2l2v_13TeV_top_2j_ee,hww2l2v_13TeV_2j_mm,hww2l2v_13TeV_WW_2j_mm,hww2l2v_13TeV_top_2j_mm
 
-mkDatacards.py --pycfg=configuration_merged.py --inputFile=rootFile/plots_ggH2016_v6_DYEstimDATA.root --cardList=hww2l2v_13TeV_0j_ee,hww2l2v_13TeV_WW_0j_ee,hww2l2v_13TeV_top_0j_ee,hww2l2v_13TeV_0j_mm,hww2l2v_13TeV_WW_0j_mm,hww2l2v_13TeV_top_0j_mm,hww2l2v_13TeV_1j_ee,hww2l2v_13TeV_WW_1j_ee,hww2l2v_13TeV_top_1j_ee,hww2l2v_13TeV_1j_mm,hww2l2v_13TeV_WW_1j_mm,hww2l2v_13TeV_top_1j_mm,hww2l2v_13TeV_2j_ee,hww2l2v_13TeV_WW_2j_ee,hww2l2v_13TeV_top_2j_ee,hww2l2v_13TeV_2j_mm,hww2l2v_13TeV_WW_2j_mm,hww2l2v_13TeV_top_2j_mm
+# Combine channels/categories
 
-#STEP 6: Combine channels/categories
-mkComb.py --pycfg=configuration.py --combineLocation=/afs/cern.ch/work/c/calderon/private/combine/CMSSW_10_2_13/src/ --combcfg=comb_ggH.py
+    mkComb.py --pycfg=configuration.py --combineLocation=$HOME/work/combine/CMSSW_10_2_13/src/ --combcfg=comb_ggH.py
 
-#STEP 7: Significance and best fit
-#mkOptim (calculate the significance)
-mkOptim.py --pycfg=configuration.py --combineLocation=/afs/cern.ch/work/c/calderon/private/combine/CMSSW_10_2_13/src/ --combcfg=comb_ggH.py --fomList=SExpPre,BestFit
+# Significance and best fit
 
-#or cd ../../../../../../combine/CMSSW_10_2_13/src/ 
-#cmsenv
-#cd -
+    mkOptim.py --pycfg=configuration.py --combineLocation=$HOME/work/combine/CMSSW_10_2_13/src/ --combcfg=comb_ggH.py --fomList=SExpPre,BestFit
 
-combine datacard.txt -M Significance --expectSignal=1 -t -1
-combine datacard.txt -M FitDiagnostics  --rMin=-6 --rMax=20 -t -1 --expectSignal=1 --robustFit=1 --cminDefaultMinimizerStrategy 0
+Or:
 
-#TO check the significance value and best fit 
-grep Significance: datacards/*/comb/SExpPre_*
-grep "fit r:" datacards/*/comb/BestFit_*
+    combine datacard.txt -M Significance --expectSignal=1 -t -1
+    combine datacard.txt -M FitDiagnostics  --rMin=-6 --rMax=20 -t -1 --expectSignal=1 --robustFit=1 --cminDefaultMinimizerStrategy 0
 
-#Create yield table
-grep "proc" datacards/hww2l2v_13TeV_*/events/datacard.txt > yield.txt
-grep "rate " datacards/hww2l2v_13TeV_*/events/datacard.txt >> yield.txt
-:%!column -t #to organize the table
+# Significane and best fit results are stored in:
 
-STEP 8: Plot
-mkPlot.py --pycfg=configuration.py --inputFile=rootFile/plots_ggH2016_v6.root --minLogCratio=0.1 --maxLogCratio=1000 --logOnly --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1
+    grep Significance: datacards/*/comb/SExpPre_*
+    grep "fit r:" datacards/*/comb/BestFit_*
 
-mkPlot.py --pycfg=configuration.py --inputFile=rootFile/plots_ggH2016_v6.root --linearOnly --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1
+# Create yield table
 
-#Make impacts
+    grep "proc" datacards/hww2l2v_13TeV_*/events/datacard.txt > yield.txt
+    grep "rate " datacards/hww2l2v_13TeV_*/events/datacard.txt >> yield.txt
+    :%!column -t #to organize the table
 
-text2workspace.py datacards/hww2l2v_13TeV_ggH/comb/datacard.txt  -o hww2l2v_13TeV_ggH.root 
-combineTool.py -M Impacts -d hww2l2v_13TeV_ggH.root -m 125 --doInitialFit -t -1 --expectSignal=1 --robustFit=1
-combineTool.py -M Impacts -d hww2l2v_13TeV_ggH.root -m 125 -t -1 --expectSignal=1 --robustFit=1 --doFits
-combineTool.py -M Impacts -d hww2l2v_13TeV_ggH.root -m 125 -o impacts_0j.json -t -1
-plotImpacts.py -i impacts.json -o Impact.pdf
+# Produce impact plots
+
+    text2workspace.py datacards/hww2l2v_13TeV_ggH/comb/datacard.txt  -o hww2l2v_13TeV_ggH.root 
+
+    combineTool.py -M Impacts -d hww2l2v_13TeV_ggH.root -m 125 --doInitialFit -t -1 --expectSignal=1 --robustFit=1
+    combineTool.py -M Impacts -d hww2l2v_13TeV_ggH.root -m 125 -t -1 --expectSignal=1 --robustFit=1 --doFits
+    combineTool.py -M Impacts -d hww2l2v_13TeV_ggH.root -m 125 -o impacts_0j.json -t -1
+    plotImpacts.py -i impacts.json -o Impact.pdf
 
 
