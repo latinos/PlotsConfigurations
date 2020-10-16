@@ -20,8 +20,8 @@ using namespace ROOT::Math;
 using namespace ROOT::RDF;
 
 template<class T>
-vector<T> parseArg(string arg, string delimiter=","){
-    vector<T> result;
+std::vector<T> parseArg(string arg, string delimiter=","){
+    std::vector<T> result;
     size_t pos = 0;
     string token;
     while ((pos = arg.find(delimiter)) != string::npos) {
@@ -34,15 +34,27 @@ vector<T> parseArg(string arg, string delimiter=","){
     return result;
 }
 
-template
-<typename container>
-float Alt(container c, int index, float alt){
-    if (index < c.size()) {
-        return c[index];
+
+float Alt(RVec<float> c, int index, float alt){
+    auto value = index < c.size() ? c[index] : alt;
+    return value;
+}
+
+
+RVec<double> LogVec(RVec<double> vec){
+    RVec<double> out; 
+    for(auto const & el : vec){
+        out.push_back(TMath::Log(el));
     }
-    else{
-        return alt;
+    return out;
+}
+
+RVec<double> AbsVec(RVec<double> vec){
+    RVec<double> out; 
+    for(auto const & el : vec){
+        out.push_back(TMath::Abs(el));
     }
+    return out;
 }
 
 auto add_aliases(RNode df){
@@ -50,11 +62,26 @@ auto add_aliases(RNode df){
              .Define("jet_0_pt","CleanJet_pt[0]");
 }
 
+auto define_btag(RNode df){
+    return df.Define("bVeto", [ ](RVec<float>& jetpt,RVec<float>& jeteta, RVec<int>&jetid,RVec<float>& jetdeepcsv  ){
+                return Sum(jetpt > 20. && AbsVec(jeteta) < 2.5 && Take(jetdeepcsv, jetid) > 0.1241) == 0;},
+                {"CleanJet_pt","CleanJet_eta","CleanJet_jetIdx","Jet_btagDeepB"})
+            .Define("bVetoSF", [ ](RVec<float>& jetpt,RVec<float>& jeteta, RVec<int>&jetid,RVec<float>& jetdeepcsvSF  ){
+                return TMath::Exp(Sum(LogVec((jetpt>20 && AbsVec(jeteta)<2.5)*Take(jetdeepcsvSF, jetid)+1*(jetpt<=20 || AbsVec(jeteta)>=2.5))));},
+                 {"CleanJet_pt","CleanJet_eta","CleanJet_jetIdx","Jet_btagSF_deepcsv_shape"});
+}
+
+auto add_weights(RNode df){
+    return df.Define("LepWPWeight","Lepton_tightElectron_mvaFall17V1Iso_WP90_IdIsoSF[0]*Lepton_tightMuon_cut_Tight_HWWW_IdIsoSF[0]" )
+             .Define("SFweight", "LepWPWeight * puWeight * TriggerEffWeight_1l * Lepton_RecoSF[0] * bVetoSF * BoostedWtagSF_nominal")
+             .Define("weight", "SFweight * XSWeight * METFilter_MC * Lepton_genmatched[0]");
+}
+
 /*
 * Return the indexes of the pair nearest to W/Z invariant mass
 *
 */
-RVec<int> nearestVjet(RVec<float> pts,RVec<float> etas,RVec<float> phis,RVec<float> masses){
+RVec<int> nearestVjet(RVec<float>& pts,RVec<float> &etas,RVec<float> &phis,RVec<float> & masses){
     auto comb = Combinations(pts, 2);
     auto pt1 = Take(pts, comb[0]);
     auto pt2 = Take(pts, comb[1]);
@@ -73,42 +100,22 @@ RVec<int> nearestVjet(RVec<float> pts,RVec<float> etas,RVec<float> phis,RVec<flo
     // returns indices on the list of
 }
 
-tuple<RVec<int>, RVec<float>> match_partons_jets(RVec<float> part_etas,RVec<float> part_phis,
-                        RVec<float> jet_etas,RVec<float> jet_phis){
-    // Implementations with all partons together
-    // auto comb = Combinations(part_etas, jet_etas);
-    
-    // auto part_eta = Take(part_etas, comb[0]);
-    // auto jet_eta = Take(jet_etas, comb[1]);
-    // auto part_phi = Take(part_phis, comb[0]);
-    // auto jet_phi = Take(jet_phis, comb[1]);
-
-    // auto distance = DeltaR(part_eta,jet_eta,part_phi,jet_phi);
-    
-    // RVec<int> part_ind = comb[0][distance < 0.4];
-    // RVec<int> jet_ind = comb[1][distance < 0.4];
-    
-    // for_each(distance.begin(), distance.end(), [](float m){cout << m <<" ";} );
-    // cout << "filter"<<endl;
-
-    // for_each(part_ind.begin(), part_ind.end(), [](float m){cout << m <<" ";} );
-    // cout << endl;
-    // for_each(jet_ind.begin(), jet_ind.end(), [](float m){cout << m <<" ";} );
-    // cout <<endl;
-    // return {{part_ind, jet_ind}, distance[distance<0.4]};
-
+std::tuple<RVec<int>, RVec<float>> match_partons_jets(RVec<float> &part_etas,RVec<float>& part_phis,
+                        RVec<float>& jet_etas,RVec<float>& jet_phis,RVec<float>& jet_pts){
+    // IMplementation with 1 ogni jet for each parton
     RVec<int> jet_ind;
     RVec<float> distances;
 
-    // IMplementation with 1 ogni jet for each parton
+    auto filt_jet_etas = jet_etas[jet_pts>30];
+    auto filt_jet_phis = jet_phis[jet_pts>30];
 
     for (int ip=0; ip< part_etas.size(); ip++){
-        RVec<int> ind(jet_etas.size());
-        fill(ind.begin(), ind.end(), ip);
+        RVec<int> ind(filt_jet_etas.size());
+        std::fill(ind.begin(), ind.end(), ip);
         auto part_eta = Take(part_etas, ind);
         auto part_phi = Take(part_phis, ind);
 
-        auto distance = DeltaR(part_eta,jet_etas,part_phi,jet_phis);
+        auto distance = DeltaR(part_eta,filt_jet_etas,part_phi,filt_jet_phis);
         
         float min_dist = Min(distance);
         if (min_dist < 0.4){
@@ -117,25 +124,27 @@ tuple<RVec<int>, RVec<float>> match_partons_jets(RVec<float> part_etas,RVec<floa
             distances.push_back(min_dist);
         }
     }
-    return { jet_ind, distances};
+    return { jet_ind, distances };
 }
 
 bool check_association(const RVec<int> & pj_assoc, const RVec<int> & ind1,const RVec<int> & ind2){
     auto corresponding_vec = Sort(Take(pj_assoc, ind1));
     //cout << pj_assoc << " | " << ind1 << " | " << corresponding_vec <<" | " << ind2 <<endl;
-    return equal( corresponding_vec.begin(), corresponding_vec.end(), Sort(ind2).begin() );
+    return std::equal( corresponding_vec.begin(), corresponding_vec.end(), Sort(ind2).begin() );
 }
 
-vector<RResultPtr<TH1D>> get_histograms(RNode df, string label){
-    vector<RResultPtr<TH1D>> histos;
-    //histos.push_back(df.Histo1D({(label+ "_events").c_str(), "events", 1,0,1}, "1."));
-    histos.push_back(df.Histo1D({(label+ "_mjj_vbs").c_str(), "Mjj VBS", 50, 0, 1000}, "mjj_vbs"));
-    histos.push_back(df.Histo1D({(label+ "_mjj_vjet").c_str(), "Mjj Vjets", 50, 40, 250}, "mjj_vjet"));
-    histos.push_back(df.Histo1D({(label+ "_deltaeta_vbs").c_str(), "deltaeta vbs", 50, 0, 8}, "deltaeta_vbs"));
-    histos.push_back(df.Histo1D({(label+ "_lepton_pt").c_str(), "Lepton pt", 50, 0, 200}, "lepton_pt"));
-    histos.push_back(df.Histo1D({(label+ "_puppimet").c_str(), "PuppiMET", 50, 0, 200}, "PuppiMET_pt"));
-    histos.push_back(df.Histo1D({(label+ "_jet0pt").c_str(), "Jet 0 Pt", 50, 0, 200}, "jet_0_pt"));
-    return histos;
+std::vector<RResultPtr<TH1D>> get_histograms(RNode df, string label){
+    return {
+        //histos.push_back(df.Histo1D({(label+ "_events").c_str(), "events", 1,0,1}, "1."));
+        df.Histo1D({(label+ "_mjj_vbs").c_str(), "Mjj VBS", 50, 0, 1000}, "mjj_vbs", "weight"),
+        df.Histo1D({(label+ "_mjj_vjet").c_str(), "Mjj Vjets", 50, 40, 250}, "mjj_vjet","weight"),
+        df.Histo1D({(label+ "_deltaeta_vbs").c_str(), "deltaeta vbs", 50, 0, 8}, "deltaeta_vbs","weight"),
+        df.Histo1D({(label+ "_lepton_pt").c_str(), "Lepton pt", 50, 0, 200}, "lepton_pt","weight"),
+        df.Histo1D({(label+ "_puppimet").c_str(), "PuppiMET", 50, 0, 200}, "PuppiMET_pt","weight"),
+        df.Histo1D({(label+ "_jet0pt_zoom").c_str(), "Jet 0 Pt", 50, 30, 200}, "jet_0_pt","weight"),
+        df.Histo1D({(label+ "_jet0pt").c_str(), "Jet 0 Pt", 60, 30, 500}, "jet_0_pt","weight"),
+        df.Histo1D({(label+ "_weight").c_str(), "weight", 40, 0, 2}, "weight")
+     };
 
 }
 
@@ -144,16 +153,16 @@ vector<RResultPtr<TH1D>> get_histograms(RNode df, string label){
 int main(int argc, char** argv){
 
     string base_path { argv[1] };
-    vector<string> samples = parseArg<string>(argv[2]);
+    std::vector<string> samples = parseArg<string>(argv[2]);
     string assoc_to_check {argv[3]};
-    bool mt = stoi(argv[4]);
-    
+    bool mt = std::stoi(argv[4]);
+    std::string output {argv[5]};
 
-    vector<string> files;
-    transform(samples.begin(), samples.end(), back_inserter(files),
+    std::vector<string> files;
+    std::transform(samples.begin(), samples.end(), back_inserter(files),
                     [base_path](string &s){ return base_path+s+"*";});
 
-    for_each(files.begin(),files.end(), [](string & m){cout << m <<endl;});  
+    std::for_each(files.begin(),files.end(), [](string & m){cout << m <<endl;});  
 
     //Enabling multithread
     if(mt){
@@ -189,15 +198,22 @@ int main(int argc, char** argv){
 
     auto check_duplicates = [](RVec<int> vec){
         auto v = Sort(vec);
-        return unique(v.begin(), v.end()) != v.end();
+        return std::unique(v.begin(), v.end()) != v.end();
     };
 
-    auto jets_cut = [](unsigned int njets, RVec<float> & jetpt){return njets>=4 && Alt<RVec<float>>(jetpt,3,0)>30;};
+    auto jets_cut = [](unsigned int njets, RVec<float> & jetpt){return njets>=4 && Alt(jetpt,3,0)>30;};
 
-    auto rdf_vars = add_aliases(rdf);
+    auto rdf_aliases = add_aliases(rdf);
 
-    auto rdf2 = rdf_vars.Filter(jets_cut,{"nCleanJet","CleanJet_pt"}, "jets_preselection")   
-        .Define("parton_pt","LHEPart_pt[LHEPart_status==1 && abs(LHEPart_pdgId)<10]")
+    auto rdf_filter1 = rdf_aliases.Filter(jets_cut,{"nCleanJet","CleanJet_pt"}, "jets_preselection")   
+                                    .Filter("(Lepton_isTightElectron_mvaFall17V1Iso_WP90[0]>0.5 || \
+                                            Lepton_isTightMuon_cut_Tight_HWWW[0]>0.5)", "tight_lepton");
+
+    auto rdf_bveto = define_btag(rdf_filter1).Filter("bVeto");
+
+    auto rdf_weights = add_weights(rdf_bveto);
+
+    auto rdf_vars = rdf_weights.Define("parton_pt","LHEPart_pt[LHEPart_status==1 && abs(LHEPart_pdgId)<10]")
         .Define("parton_eta","LHEPart_eta[LHEPart_status==1 && abs(LHEPart_pdgId)<10]")
         .Define("parton_phi","LHEPart_phi[LHEPart_status==1 && abs(LHEPart_pdgId)<10]")
         .Define("parton_mass","LHEPart_mass[LHEPart_status==1 && abs(LHEPart_pdgId)<10]")
@@ -205,44 +221,48 @@ int main(int argc, char** argv){
         .Define("parton_N", "Sum(LHEPart_status==1 && abs(LHEPart_pdgId)<10)")
         .Define("V_partons", nearestVjet, {"parton_pt","parton_eta","parton_phi","parton_mass"})
         .Define("VBS_partons", invert_indexes , {"parton_N","V_partons"})
-        .Define("pj_match", match_partons_jets, {"parton_eta","parton_phi","CleanJet_eta","CleanJet_phi"})
+        .Define("pj_match", match_partons_jets, {"parton_eta","parton_phi","CleanJet_eta","CleanJet_phi", "CleanJet_pt"})
         .Define("parton_jets_assoc", "get<0>(pj_match)")
         .Define("dR_parton_jet", "get<1>(pj_match)")
         .Define("double_partons_tojet", check_duplicates, {"parton_jets_assoc"})
         .Define("N_matched_partons", [](RVec<int> l){return l.size();},{"parton_jets_assoc"});
 
 
-    auto rdf_singlepartontojet = rdf2.Filter("!double_partons_tojet", "single_partons_to_jets"); 
-    auto rdf_allpartonsmatched = rdf_singlepartontojet.Filter("N_matched_partons ==4", "good_matching");
-
-    auto rdf_any_match = rdf_allpartonsmatched.Define("vjets_match", check_association, {"parton_jets_assoc", "V_partons", "V_jets_"+ assoc_to_check})
+    auto rdf_denom = rdf_vars.Filter("!double_partons_tojet", "single_partons_to_jets")
+                    .Filter("N_matched_partons == 4", "good_matching")
+                    .Define("vjets_match", check_association, {"parton_jets_assoc", "V_partons", "V_jets_"+ assoc_to_check})
                     .Define("vbs_match", check_association, {"parton_jets_assoc", "VBS_partons", "VBS_jets_"+ assoc_to_check})
                     .Define("all_match", "vjets_match & vbs_match");
 
-    auto rdf_vjets_match = rdf_any_match.Filter("vjets_match","vjets_match" );
-    auto rdf_vjets_nomatch = rdf_any_match.Filter("!vjets_match","vjets_match" );
-    auto rdf_vbs_match =   rdf_any_match.Filter("vbs_match","vbs_match" );
-    auto rdf_vbs_nomatch =   rdf_any_match.Filter("!vbs_match","vbs_match" );
-    auto rdf_all_match =   rdf_any_match.Filter("all_match","all_match" );
-    auto rdf_all_nomatch =   rdf_any_match.Filter("!all_match","all_match" );
+    auto rdf_vjets_match = rdf_denom.Filter("vjets_match","vjets_match" );
+    auto rdf_vbs_match =   rdf_denom.Filter("vbs_match","vbs_match" );
+    auto rdf_all_match =   rdf_denom.Filter("all_match","all_match" );
 
-    vector<RResultPtr<TH1D>> vjets_match_histos = get_histograms(rdf_vjets_match, "vjets_match");
-    vector<RResultPtr<TH1D>> vbs_match_histos = get_histograms(rdf_vbs_match, "vbs_match");
-    vector<RResultPtr<TH1D>> all_match_histos = get_histograms(rdf_all_match, "all_match");
-    vector<RResultPtr<TH1D>> vjets_nomatch_histos = get_histograms(rdf_vjets_nomatch, "vjets_nomatch");
-    vector<RResultPtr<TH1D>> vbs_nomatch_histos = get_histograms(rdf_vbs_nomatch, "vbs_nomatch");
-    vector<RResultPtr<TH1D>> all_nomatch_histos = get_histograms(rdf_all_nomatch, "all_nomatch");
+    auto rdf_signal = rdf_denom.Filter("deltaeta_vbs > 2.5 && mjj_vbs > 500 \
+                                        && PuppiMET_pt > 30 && mjj_vjet > 65 && mjj_vjet < 105\
+                                        && w_had_pt < 200");
+
+    auto rdf_signal_vjets_match = rdf_signal.Filter("vjets_match","vjets_match" );
+    auto rdf_signal_vbs_match =   rdf_signal.Filter("vbs_match","vbs_match" );
+    auto rdf_signal_all_match =   rdf_signal.Filter("all_match","all_match" );
+
+    std::vector<std::vector<RResultPtr<TH1D>>> histos {
+        get_histograms(rdf_vjets_match, "vjets_match"),
+        get_histograms(rdf_vbs_match, "vbs_match"),
+        get_histograms(rdf_all_match, "all_match"),
+        get_histograms(rdf_denom, "denom"),
+        get_histograms(rdf_signal_vjets_match, "signal_vjets_match"),
+        get_histograms(rdf_signal_vbs_match, "signal_vbs_match"),
+        get_histograms(rdf_signal_all_match, "signal_all_match"),
+        get_histograms(rdf_signal, "signal_denom"),
+    };
 
 
-    TFile output_file {"output.root","RECREATE"};
-    vjets_match_histos[0]->Draw();
+    TFile output_file {output.c_str(),"RECREATE"};
+    histos[0][0]->Draw();
 
-    for_each(vjets_match_histos.begin(),vjets_match_histos.end(), [](RResultPtr<TH1D>& h ){h->Write();});
-    for_each(vbs_match_histos.begin(),vbs_match_histos.end(), [](RResultPtr<TH1D>& h ){h->Write();});
-    for_each(all_match_histos.begin(),all_match_histos.end(), [](RResultPtr<TH1D>& h ){h->Write();});
-    for_each(vjets_nomatch_histos.begin(),vjets_nomatch_histos.end(), [](RResultPtr<TH1D>& h ){h->Write();});
-    for_each(vbs_nomatch_histos.begin(),vbs_nomatch_histos.end(), [](RResultPtr<TH1D>& h ){h->Write();});
-    for_each(all_nomatch_histos.begin(),all_nomatch_histos.end(), [](RResultPtr<TH1D>& h ){h->Write();});
+    for (auto & hs: histos)
+    std::for_each(hs.begin(),hs.end(), [](RResultPtr<TH1D>& h ){h->Write();});
 
     output_file.Write();
     output_file.Close();
