@@ -28,13 +28,13 @@ Before data-driven DY corrections:
 
 Repeat, but with data-blind signal region. Put to 1 the 'isBlind' flag in plot.py and:
 
-    mkPlot.py --onlyCut=hww2l2v_13TeV_0j_ee --inputFile=rootFile/plots_ggH2016_v6_DYEstimDATA.root --linearOnly --fileFormats=png --onlyPlot=cratio --outputDirPlots=plots_sr_ggH2016_v6_noDY
-    mkPlot.py --onlyCut=hww2l2v_13TeV_1j_ee --inputFile=rootFile/plots_ggH2016_v6_DYEstimDATA.root --linearOnly --fileFormats=png --onlyPlot=cratio --outputDirPlots=plots_sr_ggH2016_v6_noDY
-    mkPlot.py --onlyCut=hww2l2v_13TeV_2j_ee --inputFile=rootFile/plots_ggH2016_v6_DYEstimDATA.root --linearOnly --fileFormats=png --onlyPlot=cratio --outputDirPlots=plots_sr_ggH2016_v6_noDY
+    mkPlot.py --onlyCut=hww2l2v_13TeV_0j_ee --inputFile=rootFile/plots_ggH2016_v6.root --linearOnly --fileFormats=png --onlyPlot=cratio --outputDirPlots=plots_sr_ggH2016_v6_noDY
+    mkPlot.py --onlyCut=hww2l2v_13TeV_1j_ee --inputFile=rootFile/plots_ggH2016_v6.root --linearOnly --fileFormats=png --onlyPlot=cratio --outputDirPlots=plots_sr_ggH2016_v6_noDY
+    mkPlot.py --onlyCut=hww2l2v_13TeV_2j_ee --inputFile=rootFile/plots_ggH2016_v6.root --linearOnly --fileFormats=png --onlyPlot=cratio --outputDirPlots=plots_sr_ggH2016_v6_noDY
 
-    mkPlot.py --onlyCut=hww2l2v_13TeV_0j_mm --inputFile=rootFile/plots_ggH2016_v6_DYEstimDATA.root --linearOnly --fileFormats=png --onlyPlot=cratio --outputDirPlots=plots_sr_ggH2016_v6_noDY
-    mkPlot.py --onlyCut=hww2l2v_13TeV_1j_mm --inputFile=rootFile/plots_ggH2016_v6_DYEstimDATA.root --linearOnly --fileFormats=png --onlyPlot=cratio --outputDirPlots=plots_sr_ggH2016_v6_noDY
-    mkPlot.py --onlyCut=hww2l2v_13TeV_2j_mm --inputFile=rootFile/plots_ggH2016_v6_DYEstimDATA.root --linearOnly --fileFormats=png --onlyPlot=cratio --outputDirPlots=plots_sr_ggH2016_v6_noDY
+    mkPlot.py --onlyCut=hww2l2v_13TeV_0j_mm --inputFile=rootFile/plots_ggH2016_v6.root --linearOnly --fileFormats=png --onlyPlot=cratio --outputDirPlots=plots_sr_ggH2016_v6_noDY
+    mkPlot.py --onlyCut=hww2l2v_13TeV_1j_mm --inputFile=rootFile/plots_ggH2016_v6.root --linearOnly --fileFormats=png --onlyPlot=cratio --outputDirPlots=plots_sr_ggH2016_v6_noDY
+    mkPlot.py --onlyCut=hww2l2v_13TeV_2j_mm --inputFile=rootFile/plots_ggH2016_v6.root --linearOnly --fileFormats=png --onlyPlot=cratio --outputDirPlots=plots_sr_ggH2016_v6_noDY
 
 With corrections:
 
