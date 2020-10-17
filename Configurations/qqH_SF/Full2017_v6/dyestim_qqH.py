@@ -1,8 +1,8 @@
 
 #RAndKff  = {}
-RAndKff['DYmva0p8'] = {
-                      'RFile'   : 'rootFile/plots_DYESTIM2017_DYMVA080_v6.root' ,
-                      'KffFile' : 'rootFile/plots_DYESTIM2017_DYMVA080_v6.root' ,
+RAndKff['DYmva0p8'] = {            
+                      'RFile'   : 'rootFile/plots_DYESTIM080_2017_v6.root' ,
+                      'KffFile' : 'rootFile/plots_DYESTIM080_2017_v6.root' ,
                       'Regions' : { '2jVHee' : {
                                                'kNum' : 'VH_ee_in/events/histo_DY' ,
                                                'kDen' : 'VH_mm_in/events/histo_DY' ,
@@ -18,9 +18,9 @@ RAndKff['DYmva0p8'] = {
                                    } ,
                      }
 
-RAndKff['DYmva0p9'] = {
-                      'RFile'   : 'rootFile/plots_DYESTIM2017_DYMVA090_v6.root' ,
-                      'KffFile' : 'rootFile/plots_DYESTIM2017_DYMVA080_v6.root' ,
+RAndKff['DYmva0p9'] = {            
+                      'RFile'   : 'rootFile/plots_DYESTIM090_2017_v6.root' ,
+                      'KffFile' : 'rootFile/plots_DYESTIM080_2017_v6.root' ,
                       'Regions' : { '2jVBFee' : {
                                                'kNum' : 'VBF_ee_in/events/histo_DY' ,
                                                'kDen' : 'VBF_mm_in/events/histo_DY' ,
