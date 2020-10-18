@@ -229,7 +229,7 @@ nuisances['jes1j']  = {
                 'skipCMS' : 1,
                 'type': 'lnN',
                 'samples': dict((skey, '1.05') for skey in mc if skey not in ['WW', 'top', 'DY','VZ','Vg','VgS']),
-                'cuts'     : cuts0j
+                'cuts'     : cuts1j
 }
 
 nuisances['jes2j']  = {
@@ -241,7 +241,7 @@ nuisances['jes2j']  = {
 }
 
 
-##### MET energy scale
+# MET energy scale
 
 nuisances['met'] = {
     'name': 'CMS_scale_met_2018',
@@ -276,14 +276,14 @@ nuisances['PS_ISR']  = {
     'name': 'PS_ISR',
     'kind': 'weight',
     'type': 'shape',
-    'samples': dict((skey, ['PSWeight[2]', 'PSWeight[0]']) for skey in mc if skey not in ['Vg','VgS','WWewk']), #PSWeights are buggy for some samples, we add them back by hand below
+    'samples': dict((skey, ['PSWeight[2]', 'PSWeight[0]']) for skey in mc if skey not in ['Vg','VgS','WWewk','DY']), #PSWeights are buggy for some samples, we add them back by hand below
 }
 
 nuisances['PS_FSR']  = {
     'name': 'PS_FSR',
     'kind': 'weight',
     'type': 'shape',
-    'samples': dict((skey, ['PSWeight[3]', 'PSWeight[1]']) for skey in mc if skey not in ['Vg','VgS','WWewk']), #PSWeights are buggy for some samples, we add them back by hand below
+    'samples': dict((skey, ['PSWeight[3]', 'PSWeight[1]']) for skey in mc if skey not in ['Vg','VgS','WWewk','DY']), #PSWeights are buggy for some samples, we add them back by hand below
 }
 
 ## PS nuisances computed by hand as a function of nCleanGenJets using alternative samples (when available). Needed if nominal samples have buggy PSWeights
