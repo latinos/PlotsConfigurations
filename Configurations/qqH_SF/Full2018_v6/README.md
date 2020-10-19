@@ -32,8 +32,10 @@ Repeat, but with data-blind signal region. Put to 1 the 'isBlind' flag in plot.p
 
     mkPlot.py --onlyCut=hww2l2v_13TeV_2j_vh_ee  --inputFile=rootFile/plots_qqH2018_v6.root --linearOnly --fileFormats=png --onlyPlot=cratio --outputDirPlots=plots_sr_qqH2018_v6_noDY
     mkPlot.py --onlyCut=hww2l2v_13TeV_2j_vbf_ee --inputFile=rootFile/plots_qqH2018_v6.root --linearOnly --fileFormats=png --onlyPlot=cratio --outputDirPlots=plots_sr_qqH2018_v6_noDY
+    mkPlot.py --onlyCut=hww2l2v_13TeV_2j_vbf_ee --inputFile=rootFile/plots_qqH2018_v6.root --linearOnly --fileFormats=png --onlyPlot=cratio --outputDirPlots=plots_sr_qqH2018_v6_noDY
 
     mkPlot.py --onlyCut=hww2l2v_13TeV_2j_vh_mm  --inputFile=rootFile/plots_qqH2018_v6.root --linearOnly --fileFormats=png --onlyPlot=cratio --outputDirPlots=plots_sr_qqH2018_v6_noDY
+    mkPlot.py --onlyCut=hww2l2v_13TeV_2j_vbf_mm --inputFile=rootFile/plots_qqH2018_v6.root --linearOnly --fileFormats=png --onlyPlot=cratio --outputDirPlots=plots_sr_qqH2018_v6_noDY
     mkPlot.py --onlyCut=hww2l2v_13TeV_2j_vbf_mm --inputFile=rootFile/plots_qqH2018_v6.root --linearOnly --fileFormats=png --onlyPlot=cratio --outputDirPlots=plots_sr_qqH2018_v6_noDY
 
 With data-driven DY corrections:
@@ -44,8 +46,10 @@ Repeat, but with data-blind signal region. Put to 1 the 'isBlind' flag in plot.p
 
     mkPlot.py --onlyCut=hww2l2v_13TeV_2j_vh_ee  --inputFile=rootFile/plots_qqH2018_v6_DYEstimDATA.root --linearOnly --fileFormats=png --onlyPlot=cratio --outputDirPlots=plots_sr_qqH2018_v6
     mkPlot.py --onlyCut=hww2l2v_13TeV_2j_vbf_ee --inputFile=rootFile/plots_qqH2018_v6_DYEstimDATA.root --linearOnly --fileFormats=png --onlyPlot=cratio --outputDirPlots=plots_sr_qqH2018_v6
+    mkPlot.py --onlyCut=hww2l2v_13TeV_2j_vbf_ee --inputFile=rootFile/plots_qqH2018_v6_DYEstimDATA.root --linearOnly --fileFormats=png --onlyPlot=cratio --outputDirPlots=plots_sr_qqH2018_v6
 
     mkPlot.py --onlyCut=hww2l2v_13TeV_2j_vh_mm  --inputFile=rootFile/plots_qqH2018_v6_DYEstimDATA.root --linearOnly --fileFormats=png --onlyPlot=cratio --outputDirPlots=plots_sr_qqH2018_v6
+    mkPlot.py --onlyCut=hww2l2v_13TeV_2j_vbf_mm --inputFile=rootFile/plots_qqH2018_v6_DYEstimDATA.root --linearOnly --fileFormats=png --onlyPlot=cratio --outputDirPlots=plots_sr_qqH2018_v6
     mkPlot.py --onlyCut=hww2l2v_13TeV_2j_vbf_mm --inputFile=rootFile/plots_qqH2018_v6_DYEstimDATA.root --linearOnly --fileFormats=png --onlyPlot=cratio --outputDirPlots=plots_sr_qqH2018_v6
 
 # Make datacards
