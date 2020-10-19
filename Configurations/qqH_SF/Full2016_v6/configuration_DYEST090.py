@@ -2,7 +2,7 @@
 
 treeName = 'Events'
 
-tag = 'DYESTIM2016_v6'
+tag = 'DYESTIM090_2016_v6'
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFile'
@@ -14,7 +14,7 @@ aliasesFile = 'aliases.py'
 variablesFile = 'variables.py'
 
 # file with list of cuts
-cutsFile = 'cuts_DYEST.py' 
+cutsFile = 'cuts_DYEST090.py' 
 
 # file with list of samples
 samplesFile = 'samples.py' 
