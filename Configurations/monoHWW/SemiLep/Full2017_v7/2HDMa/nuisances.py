@@ -34,49 +34,49 @@ HiggsXS = HiggsXSection()
 # nuisances['lumi'] = {
 #    'name': 'lumi_13TeV_2017',
 #    'type': 'lnN',
-#    'samples': dict((skey, '1.023') for skey in mc if skey not in ['Wjets', 'top'])
+#    'samples': dict((skey, '1.023') for skey in mc if skey not in ['Wjets', 'ttop', 'stop'])
 # }
 
 nuisances['lumi_Uncorrelated'] = {
     'name': 'lumi_13TeV_2017',
     'type': 'lnN',
-    'samples': dict((skey, '1.02') for skey in mc if skey not in ['Wjets', 'top'])
+    'samples': dict((skey, '1.02') for skey in mc if skey not in ['Wjets', 'ttop', 'stop'])
 }
 
 nuisances['lumi_XYFact'] = {
     'name': 'lumi_13TeV_XYFact',
     'type': 'lnN',
-    'samples': dict((skey, '1.008') for skey in mc if skey not in ['Wjets', 'top'])
+    'samples': dict((skey, '1.008') for skey in mc if skey not in ['Wjets', 'ttop', 'stop'])
 }
 
 nuisances['lumi_LScale'] = {
     'name': 'lumi_13TeV_LSCale',
     'type': 'lnN',
-    'samples': dict((skey, '1.003') for skey in mc if skey not in ['Wjets', 'top'])
+    'samples': dict((skey, '1.003') for skey in mc if skey not in ['Wjets', 'ttop', 'stop'])
 }
 
 nuisances['lumi_BBDefl'] = {
     'name': 'lumi_13TeV_BBDefl',
     'type': 'lnN',
-    'samples': dict((skey, '1.004') for skey in mc if skey not in ['Wjets', 'top'])
+    'samples': dict((skey, '1.004') for skey in mc if skey not in ['Wjets', 'ttop', 'stop'])
 }
 
 nuisances['lumi_DynBeta'] = {
     'name': 'lumi_13TeV_DynBeta',
     'type': 'lnN',
-    'samples': dict((skey, '1.005') for skey in mc if skey not in ['Wjets', 'top'])
+    'samples': dict((skey, '1.005') for skey in mc if skey not in ['Wjets', 'ttop', 'stop'])
 }
 
 nuisances['lumi_CurrCalib'] = {
     'name': 'lumi_13TeV_CurrCalib',
     'type': 'lnN',
-    'samples': dict((skey, '1.003') for skey in mc if skey not in ['Wjets', 'top'])
+    'samples': dict((skey, '1.003') for skey in mc if skey not in ['Wjets', 'ttop', 'stop'])
 }
 
 nuisances['lumi_Ghosts'] = {
     'name': 'lumi_13TeV_Ghosts',
     'type': 'lnN',
-    'samples': dict((skey, '1.001') for skey in mc if skey not in ['Wjets', 'top'])
+    'samples': dict((skey, '1.001') for skey in mc if skey not in ['Wjets', 'ttop', 'stop'])
 }
 
 ##### B-tagger
@@ -185,7 +185,9 @@ nuisances['PU'] = {
     'type': 'shape',
     'samples': {
         'DY': ['0.993259983266*(puWeightUp/puWeight)', '0.997656381501*(puWeightDown/puWeight)'],
-        'top': ['1.00331969187*(puWeightUp/puWeight)', '0.999199609528*(puWeightDown/puWeight)'],
+        #'top': ['1.00331969187*(puWeightUp/puWeight)', '0.999199609528*(puWeightDown/puWeight)'],
+        'ttop': ['1.00331969187*(puWeightUp/puWeight)', '0.999199609528*(puWeightDown/puWeight)'],
+        'stop': ['1.00331969187*(puWeightUp/puWeight)', '0.999199609528*(puWeightDown/puWeight)'],
         'WW': ['1.0033022059*(puWeightUp/puWeight)', '0.997085330608*(puWeightDown/puWeight)'],
         'ggH_hww': ['1.0036768006*(puWeightUp/puWeight)', '0.995996570285*(puWeightDown/puWeight)'],
         'qqH_hww': ['1.00374694528*(puWeightUp/puWeight)', '0.995878596852*(puWeightDown/puWeight)'],
@@ -241,10 +243,18 @@ nuisances['PS']  = {
 # ####### Generic "cross section uncertainties"
 #FIXME: correct?
 apply_on = {
-    'top': [
+    'ttop': [
         '(topGenPt * antitopGenPt <= 0.) * 1.0816 + (topGenPt * antitopGenPt > 0.)',
         '(topGenPt * antitopGenPt <= 0.) * 0.9184 + (topGenPt * antitopGenPt > 0.)'
-    ]
+    ],
+    'stop': [
+        '(topGenPt * antitopGenPt <= 0.) * 1.0816 + (topGenPt * antitopGenPt > 0.)',
+        '(topGenPt * antitopGenPt <= 0.) * 0.9184 + (topGenPt * antitopGenPt > 0.)'
+    ],
+    #'top': [
+    #    '(topGenPt * antitopGenPt <= 0.) * 1.0816 + (topGenPt * antitopGenPt > 0.)',
+    #    '(topGenPt * antitopGenPt <= 0.) * 0.9184 + (topGenPt * antitopGenPt > 0.)'
+    #],
 }
 
 nuisances['singleTopToTTbar'] = {
@@ -261,7 +271,12 @@ nuisances['TopPtRew'] = {
     'name': 'CMS_topPtRew',   # Theory uncertainty
     'kind': 'weight',
     'type': 'shape',
-    'samples': {'top': ["1.", "1./Top_pTrw"]},
+    'samples': {
+        'ttop': ["1.", "1./Top_pTrw"],
+        'stop': ["1.", "1./Top_pTrw"],
+        #'top': ["1.", "1./Top_pTrw"]
+    },
+    #'samples': {'top': ["1.", "1./Top_pTrw"]},
     'symmetrize': True
 }
 
@@ -484,7 +499,11 @@ nuisances['CRSR_accept_SB'] = {
 nuisances['CRSR_accept_top'] = {
     'name': 'hww_CRSR_accept_top',
     'type': 'lnN',
-    'samples': {'top': '1.01'},
+    'samples': {
+        'ttop': '1.01',
+        'stop': '1.01',
+        #'top': '1.01',
+    },
     #'samples': {'top': '1.05'},
     'cuts': [cut for cut in cuts if 'TCR' in cut],
     'cutspost': (lambda self, cuts: [cut for cut in cuts if 'TCR' in cut]),
@@ -652,7 +671,8 @@ cutdict = {
 leptons = ['Ele', 'Muon']
 #categories = ['Boost', 'Resolv']
 #subcategories = ['Untag', 'VBF']
-controlRegions = ['Wjets', 'top']
+#controlRegions = ['Wjets', 'top']
+controlRegions = ['Wjets', 'ttop', 'stop']
 
 #for lepton in leptons:
 #    for cat in categories:
@@ -682,7 +702,8 @@ for syst in ['El', 'Mu']:
         'kind': 'weight',
         'type': 'shape',
         'samples': {
-            'FAKE': ['FW_mu20_el35_'+syst+'Up[0]', 'FW_mu20_el35_'+syst+'Down[0]'],
+            'FAKE': ['FW_mu35_el35_'+syst+'Up[0]', 'FW_mu35_el35_'+syst+'Down[0]'],
+            #'FAKE': ['FW_mu20_el35_'+syst+'Up[0]', 'FW_mu20_el35_'+syst+'Down[0]'],
         },
     }
 

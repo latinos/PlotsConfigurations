@@ -143,6 +143,10 @@ aliases['ori_idx_j2'] = {
 bJetV_req = '(CleanJet_pt > 20 && abs(CleanJet_eta) < 2.5 && CleanJet_jetIdx != ori_idx_j1[0] && CleanJet_jetIdx != ori_idx_j2[0])'
 bJetR_req = '(CleanJet_pt > 30 && abs(CleanJet_eta) < 2.5 && CleanJet_jetIdx != ori_idx_j1[0] && CleanJet_jetIdx != ori_idx_j2[0])'
 
+aliases['nbJet'] = {
+    'expr': 'Sum$(Jet_btagDeepB[CleanJet_jetIdx] > 0.1522 && CleanJet_pt > 30)',
+}
+
 aliases['bVeto'] = {
     'expr': 'Sum$(Jet_btagDeepB[CleanJet_jetIdx] > 0.1522 && '+bJetV_req+' ) == 0',
 }
@@ -190,12 +194,14 @@ lastcopy = (1 << 13)
 
 aliases['isTTbar'] = {
     'expr': 'Sum$(TMath::Abs(GenPart_pdgId) == 6 && (GenPart_statusFlags & %d)) == 2' % lastcopy,
-    'samples': ['top']
+    'samples': ['ttop', 'stop']
+    #'samples': ['top']
 }
 
 aliases['isSingleTop'] = {
     'expr': 'Sum$(TMath::Abs(GenPart_pdgId) == 6 && (GenPart_statusFlags & %d)) == 1' % lastcopy,
-    'samples': ['top']
+    'samples': ['ttop', 'stop']
+    #'samples': ['top']
 }
 
 #aliases['topGenPtOTF'] = {
@@ -219,7 +225,8 @@ aliases['Top_pTrw'] = {
     #'expr': '(topGenPtOTF * antitopGenPtOTF > 0.) * (TMath::Sqrt(TMath::Exp('+TF_a+' + '+TF_b+'*topGenPtOTF + '+TF_c+'*topGenPtOTF*topGenPtOTF + '+TF_d+'/(topGenPtOTF+'+TF_e+')) * TMath::Exp('+TF_a+' + '+TF_b+'*antitopGenPtOTF + '+TF_c+'*antitopGenPtOTF*antitopGenPtOTF + '+TF_d+'/(antitopGenPtOTF+'+TF_e+')))) + (topGenPtOTF * antitopGenPtOTF <= 0.)',
     # New Top PAG
     'expr': '(topGenPt * antitopGenPt > 0.) * (TMath::Sqrt((0.103*TMath::Exp(-0.0118*topGenPt) - 0.000134*topGenPt + 0.973) * (0.103*TMath::Exp(-0.0118*antitopGenPt) - 0.000134*antitopGenPt + 0.973))) + (topGenPt * antitopGenPt <= 0.)',
-    'samples': ['top']
+    'samples': ['ttop', 'stop']
+    #'samples': ['top']
 }
 
 # EWKnloW
@@ -235,30 +242,30 @@ aliases['EWKnloW'] = {
 
 # PU jet Id SF
 
-puidSFSource = '%s/src/PlotsConfigurations/Configurations/patches/PUID_81XTraining_EffSFandUncties.root' % os.getenv('CMSSW_BASE')
-
-aliases['PUJetIdSF'] = {
-    'linesToAdd': [
-        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
-        #'.L %s/src/PlotsConfigurations/Configurations/patches/pujetidsf_event.cc+' % os.getenv('CMSSW_BASE')
-        '.L %s/src/PlotsConfigurations/Configurations/patches/pujetidsf_event_new.cc+' % os.getenv('CMSSW_BASE')
-    ],
-    #'class': 'PUJetIdEventSF',
-    'class': 'PUJetIdEventSFnew',
-    'args': (puidSFSource, '2017', 'loose'),
-    'samples': mc
-}
-#puidSFSource = '%s/src/LatinoAnalysis/NanoGardener/python/data/JetPUID_effcyandSF.root' % os.getenv('CMSSW_BASE')
+#puidSFSource = '%s/src/PlotsConfigurations/Configurations/patches/PUID_81XTraining_EffSFandUncties.root' % os.getenv('CMSSW_BASE')
 #
 #aliases['PUJetIdSF'] = {
 #    'linesToAdd': [
 #        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
-#        '.L %s/src/PlotsConfigurations/Configurations/patches/pujetidsf_event.cc+' % os.getenv('CMSSW_BASE')
+#        #'.L %s/src/PlotsConfigurations/Configurations/patches/pujetidsf_event.cc+' % os.getenv('CMSSW_BASE')
+#        '.L %s/src/PlotsConfigurations/Configurations/patches/pujetidsf_event_new.cc+' % os.getenv('CMSSW_BASE')
 #    ],
-#    'class': 'PUJetIdEventSF',
+#    #'class': 'PUJetIdEventSF',
+#    'class': 'PUJetIdEventSFnew',
 #    'args': (puidSFSource, '2017', 'loose'),
 #    'samples': mc
 #}
+puidSFSource = '%s/src/LatinoAnalysis/NanoGardener/python/data/JetPUID_effcyandSF.root' % os.getenv('CMSSW_BASE')
+
+aliases['PUJetIdSF'] = {
+    'linesToAdd': [
+        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
+        '.L %s/src/PlotsConfigurations/Configurations/patches/pujetidsf_event.cc+' % os.getenv('CMSSW_BASE')
+    ],
+    'class': 'PUJetIdEventSF',
+    'args': (puidSFSource, '2017', 'loose'),
+    'samples': mc
+}
 
 
 ## Fake-Weight stuff
@@ -276,7 +283,8 @@ aliases['PUJetIdSF'] = {
 #            'samples': ["FAKE"]
 #        }
     
-for mu_et in [20]:
+#for mu_et in [20]:
+for mu_et in [35]:
     for el_et in [25, 35, 45]:
         el_fr_file = os.getenv('CMSSW_BASE') + "/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/Full2017_v7/2HDMa/FR/plot_ElCh_JetEt"+str(el_et)+"_l1_etaVpt_fw_ewk_2D.root"
         mu_fr_file = os.getenv('CMSSW_BASE') + "/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/Full2017_v7/2HDMa/FR/plot_MuCh_JetEt"+str(mu_et)+"_l1_etaVpt_fw_ewk_2D.root"
@@ -303,10 +311,11 @@ for mu_et in [20]:
             'samples': ["FAKE"]
         }
 
-for mu_et in [10, 30]:
+#for mu_et in [10, 30]:
+for mu_et in [25, 45]:
     for el_et in [35]:
-        el_fr_file = os.getenv('CMSSW_BASE') + "/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/Full2017_v7/2HDMa/FR/plot_ElCh_JetEt"+str(el_et)+"_l1_etaVpt_fw_ewk_2D.root"
-        mu_fr_file = os.getenv('CMSSW_BASE') + "/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/Full2017_v7/2HDMa/FR/plot_MuCh_JetEt"+str(mu_et)+"_l1_etaVpt_fw_ewk_2D.root"
+        el_fr_file = os.getenv('CMSSW_BASE') + "/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/Full2017_v7/2HDMa/FRnew/plot_ElCh_JetEt"+str(el_et)+"_l1_etaVpt_ptel_fw_ewk_2D.root"
+        mu_fr_file = os.getenv('CMSSW_BASE') + "/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/Full2017_v7/2HDMa/FRnew/plot_MuCh_JetEt"+str(mu_et)+"_l1_etaVpt_ptmu_fw_ewk_2D.root"
         el_pr_file = os.getenv('CMSSW_BASE') + "/src/LatinoAnalysis/NanoGardener/python/data/fake_prompt_rates/Full2017v6/mvaFall17V1IsoWP90/ElePR.root"
         mu_pr_file = os.getenv('CMSSW_BASE') + "/src/LatinoAnalysis/NanoGardener/python/data/fake_prompt_rates/Full2017v6/mvaFall17V1IsoWP90/MuonPR.root"
 
@@ -330,7 +339,8 @@ for mu_et in [10, 30]:
             'samples': ["FAKE"]
         }
 
-for mu_et in [20]:
+#for mu_et in [20]:
+for mu_et in [35]:
     aliases['FW_mu'+str(mu_et)+'_el35_ElUp'] = {
         'expr': '((TMath::Abs(Lepton_pdgId[0]) == 11)*(FW_mu'+str(mu_et)+'_el45[0]/FW_mu'+str(mu_et)+'_el35[0]) + (TMath::Abs(Lepton_pdgId[0]) == 13))',
         'samples': ["FAKE"]

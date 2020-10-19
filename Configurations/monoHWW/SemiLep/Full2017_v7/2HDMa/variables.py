@@ -55,6 +55,13 @@ variables['njet']  = {   'name': 'Sum$(CleanJet_pt > 30)',
                         'fold'  : 3
                         }
 
+variables['nbjet']  = { 
+    'name': 'nbJet',     
+    'range' : (10,0,10),   
+    'xaxis' : 'b-tagged nCleanJet (p_{T} > 30)',
+    'fold'  : 3
+    }
+
 
 variables['l1_eta']  = {  'name': 'Lepton_eta[0]',     
                         'range' : (25,-3,3),   
@@ -77,11 +84,11 @@ variables['j2_eta']  = {  'name': 'MHlnjj_eta_j2',
 #                        'xaxis' : 'm_{T}^{l,MET}',
 #                        'fold'  : 3                         
 #                        }
-#variables['m_jj']  = {  'name': 'MHlnjj_m_jj',     
-#                        'range' : (25,0,200),   
-#                        'xaxis' : 'm^{j,j}',
-#                        'fold'  : 3                         
-#                        }
+variables['m_jj']  = {  'name': 'MHlnjj_m_jj',     
+                        'range' : (25,0,250),   
+                        'xaxis' : 'm^{j,j}',
+                        'fold'  : 3                         
+                        }
 
 # copied
 
@@ -313,13 +320,13 @@ variables['m_lmetjj']  = {
 #                        'xaxis' : '2HDMa BDT_{Grad22Var}',
 #                        'fold'  : 3 
 #                        }   
-#variables['2HDMaBDT_Grad15Var']  = { 
-#                        'name': 'MHlnjj_2HDMaBDT_Grad15Var',
-#                        'range' : (10,-1.1,1.1),
-#                        'xaxis' : '2HDMa BDT_{Grad15Var}',
-#                        #'xaxis' : 'BDT',
-#                        'fold'  : 3 
-#                        }   
+variables['2HDMaBDT_Grad15Var']  = { 
+                        'name': 'MHlnjj_2HDMaBDT_Grad15Var',
+                        'range' : (10,-1.1,1.1),
+                        'xaxis' : '2HDMa BDT_{Grad15Var}',
+                        #'xaxis' : 'BDT',
+                        'fold'  : 3 
+                        }   
 #variables['2HDMaBDT_Grad12Var']  = { 
 #                        'name': 'MHlnjj_2HDMaBDT_Grad12Var',
 #                        'range' : (10,-1.1,1.1),
@@ -334,13 +341,13 @@ variables['m_lmetjj']  = {
 #                        #'xaxis' : 'BDT',
 #                        'fold'  : 3 
 #                        }   
-#variables['2HDMaBDT_Ada15Var']  = { 
-#                        'name': 'MHlnjj_2HDMaBDT_Ada15Var',
-#                        'range' : (10,-1.1,1.1),
-#                        'xaxis' : '2HDMa BDT_{Ada15Var}',
-#                        #'xaxis' : 'BDT',
-#                        'fold'  : 3 
-#                        }   
+variables['2HDMaBDT_Ada15Var']  = { 
+                        'name': 'MHlnjj_2HDMaBDT_Ada15Var',
+                        'range' : (10,-1.1,1.1),
+                        'xaxis' : '2HDMa BDT_{Ada15Var}',
+                        #'xaxis' : 'BDT',
+                        'fold'  : 3 
+                        }   
 #variables['2HDMaBDT_Ada12Var']  = { 
 #                        'name': 'MHlnjj_2HDMaBDT_Ada12Var',
 #                        'range' : (10,-1.1,1.1),
