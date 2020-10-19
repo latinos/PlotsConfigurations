@@ -201,3 +201,35 @@ for fw in histograms_fr:
     canvas.SaveAs(fr_dir+'/'+name+'.png')
 
 
+for var in variables:
+    jet_et_dict = {}
+    for cut in clean_cuts:
+        cut_splt = cut.split('_')
+        keys = []
+        for part in cut_splt:
+            if 'JetEt' in part: continue 
+            keys.append(part)
+        key = '_'.join(keys)
+        if not key in jet_et_dict: jet_et_dict[key] = []
+        jet_et_dict[key].append(cut)
+    
+    for key in jet_et_dict:
+        jet_et_dict[key].sort()
+        legend = ROOT.TLegend(0.1,0.1,0.2,0.3)
+        color = 632 #kRed
+        for idx,cut in enumerate(jet_et_dict[key]):
+            cut_splt = cut.split('_')
+            jet_et = ''
+            for part in cut_splt:
+                if 'JetEt' in part: jet_et = part
+            h_name = '_'.join(['h', cut, var, 'total_ewk'])
+            histograms_fr[h_name].SetLineColor(color + idx)
+            histograms_fr[h_name].GetYaxis().SetRangeUser(0.3, 0.7)
+            legend.AddEntry(histograms_fr[h_name], jet_et, 'l')
+            if idx == 0: histograms_fr[h_name].Draw()
+            else: histograms_fr[h_name].Draw('same')
+        legend.Draw('same')
+        canvas.Update()
+        name = '_'.join(['plot', 'allJetEt', key, var])
+        canvas.SaveAs(fr_dir+'/'+name+'.png')
+

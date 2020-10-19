@@ -151,17 +151,12 @@ addSampleWeight(samples,'DYlow','DYJetsToLL_M-10to50-LO',ptllDYW_LO+'*(LHE_HT<10
 ###### Top #######
 
 # Missing TTTo2L2Nu, TTZjets(_ext1)
-files = nanoGetSampleFiles(mcDirectory, 'TTToSemiLeptonic') + \
-        nanoGetSampleFiles(mcDirectory, 'TTTo2L2Nu') + \
-        nanoGetSampleFiles(mcDirectory, 'TTWjets') + \
-        nanoGetSampleFiles(mcDirectory, 'TTZjets_ext1') + \
-        nanoGetSampleFiles(mcDirectory, 'ST_s-channel') + \
-        nanoGetSampleFiles(mcDirectory, 'ST_t-channel_antitop') + \
-        nanoGetSampleFiles(mcDirectory, 'ST_t-channel_top') + \
-        nanoGetSampleFiles(mcDirectory, 'ST_tW_antitop') + \
-        nanoGetSampleFiles(mcDirectory, 'ST_tW_top')
+files = nanoGetSampleFiles(mcDirectory, 'TTToSemiLeptonic')
+files+= nanoGetSampleFiles(mcDirectory, 'TTTo2L2Nu')
+files+= nanoGetSampleFiles(mcDirectory, 'TTWjets')
+files+= nanoGetSampleFiles(mcDirectory, 'TTZjets_ext1')
 
-samples['top'] = {
+samples['ttop'] = {
     'name': files,
     'weight': mcCommonWeight,
     'FilesPerJob': 3,
@@ -170,17 +165,28 @@ samples['top'] = {
 # ttbar pT re-weighting
 # https://twiki.cern.ch/twiki/bin/viewauth/CMS/TopPtReweighting
 # https://indico.cern.ch/event/904971/contributions/3857701/attachments/2036949/3410728/TopPt_20.05.12.pdf
-addSampleWeight(samples,'top','TTToSemiLeptonic','Top_pTrw')  # https://indico.cern.ch/event/904971/contributions/3857701/attachments/2036949/3410728/TopPt_20.05.12.pdf
-addSampleWeight(samples,'top','TTTo2L2Nu','Top_pTrw')
-addSampleWeight(samples,'top','TTWjets','Top_pTrw')
-addSampleWeight(samples,'top','TTZjets_ext1','Top_pTrw')
+addSampleWeight(samples,'ttop','TTToSemiLeptonic','Top_pTrw')  # https://indico.cern.ch/event/904971/contributions/3857701/attachments/2036949/3410728/TopPt_20.05.12.pdf
+addSampleWeight(samples,'ttop','TTTo2L2Nu','Top_pTrw')
+addSampleWeight(samples,'ttop','TTWjets','Top_pTrw')
+addSampleWeight(samples,'ttop','TTZjets_ext1','Top_pTrw')
 
+files = nanoGetSampleFiles(mcDirectory, 'ST_s-channel')
+files+= nanoGetSampleFiles(mcDirectory, 'ST_t-channel_antitop')
+files+= nanoGetSampleFiles(mcDirectory, 'ST_t-channel_top')
+files+= nanoGetSampleFiles(mcDirectory, 'ST_tW_antitop')
+files+= nanoGetSampleFiles(mcDirectory, 'ST_tW_top')
+
+samples['stop'] = {
+    'name': files,
+    'weight': mcCommonWeight,
+    'FilesPerJob': 3,
+}
 
 # Xsec correction single top s and t channel: xsec in tree is leptonDecays, but sample is inclusiveDecays
 lepD_to_incD = '(100./(10.75 + 10.57 + 11.25))'
 #addSampleWeight(samples,'top','ST_s-channel',         lepD_to_incD)
-addSampleWeight(samples,'top','ST_t-channel_antitop', lepD_to_incD)
-addSampleWeight(samples,'top','ST_t-channel_top',     lepD_to_incD)
+addSampleWeight(samples,'stop','ST_t-channel_antitop', lepD_to_incD)
+addSampleWeight(samples,'stop','ST_t-channel_top',     lepD_to_incD)
 
 ###### VBF V ######
 
@@ -200,7 +206,7 @@ samples['VBF-V']  = {
 ###### WW ########
 
 files = nanoGetSampleFiles(mcDirectory, 'WWToLNuQQ')
-#files+= nanoGetSampleFiles(mcDirectory, 'WWTo2L2Nu')
+files+= nanoGetSampleFiles(mcDirectory, 'WWTo2L2Nu')
 
 samples['WW'] = {
     'name': files,
@@ -266,7 +272,7 @@ samples['WZewk'] = {
 # Also available: ZZ (inclusive), ZZTo2L2Nu, ZZTo2L2Q, ZZTo4L
 
 files = nanoGetSampleFiles(mcDirectory,'ZTo2L_ZTo2J'  )
-#files+= nanoGetSampleFiles(mcDirectory,'ZTo2L_ZTo2J_QCD') #FIXME: missing file 
+files+= nanoGetSampleFiles(mcDirectory,'ZTo2L_ZTo2J_QCD')
 
 samples['ZZ'] = {
     'name': files,
@@ -402,8 +408,9 @@ files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-2J')
 
 samples['Wjets'] = {
     'name'   : files,
-    'weight' : mcCommonWeight +'*EWKnloW[0]', # ewk nlo correction https://arxiv.org/pdf/1705.04664v2.pdf 
+    #'weight' : mcCommonWeight +'*EWKnloW[0]', # ewk nlo correction https://arxiv.org/pdf/1705.04664v2.pdf 
     #'weight' : mcCommonWeight + '*ewknloW', 
+    'weight' : mcCommonWeight, 
     'FilesPerJob' : 4,
 }
 # Xsec*k-factor correction https://indico.cern.ch/event/673253/contributions/2756806/attachments/1541203/2416962/20171016_VJetsXsecsUpdate_PH-GEN.pdf
@@ -548,17 +555,17 @@ samples['ZH_htt'] = {
 ############################################
 ##############   SIGNALS  ##################
 ############################################
-#
-#signal_file = '2HDMa_signal.py'
-#if os.path.exists(signal_file) :
-#    handle = open(signal_file,'r')
-#    exec(handle)
-#    handle.close()
-#else:
-#    raise IOError('FILE NOT FOUND: '+signal_file+'does not exist.')
-#
-#for mp in signal:
-#    samples[mp] = copy.deepcopy(signal[mp])
+
+signal_file = '2HDMa_signal.py'
+if os.path.exists(signal_file) :
+    handle = open(signal_file,'r')
+    exec(handle)
+    handle.close()
+else:
+    raise IOError('FILE NOT FOUND: '+signal_file+'does not exist.')
+
+for mp in signal:
+    samples[mp] = copy.deepcopy(signal[mp])
 
 ################################################
 ############ DATA DECLARATION ##################
@@ -591,10 +598,11 @@ DataTrig = {
 ########### FAKE ###########
 
 fakeW_mu20 = 'FW_mu20_el35[0]'
+fakeW_mu35 = 'FW_mu35_el35[0]'
 #fakeW_mu20 = 'FW_mu20_el35[0]*FWglobalSF[0]'
 samples['FAKE'] = {
   'name': [],
-  'weight': 'METFilter_DATA*'+fakeW_mu20,
+  'weight': 'METFilter_DATA*'+fakeW_mu35,
   'weights': [],
   'isData': ['all'],
   'FilesPerJob': 15,
