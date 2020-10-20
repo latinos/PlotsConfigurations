@@ -1,24 +1,30 @@
-#Common tools for analysis:
-voms-proxy-init -voms cms -rfc --valid 168:0
+# Common tools for analysis:
 
-#STEP 1: Submit shapesmulti in batch
-mkShapesMulti.py --pycfg=configuration.py --doBatch=1 --batchSplit=Samples,Files --batchQueue=testmatch
+    voms-proxy-init -voms cms -rfc --valid 168:0
 
-#STEP 2: Hadd files
-mkShapesMulti.py --pycfg=configuration.py --doHadd=1 --batchSplit=Samples,Files --doNotCleanup --nThreads=8
+# Submit shapesmulti in batch
 
-#STEP 3: Performing data-driven DY
-#STEP 3: Performing data-driven DY
-mkShapesMulti.py --pycfg=configuration_DYEST.py --doBatch=1 --batchSplit=Samples,Files --batchQueue=testmatch 
-mkShapesMulti.py --pycfg=configuration_DYEST.py --doHadd=1 --batchSplit=Samples,Files --doNotCleanup --nThreads=8   
+    mkShapesMulti.py --pycfg=configuration.py --doBatch=1 --batchSplit=Samples,Files --batchQueue=testmatch
 
-#remember change the global path inside doDY.sh file. 
+# Hadd files
+
+    mkShapesMulti.py --pycfg=configuration.py --doHadd=1 --batchSplit=Samples,Files --doNotCleanup --nThreads=8
+
+# Performing data-driven DY estimation
+
+    mkShapesMulti.py --pycfg=configuration_DYEST080.py --doBatch=1 --batchSplit=Samples,Files --batchQueue=testmatch 
+    mkShapesMulti.py --pycfg=configuration_DYEST080.py --doHadd=1  --batchSplit=Samples,Files --doNotCleanup --nThreads=8   
+
+    mkShapesMulti.py --pycfg=configuration_DYEST090.py --doBatch=1 --batchSplit=Samples,Files --batchQueue=testmatch 
+    mkShapesMulti.py --pycfg=configuration_DYEST090.py --doHadd=1  --batchSplit=Samples,Files --doNotCleanup --nThreads=8   
+
 condor_submit doDY.jds
-#mkDYestim_data.py --pycfg=configuration.py --dycfg=dyestim.py --inputFile=rootFile/plots_STXS_ggH_SF_2016.root
+
+    mkDYestim_data.py --pycfg=configuration.py --dycfg=dyestim.py --inputFile=rootFile/plots_STXS_ggH_SF_2016.root
 
 # Plot distributions
 
-mkPlot.py --inputFile=rootFile/plots_STXS_ggH_SF_2016_DYEstimDATA.root --linearOnly --fileFormats=png --onlyPlot=cratio
+    mkPlot.py --inputFile=rootFile/plots_STXS_ggH_SF_2016_DYEstimDATA.root --linearOnly --fileFormats=png --onlyPlot=cratio
 
 Repeat, but with data-blind signal region. Put to 1 the 'isBlind' flag in plot.py and:
 
@@ -56,19 +62,19 @@ Repeat, but with data-blind signal region. Put to 1 the 'isBlind' flag in plot.p
     mkPlot.py --onlyCut=hww2l2v_13TeV_hpt_mm_pth450_650          --inputFile=rootFile/plots_STXS_ggH_SF_2016_DYEstimDATA.root --linearOnly --fileFormats=png --onlyPlot=cratio
     mkPlot.py --onlyCut=hww2l2v_13TeV_hpt_mm_pth650              --inputFile=rootFile/plots_STXS_ggH_SF_2016_DYEstimDATA.root --linearOnly --fileFormats=png --onlyPlot=cratio
 
+# Create datacards
 
+    mkDatacards.py --pycfg=configuration.py --inputFile=rootFile/plots_STXS_ggH_SF_2016_DYEstimDATA.root  --cardList=hww2l2v_13TeV_0j_ee_pth0_10,hww2l2v_13TeV_0j_mm_pth0_10,hww2l2v_13TeV_0j_ee_pth10_200,hww2l2v_13TeV_0j_mm_pth10_200,hww2l2v_13TeV_1j_ee_pth0_60,hww2l2v_13TeV_1j_mm_pth0_60,hww2l2v_13TeV_1j_ee_pth60_120,hww2l2v_13TeV_1j_mm_pth60_120,hww2l2v_13TeV_1j_ee_pth120_200,hww2l2v_13TeV_1j_mm_pth120_200,hww2l2v_13TeV_2j_ee_mjj0_350_pth0_60,hww2l2v_13TeV_2j_mm_mjj0_350_pth0_60,hww2l2v_13TeV_2j_ee_mjj0_350_pth60_120,hww2l2v_13TeV_2j_mm_mjj0_350_pth60_120,hww2l2v_13TeV_2j_ee_mjj0_350_pth120_200,hww2l2v_13TeV_2j_mm_mjj0_350_pth120_200,hww2l2v_13TeV_2j_ee_mjj350_700_pthjj0_25,hww2l2v_13TeV_2j_mm_mjj350_700_pthjj0_25,hww2l2v_13TeV_2j_ee_mjj350_700_pthjj25,hww2l2v_13TeV_2j_mm_mjj350_700_pthjj25,hww2l2v_13TeV_2j_ee_mjj700_pthjj0_25,hww2l2v_13TeV_2j_mm_mjj700_pthjj0_25,hww2l2v_13TeV_2j_ee_mjj700_pthjj25,hww2l2v_13TeV_2j_mm_mjj700_pthjj25,hww2l2v_13TeV_hpt_ee_pth200_300,hww2l2v_13TeV_hpt_mm_pth200_300,hww2l2v_13TeV_hpt_ee_pth300_450,hww2l2v_13TeV_hpt_mm_pth300_450,hww2l2v_13TeV_hpt_ee_pth450_650,hww2l2v_13TeV_hpt_mm_pth450_650,hww2l2v_13TeV_hpt_ee_pth650,hww2l2v_13TeV_hpt_mm_pth650,hww2l2v_13TeV_top_0j_ee,hww2l2v_13TeV_top_1j_ee,hww2l2v_13TeV_top_2j_ee,hww2l2v_13TeV_top_hpt_ee,hww2l2v_13TeV_top_0j_mm,hww2l2v_13TeV_top_1j_mm,hww2l2v_13TeV_top_2j_mm,hww2l2v_13TeV_top_hpt_mm,hww2l2v_13TeV_WW_0j_ee,hww2l2v_13TeV_WW_1j_ee,hww2l2v_13TeV_WW_2j_ee,hww2l2v_13TeV_WW_hpt_ee,hww2l2v_13TeV_WW_0j_mm,hww2l2v_13TeV_WW_1j_mm,hww2l2v_13TeV_WW_2j_mm,hww2l2v_13TeV_WW_hpt_mm
 
-#STEP 4: Create datacards
-mkDatacards.py --pycfg=configuration.py --inputFile=rootFile/plots_STXS_ggH_SF_2016_DYEstimDATA.root  --cardList=hww2l2v_13TeV_0j_ee_pth0_10,hww2l2v_13TeV_0j_mm_pth0_10,hww2l2v_13TeV_0j_ee_pth10_200,hww2l2v_13TeV_0j_mm_pth10_200,hww2l2v_13TeV_1j_ee_pth0_60,hww2l2v_13TeV_1j_mm_pth0_60,hww2l2v_13TeV_1j_ee_pth60_120,hww2l2v_13TeV_1j_mm_pth60_120,hww2l2v_13TeV_1j_ee_pth120_200,hww2l2v_13TeV_1j_mm_pth120_200,hww2l2v_13TeV_2j_ee_mjj0_350_pth0_60,hww2l2v_13TeV_2j_mm_mjj0_350_pth0_60,hww2l2v_13TeV_2j_ee_mjj0_350_pth60_120,hww2l2v_13TeV_2j_mm_mjj0_350_pth60_120,hww2l2v_13TeV_2j_ee_mjj0_350_pth120_200,hww2l2v_13TeV_2j_mm_mjj0_350_pth120_200,hww2l2v_13TeV_2j_ee_mjj350_700_pthjj0_25,hww2l2v_13TeV_2j_mm_mjj350_700_pthjj0_25,hww2l2v_13TeV_2j_ee_mjj350_700_pthjj25,hww2l2v_13TeV_2j_mm_mjj350_700_pthjj25,hww2l2v_13TeV_2j_ee_mjj700_pthjj0_25,hww2l2v_13TeV_2j_mm_mjj700_pthjj0_25,hww2l2v_13TeV_2j_ee_mjj700_pthjj25,hww2l2v_13TeV_2j_mm_mjj700_pthjj25,hww2l2v_13TeV_hpt_ee_pth200_300,hww2l2v_13TeV_hpt_mm_pth200_300,hww2l2v_13TeV_hpt_ee_pth300_450,hww2l2v_13TeV_hpt_mm_pth300_450,hww2l2v_13TeV_hpt_ee_pth450_650,hww2l2v_13TeV_hpt_mm_pth450_650,hww2l2v_13TeV_hpt_ee_pth650,hww2l2v_13TeV_hpt_mm_pth650,hww2l2v_13TeV_top_0j_ee,hww2l2v_13TeV_top_1j_ee,hww2l2v_13TeV_top_2j_ee,hww2l2v_13TeV_top_hpt_ee,hww2l2v_13TeV_top_0j_mm,hww2l2v_13TeV_top_1j_mm,hww2l2v_13TeV_top_2j_mm,hww2l2v_13TeV_top_hpt_mm,hww2l2v_13TeV_WW_0j_ee,hww2l2v_13TeV_WW_1j_ee,hww2l2v_13TeV_WW_2j_ee,hww2l2v_13TeV_WW_hpt_ee,hww2l2v_13TeV_WW_0j_mm,hww2l2v_13TeV_WW_1j_mm,hww2l2v_13TeV_WW_2j_mm,hww2l2v_13TeV_WW_hpt_mm
+# Combining with script
 
-#STEP 5: Combining with script
-./doCombination.sh > Combination/Full2016_SF_ggH_HTXS_Stage1p2.txt
+    ./doCombination.sh > Combination/Full2016_SF_ggH_HTXS_Stage1p2.txt
 
-#STEP 6: Load combination CMSSW area
-cd ../../../../../../combine/CMSSW_10_2_13/src/ 
-cmsenv
-cd -
+# Load combination CMSSW area
 
+    cd ../../../../../../combine/CMSSW_10_2_13/src/ 
+    cmsenv
+    cd -
 
 #STEP 7: Workspace
 python doWorkspace.py

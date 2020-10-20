@@ -16,8 +16,8 @@ dymva1jet = 'dymva_alt_dnn_1j  > 0.900'
 dymva2jet = 'dymva_alt_dnn_2j  > 0.960'
 dymvaVBF  = 'dymva_alt_dnn_VBF > 0.970'
 dymvaVH   = 'dymva_alt_dnn_VH  > 0.825'
-dymvahpt  = '('+dymva0jet+' || '+dymva1jet+' || '+dymva2jet+')'
-dymvahpt_loose  = '(dymva_alt_dnn_0j > 0.9 || dymva_alt_dnn_1j > 0.9 || dymva_alt_dnn_2j > 0.9 )'
+dymvahpt  = '('+dymva0jet+' || '+dymva1jet+' || '+dymva2jet+' || '+dymvaVBF+' || '+dymvaVH+')'
+dymvahpt_loose  = '(dymva_alt_dnn_0j > 0.8 || dymva_alt_dnn_1j > 0.8 || dymva_alt_dnn_2j > 0.8 || dymva_alt_dnn_VBF > 0.8 || dymva_alt_dnn_VH > 0.8)'
 
 # Higgs Signal Regions: ee/uu * 0/1/2 jet
 cuts['hww2l2v_13TeV_0j'] = {
@@ -49,10 +49,12 @@ cuts['hww2l2v_13TeV_2j'] = {
        'mm_mjj0_350_pth60_120'   : '(Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && mjj <= 350 && pTWW > 60  && pTWW <= 120',
        'ee_mjj0_350_pth120_200'  : '(Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && mjj <= 350 && pTWW > 120 && pTWW <= 200',
        'mm_mjj0_350_pth120_200'  : '(Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && mjj <= 350 && pTWW > 120 && pTWW <= 200',
+       #
        'ee_mjj350_700_pthjj0_25' : '(Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && mjj  > 350 && mjj <= 700 && pTHjj <= 25',
        'mm_mjj350_700_pthjj0_25' : '(Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && mjj  > 350 && mjj <= 700 && pTHjj <= 25',
        'ee_mjj350_700_pthjj25'   : '(Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && mjj  > 350 && mjj <= 700 && pTHjj  > 25',
        'mm_mjj350_700_pthjj25'   : '(Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && mjj  > 350 && mjj <= 700 && pTHjj  > 25',
+       #
        'ee_mjj700_pthjj0_25'     : '(Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && mjj  > 700 && pTHjj <= 25',
        'mm_mjj700_pthjj0_25'     : '(Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && mjj  > 700 && pTHjj <= 25',
        'ee_mjj700_pthjj25'       : '(Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && mjj  > 700 && pTHjj  > 25',
