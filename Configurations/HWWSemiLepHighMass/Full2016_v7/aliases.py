@@ -444,19 +444,23 @@ aliases['DY_LO_pTllrw'] = {
 
 mc_sbi = [skey for skey in samples if "SBI" in skey]
 aliases['SBI_isSMggh'] = {
-    'expr': '( abs(Xsec-1.091343e+00) < 1.0e-06 )',
+    'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/isSample.cc+' % os.getenv('CMSSW_BASE')],
+    'expr' : 'is_SMggh()',
     'samples': mc_sbi
 }
 aliases['SBI_isSMVBF'] = {
-    'expr': '( abs(Xsec-8.496211e-02) < 1.0e-08 )',
+    'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/isSample.cc+' % os.getenv('CMSSW_BASE')],
+    'expr' : 'is_SMVBF()',
     'samples': mc_sbi
 }
 aliases['SBI_isggWW'] = {
-    'expr': '( abs(Xsec-6.387000e-02) < 1.0e-08 )',
+    'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/isSample.cc+' % os.getenv('CMSSW_BASE')],
+    'expr' : 'is_ggWW()',
     'samples': mc_sbi
 }
 aliases['SBI_isqqWWqq'] = {
-    'expr': '( abs(Xsec-2.160000e+00) < 1.0e-06 )',
+    'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/isSample.cc+' % os.getenv('CMSSW_BASE')],
+    'expr' : 'is_qqWWqq()',
     'samples': mc_sbi
 }
 aliases['SBI_isHM'] = {

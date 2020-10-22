@@ -13,7 +13,7 @@ LepCats={}
 #                  || (abs(Lepton_pdgId[0])==13) && Lepton_pt[0]>27 )'
 LepCats['ElCh_']='( (abs(Lepton_pdgId[0])==11) && Lepton_pt[0]>30 )'
 LepCats['MuCh_']='( (abs(Lepton_pdgId[0])==13) && Lepton_pt[0]>27 )'
-# FIXME: probably need to cut > 35 for ele due to fakeW calculation
+# FIXME: maybe need to cut > 35 for ele due to fakeW calculation
 
 
 BoostProcCats={}
@@ -67,8 +67,8 @@ HMCats['HMSR_']='boostedNoTau21[0] \
 
 ResolveProcCats={}
 ResolveProcCats['']='1'
-ResolveProcCats['DNNVBF_']='DNN_isVBF_OTF[0] > 0.75'
-ResolveProcCats['DNNGGF_']='DNN_isVBF_OTF[0] <= 0.75'
+ResolveProcCats['VBF_']='DNN_isVBF_OTF[0] > 0.75'
+ResolveProcCats['GGF_']='DNN_isVBF_OTF[0] <= 0.75'
 
 ResolveCats={}
 # ResolveCats['Resolved']='resolved[0]'

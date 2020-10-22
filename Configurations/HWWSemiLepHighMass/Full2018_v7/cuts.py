@@ -9,8 +9,8 @@ supercut = '\
 
 ##=== Define categories ===###
 LepCats={}
-# LepCats['incl_']='( (abs(Lepton_pdgId[0])==11) && Lepton_pt[0]>35 \
-#                  || (abs(Lepton_pdgId[0])==13) && Lepton_pt[0]>27 )'
+LepCats['incl_']='( (abs(Lepton_pdgId[0])==11) && Lepton_pt[0]>35 \
+                 || (abs(Lepton_pdgId[0])==13) && Lepton_pt[0]>27 )'
 LepCats['ElCh_']='( (abs(Lepton_pdgId[0])==11) && Lepton_pt[0]>35 )'
 LepCats['MuCh_']='( (abs(Lepton_pdgId[0])==13) && Lepton_pt[0]>27 )'
 
@@ -20,25 +20,25 @@ BoostProcCats={}
 BoostProcCats['']='1'
 # BoostProcCats['Untagged_']='!IsVbfFat'
 # BoostProcCats['VBF_']='IsVbfFat'
-# BoostProcCats['DNNVBF_']='DNN_isVBF_OTF[0] > 0.75'
-# BoostProcCats['DNNGGF_']='DNN_isVBF_OTF[0] <= 0.75'
+BoostProcCats['VBF_']='DNN_isVBF_OTF[0] > 0.7'
+BoostProcCats['GGF_']='DNN_isVBF_OTF[0] <= 0.7'
 
 
 BoostCats={}
 # BoostCats['Boosted']='boosted[0]'
-BoostCats['BoostedSR_']='1 \
-                        && boosted[0] \
-                        && boostedSignalWMass[0] \
-                        && bVeto[0]'
-BoostCats['BoostedSB_']='1 \
-                       && boosted[0] \
-                       && !boostedSignalWMassNoTau21[0] \
-                       && boostedSidebandWMassNoTau21[0] \
-                       && bVeto[0]'
-BoostCats['BoostedTopCR_']='1 \
-                       && boosted[0] \
-                       && boostedSignalWMass[0] \
-                       && !bVeto[0]'
+# BoostCats['BoostedSR_']='1 \
+#                         && boosted[0] \
+#                         && boostedSignalWMass[0] \
+#                         && bVeto[0]'
+# BoostCats['BoostedSB_']='1 \
+#                        && boosted[0] \
+#                        && !boostedSignalWMassNoTau21[0] \
+#                        && boostedSidebandWMassNoTau21[0] \
+#                        && bVeto[0]'
+# BoostCats['BoostedTopCR_']='1 \
+#                        && boosted[0] \
+#                        && boostedSignalWMass[0] \
+#                        && !bVeto[0]'
 
 
 
@@ -87,12 +87,12 @@ ResolveProcCats={}
 ResolveProcCats['']='1'
 # ResolveProcCats['Untagged_']='!IsVbfjj'
 # ResolveProcCats['VBF_']='IsVbfjj'
-# ResolveProcCats['DNNVBF_']='DNN_isVBF_OTF[0] > 0.75'
-# ResolveProcCats['DNNGGF_']='DNN_isVBF_OTF[0] <= 0.75'
+ResolveProcCats['VBF_']='DNN_isVBF_OTF[0] > 0.75'
+ResolveProcCats['GGF_']='DNN_isVBF_OTF[0] <= 0.75'
 
 ResolveCats={}
 # ResolveCats['Resolved']='resolved[0]'
-ResolveCats['ResolvedSR_']='resolved[0] && resolvedSignalWMass[0] && bVeto[0]'
+# ResolveCats['ResolvedSR_']='resolved[0] && resolvedSignalWMass[0] && bVeto[0]'
 ResolveCats['ResolvedSB_']='resolved[0] \
                            && !resolvedSignalWMass[0] \
                            && resolvedSidebandWMass[0] \
@@ -122,11 +122,11 @@ for Lep in LepCats:
                                 +'&&'+BoostProcCats[BProcCat]\
                                 +'&&'+LepCats[Lep]
 
-    # for HCat in HMCats:
-    #     for HProcCat in HMProcCats:
-    #         cuts[Lep+HProcCat+HCat]=  HMCats[HCat]\
-    #                             +'&&'+HMProcCats[HProcCat]\
-    #                             +'&&'+LepCats[Lep]
+    for HCat in HMCats:
+        for HProcCat in HMProcCats:
+            cuts[Lep+HProcCat+HCat]=  HMCats[HCat]\
+                                +'&&'+HMProcCats[HProcCat]\
+                                +'&&'+LepCats[Lep]
 
     for RCat in ResolveCats:
         for RProcCat in ResolveProcCats:

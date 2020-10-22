@@ -187,7 +187,7 @@ variables['hmHiggsMass'] = {
     'name' : 'HM_CleanFatJetPassMBoosted_HlnFat_mass[0]',
     # 'range': ([0, 900, 1000, 1100, 1200, 1350, 1500, 1700, 2000, 3000, 5000],),
     # 'range': ([0, 900, 1000, 1100, 1200, 1325, 1580, 2050, 5000],),
-    'range': ([0, 900, 990, 1085, 1185, 1300, 1550, 2000, 5000],),
+    'range': ([0, 900, 990, 1085, 1185, 1300, 1500, 2000, 5000],),
     'xaxis': 'reconstr. H mass [GeV]',
     'cuts' : hmSR,
     'fold' : 3
@@ -227,7 +227,7 @@ variables['boostWhadMass'] = {
 variables['WlepMT'] = {
     'name': 'WlepMT[0]',
     'range': (15, 0.0, 150.0),
-    'xaxis': 'M_T^{l#nu} [GeV]',
+    'xaxis': 'M_{T}^{l#nu} [GeV]',
     'fold': 3
 }
 

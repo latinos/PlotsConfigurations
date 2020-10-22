@@ -11,17 +11,15 @@ supercut = '\
 LepCats={}
 LepCats['incl_']='( (abs(Lepton_pdgId[0])==11) && Lepton_pt[0]>38 \
                  || (abs(Lepton_pdgId[0])==13) && Lepton_pt[0]>30 )'
-# LepCats['ElCh_']='( (abs(Lepton_pdgId[0])==11) && Lepton_pt[0]>38 )'
-# LepCats['MuCh_']='( (abs(Lepton_pdgId[0])==13) && Lepton_pt[0]>30 )'
+LepCats['ElCh_']='( (abs(Lepton_pdgId[0])==11) && Lepton_pt[0]>38 )'
+LepCats['MuCh_']='( (abs(Lepton_pdgId[0])==13) && Lepton_pt[0]>30 )'
 
 
 
 BoostProcCats={}
 BoostProcCats['']='1'
-# BoostProcCats['Untagged_']='!IsVbfFat'
-# BoostProcCats['VBF_']='IsVbfFat'
-# BoostProcCats['DNNVBF_']='DNN_isVBF_OTF[0] > 0.7'
-# BoostProcCats['DNNGGF_']='DNN_isVBF_OTF[0] <= 0.7'
+# BoostProcCats['VBF_']='DNN_isVBF_OTF[0] > 0.7'
+# BoostProcCats['GGF_']='DNN_isVBF_OTF[0] <= 0.7'
 
 
 BoostCats={}
@@ -99,19 +97,17 @@ HMCats={}
 
 ResolveProcCats={}
 ResolveProcCats['']='1'
-# ResolveProcCats['Untagged_']='!IsVbfjj'
-# ResolveProcCats['VBF_']='IsVbfjj'
-# ResolveProcCats['DNNVBF_']='DNN_isVBF_OTF[0] > 0.75'
-# ResolveProcCats['DNNGGF_']='DNN_isVBF_OTF[0] <= 0.75'
+# ResolveProcCats['VBF_']='DNN_isVBF_OTF[0] > 0.75'
+# ResolveProcCats['GGF_']='DNN_isVBF_OTF[0] <= 0.75'
 
 ResolveCats={}
 # ResolveCats['Resolved']='resolved[0]'
-# ResolveCats['ResolvedSR_']='resolved[0] && resolvedSignalWMass[0] && bVeto[0]'
+ResolveCats['ResolvedSR_']='resolved[0] && resolvedSignalWMass[0] && bVeto[0]'
 ResolveCats['ResolvedSB_']='resolved[0] \
                            && !resolvedSignalWMass[0] \
                            && resolvedSidebandWMass[0] \
                            && bVeto[0]'
-# ResolveCats['ResolvedTopCR_']='resolved[0] && resolvedSignalWMass[0] && !bVeto[0]'
+ResolveCats['ResolvedTopCR_']='resolved[0] && resolvedSignalWMass[0] && !bVeto[0]'
 # # ResolveCats['ResolvedSB___low']='resolved[0] \
 # #                             && !resolvedSignalWMass[0] \
 # #                             && lowResolvedSidebandWMass[0] \

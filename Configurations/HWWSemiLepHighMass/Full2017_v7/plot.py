@@ -14,7 +14,6 @@ else:
 # Groups of samples to improve the plots.
 # If not defined, normal plots is used
 #
-reweightedWjets = True
 
 groupPlot['top']  = {
     'nameHR' : 't#bar{t} and ST',
@@ -22,20 +21,13 @@ groupPlot['top']  = {
     'color': 400,   # kYellow
     'samples'  : ['top']
 }
-if reweightedWjets:
-    groupPlot['Wjets'] = {
-        'nameHR' : "W+jets",
-        'isSignal' : 0,
-        'color': 921,      # kGray + 1
-        'samples'  : ['Wjets_rew']
-    }
-else:
-    groupPlot['Wjets'] = {
-        'nameHR' : "W+jets",
-        'isSignal' : 0,
-        'color': 921,      # kGray + 1
-        'samples'  : ['Wjets']
-    }
+
+groupPlot['Wjets'] = {
+    'nameHR' : "W+jets",
+    'isSignal' : 0,
+    'color': 921,      # kGray + 1
+    'samples'  : ['Wjets']
+}
 
 groupPlot['QCD'] = {
     'nameHR' : "QCD",
@@ -175,11 +167,6 @@ plot['VVV']  = {
 }
 
 plot['Wjets']  = {
-    'color': 856, # kAzure -4
-    'isSignal' : 0,
-    'isData'   : 0,
-}
-plot['Wjets_rew']  = {
     'color': 856, # kAzure -4
     'isSignal' : 0,
     'isData'   : 0,

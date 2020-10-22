@@ -133,20 +133,20 @@ files  = nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-10to50')
 files += nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-10to50_ext1')
 files += nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_ext2')
 # LO
-files += nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-5to50_HT-70to100')
-files += nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-5to50_HT-100to200')
-files += nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-5to50_HT-200to400')
-files += nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-5to50_HT-400to600')
-files += nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-5to50_HT-600toinf')
-files += nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-5to50_HT-200to400_ext1')
-files += nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-5to50_HT-400to600_ext1')
-files += nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-5to50_HT-600toinf_ext1')
+# files += nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-5to50_HT-70to100')
+# files += nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-5to50_HT-100to200')
+# files += nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-5to50_HT-200to400')
+# files += nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-5to50_HT-400to600')
+# files += nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-5to50_HT-600toinf')
+# files += nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-5to50_HT-200to400_ext1')
+# files += nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-5to50_HT-400to600_ext1')
+# files += nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-5to50_HT-600toinf_ext1')
 
 
 samples['DY'] = {
     'name': files,
     'weight': mcCommonWeight + '*( !(Sum$(PhotonGen_isPrompt==1 && PhotonGen_pt>15 && abs(PhotonGen_eta)<2.6) > 0))',
-    'FilesPerJob': 20,
+    'FilesPerJob': 15,
 }
 CombineBaseW(mcDirectory, samples, 'DY',
             ['DYJetsToLL_M-10to50', 'DYJetsToLL_M-10to50_ext1'])
@@ -176,10 +176,10 @@ addSampleWeight(samples,'DY','DYJetsToLL_M-5to50_HT-600toinf_ext1','(gen_mll<10)
 print("top")
 
 files  = nanoGetSampleFiles(mcDirectory, 'TTToSemiLeptonic')
-files += nanoGetSampleFiles(mcDirectory, 'TTTo2L2Nu')
+# files += nanoGetSampleFiles(mcDirectory, 'TTTo2L2Nu')
 files += nanoGetSampleFiles(mcDirectory, 'TTWJetsToLNu_ext1')
-files += nanoGetSampleFiles(mcDirectory, 'TTWJetsToLNu_ext2')
-files += nanoGetSampleFiles(mcDirectory, 'TTZjets')
+# files += nanoGetSampleFiles(mcDirectory, 'TTWJetsToLNu_ext2')
+# files += nanoGetSampleFiles(mcDirectory, 'TTZjets')
 files += nanoGetSampleFiles(mcDirectory, 'ST_s-channel')
 files += nanoGetSampleFiles(mcDirectory, 'ST_t-channel_antitop')
 files += nanoGetSampleFiles(mcDirectory, 'ST_t-channel_top')
@@ -189,7 +189,7 @@ files += nanoGetSampleFiles(mcDirectory, 'ST_tW_top')
 samples['top'] = {
     'name': files,
     'weight': mcCommonWeight,
-    'FilesPerJob': 15,
+    'FilesPerJob': 10,
 }
 CombineBaseW(mcDirectory, samples, 'top',
 ['TTWJetsToLNu_ext1', 'TTWJetsToLNu_ext2'])
@@ -212,7 +212,7 @@ files += nanoGetSampleFiles(mcDirectory, 'WWToLNuQQ_ext1')
 samples['WW'] = {
     'name': files,
     'weight': mcCommonWeight+'*(mjjGen_OTF<100)',
-    'FilesPerJob': 15
+    'FilesPerJob': 10
 }
 CombineBaseW(mcDirectory, samples, 'WW',
             ['WWToLNuQQ', 'WWToLNuQQ_ext1'])
@@ -221,7 +221,7 @@ samples['WWewk'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'WpWmJJ_EWK_noTop'),
     'weight': mcCommonWeight + '*(Sum$(abs(GenPart_pdgId)==6 || GenPart_pdgId==25)==0)',
     #filter tops and Higgs
-    'FilesPerJob': 15
+    'FilesPerJob': 10
 }
 
 ############# ggWW semileptonic ##############
@@ -230,34 +230,36 @@ samples['WWewk'] = {
 samples['ggWW'] = {
     'name'   : nanoGetSampleFiles(signalMCDirectory, 'GluGluHToWWToLNuQQ_M125'),
     'weight' : mcCommonWeight,
-    'FilesPerJob': 20
+    'FilesPerJob': 15
 }
 addSampleWeight(samples,'ggWW','GluGluHToWWToLNuQQ_M125', "{0} * ({0} < 50)".format(model_B))
 
 samples['qqWWqq'] = {
     'name'   :   nanoGetSampleFiles(mcDirectory,'WpWmJJ_QCD_noTop') ,
     'weight' : mcCommonWeight+'*(mjjGen_OTF>=100)'+'*(GenLHE)',
-    'FilesPerJob': 20
+    'FilesPerJob': 15
 }
 
 samples['WW2J'] = {
     'name'   :   nanoGetSampleFiles(mcDirectory,'WpWmJJ_QCD_noTop') ,
     'weight' : mcCommonWeight+'*(mjjGen_OTF>=100)'+'*(!GenLHE)',
-    'FilesPerJob': 20
+    'FilesPerJob': 15
 }
 
 
 
 ########## W+jets #########
 print("W+jets")
+whad_reweight = '(1.17301e+00 - 8.66070e-04*HM_Whad_mass)'
 
 files  = nanoGetSampleFiles(mcDirectory, 'WJetsToLNu')
 files += nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_ext2')
 
 samples['Wjets'] = {
     'name'   : files,
-    'weight' : mcCommonWeight +"*EWK_W_correction[0]",
-    'FilesPerJob' : 15,
+    'weight' : mcCommonWeight +"*EWK_W_correction[0]"
+                +"*(resolved*{0}+!resolved*1)".format(whad_reweight),
+    'FilesPerJob' : 10,
 }
 CombineBaseW(mcDirectory, samples, 'Wjets',
             ['WJetsToLNu', 'WJetsToLNu_ext2'])
@@ -273,7 +275,7 @@ files += nanoGetSampleFiles(mcDirectory, 'Zg')
 samples['Vg'] = {
     'name': files,
     'weight': mcCommonWeight + '*(!(Gen_ZGstar_mass > 0))',
-    'FilesPerJob': 20
+    'FilesPerJob': 15
 }
 
 ####### VgS ########
@@ -283,7 +285,7 @@ files += nanoGetSampleFiles(mcDirectory, 'Zg')
 samples['VgS'] = {
     'name': files,
     'weight': mcCommonWeight + ' * (gstarLow * 0.94 + gstarHigh * 1.14)',
-    'FilesPerJob': 20,
+    'FilesPerJob': 15,
     'subsamples': {
       'L': 'gstarLow',
       'H': 'gstarHigh'
@@ -302,7 +304,7 @@ files += nanoGetSampleFiles(mcDirectory, 'WZ')
 samples['VZ'] = {
     'name': files,
     'weight': mcCommonWeight + '*1.11',
-    'FilesPerJob': 20
+    'FilesPerJob': 15
 }
 
 ########## VVV #########
@@ -317,7 +319,7 @@ files += nanoGetSampleFiles(mcDirectory, 'WWG')
 samples['VVV'] = {
     'name': files,
     'weight': mcCommonWeight,
-    'FilesPerJob': 20
+    'FilesPerJob': 15
 }
 
 ########### QCD ###########
@@ -447,12 +449,15 @@ for MX in massggh:
 
     files  = nanoGetSampleFiles(signalMCDirectory, 'GluGluHToWWToLNuQQ_M'+MX)
     files += nanoGetSampleFiles(signalMCDirectory, 'GluGluHToWWToLNuQQ_M125')
+    files += nanoGetSampleFiles(signalMCDirectory, 'GluGluHToWWToLNuQQ_M125_copyBG')
     samples['GGHSBI_'+MX+model_name]  = {
         'name': files,
-        'weight': mcCommonWeight+'*'+noSMxsec,
+        'weight': mcCommonWeight,
     }
     addSampleWeight(samples, 'GGHSBI_'+MX+model_name, 'GluGluHToWWToLNuQQ_M'+MX,
-                    '( ({0}+{1}) * (abs({0}+{1}) < 50) )'.format(model, model_I))
+                    '( ({0}+{1}) * (abs({0}+{1}) < 50) * {2})'.format(model, model_I, noSMxsec))
+    addSampleWeight(samples, 'GGHSBI_'+MX+model_name, 'GluGluHToWWToLNuQQ_M125_copyBG',
+                    '( ({0}) * (abs({0}) < 50) )'.format(model_B))
 
     if MX in ['4000', '5000']: # Just to be sure, recalculate baseW with new cross sections
         newbasew = getBaseWnAOD(signalMCDirectory, mcProduction, ['GluGluHToWWToLNuQQ_M'+MX])
@@ -483,10 +488,10 @@ for MX in massvbf:
     files += nanoGetSampleFiles(mcDirectory, 'WpWmJJ_QCD_noTop')
     samples['QQHSBI_'+MX+model_name]  = {
         'name': files,
-        'weight': mcCommonWeight+'*'+noSMxsec
+        'weight': mcCommonWeight
     }
     addSampleWeight(samples, 'QQHSBI_'+MX+model_name, 'VBFHToWWToLNuQQ_M'+MX,
-                    '( ({0}+{1}) * (abs({0}+{1}) < 50) )'.format(model, model_I))
+                    '( ({0}+{1}) * (abs({0}+{1}) < 50) * {2})'.format(model, model_I, noSMxsec))
     addSampleWeight(samples, 'QQHSBI_'+MX+model_name, 'WpWmJJ_QCD_noTop',
                     '(mjjGen_OTF>=100)*(GenLHE)')
 
@@ -521,7 +526,7 @@ samples['FAKE'] = {
   'weight': 'METFilter_DATA*'+fakeW,
   'weights': [],
   'isData': ['all'],
-  'FilesPerJob': 29,
+  'FilesPerJob': 30,
   'suppressNegative': ['all'],
   'suppressNegativeNuisances' :['all'],
 }
@@ -538,7 +543,7 @@ samples['DATA'] = {
   'weight': 'METFilter_DATA*LepWPCut[0]*(nTightLep==1)',
   'weights': [],
   'isData': ['all'],
-  'FilesPerJob': 30
+  'FilesPerJob': 35
 }
 
 for _, sd in DataRun:
@@ -546,4 +551,3 @@ for _, sd in DataRun:
     files = nanoGetSampleFiles(dataDirectory, pd + '_' + sd)
     samples['DATA']['name'].extend(files)
     samples['DATA']['weights'].extend([DataTrig[pd]] * len(files))
-

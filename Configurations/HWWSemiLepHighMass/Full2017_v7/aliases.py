@@ -195,7 +195,7 @@ aliases['dPhi_LNu'] = {
 aliases['LHEPartWlepPt'] = {
     'linesToAdd': ['.L %s/HWWSemiLepHighMass/LHEPartWlepPt.cc+' % configurations],
     'class': 'LHEPartWlepPt',
-    'samples': 'Wjets'
+    'samples': [x for x in samples if 'Wjets' in x]
 }
 data = np.genfromtxt(os.getenv('CMSSW_BASE')+'/src/LatinoAnalysis/Gardener/python/data/ewk/kewk_w.dat', skip_header=2, skip_footer=7)
 
@@ -217,11 +217,11 @@ uncert_string=uncert_string[:-1]+")"
 
 aliases['EWK_W_correction'] = {
     'expr': weight_string,
-    'samples': 'Wjets'
+    'samples': [x for x in samples if 'Wjets' in x]
 }
 aliases['EWK_W_correction_uncert'] = {
     'expr': uncert_string,
-    'samples': 'Wjets'
+    'samples': [x for x in samples if 'Wjets' in x]
 }
 
 
@@ -240,7 +240,7 @@ aliases['gstarHigh'] = {
 
 aliases['GenLHE'] = {
 'expr': '(Sum$(LHEPart_pdgId == 21) == 0)',
-'samples': ['qqWWqq', 'WW2J']
+'samples': [skey for skey in samples if "QQHSBI" in skey or skey in ['qqWWqq', 'WW2J']]
 }
 
 
@@ -444,19 +444,23 @@ aliases['DY_LO_pTllrw'] = {
 
 mc_sbi = [skey for skey in samples if "SBI" in skey]
 aliases['SBI_isSMggh'] = {
-    'expr': '( abs(Xsec-1.091343e+00) < 1.0e-06 )',
+    'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/isSample.cc+' % os.getenv('CMSSW_BASE')],
+    'expr' : 'is_SMggh()',
     'samples': mc_sbi
 }
 aliases['SBI_isSMVBF'] = {
-    'expr': '( abs(Xsec-8.496211e-02) < 1.0e-08 )',
+    'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/isSample.cc+' % os.getenv('CMSSW_BASE')],
+    'expr' : 'is_SMVBF()',
     'samples': mc_sbi
 }
 aliases['SBI_isggWW'] = {
-    'expr': '( abs(Xsec-6.387000e-02) < 1.0e-08 )',
+    'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/isSample.cc+' % os.getenv('CMSSW_BASE')],
+    'expr' : 'is_ggWW()',
     'samples': mc_sbi
 }
 aliases['SBI_isqqWWqq'] = {
-    'expr': '( abs(Xsec-2.160000e+00) < 1.0e-06 )',
+    'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/isSample.cc+' % os.getenv('CMSSW_BASE')],
+    'expr' : 'is_qqWWqq()',
     'samples': mc_sbi
 }
 aliases['SBI_isHM'] = {

@@ -24,6 +24,24 @@ variables['events']  = {
     'cuts' : controlRegions
 }
 
+# variables['SBI_isSMggh']  = {
+#     'name' : 'SBI_isSMggh',
+#     'range': (2,0,2),
+#     'xaxis': 'SBI_isSMggh',
+#     'fold' : 3,
+# }
+# variables['SBI_isggWW']  = {
+#     'name' : 'SBI_isggWW',
+#     'range': (2,0,2),
+#     'xaxis': 'SBI_isggWW',
+#     'fold' : 3,
+# }
+# variables['SBI_isHM']  = {
+#     'name' : 'SBI_isHM',
+#     'range': (2,0,2),
+#     'xaxis': 'SBI_isHM',
+#     'fold' : 3,
+# }
 
 #####################################################
 ############  High Mass category ideas  #############
@@ -76,13 +94,13 @@ variables['lepton0_pt'] = {
     'xaxis': 'p_{T} 1st lep. [GeV]',
     'fold' : 3
 }
-variables['lepton0_eta'] = {
-    'name' : 'Lepton_eta[0]',
-    'range': (25, -2.5, 2.5),
-    'xaxis': '#eta 1st lep.',
-    # 'divideByBinWidth' : 1,
-    'fold' : 0
-}
+# variables['lepton0_eta'] = {
+#     'name' : 'Lepton_eta[0]',
+#     'range': (25, -2.5, 2.5),
+#     'xaxis': '#eta 1st lep.',
+#     # 'divideByBinWidth' : 1,
+#     'fold' : 0
+# }
 # variables['lepton0_phi'] = {
 #     'name' : 'Lepton_phi[0]',
 #     'range': (12, -3.142, 3.142),
@@ -121,12 +139,12 @@ variables['jet0_pt'] = {
    'xaxis': 'p_{T} 1st jet [GeV]',
    'fold' : 3
 }
-variables['jet0_eta'] = {
-    'name' : 'Alt$(CleanJet_eta[0], -99)',
-    'range': (30, -4.7, 4.7),
-    'xaxis': '#eta 1st jet',
-    'fold' : 3
-}
+# variables['jet0_eta'] = {
+#     'name' : 'Alt$(CleanJet_eta[0], -99)',
+#     'range': (30, -4.7, 4.7),
+#     'xaxis': '#eta 1st jet',
+#     'fold' : 3
+# }
 # variables['jet0_phi'] = {
 #     'name' : 'Alt$(CleanJet_phi[0], -99)',
 #     'range': (12, -3.142, 3.142),
@@ -187,7 +205,7 @@ variables['hmHiggsMass'] = {
     'name' : 'HM_CleanFatJetPassMBoosted_HlnFat_mass[0]',
     # 'range': ([0, 900, 1000, 1100, 1200, 1350, 1500, 1700, 2000, 3000, 5000],),
     # 'range': ([0, 900, 1000, 1100, 1200, 1325, 1580, 2050, 5000],),
-    'range': ([0, 900, 990, 1085, 1185, 1300, 1550, 2000, 5000],),
+    'range': ([0, 900, 990, 1085, 1185, 1300, 1500, 2000, 5000],),
     'xaxis': 'reconstr. H mass [GeV]',
     'cuts' : hmSR,
     'fold' : 3
@@ -212,7 +230,7 @@ variables['plot_boostHMass'] = {
 variables['resolvWhadMass'] = {
     'name' : 'HM_Whad_mass',
     'range': (25, 0, 250),
-    'xaxis': 'm_{jj} [GeV]',
+    'xaxis': 'm_{j#kern[0.1]{j}} [GeV]',
     'fold' : 3,
     'cuts': resolved,
 }
@@ -224,12 +242,12 @@ variables['boostWhadMass'] = {
     'cuts': boosted,
 }
 
-variables['WlepMT'] = {
-    'name': 'WlepMT[0]',
-    'range': (15, 0.0, 150.0),
-    'xaxis': 'M_T^{l#nu} [GeV]',
-    'fold': 3
-}
+# variables['WlepMT'] = {
+#     'name': 'WlepMT[0]',
+#     'range': (15, 0.0, 150.0),
+#     'xaxis': 'M_{T}^{l#nu} [GeV]',
+#     'fold': 3
+# }
 
 # variables['resolv_btagPt'] = {
 #     'name': 'btagJetPt_resolv[0]',
