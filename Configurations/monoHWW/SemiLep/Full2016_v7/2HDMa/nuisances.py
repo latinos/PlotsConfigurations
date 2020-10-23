@@ -242,9 +242,13 @@ nuisances['PS']  = {
 #FIXME: correct?
 apply_on = {
     'top': [
-        '(topGenPt * antitopGenPt <= 0.) * 1.0816 + (topGenPt * antitopGenPt > 0.)',
-        '(topGenPt * antitopGenPt <= 0.) * 0.9184 + (topGenPt * antitopGenPt > 0.)'
+        '(topGenPtOTF * antitopGenPtOTF <= 0.) * 1.0816 + (topGenPtOTF * antitopGenPtOTF > 0.)',
+        '(topGenPtOTF * antitopGenPtOTF <= 0.) * 0.9184 + (topGenPtOTF * antitopGenPtOTF > 0.)'
     ]
+    #'top': [
+    #    '(topGenPt * antitopGenPt <= 0.) * 1.0816 + (topGenPt * antitopGenPt > 0.)',
+    #    '(topGenPt * antitopGenPt <= 0.) * 0.9184 + (topGenPt * antitopGenPt > 0.)'
+    #]
 }
 
 nuisances['singleTopToTTbar'] = {
@@ -609,16 +613,16 @@ nuisances['QCDscale_gg_ACCEPT'] = {
 }
 
 
-## ewk nlo W corr uncertainty
-nuisances['EWKnloW_Wjets'] = {
-    'name': 'EWKnloW_Wjets',
-    'kind'  : 'weight',
-    'type'  : 'shape',
-    'samples': {
-        'Wjets': ['1./ewknloW', 'ewknloW'],
-        #'Wjets': ['1./EWKnloW[0]', 'EWKnloW[0]'],
-    }
-}
+### ewk nlo W corr uncertainty
+#nuisances['EWKnloW_Wjets'] = {
+#    'name': 'EWKnloW_Wjets',
+#    'kind'  : 'weight',
+#    'type'  : 'shape',
+#    'samples': {
+#        'Wjets': ['1./ewknloW', 'ewknloW'],
+#        #'Wjets': ['1./EWKnloW[0]', 'EWKnloW[0]'],
+#    }
+#}
 
 
 
@@ -681,7 +685,8 @@ for syst in ['El', 'statEl', 'Mu', 'statMu']:
         'kind': 'weight',
         'type': 'shape',
         'samples': {
-            'FAKE': ['FW_mu20_el35_'+syst+'Up[0]', 'FW_mu20_el35_'+syst+'Down[0]'],
+            #'FAKE': ['FW_mu20_el35_'+syst+'Up[0]', 'FW_mu20_el35_'+syst+'Down[0]'],
+            'FAKE': ['FW_mu35_el35_'+syst+'Up[0]', 'FW_mu35_el35_'+syst+'Down[0]'],
         },
     }
 
