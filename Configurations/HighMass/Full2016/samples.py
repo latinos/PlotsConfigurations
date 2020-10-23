@@ -4,7 +4,7 @@ import string
 from LatinoAnalysis.Tools.commonTools import *
 
 for tag in ['em', 'ee', 'mm']:
-  if tag in opt.tag: EMorEEorMM = tag
+  if tag in opt.pycfg: EMorEEorMM = tag
 
 samples={}
 
@@ -441,11 +441,9 @@ INToverSBI = False
 
 for mass in massggh:
 
-  #if mass == '115': # for nAODv5
-  #  SMxsec = 0.4842
-  #else:
-  SMxsec = HiggsXS.GetHiggsXS4Sample('YR4','13TeV','GluGluHToWWTo2L2Nu_M'+mass)['xs']
-  noSMxsec = '(1.0/'+str(SMxsec)+')'
+  #SMxsec = HiggsXS.GetHiggsXS4Sample('YR4','13TeV','GluGluHToWWTo2L2Nu_M'+mass)['xs']
+  #noSMxsec = '(1.0/'+str(SMxsec)+')'
+  noSMxsec = '(1.0/Xsec)'
 
   # Special names in 2016 for mass >= 300
   jhugen = ''
@@ -499,23 +497,21 @@ for mass in massggh:
     addSampleWeight(samples, 'GGHSBI_'+mass+model_name, 'GluGluWWTo2L2Nu_MCFM', '1.53/1.4'+embed_tautauveto)
     addSampleWeight(samples, 'GGHSBI_'+mass+model_name, 'GluGluHToWWTo2L2Nu_alternative_M125', 'MINLO')
 
-  if mass in ['4000', '5000']: # Just to be sure, recalculate baseW with new cross sections
-    newbasew = getBaseWnAOD(directoryHM, 'Summer16_102X_nAODv6_Full2016v6', ['GluGluHToWWTo2L2Nu'+jhugen+'_M'+mass])
-    addSampleWeight(samples, 'GGH_'+mass+model_name, 'GluGluHToWWTo2L2Nu'+jhugen+'_M'+mass, newbasew+'/baseW')
-    if INToverSBI:
-      addSampleWeight(samples, 'GGHINT_'+mass+model_name, 'GluGluHToWWTo2L2Nu'+jhugen+'_M'+mass, newbasew+'/baseW')
-    else:
-      addSampleWeight(samples, 'GGHSBI_'+mass+model_name, 'GluGluHToWWTo2L2Nu'+jhugen+'_M'+mass, newbasew+'/baseW')
+  #if mass in ['4000', '5000']: # Just to be sure, recalculate baseW with new cross sections
+  #  newbasew = getBaseWnAOD(directoryHM, 'Summer16_102X_nAODv6_Full2016v6', ['GluGluHToWWTo2L2Nu'+jhugen+'_M'+mass])
+  #  addSampleWeight(samples, 'GGH_'+mass+model_name, 'GluGluHToWWTo2L2Nu'+jhugen+'_M'+mass, newbasew+'/baseW')
+  #  if INToverSBI:
+  #    addSampleWeight(samples, 'GGHINT_'+mass+model_name, 'GluGluHToWWTo2L2Nu'+jhugen+'_M'+mass, newbasew+'/baseW')
+  #  else:
+  #    addSampleWeight(samples, 'GGHSBI_'+mass+model_name, 'GluGluHToWWTo2L2Nu'+jhugen+'_M'+mass, newbasew+'/baseW')
 
 ############ HIGS MASS VBF H->WW ############
 
 for mass in massvbf:
 
-  #if mass == '115': # for nAODv5
-  #  SMxsec = 0.0388
-  #else:
-  SMxsec = HiggsXS.GetHiggsXS4Sample('YR4','13TeV','VBFHToWWTo2L2Nu_M'+mass)['xs']
-  noSMxsec = '(1.0/'+str(SMxsec)+')'
+  #SMxsec = HiggsXS.GetHiggsXS4Sample('YR4','13TeV','VBFHToWWTo2L2Nu_M'+mass)['xs']
+  #noSMxsec = '(1.0/'+str(SMxsec)+')'
+  noSMxsec = '(1.0/Xsec)'
 
   # Special names in 2016 for mass >= 300
   jhugen = ''
@@ -569,13 +565,13 @@ for mass in massvbf:
     addSampleWeight(samples, 'QQHSBI_'+mass+model_name, 'VBFHToWWTo2L2Nu'+jhugen+'_M'+mass, noSMxsec+'*'+'('+model+' + '+model_I+'*(abs('+model_I+')<20))'+'*'+str(SFtemp))
     addSampleWeight(samples, 'QQHSBI_'+mass+model_name, 'WpWmJJ_QCD_noTop', '(mjjGen_OTF>100)*(GenLHE)'+embed_tautauveto)
 
-  if mass in ['4000', '5000']: # Just to be sure, recalculate baseW with new cross sections
-    newbasew = getBaseWnAOD(directoryHM, 'Summer16_102X_nAODv6_Full2016v6', ['VBFHToWWTo2L2Nu'+jhugen+'_M'+mass])
-    addSampleWeight(samples, 'QQH_'+mass+model_name, 'VBFHToWWTo2L2Nu'+jhugen+'_M'+mass, newbasew+'/baseW')
-    if INToverSBI:
-      addSampleWeight(samples, 'QQHINT_'+mass+model_name, 'VBFHToWWTo2L2Nu'+jhugen+'_M'+mass, newbasew+'/baseW')
-    else:
-      addSampleWeight(samples, 'QQHSBI_'+mass+model_name, 'VBFHToWWTo2L2Nu'+jhugen+'_M'+mass, newbasew+'/baseW')
+  #if mass in ['4000', '5000']: # Just to be sure, recalculate baseW with new cross sections
+  #  newbasew = getBaseWnAOD(directoryHM, 'Summer16_102X_nAODv6_Full2016v6', ['VBFHToWWTo2L2Nu'+jhugen+'_M'+mass])
+  #  addSampleWeight(samples, 'QQH_'+mass+model_name, 'VBFHToWWTo2L2Nu'+jhugen+'_M'+mass, newbasew+'/baseW')
+  #  if INToverSBI:
+  #    addSampleWeight(samples, 'QQHINT_'+mass+model_name, 'VBFHToWWTo2L2Nu'+jhugen+'_M'+mass, newbasew+'/baseW')
+  #  else:
+  #    addSampleWeight(samples, 'QQHSBI_'+mass+model_name, 'VBFHToWWTo2L2Nu'+jhugen+'_M'+mass, newbasew+'/baseW')
 
 
 ############ ggH H->WW ############

@@ -4,7 +4,7 @@ import string
 from LatinoAnalysis.Tools.commonTools import *
 
 for tag in ['em', 'ee', 'mm']:
-  if tag in opt.tag: EMorEEorMM = tag
+  if tag in opt.pycfg: EMorEEorMM = tag
 
 samples={}
 
@@ -420,11 +420,9 @@ INToverSBI = False
 
 for mass in massggh:
 
-  #if mass == '115': # for nAODv5
-  #  SMxsec = 0.4842
-  #else:
-  SMxsec = HiggsXS.GetHiggsXS4Sample('YR4','13TeV','GluGluHToWWTo2L2Nu_M'+mass)['xs']
-  noSMxsec = '(1.0/'+str(SMxsec)+')'
+  #SMxsec = HiggsXS.GetHiggsXS4Sample('YR4','13TeV','GluGluHToWWTo2L2Nu_M'+mass)['xs']
+  #noSMxsec = '(1.0/'+str(SMxsec)+')'
+  noSMxsec = '(1.0/Xsec)'
 
   # Xsec*BR is applied in later step, so remove "SM"-Xsec*BR 
   samples['GGH_'+mass+model_name]  = {  'name'   :   getSampleFiles(directoryHM,'GluGluHToWWTo2L2Nu_M'+mass,True,'nanoLatino_'),
@@ -473,23 +471,21 @@ for mass in massggh:
     addSampleWeight(samples, 'GGHSBI_'+mass+model_name, 'GluGluToWWToTNTN', '1.53/1.4'+embed_tautauveto)
     addSampleWeight(samples, 'GGHSBI_'+mass+model_name, 'GluGluHToWWTo2L2NuPowheg_M125', 'MINLO')
 
-  if mass in ['4000', '5000']: # Just to be sure, recalculate baseW with new cross sections
-    newbasew = getBaseWnAOD(directory, 'Autumn18_102X_nAODv6_Full2018v6', ['GluGluHToWWTo2L2Nu_M'+mass])
-    addSampleWeight(samples, 'GGH_'+mass+model_name, 'GluGluHToWWTo2L2Nu_M'+mass, newbasew+'/baseW')
-    if INToverSBI:
-      addSampleWeight(samples, 'GGHINT_'+mass+model_name, 'GluGluHToWWTo2L2Nu_M'+mass, newbasew+'/baseW')
-    else:
-      addSampleWeight(samples, 'GGHSBI_'+mass+model_name, 'GluGluHToWWTo2L2Nu_M'+mass, newbasew+'/baseW')
+  #if mass in ['4000', '5000']: # Just to be sure, recalculate baseW with new cross sections
+  #  newbasew = getBaseWnAOD(directory, 'Autumn18_102X_nAODv6_Full2018v6', ['GluGluHToWWTo2L2Nu_M'+mass])
+  #  addSampleWeight(samples, 'GGH_'+mass+model_name, 'GluGluHToWWTo2L2Nu_M'+mass, newbasew+'/baseW')
+  #  if INToverSBI:
+  #    addSampleWeight(samples, 'GGHINT_'+mass+model_name, 'GluGluHToWWTo2L2Nu_M'+mass, newbasew+'/baseW')
+  #  else:
+  #    addSampleWeight(samples, 'GGHSBI_'+mass+model_name, 'GluGluHToWWTo2L2Nu_M'+mass, newbasew+'/baseW')
 
 ############ HIGS MASS VBF H->WW ############
 
 for mass in massvbf:
 
-  #if mass == '115': # for nAODv5
-  #  SMxsec = 0.0388
-  #else:
-  SMxsec = HiggsXS.GetHiggsXS4Sample('YR4','13TeV','VBFHToWWTo2L2Nu_M'+mass)['xs']
-  noSMxsec = '(1.0/'+str(SMxsec)+')'
+  #SMxsec = HiggsXS.GetHiggsXS4Sample('YR4','13TeV','VBFHToWWTo2L2Nu_M'+mass)['xs']
+  #noSMxsec = '(1.0/'+str(SMxsec)+')'
+  noSMxsec = '(1.0/Xsec)'
 
   # Xsec*BR is applied in later step, so remove "SM"-Xsec*BR 
   samples['QQH_'+mass+model_name]  = {  'name'   :   getSampleFiles(directoryHM,'VBFHToWWTo2L2Nu_M'+mass,True,'nanoLatino_'),
@@ -510,8 +506,8 @@ for mass in massvbf:
   else:
     samples['QQHSBI_'+mass+model_name]  = {  'name'   :   getSampleFiles(directoryHM,'VBFHToWWTo2L2Nu_M'+mass,True,'nanoLatino_')
                                                       + getSampleFiles(directory,'WpWmJJ_QCD_noTop',False,'nanoLatino_')
-                                                      + getSampleFiles(directory,'WpWmJJ_QCD_noTop_ext1',False,'nanoLatino_'),
-                                                      #+ getSampleFiles(directory,'VBFHToWWTo2L2Nu_M125',False,'nanoLatino_'),
+                                                      + getSampleFiles(directory,'WpWmJJ_QCD_noTop_ext1',False,'nanoLatino_')
+                                                      + getSampleFiles(directory,'VBFHToWWTo2L2Nu_M125',False,'nanoLatino_'),
                         'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
                         'FilesPerJob' : 10,
                         'EventsPerJob' : 70000,
@@ -520,21 +516,23 @@ for mass in massvbf:
                      }
 
     CombineBaseW(samples, 'QQHSBI_'+mass+model_name, ['WpWmJJ_QCD_noTop', 'WpWmJJ_QCD_noTop_ext1'])
-    if mass == "125":
-      addSampleWeight(samples, 'QQHSBI_'+mass+model_name, 'VBFHToWWTo2L2Nu_M'+mass, '( '+noSMxsec+'*'+'('+model+' + '+model_I+'*(abs('+model_I+')<20)) ) + 1')
-    else:
-      samples['QQHSBI_'+mass+model_name]['name'] += getSampleFiles(directory,'VBFHToWWTo2L2Nu_M125',False,'nanoLatino_')
-      addSampleWeight(samples, 'QQHSBI_'+mass+model_name, 'VBFHToWWTo2L2Nu_M'+mass, noSMxsec+'*'+'('+model+' + '+model_I+'*(abs('+model_I+')<20))')
+
+    # SM sample same as HM at 125 GeV -> Hack needed: Check that HM sample comes from 'directoryHM'. Requires hardcoded local change to "addSampleWeight" that takes directory of sample as additional argument:
+    #addSampleWeight(samples, 'QQHSBI_'+mass+model_name, 'VBFHToWWTo2L2Nu_M'+mass, noSMxsec+'*'+'('+model+' + '+model_I+'*(abs('+model_I+')<20))', directoryHM)
+
+    # If this is not done, use the following line instead; the workaround is to simply not consider the "high mass signal mass" of 125 GeV -> Adjust in massesAndModels.py
+    addSampleWeight(samples, 'QQHSBI_'+mass+model_name, 'VBFHToWWTo2L2Nu_M'+mass, noSMxsec+'*'+'('+model+' + '+model_I+'*(abs('+model_I+')<20))')
+
     addSampleWeight(samples, 'QQHSBI_'+mass+model_name, 'WpWmJJ_QCD_noTop', '(mjjGen_OTF>100)*(GenLHE)'+embed_tautauveto)
     addSampleWeight(samples, 'QQHSBI_'+mass+model_name, 'WpWmJJ_QCD_noTop_ext1', '(mjjGen_OTF>100)*(GenLHE)'+embed_tautauveto)
 
-  if mass in ['4000', '5000']: # Just to be sure, recalculate baseW with new cross sections
-    newbasew = getBaseWnAOD(directory, 'Autumn18_102X_nAODv6_Full2018v6', ['VBFHToWWTo2L2Nu_M'+mass])
-    addSampleWeight(samples, 'QQH_'+mass+model_name, 'VBFHToWWTo2L2Nu_M'+mass, newbasew+'/baseW')
-    if INToverSBI:
-      addSampleWeight(samples, 'QQHINT_'+mass+model_name, 'VBFHToWWTo2L2Nu_M'+mass, newbasew+'/baseW')
-    else:
-      addSampleWeight(samples, 'QQHSBI_'+mass+model_name, 'VBFHToWWTo2L2Nu_M'+mass, newbasew+'/baseW')
+  #if mass in ['4000', '5000']: # Just to be sure, recalculate baseW with new cross sections
+  #  newbasew = getBaseWnAOD(directory, 'Autumn18_102X_nAODv6_Full2018v6', ['VBFHToWWTo2L2Nu_M'+mass])
+  #  addSampleWeight(samples, 'QQH_'+mass+model_name, 'VBFHToWWTo2L2Nu_M'+mass, newbasew+'/baseW')
+  #  if INToverSBI:
+  #    addSampleWeight(samples, 'QQHINT_'+mass+model_name, 'VBFHToWWTo2L2Nu_M'+mass, newbasew+'/baseW')
+  #  else:
+  #    addSampleWeight(samples, 'QQHSBI_'+mass+model_name, 'VBFHToWWTo2L2Nu_M'+mass, newbasew+'/baseW')
 
 
 ############ ggH H->WW ############

@@ -421,7 +421,7 @@ nuisances['PS_ISR']  = {
 }
 # PS Weight exist only for WW and ggWW (also ggH400,750; VBF250,400,750), and also some Top samples but no all
 for alpha in ["WW", "ggWW"]:
-  nuisances['PS_ISR']['samples'].update({alpha: ['PSWeight[2]', 'PSWeight[0]']})
+  nuisances['PS_ISR']['samples'].update({alpha: ['Alt$(PSWeight[2], 1.0)', 'Alt$(PSWeight[0], 1.0)']}) # Alt$ needed to check for presence of weight later in SBI
 for m in massggh:
   PSup = PSunc['GGF'+m]['ISRup']
   PSdn = PSunc['GGF'+m]['ISRdn']
@@ -465,7 +465,7 @@ nuisances['PS_FSR']  = {
     },
 }
 for alpha in ["WW", "ggWW"]:
-  nuisances['PS_FSR']['samples'].update({alpha: ['PSWeight[3]', 'PSWeight[1]']})
+  nuisances['PS_FSR']['samples'].update({alpha: ['Alt$(PSWeight[3], 1.0)', 'Alt$(PSWeight[1], 1.0)']}) # Alt$ needed to check for presence of weight later in SBI
 for m in massggh:
   PSup = PSunc['GGF'+m]['FSRup']
   PSdn = PSunc['GGF'+m]['FSRdn']
@@ -750,13 +750,20 @@ nuisances['QCDscale_VV']  = {
                    }
 }
 
+topvars = variations
+# Normalize top QCD scale
+if True:
+  topnorms = {"0j": [1.070761703863844, 1.0721982065714528, 1.0008829637654995, 1.002515087891841, 0.9270080603942781, 0.9270717138194097], "1j": [1.0846741444664376, 1.0806432359691847, 1.0079221754798773, 0.9960603215169435, 0.9198946095840594, 0.9129672863490275], "2j": [1.1209941307567444, 1.103222357530683, 1.0224795274718796, 0.9829374807746288, 0.9038880068177306, 0.8840173265167147]}
+  for i,alpha in enumerate(topvars):
+    topvars[i] = alpha+"*((Alt$(CleanJet_pt[0], 0) < 30.)/"+str(topnorms["0j"][i])+" + (Alt$(CleanJet_pt[0], 0) >= 30.)*(Alt$(CleanJet_pt[1], 0) < 30.)/"+str(topnorms["1j"][i])+" + (Alt$(CleanJet_pt[1], 0) >= 30.)/"+str(topnorms["2j"][i])+")"
+
 nuisances['QCDscale_ttbar']  = {
                'name'  : 'QCDscale_ttbar', 
                 'skipCMS' : 1,
                 'kind'  : 'weight_envelope',
                 'type'  : 'shape',
                 'samples'  : {
-                   'top' : variations,
+                   'top' : topvars,
                    }
 }
 
