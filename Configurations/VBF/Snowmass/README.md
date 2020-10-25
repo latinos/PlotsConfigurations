@@ -16,6 +16,12 @@ Resubmit failed jobs:
     for i in *jid; do condor_submit ${i/jid/jds}; done
     cd -
 
+Or, if they failed because the wall clock time have been exceeded, resubmit them on a longer-time queue:
+
+    cd $HOME/scripts/jobs/mkShapes__vbf_snowmass/
+    for i in *jid; do sed -i "s/longlunch/workday/g" ${i/jid/jds}; condor_submit ${i/jid/jds}; done
+    cd -
+
 ### Merge rootfiles using hadd
 
     mkShapesMulti.py --pycfg=configuration.py --doHadd=1 --batchSplit=Samples,Files --doNotCleanup --nThreads=8
@@ -31,3 +37,7 @@ Repeat, but without plotting data in the signal region (blind policy):
     mkPlot.py --pycfg=configuration_blind.py --onlyCut=hww2l2v_13TeV_of2j_DNN_top --inputFile=rootFile/plots_vbf_snowmass.root --fileFormats=png --onlyPlot=cratio
     mkPlot.py --pycfg=configuration_blind.py --onlyCut=hww2l2v_13TeV_of2j_DNN_ww  --inputFile=rootFile/plots_vbf_snowmass.root --fileFormats=png --onlyPlot=cratio
     mkPlot.py --pycfg=configuration_blind.py --onlyCut=hww2l2v_13TeV_of2j_DNN_ggh --inputFile=rootFile/plots_vbf_snowmass.root --fileFormats=png --onlyPlot=cratio
+
+### Create datacards
+
+    mkDatacards.py --pycfg=configuration.py --inputFile=rootFile/plots_vbf_snowmass.root    
