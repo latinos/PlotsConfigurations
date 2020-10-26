@@ -40,7 +40,6 @@ variables['classww'] = {
 variables['classggh'] = { 
      'name': 'gghdnn',
      'range' : ([0.25, 0.4, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 1.0],),
-     #'range' : (15,0.25,1.),
      'xaxis' : 'DNN discriminant ggh',
      'fold'  : 3,
 }
@@ -49,20 +48,103 @@ variables['classggh'] = {
 variables['Ctot'] = {
      'name': 'log((abs(2*Lepton_eta[0]-CleanJet_eta[0]-CleanJet_eta[1])+abs(2*Lepton_eta[1]-CleanJet_eta[0]-CleanJet_eta[1]))/detajj)',
      'range' : (20, -4, 6),
-     #'range' : (15,0.25,1.),
      'xaxis' : 'Ctot',
      'fold'  : 3,
 }
 
+
 variables['mlj12'] = {
      'name': 'mlj(Lepton_pt[0], Lepton_eta[0], Lepton_phi[0], CleanJet_pt[0], CleanJet_eta[0], CleanJet_phi[0])',
      'range' : (28, 0, 1400),
-     #'range' : (15,0.25,1.),
      'xaxis' : 'mlj12',
      'linesToAdd': ['.L $CMSSW_BASE/src/PlotsConfigurations/Configurations/VBF/Snowmass/extended/evaluate_multiclass.cc+'],
      'fold'  : 3,
 }
 
+
+variables['mll_optim']  = { 
+    'name': 'mll',
+    'range' : ([12, 30, 50, 70, 90, 110, 150, 200],),
+    'xaxis' : 'mll [GeV]',
+    'fold' : 3,
+    'doWeight' : 1,
+    'binX'     : 1,
+    'binY'     : 7
+}
+
+
+variables['mjj']  = {  
+    'name': 'mjj',
+    'range': (20,200,1000),  #for 500 < mjj < 1000
+    #'range': (20,0,200),  #for 500 < mjj < 1000
+    # 'range': (15,1000,2000),  #for  mjj > 1000
+    'xaxis': 'mjj [GeV]',
+    'fold': 0
+}
+
+
+variables['detajj']  = {  
+    'name': 'detajj',
+    'range': (7,0.0,3.5),
+    'xaxis': 'detajj',
+    'fold': 3
+}
+
+
+variables['dphijj']  = {  
+    'name': 'dphijj',
+    'range': (8,0.0,3.14),
+    'xaxis': 'dphijj',
+    'fold': 3
+}
+
+
+variables['ptll']  = {  
+    'name': 'ptll',
+    'range' : (20,30,200),
+    'xaxis' : 'ptll [GeV]',
+    'fold' : 3
+}
+
+
+variables['pt1']  = {   
+    'name': 'Lepton_pt[0]',     
+    'range' : (40,0,100),   
+    'xaxis' : 'p_{T} 1st lep',
+    'fold'  : 3                         
+}
+
+
+variables['pt2']  = { 
+    'name': 'Lepton_pt[1]',     
+    'range' : (40,0,100),   
+    'xaxis' : 'p_{T} 2nd lep',
+    'fold'  : 3                         
+}
+
+
+variables['drll']  = { 
+    'name': 'drll',     
+    'range' : (40,0,3.15),   
+    'xaxis' : '#Delta R_{ll}',
+    'fold'  : 3                         
+}
+
+
+variables['jetpt1']  = {   
+    'name': 'CleanJet_pt[0]',     
+    'range' : (10,30,200),   
+    'xaxis' : 'p_{T} 1st jet',
+    'fold'  : 0                        
+}
+
+
+variables['jetpt2']  = { 
+    'name': 'CleanJet_pt[1]',     
+    'range' : (10,30,200),   
+    'xaxis' : 'p_{T} 2nd jet',
+    'fold'  : 0                        
+}
 
 # variables['class0'] = {
 #      'name': 'evaluate_multiclass(Entry$,0)',
@@ -94,75 +176,3 @@ variables['mlj12'] = {
 #      'linesToAdd' : ['.L /afs/cern.ch/work/r/rceccare/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/VBF/Keras_2017_v6/evaluate_multiclass.C+']
 # }
 #
-variables['mll_optim']  = { 'name': 'mll',            #   variable name
-                           'range' : ([12, 30, 50, 70, 90, 110, 150, 200],),    #   variable range
-                           'xaxis' : 'mll [GeV]',  #   x axis name
-                           'fold' : 3,
-                           'doWeight' : 1,
-                           'binX'     : 1,
-                           'binY'     : 7
-                         }
-
-variables['mjj']  = {  'name': 'mjj',
-                      'range': (20,200,1000),  #for 500 < mjj < 1000
-                      #'range': (20,0,200),  #for 500 < mjj < 1000
-                    # 'range': (15,1000,2000),  #for  mjj > 1000
-                      'xaxis': 'mjj [GeV]',
-                      'fold': 0
-                      }
-
-
-
-variables['detajj']  = {  'name': 'detajj',
-                      'range': (7,0.0,3.5),
-                    # 'range': (10,3.5,8.5),
-                      'xaxis': 'detajj',
-                      'fold': 3
-                      }
-
-variables['dphijj']  = {  'name': 'dphijj',
-                          'range': (8,0.0,6.28),
-                    # 'range': (10,3.5,8.5),
-                      'xaxis': 'dphijj',
-                      'fold': 3
-                      }
-
-variables['ptll']  = {  'name': 'ptll',            #   variable name
-                       'range' : (20,30,200),    #   variable range
-                       'xaxis' : 'ptll [GeV]',  #   x axis name
-                       'fold' : 3
-                       }
-
-variables['pt1']  = {   'name': 'Lepton_pt[0]',     
-                       'range' : (40,0,100),   
-                       'xaxis' : 'p_{T} 1st lep',
-                       'fold'  : 3                         
-                       }
-
-variables['pt2']  = {   'name': 'Lepton_pt[1]',     
-                       'range' : (40,0,100),   
-                       'xaxis' : 'p_{T} 2nd lep',
-                       'fold'  : 3                         
-                       }
-
-
-variables['drll']  = {   'name': 'drll',     
-                       'range' : (40,0,3.15),   
-                       'xaxis' : '#Delta R_{ll}',
-                       'fold'  : 3                         
-                       }
-
-
-variables['jetpt1']  = {   'name': 'CleanJet_pt[0]',     
-                       #'range' : (40,0,100),   
-                       'range' : (10,30,200),   
-                       'xaxis' : 'p_{T} 1st jet',
-                       'fold'  : 0                        
-                       }
-
-variables['jetpt2']  = {   'name': 'CleanJet_pt[1]',     
-                       #'range' : (40,0,100),   
-                       'range' : (10,30,200),   
-                       'xaxis' : 'p_{T} 2nd jet',
-                       'fold'  : 0                        
-                       }
