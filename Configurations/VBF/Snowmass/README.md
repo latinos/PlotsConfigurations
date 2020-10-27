@@ -52,13 +52,19 @@ Repeat, but without plotting data in the signal region (blind policy):
 
 ### Make impact plots
 
+Create impact json file for all gaussian nuisances:
+
     combineTool.py -M Impacts -d Combination/class0_05_10_ext_try_multicut.root -m 125 --doInitialFit -t -1 --setParameters r_vbf=1,r_ggH=1 --redefineSignalPOIs=r_vbf
     combineTool.py -M Impacts -d Combination/class0_05_10_ext_try_multicut.root -m 125 -t -1 --doFits --setParameters r_vbf=1,r_ggH=1 --redefineSignalPOIs=r_vbf --job-mode=condor
     combineTool.py -M Impacts -d Combination/class0_05_10_ext_try_multicut.root -m 125 -o Combination/impacts_VBF.json -t -1 --setParameters r_vbf=1,r_ggH=1 --redefineSignalPOIs=r_vbf
 
+Create impact json file for rateParam nuisances (WW, Top and DY normalization parameters):
+
     combineTool.py -M Impacts -d Combination/class0_05_10_ext_try_multicut.root -m 125 --doInitialFit -t -1 --named CMS_hww_WWnorm2j,CMS_hww_Topnorm2j,CMS_hww_DYttnorm2j --setParameterRanges CMS_hww_WWnorm2j=-3,4:CMS_hww_Topnorm2j=-3,4:CMS_hww_DYttnorm2j=-3,4
     combineTool.py -M Impacts -d Combination/class0_05_10_ext_try_multicut.root -m 125 -t -1 --doFits --named CMS_hww_WWnorm2j,CMS_hww_Topnorm2j,CMS_hww_DYttnorm2j --setParameterRanges CMS_hww_WWnorm2j=-3,4:CMS_hww_Topnorm2j=-3,4:CMS_hww_DYttnorm2j=-3,4 --job-mode=interactive --parallel=3
     combineTool.py -M Impacts -d Combination/class0_05_10_ext_try_multicut.root -m 125 -o Combination/impacts_VBF_rateParam.json -t -1 --named CMS_hww_WWnorm2j,CMS_hww_Topnorm2j,CMS_hww_DYttnorm2j --setParameterRanges CMS_hww_WWnorm2j=-3,4:CMS_hww_Topnorm2j=-3,4:CMS_hww_DYttnorm2j=-3,4
+
+Merge the two json files:
 
     cat Combination/impacts_VBF.json Combination/impacts_VBF_rateParam.json > Combination/impacts_VBF_total.json
 
