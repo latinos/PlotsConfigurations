@@ -4,13 +4,11 @@ variables['events']  = {   'name': '1',
                            'fold' : 3
                        }
 
-"""
 variables['nvtx']  = {   'name': '1',
                          'range' : (30,0,50),
                          'xaxis' : 'events',
                          'fold' : 3
                      }
-"""
 
 variables['pt1']  = {   'name': 'Lepton_pt[0]',     
                         'range' : (40,0,600),   
@@ -36,7 +34,6 @@ variables['eta2']  = {  'name': 'Lepton_eta[1]',
                         'fold'  : 3                         
                         }
 
-"""
 variables['deltaeta']  = {  'name': 'Lepton_eta[0] - Lepton_eta[1]',
                             'range' : (40,-4.5,4.5),
                             'xaxis' : '#Delta #eta',
@@ -54,7 +51,6 @@ variables['phi2']  = {  'name': 'Lepton_phi[1]',
                         'xaxis' : '#phi 2nd lep',
                         'fold'  : 3
                         }
-"""
 
 variables['dphill']  = {   'name': 'abs(dphill)',
                            'range' : (40,0,3.14),
@@ -81,19 +77,19 @@ variables['nbjet']  = {    'name': 'nbJet',
                        }
                 
 variables['mblt']  = {   'name': 'mblt',
-                         'range' : (40,0,1000),
+                         'range' : (40,0,800),
                          'xaxis' : 'm_{bl}^{t} [GeV]',
                          'fold' : 3
                      } 
 
 variables['jetpt1']  = {    'name': '(Sum$(CleanJet_pt>30)>0)*(Alt$(CleanJet_pt[0], 0)) - (Sum$(CleanJet_pt>30)==0)*99',     
-                            'range' : (40,0,600),   
+                            'range' : (40,0,500),   
                             'xaxis' : 'p_{T} 1st jet',
                             'fold' : 3
                         }
 
 variables['jetpt2']  = {    'name': '(Sum$(CleanJet_pt>30)>1)*(Alt$(CleanJet_pt[1], 0)) - (Sum$(CleanJet_pt>30)<=1)*99',     
-                            'range' : (40,0,600),   
+                            'range' : (40,0,500),   
                             'xaxis' : 'p_{T} 2nd jet',
                             'fold' : 3
                         }
@@ -112,16 +108,10 @@ variables['jeteta2']  = {  'name': '(Sum$(CleanJet_pt>30)>1)*(Alt$(CleanJet_eta[
 
 #Discriminating variables
 variables['mll']  = {   'name': 'mll',
-                        'range' : (40,0,1000),
+                        'range' : (40,0,800),
                         'xaxis' : 'm_{ll} [GeV]',
                         'fold' : 3
                     }
-
-variables['mllpeak']  = {   'name': 'mll',
-                            'range' : (20,70,120),
-                            'xaxis' : 'm_{ll} [GeV]',
-                            'fold' : 3
-                        }
 
 variables['puppimet']  = {   'name': 'PuppiMET_pt',
                              'range' : (40,0,800),
@@ -148,7 +138,7 @@ variables['pfmet_extended']  = {   'name': 'MET_pt',
                       }
 
 variables['MET_significance']  = {   'name': 'MET_significance',
-                                     'range' : (40,0,500),
+                                     'range' : (40,0,300),
                                      'xaxis' : 'MET significance',
                                      'fold'  : 3
                                  }
@@ -160,7 +150,7 @@ variables['mt2ll']  = {   'name': 'mt2ll',
                       }
 
 variables['mt2bl']  = {   'name': 'mt2bl',
-                          'range' : (40,0,1000),
+                          'range' : (40,0,800),
                           'xaxis' : 'm_{T2}^{bl} [GeV]',
                           'fold'  : 3
                       }
@@ -178,7 +168,7 @@ variables['cosphill']  = {   'name': 'cosphill',
                         }
 
 variables['massT']  = {   'name': 'massT',
-                          'range' : (40,0,2000),
+                          'range' : (40,0,1800),
                           'xaxis' : 'massT [GeV]',
                           'fold'  : 3
                       }
@@ -196,13 +186,13 @@ variables['dark_pt']  = {   'name': 'dark_pt',
                         }
 
 variables['overlapping_factor']  = {   'name': 'overlapping_factor',
-                                       'range' : (40,0,25),
+                                       'range' : (40,0,10),
                                        'xaxis' : 'Overlapping factor R',
                                        'fold'  : 3
                                    }
 
 variables['reco_weight']  = {   'name': 'reco_weight',
-                                'range' : (50,-1,7),
+                                'range' : (40,-1,7),
                                 'xaxis' : 'log(#omega)',
                                 'fold'  : 3
                             }
@@ -221,7 +211,62 @@ variables['r2l'] = {   'name': 'PuppiMET_pt / (Lepton_pt[0] + Lepton_pt[1])',
                    }
 
 variables['r2l4j'] = {   'name': 'PuppiMET_pt / (Lepton_pt[0] + Lepton_pt[1] + Alt$(CleanJet_pt[0], 0) + Alt$(CleanJet_pt[1], 0) + Alt$(CleanJet_pt[2], 0) + Alt$(CleanJet_pt[3], 0))',
-                         'range': (40,0,2),
+                         'range': (40,0,1.5),
                        'xaxis': 'r2l4j',
                        'fold': 3
 }
+
+#DNN/BDT variables
+
+trainings = [{"tag": "scalar_LO_Mchi_1_Mphi_100_firstv7_step0", "shortName": "scalar100_set0"},
+             {"tag": "scalar_LO_Mchi_1_Mphi_100_firstv7_step8", "shortName": "scalar100_set8"}]
+
+for training in trainings:
+    variables['BDT_signal0_' + training['shortName']]  = {   'name': 'BDT_output_signal0_' + training['tag'],
+                                                             'range' : (40,1030000000,1070000000),
+                                                             'xaxis' : 'BDT ttDM output',
+                                                             'fold' : 3
+                                                         }
+
+    variables['BDT_signal1_' + training['shortName']]  = {   'name': 'BDT_output_signal1_' + training['tag'],
+                                                             'range' : (40,1030000000,1070000000),
+                                                             'xaxis' : 'BDT tDM 1 output',
+                                                             'fold' : 3
+                                                         }
+
+    variables['BDT_bgk_' + training['shortName']]  = {   'name': 'BDT_output_background_' + training['tag'],
+                                                         'range' : (40,1030000000,1070000000),
+                                                         'xaxis' : 'BDT background output',
+                                                         'fold' : 3
+                                                     }
+
+    variables['BDT_category_' + training['shortName']]  = {   'name': 'BDT_output_category_' + training['tag'],
+                                                              'range' : (3,0,3),
+                                                              'xaxis' : 'BDT output category',
+                                                              'fold' : 3
+                                                          }
+
+
+    variables['DNN_signal0_' + training['shortName']]  = {   'name': 'DNN_output_signal0_' + training['tag'],
+                                                             'range' : (40,0,1),
+                                                             'xaxis' : 'DNN ttDM output',
+                                                             'fold' : 3
+                                                         }
+
+    variables['DNN_signal1_' + training['shortName']]  = {   'name': 'DNN_output_signal1_' + training['tag'],
+                                                             'range' : (40,0,1),
+                                                             'xaxis' : 'DNN tDM 1 output',
+                                                             'fold' : 3
+                                                         }
+
+    variables['DNN_bgk_' + training['shortName']]  = {   'name': 'DNN_output_background_' + training['tag'],
+                                                         'range' : (40,0,1),
+                                                         'xaxis' : 'DNN background output',
+                                                         'fold' : 3
+                                                     }
+
+    variables['DNN_category_' + training['shortName']]  = {   'name': 'DNN_output_category_' + training['tag'],
+                                                              'range' : (3,0,3),
+                                                              'xaxis' : 'DNN output category',
+                                                              'fold' : 3
+                                                          }
