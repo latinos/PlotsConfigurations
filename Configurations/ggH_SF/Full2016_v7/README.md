@@ -62,7 +62,7 @@ Repeat, but with data-blind signal region:
 
     mkOptim.py --pycfg=configuration.py --combineLocation=$HOME/work/combine/CMSSW_10_2_13/src/ --combcfg=comb_ggH_SF.py --fomList=SExpPre,BestFit
 
-### Significane and best fit results are stored in:
+### Significance and best fit results are stored in:
 
     grep Significance: datacards/*/comb/SExpPre_*
     grep "fit r:" datacards/*/comb/BestFit_*
