@@ -144,7 +144,7 @@ samples['DY'] = {
     'name': files,
     'weight': mcCommonWeight + '*( !(Sum$(PhotonGen_isPrompt==1 && PhotonGen_pt>15 &&\
                 abs(PhotonGen_eta)<2.6) > 0 && Sum$(LeptonGen_isPrompt==1 && LeptonGen_pt>15)>=2) )',
-    'FilesPerJob': 8,
+    'FilesPerJob': 6,
 }
 
 CombineBaseW(mcDirectory, samples, 'DY',
@@ -185,7 +185,7 @@ files += nanoGetSampleFiles(mcDirectory, 'ST_tW_top')
 samples['top'] = {
     'name': files,
     'weight': mcCommonWeight,
-    'FilesPerJob': 8,
+    'FilesPerJob': 6,
 }
 
 addSampleWeight(samples,'top','TTToSemiLeptonic'   ,'Top_pTrw')
@@ -206,7 +206,7 @@ files  = nanoGetSampleFiles(mcDirectory, 'WWToLNuQQ')
 samples['WW'] = {
     'name': files,
     'weight': mcCommonWeight+'*(mjjGen_OTF<100)',
-    'FilesPerJob': 20
+    'FilesPerJob': 15
 }
 
 samples['WWewk'] = {
@@ -253,7 +253,7 @@ samples['Wjets'] = {
     'name'   : files,
     'weight' : mcCommonWeight +"*EWK_W_correction[0]"
                 +"*(resolved*{0}+!resolved*1)".format(whad_reweight),
-    'FilesPerJob' : 8,
+    'FilesPerJob' : 6,
 }
 
 
@@ -447,11 +447,11 @@ samples['WH_htt'] = { #FIXME: HWminusJ_HToTauTau_M125 missing in v6 prod Semilep
 ###########################################
 print("Signals")
 
+noSMxsec = '(1.0/Xsec)'
 ####### ggH -> WW #################
 for MX in massggh:
     # Model dependent -> Xsec*BR is applied in later step, so remove "SM"-Xsec*BR
-    SMxsec = HiggsXS.GetHiggsXS4Sample('YR4','13TeV','GluGluHToWWToLNuQQ_M'+MX)['xs']
-    noSMxsec = '(1.0/{})'.format(SMxsec)
+    # SMxsec = HiggsXS.GetHiggsXS4Sample('YR4','13TeV','GluGluHToWWToLNuQQ_M'+MX)['xs']
 
     samples['GGH_'+MX+model_name]  = {
         'name': nanoGetSampleFiles(signalMCDirectory, 'GluGluHToWWToLNuQQ_M'+MX),
@@ -475,19 +475,14 @@ for MX in massggh:
     addSampleWeight(samples, 'GGHSBI_'+MX+model_name, 'GluGluHToWWToLNuQQ_M125_copyBG',
                     '( ({0}) * (abs({0}) < 50) )'.format(model_B))
 
-    if MX in ['4000', '5000']: # Just to be sure, recalculate baseW with new cross sections
-        newbasew = getBaseWnAOD(signalMCDirectory, mcProduction, ['GluGluHToWWToLNuQQ_M'+MX])
-        addSampleWeight(samples, 'GGH_'+MX+model_name, 'GluGluHToWWToLNuQQ_M'+MX, newbasew+'/baseW')
-        # addSampleWeight(samples, 'GGHINT_'+MX+model_name, 'GluGluHToWWToLNuQQ_M'+MX, newbasew+'/baseW')
-        addSampleWeight(samples, 'GGHSBI_'+MX+model_name, 'GluGluHToWWToLNuQQ_M'+MX, newbasew+'/baseW')
 
 
 
 ############ VBF H->WW ############
 for MX in massvbf:
     # Model dependent -> Xsec*BR is applied in later step, so remove "SM"-Xsec*BR
-    SMxsec = HiggsXS.GetHiggsXS4Sample('YR4','13TeV','VBFHToWWToLNuQQ_M'+MX)['xs']
-    noSMxsec = '(1.0/{})'.format(SMxsec)
+    # SMxsec = HiggsXS.GetHiggsXS4Sample('YR4','13TeV','VBFHToWWToLNuQQ_M'+MX)['xs']
+    # noSMxsec = '(1.0/Xsec)'.format(SMxsec)
 
     samples['QQH_'+MX+model_name]  = {
         'name': nanoGetSampleFiles(signalMCDirectory, 'VBFHToWWToLNuQQ_M'+MX),
@@ -511,11 +506,6 @@ for MX in massvbf:
     addSampleWeight(samples, 'QQHSBI_'+MX+model_name, 'WpWmJJ_QCD_noTop',
                     '(mjjGen_OTF>=100)*(GenLHE)')
 
-    if MX in ['4000', '5000']: # Just to be sure, recalculate baseW with new cross sections
-        newbasew = getBaseWnAOD(signalMCDirectory, mcProduction, ['VBFHToWWToLNuQQ_M'+MX])
-        addSampleWeight(samples, 'QQH_'+MX+model_name, 'VBFHToWWToLNuQQ_M'+MX, newbasew+'/baseW')
-        # addSampleWeight(samples, 'QQHINT_'+MX+model_name, 'VBFHToWWToLNuQQ_M'+MX, newbasew+'/baseW')
-        addSampleWeight(samples, 'QQHSBI_'+MX+model_name, 'VBFHToWWToLNuQQ_M'+MX, newbasew+'/baseW')
 
 
 
@@ -567,3 +557,4 @@ for _, sd in DataRun:
     files = nanoGetSampleFiles(dataDirectory, pd + '_' + sd)
     samples['DATA']['name'].extend(files)
     samples['DATA']['weights'].extend([DataTrig[pd]] * len(files))
+

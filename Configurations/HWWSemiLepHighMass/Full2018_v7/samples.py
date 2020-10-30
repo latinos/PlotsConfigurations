@@ -132,16 +132,16 @@ files += nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_ext2')
 # known issue with HT-binned: https://twiki.cern.ch/twiki/bin/viewauth/CMS/MCKnownIssues
 files += nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-10to50-LO')
 files += nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-10to50-LO_ext1')
-files += nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-4to50_HT-100to200')
-files += nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-4to50_HT-200to400')
-files += nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-4to50_HT-400to600')
-files += nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-4to50_HT-600toInf')
+# files += nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-4to50_HT-100to200')
+# files += nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-4to50_HT-200to400')
+# files += nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-4to50_HT-400to600')
+# files += nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-4to50_HT-600toInf')
 
 samples['DY'] = {
     'name': files,
     'weight': mcCommonWeight + '*( !(Sum$(PhotonGen_isPrompt==1 && PhotonGen_pt>15 &&\
                 abs(PhotonGen_eta)<2.6) > 0 && Sum$(LeptonGen_isPrompt==1 && LeptonGen_pt>15)>=2) )',
-    'FilesPerJob': 8,
+    'FilesPerJob': 6,
 }
 
 CombineBaseW(mcDirectory, samples, 'DY',
@@ -166,7 +166,7 @@ addSampleWeight(samples,'DY','DYJetsToLL_M-4to50_HT-600toinf','(gen_mll<10)*'+'D
 print("top")
 
 files  = nanoGetSampleFiles(mcDirectory, 'TTToSemiLeptonic')
-files += nanoGetSampleFiles(mcDirectory, 'TTToSemiLeptonic_ext3')
+# files += nanoGetSampleFiles(mcDirectory, 'TTToSemiLeptonic_ext3')
 # files += nanoGetSampleFiles(mcDirectory, 'TTTo2L2Nu')
 # files += nanoGetSampleFiles(mcDirectory, 'TTWJetsToLNu')
 files += nanoGetSampleFiles(mcDirectory, 'TTWjets')
@@ -179,11 +179,11 @@ files += nanoGetSampleFiles(mcDirectory, 'ST_tW_top_ext1')
 samples['top'] = {
     'name': files,
     'weight': mcCommonWeight,
-    'FilesPerJob': 6,
+    'FilesPerJob': 2,
 }
 
-CombineBaseW(mcDirectory, samples, 'top',
-            ['TTToSemiLeptonic', 'TTToSemiLeptonic_ext3'])
+# CombineBaseW(mcDirectory, samples, 'top',
+#             ['TTToSemiLeptonic', 'TTToSemiLeptonic_ext3'])
 
 addSampleWeight(samples,'top','TTToSemiLeptonic'     ,'Top_pTrw')
 addSampleWeight(samples,'top','TTToSemiLeptonic_ext3','Top_pTrw')
@@ -246,24 +246,24 @@ CombineBaseW(mcDirectory, samples, 'WW2J',
 
 
 
-########## W+jets #########
-print("W+jets")
-whad_reweight = '(1.21359e+00 - 1.67107e-03*HM_Whad_mass)'
+# ########## W+jets #########
+# print("W+jets")
+# whad_reweight = '(1.21359e+00 - 1.67107e-03*HM_Whad_mass)'
 
-files  = nanoGetSampleFiles(mcDirectory,'WJetsToLNu-LO' )
-files += nanoGetSampleFiles(mcDirectory,'WJetsToLNu_Pt50to100')
-files += nanoGetSampleFiles(mcDirectory,'WJetsToLNu_Pt100to250')
-files += nanoGetSampleFiles(mcDirectory,'WJetsToLNu_Pt250to400')
-files += nanoGetSampleFiles(mcDirectory,'WJetsToLNu_Pt400to600')
-files += nanoGetSampleFiles(mcDirectory,'WJetsToLNu_Pt600toInf')
+# files  = nanoGetSampleFiles(mcDirectory,'WJetsToLNu-LO' )
+# files += nanoGetSampleFiles(mcDirectory,'WJetsToLNu_Pt50to100')
+# files += nanoGetSampleFiles(mcDirectory,'WJetsToLNu_Pt100to250')
+# files += nanoGetSampleFiles(mcDirectory,'WJetsToLNu_Pt250to400')
+# files += nanoGetSampleFiles(mcDirectory,'WJetsToLNu_Pt400to600')
+# files += nanoGetSampleFiles(mcDirectory,'WJetsToLNu_Pt600toInf')
 
-samples['Wjets'] = {
-    'name': files,
-    'weight': mcCommonWeight +"*EWK_W_correction[0]"
-                +"*(resolved*{0}+!resolved*1)".format(whad_reweight),
-    'FilesPerJob': 8,
-}
-addSampleWeight(samples, "Wjets", "WJetsToLNu-LO", "(LHE_Vpt < 50)")
+# samples['Wjets'] = {
+#     'name': files,
+#     'weight': mcCommonWeight +"*EWK_W_correction[0]"
+#                 +"*(resolved*{0}+!resolved*1)".format(whad_reweight),
+#     'FilesPerJob': 6,
+# }
+# addSampleWeight(samples, "Wjets", "WJetsToLNu-LO", "(LHE_Vpt < 50)")
 
 
 
@@ -398,7 +398,7 @@ print("SM Higgs")
 samples['ggH_hww'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'GluGluHToWWToLNuQQ_M125'),
     'weight': mcCommonWeight,
-    'FilesPerJob': 03,
+    'FilesPerJob': 30,
 }
 
 ############ VBF H->WW ############
@@ -458,20 +458,22 @@ samples['WH_htt'] = {
 ###########################################
 print("Signals")
 
+noSMxsec = '(1.0/Xsec)'
 ####### ggH -> WW #################
 for MX in massggh:
 #     # Model dependent -> Xsec*BR is applied in later step, so remove "SM"-Xsec*BR
-    SMxsec = HiggsXS.GetHiggsXS4Sample('YR4','13TeV','GluGluHToWWToLNuQQ_M'+MX)['xs']
-    noSMxsec = '(1.0/{})'.format(SMxsec)
+    # SMxsec = HiggsXS.GetHiggsXS4Sample('YR4','13TeV','GluGluHToWWToLNuQQ_M'+MX)['xs']
 
     samples['GGH_'+MX+model_name]  = {
         'name': nanoGetSampleFiles(signalMCDirectory, 'GluGluHToWWToLNuQQ_M'+MX),
         'weight': mcCommonWeight+'*'+noSMxsec+'*( {0} * (abs({0}) < 50) )'.format(model),
+        'FilesPerJob': 30,
     }
 
     samples['GGHINT_'+MX+model_name]  = {
         'name': nanoGetSampleFiles(signalMCDirectory, 'GluGluHToWWToLNuQQ_M'+MX),
         'weight': mcCommonWeight+'*'+noSMxsec+'*( {0} * (abs({0}) < 50) )'.format(model_I),
+        'FilesPerJob': 30,
     }
 
     files  = nanoGetSampleFiles(signalMCDirectory, 'GluGluHToWWToLNuQQ_M'+MX)
@@ -480,34 +482,32 @@ for MX in massggh:
     samples['GGHSBI_'+MX+model_name]  = {
         'name': files,
         'weight': mcCommonWeight,
+        'FilesPerJob': 3,
     }
     addSampleWeight(samples, 'GGHSBI_'+MX+model_name, 'GluGluHToWWToLNuQQ_M'+MX,
                     '( ({0}+{1}) * (abs({0}+{1}) < 50) *{2})'.format(model, model_I, noSMxsec))
     addSampleWeight(samples, 'GGHSBI_'+MX+model_name, 'GluGluHToWWToLNuQQ_M125_copyBG',
                     '( ({0}) * (abs({0}) < 50) )'.format(model_B))
 
-    # if MX in ['4000', '5000']: # Just to be sure, recalculate baseW with new cross sections
-    #     newbasew = getBaseWnAOD(signalMCDirectory, mcProduction, ['GluGluHToWWToLNuQQ_M'+MX,])
-    #     addSampleWeight(samples, 'GGH_'+MX+model_name, 'GluGluHToWWToLNuQQ_M'+MX, newbasew+'/baseW')
-    #     # addSampleWeight(samples, 'GGHINT_'+MX+model_name, 'GluGluHToWWToLNuQQ_M'+MX, newbasew+'/baseW')
-    #     addSampleWeight(samples, 'GGHSBI_'+MX+model_name, 'GluGluHToWWToLNuQQ_M'+MX, newbasew+'/baseW')
 
 
 
 ############ VBF H->WW ############
 for MX in massvbf:
     # Model dependent -> Xsec*BR is applied in later step, so remove "SM"-Xsec*BR
-    SMxsec = HiggsXS.GetHiggsXS4Sample('YR4','13TeV','VBFHToWWToLNuQQ_M'+MX)['xs']
-    noSMxsec = '(1.0/{})'.format(SMxsec)
+    # SMxsec = HiggsXS.GetHiggsXS4Sample('YR4','13TeV','VBFHToWWToLNuQQ_M'+MX)['xs']
+    # noSMxsec = '(1.0/{})'.format(SMxsec)
 
     samples['QQH_'+MX+model_name]  = {
         'name': nanoGetSampleFiles(signalMCDirectory, 'VBFHToWWToLNuQQ_M'+MX),
         'weight': mcCommonWeight+'*'+noSMxsec+'*( {0} * (abs({0}) < 50) )'.format(model),
+            'FilesPerJob': 30,
     }
 
     samples['QQHINT_'+MX+model_name]  = {
         'name': nanoGetSampleFiles(signalMCDirectory, 'VBFHToWWToLNuQQ_M'+MX),
         'weight': mcCommonWeight+'*'+noSMxsec+'*( {0} * (abs({0}) < 50) )'.format(model_I),
+        'FilesPerJob': 30,
     }
 
     files  = nanoGetSampleFiles(signalMCDirectory, 'VBFHToWWToLNuQQ_M'+MX)
@@ -515,18 +515,14 @@ for MX in massvbf:
     files += nanoGetSampleFiles(mcDirectory, 'WpWmJJ_QCD_noTop')
     samples['QQHSBI_'+MX+model_name]  = {
         'name': files,
-        'weight': mcCommonWeight
+        'weight': mcCommonWeight,
+        'FilesPerJob': 15,
     }
     addSampleWeight(samples, 'QQHSBI_'+MX+model_name, 'VBFHToWWToLNuQQ_M'+MX,
                     '( ({0}+{1}) * (abs({0}+{1}) < 50) *{2})'.format(model, model_I, noSMxsec))
     addSampleWeight(samples, 'QQHSBI_'+MX+model_name, 'WpWmJJ_QCD_noTop',
                     '(mjjGen_OTF>=100)*(GenLHE)')
 
-    # if MX in ['4000', '5000']: # Just to be sure, recalculate baseW with new cross sections
-    #     newbasew = getBaseWnAOD(signalMCDirectory, mcProduction, ['VBFHToWWToLNuQQ_M'+MX,])
-    #     addSampleWeight(samples, 'QQH_'+MX+model_name, 'VBFHToWWToLNuQQ_M'+MX, newbasew+'/baseW')
-    #     # addSampleWeight(samples, 'QQHINT_'+MX+model_name, 'VBFHToWWToLNuQQ_M'+MX, newbasew+'/baseW')
-    #     addSampleWeight(samples, 'QQHSBI_'+MX+model_name, 'VBFHToWWToLNuQQ_M'+MX, newbasew+'/baseW')
 
 
 
@@ -553,7 +549,7 @@ samples['FAKE'] = {
   'weight': 'METFilter_DATA*'+fakeW,
   'weights': [],
   'isData': ['all'],
-  'FilesPerJob': 30,
+  'FilesPerJob': 35,
   'suppressNegative': ['all'],
   'suppressNegativeNuisances' :['all'],
 }
@@ -570,7 +566,7 @@ samples['DATA'] = {
   'weight': 'METFilter_DATA*LepWPCut[0]*(nTightLep==1)',
   'weights': [],
   'isData': ['all'],
-  'FilesPerJob': 35
+  'FilesPerJob': 40
 }
 
 for _, sd in DataRun:

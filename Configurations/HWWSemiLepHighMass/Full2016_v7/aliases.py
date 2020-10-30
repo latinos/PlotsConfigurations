@@ -91,7 +91,7 @@ aliases['manualHfatM'] = {
 }
 
 aliases['tau21Cut'] = {
-    'expr': '(Alt$(CleanFatJet_tau21[(int)idxCleanFatJetW], 1) < tau21WP)'
+    'expr': '(Alt$(CleanFatJet_tau21[idxCleanFatJetW], 1) < tau21WP)'
 }
 
 aliases['boosted'] = {
@@ -104,12 +104,12 @@ aliases['boosted'] = {
 }
 aliases['boostedNoTau21'] = {
     'expr': 'PuppiMET_pt > 40 \
-            && (int)idxCleanFatJetW != 999 \
-            && Alt$(CleanFatJet_pt[(int)idxCleanFatJetW], 0) > 200 \
-            && Alt$(CleanFatJet_pt[(int)idxCleanFatJetW], 0) / manualHfatM > 0.4 \
+            && idxCleanFatJetW != 999 \
+            && Alt$(CleanFatJet_pt[idxCleanFatJetW], 0) > 200 \
+            && Alt$(CleanFatJet_pt[idxCleanFatJetW], 0) / manualHfatM > 0.4 \
             && manualHfatM > 0 && HM_Wlep_pt_Puppi / manualHfatM > 0.4 \
-            && Alt$(CleanFatJet_mass[(int)idxCleanFatJetW], 0) > 40 \
-            && Alt$(CleanFatJet_eta[(int)idxCleanFatJetW], 999) < 2.4'
+            && Alt$(CleanFatJet_mass[idxCleanFatJetW], 0) > 40 \
+            && Alt$(CleanFatJet_eta[idxCleanFatJetW], 999) < 2.4'
 }
 
 aliases['resolved'] = {
@@ -125,8 +125,8 @@ aliases['boostedSignalWMass'] = {
             && Alt$(HM_CleanFatJetPassMBoosted_mass[0], 999) < 105)'
 }
 aliases['boostedSignalWMassNoTau21'] = {
-    'expr': '(65 < Alt$(CleanFatJet_mass[(int)idxCleanFatJetW], 0) \
-            && Alt$(CleanFatJet_mass[(int)idxCleanFatJetW], 999) < 105)'
+    'expr': '(65 < Alt$(CleanFatJet_mass[idxCleanFatJetW], 0) \
+            && Alt$(CleanFatJet_mass[idxCleanFatJetW], 999) < 105)'
 }
 
 aliases['resolvedSignalWMass'] = {
@@ -138,8 +138,8 @@ aliases['boostedSidebandWMass'] = {
             && Alt$(HM_CleanFatJetPassMBoosted_mass[0], 999) < 250)'
 }
 aliases['boostedSidebandWMassNoTau21'] = {
-    'expr': '(40 < Alt$(CleanFatJet_mass[(int)idxCleanFatJetW], 0) \
-            && Alt$(CleanFatJet_mass[(int)idxCleanFatJetW], 999) < 250)'
+    'expr': '(40 < Alt$(CleanFatJet_mass[idxCleanFatJetW], 0) \
+            && Alt$(CleanFatJet_mass[idxCleanFatJetW], 999) < 250)'
 }
 
 aliases['lowBoostedSidebandWMass'] = {
@@ -172,7 +172,7 @@ aliases['resolvedQCDcr'] = {
 
 
 aliases['tau21DDT'] = {
-    'expr': '( Alt$(CleanFatJet_tau21[(int)idxCleanFatJetW], -999) + 0.080 * TMath::Log( Alt$(CleanFatJet_mass[(int)idxCleanFatJetW]*CleanFatJet_mass[(int)idxCleanFatJetW], 0) / Alt$(CleanFatJet_pt[(int)idxCleanFatJetW], 1) ) )'
+    'expr': '( Alt$(CleanFatJet_tau21[idxCleanFatJetW], -999) + 0.080 * TMath::Log( Alt$(CleanFatJet_mass[idxCleanFatJetW]*CleanFatJet_mass[idxCleanFatJetW], 0) / Alt$(CleanFatJet_pt[idxCleanFatJetW], 1) ) )'
 }
 # smaller angle is: a-b - (a-b > 3.1416)*2*3.1416 + (a-b < -3.1416)*2*3.1416
 aliases['dPhi_WW_boosted'] = {

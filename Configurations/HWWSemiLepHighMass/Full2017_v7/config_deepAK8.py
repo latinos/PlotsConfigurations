@@ -2,7 +2,7 @@
 
 treeName = 'Events'
 
-tag = 'hm_deepAK8_2017_v7'
+tag = 'hm_resolv_hm_deep_2017_v7'
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFile'
@@ -11,9 +11,9 @@ outputDir = 'rootFile'
 aliasesFile = 'aliases.py'
 
 # file with list of variables
-variablesFile = 'variables.py'
+# variablesFile = 'variables.py'
 # variablesFile = 'variablesPlot.py'
-# variablesFile = 'variablesLimits.py'
+variablesFile = 'variablesLimits.py'
 
 # file with list of cuts
 cutsFile = 'cuts_deepAK8.py'

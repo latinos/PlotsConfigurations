@@ -14,18 +14,18 @@ LepCats['incl_']='( (abs(Lepton_pdgId[0])==11) && Lepton_pt[0]>35 \
 LepCats['ElCh_']='( (abs(Lepton_pdgId[0])==11) && Lepton_pt[0]>35 )'
 LepCats['MuCh_']='( (abs(Lepton_pdgId[0])==13) && Lepton_pt[0]>27 )'
 
-WvsQCD = 'Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[(int)idxCleanFatJetW]], -1)'
-MD_WvsQCD = 'Alt$(FatJet_deepTagMD_WvsQCD[CleanFatJet_jetIdx[(int)idxCleanFatJetW]], -1)'
+WvsQCD = 'Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[idxCleanFatJetW]], -1)'
+MD_WvsQCD = 'Alt$(FatJet_deepTagMD_WvsQCD[CleanFatJet_jetIdx[idxCleanFatJetW]], -1)'
 
 # mistag rate in permille
 DeepTagCats= {
-    'DT_25_': '({0} > 0.762)'.format(WvsQCD),
-    'DT_10_': '({0} > 0.918)'.format(WvsQCD),
-    'DT_05_': '({0} > 0.961)'.format(WvsQCD),
+    '25_': '({0} > 0.762)'.format(WvsQCD),
+    '10_': '({0} > 0.918)'.format(WvsQCD),
+    '05_': '({0} > 0.961)'.format(WvsQCD),
 
-    'DT_25MD_': '({0} > 0.479)'.format(MD_WvsQCD),
-    'DT_10MD_': '({0} > 0.704)'.format(MD_WvsQCD),
-    'DT_05MD_': '({0} > 0.806)'.format(MD_WvsQCD),
+    '25MD_': '({0} > 0.479)'.format(MD_WvsQCD),
+    '10MD_': '({0} > 0.704)'.format(MD_WvsQCD),
+    '05MD_': '({0} > 0.806)'.format(MD_WvsQCD),
 }
 
 BoostProcCats={

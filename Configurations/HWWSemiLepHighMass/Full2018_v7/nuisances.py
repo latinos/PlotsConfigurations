@@ -183,50 +183,50 @@ jes_systs = ['JESAbsolute','JESAbsolute_2018','JESBBEC1','JESBBEC1_2018','JESEC2
 
 ##### FatJet scale and resolution
 
-# nuisances['fatjet_jes']  = {
-#     'name'  : 'CMS_scale_fatj_2018',
-#     'kind'  : 'suffix',
-#     'type'  : 'shape',
-#     'mapUp'  : 'fatjetJESup',
-#     'mapDown': 'fatjetJESdo',
-#     'samples': dict((skey, ['1', '1']) for skey in mc),
-#     'folderUp'  : makeMCDirectory('fatjetJESup'),
-#     'folderDown': makeMCDirectory('fatjetJESdo'),
-#     'AsLnN': '1'
-# }
-# nuisances['fatjet_jer']  = {
-#     'name'  : 'CMS_res_fatjer_2018',
-#     'kind'  : 'suffix',
-#     'type'  : 'shape',
-#     'mapUp'  : 'fatjetJERup',
-#     'mapDown': 'fatjetJERdo',
-#     'samples': dict((skey, ['1', '1']) for skey in mc),
-#     'folderUp'  : makeMCDirectory('fatjetJERup'),
-#     'folderDown': makeMCDirectory('fatjetJERdo'),
-#     'AsLnN': '1'
-# }
-# nuisances['fatjet_jms']  = {
-#     'name'  : 'CMS_fatjms_2018',
-#     'kind'  : 'suffix',
-#     'type'  : 'shape',
-#     'mapUp'  : 'fatjetJMSup',
-#     'mapDown': 'fatjetJMSdo',
-#     'samples': dict((skey, ['1', '1']) for skey in mc),
-#     'folderUp'  : makeMCDirectory('fatjetJMSup'),
-#     'folderDown': makeMCDirectory('fatjetJMSdo'),
-#     'AsLnN': '1'
-# }
-# nuisances['fatjet_jmr']  = {
-#     'name'  : 'CMS_res_fatjmr_2018',
-#     'kind'  : 'suffix',
-#     'type'  : 'shape',
-#     'mapUp'  : 'fatjetJMRup',
-#     'mapDown': 'fatjetJMRdo',
-#     'samples': dict((skey, ['1', '1']) for skey in mc),
-#     'folderUp'  : makeMCDirectory('fatjetJMRup'),
-#     'folderDown': makeMCDirectory('fatjetJMRdo'),
-#     'AsLnN': '1'
-# }
+nuisances['fatjet_jes']  = {
+    'name'  : 'CMS_scale_fatj_2018',
+    'kind'  : 'suffix',
+    'type'  : 'shape',
+    'mapUp'  : 'fatjetJESup',
+    'mapDown': 'fatjetJESdo',
+    'samples': dict((skey, ['1', '1']) for skey in mc),
+    'folderUp'  : makeMCDirectory('fatjetJESup'),
+    'folderDown': makeMCDirectory('fatjetJESdo'),
+    'AsLnN': '1'
+}
+nuisances['fatjet_jer']  = {
+    'name'  : 'CMS_res_fatjer_2018',
+    'kind'  : 'suffix',
+    'type'  : 'shape',
+    'mapUp'  : 'fatjetJERup',
+    'mapDown': 'fatjetJERdo',
+    'samples': dict((skey, ['1', '1']) for skey in mc),
+    'folderUp'  : makeMCDirectory('fatjetJERup'),
+    'folderDown': makeMCDirectory('fatjetJERdo'),
+    'AsLnN': '1'
+}
+nuisances['fatjet_jms']  = {
+    'name'  : 'CMS_fatjms_2018',
+    'kind'  : 'suffix',
+    'type'  : 'shape',
+    'mapUp'  : 'fatjetJMSup',
+    'mapDown': 'fatjetJMSdo',
+    'samples': dict((skey, ['1', '1']) for skey in mc),
+    'folderUp'  : makeMCDirectory('fatjetJMSup'),
+    'folderDown': makeMCDirectory('fatjetJMSdo'),
+    'AsLnN': '1'
+}
+nuisances['fatjet_jmr']  = {
+    'name'  : 'CMS_res_fatjmr_2018',
+    'kind'  : 'suffix',
+    'type'  : 'shape',
+    'mapUp'  : 'fatjetJMRup',
+    'mapDown': 'fatjetJMRdo',
+    'samples': dict((skey, ['1', '1']) for skey in mc),
+    'folderUp'  : makeMCDirectory('fatjetJMRup'),
+    'folderDown': makeMCDirectory('fatjetJMRdo'),
+    'AsLnN': '1'
+}
 
 
 ##### MET energy scale
@@ -887,7 +887,7 @@ for nuisname in nuisancename:
 
 
 
-StatSwitch = True
+StatSwitch = False
 if StatSwitch:
     nuisances['stat']  = {
         # apply to the following samples: name of samples here must match keys in samples.py

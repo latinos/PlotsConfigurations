@@ -15,8 +15,8 @@ LepCats['ElCh_']='( (abs(Lepton_pdgId[0])==11) && Lepton_pt[0]>30 )'
 LepCats['MuCh_']='( (abs(Lepton_pdgId[0])==13) && Lepton_pt[0]>27 )'
 # FIXME: maybe need to cut > 35 for ele due to fakeW calculation
 
-WvsQCD = 'Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[(int)idxCleanFatJetW]], -1)'
-MD_WvsQCD = 'Alt$(FatJet_deepTagMD_WvsQCD[CleanFatJet_jetIdx[(int)idxCleanFatJetW]], -1)'
+WvsQCD = 'Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[idxCleanFatJetW]], -1)'
+MD_WvsQCD = 'Alt$(FatJet_deepTagMD_WvsQCD[CleanFatJet_jetIdx[idxCleanFatJetW]], -1)'
 
 # mistag rate in permille
 DeepTagCats= {
@@ -61,4 +61,3 @@ for Lep in LepCats:
                                 +'&&'+BoostProcCats[BProcCat]\
                                 +'&&'+LepCats[Lep]\
                                 +'&&'+DeepTagCats[DTCat]
-
