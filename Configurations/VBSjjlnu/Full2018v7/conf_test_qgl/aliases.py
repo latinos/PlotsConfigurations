@@ -268,3 +268,45 @@ aliases['vbs_1_qgl_boost'] = {
     'class': 'QglVars',
     'args': ('vbs_1_qgl_boost'), 
 } 
+
+##############
+#Parton flavour
+aliases['vbs_0_partfl_res'] = {
+    'class': 'PartonFlavour',
+    'args': ('vbs_0_partfl_res'),
+    'linesToAdd' : [
+        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+        '.L {}/VBSjjlnu/Full2018v7/macros/parton_flavour.cc+'.format(configurations)
+    ] ,
+    'samples':mc
+} 
+
+aliases['vbs_1_partfl_res'] = {
+    'class': 'PartonFlavour',
+    'args': ('vbs_1_partfl_res'), 
+    'samples':mc
+} 
+
+aliases['vjet_0_partfl_res'] = {
+    'class': 'PartonFlavour',
+    'args': ('vjet_0_partfl_res'), 
+    'samples':mc
+} 
+
+aliases['vjet_1_partfl_res'] = {
+    'class': 'PartonFlavour',
+    'args': ('vjet_1_partfl_res'), 
+    'samples':mc
+} 
+
+aliases['vbs_0_partfl_boost'] = {
+    'class': 'PartonFlavour',
+    'args': ('vbs_0_partfl_boost'), 
+    'samples':mc
+} 
+
+aliases['vbs_1_partfl_boost'] = {
+    'class': 'PartonFlavour',
+    'args': ('vbs_1_partfl_boost'), 
+    'samples':mc
+} 

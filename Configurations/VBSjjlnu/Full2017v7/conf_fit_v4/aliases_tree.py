@@ -3,32 +3,31 @@ import copy
 import inspect
 
 configurations = os.getenv("CMSSW_BASE") + "/src/PlotsConfigurations/Configurations/"
-conf_folder = configurations +"/VBSjjlnu/Full2018v7"
+conf_folder = configurations +"/VBSjjlnu/Full2017v7"
 
 #aliases = {}
 
 mc = [skey for skey in samples if skey not in ('Fake', 'DATA')]
 
-####################
-
 
 ############################################
 # B tagging
-#loose 0.1241
-# tight 0.7527
+
+bAlgo = 'DeepB'
+bWP = '0.1522'
+
 
 aliases['bVeto'] = {
-    'expr': '(Sum$(CleanJet_pt > 20. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.1241) == 0)'
+    'expr': '(Sum$(CleanJet_pt > 20. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.1522) == 0)'
 }
 
 aliases['bReq'] = {
-    'expr': '(Sum$(CleanJet_pt > 30. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.1241) >= 1)'
+    'expr': '(Sum$(CleanJet_pt > 30. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.1522) >= 1)'
 }
 
 aliases['bReqTight'] = {
-    'expr': '(Sum$(CleanJet_pt > 30. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.7527) >= 1)'
+    'expr': '(Sum$(CleanJet_pt > 30. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.8001) >= 1)'
 }
-
 
 aliases['bVetoSF'] = {
     'expr': 'TMath::Exp(Sum$(TMath::Log((CleanJet_pt>20 && abs(CleanJet_eta)<2.5)*Jet_btagSF_deepcsv_shape[CleanJet_jetIdx]+1*(CleanJet_pt<=20 || abs(CleanJet_eta)>=2.5))))',
@@ -39,6 +38,7 @@ aliases['bReqSF'] = {
     'expr': 'TMath::Exp(Sum$(TMath::Log((CleanJet_pt>30 && abs(CleanJet_eta)<2.5)*Jet_btagSF_deepcsv_shape[CleanJet_jetIdx]+1*(CleanJet_pt<=30 || abs(CleanJet_eta)>=2.5))))',
     'samples': mc
 }
+
 
 aliases['btagSF'] = {
     'expr': 'bVeto*bVetoSF + bReqTight *bReqSF',
@@ -52,11 +52,11 @@ aliases['btagSF'] = {
 # for s in systs:
 #   aliases['btagSF'+s+'up'] = { 'expr': '(bVeto*'+aliases['bVetoSF']['expr'].replace('shape','shape_up_'+s)+'+bReqTight*'+aliases['bReqSF']['expr'].replace('shape','shape_up_'+s)+'+ ( (!bVeto) && (!bReqTight) ))', 'samples':mc  }
 #   aliases['btagSF'+s+'down'] = { 'expr': '(bVeto*'+aliases['bVetoSF']['expr'].replace('shape','shape_down_'+s)+'+bReqTight*'+aliases['bReqSF']['expr'].replace('shape','shape_down_'+s)+'+ ( (!bVeto) && (!bReqTight) ))', 'samples':mc }
-
+  
 ################################################################################################
 
 
-# PostProcessing did not create (anti)topGenPt for ST samples with _ext1
+# LastProcessing did not create (anti)topGenPt for ST samples with _ext1
 lastcopy = (1 << 13)
 
 aliases['isTTbar'] = {
@@ -66,8 +66,9 @@ aliases['isTTbar'] = {
 
 aliases['isSingleTop'] = {
     'expr': 'Sum$(TMath::Abs(GenPart_pdgId) == 6 && TMath::Odd(GenPart_statusFlags / %d)) == 1' % lastcopy,
-    'samples': ['top']
+     'samples': ['top']
 }
+
 
 aliases['topGenPtOTF'] = {
     'expr': 'Sum$((GenPart_pdgId == 6 && TMath::Odd(GenPart_statusFlags / %d)) * GenPart_pt)' % lastcopy,
@@ -79,78 +80,90 @@ aliases['antitopGenPtOTF'] = {
     'samples': ['top']
 }
 
+##### Top pT reweighting
 aliases['Top_pTrw'] = {
-    'expr': 'isTTbar * (TMath::Sqrt((0.103*TMath::Exp(-0.0118*topGenPtOTF) - 0.000134*topGenPtOTF + 0.973) * (0.103*TMath::Exp(-0.0118*antitopGenPtOTF) - 0.000134*antitopGenPtOTF + 0.973))) + isSingleTop',
+    # Mine:
+    #'expr': '(topGenPt * antitopGenPt > 0.) * (TMath::Sqrt(TMath::Exp(-2.02274e-01 + 1.09734e-04*topGenPt - 1.30088e-07*topGenPt*topGenPt + 5.83494e+01/(topGenPt+1.96252e+02)) * TMath::Exp(-2.02274e-01 + 1.09734e-04*antitopGenPt - 1.30088e-07*antitopGenPt*antitopGenPt + 5.83494e+01/(antitopGenPt+1.96252e+02)))) + (topGenPt * antitopGenPt <= 0.)',
+
+    # New Top PAG
+    'expr': '(topGenPtOTF * antitopGenPtOTF > 0.) * (TMath::Sqrt((0.103*TMath::Exp(-0.0118*topGenPtOTF) - 0.000134*topGenPtOTF + 0.973) * (0.103*TMath::Exp(-0.0118*antitopGenPtOTF) - 0.000134*antitopGenPtOTF + 0.973))) + (topGenPtOTF * antitopGenPtOTF <= 0.)',
     'samples': ['top']
 }
 
-#########################################################################################
+######################################
+
+# PU jet Id SF
+# puidSFSource = "{}/patches/PUID_81XTraining_EffSFandUncties.root".format(configurations)
+# print(puidSFSource)
+
+# # For 2017 the working point is loose everywhere, but tight in the horns region  2.65<abs(eta)<3.139
+# aliases['PUJetIdSF'] = {
+#     'class': "PU_jetidsf_horns",
+#     'args': (puidSFSource, "2017", "loose"),
+#     'linesToAdd': [
+#         'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
+#         'gSystem->AddIncludePath("-I%s/src/LatinoAnalysis/MultiDraw/interface");' % os.getenv('CMSSW_BASE'),
+#         'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+#         '.L {}/VBSjjlnu/Full2017v7/corrections/pujetidsf_horns.cc+'.format(configurations)
+#     ],
+#     'samples': mc
+# }
+
+
+
+#########################################
 
 aliases['nCleanGenJet'] = {
-    'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/Differential/ngenjet.cc+' % os.getenv('CMSSW_BASE')],
+    'linesToAdd': [
+        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+        '.L %s/src/PlotsConfigurations/Configurations/Differential/ngenjet.cc+' % os.getenv('CMSSW_BASE')],
     'class': 'CountGenJet',
     'samples': mc
 }
 
-##### DY Z pT reweighting
+#### DY Z pT reweighting
 aliases['getGenZpt_OTF'] = {
     'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/patches/getGenZpt.cc+' % os.getenv('CMSSW_BASE')],
     'class': 'getGenZpt',
     'samples': ['DY']
 }
+
 handle = open('%s/src/PlotsConfigurations/Configurations/patches/DYrew30.py' % os.getenv('CMSSW_BASE'),'r')
 exec(handle)
 handle.close()
 aliases['DY_NLO_pTllrw'] = {
-    'expr': '('+DYrew['2018']['NLO'].replace('x', 'getGenZpt_OTF')+')*(nCleanGenJet == 0)+1.0*(nCleanGenJet > 0)',
+    'expr': '('+DYrew['2017']['NLO'].replace('x', 'getGenZpt_OTF')+')*(nCleanGenJet == 0)+1.0*(nCleanGenJet > 0)',
     'samples': ['DY']
 }
 aliases['DY_LO_pTllrw'] = {
-    'expr': '('+DYrew['2018']['LO'].replace('x', 'getGenZpt_OTF')+')*(nCleanGenJet == 0)+1.0*(nCleanGenJet > 0)',
+    'expr': '('+DYrew['2017']['LO'].replace('x', 'getGenZpt_OTF')+')*(nCleanGenJet == 0)+1.0*(nCleanGenJet > 0)',
     'samples': ['DY']
 }
 
+###########################
 
-###########################################################################################
-#fakes
 
-basedir_fakes = conf_folder +"/corrections/new_fake_rates/v5"
+basedir_fakes = conf_folder +"/corrections/new_fake_rates/v1_senne"
 
 et = "35"
 el_fr_file = basedir_fakes + "/plot_ElCh_JetEt"+et+"_l1_etaVpt_ptel_fw_ewk_2D.root"
 mu_fr_file = basedir_fakes + "/plot_MuCh_JetEt"+et+"_l1_etaVpt_ptmu_fw_ewk_2D.root"
-el_pr_file = os.getenv('CMSSW_BASE') + "/src/LatinoAnalysis/NanoGardener/python/data/fake_prompt_rates/Full2018v6/mvaFall17V1IsoWP90/ElePR.root"
-mu_pr_file = os.getenv('CMSSW_BASE') + "/src/LatinoAnalysis/NanoGardener/python/data/fake_prompt_rates/Full2018v6/mvaFall17V1IsoWP90/MuonPR.root"
+el_pr_file = os.getenv('CMSSW_BASE') + "/src/LatinoAnalysis/NanoGardener/python/data/fake_prompt_rates/Full2017v6/mvaFall17V1IsoWP90/ElePR.root"
+mu_pr_file = os.getenv('CMSSW_BASE') + "/src/LatinoAnalysis/NanoGardener/python/data/fake_prompt_rates/Full2017v6/mvaFall17V1IsoWP90/MuonPR.root"
 
 aliases['FW_mu'+et+'_ele'+et] = { 
-    'class': 'newFakeWeightOTF',
+    'class': 'newFakeWeightOTF17',
     'args': (eleWP, muWP, copy.deepcopy(el_fr_file), copy.deepcopy(el_pr_file), copy.deepcopy(mu_fr_file), copy.deepcopy(mu_pr_file), False, False), 
     'linesToAdd' : [
         'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-        '.L %s/corrections/newfakeweight_OTF.cc+' % conf_folder
-        ],     
+        '.L {}/VBSjjlnu/Full2017v7/corrections/newfakeweight_OTF_17.cc+'.format(configurations)
+    ],     
     'samples': ["Fake"]
 }
 
-###################################3
+##############################################
 
-# PU jet Id SF
-
-puidSFSource = '{}/patches/PUID_81XTraining_EffSFandUncties.root'.format(configurations)
-
-aliases['PUJetIdSF'] = {
-    'linesToAdd': [
-        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-        '.L %s/patches/pujetidsf_event_new.cc+' % configurations
-    ],
-    'class': 'PUJetIdEventSF',
-    'args': (puidSFSource, '2018', 'loose'),
-    'samples': mc
-}
-
-######################################
-
-
+################################################
 # For VgS
 aliases['gstarLow'] = {
     'expr': 'Gen_ZGstar_mass >0 && Gen_ZGstar_mass < 4',
@@ -161,6 +174,8 @@ aliases['gstarHigh'] = {
     'expr': 'Gen_ZGstar_mass <0 || Gen_ZGstar_mass > 4',
     'samples': 'VgS'
 }
+
+###############################################
 
 
 ############################
@@ -175,12 +190,12 @@ aliases['is_wjetsSample'] =  {
 }
 
 
-aliases['fatjetpt085']= {
-   'expr': ' (is_wjetsSample)*( Alt$(CleanFatJet_pt[0],0) * 0.85) + (!is_wjetsSample)*(Alt$(CleanFatJet_pt[0],0))'
+aliases['fatjetpt09']= {
+   'expr': ' (is_wjetsSample)*( Alt$(CleanFatJet_pt[0],0) * 0.90) + (!is_wjetsSample)*(Alt$(CleanFatJet_pt[0],0))'
 }
 
-aliases['mjj_vjet085']= {
-   'expr': ' (is_wjetsSample)*( mjj_vjet * 0.85) + (!is_wjetsSample)*(mjj_vjet)'
+aliases['mjj_vjet09']= {
+   'expr': ' (is_wjetsSample)*( mjj_vjet * 0.90) + (!is_wjetsSample)*(mjj_vjet)'
 }
 
 aliases['veto_fatjet_180'] = {
@@ -192,9 +207,9 @@ aliases['veto_fatjet_180'] = {
             ]           
 }
 
-aliases['veto_fatjet_153'] = {
+aliases['veto_fatjet_162'] = {
             'class': 'VetoFatJet',
-            'args': (153.),
+            'args': (162.),
             'linesToAdd' : [
                 'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
                 '.L {}/VBSjjlnu/Full2018v7/macros/veto_fatjet.cc+'.format(configurations)
@@ -202,8 +217,8 @@ aliases['veto_fatjet_153'] = {
 }
 
 # Necessary for resolved region
-aliases['veto_fatjet_wjet85'] = {
-    'expr':  '(is_wjetsSample)*(veto_fatjet_153) + (!is_wjetsSample)*(veto_fatjet_180)'
+aliases['veto_fatjet_wjet90'] = {
+    'expr':  '(is_wjetsSample)*(veto_fatjet_162) + (!is_wjetsSample)*(veto_fatjet_180)'
 }
 
 ##################################

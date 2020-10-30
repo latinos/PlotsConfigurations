@@ -2,8 +2,8 @@
 treeName= 'Events'
 
 
-tag = 'test_newfakes'
-direc = "conf_test_newfakes"
+tag = 'test_qgl'
+direc = "conf_test_qgl"
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFile_'+tag 
@@ -22,7 +22,7 @@ samplesFile = direc+'/samples.py'
 #samplesFile = direc+'/samples.py'
 
 #t file with list of samples
-plotFile = direc+'/plot_fake25.py' 
+plotFile = direc+'/plot_vbs0.py' 
 
 # luminosity to normalize to (in 1/fb)
 lumi = 59.74
@@ -30,7 +30,7 @@ lumi = 59.74
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
 #outputDirPlots = 'plot_'+tag +"_rescaled/detajpt_ext"
-outputDirPlots = 'plot_'+tag + "/fake25"
+outputDirPlots = 'plot_'+tag + "/vbs0" 
 
 # used by mkDatacards to define output directory for datacards
 #outputDirDatacard = 'datacards_'+tag 
@@ -42,6 +42,6 @@ structureFile = direc+'/structure.py'
 
 
 # nuisances file for mkDatacards and for mkShape
-nuisancesFile = direc+'/nuisances.py'
+#nuisancesFile = direc+'/nuisances.py'
 #nuisancesFile = direc+'/nuisances_datacard_join.py'
-#nuisancesFile = direc + '/nuisances_datacard.py
+#nuisancesFile = direc + '/nuisances_datacard.py'

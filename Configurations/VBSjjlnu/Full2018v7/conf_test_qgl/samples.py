@@ -55,7 +55,7 @@ muWP='cut_Tight_HWWW'
 
 LepWPCut_1l =  '(Lepton_isTightElectron_'+eleWP+'[0]>0.5 || Lepton_isTightMuon_'+muWP+'[0]>0.5)'
 LepWPWeight_1l = 'Lepton_tightElectron_'+eleWP+'_IdIsoSF'+'[0]*\
-                Lepton_tightMuon_'+muWP+'_IdIsoSF'+'[0]'
+                Lepton_tightMuon_'+muWP+'_IdIsoSF[0]'
 
 LepWPCut = LepWPCut_1l
 LepWPWeight = LepWPWeight_1l
@@ -124,8 +124,14 @@ samples['DY'] = {    'name'   :   nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M
                                   + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-4to50_HT-200to400')
                                   + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-4to50_HT-400to600')
                                   + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-4to50_HT-600toInf'),
-                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + '*' + DY_photon_filter,
-                       'FilesPerJob' : 8,
+                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + '*' + DY_photon_filter ,
+                       'FilesPerJob' : 15,
+                       'subsamples': {
+                          "vbs0_gluon" : "vbs_0_partfl_res == 21 ",
+                          "vbs0_quark" : "vbs_0_partfl_res != 21 ",
+                          "vjet0_gluon" : "vjet_0_partfl_res == 21 ",
+                          "vjet0_quark" : "vjet_0_partfl_res != 21 ",
+                        },
                        'EventsPerJob' : 70000,
                        'suppressNegative' :['all'],
                        'suppressNegativeNuisances' :['all'],
@@ -134,10 +140,10 @@ samples['DY'] = {    'name'   :   nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M
 CombineBaseW(samples, 'DY', ['DYJetsToLL_M-50', 'DYJetsToLL_M-50_ext2'])
 addSampleWeight(samples,'DY','DYJetsToLL_M-50','DY_NLO_pTllrw')
 addSampleWeight(samples,'DY','DYJetsToLL_M-50_ext2','DY_NLO_pTllrw')
-addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO_ext1','DY_LO_pTllrw')
+addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO_ext1','DY_LO_pTllrw') # missing ewkNLOW
 addSampleWeight(samples,'DY','DYJetsToLL_M-50',               '(LHE_HT < 70)')
 addSampleWeight(samples,'DY','DYJetsToLL_M-50_ext2',          '(LHE_HT < 70)')
-addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO_ext1',   '(LHE_HT < 100)')
+addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO_ext1',   '(LHE_HT < 100)')   # missing ewkNLOW
 addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-70to100',    'DY_LO_pTllrw') #Are LO!
 addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-100to200',   'DY_LO_pTllrw')
 addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-200to400',   'DY_LO_pTllrw')
@@ -145,8 +151,8 @@ addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-400to600',   'DY_LO_pTllrw')
 addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-600to800',   'DY_LO_pTllrw')
 addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-800to1200',  'DY_LO_pTllrw')
 addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-1200to2500', 'DY_LO_pTllrw')
-addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-2500toInf',  'DY_LO_pTllrw')
-addSampleWeight(samples,'DY','DYJetsToLL_M-4to50_HT-100to200','DY_LO_pTllrw')
+addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-2500toInf',  'DY_LO_pTllrw')  # missing ewkNLOW
+addSampleWeight(samples,'DY','DYJetsToLL_M-4to50_HT-100to200','DY_LO_pTllrw') # removed for multidraw bug
 addSampleWeight(samples,'DY','DYJetsToLL_M-4to50_HT-200to400','DY_LO_pTllrw')
 addSampleWeight(samples,'DY','DYJetsToLL_M-4to50_HT-400to600','DY_LO_pTllrw')
 addSampleWeight(samples,'DY','DYJetsToLL_M-4to50_HT-600toInf','DY_LO_pTllrw')
@@ -166,16 +172,22 @@ samples['top'] = {    'name'   :   nanoGetSampleFiles(directory_bkg,'TTTo2L2Nu')
                                  + nanoGetSampleFiles(directory_bkg,'TTWjets'),
                                 # +  nanoGetSampleFiles(directory_bkg,'TTWJetsToLNu'), #also this is available
                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-                     'FilesPerJob' : 7,
+                     'FilesPerJob' : 15,
                      'EventsPerJob' : 70000,
                      'suppressNegative' :['all'],
                      'suppressNegativeNuisances' :['all'],
+                     'subsamples': {
+                        "vbs0_gluon" : "vbs_0_partfl_res == 21 ",
+                        "vbs0_quark" : "vbs_0_partfl_res != 21 ",
+                        "vjet0_gluon" : "vjet_0_partfl_res == 21 ",
+                        "vjet0_quark" : "vjet_0_partfl_res != 21 ",
+                      }
                  }
 
 addSampleWeight(samples,'top','TTTo2L2Nu','Top_pTrw')
 addSampleWeight(samples,'top','TTToSemiLeptonic','Top_pTrw')
-addSampleWeight(samples,'top','TTZjets','Top_pTrw')
-addSampleWeight(samples,'top','TTWjets','Top_pTrw')
+#addSampleWeight(samples,'top','TTZjets','Top_pTrw')
+#addSampleWeight(samples,'top','TTWjets','Top_pTrw')
 
 #Not corrected in baseW, so we should correct the XS here
 addSampleWeight(samples,'top','ST_t-channel_top',  "100. / 32.4 ") # N.B We are using inclusive sample with leptonic-only XS
@@ -198,21 +210,15 @@ samples['Wjets_HT'] = { 'name' :
           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT1200_2500')
           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT2500_inf')
           ,
-				'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch+ '* ewknloW',
-				'FilesPerJob' : 10,
-        'EventsPerJob' : 70000
-        # 'subsamples': {
-        #   "boost1" : "(VBS_category==0) && (deltaeta_vbs < 5)",
-        #   "boost2" : "(VBS_category==0) && (deltaeta_vbs >= 5)",
-        #   "deta1_jpt1": "(VBS_category==1) && (deltaeta_vbs < 5 ) && vbs_1_pt < 75",
-        #   "deta2_jpt1": "(VBS_category==1) && (deltaeta_vbs >= 5) && vbs_1_pt < 75",
-          
-        #   "deta1_jpt2": "(VBS_category==1) && (deltaeta_vbs < 4 ) &&  ( vbs_1_pt >= 75 && vbs_1_pt <150)",
-        #   "deta2_jpt2": "(VBS_category==1) && (deltaeta_vbs >= 4) &&  ( vbs_1_pt >= 75 && vbs_1_pt <150)",
-
-        #   "jpt3": "(VBS_category==1) && ( vbs_1_pt >= 150)",
-                    
-        # }
+				'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch + '* ewknloW' ,
+				'FilesPerJob' : 15,
+        'EventsPerJob' : 70000,
+        'subsamples': {
+          "vbs0_gluon" : "vbs_0_partfl_res == 21 ",
+          "vbs0_quark" : "vbs_0_partfl_res != 21 ",
+          "vjet0_gluon" : "vjet_0_partfl_res == 21 ",
+          "vjet0_quark" : "vjet_0_partfl_res != 21 ",
+        }
       
 		}
 
@@ -242,9 +248,15 @@ samples['VV']  = { 'name' :
                nanoGetSampleFiles(directory_signal,'WpToLNu_WmTo2J_QCD') +
                nanoGetSampleFiles(directory_signal,'WpToLNu_ZTo2J_QCD',) +
                nanoGetSampleFiles(directory_signal,'ZTo2L_ZTo2J_QCD',  ) ,
-        'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch , # TO BE CORRECTED: + '* ewknloW',
-        'FilesPerJob' : 10,
+        'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch, # still missing EWKnlowW 
+        'FilesPerJob' : 15,
         'EventsPerJob' : 70000,
+        'subsamples': {
+          "vbs0_gluon" : "vbs_0_partfl_res == 21 ",
+          "vbs0_quark" : "vbs_0_partfl_res != 21 ",
+          "vjet0_gluon" : "vjet_0_partfl_res == 21 ",
+          "vjet0_quark" : "vjet_0_partfl_res != 21 ",
+        }
 }
 
 ############ VVV ############
@@ -255,8 +267,14 @@ samples['VVV']  = {  'name'   :   nanoGetSampleFiles(directory_bkg,'ZZZ')
                                 + nanoGetSampleFiles(directory_bkg,'WWW'),
                                 #+ nanoGetSampleFiles(directory_bkg,'WWG'), #should this be included? or is it already taken into account in the WW sample?
                     'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch ,
-                    'FilesPerJob' : 8,
+                    'FilesPerJob' : 15,
                      'EventsPerJob' : 70000,
+                     'subsamples': {
+                        "vbs0_gluon" : "vbs_0_partfl_res == 21 ",
+                        "vbs0_quark" : "vbs_0_partfl_res != 21 ",
+                        "vjet0_gluon" : "vjet_0_partfl_res == 21 ",
+                        "vjet0_quark" : "vjet_0_partfl_res != 21 ",
+                      }
                   }
 
  ############## VBF-V ########
@@ -265,8 +283,14 @@ samples['VBF-V']  = {  'name'   :
                                     nanoGetSampleFiles(directory_bkg,'WLNuJJ_EWK') +
                                   nanoGetSampleFiles(directory_bkg,'EWKZ2Jets_ZToLL_M-50'),
                     'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch,
-                    'FilesPerJob' : 8,
+                    'FilesPerJob' : 15,
                     'EventsPerJob' : 70000,
+                    'subsamples': {
+                      "vbs0_gluon" : "vbs_0_partfl_res == 21 ",
+                      "vbs0_quark" : "vbs_0_partfl_res != 21 ",
+                      "vjet0_gluon" : "vjet_0_partfl_res == 21 ",
+                      "vjet0_quark" : "vjet_0_partfl_res != 21 ",
+                    }
                   }
 
 
@@ -276,10 +300,16 @@ samples['VBF-V']  = {  'name'   :
 samples['Vg']  = {  'name'   :   nanoGetSampleFiles(directory_bkg,'Wg_MADGRAPHMLM')
                                + nanoGetSampleFiles(directory_bkg,'ZGToLLG'),
                     'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC+'*(Gen_ZGstar_mass <= 0)',
-                    'FilesPerJob' : 8,
+                    'FilesPerJob' : 15,
                     'EventsPerJob' : 70000,
                     'suppressNegative' :['all'],
                     'suppressNegativeNuisances' :['all'],
+                    'subsamples': {
+                      "vbs0_gluon" : "vbs_0_partfl_res == 21 ",
+                      "vbs0_quark" : "vbs_0_partfl_res != 21 ",
+                      "vjet0_gluon" : "vjet_0_partfl_res == 21 ",
+                      "vjet0_quark" : "vjet_0_partfl_res != 21 ",
+                    }
                   }
 
 # the following baseW correction is needed in both v5 and v6 (for Zg, Not for ZGToLLG)
@@ -292,7 +322,7 @@ samples['VgS']  =  {  'name'   :   nanoGetSampleFiles(directory_bkg,'Wg_MADGRAPH
                                  + nanoGetSampleFiles(directory_bkg,'ZGToLLG')
                                  + nanoGetSampleFiles(directory_bkg,'WZTo3LNu_mllmin01'),
                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + ' * (gstarLow * 0.94 + gstarHigh * 1.14)',
-                      'FilesPerJob' : 8,
+                      'FilesPerJob' : 15,
                       'EventsPerJob' : 70000,
                       'suppressNegative' :['all'],
                       'suppressNegativeNuisances' :['all'],
@@ -300,6 +330,12 @@ samples['VgS']  =  {  'name'   :   nanoGetSampleFiles(directory_bkg,'Wg_MADGRAPH
                       #   'L': 'gstarLow',
                       #   'H': 'gstarHigh'
                       # }
+                      'subsamples': {
+                        "vbs0_gluon" : "vbs_0_partfl_res == 21 ",
+                        "vbs0_quark" : "vbs_0_partfl_res != 21 ",
+                        "vjet0_gluon" : "vjet_0_partfl_res == 21 ",
+                        "vjet0_quark" : "vjet_0_partfl_res != 21 ",
+                      }
                    }
 
 addSampleWeight(samples,'VgS','Wg_MADGRAPHMLM', '(Gen_ZGstar_mass > 0 && Gen_ZGstar_mass < 0.1)')
@@ -323,56 +359,34 @@ samples['VBS']  = { 'name' :
                nanoGetSampleFiles(directory_signal,'WpTo2J_WmToLNu') +
                nanoGetSampleFiles(directory_signal,'ZTo2L_ZTo2J',  ),
        'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch,
-       'FilesPerJob' : 10,
+       'FilesPerJob' : 15,
        'EventsPerJob' : 70000,
+      'subsamples': {
+          "vbs0_gluon" : "vbs_0_partfl_res == 21 ",
+          "vbs0_quark" : "vbs_0_partfl_res != 21 ",
+          "vjet0_gluon" : "vjet_0_partfl_res == 21 ",
+          "vjet0_quark" : "vjet_0_partfl_res != 21 ",
+        }
 }
 
 # Then corrected
-#fakeW = 'fakeW_ele_mvaFall17V1Iso_WP90_mu_cut_Tight_HWWW_mu20_ele35'
+fakeW = 'FW_mu35_ele35'
 
 ### Fakes
-samples['ECAL10'] = {
+samples['Fake'] = {
   'name': [],
-  'weight': METFilter_DATA+'* FW_mu10_el10',
+  'weight': METFilter_DATA+'*'+fakeW,
   'weights': [],
   'isData': ['all'],
-  'FilesPerJob' : 20,
+  'FilesPerJob' : 12,
 }
 
-### Fakes
-samples['ECAL25'] = {
-  'name': [],
-  'weight': METFilter_DATA+'* FW_mu25_el25',
-  'weights': [],
-  'isData': ['all'],
-  'FilesPerJob' : 20,
-}
-
-### Fakes
-samples['ECAL35'] = {
-  'name': [],
-  'weight': METFilter_DATA+'* FW_mu35_el35',
-  'weights': [],
-  'isData': ['all'],
-  'FilesPerJob' : 20,
-}
-
-### Fakes
-samples['ECAL45'] = {
-  'name': [],
-  'weight': METFilter_DATA+'* FW_mu45_el45',
-  'weights': [],
-  'isData': ['all'],
-  'FilesPerJob' : 20,
-}
-
-for et in [10,25,35,45]:
-  for _, sd in DataRun:
-    for pd in DataSets:
-      # BE Careful --> we use directory_data because the Lepton tight cut was not applied in post-processing
-      files = nanoGetSampleFiles(directory_data, pd + '_' + sd)
-      samples['ECAL'+str(et)]['name'].extend(files)
-      samples['ECAL'+str(et)]['weights'].extend([DataTrig[pd]] * len(files))
+for _, sd in DataRun:
+  for pd in DataSets:
+    # BE Careful --> we use directory_data because the Lepton tight cut was not applied in post-processing
+    files = nanoGetSampleFiles(directory_data, pd + '_' + sd)
+    samples['Fake']['name'].extend(files)
+    samples['Fake']['weights'].extend([DataTrig[pd]] * len(files))
 
 
 #########################################
@@ -383,7 +397,7 @@ samples['DATA']  = {   'name': [ ] ,
                        'weight' : METFilter_DATA+'*'+LepWPCut,
                        'weights' : [ ],
                        'isData': ['all'],
-                       'FilesPerJob' : 15,
+                       'FilesPerJob' : 12,
                   }
 
 for Run in DataRun :
@@ -393,6 +407,6 @@ for Run in DataRun :
                         samples['DATA']['name'].append(iFile)
                         samples['DATA']['weights'].append(DataTrig[DataSet])
 
-#samples = {   key:v for key,v in samples.items() if key in ['ECAL'+ str(et) for et in [10,25,35,45]] }
+#samples = {   key:v for key,v in samples.items() if key  in ["DY","Fake", "VV"]}
 
-#samples = {   key:v for key,v in samples.items() if key in ['Fake35'] }
+#samples = {   key:v for key,v in samples.items() if key  in ["Wjets_HT"]}

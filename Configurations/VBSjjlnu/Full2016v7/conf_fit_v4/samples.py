@@ -6,10 +6,15 @@ from LatinoAnalysis.Tools.commonTools import *
 def nanoGetSampleFiles(inputDir, sample):
     return getSampleFiles(inputDir, sample, True, 'nanoLatino_')
 
+def CombineBaseW(samples, proc, samplelist):
+  newbaseW = getBaseWnAOD(directory_bkg, 'Summer16_102X_nAODv7_Full2016v7', samplelist)
+  for s in samplelist:
+    addSampleWeight(samples, proc, s, newbaseW+'/baseW')
+
 samples={}
 
 # Steps
-mcSteps   = 'MCl1loose2016v7__MCCorr2016v7___MCCombJJLNu2016' 
+mcSteps   = 'MCl1loose2016v7__MCCorr2016v7__MCCombJJLNu2016' 
 dataSteps = 'DATAl1loose2016v7__DATACombJJLNu2016'
 fakeSteps = 'DATAl1loose2016v7__DATACombJJLNu2016'
 
@@ -25,9 +30,10 @@ if    'iihe' in SITE :
 elif  'cern' in SITE :
   #xrootdPath='root://eoscms.cern.ch/'
   treeBaseDir = '/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/'
+  treeBaseDir_SMP = '/eos/cms/store/group/phys_smp/VJets_NLO_VBSanalyses/'
 
 directory_bkg    = treeBaseDir + 'Summer16_102X_nAODv7_Full2016v7/' + mcSteps
-directory_signal = treeBaseDir + 'Summer16_102X_nAODv7_Full2016v7/' + mcSteps_signal
+directory_signal = treeBaseDir_SMP + 'Summer16_102X_nAODv7_Full2016v7/' + mcSteps
 directory_fakes  = treeBaseDir + 'Run2016_102X_nAODv7_Full2016v7/'  + fakeSteps
 directory_data   = treeBaseDir + 'Run2016_102X_nAODv7_Full2016v7/'  + dataSteps
 
@@ -110,8 +116,8 @@ DataTrig = {
 
 DY_photon_filter = '*( !(Sum$(PhotonGen_isPrompt==1 && PhotonGen_pt>15 && abs(PhotonGen_eta)<2.6) > 0))'
 
-  samples['DY'] = {    'name'   :   nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-50-LO_ext1')
-                                  #+ nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-50_ext2') TODO include when ready
+samples['DY'] = {    'name'   :   #nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-50-LO_ext1')
+                                  nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-50_ext2') 
                                   + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-10to50')
                                   + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-10to50_ext1')
                                   + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-50_HT-70to100')
@@ -124,7 +130,7 @@ DY_photon_filter = '*( !(Sum$(PhotonGen_isPrompt==1 && PhotonGen_pt>15 && abs(Ph
                                   + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-50_HT-600to800')
                                   + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-50_HT-800to1200')
                                   + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-50_HT-1200to2500')
-                                  + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-50_HT-2500toinf')
+                                  #+ nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-50_HT-2500toinf') # to be included
                                   + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-5to50_HT-70to100')
                                   + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-5to50_HT-100to200')
                                   + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-5to50_HT-200to400')
@@ -134,12 +140,13 @@ DY_photon_filter = '*( !(Sum$(PhotonGen_isPrompt==1 && PhotonGen_pt>15 && abs(Ph
                                   + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-5to50_HT-600toinf')
                                   + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-5to50_HT-600toinf_ext1'),
                        'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*'+DY_photon_filter  ,
-                       'FilesPerJob' : 10,
+                       'FilesPerJob' : 12,
                        'EventsPerJob' : 80000,
                        'suppressNegative' :['all'],
                        'suppressNegativeNuisances' :['all'],
                    }
-addSampleWeight(samples,'DY','DYJetsToLL_M-50-LO-ext1','DY_LO_pTllrw')
+#addSampleWeight(samples,'DY','DYJetsToLL_M-50-LO-ext1','DY_LO_pTllrw')
+addSampleWeight(samples,'DY','DYJetsToLL_M-50_ext2','DY_NLO_pTllrw')
 
 CombineBaseW(samples, 'DY', ['DYJetsToLL_M-10to50', 'DYJetsToLL_M-10to50_ext1'])
 addSampleWeight(samples,'DY','DYJetsToLL_M-10to50','DY_NLO_pTllrw')
@@ -152,7 +159,8 @@ CombineBaseW(samples, 'DY', ['DYJetsToLL_M-5to50_HT-200to400', 'DYJetsToLL_M-5to
 CombineBaseW(samples, 'DY', ['DYJetsToLL_M-5to50_HT-400to600', 'DYJetsToLL_M-5to50_HT-400to600_ext1'])
 CombineBaseW(samples, 'DY', ['DYJetsToLL_M-5to50_HT-600toinf', 'DYJetsToLL_M-5to50_HT-600toinf_ext1'])
 
-addSampleWeight(samples,'DY','DYJetsToLL_M-50-LO_ext1',            '(LHE_HT < 70)')
+#addSampleWeight(samples,'DY','DYJetsToLL_M-50-LO_ext1',            '(LHE_HT < 70)')
+addSampleWeight(samples,'DY','DYJetsToLL_M-50_ext2',            '(LHE_HT < 70)')
 addSampleWeight(samples,'DY','DYJetsToLL_M-10to50',                '(LHE_HT < 70)')
 addSampleWeight(samples,'DY','DYJetsToLL_M-10to50_ext1',           '(LHE_HT < 70)')
 addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-70to100',         'DY_LO_pTllrw') # HT-binned are LO!
@@ -165,7 +173,7 @@ addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-400to600_ext1',   'DY_LO_pTllrw
 addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-600to800',        'DY_LO_pTllrw')
 addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-800to1200',       'DY_LO_pTllrw')
 addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-1200to2500',      'DY_LO_pTllrw')
-addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-2500toinf',       'DY_LO_pTllrw')
+#addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-2500toinf',       'DY_LO_pTllrw')
 addSampleWeight(samples,'DY','DYJetsToLL_M-5to50_HT-70to100',      'DY_LO_pTllrw')
 addSampleWeight(samples,'DY','DYJetsToLL_M-5to50_HT-100to200',     'DY_LO_pTllrw')
 addSampleWeight(samples,'DY','DYJetsToLL_M-5to50_HT-200to400',     'DY_LO_pTllrw')
@@ -188,7 +196,7 @@ samples['top'] = {
                       + nanoGetSampleFiles(directory_bkg,'ST_tW_top') 
                       + nanoGetSampleFiles(directory_bkg,'TTToSemiLeptonic') 
                       + nanoGetSampleFiles(directory_bkg,'TTTo2L2Nu') 
-                      + nanoGetSampleFiles(directory_bkg,'TTWjetsToLNu_ext1')  
+                    #  + nanoGetSampleFiles(directory_bkg,'TTWJetsToLNu_ext1')  
                       + nanoGetSampleFiles(directory_bkg,'TTZjets'),  
             'weight' :  XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch,
             'FilesPerJob' : 10,
@@ -199,8 +207,8 @@ samples['top'] = {
 
 addSampleWeight(samples,'top','TTTo2L2Nu','Top_pTrw')
 addSampleWeight(samples,'top','TTToSemiLeptonic','Top_pTrw')
-addSampleWeight(samples,'top','TTZjets','Top_pTrw')
-addSampleWeight(samples,'top','TTWjets_ext1','Top_pTrw')
+#addSampleWeight(samples,'top','TTZjets','Top_pTrw')
+#addSampleWeight(samples,'top','TTWjets_ext1','Top_pTrw')
 
 addSampleWeight(samples,'top','ST_t-channel_top',  "100. / 32.4 ") # N.B We are using inclusive sample with leptonic-only XS
 addSampleWeight(samples,'top','ST_t-channel_antitop',  "100. / 32.4")
@@ -209,9 +217,9 @@ addSampleWeight(samples,'top','ST_t-channel_antitop',  "100. / 32.4")
 #######################################################
 
 
-samples['Wjets'] = { 'name' :   
+samples['Wjets_HT'] = { 'name' :   
           nanoGetSampleFiles(directory_bkg, 'WJetsToLNu')  #NLO inclusive samples
-          nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_ext2')
+          + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_ext2')
           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT70_100')
           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT100_200')
           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT100_200_ext2')
@@ -228,7 +236,7 @@ samples['Wjets'] = { 'name' :
           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT2500_inf')
           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT2500_inf_ext1'),
         'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch,
-        'FilesPerJob' : 8,
+        'FilesPerJob' : 12,
         'EventsPerJob' : 70000,
         'suppressNegative' :['all'],
         'suppressNegativeNuisances' :['all'],
@@ -247,30 +255,31 @@ samples['Wjets'] = { 'name' :
        }
 
 # No needed HT stiching corrections
-addSampleWeight(samples,'Wjets', 'WJetsToLNu', '(LHE_HT < 70)') 
-addSampleWeight(samples,'Wjets', 'WJetsToLNu_ext2', '(LHE_HT < 70)') 
+addSampleWeight(samples,'Wjets_HT', 'WJetsToLNu', '(LHE_HT < 70)') 
+addSampleWeight(samples,'Wjets_HT', 'WJetsToLNu_ext2', '(LHE_HT < 70)') 
 
-CombineBaseW(samples, 'Wjets', ['WJetsToLNu_HT100_200','WJetsToLNu_HT100_200_ext2'])
-CombineBaseW(samples, 'Wjets', ['WJetsToLNu_HT200_400','WJetsToLNu_HT200_400_ext2'])
-CombineBaseW(samples, 'Wjets', ['WJetsToLNu_HT400_600','WJetsToLNu_HT400_600_ext1'])
-CombineBaseW(samples, 'Wjets', ['WJetsToLNu_HT600_800','WJetsToLNu_HT600_800_ext1'])
-CombineBaseW(samples, 'Wjets', ['WJetsToLNu_HT800_1200','WJetsToLNu_HT800_1200_ext2'])
-CombineBaseW(samples, 'Wjets', ['WJetsToLNu_HT1200_2500','WJetsToLNu_HT1200_2500_ext1'])
-CombineBaseW(samples, 'Wjets', ['WJetsToLNu_HT2500_inf','WJetsToLNu_HT2500_inf_ext1'])
+CombineBaseW(samples, 'Wjets_HT', ['WJetsToLNu','WJetsToLNu_ext2'])
+CombineBaseW(samples, 'Wjets_HT', ['WJetsToLNu_HT100_200','WJetsToLNu_HT100_200_ext2'])
+CombineBaseW(samples, 'Wjets_HT', ['WJetsToLNu_HT200_400','WJetsToLNu_HT200_400_ext2'])
+CombineBaseW(samples, 'Wjets_HT', ['WJetsToLNu_HT400_600','WJetsToLNu_HT400_600_ext1'])
+CombineBaseW(samples, 'Wjets_HT', ['WJetsToLNu_HT600_800','WJetsToLNu_HT600_800_ext1'])
+CombineBaseW(samples, 'Wjets_HT', ['WJetsToLNu_HT800_1200','WJetsToLNu_HT800_1200_ext1'])
+CombineBaseW(samples, 'Wjets_HT', ['WJetsToLNu_HT1200_2500','WJetsToLNu_HT1200_2500_ext1'])
+CombineBaseW(samples, 'Wjets_HT', ['WJetsToLNu_HT2500_inf','WJetsToLNu_HT2500_inf_ext1'])
 
 ######################################################## 
 
-## FIND AND ADD THESE! FIXME
+
 samples['VV']  = { 'name' :  
-               nanoGetSampleFiles(directory_bkg,'WmTo2J_ZTo2L_QCD', ) +
-               nanoGetSampleFiles(directory_bkg,'WmToLNu_WmTo2J_QCD') +
-               nanoGetSampleFiles(directory_bkg,'WmToLNu_ZTo2J_QCD',) +
-               nanoGetSampleFiles(directory_bkg,'WpTo2J_WmToLNu_QCD') +
-               nanoGetSampleFiles(directory_bkg,'WpTo2J_ZTo2L_QCD', ) +
-               nanoGetSampleFiles(directory_bkg,'WpToLNu_WmTo2J_QCD') +
-               nanoGetSampleFiles(directory_bkg,'WpToLNu_WpTo2J_QCD') +
-               nanoGetSampleFiles(directory_bkg,'WpToLNu_ZTo2J_QCD',) ,
-              #  nanoGetSampleFiles(directory_bkg,'ZTo2L_ZTo2J_QCD',  ) , #admin, ADD ME
+               nanoGetSampleFiles(directory_signal,'WmTo2J_ZTo2L_QCD', ) +
+               nanoGetSampleFiles(directory_signal,'WmToLNu_WmTo2J_QCD') +
+               nanoGetSampleFiles(directory_signal,'WmToLNu_ZTo2J_QCD',) +
+               nanoGetSampleFiles(directory_signal,'WpTo2J_WmToLNu_QCD') +
+               nanoGetSampleFiles(directory_signal,'WpTo2J_ZTo2L_QCD', ) +
+               nanoGetSampleFiles(directory_signal,'WpToLNu_WmTo2J_QCD') +
+               nanoGetSampleFiles(directory_signal,'WpToLNu_WpTo2J_QCD') +
+               nanoGetSampleFiles(directory_signal,'WpToLNu_ZTo2J_QCD') +
+               nanoGetSampleFiles(directory_signal,'ZTo2L_ZTo2J_QCD') ,
         'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch,
         'FilesPerJob' : 10,
         'EventsPerJob' : 70000,
@@ -298,21 +307,53 @@ samples['VVV']  = {  'name'   :   nanoGetSampleFiles(directory_bkg,'ZZZ')
 #                     'FilesPerJob' : 6
 #                   }
 
+########################
+
+samples['Vg']  = {  'name'   :   nanoGetSampleFiles(directory_bkg,'Wg_MADGRAPHMLM')
+                               + nanoGetSampleFiles(directory_bkg,'Zg'),
+                    'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC+'*(!(Gen_ZGstar_mass > 0))', # 14.02.2020: Changed Vg treatment
+                    'FilesPerJob' : 10,
+                    'EventsPerJob' : 70000,
+                    'suppressNegative' :['all'],
+                    'suppressNegativeNuisances' :['all'],
+                  }
+
+#addSampleWeight(samples,'Vg','Zg','(Sum$(GenPart_pdgId == 22 && TMath::Odd(GenPart_statusFlags) && GenPart_pt < 20.) == 0)')
+
+
+############ VgS ############
+
+samples['VgS']  =  {  'name'   :   nanoGetSampleFiles(directory_bkg,'Wg_MADGRAPHMLM')
+                                 + nanoGetSampleFiles(directory_bkg,'Zg')
+                                 + nanoGetSampleFiles(directory_bkg,'WZTo3LNu_mllmin01'),
+                                 #+ nanoGetSampleFiles(directory_bkg,'WZTo3LNu_mllmin01_ext1'),
+                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + ' * (gstarLow * 0.94 + gstarHigh * 1.14)',
+                      'FilesPerJob' : 10,
+                      'EventsPerJob' : 80000,
+                      'suppressNegative' :['all'],
+                      'suppressNegativeNuisances' :['all'],
+                
+                   }
+#CombineBaseW(samples, 'VgS', ['WZTo3LNu_mllmin01', 'WZTo3LNu_mllmin01_ext1'])
+
+# 14.02.2020: Changed Vg treatment
+addSampleWeight(samples,'VgS','Wg_MADGRAPHMLM',    '(Gen_ZGstar_mass > 0 && Gen_ZGstar_mass < 0.1)')
+addSampleWeight(samples,'VgS','Zg',                '(Gen_ZGstar_mass > 0)')
+addSampleWeight(samples,'VgS','WZTo3LNu_mllmin01', '(Gen_ZGstar_mass > 0.1)')
+#addSampleWeight(samples,'VgS','WZTo3LNu_mllmin01_ext1', '(Gen_ZGstar_mass > 0.1)')
 
 ##########################################
 ################ SIGNALS #################
 ##########################################
 
-# NO Lepton Is/ido scale factors
 
-#
 samples['VBS']  = { 'name' :  
                  nanoGetSampleFiles(directory_signal,'WmTo2J_ZTo2L')
                + nanoGetSampleFiles(directory_signal,'WmToLNu_WmTo2J')
                + nanoGetSampleFiles(directory_signal,'WmToLNu_ZTo2J')
                + nanoGetSampleFiles(directory_signal,'WpTo2J_WmToLNu')
                + nanoGetSampleFiles(directory_signal,'WpTo2J_ZTo2L')
-              # + nanoGetSampleFiles(directory_signal,'WpToLNu_WmTo2J') TODO add back when ready
+               + nanoGetSampleFiles(directory_signal,'WpToLNu_WmTo2J') 
                + nanoGetSampleFiles(directory_signal,'WpToLNu_WpTo2J')
                + nanoGetSampleFiles(directory_signal,'WpToLNu_ZTo2J') 
                + nanoGetSampleFiles(directory_signal,'ZTo2L_ZTo2J' ),
@@ -322,40 +363,41 @@ samples['VBS']  = { 'name' :
 }
 
 
-# fakeW = 'fakeW_ele_'+eleWP+'_mu_'+muWP + '_mu10_ele35'
-# # from alias
-# #fakeW = 'fake_weight_corrected'
-# #### Fakes
-# samples['Fake'] = {
-#   'name': [],
-#   'weight': METFilter_DATA+'*'+fakeW,
-#   'weights': [],
-#   'isData': ['all'],
-#   'FilesPerJob': 30
-# }
+fakeW = 'fakeW_ele_' + eleWP + '_mu_' +muWP+ '_1l_mu35_ele35'
+# from alias
+#fakeW = 'fake_weight_corrected'
+#### Fakes
+samples['Fake'] = {
+  'name': [],
+  'weight': METFilter_DATA+'*'+fakeW,
+  'weights': [],
+  'isData': ['all'],
+  'FilesPerJob': 10
+}
 
-# for _, sd in DataRun:
-#   for pd in DataSets:
-#     files = nanoGetSampleFiles(directory_data, pd + '_' + sd)
-#     samples['Fake']['name'].extend(files)
-#     samples['Fake']['weights'].extend([DataTrig[pd]] * len(files))
+for _, sd in DataRun:
+  for pd in DataSets:
+    files = nanoGetSampleFiles(directory_data, pd + '_' + sd)
+    samples['Fake']['name'].extend(files)
+    samples['Fake']['weights'].extend([DataTrig[pd]] * len(files))
 
 
-# ##########################################
-# ################# DATA ###################
-# ##########################################
+##########################################
+################# DATA ###################
+##########################################
 
-# samples['DATA']  = {   'name': [ ] ,
-#                        'weight' : METFilter_DATA+'*'+LepWPCut,
-#                        'weights' : [ ],
-#                        'isData': ['all'],
-#                        'FilesPerJob' : 30,
-#                   }
+samples['DATA']  = {   'name': [ ] ,
+                       'weight' : METFilter_DATA+'*'+LepWPCut,
+                       'weights' : [ ],
+                       'isData': ['all'],
+                       'FilesPerJob' : 10,
+                  }
 
-# for Run in DataRun :
-#         for DataSet in DataSets :
-#                 FileTarget = nanoGetSampleFiles(directory_data,DataSet+'_'+Run[1])
-#                 for iFile in FileTarget:
-#                         samples['DATA']['name'].append(iFile)
-#                         samples['DATA']['weights'].append(DataTrig[DataSet])
+for Run in DataRun :
+        for DataSet in DataSets :
+                FileTarget = nanoGetSampleFiles(directory_data,DataSet+'_'+Run[1])
+                for iFile in FileTarget:
+                        samples['DATA']['name'].append(iFile)
+                        samples['DATA']['weights'].append(DataTrig[DataSet])
 
+#samples = {   key:v for key,v in samples.items() if key  in ["top"]}

@@ -27,7 +27,13 @@ variables['Lepton_eta'] = {   'name': 'Lepton_eta[0]',
 
 
 variables['Lepton_pt'] = {   'name': 'Lepton_pt[0]',      
-                        'range' : (40,0,500),  
+                        'range' : (40,30,500),  
+                        'xaxis' : 'Lepton pt', 
+                        'fold' : 3
+                        }    
+
+variables['Lepton_pt_zoom'] = {   'name': 'Lepton_pt[0]',      
+                        'range' : (50,30,200),  
                         'xaxis' : 'Lepton pt', 
                         'fold' : 3
                         }    
@@ -41,11 +47,11 @@ variables['deltaeta_vbs'] = {   'name': 'deltaeta_vbs',
                         }    
 
 
-variables['deltaphi_vbs'] = {   'name': 'deltaphi_vbs',      
-                        'range' : (30,0,3.5),  
-                        'xaxis' : '#Delta#phi VBS jets', 
-                        'fold' : 3
-                        }
+# variables['deltaphi_vbs'] = {   'name': 'deltaphi_vbs',      
+#                         'range' : (30,0,3.5),  
+#                         'xaxis' : '#Delta#phi VBS jets', 
+#                         'fold' : 3
+#                         }
 
 
 #MET
@@ -105,20 +111,11 @@ variables['Mtw_lep'] = {   'name': 'Mtw_lep',
                         }
 
 
-variables['whad_pt_res'] = {
+variables['whad_pt'] = {
             'name': "w_had_pt",
-            'range': (30, 0, 200),
+            'range': (40, 0, 200),
             'xaxis': 'W hadronic Pt',
-            'fold': 3 ,
-            'cuts': res_cuts
-}
-
-variables['whad_pt_boost'] = {
-            'name': "fatjetpt085",
-            'range': (40, 200, 600),
-            'xaxis': 'W hadronic Pt',
-            'fold': 3 ,
-            'cuts': boost_cuts
+            'fold': 3 
 }
 
 
@@ -243,66 +240,66 @@ variables['N_jets_forward'] = {   'name': 'N_jets_forward',
 
 
 
-variables['vbs_etaprod'] = {   'name': 'vbs_0_eta*vbs_1_eta',      
-                        'range' : (30,-10,10),  
-                        'xaxis' : 'VBS jets #eta1#eta2', 
-                        'fold' : 3
-                         }
+# variables['vbs_etaprod'] = {   'name': 'vbs_0_eta*vbs_1_eta',      
+#                         'range' : (30,-10,10),  
+#                         'xaxis' : 'VBS jets #eta1#eta2', 
+#                         'fold' : 3
+#                          }
 
 
 
-variables["vbs_index_0"] = {   'name': 'VBS_jets_maxmjj_massWZ[0]',      
-                        'range' : (10,0,10),  
-                        'xaxis' : 'Index leading VBS jet', 
-                        'fold' : 3
-                        }
+# variables["vbs_index_0"] = {   'name': 'VBS_jets_maxmjj_massWZ[0]',      
+#                         'range' : (10,0,10),  
+#                         'xaxis' : 'Index leading VBS jet', 
+#                         'fold' : 3
+#                         }
 
-variables["vbs_index_1"] = {   'name': 'VBS_jets_maxmjj_massWZ[1]',      
-                        'range' : (10,0,10),  
-                        'xaxis' : 'Index trailing VBS jet', 
-                        'fold' : 3
-                        }
+# variables["vbs_index_1"] = {   'name': 'VBS_jets_maxmjj_massWZ[1]',      
+#                         'range' : (10,0,10),  
+#                         'xaxis' : 'Index trailing VBS jet', 
+#                         'fold' : 3
+#                         }
 
-variables["vjet_index_0"] = {   'name': 'V_jets_maxmjj_massWZ[0]',      
-                        'range' : (10,0,10),  
-                        'xaxis' : 'Index leading V-jet', 
-                        'fold' : 3
-                        }
+# variables["vjet_index_0"] = {   'name': 'V_jets_maxmjj_massWZ[0]',      
+#                         'range' : (10,0,10),  
+#                         'xaxis' : 'Index leading V-jet', 
+#                         'fold' : 3
+#                         }
 
-variables["vjet_index_1"] = {   'name': 'V_jets_maxmjj_massWZ[1]',      
-                        'range' : (10,0,10),  
-                        'xaxis' : 'Index trailing V-jet', 
-                        'fold' : 3
-                        }
+# variables["vjet_index_1"] = {   'name': 'V_jets_maxmjj_massWZ[1]',      
+#                         'range' : (10,0,10),  
+#                         'xaxis' : 'Index trailing V-jet', 
+#                         'fold' : 3
+#                         }
 
-# # #Zvjets_high
-variables['Zvjets_0'] = {   'name': 'Zvjets_0',      
-                        'range' : (30,-3,3),  
-                        'xaxis' : 'Zep. leading V-jet ', 
-                        'fold' : 3
-                        }
+# # # #Zvjets_high
+# variables['Zvjets_0'] = {   'name': 'Zvjets_0',      
+#                         'range' : (30,-3,3),  
+#                         'xaxis' : 'Zep. leading V-jet ', 
+#                         'fold' : 3
+#                         }
 
-variables['Zvjets_1'] = {   'name': 'Zvjets_1',      
-                        'range' : (30,-3,3),  
-                        'xaxis' : 'Zep. trailing V-jet ', 
-                        'fold' : 3
-                        }
+# variables['Zvjets_1'] = {   'name': 'Zvjets_1',      
+#                         'range' : (30,-3,3),  
+#                         'xaxis' : 'Zep. trailing V-jet ', 
+#                         'fold' : 3
+#                         }
 
 # #Zlep
 
 
 # # #Asym
-variables['Asym_vbs'] = {   'name': 'Asym_vbs',      
-                        'range' : (30,0,1),  
-                        'xaxis' : 'Pt asymmetry VBS jets', 
-                        'fold' : 3
-                        }
+# variables['Asym_vbs'] = {   'name': 'Asym_vbs',      
+#                         'range' : (30,0,1),  
+#                         'xaxis' : 'Pt asymmetry VBS jets', 
+#                         'fold' : 3
+#                         }
 
-variables['Asym_vjet'] = {   'name': 'Asym_vjet',      
-                        'range' : (30,0,1),  
-                        'xaxis' : 'Pt asymmetry V-jets', 
-                        'fold' : 3
-                        }
+# variables['Asym_vjet'] = {   'name': 'Asym_vjet',      
+#                         'range' : (30,0,1),  
+#                         'xaxis' : 'Pt asymmetry V-jets', 
+#                         'fold' : 3
+#                         }
 
  
 variables['Mw_lep_reco'] = {   'name': 'Mw_lep',      
@@ -317,43 +314,43 @@ variables['w_lep_pt'] = {   'name': 'w_lep_pt',
                         'fold' : 3
                         }
 
-variables['Mww'] = {   'name': 'Mww',      
-                        'range' : (30,0,2000),  
-                        'xaxis' : 'Mww', 
-                        'fold' : 3,
-                         'blind': [1000,2000]
-                        }
+# variables['Mww'] = {   'name': 'Mww',      
+#                         'range' : (30,0,2000),  
+#                         'xaxis' : 'Mww', 
+#                         'fold' : 3,
+#                          'blind': [1000,2000]
+#                         }
 
-variables['R_ww'] = {   'name': 'R_ww',      
-                        'range' : (30,0,80),  
-                        'xaxis' : 'R_ww', 
-                        'fold' : 3
-                        }
+# variables['R_ww'] = {   'name': 'R_ww',      
+#                         'range' : (30,0,80),  
+#                         'xaxis' : 'R_ww', 
+#                         'fold' : 3
+#                         }
 
-variables['R_mw'] = {   'name': 'R_mw',      
-                        'range' : (30,0,0.6),  
-                        'xaxis' : 'R_mw', 
-                        'fold' : 3
-                        }
+# variables['R_mw'] = {   'name': 'R_mw',      
+#                         'range' : (30,0,0.6),  
+#                         'xaxis' : 'R_mw', 
+#                         'fold' : 3
+#                         }
 
-variables['A_ww'] = {   'name': 'A_ww',      
-                        'range' : (30,0,1.1),  
-                        'xaxis' : 'A_ww', 
-                        'fold' : 3
-                        }
+# variables['A_ww'] = {   'name': 'A_ww',      
+#                         'range' : (30,0,1.1),  
+#                         'xaxis' : 'A_ww', 
+#                         'fold' : 3
+#                         }
 
 # #Centrality variables
-variables['Centr_vbs'] = {   'name': 'Centr_vbs',      
-                        'range' : (30,0,3),  
-                        'xaxis' : 'VBS centrality', 
-                        'fold' : 3
-                        }
+# variables['Centr_vbs'] = {   'name': 'Centr_vbs',      
+#                         'range' : (30,0,3),  
+#                         'xaxis' : 'VBS centrality', 
+#                         'fold' : 3
+#                         }
 
-variables['Centr_ww'] = {   'name': 'Centr_ww',      
-                        'range' : (30,-6,5),  
-                        'xaxis' : 'W boson centrality', 
-                        'fold' : 3
-                        }
+# variables['Centr_ww'] = {   'name': 'Centr_ww',      
+#                         'range' : (30,-6,5),  
+#                         'xaxis' : 'W boson centrality', 
+#                         'fold' : 3
+#                         }
 
 
 variables['nvtx_good'] = {  'name': 'PV_npvsGood',
@@ -365,92 +362,92 @@ variables['nvtx_good'] = {  'name': 'PV_npvsGood',
 ############# 
 # new fat jet vars
 
-variables['fatjet_TvsQCD'] = {  'name': 'fatjet_TvsQCD',
-                        'range': (40,0,1),
-                        'xaxis': 'fatjet T vs QCD',
-                        'fold': 3,
-                        'cuts': boost_cuts
-                }
+# variables['fatjet_TvsQCD'] = {  'name': 'fatjet_TvsQCD',
+#                         'range': (40,0,1),
+#                         'xaxis': 'fatjet T vs QCD',
+#                         'fold': 3,
+#                         'cuts': boost_cuts
+#                 }
 
 
-variables['fatjet_ZvsQCD'] = {  'name': 'fatjet_ZvsQCD',
-                        'range': (40,0,1),
-                        'xaxis': 'fatjet Z vs QCD',
-                        'fold': 3,
-                        'cuts': boost_cuts
-                }
+# variables['fatjet_ZvsQCD'] = {  'name': 'fatjet_ZvsQCD',
+#                         'range': (40,0,1),
+#                         'xaxis': 'fatjet Z vs QCD',
+#                         'fold': 3,
+#                         'cuts': boost_cuts
+#                 }
 
 
-variables['fatjet_WvsQCD'] = {  'name': 'fatjet_WvsQCD',
-                        'range': (40,0,1),
-                        'xaxis': 'fatjet T vs QCD',
-                        'fold': 3,
-                        'cuts': boost_cuts
-                }
+# variables['fatjet_WvsQCD'] = {  'name': 'fatjet_WvsQCD',
+#                         'range': (40,0,1),
+#                         'xaxis': 'fatjet T vs QCD',
+#                         'fold': 3,
+#                         'cuts': boost_cuts
+#                 }
 
 
-variables['fatjet_subjet1_pt'] = {  'name': 'fatjet_subjet1_pt',
-                        'range': (40,30,400),
-                        'xaxis': 'FatJet leading subjet pt',
-                        'fold': 3,
-                        'cuts': boost_cuts
-                }
+# variables['fatjet_subjet1_pt'] = {  'name': 'fatjet_subjet1_pt',
+#                         'range': (40,30,400),
+#                         'xaxis': 'FatJet leading subjet pt',
+#                         'fold': 3,
+#                         'cuts': boost_cuts
+#                 }
 
-variables['fatjet_subjet2_pt'] = {  'name': 'fatjet_subjet2_pt',
-                        'range': (40,30,400),
-                        'xaxis': 'FatJet subleading subjet pt',
-                        'fold': 3,
-                        'cuts': boost_cuts
-                }
+# variables['fatjet_subjet2_pt'] = {  'name': 'fatjet_subjet2_pt',
+#                         'range': (40,30,400),
+#                         'xaxis': 'FatJet subleading subjet pt',
+#                         'fold': 3,
+#                         'cuts': boost_cuts
+#                 }
 
-variables['fatjet_subjet_ptratio'] = {  'name': 'fatjet_subjet_ptratio',
-                        'range': (50,0.,1.),
-                        'xaxis': 'FatJet subleading/leading subjet pt',
-                        'fold': 3,
-                        'cuts': boost_cuts
-                }
+# variables['fatjet_subjet_ptratio'] = {  'name': 'fatjet_subjet_ptratio',
+#                         'range': (50,0.,1.),
+#                         'xaxis': 'FatJet subleading/leading subjet pt',
+#                         'fold': 3,
+#                         'cuts': boost_cuts
+#                 }
 
-#######
-# QGL vars 
+# #######
+# # QGL vars 
 
-variables['vbs_0_qgl_boost'] = {  'name': 'vbs_0_qgl_boost',
-                        'range': (40,0.,1.),
-                        'xaxis': 'Qgl VBS 0 jet',
-                        'fold': 3,
-                        'cuts': boost_cuts
-                }
+# variables['vbs_0_qgl_boost'] = {  'name': 'vbs_0_qgl_boost',
+#                         'range': (40,0.,1.),
+#                         'xaxis': 'Qgl VBS 0 jet',
+#                         'fold': 3,
+#                         'cuts': boost_cuts
+#                 }
 
-variables['vbs_1_qgl_boost'] = {  'name': 'vbs_1_qgl_boost',
-                        'range': (40,0.,1.),
-                        'xaxis': 'Qgl VBS 1 jet',
-                        'fold': 3,
-                        'cuts': boost_cuts
-                }
+# variables['vbs_1_qgl_boost'] = {  'name': 'vbs_1_qgl_boost',
+#                         'range': (40,0.,1.),
+#                         'xaxis': 'Qgl VBS 1 jet',
+#                         'fold': 3,
+#                         'cuts': boost_cuts
+#                 }
 
-variables['vbs_0_qgl_res'] = {  'name': 'vbs_0_qgl_res',
-                        'range': (40,0.,1.),
-                        'xaxis': 'Qgl VBS 0 jet',
-                        'fold': 3,
-                        'cuts': res_cuts
-                }
+# variables['vbs_0_qgl_res'] = {  'name': 'vbs_0_qgl_res',
+#                         'range': (40,0.,1.),
+#                         'xaxis': 'Qgl VBS 0 jet',
+#                         'fold': 3,
+#                         'cuts': res_cuts
+#                 }
 
-variables['vbs_1_qgl_res'] = {  'name': 'vbs_1_qgl_res',
-                        'range': (40,0.,1.),
-                        'xaxis': 'Qgl VBS 1 jet',
-                        'fold': 3,
-                        'cuts': res_cuts
-                }
+# variables['vbs_1_qgl_res'] = {  'name': 'vbs_1_qgl_res',
+#                         'range': (40,0.,1.),
+#                         'xaxis': 'Qgl VBS 1 jet',
+#                         'fold': 3,
+#                         'cuts': res_cuts
+#                 }
 
-variables['vjet_0_qgl_res'] = {  'name': 'vjet_0_qgl_res',
-                        'range': (40,0.,1.),
-                        'xaxis': 'Qgl Vjet 0 jet',
-                        'fold': 3,
-                        'cuts': res_cuts
-                }
+# variables['vjet_0_qgl_res'] = {  'name': 'vjet_0_qgl_res',
+#                         'range': (40,0.,1.),
+#                         'xaxis': 'Qgl Vjet 0 jet',
+#                         'fold': 3,
+#                         'cuts': res_cuts
+#                 }
 
-variables['vjet_1_qgl_res'] = {  'name': 'vjet_1_qgl_res',
-                        'range': (40,0.,1.),
-                        'xaxis': 'Qgl Vjet 1 jet',
-                        'fold': 3,
-                        'cuts': res_cuts
-                }
+# variables['vjet_1_qgl_res'] = {  'name': 'vjet_1_qgl_res',
+#                         'range': (40,0.,1.),
+#                         'xaxis': 'Qgl Vjet 1 jet',
+#                         'fold': 3,
+#                         'cuts': res_cuts
+#                 }

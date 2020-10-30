@@ -20,24 +20,24 @@
 
 using namespace std;
 
-class newFakeWeightOTF : public multidraw::TTreeFunction {
+class newFakeWeightOTF17 : public multidraw::TTreeFunction {
 public:
-  //newFakeWeightOTF(string file, string ele_WP, string mu_WP, string fr_ele_path, string pr_ele_path, string fr_mu_path, string pr_mu_path);
-  newFakeWeightOTF(string ele_WP, string mu_WP, string fr_ele_path, string pr_ele_path, string fr_mu_path, string pr_mu_path, bool do_statUp, bool do_statDo);
+  //newFakeWeightOTF17(string file, string ele_WP, string mu_WP, string fr_ele_path, string pr_ele_path, string fr_mu_path, string pr_mu_path);
+  newFakeWeightOTF17(string ele_WP, string mu_WP, string fr_ele_path, string pr_ele_path, string fr_mu_path, string pr_mu_path, bool do_statUp, bool do_statDo);
 
   char const* getName() const override { 
-      return "newFakeWeightOTF"; 
+      return "newFakeWeightOTF17"; 
   }
   TTreeFunction* clone() const override { 
-      //return new newFakeWeightOTF(inputfile_path, ele_WP, mu_WP, fr_ele_path, pr_ele_path, fr_mu_path, pr_mu_path); 
-      return new newFakeWeightOTF(ele_WP, mu_WP, fr_ele_path, pr_ele_path, fr_mu_path, pr_mu_path, do_statUp, do_statDo); 
+      //return new newFakeWeightOTF17(inputfile_path, ele_WP, mu_WP, fr_ele_path, pr_ele_path, fr_mu_path, pr_mu_path); 
+      return new newFakeWeightOTF17(ele_WP, mu_WP, fr_ele_path, pr_ele_path, fr_mu_path, pr_mu_path, do_statUp, do_statDo); 
   }
 
   unsigned getNdata() override { return 1; }
   double evaluate(unsigned) override;
 
 protected:  
-  ~newFakeWeightOTF();
+  ~newFakeWeightOTF17();
   void bindTree_(multidraw::FunctionLibrary&) override;
   bool do_statUp;
   bool do_statDo;
@@ -73,8 +73,8 @@ protected:
 
 };
 
-//newFakeWeightOTF::newFakeWeightOTF(string in_file, string ele_WP, string mu_WP, string in_fr_ele_path, string in_pr_ele_path, string in_fr_mu_path, string in_pr_mu_path) :
-newFakeWeightOTF::newFakeWeightOTF(string ele_WP, string mu_WP, string in_fr_ele_path, string in_pr_ele_path, string in_fr_mu_path, string in_pr_mu_path, bool do_statUp = false, bool do_statDo = false) :
+//newFakeWeightOTF17::newFakeWeightOTF17(string in_file, string ele_WP, string mu_WP, string in_fr_ele_path, string in_pr_ele_path, string in_fr_mu_path, string in_pr_mu_path) :
+newFakeWeightOTF17::newFakeWeightOTF17(string ele_WP, string mu_WP, string in_fr_ele_path, string in_pr_ele_path, string in_fr_mu_path, string in_pr_mu_path, bool do_statUp = false, bool do_statDo = false) :
   TTreeFunction(), 
                   //inputfile_path(in_file), 
                   fr_ele_path(in_fr_ele_path), pr_ele_path(in_pr_ele_path),
@@ -115,7 +115,7 @@ newFakeWeightOTF::newFakeWeightOTF(string ele_WP, string mu_WP, string in_fr_ele
 
 
 double
-newFakeWeightOTF::evaluate(unsigned)
+newFakeWeightOTF17::evaluate(unsigned)
 {
   float eta = Lepton_eta->At(0);
   float aeta = abs(eta);
@@ -201,7 +201,7 @@ newFakeWeightOTF::evaluate(unsigned)
 }
 
 void
-newFakeWeightOTF::bindTree_(multidraw::FunctionLibrary& _library)
+newFakeWeightOTF17::bindTree_(multidraw::FunctionLibrary& _library)
 {   
     _library.bindBranch(Lepton_pt, "Lepton_pt");
     _library.bindBranch(Lepton_eta, "Lepton_eta");
@@ -210,7 +210,7 @@ newFakeWeightOTF::bindTree_(multidraw::FunctionLibrary& _library)
     _library.bindBranch(Lepton_isTightMu, ("Lepton_isTightMuon_"+mu_WP).c_str());
 }
 
-newFakeWeightOTF::~newFakeWeightOTF(){
+newFakeWeightOTF17::~newFakeWeightOTF17(){
   Lepton_pt=nullptr;
   Lepton_eta= nullptr;
   Lepton_pdgId= nullptr;

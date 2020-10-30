@@ -7,37 +7,41 @@ conf_folder = configurations +"/VBSjjlnu/Full2018v7"
 
 #aliases = {}
 
-mc = [skey for skey in samples if skey not in ['DATA'] + [ 'ECAL'+str(et) for et in [10,25,35,45] ] ]
-###########################################################################################
-# v3 fake weights have not abs value for eta.
+mc = [skey for skey in samples if skey not in ('Fake', 'DATA')]
 
-basedir_fakes = conf_folder +"/corrections/new_fake_rates/v5"
+# aliases['whad_pt'] = {
+#             'class': 'WhadPt',
+#             'args': (),
+#             'linesToAdd' : [
+#                 'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+#                 '.L {}/VBSjjlnu/Full2018v6s5/macros/whad_pt.cc+'.format(configurations)
+#             ]           
+# }
 
-for et in [10,25,35,45]:
-    el_fr_file = basedir_fakes + "/plot_ElCh_JetEt"+str(et)+"_l1_etaVpt_ptel_aseta_fw_ewk_2D.root"
-    mu_fr_file = basedir_fakes + "/plot_MuCh_JetEt"+str(et)+"_l1_etaVpt_ptmu_fw_ewk_2D.root"
-    el_pr_file = os.getenv('CMSSW_BASE') + "/src/LatinoAnalysis/NanoGardener/python/data/fake_prompt_rates/Full2018v6/mvaFall17V1IsoWP90/ElePR.root"
-    mu_pr_file = os.getenv('CMSSW_BASE') + "/src/LatinoAnalysis/NanoGardener/python/data/fake_prompt_rates/Full2018v6/mvaFall17V1IsoWP90/MuonPR.root"
-    
-    aliases['FW_mu'+str(et)+'_el'+str(et)] = { 
-        'class': 'newFakeWeightOTF',
-        'args': (eleWP, muWP, copy.deepcopy(el_fr_file), copy.deepcopy(el_pr_file), copy.deepcopy(mu_fr_file), copy.deepcopy(mu_pr_file), False, False), 
-        'linesToAdd' : [
-            'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-            '.L %s/corrections/newfakeweight_OTF.cc+' % conf_folder
-            ],     
-        'samples': ["ECAL"+str(et)]
-    }
-    aliases['FW_mu'+str(et)+'_el'+str(et)+"_statUp"] = { 
-        'class': 'newFakeWeightOTF',
-        'args': (eleWP, muWP, copy.deepcopy(el_fr_file), copy.deepcopy(el_pr_file), copy.deepcopy(mu_fr_file), copy.deepcopy(mu_pr_file), True, False),    
-        'samples': ["ECAL"+str(et)]
-    }
-    aliases['FW_mu'+str(et)+'_el'+str(et)+"_statDo"] = { 
-        'class': 'newFakeWeightOTF',
-        'args': (eleWP, muWP, copy.deepcopy(el_fr_file), copy.deepcopy(el_pr_file), copy.deepcopy(mu_fr_file), copy.deepcopy(mu_pr_file), False, True), 
-        'samples': ["ECAL"+str(et)]
-    }
+# aliases["sip3d_cut"]= {
+#     'expr': '-2.22222*abs( Alt$(Electron_eta[Lepton_electronIdx[0]], 0) ) + 6.33333'
+# }
+
+
+############################################
+# Electron trig efficiency
+
+trigeff_ele_SF =  configurations + "/VBSjjlnu/weights_files/EleTrigEffAndSF.root"
+
+aliases['EleTrigWeight2018'] = { 
+    'linesToAdd': [ 
+        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_RELEASE_BASE'), 
+        '.L %s/macros/weightReader.cc+' % conf_folder
+    ], 
+    'class': 'WeightReader', 
+    'args': (trigeff_ele_SF,"eff_2018ABCD"), 
+    'samples': mc 
+} 
+
+aliases['SingleLepton_trigEff_corrected'] = {
+    'expr': '(abs(Lepton_pdgId[0])==11)*EleTrigWeight2018[0] +  (abs(Lepton_pdgId[0])==13)*TriggerEffWeight_1l',
+    'samples': mc
+}
 
 ############################################
 # B tagging
@@ -73,12 +77,12 @@ aliases['btagSF'] = {
 }
 
 
-systs = ['jes','lf','hf','lfstats1','lfstats2','hfstats1','hfstats2','cferr1','cferr2']
-#systs = ['jes']
+# systs = ['jes','lf','hf','lfstats1','lfstats2','hfstats1','hfstats2','cferr1','cferr2']
+# #systs = ['jes']
 
-for s in systs:
-  aliases['btagSF'+s+'up'] = { 'expr': '(bVeto*'+aliases['bVetoSF']['expr'].replace('shape','shape_up_'+s)+'+bReqTight*'+aliases['bReqSF']['expr'].replace('shape','shape_up_'+s)+'+ ( (!bVeto) && (!bReqTight) ))', 'samples':mc  }
-  aliases['btagSF'+s+'down'] = { 'expr': '(bVeto*'+aliases['bVetoSF']['expr'].replace('shape','shape_down_'+s)+'+bReqTight*'+aliases['bReqSF']['expr'].replace('shape','shape_down_'+s)+'+ ( (!bVeto) && (!bReqTight) ))', 'samples':mc }
+# for s in systs:
+#   aliases['btagSF'+s+'up'] = { 'expr': '(bVeto*'+aliases['bVetoSF']['expr'].replace('shape','shape_up_'+s)+'+bReqTight*'+aliases['bReqSF']['expr'].replace('shape','shape_up_'+s)+'+ ( (!bVeto) && (!bReqTight) ))', 'samples':mc  }
+#   aliases['btagSF'+s+'down'] = { 'expr': '(bVeto*'+aliases['bVetoSF']['expr'].replace('shape','shape_down_'+s)+'+bReqTight*'+aliases['bReqSF']['expr'].replace('shape','shape_down_'+s)+'+ ( (!bVeto) && (!bReqTight) ))', 'samples':mc }
 
 ################################################################################################
 
@@ -138,6 +142,20 @@ aliases['DY_LO_pTllrw'] = {
 }
 
 
+###########################################################################################
+
+# aliases['fake_weight_corrected'] = {
+#     'class': 'FakeWeightCorrector',
+#     'args': ("%s/corrections/fakeweight_correction_2018_v2.root" % conf_folder, 
+#                 "mvaFall17V1Iso_WP90", "fakeW_ele_mvaFall17V1Iso_WP90_mu_cut_Tight_HWWW_1l_mu20_ele35", 
+#                 os.getenv('CMSSW_BASE') + "/src/LatinoAnalysis/NanoGardener/python/data/fake_prompt_rates/Full2018v7/mvaFall17V1Iso_WP90/EleFR_jet35.root",
+#                 os.getenv('CMSSW_BASE') + "/src/LatinoAnalysis/NanoGardener/python/data/fake_prompt_rates/Full2018v7/mvaFall17V1Iso_WP90/ElePR.root"),
+#     'linesToAdd' : [
+#         'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+#         '.L %s/patches/fakeweight_corrector.cc+' % configurations
+#      ],
+#     'samples': ["Fake"]
+# }
 
 ####################################
 

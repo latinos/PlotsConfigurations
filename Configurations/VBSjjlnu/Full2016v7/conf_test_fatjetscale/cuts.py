@@ -104,19 +104,19 @@ cuts["boost_wjetcr_mu"] = 'VBS_category==0 \
 
 
 
-# cuts["boost_wjetcr_ele_fjpt09"] = 'VBS_category==0 \
-#                             && abs(Lepton_pdgId[0])==11 \
-#                             && fatjetpt09 > 200 \
-#                             && (mjj_vjet <= 65 || mjj_vjet >= 105)  \
-#                             && bVeto \
-#                             '
+cuts["boost_wjetcr_ele_fjpt09"] = 'VBS_category==0 \
+                            && abs(Lepton_pdgId[0])==11 \
+                            && fatjetpt09 > 200 \
+                            && (mjj_vjet <= 65 || mjj_vjet >= 105)  \
+                            && bVeto \
+                            '
 
-# cuts["boost_wjetcr_mu_fjpt09"] = 'VBS_category==0 \
-#                             && abs(Lepton_pdgId[0])==13 \
-#                             && fatjetpt09 > 200 \
-#                             && (mjj_vjet <= 65 || mjj_vjet >= 105)  \
-#                             && bVeto \
-#                             '
+cuts["boost_wjetcr_mu_fjpt09"] = 'VBS_category==0 \
+                            && abs(Lepton_pdgId[0])==13 \
+                            && fatjetpt09 > 200 \
+                            && (mjj_vjet <= 65 || mjj_vjet >= 105)  \
+                            && bVeto \
+                            '
 
 # cuts["boost_wjetcr_ele_fjpt08"] = 'VBS_category==0 \
 #                             && abs(Lepton_pdgId[0])==11 \
@@ -249,6 +249,7 @@ cuts["boost_sig_mu_fjpt085"] = 'VBS_category==0 \
                             && bVeto \
                             '
 
+
 cuts["boost_topcr_ele_fjpt085"] = 'VBS_category==0 \
                             && abs(Lepton_pdgId[0])==11 \
                             && fatjetpt085 > 200 \
@@ -260,5 +261,96 @@ cuts["boost_topcr_mu_fjpt085"] = 'VBS_category==0 \
                             && abs(Lepton_pdgId[0])==13 \
                             && fatjetpt085 > 200 \
                             && (mjj_vjet085 > 65 && mjj_vjet085 < 115)  \
+                            && bReqTight \
+                            '
+
+
+cuts["boost_sig_ele_fjpt09"] = 'VBS_category==0 \
+                            && abs(Lepton_pdgId[0])==11 \
+                            && fatjetpt09 > 200 \
+                            && (mjj_vjet09 > 65 && mjj_vjet09 < 115)  \
+                            && bVeto \
+                            '
+
+cuts["boost_sig_mu_fjpt09"] = 'VBS_category==0 \
+                            && abs(Lepton_pdgId[0])==13 \
+                            && fatjetpt09 > 200 \
+                            && (mjj_vjet09 > 65 && mjj_vjet09 < 115)  \
+                            && bVeto \
+                            '
+
+
+cuts["boost_topcr_ele_fjpt09"] = 'VBS_category==0 \
+                            && abs(Lepton_pdgId[0])==11 \
+                            && fatjetpt09 > 200 \
+                            && (mjj_vjet09 > 65 && mjj_vjet09 < 115)  \
+                            && bReqTight \
+                            '
+
+cuts["boost_topcr_mu_fjpt09"] = 'VBS_category==0 \
+                            && abs(Lepton_pdgId[0])==13 \
+                            && fatjetpt09 > 200 \
+                            && (mjj_vjet09 > 65 && mjj_vjet09 < 115)  \
+                            && bReqTight \
+                            '
+
+
+cuts["boost_sig_ele_fjpt082"] = 'VBS_category==0 \
+                            && abs(Lepton_pdgId[0])==11 \
+                            && fatjetpt082 > 200 \
+                            && (mjj_vjet082 > 65 && mjj_vjet082 < 115)  \
+                            && bVeto \
+                            '
+
+cuts["boost_sig_mu_fjpt082"] = 'VBS_category==0 \
+                            && abs(Lepton_pdgId[0])==13 \
+                            && fatjetpt082 > 200 \
+                            && (mjj_vjet082 > 65 && mjj_vjet082 < 115)  \
+                            && bVeto \
+                            '
+
+
+cuts["boost_topcr_ele_fjpt082"] = 'VBS_category==0 \
+                            && abs(Lepton_pdgId[0])==11 \
+                            && fatjetpt082 > 200 \
+                            && (mjj_vjet082 > 65 && mjj_vjet082 < 115)  \
+                            && bReqTight \
+                            '
+
+cuts["boost_topcr_mu_fjpt082"] = 'VBS_category==0 \
+                            && abs(Lepton_pdgId[0])==13 \
+                            && fatjetpt082 > 200 \
+                            && (mjj_vjet082 > 65 && mjj_vjet082 < 115)  \
+                            && bReqTight \
+                            '
+
+
+
+cuts["boost_sig_ele_fjpt087"] = 'VBS_category==0 \
+                            && abs(Lepton_pdgId[0])==11 \
+                            && fatjetpt087 > 200 \
+                            && (mjj_vjet087 > 65 && mjj_vjet087 < 115)  \
+                            && bVeto \
+                            '
+
+cuts["boost_sig_mu_fjpt087"] = 'VBS_category==0 \
+                            && abs(Lepton_pdgId[0])==13 \
+                            && fatjetpt087 > 200 \
+                            && (mjj_vjet087 > 65 && mjj_vjet087 < 115)  \
+                            && bVeto \
+                            '
+
+
+cuts["boost_topcr_ele_fjpt087"] = 'VBS_category==0 \
+                            && abs(Lepton_pdgId[0])==11 \
+                            && fatjetpt087 > 200 \
+                            && (mjj_vjet087 > 65 && mjj_vjet087 < 115)  \
+                            && bReqTight \
+                            '
+
+cuts["boost_topcr_mu_fjpt087"] = 'VBS_category==0 \
+                            && abs(Lepton_pdgId[0])==13 \
+                            && fatjetpt087 > 200 \
+                            && (mjj_vjet087 > 65 && mjj_vjet087 < 115)  \
                             && bReqTight \
                             '
