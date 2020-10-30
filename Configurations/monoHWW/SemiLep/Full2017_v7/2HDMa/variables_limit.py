@@ -305,21 +305,21 @@
 ##                        'xaxis' : 'min(p_{T}^{l}, p_{T}^{j2}) / m_{lmetjj}',
 ##                        'fold'  : 3
 ##                        }
-###WptOvHak4M_OTF
-##variables['WptOvHak4M']  = {
-##                        'name': 'WptOvHak4M_OTF',
-##                        'range' : (25,0,1.),
-##                        'xaxis' : 'min(p_{T}^{lmet}, p_{T}^{jj}) / m_{lmetjj}',
-##                        'fold'  : 3
-##                        }
-##
-##
-##variables['2HDMaBDT_Grad22Var']  = { 
-##                        'name': 'MHlnjj_2HDMaBDT_Grad22Var',
-##                        'range' : (10,-1.1,1.1),
-##                        'xaxis' : '2HDMa BDT_{Grad22Var}',
-##                        'fold'  : 3 
-##                        }   
+##WptOvHak4M_OTF
+#variables['WptOvHak4M']  = {
+#                        'name': 'WptOvHak4M_OTF',
+#                        'range' : (25,0,1.),
+#                        'xaxis' : 'min(p_{T}^{lmet}, p_{T}^{jj}) / m_{lmetjj}',
+#                        'fold'  : 3
+#                        }
+#
+#
+#variables['2HDMaBDT_Grad22Var']  = { 
+#                        'name': 'MHlnjj_2HDMaBDT_Grad22Var',
+#                        'range' : (10,-1.1,1.1),
+#                        'xaxis' : '2HDMa BDT_{Grad22Var}',
+#                        'fold'  : 3 
+#                        }   
 variables['2HDMaBDT_Grad15Var']  = { 
                         'name': 'MHlnjj_2HDMaBDT_Grad15Var',
                         'range' : (10,-1.1,1.1),

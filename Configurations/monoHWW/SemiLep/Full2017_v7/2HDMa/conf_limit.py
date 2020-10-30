@@ -4,19 +4,19 @@
 
 treeName = 'Events'
 
-tag = 'GenSemi_2018v7'
+tag = '2HDMa_limit_2017v7'
 
 # used by mkShape to define output directory for root files
-outputDir = 'GenSemi_root'
+outputDir = '2HDMa_limit_root'
 
 # file with TTree aliases
-aliasesFile = 'aliases_GenSemi.py'
+aliasesFile = 'aliases.py'
 
 # file with list of variables
-variablesFile = 'variables_GenSemi.py'
+variablesFile = 'variables_limit.py'
 
 # file with list of cuts
-cutsFile = 'cuts_GenSemi.py'
+cutsFile = 'cuts.py'
 
 # file with list of samples
 samplesFile = 'samples.py'
@@ -25,14 +25,14 @@ samplesFile = 'samples.py'
 plotFile = 'plot.py'
 
 # luminosity to normalize to (in 1/fb)
-lumi = 35.9
+lumi = 41.5
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'GenSemi_plots'
+outputDirPlots = '2HDMa_limit_plots'
 
 # used by mkDatacards to define output directory for datacards
-outputDirDatacard = 'GenSemi_datacards'
+outputDirDatacard = '2HDMa_limit_datacards'
 
 # structure file for datacard
 structureFile = 'structure.py'

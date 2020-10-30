@@ -320,54 +320,54 @@
 ##                        'xaxis' : '2HDMa BDT_{Grad22Var}',
 ##                        'fold'  : 3 
 ##                        }   
-variables['2HDMaBDT_Grad15Var']  = { 
-                        'name': 'MHlnjj_2HDMaBDT_Grad15Var',
+##variables['2HDMaBDT_Grad15Var']  = { 
+##                        'name': 'MHlnjj_2HDMaBDT_Grad15Var',
+##                        'range' : (10,-1.1,1.1),
+##                        'xaxis' : '2HDMa BDT_{Grad15Var}',
+##                        #'xaxis' : 'BDT',
+##                        'fold'  : 3 
+##                        }   
+##variables['2HDMaBDT_Grad12Var']  = { 
+##                        'name': 'MHlnjj_2HDMaBDT_Grad12Var',
+##                        'range' : (10,-1.1,1.1),
+##                        'xaxis' : '2HDMa BDT_{Grad12Var}',
+##                        #'xaxis' : 'BDT',
+##                        'fold'  : 3 
+##                        }   
+##variables['2HDMaBDT_Ada22Var']  = { 
+##                        'name': 'MHlnjj_2HDMaBDT_Ada22Var',
+##                        'range' : (10,-1.1,1.1),
+##                        'xaxis' : '2HDMa BDT_{Ada22Var}',
+##                        #'xaxis' : 'BDT',
+##                        'fold'  : 3 
+##                        }   
+##variables['2HDMaBDT_Ada15Var']  = { 
+##                        'name': 'MHlnjj_2HDMaBDT_Ada15Var',
+##                        'range' : (10,-1.1,1.1),
+##                        'xaxis' : '2HDMa BDT_{Ada15Var}',
+##                        #'xaxis' : 'BDT',
+##                        'fold'  : 3 
+##                        }   
+##variables['2HDMaBDT_Ada12Var']  = { 
+##                        'name': 'MHlnjj_2HDMaBDT_Ada12Var',
+##                        'range' : (10,-1.1,1.1),
+##                        'xaxis' : '2HDMa BDT_{Ada12Var}',
+##                        #'xaxis' : 'BDT',
+##                        'fold'  : 3 
+##                        }   
+##
+variables['darkHiggsBDT_Ada16Var']  = { 
+                        'name': 'MHlnjj_darkHiggsBDT_Ada16Var',
                         'range' : (10,-1.1,1.1),
-                        'xaxis' : '2HDMa BDT_{Grad15Var}',
+                        'xaxis' : 'darkHiggs BDT_{Ada16Var}',
                         #'xaxis' : 'BDT',
                         'fold'  : 3 
                         }   
-#variables['2HDMaBDT_Grad12Var']  = { 
-#                        'name': 'MHlnjj_2HDMaBDT_Grad12Var',
-#                        'range' : (10,-1.1,1.1),
-#                        'xaxis' : '2HDMa BDT_{Grad12Var}',
-#                        #'xaxis' : 'BDT',
-#                        'fold'  : 3 
-#                        }   
-#variables['2HDMaBDT_Ada22Var']  = { 
-#                        'name': 'MHlnjj_2HDMaBDT_Ada22Var',
-#                        'range' : (10,-1.1,1.1),
-#                        'xaxis' : '2HDMa BDT_{Ada22Var}',
-#                        #'xaxis' : 'BDT',
-#                        'fold'  : 3 
-#                        }   
-variables['2HDMaBDT_Ada15Var']  = { 
-                        'name': 'MHlnjj_2HDMaBDT_Ada15Var',
+variables['darkHiggsBDT_Grad16Var']  = { 
+                        'name': 'MHlnjj_darkHiggsBDT_Grad16Var',
                         'range' : (10,-1.1,1.1),
-                        'xaxis' : '2HDMa BDT_{Ada15Var}',
+                        'xaxis' : 'darkHiggs BDT_{Grad16Var}',
                         #'xaxis' : 'BDT',
                         'fold'  : 3 
                         }   
-#variables['2HDMaBDT_Ada12Var']  = { 
-#                        'name': 'MHlnjj_2HDMaBDT_Ada12Var',
-#                        'range' : (10,-1.1,1.1),
-#                        'xaxis' : '2HDMa BDT_{Ada12Var}',
-#                        #'xaxis' : 'BDT',
-#                        'fold'  : 3 
-#                        }   
-#
-#variables['darkHiggsBDT_Ada16Var']  = { 
-#                        'name': 'MHlnjj_darkHiggsBDT_Ada16Var',
-#                        'range' : (10,-1.1,1.1),
-#                        'xaxis' : 'darkHiggs BDT_{Ada16Var}',
-#                        #'xaxis' : 'BDT',
-#                        'fold'  : 3 
-#                        }   
-#variables['darkHiggsBDT_Grad16Var']  = { 
-#                        'name': 'MHlnjj_darkHiggsBDT_Grad16Var',
-#                        'range' : (10,-1.1,1.1),
-#                        'xaxis' : 'darkHiggs BDT_{Grad16Var}',
-#                        #'xaxis' : 'BDT',
-#                        'fold'  : 3 
-#                        }   
-#
+

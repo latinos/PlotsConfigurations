@@ -686,7 +686,10 @@ for syst in ['El', 'statEl', 'Mu', 'statMu']:
         'type': 'shape',
         'samples': {
             #'FAKE': ['FW_mu20_el35_'+syst+'Up[0]', 'FW_mu20_el35_'+syst+'Down[0]'],
-            'FAKE': ['FW_mu35_el35_'+syst+'Up[0]', 'FW_mu35_el35_'+syst+'Down[0]'],
+            'FAKE': [
+                'FW_mu'+str(Mu_jetEt)+'_el'+str(El_jetEt)+'_'+syst+'Up[0]', 
+                'FW_mu'+str(Mu_jetEt)+'_el'+str(El_jetEt)+'_'+syst+'Down[0]'
+            ],
         },
     }
 
