@@ -106,14 +106,14 @@ nuisances['trigg'] = {
     'samples': dict((skey, trig_syst) for skey in mc)
 }
 
-prefire_syst = ['PrefireWeight_Up/PrefireWeight', 'PrefireWeight_Down/PrefireWeight']
-
-nuisances['prefire'] = {
-    'name': 'CMS_eff_prefiring_2017',
-    'kind': 'weight',
-    'type': 'shape',
-    'samples': dict((skey, prefire_syst) for skey in mc if 'DY' not in skey), #FIXME Add DY
-}
+#prefire_syst = ['PrefireWeight_Up/PrefireWeight', 'PrefireWeight_Down/PrefireWeight']
+#
+#nuisances['prefire'] = {
+#    'name': 'CMS_eff_prefiring_2017',
+#    'kind': 'weight',
+#    'type': 'shape',
+#    'samples': dict((skey, prefire_syst) for skey in mc if 'DY' not in skey), #FIXME Add DY
+#}
 
 ##### Electron Efficiency and energy scale
 
@@ -241,9 +241,13 @@ nuisances['PS']  = {
 # ####### Generic "cross section uncertainties"
 #FIXME: correct?
 apply_on = {
+    #'top': [
+    #    '(topGenPt * antitopGenPt <= 0.) * 1.0816 + (topGenPt * antitopGenPt > 0.)',
+    #    '(topGenPt * antitopGenPt <= 0.) * 0.9184 + (topGenPt * antitopGenPt > 0.)'
+    #]
     'top': [
-        '(topGenPt * antitopGenPt <= 0.) * 1.0816 + (topGenPt * antitopGenPt > 0.)',
-        '(topGenPt * antitopGenPt <= 0.) * 0.9184 + (topGenPt * antitopGenPt > 0.)'
+        '(topGenPtOTF * antitopGenPtOTF <= 0.) * 1.0816 + (topGenPtOTF * antitopGenPtOTF > 0.)',
+        '(topGenPtOTF * antitopGenPtOTF <= 0.) * 0.9184 + (topGenPtOTF * antitopGenPtOTF > 0.)'
     ]
 }
 
@@ -615,8 +619,8 @@ nuisances['EWKnloW_Wjets'] = {
     'kind'  : 'weight',
     'type'  : 'shape',
     'samples': {
-        'Wjets': ['1./ewknloW', 'ewknloW'],
-        #'Wjets': ['1./EWKnloW[0]', 'EWKnloW[0]'],
+        #'Wjets': ['1./ewknloW', 'ewknloW'],
+        'Wjets': ['1./EWKnloW[0]', 'EWKnloW[0]'],
     }
 }
 

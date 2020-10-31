@@ -777,14 +777,21 @@ nuisances['QCDscale_VV']  = {
                    }
 }
 
-# ST_tW_top and ST_tW_antitop samples have no LHEScaleWeight entries. Use this hack to fix missing entries:
+# ST_tW_top and ST_tW_antitop samples have no LHEScaleWeight entries. Use Alt$ to check for missing entries:
+topvars = ['Alt$(LHEScaleWeight[%d], 1.0)' % i for i in [0, 1, 3, 5, 7, 8]]
+# Normalize top QCD scale
+if True:
+  topnorms = {"0j": [1.070761703863844, 1.0721982065714528, 1.0008829637654995, 1.002515087891841, 0.9270080603942781, 0.9270717138194097], "1j": [1.0846741444664376, 1.0806432359691847, 1.0079221754798773, 0.9960603215169435, 0.9198946095840594, 0.9129672863490275], "2j": [1.1209941307567444, 1.103222357530683, 1.0224795274718796, 0.9829374807746288, 0.9038880068177306, 0.8840173265167147]}
+  for i,alpha in enumerate(topvars):
+    topvars[i] = alpha+"*((Alt$(CleanJet_pt[0], 0) < 30.)/"+str(topnorms["0j"][i])+" + (Alt$(CleanJet_pt[0], 0) >= 30.)*(Alt$(CleanJet_pt[1], 0) < 30.)/"+str(topnorms["1j"][i])+" + (Alt$(CleanJet_pt[1], 0) >= 30.)/"+str(topnorms["2j"][i])+")"
+
 nuisances['QCDscale_ttbar']  = {
                'name'  : 'QCDscale_ttbar', 
                 'skipCMS' : 1,
                 'kind'  : 'weight_envelope',
                 'type'  : 'shape',
                 'samples'  : {
-                   'top' : ['(LHEScaleWeight[%d]) * ( abs(Xsec-35.60) >= 1.0e-05 ) + 1.0 * ( abs(Xsec-35.60) < 1.0e-05 )' % i for i in [0, 1, 3, 5, 7, 8]],
+                   'top' : topvars,
                    }
 }
 

@@ -125,7 +125,19 @@ variables['puppimet']  = {   'name': 'PuppiMET_pt',
                              'fold'  : 3
                          }
 
+variables['pfmet_short']  = {   'name': 'MET_pt',
+                          'range' : (40,0,200),
+                          'xaxis' : 'pfmet [GeV]',
+                          'fold'  : 3
+                      }
+
 variables['pfmet']  = {   'name': 'MET_pt',
+                          'range' : (40,0,600),
+                          'xaxis' : 'pfmet [GeV]',
+                          'fold'  : 3
+                      }
+
+variables['pfmet_extended']  = {   'name': 'MET_pt',
                           'range' : (40,0,800),
                           'xaxis' : 'pfmet [GeV]',
                           'fold'  : 3

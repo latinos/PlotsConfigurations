@@ -4,17 +4,18 @@
 #
 
 
-controlRegions = {x for x in cuts if 'SB' in x or 'TopCR' in x}
-hmSR  = {x for x in cuts if 'HMSR' in x}
-boostedSR   = {x for x in cuts if 'BoostedSR' in x}
-resolvedSR  = {x for x in cuts if 'ResolvedSR' in x}
+controlRegions = set(x for x in cuts if 'SB' in x or 'TopCR' in x)
+hmSR  = set(x for x in cuts if 'HMSR' in x)
+boostedSR   = set(x for x in cuts if 'BoostedSR' in x)
+resolvedSR  = set(x for x in cuts if 'ResolvedSR' in x)
+ak8SR = set(x for x in cuts if 'AK8SR' in x)
 
 
 variables['events']  = {
     'name' : '1',
     'range': (1,0,2),
     'xaxis': 'events',
-    'cuts' : controlRegions
+    'cuts' : controlRegions,
     'fold' : 3
 }
 
@@ -36,7 +37,7 @@ variables['boostHiggsMass_ggf'] = {
     'range': ([0, 220, 300, 350, 400, 450, 490, 530, 580, 630, 680,
                730, 780, 840, 950, 1075, 1175, 1370, 1900, 5000],),
     'xaxis': 'reconstr. H mass [GeV]',
-    'cuts' : boostedSR,
+    'cuts' : set.union(boostedSR, ak8SR),
     'fold' : 3
 }
 variables['boostHiggsMass_vbf'] = {
@@ -46,15 +47,15 @@ variables['boostHiggsMass_vbf'] = {
     'range': ([0, 220, 300, 350, 400, 450, 490, 530, 580, 630, 680,
                730, 780, 840, 950, 1100, 1300, 1800, 5000],),
     'xaxis': 'reconstr. H mass [GeV]',
-    'cuts' : boostedSR,
+    'cuts' : set.union(boostedSR, ak8SR),
     'fold' : 3
 }
 variables['hmHiggsMass'] = {
     'name' : 'HM_CleanFatJetPassMBoosted_HlnFat_mass[0]',
     # 'range': ([0, 900, 1000, 1100, 1200, 1350, 1500, 1700, 2000, 3000, 5000],),
     # 'range': ([0, 900, 1000, 1100, 1200, 1325, 1580, 2050, 5000],),
-    'range': ([0, 900, 990, 1085, 1185, 1300, 1550, 2000, 5000],),
+    'range': ([0, 900, 990, 1085, 1185, 1300, 1500, 2000, 5000],),
     'xaxis': 'reconstr. H mass [GeV]',
-    'cuts' : hmSR,
+    'cuts' : set.union(hmSR, ak8SR),
     'fold' : 3
 }

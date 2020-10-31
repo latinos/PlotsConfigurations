@@ -54,7 +54,7 @@ RAndKff['DYmva0p8'] = {
                                    } ,
                      }
 
-
+# Signal region - 0 Jets
 DYestim['hww2l2v_13TeV_0j_ee_pth0_10'] = {
                                  'rinout'  : 'DYmva0p8' ,
                                  'rsyst'   : 0.04 ,
@@ -132,6 +132,7 @@ DYestim['hww2l2v_13TeV_0j_mm_pth10_200'] = {
                                 }
 
 
+# WW control region - 0 Jets
 DYestim['hww2l2v_13TeV_WW_0j_ee'] = {
                                  'rinout'  : 'DYmva0p8' ,
                                  'njet'    : '0j'    ,
@@ -167,6 +168,7 @@ DYestim['hww2l2v_13TeV_WW_0j_mm'] = {
                                    }
 
 
+# Signal region - 1 Jet
 DYestim['hww2l2v_13TeV_1j_ee_pth0_60'] = {
                                  'rinout'  : 'DYmva0p8' ,
                                  'rsyst'   : 0.01 , 
@@ -298,6 +300,7 @@ DYestim['hww2l2v_13TeV_WW_1j_ee'] = {
                                  'asyst'   : 0.01 , 
                                    }
 
+# WW control region - 1 Jet
 DYestim['hww2l2v_13TeV_WW_1j_mm'] = {
                                  'rinout'  : 'DYmva0p8' ,
                                  'njet'    : '1j'    ,
@@ -315,6 +318,7 @@ DYestim['hww2l2v_13TeV_WW_1j_mm'] = {
                                  'asyst'   : 0.04 ,
                                    }
 
+# Signal region - 2 Jets
 DYestim['hww2l2v_13TeV_2j_ee_mjj0_350_pth0_60'] = {
                                  'rinout'  : 'DYmva0p8' ,
                                  'rsyst'   : 0.05 ,
@@ -581,7 +585,8 @@ DYestim['hww2l2v_13TeV_2j_mm_mjj700_pthjj25'] = {
                                  'asyst'   : 0.02 ,
                                 }
 
-DYestim['hww2l2v_13TeV_2016_WW_2j_ee'] = {
+# WW control region - 2 Jets
+DYestim['hww2l2v_13TeV_WW_2j_ee'] = {
                                  'rinout'  : 'DYmva0p8' ,
                                  'njet'    : '2j'    ,
                                  'flavour' : 'ee' ,
@@ -598,7 +603,7 @@ DYestim['hww2l2v_13TeV_2016_WW_2j_ee'] = {
                                  'asyst'   : 0.01 ,
                                    }
 
-DYestim['hww2l2v_13TeV_2016_WW_2j_mm'] = {
+DYestim['hww2l2v_13TeV_WW_2j_mm'] = {
                                  'rinout'  : 'DYmva0p8' ,
                                  'njet'    : '2j'    ,
                                  'flavour' : 'mm' ,
@@ -615,6 +620,7 @@ DYestim['hww2l2v_13TeV_2016_WW_2j_mm'] = {
                                  'asyst'   : 0.01 ,
                                    }
 
+# Signal region - high-pT
 DYestim['hww2l2v_13TeV_hpt_ee_pth200_300'] = {
                                  'rinout'  : 'DYmva0p8' ,
                                  'rsyst'   : 0.01 ,
@@ -768,6 +774,7 @@ DYestim['hww2l2v_13TeV_hpt_mm_pth650'] = {
                                 }
 
 
+# WW control region - high-pT
 DYestim['hww2l2v_13TeV_WW_hpt_ee'] = {
                                  'rinout'  : 'DYmva0p8' ,
                                  'njet'    : 'hpt'    ,

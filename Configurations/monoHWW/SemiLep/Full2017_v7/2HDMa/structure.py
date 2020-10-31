@@ -11,6 +11,10 @@ structure['DY']  = {
     'isSignal' : 0,
     'isData'   : 0
 }
+structure['DYlow']  = {
+    'isSignal' : 0,
+    'isData'   : 0
+}
 
 
 structure['Wjets']  = {
@@ -18,7 +22,15 @@ structure['Wjets']  = {
     'isData'   : 0
 }
 
-structure['top'] = {
+#structure['top'] = {
+#    'isSignal' : 0,
+#    'isData'   : 0
+#}
+structure['stop'] = {
+    'isSignal' : 0,
+    'isData'   : 0
+}
+structure['ttop'] = {
     'isSignal' : 0,
     'isData'   : 0
 }

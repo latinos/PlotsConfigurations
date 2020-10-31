@@ -32,7 +32,7 @@ addcut('dyCR_df', dy + ['mt2ll > 80.', '(Lepton_pdgId[0] * Lepton_pdgId[1] == -1
 ttW = [
     'nLepton >= 3 && Alt$(Lepton_pt[2],0)>10',
     'abs(Lepton_eta[2])<2.4',
-    'mt2ll > 80.',
+    'mt2ll > 100.',
     '(Lepton_pdgId[0] * Lepton_pdgId[1] == -11*13 || (mll < 76 || mll > 106))'
 ]
 
@@ -45,6 +45,14 @@ ttZ = [
 ]
 
 addcut('ttZCR_ll', ttZ)
+
+ttV = [
+    'nLepton >= 3 && Alt$(Lepton_pt[2],0)>10',
+    'abs(Lepton_eta[2])<2.4',
+    'mt2ll > 80.',
+]
+
+addcut('ttVCR_ll', ttV)
 
 sameSign = [
     'Lepton_pdgId[0]*Lepton_pdgId[1] > 0',

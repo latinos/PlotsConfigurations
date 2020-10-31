@@ -38,7 +38,7 @@ outputDirDatacard = 'datacards'
 
 
 # structure file for datacard
-#structureFile = 'structure.py' # Is this even needed still?
+structureFile = 'structure.py'
 
 
 # nuisances file for mkDatacards and for mkShape
