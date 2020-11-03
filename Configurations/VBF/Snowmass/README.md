@@ -1,8 +1,6 @@
 # Snowmass VBF
 
-Configuration for VBF the analysis targeting the snowmass conference. The current version is based on the Keras_2018_v6 configuration, located at:
-
-    https://github.com/latinos/PlotsConfigurations/tree/master/Configurations/VBF/Keras_2018_v6
+Configuration for VBF the analysis targeting the snowmass conference. 
 
 ## Instructions to run the analysis
 
@@ -28,15 +26,15 @@ Or, if they failed because the wall clock time have been exceeded, resubmit them
 
 ### Plot distributions
 
-    mkPlot.py --inputFile=rootFile/plots_vbf_snowmass.root --fileFormats=png --onlyPlot=cratio
+Differential analysis:
 
-Repeat, but without plotting data in the signal region (blind policy):
+    mkPlot.py --inputFile=rootFile/plots_vbf_snowmass.root --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1 --minLogCratio=0.01 --maxLogCratio=1000
+    mkPlot.py --plotFile=plot_blind.py --onlyCut=hww2l2v_13TeV_of2j_vbf --inputFile=rootFile/plots_vbf_snowmass.root --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1 --minLogCratio=0.01 --maxLogCratio=1000
 
-    mkPlot.py --pycfg=configuration_blind.py --onlyCut=hww2l2v_13TeV_of2j_vbf     --inputFile=rootFile/plots_vbf_snowmass.root --fileFormats=png --onlyPlot=cratio
-    mkPlot.py --pycfg=configuration_blind.py --onlyCut=hww2l2v_13TeV_of2j_DNN_vbf --inputFile=rootFile/plots_vbf_snowmass.root --fileFormats=png --onlyPlot=cratio
-    mkPlot.py --pycfg=configuration_blind.py --onlyCut=hww2l2v_13TeV_of2j_DNN_top --inputFile=rootFile/plots_vbf_snowmass.root --fileFormats=png --onlyPlot=cratio
-    mkPlot.py --pycfg=configuration_blind.py --onlyCut=hww2l2v_13TeV_of2j_DNN_ww  --inputFile=rootFile/plots_vbf_snowmass.root --fileFormats=png --onlyPlot=cratio
-    mkPlot.py --pycfg=configuration_blind.py --onlyCut=hww2l2v_13TeV_of2j_DNN_ggh --inputFile=rootFile/plots_vbf_snowmass.root --fileFormats=png --onlyPlot=cratio
+CP-violation analysis:
+
+    mkPlot.py --plotFile=plot_CPV.py --inputFile=rootFile/plots_vbf_snowmass.root --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1 --minLogCratio=0.01 --maxLogCratio=1000 --outputDirPlots=plots_vbf_snowmass_CPV
+    mkPlot.py --plotFile=plot_CPV_blind.py --onlyCut=hww2l2v_13TeV_of2j_vbf --inputFile=rootFile/plots_vbf_snowmass.root --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1 --minLogCratio=0.01 --maxLogCratio=1000 --outputDirPlots=plots_vbf_snowmass_CPV
 
 ### Create datacards
 
