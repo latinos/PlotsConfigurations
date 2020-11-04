@@ -88,6 +88,28 @@ for hs in mhs:
                 'isData'   : 0    
             }
 
+
+
+mA = ['200', '400', '500', '600']
+
+for A in mA:
+    structure['2HMDa__gg_sinp_0p35_tanb_1p0_mXd_10_MA_' + A + '_ma_150']  = {
+        'isSignal' : 2,
+        'isData'   : 0    
+        
+    }
+
+
+sintheta = ['0p35', '0p7']
+tanbeta = ['0p5', '1p0', '1p5', '2p0', '4p0', '8p0']
+
+for theta in sintheta:
+    for beta in tanbeta:
+        structure['2HMDa__gg_sinp_' + theta  + '_tanb_' + beta  + '_mXd_10_MA_300_ma_150'] = {
+            'isSignal' : 2,
+            'isData'   : 0    
+            
+        }
             
 
 # data

@@ -19,36 +19,36 @@ cuts['hww2l2v_13TeV_of2j_vbf']  = ' (mth>=60 && mth<125) \
                                       && mtw2>30 \
                                       '
 
-cuts['hww2l2v_13TeV_of2j_DNN_vbf']  = ' (mth>=60 && mth<125) \
-                                      && (abs(CleanJet_eta[0])<4.7) && (abs(CleanJet_eta[1])<4.7) \
-                                      && vbflike \
-                                      && bVeto \
-                                      && mtw2>30 \
-                                      '
+# cuts['hww2l2v_13TeV_of2j_DNN_vbf']  = ' (mth>=60 && mth<125) \
+#                                       && (abs(CleanJet_eta[0])<4.7) && (abs(CleanJet_eta[1])<4.7) \
+#                                       && vbflike \
+#                                       && bVeto \
+#                                       && mtw2>30 \
+#                                       '
 
 
-cuts['hww2l2v_13TeV_of2j_DNN_top']  = ' (mth>=60 && mth<125) \
-                                      && (abs(CleanJet_eta[0])<4.7) && (abs(CleanJet_eta[1])<4.7) \
-                                      && toplike \
-                                      && bVeto \
-                                      && mtw2>30 \
-                                      '
+# cuts['hww2l2v_13TeV_of2j_DNN_top']  = ' (mth>=60 && mth<125) \
+#                                       && (abs(CleanJet_eta[0])<4.7) && (abs(CleanJet_eta[1])<4.7) \
+#                                       && toplike \
+#                                       && bVeto \
+#                                       && mtw2>30 \
+#                                       '
 
 
-cuts['hww2l2v_13TeV_of2j_DNN_ww']  = ' (mth>=60 && mth<125) \
-                                      && (abs(CleanJet_eta[0])<4.7) && (abs(CleanJet_eta[1])<4.7) \
-                                      && wwlike \
-                                      && bVeto \
-                                      && mtw2>30 \
-                                      '
+# cuts['hww2l2v_13TeV_of2j_DNN_ww']  = ' (mth>=60 && mth<125) \
+#                                       && (abs(CleanJet_eta[0])<4.7) && (abs(CleanJet_eta[1])<4.7) \
+#                                       && wwlike \
+#                                       && bVeto \
+#                                       && mtw2>30 \
+#                                       '
 
 
-cuts['hww2l2v_13TeV_of2j_DNN_ggh']  = ' (mth>=60 && mth<125) \
-                                      && (abs(CleanJet_eta[0])<4.7) && (abs(CleanJet_eta[1])<4.7) \
-                                      && gghlike \
-                                      && bVeto \
-                                      && mtw2>30 \
-                                      '
+# cuts['hww2l2v_13TeV_of2j_DNN_ggh']  = ' (mth>=60 && mth<125) \
+#                                       && (abs(CleanJet_eta[0])<4.7) && (abs(CleanJet_eta[1])<4.7) \
+#                                       && gghlike \
+#                                       && bVeto \
+#                                       && mtw2>30 \
+#                                       '
 
 
 ## Control regions

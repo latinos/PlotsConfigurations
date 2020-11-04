@@ -81,33 +81,36 @@ groupPlot['VBF']  = {
 
 n_color = 800 # kOrange
 
-# Differential VBF bins (dphijj)
-for bin_num in range(0, n_bins):
-    sample_name = "qqH_hww_{}".format(bin_num)
-    groupPlot[sample_name]  = {
-      'nameHR'   : sample_name,
-      'isSignal' : 2,
-      'color'    : n_color,
-      'samples'  : [sample_name]
-    }
-    n_color = n_color+1
-
-# # VBF CP-violation samples
-# CP_V_samples = ['VBF_H0PM_ToWWTo2L2Nu',       # Pure SM sample H0PM
-#                 'VBF_H0PH_ToWWTo2L2Nu',       # Pure AC sample H0PH - a2 coupling
-#                 'VBF_H0Mf05_ToWWTo2L2Nu',     # Mixed SM/AC 
-#                 'VBF_H0L1f05_ToWWTo2L2Nu',    # Mixed SM/AC 
-#                 'VBF_H0L1Zgf05_ToWWTo2L2Nu']  # Mixed SM/AC 
-
-# for CP_V_sample in CP_V_samples:
-#     CP_V_sample_short = CP_V_sample.replace('_ToWWTo2L2Nu','')
-#     groupPlot[CP_V_sample] = {
-#         'nameHR'   : CP_V_sample_short,
-#         'isSignal' : 2,
-#         'color'    : n_color,
-#         'samples'  : [CP_V_sample]
+# # Differential VBF bins (dphijj)
+# for bin_num in range(0, n_bins):
+#     sample_name = "qqH_hww_{}".format(bin_num)
+#     groupPlot[sample_name]  = {
+#       'nameHR'   : sample_name,
+#       'isSignal' : 2,
+#       'color'    : n_color,
+#       'samples'  : [sample_name]
 #     }
 #     n_color = n_color+1
+
+# VBF CP-violation samples
+CP_V_samples = ['VBF_H0PM_ToWWTo2L2Nu',      # Pure SM sample H0PM
+                'VBF_H0M_ToWWTo2L2Nu',       # Pure AC sample H0PH - a3 coupling
+                'VBF_H0PH_ToWWTo2L2Nu',      # Pure AC sample H0PH - a2 coupling
+                'VBF_H0L1_ToWWTo2L2Nu',      # Pure AC sample H0PH - lambda1 coupling
+                'VBF_H0Mf05_ToWWTo2L2Nu',    # Mixed SM/AC 
+                'VBF_H0PHf05_ToWWTo2L2Nu',   # Mixed SM/AC 
+                'VBF_H0L1f05_ToWWTo2L2Nu',   # Mixed SM/AC 
+                'VBF_H0L1Zgf05_ToWWTo2L2Nu'] # Mixed SM/AC 
+
+for CP_V_sample in CP_V_samples:
+    CP_V_sample_short = CP_V_sample.replace('_ToWWTo2L2Nu','')
+    groupPlot[CP_V_sample] = {
+        'nameHR'   : CP_V_sample_short,
+        'isSignal' : 2,
+        'color'    : n_color,
+        'samples'  : [CP_V_sample]
+    }
+    n_color = n_color+1
 
 
 #plot = {}
@@ -319,9 +322,6 @@ for bin_num in range(0, n_bins):
       'scale'    : 1
     }
     n_color = n_color+1
-
-# VBF CP-violation samples
-CP_V_samples = ['VBF_H0PM_ToWWTo2L2Nu', 'VBF_H0Mf05_ToWWTo2L2Nu', 'VBF_H0PH_ToWWTo2L2Nu', 'VBF_H0L1f05_ToWWTo2L2Nu', 'VBF_H0L1Zgf05_ToWWTo2L2Nu']
 
 for CP_V_sample in CP_V_samples:
     scale_value = 1

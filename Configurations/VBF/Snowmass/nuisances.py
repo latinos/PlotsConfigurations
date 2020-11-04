@@ -187,8 +187,8 @@ if useEmbeddedDY:
     'mapUp' : 'ElepTup',
     'mapDown': 'ElepTdo',
     'samples': {'Dyemb': ['1', '1']},
-    'folderUp': treeBaseDir+'/Embedding2018_102X_nAODv6_Full2018v6/DATAl1loose2018v6__l2loose__l2tightOR2018v6__Embedding__EmbElepTup_suffix/',
-    'folderDown': treeBaseDir+'/Embedding2018_102X_nAODv6_Full2018v6/DATAl1loose2018v6__l2loose__l2tightOR2018v6__Embedding__EmbElepTdo_suffix/',
+    'folderUp': treeBaseDir+'/Embedding2018_102X_nAODv7_Full2018v7/DATAl1loose2018v7__l2loose__l2tightOR2018v7__Embedding__EmbElepTup_suffix/',
+    'folderDown': treeBaseDir+'/Embedding2018_102X_nAODv7_Full2018v7/DATAl1loose2018v7__l2loose__l2tightOR2018v7__Embedding__EmbElepTdo_suffix/',
     'AsLnN': '1'
   }
 ##### Muon Efficiency and energy scale
@@ -221,26 +221,26 @@ if useEmbeddedDY:
     'mapUp' : 'MupTup',
     'mapDown': 'MupTdo',
     'samples': {'Dyemb': ['1', '1']},
-    'folderUp': treeBaseDir+'/Embedding2018_102X_nAODv6_Full2018v6/DATAl1loose2018v6__l2loose__l2tightOR2018v6__Embedding__EmbMupTup_suffix/',
-    'folderDown': treeBaseDir+'/Embedding2018_102X_nAODv6_Full2018v6/DATAl1loose2018v6__l2loose__l2tightOR2018v6__Embedding__EmbMupTdo_suffix/',
+    'folderUp': treeBaseDir+'/Embedding2018_102X_nAODv7_Full2018v7/DATAl1loose2018v7__l2loose__l2tightOR2018v7__Embedding__EmbMupTup_suffix/',
+    'folderDown': treeBaseDir+'/Embedding2018_102X_nAODv7_Full2018v7/DATAl1loose2018v7__l2loose__l2tightOR2018v7__Embedding__EmbMupTdo_suffix/',
     'AsLnN': '1'
   }
 
-##### Jet energy scale
-jes_systs = ['JESAbsolute','JESAbsolute_2018','JESBBEC1','JESBBEC1_2018','JESEC2','JESEC2_2018','JESFlavorQCD','JESHF','JESHF_2018','JESRelativeBal','JESRelativeSample_2018']
+# ##### Jet energy scale
+# jes_systs = ['JESAbsolute','JESAbsolute_2018','JESBBEC1','JESBBEC1_2018','JESEC2','JESEC2_2018','JESFlavorQCD','JESHF','JESHF_2018','JESRelativeBal','JESRelativeSample_2018']
 
-for js in jes_systs:
-  nuisances[js] = {
-      'name': 'CMS_scale_'+js,
-      'kind': 'suffix',
-      'type': 'shape',
-      'mapUp': js+'up',
-      'mapDown': js+'do',
-      'samples': dict((skey, ['1', '1']) for skey in mc),
-      'folderUp': makeMCDirectory('JESup_suffix'),
-      'folderDown': makeMCDirectory('JESdo_suffix'),
-      'AsLnN': '0'
-  }
+# for js in jes_systs:
+#   nuisances[js] = {
+#       'name': 'CMS_scale_'+js,
+#       'kind': 'suffix',
+#       'type': 'shape',
+#       'mapUp': js+'up',
+#       'mapDown': js+'do',
+#       'samples': dict((skey, ['1', '1']) for skey in mc),
+#       'folderUp': makeMCDirectory('JESup_suffix'),
+#       'folderDown': makeMCDirectory('JESdo_suffix'),
+#       'AsLnN': '0'
+#   }
 
 ##### MET energy scale
 
@@ -564,31 +564,31 @@ nuisances['CRSR_accept_top'] = {
 #
 #   see https://twiki.cern.ch/twiki/bin/viewauth/CMS/HiggsWG/SignalModelingTools
 
-thus = [
-    ('THU_ggH_Mu', 'ggH_mu_OTF'),
-    ('THU_ggH_Res', 'ggH_res_OTF'),
-    ('THU_ggH_Mig01', 'ggH_mig01_OTF'),
-    ('THU_ggH_Mig12', 'ggH_mig12_OTF'),
-    ('THU_ggH_VBF2j', 'ggH_VBF2j_OTF'),
-    ('THU_ggH_VBF3j', 'ggH_VBF3j_OTF'),
-    ('THU_ggH_PT60', 'ggH_pT60_OTF'),
-    ('THU_ggH_PT120', 'ggH_pT120_OTF'),
-    ('THU_ggH_qmtop', 'ggH_qmtop_OTF')
-]
+# thus = [
+#     ('THU_ggH_Mu', 'ggH_mu_OTF'),
+#     ('THU_ggH_Res', 'ggH_res_OTF'),
+#     ('THU_ggH_Mig01', 'ggH_mig01_OTF'),
+#     ('THU_ggH_Mig12', 'ggH_mig12_OTF'),
+#     ('THU_ggH_VBF2j', 'ggH_VBF2j_OTF'),
+#     ('THU_ggH_VBF3j', 'ggH_VBF3j_OTF'),
+#     ('THU_ggH_PT60', 'ggH_pT60_OTF'),
+#     ('THU_ggH_PT120', 'ggH_pT120_OTF'),
+#     ('THU_ggH_qmtop', 'ggH_qmtop_OTF')
+# ]
 
-for name, vname in thus:
-    updown = [vname, '2.-%s' % vname]
+# for name, vname in thus:
+#     updown = [vname, '2.-%s' % vname]
     
-    nuisances[name] = {
-        'name': name,
-        'skipCMS': 1,
-        'kind': 'weight',
-        'type': 'shape',
-        'samples': {
-          'ggH_hww': updown,
-          #'ggH_htt': updown
-        }
-    }
+#     nuisances[name] = {
+#         'name': name,
+#         'skipCMS': 1,
+#         'kind': 'weight',
+#         'type': 'shape',
+#         'samples': {
+#           'ggH_hww': updown,
+#           #'ggH_htt': updown
+#         }
+#     }
 
 
 # Theory uncertainty for qqH 

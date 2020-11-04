@@ -19,12 +19,12 @@ def addcut(name, exprs):
 
 
 
-_tmp = [
-    'Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13',
-    'bVeto',
-       ]
+# _tmp = [
+#     'Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13',
+# #    'bVeto',
+#        ]
 
-addcut('Supercut', _tmp)
+# addcut('Supercut', _tmp)
 
 # Jet_btagDeepB
 
@@ -71,6 +71,16 @@ _tmp = [
 
 addcut('WWCR_Incl', _tmp)
 
+# _tmp = [
+#     'Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13',
+#     'mth > 50.',
+#     'mll > 80.',
+#     'drll < 2.5',
+#     'bVeto',
+#     'zeroJet',
+#        ]
+
+# addcut('WWCR_0j', _tmp)
 
 
 _tmp = [
