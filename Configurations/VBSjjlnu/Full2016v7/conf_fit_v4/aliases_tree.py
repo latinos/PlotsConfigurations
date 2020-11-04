@@ -10,6 +10,36 @@ conf_folder = configurations +"/VBSjjlnu/Full2016v7"
 mc = [skey for skey in samples if skey not in ('Fake', 'DATA')]
 
 
+###################3
+# trigger eff
+
+aliases['ele_trig_eff'] = {
+    'linesToAdd': [
+        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
+        '.L %s/src/PlotsConfigurations/Configurations/patches/triggerEff_1lep.cc+' % os.getenv('CMSSW_BASE')
+    ],
+    'class': 'TrigEff_1lep',
+    'args': ('/afs/cern.ch/user/a/arun/public/fixedTextfiles/2016/Ele25_pt_eta_efficiency_withSys_Run2016.txt'),
+    'samples': mc
+}
+
+aliases['SingleLepton_trigEff_corrected'] = {
+    'expr': '(abs(Lepton_pdgId[0])==11)*ele_trig_eff[0] +  (abs(Lepton_pdgId[0])==13)*TriggerEffWeight_1l',
+    'samples': mc
+}
+
+###### W EWK nlo ######
+
+aliases['EWKnloW'] = {
+    'linesToAdd': [
+        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_RELEASE_BASE'),
+        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+        '.L %s/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/Full2017_v6/2HDMa/EWKnloW.cc+' % os.getenv('CMSSW_BASE')
+    ],
+    'class': 'EWKnloW',
+    'samples': ["Wjets_HT"]
+}
+
 ##################################
 # BTag
 
@@ -137,26 +167,25 @@ aliases['Top_pTrw'] = {
 
 ###########################
 
+basedir_fakes = configurations + "/VBSjjlnu/weights_files/fake_rates/2016"
 
-# basedir_fakes = conf_folder +"/corrections/new_fake_rates/v1_senne"
+et = "20"
+el_fr_file = basedir_fakes + "/plot_ElCh_JetEt"+et+"_l1_etaVpt_ptel_fw_ewk_2D.root"
+mu_fr_file = basedir_fakes + "/plot_MuCh_JetEt"+et+"_l1_etaVpt_ptmu_fw_ewk_2D.root"
+el_pr_file = os.getenv('CMSSW_BASE') + "/src/LatinoAnalysis/NanoGardener/python/data/fake_prompt_rates/Full2016v7/mva90pIso2016/ElePR.root"
+mu_pr_file = os.getenv('CMSSW_BASE') + "/src/LatinoAnalysis/NanoGardener/python/data/fake_prompt_rates/Full2016v7/Tight80X/MuonPR.root"
 
-# et = "35"
-# el_fr_file = basedir_fakes + "/plot_ElCh_JetEt"+et+"_l1_etaVpt_ptel_fw_ewk_2D.root"
-# mu_fr_file = basedir_fakes + "/plot_MuCh_JetEt"+et+"_l1_etaVpt_ptmu_fw_ewk_2D.root"
-# el_pr_file = os.getenv('CMSSW_BASE') + "/src/LatinoAnalysis/NanoGardener/python/data/fake_prompt_rates/Full2017v6/mvaFall17V1IsoWP90/ElePR.root"
-# mu_pr_file = os.getenv('CMSSW_BASE') + "/src/LatinoAnalysis/NanoGardener/python/data/fake_prompt_rates/Full2017v6/mvaFall17V1IsoWP90/MuonPR.root"
-
-# aliases['FW_mu'+et+'_ele'+et] = { 
-#     'class': 'newFakeWeightOTF17',
-#     'args': (eleWP, muWP, copy.deepcopy(el_fr_file), copy.deepcopy(el_pr_file), copy.deepcopy(mu_fr_file), copy.deepcopy(mu_pr_file), False, False), 
-#     'linesToAdd' : [
-#         'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-#         '.L {}/VBSjjlnu/Full2017v7/corrections/newfakeweight_OTF_17.cc+'.format(configurations)
-#     ],     
-#     'samples': ["Fake"]
-# }
-
+aliases['FW_mu'+et+'_ele'+et] = { 
+    'class': 'newFakeWeightOTFall',
+    'args': (eleWP, muWP, copy.deepcopy(el_fr_file), copy.deepcopy(el_pr_file), copy.deepcopy(mu_fr_file), copy.deepcopy(mu_pr_file), False, False), 
+    'linesToAdd' : [
+        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+        '.L {}/VBSjjlnu/macros/newfakeweight_OTFall.cc+'.format(configurations)
+    ],     
+    'samples': ["Fake"]
+}
 ##############################################
+
 
 ################################################
 # For VgS

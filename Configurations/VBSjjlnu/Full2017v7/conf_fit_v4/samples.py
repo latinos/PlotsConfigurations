@@ -205,20 +205,9 @@ samples['Wjets_HT'] = { 'name' :
         'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch + '*ewknloW' ,
         'FilesPerJob' : 6,
         'EventsPerJob' : 70000,
-        # 'subsamples': {
-        #   "boost1" : "(VBS_category==0) && (deltaeta_vbs < 5)",
-        #   "boost2" : "(VBS_category==0) && (deltaeta_vbs >= 5)",
-        #   "deta1_jpt1": "(VBS_category==1) && (deltaeta_vbs < 5 ) && vbs_1_pt < 75",
-        #   "deta2_jpt1": "(VBS_category==1) && (deltaeta_vbs >= 5) && vbs_1_pt < 75",
-          
-        #   "deta1_jpt2": "(VBS_category==1) && (deltaeta_vbs < 4 ) &&  ( vbs_1_pt >= 75 && vbs_1_pt <150)",
-        #   "deta2_jpt2": "(VBS_category==1) && (deltaeta_vbs >= 4) &&  ( vbs_1_pt >= 75 && vbs_1_pt <150)",
-
-        #   "jpt3": "(VBS_category==1) && ( vbs_1_pt >= 150)",
-                    
-        # }
        }
 #
+##############3 BUG!!!!! There is a typo in the file names
 # Fix Wjets binned + LO 
 CombineBaseW(samples, 'Wjets_HT', ['WJetsToLNu-LO', 'WJetsToLNu-LO_ext1'])
 addSampleWeight(samples,'Wjets_HT', 'WJetsToLNu-LO', '(LHE_HT < 70)')

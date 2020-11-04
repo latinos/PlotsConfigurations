@@ -1,32 +1,4 @@
 
-#########
-# add the branches that need expressions
-for brs in [res_branches, boost_branches]:
-    brs['Lepton_pt'] = 'Lepton_pt[0]'
-    brs['Lepton_eta'] = 'Lepton_eta[0]'
-    brs['Lepton_phi'] = 'Lepton_phi[0]'
-    brs['PuppiMET_pt'] = 'PuppiMET_pt'
-    brs['PuppiMET_phi'] = 'PuppiMET_phi'
-    brs['nJets30'] = 'Sum$(CleanJet_pt[CleanJetNotFat_jetIdx] >= 30)'
-    brs['nvtxGood'] = 'PV_npvsGood'
-
-
-variables['dnn_inputs_resolved'] = {
-    'tree': res_branches,
-    'cuts' : ['res_sig_ele', 'res_sig_mu']
-}
-
-variables['dnn_inputs_boosted'] = {
-    'tree':  boost_branches,
-    'cuts' : ['boost_sig_ele', 'boost_sig_mu']
-}
-
-
-##############################################
-# now variables to plot
-# Include also variables to be plotted
-
-
 res_cuts = [ c for c in cuts if 'res' in c]
 boost_cuts = [ c for c in cuts if 'boost' in c]
 
@@ -120,7 +92,7 @@ variables['vjet_0_pt_res'] = {   'name': 'vjet_0_pt',
                         'cuts': res_cuts
                         }
 
-variables['vjet_0_pt_boost'] = {   'name': 'fatjetpt085',      
+variables['vjet_0_pt_boost'] = {   'name': 'fatjetpt09',      
                         'range' : (40,30,400),  
                         'xaxis' : 'leading V-jet pt', 
                         'fold' : 3,
@@ -150,7 +122,7 @@ variables['whad_pt_res'] = {
 }
 
 variables['whad_pt_boost'] = {
-            'name': "fatjetpt085",
+            'name': "fatjetpt09",
             'range': (40, 200, 600),
             'xaxis': 'W hadronic Pt',
             'fold': 3 ,
@@ -165,7 +137,7 @@ variables['mjj_vjet_res'] = {   'name': 'mjj_vjet',
                         'cuts': res_cuts
                         }
 
-variables['mjj_vjet_boost'] = {   'name': 'mjj_vjet085',      
+variables['mjj_vjet_boost'] = {   'name': 'mjj_vjet09',      
                         'range' : (60,40,200),  
                         'xaxis' : 'Whad reco mass', 
                         'fold' : 3,

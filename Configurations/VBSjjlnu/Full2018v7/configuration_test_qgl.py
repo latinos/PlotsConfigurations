@@ -6,7 +6,7 @@ tag = 'test_qgl'
 direc = "conf_test_qgl"
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFile_'+tag 
+outputDir = 'rootFile_'+tag + "_tree"
 
 # file with TTree aliases
 aliasesFile = direc+'/aliases.py'
@@ -22,7 +22,7 @@ samplesFile = direc+'/samples.py'
 #samplesFile = direc+'/samples.py'
 
 #t file with list of samples
-plotFile = direc+'/plot_vbs0.py' 
+plotFile = direc+'/plot_vjet0.py' 
 
 # luminosity to normalize to (in 1/fb)
 lumi = 59.74
@@ -30,7 +30,7 @@ lumi = 59.74
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
 #outputDirPlots = 'plot_'+tag +"_rescaled/detajpt_ext"
-outputDirPlots = 'plot_'+tag + "/vbs0" 
+outputDirPlots = 'plot_'+tag + "/vjet0" 
 
 # used by mkDatacards to define output directory for datacards
 #outputDirDatacard = 'datacards_'+tag 

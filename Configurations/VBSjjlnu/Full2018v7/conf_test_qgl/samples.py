@@ -125,7 +125,7 @@ samples['DY'] = {    'name'   :   nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M
                                   + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-4to50_HT-400to600')
                                   + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-4to50_HT-600toInf'),
                        'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + '*' + DY_photon_filter ,
-                       'FilesPerJob' : 15,
+                       'FilesPerJob' : 16,
                        'subsamples': {
                           "vbs0_gluon" : "vbs_0_partfl_res == 21 ",
                           "vbs0_quark" : "vbs_0_partfl_res != 21 ",

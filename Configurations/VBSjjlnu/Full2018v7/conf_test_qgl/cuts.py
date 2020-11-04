@@ -31,7 +31,7 @@ supercut = '(   (abs(Lepton_pdgId[0])==11 && Lepton_pt[0]>35)\
 
 cuts["res_wjetcr"] = 'VBS_category==1 \
                     && vjet_0_pt > 30 && vjet_1_pt > 30 \
-                    && mjj_vjet> 40 && (mjj_vjet <= 65 || mjj_vjet >= 105) \
+                    && mjj_vjet> 40 && (mjj_vjet <= 60 || mjj_vjet >= 110) \
                     && bVeto \
                     && w_had_pt < 200 \
                     && veto_fatjet_wjet85 \
@@ -40,7 +40,7 @@ cuts["res_wjetcr"] = 'VBS_category==1 \
 
 cuts["res_wjetcr_vbs0_higheta"] = 'VBS_category==1 \
                     && vjet_0_pt > 30 && vjet_1_pt > 30 \
-                    && mjj_vjet> 40 && (mjj_vjet <= 65 || mjj_vjet >= 105) \
+                    && mjj_vjet> 40 && (mjj_vjet <= 60 || mjj_vjet >= 110) \
                     && bVeto \
                     && w_had_pt < 200 \
                     && veto_fatjet_wjet85 \
@@ -50,7 +50,7 @@ cuts["res_wjetcr_vbs0_higheta"] = 'VBS_category==1 \
 
 cuts["res_wjetcr_vbs0_loweta"] = 'VBS_category==1 \
                     && vjet_0_pt > 30 && vjet_1_pt > 30 \
-                    && mjj_vjet> 40 && (mjj_vjet <= 65 || mjj_vjet >= 105) \
+                    && mjj_vjet> 40 && (mjj_vjet <= 60 || mjj_vjet >= 110) \
                     && bVeto \
                     && w_had_pt < 200 \
                     && veto_fatjet_wjet85 \
@@ -59,7 +59,7 @@ cuts["res_wjetcr_vbs0_loweta"] = 'VBS_category==1 \
 
 cuts["res_wjetcr_vjet0_higheta"] = 'VBS_category==1 \
                     && vjet_0_pt > 30 && vjet_1_pt > 30 \
-                    && mjj_vjet> 40 && (mjj_vjet <= 65 || mjj_vjet >= 105) \
+                    && mjj_vjet> 40 && (mjj_vjet <= 60 || mjj_vjet >= 110) \
                     && bVeto \
                     && w_had_pt < 200 \
                     && veto_fatjet_wjet85 \
@@ -83,7 +83,7 @@ cuts["res_wjetcr_vjet0_loweta"] = 'VBS_category==1 \
 
 cuts["res_topcr_ele"] = 'VBS_category==1 \
                         && vjet_0_pt > 30 && vjet_1_pt > 30 \
-                        && mjj_vjet > 65 && mjj_vjet < 105 \
+                        && mjj_vjet > 75 && mjj_vjet < 90 \
                         && bReqTight \
                         && w_had_pt < 200 \
                         && veto_fatjet_wjet85 \
@@ -92,7 +92,7 @@ cuts["res_topcr_ele"] = 'VBS_category==1 \
 
 cuts["res_topcr_vbs0_higheta"] = 'VBS_category==1 \
                         && vjet_0_pt > 30 && vjet_1_pt > 30 \
-                        && mjj_vjet > 65 && mjj_vjet < 105 \
+                        && mjj_vjet > 75 && mjj_vjet < 90 \
                         && bReqTight \
                         && w_had_pt < 200 \
                         && veto_fatjet_wjet85 \
@@ -101,7 +101,7 @@ cuts["res_topcr_vbs0_higheta"] = 'VBS_category==1 \
 
 cuts["res_topcr_vbs0_loweta"] = 'VBS_category==1 \
                         && vjet_0_pt > 30 && vjet_1_pt > 30 \
-                        && mjj_vjet > 65 && mjj_vjet < 105 \
+                        && mjj_vjet > 75 && mjj_vjet < 90 \
                         && bReqTight \
                         && w_had_pt < 200 \
                         && veto_fatjet_wjet85 \
@@ -110,7 +110,7 @@ cuts["res_topcr_vbs0_loweta"] = 'VBS_category==1 \
 
 cuts["res_topcr_vjet0_higheta"] = 'VBS_category==1 \
                         && vjet_0_pt > 30 && vjet_1_pt > 30 \
-                        && mjj_vjet > 65 && mjj_vjet < 105 \
+                        && mjj_vjet > 75 && mjj_vjet < 90 \
                         && bReqTight \
                         && w_had_pt < 200 \
                         && veto_fatjet_wjet85 \
@@ -119,7 +119,7 @@ cuts["res_topcr_vjet0_higheta"] = 'VBS_category==1 \
 
 cuts["res_topcr_vjet0_loweta"] = 'VBS_category==1 \
                         && vjet_0_pt > 30 && vjet_1_pt > 30 \
-                        && mjj_vjet > 65 && mjj_vjet < 105 \
+                        && mjj_vjet > 75 && mjj_vjet < 90 \
                         && bReqTight \
                         && w_had_pt < 200 \
                         && veto_fatjet_wjet85 \

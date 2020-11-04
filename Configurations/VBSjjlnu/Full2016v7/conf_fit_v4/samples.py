@@ -52,7 +52,6 @@ Nlep='1'
 eleWP='mva_90p_Iso2016'
 muWP='cut_Tight80x'
 
-
 LepWPCut_1l =  '(Lepton_isTightElectron_'+eleWP+'[0]>0.5 || Lepton_isTightMuon_'+muWP+'[0]>0.5)'
 LepWPWeight_1l = 'Lepton_tightElectron_'+eleWP+'_IdIsoSF'+'[0]*\
                 Lepton_tightMuon_'+muWP+'_IdIsoSF'+'[0]'
@@ -65,7 +64,7 @@ LepWPWeight = LepWPWeight_1l
 
 XSWeight      = 'XSWeight'
 SFweight1l =       'puWeight*\
-                   TriggerEffWeight_1l*\
+                   SingleLepton_trigEff_corrected[0]*\
                    Lepton_RecoSF[0]*\
                    EMTFbug_veto'
 SFweight      = SFweight1l+'*'+LepWPWeight_1l+'*'+LepWPCut_1l
@@ -218,8 +217,9 @@ addSampleWeight(samples,'top','ST_t-channel_antitop',  "100. / 32.4")
 
 
 samples['Wjets_HT'] = { 'name' :   
-          nanoGetSampleFiles(directory_bkg, 'WJetsToLNu')  #NLO inclusive samples
-          + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_ext2')
+          #nanoGetSampleFiles(directory_bkg, 'WJetsToLNu')  #NLO inclusive samples
+          nanoGetSampleFiles(directory_bkg, 'WJetsToLNu-LO')
+          + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu-LO_ext2')
           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT70_100')
           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT100_200')
           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT100_200_ext2')
@@ -234,12 +234,13 @@ samples['Wjets_HT'] = { 'name' :
           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT1200_2500')
           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT1200_2500_ext1')
           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT2500_inf')
-          + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT2500_inf_ext1'),
-        'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch,
-        'FilesPerJob' : 12,
+          + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT2500_inf_ext1')
+          ,
+        'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch + '* EWKnloW',
+        'FilesPerJob' : 10,
         'EventsPerJob' : 70000,
-        'suppressNegative' :['all'],
-        'suppressNegativeNuisances' :['all'],
+        # 'suppressNegative' :['all'],
+        # 'suppressNegativeNuisances' :['all'],
         # 'subsamples': {
         #   "boost1" : "(VBS_category==0) && (deltaeta_vbs < 5)",
         #   "boost2" : "(VBS_category==0) && (deltaeta_vbs >= 5)",
@@ -248,17 +249,17 @@ samples['Wjets_HT'] = { 'name' :
           
         #   "deta1_jpt2": "(VBS_category==1) && (deltaeta_vbs < 4 ) &&  ( vbs_1_pt >= 75 && vbs_1_pt <150)",
         #   "deta2_jpt2": "(VBS_category==1) && (deltaeta_vbs >= 4) &&  ( vbs_1_pt >= 75 && vbs_1_pt <150)",
-
         #   "jpt3": "(VBS_category==1) && ( vbs_1_pt >= 150)",
                     
         # }
        }
 
 # No needed HT stiching corrections
-addSampleWeight(samples,'Wjets_HT', 'WJetsToLNu', '(LHE_HT < 70)') 
-addSampleWeight(samples,'Wjets_HT', 'WJetsToLNu_ext2', '(LHE_HT < 70)') 
+#addSampleWeight(samples,'Wjets_HT', 'WJetsToLNu', '(LHE_HT < 70)') 
+addSampleWeight(samples,'Wjets_HT', 'WJetsToLNu-LO', '(LHE_HT < 70)') 
+addSampleWeight(samples,'Wjets_HT', 'WJetsToLNu-LO_ext2', '(LHE_HT < 70)') 
+CombineBaseW(samples, 'Wjets_HT', ['WJetsToLNu-LO','WJetsToLNu-LO_ext2'])
 
-CombineBaseW(samples, 'Wjets_HT', ['WJetsToLNu','WJetsToLNu_ext2'])
 CombineBaseW(samples, 'Wjets_HT', ['WJetsToLNu_HT100_200','WJetsToLNu_HT100_200_ext2'])
 CombineBaseW(samples, 'Wjets_HT', ['WJetsToLNu_HT200_400','WJetsToLNu_HT200_400_ext2'])
 CombineBaseW(samples, 'Wjets_HT', ['WJetsToLNu_HT400_600','WJetsToLNu_HT400_600_ext1'])
@@ -266,6 +267,8 @@ CombineBaseW(samples, 'Wjets_HT', ['WJetsToLNu_HT600_800','WJetsToLNu_HT600_800_
 CombineBaseW(samples, 'Wjets_HT', ['WJetsToLNu_HT800_1200','WJetsToLNu_HT800_1200_ext1'])
 CombineBaseW(samples, 'Wjets_HT', ['WJetsToLNu_HT1200_2500','WJetsToLNu_HT1200_2500_ext1'])
 CombineBaseW(samples, 'Wjets_HT', ['WJetsToLNu_HT2500_inf','WJetsToLNu_HT2500_inf_ext1'])
+
+
 
 ######################################################## 
 
@@ -363,16 +366,17 @@ samples['VBS']  = { 'name' :
 }
 
 
-fakeW = 'fakeW_ele_' + eleWP + '_mu_' +muWP+ '_1l_mu35_ele35'
+#fakeW = 'fakeW_ele_' + eleWP + '_mu_' +muWP+ '_1l_mu35_ele35'
 # from alias
-#fakeW = 'fake_weight_corrected'
+fake_jetEt = "20"
+fakeW = 'FW_mu'+fake_jetEt+'_ele'+fake_jetEt
 #### Fakes
 samples['Fake'] = {
   'name': [],
   'weight': METFilter_DATA+'*'+fakeW,
   'weights': [],
   'isData': ['all'],
-  'FilesPerJob': 10
+  'FilesPerJob': 15
 }
 
 for _, sd in DataRun:
@@ -390,7 +394,7 @@ samples['DATA']  = {   'name': [ ] ,
                        'weight' : METFilter_DATA+'*'+LepWPCut,
                        'weights' : [ ],
                        'isData': ['all'],
-                       'FilesPerJob' : 10,
+                       'FilesPerJob' : 15,
                   }
 
 for Run in DataRun :
@@ -400,4 +404,4 @@ for Run in DataRun :
                         samples['DATA']['name'].append(iFile)
                         samples['DATA']['weights'].append(DataTrig[DataSet])
 
-#samples = {   key:v for key,v in samples.items() if key  in ["top"]}
+#samples = {   key:v for key,v in samples.items() if key  in ["Wjets_LO", "Wjets_HT_noLO"]}

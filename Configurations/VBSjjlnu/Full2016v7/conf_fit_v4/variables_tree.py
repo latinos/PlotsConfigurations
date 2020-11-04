@@ -1,3 +1,9 @@
+# weights= [
+#         "XSWeight", "baseW", "btagSF", "puWeight", "SingleLepton_trigEff_corrected",
+#         "PrefireWeight","EMTFbug_veto","PUJetIdSF","BoostedWtagSF_nominal","METFilter_MC",'LHE_HT', 'EWKnloW'
+# ] 
+weights = []
+
 
 res_vars = [
             'vbs_0_pt', 'vbs_0_eta', 'vbs_0_phi', 'vbs_0_E',
@@ -17,7 +23,8 @@ res_vars = [
             'Centr_vbs', 'Centr_ww', 'Lep_proj', 'Lep_projw',
             'recoMET_pz',
             'vbs_0_qgl_res', 'vbs_1_qgl_res', 'vjet_0_qgl_res', 'vjet_1_qgl_res', 
-            ]
+            
+            ] + weights
 
 res_branches =  { v:v for v in res_vars }
 
@@ -31,20 +38,27 @@ boost_vars = ['vbs_0_pt', 'vbs_0_eta', 'vbs_0_phi', 'vbs_0_E',
             'deltaphi_lep_nu', 'deltaeta_lep_nu',
             'deltaR_lep_nu', 'deltaR_vbs', 'deltaR_vjet',
             'Rvjets_0', 'Zvjets_0', 'Zlep',
-            'Asym_vbs', 'Mw_lep', 'Mtw_lep', 'w_lep_pt', 'w_had_pt',
+            'Asym_vbs', 'Mw_lep', 'Mtw_lep', 'w_lep_pt',
             'Mww', 'R_ww', 'R_mw', 'A_ww',
             'Centr_vbs', 'Centr_ww', 'Lep_proj', 'Lep_projw',
             'recoMET_pz' ,
             'fatjet_TvsQCD' ,'fatjet_ZvsQCD','fatjet_WvsQCD',
             'fatjet_subjet1_pt','fatjet_subjet2_pt','fatjet_subjet_ptratio',
-            'vbs_0_qgl_boost', 'vbs_1_qgl_boost'
-        ]
+            'vbs_0_qgl_boost', 'vbs_1_qgl_boost',
+        ] + weights
 
 boost_branches =  { v:v for v in boost_vars }
 
 # patching some variables
 boost_branches['vjet_0_pt'] = 'fatjetpt085'
 boost_branches['mjj_vjet'] = 'mjj_vjet085'
+
+# eleWP='mva_90p_Iso2016'
+# muWP='cut_Tight80x'
+
+# LepWPCut_1l =  '(Lepton_isTightElectron_'+eleWP+'[0]>0.5 || Lepton_isTightMuon_'+muWP+'[0]>0.5)'
+# LepWPWeight_1l = 'Lepton_tightElectron_'+eleWP+'_IdIsoSF'+'[0]*\
+#                 Lepton_tightMuon_'+muWP+'_IdIsoSF'+'[0]'
 
 
 
@@ -58,6 +72,14 @@ for brs in [res_branches, boost_branches]:
     brs['PuppiMET_phi'] = 'PuppiMET_phi'
     brs['nJets30'] = 'Sum$(CleanJet_pt[CleanJetNotFat_jetIdx] >= 30)'
     brs['nvtxGood'] = 'PV_npvsGood'
+    #additional weights
+#     brs["lep_genmatch"] = "Lepton_genmatched[0]"
+#     brs["lep_recosf"] = "Lepton_RecoSF[0]"
+#     brs["lepwp_cut"] = LepWPCut_1l
+#     brs["lep_idisosf"] = LepWPWeight_1l
+    
+
+
 
 
 variables['dnn_inputs_resolved'] = {
@@ -446,7 +468,7 @@ variables['nvtx_good'] = {  'name': 'PV_npvsGood',
 # new fat jet vars
 
 variables['fatjet_TvsQCD'] = {  'name': 'fatjet_TvsQCD',
-                        'range': (40,0,1),
+                        'range': (50,0,1),
                         'xaxis': 'fatjet T vs QCD',
                         'fold': 3,
                         'cuts': boost_cuts
@@ -454,7 +476,7 @@ variables['fatjet_TvsQCD'] = {  'name': 'fatjet_TvsQCD',
 
 
 variables['fatjet_ZvsQCD'] = {  'name': 'fatjet_ZvsQCD',
-                        'range': (40,0,1),
+                        'range': (50,0,1),
                         'xaxis': 'fatjet Z vs QCD',
                         'fold': 3,
                         'cuts': boost_cuts
@@ -462,8 +484,8 @@ variables['fatjet_ZvsQCD'] = {  'name': 'fatjet_ZvsQCD',
 
 
 variables['fatjet_WvsQCD'] = {  'name': 'fatjet_WvsQCD',
-                        'range': (40,0,1),
-                        'xaxis': 'fatjet T vs QCD',
+                        'range': (50,0,1),
+                        'xaxis': 'fatjet W vs QCD',
                         'fold': 3,
                         'cuts': boost_cuts
                 }
@@ -494,21 +516,21 @@ variables['fatjet_subjet_ptratio'] = {  'name': 'fatjet_subjet_ptratio',
 # QGL vars 
 
 variables['vbs_0_qgl_boost'] = {  'name': 'vbs_0_qgl_boost',
-                        'range': (40,0.,1.),
+                        'range': (50,0.,1.),
                         'xaxis': 'Qgl VBS 0 jet',
                         'fold': 3,
                         'cuts': boost_cuts
                 }
 
 variables['vbs_1_qgl_boost'] = {  'name': 'vbs_1_qgl_boost',
-                        'range': (40,0.,1.),
+                        'range': (50,0.,1.),
                         'xaxis': 'Qgl VBS 1 jet',
                         'fold': 3,
                         'cuts': boost_cuts
                 }
 
 variables['vbs_0_qgl_res'] = {  'name': 'vbs_0_qgl_res',
-                        'range': (40,0.,1.),
+                        'range': (50,0.,1.),
                         'xaxis': 'Qgl VBS 0 jet',
                         'fold': 3,
                         'cuts': res_cuts
@@ -522,14 +544,14 @@ variables['vbs_1_qgl_res'] = {  'name': 'vbs_1_qgl_res',
                 }
 
 variables['vjet_0_qgl_res'] = {  'name': 'vjet_0_qgl_res',
-                        'range': (40,0.,1.),
+                        'range': (50,0.,1.),
                         'xaxis': 'Qgl Vjet 0 jet',
                         'fold': 3,
                         'cuts': res_cuts
                 }
 
 variables['vjet_1_qgl_res'] = {  'name': 'vjet_1_qgl_res',
-                        'range': (40,0.,1.),
+                        'range': (50,0.,1.),
                         'xaxis': 'Qgl Vjet 1 jet',
                         'fold': 3,
                         'cuts': res_cuts
