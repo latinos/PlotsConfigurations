@@ -35,7 +35,7 @@ groupPlot['DY']  = {
                   'nameHR' : "DY",
                   'isSignal' : 0,
                   'color': 418,    # kGreen+2
-                  'samples'  : ['DY']
+                  'samples'  : ['DY', 'DYtt']
               }
 
 '''
@@ -85,15 +85,19 @@ groupPlot['Higgs']  = {
                   #'samples'  : ['H_htt', 'H_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'ggH_hww','bbH_hww','ttH_hww', 'ggH_htt' ]
               }
 
+groupPlot['Zjj']  = {  
+                  'nameHR': 'Zjj',
+                  'isSignal' : 0,
+                  'color': 600,    # kBlue
+                  'samples'    : ['Zjj']
+              }
+
 groupPlot['VBS']  = {
                   'nameHR' : 'VBS',
                   'isSignal' : 2,
                   'color': 888, #666,
                   'samples'  : ['WWewk']#,'qqH_hww', 'ZH_hww', 'WH_hww', ']
               }
-
-
-
 
 
 #plot = {}
@@ -119,6 +123,20 @@ plot['DY']  = {
                        #'hww2l2v_13TeV_me_1j'     : 1.08 , 
                         #},
 
+              }
+
+plot['DYtt']  = {  
+                  'color': 418,    # kGreen+2
+                  'isSignal' : 0,
+                  'isData'   : 0, 
+                  'scale'    : 1.0,
+                }
+
+plot['Zjj']  = {  
+                  'color': 600,    # kBlue
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0                  
               }
 
 
@@ -355,7 +373,7 @@ plot['DATA']  = {
                   'color': 1 ,  
                   'isSignal' : 0,
                   'isData'   : 1 ,
-                  'isBlind'  : 1
+                  'isBlind'  : 0
               }
 
 
