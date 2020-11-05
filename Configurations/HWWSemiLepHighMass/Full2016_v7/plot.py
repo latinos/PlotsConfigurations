@@ -15,13 +15,42 @@ else:
 # If not defined, normal plots is used
 #
 
+groupPlot['SM Higgs'] = {
+'nameHR': 'SM Higgs',
+'isSignal' : 0,
+'color': 863, # kAzure +3
+'samples'  : ['ggH_hww', 'qqH_hww', 'ZH_hww', 'WH_hww', 'ggH_htt', 'qqH_htt', 'ZH_htt', 'WH_htt']
+}
+groupPlot['multiboson']  = {
+'nameHR' : 'multiboson',
+'isSignal' : 0,
+'color': 857, # kAzure -3
+'samples'  : ['WW', 'ggWW', 'WWewk', 'qqWWqq', 'WW2J', 'VVV', 'VZ', 'Vg', 'VgS_H',  'VgS_L']
+}
+groupPlot['QCD'] = {
+'nameHR' : "QCD",
+'isSignal' : 0,
+'color'    : 617,   # kViolet + 1
+'samples'  : ['QCD']
+}
+groupPlot['FAKE'] = {
+'nameHR' : "Fake",
+'isSignal' : 0,
+'color'    : 617,   # kViolet + 1
+'samples'  : ['FAKE']
+}
+groupPlot['DY']  = {
+'nameHR' : "DY",
+'isSignal' : 0,
+'color': 418,    # kGreen+2
+'samples'  : ['DY']
+}
 groupPlot['top']  = {
     'nameHR' : 't#bar{t} and ST',
     'isSignal' : 0,
     'color': 400,   # kYellow
     'samples'  : ['top']
 }
-
 groupPlot['Wjets'] = {
     'nameHR' : "W+jets",
     'isSignal' : 0,
@@ -29,72 +58,13 @@ groupPlot['Wjets'] = {
     'samples'  : ['Wjets'],
 }
 
-groupPlot['QCD'] = {
-    'nameHR' : "QCD",
-    'isSignal' : 0,
-    'color'    : 617,   # kViolet + 1
-    'samples'  : ['QCD']
-}
-
-groupPlot['FAKE'] = {
-    'nameHR' : "Fake",
-    'isSignal' : 0,
-    'color'    : 617,   # kViolet + 1
-    'samples'  : ['FAKE']
-}
-
-groupPlot['DY']  = {
-    'nameHR' : "DY",
-    'isSignal' : 0,
-    'color': 418,    # kGreen+2
-    'samples'  : ['DY']
-}
-
-groupPlot['multiboson']  = {
-    'nameHR' : 'multiboson',
-    'isSignal' : 0,
-    'color': 857, # kAzure -3
-    'samples'  : ['WW', 'ggWW', 'WWewk', 'qqWWqq', 'WW2J', 'VVV', 'VZ', 'Vg', 'VgS_H',  'VgS_L']
-}
-
-groupPlot['SM Higgs'] = {
-    'nameHR': 'SM Higgs',
-    'isSignal' : 0,
-    'color': 863, # kAzure +3
-    'samples'  : ['ggH_hww', 'qqH_hww', 'ZH_hww', 'WH_hww', 'ggH_htt', 'qqH_htt', 'ZH_htt', 'WH_htt']
-}
-
 # Signal
-for MX in plotmasses:
-    xs_ggf = HiggsXS.GetHiggsXS4Sample('YR4','13TeV','GluGluHToWWToLNuQQ_M{}'.format(MX))['xs']
-    xs_vbf = HiggsXS.GetHiggsXS4Sample('YR4','13TeV','VBFHToWWToLNuQQ_M{}'.format(MX))['xs']
-    plot['QQH_{}_RelW002'.format(MX)] = {
-        'nameHR'  : 'qqH{}'.format(MX),
-        'color'   : 1,
-        'isSignal': 1,
-        'isData'  : 0,
-        'scale'   : 1.0 * xs_ggf
-    }
-    plot['QQHINT_{}_RelW002'.format(MX)] = {
-        'nameHR'  : 'qqH{}'.format(MX),
-        'color'   : 1,
-        'isSignal': 1,
-        'isData'  : 0,
-        'scale'   : 1.0 * xs_ggf
-    }
-    plot['GGH_{}_RelW002'.format(MX)] = {
-        'nameHR'  : 'ggH{}'.format(MX),
-        'color'   : 1,
-        'isSignal': 1,
-        'isData'  : 0,
-        'scale'   : 1.0 * xs_vbf
-    }
-    plot['GGHINT_{}_RelW002'.format(MX)] = {
-        'nameHR'  : 'ggH{}'.format(MX),
-        'color'   : 1,
-        'isSignal': 1,
-        'isData'  : 0,
-        'scale'   : 1.0 * xs_vbf
+for counter, MX in enumerate(plotmasses):
+    groupPlot['Higgs{}'.format(MX)] = {
+        'nameHR'  : 'Higgs {}'.format(MX),
+        'isSignal': 2,
+        'color'   : counter+1,
+        'samples' : ['GGH_{}_RelW002'.format(MX), 'GGHINT_{}_RelW002'.format(MX), 'QQH_{}_RelW002'.format(MX),'QQHINT_{}_RelW002'.format(MX)]
     }
 
 
@@ -283,14 +253,28 @@ for MX in plotmasses:
         'color'   : 1,
         'isSignal': 1,
         'isData'  : 0,
-        'scale'   : 1 * xs_ggf
+        'scale'   : 1.0 * xs_ggf
+    }
+    plot['QQHINT_{}_RelW002'.format(MX)] = {
+        'nameHR'  : 'qqH{}'.format(MX),
+        'color'   : 1,
+        'isSignal': 1,
+        'isData'  : 0,
+        'scale'   : 1.0 * xs_ggf
     }
     plot['GGH_{}_RelW002'.format(MX)] = {
         'nameHR'  : 'ggH{}'.format(MX),
         'color'   : 1,
         'isSignal': 1,
         'isData'  : 0,
-        'scale'   : 1 * xs_vbf
+        'scale'   : 1.0 * xs_vbf
+    }
+    plot['GGHINT_{}_RelW002'.format(MX)] = {
+        'nameHR'  : 'ggH{}'.format(MX),
+        'color'   : 1,
+        'isSignal': 1,
+        'isData'  : 0,
+        'scale'   : 1.0 * xs_vbf
     }
 
 
@@ -303,7 +287,7 @@ plot['DATA']  = {
     'color': 1 ,
     'isSignal' : 0,
     'isData'   : 1 ,
-    'isBlind'  : 1
+    'isBlind'  : 0
 }
 
 

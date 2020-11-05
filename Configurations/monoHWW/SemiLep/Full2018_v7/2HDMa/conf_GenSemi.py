@@ -4,7 +4,7 @@
 
 treeName = 'Events'
 
-tag = 'GenSemi_2016v7'
+tag = 'GenSemi_2018v7'
 
 # used by mkShape to define output directory for root files
 outputDir = 'GenSemi_root'

@@ -1,7 +1,7 @@
 # example of configuration file
 treeName= 'Events'
 
-tag = 'darkHiggs2017_v7'
+tag = 'darkHiggs2017_v7_plots'
 
 
 # used by mkShape to define output directory for root files

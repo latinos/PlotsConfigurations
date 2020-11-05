@@ -19,20 +19,23 @@ addcut('inclusiveCR_ee', dy + ['(Lepton_pdgId[0] * Lepton_pdgId[1] == -11*11)'])
 addcut('inclusiveCR_mm', dy + ['(Lepton_pdgId[0] * Lepton_pdgId[1] == -13*13)'])
 addcut('inclusiveCR_df', dy + ['(Lepton_pdgId[0] * Lepton_pdgId[1] == -11*13)'])
 
+"""
 addcut('lowmt2CR_ll', dy + ['mt2ll < 80.'])
 addcut('lowmt2CR_ee', dy + ['mt2ll < 80.', '(Lepton_pdgId[0] * Lepton_pdgId[1] == -11*11)'])
 addcut('lowmt2CR_mm', dy + ['mt2ll < 80.', '(Lepton_pdgId[0] * Lepton_pdgId[1] == -13*13)'])
 addcut('lowmt2CR_df', dy + ['mt2ll < 80.', '(Lepton_pdgId[0] * Lepton_pdgId[1] == -11*13)'])
+"""
 
 addcut('dyCR_ll', dy + ['mt2ll > 80.', '(Lepton_pdgId[0] * Lepton_pdgId[1] == -11*13 || (mll > 76 && mll < 106))'])
 addcut('dyCR_ee', dy + ['mt2ll > 80.', '(Lepton_pdgId[0] * Lepton_pdgId[1] == -11*13 || (mll > 76 && mll < 106))', '(Lepton_pdgId[0] * Lepton_pdgId[1] == -11*11)'])
 addcut('dyCR_mm', dy + ['mt2ll > 80.', '(Lepton_pdgId[0] * Lepton_pdgId[1] == -11*13 || (mll > 76 && mll < 106))', '(Lepton_pdgId[0] * Lepton_pdgId[1] == -13*13)'])
 addcut('dyCR_df', dy + ['mt2ll > 80.', '(Lepton_pdgId[0] * Lepton_pdgId[1] == -11*13 || (mll > 76 && mll < 106))', '(Lepton_pdgId[0] * Lepton_pdgId[1] == -11*13)'])
 
+"""
 ttW = [
     'nLepton >= 3 && Alt$(Lepton_pt[2],0)>10',
     'abs(Lepton_eta[2])<2.4',
-    'mt2ll > 80.',
+    'mt2ll > 100.',
     '(Lepton_pdgId[0] * Lepton_pdgId[1] == -11*13 || (mll < 76 || mll > 106))'
 ]
 
@@ -45,6 +48,14 @@ ttZ = [
 ]
 
 addcut('ttZCR_ll', ttZ)
+"""
+ttV = [
+    'nLepton >= 3 && Alt$(Lepton_pt[2],0)>10',
+    'abs(Lepton_eta[2])<2.4',
+    'mt2ll > 80.',
+]
+
+addcut('ttVCR_ll', ttV)
 
 sameSign = [
     'Lepton_pdgId[0]*Lepton_pdgId[1] > 0',

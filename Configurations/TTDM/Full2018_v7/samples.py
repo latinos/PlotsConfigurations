@@ -130,25 +130,27 @@ nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-2500toInf')
 
 samples['DY'] = {
     'name': filesDYHT,
-    'weight': mcCommonWeight,# + '*( !(Sum$(PhotonGen_isPrompt==1 && PhotonGen_pt>15 && abs(PhotonGen_eta)<2.6) > 0 && Sum$(LeptonGen_isPrompt==1 && LeptonGen_pt>15)>=2) )',
+    'weight': mcCommonWeight + '*( !(Sum$(PhotonGen_isPrompt==1 && PhotonGen_pt>15 && abs(PhotonGen_eta)<2.6) > 0 && Sum$(LeptonGen_isPrompt==1 && LeptonGen_pt>15)>=2) )',
     'FilesPerJob': 20,
 }
 
 addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO',  'LHE_HT<100.0')
 addSampleWeight(samples,'DY','DYJetsToLL_M-50-LO',  'LHE_HT<70.0')
-addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO',ptllDYW_LO)
-addSampleWeight(samples,'DY','DYJetsToLL_M-4to50_HT-100to200',ptllDYW_LO)
-addSampleWeight(samples,'DY','DYJetsToLL_M-4to50_HT-200to400',ptllDYW_LO)
-addSampleWeight(samples,'DY','DYJetsToLL_M-4to50_HT-400to600',ptllDYW_LO)
-addSampleWeight(samples,'DY','DYJetsToLL_M-4to50_HT-600toInf',ptllDYW_LO)
-addSampleWeight(samples,'DY','DYJetsToLL_M-50-LO',ptllDYW_LO)
-addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-70to100',ptllDYW_LO)
-addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-100to200',ptllDYW_LO)
-addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-200to400',ptllDYW_LO)
-addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-400to600',ptllDYW_LO)
-addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-600to800',ptllDYW_LO)
-addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-800to1200',ptllDYW_LO)
-addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-1200toInf',ptllDYW_LO)
+
+addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO', 'DY_LO_pTllrw')
+addSampleWeight(samples,'DY','DYJetsToLL_M-4to50_HT-100to200', 'DY_LO_pTllrw')
+addSampleWeight(samples,'DY','DYJetsToLL_M-4to50_HT-200to400', 'DY_LO_pTllrw')
+addSampleWeight(samples,'DY','DYJetsToLL_M-4to50_HT-400to600', 'DY_LO_pTllrw')
+addSampleWeight(samples,'DY','DYJetsToLL_M-4to50_HT-600toInf', 'DY_LO_pTllrw')
+addSampleWeight(samples,'DY','DYJetsToLL_M-50-LO', 'DY_LO_pTllrw')
+addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-70to100', 'DY_LO_pTllrw')
+addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-100to200', 'DY_LO_pTllrw')
+addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-200to400', 'DY_LO_pTllrw')
+addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-400to600', 'DY_LO_pTllrw')
+addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-600to800', 'DY_LO_pTllrw')
+addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-800to1200', 'DY_LO_pTllrw')
+addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-1200to2500', 'DY_LO_pTllrw')
+addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-2500toInf', 'DY_LO_pTllrw')
 
 ###### Top #######
 
@@ -181,14 +183,22 @@ samples['TTToSemiLeptonic'] = {
     'FilesPerJob': 2,
 }
 
+"""
+samples['ttV'] = {
+    'name': nanoGetSampleFiles(mcDirectory, 'TTWjets') + nanoGetSampleFiles(mcDirectory, 'TTWJetsToLNu') + nanoGetSampleFiles(mcDirectory, 'TTZjets') + nanoGetSampleFiles(mcDirectory, 'TTZToLLNuNu_M-10'),
+    'weight': mcCommonWeight,
+    'FilesPerJob': 2,
+}
+"""
+
 samples['ttW'] = {
-    'name': nanoGetSampleFiles(mcDirectory, 'TTWjets'),
+    'name': nanoGetSampleFiles(mcDirectory, 'TTWjets') + nanoGetSampleFiles(mcDirectory, 'TTWJetsToLNu'),
     'weight': mcCommonWeight,
     'FilesPerJob': 2,
 }
 
 samples['ttZ'] = {
-    'name': nanoGetSampleFiles(mcDirectory, 'TTZjets'),
+    'name': nanoGetSampleFiles(mcDirectory, 'TTZjets') + nanoGetSampleFiles(mcDirectory, 'TTZToLLNuNu_M-10'),
     'weight': mcCommonWeight,
     'FilesPerJob': 2,
 }
@@ -261,13 +271,14 @@ samples['VVV'] = {
 ################## FAKE ###################
 ###########################################
 
+"""
 samples['MCFake'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'TTToSemiLeptonic'),
     'weight': mcCommonWeightNoMatch,
     'FilesPerJob': 1,
 }
-
 """
+
 samples['Fake'] = {
   'name': [],
   'weight': 'METFilter_DATA*fakeW',
@@ -281,7 +292,7 @@ for _, sd in DataRun:
     files = nanoGetSampleFiles(fakeDirectory, pd + '_' + sd)
     samples['Fake']['name'].extend(files)
     samples['Fake']['weights'].extend([DataTrig[pd]] * len(files))
-"""
+
 
 ###########################################
 ################## DATA ###################

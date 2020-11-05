@@ -157,15 +157,25 @@ aliases['VBFcut'] = {
 }
 
 aliases['VBFcut_HM'] = {
-    'expr': '( DNN_isVBF_OTF>0.68 )'
+    #'expr': '( DNN_isVBF_OTF>0.68 )'
+    'expr': '( DNN_isVBF_OTF>0.77 )'
+}
+
+aliases['CheckforSM'] = {
+    'linesToAdd' : [
+        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+        '.L %s/src/PlotsConfigurations/Configurations/HighMass/CheckForSM125.cc+' % os.getenv('CMSSW_BASE')
+    ],
+    'expr': 'CheckforSM()',
+    'samples': mc_sbi
 }
 
 aliases['SBI_isSMggh'] = {
-    'expr': '( abs(Xsec-1.091343e+00) < 1.0e-06 )',
+    'expr': '( abs(Xsec-1.091343e+00) < 1.0e-06 && CheckforSM )', # With protection against "HM" 125 sample
     'samples': mc_sbi
 }
 aliases['SBI_isSMVBF'] = {
-    'expr': '( abs(Xsec-8.496211e-02) < 1.0e-08 )',
+    'expr': '( abs(Xsec-8.496211e-02) < 1.0e-08 && CheckforSM )', # With protection against "HM" 125 sample
     'samples': mc_sbi
 }
 aliases['SBI_isggWW'] = {

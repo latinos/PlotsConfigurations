@@ -65,7 +65,7 @@ variables['dphillmet']  = {   'name': 'abs(dphillmet)',
                           }
 
 variables['njet']  = {    'name': 'Sum$(CleanJet_pt>30)',     
-                          'range' : (10,0,10),   
+                          'range' : (6,0,6),   
                           'xaxis' : 'Number of jets',
                           'fold' : 3  # 0 = not fold (default), 1 = fold underflowbin, 2 = fold overflow bin, 3 = fold underflow and overflow
                       }
@@ -108,7 +108,7 @@ variables['jeteta2']  = {  'name': '(Sum$(CleanJet_pt>30)>1)*(Alt$(CleanJet_eta[
 
 #Discriminating variables
 variables['mll']  = {   'name': 'mll',
-                        'range' : (40,0,200),
+                        'range' : (40,0,1000),
                         'xaxis' : 'm_{ll} [GeV]',
                         'fold' : 3
                     }
@@ -125,7 +125,19 @@ variables['puppimet']  = {   'name': 'PuppiMET_pt',
                              'fold'  : 3
                          }
 
+variables['pfmet_short']  = {   'name': 'MET_pt',
+                          'range' : (40,0,200),
+                          'xaxis' : 'pfmet [GeV]',
+                          'fold'  : 3
+                      }
+
 variables['pfmet']  = {   'name': 'MET_pt',
+                          'range' : (40,0,600),
+                          'xaxis' : 'pfmet [GeV]',
+                          'fold'  : 3
+                      }
+
+variables['pfmet_extended']  = {   'name': 'MET_pt',
                           'range' : (40,0,800),
                           'xaxis' : 'pfmet [GeV]',
                           'fold'  : 3

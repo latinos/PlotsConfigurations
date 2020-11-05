@@ -5,31 +5,56 @@
 # Groups of samples to improve the plots.
 # If not defined, normal plots is used
 
-groupPlot['ttbar']  = {  
-    'nameHR' : 't#bar{t}',
+"""
+groupPlot['VVV']  = {  
+    'nameHR' : 'VVV',
     'isSignal' : 0,
-    'color': 400,
-    'samples'  : ['ttbar']
+    'color': 416,
+    'samples'  : ['VVV']
+}
+"""
+groupPlot['VV']  = {  
+    'nameHR' : 'VV',
+    'isSignal' : 0,
+    'color': 609,
+    'samples'  : ['VV', 'VZ', 'WZ', 'ZZ']
 }
 
-groupPlot['singleTop']  = {
-    'nameHR' : 'Single top',
+groupPlot['Vg']  = {  
+    'nameHR' : "V#gamma (*)",
     'isSignal' : 0,
-    'color': 401,
-    'samples'  : ['singleTop']
+    'color'    : 800,
+    'samples'  : ['Vg', 'Wg', 'VgS_H','VgS_L']
 }
 
-groupPlot['TTToSemiLeptonic']  = {
-    'nameHR' : 'TTToSemiLeptonic',
+"""
+groupPlot['VgS']  = {
+    'nameHR' : "V#gamma*",
     'isSignal' : 0,
-    'color': 402,
-    'samples'  : ['TTToSemiLeptonic']
+    'color'    : 409,
+    'samples'  : ['VgS_H','VgS_L']
+}
+"""
+
+groupPlot['Fake']  = {
+    'nameHR' : 'nonprompt',
+    'isSignal' : 0,
+    'color': 920,
+    'samples'  : ['Fake']
 }
 
+groupPlot['ttV']  = {
+    'nameHR' : 'ttV',
+    'isSignal' : 0,
+    'color': 432,
+    'samples'  : ['ttW', 'ttZ']
+}
+
+"""
 groupPlot['ttW']  = {
     'nameHR' : 'ttW',
     'isSignal' : 0,
-    'color': 403,
+    'color': 402,
     'samples'  : ['ttW']
 }
 
@@ -39,54 +64,34 @@ groupPlot['ttZ']  = {
     'color': 404,
     'samples'  : ['ttZ']
 }
+"""
 
-groupPlot['WW']  = {  
-    'nameHR' : 'WW',
+groupPlot['TTToSemiLeptonic']  = {
+    'nameHR' : 'TTToSemiLeptonic',
     'isSignal' : 0,
-    'color': 851,
-    'samples'  : ['WW']
-}
-
-groupPlot['Fake']  = {
-    'nameHR' : 'nonprompt',
-    'isSignal' : 0,
-    'color': 921,
-    'samples'  : ['MCFake']
+    'color': 418,
+    'samples'  : ['TTToSemiLeptonic']
 }
 
 groupPlot['DY']  = {  
     'nameHR' : "DY",
     'isSignal' : 0,
-    'color': 418,
+    'color': 877,
     'samples'  : ['DY']
 }
 
-groupPlot['VVV']  = {  
-    'nameHR' : 'VVV',
+groupPlot['singleTop']  = {
+    'nameHR' : 'Single top',
     'isSignal' : 0,
-    'color': 857,
-    'samples'  : ['VVV']
+    'color': 632,
+    'samples'  : ['singleTop']
 }
 
-groupPlot['VZ']  = {  
-    'nameHR' : "VZ",
+groupPlot['ttbar']  = {  
+    'nameHR' : 't#bar{t}',
     'isSignal' : 0,
-    'color'    : 617,
-    'samples'  : ['VZ', 'WZ', 'ZZ']
-}
-
-groupPlot['Vg']  = {  
-    'nameHR' : "V#gamma",
-    'isSignal' : 0,
-    'color'    : 810,
-    'samples'  : ['Vg', 'Wg']
-}
-
-groupPlot['VgS']  = {
-    'nameHR' : "V#gamma*",
-    'isSignal' : 0,
-    'color'    : 409,
-    'samples'  : ['VgS_H','VgS_L']
+    'color': 600,
+    'samples'  : ['ttbar']
 }
 
 #plot = {}
@@ -94,31 +99,31 @@ groupPlot['VgS']  = {
 # keys here must match keys in samples.py    
 
 plot['DY']  = {  
-    'color': 418,
+    'color': 877,
     'isSignal' : 0,
     'isData'   : 0, 
     'scale'    : 1.0,
 }
 
-"""
 plot['Fake']  = {  
-    'color': 921,
+    'color': 920,
+    'isSignal' : 0,
+    'isData'   : 0,
+    'scale'    : 1.0                  
+}
+
+"""
+plot['MCFake']  = {  
+    'color': 920,
     'isSignal' : 0,
     'isData'   : 0,
     'scale'    : 1.0                  
 }
 """
-
-plot['MCFake']  = {  
-    'color': 921,
-    'isSignal' : 0,
-    'isData'   : 0,
-    'scale'    : 1.0                  
-}
 
 plot['ttbar'] = {   
     'nameHR' : 't#bar{t}',
-    'color': 400,
+    'color': 600,
     'isSignal' : 0,
     'isData'   : 0, 
     'scale'    : 1.0,
@@ -126,7 +131,7 @@ plot['ttbar'] = {
 
 plot['singleTop'] = {
     'nameHR' : 'Single top',
-    'color': 401,
+    'color': 632,
     'isSignal' : 0,
     'isData'   : 0,
     'scale'    : 1.0
@@ -134,15 +139,25 @@ plot['singleTop'] = {
 
 plot['TTToSemiLeptonic'] = {
     'nameHR' : 'TTToSemiLeptonic',
-    'color': 402,
+    'color': 418,
     'isSignal' : 0,
     'isData'   : 0,
     'scale'    : 1.0
 }
 
+"""
+plot['ttV'] = {
+    'nameHR' : 'ttV',
+    'color': 432,
+    'isSignal' : 0,
+    'isData'   : 0,
+    'scale'    : 1.0
+}
+"""
+
 plot['ttW'] = {
     'nameHR' : 'ttW',
-    'color': 403,
+    'color': 432,
     'isSignal' : 0,
     'isData'   : 0,
     'scale'    : 1.0
@@ -150,35 +165,35 @@ plot['ttW'] = {
 
 plot['ttZ'] = {
     'nameHR' : 'ttZ',
-    'color': 404,
+    'color': 434,
     'isSignal' : 0,
     'isData'   : 0,
     'scale'    : 1.0
 }
 
 plot['WW']  = {
-    'color': 851,
+    'color': 609,
     'isSignal' : 0,
     'isData'   : 0,    
     'scale'    : 1.0
 }
 
 plot['Vg']  = { 
-    'color': 859,
+    'color': 800,
     'isSignal' : 0,
     'isData'   : 0,
     'scale'    : 1.0
 }
 
 plot['VgS_H'] = { 
-    'color'    : 617,
+    'color'    : 800,
     'isSignal' : 0,
     'isData'   : 0,
     'scale'    : 1.0
 }
 
 plot['VgS_L'] = {
-    'color'    : 617,
+    'color'    : 800,
     'isSignal' : 0,
     'isData'   : 0,
     'scale'    : 1.0
@@ -186,19 +201,20 @@ plot['VgS_L'] = {
 
 
 plot['VZ']  = { 
-    'color': 858,
+    'color': 609,
     'isSignal' : 0,
     'isData'   : 0,
     'scale'    : 1.0
 }
 
+"""
 plot['VVV']  = { 
-    'color': 857,
+    'color': 416,
     'isSignal' : 0,
     'isData'   : 0,
     'scale'    : 1.0
 }
-
+"""
 # data
 
 plot['DATA']  = { 

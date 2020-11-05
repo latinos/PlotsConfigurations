@@ -126,9 +126,15 @@ Run the impacts and checks:
     plotImpacts.py -i  impacts_t0.json -o  impacts_t0
     plotImpacts.py -i  impacts_t1.json -o  impacts_t1
 
-    
 
-Run the limits:
+Get the bkg normalization factors taken from the fit to the data. If blinded, use the mask SR option in Combine:
+
+    text2workspace.py datacards_2016/datacard_DH_mhs_160_mx_100_mZp_500_combined_corr.txt --channel-masks
+    combine datacards_2016/datacard_DH_mhs_160_mx_100_mZp_500_combined_corr.root -M FitDiagnostics --saveShapes --saveWithUncertainties --setParameters mask_ch1=1
+    root -l fitDiagnostics.root 
+    fit_s->Print()
+
+Run the limits: (add the postFit normalization factors obtained in the previous step in mkLimits.py)
 
     python mkLimits.py datacards_2016 /afs/cern.ch/work/f/fernanpe/CMSSW_10_2_13/src/HiggsAnalysis/CombinedLimit /afs/cern.ch/work/f/fernanpe/framework_monoHFullRun2/CMSSW_10_2_9/src/PlotsConfigurations/Configurations/monoHWW/Full2016_v7/ 
     python mksub.py 
