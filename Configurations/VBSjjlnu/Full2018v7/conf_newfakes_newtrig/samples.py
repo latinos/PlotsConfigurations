@@ -126,7 +126,7 @@ samples['DY'] = {    'name'   :   nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M
                                   + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-4to50_HT-400to600')
                                   + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-4to50_HT-600toInf'),
                        'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + '*' + DY_photon_filter ,
-                       'FilesPerJob' : 12,
+                       'FilesPerJob' : 10,
                        'EventsPerJob' : 70000,
                        'suppressNegative' :['all'],
                        'suppressNegativeNuisances' :['all'],
@@ -167,7 +167,7 @@ samples['top'] = {    'name'   :   nanoGetSampleFiles(directory_bkg,'TTTo2L2Nu')
                                  + nanoGetSampleFiles(directory_bkg,'TTWjets'),
                                 # +  nanoGetSampleFiles(directory_bkg,'TTWJetsToLNu'), #also this is available
                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-                     'FilesPerJob' : 12,
+                     'FilesPerJob' : 10,
                      'EventsPerJob' : 70000,
                      'suppressNegative' :['all'],
                      'suppressNegativeNuisances' :['all'],
@@ -186,18 +186,20 @@ addSampleWeight(samples,'top','ST_t-channel_antitop',  "100. / 32.4")
 ################################
 ### Wjets samples
 
+
 samples['Wjets_HT'] = { 'name' :   
            nanoGetSampleFiles(directory_bkg, 'WJetsToLNu-LO')
-          + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT70_100'),
-          # + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT100_200')
-          # + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT200_400')
-          # + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT400_600')
-          # + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT600_800')
-          # + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT800_1200')
-          # + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT1200_2500')
-          # + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT2500_inf'),
-				'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch + '* ewknloW',
-				'FilesPerJob' : 14,   
+          + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT70_100')
+          + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT100_200')
+          + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT200_400')
+          + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT400_600')
+          + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT600_800')
+          + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT800_1200')
+          + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT1200_2500')
+          + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT2500_inf'),
+				'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch + '* ewknloW ',
+				'FilesPerJob' : 10,
+        'EventsPerJob' : 70000      
 		}
 
 # Fix Wjets binned + LO 
@@ -212,7 +214,8 @@ addSampleWeight(samples,'Wjets_HT', 'WJetsToLNu_HT600_800',   '1.0582')
 addSampleWeight(samples,'Wjets_HT', 'WJetsToLNu_HT800_1200',  '1.1285') 
 addSampleWeight(samples,'Wjets_HT', 'WJetsToLNu_HT1200_2500', '1.3268') 
 addSampleWeight(samples,'Wjets_HT', 'WJetsToLNu_HT2500_inf',  '2.7948') 
- 
+
+#NO LOtoNLO sample
 
 
 ###############################################
@@ -308,7 +311,7 @@ samples['VBS']  = { 'name' :
                nanoGetSampleFiles(directory_signal,'WpTo2J_WmToLNu') +
                nanoGetSampleFiles(directory_signal,'ZTo2L_ZTo2J',  ),
        'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch,
-       'FilesPerJob' : 15,
+       'FilesPerJob' : 10,
        'EventsPerJob' : 70000,
 }
 
@@ -321,7 +324,7 @@ samples['Fake'] = {
   'weight': METFilter_DATA+'*'+fakeW,
   'weights': [],
   'isData': ['all'],
-  'FilesPerJob' : 12,
+  'FilesPerJob' : 15,
 }
 
 for _, sd in DataRun:
@@ -340,7 +343,7 @@ samples['DATA']  = {   'name': [ ] ,
                        'weight' : METFilter_DATA+'*'+LepWPCut,
                        'weights' : [ ],
                        'isData': ['all'],
-                       'FilesPerJob' : 12,
+                       'FilesPerJob' : 10,
                   }
 
 for Run in DataRun :
@@ -352,4 +355,4 @@ for Run in DataRun :
 
 #samples = {   key:v for key,v in samples.items() if key  in ["DY","Fake", "VV"]}
 
-samples = {   key:v for key,v in samples.items() if key  in ["Wjets_HT"]}
+#samples = {   key:v for key,v in samples.items() if key not  in ["Wjets_HT"]}

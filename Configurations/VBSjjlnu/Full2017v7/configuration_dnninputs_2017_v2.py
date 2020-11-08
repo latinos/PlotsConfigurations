@@ -2,7 +2,7 @@
 treeName= 'Events'
 
 
-tag = 'fit_v4_2018'
+tag = 'dnninputs_2017_v2'
 direc = "conf_fit_v4"
 
 # used by mkShape to define output directory for root files
@@ -25,7 +25,7 @@ samplesFile = direc+'/samples.py'
 plotFile = direc+'/plot.py' 
 
 # luminosity to normalize to (in 1/fb)
-lumi = 59.74
+lumi = 41.5
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy

@@ -11,6 +11,28 @@ mc = [skey for skey in samples if skey not in ('Fake', 'DATA')]
 
 ####################
 
+aliases['nJets30']= {
+    'expr' : 'Sum$(CleanJet_pt[CleanJetNotFat_jetIdx] >= 30)'
+}
+
+###################
+# trigger eff
+
+aliases['ele_trig_eff'] = {
+    'linesToAdd': [
+        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
+        '.L %s/src/PlotsConfigurations/Configurations/patches/triggerEff_1lep.cc+' % os.getenv('CMSSW_BASE')
+    ],
+    'class': 'TrigEff_1lep',
+    'args': ('/afs/cern.ch/user/a/arun/public/fixedTextfiles/2018/mvaid/Ele32_pt_eta_efficiency_withSys_Run2018.txt'),
+    'samples': mc
+}
+
+aliases['SingleLepton_trigEff_corrected'] = {
+    'expr': '(abs(Lepton_pdgId[0])==11)*ele_trig_eff[0] +  (abs(Lepton_pdgId[0])==13)*TriggerEffWeight_1l',
+    'samples': mc
+}
+
 
 ############################################
 # B tagging
@@ -114,21 +136,21 @@ aliases['DY_LO_pTllrw'] = {
 ###########################################################################################
 #fakes
 
-basedir_fakes = conf_folder +"/corrections/new_fake_rates/v5"
+basedir_fakes = configurations + "/VBSjjlnu/weights_files/fake_rates/2018"
 
 et = "35"
-el_fr_file = basedir_fakes + "/plot_ElCh_JetEt"+et+"_l1_etaVpt_ptel_fw_ewk_2D.root"
+el_fr_file = basedir_fakes + "/plot_ElCh_JetEt"+et+"_l1_etaVpt_ptel_aseta_fw_ewk_2D.root" #No absolute value for fakes
 mu_fr_file = basedir_fakes + "/plot_MuCh_JetEt"+et+"_l1_etaVpt_ptmu_fw_ewk_2D.root"
-el_pr_file = os.getenv('CMSSW_BASE') + "/src/LatinoAnalysis/NanoGardener/python/data/fake_prompt_rates/Full2018v6/mvaFall17V1IsoWP90/ElePR.root"
-mu_pr_file = os.getenv('CMSSW_BASE') + "/src/LatinoAnalysis/NanoGardener/python/data/fake_prompt_rates/Full2018v6/mvaFall17V1IsoWP90/MuonPR.root"
+el_pr_file = os.getenv('CMSSW_BASE') + "/src/LatinoAnalysis/NanoGardener/python/data/fake_prompt_rates/Full2018v7/mvaFall17V1Iso_WP90/ElePR.root"
+mu_pr_file = os.getenv('CMSSW_BASE') + "/src/LatinoAnalysis/NanoGardener/python/data/fake_prompt_rates/Full2018v7/cut_Tight_HWWW/MuonPR.root"
 
 aliases['FW_mu'+et+'_ele'+et] = { 
-    'class': 'newFakeWeightOTF',
-    'args': (eleWP, muWP, copy.deepcopy(el_fr_file), copy.deepcopy(el_pr_file), copy.deepcopy(mu_fr_file), copy.deepcopy(mu_pr_file), False, False), 
+    'class': 'newFakeWeightOTFall',
+    'args': (eleWP, muWP, copy.deepcopy(el_fr_file), copy.deepcopy(el_pr_file), copy.deepcopy(mu_fr_file), copy.deepcopy(mu_pr_file), False, False, False),  #doabsEta=False, no stat variations
     'linesToAdd' : [
         'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-        '.L %s/corrections/newfakeweight_OTF.cc+' % conf_folder
-        ],     
+        '.L {}/VBSjjlnu/macros/newfakeweight_OTFall.cc+'.format(configurations)
+    ],     
     'samples': ["Fake"]
 }
 
@@ -163,26 +185,6 @@ aliases['gstarHigh'] = {
 }
 
 
-############################
-#Wjets fajets recalibration
-
-aliases['is_wjetsSample'] =  {
-    'expr' : 'getSampleName()',
-    'linesToAdd' : [
-        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-        '.L {}/VBSjjlnu/Full2018v7/macros/samples_id.cc+'.format(configurations)
-    ]
-}
-
-
-aliases['fatjetpt085']= {
-   'expr': ' (is_wjetsSample)*( Alt$(CleanFatJet_pt[0],0) * 0.85) + (!is_wjetsSample)*(Alt$(CleanFatJet_pt[0],0))'
-}
-
-aliases['mjj_vjet085']= {
-   'expr': ' (is_wjetsSample)*( mjj_vjet * 0.85) + (!is_wjetsSample)*(mjj_vjet)'
-}
-
 aliases['veto_fatjet_180'] = {
             'class': 'VetoFatJet',
             'args': (180.),
@@ -192,19 +194,18 @@ aliases['veto_fatjet_180'] = {
             ]           
 }
 
-aliases['veto_fatjet_153'] = {
-            'class': 'VetoFatJet',
-            'args': (153.),
-            'linesToAdd' : [
-                'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-                '.L {}/VBSjjlnu/Full2018v7/macros/veto_fatjet.cc+'.format(configurations)
-            ]           
-}
+##########################3
+# NLO/LO factors for Wjets
+# aliases['wjets_LOtoNLO'] = {
+#             'class': 'Wjets_LOtoNLO',
+#             'args': (),
+#             'linesToAdd' : [
+#                 'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+#                 '.L {}/VBSjjlnu/Full2018v7/corrections/wjets_LOtoNLO.cc+'.format(configurations)
+#             ] ,
+#             'samples': ['Wjets_HT']         
+# }
 
-# Necessary for resolved region
-aliases['veto_fatjet_wjet85'] = {
-    'expr':  '(is_wjetsSample)*(veto_fatjet_153) + (!is_wjetsSample)*(veto_fatjet_180)'
-}
 
 ##################################
 
@@ -268,3 +269,45 @@ aliases['vbs_1_qgl_boost'] = {
     'class': 'QglVars',
     'args': ('vbs_1_qgl_boost'), 
 } 
+
+
+############################
+
+aliases['tag_jets_systems_pt'] = {
+    'class': 'TagJetsSystemsPt',
+    'args': (),
+    'linesToAdd' : [
+        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+        '.L {}/VBSjjlnu/macros/TagJetsSystemsPt.cc+'.format(configurations)
+    ]   
+}
+
+##########################3
+
+mva_reader_path = os.getenv('CMSSW_BASE') + '/src/PlotsConfigurations/Configurations/VBSjjlnu/macros/'
+models_path = '/eos/home-d/dvalsecc/www/VBSPlots/DNN_archive/FullRun2_v7/FullRun2_v7/'
+
+aliases['DNNoutput_boosted'] = {
+    'class': 'MVAReaderBoosted',
+    'args': ( models_path +'boost_sig/models/v6_b/',  models_path +'boost_sig/models/v6_b/cumulative_signal.root', True, 0),
+    'linesToAdd':[
+        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+        'gSystem->Load("libDNNEvaluator.so")',
+        '.L ' + mva_reader_path + 'mva_reader_boosted_v6b.cc+', 
+    ],
+}
+
+# aliases['DNNoutput_resolved'] = {
+#     'class': 'MVAReaderResolved',
+#     'args': ( models_path+ 'res_sig/models/v3_b/',models_path+ 'res_sig/models/v3_b/cumulative_signal.root', False, 1),
+#     'linesToAdd':[
+#         'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+#         'gSystem->Load("libDNNEvaluator.so")',
+#         '.L ' + mva_reader_path + 'mva_reader_resolved_v3b.cc+', 
+#     ],
+# }
+
+# aliases['DNNoutput'] = {
+#     'expr': '(VBS_category==0)*(DNNoutput_boosted) + (VBS_category==1)*(DNNoutput_resolved)'
+# }
+

@@ -216,6 +216,7 @@ addSampleWeight(samples,'top','ST_t-channel_antitop',  "100. / 32.4")
 
 #######################################################
 
+Wjets_inclusive_LOtoNLO = '1.00987'
 
 samples['Wjets_HT'] = { 'name' :   
           #nanoGetSampleFiles(directory_bkg, 'WJetsToLNu')  #NLO inclusive samples
@@ -237,7 +238,7 @@ samples['Wjets_HT'] = { 'name' :
           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT2500_inf')
           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT2500_inf_ext1')
           ,
-        'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch + '* EWKnloW', #added Lo to NLO factors
+        'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch + '* EWKnloW * wjets_LOtoNLO *' + Wjets_inclusive_LOtoNLO , #added Lo to NLO factors
         'FilesPerJob' : 10,
 
        }

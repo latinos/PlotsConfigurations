@@ -22,7 +22,7 @@ cuts["res_sig_ele"] = 'VBS_category==1 \
                                 && mjj_vjet > 65 && mjj_vjet < 105 \
                                 && bVeto \
                                 && w_had_pt < 200 \
-                                && veto_fatjet_wjet85 \
+                                && veto_fatjet_180 \
                                 '
 
 
@@ -33,21 +33,21 @@ cuts["res_sig_mu"] = 'VBS_category==1 \
                                 && mjj_vjet > 65 && mjj_vjet < 105 \
                                 && bVeto \
                                 && w_had_pt < 200 \
-                                && veto_fatjet_wjet85 \
-                                '
+                                && veto_fatjet_180 \
+                              '
 
 cuts["boost_sig_ele"] = 'VBS_category==0 \
                             && abs(Lepton_pdgId[0])==11 \
-                            && fatjetpt085 > 200 \
-                            && mjj_vjet085 > 70 && mjj_vjet085 < 115 \
+                            && w_had_pt > 200 \
+                            && mjj_vjet > 70 && mjj_vjet < 115 \
                             && bVeto \
                             '
 
 
 cuts["boost_sig_mu"] = 'VBS_category==0 \
                             && abs(Lepton_pdgId[0])==13 \
-                            && fatjetpt085 > 200 \
-                            && mjj_vjet085 > 70 && mjj_vjet085 < 115 \
+                            && w_had_pt > 200 \
+                            && mjj_vjet > 70 && mjj_vjet < 115 \
                             && bVeto \
                             '
 
@@ -61,7 +61,7 @@ cuts["res_wjetcr_ele"] = 'VBS_category==1 \
                                 && mjj_vjet> 40 && (mjj_vjet <= 65 || mjj_vjet >= 105) \
                                 && bVeto \
                                 && w_had_pt < 200 \
-                                && veto_fatjet_wjet85 \
+                                && veto_fatjet_180 \
                                 '
 
 
@@ -72,20 +72,20 @@ cuts["res_wjetcr_mu"] = 'VBS_category==1 \
                                 && mjj_vjet> 40 && (mjj_vjet <= 65 || mjj_vjet >= 105) \
                                 && bVeto \
                                 && w_had_pt < 200 \
-                                && veto_fatjet_wjet85 \
+                                && veto_fatjet_180 \
                                 '
 
 cuts["boost_wjetcr_ele"] = 'VBS_category==0 \
                             && abs(Lepton_pdgId[0])==11 \
-                             && fatjetpt085 > 200 \
-                            && mjj_vjet085 > 40 && (mjj_vjet085 <= 70 || mjj_vjet085 >= 115)  \
+                             && w_had_pt > 200 \
+                            && mjj_vjet > 40 && (mjj_vjet <= 70 || mjj_vjet >= 115)  \
                             && bVeto \
                             '
 
 cuts["boost_wjetcr_mu"] = 'VBS_category==0 \
                             && abs(Lepton_pdgId[0])==13 \
-                            && fatjetpt085 > 200 \
-                            && mjj_vjet085 > 40 && (mjj_vjet085 <= 70 || mjj_vjet085 >= 115)  \
+                            && w_had_pt > 200 \
+                            && mjj_vjet > 40 && (mjj_vjet <= 70 || mjj_vjet >= 115)  \
                             && bVeto \
                             '
 
@@ -102,7 +102,7 @@ cuts["res_topcr_ele"] = 'VBS_category==1 \
                                 && mjj_vjet > 65 && mjj_vjet < 105 \
                                 && bReqTight \
                                 && w_had_pt < 200 \
-                                && veto_fatjet_wjet85 \
+                                && veto_fatjet_180 \
                                 '
 
 cuts["res_topcr_mu"] = 'VBS_category==1 \
@@ -111,22 +111,22 @@ cuts["res_topcr_mu"] = 'VBS_category==1 \
                                 && mjj_vjet > 65 && mjj_vjet < 105 \
                                 && bReqTight \
                                 && w_had_pt < 200 \
-                                && veto_fatjet_wjet85 \
+                                && veto_fatjet_180 \
                                 '
 
 
 # Tight top
 cuts["boost_topcr_ele"] = 'VBS_category==0 \
                             && abs(Lepton_pdgId[0])==11 \
-                            && fatjetpt085 > 200 \
-                            && mjj_vjet085 > 70 && mjj_vjet085 < 115 \
+                            && w_had_pt > 200 \
+                            && mjj_vjet > 70 && mjj_vjet < 115 \
                             && bReqTight \
                             '
 
 
 cuts["boost_topcr_mu"] = 'VBS_category==0 \
                             && abs(Lepton_pdgId[0])==13 \
-                            && fatjetpt085 > 200 \
-                            && mjj_vjet085 > 70 && mjj_vjet085 < 115 \
+                            && w_had_pt > 200 \
+                            && mjj_vjet > 70 && mjj_vjet < 115 \
                             && bReqTight \
                             '

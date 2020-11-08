@@ -1,77 +1,8 @@
 
-res_vars = [
-            'vbs_0_pt', 'vbs_0_eta', 'vbs_0_phi', 'vbs_0_E',
-            'vbs_1_pt', 'vbs_1_eta', 'vbs_1_phi', 'vbs_1_E',
-            'vjet_0_pt', 'vjet_0_eta', 'vjet_0_phi', 'vjet_0_E',
-            'vjet_1_pt', 'vjet_1_eta', 'vjet_1_phi', 'vjet_1_E',
-            'mjj_vbs', 'mjj_vjet',
-            'deltaeta_vbs',  'deltaphi_vbs', 
-            'deltaeta_vjet', 'deltaphi_vjet', 
-            'deltaR_lep_vbs', 'deltaR_lep_vjet',
-            'deltaphi_lep_nu', 'deltaeta_lep_nu',
-            'deltaR_lep_nu', 'deltaR_vbs', 'deltaR_vjet',
-            'Rvjets_0', 'Rvjets_1',
-            'Zvjets_0', 'Zvjets_1', 'Zlep',
-            'Asym_vbs', 'Asym_vjet', 'Mw_lep', 'Mtw_lep', 'w_lep_pt', 'w_had_pt',
-            'Mww', 'R_ww', 'R_mw', 'A_ww',
-            'Centr_vbs', 'Centr_ww', 'Lep_proj', 'Lep_projw',
-            'vbs_0_qgl_res', 'vbs_1_qgl_res', 'vjet_0_qgl_res', 'vjet_1_qgl_res', 
-            ]
+##############################################
+# now variables to plot
+# Include also variables to be plotted
 
-res_branches =  { v:v for v in res_vars }
-
-
-boost_vars = ['vbs_0_pt', 'vbs_0_eta', 'vbs_0_phi', 'vbs_0_E',
-            'vbs_1_pt', 'vbs_1_eta', 'vbs_1_phi', 'vbs_1_E',
-            'vjet_0_pt', 'vjet_0_eta', 'vjet_0_phi', 'vjet_0_E',
-            'mjj_vbs', 'mjj_vjet',
-            'deltaeta_vbs',  'deltaphi_vbs', 
-            'deltaR_lep_vbs', 'deltaR_lep_vjet',
-            'deltaphi_lep_nu', 'deltaeta_lep_nu',
-            'deltaR_lep_nu', 'deltaR_vbs', 'deltaR_vjet',
-            'Rvjets_0', 'Zvjets_0', 'Zlep',
-            'Asym_vbs', 'Mw_lep', 'Mtw_lep', 'w_lep_pt',
-            'Mww', 'R_ww', 'R_mw', 'A_ww',
-            'Centr_vbs', 'Centr_ww', 'Lep_proj', 'Lep_projw',
-            'fatjet_TvsQCD' ,'fatjet_ZvsQCD','fatjet_WvsQCD',
-            'fatjet_subjet1_pt','fatjet_subjet2_pt','fatjet_subjet_ptratio',
-            'vbs_0_qgl_boost', 'vbs_1_qgl_boost'
-        ]
-
-boost_branches =  { v:v for v in boost_vars }
-
-
-#########
-# add the branches that need expressions
-for brs in [res_branches, boost_branches]:
-    brs['Lepton_pt'] = 'Lepton_pt[0]'
-    brs['Lepton_eta'] = 'Lepton_eta[0]'
-    brs['Lepton_phi'] = 'Lepton_phi[0]'
-    brs['PuppiMET_pt'] = 'PuppiMET_pt'
-    brs['PuppiMET_phi'] = 'PuppiMET_phi'
-    brs['nJets30'] = 'Sum$(CleanJet_pt[CleanJetNotFat_jetIdx] >= 30)'
-    brs['nvtxGood'] = 'PV_npvsGood'
-    # jet systems
-    brs['vbs_jets_pt'] = 'tag_jets_systems_pt[0]'
-    brs['four_tag_jets_pt'] = 'tag_jets_systems_pt[1]'
-    brs['vbs_jets_HT'] = 'tag_jets_systems_pt[2]'
-    brs['four_tag_jets_HT'] = 'tag_jets_systems_pt[4]'
-    brs['four_tag_jets_lepton_HT'] = 'tag_jets_systems_pt[5]'
-
-# only res branches
-res_branches['v_jets_HT'] = 'tag_jets_systems_pt[3]'
-
-##################################
-
-variables['dnn_inputs_resolved'] = {
-    'tree': res_branches,
-    'cuts' : ['res_sig_ele', 'res_sig_mu']
-}
-
-variables['dnn_inputs_boosted'] = {
-    'tree':  boost_branches,
-    'cuts' : ['boost_sig_ele', 'boost_sig_mu']
-}
 
 res_cuts = [ c for c in cuts if 'res' in c]
 boost_cuts = [ c for c in cuts if 'boost' in c]
@@ -194,7 +125,7 @@ variables['Mtw_lep'] = {   'name': 'Mtw_lep',
 variables['whad_pt_res'] = {
             'name': "w_had_pt",
             'range': (30, 0, 200),
-            'xaxis': 'V hadronic Pt',
+            'xaxis': 'W hadronic Pt',
             'fold': 3 ,
             'cuts': res_cuts
 }
@@ -202,7 +133,7 @@ variables['whad_pt_res'] = {
 variables['whad_pt_boost'] = {
             'name': "w_had_pt",
             'range': (40, 200, 800),
-            'xaxis': 'V hadronic Pt',
+            'xaxis': 'W hadronic Pt',
             'fold': 3 ,
             'cuts': boost_cuts
 }
@@ -210,7 +141,7 @@ variables['whad_pt_boost'] = {
 
 variables['mjj_vjet'] = {   'name': 'mjj_vjet',      
                         'range' : (60,40,200),  
-                        'xaxis' : 'Vhad reco mass', 
+                        'xaxis' : 'Whad reco mass', 
                         'fold' : 3
                         }
 
@@ -402,19 +333,19 @@ variables['Mww'] = {   'name': 'Mww',
 
 variables['R_ww'] = {   'name': 'R_ww',      
                         'range' : (30,0,80),  
-                        'xaxis' : 'R_WV', 
+                        'xaxis' : 'R_ww', 
                         'fold' : 3
                         }
 
 variables['R_mw'] = {   'name': 'R_mw',      
                         'range' : (30,0,0.6),  
-                        'xaxis' : 'R_mV', 
+                        'xaxis' : 'R_mw', 
                         'fold' : 3
                         }
 
 variables['A_ww'] = {   'name': 'A_ww',      
                         'range' : (30,0,1.1),  
-                        'xaxis' : 'A_WV', 
+                        'xaxis' : 'A_ww', 
                         'fold' : 3
                         }
 
@@ -459,7 +390,7 @@ variables['fatjet_ZvsQCD'] = {  'name': 'fatjet_ZvsQCD',
 
 variables['fatjet_WvsQCD'] = {  'name': 'fatjet_WvsQCD',
                         'range': (40,0,1),
-                        'xaxis': 'fatjet W vs QCD',
+                        'xaxis': 'fatjet T vs QCD',
                         'fold': 3,
                         'cuts': boost_cuts
                 }
@@ -561,7 +492,7 @@ variables['four_tag_jets_pt_res'] = {  'name': 'tag_jets_systems_pt[1]',
                 }
 
 variables['four_tag_jets_pt_boost'] = {  'name': 'tag_jets_systems_pt[1]',
-                        'range': (50,0.,800),
+                        'range': (40,0.,600),
                         'xaxis': 'Pt of VBS+FatJet system',
                         'fold': 3,
                         'cuts': boost_cuts
@@ -575,7 +506,7 @@ variables['four_tag_jets_HT'] = {  'name': 'tag_jets_systems_pt[4]',
                 }
 
 variables['four_tag_jets_lepton_HT'] = {  'name': 'tag_jets_systems_pt[5]',
-                        'range': (50,0.,500),
+                        'range': (60,100.,1200),
                         'xaxis': 'HT of VBS+V jets + Lepton system',
                         'fold': 3
                 }

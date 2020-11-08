@@ -2,20 +2,21 @@
 treeName= 'Events'
 
 
-tag = 'fit_v4_2018'
-direc = "conf_fit_v4"
+tag = 'newfakes_newtrig'
+direc = "conf_newfakes_newtrig"
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFile_'+tag 
 
 # file with TTree aliases
-aliasesFile = direc+'/aliases_tree.py'
+aliasesFile = direc+'/aliases.py'
 
 # file with list of variables
+#variablesFile = direc+'/variables.py'
 variablesFile = direc+'/variables.py'
 
 # file with list of cuts
-cutsFile = direc +'/cuts_tree.py' 
+cutsFile = direc +'/cuts.py' 
 
 # file with list of samples
 samplesFile = direc+'/samples.py' 
