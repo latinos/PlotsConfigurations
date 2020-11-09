@@ -30,12 +30,18 @@ groupPlot['Fake']  = {
                   'samples'  : ['Fake_m', 'Fake_e']
 }
 
-
 groupPlot['DY']  = {  
                   'nameHR' : "DY",
                   'isSignal' : 0,
                   'color': 418,    # kGreen+2
                   'samples'  : ['DY', 'DYtt']
+              }
+
+groupPlot['Zjj']  = {  
+                  'nameHR' : "DY",
+                  'isSignal' : 0,
+                  'color': 600,    # kBlue
+                  'samples'  : ['Zjj']
               }
 
 '''

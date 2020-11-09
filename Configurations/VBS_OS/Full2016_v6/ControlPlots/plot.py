@@ -38,6 +38,14 @@ groupPlot['DY']  = {
                   'samples'  : ['DY', 'DYtt']
               }
 
+groupPlot['Zjj']  = {  
+                  'nameHR' : "Zjj",
+                  'isSignal' : 0,
+                  'color': 418,    # kBlue
+                  'samples'  : ['Zjj']
+              }
+
+
 '''
 groupPlot['VVV']  = {  
                   'nameHR' : 'VVV',
