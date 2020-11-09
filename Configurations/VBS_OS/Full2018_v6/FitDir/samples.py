@@ -114,8 +114,8 @@ samples['DYtt'] = {
     'FilesPerJob': 6,
 }
 
-addSampleWeight(samples,'DY',   'DYJetsToTT_MuEle_M-50',    'DY_NLO_pTllrw*DiffFlav')
-addSampleWeight(samples,'DY',   'DYJetsToLL_M-10to50-LO',   'DY_LO_pTllrw*DiffFlav')
+addSampleWeight(samples,    'DYtt',   'DYJetsToTT_MuEle_M-50',    'DY_NLO_pTllrw*DiffFlav')
+addSampleWeight(samples,    'DYtt',   'DYJetsToLL_M-10to50-LO',   'DY_LO_pTllrw*DiffFlav')
 
 
 files = nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50') + \

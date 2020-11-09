@@ -128,8 +128,8 @@ samples['DYtt'] = {
     'weight': mcCommonWeight + '*( !(Sum$(PhotonGen_isPrompt==1 && PhotonGen_pt>15 && abs(PhotonGen_eta)<2.6) > 0))',
     'FilesPerJob': 4,
 }
-addSampleWeight(samples,'DY',   'DYJetsToTT_MuEle_M-50',    'DY_NLO_pTllrw*DiffFlav')
-addSampleWeight(samples,'DY',   'DYJetsToLL_M-10to50-LO',   'DY_NLO_pTllrw*DiffFlav')
+addSampleWeight(samples,    'DYtt',   'DYJetsToTT_MuEle_M-50',    'DY_NLO_pTllrw*DiffFlav')
+addSampleWeight(samples,    'DYtt',   'DYJetsToLL_M-10to50-LO',   'DY_NLO_pTllrw*DiffFlav')
 
 files = nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50') + \
     nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-10to50_ext1') + \
