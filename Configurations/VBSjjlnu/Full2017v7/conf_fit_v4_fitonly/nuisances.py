@@ -1,11 +1,12 @@
-# # # nuisances
-# # #FIXME: TO BE UPDATED FOR 2018!
-from pprint import pprint
+# nuisances
 # # # name of samples here must match keys in samples.py 
 
 mc =["DY", "top",  "Wjets_HT", "VV", "VVV", "VBF-V", "Vg", "VgS", "VBS"]
 mc_norm = [m for m in mc if m not in ["VBS", "VV"]]
 mc_sep =  ["VBS", "VV"]
+
+def getSamplesWithout(samples, samples_to_remove):
+    return [m for m in samples if m not in samples_to_remove]
 
 phase_spaces_boost = [ c for c in cuts if 'boost' in c]
 phase_spaces_res = [ c for c in cuts if 'res' in c]
@@ -15,11 +16,13 @@ phase_spaces_res_mu = [ ph+"_mu" for ph in phase_spaces_res]
 phase_spaces_boost_ele = [ ph+"_ele" for ph in phase_spaces_boost]
 phase_spaces_boost_mu = [ ph+"_mu" for ph in phase_spaces_boost]
 
-phase_spaces_ele = phase_spaces_res_ele + phase_spaces_boost_ele
-phase_spaces_mu = phase_spaces_res_mu + phase_spaces_boost_mu
+phase_spaces_tot_ele = phase_spaces_res_ele + phase_spaces_boost_ele
+phase_spaces_tot_mu = phase_spaces_res_mu + phase_spaces_boost_mu
+phase_spaces_tot_res = phase_spaces_res_ele + phase_spaces_res_mu
+phase_spaces_tot_boost = phase_spaces_boost_ele + phase_spaces_boost_mu
 
 phase_spaces_dict = {"boost": phase_spaces_boost, "res": phase_spaces_res}
-phase_spaces_tot = phase_spaces_ele + phase_spaces_mu
+phase_spaces_tot = phase_spaces_tot_ele + phase_spaces_tot_mu
 
 # Function to split a nuisance on different folders for different group of samples
 # keeping the same nuisance name
@@ -38,27 +41,46 @@ def split_nuisance_samples_dir(nuisance_name, nuisance_options, variation, group
 # # #### Luminosity
 
 nuisances['lumi_Uncorrelated'] = {
-    'name': 'lumi_13TeV_2018',
+    'name': 'lumi_13TeV_2017',
     'type': 'lnN',
-    'samples': dict((skey, '1.015') for skey in mc if skey not in ['top',"Wjets_HT"])
+    'samples': dict((skey, '1.02') for skey in mc if skey not in ['top', "Wjets_HT"])
 }
 
 nuisances['lumi_XYFact'] = {
     'name': 'lumi_13TeV_XYFact',
     'type': 'lnN',
-    'samples': dict((skey, '1.02') for skey in mc if skey not in ['top', "Wjets_HT"])
+    'samples': dict((skey, '1.008') for skey in mc if skey not in ['top', "Wjets_HT"])
 }
 
 nuisances['lumi_LScale'] = {
     'name': 'lumi_13TeV_LSCale',
     'type': 'lnN',
-    'samples': dict((skey, '1.002') for skey in mc if skey not in ['top', "Wjets_HT"])
+    'samples': dict((skey, '1.003') for skey in mc if skey not in ['top', "Wjets_HT"])
 }
+
+nuisances['lumi_BBDefl'] = {
+    'name': 'lumi_13TeV_BBDefl',
+    'type': 'lnN',
+    'samples': dict((skey, '1.004') for skey in mc if skey not in ['top', "Wjets_HT"])
+}
+
+nuisances['lumi_DynBeta'] = {
+    'name': 'lumi_13TeV_DynBeta',
+    'type': 'lnN',
+    'samples': dict((skey, '1.005') for skey in mc if skey not in ['top', "Wjets_HT"])
+}
+
 
 nuisances['lumi_CurrCalib'] = {
     'name': 'lumi_13TeV_CurrCalib',
     'type': 'lnN',
-    'samples': dict((skey, '1.002') for skey in mc if skey not in ['top', "Wjets_HT"])
+    'samples': dict((skey, '1.003') for skey in mc if skey not in ['top', "Wjets_HT"])
+}
+
+nuisances['lumi_Ghosts'] = {
+    'name': 'lumi_13TeV_Ghosts',
+    'type': 'lnN',
+    'samples': dict((skey, '1.001') for skey in mc if skey not in ['top', "Wjets_HT"])
 }
 
 
@@ -79,44 +101,44 @@ nuisances['fake_syst']  = {
                }
 
 nuisances['fake_ele']  = {
-                'name'  : 'CMS_fake_ele_2018',
+                'name'  : 'CMS_fake_ele_2017',
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
                               'Fake'     : [ fakeW_jetUp , fakeW_jetDown ],
                              },
-                'cuts':  phase_spaces_ele
+                'cuts':  phase_spaces_tot_ele
 }
 
 nuisances['fake_ele_stat']  = {
-                'name'  : 'CMS_fake_ele_stat_2018',
+                'name'  : 'CMS_fake_ele_stat_2017',
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
                               'Fake'      : [ fakeW_statUp , fakeW_statDown ],
                              },
-                'cuts':  phase_spaces_ele
+                'cuts':  phase_spaces_tot_ele
 }
 
 nuisances['fake_mu']  = {
-                'name'  : 'CMS_fake_mu_2018',
+                'name'  : 'CMS_fake_mu_2017',
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
                               'Fake'     : [ fakeW_jetUp , fakeW_jetDown ],
                              },
-                'cuts':  phase_spaces_mu
+                'cuts':  phase_spaces_tot_mu
 }
 
 
 nuisances['fake_mu_stat']  = {
-                'name'  : 'CMS_fake_mu_stat_2018',
+                'name'  : 'CMS_fake_mu_stat_2017',
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
                               'Fake'     :[ fakeW_statUp , fakeW_statDown ],
                              },
-                'cuts':  phase_spaces_mu
+                'cuts':  phase_spaces_tot_mu
 }
 
 # ##### Btag nuisances
@@ -126,7 +148,7 @@ for shift in ['jes', 'lf', 'hf', 'hfstats1', 'hfstats2', 'lfstats1', 'lfstats2',
 
     name = 'CMS_btag_%s' % shift
     if 'stats' in shift:
-        name += '_2018'
+        name += '_2017'
 
     nuisances['btag_shape_%s' % shift] = {
         'name': name,
@@ -141,10 +163,10 @@ trig_syst = ['( SingleLepton_trigEff_corrected_up / SingleLepton_trigEff_correct
             '(SingleLepton_trigEff_corrected_down/SingleLepton_trigEff_corrected)']
 
 nuisances['trigg']  = {
-                'name'  : 'CMS_eff_trigger_2018',
+                'name'  : 'CMS_eff_trigger_2017',
                 'kind'  : 'weight',
                 'type'  : 'shape',
-                'samples' :  dict((skey, trig_syst) for skey in mc)
+                'samples'  :   dict((skey, trig_syst) for skey in mc)
 }
 
 
@@ -163,21 +185,21 @@ id_syst_ele = [ ele_id_syst_up, ele_id_syst_do ]
 id_syst_mu = [ mu_id_syst_up, mu_id_syst_do ]
 
 nuisances['eff_e']  = {
-                'name'  : 'CMS_eff_e_2018',
+                'name'  : 'CMS_eff_e_2017',
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  :   dict((skey, id_syst_ele) for skey in mc),
-                'cuts': phase_spaces_ele
+                'cuts': phase_spaces_tot_ele
 }
 
 
 ele_pt_var = {
-                'name'  : 'CMS_scale_e_2018',
+                'name'  : 'CMS_scale_e_2017',
                 'kind'  : 'suffix',
                 'type'  : 'shape',
                 'mapUp': 'ElepTup',
                 'mapDown': 'ElepTdo',
-                'cuts': phase_spaces_ele
+                'cuts': phase_spaces_tot_ele
 }
 split_nuisance_samples_dir('electronpt', ele_pt_var, 'ElepT', [(mc_norm, directory_bkg), (mc_sep, directory_signal)])
 
@@ -187,21 +209,21 @@ split_nuisance_samples_dir('electronpt', ele_pt_var, 'ElepT', [(mc_norm, directo
 
 
 nuisances['eff_m']  = {
-                'name'  : 'CMS_eff_m_2018',
+                'name'  : 'CMS_eff_m_2017',
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : dict((skey, id_syst_mu) for skey in mc if skey not in ["Vg", "VgS"]),
-                'cuts': phase_spaces_mu
+                'cuts': phase_spaces_tot_mu
 }
 
 
 mu_pt_var = {
-                'name'  : 'CMS_scale_m_2018',
+                'name'  : 'CMS_scale_m_2017',
                 'kind'  : 'suffix',
                 'type'  : 'shape',
                 'mapUp': 'MupTup',
                 'mapDown': 'MupTdo',
-                'cuts': phase_spaces_mu
+                'cuts': phase_spaces_tot_mu
 }
 split_nuisance_samples_dir('muonpt', mu_pt_var, 'MupT', [(mc_norm, directory_bkg), (mc_sep, directory_signal)])
 
@@ -209,7 +231,7 @@ split_nuisance_samples_dir('muonpt', mu_pt_var, 'MupT', [(mc_norm, directory_bkg
 # PU jet id
 
 nuisances['JetPUID_sf']  = {
-                'name'  : 'CMS_jetpuid_2018',
+                'name'  : 'CMS_jetpuid_2017',
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : dict((skey, ['PUJetIdSF_up/PUJetIdSF','PUJetIdSF_down/PUJetIdSF']) for skey in mc ),
@@ -219,9 +241,9 @@ nuisances['JetPUID_sf']  = {
 # ##### Jet energy scale
 
 ##### Jet energy scale
-jes_systs = ['JESAbsolute','JESAbsolute_2018','JESBBEC1','JESBBEC1_2018','JESEC2',
-            'JESEC2_2018','JESFlavorQCD','JESHF','JESHF_2018','JESRelativeBal',
-            'JESRelativeSample_2018']
+jes_systs = ['JESAbsolute','JESAbsolute_2017','JESBBEC1','JESBBEC1_2017','JESEC2',
+            'JESEC2_2017','JESFlavorQCD','JESHF','JESHF_2017','JESRelativeBal',
+            'JESRelativeSample_2017']
 
 for js in jes_systs:
     jes_var = {
@@ -232,23 +254,23 @@ for js in jes_systs:
                     'mapDown': js+'do',
                     
     }
-    split_nuisance_samples_dir(js, jes_var, 'JES', [(mc_norm, directory_bkg), (mc_sep, directory_signal)])
-
-# Only total variation since it is small
+   
+    split_nuisance_samples_dir(js, jes_var, 'JES', [(getSamplesWithout(mc_norm,["Vg","VgS"]), directory_bkg), (mc_sep, directory_signal)])
+  
+### Only total variation for fatjetJES
 fatjetjes_var = {
-                'name': 'CMS_fatjet_scale_2018',
+                'name': 'CMS_fatjet_scale_2017',
                 'kind': 'suffix',
                 'type': 'shape',
                 'mapUp': 'fatjetJESup',
                 'mapDown': 'fatjetJESdo',
-                'cuts': phase_spaces_boost #because we are vetoing fatjets anyway in resolved category
-                
+                'cuts': phase_spaces_boost #because we are vetoing fatjets anyway in resolved category               
 }
-split_nuisance_samples_dir('fatjetJES', fatjetjes_var, 'fatjetJES', [(mc_norm, directory_bkg), (mc_sep, directory_signal)])
+split_nuisance_samples_dir('fatjetJES', fatjetjes_var, 'fatjetJES', [(getSamplesWithout(mc_norm,["Vg","VgS"]), directory_bkg), (mc_sep, directory_signal)])
 
 ##### Jet energy resolution
 jer_var = {
-    'name': 'CMS_res_j_2018',
+    'name': 'CMS_res_j_2017',
     'kind': 'suffix',
     'type': 'shape',
     'mapUp': 'JERup',
@@ -256,13 +278,14 @@ jer_var = {
 }
 split_nuisance_samples_dir('JER', jer_var, 'JER', [(mc_norm, directory_bkg), (mc_sep, directory_signal)])
   
+
 fatjer_var = {
-    'name': 'CMS_fatjet_res_2018',
+    'name': 'CMS_fatjet_res_2017',
     'kind': 'suffix',
     'type': 'shape',
     'mapUp': 'fatjetJERup',
     'mapDown': 'fatjetJERdo',
-    'cuts': phase_spaces_boost
+    'cuts': phase_spaces_boost #because we are vetoing fatjets anyway in resolved category
 }
 split_nuisance_samples_dir('fatjetJER', fatjer_var, 'fatjetJER', [(mc_norm, directory_bkg), (mc_sep, directory_signal)])
   
@@ -270,10 +293,10 @@ split_nuisance_samples_dir('fatjetJER', fatjer_var, 'fatjetJER', [(mc_norm, dire
 
 # # ##### MET energy scale
 met_var = {
-                'name'  : 'CMS_scale_met_2018',
+                'name'  : 'CMS_scale_met_2017',
                 'kind'  : 'suffix',
                 'type'  : 'shape',
-                'mapUp'  : 'METup',
+                'mapUp': 'METup',
                 'mapDown': 'METup',
 }
 split_nuisance_samples_dir('MET', met_var, 'MET', [(mc_norm, directory_bkg), (mc_sep, directory_signal)])
@@ -283,7 +306,6 @@ split_nuisance_samples_dir('MET', met_var, 'MET', [(mc_norm, directory_bkg), (mc
 ##################################
 ######## Fatjet uncertainties
 
-# Wtagging uncertainties enters also resolved region
 fatjet_eff = ['BoostedWtagSF_up/BoostedWtagSF_nominal', 'BoostedWtagSF_down/BoostedWtagSF_nominal']
 nuisances['Wtagging_eff'] = {
                 'name': 'CMS_fatjet_tau21eff_2017',
@@ -302,7 +324,7 @@ nuisances['Wtagging_ptextr'] = {
 
 #FatJet mass scale and resolution
 fatjet_jmr = {
-    'name': 'CMS_fatjet_jmr_2018',
+    'name': 'CMS_fatjet_jmr_2017',
     'kind': 'suffix',
     'type': 'shape',
     'mapUp': 'fatjetJMRup',
@@ -312,17 +334,15 @@ fatjet_jmr = {
 split_nuisance_samples_dir('fatjetJMR', fatjet_jmr, 'fatjetJMR', [(mc_norm, directory_bkg), (mc_sep, directory_signal)])
   
 fatjet_jms = {
-    'name': 'CMS_fatjet_jms_2018',
+    'name': 'CMS_fatjet_jms_2017',
     'kind': 'suffix',
     'type': 'shape',
     'mapUp': 'fatjetJMSup',
     'mapDown': 'fatjetJMSdo',
     'cuts': phase_spaces_boost #because we are vetoing fatjets anyway in resolved category
 }
-
-###################
-#### N.B: Missing systematic for VBS and VV
-split_nuisance_samples_dir('fatjetJMS', fatjet_jms, 'fatjetJMS', [(mc_norm, directory_bkg)])
+################ N.B.: Missing VV files
+split_nuisance_samples_dir('fatjetJMS', fatjet_jms, 'fatjetJMS', [(mc_norm, directory_bkg), (getSamplesWithout(mc_sep, "VV"), directory_signal)])
   
 
 
@@ -414,7 +434,7 @@ nuisances['TopPtRew'] = {
 # #                    'top' : '1.00',
 # #                    },
 # #                'type'  : 'rateParam',
-# #                'cuts'  : phase_spaces_boost
+# #                'cuts'  : phase_spaces_tot_boost
 # #               }
 
 # # nuisances['Top_norm_res']  = {
@@ -423,7 +443,7 @@ nuisances['TopPtRew'] = {
 # #                    'top' : '1.00',
 # #                    },
 # #                'type'  : 'rateParam',
-# #                'cuts'  : phase_spaces_res
+# #                'cuts'  : phase_spaces_tot_res
 # #               }
 
 
@@ -471,6 +491,3 @@ nuisances['stat']  = {
 
    
 # #print ' '.join(nuis['name'] for nname, nuis in nuisances.iteritems() if nname not in ('lumi', 'stat'))
-
-
-# nuisances = {  k:v for k,v in nuisances.items() if k == "stat"}

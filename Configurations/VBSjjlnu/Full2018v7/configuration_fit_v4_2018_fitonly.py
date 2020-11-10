@@ -2,7 +2,7 @@
 treeName= 'Events'
 
 
-tag = 'fit_v4_2017'
+tag = 'fit_v4_2018'
 direc = "conf_fit_v4"
 
 # used by mkShape to define output directory for root files
@@ -12,7 +12,7 @@ outputDir = 'rootFile_'+tag
 aliasesFile = direc+'/aliases_tree.py'
 
 # file with list of variables
-variablesFile = direc+'/variables.py'
+variablesFile = direc+'/variables_fit.py'
 
 # file with list of cuts
 cutsFile = direc +'/cuts_tree.py' 
@@ -25,7 +25,7 @@ samplesFile = direc+'/samples.py'
 plotFile = direc+'/plot.py' 
 
 # luminosity to normalize to (in 1/fb)
-lumi = 41.5
+lumi = 59.74
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy

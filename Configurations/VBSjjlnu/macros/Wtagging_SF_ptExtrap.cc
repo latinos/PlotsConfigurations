@@ -14,9 +14,14 @@
 #include <stdexcept>
 #include <tuple>
 
+
+#ifndef WtaggingSF_ptextr_HH
+#define WtaggingSF_ptextr_HH
+
 class Wtagging_SF_ptExtrap : public multidraw::TTreeFunction {
 public:
   Wtagging_SF_ptExtrap(  const char* year);
+  ~Wtagging_SF_ptExtrap();
 
   char const* getName() const override { return "Wtagging_SF_ptExtrap"; }
   TTreeFunction* clone() const override { return new Wtagging_SF_ptExtrap(year_.c_str() ); }
@@ -116,6 +121,9 @@ Wtagging_SF_ptExtrap::setValues()
       outputValues[0]    = 1.0;
       outputValues[1]    = 1.0;
     }
+  }else{
+    outputValues[0]    = 1.0;
+    outputValues[1]    = 1.0;
   }
 }
 
@@ -132,4 +140,20 @@ Wtagging_SF_ptExtrap::bindTree_(multidraw::FunctionLibrary& _library)
     _library.bindBranch(FatJet_mass, "FatJet_msoftdrop");
     _library.bindBranch(FatJet_tau1, "FatJet_tau1");
     _library.bindBranch(FatJet_tau2, "FatJet_tau2");
+
 }
+
+
+Wtagging_SF_ptExtrap::~Wtagging_SF_ptExtrap(){
+  VBS_category = nullptr;  
+  nFatJet = nullptr;  
+  CleanFatJet_pt = nullptr;  
+  FatJet_pt = nullptr;  
+  FatJet_eta = nullptr;  
+  FatJet_phi = nullptr;  
+  FatJet_mass = nullptr;  
+  FatJet_tau1 = nullptr;  
+  FatJet_tau2 = nullptr;  
+}
+
+#endif

@@ -153,7 +153,7 @@ mu_pr_file = os.getenv('CMSSW_BASE') + "/src/LatinoAnalysis/NanoGardener/python/
 for et in ets:
     el_fr_file = basedir_fakes + "/plot_ElCh_JetEt"+et+"_l1_etaVpt_ptel_aseta_fw_ewk_2D.root" #No absolute value for fakes
     mu_fr_file = basedir_fakes + "/plot_MuCh_JetEt"+et+"_l1_etaVpt_ptmu_fw_ewk_2D.root"
-    aliases['fakeWight_'+et] = { 
+    aliases['fakeWeight_'+et] = { 
         'class': 'newFakeWeightOTFall',
         'args': (eleWP, muWP, copy.deepcopy(el_fr_file), copy.deepcopy(el_pr_file), copy.deepcopy(mu_fr_file), copy.deepcopy(mu_pr_file), False, False, False),  #doabsEta=False, no stat variations
         'linesToAdd' : [
@@ -167,12 +167,12 @@ for et in ets:
 el_fr_file35 = basedir_fakes + "/plot_ElCh_JetEt35_l1_etaVpt_ptel_aseta_fw_ewk_2D.root" #No absolute value for fakes
 mu_fr_file35 = basedir_fakes + "/plot_MuCh_JetEt35_l1_etaVpt_ptmu_fw_ewk_2D.root"
 
-aliases['fakeWight_35_statUp'] = { 
+aliases['fakeWeight_35_statUp'] = { 
         'class': 'newFakeWeightOTFall',
         'args': (eleWP, muWP, copy.deepcopy(el_fr_file35), copy.deepcopy(el_pr_file), copy.deepcopy(mu_fr_file35), copy.deepcopy(mu_pr_file), False, True, False),   
         'samples': ["Fake"]
     }
-aliases['fakeWight_35_statDo'] = { 
+aliases['fakeWeight_35_statDo'] = { 
         'class': 'newFakeWeightOTFall',
         'args': (eleWP, muWP, copy.deepcopy(el_fr_file35), copy.deepcopy(el_pr_file), copy.deepcopy(mu_fr_file35), copy.deepcopy(mu_pr_file), False, False, True), 
         'samples': ["Fake"]

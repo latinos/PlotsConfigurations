@@ -18,6 +18,10 @@
 #include "Math/GenVector/LorentzVector.h"
 #include "Math/GenVector/PtEtaPhiM4D.h"
 
+
+#ifndef TagJetsSystemsPt_HH
+#define TagJetsSystemsPt_HH
+
 #include <iostream>
 
 using namespace ROOT::Math;
@@ -25,6 +29,7 @@ using namespace ROOT::Math;
 class TagJetsSystemsPt : public multidraw::TTreeFunction {
 public:
   TagJetsSystemsPt();
+  ~TagJetsSystemsPt();
 
   char const* getName() const override { return "TagJetsSystemsPt"; }
   TTreeFunction* clone() const override { return new TagJetsSystemsPt();}
@@ -98,8 +103,26 @@ TagJetsSystemsPt::bindTree_(multidraw::FunctionLibrary& _library)
     _library.bindBranch(FatJet_eta, "CleanFatJet_eta");
     _library.bindBranch(FatJet_phi, "CleanFatJet_phi");
     _library.bindBranch(FatJet_mass, "CleanFatJet_mass");
+
+    
 }
 
+TagJetsSystemsPt::~TagJetsSystemsPt(){
+  VBS_category = nullptr;
+  VBS_jets_res = nullptr;
+  V_jets_res = nullptr;
+  VBS_jets_boost = nullptr;
+  Lepton_pt = nullptr;
+  Jet_pt = nullptr;
+  Jet_eta = nullptr;
+  Jet_phi = nullptr;
+  Jet_mass = nullptr;
+  Jet_idx = nullptr;
+  FatJet_pt = nullptr;
+  FatJet_eta = nullptr;
+  FatJet_phi = nullptr;
+  FatJet_mass = nullptr;
+}
 
 void
 TagJetsSystemsPt::setValues()
@@ -146,3 +169,4 @@ TagJetsSystemsPt::setValues()
 
 
 
+#endif

@@ -93,25 +93,6 @@ variables['DNNoutput_boost_custom2'] = {
 
 
 
-#####################
-#Fit variables
-
-variables['fit_bins_res'] ={  'name' : 'vbs_jets_pt',
-                            'range' : ([0,100,200,300,400,800 ],),
-                            'xaxis' : 'VBS jets Pt bin', 
-                            'fold' : 3,
-                            'cuts': res_cuts
-}   
-
-variables['fit_bins_boost'] ={  'name' : 'w_had_pt',
-                            'range' : ([0,300,400,600,1000],),
-                            'xaxis' : 'V Fatjet Pt bin', 
-                            'fold' : 3,
-                            'cuts': boost_cuts
-}   
-
-
-
 # # #leptons
 
 variables['Lepton_eta_abs'] = {   'name': 'abs(Lepton_eta[0])',      
@@ -561,7 +542,7 @@ variables['vjet_1_qgl_res'] = {  'name': 'vjet_1_qgl_res',
 #####################
 
 variables['vbs_jets_pt'] = {  'name': 'tag_jets_systems_pt[0]',
-                        'range': (50,0.,700),
+                        'range': (40,0.,600),
                         'xaxis': 'Pt of VBS jets system',
                         'fold': 3
                 }

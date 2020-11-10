@@ -90,11 +90,6 @@ MVAReaderResolved::MVAReaderResolved(const char* model_path, const char* transfo
     tf_file->Close();
 }
 
-MVAReaderResolved::~MVAReaderResolved(){
-  
-  delete dnn_transformation;
-  delete dnn_tensorflow;
-}
 
 
 double
@@ -172,7 +167,33 @@ MVAReaderResolved::bindTree_(multidraw::FunctionLibrary& _library)
   _library.bindBranch(vjet_0_qgl_res, "vjet_0_qgl_res");
   _library.bindBranch(vjet_1_qgl_res, "vjet_1_qgl_res");
 
+}
 
+MVAReaderResolved::~MVAReaderResolved(){
+    delete dnn_transformation;
+    delete dnn_tensorflow;
+
+    Lepton_pt  = nullptr;
+    Lepton_eta  = nullptr;
+    nJets30  = nullptr;
+    vbs_0_pt  = nullptr;
+    vbs_1_pt = nullptr;
+    vjet_0_pt = nullptr;
+    vjet_1_pt = nullptr;
+    mjj_vbs = nullptr;
+    mjj_vjet = nullptr;
+    deltaeta_vbs = nullptr;
+    deltaphi_vbs = nullptr;
+    deltaeta_vjet = nullptr;
+    Zvjets_0 = nullptr;
+    Zlep  = nullptr;
+    Asym_vbs = nullptr;
+    A_ww = nullptr;
+    Centr_vbs = nullptr;
+    Centr_ww = nullptr;
+    vbs_0_qgl_res = nullptr;
+    vjet_0_qgl_res = nullptr;
+    vjet_1_qgl_res = nullptr;
 }
 
 

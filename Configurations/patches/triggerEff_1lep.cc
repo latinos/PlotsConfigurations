@@ -22,10 +22,15 @@
 
 #include <iostream>
 
+
+#ifndef TrigEff_1lep_HH
+#define TrigEff_1lep_HH
+
 class TrigEff_1lep : public multidraw::TTreeFunction {
 public:
   TrigEff_1lep(char const* fileName);
   TrigEff_1lep(std::vector<std::array<float,7>> _values);
+  ~TrigEff_1lep();
 
   char const* getName() const override { return "TrigEff_1lep"; }
   TTreeFunction* clone() const override { return new TrigEff_1lep(_values);}
@@ -85,6 +90,13 @@ TrigEff_1lep::TrigEff_1lep(char const* fileName) :
 TrigEff_1lep::TrigEff_1lep(std::vector<std::array<float,7>> _values) :
   TTreeFunction(), _values{_values}{}
 
+TrigEff_1lep::~TrigEff_1lep(){
+  Lepton_pt = nullptr;
+  Lepton_eta = nullptr;
+  Lepton_pdgId = nullptr;
+  Lepton_electronIdx = nullptr;
+}
+
 void
 TrigEff_1lep::beginEvent(long long _iEntry)
 {
@@ -107,6 +119,7 @@ TrigEff_1lep::bindTree_(multidraw::FunctionLibrary& _library)
   _library.bindBranch(Lepton_eta, "Lepton_eta");
   _library.bindBranch(Lepton_pdgId, "Lepton_pdgId");
   _library.bindBranch(Lepton_electronIdx, "Lepton_electronIdx");
+
 }
 
 
@@ -148,3 +161,4 @@ std::array<float,3> TrigEff_1lep::getWeights(double eta, double pt){
 
 }
 
+#endif

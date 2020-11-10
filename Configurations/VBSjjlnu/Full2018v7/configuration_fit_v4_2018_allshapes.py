@@ -2,7 +2,7 @@
 treeName= 'Events'
 
 
-tag = 'fit_v4_2018'
+tag = 'fit_v4_2018_allshapes'
 direc = "conf_fit_v4"
 
 # used by mkShape to define output directory for root files

@@ -2,8 +2,8 @@
 treeName= 'Events'
 
 
-tag = 'fit_v4_2017'
-direc = "conf_fit_v4"
+tag = 'fit_v4_2017_fitonly'
+direc = "conf_fit_v4_fitonly"
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFile_'+tag 
@@ -12,7 +12,7 @@ outputDir = 'rootFile_'+tag
 aliasesFile = direc+'/aliases_tree.py'
 
 # file with list of variables
-variablesFile = direc+'/variables.py'
+variablesFile = direc+'/variables_fit.py'
 
 # file with list of cuts
 cutsFile = direc +'/cuts_tree.py' 

@@ -1,7 +1,86 @@
 
+res_vars = [
+            'vbs_0_pt', 'vbs_0_eta', 'vbs_0_phi', 'vbs_0_E',
+            'vbs_1_pt', 'vbs_1_eta', 'vbs_1_phi', 'vbs_1_E',
+            'vjet_0_pt', 'vjet_0_eta', 'vjet_0_phi', 'vjet_0_E',
+            'vjet_1_pt', 'vjet_1_eta', 'vjet_1_phi', 'vjet_1_E',
+            'mjj_vbs', 'mjj_vjet',
+            'deltaeta_vbs',  'deltaphi_vbs', 
+            'deltaeta_vjet', 'deltaphi_vjet', 
+            'deltaR_lep_vbs', 'deltaR_lep_vjet',
+            'deltaphi_lep_nu', 'deltaeta_lep_nu',
+            'deltaR_lep_nu', 'deltaR_vbs', 'deltaR_vjet',
+            'Rvjets_0', 'Rvjets_1',
+            'Zvjets_0', 'Zvjets_1', 'Zlep',
+            'Asym_vbs', 'Asym_vjet', 'Mw_lep', 'Mtw_lep', 'w_lep_pt', 'w_had_pt',
+            'Mww', 'R_ww', 'R_mw', 'A_ww',
+            'Centr_vbs', 'Centr_ww', 'Lep_proj', 'Lep_projw',
+            'vbs_0_qgl_res', 'vbs_1_qgl_res', 'vjet_0_qgl_res', 'vjet_1_qgl_res', 
+            ]
+
+res_branches =  { v:v for v in res_vars }
+
+
+boost_vars = ['vbs_0_pt', 'vbs_0_eta', 'vbs_0_phi', 'vbs_0_E',
+            'vbs_1_pt', 'vbs_1_eta', 'vbs_1_phi', 'vbs_1_E',
+            'vjet_0_pt', 'vjet_0_eta', 'vjet_0_phi', 'vjet_0_E',
+            'mjj_vbs', 'mjj_vjet',
+            'deltaeta_vbs',  'deltaphi_vbs', 
+            'deltaR_lep_vbs', 'deltaR_lep_vjet',
+            'deltaphi_lep_nu', 'deltaeta_lep_nu',
+            'deltaR_lep_nu', 'deltaR_vbs', 'deltaR_vjet',
+            'Rvjets_0', 'Zvjets_0', 'Zlep',
+            'Asym_vbs', 'Mw_lep', 'Mtw_lep', 'w_lep_pt',
+            'Mww', 'R_ww', 'R_mw', 'A_ww',
+            'Centr_vbs', 'Centr_ww', 'Lep_proj', 'Lep_projw',
+            'fatjet_TvsQCD' ,'fatjet_ZvsQCD','fatjet_WvsQCD',
+            'fatjet_subjet1_pt','fatjet_subjet2_pt','fatjet_subjet_ptratio',
+            'vbs_0_qgl_boost', 'vbs_1_qgl_boost'
+        ]
+
+boost_branches =  { v:v for v in boost_vars }
+
+
+#########
+# add the branches that need expressions
+for brs in [res_branches, boost_branches]:
+    brs['Lepton_pt'] = 'Lepton_pt[0]'
+    brs['Lepton_eta'] = 'Lepton_eta[0]'
+    brs['Lepton_phi'] = 'Lepton_phi[0]'
+    brs['PuppiMET_pt'] = 'PuppiMET_pt'
+    brs['PuppiMET_phi'] = 'PuppiMET_phi'
+    brs['nJets30'] = 'Sum$(CleanJet_pt[CleanJetNotFat_jetIdx] >= 30)'
+    brs['nvtxGood'] = 'PV_npvsGood'
+    # jet systems
+    brs['vbs_jets_pt'] = 'tag_jets_systems_pt[0]'
+    brs['four_tag_jets_pt'] = 'tag_jets_systems_pt[1]'
+    brs['vbs_jets_HT'] = 'tag_jets_systems_pt[2]'
+    brs['four_tag_jets_HT'] = 'tag_jets_systems_pt[4]'
+    brs['four_tag_jets_lepton_HT'] = 'tag_jets_systems_pt[5]'
+
+# only res branches
+res_branches['v_jets_HT'] = 'tag_jets_systems_pt[3]'
+
+##################################
+
+variables['dnn_inputs_resolved'] = {
+    'tree': res_branches,
+    'cuts' : ['res_sig_ele', 'res_sig_mu']
+}
+
+variables['dnn_inputs_boosted'] = {
+    'tree':  boost_branches,
+    'cuts' : ['boost_sig_ele', 'boost_sig_mu']
+}
+
 ##############################################
 # now variables to plot
 # Include also variables to be plotted
+
+##############################################
+# now variables to plot
+# Include also variables to be plotted
+
 
 res_cuts = [ c for c in cuts if 'res' in c]
 boost_cuts = [ c for c in cuts if 'boost' in c]
@@ -12,103 +91,6 @@ variables['events']  = {   'name': '1',
                         'xaxis' : 'events', 
                         'fold' : 3
                         }
-
-########################3
-
-variables['DNNoutput_res'] = {
-    'name': 'DNNoutput',
-    'range': (40,0.,1),
-    'xaxis': 'DNN output, resolved',
-    'fold': 0 ,
-    'cuts':  res_cuts,
-    'blind': { c:[0.7,1] for c in cuts if "_sig_" in c},
-}
-
-variables['DNNoutput_res_morebins'] = {
-    'name': 'DNNoutput',
-    'range': (60,0.,1),
-    'xaxis': 'DNN output, resolved',
-    'fold': 0 ,
-    'cuts':  res_cuts,
-    'blind': { c:[0.7,1] for c in cuts if "_sig_" in c},
-}
-
-
-variables['DNNoutput_res_custom'] = {
-    'name': 'DNNoutput',
-    'range': ([0,0.25,0.5]+[ 0.5 + 0.01*i  for i in range(1,51)], ),
-    'xaxis': 'DNN output, resolved',
-    'fold': 0 ,
-    'cuts':  res_cuts,
-    'blind': { c:[0.7,1] for c in cuts if "_sig_" in c},
-}
-
-
-variables['DNNoutput_res_custom2'] = {
-    'name': 'DNNoutput',
-    'range': ([0,0.2,0.4,0.6]+[ 0.6 + 0.01*i  for i in range(1,41)], ),
-    'xaxis': 'DNN output, resolved',
-    'fold': 0 ,
-    'cuts':  res_cuts,
-    'blind': { c:[0.7,1] for c in cuts if "_sig_" in c},
-}
-
-##################### 
-
-variables['DNNoutput_boost'] = {
-    'name': 'DNNoutput_boosted',
-    'range': (20,0.,1),
-    'xaxis': 'DNN output, boosted',
-    'fold': 0 ,
-    'cuts': boost_cuts,
-    'blind': { c:[0.7,1] for c in cuts if "_sig_" in c} ,
-}
-
-variables['DNNoutput_boost_morebins'] = {
-    'name': 'DNNoutput_boosted',
-    'range': (40,0.,1),
-    'xaxis': 'DNN output, boosted',
-    'fold': 0 ,
-    'cuts': boost_cuts,
-    'blind': { c:[0.7,1] for c in cuts if "_sig_" in c} ,
-}
-
-variables['DNNoutput_boost_custom'] = {
-    'name': 'DNNoutput_boosted',
-    'range':([0,0.25,0.5]+[ 0.5 + 0.02*i  for i in range(1,26)], ),
-    'xaxis': 'DNN output, boosted',
-    'fold': 0 ,
-    'cuts': boost_cuts,
-    'blind': { c:[0.7,1] for c in cuts if "_sig_" in c} ,
-}
-
-variables['DNNoutput_boost_custom2'] = {
-    'name': 'DNNoutput_boosted',
-    'range':([0,0.2,0.4,0.6]+[ 0.6 + 0.02*i  for i in range(1,21)], ),
-    'xaxis': 'DNN output, boosted',
-    'fold': 0 ,
-    'cuts': boost_cuts,
-    'blind': { c:[0.7,1] for c in cuts if "_sig_" in c} ,
-}
-
-
-
-#####################
-#Fit variables
-
-variables['fit_bins_res'] ={  'name' : 'vbs_jets_pt',
-                            'range' : ([0,100,200,300,400,800 ],),
-                            'xaxis' : 'VBS jets Pt bin', 
-                            'fold' : 3,
-                            'cuts': res_cuts
-}   
-
-variables['fit_bins_boost'] ={  'name' : 'w_had_pt',
-                            'range' : ([0,300,400,600,1000],),
-                            'xaxis' : 'V Fatjet Pt bin', 
-                            'fold' : 3,
-                            'cuts': boost_cuts
-}   
 
 
 
@@ -156,11 +138,11 @@ variables['PuppiMET'] = {   'name': 'PuppiMET_pt',
                         'fold' : 3
                         }
 
-# variables['PuppiMET_phi'] = {   'name': 'PuppiMET_phi',      
-#                         'range' : (30,-3.14,3.14),  
-#                         'xaxis' : 'PuppiMET_phi', 
-#                         'fold' : 3
-#                         }
+variables['PuppiMET_phi'] = {   'name': 'PuppiMET_phi',      
+                        'range' : (30,-3.14,3.14),  
+                        'xaxis' : 'PuppiMET_phi', 
+                        'fold' : 3
+                        }
 
 
 # VBS vars
@@ -228,7 +210,7 @@ variables['whad_pt_res'] = {
 
 variables['whad_pt_boost'] = {
             'name': "w_had_pt",
-            'range': (40, 200, 900),
+            'range': (40, 200, 800),
             'xaxis': 'W hadronic Pt',
             'fold': 3 ,
             'cuts': boost_cuts
@@ -303,80 +285,80 @@ variables['Zlep'] = {   'name': 'Zlep',
                         }
 
 
-# variables['deltaR_lep_vbs'] = {   'name': 'deltaR_lep_vbs',      
-#                         'range' : (30,0,4),  
-#                         'xaxis' : '#Delta R Lepton VBS jet', 
-#                         'fold' : 3
-#                         }
+variables['deltaR_lep_vbs'] = {   'name': 'deltaR_lep_vbs',      
+                        'range' : (30,0,4),  
+                        'xaxis' : '#Delta R Lepton VBS jet', 
+                        'fold' : 3
+                        }
 
-# variables['deltaR_lep_vjet'] = {   'name': 'deltaR_lep_vjet',      
-#                         'range' : (30,0,4),  
-#                         'xaxis' : '#Delta R Lepton V-jet', 
-#                         'fold' : 3
-#                         }
+variables['deltaR_lep_vjet'] = {   'name': 'deltaR_lep_vjet',      
+                        'range' : (30,0,4),  
+                        'xaxis' : '#Delta R Lepton V-jet', 
+                        'fold' : 3
+                        }
 
-# variables['deltaR_lep_nu'] = {   'name': 'deltaR_lep_nu',      
-#                         'range' : (30,0,4),  
-#                         'xaxis' : '#Delta R Lepton neutrino', 
-#                         'fold' : 3
-#                         }
+variables['deltaR_lep_nu'] = {   'name': 'deltaR_lep_nu',      
+                        'range' : (30,0,4),  
+                        'xaxis' : '#Delta R Lepton neutrino', 
+                        'fold' : 3
+                        }
 
 
 
 #jets 
-variables['nJets'] = {   'name': 'nJets30',      
+variables['nJets'] = {   'name': 'Sum$(CleanJet_pt[CleanJetNotFat_jetIdx] >= 30)',      
                         'range' : (8,2,10),  
                         'xaxis' : 'nJets cleaned from Ak8 >= 30 GeV', 
                         'fold' : 3
                         }
 
 # # # Minimum pt 20 GeV in NanoGardening step
-# variables['N_jets_central'] = {   'name': 'N_jets_central',      
-#                         'range' : (10,0,10),  
-#                         'xaxis' : '#jets between VBS jets', 
-#                         'fold' : 3
-#                         }
+variables['N_jets_central'] = {   'name': 'N_jets_central',      
+                        'range' : (10,0,10),  
+                        'xaxis' : '#jets between VBS jets', 
+                        'fold' : 3
+                        }
 
 
-# variables['N_jets_forward'] = {   'name': 'N_jets_forward',      
-#                         'range' : (10,0,10),  
-#                         'xaxis' : '#jets outside VBS jets', 
-#                         'fold' : 3
-#                     }
-
-
-
-# variables['vbs_etaprod'] = {   'name': 'vbs_0_eta*vbs_1_eta',      
-#                         'range' : (30,-10,10),  
-#                         'xaxis' : 'VBS jets #eta1#eta2', 
-#                         'fold' : 3
-#                          }
+variables['N_jets_forward'] = {   'name': 'N_jets_forward',      
+                        'range' : (10,0,10),  
+                        'xaxis' : '#jets outside VBS jets', 
+                        'fold' : 3
+                    }
 
 
 
-# variables["vbs_index_0"] = {   'name': 'VBS_jets_maxmjj_massWZ[0]',      
-#                         'range' : (10,0,10),  
-#                         'xaxis' : 'Index leading VBS jet', 
-#                         'fold' : 3
-#                         }
+variables['vbs_etaprod'] = {   'name': 'vbs_0_eta*vbs_1_eta',      
+                        'range' : (30,-10,10),  
+                        'xaxis' : 'VBS jets #eta1#eta2', 
+                        'fold' : 3
+                         }
 
-# variables["vbs_index_1"] = {   'name': 'VBS_jets_maxmjj_massWZ[1]',      
-#                         'range' : (10,0,10),  
-#                         'xaxis' : 'Index trailing VBS jet', 
-#                         'fold' : 3
-#                         }
 
-# variables["vjet_index_0"] = {   'name': 'V_jets_maxmjj_massWZ[0]',      
-#                         'range' : (10,0,10),  
-#                         'xaxis' : 'Index leading V-jet', 
-#                         'fold' : 3
-#                         }
 
-# variables["vjet_index_1"] = {   'name': 'V_jets_maxmjj_massWZ[1]',      
-#                         'range' : (10,0,10),  
-#                         'xaxis' : 'Index trailing V-jet', 
-#                         'fold' : 3
-#                         }
+variables["vbs_index_0"] = {   'name': 'VBS_jets_maxmjj_massWZ[0]',      
+                        'range' : (10,0,10),  
+                        'xaxis' : 'Index leading VBS jet', 
+                        'fold' : 3
+                        }
+
+variables["vbs_index_1"] = {   'name': 'VBS_jets_maxmjj_massWZ[1]',      
+                        'range' : (10,0,10),  
+                        'xaxis' : 'Index trailing VBS jet', 
+                        'fold' : 3
+                        }
+
+variables["vjet_index_0"] = {   'name': 'V_jets_maxmjj_massWZ[0]',      
+                        'range' : (10,0,10),  
+                        'xaxis' : 'Index leading V-jet', 
+                        'fold' : 3
+                        }
+
+variables["vjet_index_1"] = {   'name': 'V_jets_maxmjj_massWZ[1]',      
+                        'range' : (10,0,10),  
+                        'xaxis' : 'Index trailing V-jet', 
+                        'fold' : 3
+                        }
 
 # # #Zvjets_high
 variables['Zvjets_0'] = {   'name': 'Zvjets_0',      
@@ -385,11 +367,11 @@ variables['Zvjets_0'] = {   'name': 'Zvjets_0',
                         'fold' : 3
                         }
 
-# variables['Zvjets_1'] = {   'name': 'Zvjets_1',      
-#                         'range' : (30,-3,3),  
-#                         'xaxis' : 'Zep. trailing V-jet ', 
-#                         'fold' : 3
-#                         }
+variables['Zvjets_1'] = {   'name': 'Zvjets_1',      
+                        'range' : (30,-3,3),  
+                        'xaxis' : 'Zep. trailing V-jet ', 
+                        'fold' : 3
+                        }
 
 # #Zlep
 
@@ -401,18 +383,18 @@ variables['Asym_vbs'] = {   'name': 'Asym_vbs',
                         'fold' : 3
                         }
 
-# variables['Asym_vjet'] = {   'name': 'Asym_vjet',      
-#                         'range' : (30,0,1),  
-#                         'xaxis' : 'Pt asymmetry V-jets', 
-#                         'fold' : 3
-#                         }
+variables['Asym_vjet'] = {   'name': 'Asym_vjet',      
+                        'range' : (30,0,1),  
+                        'xaxis' : 'Pt asymmetry V-jets', 
+                        'fold' : 3
+                        }
 
  
-# variables['Mw_lep_reco'] = {   'name': 'Mw_lep',      
-#                         'range' : (40,0,250),  
-#                         'xaxis' : 'Mass W leptonic', 
-#                         'fold' : 3
-#                         }
+variables['Mw_lep_reco'] = {   'name': 'Mw_lep',      
+                        'range' : (40,0,250),  
+                        'xaxis' : 'Mass W leptonic', 
+                        'fold' : 3
+                        }
 
 variables['w_lep_pt'] = {   'name': 'w_lep_pt',      
                         'range' : (40,0,600),  
@@ -427,17 +409,17 @@ variables['Mww'] = {   'name': 'Mww',
                          'blind': [1000,2000]
                         }
 
-# variables['R_ww'] = {   'name': 'R_ww',      
-#                         'range' : (30,0,80),  
-#                         'xaxis' : 'R_ww', 
-#                         'fold' : 3
-#                         }
+variables['R_ww'] = {   'name': 'R_ww',      
+                        'range' : (30,0,80),  
+                        'xaxis' : 'R_ww', 
+                        'fold' : 3
+                        }
 
-# variables['R_mw'] = {   'name': 'R_mw',      
-#                         'range' : (30,0,0.6),  
-#                         'xaxis' : 'R_mw', 
-#                         'fold' : 3
-#                         }
+variables['R_mw'] = {   'name': 'R_mw',      
+                        'range' : (30,0,0.6),  
+                        'xaxis' : 'R_mw', 
+                        'fold' : 3
+                        }
 
 variables['A_ww'] = {   'name': 'A_ww',      
                         'range' : (30,0,1.1),  
@@ -468,50 +450,50 @@ variables['nvtx_good'] = {  'name': 'PV_npvsGood',
 ############# 
 # new fat jet vars
 
-# variables['fatjet_TvsQCD'] = {  'name': 'fatjet_TvsQCD',
-#                         'range': (40,0,1),
-#                         'xaxis': 'fatjet T vs QCD',
-#                         'fold': 3,
-#                         'cuts': boost_cuts
-#                 }
+variables['fatjet_TvsQCD'] = {  'name': 'fatjet_TvsQCD',
+                        'range': (40,0,1),
+                        'xaxis': 'fatjet T vs QCD',
+                        'fold': 3,
+                        'cuts': boost_cuts
+                }
 
 
-# variables['fatjet_ZvsQCD'] = {  'name': 'fatjet_ZvsQCD',
-#                         'range': (40,0,1),
-#                         'xaxis': 'fatjet Z vs QCD',
-#                         'fold': 3,
-#                         'cuts': boost_cuts
-#                 }
+variables['fatjet_ZvsQCD'] = {  'name': 'fatjet_ZvsQCD',
+                        'range': (40,0,1),
+                        'xaxis': 'fatjet Z vs QCD',
+                        'fold': 3,
+                        'cuts': boost_cuts
+                }
 
 
-# variables['fatjet_WvsQCD'] = {  'name': 'fatjet_WvsQCD',
-#                         'range': (40,0,1),
-#                         'xaxis': 'fatjet T vs QCD',
-#                         'fold': 3,
-#                         'cuts': boost_cuts
-#                 }
+variables['fatjet_WvsQCD'] = {  'name': 'fatjet_WvsQCD',
+                        'range': (40,0,1),
+                        'xaxis': 'fatjet T vs QCD',
+                        'fold': 3,
+                        'cuts': boost_cuts
+                }
 
 
-# variables['fatjet_subjet1_pt'] = {  'name': 'fatjet_subjet1_pt',
-#                         'range': (40,30,400),
-#                         'xaxis': 'FatJet leading subjet pt',
-#                         'fold': 3,
-#                         'cuts': boost_cuts
-#                 }
+variables['fatjet_subjet1_pt'] = {  'name': 'fatjet_subjet1_pt',
+                        'range': (40,30,400),
+                        'xaxis': 'FatJet leading subjet pt',
+                        'fold': 3,
+                        'cuts': boost_cuts
+                }
 
-# variables['fatjet_subjet2_pt'] = {  'name': 'fatjet_subjet2_pt',
-#                         'range': (40,30,400),
-#                         'xaxis': 'FatJet subleading subjet pt',
-#                         'fold': 3,
-#                         'cuts': boost_cuts
-#                 }
+variables['fatjet_subjet2_pt'] = {  'name': 'fatjet_subjet2_pt',
+                        'range': (40,30,400),
+                        'xaxis': 'FatJet subleading subjet pt',
+                        'fold': 3,
+                        'cuts': boost_cuts
+                }
 
-# variables['fatjet_subjet_ptratio'] = {  'name': 'fatjet_subjet_ptratio',
-#                         'range': (50,0.,1.),
-#                         'xaxis': 'FatJet subleading/leading subjet pt',
-#                         'fold': 3,
-#                         'cuts': boost_cuts
-#                 }
+variables['fatjet_subjet_ptratio'] = {  'name': 'fatjet_subjet_ptratio',
+                        'range': (50,0.,1.),
+                        'xaxis': 'FatJet subleading/leading subjet pt',
+                        'fold': 3,
+                        'cuts': boost_cuts
+                }
 
 #######
 # QGL vars 
@@ -561,7 +543,7 @@ variables['vjet_1_qgl_res'] = {  'name': 'vjet_1_qgl_res',
 #####################
 
 variables['vbs_jets_pt'] = {  'name': 'tag_jets_systems_pt[0]',
-                        'range': (50,0.,700),
+                        'range': (40,0.,600),
                         'xaxis': 'Pt of VBS jets system',
                         'fold': 3
                 }
@@ -588,7 +570,7 @@ variables['four_tag_jets_pt_res'] = {  'name': 'tag_jets_systems_pt[1]',
                 }
 
 variables['four_tag_jets_pt_boost'] = {  'name': 'tag_jets_systems_pt[1]',
-                        'range': (40,0.,600),
+                        'range': (50,0.,800),
                         'xaxis': 'Pt of VBS+FatJet system',
                         'fold': 3,
                         'cuts': boost_cuts
@@ -601,8 +583,8 @@ variables['four_tag_jets_HT'] = {  'name': 'tag_jets_systems_pt[4]',
                         'fold': 3
                 }
 
-# variables['four_tag_jets_lepton_HT'] = {  'name': 'tag_jets_systems_pt[5]',
-#                         'range': (60,100.,1200),
-#                         'xaxis': 'HT of VBS+V jets + Lepton system',
-#                         'fold': 3
-#                 }
+variables['four_tag_jets_lepton_HT'] = {  'name': 'tag_jets_systems_pt[5]',
+                        'range': (50,0.,500),
+                        'xaxis': 'HT of VBS+V jets + Lepton system',
+                        'fold': 3
+                }

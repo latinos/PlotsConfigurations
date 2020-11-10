@@ -18,6 +18,10 @@
 #include <tuple>
 #include <map>
 
+
+#ifndef newFakeWeightOTF
+#define newFakeWeightOTF
+
 using namespace std;
 
 class newFakeWeightOTFall : public multidraw::TTreeFunction {
@@ -212,12 +216,20 @@ newFakeWeightOTFall::bindTree_(multidraw::FunctionLibrary& _library)
     _library.bindBranch(Lepton_pdgId, "Lepton_pdgId");
     _library.bindBranch(Lepton_isTightEle, ("Lepton_isTightElectron_"+ele_WP).c_str());
     _library.bindBranch(Lepton_isTightMu, ("Lepton_isTightMuon_"+mu_WP).c_str());
+
 }
 
 newFakeWeightOTFall::~newFakeWeightOTFall(){
-  Lepton_pt=nullptr;
-  Lepton_eta= nullptr;
-  Lepton_pdgId= nullptr;
-  Lepton_isTightEle=nullptr;
-  Lepton_isTightMu=nullptr;
+    Lepton_pt = nullptr;
+    Lepton_eta = nullptr;
+    Lepton_pdgId = nullptr;
+    Lepton_isTightEle = nullptr;
+
+    delete pr_ele_h2;
+    delete fr_ele_h2;
+    delete pr_mu_h2;
+    delete fr_mu_h2;
 }
+
+
+#endif

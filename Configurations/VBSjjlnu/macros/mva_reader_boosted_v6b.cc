@@ -88,11 +88,6 @@ MVAReaderBoosted::MVAReaderBoosted(const char* model_path, const char* transform
     tf_file->Close();
 }
 
-MVAReaderBoosted::~MVAReaderBoosted(){
-  
-  delete dnn_transformation;
-  delete dnn_tensorflow;
-}
 
 
 double
@@ -168,5 +163,31 @@ MVAReaderBoosted::bindTree_(multidraw::FunctionLibrary& _library)
 
 }
 
+
+
+MVAReaderBoosted::~MVAReaderBoosted(){  
+  delete dnn_transformation;
+  delete dnn_tensorflow;
+
+  Lepton_pt  = nullptr;
+  Lepton_eta  = nullptr;
+  nJets30  = nullptr;
+  vbs_0_pt  = nullptr;
+  vbs_1_pt = nullptr;
+  vjet_0_pt = nullptr;
+  vjet_0_eta  = nullptr;
+  mjj_vbs = nullptr;
+  mjj_vjet = nullptr;
+  deltaeta_vbs = nullptr;
+  deltaphi_vbs = nullptr;
+  Zvjets_0 = nullptr;
+  Zlep = nullptr;
+  Asym_vbs = nullptr;
+  A_ww = nullptr;
+  Centr_vbs = nullptr;
+  Centr_ww = nullptr;
+  vbs_0_qgl_boost = nullptr;
+  vbs_1_qgl_boost = nullptr;
+}
 
 #endif 

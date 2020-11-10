@@ -5,6 +5,9 @@ mc =["DY", "top",  "Wjets_HT", "VV", "VVV", "VBF-V", "Vg", "VgS", "VBS"]
 mc_norm = [m for m in mc if m not in ["VBS", "VV"]]
 mc_sep =  ["VBS", "VV"]
 
+def getSamplesWithout(samples, samples_to_remove):
+    return [m for m in samples if m not in samples_to_remove]
+
 phase_spaces_boost = [ c for c in cuts if 'boost' in c]
 phase_spaces_res = [ c for c in cuts if 'res' in c]
 
@@ -83,10 +86,10 @@ nuisances['lumi_Ghosts'] = {
 
 ##########Fakes
 
-fakeW_jetUp       = '( fakeWight_45 / fakeWight_35  )'
-fakeW_jetDown     =  '( fakeWight_25 / fakeWight_35  )'
-fakeW_statUp        =  '( fakeWight_35_statUp / fakeWight_35  )'
-fakeW_statDown      =  '( fakeWight_35_statDo / fakeWight_35  )'
+fakeW_jetUp       = '( fakeWeight_45 / fakeWeight_35  )'
+fakeW_jetDown     =  '( fakeWeight_25 / fakeWeight_35  )'
+fakeW_statUp        =  '( fakeWeight_35_statUp / fakeWeight_35  )'
+fakeW_statDown      =  '( fakeWeight_35_statDo / fakeWeight_35  )'
 
 nuisances['fake_syst']  = {
                'name'  : 'CMS_fake_syst',
@@ -238,9 +241,9 @@ nuisances['JetPUID_sf']  = {
 # ##### Jet energy scale
 
 ##### Jet energy scale
-jes_systs = ['JESAbsolute','JESAbsolute_2018','JESBBEC1','JESBBEC1_2018','JESEC2',
-            'JESEC2_2018','JESFlavorQCD','JESHF','JESHF_2018','JESRelativeBal',
-            'JESRelativeSample_2018']
+jes_systs = ['JESAbsolute','JESAbsolute_2017','JESBBEC1','JESBBEC1_2017','JESEC2',
+            'JESEC2_2017','JESFlavorQCD','JESHF','JESHF_2017','JESRelativeBal',
+            'JESRelativeSample_2017']
 
 for js in jes_systs:
     jes_var = {
@@ -251,17 +254,19 @@ for js in jes_systs:
                     'mapDown': js+'do',
                     
     }
+   
     split_nuisance_samples_dir(js, jes_var, 'JES', [(mc_norm, directory_bkg), (mc_sep, directory_signal)])
   
-    fatjetjes_var = {
-                    'name': 'CMS_fatjet_scale_'+js,
-                    'kind': 'suffix',
-                    'type': 'shape',
-                    'mapUp': 'fatjet'+js+'up',
-                    'mapDown': 'fatjet'+js+'do',
-                    
-    }
-    split_nuisance_samples_dir('fatjet'+js, fatjetjes_var, 'fatjetJES', [(mc_norm, directory_bkg), (mc_sep, directory_signal)])
+### Only total variation for fatjetJES
+fatjetjes_var = {
+                'name': 'CMS_fatjet_scale_2017',
+                'kind': 'suffix',
+                'type': 'shape',
+                'mapUp': 'fatjetJESup',
+                'mapDown': 'fatjetJESdo',
+                'cuts': phase_spaces_boost #because we are vetoing fatjets anyway in resolved category               
+}
+split_nuisance_samples_dir('fatjetJES', fatjetjes_var, 'fatjetJES', [(mc_norm, directory_bkg), (mc_sep, directory_signal)])
 
 ##### Jet energy resolution
 jer_var = {
@@ -273,12 +278,14 @@ jer_var = {
 }
 split_nuisance_samples_dir('JER', jer_var, 'JER', [(mc_norm, directory_bkg), (mc_sep, directory_signal)])
   
+
 fatjer_var = {
     'name': 'CMS_fatjet_res_2017',
     'kind': 'suffix',
     'type': 'shape',
     'mapUp': 'fatjetJERup',
     'mapDown': 'fatjetJERdo',
+    'cuts': phase_spaces_boost #because we are vetoing fatjets anyway in resolved category
 }
 split_nuisance_samples_dir('fatjetJER', fatjer_var, 'fatjetJER', [(mc_norm, directory_bkg), (mc_sep, directory_signal)])
   
@@ -299,12 +306,20 @@ split_nuisance_samples_dir('MET', met_var, 'MET', [(mc_norm, directory_bkg), (mc
 ##################################
 ######## Fatjet uncertainties
 
-fatjet_eff = ['Wtagging_SF_up/Wtagging_SF_nominal', 'Wtagging_SF_down/Wtagging_SF_nominal']
+fatjet_eff = ['BoostedWtagSF_up/BoostedWtagSF_nominal', 'BoostedWtagSF_down/BoostedWtagSF_nominal']
 nuisances['Wtagging_eff'] = {
                 'name': 'CMS_fatjet_tau21eff_2017',
                 'kind' : 'weight', 
                 'type' : 'shape',
                 'samples': dict( (skey, fatjet_eff) for skey in mc)
+}
+
+fatjet_eff_ptextr = ['BoostedWtagSF_ptextr[0]/BoostedWtagSF_nominal', 'BoostedWtagSF_ptextr[1]/BoostedWtagSF_nominal']
+nuisances['Wtagging_ptextr'] = {
+                'name': 'CMS_fj_tau21ptextr_2017',
+                'kind' : 'weight', 
+                'type' : 'shape',
+                'samples': dict( (skey, fatjet_eff_ptextr) for skey in mc)
 }
 
 #FatJet mass scale and resolution
@@ -314,6 +329,7 @@ fatjet_jmr = {
     'type': 'shape',
     'mapUp': 'fatjetJMRup',
     'mapDown': 'fatjetJMRdo',
+    'cuts': phase_spaces_boost #because we are vetoing fatjets anyway in resolved category
 }
 split_nuisance_samples_dir('fatjetJMR', fatjet_jmr, 'fatjetJMR', [(mc_norm, directory_bkg), (mc_sep, directory_signal)])
   
@@ -323,8 +339,10 @@ fatjet_jms = {
     'type': 'shape',
     'mapUp': 'fatjetJMSup',
     'mapDown': 'fatjetJMSdo',
+    'cuts': phase_spaces_boost #because we are vetoing fatjets anyway in resolved category
 }
-split_nuisance_samples_dir('fatjetJMS', fatjet_jms, 'fatjetJMS', [(mc_norm, directory_bkg), (mc_sep, directory_signal)])
+################ N.B.: Missing VV files
+split_nuisance_samples_dir('fatjetJMS', fatjet_jms, 'fatjetJMS', [(mc_norm, directory_bkg), (getSamplesWithout(mc_sep, "VV"), directory_signal)])
   
 
 
