@@ -1,6 +1,6 @@
 #include "LatinoAnalysis/MultiDraw/interface/TTreeFunction.h"
 #include "LatinoAnalysis/MultiDraw/interface/FunctionLibrary.h"
-#include "NNEvaluation/DNNTensorflow/interface/DNNEvaluator.hh"
+#include "NNEvaluation/DNNTensorflow/interface/DNNEvaluatorSavedModel.hh"
 
 #include "TFile.h"
 #include "TMath.h"
@@ -40,7 +40,7 @@ protected:
   void bindTree_(multidraw::FunctionLibrary&) override;
   ~MVAReaderBoosted();
   
-  DNNEvaluator* dnn_tensorflow;
+  DNNEvaluatorSavedModel* dnn_tensorflow;
 
   IntValueReader* VBS_category{};
 
@@ -79,7 +79,7 @@ MVAReaderBoosted::MVAReaderBoosted(const char* model_path, const char* transform
     verbose(verbose),
     category_(category)
 {
-    dnn_tensorflow = new DNNEvaluator(model_path_, verbose);
+    dnn_tensorflow = new DNNEvaluatorSavedModel(model_path_, verbose);
 
     // Load the TGRaph used to transform the DNN score
     // The TGraph is the cumulative distribution of the DNN on the signal
@@ -109,8 +109,6 @@ MVAReaderBoosted::evaluate(unsigned)
   if (*(deltaeta_vbs->Get()) < 2.5 ) return -999;
   if (*(vbs_0_pt->Get()) < 50) return -999;
   if (*(vbs_1_pt->Get()) < 30) return -999;
-
-  std::cout << "Preparing inputs" <<endl;
 
   std::vector<float> input{};
   input.push_back( Lepton_pt->At(0) );
