@@ -121,34 +121,38 @@ ptllDYW_NLO = '(0.876979+gen_ptll*(4.11598e-03)-(2.35520e-05)*gen_ptll*gen_ptll)
 ptllDYW_LO  = '(8.61313e-01+gen_ptll*4.46807e-03-1.52324e-05*gen_ptll*gen_ptll)*(1.08683 * (0.95 - 0.0657370*TMath::Erf((gen_ptll-11.)/5.51582)))*(gen_ptll<140)+1.141996*(gen_ptll>=140)'
 
 files = nanoGetSampleFiles(mcDirectory, 'DYJetsToTT_MuEle_M-50') + \
-    nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-10to50-LO') + \
-    nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50') + \
-    nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-10to50_ext1') + \
-    nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-70to100') + \
-    nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-100to200') + \
-    nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-100to200_ext1') + \
-    nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-200to400') + \
-    nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-200to400_ext1') + \
-    nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-400to600') + \
-    nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-400to600_ext1') + \
-    nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-600to800') + \
-    nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-800to1200') + \
-    nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-1200to2500') + \
-    nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-2500toinf') + \
-    nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-5to50_HT-70to100') + \
-    nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-5to50_HT-100to200') + \
-    nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-5to50_HT-100to200_ext1') + \
-    nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-5to50_HT-200to400') + \
-    nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-5to50_HT-200to400_ext1') + \
-    nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-5to50_HT-400to600') + \
-    nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-5to50_HT-400to600_ext1') + \
-    nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-5to50_HT-600toinf') + \
-    nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-5to50_HT-600toinf_ext1')
+        nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-10to50-LO') + \
+        nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50') + \
+        nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-10to50_ext1') + \
+        nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-70to100') + \
+        nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-100to200') + \
+        nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-100to200_ext1') + \
+        nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-200to400') + \
+        nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-200to400_ext1') + \
+        nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-400to600') + \
+        nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-400to600_ext1') + \
+        nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-600to800') + \
+        nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-800to1200') + \
+        nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-1200to2500') + \
+        nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-2500toinf') + \
+        nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-5to50_HT-70to100') + \
+        nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-5to50_HT-100to200') + \
+        nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-5to50_HT-100to200_ext1') + \
+        nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-5to50_HT-200to400') + \
+        nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-5to50_HT-200to400_ext1') + \
+        nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-5to50_HT-400to600') + \
+        nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-5to50_HT-400to600_ext1') + \
+        nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-5to50_HT-600toinf') + \
+        nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-5to50_HT-600toinf_ext1')
 
 samples['DY'] = {
     'name': files,
     'weight': mcCommonWeight + '*( !(Sum$(PhotonGen_isPrompt==1 && PhotonGen_pt>15 && abs(PhotonGen_eta)<2.6) > 0))',
     'FilesPerJob': 4,
+    'subsamples': {
+      'lowZ'    : 'lowZ',
+      'highZ'   : 'highZ'
+    }
 }
 
 CombineBaseW(samples, 'DY', ['DYJetsToLL_M-50_HT-100to200'   , 'DYJetsToLL_M-50_HT-100to200_ext1'])
@@ -160,7 +164,7 @@ CombineBaseW(samples, 'DY', ['DYJetsToLL_M-5to50_HT-400to600', 'DYJetsToLL_M-5to
 CombineBaseW(samples, 'DY', ['DYJetsToLL_M-5to50_HT-600toinf', 'DYJetsToLL_M-5to50_HT-600toinf_ext1'])
 
 addSampleWeight(samples, 'DY', 'DYJetsToTT_MuEle_M-50',                 'DY_NLO_pTllrw*DiffFlav')
-addSampleWeight(samples, 'DY', 'DYJetsToLL_M-10to50-LO',                'DY_NLO_pTllrw*DiffFlav')
+addSampleWeight(samples, 'DY', 'DYJetsToLL_M-10to50-LO',                'DY_LO_pTllrw*DiffFlav')
 addSampleWeight(samples, 'DY', 'DYJetsToLL_M-50',                       'DY_NLO_pTllrw*(LHE_HT < 70)*SameFlav')
 addSampleWeight(samples, 'DY', 'DYJetsToLL_M-10to50_ext1',              'DY_NLO_pTllrw*(LHE_HT < 70)*SameFlav')
 addSampleWeight(samples, 'DY', 'DYJetsToLL_M-50_HT-70to100',            'DY_LO_pTllrw*SameFlav')
@@ -184,6 +188,14 @@ addSampleWeight(samples, 'DY', 'DYJetsToLL_M-5to50_HT-400to600_ext1',   'DY_LO_p
 addSampleWeight(samples, 'DY', 'DYJetsToLL_M-5to50_HT-600toinf',        'DY_LO_pTllrw*SameFlav')
 addSampleWeight(samples, 'DY', 'DYJetsToLL_M-5to50_HT-600toinf_ext1',   'DY_LO_pTllrw*SameFlav')
 
+'''
+nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50') + \
+    nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-10to50_ext1')
+addSampleWeight(samples, 'DY', 'DYJetsToLL_M-50'                    , 'DY_NLO_pTllrw*SameFlav')
+addSampleWeight(samples, 'DY', 'DYJetsToLL_M-10to50_ext1'           , 'DY_NLO_pTllrw*SameFlav')
+
+'''
+
 ###### Zjj EWK #######
 
 files = nanoGetSampleFiles(mcDirectory, 'EWK_LLJJ_MLL-50_MJJ-120')
@@ -193,6 +205,7 @@ samples['Zjj'] = {
         'weight': mcCommonWeight,
         'FilesPerJob': 1,
         }
+
 
 ###### Top #######
 
@@ -221,6 +234,7 @@ samples['WW'] = {
     'FilesPerJob': 1
 }
 '''
+
 samples['WW'] = {
     'name': nanoGetSampleFiles(mcDirectory_v6, 'WpWmJJ_QCD_noTop'),
     #'weight': mcCommonWeight + '*nllW', # temporary - nllW module not run on PS and UE variation samples
@@ -429,8 +443,10 @@ for _, sd in DataRun:
     samples['Fake']['weights'].extend([DataTrig[pd]] * len(files))
 
 samples['Fake']['subsamples'] = {
-  'e': 'abs(Lepton_pdgId[0]) == 11',
-  'm': 'abs(Lepton_pdgId[0]) == 13'
+  #'e': 'abs(Lepton_pdgId[0]) == 11',
+  #'m': 'abs(Lepton_pdgId[0]) == 13'
+  'e': 'abs(Lepton_pdgId[1]) == 11',
+  'm': 'abs(Lepton_pdgId[1]) == 13'
 }
 
 ###########################################
@@ -458,3 +474,4 @@ for _, sd in DataRun:
     
     samples['DATA']['name'].extend(files)
     samples['DATA']['weights'].extend([DataTrig[pd]] * len(files))
+
