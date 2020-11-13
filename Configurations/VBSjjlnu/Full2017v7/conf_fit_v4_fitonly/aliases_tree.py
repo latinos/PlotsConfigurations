@@ -293,29 +293,29 @@ aliases['veto_fatjet_180'] = {
 
 ##################################
 
-aliases['fatjet_TvsQCD'] = {
-    'expr': 'FatJet_deepTag_TvsQCD[CleanFatJet_jetIdx[0]]'
-}
+# aliases['fatjet_TvsQCD'] = {
+#     'expr': 'FatJet_deepTag_TvsQCD[CleanFatJet_jetIdx[0]]'
+# }
 
-aliases['fatjet_ZvsQCD'] = {
-    'expr': 'FatJet_deepTag_ZvsQCD[CleanFatJet_jetIdx[0]]'
-}
+# aliases['fatjet_ZvsQCD'] = {
+#     'expr': 'FatJet_deepTag_ZvsQCD[CleanFatJet_jetIdx[0]]'
+# }
 
-aliases['fatjet_WvsQCD'] = {
-    'expr': 'FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]]'
-}
+# aliases['fatjet_WvsQCD'] = {
+#     'expr': 'FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]]'
+# }
 
-aliases['fatjet_subjet1_pt'] = {
-    'expr': 'SubJet_pt[FatJet_subJetIdx1[CleanFatJet_jetIdx[0]]]'
-}
+# aliases['fatjet_subjet1_pt'] = {
+#     'expr': 'SubJet_pt[FatJet_subJetIdx1[CleanFatJet_jetIdx[0]]]'
+# }
 
-aliases['fatjet_subjet2_pt'] = {
-    'expr': 'SubJet_pt[FatJet_subJetIdx2[CleanFatJet_jetIdx[0]]]'
-}
+# aliases['fatjet_subjet2_pt'] = {
+#     'expr': 'SubJet_pt[FatJet_subJetIdx2[CleanFatJet_jetIdx[0]]]'
+# }
 
-aliases['fatjet_subjet_ptratio'] = {
-    'expr': 'SubJet_pt[FatJet_subJetIdx2[CleanFatJet_jetIdx[0]]] / SubJet_pt[FatJet_subJetIdx1[CleanFatJet_jetIdx[0]]]'
-}
+# aliases['fatjet_subjet_ptratio'] = {
+#     'expr': 'SubJet_pt[FatJet_subJetIdx2[CleanFatJet_jetIdx[0]]] / SubJet_pt[FatJet_subJetIdx1[CleanFatJet_jetIdx[0]]]'
+# }
 
 ###################################3
 # QGL variables

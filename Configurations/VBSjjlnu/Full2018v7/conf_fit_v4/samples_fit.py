@@ -209,17 +209,17 @@ samples['Wjets_HT'] = { 'name' :
         ,
 				'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch + '* ewknloW',
 				'FilesPerJob' : 3,   
-        # 'subsamples': {
-        #     "res_1": '(VBS_category==1) && (vbs_jets_pt < 100)',
-        #     "res_2": '(VBS_category==1) && (vbs_jets_pt >= 100 && vbs_jets_pt < 200)',
-        #     "res_3": '(VBS_category==1) && (vbs_jets_pt >= 200 && vbs_jets_pt < 300)',
-        #     "res_4": '(VBS_category==1) && (vbs_jets_pt >= 300 && vbs_jets_pt < 400)',
-        #     "res_5": '(VBS_category==1) && (vbs_jets_pt >= 400)',
-        #     "boost_1": '(VBS_category==0) && (w_had_pt < 300)',
-        #     "boost_2": '(VBS_category==0) && (w_had_pt >= 300 && w_had_pt < 400)',
-        #     "boost_3": '(VBS_category==0) && (w_had_pt >= 400 && w_had_pt < 600)',
-        #     "boost_4": '(VBS_category==0) && (w_had_pt >= 600)',
-        # }
+        'subsamples': {
+            "res_1": '(VBS_category==1) && (vbs_jets_pt < 100)',
+            "res_2": '(VBS_category==1) && (vbs_jets_pt >= 100 && vbs_jets_pt < 200)',
+            "res_3": '(VBS_category==1) && (vbs_jets_pt >= 200 && vbs_jets_pt < 300)',
+            "res_4": '(VBS_category==1) && (vbs_jets_pt >= 300 && vbs_jets_pt < 400)',
+            "res_5": '(VBS_category==1) && (vbs_jets_pt >= 400)',
+            "boost_1": '(VBS_category==0) && (w_had_pt < 300)',
+            "boost_2": '(VBS_category==0) && (w_had_pt >= 300 && w_had_pt < 400)',
+            "boost_3": '(VBS_category==0) && (w_had_pt >= 400 && w_had_pt < 600)',
+            "boost_4": '(VBS_category==0) && (w_had_pt >= 600)',
+        }
 		}
 
 # Fix Wjets binned + LO 
@@ -374,4 +374,4 @@ for Run in DataRun :
 
 #samples = {   key:v for key,v in samples.items() if key  in ["DY","Fake", "VV"]}
 
-samples = {   key:v for key,v in samples.items() if key  in ["VV"]}
+samples = {   key:v for key,v in samples.items() if key  in ["Wjets_HT"]}

@@ -238,18 +238,18 @@ samples['Wjets_HT'] = { 'name' :
           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT2500_inf_ext1')
           ,
         'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch + '* EWKnloW', #added Lo to NLO factors
-        'FilesPerJob' : 5,
-        # 'subsamples': {
-        #     "res_1": '(VBS_category==1) && (vbs_jets_pt < 100)',
-        #     "res_2": '(VBS_category==1) && (vbs_jets_pt >= 100 && vbs_jets_pt < 200)',
-        #     "res_3": '(VBS_category==1) && (vbs_jets_pt >= 200 && vbs_jets_pt < 300)',
-        #     "res_4": '(VBS_category==1) && (vbs_jets_pt >= 300 && vbs_jets_pt < 400)',
-        #     "res_5": '(VBS_category==1) && (vbs_jets_pt >= 400)',
-        #     "boost_1": '(VBS_category==0) && (w_had_pt < 300)',
-        #     "boost_2": '(VBS_category==0) && (w_had_pt >= 300 && w_had_pt < 400)',
-        #     "boost_3": '(VBS_category==0) && (w_had_pt >= 400 && w_had_pt < 600)',
-        #     "boost_4": '(VBS_category==0) && (w_had_pt >= 600)',
-        # }
+        'FilesPerJob' : 3,
+        'subsamples': {
+            "res_1": '(VBS_category==1) && (vbs_jets_pt < 100)',
+            "res_2": '(VBS_category==1) && (vbs_jets_pt >= 100 && vbs_jets_pt < 200)',
+            "res_3": '(VBS_category==1) && (vbs_jets_pt >= 200 && vbs_jets_pt < 300)',
+            "res_4": '(VBS_category==1) && (vbs_jets_pt >= 300 && vbs_jets_pt < 400)',
+            "res_5": '(VBS_category==1) && (vbs_jets_pt >= 400)',
+            "boost_1": '(VBS_category==0) && (w_had_pt < 300)',
+            "boost_2": '(VBS_category==0) && (w_had_pt >= 300 && w_had_pt < 400)',
+            "boost_3": '(VBS_category==0) && (w_had_pt >= 400 && w_had_pt < 600)',
+            "boost_4": '(VBS_category==0) && (w_had_pt >= 600)',
+        }
        }
 
 # No needed HT stiching corrections
@@ -297,7 +297,7 @@ samples['VV']  = { 'name' :
                nanoGetSampleFiles(directory_signal,'WpToLNu_ZTo2J_QCD') +
                nanoGetSampleFiles(directory_signal,'ZTo2L_ZTo2J_QCD') ,
         'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch,
-        'FilesPerJob' : 8,
+        'FilesPerJob' : 6,
         'EventsPerJob' : 70000,
 }
 
@@ -374,7 +374,7 @@ samples['VBS']  = { 'name' :
                + nanoGetSampleFiles(directory_signal,'WpToLNu_ZTo2J') 
                + nanoGetSampleFiles(directory_signal,'ZTo2L_ZTo2J' ),
        'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch,
-       'FilesPerJob' : 8,
+       'FilesPerJob' : 6,
         'EventsPerJob' : 70000,
 }
 
@@ -416,4 +416,4 @@ for Run in DataRun :
                         samples['DATA']['name'].append(iFile)
                         samples['DATA']['weights'].append(DataTrig[DataSet])
 
-#samples = {   key:v for key,v in samples.items() if key  in [ "Wjets_HT"] }
+samples = {   key:v for key,v in samples.items() if key  in [ "Wjets_HT"] }

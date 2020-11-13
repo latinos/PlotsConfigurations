@@ -276,7 +276,7 @@ jer_var = {
     'mapUp': 'JERup',
     'mapDown': 'JERdo',
 }
-split_nuisance_samples_dir('JER', jer_var, 'JER', [(mc_norm, directory_bkg), (mc_sep, directory_signal)])
+split_nuisance_samples_dir('JER', jer_var, 'JER', [(getSamplesWithout(mc_norm, ["Vg", "VgS"]), directory_bkg), (mc_sep, directory_signal)])
   
 
 fatjer_var = {
@@ -287,7 +287,7 @@ fatjer_var = {
     'mapDown': 'fatjetJERdo',
     'cuts': phase_spaces_boost #because we are vetoing fatjets anyway in resolved category
 }
-split_nuisance_samples_dir('fatjetJER', fatjer_var, 'fatjetJER', [(mc_norm, directory_bkg), (mc_sep, directory_signal)])
+split_nuisance_samples_dir('fatjetJER', fatjer_var, 'fatjetJER', [(getSamplesWithout(mc_norm, ["Vg", "VgS"]), directory_bkg), (mc_sep, directory_signal)])
   
 
 
@@ -331,7 +331,7 @@ fatjet_jmr = {
     'mapDown': 'fatjetJMRdo',
     'cuts': phase_spaces_boost #because we are vetoing fatjets anyway in resolved category
 }
-split_nuisance_samples_dir('fatjetJMR', fatjet_jmr, 'fatjetJMR', [(mc_norm, directory_bkg), (mc_sep, directory_signal)])
+split_nuisance_samples_dir('fatjetJMR', fatjet_jmr, 'fatjetJMR', [(getSamplesWithout(mc_norm, ["Vg", "VgS"]), directory_bkg), (mc_sep, directory_signal)])
   
 fatjet_jms = {
     'name': 'CMS_fatjet_jms_2017',
@@ -342,7 +342,7 @@ fatjet_jms = {
     'cuts': phase_spaces_boost #because we are vetoing fatjets anyway in resolved category
 }
 ################ N.B.: Missing VV files
-split_nuisance_samples_dir('fatjetJMS', fatjet_jms, 'fatjetJMS', [(mc_norm, directory_bkg), (getSamplesWithout(mc_sep, "VV"), directory_signal)])
+split_nuisance_samples_dir('fatjetJMS', fatjet_jms, 'fatjetJMS', [(getSamplesWithout(mc_norm, ["Vg", "VgS"]), directory_bkg), (getSamplesWithout(mc_sep, "VV"), directory_signal)])
   
 
 

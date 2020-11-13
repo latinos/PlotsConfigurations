@@ -130,7 +130,3 @@ cuts["boost_topcr_mu"] = 'VBS_category==0 \
                             && mjj_vjet > 70 && mjj_vjet < 115 \
                             && bReqTight \
                             '
-
-
-
-cuts = { k:v for k,v in cuts.items() if "topcr" in k}

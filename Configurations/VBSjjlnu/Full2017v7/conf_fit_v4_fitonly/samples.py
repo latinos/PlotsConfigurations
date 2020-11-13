@@ -365,4 +365,4 @@ for Run in DataRun :
                         samples['DATA']['weights'].append(DataTrig[DataSet])
 
 
-#samples = {k:v for k,v in samples.items() if k in [ "Wjets_HT", "Fake"]}
+#samples = {k:v for k,v in samples.items() if k in [ "Vg", "VgS"]}

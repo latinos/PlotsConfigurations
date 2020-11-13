@@ -10,6 +10,10 @@ conf_folder = configurations +"/VBSjjlnu/Full2016v7"
 mc = [skey for skey in samples if skey not in ('Fake', 'DATA')]
 
 
+aliases['nJets30']= {
+    'expr' : 'Sum$(CleanJet_pt[CleanJetNotFat_jetIdx] >= 30)'
+}
+
 ###################3
 # trigger eff
 
@@ -27,6 +31,18 @@ aliases['SingleLepton_trigEff_corrected'] = {
     'expr': '(abs(Lepton_pdgId[0])==11)*ele_trig_eff[0] +  (abs(Lepton_pdgId[0])==13)*TriggerEffWeight_1l',
     'samples': mc
 }
+
+aliases['SingleLepton_trigEff_corrected_up'] = {
+    'expr': '(abs(Lepton_pdgId[0])==11)*ele_trig_eff[1] +  (abs(Lepton_pdgId[0])==13)*TriggerEffWeight_1l_u',
+    'samples': mc
+}
+
+
+aliases['SingleLepton_trigEff_corrected_down'] = {
+    'expr': '(abs(Lepton_pdgId[0])==11)*ele_trig_eff[2] +  (abs(Lepton_pdgId[0])==13)*TriggerEffWeight_1l_d',
+    'samples': mc
+}
+
 
 ###### W EWK nlo ######
 
@@ -75,29 +91,44 @@ aliases['btagSF'] = {
     'samples': mc
 }
 
+systs = ['jes','lf','hf','lfstats1','lfstats2','hfstats1','hfstats2','cferr1','cferr2']
 
-
-# systs = ['jes','lf','hf','lfstats1','lfstats2','hfstats1','hfstats2','cferr1','cferr2']
-# #systs = ['jes']
-
-# for s in systs:
-#   aliases['btagSF'+s+'up'] = { 'expr': '(bVeto*'+aliases['bVetoSF']['expr'].replace('shape','shape_up_'+s)+'+bReqTight*'+aliases['bReqSF']['expr'].replace('shape','shape_up_'+s)+'+ ( (!bVeto) && (!bReqTight) ))', 'samples':mc  }
-#   aliases['btagSF'+s+'down'] = { 'expr': '(bVeto*'+aliases['bVetoSF']['expr'].replace('shape','shape_down_'+s)+'+bReqTight*'+aliases['bReqSF']['expr'].replace('shape','shape_down_'+s)+'+ ( (!bVeto) && (!bReqTight) ))', 'samples':mc  }
+for s in systs:
+  aliases['btagSF'+s+'up'] = { 'expr': '(bVeto*'+aliases['bVetoSF']['expr'].replace('shape','shape_up_'+s)+'+bReqTight*'+aliases['bReqSF']['expr'].replace('shape','shape_up_'+s)+'+ ( (!bVeto) && (!bReqTight) ))', 'samples':mc  }
+  aliases['btagSF'+s+'down'] = { 'expr': '(bVeto*'+aliases['bVetoSF']['expr'].replace('shape','shape_down_'+s)+'+bReqTight*'+aliases['bReqSF']['expr'].replace('shape','shape_down_'+s)+'+ ( (!bVeto) && (!bReqTight) ))', 'samples':mc  }
 
 ################################################################################################
 
 
-puidSFSource = '{}/patches/PUID_81XTraining_EffSFandUncties.root'.format(configurations)
+# puidSFSource = '{}/patches/PUID_81XTraining_EffSFandUncties.root'.format(configurations)
+
+# aliases['PUJetIdSF'] = {
+#     'linesToAdd': [
+#         'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
+#         '.L %s/patches/pujetidsf_event_new.cc+' % configurations
+#     ],
+#     'class': 'PUJetIdEventSF',
+#     'args': (puidSFSource, '2016', 'loose'),
+#     'samples': mc
+# }
+
 
 aliases['PUJetIdSF'] = {
-    'linesToAdd': [
-        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
-        '.L %s/patches/pujetidsf_event_new.cc+' % configurations
-    ],
-    'class': 'PUJetIdEventSF',
-    'args': (puidSFSource, '2016', 'loose'),
-    'samples': mc
+  'expr' : 'TMath::Exp(Sum$((Jet_jetId>=2)*TMath::Log(Jet_PUIDSF_loose)))',
+  'samples': mc
 }
+
+aliases['PUJetIdSF_up'] = {
+  'expr' : 'TMath::Exp(Sum$((Jet_jetId>=2)*TMath::Log(Jet_PUIDSF_loose_up)))',
+  'samples': mc
+}
+
+
+aliases['PUJetIdSF_down'] = {
+  'expr' : 'TMath::Exp(Sum$((Jet_jetId>=2)*TMath::Log(Jet_PUIDSF_loose_down)))',
+  'samples': mc
+}
+
 
 ##########################################
 
@@ -165,29 +196,43 @@ aliases['Top_pTrw'] = {
 }
 
 
-###########################
+
+##############################################
 
 
 basedir_fakes = configurations + "/VBSjjlnu/weights_files/fake_rates/2016"
 
-et = "35" 
-el_fr_file = basedir_fakes + "/plot_ElCh_JetEt"+et+"_l1_etaVpt_ptel_aseta_fw_ewk_2D.root" #asymmetric fake
-mu_fr_file = basedir_fakes + "/plot_MuCh_JetEt"+et+"_l1_etaVpt_ptmu_fw_ewk_2D.root"
+ets = ["25", "35", "45"]
 el_pr_file = os.getenv('CMSSW_BASE') + "/src/LatinoAnalysis/NanoGardener/python/data/fake_prompt_rates/Full2016v7/mva90pIso2016/ElePR.root"
 mu_pr_file = os.getenv('CMSSW_BASE') + "/src/LatinoAnalysis/NanoGardener/python/data/fake_prompt_rates/Full2016v7/Tight80X/MuonPR.root"
 
-aliases['FW_mu'+et+'_ele'+et] = { 
-    'class': 'newFakeWeightOTFall',
-    'args': (eleWP, muWP, copy.deepcopy(el_fr_file), copy.deepcopy(el_pr_file), copy.deepcopy(mu_fr_file), copy.deepcopy(mu_pr_file), False, False, False), #doAbsEta False , no stat err
-    'linesToAdd' : [
-        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-        '.L {}/VBSjjlnu/macros/newfakeweight_OTFall.cc+'.format(configurations)
-    ],     
-    'samples': ["Fake"]
-}
+for et in ets:
+    el_fr_file = basedir_fakes + "/plot_ElCh_JetEt"+et+"_l1_etaVpt_ptel_aseta_fw_ewk_2D.root" #No absolute value for fakes
+    mu_fr_file = basedir_fakes + "/plot_MuCh_JetEt"+et+"_l1_etaVpt_ptmu_fw_ewk_2D.root"
+    aliases['fakeWeight_'+et] = { 
+        'class': 'newFakeWeightOTFall',
+        'args': (eleWP, muWP, copy.deepcopy(el_fr_file), copy.deepcopy(el_pr_file), copy.deepcopy(mu_fr_file), copy.deepcopy(mu_pr_file), False, False, False),  #doabsEta=False, no stat variations
+        'linesToAdd' : [
+            'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+            '.L {}/VBSjjlnu/macros/newfakeweight_OTFall.cc+'.format(configurations)
+        ],     
+        'samples': ["Fake"]
+    }
 
-##############################################
+#stat variations
+el_fr_file35 = basedir_fakes + "/plot_ElCh_JetEt35_l1_etaVpt_ptel_aseta_fw_ewk_2D.root" #No absolute value for fakes
+mu_fr_file35 = basedir_fakes + "/plot_MuCh_JetEt35_l1_etaVpt_ptmu_fw_ewk_2D.root"
 
+aliases['fakeWeight_35_statUp'] = { 
+        'class': 'newFakeWeightOTFall',
+        'args': (eleWP, muWP, copy.deepcopy(el_fr_file35), copy.deepcopy(el_pr_file), copy.deepcopy(mu_fr_file35), copy.deepcopy(mu_pr_file), False, True, False),   
+        'samples': ["Fake"]
+    }
+aliases['fakeWeight_35_statDo'] = { 
+        'class': 'newFakeWeightOTFall',
+        'args': (eleWP, muWP, copy.deepcopy(el_fr_file35), copy.deepcopy(el_pr_file), copy.deepcopy(mu_fr_file35), copy.deepcopy(mu_pr_file), False, False, True), 
+        'samples': ["Fake"]
+    }
 
 ################################################
 # For VgS
@@ -216,43 +261,43 @@ aliases['veto_fatjet_180'] = {
 ##########################3
 # NLO/LO factors for Wjets
 
-aliases['wjets_LOtoNLO'] = {
-            'class': 'Wjets_LOtoNLO16',
-            'args': (),
-            'linesToAdd' : [
-                'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-                '.L {}/VBSjjlnu/Full2016v7/corrections/wjets_LOtoNLO16.cc+'.format(configurations)
-            ] ,
-            'samples': ['Wjets_HT']         
-}
+# aliases['wjets_LOtoNLO'] = {
+#             'class': 'Wjets_LOtoNLO16',
+#             'args': (),
+#             'linesToAdd' : [
+#                 'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+#                 '.L {}/VBSjjlnu/Full2016v7/corrections/wjets_LOtoNLO16.cc+'.format(configurations)
+#             ] ,
+#             'samples': ['Wjets_HT']         
+# }
 
 
 
 ##################################
 
-aliases['fatjet_TvsQCD'] = {
-    'expr': 'FatJet_deepTag_TvsQCD[CleanFatJet_jetIdx[0]]'
-}
+# aliases['fatjet_TvsQCD'] = {
+#     'expr': 'FatJet_deepTag_TvsQCD[CleanFatJet_jetIdx[0]]'
+# }
 
-aliases['fatjet_ZvsQCD'] = {
-    'expr': 'FatJet_deepTag_ZvsQCD[CleanFatJet_jetIdx[0]]'
-}
+# aliases['fatjet_ZvsQCD'] = {
+#     'expr': 'FatJet_deepTag_ZvsQCD[CleanFatJet_jetIdx[0]]'
+# }
 
-aliases['fatjet_WvsQCD'] = {
-    'expr': 'FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]]'
-}
+# aliases['fatjet_WvsQCD'] = {
+#     'expr': 'FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]]'
+# }
 
-aliases['fatjet_subjet1_pt'] = {
-    'expr': 'SubJet_pt[FatJet_subJetIdx1[CleanFatJet_jetIdx[0]]]'
-}
+# aliases['fatjet_subjet1_pt'] = {
+#     'expr': 'SubJet_pt[FatJet_subJetIdx1[CleanFatJet_jetIdx[0]]]'
+# }
 
-aliases['fatjet_subjet2_pt'] = {
-    'expr': 'SubJet_pt[FatJet_subJetIdx2[CleanFatJet_jetIdx[0]]]'
-}
+# aliases['fatjet_subjet2_pt'] = {
+#     'expr': 'SubJet_pt[FatJet_subJetIdx2[CleanFatJet_jetIdx[0]]]'
+# }
 
-aliases['fatjet_subjet_ptratio'] = {
-    'expr': 'SubJet_pt[FatJet_subJetIdx2[CleanFatJet_jetIdx[0]]] / SubJet_pt[FatJet_subJetIdx1[CleanFatJet_jetIdx[0]]]'
-}
+# aliases['fatjet_subjet_ptratio'] = {
+#     'expr': 'SubJet_pt[FatJet_subJetIdx2[CleanFatJet_jetIdx[0]]] / SubJet_pt[FatJet_subJetIdx1[CleanFatJet_jetIdx[0]]]'
+# }
 
 ###################################3
 # QGL variables
@@ -301,3 +346,52 @@ aliases['tag_jets_systems_pt'] = {
         '.L {}/VBSjjlnu/macros/TagJetsSystemsPt.cc+'.format(configurations)
     ]   
 }
+
+
+aliases['vbs_jets_pt'] ={
+    'expr' : 'tag_jets_systems_pt[0]'
+}
+
+
+
+##########################
+# additional uncertainties for Wtagging from pt extrapolation
+aliases['BoostedWtagSF_ptextr'] = {
+    'class': 'Wtagging_SF_ptExtrap',
+    'args': ('2016'),
+    'linesToAdd' : [
+        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+        '.L {}/VBSjjlnu/macros/Wtagging_SF_ptExtrap.cc+'.format(configurations)
+    ]   
+}
+
+
+#########################
+
+mva_reader_path = os.getenv('CMSSW_BASE') + '/src/PlotsConfigurations/Configurations/VBSjjlnu/macros/'
+models_path = '/eos/home-d/dvalsecc/www/VBSPlots/DNN_archive/FullRun2_v7/FullRun2_v7/'
+
+aliases['DNNoutput_boosted'] = {
+    'class': 'MVAReaderBoosted',
+    'args': ( models_path +'boost_sig/models/v8_b/',  models_path +'boost_sig/models/v8_b/cumulative_signal_2016.root', False, 0),
+    'linesToAdd':[
+        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+        'gSystem->Load("libDNNEvaluator.so")',
+        '.L ' + mva_reader_path + 'mva_reader_boosted_v6b.cc+', 
+    ],
+}
+
+aliases['DNNoutput_resolved'] = {
+    'class': 'MVAReaderResolved',
+    'args': ( models_path+ 'res_sig/models/v3_b/',models_path+ 'res_sig/models/v3_b/cumulative_signal_2016.root', False, 1),
+    'linesToAdd':[
+        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+        'gSystem->Load("libDNNEvaluator.so")',
+        '.L ' + mva_reader_path + 'mva_reader_resolved_v3b.cc+', 
+    ],
+}
+
+aliases['DNNoutput'] = {
+    'expr': '(VBS_category==0)*(DNNoutput_boosted) + (VBS_category==1)*(DNNoutput_resolved)'
+}
+

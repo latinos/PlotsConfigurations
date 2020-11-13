@@ -18,7 +18,7 @@ variablesFile = direc+'/variables_fit.py'
 cutsFile = direc +'/cuts_tree.py' 
 
 # file with list of samples
-samplesFile = direc+'/samples.py' 
+samplesFile = direc+'/samples_fit.py' 
 #samplesFile = direc+'/samples.py'
 
 #t file with list of samples

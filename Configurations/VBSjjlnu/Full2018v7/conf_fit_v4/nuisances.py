@@ -7,6 +7,9 @@ mc =["DY", "top",  "Wjets_HT", "VV", "VVV", "VBF-V", "Vg", "VgS", "VBS"]
 mc_norm = [m for m in mc if m not in ["VBS", "VV"]]
 mc_sep =  ["VBS", "VV"]
 
+def getSamplesWithout(samples, samples_to_remove):
+    return [m for m in samples if m not in samples_to_remove]
+
 phase_spaces_boost = [ c for c in cuts if 'boost' in c]
 phase_spaces_res = [ c for c in cuts if 'res' in c]
 
@@ -232,7 +235,7 @@ for js in jes_systs:
                     'mapDown': js+'do',
                     
     }
-    split_nuisance_samples_dir(js, jes_var, 'JES', [(mc_norm, directory_bkg), (mc_sep, directory_signal)])
+    split_nuisance_samples_dir(js, jes_var, 'JES', [(getSamplesWithout(mc_norm, ["Vg", "VgS"]), directory_bkg), (mc_sep, directory_signal)])
 
 # Only total variation since it is small
 fatjetjes_var = {
@@ -244,7 +247,7 @@ fatjetjes_var = {
                 'cuts': phase_spaces_boost #because we are vetoing fatjets anyway in resolved category
                 
 }
-split_nuisance_samples_dir('fatjetJES', fatjetjes_var, 'fatjetJES', [(mc_norm, directory_bkg), (mc_sep, directory_signal)])
+split_nuisance_samples_dir('fatjetJES', fatjetjes_var, 'fatjetJES', [(getSamplesWithout(mc_norm, ["Vg", "VgS"]), directory_bkg), (mc_sep, directory_signal)])
 
 ##### Jet energy resolution
 jer_var = {
@@ -254,7 +257,7 @@ jer_var = {
     'mapUp': 'JERup',
     'mapDown': 'JERdo',
 }
-split_nuisance_samples_dir('JER', jer_var, 'JER', [(mc_norm, directory_bkg), (mc_sep, directory_signal)])
+split_nuisance_samples_dir('JER', jer_var, 'JER', [(getSamplesWithout(mc_norm, ["Vg", "VgS"]), directory_bkg), (mc_sep, directory_signal)])
   
 fatjer_var = {
     'name': 'CMS_fatjet_res_2018',
@@ -264,7 +267,7 @@ fatjer_var = {
     'mapDown': 'fatjetJERdo',
     'cuts': phase_spaces_boost
 }
-split_nuisance_samples_dir('fatjetJER', fatjer_var, 'fatjetJER', [(mc_norm, directory_bkg), (mc_sep, directory_signal)])
+split_nuisance_samples_dir('fatjetJER', fatjer_var, 'fatjetJER', [(getSamplesWithout(mc_norm, ["Vg", "VgS"]), directory_bkg), (mc_sep, directory_signal)])
   
 
 
@@ -309,7 +312,7 @@ fatjet_jmr = {
     'mapDown': 'fatjetJMRdo',
     'cuts': phase_spaces_boost #because we are vetoing fatjets anyway in resolved category
 }
-split_nuisance_samples_dir('fatjetJMR', fatjet_jmr, 'fatjetJMR', [(mc_norm, directory_bkg), (mc_sep, directory_signal)])
+split_nuisance_samples_dir('fatjetJMR', fatjet_jmr, 'fatjetJMR', [(getSamplesWithout(mc_norm, ["Vg", "VgS"]), directory_bkg), (mc_sep, directory_signal)])
   
 fatjet_jms = {
     'name': 'CMS_fatjet_jms_2018',
@@ -322,7 +325,7 @@ fatjet_jms = {
 
 ###################
 #### N.B: Missing systematic for VBS and VV
-split_nuisance_samples_dir('fatjetJMS', fatjet_jms, 'fatjetJMS', [(mc_norm, directory_bkg)])
+split_nuisance_samples_dir('fatjetJMS', fatjet_jms, 'fatjetJMS', [(getSamplesWithout(mc_norm, ["Vg", "VgS"]), directory_bkg)])
   
 
 

@@ -1,23 +1,23 @@
 # example of configuration file
 treeName= 'Events'
 
-tag = 'fit_v4_2016'
+tag = 'fit_v4_2016_fitonly'
 direc = 'conf_fit_v4'
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFile_'+tag
+outputDir = 'rootFile_'+tag + "_fitonly"
 
 # file with TTree aliases
 aliasesFile = direc+'/aliases_tree.py'
 
 # file with list of variables
-variablesFile = direc+'/variables.py'
+variablesFile = direc+'/variables_fit.py'
 
 # file with list of cuts
 cutsFile = direc+'/cuts_tree.py'
 
 # file with list of samples
-samplesFile = direc+'/samples.py' 
+samplesFile = direc+'/samples_fit.py' 
 
 # file with list of samples
 plotFile = direc+'/plot.py'
