@@ -1,4 +1,5 @@
 import os
+import csv
 import copy
 import inspect
 import numpy as np
@@ -75,7 +76,7 @@ aliases['manualHfatM'] = {
 }
 
 aliases['tau21Cut'] = {
-    'expr': '(Alt$(CleanFatJet_tau21[(int)idxCleanFatJetW], 1) < tau21WP)'
+    'expr': '(Alt$(CleanFatJet_tau21[idxCleanFatJetW], 1) < tau21WP)'
 }
 
 aliases['boosted'] = {
@@ -88,12 +89,12 @@ aliases['boosted'] = {
 }
 aliases['boostedNoTau21'] = {
     'expr': 'PuppiMET_pt > 40 \
-            && (int)idxCleanFatJetW != 999 \
-            && Alt$(CleanFatJet_pt[(int)idxCleanFatJetW], 0) > 200 \
-            && Alt$(CleanFatJet_pt[(int)idxCleanFatJetW], 0) / manualHfatM > 0.4 \
+            && idxCleanFatJetW != 999 \
+            && Alt$(CleanFatJet_pt[idxCleanFatJetW], 0) > 200 \
+            && Alt$(CleanFatJet_pt[idxCleanFatJetW], 0) / manualHfatM > 0.4 \
             && manualHfatM > 0 && HM_Wlep_pt_Puppi / manualHfatM > 0.4 \
-            && Alt$(CleanFatJet_mass[(int)idxCleanFatJetW], 0) > 40 \
-            && Alt$(CleanFatJet_eta[(int)idxCleanFatJetW], 999) < 2.4'
+            && Alt$(CleanFatJet_mass[idxCleanFatJetW], 0) > 40 \
+            && Alt$(CleanFatJet_eta[idxCleanFatJetW], 999) < 2.4'
 }
 
 aliases['resolved'] = {
@@ -109,8 +110,8 @@ aliases['boostedSignalWMass'] = {
             && Alt$(HM_CleanFatJetPassMBoosted_mass[0], 999) < 105)'
 }
 aliases['boostedSignalWMassNoTau21'] = {
-    'expr': '(65 < Alt$(CleanFatJet_mass[(int)idxCleanFatJetW], 0) \
-            && Alt$(CleanFatJet_mass[(int)idxCleanFatJetW], 999) < 105)'
+    'expr': '(65 < Alt$(CleanFatJet_mass[idxCleanFatJetW], 0) \
+            && Alt$(CleanFatJet_mass[idxCleanFatJetW], 999) < 105)'
 }
 
 aliases['resolvedSignalWMass'] = {
@@ -122,8 +123,8 @@ aliases['boostedSidebandWMass'] = {
             && Alt$(HM_CleanFatJetPassMBoosted_mass[0], 999) < 250)'
 }
 aliases['boostedSidebandWMassNoTau21'] = {
-    'expr': '(40 < Alt$(CleanFatJet_mass[(int)idxCleanFatJetW], 0) \
-            && Alt$(CleanFatJet_mass[(int)idxCleanFatJetW], 999) < 250)'
+    'expr': '(40 < Alt$(CleanFatJet_mass[idxCleanFatJetW], 0) \
+            && Alt$(CleanFatJet_mass[idxCleanFatJetW], 999) < 250)'
 }
 
 aliases['lowBoostedSidebandWMass'] = {
@@ -156,7 +157,7 @@ aliases['resolvedQCDcr'] = {
 
 
 aliases['tau21DDT'] = {
-    'expr': '( Alt$(CleanFatJet_tau21[(int)idxCleanFatJetW], -999) + 0.080 * TMath::Log( Alt$(CleanFatJet_mass[(int)idxCleanFatJetW]*CleanFatJet_mass[(int)idxCleanFatJetW], 0) / Alt$(CleanFatJet_pt[(int)idxCleanFatJetW], 1) ) )'
+    'expr': '( Alt$(CleanFatJet_tau21[idxCleanFatJetW], -999) + 0.080 * TMath::Log( Alt$(CleanFatJet_mass[idxCleanFatJetW]*CleanFatJet_mass[idxCleanFatJetW], 0) / Alt$(CleanFatJet_pt[idxCleanFatJetW], 1) ) )'
 }
 # smaller angle is: a-b - (a-b > 3.1416)*2*3.1416 + (a-b < -3.1416)*2*3.1416
 aliases['dPhi_WW_boosted'] = {
@@ -226,7 +227,7 @@ aliases['gstarHigh'] = {
 
 aliases['GenLHE'] = {
 'expr': '(Sum$(LHEPart_pdgId == 21) == 0)',
-'samples': ['qqWWqq', 'WW2J']
+'samples': [skey for skey in samples if "QQHSBI" in skey or skey in ['qqWWqq', 'WW2J']]
 }
 
 
@@ -274,7 +275,7 @@ aliases['bReqSF'] = {
 }
 
 aliases['btagSF'] = {
-    'expr': 'bVeto*bVetoSF + bReq*bReqSF + (!bVeto && !bReq)'
+    'expr': 'bVeto*bVetoSF + bReq*bReqSF + (!bVeto && !bReq)',
     'samples': mc
 }
 
@@ -429,22 +430,50 @@ aliases['DY_LO_pTllrw'] = {
 
 mc_sbi = [skey for skey in samples if "SBI" in skey]
 aliases['SBI_isSMggh'] = {
-    'expr': '( abs(Xsec-1.091343e+00) < 1.0e-06 )',
+    'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/isSample.cc+' % os.getenv('CMSSW_BASE')],
+    'expr' : 'is_SMggh()',
     'samples': mc_sbi
 }
 aliases['SBI_isSMVBF'] = {
-    'expr': '( abs(Xsec-8.496211e-02) < 1.0e-08 )',
+    'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/isSample.cc+' % os.getenv('CMSSW_BASE')],
+    'expr' : 'is_SMVBF()',
     'samples': mc_sbi
 }
 aliases['SBI_isggWW'] = {
-    'expr': '( abs(Xsec-6.387000e-02) < 1.0e-08 )',
+    'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/isSample.cc+' % os.getenv('CMSSW_BASE')],
+    'expr' : 'is_ggWW()',
     'samples': mc_sbi
 }
 aliases['SBI_isqqWWqq'] = {
-    'expr': '( abs(Xsec-2.160000e+00) < 1.0e-06 )',
+    'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/isSample.cc+' % os.getenv('CMSSW_BASE')],
+    'expr' : 'is_qqWWqq()',
     'samples': mc_sbi
 }
 aliases['SBI_isHM'] = {
     'expr': '( !SBI_isSMggh && !SBI_isSMVBF && !SBI_isggWW && !SBI_isqqWWqq )',
     'samples': mc_sbi
 }
+
+
+# with open('../DeepAK8V2_W_SFs.csv') as csvfile:
+#     reader = csv.DictReader(csvfile)
+#     for row in reader:
+#         name = 'DeepAK8_SF_{y}_{ver}_{mtr}_{ptl}_{pth}'.format(
+#             y=row['Year'],
+#             ver=row['version'],
+#             mtr=row['MistaggingRate[%]'],
+#             ptl=row['pT_low[GeV]'],
+#             pth=row['pT_high[GeV]']
+#         )
+#         aliases[name] = {
+#             'expr': str(row['SF']),
+#             'samples': mc
+#         }
+#         aliases[name+'_up'] = {
+#             'expr': str(row['SF_upperErr']),
+#             'samples': mc
+#         }
+#         aliases[name+'_down'] = {
+#             'expr': str(row['SF_lowerErr']),
+#             'samples': mc
+#         }

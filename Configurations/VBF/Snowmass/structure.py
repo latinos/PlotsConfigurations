@@ -147,7 +147,42 @@ structure['qqH_hww'] = {
                   'isData'   : 0    
                   }
 
-structure['qqH_hww'] = {
+structure['qqH_hww_0'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0    
+                  }
+
+structure['qqH_hww_1'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0    
+                  }
+
+structure['qqH_hww_2'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0    
+                  }
+
+structure['qqH_hww_3'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0    
+                  }
+
+structure['qqH_hww_4'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0    
+                  }
+
+structure['qqH_hww_5'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0    
+                  }
+
+structure['qqH_hww_6'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0    
+                  }
+
+structure['qqH_hww_7'] = {
                   'isSignal' : 1,
                   'isData'   : 0    
                   }

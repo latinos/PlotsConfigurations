@@ -129,6 +129,18 @@ aliases['bReq'] = {
     'expr': 'Sum$(CleanJet_pt > 30. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.1522) >= 1'
 }
 
+# Flavour definitions
+
+aliases['SameFlav'] = {
+    'expr': '(Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) || (Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13)',
+    'samples': mc
+}
+
+aliases['DiffFlav'] = {
+    'expr': 'Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13',
+    'samples': mc
+}
+
 # CR definitions
 
 aliases['topcr'] = {

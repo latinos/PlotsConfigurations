@@ -685,20 +685,20 @@ controlRegions = ['Wjets', 'ttop', 'stop']
 #                    'cuts' : set.intersection(cutdict[lepton], cutdict[cat], cutdict[subcat])
 #                }
 
-for lepton in leptons:
-    for region in controlRegions:
-        nuisances[region+'Norm'+lepton] = {
-            'name': 'CMS_hww_'+region+'Norm'+lepton,
-            'samples': {region: '1.00',},
-            'type': 'rateParam',
-            'cuts' : cutdict[lepton], 
-        }
+#for lepton in leptons:
+#    for region in controlRegions:
+#        nuisances[region+'Norm'+lepton] = {
+#            'name': 'CMS_hww_'+region+'Norm'+lepton,
+#            'samples': {region: '1.00',},
+#            'type': 'rateParam',
+#            'cuts' : cutdict[lepton], 
+#        }
 
 ##### FW E_T up down var Electron
-#for syst in ['El', 'statEl', 'Mu', 'statMu']:
-for syst in ['El', 'Mu']:
-    nuisances['fakeW_Et_'+syst] = {
-        'name': 'CMS_fakeW_Et_'+syst,
+#for syst in ['El', 'Mu']:
+for syst in ['El', 'statEl', 'Mu', 'statMu']:
+    nuisances['fakeW_'+syst] = {
+        'name': 'CMS_fakeW_'+syst,
         'kind': 'weight',
         'type': 'shape',
         'samples': {
@@ -706,6 +706,14 @@ for syst in ['El', 'Mu']:
             #'FAKE': ['FW_mu20_el35_'+syst+'Up[0]', 'FW_mu20_el35_'+syst+'Down[0]'],
         },
     }
+
+nuisances['fakeW_syst'] = {
+    'name': 'CMS_fakeW_syst',
+    'type'  : 'lnN',
+    'samples': {
+        'FAKE': '1.30',
+    },
+}
 
 for n in nuisances.values():
     n['skipCMS'] = 1

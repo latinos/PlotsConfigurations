@@ -9,26 +9,34 @@
 #
 
 
-groupPlot['top']  = {  
-                  'nameHR' : 'tW and t#bar{t}',
+groupPlot['VZ']  = {  
+                  'nameHR' : "VZ",
                   'isSignal' : 0,
-                  'color': 400,   # kYellow
-                  'samples'  : ['top']
+                  'color'    : 617,   # kViolet + 1  
+                  'samples'  : ['VZ', 'WZ', 'ZZ']
               }
 
-groupPlot['WW']  = {  
-                  'nameHR' : 'WW',
+groupPlot['VVV']  = {  
+                  'nameHR' : 'VVV',
                   'isSignal' : 0,
-                  'color': 851, # kAzure -9 
-                  'samples'  : ['WW', 'ggWW', 'WWewk']
+                  'color': 857, # kAzure -3  
+                  'samples'  : ['VVV']
               }
 
-groupPlot['Fake']  = {
-                  'nameHR' : 'nonprompt',
+groupPlot['Vg']  = {  
+                  'nameHR' : "V#gamma",
                   'isSignal' : 0,
-                  'color': 921,    # kGray + 1
-                  'samples'  : ['Fake']
-}
+                  'color'    : 800,   # kOrange
+                  'samples'  : ['Vg', 'Wg']
+              }
+
+
+groupPlot['VgS']  = {
+                  'nameHR' : "V#gamma*",
+                  'isSignal' : 0,
+                  'color'    : 409,   # kGreen - 9
+                  'samples'  : ['VgS_H','VgS_L']
+              }
 
 
 groupPlot['DY']  = {  
@@ -38,43 +46,38 @@ groupPlot['DY']  = {
                   'samples'  : ['DY']
               }
 
-
-
-groupPlot['VVV']  = {  
-                  'nameHR' : 'VVV',
-                  'isSignal' : 0,
-                  'color': 857, # kAzure -3  
-                  'samples'  : ['VVV']
-              }
-
-
-groupPlot['VZ']  = {  
-                  'nameHR' : "VZ",
-                  'isSignal' : 0,
-                  'color'    : 617,   # kViolet + 1  
-                  'samples'  : ['VZ', 'WZ', 'ZZ']
-              }
-
-groupPlot['Vg']  = {  
-                  'nameHR' : "V#gamma",
-                  'isSignal' : 0,
-                  'color'    : 810,   # kOrange + 10
-                  'samples'  : ['Vg', 'Wg']
-              }
-
-groupPlot['VgS']  = {
-                  'nameHR' : "V#gamma*",
-                  'isSignal' : 0,
-                  'color'    : 409,   # kGreen - 9
-                  'samples'  : ['VgS_H','VgS_L']
-              }
-
 groupPlot['Higgs']  = {
                   'nameHR' : 'Higgs',
                   'isSignal' : 0,
                   'color': 632, # kRed                                                                                                                                                                                                       
                   'samples'  : ['Higgs' ]
               }
+
+
+groupPlot['Fake']  = {
+                  'nameHR' : 'nonprompt',
+                  'isSignal' : 0,
+                  'color': 921,    # kGray + 1
+                  'samples'  : ['Fake']
+}
+
+
+groupPlot['WW']  = {  
+                  'nameHR' : 'WW',
+                  'isSignal' : 0,
+                  'color': 851, # kAzure -9 
+                  'samples'  : ['WW', 'ggWW', 'WWewk']
+              }
+
+groupPlot['top']  = {  
+                  'nameHR' : 'tW and t#bar{t}',
+                  'isSignal' : 0,
+                  'color': 400,   # kYellow
+                  'samples'  : ['top']
+              }
+
+
+
 
 
 
@@ -97,7 +100,17 @@ for hs in mhs:
             
 
 
+# mA = ['200', '300', '400', '500', '600']
 
+# for A in mA:
+#     j+=100
+#     groupPlot['2HDMa_' + A + '_150']  = {
+#         'nameHR' : '2HDMa_' + A + '_150' ,
+#         'isSignal' : 2,
+#         'color': 1 + j, # kRed
+#         'samples'  : ['2HMDa__gg_sinp_0p35_tanb_1p0_mXd_10_MA_' + A + '_ma_150']
+#     }
+    
 
 
 
@@ -234,14 +247,25 @@ for hs in mhs:
             }
 
 
-# data
+
+# for A in mA:
+#     j+=100
+#     plot['2HMDa__gg_sinp_0p35_tanb_1p0_mXd_10_MA_' + A + '_ma_150']  = {
+#         'color': 1 + j, # kRed
+#         'isSignal' : 2,
+#         'isData'   : 0,
+#         'scale'    : 1.0
+#     }
+
+
+
 
 plot['DATA']  = { 
                   'nameHR' : 'Data',
                   'color': 1 ,  
                   'isSignal' : 0,
                   'isData'   : 1 ,
-                  'isBlind'  : 1
+                  'isBlind'  : 0
               }
 
 

@@ -29,16 +29,16 @@ HiggsXS = HiggsXSection()
 
 
 cutdict = {
-    'Ele'   : {x for x in cuts if 'ElCh' in x},
-    'Muon'  : {x for x in cuts if 'MuCh' in x},
-    'Wjets' : {x for x in cuts if 'SB' in x},
-    'top'   : {x for x in cuts if 'TopCR' in x},
-    'VBF'   : {x for x in cuts if 'VBF' in x},
-    'ggF'   : {x for x in cuts if 'GGF' in x},
-    'Untag' : {x for x in cuts if 'Untagged' in x},
-    'Boost' : {x for x in cuts if 'Boosted' in x},
-    'Resolv': {x for x in cuts if 'Resolved' in x},
-    'HM'    : {x for x in cuts if 'HM' in x}
+    'Ele'   : set(x for x in cuts if 'ElCh' in x),
+    'Muon'  : set(x for x in cuts if 'MuCh' in x),
+    'Wjets' : set(x for x in cuts if 'SB' in x),
+    'top'   : set(x for x in cuts if 'TopCR' in x),
+    'VBF'   : set(x for x in cuts if 'VBF' in x),
+    'GGF'   : set(x for x in cuts if 'GGF' in x),
+    'Untag' : set(x for x in cuts if 'Untagged' in x),
+    'Boost' : set(x for x in cuts if 'Boosted' in x),
+    'Resolv': set(x for x in cuts if 'Resolved' in x),
+    'HM'    : set(x for x in cuts if 'HM' in x),
 }
 
 
@@ -98,14 +98,14 @@ nuisances['wtag'] = {
     'kind': 'weight',
     'type': 'shape',
     'samples': dict((skey, ['SFWtagUp', 'SFWtagDown']) for skey in mc),
-    'cuts': [cutdict['Resolv'], cutdict['Boost']]
+    'cuts': set.union(cutdict['Resolv'], cutdict['Boost'])
 }
 
 nuisances['wtag_HM'] = {
     'name':  'CMS_wtag_eff_HM',
     'type': 'lnN',
     'samples': dict((skey, '1.1') for skey in mc),
-    'cuts': [cutdict['HM']]
+    'cuts': cutdict['HM']
 }
 
 
@@ -168,18 +168,66 @@ nuisances['muonpt'] = {
 ##### Jet energy scale
 jes_systs = ['JESAbsolute','JESAbsolute_2018','JESBBEC1','JESBBEC1_2018','JESEC2','JESEC2_2018','JESFlavorQCD','JESHF','JESHF_2018','JESRelativeBal','JESRelativeSample_2018']
 
-for js in jes_systs:
-  nuisances[js] = {
-      'name' : 'CMS_scale_'+js,
-      'kind' : 'suffix',
-      'type' : 'shape',
-      'mapUp'  : js+'up',
-      'mapDown': js+'do',
-      'samples': dict((skey, ['1', '1']) for skey in mc),
-      'folderUp'  : makeMCDirectory('JESup'),
-      'folderDown': makeMCDirectory('JESdo'),
-      'AsLnN': '1'
-  }
+# for js in jes_systs:
+#   nuisances[js] = {
+#       'name' : 'CMS_scale_'+js,
+#       'kind' : 'suffix',
+#       'type' : 'shape',
+#       'mapUp'  : js+'up',
+#       'mapDown': js+'do',
+#       'samples': dict((skey, ['1', '1']) for skey in mc),
+#       'folderUp'  : makeMCDirectory('JESup'),
+#       'folderDown': makeMCDirectory('JESdo'),
+#       'AsLnN': '1'
+#   }
+
+##### FatJet scale and resolution
+
+nuisances['fatjet_jes']  = {
+    'name'  : 'CMS_scale_fatj_2018',
+    'kind'  : 'suffix',
+    'type'  : 'shape',
+    'mapUp'  : 'fatjetJESup',
+    'mapDown': 'fatjetJESdo',
+    'samples': dict((skey, ['1', '1']) for skey in mc),
+    'folderUp'  : makeMCDirectory('fatjetJESup'),
+    'folderDown': makeMCDirectory('fatjetJESdo'),
+    'AsLnN': '1'
+}
+nuisances['fatjet_jer']  = {
+    'name'  : 'CMS_res_fatjer_2018',
+    'kind'  : 'suffix',
+    'type'  : 'shape',
+    'mapUp'  : 'fatjetJERup',
+    'mapDown': 'fatjetJERdo',
+    'samples': dict((skey, ['1', '1']) for skey in mc),
+    'folderUp'  : makeMCDirectory('fatjetJERup'),
+    'folderDown': makeMCDirectory('fatjetJERdo'),
+    'AsLnN': '1'
+}
+nuisances['fatjet_jms']  = {
+    'name'  : 'CMS_fatjms_2018',
+    'kind'  : 'suffix',
+    'type'  : 'shape',
+    'mapUp'  : 'fatjetJMSup',
+    'mapDown': 'fatjetJMSdo',
+    'samples': dict((skey, ['1', '1']) for skey in mc),
+    'folderUp'  : makeMCDirectory('fatjetJMSup'),
+    'folderDown': makeMCDirectory('fatjetJMSdo'),
+    'AsLnN': '1'
+}
+nuisances['fatjet_jmr']  = {
+    'name'  : 'CMS_res_fatjmr_2018',
+    'kind'  : 'suffix',
+    'type'  : 'shape',
+    'mapUp'  : 'fatjetJMRup',
+    'mapDown': 'fatjetJMRdo',
+    'samples': dict((skey, ['1', '1']) for skey in mc),
+    'folderUp'  : makeMCDirectory('fatjetJMRup'),
+    'folderDown': makeMCDirectory('fatjetJMRdo'),
+    'AsLnN': '1'
+}
+
 
 ##### MET energy scale
 
@@ -190,8 +238,8 @@ nuisances['met'] = {
     'mapUp'  : 'METup',
     'mapDown': 'METdo',
     'samples': dict((skey, ['1', '1']) for skey in mc),
-    'folderUp' : makeMCDirectory('METup_suffix'),
-    'folderDown': makeMCDirectory('METdo_suffix'),
+    'folderUp' : makeMCDirectory('METup'),
+    'folderDown': makeMCDirectory('METdo'),
     'AsLnN': '1'
 }
 
@@ -241,7 +289,7 @@ nuisances['PS_ISR']  = {
     'name': 'PS_ISR',
     'kind': 'weight',
     'type': 'shape',
-    'samples': dict((skey, ['PSWeight[2]', 'PSWeight[0]']) for skey in mcif skey not in ["qqWWqq", "WW2J", "WWewk", "Vg", "VgS"]), #PSWeights still buggy in v7?
+    'samples': dict((skey, ['Alt$(PSWeight[2], 1.0)', 'Alt$(PSWeight[0], 1.0)']) for skey in mc if skey not in ["qqWWqq", "WW2J", "WWewk", "Vg", "VgS"] and "SBI" not in skey), #PSWeights still buggy in v7?
 }
 nuisances['PS_ISR']['samples'].update({'qqWWqq': ['1.031198192*(nCleanGenJet==0) + 1.029396447*(nCleanGenJet==1) + 1.008244787*(nCleanGenJet==2) + 0.958054424*(nCleanGenJet>=3)', '0.962541517*(nCleanGenJet==0) + 0.964149647*(nCleanGenJet==1) + 0.988864503*(nCleanGenJet==2) + 1.052819668*(nCleanGenJet>=3)']}) # From WpWmJJ_QCD_noTop_ext1
 nuisances['PS_ISR']['samples'].update({'WW2J': ['1.031198192*(nCleanGenJet==0) + 1.029396447*(nCleanGenJet==1) + 1.008244787*(nCleanGenJet==2) + 0.958054424*(nCleanGenJet>=3)', '0.962541517*(nCleanGenJet==0) + 0.964149647*(nCleanGenJet==1) + 0.988864503*(nCleanGenJet==2) + 1.052819668*(nCleanGenJet>=3)']}) # From WpWmJJ_QCD_noTop_ext1
@@ -268,7 +316,7 @@ nuisances['PS_FSR']  = {
     'name': 'PS_FSR',
     'kind': 'weight',
     'type': 'shape',
-    'samples': dict((skey, ['PSWeight[3]', 'PSWeight[1]']) for skey in mc if skey not in ["qqWWqq", "WW2J", "WWewk", "Vg", "VgS"]), #PSWeights still buggy in v7?
+    'samples': dict((skey, ['Alt$(PSWeight[3], 1.0)', 'Alt$(PSWeight[1], 1.0)']) for skey in mc if skey not in ["qqWWqq", "WW2J", "WWewk", "Vg", "VgS"] and "SBI" not in skey), #PSWeights still buggy in v7?
 }
 nuisances['PS_FSR']['samples'].update({'qqWWqq': ['0.976538004*(nCleanGenJet==0) + 0.993524816*(nCleanGenJet==1) + 1.006678783*(nCleanGenJet==2) + 1.009760965*(nCleanGenJet>=3)', '1.035661107*(nCleanGenJet==0) + 1.007585153*(nCleanGenJet==1) + 0.989764669*(nCleanGenJet==2) + 0.98276492*(nCleanGenJet>=3)']})
 nuisances['PS_FSR']['samples'].update({'WW2J': ['0.976538004*(nCleanGenJet==0) + 0.993524816*(nCleanGenJet==1) + 1.006678783*(nCleanGenJet==2) + 1.009760965*(nCleanGenJet>=3)', '1.035661107*(nCleanGenJet==0) + 1.007585153*(nCleanGenJet==1) + 0.989764669*(nCleanGenJet==2) + 0.98276492*(nCleanGenJet>=3)']})
@@ -391,14 +439,6 @@ for m in massvbf:
     nuisances['pdf_Higgs_qqbar']['samples'].update({'QQHINT_'+m+model_name: values})
 
 
-# values = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ttH','125.09','pdf','sm')
-# nuisances['pdf_Higgs_ttH'] = {
-#     'name': 'pdf_Higgs_ttH',
-#     'type': 'lnN',
-#     'samples': {
-#         'ttH_hww': values
-#     },
-# }
 
 
 # Top, W+jets: Taken into account in rateParam, since these are all lnN anyway
@@ -485,41 +525,6 @@ nuisances['pdf_qqbar_ACCEPT'] = {
     },
 }
 
-
-
-
-# Theory uncertainty for ggH
-#
-#
-#   THU_ggH_Mu, THU_ggH_Res, THU_ggH_Mig01, THU_ggH_Mig12, THU_ggH_VBF2j, THU_ggH_VBF3j, THU_ggH_PT60, THU_ggH_PT120, THU_ggH_qmtop
-#
-#   see https://twiki.cern.ch/twiki/bin/viewauth/CMS/HiggsWG/SignalModelingTools
-
-# thus = [
-#     ('THU_ggH_Mu', 'ggH_mu'),
-#     ('THU_ggH_Res', 'ggH_res'),
-#     ('THU_ggH_Mig01', 'ggH_mig01'),
-#     ('THU_ggH_Mig12', 'ggH_mig12'),
-#     ('THU_ggH_VBF2j', 'ggH_VBF2j'),
-#     ('THU_ggH_VBF3j', 'ggH_VBF3j'),
-#     ('THU_ggH_PT60', 'ggH_pT60'),
-#     ('THU_ggH_PT120', 'ggH_pT120'),
-#     ('THU_ggH_qmtop', 'ggH_qmtop')
-# ]
-#
-# for name, vname in thus:
-#     updown = [vname, '2.-%s' % vname]
-#
-#     nuisances[name] = {
-#         'name': name,
-#         'skipCMS': 1,
-#         'kind': 'weight',
-#         'type': 'shape',
-#         'samples': {
-#           'ggH_hww': updown,
-#           #'ggH_htt': updown
-#         }
-#     }
 
 
 
@@ -647,23 +652,6 @@ nuisances['QCDscale_VH'] = {
 
 values = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ggZH','125.09','scale','sm')
 
-# nuisances['QCDscale_ggZH'] = {
-#     'name': 'QCDscale_ggZH',
-#     'samples': {
-#         'ggZH_hww': values
-#     },
-#     'type': 'lnN',
-# }
-
-# values = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ttH','125.09','scale','sm')
-#
-# nuisances['QCDscale_ttH'] = {
-#     'name': 'QCDscale_ttH',
-#     'samples': {
-#         'ttH_hww': values
-#     },
-#     'type': 'lnN',
-# }
 
 
 nuisances['QCDscale_ggH_ACCEPT'] = {
@@ -790,22 +778,22 @@ nuisances['CRSR_accept_top'] = {
 
 
 
-# # ##rate parameters
-# leptons = ['Ele', 'Muon']
-# categories = ['Boost', 'Resolv']
-# subcategories = ['Untag', 'VBF']
-# controlRegions = ['Wjets', 'top']
-#
-# for lepton in leptons:
-#     for cat in categories:
-#         for subcat in subcategories:
-#             for region in controlRegions:
-#                 nuisances[region+'Norm'+lepton+cat+subcat] = {
-#                     'name': 'CMS_hww_'+region+'Norm'+lepton+cat+subcat,
-#                     'samples': {region: '1.00',},
-#                     'type': 'rateParam',
-#                     'cuts' : set.intersection(cutdict[lepton], cutdict[cat], cutdict[subcat])
-#                 }
+# ##rate parameters
+leptons = ['Ele', 'Muon']
+categories = ['Boost', 'Resolv']
+subcategories = ['GGF', 'VBF']
+controlRegions = ['Wjets', 'top']
+
+for lepton in leptons:
+    for cat in categories:
+        for subcat in subcategories:
+            for region in controlRegions:
+                nuisances[region+'Norm'+lepton+cat+subcat] = {
+                    'name': 'CMS_hww_'+region+'Norm'+lepton+cat+subcat,
+                    'samples': {region: '1.00',},
+                    'type': 'rateParam',
+                    'cuts' : set.intersection(cutdict[lepton], cutdict[cat], cutdict[subcat])
+                }
 
 
 
@@ -869,9 +857,9 @@ for nuisname in nuisancename:
           for nuis in nuisancename[nuisname]:
             if 'GGH_'+m+model_name in nuisances[nuis]['samples']: sig_up = nuisances[nuis]['samples']['GGH_'+m+model_name][0]
             if 'GGH_'+m+model_name in nuisances[nuis]['samples']: sig_dn = nuisances[nuis]['samples']['GGH_'+m+model_name][1]
-          SBI_string = ['('+sig_up+')*SBI_isHM + ('+SM_up+')*SBI_isSMggh + ('+WW_up+')*SBI_isggWW',
+            SBI_string = ['('+sig_up+')*SBI_isHM + ('+SM_up+')*SBI_isSMggh + ('+WW_up+')*SBI_isggWW',
                         '('+sig_dn+')*SBI_isHM + ('+SM_dn+')*SBI_isSMggh + ('+WW_dn+')*SBI_isggWW']
-          nuisances[nuis]['samples'].update({'GGHSBI_'+m+model_name: SBI_string})
+            nuisances[nuis]['samples'].update({'GGHSBI_'+m+model_name: SBI_string})
     if doqq==1:
         SM_up = '1.0'
         SM_dn = '1.0'
@@ -888,9 +876,9 @@ for nuisname in nuisancename:
           for nuis in nuisancename[nuisname]:
             if 'QQH_'+m+model_name in nuisances[nuis]['samples']: sig_up = nuisances[nuis]['samples']['QQH_'+m+model_name][0]
             if 'QQH_'+m+model_name in nuisances[nuis]['samples']: sig_dn = nuisances[nuis]['samples']['QQH_'+m+model_name][1]
-          SBI_string = ['('+sig_up+')*SBI_isHM + ('+SM_up+')*SBI_isSMVBF + ('+WW_up+')*SBI_isqqWWqq',
+            SBI_string = ['('+sig_up+')*SBI_isHM + ('+SM_up+')*SBI_isSMVBF + ('+WW_up+')*SBI_isqqWWqq',
                         '('+sig_dn+')*SBI_isHM + ('+SM_dn+')*SBI_isSMVBF + ('+WW_dn+')*SBI_isqqWWqq']
-          nuisances[nuis]['samples'].update({'QQHSBI_'+m+model_name: SBI_string})
+            nuisances[nuis]['samples'].update({'QQHSBI_'+m+model_name: SBI_string})
 
 
 
@@ -907,22 +895,22 @@ if StatSwitch:
 
          'ggWW': {
                'typeStat' : 'bbb',
-               'zeroMCError' : '0',
+               'zeroMCError' : '1',
                'correlate': []
          },
          'ggH_hww':{
                'typeStat' : 'bbb',
-               'zeroMCError' : '0',
+               'zeroMCError' : '1',
                'correlate': []
          },
          'qqWWqq': {
               'typeStat' : 'bbb',
-               'zeroMCError' : '0',
+               'zeroMCError' : '1',
                'correlate': []
          },
          'qqH_hww':{
                'typeStat' : 'bbb',
-               'zeroMCError' : '0',
+               'zeroMCError' : '1',
                'correlate': []
          },
 
@@ -932,13 +920,13 @@ if StatSwitch:
         }
     # FIXME: SBI is gone
     for m in massggh:
-        nuisances['stat']['samples']['GGH_'+m+model_name] = { 'typeStat' : 'bbb', 'zeroMCError' : '0', 'correlate': [] }
+        nuisances['stat']['samples']['GGH_'+m+model_name] = { 'typeStat' : 'bbb', 'zeroMCError' : '1', 'correlate': [] }
         nuisances['stat']['samples']['ggWW']["correlate"].append('GGHSBI_'+m+model_name)
         nuisances['stat']['samples']['ggH_hww']["correlate"].append('GGHSBI_'+m+model_name)
         nuisances['stat']['samples']['GGH_'+m+model_name]['correlate'].append('GGHSBI_'+m+model_name)
 
     for m in massvbf:
-        nuisances['stat']['samples']['QQH_'+m+model_name] = { 'typeStat' : 'bbb', 'zeroMCError' : '0', 'correlate': [] }
+        nuisances['stat']['samples']['QQH_'+m+model_name] = { 'typeStat' : 'bbb', 'zeroMCError' : '1', 'correlate': [] }
         nuisances['stat']['samples']['qqWWqq']["correlate"].append('QQHSBI_'+m+model_name)
         nuisances['stat']['samples']['qqH_hww']["correlate"].append('QQHSBI_'+m+model_name)
         nuisances['stat']['samples']['QQH_'+m+model_name]['correlate'].append('QQHSBI_'+m+model_name)

@@ -35,7 +35,7 @@ groupPlot['DY']  = {
                   'nameHR' : "DY",
                   'isSignal' : 0,
                   'color': 418,    # kGreen+2
-                  'samples'  : ['DY']
+                  'samples'  : ['DY_lowZ', 'DY_highZ']
               }
 
 '''
@@ -85,6 +85,13 @@ groupPlot['Higgs']  = {
                   #'samples'  : ['H_htt', 'H_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'ggH_hww','bbH_hww','ttH_hww', 'ggH_htt' ]
               }
 
+groupPlot['Zjj']  = {  
+                  'nameHR': 'Zjj',
+                  'isSignal' : 0,
+                  'color': 600,    # kBlue
+                  'samples'    : ['Zjj']
+              }
+
 groupPlot['VBS']  = {
                   'nameHR' : 'VBS',
                   'isSignal' : 2,
@@ -93,14 +100,11 @@ groupPlot['VBS']  = {
               }
 
 
-
-
-
 #plot = {}
 
 # keys here must match keys in samples.py    
 #                    
-plot['DY']  = {  
+plot['DY_lowZ']  = {  
                   'color': 418,    # kGreen+2
                   'isSignal' : 0,
                   'isData'   : 0, 
@@ -119,6 +123,20 @@ plot['DY']  = {
                        #'hww2l2v_13TeV_me_1j'     : 1.08 , 
                         #},
 
+              }
+
+plot['DY_highZ']  = {  
+                  'color': 418,    # kGreen+2
+                  'isSignal' : 0,
+                  'isData'   : 0, 
+                  'scale'    : 1.0,
+                }
+
+plot['Zjj']  = {  
+                  'color': 600,    # kBlue
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0                  
               }
 
 

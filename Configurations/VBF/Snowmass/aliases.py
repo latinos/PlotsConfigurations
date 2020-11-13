@@ -157,12 +157,12 @@ aliases['sr'] = {
 }
 
 aliases['bVetoSF'] = {
-    'expr': 'TMath::Exp(Sum$(TMath::Log((CleanJet_pt>20 && abs(CleanJet_eta)<2.5)*Jet_btagSF_shape[CleanJet_jetIdx]+1*(CleanJet_pt<20 || abs(CleanJet_eta)>2.5))))',
+    'expr': 'TMath::Exp(Sum$(TMath::Log((CleanJet_pt>20 && abs(CleanJet_eta)<2.5)*Jet_btagSF_deepcsv_shape[CleanJet_jetIdx]+1*(CleanJet_pt<20 || abs(CleanJet_eta)>2.5))))',
     'samples': mc
 }
 
 aliases['bReqSF'] = {
-    'expr': 'TMath::Exp(Sum$(TMath::Log((CleanJet_pt>30 && abs(CleanJet_eta)<2.5)*Jet_btagSF_shape[CleanJet_jetIdx]+1*(CleanJet_pt<30 || abs(CleanJet_eta)>2.5))))',
+    'expr': 'TMath::Exp(Sum$(TMath::Log((CleanJet_pt>30 && abs(CleanJet_eta)<2.5)*Jet_btagSF_deepcsv_shape[CleanJet_jetIdx]+1*(CleanJet_pt<30 || abs(CleanJet_eta)>2.5))))',
     'samples': mc
 }
 
@@ -284,65 +284,65 @@ aliases['Weight2MINLO'] = {
 # GGHUncertaintyProducer wasn't run for 2016 nAODv5 non-private
 
 
-thus = [
-    'ggH_mu',
-    'ggH_res',
-    'ggH_mig01',
-    'ggH_mig12',
-    'ggH_VBF2j',
-    'ggH_VBF3j',
-    'ggH_pT60',
-    'ggH_pT120',
-    'ggH_qmtop'
-]
+# thus = [
+#     'ggH_mu',
+#     'ggH_res',
+#     'ggH_mig01',
+#     'ggH_mig12',
+#     'ggH_VBF2j',
+#     'ggH_VBF3j',
+#     'ggH_pT60',
+#     'ggH_pT120',
+#     'ggH_qmtop'
+# ]
 
-for thu in thus:
-    aliases[thu+'_OTF'] = {
-        'linesToAdd': ['.L %s/Differential/gghuncertainty.cc+' % configurations],
-        'class': 'GGHUncertainty',
-        'args': (thu,),
-        'samples': [skey for skey in samples if 'ggH_hww' in skey],
-        'nominalOnly': True
-    }
+# for thu in thus:
+#     aliases[thu+'_OTF'] = {
+#         'linesToAdd': ['.L %s/Differential/gghuncertainty.cc+' % configurations],
+#         'class': 'GGHUncertainty',
+#         'args': (thu,),
+#         'samples': [skey for skey in samples if 'ggH_hww' in skey],
+#         'nominalOnly': True
+#     }
 
 # aliases['vbfdnn'] = {
-#         'linesToAdd': ['.L $CMSSW_BASE/src/PlotsConfigurations/Configurations/VBF/Keras_2018_v6/evaluate_multiclass_tris.cc+'],
+#         'linesToAdd': ['.L $CMSSW_BASE/src/PlotsConfigurations/Configurations/VBF/Snowmass/evaluate_multiclass_tris.cc+'],
 #         'class': 'evaluate_multiclass',
 #         'args': 0,
 # }
 #
 # aliases['topdnn'] = {
-#         'linesToAdd': ['.L $CMSSW_BASE/src/PlotsConfigurations/Configurations/VBF/Keras_2018_v6/evaluate_multiclass_tris.cc+'],
+#         'linesToAdd': ['.L $CMSSW_BASE/src/PlotsConfigurations/Configurations/VBF/Snowmass/evaluate_multiclass_tris.cc+'],
 #         'class': 'evaluate_multiclass',
 #         'args': 1,
 # }
 #
 # aliases['gghdnn'] = {
-#         'linesToAdd': ['.L $CMSSW_BASE/src/PlotsConfigurations/Configurations/VBF/Keras_2018_v6/evaluate_multiclass_tris.cc+'],
+#         'linesToAdd': ['.L $CMSSW_BASE/src/PlotsConfigurations/Configurations/VBF/Snowmass/evaluate_multiclass_tris.cc+'],
 #         'class': 'evaluate_multiclass',
 #         'args': 2,
 # }
 
 aliases['vbfdnn'] = {
-        'linesToAdd': ['.L $CMSSW_BASE/src/PlotsConfigurations/Configurations/VBF/Keras_2018_v6/extended/evaluate_multiclass.cc+'],
+        'linesToAdd': ['.L $CMSSW_BASE/src/PlotsConfigurations/Configurations/VBF/Snowmass/extended/evaluate_multiclass.cc+'],
         'class': 'evaluate_multiclass',
         'args': 0,
 }
 
 aliases['topdnn'] = {
-        'linesToAdd': ['.L $CMSSW_BASE/src/PlotsConfigurations/Configurations/VBF/Keras_2018_v6/extended/evaluate_multiclass.cc+'],
+        'linesToAdd': ['.L $CMSSW_BASE/src/PlotsConfigurations/Configurations/VBF/Snowmass/extended/evaluate_multiclass.cc+'],
         'class': 'evaluate_multiclass',
         'args': 1,
 }
 
 aliases['wwdnn'] = {
-        'linesToAdd': ['.L $CMSSW_BASE/src/PlotsConfigurations/Configurations/VBF/Keras_2018_v6/extended/evaluate_multiclass.cc+'],
+        'linesToAdd': ['.L $CMSSW_BASE/src/PlotsConfigurations/Configurations/VBF/Snowmass/extended/evaluate_multiclass.cc+'],
         'class': 'evaluate_multiclass',
         'args': 2,
 }
 
 aliases['gghdnn'] = {
-        'linesToAdd': ['.L $CMSSW_BASE/src/PlotsConfigurations/Configurations/VBF/Keras_2018_v6/extended/evaluate_multiclass.cc+'],
+        'linesToAdd': ['.L $CMSSW_BASE/src/PlotsConfigurations/Configurations/VBF/Snowmass/extended/evaluate_multiclass.cc+'],
         'class': 'evaluate_multiclass',
         'args': 3,
 }
@@ -380,28 +380,28 @@ aliases['gghlike'] = {
 '''
 
 
-thusQQ = [
-  "qqH_YIELD",
-  "qqH_PTH200",
-  "qqH_Mjj60",
-  "qqH_Mjj120",
-  "qqH_Mjj350",
-  "qqH_Mjj700",
-  "qqH_Mjj1000",
-  "qqH_Mjj1500",
-  "qqH_PTH25",
-  "qqH_JET01",
-  "qqH_EWK",
-]
+# thusQQ = [
+#   "qqH_YIELD",
+#   "qqH_PTH200",
+#   "qqH_Mjj60",
+#   "qqH_Mjj120",
+#   "qqH_Mjj350",
+#   "qqH_Mjj700",
+#   "qqH_Mjj1000",
+#   "qqH_Mjj1500",
+#   "qqH_PTH25",
+#   "qqH_JET01",
+#   "qqH_EWK",
+# ]
 
-for thu in thusQQ:
-    aliases[thu] = {
-        'linesToAdd': ['.L %s/patches/qqhuncertainty.cc+' % configurations],
-        'class': 'QQHUncertainty',
-        'args': (thu,),
-        'samples': ['qqH_hww'],
-        'nominalOnly': True
-    }
+# for thu in thusQQ:
+#     aliases[thu] = {
+#         'linesToAdd': ['.L %s/patches/qqhuncertainty.cc+' % configurations],
+#         'class': 'QQHUncertainty',
+#         'args': (thu,),
+#         'samples': ['qqH_hww'],
+#         'nominalOnly': True
+#     }
 
 
 

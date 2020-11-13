@@ -29,20 +29,20 @@ except NameError:
 ################# SKIMS ########################
 ################################################
 
-mcProduction = 'Autumn18_102X_nAODv6_Full2018v6'
-dataReco = 'Run2018_102X_nAODv6_Full2018v6'
+mcProduction = 'Autumn18_102X_nAODv7_Full2018v7'
 
-fakeReco = 'Run2018_102X_nAODv6_Full2018v6_ForNewWPs/'
+dataReco = 'Run2018_102X_nAODv7_Full2018v7'
+fakeReco = dataReco
 
-embedReco = 'Embedding2018_102X_nAODv6_Full2018v6'
+embedReco = 'Embedding2018_102X_nAODv7_Full2018v7'
 
-mcSteps = 'MCl1loose2018v6__MCCorr2018v6__l2loose__l2tightOR2018v6{var}'
+mcSteps = 'MCl1loose2018v7__MCCorr2018v7__l2loose__l2tightOR2018v7{var}'
 
-fakeSteps = 'DATAl1loose2018v6__l2loose__fakeW'
+fakeSteps = 'DATAl1loose2018v7__l2loose__fakeW'
 
-dataSteps = 'DATAl1loose2018v6__l2loose__l2tightOR2018v6'
+dataSteps = 'DATAl1loose2018v7__l2loose__l2tightOR2018v7'
 
-embedSteps = 'DATAl1loose2018v6__l2loose__l2tightOR2018v6__Embedding'
+embedSteps = 'DATAl1loose2018v7__l2loose__l2tightOR2018v7__Embedding'
 
 ##############################################
 ###### Tree base directory for the site ######
@@ -71,10 +71,10 @@ embedDirectory = os.path.join(treeBaseDir, embedReco, embedSteps)
 ################################################
 
 DataRun = [
-            ['A','Run2018A-Nano25Oct2019-v1'] ,
-            ['B','Run2018B-Nano25Oct2019-v1'] ,
-            ['C','Run2018C-Nano25Oct2019-v1'] ,
-            ['D','Run2018D-Nano25Oct2019_ver2-v1'] ,
+            ['A','Run2018A-02Apr2020-v1'] ,
+            ['B','Run2018B-02Apr2020-v1'] ,
+            ['C','Run2018C-02Apr2020-v1'] ,
+            ['D','Run2018D-02Apr2020-v1'] ,
           ]
 
 DataSets = ['MuonEG','DoubleMuon','SingleMuon','EGamma']
@@ -361,6 +361,7 @@ addSampleWeight(samples, 'ggH_hww', 'GGHjjToWWTo2L2Nu_minloHJJ_M125', '(HTXS_sta
 signals.append('ggH_hww')
 
 ############ VBF H->WW ############
+
 samples['qqH_hww'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'VBFHToWWTo2L2Nu_M125'),
     'weight': mcCommonWeight,
@@ -368,6 +369,82 @@ samples['qqH_hww'] = {
 }
 
 signals.append('qqH_hww')
+
+
+# Separate in gen-level delta_phi(jet1, jet2) bins. First attempt
+
+import numpy as np
+
+# GenJet_phi
+n_bins = 8
+
+for bin_num in range(0, n_bins):
+    sample_name = "qqH_hww_{}".format(bin_num)
+    print(sample_name)
+    samples[sample_name] = {
+        'name': nanoGetSampleFiles(mcDirectory, 'VBFHToWWTo2L2Nu_M125'),
+        'weight': mcCommonWeight + " * (delta_phi(GenJet_phi[0], GenJet_phi[1]) > {} && delta_phi(GenJet_phi[0], GenJet_phi[1]) < {})".format(bin_num*np.pi/n_bins, (bin_num+1)*np.pi/n_bins),
+        'linesToAdd': ['.L $CMSSW_BASE/src/PlotsConfigurations/Configurations/VBF/Snowmass/extended/delta_phi.C+'],
+        'FilesPerJob': 4
+    }
+    signals.append(sample_name)
+
+# CP-violation VBF samples
+
+# Pure SM sample H0PM
+samples['VBF_H0PM_ToWWTo2L2Nu'] = {
+    'name': nanoGetSampleFiles(mcDirectory, 'VBF_H0PM_ToWWTo2L2Nu'),
+    'weight': mcCommonWeight,
+    'FilesPerJob': 4
+}
+
+#Pure AC sample H0M - a3 coupling
+samples['VBF_H0M_ToWWTo2L2Nu'] = {
+    'name': nanoGetSampleFiles(mcDirectory, 'VBF_H0M_ToWWTo2L2Nu'),
+    'weight': mcCommonWeight,
+    'FilesPerJob': 4
+}
+
+# Pure AC sample H0PH - a2 coupling
+samples['VBF_H0PH_ToWWTo2L2Nu'] = {
+    'name': nanoGetSampleFiles(mcDirectory, 'VBF_H0PH_ToWWTo2L2Nu'),
+    'weight': mcCommonWeight,
+    'FilesPerJob': 4
+}
+
+# Pure AC sample H0L1 - Lambda1 coupling
+samples['VBF_H0L1_ToWWTo2L2Nu'] = {
+    'name': nanoGetSampleFiles(mcDirectory, 'VBF_H0L1_ToWWTo2L2Nu'),
+    'weight': mcCommonWeight,
+    'FilesPerJob': 4
+}
+
+# Finally, mixed SM/AC samples. Cross-sections is the same as SM
+
+samples['VBF_H0Mf05_ToWWTo2L2Nu'] = {
+    'name': nanoGetSampleFiles(mcDirectory, 'VBF_H0Mf05_ToWWTo2L2Nu'),
+    'weight': mcCommonWeight,
+    'FilesPerJob': 4
+}
+
+samples['VBF_H0PHf05_ToWWTo2L2Nu'] = {
+    'name': nanoGetSampleFiles(mcDirectory, 'VBF_H0PHf05_ToWWTo2L2Nu'),
+    'weight': mcCommonWeight,
+    'FilesPerJob': 4
+}
+
+samples['VBF_H0L1f05_ToWWTo2L2Nu'] = {
+    'name': nanoGetSampleFiles(mcDirectory, 'VBF_H0L1f05_ToWWTo2L2Nu'),
+    'weight': mcCommonWeight,
+    'FilesPerJob': 4
+}
+
+samples['VBF_H0L1Zgf05_ToWWTo2L2Nu'] = {
+    'name': nanoGetSampleFiles(mcDirectory, 'VBF_H0L1Zgf05_ToWWTo2L2Nu'),
+    'weight': mcCommonWeight,
+    'FilesPerJob': 4
+}
+
 
 ############ ZH H->WW ############
 

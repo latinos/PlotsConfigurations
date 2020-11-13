@@ -333,7 +333,7 @@ for lep in ['El', 'Mu']:
             'args': (eleWP, muWP, copy.deepcopy(el_fr_file), copy.deepcopy(el_pr_file), copy.deepcopy(mu_fr_file), copy.deepcopy(mu_pr_file), True, False), 
             'samples': ["FAKE"]
         }
-        aliases['FW_mu'+str(mu_et)+'_el'+str(el_et)+'_statDo'] = {
+        aliases['FW_mu'+str(mu_et)+'_el'+str(el_et)+'_statDown'] = {
             'class': 'newFakeWeightOTF',
             'args': (eleWP, muWP, copy.deepcopy(el_fr_file), copy.deepcopy(el_pr_file), copy.deepcopy(mu_fr_file), copy.deepcopy(mu_pr_file), False, True), 
             'samples': ["FAKE"]
@@ -347,11 +347,11 @@ for var in ['Up', 'Down']:
         if var == 'Down': dEt = -10
         elif var == 'Up': dEt = 10
         if lep == 'El': 
-            el_et += dEt
+            el_et = El_jetEt + dEt
             is_lep = '(TMath::Abs(Lepton_pdgId[0]) == 11)'
             no_lep = '(TMath::Abs(Lepton_pdgId[0]) == 13)'
         elif lep == 'Mu': 
-            mu_et += dEt
+            mu_et = mu_et + dEt
             is_lep = '(TMath::Abs(Lepton_pdgId[0]) == 13)'
             no_lep = '(TMath::Abs(Lepton_pdgId[0]) == 11)'
 
@@ -363,4 +363,3 @@ for var in ['Up', 'Down']:
             'expr': '('+is_lep+'*(FW_mu'+str(Mu_jetEt)+'_el'+str(El_jetEt)+'_stat'+var+'[0]/FW_mu'+str(Mu_jetEt)+'_el'+str(El_jetEt)+'[0]) + '+no_lep+')',
             'samples': ["FAKE"]
         }
-        
