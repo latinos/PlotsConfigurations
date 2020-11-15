@@ -50,6 +50,13 @@ variables['mjj_vbs'] = {   'name': 'mjj_vbs',
                         'blind':  [1500,4000]
 }
 
+variables['mjj_vjet'] = {   'name': 'mjj_vjet',      
+                        'range' : (60,40,250),  
+                        'xaxis' : 'Whad reco mass', 
+                        'fold' : 3
+                        }
+
+
 
 variables['whad_pt_boost'] = {
             'name': "w_had_pt",
