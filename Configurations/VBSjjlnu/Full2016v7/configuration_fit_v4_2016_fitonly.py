@@ -5,7 +5,7 @@ tag = 'fit_v4_2016_fitonly'
 direc = 'conf_fit_v4'
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFile_'+tag + "_fitonly"
+outputDir = 'rootFile_'+tag 
 
 # file with TTree aliases
 aliasesFile = direc+'/aliases_tree.py'
