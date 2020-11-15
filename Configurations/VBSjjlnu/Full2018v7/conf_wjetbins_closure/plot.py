@@ -50,7 +50,6 @@ palette = {
     "Wjets_deta1": (247, 235, 7), #f7eb07
 '''
 
-jetbin_detabins = [3,3,2]
 #wjets_palette = ['#FFF59D', '#FFEE58', '#FFD54F', '#FFB300', '#FF8F00', '#F57C00', '#E65100','#BF360C']
 wjets_palette = ['#DD2C00', '#FF3D00',  '#FF6D00','#F57C00', '#FFAB00', '#FFC400', '#FFEA00', '#FFFF00']
 

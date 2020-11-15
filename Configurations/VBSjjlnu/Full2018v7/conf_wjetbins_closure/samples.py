@@ -177,7 +177,7 @@ samples['top'] = {    'name'   :   nanoGetSampleFiles(directory_bkg,'TTTo2L2Nu')
                                  + nanoGetSampleFiles(directory_bkg,'TTWjets'),
                                 # +  nanoGetSampleFiles(directory_bkg,'TTWJetsToLNu'), #also this is available
                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-                     'FilesPerJob' : 5,
+                     'FilesPerJob' : 8,
                      'EventsPerJob' : 70000,
                      'suppressNegative' :['all'],
                      'suppressNegativeNuisances' :['all'],
@@ -374,4 +374,4 @@ for Run in DataRun :
 
 #samples = {   key:v for key,v in samples.items() if key  in ["DY","Fake", "VV"]}
 
-#samples = {   key:v for key,v in samples.items() if key  in ["Wjets_HT"]}
+#samples = {   key:v for key,v in samples.items() if key  in ["top"]}

@@ -235,7 +235,7 @@ jes_var = {
                 'mapDown': 'JESdo',
                 
 }
-split_nuisance_samples_dir("JES", jes_var, 'JES', [(getSamplesWithout(mc_norm, ["Vg", "VgS"]), directory_bkg), (mc_sep, directory_signal)])
+split_nuisance_samples_dir("JES", jes_var, 'JES', [(getSamplesWithout(mc_norm, ["Vg", "VgS","top"]), directory_bkg), (mc_sep, directory_signal)])
 
 # # Only total variation since it is small
 # fatjetjes_var = {
