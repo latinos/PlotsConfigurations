@@ -287,16 +287,16 @@ split_nuisance_samples_dir('fatjetJER', fatjer_var, 'fatjetJER', [(getSamplesWit
 
 
 
-
+#### TO be added again
 # # ##### MET energy scale
-met_var = {
-                'name'  : 'CMS_scale_met_2016',
-                'kind'  : 'suffix',
-                'type'  : 'shape',
-                'mapUp': 'METup',
-                'mapDown': 'METup',
-}
-split_nuisance_samples_dir('MET', met_var, 'MET', [(mc_norm, directory_bkg), (mc_sep, directory_signal)])
+# met_var = {
+#                 'name'  : 'CMS_scale_met_2016',
+#                 'kind'  : 'suffix',
+#                 'type'  : 'shape',
+#                 'mapUp': 'METup',
+#                 'mapDown': 'METdo', # it was wrong!
+# }
+# split_nuisance_samples_dir('MET', met_var, 'MET', [(mc_norm, directory_bkg), (mc_sep, directory_signal)])
 
 
 

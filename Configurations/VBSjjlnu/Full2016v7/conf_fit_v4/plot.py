@@ -63,7 +63,6 @@ groupPlot['Vg+VgS']  = {
               }
 
 
-
 groupPlot['DY']  = {  
                 'nameHR' : "DY",
                 'isSignal' : 0,

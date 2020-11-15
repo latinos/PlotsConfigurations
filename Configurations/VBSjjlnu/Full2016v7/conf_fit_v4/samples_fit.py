@@ -238,7 +238,7 @@ samples['Wjets_HT'] = { 'name' :
           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT2500_inf_ext1')
           ,
         'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch + '* EWKnloW', #added Lo to NLO factors
-        'FilesPerJob' : 3,
+        'FilesPerJob' : 2,
         'subsamples': {
             "res_1": '(VBS_category==1) && (vbs_jets_pt < 100)',
             "res_2": '(VBS_category==1) && (vbs_jets_pt >= 100 && vbs_jets_pt < 200)',
