@@ -252,29 +252,29 @@ aliases['veto_fatjet_180'] = {
 
 ##################################
 
-aliases['fatjet_TvsQCD'] = {
-    'expr': 'FatJet_deepTag_TvsQCD[CleanFatJet_jetIdx[0]]'
-}
+# aliases['fatjet_TvsQCD'] = {
+#     'expr': 'FatJet_deepTag_TvsQCD[CleanFatJet_jetIdx[0]]'
+# }
 
-aliases['fatjet_ZvsQCD'] = {
-    'expr': 'FatJet_deepTag_ZvsQCD[CleanFatJet_jetIdx[0]]'
-}
+# aliases['fatjet_ZvsQCD'] = {
+#     'expr': 'FatJet_deepTag_ZvsQCD[CleanFatJet_jetIdx[0]]'
+# }
 
-aliases['fatjet_WvsQCD'] = {
-    'expr': 'FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]]'
-}
+# aliases['fatjet_WvsQCD'] = {
+#     'expr': 'FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]]'
+# }
 
-aliases['fatjet_subjet1_pt'] = {
-    'expr': 'SubJet_pt[FatJet_subJetIdx1[CleanFatJet_jetIdx[0]]]'
-}
+# aliases['fatjet_subjet1_pt'] = {
+#     'expr': 'SubJet_pt[FatJet_subJetIdx1[CleanFatJet_jetIdx[0]]]'
+# }
 
-aliases['fatjet_subjet2_pt'] = {
-    'expr': 'SubJet_pt[FatJet_subJetIdx2[CleanFatJet_jetIdx[0]]]'
-}
+# aliases['fatjet_subjet2_pt'] = {
+#     'expr': 'SubJet_pt[FatJet_subJetIdx2[CleanFatJet_jetIdx[0]]]'
+# }
 
-aliases['fatjet_subjet_ptratio'] = {
-    'expr': 'SubJet_pt[FatJet_subJetIdx2[CleanFatJet_jetIdx[0]]] / SubJet_pt[FatJet_subJetIdx1[CleanFatJet_jetIdx[0]]]'
-}
+# aliases['fatjet_subjet_ptratio'] = {
+#     'expr': 'SubJet_pt[FatJet_subJetIdx2[CleanFatJet_jetIdx[0]]] / SubJet_pt[FatJet_subJetIdx1[CleanFatJet_jetIdx[0]]]'
+# }
 
 ###################################3
 # QGL variables
@@ -342,30 +342,30 @@ aliases['BoostedWtagSF_ptextr'] = {
 
 #########################
 
-mva_reader_path = os.getenv('CMSSW_BASE') + '/src/PlotsConfigurations/Configurations/VBSjjlnu/macros/'
-models_path = '/eos/home-d/dvalsecc/www/VBSPlots/DNN_archive/FullRun2_v7/FullRun2_v7/'
+# mva_reader_path = os.getenv('CMSSW_BASE') + '/src/PlotsConfigurations/Configurations/VBSjjlnu/macros/'
+# models_path = '/eos/home-d/dvalsecc/www/VBSPlots/DNN_archive/FullRun2_v7/FullRun2_v7/'
 
-aliases['DNNoutput_boosted'] = {
-    'class': 'MVAReaderBoosted',
-    'args': ( models_path +'boost_sig/models/v8_b/',  models_path +'boost_sig/models/v8_b/cumulative_signal_2018.root', False, 0),
-    'linesToAdd':[
-        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-        'gSystem->Load("libDNNEvaluator.so")',
-        '.L ' + mva_reader_path + 'mva_reader_boosted_v6b.cc+', 
-    ],
-}
+# aliases['DNNoutput_boosted'] = {
+#     'class': 'MVAReaderBoosted',
+#     'args': ( models_path +'boost_sig/models/v8_b/',  models_path +'boost_sig/models/v8_b/cumulative_signal_2018.root', False, 0),
+#     'linesToAdd':[
+#         'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+#         'gSystem->Load("libDNNEvaluator.so")',
+#         '.L ' + mva_reader_path + 'mva_reader_boosted_v6b.cc+', 
+#     ],
+# }
 
-aliases['DNNoutput_resolved'] = {
-    'class': 'MVAReaderResolved',
-    'args': ( models_path+ 'res_sig/models/v3_b/',models_path+ 'res_sig/models/v3_b/cumulative_signal_2018.root', False, 1),
-    'linesToAdd':[
-        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-        'gSystem->Load("libDNNEvaluator.so")',
-        '.L ' + mva_reader_path + 'mva_reader_resolved_v3b.cc+', 
-    ],
-}
+# aliases['DNNoutput_resolved'] = {
+#     'class': 'MVAReaderResolved',
+#     'args': ( models_path+ 'res_sig/models/v3_b/',models_path+ 'res_sig/models/v3_b/cumulative_signal_2018.root', False, 1),
+#     'linesToAdd':[
+#         'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+#         'gSystem->Load("libDNNEvaluator.so")',
+#         '.L ' + mva_reader_path + 'mva_reader_resolved_v3b.cc+', 
+#     ],
+# }
 
-aliases['DNNoutput'] = {
-    'expr': '(VBS_category==0)*(DNNoutput_boosted) + (VBS_category==1)*(DNNoutput_resolved)'
-}
+# aliases['DNNoutput'] = {
+#     'expr': '(VBS_category==0)*(DNNoutput_boosted) + (VBS_category==1)*(DNNoutput_resolved)'
+# }
 
