@@ -20,6 +20,10 @@ variables['tree'] = {
             'vbs_1_eta': 'vbs_1_eta',
             'vjet_0_eta': 'vjet_0_eta',
             'vjet_1_eta': 'vjet_1_eta',
+            'vbs_0_pt': 'vbs_0_pt',
+            'vbs_1_pt': 'vbs_1_pt',
+            'vjet_0_pt': 'vjet_0_pt',
+            'vjet_1_pt': 'vjet_1_pt',
         },
 }
 
