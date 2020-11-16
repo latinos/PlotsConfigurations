@@ -58,6 +58,10 @@ Repeat, but with data-blind signal region:
 
     mkComb.py --pycfg=configuration.py --combineLocation=$HOME/work/combine/CMSSW_10_2_13/src/ --combcfg=comb_ggH_SF.py
 
+Drop nuisances giving negative values:
+
+     ./dropNuisances.sh
+
 ### Compute significance and best fit
 
     mkOptim.py --pycfg=configuration.py --combineLocation=$HOME/work/combine/CMSSW_10_2_13/src/ --combcfg=comb_ggH_SF.py --fomList=SExpPre,BestFit
