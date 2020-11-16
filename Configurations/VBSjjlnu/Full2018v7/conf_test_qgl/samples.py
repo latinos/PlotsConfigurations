@@ -379,7 +379,7 @@ samples['Fake'] = {
   'weight': METFilter_DATA+'*'+fakeW,
   'weights': [],
   'isData': ['all'],
-  'FilesPerJob' : 12,
+  'FilesPerJob' : 20,
 }
 
 for _, sd in DataRun:
@@ -398,7 +398,7 @@ samples['DATA']  = {   'name': [ ] ,
                        'weight' : METFilter_DATA+'*'+LepWPCut,
                        'weights' : [ ],
                        'isData': ['all'],
-                       'FilesPerJob' : 12,
+                       'FilesPerJob' : 20,
                   }
 
 for Run in DataRun :
@@ -410,4 +410,4 @@ for Run in DataRun :
 
 #samples = {   key:v for key,v in samples.items() if key  in ["DY","Fake", "VV"]}
 
-#samples = {   key:v for key,v in samples.items() if key  in ["Wjets_HT"]}
+#samples = {   key:v for key,v in samples.items() if key  in ["DATA"]}
