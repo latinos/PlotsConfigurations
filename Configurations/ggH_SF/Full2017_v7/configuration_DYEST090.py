@@ -2,7 +2,7 @@
 
 treeName = 'Events'
 
-tag = 'DYESTIM_2017_v7_DYMVA090'
+tag = 'DYESTIM_ggH_SF_2017_v7_DYMVA090'
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFile'

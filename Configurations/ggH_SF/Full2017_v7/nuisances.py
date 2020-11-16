@@ -264,24 +264,25 @@ for js in jes_systs:
       'type': 'shape',
       'mapUp': js+'up',
       'mapDown': js+'do',
-      'samples': dict((skey, ['1', '1']) for skey in mc),
+      'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['DY']),
       'folderUp': folderup,
       'folderDown': folderdo,
       'AsLnN': '1'
   }
 
-##### Jet energy resolution
-nuisances['JER'] = {
-    'name': 'CMS_res_j_2017',
-    'kind': 'suffix',
-    'type': 'shape',
-    'mapUp': 'JERup',
-    'mapDown': 'JERdo',
-    'samples': dict((skey, ['1', '1']) for skey in mc),
-    'folderUp': makeMCDirectory('JERup_suffix'),
-    'folderDown': makeMCDirectory('JERdo_suffix'),
-    'AsLnN': '1'
-}
+# Currently not working
+# ##### Jet energy resolution
+# nuisances['JER'] = {
+#     'name': 'CMS_res_j_2017',
+#     'kind': 'suffix',
+#     'type': 'shape',
+#     'mapUp': 'JERup',
+#     'mapDown': 'JERdo',
+#     'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['DY']),
+#     'folderUp': makeMCDirectory('JERup_suffix'),
+#     'folderDown': makeMCDirectory('JERdo_suffix'),
+#     'AsLnN': '1'
+# }
 
 ##### MET energy scale
 
