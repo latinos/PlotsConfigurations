@@ -3,7 +3,7 @@
 
 # # # name of samples here must match keys in samples.py 
 
-# mc =["DY", "top", "VV", "VVV", "VBF-V", "Vg", "VgS", "top", "VBS", "Wjets_HT"]
+mc =["DY", "top", "VV", "VVV", "VBF-V", "Vg", "VgS", "top", "VBS", "Wjets_HT"]
 
 
 # phase_spaces_boost = []
@@ -518,14 +518,14 @@ nuisances['lumi_CurrCalib'] = {
 
 
 # ## Use the following if you want to apply the automatic combine MC stat nuisances.
-# nuisances['stat']  = {
-#               'type'  : 'auto',
-#               'maxPoiss'  : '10',
-#               'includeSignal'  : '1',
-#               #  nuisance ['maxPoiss'] =  Number of threshold events for Poisson modelling
-#               #  nuisance ['includeSignal'] =  Include MC stat nuisances on signal processes (1=True, 0=False)
-#               'samples' : {}
-#              }
+nuisances['stat']  = {
+              'type'  : 'auto',
+              'maxPoiss'  : '10',
+              'includeSignal'  : '1',
+              #  nuisance ['maxPoiss'] =  Number of threshold events for Poisson modelling
+              #  nuisance ['includeSignal'] =  Include MC stat nuisances on signal processes (1=True, 0=False)
+              'samples' : {}
+             }
 
 
 
