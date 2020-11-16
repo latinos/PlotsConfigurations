@@ -60,12 +60,59 @@ std::vector<RResultPtr<TH1D>> get_histograms(RNode df, string label){
 }
 
 
+TGraph * morph_higheta_gluon;
+TGraph * morph_loweta_gluon;
+TGraph * morph_higheta_quark;
+TGraph * morph_loweta_quark;
+bool do_morph_gluon;
+bool do_morph_quark;
+
+double morph_gluon(double x, double eta){
+    if (!do_morph_gluon) return x;
+    if (x<= 0.) return x;
+    if (x>= 1.) return x;
+    if (abs(eta)<3)   return morph_loweta_gluon->Eval(x);
+    if (abs(eta)>=3)  return morph_higheta_gluon->Eval(x);
+    return x;
+}
+double morph_quark(double x, double eta){
+    if (!do_morph_quark) return x;
+    if (x<= 0.) return x;
+    if (x>= 1.) return x;
+    if (abs(eta)<3)   return morph_loweta_quark->Eval(x);
+    if (abs(eta)>=3)  return morph_higheta_quark->Eval(x);
+    return x;
+}
+
 int main(int argc, char** argv){
 
     string base_file { argv[1] };
     string region {argv[2]}; 
     
     std::string output {argv[3]};
+    
+    int do_morph =  std::atoi(argv[4]);
+    do_morph_gluon = do_morph & 1;
+    do_morph_quark = do_morph>>1 & 1;
+    cout << "Morphing gluons "<<do_morph_gluon << " | Morphing quark: "<<do_morph_quark << endl;
+    char* morph_file_gluon {argv[5]};
+    char* mf_higheta_gluon {argv[6]};
+    char* mf_loweta_gluon {argv[7]};
+    char* morph_file_quark {argv[8]};
+    char* mf_higheta_quark {argv[9]};
+    char* mf_loweta_quark {argv[10]};
+
+    TFile mfile_gluon {morph_file_gluon, "READ"};
+    if (do_morph_gluon){
+        morph_loweta_gluon = (TGraph*) mfile_gluon.Get(mf_loweta_gluon);
+        morph_higheta_gluon = (TGraph*) mfile_gluon.Get(mf_higheta_gluon);
+    }
+    TFile mfile_quark {morph_file_quark, "READ"};
+    if (do_morph_quark){
+        morph_loweta_quark = (TGraph*) mfile_quark.Get(mf_loweta_quark);
+        morph_higheta_quark = (TGraph*) mfile_quark.Get(mf_higheta_quark);
+    }
+
     bool mt = true;
     
     std::vector<string> samples_mc = {"VBS", "DY", "Wjets_HT", "top", "VV","VVV","VBF-V", "Vg","VgS"};
@@ -90,43 +137,43 @@ int main(int argc, char** argv){
                     .Define("vjet_0_aeta","abs(vjet_0_eta)")
                     .Define("vjet_1_aeta","abs(vjet_1_eta)");
         
-        auto df_vjet0_gluon = rdfa.Filter("vjet_0_partfl_res == 21");
-        auto df_vjet1_gluon = rdfa.Filter("vjet_1_partfl_res == 21");
-        auto df_vbs0_gluon = rdfa.Filter("vbs_0_partfl_res == 21");
-        auto df_vbs1_gluon = rdfa.Filter("vbs_1_partfl_res == 21");
-        auto df_vjet0_quark = rdfa.Filter("vjet_0_partfl_res != 21");
-        auto df_vjet1_quark = rdfa.Filter("vjet_1_partfl_res != 21");
-        auto df_vbs0_quark = rdfa.Filter("vbs_0_partfl_res != 21");
-        auto df_vbs1_quark = rdfa.Filter("vbs_1_partfl_res != 21");
+        auto df_vjet0_gluon = rdfa.Filter("vjet_0_partfl_res == 21").Define("vjet_0_qgl_res_morphed", morph_gluon, {"vjet_0_qgl_res","vjet_0_eta"});
+        auto df_vjet1_gluon = rdfa.Filter("vjet_1_partfl_res == 21").Define("vjet_1_qgl_res_morphed", morph_gluon, {"vjet_1_qgl_res","vjet_1_eta"});
+        auto df_vbs0_gluon = rdfa.Filter("vbs_0_partfl_res == 21").Define("vbs_0_qgl_res_morphed", morph_gluon, {"vbs_0_qgl_res","vbs_0_eta"});
+        auto df_vbs1_gluon = rdfa.Filter("vbs_1_partfl_res == 21").Define("vbs_1_qgl_res_morphed", morph_gluon, {"vbs_1_qgl_res","vbs_1_eta"});
+        auto df_vjet0_quark = rdfa.Filter("vjet_0_partfl_res != 21").Define("vjet_0_qgl_res_morphed", morph_quark, {"vjet_0_qgl_res","vjet_0_eta"});
+        auto df_vjet1_quark = rdfa.Filter("vjet_1_partfl_res != 21").Define("vjet_1_qgl_res_morphed", morph_quark, {"vjet_1_qgl_res","vjet_1_eta"});
+        auto df_vbs0_quark = rdfa.Filter("vbs_0_partfl_res != 21").Define("vbs_0_qgl_res_morphed", morph_quark, {"vbs_0_qgl_res","vbs_0_eta"});
+        auto df_vbs1_quark = rdfa.Filter("vbs_1_partfl_res != 21").Define("vbs_1_qgl_res_morphed", morph_quark, {"vbs_1_qgl_res","vbs_1_eta"});
 
 
         std::map<string, RResultPtr<TH1D>> histos = {
-            {"vjet0_gluon", df_vjet0_gluon.Histo1D({(sample+ "_vjet0_gluon").c_str(), "QGL", 100,0,1}, "vjet_0_qgl_res", "weight")},
-            {"vjet0_quark", df_vjet0_quark.Histo1D({(sample+ "_vjet0_quark").c_str(), "QGL", 100,0,1}, "vjet_0_qgl_res", "weight")},
-            {"vjet1_gluon", df_vjet1_gluon.Histo1D({(sample+ "_vjet1_gluon").c_str(), "QGL", 100,0,1}, "vjet_1_qgl_res", "weight")},
-            {"vjet1_quark", df_vjet1_quark.Histo1D({(sample+ "_vjet1_quark").c_str(), "QGL", 100,0,1}, "vjet_1_qgl_res", "weight")},
-            {"vbs0_gluon", df_vbs0_gluon.Histo1D({(sample+ "_vbs0_gluon").c_str(), "QGL", 100,0,1}, "vbs_0_qgl_res", "weight")},
-            {"vbs0_quark", df_vbs0_quark.Histo1D({(sample+ "_vbs0_quark").c_str(), "QGL", 100,0,1}, "vbs_0_qgl_res", "weight")},
-            {"vbs1_gluon", df_vbs1_gluon.Histo1D({(sample+ "_vbs1_gluon").c_str(), "QGL", 100,0,1}, "vbs_1_qgl_res", "weight")},
-            {"vbs1_quark", df_vbs1_quark.Histo1D({(sample+ "_vbs1_quark").c_str(), "QGL", 100,0,1}, "vbs_1_qgl_res", "weight")},
+            {"vjet0_gluon", df_vjet0_gluon.Histo1D({(sample+ "_vjet0_gluon").c_str(), "QGL", 100,0,1}, "vjet_0_qgl_res_morphed", "weight")},
+            {"vjet0_quark", df_vjet0_quark.Histo1D({(sample+ "_vjet0_quark").c_str(), "QGL", 100,0,1}, "vjet_0_qgl_res_morphed", "weight")},
+            {"vjet1_gluon", df_vjet1_gluon.Histo1D({(sample+ "_vjet1_gluon").c_str(), "QGL", 100,0,1}, "vjet_1_qgl_res_morphed", "weight")},
+            {"vjet1_quark", df_vjet1_quark.Histo1D({(sample+ "_vjet1_quark").c_str(), "QGL", 100,0,1}, "vjet_1_qgl_res_morphed", "weight")},
+            {"vbs0_gluon", df_vbs0_gluon.Histo1D({(sample+ "_vbs0_gluon").c_str(), "QGL", 100,0,1}, "vbs_0_qgl_res_morphed", "weight")},
+            {"vbs0_quark", df_vbs0_quark.Histo1D({(sample+ "_vbs0_quark").c_str(), "QGL", 100,0,1}, "vbs_0_qgl_res_morphed", "weight")},
+            {"vbs1_gluon", df_vbs1_gluon.Histo1D({(sample+ "_vbs1_gluon").c_str(), "QGL", 100,0,1}, "vbs_1_qgl_res_morphed", "weight")},
+            {"vbs1_quark", df_vbs1_quark.Histo1D({(sample+ "_vbs1_quark").c_str(), "QGL", 100,0,1}, "vbs_1_qgl_res_morphed", "weight")},
 
-            {"vjet0_higheta_gluon", df_vjet0_gluon.Filter("vjet_0_aeta > 3").Histo1D({(sample+ "_vjet0_higheta_gluon").c_str(), "QGL", 100,0,1}, "vjet_0_qgl_res", "weight")},
-            {"vjet0_higheta_quark", df_vjet0_quark.Filter("vjet_0_aeta > 3").Histo1D({(sample+ "_vjet0_higheta_quark").c_str(), "QGL", 100,0,1}, "vjet_0_qgl_res", "weight")},
-            {"vjet1_higheta_gluon", df_vjet1_gluon.Filter("vjet_1_aeta > 3").Histo1D({(sample+ "_vjet1_higheta_gluon").c_str(), "QGL", 100,0,1}, "vjet_1_qgl_res", "weight")},
+            {"vjet0_higheta_gluon", df_vjet0_gluon.Filter("vjet_0_aeta > 3").Histo1D({(sample+ "_vjet0_higheta_gluon").c_str(), "QGL", 100,0,1}, "vjet_0_qgl_res_morphed", "weight")},
+            {"vjet0_higheta_quark", df_vjet0_quark.Filter("vjet_0_aeta > 3").Histo1D({(sample+ "_vjet0_higheta_quark").c_str(), "QGL", 100,0,1}, "vjet_0_qgl_res_morphed", "weight")},
+            {"vjet1_higheta_gluon", df_vjet1_gluon.Filter("vjet_1_aeta > 3").Histo1D({(sample+ "_vjet1_higheta_gluon").c_str(), "QGL", 100,0,1}, "vjet_1_qgl_res_morphed", "weight")},
             {"vjet1_higheta_quark", df_vjet1_quark.Filter("vjet_1_aeta > 3").Histo1D({(sample+ "_vjet1_higheta_quark").c_str(), "QGL", 100,0,1}, "vjet_1_qgl_res", "weight")},
-            {"vbs0_higheta_gluon", df_vbs0_gluon.Filter("vbs_0_aeta > 3").Histo1D({(sample+ "_vbs0_higheta_gluon").c_str(), "QGL", 100,0,1}, "vbs_0_qgl_res", "weight")},
-            {"vbs0_higheta_quark", df_vbs0_quark.Filter("vbs_0_aeta > 3").Histo1D({(sample+ "_vbs0_higheta_quark").c_str(), "QGL", 100,0,1}, "vbs_0_qgl_res", "weight")},
-            {"vbs1_higheta_gluon", df_vbs1_gluon.Filter("vbs_1_aeta > 3").Histo1D({(sample+ "_vbs1_higheta_gluon").c_str(), "QGL", 100,0,1}, "vbs_1_qgl_res", "weight")},
-            {"vbs1_higheta_quark", df_vbs1_quark.Filter("vbs_1_aeta > 3").Histo1D({(sample+ "_vbs1_higheta_quark").c_str(), "QGL", 100,0,1}, "vbs_1_qgl_res", "weight")},
+            {"vbs0_higheta_gluon", df_vbs0_gluon.Filter("vbs_0_aeta > 3").Histo1D({(sample+ "_vbs0_higheta_gluon").c_str(), "QGL", 100,0,1}, "vbs_0_qgl_res_morphed", "weight")},
+            {"vbs0_higheta_quark", df_vbs0_quark.Filter("vbs_0_aeta > 3").Histo1D({(sample+ "_vbs0_higheta_quark").c_str(), "QGL", 100,0,1}, "vbs_0_qgl_res_morphed", "weight")},
+            {"vbs1_higheta_gluon", df_vbs1_gluon.Filter("vbs_1_aeta > 3").Histo1D({(sample+ "_vbs1_higheta_gluon").c_str(), "QGL", 100,0,1}, "vbs_1_qgl_res_morphed", "weight")},
+            {"vbs1_higheta_quark", df_vbs1_quark.Filter("vbs_1_aeta > 3").Histo1D({(sample+ "_vbs1_higheta_quark").c_str(), "QGL", 100,0,1}, "vbs_1_qgl_res_morphed", "weight")},
 
-            {"vjet0_loweta_gluon", df_vjet0_gluon.Filter("vjet_0_aeta <= 2").Histo1D({(sample+ "_vjet0_loweta_gluon").c_str(), "QGL", 100,0,1}, "vjet_0_qgl_res", "weight")},
-            {"vjet0_loweta_quark", df_vjet0_quark.Filter("vjet_0_aeta <= 2").Histo1D({(sample+ "_vjet0_loweta_quark").c_str(), "QGL", 100,0,1}, "vjet_0_qgl_res", "weight")},
-            {"vjet1_loweta_gluon", df_vjet1_gluon.Filter("vjet_1_aeta <= 2").Histo1D({(sample+ "_vjet1_loweta_gluon").c_str(), "QGL", 100,0,1}, "vjet_1_qgl_res", "weight")},
-            {"vjet1_loweta_quark", df_vjet1_quark.Filter("vjet_1_aeta <= 2").Histo1D({(sample+ "_vjet1_loweta_quark").c_str(), "QGL", 100,0,1}, "vjet_1_qgl_res", "weight")},
-            {"vbs0_loweta_gluon", df_vbs0_gluon.Filter("vbs_0_aeta <= 2").Histo1D({(sample+ "_vbs0_loweta_gluon").c_str(), "QGL", 100,0,1}, "vbs_0_qgl_res", "weight")},
-            {"vbs0_loweta_quark", df_vbs0_quark.Filter("vbs_0_aeta <= 2").Histo1D({(sample+ "_vbs0_loweta_quark").c_str(), "QGL", 100,0,1}, "vbs_0_qgl_res", "weight")},
-            {"vbs1_loweta_gluon", df_vbs1_gluon.Filter("vbs_1_aeta <= 2").Histo1D({(sample+ "_vbs1_loweta_gluon").c_str(), "QGL", 100,0,1}, "vbs_1_qgl_res", "weight")},
-            {"vbs1_loweta_quark", df_vbs1_quark.Filter("vbs_1_aeta <= 2").Histo1D({(sample+ "_vbs1_loweta_quark").c_str(), "QGL", 100,0,1}, "vbs_1_qgl_res", "weight")},
+            {"vjet0_loweta_gluon", df_vjet0_gluon.Filter("vjet_0_aeta <= 2").Histo1D({(sample+ "_vjet0_loweta_gluon").c_str(), "QGL", 100,0,1}, "vjet_0_qgl_res_morphed", "weight")},
+            {"vjet0_loweta_quark", df_vjet0_quark.Filter("vjet_0_aeta <= 2").Histo1D({(sample+ "_vjet0_loweta_quark").c_str(), "QGL", 100,0,1}, "vjet_0_qgl_res_morphed", "weight")},
+            {"vjet1_loweta_gluon", df_vjet1_gluon.Filter("vjet_1_aeta <= 2").Histo1D({(sample+ "_vjet1_loweta_gluon").c_str(), "QGL", 100,0,1}, "vjet_1_qgl_res_morphed", "weight")},
+            {"vjet1_loweta_quark", df_vjet1_quark.Filter("vjet_1_aeta <= 2").Histo1D({(sample+ "_vjet1_loweta_quark").c_str(), "QGL", 100,0,1}, "vjet_1_qgl_res_morphed", "weight")},
+            {"vbs0_loweta_gluon", df_vbs0_gluon.Filter("vbs_0_aeta <= 2").Histo1D({(sample+ "_vbs0_loweta_gluon").c_str(), "QGL", 100,0,1}, "vbs_0_qgl_res_morphed", "weight")},
+            {"vbs0_loweta_quark", df_vbs0_quark.Filter("vbs_0_aeta <= 2").Histo1D({(sample+ "_vbs0_loweta_quark").c_str(), "QGL", 100,0,1}, "vbs_0_qgl_res_morphed", "weight")},
+            {"vbs1_loweta_gluon", df_vbs1_gluon.Filter("vbs_1_aeta <= 2").Histo1D({(sample+ "_vbs1_loweta_gluon").c_str(), "QGL", 100,0,1}, "vbs_1_qgl_res_morphed", "weight")},
+            {"vbs1_loweta_quark", df_vbs1_quark.Filter("vbs_1_aeta <= 2").Histo1D({(sample+ "_vbs1_loweta_quark").c_str(), "QGL", 100,0,1}, "vbs_1_qgl_res_morphed", "weight")},
 
             {"vjet0_gluon_pt", df_vjet0_gluon.Histo1D({(sample+ "_vjet0_gluon_pt").c_str(), "QGL", 50,30,300}, "vjet_0_pt", "weight")},
             {"vjet0_quark_pt", df_vjet0_quark.Histo1D({(sample+ "_vjet0_quark_pt").c_str(), "QGL", 50,30,300}, "vjet_0_pt", "weight")},
