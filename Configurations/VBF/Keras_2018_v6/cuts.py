@@ -7,7 +7,7 @@ supercut = 'mll>12 \
             && Sum$(CleanJet_pt>30)==2\
             && ptll>30 \
             && PuppiMET_pt>20 \
-            && mjj>200 \
+            && mjj>120 \
             '
 
 ## Signal regions
@@ -34,14 +34,12 @@ cuts['hww2l2v_13TeV_of2j_DNN_top']  = ' (mth>=60 && mth<125) \
                                       && mtw2>30 \
                                       '
 
-
 cuts['hww2l2v_13TeV_of2j_DNN_ww']  = ' (mth>=60 && mth<125) \
                                       && (abs(CleanJet_eta[0])<4.7) && (abs(CleanJet_eta[1])<4.7) \
                                       && wwlike \
                                       && bVeto \
                                       && mtw2>30 \
                                       '
-
 
 cuts['hww2l2v_13TeV_of2j_DNN_ggh']  = ' (mth>=60 && mth<125) \
                                       && (abs(CleanJet_eta[0])<4.7) && (abs(CleanJet_eta[1])<4.7) \

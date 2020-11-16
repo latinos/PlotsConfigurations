@@ -647,15 +647,15 @@ nuisances['CRSR_accept_top'] = {
 #   see https://twiki.cern.ch/twiki/bin/viewauth/CMS/HiggsWG/SignalModelingTools
 
 thus = [
-    ('THU_ggH_Mu', 'ggH_mu'),
-    ('THU_ggH_Res', 'ggH_res'),
-    ('THU_ggH_Mig01', 'ggH_mig01'),
-    ('THU_ggH_Mig12', 'ggH_mig12'),
-    ('THU_ggH_VBF2j', 'ggH_VBF2j'),
-    ('THU_ggH_VBF3j', 'ggH_VBF3j'),
-    ('THU_ggH_PT60', 'ggH_pT60'),
-    ('THU_ggH_PT120', 'ggH_pT120'),
-    ('THU_ggH_qmtop', 'ggH_qmtop')
+    ('THU_ggH_Mu', 'ggH_mu_OTF'),
+    ('THU_ggH_Res', 'ggH_res_OTF'),
+    ('THU_ggH_Mig01', 'ggH_mig01_OTF'),
+    ('THU_ggH_Mig12', 'ggH_mig12_OTF'),
+    ('THU_ggH_VBF2j', 'ggH_VBF2j_OTF'),
+    ('THU_ggH_VBF3j', 'ggH_VBF3j_OTF'),
+    ('THU_ggH_PT60', 'ggH_pT60_OTF'),
+    ('THU_ggH_PT120', 'ggH_pT120_OTF'),
+    ('THU_ggH_qmtop', 'ggH_qmtop_OTF')
 ]
 
 for name, vname in thus:
