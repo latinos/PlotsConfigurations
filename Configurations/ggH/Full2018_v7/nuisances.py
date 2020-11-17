@@ -357,6 +357,18 @@ nuisances['PU'] = {
     'AsLnN': '1',
 }
 
+
+### PU ID SF uncertainty
+puid_syst = ['Jet_PUIDSF_up/Jet_PUIDSF', 'Jet_PUIDSF_down/Jet_PUIDSF']
+
+nuisances['jetPUID'] = {
+    'name': 'CMS_PUID_2018',
+    'kind': 'weight',
+    'type': 'shape',
+    'samples': dict((skey, puid_syst) for skey in mc)
+}
+
+
 ##### PS
 nuisances['PS_ISR']  = {
     'name': 'PS_ISR',
