@@ -191,6 +191,7 @@ if useEmbeddedDY:
     'folderDown': treeBaseDir+'/Embedding2018_102X_nAODv6_Full2018v6/DATAl1loose2018v6__l2loose__l2tightOR2018v6__Embedding__EmbElepTdo_suffix/',
     'AsLnN': '1'
   }
+
 ##### Muon Efficiency and energy scale
 
 nuisances['eff_m'] = {
@@ -258,6 +259,7 @@ nuisances['met'] = {
 
 
 ##### Di-Tau vetoing for embedding
+
 if useEmbeddedDY: 
   nuisances['embedveto']  = {
                   'name'  : 'CMS_embed_veto_2018',
@@ -702,6 +704,7 @@ nuisances['QCDscale_gg_ACCEPT'] = {
     },
     'type': 'lnN',
 }
+
 
 ## Use the following if you want to apply the automatic combine MC stat nuisances.
 nuisances['stat'] = {
