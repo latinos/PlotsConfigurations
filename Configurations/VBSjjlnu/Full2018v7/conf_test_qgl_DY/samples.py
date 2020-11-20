@@ -110,10 +110,10 @@ samples['DY'] = {
     'weight': mcCommonWeight + '*( !(Sum$(PhotonGen_isPrompt==1 && PhotonGen_pt>15 && abs(PhotonGen_eta)<2.6) > 0 &&\
                                      Sum$(LeptonGen_isPrompt==1 && LeptonGen_pt>15)>=2) )',
     'FilesPerJob': 8,
-    'subsamples':{
-        "quark": "Alt$(Jet_partonFlavour[CleanJet_jetIdx[0]], 0) != 21",
-        "gluon": "Alt$(Jet_partonFlavour[CleanJet_jetIdx[0]], 0) == 21"
-    }
+    # 'subsamples':{
+    #     "quark": "Alt$(Jet_partonFlavour[CleanJet_jetIdx[0]], 0) != 21",
+    #     "gluon": "Alt$(Jet_partonFlavour[CleanJet_jetIdx[0]], 0) == 21"
+    # }
 }
 addSampleWeight(samples,'DY','DYJetsToTT_MuEle_M-50','DY_NLO_pTllrw')
 addSampleWeight(samples,'DY','DYJetsToLL_M-50_ext2','DY_NLO_pTllrw')
@@ -131,11 +131,11 @@ files = nanoGetSampleFiles(mcDirectory, 'TTTo2L2Nu') + \
 samples['top'] = {
     'name': files,
     'weight': mcCommonWeight,
-    'FilesPerJob': 6,
-    'subsamples':{
-        "quark": "Alt$(Jet_partonFlavour[CleanJet_jetIdx[0]], 0) != 21",
-        "gluon": "Alt$(Jet_partonFlavour[CleanJet_jetIdx[0]], 0) == 21"
-    }
+    'FilesPerJob': 8,
+    # 'subsamples':{
+    #     "quark": "Alt$(Jet_partonFlavour[CleanJet_jetIdx[0]], 0) != 21",
+    #     "gluon": "Alt$(Jet_partonFlavour[CleanJet_jetIdx[0]], 0) == 21"
+    # }
 }
 
 
@@ -147,10 +147,10 @@ samples['WW'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'WWTo2L2Nu'),
     'weight': mcCommonWeight + '*nllW',
     'FilesPerJob': 10,
-    'subsamples':{
-        "quark": "Alt$(Jet_partonFlavour[CleanJet_jetIdx[0]], 0) != 21",
-        "gluon": "Alt$(Jet_partonFlavour[CleanJet_jetIdx[0]], 0) == 21"
-    }
+    # 'subsamples':{
+    #     "quark": "Alt$(Jet_partonFlavour[CleanJet_jetIdx[0]], 0) != 21",
+    #     "gluon": "Alt$(Jet_partonFlavour[CleanJet_jetIdx[0]], 0) == 21"
+    # }
 }
 
 # samples['WWewk'] = {
@@ -174,49 +174,37 @@ samples['ggWW'] = {
     'name': files,
     'weight': mcCommonWeight + '*1.53/1.4', # updating k-factor
     'FilesPerJob': 10,
-    'subsamples':{
-        "quark": "Alt$(Jet_partonFlavour[CleanJet_jetIdx[0]], 0) != 21",
-        "gluon": "Alt$(Jet_partonFlavour[CleanJet_jetIdx[0]], 0) == 21"
-    }
+    # 'subsamples':{
+    #     "quark": "Alt$(Jet_partonFlavour[CleanJet_jetIdx[0]], 0) != 21",
+    #     "gluon": "Alt$(Jet_partonFlavour[CleanJet_jetIdx[0]], 0) == 21"
+    # }
 }
 
-# ######## Vg ########
+######## Vg ########
 
-# files = nanoGetSampleFiles(mcDirectory, 'Wg_MADGRAPHMLM') + \
-#     nanoGetSampleFiles(mcDirectory, 'ZGToLLG')
+files = nanoGetSampleFiles(mcDirectory, 'Wg_MADGRAPHMLM') + \
+    nanoGetSampleFiles(mcDirectory, 'ZGToLLG')
 
-# samples['Vg'] = {
-#     'name': files,
-#     'weight': mcCommonWeightNoMatch + '*(Gen_ZGstar_mass <= 0)',
-#     'FilesPerJob': 10,
-#     'subsamples':{
-#         "quark": "Alt$(Jet_partonFlavour[CleanJet_jetIdx[0]], 0) != 21",
-#         "gluon": "Alt$(Jet_partonFlavour[CleanJet_jetIdx[0]], 0) == 21"
-#     }
-# }
+samples['Vg'] = {
+    'name': files,
+    'weight': mcCommonWeightNoMatch + '*(Gen_ZGstar_mass <= 0)',
+    'FilesPerJob': 10,
+}
 
-# ######## VgS ########
+######## VgS ########
 
-# files = nanoGetSampleFiles(mcDirectory, 'Wg_MADGRAPHMLM') + \
-#     nanoGetSampleFiles(mcDirectory, 'ZGToLLG') + \
-#     nanoGetSampleFiles(mcDirectory, 'WZTo3LNu_mllmin01')
+files = nanoGetSampleFiles(mcDirectory, 'Wg_MADGRAPHMLM') + \
+    nanoGetSampleFiles(mcDirectory, 'ZGToLLG') + \
+    nanoGetSampleFiles(mcDirectory, 'WZTo3LNu_mllmin01')
 
-# samples['VgS'] = {
-#     'name': files,
-#     'weight': mcCommonWeight + ' * (gstarLow * 0.94 + gstarHigh * 1.14)',
-#     'FilesPerJob': 4,
-#     'subsamples': {
-#       'L': 'gstarLow',
-#       'H': 'gstarHigh',
-#       'subsamples':{
-#         "quark": "Alt$(Jet_partonFlavour[CleanJet_jetIdx[0]], 0) != 21",
-#         "gluon": "Alt$(Jet_partonFlavour[CleanJet_jetIdx[0]], 0) == 21"
-#     }
-#     }
-# }
-# addSampleWeight(samples, 'VgS', 'Wg_MADGRAPHMLM', '(Gen_ZGstar_mass > 0 && Gen_ZGstar_mass < 0.1)')
-# addSampleWeight(samples, 'VgS', 'Zg', '(Gen_ZGstar_mass > 0)')
-# addSampleWeight(samples, 'VgS', 'WZTo3LNu_mllmin01', '(Gen_ZGstar_mass > 0.1)')
+samples['VgS'] = {
+    'name': files,
+    'weight': mcCommonWeight + ' * (gstarLow * 0.94 + gstarHigh * 1.14)',
+    'FilesPerJob': 4,
+}
+addSampleWeight(samples, 'VgS', 'Wg_MADGRAPHMLM', '(Gen_ZGstar_mass > 0 && Gen_ZGstar_mass < 0.1)')
+addSampleWeight(samples, 'VgS', 'Zg', '(Gen_ZGstar_mass > 0)')
+addSampleWeight(samples, 'VgS', 'WZTo3LNu_mllmin01', '(Gen_ZGstar_mass > 0.1)')
 
 ############ VZ ############
 
@@ -229,10 +217,10 @@ samples['VZ'] = {
     'name': files,
     'weight': mcCommonWeight + '*1.11',
     'FilesPerJob': 10,
-    'subsamples':{
-        "quark": "Alt$(Jet_partonFlavour[CleanJet_jetIdx[0]], 0) != 21",
-        "gluon": "Alt$(Jet_partonFlavour[CleanJet_jetIdx[0]], 0) == 21"
-    }
+    # 'subsamples':{
+    #     "quark": "Alt$(Jet_partonFlavour[CleanJet_jetIdx[0]], 0) != 21",
+    #     "gluon": "Alt$(Jet_partonFlavour[CleanJet_jetIdx[0]], 0) == 21"
+    # }
 }
 
 ########## VVV #########
@@ -246,10 +234,10 @@ samples['VVV'] = {
     'name': files,
     'weight': mcCommonWeight,
     'FilesPerJob': 10,
-    'subsamples':{
-        "quark": "Alt$(Jet_partonFlavour[CleanJet_jetIdx[0]], 0) != 21",
-        "gluon": "Alt$(Jet_partonFlavour[CleanJet_jetIdx[0]], 0) == 21"
-    }
+    # 'subsamples':{
+    #     "quark": "Alt$(Jet_partonFlavour[CleanJet_jetIdx[0]], 0) != 21",
+    #     "gluon": "Alt$(Jet_partonFlavour[CleanJet_jetIdx[0]], 0) == 21"
+    # }
 }
 
 ###########################################

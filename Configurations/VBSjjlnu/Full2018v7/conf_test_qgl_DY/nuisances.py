@@ -146,17 +146,17 @@ nuisances['eff_e'] = {
     'samples': dict((skey, ['SFweightEleUp', 'SFweightEleDown']) for skey in mc_emb),
 }
 
-nuisances['electronpt'] = {
-    'name': 'CMS_scale_e_2018',
-    'kind': 'suffix',
-    'type': 'shape',
-    'mapUp': 'ElepTup',
-    'mapDown': 'ElepTdo',
-    'samples': dict((skey, ['1', '1']) for skey in mc),
-    'folderUp': makeMCDirectory('ElepTup_suffix'),
-    'folderDown': makeMCDirectory('ElepTdo_suffix'),
-    'AsLnN': '1'
-}
+# nuisances['electronpt'] = {
+#     'name': 'CMS_scale_e_2018',
+#     'kind': 'suffix',
+#     'type': 'shape',
+#     'mapUp': 'ElepTup',
+#     'mapDown': 'ElepTdo',
+#     'samples': dict((skey, ['1', '1']) for skey in mc),
+#     'folderUp': makeMCDirectory('ElepTup_suffix'),
+#     'folderDown': makeMCDirectory('ElepTdo_suffix'),
+#     'AsLnN': '1'
+# }
 
 
 ##### Muon Efficiency and energy scale
@@ -168,17 +168,17 @@ nuisances['eff_m'] = {
     'samples': dict((skey, ['SFweightMuUp', 'SFweightMuDown']) for skey in mc_emb),
 }
 
-nuisances['muonpt'] = {
-    'name': 'CMS_scale_m_2018',
-    'kind': 'suffix',
-    'type': 'shape',
-    'mapUp': 'MupTup',
-    'mapDown': 'MupTdo',
-    'samples': dict((skey, ['1', '1']) for skey in mc),
-    'folderUp': makeMCDirectory('MupTup_suffix'),
-    'folderDown': makeMCDirectory('MupTdo_suffix'),
-    'AsLnN': '1'
-}
+# nuisances['muonpt'] = {
+#     'name': 'CMS_scale_m_2018',
+#     'kind': 'suffix',
+#     'type': 'shape',
+#     'mapUp': 'MupTup',
+#     'mapDown': 'MupTdo',
+#     'samples': dict((skey, ['1', '1']) for skey in mc),
+#     'folderUp': makeMCDirectory('MupTup_suffix'),
+#     'folderDown': makeMCDirectory('MupTdo_suffix'),
+#     'AsLnN': '1'
+# }
 
 ##### Jet energy scale
 #jes_systs = ['JESAbsolute','JESAbsolute_2018','JESBBEC1','JESBBEC1_2018','JESEC2','JESEC2_2018','JESFlavorQCD','JESHF','JESHF_2018','JESRelativeBal','JESRelativeSample_2018']
@@ -198,17 +198,17 @@ nuisances['muonpt'] = {
 
 ##### MET energy scale
 
-nuisances['met'] = {
-    'name': 'CMS_scale_met_2018',
-    'kind': 'suffix',
-    'type': 'shape',
-    'mapUp': 'METup',
-    'mapDown': 'METdo',
-    'samples': dict((skey, ['1', '1']) for skey in mc),
-    'folderUp': makeMCDirectory('METup_suffix'),
-    'folderDown': makeMCDirectory('METdo_suffix'),
-    'AsLnN': '1'
-}
+# nuisances['met'] = {
+#     'name': 'CMS_scale_met_2018',
+#     'kind': 'suffix',
+#     'type': 'shape',
+#     'mapUp': 'METup',
+#     'mapDown': 'METdo',
+#     'samples': dict((skey, ['1', '1']) for skey in mc),
+#     'folderUp': makeMCDirectory('METup_suffix'),
+#     'folderDown': makeMCDirectory('METdo_suffix'),
+#     'AsLnN': '1'
+# }
 
 ##### Pileup
 

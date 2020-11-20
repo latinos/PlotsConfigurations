@@ -163,3 +163,61 @@ aliases['SFweightMuDown'] = {
     'expr': 'LepSF2l__mu_'+muWP+'__Do',
     'samples': mc
 }
+
+
+##############################################
+
+morphing_file = configurations + "/VBSjjlnu/weights_files/morphing_functions_iter1.root"
+# quark higheta and loweta, gluon only loweta
+do_morph = "1101"
+mrp_higheta_gluon = "j2_higheta_pt0_gluon"
+mrp_loweta_gluon = "j3_loweta_pt0_gluon"
+mrp_higheta_quark = "j0_higheta_pt1_quark"
+mrp_loweta_quark = "j0_loweta_pt1_quark"
+
+
+aliases['j0_qgl'] = {
+    'class': 'QglVarsMorphingPtOrder',
+    'args': ('j0_qgl', morphing_file, do_morph, mrp_higheta_gluon, mrp_loweta_gluon, mrp_higheta_quark, mrp_loweta_quark),
+    'linesToAdd' : [
+        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+        '.L {}/VBSjjlnu/macros/qgl_vars_morphing_ptorder.cc+'.format(configurations)
+    ]   
+}
+
+aliases['j1_qgl'] = {
+    'class': 'QglVarsMorphingPtOrder',
+    'args': ('j1_qgl', morphing_file, do_morph, mrp_higheta_gluon, mrp_loweta_gluon, mrp_higheta_quark, mrp_loweta_quark), 
+} 
+
+aliases['j2_qgl'] = {
+    'class': 'QglVarsMorphingPtOrder',
+    'args': ('j2_qgl', morphing_file, do_morph, mrp_higheta_gluon, mrp_loweta_gluon, mrp_higheta_quark, mrp_loweta_quark), 
+} 
+
+aliases['j3_qgl'] = {
+    'class': 'QglVarsMorphingPtOrder',
+    'args': ('j3_qgl', morphing_file, do_morph, mrp_higheta_gluon, mrp_loweta_gluon, mrp_higheta_quark, mrp_loweta_quark), 
+} 
+
+
+###############
+aliases['j0_qglmorphed'] = {
+    'class': 'QglVarsMorphingPtOrder',
+    'args': ('j0_qglmorphed', morphing_file, do_morph, mrp_higheta_gluon, mrp_loweta_gluon, mrp_higheta_quark, mrp_loweta_quark),
+} 
+
+aliases['j1_qglmorphed'] = {
+    'class': 'QglVarsMorphingPtOrder',
+    'args': ('j1_qglmorphed', morphing_file, do_morph, mrp_higheta_gluon, mrp_loweta_gluon, mrp_higheta_quark, mrp_loweta_quark),
+} 
+
+aliases['j2_qglmorphed'] = {
+    'class': 'QglVarsMorphingPtOrder',
+    'args': ('j2_qglmorphed', morphing_file, do_morph, mrp_higheta_gluon, mrp_loweta_gluon, mrp_higheta_quark, mrp_loweta_quark), 
+} 
+
+aliases['j3_qglmorphed'] = {
+    'class': 'QglVarsMorphingPtOrder',
+    'args': ('j3_qglmorphed', morphing_file, do_morph, mrp_higheta_gluon, mrp_loweta_gluon, mrp_higheta_quark, mrp_loweta_quark), 
+} 

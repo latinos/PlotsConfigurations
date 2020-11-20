@@ -30,14 +30,14 @@ int isRunningSample(TString targetSample){
 
 class QglVarsMorphing : public multidraw::TTreeFunction {
 public:
-  QglVarsMorphing(const char * type, const char * file, 
+  QglVarsMorphing(const char * type, const char * file,  const char * do_morph,
                     const char * morph_higheta_gluon ,const char * morph_loweta_gluon,
                     const char * morph_higheta_quark ,const char * morph_loweta_quark);
-  QglVarsMorphing(unsigned type, const char * file, 
+  QglVarsMorphing(unsigned type, const char * file, const char * do_morph,
                     const char * morph_higheta_gluon ,const char * morph_loweta_gluon,
                     const char * morph_higheta_quark ,const char * morph_loweta_quark);
   char const* getName() const override { return "QglVarsMorphing"; }
-  TTreeFunction* clone() const override { return new QglVarsMorphing(returnVar_, file_.c_str(), 
+  TTreeFunction* clone() const override { return new QglVarsMorphing(returnVar_, file_.c_str(), do_morph_.c_str(),
                                                 morph_higheta_gluon_.c_str(),morph_loweta_gluon_.c_str(),
                                                 morph_higheta_quark_.c_str(),morph_loweta_quark_.c_str() ); }
 
@@ -60,6 +60,11 @@ protected:
 
   unsigned returnVar_{nVarTypes};
   string file_;
+  string do_morph_;
+  static bool do_morph_gluon_loweta;
+  static bool do_morph_gluon_higheta;
+  static bool do_morph_quark_loweta;
+  static bool do_morph_quark_higheta;
   string morph_higheta_gluon_;
   string morph_loweta_gluon_;
   string morph_higheta_quark_;
@@ -107,14 +112,18 @@ TGraph* QglVarsMorphing::morphing_function_loweta_gluon_{};
 TGraph* QglVarsMorphing::morphing_function_higheta_quark_{};
 TGraph* QglVarsMorphing::morphing_function_loweta_quark_{};
 bool QglVarsMorphing::isRunningOnData{false};
+bool QglVarsMorphing::do_morph_gluon_loweta{false};
+bool QglVarsMorphing::do_morph_gluon_higheta{false};
+bool QglVarsMorphing::do_morph_quark_loweta{false};
+bool QglVarsMorphing::do_morph_quark_higheta{false};
 
 
 std::array<double, QglVarsMorphing::nVarTypes> QglVarsMorphing::returnValues{};
 
-QglVarsMorphing::QglVarsMorphing(char const* _type,   const char * file, 
+QglVarsMorphing::QglVarsMorphing(char const* _type,   const char * file, const char * do_morph,
                     const char * morph_higheta_gluon ,const char * morph_loweta_gluon,
                     const char * morph_higheta_quark ,const char * morph_loweta_quark  ) :
-  TTreeFunction(), file_(file), 
+  TTreeFunction(), file_(file),  do_morph_(do_morph),
   morph_higheta_gluon_(morph_higheta_gluon),morph_loweta_gluon_(morph_loweta_gluon),
   morph_higheta_quark_(morph_higheta_quark),morph_loweta_quark_(morph_loweta_quark)
 {
@@ -160,23 +169,38 @@ QglVarsMorphing::QglVarsMorphing(char const* _type,   const char * file,
   else
     throw std::runtime_error("unknown return type " + type);
   
-  TFile rfile {file, "READ"};
-  QglVarsMorphing::morphing_function_higheta_gluon_ =  (TGraph*) rfile.Get(morph_higheta_gluon);
-  QglVarsMorphing::morphing_function_loweta_gluon_ =  (TGraph*) rfile.Get(morph_loweta_gluon);
-  QglVarsMorphing::morphing_function_higheta_quark_ =  (TGraph*) rfile.Get(morph_higheta_quark);
-  QglVarsMorphing::morphing_function_loweta_quark_ =  (TGraph*) rfile.Get(morph_loweta_quark);
-  rfile.Close();
+  // Read the binary flag
+    int do_morph_flags = std::stoi(do_morph_,0,2);
+    QglVarsMorphing::do_morph_gluon_loweta = do_morph_flags & 1;
+    QglVarsMorphing::do_morph_gluon_higheta = do_morph_flags >> 1 & 1;
+    QglVarsMorphing::do_morph_quark_loweta = do_morph_flags >> 2 & 1;
+    QglVarsMorphing::do_morph_quark_higheta = do_morph_flags >> 3 & 1;
+   
+    TFile rfile {file, "READ"};
+    QglVarsMorphing::morphing_function_higheta_gluon_ =  (TGraph*) rfile.Get(morph_higheta_gluon);
+    QglVarsMorphing::morphing_function_loweta_gluon_ =  (TGraph*) rfile.Get(morph_loweta_gluon);
+    QglVarsMorphing::morphing_function_higheta_quark_ =  (TGraph*) rfile.Get(morph_higheta_quark);
+    QglVarsMorphing::morphing_function_loweta_quark_ =  (TGraph*) rfile.Get(morph_loweta_quark);
+    rfile.Close();
 }
 
 
-QglVarsMorphing::QglVarsMorphing(unsigned type,const char * file, 
+QglVarsMorphing::QglVarsMorphing(unsigned type,const char * file, const char * do_morph,
                     const char * morph_higheta_gluon ,const char * morph_loweta_gluon,
                     const char * morph_higheta_quark ,const char * morph_loweta_quark ) :
   TTreeFunction(),
-  returnVar_(type),file_(file), 
+  returnVar_(type),file_(file),  do_morph_(do_morph),
   morph_higheta_gluon_(morph_higheta_gluon),morph_loweta_gluon_(morph_loweta_gluon),
   morph_higheta_quark_(morph_higheta_quark),morph_loweta_quark_(morph_loweta_quark)
   {
+
+    // Read the binary flag
+    int do_morph_flags = std::stoi(do_morph_,0,2);
+    QglVarsMorphing::do_morph_gluon_loweta = do_morph_flags & 1;
+    QglVarsMorphing::do_morph_gluon_higheta = do_morph_flags >> 1 & 1;
+    QglVarsMorphing::do_morph_quark_loweta = do_morph_flags >> 2 & 1;
+    QglVarsMorphing::do_morph_quark_higheta = do_morph_flags >> 3 & 1;
+   
     TFile rfile {file, "READ"};
     QglVarsMorphing::morphing_function_higheta_gluon_ =  (TGraph*) rfile.Get(morph_higheta_gluon);
     QglVarsMorphing::morphing_function_loweta_gluon_ =  (TGraph*) rfile.Get(morph_loweta_gluon);
@@ -186,34 +210,6 @@ QglVarsMorphing::QglVarsMorphing(unsigned type,const char * file,
   }
 
 
-double
-QglVarsMorphing::evaluate(unsigned)
-{
-  setValues(*run->Get(), *luminosityBlock->Get(), *event->Get());
-  return returnValues[returnVar_];
-}
-
-float QglVarsMorphing::getMorphedGluon(float x, float eta){
-  if (x<= 0.) return x;
-  if (x>= 1.) return x;
-  float y;
-  if (abs(eta)<3)   y = QglVarsMorphing::morphing_function_loweta_gluon_->Eval(x);
-  if (abs(eta)>=3)  y =  QglVarsMorphing::morphing_function_higheta_gluon_->Eval(x);
-  if (y<0) return 0.;
-  if (y>1.) return 1.;
-  return y;
-}
-
-float QglVarsMorphing::getMorphedQuark(float x, float eta){
-  if (x<= 0.) return x;
-  if (x>= 1.) return x;
-  float y;
-  if (abs(eta)<3)   y =  QglVarsMorphing::morphing_function_loweta_quark_->Eval(x);
-  if (abs(eta)>=3)  y =  QglVarsMorphing::morphing_function_higheta_quark_->Eval(x);
-  if (y<0) return 0.;
-  if (y>1.) return 1.;
-  return y;
-}
 
 void
 QglVarsMorphing::bindTree_(multidraw::FunctionLibrary& _library)
@@ -250,6 +246,34 @@ QglVarsMorphing::bindTree_(multidraw::FunctionLibrary& _library)
                                    });
 }
 
+double
+QglVarsMorphing::evaluate(unsigned)
+{
+  setValues(*run->Get(), *luminosityBlock->Get(), *event->Get());
+  return returnValues[returnVar_];
+}
+
+float QglVarsMorphing::getMorphedGluon(float x, float eta){
+  if (x<= 0.) return x;
+  if (x>= 1.) return x;
+  float y = x;
+  if (abs(eta)<3 && QglVarsMorphing::do_morph_gluon_loweta)    y = QglVarsMorphing::morphing_function_loweta_gluon_->Eval(x);
+  if (abs(eta)>=3 && QglVarsMorphing::do_morph_gluon_higheta)  y =  QglVarsMorphing::morphing_function_higheta_gluon_->Eval(x);
+  if (y<0) return 0.;
+  if (y>1.) return 1.;
+  return y;
+}
+
+float QglVarsMorphing::getMorphedQuark(float x, float eta){
+  if (x<= 0.) return x;
+  if (x>= 1.) return x;
+  float y = x ;
+  if (abs(eta)<3 && QglVarsMorphing::do_morph_quark_loweta)    y =  QglVarsMorphing::morphing_function_loweta_quark_->Eval(x);
+  if (abs(eta)>=3 && QglVarsMorphing::do_morph_quark_higheta)  y =  QglVarsMorphing::morphing_function_higheta_quark_->Eval(x);
+  if (y<0) return 0.;
+  if (y>1.) return 1.;
+  return y;
+}
 
 
 /*static*/
