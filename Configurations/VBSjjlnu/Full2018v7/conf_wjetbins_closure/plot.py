@@ -39,6 +39,7 @@ palette = {
     "Green3": (16,235,52),#10eb34
     "LightGreen" : (82, 221, 135), #52dd87
     "Violet": (242, 67, 114), #f24372  
+    "Violet2": (242,36,143), #f2248f
     "Pink": (247, 191, 223)
 }
 
@@ -104,7 +105,7 @@ groupPlot["Wjets"]  = {
 groupPlot['VBS']  = {  
                  'nameHR' : 'VBS',
                  'isSignal' : 1,
-                 'color': colors["kRed"]+1,   
+                 'color': palette["Violet2"],   
                  'samples'  : ['VBS'],
                  'fill': 1001
               }

@@ -18,20 +18,19 @@ variables['events']  = {   'name': '1',
 #####################
 #Fit variables
 
-variables['fit_bins_res'] ={  'name' : 'vbs_jets_pt',
-                            'range' : ([0,100,200,300,400,800 ],),
-                            'xaxis' : 'VBS jets Pt bin', 
+variables['fit_bins_res'] ={  'name' : 'w_lep_pt',
+                            'range' : ([0,100,200,300,400,500,700],),
+                            'xaxis' : 'W leptonic Pt', 
                             'fold' : 3,
                             'cuts': res_cuts
 }   
 
-variables['fit_bins_boost'] ={  'name' : 'w_had_pt',
-                            'range' : ([0,300,400,600,1000],),
-                            'xaxis' : 'V Fatjet Pt bin', 
+variables['fit_bins_boost'] ={  'name' : 'w_lep_pt',
+                            'range' : ([0,75,150,250,400,700],),
+                            'xaxis' : 'W leptonic Pt', 
                             'fold' : 3,
                             'cuts': boost_cuts
 }   
-
 
 
 #delta angles between the VBS jets
@@ -40,7 +39,6 @@ variables['deltaeta_vbs'] = {   'name': 'deltaeta_vbs',
                         'xaxis' : '#Delta#eta VBS jets', 
                         'fold' : 3,
                         }    
-
 
 # VBS vars
 variables['mjj_vbs'] = {   'name': 'mjj_vbs',      
@@ -55,7 +53,6 @@ variables['mjj_vjet'] = {   'name': 'mjj_vjet',
                         'xaxis' : 'Whad reco mass', 
                         'fold' : 3
                         }
-
 
 
 variables['whad_pt_boost'] = {
@@ -73,3 +70,24 @@ variables['vbs_jets_pt'] = {  'name': 'tag_jets_systems_pt[0]',
                         'fold': 3
                 }
 
+
+variables['Lepton_pt'] = {   'name': 'Lepton_pt[0]',      
+                        'range' : (40,0,500),  
+                        'xaxis' : 'Lepton pt', 
+                        'fold' : 3
+                        }    
+
+
+
+variables['w_lep_pt'] = {   'name': 'w_lep_pt',      
+                        'range' : (50,0,700),  
+                        'xaxis' : 'Pt W leptonic', 
+                        'fold' : 3
+                        }
+
+#MET
+variables['PuppiMET'] = {   'name': 'PuppiMET_pt',      
+                        'range' : (40,30,400),  
+                        'xaxis' : 'PuppiMET_pt', 
+                        'fold' : 3
+                        }

@@ -77,6 +77,7 @@ EWKnloW_otf::evaluate(unsigned)
   // If for any reason it was not possible to assign the leptons,
   // set the pT to -2 --> it can be followed up later
   if (lep_pt == -1.0 || nu_pt == -1.0) {
+    cout << "ERROR: missing neutrino"<<endl;
     return -2;
   }
 
