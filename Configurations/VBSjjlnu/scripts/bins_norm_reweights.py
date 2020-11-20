@@ -14,7 +14,7 @@ parser.add_argument("-i","--input", help="input file", type=str)
 parser.add_argument("-o","--output", help="output file", type=str)
 parser.add_argument("-v", "--vars", help="Variables", nargs="+", type=str)
 parser.add_argument("--cuts", help="cuts to analyze", nargs="+", type=str)
-parser.add_argument("-s", "--samples", help="Samples to analyzer", nargs="+", type=str)
+parser.add_argument("-s", "--samples", help="Samples to analyze", nargs="+", type=str)
 parser.add_argument( "--other-samples", help="Samples to be removed from data",nargs="+", type=str)
 args = parser.parse_args()
 

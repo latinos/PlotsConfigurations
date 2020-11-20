@@ -6,7 +6,8 @@ tag = 'wjetbins_closure'
 direc = "conf_wjetbins_closure"
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFile_'+tag 
+#outputDir = 'rootFile_'+tag +"_wlep"
+outputDir = 'rootFile_'+tag
 
 # file with TTree aliases
 aliasesFile = direc+'/aliases.py'
@@ -30,7 +31,7 @@ lumi = 59.74
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
 #outputDirPlots = 'plot_'+tag +"_rescaled/detajpt_ext"
-outputDirPlots = 'plot_'+tag 
+outputDirPlots = 'plot_'+tag + "/raw"
 
 # used by mkDatacards to define output directory for datacards
 #outputDirDatacard = 'datacards_'+tag 

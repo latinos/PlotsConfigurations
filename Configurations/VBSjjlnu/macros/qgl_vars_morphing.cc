@@ -196,17 +196,23 @@ QglVarsMorphing::evaluate(unsigned)
 float QglVarsMorphing::getMorphedGluon(float x, float eta){
   if (x<= 0.) return x;
   if (x>= 1.) return x;
-  if (abs(eta)<3)   return QglVarsMorphing::morphing_function_loweta_gluon_->Eval(x);
-  if (abs(eta)>=3)  return QglVarsMorphing::morphing_function_higheta_gluon_->Eval(x);
-  return x;
+  float y;
+  if (abs(eta)<3)   y = QglVarsMorphing::morphing_function_loweta_gluon_->Eval(x);
+  if (abs(eta)>=3)  y =  QglVarsMorphing::morphing_function_higheta_gluon_->Eval(x);
+  if (y<0) return 0.;
+  if (y>1.) return 1.;
+  return y;
 }
 
 float QglVarsMorphing::getMorphedQuark(float x, float eta){
   if (x<= 0.) return x;
   if (x>= 1.) return x;
-  if (abs(eta)<3)   return QglVarsMorphing::morphing_function_loweta_quark_->Eval(x);
-  if (abs(eta)>=3)  return QglVarsMorphing::morphing_function_higheta_quark_->Eval(x);
-  return x;
+  float y;
+  if (abs(eta)<3)   y =  QglVarsMorphing::morphing_function_loweta_quark_->Eval(x);
+  if (abs(eta)>=3)  y =  QglVarsMorphing::morphing_function_higheta_quark_->Eval(x);
+  if (y<0) return 0.;
+  if (y>1.) return 1.;
+  return y;
 }
 
 void

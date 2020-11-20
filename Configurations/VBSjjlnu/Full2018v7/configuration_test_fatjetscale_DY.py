@@ -2,14 +2,14 @@
 treeName= 'Events'
 
 
-tag = 'fit_v4_2018_testqgl'
-direc = "conf_fit_v4_testqgl"
+tag = 'test_fatjetscale_DY'
+direc = "conf_test_fatjetscale_DY"
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFile_'+tag 
 
 # file with TTree aliases
-aliasesFile = direc+'/aliases_tree.py'
+aliasesFile = direc+'/aliases.py'
 
 # file with list of variables
 variablesFile = direc+'/variables.py'
@@ -42,8 +42,6 @@ structureFile = direc+'/structure.py'
 
 
 # nuisances file for mkDatacards and for mkShape
-nuisancesFile = direc+'/nuisances.py'
+#@nuisancesFile = direc+'/nuisances.py'
 #nuisancesFile = direc+'/nuisances_datacard_join.py'
 #nuisancesFile = direc + '/nuisances_datacard.py'
-
-customizeScript = direc + '/customize.py'

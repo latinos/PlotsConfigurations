@@ -2,23 +2,24 @@
 treeName= 'Events'
 
 
-tag = 'fit_v4_2018_testqgl'
-direc = "conf_fit_v4_testqgl"
+tag = 'wjetbins_closure_wlep'
+direc = "conf_wjetbins_closure"
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFile_'+tag 
+#outputDir = 'rootFile_'+tag +"_wlep"
+outputDir = 'rootFile_'+tag
 
 # file with TTree aliases
-aliasesFile = direc+'/aliases_tree.py'
+aliasesFile = direc+'/aliases.py'
 
 # file with list of variables
-variablesFile = direc+'/variables.py'
+variablesFile = direc+'/variables_fit.py'
 
 # file with list of cuts
 cutsFile = direc +'/cuts.py' 
 
 # file with list of samples
-samplesFile = direc+'/samples.py' 
+samplesFile = direc+'/samples_2.py' 
 #samplesFile = direc+'/samples.py'
 
 #t file with list of samples
@@ -30,7 +31,7 @@ lumi = 59.74
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
 #outputDirPlots = 'plot_'+tag +"_rescaled/detajpt_ext"
-outputDirPlots = 'plot_'+tag 
+outputDirPlots = 'plot_'+tag + "/topext"
 
 # used by mkDatacards to define output directory for datacards
 #outputDirDatacard = 'datacards_'+tag 
@@ -42,8 +43,9 @@ structureFile = direc+'/structure.py'
 
 
 # nuisances file for mkDatacards and for mkShape
-nuisancesFile = direc+'/nuisances.py'
+#nuisancesFile = direc+'/nuisances.py'
 #nuisancesFile = direc+'/nuisances_datacard_join.py'
 #nuisancesFile = direc + '/nuisances_datacard.py'
+
 
 customizeScript = direc + '/customize.py'

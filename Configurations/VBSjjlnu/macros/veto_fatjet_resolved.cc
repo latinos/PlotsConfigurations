@@ -9,16 +9,16 @@
 #include <tuple>
 
 
-#ifndef VetoFatJet_HH
-#define VetoFatJet_HH
+#ifndef VetoFatJetResolved_HH
+#define VetoFatJetResolved_HH
 
-class VetoFatJet : public multidraw::TTreeFunction {
+class VetoFatJetResolved : public multidraw::TTreeFunction {
 public:
-  VetoFatJet(float pt_max);
-  ~VetoFatJet();
+  VetoFatJetResolved(float pt_max);
+  ~VetoFatJetResolved();
 
-  char const* getName() const override { return "VetoFatJet"; }
-  TTreeFunction* clone() const override { return new VetoFatJet(pt_max); }
+  char const* getName() const override { return "VetoFatJetResolved"; }
+  TTreeFunction* clone() const override { return new VetoFatJetResolved(pt_max); }
 
   unsigned getNdata() override { return 1; }
   double evaluate(unsigned) override;
@@ -43,12 +43,12 @@ protected:
 
 };
 
-VetoFatJet::VetoFatJet(float ptmax) :
+VetoFatJetResolved::VetoFatJetResolved(float ptmax) :
   TTreeFunction(), pt_max(ptmax){}
 
 
 double
-VetoFatJet::evaluate(unsigned)
+VetoFatJetResolved::evaluate(unsigned)
 { 
   // Filter out some events
   int vbs_cat = *(VBS_category->Get());
@@ -82,7 +82,7 @@ VetoFatJet::evaluate(unsigned)
 }
 
 void
-VetoFatJet::bindTree_(multidraw::FunctionLibrary& _library)
+VetoFatJetResolved::bindTree_(multidraw::FunctionLibrary& _library)
 {   
     // Using only nominals
     _library.bindBranch(nFatJet, "nFatJet");
@@ -99,7 +99,7 @@ VetoFatJet::bindTree_(multidraw::FunctionLibrary& _library)
 }   
 
 
-VetoFatJet::~VetoFatJet(){
+VetoFatJetResolved::~VetoFatJetResolved(){
     nFatJet = nullptr;
     FatJet_pt = nullptr;
     FatJet_eta = nullptr;

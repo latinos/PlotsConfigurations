@@ -227,91 +227,122 @@ aliases['gstarHigh'] = {
     'samples': 'VgS'
 }
 
+#######################################################3
+
+aliases['is_wjetsSample'] =  {
+    'expr' : 'getSampleName()',
+    'linesToAdd' : [
+        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+        '.L {}/VBSjjlnu/Full2018v7/macros/samples_id.cc+'.format(configurations)
+    ]
+}
+
+aliases['fatjetpt_scaled']= {
+   'expr': ' (is_wjetsSample)*( Alt$(CleanFatJet_pt[0],0) * 0.85) + (!is_wjetsSample)*(Alt$(CleanFatJet_pt[0],0))'
+}
+
+aliases['mjj_vjet_scaled']= {
+   'expr': ' (is_wjetsSample)*( mjj_vjet * 0.85) + (!is_wjetsSample)*(mjj_vjet)'
+}
 
 aliases['veto_fatjet_180'] = {
-            'class': 'VetoFatJet',
+            'class': 'VetoFatJetResolved',
             'args': (180.),
             'linesToAdd' : [
                 'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-                '.L {}/VBSjjlnu/Full2018v7/macros/veto_fatjet.cc+'.format(configurations)
+                '.L {}/VBSjjlnu/macros/veto_fatjet_resolved.cc+'.format(configurations)
             ]           
 }
 
-##########################3
-# NLO/LO factors for Wjets
-# aliases['wjets_LOtoNLO'] = {
-#             'class': 'Wjets_LOtoNLO',
-#             'args': (),
-#             'linesToAdd' : [
-#                 'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-#                 '.L {}/VBSjjlnu/Full2018v7/corrections/wjets_LOtoNLO.cc+'.format(configurations)
-#             ] ,
-#             'samples': ['Wjets_HT']         
-# }
+aliases['veto_fatjet_153'] = {
+            'class': 'VetoFatJetResolved',
+            'args': (153.),      
+            'linesToAdd' : [
+                'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+                '.L {}/VBSjjlnu/macros/veto_fatjet_resolved.cc+'.format(configurations)
+            ]     
+}
 
+aliases['veto_fatjet_res'] = {
+    'expr':  '(is_wjetsSample)*(veto_fatjet_153) + (!is_wjetsSample)*(veto_fatjet_180)'
+}
 
-##################################
-
-# aliases['fatjet_TvsQCD'] = {
-#     'expr': 'FatJet_deepTag_TvsQCD[CleanFatJet_jetIdx[0]]'
-# }
-
-# aliases['fatjet_ZvsQCD'] = {
-#     'expr': 'FatJet_deepTag_ZvsQCD[CleanFatJet_jetIdx[0]]'
-# }
-
-# aliases['fatjet_WvsQCD'] = {
-#     'expr': 'FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]]'
-# }
-
-# aliases['fatjet_subjet1_pt'] = {
-#     'expr': 'SubJet_pt[FatJet_subJetIdx1[CleanFatJet_jetIdx[0]]]'
-# }
-
-# aliases['fatjet_subjet2_pt'] = {
-#     'expr': 'SubJet_pt[FatJet_subJetIdx2[CleanFatJet_jetIdx[0]]]'
-# }
-
-# aliases['fatjet_subjet_ptratio'] = {
-#     'expr': 'SubJet_pt[FatJet_subJetIdx2[CleanFatJet_jetIdx[0]]] / SubJet_pt[FatJet_subJetIdx1[CleanFatJet_jetIdx[0]]]'
-# }
 
 ###################################3
 # QGL variables
 
-# aliases['vbs_0_qgl_res'] = {
-#     'class': 'QglVars',
-#     'args': ('vbs_0_qgl_res'),
-#     'linesToAdd' : [
-#         'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-#         '.L {}/VBSjjlnu/Full2018v7/macros/qgl_vars.cc+'.format(configurations)
-#     ]   
-# } 
+morphing_file = configurations + "/VBSjjlnu/weights_files/morphing_final_gluonvjet1_quarkvbs0.root"
+mrp_higheta_gluon = "gluon_morphing_vjet1_higheta"
+mrp_loweta_gluon = "gluon_morphing_vjet1_loweta"
+mrp_higheta_quark = "quark_morphing_vbs0_higheta"
+mrp_loweta_quark = "quark_morphing_vbs0_loweta"
 
-# aliases['vbs_1_qgl_res'] = {
-#     'class': 'QglVars',
-#     'args': ('vbs_1_qgl_res'), 
-# } 
 
-# aliases['vjet_0_qgl_res'] = {
-#     'class': 'QglVars',
-#     'args': ('vjet_0_qgl_res'), 
-# } 
 
-# aliases['vjet_1_qgl_res'] = {
-#     'class': 'QglVars',
-#     'args': ('vjet_1_qgl_res'), 
-# } 
+aliases['vbs_0_qgl_res'] = {
+    'class': 'QglVarsMorphing',
+    'args': ('vbs_0_qgl_res', morphing_file, mrp_higheta_gluon, mrp_loweta_gluon, mrp_higheta_quark, mrp_loweta_quark),
+    'linesToAdd' : [
+        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+        '.L {}/VBSjjlnu/macros/qgl_vars_morphing.cc+'.format(configurations)
+    ]   
+} 
 
-# aliases['vbs_0_qgl_boost'] = {
-#     'class': 'QglVars',
-#     'args': ('vbs_0_qgl_boost'), 
-# } 
+aliases['vbs_1_qgl_res'] = {
+    'class': 'QglVarsMorphing',
+    'args': ('vbs_1_qgl_res', morphing_file, mrp_higheta_gluon, mrp_loweta_gluon, mrp_higheta_quark, mrp_loweta_quark), 
+} 
 
-# aliases['vbs_1_qgl_boost'] = {
-#     'class': 'QglVars',
-#     'args': ('vbs_1_qgl_boost'), 
-# } 
+aliases['vjet_0_qgl_res'] = {
+    'class': 'QglVarsMorphing',
+    'args': ('vjet_0_qgl_res', morphing_file, mrp_higheta_gluon, mrp_loweta_gluon, mrp_higheta_quark, mrp_loweta_quark), 
+} 
+
+aliases['vjet_1_qgl_res'] = {
+    'class': 'QglVarsMorphing',
+    'args': ('vjet_1_qgl_res', morphing_file, mrp_higheta_gluon, mrp_loweta_gluon, mrp_higheta_quark, mrp_loweta_quark), 
+} 
+
+aliases['vbs_0_qgl_boost'] = {
+    'class': 'QglVarsMorphing',
+    'args': ('vbs_0_qgl_boost', morphing_file, mrp_higheta_gluon, mrp_loweta_gluon, mrp_higheta_quark, mrp_loweta_quark), 
+} 
+
+aliases['vbs_1_qgl_boost'] = {
+    'class': 'QglVarsMorphing',
+    'args': ('vbs_1_qgl_boost', morphing_file, mrp_higheta_gluon, mrp_loweta_gluon, mrp_higheta_quark, mrp_loweta_quark), 
+} 
+
+###############
+aliases['vbs_0_qglmorphed_res'] = {
+    'class': 'QglVarsMorphing',
+    'args': ('vbs_0_qglmorphed_res', morphing_file, mrp_higheta_gluon, mrp_loweta_gluon, mrp_higheta_quark, mrp_loweta_quark),
+} 
+
+aliases['vbs_1_qglmorphed_res'] = {
+    'class': 'QglVarsMorphing',
+    'args': ('vbs_1_qglmorphed_res', morphing_file, mrp_higheta_gluon, mrp_loweta_gluon, mrp_higheta_quark, mrp_loweta_quark),
+} 
+
+aliases['vjet_0_qglmorphed_res'] = {
+    'class': 'QglVarsMorphing',
+    'args': ('vjet_0_qglmorphed_res', morphing_file, mrp_higheta_gluon, mrp_loweta_gluon, mrp_higheta_quark, mrp_loweta_quark), 
+} 
+
+aliases['vjet_1_qglmorphed_res'] = {
+    'class': 'QglVarsMorphing',
+    'args': ('vjet_1_qglmorphed_res', morphing_file, mrp_higheta_gluon, mrp_loweta_gluon, mrp_higheta_quark, mrp_loweta_quark), 
+} 
+
+aliases['vbs_0_qglmorphed_boost'] = {
+    'class': 'QglVarsMorphing',
+    'args': ('vbs_0_qglmorphed_boost', morphing_file, mrp_higheta_gluon, mrp_loweta_gluon, mrp_higheta_quark, mrp_loweta_quark), 
+} 
+
+aliases['vbs_1_qglmorphed_boost'] = {
+    'class': 'QglVarsMorphing',
+    'args': ('vbs_1_qglmorphed_boost', morphing_file, mrp_higheta_gluon, mrp_loweta_gluon, mrp_higheta_quark, mrp_loweta_quark), 
+} 
 
 
 ############################
@@ -332,40 +363,40 @@ aliases['vbs_jets_pt'] ={
 ##########################
 # additional uncertainties for Wtagging from pt extrapolation
 aliases['BoostedWtagSF_ptextr'] = {
-    'class': 'Wtagging_SF_ptExtrap',
+    'class': 'Wtagging_SF_ptExtrap_rescaled',
     'args': ('2018'),
     'linesToAdd' : [
         'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-        '.L {}/VBSjjlnu/macros/Wtagging_SF_ptExtrap.cc+'.format(configurations)
+        '.L {}/VBSjjlnu/macros/Wtagging_SF_ptExtrap_rescaled.cc+'.format(configurations)
     ]   
 }
 
 #########################
 
-# mva_reader_path = os.getenv('CMSSW_BASE') + '/src/PlotsConfigurations/Configurations/VBSjjlnu/macros/'
-# models_path = '/eos/home-d/dvalsecc/www/VBSPlots/DNN_archive/FullRun2_v7/FullRun2_v7/'
+mva_reader_path = os.getenv('CMSSW_BASE') + '/src/PlotsConfigurations/Configurations/VBSjjlnu/macros/'
+models_path = '/eos/home-d/dvalsecc/www/VBSPlots/DNN_archive/FullRun2_v7/FullRun2_v7/'
 
-# aliases['DNNoutput_boosted'] = {
-#     'class': 'MVAReaderBoosted',
-#     'args': ( models_path +'boost_sig/models/v8_b/',  models_path +'boost_sig/models/v8_b/cumulative_signal_2018.root', False, 0),
-#     'linesToAdd':[
-#         'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-#         'gSystem->Load("libDNNEvaluator.so")',
-#         '.L ' + mva_reader_path + 'mva_reader_boosted_v6b.cc+', 
-#     ],
-# }
+aliases['DNNoutput_boosted'] = {
+    'class': 'MVAReaderBoosted_qgl_fatjetscale',
+    'args': ( models_path +'boost_sig/models/v8_b/',  models_path +'boost_sig/models/v8_b/cumulative_signal_2018.root', False, 0),
+    'linesToAdd':[
+        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+        'gSystem->Load("libDNNEvaluator.so")',
+        '.L ' + mva_reader_path + 'mva_reader_boosted_v6b_qglmorphing_fatjetscale.cc+', 
+    ],
+}
 
-# aliases['DNNoutput_resolved'] = {
-#     'class': 'MVAReaderResolved',
-#     'args': ( models_path+ 'res_sig/models/v3_b/',models_path+ 'res_sig/models/v3_b/cumulative_signal_2018.root', False, 1),
-#     'linesToAdd':[
-#         'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-#         'gSystem->Load("libDNNEvaluator.so")',
-#         '.L ' + mva_reader_path + 'mva_reader_resolved_v3b.cc+', 
-#     ],
-# }
+aliases['DNNoutput_resolved'] = {
+    'class': 'MVAReaderResolved',
+    'args': ( models_path+ 'res_sig/models/v3_b/',models_path+ 'res_sig/models/v3_b/cumulative_signal_2018.root', False, 1),
+    'linesToAdd':[
+        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+        'gSystem->Load("libDNNEvaluator.so")',
+        '.L ' + mva_reader_path + 'mva_reader_resolved_v3b_qglmorphing.cc+', 
+    ],
+}
 
-# aliases['DNNoutput'] = {
-#     'expr': '(VBS_category==0)*(DNNoutput_boosted) + (VBS_category==1)*(DNNoutput_resolved)'
-# }
+aliases['DNNoutput'] = {
+    'expr': '(VBS_category==0)*(DNNoutput_boosted) + (VBS_category==1)*(DNNoutput_resolved)'
+}
 
