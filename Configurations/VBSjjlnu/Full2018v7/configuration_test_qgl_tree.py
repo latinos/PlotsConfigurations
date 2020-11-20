@@ -6,13 +6,13 @@ tag = 'test_qgl_tree'
 direc = "conf_test_qgl"
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFile_'+tag + "_tree"
+outputDir = 'rootFile_'+tag 
 
 # file with TTree aliases
-aliasesFile = direc+'/aliases.py'
+aliasesFile = direc+'/aliases2.py'
 
 # file with list of variables
-variablesFile = direc+'/variables_tree.py'
+variablesFile = direc+'/variables_tree2.py'
 
 # file with list of cuts
 cutsFile = direc +'/cuts.py' 
