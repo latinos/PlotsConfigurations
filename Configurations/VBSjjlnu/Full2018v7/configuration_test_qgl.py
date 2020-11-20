@@ -22,7 +22,7 @@ samplesFile = direc+'/samples.py'
 #samplesFile = direc+'/samples.py'
 
 #t file with list of samples
-plotFile = direc+'/plot_vjet0.py' 
+plotFile = direc+'/plot.py' 
 
 # luminosity to normalize to (in 1/fb)
 lumi = 59.74
@@ -42,6 +42,7 @@ structureFile = direc+'/structure.py'
 
 
 # nuisances file for mkDatacards and for mkShape
-#nuisancesFile = direc+'/nuisances.py'
+nuisancesFile = direc+'/nuisances.py'
 #nuisancesFile = direc+'/nuisances_datacard_join.py'
 #nuisancesFile = direc + '/nuisances_datacard.py'
+customizeScript = direc + '/customize.py'

@@ -2,17 +2,17 @@
 treeName= 'Events'
 
 
-tag = 'wjetbins_closure'
-direc = "conf_wjetbins_closure"
+tag = 'fit_v4_2018_testqgl'
+direc = "conf_fit_v4_testqgl"
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFile_'+tag 
 
 # file with TTree aliases
-aliasesFile = direc+'/aliases.py'
+aliasesFile = direc+'/aliases_tree.py'
 
 # file with list of variables
-variablesFile = direc+'/variables_fit.py'
+variablesFile = direc+'/variables.py'
 
 # file with list of cuts
 cutsFile = direc +'/cuts.py' 
@@ -45,6 +45,3 @@ structureFile = direc+'/structure.py'
 nuisancesFile = direc+'/nuisances.py'
 #nuisancesFile = direc+'/nuisances_datacard_join.py'
 #nuisancesFile = direc + '/nuisances_datacard.py'
-
-
-customizeScript = direc + '/customize.py'

@@ -50,6 +50,19 @@ palette = {
     "Wjets_deta1": (247, 235, 7), #f7eb07
 '''
 
+jetbin_detabins = [3,3,2]
+#wjets_palette = ['#FFF59D', '#FFEE58', '#FFD54F', '#FFB300', '#FF8F00', '#F57C00', '#E65100','#BF360C']
+wjets_palette = ['#DD2C00', '#FF3D00',  '#FF6D00','#F57C00', '#FFAB00', '#FFC400', '#FFEA00', '#FFFF00']
+
+
+wjets_bins = []
+for ir in range(1,6):
+    wjets_bins.append("Wjets_HT_res_"+str(ir))
+for ir in range(1,5):
+    wjets_bins.append("Wjets_HT_boost_"+str(ir))
+
+
+
 groupPlot['vbfV+VV+VVV']  = {  
                   'nameHR' : 'vbfV+VV+VVV',
                   'isSignal' : 0,
@@ -97,7 +110,7 @@ groupPlot["Wjets"]  = {
                         'nameHR' : 'W+Jets',
                         'isSignal' : 0,
                         'color':   palette["Yellow"],
-                        'samples'  : ["Wjets_HT"],
+                        'samples'  : wjets_bins,
                         'fill': 1001
                 }
 
@@ -178,20 +191,20 @@ plot['top'] = {
                  'scale'    : 1.0 
                  }
 
-plot['Wjets_HT'] = {   
-                 'color': colors['kAzure']-1,
-                 'isSignal' : 0,
-                 'isData'   : 0, 
-                 'scale'    : 1.0 
-                 }
+# plot['Wjets_HT'] = {   
+#                  'color': colors['kAzure']-1,
+#                  'isSignal' : 0,
+#                  'isData'   : 0, 
+#                  'scale'    : 1.0 
+#                  }
 
-# for wjetbin in wjets_bins:
-#     plot[wjetbin] = {   
-#                     'color': colors['kAzure']-1,
-#                     'isSignal' : 0,
-#                     'isData'   : 0, 
-#                     'scale'    : 1.0 
-#                     }
+for wjetbin in wjets_bins:
+    plot[wjetbin] = {   
+                    'color': colors['kAzure']-1,
+                    'isSignal' : 0,
+                    'isData'   : 0, 
+                    'scale'    : 1.0 
+                    }
 
 plot['VBS']  = {
                   'color': colors["kCyan"]+1, 
