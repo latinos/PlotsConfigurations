@@ -169,6 +169,15 @@ nuisances['trigg']  = {
                 'samples'  :   dict((skey, trig_syst) for skey in mc)
 }
 
+# # Prefire correction
+prefire_syst = ['PrefireWeight_Up/PrefireWeight', 'PrefireWeight_Down/PrefireWeight']
+
+nuisances['prefire']  = {
+                'name'  : 'CMS_eff_prefiring_2017',
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : dict((skey, trig_syst) for skey in mc)
+}
 
 # # ##### Electron Efficiency and energy scale
 
@@ -191,7 +200,6 @@ nuisances['eff_e']  = {
                 'samples'  :   dict((skey, id_syst_ele) for skey in mc),
                 'cuts': phase_spaces_tot_ele
 }
-
 
 ele_pt_var = {
                 'name'  : 'CMS_scale_e_2017',
@@ -255,7 +263,7 @@ for js in jes_systs:
                     
     }
    
-    split_nuisance_samples_dir(js, jes_var, 'JES', [((getSamplesWithout(mc_norm, ["Vg", "VgS"]), directory_bkg), (mc_sep, directory_signal)])
+    split_nuisance_samples_dir(js, jes_var, 'JES', [(getSamplesWithout(mc_norm,["Vg","VgS"]), directory_bkg), (mc_sep, directory_signal)])
   
 ### Only total variation for fatjetJES
 fatjetjes_var = {
@@ -266,7 +274,7 @@ fatjetjes_var = {
                 'mapDown': 'fatjetJESdo',
                 'cuts': phase_spaces_boost #because we are vetoing fatjets anyway in resolved category               
 }
-split_nuisance_samples_dir('fatjetJES', fatjetjes_var, 'fatjetJES', [(getSamplesWithout(mc_norm, ["Vg", "VgS"]), directory_bkg), (mc_sep, directory_signal)])
+split_nuisance_samples_dir('fatjetJES', fatjetjes_var, 'fatjetJES', [(getSamplesWithout(mc_norm,["Vg","VgS"]), directory_bkg), (mc_sep, directory_signal)])
 
 ##### Jet energy resolution
 jer_var = {
@@ -297,7 +305,7 @@ met_var = {
                 'kind'  : 'suffix',
                 'type'  : 'shape',
                 'mapUp': 'METup',
-                'mapDown': 'METup',
+                'mapDown': 'METdo',
 }
 split_nuisance_samples_dir('MET', met_var, 'MET', [(mc_norm, directory_bkg), (mc_sep, directory_signal)])
 
@@ -333,6 +341,7 @@ fatjet_jmr = {
 }
 split_nuisance_samples_dir('fatjetJMR', fatjet_jmr, 'fatjetJMR', [(getSamplesWithout(mc_norm, ["Vg", "VgS"]), directory_bkg), (mc_sep, directory_signal)])
   
+
 fatjet_jms = {
     'name': 'CMS_fatjet_jms_2017',
     'kind': 'suffix',
@@ -342,7 +351,7 @@ fatjet_jms = {
     'cuts': phase_spaces_boost #because we are vetoing fatjets anyway in resolved category
 }
 ################ N.B.: Missing VV files
-split_nuisance_samples_dir('fatjetJMS', fatjet_jms, 'fatjetJMS', [(getSamplesWithout(mc_norm, ["Vg", "VgS"]), directory_bkg), (getSamplesWithout(mc_sep, ["VV"]), directory_signal)])
+split_nuisance_samples_dir('fatjetJMS', fatjet_jms, 'fatjetJMS', [(getSamplesWithout(mc_norm, ["Vg", "VgS"]), directory_bkg), (mc_sep, directory_signal)])
   
 
 
@@ -361,15 +370,13 @@ for sample in mc :
 # # #
 # # # PS and UE
 # # #
-# # nuisances['PS']  = {
-# #                 'name'  : 'PS',
-# #                 'skipCMS' : 1,
-# #                 'kind'  : 'weight',
-# #                 'type'  : 'shape',
-# #                 'samples'  : {
-# #                   'WW'      : ['PSWeight[0]', 'PSWeight[3]'],
-# #                   },
-# #                 }
+nuisances['PS']  = {
+                'name'  : 'PS',
+                'skipCMS' : 1,
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : dict((skey, ['PSWeight[0]', 'PSWeight[3]']) for skey in mc )
+                }
 
 # # nuisances['UE']  = {
 # #                 'name'  : 'UE', 
@@ -386,20 +393,13 @@ for sample in mc :
 # #                 'AsLnN'      : '1',
 # # }
 
-
-# # nuisances['PU']  = {
-# #                 'name'  : 'CMS_PU_2018',
-# #                 'kind'  : 'weight',
-# #                 'type'  : 'shape',
-# #                 'samples'  : {
-# #                   'DY': ['0.993259983266*(puWeightUp/puWeight)', '0.997656381501*(puWeightDown/puWeight)'],
-# #                   'top': ['1.00331969187*(puWeightUp/puWeight)', '0.999199609528*(puWeightDown/puWeight)'],
-# #                   'WW': ['1.0033022059*(puWeightUp/puWeight)', '0.997085330608*(puWeightDown/puWeight)'],
-# #                   'ggH_hww': ['1.0036768006*(puWeightUp/puWeight)', '0.995996570285*(puWeightDown/puWeight)'],
-# #                   'qqH_hww': ['1.00374694528*(puWeightUp/puWeight)', '0.995878596852*(puWeightDown/puWeight)'],
-# #                 },
-# #                 'AsLnN'      : '1',
-# # }
+nuisances['PU']  = {
+                'name'  : 'CMS_PU_2018',
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : dict ( (skey, [ '(puWeightUp/puWeight)','(puWeightDown/puWeight)']) for skey in mc ),
+                'AsLnN'      : '1',
+}
 
 ## Top pT reweighting uncertainty
 
@@ -486,8 +486,8 @@ nuisances['stat']  = {
 
 
 
-# for n in nuisances.values():
-#     n['skipCMS'] = 1
+for n in nuisances.values():
+    n['skipCMS'] = 1
 
    
 # #print ' '.join(nuis['name'] for nname, nuis in nuisances.iteritems() if nname not in ('lumi', 'stat'))

@@ -45,3 +45,5 @@ structureFile = direc+'/structure.py'
 #nuisancesFile = direc+'/nuisances.py'
 #nuisancesFile = direc+'/nuisances_datacard_join.py'
 #nuisancesFile = direc + '/nuisances_datacard.py'
+
+customizeScript = direc + '/customize.py'

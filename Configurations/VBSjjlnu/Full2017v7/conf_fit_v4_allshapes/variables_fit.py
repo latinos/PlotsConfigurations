@@ -25,14 +25,14 @@ variables['DNNoutput_res_morebins'] = {
 }
 
 
-# variables['DNNoutput_res_custom'] = {
-#     'name': 'DNNoutput',
-#     'range': ([0,0.25,0.5]+[ 0.5 + 0.01*i  for i in range(1,51)], ),
-#     'xaxis': 'DNN output, resolved',
-#     'fold': 0 ,
-#     'cuts':  res_cuts,
-#     'blind': { c:[0.7,1] for c in cuts if "_sig_" in c},
-# }
+variables['DNNoutput_res_custom'] = {
+    'name': 'DNNoutput',
+    'range': ([0,0.25,0.5]+[ 0.5 + 0.01*i  for i in range(1,51)], ),
+    'xaxis': 'DNN output, resolved',
+    'fold': 0 ,
+    'cuts':  res_cuts,
+    'blind': { c:[0.7,1] for c in cuts if "_sig_" in c},
+}
 
 
 variables['DNNoutput_res_custom2'] = {
@@ -55,14 +55,14 @@ variables['DNNoutput_boost_morebins'] = {
     'blind': { c:[0.7,1] for c in cuts if "_sig_" in c} ,
 }
 
-# variables['DNNoutput_boost_custom'] = {
-#     'name': 'DNNoutput_boosted',
-#     'range':([0,0.25,0.5]+[ 0.5 + 0.02*i  for i in range(1,26)], ),
-#     'xaxis': 'DNN output, boosted',
-#     'fold': 0 ,
-#     'cuts': boost_cuts,
-#     'blind': { c:[0.7,1] for c in cuts if "_sig_" in c} ,
-# }
+variables['DNNoutput_boost_custom'] = {
+    'name': 'DNNoutput_boosted',
+    'range':([0,0.25,0.5]+[ 0.5 + 0.02*i  for i in range(1,26)], ),
+    'xaxis': 'DNN output, boosted',
+    'fold': 0 ,
+    'cuts': boost_cuts,
+    'blind': { c:[0.7,1] for c in cuts if "_sig_" in c} ,
+}
 
 variables['DNNoutput_boost_custom2'] = {
     'name': 'DNNoutput_boosted',
@@ -111,20 +111,20 @@ variables['mjj_vbs'] = {   'name': 'mjj_vbs',
 }
 
 
-# variables['vbs_0_pt_res'] = {   'name': 'vbs_0_pt',      
-#                         'range' : (40,50,400),  
-#                         'xaxis' : 'leading VBS jet pt', 
-#                         'fold' : 3, 
-#                         'cuts': res_cuts
-#                         }
+variables['vbs_0_pt_res'] = {   'name': 'vbs_0_pt',      
+                        'range' : (40,50,400),  
+                        'xaxis' : 'leading VBS jet pt', 
+                        'fold' : 3, 
+                        'cuts': res_cuts
+                        }
 
 
-# variables['vbs_0_pt_boost'] = {   'name': 'vbs_0_pt',      
-#                         'range' : (60,50,800),  
-#                         'xaxis' : 'leading VBS jet pt', 
-#                         'fold' : 3, 
-#                         'cuts': boost_cuts
-#                         }
+variables['vbs_0_pt_boost'] = {   'name': 'vbs_0_pt',      
+                        'range' : (60,50,800),  
+                        'xaxis' : 'leading VBS jet pt', 
+                        'fold' : 3, 
+                        'cuts': boost_cuts
+                        }
 
 
 # variables['vbs_1_pt'] = {   'name': 'vbs_1_pt',      
@@ -132,6 +132,7 @@ variables['mjj_vbs'] = {   'name': 'mjj_vbs',
 #                         'xaxis' : 'trailing VBS jet pt', 
 #                         'fold' : 3
 #                         } 
+
 
 
 variables['whad_pt_boost'] = {

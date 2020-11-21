@@ -219,23 +219,23 @@ addSampleWeight(samples,'top','ST_t-channel_antitop',  "100. / 32.4")
 
 samples['Wjets_HT'] = { 'name' :   
           #nanoGetSampleFiles(directory_bkg, 'WJetsToLNu')  #NLO inclusive samples
-          nanoGetSampleFiles(directory_bkg, 'WJetsToLNu-LO')
-          + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu-LO_ext2')
-          + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT70_100')
-          + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT100_200')
-          + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT100_200_ext2')
-          + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT200_400')
-          + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT200_400_ext2')
-          + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT400_600')
-          + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT400_600_ext1')
-          + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT600_800')
-          + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT600_800_ext1')
-          + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT800_1200')
-          + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT800_1200_ext1')
-          + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT1200_2500')
-          + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT1200_2500_ext1')
-          + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT2500_inf')
-          + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT2500_inf_ext1')
+          # nanoGetSampleFiles(directory_bkg, 'WJetsToLNu-LO')
+          # + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu-LO_ext2')
+          # + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT70_100')
+          nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT100_200')
+          # + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT100_200_ext2')
+          # + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT200_400')
+          # + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT200_400_ext2')
+          # + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT400_600')
+          # + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT400_600_ext1')
+          # + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT600_800')
+          # + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT600_800_ext1')
+          # + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT800_1200')
+          # + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT800_1200_ext1')
+          # + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT1200_2500')
+          # + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT1200_2500_ext1')
+          # + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT2500_inf')
+          # + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT2500_inf_ext1')
           ,
         'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch + '* EWKnloW', #added Lo to NLO factors
         'FilesPerJob' : 5,
@@ -416,4 +416,4 @@ for Run in DataRun :
                         samples['DATA']['name'].append(iFile)
                         samples['DATA']['weights'].append(DataTrig[DataSet])
 
-#samples = {   key:v for key,v in samples.items() if key  in [ "Wjets_HT"] }
+samples = {   key:v for key,v in samples.items() if key  in [ "Wjets_HT"] }
