@@ -242,7 +242,7 @@ nuisances['JetPUID_sf']  = {
                 'name'  : 'CMS_jetpuid_2017',
                 'kind'  : 'weight',
                 'type'  : 'shape',
-                'samples'  : dict((skey, ['PUJetIdSF_up/PUJetIdSF','PUJetIdSF_down/PUJetIdSF']) for skey in mc ),
+                'samples'  : dict((skey, ['PUJetIdSF_up/PUJetIdSF','PUJetIdSF_down/PUJetIdSF']) for skey in mc if skey not in ["DY"]),
 }
 
 

@@ -163,12 +163,12 @@ aliases['Top_pTrw'] = {
 
 # Using tight scale factors for jets in the horn
 aliases['PUJetIdSF'] = {
-  'expr' : 'TMath::Exp(Sum$((Jet_jetId>=2)*(abs(Jet_eta)<2.65 || abs(Jet_eta)>3.139)*TMath::Log(Jet_PUIDSF_loose) + (Jet_jetId>=2)*(abs(Jet_eta)>2.65 && abs(Jet_eta)<3.139)*TMath::Log(Jet_PUIDSF_tight)))',
+  'expr' : 'TMath::Exp(Sum$((Jet_jetId>=2)*( abs(Jet_eta)<2.65 || abs(Jet_eta)>3.139)*TMath::Log(Jet_PUIDSF_loose) + (Jet_jetId>=2)*(abs(Jet_eta)>2.65 && abs(Jet_eta)<3.139)*TMath::Log(Jet_PUIDSF_tight)))',
   'samples': mc
 }
 
 aliases['PUJetIdSF_up'] = {
-  'expr' : 'TMath::Exp(Sum$((Jet_jetId>=2)*(abs(Jet_eta)<2.65 || abs(Jet_eta)>3.139)*TMath::Log(Jet_PUIDSF_loose_up) + (Jet_jetId>=2)*(abs(Jet_eta)>2.65 && abs(Jet_eta)<3.139)*TMath::Log(Jet_PUIDSF_tight_up)))',
+  'expr' : 'TMath::Exp(Sum$((Jet_jetId>=2)*( abs(Jet_eta)<2.65 || abs(Jet_eta)>3.139)*TMath::Log(Jet_PUIDSF_loose_up) + (Jet_jetId>=2)*(abs(Jet_eta)>2.65 && abs(Jet_eta)<3.139)*TMath::Log(Jet_PUIDSF_tight_up)))',
   'samples': mc
 }
 
