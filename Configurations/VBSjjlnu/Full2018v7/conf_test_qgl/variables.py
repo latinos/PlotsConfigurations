@@ -10,117 +10,89 @@ variables['events']  = {   'name': '1',
                         }
 
 variables['vbs_0_qgl_res'] = {  'name': 'vbs_0_qgl_res',
-                        'range': (44,-0.1,1.),
+                        'range': (55,-0.1,1.),
                         'xaxis': 'Qgl VBS 0 jet',
                         'fold': 3,
                         'cuts': res_cuts
                 }
 
 variables['vbs_1_qgl_res'] = {  'name': 'vbs_1_qgl_res',
-                        'range': (44,-0.1,1.),
+                        'range': (55,-0.1,1.),
                         'xaxis': 'Qgl VBS 1 jet',
                         'fold': 3,
                         'cuts': res_cuts
                 }
 
 variables['vjet_0_qgl_res'] = {  'name': 'vjet_0_qgl_res',
-                        'range': (44,-0.1,1.),
+                        'range': (55,-0.1,1.),
                         'xaxis': 'Qgl Vjet 0 jet',
                         'fold': 3,
                         'cuts': res_cuts
                 }
 
 variables['vjet_1_qgl_res'] = {  'name': 'vjet_1_qgl_res',
-                        'range': (44,-0.1,1.),
+                        'range': (55,-0.1,1.),
                         'xaxis': 'Qgl Vjet 1 jet',
                         'fold': 3,
                         'cuts': res_cuts
                 }
 
 
-variables['vbs_0_qgl_res_morebins'] = {  'name': 'vbs_0_qgl_res',
-                        'range': (77,0.1,1.),
+variables['vbs_0_qgl_boost'] = {  'name': 'vbs_0_qgl_boost',
+                        'range': (55,-0.1,1.),
                         'xaxis': 'Qgl VBS 0 jet',
                         'fold': 3,
-                        'cuts': res_cuts
+                        'cuts': boost_cuts
                 }
 
-variables['vbs_1_qgl_res_morebins'] = {  'name': 'vbs_1_qgl_res',
-                        'range': (77,-0.1,1.),
+variables['vbs_1_qgl_boost'] = {  'name': 'vbs_1_qgl_boost',
+                        'range': (55,-0.1,1.),
                         'xaxis': 'Qgl VBS 1 jet',
                         'fold': 3,
-                        'cuts': res_cuts
-                }
-
-variables['vjet_0_qgl_res_morebins'] = {  'name': 'vjet_0_qgl_res',
-                        'range': (77,-0.1,1.),
-                        'xaxis': 'Qgl Vjet 0 jet',
-                        'fold': 3,
-                        'cuts': res_cuts
-                }
-
-variables['vjet_1_qgl_res_morebins'] = {  'name': 'vjet_1_qgl_res',
-                        'range': (77,-0.1,1.),
-                        'xaxis': 'Qgl Vjet 1 jet',
-                        'fold': 3,
-                        'cuts': res_cuts
+                        'cuts': boost_cuts
                 }
 
 ##########################
 
 variables['vbs_0_qglmorphed_res'] = {  'name': 'vbs_0_qglmorphed_res',
-                        'range': (44,-0.1,1.),
+                        'range': (55,-0.1,1.),
                         'xaxis': 'Qgl VBS 0 jet - remorphed',
                         'fold': 3,
                         'cuts': res_cuts
                 }
 
 variables['vbs_1_qglmorphed_res'] = {  'name': 'vbs_1_qglmorphed_res',
-                        'range': (44,-0.1,1.),
+                        'range': (55,-0.1,1.),
                         'xaxis': 'Qgl VBS 1 jet - remorphed',
                         'fold': 3,
                         'cuts': res_cuts
                 }
 
 variables['vjet_0_qglmorphed_res'] = {  'name': 'vjet_0_qglmorphed_res',
-                        'range': (44,-0.1,1.),
+                        'range': (55,-0.1,1.),
                         'xaxis': 'Qgl Vjet 0 jet - remorphed',
                         'fold': 3,
                         'cuts': res_cuts
                 }
 
 variables['vjet_1_qglmorphed_res'] = {  'name': 'vjet_1_qglmorphed_res',
-                        'range': (44,-0.1,1.),
+                        'range': (55,-0.1,1.),
                         'xaxis': 'Qgl Vjet 1 jet - remorphed',
                         'fold': 3,
                         'cuts': res_cuts
                 }
 
 
-variables['vbs_0_qglmorphed_res_morebins'] = {  'name': 'vbs_0_qglmorphed_res',
-                        'range': (88,0.1,1.),
-                        'xaxis': 'Qgl VBS 0 jet - remorphed',
+variables['vbs_0_qglmorphed_boost'] = {  'name': 'vbs_0_qglmorphed_boost',
+                        'range': (55,-0.1,1.),
+                        'xaxis': 'Qgl VBS 0 jet',
                         'fold': 3,
-                        'cuts': res_cuts
+                        'cuts': boost_cuts
                 }
 
-variables['vbs_1_qglmorphed_res_morebins'] = {  'name': 'vbs_1_qglmorphed_res',
-                        'range': (88,-0.1,1.),
-                        'xaxis': 'Qgl VBS 1 jet - remorphed',
+variables['vbs_1_qglmorphed_boost'] = {  'name': 'vbs_1_qglmorphed_boost',
+                        'range': (55,-0.1,1.),
+                        'xaxis': 'Qgl VBS 1 jet',
                         'fold': 3,
-                        'cuts': res_cuts
-                }
-
-variables['vjet_0_qglmorphed_res_morebins'] = {  'name': 'vjet_0_qglmorphed_res',
-                        'range': (88,-0.1,1.),
-                        'xaxis': 'Qgl Vjet 0 jet - remorphed',
-                        'fold': 3,
-                        'cuts': res_cuts
-                }
-
-variables['vjet_1_qglmorphed_res_morebins'] = {  'name': 'vjet_1_qglmorphed_res',
-                        'range': (88,-0.1,1.),
-                        'xaxis': 'Qgl Vjet 1 jet - remorphed',
-                        'fold': 3,
-                        'cuts': res_cuts
+                        'cuts': boost_cuts
                 }

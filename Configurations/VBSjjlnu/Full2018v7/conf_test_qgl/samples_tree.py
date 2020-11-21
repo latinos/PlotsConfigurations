@@ -125,7 +125,7 @@ samples['DY'] = {    'name'   :   nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M
                                   + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-4to50_HT-400to600')
                                   + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-4to50_HT-600toInf'),
                        'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + '*' + DY_photon_filter ,
-                       'FilesPerJob' : 16,
+                       'FilesPerJob' : 10,
                        'EventsPerJob' : 70000,
                        'suppressNegative' :['all'],
                        'suppressNegativeNuisances' :['all'],
@@ -166,7 +166,7 @@ samples['top'] = {    'name'   :   nanoGetSampleFiles(directory_bkg,'TTTo2L2Nu')
                                  + nanoGetSampleFiles(directory_bkg,'TTWjets'),
                                 # +  nanoGetSampleFiles(directory_bkg,'TTWJetsToLNu'), #also this is available
                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-                     'FilesPerJob' : 15,
+                     'FilesPerJob' : 10,
                      'EventsPerJob' : 70000,
                      'suppressNegative' :['all'],
                      'suppressNegativeNuisances' :['all']
@@ -199,7 +199,7 @@ samples['Wjets_HT'] = { 'name' :
           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT2500_inf')
           ,
 				'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch + '* ewknloW' ,
-				'FilesPerJob' : 15,
+				'FilesPerJob' : 10,
         'EventsPerJob' : 70000,
        
 		}
@@ -312,7 +312,7 @@ samples['VBS']  = { 'name' :
                nanoGetSampleFiles(directory_signal,'WpTo2J_WmToLNu') +
                nanoGetSampleFiles(directory_signal,'ZTo2L_ZTo2J',  ),
        'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch,
-       'FilesPerJob' : 16,
+       'FilesPerJob' : 12,
        'EventsPerJob' : 70000,
 }
 
@@ -354,6 +354,6 @@ for Run in DataRun :
                         samples['DATA']['name'].append(iFile)
                         samples['DATA']['weights'].append(DataTrig[DataSet])
 
-samples = {   key:v for key,v in samples.items() if key   in ["Fake", "DATA"]}
+#samples = {   key:v for key,v in samples.items() if key   in ["Fake", "DATA"]}
 
 #samples = {   key:v for key,v in samples.items() if key  in ["Wjets_HT"]}
