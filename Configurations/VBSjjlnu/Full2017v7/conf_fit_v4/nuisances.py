@@ -220,7 +220,7 @@ nuisances['eff_m']  = {
                 'name'  : 'CMS_eff_m_2017',
                 'kind'  : 'weight',
                 'type'  : 'shape',
-                'samples'  : dict((skey, id_syst_mu) for skey in mc if skey not in ["Vg", "VgS"]),
+                'samples'  : dict((skey, id_syst_mu) for skey in mc if skey not in ["Vg", "VgS"]), # why?
                 'cuts': phase_spaces_tot_mu
 }
 

@@ -227,6 +227,7 @@ aliases['gstarHigh'] = {
     'samples': 'VgS'
 }
 
+#############################
 
 aliases['veto_fatjet_180'] = {
             'class': 'VetoFatJetResolved',
@@ -292,21 +293,6 @@ aliases['vbs_1_qgl_boost'] = {
                                                        m_quark_loweta_pt0, m_quark_loweta_pt1, m_quark_higheta_pt0, m_quark_higheta_pt1 )
 } 
 
-
-# ############################
-
-# aliases['tag_jets_systems_pt'] = {
-#     'class': 'TagJetsSystemsPt',
-#     'args': (),
-#     'linesToAdd' : [
-#         'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-#         '.L {}/VBSjjlnu/macros/TagJetsSystemsPt.cc+'.format(configurations)
-#     ]   
-# }
-
-# aliases['vbs_jets_pt'] ={
-#     'expr' : 'tag_jets_systems_pt[0]'
-# }
 
 ##########################
 # additional uncertainties for Wtagging from pt extrapolation

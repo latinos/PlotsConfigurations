@@ -1,5 +1,3 @@
-# # # nuisances
-# # #FIXME: TO BE UPDATED FOR 2018!
 from pprint import pprint
 # # # name of samples here must match keys in samples.py 
 
@@ -193,7 +191,7 @@ nuisances['eff_m']  = {
                 'name'  : 'CMS_eff_m_2018',
                 'kind'  : 'weight',
                 'type'  : 'shape',
-                'samples'  : dict((skey, id_syst_mu) for skey in mc if skey not in ["Vg", "VgS"]),
+                'samples'  : dict((skey, id_syst_mu) for skey in mc ),
                 'cuts': phase_spaces_mu
 }
 
@@ -322,7 +320,7 @@ fatjet_jms = {
     'cuts': phase_spaces_boost #because we are vetoing fatjets anyway in resolved category
 }
 
-split_nuisance_samples_dir('fatjetJMS', fatjet_jms, 'fatjetJMS', [(getSamplesWithout(mc_norm, ["Vg", "VgS"]), directory_bkg)])
+split_nuisance_samples_dir('fatjetJMS', fatjet_jms, 'fatjetJMS', [(getSamplesWithout(mc_norm, ["Vg", "VgS"]), directory_bkg), (mc_sep, directory_signal)])
   
 
 
@@ -335,6 +333,7 @@ for sample in mc :
         'type'  : 'shape',
         'samples'  :  { sample: ["LHEScaleWeight[0]", "LHEScaleWeight[8]"] }
     }
+
 
 
 # # #
