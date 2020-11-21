@@ -394,7 +394,7 @@ nuisances['PS']  = {
 # # }
 
 nuisances['PU']  = {
-                'name'  : 'CMS_PU_2018',
+                'name'  : 'CMS_PU_2017',
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : dict ( (skey, [ '(puWeightUp/puWeight)','(puWeightDown/puWeight)']) for skey in mc ),
@@ -490,4 +490,4 @@ for n in nuisances.values():
     n['skipCMS'] = 1
 
    
-# #print ' '.join(nuis['name'] for nname, nuis in nuisances.iteritems() if nname not in ('lumi', 'stat'))
+#print ' '.join(nuis['name'] for nname, nuis in nuisances.iteritems() if nname not in ('lumi', 'stat'))

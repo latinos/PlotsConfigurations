@@ -35,9 +35,6 @@ def split_nuisance_samples_dir(nuisance_name, nuisance_options, variation, group
         n["folderUp"] = folder +'_'+variation + 'up'
         n["folderDown"] = folder +'_'+variation + 'do'
         nuisances['{}_{}'.format(nuisance_name, ig)] = n
-# ################################ EXPERIMENTAL UNCERTAINTIES  #################################
-
-# #### Luminosity
 
 # ################################ EXPERIMENTAL UNCERTAINTIES  #################################
 
@@ -204,7 +201,6 @@ split_nuisance_samples_dir('electronpt', ele_pt_var, 'ElepT', [(mc_norm, directo
 
 
 
-
 # # ##### Muon Efficiency and energy scale
 
 
@@ -286,17 +282,15 @@ split_nuisance_samples_dir('fatjetJER', fatjer_var, 'fatjetJER', [(getSamplesWit
   
 
 
-
-#### TO be added again
-# # ##### MET energy scale
-# met_var = {
-#                 'name'  : 'CMS_scale_met_2016',
-#                 'kind'  : 'suffix',
-#                 'type'  : 'shape',
-#                 'mapUp': 'METup',
-#                 'mapDown': 'METdo', # it was wrong!
-# }
-# split_nuisance_samples_dir('MET', met_var, 'MET', [(mc_norm, directory_bkg), (mc_sep, directory_signal)])
+# ##### MET energy scale
+met_var = {
+                'name'  : 'CMS_scale_met_2016',
+                'kind'  : 'suffix',
+                'type'  : 'shape',
+                'mapUp':   'METup',
+                'mapDown': 'METdo', 
+}
+split_nuisance_samples_dir('MET', met_var, 'MET', [(mc_norm, directory_bkg), (mc_sep, directory_signal)])
 
 
 
@@ -351,21 +345,16 @@ for sample in mc :
         'samples'  :  { sample: ["LHEScaleWeight[0]", "LHEScaleWeight[8]"] }
     }
 
-
-
-
 # # #
 # # # PS and UE
 # # #
-# # nuisances['PS']  = {
-# #                 'name'  : 'PS',
-# #                 'skipCMS' : 1,
-# #                 'kind'  : 'weight',
-# #                 'type'  : 'shape',
-# #                 'samples'  : {
-# #                   'WW'      : ['PSWeight[0]', 'PSWeight[3]'],
-# #                   },
-# #                 }
+nuisances['PS']  = {
+                'name'  : 'PS',
+                'skipCMS' : 1,
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : dict((skey, ['PSWeight[0]', 'PSWeight[3]']) for skey in mc )
+                }
 
 # # nuisances['UE']  = {
 # #                 'name'  : 'UE', 
@@ -382,38 +371,28 @@ for sample in mc :
 # #                 'AsLnN'      : '1',
 # # }
 
+nuisances['PU']  = {
+                'name'  : 'CMS_PU_2016',
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : dict ( (skey, [ '(puWeightUp/puWeight)','(puWeightDown/puWeight)']) for skey in mc ),
+                'AsLnN'      : '1',
+}
 
-# # nuisances['PU']  = {
-# #                 'name'  : 'CMS_PU_2018',
-# #                 'kind'  : 'weight',
-# #                 'type'  : 'shape',
-# #                 'samples'  : {
-# #                   'DY': ['0.993259983266*(puWeightUp/puWeight)', '0.997656381501*(puWeightDown/puWeight)'],
-# #                   'top': ['1.00331969187*(puWeightUp/puWeight)', '0.999199609528*(puWeightDown/puWeight)'],
-# #                   'WW': ['1.0033022059*(puWeightUp/puWeight)', '0.997085330608*(puWeightDown/puWeight)'],
-# #                   'ggH_hww': ['1.0036768006*(puWeightUp/puWeight)', '0.995996570285*(puWeightDown/puWeight)'],
-# #                   'qqH_hww': ['1.00374694528*(puWeightUp/puWeight)', '0.995878596852*(puWeightDown/puWeight)'],
-# #                 },
-# #                 'AsLnN'      : '1',
-# # }
 
 # # Top pT reweighting uncertainty
-
-apply_on = {
-    'top': [
-        '(topGenPt * antitopGenPt <= 0.) * 1.0816 + (topGenPt * antitopGenPt > 0.)',
-        '(topGenPt * antitopGenPt <= 0.) * 0.9184 + (topGenPt * antitopGenPt > 0.)'
-    ]
-}
 
 nuisances['singleTopToTTbar'] = {
     'name': 'singleTopToTTbar',
     'skipCMS': 1,
     'kind': 'weight',
     'type': 'shape',
-    'samples': apply_on
+    'samples': { 
+       'top': [
+        'isSingleTop * 1.0816 + isTTbar',
+        'isSingleTop * 0.9184 + isTTbar']
+      }
 }
-
 ## Top pT reweighting uncertainty
 
 nuisances['TopPtRew'] = {

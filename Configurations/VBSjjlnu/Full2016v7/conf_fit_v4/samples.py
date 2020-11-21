@@ -199,7 +199,7 @@ samples['top'] = {
                     #  + nanoGetSampleFiles(directory_bkg,'TTWJetsToLNu_ext1')  
                       + nanoGetSampleFiles(directory_bkg,'TTZjets'),  
             'weight' :  XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch,
-            'FilesPerJob' : 5,
+            'FilesPerJob' : 4,
             'EventsPerJob' : 80000,
             'suppressNegative' :['all'],
             'suppressNegativeNuisances' :['all'],
@@ -219,37 +219,39 @@ addSampleWeight(samples,'top','ST_t-channel_antitop',  "100. / 32.4")
 
 samples['Wjets_HT'] = { 'name' :   
           #nanoGetSampleFiles(directory_bkg, 'WJetsToLNu')  #NLO inclusive samples
-          # nanoGetSampleFiles(directory_bkg, 'WJetsToLNu-LO')
-          # + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu-LO_ext2')
-          # + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT70_100')
-          nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT100_200')
-          # + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT100_200_ext2')
-          # + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT200_400')
-          # + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT200_400_ext2')
-          # + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT400_600')
-          # + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT400_600_ext1')
-          # + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT600_800')
-          # + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT600_800_ext1')
-          # + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT800_1200')
-          # + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT800_1200_ext1')
-          # + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT1200_2500')
-          # + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT1200_2500_ext1')
-          # + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT2500_inf')
-          # + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT2500_inf_ext1')
+          nanoGetSampleFiles(directory_bkg, 'WJetsToLNu-LO')
+          + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu-LO_ext2')
+          + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT70_100')
+          + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT100_200')
+          + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT100_200_ext2')
+          + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT200_400')
+          + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT200_400_ext2')
+          + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT400_600')
+          + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT400_600_ext1')
+          + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT600_800')
+          + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT600_800_ext1')
+          + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT800_1200')
+          + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT800_1200_ext1')
+          + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT1200_2500')
+          + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT1200_2500_ext1')
+          + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT2500_inf')
+          + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT2500_inf_ext1')
           ,
         'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch + '* EWKnloW', #added Lo to NLO factors
-        'FilesPerJob' : 5,
-        # 'subsamples': {
-        #     "res_1": '(VBS_category==1) && (vbs_jets_pt < 100)',
-        #     "res_2": '(VBS_category==1) && (vbs_jets_pt >= 100 && vbs_jets_pt < 200)',
-        #     "res_3": '(VBS_category==1) && (vbs_jets_pt >= 200 && vbs_jets_pt < 300)',
-        #     "res_4": '(VBS_category==1) && (vbs_jets_pt >= 300 && vbs_jets_pt < 400)',
-        #     "res_5": '(VBS_category==1) && (vbs_jets_pt >= 400)',
-        #     "boost_1": '(VBS_category==0) && (w_had_pt < 300)',
-        #     "boost_2": '(VBS_category==0) && (w_had_pt >= 300 && w_had_pt < 400)',
-        #     "boost_3": '(VBS_category==0) && (w_had_pt >= 400 && w_had_pt < 600)',
-        #     "boost_4": '(VBS_category==0) && (w_had_pt >= 600)',
-        # }
+        'FilesPerJob' : 4,
+         'subsamples': {
+            "res_1": '(VBS_category==1) && (w_lep_pt < 100)',
+            "res_2": '(VBS_category==1) && (w_lep_pt >= 100 && w_lep_pt < 200)',
+            "res_3": '(VBS_category==1) && (w_lep_pt >= 200 && w_lep_pt < 300)',
+            "res_4": '(VBS_category==1) && (w_lep_pt >= 300 && w_lep_pt < 400)',
+            "res_5": '(VBS_category==1) && (w_lep_pt >= 400 && w_lep_pt < 500)',
+            "res_6": '(VBS_category==1) && (w_lep_pt >= 500)',
+            "boost_1": '(VBS_category==0) && (w_lep_pt < 75)',
+            "boost_2": '(VBS_category==0) && (w_lep_pt >= 75 && w_lep_pt < 150)',
+            "boost_3": '(VBS_category==0) && (w_lep_pt >= 150 && w_lep_pt < 250)',
+            "boost_4": '(VBS_category==0) && (w_lep_pt >= 250 && w_lep_pt < 400)',
+            "boost_5": '(VBS_category==0) && (w_lep_pt >= 400)',
+        }
        }
 
 # No needed HT stiching corrections
@@ -297,7 +299,7 @@ samples['VV']  = { 'name' :
                nanoGetSampleFiles(directory_signal,'WpToLNu_ZTo2J_QCD') +
                nanoGetSampleFiles(directory_signal,'ZTo2L_ZTo2J_QCD') ,
         'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch,
-        'FilesPerJob' : 8,
+        'FilesPerJob' : 9,
         'EventsPerJob' : 70000,
 }
 
@@ -374,7 +376,7 @@ samples['VBS']  = { 'name' :
                + nanoGetSampleFiles(directory_signal,'WpToLNu_ZTo2J') 
                + nanoGetSampleFiles(directory_signal,'ZTo2L_ZTo2J' ),
        'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch,
-       'FilesPerJob' : 8,
+       'FilesPerJob' : 9,
         'EventsPerJob' : 70000,
 }
 
@@ -416,4 +418,3 @@ for Run in DataRun :
                         samples['DATA']['name'].append(iFile)
                         samples['DATA']['weights'].append(DataTrig[DataSet])
 
-samples = {   key:v for key,v in samples.items() if key  in [ "Wjets_HT"] }

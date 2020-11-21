@@ -124,7 +124,7 @@ samples['DY'] = {    'name'   :   nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M
                                   + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-4to50_HT-600toInf')
                                   + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-4to50_HT-600toInf_ext1') ,
                        'weight' : (XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+"*"+DY_photons_filter).replace('PUJetIdSF','1.'),
-                       'FilesPerJob' : 5,
+                       'FilesPerJob' : 6,
                        'EventsPerJob' : 80000,
                       #  'suppressNegative' :['all'],
                       #  'suppressNegativeNuisances' :['all'],
@@ -248,7 +248,7 @@ samples['VV']  = { 'name' :
                nanoGetSampleFiles(directory_signal,'WpToLNu_ZTo2J_QCD' ) +
                nanoGetSampleFiles(directory_signal,'ZTo2L_ZTo2J_QCD' ) , 
         'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch , # add back ewknlOW
-        'FilesPerJob' : 7,
+        'FilesPerJob' : 8,
         'EventsPerJob' : 70000,
 }
 
@@ -325,7 +325,7 @@ samples['VBS']  = { 'name' :
                nanoGetSampleFiles(directory_signal,'WpTo2J_WmToLNu') +
                nanoGetSampleFiles(directory_signal,'ZTo2L_ZTo2J',  ),
        'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch,
-       'FilesPerJob' : 5,
+       'FilesPerJob' : 7,
         'EventsPerJob' : 70000,
 }
 
@@ -367,4 +367,4 @@ for Run in DataRun :
                         samples['DATA']['weights'].append(DataTrig[DataSet])
 
 
-#samples = {k:v for k,v in samples.items() if k in [ "Wjets_HT"]}
+samples = {k:v for k,v in samples.items() if k in [ "Wjets_HT"]}
