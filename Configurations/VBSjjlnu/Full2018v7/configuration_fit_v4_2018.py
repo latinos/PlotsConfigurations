@@ -9,16 +9,16 @@ direc = "conf_fit_v4"
 outputDir = 'rootFile_'+tag 
 
 # file with TTree aliases
-aliasesFile = direc+'/aliases_tree.py'
+aliasesFile = direc+'/aliases.py'
 
 # file with list of variables
 variablesFile = direc+'/variables_fit.py'
 
 # file with list of cuts
-cutsFile = direc +'/cuts_tree.py' 
+cutsFile = direc +'/cuts.py' 
 
 # file with list of samples
-samplesFile = direc+'/samples_fit.py' 
+samplesFile = direc+'/samples.py' 
 #samplesFile = direc+'/samples.py'
 
 #t file with list of samples

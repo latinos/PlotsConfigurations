@@ -314,6 +314,7 @@ split_nuisance_samples_dir('MET', met_var, 'MET', [(mc_norm, directory_bkg), (mc
 ##################################
 ######## Fatjet uncertainties
 
+# Wtagging uncertainties enters also resolved region
 fatjet_eff = ['BoostedWtagSF_up/BoostedWtagSF_nominal', 'BoostedWtagSF_down/BoostedWtagSF_nominal']
 nuisances['Wtagging_eff'] = {
                 'name': 'CMS_fatjet_tau21eff_2017',
@@ -350,7 +351,7 @@ fatjet_jms = {
     'mapDown': 'fatjetJMSdo',
     'cuts': phase_spaces_boost #because we are vetoing fatjets anyway in resolved category
 }
-################ N.B.: Missing VV files
+
 split_nuisance_samples_dir('fatjetJMS', fatjet_jms, 'fatjetJMS', [(getSamplesWithout(mc_norm, ["Vg", "VgS"]), directory_bkg), (mc_sep, directory_signal)])
   
 
@@ -490,4 +491,4 @@ for n in nuisances.values():
     n['skipCMS'] = 1
 
    
-#print ' '.join(nuis['name'] for nname, nuis in nuisances.iteritems() if nname not in ('lumi', 'stat'))
+print ' '.join(nuis['name'] for nname, nuis in nuisances.iteritems() if nname not in ('lumi', 'stat'))
