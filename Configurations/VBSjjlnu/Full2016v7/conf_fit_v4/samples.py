@@ -418,3 +418,5 @@ for Run in DataRun :
                         samples['DATA']['name'].append(iFile)
                         samples['DATA']['weights'].append(DataTrig[DataSet])
 
+
+#samples = {k:v for k,v in samples.items() if k not in [ "Wjets_HT"]}

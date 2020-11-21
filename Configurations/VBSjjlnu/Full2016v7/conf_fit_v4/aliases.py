@@ -228,12 +228,12 @@ aliases['gstarHigh'] = {
 
 ##############################################
 # 
-# aliases['veto_fatjet_180'] = {
-            'class': 'VetoFatJet',
+aliases['veto_fatjet_180'] = {
+            'class': 'VetoFatJetResolved',
             'args': (180.),
             'linesToAdd' : [
                 'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-                '.L {}/VBSjjlnu/Full2018v7/macros/veto_fatjet.cc+'.format(configurations)
+                '.L {}/VBSjjlnu/macros/veto_fatjet_resolved.cc+'.format(configurations)
             ]           
 }
 
