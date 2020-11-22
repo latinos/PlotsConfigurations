@@ -76,7 +76,7 @@ Or:
 
     grep "proc" datacards/hww2l2v_13TeV_*/events/datacard.txt > yield.txt
     grep "rate " datacards/hww2l2v_13TeV_*/events/datacard.txt >> yield.txt
-    :%!column -t #to organize the table
+    column -t yield.txt > yield_organized.txt
 
 # Produce impact plots
 
@@ -86,3 +86,30 @@ Or:
     combineTool.py -M Impacts -d hww2l2v_13TeV_ggH.root -m 125 -t -1 --expectSignal=1 --robustFit=1 --doFits
     combineTool.py -M Impacts -d hww2l2v_13TeV_ggH.root -m 125 -o impacts_0j.json -t -1
     plotImpacts.py -i impacts.json -o Impact.pdf
+
+
+# Produce control plots for the data-driven DY-estimation method
+
+
+# Loose region: 
+
+    mkShapesMulti.py --pycfg=configuration_loose.py --doBatch=1 --batchSplit=Samples,Files --batchQueue=testmatch
+
+    mkShapesMulti.py --pycfg=configuration_loose.py --doHadd=1 --batchSplit=Samples,Files --doNotCleanup --nThreads=8
+
+    mkDYestim_data.py --pycfg=configuration_loose.py --dycfg=dyestim_loose.py --inputFile=rootFile/plots_DY_validation_loose_2017_v6.root
+
+    mkPlot.py --pycfg=configuration_loose.py --inputFile=rootFile/plots_DY_validation_loose_2017_v6_DYEstimDATA.root --linearOnly --fileFormats=png --onlyPlot=cratio
+
+
+# Z-peak region:
+
+    mkShapesMulti.py --pycfg=configuration_Z.py --doBatch=1 --batchSplit=Samples,Files --batchQueue=testmatch
+    mkShapesMulti.py --pycfg=configuration_Z.py --doHadd=1 --batchSplit=Samples,Files --doNotCleanup --nThreads=8
+
+    mkShapesMulti.py --pycfg=configuration_DYEST_Zpeak.py --doBatch=1 --batchSplit=Samples,Files --batchQueue=testmatch
+    mkShapesMulti.py --pycfg=configuration_DYEST_Zpeak.py --doHadd=1 --batchSplit=Samples,Files --doNotCleanup --nThreads=8
+
+    mkDYestim_data.py --pycfg=configuration_Z.py --dycfg=dyestim_Zpeak.py --inputFile=rootFile/plots_DY_validation_Zpeak_2017_v6.root
+
+    mkPlot.py --pycfg=configuration_Z.py --inputFile=rootFile/plots_DY_validation_Zpeak_2017_v6_DYEstimDATA.root --linearOnly --fileFormats=png --onlyPlot=cratio
