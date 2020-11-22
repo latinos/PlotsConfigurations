@@ -494,5 +494,5 @@ print ' '.join(nuis['name'] for nname, nuis in nuisances.iteritems() if nname no
 
 
 
-nuisances = { k:v for k,v in nuisances.items() if k in ['fake_syst','fake_ele','fake_ele_stat','fake_mu','fake_mu_stat',
-                                                    'eff_e','eff_m','electronpt_0','muonpt_0','electronpt_1','muonpt_1' ] }
+# nuisances = { k:v for k,v in nuisances.items() if k in ['fake_syst','fake_ele','fake_ele_stat','fake_mu','fake_mu_stat',
+#                                                     'eff_e','eff_m','electronpt_0','muonpt_0','electronpt_1','muonpt_1' ] }
