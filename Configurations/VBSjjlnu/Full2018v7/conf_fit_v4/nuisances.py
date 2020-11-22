@@ -11,16 +11,18 @@ def getSamplesWithout(samples, samples_to_remove):
 phase_spaces_boost = [ c for c in cuts if 'boost' in c]
 phase_spaces_res = [ c for c in cuts if 'res' in c]
 
-phase_spaces_res_ele = [ ph+"_ele" for ph in phase_spaces_res]
-phase_spaces_res_mu = [ ph+"_mu" for ph in phase_spaces_res]
-phase_spaces_boost_ele = [ ph+"_ele" for ph in phase_spaces_boost]
-phase_spaces_boost_mu = [ ph+"_mu" for ph in phase_spaces_boost]
+phase_spaces_res_ele = [ c for c in phase_spaces_res if 'ele' in c]
+phase_spaces_res_mu = [ c for c in phase_spaces_res if 'mu' in c]
+phase_spaces_boost_ele = [ c for c in phase_spaces_boost if 'ele' in c]
+phase_spaces_boost_mu =  [ c for c in phase_spaces_boost if 'mu' in c]
 
-phase_spaces_ele = phase_spaces_res_ele + phase_spaces_boost_ele
-phase_spaces_mu = phase_spaces_res_mu + phase_spaces_boost_mu
+phase_spaces_tot_ele = phase_spaces_res_ele + phase_spaces_boost_ele
+phase_spaces_tot_mu = phase_spaces_res_mu + phase_spaces_boost_mu
+phase_spaces_tot_res = phase_spaces_res_ele + phase_spaces_res_mu
+phase_spaces_tot_boost = phase_spaces_boost_ele + phase_spaces_boost_mu
 
 phase_spaces_dict = {"boost": phase_spaces_boost, "res": phase_spaces_res}
-phase_spaces_tot = phase_spaces_ele + phase_spaces_mu
+phase_spaces_tot = phase_spaces_tot_ele + phase_spaces_tot_mu
 
 # Function to split a nuisance on different folders for different group of samples
 # keeping the same nuisance name
@@ -86,7 +88,7 @@ nuisances['fake_ele']  = {
                 'samples'  : {
                               'Fake'     : [ fakeW_jetUp , fakeW_jetDown ],
                              },
-                'cuts':  phase_spaces_ele
+                'cuts':  phase_spaces_tot_ele
 }
 
 nuisances['fake_ele_stat']  = {
@@ -96,7 +98,7 @@ nuisances['fake_ele_stat']  = {
                 'samples'  : {
                               'Fake'      : [ fakeW_statUp , fakeW_statDown ],
                              },
-                'cuts':  phase_spaces_ele
+                'cuts':  phase_spaces_tot_ele
 }
 
 nuisances['fake_mu']  = {
@@ -106,7 +108,7 @@ nuisances['fake_mu']  = {
                 'samples'  : {
                               'Fake'     : [ fakeW_jetUp , fakeW_jetDown ],
                              },
-                'cuts':  phase_spaces_mu
+                'cuts':  phase_spaces_tot_mu
 }
 
 
@@ -117,7 +119,7 @@ nuisances['fake_mu_stat']  = {
                 'samples'  : {
                               'Fake'     :[ fakeW_statUp , fakeW_statDown ],
                              },
-                'cuts':  phase_spaces_mu
+                'cuts':  phase_spaces_tot_mu
 }
 
 # ##### Btag nuisances
@@ -168,7 +170,7 @@ nuisances['eff_e']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  :   dict((skey, id_syst_ele) for skey in mc),
-                'cuts': phase_spaces_ele
+                'cuts': phase_spaces_tot_ele
 }
 
 
@@ -178,7 +180,7 @@ ele_pt_var = {
                 'type'  : 'shape',
                 'mapUp': 'ElepTup',
                 'mapDown': 'ElepTdo',
-                'cuts': phase_spaces_ele
+                'cuts': phase_spaces_tot_ele
 }
 split_nuisance_samples_dir('electronpt', ele_pt_var, 'ElepT', [(mc_norm, directory_bkg), (mc_sep, directory_signal)])
 
@@ -192,7 +194,7 @@ nuisances['eff_m']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : dict((skey, id_syst_mu) for skey in mc ),
-                'cuts': phase_spaces_mu
+                'cuts': phase_spaces_tot_mu
 }
 
 
@@ -202,7 +204,7 @@ mu_pt_var = {
                 'type'  : 'shape',
                 'mapUp': 'MupTup',
                 'mapDown': 'MupTdo',
-                'cuts': phase_spaces_mu
+                'cuts': phase_spaces_tot_mu
 }
 split_nuisance_samples_dir('muonpt', mu_pt_var, 'MupT', [(mc_norm, directory_bkg), (mc_sep, directory_signal)])
 
@@ -461,3 +463,7 @@ for n in nuisances.values():
    
 print ' '.join(nuis['name'] for nname, nuis in nuisances.iteritems() if nname not in ('lumi', 'stat'))
 
+
+
+nuisances = { k:v for k,v in nuisances.items() if k in ['fake_syst','fake_ele','fake_ele_stat','fake_mu','fake_mu_stat',
+                                                    'eff_e','eff_m','electronpt_0','muonpt_0','electronpt_1','muonpt_1' ] }

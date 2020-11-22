@@ -11,10 +11,10 @@ def getSamplesWithout(samples, samples_to_remove):
 phase_spaces_boost = [ c for c in cuts if 'boost' in c]
 phase_spaces_res = [ c for c in cuts if 'res' in c]
 
-phase_spaces_res_ele = [ ph+"_ele" for ph in phase_spaces_res]
-phase_spaces_res_mu = [ ph+"_mu" for ph in phase_spaces_res]
-phase_spaces_boost_ele = [ ph+"_ele" for ph in phase_spaces_boost]
-phase_spaces_boost_mu = [ ph+"_mu" for ph in phase_spaces_boost]
+phase_spaces_res_ele = [ c for c in phase_spaces_res if 'ele' in c]
+phase_spaces_res_mu = [ c for c in phase_spaces_res if 'mu' in c]
+phase_spaces_boost_ele = [ c for c in phase_spaces_boost if 'ele' in c]
+phase_spaces_boost_mu =  [ c for c in phase_spaces_boost if 'mu' in c]
 
 phase_spaces_tot_ele = phase_spaces_res_ele + phase_spaces_boost_ele
 phase_spaces_tot_mu = phase_spaces_res_mu + phase_spaces_boost_mu
@@ -451,3 +451,8 @@ for n in nuisances.values():
 
    
 print ' '.join(nuis['name'] for nname, nuis in nuisances.iteritems() if nname not in ('lumi', 'stat'))
+
+
+
+nuisances = { k:v for k,v in nuisances.items() if k in ['fake_syst','fake_ele','fake_ele_stat','fake_mu','fake_mu_stat',
+                                                    'eff_e','eff_m','electronpt_0','muonpt_0','electronpt_1','muonpt_1' ] }
