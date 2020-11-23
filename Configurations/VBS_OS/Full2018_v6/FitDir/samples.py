@@ -130,6 +130,10 @@ samples['DY'] = {
     'weight': mcCommonWeight + '*( !(Sum$(PhotonGen_isPrompt==1 && PhotonGen_pt>15 && abs(PhotonGen_eta)<2.6) > 0 &&\
                                      Sum$(LeptonGen_isPrompt==1 && LeptonGen_pt>15)>=2) )',
     'FilesPerJob': 6,
+    'subsamples': {
+        'lowZ': 'lowZ',
+        'highZ': 'highZ'
+    }
 }
 
 CombineBaseW(samples,       'DY',   ['DYJetsToLL_M-50'            , 'DYJetsToLL_M-50_ext2'])
@@ -398,8 +402,8 @@ for _, sd in DataRun:
     samples['Fake']['weights'].extend([DataTrig[pd]] * len(files))
 
 samples['Fake']['subsamples'] = {
-  'e': 'abs(Lepton_pdgId[0]) == 11',
-  'm': 'abs(Lepton_pdgId[0]) == 13'
+  'e': 'abs(Lepton_pdgId[1]) == 11',
+  'm': 'abs(Lepton_pdgId[1]) == 13'
 }
 
 ###########################################

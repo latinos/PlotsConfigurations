@@ -188,14 +188,6 @@ addSampleWeight(samples, 'DY', 'DYJetsToLL_M-5to50_HT-400to600_ext1',   'DY_LO_p
 addSampleWeight(samples, 'DY', 'DYJetsToLL_M-5to50_HT-600toinf',        'DY_LO_pTllrw*SameFlav')
 addSampleWeight(samples, 'DY', 'DYJetsToLL_M-5to50_HT-600toinf_ext1',   'DY_LO_pTllrw*SameFlav')
 
-'''
-nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50') + \
-    nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-10to50_ext1')
-addSampleWeight(samples, 'DY', 'DYJetsToLL_M-50'                    , 'DY_NLO_pTllrw*SameFlav')
-addSampleWeight(samples, 'DY', 'DYJetsToLL_M-10to50_ext1'           , 'DY_NLO_pTllrw*SameFlav')
-
-'''
-
 ###### Zjj EWK #######
 
 files = nanoGetSampleFiles(mcDirectory, 'EWK_LLJJ_MLL-50_MJJ-120')

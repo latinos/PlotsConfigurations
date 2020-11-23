@@ -818,9 +818,9 @@ nuisances['DYttnorm1j']  = {
                'type'  : 'rateParam',
                'cuts'  : cuts1j
               }
-'''
+
 nuisances['DYnorm2j_lowZ']  = {
-                 'name'  : 'CMS_hww_DYnorm2j_lowZ_2016',
+                 'name'  : 'CMS_hww_DYnorm2j_2016',
                  'samples'  : {
                      'DY_lowZ' : '1.00',
                      },
@@ -829,7 +829,25 @@ nuisances['DYnorm2j_lowZ']  = {
                 }
 
 nuisances['DYnorm2j_highZ']  = {
-                 'name'  : 'CMS_hww_DYnorm2j_highZ_2016',
+                 'name'  : 'CMS_hww_DYnorm2j_2016',
+                 'samples'  : {
+                     'DY_highZ' : '1.00',
+                     },
+                 'type'  : 'rateParam',
+                 'cuts'  : cuts2j
+                }
+'''
+nuisances['DYnorm2j_lowZ']  = {
+                 'name'  : 'CMS_hww_DYnorm2j_lowZ',
+                 'samples'  : {
+                     'DY_lowZ' : '1.00',
+                     },
+                 'type'  : 'rateParam',
+                 'cuts'  : cuts2j
+                }
+
+nuisances['DYnorm2j_highZ']  = {
+                 'name'  : 'CMS_hww_DYnorm2j_highZ',
                  'samples'  : {
                      'DY_highZ' : '1.00',
                      },

@@ -103,6 +103,9 @@ def CombineBaseW(samples, proc, samplelist):
 ###########################################
 
 ###### DY #######
+
+useDYtt = False
+
 ptllDYW_NLO = '(((0.623108 + 0.0722934*gen_ptll - 0.00364918*gen_ptll*gen_ptll + 6.97227e-05*gen_ptll*gen_ptll*gen_ptll - 4.52903e-07*gen_ptll*gen_ptll*gen_ptll*gen_ptll)*(gen_ptll<45)*(gen_ptll>0) + 1*(gen_ptll>=45))*(abs(gen_mll-90)<3) + (abs(gen_mll-90)>3))'
 ptllDYW_LO = '((0.632927+0.0456956*gen_ptll-0.00154485*gen_ptll*gen_ptll+2.64397e-05*gen_ptll*gen_ptll*gen_ptll-2.19374e-07*gen_ptll*gen_ptll*gen_ptll*gen_ptll+6.99751e-10*gen_ptll*gen_ptll*gen_ptll*gen_ptll*gen_ptll)*(gen_ptll>0)*(gen_ptll<100)+(1.41713-0.00165342*gen_ptll)*(gen_ptll>=100)*(gen_ptll<300)+1*(gen_ptll>=300))'
 
@@ -131,16 +134,20 @@ files = nanoGetSampleFiles(mcDirectory, 'DYJetsToTT_MuEle_M-50') + \
 samples['DY'] = {
     'name': files,
     'weight': mcCommonWeight + "*( !(Sum$(PhotonGen_isPrompt==1 && PhotonGen_pt>15 && abs(PhotonGen_eta)<2.6) > 0 &&\
-                                     Sum$(LeptonGen_isPrompt==1 && LeptonGen_pt>15)>=2) )",
+                                         Sum$(LeptonGen_isPrompt==1 && LeptonGen_pt>15)>=2) )",
     'FilesPerJob': 8,
+    'subsamples': {
+      'lowZ'    : 'lowZ',
+      'highZ'   : 'highZ'
+    }
 }
-
-CombineBaseW(samples, 'DY', ['DYJetsToLL_M-50',                 'DYJetsToLL_M-50_ext1'])
-CombineBaseW(samples, 'DY', ['DYJetsToLL_M-50_HT-200to400',     'DYJetsToLL_M-50_HT-200to400_ext1'])
-CombineBaseW(samples, 'DY', ['DYJetsToLL_M-4to50_HT-100to200',  'DYJetsToLL_M-4to50_HT-100to200_ext1'])
-CombineBaseW(samples, 'DY', ['DYJetsToLL_M-4to50_HT-200to400',  'DYJetsToLL_M-4to50_HT-200to400_ext1'])
-CombineBaseW(samples, 'DY', ['DYJetsToLL_M-4to50_HT-400to600',  'DYJetsToLL_M-4to50_HT-400to600_ext1'])
-CombineBaseW(samples, 'DY', ['DYJetsToLL_M-4to50_HT-600toInf',  'DYJetsToLL_M-4to50_HT-600toInf_ext1'])
+    
+CombineBaseW(samples, 'DY', ['DYJetsToLL_M-50'                 , 'DYJetsToLL_M-50_ext1'])
+CombineBaseW(samples, 'DY', ['DYJetsToLL_M-50_HT-200to400'     , 'DYJetsToLL_M-50_HT-200to400_ext1'])
+CombineBaseW(samples, 'DY', ['DYJetsToLL_M-4to50_HT-100to200'  , 'DYJetsToLL_M-4to50_HT-100to200_ext1'])
+CombineBaseW(samples, 'DY', ['DYJetsToLL_M-4to50_HT-200to400'  , 'DYJetsToLL_M-4to50_HT-200to400_ext1'])
+CombineBaseW(samples, 'DY', ['DYJetsToLL_M-4to50_HT-400to600'  , 'DYJetsToLL_M-4to50_HT-400to600_ext1'])
+CombineBaseW(samples, 'DY', ['DYJetsToLL_M-4to50_HT-600toInf'  , 'DYJetsToLL_M-4to50_HT-600toInf_ext1'])
 
 addSampleWeight(samples, 'DY', 'DYJetsToTT_MuEle_M-50',                 'DY_NLO_pTllrw*DiffFlav')
 addSampleWeight(samples, 'DY', 'DYJetsToLL_M-10to50-LO',                'DY_LO_pTllrw*DiffFlav')
@@ -409,8 +416,8 @@ for _, sd in DataRun:
     samples['Fake']['weights'].extend([DataTrig[pd]] * len(files))
 
 samples['Fake']['subsamples'] = {
-  'e': 'abs(Lepton_pdgId[0]) == 11',
-  'm': 'abs(Lepton_pdgId[0]) == 13'
+  'e': 'abs(Lepton_pdgId[1]) == 11',
+  'm': 'abs(Lepton_pdgId[1]) == 13'
 }
 
 ###########################################
