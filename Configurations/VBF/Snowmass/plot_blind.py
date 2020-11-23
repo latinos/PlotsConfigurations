@@ -92,6 +92,14 @@ for bin_num in range(0, n_bins):
     }
     n_color = n_color+1
 
+# Non-fiducial VBF
+groupPlot['qqH_hww_nonFid'] = {
+    'nameHR' : 'qqH_hww_nonFid',
+    'isSignal' : 2,
+    'color'    : n_color,
+    'samples'  : ['qqH_hww_nonFid']
+}
+
 # # VBF CP-violation samples
 # CP_V_samples = ['VBF_H0PM_ToWWTo2L2Nu',       # Pure SM sample H0PM
 #                 'VBF_H0PH_ToWWTo2L2Nu',       # Pure AC sample H0PH - a2 coupling
@@ -319,6 +327,14 @@ for bin_num in range(0, n_bins):
       'scale'    : 1
     }
     n_color = n_color+1
+
+plot['qqH_hww_nonFid'] = {
+    'nameHR' : 'qqH_hww_nonFid',
+    'color': 632+1, # kRed+1 
+    'isSignal' : 2,
+    'isData'   : 0,    
+    'scale'    : 1
+}
 
 # VBF CP-violation samples
 CP_V_samples = ['VBF_H0PM_ToWWTo2L2Nu', 'VBF_H0Mf05_ToWWTo2L2Nu', 'VBF_H0PH_ToWWTo2L2Nu', 'VBF_H0L1f05_ToWWTo2L2Nu', 'VBF_H0L1Zgf05_ToWWTo2L2Nu']

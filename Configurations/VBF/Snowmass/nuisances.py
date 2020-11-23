@@ -17,7 +17,6 @@ def nanoGetSampleFiles(inputDir, Sample):
 try:
     mc_emb = [skey for skey in samples if skey != 'DATA' and not skey.startswith('Fake')]
     mc = [skey for skey in mc_emb if skey != 'Dyemb']
-    #mc = [skey for skey in samples if skey != 'DATA' and not skey.startswith('Fake')]
 except NameError:
     mc = []
     cuts = {}
@@ -178,7 +177,6 @@ nuisances['electronpt'] = {
     'AsLnN': '1'
 }
 
-
 if useEmbeddedDY:
   nuisances['electronpt_emb'] = {
     'name': 'CMS_scale_e_2018',
@@ -191,13 +189,14 @@ if useEmbeddedDY:
     'folderDown': treeBaseDir+'/Embedding2018_102X_nAODv7_Full2018v7/DATAl1loose2018v7__l2loose__l2tightOR2018v7__Embedding__EmbElepTdo_suffix/',
     'AsLnN': '1'
   }
+
 ##### Muon Efficiency and energy scale
 
 nuisances['eff_m'] = {
     'name': 'CMS_eff_m_2018',
     'kind': 'weight',
     'type': 'shape',
-    'samples': dict((skey, ['ttHMVA_2l_mu_SF_Up', 'ttHMVA_2l_mu_SF_Down']) for skey in mc_emb)
+    'samples': dict((skey, ['SFweightMuUp', 'SFweightMuDown']) for skey in mc_emb)
 }
 
 nuisances['muonpt'] = {
@@ -212,7 +211,6 @@ nuisances['muonpt'] = {
     'AsLnN': '1'
 }
 
-
 if useEmbeddedDY:
   nuisances['muonpt_emb'] = {
     'name': 'CMS_scale_m_2018',
@@ -226,21 +224,53 @@ if useEmbeddedDY:
     'AsLnN': '1'
   }
 
-# ##### Jet energy scale
-# jes_systs = ['JESAbsolute','JESAbsolute_2018','JESBBEC1','JESBBEC1_2018','JESEC2','JESEC2_2018','JESFlavorQCD','JESHF','JESHF_2018','JESRelativeBal','JESRelativeSample_2018']
+##### Jet energy scale
+jes_systs = ['JESAbsolute','JESAbsolute_2018','JESBBEC1','JESBBEC1_2018','JESEC2','JESEC2_2018','JESFlavorQCD','JESHF','JESHF_2018','JESRelativeBal','JESRelativeSample_2018']
 
-# for js in jes_systs:
-#   nuisances[js] = {
-#       'name': 'CMS_scale_'+js,
-#       'kind': 'suffix',
-#       'type': 'shape',
-#       'mapUp': js+'up',
-#       'mapDown': js+'do',
-#       'samples': dict((skey, ['1', '1']) for skey in mc),
-#       'folderUp': makeMCDirectory('JESup_suffix'),
-#       'folderDown': makeMCDirectory('JESdo_suffix'),
-#       'AsLnN': '0'
-#   }
+for js in jes_systs:
+  if 'Absolute' in js: 
+    folderup = makeMCDirectory('JESAbsoluteup_suffix')
+    folderdo = makeMCDirectory('JESAbsolutedo_suffix')
+  elif 'BBEC1' in js:
+    folderup = makeMCDirectory('JESBBEC1up_suffix')
+    folderdo = makeMCDirectory('JESBBEC1do_suffix')
+  elif 'EC2' in js:
+    folderup = makeMCDirectory('JESEC2up_suffix')
+    folderdo = makeMCDirectory('JESEC2do_suffix')
+  elif 'HF' in js:
+    folderup = makeMCDirectory('JESHFup_suffix')
+    folderdo = makeMCDirectory('JESHFdo_suffix')
+  elif 'Relative' in js:
+    folderup = makeMCDirectory('JESRelativeup_suffix')
+    folderdo = makeMCDirectory('JESRelativedo_suffix')
+  elif 'FlavorQCD' in js:
+    folderup = makeMCDirectory('JESFlavorQCDup_suffix')
+    folderdo = makeMCDirectory('JESFlavorQCDdo_suffix')
+
+  nuisances[js] = {
+      'name': 'CMS_scale_'+js,
+      'kind': 'suffix',
+      'type': 'shape',
+      'mapUp': js+'up',
+      'mapDown': js+'do',
+      'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['VZ', 'Vg', 'VgS']),
+      'folderUp': folderup,
+      'folderDown': folderdo,
+      'AsLnN': '1'
+  }
+
+# ##### Jet energy resolution
+# nuisances['JER'] = {
+#     'name': 'CMS_res_j_2017',
+#     'kind': 'suffix',
+#     'type': 'shape',
+#     'mapUp': 'JERup',
+#     'mapDown': 'JERdo',
+#     'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['VZ', 'Vg', 'VgS']),
+#     'folderUp': makeMCDirectory('JERup_suffix'),
+#     'folderDown': makeMCDirectory('JERdo_suffix'),
+#     'AsLnN': '1'
+# }
 
 ##### MET energy scale
 
@@ -337,8 +367,8 @@ nuisances['UE']  = {
 
 apply_on = {
     'top': [
-        'isSingleTop * 1.0816 + isTTbar',
-        'isSingleTop * 0.9184 + isTTbar'
+        '(topGenPt * antitopGenPt <= 0.) * 1.0816 + (topGenPt * antitopGenPt > 0.)',
+        '(topGenPt * antitopGenPt <= 0.) * 0.9184 + (topGenPt * antitopGenPt > 0.)'
     ]
 }
 
@@ -352,13 +382,13 @@ nuisances['singleTopToTTbar'] = {
 
 ## Top pT reweighting uncertainty
 
-nuisances['TopPtRew'] = {
-    'name': 'CMS_topPtRew',   # Theory uncertainty
-    'kind': 'weight',
-    'type': 'shape',
-    'samples': {'top': ["Top_pTrw*Top_pTrw", "1."]},    
-    'symmetrize': True
-}
+# nuisances['TopPtRew'] = {
+#     'name': 'CMS_topPtRew',   # Theory uncertainty
+#     'kind': 'weight',
+#     'type': 'shape',
+#     'samples': {'top': ["Top_pTrw*Top_pTrw", "1."]},    
+#     'symmetrize': True
+# }
 
 nuisances['VgStar'] = {
     'name': 'CMS_hww_VgStarScale',
@@ -479,6 +509,33 @@ nuisances['pdf_qqbar_ACCEPT'] = {
 # This should work for samples with either 8 or 9 LHE scale weights (Length$(LHEScaleWeight) == 8 or 9)
 variations = ['LHEScaleWeight[0]', 'LHEScaleWeight[1]', 'LHEScaleWeight[3]', 'LHEScaleWeight[Length$(LHEScaleWeight)-4]', 'LHEScaleWeight[Length$(LHEScaleWeight)-2]', 'LHEScaleWeight[Length$(LHEScaleWeight)-1]']
 
+topvars0j = []
+topvars1j = []
+topvars2j = []
+
+# FIXME these need to be recalculated for 2018
+## Factors computed to renormalize the top scale variations such that the integral is not changed in each RECO jet bin (we have rateParams for that)
+topScaleNormFactors0j = {'LHEScaleWeight[3]': 1.0026322046882807, 'LHEScaleWeight[0]': 1.0761381504953040, 'LHEScaleWeight[1]': 1.0758902481739956, 'LHEScaleWeight[Length$(LHEScaleWeight)-1]': 0.9225780960271310, 'LHEScaleWeight[Length$(LHEScaleWeight)-4]': 1.0006689791003040, 'LHEScaleWeight[Length$(LHEScaleWeight)-2]': 0.9242759920995479}
+topScaleNormFactors1j = {'LHEScaleWeight[3]': 1.0088973745933350, 'LHEScaleWeight[0]': 1.0858717477880675, 'LHEScaleWeight[1]': 1.0809970696561464, 'LHEScaleWeight[Length$(LHEScaleWeight)-1]': 0.9115155831354494, 'LHEScaleWeight[Length$(LHEScaleWeight)-4]': 0.9950909615738225, 'LHEScaleWeight[Length$(LHEScaleWeight)-2]': 0.9194241285459210}
+topScaleNormFactors2j = {'LHEScaleWeight[3]': 1.0236911155246506, 'LHEScaleWeight[0]': 1.1249360990045656, 'LHEScaleWeight[1]': 1.1054771659922622, 'LHEScaleWeight[Length$(LHEScaleWeight)-1]': 0.8819750427294990, 'LHEScaleWeight[Length$(LHEScaleWeight)-4]': 0.9819208264038879, 'LHEScaleWeight[Length$(LHEScaleWeight)-2]': 0.9025818187649589}
+
+for var in variations:
+  topvars0j.append(var+'/'+str(topScaleNormFactors0j[var]))
+  topvars1j.append(var+'/'+str(topScaleNormFactors1j[var]))
+  topvars2j.append(var+'/'+str(topScaleNormFactors2j[var]))
+
+## QCD scale nuisances for top are decorrelated for each RECO jet bin: the QCD scale is different for different jet multiplicities so it doesn't make sense to correlate them
+
+nuisances['QCDscale_top_2j']  = {
+    'name'  : 'QCDscale_top_2j',
+    'skipCMS' : 1,
+    'kind'  : 'weight_envelope',
+    'type'  : 'shape',
+    'cutspost' : lambda self, cuts: [cut for cut in cuts if '2j' in cut],
+    'samples'  : {
+       'top' : topvars2j,
+    }
+}
 
 nuisances['QCDscale_V'] = {
     'name': 'QCDscale_V',
@@ -564,32 +621,31 @@ nuisances['CRSR_accept_top'] = {
 #
 #   see https://twiki.cern.ch/twiki/bin/viewauth/CMS/HiggsWG/SignalModelingTools
 
-# thus = [
-#     ('THU_ggH_Mu', 'ggH_mu_OTF'),
-#     ('THU_ggH_Res', 'ggH_res_OTF'),
-#     ('THU_ggH_Mig01', 'ggH_mig01_OTF'),
-#     ('THU_ggH_Mig12', 'ggH_mig12_OTF'),
-#     ('THU_ggH_VBF2j', 'ggH_VBF2j_OTF'),
-#     ('THU_ggH_VBF3j', 'ggH_VBF3j_OTF'),
-#     ('THU_ggH_PT60', 'ggH_pT60_OTF'),
-#     ('THU_ggH_PT120', 'ggH_pT120_OTF'),
-#     ('THU_ggH_qmtop', 'ggH_qmtop_OTF')
-# ]
+thus = [
+    ('THU_ggH_Mu', 'ggH_mu_2'),
+    ('THU_ggH_Res', 'ggH_res_2'),
+    ('THU_ggH_Mig01', 'ggH_mig01_2'),
+    ('THU_ggH_Mig12', 'ggH_mig12_2'),
+    ('THU_ggH_VBF2j', 'ggH_VBF2j_2'),
+    ('THU_ggH_VBF3j', 'ggH_VBF3j_2'),
+    ('THU_ggH_PT60', 'ggH_pT60_2'),
+    ('THU_ggH_PT120', 'ggH_pT120_2'),
+    ('THU_ggH_qmtop', 'ggH_qmtop_2')
+]
 
-# for name, vname in thus:
-#     updown = [vname, '2.-%s' % vname]
+for name, vname in thus:
+    updown = [vname, '2.-%s' % vname]
     
-#     nuisances[name] = {
-#         'name': name,
-#         'skipCMS': 1,
-#         'kind': 'weight',
-#         'type': 'shape',
-#         'samples': {
-#           'ggH_hww': updown,
-#           #'ggH_htt': updown
-#         }
-#     }
-
+    nuisances[name] = {
+        'name': name,
+        'skipCMS': 1,
+        'kind': 'weight',
+        'type': 'shape',
+        'samples': {
+          'ggH_hww': updown,
+          #'ggH_htt': updown
+        }
+    }
 
 # Theory uncertainty for qqH 
 #

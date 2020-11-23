@@ -32,6 +32,7 @@ except NameError:
 mcProduction = 'Autumn18_102X_nAODv7_Full2018v7'
 
 dataReco = 'Run2018_102X_nAODv7_Full2018v7'
+
 fakeReco = dataReco
 
 embedReco = 'Embedding2018_102X_nAODv7_Full2018v7'
@@ -61,9 +62,8 @@ def makeMCDirectory(var=''):
         return os.path.join(treeBaseDir, mcProduction, mcSteps.format(var=''))
 
 mcDirectory = makeMCDirectory()
-fakeDirectory = os.path.join(treeBaseDir, fakeReco, fakeSteps)
-#fakeDirectory = os.path.join(treeBaseDir, dataReco, fakeSteps)
-dataDirectory = os.path.join(treeBaseDir, dataReco, dataSteps)
+fakeDirectory = os.path.join(treeBaseDir,  fakeReco,  fakeSteps)
+dataDirectory = os.path.join(treeBaseDir,  dataReco,  dataSteps)
 embedDirectory = os.path.join(treeBaseDir, embedReco, embedSteps)
 
 ################################################
@@ -103,18 +103,20 @@ mcCommonWeight = 'XSWeight*SFweight*PromptGenLepMatch2l*METFilter_MC'
 useEmbeddedDY = True
 useDYtt = True
 
+# The Dyveto sample is used to estimate one piece of the Dyemb uncertainty
+# To avoid running it all the times, it was run once and the uncertainty was converted into a lnN (see nuisances.py)
+runDYveto = True
+
 embed_tautauveto = '' #Setup
 if useEmbeddedDY:
   embed_tautauveto = '*embed_tautauveto'
 
-ptllDYW_NLO = '(0.87*(gen_ptll<10)+(0.379119+0.099744*gen_ptll-0.00487351*gen_ptll**2+9.19509e-05*gen_ptll**3-6.0212e-07*gen_ptll**4)*(gen_ptll>=10 && gen_ptll<45)+(9.12137e-01+1.11957e-04*gen_ptll-3.15325e-06*gen_ptll**2-4.29708e-09*gen_ptll**3+3.35791e-11*gen_ptll**4)*(gen_ptll>=45 && gen_ptll<200) + 1*(gen_ptll>200))'
-ptllDYW_LO = '((0.632927+0.0456956*gen_ptll-0.00154485*gen_ptll*gen_ptll+2.64397e-05*gen_ptll*gen_ptll*gen_ptll-2.19374e-07*gen_ptll*gen_ptll*gen_ptll*gen_ptll+6.99751e-10*gen_ptll*gen_ptll*gen_ptll*gen_ptll*gen_ptll)*(gen_ptll>0)*(gen_ptll<100)+(1.41713-0.00165342*gen_ptll)*(gen_ptll>=100)*(gen_ptll<300)+1*(gen_ptll>=300))'
 
 if useEmbeddedDY:
   # Actual embedded data
   samples['Dyemb'] = {
     'name': [],
-    'weight': 'METFilter_DATA*LepWPCut*ttHMVA_SF_2l*embedtotal*genWeight',
+    'weight': 'METFilter_DATA*LepWPCut*Muon_ttHMVA_SF*embedtotal*genWeight',
     'weights': [],
     'isData': ['all'],
     'FilesPerJob': 20
@@ -145,7 +147,7 @@ if useEmbeddedDY:
       'FilesPerJob': 1, # There's some error about not finding sample-specific variables like "nllW" when mixing different samples into a single job; so split them all up instead
   }
 
-  addSampleWeight(samples, 'Dyveto', 'TTTo2L2Nu', mcCommonWeight + '*(isTTbar * (TMath::Sqrt(TMath::Exp(-1.43717e-02 - 1.18358e-04*topGenPt - 1.70651e-07*topGenPt*topGenPt + 4.47969/(topGenPt+28.7)) * TMath::Exp(-1.43717e-02 - 1.18358e-04*antitopGenPt - 1.70651e-07*antitopGenPt*antitopGenPt + 4.47969/(antitopGenPt+28.7)))) + isSingleTop)')
+  addSampleWeight(samples, 'Dyveto', 'TTTo2L2Nu', mcCommonWeight + '* (topGenPt * antitopGenPt > 0.) * (TMath::Sqrt((0.103*TMath::Exp(-0.0118*topGenPt) - 0.000134*topGenPt + 0.973) * (0.103*TMath::Exp(-0.0118*antitopGenPt) - 0.000134*antitopGenPt + 0.973))) + (topGenPt * antitopGenPt <= 0.)')
   addSampleWeight(samples, 'Dyveto', 'ST_tW_antitop_ext1', mcCommonWeight)
   addSampleWeight(samples, 'Dyveto', 'ST_tW_top_ext1', mcCommonWeight)
   addSampleWeight(samples, 'Dyveto', 'WWTo2L2Nu', mcCommonWeight + '*nllW')
@@ -166,11 +168,11 @@ if useEmbeddedDY:
 files=[]
 if useDYtt:
   files = nanoGetSampleFiles(mcDirectory, 'DYJetsToTT_MuEle_M-50') + \
-          nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-10to50-LO')
+          nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-10to50-LO_ext1')
 
 else:
   files = nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_ext') + \
-          nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-10to50-LO')
+          nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-10to50-LO_ext1')
 
 
 samples['DY'] = {
@@ -179,39 +181,11 @@ samples['DY'] = {
                                      Sum$(LeptonGen_isPrompt==1 && LeptonGen_pt>15)>=2) )',
     'FilesPerJob': 6,
 }
-addSampleWeight(samples,'DY','DYJetsToTT_MuEle_M-50',ptllDYW_NLO)
-addSampleWeight(samples,'DY','DYJetsToLL_M-50_ext',ptllDYW_NLO)
-addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO',ptllDYW_LO)
-
-
-
-#ptllDYW_NLO = '(0.87*(gen_ptll<10)+(0.379119+0.099744*gen_ptll-0.00487351*gen_ptll**2+9.19509e-05*gen_ptll**3-6.0212e-07*gen_ptll**4)*(gen_ptll>=10 && gen_ptll<45)+(9.12137e-01+1.11957e-04*gen_ptll-3.15325e-06*gen_ptll**2-4.29708e-09*gen_ptll**3+3.35791e-11*gen_ptll**4)*(gen_ptll>=45 && gen_ptll<200) + 1*(gen_ptll>200))'
-#ptllDYW_LO = '((0.632927+0.0456956*gen_ptll-0.00154485*gen_ptll*gen_ptll+2.64397e-05*gen_ptll*gen_ptll*gen_ptll-2.19374e-07*gen_ptll*gen_ptll*gen_ptll*gen_ptll+6.99751e-10*gen_ptll*gen_ptll*gen_ptll*gen_ptll*gen_ptll)*(gen_ptll>0)*(gen_ptll<100)+(1.41713-0.00165342*gen_ptll)*(gen_ptll>=100)*(gen_ptll<300)+1*(gen_ptll>=300))'
-#
-#useDYtt = True
-#
-#files=[]
-#if useDYtt:
-#  files = nanoGetSampleFiles(mcDirectory, 'DYJetsToTT_MuEle_M-50') + \
-#          nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-10to50-LO')
-#
-#else:
-#  files = nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_ext') + \
-#          nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-10to50-LO')
-#
-#
-#samples['DY'] = {
-#    'name': files,
-#    'weight': mcCommonWeight + '*( !(Sum$(PhotonGen_isPrompt==1 && PhotonGen_pt>15 && abs(PhotonGen_eta)<2.6) > 0 &&\
-#                                     Sum$(LeptonGen_isPrompt==1 && LeptonGen_pt>15)>=2) )',
-#    'FilesPerJob': 6,
-#}
-#addSampleWeight(samples,'DY','DYJetsToTT_MuEle_M-50',ptllDYW_NLO)
-#addSampleWeight(samples,'DY','DYJetsToLL_M-50_ext',ptllDYW_NLO)
-#addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO',ptllDYW_LO)
+addSampleWeight(samples,'DY','DYJetsToTT_MuEle_M-50',      'DY_NLO_pTllrw')
+addSampleWeight(samples,'DY','DYJetsToLL_M-50_ext2',       'DY_NLO_pTllrw')
+addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO_ext1','DY_LO_pTllrw')
 
 ###### Top #######
-
 
 files = nanoGetSampleFiles(mcDirectory, 'TTTo2L2Nu') + \
     nanoGetSampleFiles(mcDirectory, 'ST_s-channel_ext1') + \
@@ -261,13 +235,6 @@ samples['ggWW'] = {
 
 ######## Vg ########
 
-'''
-files = nanoGetSampleFiles(mcDirectory, 'Wg_MADGRAPHMLM') + \
-    nanoGetSampleFiles(mcDirectory, 'Zg')
-'''
-
-
-
 files = nanoGetSampleFiles(mcDirectory, 'Wg_MADGRAPHMLM') + \
     nanoGetSampleFiles(mcDirectory, 'ZGToLLG')
 
@@ -276,16 +243,8 @@ samples['Vg'] = {
     'weight': mcCommonWeightNoMatch+embed_tautauveto + '*(Gen_ZGstar_mass <= 0)',
     'FilesPerJob': 4
 }
-# the following is needed in both v5 and v6
-#addSampleWeight(samples, 'Vg', 'Zg', '0.448')
-#addSampleWeight(samples, 'Vg', 'ZGToLLG')
 
 ######## VgS ########
-'''
-files = nanoGetSampleFiles(mcDirectory, 'Wg_MADGRAPHMLM') + \
-    nanoGetSampleFiles(mcDirectory, 'Zg') + \
-    nanoGetSampleFiles(mcDirectory, 'WZTo3LNu_mllmin01')
-'''
 
 files = nanoGetSampleFiles(mcDirectory, 'Wg_MADGRAPHMLM') + \
     nanoGetSampleFiles(mcDirectory, 'ZGToLLG') + \
@@ -301,15 +260,14 @@ samples['VgS'] = {
     }
 }
 addSampleWeight(samples, 'VgS', 'Wg_MADGRAPHMLM', '(Gen_ZGstar_mass > 0 && Gen_ZGstar_mass < 0.1)')
-#addSampleWeight(samples, 'VgS', 'Zg', '(Gen_ZGstar_mass > 0)*0.448')
 addSampleWeight(samples, 'VgS', 'ZGToLLG', '(Gen_ZGstar_mass > 0)')
 addSampleWeight(samples, 'VgS', 'WZTo3LNu_mllmin01', '(Gen_ZGstar_mass > 0.1)')
 
 ############ VZ ############
 
-files = nanoGetSampleFiles(mcDirectory, 'ZZTo2L2Nu_ext1') + \
+files = nanoGetSampleFiles(mcDirectory, 'ZZTo2L2Nu_ext2') + \
     nanoGetSampleFiles(mcDirectory, 'ZZTo2L2Q') + \
-    nanoGetSampleFiles(mcDirectory, 'ZZTo4L_ext1') + \
+    nanoGetSampleFiles(mcDirectory, 'ZZTo4L_ext2') + \
     nanoGetSampleFiles(mcDirectory, 'WZTo2L2Q')
 
 samples['VZ'] = {
@@ -338,20 +296,9 @@ samples['VVV'] = {
 signals = []
 
 #### ggH -> WW
-'''
-samples['ggH_hww'] = {
-    #'name': nanoGetSampleFiles(mcDirectory, 'GluGluHToWWTo2L2NuPowheg_M125'),
-    'name': nanoGetSampleFiles(mcDirectory, 'GluGluHToWWTo2L2Nu_M125'),
-    'weight': [mcCommonWeight, {'class': 'Weight2MINLO', 'args': '%s/src/LatinoAnalysis/Gardener/python/data/powheg2minlo/NNLOPS_reweight.root' % os.getenv('CMSSW_BASE')}],
-    'FilesPerJob': 1,
-    'linesToAdd': ['.L %s/Differential/weight2MINLO.cc+' % configurations]
-}
-
-signals.append('ggH_hww')
-'''
 
 samples['ggH_hww'] = {
-    'name': nanoGetSampleFiles(mcDirectory, 'GluGluHToWWTo2L2Nu_M125')+nanoGetSampleFiles(mcDirectory, 'GGHjjToWWTo2L2Nu_minloHJJ_M125'),
+    'name': nanoGetSampleFiles(mcDirectory, 'GluGluHToWWTo2L2Nu_M125') + nanoGetSampleFiles(mcDirectory, 'GGHjjToWWTo2L2Nu_minloHJJ_M125'),
     'weight': mcCommonWeight,
     'FilesPerJob': 1,
 }
@@ -370,6 +317,9 @@ samples['qqH_hww'] = {
 
 signals.append('qqH_hww')
 
+# Fiducial region definition. Do we need it? Does it make sense?
+
+# fid = "(Alt$(GenDressedLepton_pt[0],0) > 25 && Alt$(GenDressedLepton_pt[1],0) > 13 && abs(Alt$(GenDressedLepton_eta[0],5)) < 2.5 && abs(Alt$(GenDressedLepton_eta[1],5)) < 2.5 && abs(Alt$(LeptonGen_MotherPID[0],15)) != 15 && abs(Alt$(LeptonGen_MotherPID[1],15)) != 15 && (Alt$(GenDressedLepton_pdgId[0],0) * Alt$(GenDressedLepton_pdgId[1],0) == -11*13) && Alt$(GenJet_pt[0],0) > 30 && Alt$(GenJet_pt[1],0) > 30)"
 
 # Separate in gen-level delta_phi(jet1, jet2) bins. First attempt
 
@@ -378,16 +328,23 @@ import numpy as np
 # GenJet_phi
 n_bins = 8
 
+# dphijj bins AND fiducial region selections
 for bin_num in range(0, n_bins):
     sample_name = "qqH_hww_{}".format(bin_num)
-    print(sample_name)
     samples[sample_name] = {
         'name': nanoGetSampleFiles(mcDirectory, 'VBFHToWWTo2L2Nu_M125'),
-        'weight': mcCommonWeight + " * (delta_phi(GenJet_phi[0], GenJet_phi[1]) > {} && delta_phi(GenJet_phi[0], GenJet_phi[1]) < {})".format(bin_num*np.pi/n_bins, (bin_num+1)*np.pi/n_bins),
-        'linesToAdd': ['.L $CMSSW_BASE/src/PlotsConfigurations/Configurations/VBF/Snowmass/extended/delta_phi.C+'],
+        'weight': mcCommonWeight + " * (GenDeltaPhiJJ > {} && GenDeltaPhiJJ < {})".format(bin_num*np.pi/n_bins, (bin_num+1)*np.pi/n_bins),
         'FilesPerJob': 4
     }
     signals.append(sample_name)
+
+# NON-fiducial region selections
+samples["qqH_hww_nonFid"] = {
+    'name': nanoGetSampleFiles(mcDirectory, 'VBFHToWWTo2L2Nu_M125'),
+    'weight': mcCommonWeight + " * (GenDeltaPhiJJ < 0)",
+    'FilesPerJob': 4
+}
+signals.append(sample_name)
 
 # CP-violation VBF samples
 

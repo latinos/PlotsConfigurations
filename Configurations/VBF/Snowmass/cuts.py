@@ -6,18 +6,38 @@ supercut = 'mll>12 \
             && Alt$(Lepton_pt[2],0)<10 \
             && Sum$(CleanJet_pt>30)==2\
             && ptll>30 \
+            && mjj>120 \
             && PuppiMET_pt>20 \
-            && mjj>200 \
             '
+
 
 ## Signal regions
 
-
-cuts['hww2l2v_13TeV_of2j_vbf']  = ' (mth>=60 && mth<125) \
+cuts['hww2l2v_13TeV_of2j_vbf'] = ' (mth>=60 && mth<125) \
                                       && (abs(CleanJet_eta[0])<4.7) && (abs(CleanJet_eta[1])<4.7) \
                                       && bVeto \
                                       && mtw2>30 \
                                       '
+
+cuts['hww2l2v_13TeV_of2j_test'] = {
+    'expr': ' (abs(CleanJet_eta[0])<4.7) && (abs(CleanJet_eta[1])<4.7) && bVeto && mtw2>30',
+    'categories': {
+        'mll'      : '(mth>=60 && mth<125) && mll < 100',
+        #        'mll_noMTH': 'mll < 100',
+    }
+}
+
+## Control regions
+
+cuts['hww2l2v_13TeV_top_of2j'] = ' topcr \
+                                  '
+cuts['hww2l2v_13TeV_dytt_of2j'] = ' mth<60 \
+                                    && mll>40 && mll<80 \
+                                    && bVeto \
+                                   '
+
+
+
 
 # cuts['hww2l2v_13TeV_of2j_DNN_vbf']  = ' (mth>=60 && mth<125) \
 #                                       && (abs(CleanJet_eta[0])<4.7) && (abs(CleanJet_eta[1])<4.7) \
@@ -50,13 +70,4 @@ cuts['hww2l2v_13TeV_of2j_vbf']  = ' (mth>=60 && mth<125) \
 #                                       && mtw2>30 \
 #                                       '
 
-
-## Control regions
-
-cuts['hww2l2v_13TeV_top_of2j']  = ' topcr \
-                                  '
-cuts['hww2l2v_13TeV_dytt_of2j']  = ' mth<60 \
-                                    && mll>40 && mll<80 \
-                                    && bVeto \
-                                   '
 
