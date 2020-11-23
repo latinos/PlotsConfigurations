@@ -167,7 +167,7 @@ double GetGenJetDeltaPhi::evaluate(unsigned)
   else if ( LeptonGen_pdgId->At(0) * LeptonGen_pdgId->At(1) != -11*13 ) return -1;
   
   double pt3{-1};
-  if (*nLeptonGen->Get() > 2) pt3 = dressedLeptons[2].pt();
+  if (dressedLeptons.size() > 2) pt3 = dressedLeptons[2].pt();
   
 
   // Define additional useful variables (for fiducial region definition)
