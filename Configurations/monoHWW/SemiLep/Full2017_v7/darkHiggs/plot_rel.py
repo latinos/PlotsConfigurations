@@ -70,8 +70,7 @@ groupPlot['top'] = {
     'nameHR' : 'tW and t#bar{t}',
     'isSignal' : 0,
     'color': 400,   # kYellow
-    'samples'  : ['ttop', 'stop'],
-    #'scale'    : 1.11,
+    'samples'  : ['ttop', 'stop']
     #'samples'  : ['top']
 }
 #groupPlot['ttop'] = {
@@ -166,13 +165,11 @@ else:
 #        for mZp in mZp_list:
 #            mp = 'mhs_'+mhs+'_mx_'+mx+'_mZp_'+mZp
 for mp in signal:
-    #if not 'mA_400' in mp: continue
     mpo = mp.replace('darkHiggs_', '')
     mhs = mpo.split('_')[1] 
     mx  = mpo.split('_')[3] 
     mZp = mpo.split('_')[5] 
     #if not 'mA_400' in mp: continue
-    #if not mhs == '160' and not mx == '100' in mp: continue
     if not mhs == '160': continue 
     if not mx == '100' : continue
     if not mZp in ['200', '400', '1200']: continue
@@ -218,16 +215,14 @@ plot['ttop'] = {
     'color': 400,   # kYellow
     'isSignal' : 0,
     'isData'   : 0,
-    #'scale'    : 1.0,
-    'scale'    : 1.11,
+    'scale'    : 1.0,
 }
 plot['stop'] = {
     'nameHR' : 'single t',
     'color': 401,   # kYellow
     'isSignal' : 0,
     'isData'   : 0,
-    #'scale'    : 1.0,
-    'scale'    : 1.11,
+    'scale'    : 1.0,
 }
 
 
