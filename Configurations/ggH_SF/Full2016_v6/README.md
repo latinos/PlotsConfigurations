@@ -88,3 +88,29 @@ Or:
     plotImpacts.py -i impacts.json -o Impact.pdf
 
 
+
+# Produce control plots for the data-driven DY-estimation method
+
+
+# Loose region: 
+
+    mkShapesMulti.py --pycfg=configuration_loose.py --doBatch=1 --batchSplit=Samples,Files --batchQueue=testmatch
+
+    mkShapesMulti.py --pycfg=configuration_loose.py --doHadd=1 --batchSplit=Samples,Files --doNotCleanup --nThreads=8
+
+    mkDYestim_data.py --pycfg=configuration_loose.py --dycfg=dyestim_loose.py --inputFile=rootFile/plots_DY_validation_loose_2016_v6.root
+
+    mkPlot.py --pycfg=configuration_loose.py --inputFile=rootFile/plots_DY_validation_loose_2016_v6_DYEstimDATA.root --linearOnly --fileFormats=png --onlyPlot=cratio
+
+
+# Z-peak region:
+
+    mkShapesMulti.py --pycfg=configuration_Z.py --doBatch=1 --batchSplit=Samples,Files --batchQueue=testmatch
+    mkShapesMulti.py --pycfg=configuration_Z.py --doHadd=1 --batchSplit=Samples,Files --doNotCleanup --nThreads=8
+
+    mkShapesMulti.py --pycfg=configuration_DYEST_Zpeak.py --doBatch=1 --batchSplit=Samples,Files --batchQueue=testmatch
+    mkShapesMulti.py --pycfg=configuration_DYEST_Zpeak.py --doHadd=1 --batchSplit=Samples,Files --doNotCleanup --nThreads=8
+
+    mkDYestim_data.py --pycfg=configuration_Z.py --dycfg=dyestim_Zpeak.py --inputFile=rootFile/plots_DY_validation_Zpeak_2016_v6.root
+
+    mkPlot.py --pycfg=configuration_Z.py --inputFile=rootFile/plots_DY_validation_Zpeak_2016_v6_DYEstimDATA.root --linearOnly --fileFormats=png --onlyPlot=cratio

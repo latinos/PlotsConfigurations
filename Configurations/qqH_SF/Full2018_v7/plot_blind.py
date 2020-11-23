@@ -27,7 +27,7 @@ groupPlot['Fake']  = {
                   'nameHR' : 'nonprompt',
                   'isSignal' : 0,
                   'color': 921,    # kGray + 1
-                  'samples'  : ['Fake_mm', 'Fake_ee', 'Fake_df']
+                  'samples'  : ['Fake_mm', 'Fake_ee']
 }
 
 
@@ -124,12 +124,6 @@ plot['Fake_ee']  = {
                   'scale'    : 1.0                  
               }
 
-plot['Fake_df']  = {
-                  'color': 921,    # kGray + 1
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  'scale'    : 1.0
-              }
               
 plot['top'] = {   
                   'nameHR' : 'tW and t#bar{t}',
@@ -348,7 +342,7 @@ plot['DATA']  = {
                   'color': 1 ,  
                   'isSignal' : 0,
                   'isData'   : 1 ,
-                  'isBlind'  : 0
+                  'isBlind'  : 1
               }
 
 
@@ -356,7 +350,7 @@ plot['DATA']  = {
 
 # additional options
 
-legend['lumi'] = 'L = 41.5/fb'
+legend['lumi'] = 'L = 59.7/fb'
 
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
 

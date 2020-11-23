@@ -3,8 +3,8 @@ import copy
 import inspect
 
 configurations = os.path.realpath(inspect.getfile(inspect.currentframe())) # this file
-configurations = os.path.dirname(configurations) # Snowmass
-configurations = os.path.dirname(configurations) # VBF
+configurations = os.path.dirname(configurations) # Full2018_v7
+configurations = os.path.dirname(configurations) # qqH_SF
 configurations = os.path.dirname(configurations) # Configurations
 
 #aliases = {}
@@ -12,15 +12,14 @@ configurations = os.path.dirname(configurations) # Configurations
 # imported from samples.py:
 # samples, signals
 
-mc = [skey for skey in samples if skey not in ('Fake', 'DATA', 'Dyemb')]
-mc_emb = [skey for skey in samples if skey not in ('Fake', 'DATA')]
+mc = [skey for skey in samples if skey not in ('Fake', 'DATA')]
 
 eleWP='mvaFall17V1Iso_WP90'
-muWP = 'cut_Tight_HWWW_tthmva_80'
+muWP='cut_Tight_HWWW_tthmva_80'
 
 aliases['LepWPCut'] = {
     'expr': 'LepCut2l__ele_'+eleWP+'__mu_'+muWP,
-    'samples': mc_emb + ['DATA']
+    'samples': mc + ['DATA']
 }
 
 aliases['gstarLow'] = {
@@ -33,16 +32,12 @@ aliases['gstarHigh'] = {
     'samples': 'VgS'
 }
 
-aliases['embedtotal'] = {
-    'expr': 'embed_total_WP90V1',  # wrt. eleWP
-    'samples': 'Dyemb'
-}
-
 # Fake leptons transfer factor 
 aliases['fakeW'] = {
     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP,
     'samples': ['Fake']
 }
+
 # And variations - already divided by central values in formulas !
 aliases['fakeWEleUp'] = {
     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_EleUp',
@@ -121,11 +116,43 @@ aliases['zeroJet'] = {
 }
 
 aliases['oneJet'] = {
-    'expr': 'Alt$(CleanJet_pt[0], 0) > 30.'
+    'expr': 'Alt$(CleanJet_pt[0], 0) >= 30. && Alt$(CleanJet_pt[1], 0) < 30.'
 }
 
 aliases['multiJet'] = {
-    'expr': 'Alt$(CleanJet_pt[1], 0) > 30.'
+    'expr': 'Alt$(CleanJet_pt[1], 0) >= 30.'
+}
+
+aliases['2jVH'] = {
+    'expr': '( Alt$(CleanJet_pt[0],0)>=30 && Alt$(CleanJet_pt[1],0)>=30 && ( mjj >= 65 && mjj <= 105 ) )'
+}
+
+aliases['2jVBF'] = {
+    'expr': '( Alt$(CleanJet_pt[0],0)>=30 && Alt$(CleanJet_pt[1],0)>=30 && mjj>=350 )'
+}
+
+aliases['2jggH'] = {
+    'expr': '( Alt$(CleanJet_pt[0],0)>=30 && Alt$(CleanJet_pt[1],0)>=30 && (!2jVH && !2jVBF ) )'
+}
+
+aliases['Higgs0jet'] = {
+    'expr': '(mll < 60 && mth > 90 && abs(dphill) < 2.30)'
+}
+aliases['Higgs1jet'] = {
+    'expr': '(mll < 60 && mth > 80 && abs(dphill) < 2.25)'
+}
+aliases['Higgs2jet'] = {
+    'expr': '(mll < 60 && mth > 65 && mth < 150)'
+}
+aliases['Higgsvh'] = {
+    'expr': '(mll < 60 && mth > 60 && mth < 150 && abs(dphill) < 1.60)'
+}
+aliases['Higgsvbf'] = {
+    'expr': '(mll < 60 && mth > 60 && mth < 150 && abs(dphill) < 1.60)'
+}
+
+aliases['ZVeto'] = {
+    'expr': '(fabs(91.1876 - mll) > 15)'
 }
 
 # B tagging
@@ -149,13 +176,17 @@ aliases['dycr'] = {
 }
 
 aliases['wwcr'] = {
-    'expr': 'mth>60 && mtw2>30 && mll>100 && bVeto'
+    'expr': 'mth>60 && mtw2>30 && mll>100 && bVeto && ZVeto'
+}
+
+aliases['Zpeak'] = {
+    'expr': 'fabs(91.1876 - mll) < 7.5'
 }
 
 # SR definition
 
 aliases['sr'] = {
-    'expr': 'mth>60 && mtw2>30 && bVeto'
+    'expr': 'bVeto && ZVeto'
 }
 
 # B tag scale factors
@@ -199,30 +230,23 @@ aliases['SFweight'] = {
     'samples': mc
 }
 
-# Muon ttHMVA SF needed for tau embedded samples
-aliases['Muon_ttHMVA_SF'] = {
-    'expr': '( (abs(Lepton_pdgId[0]) == 13)*(Lepton_tightMuon_cut_Tight_HWWW_tthmva_80_IdIsoSF[0]/Lepton_tightMuon_cut_Tight_HWWW_IdIsoSF[0])+(abs(Lepton_pdgId[0]) == 11) )*( (abs(Lepton_pdgId[1]) == 13)*(Lepton_tightMuon_cut_Tight_HWWW_tthmva_80_IdIsoSF[1]/Lepton_tightMuon_cut_Tight_HWWW_IdIsoSF[1])+ (abs(Lepton_pdgId[1]) == 11) )',
-    'samples' : ['Dyemb']
-}
-
 # variations
 aliases['SFweightEleUp'] = {
     'expr': 'LepSF2l__ele_'+eleWP+'__Up',
-    'samples': mc_emb
+    'samples': mc
 }
 aliases['SFweightEleDown'] = {
     'expr': 'LepSF2l__ele_'+eleWP+'__Do',
-    'samples': mc_emb
+    'samples': mc
 }
 aliases['SFweightMuUp'] = {
     'expr': 'LepSF2l__mu_'+muWP+'__Up',
-    'samples': mc_emb
+    'samples': mc
 }
 aliases['SFweightMuDown'] = {
     'expr': 'LepSF2l__mu_'+muWP+'__Do',
-    'samples': mc_emb
+    'samples': mc
 }
-
 
 aliases['Weight2MINLO'] = {
     'linesToAdd': ['.L %s/Differential/weight2MINLO.cc+' % configurations],
@@ -251,54 +275,3 @@ for thu in thus:
         'args': (thu,),
         'samples': ['ggH_hww']
     }
-
-
-# VBF DNN
-
-aliases['vbfdnn'] = {
-        'linesToAdd': ['.L $CMSSW_BASE/src/PlotsConfigurations/Configurations/VBF/Snowmass/extended/evaluate_multiclass.cc+'],
-        'class': 'evaluate_multiclass',
-        'args': 0,
-}
-
-aliases['topdnn'] = {
-        'linesToAdd': ['.L $CMSSW_BASE/src/PlotsConfigurations/Configurations/VBF/Snowmass/extended/evaluate_multiclass.cc+'],
-        'class': 'evaluate_multiclass',
-        'args': 1,
-}
-
-aliases['wwdnn'] = {
-        'linesToAdd': ['.L $CMSSW_BASE/src/PlotsConfigurations/Configurations/VBF/Snowmass/extended/evaluate_multiclass.cc+'],
-        'class': 'evaluate_multiclass',
-        'args': 2,
-}
-
-aliases['gghdnn'] = {
-        'linesToAdd': ['.L $CMSSW_BASE/src/PlotsConfigurations/Configurations/VBF/Snowmass/extended/evaluate_multiclass.cc+'],
-        'class': 'evaluate_multiclass',
-        'args': 3,
-}
-
-aliases['vbflike'] = { 
-        'expr': 'vbfdnn>gghdnn && vbfdnn>topdnn && vbfdnn>wwdnn',
-}
-
-aliases['toplike'] = { 
-        'expr': 'topdnn>gghdnn && topdnn>vbfdnn && topdnn>wwdnn',
-}
-
-aliases['wwlike'] = { 
-        'expr': 'wwdnn>gghdnn && wwdnn>topdnn && wwdnn>vbfdnn',
-}
-
-aliases['gghlike'] = { 
-        'expr': 'gghdnn>vbfdnn && gghdnn>topdnn && gghdnn>wwdnn',
-}
-
-# Delta Phi JJ
-
-aliases['GenDeltaPhiJJ'] = {
-    'linesToAdd' : ['.L %s/VBF/Snowmass/extended/GetGenJetDeltaPhi.cc+' % configurations],
-    'class' : 'GetGenJetDeltaPhi',
-    'samples' : mc
-}
