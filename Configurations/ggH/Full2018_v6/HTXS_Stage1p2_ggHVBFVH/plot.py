@@ -69,6 +69,7 @@ groupPlot['VgS']  = {
               }
 
 
+
 print signals
 groupPlot['Higgs']  = {  
                   'nameHR' : 'Higgs',
@@ -76,8 +77,6 @@ groupPlot['Higgs']  = {
                   'color': 632, # kRed 
                   'samples'  : signals,
               }
-
-
 
 
 #plot = {}
@@ -183,14 +182,26 @@ plot['VVV']  = {
                   }
 
 # HWW 
+'''
+for signal in signals:
+    if 'ggH' in signal:
+        plot[signal] = {
+                      'nameHR' : signal,
+                      'color': 632, # kRed
+                      'isSignal' : 1,
+                      'isData'   : 0,
+                      'scale'    : 1    #
+                        }
+'''
 for signal in signals:
     plot[signal] = {
-                  'nameHR' : signal,
-                  'color': 632, # kRed
-                  'isSignal' : 1,
-                  'isData'   : 0,
-                  'scale'    : 1    #
-                  }
+                    'nameHR' : signal,
+                    'color': 409, # kRed
+                    'isSignal' : 1,
+                    'isData'   : 0,
+                    'scale'    : 1    #
+                     }
+
 
 
 # data
@@ -208,7 +219,7 @@ plot['DATA']  = {
 
 # additional options
 
-legend['lumi'] = 'L = 35.9/fb'
+legend['lumi'] = 'L = 59.74/fb'
 
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
 
