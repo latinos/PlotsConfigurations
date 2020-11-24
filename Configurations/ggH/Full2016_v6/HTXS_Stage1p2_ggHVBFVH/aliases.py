@@ -345,7 +345,7 @@ aliases['nCleanGenJet'] = {
     'samples': mc
 }
 
-'''
+
 # GGHUncertaintyProducer wasn't run for 2016 nAODv5 non-private
 thus = [
     'ggH_mu',
@@ -368,7 +368,7 @@ for thu in thus:
         'nominalOnly': True
     }
 
-'''
+
 
 
 
@@ -412,7 +412,7 @@ aliases['gghlike'] = {
         'expr': 'gghdnn>vbfdnn && gghdnn>topdnn && gghdnn>wwdnn',
 }
 
-'''
+
 thusQQ = [
   "qqH_YIELD",
   "qqH_PTH200",
@@ -436,4 +436,4 @@ for thu in thusQQ:
         'nominalOnly': True
     }
 
-'''
+

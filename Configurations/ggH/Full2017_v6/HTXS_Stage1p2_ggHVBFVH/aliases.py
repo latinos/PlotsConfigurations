@@ -438,7 +438,7 @@ aliases['wwlike_mjjhigh'] = {
 }
 '''
 
-'''
+
 thusQQ = [
   "qqH_YIELD",
   "qqH_PTH200",
@@ -486,4 +486,3 @@ for thu in thus:
         'samples': ['ggH_hww'],
         'nominalOnly': True
     }
-'''
