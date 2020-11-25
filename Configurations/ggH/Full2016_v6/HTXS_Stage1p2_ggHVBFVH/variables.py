@@ -157,7 +157,7 @@ variables['classggh'] = {
 
 variables['classtop_1'] = {
      'name': 'topdnn',
-     'range' : ([0,0.5,0.75,1],),
+     'range' : ([0,0.5,0.75,1.],),
      'xaxis' : 'DNN discriminant top',
      'fold'  : 3,
      'cuts'  : [
@@ -168,7 +168,7 @@ variables['classtop_1'] = {
 
 variables['classtop_2'] = {
      'name': 'topdnn',
-     'range' : ([0,0.5,0.75,1],),
+     'range' : ([0,0.5,1.],),
      'xaxis' : 'DNN discriminant top',
      'fold'  : 3,
      'cuts'  : [
