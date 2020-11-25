@@ -239,95 +239,113 @@ aliases['veto_fatjet_180'] = {
 
 ###################################3
 # QGL variables
-
-morphing_file = configurations + "/VBSjjlnu/weights_files/morphing_final_gluonvjet1_quarkvbs0.root"
-mrp_higheta_gluon = "gluon_morphing_vjet1_higheta"
-mrp_loweta_gluon = "gluon_morphing_vjet1_loweta"
-mrp_higheta_quark = "quark_morphing_vbs0_higheta"
-mrp_loweta_quark = "quark_morphing_vbs0_loweta"
-
-
-
-aliases['vbs_0_qgl_res'] = {
-    'class': 'QglVarsMorphing',
-    'args': ('vbs_0_qgl_res', morphing_file, mrp_higheta_gluon, mrp_loweta_gluon, mrp_higheta_quark, mrp_loweta_quark),
-    'linesToAdd' : [
-        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-        '.L {}/VBSjjlnu/macros/qgl_vars_morphing.cc+'.format(configurations)
-    ]   
-} 
-
-aliases['vbs_1_qgl_res'] = {
-    'class': 'QglVarsMorphing',
-    'args': ('vbs_1_qgl_res', morphing_file, mrp_higheta_gluon, mrp_loweta_gluon, mrp_higheta_quark, mrp_loweta_quark), 
-} 
-
-aliases['vjet_0_qgl_res'] = {
-    'class': 'QglVarsMorphing',
-    'args': ('vjet_0_qgl_res', morphing_file, mrp_higheta_gluon, mrp_loweta_gluon, mrp_higheta_quark, mrp_loweta_quark), 
-} 
-
-aliases['vjet_1_qgl_res'] = {
-    'class': 'QglVarsMorphing',
-    'args': ('vjet_1_qgl_res', morphing_file, mrp_higheta_gluon, mrp_loweta_gluon, mrp_higheta_quark, mrp_loweta_quark), 
-} 
-
-aliases['vbs_0_qgl_boost'] = {
-    'class': 'QglVarsMorphing',
-    'args': ('vbs_0_qgl_boost', morphing_file, mrp_higheta_gluon, mrp_loweta_gluon, mrp_higheta_quark, mrp_loweta_quark), 
-} 
-
-aliases['vbs_1_qgl_boost'] = {
-    'class': 'QglVarsMorphing',
-    'args': ('vbs_1_qgl_boost', morphing_file, mrp_higheta_gluon, mrp_loweta_gluon, mrp_higheta_quark, mrp_loweta_quark), 
-} 
+morphing_file = configurations + "/VBSjjlnu/weights_files/qgl_morphing/morphing_functions_final_2018.root"
+do_morph = "11111111"
+m_gluon_loweta_pt0 = "j3_loweta_pt0_gluon"
+m_gluon_loweta_pt1 = "j3_loweta_pt1_gluon"
+m_gluon_higheta_pt0 = "j1_higheta_pt0_gluon"
+m_gluon_higheta_pt1 = "j1_higheta_pt1_gluon"
+m_quark_loweta_pt0 = "j1_loweta_pt0_quark"
+m_quark_loweta_pt1 = "j1_loweta_pt1_quark"
+m_quark_higheta_pt0 = "j1_higheta_pt0_quark"
+m_quark_higheta_pt1 = "j0_higheta_pt1_quark"
 
 ###############
 aliases['vbs_0_qglmorphed_res'] = {
     'class': 'QglVarsMorphing',
-    'args': ('vbs_0_qglmorphed_res', morphing_file, mrp_higheta_gluon, mrp_loweta_gluon, mrp_higheta_quark, mrp_loweta_quark),
+    'args': ('vbs_0_qglmorphed_res', morphing_file, do_morph, m_gluon_loweta_pt0, m_gluon_loweta_pt1, m_gluon_higheta_pt0, m_gluon_higheta_pt1, 
+                                                       m_quark_loweta_pt0, m_quark_loweta_pt1, m_quark_higheta_pt0, m_quark_higheta_pt1),
+     'linesToAdd' : [
+        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+        '.L {}/VBSjjlnu/macros/qgl_vars_morphing.cc+'.format(configurations)
+        ] 
 } 
 
 aliases['vbs_1_qglmorphed_res'] = {
     'class': 'QglVarsMorphing',
-    'args': ('vbs_1_qglmorphed_res', morphing_file, mrp_higheta_gluon, mrp_loweta_gluon, mrp_higheta_quark, mrp_loweta_quark),
+    'args': ('vbs_1_qglmorphed_res', morphing_file, do_morph, m_gluon_loweta_pt0, m_gluon_loweta_pt1, m_gluon_higheta_pt0, m_gluon_higheta_pt1, 
+                                                       m_quark_loweta_pt0, m_quark_loweta_pt1, m_quark_higheta_pt0, m_quark_higheta_pt1 )
 } 
 
 aliases['vjet_0_qglmorphed_res'] = {
     'class': 'QglVarsMorphing',
-    'args': ('vjet_0_qglmorphed_res', morphing_file, mrp_higheta_gluon, mrp_loweta_gluon, mrp_higheta_quark, mrp_loweta_quark), 
+    'args': ('vjet_0_qglmorphed_res', morphing_file, do_morph, m_gluon_loweta_pt0, m_gluon_loweta_pt1, m_gluon_higheta_pt0, m_gluon_higheta_pt1, 
+                                                       m_quark_loweta_pt0, m_quark_loweta_pt1, m_quark_higheta_pt0, m_quark_higheta_pt1 )
 } 
 
 aliases['vjet_1_qglmorphed_res'] = {
     'class': 'QglVarsMorphing',
-    'args': ('vjet_1_qglmorphed_res', morphing_file, mrp_higheta_gluon, mrp_loweta_gluon, mrp_higheta_quark, mrp_loweta_quark), 
+    'args': ('vjet_1_qglmorphed_res', morphing_file, do_morph, m_gluon_loweta_pt0, m_gluon_loweta_pt1, m_gluon_higheta_pt0, m_gluon_higheta_pt1, 
+                                                       m_quark_loweta_pt0, m_quark_loweta_pt1, m_quark_higheta_pt0, m_quark_higheta_pt1 )
 } 
 
 aliases['vbs_0_qglmorphed_boost'] = {
     'class': 'QglVarsMorphing',
-    'args': ('vbs_0_qglmorphed_boost', morphing_file, mrp_higheta_gluon, mrp_loweta_gluon, mrp_higheta_quark, mrp_loweta_quark), 
+    'args': ('vbs_0_qglmorphed_boost', morphing_file, do_morph, m_gluon_loweta_pt0, m_gluon_loweta_pt1, m_gluon_higheta_pt0, m_gluon_higheta_pt1, 
+                                                       m_quark_loweta_pt0, m_quark_loweta_pt1, m_quark_higheta_pt0, m_quark_higheta_pt1 )
 } 
 
 aliases['vbs_1_qglmorphed_boost'] = {
     'class': 'QglVarsMorphing',
-    'args': ('vbs_1_qglmorphed_boost', morphing_file, mrp_higheta_gluon, mrp_loweta_gluon, mrp_higheta_quark, mrp_loweta_quark), 
+    'args': ('vbs_1_qglmorphed_boost', morphing_file, do_morph, m_gluon_loweta_pt0, m_gluon_loweta_pt1, m_gluon_higheta_pt0, m_gluon_higheta_pt1, 
+                                                       m_quark_loweta_pt0, m_quark_loweta_pt1, m_quark_higheta_pt0, m_quark_higheta_pt1 )
 } 
+
+
+##################
+
+aliases['vbs_0_qgl_res'] = {
+    'class': 'QglVarsMorphing',
+    'args': ('vbs_0_qgl_res', morphing_file, do_morph, m_gluon_loweta_pt0, m_gluon_loweta_pt1, m_gluon_higheta_pt0, m_gluon_higheta_pt1, 
+                                                       m_quark_loweta_pt0, m_quark_loweta_pt1, m_quark_higheta_pt0, m_quark_higheta_pt1 )
+} 
+
+aliases['vbs_1_qgl_res'] = {
+    'class': 'QglVarsMorphing',
+    'args': ('vbs_1_qgl_res', morphing_file, do_morph, m_gluon_loweta_pt0, m_gluon_loweta_pt1, m_gluon_higheta_pt0, m_gluon_higheta_pt1, 
+                                                       m_quark_loweta_pt0, m_quark_loweta_pt1, m_quark_higheta_pt0, m_quark_higheta_pt1 )
+} 
+
+aliases['vjet_0_qgl_res'] = {
+    'class': 'QglVarsMorphing',
+    'args': ('vjet_0_qgl_res', morphing_file, do_morph, m_gluon_loweta_pt0, m_gluon_loweta_pt1, m_gluon_higheta_pt0, m_gluon_higheta_pt1, 
+                                                       m_quark_loweta_pt0, m_quark_loweta_pt1, m_quark_higheta_pt0, m_quark_higheta_pt1 )
+} 
+
+aliases['vjet_1_qgl_res'] = {
+    'class': 'QglVarsMorphing',
+    'args': ('vjet_1_qgl_res', morphing_file, do_morph, m_gluon_loweta_pt0, m_gluon_loweta_pt1, m_gluon_higheta_pt0, m_gluon_higheta_pt1, 
+                                                       m_quark_loweta_pt0, m_quark_loweta_pt1, m_quark_higheta_pt0, m_quark_higheta_pt1 )
+} 
+
+aliases['vbs_0_qgl_boost'] = {
+    'class': 'QglVarsMorphing',
+    'args': ('vbs_0_qgl_boost', morphing_file, do_morph, m_gluon_loweta_pt0, m_gluon_loweta_pt1, m_gluon_higheta_pt0, m_gluon_higheta_pt1, 
+                                                       m_quark_loweta_pt0, m_quark_loweta_pt1, m_quark_higheta_pt0, m_quark_higheta_pt1 )
+} 
+
+aliases['vbs_1_qgl_boost'] = {
+    'class': 'QglVarsMorphing',
+    'args': ('vbs_1_qgl_boost', morphing_file, do_morph, m_gluon_loweta_pt0, m_gluon_loweta_pt1, m_gluon_higheta_pt0, m_gluon_higheta_pt1, 
+                                                       m_quark_loweta_pt0, m_quark_loweta_pt1, m_quark_higheta_pt0, m_quark_higheta_pt1 )
+} 
+
 
 
 ############################
 
-aliases['tag_jets_systems_pt'] = {
-    'class': 'TagJetsSystemsPt',
-    'args': (),
-    'linesToAdd' : [
-        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-        '.L {}/VBSjjlnu/macros/TagJetsSystemsPt.cc+'.format(configurations)
-    ]   
-}
+# aliases['tag_jets_systems_pt'] = {
+#     'class': 'TagJetsSystemsPt',
+#     'args': (),
+#     'linesToAdd' : [
+#         'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+#         '.L {}/VBSjjlnu/macros/TagJetsSystemsPt.cc+'.format(configurations)
+#     ]   
+# }
 
-aliases['vbs_jets_pt'] ={
-    'expr' : 'tag_jets_systems_pt[0]'
-}
+# aliases['vbs_jets_pt'] ={
+#     'expr' : 'tag_jets_systems_pt[0]'
+# }
 
 ##########################
 # additional uncertainties for Wtagging from pt extrapolation

@@ -27,7 +27,6 @@ colors = {
     'kPink'    : 900, 
 }
 
-
 palette = {
     "Orange": (242, 108, 13), #f26c0d  
     "Yellow": (247, 195, 7), #f7c307
@@ -43,6 +42,24 @@ palette = {
     "Pink": (247, 191, 223)
 }
 
+'''
+    "Wjets_deta5": (247, 155, 7),#f79b07
+    "Wjets_deta4": (247, 175, 7), #f7af07
+    "Wjets_deta3": (247, 195, 7), #f7c307
+    "Wjets_deta2": (247, 215, 7), #f7d707
+    "Wjets_deta1": (247, 235, 7), #f7eb07
+'''
+
+jetbin_detabins = [3,3,2]
+#wjets_palette = ['#FFF59D', '#FFEE58', '#FFD54F', '#FFB300', '#FF8F00', '#F57C00', '#E65100','#BF360C']
+wjets_palette = ['#DD2C00', '#FF3D00',  '#FF6D00','#F57C00', '#FFAB00', '#FFC400', '#FFEA00', '#FFFF00']
+
+
+wjets_bins = []
+for ir in range(1,7):
+    wjets_bins.append("Wjets_HT_res_"+str(ir))
+for ir in range(1,6):
+    wjets_bins.append("Wjets_HT_boost_"+str(ir))
 
 
 
@@ -61,6 +78,7 @@ groupPlot['Vg+VgS']  = {
                   'samples'  : ['Vg','VgS'],
                   'fill': 1001
               }
+
 
 
 groupPlot['DY']  = {  
@@ -92,11 +110,9 @@ groupPlot["Wjets"]  = {
                         'nameHR' : 'W+Jets',
                         'isSignal' : 0,
                         'color':   palette["Yellow"],
-                        'samples'  : ["Wjets_HT"],
+                        'samples'  : wjets_bins,
                         'fill': 1001
                 }
-
-
 
 groupPlot['VBS']  = {  
                  'nameHR' : 'VBS',
@@ -175,20 +191,20 @@ plot['top'] = {
                  'scale'    : 1.0 
                  }
 
-plot['Wjets_HT'] = {   
-                 'color': colors['kAzure']-1,
-                 'isSignal' : 0,
-                 'isData'   : 0, 
-                 'scale'    : 1.0 
-                 }
+# plot['Wjets_HT'] = {   
+#                  'color': colors['kAzure']-1,
+#                  'isSignal' : 0,
+#                  'isData'   : 0, 
+#                  'scale'    : 1.0 
+#                  }
 
-# for wjetbin in wjets_bins:
-#     plot[wjetbin] = {   
-#                     'color': colors['kAzure']-1,
-#                     'isSignal' : 0,
-#                     'isData'   : 0, 
-#                     'scale'    : 1.0 
-#                     }
+for wjetbin in wjets_bins:
+    plot[wjetbin] = {   
+                    'color': colors['kAzure']-1,
+                    'isSignal' : 0,
+                    'isData'   : 0, 
+                    'scale'    : 1.0 
+                    }
 
 plot['VBS']  = {
                   'color': colors["kCyan"]+1, 
@@ -211,7 +227,7 @@ plot['DATA']  = {
 
 # additional options
 
-legend['lumi'] = 'L = 35.867/fb'
+legend['lumi'] = 'L = 35.867 /fb'
 
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
 

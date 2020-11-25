@@ -2,22 +2,18 @@
 from itertools import product, chain
 #structure = {}
 
-Wjets_bins = ["Wjets_jpt3","Wjets_deta2_jpt2", "Wjets_deta1_jpt2",
-                "Wjets_deta2_jpt1","Wjets_deta1_jpt1",
-                "Wjets_boost1", "Wjets_boost2"]
+wjets_bins = []
+for ir in range(1,7):
+    wjets_bins.append("Wjets_HT_res_"+str(ir))
+for ir in range(1,6):
+    wjets_bins.append("Wjets_HT_boost_"+str(ir))
 
 
-phase_spaces_boost = []
-phase_spaces_res = []
-
-for fl in ["ele", "mu"]:
-    for d in ["high", "low", "all"]:
-        for cat in ["sig", "wjetcr", "topcr"]:
-            phase_spaces_boost.append("boost_{}_dnn{}_{}".format(cat, d,fl))
-            phase_spaces_res.append("res_{}_dnn{}_{}".format(cat, d, fl))
+phase_spaces_boost = [c for c in cuts if "boost" in c]
+phase_spaces_res = [c for c in cuts if "res" in c]
 
 
-for wbin in Wjets_bins:
+for wbin in wjets_bins:
     if 'boost' in wbin:
         structure[wbin] = {
                     'isSignal' : 0,

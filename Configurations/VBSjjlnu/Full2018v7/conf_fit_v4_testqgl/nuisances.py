@@ -10,19 +10,23 @@ mc_sep =  ["VBS", "VV"]
 def getSamplesWithout(samples, samples_to_remove):
     return [m for m in samples if m not in samples_to_remove]
 
-phase_spaces_boost = [ c for c in cuts if 'boost' in c]
-phase_spaces_res = [ c for c in cuts if 'res' in c]
+phasespaces = ['res_sig_ele','res_sig_mu', 'res_wjetcr_ele','res_wjetcr_mu','res_topcr_ele','res_topcr_mu',
+        'boost_sig_ele','boost_sig_mu', 'boost_wjetcr_ele','boost_wjetcr_mu','boost_topcr_ele','boost_topcr_mu']
+phase_spaces_boost = [ c for c in phasespaces if 'boost' in c]
+phase_spaces_res = [ c for c in phasespaces if 'res' in c]
 
-phase_spaces_res_ele = [ ph+"_ele" for ph in phase_spaces_res]
-phase_spaces_res_mu = [ ph+"_mu" for ph in phase_spaces_res]
-phase_spaces_boost_ele = [ ph+"_ele" for ph in phase_spaces_boost]
-phase_spaces_boost_mu = [ ph+"_mu" for ph in phase_spaces_boost]
+phase_spaces_res_ele = [ c for c in phase_spaces_res if 'ele' in c]
+phase_spaces_res_mu = [ c for c in phase_spaces_res if 'mu' in c]
+phase_spaces_boost_ele = [ c for c in phase_spaces_boost if 'ele' in c]
+phase_spaces_boost_mu =  [ c for c in phase_spaces_boost if 'mu' in c]
 
-phase_spaces_ele = phase_spaces_res_ele + phase_spaces_boost_ele
-phase_spaces_mu = phase_spaces_res_mu + phase_spaces_boost_mu
+phase_spaces_tot_ele = phase_spaces_res_ele + phase_spaces_boost_ele
+phase_spaces_tot_mu = phase_spaces_res_mu + phase_spaces_boost_mu
+phase_spaces_tot_res = phase_spaces_res_ele + phase_spaces_res_mu
+phase_spaces_tot_boost = phase_spaces_boost_ele + phase_spaces_boost_mu
 
 phase_spaces_dict = {"boost": phase_spaces_boost, "res": phase_spaces_res}
-phase_spaces_tot = phase_spaces_ele + phase_spaces_mu
+phase_spaces_tot = phase_spaces_tot_ele + phase_spaces_tot_mu
 
 # Function to split a nuisance on different folders for different group of samples
 # keeping the same nuisance name
@@ -88,7 +92,7 @@ nuisances['fake_ele']  = {
                 'samples'  : {
                               'Fake'     : [ fakeW_jetUp , fakeW_jetDown ],
                              },
-                'cuts':  phase_spaces_ele
+                'cuts':  phase_spaces_tot_ele
 }
 
 nuisances['fake_ele_stat']  = {
@@ -98,7 +102,7 @@ nuisances['fake_ele_stat']  = {
                 'samples'  : {
                               'Fake'      : [ fakeW_statUp , fakeW_statDown ],
                              },
-                'cuts':  phase_spaces_ele
+                'cuts':  phase_spaces_tot_ele
 }
 
 nuisances['fake_mu']  = {
@@ -108,7 +112,7 @@ nuisances['fake_mu']  = {
                 'samples'  : {
                               'Fake'     : [ fakeW_jetUp , fakeW_jetDown ],
                              },
-                'cuts':  phase_spaces_mu
+                'cuts':  phase_spaces_tot_mu
 }
 
 
@@ -119,7 +123,7 @@ nuisances['fake_mu_stat']  = {
                 'samples'  : {
                               'Fake'     :[ fakeW_statUp , fakeW_statDown ],
                              },
-                'cuts':  phase_spaces_mu
+                'cuts':  phase_spaces_tot_mu
 }
 
 # ##### Btag nuisances
@@ -170,7 +174,7 @@ nuisances['eff_e']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  :   dict((skey, id_syst_ele) for skey in mc),
-                'cuts': phase_spaces_ele
+                'cuts': phase_spaces_tot_ele
 }
 
 
@@ -180,7 +184,7 @@ nuisances['eff_e']  = {
 #                 'type'  : 'shape',
 #                 'mapUp': 'ElepTup',
 #                 'mapDown': 'ElepTdo',
-#                 'cuts': phase_spaces_ele
+#                 'cuts': phase_spaces_tot_ele
 # }
 # split_nuisance_samples_dir('electronpt', ele_pt_var, 'ElepT', [(mc_norm, directory_bkg), (mc_sep, directory_signal)])
 
@@ -194,7 +198,7 @@ nuisances['eff_m']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : dict((skey, id_syst_mu) for skey in mc if skey not in ["Vg", "VgS"]),
-                'cuts': phase_spaces_mu
+                'cuts': phase_spaces_tot_mu
 }
 
 
@@ -204,7 +208,7 @@ nuisances['eff_m']  = {
 #                 'type'  : 'shape',
 #                 'mapUp': 'MupTup',
 #                 'mapDown': 'MupTdo',
-#                 'cuts': phase_spaces_mu
+#                 'cuts': phase_spaces_tot_mu
 # }
 # split_nuisance_samples_dir('muonpt', mu_pt_var, 'MupT', [(mc_norm, directory_bkg), (mc_sep, directory_signal)])
 
@@ -289,13 +293,13 @@ nuisances['Wtagging_eff'] = {
                 'samples': dict( (skey, fatjet_eff) for skey in mc)
 }
 
-fatjet_eff_ptextr = ['BoostedWtagSF_ptextr[0]/BoostedWtagSF_nominal', 'BoostedWtagSF_ptextr[1]/BoostedWtagSF_nominal']
-nuisances['Wtagging_ptextr'] = {
-                'name': 'CMS_fj_tau21ptextr_2017',
-                'kind' : 'weight', 
-                'type' : 'shape',
-                'samples': dict( (skey, fatjet_eff_ptextr) for skey in mc)
-}
+# fatjet_eff_ptextr = ['BoostedWtagSF_ptextr[0]/BoostedWtagSF_nominal', 'BoostedWtagSF_ptextr[1]/BoostedWtagSF_nominal']
+# nuisances['Wtagging_ptextr'] = {
+#                 'name': 'CMS_fj_tau21ptextr_2017',
+#                 'kind' : 'weight', 
+#                 'type' : 'shape',
+#                 'samples': dict( (skey, fatjet_eff_ptextr) for skey in mc)
+# }
 
 # #FatJet mass scale and resolution
 # fatjet_jmr = {
@@ -338,15 +342,13 @@ for sample in mc :
 # # #
 # # # PS and UE
 # # #
-# # nuisances['PS']  = {
-# #                 'name'  : 'PS',
-# #                 'skipCMS' : 1,
-# #                 'kind'  : 'weight',
-# #                 'type'  : 'shape',
-# #                 'samples'  : {
-# #                   'WW'      : ['PSWeight[0]', 'PSWeight[3]'],
-# #                   },
-# #                 }
+nuisances['PS']  = {
+                'name'  : 'PS',
+                'skipCMS' : 1,
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : dict((skey, ['PSWeight[0]', 'PSWeight[3]']) for skey in mc )
+                }
 
 # # nuisances['UE']  = {
 # #                 'name'  : 'UE', 

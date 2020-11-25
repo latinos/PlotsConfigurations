@@ -9,7 +9,7 @@ direc = "conf_fit_v4_testqgl"
 outputDir = 'rootFile_'+tag 
 
 # file with TTree aliases
-aliasesFile = direc+'/aliases_tree.py'
+aliasesFile = direc+'/aliases.py'
 
 # file with list of variables
 variablesFile = direc+'/variables.py'

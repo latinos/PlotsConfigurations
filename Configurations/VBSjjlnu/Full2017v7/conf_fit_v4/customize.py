@@ -5,8 +5,8 @@ from pprint import pprint
 
 
 #Order of sample for plot in top_only 
-plots_top_order = [ "VV+VVV", 'Vg+VgS', 'DY', 'Fake', 'Wjets','top','VBS']
-plots_wjets_order = [ "VV+VVV", 'Vg+VgS', 'DY', 'Fake', 'top','Wjets', 'VBS']
+plots_top_order = [ "vbfV+VV+VVV", 'Vg+VgS', 'DY', 'Fake', 'Wjets','top','VBS']
+plots_wjets_order = [ "vbfV+VV+VVV", 'Vg+VgS', 'DY', 'Fake', 'top','Wjets', 'VBS']
 
 # '#FF3D00',F57C00
 wjets_palette = ['#FFC400','#FFAB00', '#FF6D00','#FF3D00','#DD2C00','#c41e08']
@@ -47,7 +47,7 @@ def define_bins_res(groupPlot,plot):
             'samples'  : [sname],
             'fill': 1001
         }
-    new_group = reorder_plots(new_group, [ "VV+VVV", 'Vg+VgS', 'DY', 'Fake', 'top'] + wjets_list + ['VBS'] )
+    new_group = reorder_plots(new_group, [ "vbfV+VV+VVV", 'Vg+VgS', 'DY', 'Fake', 'top'] + wjets_list + ['VBS'] )
     return new_group, new_plots
 
 def define_bins_boost(groupPlot,plot):
@@ -70,68 +70,68 @@ def define_bins_boost(groupPlot,plot):
             'samples'  : [sname],
             'fill': 1001
         }
-    new_group = reorder_plots(new_group, [ "VV+VVV", 'Vg+VgS', 'DY', 'Fake', 'top'] + wjets_list + ['VBS'] )
+    new_group = reorder_plots(new_group, [ "vbfV+VV+VVV", 'Vg+VgS', 'DY', 'Fake', 'top'] + wjets_list + ['VBS'] )
     return new_group, new_plots
 
 
-# norm_factors = {
-#     "Wjets_HT_res_1": 
-#         {
-#             "res_wjetcr_ele":1.386,
-#             "res_wjetcr_mu": 1.178
-#         },
-#     "Wjets_HT_res_2": 
-#         {
-#             "res_wjetcr_ele":1.130,
-#             "res_wjetcr_mu": 1.028
-#         },
-#     "Wjets_HT_res_3": 
-#         {
-#             "res_wjetcr_ele":0.784,
-#             "res_wjetcr_mu": 0.871
-#         },
-#     "Wjets_HT_res_4": 
-#         {
-#             "res_wjetcr_ele":0.619,
-#             "res_wjetcr_mu": 0.687
-#         },
-#     "Wjets_HT_res_5": 
-#         {
-#             "res_wjetcr_ele":0.470,
-#             "res_wjetcr_mu": 0.523
-#         }, 
-#     "Wjets_HT_res_6": 
-#         {
-#             "res_wjetcr_ele":0.370,
-#             "res_wjetcr_mu": 0.432
-#         }, 
-#      "Wjets_HT_boost_1": 
-#         {
-#             "boost_wjetcr_ele":0.878,
-#             "boost_wjetcr_mu": 0.701
-#         },
-#     "Wjets_HT_boost_2": 
-#         {
-#             "boost_wjetcr_ele":0.848,
-#             "boost_wjetcr_mu": 0.684
-#         },
-#     "Wjets_HT_boost_3": 
-#         {
-#             "boost_wjetcr_ele":0.783,
-#             "boost_wjetcr_mu": 0.741
-#         },
-#     "Wjets_HT_boost_4": 
-#         {
-#             "boost_wjetcr_ele":0.606,
-#             "boost_wjetcr_mu": 0.696
-#         },
-#     "Wjets_HT_boost_5": 
-#         {
-#             "boost_wjetcr_ele":0.510,
-#             "boost_wjetcr_mu": 0.574
-#         }, 
+norm_factors = {
+    "Wjets_HT_res_1": 
+        {
+            "res_wjetcr_ele":1.386,
+            "res_wjetcr_mu": 1.178
+        },
+    "Wjets_HT_res_2": 
+        {
+            "res_wjetcr_ele":1.130,
+            "res_wjetcr_mu": 1.028
+        },
+    "Wjets_HT_res_3": 
+        {
+            "res_wjetcr_ele":0.784,
+            "res_wjetcr_mu": 0.871
+        },
+    "Wjets_HT_res_4": 
+        {
+            "res_wjetcr_ele":0.619,
+            "res_wjetcr_mu": 0.687
+        },
+    "Wjets_HT_res_5": 
+        {
+            "res_wjetcr_ele":0.470,
+            "res_wjetcr_mu": 0.523
+        }, 
+    "Wjets_HT_res_6": 
+        {
+            "res_wjetcr_ele":0.370,
+            "res_wjetcr_mu": 0.432
+        }, 
+     "Wjets_HT_boost_1": 
+        {
+            "boost_wjetcr_ele":0.878,
+            "boost_wjetcr_mu": 0.701
+        },
+    "Wjets_HT_boost_2": 
+        {
+            "boost_wjetcr_ele":0.848,
+            "boost_wjetcr_mu": 0.684
+        },
+    "Wjets_HT_boost_3": 
+        {
+            "boost_wjetcr_ele":0.783,
+            "boost_wjetcr_mu": 0.741
+        },
+    "Wjets_HT_boost_4": 
+        {
+            "boost_wjetcr_ele":0.606,
+            "boost_wjetcr_mu": 0.696
+        },
+    "Wjets_HT_boost_5": 
+        {
+            "boost_wjetcr_ele":0.510,
+            "boost_wjetcr_mu": 0.574
+        }, 
 
-# }
+}
 
 
 def scaleBins(plot, cut):

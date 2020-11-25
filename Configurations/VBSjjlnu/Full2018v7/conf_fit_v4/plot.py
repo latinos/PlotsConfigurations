@@ -56,9 +56,9 @@ wjets_palette = ['#DD2C00', '#FF3D00',  '#FF6D00','#F57C00', '#FFAB00', '#FFC400
 
 
 wjets_bins = []
-for ir in range(1,6):
+for ir in range(1,7):
     wjets_bins.append("Wjets_HT_res_"+str(ir))
-for ir in range(1,5):
+for ir in range(1,6):
     wjets_bins.append("Wjets_HT_boost_"+str(ir))
 
 

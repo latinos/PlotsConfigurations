@@ -5,8 +5,8 @@ from pprint import pprint
 
 
 #Order of sample for plot in top_only 
-plots_top_order = [ "VV+VVV", 'Vg+VgS', 'DY', 'Fake', 'Wjets','top','VBS']
-plots_wjets_order = [ "VV+VVV", 'Vg+VgS', 'DY', 'Fake', 'top','Wjets', 'VBS']
+plots_top_order = [ "vbfV+VV+VVV", 'Vg+VgS', 'DY', 'Fake', 'Wjets','top','VBS']
+plots_wjets_order = [ "vbfV+VV+VVV", 'Vg+VgS', 'DY', 'Fake', 'top','Wjets', 'VBS']
 
 # '#FF3D00',F57C00
 wjets_palette = ['#FFC400','#FFAB00', '#FF6D00','#FF3D00','#DD2C00','#c41e08']
@@ -47,7 +47,7 @@ def define_bins_res(groupPlot,plot):
             'samples'  : [sname],
             'fill': 1001
         }
-    new_group = reorder_plots(new_group, [ "VV+VVV", 'Vg+VgS', 'DY', 'Fake', 'top'] + wjets_list + ['VBS'] )
+    new_group = reorder_plots(new_group, [ "vbfV+VV+VVV", 'Vg+VgS', 'DY', 'Fake', 'top'] + wjets_list + ['VBS'] )
     return new_group, new_plots
 
 def define_bins_boost(groupPlot,plot):
@@ -70,7 +70,7 @@ def define_bins_boost(groupPlot,plot):
             'samples'  : [sname],
             'fill': 1001
         }
-    new_group = reorder_plots(new_group, [ "VV+VVV", 'Vg+VgS', 'DY', 'Fake', 'top'] + wjets_list + ['VBS'] )
+    new_group = reorder_plots(new_group, [ "vbfV+VV+VVV", 'Vg+VgS', 'DY', 'Fake', 'top'] + wjets_list + ['VBS'] )
     return new_group, new_plots
 
 

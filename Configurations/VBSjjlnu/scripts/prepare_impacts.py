@@ -50,6 +50,16 @@ def prepare_rateParams(years):
                 "Wjets_NLO_deta2_jpt1","Wjets_NLO_deta1_jpt1",
                 "Wjets_NLO_boost1", "Wjets_NLO_boost2"]
 
+    elif args.wbins == "v4_res":
+        Wjets_bins = []
+        for ir in range(1,6):
+            Wjets_bins.append("Wjets_HT_res_"+str(ir))
+    elif args.wbins == "v4_boost":
+        Wjets_bins = []
+        for ir in range(1,5):
+            Wjets_bins.append("Wjets_HT_boost_"+str(ir))
+
+
     else:
         print("ERROR! Specify a valid W+jets binning")
         exit(1)

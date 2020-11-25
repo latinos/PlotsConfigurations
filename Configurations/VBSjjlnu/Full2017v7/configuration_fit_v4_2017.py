@@ -18,7 +18,7 @@ variablesFile = direc+'/variables_fit.py'
 cutsFile = direc +'/cuts.py' 
 
 # file with list of samples
-samplesFile = direc+'/samples.py' 
+samplesFile = direc+'/samples_quick.py' 
 #samplesFile = direc+'/samples.py'
 
 #t file with list of samples
@@ -42,6 +42,8 @@ structureFile = direc+'/structure.py'
 
 
 # nuisances file for mkDatacards and for mkShape
-nuisancesFile = direc+'/nuisances.py'
+#nuisancesFile = direc+'/nuisances.py'
 #nuisancesFile = direc+'/nuisances_datacard_join.py'
-#nuisancesFile = direc + '/nuisances_datacard.py'
+nuisancesFile = direc + '/nuisances_datacard.py'
+
+customizeScript = direc + "/customize.py"

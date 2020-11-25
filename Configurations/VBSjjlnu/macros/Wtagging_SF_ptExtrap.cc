@@ -88,7 +88,7 @@ Wtagging_SF_ptExtrap::setValues()
     float fatjet_pt = CleanFatJet_pt->At(0);
     float uncert =  sf_hp_ptfactor * TMath::Log(fatjet_pt / 200.);
     // Boosted category, we apply the HP scale factor
-    outputValues[0]    = sf_hp[year_] + uncert;
+    outputValues[0]    = sf_hp[year_] + uncert; ////BUGG!! It is a % uncertainty
     outputValues[1]    = sf_hp[year_] - uncert;
   }
   //resolved category

@@ -1,24 +1,21 @@
 import ROOT as R
 import sys
 
-f = R.TFile(sys.argv[1], "UPDATE")
-#sample_name = sys.argv[2]
-
 samples = ['VBS','top','DATA','Fake','Wjets_HT','VVV','VV','VgS','Vg','DY','VBF-V']
-for ir in range(1,7):
-    samples.append("Wjets_HT_res_"+str(ir))
-for ir in range(1,6):
-    samples.append("Wjets_HT_boost_"+str(ir))
+tag = sys.argv[1]
 
+for s in samples:
+    print "working on sample: ",s
 
-for sample_name in samples:
+    f = R.TFile("plots_{}_{}.root".format(tag, s), "UPDATE")
+    sample_name = s
 
-    #f.ls()
+    f.ls()
     for k in f.GetListOfKeys():
-        #print(k)
+        print(k)
         R.gDirectory.Cd(k.GetName())
         for z in R.gDirectory.GetListOfKeys():
-            #print(z)
+            print(z)
             R.gDirectory.Cd(z.GetName())
             for l in R.gDirectory.GetListOfKeys():
                 if "histo_" + sample_name == l.GetName():
@@ -28,5 +25,5 @@ for sample_name in samples:
 
         R.gDirectory.Cd("../")
 
-f.Write()
-f.Close()
+    f.Write()
+    f.Close()

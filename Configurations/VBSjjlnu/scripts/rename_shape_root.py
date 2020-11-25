@@ -1,6 +1,14 @@
 import ROOT as R
 import sys
 
+'''
+This script can be used to rename a systematic shape including the name
+of the samples. 
+
+In practice it regroup the nuisances between samples if originally 
+they had different shape name. 
+'''
+
 f = R.TFile(sys.argv[1], "UPDATE")
 shape_name = sys.argv[2]
 
