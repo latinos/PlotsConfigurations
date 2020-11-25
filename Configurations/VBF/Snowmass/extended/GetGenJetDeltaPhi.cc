@@ -79,7 +79,8 @@ double GetGenJetDeltaPhi::evaluate(unsigned)
     iPromptL.push_back(iL);
   }
 
-  // If there are no prompt lepton don't bother checking and just count the jets w/ pt > 30
+  // If there are no prompt leptons don't bother checking and just count the jets w/ pt > 30
+  // Why not returning default value?
 
   if (iPromptL.size() == 0) {
     unsigned n{0};
@@ -87,7 +88,8 @@ double GetGenJetDeltaPhi::evaluate(unsigned)
       if (GenJet_pt->At(iJ) > 30.)
         ++n;
     }
-    return n;
+    //return n;
+    return -9999;
   }
 
   // Create prompt gen leptons 4-vectors
@@ -101,8 +103,8 @@ double GetGenJetDeltaPhi::evaluate(unsigned)
       LeptonGen_mass->At(iL));
   }
 
-  // Add to prompt gen leptons the gen closest gen photon 4-vector 
-  // if close enough (dR < 0.09)
+  // Add to prompt gen leptons the closest gen photon 4-vector 
+  // if close enough (dR < 0.09) - FSR
 
   unsigned nP{*nPhotonGen->Get()};
 
@@ -132,7 +134,7 @@ double GetGenJetDeltaPhi::evaluate(unsigned)
 
   // If there are less than 2 jets, return underflow value
 
-  if(nJ < 2) return -1;
+  if(nJ < 2) return -9999;
 
   TLorentzVector j1{};
   TLorentzVector j2{};
@@ -163,8 +165,8 @@ double GetGenJetDeltaPhi::evaluate(unsigned)
       ++n;
     }
   }
-  if ( (n < 2) || (*nLeptonGen->Get() < 2) ) return -1;
-  else if ( LeptonGen_pdgId->At(0) * LeptonGen_pdgId->At(1) != -11*13 ) return -1;
+  if ( (n < 2) || (*nLeptonGen->Get() < 2) ) return -9999;
+  else if ( LeptonGen_pdgId->At(0) * LeptonGen_pdgId->At(1) != -11*13 ) return -9999;
   
   double pt3{-1};
   if (dressedLeptons.size() > 2) pt3 = dressedLeptons[2].pt();
@@ -197,11 +199,30 @@ double GetGenJetDeltaPhi::evaluate(unsigned)
 
   if (isFid){
 
-    //std::cout<<TMath::Abs(j1.DeltaPhi(j2))<<std::endl;
-    return TMath::Abs(j1.DeltaPhi(j2));
-    
+    float phi1 = j1.Phi();
+    float phi2 = j2.Phi();
+
+    float eta1 = j1.Eta();
+    float eta2 = j2.Eta();
+
+    // Adjust dphijj definition according to
+    // https://arxiv.org/pdf/2002.09888.pdf (eq. 47)
+    float output;
+    if (eta1 > eta2)       output = phi1 - phi2;
+    else if (eta1 <= eta2) output = phi2 - phi1;
+
+    // std::cout<<"Leading  gen-jet phi = "<<j1.Phi();
+    // std::cout<<", Trailing gen-jet phi = "<<j2.Phi()<<std::endl;
+
+    // To have delta_phi in (-pi, pi) interval
+    // https://root.cern.ch/doc/master/TVector2_8cxx_source.html#l00103
+    if (output >  TMath::Pi()) output = output - 2*TMath::Pi();
+    if (output < -TMath::Pi()) output = output + 2*TMath::Pi();
+
+    //return j1.DeltaPhi(j2);
+    return output;
   }
-  else return -1;
+  else return -9999;
 }
 
 void GetGenJetDeltaPhi::bindTree_(multidraw::FunctionLibrary& _library)

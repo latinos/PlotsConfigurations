@@ -197,7 +197,7 @@ files = nanoGetSampleFiles(mcDirectory, 'TTTo2L2Nu') + \
 samples['top'] = {
     'name': files,
     'weight': mcCommonWeight+embed_tautauveto,
-    'FilesPerJob': 2,
+    'FilesPerJob': 1,
 }
 
 addSampleWeight(samples,'top','TTTo2L2Nu','Top_pTrw')
@@ -273,7 +273,7 @@ files = nanoGetSampleFiles(mcDirectory, 'ZZTo2L2Nu_ext2') + \
 samples['VZ'] = {
     'name': files,
     'weight': mcCommonWeight+embed_tautauveto + '*1.11',
-    'FilesPerJob': 4
+    'FilesPerJob': 2
 }
 
 ########## VVV #########
@@ -333,7 +333,7 @@ for bin_num in range(0, n_bins):
     sample_name = "qqH_hww_{}".format(bin_num)
     samples[sample_name] = {
         'name': nanoGetSampleFiles(mcDirectory, 'VBFHToWWTo2L2Nu_M125'),
-        'weight': mcCommonWeight + " * (GenDeltaPhiJJ > {} && GenDeltaPhiJJ < {})".format(bin_num*np.pi/n_bins, (bin_num+1)*np.pi/n_bins),
+        'weight': mcCommonWeight + " * (GenDeltaPhiJJ > {} && GenDeltaPhiJJ < {})".format(bin_num*(2*np.pi)/n_bins - np.pi, (bin_num+1)*2*np.pi/n_bins - np.pi),
         'FilesPerJob': 4
     }
     signals.append(sample_name)
@@ -341,7 +341,7 @@ for bin_num in range(0, n_bins):
 # NON-fiducial region selections
 samples["qqH_hww_nonFid"] = {
     'name': nanoGetSampleFiles(mcDirectory, 'VBFHToWWTo2L2Nu_M125'),
-    'weight': mcCommonWeight + " * (GenDeltaPhiJJ < 0)",
+    'weight': mcCommonWeight + " * (GenDeltaPhiJJ < -99)",
     'FilesPerJob': 4
 }
 signals.append(sample_name)
