@@ -2,7 +2,7 @@
 treeName= 'Events'
 
 
-tag = 'Full2018_em'
+tag = 'Full2018_em_CR'
 
 
 # used by mkShape to define output directory for root files
@@ -12,7 +12,8 @@ outputDir = 'rootFile_'+tag
 aliasesFile = 'aliases.py'
 
 # file with list of variables
-variablesFile = 'variables.py'
+#variablesFile = 'variables.py'
+variablesFile = 'variables_forANplot.py'
 
 # file with list of cuts
 cutsFile = 'CR_cuts_em.py' 
@@ -38,7 +39,7 @@ outputDirDatacard = 'datacards'
 
 
 # structure file for datacard
-#structureFile = 'structure.py' # Is this even needed still?
+structureFile = 'structure.py' # Is this even needed still?
 
 
 # nuisances file for mkDatacards and for mkShape
