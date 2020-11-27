@@ -32,7 +32,7 @@ public:
   ~QGL_morphing();
   
   char const* getName() const override { return "QGL_morphing"; }
-  TTreeFunction* clone() const override { return new QGL_morphing(_values);}
+  TTreeFunction* clone() const override { return new QGL_morphing(_fileNameWithRootFilesOfCorrection);}
   
   void beginEvent(long long) override;
   unsigned getNdata() override { return _new_Jet_qgl.size(); } // size of the vector of jets
@@ -94,5 +94,18 @@ void QGL_morphing::bindTree_(multidraw::FunctionLibrary& _library) {
 }
 
 
+//
+// to be used like this:
+//
+//  aliases['Jet_qgl_morphed'] = {
+//    'class': 'QglVarsMorphing',
+//    'args': ('blabla.txt'),
+//    'linesToAdd' : [
+//    'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+//    '.L {}/macros/qgl_vars_morphing.cc+'.format(configurations)
+//    ] 
+//  } 
+//
+//
 
 #endif
