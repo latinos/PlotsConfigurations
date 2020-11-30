@@ -1,74 +1,73 @@
+/*
+ *  QG likelihood morphing
+ */
+
 #include "LatinoAnalysis/MultiDraw/interface/TTreeFunction.h"
 #include "LatinoAnalysis/MultiDraw/interface/FunctionLibrary.h"
 
-#include <vector>
-#include <array>
-#include <map>
+#include "TSystem.h"
+
 #include <iostream>
-#include <fstream>
-#include <sstream>
-#include <string>
+#include <vector>
+#include <utility>
+#include <algorithm>
+#include <iterator>
 
+#include "TLorentzVector.h"
+#include "TMath.h"
 
-
-#include "TVector2.h"
 #include "TString.h"
 #include "TGraph.h"
-#include "TFile.h"
-#include "TH2.h"
-#include "TH2F.h"
-#include "Math/Vector4Dfwd.h"
-#include "Math/GenVector/LorentzVector.h"
-#include "Math/GenVector/PtEtaPhiM4D.h"
-
-#include <iostream>
 
 
 #ifndef QGL_morphing_def
 #define QGL_morphing_def
 
-class QGL_morphing : public multidraw::TTreeFunction {
 
+class QGL_morphing : public multidraw::TTreeFunction {
 public:
-  
+  QGL_morphing();
   QGL_morphing( char const* fileNameWithRootFilesOfCorrection );
-  ~QGL_morphing();
   
   char const* getName() const override { return "QGL_morphing"; }
-  TTreeFunction* clone() const override { return new QGL_morphing(_fileNameWithRootFilesOfCorrection.c_str());}
+  TTreeFunction* clone() const override { return new QGL_morphing(_fileNameWithRootFilesOfCorrection);}  
+//   TTreeFunction* clone() const override { return new QGL_morphing(); }
   
-  void beginEvent(long long) override;
   unsigned getNdata() override { return _new_Jet_qgl.size(); } // size of the vector of jets
   int getMultiplicity() override { return 1; }
+  
+  void beginEvent(long long) override;
+  
+  
   double evaluate(unsigned) override;
   
 protected:
-  
   void bindTree_(multidraw::FunctionLibrary&) override;
+  
+//   UIntValueReader* nLepton;
   
   FloatArrayReader* Jet_pt{};
   FloatArrayReader* Jet_eta{};
   FloatArrayReader* Jet_qgl{};
   
-//   IntArrayReader*   Lepton_pdgId{};
-    
-  std::string _fileNameWithRootFilesOfCorrection{};  
+  TString _fileNameWithRootFilesOfCorrection{};  
   static std::map<std::string, TGraph*> morphing_functions;
   
   std::vector<float> _new_Jet_qgl;
   
+  
 };
 
 
-QGL_morphing::QGL_morphing(char const* fileNameWithRootFilesOfCorrection) :
-        TTreeFunction(),
-        _fileNameWithRootFilesOfCorrection{fileNameWithRootFilesOfCorrection} {
-          
-// Reading the file and extract TGraphs
-//           
-//           fileNameWithRootFilesOfCorrection
-// 
-        
+QGL_morphing::QGL_morphing() :
+TTreeFunction() {
+  
+}
+
+
+QGL_morphing::QGL_morphing( char const* fileNameWithRootFilesOfCorrection ) :
+TTreeFunction(),
+_fileNameWithRootFilesOfCorrection(fileNameWithRootFilesOfCorrection) {
   
 }
 
@@ -84,15 +83,19 @@ void QGL_morphing::beginEvent(long long _iEntry) {
 
 
 double QGL_morphing::evaluate(unsigned iJ) {
+  
   if (iJ<_new_Jet_qgl.size()) return _new_Jet_qgl.at(iJ);
   else return -9999.;
+  
 }
 
 
 void QGL_morphing::bindTree_(multidraw::FunctionLibrary& _library) {
+  std::cout << "Loading QGL_morphing" << std::endl;
   _library.bindBranch(Jet_pt, "Jet_pt");
   _library.bindBranch(Jet_eta, "Jet_eta");
   _library.bindBranch(Jet_qgl, "Jet_qgl");
+  
 }
 
 
@@ -110,5 +113,5 @@ void QGL_morphing::bindTree_(multidraw::FunctionLibrary& _library) {
 //
 //
 
-#endif
 
+#endif
