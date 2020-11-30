@@ -13,6 +13,7 @@
 
 #include "TVector2.h"
 #include "TString.h"
+#include "TGraph.h"
 #include "TFile.h"
 #include "TH2.h"
 #include "TH2F.h"
@@ -23,16 +24,18 @@
 #include <iostream>
 
 
-#ifndef QGL_morphing
-#define QGL_morphing
+#ifndef QGL_morphing_def
+#define QGL_morphing_def
 
 class QGL_morphing : public multidraw::TTreeFunction {
+
 public:
-  QGL_morphing(char const* fileNameWithRootFilesOfCorrection);
+  
+  QGL_morphing( char const* fileNameWithRootFilesOfCorrection );
   ~QGL_morphing();
   
   char const* getName() const override { return "QGL_morphing"; }
-  TTreeFunction* clone() const override { return new QGL_morphing(_fileNameWithRootFilesOfCorrection);}
+  TTreeFunction* clone() const override { return new QGL_morphing(_fileNameWithRootFilesOfCorrection.c_str());}
   
   void beginEvent(long long) override;
   unsigned getNdata() override { return _new_Jet_qgl.size(); } // size of the vector of jets
@@ -49,7 +52,7 @@ protected:
   
 //   IntArrayReader*   Lepton_pdgId{};
     
-  TString _fileNameWithRootFilesOfCorrection{};  
+  std::string _fileNameWithRootFilesOfCorrection{};  
   static std::map<std::string, TGraph*> morphing_functions;
   
   std::vector<float> _new_Jet_qgl;
@@ -61,7 +64,7 @@ QGL_morphing::QGL_morphing(char const* fileNameWithRootFilesOfCorrection) :
         TTreeFunction(),
         _fileNameWithRootFilesOfCorrection{fileNameWithRootFilesOfCorrection} {
           
-  // Reading the file and extract TGraphs
+// Reading the file and extract TGraphs
 //           
 //           fileNameWithRootFilesOfCorrection
 // 
@@ -76,7 +79,6 @@ void QGL_morphing::beginEvent(long long _iEntry) {
   // Fill the new vector _new_Jet_qgl
   //
   //
-  
   
 }
 
@@ -109,3 +111,4 @@ void QGL_morphing::bindTree_(multidraw::FunctionLibrary& _library) {
 //
 
 #endif
+
