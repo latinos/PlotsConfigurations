@@ -42,86 +42,31 @@ palette = {
     "Pink": (247, 191, 223)
 }
 
-'''
-    "Wjets_deta5": (247, 155, 7),#f79b07
-    "Wjets_deta4": (247, 175, 7), #f7af07
-    "Wjets_deta3": (247, 195, 7), #f7c307
-    "Wjets_deta2": (247, 215, 7), #f7d707
-    "Wjets_deta1": (247, 235, 7), #f7eb07
-'''
 
-jetbin_detabins = [3,3,2]
-#wjets_palette = ['#FFF59D', '#FFEE58', '#FFD54F', '#FFB300', '#FF8F00', '#F57C00', '#E65100','#BF360C']
-wjets_palette = ['#DD2C00', '#FF3D00',  '#FF6D00','#F57C00', '#FFAB00', '#FFC400', '#FFEA00', '#FFFF00']
-
-
-wjets_bins = []
-for ir in range(1,7):
-    wjets_bins.append("Wjets_HT_res_"+str(ir))
-for ir in range(1,6):
-    wjets_bins.append("Wjets_HT_boost_"+str(ir))
-
-
-
-groupPlot['vbfV+VV+VVV']  = {  
-                  'nameHR' : 'vbfV+VV+VVV',
+groupPlot['top_oldPUWeight']  = {  
+                  'nameHR' : "Top old puW",
                   'isSignal' : 0,
-                  'color': palette["Pink"],  
-                  'samples'  : ['VBF-V','VVV', 'VV'],
+                  'color'    : palette["Green"],
+                  'samples'  : ['top_oldPUWeight'],
                   'fill': 1001
               }
 
-groupPlot['Vg+VgS']  = {  
-                  'nameHR' : "V#gamma+V#gamma*",
-                  'isSignal' : 0,
-                  'color'    : palette["Green3"],
-                  'samples'  : ['Vg','VgS'],
+groupPlot['Top']  = {  
+                  'nameHR' : 'Top no puW',
+                  'isSignal' : 2,
+                  'color': palette["LightBlue"],  
+                  'samples'  : ['top_noPUweight'],
                   'fill': 1001
               }
 
 
-
-groupPlot['DY']  = {  
-                'nameHR' : "DY",
-                'isSignal' : 0,
-                'color': palette["Green2"],    
-                'samples'  : ['DY'],
-                'fill': 1001
-            }
-
-groupPlot['Fake']  = {  
-                'nameHR' : "Non-prompt",
-                'isSignal' : 0,
-                'color': palette["LightBlue"],   
-                'samples'  : ['Fake'],
-                'fill': 1001
-            }
-
-groupPlot['top']  = {  
-                 'nameHR' : 'top',
-                 'isSignal' : 0,
-                 'color':  palette["MediumBlue2"],  
-                 'samples'  : ['top'],
-                 'fill': 1001
-             }
-
-
-groupPlot["Wjets"]  = {  
-                        'nameHR' : 'W+Jets',
-                        'isSignal' : 0,
-                        'color':   palette["Yellow"],
-                        'samples'  : wjets_bins,
-                        'fill': 1001
-                }
-
-groupPlot['VBS']  = {  
-                 'nameHR' : 'VBS',
-                 'isSignal' : 1,
-                 'color': colors["kRed"]+1,   
-                 'samples'  : ['VBS'],
-                 'fill': 1001
-              }
-
+# groupPlot['top_newPUWeight']  = {  
+#                 'nameHR' : "Top new puW",
+#                 'isSignal' : 2,
+#                 'color': palette["Green2"],    
+#                 'samples'  : ['top_newPUWeight'],
+#                 'fill': 1001
+#             }
 
 
 #plot = {}
@@ -129,101 +74,29 @@ groupPlot['VBS']  = {
 # keys here must match keys in samples.py    
 # 
 
-plot['VVV']  = { 
-                  'color': colors["kAzure"] -3,    
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  'scale'    : 1.0
-                  }
 
-
-plot['VV']  = {
-                  'color': colors['kGreen']+3,  
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  'scale'    : 1.   ,
-              }   
-         
-
-
-plot['DY']  = {  
-                'color': colors['kMagenta']+1,
-                'isSignal' : 0,
+plot['top_noPUweight']  = {  
+                'color': palette["LightBlue"],
+                'isSignal' : 2,
                 'isData'   : 0, 
                 'scale'    : 1.0,
             }
 
-plot['VBF-V']  = {
-                  'color': colors['kYellow']+3,  
+plot['top_oldPUWeight']  = {
+                  'color': palette["Green"],  
                   'isSignal' : 0,
                   'isData'   : 0,
-                  'scale'    : 1.   ,
+                  'scale'    : 1.0 ,
               }
 
-plot['Vg']  = {
-                  'color': colors['kGreen']+3,  
+plot['top_newPUWeight']  = {
+                  'color': 1,  
                   'isSignal' : 0,
-                  'isData'   : 0,
-                  'scale'    : 1.   ,
+                  'isData'   : 1,
+                  'scale'    : 1.,
+                  'isBlind'  : 0
               }   
          
-
-
-plot['VgS']  = {  
-                'color': colors['kMagenta']+1,
-                'isSignal' : 0,
-                'isData'   : 0, 
-                'scale'    : 1.0,
-            }
-
-plot['Fake']  = {  
-                'color': colors['kTeal'],
-                'isSignal' : 0,
-                'isData'   : 0, 
-                'scale'    : 1.0,
-            }
-
-
-plot['top'] = {   
-                 'color': colors['kAzure']-1,
-                 'isSignal' : 0,
-                 'isData'   : 0, 
-                 'scale'    : 1.0 
-                 }
-
-# plot['Wjets_HT'] = {   
-#                  'color': colors['kAzure']-1,
-#                  'isSignal' : 0,
-#                  'isData'   : 0, 
-#                  'scale'    : 1.0 
-#                  }
-
-for wjetbin in wjets_bins:
-    plot[wjetbin] = {   
-                    'color': colors['kAzure']-1,
-                    'isSignal' : 0,
-                    'isData'   : 0, 
-                    'scale'    : 1.0 
-                    }
-
-plot['VBS']  = {
-                  'color': colors["kCyan"]+1, 
-                  'isSignal' : 1,
-                  'isData'   : 0,
-                  'scale'    : 1.   ,
-              }
-
-# # data
-
-plot['DATA']  = { 
-                 'nameHR' : 'Data',
-                 'color': 1 ,  
-                 'isSignal' : 0,
-                 'isData'   : 1 ,
-                 'isBlind'  : 0
-             }
-
-
 
 # additional options
 
