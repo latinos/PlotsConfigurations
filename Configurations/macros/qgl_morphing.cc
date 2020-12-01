@@ -18,10 +18,28 @@
 
 #include "TString.h"
 #include "TGraph.h"
+#include "TFile.h"
 
 
 #ifndef QGL_morphing_def
 #define QGL_morphing_def
+
+
+
+namespace multidraw {
+  extern thread_local TTree* currentTree;
+}
+
+
+int isRunningSample(TString targetSample){
+  TString currentSampleName = TString(multidraw::currentTree->GetCurrentFile()->GetName());
+  if ( currentSampleName.Contains(targetSample)) {
+    return 1;
+  }
+  else return 0;
+}
+
+
 
 
 class QGL_morphing : public multidraw::TTreeFunction {
@@ -37,8 +55,7 @@ public:
   int getMultiplicity() override { return 1; }
   
   void beginEvent(long long) override;
-  
-  
+ 
   double evaluate(unsigned) override;
   
 protected:
@@ -46,17 +63,23 @@ protected:
   
 //   UIntValueReader* nLepton;
   
-  FloatArrayReader* Jet_pt{};
-  FloatArrayReader* Jet_eta{};
+  UIntValueReader* nCleanJet;
+  FloatArrayReader* CleanJet_eta{};
+  FloatArrayReader* CleanJet_pt{};
+  IntArrayReader*   CleanJet_jetIdx{};
   FloatArrayReader* Jet_qgl{};
   
+ 
+  
   TString _fileNameWithRootFilesOfCorrection{};  
-  static std::map<std::string, TGraph*> morphing_functions;
+  static std::map<std::string, TGraph*> _morphing_functions;
   
   std::vector<float> _new_Jet_qgl;
   
   
 };
+
+std::map<std::string, TGraph*> QGL_morphing::_morphing_functions{};
 
 
 QGL_morphing::QGL_morphing() :
@@ -69,6 +92,17 @@ QGL_morphing::QGL_morphing( char const* fileNameWithRootFilesOfCorrection ) :
 TTreeFunction(),
 _fileNameWithRootFilesOfCorrection(fileNameWithRootFilesOfCorrection) {
   
+  TFile rfile {_fileNameWithRootFilesOfCorrection.Data(), "READ"};
+  QGL_morphing::_morphing_functions["gluon_loweta_pt0"]  = (TGraph*) rfile.Get("j3_loweta_pt0_gluon" );
+  QGL_morphing::_morphing_functions["gluon_loweta_pt1"]  = (TGraph*) rfile.Get("j3_loweta_pt1_gluon" );
+  QGL_morphing::_morphing_functions["gluon_higheta_pt0"] = (TGraph*) rfile.Get("j1_higheta_pt0_gluon");
+  QGL_morphing::_morphing_functions["gluon_higheta_pt1"] = (TGraph*) rfile.Get("j1_higheta_pt1_gluon");
+  QGL_morphing::_morphing_functions["quark_loweta_pt0"]  = (TGraph*) rfile.Get("j1_loweta_pt0_quark" );
+  QGL_morphing::_morphing_functions["quark_loweta_pt1"]  = (TGraph*) rfile.Get("j1_loweta_pt1_quark" );
+  QGL_morphing::_morphing_functions["quark_higheta_pt0"] = (TGraph*) rfile.Get("j1_higheta_pt0_quark");
+  QGL_morphing::_morphing_functions["quark_higheta_pt1"] = (TGraph*) rfile.Get("j0_higheta_pt1_quark");
+  rfile.Close();
+  
 }
 
 
@@ -78,6 +112,41 @@ void QGL_morphing::beginEvent(long long _iEntry) {
   // Fill the new vector _new_Jet_qgl
   //
   //
+  
+  _new_Jet_qgl.clear();
+  unsigned int total_jets{*nCleanJet->Get()};
+  for (unsigned int iCleanJet=0; iCleanJet<total_jets ; iCleanJet++) {
+    float eta = CleanJet_eta->At(iCleanJet);
+    float pt  = CleanJet_pt->At(iCleanJet);
+    float qgl = Jet_qgl->At(CleanJet_jetIdx->At(iCleanJet));
+  
+    //
+    // modify qgl 
+    //
+    
+    if (qgl > 0.0 && qgl < 1.0) {
+      float y = qgl;
+      if (abs(eta)<3 && pt < 75) {
+        y =  QGL_morphing::_morphing_functions["gluon_loweta_pt0"]->Eval(qgl);
+      }
+      if (abs(eta)<3 && pt >= 75) {
+        y =  QGL_morphing::_morphing_functions["gluon_loweta_pt1"]->Eval(qgl);
+      }
+      if (abs(eta)>=3 && pt < 75) {
+        y =  QGL_morphing::_morphing_functions["gluon_higheta_pt0"]->Eval(qgl);
+      }
+      if (abs(eta)>=3 && pt >= 75) {
+        y =  QGL_morphing::_morphing_functions["gluon_higheta_pt1"]->Eval(qgl);
+      }
+      
+      // it should never happen, but you never know ...
+      if (y<0.0 ) y=0.0;
+      if (y>1.0 ) y=1.0;
+      
+      qgl = y;
+    }
+    _new_Jet_qgl.push_back(qgl);
+  }
   
 }
 
@@ -92,9 +161,16 @@ double QGL_morphing::evaluate(unsigned iJ) {
 
 void QGL_morphing::bindTree_(multidraw::FunctionLibrary& _library) {
   std::cout << "Loading QGL_morphing" << std::endl;
-  _library.bindBranch(Jet_pt, "Jet_pt");
-  _library.bindBranch(Jet_eta, "Jet_eta");
-  _library.bindBranch(Jet_qgl, "Jet_qgl");
+  
+  _library.bindBranch(Jet_qgl, "Jet_qgl");  
+  _library.bindBranch(CleanJet_eta, "CleanJet_eta");
+  _library.bindBranch(CleanJet_pt, "CleanJet_pt");
+  _library.bindBranch(CleanJet_jetIdx, "CleanJet_jetIdx");
+  _library.bindBranch(nCleanJet, "nCleanJet");
+  
+  _library.addDestructorCallback([]() {
+    _morphing_functions.clear();
+   });
   
 }
 
@@ -102,16 +178,35 @@ void QGL_morphing::bindTree_(multidraw::FunctionLibrary& _library) {
 //
 // to be used like this:
 //
-//  aliases['Jet_qgl_morphed'] = {
-//    'class': 'QglVarsMorphing',
-//    'args': ('blabla.txt'),
-//    'linesToAdd' : [
-//    'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-//    '.L {}/macros/qgl_vars_morphing.cc+'.format(configurations)
-//    ] 
-//  } 
+//  
+//      
+//      ###################################3
+//      # QGL variables
+//      morphing_file = "/afs/cern.ch/user/d/dvalsecc/public/qgl_morphing/morphing_functions_final_2018.root"
+//      # /afs/cern.ch/user/d/dvalsecc/public/qgl_morphing/morphing_functions_final_2016.root    --> for 2016
+//      # /afs/cern.ch/user/d/dvalsecc/public/qgl_morphing/morphing_functions_final_2018.root    --> for 2017 (same as 2018)
+//      # /afs/cern.ch/user/d/dvalsecc/public/qgl_morphing/morphing_functions_final_2018.root    --> for 2018
+//      
+//      ###############
+//      aliases['CleanJet_qgl_morphed'] = {
+//        'class': 'QGL_morphing',
+//        'args': (morphing_file),
+//        'linesToAdd' : [
+//        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+//        '.L {}/macros/qgl_morphing.cc+'.format(configurations)
+//        ] 
+//      } 
+//      
+//      
+//  and as variable:
 //
 //
-
+//        variables['Jet_qgl_morphed_0']  = {   'name': 'CleanJet_qgl_morphed[0]',
+//          'range' : (100,-10,1),
+//          'xaxis' : 'qgl morphed test',
+//          'fold' : 3
+//        }
+//        
+//        
 
 #endif
