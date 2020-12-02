@@ -26,7 +26,8 @@ samples={}
 mcSteps   = 'MCl1loose2018v7__MCCorr2018v7__MCCombJJLNu2018' 
 dataSteps = 'DATAl1loose2018v7__DATACombJJLNu2018'
 
-mcProduction = 'Autumn18_102X_nAODv7_Full2018v7'
+mcProduction = 'Autumn18_102X_nAODv7_Full2018v7_skim'
+dataProduction = 'Run2018_102X_nAODv7_Full2018v7_skim'
 
 SITE=os.uname()[1]
 xrootdPath=''
@@ -35,9 +36,10 @@ if  'cern' in SITE :
   treeBaseDir = '/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/'
   treeBaseDir_SMP = '/eos/cms/store/group/phys_smp/VJets_NLO_VBSanalyses/'
 
-directory_bkg    = os.path.join(treeBaseDir ,  mcProduction , mcSteps)
+directory_bkg    = os.path.join(treeBaseDir_SMP ,  mcProduction , mcSteps)
 directory_signal = os.path.join(treeBaseDir_SMP ,  mcProduction , mcSteps) 
-directory_data   = treeBaseDir + 'Run2018_102X_nAODv7_Full2018v7/'  + dataSteps
+directory_mc   = os.path.join(treeBaseDir_SMP ,    mcProduction , mcSteps)
+directory_data  = os.path.join(treeBaseDir, dataProduction, dataSteps)
 
 
 # def makeMCDirectory(var, smpFolder=False):

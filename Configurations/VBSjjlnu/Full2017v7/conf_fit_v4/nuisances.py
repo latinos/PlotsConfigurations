@@ -201,7 +201,7 @@ nuisances['eff_e']  = {
                 'cuts': phase_spaces_tot_ele
 }
 
-ele_pt_var = {
+nuisances['electronpt']  = {
                 'name'  : 'CMS_scale_e_2017',
                 'kind'  : 'suffix',
                 'type'  : 'shape',
@@ -231,7 +231,7 @@ nuisances['eff_m']  = {
                 'cuts': phase_spaces_tot_mu
 }
 
-mu_pt_var = {
+nuisances['muonpt']  = {
                 'name'  : 'CMS_scale_m_2017',
                 'kind'  : 'suffix',
                 'type'  : 'shape',
@@ -268,7 +268,7 @@ jes_systs = ['JESAbsolute','JESAbsolute_2017','JESBBEC1','JESBBEC1_2017','JESEC2
             'JESRelativeSample_2017']
 
 for js in jes_systs:
-    jes_var = {
+    nuisances[js]  = {
                     'name': 'CMS_j_scale_'+js,
                     'kind': 'suffix',
                     'type': 'shape',
@@ -281,12 +281,12 @@ for js in jes_systs:
     }
    
 ### Only total variation for fatjetJES
-    fatjetjes_var = {
+    nuisances['fatjet' +js]  = {
                     'name': 'CMS_fj_scale_'+js,
                         'kind': 'suffix',
                         'type': 'shape',
-                        'mapUp': 'fatjet' + js+'up',
-                        'mapDown': 'fatjet' + js+'do',
+                        'mapUp':   'fatjet'+js+'up',
+                        'mapDown': 'fatjet'+js+'do',
                         'cuts': phase_spaces_boost, #because we are vetoing fatjets anyway in resolved category 
                         'samples': dict((skey, ['1.','1.']) for skey in mc if skey not in ['Vg', 'VgS']),
                         'folderUp' : directory_mc+'_fatjetJESup',
@@ -294,7 +294,7 @@ for js in jes_systs:
     }
 
 ##### Jet energy resolution
-jer_var = {
+nuisances['JER']  = {
                 'name': 'CMS_res_j_2017',
                 'kind': 'suffix',
                 'type': 'shape',
@@ -305,7 +305,7 @@ jer_var = {
                 'folderDown' : directory_mc+'_JERdo'
 }
 
-fatjer_var = {
+nuisances['fatjetJER']  = {
                 'name': 'CMS_fatjet_res_2017',
                 'kind': 'suffix',
                 'type': 'shape',
@@ -319,7 +319,7 @@ fatjer_var = {
 
 
 # # ##### MET energy scale
-met_var = {
+nuisances['MET']  = {
                 'name'  : 'CMS_scale_met_2017',
                 'kind'  : 'suffix',
                 'type'  : 'shape',
@@ -352,7 +352,7 @@ nuisances['Wtagging_ptextr'] = {
 }
 
 #FatJet mass scale and resolution
-fatjet_jmr = {
+nuisances['fatjetJMR']  = {
         'name': 'CMS_fatjet_jmr_2017',
         'kind': 'suffix',
         'type': 'shape',
@@ -365,7 +365,7 @@ fatjet_jmr = {
 
 }
 
-fatjet_jms = {
+nuisances['fatjetJMS']  = {
     'name': 'CMS_fatjet_jms_2017',
     'kind': 'suffix',
     'type': 'shape',

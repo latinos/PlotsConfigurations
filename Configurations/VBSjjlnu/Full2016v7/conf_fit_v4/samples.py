@@ -421,4 +421,4 @@ for Run in DataRun :
 
 
 #samples = {k:v for k,v in samples.items() if k not in ['top', 'Wjets_HT']}
-samples = {k:v for k,v in samples.items() if k  in ['top', 'Wjets_HT']}
+samples = {k:v for k,v in samples.items() if k  in ['Wjets_HT']}
