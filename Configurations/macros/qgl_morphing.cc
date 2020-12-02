@@ -68,6 +68,8 @@ protected:
   FloatArrayReader* CleanJet_pt{};
   IntArrayReader*   CleanJet_jetIdx{};
   FloatArrayReader* Jet_qgl{};
+  FloatArrayReader* Jet_partonFlavour{};
+  
   
  
   
@@ -76,10 +78,13 @@ protected:
   
   std::vector<float> _new_Jet_qgl;
   
+  static bool _isRunningOnData;
+  
   
 };
 
 std::map<std::string, TGraph*> QGL_morphing::_morphing_functions{};
+bool QGL_morphing::_isRunningOnData{false};
 
 
 QGL_morphing::QGL_morphing() :
@@ -119,31 +124,40 @@ void QGL_morphing::beginEvent(long long _iEntry) {
     float eta = CleanJet_eta->At(iCleanJet);
     float pt  = CleanJet_pt->At(iCleanJet);
     float qgl = Jet_qgl->At(CleanJet_jetIdx->At(iCleanJet));
-  
-    //
-    // modify qgl 
-    //
     
-    if (qgl > 0.0 && qgl < 1.0) {
-      float y = qgl;
-      if (abs(eta)<3 && pt < 75) {
-        y =  QGL_morphing::_morphing_functions["gluon_loweta_pt0"]->Eval(qgl);
-      }
-      if (abs(eta)<3 && pt >= 75) {
-        y =  QGL_morphing::_morphing_functions["gluon_loweta_pt1"]->Eval(qgl);
-      }
-      if (abs(eta)>=3 && pt < 75) {
-        y =  QGL_morphing::_morphing_functions["gluon_higheta_pt0"]->Eval(qgl);
-      }
-      if (abs(eta)>=3 && pt >= 75) {
-        y =  QGL_morphing::_morphing_functions["gluon_higheta_pt1"]->Eval(qgl);
-      }
+    if (!QGL_morphing::_isRunningOnData){
       
-      // it should never happen, but you never know ...
-      if (y<0.0 ) y=0.0;
-      if (y>1.0 ) y=1.0;
+      //
+      // modify qgl 
+      //
+
+      float flavour = Jet_partonFlavour->At(CleanJet_jetIdx->At(iCleanJet));
       
-      qgl = y;
+      if (qgl > 0.0 && qgl < 1.0) {
+        float y = qgl;
+        if (abs(eta)<3 && pt < 75) {
+          if (flavour==21) y =  QGL_morphing::_morphing_functions["gluon_loweta_pt0"]->Eval(qgl);
+          else             y =  QGL_morphing::_morphing_functions["quark_loweta_pt0"]->Eval(qgl);
+        }
+        if (abs(eta)<3 && pt >= 75) {
+          if (flavour==21) y =  QGL_morphing::_morphing_functions["gluon_loweta_pt1"]->Eval(qgl);
+          else             y =  QGL_morphing::_morphing_functions["quark_loweta_pt1"]->Eval(qgl);
+        }
+        if (abs(eta)>=3 && pt < 75) {
+          if (flavour==21) y =  QGL_morphing::_morphing_functions["gluon_higheta_pt0"]->Eval(qgl);
+          else             y =  QGL_morphing::_morphing_functions["quark_higheta_pt0"]->Eval(qgl);
+        }
+        if (abs(eta)>=3 && pt >= 75) {
+          if (flavour==21) y =  QGL_morphing::_morphing_functions["gluon_higheta_pt1"]->Eval(qgl);
+          else             y =  QGL_morphing::_morphing_functions["quark_higheta_pt1"]->Eval(qgl);
+        }
+        
+        // it should never happen, but you never know ...
+        if (y<0.0 ) y=0.0;
+        if (y>1.0 ) y=1.0;
+        
+        qgl = y;
+      }
     }
     _new_Jet_qgl.push_back(qgl);
   }
@@ -160,13 +174,22 @@ double QGL_morphing::evaluate(unsigned iJ) {
 
 
 void QGL_morphing::bindTree_(multidraw::FunctionLibrary& _library) {
-  std::cout << "Loading QGL_morphing" << std::endl;
+  //   std::cout << "Loading QGL_morphing" << std::endl;
   
   _library.bindBranch(Jet_qgl, "Jet_qgl");  
   _library.bindBranch(CleanJet_eta, "CleanJet_eta");
   _library.bindBranch(CleanJet_pt, "CleanJet_pt");
   _library.bindBranch(CleanJet_jetIdx, "CleanJet_jetIdx");
   _library.bindBranch(nCleanJet, "nCleanJet");
+  
+  
+  QGL_morphing::_isRunningOnData = isRunningSample("Run");
+  if (!QGL_morphing::_isRunningOnData){
+    //exclude Data and fakes
+    _library.bindBranch(Jet_partonFlavour, "Jet_partonFlavour");
+  }
+  
+  
   
   _library.addDestructorCallback([]() {
     _morphing_functions.clear();
