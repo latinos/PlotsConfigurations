@@ -291,54 +291,30 @@ nuisances['met'] = {
 if useEmbeddedDY: 
     if runDYveto:
         nuisances['embedveto']  = {
-                        'name'  : 'CMS_embed_veto_2018',
-                        'kind'  : 'weight',
-                        'type'  : 'shape',
-                        'samples'  : {
-                            'Dyemb'    : ['1', '1'],
-                            'Dyveto'   : ['0.1', '-0.1'],
-                        }
+            'name'  : 'CMS_embed_veto_2018',
+            'kind'  : 'weight',
+            'type'  : 'shape',
+            'samples'  : {
+                'Dyemb'    : ['1', '1'],
+                'Dyveto'   : ['0.1', '-0.1'],
+            }
         }
     
     else:
         unc_dict = {}
-        unc_dict['hww2l2v_13TeV_me_pm_0j_pt2lt20']  =   '1.03241'
-        unc_dict['hww2l2v_13TeV_em_pm_0j_pt2ge20']  =   '1.02116'
-        unc_dict['hww2l2v_13TeV_me_mp_0j_pt2ge20']  =   '1.02055'
-        unc_dict['hww2l2v_13TeV_em_mp_0j_pt2lt20']  =   '1.03010'
-        unc_dict['hww2l2v_13TeV_em_pm_0j_pt2lt20']  =   '1.02840'
-        unc_dict['hww2l2v_13TeV_me_mp_0j_pt2lt20']  =   '1.02964'
-        unc_dict['hww2l2v_13TeV_me_pm_0j_pt2ge20']  =   '1.02178'
-        unc_dict['hww2l2v_13TeV_em_mp_0j_pt2ge20']  =   '1.02609'
-        unc_dict['hww2l2v_13TeV_me_pm_1j_pt2lt20']  =   '1.02413'
-        unc_dict['hww2l2v_13TeV_me_pm_1j_pt2ge20']  =   '1.01643'
-        unc_dict['hww2l2v_13TeV_me_mp_1j_pt2ge20']  =   '1.01662'
-        unc_dict['hww2l2v_13TeV_em_mp_1j_pt2lt20']  =   '1.02420'
-        unc_dict['hww2l2v_13TeV_me_mp_1j_pt2lt20']  =   '1.01863'
-        unc_dict['hww2l2v_13TeV_em_pm_1j_pt2lt20']  =   '1.01468'
-        unc_dict['hww2l2v_13TeV_em_pm_1j_pt2ge20']  =   '1.01615'
-        unc_dict['hww2l2v_13TeV_em_mp_1j_pt2ge20']  =   '1.01634'
-        unc_dict['hww2l2v_13TeV_2j']                =   '1.02008'
-        unc_dict['hww2l2v_13TeV_dytt_0j']           =   '1.00364'
-        unc_dict['hww2l2v_13TeV_dytt_1j']           =   '1.00177'
-        unc_dict['hww2l2v_13TeV_dytt_2j']           =   '1.00232'
-        unc_dict['hww2l2v_13TeV_top_0j']            =   '1.01720'
-        unc_dict['hww2l2v_13TeV_top_1j']            =   '1.02519'
-        unc_dict['hww2l2v_13TeV_top_2j']            =   '1.06480'
-        unc_dict['hww2l2v_13TeV_ww_0j']             =   '1.05981'
-        unc_dict['hww2l2v_13TeV_ww_1j']             =   '1.05263'
-        unc_dict['hww2l2v_13TeV_ww_2j']             =   '1.09286'
-
+        unc_dict['hww2l2v_13TeV_2j_vh_em']      = '1.02'
+        unc_dict['hww2l2v_13TeV_top_2j_vh_em']  = '1.06'
+        unc_dict['hww2l2v_13TeV_dytt_2j_vh_em'] = '1.002'
 
         for category,uncertainty in unc_dict.iteritems():
             nuisances['embedveto_'+category]  = {
-                            'name'  : 'CMS_embed_veto_2016',
-                            'type'  : 'lnN',
-                            'samples'  : {
-                                'Dyemb'    : uncertainty,
-                                },
-                            'cuts': [category],
-                            }
+                'name'  : 'CMS_embed_veto_2016',
+                'type'  : 'lnN',
+                'samples'  : {
+                    'Dyemb'    : uncertainty,
+                },
+                'cuts': [category],
+            }
 
 ##### Pileup
 
@@ -347,11 +323,11 @@ nuisances['PU'] = {
     'kind': 'weight',
     'type': 'shape',
     'samples': {
-        'DY': ['0.993259983266*(puWeightUp/puWeight)', '0.997656381501*(puWeightDown/puWeight)'],
-        'top': ['1.00331969187*(puWeightUp/puWeight)', '0.999199609528*(puWeightDown/puWeight)'],
-        'WW': ['1.0033022059*(puWeightUp/puWeight)', '0.997085330608*(puWeightDown/puWeight)'],
-        'ggH_hww': ['1.0036768006*(puWeightUp/puWeight)', '0.995996570285*(puWeightDown/puWeight)'],
-        'qqH_hww': ['1.00374694528*(puWeightUp/puWeight)', '0.995878596852*(puWeightDown/puWeight)'],
+        'DY'     : ['0.993259983266*(puWeightUp/puWeight)', '0.997656381501*(puWeightDown/puWeight)'],
+        'top'    : ['1.00331969187*(puWeightUp/puWeight)' , '0.999199609528*(puWeightDown/puWeight)'],
+        'WW'     : ['1.0033022059*(puWeightUp/puWeight)'  , '0.997085330608*(puWeightDown/puWeight)'],
+        'ggH_hww': ['1.0036768006*(puWeightUp/puWeight)'  , '0.995996570285*(puWeightDown/puWeight)'],
+        'qqH_hww': ['1.00374694528*(puWeightUp/puWeight)' , '0.995878596852*(puWeightDown/puWeight)'],
     },
     'AsLnN': '0',
 }
