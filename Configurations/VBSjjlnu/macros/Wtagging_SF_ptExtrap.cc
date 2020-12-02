@@ -36,8 +36,6 @@ protected:
   void bindTree_(multidraw::FunctionLibrary&) override;
 
   // From https://twiki.cern.ch/twiki/bin/viewauth/CMS/JetWtagging
-  map<string,float> sf_hp { {"2018", 0.980 }, {"2017", 0.97}, {"2016", 1.  }};
-  map<string,float> sf_lp { {"2018", 1.200 }, {"2017", 1.14}, {"2016", 0.96}};
   float sf_hp_ptfactor { 0.063 };
   float sf_lp_ptfactor { 0.0465 };
   
@@ -88,8 +86,8 @@ Wtagging_SF_ptExtrap::setValues()
     float fatjet_pt = CleanFatJet_pt->At(0);
     float uncert =  sf_hp_ptfactor * TMath::Log(fatjet_pt / 200.);
     // Boosted category, we apply the HP scale factor
-    outputValues[0]    = sf_hp[year_] + uncert; ////BUGG!! It is a % uncertainty
-    outputValues[1]    = sf_hp[year_] - uncert;
+    outputValues[0]    = 1. + uncert; // FIXED bug
+    outputValues[1]    = 1. - uncert;
   }
   //resolved category
   else if (vbs_cat == 1){
@@ -115,8 +113,8 @@ Wtagging_SF_ptExtrap::setValues()
     if (good_fatjet){
       float uncert =  sf_lp_ptfactor * TMath::Log(good_fatjet_pt / 200.);
       // Anticorrelate the weights with HP region
-      outputValues[0]    = sf_lp[year_] - uncert;
-      outputValues[1]    = sf_lp[year_] + uncert;
+      outputValues[0]    = 1. - uncert;
+      outputValues[1]    = 1. + uncert;
     }else{
       outputValues[0]    = 1.0;
       outputValues[1]    = 1.0;

@@ -25,7 +25,7 @@ variables['DNNoutput_res_bins1'] = {
 
 variables['DNNoutput_res_bins2'] = {
     'name': 'DNNoutput',
-    'range': (30,0.,1),
+    'range': (25,0.,1),
     'xaxis': 'DNN output, resolved',
     'fold': 3 ,
     'cuts':  res_cuts,
@@ -34,7 +34,7 @@ variables['DNNoutput_res_bins2'] = {
 
 variables['DNNoutput_res_bins3'] = {
     'name': 'DNNoutput',
-    'range': (40,0.,1),
+    'range': (30,0.,1),
     'xaxis': 'DNN output, resolved',
     'fold': 3 ,
     'cuts':  res_cuts,

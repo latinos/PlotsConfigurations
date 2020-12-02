@@ -18,10 +18,10 @@ aliases['nJets30']= {
 #########################################
 # trigger eff
 
-aliases['ele_passHLT'] = {
-    'expr': 'HLT_Ele32_WPTight_Gsf_L1DoubleEG && Sum$((TrigObj_id==11) && (TrigObj_filterBits & 1024) )>0',
-    'samples': ['Fake', 'DATA']
-}
+# aliases['ele_passHLT'] = {
+#     'expr': 'HLT_Ele32_WPTight_Gsf_L1DoubleEG && Sum$((TrigObj_id==11) && (TrigObj_filterBits & 1024) )>0',
+#     'samples': ['Fake', 'DATA']
+# }
 
 
 aliases['ele_trig_eff_B'] = {
@@ -30,7 +30,7 @@ aliases['ele_trig_eff_B'] = {
         '.L %s/src/PlotsConfigurations/Configurations/patches/triggerEff_1lep.cc+' % os.getenv('CMSSW_BASE')
     ],
     'class': 'TrigEff_1lep',
-    'args': ('/afs/cern.ch/user/a/arun/public/fixedTextfiles/2017/mvaid/Ele32_pt_eta_efficiency_withSys_Run2017B.txt'),
+    'args': ('/afs/cern.ch/user/a/arun/public/fixedTextfiles/2017/mvaid/Ele35_pt_eta_efficiency_withSys_Run2017B.txt'),
     'samples': mc
 }
 
@@ -40,7 +40,7 @@ aliases['ele_trig_eff_CDE'] = {
         '.L %s/src/PlotsConfigurations/Configurations/patches/triggerEff_1lep.cc+' % os.getenv('CMSSW_BASE')
     ],
     'class': 'TrigEff_1lep',
-    'args': ('/afs/cern.ch/user/a/arun/public/fixedTextfiles/2017/mvaid/Ele32_pt_eta_efficiency_withSys_Run2017CDE.txt'),
+    'args': ('/afs/cern.ch/user/a/arun/public/fixedTextfiles/2017/mvaid/Ele35_pt_eta_efficiency_withSys_Run2017CDE.txt'),
     'samples': mc
 }
 
@@ -50,7 +50,7 @@ aliases['ele_trig_eff_F'] = {
         '.L %s/src/PlotsConfigurations/Configurations/patches/triggerEff_1lep.cc+' % os.getenv('CMSSW_BASE')
     ],
     'class': 'TrigEff_1lep',
-    'args': ('/afs/cern.ch/user/a/arun/public/fixedTextfiles/2017/mvaid/Ele32_pt_eta_efficiency_withSys_Run2017F.txt'),
+    'args': ('/afs/cern.ch/user/a/arun/public/fixedTextfiles/2017/mvaid/Ele35_pt_eta_efficiency_withSys_Run2017F.txt'),
     'samples': mc
 }
 
@@ -122,7 +122,6 @@ aliases['btagSF'] = {
 
 
 systs = ['jes','lf','hf','lfstats1','lfstats2','hfstats1','hfstats2','cferr1','cferr2']
-#systs = ['jes']
 
 for s in systs:
   aliases['btagSF'+s+'up'] = { 'expr': '(bVeto*'+aliases['bVetoSF']['expr'].replace('shape','shape_up_'+s)+'+bReqTight*'+aliases['bReqSF']['expr'].replace('shape','shape_up_'+s)+'+ ( (!bVeto) && (!bReqTight) ))', 'samples':mc  }
@@ -234,7 +233,7 @@ aliases['DY_LO_pTllrw'] = {
 ###########################
 
 
-basedir_fakes = configurations + "/VBSjjlnu/weights_files/fake_rates/2017_Ele32"
+basedir_fakes = configurations + "/VBSjjlnu/weights_files/fake_rates/2017_Ele35"
 
 ets = ["25", "35", "45"]
 el_pr_file = os.getenv('CMSSW_BASE') + "/src/LatinoAnalysis/NanoGardener/python/data/fake_prompt_rates/Full2017v7/mvaFall17V1Iso_WP90/ElePR.root"
@@ -352,23 +351,6 @@ aliases['vbs_1_qgl_boost'] = {
                                                        m_quark_loweta_pt0, m_quark_loweta_pt1, m_quark_higheta_pt0, m_quark_higheta_pt1 )
 } 
 
-############################
-
-aliases['tag_jets_systems_pt'] = {
-    'class': 'TagJetsSystemsPt',
-    'args': (),
-    'linesToAdd' : [
-        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-        '.L {}/VBSjjlnu/macros/TagJetsSystemsPt.cc+'.format(configurations)
-    ]   
-}
-
-
-aliases['vbs_jets_pt'] ={
-    'expr' : 'tag_jets_systems_pt[0]'
-}
-
-
 ##########################
 # additional uncertainties for Wtagging from pt extrapolation
 aliases['BoostedWtagSF_ptextr'] = {
@@ -400,25 +382,24 @@ models_path = '/eos/home-d/dvalsecc/www/VBSPlots/DNN_archive/FullRun2_v7/FullRun
 
 aliases['DNNoutput_boosted'] = {
     'class': 'MVAReaderBoosted',
-    'args': ( models_path +'boost_sig/models/v8_b/',  models_path +'boost_sig/models/v8_b/cumulative_signal_2017.root', False, 0),
+    'args': ( models_path +'boost_sig/models/v3_d/',  models_path +'boost_sig/models/v3_d/cumulative_signal_2017.root', False, 0),
     'linesToAdd':[
         'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
         'gSystem->Load("libDNNEvaluator.so")',
-        '.L ' + mva_reader_path + 'mva_reader_boosted_v6b.cc+', 
+        '.L ' + mva_reader_path + 'mva_reader_boosted_v3d.cc+', 
     ],
 }
 
 aliases['DNNoutput_resolved'] = {
     'class': 'MVAReaderResolved',
-    'args': ( models_path+ 'res_sig/models/v3_b/',models_path+ 'res_sig/models/v3_b/cumulative_signal_2017.root', False, 1),
+    'args': ( models_path+ 'res_sig/models/v4_d/',models_path+ 'res_sig/models/v4_d/cumulative_signal_2017.root', False, 1),
     'linesToAdd':[
         'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
         'gSystem->Load("libDNNEvaluator.so")',
-        '.L ' + mva_reader_path + 'mva_reader_resolved_v3b.cc+', 
+        '.L ' + mva_reader_path + 'mva_reader_resolved_v4d.cc+', 
     ],
 }
 
 aliases['DNNoutput'] = {
     'expr': '(VBS_category==0)*(DNNoutput_boosted) + (VBS_category==1)*(DNNoutput_resolved)'
 }
-
