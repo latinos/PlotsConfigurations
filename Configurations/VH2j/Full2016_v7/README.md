@@ -42,6 +42,10 @@ Create folder for the combined datacard:
 
     mkdir -p datacards/hww2l2v_13TeV_vh/mll
 
+Load combine, needed from this point on:
+
+    cd $HOME/work/combine/CMSSW_10_2_13/src/;cmsenv;cd -
+
 Actual cards combination:
 
     combineCards.py datacards/hww2l2v_13TeV_2j_vh_em/mll/datacard.txt datacards/hww2l2v_13TeV_top_2j_vh_em/mll/datacard.txt datacards/hww2l2v_13TeV_dytt_2j_vh_em/mll/datacard.txt > datacards/hww2l2v_13TeV_vh/mll/datacard.txt
