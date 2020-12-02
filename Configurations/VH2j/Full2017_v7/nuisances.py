@@ -335,42 +335,20 @@ if useEmbeddedDY:
     # These hardcoded numbers have been obtained by running the full Dyveto (with runDYveto=True in samples.py) 
     # and computing the lnN uncertainty as variation of the up/down integral with respect to the nominal Dyemb integral
     unc_dict = {}
-    unc_dict['hww2l2v_13TeV_me_pm_0j_pt2lt20']   =  '1.01407' 
-    unc_dict['hww2l2v_13TeV_em_pm_0j_pt2ge20']   =  '1.02195'
-    unc_dict['hww2l2v_13TeV_me_mp_0j_pt2ge20']   =  '1.02491'
-    unc_dict['hww2l2v_13TeV_em_mp_0j_pt2lt20']   =  '1.01688'
-    unc_dict['hww2l2v_13TeV_em_pm_0j_pt2lt20']   =  '1.03110'
-    unc_dict['hww2l2v_13TeV_em_mp_0j_pt2ge20']   =  '1.02300'
-    unc_dict['hww2l2v_13TeV_me_pm_0j_pt2ge20']   =  '1.02149'
-    unc_dict['hww2l2v_13TeV_me_mp_0j_pt2lt20']   =  '1.02521'
-    unc_dict['hww2l2v_13TeV_me_pm_1j_pt2lt20']   =  '1.01241'
-    unc_dict['hww2l2v_13TeV_me_pm_1j_pt2ge20']   =  '1.01400'
-    unc_dict['hww2l2v_13TeV_me_mp_1j_pt2ge20']   =  '1.01162'
-    unc_dict['hww2l2v_13TeV_em_mp_1j_pt2lt20']   =  '1.00842'
-    unc_dict['hww2l2v_13TeV_em_pm_1j_pt2lt20']   =  '1.00516'
-    unc_dict['hww2l2v_13TeV_em_pm_1j_pt2ge20']   =  '1.01565'
-    unc_dict['hww2l2v_13TeV_em_mp_1j_pt2ge20']   =  '1.01445'
-    unc_dict['hww2l2v_13TeV_me_mp_1j_pt2lt20']   =  '1.00711'
-    unc_dict['hww2l2v_13TeV_2j']                 =  '1.01211'
-    unc_dict['hww2l2v_13TeV_dytt_0j']            =  '1.00339'
-    unc_dict['hww2l2v_13TeV_dytt_1j']            =  '1.00172'
-    unc_dict['hww2l2v_13TeV_dytt_2j']            =  '1.00267'
-    unc_dict['hww2l2v_13TeV_top_0j']             =  '1.01575'
-    unc_dict['hww2l2v_13TeV_top_1j']             =  '1.02345'
-    unc_dict['hww2l2v_13TeV_top_2j']             =  '1.05881'
-    unc_dict['hww2l2v_13TeV_ww_0j']              =  '1.06107'
-    unc_dict['hww2l2v_13TeV_ww_1j']              =  '1.05379'
-    unc_dict['hww2l2v_13TeV_ww_2j']              =  '1.03267'
+    unc_dict['hww2l2v_13TeV_2j_vh_em']      =  '1.01' 
+    unc_dict['hww2l2v_13TeV_top_2j_vh_em']  =  '1.06' 
+    unc_dict['hww2l2v_13TeV_dytt_2j_vh_em'] =  '1.002' 
 
     for category,uncertainty in unc_dict.iteritems():
-      nuisances['embedveto_'+category]  = {
-                      'name'  : 'CMS_embed_veto_2017',
-                      'type'  : 'lnN',
-                      'samples'  : {
-                         'Dyemb'    : uncertainty,
-                         },
-                       'cuts': [category],
-                     }
+        nuisances['embedveto_'+category]  = {
+            'name'  : 'CMS_embed_veto_2017',
+            'type'  : 'lnN',
+            'samples'  : {
+                'Dyemb'    : uncertainty,
+            },
+            'cuts': [category],
+        }
+
 ##### Pileup
 
 nuisances['PU'] = {
