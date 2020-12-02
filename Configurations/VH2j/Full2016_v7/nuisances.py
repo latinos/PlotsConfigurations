@@ -295,54 +295,31 @@ nuisances['met'] = {
 if useEmbeddedDY:
   if runDYveto:
     nuisances['embedveto']  = {
-                    'name'  : 'CMS_embed_veto_2016',
-                    'kind'  : 'weight',
-                    'type'  : 'shape',
-                    'samples'  : {
-                       'Dyemb'    : ['1', '1'],
-                       'Dyveto'   : ['0.1', '-0.1'],
-                    }
-             }
+        'name'  : 'CMS_embed_veto_2016',
+        'kind'  : 'weight',
+        'type'  : 'shape',
+        'samples'  : {
+            'Dyemb'    : ['1', '1'],
+            'Dyveto'   : ['0.1', '-0.1'],
+        }
+    }
   else:
     # These hardcoded numbers have been obtained by running the full Dyveto (with runDYveto=True in samples.py) 
     # and computing the lnN uncertainty as variation of the up/down integral with respect to the nominal Dyemb integral
     unc_dict = {}
-    unc_dict['hww2l2v_13TeV_me_pm_0j_pt2lt20']  =   '1.01646'
-    unc_dict['hww2l2v_13TeV_em_pm_0j_pt2ge20']  =   '1.02341'
-    unc_dict['hww2l2v_13TeV_me_mp_0j_pt2ge20']  =   '1.03419'
-    unc_dict['hww2l2v_13TeV_em_mp_0j_pt2lt20']  =   '1.01339'
-    unc_dict['hww2l2v_13TeV_em_pm_0j_pt2lt20']  =   '1.05306'
-    unc_dict['hww2l2v_13TeV_me_mp_0j_pt2lt20']  =   '1.04627'
-    unc_dict['hww2l2v_13TeV_me_pm_0j_pt2ge20']  =   '1.02709'
-    unc_dict['hww2l2v_13TeV_em_mp_0j_pt2ge20']  =   '1.01882'
-    unc_dict['hww2l2v_13TeV_me_pm_1j_pt2lt20']  =   '1.00986'
-    unc_dict['hww2l2v_13TeV_me_pm_1j_pt2ge20']  =   '1.01326'
-    unc_dict['hww2l2v_13TeV_me_mp_1j_pt2ge20']  =   '1.00953'
-    unc_dict['hww2l2v_13TeV_em_mp_1j_pt2lt20']  =   '1.01259'
-    unc_dict['hww2l2v_13TeV_me_mp_1j_pt2lt20']  =   '1.01495'
-    unc_dict['hww2l2v_13TeV_em_pm_1j_pt2lt20']  =   '1.01129'
-    unc_dict['hww2l2v_13TeV_em_pm_1j_pt2ge20']  =   '1.01201'
-    unc_dict['hww2l2v_13TeV_em_mp_1j_pt2ge20']  =   '1.02486'
-    unc_dict['hww2l2v_13TeV_2j']                =   '1.01431' 
-    unc_dict['hww2l2v_13TeV_dytt_0j']           =   '1.00226'
-    unc_dict['hww2l2v_13TeV_dytt_1j']           =   '1.00177'
-    unc_dict['hww2l2v_13TeV_dytt_2j']           =   '1.00248'
-    unc_dict['hww2l2v_13TeV_top_0j']            =   '1.01190'
-    unc_dict['hww2l2v_13TeV_top_1j']            =   '1.01777'
-    unc_dict['hww2l2v_13TeV_top_2j']            =   '1.04778'
-    unc_dict['hww2l2v_13TeV_ww_0j']             =   '1.05776'
-    unc_dict['hww2l2v_13TeV_ww_1j']             =   '1.05914'
-    unc_dict['hww2l2v_13TeV_ww_2j']             =   '1.03698'
+    unc_dict['hww2l2v_13TeV_2j_vh_em']      = '1.01'
+    unc_dict['hww2l2v_13TeV_top_2j_vh_em']  = '1.05'
+    unc_dict['hww2l2v_13TeV_dytt_2j_vh_em'] = '1.002'
 
     for category,uncertainty in unc_dict.iteritems():
-      nuisances['embedveto_'+category]  = {
-                      'name'  : 'CMS_embed_veto_2016',
-                      'type'  : 'lnN',
-                      'samples'  : {
-                         'Dyemb'    : uncertainty,
-                         },
-                       'cuts': [category],
-                     }
+        nuisances['embedveto_'+category]  = {
+            'name'  : 'CMS_embed_veto_2016',
+            'type'  : 'lnN',
+            'samples'  : {
+                'Dyemb'    : uncertainty,
+            },
+            'cuts': [category],
+        }
 
 ### PU ID SF uncertainty
 puid_syst = ['Jet_PUIDSF_up/Jet_PUIDSF', 'Jet_PUIDSF_down/Jet_PUIDSF']
