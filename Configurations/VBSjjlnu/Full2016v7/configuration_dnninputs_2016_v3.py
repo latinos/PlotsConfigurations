@@ -1,7 +1,7 @@
 # example of configuration file
 treeName= 'Events'
 
-tag = 'dnninputs_2016_v2'
+tag = 'dnninputs_2016_v3'
 direc = 'conf_fit_v4'
 
 # used by mkShape to define output directory for root files
@@ -11,17 +11,17 @@ outputDir = 'rootFile_'+tag
 aliasesFile = direc+'/aliases_tree.py'
 
 # file with list of variables
-variablesFile = direc+'/variables.py'
+variablesFile = direc+'/variables_tree.py'
 #variablesFile = direc+'/variables_tree.py'
 
 # file with list of cuts
 cutsFile = direc+'/cuts_tree.py'
 
 # file with list of samples
-samplesFile = direc+'/samples.py' 
+samplesFile = direc+'/samples_tree.py' 
 
 # file with list of samples
-plotFile = direc+'/plot_boost.py'
+plotFile = direc+'/plot.py'
 
 
 
@@ -41,6 +41,6 @@ structureFile = direc+'/structure.py'
 
 
 # nuisances file for mkDatacards and for mkShape
-nuisancesFile = direc+'/nuisances.py'
+# nuisancesFile = direc+'/nuisances.py'
 #nuisancesFile = direc+'/nuisances_datacard.py'
 
