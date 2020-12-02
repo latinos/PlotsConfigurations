@@ -1,6 +1,6 @@
-# VH-2j analysis 2018
+# VH-2j analysis 2016
 
-Configuration for the different-flavor VH-2j analysis using 2018 Data.
+Configuration for the different-flavor VH-2j analysis using 2016 Data.
 
 ## Instructions to run the analysis
 
@@ -10,13 +10,13 @@ Configuration for the different-flavor VH-2j analysis using 2018 Data.
 
 Resubmit failed jobs:
 
-    cd $HOME/scripts/jobs/mkShapes__VH2j_2018_v7/
+    cd $HOME/scripts/jobs/mkShapes__ggH_SF_2016_v7/
     for i in *jid; do condor_submit ${i/jid/jds}; done
     cd -
 
 Or, if they failed because the wall clock time have been exceeded, resubmit them on a longer-time queue:
 
-    cd $HOME/scripts/jobs/mkShapes__VH2j_2018_v7/
+    cd $HOME/scripts/jobs/mkShapes__ggH_SF_2016_v7/
     for i in *jid; do sed -i "s/longlunch/workday/g" ${i/jid/jds}; condor_submit ${i/jid/jds}; done
     cd -
 
@@ -26,15 +26,15 @@ Or, if they failed because the wall clock time have been exceeded, resubmit them
 
 ### Plot distributions
 
-    mkPlot.py --pycfg=configuration.py --inputFile=rootFile/plots_VH2j_2018_v7.root --linearOnly --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1
+    mkPlot.py --pycfg=configuration.py --inputFile=rootFile/plots_VH2j_2016_v7.root --linearOnly --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1
 
 Repeat, but with data-blind signal region:
 
-    mkPlot.py --onlyCut=hww2l2v_13TeV_2j_vh_em --inputFile=rootFile/plots_VH2j_2018_v7.root --linearOnly --fileFormats=png --onlyPlot=cratio --plotFile=plot_blind.py --showIntegralLegend=1
+    mkPlot.py --onlyCut=hww2l2v_13TeV_2j_vh_em --inputFile=rootFile/plots_VH2j_2016_v7.root --linearOnly --fileFormats=png --onlyPlot=cratio --plotFile=plot_blind.py --showIntegralLegend=1
 
 ### Create datacards
 
-    mkDatacards.py --pycfg=configuration.py --inputFile=rootFile/plots_VH2j_2018_v7.root 
+    mkDatacards.py --pycfg=configuration.py --inputFile=rootFile/plots_VH2j_2016_v7.root 
 
 ### Combine channels/categories
 
