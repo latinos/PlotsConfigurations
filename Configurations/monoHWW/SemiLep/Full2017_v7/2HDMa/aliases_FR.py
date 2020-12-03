@@ -98,7 +98,7 @@ aliases['WPTightSF'] = {
 # data/MC scale factors
 aliases['SFweight1l'] = {
     #'expr': ' * '.join(['puWeight', 'TriggerEffWeight_1l', 'Lepton_RecoSF[0]', 'EMTFbug_veto']),
-    'expr': ' * '.join(['puWeight', 'TriggerEffWeight_1l_fixed', 'Lepton_RecoSF[0]', 'EMTFbug_veto']),
+    'expr': ' * '.join(['puWeight', 'TriggerEffWeight_1l_fixed[0]', 'Lepton_RecoSF[0]', 'EMTFbug_veto']),
     'samples': mc
 }
 aliases['SFweight'] = {
@@ -177,7 +177,7 @@ aliases['PUJetIdSF'] = {
 aliases['EWKnloW'] = {
     'linesToAdd': [
         'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_RELEASE_BASE'),
-        '.L %s/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/Full2017_v6/2HDMa/EWKnloW.cc' % os.getenv('CMSSW_BASE')
+        '.L %s/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/Full2017_v6/2HDMa/EWKnloW.cc+' % os.getenv('CMSSW_BASE')
     ],
     'class': 'EWKnloW',
     'samples': "Wjets"

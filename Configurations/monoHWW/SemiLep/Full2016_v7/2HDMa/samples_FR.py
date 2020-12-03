@@ -47,12 +47,11 @@ except NameError:
 ################################################
 
 dataReco = 'Run2016_102X_nAODv7_Full2016v7'
-dataSteps = 'DATAl1loose2016v7__DATACombJJLNu2016'
-fakeSteps = 'DATAl1loose2016v7__DATACombJJLNu2016'
-
+dataSteps = 'DATAl1loose2016v7'
+fakeSteps = 'DATAl1loose2016v7'
 
 mcProduction = 'Summer16_102X_nAODv7_Full2016v7'
-mcSteps = 'MCl1loose2016v7__MCCorr2016v7__MCCombJJLNu2016'
+mcSteps = 'MCl1loose2016v7__MCCorr2016v7'
 
 ##############################################
 ###### Tree base directory for the site ######

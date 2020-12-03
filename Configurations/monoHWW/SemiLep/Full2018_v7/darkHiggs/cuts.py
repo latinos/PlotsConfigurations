@@ -1,7 +1,7 @@
 super_cut = [ 
     'nLepton>=1',
-    # SingleMuon trigger: IsoMu27, SingleElectron trigger: Ele35_WPTight_Gsf
-    '((Lepton_pt[0]>27. && abs(Lepton_pdgId[0])==13) || (Lepton_pt[0]>35. && abs(Lepton_pdgId[0])==11))',
+    # SingleMuon trigger: IsoMu24, SingleElectron trigger: HLT_Ele32_WPTight_Gsf
+    '((Lepton_pt[0]>24. && abs(Lepton_pdgId[0])==13) || (Lepton_pt[0]>32. && abs(Lepton_pdgId[0])==11))',
     'Sum$(CleanJet_pt>30.)>=2',
     'MHlnjj_m_jj > -1', # Require 2 good CleanJets (pt > 30; abs(eta) < 4.7; Jet_jetId >= 2; pujetid == 'custom')
 ]

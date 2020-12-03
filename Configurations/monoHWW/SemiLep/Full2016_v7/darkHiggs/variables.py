@@ -16,18 +16,12 @@ variables['Puppimet']  = {
 #                        'xaxis' : 'p_{T} projected puppiMET [GeV]',
 #                        'fold'  : 3
 #                        }
-variables['pfmet']  = {
-                        'name': 'MET_pt',
-                        'range' : (25,0,300),
-                        'xaxis' : 'p_{T} pfMET [GeV]',
-                        'fold'  : 3
-                        }
-variables['tkmet']  = {
-                        'name': 'TkMET_pt',
-                        'range' : (25,0,300),
-                        'xaxis' : 'p_{T} TkMET [GeV]',
-                        'fold'  : 3
-                        }
+#variables['pfmet']  = {
+#                        'name': 'MET_pt',
+#                        'range' : (25,0,300),
+#                        'xaxis' : 'p_{T} pfMET [GeV]',
+#                        'fold'  : 3
+#                        }
 
 variables['l1_pt']  = {   'name': 'Lepton_pt[0]',     
                         'range' : (25,20,200),   

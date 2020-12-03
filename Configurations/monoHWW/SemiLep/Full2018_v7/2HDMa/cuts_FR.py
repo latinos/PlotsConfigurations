@@ -1,7 +1,7 @@
 super_cut = [ 
     'nLepton == 1',
-    # SingleMuon trigger: IsoMu27, SingleElectron trigger: Ele35_WPTight_Gsf
-    '((Lepton_pt[0]>27. && abs(Lepton_pdgId[0])==13) || (Lepton_pt[0]>35. && abs(Lepton_pdgId[0])==11))',
+    # SingleMuon trigger: IsoMu24, SingleElectron trigger: Ele32_WPTight_Gsf
+    '((Lepton_pt[0]>24. && abs(Lepton_pdgId[0])==13) || (Lepton_pt[0]>32. && abs(Lepton_pdgId[0])==11))',
     'nCleanJet >= 1',
     'mtw1 < 20.',
     'PuppiMET_pt < 20',
@@ -22,7 +22,7 @@ is_el    = ['abs(Lepton_pdgId[0])==11']
 is_mu    = ['abs(Lepton_pdgId[0])==13']
 tight    = ['WPTight[0] > 0.5']
 
-for Jet_Et in [10, 20, 25, 30, 35, 45]:
+for Jet_Et in [10, 15, 20, 25, 30, 35, 40, 45]:
     pass_jet = ['PassJet_Et'+str(Jet_Et)+' > 0.5']
     
     # Electron
