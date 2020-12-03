@@ -33,7 +33,7 @@ elif  'cern' in SITE :
   treeBaseDir_SMP = '/eos/cms/store/group/phys_smp/VJets_NLO_VBSanalyses/'
 
 directory_bkg    = treeBaseDir_SMP + 'Fall2017_102X_nAODv7_Full2017v7_skim/' + mcSteps
-directory_mc    = treeBaseDir_SMP + 'Fall2017_102X_nAODv7_Full2017v7_skim/' + mcSteps
+directory_mc    = treeBaseDir_SMP +  'Fall2017_102X_nAODv7_Full2017v7_skim/' + mcSteps
 directory_signal = treeBaseDir_SMP + 'Fall2017_102X_nAODv7_Full2017v7_skim/' + mcSteps
 directory_fakes  = treeBaseDir_SMP + 'Run2017_102X_nAODv7_Full2017v7_skim/'  + fakeSteps
 directory_data   = treeBaseDir_SMP + 'Run2017_102X_nAODv7_Full2017v7_skim/'  + dataSteps
@@ -200,7 +200,7 @@ samples['Wjets_HT'] = { 'name' :
           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT1200_2500')
           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT2500_inf'),
         'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch + '* ewknloW' ,
-        'FilesPerJob' : 4,
+        'FilesPerJob' : 5,
         'subsamples': {
             "res_1": '(VBS_category==1) && (w_lep_pt < 100)',
             "res_2": '(VBS_category==1) && (w_lep_pt >= 100 && w_lep_pt < 200)',
@@ -333,7 +333,7 @@ samples['Fake'] = {
   'weight': METFilter_DATA+'*'+ fake_weight_corrected,
   'weights': [],
   'isData': ['all'],
-  'FilesPerJob' : 35s
+  'FilesPerJob' : 35
 }
 
 #
@@ -364,4 +364,4 @@ for Run in DataRun :
                         samples['DATA']['weights'].append(DataTrig[DataSet])
 
 #samples = {k:v for k,v in samples.items() if k not in ['top', 'Wjets_HT']}
-samples = {k:v for k,v in samples.items() if k  in ['top', 'Wjets_HT']}
+samples = {k:v for k,v in samples.items() if k  in ['Wjets_HT']}
