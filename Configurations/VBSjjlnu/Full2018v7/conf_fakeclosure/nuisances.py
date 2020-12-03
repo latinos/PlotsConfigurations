@@ -128,7 +128,7 @@ nuisances['eff_e']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  :   dict((skey, id_syst_ele) for skey in mc ),
-                'cuts': phase_spaces_tot_ele
+                'cuts': phase_spaces_ele
 }
 
 
@@ -140,19 +140,19 @@ nuisances['eff_m']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : dict((skey, id_syst_mu) for skey in mc ),
-                'cuts': phase_spaces_tot_mu
+                'cuts': phase_spaces_mu
 }
 
 
 ##################
 # PU jet id
 
-nuisances['JetPUID_sf']  = {
-                'name'  : 'CMS_jetpuid_2018',
-                'kind'  : 'weight',
-                'type'  : 'shape',
-                'samples'  : dict((skey, ['PUJetIdSF_up/PUJetIdSF','PUJetIdSF_down/PUJetIdSF']) for skey in mc ),
-}
+# nuisances['JetPUID_sf']  = {
+#                 'name'  : 'CMS_jetpuid_2018',
+#                 'kind'  : 'weight',
+#                 'type'  : 'shape',
+#                 'samples'  : dict((skey, ['PUJetIdSF_up/PUJetIdSF','PUJetIdSF_down/PUJetIdSF']) for skey in mc ),
+# }
 
 
 # ##### Jet energy scale

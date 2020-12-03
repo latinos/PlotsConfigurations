@@ -391,7 +391,7 @@ samples['Fake'] = {
   'weight': METFilter_DATA+'*'+fakeW,
   'weights': [],
   'isData': ['all'],
-  'FilesPerJob': 30
+  'FilesPerJob': 40
 }
 
 for _, sd in DataRun:
@@ -421,4 +421,4 @@ for Run in DataRun :
 
 
 #samples = {k:v for k,v in samples.items() if k not in ['top', 'Wjets_HT']}
-samples = {k:v for k,v in samples.items() if k  in ['Wjets_HT']}
+samples = {k:v for k,v in samples.items() if k  in ['Fake']}
