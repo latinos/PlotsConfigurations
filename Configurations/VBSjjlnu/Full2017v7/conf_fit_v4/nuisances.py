@@ -371,7 +371,7 @@ nuisances['fatjetJMS']  = {
     'type': 'shape',
     'mapUp': 'fatjetJMSup',
     'mapDown': 'fatjetJMSdo',
-    'cuts': phase_spaces_boost,  #because we are vetoing fatjets anyway in resolved category
+    'cuts': phase_spaces_boost, #because we are vetoing fatjets anyway in resolved category
     'samples': dict((skey, ['1.','1.']) for skey in mc if skey not in ["Vg","VgS"]),
     'folderUp' : directory_mc+'_fatjetJMSup',
     'folderDown' : directory_mc+'_fatjetJMSdo',

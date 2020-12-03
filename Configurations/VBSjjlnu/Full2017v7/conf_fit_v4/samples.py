@@ -364,4 +364,4 @@ for Run in DataRun :
                         samples['DATA']['weights'].append(DataTrig[DataSet])
 
 #samples = {k:v for k,v in samples.items() if k not in ['top', 'Wjets_HT']}
-samples = {k:v for k,v in samples.items() if k  in ['Wjets_HT']}
+samples = {k:v for k,v in samples.items() if k  in ['DY']}

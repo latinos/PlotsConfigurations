@@ -2,8 +2,8 @@
 # # # name of samples here must match keys in samples.py 
 
 mc =["DY", "top",  "Wjets_HT", "VV", "VVV", "VBF-V", "Vg", "VgS", "VBS"]
-mc_norm = [m for m in mc if m not in ["VBS", "VV"]]
-mc_sep =  ["VBS", "VV"]
+# mc_norm = [m for m in mc if m not in ["VBS", "VV"]]
+# mc_sep =  ["VBS", "VV"]
 
 def getSamplesWithout(samples, samples_to_remove):
     return [m for m in samples if m not in samples_to_remove]
@@ -169,7 +169,7 @@ nuisances['eff_e']  = {
                 'name'  : 'CMS_eff_e_2018',
                 'kind'  : 'weight',
                 'type'  : 'shape',
-                'samples'  :   dict((skey, id_syst_ele) for skey in mc),
+                'samples'  :   dict((skey, id_syst_ele) for skey in mc ),
                 'cuts': phase_spaces_tot_ele
 }
 
@@ -184,7 +184,6 @@ nuisances['electronpt']  = {
                 'folderUp' : directory_mc+'_ElepTup',
                 'folderDown' : directory_mc+'_ElepTdo',
 }
-
 # nuisances['electronpt']  = {
 #                 'name'  : 'CMS_scale_e_2018',
 #                 'type'  : 'lnN',
@@ -361,10 +360,9 @@ for sample in mc :
     }
 
 
-
+# #
+# # PS and UE
 # # #
-# # # PS and UE
-# # # #
 nuisances['PS']  = {
                 'name'  : 'PS',
                 'skipCMS' : 1,
