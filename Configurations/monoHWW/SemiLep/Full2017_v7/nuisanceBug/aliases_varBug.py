@@ -111,24 +111,24 @@ aliases['ele_trig_eff_d'] = {
 }
 
 aliases['TriggerEffWeight_1l_fixed'] = {
-    'expr': '(abs(Lepton_pdgId[0])==11)*ele_trig_eff +  (abs(Lepton_pdgId[0])==13)*TriggerEffWeight_1l',
+    'expr': '(abs(Lepton_pdgId[0])==11)*ele_trig_eff[0] +  (abs(Lepton_pdgId[0])==13)*TriggerEffWeight_1l',
     'samples': mc
 }
 
 aliases['TriggerEffWeight_1l_fixed_u'] = {
-    'expr': '(abs(Lepton_pdgId[0])==11)*ele_trig_eff_u +  (abs(Lepton_pdgId[0])==13)*TriggerEffWeight_1l_u',
+    'expr': '(abs(Lepton_pdgId[0])==11)*ele_trig_eff_u[0] +  (abs(Lepton_pdgId[0])==13)*TriggerEffWeight_1l_u',
     'samples': mc
 }
 
 aliases['TriggerEffWeight_1l_fixed_d'] = {
-    'expr': '(abs(Lepton_pdgId[0])==11)*ele_trig_eff_d +  (abs(Lepton_pdgId[0])==13)*TriggerEffWeight_1l_d',
+    'expr': '(abs(Lepton_pdgId[0])==11)*ele_trig_eff_d[0] +  (abs(Lepton_pdgId[0])==13)*TriggerEffWeight_1l_d',
     'samples': mc
 }
 
 # data/MC scale factors
 aliases['SFweight1l'] = {
     #'expr': ' * '.join(['puWeight', 'TriggerEffWeight_1l', 'Lepton_RecoSF[0]', 'EMTFbug_veto']),
-    'expr': ' * '.join(['puWeight', 'TriggerEffWeight_1l_fixed', 'Lepton_RecoSF[0]', 'EMTFbug_veto']),
+    'expr': ' * '.join(['puWeight', 'TriggerEffWeight_1l_fixed[0]', 'Lepton_RecoSF[0]', 'EMTFbug_veto']),
     'samples': mc
 }
 aliases['SFweight'] = {

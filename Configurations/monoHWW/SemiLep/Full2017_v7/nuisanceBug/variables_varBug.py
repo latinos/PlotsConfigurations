@@ -4,12 +4,12 @@ variables['Events']  = {   'name': '1',
                            'fold'  : 3
                         }
 
-variables['Puppimet']  = {
-                        'name': 'PuppiMET_pt',
-                        'range' : (25,0,300),
-                        'xaxis' : 'p_{T} puppiMET [GeV]',
-                        'fold'  : 3
-                        }
+#variables['Puppimet']  = {
+#                        'name': 'PuppiMET_pt',
+#                        'range' : (25,0,300),
+#                        'xaxis' : 'p_{T} puppiMET [GeV]',
+#                        'fold'  : 3
+#                        }
 ##variables['projMET']  = {
 ##                        'name': 'projMET',
 ##                        'range' : (25,0,300),
@@ -23,11 +23,11 @@ variables['Puppimet']  = {
 ##                        'fold'  : 3
 ##                        }
 #
-#variables['l1_pt']  = {   'name': 'Lepton_pt[0]',     
-#                        'range' : (25,20,200),   
-#                        'xaxis' : 'p_{T}^{l_{1}}',
-#                        'fold'  : 3
-#                        }
+variables['l1_pt']  = {   'name': 'Lepton_pt[0]',     
+                        'range' : (25,20,200),   
+                        'xaxis' : 'p_{T}^{l_{1}}',
+                        'fold'  : 3
+                        }
 ##variables['l2_pt']  = {   'name': 'Alt$(Lepton_pt[1], -9999.)',     
 ##                        'range' : (25,0,12),   
 ##                        'xaxis' : 'p_{T}^{l_{2}}',

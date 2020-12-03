@@ -66,11 +66,15 @@ elif  'cern' in SITE:
   treeBaseDir = '/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano'
   # treeBaseDir = '/eos/user/s/ssiebert/HWWNano'
 
-def makeMCDirectory(var=''):
-    if var:
-        return os.path.join(treeBaseDir, mcProduction, mcSteps.format(var='_' + var))
+def makeMCDirectory(var=None):
+    if var is not None:
+        return os.path.join(treeBaseDir, mcProduction, mcSteps+'_'+var)
     else:
-        return os.path.join(treeBaseDir, mcProduction, mcSteps.format(var=''))
+        return os.path.join(treeBaseDir, mcProduction, mcSteps)
+    #if var:
+    #    return os.path.join(treeBaseDir, mcProduction, mcSteps.format(var='_' + var))
+    #else:
+    #    return os.path.join(treeBaseDir, mcProduction, mcSteps.format(var=''))
 
 mcDirectory = makeMCDirectory()
 mcDirectoryBR = os.path.join(treeBaseDir, mcProduction, mcStepsBR)
@@ -85,17 +89,13 @@ fakeDirectory = os.path.join(treeBaseDir, dataReco, fakeSteps)
 
 # SFweight does not include btag weights
 
-#mcCommonWeightNoMatch = 'XSWeight*SFweight[0]*METFilter_MC*btagSF[0]*PUJetIdSF[0]*LepWPCut[0]*1tlVeto[0]'
-#mcCommonWeightNoXS    =          'SFweight[0]*METFilter_MC*btagSF[0]*PUJetIdSF[0]*LepWPCut[0]*1tlVeto[0]*PromptGenLepMatch1l'
-#mcCommonWeight        = 'XSWeight*SFweight[0]*METFilter_MC*btagSF[0]*PUJetIdSF[0]*LepWPCut[0]*1tlVeto[0]*PromptGenLepMatch1l'
+#mcCommonWeightNoMatch = 'XSWeight*SFweight[0]*METFilter_MC*PUJetIdSF[0]*LepWPCut[0]*1tlVeto[0]'
+#mcCommonWeightNoXS    =          'SFweight[0]*METFilter_MC*PUJetIdSF[0]*LepWPCut[0]*1tlVeto[0]*PromptGenLepMatch1l'
+#mcCommonWeight        = 'XSWeight*SFweight[0]*METFilter_MC*PUJetIdSF[0]*LepWPCut[0]*1tlVeto[0]*PromptGenLepMatch1l'
 
-#mcCommonWeightNoMatch = 'XSWeight*SFweight[0]*btagSF[0]*PUJetIdSF[0]*LepWPCut[0]*1tlVeto[0]'
-#mcCommonWeightNoXS    =          'SFweight[0]*btagSF[0]*PUJetIdSF[0]*LepWPCut[0]*1tlVeto[0]*PromptGenLepMatch1l'
-#mcCommonWeight        = 'XSWeight*SFweight[0]*btagSF[0]*PUJetIdSF[0]*LepWPCut[0]*1tlVeto[0]*PromptGenLepMatch1l'
-
-mcCommonWeightNoMatch = '1.'
-mcCommonWeightNoXS    = '1.' 
-mcCommonWeight        = '1.'
+mcCommonWeightNoMatch = 'XSWeight*SFweight[0]*PUJetIdSF[0]*LepWPCut[0]*1tlVeto[0]'
+mcCommonWeightNoXS    =          'SFweight[0]*PUJetIdSF[0]*LepWPCut[0]*1tlVeto[0]*PromptGenLepMatch1l'
+mcCommonWeight        = 'XSWeight*SFweight[0]*PUJetIdSF[0]*LepWPCut[0]*1tlVeto[0]*PromptGenLepMatch1l'
 
 ###########################################
 #############  BACKGROUNDS  ###############

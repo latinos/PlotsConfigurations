@@ -107,14 +107,14 @@ nuisances['trigg'] = {
     'samples': dict((skey, trig_syst) for skey in mc)
 }
 
-prefire_syst = ['PrefireWeight_Up/PrefireWeight', 'PrefireWeight_Down/PrefireWeight']
-
-nuisances['prefire'] = {
-    'name': 'CMS_eff_prefiring_2017',
-    'kind': 'weight',
-    'type': 'shape',
-    'samples': dict((skey, prefire_syst) for skey in mc if 'DY' not in skey), #FIXME Add DY
-}
+#prefire_syst = ['PrefireWeight_Up/PrefireWeight', 'PrefireWeight_Down/PrefireWeight']
+#
+#nuisances['prefire'] = {
+#    'name': 'CMS_eff_prefiring_2017',
+#    'kind': 'weight',
+#    'type': 'shape',
+#    'samples': dict((skey, prefire_syst) for skey in mc if 'DY' not in skey), #FIXME Add DY
+#}
 
 ##### Electron Efficiency and energy scale
 

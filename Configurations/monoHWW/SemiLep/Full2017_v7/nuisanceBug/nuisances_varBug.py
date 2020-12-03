@@ -133,7 +133,7 @@ nuisances['electronpt'] = {
     'type': 'shape',
     'mapUp': 'ElepTup',
     'mapDown': 'ElepTdo',
-#    'cuts': el_cuts,
+    'cuts': el_cuts,
     'samples': dict((skey, ['1.', '1.']) for skey in mc),
     'folderUp': makeMCDirectory('ElepTup'),
     'folderDown': makeMCDirectory('ElepTdo'),
@@ -194,16 +194,16 @@ nuisances['muonpt'] = {
 ##
 ##### MET energy scale
 
-nuisances['met'] = {
-    'name': 'CMS_scale_met_2017',
-    'kind': 'suffix',
-    'type': 'shape',
-    'mapUp': 'METup',
-    'mapDown': 'METdo',
-    'samples': dict((skey, ['1', '1']) for skey in mc),
-    'folderUp': makeMCDirectory('METup'),
-    'folderDown': makeMCDirectory('METdo'),
-}
+#nuisances['met'] = {
+#    'name': 'CMS_scale_met_2017',
+#    'kind': 'suffix',
+#    'type': 'shape',
+#    'mapUp': 'METup',
+#    'mapDown': 'METdo',
+#    'samples': dict((skey, ['1', '1']) for skey in mc),
+#    'folderUp': makeMCDirectory('METup'),
+#    'folderDown': makeMCDirectory('METdo'),
+#}
 #
 ###### Pileup
 ##FIXME: correct?

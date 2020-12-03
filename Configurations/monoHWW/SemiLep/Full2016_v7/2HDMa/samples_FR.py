@@ -64,11 +64,11 @@ elif  'cern' in SITE:
   treeBaseDir = '/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano'
   # treeBaseDir = '/eos/user/s/ssiebert/HWWNano'
 
-def makeMCDirectory(var=''):
-    if var:
-        return os.path.join(treeBaseDir, mcProduction, mcSteps.format(var='__' + var))
+def makeMCDirectory(var=None):
+    if var is not None:
+        return os.path.join(treeBaseDir, mcProduction, mcSteps+'_'+var)
     else:
-        return os.path.join(treeBaseDir, mcProduction, mcSteps.format(var=''))
+        return os.path.join(treeBaseDir, mcProduction, mcSteps)
 
 mcDirectory = makeMCDirectory()
 #mcDirectory = os.path.join(treeBaseDir, mcProduction, mcSteps)
