@@ -174,7 +174,7 @@ samples['ggWW'] = {
 
 ######## Zg ########
 
-files = nanoGetSampleFiles(mcDirectory, 'Zg')
+files = nanoGetSampleFiles(mcDirectory, 'ZGToLLG')
 
 samples['Zg'] = {
     'name': files,
@@ -182,7 +182,7 @@ samples['Zg'] = {
     'FilesPerJob': 4
 }
 # the following is needed in both v5 and v6
-addSampleWeight(samples, 'Zg', 'Zg', '0.448')
+addSampleWeight(samples, 'Zg', 'ZGToLLG', '0.448')
 
 ######## Wg ########
 
@@ -196,14 +196,14 @@ samples['Wg'] = {
 
 ######## ZgS ########
 
-files = nanoGetSampleFiles(mcDirectory, 'Zg')
+files = nanoGetSampleFiles(mcDirectory, 'ZGToLLG')
 
 samples['ZgS'] = {
     'name': files,
     'weight': mcCommonWeight,
     'FilesPerJob': 4,
 }
-addSampleWeight(samples, 'ZgS', 'Zg', '(Gen_ZGstar_mass > 0)*0.448')
+addSampleWeight(samples, 'ZgS', 'ZGToLLG', '(Gen_ZGstar_mass > 0)*0.448')
 
 ######## WgS ########
 
