@@ -39,7 +39,7 @@ if  'cern' in SITE :
 directory_bkg    = os.path.join(treeBaseDir_SMP ,  mcProduction , mcSteps)
 directory_signal = os.path.join(treeBaseDir_SMP ,  mcProduction , mcSteps) 
 directory_mc     = os.path.join(treeBaseDir_SMP ,  mcProduction , mcSteps)
-directory_data   = os.path.join(treeBaseDir,       dataProduction, dataSteps)
+directory_data   = os.path.join(treeBaseDir_SMP,       dataProduction, dataSteps)
 
 
 # def makeMCDirectory(var, smpFolder=False):
