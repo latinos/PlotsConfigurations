@@ -168,6 +168,15 @@ nuisances['stat']  = {
              }
 
 
+nuisances['Norm']  = {
+                'name'  : 'norm',
+                'type'  : 'lnN',
+               'samples'  : {
+                             'Wjets_HT' : '1.10',
+                             'top' : '1.10',
+                             },
+                }
+
 
 # nuisances = { k:v for k,v in nuisances.items() if k in ['fake_syst','fake_ele','fake_ele_stat','fake_mu','fake_mu_stat',
 #                                                     'eff_e','eff_m','electronpt_0','muonpt_0','electronpt_1','muonpt_1' ] }

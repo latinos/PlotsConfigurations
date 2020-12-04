@@ -175,3 +175,12 @@ nuisances['stat']  = {
               'samples' : {}
              }
 
+
+nuisances['Norm']  = {
+                'name'  : 'norm',
+                'type'  : 'lnN',
+               'samples'  : {
+                             'Wjets_HT' : '1.10',
+                             'top' : '1.10',
+                             },
+                }
