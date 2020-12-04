@@ -308,7 +308,7 @@ m_quark_higheta_pt0 = "j1_higheta_pt0_quark"
 m_quark_higheta_pt1 = "j0_higheta_pt1_quark"
 
 ###############
-aliases['vbs_0_qgl_res'] = {
+aliases['vbs_0_qglmorphed_res'] = {
     'class': 'QglVarsMorphing',
     'args': ('vbs_0_qglmorphed_res', morphing_file, do_morph, m_gluon_loweta_pt0, m_gluon_loweta_pt1, m_gluon_higheta_pt0, m_gluon_higheta_pt1, 
                                                        m_quark_loweta_pt0, m_quark_loweta_pt1, m_quark_higheta_pt0, m_quark_higheta_pt1),
@@ -318,35 +318,74 @@ aliases['vbs_0_qgl_res'] = {
         ] 
 } 
 
-# aliases['vbs_1_qgl_res'] = {
-#     'class': 'QglVarsMorphing',
-#     'args': ('vbs_1_qglmorphed_res', morphing_file, do_morph, m_gluon_loweta_pt0, m_gluon_loweta_pt1, m_gluon_higheta_pt0, m_gluon_higheta_pt1, 
-#                                                        m_quark_loweta_pt0, m_quark_loweta_pt1, m_quark_higheta_pt0, m_quark_higheta_pt1 )
-# } 
+aliases['vbs_1_qglmorphed_res'] = {
+    'class': 'QglVarsMorphing',
+    'args': ('vbs_1_qglmorphed_res', morphing_file, do_morph, m_gluon_loweta_pt0, m_gluon_loweta_pt1, m_gluon_higheta_pt0, m_gluon_higheta_pt1, 
+                                                       m_quark_loweta_pt0, m_quark_loweta_pt1, m_quark_higheta_pt0, m_quark_higheta_pt1 )
+} 
 
-aliases['vjet_0_qgl_res'] = {
+aliases['vjet_0_qglmorphed_res'] = {
     'class': 'QglVarsMorphing',
     'args': ('vjet_0_qglmorphed_res', morphing_file, do_morph, m_gluon_loweta_pt0, m_gluon_loweta_pt1, m_gluon_higheta_pt0, m_gluon_higheta_pt1, 
                                                        m_quark_loweta_pt0, m_quark_loweta_pt1, m_quark_higheta_pt0, m_quark_higheta_pt1 )
 } 
 
-aliases['vjet_1_qgl_res'] = {
+aliases['vjet_1_qglmorphed_res'] = {
     'class': 'QglVarsMorphing',
     'args': ('vjet_1_qglmorphed_res', morphing_file, do_morph, m_gluon_loweta_pt0, m_gluon_loweta_pt1, m_gluon_higheta_pt0, m_gluon_higheta_pt1, 
                                                        m_quark_loweta_pt0, m_quark_loweta_pt1, m_quark_higheta_pt0, m_quark_higheta_pt1 )
 } 
 
-aliases['vbs_0_qgl_boost'] = {
+aliases['vbs_0_qglmorphed_boost'] = {
     'class': 'QglVarsMorphing',
     'args': ('vbs_0_qglmorphed_boost', morphing_file, do_morph, m_gluon_loweta_pt0, m_gluon_loweta_pt1, m_gluon_higheta_pt0, m_gluon_higheta_pt1, 
                                                        m_quark_loweta_pt0, m_quark_loweta_pt1, m_quark_higheta_pt0, m_quark_higheta_pt1 )
 } 
 
-aliases['vbs_1_qgl_boost'] = {
+aliases['vbs_1_qglmorphed_boost'] = {
     'class': 'QglVarsMorphing',
     'args': ('vbs_1_qglmorphed_boost', morphing_file, do_morph, m_gluon_loweta_pt0, m_gluon_loweta_pt1, m_gluon_higheta_pt0, m_gluon_higheta_pt1, 
                                                        m_quark_loweta_pt0, m_quark_loweta_pt1, m_quark_higheta_pt0, m_quark_higheta_pt1 )
 } 
+
+#############3
+aliases['vbs_0_qgl_res'] = {
+    'class': 'QglVarsMorphing',
+    'args': ('vbs_0_qgl_res', morphing_file, do_morph, m_gluon_loweta_pt0, m_gluon_loweta_pt1, m_gluon_higheta_pt0, m_gluon_higheta_pt1, 
+                                                       m_quark_loweta_pt0, m_quark_loweta_pt1, m_quark_higheta_pt0, m_quark_higheta_pt1),
+} 
+
+aliases['vbs_1_qgl_res'] = {
+    'class': 'QglVarsMorphing',
+    'args': ('vbs_1_qgl_res', morphing_file, do_morph, m_gluon_loweta_pt0, m_gluon_loweta_pt1, m_gluon_higheta_pt0, m_gluon_higheta_pt1, 
+                                                       m_quark_loweta_pt0, m_quark_loweta_pt1, m_quark_higheta_pt0, m_quark_higheta_pt1 )
+} 
+
+aliases['vjet_0_qgl_res'] = {
+    'class': 'QglVarsMorphing',
+    'args': ('vjet_0_qgl_res', morphing_file, do_morph, m_gluon_loweta_pt0, m_gluon_loweta_pt1, m_gluon_higheta_pt0, m_gluon_higheta_pt1, 
+                                                       m_quark_loweta_pt0, m_quark_loweta_pt1, m_quark_higheta_pt0, m_quark_higheta_pt1 )
+} 
+
+aliases['vjet_1_qgl_res'] = {
+    'class': 'QglVarsMorphing',
+    'args': ('vjet_1_qgl_res', morphing_file, do_morph, m_gluon_loweta_pt0, m_gluon_loweta_pt1, m_gluon_higheta_pt0, m_gluon_higheta_pt1, 
+                                                       m_quark_loweta_pt0, m_quark_loweta_pt1, m_quark_higheta_pt0, m_quark_higheta_pt1 )
+} 
+
+aliases['vbs_0_qgl_boost'] = {
+    'class': 'QglVarsMorphing',
+    'args': ('vbs_0_qgl_boost', morphing_file, do_morph, m_gluon_loweta_pt0, m_gluon_loweta_pt1, m_gluon_higheta_pt0, m_gluon_higheta_pt1, 
+                                                       m_quark_loweta_pt0, m_quark_loweta_pt1, m_quark_higheta_pt0, m_quark_higheta_pt1 )
+} 
+
+aliases['vbs_1_qgl_boost'] = {
+    'class': 'QglVarsMorphing',
+    'args': ('vbs_1_qgl_boost', morphing_file, do_morph, m_gluon_loweta_pt0, m_gluon_loweta_pt1, m_gluon_higheta_pt0, m_gluon_higheta_pt1, 
+                                                       m_quark_loweta_pt0, m_quark_loweta_pt1, m_quark_higheta_pt0, m_quark_higheta_pt1 )
+} 
+
+
 
 ##########################
 # additional uncertainties for Wtagging from pt extrapolation
@@ -372,31 +411,17 @@ aliases['puWeight_noeras'] = {
     'samples': mc
 }
 
-#########################
-
-mva_reader_path = os.getenv('CMSSW_BASE') + '/src/PlotsConfigurations/Configurations/VBSjjlnu/macros/'
-models_path = '/eos/home-d/dvalsecc/www/VBSPlots/DNN_archive/FullRun2_v7/FullRun2_v7/'
-
-aliases['DNNoutput_boosted'] = {
-    'class': 'MVAReaderBoosted',
-    'args': ( models_path +'boost_sig/models/v3_d/',  models_path +'boost_sig/models/v3_d/cumulative_signal_2017.root', False, 0),
-    'linesToAdd':[
+################
+aliases['tag_jets_systems_pt'] = {
+    'class': 'TagJetsSystemsPt',
+    'args': (),
+    'linesToAdd' : [
         'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-        'gSystem->Load("libDNNEvaluator.so")',
-        '.L ' + mva_reader_path + 'mva_reader_boosted_v3d.cc+', 
-    ],
+        '.L {}/VBSjjlnu/macros/TagJetsSystemsPt.cc+'.format(configurations)
+    ]   
 }
 
-aliases['DNNoutput_resolved'] = {
-    'class': 'MVAReaderResolved',
-    'args': ( models_path+ 'res_sig/models/v4_d/',models_path+ 'res_sig/models/v4_d/cumulative_signal_2017.root', False, 1),
-    'linesToAdd':[
-        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-        'gSystem->Load("libDNNEvaluator.so")',
-        '.L ' + mva_reader_path + 'mva_reader_resolved_v4d.cc+', 
-    ],
-}
 
-aliases['DNNoutput'] = {
-    'expr': '(VBS_category==0)*(DNNoutput_boosted) + (VBS_category==1)*(DNNoutput_resolved)'
+aliases['vbs_jets_pt'] ={
+    'expr' : 'tag_jets_systems_pt[0]'
 }
