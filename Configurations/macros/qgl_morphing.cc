@@ -68,7 +68,7 @@ protected:
   FloatArrayReader* CleanJet_pt{};
   IntArrayReader*   CleanJet_jetIdx{};
   FloatArrayReader* Jet_qgl{};
-  FloatArrayReader* Jet_partonFlavour{};
+  IntArrayReader* Jet_partonFlavour{};
   
   
  
@@ -127,11 +127,12 @@ void QGL_morphing::beginEvent(long long _iEntry) {
     
     if (!QGL_morphing::_isRunningOnData){
       
+      //       std::cout << " it is not DATA " << std::endl;
       //
       // modify qgl 
       //
 
-      float flavour = Jet_partonFlavour->At(CleanJet_jetIdx->At(iCleanJet));
+      int flavour = Jet_partonFlavour->At(CleanJet_jetIdx->At(iCleanJet));
       
       if (qgl > 0.0 && qgl < 1.0) {
         float y = qgl;
