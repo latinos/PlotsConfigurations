@@ -29,30 +29,74 @@ Or, if they failed because the wall clock time have been exceeded, resubmit them
 Differential analysis:
 
     mkPlot.py --inputFile=rootFile/plots_vbf_snowmass.root --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1 --minLogCratio=0.01 --maxLogCratio=1000
-    mkPlot.py --plotFile=plot_blind.py --onlyCut=hww2l2v_13TeV_of2j_vbf --inputFile=rootFile/plots_vbf_snowmass.root --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1 --minLogCratio=0.01 --maxLogCratio=1000
-    mkPlot.py --plotFile=plot_blind.py --onlyCut=hww2l2v_13TeV_of2j_test_mll --inputFile=rootFile/plots_vbf_snowmass.root --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1 --minLogCratio=0.01 --maxLogCratio=1000
+    mkPlot.py --plotFile=plot_blind.py --onlyCut=hww2l2v_13TeV_of2j_mll_high_purity       --inputFile=rootFile/plots_vbf_snowmass.root --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1 --minLogCratio=0.01 --maxLogCratio=1000
+    mkPlot.py --plotFile=plot_blind.py --onlyCut=hww2l2v_13TeV_of2j_mll_low_purity        --inputFile=rootFile/plots_vbf_snowmass.root --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1 --minLogCratio=0.01 --maxLogCratio=1000
+    mkPlot.py --plotFile=plot_blind.py --onlyCut=hww2l2v_13TeV_of2j_mll_loose_high_purity --inputFile=rootFile/plots_vbf_snowmass.root --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1 --minLogCratio=0.01 --maxLogCratio=1000
+    mkPlot.py --plotFile=plot_blind.py --onlyCut=hww2l2v_13TeV_of2j_mll_loose_low_purity  --inputFile=rootFile/plots_vbf_snowmass.root --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1 --minLogCratio=0.01 --maxLogCratio=1000
+    mkPlot.py --plotFile=plot_blind.py --onlyCut=hww2l2v_13TeV_of2j_dphijj_0              --inputFile=rootFile/plots_vbf_snowmass.root --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1 --minLogCratio=0.01 --maxLogCratio=1000
+    mkPlot.py --plotFile=plot_blind.py --onlyCut=hww2l2v_13TeV_of2j_dphijj_1              --inputFile=rootFile/plots_vbf_snowmass.root --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1 --minLogCratio=0.01 --maxLogCratio=1000
+    mkPlot.py --plotFile=plot_blind.py --onlyCut=hww2l2v_13TeV_of2j_dphijj_2              --inputFile=rootFile/plots_vbf_snowmass.root --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1 --minLogCratio=0.01 --maxLogCratio=1000
+    mkPlot.py --plotFile=plot_blind.py --onlyCut=hww2l2v_13TeV_of2j_dphijj_3              --inputFile=rootFile/plots_vbf_snowmass.root --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1 --minLogCratio=0.01 --maxLogCratio=1000
+    mkPlot.py --plotFile=plot_blind.py --onlyCut=hww2l2v_13TeV_of2j_dphijj_4              --inputFile=rootFile/plots_vbf_snowmass.root --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1 --minLogCratio=0.01 --maxLogCratio=1000
+    mkPlot.py --plotFile=plot_blind.py --onlyCut=hww2l2v_13TeV_of2j_dphijj_5              --inputFile=rootFile/plots_vbf_snowmass.root --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1 --minLogCratio=0.01 --maxLogCratio=1000
+    mkPlot.py --plotFile=plot_blind.py --onlyCut=hww2l2v_13TeV_of2j_dphijj_6              --inputFile=rootFile/plots_vbf_snowmass.root --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1 --minLogCratio=0.01 --maxLogCratio=1000
+    mkPlot.py --plotFile=plot_blind.py --onlyCut=hww2l2v_13TeV_of2j_dphijj_7              --inputFile=rootFile/plots_vbf_snowmass.root --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1 --minLogCratio=0.01 --maxLogCratio=1000
 
 CP-violation analysis:
 
     mkPlot.py --plotFile=plot_CPV.py --inputFile=rootFile/plots_vbf_snowmass.root --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1 --minLogCratio=0.01 --maxLogCratio=1000 --outputDirPlots=plots_vbf_snowmass_CPV
-    mkPlot.py --plotFile=plot_CPV_blind.py --onlyCut=hww2l2v_13TeV_of2j_vbf --inputFile=rootFile/plots_vbf_snowmass.root --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1 --minLogCratio=0.01 --maxLogCratio=1000 --outputDirPlots=plots_vbf_snowmass_CPV
-    mkPlot.py --plotFile=plot_CPV_blind.py --onlyCut=hww2l2v_13TeV_of2j_test_mll --inputFile=rootFile/plots_vbf_snowmass.root --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1 --minLogCratio=0.01 --maxLogCratio=1000 --outputDirPlots=plots_vbf_snowmass_CPV
+    mkPlot.py --plotFile=plot_CPV_blind.py --onlyCut=hww2l2v_13TeV_of2j_mll_high_purity       --inputFile=rootFile/plots_vbf_snowmass.root --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1 --minLogCratio=0.01 --maxLogCratio=1000 --outputDirPlots=plots_vbf_snowmass_CPV
+    mkPlot.py --plotFile=plot_CPV_blind.py --onlyCut=hww2l2v_13TeV_of2j_mll_low_purity        --inputFile=rootFile/plots_vbf_snowmass.root --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1 --minLogCratio=0.01 --maxLogCratio=1000 --outputDirPlots=plots_vbf_snowmass_CPV
+    mkPlot.py --plotFile=plot_CPV_blind.py --onlyCut=hww2l2v_13TeV_of2j_mll_loose_high_purity --inputFile=rootFile/plots_vbf_snowmass.root --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1 --minLogCratio=0.01 --maxLogCratio=1000 --outputDirPlots=plots_vbf_snowmass_CPV
+    mkPlot.py --plotFile=plot_CPV_blind.py --onlyCut=hww2l2v_13TeV_of2j_mll_loose_low_purity  --inputFile=rootFile/plots_vbf_snowmass.root --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1 --minLogCratio=0.01 --maxLogCratio=1000 --outputDirPlots=plots_vbf_snowmass_CPV
+    mkPlot.py --plotFile=plot_CPV_blind.py --onlyCut=hww2l2v_13TeV_of2j_dphijj_0              --inputFile=rootFile/plots_vbf_snowmass.root --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1 --minLogCratio=0.01 --maxLogCratio=1000 --outputDirPlots=plots_vbf_snowmass_CPV
+    mkPlot.py --plotFile=plot_CPV_blind.py --onlyCut=hww2l2v_13TeV_of2j_dphijj_1              --inputFile=rootFile/plots_vbf_snowmass.root --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1 --minLogCratio=0.01 --maxLogCratio=1000 --outputDirPlots=plots_vbf_snowmass_CPV
+    mkPlot.py --plotFile=plot_CPV_blind.py --onlyCut=hww2l2v_13TeV_of2j_dphijj_2              --inputFile=rootFile/plots_vbf_snowmass.root --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1 --minLogCratio=0.01 --maxLogCratio=1000 --outputDirPlots=plots_vbf_snowmass_CPV
+    mkPlot.py --plotFile=plot_CPV_blind.py --onlyCut=hww2l2v_13TeV_of2j_dphijj_3              --inputFile=rootFile/plots_vbf_snowmass.root --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1 --minLogCratio=0.01 --maxLogCratio=1000 --outputDirPlots=plots_vbf_snowmass_CPV
+    mkPlot.py --plotFile=plot_CPV_blind.py --onlyCut=hww2l2v_13TeV_of2j_dphijj_4              --inputFile=rootFile/plots_vbf_snowmass.root --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1 --minLogCratio=0.01 --maxLogCratio=1000 --outputDirPlots=plots_vbf_snowmass_CPV
+    mkPlot.py --plotFile=plot_CPV_blind.py --onlyCut=hww2l2v_13TeV_of2j_dphijj_5              --inputFile=rootFile/plots_vbf_snowmass.root --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1 --minLogCratio=0.01 --maxLogCratio=1000 --outputDirPlots=plots_vbf_snowmass_CPV
+    mkPlot.py --plotFile=plot_CPV_blind.py --onlyCut=hww2l2v_13TeV_of2j_dphijj_6              --inputFile=rootFile/plots_vbf_snowmass.root --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1 --minLogCratio=0.01 --maxLogCratio=1000 --outputDirPlots=plots_vbf_snowmass_CPV
+    mkPlot.py --plotFile=plot_CPV_blind.py --onlyCut=hww2l2v_13TeV_of2j_dphijj_7              --inputFile=rootFile/plots_vbf_snowmass.root --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1 --minLogCratio=0.01 --maxLogCratio=1000 --outputDirPlots=plots_vbf_snowmass_CPV
 
 Only CP-violation signals:
 
-    mkPlot.py --pycfg=configuration_CPV_signals.py --inputFile=rootFile/plots_vbf_snowmass.root --fileFormats=png --onlyPlot=cratio --linearOnly
+    mkPlot.py --pycfg=configuration_CPV_signals.py --inputFile=rootFile/plots_vbf_snowmass.root --fileFormats=png --onlyPlot=c --linearOnly --scaleToPlot=0.5
 
 ### Create datacards
 
-    mkDatacards.py --pycfg=configuration.py --inputFile=rootFile/plots_vbf_snowmass.root    
+For the differential analysis:
 
-### Combine datacards and create workspace
+    mkDatacards.py --pycfg=configuration_differential.py --inputFile=rootFile/plots_vbf_snowmass.root    
 
-    ./combinecards.sh
+For the CP-violation analysis:
+
+    mkDatacards.py --pycfg=configuration_CPV.py --inputFile=rootFile/plots_vbf_snowmass.root    
+
+### Combine datacards, create workspaces, and perform the fits
+
+For the differential analysis:
+
+    ./doDifferentialAnalysis.sh
     
-### Perform the fit
+For the CP-violation analysis:
 
-    ./fitdiagnostics.sh
+    ./doCPVAnalysis.sh
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ### Make impact plots
 

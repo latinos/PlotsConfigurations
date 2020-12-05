@@ -41,37 +41,37 @@ for k in cuts:
 '''
 ################################ EXPERIMENTAL UNCERTAINTIES  #################################
 
-#### Luminosity
+#### Luminosity - just one lumi, we are nor combining 3 years
 
-#nuisances['lumi'] = {
-#    'name': 'lumi_13TeV_2018',
-#    'type': 'lnN',
-#    'samples': dict((skey, '1.025') for skey in mc if skey not in ['WW', 'top', 'DY'])
-#}
-
-nuisances['lumi_Uncorrelated'] = {
-    'name': 'lumi_13TeV_2018',
-    'type': 'lnN',
-    'samples': dict((skey, '1.015') for skey in mc if skey not in ['WW', 'top', 'DY'])
+nuisances['lumi'] = {
+   'name': 'lumi_13TeV_2018',
+   'type': 'lnN',
+   'samples': dict((skey, '1.025') for skey in mc if skey not in ['WW', 'top', 'DY'])
 }
 
-nuisances['lumi_XYFact'] = {
-    'name': 'lumi_13TeV_XYFact',
-    'type': 'lnN',
-    'samples': dict((skey, '1.02') for skey in mc if skey not in ['WW', 'top', 'DY'])
-}
+# nuisances['lumi_Uncorrelated'] = {
+#     'name': 'lumi_13TeV_2018',
+#     'type': 'lnN',
+#     'samples': dict((skey, '1.015') for skey in mc if skey not in ['WW', 'top', 'DY'])
+# }
 
-nuisances['lumi_LScale'] = {
-    'name': 'lumi_13TeV_LSCale',
-    'type': 'lnN',
-    'samples': dict((skey, '1.002') for skey in mc if skey not in ['WW', 'top', 'DY'])
-}
+# nuisances['lumi_XYFact'] = {
+#     'name': 'lumi_13TeV_XYFact',
+#     'type': 'lnN',
+#     'samples': dict((skey, '1.02') for skey in mc if skey not in ['WW', 'top', 'DY'])
+# }
 
-nuisances['lumi_CurrCalib'] = {
-    'name': 'lumi_13TeV_CurrCalib',
-    'type': 'lnN',
-    'samples': dict((skey, '1.002') for skey in mc if skey not in ['WW', 'top', 'DY'])
-}
+# nuisances['lumi_LScale'] = {
+#     'name': 'lumi_13TeV_LSCale',
+#     'type': 'lnN',
+#     'samples': dict((skey, '1.002') for skey in mc if skey not in ['WW', 'top', 'DY'])
+# }
+
+# nuisances['lumi_CurrCalib'] = {
+#     'name': 'lumi_13TeV_CurrCalib',
+#     'type': 'lnN',
+#     'samples': dict((skey, '1.002') for skey in mc if skey not in ['WW', 'top', 'DY'])
+# }
 
 #### FAKES
 
@@ -289,15 +289,47 @@ nuisances['met'] = {
 
 ##### Di-Tau vetoing for embedding
 if useEmbeddedDY: 
-  nuisances['embedveto']  = {
-                  'name'  : 'CMS_embed_veto_2018',
-                  'kind'  : 'weight',
-                  'type'  : 'shape',
-                  'samples'  : {
-                     'Dyemb'    : ['1', '1'],
-                     'Dyveto'   : ['0.1', '-0.1'],
-                  }
-  }
+  if runDYveto:
+      nuisances['embedveto']  = {
+          'name'  : 'CMS_embed_veto_2018',
+          'kind'  : 'weight',
+          'type'  : 'shape',
+          'samples'  : {
+              'Dyemb'    : ['1', '1'],
+              'Dyveto'   : ['0.1', '-0.1'],
+          }
+      }
+  else:
+    # These hardcoded numbers have been obtained by running the full Dyveto (with runDYveto=True in samples.py) 
+    # and computing the lnN uncertainty as variation of the up/down integral with respect to the nominal Dyemb integral
+    unc_dict = {}
+    unc_dict['hww2l2v_13TeV_of2j_mll']                   = '1.02' 
+    unc_dict['hww2l2v_13TeV_of2j_mll_loose']             = '1.02' 
+    unc_dict['hww2l2v_13TeV_of2j_mll_high_purity']       = '1.02' 
+    unc_dict['hww2l2v_13TeV_of2j_mll_loose_high_purity'] = '1.02' 
+    unc_dict['hww2l2v_13TeV_of2j_mll_low_purity']        = '1.02' 
+    unc_dict['hww2l2v_13TeV_of2j_mll_loose_low_purity']  = '1.02' 
+    unc_dict['hww2l2v_13TeV_of2j_dphijj_0']              = '1.02' 
+    unc_dict['hww2l2v_13TeV_of2j_dphijj_1']              = '1.02' 
+    unc_dict['hww2l2v_13TeV_of2j_dphijj_2']              = '1.02' 
+    unc_dict['hww2l2v_13TeV_of2j_dphijj_3']              = '1.02' 
+    unc_dict['hww2l2v_13TeV_of2j_dphijj_4']              = '1.02' 
+    unc_dict['hww2l2v_13TeV_of2j_dphijj_5']              = '1.02' 
+    unc_dict['hww2l2v_13TeV_of2j_dphijj_6']              = '1.02' 
+    unc_dict['hww2l2v_13TeV_of2j_dphijj_7']              = '1.02' 
+    unc_dict['hww2l2v_13TeV_top_of2j']                   = '1.06'
+    unc_dict['hww2l2v_13TeV_dytt_of2j']                  = '1.002'
+
+    for category,uncertainty in unc_dict.iteritems():
+        nuisances['embedveto_'+category]  = {
+            'name'  : 'CMS_embed_veto_2018',
+            'type'  : 'lnN',
+            'samples'  : {
+                'Dyemb'    : uncertainty,
+            },
+            'cuts': [category],
+        }
+
 
 ##### Pileup
 
@@ -779,29 +811,29 @@ nuisances['DYttnorm2j']  = {
                  'type'  : 'rateParam',
                 }
 
-nuisances['DYembnorm2j']  = {
-                 'name'  : 'CMS_hww_DYttnorm2j',
-                 'samples'  : {
-                   'Dyemb' : '1.00',
-                     },
-                 'type'  : 'rateParam',
-                }
+# nuisances['DYembnorm2j']  = {
+#                  'name'  : 'CMS_hww_DYttnorm2j',
+#                  'samples'  : {
+#                    'Dyemb' : '1.00',
+#                      },
+#                  'type'  : 'rateParam',
+#                 }
 
-nuisances['WWnorm2j']  = {
-               'name'  : 'CMS_hww_WWnorm2j',
-               'samples'  : {
-                   'WW' : '1.00',
-                   },
-               'type'  : 'rateParam',
-              }
+# nuisances['WWnorm2j']  = {
+#                'name'  : 'CMS_hww_WWnorm2j',
+#                'samples'  : {
+#                    'WW' : '1.00',
+#                    },
+#                'type'  : 'rateParam',
+#               }
 
-nuisances['ggWWnorm2j']  = {
-               'name'  : 'CMS_hww_WWnorm2j',
-               'samples'  : {
-                   'ggWW' : '1.00',
-                   },
-               'type'  : 'rateParam',
-              }
+# nuisances['ggWWnorm2j']  = {
+#                'name'  : 'CMS_hww_WWnorm2j',
+#                'samples'  : {
+#                    'ggWW' : '1.00',
+#                    },
+#                'type'  : 'rateParam',
+#               }
 
 
 nuisances['Topnorm2j']  = {

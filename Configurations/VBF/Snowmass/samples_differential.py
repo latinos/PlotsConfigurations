@@ -147,6 +147,7 @@ if useEmbeddedDY:
           'weight': '(1-embed_tautauveto)',
           'FilesPerJob': 1, # There's some error about not finding sample-specific variables like "nllW" when mixing different samples into a single job; so split them all up instead
       }
+
       addSampleWeight(samples, 'Dyveto', 'TTTo2L2Nu', mcCommonWeight + '* (topGenPt * antitopGenPt > 0.) * (TMath::Sqrt((0.103*TMath::Exp(-0.0118*topGenPt) - 0.000134*topGenPt + 0.973) * (0.103*TMath::Exp(-0.0118*antitopGenPt) - 0.000134*antitopGenPt + 0.973))) + (topGenPt * antitopGenPt <= 0.)')
       addSampleWeight(samples, 'Dyveto', 'ST_tW_antitop_ext1', mcCommonWeight)
       addSampleWeight(samples, 'Dyveto', 'ST_tW_top_ext1', mcCommonWeight)
@@ -199,8 +200,6 @@ files = nanoGetSampleFiles(mcDirectory, 'TTTo2L2Nu') + \
 samples['top'] = {
     'name': files,
     'weight': mcCommonWeight+embed_tautauveto,
-    'suppressNegative' :['all'],
-    'suppressNegativeNuisances' :['all'],
     'FilesPerJob': 1,
 }
 
@@ -226,14 +225,14 @@ samples['WWewk'] = {
 
 # k-factor 1.4 already taken into account in XSWeight
 files = nanoGetSampleFiles(mcDirectory, 'GluGluToWWToENEN') + \
-    nanoGetSampleFiles(mcDirectory, 'GluGluToWWToENMN') + \
-    nanoGetSampleFiles(mcDirectory, 'GluGluToWWToENTN') + \
-    nanoGetSampleFiles(mcDirectory, 'GluGluToWWToMNEN') + \
-    nanoGetSampleFiles(mcDirectory, 'GluGluToWWToMNMN') + \
-    nanoGetSampleFiles(mcDirectory, 'GluGluToWWToMNTN') + \
-    nanoGetSampleFiles(mcDirectory, 'GluGluToWWToTNEN') + \
-    nanoGetSampleFiles(mcDirectory, 'GluGluToWWToTNMN') + \
-    nanoGetSampleFiles(mcDirectory, 'GluGluToWWToTNTN')
+        nanoGetSampleFiles(mcDirectory, 'GluGluToWWToENMN') + \
+        nanoGetSampleFiles(mcDirectory, 'GluGluToWWToENTN') + \
+        nanoGetSampleFiles(mcDirectory, 'GluGluToWWToMNEN') + \
+        nanoGetSampleFiles(mcDirectory, 'GluGluToWWToMNMN') + \
+        nanoGetSampleFiles(mcDirectory, 'GluGluToWWToMNTN') + \
+        nanoGetSampleFiles(mcDirectory, 'GluGluToWWToTNEN') + \
+        nanoGetSampleFiles(mcDirectory, 'GluGluToWWToTNMN') + \
+        nanoGetSampleFiles(mcDirectory, 'GluGluToWWToTNTN')
 
 samples['ggWW'] = {
     'name': files,
@@ -265,9 +264,9 @@ files = nanoGetSampleFiles(mcDirectory, 'Wg_MADGRAPHMLM') + \
 samples['VgS'] = {
     'name': files,
     'weight': mcCommonWeight+embed_tautauveto + ' * (gstarLow * 0.94 + gstarHigh * 1.14)',
+    'FilesPerJob': 4,
     'suppressNegative' :['all'],
     'suppressNegativeNuisances' :['all'],
-    'FilesPerJob': 4,
     'subsamples': {
       'L': 'gstarLow',
       'H': 'gstarHigh'
@@ -329,15 +328,13 @@ signals.append('ggH_hww')
 
 ############ VBF H->WW ############
 
-samples['qqH_hww'] = {
-    'name': nanoGetSampleFiles(mcDirectory, 'VBFHToWWTo2L2Nu_M125'),
-    'weight': mcCommonWeight,
-    'suppressNegative' :['all'],
-    'suppressNegativeNuisances' :['all'],
-    'FilesPerJob': 4
-}
+# samples['qqH_hww'] = {
+#     'name': nanoGetSampleFiles(mcDirectory, 'VBFHToWWTo2L2Nu_M125'),
+#     'weight': mcCommonWeight,
+#     'FilesPerJob': 4
+# }
 
-signals.append('qqH_hww')
+# signals.append('qqH_hww')
 
 # Fiducial region definition. Do we need it? Does it make sense?
 
@@ -374,75 +371,59 @@ signals.append(sample_name)
 
 # CP-violation VBF samples
 
-# Pure SM sample H0PM
-samples['VBF_H0PM_ToWWTo2L2Nu'] = {
-    'name': nanoGetSampleFiles(mcDirectory, 'VBF_H0PM_ToWWTo2L2Nu'),
-    'weight': mcCommonWeight,
-    'suppressNegative' :['all'],
-    'suppressNegativeNuisances' :['all'],
-    'FilesPerJob': 4
-}
+# # Pure SM sample H0PM
+# samples['VBF_H0PM_ToWWTo2L2Nu'] = {
+#     'name': nanoGetSampleFiles(mcDirectory, 'VBF_H0PM_ToWWTo2L2Nu'),
+#     'weight': mcCommonWeight,
+#     'FilesPerJob': 4
+# }
 
-#Pure AC sample H0M - a3 coupling
-samples['VBF_H0M_ToWWTo2L2Nu'] = {
-    'name': nanoGetSampleFiles(mcDirectory, 'VBF_H0M_ToWWTo2L2Nu'),
-    'weight': mcCommonWeight,
-    'suppressNegative' :['all'],
-    'suppressNegativeNuisances' :['all'],
-    'FilesPerJob': 4
-}
+# #Pure AC sample H0M - a3 coupling
+# samples['VBF_H0M_ToWWTo2L2Nu'] = {
+#     'name': nanoGetSampleFiles(mcDirectory, 'VBF_H0M_ToWWTo2L2Nu'),
+#     'weight': mcCommonWeight,
+#     'FilesPerJob': 4
+# }
 
-# Pure AC sample H0PH - a2 coupling
-samples['VBF_H0PH_ToWWTo2L2Nu'] = {
-    'name': nanoGetSampleFiles(mcDirectory, 'VBF_H0PH_ToWWTo2L2Nu'),
-    'weight': mcCommonWeight,
-    'suppressNegative' :['all'],
-    'suppressNegativeNuisances' :['all'],
-    'FilesPerJob': 4
-}
+# # Pure AC sample H0PH - a2 coupling
+# samples['VBF_H0PH_ToWWTo2L2Nu'] = {
+#     'name': nanoGetSampleFiles(mcDirectory, 'VBF_H0PH_ToWWTo2L2Nu'),
+#     'weight': mcCommonWeight,
+#     'FilesPerJob': 4
+# }
 
-# Pure AC sample H0L1 - Lambda1 coupling
-samples['VBF_H0L1_ToWWTo2L2Nu'] = {
-    'name': nanoGetSampleFiles(mcDirectory, 'VBF_H0L1_ToWWTo2L2Nu'),
-    'weight': mcCommonWeight,
-    'suppressNegative' :['all'],
-    'suppressNegativeNuisances' :['all'],
-    'FilesPerJob': 4
-}
+# # Pure AC sample H0L1 - Lambda1 coupling
+# samples['VBF_H0L1_ToWWTo2L2Nu'] = {
+#     'name': nanoGetSampleFiles(mcDirectory, 'VBF_H0L1_ToWWTo2L2Nu'),
+#     'weight': mcCommonWeight,
+#     'FilesPerJob': 4
+# }
 
-# Finally, mixed SM/AC samples. Cross-sections is the same as SM
+# # Finally, mixed SM/AC samples. Cross-sections is the same as SM
 
-samples['VBF_H0Mf05_ToWWTo2L2Nu'] = {
-    'name': nanoGetSampleFiles(mcDirectory, 'VBF_H0Mf05_ToWWTo2L2Nu'),
-    'weight': mcCommonWeight,
-    'suppressNegative' :['all'],
-    'suppressNegativeNuisances' :['all'],
-    'FilesPerJob': 4
-}
+# samples['VBF_H0Mf05_ToWWTo2L2Nu'] = {
+#     'name': nanoGetSampleFiles(mcDirectory, 'VBF_H0Mf05_ToWWTo2L2Nu'),
+#     'weight': mcCommonWeight,
+#     'FilesPerJob': 4
+# }
 
-samples['VBF_H0PHf05_ToWWTo2L2Nu'] = {
-    'name': nanoGetSampleFiles(mcDirectory, 'VBF_H0PHf05_ToWWTo2L2Nu'),
-    'weight': mcCommonWeight,
-    'suppressNegative' :['all'],
-    'suppressNegativeNuisances' :['all'],
-    'FilesPerJob': 4
-}
+# samples['VBF_H0PHf05_ToWWTo2L2Nu'] = {
+#     'name': nanoGetSampleFiles(mcDirectory, 'VBF_H0PHf05_ToWWTo2L2Nu'),
+#     'weight': mcCommonWeight,
+#     'FilesPerJob': 4
+# }
 
-samples['VBF_H0L1f05_ToWWTo2L2Nu'] = {
-    'name': nanoGetSampleFiles(mcDirectory, 'VBF_H0L1f05_ToWWTo2L2Nu'),
-    'weight': mcCommonWeight,
-    'suppressNegative' :['all'],
-    'suppressNegativeNuisances' :['all'],
-    'FilesPerJob': 4
-}
+# samples['VBF_H0L1f05_ToWWTo2L2Nu'] = {
+#     'name': nanoGetSampleFiles(mcDirectory, 'VBF_H0L1f05_ToWWTo2L2Nu'),
+#     'weight': mcCommonWeight,
+#     'FilesPerJob': 4
+# }
 
-samples['VBF_H0L1Zgf05_ToWWTo2L2Nu'] = {
-    'name': nanoGetSampleFiles(mcDirectory, 'VBF_H0L1Zgf05_ToWWTo2L2Nu'),
-    'weight': mcCommonWeight,
-    'suppressNegative' :['all'],
-    'suppressNegativeNuisances' :['all'],
-    'FilesPerJob': 4
-}
+# samples['VBF_H0L1Zgf05_ToWWTo2L2Nu'] = {
+#     'name': nanoGetSampleFiles(mcDirectory, 'VBF_H0L1Zgf05_ToWWTo2L2Nu'),
+#     'weight': mcCommonWeight,
+#     'FilesPerJob': 4
+# }
 
 
 ############ ZH H->WW ############

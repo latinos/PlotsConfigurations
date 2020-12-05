@@ -12,31 +12,54 @@ variables['events']  = {
     'fold' : 3
 }
 
-
-# DeltaPhi (jet1, jet2)
-
-variables['dphijj_finest']  = {  
-    'name': 'dphijj',
-    'range': (64, 0.0, 3.2),
-    'xaxis': 'dphijj',
-    'fold': 3
-}
-
-variables['dphijj_sgn_finest']  = {  
-    'name': 'delta_phi(CleanJet_phi[0], CleanJet_phi[1], CleanJet_eta[0], CleanJet_eta[1])',
-    'range': (64, -3.2, 3.2),
-    'xaxis': 'dphijj',
-    'linesToAdd': ['.L $CMSSW_BASE/src/PlotsConfigurations/Configurations/VBF/Snowmass/extended/delta_phi.C+'],
-    'fold': 3
-}
-
+# Variable to create reco-level categories corresponding to the gen-level bins
 variables['dphijj_sgn']  = {  
-    'name': 'delta_phi(CleanJet_phi[0], CleanJet_phi[1], CleanJet_eta[0], CleanJet_eta[1])',
+    'name': 'DeltaPhi',
     'range': (8, -3.2, 3.2),
     'xaxis': 'dphijj',
-    'linesToAdd': ['.L $CMSSW_BASE/src/PlotsConfigurations/Configurations/VBF/Snowmass/extended/delta_phi.C+'],
     'fold': 3
 }
+
+# Variable for signal extraction - SM VBF
+variables['classvbf'] = { 
+     'name': 'vbfdnn',
+     'range' : ([0.25,0.4,0.5,0.55,0.6,0.65,0.7,0.75,0.8,0.85,0.9,1.0],),
+     'xaxis' : 'DNN discriminant vbf',
+     'fold'  : 3,
+}
+
+# Variable for signal extraction - SM VBF
+variables['classvbf_merged'] = { 
+     'name': 'vbfdnn',
+     'range' : ([0.25,0.4,0.5,0.55,0.6,0.65,0.7,0.75,1.0],),
+     'xaxis' : 'DNN discriminant vbf',
+     'fold'  : 3,
+}
+
+# Variable for signal extraction - CPV
+variables['mll']  = { 
+    'name': 'mll',
+    'range' : (25, 0, 250),
+    'xaxis' : 'mll [GeV]',
+    'fold' : 3,
+}
+
+# # DeltaPhi (jet1, jet2)
+
+# variables['dphijj_finest']  = {  
+#     'name': 'dphijj',
+#     'range': (64, 0.0, 3.2),
+#     'xaxis': 'dphijj',
+#     'fold': 3
+# }
+
+# variables['dphijj_sgn_finest']  = {  
+#     'name': 'delta_phi(CleanJet_phi[0], CleanJet_phi[1], CleanJet_eta[0], CleanJet_eta[1])',
+#     'range': (64, -3.2, 3.2),
+#     'xaxis': 'dphijj',
+#     'linesToAdd': ['.L $CMSSW_BASE/src/PlotsConfigurations/Configurations/VBF/Snowmass/extended/delta_phi.C+'],
+#     'fold': 3
+# }
 
 # # More variables
 

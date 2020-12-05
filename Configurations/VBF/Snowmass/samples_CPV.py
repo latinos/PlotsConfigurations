@@ -339,39 +339,6 @@ samples['qqH_hww'] = {
 
 signals.append('qqH_hww')
 
-# Fiducial region definition. Do we need it? Does it make sense?
-
-# fid = "(Alt$(GenDressedLepton_pt[0],0) > 25 && Alt$(GenDressedLepton_pt[1],0) > 13 && abs(Alt$(GenDressedLepton_eta[0],5)) < 2.5 && abs(Alt$(GenDressedLepton_eta[1],5)) < 2.5 && abs(Alt$(LeptonGen_MotherPID[0],15)) != 15 && abs(Alt$(LeptonGen_MotherPID[1],15)) != 15 && (Alt$(GenDressedLepton_pdgId[0],0) * Alt$(GenDressedLepton_pdgId[1],0) == -11*13) && Alt$(GenJet_pt[0],0) > 30 && Alt$(GenJet_pt[1],0) > 30)"
-
-# Separate in gen-level delta_phi(jet1, jet2) bins. First attempt
-
-import numpy as np
-
-# GenJet_phi
-n_bins = 8
-
-# dphijj bins AND fiducial region selections
-for bin_num in range(0, n_bins):
-    sample_name = "qqH_hww_{}".format(bin_num)
-    samples[sample_name] = {
-        'name': nanoGetSampleFiles(mcDirectory, 'VBFHToWWTo2L2Nu_M125'),
-        'weight': mcCommonWeight + " * (GenDeltaPhiJJ > {} && GenDeltaPhiJJ < {})".format(bin_num*(2*np.pi)/n_bins - np.pi, (bin_num+1)*2*np.pi/n_bins - np.pi),
-        'suppressNegative' :['all'],
-        'suppressNegativeNuisances' :['all'],
-        'FilesPerJob': 4
-    }
-    signals.append(sample_name)
-
-# NON-fiducial region selections
-samples["qqH_hww_nonFid"] = {
-    'name': nanoGetSampleFiles(mcDirectory, 'VBFHToWWTo2L2Nu_M125'),
-    'weight': mcCommonWeight + " * (GenDeltaPhiJJ < -99)",
-    'suppressNegative' :['all'],
-    'suppressNegativeNuisances' :['all'],
-    'FilesPerJob': 4
-}
-signals.append(sample_name)
-
 # CP-violation VBF samples
 
 # Pure SM sample H0PM
@@ -443,7 +410,6 @@ samples['VBF_H0L1Zgf05_ToWWTo2L2Nu'] = {
     'suppressNegativeNuisances' :['all'],
     'FilesPerJob': 4
 }
-
 
 ############ ZH H->WW ############
 

@@ -82,52 +82,47 @@ structure['ggH_hww'] = {
 }
 
 structure['qqH_hww'] = {
-    'isSignal' : 1,
+    'isSignal' : 2,
     'isData'   : 0    
 }
 
-structure['qqH_hww_0'] = {
-    'isSignal' : 1,
+structure['VBF_H0PM_ToWWTo2L2Nu'] = {
+    'isSignal' : 2,
     'isData'   : 0    
 }
 
-structure['qqH_hww_1'] = {
-    'isSignal' : 1,
+structure['VBF_H0M_ToWWTo2L2Nu'] = {
+    'isSignal' : 2,
     'isData'   : 0    
 }
 
-structure['qqH_hww_2'] = {
-    'isSignal' : 1,
+structure['VBF_H0PH_ToWWTo2L2Nu'] = {
+    'isSignal' : 2,
     'isData'   : 0    
 }
 
-structure['qqH_hww_3'] = {
-    'isSignal' : 1,
+structure['VBF_H0L1_ToWWTo2L2Nu'] = {
+    'isSignal' : 2,
     'isData'   : 0    
 }
 
-structure['qqH_hww_4'] = {
-    'isSignal' : 1,
+structure['VBF_H0Mf05_ToWWTo2L2Nu'] = {
+    'isSignal' : 2,
     'isData'   : 0    
 }
 
-structure['qqH_hww_5'] = {
-    'isSignal' : 1,
+structure['VBF_H0PHf05_ToWWTo2L2Nu'] = {
+    'isSignal' : 2,
     'isData'   : 0    
 }
 
-structure['qqH_hww_6'] = {
-    'isSignal' : 1,
+structure['VBF_H0L1f05_ToWWTo2L2Nu'] = {
+    'isSignal' : 2,
     'isData'   : 0    
 }
 
-structure['qqH_hww_7'] = {
-    'isSignal' : 1,
-    'isData'   : 0    
-}
-
-structure['qqH_hww_nonFid'] = {
-    'isSignal' : 1,
+structure['VBF_H0L1Zgf05_ToWWTo2L2Nu'] = {
+    'isSignal' : 2,
     'isData'   : 0    
 }
 
