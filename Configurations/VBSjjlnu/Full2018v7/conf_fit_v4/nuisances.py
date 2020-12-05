@@ -173,23 +173,23 @@ nuisances['eff_e']  = {
                 'cuts': phase_spaces_tot_ele
 }
 
-nuisances['electronpt']  = {
-                'name'  : 'CMS_scale_e_2018',
-                'kind'  : 'suffix',
-                'type'  : 'shape',
-                'mapUp': 'ElepTup',
-                'mapDown': 'ElepTdo',
-                'cuts': phase_spaces_tot_ele,
-                'samples': dict((skey, ['1.','1.']) for skey in mc if skey not in ['Vg', 'VgS']),
-                'folderUp' : directory_mc+'_ElepTup',
-                'folderDown' : directory_mc+'_ElepTdo',
-}
 # nuisances['electronpt']  = {
 #                 'name'  : 'CMS_scale_e_2018',
-#                 'type'  : 'lnN',
-#                 'samples'  :   dict((skey, '1.02') for skey in mc if skey not in ['top', 'Fake','Wjets_HT']),
-#                 'cuts': phase_spaces_tot_ele
+#                 'kind'  : 'suffix',
+#                 'type'  : 'shape',
+#                 'mapUp': 'ElepTup',
+#                 'mapDown': 'ElepTdo',
+#                 'cuts': phase_spaces_tot_ele,
+#                 'samples': dict((skey, ['1.','1.']) for skey in mc if skey not in ['Vg', 'VgS']),
+#                 'folderUp' : directory_mc+'_ElepTup',
+#                 'folderDown' : directory_mc+'_ElepTdo',
 # }
+nuisances['electronpt']  = {
+                'name'  : 'CMS_scale_e_2018',
+                'type'  : 'lnN',
+                'samples'  :   dict((skey, '1.03') for skey in mc if skey not in ['top', 'Fake','Wjets_HT']),
+                'cuts': phase_spaces_tot_ele
+}
 
 
 # # ##### Muon Efficiency and energy scale
@@ -203,33 +203,33 @@ nuisances['eff_m']  = {
                 'cuts': phase_spaces_tot_mu
 }
 
-nuisances['muonpt']  = {
-                'name'  : 'CMS_scale_m_2018',
-                'kind'  : 'suffix',
-                'type'  : 'shape',
-                'mapUp': 'MupTup',
-                'mapDown': 'MupTdo',
-                'cuts': phase_spaces_tot_mu,
-                'samples': dict((skey, ['1.','1.']) for skey in mc if skey not in ['Vg', 'VgS']),
-                'folderUp' : directory_mc+'_MupTup',
-                'folderDown' : directory_mc+'_MupTdo',
-}
 # nuisances['muonpt']  = {
-#                 'name'  : 'CMS_scale_m_2017',
-#                 'type'  : 'lnN',
-#                 'samples'  : dict((skey, '1.02') for skey in mc if skey not in ['top', 'Fake','Wjets_HT']),
-#                 'cuts':   phase_spaces_tot_mu
+#                 'name'  : 'CMS_scale_m_2018',
+#                 'kind'  : 'suffix',
+#                 'type'  : 'shape',
+#                 'mapUp': 'MupTup',
+#                 'mapDown': 'MupTdo',
+#                 'cuts': phase_spaces_tot_mu,
+#                 'samples': dict((skey, ['1.','1.']) for skey in mc if skey not in ['Vg', 'VgS']),
+#                 'folderUp' : directory_mc+'_MupTup',
+#                 'folderDown' : directory_mc+'_MupTdo',
 # }
+nuisances['muonpt']  = {
+                'name'  : 'CMS_scale_m_2017',
+                'type'  : 'lnN',
+                'samples'  : dict((skey, '1.03') for skey in mc if skey not in ['top', 'Fake','Wjets_HT']),
+                'cuts':   phase_spaces_tot_mu
+}
 
 ##################
 # PU jet id
 
-nuisances['JetPUID_sf']  = {
-                'name'  : 'CMS_jetpuid_2018',
-                'kind'  : 'weight',
-                'type'  : 'shape',
-                'samples'  : dict((skey, ['PUJetIdSF_up/PUJetIdSF','PUJetIdSF_down/PUJetIdSF']) for skey in mc ),
-}
+# nuisances['JetPUID_sf']  = {
+#                 'name'  : 'CMS_jetpuid_2018',
+#                 'kind'  : 'weight',
+#                 'type'  : 'shape',
+#                 'samples'  : dict((skey, ['PUJetIdSF_up/PUJetIdSF','PUJetIdSF_down/PUJetIdSF']) for skey in mc ),
+# }
 
 
 # ##### Jet energy scale
@@ -368,7 +368,7 @@ nuisances['PS']  = {
                 'skipCMS' : 1,
                 'kind'  : 'weight',
                 'type'  : 'shape',
-                'samples'  : dict((skey, ['PSWeight[0]', 'PSWeight[3]']) for skey in mc )
+                'samples'  : dict((skey, ['PSWeight[0]', 'PSWeight[3]']) for skey in mc if skey in ['DY','Wjets_HT','top','VBS','VV'])
                 }
 
 # # nuisances['UE']  = {

@@ -5,8 +5,10 @@ from pprint import pprint
 
 
 #Order of sample for plot in top_only 
-plots_top_order = [ "vbfV+VV+VVV", 'Vg+VgS', 'DY', 'Fake', 'Wjets','top','VBS']
-plots_wjets_order = [ "vbfV+VV+VVV", 'Vg+VgS', 'DY', 'Fake', 'top','Wjets', 'VBS']
+plots_top_order_res = [ "Others", 'VV+VVV', 'Fake', 'Wjets','top','VBS']
+plots_wjets_order_res = [ "Others", 'VV+VVV',  'Fake', 'top', 'Wjets', 'VBS']
+plots_top_order_boost = [ "Others", 'VV+VVV',  'Fake', 'Wjets','top','VBS']
+plots_wjets_order_boost = [ "Others", 'VV+VVV', 'Fake', 'top', 'Wjets', 'VBS']
 
 # '#FF3D00',F57C00
 wjets_palette = ['#FFC400','#FFAB00', '#FF6D00','#FF3D00','#DD2C00','#c41e08']
@@ -23,6 +25,7 @@ def reorder_plots(groupPlot, order):
     new_group = OrderedDict()
     for g in order:
         new_group[g] = groupPlot[g]
+    pprint(new_group)
     return new_group
 
 
@@ -146,19 +149,34 @@ def scaleBins(plot, cut):
 
 
 def customize(samples,cuts,variables,nuisances,plot,groupPlot, key=None):
-    if key=="top_only":
-        new_cuts = filter_cuts(cuts, r".*_topcr_.*")
-        new_groupPlot = reorder_plots(groupPlot,  plots_top_order)
+    if key=="top_boost":
+        new_cuts = filter_cuts(cuts, r"boost_topcr_.*")
+        new_groupPlot = reorder_plots(groupPlot,  plots_top_order_boost)
         return samples, new_cuts, variables, nuisances, plot, new_groupPlot
 
-    if key=="wjets_only":
-        new_cuts = filter_cuts(cuts, r".*_wjetcr_.*")
-        new_groupPlot = reorder_plots(groupPlot,  plots_wjets_order)
+    if key=="wjets_boost":
+        new_cuts = filter_cuts(cuts, r"boost_wjetcr_.*")
+        new_groupPlot = reorder_plots(groupPlot,  plots_wjets_order_boost)
         return samples, new_cuts, variables, nuisances, plot, new_groupPlot
 
-    if key=="signal_only":
-        new_cuts = filter_cuts(cuts, r".*_sig_.*")
-        new_groupPlot = reorder_plots(groupPlot,  plots_wjets_order)
+    if key=="signal_boost":
+        new_cuts = filter_cuts(cuts, r"boost_sig_.*")
+        new_groupPlot = reorder_plots(groupPlot,  plots_wjets_order_boost)
+        return samples, new_cuts, variables, nuisances, plot, new_groupPlot
+    
+    if key=="top_res":
+        new_cuts = filter_cuts(cuts, r"res_topcr_.*")
+        new_groupPlot = reorder_plots(groupPlot,  plots_top_order_res)
+        return samples, new_cuts, variables, nuisances, plot, new_groupPlot
+
+    if key=="wjets_res":
+        new_cuts = filter_cuts(cuts, r"res_wjetcr_.*")
+        new_groupPlot = reorder_plots(groupPlot,  plots_wjets_order_res)
+        return samples, new_cuts, variables, nuisances, plot, new_groupPlot
+
+    if key=="signal_res":
+        new_cuts = filter_cuts(cuts, r"res_sig_.*")
+        new_groupPlot = reorder_plots(groupPlot,  plots_wjets_order_res)
         return samples, new_cuts, variables, nuisances, plot, new_groupPlot
 
     if key=="bins_res":

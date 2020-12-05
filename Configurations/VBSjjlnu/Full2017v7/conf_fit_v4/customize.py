@@ -5,8 +5,10 @@ from pprint import pprint
 
 
 #Order of sample for plot in top_only 
-plots_top_order = [ "vbfV+VV+VVV", 'Vg+VgS', 'DY', 'Fake', 'Wjets','top','VBS']
-plots_wjets_order = [ "vbfV+VV+VVV", 'Vg+VgS', 'DY', 'Fake', 'top','Wjets', 'VBS']
+plots_top_order_res = [ "Others", 'VV+VVV', 'Fake', 'Wjets','top','VBS']
+plots_wjets_order_res = [ "Others", 'VV+VVV',  'Fake', 'top', 'Wjets', 'VBS']
+plots_top_order_boost = [ "Others", 'VV+VVV',  'Fake', 'Wjets','top','VBS']
+plots_wjets_order_boost = [ "Others", 'VV+VVV', 'Fake', 'top', 'Wjets', 'VBS']
 
 # '#FF3D00',F57C00
 wjets_palette = ['#FFC400','#FFAB00', '#FF6D00','#FF3D00','#DD2C00','#c41e08']
@@ -23,6 +25,7 @@ def reorder_plots(groupPlot, order):
     new_group = OrderedDict()
     for g in order:
         new_group[g] = groupPlot[g]
+    pprint(new_group)
     return new_group
 
 
@@ -74,64 +77,64 @@ def define_bins_boost(groupPlot,plot):
     return new_group, new_plots
 
 
-norm_factors = {
-    "Wjets_HT_res_1": 
-        {
-            "res_wjetcr_ele":1.386,
-            "res_wjetcr_mu": 1.178
-        },
-    "Wjets_HT_res_2": 
-        {
-            "res_wjetcr_ele":1.130,
-            "res_wjetcr_mu": 1.028
-        },
-    "Wjets_HT_res_3": 
-        {
-            "res_wjetcr_ele":0.784,
-            "res_wjetcr_mu": 0.871
-        },
-    "Wjets_HT_res_4": 
-        {
-            "res_wjetcr_ele":0.619,
-            "res_wjetcr_mu": 0.687
-        },
-    "Wjets_HT_res_5": 
-        {
-            "res_wjetcr_ele":0.470,
-            "res_wjetcr_mu": 0.523
-        }, 
-    "Wjets_HT_res_6": 
-        {
-            "res_wjetcr_ele":0.370,
-            "res_wjetcr_mu": 0.432
-        }, 
-     "Wjets_HT_boost_1": 
-        {
-            "boost_wjetcr_ele":0.878,
-            "boost_wjetcr_mu": 0.701
-        },
-    "Wjets_HT_boost_2": 
-        {
-            "boost_wjetcr_ele":0.848,
-            "boost_wjetcr_mu": 0.684
-        },
-    "Wjets_HT_boost_3": 
-        {
-            "boost_wjetcr_ele":0.783,
-            "boost_wjetcr_mu": 0.741
-        },
-    "Wjets_HT_boost_4": 
-        {
-            "boost_wjetcr_ele":0.606,
-            "boost_wjetcr_mu": 0.696
-        },
-    "Wjets_HT_boost_5": 
-        {
-            "boost_wjetcr_ele":0.510,
-            "boost_wjetcr_mu": 0.574
-        }, 
+# norm_factors = {
+#     "Wjets_HT_res_1": 
+#         {
+#             "res_wjetcr_ele":1.386,
+#             "res_wjetcr_mu": 1.178
+#         },
+#     "Wjets_HT_res_2": 
+#         {
+#             "res_wjetcr_ele":1.130,
+#             "res_wjetcr_mu": 1.028
+#         },
+#     "Wjets_HT_res_3": 
+#         {
+#             "res_wjetcr_ele":0.784,
+#             "res_wjetcr_mu": 0.871
+#         },
+#     "Wjets_HT_res_4": 
+#         {
+#             "res_wjetcr_ele":0.619,
+#             "res_wjetcr_mu": 0.687
+#         },
+#     "Wjets_HT_res_5": 
+#         {
+#             "res_wjetcr_ele":0.470,
+#             "res_wjetcr_mu": 0.523
+#         }, 
+#     "Wjets_HT_res_6": 
+#         {
+#             "res_wjetcr_ele":0.370,
+#             "res_wjetcr_mu": 0.432
+#         }, 
+#      "Wjets_HT_boost_1": 
+#         {
+#             "boost_wjetcr_ele":0.878,
+#             "boost_wjetcr_mu": 0.701
+#         },
+#     "Wjets_HT_boost_2": 
+#         {
+#             "boost_wjetcr_ele":0.848,
+#             "boost_wjetcr_mu": 0.684
+#         },
+#     "Wjets_HT_boost_3": 
+#         {
+#             "boost_wjetcr_ele":0.783,
+#             "boost_wjetcr_mu": 0.741
+#         },
+#     "Wjets_HT_boost_4": 
+#         {
+#             "boost_wjetcr_ele":0.606,
+#             "boost_wjetcr_mu": 0.696
+#         },
+#     "Wjets_HT_boost_5": 
+#         {
+#             "boost_wjetcr_ele":0.510,
+#             "boost_wjetcr_mu": 0.574
+#         }, 
 
-}
+# }
 
 
 def scaleBins(plot, cut):
@@ -146,19 +149,34 @@ def scaleBins(plot, cut):
 
 
 def customize(samples,cuts,variables,nuisances,plot,groupPlot, key=None):
-    if key=="top_only":
-        new_cuts = filter_cuts(cuts, r".*_topcr_.*")
-        new_groupPlot = reorder_plots(groupPlot,  plots_top_order)
+    if key=="top_boost":
+        new_cuts = filter_cuts(cuts, r"boost_topcr_.*")
+        new_groupPlot = reorder_plots(groupPlot,  plots_top_order_boost)
         return samples, new_cuts, variables, nuisances, plot, new_groupPlot
 
-    if key=="wjets_only":
-        new_cuts = filter_cuts(cuts, r".*_wjetcr_.*")
-        new_groupPlot = reorder_plots(groupPlot,  plots_wjets_order)
+    if key=="wjets_boost":
+        new_cuts = filter_cuts(cuts, r"boost_wjetcr_.*")
+        new_groupPlot = reorder_plots(groupPlot,  plots_wjets_order_boost)
         return samples, new_cuts, variables, nuisances, plot, new_groupPlot
 
-    if key=="signal_only":
-        new_cuts = filter_cuts(cuts, r".*_sig_.*")
-        new_groupPlot = reorder_plots(groupPlot,  plots_wjets_order)
+    if key=="signal_boost":
+        new_cuts = filter_cuts(cuts, r"boost_sig_.*")
+        new_groupPlot = reorder_plots(groupPlot,  plots_wjets_order_boost)
+        return samples, new_cuts, variables, nuisances, plot, new_groupPlot
+    
+    if key=="top_res":
+        new_cuts = filter_cuts(cuts, r"res_topcr_.*")
+        new_groupPlot = reorder_plots(groupPlot,  plots_top_order_res)
+        return samples, new_cuts, variables, nuisances, plot, new_groupPlot
+
+    if key=="wjets_res":
+        new_cuts = filter_cuts(cuts, r"res_wjetcr_.*")
+        new_groupPlot = reorder_plots(groupPlot,  plots_wjets_order_res)
+        return samples, new_cuts, variables, nuisances, plot, new_groupPlot
+
+    if key=="signal_res":
+        new_cuts = filter_cuts(cuts, r"res_sig_.*")
+        new_groupPlot = reorder_plots(groupPlot,  plots_wjets_order_res)
         return samples, new_cuts, variables, nuisances, plot, new_groupPlot
 
     if key=="bins_res":

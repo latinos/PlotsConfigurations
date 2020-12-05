@@ -46,4 +46,4 @@ nuisancesFile = direc+'/nuisances_reduced.py'
 #nuisancesFile = direc+'/nuisances_datacard_join.py'
 #nuisancesFile = direc + '/nuisances_datacard.py'
 
-#customizeScript = direc + "/customize.py"
+customizeScript = direc + "/customize.py"

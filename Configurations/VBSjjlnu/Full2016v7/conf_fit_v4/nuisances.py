@@ -204,7 +204,7 @@ nuisances['eff_e']  = {
 nuisances['electronpt']  = {
                 'name'  : 'CMS_scale_e_2016',
                 'type'  : 'lnN',
-                'samples'  :   dict((skey, '1.02') for skey in mc if skey not in ['top', 'Fake','Wjets_HT']),
+                'samples'  :   dict((skey, '1.03') for skey in mc),
                 'cuts': phase_spaces_tot_ele
 }
 
@@ -233,7 +233,7 @@ nuisances['eff_m']  = {
 nuisances['muonpt']  = {
                 'name'  : 'CMS_scale_m_2016',
                 'type'  : 'lnN',
-                'samples'  : dict((skey, '1.02') for skey in mc if skey not in ['top', 'Fake','Wjets_HT']),
+                'samples'  : dict((skey, '1.03') for skey in mc ),
                 'cuts':   phase_spaces_tot_mu
 }
 
@@ -426,9 +426,6 @@ nuisances['TopPtRew'] = {
    'symmetrize': True
 }
 
-
-# # #################
-# #Samples normalizations
 # for fl in ['ele','mu']:
 #     nuisances['Top_norm_boost_'+fl]  = {
 #                 'name'  : 'CMS_Top_norm_{}_boost_2018'.format(fl),
@@ -450,9 +447,9 @@ nuisances['TopPtRew'] = {
 
 
 # wjets_bins = []
-# for ir in range(1,6):
+# for ir in range(1,7):
 #     wjets_bins.append("Wjets_HT_res_"+str(ir))
-# for ir in range(1,5):
+# for ir in range(1,6):
 #     wjets_bins.append("Wjets_HT_boost_"+str(ir))
 
 
@@ -478,6 +475,7 @@ nuisances['TopPtRew'] = {
 #             }
 #             if regrouped_Wjets: 
 #                 nuisances["{}_norm_{}_res_2018".format(wjbin, fl)]['name'] = 'CMS_Wjets_norm_{}_res_2018'.format(fl)
+
 
 
 # # QCD scale for each bin

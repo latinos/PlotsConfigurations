@@ -40,7 +40,7 @@ structureFile = direc+'/structure.py'
 
 
 # nuisances file for mkDatacards and for mkShape
-nuisancesFile = direc+'/nuisances.py'
-#nuisancesFile = direc+'/nuisances_datacard.py'
+#nuisancesFile = direc+'/nuisances.py'
+nuisancesFile = direc+'/nuisances_datacard.py'
 
 customizeScript = direc + '/customize.py'
