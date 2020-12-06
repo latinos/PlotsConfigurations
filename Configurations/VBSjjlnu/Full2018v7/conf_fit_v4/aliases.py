@@ -312,25 +312,26 @@ models_path = '/eos/home-d/dvalsecc/www/VBSPlots/DNN_archive/FullRun2_v7/FullRun
 
 aliases['DNNoutput_boosted'] = {
     'class': 'MVAReaderBoosted',
-    'args': ( models_path +'boost_sig/models/v8_b/',  models_path +'boost_sig/models/v8_b/cumulative_signal_2018.root', False, 0),
+    'args': ( models_path +'boost_sig/models/v3_d/',  models_path +'boost_sig/models/v3_d/cumulative_signal_2018.root', False, 0),
     'linesToAdd':[
         'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
         'gSystem->Load("libDNNEvaluator.so")',
-        '.L ' + mva_reader_path + 'mva_reader_boosted_v6b.cc+', 
+        '.L ' + mva_reader_path + 'mva_reader_boosted_v3d.cc+', 
     ],
 }
 
 aliases['DNNoutput_resolved'] = {
     'class': 'MVAReaderResolved',
-    'args': ( models_path+ 'res_sig/models/v3_b/',models_path+ 'res_sig/models/v3_b/cumulative_signal_2018.root', False, 1),
+    'args': ( models_path+ 'res_sig/models/v4_d/',models_path+ 'res_sig/models/v4_d/cumulative_signal_2018.root', False, 1),
     'linesToAdd':[
         'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
         'gSystem->Load("libDNNEvaluator.so")',
-        '.L ' + mva_reader_path + 'mva_reader_resolved_v3b.cc+', 
+        '.L ' + mva_reader_path + 'mva_reader_resolved_v4d.cc+', 
     ],
 }
 
 aliases['DNNoutput'] = {
     'expr': '(VBS_category==0)*(DNNoutput_boosted) + (VBS_category==1)*(DNNoutput_resolved)'
 }
+
 

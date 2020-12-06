@@ -32,10 +32,11 @@ elif  'cern' in SITE :
   treeBaseDir = '/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/'
   treeBaseDir_SMP = '/eos/cms/store/group/phys_smp/VJets_NLO_VBSanalyses/'
 
-directory_bkg    = treeBaseDir + 'Summer16_102X_nAODv7_Full2016v7/' + mcSteps
-directory_signal = treeBaseDir_SMP + 'Summer16_102X_nAODv7_Full2016v7/' + mcSteps
-directory_fakes  = treeBaseDir + 'Run2016_102X_nAODv7_Full2016v7/'  + fakeSteps
-directory_data   = treeBaseDir + 'Run2016_102X_nAODv7_Full2016v7/'  + dataSteps
+directory_bkg    = treeBaseDir_SMP + 'Summer16_102X_nAODv7_Full2016v7_skim/' + mcSteps
+directory_mc    = treeBaseDir_SMP + 'Summer16_102X_nAODv7_Full2016v7_skim/' + mcSteps
+directory_signal = treeBaseDir_SMP + 'Summer16_102X_nAODv7_Full2016v7_skim/' + mcSteps
+directory_fakes  = treeBaseDir_SMP + 'Run2016_102X_nAODv7_Full2016v7_skim/'  + fakeSteps
+directory_data   = treeBaseDir_SMP + 'Run2016_102X_nAODv7_Full2016v7_skim/'  + dataSteps
 
 ################################################
 ############ NUMBER OF LEPTONS #################
@@ -140,7 +141,7 @@ samples['DY'] = {    'name'   :   #nanoGetSampleFiles(directory_bkg,'DYJetsToLL_
                                   + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-5to50_HT-600toinf')
                                   + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-5to50_HT-600toinf_ext1'),
                        'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*'+DY_photon_filter  ,
-                       'FilesPerJob' : 5,
+                       'FilesPerJob' : 8,
                        'EventsPerJob' : 80000,
                        'suppressNegative' :['all'],
                        'suppressNegativeNuisances' :['all'],
@@ -299,7 +300,7 @@ samples['VV']  = { 'name' :
                nanoGetSampleFiles(directory_signal,'WpToLNu_ZTo2J_QCD') +
                nanoGetSampleFiles(directory_signal,'ZTo2L_ZTo2J_QCD') ,
         'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch,
-        'FilesPerJob' : 9,
+        'FilesPerJob' : 15,
         'EventsPerJob' : 70000,
 }
 
@@ -311,7 +312,7 @@ samples['VVV']  = {  'name'   :   nanoGetSampleFiles(directory_bkg,'ZZZ')
                                 + nanoGetSampleFiles(directory_bkg,'WWW'),
                                 #+ nanoGetSampleFiles(directory,'WWG'), #should this be included? or is it already taken into account in the WW sample?
                     'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch  ,
-                    'FilesPerJob' : 8,
+                    'FilesPerJob' : 10,
                     'EventsPerJob' : 70000,
                   }
 
@@ -330,7 +331,7 @@ samples['VVV']  = {  'name'   :   nanoGetSampleFiles(directory_bkg,'ZZZ')
 samples['Vg']  = {  'name'   :   nanoGetSampleFiles(directory_bkg,'Wg_MADGRAPHMLM')
                                + nanoGetSampleFiles(directory_bkg,'Zg'),
                     'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC+'*(!(Gen_ZGstar_mass > 0))', # 14.02.2020: Changed Vg treatment
-                    'FilesPerJob' : 8,
+                    'FilesPerJob' : 15,
                     'EventsPerJob' : 70000,
                     'suppressNegative' :['all'],
                     'suppressNegativeNuisances' :['all'],
@@ -346,7 +347,7 @@ samples['VgS']  =  {  'name'   :   nanoGetSampleFiles(directory_bkg,'Wg_MADGRAPH
                                  + nanoGetSampleFiles(directory_bkg,'WZTo3LNu_mllmin01'),
                                  #+ nanoGetSampleFiles(directory_bkg,'WZTo3LNu_mllmin01_ext1'),
                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + ' * (gstarLow * 0.94 + gstarHigh * 1.14)',
-                      'FilesPerJob' : 8,
+                      'FilesPerJob' : 15,
                       'EventsPerJob' : 80000,
                       'suppressNegative' :['all'],
                       'suppressNegativeNuisances' :['all'],
@@ -376,7 +377,7 @@ samples['VBS']  = { 'name' :
                + nanoGetSampleFiles(directory_signal,'WpToLNu_ZTo2J') 
                + nanoGetSampleFiles(directory_signal,'ZTo2L_ZTo2J' ),
        'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch,
-       'FilesPerJob' : 9,
+       'FilesPerJob' : 10,
         'EventsPerJob' : 70000,
 }
 
@@ -390,7 +391,7 @@ samples['Fake'] = {
   'weight': METFilter_DATA+'*'+fakeW,
   'weights': [],
   'isData': ['all'],
-  'FilesPerJob': 30
+  'FilesPerJob': 40
 }
 
 for _, sd in DataRun:
@@ -419,4 +420,5 @@ for Run in DataRun :
                         samples['DATA']['weights'].append(DataTrig[DataSet])
 
 
-#samples = {k:v for k,v in samples.items() if k not in [ "DATA"]}
+#samples = {k:v for k,v in samples.items() if k not in ['top', 'Wjets_HT']}
+#samples = {k:v for k,v in samples.items() if k  in ['Fake']}
