@@ -305,7 +305,7 @@ nuisances['PU'] = {
     'kind': 'weight',
     'type': 'shape',
     'samples': {
-        'DY': ['0.993259983266*(puWeightUp/puWeight)', '0.997656381501*(puWeightDown/puWeight)'],
+        #'DY': ['0.993259983266*(puWeightUp/puWeight)', '0.997656381501*(puWeightDown/puWeight)'],
         'top': ['1.00331969187*(puWeightUp/puWeight)', '0.999199609528*(puWeightDown/puWeight)'],
         'WW': ['1.0033022059*(puWeightUp/puWeight)', '0.997085330608*(puWeightDown/puWeight)'],
         'ggH_hww': ['1.0036768006*(puWeightUp/puWeight)', '0.995996570285*(puWeightDown/puWeight)'],
@@ -313,6 +313,16 @@ nuisances['PU'] = {
     },
     'AsLnN': '1',
 }
+
+### PU ID SF uncertainty
+puid_syst = ['Jet_PUIDSF_up/Jet_PUIDSF', 'Jet_PUIDSF_down/Jet_PUIDSF']
+
+# nuisances['jetPUID'] = {
+#     'name': 'CMS_PUID',
+#     'kind': 'weight',
+#     'type': 'shape',
+#     'samples': dict((skey, puid_syst) for skey in mc if skey not in ['DY'])
+# }
 
 ##### PS
 #### PSWeights are buggy for most of the 2017 v6 samples, therefore we use the 2016 treatment

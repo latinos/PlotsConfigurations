@@ -71,6 +71,88 @@ Drop nuisances giving negative values:
     grep Significance: datacards/*/comb/SExpPre_*
     grep "fit r:" datacards/*/comb/BestFit_*
 
+### Produce Impact Plots
+
+Source combine:
+
+    cd $HOME/work/combine/CMSSW_10_2_13/src/
+    cmsenv
+    cd -
+
+Combination:
+
+    text2workspace.py datacards/hww2l2v_13TeV_ggH/comb/datacard.txt -o datacards/hww2l2v_13TeV_ggH/comb/datacard.root 
+
+    combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_ggH/comb/datacard.root -m 125 --doInitialFit -t -1 --expectSignal=1 --robustFit=1 --rMin=-6 --rMax=10
+    combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_ggH/comb/datacard.root -m 125 -t -1 --expectSignal=1 --robustFit=1 --doFits --job-mode=interactive --parallel=10 --rMin=-6 --rMax=10
+    combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_ggH/comb/datacard.root -m 125 -o datacards/hww2l2v_13TeV_ggH/comb/impacts.json -t -1
+    
+    combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_ggH/comb/datacard.root -m 125 --doInitialFit -t -1 --expectSignal=1 --robustFit=1 --named CMS_hww_WWnorm0j,CMS_hww_Topnorm0j,CMS_hww_WWnorm1j,CMS_hww_Topnorm1j,CMS_hww_WWnorm2j,CMS_hww_Topnorm2j --setParameterRanges CMS_hww_WWnorm0j=-3,4:CMS_hww_Topnorm0j=-3,4:CMS_hww_WWnorm1j=-3,4:CMS_hww_Topnorm1j=-3,4:CMS_hww_WWnorm2j=-3,4:CMS_hww_Topnorm2j=-3,4
+    combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_ggH/comb/datacard.root -m 125 -t -1 --expectSignal=1 --robustFit=1 --doFits --job-mode=interactive --parallel=10  --named CMS_hww_WWnorm0j,CMS_hww_Topnorm0j,CMS_hww_WWnorm1j,CMS_hww_Topnorm1j,CMS_hww_WWnorm2j,CMS_hww_Topnorm2j --setParameterRanges CMS_hww_WWnorm0j=-3,4:CMS_hww_Topnorm0j=-3,4:CMS_hww_WWnorm1j=-3,4:CMS_hww_Topnorm1j=-3,4:CMS_hww_WWnorm2j=-3,4:CMS_hww_Topnorm2j=-3,4
+    combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_ggH/comb/datacard.root -m 125 -o datacards/hww2l2v_13TeV_ggH/comb/impacts_rateParam.json -t -1  --named CMS_hww_WWnorm0j,CMS_hww_Topnorm0j,CMS_hww_WWnorm1j,CMS_hww_Topnorm1j,CMS_hww_WWnorm2j,CMS_hww_Topnorm2j --setParameterRanges CMS_hww_WWnorm0j=-3,4:CMS_hww_Topnorm0j=-3,4:CMS_hww_WWnorm1j=-3,4:CMS_hww_Topnorm1j=-3,4:CMS_hww_WWnorm2j=-3,4:CMS_hww_Topnorm2j=-3,4
+
+    cat datacards/hww2l2v_13TeV_ggH/comb/impacts.json datacards/hww2l2v_13TeV_ggH/comb/impacts_rateParam.json > datacards/hww2l2v_13TeV_ggH/comb/impacts_total.json 
+
+Edit 'datacards/hww2l2v_13TeV_ggH/comb/impacts_total.json' so that there is only one set of 'POIs' and finally produce the pdf file with the impacts:
+
+    plotImpacts.py -i datacards/hww2l2v_13TeV_ggH/comb/impacts_total.json -o datacards/hww2l2v_13TeV_ggH/comb/Impact_ggH_2017
+
+    rm higgsCombine_*
+
+0 Jet only:
+
+    text2workspace.py datacards/hww2l2v_13TeV_ggH_0j/comb/datacard.txt -o datacards/hww2l2v_13TeV_ggH_0j/comb/datacard.root 
+
+    combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_ggH_0j/comb/datacard.root -m 125 --doInitialFit -t -1 --expectSignal=1 --robustFit=1 --rMin=-6 --rMax=10
+    combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_ggH_0j/comb/datacard.root -m 125 -t -1 --expectSignal=1 --robustFit=1 --doFits --job-mode=interactive --parallel=10 --rMin=-6 --rMax=10
+    combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_ggH_0j/comb/datacard.root -m 125 -o datacards/hww2l2v_13TeV_ggH_0j/comb/impacts.json -t -1
+
+    combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_ggH_0j/comb/datacard.root -m 125 --doInitialFit -t -1 --expectSignal=1 --robustFit=1 --named CMS_hww_WWnorm0j,CMS_hww_Topnorm0j --setParameterRanges CMS_hww_WWnorm0j=-3,4:CMS_hww_Topnorm0j=-3,4
+    combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_ggH_0j/comb/datacard.root -m 125 -t -1 --expectSignal=1 --robustFit=1 --doFits --job-mode=interactive --parallel=10 --named CMS_hww_WWnorm0j,CMS_hww_Topnorm0j --setParameterRanges CMS_hww_WWnorm0j=-3,4:CMS_hww_Topnorm0j=-3,4
+    combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_ggH_0j/comb/datacard.root -m 125 -o datacards/hww2l2v_13TeV_ggH_0j/comb/impacts_rateParam.json -t -1 --named CMS_hww_WWnorm0j,CMS_hww_Topnorm0j --setParameterRanges CMS_hww_WWnorm0j=-3,4:CMS_hww_Topnorm0j=-3,4
+
+    cat datacards/hww2l2v_13TeV_ggH_0j/comb/impacts.json datacards/hww2l2v_13TeV_ggH_0j/comb/impacts_rateParam.json > datacards/hww2l2v_13TeV_ggH_0j/comb/impacts_total.json 
+
+    plotImpacts.py -i datacards/hww2l2v_13TeV_ggH_0j/comb/impacts_total.json -o datacards/hww2l2v_13TeV_ggH_0j/comb/Impact_ggH_0j_2017
+
+    rm higgsCombine_*
+
+1 Jet only:
+
+    text2workspace.py datacards/hww2l2v_13TeV_ggH_1j/comb/datacard.txt -o datacards/hww2l2v_13TeV_ggH_1j/comb/datacard.root 
+
+    combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_ggH_1j/comb/datacard.root -m 125 --doInitialFit -t -1 --expectSignal=1 --robustFit=1 --rMin=-6 --rMax=10
+    combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_ggH_1j/comb/datacard.root -m 125 -t -1 --expectSignal=1 --robustFit=1 --doFits --job-mode=interactive --parallel=10 --rMin=-6 --rMax=10
+    combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_ggH_1j/comb/datacard.root -m 125 -o datacards/hww2l2v_13TeV_ggH_1j/comb/impacts.json -t -1
+
+    combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_ggH_1j/comb/datacard.root -m 125 --doInitialFit -t -1 --expectSignal=1 --robustFit=1 --named CMS_hww_WWnorm1j,CMS_hww_Topnorm1j --setParameterRanges CMS_hww_WWnorm1j=-3,4:CMS_hww_Topnorm1j=-3,4
+    combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_ggH_1j/comb/datacard.root -m 125 -t -1 --expectSignal=1 --robustFit=1 --doFits --job-mode=interactive --parallel=10 --named CMS_hww_WWnorm1j,CMS_hww_Topnorm1j --setParameterRanges CMS_hww_WWnorm1j=-3,4:CMS_hww_Topnorm1j=-3,4
+    combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_ggH_1j/comb/datacard.root -m 125 -o datacards/hww2l2v_13TeV_ggH_1j/comb/impacts_rateParam.json -t -1 --named CMS_hww_WWnorm1j,CMS_hww_Topnorm1j --setParameterRanges CMS_hww_WWnorm1j=-3,4:CMS_hww_Topnorm1j=-3,4
+
+    cat datacards/hww2l2v_13TeV_ggH_1j/comb/impacts.json datacards/hww2l2v_13TeV_ggH_1j/comb/impacts_rateParam.json > datacards/hww2l2v_13TeV_ggH_1j/comb/impacts_total.json 
+
+    plotImpacts.py -i datacards/hww2l2v_13TeV_ggH_1j/comb/impacts_total.json -o datacards/hww2l2v_13TeV_ggH_1j/comb/Impact_ggH_1j_2017
+
+    rm higgsCombine_*
+
+2 Jets only:
+
+    text2workspace.py datacards/hww2l2v_13TeV_ggH_2j/comb/datacard.txt -o datacards/hww2l2v_13TeV_ggH_2j/comb/datacard.root 
+
+    combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_ggH_2j/comb/datacard.root -m 125 --doInitialFit -t -1 --expectSignal=1 --robustFit=1 --rMin=-6 --rMax=10
+    combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_ggH_2j/comb/datacard.root -m 125 -t -1 --expectSignal=1 --robustFit=1 --doFits --job-mode=interactive --parallel=10 --rMin=-6 --rMax=10
+    combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_ggH_2j/comb/datacard.root -m 125 -o datacards/hww2l2v_13TeV_ggH_2j/comb/impacts.json -t -1
+
+    combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_ggH_2j/comb/datacard.root -m 125 --doInitialFit -t -1 --expectSignal=1 --robustFit=1 --named CMS_hww_WWnorm2j,CMS_hww_Topnorm2j --setParameterRanges CMS_hww_WWnorm2j=-3,4:CMS_hww_Topnorm2j=-3,4
+    combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_ggH_2j/comb/datacard.root -m 125 -t -1 --expectSignal=1 --robustFit=1 --doFits --job-mode=interactive --parallel=10 --named CMS_hww_WWnorm2j,CMS_hww_Topnorm2j --setParameterRanges CMS_hww_WWnorm2j=-3,4:CMS_hww_Topnorm2j=-3,4
+    combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_ggH_2j/comb/datacard.root -m 125 -o datacards/hww2l2v_13TeV_ggH_2j/comb/impacts_rateParam.json -t -1 --named CMS_hww_WWnorm2j,CMS_hww_Topnorm2j --setParameterRanges CMS_hww_WWnorm2j=-3,4:CMS_hww_Topnorm2j=-3,4
+
+    cat datacards/hww2l2v_13TeV_ggH_2j/comb/impacts.json datacards/hww2l2v_13TeV_ggH_2j/comb/impacts_rateParam.json > datacards/hww2l2v_13TeV_ggH_2j/comb/impacts_total.json 
+
+    plotImpacts.py -i datacards/hww2l2v_13TeV_ggH_2j/comb/impacts_total.json -o datacards/hww2l2v_13TeV_ggH_2j/comb/Impact_ggH_2j_2017
+
+    rm higgsCombine_*
+
 ### Create table of yields
 
     grep "proc" datacards/hww2l2v_13TeV_*/events/datacard.txt > yield.txt
