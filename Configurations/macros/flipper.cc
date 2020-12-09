@@ -68,6 +68,7 @@ flipper::flipper( const char* year , const unsigned int nLep, std::string SF_typ
   flipper_map["2017"]["HWW_ttHMVA"] = { cmssw_base + "/src/LatinoAnalysis/NanoGardener/python/data/scale_factor/Full2017v6/chargeFlip_WHSS_nanov5_2017_SF.root" };
   flipper_map["2018"]["HWW_ttHMVA"] = { cmssw_base + "/src/LatinoAnalysis/NanoGardener/python/data/scale_factor/Full2018v6/chargeFlip_WHSS_nanov5_2018_SF.root" };
 
+  flipper_map_ = flipper_map;
   // load histogram
   loadSF2D( flipper_map_[year_]["HWW_ttHMVA"] );
 }
@@ -75,36 +76,16 @@ flipper::flipper( const char* year , const unsigned int nLep, std::string SF_typ
 void flipper::loadSF2D( std::string filename ){
 
   TFile f = TFile( filename.c_str() , "READ" );
-  //std::map<const std::string,TH2D*> SFmap;
-
-  //Declare histogram 
-  //h_mc       = (TH2D*) f.Get("mc")->Clone();
-  //h_mc_sys   = (TH2D*) f.Get("mc_sys")->Clone();
-  //h_data     = (TH2D*) f.Get("data")->Clone();
-  //h_data_sys = (TH2D*) f.Get("data_sys")->Clone();
 
   h_sf       = (TH2D*) f.Get("sf")->Clone();
   h_sf_sys   = (TH2D*) f.Get("sf_sys")->Clone();
 
-  //h_mc->SetDirectory(0); h_mc_sys->SetDirectory(0);
-  //h_data->SetDirectory(0); h_data_sys->SetDirectory(0);
-
-  //h_sf->SetDirectory(0); h_sf_sys->SetDirectory(0);
-
-  //SFmap.insert(std::make_pair( "mc"       , h_mc       ));
-  //SFmap.insert(std::make_pair( "mc_sys"   , h_mc_sys   ));
-  //SFmap.insert(std::make_pair( "data"     , h_data     ));
-  //SFmap.insert(std::make_pair( "data_sys" , h_data_sys ));
-
   SFmap_.insert(std::make_pair( "sf"       , h_sf       ));
   SFmap_.insert(std::make_pair( "sf_sys"   , h_sf_sys   ));
 
-  std::cout<<"loaded 2D map : "<<filename<<std::endl;
-  //std::cout<<"Load::Accessing : "<< SFmap_["sf"]->GetNbinsX() <<std::endl;
+  //std::cout<<"loaded 2D map : "<<filename<<std::endl;
 
   f.Close();
-  // persist in memory
-  //SFmap_ = SFmap;
 }
 
 
