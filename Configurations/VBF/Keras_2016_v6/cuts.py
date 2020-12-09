@@ -8,7 +8,7 @@ supercut = 'mll>12 \
             && Sum$(CleanJet_pt>30)==2\
             && ptll>30 \
             && PuppiMET_pt>20 \
-            && mjj>200 \
+            && mjj>120 \
             '
 
 ## Signal regions

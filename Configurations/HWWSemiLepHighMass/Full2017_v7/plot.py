@@ -14,63 +14,48 @@ else:
 # Groups of samples to improve the plots.
 # If not defined, normal plots is used
 #
-reweightedWjets = True
 
+groupPlot['SM Higgs'] = {
+'nameHR': 'SM Higgs',
+'isSignal' : 0,
+'color': 863, # kAzure +3
+'samples'  : ['ggH_hww', 'qqH_hww', 'ZH_hww', 'WH_hww', 'ggH_htt', 'qqH_htt', 'ZH_htt', 'WH_htt']
+}
+groupPlot['multiboson']  = {
+'nameHR' : 'multiboson',
+'isSignal' : 0,
+'color': 857, # kAzure -3
+'samples'  : ['WW', 'ggWW', 'WWewk', 'qqWWqq', 'WW2J', 'VVV', 'VZ', 'Vg', 'VgS_H',  'VgS_L']
+}
+groupPlot['QCD'] = {
+'nameHR' : "QCD",
+'isSignal' : 0,
+'color'    : 617,   # kViolet + 1
+'samples'  : ['QCD']
+}
+groupPlot['FAKE'] = {
+'nameHR' : "Fake",
+'isSignal' : 0,
+'color'    : 617,   # kViolet + 1
+'samples'  : ['FAKE']
+}
+groupPlot['DY']  = {
+'nameHR' : "DY",
+'isSignal' : 0,
+'color': 418,    # kGreen+2
+'samples'  : ['DY']
+}
 groupPlot['top']  = {
     'nameHR' : 't#bar{t} and ST',
     'isSignal' : 0,
     'color': 400,   # kYellow
     'samples'  : ['top']
 }
-if reweightedWjets:
-    groupPlot['Wjets'] = {
-        'nameHR' : "W+jets",
-        'isSignal' : 0,
-        'color': 921,      # kGray + 1
-        'samples'  : ['Wjets_rew']
-    }
-else:
-    groupPlot['Wjets'] = {
-        'nameHR' : "W+jets",
-        'isSignal' : 0,
-        'color': 921,      # kGray + 1
-        'samples'  : ['Wjets']
-    }
-
-groupPlot['QCD'] = {
-    'nameHR' : "QCD",
+groupPlot['Wjets'] = {
+    'nameHR' : "W+jets",
     'isSignal' : 0,
-    'color'    : 617,   # kViolet + 1
-    'samples'  : ['QCD']
-}
-
-groupPlot['FAKE'] = {
-    'nameHR' : "Fake",
-    'isSignal' : 0,
-    'color'    : 617,   # kViolet + 1
-    'samples'  : ['FAKE']
-}
-
-groupPlot['DY']  = {
-    'nameHR' : "DY",
-    'isSignal' : 0,
-    'color': 418,    # kGreen+2
-    'samples'  : ['DY']
-}
-
-groupPlot['multiboson']  = {
-    'nameHR' : 'multiboson',
-    'isSignal' : 0,
-    'color': 857, # kAzure -3
-    'samples'  : ['WW', 'ggWW', 'WWewk', 'qqWWqq', 'WW2J', 'VVV', 'VZ', 'Vg', 'VgS_H',  'VgS_L']
-    # 'samples'  : ['WW', 'WWewk', 'qqWWqq', 'WW2J', 'VVV', 'VZ', 'Vg', 'VgS_H',  'VgS_L']
-}
-
-groupPlot['SM Higgs'] = {
-    'nameHR': 'SM Higgs',
-    'isSignal' : 0,
-    'color': 863, # kAzure +3
-    'samples'  : ['ggH_hww', 'qqH_hww', 'ZH_hww', 'WH_hww', 'ggH_htt', 'qqH_htt', 'ZH_htt', 'WH_htt']
+    'color': 921,      # kGray + 1
+    'samples'  : ['Wjets'],
 }
 
 for counter, MX in enumerate(plotmasses):
@@ -175,11 +160,6 @@ plot['VVV']  = {
 }
 
 plot['Wjets']  = {
-    'color': 856, # kAzure -4
-    'isSignal' : 0,
-    'isData'   : 0,
-}
-plot['Wjets_rew']  = {
     'color': 856, # kAzure -4
     'isSignal' : 0,
     'isData'   : 0,

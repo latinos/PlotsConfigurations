@@ -1,7 +1,7 @@
 super_cut = [ 
     '(nLepton>=1 && Alt$(Lepton_pt[1],0)<10.)',
-    # SingleMuon trigger: IsoMu27, SingleElectron trigger: Ele35_WPTight_Gsf
-    '((Lepton_pt[0]>27. && abs(Lepton_pdgId[0])==13) || (Lepton_pt[0]>35. && abs(Lepton_pdgId[0])==11))',
+    # SingleMuon trigger: IsoMu24, SingleElectron trigger: Ele32_WPTight_Gsf
+    '((Lepton_pt[0]>24. && abs(Lepton_pdgId[0])==13) || (Lepton_pt[0]>32. && abs(Lepton_pdgId[0])==11))',
 ]
 
 supercut = ' && '.join(super_cut)

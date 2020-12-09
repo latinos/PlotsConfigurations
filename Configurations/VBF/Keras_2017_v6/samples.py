@@ -336,6 +336,7 @@ samples['VVV'] = {
 signals = []
 
 #### ggH -> WW
+
 '''
 samples['ggH_hww'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'GluGluHToWWTo2L2NuPowheg_M125'),
@@ -345,8 +346,8 @@ samples['ggH_hww'] = {
 }
 
 signals.append('ggH_hww')
-'''
 
+'''
 samples['ggH_hww'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'GluGluHToWWTo2L2NuPowheg_M125')+nanoGetSampleFiles(mcDirectory, 'GGHjjToWWTo2L2Nu_minloHJJ_M125'),
     'weight': mcCommonWeight,

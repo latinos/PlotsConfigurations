@@ -186,7 +186,7 @@ for cut in clean_cuts:
 
 print('Create plots')
 
-fr_dir = 'FRnew'
+fr_dir = 'FReleTrig'
 canvas = ROOT.TCanvas('canvas', 'FW canvas', 600, 600)
 for fw in histograms_fr:
     name = 'plot'+fw[1:].replace('_total', '_fw')

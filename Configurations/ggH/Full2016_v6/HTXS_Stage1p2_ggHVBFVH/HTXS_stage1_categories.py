@@ -40,7 +40,7 @@ HTXSStage1Categories = {
 HTXSStage1_1Categories = {
       'UNKNOWN' : 0,
       # Gluon fusion
-      #'GG2H_FWDH' : 100,
+      'GG2H_FWDH' : 100,
       'GG2H_PTH_GT200' : 101,
       'GG2H_0J_PTH_0_10' : 102,
       'GG2H_0J_PTH_GT10' : 103,

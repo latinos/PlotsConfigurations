@@ -65,14 +65,15 @@ elif  'cern' in SITE:
   treeBaseDir = '/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano'
   # treeBaseDir = '/eos/user/s/ssiebert/HWWNano'
 
-def makeMCDirectory(var=''):
-    if var:
-        return os.path.join(treeBaseDir, mcProduction, mcSteps.format(var='__' + var))
+def makeMCDirectory(var=None):
+    if var is not None:
+        return os.path.join(treeBaseDir, mcProduction, mcSteps+'_'+var)
     else:
-        return os.path.join(treeBaseDir, mcProduction, mcSteps.format(var=''))
+        return os.path.join(treeBaseDir, mcProduction, mcSteps)
 
 mcDirectory = makeMCDirectory()
 #mcDirectory = os.path.join(treeBaseDir, mcProduction, mcSteps)
+VBSDirectory = os.path.join('/eos/cms/store/group/phys_smp/VJets_NLO_VBSanalyses', mcProduction, mcSteps)
 dataDirectory = os.path.join(treeBaseDir, dataReco, dataSteps)
 fakeDirectory = os.path.join(treeBaseDir, dataReco, fakeSteps)
 
@@ -106,7 +107,8 @@ ptllDYW_LO = '((0.632927+0.0456956*gen_ptll-0.00154485*gen_ptll*gen_ptll+2.64397
 
 
 #addSampleWeight(samples,'DY','DYJetsToLL_M-50',ptllDYW_NLO)
-addSampleWeight(samples,'DY','DYJetsToLL_M-50_ext1',ptllDYW_NLO)
+#addSampleWeight(samples,'DY','DYJetsToLL_M-50_ext1',ptllDYW_NLO)
+addSampleWeight(samples,'DY','DYJetsToLL_M-50_ext1', 'DY_NLO_pTllrw')
 
 files = nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-4to50_HT-100to200_ext1')
 #files+= nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-4to50_HT-200to400') #FIXME: missing file
@@ -121,11 +123,17 @@ samples['DYlow'] = {
 }
 
 
-addSampleWeight(samples,'DYlow','DYJetsToLL_M-4to50_HT-100to200',ptllDYW_LO)
-addSampleWeight(samples,'DYlow','DYJetsToLL_M-4to50_HT-200to400',ptllDYW_LO)
-addSampleWeight(samples,'DYlow','DYJetsToLL_M-4to50_HT-400to600',ptllDYW_LO)
-addSampleWeight(samples,'DYlow','DYJetsToLL_M-4to50_HT-600toInf',ptllDYW_LO)
-addSampleWeight(samples,'DYlow','DYJetsToLL_M-10to50-LO',ptllDYW_LO+'*(LHE_HT<100)')
+#addSampleWeight(samples,'DYlow','DYJetsToLL_M-4to50_HT-100to200',ptllDYW_LO)
+#addSampleWeight(samples,'DYlow','DYJetsToLL_M-4to50_HT-200to400',ptllDYW_LO)
+#addSampleWeight(samples,'DYlow','DYJetsToLL_M-4to50_HT-400to600',ptllDYW_LO)
+#addSampleWeight(samples,'DYlow','DYJetsToLL_M-4to50_HT-600toInf',ptllDYW_LO)
+#addSampleWeight(samples,'DYlow','DYJetsToLL_M-10to50-LO',ptllDYW_LO+'*(LHE_HT<100)')
+
+addSampleWeight(samples,'DYlow','DYJetsToLL_M-4to50_HT-100to200', 'DY_LO_pTllrw')
+addSampleWeight(samples,'DYlow','DYJetsToLL_M-4to50_HT-200to400', 'DY_LO_pTllrw')
+addSampleWeight(samples,'DYlow','DYJetsToLL_M-4to50_HT-400to600', 'DY_LO_pTllrw')
+addSampleWeight(samples,'DYlow','DYJetsToLL_M-4to50_HT-600toInf', 'DY_LO_pTllrw')
+addSampleWeight(samples,'DYlow','DYJetsToLL_M-10to50-LO',         'DY_LO_pTllrw*(LHE_HT<100)')
 
 ########## W+jets #########
 

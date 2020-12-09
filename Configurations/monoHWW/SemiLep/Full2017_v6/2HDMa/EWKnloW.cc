@@ -29,7 +29,7 @@ protected:
   FloatArrayReader* LHEPart_phi{};
   IntArrayReader* LHEPart_pdgId{};
 
-  TGraph* Wpt_map=new TGraph("/afs/cern.ch/work/d/dvalsecc/private/CMSSW_10_6_4/src/LatinoAnalysis/Gardener/python/data/ewk/kewk_w_for_python.txt");
+  TGraph* Wpt_map=new TGraph("/afs/cern.ch/user/s/svanputt/work/monoHiggs/PR/CMSSW_10_6_5/src/LatinoAnalysis/Gardener/python/data/ewk/kewk_w_for_python.txt");
 };
 
 EWKnloW::EWKnloW() :

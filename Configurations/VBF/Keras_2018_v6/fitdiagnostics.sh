@@ -11,5 +11,5 @@ workdir=/afs/cern.ch/work/r/rceccare/CMSSW_10_6_4/src/PlotsConfigurations/Config
 cd $workdir
 
 
-echo "events:" "">> diagnostics_class0_15_05_multicut.txt
-combine -M FitDiagnostics class0_15_05_multicut.root -t -1 --setParameters r_vbf=1,r_ggH=1 --redefineSignalPOIs=r_vbf --saveNormalizations --saveWithUncertainties >> diagnostics_class0_15_05_multicut.txt
+echo "events:" "">> diagnostics_class0_04c_11_quad_multicut.txt
+combine -M FitDiagnostics class0_04c_11_quad_multicut.root -t -1 --setParameters r_vbf=1,r_ggH=1 --redefineSignalPOIs=r_vbf --saveNormalizations --saveWithUncertainties >> diagnostics_class0_04c_11_quad_multicut.txt

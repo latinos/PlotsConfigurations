@@ -32,13 +32,14 @@ for cat in HTXSStage1_1Categories:
   elif 'BBH' in cat:
     sampleNames.append(cat.replace('BBH','bbH_hww'))
 
-os.chdir('Combination_20May/')
+os.chdir('Combination_20_11_quad/')
 
 sampleNames.append('ggH_hww_PTH_200_300')
 sampleNames.append('ggH_hww_PTH_300_450')
 sampleNames.append('ggH_hww_PTH_450_650')
 sampleNames.append('ggH_hww_PTH_GT650')
 
+'''
 #No merging
 command="combine -M MultiDimFit --algo=singles --X-rtd MINIMIZER_analytic Full2017_ggH_HTXS_Stage1p2.root -t -1  --setParameters "
 for sample in sampleNames:
@@ -55,11 +56,19 @@ command = command[:-1]
 print command
 os.system(command)
 '''
-'''
+
 #Merge some bins
-#command="combine -M MultiDimFit --algo=singles --X-rtd MINIMIZER_analytic --cminDefaultMinimizerStrategy=0 Full2016_ggH_HTXS_Stage1p2_2j_merged.root -t -1 --setParameters "
-command="combine -M MultiDimFit --algo=singles --X-rtd MINIMIZER_analytic Full2016_ggH_HTXS_Stage1p2_2j_merged.root -t -1 --freezeParameters 'rgx{.*}' --setParameters "
+#command="combine -M MultiDimFit --algo=singles --X-rtd MINIMIZER_analytic --saveFitResult --cminDefaultMinimizerStrategy=2 Full2016_ggH_HTXS_Stage1p2_2j_merged.root -t -1 --setParameters "
+#command="combine -M MultiDimFit --algo=singles --X-rtd MINIMIZER_analytic --saveFitResult Full2016_ggH_HTXS_Stage1p2_2j_merged.root -t -1 --freezeParameters 'rgx{.*}' --setParameters "
+command="combine -M MultiDimFit --algo=singles --X-rtd MINIMIZER_analytic --saveFitResult Full2016_ggH_HTXS_Stage1p2_2j_merged.root -t -1 --setParameters "
 #--freezeParameters CMS_hww_WWresum_0j 
+
+
+
+#command="combineTool.py -M FitDiagnostics -d Full_run2_combined_production_modes_grouped.root -t -1"
+
+#--setParameters r=1 --redefineSignalPOIs=r --X-rtd MINIMIZER_analytic --job-mode=condor --sub-opts '+JobFlavour = "workday" "
+
 
 poi = ''
 for sample in sampleNames:
@@ -93,7 +102,7 @@ for sample in sampleNames:
 
   else: continue
 
-  command+="{}=1,".format(poi)
+'''  command+="{}=1,".format(poi)
 
 command = command[:-1]
 print command
@@ -101,8 +110,9 @@ os.system(command)
 
 '''
 ##Merge all bins
-command="combine -M MultiDimFit --algo=singles --X-rtd MINIMIZER_analytic Full2016_ggH_HTXS_Stage1p2_2j_onePOI.root -t -1 --setParameters r_ggh=1,r_qqh=1 "
-#command="combine -M Significance Full2016_ggH_HTXS_Stage1p2_2j_onePOI.root -t -1 --setParameters r_ggh=1,r_qqh=1 --redefineSignalPOIs=r_qqh >> significance_onePOI_qqh.txt "
+#command="combine -M MultiDimFit --algo=singles --X-rtd MINIMIZER_analytic Full2016_ggH_HTXS_Stage1p2_2j_onePOI.root -t -1 --setParameters r_ggh=1,r_qqh=1 "
+command="combine -M Significance Full2016_ggH_HTXS_Stage1p2_2j_onePOI.root -t -1 --setParameters r_ggh=1,r_qqh=1 --redefineSignalPOIs=r_qqh >> significance_onePOI_qqh.txt "
+#command="combine -M FitDiagnostics Full2016_ggH_HTXS_Stage1p2_2j_onePOI.root -t -1 --setParameters r_ggh=1,r_qqh=1 --redefineSignalPOIs=r_ggh,r_qqh --saveNormalizations --saveWithUncertainties"
 
 #poi = ''
 #for sample in sampleNames:
@@ -130,5 +140,5 @@ os.system(command)
 #os.system(command)
 #
 #
-'''
+
 

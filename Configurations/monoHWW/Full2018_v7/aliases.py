@@ -79,6 +79,11 @@ aliases['btagSF'] = {
     'samples': mc
 }
 
+aliases['JetPUID_SF'] = {
+    'expr': '( 1 * !(topcr) + (topcr)*Jet_PUIDSF_loose)',
+    'samples': mc
+}
+
 
 for shift in ['jes', 'lf', 'hf', 'lfstats1', 'lfstats2', 'hfstats1', 'hfstats2', 'cferr1', 'cferr2']:
     for targ in ['bVeto', 'bReq']:
@@ -145,9 +150,33 @@ aliases['PromptGenLepMatch2l'] = {
 }
 
 aliases['Top_pTrw'] = {
-    'expr': '(topGenPt * antitopGenPt > 0.) * (TMath::Sqrt(TMath::Exp(0.0615 - 0.0005 * topGenPt) * TMath::Exp(0.0615 - 0.0005 * antitopGenPt))) + (topGenPt * antitopGenPt <= 0.)',
+    'expr': '(topGenPt * antitopGenPt > 0.) * (TMath::Sqrt((0.103*TMath::Exp(-0.0118*topGenPt) - 0.000134*topGenPt + 0.973) * (0.103*TMath::Exp(-0.0118*antitopGenPt) - 0.000134*antitopGenPt + 0.973))) + (topGenPt * antitopGenPt <= 0.)',
     'samples': ['top']
 }
+
+aliases['nCleanGenJet'] = {
+    'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/Differential/ngenjet.cc+' % os.getenv('CMSSW_BASE')],
+    'class': 'CountGenJet',
+    'samples': mc
+}
+
+# ##### DY Z pT reweighting
+# aliases['getGenZpt_OTF'] = {
+#     'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/patches/getGenZpt.cc+' % os.getenv('CMSSW_BASE')],
+#     'class': 'getGenZpt',
+#     'samples': ['DY']
+# }
+# handle = open('%s/src/PlotsConfigurations/Configurations/patches/DYrew30.py' % os.getenv('CMSSW_BASE'),'r')
+# exec(handle)
+# handle.close()
+# aliases['DY_NLO_pTllrw'] = {
+#     'expr': '('+DYrew['2018']['NLO'].replace('x', 'getGenZpt_OTF')+')*(nCleanGenJet == 0)+1.0*(nCleanGenJet > 0)',
+#     'samples': ['DY']
+# }
+# aliases['DY_LO_pTllrw'] = {
+#     'expr': '('+DYrew['2018']['LO'].replace('x', 'getGenZpt_OTF')+')*(nCleanGenJet == 0)+1.0*(nCleanGenJet > 0)',
+#     'samples': ['DY']
+# }
 
 # Jet bins
 # using Alt$(CleanJet_pt[n], 0) instead of Sum$(CleanJet_pt >= 30) because jet pt ordering is not strictly followed in JES-varied samples
@@ -167,7 +196,7 @@ aliases['multiJet'] = {
 
 # data/MC scale factors
 aliases['SFweight'] = {
-    'expr': ' * '.join(['SFweight2l','LepWPCut','LepWPSF','btagSF','Jet_PUIDSF_loose']),
+    'expr': ' * '.join(['SFweight2l','LepWPCut','LepWPSF','btagSF','JetPUID_SF']),
     'samples': mc
 }
 # variations

@@ -150,7 +150,7 @@ else:
     raise IOError('FILE NOT FOUND: '+signal_file+'does not exist.')
 
 for mp in signal:
-    if not 'mA_400' in mp: continue
+    #if not 'mA_400' in mp: continue
     groupPlot[mp] = {
     'nameHR'   : signal[mp]['plot_name'],
 #    'isSignal' : 2,

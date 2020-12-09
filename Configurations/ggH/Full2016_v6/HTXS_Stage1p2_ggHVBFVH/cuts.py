@@ -11,26 +11,26 @@ supercut = '   mll>12 \
             && (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13) \
            '
 
-## Signal regions
+# Signal regions
 cuts['hww2l2v_13TeV'] = {
    'expr': 'sr',
     # Define the sub-categorization of sr
    'categories' : {
        # 350 < mjj < 700 && pTWW < 200
-       'of2j_vbflike_mjj350_700_pthLT200' : ' multiJet && mjj > 350 && mjj <= 700 && pTWW<200 && vbflike_mjjhigh',
-       'of2j_gghlike_mjj350_700_pthLT200' : ' multiJet && mjj > 350 && mjj <= 700 && pTWW<200 && gghlike_mjjhigh',
-       'of2j_toplike_mjj350_700_pthLT200' : ' multiJet && mjj > 350 && mjj <= 700 && pTWW<200 && toplike_mjjhigh',
-       'of2j_wwlike_mjj350_700_pthLT200'  : ' multiJet && mjj > 350 && mjj <= 700 && pTWW<200 && wwlike_mjjhigh',
+       'of2j_vbflike_mjj350_700_pthLT200' : ' multiJet && mjj > 350 && mjj <= 700 && pTWW<200 && vbflike',
+       'of2j_gghlike_mjj350_700_pthLT200' : ' multiJet && mjj > 350 && mjj <= 700 && pTWW<200 && gghlike',
+       'of2j_toplike_mjj350_700_pthLT200' : ' multiJet && mjj > 350 && mjj <= 700 && pTWW<200 && toplike',
+       'of2j_wwlike_mjj350_700_pthLT200'  : ' multiJet && mjj > 350 && mjj <= 700 && pTWW<200 && wwlike',
        # mjj > 700 && pTWW < 200
-       'of2j_vbflike_mjjGT700_pthLT200'   : ' multiJet && mjj > 700 && pTWW<200 && vbflike_mjjhigh',
-       'of2j_gghlike_mjjGT700_pthLT200'   : ' multiJet && mjj > 700 && pTWW<200 && gghlike_mjjhigh',
-       'of2j_toplike_mjjGT700_pthLT200'   : ' multiJet && mjj > 700 && pTWW<200 && toplike_mjjhigh',
-       'of2j_wwlike_mjjGT700_pthLT200'    : ' multiJet && mjj > 700 && pTWW<200 && wwlike_mjjhigh',
+       'of2j_vbflike_mjjGT700_pthLT200'   : ' multiJet && mjj > 700 && pTWW<200 && vbflike',
+       'of2j_gghlike_mjjGT700_pthLT200'   : ' multiJet && mjj > 700 && pTWW<200 && gghlike',
+       'of2j_toplike_mjjGT700_pthLT200'   : ' multiJet && mjj > 700 && pTWW<200 && toplike',
+       'of2j_wwlike_mjjGT700_pthLT200'    : ' multiJet && mjj > 700 && pTWW<200 && wwlike',
        # mjj > 350 && pTWW > 200
-       'of2j_vbflike_mjjGT350_pthGT200'   : ' multiJet && mjj > 350 && pTWW>200 && vbflike_mjjhigh',
-       'of2j_gghlike_mjjGT350_pthGT200'   : ' multiJet && mjj > 350 && pTWW>200 && gghlike_mjjhigh',
-       'of2j_toplike_mjjGT350_pthGT200'   : ' multiJet && mjj > 350 && pTWW>200 && toplike_mjjhigh',
-       'of2j_wwlike_mjjGT350_pthGT200'    : ' multiJet && mjj > 350 && pTWW>200 && wwlike_mjjhigh',
+       'of2j_vbflike_mjjGT350_pthGT200'   : ' multiJet && mjj > 350 && pTWW>200 && vbflike',
+       'of2j_gghlike_mjjGT350_pthGT200'   : ' multiJet && mjj > 350 && pTWW>200 && gghlike',
+       'of2j_toplike_mjjGT350_pthGT200'   : ' multiJet && mjj > 350 && pTWW>200 && toplike',
+       'of2j_wwlike_mjjGT350_pthGT200'    : ' multiJet && mjj > 350 && pTWW>200 && wwlike',
        # pTWW > 200 && ( zeroJet || oneJet || ( multiJet && mjj < 350 && VH veto ) )
        'of_pth200_300'                    : ' pTWW > 200 && pTWW <= 300 && ( zeroJet || oneJet || ( multiJet &&  mjj < 350 && (mjj<65 || mjj>105) ) )',
        'of_pth300_450'                    : ' pTWW > 300 && pTWW <= 450 && ( zeroJet || oneJet || ( multiJet &&  mjj < 350 && (mjj<65 || mjj>105) ) )', 

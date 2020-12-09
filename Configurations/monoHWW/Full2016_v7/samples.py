@@ -110,15 +110,16 @@ mcCommonWeight = 'XSWeight*SFweight*PromptGenLepMatch2l*METFilter_MC'
 useDYtt = True
 
 
-ptllDYW_NLO = '(0.876979+gen_ptll*(4.11598e-03)-(2.35520e-05)*gen_ptll*gen_ptll)*(1.10211 * (0.958512 - 0.131835*TMath::Erf((gen_ptll-14.1972)/10.1525)))*(gen_ptll<140)+0.891188*(gen_ptll>=140)'
-ptllDYW_LO  = '(8.61313e-01+gen_ptll*4.46807e-03-1.52324e-05*gen_ptll*gen_ptll)*(1.08683 * (0.95 - 0.0657370*TMath::Erf((gen_ptll-11.)/5.51582)))*(gen_ptll<140)+1.141996*(gen_ptll>=140)'
+#ptllDYW_NLO = '(0.876979+gen_ptll*(4.11598e-03)-(2.35520e-05)*gen_ptll*gen_ptll)*(1.10211 * (0.958512 - 0.131835*TMath::Erf((gen_ptll-14.1972)/10.1525)))*(gen_ptll<140)+0.891188*(gen_ptll>=140)'
+#ptllDYW_LO  = '(8.61313e-01+gen_ptll*4.46807e-03-1.52324e-05*gen_ptll*gen_ptll)*(1.08683 * (0.95 - 0.0657370*TMath::Erf((gen_ptll-11.)/5.51582)))*(gen_ptll<140)+1.141996*(gen_ptll>=140)'
 
 #ptllDYW_NLO = '(((0.623108 + 0.0722934*gen_ptll - 0.00364918*gen_ptll*gen_ptll + 6.97227e-05*gen_ptll*gen_ptll*gen_ptll - 4.52903e-07*gen_ptll*gen_ptll*gen_ptll*gen_ptll)*(gen_ptll<45)*(gen_ptll>0) + 1*(gen_ptll>=45))*(abs(gen_mll-90)<3) + (abs(gen_mll-90)>3))'
 #ptllDYW_LO = '((0.632927+0.0456956*gen_ptll-0.00154485*gen_ptll*gen_ptll+2.64397e-05*gen_ptll*gen_ptll*gen_ptll-2.19374e-07*gen_ptll*gen_ptll*gen_ptll*gen_ptll+6.99751e-10*gen_ptll*gen_ptll*gen_ptll*gen_ptll*gen_ptll)*(gen_ptll>0)*(gen_ptll<100)+(1.41713-0.00165342*gen_ptll)*(gen_ptll>=100)*(gen_ptll<300)+1*(gen_ptll>=300))'
 
+"""
 if useDYtt:
     files = nanoGetSampleFiles(mcDirectory, 'DYJetsToTT_MuEle_M-50') + \
-        nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-10to50-LO')
+            nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-10to50-LO')
 
     samples['DY'] = {
         'name': files,
@@ -126,12 +127,12 @@ if useDYtt:
                                          Sum$(LeptonGen_isPrompt==1 && LeptonGen_pt>15)>=2) )",
         'FilesPerJob': 5,
     }
-    addSampleWeight(samples,'DY','DYJetsToTT_MuEle_M-50',ptllDYW_NLO)
-    addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO',ptllDYW_LO)
+#    addSampleWeight(samples,'DY','DYJetsToTT_MuEle_M-50','DY_NLO_pTllrw')
+#    addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO_ext1','DY_LO_pTllrw')
 
 else:
     files = nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_ext1') + \
-        nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-10to50-LO_ext1')
+        nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-10to50_ext1')
     
     samples['DY'] = {
         'name': files,
@@ -141,6 +142,33 @@ else:
     }
     #addSampleWeight(samples,'DY','DYJetsToLL_M-50',ptllDYW_NLO)
     #addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO',ptllDYW_LO)
+
+"""
+
+filesDYHT = nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-10to50-LO') + \
+nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-5to50_HT-70to100') + \
+nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-5to50_HT-100to200') + \
+nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-5to50_HT-200to400') + \
+nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-5to50_HT-400to600') + \
+nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-5to50_HT-600toinf_ext1') + \
+nanoGetSampleFiles(mcDirectory, 'DYJetsToTT_MuEle_M-50') + \
+nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-70to100') + \
+nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-100to200') + \
+nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-200to400') + \
+nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-400to600') + \
+nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-600to800') + \
+nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-800to1200') + \
+nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-1200to2500')
+
+samples['DY'] = {
+    'name': filesDYHT,
+    'weight': mcCommonWeight + '*( !(Sum$(PhotonGen_isPrompt==1 && PhotonGen_pt>15 && abs(PhotonGen_eta)<2.6) > 0))',
+    'FilesPerJob': 3,
+}
+
+addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO',  'LHE_HT<70.0')
+addSampleWeight(samples,'DY','DYJetsToTT_MuEle_M-50',  'LHE_HT<70.0 || LHE_HT>2500')
+
 
 ###### Top #######
 
@@ -273,6 +301,28 @@ for hs in mhs:
                 'weight': mcCommonWeight,
                 'FilesPerJob': 1
             }
+
+
+mA = ['200', '400', '500', '600']
+
+for A in mA:
+    samples['2HMDa__gg_sinp_0p35_tanb_1p0_mXd_10_MA_' + A + '_ma_150'] = {
+        'name': nanoGetSampleFiles(signalDirectory, '2HDMa_HWWTollnunu_gg_sinp_0p35_tanb_1p0_mXd_10_MH3_' + A + '_MH4_150_MH2_' + A + '_MHC_' + A),
+        'weight': mcCommonWeight,
+        'FilesPerJob': 1
+    }
+
+sintheta = ['0p35', '0p7']
+tanbeta = ['0p5', '1p0', '1p5', '2p0', '4p0', '8p0']
+
+for theta in sintheta:
+    for beta in tanbeta:
+        samples['2HMDa__gg_sinp_' + theta  + '_tanb_' + beta  + '_mXd_10_MA_300_ma_150'] = {
+            'name': nanoGetSampleFiles(signalDirectory, '2HDMa_HWWTollnunu_gg_sinp_' + theta  + '_tanb_' + beta  + '_mXd_10_MH3_300_MH4_150_MH2_300_MHC_300'),
+            'weight': mcCommonWeight,
+            'FilesPerJob': 1
+        }
+        
 
 
 ###########################################
