@@ -21,9 +21,9 @@ static std::map<const std::string,TH2D*> SFmap_;
 
 class flipper : public multidraw::TTreeFunction {
 public:
-  flipper( const char* year , const unsigned int nLep );
+  flipper( const char* year , const unsigned int nLep , std::string SF_type );
   char const* getName() const override { return "flipper"; }
-  TTreeFunction* clone() const override { return new flipper( year_ , nLeptons_ ); }
+  TTreeFunction* clone() const override { return new flipper( year_ , nLeptons_ , SF_type_ ); }
   //TTreeFunction* clone() const override;
   unsigned getNdata() override { return 1; }
   void loadSF2D( std::string filename );
@@ -33,6 +33,7 @@ public:
 protected:
   const char* year_;
   unsigned int nLeptons_;
+  std::string SF_type_;
   void bindTree_(multidraw::FunctionLibrary&) override;
   IntArrayReader* Lepton_pdgId;
   FloatArrayReader* Lepton_pt;
@@ -43,17 +44,18 @@ protected:
   //TH2D *h_data;
   //TH2D *h_data_sys;
   TH2D *h_sf;
-  TH2D *h_sf_sys;
+  TH2D *h_sf_sys; // statistical
 
 private:
   std::tuple<double,double> GetSF( double pt_in , double eta_in );
   
 };
 
-flipper::flipper( const char* year , const unsigned int nLep ) : TTreeFunction()
+flipper::flipper( const char* year , const unsigned int nLep, std::string SF_type ) : TTreeFunction()
 {
   year_ = year;
   nLeptons_ = nLep;
+  SF_type_ = SF_type;
   std::string cmssw_base = std::getenv("CMSSW_BASE");
 
   std::cout<<"flipper::flipper"<<std::endl;
@@ -141,15 +143,20 @@ flipper::evaluate(unsigned)
     if(TMath::Abs(Lepton_pdgId->At(i)) == 11){
       std::tuple<double, double> res_ttHMVA = GetSF( Lepton_pt->At(i) , Lepton_eta->At(i) );
       SF_vect.push_back( std::get<0>(res_ttHMVA) );
-      SF_err_vect.push_back( TMath::Sqrt( TMath::Power(std::get<1>(res_ttHMVA) , 2 ) ) );
+      //SF_err_vect.push_back( TMath::Sqrt( TMath::Power(std::get<1>(res_ttHMVA) , 2 ) ) );
+      SF_err_vect.push_back( std::get<1>(res_ttHMVA) );
     }
   }
   for(auto x : SF_vect) SF *= x;
   
-  //Variation
+  // Variation
   // ??
-  return SF;
-  
+  // Statistical error
+  for ( unsigned int i = 0 ; i < nLeptons_ ; i++) SF_err += TMath::Power( SF_err_vect[i] , 2 ) / SF_vect[i];
+
+  if ( SF_type_.compare("Total_SF") == 0 ) { return SF; }
+  else if ( SF_type_.compare("Total_SF_err") == 0 ) { return TMath::Sqrt( SF_err ); }
+  else{ std::cout << "invalid option: please choose from [ Total_SF , Total_SF_err ]" << std::endl; return 0; }
 }
 
 void
