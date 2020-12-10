@@ -20,7 +20,7 @@ cutsFile = direc+'/cuts.py'
 samplesFile = direc+'/samples_allvars.py' 
 
 # file with list of samples
-plotFile = direc+'/plot.py'
+plotFile = direc+'/plot_allvars.py'
 
 
 

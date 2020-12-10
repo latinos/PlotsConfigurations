@@ -10,6 +10,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument('--input', '-i', help='input ROOT file')
 parser.add_argument("-x", help="x var")
 parser.add_argument("--x-label", help="x varlabel")
+parser.add_argument("-ys", help="y vars", nargs="+")
 parser.add_argument("--outputdir", "-o", help="outputdir")
 args = parser.parse_args()
 
@@ -23,6 +24,7 @@ print "branches = ", list_branches
 
 for branches in list_branches:
   #print branches.GetName()
+  if args.ys != None and branches.GetName() not in args.ys: continue
    
   if branches.GetName() != "limit"  and branches.GetName() != "mh" \
          and branches.GetName() != "limitErr"   and branches.GetName() != "syst"   and branches.GetName() != "iToy" \

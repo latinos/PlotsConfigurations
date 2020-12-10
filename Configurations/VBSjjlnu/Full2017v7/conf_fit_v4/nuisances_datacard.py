@@ -5,11 +5,15 @@ mc =["DY", "top",  "Wjets_HT", "VV", "VVV", "VBF-V", "Vg", "VgS", "VBS"]
 # mc_norm = [m for m in mc if m not in ["VBS", "VV"]]
 # mc_sep =  ["VBS", "VV"]
 
+phasespaces = ["res_wjetcr_ele","res_wjetcr_mu" ,"boost_wjetcr_ele" ,"boost_wjetcr_mu",
+        "res_topcr_ele","res_topcr_mu" ,"boost_topcr_ele" ,"boost_topcr_mu",
+        "res_sig_ele","res_sig_mu" ,"boost_sig_ele" ,"boost_sig_mu" ]
+
 def getSamplesWithout(samples, samples_to_remove):
     return [m for m in samples if m not in samples_to_remove]
 
-phase_spaces_boost = [ c for c in cuts if 'boost' in c]
-phase_spaces_res = [ c for c in cuts if 'res' in c]
+phase_spaces_boost = [ c for c in phasespaces if 'boost' in c]
+phase_spaces_res = [ c for c in phasespaces if 'res' in c]
 
 phase_spaces_res_ele = [ c for c in phase_spaces_res if 'ele' in c]
 phase_spaces_res_mu = [ c for c in phase_spaces_res if 'mu' in c]
@@ -277,6 +281,7 @@ for js in jes_systs:
                     'samples': dict((skey, ['1.','1.']) for skey in mc if skey not in ['Vg', 'VgS']),
                     'folderUp' : directory_mc+'_JESup',
                     'folderDown' : directory_mc+'_JESdo',
+                    'AsLnN': '1',
                     
     }
    
@@ -290,7 +295,8 @@ for js in jes_systs:
                         'cuts': phase_spaces_boost, #because we are vetoing fatjets anyway in resolved category 
                         'samples': dict((skey, ['1.','1.']) for skey in mc if skey not in ['Vg', 'VgS']),
                         'folderUp' : directory_mc+'_fatjetJESup',
-                        'folderDown' : directory_mc+'_fatjetJESdo'
+                        'folderDown' : directory_mc+'_fatjetJESdo',
+                        'AsLnN': '1',
     }
 
 ##### Jet energy resolution
@@ -302,7 +308,8 @@ nuisances['JER']  = {
                 'mapDown': 'JERdo',
                 'samples': dict((skey, ['1.','1.']) for skey in mc if skey not in ['Vg', 'VgS']),
                 'folderUp' : directory_mc+'_JERup',
-                'folderDown' : directory_mc+'_JERdo'
+                'folderDown' : directory_mc+'_JERdo',
+                'AsLnN': '1',
 }
 
 nuisances['fatjetJER']  = {
@@ -315,6 +322,7 @@ nuisances['fatjetJER']  = {
                 'samples': dict((skey, ['1.','1.']) for skey in mc if skey not in ["Vg","VgS"]),
                 'folderUp' : directory_mc+'_fatjetJERup',
                 'folderDown' : directory_mc+'_fatjetJERdo',
+                'AsLnN': '1',
 }
 
 
@@ -328,6 +336,7 @@ nuisances['MET']  = {
                 'samples': dict((skey, ['1.','1.']) for skey in mc if skey not in ['Vg', 'VgS']),
                 'folderUp' : directory_mc+'_METup',
                 'folderDown' : directory_mc+'_METdo',
+                'AsLnN': '1',
 }
 
 
@@ -362,6 +371,8 @@ nuisances['fatjetJMR']  = {
         'samples': dict((skey, ['1.','1.']) for skey in mc if skey not in ["Vg","VgS"]),
         'folderUp' : directory_mc+'_fatjetJMRup',
         'folderDown' : directory_mc+'_fatjetJMRdo',
+        'AsLnN': '1'
+
 
 }
 
@@ -375,6 +386,7 @@ nuisances['fatjetJMS']  = {
     'samples': dict((skey, ['1.','1.']) for skey in mc if skey not in ["Vg","VgS"]),
     'folderUp' : directory_mc+'_fatjetJMSup',
     'folderDown' : directory_mc+'_fatjetJMSdo',
+    'AsLnN': '1',
 }
 
 
@@ -392,13 +404,26 @@ for sample in mc :
 # #
 # # PS and UE
 # #
-nuisances['PS']  = {
+nuisances['PS_top']  = {
                 'name'  : 'PS',
                 'skipCMS' : 1,
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : dict((skey, ['PSWeight[0]', 'PSWeight[3]']) for skey in mc if skey in ['top'])
                 }
+
+nuisances['PS_others']  = {
+                'name'  : 'PS',
+                'skipCMS' : 1,
+                'type'  : 'lnN',
+                'samples'  : {
+                    #'top' : 1.10,
+                    'Wjets_HT': '1.15',
+                    'VBS': '1.05',
+                    'DY': '1.10',
+                    'VV': '1.05',
+                }
+        }
 
 # # nuisances['UE']  = {
 # #                 'name'  : 'UE', 
@@ -519,7 +544,7 @@ for n in nuisances.values():
     n['skipCMS'] = 1
 
    
-print ' '.join(nuis['name'] for nname, nuis in nuisances.iteritems() if nname not in ('lumi', 'stat'))
+# print ' '.join(nuis['name'] for nname, nuis in nuisances.iteritems() if nname not in ('lumi', 'stat'))
 
 
 

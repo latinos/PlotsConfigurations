@@ -18,7 +18,6 @@ for ir in range(1,7):
 for ir in range(1,6):
     wjets_bins["Wjets_HT_boost_"+str(ir)] =  "boost_"+str(ir)
 
-
 samples= wjets_bins
 
 f.ls()

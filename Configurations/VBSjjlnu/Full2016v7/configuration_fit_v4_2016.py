@@ -32,7 +32,7 @@ lumi = 35.867
 outputDirPlots = 'plot_'+tag 
 # used by mkDatacards to define output directory for datacards
 
-outputDirDatacard = 'datacards_' +tag
+outputDirDatacard = 'datacards_' +tag + "_asLnN"
 #outputDirDatacard = 'datacards_' +tag +"_v2"
 
 # structure file for datacard

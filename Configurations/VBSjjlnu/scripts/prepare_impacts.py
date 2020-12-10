@@ -50,13 +50,19 @@ def prepare_rateParams(years):
                 "Wjets_NLO_deta2_jpt1","Wjets_NLO_deta1_jpt1",
                 "Wjets_NLO_boost1", "Wjets_NLO_boost2"]
 
-    elif args.wbins == "v4_res":
+    elif args.wbins in  ["v4_res", "v4_res_ele", "v4_res_mu"]:
+        Wjets_bins = []
+        for ir in range(1,7):
+            Wjets_bins.append("Wjets_HT_res_"+str(ir))
+    elif args.wbins  in ["v4_boost", "v4_boost_ele", "v4_boost_mu"]:
         Wjets_bins = []
         for ir in range(1,6):
-            Wjets_bins.append("Wjets_HT_res_"+str(ir))
-    elif args.wbins == "v4_boost":
+            Wjets_bins.append("Wjets_HT_boost_"+str(ir))
+    elif args.wbins == 'v4':
         Wjets_bins = []
-        for ir in range(1,5):
+        for ir in range(1,7):
+            Wjets_bins.append("Wjets_HT_res_"+str(ir))
+        for ir in range(1,6):
             Wjets_bins.append("Wjets_HT_boost_"+str(ir))
 
 
@@ -64,9 +70,15 @@ def prepare_rateParams(years):
         print("ERROR! Specify a valid W+jets binning")
         exit(1)
     
+    fls = []
+    if "ele" in args.wbins: fls.append("ele")
+    elif "mu" in args.wbins: fls.append("mu")
+    else: fls=['ele','mu']
+
+
     for y in years:
             for wjbin in Wjets_bins:
-                for fl in ["ele", "mu"]:
+                for fl in fls:
                     if "boost" in wjbin:
                         rps.append('CMS_{}_norm_{}_boost_{}'.format(wjbin, fl,y))
                     else:
@@ -81,6 +93,11 @@ def prepare_rateParams(years):
             rps.append("CMS_Top_norm_res_{}".format(y))
         elif args.wbins == "Aboost":
             rps.append("CMS_Top_norm_boost_{}".format(y))
+        elif args.wbins == "v4":
+            rps.append("CMS_Top_norm_ele_res_{}".format(y))
+            rps.append("CMS_Top_norm_ele_boost_{}".format(y))
+            rps.append("CMS_Top_norm_mu_res_{}".format(y))
+            rps.append("CMS_Top_norm_mu_boost_{}".format(y))
     return rps
 
 
@@ -108,7 +125,8 @@ if not args.plot:
                 {} {}""".format(toysf, fitter_options[args.fit_options], mask))
 
     cmd.append("""combineTool.py -M Impacts -d combined.root -m 125 --doFits \\
-                -t -1 --expectSignal=1 {} --job-mode condor --task-name nuis -n nuis.125 \\
+                -t -1 --expectSignal=1 {} --job-mode condor --sub-opts '+JobFlavour="microcentury"' \\
+                 --task-name nuis -n nuis.125 \\
                 {} {}""".format(toysf, fitter_options[args.fit_options],mask))
 
 
@@ -120,7 +138,7 @@ if not args.plot:
     
     cmd.append("""combineTool.py -M Impacts -d combined.root -m 125 --doFits \\
                 -t -1 --expectSignal=1 {} \\
-                --job-mode condor --task-name rateParams -n rateParams.125 \\
+                --job-mode condor  --sub-opts '+JobFlavour="microcentury"' --task-name rateParams -n rateParams.125 \\
                 --named {} \\
                 --setParameterRanges {} \\
                 {} {}""".format(toysf, rparam_names, rparam_ranges, fitter_options[args.fit_options], mask))

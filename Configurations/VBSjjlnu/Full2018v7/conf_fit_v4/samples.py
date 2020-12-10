@@ -181,7 +181,6 @@ samples['top'] = {    'name'   :   nanoGetSampleFiles(directory_bkg,'TTTo2L2Nu')
                      'suppressNegative' :['all'],
                      'suppressNegativeNuisances' :['all'],
                  }
-
 addSampleWeight(samples,'top','TTTo2L2Nu','Top_pTrw')
 addSampleWeight(samples,'top','TTToSemiLeptonic','Top_pTrw')
 #addSampleWeight(samples,'top','TTZjets','Top_pTrw')

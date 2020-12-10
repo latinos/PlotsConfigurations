@@ -20,7 +20,7 @@ def run_jobs(conf):
     print(cmd)
     os.system(cmd)
 
-tag = "fit_v2.2"
+tag = "fit_v4"
 years = ["2018"]
 datacard_name = "fit_v2.2_2018_v3"
 #cuts = ["res_wjetcr_dnnhigh_ele","res_sig_dnnhigh_ele","res_topcr_dnnhigh_ele"]

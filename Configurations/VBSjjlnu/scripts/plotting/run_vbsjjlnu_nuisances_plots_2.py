@@ -21,8 +21,8 @@ def run_jobs(conf):
     os.system(cmd)
 
 tag = "fit_v4"
-years = ["2018"]
-datacard_name = "fit_v4_2018"
+years = ["2016"]
+datacard_name = "fit_v4_2016"
 #cuts = ["res_wjetcr_dnnhigh_ele","res_sig_dnnhigh_ele","res_topcr_dnnhigh_ele"]
 # cuts = ["boost_topcr_ele","boost_wjetcr_ele","res_topcr_ele","res_wjetcr_ele",
 #         "boost_sig_ele", "res_sig_ele","boost_topcr_mu","boost_wjetcr_mu","res_topcr_mu","res_wjetcr_mu",
@@ -33,7 +33,7 @@ cuts = ["boost_sig_mu"]
 vars = [  "DNNoutput_boost_bins2"]
 
 joinsub =  0
-samples =  ["Wjets_HT"]
+samples =  ["DY", "VV","top","Wjets_HT"]
 #samples = ["DY", "VVV", "VV"]
 
 outputdir = "/eos/user/d/dvalsecc/www/VBSPlots/FullRun2/fits_results/fit_v4_fullrun2/nuisances_effects"
@@ -44,6 +44,6 @@ for year,cut,var,sample in product(years,cuts,vars,samples):
     
 
 print(jobs)
-pool = Pool(6)
+pool = Pool(8)
 
 pool.map(run_jobs, jobs)

@@ -19,8 +19,8 @@ samples= {}
 cuts= {}
 nuisances= {}
 exec(open(samplesFile))
-exec(open(nuisancesFile))
 exec(open(cutsFile))
+exec(open(nuisancesFile))
 
 
 nuisances_name = [ nuisance['name'] for nuisance in nuisances.values() if 'name' in nuisance]

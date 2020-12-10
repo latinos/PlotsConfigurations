@@ -215,7 +215,7 @@ nuisances['eff_e']  = {
 nuisances['electronpt']  = {
                 'name'  : 'CMS_scale_e_2017',
                 'type'  : 'lnN',
-                'samples'  :   dict((skey, '1.03') for skey in mc if skey not in ['top', 'Fake','Wjets_HT']),
+                'samples'  :   dict((skey, '1.03') for skey in mc ),
                 'cuts': phase_spaces_tot_ele
 }
 
@@ -245,7 +245,7 @@ nuisances['eff_m']  = {
 nuisances['muonpt']  = {
                 'name'  : 'CMS_scale_m_2017',
                 'type'  : 'lnN',
-                'samples'  : dict((skey, '1.03') for skey in mc if skey not in ['top', 'Fake','Wjets_HT']),
+                'samples'  : dict((skey, '1.03') for skey in mc),
                 'cuts':   phase_spaces_tot_mu
 }
 

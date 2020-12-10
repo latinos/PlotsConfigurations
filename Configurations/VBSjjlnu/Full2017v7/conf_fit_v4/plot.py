@@ -40,13 +40,16 @@ palette = {
     "Green4": (68, 175, 105), #44af69
     "Green5": (29,194,106),#1DC26A
     "Green6" : (27,177,97), #1BB161
+    "Green7": (108, 198, 140), # 6CC68C
+    "GreenLighter": (93, 192, 128),  #5DC080
+    "GreenDarker": (14, 150, 78), # 14, 150, 78
     "LightGreen" : (82, 221, 135), #52dd87
     "Violet": (242, 67, 114), #f24372  
     "Pink": (247, 191, 223), #F7BFDF,
     "Peach": (255, 143, 133), #F7C59F
     "Peach2": (255, 146, 51), #FF9233
     "Peach3": (255, 157, 71), #
-    "Pink2" : (253, 161, 155),
+    "Pink2" : (253, 161, 155), #FD9BA1
     "Orange": (255,156, 51),
     "Orange2": (255,135, 31)
 }
@@ -72,30 +75,34 @@ for ir in range(1,6):
 
 
 
-groupPlot['Others']  = {  
-                'nameHR' : "Others",
-                'isSignal' : 0,
-                'color':palette["Orange"],# palette["Green5"],    #Green2
-                'samples'  : ['DY','VBF-V','Vg','VgS' ],
-                'fill': 1001
-            }
-
 
 groupPlot['VV+VVV']  = {  
                   'nameHR' : 'VV+VVV',
                   'isSignal' : 0,
-                  'color': palette["Yellow"], #palette["Peach3"],  
+                  'color': palette["Pink"], #palette["Peach3"],  
                   'samples'  : ['VVV', 'VV'],
                   'fill': 1001
               }
 
-groupPlot['DY+Vg']  = {  
-                  'nameHR' : "DY+V#gamma+V#gamma*",
+
+
+groupPlot['DY']  = {  
+                  'nameHR' : "DY",
                   'isSignal' : 0,
-                  'color'    : palette["Green3"],
-                  'samples'  : ['Vg','VgS'],
+                  'color'    : palette["GreenDarker"],
+                  'samples'  : ['DY'],
                   'fill': 1001
               }
+
+groupPlot['Others']  = {  
+                'nameHR' : "Others",
+                'isSignal' : 0,
+                'color':palette["GreenLighter"],# palette["Green5"],    #Green2
+                'samples'  : ['VBF-V', 'Vg','VgS' ],
+                'fill': 1001
+            }
+
+
 
 
 groupPlot['Fake']  = {  
@@ -120,7 +127,7 @@ groupPlot['top']  = {
 groupPlot["Wjets"]  = {  
                         'nameHR' : 'W+Jets',
                         'isSignal' : 0,
-                        'color':   palette["Green5"],
+                        'color':   palette["Yellow"],
                         'samples'  : wjets_bins,
                         'fill': 1001
                 }

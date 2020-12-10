@@ -372,13 +372,19 @@ for sample in mc :
 # # #
 # # # PS and UE
 # # #
-# nuisances['PS']  = {
-#                 'name'  : 'PS',
-#                 'skipCMS' : 1,
-#                 'kind'  : 'weight',
-#                 'type'  : 'shape',
-#                 'samples'  : dict((skey, ['PSWeight[0]', 'PSWeight[3]']) for skey in mc )
-#                 }
+nuisances['PS']  = {
+                'name'  : 'PS',
+                'skipCMS' : 1,
+                'type'  : 'lnN',
+                'samples'  : {
+                    'top' : '1.10',
+                    'Wjets_HT': '1.15',
+                    'VBS':     '1.05',
+                    'DY': '1.10',
+                    'VV': '1.05',
+                }
+        }
+
 
 # # nuisances['UE']  = {
 # #                 'name'  : 'UE', 

@@ -203,17 +203,19 @@ nuisances['eff_m']  = {
                 'cuts': phase_spaces_tot_mu
 }
 
-# nuisances['muonpt']  = {
-#                 'name'  : 'CMS_scale_m_2018',
-#                 'kind'  : 'suffix',
-#                 'type'  : 'shape',
-#                 'mapUp': 'MupTup',
-#                 'mapDown': 'MupTdo',
-#                 'cuts': phase_spaces_tot_mu,
-#                 'samples': dict((skey, ['1.','1.']) for skey in mc if skey not in ['Vg', 'VgS']),
-#                 'folderUp' : directory_mc+'_MupTup',
-#                 'folderDown' : directory_mc+'_MupTdo',
-# }
+nuisances['muonpt']  = {
+                'name'  : 'CMS_scale_m_2018',
+                'kind'  : 'suffix',
+                'type'  : 'shape',
+                'mapUp': 'MupTup',
+                'mapDown': 'MupTdo',
+                'cuts': phase_spaces_tot_mu,
+                'samples': dict((skey, ['1.','1.']) for skey in mc if skey not in ['Vg', 'VgS']),
+                'folderUp' : directory_mc+'_MupTup',
+                'folderDown' : directory_mc+'_MupTdo',
+}
+
+
 nuisances['muonpt']  = {
                 'name'  : 'CMS_scale_m_2017',
                 'type'  : 'lnN',
