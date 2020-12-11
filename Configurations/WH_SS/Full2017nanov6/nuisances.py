@@ -157,13 +157,13 @@ nuisances['prefire'] = {
 
 ##### Electron Efficiency and energy scale
 
-#nuisances['eff_e'] = {
-#    'name': 'CMS_eff_e_2017',
-#    'kind': 'weight',
-#    'type': 'shape',
-##    'samples': dict((skey, ['SFweightEleUp', 'SFweightEleDown']) for skey in mc)
-#   'samples': dict((skey, ['ttHMVA_2l_ele_SF_Up', 'ttHMVA_2l_ele_SF_Down']) for skey in mc)
-#}
+nuisances['eff_e'] = {
+    'name': 'CMS_eff_e_2017',
+    'kind': 'weight',
+    'type': 'shape',
+#    'samples': dict((skey, ['SFweightEleUp', 'SFweightEleDown']) for skey in mc)
+   'samples': dict((skey, ['ttHMVA_2l_ele_SF_Up', 'ttHMVA_2l_ele_SF_Down']) for skey in mc)
+}
 
 nuisances['electronpt'] = {
     'name': 'CMS_scale_e_2017',
@@ -174,19 +174,19 @@ nuisances['electronpt'] = {
     'samples': dict((skey, ['1', '1']) for skey in mc),
     'folderUp': makeMCDirectory('ElepTup_suffix'),
     'folderDown': makeMCDirectory('ElepTdo_suffix'),
-    'AsLnN': '0'
+    'AsLnN': '1'
 }
 
 ##### Muon Efficiency and energy scale
 
-#nuisances['eff_m'] = {
-#    'name': 'CMS_eff_m_2017',
-#    'kind': 'weight',
-#    'type': 'shape',
-##    'samples': dict((skey, ['SFweightMuUp', 'SFweightMuDown']) for skey in mc)
-#    'samples': dict((skey, ['ttHMVA_2l_mu_SF_Up', 'ttHMVA_2l_mu_SF_Down']) for skey in mc)
-#}
-#
+nuisances['eff_m'] = {
+    'name': 'CMS_eff_m_2017',
+    'kind': 'weight',
+    'type': 'shape',
+#    'samples': dict((skey, ['SFweightMuUp', 'SFweightMuDown']) for skey in mc)
+    'samples': dict((skey, ['ttHMVA_2l_mu_SF_Up', 'ttHMVA_2l_mu_SF_Down']) for skey in mc)
+}
+
 nuisances['muonpt'] = {
     'name': 'CMS_scale_m_2017',
     'kind': 'suffix',
@@ -196,7 +196,7 @@ nuisances['muonpt'] = {
     'samples': dict((skey, ['1', '1']) for skey in mc),
     'folderUp': makeMCDirectory('MupTup_suffix'),
     'folderDown': makeMCDirectory('MupTdo_suffix'),
-    'AsLnN': '0'
+    'AsLnN': '1'
 }
 
 ##### Jet energy scale
