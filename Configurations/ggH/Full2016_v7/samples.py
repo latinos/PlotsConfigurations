@@ -69,7 +69,6 @@ embedDirectory = os.path.join(treeBaseDir, embedReco, embedSteps)
 ################################################
 
 DataRun = [
-    ['B','Run2016B-02Apr2020_ver1-v1'],
     ['B','Run2016B-02Apr2020_ver2-v1'],
     ['C','Run2016C-02Apr2020-v1'],
     ['D','Run2016D-02Apr2020-v1'],
@@ -103,18 +102,19 @@ mcCommonWeight = 'XSWeight*SFweight*PromptGenLepMatch2l*METFilter_MC'
 
 ###### DY #######
 
-useEmbeddedDY = True
+useEmbeddedDY = False
 useDYtt = True
 
 # The Dyveto sample is used to estimate one piece of the Dyemb uncertainty
 # To avoid running it all the times, it was run once and the uncertainty was converted into a lnN (see nuisances.py)
-runDYveto = True
+runDYveto = False
 
 embed_tautauveto = '' #Setup
 if useEmbeddedDY:
   embed_tautauveto = '*embed_tautauveto'
 
 if useEmbeddedDY:
+
   # Actual embedded data
   samples['Dyemb'] = {
     'name': [],
@@ -167,15 +167,15 @@ if useEmbeddedDY:
 ## We need to keep DY MC as well, because only embedded events passing the ElMu trigger are considered
 ## Events failing ElMu but passing one of the other triggers are included in the DY MC
 if useDYtt:
-    files = nanoGetSampleFiles(mcDirectory, 'DYJetsToTT_MuEle_M-50') + \
+    files = nanoGetSampleFiles(mcDirectory, 'DYJetsToTT_MuEle_M-50_ext1') + \
         nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-10to50-LO')
     
     samples['DY'] = {
         'name': files,
         'weight': mcCommonWeight+embed_tautauveto + '*( !(Sum$(PhotonGen_isPrompt==1 && PhotonGen_pt>15 && abs(PhotonGen_eta)<2.6) > 0))',
-        'FilesPerJob': 4,
+        'FilesPerJob': 2,
     }
-    addSampleWeight(samples,'DY','DYJetsToTT_MuEle_M-50','DY_NLO_pTllrw')
+    addSampleWeight(samples,'DY','DYJetsToTT_MuEle_M-50_ext1','DY_NLO_pTllrw')
     addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO','DY_LO_pTllrw')
 else:
     files = nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50') + \
