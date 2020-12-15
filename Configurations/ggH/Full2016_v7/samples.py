@@ -102,7 +102,7 @@ mcCommonWeight = 'XSWeight*SFweight*PromptGenLepMatch2l*METFilter_MC'
 
 ###### DY #######
 
-useEmbeddedDY = False
+useEmbeddedDY = True
 useDYtt = True
 
 # The Dyveto sample is used to estimate one piece of the Dyemb uncertainty
