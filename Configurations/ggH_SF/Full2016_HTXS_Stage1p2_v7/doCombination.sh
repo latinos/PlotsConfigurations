@@ -63,15 +63,12 @@ combineCards.py   sf_0j_ee_pth0_10=${datacardDir}/hww2l2v_13TeV_0j_ee_pth0_10/ev
                   sf_2j_ee_WW=${datacardDir}/hww2l2v_13TeV_WW_2j_ee/events/datacard.txt \
                   sf_2j_mm_WW=${datacardDir}/hww2l2v_13TeV_WW_2j_mm/events/datacard.txt \
                   sf_hpt_mm_WW=${datacardDir}/hww2l2v_13TeV_WW_hpt_mm/events/datacard.txt \
-                  sf_hpt_ee_WW=${datacardDir}/hww2l2v_13TeV_WW_hpt_ee/events/datacard.txt
-
-
-
-                  # sf_2j_ee_mjj350_700_pthjj0_25=${datacardDir}/hww2l2v_13TeV_2j_ee_mjj350_700_pthjj0_25/events/datacard.txt \
-                  # sf_2j_mm_mjj350_700_pthjj0_25=${datacardDir}/hww2l2v_13TeV_2j_mm_mjj350_700_pthjj0_25/events/datacard.txt \
-                  # sf_2j_ee_mjj350_700_pthjj25=${datacardDir}/hww2l2v_13TeV_2j_ee_mjj350_700_pthjj25/events/datacard.txt \
-                  # sf_2j_mm_mjj350_700_pthjj25=${datacardDir}/hww2l2v_13TeV_2j_mm_mjj350_700_pthjj25/events/datacard.txt \
-                  # sf_2j_ee_mjj700_pthjj0_25=${datacardDir}/hww2l2v_13TeV_2j_ee_mjj700_pthjj0_25/events/datacard.txt \
-                  # sf_2j_mm_mjj700_pthjj0_25=${datacardDir}/hww2l2v_13TeV_2j_mm_mjj700_pthjj0_25/events/datacard.txt \
-                  # sf_2j_ee_mjj700_pthjj25=${datacardDir}/hww2l2v_13TeV_2j_ee_mjj700_pthjj25/events/datacard.txt \
-                  # sf_2j_mm_mjj700_pthjj25=${datacardDir}/hww2l2v_13TeV_2j_mm_mjj700_pthjj25/events/datacard.txt \
+                  sf_hpt_ee_WW=${datacardDir}/hww2l2v_13TeV_WW_hpt_ee/events/datacard.txt \
+                  sf_2j_ee_mjj350_700_pthjj0_25=${datacardDir}/hww2l2v_13TeV_2j_ee_mjj350_700_pthjj0_25/events/datacard.txt \
+                  sf_2j_mm_mjj350_700_pthjj0_25=${datacardDir}/hww2l2v_13TeV_2j_mm_mjj350_700_pthjj0_25/events/datacard.txt \
+                  sf_2j_ee_mjj350_700_pthjj25=${datacardDir}/hww2l2v_13TeV_2j_ee_mjj350_700_pthjj25/events/datacard.txt \
+                  sf_2j_mm_mjj350_700_pthjj25=${datacardDir}/hww2l2v_13TeV_2j_mm_mjj350_700_pthjj25/events/datacard.txt \
+                  sf_2j_ee_mjj700_pthjj0_25=${datacardDir}/hww2l2v_13TeV_2j_ee_mjj700_pthjj0_25/events/datacard.txt \
+                  sf_2j_mm_mjj700_pthjj0_25=${datacardDir}/hww2l2v_13TeV_2j_mm_mjj700_pthjj0_25/events/datacard.txt \
+                  sf_2j_ee_mjj700_pthjj25=${datacardDir}/hww2l2v_13TeV_2j_ee_mjj700_pthjj25/events/datacard.txt \
+                  sf_2j_mm_mjj700_pthjj25=${datacardDir}/hww2l2v_13TeV_2j_mm_mjj700_pthjj25/events/datacard.txt
