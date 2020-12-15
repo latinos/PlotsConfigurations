@@ -92,19 +92,18 @@ Remove nuisances giving negative yileds:
 
 ### Prepare the workspace
 
+To avoid possible segmentation fault errors, run this command:
+
+    ulimit -s unlimited
+
+And then, actually produce the workspace:
+
     python doWorkspace.py
 
 ### Do the Fit
 
     python doFit.py
 
-### Significance and best fit results are stored in:
+### Results are stored in:
 
-    grep Significance: datacards/*/comb/SExpPre_*
-    grep "fit r:" datacards/*/comb/BestFit_*
-
-### Create table of yields
-
-    grep "proc" datacards/hww2l2v_13TeV_*/events/datacard.txt > yield.txt
-    grep "rate " datacards/hww2l2v_13TeV_*/events/datacard.txt >> yield.txt
-    column -t yield.txt > yield_organized.txt
+    Combination/FitResults.txt

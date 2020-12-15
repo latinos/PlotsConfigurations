@@ -39,48 +39,38 @@ sampleNames.append('ggH_hww_PTH_300_450')
 sampleNames.append('ggH_hww_PTH_450_650')
 sampleNames.append('ggH_hww_PTH_GT650')
 
-##### fitting #####
-command="combine -M MultiDimFit --algo=singles --X-rtd MINIMIZER_analytic Full2016_SF_ggH_HTXS_Stage1p2_v7.root -t -1 --freezeParameters 'rgx{.*}' --setParameters "
+'''
+#No merging
+command="combine -M MultiDimFit --algo=singles --X-rtd MINIMIZER_analytic Full2016_SF_ggH_HTXS_Stage1p2.root -t -1  --setParameters > FitResult.txt"
+for sample in sampleNames:
+  if 'ggH_hww' not in sample: continue
+  if 'FWDH' in sample: continue
+  if 'GT200' in sample: continue
+  command+="r_{}=1,".format(sample)
 
+command = command[:-1]
+#cwd=os.getcwd()
+#os.system('cd Combination')
+
+print command
+os.system(command)
+'''
+
+##### fitting #####
+
+#Merge some bins
+command="combine -M MultiDimFit --algo=singles --X-rtd MINIMIZER_analytic Full2016_SF_ggH_HTXS_Stage1p2_merged_v7.root -t -1 --setParameters "
 poi = ''
 for sample in sampleNames:
+  if 'ggH_hww' not in sample: continue
   if 'FWDH' in sample: continue
-  if 'htt' in sample: continue
-
-  if 'ggH_hww' in sample:
-    if 'GT200' in sample: continue
-
-    # No high-pT signal
-    #if ('ggH_hww_PTH_300_450' in sample): continue
-    #if ('ggH_hww_PTH_450_650' in sample): continue
-    #if ('ggH_hww_PTH_GT650'   in sample): continue
-
-    elif ('MJJ_0_350_PTH_0_60' in sample or 'MJJ_0_350_PTH_60_120' in sample): 
-      poi = 'r_ggH_hww_GE2J_MJJ_0_350_PTH_LT120'
-    elif ('MJJ_350_700' in sample): 
-      poi = 'r_ggH_hww_GE2J_MJJ_350_700'
-    elif ('MJJ_GT700' in sample): 
-      poi = 'r_ggH_hww_GE2J_MJJ_GT700'
-    elif ('PTH_200_300' in sample): 
-      poi = 'r_ggH_hww_PTH_200_300'
-    elif ('MJJ_0_350_PTH_120_200' in sample): 
-      poi = 'r_ggH_hww_GE2J_MJJ_0_350_PTH_120_200' 
-    else: 
-      poi = 'r_{}'.format(sample)
- 
-  elif 'qqH_hww' in sample:
-    if 'MJJ_350_700' in sample: poi = 'r_qqH_hww_MJJ_350_700_PTH_LT200'
-    elif 'MJJ_GT700' in sample: poi = 'r_qqH_hww_MJJ_GT700_PTH_LT200'
-    elif 'MJJ_GT350_PTH_GT200' in sample: poi = 'r_qqH_hww_MJJ_GT350_PTH_GT200' 
-    else: continue
-
-  elif 'WH_had_hww_MJJ_60_120' in sample or 'ZH_had_hww_MJJ_60_120' in sample: poi = 'r_VH_had_hww_MJJ_60_120'
-
-  else: continue
-
+  if 'ggH_hww_PTH' in sample: 
+    poi = 'r_ggH_hww_PTH_GT200'
+  else: 
+    poi = 'r_'+sample
   command+="{}=1,".format(poi)
 
 command = command[:-1]
-command = command + " > FitResults.txt"
+command=command+" > FitResults.txt"
 print command
 os.system(command)
