@@ -49,7 +49,7 @@ embedSteps = 'DATAl1loose2016v7__l2loose__l2tightOR2016v7__Embedding'
 
 SITE=os.uname()[1]
 if    'iihe' in SITE:
-  treeBaseDir = '/pnfs/iihe/cms/store/user/xjanssen/HWW2015'
+  treeBaseDir = '/pnfs/iihe/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano'
 elif  'cern' in SITE:
   treeBaseDir = '/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano'
 
@@ -377,8 +377,8 @@ samples['ggH_hww_PTH_200_300']  = {  'name': nanoGetSampleFiles(mcDirectory,'Glu
                                      'suppressNegative' :['all'],
                                      'suppressNegativeNuisances' :['all'],
                                   }
-addSampleWeight(samples, 'ggH_hww_'+cat.replace('GG2H_',''), 'GluGluHToWWTo2L2Nu_alternative_M125', '(HTXS_stage1_1_cat_pTjet30GeV<107)*Weight2MINLO*1092.0713/1068.1909')
-addSampleWeight(samples, 'ggH_hww_'+cat.replace('GG2H_',''), 'GGHjjToWWTo2L2Nu_minloHJJ_M125', '(HTXS_stage1_1_cat_pTjet30GeV>106)*1092.0713/1068.1909')
+addSampleWeight(samples, 'ggH_hww_PTH_200_300', 'GluGluHToWWTo2L2Nu_alternative_M125', '(HTXS_stage1_1_cat_pTjet30GeV<107)*Weight2MINLO*1092.0713/1068.1909')
+addSampleWeight(samples, 'ggH_hww_PTH_200_300', 'GGHjjToWWTo2L2Nu_minloHJJ_M125', '(HTXS_stage1_1_cat_pTjet30GeV>106)*1092.0713/1068.1909')
 signals.append('ggH_hww_PTH_200_300')
 
 samples['ggH_hww_PTH_300_450']  = {  'name': nanoGetSampleFiles(mcDirectory,'GluGluHToWWTo2L2Nu_alternative_M125')+nanoGetSampleFiles(mcDirectory, 'GGHjjToWWTo2L2Nu_minloHJJ_M125'),
@@ -387,6 +387,8 @@ samples['ggH_hww_PTH_300_450']  = {  'name': nanoGetSampleFiles(mcDirectory,'Glu
                                      'suppressNegative' :['all'],
                                      'suppressNegativeNuisances' :['all'],
                                   }
+addSampleWeight(samples, 'ggH_hww_PTH_300_450', 'GluGluHToWWTo2L2Nu_alternative_M125', '(HTXS_stage1_1_cat_pTjet30GeV<107)*Weight2MINLO*1092.0713/1068.1909')
+addSampleWeight(samples, 'ggH_hww_PTH_300_450', 'GGHjjToWWTo2L2Nu_minloHJJ_M125', '(HTXS_stage1_1_cat_pTjet30GeV>106)*1092.0713/1068.1909')
 signals.append('ggH_hww_PTH_300_450')
 
 samples['ggH_hww_PTH_450_650']  = {  'name': nanoGetSampleFiles(mcDirectory,'GluGluHToWWTo2L2Nu_alternative_M125')+nanoGetSampleFiles(mcDirectory, 'GGHjjToWWTo2L2Nu_minloHJJ_M125'),
@@ -395,6 +397,8 @@ samples['ggH_hww_PTH_450_650']  = {  'name': nanoGetSampleFiles(mcDirectory,'Glu
                                      'suppressNegative' :['all'],
                                      'suppressNegativeNuisances' :['all'],
                                   }
+addSampleWeight(samples, 'ggH_hww_PTH_450_650', 'GluGluHToWWTo2L2Nu_alternative_M125', '(HTXS_stage1_1_cat_pTjet30GeV<107)*Weight2MINLO*1092.0713/1068.1909')
+addSampleWeight(samples, 'ggH_hww_PTH_450_650', 'GGHjjToWWTo2L2Nu_minloHJJ_M125', '(HTXS_stage1_1_cat_pTjet30GeV>106)*1092.0713/1068.1909')
 signals.append('ggH_hww_PTH_450_650')
 
 samples['ggH_hww_PTH_GT650']  = {  'name': nanoGetSampleFiles(mcDirectory,'GluGluHToWWTo2L2Nu_alternative_M125')+nanoGetSampleFiles(mcDirectory, 'GGHjjToWWTo2L2Nu_minloHJJ_M125'),
@@ -403,6 +407,8 @@ samples['ggH_hww_PTH_GT650']  = {  'name': nanoGetSampleFiles(mcDirectory,'GluGl
                                    'suppressNegative' :['all'],
                                    'suppressNegativeNuisances' :['all'],
                                   }
+addSampleWeight(samples, 'ggH_hww_PTH_GT650', 'GluGluHToWWTo2L2Nu_alternative_M125', '(HTXS_stage1_1_cat_pTjet30GeV<107)*Weight2MINLO*1092.0713/1068.1909')
+addSampleWeight(samples, 'ggH_hww_PTH_GT650', 'GGHjjToWWTo2L2Nu_minloHJJ_M125', '(HTXS_stage1_1_cat_pTjet30GeV>106)*1092.0713/1068.1909')
 signals.append('ggH_hww_PTH_GT650')
 
 

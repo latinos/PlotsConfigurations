@@ -912,9 +912,9 @@ nuisances['vbf_scale_1jet'] = {
 nuisances['vbf_scale_lowmjj'] = {
                'name'  : 'vbf_scale_lowmjj',
                'samples'  : {
-                    'qqH_hww_GE2J_MJJ_0_60' : ['LHEScaleWeight[8]/'+QCDScaleFactors['QQ2HQQ_GE2J_MJJ_0_60'][0], 'LHEScaleWeight[0]/'+QCDScaleFactors['QQ2HQQ_GE2J_MJJ_0_60'][1]],
-                    'qqH_hww_GE2J_MJJ_60_120' : ['LHEScaleWeight[8]/'+QCDScaleFactors['QQ2HQQ_GE2J_MJJ_60_120'][0], 'LHEScaleWeight[0]/'+QCDScaleFactors['QQ2HQQ_GE2J_MJJ_60_120'][1]],
-                    'qqH_hww_GE2J_MJJ_120_350' : ['LHEScaleWeight[8]/'+QCDScaleFactors['QQ2HQQ_GE2J_MJJ_120_350'][0], 'LHEScaleWeight[0]/'+QCDScaleFactors['QQ2HQQ_GE2J_MJJ_120_350'][1]],
+                    'qqH_hww_MJJ_0_60' : ['LHEScaleWeight[8]/'+QCDScaleFactors['QQ2HQQ_MJJ_0_60'][0], 'LHEScaleWeight[0]/'+QCDScaleFactors['QQ2HQQ_MJJ_0_60'][1]],
+                    'qqH_hww_MJJ_60_120' : ['LHEScaleWeight[8]/'+QCDScaleFactors['QQ2HQQ_MJJ_60_120'][0], 'LHEScaleWeight[0]/'+QCDScaleFactors['QQ2HQQ_MJJ_60_120'][1]],
+                    'qqH_hww_MJJ_120_350' : ['LHEScaleWeight[8]/'+QCDScaleFactors['QQ2HQQ_MJJ_120_350'][0], 'LHEScaleWeight[0]/'+QCDScaleFactors['QQ2HQQ_MJJ_120_350'][1]],
                   },
                'type'  : 'shape',
                'kind'  : 'weight',
@@ -924,10 +924,10 @@ nuisances['vbf_scale_lowmjj'] = {
 nuisances['vbf_scale_highmjj_lowpt'] = {
                'name'  : 'vbf_scale_highmjj_lowpt',
                'samples'  : {
-                    'qqH_hww_GE2J_MJJ_350_700_PTH_0_200_PTHJJ_0_25' : ['LHEScaleWeight[8]/'+QCDScaleFactors['QQ2HQQ_GE2J_MJJ_350_700_PTH_0_200_PTHJJ_0_25'][0], 'LHEScaleWeight[0]/'+QCDScaleFactors['QQ2HQQ_GE2J_MJJ_350_700_PTH_0_200_PTHJJ_0_25'][1]],
-                    'qqH_hww_GE2J_MJJ_350_700_PTH_0_200_PTHJJ_GT25' : ['LHEScaleWeight[8]/'+QCDScaleFactors['QQ2HQQ_GE2J_MJJ_350_700_PTH_0_200_PTHJJ_GT25'][0], 'LHEScaleWeight[0]/'+QCDScaleFactors['QQ2HQQ_GE2J_MJJ_350_700_PTH_0_200_PTHJJ_GT25'][1]],
-                    'qqH_hww_GE2J_MJJ_GT700_PTH_0_200_PTHJJ_0_25' : ['LHEScaleWeight[8]/'+QCDScaleFactors['QQ2HQQ_GE2J_MJJ_GT700_PTH_0_200_PTHJJ_0_25'][0], 'LHEScaleWeight[0]/'+QCDScaleFactors['QQ2HQQ_GE2J_MJJ_GT700_PTH_0_200_PTHJJ_0_25'][1]],
-                    'qqH_hww_GE2J_MJJ_GT700_PTH_0_200_PTHJJ_GT25' : ['LHEScaleWeight[8]/'+QCDScaleFactors['QQ2HQQ_GE2J_MJJ_GT700_PTH_0_200_PTHJJ_GT25'][0], 'LHEScaleWeight[0]/'+QCDScaleFactors['QQ2HQQ_GE2J_MJJ_GT700_PTH_0_200_PTHJJ_GT25'][1]],
+                    'qqH_hww_MJJ_350_700_PTHJJ_0_25' : ['LHEScaleWeight[8]/'+QCDScaleFactors['QQ2HQQ_MJJ_350_700_PTHJJ_0_25'][0], 'LHEScaleWeight[0]/'+QCDScaleFactors['QQ2HQQ_MJJ_350_700_PTHJJ_0_25'][1]],
+                    'qqH_hww_MJJ_350_700_PTHJJ_GT25' : ['LHEScaleWeight[8]/'+QCDScaleFactors['QQ2HQQ_MJJ_350_700_PTHJJ_GT25'][0], 'LHEScaleWeight[0]/'+QCDScaleFactors['QQ2HQQ_MJJ_350_700_PTHJJ_GT25'][1]],
+                    'qqH_hww_MJJ_GT700_PTHJJ_0_25' : ['LHEScaleWeight[8]/'+QCDScaleFactors['QQ2HQQ_MJJ_GT700_PTHJJ_0_25'][0], 'LHEScaleWeight[0]/'+QCDScaleFactors['QQ2HQQ_MJJ_GT700_PTHJJ_0_25'][1]],
+                    'qqH_hww_MJJ_GT700_PTHJJ_GT25' : ['LHEScaleWeight[8]/'+QCDScaleFactors['QQ2HQQ_MJJ_GT700_PTHJJ_GT25'][0], 'LHEScaleWeight[0]/'+QCDScaleFactors['QQ2HQQ_MJJ_GT700_PTHJJ_GT25'][1]],
                   },
                'type'  : 'shape',
                'kind'  : 'weight',
@@ -936,7 +936,7 @@ nuisances['vbf_scale_highmjj_lowpt'] = {
 nuisances['vbf_scale_highmjj_highpt'] = {
                'name'  : 'vbf_scale_highmjj_highpt',
                'samples'  : {
-                    'qqH_hww_GE2J_MJJ_GT350_PTH_GT200' : ['LHEScaleWeight[8]/'+QCDScaleFactors['QQ2HQQ_GE2J_MJJ_GT350_PTH_GT200'][0], 'LHEScaleWeight[0]/'+QCDScaleFactors['QQ2HQQ_GE2J_MJJ_GT350_PTH_GT200'][1]],
+                    'qqH_hww_MJJ_GT350_PTH_GT200' : ['LHEScaleWeight[8]/'+QCDScaleFactors['QQ2HQQ_MJJ_GT350_PTH_GT200'][0], 'LHEScaleWeight[0]/'+QCDScaleFactors['QQ2HQQ_MJJ_GT350_PTH_GT200'][1]],
                   },
                'type'  : 'shape',
                'kind'  : 'weight',
