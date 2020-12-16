@@ -51,7 +51,7 @@ embedSteps = 'DATAl1loose2018v7__l2loose__l2tightOR2018v7__Embedding'
 
 SITE=os.uname()[1]
 if    'iihe' in SITE:
-  treeBaseDir = '/pnfs/iihe/cms/store/user/xjanssen/HWW2015'
+  treeBaseDir = '/pnfs/iihe/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano'
 elif  'cern' in SITE:
   treeBaseDir = '/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano'
 
@@ -105,7 +105,7 @@ useDYtt = True
 
 # The Dyveto sample is used to estimate one piece of the Dyemb uncertainty
 # To avoid running it all the times, it was run once and the uncertainty was converted into a lnN (see nuisances.py)
-runDYveto = True
+runDYveto = False
 
 embed_tautauveto = '' #Setup
 if useEmbeddedDY:

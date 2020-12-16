@@ -2,7 +2,7 @@
 
 #variables = {}
     
-'''
+
 
 variables['events']  = {   'name': '1',      
                         'range' : (1,0,2),  
@@ -21,13 +21,13 @@ variables['mll']  = {   'name': 'mll',
                         'xaxis' : 'm_{ll} [GeV]',
                         'fold' : 0
                         }
-'''
+
 variables['mth']  = {   'name': 'mth',
                         'range' : (20, 60,200),
                         'xaxis' : 'm_{T}^{H} [GeV]',
                         'fold' : 0
                         }
-'''
+
 variables['mth-DY']  = {   'name': 'mth',
                         'range' : (10, 0, 60),
                         'xaxis' : 'm_{T}^{H} [GeV]',
@@ -140,4 +140,26 @@ variables['mllVSmth_pt2lt20'] = {   'name': 'mll:mth',            #   variable n
                              'binY'     : 6
                              #
                              }
-'''
+
+variables['mllVSmth_optim'] = {   'name': 'mll:mth',            #   variable name    
+                             'range' : ([60,95,110,135,200],[12,17,25,30,35,40,45,65,200],),            #   variable range
+                             'xaxis' : 'm_{ll} : m_{T}^{H}',      #   x axis name
+                             'fold' : 3 ,
+                             # do weighted plot too
+                             'doWeight' : 1,
+                             'binX'     : 8,
+                             'binY'     : 4
+                             #
+                             }
+
+variables['mllVSmth_low_optim'] = {   'name': 'mll:mth',            #   variable name    
+                             'range' : ([60,95,115,200],[12,17,25,35,200],),            #   variable range
+                             'xaxis' : 'm_{ll} : m_{T}^{H}',      #   x axis name
+                             'fold' : 3 ,
+                             # do weighted plot too
+                             'doWeight' : 1,
+                             'binX'     : 4,
+                             'binY'     : 3
+                             #
+                             }
+
