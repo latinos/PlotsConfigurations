@@ -17,7 +17,6 @@ cuts['hww2l2v_13TeV'] = {
    'categories' : {
        'of0j_pth0_10' : ' zeroJet && pTWW <= 10 ',
        'of0j_pth10_200' : ' zeroJet && pTWW > 10 && pTWW <= 200 ',
-       'of0j' : ' zeroJet && pTWW <= 200 ',
        'of1j_pth0_60' : ' oneJet && Alt$(CleanJet_pt[1],0)<30 && pTWW <= 60 ',
        'of1j_pth60_120' : ' oneJet && Alt$(CleanJet_pt[1],0)<30 && pTWW > 60 && pTWW <= 120 ',
        'of1j_pth120_200' : ' oneJet && Alt$(CleanJet_pt[1],0)<30 && pTWW > 120 && pTWW <= 200 ',

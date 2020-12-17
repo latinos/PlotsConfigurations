@@ -335,30 +335,6 @@ aliases['isSingleTop'] = {
 }
 
 
-thusQQ = [
-  "qqH_YIELD",
-  "qqH_PTH200",
-  "qqH_Mjj60",
-  "qqH_Mjj120",
-  "qqH_Mjj350",
-  "qqH_Mjj700",
-  "qqH_Mjj1000",
-  "qqH_Mjj1500",
-  "qqH_PTH25",
-  "qqH_JET01",
-  "qqH_EWK",
-]
-
-for thu in thusQQ:
-    aliases[thu] = {
-        'linesToAdd': ['.L %s/patches/qqhuncertainty.cc+' % configurations],
-        'class': 'QQHUncertainty',
-        'args': (thu,),
-        'samples': [skey for skey in samples if 'qqH_hww' in skey],
-        'nominalOnly': True
-    }
-
-
 thus = [
     'ggH_mu',
     'ggH_res',
@@ -372,7 +348,7 @@ thus = [
 ]
 
 for thu in thus:
-    aliases[thu+'_OTF'] = {
+    aliases[thu+'_2'] = {
         'linesToAdd': ['.L %s/Differential/gghuncertainty.cc+' % configurations],
         'class': 'GGHUncertainty',
         'args': (thu,),
