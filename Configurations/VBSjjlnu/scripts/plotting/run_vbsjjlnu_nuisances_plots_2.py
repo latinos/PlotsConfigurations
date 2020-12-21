@@ -1,6 +1,14 @@
 import os
 from multiprocessing import Pool 
 from itertools import product
+import argparse
+
+parser = argparse.ArgumentParser()
+parser.add_argument("-c","--cuts",help="Cut", type=str, nargs="+")
+parser.add_argument("-s","--samples",help="Samples", type=str, nargs="+")
+parser.add_argument("-v","--variables",help="Variables", type=str, nargs="+")
+parser.add_argument("-o","--output",help="Outputdir",type=str)
+args = parser.parse_args()
 
 
 def run_jobs(conf):
@@ -20,23 +28,24 @@ def run_jobs(conf):
     print(cmd)
     os.system(cmd)
 
-tag = "fit_v4"
-years = ["2016"]
-datacard_name = "fit_v4_2016"
+tag = "fit_v4.2"
+years = ["2018"]
+datacard_name = "fit_v4.2_2018_noAsLnN"
 #cuts = ["res_wjetcr_dnnhigh_ele","res_sig_dnnhigh_ele","res_topcr_dnnhigh_ele"]
 # cuts = ["boost_topcr_ele","boost_wjetcr_ele","res_topcr_ele","res_wjetcr_ele",
 #         "boost_sig_ele", "res_sig_ele","boost_topcr_mu","boost_wjetcr_mu","res_topcr_mu","res_wjetcr_mu",
 #         "boost_sig_mu", "res_sig_mu"]
-cuts = ["boost_sig_mu"]
-
-
-vars = [  "DNNoutput_boost_bins2"]
+cuts = args.cuts
+vars = args.variables
 
 joinsub =  0
-samples =  ["DY", "VV","top","Wjets_HT"]
+samples =  args.samples
 #samples = ["DY", "VVV", "VV"]
 
-outputdir = "/eos/user/d/dvalsecc/www/VBSPlots/FullRun2/fits_results/fit_v4_fullrun2/nuisances_effects"
+outputdir = "/eos/user/d/dvalsecc/www/VBSPlots/FullRun2/fits_results/" + args.output #fit_v4.2_fullrun2/nuisances_effects"
+
+if not os.path.exists(outputdir):
+    os.makedirs(outputdir)
 
 jobs = []
 for year,cut,var,sample in product(years,cuts,vars,samples):

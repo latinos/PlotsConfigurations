@@ -2,7 +2,7 @@
 treeName= 'Events'
 
 
-tag = 'fit_v4.2_2018'
+tag = 'fit_v4.2_2017'
 direc = "conf_fit_v4.2"
 
 # used by mkShape to define output directory for root files
@@ -25,17 +25,17 @@ samplesFile = direc+'/samples.py'
 plotFile = direc+'/plot.py' 
 
 # luminosity to normalize to (in 1/fb)
-lumi = 59.74
+lumi = 41.5
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
 #outputDirPlots = 'plot_'+tag +"_rescaled/detajpt_ext"
-outputDirPlots = 'plot_'+tag  
+outputDirPlots = 'plot_'+tag + "/"
 
 # used by mkDatacards to define output directory for datacards
 #outputDirDatacard = 'datacards_'+tag 
 #outputDirDatacard = 'datacards_'+tag + "/Wjets_njets"
-outputDirDatacard = 'datacards_'+tag + "_noAsLnN"
+outputDirDatacard = 'datacards_'+tag
 
 # structure file for datacard
 structureFile = direc+'/structure.py'
@@ -46,5 +46,4 @@ nuisancesFile = direc+'/nuisances.py'
 #nuisancesFile = direc+'/nuisances_datacard_join.py'
 #nuisancesFile = direc + '/nuisances_datacard.py'
 
-
-customizeScript = direc + '/customize.py'
+customizeScript = direc + "/customize.py"

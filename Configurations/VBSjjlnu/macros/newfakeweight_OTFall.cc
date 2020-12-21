@@ -148,7 +148,12 @@ newFakeWeightOTFall::evaluate(unsigned)
         fake_rate   = fr_mu_h2->GetBinContent(fr_mu_h2->FindBin(pt, abseta));
         fake_rate_e = fr_mu_h2->GetBinError(fr_mu_h2->FindBin(pt, abseta));
       }
-
+      if (do_statUp){
+          fake_rate += fake_rate_e; 
+      }
+      if (do_statDo){
+          fake_rate -= fake_rate_e; 
+      }
       if (Lepton_isTightMu->At(0)){
           new_fakew = (-1) * fake_rate * (1 - prompt_rate)/(prompt_rate - fake_rate);
       }else{
@@ -172,32 +177,13 @@ newFakeWeightOTFall::evaluate(unsigned)
         fake_rate   = fr_ele_h2->GetBinContent(fr_ele_h2->FindBin(pt, eta_touse));
         fake_rate_e = fr_ele_h2->GetBinError(fr_ele_h2->FindBin(pt, eta_touse));
       }
-      //vector<float> etabins = {-2.5,-2.1,-1.566,-1.442,-0.8,0.0,0.8,1.442,1.566,2.1,2.5,3};
-      //int etabin = -1;
-      //for (int i=0;i<etabins.size()-1;i++){
-      //  if (eta >=etabins[i] && eta < etabins[i+1]){
-      //    etabin = i;
-      //    break;
-      //  }
-      //}
 
-      //float R_factor = ( eff_A_T.at(etabin)->Eval(pt) / eff_A_L.at(etabin)->Eval(pt)) / 
-      //                  ( eff_B_T.at(etabin)->Eval(pt) / eff_B_L.at(etabin)->Eval(pt));
-
-
-      //if (Lepton_isTightEle->At(0)){
-      //  new_fakew =  (-1)* (fake_rate/ (prompt_rate-fake_rate)) *(1- R_factor*prompt_rate);
-      //}else{
-      //  new_fakew =  R_factor * (fake_rate*prompt_rate)/(prompt_rate-fake_rate);
-      //}
-      float fr = fake_rate;
       if (do_statUp){
-          fr += fake_rate_e; 
+          fake_rate += fake_rate_e; 
       }
       if (do_statDo){
-          fr -= fake_rate_e; 
+          fake_rate -= fake_rate_e; 
       }
-
       if (Lepton_isTightEle->At(0)){
           new_fakew = (-1) * fake_rate * (1 - prompt_rate)/(prompt_rate - fake_rate);
       }else{
