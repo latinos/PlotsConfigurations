@@ -131,6 +131,7 @@ if useEmbeddedDY:
   files = nanoGetSampleFiles(mcDirectory, 'TTTo2L2Nu') + \
       nanoGetSampleFiles(mcDirectory, 'ST_tW_antitop_ext1') + \
       nanoGetSampleFiles(mcDirectory, 'ST_tW_top_ext1') + \
+      nanoGetSampleFiles(mcDirectory, 'EWKZ2Jets_ZToLL_M-50') + \
       nanoGetSampleFiles(mcDirectory, 'WpWmJJ_QCD_noTop') + \
       nanoGetSampleFiles(mcDirectory, 'WpWmJJ_EWK_noTop') + \
       nanoGetSampleFiles(mcDirectory, 'GluGluToWWToTNTN') + \
@@ -150,6 +151,7 @@ if useEmbeddedDY:
   addSampleWeight(samples, 'Dyveto', 'TTTo2L2Nu', mcCommonWeight + '* (topGenPt * antitopGenPt > 0.) * (TMath::Sqrt((0.103*TMath::Exp(-0.0118*topGenPt) - 0.000134*topGenPt + 0.973) * (0.103*TMath::Exp(-0.0118*antitopGenPt) - 0.000134*antitopGenPt + 0.973))) + (topGenPt * antitopGenPt <= 0.)')
   addSampleWeight(samples, 'Dyveto', 'ST_tW_antitop_ext1', mcCommonWeight)
   addSampleWeight(samples, 'Dyveto', 'ST_tW_top_ext1', mcCommonWeight)
+  addSampleWeight(samples, 'Dyveto', 'EWKZ2Jets_ZToLL_M-50', mcCommonWeight)
   addSampleWeight(samples, 'Dyveto', 'WpWmJJ_QCD_noTop', mcCommonWeight)
   addSampleWeight(samples, 'Dyveto', 'WpWmJJ_EWK_noTop', mcCommonWeight + '*(Sum$(abs(GenPart_pdgId)==6 || GenPart_pdgId==25)==0)')
   addSampleWeight(samples, 'Dyveto', 'GluGluToWWToTNTN', mcCommonWeight + '*1.53/1.4')
