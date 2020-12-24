@@ -5,7 +5,7 @@
 #include "tdrstyle.C"
 
 
-void Draw2DImproved(std::string xName = "r_{1}", std::string yName = "r_{3}", std::string xNameVar = "r1", std::string yNameVar = "r3" , int dimension = 2 , std::string cut = "1", int FillHighLL = 1) {
+void Draw2DImproved(TTree * limit, std::string xName = "r_{1}", std::string yName = "r_{3}", std::string xNameVar = "r1", std::string yNameVar = "r3" , int dimension = 2 , std::string cut = "1", int FillHighLL = 1) {
   
   
   gStyle->SetOptStat(0);

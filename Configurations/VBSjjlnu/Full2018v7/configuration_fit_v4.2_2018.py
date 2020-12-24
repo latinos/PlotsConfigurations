@@ -35,16 +35,16 @@ outputDirPlots = 'plot_'+tag
 # used by mkDatacards to define output directory for datacards
 #outputDirDatacard = 'datacards_'+tag 
 #outputDirDatacard = 'datacards_'+tag + "/Wjets_njets"
-outputDirDatacard = 'datacards_'+tag + "_noAsLnN"
+outputDirDatacard = 'datacards_'+tag + "_test_PSonlyWjets"
 
 # structure file for datacard
 structureFile = direc+'/structure.py'
 
 
 # nuisances file for mkDatacards and for mkShape
-nuisancesFile = direc+'/nuisances.py'
+#nuisancesFile = direc+'/nuisances.py'
 #nuisancesFile = direc+'/nuisances_datacard_join.py'
-#nuisancesFile = direc + '/nuisances_datacard.py'
+nuisancesFile = direc + '/nuisances_datacard.py'
 
 
 customizeScript = direc + '/customize.py'

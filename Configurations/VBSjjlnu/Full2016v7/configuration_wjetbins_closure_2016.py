@@ -1,8 +1,8 @@
 # example of configuration file
 treeName= 'Events'
 
-tag = 'fit_v4.2_2016'
-direc = 'conf_fit_v4.2'
+tag = 'wjetbins_closure_2016'
+direc = 'conf_wjetbins_closure'
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFile_'+tag
@@ -11,7 +11,7 @@ outputDir = 'rootFile_'+tag
 aliasesFile = direc+'/aliases.py'
 
 # file with list of variables
-variablesFile = direc+'/variables_fit.py'
+variablesFile = direc+'/variables.py'
 
 # file with list of cuts
 cutsFile = direc+'/cuts.py'
@@ -32,7 +32,7 @@ lumi = 35.867
 outputDirPlots = 'plot_'+tag 
 # used by mkDatacards to define output directory for datacards
 
-outputDirDatacard = 'datacards_' +tag +"_AsLnN_PSsig_PSwjets"
+outputDirDatacard = 'datacards_' +tag #
 #outputDirDatacard = 'datacards_' +tag +"_v2"
 
 # structure file for datacard
@@ -40,7 +40,7 @@ structureFile = direc+'/structure.py'
 
 
 # nuisances file for mkDatacards and for mkShape
-#nuisancesFile = direc+'/nuisances.py'
-nuisancesFile = direc+'/nuisances_datacard.py'
+nuisancesFile = direc+'/nuisances.py'
+#nuisancesFile = direc+'/nuisances_datacard.py'
 
 customizeScript = direc + '/customize.py'

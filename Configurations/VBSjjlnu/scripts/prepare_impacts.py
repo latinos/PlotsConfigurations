@@ -13,6 +13,7 @@ parser.add_argument("--data-asimov", action="store_true", default=False)
 parser.add_argument("--dry", action="store_true", help="Do not run, only create script", default=False)
 parser.add_argument("-fo","--fit-options", help="Robust fit options ", type=int, default=0)
 parser.add_argument("--masks", help="File with list of channels to mask",  type=str)
+parser.add_argument("-v","--verbose", help="Combine verbosity level", type=int, default=0)
 args = parser.parse_args()
 
 

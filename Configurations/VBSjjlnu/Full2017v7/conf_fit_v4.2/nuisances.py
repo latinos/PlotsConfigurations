@@ -252,12 +252,12 @@ nuisances['muonpt']  = {
 ##################
 # PU jet id
 
-nuisances['JetPUID_sf']  = {
-                'name'  : 'CMS_jetpuid_2017',
-                'kind'  : 'weight',
-                'type'  : 'shape',
-                'samples'  : dict((skey, ['PUJetIdSF_up/PUJetIdSF','PUJetIdSF_down/PUJetIdSF']) for skey in mc if skey not in ["DY"]),
-}
+# nuisances['JetPUID_sf']  = {
+#                 'name'  : 'CMS_jetpuid_2017',
+#                 'kind'  : 'weight',
+#                 'type'  : 'shape',
+#                 'samples'  : dict((skey, ['PUJetIdSF_up/PUJetIdSF','PUJetIdSF_down/PUJetIdSF']) for skey in mc if skey not in ["DY"]),
+# }
 
 
 # ##### Jet energy scale
@@ -413,22 +413,22 @@ qcdscale_variations = ['LHEScaleWeight[0]', 'LHEScaleWeight[1]', 'LHEScaleWeight
 for sample in mc :
     if sample == 'VBS':
         nuisances['QCD_scale_VBS'] = {
-            'name'  : 'QCDscale_VBS',
+            'name'  : 'QCDscale_VBS_accept',
             'kind'  : 'weight',
             'type'  : 'shape',
             # Normalization effect removed from 1l inclusive phase space
             'samples'  :  { "VBS": ["0.990268645866* LHEScaleWeight[0]", "1.01555157115 * LHEScaleWeight[8]"] }
         }
-        nuisances['QCD_scale_VBS_accept'] = {
-            'name'  : 'QCDscale_VBS_accept',
-            'type'  : 'lnN',
-            'samples'  :  { "VBS": ["1.0098269839954734", "0.9846865766417252"] }
-        }
-        nuisances['QCD_scale_VBS_env'] = {
-            'name'  : 'QCDscale_VBS_env',
-            'type'  : 'lnN',
-            'samples'  :  { "VBS": qcdscale_variations }
-        }
+        # nuisances['QCD_scale_VBS_accept'] = {
+        #     'name'  : 'QCDscale_VBS_accept',
+        #     'type'  : 'lnN',
+        #     'samples'  :  { "VBS":  "1.0098269839954734/0.9846865766417252" }
+        # }
+        # nuisances['QCD_scale_VBS_env'] = {
+        #     'name'  : 'QCDscale_VBS_env',
+        #     'type'  : 'lnN',
+        #     'samples'  :  { "VBS": qcdscale_variations }
+        # }
     else:
         nuisances['QCD_scale_'+sample] = {
             'name'  : 'QCDscale_'+sample,
@@ -436,14 +436,48 @@ for sample in mc :
             'type'  : 'shape',
             'samples'  :  { sample: ["LHEScaleWeight[0]", "LHEScaleWeight[8]"] }
         }
-        nuisances['QCD_scale_'+sample+"_env"] = {
-            'name'  : 'QCDscale_'+sample + "_env",
-            'kind'  : 'weight_envelope',
-            'type'  : 'shape',
-            'samples'  :  { sample: qcdscale_variations }
-        }
+        # nuisances['QCD_scale_'+sample+"_env"] = {
+        #     'name'  : 'QCDscale_'+sample + "_env",
+        #     'kind'  : 'weight_envelope',
+        #     'type'  : 'shape',
+        #     'samples'  :  { sample: qcdscale_variations }
+        # }
         
+
 # PS is taken from 2018 shape
+nuisances['PS_ISR']  = {
+                'name'  : 'CMS_PS_ISR',
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : {
+                    "Wjets_HT" : ['1.','1.'],
+                    "top" :      ['1.','1.'],
+                    "DY" :       ['1.','1.'],
+                    "VV" :       ['1.','1.'],
+                    "VVV" :      ['1.','1.'],
+                    "Vg" :       ['1.','1.'],
+                    "VgS" :      ['1.','1.'],
+                    "VBF-V" :    ['1.','1.'],
+                    "VBS"  :     ['1.','1.'],
+                }
+            }
+# PS is taken from 2018 shape
+nuisances['PS_FSR']  = {
+                'name'  : 'CMS_PS_FSR',
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                 'samples'  : {
+                    "Wjets_HT" : ['1.','1.'],
+                    "top" :      ['1.','1.'],
+                    "DY" :       ['1.','1.'],
+                    "VV" :       ['1.','1.'],
+                    "VVV" :      ['1.','1.'],
+                    "Vg" :       ['1.','1.'],
+                    "VgS" :      ['1.','1.'],
+                    "VBF-V" :    ['1.','1.'],
+                    "VBS"  :     ['1.','1.'],
+                }
+            }
 
 nuisances['PU']  = {
                 'name'  : 'CMS_PU_2017',

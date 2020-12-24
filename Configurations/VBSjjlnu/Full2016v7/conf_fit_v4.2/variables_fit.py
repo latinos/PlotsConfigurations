@@ -107,21 +107,22 @@ variables['mjj_vjet'] = {   'name': 'mjj_vjet',
                         'xaxis' : 'Whad reco mass', 
                         'fold' : 3
                         }
-
+                        
 variables['mjj_vbs_boost'] = {   'name': 'mjj_vbs',      
                         'range' : (30,250,3000) , 
                         'xaxis' : 'M_{jj} VBS', 
                         'fold' : 3,
-                        'cuts': boost_cuts
+                        'cuts': boost_cuts,
+                        'blind':  { c: [1500,3000] for c in cuts if 'sig' in c} ,
                     }
 
 variables['mjj_vbs_res'] = {   'name': 'mjj_vbs',      
                         'range' : (40,250,4000) , 
                         'xaxis' : 'M_{jj} VBS', 
                         'fold' : 3,
-                        'cuts': res_cuts
+                        'cuts': res_cuts,
+                        'blind':  { c: [2000,400] for c in cuts if 'sig' in c} ,
                         }
-
 
 variables['nJets'] = {   'name': 'nJets30',      
                         'range' : (8,2,10),  
