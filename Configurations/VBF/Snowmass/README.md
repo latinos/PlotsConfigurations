@@ -1,6 +1,6 @@
 # Snowmass VBF
 
-Configuration for VBF the analysis targeting the snowmass conference. 
+Configuration for the VBF analysis targeting the Snowmass conference. 
 
 ## Instructions to run the analysis
 
@@ -30,11 +30,17 @@ Differential analysis:
 
     mkPlot.py --inputFile=rootFile/plots_vbf_snowmass.root --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1 --minLogCratio=0.01 --maxLogCratio=1000
     mkPlot.py --plotFile=plot_blind.py --onlyCut=hww2l2v_13TeV_of2j_vbf --inputFile=rootFile/plots_vbf_snowmass.root --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1 --minLogCratio=0.01 --maxLogCratio=1000
+    mkPlot.py --plotFile=plot_blind.py --onlyCut=hww2l2v_13TeV_of2j_test_mll --inputFile=rootFile/plots_vbf_snowmass.root --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1 --minLogCratio=0.01 --maxLogCratio=1000
 
 CP-violation analysis:
 
     mkPlot.py --plotFile=plot_CPV.py --inputFile=rootFile/plots_vbf_snowmass.root --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1 --minLogCratio=0.01 --maxLogCratio=1000 --outputDirPlots=plots_vbf_snowmass_CPV
     mkPlot.py --plotFile=plot_CPV_blind.py --onlyCut=hww2l2v_13TeV_of2j_vbf --inputFile=rootFile/plots_vbf_snowmass.root --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1 --minLogCratio=0.01 --maxLogCratio=1000 --outputDirPlots=plots_vbf_snowmass_CPV
+    mkPlot.py --plotFile=plot_CPV_blind.py --onlyCut=hww2l2v_13TeV_of2j_test_mll --inputFile=rootFile/plots_vbf_snowmass.root --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1 --minLogCratio=0.01 --maxLogCratio=1000 --outputDirPlots=plots_vbf_snowmass_CPV
+
+Only CP-violation signals:
+
+    mkPlot.py --pycfg=configuration_CPV_signals.py --inputFile=rootFile/plots_vbf_snowmass.root --fileFormats=png --onlyPlot=cratio --linearOnly
 
 ### Create datacards
 

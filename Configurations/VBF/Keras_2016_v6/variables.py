@@ -5,11 +5,20 @@
 #'fold' : # 0 = not fold (default), 1 = fold underflowbin, 2 = fold overflow bin, 3 = fold underflow and overflow
 
 
-
+'''
+#DEFAULT
 variables['classvbf'] = { 
      'name': 'vbfdnn',
      'range' : ([0.25,0.4,0.5,0.55,0.6,0.65,0.7,0.75,0.8,0.85,0.9,1.0],),
      #'range' : ([0.3,0.4,0.5,0.6,0.7,0.8,1],),
+     'xaxis' : 'DNN discriminant vbf',
+     'fold'  : 3,
+}
+'''
+#S=5,B=10,E=0.2
+variables['classvbf'] = { 
+     'name': 'vbfdnn',
+     'range' : ([0,0.545,0.635,0.695,0.745,0.785,1.],),
      'xaxis' : 'DNN discriminant vbf',
      'fold'  : 3,
 }
@@ -33,6 +42,17 @@ variables['classww'] = {
 }
 
 
+#S=5,B=10,E=0.2
+variables['classggh'] = { 
+     'name': 'gghdnn',
+     'range' : ([0.,0.485, 0.555, 0.615, 0.665, 0.715, 0.775, 0.865, 1.],),
+     'xaxis' : 'DNN discriminant ggh',
+     'fold'  : 3,
+}
+
+
+'''
+#DEFAULT
 variables['classggh'] = { 
      'name': 'gghdnn',
      'range' : ([0.25,0.4,0.5,0.55,0.6,0.65,0.7,0.75,0.8,0.85,0.9,1.0],),
@@ -40,7 +60,7 @@ variables['classggh'] = {
      'xaxis' : 'DNN discriminant ggh',
      'fold'  : 3,
 }
-
+'''
 
 
 variables['events']  = {   'name': '1',      

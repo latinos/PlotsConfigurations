@@ -38,4 +38,4 @@ outputDirDatacard = 'darkHiggs_datacards'
 structureFile = 'structure.py'
 
 # nuisances file for mkDatacards and for mkShape
-nuisancesFile = 'nuisances.py'
+nuisancesFile = 'nuisances_full.py'

@@ -42,15 +42,21 @@ groupPlot['DY'] = {
     'nameHR' : "DY",
     'isSignal' : 0,
     'color': 418,    # kGreen+2
-    'samples'  : ['DY']
+    'samples'  : ['DY', 'DYlow']
 }
-
-groupPlot['DYlow'] = {
-    'nameHR' : "DYlow",
-    'isSignal' : 0,
-    'color': 416,    # kGreen+2
-    'samples'  : ['DYlow']
-}
+#groupPlot['DY'] = {
+#    'nameHR' : "DY",
+#    'isSignal' : 0,
+#    'color': 418,    # kGreen+2
+#    'samples'  : ['DY']
+#}
+#
+#groupPlot['DYlow'] = {
+#    'nameHR' : "DYlow",
+#    'isSignal' : 0,
+#    'color': 416,    # kGreen+2
+#    'samples'  : ['DYlow']
+#}
 
 groupPlot['FAKE'] = {
     'nameHR' : "Fake",
@@ -60,25 +66,26 @@ groupPlot['FAKE'] = {
 }
 
 
-#groupPlot['top'] = {
-#    'nameHR' : 'tW and t#bar{t}',
-#    'isSignal' : 0,
-#    'color': 400,   # kYellow
-#    'samples'  : ['ttop', 'stop']
-#    #'samples'  : ['top']
-#}
-groupPlot['ttop'] = {
-    'nameHR' : 't#bar{t}',
+groupPlot['top'] = {
+    'nameHR' : 'tW and t#bar{t}',
     'isSignal' : 0,
     'color': 400,   # kYellow
-    'samples'  : ['ttop']
+    'samples'  : ['ttop', 'stop'],
+    #'scale'    : 1.11,
+    #'samples'  : ['top']
 }
-groupPlot['stop'] = {
-    'nameHR' : 'single t',
-    'isSignal' : 0,
-    'color': 401,   # kYellow
-    'samples'  : ['stop']
-}
+#groupPlot['ttop'] = {
+#    'nameHR' : 't#bar{t}',
+#    'isSignal' : 0,
+#    'color': 400,   # kYellow
+#    'samples'  : ['ttop']
+#}
+#groupPlot['stop'] = {
+#    'nameHR' : 'single t',
+#    'isSignal' : 0,
+#    'color': 401,   # kYellow
+#    'samples'  : ['stop']
+#}
 
 
 groupPlot['Wjets'] = {
@@ -149,8 +156,26 @@ if os.path.exists(signal_file) :
 else:
     raise IOError('FILE NOT FOUND: '+signal_file+'does not exist.')
 
+#mhs_list = ['160', '180', '200']
+#mx_list = ['100', '150', '200']
+#mZp_list = ['195', '200', '295', '300', '400', '500', '800', '1000', '1200', '1500']
+#
+#models = []
+#for mhs in mhs_list:
+#    for mx in mx_list:
+#        for mZp in mZp_list:
+#            mp = 'mhs_'+mhs+'_mx_'+mx+'_mZp_'+mZp
 for mp in signal:
     #if not 'mA_400' in mp: continue
+    mpo = mp.replace('darkHiggs_', '')
+    mhs = mpo.split('_')[1] 
+    mx  = mpo.split('_')[3] 
+    mZp = mpo.split('_')[5] 
+    #if not 'mA_400' in mp: continue
+    #if not mhs == '160' and not mx == '100' in mp: continue
+    if not mhs == '160': continue 
+    if not mx == '100' : continue
+    if not mZp in ['200', '400', '1200']: continue
     groupPlot[mp] = {
     'nameHR'   : signal[mp]['plot_name'],
 #    'isSignal' : 2,
@@ -193,14 +218,16 @@ plot['ttop'] = {
     'color': 400,   # kYellow
     'isSignal' : 0,
     'isData'   : 0,
-    'scale'    : 1.0,
+    #'scale'    : 1.0,
+    'scale'    : 1.11,
 }
 plot['stop'] = {
     'nameHR' : 'single t',
     'color': 401,   # kYellow
     'isSignal' : 0,
     'isData'   : 0,
-    'scale'    : 1.0,
+    #'scale'    : 1.0,
+    'scale'    : 1.11,
 }
 
 
@@ -396,6 +423,14 @@ plot['ZH_htt']  = {
 
 ### Signal
 for mp in signal:
+    mpo = mp.replace('darkHiggs_', '')
+    mhs = mpo.split('_')[1] 
+    mx  = mpo.split('_')[3] 
+    mZp = mpo.split('_')[5] 
+    #if not 'mA_400' in mp: continue
+    if not mhs == '160': continue 
+    if not mx == '100' : continue
+    if not mZp in ['200', '400', '1200']: continue
     plot[mp] = {
     'nameHR'   : signal[mp]['plot_name'],
     'isSignal' : 2,
@@ -405,7 +440,7 @@ for mp in signal:
     #'scale'    : 100000,
     }
 
-# data
+## data
 
 plot['DATA']  = {
                   'nameHR' : 'Data',

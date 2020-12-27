@@ -2,7 +2,7 @@
 
 treeName = 'Events'
 
-tag = 'vbf_snowmass'
+tag = 'ggH_SF_2018_v7'
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFile'
@@ -14,20 +14,21 @@ aliasesFile = 'aliases.py'
 variablesFile = 'variables.py'
 
 # file with list of cuts
+#cutsFile = 'cuts.py' 
 cutsFile = 'cuts.py' 
 
 # file with list of samples
 samplesFile = 'samples.py' 
 
 # file with list of samples
-plotFile = 'plot_blind.py' 
+plotFile = 'plot.py' 
 
 # luminosity to normalize to (in 1/fb)
 lumi = 59.74
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'plots_' + tag
+outputDirPlots = 'plots_'+tag
 
 # used by mkDatacards to define output directory for datacards
 outputDirDatacard = 'datacards'
@@ -37,6 +38,3 @@ structureFile = 'structure.py'
 
 # nuisances file for mkDatacards and for mkShape
 nuisancesFile = 'nuisances.py'
-
-# input files
-# /eos/cms/store/group/phys_higgs/cmshww/amassiro/Full2016_Apr17/Apr2017_summer16/lepSel__MCWeights__bSFLpTEffMulti__cleanTauMC__l2loose__hadd__l2tightOR__LepTrgFix__dorochester__formulasMC__wwSel

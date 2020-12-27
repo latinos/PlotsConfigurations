@@ -35,7 +35,14 @@ groupPlot['DY']  = {
                   'nameHR' : "DY",
                   'isSignal' : 0,
                   'color': 418,    # kGreen+2
-                  'samples'  : ['DY']
+                  'samples'  : ['DY_lowZ', 'DY_highZ']
+              }
+
+groupPlot['Zjj']  = {  
+                  'nameHR' : "Zjj",
+                  'isSignal' : 0,
+                  'color': 600,    # kBlue
+                  'samples'  : ['Zjj']
               }
 
 '''
@@ -96,7 +103,7 @@ groupPlot['VBS']  = {
 
 # keys here must match keys in samples.py    
 #                    
-plot['DY']  = {  
+plot['DY_lowZ']  = {  
                   'color': 418,    # kGreen+2
                   'isSignal' : 0,
                   'isData'   : 0, 
@@ -117,6 +124,19 @@ plot['DY']  = {
 
               }
 
+plot['DY_highZ']  = {  
+                  'color': 418,    # kGreen+2
+                  'isSignal' : 0,
+                  'isData'   : 0, 
+                  'scale'    : 1.0,
+                }
+
+plot['Zjj']  = {  
+                  'color': 600,    # kBlue
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0                  
+              }
 
 plot['Fake_m']  = {  
                   'color': 921,    # kGray + 1
@@ -351,7 +371,7 @@ plot['DATA']  = {
                   'color': 1 ,  
                   'isSignal' : 0,
                   'isData'   : 1 ,
-                  'isBlind'  : 1
+                  'isBlind'  : 0
               }
 
 

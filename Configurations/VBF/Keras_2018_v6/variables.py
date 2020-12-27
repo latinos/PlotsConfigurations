@@ -4,12 +4,35 @@
     
 #'fold' : # 0 = not fold (default), 1 = fold underflowbin, 2 = fold overflow bin, 3 = fold underflow and overflow
 
+'''
+variables['vbftree'] = {
+    'tree': {
+        'vbfdnn': 'vbfdnn'
+    }
+}
 
 
 
+#DEFAULT
 variables['classvbf'] = { 
      'name': 'vbfdnn',
-     'range' : ([0.25,0.4,0.5,0.55,0.6,0.65,0.7,0.75,0.8,0.85,0.9,0.95,1.0],),
+     'range' : ([0.25,0.4,0.5,0.55,0.6,0.65,0.7,0.75,0.8,0.85,0.9,1.0],),
+     'xaxis' : 'DNN discriminant vbf',
+     'fold'  : 3,
+}
+
+#S=2,B=8,E=0.3
+variables['classvbf'] = { 
+     'name': 'vbfdnn',
+     'range' : ([0, 0.475, 0.535, 0.575, 0.605, 0.635, 0.655, 0.675, 0.695, 0.715, 0.735, 0.755, 0.775, 0.805, 0.855, 1],),
+     'xaxis' : 'DNN discriminant vbf',
+     'fold'  : 3,
+}
+'''
+#S=5,B=10,E=0.2
+variables['classvbf'] = { 
+     'name': 'vbfdnn',
+     'range' : ([0,0.545,0.635,0.695,0.745,0.785,1.],),
      'xaxis' : 'DNN discriminant vbf',
      'fold'  : 3,
 }
@@ -22,27 +45,45 @@ variables['classtop'] = {
      'fold'  : 3,
 }
 
-
 variables['classww'] = { 
      'name': 'wwdnn',
      'range' : (15,0.25,1.),
      'xaxis' : 'DNN discriminant ww',
      'fold'  : 3,
 }
+'''
+#S=2,B=8,E=0.3
+variables['classggh'] = { 
+     'name': 'gghdnn',
+     'range' : ([0.,0.425, 0.455, 0.485, 0.505, 0.535, 0.565, 0.585, 0.605, 0.625, 0.645, 0.665, 0.685, 0.705, 0.725, 0.745, 0.765, 0.785, 0.805, 0.845,1.],),
+     'xaxis' : 'DNN discriminant ggh',
+     'fold'  : 3,
+}
+'''
 
-
+#S=5,B=10,E=0.2
+variables['classggh'] = { 
+     'name': 'gghdnn',
+     'range' : ([0.,0.485, 0.555, 0.615, 0.665, 0.715, 0.775, 0.865, 1.],),
+     'xaxis' : 'DNN discriminant ggh',
+     'fold'  : 3,
+}
+'''
+#DEFAULT
 variables['classggh'] = { 
      'name': 'gghdnn',
      'range' : ([0.25,0.4,0.5,0.55,0.6,0.65,0.7,0.75,0.8,0.85,0.9,1.0],),
-     #'range' : (15,0.25,1.),
      'xaxis' : 'DNN discriminant ggh',
      'fold'  : 3,
 }
 
 
+
+
+
 variables['Ctot'] = {
      'name': 'log((abs(2*Lepton_eta[0]-CleanJet_eta[0]-CleanJet_eta[1])+abs(2*Lepton_eta[1]-CleanJet_eta[0]-CleanJet_eta[1]))/detajj)',
-     'range' : ([20,-4.,6.],),
+     'range' : (20,-4.,6.),
      #'range' : (15,0.25,1.),
      'xaxis' : 'Ctot',
      'fold'  : 3,
@@ -50,12 +91,12 @@ variables['Ctot'] = {
 
 variables['mlj12'] = {
      'name': 'mlj(Lepton_pt[0], Lepton_eta[0], Lepton_phi[0], CleanJet_pt[0], CleanJet_eta[0], CleanJet_phi[0])',
-     'range' : ([28,0.,1400.],),
+     'range' : (28,0.,1400.),
      #'range' : (15,0.25,1.),
      'xaxis' : 'mlj12',
      'fold'  : 3,
 }
-
+'''
 '''
 variables['class0'] = {
      'name': 'evaluate_multiclass(Entry$,0)',

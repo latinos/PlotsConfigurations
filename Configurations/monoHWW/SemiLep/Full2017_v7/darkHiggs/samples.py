@@ -7,7 +7,7 @@ configurations = os.path.dirname(configurations) # Full2018
 configurations = os.path.dirname(configurations) # HWWSemiLepHighMass
 configurations = os.path.dirname(configurations) # Configurations
 
-from LatinoAnalysis.Tools.commonTools import getSampleFiles, getBaseW, addSampleWeight
+from LatinoAnalysis.Tools.commonTools import getSampleFiles, getBaseW, addSampleWeight, getBaseWnAOD 
 
 from LatinoAnalysis.Tools.HiggsXSection import HiggsXSection
 HiggsXS = HiggsXSection()
@@ -68,7 +68,7 @@ elif  'cern' in SITE:
 
 def makeMCDirectory(var=''):
     if var:
-        return os.path.join(treeBaseDir, mcProduction, mcSteps.format(var='__' + var))
+        return os.path.join(treeBaseDir, mcProduction, mcSteps.format(var='_' + var))
     else:
         return os.path.join(treeBaseDir, mcProduction, mcSteps.format(var=''))
 
@@ -84,7 +84,9 @@ fakeDirectory = os.path.join(treeBaseDir, dataReco, fakeSteps)
 #########################################
 
 # SFweight does not include btag weights
+
 mcCommonWeightNoMatch = 'XSWeight*SFweight[0]*METFilter_MC*btagSF[0]*PUJetIdSF[0]*LepWPCut[0]*1tlVeto[0]'
+mcCommonWeightNoXS    =          'SFweight[0]*METFilter_MC*btagSF[0]*PUJetIdSF[0]*LepWPCut[0]*1tlVeto[0]*PromptGenLepMatch1l'
 mcCommonWeight        = 'XSWeight*SFweight[0]*METFilter_MC*btagSF[0]*PUJetIdSF[0]*LepWPCut[0]*1tlVeto[0]*PromptGenLepMatch1l'
 
 ###########################################
@@ -110,6 +112,7 @@ samples['DY'] = {
     'name': files,
     'weight': mcCommonWeight + '*(Sum$(GenPart_pdgId == 22 && TMath::Odd(GenPart_statusFlags) && GenPart_pt > 20.) == 0)',
     'FilesPerJob': 3,
+    #'FilesPerJob': 5,
 }
 
 # from high mass (fully leptonic) 2017 config
@@ -131,6 +134,7 @@ samples['DYlow'] = {
     'name': files,
     'weight': mcCommonWeight + '*(Sum$(GenPart_pdgId == 22 && TMath::Odd(GenPart_statusFlags) && GenPart_pt > 20.) == 0)',
     'FilesPerJob': 3,
+    #'FilesPerJob': 5,
 }
 
 
@@ -416,9 +420,9 @@ files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-2J')
 
 samples['Wjets'] = {
     'name'   : files,
-    #'weight' : mcCommonWeight +'*EWKnloW[0]', # ewk nlo correction https://arxiv.org/pdf/1705.04664v2.pdf 
+    'weight' : mcCommonWeight +'*EWKnloW[0]', # ewk nlo correction https://arxiv.org/pdf/1705.04664v2.pdf 
     #'weight' : mcCommonWeight + '*ewknloW', 
-    'weight' : mcCommonWeight, 
+    #'weight' : mcCommonWeight, 
     'FilesPerJob' : 4,
 }
 # Xsec*k-factor correction https://indico.cern.ch/event/673253/contributions/2756806/attachments/1541203/2416962/20171016_VJetsXsecsUpdate_PH-GEN.pdf
@@ -564,7 +568,8 @@ samples['ZH_htt'] = {
 ##############   SIGNALS  ##################
 ############################################
 
-signal_file = 'darkHiggs_signal.py'
+#signal_file = 'darkHiggs_private.py'
+signal_file = 'darkHiggs_central.py'
 if os.path.exists(signal_file) :
     handle = open(signal_file,'r')
     exec(handle)

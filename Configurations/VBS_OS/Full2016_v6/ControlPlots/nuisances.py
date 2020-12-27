@@ -142,7 +142,8 @@ nuisances['fake_mu_stat'] = {
 
 ##### B-tagger
 
-for shift in ['jes', 'lf', 'hf', 'hfstats1', 'hfstats2', 'lfstats1', 'lfstats2', 'cferr1', 'cferr2']:
+#for shift in ['jes', 'lf', 'hf', 'hfstats1', 'hfstats2', 'lfstats1', 'lfstats2', 'cferr1', 'cferr2']:
+for shift in ['jes', 'lf', 'hfstats1', 'hfstats2', 'lfstats1', 'lfstats2', 'cferr1', 'cferr2']:
     btag_syst = ['(btagSF%sup)/(btagSF)' % shift, '(btagSF%sdown)/(btagSF)' % shift]
 
     name = 'CMS_btag_%s' % shift
@@ -817,11 +818,38 @@ nuisances['DYttnorm1j']  = {
                'type'  : 'rateParam',
                'cuts'  : cuts1j
               }
-'''
-nuisances['DYnorm2j']  = {
+
+nuisances['DYnorm2j_lowZ']  = {
                  'name'  : 'CMS_hww_DYnorm2j_2016',
                  'samples'  : {
-                     'DY' : '1.00',
+                     'DY_lowZ' : '1.00',
+                     },
+                 'type'  : 'rateParam',
+                 'cuts'  : cuts2j
+                }
+
+nuisances['DYnorm2j_highZ']  = {
+                 'name'  : 'CMS_hww_DYnorm2j_2016',
+                 'samples'  : {
+                     'DY_highZ' : '1.00',
+                     },
+                 'type'  : 'rateParam',
+                 'cuts'  : cuts2j
+                }
+'''
+nuisances['DYnorm2j_lowZ']  = {
+                 'name'  : 'CMS_hww_DYnorm2j_lowZ',
+                 'samples'  : {
+                     'DY_lowZ' : '1.00',
+                     },
+                 'type'  : 'rateParam',
+                 'cuts'  : cuts2j
+                }
+
+nuisances['DYnorm2j_highZ']  = {
+                 'name'  : 'CMS_hww_DYnorm2j_highZ',
+                 'samples'  : {
+                     'DY_highZ' : '1.00',
                      },
                  'type'  : 'rateParam',
                  'cuts'  : cuts2j

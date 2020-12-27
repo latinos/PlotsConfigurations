@@ -70,6 +70,21 @@ from LatinoAnalysis.Tools.HiggsXSection import HiggsXSection
 HiggsXS = HiggsXSection()
 
 
+cuts2j_lowmjj = []
+cuts2j_highmjj = []
+cuts2j_vh = []
+cuts_highptww = []
+
+for k in cuts:
+  for cat in cuts[k]['categories']:
+    if 'mjj350_700' in cat or 'mjjGT700' in cat or 'mjjGT350' in cat or '2j_vbf' in cat: cuts2j_highmjj.append(k+'_'+cat)
+    elif 'mjj65_105' in cat or '2j_vh' in cat: cuts2j_vh.append(k+'_'+cat)
+    elif 'of_pth' in cat: cuts_highptww.append(k+'_'+cat)
+    elif 'of2j_pth' in cat or '2j' in cat: cuts2j_lowmjj.append(k+'_'+cat)
+
+
+
+'''
 cuts0j = []
 cuts1j = []
 
@@ -77,7 +92,7 @@ for k in cuts:
   for cat in cuts[k]['categories']:
     if '0j' in cat: cuts0j.append(k+'_'+cat)
     elif '1j' in cat: cuts1j.append(k+'_'+cat)
-
+'''
 ################################ EXPERIMENTAL UNCERTAINTIES  #################################
 
 #### Luminosity
@@ -882,6 +897,168 @@ nuisances['stat'] = {
 }
 
 #rate parameters
+
+nuisances['DYttnorm2j_highmjj']  = {
+               'name'  : 'CMS_hww_DYttnorm2j_highmjj',
+               'samples'  : {
+                   'DY' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : cuts2j_highmjj
+              }
+
+nuisances['DYembnorm2j_highmjj']  = {
+               'name'  : 'CMS_hww_DYttnorm2j_highmjj',
+               'samples'  : {
+                   'Dyemb' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : cuts2j_highmjj 
+              }
+
+nuisances['WWnorm2j_highmjj']  = {
+               'name'  : 'CMS_hww_WWnorm2j_highmjj',
+               'samples'  : {
+                   'WW' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : cuts2j_highmjj
+              }
+
+nuisances['ggWWnorm2j_highmjj']  = {
+               'name'  : 'CMS_hww_WWnorm2j_highmjj',
+               'samples'  : {
+                   'ggWW' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : cuts2j_highmjj
+              }
+
+nuisances['Topnorm2j_highmjj']  = {
+               'name'  : 'CMS_hww_Topnorm2j_highmjj',
+               'samples'  : {
+                   'top' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : cuts2j_highmjj
+              }
+
+nuisances['DYttnorm2j_lowmjj']  = {
+               'name'  : 'CMS_hww_DYttnorm2j_lowmjj',
+               'samples'  : {
+                   'DY' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : cuts2j_lowmjj+cuts_highptww
+              }
+
+nuisances['DYembnorm2j_lowmjj']  = {
+               'name'  : 'CMS_hww_DYttnorm2j_lowmjj',
+               'samples'  : {
+                   'Dyemb' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : cuts2j_lowmjj+cuts_highptww           
+                }
+
+nuisances['WWnorm2j_lowmjj']  = {
+               'name'  : 'CMS_hww_WWnorm2ji_lowmjj',
+               'samples'  : {
+                   'WW' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : cuts2j_lowmjj
+              }
+
+nuisances['ggWWnorm2j_lowmjj']  = {
+               'name'  : 'CMS_hww_WWnorm2j_lowmjj',
+               'samples'  : {
+                   'ggWW' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : cuts2j_lowmjj
+              }
+
+
+
+nuisances['WWnorm2j_highptww']  = {
+               'name'  : 'CMS_hww_WWnorm2j_highptww',
+               'samples'  : {
+                   'WW' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : cuts_highptww
+              }
+
+nuisances['ggWWnorm2j_lowmjj']  = {
+               'name'  : 'CMS_hww_WWnorm2j_highptww',
+               'samples'  : {
+                   'ggWW' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : cuts_highptww
+
+              }
+
+
+nuisances['Topnorm2j_lowmjj']  = {
+               'name'  : 'CMS_hww_Topnorm2j_lowmjj',
+               'samples'  : {
+                   'top' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : cuts2j_lowmjj+cuts_highptww        
+     }
+
+
+nuisances['DYttnorm2j_vh']  = {
+               'name'  : 'CMS_hww_DYttnorm2j_vh',
+               'samples'  : {
+                   'DY' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : cuts2j_vh
+             }
+
+nuisances['DYembnorm2j_vh']  = {
+               'name'  : 'CMS_hww_DYttnorm2j_vh',
+               'samples'  : {
+                   'Dyemb' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : cuts2j_vh 
+              }
+
+nuisances['WWnorm2j_vh']  = {
+               'name'  : 'CMS_hww_WWnorm2j_vh',
+               'samples'  : {
+                   'WW' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : cuts2j_vh
+              }
+
+nuisances['ggWWnorm2j_vh']  = {
+               'name'  : 'CMS_hww_WWnorm2j_vh',
+               'samples'  : {
+                   'ggWW' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : cuts2j_vh
+              }
+
+nuisances['Topnorm2j_vh']  = {
+               'name'  : 'CMS_hww_Topnorm2j_vh',
+               'samples'  : {
+                   'top' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : cuts2j_vh
+              }
+
+
+
+'''
 nuisances['DYttnorm0j']  = {
                'name'  : 'CMS_hww_DYttnorm0j',
                'samples'  : {
@@ -970,7 +1147,7 @@ nuisances['Topnorm1j']  = {
                'type'  : 'rateParam',
                'cuts'  : cuts1j
               }
-
+'''
 
 for n in nuisances.values():
     n['skipCMS'] = 1

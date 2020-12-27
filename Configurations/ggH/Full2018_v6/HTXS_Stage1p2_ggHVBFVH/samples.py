@@ -146,7 +146,7 @@ if useEmbeddedDY:
       'FilesPerJob': 1, # There's some error about not finding sample-specific variables like "nllW" when mixing different samples into a single job; so split them all up instead
   }
 
-  addSampleWeight(samples, 'Dyveto', 'TTTo2L2Nu', mcCommonWeight + '* (isTTbar * (TMath::Sqrt(TMath::Exp(-1.43717e-02 - 1.18358e-04*topGenPt - 1.70651e-07*topGenPt*topGenPt + 4.47969/(topGenPt+28.7)) * TMath::Exp(-1.43717e-02 - 1.18358e-04*antitopGenPt - 1.70651e-07*antitopGenPt*antitopGenPt + 4.47969/(antitopGenPt+28.7)))) + isSingleTop)')
+  addSampleWeight(samples, 'Dyveto', 'TTTo2L2Nu', mcCommonWeight + '*(isTTbar * (TMath::Sqrt(TMath::Exp(0.0615 - 0.0005 * topGenPt) * TMath::Exp(0.0615 - 0.0005 * antitopGenPt))) + isSingleTop)')
   addSampleWeight(samples, 'Dyveto', 'ST_tW_antitop_ext1', mcCommonWeight)
   addSampleWeight(samples, 'Dyveto', 'ST_tW_top_ext1', mcCommonWeight)
   addSampleWeight(samples, 'Dyveto', 'WWTo2L2Nu', mcCommonWeight + '*nllW')
@@ -195,7 +195,7 @@ files = nanoGetSampleFiles(mcDirectory, 'TTTo2L2Nu') + \
 
 samples['top'] = {
     'name': files,
-    'weight': mcCommonWeight,
+    'weight': mcCommonWeight+embed_tautauveto,
     'FilesPerJob': 2,
 }
 
@@ -205,13 +205,13 @@ addSampleWeight(samples,'top','TTTo2L2Nu','Top_pTrw')
 
 samples['WW'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'WWTo2L2Nu'),
-    'weight': mcCommonWeight + '*nllW',
+    'weight': mcCommonWeight +embed_tautauveto+ '*nllW',
     'FilesPerJob': 3
 }
 
 samples['WWewk'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'WpWmJJ_EWK'),
-    'weight': mcCommonWeight + '*(Sum$(abs(GenPart_pdgId)==6 || GenPart_pdgId==25)==0)', #filter tops and Higgs
+    'weight': mcCommonWeight +embed_tautauveto+ '*(Sum$(abs(GenPart_pdgId)==6 || GenPart_pdgId==25)==0)', #filter tops and Higgs
     'FilesPerJob': 4
 }
 
@@ -228,7 +228,7 @@ files = nanoGetSampleFiles(mcDirectory, 'GluGluToWWToENEN') + \
 
 samples['ggWW'] = {
     'name': files,
-    'weight': mcCommonWeight + '*1.53/1.4', # updating k-factor
+    'weight': mcCommonWeight +embed_tautauveto+ '*1.53/1.4', # updating k-factor
     'FilesPerJob': 4
 }
 
@@ -242,7 +242,7 @@ files = nanoGetSampleFiles(mcDirectory, 'Wg_MADGRAPHMLM') + \
 
 samples['Vg'] = {
     'name': files,
-    'weight': mcCommonWeightNoMatch + '*(Gen_ZGstar_mass <= 0)',
+    'weight': mcCommonWeightNoMatch +embed_tautauveto+ '*(Gen_ZGstar_mass <= 0)',
     'FilesPerJob': 4
 }
 # the following is needed in both v5 and v6
@@ -261,7 +261,7 @@ files = nanoGetSampleFiles(mcDirectory, 'Wg_MADGRAPHMLM') + \
 
 samples['VgS'] = {
     'name': files,
-    'weight': mcCommonWeight + ' * (gstarLow * 0.94 + gstarHigh * 1.14)',
+    'weight': mcCommonWeight +embed_tautauveto+ ' * (gstarLow * 0.94 + gstarHigh * 1.14)',
     'FilesPerJob': 4,
     'subsamples': {
       'L': 'gstarLow',
@@ -287,7 +287,7 @@ files = nanoGetSampleFiles(mcDirectory, 'ZZTo2L2Nu_ext1') + \
 
 samples['VZ'] = {
     'name': files,
-    'weight': mcCommonWeight + '*1.11',
+    'weight': mcCommonWeight +embed_tautauveto+ '*1.11',
     'FilesPerJob': 4
 }
 
@@ -320,6 +320,7 @@ for cat,num in HTXSStage1_1Categories.iteritems():
     if 'GG2H_' in cat:
         if 'PTH_GT200' not in cat:
             samples['ggH_hww_'+cat.replace('GG2H_','')]  = {  'name': nanoGetSampleFiles(mcDirectory,'GluGluHToWWTo2L2Nu_M125')+nanoGetSampleFiles(mcDirectory, 'GGHjjToWWTo2L2Nu_minloHJJ_M125'),
+            #samples['ggH_hww_'+cat.replace('GG2H_','')]  = {  'name': nanoGetSampleFiles(mcDirectory,'GluGluHToWWTo2L2Nu_M125'),#+ nanoGetSampleFiles(mcDirectory,'GluGluZH_HToWWTo2L2Nu_M125'),
                                                               'weight': mcCommonWeight+'*(HTXS_stage1_1_cat_pTjet30GeV=='+str(num)+')',
                                                               'FilesPerJob': 1,
                                                               'suppressNegative' :['all'],
@@ -327,34 +328,35 @@ for cat,num in HTXSStage1_1Categories.iteritems():
             }
             addSampleWeight(samples, 'ggH_hww_'+cat.replace('GG2H_',''), 'GluGluHToWWTo2L2Nu_M125', '(HTXS_stage1_1_cat_pTjet30GeV<107)*Weight2MINLO*1092.7640/1073.2567')
             addSampleWeight(samples, 'ggH_hww_'+cat.replace('GG2H_',''), 'GGHjjToWWTo2L2Nu_minloHJJ_M125', '(HTXS_stage1_1_cat_pTjet30GeV>106)*1092.7640/1073.2567')
+            #addSampleWeight(samples, 'ggH_hww_'+cat.replace('GG2H_',''), 'GluGluHToWWTo2L2Nu_M125', 'Weight2MINLO') 
             signals.append('ggH_hww_'+cat.replace('GG2H_',''))
 
 
     ## VBF and VH had.
     elif 'QQ2HQQ_' in cat:
-      if '0J'  not in cat or '1J' not in cat:
-        samples['qqH_hww_'+cat.replace('QQ2HQQ_','')]  = {  'name' : nanoGetSampleFiles(mcDirectory,'VBFHToWWTo2L2Nu_M125'),
-                                                            'weight': mcCommonWeight+'*(HTXS_stage1_1_cat_pTjet30GeV=='+str(num)+')' ,
-                                                            'suppressNegative' :['all'],
-                                                            'suppressNegativeNuisances' :['all'],
-                                                         }
-        signals.append('qqH_hww_'+cat.replace('QQ2HQQ_',''))
+      #if '0J'  not in cat and '1J' not in cat:
+      samples['qqH_hww_'+cat.replace('QQ2HQQ_','')]  = {  'name' : nanoGetSampleFiles(mcDirectory,'VBFHToWWTo2L2Nu_M125'),
+                                                          'weight': mcCommonWeight+'*(HTXS_stage1_1_cat_pTjet30GeV=='+str(num)+')' ,
+                                                          'suppressNegative' :['all'],
+                                                          'suppressNegativeNuisances' :['all'],
+                                                       }
+      signals.append('qqH_hww_'+cat.replace('QQ2HQQ_',''))
 
-        if 'MJJ_0_60' in cat or 'MJJ_60_120' in cat or 'MJJ_120_350' in cat:
-            samples['WH_had_hww_'+cat.replace('QQ2HQQ_','')]   = {  'name' :   nanoGetSampleFiles(mcDirectory,'HWminusJ_HToWW_M125')
+      if 'MJJ_0_60' in cat or 'MJJ_60_120' in cat or 'MJJ_120_350' in cat:
+         samples['WH_had_hww_'+cat.replace('QQ2HQQ_','')]   = {  'name' :   nanoGetSampleFiles(mcDirectory,'HWminusJ_HToWW_M125')
                                                                              + nanoGetSampleFiles(mcDirectory,'HWplusJ_HToWW_M125')  ,
                                                                     'weight': mcCommonWeight+'*(HTXS_stage1_1_cat_pTjet30GeV=='+str(num)+')' ,
                                                                     'suppressNegative' :['all'],
                                                                     'suppressNegativeNuisances' :['all'],
-                                                                 }
-            signals.append('WH_had_hww_'+cat.replace('QQ2HQQ_',''))
+                                                               }
+         signals.append('WH_had_hww_'+cat.replace('QQ2HQQ_',''))
 
-            samples['ZH_had_hww_'+cat.replace('QQ2HQQ_','')]  = { 'name' :  nanoGetSampleFiles(mcDirectory,'HZJ_HToWW_M125') ,
+         samples['ZH_had_hww_'+cat.replace('QQ2HQQ_','')]  = { 'name' :  nanoGetSampleFiles(mcDirectory,'HZJ_HToWW_M125') ,
                                                                   'weight': mcCommonWeight+'*(HTXS_stage1_1_cat_pTjet30GeV=='+str(num)+')' ,
                                                                   'suppressNegative' :['all'],
                                                                   'suppressNegativeNuisances' :['all'],
-                                                                }
-            signals.append('ZH_had_hww_'+cat.replace('QQ2HQQ_',''))
+                                                             }
+         signals.append('ZH_had_hww_'+cat.replace('QQ2HQQ_',''))
 
 
     ## WH lep.

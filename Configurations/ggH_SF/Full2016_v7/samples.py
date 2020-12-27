@@ -33,15 +33,11 @@ mcProduction = 'Summer16_102X_nAODv7_Full2016v7'
 
 dataReco = 'Run2016_102X_nAODv7_Full2016v7'
 
-#embedReco = 'Embedding2016_102X_nAODv7_Full2016v7'
-
 mcSteps = 'MCl1loose2016v7__MCCorr2016v7__l2loose__l2tightOR2016v7{var}'
 
 fakeSteps = 'DATAl1loose2016v7__l2loose__fakeW'
 
 dataSteps = 'DATAl1loose2016v7__l2loose__l2tightOR2016v7'
-
-#embedSteps = 'DATAl1loose2016v7__l2loose__l2tightOR2016v7__Embedding'
 
 ##############################################
 ###### Tree base directory for the site ######
@@ -106,9 +102,6 @@ mcCommonWeight = 'XSWeight*SFweight*PromptGenLepMatch2l*METFilter_MC'
 useDYtt = False
 useDYHT = True
 
-ptllDYW_NLO = '(0.876979+gen_ptll*(4.11598e-03)-(2.35520e-05)*gen_ptll*gen_ptll)*(1.10211 * (0.958512 - 0.131835*TMath::Erf((gen_ptll-14.1972)/10.1525)))*(gen_ptll<140)+0.891188*(gen_ptll>=140)'
-ptllDYW_LO  = '(8.61313e-01+gen_ptll*4.46807e-03-1.52324e-05*gen_ptll*gen_ptll)*(1.08683 * (0.95 - 0.0657370*TMath::Erf((gen_ptll-11.)/5.51582)))*(gen_ptll<140)+1.141996*(gen_ptll>=140)'
-
 if useDYtt:
     files = nanoGetSampleFiles(mcDirectory, 'DYJetsToTT_MuEle_M-50') + \
             nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-10to50')
@@ -121,8 +114,8 @@ if useDYtt:
         'suppressNegative' :['all'],
         'suppressNegativeNuisances' :['all'],
     }
-    addSampleWeight(samples,'DY','DYJetsToTT_MuEle_M-50',ptllDYW_NLO,False,'nanoLatino_')
-    addSampleWeight(samples,'DY','DYJetsToLL_M-10to50',ptllDYW_NLO,False,'nanoLatino_')
+    addSampleWeight(samples,'DY','DYJetsToTT_MuEle_M-50','DY_NLO_pTllrw')
+    addSampleWeight(samples,'DY','DYJetsToLL_M-10to50','DY_NLO_pTllrw')
 
 else:
     files = nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_ext2') + \
@@ -153,27 +146,27 @@ else:
                                  + nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-1200to2500')
                                  #+ nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-2500toinf') Missing! Is it a problem?
 
-    addSampleWeight(samples,'DY','DYJetsToLL_M-50'    ,ptllDYW_NLO)
-    addSampleWeight(samples,'DY','DYJetsToLL_M-10to50',ptllDYW_NLO)
+    addSampleWeight(samples,'DY','DYJetsToLL_M-50'    ,'DY_NLO_pTllrw')
+    addSampleWeight(samples,'DY','DYJetsToLL_M-10to50','DY_NLO_pTllrw')
 
     if useDYHT :
         # Remove high HT from inclusive samples
         addSampleWeight(samples,'DY','DYJetsToLL_M-50'    , 'LHE_HT<70.0')
         addSampleWeight(samples,'DY','DYJetsToLL_M-10to50', 'LHE_HT<70.0')
         # pt_ll weight
-        addSampleWeight(samples,'DY','DYJetsToLL_M-5to50_HT-70to100'       ,ptllDYW_LO)
-        addSampleWeight(samples,'DY','DYJetsToLL_M-5to50_HT-100to200_ext1' ,ptllDYW_LO)
-        addSampleWeight(samples,'DY','DYJetsToLL_M-5to50_HT-200to400_ext1' ,ptllDYW_LO)
-        addSampleWeight(samples,'DY','DYJetsToLL_M-5to50_HT-400to600_ext1' ,ptllDYW_LO)
-        addSampleWeight(samples,'DY','DYJetsToLL_M-5to50_HT-600toinf'      ,ptllDYW_LO)
-        addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-70to100'          ,ptllDYW_LO)
-        addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-100to200_ext1'    ,ptllDYW_LO)
-        addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-200to400_ext1'    ,ptllDYW_LO)
-        addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-400to600_ext1'    ,ptllDYW_LO)
-        addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-600to800'         ,ptllDYW_LO)
-        addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-800to1200'        ,ptllDYW_LO)
-        addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-1200to2500'       ,ptllDYW_LO)
-        #addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-2500toinf'        ,ptllDYW_LO) Missing! Is it a problem? 
+        addSampleWeight(samples,'DY','DYJetsToLL_M-5to50_HT-70to100'       ,'DY_LO_pTllrw')
+        addSampleWeight(samples,'DY','DYJetsToLL_M-5to50_HT-100to200_ext1' ,'DY_LO_pTllrw')
+        addSampleWeight(samples,'DY','DYJetsToLL_M-5to50_HT-200to400_ext1' ,'DY_LO_pTllrw')
+        addSampleWeight(samples,'DY','DYJetsToLL_M-5to50_HT-400to600_ext1' ,'DY_LO_pTllrw')
+        addSampleWeight(samples,'DY','DYJetsToLL_M-5to50_HT-600toinf'      ,'DY_LO_pTllrw')
+        addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-70to100'          ,'DY_LO_pTllrw')
+        addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-100to200_ext1'    ,'DY_LO_pTllrw')
+        addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-200to400_ext1'    ,'DY_LO_pTllrw')
+        addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-400to600_ext1'    ,'DY_LO_pTllrw')
+        addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-600to800'         ,'DY_LO_pTllrw')
+        addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-800to1200'        ,'DY_LO_pTllrw')
+        addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-1200to2500'       ,'DY_LO_pTllrw')
+        #addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-2500toinf'        ,'DY_LO_pTllrw') Missing! Is it a problem? 
 
 ###### Top #######
 
@@ -266,7 +259,7 @@ samples['VZ'] = {
     'weight': mcCommonWeight + '*1.11',
     'suppressNegative' :['all'],
     'suppressNegativeNuisances' :['all'],
-    'FilesPerJob': 2
+    'FilesPerJob': 1
 }
 
 ########## VVV #########

@@ -74,7 +74,7 @@ groupPlot['VgS']  = {
 groupPlot['Higgs']  = {
                   'nameHR' : 'Higgs',
                   'isSignal' : 1,
-                  'color': 632, # kRed 
+                  'color': 409, # kRed 
                   #'samples'  : ['H_htt', 'H_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'ggH_hww','bbH_hww',   'ttH_hww','ZH_htt', 'ggZH_htt', 'WH_htt', 'ggH_htt','bbH_htt','ttH_htt' ]
                   #'samples'  : ['ZH_hww', 'ggZH_hww', 'WH_hww', 'ggH_hww','bbH_hww','ttH_hww', 'ggH_htt' ]
                   'samples' : ['ZH_hww', 'ggZH_hww', 'WH_hww', 'ggH_hww','bbH_hww','ttH_hww','ZH_htt', 'ggZH_htt', 'WH_htt', 'ggH_htt','bbH_htt','ttH_htt' ]
@@ -85,7 +85,7 @@ groupPlot['Higgs']  = {
 groupPlot['VBF']  = {
                   'nameHR' : 'VBF',
                   'isSignal' : 2,
-                  'color': 409,
+                  'color': 632,
                   'samples'  : ['qqH_hww', 'qqH_htt']
               }
 
