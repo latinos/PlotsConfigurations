@@ -5,6 +5,7 @@ import argparse
 
 parser = argparse.ArgumentParser()
 parser.add_argument("-c","--cuts",help="Cut", type=str, nargs="+")
+parser.add_argument("-d","--datacard", help="Datacard", type=str)
 parser.add_argument("-s","--samples",help="Samples", type=str, nargs="+")
 parser.add_argument("-v","--variables",help="Variables", type=str, nargs="+")
 parser.add_argument("-o","--output",help="Outputdir",type=str)
@@ -30,7 +31,7 @@ def run_jobs(conf):
 
 tag = "fit_v4.2"
 years = ["2018"]
-datacard_name = "fit_v4.2_2018_AsLnN_PSsig_PSwjets"
+datacard_name = args.datacard
 #cuts = ["res_wjetcr_dnnhigh_ele","res_sig_dnnhigh_ele","res_topcr_dnnhigh_ele"]
 # cuts = ["boost_topcr_ele","boost_wjetcr_ele","res_topcr_ele","res_wjetcr_ele",
 #         "boost_sig_ele", "res_sig_ele","boost_topcr_mu","boost_wjetcr_mu","res_topcr_mu","res_wjetcr_mu",

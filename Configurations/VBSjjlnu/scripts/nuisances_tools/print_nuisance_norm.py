@@ -3,6 +3,10 @@ import argparse
 import ROOT as R 
 R.TH1.SetDefaultSumw2()
 
+'''
+Print the normalization of up/down of nuisances
+'''
+
 parser = argparse.ArgumentParser()
 parser.add_argument("-i","--input", help="Input file", type=str)
 parser.add_argument("-s","--samples", help="Samples", type=str, nargs="+")

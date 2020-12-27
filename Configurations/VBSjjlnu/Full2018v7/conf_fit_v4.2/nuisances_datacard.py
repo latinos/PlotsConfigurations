@@ -437,38 +437,42 @@ for ir in range(1,6):
 # #
 # # PS and UE
 # # #
-nuisances['PS_ISR']  = {
-                'name'  : 'CMS_PS_ISR',
+for sample in ['top','DY','VV','VVV','Vg','VgS','VBF-V']:
+    nuisances['PS_ISR_'+sample]  = {
+                    'name'  : 'CMS_PS_ISR_'+sample,
+                    'kind'  : 'weight',
+                    'type'  : 'shape',
+                    'samples'  : {
+                        # "Wjets_HT" : ['0.982272838085*PSWeight[2]', '1.02181242737*PSWeight[0]'],
+                        sample :      ['PSWeight[2]', 'PSWeight[0]'],
+                    }
+                }
+    nuisances['PS_FSR_'+sample]  = {
+                    'name'  : 'CMS_PS_FSR_'+sample,
+                    'kind'  : 'weight',
+                    'type'  : 'shape',
+                    'samples'  : {
+                        # "Wjets_HT" : ['0.982272838085*PSWeight[2]', '1.02181242737*PSWeight[0]'],
+                        sample :      ['PSWeight[2]', 'PSWeight[0]'],
+                    }
+                }
+
+for wbin in wjets_bins:
+    nuisances['PS_ISR_'+wbin]  = {
+                'name'  : 'CMS_PS_ISR_'+wbin,
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
-                    "Wjets_HT" : ['0.982272838085*PSWeight[2]', '1.02181242737*PSWeight[0]'],
-                    # "top" :      ['1.03155693519*PSWeight[2]', '0.961815586845*PSWeight[0]'],
-                    # "DY" :       ['0.97886720138*PSWeight[2]', '1.02647248945*PSWeight[0]'],
-                    # "VV" :       ['1.0465279037*PSWeight[2]', '0.944799010566*PSWeight[0]'],
-                    # "VVV" :      ['1.05734355007*PSWeight[2]', '0.932431850085*PSWeight[0]'],
-                    # "Vg" :       ['1.01955942491*PSWeight[2]', '0.975230059839*PSWeight[0]'],
-                    # "VgS" :      ['1.08107219534*PSWeight[2]', '0.90877489878*PSWeight[0]'],
-                    # "VBF-V" :    ['1.06679259757*PSWeight[2]', '0.922182403809*PSWeight[0]'],
-                },
-                'cuts_samples' : { wj:[c for c in phasespaces if 'topcr' not in c]  for wj in wjets_bins}
+                    wbin : ['0.982272838085*PSWeight[2]', '1.02181242737*PSWeight[0]'],
+                }
             }
-
-nuisances['PS_FSR']  = {
-                'name'  : 'CMS_PS_FSR',
+    nuisances['PS_FSR_'+wbin]  = {
+                'name'  : 'CMS_PS_FSR_'+wbin,
                 'kind'  : 'weight',
                 'type'  : 'shape',
-                 'samples'  : {
-                    "Wjets_HT" : ['0.952155496489*PSWeight[3]', '1.07333378529*PSWeight[1]'],
-                    # "top" :      ['0.97787785651 *PSWeight[3]', '1.03588910284*PSWeight[1]'],
-                    # "DY" :       ['0.958391503276*PSWeight[3]', '1.06398826279*PSWeight[1]'],
-                    # "VV" :       ['0.981257169925*PSWeight[3]', '1.02970402391*PSWeight[1]'],
-                    # "VVV" :      ['0.983158151317*PSWeight[3]', '1.02330499999*PSWeight[1]'],
-                    # "Vg" :       ['0.975311453995*PSWeight[3]', '1.03255777815*PSWeight[1]'],
-                    # "VgS" :      ['0.975277639335*PSWeight[3]', '1.02377054684*PSWeight[1]'],
-                    # "VBF-V" :    ['0.998784026001*PSWeight[3]', '1.00519787421*PSWeight[1]'],
-                },
-                'cuts_samples' : { wj:[c for c in phasespaces if 'topcr' not in c]  for wj in wjets_bins}
+                'samples'  : {
+                    wbin : ['0.952155496489*PSWeight[3]', '1.07333378529*PSWeight[1]'],
+                }
             }
 
 # Keep VBS uncorrelated
@@ -546,7 +550,6 @@ for fl in ['ele','mu']:
                 }
 
 
-
 regrouped_Wjets = False
 for wjbin in wjets_bins:
     for fl in ["ele", "mu"]:
@@ -588,4 +591,4 @@ for n in nuisances.values():
    
 print ' '.join(nuis['name'] for nname, nuis in nuisances.iteritems() if nname not in ('lumi', 'stat'))
 
-# nuisances = {k:v for k,v in nuisances.items() if 'PS' in k}
+# nuisances = {k:v for k,v in nuisances.items() if 'PS' in k} #if 'PS' in k or 'QCD' in k
