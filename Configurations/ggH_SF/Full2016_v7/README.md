@@ -79,6 +79,10 @@ Source combine:
     cmsenv
     cd -
 
+Prepare directory:
+
+    mkdir -p Impact_plots
+
 Combination:
 
     text2workspace.py datacards/hww2l2v_13TeV_ggH/comb/datacard.txt -o datacards/hww2l2v_13TeV_ggH/comb/datacard.root 
@@ -95,7 +99,7 @@ Combination:
 
 Edit 'datacards/hww2l2v_13TeV_ggH/comb/impacts_total.json' so that there is only one set of 'POIs' and finally produce the pdf file with the impacts:
 
-    plotImpacts.py -i datacards/hww2l2v_13TeV_ggH/comb/impacts_total.json -o datacards/hww2l2v_13TeV_ggH/comb/Impact_ggH_2016
+    plotImpacts.py -i datacards/hww2l2v_13TeV_ggH/comb/impacts_total.json -o Impact_plots/Impact_ggH_2016
 
     rm higgsCombine_*
 
@@ -113,7 +117,7 @@ Edit 'datacards/hww2l2v_13TeV_ggH/comb/impacts_total.json' so that there is only
 
     cat datacards/hww2l2v_13TeV_ggH_0j/comb/impacts.json datacards/hww2l2v_13TeV_ggH_0j/comb/impacts_rateParam.json > datacards/hww2l2v_13TeV_ggH_0j/comb/impacts_total.json 
 
-    plotImpacts.py -i datacards/hww2l2v_13TeV_ggH_0j/comb/impacts_total.json -o datacards/hww2l2v_13TeV_ggH_0j/comb/Impact_ggH_0j_2016
+    plotImpacts.py -i datacards/hww2l2v_13TeV_ggH_0j/comb/impacts_total.json -o Impact_plots/Impact_ggH_0j_2016
 
     rm higgsCombine_*
 
@@ -131,7 +135,7 @@ Edit 'datacards/hww2l2v_13TeV_ggH/comb/impacts_total.json' so that there is only
 
     cat datacards/hww2l2v_13TeV_ggH_1j/comb/impacts.json datacards/hww2l2v_13TeV_ggH_1j/comb/impacts_rateParam.json > datacards/hww2l2v_13TeV_ggH_1j/comb/impacts_total.json 
 
-    plotImpacts.py -i datacards/hww2l2v_13TeV_ggH_1j/comb/impacts_total.json -o datacards/hww2l2v_13TeV_ggH_1j/comb/Impact_ggH_1j_2016
+    plotImpacts.py -i datacards/hww2l2v_13TeV_ggH_1j/comb/impacts_total.json -o Impact_plots/Impact_ggH_1j_2016
 
     rm higgsCombine_*
 
@@ -149,7 +153,7 @@ Edit 'datacards/hww2l2v_13TeV_ggH/comb/impacts_total.json' so that there is only
 
     cat datacards/hww2l2v_13TeV_ggH_2j/comb/impacts.json datacards/hww2l2v_13TeV_ggH_2j/comb/impacts_rateParam.json > datacards/hww2l2v_13TeV_ggH_2j/comb/impacts_total.json 
 
-    plotImpacts.py -i datacards/hww2l2v_13TeV_ggH_2j/comb/impacts_total.json -o datacards/hww2l2v_13TeV_ggH_2j/comb/Impact_ggH_2j_2016
+    plotImpacts.py -i datacards/hww2l2v_13TeV_ggH_2j/comb/impacts_total.json -o Impact_plots/Impact_ggH_2j_2016
 
     rm higgsCombine_*
 
