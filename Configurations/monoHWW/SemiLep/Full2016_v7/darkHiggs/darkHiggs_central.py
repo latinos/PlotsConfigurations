@@ -29,8 +29,8 @@ for model in models:
         'weight': mcCommonWeightNoXS + '*GenModel_'+model+'*genWeight*'+modelDict[model]['baseW'],
         'color' : 632+col_idx,
         'plot_name' : 'mhs '+mhs+' mx '+mx+' mZ\' '+mZp,
-        #'FilesPerJob': 5,
-        'FilesPerJob': 13,
+        'FilesPerJob': 5,
+        #'FilesPerJob': 13,
     }
     print('  - Mass point: '+mp+' ,\t baseW: '+modelDict[model]['baseW']+',\t genEventSumw: '+str(modelDict[model]['genEventSumw']))
     col_idx += 1

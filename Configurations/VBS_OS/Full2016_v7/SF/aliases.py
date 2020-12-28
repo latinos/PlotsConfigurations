@@ -173,6 +173,15 @@ aliases['sr'] = {
     'expr': 'mth>60 && bVeto'
 }
 
+aliases['lowZ'] = {
+    'expr':  '0.5*abs((Lepton_eta[0] + Lepton_eta[1]) - (CleanJet_eta[0] + CleanJet_eta[1])) < 1'        
+}
+
+aliases['highZ'] = {
+    'expr':  '0.5*abs((Lepton_eta[0] + Lepton_eta[1]) - (CleanJet_eta[0] + CleanJet_eta[1])) >= 1'
+}
+
+# B tag SF
 if btag_algo == "deepcsv":
     aliases['bVetoSF'] = {
         'expr': 'TMath::Exp(Sum$(TMath::Log((CleanJet_pt>20 && abs(CleanJet_eta)<2.5)*Jet_btagSF_deepcsv_shape[CleanJet_jetIdx]+1*(CleanJet_pt<20 || abs(CleanJet_eta)>2.5))))',
