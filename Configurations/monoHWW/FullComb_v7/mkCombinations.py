@@ -26,6 +26,25 @@ if __name__ == '__main__':
                 print('Combining DH_mhs_' + hs + '_mx_' + DM + '_mZp_' + Zp)
                 txt+= 'combineCards.py ' + args.inputDir2016 + 'datacard_DH_mhs_' + hs + '_mx_' + DM + '_mZp_' + Zp + '_combined_corr.txt ' + args.inputDir2017 + '/datacard_DH_mhs_' + hs + '_mx_' + DM + '_mZp_' + Zp + '_combined_corr.txt '  + args.inputDir2018 + '/datacard_DH_mhs_' + hs + '_mx_' + DM + '_mZp_' + Zp + '_combined_corr.txt > datacards/datacard_DH_mhs_' + hs + '_mx_' + DM + '_mZp_' + Zp + '_combined.txt\n'
 
+
+    # mA = ['200','400','500','600']
+    
+    # for A in mA:
+    #     print('Combining 2HMDa__gg_sinp_0p35_tanb_1p0_mXd_10_MA_' + A + '_ma_150')
+    #     txt+= 'combineCards.py ' + args.inputDir2016 + 'datacard_2HMDa__gg_sinp_0p35_tanb_1p0_mXd_10_MA_' + A + '_ma_150_combined_corr.txt ' + args.inputDir2017 + '/datacard_2HMDa__gg_sinp_0p35_tanb_1p0_mXd_10_MA_' + A + '_ma_150_combined_corr.txt '  + args.inputDir2018 + '/datacard_2HMDa__gg_sinp_0p35_tanb_1p0_mXd_10_MA_' + A + '_ma_150_combined_corr.txt > datacards/datacard_2HMDa__gg_sinp_0p35_tanb_1p0_mXd_10_MA_' + A + '_ma_150_combined.txt\n'
+
+
+    # sintheta = ['0p35', '0p7']
+    # tanbeta = ['0p5', '1p0', '1p5', '2p0', '4p0', '8p0']
+
+    # for theta in sintheta:
+    #     for beta in tanbeta:
+    #         print('Combining 2HMDa__gg_sinp_' + theta  + '_tanb_' + beta  + '_mXd_10_MA_300_ma_150')
+    #         txt+= 'combineCards.py ' + args.inputDir2016 + 'datacard_2HMDa__gg_sinp_' + theta  + '_tanb_' + beta  + '_mXd_10_MA_300_ma_150_combined_corr.txt ' + args.inputDir2017 + '/datacard_2HMDa__gg_sinp_' + theta  + '_tanb_' + beta  + '_mXd_10_MA_300_ma_150_combined_corr.txt '  + args.inputDir2018 + '/datacard_2HMDa__gg_sinp_' + theta  + '_tanb_' + beta  + '_mXd_10_MA_300_ma_150_combined_corr.txt > datacards/datacard_2HMDa__gg_sinp_' + theta  + '_tanb_' + beta  + '_mXd_10_MA_300_ma_150_combined.txt\n'
+
+
+
     f = open('runCombination.sh', 'w')
     f.write(txt)
     f.close()
+        

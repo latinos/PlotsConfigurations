@@ -73,6 +73,10 @@ Source combine:
     cmsenv
     cd -
 
+Prepare directory:
+
+    mkdir -p Impact_plots
+
 VBF category:
 
     text2workspace.py datacards/hww2l2v_13TeV_VBF/comb/datacard.txt -o datacards/hww2l2v_13TeV_VBF/comb/datacard.root
@@ -87,7 +91,7 @@ VBF category:
 
     cat datacards/hww2l2v_13TeV_VBF/comb/impacts.json datacards/hww2l2v_13TeV_VBF/comb/impacts_rateParam.json > datacards/hww2l2v_13TeV_VBF/comb/impacts_total.json 
 
-    plotImpacts.py -i datacards/hww2l2v_13TeV_VBF/comb/impacts_total.json -o datacards/hww2l2v_13TeV_VBF/comb/Impact_ggH_2j_vbf_2016
+    plotImpacts.py -i datacards/hww2l2v_13TeV_VBF/comb/impacts_total.json -o Impact_plots/Impact_qqH_2j_vbf_2016
 
     rm higgsCombine_*
 
@@ -105,7 +109,7 @@ VH category:
 
     cat datacards/hww2l2v_13TeV_VH/comb/impacts.json datacards/hww2l2v_13TeV_VH/comb/impacts_rateParam.json > datacards/hww2l2v_13TeV_VH/comb/impacts_total.json 
 
-    plotImpacts.py -i datacards/hww2l2v_13TeV_VH/comb/impacts_total.json -o datacards/hww2l2v_13TeV_VH/comb/Impact_ggH_2j_vh_2016
+    plotImpacts.py -i datacards/hww2l2v_13TeV_VH/comb/impacts_total.json -o Impact_plots/Impact_qqH_2j_vh_2016
 
     rm higgsCombine_*
 

@@ -22,18 +22,18 @@ structure['Wjets']  = {
     'isData'   : 0
 }
 
-#structure['top'] = {
+structure['top'] = {
+    'isSignal' : 0,
+    'isData'   : 0
+}
+#structure['stop'] = {
 #    'isSignal' : 0,
 #    'isData'   : 0
 #}
-structure['stop'] = {
-    'isSignal' : 0,
-    'isData'   : 0
-}
-structure['ttop'] = {
-    'isSignal' : 0,
-    'isData'   : 0
-}
+#structure['ttop'] = {
+#    'isSignal' : 0,
+#    'isData'   : 0
+#}
 
 
 structure['WW']  = {
@@ -119,60 +119,65 @@ structure['FAKE'] = {
     'isData'   : 0
 }
 
-structure['ggH_hww'] = {
+structure['Higgs'] = {
                   'isSignal' : 0,
                   'isData'   : 0
                   }
 
-structure['qqH_hww'] = {
-                  'isSignal' : 0,
-                  'isData'   : 0
-                  }
-
-structure['WH_hww'] = {
-                  'isSignal' : 0,
-                  'isData'   : 0
-                  }
-
-structure['ZH_hww'] = {
-                  'isSignal' : 0,
-                  'isData'   : 0
-                  }
-
-# structure['ggZH_hww'] = {
-#                   'isSignal' : 0,
-#                   'isData'   : 0
-#                   }
-
-# structure['bbH_hww'] = {
-#                   'isSignal' : 0,
-#                   'isData'   : 0
-#                   }
-
-structure['ttH_hww'] = {
-                  'isSignal' : 0,
-                  'isData'   : 0
-                  }
-
-structure['ggH_htt'] = {
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  }
-
-structure['qqH_htt'] = {
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  }
-
-# structure['WH_htt'] = {
-#                   'isSignal' : 0,
-#                   'isData'   : 0,
-#                   }
-
-structure['ZH_htt'] = {
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  }
+#structure['ggH_hww'] = {
+#                  'isSignal' : 0,
+#                  'isData'   : 0
+#                  }
+#
+#structure['qqH_hww'] = {
+#                  'isSignal' : 0,
+#                  'isData'   : 0
+#                  }
+#
+#structure['WH_hww'] = {
+#                  'isSignal' : 0,
+#                  'isData'   : 0
+#                  }
+#
+#structure['ZH_hww'] = {
+#                  'isSignal' : 0,
+#                  'isData'   : 0
+#                  }
+#
+## structure['ggZH_hww'] = {
+##                   'isSignal' : 0,
+##                   'isData'   : 0
+##                   }
+#
+## structure['bbH_hww'] = {
+##                   'isSignal' : 0,
+##                   'isData'   : 0
+##                   }
+#
+#structure['ttH_hww'] = {
+#                  'isSignal' : 0,
+#                  'isData'   : 0
+#                  }
+#
+#structure['ggH_htt'] = {
+#                  'isSignal' : 0,
+#                  'isData'   : 0,
+#                  }
+#
+#structure['qqH_htt'] = {
+#                  'isSignal' : 0,
+#                  'isData'   : 0,
+#                  }
+#
+## structure['WH_htt'] = {
+##                   'isSignal' : 0,
+##                   'isData'   : 0,
+##                   }
+#
+#structure['ZH_htt'] = {
+#                  'isSignal' : 0,
+#                  'isData'   : 0,
+#                  }
 
 # SIGNAL
 
