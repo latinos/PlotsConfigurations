@@ -342,8 +342,8 @@ QglVarsMorphing::setValues(UInt_t _run, UInt_t _luminosityBlock, ULong64_t _even
 
 
    int category = *(VBS_category->Get());
-
     if (category ==0){
+      
       //boosted
       returnValues[vbs_0_qgl_boost] = Jet_qgl->At(CleanJet_jetIdx->At(VBS_jets_boost->At(0)));
       returnValues[vbs_1_qgl_boost] = Jet_qgl->At(CleanJet_jetIdx->At(VBS_jets_boost->At(1)));

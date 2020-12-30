@@ -20,6 +20,10 @@ config = {
                 "cuts": ["boost_sig_mu", "boost_wjetcr_mu", "boost_topcr_mu"]
             }
         } 
+    },
+    "VBS":{
+        "nuisances" : ['VBS_PhytiaToHerwig'],
+        "phase_spaces":{}
     }
 }
 
@@ -59,3 +63,17 @@ for wj_boost in wjets_bins['boost']:
             }
         }
     }
+
+
+for cut in ["res_sig_ele", "res_wjetcr_ele", "res_topcr_ele","res_sig_mu", "res_wjetcr_mu", "res_topcr_mu",
+            "boost_sig_ele", "boost_wjetcr_ele", "boost_topcr_ele","boost_sig_mu", "boost_wjetcr_mu", "boost_topcr_mu"]:
+    if 'res' in cut:
+        config["VBS"]["phase_spaces"][cut] = {
+            "vars": ["DNNoutput_res_bins2", "fit_bins_res", "events","w_lep_pt","deltaeta_vbs","mjj_vjet",'mjj_vbs_res','nJets','vjet_0_qgl_res'],
+            'cuts':[cut]
+        }
+    if 'boost' in cut:
+        config["VBS"]["phase_spaces"][cut] = {
+            "vars": ["DNNoutput_boost_bins2", "fit_bins_boost", "events","w_lep_pt","whad_pt_boost","deltaeta_vbs","mjj_vjet",'mjj_vbs_boost','nJets','vbs_0_qgl_boost'],
+            'cuts':[cut]
+        }

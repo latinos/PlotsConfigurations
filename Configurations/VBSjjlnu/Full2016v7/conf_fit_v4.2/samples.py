@@ -141,7 +141,7 @@ samples['DY'] = {    'name'   :   #nanoGetSampleFiles(directory_bkg,'DYJetsToLL_
                                   + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-5to50_HT-600toinf')
                                   + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-5to50_HT-600toinf_ext1'),
                        'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*'+DY_photon_filter  ,
-                       'FilesPerJob' : 5,
+                       'FilesPerJob' : 8,
                        'EventsPerJob' : 80000,
                        'suppressNegative' :['all'],
                        'suppressNegativeNuisances' :['all'],
@@ -200,7 +200,7 @@ samples['top'] = {
                     #  + nanoGetSampleFiles(directory_bkg,'TTWJetsToLNu_ext1')  
                       + nanoGetSampleFiles(directory_bkg,'TTZjets'),  
             'weight' :  XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch,
-            'FilesPerJob' : 5,
+            'FilesPerJob' : 6,
             'EventsPerJob' : 80000,
             'suppressNegative' :['all'],
             'suppressNegativeNuisances' :['all'],
@@ -239,7 +239,7 @@ samples['Wjets_HT'] = { 'name' :
           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT2500_inf_ext1')
           ,
         'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch + '* EWKnloW', #added Lo to NLO factors
-        'FilesPerJob' : 2,
+        'FilesPerJob' : 6,
          'subsamples': {
             "res_1": '(VBS_category==1) && (w_lep_pt < 100)',
             "res_2": '(VBS_category==1) && (w_lep_pt >= 100 && w_lep_pt < 200)',
@@ -421,4 +421,4 @@ for Run in DataRun :
 
 
 #samples = {k:v for k,v in samples.items() if k  in ['top', 'Wjets_HT']}
-#samples = {k:v for k,v in samples.items() if k  in ['Fake']}
+#samples = {k:v for k,v in samples.items() if k in ['VBS']}

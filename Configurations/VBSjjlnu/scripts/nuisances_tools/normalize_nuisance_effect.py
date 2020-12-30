@@ -3,6 +3,11 @@ R.gROOT.SetBatch(True)
 import argparse 
 import json
 
+'''
+The script normalize the nuisance effect looking at a list of phase spaces specified
+in the config file. 
+'''
+
 parser = argparse.ArgumentParser()
 parser.add_argument("-i","--input", help="Input file", type=str)
 parser.add_argument("-c","--config", help="Config file",type=str)
@@ -17,10 +22,14 @@ exec(open(args.config))
 
 
 for sample, sample_conf in config.items():
+    sample_conf['results'] = {}
     print "> Working on sample: ", sample
     for nuis in sample_conf["nuisances"]:
+        sample_conf['results'][nuis] = {}
         print ">> nuisance: ", nuis
         for phase_space, phs_conf in sample_conf["phase_spaces"].items():
+            sample_conf['results'][nuis][phase_space] = {}
+            results = sample_conf['results'][nuis][phase_space] 
             print ">>> phase space: ", phase_space
             nom, up, down = [],[],[]
             up_histos, down_histos = [],[]
@@ -35,11 +44,11 @@ for sample, sample_conf in config.items():
                 down_histos.append(("{}/{}".format(cut, var), h_down))
             ratio_up = sum(nom)/sum(up)
             ratio_down = sum(nom)/sum(down)
-            phs_conf["nom"] = nom
-            phs_conf["up"] = up
-            phs_conf["down"] = down
-            phs_conf["ratioUp"] = ratio_up
-            phs_conf["ratioDown"] = ratio_down
+            results["nom"] = nom
+            results["up"] = up
+            results["down"] = down
+            results["ratioUp"] = ratio_up
+            results["ratioDown"] = ratio_down
             print "Nominal: ", nom
             print "Up: ", up 
             print "Down: ", down 

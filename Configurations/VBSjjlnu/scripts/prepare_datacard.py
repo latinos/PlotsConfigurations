@@ -23,6 +23,7 @@ parser.add_argument("-rw","--redo-workspace", help="Redo workspace", action="sto
 parser.add_argument("-p","--process", help="Process to run", type=str)
 parser.add_argument("--dry", help="Only printout commands", action="store_true", default=False)
 parser.add_argument("--masks", help="File with list of channels to mask",  type=str)
+parser.add_argument("--result-name", help="Result name for the file",  type=str, default='')
 parser.add_argument("-fo","--fit-options", help="Robust fit options", type=int, default=0)
 parser.add_argument("--save-uncert", help="Save uncertainties for fit diagnostic", action="store_true", default=False, required=False)
 args = parser.parse_args()
@@ -38,8 +39,9 @@ else:
 fitter_options= { 
     0:  " ",
     1:  "--robustFit=1 --X-rtd FITTER_NEW_CROSSING_ALGO --X-rtd FITTER_NEVER_GIVE_UP --X-rtd FITTER_BOUND",
-    2:  "--cminDefaultMinimizerStrategy 0  --cminFallbackAlgo Minuit2,Migrad,0:0.1",
+    2:  "--cminDefaultMinimizerStrategy 0  --cminFallbackAlgo Minuit2,Migrad,0:0.1 --robustFit=1",
     3:  "--cminDefaultMinimizerStrategy 0  --cminFallbackAlgo Minuit2,Migrad,0:0.1 --robustFit=1 --X-rtd FITTER_NEW_CROSSING_ALGO --X-rtd FITTER_NEVER_GIVE_UP --X-rtd FITTER_BOUND",
+    4:  "--cminDefaultMinimizerStrategy 0  --cminFallbackAlgo Minuit2,Migrad,0:0.1 --robustFit=1 --robustHesse=1 --X-rtd FITTER_NEW_CROSSING_ALGO --X-rtd FITTER_NEVER_GIVE_UP --X-rtd FITTER_BOUND",
 }
 
 
@@ -233,11 +235,13 @@ for datac in config:
         significance(datac)    
     elif args.process == "fit_and_pulls_mcasimov":
         datac["toys_opts"] = "-t -1 --expectSignal 1"
-        datac["result_name"] = "MC_asimov"
+        if args.result_name: datac["result_name"] = args.result_name
+        else: datac["result_name"] = "MC_asimov"
         fit_and_pulls(datac)
     elif args.process == "fit_and_pulls_dataasimov":
         datac["toys_opts"] = "-t -1 --expectSignal 1 --toysFreq"
-        datac["result_name"] = "data_asimov"
+        if args.result_name: datac["result_name"] = args.result_name
+        else: datac["result_name"] = "data_asimov"
         fit_and_pulls(datac)
     elif args.process == "compatibility":
         compatibility(datac)    

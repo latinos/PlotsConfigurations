@@ -387,6 +387,24 @@ nuisances['TopPtRew'] = {
 
 ###########################################
 
+nuisances['QGLmorphing']  = {
+    'name': 'QGLmorph_2018',
+    'kind': 'suffix',
+    'type': 'shape',
+    'samples': dict((skey, ['1.','1.']) for skey in mc),
+}
+
+#####################
+# Njets Herwig/Pythia for signal
+nuisances['njets_signal'] = {
+   'name': 'VBS_PhytiaToHerwig',   
+   'kind': 'weight',
+   'type': 'shape',
+   'samples': {'VBS': ["njets_herwig_signal"]},
+   'OneSided': True
+}
+
+
 # ######################
 # # Theory nuisance
 
@@ -437,13 +455,12 @@ for ir in range(1,6):
 # #
 # # PS and UE
 # # #
-for sample in ['top','DY','VV','VVV','Vg','VgS','VBF-V']:
+for sample in ['top','DY','VV','VVV','Vg','VgS','VBF-V'] + wjets_bins:
     nuisances['PS_ISR_'+sample]  = {
                     'name'  : 'CMS_PS_ISR_'+sample,
                     'kind'  : 'weight',
                     'type'  : 'shape',
                     'samples'  : {
-                        # "Wjets_HT" : ['0.982272838085*PSWeight[2]', '1.02181242737*PSWeight[0]'],
                         sample :      ['PSWeight[2]', 'PSWeight[0]'],
                     }
                 }
@@ -452,7 +469,6 @@ for sample in ['top','DY','VV','VVV','Vg','VgS','VBF-V']:
                     'kind'  : 'weight',
                     'type'  : 'shape',
                     'samples'  : {
-                        # "Wjets_HT" : ['0.982272838085*PSWeight[2]', '1.02181242737*PSWeight[0]'],
                         sample :      ['PSWeight[2]', 'PSWeight[0]'],
                     }
                 }
@@ -463,7 +479,7 @@ for wbin in wjets_bins:
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
-                    wbin : ['0.982272838085*PSWeight[2]', '1.02181242737*PSWeight[0]'],
+                    wbin : ['PSWeight[2]', 'PSWeight[0]'],
                 }
             }
     nuisances['PS_FSR_'+wbin]  = {
@@ -471,7 +487,7 @@ for wbin in wjets_bins:
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
-                    wbin : ['0.952155496489*PSWeight[3]', '1.07333378529*PSWeight[1]'],
+                    wbin : ['PSWeight[3]', 'PSWeight[1]'],
                 }
             }
 
@@ -591,4 +607,4 @@ for n in nuisances.values():
    
 print ' '.join(nuis['name'] for nname, nuis in nuisances.iteritems() if nname not in ('lumi', 'stat'))
 
-# nuisances = {k:v for k,v in nuisances.items() if 'PS' in k} #if 'PS' in k or 'QCD' in k
+# nuisances = {k:v for k,v in nuisances.items() if 'QGL' in k} #if 'PS' in k or 'QCD' in k

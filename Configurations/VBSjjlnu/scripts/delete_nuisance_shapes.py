@@ -2,7 +2,7 @@ import ROOT as R
 import sys
 
 f = R.TFile(sys.argv[1], "UPDATE")
-#sample_name = sys.argv[2]
+nuisance_name = sys.argv[2]
 
 samples = ['VBS','top','DATA','Fake','Wjets_HT','VVV','VV','VgS','Vg','DY','VBF-V']
 for ir in range(1,7):
@@ -19,11 +19,13 @@ for sample_name in samples:
         R.gDirectory.Cd(k.GetName())
         for z in R.gDirectory.GetListOfKeys():
             #print(z)
+            print ">>> ", k.GetName(), z.GetName()
             R.gDirectory.Cd(z.GetName())
             for l in R.gDirectory.GetListOfKeys():
                 if "histo_" + sample_name == l.GetName():
-                    print "delete ", l.GetName()
-                    R.gDirectory.Delete(l.GetName()+";*")
+                    print "delete ", l.GetName()+"_"+nuisance_name+"*;*"
+                    #Delete boh up and down
+                    R.gDirectory.Delete(l.GetName()+"_"+nuisance_name+"*;*")
             R.gDirectory.Cd("../")
 
         R.gDirectory.Cd("../")

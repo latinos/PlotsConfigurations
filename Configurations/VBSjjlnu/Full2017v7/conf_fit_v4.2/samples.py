@@ -125,7 +125,7 @@ samples['DY'] = {    'name'   :   nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M
                                   + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-4to50_HT-600toInf')
                                   + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-4to50_HT-600toInf_ext1') ,
                        'weight' : (XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+"*"+DY_photons_filter).replace('PUJetIdSF','1.'),
-                       'FilesPerJob' : 5,
+                       'FilesPerJob' : 8,
                        'EventsPerJob' : 80000,
                       #  'suppressNegative' :['all'],
                       #  'suppressNegativeNuisances' :['all'],
@@ -171,7 +171,7 @@ samples['top'] = {    'name'   :   nanoGetSampleFiles(directory_bkg,'TTTo2L2Nu')
                                  + nanoGetSampleFiles(directory_bkg,'TTWjets')
                                  + nanoGetSampleFiles(directory_bkg,'TTWjets_ext1'),
                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-                     'FilesPerJob' : 4,
+                     'FilesPerJob' : 5,
                      'EventsPerJob' : 70000,
                      'suppressNegative' :['all'],
                      'suppressNegativeNuisances' :['all'],
@@ -200,7 +200,7 @@ samples['Wjets_HT'] = { 'name' :
           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT1200_2500')
           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT2500_inf'),
         'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch + '* ewknloW' ,
-        'FilesPerJob' : 2,
+        'FilesPerJob' : 4,
         'subsamples': {
             "res_1": '(VBS_category==1) && (w_lep_pt < 100)',
             "res_2": '(VBS_category==1) && (w_lep_pt >= 100 && w_lep_pt < 200)',
@@ -364,4 +364,4 @@ for Run in DataRun :
                         samples['DATA']['weights'].append(DataTrig[DataSet])
 
 
-#samples = {k:v for k,v in samples.items() if k  in ['top','Wjets_HT']}
+#samples = {k:v for k,v in samples.items() if k  in ['VBS']}

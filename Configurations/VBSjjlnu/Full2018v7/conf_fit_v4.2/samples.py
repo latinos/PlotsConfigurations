@@ -135,7 +135,7 @@ samples['DY'] = {    'name'   :   nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M
                                   + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-4to50_HT-400to600')
                                   + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-4to50_HT-600toInf'),
                        'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + '*' + DY_photon_filter ,# missing ewkNLOW
-                       'FilesPerJob' : 5,
+                       'FilesPerJob' : 9,
                        'EventsPerJob' : 70000,
                       #  'suppressNegative' :['all'],
                       #  'suppressNegativeNuisances' :['all'],
@@ -165,7 +165,7 @@ addSampleWeight(samples,'DY','DYJetsToLL_M-4to50_HT-600toInf','DY_LO_pTllrw')
 ################################
 ############ Top ############
 
-samples['top'] = {    'name'   :   nanoGetSampleFiles(directory_bkg,'TTTo2L2Nu') 
+samples['top'] = {    'name'   :   nanoGetSampleFiles(directory_bkg,'TTTo2L2Nu')
                                  + nanoGetSampleFiles(directory_bkg,'ST_s-channel_ext1') 
                                  + nanoGetSampleFiles(directory_bkg,'ST_t-channel_antitop') 
                                  + nanoGetSampleFiles(directory_bkg,'ST_t-channel_top') 
@@ -174,9 +174,9 @@ samples['top'] = {    'name'   :   nanoGetSampleFiles(directory_bkg,'TTTo2L2Nu')
                                  + nanoGetSampleFiles(directory_bkg,'TTToSemiLeptonic') 
                                  + nanoGetSampleFiles(directory_bkg,'TTZjets')
                                  + nanoGetSampleFiles(directory_bkg,'TTWjets'),
-                                # +  nanoGetSampleFiles(directory_bkg,'TTWJetsToLNu'), #also this is available
+                                #+  nanoGetSampleFiles(directory_bkg,'TTWJetsToLNu'), #also this is available
                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-                     'FilesPerJob' : 2,
+                     'FilesPerJob' : 6,
                      'EventsPerJob' : 70000,
                      'suppressNegative' :['all'],
                      'suppressNegativeNuisances' :['all'],
@@ -205,7 +205,7 @@ samples['Wjets_HT'] = { 'name' :
           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT1200_2500')
           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT2500_inf'),
 				'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch + '* ewknloW',
-				'FilesPerJob' : 2,   
+				'FilesPerJob' : 5,   
         'subsamples': {
             "res_1": '(VBS_category==1) && (w_lep_pt < 100)',
             "res_2": '(VBS_category==1) && (w_lep_pt >= 100 && w_lep_pt < 200)',
@@ -319,7 +319,7 @@ addSampleWeight(samples,'VgS','WZTo3LNu_mllmin01', '(Gen_ZGstar_mass > 0.1)')
 
 #
 samples['VBS']  = { 'name' :  
-               nanoGetSampleFiles(directory_signal,'WmToLNu_ZTo2J',) +
+               nanoGetSampleFiles(directory_signal,'WmToLNu_ZTo2J',) + 
                nanoGetSampleFiles(directory_signal,'WmTo2J_ZTo2L', ) +
                nanoGetSampleFiles(directory_signal,'WpTo2J_ZTo2L', ) +
                nanoGetSampleFiles(directory_signal,'WpToLNu_ZTo2J',) +
@@ -372,4 +372,4 @@ for Run in DataRun :
                         samples['DATA']['weights'].append(DataTrig[DataSet])
 
 
-#samples = {   key:v for key,v in samples.items() if key  in ["VBS"]}
+#samples = {   key:v for key,v in samples.items() if key in ["VBS"]}

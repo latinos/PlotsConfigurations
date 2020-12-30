@@ -377,6 +377,16 @@ nuisances['TopPtRew'] = {
 
 ###########################################
 
+# Njets Herwig/Pythia for signal
+nuisances['njets_signal'] = {
+   'name': 'VBS_PhytiaToHerwig',   
+   'kind': 'weight',
+   'type': 'shape',
+   'samples': {'VBS': ["njets_herwig_signal"]},
+   'OneSided': True
+}
+
+
 # ######################
 # # Theory nuisance
 
@@ -561,7 +571,16 @@ for n in nuisances.values():
 
 
 
-# nuisances = { k:v for k,v in nuisances.items() if 'fake' in k }
+
+# nuisances['QGLmorphing']  = {
+#     'name': 'QGLmorph',
+#     'kind': 'suffix',
+#     'type': 'shape',
+#     'samples': dict((skey, ['1.','1.']) for skey in mc),
+
+# }
+
+# nuisances = { "njets_signal": nuisances['njets_signal'] }
 
 
    

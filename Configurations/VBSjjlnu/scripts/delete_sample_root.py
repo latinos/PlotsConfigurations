@@ -2,7 +2,8 @@ import ROOT as R
 import sys
 
 '''
-This script deletes the sample histograms from all the cuts and variables
+This script deletes the sample histograms from all the cuts and variables. 
+Both nominal and variations
 '''
 
 f = R.TFile(sys.argv[1], "UPDATE")

@@ -252,12 +252,12 @@ nuisances['muonpt']  = {
 ##################
 # PU jet id
 
-# nuisances['JetPUID_sf']  = {
-#                 'name'  : 'CMS_jetpuid_2017',
-#                 'kind'  : 'weight',
-#                 'type'  : 'shape',
-#                 'samples'  : dict((skey, ['PUJetIdSF_up/PUJetIdSF','PUJetIdSF_down/PUJetIdSF']) for skey in mc if skey not in ["DY"]),
-# }
+nuisances['JetPUID_sf']  = {
+                'name'  : 'CMS_jetpuid_2017',
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : dict((skey, ['PUJetIdSF_up/PUJetIdSF','PUJetIdSF_down/PUJetIdSF']) for skey in mc if skey not in ["DY"]),
+}
 
 
 # ##### Jet energy scale
@@ -401,6 +401,14 @@ nuisances['TopPtRew'] = {
    'symmetrize': True
 }
 
+# Njets Herwig/Pythia for signal
+nuisances['njets_signal'] = {
+   'name': 'VBS_PhytiaToHerwig',   
+   'kind': 'weight',
+   'type': 'shape',
+   'samples': {'VBS': ["njets_herwig_signal"]},
+   'OneSided': True
+}
 
 # ######################
 # # Theory nuisance
@@ -479,20 +487,21 @@ nuisances['PS_FSR']  = {
                 }
             }
 
+
 nuisances['PU']  = {
                 'name'  : 'CMS_PU_2017',
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
-                    "Wjets_HT" : ['0.976587579804 * (puWeightUp/puWeight)','1.02296459727 * (puWeightDown/puWeight)'],
-                    "top" :      ['0.993602541501 * (puWeightUp/puWeight)','1.00656862608 * (puWeightDown/puWeight)'],
-                    "DY" :       ['0.969835765743 * (puWeightUp/puWeight)','1.03013343493 * (puWeightDown/puWeight)'],
-                    "VV" :       ['0.993497172985 * (puWeightUp/puWeight)','1.00666698529 * (puWeightDown/puWeight)'],
-                    "VVV" :      ['0.992699056452 * (puWeightUp/puWeight)','1.00707823846 * (puWeightDown/puWeight)'],
-                    "Vg" :       ['0.971791998524 * (puWeightUp/puWeight)','1.03183490897 * (puWeightDown/puWeight)'],
-                    "VgS" :      ['0.976153836594 * (puWeightUp/puWeight)','1.0229053164 * (puWeightDown/puWeight)'],
-                    "VBF-V" :    ['0.987693075762 * (puWeightUp/puWeight)','1.01210760081 * (puWeightDown/puWeight)'],
-                    "VBS" :      ['0.995085134011 * (puWeightUp/puWeight)','1.00513809098 * (puWeightDown/puWeight)'],
+                    "Wjets_HT" : ['0.976587579804 * (puWeight_noeras[1]/puWeight_noeras[0])','1.02296459727 * (puWeight_noeras[2]/puWeight_noeras[0])'],
+                    "top" :      ['0.993602541501 * (puWeight_noeras[1]/puWeight_noeras[0])','1.00656862608 * (puWeight_noeras[2]/puWeight_noeras[0])'],
+                    "DY" :       ['0.969835765743 * (puWeight_noeras[1]/puWeight_noeras[0])','1.03013343493 * (puWeight_noeras[2]/puWeight_noeras[0])'],
+                    "VV" :       ['0.993497172985 * (puWeight_noeras[1]/puWeight_noeras[0])','1.00666698529 * (puWeight_noeras[2]/puWeight_noeras[0])'],
+                    "VVV" :      ['0.992699056452 * (puWeight_noeras[1]/puWeight_noeras[0])','1.00707823846 * (puWeight_noeras[2]/puWeight_noeras[0])'],
+                    "Vg" :       ['0.971791998524 * (puWeight_noeras[1]/puWeight_noeras[0])','1.03183490897 * (puWeight_noeras[2]/puWeight_noeras[0])'],
+                    "VgS" :      ['0.976153836594 * (puWeight_noeras[1]/puWeight_noeras[0])','1.0229053164 * (puWeight_noeras[2]/puWeight_noeras[0])'],
+                    "VBF-V" :    ['0.987693075762 * (puWeight_noeras[1]/puWeight_noeras[0])','1.01210760081 * (puWeight_noeras[2]/puWeight_noeras[0])'],
+                    "VBS" :      ['0.995085134011 * (puWeight_noeras[1]/puWeight_noeras[0])','1.00513809098 * (puWeight_noeras[2]/puWeight_noeras[0])'],
                 },
                 'AsLnN'      : '1',
 }
@@ -584,7 +593,19 @@ nuisances['stat']  = {
 for n in nuisances.values():
     n['skipCMS'] = 1
 
-   
+
+
+# #FatJet mass scale and resolution
+# nuisances['QGLmorphing']  = {
+#     'name': 'QGLmorph',
+#     'kind': 'suffix',
+#     'type': 'shape',
+#     'samples': dict((skey, ['1.','1.']) for skey in mc),
+
+# }
+
+# nuisances = { n:nn for n, nn in nuisances.items() if n in ['PU',"njets_signal","JetPUID_sf"] }
+
 print ' '.join(nuis['name'] for nname, nuis in nuisances.iteritems() if nname not in ('lumi', 'stat'))
 
 

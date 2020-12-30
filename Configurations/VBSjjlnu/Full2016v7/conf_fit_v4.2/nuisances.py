@@ -382,6 +382,14 @@ nuisances['TopPtRew'] = {
    'symmetrize': True
 }
 
+# Njets Herwig/Pythia for signal
+nuisances['njets_signal'] = {
+   'name': 'VBS_PhytiaToHerwig',   
+   'kind': 'weight',
+   'type': 'shape',
+   'samples': {'VBS': ["njets_herwig_signal"]},
+   'OneSided': True
+}
 
 # ######################
 # # Theory nuisance
@@ -554,6 +562,18 @@ nuisances['stat']  = {
               #  nuisance ['includeSignal'] =  Include MC stat nuisances on signal processes (1=True, 0=False)
               'samples' : {}
              }
+
+
+# #FatJet mass scale and resolution
+# nuisances['QGLmorphing']  = {
+#     'name': 'QGLmorph',
+#     'kind': 'suffix',
+#     'type': 'shape',
+#     'samples': dict((skey, ['1.','1.']) for skey in mc),
+
+# }
+
+# nuisances = { "njets_signal": nuisances['njets_signal'] }
 
 
 

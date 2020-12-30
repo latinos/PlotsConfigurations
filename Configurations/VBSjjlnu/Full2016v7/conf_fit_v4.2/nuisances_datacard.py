@@ -391,13 +391,31 @@ nuisances['TopPtRew'] = {
    'symmetrize': True
 }
 
+##################
 
+nuisances['QGLmorphing']  = {
+    'name': 'QGLmorph_2016',
+    'kind': 'suffix',
+    'type': 'shape',
+    'samples': dict((skey, ['1.','1.']) for skey in mc),
+}
+
+##################
+
+# Njets Herwig/Pythia for signal
+nuisances['njets_signal'] = {
+   'name': 'VBS_PhytiaToHerwig',   
+   'kind': 'weight',
+   'type': 'shape',
+   'samples': {'VBS': ["njets_herwig_signal"]},
+   'OneSided': True
+}
 # ######################
 # # Theory nuisance
 
 
 ## This should work for samples with either 8 or 9 LHE scale weights (Length$(LHEScaleWeight) == 8 or 9)
-qcdscale_variations = ['LHEScaleWeight[0]', 'LHEScaleWeight[1]', 'LHEScaleWeight[3]', 'LHEScaleWeight[Length$(LHEScaleWeight)-4]', 'LHEScaleWeight[Length$(LHEScaleWeight)-2]', 'LHEScaleWeight[Length$(LHEScaleWeight)-1]']
+# qcdscale_variations = ['LHEScaleWeight[0]', 'LHEScaleWeight[1]', 'LHEScaleWeight[3]', 'LHEScaleWeight[Length$(LHEScaleWeight)-4]', 'LHEScaleWeight[Length$(LHEScaleWeight)-2]', 'LHEScaleWeight[Length$(LHEScaleWeight)-1]']
 
 
 for sample in mc :
@@ -441,40 +459,24 @@ for ir in range(1,6):
     wjets_bins.append("Wjets_HT_boost_"+str(ir))
 
 
-        
-# PS is taken from 2018 shape
-nuisances['PS_ISR']  = {
-                'name'  : 'CMS_PS_ISR',
-                'kind'  : 'weight',
-                'type'  : 'shape',
-                'samples'  : {
-                    "Wjets_HT" : ['1.','1.'],
-                    "top" :      ['1.','1.'],
-                    "DY" :       ['1.','1.'],
-                    "VV" :       ['1.','1.'],
-                    "VVV" :      ['1.','1.'],
-                    "Vg" :       ['1.','1.'],
-                    "VgS" :      ['1.','1.'],
-                },
-                'cuts_samples' : { wj:[c for c in phasespaces if 'topcr' not in c]  for wj in wjets_bins}
-            }
-# PS is taken from 2018 shape
-nuisances['PS_FSR']  = {
-                'name'  : 'CMS_PS_FSR',
-                'kind'  : 'weight',
-                'type'  : 'shape',
-                 'samples'  : {
-                    "Wjets_HT" : ['1.','1.'],
-                    "top" :      ['1.','1.'],
-                    "DY" :       ['1.','1.'],
-                    "VV" :       ['1.','1.'],
-                    "VVV" :      ['1.','1.'],
-                    "Vg" :       ['1.','1.'],
-                    "VgS" :      ['1.','1.'],
-                },
-                'cuts_samples' : { wj:[c for c in phasespaces if 'topcr' not in c]  for wj in wjets_bins}
-            }
-
+for sample in ['top','DY','VV','VVV','Vg','VgS','VBF-V'] + wjets_bins:
+    nuisances['PS_ISR_'+sample]  = {
+                    'name'  : 'CMS_PS_ISR_'+sample,
+                    'kind'  : 'weight',
+                    'type'  : 'shape',
+                    'samples'  : {
+                        sample :      ['PSWeight[2]', 'PSWeight[0]'],
+                    }
+                }
+    nuisances['PS_FSR_'+sample]  = {
+                    'name'  : 'CMS_PS_FSR_'+sample,
+                    'kind'  : 'weight',
+                    'type'  : 'shape',
+                    'samples'  : {
+                        sample :      ['PSWeight[3]', 'PSWeight[1]'],
+                    }
+                }
+    
 
 nuisances['PS_ISR_VBS']  = {
                 'name'  : 'CMS_PS_ISR_VBS',

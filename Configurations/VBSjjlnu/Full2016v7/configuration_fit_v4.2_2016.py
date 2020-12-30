@@ -5,7 +5,7 @@ tag = 'fit_v4.2_2016'
 direc = 'conf_fit_v4.2'
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFile_'+tag
+outputDir = 'rootFile_'+tag 
 
 # file with TTree aliases
 aliasesFile = direc+'/aliases.py'
@@ -32,7 +32,7 @@ lumi = 35.867
 outputDirPlots = 'plot_'+tag 
 # used by mkDatacards to define output directory for datacards
 
-outputDirDatacard = 'datacards_' +tag +"_AsLnN_PSsig_PSwjets"
+outputDirDatacard = 'datacards_' +tag +"_nuisNorm_PSsplitAll_QGLmorph_njetsVBS"
 #outputDirDatacard = 'datacards_' +tag +"_v2"
 
 # structure file for datacard
