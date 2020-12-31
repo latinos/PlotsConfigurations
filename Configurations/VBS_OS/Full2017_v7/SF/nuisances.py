@@ -52,63 +52,63 @@ for k in cuts:
 nuisances['lumi_Uncorrelated'] = {
     'name': 'lumi_13TeV_2017',
     'type': 'lnN',
-    'samples': dict((skey, '1.02')  for skey in mc if skey not in ['WW', 'top'] )
+    'samples': dict((skey, '1.02')  for skey in mc if skey not in ['WW', 'top', 'DY'] )
 }
 
 nuisances['lumi_XYFact'] = {
     'name': 'lumi_13TeV_XYFact',
     'type': 'lnN',
-    'samples': dict((skey, '1.008') for skey in mc if skey not in ['WW', 'top'])
+    'samples': dict((skey, '1.008') for skey in mc if skey not in ['WW', 'top', 'DY'])
 }
 
 nuisances['lumi_LScale'] = {
     'name': 'lumi_13TeV_LSCale',
     'type': 'lnN',
-    'samples': dict((skey, '1.003') for skey in mc if skey not in ['WW', 'top'])
+    'samples': dict((skey, '1.003') for skey in mc if skey not in ['WW', 'top', 'DY'])
 }
 
 nuisances['lumi_BBDefl'] = {
     'name': 'lumi_13TeV_BBDefl',
     'type': 'lnN',
-    'samples': dict((skey, '1.004') for skey in mc if skey not in ['WW', 'top'])
+    'samples': dict((skey, '1.004') for skey in mc if skey not in ['WW', 'top', 'DY'])
 }
 
 nuisances['lumi_DynBeta'] = {
     'name': 'lumi_13TeV_DynBeta',
     'type': 'lnN',
-    'samples': dict((skey, '1.005') for skey in mc if skey not in ['WW', 'top'])
+    'samples': dict((skey, '1.005') for skey in mc if skey not in ['WW', 'top', 'DY'])
 }
 
 nuisances['lumi_CurrCalib'] = {
     'name': 'lumi_13TeV_CurrCalib',
     'type': 'lnN',
-    'samples': dict((skey, '1.003') for skey in mc if skey not in ['WW', 'top'])
+    'samples': dict((skey, '1.003') for skey in mc if skey not in ['WW', 'top', 'DY'])
 }
 
 nuisances['lumi_Ghosts'] = {
     'name': 'lumi_13TeV_Ghosts',
     'type': 'lnN',
-    'samples': dict((skey, '1.001') for skey in mc if skey not in ['WW', 'top'])
+    'samples': dict((skey, '1.001') for skey in mc if skey not in ['WW', 'top', 'DY'])
 }
 
 #### FAKES
 
-nuisances['fake_syst_em'] = {
-    'name': 'CMS_fake_syst_em',
+nuisances['fake_syst_e'] = {
+    'name': 'CMS_fake_syst_e',
     'type': 'lnN',
     'samples': {
         'Fake_e': '1.3'
     },
-    'cutspost': lambda self, cuts: [cut for cut in cuts if '20me' not in cut],
+    'cutspost': lambda self, cuts: [cut for cut in cuts if 'mm' not in cut],
 }
 
-nuisances['fake_syst_me'] = {
-    'name': 'CMS_fake_syst_me',
+nuisances['fake_syst_m'] = {
+    'name': 'CMS_fake_syst_m',
     'type': 'lnN',
     'samples': {
         'Fake_m': '1.3'
     },
-    'cutspost': lambda self, cuts: [cut for cut in cuts if '20em' not in cut],
+    'cutspost': lambda self, cuts: [cut for cut in cuts if 'ee' not in cut],
 }
 
 nuisances['fake_ele'] = {
@@ -867,7 +867,7 @@ nuisances['stat'] = {
 ## rate parameters
 ## DY MC has already its QCD scale uncertainty, no need to scale it together with Dyemb
 
-nuisances['DYnorm2j']  = {
+nuisances['DYnorm2j_lowZ']  = {
                  'name'  : 'CMS_hww_DYnorm2j_lowZ',
                  'samples'  : {
                    'DY_lowZ' : '1.00',
@@ -876,7 +876,7 @@ nuisances['DYnorm2j']  = {
                  'cuts'  : cuts2j
                 }
 
-nuisances['DYnorm2j']  = {
+nuisances['DYnorm2j_highZ']  = {
                  'name'  : 'CMS_hww_DYnorm2j_highZ',
                  'samples'  : {
                    'DY_highZ' : '1.00',

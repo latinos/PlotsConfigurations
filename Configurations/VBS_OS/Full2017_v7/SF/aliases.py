@@ -177,6 +177,16 @@ aliases['sr'] = {
 
 }
 
+aliases['LowZ'] = {
+    'expr':  '0.5*abs((Lepton_eta[0] + Lepton_eta[1]) - (CleanJet_eta[0] + CleanJet_eta[1])) < 1',
+    'samples': 'DY'
+}
+
+aliases['HighZ'] = {
+    'expr':  '0.5*abs((Lepton_eta[0] + Lepton_eta[1]) - (CleanJet_eta[0] + CleanJet_eta[1])) >= 1',
+    'samples': 'DY'
+}
+
 # B tag scale factors
 if btag_algo=="deepcsv":
 

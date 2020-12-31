@@ -136,8 +136,8 @@ samples['DY'] = {
                                          Sum$(LeptonGen_isPrompt==1 && LeptonGen_pt>15)>=2) )",
     'FilesPerJob': 8,
     'subsamples': {
-      'lowZ'    : 'lowZ',
-      'highZ'   : 'highZ'
+      'lowZ'    : 'LowZ',
+      'highZ'   : 'HighZ'
     }
 }
     
@@ -436,4 +436,3 @@ for _, sd in DataRun:
     files = nanoGetSampleFiles(dataDirectory, pd + '_' + sd)
     samples['DATA']['name'].extend(files)
     samples['DATA']['weights'].extend([DataTrig[pd]] * len(files))
-
