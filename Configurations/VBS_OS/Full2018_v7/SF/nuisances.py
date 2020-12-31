@@ -75,22 +75,22 @@ nuisances['lumi_CurrCalib'] = {
 
 #### FAKES
 
-nuisances['fake_syst_em'] = {
-    'name': 'CMS_fake_syst_em',
+nuisances['fake_syst_e'] = {
+    'name': 'CMS_fake_syst_e',
     'type': 'lnN',
     'samples': {
-        'Fake_em': '1.3'
+        'Fake_e': '1.3'
     },
-    'cutspost': lambda self, cuts: [cut for cut in cuts if '20me' not in cut],
+    'cutspost': lambda self, cuts: [cut for cut in cuts if 'mm' not in cut],
 }
 
-nuisances['fake_syst_me'] = {
-    'name': 'CMS_fake_syst_me',
+nuisances['fake_syst_m'] = {
+    'name': 'CMS_fake_syst_m',
     'type': 'lnN',
     'samples': {
-        'Fake_me': '1.3'
+        'Fake_m': '1.3'
     },
-    'cutspost': lambda self, cuts: [cut for cut in cuts if '20em' not in cut],
+    'cutspost': lambda self, cuts: [cut for cut in cuts if 'ee' not in cut],
 }
 
 nuisances['fake_ele'] = {
@@ -851,7 +851,7 @@ nuisances['DYembnorm2j']  = {
                  'cuts'  : cuts2j
                 }
 '''
-nuisances['DYnorm2j']  = {
+nuisances['DYnorm2j_lowZ']  = {
                  'name'  : 'CMS_hww_DYnorm2j_lowZ',
                  'samples'  : {
                    'DY_lowZ' : '1.00',
@@ -860,7 +860,7 @@ nuisances['DYnorm2j']  = {
                  'cuts'  : cuts2j
                 }
 
-nuisances['DYnorm2j']  = {
+nuisances['DYnorm2j_highZ']  = {
                  'name'  : 'CMS_hww_DYnorm2j_highZ',
                  'samples'  : {
                    'DY_highZ' : '1.00',
@@ -868,7 +868,7 @@ nuisances['DYnorm2j']  = {
                  'type'  : 'rateParam',
                  'cuts'  : cuts2j
                 }
-
+'''
 nuisances['WWnorm0j']  = {
                'name'  : 'CMS_hww_WWnorm0j',
                'samples'  : {
@@ -904,7 +904,7 @@ nuisances['ggWWnorm1j']  = {
                'type'  : 'rateParam',
                'cuts'  : cuts1j
               }
-
+'''
 nuisances['WWnorm2j']  = {
                'name'  : 'CMS_hww_WWnorm2j',
                'samples'  : {
@@ -922,7 +922,7 @@ nuisances['ggWWnorm2j']  = {
                'type'  : 'rateParam',
                'cuts'  : cuts2j
               }
-
+'''
 nuisances['Topnorm0j']  = {
                'name'  : 'CMS_hww_Topnorm0j',
                'samples'  : {
@@ -940,7 +940,7 @@ nuisances['Topnorm1j']  = {
                'type'  : 'rateParam',
                'cuts'  : cuts1j
               }
-
+'''
 nuisances['Topnorm2j']  = {
                'name'  : 'CMS_hww_Topnorm2j',
                'samples'  : {
