@@ -155,7 +155,7 @@ if useEmbeddedDY:
       addSampleWeight(samples, 'Dyveto', 'ST_tW_antitop', mcCommonWeight)
       addSampleWeight(samples, 'Dyveto', 'ST_tW_top', mcCommonWeight)
       addSampleWeight(samples, 'Dyveto', 'EWK_LLJJ_MLL-50_MJJ-120', mcCommonWeight)
-      addSampleWeight(samples, 'Dyveto', 'WpWmJJ_QCD_noTop', mcCommonWeight) + '*(Sum$(abs(GenPart_pdgId)==6 || GenPart_pdgId==25)==0)*(lhe_mW1[0] > 63. && lhe_mW1[0] < 100. && lhe_mW2[0] > 63. && lhe_mW2[0] < 100.)')
+      addSampleWeight(samples, 'Dyveto', 'WpWmJJ_QCD_noTop', mcCommonWeight + '*(Sum$(abs(GenPart_pdgId)==6 || GenPart_pdgId==25)==0)*(lhe_mW1[0] > 63. && lhe_mW1[0] < 100. && lhe_mW2[0] > 63. && lhe_mW2[0] < 100.)')
       addSampleWeight(samples, 'Dyveto', 'WpWmJJ_EWK_noTop', mcCommonWeight + '*(Sum$(abs(GenPart_pdgId)==6 || GenPart_pdgId==25)==0)*(lhe_mW1[0] > 63. && lhe_mW1[0] < 100. && lhe_mW2[0] > 63. && lhe_mW2[0] < 100.)')
       addSampleWeight(samples, 'Dyveto', 'GluGluWWTo2L2Nu_MCFM', mcCommonWeight + '*1.53/1.4')
       addSampleWeight(samples, 'Dyveto', 'ZZTo2L2Nu', mcCommonWeight + '*1.11')
