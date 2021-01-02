@@ -117,7 +117,7 @@ else:
 samples['DY'] = {
     'name': files,
     'weight': mcCommonWeight + '*( !(Sum$(PhotonGen_isPrompt==1 && PhotonGen_pt>15 && abs(PhotonGen_eta)<2.6) > 0 &&\
-                                     Sum$(LeptonGen_isPrompt==1 && LeptonGen_pt>15)>=2) )',
+                                     Sum$(LeptonGen_isPrompt==1 && LeptonGen_pt>15)>=2) )*ttHMVA_SF_flip_2l[0]',
     'FilesPerJob': 10,
 }
 addSampleWeight(samples,'DY','DYJetsToTT_MuEle_M-50_private',ptllDYW_NLO)
@@ -135,7 +135,7 @@ files = nanoGetSampleFiles(mcDirectory, 'TTTo2L2Nu') + \
 
 samples['top'] = {
     'name': files,
-    'weight': mcCommonWeight,
+    'weight': mcCommonWeight+'*ttHMVA_SF_flip_2l[0]',
     'FilesPerJob': 10,
 }
 
@@ -145,7 +145,7 @@ addSampleWeight(samples,'top','TTTo2L2Nu','Top_pTrw')
 
 samples['WW'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'WWTo2L2Nu'),
-    'weight': mcCommonWeight + '*nllW',
+    'weight': mcCommonWeight + '*nllW*ttHMVA_SF_flip_2l[0]',
     'FilesPerJob': 3
 }
 

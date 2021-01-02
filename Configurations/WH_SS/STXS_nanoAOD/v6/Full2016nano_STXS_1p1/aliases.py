@@ -341,3 +341,15 @@ aliases['lhe_mW2'] = {
 #        'samples': ['ggH_hww'],
 #        'nominalOnly': True
 #    }
+
+aliases['ttHMVA_SF_flip_2l'] = {'linesToAdd': ['.L %s/../../macros/flipper.C+' % configurations],
+                           'class': 'flipper',
+                           'args' : ('2016', 2, 'Total_SF'),
+                           'samples': ['WW','top','DY']
+                          }
+
+aliases['ttHMVA_SF_err_flip_2l'] = {
+                           'class': 'flipper',
+                           'args' : ('2016', 2, 'Total_SF_err'),
+                           'samples': ['WW','top','DY']
+                          }
