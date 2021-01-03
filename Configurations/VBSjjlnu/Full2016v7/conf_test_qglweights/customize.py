@@ -215,20 +215,7 @@ def customize(samples,cuts,variables,nuisances,plot,groupPlot, key=None):
         scale_plot = scaleBins(new_plot,  norm_factors)
         return samples, new_cuts, variables, nuisances, scale_plot, new_groupPlot
 
-    if key=="check_nuis":
-        sample = 'Fake'
-        new_cuts = filter_cuts(cuts, r"res_sig_mu")
-        new_groupPlot = OrderedDict()
-        new_plot = OrderedDict()
-        for gr, d in groupPlot.items():
-            if sample in gr:
-                new_groupPlot[gr] = d
-        for gr, d in plot.items():
-            if sample in gr:
-                new_plot[gr] = d
-        new_groupPlot["VBS"] = groupPlot["VBS"]
-        new_plot["VBS"] = plot["VBS"]
-        return samples, new_cuts, variables, nuisances, new_plot, new_groupPlot
+
 
     else:
         return samples,cuts,variables,nuisances,plot,groupPlot

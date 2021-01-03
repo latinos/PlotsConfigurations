@@ -595,7 +595,6 @@ nuisances['stat']  = {
              }
 
 
-
 for n in nuisances.values():
     n['skipCMS'] = 1
 

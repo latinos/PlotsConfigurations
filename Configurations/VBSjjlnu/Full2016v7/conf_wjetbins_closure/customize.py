@@ -112,9 +112,9 @@ def scaleBins(plot, norm_factors):
        if bin not in plot: continue
        plot[bin]['cuts'] = w
        plot[bin].pop("scale")
-    # for s,v in plot.items():
-    #     print s
-    #     pprint(v)
+    for s,v in plot.items():
+        print s
+        pprint(v)
     return plot
 
 
@@ -182,6 +182,7 @@ def customize(samples,cuts,variables,nuisances,plot,groupPlot, key=None):
         norm_factors = get_wjets_scaling(os.path.dirname(__file__) + "/wjets_norm/all.txt")
         new_cuts = filter_cuts(cuts, r"res_wjetcr_.*")
         new_groupPlot, new_plot = define_bins_res(groupPlot, plot, plots_wjets_order_res)
+        print new_plot
         scale_plot = scaleBins(new_plot,  norm_factors)
         return samples, new_cuts, variables, nuisances, scale_plot, new_groupPlot
     if key == "wjets_rescale_boost":

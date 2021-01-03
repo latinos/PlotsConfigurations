@@ -252,12 +252,12 @@ nuisances['muonpt']  = {
 ##################
 # PU jet id
 
-nuisances['JetPUID_sf']  = {
-                'name'  : 'CMS_jetpuid_2017',
-                'kind'  : 'weight',
-                'type'  : 'shape',
-                'samples'  : dict((skey, ['PUJetIdSF_up/PUJetIdSF','PUJetIdSF_down/PUJetIdSF']) for skey in mc if skey not in ["DY"]),
-}
+# nuisances['JetPUID_sf']  = {
+#                 'name'  : 'CMS_jetpuid_2017',
+#                 'kind'  : 'weight',
+#                 'type'  : 'shape',
+#                 'samples'  : dict((skey, ['PUJetIdSF_up/PUJetIdSF','PUJetIdSF_down/PUJetIdSF']) for skey in mc if skey not in ["DY"]),
+# }
 
 
 # ##### Jet energy scale
@@ -418,11 +418,11 @@ for sample in mc :
             # Normalization effect removed from 1l inclusive phase space
             'samples'  :  { "VBS": ["0.990268645866* LHEScaleWeight[0]", "1.01555157115 * LHEScaleWeight[8]"] }
         }
-        nuisances['QCD_scale_VBS_accept'] = {
-            'name'  : 'QCDscale_VBS_accept',
-            'type'  : 'lnN',
-            'samples'  :  { "VBS": ["1.0098269839954734", "0.9846865766417252"] }
-        }
+        # nuisances['QCD_scale_VBS_accept'] = {
+        #     'name'  : 'QCDscale_VBS_accept',
+        #     'type'  : 'lnN',
+        #     'samples'  :  { "VBS": ["1.0098269839954734", "0.9846865766417252"] }
+        # }
         # nuisances['QCD_scale_VBS_env'] = {
         #     'name'  : 'QCDscale_VBS_env',
         #     'type'  : 'lnN',

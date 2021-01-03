@@ -395,11 +395,11 @@ for sample in mc :
             # Normalization effect removed from 1l inclusive phase space
             'samples'  :  { "VBS": ["0.985361285563* LHEScaleWeight[0]", "1.07854193809 * LHEScaleWeight[8]"] }
         }
-        nuisances['QCD_scale_VBS_accept'] = {
-            'name'  : 'QCDscale_VBS_accept',
-            'type'  : 'lnN',
-            'samples'  :  { "VBS": ["1.0148561899609974", "0.9271776689188613"] }
-        }
+        # nuisances['QCD_scale_VBS_accept'] = {
+        #     'name'  : 'QCDscale_VBS_accept',
+        #     'type'  : 'lnN',
+        #     'samples'  :  { "VBS": ["1.0148561899609974", "0.9271776689188613"] }
+        # }
         # nuisances['QCD_scale_VBS_env'] = {
         #     'name'  : 'QCDscale_VBS_env',
         #     'type'  : 'lnN',

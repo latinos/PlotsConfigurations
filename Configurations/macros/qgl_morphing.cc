@@ -31,7 +31,7 @@ namespace multidraw {
 }
 
 
-int isRunningSample(TString targetSample){
+int isRunningOnSample(TString targetSample){
   TString currentSampleName = TString(multidraw::currentTree->GetCurrentFile()->GetName());
   if ( currentSampleName.Contains(targetSample)) {
     return 1;
@@ -44,11 +44,11 @@ int isRunningSample(TString targetSample){
 
 class QGL_morphing : public multidraw::TTreeFunction {
 public:
-  QGL_morphing();
-  QGL_morphing( char const* fileNameWithRootFilesOfCorrection );
+  QGL_morphing( char const* fileNameWithRootFilesOfCorrection, char const* variation );
+  ~QGL_morphing();
   
   char const* getName() const override { return "QGL_morphing"; }
-  TTreeFunction* clone() const override { return new QGL_morphing(_fileNameWithRootFilesOfCorrection);}  
+  TTreeFunction* clone() const override { return new QGL_morphing(_fileNameWithRootFilesOfCorrection, _variation);}  
 //   TTreeFunction* clone() const override { return new QGL_morphing(); }
   
   unsigned getNdata() override { return _new_Jet_qgl.size(); } // size of the vector of jets
@@ -74,7 +74,8 @@ protected:
  
   
   TString _fileNameWithRootFilesOfCorrection{};  
-  static std::map<std::string, TGraph*> _morphing_functions;
+  TString _variation{};
+  std::map<std::string, TGraph*> _morphing_functions{};
   
   std::vector<float> _new_Jet_qgl;
   
@@ -83,31 +84,28 @@ protected:
   
 };
 
-std::map<std::string, TGraph*> QGL_morphing::_morphing_functions{};
 bool QGL_morphing::_isRunningOnData{false};
 
 
-QGL_morphing::QGL_morphing() :
-TTreeFunction() {
+QGL_morphing::QGL_morphing( char const* fileNameWithRootFilesOfCorrection, char const* variation ) :
+TTreeFunction(),
+_fileNameWithRootFilesOfCorrection(fileNameWithRootFilesOfCorrection), _variation(variation) {
+  
+  TFile rfile {_fileNameWithRootFilesOfCorrection.Data(), "READ"};
+  _morphing_functions["gluon_loweta_pt0"]  = (TGraph*) rfile.Get("gluon_loweta_pt0_" + _variation);
+  _morphing_functions["gluon_loweta_pt1"]  = (TGraph*) rfile.Get("gluon_loweta_pt1_" + _variation);
+  _morphing_functions["gluon_higheta_pt0"] = (TGraph*) rfile.Get("gluon_higheta_pt0_" + _variation);
+  _morphing_functions["gluon_higheta_pt1"] = (TGraph*) rfile.Get("gluon_higheta_pt1_" + _variation);
+  _morphing_functions["quark_loweta_pt0"]  = (TGraph*) rfile.Get("quark_loweta_pt0_" + _variation);
+  _morphing_functions["quark_loweta_pt1"]  = (TGraph*) rfile.Get("quark_loweta_pt1_" + _variation);
+  _morphing_functions["quark_higheta_pt0"] = (TGraph*) rfile.Get("quark_higheta_pt0_" + _variation);
+  _morphing_functions["quark_higheta_pt1"] = (TGraph*) rfile.Get("quark_higheta_pt1_" + _variation);
+  rfile.Close();
   
 }
 
-
-QGL_morphing::QGL_morphing( char const* fileNameWithRootFilesOfCorrection ) :
-TTreeFunction(),
-_fileNameWithRootFilesOfCorrection(fileNameWithRootFilesOfCorrection) {
-  
-  TFile rfile {_fileNameWithRootFilesOfCorrection.Data(), "READ"};
-  QGL_morphing::_morphing_functions["gluon_loweta_pt0"]  = (TGraph*) rfile.Get("j3_loweta_pt0_gluon" );
-  QGL_morphing::_morphing_functions["gluon_loweta_pt1"]  = (TGraph*) rfile.Get("j3_loweta_pt1_gluon" );
-  QGL_morphing::_morphing_functions["gluon_higheta_pt0"] = (TGraph*) rfile.Get("j1_higheta_pt0_gluon");
-  QGL_morphing::_morphing_functions["gluon_higheta_pt1"] = (TGraph*) rfile.Get("j1_higheta_pt1_gluon");
-  QGL_morphing::_morphing_functions["quark_loweta_pt0"]  = (TGraph*) rfile.Get("j1_loweta_pt0_quark" );
-  QGL_morphing::_morphing_functions["quark_loweta_pt1"]  = (TGraph*) rfile.Get("j1_loweta_pt1_quark" );
-  QGL_morphing::_morphing_functions["quark_higheta_pt0"] = (TGraph*) rfile.Get("j1_higheta_pt0_quark");
-  QGL_morphing::_morphing_functions["quark_higheta_pt1"] = (TGraph*) rfile.Get("j0_higheta_pt1_quark");
-  rfile.Close();
-  
+QGL_morphing::~QGL_morphing(){
+  _morphing_functions.clear();
 }
 
 
@@ -137,29 +135,30 @@ void QGL_morphing::beginEvent(long long _iEntry) {
       if (qgl > 0.0 && qgl < 1.0) {
         float y = qgl;
         if (abs(eta)<3 && pt < 75) {
-          if (flavour==21) y =  QGL_morphing::_morphing_functions["gluon_loweta_pt0"]->Eval(qgl);
-          else             y =  QGL_morphing::_morphing_functions["quark_loweta_pt0"]->Eval(qgl);
+          if (flavour==21) y =  _morphing_functions["gluon_loweta_pt0"]->Eval(qgl);
+          else             y =  _morphing_functions["quark_loweta_pt0"]->Eval(qgl);
         }
         if (abs(eta)<3 && pt >= 75) {
-          if (flavour==21) y =  QGL_morphing::_morphing_functions["gluon_loweta_pt1"]->Eval(qgl);
-          else             y =  QGL_morphing::_morphing_functions["quark_loweta_pt1"]->Eval(qgl);
+          if (flavour==21) y =  _morphing_functions["gluon_loweta_pt1"]->Eval(qgl);
+          else             y =  _morphing_functions["quark_loweta_pt1"]->Eval(qgl);
         }
         if (abs(eta)>=3 && pt < 75) {
-          if (flavour==21) y =  QGL_morphing::_morphing_functions["gluon_higheta_pt0"]->Eval(qgl);
-          else             y =  QGL_morphing::_morphing_functions["quark_higheta_pt0"]->Eval(qgl);
+          if (flavour==21) y =  _morphing_functions["gluon_higheta_pt0"]->Eval(qgl);
+          else             y =  _morphing_functions["quark_higheta_pt0"]->Eval(qgl);
         }
         if (abs(eta)>=3 && pt >= 75) {
-          if (flavour==21) y =  QGL_morphing::_morphing_functions["gluon_higheta_pt1"]->Eval(qgl);
-          else             y =  QGL_morphing::_morphing_functions["quark_higheta_pt1"]->Eval(qgl);
+          if (flavour==21) y =  _morphing_functions["gluon_higheta_pt1"]->Eval(qgl);
+          else             y =  _morphing_functions["quark_higheta_pt1"]->Eval(qgl);
         }
-        
         // it should never happen, but you never know ...
         if (y<0.0 ) y=0.0;
         if (y>1.0 ) y=1.0;
         
         qgl = y;
+        
       }
     }
+    //cout << _iEntry << " "<< _variation << " njet: " <<  iCleanJet << " ) " << Jet_qgl->At(CleanJet_jetIdx->At(iCleanJet)) << "--> "<< qgl <<endl;
     _new_Jet_qgl.push_back(qgl);
   }
   
@@ -184,17 +183,15 @@ void QGL_morphing::bindTree_(multidraw::FunctionLibrary& _library) {
   _library.bindBranch(nCleanJet, "nCleanJet");
   
   
-  QGL_morphing::_isRunningOnData = isRunningSample("Run");
+  QGL_morphing::_isRunningOnData = isRunningOnSample("Run");
   if (!QGL_morphing::_isRunningOnData){
     //exclude Data and fakes
     _library.bindBranch(Jet_partonFlavour, "Jet_partonFlavour");
   }
   
-  
-  
-  _library.addDestructorCallback([]() {
-    _morphing_functions.clear();
-   });
+  // _library.addDestructorCallback([]() {
+  //   _morphing_functions.clear();
+  //  });
   
 }
 

@@ -600,6 +600,7 @@ nuisances['stat']  = {
              }
 
 
+nuisances = {k:v for k,v in nuisances.items() if "fake" in k }
 
 for n in nuisances.values():
     n['skipCMS'] = 1

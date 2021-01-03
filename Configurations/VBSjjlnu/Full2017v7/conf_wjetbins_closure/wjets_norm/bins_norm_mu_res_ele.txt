@@ -1,0 +1,7 @@
+channel;bin;weight
+res_wjetcr_ele_mext;Wjets_HT_res_6;0.35616197748212275
+res_wjetcr_ele_mext;Wjets_HT_res_4;0.7568146010808177
+res_wjetcr_ele_mext;Wjets_HT_res_5;0.7480483993984359
+res_wjetcr_ele_mext;Wjets_HT_res_2;1.1711234101552448
+res_wjetcr_ele_mext;Wjets_HT_res_3;0.9693516668319228
+res_wjetcr_ele_mext;Wjets_HT_res_1;1.125750199322207

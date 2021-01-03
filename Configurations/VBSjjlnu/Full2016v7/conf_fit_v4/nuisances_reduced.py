@@ -189,24 +189,24 @@ nuisances['eff_e']  = {
                 'cuts': phase_spaces_tot_ele
 }
 
-nuisances['electronpt']  = {
-                'name'  : 'CMS_scale_e_2016',
-                'kind'  : 'suffix',
-                'type'  : 'shape',
-                'mapUp': 'ElepTup',
-                'mapDown': 'ElepTdo',
-                'cuts': phase_spaces_tot_ele,
-                'samples': dict((skey, ['1.','1.']) for skey in mc if skey not in ['Vg', 'VgS']),
-                'folderUp' : directory_mc+'_ElepTup',
-                'folderDown' : directory_mc+'_ElepTdo',
-}
-
 # nuisances['electronpt']  = {
 #                 'name'  : 'CMS_scale_e_2016',
-#                 'type'  : 'lnN',
-#                 'samples'  :   dict((skey, '1.02') for skey in mc if skey not in ['top', 'Fake','Wjets_HT']),
-#                 'cuts': phase_spaces_tot_ele
+#                 'kind'  : 'suffix',
+#                 'type'  : 'shape',
+#                 'mapUp': 'ElepTup',
+#                 'mapDown': 'ElepTdo',
+#                 'cuts': phase_spaces_tot_ele,
+#                 'samples': dict((skey, ['1.','1.']) for skey in mc if skey not in ['Vg', 'VgS']),
+#                 'folderUp' : directory_mc+'_ElepTup',
+#                 'folderDown' : directory_mc+'_ElepTdo',
 # }
+
+nuisances['electronpt']  = {
+                'name'  : 'CMS_scale_e_2016',
+                'type'  : 'lnN',
+                'samples'  :   dict((skey, '1.02') for skey in mc if skey not in ['top', 'Fake','Wjets_HT']),
+                'cuts': phase_spaces_tot_ele
+}
 
 # # ##### Muon Efficiency and energy scale
 
@@ -219,23 +219,23 @@ nuisances['eff_m']  = {
                  'cuts': phase_spaces_tot_mu
 }
 
-nuisances['muonpt']  = {
-                'name'  : 'CMS_scale_m_2016',
-                'kind'  : 'suffix',
-                'type'  : 'shape',
-                'mapUp': 'MupTup',
-                'mapDown': 'MupTdo',
-                'cuts': phase_spaces_tot_mu,
-                'samples': dict((skey, ['1.','1.']) for skey in mc if skey not in ['Vg', 'VgS']),
-                'folderUp' : directory_mc+'_MupTup',
-                'folderDown' : directory_mc+'_MupTdo',
-}
 # nuisances['muonpt']  = {
 #                 'name'  : 'CMS_scale_m_2016',
-#                 'type'  : 'lnN',
-#                 'samples'  : dict((skey, '1.02') for skey in mc if skey not in ['top', 'Fake','Wjets_HT']),
-#                 'cuts':   phase_spaces_tot_mu
+#                 'kind'  : 'suffix',
+#                 'type'  : 'shape',
+#                 'mapUp': 'MupTup',
+#                 'mapDown': 'MupTdo',
+#                 'cuts': phase_spaces_tot_mu,
+#                 'samples': dict((skey, ['1.','1.']) for skey in mc if skey not in ['Vg', 'VgS']),
+#                 'folderUp' : directory_mc+'_MupTup',
+#                 'folderDown' : directory_mc+'_MupTdo',
 # }
+nuisances['muonpt']  = {
+                'name'  : 'CMS_scale_m_2016',
+                'type'  : 'lnN',
+                'samples'  : dict((skey, '1.02') for skey in mc if skey not in ['top', 'Fake','Wjets_HT']),
+                'cuts':   phase_spaces_tot_mu
+}
 
 
 ##################
@@ -371,19 +371,19 @@ for sample in mc :
     }
 # # #
 # # # PS and UE
-# # #
-nuisances['PS']  = {
-                'name'  : 'PS',
-                'skipCMS' : 1,
-                'type'  : 'lnN',
-                'samples'  : {
-                    'top' : '1.10',
-                    'Wjets_HT': '1.15',
-                    'VBS':     '1.05',
-                    'DY': '1.10',
-                    'VV': '1.05',
-                }
-        }
+# # # #
+# nuisances['PS']  = {
+#                 'name'  : 'PS',
+#                 'skipCMS' : 1,
+#                 'type'  : 'lnN',
+#                 'samples'  : {
+#                     'top' : '1.10',
+#                     'Wjets_HT': '1.15',
+#                     'VBS':     '1.05',
+#                     'DY': '1.10',
+#                     'VV': '1.05',
+#                 }
+#         }
 
 
 # # nuisances['UE']  = {

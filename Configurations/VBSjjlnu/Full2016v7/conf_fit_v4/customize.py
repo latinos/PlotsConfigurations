@@ -215,7 +215,18 @@ def customize(samples,cuts,variables,nuisances,plot,groupPlot, key=None):
         scale_plot = scaleBins(new_plot,  norm_factors)
         return samples, new_cuts, variables, nuisances, scale_plot, new_groupPlot
 
-
+    if key == "wjets_rescale_res_nobins":
+        norm_factors = get_wjets_scaling(os.path.dirname(__file__) + "/wjets_norm/all.txt")
+        new_cuts = filter_cuts(cuts, r"res_wjetcr_.*")
+        scale_plot = scaleBins(plot,  norm_factors)
+        new_groupPlot = reorder_plots(groupPlot,  plots_wjets_order_res)
+        return samples, new_cuts, variables, nuisances, scale_plot, groupPlot
+    if key == "top_rescale_res_nobins":
+        norm_factors = get_wjets_scaling(os.path.dirname(__file__) + "/wjets_norm/all.txt")
+        new_cuts = filter_cuts(cuts, r"res_topcr_.*")
+        scale_plot = scaleBins(plot, norm_factors)
+        new_groupPlot = reorder_plots(groupPlot,  plots_top_order_res)
+        return samples, new_cuts, variables, nuisances, scale_plot, new_groupPlot
 
     else:
         return samples,cuts,variables,nuisances,plot,groupPlot
