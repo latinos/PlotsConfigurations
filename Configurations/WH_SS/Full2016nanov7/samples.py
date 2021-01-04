@@ -107,8 +107,8 @@ samples['DY'] = {
     'weight': mcCommonWeight + '*( !(Sum$(PhotonGen_isPrompt==1 && PhotonGen_pt>15 && abs(PhotonGen_eta)<2.6) > 0))*ttHMVA_SF_flip_2l[0]',
     'FilesPerJob': 4,
 }
-#addSampleWeight(samples,'DY','DYJetsToLL_M-50-LO_ext2',DY_LO_pTllrw)
-addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO',DY_LO_pTllrw)
+addSampleWeight(samples,'DY','DYJetsToLL_M-50-LO_ext2','DY_LO_pTllrw')
+addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO','DY_LO_pTllrw')
 
 ###### Top #######
 
