@@ -67,16 +67,30 @@ Drop nuisances giving negative values:
 
 ### Produce Impact Plots
 
+Prepare directory:
+
+    mkdir -p Impact_plots_VH2j
+
+Source combine:
+
+    cd $HOME/work/combine/CMSSW_10_2_13/src/
+    cmsenv
+    cd -
+
+    ulimit -s unlimited
+
+Impact plots:
+
     text2workspace.py datacards/hww2l2v_13TeV_vh/mll/datacard.txt -o datacards/hww2l2v_13TeV_vh/mll/datacard.root
 
-    combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_vh/mll/datacard.root -m 125 --doInitialFit --rMin=-2 --robustFit 1 --expectSignal=1 -t -1 > datacards/hww2l2v_13TeV_vh/mll/Initial_fit.root
+    combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_vh/mll/datacard.root -m 125 --doInitialFit -t -1 --expectSignal=1 --X-rtd MINIMIZER_analytic --cminDefaultMinimizerStrategy=0 --rMin=-6 --rMax=10
 
-    combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_vh/mll/datacard.root -m 125 --robustFit 1 --rMin=-2 --doFits --job-mode=interactive --parallel=10 --expectSignal=1 -t -1 
+    combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_vh/mll/datacard.root -m 125 --doFits -t -1 --expectSignal=1 --X-rtd MINIMIZER_analytic --cminDefaultMinimizerStrategy=0 --job-mode=interactive --parallel=10 --rMin=-6 --rMax=10
 
-    combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_vh/mll/datacard.root -m 125 --rMin=-2 -o datacards/hww2l2v_13TeV_vh/mll/impatcs.json
+    combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_vh/mll/datacard.root -m 125 -t -1 --X-rtd MINIMIZER_analytic --cminDefaultMinimizerStrategy=0 -o datacards/hww2l2v_13TeV_vh/mll/impatcs.json
     
-    plotImpacts.py -i datacards/hww2l2v_13TeV_vh/mll/impatcs.json -o datacards/hww2l2v_13TeV_vh/mll/impatcs
+    plotImpacts.py -i datacards/hww2l2v_13TeV_vh/mll/impatcs.json -o Impact_plots_VH2j/impatcs
 
-Clean up:
+    rm higgsCombine_*
 
-    rm higgsCombine* combine_logger.out fitDiagnostics.root
+
