@@ -106,4 +106,54 @@ And then, actually produce the workspace:
 
 ### Results are stored in:
 
-    Combination/FitResults.txt
+    cat Combination/FitResults.txt
+
+### Produce Impact Plots
+
+Source combine:
+
+    cd $HOME/work/combine/CMSSW_10_2_13/src/
+    cmsenv
+    cd -
+
+Prepare directory:
+
+    mkdir -p Impact_plots_HTXS
+
+Source combine:
+
+    cd $HOME/work/combine/CMSSW_10_2_13/src/
+    eval `scramv1 runtime -sh`
+    cd -
+
+To avoid possible segmentation fault errors, run this command:
+
+    ulimit -s unlimited
+
+Make initial fit:
+
+    combineTool.py -M Impacts -d Combination/Full2016_SF_ggH_HTXS_Stage1p2_merged_v7.root -m 125 -t -1 --doInitialFit --X-rtd MINIMIZER_analytic --cminDefaultMinimizerStrategy=0 --setParameters r_ggH_hww_1J_PTH_60_120=1,r_ggH_hww_GE2J_MJJ_0_350_PTH_120_200=1,r_ggH_hww_1J_PTH_0_60=1,r_ggH_hww_0J_PTH_0_10=1,r_ggH_hww_GE2J_MJJ_350_700_PTHJJ_0_25=1,r_ggH_hww_GE2J_MJJ_0_350_PTH_60_120=1,r_ggH_hww_GE2J_MJJ_350_700_PTHJJ_GT25=1,r_ggH_hww_PTH_GT200=1,r_ggH_hww_GE2J_MJJ_GT700_PTHJJ_GT25=1,r_ggH_hww_0J_PTH_GT10=1,r_ggH_hww_GE2J_MJJ_0_350_PTH_0_60=1,r_ggH_hww_1J_PTH_120_200=1 --redefineSignalPOIs r_ggH_hww_1J_PTH_60_120,r_ggH_hww_GE2J_MJJ_0_350_PTH_120_200,r_ggH_hww_1J_PTH_0_60,r_ggH_hww_0J_PTH_0_10,r_ggH_hww_GE2J_MJJ_350_700_PTHJJ_0_25,r_ggH_hww_GE2J_MJJ_0_350_PTH_60_120,r_ggH_hww_GE2J_MJJ_350_700_PTHJJ_GT25,r_ggH_hww_PTH_GT200,r_ggH_hww_GE2J_MJJ_GT700_PTHJJ_GT25,r_ggH_hww_0J_PTH_GT10,r_ggH_hww_GE2J_MJJ_0_350_PTH_0_60,r_ggH_hww_1J_PTH_120_200 
+
+Send actual fits jobs to condor:    
+
+     combineTool.py -M Impacts -d Combination/Full2016_SF_ggH_HTXS_Stage1p2_merged_v7.root --doFits -t -1 --X-rtd MINIMIZER_analytic --cminDefaultMinimizerStrategy=0 -m 125 --setParameters r_ggH_hww_1J_PTH_60_120=1,r_ggH_hww_GE2J_MJJ_0_350_PTH_120_200=1,r_ggH_hww_1J_PTH_0_60=1,r_ggH_hww_0J_PTH_0_10=1,r_ggH_hww_GE2J_MJJ_350_700_PTHJJ_0_25=1,r_ggH_hww_GE2J_MJJ_0_350_PTH_60_120=1,r_ggH_hww_GE2J_MJJ_350_700_PTHJJ_GT25=1,r_ggH_hww_PTH_GT200=1,r_ggH_hww_GE2J_MJJ_GT700_PTHJJ_GT25=1,r_ggH_hww_0J_PTH_GT10=1,r_ggH_hww_GE2J_MJJ_0_350_PTH_0_60=1,r_ggH_hww_1J_PTH_120_200=1 --redefineSignalPOIs r_ggH_hww_1J_PTH_60_120,r_ggH_hww_GE2J_MJJ_0_350_PTH_120_200,r_ggH_hww_1J_PTH_0_60,r_ggH_hww_0J_PTH_0_10,r_ggH_hww_GE2J_MJJ_350_700_PTHJJ_0_25,r_ggH_hww_GE2J_MJJ_0_350_PTH_60_120,r_ggH_hww_GE2J_MJJ_350_700_PTHJJ_GT25,r_ggH_hww_PTH_GT200,r_ggH_hww_GE2J_MJJ_GT700_PTHJJ_GT25,r_ggH_hww_0J_PTH_GT10,r_ggH_hww_GE2J_MJJ_0_350_PTH_0_60,r_ggH_hww_1J_PTH_120_200 --job-mode=condor --sub-opt '+JobFlavour = "tomorrow"'
+
+Create json file:
+
+    combineTool.py -M Impacts -d Combination/Full2016_SF_ggH_HTXS_Stage1p2_merged_v7.root -t -1 --X-rtd MINIMIZER_analytic --cminDefaultMinimizerStrategy=0 -m 125 --setParameters r_ggH_hww_1J_PTH_60_120=1,r_ggH_hww_GE2J_MJJ_0_350_PTH_120_200=1,r_ggH_hww_1J_PTH_0_60=1,r_ggH_hww_0J_PTH_0_10=1,r_ggH_hww_GE2J_MJJ_350_700_PTHJJ_0_25=1,r_ggH_hww_GE2J_MJJ_0_350_PTH_60_120=1,r_ggH_hww_GE2J_MJJ_350_700_PTHJJ_GT25=1,r_ggH_hww_PTH_GT200=1,r_ggH_hww_GE2J_MJJ_GT700_PTHJJ_GT25=1,r_ggH_hww_0J_PTH_GT10=1,r_ggH_hww_GE2J_MJJ_0_350_PTH_0_60=1,r_ggH_hww_1J_PTH_120_200=1 --redefineSignalPOIs r_ggH_hww_1J_PTH_60_120,r_ggH_hww_GE2J_MJJ_0_350_PTH_120_200,r_ggH_hww_1J_PTH_0_60,r_ggH_hww_0J_PTH_0_10,r_ggH_hww_GE2J_MJJ_350_700_PTHJJ_0_25,r_ggH_hww_GE2J_MJJ_0_350_PTH_60_120,r_ggH_hww_GE2J_MJJ_350_700_PTHJJ_GT25,r_ggH_hww_PTH_GT200,r_ggH_hww_GE2J_MJJ_GT700_PTHJJ_GT25,r_ggH_hww_0J_PTH_GT10,r_ggH_hww_GE2J_MJJ_0_350_PTH_0_60,r_ggH_hww_1J_PTH_120_200 -o Combination/impacts_total.json
+
+
+Merge json files and create impact plots, one for each POI:
+
+    plotImpacts.py -i Combination/impacts_total.json -o Impact_plots_HTXS/Impact_ggH_hww_1J_PTH_60_120.json               --POI r_ggH_hww_1J_PTH_60_120
+    plotImpacts.py -i Combination/impacts_total.json -o Impact_plots_HTXS/Impact_ggH_hww_GE2J_MJJ_0_350_PTH_120_200.json  --POI r_ggH_hww_GE2J_MJJ_0_350_PTH_120_200
+    plotImpacts.py -i Combination/impacts_total.json -o Impact_plots_HTXS/Impact_ggH_hww_1J_PTH_0_60.json                 --POI r_ggH_hww_1J_PTH_0_60
+    plotImpacts.py -i Combination/impacts_total.json -o Impact_plots_HTXS/Impact_ggH_hww_0J_PTH_0_10.json                 --POI r_ggH_hww_0J_PTH_0_10
+    plotImpacts.py -i Combination/impacts_total.json -o Impact_plots_HTXS/Impact_ggH_hww_GE2J_MJJ_350_700_PTHJJ_0_25.json --POI r_ggH_hww_GE2J_MJJ_350_700_PTHJJ_0_25
+    plotImpacts.py -i Combination/impacts_total.json -o Impact_plots_HTXS/Impact_ggH_hww_GE2J_MJJ_0_350_PTH_60_120.json   --POI r_ggH_hww_GE2J_MJJ_0_350_PTH_60_120
+    plotImpacts.py -i Combination/impacts_total.json -o Impact_plots_HTXS/Impact_ggH_hww_GE2J_MJJ_350_700_PTHJJ_GT25.json --POI r_ggH_hww_GE2J_MJJ_350_700_PTHJJ_GT25
+    plotImpacts.py -i Combination/impacts_total.json -o Impact_plots_HTXS/Impact_ggH_hww_PTH_GT200.json                   --POI r_ggH_hww_PTH_GT200
+    plotImpacts.py -i Combination/impacts_total.json -o Impact_plots_HTXS/Impact_ggH_hww_GE2J_MJJ_GT700_PTHJJ_GT25.json   --POI r_ggH_hww_GE2J_MJJ_GT700_PTHJJ_GT25
+    plotImpacts.py -i Combination/impacts_total.json -o Impact_plots_HTXS/Impact_ggH_hww_0J_PTH_GT10.json                 --POI r_ggH_hww_0J_PTH_GT10
+    plotImpacts.py -i Combination/impacts_total.json -o Impact_plots_HTXS/Impact_ggH_hww_GE2J_MJJ_0_350_PTH_0_60.json     --POI r_ggH_hww_GE2J_MJJ_0_350_PTH_0_60
+    plotImpacts.py -i Combination/impacts_total.json -o Impact_plots_HTXS/Impact_ggH_hww_1J_PTH_120_200.json              --POI r_ggH_hww_1J_PTH_120_200
