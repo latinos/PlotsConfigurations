@@ -234,9 +234,9 @@ for js in jes_systs:
       'AsLnN': '1'
   }
 
-# ##### Jet energy resolution
+##### Jet energy resolution
 # nuisances['JER'] = {
-#     'name': 'CMS_res_j_2017',
+#     'name': 'CMS_res_j_2018',
 #     'kind': 'suffix',
 #     'type': 'shape',
 #     'mapUp': 'JERup',
@@ -259,6 +259,16 @@ nuisances['met'] = {
     'folderUp': makeMCDirectory('METup_suffix'),
     'folderDown': makeMCDirectory('METdo_suffix'),
     'AsLnN': '1'
+}
+
+### PU ID SF uncertainty
+puid_syst = ['Jet_PUIDSF_up/Jet_PUIDSF', 'Jet_PUIDSF_down/Jet_PUIDSF']
+
+nuisances['jetPUID'] = {
+    'name': 'CMS_PUID_2018',
+    'kind': 'weight',
+    'type': 'shape',
+    'samples': dict((skey, puid_syst) for skey in mc if skey not in ['DY'])
 }
 
 ##### Pileup
