@@ -146,3 +146,167 @@ Combination:
     grep "proc" datacards/hww2l2v_13TeV_*/events/datacard.txt > yield.txt
     grep "rate " datacards/hww2l2v_13TeV_*/events/datacard.txt >> yield.txt
     column -t yield.txt > yield_organized.txt
+
+### Produce cumulative plots for the three years 2016 + 2017 + 2018
+
+0 jet:
+
+    mkPlot.py --inputFile rootFile/plots_ggH_SF_2016_v7_DYEstimDATA.root                --nuisancesFile nuisances.py                --onlyVariable events --onlyCut hww2l2v_13TeV_0j_ee --outputDirPlots plots_2016 --removeWeight --plotFile plot_blind.py
+    mkPlot.py --inputFile rootFile/plots_ggH_SF_2016_v7_DYEstimDATA.root                --nuisancesFile nuisances.py                --onlyVariable events --onlyCut hww2l2v_13TeV_0j_mm --outputDirPlots plots_2016 --removeWeight --plotFile plot_blind.py
+
+    mkPlot.py --inputFile ../Full2017_v7/rootFile/plots_ggH_SF_2017_v7_DYEstimDATA.root --nuisancesFile ../Full2017_v7/nuisances.py --onlyVariable events --onlyCut hww2l2v_13TeV_0j_ee --outputDirPlots plots_2017 --removeWeight --plotFile plot_blind.py
+    mkPlot.py --inputFile ../Full2017_v7/rootFile/plots_ggH_SF_2017_v7_DYEstimDATA.root --nuisancesFile ../Full2017_v7/nuisances.py --onlyVariable events --onlyCut hww2l2v_13TeV_0j_mm --outputDirPlots plots_2017 --removeWeight --plotFile plot_blind.py
+
+    mkPlot.py --inputFile ../Full2018_v7/rootFile/plots_ggH_SF_2018_v7_DYEstimDATA.root --nuisancesFile ../Full2018_v7/nuisances.py --onlyVariable events --onlyCut hww2l2v_13TeV_0j_ee --outputDirPlots plots_2018 --removeWeight --plotFile plot_blind.py
+    mkPlot.py --inputFile ../Full2018_v7/rootFile/plots_ggH_SF_2018_v7_DYEstimDATA.root --nuisancesFile ../Full2018_v7/nuisances.py --onlyVariable events --onlyCut hww2l2v_13TeV_0j_mm --outputDirPlots plots_2018 --removeWeight --plotFile plot_blind.py
+
+    mkCombinedPlot.py --pycfg=configuration.py  --inputCutsList=cuts_to_merge_ggH_SF_0j_mm.py \
+                      --outputDirPlots=plots_ggH_0j_mm_cumulative \
+                      --variable=events \
+                      --minvariable=0           --maxvariable=1 \
+                      --variableHR="events" \
+                      --getVarFromFile=1  \
+                      --divideByBinWidth \
+		      --plotFile plot_blind_run2.py \
+		      --yAxisTitle="Events"
+
+    mkCombinedPlot.py --pycfg=configuration.py  --inputCutsList=cuts_to_merge_ggH_SF_0j_ee.py \
+                      --outputDirPlots=plots_ggH_0j_ee_cumulative \
+                      --variable=events \
+                      --minvariable=0           --maxvariable=1 \
+                      --variableHR="events" \
+                      --getVarFromFile=1  \
+                      --divideByBinWidth \
+		      --plotFile plot_blind_run2.py \
+		      --yAxisTitle="Events"
+
+1 jet:
+
+    mkPlot.py --inputFile rootFile/plots_ggH_SF_2016_v7_DYEstimDATA.root                --nuisancesFile nuisances.py                --onlyVariable events --onlyCut hww2l2v_13TeV_1j_ee --outputDirPlots plots_2016 --removeWeight --plotFile plot_blind.py
+    mkPlot.py --inputFile rootFile/plots_ggH_SF_2016_v7_DYEstimDATA.root                --nuisancesFile nuisances.py                --onlyVariable events --onlyCut hww2l2v_13TeV_1j_mm --outputDirPlots plots_2016 --removeWeight --plotFile plot_blind.py
+
+    mkPlot.py --inputFile ../Full2017_v7/rootFile/plots_ggH_SF_2017_v7_DYEstimDATA.root --nuisancesFile ../Full2017_v7/nuisances.py --onlyVariable events --onlyCut hww2l2v_13TeV_1j_ee --outputDirPlots plots_2017 --removeWeight --plotFile plot_blind.py
+    mkPlot.py --inputFile ../Full2017_v7/rootFile/plots_ggH_SF_2017_v7_DYEstimDATA.root --nuisancesFile ../Full2017_v7/nuisances.py --onlyVariable events --onlyCut hww2l2v_13TeV_1j_mm --outputDirPlots plots_2017 --removeWeight --plotFile plot_blind.py
+
+    mkPlot.py --inputFile ../Full2018_v7/rootFile/plots_ggH_SF_2018_v7_DYEstimDATA.root --nuisancesFile ../Full2018_v7/nuisances.py --onlyVariable events --onlyCut hww2l2v_13TeV_1j_ee --outputDirPlots plots_2018 --removeWeight --plotFile plot_blind.py
+    mkPlot.py --inputFile ../Full2018_v7/rootFile/plots_ggH_SF_2018_v7_DYEstimDATA.root --nuisancesFile ../Full2018_v7/nuisances.py --onlyVariable events --onlyCut hww2l2v_13TeV_1j_mm --outputDirPlots plots_2018 --removeWeight --plotFile plot_blind.py
+
+    mkCombinedPlot.py --pycfg=configuration.py  --inputCutsList=cuts_to_merge_ggH_SF_1j_mm.py \
+                      --outputDirPlots=plots_ggH_1j_mm_cumulative \
+                      --variable=events \
+                      --minvariable=0           --maxvariable=1 \
+                      --variableHR="events" \
+                      --getVarFromFile=1  \
+                      --divideByBinWidth \
+		      --plotFile plot_blind_run2.py \
+		      --yAxisTitle="Events"
+
+    mkCombinedPlot.py --pycfg=configuration.py  --inputCutsList=cuts_to_merge_ggH_SF_1j_ee.py \
+                      --outputDirPlots=plots_ggH_1j_ee_cumulative \
+                      --variable=events \
+                      --minvariable=0           --maxvariable=1 \
+                      --variableHR="events" \
+                      --getVarFromFile=1  \
+                      --divideByBinWidth \
+		      --plotFile plot_blind_run2.py \
+		      --yAxisTitle="Events"
+
+2 jets:
+
+    mkPlot.py --inputFile rootFile/plots_ggH_SF_2016_v7_DYEstimDATA.root                --nuisancesFile nuisances.py                --onlyVariable events --onlyCut hww2l2v_13TeV_2j_ee --outputDirPlots plots_2016 --removeWeight --plotFile plot_blind.py
+    mkPlot.py --inputFile rootFile/plots_ggH_SF_2016_v7_DYEstimDATA.root                --nuisancesFile nuisances.py                --onlyVariable events --onlyCut hww2l2v_13TeV_2j_mm --outputDirPlots plots_2016 --removeWeight --plotFile plot_blind.py
+
+    mkPlot.py --inputFile ../Full2017_v7/rootFile/plots_ggH_SF_2017_v7_DYEstimDATA.root --nuisancesFile ../Full2017_v7/nuisances.py --onlyVariable events --onlyCut hww2l2v_13TeV_2j_ee --outputDirPlots plots_2017 --removeWeight --plotFile plot_blind.py
+    mkPlot.py --inputFile ../Full2017_v7/rootFile/plots_ggH_SF_2017_v7_DYEstimDATA.root --nuisancesFile ../Full2017_v7/nuisances.py --onlyVariable events --onlyCut hww2l2v_13TeV_2j_mm --outputDirPlots plots_2017 --removeWeight --plotFile plot_blind.py
+
+    mkPlot.py --inputFile ../Full2018_v7/rootFile/plots_ggH_SF_2018_v7_DYEstimDATA.root --nuisancesFile ../Full2018_v7/nuisances.py --onlyVariable events --onlyCut hww2l2v_13TeV_2j_ee --outputDirPlots plots_2018 --removeWeight --plotFile plot_blind.py
+    mkPlot.py --inputFile ../Full2018_v7/rootFile/plots_ggH_SF_2018_v7_DYEstimDATA.root --nuisancesFile ../Full2018_v7/nuisances.py --onlyVariable events --onlyCut hww2l2v_13TeV_2j_mm --outputDirPlots plots_2018 --removeWeight --plotFile plot_blind.py
+
+    mkCombinedPlot.py --pycfg=configuration.py  --inputCutsList=cuts_to_merge_ggH_SF_2j_mm.py \
+                      --outputDirPlots=plots_ggH_2j_mm_cumulative \
+                      --variable=events \
+                      --minvariable=0           --maxvariable=1 \
+                      --variableHR="events" \
+                      --getVarFromFile=1  \
+                      --divideByBinWidth \
+		      --plotFile plot_blind_run2.py \
+		      --yAxisTitle="Events"
+
+    mkCombinedPlot.py --pycfg=configuration.py  --inputCutsList=cuts_to_merge_ggH_SF_2j_ee.py \
+                      --outputDirPlots=plots_ggH_2j_ee_cumulative \
+                      --variable=events \
+                      --minvariable=0           --maxvariable=1 \
+                      --variableHR="events" \
+                      --getVarFromFile=1  \
+                      --divideByBinWidth \
+		      --plotFile plot_blind_run2.py \
+		      --yAxisTitle="Events"
+
+2 jets VH:
+
+    mkPlot.py --inputFile ../../qqH_SF/Full2016_v7/rootFile/plots_qqH_SF_2016_v7_DYEstimDATA.root                --nuisancesFile ../../qqH_SF/Full2016_v7/nuisances.py                --onlyVariable events --onlyCut hww2l2v_13TeV_2j_vh_ee --outputDirPlots plots_2016 --removeWeight --plotFile plot_blind.py --cutsFile=../../qqH_SF/Full2016_v7/cuts.py
+    mkPlot.py --inputFile ../../qqH_SF/Full2016_v7/rootFile/plots_qqH_SF_2016_v7_DYEstimDATA.root                --nuisancesFile ../../qqH_SF/Full2016_v7/nuisances.py                --onlyVariable events --onlyCut hww2l2v_13TeV_2j_vh_mm --outputDirPlots plots_2016 --removeWeight --plotFile plot_blind.py --cutsFile=../../qqH_SF/Full2016_v7/cuts.py
+
+    mkPlot.py --inputFile ../../qqH_SF/Full2017_v7/rootFile/plots_qqH_SF_2017_v7_DYEstimDATA.root                --nuisancesFile ../../qqH_SF/Full2017_v7/nuisances.py                --onlyVariable events --onlyCut hww2l2v_13TeV_2j_vh_ee --outputDirPlots plots_2017 --removeWeight --plotFile plot_blind.py --cutsFile=../../qqH_SF/Full2017_v7/cuts.py
+    mkPlot.py --inputFile ../../qqH_SF/Full2017_v7/rootFile/plots_qqH_SF_2017_v7_DYEstimDATA.root                --nuisancesFile ../../qqH_SF/Full2017_v7/nuisances.py                --onlyVariable events --onlyCut hww2l2v_13TeV_2j_vh_mm --outputDirPlots plots_2017 --removeWeight --plotFile plot_blind.py --cutsFile=../../qqH_SF/Full2017_v7/cuts.py
+
+    mkPlot.py --inputFile ../../qqH_SF/Full2018_v7/rootFile/plots_qqH_SF_2018_v7_DYEstimDATA.root                --nuisancesFile ../../qqH_SF/Full2018_v7/nuisances.py                --onlyVariable events --onlyCut hww2l2v_13TeV_2j_vh_ee --outputDirPlots plots_2018 --removeWeight --plotFile plot_blind.py --cutsFile=../../qqH_SF/Full2018_v7/cuts.py
+    mkPlot.py --inputFile ../../qqH_SF/Full2018_v7/rootFile/plots_qqH_SF_2018_v7_DYEstimDATA.root                --nuisancesFile ../../qqH_SF/Full2018_v7/nuisances.py                --onlyVariable events --onlyCut hww2l2v_13TeV_2j_vh_mm --outputDirPlots plots_2018 --removeWeight --plotFile plot_blind.py --cutsFile=../../qqH_SF/Full2018_v7/cuts.py
+
+    mkCombinedPlot.py --pycfg=configuration.py  --inputCutsList=cuts_to_merge_ggH_SF_2j_vh_mm.py \
+                      --outputDirPlots=plots_ggH_2j_vh_mm_cumulative \
+                      --variable=events \
+                      --minvariable=0           --maxvariable=1 \
+                      --variableHR="events" \
+                      --getVarFromFile=1  \
+                      --divideByBinWidth \
+		      --plotFile plot_blind_run2.py \
+		      --yAxisTitle="Events"
+
+    mkCombinedPlot.py --pycfg=configuration.py  --inputCutsList=cuts_to_merge_ggH_SF_2j_vh_ee.py \
+                      --outputDirPlots=plots_ggH_2j_vh_ee_cumulative \
+                      --variable=events \
+                      --minvariable=0           --maxvariable=1 \
+                      --variableHR="events" \
+                      --getVarFromFile=1  \
+                      --divideByBinWidth \
+		      --plotFile plot_blind_run2.py \
+		      --yAxisTitle="Events"
+
+2 jets VBF:
+
+    mkPlot.py --inputFile ../../qqH_SF/Full2016_v7/rootFile/plots_qqH_SF_2016_v7_DYEstimDATA.root                --nuisancesFile ../../qqH_SF/Full2016_v7/nuisances.py                --onlyVariable events --onlyCut hww2l2v_13TeV_2j_vbf_ee --outputDirPlots plots_2016 --removeWeight --plotFile plot_blind.py --cutsFile=../../qqH_SF/Full2016_v7/cuts.py
+    mkPlot.py --inputFile ../../qqH_SF/Full2016_v7/rootFile/plots_qqH_SF_2016_v7_DYEstimDATA.root                --nuisancesFile ../../qqH_SF/Full2016_v7/nuisances.py                --onlyVariable events --onlyCut hww2l2v_13TeV_2j_vbf_mm --outputDirPlots plots_2016 --removeWeight --plotFile plot_blind.py --cutsFile=../../qqH_SF/Full2016_v7/cuts.py
+
+    mkPlot.py --inputFile ../../qqH_SF/Full2017_v7/rootFile/plots_qqH_SF_2017_v7_DYEstimDATA.root                --nuisancesFile ../../qqH_SF/Full2017_v7/nuisances.py                --onlyVariable events --onlyCut hww2l2v_13TeV_2j_vbf_ee --outputDirPlots plots_2017 --removeWeight --plotFile plot_blind.py --cutsFile=../../qqH_SF/Full2017_v7/cuts.py
+    mkPlot.py --inputFile ../../qqH_SF/Full2017_v7/rootFile/plots_qqH_SF_2017_v7_DYEstimDATA.root                --nuisancesFile ../../qqH_SF/Full2017_v7/nuisances.py                --onlyVariable events --onlyCut hww2l2v_13TeV_2j_vbf_mm --outputDirPlots plots_2017 --removeWeight --plotFile plot_blind.py --cutsFile=../../qqH_SF/Full2017_v7/cuts.py
+
+    mkPlot.py --inputFile ../../qqH_SF/Full2018_v7/rootFile/plots_qqH_SF_2018_v7_DYEstimDATA.root                --nuisancesFile ../../qqH_SF/Full2018_v7/nuisances.py                --onlyVariable events --onlyCut hww2l2v_13TeV_2j_vbf_ee --outputDirPlots plots_2018 --removeWeight --plotFile plot_blind.py --cutsFile=../../qqH_SF/Full2018_v7/cuts.py
+    mkPlot.py --inputFile ../../qqH_SF/Full2018_v7/rootFile/plots_qqH_SF_2018_v7_DYEstimDATA.root                --nuisancesFile ../../qqH_SF/Full2018_v7/nuisances.py                --onlyVariable events --onlyCut hww2l2v_13TeV_2j_vbf_mm --outputDirPlots plots_2018 --removeWeight --plotFile plot_blind.py --cutsFile=../../qqH_SF/Full2018_v7/cuts.py
+
+    mkCombinedPlot.py --pycfg=configuration.py  --inputCutsList=cuts_to_merge_ggH_SF_2j_vbf_mm.py \
+                      --outputDirPlots=plots_ggH_2j_vbf_mm_cumulative \
+                      --variable=events \
+                      --minvariable=0           --maxvariable=1 \
+                      --variableHR="events" \
+                      --getVarFromFile=1  \
+                      --divideByBinWidth \
+		      --plotFile plot_blind_run2.py \
+		      --yAxisTitle="Events"
+
+    mkCombinedPlot.py --pycfg=configuration.py  --inputCutsList=cuts_to_merge_ggH_SF_2j_vbf_ee.py \
+                      --outputDirPlots=plots_ggH_2j_vbf_ee_cumulative \
+                      --variable=events \
+                      --minvariable=0           --maxvariable=1 \
+                      --variableHR="events" \
+                      --getVarFromFile=1  \
+                      --divideByBinWidth \
+		      --plotFile plot_blind_run2.py \
+		      --yAxisTitle="Events"
+
+
+
+
+
+
+
