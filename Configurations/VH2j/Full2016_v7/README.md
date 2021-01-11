@@ -89,4 +89,21 @@ Impact plots:
 
     rm higgsCombine_*
 
+### Produce cumulative plots for the three years 2016 + 2017 + 2018
 
+    mkPlot.py --inputFile rootFile/plots_VH2j_2016_v7.root                --nuisancesFile nuisances.py                --onlyVariable mll --onlyCut hww2l2v_13TeV_2j_vh_em --outputDirPlots plots_2016 --removeWeight --plotFile plot_blind.py
+
+    mkPlot.py --inputFile ../Full2017_v7/rootFile/plots_VH2j_2017_v7.root --nuisancesFile ../Full2017_v7/nuisances.py --onlyVariable mll --onlyCut hww2l2v_13TeV_2j_vh_em --outputDirPlots plots_2017 --removeWeight --plotFile ../Full2017_v7/plot_blind.py
+
+    mkPlot.py --inputFile ../Full2018_v7/rootFile/plots_VH2j_2018_v7.root --nuisancesFile ../Full2018_v7/nuisances.py --onlyVariable mll --onlyCut hww2l2v_13TeV_2j_vh_em --outputDirPlots plots_2018 --removeWeight --plotFile ../Full2018_v7/plot_blind.py
+
+
+    mkCombinedPlot.py --pycfg=configuration.py  --inputCutsList=cuts_to_merge_VH2j.py \
+                      --outputDirPlots=plots_VH2j_cumulative \
+                      --variable=mll \
+                      --minvariable=0           --maxvariable=200 \
+                      --variableHR="m_{ll} [GeV]" \
+                      --getVarFromFile=1  \
+                      --divideByBinWidth \
+		      --plotFile plot_blind_run2.py \
+		      --yAxisTitle="Events"
