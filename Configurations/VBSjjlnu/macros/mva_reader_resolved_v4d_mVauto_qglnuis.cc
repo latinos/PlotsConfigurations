@@ -9,6 +9,7 @@
 #include <cmath>
 #include <string>
 #include <iostream>
+#include <sstream>
 
 using namespace std;
 using namespace NNEvaluation;
@@ -17,6 +18,7 @@ using namespace NNEvaluation;
 #define MVAREADERResolved_mVauto_qglnuis
 
 typedef TTreeReaderValue<Double_t> DoubleValueReader;
+typedef TTreeReaderArray<Double_t> DoubleArrayReader;
 
 class MVAReaderResolved_mVauto_qglnuis : public multidraw::TTreeFunction {
 public:
@@ -31,10 +33,10 @@ public:
   std::string transform_path_;
   int category_;
   TGraph * dnn_transformation; 
-  std::vector<float> outputValues;
+  std::array<float,9> outputValues;
   bool filled_{false};
   double evaluate(unsigned) override;
-  unsigned getNdata() override { return 3; }
+  unsigned getNdata() override { return 9; }
   int getMultiplicity() override { return 1; }
   void setValues();
   void beginEvent(long long )override;
@@ -73,17 +75,21 @@ protected:
   // FloatValueReader* Centr_vbs{};
   FloatValueReader* Centr_ww{};
 
-  DoubleValueReader* vbs_0_qgl_res{};
-  DoubleValueReader* vjet_0_qgl_res{};
-  DoubleValueReader* vjet_1_qgl_res{};
+  // DoubleValueReader* vbs_0_qgl_res{};
+  // DoubleValueReader* vjet_0_qgl_res{};
+  // DoubleValueReader* vjet_1_qgl_res{};
 
-  DoubleValueReader* vbs_0_qgl_res_up{};
-  DoubleValueReader* vjet_0_qgl_res_up{};
-  DoubleValueReader* vjet_1_qgl_res_up{};
+  // DoubleValueReader* vbs_0_qgl_res_up{};
+  // DoubleValueReader* vjet_0_qgl_res_up{};
+  // DoubleValueReader* vjet_1_qgl_res_up{};
 
-  DoubleValueReader* vbs_0_qgl_res_do{};
-  DoubleValueReader* vjet_0_qgl_res_do{};
-  DoubleValueReader* vjet_1_qgl_res_do{};
+  // DoubleValueReader* vbs_0_qgl_res_do{};
+  // DoubleValueReader* vjet_0_qgl_res_do{};
+  // DoubleValueReader* vjet_1_qgl_res_do{};
+  
+  std::array<DoubleValueReader*, 9 > vbs_0_qgl_res;
+  std::array<DoubleValueReader*, 9 > vjet_0_qgl_res;
+  std::array<DoubleValueReader*, 9 > vjet_1_qgl_res;
 
 /*
  Lepton_pt
@@ -130,19 +136,15 @@ MVAReaderResolved_mVauto_qglnuis::beginEvent(long long _iEntry){
 void
 MVAReaderResolved_mVauto_qglnuis::setValues()
 {
-  outputValues.clear();
-    
   if ( *(VBS_category->Get()) != category_) {
-    outputValues.push_back(-1.);
-    outputValues.push_back(-1.);
-    outputValues.push_back(-1.);
+    std::fill_n(outputValues.begin(), 9, -1.);
   }else{
       //Using mean value of mjj_vjet (for W+jets) if out of training region
     float mV = *(mjj_vjet->Get());
     if (mV <= 65 || mV >= 105) mV = 85.4;
 
     std::vector<std::vector<float>> input_batch;
-    for (int i = 0; i< 3; i++){
+    for (int i = 0; i< 9; i++){
       std::vector<float> input{};
       input.push_back( Lepton_pt->At(0) );
       input.push_back( Lepton_eta->At(0) );
@@ -163,29 +165,16 @@ MVAReaderResolved_mVauto_qglnuis::setValues()
       // input.push_back( *(Centr_vbs->Get()) );
       input.push_back( *(Centr_ww->Get()) );
 
-      if (i==0){
-        input.push_back( (float) *(vbs_0_qgl_res->Get()) );
-        input.push_back( (float) *(vjet_0_qgl_res->Get()) );
-        input.push_back( (float) *(vjet_1_qgl_res->Get()) );
-      } else if(i ==1){
-        input.push_back( (float) *(vbs_0_qgl_res_up->Get()) );
-        input.push_back( (float) *(vjet_0_qgl_res_up->Get()) );
-        input.push_back( (float) *(vjet_1_qgl_res_up->Get()) );
-      }else if(i ==2){
-        input.push_back( (float) *(vbs_0_qgl_res_do->Get()) );
-        input.push_back( (float) *(vjet_0_qgl_res_do->Get()) );
-        input.push_back( (float) *(vjet_1_qgl_res_do->Get()) );
-      }
+      input.push_back( (float) *(vbs_0_qgl_res[i]->Get()));
+      input.push_back( (float) *(vjet_0_qgl_res[i]->Get()) );
+      input.push_back( (float) *(vjet_1_qgl_res[i]->Get()) );
+      
       input_batch.push_back(input);
     }
-    // cout << "  QGL nom: "<< input_batch[0][13] << " " << input_batch[0][14] << " " << input_batch[0][15] << endl;
-    // cout << "  QGL up: "<< input_batch[1][13] << " " << input_batch[1][14] << " " << input_batch[1][15] << endl;
-    // cout << "  QGL do: "<< input_batch[2][13] << " " << input_batch[2][14] << " " << input_batch[2][15] << endl;
-
-    // Evaluate the batch
+    //Evaluate the batch
     std::vector<std::vector<float>> dnn_scores = dnn_tensorflow->analyze_batch(input_batch);
-    for (auto output : dnn_scores){
-      outputValues.push_back(dnn_transformation->Eval(output.at(0)));
+    for (int id = 0; id < dnn_scores.size(); id++){
+      outputValues[id] = dnn_transformation->Eval(dnn_scores.at(id).at(0));
     }
   }
   // std::for_each(outputValues.begin(), outputValues.end(), [](float v){cout << v << " ";});
@@ -229,19 +218,26 @@ MVAReaderResolved_mVauto_qglnuis::bindTree_(multidraw::FunctionLibrary& _library
   // _library.bindBranch(Centr_vbs, "Centr_vbs");
   _library.bindBranch(Centr_ww, "Centr_ww");
 
-  _library.bindBranch(vbs_0_qgl_res, "vbs_0_qgl_res");
-  _library.bindBranch(vjet_0_qgl_res, "vjet_0_qgl_res");
-  _library.bindBranch(vjet_1_qgl_res, "vjet_1_qgl_res");
-
-  _library.bindBranch(vbs_0_qgl_res_up, "vbs_0_qgl_res_up");
-  _library.bindBranch(vjet_0_qgl_res_up, "vjet_0_qgl_res_up");
-  _library.bindBranch(vjet_1_qgl_res_up, "vjet_1_qgl_res_up");
-
-  _library.bindBranch(vbs_0_qgl_res_do, "vbs_0_qgl_res_do");
-  _library.bindBranch(vjet_0_qgl_res_do, "vjet_0_qgl_res_do");
-  _library.bindBranch(vjet_1_qgl_res_do, "vjet_1_qgl_res_do");
-
+  _library.bindBranch(vbs_0_qgl_res[0], "vbs_0_qgl_res");
+  _library.bindBranch(vjet_0_qgl_res[0], "vjet_0_qgl_res");
+  _library.bindBranch(vjet_1_qgl_res[0], "vjet_1_qgl_res");
+  
+  int ivar = 1;
+  for (auto morph : {"morphUp", "morphDown"}){
+    for (auto jtype: {"quark", "gluon"}){
+      for (auto jeta: {"higheta", "loweta"}){
+        stringstream ss;
+        ss << morph << "_" << jtype << "_"<< jeta;
+        std::cout << "Loading QGL variation: "<<ss.str()<<endl;
+        _library.bindBranch(vbs_0_qgl_res[ivar], ("vbs_0_qgl_res_" + ss.str()).c_str() );
+        _library.bindBranch(vjet_0_qgl_res[ivar], ("vjet_0_qgl_res_"+ ss.str()).c_str());
+        _library.bindBranch(vjet_1_qgl_res[ivar], ("vjet_1_qgl_res_"+ ss.str()).c_str());
+        ivar++;
+      }
+    }
+  }
 }
+
 
 MVAReaderResolved_mVauto_qglnuis::~MVAReaderResolved_mVauto_qglnuis(){
     delete dnn_transformation;
@@ -265,15 +261,6 @@ MVAReaderResolved_mVauto_qglnuis::~MVAReaderResolved_mVauto_qglnuis(){
     // A_ww = nullptr;
     // Centr_vbs = nullptr;
     Centr_ww = nullptr;
-    vbs_0_qgl_res = nullptr;
-    vjet_0_qgl_res = nullptr;
-    vjet_1_qgl_res = nullptr;
-     vbs_0_qgl_res_up = nullptr;
-    vjet_0_qgl_res_up = nullptr;
-    vjet_1_qgl_res_up = nullptr;
-     vbs_0_qgl_res_do = nullptr;
-    vjet_0_qgl_res_do = nullptr;
-    vjet_1_qgl_res_do = nullptr;
 }
 
 

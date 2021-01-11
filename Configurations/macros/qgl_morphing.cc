@@ -12,6 +12,7 @@
 #include <utility>
 #include <algorithm>
 #include <iterator>
+#include <string>
 
 #include "TLorentzVector.h"
 #include "TMath.h"
@@ -44,11 +45,11 @@ int isRunningOnSample(TString targetSample){
 
 class QGL_morphing : public multidraw::TTreeFunction {
 public:
-  QGL_morphing( char const* fileNameWithRootFilesOfCorrection, char const* variation );
+  QGL_morphing( char const* fileNameWithRootFilesOfCorrection, char const* variation, char const *  variation_mask );
   ~QGL_morphing();
   
   char const* getName() const override { return "QGL_morphing"; }
-  TTreeFunction* clone() const override { return new QGL_morphing(_fileNameWithRootFilesOfCorrection, _variation);}  
+  TTreeFunction* clone() const override { return new QGL_morphing(_fileNameWithRootFilesOfCorrection, _variation, _variation_mask);}  
 //   TTreeFunction* clone() const override { return new QGL_morphing(); }
   
   unsigned getNdata() override { return _new_Jet_qgl.size(); } // size of the vector of jets
@@ -71,10 +72,9 @@ protected:
   IntArrayReader* Jet_partonFlavour{};
   
   
- 
-  
   TString _fileNameWithRootFilesOfCorrection{};  
   TString _variation{};
+  TString _variation_mask{};
   std::map<std::string, TGraph*> _morphing_functions{};
   
   std::vector<float> _new_Jet_qgl;
@@ -87,19 +87,63 @@ protected:
 bool QGL_morphing::_isRunningOnData{false};
 
 
-QGL_morphing::QGL_morphing( char const* fileNameWithRootFilesOfCorrection, char const* variation ) :
+QGL_morphing::QGL_morphing( char const* fileNameWithRootFilesOfCorrection, char const* variation, char const *  variation_mask ) :
 TTreeFunction(),
-_fileNameWithRootFilesOfCorrection(fileNameWithRootFilesOfCorrection), _variation(variation) {
-  
+_fileNameWithRootFilesOfCorrection(fileNameWithRootFilesOfCorrection), _variation(variation), _variation_mask(variation_mask) {
+  int do_variation = std::stoi(variation_mask,0,2);
   TFile rfile {_fileNameWithRootFilesOfCorrection.Data(), "READ"};
-  _morphing_functions["gluon_loweta_pt0"]  = (TGraph*) rfile.Get("gluon_loweta_pt0_" + _variation);
-  _morphing_functions["gluon_loweta_pt1"]  = (TGraph*) rfile.Get("gluon_loweta_pt1_" + _variation);
-  _morphing_functions["gluon_higheta_pt0"] = (TGraph*) rfile.Get("gluon_higheta_pt0_" + _variation);
-  _morphing_functions["gluon_higheta_pt1"] = (TGraph*) rfile.Get("gluon_higheta_pt1_" + _variation);
-  _morphing_functions["quark_loweta_pt0"]  = (TGraph*) rfile.Get("quark_loweta_pt0_" + _variation);
-  _morphing_functions["quark_loweta_pt1"]  = (TGraph*) rfile.Get("quark_loweta_pt1_" + _variation);
-  _morphing_functions["quark_higheta_pt0"] = (TGraph*) rfile.Get("quark_higheta_pt0_" + _variation);
-  _morphing_functions["quark_higheta_pt1"] = (TGraph*) rfile.Get("quark_higheta_pt1_" + _variation);
+  if (_variation == "nom"){
+    _morphing_functions["gluon_loweta_pt0"]  = (TGraph*) rfile.Get("gluon_loweta_pt0_nom");
+    _morphing_functions["gluon_loweta_pt1"]  = (TGraph*) rfile.Get("gluon_loweta_pt1_nom");
+    _morphing_functions["gluon_higheta_pt0"] = (TGraph*) rfile.Get("gluon_higheta_pt0_nom");
+    _morphing_functions["gluon_higheta_pt1"] = (TGraph*) rfile.Get("gluon_higheta_pt1_nom");
+    _morphing_functions["quark_loweta_pt0"]  = (TGraph*) rfile.Get("quark_loweta_pt0_nom");
+    _morphing_functions["quark_loweta_pt1"]  = (TGraph*) rfile.Get("quark_loweta_pt1_nom");
+    _morphing_functions["quark_higheta_pt0"] = (TGraph*) rfile.Get("quark_higheta_pt0_nom");
+    _morphing_functions["quark_higheta_pt1"] = (TGraph*) rfile.Get("quark_higheta_pt1_nom");
+  }else{
+    if (do_variation & 1){
+      _morphing_functions["gluon_loweta_pt0"]  = (TGraph*) rfile.Get("gluon_loweta_pt0_"+_variation);
+      _morphing_functions["gluon_loweta_pt1"]  = (TGraph*) rfile.Get("gluon_loweta_pt1_"+_variation);
+      _morphing_functions["gluon_higheta_pt0"] = (TGraph*) rfile.Get("gluon_higheta_pt0_nom");
+      _morphing_functions["gluon_higheta_pt1"] = (TGraph*) rfile.Get("gluon_higheta_pt1_nom");
+      _morphing_functions["quark_loweta_pt0"]  = (TGraph*) rfile.Get("quark_loweta_pt0_nom");
+      _morphing_functions["quark_loweta_pt1"]  = (TGraph*) rfile.Get("quark_loweta_pt1_nom");
+      _morphing_functions["quark_higheta_pt0"] = (TGraph*) rfile.Get("quark_higheta_pt0_nom");
+      _morphing_functions["quark_higheta_pt1"] = (TGraph*) rfile.Get("quark_higheta_pt1_nom");
+    }
+    else if (do_variation >> 1 & 1){
+      _morphing_functions["gluon_higheta_pt0"]  = (TGraph*) rfile.Get("gluon_higheta_pt0_"+_variation);
+      _morphing_functions["gluon_higheta_pt1"]  = (TGraph*) rfile.Get("gluon_higheta_pt1_"+_variation);
+      _morphing_functions["gluon_loweta_pt0"]  = (TGraph*) rfile.Get("gluon_loweta_pt0_nom");
+      _morphing_functions["gluon_loweta_pt1"]  = (TGraph*) rfile.Get("gluon_loweta_pt1_nom");
+      _morphing_functions["quark_loweta_pt0"]  = (TGraph*) rfile.Get("quark_loweta_pt0_nom");
+      _morphing_functions["quark_loweta_pt1"]  = (TGraph*) rfile.Get("quark_loweta_pt1_nom");
+      _morphing_functions["quark_higheta_pt0"] = (TGraph*) rfile.Get("quark_higheta_pt0_nom");
+      _morphing_functions["quark_higheta_pt1"] = (TGraph*) rfile.Get("quark_higheta_pt1_nom");
+    }
+    else if (do_variation >>2 & 1){
+      _morphing_functions["quark_loweta_pt0"]  = (TGraph*) rfile.Get("quark_loweta_pt0_"+_variation);
+      _morphing_functions["quark_loweta_pt1"]  = (TGraph*) rfile.Get("quark_loweta_pt1_"+_variation);
+      _morphing_functions["gluon_loweta_pt0"]  = (TGraph*) rfile.Get("gluon_loweta_pt0_nom");
+      _morphing_functions["gluon_loweta_pt1"]  = (TGraph*) rfile.Get("gluon_loweta_pt1_nom");
+      _morphing_functions["gluon_higheta_pt0"] = (TGraph*) rfile.Get("gluon_higheta_pt0_nom");
+      _morphing_functions["gluon_higheta_pt1"] = (TGraph*) rfile.Get("gluon_higheta_pt1_nom");
+      _morphing_functions["quark_higheta_pt0"] = (TGraph*) rfile.Get("quark_higheta_pt0_nom");
+      _morphing_functions["quark_higheta_pt1"] = (TGraph*) rfile.Get("quark_higheta_pt1_nom");
+    }
+    else if (do_variation >> 3 & 1){
+      _morphing_functions["quark_higheta_pt0"]  = (TGraph*) rfile.Get("quark_higheta_pt0_"+_variation);
+      _morphing_functions["quark_higheta_pt1"]  = (TGraph*) rfile.Get("quark_higheta_pt1_"+_variation);
+      _morphing_functions["gluon_loweta_pt0"]  = (TGraph*) rfile.Get("gluon_loweta_pt0_nom");
+      _morphing_functions["gluon_loweta_pt1"]  = (TGraph*) rfile.Get("gluon_loweta_pt1_nom");
+      _morphing_functions["gluon_higheta_pt0"] = (TGraph*) rfile.Get("gluon_higheta_pt0_nom");
+      _morphing_functions["gluon_higheta_pt1"] = (TGraph*) rfile.Get("gluon_higheta_pt1_nom");
+      _morphing_functions["quark_loweta_pt0"]  = (TGraph*) rfile.Get("quark_loweta_pt0_nom");
+      _morphing_functions["quark_loweta_pt1"]  = (TGraph*) rfile.Get("quark_loweta_pt1_nom");
+    }
+  }
+
   rfile.Close();
   
 }
@@ -115,7 +159,6 @@ void QGL_morphing::beginEvent(long long _iEntry) {
   // Fill the new vector _new_Jet_qgl
   //
   //
-  
   _new_Jet_qgl.clear();
   unsigned int total_jets{*nCleanJet->Get()};
   for (unsigned int iCleanJet=0; iCleanJet<total_jets ; iCleanJet++) {

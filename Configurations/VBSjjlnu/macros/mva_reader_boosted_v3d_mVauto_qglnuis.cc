@@ -31,10 +31,10 @@ public:
   std::string transform_path_;
   int category_;
   TGraph * dnn_transformation; 
-  std::vector<float> outputValues;
+  std::array<float,9> outputValues;
   bool filled_{false};
   double evaluate(unsigned) override;
-  unsigned getNdata() override { return 3; }
+  unsigned getNdata() override { return 9; }
   int getMultiplicity() override { return 1; }
   void beginEvent(long long) override;
   void setValues(); 
@@ -72,9 +72,7 @@ protected:
   // FloatValueReader* Centr_vbs{};
   FloatValueReader* Centr_ww{};
 
-  DoubleValueReader* vbs_0_qgl_boost{};
-  DoubleValueReader* vbs_0_qgl_boost_up{};
-  DoubleValueReader* vbs_0_qgl_boost_do{};
+  std::array<DoubleValueReader*, 9 > vbs_0_qgl_boost;
   //DoubleValueReader* vbs_1_qgl_boost{};
 
 /*
@@ -119,13 +117,9 @@ MVAReaderBoosted_mVauto_qglnuis::beginEvent(long long _iEntry)
 void
 MVAReaderBoosted_mVauto_qglnuis::setValues()
 {
-
-  outputValues.clear();
   // Run only if 
   if ( *(VBS_category->Get()) != category_) {
-    outputValues.push_back(-1.);
-    outputValues.push_back(-1.);
-    outputValues.push_back(-1.);
+    std::fill_n(outputValues.begin(), 9, -1.);
   }else{
       
     //Using mean value of mjj_vjet (for W+jets) if out of training region
@@ -133,7 +127,7 @@ MVAReaderBoosted_mVauto_qglnuis::setValues()
     if (mV <= 70 || mV >= 115) mV = 92;
 
     std::vector<std::vector<float>> input_batch;
-    for (int i = 0; i< 3; i++){
+    for (int i = 0; i< 9; i++){
       std::vector<float> input{};
       input.push_back( Lepton_pt->At(0) );
       input.push_back( Lepton_eta->At(0) );
@@ -152,17 +146,14 @@ MVAReaderBoosted_mVauto_qglnuis::setValues()
       // input.push_back( *(A_ww->Get()) );
       // input.push_back( *(Centr_vbs->Get()) );
       input.push_back( *(Centr_ww->Get()) );
-
-      if (i==0)      input.push_back( (float) *(vbs_0_qgl_boost->Get()) );
-      else if(i ==1) input.push_back( (float) *(vbs_0_qgl_boost_up->Get()) );
-      else if(i ==2) input.push_back( (float) *(vbs_0_qgl_boost_do->Get()) ); 
-      
+      input.push_back( (float) *(vbs_0_qgl_boost[i]->Get()) );
+     
       input_batch.push_back(input);
     }
     // Evaluate the batch
     std::vector<std::vector<float>> dnn_scores = dnn_tensorflow->analyze_batch(input_batch);
-    for (auto output : dnn_scores){
-      outputValues.push_back(dnn_transformation->Eval(output.at(0)));
+    for (int id = 0; id < dnn_scores.size(); id++){
+      outputValues[id] = dnn_transformation->Eval(dnn_scores.at(id).at(0));
     }
   }
   // cout << "boost: ";
@@ -206,10 +197,21 @@ MVAReaderBoosted_mVauto_qglnuis::bindTree_(multidraw::FunctionLibrary& _library)
   // _library.bindBranch(Centr_vbs, "Centr_vbs");
   _library.bindBranch(Centr_ww, "Centr_ww");
 
-  _library.bindBranch(vbs_0_qgl_boost, "vbs_0_qgl_boost");
-  _library.bindBranch(vbs_0_qgl_boost_up, "vbs_0_qgl_boost_up");
-  _library.bindBranch(vbs_0_qgl_boost_do, "vbs_0_qgl_boost_do");
-  //_library.bindBranch(vbs_1_qgl_boost, "vbs_1_qgl_boost");
+  _library.bindBranch(vbs_0_qgl_boost[0], "vbs_0_qgl_boost");
+
+
+  int ivar = 1;
+  for (auto morph : {"morphUp", "morphDown"}){
+    for (auto jtype: {"quark", "gluon"}){
+      for (auto jeta: {"higheta", "loweta"}){
+        stringstream ss;
+        ss << morph << "_" << jtype << "_"<< jeta;
+        std::cout << "Loading QGL variation: "<<ss.str()<<endl;
+        _library.bindBranch(vbs_0_qgl_boost[ivar], ("vbs_0_qgl_boost_" + ss.str()).c_str() );
+        ivar++;
+      }
+    }
+  }
 
 
 }
@@ -237,9 +239,6 @@ MVAReaderBoosted_mVauto_qglnuis::~MVAReaderBoosted_mVauto_qglnuis(){
   // A_ww = nullptr;
   // Centr_vbs = nullptr;
   Centr_ww = nullptr;
-  vbs_0_qgl_boost = nullptr;
-  vbs_0_qgl_boost_up = nullptr;
-  vbs_0_qgl_boost_do = nullptr;
   //vbs_1_qgl_boost = nullptr;
 }
 

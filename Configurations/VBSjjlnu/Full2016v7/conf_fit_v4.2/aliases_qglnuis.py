@@ -242,32 +242,90 @@ aliases['veto_fatjet_180'] = {
 
 morphing_file = configurations + "/VBSjjlnu/weights_files/qgl_morphing/morphing_functions_withvars_2016.root"
 
+
 aliases["CleanJet_qgl_morphed"]  = {
     'class': 'QGL_morphing',
-    'args' : (morphing_file, "nom"),
+    'args' : (morphing_file, "nom", "0000"),
     'linesToAdd' : [
         'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
         '.L {}/macros/qgl_morphing.cc+'.format(configurations)
         ] 
 }
 
-aliases["CleanJet_qgl_morphed_morphUp"]  = {
+aliases["CleanJet_qgl_morphed_morphUp_gluon_loweta"]  = {
     'class': 'QGL_morphing',
-    'args' : (morphing_file, "up"),
+    'args' : (morphing_file, "up", "0001"),
     'linesToAdd' : [
         'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
         '.L {}/macros/qgl_morphing.cc+'.format(configurations)
         ] 
 }
 
-aliases["CleanJet_qgl_morphed_morphDown"]  = {
+aliases["CleanJet_qgl_morphed_morphUp_gluon_higheta"]  = {
     'class': 'QGL_morphing',
-    'args' : (morphing_file, "down"),
+    'args' : (morphing_file, "up", "0010"),
     'linesToAdd' : [
         'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
         '.L {}/macros/qgl_morphing.cc+'.format(configurations)
         ] 
 }
+
+aliases["CleanJet_qgl_morphed_morphUp_quark_loweta"]  = {
+    'class': 'QGL_morphing',
+    'args' : (morphing_file, "up", "0100"),
+    'linesToAdd' : [
+        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+        '.L {}/macros/qgl_morphing.cc+'.format(configurations)
+        ] 
+}
+
+aliases["CleanJet_qgl_morphed_morphUp_quark_higheta"]  = {
+    'class': 'QGL_morphing',
+    'args' : (morphing_file, "up", "1000"),
+    'linesToAdd' : [
+        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+        '.L {}/macros/qgl_morphing.cc+'.format(configurations)
+        ] 
+}
+
+######
+aliases["CleanJet_qgl_morphed_morphDown_gluon_loweta"]  = {
+    'class': 'QGL_morphing',
+    'args' : (morphing_file, "down", "0001"),
+    'linesToAdd' : [
+        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+        '.L {}/macros/qgl_morphing.cc+'.format(configurations)
+        ] 
+}
+
+aliases["CleanJet_qgl_morphed_morphDown_gluon_higheta"]  = {
+    'class': 'QGL_morphing',
+    'args' : (morphing_file, "down", "0010"),
+    'linesToAdd' : [
+        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+        '.L {}/macros/qgl_morphing.cc+'.format(configurations)
+        ] 
+}
+
+aliases["CleanJet_qgl_morphed_morphDown_quark_loweta"]  = {
+    'class': 'QGL_morphing',
+    'args' : (morphing_file, "down", "0100"),
+    'linesToAdd' : [
+        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+        '.L {}/macros/qgl_morphing.cc+'.format(configurations)
+        ] 
+}
+
+aliases["CleanJet_qgl_morphed_morphDown_quark_higheta"]  = {
+    'class': 'QGL_morphing',
+    'args' : (morphing_file, "down", "1000"),
+    'linesToAdd' : [
+        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+        '.L {}/macros/qgl_morphing.cc+'.format(configurations)
+        ] 
+}
+
+##########################
 
 
 aliases['vbs_0_qgl_res'] = {
@@ -294,51 +352,26 @@ aliases['vbs_1_qgl_boost'] = {
 ###########
 ## morphUP
 
-aliases['vbs_0_qgl_res_up'] = {
-   'expr': 'Alt$(CleanJet_qgl_morphed_morphUp[VBS_jets_maxmjj_massWZ[0]],-1)'
-} 
+for jt in ['quark', 'gluon']:
+    for jeta in ['loweta', 'higheta']:
+        for morph in ['morphUp', 'morphDown']:
+            jtype = morph + "_" + jt+"_"+jeta
 
-
-aliases['vjet_0_qgl_res_up'] = {
-    'expr': 'Alt$(CleanJet_qgl_morphed_morphUp[V_jets_maxmjj_massWZ[0]],-1)'
-} 
-
-aliases['vjet_1_qgl_res_up'] = {
-    'expr': 'Alt$(CleanJet_qgl_morphed_morphUp[V_jets_maxmjj_massWZ[1]],-1)'
-} 
-
-aliases['vbs_0_qgl_boost_up'] = {
-    'expr': 'Alt$(CleanJet_qgl_morphed_morphUp[VBS_jets_maxmjj[0]],-1)'
-} 
-
-aliases['vbs_1_qgl_boost_up'] = {
-    'expr': 'Alt$(CleanJet_qgl_morphed_morphUp[VBS_jets_maxmjj[1]],-1)'
-} 
-
-######### 
-# morphDown
-
-
-aliases['vbs_0_qgl_res_do'] = {
-   'expr': 'Alt$(CleanJet_qgl_morphed_morphDown[VBS_jets_maxmjj_massWZ[0]],-1)'
-} 
-
-
-aliases['vjet_0_qgl_res_do'] = {
-    'expr': 'Alt$(CleanJet_qgl_morphed_morphDown[V_jets_maxmjj_massWZ[0]],-1)'
-} 
-
-aliases['vjet_1_qgl_res_do'] = {
-    'expr': 'Alt$(CleanJet_qgl_morphed_morphDown[V_jets_maxmjj_massWZ[1]],-1)'
-} 
-
-aliases['vbs_0_qgl_boost_do'] = {
-    'expr': 'Alt$(CleanJet_qgl_morphed_morphDown[VBS_jets_maxmjj[0]],-1)'
-} 
-
-aliases['vbs_1_qgl_boost_do'] = {
-    'expr': 'Alt$(CleanJet_qgl_morphed_morphDown[VBS_jets_maxmjj[1]],-1)'
-} 
+            aliases['vbs_0_qgl_res_' +jtype ] = {
+                'expr': 'Alt$(CleanJet_qgl_morphed_' + jtype + '[VBS_jets_maxmjj_massWZ[0]],-1)'
+            } 
+            aliases['vjet_0_qgl_res_' +jtype ] = {
+                'expr': 'Alt$(CleanJet_qgl_morphed_' + jtype + '[V_jets_maxmjj_massWZ[0]],-1)'
+            } 
+            aliases['vjet_1_qgl_res_' +jtype] = {
+                'expr': 'Alt$(CleanJet_qgl_morphed_' + jtype + '[V_jets_maxmjj_massWZ[1]],-1)'
+            } 
+            aliases['vbs_0_qgl_boost_' +jtype ] = {
+                'expr': 'Alt$(CleanJet_qgl_morphed_' + jtype + '[VBS_jets_maxmjj[0]],-1)'
+            } 
+            aliases['vbs_1_qgl_boost_' +jtype ] = {
+                'expr': 'Alt$(CleanJet_qgl_morphed_' + jtype + '[VBS_jets_maxmjj[1]],-1)'
+            } 
 
 ################
 # aliases['CleanJet_qgl_weights'] = {

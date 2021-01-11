@@ -150,9 +150,11 @@ newFakeWeightOTFall::evaluate(unsigned)
       }
       if (do_statUp){
           fake_rate += fake_rate_e; 
+          if (fake_rate > 1) fake_rate=0.9999;
       }
       if (do_statDo){
           fake_rate -= fake_rate_e; 
+          if (fake_rate < 0) fake_rate=0.;
       }
       if (Lepton_isTightMu->At(0)){
           new_fakew = (-1) * fake_rate * (1 - prompt_rate)/(prompt_rate - fake_rate);
@@ -180,9 +182,11 @@ newFakeWeightOTFall::evaluate(unsigned)
 
       if (do_statUp){
           fake_rate += fake_rate_e; 
+          if (fake_rate > 1) fake_rate=0.9999;
       }
       if (do_statDo){
           fake_rate -= fake_rate_e; 
+          if (fake_rate < 0) fake_rate=0.;
       }
       if (Lepton_isTightEle->At(0)){
           new_fakew = (-1) * fake_rate * (1 - prompt_rate)/(prompt_rate - fake_rate);

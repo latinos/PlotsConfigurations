@@ -6,6 +6,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument("-i","--inputfile", type=str)
 parser.add_argument("-o","--outputfile", type=str)
 parser.add_argument("--outputfile-fit", type=str)
+parser.add_argument("--name", type=str)
 args = parser.parse_args()
 
 iF = R.TFile.Open(args.inputfile, "READ")
@@ -37,44 +38,53 @@ for cut in iF.GetListOfKeys():
         other_samples = wjets_bins['boost']
     for var in vars:
         oF.mkdir("{}/{}".format(cut.GetName(), var))
+        oFF.mkdir("{}/{}".format(cut.GetName(), var))
     
         for sample in all_samples:
-            hnom = iF.Get("{}/{}/histo_{}".format(cut.GetName(), var, sample ))
-            if "DNN" in var:
-                hup = iF.Get("{}/{}/histo_{}".format(cut.GetName(), var + "_qglmorphup", sample ))   
-                hdo = iF.Get("{}/{}/histo_{}".format(cut.GetName(), var + "_qglmorphdo", sample ))
-            else:
-                hup = iF.Get("{}/{}/histo_{}".format(cut.GetName(), var + "_up", sample ))   
-                hdo = iF.Get("{}/{}/histo_{}".format(cut.GetName(), var + "_do", sample ))
-            hup.SetName("histo_{}_QGLmorphUp".format(sample))
-            hdo.SetName("histo_{}_QGLmorphDown".format(sample))
+            #hnom = iF.Get("{}/{}/histo_{}".format(cut.GetName(), var, sample ))
 
-            oF.cd("{}/{}".format(cut.GetName(), var))
-            hnom.Write()
-            hup.Write()
-            hdo.Write()
-            oFF.cd("{}/{}".format(cut.GetName(), var))
-            hup.Write()
-            hdo.Write()
+            for m in ["morphUp", "morphDown"]:
+                for jtype in ["quark", "gluon"]:
+                    for  jeta in ["higheta", "loweta"]:
+                        mtyp = "_".join([m,jtype,jeta])
+                        print "{}/{}_{}/histo_{}".format(cut.GetName(), var, mtyp, sample )
+                        hup = iF.Get("{}/{}_{}/histo_{}".format(cut.GetName(), var, mtyp, sample ))   
+                        hdo = iF.Get("{}/{}_{}/histo_{}".format(cut.GetName(), var, mtyp, sample ))
+                        if m == "morphUp":
+                            hup.SetName("histo_{}_QGLmorph_{}_{}_{}Up".format(sample, jtype,jeta, args.name))
+                        elif m == "morphDown":
+                            hup.SetName("histo_{}_QGLmorph_{}_{}_{}Down".format(sample, jtype,jeta, args.name))
+                        
+                        oF.cd("{}/{}".format(cut.GetName(), var))
+                        #hnom.Write()
+                        hup.Write()
+                        hdo.Write()
+                        oFF.cd("{}/{}".format(cut.GetName(), var))
+                        hup.Write()
+                        hdo.Write()
         # copy also nominal data
-        hnom_data = iF.Get("{}/{}/histo_DATA".format(cut.GetName(), var))
-        hnom_fake = iF.Get("{}/{}/histo_Fake".format(cut.GetName(), var))
-        oF.cd("{}/{}".format(cut.GetName(), var))
-        hnom_data.Write()
-        hnom_fake.Write()
+        # hnom_data = iF.Get("{}/{}/histo_DATA".format(cut.GetName(), var))
+        # hnom_fake = iF.Get("{}/{}/histo_Fake".format(cut.GetName(), var))
+        # oF.cd("{}/{}".format(cut.GetName(), var))
+        # hnom_data.Write()
+        # hnom_fake.Write()
         #Empty histos for W+jets
         for sam in other_samples:
-            hO = hnom.Clone('histo_'+sam)
+            hO = hup.Clone('histo_'+sam)
             hO.Reset()
-            hOu = hO.Clone('histo_'+sam+'_QGLmorphUp')
-            hOd = hO.Clone('histo_'+sam+'_QGLmorphDown')
-            oF.cd("{}/{}".format(cut.GetName(), var))
-            hO.Write()
-            hOu.Write()
-            hOd.Write()
-            oFF.cd("{}/{}".format(cut.GetName(), var))
-            hOu.Write()
-            hOd.Write()
+            for m in ["morphUp", "morphDown"]:
+                for jtype in ["quark", "gluon"]:
+                    for  jeta in ["higheta", "loweta"]:
+                        mtyp = "_".join([m,jtype,jeta])
+                        if m == "morphUp":
+                            hOv = hO.Clone("histo_{}_QGLmorph_{}_{}_{}Up".format(sam, jtype,jeta, args.name))
+                        elif m == "morphDown":
+                            hOv = hO.Clone("histo_{}_QGLmorph_{}_{}_{}Down".format(sam, jtype,jeta, args.name))
+                        
+                        oF.cd("{}/{}".format(cut.GetName(), var))
+                        hOv.Write()
+                        oFF.cd("{}/{}".format(cut.GetName(), var))
+                        hOv.Write()
 
     print '-----------------------'
 

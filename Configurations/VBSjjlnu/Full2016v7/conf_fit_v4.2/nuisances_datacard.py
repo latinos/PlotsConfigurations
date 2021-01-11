@@ -393,12 +393,14 @@ nuisances['TopPtRew'] = {
 
 ##################
 
-nuisances['QGLmorphing']  = {
-    'name': 'QGLmorph_2016',
-    'kind': 'suffix',
-    'type': 'shape',
-    'samples': dict((skey, ['1.','1.']) for skey in mc),
-}
+for jtype in ["quark", "gluon"]:
+      for  jeta in ["higheta", "loweta"]:
+        nuisances['QGLmorphing_{}_{}'.format(jtype, jeta)]  = {
+            'name': 'QGLmorph_{}_{}_16'.format(jtype, jeta),
+            'kind': 'suffix',
+            'type': 'shape',
+            'samples': dict((skey, ['1.','1.']) for skey in mc),
+        }
 
 ##################
 
@@ -599,5 +601,5 @@ for n in nuisances.values():
     n['skipCMS'] = 1
 
    
-print ' '.join(nuis['name'] for nname, nuis in nuisances.iteritems() if nname not in ('lumi', 'stat'))
+# print ' '.join(nuis['name'] for nname, nuis in nuisances.iteritems() if nname not in ('lumi', 'stat'))
 

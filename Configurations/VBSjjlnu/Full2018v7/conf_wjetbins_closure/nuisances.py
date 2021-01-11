@@ -7,11 +7,17 @@ mc =["DY", "top",  "Wjets_HT", "VV", "VVV", "VBF-V", "Vg", "VgS", "VBS"]
 mc_norm = [m for m in mc if m not in ["VBS", "VV"]]
 mc_sep =  ["VBS", "VV"]
 
+phasespaces = ["res_wjetcr_ele","res_wjetcr_mu" ,"boost_wjetcr_ele" ,"boost_wjetcr_mu",
+        "res_topcr_ele","res_topcr_mu" ,"boost_topcr_ele" ,"boost_topcr_mu",
+        "res_sig_ele","res_sig_mu" ,"boost_sig_ele" ,"boost_sig_mu" ]
+
 def getSamplesWithout(samples, samples_to_remove):
     return [m for m in samples if m not in samples_to_remove]
 
-phase_spaces_boost = [ c for c in cuts if 'boost' in c]
-phase_spaces_res = [ c for c in cuts if 'res' in c]
+
+phase_spaces_boost = [ c for c in phasespaces if 'boost' in c]
+phase_spaces_res = [ c for c in phasespaces if 'res' in c]
+
 
 phase_spaces_res_ele = [ ph+"_ele" for ph in phase_spaces_res]
 phase_spaces_res_mu = [ ph+"_mu" for ph in phase_spaces_res]
