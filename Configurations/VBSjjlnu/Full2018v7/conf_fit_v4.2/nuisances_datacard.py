@@ -398,13 +398,13 @@ for jtype in ["quark", "gluon"]:
 
 #####################
 # Njets Herwig/Pythia for signal
-nuisances['njets_signal'] = {
-   'name': 'VBS_PhytiaToHerwig',   
-   'kind': 'weight',
-   'type': 'shape',
-   'samples': {'VBS': ["njets_herwig_signal"]},
-   'OneSided': True
-}
+# nuisances['njets_signal'] = {
+#    'name': 'VBS_PhytiaToHerwig',   
+#    'kind': 'weight',
+#    'type': 'shape',
+#    'samples': {'VBS': ["njets_herwig_signal"]},
+#    'OneSided': True
+# }
 
 
 # ######################

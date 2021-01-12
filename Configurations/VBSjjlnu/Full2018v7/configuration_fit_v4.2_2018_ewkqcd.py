@@ -35,10 +35,10 @@ outputDirPlots = 'plot_'+tag
 # used by mkDatacards to define output directory for datacards
 #outputDirDatacard = 'datacards_'+tag 
 #outputDirDatacard = 'datacards_'+tag + "/Wjets_njets"
-outputDirDatacard = 'datacards_'+tag + "_nuisNorm_PSsplitAll_njetsVBS_QGLmorphSplit_newFakes_noP2H"
+outputDirDatacard = 'datacards_'+tag + "_nuisNorm_PSsplitAll_njetsVBS_QGLmorphSplit_newFakes_EWKQCDfit"
 
 # structure file for datacard
-structureFile = direc+'/structure.py'
+structureFile = direc+'/structure_ewkqcd.py'
 
 
 # nuisances file for mkDatacards and for mkShape
