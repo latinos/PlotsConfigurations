@@ -103,9 +103,15 @@ mcCommonWeight = 'XSWeight*SFweight*PromptGenLepMatch2l*METFilter_MC'
 useDYtt = False
 useDYHT = True
 
+# MCl1loose2016v7__MCCorr2016v7__l2loose__l2tightOR2016v7__recoilDY/
+mcDirectoryRecoil = mcDirectory + "__recoilDY"
+
+print("MC DIRECTORYYYY")
+print(mcDirectoryRecoil)
+
 if useDYtt:
-    files = nanoGetSampleFiles(mcDirectory, 'DYJetsToTT_MuEle_M-50') + \
-            nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-10to50')
+    files = nanoGetSampleFiles(mcDirectoryRecoil, 'DYJetsToTT_MuEle_M-50') + \
+            nanoGetSampleFiles(mcDirectoryRecoil, 'DYJetsToLL_M-10to50')
 
     samples['DY'] = {
         'name': files,
@@ -119,8 +125,8 @@ if useDYtt:
     addSampleWeight(samples,'DY','DYJetsToLL_M-10to50','DY_NLO_pTllrw')
 
 else:
-    files = nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_ext2') + \
-            nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-10to50')
+    files = nanoGetSampleFiles(mcDirectoryRecoil, 'DYJetsToLL_M-50_ext2') + \
+            nanoGetSampleFiles(mcDirectoryRecoil, 'DYJetsToLL_M-10to50')
 
     samples['DY'] = {
         'name': files,
@@ -133,19 +139,19 @@ else:
     }
     # Add DY HT Samples
     if useDYHT :
-        samples['DY']['name'] +=   nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-5to50_HT-70to100') \
-                                 + nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-5to50_HT-100to200') \
-                                 + nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-5to50_HT-200to400') \
-                                 + nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-5to50_HT-400to600_ext1') \
-                                 + nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-5to50_HT-600toinf') \
-                                 + nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-70to100') \
-                                 + nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-100to200_ext1') \
-                                 + nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-200to400_ext1') \
-                                 + nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-400to600_ext1') \
-                                 + nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-600to800') \
-                                 + nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-800to1200') \
-                                 + nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-1200to2500') \
-                                 + nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-2500toInf')
+        samples['DY']['name'] +=   nanoGetSampleFiles(mcDirectoryRecoil, 'DYJetsToLL_M-5to50_HT-70to100') \
+                                 + nanoGetSampleFiles(mcDirectoryRecoil, 'DYJetsToLL_M-5to50_HT-100to200') \
+                                 + nanoGetSampleFiles(mcDirectoryRecoil, 'DYJetsToLL_M-5to50_HT-200to400') \
+                                 + nanoGetSampleFiles(mcDirectoryRecoil, 'DYJetsToLL_M-5to50_HT-400to600_ext1') \
+                                 + nanoGetSampleFiles(mcDirectoryRecoil, 'DYJetsToLL_M-5to50_HT-600toinf') \
+                                 + nanoGetSampleFiles(mcDirectoryRecoil, 'DYJetsToLL_M-50_HT-70to100') \
+                                 + nanoGetSampleFiles(mcDirectoryRecoil, 'DYJetsToLL_M-50_HT-100to200_ext1') \
+                                 + nanoGetSampleFiles(mcDirectoryRecoil, 'DYJetsToLL_M-50_HT-200to400_ext1') \
+                                 + nanoGetSampleFiles(mcDirectoryRecoil, 'DYJetsToLL_M-50_HT-400to600_ext1') \
+                                 + nanoGetSampleFiles(mcDirectoryRecoil, 'DYJetsToLL_M-50_HT-600to800') \
+                                 + nanoGetSampleFiles(mcDirectoryRecoil, 'DYJetsToLL_M-50_HT-800to1200') \
+                                 + nanoGetSampleFiles(mcDirectoryRecoil, 'DYJetsToLL_M-50_HT-1200to2500') \
+                                 + nanoGetSampleFiles(mcDirectoryRecoil, 'DYJetsToLL_M-50_HT-2500toInf')
 
     addSampleWeight(samples,'DY','DYJetsToLL_M-50'    ,'DY_NLO_pTllrw')
     addSampleWeight(samples,'DY','DYJetsToLL_M-10to50','DY_NLO_pTllrw')
