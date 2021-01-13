@@ -50,14 +50,14 @@ Configuration for the extraction of the systematic uncertainties associated to t
 
 ### Plot input distributions
 
-    mkPlot.py --inputFile=rootFile/plots_ggH_SF_2016_v7_DYMVA_SYS_MET_recoil.root --fileFormats=png --onlyPlot=cratio --outputDirPlots=plots_DYDNN_CR_2016 --minLogCratio=1 --maxLogCratio=1000000 --onlyCut=0j --onlyVariable=dymva_alt_dnn_0j
-    mkPlot.py --inputFile=rootFile/plots_ggH_SF_2016_v7_DYMVA_SYS_MET_recoil.root --fileFormats=png --onlyPlot=cratio --outputDirPlots=plots_DYDNN_CR_2016 --minLogCratio=1 --maxLogCratio=1000000 --onlyCut=1j --onlyVariable=dymva_alt_dnn_1j
-    mkPlot.py --inputFile=rootFile/plots_ggH_SF_2016_v7_DYMVA_SYS_MET_recoil.root --fileFormats=png --onlyPlot=cratio --outputDirPlots=plots_DYDNN_CR_2016 --minLogCratio=1 --maxLogCratio=1000000 --onlyCut=2j --onlyVariable=dymva_alt_dnn_2j
-    mkPlot.py --inputFile=rootFile/plots_ggH_SF_2016_v7_DYMVA_SYS_MET_recoil.root --fileFormats=png --onlyPlot=cratio --outputDirPlots=plots_DYDNN_CR_2016 --minLogCratio=1 --maxLogCratio=1000000 --onlyCut=VBF --onlyVariable=dymva_alt_dnn_VBF
-    mkPlot.py --inputFile=rootFile/plots_ggH_SF_2016_v7_DYMVA_SYS_MET_recoil.root --fileFormats=png --onlyPlot=cratio --outputDirPlots=plots_DYDNN_CR_2016 --minLogCratio=1 --maxLogCratio=1000000 --onlyCut=VH --onlyVariable=dymva_alt_dnn_VH
+    mkPlot.py --inputFile=rootFile/plots_ggH_SF_2016_v7_DYMVA_SYS_MET_recoil.root --fileFormats=png --onlyPlot=cratio --outputDirPlots=plots_DYDNN_CR_2016_MET_recoil --minLogCratio=1 --maxLogCratio=1000000 --onlyCut=0j --onlyVariable=dymva_alt_dnn_0j
+    mkPlot.py --inputFile=rootFile/plots_ggH_SF_2016_v7_DYMVA_SYS_MET_recoil.root --fileFormats=png --onlyPlot=cratio --outputDirPlots=plots_DYDNN_CR_2016_MET_recoil --minLogCratio=1 --maxLogCratio=1000000 --onlyCut=1j --onlyVariable=dymva_alt_dnn_1j
+    mkPlot.py --inputFile=rootFile/plots_ggH_SF_2016_v7_DYMVA_SYS_MET_recoil.root --fileFormats=png --onlyPlot=cratio --outputDirPlots=plots_DYDNN_CR_2016_MET_recoil --minLogCratio=1 --maxLogCratio=1000000 --onlyCut=2j --onlyVariable=dymva_alt_dnn_2j
+    mkPlot.py --inputFile=rootFile/plots_ggH_SF_2016_v7_DYMVA_SYS_MET_recoil.root --fileFormats=png --onlyPlot=cratio --outputDirPlots=plots_DYDNN_CR_2016_MET_recoil --minLogCratio=1 --maxLogCratio=1000000 --onlyCut=VBF --onlyVariable=dymva_alt_dnn_VBF
+    mkPlot.py --inputFile=rootFile/plots_ggH_SF_2016_v7_DYMVA_SYS_MET_recoil.root --fileFormats=png --onlyPlot=cratio --outputDirPlots=plots_DYDNN_CR_2016_MET_recoil --minLogCratio=1 --maxLogCratio=1000000 --onlyCut=VH --onlyVariable=dymva_alt_dnn_VH
 
-    mkPlot.py --inputFile=rootFile/plots_ggH_SF_2016_v7_DYMVA_SYS_MET_recoil.root --fileFormats=png --onlyPlot=cratio --outputDirPlots=plots_DYDNN_CR_2016 --minLogCratio=1 --maxLogCratio=1000000 --onlyVariable=ptll
-    mkPlot.py --inputFile=rootFile/plots_ggH_SF_2016_v7_DYMVA_SYS_MET_recoil.root --fileFormats=png --onlyPlot=cratio --outputDirPlots=plots_DYDNN_CR_2016 --minLogCratio=1 --maxLogCratio=1000000 --onlyVariable=puppimet
+    mkPlot.py --inputFile=rootFile/plots_ggH_SF_2016_v7_DYMVA_SYS_MET_recoil.root --fileFormats=png --onlyPlot=cratio --outputDirPlots=plots_DYDNN_CR_2016_MET_recoil --minLogCratio=1 --maxLogCratio=1000000 --onlyVariable=ptll
+    mkPlot.py --inputFile=rootFile/plots_ggH_SF_2016_v7_DYMVA_SYS_MET_recoil.root --fileFormats=png --onlyPlot=cratio --outputDirPlots=plots_DYDNN_CR_2016_MET_recoil --minLogCratio=1 --maxLogCratio=1000000 --onlyVariable=puppimet
 
 
 ## Using old z-pT reweighting
@@ -80,11 +80,11 @@ Configuration for the extraction of the systematic uncertainties associated to t
 
 ### Plot input distributions
 
-    mkPlot.py --inputFile=rootFile/plots_ggH_SF_2016_v7_DYMVA_SYS_pt_rew.root --fileFormats=png --onlyPlot=cratio --outputDirPlots=plots_DYDNN_CR_2016 --minLogCratio=1 --maxLogCratio=1000000 --onlyCut=0j --onlyVariable=dymva_alt_dnn_0j
-    mkPlot.py --inputFile=rootFile/plots_ggH_SF_2016_v7_DYMVA_SYS_pt_rew.root --fileFormats=png --onlyPlot=cratio --outputDirPlots=plots_DYDNN_CR_2016 --minLogCratio=1 --maxLogCratio=1000000 --onlyCut=1j --onlyVariable=dymva_alt_dnn_1j
-    mkPlot.py --inputFile=rootFile/plots_ggH_SF_2016_v7_DYMVA_SYS_pt_rew.root --fileFormats=png --onlyPlot=cratio --outputDirPlots=plots_DYDNN_CR_2016 --minLogCratio=1 --maxLogCratio=1000000 --onlyCut=2j --onlyVariable=dymva_alt_dnn_2j
-    mkPlot.py --inputFile=rootFile/plots_ggH_SF_2016_v7_DYMVA_SYS_pt_rew.root --fileFormats=png --onlyPlot=cratio --outputDirPlots=plots_DYDNN_CR_2016 --minLogCratio=1 --maxLogCratio=1000000 --onlyCut=VBF --onlyVariable=dymva_alt_dnn_VBF
-    mkPlot.py --inputFile=rootFile/plots_ggH_SF_2016_v7_DYMVA_SYS_pt_rew.root --fileFormats=png --onlyPlot=cratio --outputDirPlots=plots_DYDNN_CR_2016 --minLogCratio=1 --maxLogCratio=1000000 --onlyCut=VH --onlyVariable=dymva_alt_dnn_VH
+    mkPlot.py --inputFile=rootFile/plots_ggH_SF_2016_v7_DYMVA_SYS_pt_rew.root --fileFormats=png --onlyPlot=cratio --outputDirPlots=plots_DYDNN_CR_2016_pt_rew --minLogCratio=1 --maxLogCratio=1000000 --onlyCut=0j --onlyVariable=dymva_alt_dnn_0j
+    mkPlot.py --inputFile=rootFile/plots_ggH_SF_2016_v7_DYMVA_SYS_pt_rew.root --fileFormats=png --onlyPlot=cratio --outputDirPlots=plots_DYDNN_CR_2016_pt_rew --minLogCratio=1 --maxLogCratio=1000000 --onlyCut=1j --onlyVariable=dymva_alt_dnn_1j
+    mkPlot.py --inputFile=rootFile/plots_ggH_SF_2016_v7_DYMVA_SYS_pt_rew.root --fileFormats=png --onlyPlot=cratio --outputDirPlots=plots_DYDNN_CR_2016_pt_rew --minLogCratio=1 --maxLogCratio=1000000 --onlyCut=2j --onlyVariable=dymva_alt_dnn_2j
+    mkPlot.py --inputFile=rootFile/plots_ggH_SF_2016_v7_DYMVA_SYS_pt_rew.root --fileFormats=png --onlyPlot=cratio --outputDirPlots=plots_DYDNN_CR_2016_pt_rew --minLogCratio=1 --maxLogCratio=1000000 --onlyCut=VBF --onlyVariable=dymva_alt_dnn_VBF
+    mkPlot.py --inputFile=rootFile/plots_ggH_SF_2016_v7_DYMVA_SYS_pt_rew.root --fileFormats=png --onlyPlot=cratio --outputDirPlots=plots_DYDNN_CR_2016_pt_rew --minLogCratio=1 --maxLogCratio=1000000 --onlyCut=VH --onlyVariable=dymva_alt_dnn_VH
 
-    mkPlot.py --inputFile=rootFile/plots_ggH_SF_2016_v7_DYMVA_SYS_pt_rew.root --fileFormats=png --onlyPlot=cratio --outputDirPlots=plots_DYDNN_CR_2016 --minLogCratio=1 --maxLogCratio=1000000 --onlyVariable=ptll
-    mkPlot.py --inputFile=rootFile/plots_ggH_SF_2016_v7_DYMVA_SYS_pt_rew.root --fileFormats=png --onlyPlot=cratio --outputDirPlots=plots_DYDNN_CR_2016 --minLogCratio=1 --maxLogCratio=1000000 --onlyVariable=puppimet
+    mkPlot.py --inputFile=rootFile/plots_ggH_SF_2016_v7_DYMVA_SYS_pt_rew.root --fileFormats=png --onlyPlot=cratio --outputDirPlots=plots_DYDNN_CR_2016_pt_rew --minLogCratio=1 --maxLogCratio=1000000 --onlyVariable=ptll
+    mkPlot.py --inputFile=rootFile/plots_ggH_SF_2016_v7_DYMVA_SYS_pt_rew.root --fileFormats=png --onlyPlot=cratio --outputDirPlots=plots_DYDNN_CR_2016_pt_rew --minLogCratio=1 --maxLogCratio=1000000 --onlyVariable=puppimet
