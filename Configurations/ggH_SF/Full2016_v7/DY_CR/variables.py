@@ -171,8 +171,8 @@ variables['upara']  = {
     'fold' : 3
 }
 
-variables['nvtx']  = { 
-    'name': 'nvtx',      
+variables['PV_npvsGood']  = { 
+    'name': 'PV_npvsGood',      
     'range' : (40,0,40),  
     'xaxis' : 'nvtx', 
     'fold' : 3
