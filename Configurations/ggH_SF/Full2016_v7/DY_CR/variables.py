@@ -123,10 +123,17 @@ variables['pTWW']  = {
 }
 
 variables['jetpt1']  = {
-    'name': 'std_vector_jet_pt[0]',     
-    'range' : (25,30,200),   
+    'name': '(Sum$(CleanJet_pt>30)>0)*(Alt$(CleanJet_pt[0], 0)) - (Sum$(CleanJet_pt>30)==0)*99',
+    'range' : (20,0,200),
     'xaxis' : 'p_{T} 1st jet',
-    'fold'  : 0                         
+    'fold' : 2
+}
+
+variables['jetpt2']  = {
+    'name': '(Sum$(CleanJet_pt>30)>0)*(Alt$(CleanJet_pt[1], 0)) - (Sum$(CleanJet_pt>30)==0)*99',
+    'range' : (20,0,200),
+    'xaxis' : 'p_{T} 2nd jet',
+    'fold' : 2
 }
 
 variables['mth']  = {
