@@ -95,7 +95,7 @@ mcCommonWeight = 'XSWeight*SFweight*PromptGenLepMatch2l*METFilter_MC'
 ###########################################
 #############  BACKGROUNDS  ###############
 ###########################################
-'''
+
 ###### DY #######
 
 useDYtt = False
@@ -128,7 +128,7 @@ else:
     }
     addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO_ext1','DY_LO_pTllrw')
     addSampleWeight(samples,'DY','DYJetsToLL_M-50-LO_ext1','DY_LO_pTllrw')
-'''
+
 ###### Top #######
 
 files = nanoGetSampleFiles(mcDirectory, 'TTTo2L2Nu_PSWeights') + \
@@ -145,7 +145,7 @@ samples['top'] = {
 }
 
 addSampleWeight(samples,'top','TTTo2L2Nu_PSWeights','Top_pTrw')
-'''
+
 ###### WW ########
 
 samples['WW'] = {
@@ -305,6 +305,11 @@ signals.append('ggZH_hww')
 samples['WH_hww'] = {
     'name':   nanoGetSampleFiles(mcDirectory, 'HWplusJ_HToWW_M125') + nanoGetSampleFiles(mcDirectory, 'HWminusJ_HToWW_M125'),
     'weight': mcCommonWeight,
+    'subsamples' : {
+        'PTV_LT150' : 'HTXS_stage1_1_cat_pTjet30GeV==301 || HTXS_stage1_1_cat_pTjet30GeV==302',
+        'PTV_GT150' : 'HTXS_stage1_1_cat_pTjet30GeV==303 || HTXS_stage1_1_cat_pTjet30GeV==304 || HTXS_stage1_1_cat_pTjet30GeV==305',
+        'FWDH'      : 'HTXS_stage1_1_cat_pTjet30GeV==300'
+    },
     'FilesPerJob': 2
 }
 
@@ -394,4 +399,3 @@ for _, sd in DataRun:
     files = nanoGetSampleFiles(dataDirectory, pd + '_' + sd)
     samples['DATA']['name'].extend(files)
     samples['DATA']['weights'].extend([DataTrig[pd]] * len(files))
-'''
