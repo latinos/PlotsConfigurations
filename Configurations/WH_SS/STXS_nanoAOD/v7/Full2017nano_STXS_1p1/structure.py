@@ -160,10 +160,10 @@ structure['qqH_hww'] = {
                   'isData'   : 0    
                   }
 
-structure['WH_hww'] = {
-                  'isSignal' : 1,
-                  'isData'   : 0    
-                  }
+#structure['WH_hww'] = {
+#                  'isSignal' : 1,
+#                  'isData'   : 0    
+#                  }
 
 structure['ZH_hww'] = {
                   'isSignal' : 1,
