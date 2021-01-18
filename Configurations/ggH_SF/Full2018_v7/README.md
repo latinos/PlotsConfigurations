@@ -1,8 +1,13 @@
 # Gluon-gluon fusion tag analysis 2018
 
-Configuration for the same-flavor ggH-tag analysis using 2018 Data.
+Configuration for the same-flavor ggH-tag analysis using 2018 data.
 
 ## Instructions to run the analysis
+
+### Produce a valid VOMS proxy
+
+    voms-proxy-init -voms cms -rfc --valid 168:0
+    cmsenv
 
 ### Produce distributions using mkShapesMulti.py in batch mode
 
