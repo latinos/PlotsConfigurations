@@ -19,14 +19,21 @@ cuts['0j'] = {
        'ee_out'        : '(Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && ZVeto',
        'mm_out'        : '(Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && ZVeto',
        'df_out'        : '(Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13) && ZVeto',
-       'tight_ee_in'   : '(Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && Zpeak && dymva_alt_dnn_0j > 0.8',
-       'tight_mm_in'   : '(Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && Zpeak && dymva_alt_dnn_0j > 0.8',
-       'tight_df_in'   : '(Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13) && Zpeak && dymva_alt_dnn_0j > 0.8',
-       'tight_ee_out'  : '(Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && ZVeto && dymva_alt_dnn_0j > 0.8',
-       'tight_mm_out'  : '(Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && ZVeto && dymva_alt_dnn_0j > 0.8',
-       'tight_df_out'  : '(Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13) && ZVeto && dymva_alt_dnn_0j > 0.8',
    }
 }
+
+cuts['0j_tight'] = {
+   'expr': 'zeroJet && bVeto' ,
+   'categories' : {
+       'ee_in'   : '(Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && Zpeak && dymva_alt_dnn_0j > 0.8',
+       'mm_in'   : '(Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && Zpeak && dymva_alt_dnn_0j > 0.8',
+       'df_in'   : '(Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13) && Zpeak && dymva_alt_dnn_0j > 0.8',
+       'ee_out'  : '(Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && ZVeto && dymva_alt_dnn_0j > 0.8',
+       'mm_out'  : '(Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && ZVeto && dymva_alt_dnn_0j > 0.8',
+       'df_out'  : '(Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13) && ZVeto && dymva_alt_dnn_0j > 0.8',
+   }
+}
+
 
 cuts['1j'] = {
    'expr': 'oneJet && bVeto' ,
@@ -37,14 +44,21 @@ cuts['1j'] = {
        'ee_out'        : '(Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && ZVeto',
        'mm_out'        : '(Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && ZVeto',
        'df_out'        : '(Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13) && ZVeto',
-       'tight_ee_in'   : '(Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && Zpeak && dymva_alt_dnn_1j > 0.8',
-       'tight_mm_in'   : '(Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && Zpeak && dymva_alt_dnn_1j > 0.8',
-       'tight_df_in'   : '(Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13) && Zpeak && dymva_alt_dnn_1j > 0.8',
-       'tight_ee_out'  : '(Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && ZVeto && dymva_alt_dnn_1j > 0.8',
-       'tight_mm_out'  : '(Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && ZVeto && dymva_alt_dnn_1j > 0.8',
-       'tight_df_out'  : '(Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13) && ZVeto && dymva_alt_dnn_1j > 0.8',
    }
 }
+
+cuts['1j_tight'] = {
+   'expr': 'oneJet && bVeto' ,
+   'categories' : {
+       'ee_in'   : '(Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && Zpeak && dymva_alt_dnn_1j > 0.8',
+       'mm_in'   : '(Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && Zpeak && dymva_alt_dnn_1j > 0.8',
+       'df_in'   : '(Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13) && Zpeak && dymva_alt_dnn_1j > 0.8',
+       'ee_out'  : '(Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && ZVeto && dymva_alt_dnn_1j > 0.8',
+       'mm_out'  : '(Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && ZVeto && dymva_alt_dnn_1j > 0.8',
+       'df_out'  : '(Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13) && ZVeto && dymva_alt_dnn_1j > 0.8',
+   }
+}
+
 
 cuts['2j'] = {
    'expr': '2jggH && bVeto' ,
@@ -55,14 +69,21 @@ cuts['2j'] = {
        'ee_out'        : '(Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && ZVeto',
        'mm_out'        : '(Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && ZVeto',
        'df_out'        : '(Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13) && ZVeto',
-       'tight_ee_in'   : '(Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && Zpeak && dymva_alt_dnn_2j > 0.8',
-       'tight_mm_in'   : '(Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && Zpeak && dymva_alt_dnn_2j > 0.8',
-       'tight_df_in'   : '(Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13) && Zpeak && dymva_alt_dnn_2j > 0.8',
-       'tight_ee_out'  : '(Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && ZVeto && dymva_alt_dnn_2j > 0.8',
-       'tight_mm_out'  : '(Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && ZVeto && dymva_alt_dnn_2j > 0.8',
-       'tight_df_out'  : '(Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13) && ZVeto && dymva_alt_dnn_2j > 0.8',
    }
 }
+
+cuts['2j_tight'] = {
+   'expr': '2jggH && bVeto' ,
+   'categories' : {
+       'ee_in'   : '(Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && Zpeak && dymva_alt_dnn_2j > 0.8',
+       'mm_in'   : '(Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && Zpeak && dymva_alt_dnn_2j > 0.8',
+       'df_in'   : '(Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13) && Zpeak && dymva_alt_dnn_2j > 0.8',
+       'ee_out'  : '(Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && ZVeto && dymva_alt_dnn_2j > 0.8',
+       'mm_out'  : '(Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && ZVeto && dymva_alt_dnn_2j > 0.8',
+       'df_out'  : '(Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13) && ZVeto && dymva_alt_dnn_2j > 0.8',
+   }
+}
+
 
 cuts['VBF'] = {
    'expr': '2jVBF && bVeto' ,
@@ -73,14 +94,21 @@ cuts['VBF'] = {
        'ee_out'        : '(Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && ZVeto',
        'mm_out'        : '(Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && ZVeto',
        'df_out'        : '(Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13) && ZVeto',
-       'tight_ee_in'   : '(Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && Zpeak && dymva_alt_dnn_VBF > 0.8',
-       'tight_mm_in'   : '(Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && Zpeak && dymva_alt_dnn_VBF > 0.8',
-       'tight_df_in'   : '(Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13) && Zpeak && dymva_alt_dnn_VBF > 0.8',
-       'tight_ee_out'  : '(Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && ZVeto && dymva_alt_dnn_VBF > 0.8',
-       'tight_mm_out'  : '(Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && ZVeto && dymva_alt_dnn_VBF > 0.8',
-       'tight_df_out'  : '(Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13) && ZVeto && dymva_alt_dnn_VBF > 0.8',
    }
 }
+
+cuts['VBF_tight'] = {
+   'expr': '2jVBF && bVeto' ,
+   'categories' : {
+       'ee_in'   : '(Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && Zpeak && dymva_alt_dnn_VBF > 0.8',
+       'mm_in'   : '(Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && Zpeak && dymva_alt_dnn_VBF > 0.8',
+       'df_in'   : '(Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13) && Zpeak && dymva_alt_dnn_VBF > 0.8',
+       'ee_out'  : '(Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && ZVeto && dymva_alt_dnn_VBF > 0.8',
+       'mm_out'  : '(Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && ZVeto && dymva_alt_dnn_VBF > 0.8',
+       'df_out'  : '(Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13) && ZVeto && dymva_alt_dnn_VBF > 0.8',
+   }
+}
+
 
 cuts['VH'] = {
    'expr': '2jVH && bVeto' ,
@@ -91,11 +119,17 @@ cuts['VH'] = {
        'ee_out'        : '(Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && ZVeto',
        'mm_out'        : '(Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && ZVeto',
        'df_out'        : '(Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13) && ZVeto',
-       'tight_ee_in'   : '(Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && Zpeak && dymva_alt_dnn_VH > 0.8',
-       'tight_mm_in'   : '(Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && Zpeak && dymva_alt_dnn_VH > 0.8',
-       'tight_df_in'   : '(Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13) && Zpeak && dymva_alt_dnn_VH > 0.8',
-       'tight_ee_out'  : '(Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && ZVeto && dymva_alt_dnn_VH > 0.8',
-       'tight_mm_out'  : '(Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && ZVeto && dymva_alt_dnn_VH > 0.8',
-       'tight_df_out'  : '(Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13) && ZVeto && dymva_alt_dnn_VH > 0.8',
+   }
+}
+
+cuts['VH_tight'] = {
+   'expr': '2jVH && bVeto' ,
+   'categories' : {
+       'ee_in'   : '(Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && Zpeak && dymva_alt_dnn_VH > 0.8',
+       'mm_in'   : '(Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && Zpeak && dymva_alt_dnn_VH > 0.8',
+       'df_in'   : '(Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13) && Zpeak && dymva_alt_dnn_VH > 0.8',
+       'ee_out'  : '(Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && ZVeto && dymva_alt_dnn_VH > 0.8',
+       'mm_out'  : '(Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && ZVeto && dymva_alt_dnn_VH > 0.8',
+       'df_out'  : '(Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13) && ZVeto && dymva_alt_dnn_VH > 0.8',
    }
 }
