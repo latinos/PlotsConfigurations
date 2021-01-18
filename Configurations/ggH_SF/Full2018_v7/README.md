@@ -2,8 +2,6 @@
 
 Configuration for the same-flavor ggH-tag analysis using 2018 data.
 
-## Instructions to run the analysis
-
 ### Produce a valid VOMS proxy
 
     voms-proxy-init -voms cms -rfc --valid 168:0
