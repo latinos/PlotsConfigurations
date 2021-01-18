@@ -82,28 +82,28 @@ variables['dphillmet']  = {
     'name': 'dphillmet',
     'range' : (32,0,3.2),
     'xaxis' : '#Delta #Phi (#ell #ell, met)',
-    'fold' : 3
+    'fold' : 0
 }
 
 variables['dphilmet1']  = {  
     'name': 'dphilmet1',
     'range' : (32,0,3.2),
     'xaxis' : '#Delta #Phi (#ell 1, met)',
-    'fold' : 3
+    'fold' : 0
 }
 
 variables['dphilmet2']  = {  
     'name': 'dphilmet2',
     'range' : (32,0,3.2),
     'xaxis' : '#Delta #Phi (#ell 2, met)',
-    'fold' : 3
+    'fold' : 0
 }
 
 variables['dphijet1met']  = {  
     'name': 'dphijet1met',
     'range' : (32,0,3.2),
     'xaxis' : '#Delta #Phi (jet 1, met)',
-    'fold' : 3
+    'fold' : 0
 }
 
 # Other kinematic variables
@@ -159,14 +159,14 @@ variables['mtw2']  = {
 
 variables['uperp']  = {
     'name': 'uperp',
-    'range' : (40,0,200),
+    'range' : (40,-200,200),
     'xaxis' : 'uperp [GeV]',
     'fold' : 3
 }
 
 variables['upara']  = {
     'name': 'upara',
-    'range' : (40,0,200),
+    'range' : (40,-200,200),
     'xaxis' : 'upara [GeV]',
     'fold' : 3
 }
