@@ -95,7 +95,7 @@ mcCommonWeight = 'XSWeight*SFweight*PromptGenLepMatch2l*METFilter_MC'
 ###########################################
 #############  BACKGROUNDS  ###############
 ###########################################
-'''
+
 ###### DY #######
 
 useDYtt = False
@@ -128,7 +128,7 @@ else:
     }
     addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO_ext1','DY_LO_pTllrw')
     addSampleWeight(samples,'DY','DYJetsToLL_M-50-LO_ext1','DY_LO_pTllrw')
-'''
+
 ###### Top #######
 
 files = nanoGetSampleFiles(mcDirectory, 'TTTo2L2Nu_PSWeights') + \
@@ -145,7 +145,7 @@ samples['top'] = {
 }
 
 addSampleWeight(samples,'top','TTTo2L2Nu_PSWeights','Top_pTrw')
-'''
+
 ###### WW ########
 
 samples['WW'] = {
@@ -394,4 +394,4 @@ for _, sd in DataRun:
     files = nanoGetSampleFiles(dataDirectory, pd + '_' + sd)
     samples['DATA']['name'].extend(files)
     samples['DATA']['weights'].extend([DataTrig[pd]] * len(files))
-'''
+
