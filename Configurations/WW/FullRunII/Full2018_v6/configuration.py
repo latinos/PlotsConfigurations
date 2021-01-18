@@ -2,7 +2,7 @@
 
 treeName = 'Events'
 
-tag = 'WW2017_v6_27Oct'
+tag = 'WW2018_v6'
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFile'
@@ -23,7 +23,7 @@ samplesFile = 'samples.py'
 plotFile = 'plot.py' 
 
 # luminosity to normalize to (in 1/fb)
-lumi = 41.53
+lumi = 59.74
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
@@ -37,4 +37,3 @@ structureFile = 'structure.py'
 
 # nuisances file for mkDatacards and for mkShape
 nuisancesFile = 'nuisances.py'
-
