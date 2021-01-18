@@ -31,7 +31,7 @@ cuts['ww2l2v_13TeV_sr1'] = {
       'em_2j' : 'multiJet',
    }
 }
-
+'''
 ## Top control regions
 cuts['ww2l2v_13TeV_top']  = { 
    'expr' : 'topcr',
@@ -53,7 +53,7 @@ cuts['ww2l2v_13TeV_dytt']  = {
       '2j' : 'multiJet',
    }
 }
-
+'''
 ### WW control regions
 ### Used only for control plots, no need to add these cuts for the fit
 #cuts['hww2l2v_13TeV_ww'] = {
