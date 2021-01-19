@@ -2,6 +2,7 @@ import os
 import inspect
 
 configurations = os.path.realpath(inspect.getfile(inspect.currentframe())) # this file
+configurations = os.path.dirname(configurations) # DYMVA_SYS
 configurations = os.path.dirname(configurations) # Full2018_v7
 configurations = os.path.dirname(configurations) # ggH_SF
 configurations = os.path.dirname(configurations) # Configurations
@@ -129,11 +130,11 @@ else:
     }
 
     # Add DY HT Samples
-    if useDYHT :
-        samples['DY']['name'] +=     nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-4to50_HT-200to400' ) \
+    if useDYHT :                                          
+        samples['DY']['name'] +=     nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-4to50_HT-100to200' ) \
+                                   + nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-4to50_HT-200to400' ) \
                                    + nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-4to50_HT-400to600' ) \
                                    + nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-4to50_HT-600toInf') \
-                                   + nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-70to100') \
                                    + nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-100to200') \
                                    + nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-200to400') \
                                    + nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-400to600') \
@@ -158,7 +159,6 @@ else:
         addSampleWeight(samples,'DY','DYJetsToLL_M-4to50_HT-200to400','DY_LO_pTllrw')
         addSampleWeight(samples,'DY','DYJetsToLL_M-4to50_HT-400to600','DY_LO_pTllrw')
         addSampleWeight(samples,'DY','DYJetsToLL_M-4to50_HT-600toInf','DY_LO_pTllrw')
-        addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-70to100'    ,'DY_LO_pTllrw')
         addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-100to200'   ,'DY_LO_pTllrw')
         addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-200to400'   ,'DY_LO_pTllrw')
         addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-400to600'   ,'DY_LO_pTllrw')
