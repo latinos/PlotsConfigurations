@@ -3,7 +3,7 @@ import copy
 import inspect
 
 configurations = os.path.realpath(inspect.getfile(inspect.currentframe())) # this file
-configurations = os.path.dirname(configurations) # DYMVA_SYS
+configurations = os.path.dirname(configurations) # DY_CR
 configurations = os.path.dirname(configurations) # Full2018_v7
 configurations = os.path.dirname(configurations) # ggH_SF
 configurations = os.path.dirname(configurations) # Configurations
