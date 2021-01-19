@@ -42,8 +42,16 @@ Run the impacts and checks:
 
 Run the limits:
 
-    python mkLimits.py datacards /afs/cern.ch/work/f/fernanpe/CMSSW_10_2_13/src/HiggsAnalysis/CombinedLimit /afs/cern.ch/work/f/fernanpe/framework_monoHFullRun2/CMSSW_10_2_9/src/PlotsConfigurations/Configurations/monoHWW/Full2017_v7/ 
+    python mkLimits.py datacards /afs/cern.ch/work/f/fernanpe/CMSSW_10_2_13/src/HiggsAnalysis/CombinedLimit /afs/cern.ch/work/f/fernanpe/framework_monoHFullRun2/CMSSW_10_2_9/src/PlotsConfigurations/Configurations/monoHWW/FullComb_v7/ 
     python mksub.py 
     python submit.py
 
     ./runLimits.sh
+
+Get the bkg normalization factors taken from the fit to the data. If blinded, use the mask SR option in Combine:
+
+    text2workspace.py datacards/datacard_DH_mhs_160_mx_100_mZp_500_combined_corr.txt --channel-masks
+    combine datacards/datacard_DH_mhs_160_mx_100_mZp_500_combined_corr.root -M FitDiagnostics --saveShapes --saveWithUncertainties --setParameters mask_ch1_ch1=1,mask_ch2_ch1=1,mask_ch3_ch1=1
+    root -l fitDiagnostics.root 
+    fit_s->Print()
+

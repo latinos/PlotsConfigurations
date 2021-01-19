@@ -79,23 +79,23 @@ Source combine:
     cmsenv
     cd -
 
+    ulimit -s unlimited
+
+Prepare directory:
+
+    mkdir -p Impact_plots
+
 Combination:
 
     text2workspace.py datacards/hww2l2v_13TeV_ggH/comb/datacard.txt -o datacards/hww2l2v_13TeV_ggH/comb/datacard.root 
 
-    combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_ggH/comb/datacard.root -m 125 --doInitialFit -t -1 --expectSignal=1 --robustFit=1 --rMin=-6 --rMax=10
-    combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_ggH/comb/datacard.root -m 125 -t -1 --expectSignal=1 --robustFit=1 --doFits --job-mode=interactive --parallel=10 --rMin=-6 --rMax=10
-    combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_ggH/comb/datacard.root -m 125 -o datacards/hww2l2v_13TeV_ggH/comb/impacts.json -t -1
+    combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_ggH/comb/datacard.root -m 125 --doInitialFit -t -1 --expectSignal=1 --X-rtd MINIMIZER_analytic --cminDefaultMinimizerStrategy=0 --rMin=-6 --rMax=10
+
+    combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_ggH/comb/datacard.root -m 125 --doFits -t -1 --expectSignal=1 --X-rtd MINIMIZER_analytic --cminDefaultMinimizerStrategy=0 --job-mode=interactive --parallel=10 --rMin=-6 --rMax=10
+
+    combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_ggH/comb/datacard.root -m 125 -t -1 --X-rtd MINIMIZER_analytic --cminDefaultMinimizerStrategy=0 -o datacards/hww2l2v_13TeV_ggH/comb/impacts_total.json
     
-    combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_ggH/comb/datacard.root -m 125 --doInitialFit -t -1 --expectSignal=1 --robustFit=1 --named CMS_hww_WWnorm0j,CMS_hww_Topnorm0j,CMS_hww_WWnorm1j,CMS_hww_Topnorm1j,CMS_hww_WWnorm2j,CMS_hww_Topnorm2j --setParameterRanges CMS_hww_WWnorm0j=-3,4:CMS_hww_Topnorm0j=-3,4:CMS_hww_WWnorm1j=-3,4:CMS_hww_Topnorm1j=-3,4:CMS_hww_WWnorm2j=-3,4:CMS_hww_Topnorm2j=-3,4
-    combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_ggH/comb/datacard.root -m 125 -t -1 --expectSignal=1 --robustFit=1 --doFits --job-mode=interactive --parallel=10  --named CMS_hww_WWnorm0j,CMS_hww_Topnorm0j,CMS_hww_WWnorm1j,CMS_hww_Topnorm1j,CMS_hww_WWnorm2j,CMS_hww_Topnorm2j --setParameterRanges CMS_hww_WWnorm0j=-3,4:CMS_hww_Topnorm0j=-3,4:CMS_hww_WWnorm1j=-3,4:CMS_hww_Topnorm1j=-3,4:CMS_hww_WWnorm2j=-3,4:CMS_hww_Topnorm2j=-3,4
-    combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_ggH/comb/datacard.root -m 125 -o datacards/hww2l2v_13TeV_ggH/comb/impacts_rateParam.json -t -1  --named CMS_hww_WWnorm0j,CMS_hww_Topnorm0j,CMS_hww_WWnorm1j,CMS_hww_Topnorm1j,CMS_hww_WWnorm2j,CMS_hww_Topnorm2j --setParameterRanges CMS_hww_WWnorm0j=-3,4:CMS_hww_Topnorm0j=-3,4:CMS_hww_WWnorm1j=-3,4:CMS_hww_Topnorm1j=-3,4:CMS_hww_WWnorm2j=-3,4:CMS_hww_Topnorm2j=-3,4
-
-    cat datacards/hww2l2v_13TeV_ggH/comb/impacts.json datacards/hww2l2v_13TeV_ggH/comb/impacts_rateParam.json > datacards/hww2l2v_13TeV_ggH/comb/impacts_total.json 
-
-Edit 'datacards/hww2l2v_13TeV_ggH/comb/impacts_total.json' so that there is only one set of 'POIs' and finally produce the pdf file with the impacts:
-
-    plotImpacts.py -i datacards/hww2l2v_13TeV_ggH/comb/impacts_total.json -o datacards/hww2l2v_13TeV_ggH/comb/Impact_ggH_2016
+    plotImpacts.py -i datacards/hww2l2v_13TeV_ggH/comb/impacts_total.json -o Impact_plots/Impact_ggH_2016
 
     rm higgsCombine_*
 
@@ -103,17 +103,13 @@ Edit 'datacards/hww2l2v_13TeV_ggH/comb/impacts_total.json' so that there is only
 
     text2workspace.py datacards/hww2l2v_13TeV_ggH_0j/comb/datacard.txt -o datacards/hww2l2v_13TeV_ggH_0j/comb/datacard.root 
 
-    combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_ggH_0j/comb/datacard.root -m 125 --doInitialFit -t -1 --expectSignal=1 --robustFit=1 --rMin=-6 --rMax=10
-    combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_ggH_0j/comb/datacard.root -m 125 -t -1 --expectSignal=1 --robustFit=1 --doFits --job-mode=interactive --parallel=10 --rMin=-6 --rMax=10
-    combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_ggH_0j/comb/datacard.root -m 125 -o datacards/hww2l2v_13TeV_ggH_0j/comb/impacts.json -t -1
+    combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_ggH_0j/comb/datacard.root -m 125 --doInitialFit -t -1 --expectSignal=1 --X-rtd MINIMIZER_analytic --cminDefaultMinimizerStrategy=0 --rMin=-6 --rMax=10
 
-    combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_ggH_0j/comb/datacard.root -m 125 --doInitialFit -t -1 --expectSignal=1 --robustFit=1 --named CMS_hww_WWnorm0j,CMS_hww_Topnorm0j --setParameterRanges CMS_hww_WWnorm0j=-3,4:CMS_hww_Topnorm0j=-3,4
-    combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_ggH_0j/comb/datacard.root -m 125 -t -1 --expectSignal=1 --robustFit=1 --doFits --job-mode=interactive --parallel=10 --named CMS_hww_WWnorm0j,CMS_hww_Topnorm0j --setParameterRanges CMS_hww_WWnorm0j=-3,4:CMS_hww_Topnorm0j=-3,4
-    combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_ggH_0j/comb/datacard.root -m 125 -o datacards/hww2l2v_13TeV_ggH_0j/comb/impacts_rateParam.json -t -1 --named CMS_hww_WWnorm0j,CMS_hww_Topnorm0j --setParameterRanges CMS_hww_WWnorm0j=-3,4:CMS_hww_Topnorm0j=-3,4
+    combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_ggH_0j/comb/datacard.root -m 125 --doFits -t -1 --expectSignal=1 --X-rtd MINIMIZER_analytic --cminDefaultMinimizerStrategy=0 --job-mode=interactive --parallel=10 --rMin=-6 --rMax=10
 
-    cat datacards/hww2l2v_13TeV_ggH_0j/comb/impacts.json datacards/hww2l2v_13TeV_ggH_0j/comb/impacts_rateParam.json > datacards/hww2l2v_13TeV_ggH_0j/comb/impacts_total.json 
-
-    plotImpacts.py -i datacards/hww2l2v_13TeV_ggH_0j/comb/impacts_total.json -o datacards/hww2l2v_13TeV_ggH_0j/comb/Impact_ggH_0j_2016
+    combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_ggH_0j/comb/datacard.root -m 125 -t -1 --X-rtd MINIMIZER_analytic --cminDefaultMinimizerStrategy=0 -o datacards/hww2l2v_13TeV_ggH/comb/impacts_total.json
+    
+    plotImpacts.py -i datacards/hww2l2v_13TeV_ggH_0j/comb/impacts_total.json -o Impact_plots/Impact_ggH_0j_2016
 
     rm higgsCombine_*
 
@@ -121,35 +117,27 @@ Edit 'datacards/hww2l2v_13TeV_ggH/comb/impacts_total.json' so that there is only
 
     text2workspace.py datacards/hww2l2v_13TeV_ggH_1j/comb/datacard.txt -o datacards/hww2l2v_13TeV_ggH_1j/comb/datacard.root 
 
-    combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_ggH_1j/comb/datacard.root -m 125 --doInitialFit -t -1 --expectSignal=1 --robustFit=1 --rMin=-6 --rMax=10
-    combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_ggH_1j/comb/datacard.root -m 125 -t -1 --expectSignal=1 --robustFit=1 --doFits --job-mode=interactive --parallel=10 --rMin=-6 --rMax=10
-    combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_ggH_1j/comb/datacard.root -m 125 -o datacards/hww2l2v_13TeV_ggH_1j/comb/impacts.json -t -1
+    combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_ggH_1j/comb/datacard.root -m 125 --doInitialFit -t -1 --expectSignal=1 --X-rtd MINIMIZER_analytic --cminDefaultMinimizerStrategy=0 --rMin=-6 --rMax=10
 
-    combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_ggH_1j/comb/datacard.root -m 125 --doInitialFit -t -1 --expectSignal=1 --robustFit=1 --named CMS_hww_WWnorm1j,CMS_hww_Topnorm1j --setParameterRanges CMS_hww_WWnorm1j=-3,4:CMS_hww_Topnorm1j=-3,4
-    combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_ggH_1j/comb/datacard.root -m 125 -t -1 --expectSignal=1 --robustFit=1 --doFits --job-mode=interactive --parallel=10 --named CMS_hww_WWnorm1j,CMS_hww_Topnorm1j --setParameterRanges CMS_hww_WWnorm1j=-3,4:CMS_hww_Topnorm1j=-3,4
-    combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_ggH_1j/comb/datacard.root -m 125 -o datacards/hww2l2v_13TeV_ggH_1j/comb/impacts_rateParam.json -t -1 --named CMS_hww_WWnorm1j,CMS_hww_Topnorm1j --setParameterRanges CMS_hww_WWnorm1j=-3,4:CMS_hww_Topnorm1j=-3,4
+    combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_ggH_1j/comb/datacard.root -m 125 --doFits -t -1 --expectSignal=1 --X-rtd MINIMIZER_analytic --cminDefaultMinimizerStrategy=0 --job-mode=interactive --parallel=10 --rMin=-6 --rMax=10
 
-    cat datacards/hww2l2v_13TeV_ggH_1j/comb/impacts.json datacards/hww2l2v_13TeV_ggH_1j/comb/impacts_rateParam.json > datacards/hww2l2v_13TeV_ggH_1j/comb/impacts_total.json 
-
-    plotImpacts.py -i datacards/hww2l2v_13TeV_ggH_1j/comb/impacts_total.json -o datacards/hww2l2v_13TeV_ggH_1j/comb/Impact_ggH_1j_2016
+    combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_ggH_1j/comb/datacard.root -m 125 -t -1 --X-rtd MINIMIZER_analytic --cminDefaultMinimizerStrategy=0 -o datacards/hww2l2v_13TeV_ggH/comb/impacts_total.json
+    
+    plotImpacts.py -i datacards/hww2l2v_13TeV_ggH_1j/comb/impacts_total.json -o Impact_plots/Impact_ggH_1j_2016
 
     rm higgsCombine_*
 
-2 Jets only:
+2 Jet only:
 
     text2workspace.py datacards/hww2l2v_13TeV_ggH_2j/comb/datacard.txt -o datacards/hww2l2v_13TeV_ggH_2j/comb/datacard.root 
 
-    combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_ggH_2j/comb/datacard.root -m 125 --doInitialFit -t -1 --expectSignal=1 --robustFit=1 --rMin=-6 --rMax=10
-    combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_ggH_2j/comb/datacard.root -m 125 -t -1 --expectSignal=1 --robustFit=1 --doFits --job-mode=interactive --parallel=10 --rMin=-6 --rMax=10
-    combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_ggH_2j/comb/datacard.root -m 125 -o datacards/hww2l2v_13TeV_ggH_2j/comb/impacts.json -t -1
+    combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_ggH_2j/comb/datacard.root -m 125 --doInitialFit -t -1 --expectSignal=1 --X-rtd MINIMIZER_analytic --cminDefaultMinimizerStrategy=0 --rMin=-6 --rMax=10
 
-    combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_ggH_2j/comb/datacard.root -m 125 --doInitialFit -t -1 --expectSignal=1 --robustFit=1 --named CMS_hww_WWnorm2j,CMS_hww_Topnorm2j --setParameterRanges CMS_hww_WWnorm2j=-3,4:CMS_hww_Topnorm2j=-3,4
-    combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_ggH_2j/comb/datacard.root -m 125 -t -1 --expectSignal=1 --robustFit=1 --doFits --job-mode=interactive --parallel=10 --named CMS_hww_WWnorm2j,CMS_hww_Topnorm2j --setParameterRanges CMS_hww_WWnorm2j=-3,4:CMS_hww_Topnorm2j=-3,4
-    combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_ggH_2j/comb/datacard.root -m 125 -o datacards/hww2l2v_13TeV_ggH_2j/comb/impacts_rateParam.json -t -1 --named CMS_hww_WWnorm2j,CMS_hww_Topnorm2j --setParameterRanges CMS_hww_WWnorm2j=-3,4:CMS_hww_Topnorm2j=-3,4
+    combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_ggH_2j/comb/datacard.root -m 125 --doFits -t -1 --expectSignal=1 --X-rtd MINIMIZER_analytic --cminDefaultMinimizerStrategy=0 --job-mode=interactive --parallel=10 --rMin=-6 --rMax=10
 
-    cat datacards/hww2l2v_13TeV_ggH_2j/comb/impacts.json datacards/hww2l2v_13TeV_ggH_2j/comb/impacts_rateParam.json > datacards/hww2l2v_13TeV_ggH_2j/comb/impacts_total.json 
-
-    plotImpacts.py -i datacards/hww2l2v_13TeV_ggH_2j/comb/impacts_total.json -o datacards/hww2l2v_13TeV_ggH_2j/comb/Impact_ggH_2j_2016
+    combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_ggH_2j/comb/datacard.root -m 125 -t -1 --X-rtd MINIMIZER_analytic --cminDefaultMinimizerStrategy=0 -o datacards/hww2l2v_13TeV_ggH/comb/impacts_total.json
+    
+    plotImpacts.py -i datacards/hww2l2v_13TeV_ggH_2j/comb/impacts_total.json -o Impact_plots/Impact_ggH_2j_2016
 
     rm higgsCombine_*
 
@@ -158,3 +146,167 @@ Edit 'datacards/hww2l2v_13TeV_ggH/comb/impacts_total.json' so that there is only
     grep "proc" datacards/hww2l2v_13TeV_*/events/datacard.txt > yield.txt
     grep "rate " datacards/hww2l2v_13TeV_*/events/datacard.txt >> yield.txt
     column -t yield.txt > yield_organized.txt
+
+### Produce cumulative plots for the three years 2016 + 2017 + 2018
+
+0 jet:
+
+    mkPlot.py --inputFile rootFile/plots_ggH_SF_2016_v7_DYEstimDATA.root                --nuisancesFile nuisances.py                --onlyVariable events --onlyCut hww2l2v_13TeV_0j_ee --outputDirPlots plots_2016 --removeWeight --plotFile plot_blind.py
+    mkPlot.py --inputFile rootFile/plots_ggH_SF_2016_v7_DYEstimDATA.root                --nuisancesFile nuisances.py                --onlyVariable events --onlyCut hww2l2v_13TeV_0j_mm --outputDirPlots plots_2016 --removeWeight --plotFile plot_blind.py
+
+    mkPlot.py --inputFile ../Full2017_v7/rootFile/plots_ggH_SF_2017_v7_DYEstimDATA.root --nuisancesFile ../Full2017_v7/nuisances.py --onlyVariable events --onlyCut hww2l2v_13TeV_0j_ee --outputDirPlots plots_2017 --removeWeight --plotFile plot_blind.py
+    mkPlot.py --inputFile ../Full2017_v7/rootFile/plots_ggH_SF_2017_v7_DYEstimDATA.root --nuisancesFile ../Full2017_v7/nuisances.py --onlyVariable events --onlyCut hww2l2v_13TeV_0j_mm --outputDirPlots plots_2017 --removeWeight --plotFile plot_blind.py
+
+    mkPlot.py --inputFile ../Full2018_v7/rootFile/plots_ggH_SF_2018_v7_DYEstimDATA.root --nuisancesFile ../Full2018_v7/nuisances.py --onlyVariable events --onlyCut hww2l2v_13TeV_0j_ee --outputDirPlots plots_2018 --removeWeight --plotFile plot_blind.py
+    mkPlot.py --inputFile ../Full2018_v7/rootFile/plots_ggH_SF_2018_v7_DYEstimDATA.root --nuisancesFile ../Full2018_v7/nuisances.py --onlyVariable events --onlyCut hww2l2v_13TeV_0j_mm --outputDirPlots plots_2018 --removeWeight --plotFile plot_blind.py
+
+    mkCombinedPlot.py --pycfg=configuration.py  --inputCutsList=cuts_to_merge_ggH_SF_0j_mm.py \
+                      --outputDirPlots=plots_ggH_0j_mm_cumulative \
+                      --variable=events \
+                      --minvariable=0           --maxvariable=1 \
+                      --variableHR="events" \
+                      --getVarFromFile=1  \
+                      --divideByBinWidth \
+		      --plotFile plot_blind_run2.py \
+		      --yAxisTitle="Events"
+
+    mkCombinedPlot.py --pycfg=configuration.py  --inputCutsList=cuts_to_merge_ggH_SF_0j_ee.py \
+                      --outputDirPlots=plots_ggH_0j_ee_cumulative \
+                      --variable=events \
+                      --minvariable=0           --maxvariable=1 \
+                      --variableHR="events" \
+                      --getVarFromFile=1  \
+                      --divideByBinWidth \
+		      --plotFile plot_blind_run2.py \
+		      --yAxisTitle="Events"
+
+1 jet:
+
+    mkPlot.py --inputFile rootFile/plots_ggH_SF_2016_v7_DYEstimDATA.root                --nuisancesFile nuisances.py                --onlyVariable events --onlyCut hww2l2v_13TeV_1j_ee --outputDirPlots plots_2016 --removeWeight --plotFile plot_blind.py
+    mkPlot.py --inputFile rootFile/plots_ggH_SF_2016_v7_DYEstimDATA.root                --nuisancesFile nuisances.py                --onlyVariable events --onlyCut hww2l2v_13TeV_1j_mm --outputDirPlots plots_2016 --removeWeight --plotFile plot_blind.py
+
+    mkPlot.py --inputFile ../Full2017_v7/rootFile/plots_ggH_SF_2017_v7_DYEstimDATA.root --nuisancesFile ../Full2017_v7/nuisances.py --onlyVariable events --onlyCut hww2l2v_13TeV_1j_ee --outputDirPlots plots_2017 --removeWeight --plotFile plot_blind.py
+    mkPlot.py --inputFile ../Full2017_v7/rootFile/plots_ggH_SF_2017_v7_DYEstimDATA.root --nuisancesFile ../Full2017_v7/nuisances.py --onlyVariable events --onlyCut hww2l2v_13TeV_1j_mm --outputDirPlots plots_2017 --removeWeight --plotFile plot_blind.py
+
+    mkPlot.py --inputFile ../Full2018_v7/rootFile/plots_ggH_SF_2018_v7_DYEstimDATA.root --nuisancesFile ../Full2018_v7/nuisances.py --onlyVariable events --onlyCut hww2l2v_13TeV_1j_ee --outputDirPlots plots_2018 --removeWeight --plotFile plot_blind.py
+    mkPlot.py --inputFile ../Full2018_v7/rootFile/plots_ggH_SF_2018_v7_DYEstimDATA.root --nuisancesFile ../Full2018_v7/nuisances.py --onlyVariable events --onlyCut hww2l2v_13TeV_1j_mm --outputDirPlots plots_2018 --removeWeight --plotFile plot_blind.py
+
+    mkCombinedPlot.py --pycfg=configuration.py  --inputCutsList=cuts_to_merge_ggH_SF_1j_mm.py \
+                      --outputDirPlots=plots_ggH_1j_mm_cumulative \
+                      --variable=events \
+                      --minvariable=0           --maxvariable=1 \
+                      --variableHR="events" \
+                      --getVarFromFile=1  \
+                      --divideByBinWidth \
+		      --plotFile plot_blind_run2.py \
+		      --yAxisTitle="Events"
+
+    mkCombinedPlot.py --pycfg=configuration.py  --inputCutsList=cuts_to_merge_ggH_SF_1j_ee.py \
+                      --outputDirPlots=plots_ggH_1j_ee_cumulative \
+                      --variable=events \
+                      --minvariable=0           --maxvariable=1 \
+                      --variableHR="events" \
+                      --getVarFromFile=1  \
+                      --divideByBinWidth \
+		      --plotFile plot_blind_run2.py \
+		      --yAxisTitle="Events"
+
+2 jets:
+
+    mkPlot.py --inputFile rootFile/plots_ggH_SF_2016_v7_DYEstimDATA.root                --nuisancesFile nuisances.py                --onlyVariable events --onlyCut hww2l2v_13TeV_2j_ee --outputDirPlots plots_2016 --removeWeight --plotFile plot_blind.py
+    mkPlot.py --inputFile rootFile/plots_ggH_SF_2016_v7_DYEstimDATA.root                --nuisancesFile nuisances.py                --onlyVariable events --onlyCut hww2l2v_13TeV_2j_mm --outputDirPlots plots_2016 --removeWeight --plotFile plot_blind.py
+
+    mkPlot.py --inputFile ../Full2017_v7/rootFile/plots_ggH_SF_2017_v7_DYEstimDATA.root --nuisancesFile ../Full2017_v7/nuisances.py --onlyVariable events --onlyCut hww2l2v_13TeV_2j_ee --outputDirPlots plots_2017 --removeWeight --plotFile plot_blind.py
+    mkPlot.py --inputFile ../Full2017_v7/rootFile/plots_ggH_SF_2017_v7_DYEstimDATA.root --nuisancesFile ../Full2017_v7/nuisances.py --onlyVariable events --onlyCut hww2l2v_13TeV_2j_mm --outputDirPlots plots_2017 --removeWeight --plotFile plot_blind.py
+
+    mkPlot.py --inputFile ../Full2018_v7/rootFile/plots_ggH_SF_2018_v7_DYEstimDATA.root --nuisancesFile ../Full2018_v7/nuisances.py --onlyVariable events --onlyCut hww2l2v_13TeV_2j_ee --outputDirPlots plots_2018 --removeWeight --plotFile plot_blind.py
+    mkPlot.py --inputFile ../Full2018_v7/rootFile/plots_ggH_SF_2018_v7_DYEstimDATA.root --nuisancesFile ../Full2018_v7/nuisances.py --onlyVariable events --onlyCut hww2l2v_13TeV_2j_mm --outputDirPlots plots_2018 --removeWeight --plotFile plot_blind.py
+
+    mkCombinedPlot.py --pycfg=configuration.py  --inputCutsList=cuts_to_merge_ggH_SF_2j_mm.py \
+                      --outputDirPlots=plots_ggH_2j_mm_cumulative \
+                      --variable=events \
+                      --minvariable=0           --maxvariable=1 \
+                      --variableHR="events" \
+                      --getVarFromFile=1  \
+                      --divideByBinWidth \
+		      --plotFile plot_blind_run2.py \
+		      --yAxisTitle="Events"
+
+    mkCombinedPlot.py --pycfg=configuration.py  --inputCutsList=cuts_to_merge_ggH_SF_2j_ee.py \
+                      --outputDirPlots=plots_ggH_2j_ee_cumulative \
+                      --variable=events \
+                      --minvariable=0           --maxvariable=1 \
+                      --variableHR="events" \
+                      --getVarFromFile=1  \
+                      --divideByBinWidth \
+		      --plotFile plot_blind_run2.py \
+		      --yAxisTitle="Events"
+
+2 jets VH:
+
+    mkPlot.py --inputFile ../../qqH_SF/Full2016_v7/rootFile/plots_qqH_SF_2016_v7_DYEstimDATA.root                --nuisancesFile ../../qqH_SF/Full2016_v7/nuisances.py                --onlyVariable events --onlyCut hww2l2v_13TeV_2j_vh_ee --outputDirPlots plots_2016 --removeWeight --plotFile plot_blind.py --cutsFile=../../qqH_SF/Full2016_v7/cuts.py
+    mkPlot.py --inputFile ../../qqH_SF/Full2016_v7/rootFile/plots_qqH_SF_2016_v7_DYEstimDATA.root                --nuisancesFile ../../qqH_SF/Full2016_v7/nuisances.py                --onlyVariable events --onlyCut hww2l2v_13TeV_2j_vh_mm --outputDirPlots plots_2016 --removeWeight --plotFile plot_blind.py --cutsFile=../../qqH_SF/Full2016_v7/cuts.py
+
+    mkPlot.py --inputFile ../../qqH_SF/Full2017_v7/rootFile/plots_qqH_SF_2017_v7_DYEstimDATA.root                --nuisancesFile ../../qqH_SF/Full2017_v7/nuisances.py                --onlyVariable events --onlyCut hww2l2v_13TeV_2j_vh_ee --outputDirPlots plots_2017 --removeWeight --plotFile plot_blind.py --cutsFile=../../qqH_SF/Full2017_v7/cuts.py
+    mkPlot.py --inputFile ../../qqH_SF/Full2017_v7/rootFile/plots_qqH_SF_2017_v7_DYEstimDATA.root                --nuisancesFile ../../qqH_SF/Full2017_v7/nuisances.py                --onlyVariable events --onlyCut hww2l2v_13TeV_2j_vh_mm --outputDirPlots plots_2017 --removeWeight --plotFile plot_blind.py --cutsFile=../../qqH_SF/Full2017_v7/cuts.py
+
+    mkPlot.py --inputFile ../../qqH_SF/Full2018_v7/rootFile/plots_qqH_SF_2018_v7_DYEstimDATA.root                --nuisancesFile ../../qqH_SF/Full2018_v7/nuisances.py                --onlyVariable events --onlyCut hww2l2v_13TeV_2j_vh_ee --outputDirPlots plots_2018 --removeWeight --plotFile plot_blind.py --cutsFile=../../qqH_SF/Full2018_v7/cuts.py
+    mkPlot.py --inputFile ../../qqH_SF/Full2018_v7/rootFile/plots_qqH_SF_2018_v7_DYEstimDATA.root                --nuisancesFile ../../qqH_SF/Full2018_v7/nuisances.py                --onlyVariable events --onlyCut hww2l2v_13TeV_2j_vh_mm --outputDirPlots plots_2018 --removeWeight --plotFile plot_blind.py --cutsFile=../../qqH_SF/Full2018_v7/cuts.py
+
+    mkCombinedPlot.py --pycfg=configuration.py  --inputCutsList=cuts_to_merge_ggH_SF_2j_vh_mm.py \
+                      --outputDirPlots=plots_ggH_2j_vh_mm_cumulative \
+                      --variable=events \
+                      --minvariable=0           --maxvariable=1 \
+                      --variableHR="events" \
+                      --getVarFromFile=1  \
+                      --divideByBinWidth \
+		      --plotFile plot_blind_run2.py \
+		      --yAxisTitle="Events"
+
+    mkCombinedPlot.py --pycfg=configuration.py  --inputCutsList=cuts_to_merge_ggH_SF_2j_vh_ee.py \
+                      --outputDirPlots=plots_ggH_2j_vh_ee_cumulative \
+                      --variable=events \
+                      --minvariable=0           --maxvariable=1 \
+                      --variableHR="events" \
+                      --getVarFromFile=1  \
+                      --divideByBinWidth \
+		      --plotFile plot_blind_run2.py \
+		      --yAxisTitle="Events"
+
+2 jets VBF:
+
+    mkPlot.py --inputFile ../../qqH_SF/Full2016_v7/rootFile/plots_qqH_SF_2016_v7_DYEstimDATA.root                --nuisancesFile ../../qqH_SF/Full2016_v7/nuisances.py                --onlyVariable events --onlyCut hww2l2v_13TeV_2j_vbf_ee --outputDirPlots plots_2016 --removeWeight --plotFile plot_blind.py --cutsFile=../../qqH_SF/Full2016_v7/cuts.py
+    mkPlot.py --inputFile ../../qqH_SF/Full2016_v7/rootFile/plots_qqH_SF_2016_v7_DYEstimDATA.root                --nuisancesFile ../../qqH_SF/Full2016_v7/nuisances.py                --onlyVariable events --onlyCut hww2l2v_13TeV_2j_vbf_mm --outputDirPlots plots_2016 --removeWeight --plotFile plot_blind.py --cutsFile=../../qqH_SF/Full2016_v7/cuts.py
+
+    mkPlot.py --inputFile ../../qqH_SF/Full2017_v7/rootFile/plots_qqH_SF_2017_v7_DYEstimDATA.root                --nuisancesFile ../../qqH_SF/Full2017_v7/nuisances.py                --onlyVariable events --onlyCut hww2l2v_13TeV_2j_vbf_ee --outputDirPlots plots_2017 --removeWeight --plotFile plot_blind.py --cutsFile=../../qqH_SF/Full2017_v7/cuts.py
+    mkPlot.py --inputFile ../../qqH_SF/Full2017_v7/rootFile/plots_qqH_SF_2017_v7_DYEstimDATA.root                --nuisancesFile ../../qqH_SF/Full2017_v7/nuisances.py                --onlyVariable events --onlyCut hww2l2v_13TeV_2j_vbf_mm --outputDirPlots plots_2017 --removeWeight --plotFile plot_blind.py --cutsFile=../../qqH_SF/Full2017_v7/cuts.py
+
+    mkPlot.py --inputFile ../../qqH_SF/Full2018_v7/rootFile/plots_qqH_SF_2018_v7_DYEstimDATA.root                --nuisancesFile ../../qqH_SF/Full2018_v7/nuisances.py                --onlyVariable events --onlyCut hww2l2v_13TeV_2j_vbf_ee --outputDirPlots plots_2018 --removeWeight --plotFile plot_blind.py --cutsFile=../../qqH_SF/Full2018_v7/cuts.py
+    mkPlot.py --inputFile ../../qqH_SF/Full2018_v7/rootFile/plots_qqH_SF_2018_v7_DYEstimDATA.root                --nuisancesFile ../../qqH_SF/Full2018_v7/nuisances.py                --onlyVariable events --onlyCut hww2l2v_13TeV_2j_vbf_mm --outputDirPlots plots_2018 --removeWeight --plotFile plot_blind.py --cutsFile=../../qqH_SF/Full2018_v7/cuts.py
+
+    mkCombinedPlot.py --pycfg=configuration.py  --inputCutsList=cuts_to_merge_ggH_SF_2j_vbf_mm.py \
+                      --outputDirPlots=plots_ggH_2j_vbf_mm_cumulative \
+                      --variable=events \
+                      --minvariable=0           --maxvariable=1 \
+                      --variableHR="events" \
+                      --getVarFromFile=1  \
+                      --divideByBinWidth \
+		      --plotFile plot_blind_run2.py \
+		      --yAxisTitle="Events"
+
+    mkCombinedPlot.py --pycfg=configuration.py  --inputCutsList=cuts_to_merge_ggH_SF_2j_vbf_ee.py \
+                      --outputDirPlots=plots_ggH_2j_vbf_ee_cumulative \
+                      --variable=events \
+                      --minvariable=0           --maxvariable=1 \
+                      --variableHR="events" \
+                      --getVarFromFile=1  \
+                      --divideByBinWidth \
+		      --plotFile plot_blind_run2.py \
+		      --yAxisTitle="Events"
+
+
+
+
+
+
+

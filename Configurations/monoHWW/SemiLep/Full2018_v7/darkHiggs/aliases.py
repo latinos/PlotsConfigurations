@@ -378,3 +378,27 @@ for var in ['Up', 'Down']:
             'expr': '('+is_lep+'*(FW_mu'+str(Mu_jetEt)+'_el'+str(El_jetEt)+'_stat'+var+'[0]/FW_mu'+str(Mu_jetEt)+'_el'+str(El_jetEt)+'[0]) + '+no_lep+')',
             'samples': ["FAKE"]
         }
+
+## BDT OTF
+
+MVA_folder = '%s/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/MVA/darkHiggs/' % os.getenv('CMSSW_BASE')
+
+xml_file_A13 = MVA_folder + 'UATmva_darkHiggsVWjAndTT_2017_BDT_125Trees_AdaBoost_GiniIndex_20Cuts_CostComplexity_12PruneStrength_13Var.weights.xml' 
+var_file_A13 = MVA_folder + 'Ada_13Var_variables.txt'
+
+aliases['newBDT_Ada13'] = {
+    'linesToAdd': [
+        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
+        '.L %s/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/Full2017_v7/darkHiggs/TMVAfiller_OTF.cc+' % os.getenv('CMSSW_BASE')
+    ],
+    'class': 'TMVAfillerOTF',
+    'args': (var_file_A13, xml_file_A13),
+}
+
+xml_file_G11 = MVA_folder + 'UATmva_darkHiggsVWjAndTT_2017_BDT_200Trees_Grad_FalseBagged_0.6BagFrac_1BagShrink_GiniIndex_20Cuts_CostComplexity_12PruneStrength_11Var.weights.xml'
+var_file_G11 = MVA_folder + 'Grad_11Var_variables.txt'
+
+aliases['newBDT_Grad11'] = {
+    'class': 'TMVAfillerOTF',
+    'args': (var_file_G11, xml_file_G11),
+}

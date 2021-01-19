@@ -52,25 +52,25 @@ for k in cuts:
 nuisances['lumi_Uncorrelated'] = {
     'name': 'lumi_13TeV_2018',
     'type': 'lnN',
-    'samples': dict((skey, '1.015') for skey in mc if skey not in ['WW', 'top', 'DY'])
+    'samples': dict((skey, '1.015') for skey in mc if skey not in ['WW', 'top'])
 }
 
 nuisances['lumi_XYFact'] = {
     'name': 'lumi_13TeV_XYFact',
     'type': 'lnN',
-    'samples': dict((skey, '1.02') for skey in mc if skey not in ['WW', 'top', 'DY'])
+    'samples': dict((skey, '1.02') for skey in mc if skey not in ['WW', 'top'])
 }
 
 nuisances['lumi_LScale'] = {
     'name': 'lumi_13TeV_LSCale',
     'type': 'lnN',
-    'samples': dict((skey, '1.002') for skey in mc if skey not in ['WW', 'top', 'DY'])
+    'samples': dict((skey, '1.002') for skey in mc if skey not in ['WW', 'top'])
 }
 
 nuisances['lumi_CurrCalib'] = {
     'name': 'lumi_13TeV_CurrCalib',
     'type': 'lnN',
-    'samples': dict((skey, '1.002') for skey in mc if skey not in ['WW', 'top', 'DY'])
+    'samples': dict((skey, '1.002') for skey in mc if skey not in ['WW', 'top'])
 }
 
 #### FAKES
@@ -262,7 +262,7 @@ for js in jes_systs:
 
 ##### Jet energy resolution
 nuisances['JER'] = {
-    'name': 'CMS_res_j_2017',
+    'name': 'CMS_res_j_2018',
     'kind': 'suffix',
     'type': 'shape',
     'mapUp': 'JERup',
@@ -733,7 +733,7 @@ nuisances['CRSR_accept_DY'] = {
     'type': 'lnN',
     'samples': {'DY': '1.02'},
     'cuts': [cut for cut in cuts if '_CR_' in cut],
-    'cutspost': (lambda self, cuts: [cut for cut in cuts if '_DY_' in cut]),
+    'cutspost': (lambda self, cuts: [cut for cut in cuts if '_dytt_' in cut]),
 }
 
 # Uncertainty on SR/CR ratio

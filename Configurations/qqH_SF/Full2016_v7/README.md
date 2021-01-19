@@ -73,21 +73,21 @@ Source combine:
     cmsenv
     cd -
 
+    ulimit -s unlimited
+
+Prepare directory:
+
+    mkdir -p Impact_plots
+
 VBF category:
 
     text2workspace.py datacards/hww2l2v_13TeV_VBF/comb/datacard.txt -o datacards/hww2l2v_13TeV_VBF/comb/datacard.root
 
-    combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_VBF/comb/datacard.root -m 125 --doInitialFit -t -1 --expectSignal=1 --robustFit=1 --rMin=-6 --rMax=10
-    combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_VBF/comb/datacard.root -m 125 -t -1 --expectSignal=1 --robustFit=1 --doFits --job-mode=interactive --parallel=10 --rMin=-6 --rMax=10
-    combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_VBF/comb/datacard.root -m 125 -o datacards/hww2l2v_13TeV_VBF/comb/impacts.json -t -1
+    combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_VBF/comb/datacard.root -m 125 --doInitialFit -t -1 --expectSignal=1 --X-rtd MINIMIZER_analytic --cminDefaultMinimizerStrategy=0 --rMin=-6 --rMax=10
+    combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_VBF/comb/datacard.root -m 125 --doFits -t -1 --expectSignal=1 --X-rtd MINIMIZER_analytic --cminDefaultMinimizerStrategy=0 --job-mode=interactive --parallel=10 --rMin=-6 --rMax=10
+    combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_VBF/comb/datacard.root -m 125  -t -1 --X-rtd MINIMIZER_analytic --cminDefaultMinimizerStrategy=0 -o datacards/hww2l2v_13TeV_VBF/comb/impacts.json
 
-    combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_VBF/comb/datacard.root -m 125 --doInitialFit -t -1 --expectSignal=1 --robustFit=1 --named CMS_hww_WWnorm2j,CMS_hww_Topnorm2j --setParameterRanges CMS_hww_WWnorm2j=-3,4:CMS_hww_Topnorm2j=-3,4
-    combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_VBF/comb/datacard.root -m 125 -t -1 --expectSignal=1 --robustFit=1 --doFits --job-mode=interactive --parallel=10 --named CMS_hww_WWnorm2j,CMS_hww_Topnorm2j --setParameterRanges CMS_hww_WWnorm2j=-3,4:CMS_hww_Topnorm2j=-3,4
-    combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_VBF/comb/datacard.root -m 125 -o datacards/hww2l2v_13TeV_VBF/comb/impacts_rateParam.json -t -1 --named CMS_hww_WWnorm2j,CMS_hww_Topnorm2j --setParameterRanges CMS_hww_WWnorm2j=-3,4:CMS_hww_Topnorm2j=-3,4
-
-    cat datacards/hww2l2v_13TeV_VBF/comb/impacts.json datacards/hww2l2v_13TeV_VBF/comb/impacts_rateParam.json > datacards/hww2l2v_13TeV_VBF/comb/impacts_total.json 
-
-    plotImpacts.py -i datacards/hww2l2v_13TeV_VBF/comb/impacts_total.json -o datacards/hww2l2v_13TeV_VBF/comb/Impact_ggH_2j_vbf_2016
+    plotImpacts.py -i datacards/hww2l2v_13TeV_VBF/comb/impacts_total.json -o Impact_plots/Impact_qqH_2j_vbf_2016
 
     rm higgsCombine_*
 
@@ -95,17 +95,11 @@ VH category:
 
     text2workspace.py datacards/hww2l2v_13TeV_VH/comb/datacard.txt -o datacards/hww2l2v_13TeV_VH/comb/datacard.root
 
-    combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_VH/comb/datacard.root -m 125 --doInitialFit -t -1 --expectSignal=1 --robustFit=1 --rMin=-6 --rMax=10
-    combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_VH/comb/datacard.root -m 125 -t -1 --expectSignal=1 --robustFit=1 --doFits --job-mode=interactive --parallel=10 --rMin=-6 --rMax=10
-    combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_VH/comb/datacard.root -m 125 -o datacards/hww2l2v_13TeV_VH/comb/impacts.json -t -1
+    combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_VH/comb/datacard.root -m 125 --doInitialFit -t -1 --expectSignal=1 --X-rtd MINIMIZER_analytic --cminDefaultMinimizerStrategy=0 --rMin=-6 --rMax=10
+    combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_VH/comb/datacard.root -m 125 --doFits -t -1 --expectSignal=1 --X-rtd MINIMIZER_analytic --cminDefaultMinimizerStrategy=0 --job-mode=interactive --parallel=10 --rMin=-6 --rMax=10
+    combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_VH/comb/datacard.root -m 125 -t -1 --X-rtd MINIMIZER_analytic --cminDefaultMinimizerStrategy=0 -o datacards/hww2l2v_13TeV_VH/comb/impacts.json
 
-    combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_VH/comb/datacard.root -m 125 --doInitialFit -t -1 --expectSignal=1 --robustFit=1 --named CMS_hww_WWnorm2j,CMS_hww_Topnorm2j --setParameterRanges CMS_hww_WWnorm2j=-3,4:CMS_hww_Topnorm2j=-3,4
-    combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_VH/comb/datacard.root -m 125 -t -1 --expectSignal=1 --robustFit=1 --doFits --job-mode=interactive --parallel=10 --named CMS_hww_WWnorm2j,CMS_hww_Topnorm2j --setParameterRanges CMS_hww_WWnorm2j=-3,4:CMS_hww_Topnorm2j=-3,4
-    combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_VH/comb/datacard.root -m 125 -o datacards/hww2l2v_13TeV_VH/comb/impacts_rateParam.json -t -1 --named CMS_hww_WWnorm2j,CMS_hww_Topnorm2j --setParameterRanges CMS_hww_WWnorm2j=-3,4:CMS_hww_Topnorm2j=-3,4
-
-    cat datacards/hww2l2v_13TeV_VH/comb/impacts.json datacards/hww2l2v_13TeV_VH/comb/impacts_rateParam.json > datacards/hww2l2v_13TeV_VH/comb/impacts_total.json 
-
-    plotImpacts.py -i datacards/hww2l2v_13TeV_VH/comb/impacts_total.json -o datacards/hww2l2v_13TeV_VH/comb/Impact_ggH_2j_vh_2016
+    plotImpacts.py -i datacards/hww2l2v_13TeV_VH/comb/impacts_total.json -o Impact_plots/Impact_qqH_2j_vh_2016
 
     rm higgsCombine_*
 

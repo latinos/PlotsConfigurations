@@ -1,8 +1,7 @@
 # cuts
-
 supercut = '   mll>12 \
             && Lepton_pt[0]>25 \
-            && Lepton_pt[1]>13 \
+            && Lepton_pt[1]>20 \
             && (nLepton>=2 && Alt$(Lepton_pt[2],0)<10) \
             && abs(Lepton_eta[0])<2.5 && abs(Lepton_eta[1])<2.5 \
             && ptll>30 \
@@ -10,7 +9,7 @@ supercut = '   mll>12 \
             && (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13) \
            '
 ## Signal regions
-
+'''
 cuts['ww2l2v_13TeV'] = {
    'expr': 'sr',
     # Define the sub-categorization of sr
@@ -20,7 +19,7 @@ cuts['ww2l2v_13TeV'] = {
       'em_2j' : 'multiJet', 
    }  
 }     
-      
+'''      
 ## Signal regions
 cuts['ww2l2v_13TeV_sr1'] = {
    'expr': 'sr1',

@@ -228,10 +228,6 @@ samples['VgS'] = {
     'name': files,
     'weight': mcCommonWeight + ' * (gstarLow * 0.94 + gstarHigh * 1.14)',
     'FilesPerJob': 4,
-    'subsamples': {
-      'L': 'gstarLow',
-      'H': 'gstarHigh'
-    }
 }
 addSampleWeight(samples, 'VgS', 'Wg_MADGRAPHMLM', '(Gen_ZGstar_mass > 0 && Gen_ZGstar_mass < 0.1)')
 addSampleWeight(samples, 'VgS', 'Zg', '(Gen_ZGstar_mass > 0)')
@@ -303,25 +299,25 @@ for hs in mhs:
             }
 
 
-mA = ['200', '400', '500', '600']
+# mA = ['200', '400', '500', '600']
 
-for A in mA:
-    samples['2HMDa__gg_sinp_0p35_tanb_1p0_mXd_10_MA_' + A + '_ma_150'] = {
-        'name': nanoGetSampleFiles(signalDirectory, '2HDMa_HWWTollnunu_gg_sinp_0p35_tanb_1p0_mXd_10_MH3_' + A + '_MH4_150_MH2_' + A + '_MHC_' + A),
-        'weight': mcCommonWeight,
-        'FilesPerJob': 1
-    }
+# for A in mA:
+#     samples['2HMDa__gg_sinp_0p35_tanb_1p0_mXd_10_MA_' + A + '_ma_150'] = {
+#         'name': nanoGetSampleFiles(signalDirectory, '2HDMa_HWWTollnunu_gg_sinp_0p35_tanb_1p0_mXd_10_MH3_' + A + '_MH4_150_MH2_' + A + '_MHC_' + A),
+#         'weight': mcCommonWeight,
+#         'FilesPerJob': 1
+#     }
 
-sintheta = ['0p35', '0p7']
-tanbeta = ['0p5', '1p0', '1p5', '2p0', '4p0', '8p0']
+# sintheta = ['0p35', '0p7']
+# tanbeta = ['0p5', '1p0', '1p5', '2p0', '4p0', '8p0']
 
-for theta in sintheta:
-    for beta in tanbeta:
-        samples['2HMDa__gg_sinp_' + theta  + '_tanb_' + beta  + '_mXd_10_MA_300_ma_150'] = {
-            'name': nanoGetSampleFiles(signalDirectory, '2HDMa_HWWTollnunu_gg_sinp_' + theta  + '_tanb_' + beta  + '_mXd_10_MH3_300_MH4_150_MH2_300_MHC_300'),
-            'weight': mcCommonWeight,
-            'FilesPerJob': 1
-        }
+# for theta in sintheta:
+#     for beta in tanbeta:
+#         samples['2HMDa__gg_sinp_' + theta  + '_tanb_' + beta  + '_mXd_10_MA_300_ma_150'] = {
+#             'name': nanoGetSampleFiles(signalDirectory, '2HDMa_HWWTollnunu_gg_sinp_' + theta  + '_tanb_' + beta  + '_mXd_10_MH3_300_MH4_150_MH2_300_MHC_300'),
+#             'weight': mcCommonWeight,
+#             'FilesPerJob': 1
+#         }
         
 
 
