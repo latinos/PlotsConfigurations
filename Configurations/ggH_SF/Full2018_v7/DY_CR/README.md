@@ -12,5 +12,5 @@ Configuration for the extraction of the systematic uncertainties associated to t
 
 ### Plot input distributions
 
-    mkPlot.py --inputFile=rootFile/plots_ggH_SF_2016_v7_DY_CR.root --fileFormats=png --onlyPlot=cratio --minLogCratio=1 --maxLogCratio=1000000
+    mkPlot.py --inputFile=rootFile/plots_ggH_SF_2018_v7_DY_CR.root --fileFormats=png --onlyPlot=cratio --minLogCratio=1 --maxLogCratio=1000000
 
