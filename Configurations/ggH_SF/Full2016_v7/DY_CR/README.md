@@ -14,3 +14,30 @@ Configuration for the extraction of the systematic uncertainties associated to t
 
     mkPlot.py --inputFile=rootFile/plots_ggH_SF_2016_v7_DY_CR.root --fileFormats=png --onlyPlot=cratio --minLogCratio=1 --maxLogCratio=1000000
 
+Remove meaningless plots:
+
+    rm plots_ggH_SF_2016_v7_DY_CR/*cratio*_0j_*dnn_1j* 
+    rm plots_ggH_SF_2016_v7_DY_CR/*cratio*_0j_*dnn_2j* 
+    rm plots_ggH_SF_2016_v7_DY_CR/*cratio*_0j_*dnn_VH* 
+    rm plots_ggH_SF_2016_v7_DY_CR/*cratio*_0j_*dnn_VBF* 
+
+    rm plots_ggH_SF_2016_v7_DY_CR/*cratio*_1j_*dnn_0j* 
+    rm plots_ggH_SF_2016_v7_DY_CR/*cratio*_1j_*dnn_2j* 
+    rm plots_ggH_SF_2016_v7_DY_CR/*cratio*_1j_*dnn_VH* 
+    rm plots_ggH_SF_2016_v7_DY_CR/*cratio*_1j_*dnn_VBF* 
+
+    rm plots_ggH_SF_2016_v7_DY_CR/*cratio*_2j_*dnn_0j* 
+    rm plots_ggH_SF_2016_v7_DY_CR/*cratio*_2j_*dnn_1j* 
+    rm plots_ggH_SF_2016_v7_DY_CR/*cratio*_2j_*dnn_VH* 
+    rm plots_ggH_SF_2016_v7_DY_CR/*cratio*_2j_*dnn_VBF* 
+
+    rm plots_ggH_SF_2016_v7_DY_CR/*cratio*_VBF_*dnn_0j* 
+    rm plots_ggH_SF_2016_v7_DY_CR/*cratio*_VBF_*dnn_1j* 
+    rm plots_ggH_SF_2016_v7_DY_CR/*cratio*_VBF_*dnn_2j* 
+    rm plots_ggH_SF_2016_v7_DY_CR/*cratio*_VBF_*dnn_VH* 
+
+    rm plots_ggH_SF_2016_v7_DY_CR/*cratio*_VH_*dnn_0j* 
+    rm plots_ggH_SF_2016_v7_DY_CR/*cratio*_VH_*dnn_1j* 
+    rm plots_ggH_SF_2016_v7_DY_CR/*cratio*_VH_*dnn_2j* 
+    rm plots_ggH_SF_2016_v7_DY_CR/*cratio*_VH_*dnn_VBF* 
+
