@@ -43,17 +43,17 @@ Remove meaningless plots:
 
 ### Get corrections for DY MC
 
-    mkDYCorr.py --input_file=rootFile/plots_ggH_SF_2016_v7_DY_CR.root --cut=0j_ee_in --variable=mth
-    mkDYCorr.py --input_file=rootFile/plots_ggH_SF_2016_v7_DY_CR.root --cut=0j_mm_in --variable=mth
+    mkDYCorr.py --input_file=rootFile/plots_ggH_SF_2016_v7_DY_CR.root --cut=0j_ee_in --variable=mth  --fit_func=pol1
+    mkDYCorr.py --input_file=rootFile/plots_ggH_SF_2016_v7_DY_CR.root --cut=0j_mm_in --variable=mth  --fit_func=pol1
 
-    mkDYCorr.py --input_file=rootFile/plots_ggH_SF_2016_v7_DY_CR.root --cut=1j_ee_in --variable=mth
-    mkDYCorr.py --input_file=rootFile/plots_ggH_SF_2016_v7_DY_CR.root --cut=1j_mm_in --variable=mth
+    mkDYCorr.py --input_file=rootFile/plots_ggH_SF_2016_v7_DY_CR.root --cut=1j_ee_in --variable=mth  --fit_func=pol2
+    mkDYCorr.py --input_file=rootFile/plots_ggH_SF_2016_v7_DY_CR.root --cut=1j_mm_in --variable=mth  --fit_func=pol2
 
-    mkDYCorr.py --input_file=rootFile/plots_ggH_SF_2016_v7_DY_CR.root --cut=2j_ee_in --variable=mth
-    mkDYCorr.py --input_file=rootFile/plots_ggH_SF_2016_v7_DY_CR.root --cut=2j_mm_in --variable=mth
+    mkDYCorr.py --input_file=rootFile/plots_ggH_SF_2016_v7_DY_CR.root --cut=2j_ee_in --variable=mth  --fit_func=pol2
+    mkDYCorr.py --input_file=rootFile/plots_ggH_SF_2016_v7_DY_CR.root --cut=2j_mm_in --variable=mth  --fit_func=pol2
 
-    mkDYCorr.py --input_file=rootFile/plots_ggH_SF_2016_v7_DY_CR.root --cut=VBF_ee_in --variable=mth
-    mkDYCorr.py --input_file=rootFile/plots_ggH_SF_2016_v7_DY_CR.root --cut=VBF_mm_in --variable=mth
+    mkDYCorr.py --input_file=rootFile/plots_ggH_SF_2016_v7_DY_CR.root --cut=VBF_ee_in --variable=mth --fit_func=pol2
+    mkDYCorr.py --input_file=rootFile/plots_ggH_SF_2016_v7_DY_CR.root --cut=VBF_mm_in --variable=mth --fit_func=pol2
 
-    mkDYCorr.py --input_file=rootFile/plots_ggH_SF_2016_v7_DY_CR.root --cut=VH_ee_in --variable=mth
-    mkDYCorr.py --input_file=rootFile/plots_ggH_SF_2016_v7_DY_CR.root --cut=VH_mm_in --variable=mth
+    mkDYCorr.py --input_file=rootFile/plots_ggH_SF_2016_v7_DY_CR.root --cut=VH_ee_in --variable=mth  --fit_func=pol2
+    mkDYCorr.py --input_file=rootFile/plots_ggH_SF_2016_v7_DY_CR.root --cut=VH_mm_in --variable=mth  --fit_func=pol2
