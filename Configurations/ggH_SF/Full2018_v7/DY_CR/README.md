@@ -41,3 +41,8 @@ Remove meaningless plots:
     rm plots_ggH_SF_201?_v7_DY_CR/*cratio*_VH_*dnn_2j* 
     rm plots_ggH_SF_201?_v7_DY_CR/*cratio*_VH_*dnn_VBF*
 
+To get a reasonable correction we subtract from data all processes except Drell-Yan. The output is then divided by the DY MC histogram, and a linear fit is performed.
+
+    mkDYCorr.py --input_file=rootFile/plots_ggH_SF_2018_v7_DY_CR.root --cut=0j_ee_in --variable=mth
+    mkDYCorr.py --input_file=rootFile/plots_ggH_SF_2018_v7_DY_CR.root --cut=0j_mm_in --variable=mth
+
