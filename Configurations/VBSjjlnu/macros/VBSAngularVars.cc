@@ -67,7 +67,7 @@ protected:
   IntArrayReader* subjet_2_index;
 
   void setValues();
-  std::array<float,8> outputValues; 
+  std::array<float,12> outputValues; 
 };
 
 
@@ -88,6 +88,10 @@ VBSAngularVars::evaluate(unsigned iJ)
   5) theta_lep
   6) theta_vjet_0
   7) theta_vjet_1
+  8) delta theta_lep_Wlep
+  9) delta theta_vjet0_Wlep
+  10) delta theta_vjet1_Wlep
+  11) delta theta*-WVsyst
   
   */
   if (!filled) setValues();
@@ -140,6 +144,10 @@ VBSAngularVars::setValues()
   outputValues[5] = lep_WCM.Theta();
   outputValues[6] = vjet0_VCM.Theta();
   outputValues[7] = vjet1_VCM.Theta();
+  outputValues[8] = VectorUtil::Angle(lep_WCM.Vect(), Wlep.Vect());
+  outputValues[9] = VectorUtil::Angle(vjet0_VCM.Vect(), Vhad.Vect());
+  outputValues[10] = VectorUtil::Angle(vjet1_VCM.Vect(), Vhad.Vect());
+  outputValues[11] = VectorUtil::Angle(Vhad_CM.Vect(), WVsyst.Vect());
 
   if (debug_){
     std::cout << "---------------"<< std::endl << "Category: " <<category <<std::endl;
@@ -151,6 +159,10 @@ VBSAngularVars::setValues()
     std::cout << "Theta lep "<< outputValues[5] << std::endl;
     std::cout << "Theta Vjet0 "<< outputValues[6] << std::endl;
     std::cout << "Theta Vjet1 "<< outputValues[7] << std::endl;
+    std::cout << "Angle lep-Wlep "<< outputValues[8] << std::endl;
+    std::cout << "Angle vjet0-Wlep "<< outputValues[9] << std::endl;
+    std::cout << "Angle vjet1-Wlep "<< outputValues[10] << std::endl;
+    std::cout << "Angle Vhad in WVCM and WV "<< outputValues[11] << std::endl;
 
     auto check1 = Vhad_CM + Wlep_CM;
     std::cout << check1.x() << " "<< check1.y() << " " << check1.z() << std::endl;

@@ -372,16 +372,6 @@ aliases['angular_vars'] = {
     ],
 }
 
-
-#   0) VW pt
-#   1) VW eta
-#   2) VW phi
-#   3) deltaphi_WV
-#   4) theta*
-#   5) theta_lep
-#   6) theta_had_1
-#   7) theta_had_2
-  
 aliases['WV_pt']= { 'expr': 'angular_vars[0]'}
 aliases['WV_eta']= { 'expr': 'angular_vars[1]'}
 aliases['WV_phi']= { 'expr': 'angular_vars[2]'}
@@ -390,3 +380,6 @@ aliases['WV_theta_star']= { 'expr': 'angular_vars[4]'}
 aliases['theta_lep']= { 'expr': 'angular_vars[5]'}
 aliases['theta_vjet_0']= { 'expr': 'angular_vars[6]'}
 aliases['theta_vjet_1']= { 'expr': 'angular_vars[7]'}
+aliases['deltatheta_lep']= { 'expr': 'angular_vars[8]'}
+aliases['deltatheta_vjet_0']= { 'expr': 'angular_vars[9]'}
+aliases['deltatheta_vjet_1']= { 'expr': 'angular_vars[10]'}

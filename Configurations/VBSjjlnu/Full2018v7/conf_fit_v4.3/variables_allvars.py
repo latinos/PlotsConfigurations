@@ -473,30 +473,47 @@ variables['WV_deltaphi'] = {  'name': 'abs(WV_deltaphi)',
                 }
 
 variables['WV_theta_star'] = {  'name': 'WV_theta_star',
-                        'range': (40,0,3.14 ),
+                        'range': (40,0.,3.14 ),
                         'xaxis': 'WV theta*',
                         'fold': 3
                 }
 
 
 variables['theta_lep'] = {  'name': 'theta_lep',
-                        'range': (40,0,3.14 ),
+                        'range': (30,0,3.14),
                         'xaxis': 'lep theta',
                         'fold': 3
                 }
 
 variables['theta_vjet_0'] = {  'name': 'theta_vjet_0',
-                        'range': (40,0,3.14 ),
-                        'xaxis': 'vjet 0 theta',
+                        'range': (30,0,3.14 ),
+                        'xaxis': 'Vjet 0 theta',
                         'fold': 3
                 }
 
 variables['theta_vjet_1'] = {  'name': 'theta_vjet_1',
-                'range': (40,0,3.14 ),
-                'xaxis': 'vjet 1 theta',
+                        'range': (30,0,3.14 ),
+                        'xaxis': 'Vjet 1 theta',
+                        'fold': 3
+                }
+
+variables['deltatheta_lep'] = {  'name': 'deltatheta_lep',
+                'range': (30,0,3.14 ),
+                'xaxis': 'DeltaTheta lep-Wlep',
                 'fold': 3
         }
 
+variables['deltatheta_vjet_0'] = {  'name': 'deltatheta_vjet_0',
+                'range': (30,0,3.14 ),
+                'xaxis': 'DeltaTheta Vjet0-Vhad',
+                'fold': 3
+        }
+
+variables['deltatheta_vjet_1'] = {  'name': 'deltatheta_vjet_1',
+                'range': (30,0,3.14 ),
+                'xaxis': 'DeltaTheta Vjet1-Vhad',
+                'fold': 3
+        }
 
 variables['WV_costheta_star'] = {  'name': 'TMath::Cos(WV_theta_star)',
                         'range': (30,-1,1 ),
@@ -511,22 +528,41 @@ variables['costheta_lep'] = {  'name': 'TMath::Cos(theta_lep)',
                         'fold': 3
                 }
 
+
 variables['costheta_vjet_0'] = {  'name': 'TMath::Cos(theta_vjet_0)',
                         'range': (30,-1,1 ),
-                        'xaxis': 'vjet 0 cos(theta)',
+                        'xaxis': 'Vjet 0 cos(theta)',
+                        'fold': 3
+                }
+        
+
+variables['costheta_vjet_1'] = {  'name': 'TMath::Cos(theta_vjet_1)',
+                        'range': (30,-1,1 ),
+                        'xaxis': 'Vjet 1 cos(theta)',
                         'fold': 3
                 }
 
-variables['costheta_vjet_1'] = {  'name': 'TMath::Cos(theta_vjet_1)',
-                'range': (30,-1,1 ),
-                'xaxis': 'vjet 1 cos(theta)',
+variables['cosdeltatheta_lep'] = {  'name': 'TMath::Cos(deltatheta_lep)',
+                'range': (30,-1.,1. ),
+                'xaxis': 'cos(DeltaTheta) lep-Wlep',
                 'fold': 3
         }
 
+variables['cosdeltatheta_vjet_0'] = {  'name': 'TMath::Cos(deltatheta_vjet_0)',
+                'range': (30,-1.,1. ),
+                'xaxis': 'cos(DeltaTheta) Vjet0-Vhad',
+                'fold': 3
+        }
 
-#########################################################
-#######################################################
-# Tree output
+variables['cosdeltatheta_vjet_1'] = {  'name': 'TMath::Cos(deltatheta_vjet_1)',
+                'range': (30,-1.,1. ),
+                'xaxis': 'cos(DeltaTheta) Vjet1-Vhad',
+                'fold': 3
+        }
+
+########################################################
+######################################################
+### Tree output
 
 
 # res_vars = [
@@ -546,7 +582,7 @@ variables['costheta_vjet_1'] = {  'name': 'TMath::Cos(theta_vjet_1)',
 #             'vbs_0_qglmorphed_res', 'vbs_1_qglmorphed_res', 'vjet_0_qglmorphed_res', 'vjet_1_qglmorphed_res',
 #             'nJets30','PuppiMET_pt', 'PuppiMET_phi',
 #             'WV_pt', 'WV_eta','WV_phi','WV_deltaphi','WV_theta_star',
-#             'theta_lep','theta_vjet_0','theta_vjet_1'
+#             'theta_lep','theta_vjet_0','theta_vjet_1','deltatheta_lep','deltatheta_vjet_0','deltatheta_vjet_1'
 #             ]
 
 # res_branches =  { v:v for v in res_vars }
@@ -566,7 +602,7 @@ variables['costheta_vjet_1'] = {  'name': 'TMath::Cos(theta_vjet_1)',
 #             'vbs_0_qglmorphed_boost', 'vbs_1_qglmorphed_boost',
 #             'nJets30','PuppiMET_pt', 'PuppiMET_phi',
 #             'WV_pt', 'WV_eta','WV_phi','WV_deltaphi','WV_theta_star',
-#             'theta_lep','theta_vjet_0','theta_vjet_1'        
+#             'theta_lep','theta_vjet_0','theta_vjet_1','deltatheta_lep','deltatheta_vjet_0','deltatheta_vjet_1'
 #         ]
 
 # boost_branches =  { v:v for v in boost_vars }
@@ -587,8 +623,11 @@ variables['costheta_vjet_1'] = {  'name': 'TMath::Cos(theta_vjet_1)',
 #     brs['four_tag_jets_lepton_HT'] = 'tag_jets_systems_pt[5]'
 #     brs['WV_costheta_star'] = 'TMath::Cos(WV_theta_star)'
 #     brs['costheta_lep'] =    'TMath::Cos(theta_lep)'
-#     brs['costheta_vjet_0'] = 'TMath::Cos(theta_vjet_0)'
-#     brs['costheta_vjet_1'] = 'TMath::Cos(theta_vjet_1)'
+#     brs['costheta_vjet_0'] =    'TMath::Cos(theta_vjet_0)'
+#     brs['costheta_vjet_1'] =    'TMath::Cos(theta_vjet_1)'
+#     brs['cosdeltatheta_lep'] = 'TMath::Cos(deltatheta_lep)'
+#     brs['cosdeltatheta_vjet_0'] = 'TMath::Cos(deltatheta_vjet_0)'
+#     brs['cosdeltatheta_vjet_1'] = 'TMath::Cos(deltatheta_vjet_1)'
 
 # # only res branches
 # res_branches['v_jets_HT'] = 'tag_jets_systems_pt[3]'

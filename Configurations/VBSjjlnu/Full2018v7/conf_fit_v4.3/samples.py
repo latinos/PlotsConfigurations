@@ -249,7 +249,7 @@ samples['VV']  = { 'name' :
                nanoGetSampleFiles(directory_signal,'WpToLNu_ZTo2J_QCD',) +
                nanoGetSampleFiles(directory_signal,'ZTo2L_ZTo2J_QCD',  ) ,
         'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch, # still missing EWKnlowW 
-        'FilesPerJob' : 17,
+        'FilesPerJob' : 15,
         'EventsPerJob' : 70000,
 }
 
@@ -329,7 +329,7 @@ samples['VBS']  = { 'name' :
                nanoGetSampleFiles(directory_signal,'WpTo2J_WmToLNu') +
                nanoGetSampleFiles(directory_signal,'ZTo2L_ZTo2J',  ),
        'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch,
-       'FilesPerJob' :16,
+       'FilesPerJob' :15,
        'EventsPerJob' : 70000,
 }
 
@@ -372,4 +372,4 @@ for Run in DataRun :
                         samples['DATA']['weights'].append(DataTrig[DataSet])
 
 
-#samples = {   key:v for key,v in samples.items() if key in ["VVV"]}
+# samples = {   key:v for key,v in samples.items() if key in ["VVV"]}
