@@ -93,6 +93,14 @@ aliases['nCleanGenJet'] = {
     'samples': mc
 }
 
+# DY data-driven shape correction
+
+aliases['shape_corr_DY'] = {
+    'expr': '(0.824999257401 + 0.00312033140376 * mth) * (Alt$(CleanJet_pt[0], 0) < 30.) * (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) + (0.792183172307 + 0.00218358647717 * mth) * (Alt$(CleanJet_pt[0], 0) < 30.) * (Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13)',
+    'samples': ['DY']
+}
+
+
 ##### DY Z pT reweighting - NEW!
 aliases['getGenZpt_OTF'] = {
     'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/patches/getGenZpt.cc+' % os.getenv('CMSSW_BASE')],
