@@ -1,21 +1,21 @@
 # Systematic uncertainties extraction for data-driven Drell-Yan estimation method
 
-Configuration for the extraction of the systematic uncertainties associated to the data-driven method used for Drell-Yan estimation in the same-flavor channel
+Configuration for the extraction of the systematic uncertainties associated to the data-driven method used for Drell-Yan estimation in the same-flavor channel.
 
 ### Produce a valid VOMS proxy
 
     voms-proxy-init -voms cms -rfc --valid 168:0
     cmsenv
 
-# Produce distributions using mkShapesMulti.py in batch mode
+### Produce distributions using mkShapesMulti.py in batch mode
 
     mkShapesMulti.py --pycfg=configuration.py --doBatch=1 --batchSplit=Samples,Files --batchQueue=testmatch
 
-# Merge rootfiles using hadd
+### Merge rootfiles using hadd
 
     mkShapesMulti.py --pycfg=configuration.py --doHadd=1 --batchSplit=Samples,Files --doNotCleanup --nThreads=8
 
-# Make plots 
+### Make plots 
 
     mkDnnDYEstim.py --inputFile=rootFile/plots_ggH_SF_2018_v7_DYMVA_SYS.root --jet_bin=0j
     mkDnnDYEstim.py --inputFile=rootFile/plots_ggH_SF_2018_v7_DYMVA_SYS.root --jet_bin=1j
@@ -23,7 +23,7 @@ Configuration for the extraction of the systematic uncertainties associated to t
     mkDnnDYEstim.py --inputFile=rootFile/plots_ggH_SF_2018_v7_DYMVA_SYS.root --jet_bin=VBF
     mkDnnDYEstim.py --inputFile=rootFile/plots_ggH_SF_2018_v7_DYMVA_SYS.root --jet_bin=VH
 
-# Plot input distributions
+### Plot input distributions
 
     mkPlot.py --inputFile=rootFile/plots_ggH_SF_2018_v7_DYMVA_SYS.root --fileFormats=png --onlyPlot=cratio --outputDirPlots=plots_sr_ggH2018_v7_noDY --minLogCratio=1 --maxLogCratio=1000000 
 
