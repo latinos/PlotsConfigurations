@@ -27,7 +27,7 @@ Configuration for the extraction of the systematic uncertainties associated to t
 
     mkPlot.py --inputFile=rootFile/plots_ggH_SF_2018_v7_DYMVA_SYS.root --fileFormats=png --onlyPlot=cratio --outputDirPlots=plots_sr_ggH2018_v7_noDY --minLogCratio=1 --maxLogCratio=1000000 
 
-Remove meaningless plots.
+### Remove meaningless plots
 
     rm plots_sr_ggH2018_v7_noDY/*cratio*H*
     rm plots_sr_ggH2018_v7_noDY/*cratio*ww*
