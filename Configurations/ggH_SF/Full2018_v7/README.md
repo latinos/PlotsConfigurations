@@ -11,13 +11,13 @@ Configuration for the same-flavor ggH-tag analysis using 2018 data.
 
     mkShapesMulti.py --pycfg=configuration.py --doBatch=1 --batchSplit=Samples,Files --batchQueue=testmatch
 
-Resubmit failed jobs:
+Resubmit failed jobs.
 
     cd $HOME/scripts/jobs/mkShapes__ggH_SF_2018_v7/
     for i in *jid; do condor_submit ${i/jid/jds}; done
     cd -
 
-Or, if they failed because the wall clock time have been exceeded, resubmit them on a longer-time queue:
+Or, if they failed because the wall clock time has been exceeded, resubmit them on a longer-time queue.
 
     cd $HOME/scripts/jobs/mkShapes__ggH_SF_2018_v7/
     for i in *jid; do sed -i "s/longlunch/workday/g" ${i/jid/jds}; condor_submit ${i/jid/jds}; done

@@ -1,12 +1,17 @@
-# Systematic Uncertainties Extraction for Data-Driven Drell-Yan Estimation Method
+# Systematic uncertainties extraction for data-driven Drell-Yan estimation method
 
 Configuration for the extraction of the systematic uncertainties associated to the data-driven method used for Drell-Yan estimation in the same-flavor channel
 
-# Submit shapesmulti in batch
+### Produce a valid VOMS proxy
+
+    voms-proxy-init -voms cms -rfc --valid 168:0
+    cmsenv
+
+# Produce distributions using mkShapesMulti.py in batch mode
 
     mkShapesMulti.py --pycfg=configuration.py --doBatch=1 --batchSplit=Samples,Files --batchQueue=testmatch
 
-# Hadd files
+# Merge rootfiles using hadd
 
     mkShapesMulti.py --pycfg=configuration.py --doHadd=1 --batchSplit=Samples,Files --doNotCleanup --nThreads=8
 
@@ -22,7 +27,7 @@ Configuration for the extraction of the systematic uncertainties associated to t
 
     mkPlot.py --inputFile=rootFile/plots_ggH_SF_2018_v7_DYMVA_SYS.root --fileFormats=png --onlyPlot=cratio --outputDirPlots=plots_sr_ggH2018_v7_noDY --minLogCratio=1 --maxLogCratio=1000000 
 
-Remove meaningless plots:
+Remove meaningless plots.
 
     rm plots_sr_ggH2018_v7_noDY/*cratio*H*
     rm plots_sr_ggH2018_v7_noDY/*cratio*ww*
