@@ -80,6 +80,18 @@ aliases['PromptGenLepMatch2l'] = {
     'samples': mc
 }
 
+# DY data-driven shape correction
+
+aliases['shape_corr_DY'] = {
+    'expr': '(Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) * ((Alt$(CleanJet_pt[0], 0) < 30) * (1.74-0.048*puppimet+0.0015*puppimet*puppimet-0.00002*puppimet*puppimet*puppimet) + (Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) * ((Alt$(CleanJet_pt[0], 0) < 30) * (0.59 + 0.053 * puppimet-0.0011*puppimet*puppimet+0.000002*puppimet*puppimet*puppimet)*zeroJet)'    
+#'expr': '(0.824999257401 + 0.00312033140376 * mth) * (Alt$(CleanJet_pt[0], 0) < 30.) * (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) + (0.792183172307 + 0.00218358647717 * mth) * (Alt$(CleanJet_pt[0], 0) < 30.) * (Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13)',
+    'samples': ['DY']
+}
+
+
+
+
+
 aliases['Top_pTrw'] = {
     'expr': '(topGenPt * antitopGenPt > 0.) * (TMath::Sqrt((0.103*TMath::Exp(-0.0118*topGenPt) - 0.000134*topGenPt + 0.973) * (0.103*TMath::Exp(-0.0118*antitopGenPt) - 0.000134*antitopGenPt + 0.973))) + (topGenPt * antitopGenPt <= 0.)',
     'samples': ['top']
