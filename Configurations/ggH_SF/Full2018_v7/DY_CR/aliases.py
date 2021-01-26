@@ -110,14 +110,6 @@ aliases['nCleanGenJet'] = {
 # }
 
 
-# DY data-driven shape correction
-
-aliases['shape_corr_DY'] = {
-    'expr': '((0.56960943547 + 0.00765274121374 * mth) * zeroJet + (0.781155261603 + 0.000268909273257 * mth + 1.32757759568e-05 * mth * mth) * oneJet + (0.839514849495 + 0.00173226337506 * mth) * 2jggH) * (Lepton_pdgId[0] * Lepton_pdgId[1] = -11*11) + ((0.536588837954 + 0.00824591942529 * mth) * zeroJet + (0.759553897216 + 0.000258537189195 * mth + 1.24012212162e-05 * mth * mth) * oneJet + (0.787493526437 + 0.00158575548001 * mth) * 2jggH) * (Lepton_pdgId[0] * Lepton_pdgId[1] = -13*13)',
-    'samples': ['DY']
-}
-
-
 ##### DY Z pT reweighting
 aliases['getGenZpt_OTF'] = {
     'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/patches/getGenZpt.cc+' % os.getenv('CMSSW_BASE')],
@@ -193,6 +185,15 @@ aliases['bVeto'] = {
 aliases['bReq'] = {
     'expr': 'Sum$(CleanJet_pt > 30. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.1241) >= 1'
 }
+
+
+# DY data-driven shape correction
+
+aliases['shape_corr_DY'] = {
+    'expr': '((0.56960943547 + 0.00765274121374 * mth) * zeroJet + (0.781155261603 + 0.000268909273257 * mth + 1.32757759568e-05 * mth * mth) * oneJet + (0.839514849495 + 0.00173226337506  * mth) * 2jggH) * (Lepton_pdgId[0] * Lepton_pdgId[1] == -11*11) + ((0.536588837954 + 0.00824591942529  * mth) * zeroJet + (0.759553897216 + 0.000258537189195 * mth + 1.24012212162e-05 * mth * mth) * oneJet + (0.787493526437 + 0.00158575548001  * mth) * 2jggH) * (Lepton_pdgId[0] * Lepton_pdgId[1] == -13*13)',
+    'samples': ['DY']
+}
+
 
 # CR definitions
 

@@ -1,4 +1,4 @@
-supercut = '    mll>12 \
+supercut = '   mll>12 \
             && Lepton_pt[0]>25 \
             && Lepton_pt[1]>10 \
             && (abs(Lepton_pdgId[1])==13 || Lepton_pt[1]>13) \
@@ -8,7 +8,7 @@ supercut = '    mll>12 \
             && PuppiMET_pt > 20 \
            '
 
-# DY Control Regions: ee/uu * (0/1/2 jet + VBF + VH)
+# DY control regions: ee/uu * (0/1/2 jet + VBF + VH)
 
 cuts['0j'] = {
    'expr': 'zeroJet && bVeto' ,
