@@ -90,7 +90,7 @@ nuisances['lumi_Ghosts'] = {
     'type': 'lnN',
     'samples': dict((skey, '1.001') for skey in mc if skey not in ['WW', 'top', 'DY'])
 }
-'''
+
 #### FAKES
 
 nuisances['fake_syst_em'] = {
@@ -783,7 +783,7 @@ nuisances['QCDscale_gg_ACCEPT'] = {
     },
     'type': 'lnN',
 }
-'''
+
 ## Use the following if you want to apply the automatic combine MC stat nuisances.
 nuisances['stat'] = {
     'type': 'auto',
@@ -793,7 +793,7 @@ nuisances['stat'] = {
     #  nuisance ['includeSignal'] =  Include MC stat nuisances on signal processes (1=True, 0=False)
     'samples': {}
 }
-'''
+
 ## rate parameters
 nuisances['DYttnorm0j']  = {
                'name'  : 'CMS_hww_DYttnorm0j',
@@ -821,7 +821,7 @@ nuisances['DYttnorm2j']  = {
                  'type'  : 'rateParam',
                  'cuts'  : cuts2j
                 }
-'''
+
 '''
 nuisances['DYembnorm0j']  = {
                'name'  : 'CMS_hww_DYttnorm0j',
@@ -904,7 +904,7 @@ nuisances['ggWWnorm2j']  = {
                'cuts'  : cuts2j
               }
 '''
-'''
+
 nuisances['Topnorm0j']  = {
                'name'  : 'CMS_hww_Topnorm0j',
                'samples'  : {
@@ -931,7 +931,7 @@ nuisances['Topnorm2j']  = {
                'type'  : 'rateParam',
                'cuts'  : cuts2j
               }
-'''
+
 
 for n in nuisances.values():
     n['skipCMS'] = 1

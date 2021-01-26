@@ -49,14 +49,26 @@ variables['mll']  = {   'name': 'mll',            #   variable name
                         'xaxis' : 'm_{ll} [GeV]',  #   x axis name
                         'fold' :3
                         }
-
-variables['mjj']  = {   'name': 'mjj',            #   variable name    
-                        'range' : (10,500,3000),    #   variable range
-                        'xaxis' : 'm_{jj} [GeV]',  #   x axis name
-                        'fold' :3
+'''
+variables['mjj_2bin'] = {   'name': 'mjj',            #   variable name    
+                            'range' : ([500, 1000., 3000],),    #   variable range
+                            'xaxis' : 'm_{jj} [GeV]',  #   x axis name
+                            'fold' :3
                         }
 
-variables['mjj_merged']  = {   'name': 'mjj',            #   variable name    
+variables['mjj_750']  = {   'name': 'mjj',            #   variable name    
+                            'range' : ([500, 750., 1500., 3000],),    #   variable range
+                            'xaxis' : 'm_{jj} [GeV]',  #   x axis name
+                            'fold' :3
+                        }
+
+variables['mjj_1000'] = {   'name': 'mjj',            #   variable name    
+                            'range' : ([500., 1000., 1500., 3000],),    #   variable range
+                            'xaxis' : 'm_{jj} [GeV]',  #   x axis name
+                            'fold' :3
+                        }
+'''
+variables['mjj']  = {   'name': 'mjj',            #   variable name    
                         'range' : ([500, 750., 1000., 1500., 2000., 3000],),    #   variable range
                         'xaxis' : 'm_{jj} [GeV]',  #   x axis name
                         'fold' :3

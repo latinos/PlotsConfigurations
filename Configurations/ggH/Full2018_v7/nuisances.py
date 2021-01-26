@@ -262,7 +262,7 @@ for js in jes_systs:
 
 ##### Jet energy resolution
 nuisances['JER'] = {
-    'name': 'CMS_res_j_2017',
+    'name': 'CMS_res_j_2018',
     'kind': 'suffix',
     'type': 'shape',
     'mapUp': 'JERup',

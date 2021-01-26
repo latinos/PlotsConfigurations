@@ -270,8 +270,7 @@ for js in jes_systs:
       'AsLnN': '1'
   }
 
-# Currently not working
-# ##### Jet energy resolution
+##### Jet energy resolution
 # nuisances['JER'] = {
 #     'name': 'CMS_res_j_2017',
 #     'kind': 'suffix',
@@ -317,12 +316,12 @@ nuisances['PU'] = {
 ### PU ID SF uncertainty
 puid_syst = ['Jet_PUIDSF_up/Jet_PUIDSF', 'Jet_PUIDSF_down/Jet_PUIDSF']
 
-# nuisances['jetPUID'] = {
-#     'name': 'CMS_PUID',
-#     'kind': 'weight',
-#     'type': 'shape',
-#     'samples': dict((skey, puid_syst) for skey in mc if skey not in ['DY'])
-# }
+nuisances['jetPUID'] = {
+    'name': 'CMS_PUID_2017',
+    'kind': 'weight',
+    'type': 'shape',
+    'samples': dict((skey, puid_syst) for skey in mc if skey not in ['DY'])
+}
 
 ##### PS
 #### PSWeights are buggy for most of the 2017 v6 samples, therefore we use the 2016 treatment

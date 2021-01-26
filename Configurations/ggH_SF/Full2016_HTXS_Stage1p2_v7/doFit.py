@@ -71,6 +71,6 @@ for sample in sampleNames:
   command+="{}=1,".format(poi)
 
 command = command[:-1]
-command=command+" > FitResults.txt"
+command = command + " > FitResults.txt"
 print command
-os.system(command)
+#os.system(command)

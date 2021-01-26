@@ -36,3 +36,19 @@ variables['dymva_alt_dnn_VH']  = {
     'xaxis' : 'DYMVA_{VH}',
     'fold'  : 3
 }
+
+# Just for plotting, not used for computing R, k, or Acc.
+
+variables['ptll']  = { 
+    'name'  : 'ptll',
+    'range' : (40, 0., 200.),
+    'xaxis' : 'p_{T}^{ll} [GeV]',
+    'fold'  : 0
+}
+
+variables['puppimet'] = { 
+    'name'  : 'PuppiMET_pt',
+    'range' : (50, 0., 150.),
+    'xaxis' : 'puppi MET [GeV]',
+    'fold'  : 0
+}

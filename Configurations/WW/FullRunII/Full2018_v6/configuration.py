@@ -2,7 +2,7 @@
 
 treeName = 'Events'
 
-tag = 'DY_validation_loose_2017_v7'
+tag = 'WW2018_v6'
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFile'
@@ -14,7 +14,7 @@ aliasesFile = 'aliases.py'
 variablesFile = 'variables.py'
 
 # file with list of cuts
-cutsFile = 'cuts_loose.py' 
+cutsFile = 'cuts.py' 
 
 # file with list of samples
 samplesFile = 'samples.py' 
@@ -23,11 +23,11 @@ samplesFile = 'samples.py'
 plotFile = 'plot.py' 
 
 # luminosity to normalize to (in 1/fb)
-lumi = 41.53
+lumi = 59.74
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'plots_' + tag
+outputDirPlots = 'plots'+tag
 
 # used by mkDatacards to define output directory for datacards
 outputDirDatacard = 'datacards'

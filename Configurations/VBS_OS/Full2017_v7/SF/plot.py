@@ -35,7 +35,7 @@ groupPlot['DY']  = {
                   'nameHR' : "DY",
                   'isSignal' : 0,
                   'color': 418,    # kGreen+2
-                  'samples'  : ['DY', 'Dyemb']
+                  'samples'  : ['DY_lowZ', 'DY_highZ']
               }
 
 '''
@@ -104,16 +104,14 @@ groupPlot['VBS']  = {
 
 # keys here must match keys in samples.py    
 #                    
-plot['DY']  = {  
+plot['DY_lowZ']  = {  
                   'color': 418,    # kGreen+2
                   'isSignal' : 0,
                   'isData'   : 0, 
                   'scale'    : 1.0,
               }
 
-
-if useEmbeddedDY:
-  plot['Dyemb']  = {  
+plot['DY_highZ']  = {  
                   'color': 418,    # kGreen+2
                   'isSignal' : 0,
                   'isData'   : 0, 
@@ -367,7 +365,7 @@ plot['DATA']  = {
 
 # additional options
 
-legend['lumi'] = 'L = 59.7/fb'
+legend['lumi'] = 'L = 41.5/fb'
 
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
 

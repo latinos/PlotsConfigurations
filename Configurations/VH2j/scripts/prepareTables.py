@@ -46,10 +46,40 @@ list_datacards = {}
 #list_datacards [ '2017_v6_hww2l2v_13TeV_2j_vh_ee'  ] = [ '../../qqH_SF/Full2017_v6/datacards/hww2l2v_13TeV_2j_vh_ee/events/datacard.txt',  'False' ]
 #list_datacards [ '2017_v6_hww2l2v_13TeV_2j_vh_mm'  ] = [ '../../qqH_SF/Full2017_v6/datacards/hww2l2v_13TeV_2j_vh_mm/events/datacard.txt',  'False' ]
 
-list_datacards [ '2018_v6_hww2l2v_13TeV_2j_vbf_ee' ] = [ '../../qqH_SF/Full2018_v6/datacards/hww2l2v_13TeV_2j_vbf_ee/events/datacard.txt', 'False' ]
-list_datacards [ '2018_v6_hww2l2v_13TeV_2j_vbf_mm' ] = [ '../../qqH_SF/Full2018_v6/datacards/hww2l2v_13TeV_2j_vbf_mm/events/datacard.txt', 'False' ]
-list_datacards [ '2018_v6_hww2l2v_13TeV_2j_vh_ee'  ] = [ '../../qqH_SF/Full2018_v6/datacards/hww2l2v_13TeV_2j_vh_ee/events/datacard.txt',  'False' ]
-list_datacards [ '2018_v6_hww2l2v_13TeV_2j_vh_mm'  ] = [ '../../qqH_SF/Full2018_v6/datacards/hww2l2v_13TeV_2j_vh_mm/events/datacard.txt',  'False' ]
+
+# old
+list_datacards [ 'old_2016_v6_hww2l2v_13TeV_2j_vbf_ee' ] = [ '../../qqH_SF/Full2016_v6/datacards_old/hww2l2v_13TeV_2j_vbf_ee/events/datacard.txt', 'True' ]
+list_datacards [ 'old_2016_v6_hww2l2v_13TeV_2j_vbf_mm' ] = [ '../../qqH_SF/Full2016_v6/datacards_old/hww2l2v_13TeV_2j_vbf_mm/events/datacard.txt', 'True' ]
+list_datacards [ 'old_2016_v6_hww2l2v_13TeV_2j_vh_ee'  ] = [ '../../qqH_SF/Full2016_v6/datacards_old/hww2l2v_13TeV_2j_vh_ee/events/datacard.txt',  'True' ]
+list_datacards [ 'old_2016_v6_hww2l2v_13TeV_2j_vh_mm'  ] = [ '../../qqH_SF/Full2016_v6/datacards_old/hww2l2v_13TeV_2j_vh_mm/events/datacard.txt',  'True' ]
+
+list_datacards [ 'old_2017_v6_hww2l2v_13TeV_2j_vbf_ee' ] = [ '../../qqH_SF/Full2017_v6/datacards_old/hww2l2v_13TeV_2j_vbf_ee/events/datacard.txt', 'True' ]
+list_datacards [ 'old_2017_v6_hww2l2v_13TeV_2j_vbf_mm' ] = [ '../../qqH_SF/Full2017_v6/datacards_old/hww2l2v_13TeV_2j_vbf_mm/events/datacard.txt', 'True' ]
+list_datacards [ 'old_2017_v6_hww2l2v_13TeV_2j_vh_ee'  ] = [ '../../qqH_SF/Full2017_v6/datacards_old/hww2l2v_13TeV_2j_vh_ee/events/datacard.txt',  'True' ]
+list_datacards [ 'old_2017_v6_hww2l2v_13TeV_2j_vh_mm'  ] = [ '../../qqH_SF/Full2017_v6/datacards_old/hww2l2v_13TeV_2j_vh_mm/events/datacard.txt',  'True' ]
+
+list_datacards [ 'old_2018_v6_hww2l2v_13TeV_2j_vbf_ee' ] = [ '../../qqH_SF/Full2018_v6/datacards_old/hww2l2v_13TeV_2j_vbf_ee/events/datacard.txt', 'True' ]
+list_datacards [ 'old_2018_v6_hww2l2v_13TeV_2j_vbf_mm' ] = [ '../../qqH_SF/Full2018_v6/datacards_old/hww2l2v_13TeV_2j_vbf_mm/events/datacard.txt', 'True' ]
+list_datacards [ 'old_2018_v6_hww2l2v_13TeV_2j_vh_ee'  ] = [ '../../qqH_SF/Full2018_v6/datacards_old/hww2l2v_13TeV_2j_vh_ee/events/datacard.txt',  'True' ]
+list_datacards [ 'old_2018_v6_hww2l2v_13TeV_2j_vh_mm'  ] = [ '../../qqH_SF/Full2018_v6/datacards_old/hww2l2v_13TeV_2j_vh_mm/events/datacard.txt',  'True' ]
+
+
+# newMuWP
+list_datacards [ 'newMuWP_2016_v6_hww2l2v_13TeV_2j_vbf_ee' ] = [ '../../qqH_SF/Full2016_v6/datacards_newMuWP/hww2l2v_13TeV_2j_vbf_ee/events/datacard.txt', 'True' ]
+list_datacards [ 'newMuWP_2016_v6_hww2l2v_13TeV_2j_vbf_mm' ] = [ '../../qqH_SF/Full2016_v6/datacards_newMuWP/hww2l2v_13TeV_2j_vbf_mm/events/datacard.txt', 'True' ]
+list_datacards [ 'newMuWP_2016_v6_hww2l2v_13TeV_2j_vh_ee'  ] = [ '../../qqH_SF/Full2016_v6/datacards_newMuWP/hww2l2v_13TeV_2j_vh_ee/events/datacard.txt',  'True' ]
+list_datacards [ 'newMuWP_2016_v6_hww2l2v_13TeV_2j_vh_mm'  ] = [ '../../qqH_SF/Full2016_v6/datacards_newMuWP/hww2l2v_13TeV_2j_vh_mm/events/datacard.txt',  'True' ]
+
+list_datacards [ 'newMuWP_2017_v6_hww2l2v_13TeV_2j_vbf_ee' ] = [ '../../qqH_SF/Full2017_v6/datacards_newMuWP/hww2l2v_13TeV_2j_vbf_ee/events/datacard.txt', 'True' ]
+list_datacards [ 'newMuWP_2017_v6_hww2l2v_13TeV_2j_vbf_mm' ] = [ '../../qqH_SF/Full2017_v6/datacards_newMuWP/hww2l2v_13TeV_2j_vbf_mm/events/datacard.txt', 'True' ]
+list_datacards [ 'newMuWP_2017_v6_hww2l2v_13TeV_2j_vh_ee'  ] = [ '../../qqH_SF/Full2017_v6/datacards_newMuWP/hww2l2v_13TeV_2j_vh_ee/events/datacard.txt',  'True' ]
+list_datacards [ 'newMuWP_2017_v6_hww2l2v_13TeV_2j_vh_mm'  ] = [ '../../qqH_SF/Full2017_v6/datacards_newMuWP/hww2l2v_13TeV_2j_vh_mm/events/datacard.txt',  'True' ]
+
+list_datacards [ 'newMuWP_2018_v6_hww2l2v_13TeV_2j_vbf_ee' ] = [ '../../qqH_SF/Full2018_v6/datacards_newMuWP/hww2l2v_13TeV_2j_vbf_ee/events/datacard.txt', 'True' ]
+list_datacards [ 'newMuWP_2018_v6_hww2l2v_13TeV_2j_vbf_mm' ] = [ '../../qqH_SF/Full2018_v6/datacards_newMuWP/hww2l2v_13TeV_2j_vbf_mm/events/datacard.txt', 'True' ]
+list_datacards [ 'newMuWP_2018_v6_hww2l2v_13TeV_2j_vh_ee'  ] = [ '../../qqH_SF/Full2018_v6/datacards_newMuWP/hww2l2v_13TeV_2j_vh_ee/events/datacard.txt',  'True' ]
+list_datacards [ 'newMuWP_2018_v6_hww2l2v_13TeV_2j_vh_mm'  ] = [ '../../qqH_SF/Full2018_v6/datacards_newMuWP/hww2l2v_13TeV_2j_vh_mm/events/datacard.txt',  'True' ]
+
 
 for datacardName, datacard in list_datacards.iteritems() :
   print ""

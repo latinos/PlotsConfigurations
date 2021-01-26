@@ -63,17 +63,47 @@ Actual cards combination:
 
 ### Produce Impact Plots
 
+Prepare directory:
+
+    mkdir -p Impact_plots_VH2j
+
+Source combine:
+
+    cd $HOME/work/combine/CMSSW_10_2_13/src/
+    cmsenv
+    cd -
+
+    ulimit -s unlimited
+
+Impact plots:
+
     text2workspace.py datacards/hww2l2v_13TeV_vh/mll/datacard.txt -o datacards/hww2l2v_13TeV_vh/mll/datacard.root
 
-    combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_vh/mll/datacard.root -m 125 --doInitialFit --rMin=-2 --robustFit 1 --expectSignal=1 -t -1 > datacards/hww2l2v_13TeV_vh/mll/Initial_fit.root
+    combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_vh/mll/datacard.root -m 125 --doInitialFit -t -1 --expectSignal=1 --X-rtd MINIMIZER_analytic --cminDefaultMinimizerStrategy=0 --rMin=-6 --rMax=10
 
-    combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_vh/mll/datacard.root -m 125 --robustFit 1 --rMin=-2 --doFits --job-mode=interactive --parallel=10 --expectSignal=1 -t -1 
+    combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_vh/mll/datacard.root -m 125 --doFits -t -1 --expectSignal=1 --X-rtd MINIMIZER_analytic --cminDefaultMinimizerStrategy=0 --job-mode=interactive --parallel=10 --rMin=-6 --rMax=10
 
-    combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_vh/mll/datacard.root -m 125 --rMin=-2 -o datacards/hww2l2v_13TeV_vh/mll/impatcs.json
+    combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_vh/mll/datacard.root -m 125 -t -1 --X-rtd MINIMIZER_analytic --cminDefaultMinimizerStrategy=0 -o datacards/hww2l2v_13TeV_vh/mll/impatcs.json
     
-    plotImpacts.py -i datacards/hww2l2v_13TeV_vh/mll/impatcs.json -o datacards/hww2l2v_13TeV_vh/mll/impatcs
+    plotImpacts.py -i datacards/hww2l2v_13TeV_vh/mll/impatcs.json -o Impact_plots_VH2j/impatcs
 
-Clean up:
+    rm higgsCombine_*
 
-    rm higgsCombine* combine_logger.out fitDiagnostics.root	       
+### Produce cumulative plots for the three years 2016 + 2017 + 2018
 
+    mkPlot.py --inputFile rootFile/plots_VH2j_2016_v7.root                --nuisancesFile nuisances.py                --onlyVariable mll --onlyCut hww2l2v_13TeV_2j_vh_em --outputDirPlots plots_2016 --removeWeight --plotFile plot_blind.py
+
+    mkPlot.py --inputFile ../Full2017_v7/rootFile/plots_VH2j_2017_v7.root --nuisancesFile ../Full2017_v7/nuisances.py --onlyVariable mll --onlyCut hww2l2v_13TeV_2j_vh_em --outputDirPlots plots_2017 --removeWeight --plotFile ../Full2017_v7/plot_blind.py
+
+    mkPlot.py --inputFile ../Full2018_v7/rootFile/plots_VH2j_2018_v7.root --nuisancesFile ../Full2018_v7/nuisances.py --onlyVariable mll --onlyCut hww2l2v_13TeV_2j_vh_em --outputDirPlots plots_2018 --removeWeight --plotFile ../Full2018_v7/plot_blind.py
+
+
+    mkCombinedPlot.py --pycfg=configuration.py  --inputCutsList=cuts_to_merge_VH2j.py \
+                      --outputDirPlots=plots_VH2j_cumulative \
+                      --variable=mll \
+                      --minvariable=0           --maxvariable=200 \
+                      --variableHR="m_{ll} [GeV]" \
+                      --getVarFromFile=1  \
+                      --divideByBinWidth \
+		      --plotFile plot_blind_run2.py \
+		      --yAxisTitle="Events"

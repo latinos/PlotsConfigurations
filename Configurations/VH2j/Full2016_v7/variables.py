@@ -2,10 +2,21 @@
 
 # Used in the AN
 
+variables['events'] = {   
+    'name'  : '1',
+    'range' : (1, 0, 2),
+    'xaxis' : 'events',
+    'fold'  : 3
+}
+
 variables['mll'] = {     
     'name'  : 'mll',
     'range' : (8, 0., 200.),
+    'doWeight' : 1,
+    'binX'     : 1,
+    'binY'     : 8,
     'xaxis' : 'm_{ll} [GeV]',
+    'yaxis' : 'Events',
     'fold'  : 0
 }
 
@@ -85,11 +96,6 @@ variables['mll10GeV'] = {
 # variables['eta2'] = {     'name'  : 'Lepton_eta[1]',     
 #                           'range' : (40, -3.2, 3.2),
 #                           'xaxis' : '#eta 2nd lepton',
-#                           'fold'  : 3}
-
-# variables['events'] = {   'name'  : '1',
-#                           'range' : (1, 0, 2),
-#                           'xaxis' : 'events',
 #                           'fold'  : 3}
 
 # variables['jeteta1'] = {  'name'  : 'CleanJet_eta[0]',

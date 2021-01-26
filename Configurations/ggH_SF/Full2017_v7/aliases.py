@@ -303,12 +303,6 @@ elif btag_algo=="deepflav":
             'samples': mc
         }
 
-# aliases['ttHMVA_SF_2l'] = {'linesToAdd': ['.L %s/patches/compute_SF.C+' % configurations],
-#                            'class': 'compute_SF',
-#                            'args' : ('2017', 2, 'total_SF'),
-#                            'samples': mc
-#                           }
-
 aliases['Jet_PUIDSF'] = { 
   'expr' : 'TMath::Exp(Sum$((Jet_jetId>=2)*TMath::Log(Jet_PUIDSF_loose)))',
   'samples': mc

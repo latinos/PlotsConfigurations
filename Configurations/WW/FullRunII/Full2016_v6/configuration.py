@@ -3,8 +3,8 @@
 treeName = 'Events'
 
 #tag = 'WW2016_v6'
-#tag = 'WW2016_cutbased'
-tag = 'WW2016_tthMVA'
+tag = 'WW2016_cutbased_blinded'
+#tag = 'WW2016_tthMVA'
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFile'

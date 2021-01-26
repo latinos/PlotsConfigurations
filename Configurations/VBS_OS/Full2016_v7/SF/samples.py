@@ -6,7 +6,7 @@ configurations = os.path.dirname(configurations) # ggH2016
 configurations = os.path.dirname(configurations) # Differential
 configurations = os.path.dirname(configurations) # Configurations
 
-from LatinoAnalysis.Tools.commonTools import getSampleFiles, getBaseW, addSampleWeight
+from LatinoAnalysis.Tools.commonTools import getSampleFiles, getBaseW, getBaseWnAOD, addSampleWeight
 
 def nanoGetSampleFiles(inputDir, sample):
     try:
@@ -141,8 +141,8 @@ samples['DY'] = {
     'weight': mcCommonWeight + '*( !(Sum$(PhotonGen_isPrompt==1 && PhotonGen_pt>15 && abs(PhotonGen_eta)<2.6) > 0))',
     'FilesPerJob': 4,
     'subsamples': {
-      'lowZ'    : 'lowZ',
-      'highZ'   : 'highZ'
+      'lowZ'    : 'LowZ',
+      'highZ'   : 'HighZ'
     }
 }
 
@@ -154,7 +154,7 @@ CombineBaseW(samples, 'DY', ['DYJetsToLL_M-5to50_HT-200to400' , 'DYJetsToLL_M-5t
 CombineBaseW(samples, 'DY', ['DYJetsToLL_M-5to50_HT-400to600' , 'DYJetsToLL_M-5to50_HT-400to600_ext1'])
 CombineBaseW(samples, 'DY', ['DYJetsToLL_M-5to50_HT-600toinf' , 'DYJetsToLL_M-5to50_HT-600toinf_ext1'])
 
-addSampleWeight(samples, 'DY', 'DYJetsToLL_M-50',                       'DY_NLO_pTllrw*(LHE_HT < 70)')
+addSampleWeight(samples, 'DY', 'DYJetsToLL_M-50_ext2',                  'DY_NLO_pTllrw*(LHE_HT < 70)')
 addSampleWeight(samples, 'DY', 'DYJetsToLL_M-10to50',                   'DY_NLO_pTllrw*(LHE_HT < 70)')
 addSampleWeight(samples, 'DY', 'DYJetsToLL_M-10to50_ext1',              'DY_NLO_pTllrw*(LHE_HT < 70)')
 addSampleWeight(samples, 'DY', 'DYJetsToLL_M-50_HT-70to100',            'DY_LO_pTllrw')

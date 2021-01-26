@@ -35,7 +35,7 @@ groupPlot['DY']  = {
                   'nameHR' : "DY",
                   'isSignal' : 0,
                   'color': 418,    # kGreen+2
-                  'samples'  : ['DY', 'Dyemb']
+                  'samples'  : ['DY_lowZ', 'DY_highZ']
               }
 
 '''
@@ -80,7 +80,7 @@ groupPlot['Higgs']  = {
                   'nameHR' : 'Higgs',
                   'isSignal' : 0,
                   'color': 632, # kRed 
-		  'samples'  : ['H_htt', 'H_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww','bbH_hww','ttH_hww','ZH_htt', 'ggZH_htt', 'WH_htt', 'qqH_htt', 'ggH_htt','bbH_htt','ttH_htt' ]
+		  'samples'  : ['H_htt', 'H_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww','bbH_hww','ttH_hww','ZH_htt', 'ggZH_htt', 'WH_htt', 'ggH_htt','bbH_htt','ttH_htt' ]
 		  #'samples'  : ['H_htt', 'H_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww','bbH_hww','ttH_hww', 'qqH_htt', 'ggH_htt' ]
               }
 
@@ -104,21 +104,20 @@ groupPlot['VBS']  = {
 
 # keys here must match keys in samples.py    
 #                    
-plot['DY']  = {  
+plot['DY_lowZ']  = {  
                   'color': 418,    # kGreen+2
                   'isSignal' : 0,
                   'isData'   : 0, 
                   'scale'    : 1.0,
               }
 
-
-if useEmbeddedDY:
-  plot['Dyemb']  = {  
+plot['DY_highZ']  = {  
                   'color': 418,    # kGreen+2
                   'isSignal' : 0,
                   'isData'   : 0, 
                   'scale'    : 1.0,
               }
+
 
 plot['Zjj']  = {  
                   'color': 600,    # kBlue
@@ -266,13 +265,13 @@ plot['WH_htt'] = {
                   }
 
 
-plot['qqH_htt'] = {
-                  'nameHR' : 'qqHtt',
-                  'color': 632+1, # kRed+1 
-                  'isSignal' : 0,
-                  'isData'   : 0,    
-                  'scale'    : 1    #
-                  }
+#plot['qqH_htt'] = {
+#                  'nameHR' : 'qqHtt',
+#                  'color': 632+1, # kRed+1 
+#                  'isSignal' : 0,
+#                  'isData'   : 0,    
+#                  'scale'    : 1    #
+#                  }
 
 
 plot['ggH_htt'] = {
@@ -367,7 +366,7 @@ plot['DATA']  = {
 
 # additional options
 
-legend['lumi'] = 'L = 59.7/fb'
+legend['lumi'] = 'L = 35.9/fb'
 
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
 

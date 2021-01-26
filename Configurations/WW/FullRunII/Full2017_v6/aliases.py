@@ -203,8 +203,8 @@ aliases['ttHMVA_SF_2l'] = {'linesToAdd': ['.L %s/patches/compute_SF.C+' % config
 
 # data/MC scale factors
 aliases['SFweight'] = {
-    'expr': ' * '.join(['SFweight2l', 'ttHMVA_SF_2l', 'LepWPCut', 'btagSF', 'PrefireWeight','PUJetIdSF']),
-    #'expr': ' * '.join(['SFweight2l', 'LepSF2l', 'LepWPCut', 'btagSF', 'PrefireWeight','PUJetIdSF']),
+#    'expr': ' * '.join(['SFweight2l', 'ttHMVA_SF_2l', 'LepWPCut', 'btagSF', 'PrefireWeight','PUJetIdSF']),
+    'expr': ' * '.join(['SFweight2l', 'LepSF2l', 'LepWPCut', 'btagSF', 'PrefireWeight','PUJetIdSF']),
     #'expr': ' * '.join(['SFweight2l']),
     'samples': mc
 }

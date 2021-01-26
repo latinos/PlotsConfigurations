@@ -251,7 +251,7 @@ nuisances['PS_ISR_1jet']  = {
         'hww2l2v_13TeV_of2j_WH_SS_uu_1j_ptv_gt150',
         'hww2l2v_13TeV_of2j_WH_SS_ee_1j_ptv_gt150',
         'hww2l2v_13TeV_of2j_WH_SS_eu_1j_ptv_gt150',
-        'hww2l2v_13TeV_of2j_WH_SS_WZ_1j',
+        #'hww2l2v_13TeV_of2j_WH_SS_WZ_1j',
         'zh3l_WZ_CR_1j',
      ]
 }
@@ -275,7 +275,7 @@ nuisances['PS_ISR_2jet']  = {
         'hww2l2v_13TeV_of2j_WH_SS_uu_2j_ptv_gt150',
         'hww2l2v_13TeV_of2j_WH_SS_ee_2j_ptv_gt150',
         'hww2l2v_13TeV_of2j_WH_SS_eu_2j_ptv_gt150',
-        'hww2l2v_13TeV_of2j_WH_SS_WZ_2j',
+        #'hww2l2v_13TeV_of2j_WH_SS_WZ_2j',
         'zh3l_WZ_CR_2j',
      ]
               
@@ -300,7 +300,7 @@ nuisances['PS_FSR_1jet']  = {
         'hww2l2v_13TeV_of2j_WH_SS_uu_1j_ptv_gt150',
         'hww2l2v_13TeV_of2j_WH_SS_ee_1j_ptv_gt150',
         'hww2l2v_13TeV_of2j_WH_SS_eu_1j_ptv_gt150',
-        'hww2l2v_13TeV_of2j_WH_SS_WZ_1j',
+        #'hww2l2v_13TeV_of2j_WH_SS_WZ_1j',
         'zh3l_WZ_CR_1j',
      ]
 }
@@ -324,7 +324,7 @@ nuisances['PS_FSR_2jet']  = {
         'hww2l2v_13TeV_of2j_WH_SS_uu_2j_ptv_gt150',
         'hww2l2v_13TeV_of2j_WH_SS_ee_2j_ptv_gt150',
         'hww2l2v_13TeV_of2j_WH_SS_eu_2j_ptv_gt150',
-        'hww2l2v_13TeV_of2j_WH_SS_WZ_2j',
+        #'hww2l2v_13TeV_of2j_WH_SS_WZ_2j',
         'zh3l_WZ_CR_2j',
      ]
 }
@@ -335,6 +335,14 @@ nuisances['UE_whss']  = {
                 'skipCMS' : 1,
                 'type': 'lnN',
                 'samples': dict((skey, '1.015') for skey in mc),
+}
+
+## Charge flip SF                                                                                                                                                                        
+nuisances['chargeFlip'] = {
+    'name': 'CMS_whss_chargeFlip',
+    'kind': 'weight',
+    'type': 'shape',
+    'samples': dict((skey, ['1-ttHMVA_SF_err_flip_2l[0]', '1+ttHMVA_SF_err_flip_2l[0]']) for skey in ['DY','WW','top']),
 }
 
 ###### pdf uncertainties
