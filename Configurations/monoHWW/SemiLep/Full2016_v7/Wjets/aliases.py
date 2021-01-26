@@ -281,11 +281,21 @@ aliases['newBDT_Grad11'] = {
 }
 
 # Wjets Vpt SF
+# LO to NLOpt
+#aliases['VptSF'] = {
+#    'expr': '(LHE_Vpt < 100.) + \
+#             (LHE_Vpt > 100. && LHE_Vpt < 250.)*1.0072653458 + \
+#             (LHE_Vpt > 250. && LHE_Vpt < 400.)*0.904452152293 + \
+#             (LHE_Vpt > 400. && LHE_Vpt < 600.)*0.835180817618 + \
+#             (LHE_Vpt > 600.)*1.05379095752 ',
+#    'samples': ['Wjets_HTsf'],
+#}
+# HT to NLOpt
 aliases['VptSF'] = {
-    'expr': '(LHE_Vpt < 100.) + \
-             (LHE_Vpt > 100. && LHE_Vpt < 250.)*1.0072653458 + \
-             (LHE_Vpt > 250. && LHE_Vpt < 400.)*0.904452152293 + \
-             (LHE_Vpt > 400. && LHE_Vpt < 600.)*0.835180817618 + \
-             (LHE_Vpt > 600.)*1.05379095752 ',
+    'expr': '(LHE_Vpt < 100.)*1.00938328954 + \
+             (LHE_Vpt > 100. && LHE_Vpt < 250.)*1.00938328954 + \
+             (LHE_Vpt > 250. && LHE_Vpt < 400.)*0.886890353455 + \
+             (LHE_Vpt > 400. && LHE_Vpt < 600.)*0.805548635994 + \
+             (LHE_Vpt > 600.)*0.726442956827 ',
     'samples': ['Wjets_HTsf'],
 }

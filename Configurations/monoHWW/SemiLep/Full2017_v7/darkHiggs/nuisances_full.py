@@ -43,12 +43,13 @@ def makeSuffixVar(name, fix, cuts=None, folder_fix=None):
     if not cuts is None: nuis['cuts'] = cuts
     f_fix = fix
     if not folder_fix is None: f_fix = folder_fix
-    
-    nuis_VBS = copy.deepcopy(nuis)
-    nuis_VBS['samples']    = dict((skey, ['1.', '1.']) for skey in mc_VBS)
-    nuis_VBS['folderUp']   = makeMCDirectory(var=f_fix+'up', base='/eos/cms/store/group/phys_smp/VJets_NLO_VBSanalyses')    
-    nuis_VBS['folderDown'] = makeMCDirectory(var=f_fix+'do', base='/eos/cms/store/group/phys_smp/VJets_NLO_VBSanalyses')    
-    nuisances[name+'_VBS'] = copy.deepcopy(nuis_VBS)
+
+    #if not 'JES' in fix:    
+    #    nuis_VBS = copy.deepcopy(nuis)
+    #    nuis_VBS['samples']    = dict((skey, ['1.', '1.']) for skey in mc_VBS)
+    #    nuis_VBS['folderUp']   = makeMCDirectory(var=f_fix+'up', base='/eos/cms/store/group/phys_smp/VJets_NLO_VBSanalyses')    
+    #    nuis_VBS['folderDown'] = makeMCDirectory(var=f_fix+'do', base='/eos/cms/store/group/phys_smp/VJets_NLO_VBSanalyses')    
+    #    nuisances[name+'_VBS'] = copy.deepcopy(nuis_VBS)
 
     nuis_noVBS = copy.deepcopy(nuis)
     nuis_noVBS['samples']    = dict((skey, ['1.', '1.']) for skey in mc_noVBS)
@@ -182,7 +183,7 @@ nuisances['eff_e'] = {
     'samples': dict((skey, ['SFweightEleUp[0]', 'SFweightEleDown[0]']) for skey in mc)
 }
 
-makeSuffixVar('CMS_scale_e_2017', 'ElepT', cuts=el_cuts)
+makeSuffixVar('CMS_scale_e_2017', 'ElepT')
 
 ##### Muon Efficiency and energy scale
 
@@ -193,7 +194,7 @@ nuisances['eff_m'] = {
     'samples': dict((skey, ['SFweightMuUp[0]', 'SFweightMuDown[0]']) for skey in mc)
 }
 
-makeSuffixVar('CMS_scale_m_2017', 'MupT', cuts=mu_cuts)
+makeSuffixVar('CMS_scale_m_2017', 'MupT')
 
 ##### Jet energy scale
 #jes_systs = ['JESAbsolute','JESAbsolute_2017','JESBBEC1','JESBBEC1_2017','JESEC2','JESEC2_2017','JESFlavorQCD','JESHF','JESHF_2017','JESRelativeBal','JESRelativeSample_2017']
@@ -203,25 +204,15 @@ jes_systs = [
     'JESRelativeSample_2017'
 ]
 
-#for syst in jes_systs:
-#    makeSuffixVar('CMS_scale_'+syst, syst, folder_fix='JES')
+for syst in jes_systs:
+    makeSuffixVar('CMS_scale_'+syst, syst, folder_fix='JES')
 
 ##### Jet energy resolution
 
-makeSuffixVar('CMS _res_j', 'JER')
+makeSuffixVar('CMS_res_j', 'JER')
 
 ##### MET energy scale
 
-#nuisances['met'] = {
-#    'name': 'CMS_scale_met_2017',
-#    'kind': 'suffix',
-#    'type': 'shape',
-#    'mapUp': 'METup',
-#    'mapDown': 'METdo',
-#    'samples': dict((skey, ['1', '1']) for skey in mc),
-#    'folderUp': makeMCDirectory('METup'),
-#    'folderDown': makeMCDirectory('METdo'),
-#}
 makeSuffixVar('CMS_scale_met_2017', 'MET')
 
 ##### Pileup
@@ -722,8 +713,6 @@ nuisances['Wjetsnorm']  = {
         'InCh_SB',
     ]
 }
-
-
 
 for n in nuisances.values():
     n['skipCMS'] = 1

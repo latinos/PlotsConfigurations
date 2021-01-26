@@ -16,8 +16,7 @@ aliasesFile = 'aliases.py'
 variablesFile = 'variables_lim.py'
 
 # file with list of cuts
-#cutsFile = 'cuts.py'
-cutsFile = 'cuts_crs.py'
+cutsFile = 'cuts.py'
 
 # file with list of samples
 samplesFile = 'samples.py'
@@ -40,5 +39,5 @@ outputDirDatacard = 'darkHiggs_lim_datacards'
 structureFile = 'structure.py'
 
 # nuisances file for mkDatacards and for mkShape
-nuisancesFile = 'nuisances.py'
-#nuisancesFile = 'nuisances_full.py'
+#nuisancesFile = 'nuisances.py'
+nuisancesFile = 'nuisances_full.py'

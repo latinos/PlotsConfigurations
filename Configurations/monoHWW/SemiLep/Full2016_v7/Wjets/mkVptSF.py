@@ -8,7 +8,7 @@ cfg = 'conf.py'
 variable = 'LHE_Vpt_bins'
 #variable = 'LHE_Vpt'
 NLO_sample = 'Wjets_NLOpt'
-LO_sample = 'Wjets_LO'
+LO_sample = 'Wjets_HT'
 handle = open(cfg, 'r')
 exec(handle)
 handle.close()

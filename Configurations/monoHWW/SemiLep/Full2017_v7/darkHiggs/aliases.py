@@ -373,19 +373,11 @@ for lep in ['El', 'Mu']:
         aliases['FW_mu'+str(mu_et)+'_el'+str(el_et)+'_statUp'] = {
             'class': 'newFakeWeightOTF',
             'args': (eleWP, muWP, copy.deepcopy(el_fr_file), copy.deepcopy(el_pr_file), copy.deepcopy(mu_fr_file), copy.deepcopy(mu_pr_file), True, False), 
-            #'linesToAdd' : [
-            #    'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-            #    '.L %s/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/Full2017_v7/2HDMa/newfakeweight_OTF.cc+' % os.getenv('CMSSW_BASE')
-            # ],
             'samples': ["FAKE"]
         }
         aliases['FW_mu'+str(mu_et)+'_el'+str(el_et)+'_statDown'] = {
             'class': 'newFakeWeightOTF',
             'args': (eleWP, muWP, copy.deepcopy(el_fr_file), copy.deepcopy(el_pr_file), copy.deepcopy(mu_fr_file), copy.deepcopy(mu_pr_file), False, True), 
-            #'linesToAdd' : [
-            #    'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-            #    '.L %s/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/Full2017_v7/2HDMa/newfakeweight_OTF.cc+' % os.getenv('CMSSW_BASE')
-            # ],
             'samples': ["FAKE"]
         }
 
@@ -428,6 +420,30 @@ aliases['newBDT_Ada13'] = {
     ],
     'class': 'TMVAfillerOTF',
     'args': (var_file_A13, xml_file_A13),
+}
+
+#xml_file_A14 = MVA_folder + 'UATmva_darkHiggsVWjAndTT_2017_BDT_700Trees_AdaBoost_GiniIndex_20Cuts_CostComplexity_12PruneStrength_14Var.weights.xml'
+#var_file_A14 = MVA_folder + 'Ada_14Var_variables.txt'
+#
+#aliases['nloBDT_Ada14'] = {
+#    'linesToAdd': [
+#        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
+#        '.L %s/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/Full2017_v7/darkHiggs/TMVAfiller_OTF.cc+' % os.getenv('CMSSW_BASE')
+#    ],
+#    'class': 'TMVAfillerOTF',
+#    'args': (var_file_A14, xml_file_A14),
+#}
+
+xml_file_A13 = MVA_folder + 'UATmva_darkHiggsVWjAndTT_2017_BDT_125Trees_AdaBoost_GiniIndex_20Cuts_CostComplexity_12PruneStrength_13Var.weights.xml' 
+var_file_A13 = MVA_folder + 'Ada_13Var_variables.txt'
+
+aliases['newBDT_SB_Ada13'] = {
+    'linesToAdd': [
+        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
+        '.L %s/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/Full2017_v7/darkHiggs/TMVAfiller_OTF2.cc+' % os.getenv('CMSSW_BASE')
+    ],
+    'class': 'TMVAfillerOTF2',
+    'args': (var_file_A13, xml_file_A13, True),
 }
 
 xml_file_G11 = MVA_folder + 'UATmva_darkHiggsVWjAndTT_2017_BDT_200Trees_Grad_FalseBagged_0.6BagFrac_1BagShrink_GiniIndex_20Cuts_CostComplexity_12PruneStrength_11Var.weights.xml'

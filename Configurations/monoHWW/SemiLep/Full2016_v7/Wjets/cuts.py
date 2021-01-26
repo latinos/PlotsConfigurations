@@ -37,6 +37,7 @@ veto_b       = ['bVeto']
 veto_b_I     = ['bReq']
 m_jj         = ['(MHlnjj_m_jj > 65. && MHlnjj_m_jj < 105.)']
 m_jj_I       = ['(MHlnjj_m_jj < 65. || MHlnjj_m_jj > 105.)']
+v_pt          = ['LHE_Vpt > 100'] 
 
 SC       = super_cut
 SR       = combinecut([super_cut, mt_lmet  , met  , dphi_l_jj, dphi_ljj_met, dr_l_jj, pt_ljj  , m_jj  , veto_b  , veto_1l  ])
@@ -45,9 +46,11 @@ SB       = combinecut([super_cut, mt_lmet  , met  , dphi_l_jj, dphi_ljj_met, dr_
 TCR      = combinecut([super_cut, mt_lmet  , met  , dphi_l_jj, dphi_ljj_met, dr_l_jj, pt_ljj  , m_jj  , veto_b_I, veto_1l  ])
 DYCR     = combinecut([super_cut, mt_lmet  , met  , dphi_l_jj, dphi_ljj_met, dr_l_jj, pt_ljj  , m_jj  , veto_b  , veto_1l_I])
 QER      = combinecut([super_cut, mt_lmet_I, met_I, dphi_l_jj, dphi_ljj_met, dr_l_jj, pt_ljj  , m_jj  , veto_b  , veto_1l  ])
+Vpt      = combinecut([super_cut, v_pt])
 
 # Electron
 addcut('ElCh_SC'  , combinecut([is_el, SC  ]))
+addcut('ElCh_Vpt' , combinecut([is_el, Vpt ]))
 #addcut('ElCh_SR'  , combinecut([is_el, SR  ]))
 ##addcut('ElCh_CR'  , combinecut([is_el, CR  ]))
 #addcut('ElCh_SB'  , combinecut([is_el, SB  ]))
@@ -57,6 +60,7 @@ addcut('ElCh_SC'  , combinecut([is_el, SC  ]))
 
 # Muon
 addcut('MuCh_SC'  , combinecut([is_mu, SC  ]))
+addcut('MuCh_Vpt' , combinecut([is_mu, Vpt ]))
 #addcut('MuCh_SR'  , combinecut([is_mu, SR  ]))
 ##addcut('MuCh_CR'  , combinecut([is_mu, CR  ]))
 #addcut('MuCh_SB'  , combinecut([is_mu, SB  ]))
@@ -66,6 +70,7 @@ addcut('MuCh_SC'  , combinecut([is_mu, SC  ]))
 
 # Inclusive
 addcut('InCh_SC'  , combinecut([SC  ]))
+addcut('InCh_Vpt' , combinecut([Vpt ]))
 #addcut('InCh_SR'  , combinecut([SR  ]))
 ##addcut('InCh_CR'  , combinecut([CR  ]))
 #addcut('InCh_SB'  , combinecut([SB  ]))

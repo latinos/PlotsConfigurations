@@ -148,6 +148,37 @@ samples['Wjets'] = {
     'FilesPerJob' : 4,
 }
 
+## HT binned
+#files = nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_HT70_100')
+#files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_HT100_200')
+#files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_HT200_400')
+#files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_HT400_600')
+#files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_HT600_800')
+#files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_HT800_1200')
+#files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_HT1200_2500')
+#files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_HT2500_inf')
+#files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-LO')
+#
+#samples['Wjets'] = {
+#    'name'   : files,
+#    'weight' : mcCommonWeight +'*EWKnloW[0]', # ewk nlo correction https://arxiv.org/pdf/1705.04664v2.pdf 
+#    #'weight' : mcCommonWeight + '*ewknloW', 
+#    #'weight' : mcCommonWeight, 
+#    'FilesPerJob' : 4,
+#}
+#
+#addSampleWeight(samples, 'Wjets', 'WJetsToLNu-LO', '(LHE_HT < 70)') 
+#
+## HT stitching from Davide (derived by comparing HT to inclusive LO with only lep pt cuts)
+#addSampleWeight(samples, 'Wjets', 'WJetsToLNu_HT70_100', '1.21 * 0.9582') 
+#addSampleWeight(samples, 'Wjets', 'WJetsToLNu_HT100_200',    '0.9525') 
+#addSampleWeight(samples, 'Wjets', 'WJetsToLNu_HT200_400',    '0.9577') 
+#addSampleWeight(samples, 'Wjets', 'WJetsToLNu_HT400_600',    '0.9613') 
+#addSampleWeight(samples, 'Wjets', 'WJetsToLNu_HT600_800',    '1.0742') 
+#addSampleWeight(samples, 'Wjets', 'WJetsToLNu_HT800_1200',   '1.1698') 
+#addSampleWeight(samples, 'Wjets', 'WJetsToLNu_HT1200_2500',  '1.3046') 
+#addSampleWeight(samples, 'Wjets', 'WJetsToLNu_HT2500_inf',   '2.1910')
+
 
 ################################################
 ############ DATA DECLARATION ##################

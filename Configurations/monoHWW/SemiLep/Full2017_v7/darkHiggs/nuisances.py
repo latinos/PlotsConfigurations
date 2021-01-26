@@ -182,7 +182,7 @@ nuisances['eff_e'] = {
     'samples': dict((skey, ['SFweightEleUp[0]', 'SFweightEleDown[0]']) for skey in mc)
 }
 
-#makeSuffixVar('CMS_scale_e_2017', 'ElepT', cuts=el_cuts)
+#makeSuffixVar('CMS_scale_e_2017', 'ElepT')
 
 ##### Muon Efficiency and energy scale
 
@@ -193,7 +193,7 @@ nuisances['eff_m'] = {
     'samples': dict((skey, ['SFweightMuUp[0]', 'SFweightMuDown[0]']) for skey in mc)
 }
 
-#makeSuffixVar('CMS_scale_m_2017', 'MupT', cuts=mu_cuts)
+#makeSuffixVar('CMS_scale_m_2017', 'MupT')
 
 ##### Jet energy scale
 #jes_systs = ['JESAbsolute','JESAbsolute_2017','JESBBEC1','JESBBEC1_2017','JESEC2','JESEC2_2017','JESFlavorQCD','JESHF','JESHF_2017','JESRelativeBal','JESRelativeSample_2017']
@@ -208,7 +208,7 @@ jes_systs = [
 
 ##### Jet energy resolution
 
-#makeSuffixVar('CMS _res_j', 'JER')
+#makeSuffixVar('CMS_res_j', 'JER')
 
 ##### MET energy scale
 

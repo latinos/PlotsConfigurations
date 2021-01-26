@@ -62,10 +62,10 @@ structure['Vg']  = {
                   'isData'   : 0
                   }
 
-structure['VgS'] = {
-                  'isSignal' : 0,
-                  'isData'   : 0
-                  }
+#structure['VgS'] = {
+#                  'isSignal' : 0,
+#                  'isData'   : 0
+#                  }
 
 structure['VgS_L'] = {
                   'isSignal' : 0,
@@ -82,10 +82,10 @@ structure['VgS_H'] = {
 #                   'isData'   : 0
 #                   }
 
-structure['VBF-V']  = {
-                  'isSignal' : 0,
-                  'isData'   : 0
-                  }
+#structure['VBF-V']  = {
+#                  'isSignal' : 0,
+#                  'isData'   : 0
+#                  }
 structure['WZqcd']  = {
                   'isSignal' : 0,
                   'isData'   : 0

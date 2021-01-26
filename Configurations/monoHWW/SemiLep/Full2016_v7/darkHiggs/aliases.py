@@ -288,6 +288,7 @@ aliases['EWKnloW'] = {
     ],
     'class': 'EWKnloW',
     'samples': "Wjets"
+    #'samples': ['Wjets', 'Wjets_HTsf']
 }
 
 
@@ -392,6 +393,18 @@ aliases['newBDT_Ada13'] = {
     'args': (var_file_A13, xml_file_A13),
 }
 
+#xml_file_A14 = MVA_folder + 'UATmva_darkHiggsVWjAndTT_2017_BDT_700Trees_AdaBoost_GiniIndex_20Cuts_CostComplexity_12PruneStrength_14Var.weights.xml'
+#var_file_A14 = MVA_folder + 'Ada_14Var_variables.txt'
+#
+#aliases['nloBDT_Ada14'] = {
+#    'linesToAdd': [
+#        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
+#        '.L %s/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/Full2017_v7/darkHiggs/TMVAfiller_OTF.cc+' % os.getenv('CMSSW_BASE')
+#    ],
+#    'class': 'TMVAfillerOTF',
+#    'args': (var_file_A14, xml_file_A14),
+#}
+
 xml_file_G11 = MVA_folder + 'UATmva_darkHiggsVWjAndTT_2017_BDT_200Trees_Grad_FalseBagged_0.6BagFrac_1BagShrink_GiniIndex_20Cuts_CostComplexity_12PruneStrength_11Var.weights.xml'
 var_file_G11 = MVA_folder + 'Grad_11Var_variables.txt'
 
@@ -399,3 +412,13 @@ aliases['newBDT_Grad11'] = {
     'class': 'TMVAfillerOTF',
     'args': (var_file_G11, xml_file_G11),
 }
+
+### Wjets HT to NLOpt
+#aliases['VptSF'] = {
+#    'expr': '(LHE_Vpt < 100.)*1.00938328954 + \
+#             (LHE_Vpt > 100. && LHE_Vpt < 250.)*1.00938328954 + \
+#             (LHE_Vpt > 250. && LHE_Vpt < 400.)*0.886890353455 + \
+#             (LHE_Vpt > 400. && LHE_Vpt < 600.)*0.805548635994 + \
+#             (LHE_Vpt > 600.)*0.726442956827 ',
+#    'samples': ['Wjets_HTsf'],
+#}

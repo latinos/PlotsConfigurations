@@ -186,8 +186,10 @@ for cut in clean_cuts:
 
 print('Create plots')
 
-fr_dir = 'FReleTrig'
-canvas = ROOT.TCanvas('canvas', 'FW canvas', 600, 600)
+#fr_dir = 'FReleTrig'
+#fr_dir = 'FR_HT'
+fr_dir = 'FR_NLOWjet'
+canvas = ROOT.TCanvas('canvas', 'FW canvas', 610, 600)
 for fw in histograms_fr:
     name = 'plot'+fw[1:].replace('_total', '_fw')
     if fw.endswith('_2D'):
@@ -200,7 +202,7 @@ for fw in histograms_fr:
     canvas.Update()
     canvas.SaveAs(fr_dir+'/'+name+'.png')
 
-
+# draw all in one
 for var in variables:
     jet_et_dict = {}
     for cut in clean_cuts:
@@ -215,7 +217,8 @@ for var in variables:
     
     for key in jet_et_dict:
         jet_et_dict[key].sort()
-        legend = ROOT.TLegend(0.1,0.1,0.2,0.3)
+        legend = ROOT.TLegend(0.15,0.15,0.55,0.45)
+        legend.SetLineColor(0)
         color = 632 #kRed
         for idx,cut in enumerate(jet_et_dict[key]):
             cut_splt = cut.split('_')
@@ -224,12 +227,23 @@ for var in variables:
                 if 'JetEt' in part: jet_et = part
             h_name = '_'.join(['h', cut, var, 'total_ewk'])
             histograms_fr[h_name].SetLineColor(color + idx)
-            histograms_fr[h_name].GetYaxis().SetRangeUser(0.3, 0.7)
-            legend.AddEntry(histograms_fr[h_name], jet_et, 'l')
+            histograms_fr[h_name].GetYaxis().SetRangeUser(0., .8)
+            jet_et_str = 'Recoiling jet E_{T} > '+ jet_et.replace('JetEt', '') + ' GeV'
+            legend.AddEntry(histograms_fr[h_name], jet_et_str, 'l')
+            title = ''
+            if 'MuCh' in key: title += 'Muon'
+            else: title += 'Electron'
+            title += ' fake rate 2017' 
+            histograms_fr[h_name].SetTitle(title)
+            if 'l1_pt' in var: histograms_fr[h_name].GetXaxis().SetTitle('p_{T}')
+            elif 'l1_etaVpt' in var: histograms_fr[h_name].GetXaxis().SetTitle('bin')
+            else: histograms_fr[h_name].GetXaxis().SetTitle('#eta')
+            histograms_fr[h_name].GetYaxis().SetTitle('fake rate')
             if idx == 0: histograms_fr[h_name].Draw()
             else: histograms_fr[h_name].Draw('same')
         legend.Draw('same')
         canvas.Update()
         name = '_'.join(['plot', 'allJetEt', key, var])
         canvas.SaveAs(fr_dir+'/'+name+'.png')
+
 

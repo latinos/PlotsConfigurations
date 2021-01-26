@@ -1,10 +1,17 @@
+groupPlot['Higgs'] = {
+    'nameHR' : "SM Higgs",
+    'isSignal' : 0,
+    'color': 632+3, #kRed +3
+    'samples'  : ['Higgs']
+}
 
 groupPlot['multiB'] = {
     'nameHR' : 'multiB',
     'isSignal' : 0,
     #'isSignal' : 1,
     'color': 857, # kAzure -3  
-    'samples'  : ['WW', 'WWewk', 'ggWW', 'VBF-V', 'WZqcd', 'WZewk', 'ZZ', 'VVV', 'Vg', 'VgS_L', 'VgS_H', 'Higgs'], 
+    'samples'  : ['WW', 'WWewk', 'ggWW', 'VBF-V', 'WZqcd', 'WZewk', 'ZZ', 'VVV', 'Vg', 'VgS_L', 'VgS_H'], 
+    #'samples'  : ['WW', 'WWewk', 'ggWW', 'VBF-V', 'WZqcd', 'WZewk', 'ZZ', 'VVV', 'Vg', 'VgS_L', 'VgS_H', 'Higgs'], 
     #'samples'  : ['WW', 'WWewk', 'ggWW', 'VBF-V', 'WZqcd', 'WZewk', 'ZZ', 'VVV', 'Vg', 'VgS_L', 'VgS_H', 'ggH_hww', 'qqH_hww', 'ZH_hww', 'WH_hww', 'ttH_hww', 'ggH_htt', 'ZH_htt']
 }
 
@@ -229,7 +236,7 @@ plot['Wjets']  = {
     'color': 856, # kAzure -4
     'isSignal' : 0,
     'isData'   : 0,
-    'scale'    : 1.30
+    'scale'    : 1.11,
     #'scale'    : 1.0
 }
 

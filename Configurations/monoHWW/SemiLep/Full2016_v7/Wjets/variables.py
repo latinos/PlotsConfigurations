@@ -4,7 +4,7 @@ variables['Events']  = {   'name': '1',
                            'fold'  : 3
                         }
 
-LHE_Vpt_bins = [0, 100, 250, 400, 600, 2000]
+LHE_Vpt_bins = [0, 100, 250, 400, 600, 13000]
 variables['LHE_Vpt']  = {
                         'name': 'LHE_Vpt',
                         'range' : (25,0,400),

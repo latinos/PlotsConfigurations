@@ -1,34 +1,9 @@
-
-#groupPlot['VZ'] = {
-#    'nameHR' : 'VZ',
-#    'isSignal' : 0,
-#    'color': 857+2, # kAzure -3  
-#    #'samples'  : ['VVV', 'WW', 'WWewk', 'qqWWqq', 'WW2J', 'Vg', 'VgS_L', 'VgS_H', 'VZ']
-#    'samples'  : ['WZqcd', 'WZewk', 'ZZ']
-#}
-#
-#groupPlot['VBF-V'] = {
-#    'nameHR' : 'VBF V',
-#    'isSignal' : 0,
-#    'color': 857+3, # kAzure -3  
-#    #'samples'  : ['VVV', 'WW', 'WWewk', 'qqWWqq', 'WW2J', 'Vg', 'VgS_L', 'VgS_H', 'VZ']
-#    'samples'  : ['VBF-V']
-#}
-#
-#groupPlot['multiB'] = {
-#    'nameHR' : 'multiB',
-#    'isSignal' : 0,
-#    'color': 857, # kAzure -3  
-#    'samples'  : ['VVV', 'Vg', 'VgS_L', 'VgS_H', 'ggH_hww', 'qqH_hww', 'ZH_hww', 'WH_hww', 'ttH_hww', 'ggH_htt', 'ZH_htt']
-#}
-#
-#groupPlot['WW'] = {
-#    'nameHR' : 'WW',
-#    'isSignal' : 0,
-#    'color': 857+1, # kAzure -3  
-#    #'samples'  : ['VVV', 'WW', 'WWewk', 'qqWWqq', 'WW2J', 'Vg', 'VgS_L', 'VgS_H', 'VZ']
-#    'samples'  : ['WW', 'WWewk', 'ggWW']
-#}
+groupPlot['Higgs'] = {
+    'nameHR' : "SM Higgs",
+    'isSignal' : 0,
+    'color': 632+3, #kRed +3
+    'samples'  : ['Higgs']
+}
 
 groupPlot['multiB'] = {
     'nameHR' : 'multiB',
@@ -37,7 +12,8 @@ groupPlot['multiB'] = {
     'color': 857, # kAzure -3  
     #'samples'  : ['WW', 'WWewk', 'ggWW', 'VBF-V', 'WZqcd', 'WZewk', 'ZZ', 'VVV', 'Vg', 'VgS_L', 'VgS_H', 'ggH_hww', 'qqH_hww', 'ZH_hww', 'WH_hww', 'ttH_hww', 'ggH_htt', 'ZH_htt']
     #'samples'  : ['WW', 'WWewk', 'ggWW', 'WZqcd', 'WZewk', 'ZZ', 'VVV', 'Vg', 'VgS_L', 'VgS_H', 'ggH_hww', 'qqH_hww', 'ZH_hww', 'WH_hww', 'ttH_hww', 'ggH_htt', 'ZH_htt'] #, 'VBF-V'
-    'samples'  : ['WW', 'WWewk', 'ggWW', 'WZqcd', 'WZewk', 'ZZ', 'VVV', 'Vg', 'VgS_L', 'VgS_H', 'Higgs'] #, 'VBF-V'
+    #'samples'  : ['WW', 'WWewk', 'ggWW', 'WZqcd', 'WZewk', 'ZZ', 'VVV', 'Vg', 'VgS_L', 'VgS_H', 'Higgs'] #, 'VBF-V'
+    'samples'  : ['WW', 'WWewk', 'ggWW', 'WZqcd', 'WZewk', 'ZZ', 'VVV', 'Vg', 'VgS_L', 'VgS_H'] #, 'VBF-V'
 }
 
 groupPlot['DY'] = {

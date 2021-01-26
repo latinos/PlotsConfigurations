@@ -10,6 +10,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument("--config", help="configuration file", type=str)
 parser.add_argument("-q", "--queue", help="job queue", type=str)
 parser.add_argument("-r", "--redo", help="forcefully redo comma seperated samples", type=str)
+parser.add_argument("-e", "--exclude", help="skip comma seperated samples", type=str)
 args = parser.parse_args()
 
 cms_base = os.getenv('CMSSW_BASE')
@@ -56,12 +57,17 @@ to_redo = []
 if not args.redo is None: to_redo = args.redo.split(',')
 for idx in range(len(to_redo)):
     to_redo[idx] += '.'
+to_skip = []
+if not args.exclude is None: to_skip = args.exclude.split(',')
+for idx in range(len(to_skip)):
+    to_skip[idx] += '.'
 jobs = []
 dirs = os.listdir(path)
 print('Jobs to resubmit: ')
 for diry in dirs:
     job_files = path+'/'+diry+'/'+job_base+'__'+diry
     sample = diry.split('.')[0] + '.'
+    if sample in to_skip: continue
     if os.path.isfile(job_files+'.py'): 
         if os.path.isfile(job_files+'.jid') or sample in to_redo:
             jobs.append(job_files)
