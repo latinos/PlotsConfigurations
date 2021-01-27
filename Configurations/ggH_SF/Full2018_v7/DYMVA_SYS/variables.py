@@ -41,7 +41,7 @@ variables['dymva_alt_dnn_VH']  = {
 
 variables['ptll']  = { 
     'name'  : 'ptll',
-    'range' : (40, 0., 200.),
+    'range' : (40, 0, 400),
     'xaxis' : 'p_{T}^{ll} [GeV]',
     'fold'  : 0
 }

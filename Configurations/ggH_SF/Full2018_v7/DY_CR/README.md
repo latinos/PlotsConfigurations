@@ -14,7 +14,7 @@ Configuration for the extraction of the systematic uncertainties associated to t
 
     mkPlot.py --inputFile=rootFile/plots_ggH_SF_2018_v7_DY_CR.root --fileFormats=png --onlyPlot=cratio --minLogCratio=1 --maxLogCratio=1000000
 
-Remove meaningless plots:
+Remove meaningless plots.
 
     rm plots_ggH_SF_201?_v7_DY_CR/*cratio*_0j_*dnn_1j* 
     rm plots_ggH_SF_201?_v7_DY_CR/*cratio*_0j_*dnn_2j* 
@@ -43,10 +43,14 @@ Remove meaningless plots:
 
 To get a reasonable correction we subtract from data all processes except Drell-Yan. The output is then divided by the DY MC histogram, and a linear fit is performed.
 
-    mkDYCorr.py --input_file=rootFile/plots_ggH_SF_2018_v7_DY_CR.root --cut=0j_ee_in --variable=mth --fit_func=pol1
-    mkDYCorr.py --input_file=rootFile/plots_ggH_SF_2018_v7_DY_CR.root --cut=0j_mm_in --variable=mth --fit_func=pol1
-    mkDYCorr.py --input_file=rootFile/plots_ggH_SF_2018_v7_DY_CR.root --cut=1j_ee_in --variable=mth --fit_func=pol2
-    mkDYCorr.py --input_file=rootFile/plots_ggH_SF_2018_v7_DY_CR.root --cut=1j_mm_in --variable=mth --fit_func=pol2
-    mkDYCorr.py --input_file=rootFile/plots_ggH_SF_2018_v7_DY_CR.root --cut=2j_ee_in --variable=mth --fit_func=pol1
-    mkDYCorr.py --input_file=rootFile/plots_ggH_SF_2018_v7_DY_CR.root --cut=2j_mm_in --variable=mth --fit_func=pol1
+    mkDYCorr.py --input_file=rootFile/plots_ggH_SF_2018_v7_DY_CR.root --cut=0j_ee_in  --variable=ptll --fit_func=pol2
+    mkDYCorr.py --input_file=rootFile/plots_ggH_SF_2018_v7_DY_CR.root --cut=0j_mm_in  --variable=ptll --fit_func=pol2
+    mkDYCorr.py --input_file=rootFile/plots_ggH_SF_2018_v7_DY_CR.root --cut=1j_ee_in  --variable=ptll --fit_func=pol2
+    mkDYCorr.py --input_file=rootFile/plots_ggH_SF_2018_v7_DY_CR.root --cut=1j_mm_in  --variable=ptll --fit_func=pol2
+    mkDYCorr.py --input_file=rootFile/plots_ggH_SF_2018_v7_DY_CR.root --cut=2j_ee_in  --variable=ptll --fit_func=pol2
+    mkDYCorr.py --input_file=rootFile/plots_ggH_SF_2018_v7_DY_CR.root --cut=2j_mm_in  --variable=ptll --fit_func=pol2
+    mkDYCorr.py --input_file=rootFile/plots_ggH_SF_2018_v7_DY_CR.root --cut=VBF_ee_in --variable=ptll --fit_func=pol2
+    mkDYCorr.py --input_file=rootFile/plots_ggH_SF_2018_v7_DY_CR.root --cut=VBF_mm_in --variable=ptll --fit_func=pol2
+    mkDYCorr.py --input_file=rootFile/plots_ggH_SF_2018_v7_DY_CR.root --cut=VH_ee_in  --variable=ptll --fit_func=pol2
+    mkDYCorr.py --input_file=rootFile/plots_ggH_SF_2018_v7_DY_CR.root --cut=VH_mm_in  --variable=ptll --fit_func=pol2
 

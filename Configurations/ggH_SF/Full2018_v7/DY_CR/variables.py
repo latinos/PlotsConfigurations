@@ -110,14 +110,14 @@ variables['dphijet1met']  = {
 
 variables['ptll']  = { 
     'name'  : 'ptll',
-    'range' : (40, 0., 200.),
+    'range' : (40, 0, 400),
     'xaxis' : 'p_{T}^{ll} [GeV]',
     'fold'  : 0
 }
 
 variables['pTWW']  = { 
     'name'  : 'pTWW',
-    'range' : (40, 0., 200.),
+    'range' : (40, 0, 400),
     'xaxis' : 'p_{T}^{WW} [GeV]',
     'fold'  : 0
 }
@@ -138,7 +138,7 @@ variables['jetpt2']  = {
 
 variables['mth']  = {
     'name': 'mth',
-    'range' : (40,0,200),
+    'range' : (40,0,400),
     'xaxis' : 'm_{T}^{H} [GeV]',
     'fold' : 3
 }
