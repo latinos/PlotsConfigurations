@@ -2,6 +2,11 @@
 
 Configuration for the extraction of the systematic uncertainties associated to the data-driven method used for Drell-Yan estimation in the same-flavor channel
 
+### Produce a valid VOMS proxy
+
+    voms-proxy-init -voms cms -rfc --valid 168:0
+    cmsenv
+
 ### Submit shapesmulti in batch
 
     mkShapesMulti.py --pycfg=configuration.py --doBatch=1 --batchSplit=Samples,Files --batchQueue=testmatch
