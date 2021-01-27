@@ -70,7 +70,7 @@ nuisances['lumi_Ghosts'] = {
     'samples': dict((skey, '1.004') for skey in mc if skey not in ['WgS','WZ'])
 }
 
-'''
+
 #### FAKES
 
 nuisances['fake_syst_em'] = {
@@ -625,7 +625,7 @@ nuisances['QCDscale_gg_ACCEPT'] = {
     'type': 'lnN',
 }
 
-
+'''
 ## rate parameters
 
 nuisances['DYttnorm']  = {
@@ -751,7 +751,7 @@ nuisances['Topnorm5j']  = {
                'type'  : 'rateParam',
                'cuts'  : cuts5j
               }
-
+'''
 ## Use the following if you want to apply the automatic combine MC stat nuisances.
 nuisances['stat'] = {
     'type': 'auto',
@@ -766,4 +766,4 @@ for n in nuisances.values():
     n['skipCMS'] = 1
 
 print ' '.join(nuis['name'] for nname, nuis in nuisances.iteritems() if nname not in ('lumi', 'stat'))
-'''
+
