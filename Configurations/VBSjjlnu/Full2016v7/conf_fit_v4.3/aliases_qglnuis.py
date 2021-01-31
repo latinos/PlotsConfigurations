@@ -98,21 +98,53 @@ for s in systs:
   aliases['btagSF'+s+'up'] = { 'expr': '(bVeto*'+aliases['bVetoSF']['expr'].replace('shape','shape_up_'+s)+'+bReqTight*'+aliases['bReqSF']['expr'].replace('shape','shape_up_'+s)+'+ ( (!bVeto) && (!bReqTight) ))', 'samples':mc  }
   aliases['btagSF'+s+'down'] = { 'expr': '(bVeto*'+aliases['bVetoSF']['expr'].replace('shape','shape_down_'+s)+'+bReqTight*'+aliases['bReqSF']['expr'].replace('shape','shape_down_'+s)+'+ ( (!bVeto) && (!bReqTight) ))', 'samples':mc }
 
+
+
+aliases['nJetsBtag']= {
+    'expr' : 'Sum$(CleanJet_pt > 20 && abs(CleanJet_eta)<2.5)'
+}
+
+
+btagSF_corr_samples_groups = {
+    'VBS': ['VBS'],
+    'Wjets_HT': ['Wjets_HT'],
+    'Vg_VgS_VBFV':['Vg','VgS','VBF-V'],
+    'VV_VVV_ggWW':['VVV','VV','ggWW'],
+    'top':['top'],
+    'DY': ['DY']
+}
+
+for sgroup_name, sgroup in btagSF_corr_samples_groups.items():
+    aliases['btagSF_corr_'+sgroup_name] = {
+        'class': 'BtagSFNormCorrection',
+        'args': ('{}/VBSjjlnu/weights_files/btagsf_correction/btagsf_corr_2016.root'.format(configurations), sgroup_name),
+        'linesToAdd' : [
+            'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+            '.L {}/VBSjjlnu/macros/btagsf_norm_correction.cc+'.format(configurations)
+        ],     
+        'samples' : sgroup
+    }
+
 ################################################################################################
 
 aliases['PUJetIdSF'] = {
-  'expr' : 'TMath::Exp(Sum$((Jet_jetId>=2)*TMath::Log(Jet_PUIDSF_loose)))',
+  'expr' : 'TMath::Exp(Sum$((Jet_jetId>=2 && ( (Jet_electronIdx1 != Lepton_electronIdx[0]) || Jet_electronIdx1 < 0 )  \
+                                          && ( (Jet_muonIdx1 != Lepton_muonIdx[0] ) || Jet_muonIdx1 < 0 ) \
+                            )*TMath::Log(Jet_PUIDSF_loose)))',
   'samples': mc
 }
 
 aliases['PUJetIdSF_up'] = {
-  'expr' : 'TMath::Exp(Sum$((Jet_jetId>=2)*TMath::Log(Jet_PUIDSF_loose_up)))',
+  'expr' : 'TMath::Exp(Sum$((Jet_jetId>=2 && ( (Jet_electronIdx1 != Lepton_electronIdx[0]) || Jet_electronIdx1 < 0 )  \
+                                          && ( (Jet_muonIdx1 != Lepton_muonIdx[0] ) || Jet_muonIdx1 < 0 ) \
+                            )*TMath::Log(Jet_PUIDSF_loose_up)))',
   'samples': mc
 }
 
-
 aliases['PUJetIdSF_down'] = {
-  'expr' : 'TMath::Exp(Sum$((Jet_jetId>=2)*TMath::Log(Jet_PUIDSF_loose_down)))',
+  'expr' : 'TMath::Exp(Sum$((Jet_jetId>=2 && ( (Jet_electronIdx1 != Lepton_electronIdx[0]) || Jet_electronIdx1 < 0 )  \
+                                          && ( (Jet_muonIdx1 != Lepton_muonIdx[0] ) || Jet_muonIdx1 < 0 ) \
+                            )*TMath::Log(Jet_PUIDSF_loose_down)))',
   'samples': mc
 }
 
@@ -417,13 +449,24 @@ aliases['DNNoutput_boosted'] = {
     ],
 }
 
-aliases['DNNoutput_resolved'] = {
+aliases['DNNoutput_resolved_v1'] = {
     'class': 'MVAReaderResolved_mVauto_qglnuis',
     'args': ( models_path+ 'res_sig/models/v4_d/',models_path+ 'res_sig/models/v4_d/cumulative_signal_2016.root', False, 1),
     'linesToAdd':[
         'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
         'gSystem->Load("libDNNEvaluator.so")',
         '.L ' + mva_reader_path + 'mva_reader_resolved_v4d_mVauto_qglnuis.cc+', 
+    ],
+}
+
+
+aliases['DNNoutput_resolved_v2'] = {
+    'class': 'MVAReaderResolved_mVauto_qglnuis',
+    'args': ( models_path+ 'res_sig/models/v25_e/',models_path+ 'res_sig/models/v25_e/cumulative_signal_2016.root', False, 1),
+    'linesToAdd':[
+        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+        'gSystem->Load("libDNNEvaluator.so")',
+        '.L ' + mva_reader_path + 'mva_reader_resolved_v25e_mVauto_qglnuis.cc+', 
     ],
 }
 
