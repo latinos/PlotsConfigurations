@@ -202,17 +202,19 @@ variables['vbs_0_eta_abs'] = {   'name': 'abs(vbs_0_eta)',
                         'fold' : 3
                         }
 
-# variables['Lepton_eta_abs'] = {   'name': 'abs(Lepton_eta[0])',      
-#                         'range' : (40,0,2.5),  
-#                         'xaxis' : 'Lepton #eta', 
-#                         'fold' : 3
-#                         }
+variables['Lepton_eta_abs'] = {   'name': 'abs(Lepton_eta[0])',      
+                        'range' : (40,0,2.5),  
+                        'xaxis' : 'Lepton #eta', 
+                        'fold' : 3,
+                        'cuts': [c for c in cuts if 'ele' in c]
+                        }
 
-# variables['Lepton_pt'] = {   'name': 'Lepton_pt[0]',      
-#                         'range' : (40,0,500),  
-#                         'xaxis' : 'Lepton pt', 
-#                         'fold' : 3
-#                         }   
+variables['Lepton_pt'] = {   'name': 'Lepton_pt[0]',      
+                        'range' : (40,0,500),  
+                        'xaxis' : 'Lepton pt', 
+                        'fold' : 3,
+                        'cuts': [c for c in cuts if 'ele' in c]
+                        }   
 
                     
 # variables['Centr_vbs'] = {   'name': 'Centr_vbs',      

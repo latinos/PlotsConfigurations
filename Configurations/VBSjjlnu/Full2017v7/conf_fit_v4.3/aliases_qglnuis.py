@@ -7,7 +7,7 @@ conf_folder = configurations +"/VBSjjlnu/Full2017v7"
 
 #aliases = {}
 
-mc = [skey for skey in samples if skey not in ('Fake', 'DATA')]
+mc = [skey for skey in samples if skey not in ('Fake_ele', 'DATA_ele','Fake_mu', 'DATA_mu')]
 
 ####################
 
@@ -18,10 +18,10 @@ aliases['nJets30']= {
 #########################################
 # trigger eff
 
-# aliases['ele_passHLT'] = {
-#     'expr': 'HLT_Ele32_WPTight_Gsf_L1DoubleEG && Sum$((TrigObj_id==11) && (TrigObj_filterBits & 1024) )>0',
-#     'samples': ['Fake', 'DATA']
-# }
+aliases['ele_passHLT'] = {
+    'expr': 'HLT_Ele32_WPTight_Gsf_L1DoubleEG && Sum$((TrigObj_id==11) && (TrigObj_filterBits & 1024) )>0',
+    'samples': ['Fake_ele', 'DATA_ele']
+}
 
 
 aliases['ele_trig_eff_B'] = {
@@ -30,7 +30,7 @@ aliases['ele_trig_eff_B'] = {
         '.L %s/src/PlotsConfigurations/Configurations/patches/triggerEff_1lep.cc+' % os.getenv('CMSSW_BASE')
     ],
     'class': 'TrigEff_1lep',
-    'args': ('/afs/cern.ch/user/a/arun/public/fixedTextfiles/2017/mvaid/Ele35_pt_eta_efficiency_withSys_Run2017B.txt'),
+    'args': ('/afs/cern.ch/user/a/arun/public/fixedTextfiles/2017/mvaid/Ele32_pt_eta_efficiency_withSys_Run2017B.txt'),
     'samples': mc
 }
 
@@ -40,7 +40,7 @@ aliases['ele_trig_eff_CDE'] = {
         '.L %s/src/PlotsConfigurations/Configurations/patches/triggerEff_1lep.cc+' % os.getenv('CMSSW_BASE')
     ],
     'class': 'TrigEff_1lep',
-    'args': ('/afs/cern.ch/user/a/arun/public/fixedTextfiles/2017/mvaid/Ele35_pt_eta_efficiency_withSys_Run2017CDE.txt'),
+    'args': ('/afs/cern.ch/user/a/arun/public/fixedTextfiles/2017/mvaid/Ele32_pt_eta_efficiency_withSys_Run2017CDE.txt'),
     'samples': mc
 }
 
@@ -50,7 +50,7 @@ aliases['ele_trig_eff_F'] = {
         '.L %s/src/PlotsConfigurations/Configurations/patches/triggerEff_1lep.cc+' % os.getenv('CMSSW_BASE')
     ],
     'class': 'TrigEff_1lep',
-    'args': ('/afs/cern.ch/user/a/arun/public/fixedTextfiles/2017/mvaid/Ele35_pt_eta_efficiency_withSys_Run2017F.txt'),
+    'args': ('/afs/cern.ch/user/a/arun/public/fixedTextfiles/2017/mvaid/Ele32_pt_eta_efficiency_withSys_Run2017F.txt'),
     'samples': mc
 }
 
@@ -120,6 +120,30 @@ aliases['btagSF'] = {
     'samples': mc
 }
 
+aliases['nJetsBtag']= {
+    'expr' : 'Sum$(CleanJet_pt > 20 && abs(CleanJet_eta)<2.5)'
+}
+
+btagSF_corr_samples_groups = {
+    'VBS': ['VBS'],
+    'Wjets_HT': ['Wjets_HT'],
+    'Vg_VgS_VBFV':['Vg','VgS','VBF-V'],
+    'VV_VVV_ggWW':['VVV','VV','ggWW'],
+    'top':['top'],
+    'DY': ['DY']
+}
+
+for sgroup_name, sgroup in btagSF_corr_samples_groups.items():
+    aliases['btagSF_corr_'+sgroup_name] = {
+        'class': 'BtagSFNormCorrection',
+        'args': ('{}/VBSjjlnu/weights_files/btagsf_correction/btagsf_corr_2017.root'.format(configurations), sgroup_name),
+        'linesToAdd' : [
+            'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+            '.L {}/VBSjjlnu/macros/btagsf_norm_correction.cc+'.format(configurations)
+        ],     
+        'samples' : sgroup
+    }
+
 
 systs = ['jes','lf','hf','lfstats1','lfstats2','hfstats1','hfstats2','cferr1','cferr2']
 
@@ -168,19 +192,34 @@ aliases['Top_pTrw'] = {
 
 # Using tight scale factors for jets in the horn
 aliases['PUJetIdSF'] = {
-  'expr' : 'TMath::Exp(Sum$((Jet_jetId>=2)*( abs(Jet_eta)<2.65 || abs(Jet_eta)>3.139)*TMath::Log(Jet_PUIDSF_loose) + (Jet_jetId>=2)*(abs(Jet_eta)>2.65 && abs(Jet_eta)<3.139)*TMath::Log(Jet_PUIDSF_tight)))',
-  'samples': mc
+  'expr' : 'TMath::Exp(Sum$( (Jet_jetId>=2 && ( (Jet_electronIdx1 != Lepton_electronIdx[0]) || Jet_electronIdx1 < 0 )  \
+                                          && ( (Jet_muonIdx1 != Lepton_muonIdx[0] ) || Jet_muonIdx1 < 0 ) )*  \
+                                (    (abs(Jet_eta)>=2.65 && abs(Jet_eta)<=3.139 && Jet_pt >=50)*TMath::Log(Jet_PUIDSF_loose) \
+                                 +   (abs(Jet_eta)>=2.65 && abs(Jet_eta)<=3.139 && Jet_pt < 50)*TMath::Log(Jet_PUIDSF_tight)\
+                                 +   (abs(Jet_eta)<2.65  && abs(Jet_eta)>3.139 )*TMath::Log(Jet_PUIDSF_loose)\
+                                ) ))',
+  'samples': [m  for m in mc if m not in ['DY']]
 }
+
 
 aliases['PUJetIdSF_up'] = {
-  'expr' : 'TMath::Exp(Sum$((Jet_jetId>=2)*( abs(Jet_eta)<2.65 || abs(Jet_eta)>3.139)*TMath::Log(Jet_PUIDSF_loose_up) + (Jet_jetId>=2)*(abs(Jet_eta)>2.65 && abs(Jet_eta)<3.139)*TMath::Log(Jet_PUIDSF_tight_up)))',
-  'samples': mc
+  'expr' : 'TMath::Exp(Sum$( (Jet_jetId>=2 && ( (Jet_electronIdx1 != Lepton_electronIdx[0]) || Jet_electronIdx1 < 0 )  \
+                                          && ( (Jet_muonIdx1 != Lepton_muonIdx[0] ) || Jet_muonIdx1 < 0 ) )*  \
+                                (    (abs(Jet_eta)>=2.65 && abs(Jet_eta)<=3.139 && Jet_pt >=50)*TMath::Log(Jet_PUIDSF_loose_up) \
+                                 +   (abs(Jet_eta)>=2.65 && abs(Jet_eta)<=3.139 && Jet_pt < 50)*TMath::Log(Jet_PUIDSF_tight_up)\
+                                 +   (abs(Jet_eta)<2.65  && abs(Jet_eta)>3.139 )*TMath::Log(Jet_PUIDSF_loose_up)\
+                                ) ))',
+  'samples': [m  for m in mc if m not in ['DY']]
 }
 
-
 aliases['PUJetIdSF_down'] = {
-  'expr' : 'TMath::Exp(Sum$((Jet_jetId>=2)*(abs(Jet_eta)<2.65 || abs(Jet_eta)>3.139)*TMath::Log(Jet_PUIDSF_loose_down) + (Jet_jetId>=2)*(abs(Jet_eta)>2.65 && abs(Jet_eta)<3.139)*TMath::Log(Jet_PUIDSF_tight_down)))',
-  'samples': mc
+  'expr' : 'TMath::Exp(Sum$( (Jet_jetId>=2 && ( (Jet_electronIdx1 != Lepton_electronIdx[0]) || Jet_electronIdx1 < 0 )  \
+                                          && ( (Jet_muonIdx1 != Lepton_muonIdx[0] ) || Jet_muonIdx1 < 0 ) )*  \
+                                (    (abs(Jet_eta)>=2.65 && abs(Jet_eta)<=3.139 && Jet_pt >=50)*TMath::Log(Jet_PUIDSF_loose_down) \
+                                 +   (abs(Jet_eta)>=2.65 && abs(Jet_eta)<=3.139 && Jet_pt < 50)*TMath::Log(Jet_PUIDSF_tight_down)\
+                                 +   (abs(Jet_eta)<2.65  && abs(Jet_eta)>3.139 )*TMath::Log(Jet_PUIDSF_loose_down)\
+                                ) ))',
+  'samples': [m  for m in mc if m not in ['DY']]
 }
 
 
@@ -233,7 +272,7 @@ aliases['DY_LO_pTllrw'] = {
 ###########################
 
 
-basedir_fakes = configurations + "/VBSjjlnu/weights_files/fake_rates/2017_Ele35"
+basedir_fakes = configurations + "/VBSjjlnu/weights_files/fake_rates/2017_Ele32"
 
 ets = ["25", "35", "45"]
 el_pr_file = os.getenv('CMSSW_BASE') + "/src/LatinoAnalysis/NanoGardener/python/data/fake_prompt_rates/Full2017v7/mvaFall17V1Iso_WP90/ElePR.root"
@@ -249,7 +288,7 @@ for et in ets:
             'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
             '.L {}/VBSjjlnu/macros/newfakeweight_OTFall.cc+'.format(configurations)
         ],     
-        'samples': ["Fake"]
+        'samples': ["Fake_ele","Fake_mu"]
     }
 
 #stat variations
@@ -259,12 +298,12 @@ mu_fr_file35 = basedir_fakes + "/plot_MuCh_JetEt35_l1_etaVpt_ptmu_fw_ewk_2D.root
 aliases['fakeWeight_35_statUp'] = { 
         'class': 'newFakeWeightOTFall',
         'args': (eleWP, muWP, copy.deepcopy(el_fr_file35), copy.deepcopy(el_pr_file), copy.deepcopy(mu_fr_file35), copy.deepcopy(mu_pr_file), False, True, False),   
-        'samples': ["Fake"]
+        'samples': ["Fake_ele","Fake_mu"]
     }
 aliases['fakeWeight_35_statDo'] = { 
         'class': 'newFakeWeightOTFall',
         'args': (eleWP, muWP, copy.deepcopy(el_fr_file35), copy.deepcopy(el_pr_file), copy.deepcopy(mu_fr_file35), copy.deepcopy(mu_pr_file), False, False, True), 
-        'samples': ["Fake"]
+        'samples': ["Fake_ele","Fake_mu"]
     }
 
 
@@ -468,7 +507,7 @@ aliases['DNNoutput_boosted'] = {
     ],
 }
 
-aliases['DNNoutput_resolved'] = {
+aliases['DNNoutput_resolved_v1'] = {
     'class': 'MVAReaderResolved_mVauto_qglnuis',
     'args': ( models_path+ 'res_sig/models/v4_d/',models_path+ 'res_sig/models/v4_d/cumulative_signal_2017.root', False, 1),
     'linesToAdd':[
@@ -477,6 +516,17 @@ aliases['DNNoutput_resolved'] = {
         '.L ' + mva_reader_path + 'mva_reader_resolved_v4d_mVauto_qglnuis.cc+', 
     ],
 }
+
+aliases['DNNoutput_resolved_v2'] = {
+    'class': 'MVAReaderResolved_mVauto_v25e_qglnuis',
+    'args': ( models_path+ 'res_sig/models/v25_e/',models_path+ 'res_sig/models/v25_e/cumulative_signal_2017.root', False, 1),
+    'linesToAdd':[
+        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+        'gSystem->Load("libDNNEvaluator.so")',
+        '.L ' + mva_reader_path + 'mva_reader_resolved_v25e_mVauto_qglnuis.cc+', 
+    ],
+}
+
 
 # aliases['DNNoutput'] = {
 #     'expr': '(VBS_category==0)*(DNNoutput_boosted) + (VBS_category==1)*(DNNoutput_resolved)'
