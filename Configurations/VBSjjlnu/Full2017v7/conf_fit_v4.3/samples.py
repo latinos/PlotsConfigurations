@@ -125,7 +125,7 @@ samples['DY'] = {    'name'   :   nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M
                                   + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-4to50_HT-600toInf')
                                   + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-4to50_HT-600toInf_ext1') ,
                        'weight' : (XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+"*"+DY_photons_filter  +'*btagSF_corr_DY').replace("PUJetIdSF",'1.'),
-                       'FilesPerJob' : 12,
+                       'FilesPerJob' : 9,
                        'EventsPerJob' : 80000,
                       #  'suppressNegative' :['all'],
                       #  'suppressNegativeNuisances' :['all'],
@@ -171,7 +171,7 @@ samples['top'] = {    'name'   :   nanoGetSampleFiles(directory_bkg,'TTTo2L2Nu')
                                  + nanoGetSampleFiles(directory_bkg,'TTWjets')
                                  + nanoGetSampleFiles(directory_bkg,'TTWjets_ext1'),
                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*btagSF_corr_top' ,
-                     'FilesPerJob' : 12,
+                     'FilesPerJob' : 6,
                      'EventsPerJob' : 70000,
                      'suppressNegative' :['all'],
                      'suppressNegativeNuisances' :['all'],
@@ -200,20 +200,20 @@ samples['Wjets_HT'] = { 'name' :
           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT1200_2500')
           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT2500_inf'),
         'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch + '* ewknloW * btagSF_corr_Wjets_HT' ,
-        'FilesPerJob' : 12,
-        # 'subsamples': {
-        #     "res_1": '(VBS_category==1) && (w_lep_pt < 100)',
-        #     "res_2": '(VBS_category==1) && (w_lep_pt >= 100 && w_lep_pt < 200)',
-        #     "res_3": '(VBS_category==1) && (w_lep_pt >= 200 && w_lep_pt < 300)',
-        #     "res_4": '(VBS_category==1) && (w_lep_pt >= 300 && w_lep_pt < 400)',
-        #     "res_5": '(VBS_category==1) && (w_lep_pt >= 400 && w_lep_pt < 500)',
-        #     "res_6": '(VBS_category==1) && (w_lep_pt >= 500)',
-        #     "boost_1": '(VBS_category==0) && (w_lep_pt < 75)',
-        #     "boost_2": '(VBS_category==0) && (w_lep_pt >= 75 && w_lep_pt < 150)',
-        #     "boost_3": '(VBS_category==0) && (w_lep_pt >= 150 && w_lep_pt < 250)',
-        #     "boost_4": '(VBS_category==0) && (w_lep_pt >= 250 && w_lep_pt < 400)',
-        #     "boost_5": '(VBS_category==0) && (w_lep_pt >= 400)',
-        # }
+        'FilesPerJob' : 5,
+        'subsamples': {
+            "res_1": '(VBS_category==1) && (w_lep_pt < 100)',
+            "res_2": '(VBS_category==1) && (w_lep_pt >= 100 && w_lep_pt < 200)',
+            "res_3": '(VBS_category==1) && (w_lep_pt >= 200 && w_lep_pt < 300)',
+            "res_4": '(VBS_category==1) && (w_lep_pt >= 300 && w_lep_pt < 400)',
+            "res_5": '(VBS_category==1) && (w_lep_pt >= 400 && w_lep_pt < 500)',
+            "res_6": '(VBS_category==1) && (w_lep_pt >= 500)',
+            "boost_1": '(VBS_category==0) && (w_lep_pt < 75)',
+            "boost_2": '(VBS_category==0) && (w_lep_pt >= 75 && w_lep_pt < 150)',
+            "boost_3": '(VBS_category==0) && (w_lep_pt >= 150 && w_lep_pt < 250)',
+            "boost_4": '(VBS_category==0) && (w_lep_pt >= 250 && w_lep_pt < 400)',
+            "boost_5": '(VBS_category==0) && (w_lep_pt >= 400)',
+        }
        }
 
 ##############
@@ -245,7 +245,7 @@ samples['VV']  = { 'name' :
                nanoGetSampleFiles(directory_signal,'WpToLNu_ZTo2J_QCD' ) +
                nanoGetSampleFiles(directory_signal,'ZTo2L_ZTo2J_QCD' ) , 
         'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch  +'*btagSF_corr_VV_VVV_ggWW', # add back ewknlOW
-        'FilesPerJob' : 16,
+        'FilesPerJob' : 14,
         'EventsPerJob' : 70000,
 }
 
@@ -396,4 +396,4 @@ for Run in DataRun :
                     samples['DATA_mu']['weights'].append(DataTrig[DataSet])
 
 
-samples = {k:v for k,v in samples.items() if k  in ['DATA_ele','Fake_ele','DATA_mu','Fake_mu']}
+# samples = {k:v for k,v in samples.items() if k  in ['DATA_ele','Fake_ele','DATA_mu','Fake_mu']}

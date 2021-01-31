@@ -190,17 +190,6 @@ variables['deltaphi_vjet'] = {   'name': 'deltaphi_vjet',
                         'cuts': res_cuts
                         }
 
-variables['vjet_0_eta_abs'] = {   'name': 'abs(vjet_0_eta)',      
-                        'range' : (30,0,5),  
-                        'xaxis' : 'leading Vjet #eta', 
-                        'fold' : 3
-                        }
-
-variables['vbs_0_eta_abs'] = {   'name': 'abs(vbs_0_eta)',      
-                        'range' : (30,0,5),  
-                        'xaxis' : 'leading VBS jet #eta', 
-                        'fold' : 3
-                        }
 
 # variables['Lepton_eta_abs'] = {   'name': 'abs(Lepton_eta[0])',      
 #                         'range' : (40,0,2.5),  
