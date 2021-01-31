@@ -48,6 +48,8 @@ protected:
   void bindTree_(multidraw::FunctionLibrary&) override;
   
   DoubleValueReader * VBS_category;
+  DoubleValueReader* Vjets_index_0;
+  DoubleValueReader* Vjets_index_1;
   DoubleValueReader* Wlep_pt;
   DoubleValueReader* Wlep_eta;
   DoubleValueReader* Wlep_phi;
@@ -112,6 +114,8 @@ VBSAngularVars_2017::setValues()
 
   int category = static_cast<int>(*(VBS_category->Get()));
 
+  if (category<0) return;
+
   vector<PtEtaPhiMVector> v_jets;
 
   PtEtaPhiMVector lep {Lepton_pt->At(0), Lepton_eta->At(0), Lepton_phi->At(0), 0.};
@@ -130,50 +134,49 @@ VBSAngularVars_2017::setValues()
       v_jets.emplace_back(subJet_pt->At(subj2), subJet_eta->At(subj2),subJet_phi->At(subj2), subJet_mass->At(subj2));
 
   }else if(category == 1){
-      for (auto ij : *V_jets_res){
-        v_jets.emplace_back(Jet_pt->At(ij), Jet_eta->At(ij),Jet_phi->At(ij), Jet_mass->At(Jet_idx->At(ij)) );
-      }
+      int vj0 = static_cast<int>(*(Vjets_index_0->Get()));
+      int vj1 = static_cast<int>(*(Vjets_index_1->Get()));
+      v_jets.emplace_back(Jet_pt->At(vj0), Jet_eta->At(vj0),Jet_phi->At(vj0), Jet_mass->At(Jet_idx->At(vj0)) );
+      v_jets.emplace_back(Jet_pt->At(vj1), Jet_eta->At(vj1),Jet_phi->At(vj1), Jet_mass->At(Jet_idx->At(vj1)) );
   }
 
-  PtEtaPhiMVector Vhad_CM = WVboost * Vhad;
-  PtEtaPhiMVector Wlep_CM = WVboost * Wlep;
-  PtEtaPhiMVector lep_WCM = Wlep_boost * lep;
-  PtEtaPhiMVector vjet0_VCM = Vhad_boost * v_jets[0];
-  PtEtaPhiMVector vjet1_VCM = Vhad_boost * v_jets[1];
+  PtEtaPhiMVector Vhad_WVcm = WVboost(Vhad);
+  PtEtaPhiMVector Wlep_WVcm = WVboost(Wlep);
+  PtEtaPhiMVector lep_Wcm   = Wlep_boost(lep);
+  PtEtaPhiMVector vjet0_Vcm = Vhad_boost(v_jets[0]);
+  PtEtaPhiMVector vjet1_Vcm = Vhad_boost(v_jets[1]);
 
-  outputValues[0] = WVsyst.Pt();
-  outputValues[1] = WVsyst.Eta();
-  outputValues[2] = WVsyst.Phi();
-  outputValues[3] = VectorUtil::DeltaPhi(Wlep, Vhad);
+  auto Vhad_plane =  vjet0_Vcm.Vect().Cross(vjet1_Vcm.Vect());
+  auto Wlep_plane =  lep_Wcm.Vect().Cross(Wlep.Vect());
 
-  outputValues[4] = Vhad_CM.Theta();
-  outputValues[5] = lep_WCM.Theta();
-  outputValues[6] = vjet0_VCM.Theta();
-  outputValues[7] = vjet1_VCM.Theta();
-  outputValues[8] = VectorUtil::Angle(lep_WCM.Vect(), Wlep.Vect());
-  outputValues[9] = VectorUtil::Angle(vjet0_VCM.Vect(), Vhad.Vect());
-  outputValues[10] = VectorUtil::Angle(vjet1_VCM.Vect(), Vhad.Vect());
-  outputValues[11] = VectorUtil::Angle(Vhad_CM.Vect(), WVsyst.Vect());
+  outputValues[0] = abs(VectorUtil::DeltaPhi(Vhad_plane, Wlep_plane));
+  outputValues[1] = Vhad_WVcm.Theta();
+  outputValues[2] = lep_Wcm.Theta();
+  outputValues[3] = vjet0_Vcm.Theta();
+  outputValues[4] = vjet1_Vcm.Theta();
+  outputValues[5] = VectorUtil::Angle(Vhad_WVcm.Vect(), WVsyst.Vect());
+  outputValues[6] = VectorUtil::Angle(lep_Wcm.Vect(), Wlep_WVcm.Vect());
+  outputValues[7] = VectorUtil::Angle(vjet0_Vcm.Vect(), Vhad_WVcm.Vect());
+  outputValues[8] = VectorUtil::Angle(vjet1_Vcm.Vect(), Vhad_WVcm.Vect());
 
   if (debug_){
     std::cout << "---------------"<< std::endl << "Category: " <<category <<std::endl;
-    std::cout << "WV syst Pt "<< outputValues[0] << std::endl;
-    std::cout << "WV syst Eta "<< outputValues[1] << std::endl;
-    std::cout << "WV syst Phi "<< outputValues[2] << std::endl;
-    std::cout << "WV deltaPhi "<< outputValues[3] << std::endl;
-    std::cout << "Vhad Theta* "<< outputValues[4] << std::endl;
-    std::cout << "Theta lep "<< outputValues[5] << std::endl;
-    std::cout << "Theta Vjet0 "<< outputValues[6] << std::endl;
-    std::cout << "Theta Vjet1 "<< outputValues[7] << std::endl;
-    std::cout << "Angle lep-Wlep "<< outputValues[8] << std::endl;
-    std::cout << "Angle vjet0-Wlep "<< outputValues[9] << std::endl;
-    std::cout << "Angle vjet1-Wlep "<< outputValues[10] << std::endl;
-    std::cout << "Angle Vhad in WVCM and WV "<< outputValues[11] << std::endl;
+    std::cout << "WV planes deltaPhi "<< outputValues[0] << std::endl;
+    std::cout << "Vhad Theta "<< outputValues[1] << std::endl;
+    std::cout << "Theta lep "<< outputValues[2] << std::endl;
+    std::cout << "Theta Vjet0 "<< outputValues[3] << std::endl;
+    std::cout << "Theta Vjet1 "<< outputValues[4] << std::endl;
+    std::cout << "Angle Vhad in WVCM "<< outputValues[5] << std::endl;
+    std::cout << "Angle lep-Wlep "<< outputValues[6] << std::endl;
+    std::cout << "Angle vjet0-Wlep "<< outputValues[7] << std::endl;
+    std::cout << "Angle vjet1-Wlep "<< outputValues[8] << std::endl;
 
-    auto check1 = Vhad_CM + Wlep_CM;
-    std::cout << check1.x() << " "<< check1.y() << " " << check1.z() << std::endl;
-    auto check2 = vjet0_VCM + vjet1_VCM;
-    std::cout << check2.x() << " "<< check2.y() << " " << check2.z() << std::endl;
+    std::cout << "check "<<  outputValues[5] << " ----> " << VectorUtil::Angle(Wlep_WVcm.Vect(), WVsyst.Vect()) << std::endl;
+
+    // auto check1 = Vhad_CM + Wlep_CM;
+    // std::cout << check1.x() << " "<< check1.y() << " " << check1.z() << std::endl;
+    // auto check2 = vjet0_VCM + vjet1_VCM;
+    // std::cout << check2.x() << " "<< check2.y() << " " << check2.z() << std::endl;
   }
 
   filled = true;
@@ -184,14 +187,16 @@ void
 VBSAngularVars_2017::bindTree_(multidraw::FunctionLibrary& _library)
 {
     _library.bindBranch(VBS_category, "VBS_category_OTF");
+    _library.bindBranch(Vjets_index_0, "V_jets_index_0_OTF");
+    _library.bindBranch(Vjets_index_1, "V_jets_index_1_OTF");
     _library.bindBranch(Wlep_pt, "Wlep_pt_OTF");
     _library.bindBranch(Wlep_eta, "Wlep_eta_OTF");
     _library.bindBranch(Wlep_phi, "Wlep_phi_OTF");
     _library.bindBranch(Wlep_mass, "Wlep_mass_OTF");
-    _library.bindBranch(Vhad_pt, "Wlep_pt_OTF");
-    _library.bindBranch(Vhad_eta, "Wlep_eta_OTF");
-    _library.bindBranch(Vhad_phi, "Wlep_phi_OTF");
-    _library.bindBranch(Vhad_mass, "Wlep_mass_OTF");
+    _library.bindBranch(Vhad_pt, "Vhad_pt_OTF");
+    _library.bindBranch(Vhad_eta, "Vhad_eta_OTF");
+    _library.bindBranch(Vhad_phi, "Vhad_phi_OTF");
+    _library.bindBranch(Vhad_mass, "Vhad_mass_OTF");
     _library.bindBranch(Lepton_pt, "Lepton_pt");
     _library.bindBranch(Lepton_eta, "Lepton_eta");
     _library.bindBranch(Lepton_phi, "Lepton_phi");
@@ -212,7 +217,6 @@ VBSAngularVars_2017::bindTree_(multidraw::FunctionLibrary& _library)
 }
 
 VBSAngularVars_2017::~VBSAngularVars_2017(){
-  V_jets_res = nullptr;
   Lepton_pt = nullptr;
   Lepton_eta = nullptr;
   Lepton_phi = nullptr;
@@ -226,8 +230,6 @@ VBSAngularVars_2017::~VBSAngularVars_2017(){
   subJet_eta = nullptr;
   subJet_phi = nullptr;
   subJet_mass = nullptr;
-  Wlep_vec= nullptr;
-  Vhad_vec = nullptr;
   subjet_1_index = nullptr;
   subjet_2_index = nullptr;
 }

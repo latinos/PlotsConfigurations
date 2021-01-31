@@ -98,7 +98,7 @@ groupPlot['Others']  = {
                 'nameHR' : "Others",
                 'isSignal' : 0,
                 'color':palette["GreenLighter"],# palette["Green5"],    #Green2
-                'samples'  : ['VBF-V', 'Vg','VgS' ],
+                'samples'  : ['VBF-V', 'Vg','VgS'],
                 'fill': 1001
             }
 

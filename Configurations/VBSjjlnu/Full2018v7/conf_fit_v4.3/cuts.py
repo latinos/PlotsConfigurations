@@ -22,8 +22,8 @@ cuts["res_sig_ele"] = 'VBS_category==1 \
                       && mjj_vjet > 65 && mjj_vjet < 105 \
                       && bVeto \
                       && w_had_pt < 200 \
-                      && veto_fatjet_180 '
-
+                      && veto_fatjet_180 \
+                      '
 
 
 cuts["res_sig_mu"] = 'VBS_category==1 \

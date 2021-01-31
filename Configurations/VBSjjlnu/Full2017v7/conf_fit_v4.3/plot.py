@@ -98,7 +98,7 @@ groupPlot['Others']  = {
                 'nameHR' : "Others",
                 'isSignal' : 0,
                 'color':palette["GreenLighter"],# palette["Green5"],    #Green2
-                'samples'  : ['VBF-V', 'Vg','VgS' ],
+                'samples'  : ['VBF-V', 'Vg','VgS', 'ggWW' ],
                 'fill': 1001
             }
 
@@ -109,7 +109,7 @@ groupPlot['Fake']  = {
                 'nameHR' : "Non-prompt",
                 'isSignal' : 0,
                 'color': palette["LightBlue"],   
-                'samples'  : ['Fake'],
+                'samples'  : ['Fake_ele','Fake_mu'],
                 'fill': 1001
             }
 
@@ -128,7 +128,7 @@ groupPlot["Wjets"]  = {
                         'nameHR' : 'W+Jets',
                         'isSignal' : 0,
                         'color':   palette["Yellow"],
-                        'samples'  : wjets_bins,
+                        'samples'  : ['Wjets_HT'],
                         'fill': 1001
                 }
 
@@ -185,7 +185,12 @@ plot['Vg']  = {
                   'scale'    : 1.   ,
               }   
          
-
+plot['ggWW']  = {
+                  'color': colors['kGreen']+3,  
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.   ,
+              }  
 
 plot['VgS']  = {  
                 'color': colors['kMagenta']+1,
@@ -194,12 +199,20 @@ plot['VgS']  = {
                 'scale'    : 1.0,
             }
 
-plot['Fake']  = {  
+plot['Fake_mu']  = {  
                 'color': colors['kTeal'],
                 'isSignal' : 0,
                 'isData'   : 0, 
                 'scale'    : 1.0,
             }
+
+plot['Fake_ele']  = {  
+                'color': colors['kTeal'],
+                'isSignal' : 0,
+                'isData'   : 0, 
+                'scale'    : 1.0,
+            }
+
 
 
 plot['top'] = {   
@@ -209,20 +222,20 @@ plot['top'] = {
                  'scale'    : 1.0 
                  }
 
-# plot['Wjets_HT'] = {   
-#                  'color': colors['kAzure']-1,
-#                  'isSignal' : 0,
-#                  'isData'   : 0, 
-#                  'scale'    : 1.0 
-#                  }
+plot['Wjets_HT'] = {   
+                 'color': colors['kAzure']-1,
+                 'isSignal' : 0,
+                 'isData'   : 0, 
+                 'scale'    : 1.0 
+                 }
 
-for wjetbin in wjets_bins:
-    plot[wjetbin] = {   
-                    'color': colors['kAzure']-1,
-                    'isSignal' : 0,
-                    'isData'   : 0, 
-                    'scale'    : 1.0 
-                    }
+# for wjetbin in wjets_bins:
+#     plot[wjetbin] = {   
+#                     'color': colors['kAzure']-1,
+#                     'isSignal' : 0,
+#                     'isData'   : 0, 
+#                     'scale'    : 1.0 
+#                     }
 
 plot['VBS']  = {
                   'color': colors["kCyan"]+1, 
@@ -233,7 +246,7 @@ plot['VBS']  = {
 
 # # data
 
-plot['DATA']  = { 
+plot['DATA_ele']  = { 
                  'nameHR' : 'Data',
                  'color': 1 ,  
                  'isSignal' : 0,
@@ -241,6 +254,14 @@ plot['DATA']  = {
                  'isBlind'  : 0
              }
 
+
+plot['DATA_mu']  = { 
+                 'nameHR' : 'Data',
+                 'color': 1 ,  
+                 'isSignal' : 0,
+                 'isData'   : 1 ,
+                 'isBlind'  : 0
+             }
 
 
 # additional options

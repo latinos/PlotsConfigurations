@@ -95,7 +95,7 @@ VetoFatJetResolved::bindTree_(multidraw::FunctionLibrary& _library)
     _library.bindBranch(Lepton_pt, "Lepton_pt");
     _library.bindBranch(Lepton_eta, "Lepton_eta");
     _library.bindBranch(Lepton_phi, "Lepton_phi");
-    _library.bindBranch(VBS_category, "VBS_category");
+    _library.bindBranch(VBS_category, "VBS_category"); 
 }   
 
 

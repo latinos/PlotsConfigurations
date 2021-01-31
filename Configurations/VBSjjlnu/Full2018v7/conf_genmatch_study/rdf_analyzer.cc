@@ -209,7 +209,7 @@ int main(int argc, char** argv){
                                     .Filter("(Lepton_isTightElectron_mvaFall17V1Iso_WP90[0]>0.5 || \
                                             Lepton_isTightMuon_cut_Tight_HWWW[0]>0.5)", "tight_lepton");
 
-    auto rdf_bveto = define_btag(rdf_filter1).Filter("bVeto");
+    auto rdf_bveto = define_btag(rdf_filter1).Filter("bVeto", "b_veto_filter");
 
     auto rdf_weights = add_weights(rdf_bveto);
 
@@ -267,7 +267,7 @@ int main(int argc, char** argv){
     output_file.Write();
     output_file.Close();
     
-    //rdf.Report()->Print();
+    rdf.Report()->Print();
     //rdf_final.Display({"V_partons","V_jets_maxmjj_massWZ", "match_jets","vjets_match","vbs_match"},100)->Print();
 
 

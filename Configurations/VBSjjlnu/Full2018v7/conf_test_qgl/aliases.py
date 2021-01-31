@@ -209,79 +209,82 @@ aliases['veto_fatjet_180'] = {
 # }
 
 ###################################3
-# QGL variables
+# # QGL variables
 
-morphing_file = configurations + "/VBSjjlnu/weights_files/morphing_functions_iter1.root"
-do_morph = "1110"
-mrp_higheta_gluon = "j2_higheta_pt0_gluon"
-mrp_loweta_gluon = "j3_loweta_pt0_gluon"
-mrp_higheta_quark = "j0_higheta_pt1_quark"
-mrp_loweta_quark = "j0_loweta_pt1_quark"
+# morphing_file = configurations + "/VBSjjlnu/weights_files/morphing_functions_iter1.root"
+# do_morph = "1110"
+# mrp_higheta_gluon = "j2_higheta_pt0_gluon"
+# mrp_loweta_gluon = "j3_loweta_pt0_gluon"
+# mrp_higheta_quark = "j0_higheta_pt1_quark"
+# mrp_loweta_quark = "j0_loweta_pt1_quark"
 
-aliases['vbs_0_qgl_res'] = {
-    'class': 'QglVarsMorphing',
-    'args': ('vbs_0_qgl_res', morphing_file, do_morph, mrp_higheta_gluon, mrp_loweta_gluon, mrp_higheta_quark, mrp_loweta_quark),
-    'linesToAdd' : [
-        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-        '.L {}/VBSjjlnu/macros/qgl_vars_morphing.cc+'.format(configurations)
-    ]   
-} 
+# aliases['vbs_0_qgl_res'] = {
+#     'class': 'QglVarsMorphing',
+#     'args': ('vbs_0_qgl_res', morphing_file, do_morph, mrp_higheta_gluon, mrp_loweta_gluon, mrp_higheta_quark, mrp_loweta_quark),
+#     'linesToAdd' : [
+#         'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+#         '.L {}/VBSjjlnu/macros/qgl_vars_morphing.cc+'.format(configurations)
+#     ]   
+# } 
 
-aliases['vbs_1_qgl_res'] = {
-    'class': 'QglVarsMorphing',
-    'args': ('vbs_1_qgl_res', morphing_file, do_morph, mrp_higheta_gluon, mrp_loweta_gluon, mrp_higheta_quark, mrp_loweta_quark), 
-} 
+# aliases['vbs_1_qgl_res'] = {
+#     'class': 'QglVarsMorphing',
+#     'args': ('vbs_1_qgl_res', morphing_file, do_morph, mrp_higheta_gluon, mrp_loweta_gluon, mrp_higheta_quark, mrp_loweta_quark), 
+# } 
 
-aliases['vjet_0_qgl_res'] = {
-    'class': 'QglVarsMorphing',
-    'args': ('vjet_0_qgl_res', morphing_file, do_morph, mrp_higheta_gluon, mrp_loweta_gluon, mrp_higheta_quark, mrp_loweta_quark), 
-} 
+# aliases['vjet_0_qgl_res'] = {
+#     'class': 'QglVarsMorphing',
+#     'args': ('vjet_0_qgl_res', morphing_file, do_morph, mrp_higheta_gluon, mrp_loweta_gluon, mrp_higheta_quark, mrp_loweta_quark), 
+# } 
 
-aliases['vjet_1_qgl_res'] = {
-    'class': 'QglVarsMorphing',
-    'args': ('vjet_1_qgl_res', morphing_file, do_morph, mrp_higheta_gluon, mrp_loweta_gluon, mrp_higheta_quark, mrp_loweta_quark), 
-} 
+# aliases['vjet_1_qgl_res'] = {
+#     'class': 'QglVarsMorphing',
+#     'args': ('vjet_1_qgl_res', morphing_file, do_morph, mrp_higheta_gluon, mrp_loweta_gluon, mrp_higheta_quark, mrp_loweta_quark), 
+# } 
 
-aliases['vbs_0_qgl_boost'] = {
-    'class': 'QglVarsMorphing',
-    'args': ('vbs_0_qgl_boost', morphing_file, do_morph, mrp_higheta_gluon, mrp_loweta_gluon, mrp_higheta_quark, mrp_loweta_quark), 
-} 
+# aliases['vbs_0_qgl_boost'] = {
+#     'class': 'QglVarsMorphing',
+#     'args': ('vbs_0_qgl_boost', morphing_file, do_morph, mrp_higheta_gluon, mrp_loweta_gluon, mrp_higheta_quark, mrp_loweta_quark), 
+# } 
 
-aliases['vbs_1_qgl_boost'] = {
-    'class': 'QglVarsMorphing',
-    'args': ('vbs_1_qgl_boost', morphing_file, do_morph, mrp_higheta_gluon, mrp_loweta_gluon, mrp_higheta_quark, mrp_loweta_quark), 
-} 
+# aliases['vbs_1_qgl_boost'] = {
+#     'class': 'QglVarsMorphing',
+#     'args': ('vbs_1_qgl_boost', morphing_file, do_morph, mrp_higheta_gluon, mrp_loweta_gluon, mrp_higheta_quark, mrp_loweta_quark), 
+# } 
 
-###############
-aliases['vbs_0_qglmorphed_res'] = {
-    'class': 'QglVarsMorphing',
-    'args': ('vbs_0_qglmorphed_res', morphing_file, do_morph, mrp_higheta_gluon, mrp_loweta_gluon, mrp_higheta_quark, mrp_loweta_quark),
-} 
+# ###############
+# aliases['vbs_0_qglmorphed_res'] = {
+#     'class': 'QglVarsMorphing',
+#     'args': ('vbs_0_qglmorphed_res', morphing_file, do_morph, mrp_higheta_gluon, mrp_loweta_gluon, mrp_higheta_quark, mrp_loweta_quark),
+# } 
 
-aliases['vbs_1_qglmorphed_res'] = {
-    'class': 'QglVarsMorphing',
-    'args': ('vbs_1_qglmorphed_res', morphing_file, do_morph, mrp_higheta_gluon, mrp_loweta_gluon, mrp_higheta_quark, mrp_loweta_quark), 
-} 
+# aliases['vbs_1_qglmorphed_res'] = {
+#     'class': 'QglVarsMorphing',
+#     'args': ('vbs_1_qglmorphed_res', morphing_file, do_morph, mrp_higheta_gluon, mrp_loweta_gluon, mrp_higheta_quark, mrp_loweta_quark), 
+# } 
 
-aliases['vjet_0_qglmorphed_res'] = {
-    'class': 'QglVarsMorphing',
-    'args': ('vjet_0_qglmorphed_res', morphing_file, do_morph, mrp_higheta_gluon, mrp_loweta_gluon, mrp_higheta_quark, mrp_loweta_quark), 
-} 
+# aliases['vjet_0_qglmorphed_res'] = {
+#     'class': 'QglVarsMorphing',
+#     'args': ('vjet_0_qglmorphed_res', morphing_file, do_morph, mrp_higheta_gluon, mrp_loweta_gluon, mrp_higheta_quark, mrp_loweta_quark), 
+# } 
 
-aliases['vjet_1_qglmorphed_res'] = {
-    'class': 'QglVarsMorphing',
-    'args': ('vjet_1_qglmorphed_res', morphing_file, do_morph, mrp_higheta_gluon, mrp_loweta_gluon, mrp_higheta_quark, mrp_loweta_quark), 
-} 
+# aliases['vjet_1_qglmorphed_res'] = {
+#     'class': 'QglVarsMorphing',
+#     'args': ('vjet_1_qglmorphed_res', morphing_file, do_morph, mrp_higheta_gluon, mrp_loweta_gluon, mrp_higheta_quark, mrp_loweta_quark), 
+# } 
 
-aliases['vbs_0_qglmorphed_boost'] = {
-    'class': 'QglVarsMorphing',
-    'args': ('vbs_0_qglmorphed_boost', morphing_file, do_morph, mrp_higheta_gluon, mrp_loweta_gluon, mrp_higheta_quark, mrp_loweta_quark), 
-} 
+# aliases['vbs_0_qglmorphed_boost'] = {
+#     'class': 'QglVarsMorphing',
+#     'args': ('vbs_0_qglmorphed_boost', morphing_file, do_morph, mrp_higheta_gluon, mrp_loweta_gluon, mrp_higheta_quark, mrp_loweta_quark), 
+# } 
 
-aliases['vbs_1_qglmorphed_boost'] = {
-    'class': 'QglVarsMorphing',
-    'args': ('vbs_1_qglmorphed_boost', morphing_file, do_morph, mrp_higheta_gluon, mrp_loweta_gluon, mrp_higheta_quark, mrp_loweta_quark), 
-} 
+# aliases['vbs_1_qglmorphed_boost'] = {
+#     'class': 'QglVarsMorphing',
+#     'args': ('vbs_1_qglmorphed_boost', morphing_file, do_morph, mrp_higheta_gluon, mrp_loweta_gluon, mrp_higheta_quark, mrp_loweta_quark), 
+# } 
+
+
+
 
 ##############
 #Parton flavour
@@ -320,3 +323,16 @@ aliases['vbs_1_qglmorphed_boost'] = {
 #     'args': ('vbs_1_partfl_boost', morphing_file, do_morph, mrp_higheta_gluon, mrp_loweta_gluon, mrp_higheta_quark, mrp_loweta_quark), 
 #     'samples':mc
 # } 
+
+
+morphing_file = configurations + "/VBSjjlnu/weights_files/qgl_morphing/morphing_functions_withvars_2018.root"
+
+
+aliases["CleanJet_qgl_morphed"]  = {
+    'class': 'QGL_morphing',
+    'args' : (morphing_file, "nom", "0000"),
+    'linesToAdd' : [
+        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+        '.L {}/macros/qgl_morphing.cc+'.format(configurations)
+        ] 
+}

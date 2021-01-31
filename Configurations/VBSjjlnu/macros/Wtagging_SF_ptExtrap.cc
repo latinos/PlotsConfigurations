@@ -128,7 +128,6 @@ Wtagging_SF_ptExtrap::setValues()
 void
 Wtagging_SF_ptExtrap::bindTree_(multidraw::FunctionLibrary& _library)
 {   
-
     _library.bindBranch(VBS_category, "VBS_category");
     _library.bindBranch(nFatJet, "nFatJet");
     _library.bindBranch(CleanFatJet_pt, "CleanFatJet_pt");

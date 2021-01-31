@@ -16,13 +16,13 @@ supercut = '(   (abs(Lepton_pdgId[0])==11 && Lepton_pt[0]>35)\
 ############ 
 ## Signal
 
-cuts["res_sig"] = 'VBS_category==1 \
-                && vjet_0_pt > 30 && vjet_1_pt > 30 \
-                && mjj_vjet > 65 && mjj_vjet < 105 \
-                && bVeto \
-                && w_had_pt < 200 \
-                && veto_fatjet_180 \
-                '
+# cuts["res_sig"] = 'VBS_category==1 \
+#                 && vjet_0_pt > 30 && vjet_1_pt > 30 \
+#                 && mjj_vjet > 65 && mjj_vjet < 105 \
+#                 && bVeto \
+#                 && w_had_pt < 200 \
+#                 && veto_fatjet_180 \
+#                 '
 
 ###############
 ##### Wjets
@@ -35,20 +35,20 @@ cuts["res_wjetcr"] = 'VBS_category==1 \
                     && veto_fatjet_180 \
                     '
 
-cuts["res_topcr"] = 'VBS_category==1 \
-                    && vjet_0_pt > 30 && vjet_1_pt > 30 \
-                    && mjj_vjet > 75 && mjj_vjet < 95 \
-                    && bReqTight \
-                    && w_had_pt < 200 \
-                    && veto_fatjet_180 \
-                    '
+# cuts["res_topcr"] = 'VBS_category==1 \
+#                     && vjet_0_pt > 30 && vjet_1_pt > 30 \
+#                     && mjj_vjet > 75 && mjj_vjet < 95 \
+#                     && bReqTight \
+#                     && w_had_pt < 200 \
+#                     && veto_fatjet_180 \
+#                     '
 
 
-cuts["boost_wjetcr"] = 'VBS_category==0 \
-                             && w_had_pt > 200 \
-                            && mjj_vjet > 40 && (mjj_vjet <= 70 || mjj_vjet >= 115)  \
-                            && bVeto \
-                            '
+# cuts["boost_wjetcr"] = 'VBS_category==0 \
+#                              && w_had_pt > 200 \
+#                             && mjj_vjet > 40 && (mjj_vjet <= 70 || mjj_vjet >= 115)  \
+#                             && bVeto \
+#                             '
 
                             
 # cuts["res_wjetcr_vbs0_higheta"] = 'VBS_category==1 \

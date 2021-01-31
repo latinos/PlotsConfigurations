@@ -9,10 +9,10 @@ direc = "conf_fit_v4.3"
 outputDir = 'rootFile_'+tag 
 
 # file with TTree aliases
-aliasesFile = direc+'/aliases_allvars.py'
+aliasesFile = direc+'/aliases.py'
 
 # file with list of variables
-variablesFile = direc+'/variables_allvars.py'
+variablesFile = direc+'/variables_fit.py'
 
 # file with list of cuts
 cutsFile = direc +'/cuts.py' 
@@ -44,7 +44,7 @@ structureFile = direc+'/structure.py'
 # nuisances file for mkDatacards and for mkShape
 #nuisancesFile = direc+'/nuisances.py'
 #nuisancesFile = direc+'/nuisances_datacard_join.py'
-#nuisancesFile = direc + '/nuisances_datacard.py'
+nuisancesFile = direc + '/nuisances_datacard.py'
 
 
 customizeScript = direc + '/customize.py'

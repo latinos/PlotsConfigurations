@@ -28,7 +28,6 @@ def get_cdf_func(h_i, name):
             
     h.Scale(1/h.Integral())
     
-    
     h_cdf = h.GetCumulative()
     g_cdf = R.TGraph()
     g_inv = R.TGraph()
@@ -47,7 +46,7 @@ def get_cdf_func(h_i, name):
         
     g_cdf.SetPoint(ibin+1, 1., 1.)
     g_inv.SetPoint(ibin+1, 1., 1.)
-    return g_cdf, g_inv
+    return g_cdf, g_inv,h
 
 
 def get_morphing(gG, gT_inv, name):
@@ -66,9 +65,7 @@ def get_morphing(gG, gT_inv, name):
 out = R.TFile(args.outputdir + '/' + args.outputfile, "RECREATE")
 
 
-
 # Morph quark
-
 for e in ["_loweta", "_higheta"]:
     for ptbin in [ "_pt0","_pt1"] :
         morphs = {}
@@ -84,28 +81,54 @@ for e in ["_loweta", "_higheta"]:
             hData.Scale(nTot / hData.Integral())
 
             if args.jet_type == "quark":
+
                 hQ_target = hData.Clone("hQ_target_"+j)
                 hQ_target.Add(hOthers, -1.)
                 hQ_target.Add(hG, -1.)
 
-                gQ, gQ_inv= get_cdf_func(hQ, jet)
-                gT , gT_inv = get_cdf_func(hQ_target, jet + "_target")
+                gQ, gQ_inv, hQcorr= get_cdf_func(hQ, jet)
+                gT , gT_inv, hQtarget_corr = get_cdf_func(hQ_target, jet + "_target")
                 
                 morph = get_morphing(gQ, gT_inv, jet + "_quark")
                 morph.Write()
                 morphs[jet + "_quark"] = morph
+
+                c = R.TCanvas()
+                hQcorr.Draw("hist")
+                hQcorr.SetLineWidth(2)
+                hQcorr.SetLineColor(R.kBlue)
+                hQcorr.GetYaxis().SetRangeUser(0, 1.2*hQcorr.GetMaximum())
+                hQtarget_corr.Draw("hist same")
+                hQtarget_corr.SetLineWidth(2)
+                hQtarget_corr.SetLineColor(R.kGreen)
+                c.Draw()
+                c.SaveAs(args.outputdir + '/morphing_debug_{}_{}_{}_{}.png'.format(args.jet_type, e,ptbin, j))
 
             elif args.jet_type == "gluon":
                 hG_target = hData.Clone("hG_target_"+j)
                 hG_target.Add(hOthers, -1.)
                 hG_target.Add(hQ, -1.)
 
-                gG, gG_inv= get_cdf_func(hG, jet)
-                gT , gT_inv = get_cdf_func(hG_target, jet + "_target")
+                gG, gG_inv, hGcorr = get_cdf_func(hG, jet)
+                gT , gT_inv, hGtarget_corr = get_cdf_func(hG_target, jet + "_target")
                 
                 morph = get_morphing(gG, gT_inv, jet + "_gluon")
                 morph.Write()
                 morphs[jet + "_gluon"] = morph
+
+                c = R.TCanvas()
+                hGcorr.Draw("hist")
+                hGcorr.SetLineWidth(2)
+                hGcorr.SetLineColor(R.kBlue)
+                hGcorr.GetYaxis().SetRangeUser(0, 1.2*hGcorr.GetMaximum())
+                hGtarget_corr.Draw("hist same")
+                hGtarget_corr.SetLineWidth(2)
+                hGtarget_corr.SetLineColor(R.kGreen)
+                
+                c.Draw()
+                c.SaveAs(args.outputdir + '/morphing_debug_{}_{}_{}_{}.png'.format(args.jet_type, e,ptbin, j))
+
+
 
         c = R.TCanvas()
         leg = R.TLegend(0.6,0.1,0.9,0.3)

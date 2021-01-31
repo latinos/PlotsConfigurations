@@ -270,11 +270,11 @@ variables['Asym_vbs'] = {   'name': 'Asym_vbs',
                         'fold' : 3
                         }
 
-# variables['Asym_vjet'] = {   'name': 'Asym_vjet',      
-#                         'range' : (30,0,1),  
-#                         'xaxis' : 'Pt asymmetry V-jets', 
-#                         'fold' : 3
-#                         }
+variables['Asym_vjet'] = {   'name': 'Asym_vjet',      
+                        'range' : (30,0,1),  
+                        'xaxis' : 'Pt asymmetry V-jets', 
+                        'fold' : 3
+                        }
 
  
 # variables['Mw_lep_reco'] = {   'name': 'Mw_lep',      
@@ -296,11 +296,11 @@ variables['Mww'] = {   'name': 'Mww',
                          'blind': [1000,2000]
                         }
 
-# variables['R_ww'] = {   'name': 'R_ww',      
-#                         'range' : (30,0,80),  
-#                         'xaxis' : 'R_ww', 
-#                         'fold' : 3
-#                         }
+variables['R_ww'] = {   'name': 'R_ww',      
+                        'range' : (30,0,80),  
+                        'xaxis' : 'R_ww', 
+                        'fold' : 3
+                        }
 
 # variables['R_mw'] = {   'name': 'R_mw',      
 #                         'range' : (30,0,0.6),  
@@ -308,11 +308,11 @@ variables['Mww'] = {   'name': 'Mww',
 #                         'fold' : 3
 #                         }
 
-# variables['A_ww'] = {   'name': 'A_ww',      
-#                         'range' : (30,0,1.1),  
-#                         'xaxis' : 'A_ww', 
-#                         'fold' : 3
-#                         }
+variables['A_ww'] = {   'name': 'A_ww',      
+                        'range' : (30,0,1.1),  
+                        'xaxis' : 'A_ww', 
+                        'fold' : 3
+                        }
 
 #Centrality variables
 variables['Centr_vbs'] = {   'name': 'Centr_vbs',      
@@ -335,49 +335,49 @@ variables['nvtx_good'] = {  'name': 'PV_npvsGood',
                 }
 
 #######
-# QGL vars 
+# # QGL vars 
 
-variables['vbs_0_qgl_boost'] = {  'name': 'vbs_0_qgl_boost',
-                        'range': (40,0.,1.),
-                        'xaxis': 'Qgl VBS 0 jet',
-                        'fold': 3,
-                        'cuts': boost_cuts
-                }
+# variables['vbs_0_qgl_boost'] = {  'name': 'vbs_0_qgl_boost',
+#                         'range': (40,0.,1.),
+#                         'xaxis': 'Qgl VBS 0 jet',
+#                         'fold': 3,
+#                         'cuts': boost_cuts
+#                 }
 
-variables['vbs_1_qgl_boost'] = {  'name': 'vbs_1_qgl_boost',
-                        'range': (40,0.,1.),
-                        'xaxis': 'Qgl VBS 1 jet',
-                        'fold': 3,
-                        'cuts': boost_cuts
-                }
+# variables['vbs_1_qgl_boost'] = {  'name': 'vbs_1_qgl_boost',
+#                         'range': (40,0.,1.),
+#                         'xaxis': 'Qgl VBS 1 jet',
+#                         'fold': 3,
+#                         'cuts': boost_cuts
+#                 }
 
-variables['vbs_0_qgl_res'] = {  'name': 'vbs_0_qgl_res',
-                        'range': (40,0.,1.),
-                        'xaxis': 'Qgl VBS 0 jet',
-                        'fold': 3,
-                        'cuts': res_cuts
-                }
+# variables['vbs_0_qgl_res'] = {  'name': 'vbs_0_qgl_res',
+#                         'range': (40,0.,1.),
+#                         'xaxis': 'Qgl VBS 0 jet',
+#                         'fold': 3,
+#                         'cuts': res_cuts
+#                 }
 
-variables['vbs_1_qgl_res'] = {  'name': 'vbs_1_qgl_res',
-                        'range': (40,0.,1.),
-                        'xaxis': 'Qgl VBS 1 jet',
-                        'fold': 3,
-                        'cuts': res_cuts
-                }
+# variables['vbs_1_qgl_res'] = {  'name': 'vbs_1_qgl_res',
+#                         'range': (40,0.,1.),
+#                         'xaxis': 'Qgl VBS 1 jet',
+#                         'fold': 3,
+#                         'cuts': res_cuts
+#                 }
 
-variables['vjet_0_qgl_res'] = {  'name': 'vjet_0_qgl_res',
-                        'range': (40,0.,1.),
-                        'xaxis': 'Qgl Vjet 0 jet',
-                        'fold': 3,
-                        'cuts': res_cuts
-                }
+# variables['vjet_0_qgl_res'] = {  'name': 'vjet_0_qgl_res',
+#                         'range': (40,0.,1.),
+#                         'xaxis': 'Qgl Vjet 0 jet',
+#                         'fold': 3,
+#                         'cuts': res_cuts
+#                 }
 
-variables['vjet_1_qgl_res'] = {  'name': 'vjet_1_qgl_res',
-                        'range': (40,0.,1.),
-                        'xaxis': 'Qgl Vjet 1 jet',
-                        'fold': 3,
-                        'cuts': res_cuts
-                }
+# variables['vjet_1_qgl_res'] = {  'name': 'vjet_1_qgl_res',
+#                         'range': (40,0.,1.),
+#                         'xaxis': 'Qgl Vjet 1 jet',
+#                         'fold': 3,
+#                         'cuts': res_cuts
+#                 }
 
 
 
@@ -427,219 +427,200 @@ variables['vjet_1_qglmorphed_res'] = {  'name': 'vjet_1_qglmorphed_res',
                 }
 
 
-#############
-variables['vbs_jets_pt'] = {  'name': 'tag_jets_systems_pt[0]',
-                        'range': (40,0.,600),
-                        'xaxis': 'Pt of VBS jets system',
-                        'fold': 3
-                }
+# #############
+# variables['vbs_jets_pt'] = {  'name': 'tag_jets_systems_pt[0]',
+#                         'range': (40,0.,600),
+#                         'xaxis': 'Pt of VBS jets system',
+#                         'fold': 3
+#                 }
 
 
 ############ WV system variables
 
- 
-# aliases['WV_pt']= { 'expr': 'angular_vars[0]'}
-# aliases['WV_eta']= { 'expr': 'angular_vars[1]'}
-# aliases['WV_phi']= { 'expr': 'angular_vars[2]'}
-# aliases['WV_deltaphi']= { 'expr': 'angular_vars[3]'}
-# aliases['theta_star']= { 'expr': 'angular_vars[4]'}
-# aliases['theta_lep']= { 'expr': 'angular_vars[5]'}
-# aliases['theta_vjet_0']= { 'expr': 'angular_vars[6]'}
-# aliases['theta_vjet_1']= { 'expr': 'angular_vars[7]'}
+  
+# aliases['deltaphi_WV']= { 'expr': 'angular_vars[0]'}
+# aliases['theta_Vhad']= { 'expr': 'angular_vars[1]'}
+# aliases['theta_lep']= { 'expr': 'angular_vars[2]'}
+# aliases['theta_vjet_0']= { 'expr': 'angular_vars[3]'}
+# aliases['theta_vjet_1']= { 'expr': 'angular_vars[4]'}
+# aliases['deltatheta_Vhad']= { 'expr': 'angular_vars[5]'}
+# aliases['deltatheta_lep']= { 'expr': 'angular_vars[6]'}
+# aliases['deltatheta_vjet0']= { 'expr': 'angular_vars[7]'}
+# aliases['deltatheta_vjet1']= { 'expr': 'angular_vars[8]'}
 
+# aliases['cosdeltatheta_Vhad']= { 'expr': 'TMath::Cos(angular_vars[5])'}
+# aliases['cosdeltatheta_lep']= { 'expr': 'TMath::Cos(angular_vars[6])'}
+# aliases['cosdeltatheta_vjet0']= { 'expr': 'TMath::Cos(angular_vars[7])'}
+# aliases['cosdeltatheta_vjet1']= { 'expr': 'TMath::Cos(angular_vars[8])'}
 
-variables['WV_pt'] = {  'name': 'WV_pt',
-                        'range': (40,0.,500),
-                        'xaxis': 'Pt of WV system',
-                        'fold': 3
-                }
+# variables['WV_pt'] = {  'name': 'WV_pt',
+#                         'range': (40,0.,500),
+#                         'xaxis': 'Pt of WV system',
+#                         'fold': 3
+#                 }
 
-variables['WV_eta'] = {  'name': 'WV_eta',
-                        'range': (40,-3,3),
-                        'xaxis': 'Eta of WV system',
-                        'fold': 3
-                }
+# variables['WV_eta'] = {  'name': 'WV_eta',
+#                         'range': (40,-3,3),
+#                         'xaxis': 'Eta of WV system',
+#                         'fold': 3
+#                 }
 
-variables['WV_phi'] = {  'name': 'WV_phi',
-                        'range': (40,-3.14,3.14 ),
-                        'xaxis': 'Eta of WV system',
-                        'fold': 3
-                }
+# variables['WV_phi'] = {  'name': 'WV_phi',
+#                         'range': (40,-3.14,3.14 ),
+#                         'xaxis': 'Eta of WV system',
+#                         'fold': 3
+#                 }
 
-variables['WV_deltaphi'] = {  'name': 'abs(WV_deltaphi)',
+variables['deltaphi_WV'] = {  'name': 'deltaphi_WV',
                         'range': (30,0,3.14),
-                        'xaxis': 'DeltaPhi of W lep and Whad',
+                        'xaxis': 'DeltaPhi of W lep and V had planes',
                         'fold': 3
                 }
 
-variables['WV_theta_star'] = {  'name': 'WV_theta_star',
+variables['theta_Vhad'] = {  'name': 'theta_Vhad',
                         'range': (40,0.,3.14 ),
-                        'xaxis': 'WV theta*',
+                        'xaxis': 'Vhad polar angle in WVCM',
                         'fold': 3
                 }
 
 
 variables['theta_lep'] = {  'name': 'theta_lep',
                         'range': (30,0,3.14),
-                        'xaxis': 'lep theta',
+                        'xaxis': 'lep polar angle in Wlep CM',
                         'fold': 3
                 }
 
 variables['theta_vjet_0'] = {  'name': 'theta_vjet_0',
                         'range': (30,0,3.14 ),
-                        'xaxis': 'Vjet 0 theta',
+                        'xaxis': 'Vjet 0 polar angle in Vhad CM',
                         'fold': 3
                 }
 
 variables['theta_vjet_1'] = {  'name': 'theta_vjet_1',
                         'range': (30,0,3.14 ),
-                        'xaxis': 'Vjet 1 theta',
+                        'xaxis': 'Vjet 1 polar angle in Vhad CM',
                         'fold': 3
                 }
 
+                
+variables['deltatheta_Vhad'] = {  'name': 'deltatheta_Vhad',
+                'range': (30,0,3.14 ),
+                'xaxis': 'Vhad theta* angle in WV CM',
+                'fold': 3
+        }
+
 variables['deltatheta_lep'] = {  'name': 'deltatheta_lep',
                 'range': (30,0,3.14 ),
-                'xaxis': 'DeltaTheta lep-Wlep',
+                'xaxis': 'lep theta1 in WV CM',
                 'fold': 3
         }
 
 variables['deltatheta_vjet_0'] = {  'name': 'deltatheta_vjet_0',
                 'range': (30,0,3.14 ),
-                'xaxis': 'DeltaTheta Vjet0-Vhad',
+                'xaxis': 'Vjet0 theta2 in WV CM',
                 'fold': 3
         }
 
 variables['deltatheta_vjet_1'] = {  'name': 'deltatheta_vjet_1',
                 'range': (30,0,3.14 ),
-                'xaxis': 'DeltaTheta Vjet1-Vhad',
+                'xaxis': 'Vjet1 theta2 in WV CM',
                 'fold': 3
         }
 
-variables['WV_costheta_star'] = {  'name': 'TMath::Cos(WV_theta_star)',
-                        'range': (30,-1,1 ),
-                        'xaxis': 'WV cos(theta*)',
-                        'fold': 3
-                }
-
-
-variables['costheta_lep'] = {  'name': 'TMath::Cos(theta_lep)',
-                        'range': (30,-1,1 ),
-                        'xaxis': 'Wlep cos(theta)',
-                        'fold': 3
-                }
-
-
-variables['costheta_vjet_0'] = {  'name': 'TMath::Cos(theta_vjet_0)',
-                        'range': (30,-1,1 ),
-                        'xaxis': 'Vjet 0 cos(theta)',
-                        'fold': 3
-                }
-        
-
-variables['costheta_vjet_1'] = {  'name': 'TMath::Cos(theta_vjet_1)',
-                        'range': (30,-1,1 ),
-                        'xaxis': 'Vjet 1 cos(theta)',
-                        'fold': 3
-                }
-
-variables['cosdeltatheta_lep'] = {  'name': 'TMath::Cos(deltatheta_lep)',
-                'range': (30,-1.,1. ),
-                'xaxis': 'cos(DeltaTheta) lep-Wlep',
+variables['cosdeltatheta_Vhad'] = {  'name': 'cosdeltatheta_Vhad',
+                'range': (30,-1,1 ),
+                'xaxis': 'Vhad cos(theta*) angle in WV CM',
                 'fold': 3
         }
 
-variables['cosdeltatheta_vjet_0'] = {  'name': 'TMath::Cos(deltatheta_vjet_0)',
-                'range': (30,-1.,1. ),
-                'xaxis': 'cos(DeltaTheta) Vjet0-Vhad',
+variables['cosdeltatheta_lep'] = {  'name': 'cosdeltatheta_lep',
+                'range': (30,-1,1 ),
+                'xaxis': 'lep cos(theta1) in WV CM',
                 'fold': 3
         }
 
-variables['cosdeltatheta_vjet_1'] = {  'name': 'TMath::Cos(deltatheta_vjet_1)',
-                'range': (30,-1.,1. ),
-                'xaxis': 'cos(DeltaTheta) Vjet1-Vhad',
+variables['cosdeltatheta_vjet_0'] = {  'name': 'cosdeltatheta_vjet_0',
+                'range': (30,-1,1 ),
+                'xaxis': 'Vjet0 cos(theta2) in WV CM',
                 'fold': 3
         }
 
+variables['cosdeltatheta_vjet_1'] = {  'name': 'cosdeltatheta_vjet_1',
+                'range': (30,-1,1 ),
+                'xaxis': 'Vjet1 cos(theta2) in WV CM',
+                'fold': 3
+        }
 ########################################################
 ######################################################
 ### Tree output
 
+res_vars = [
+            'vbs_0_pt', 'vbs_0_eta', 'vbs_0_phi', 
+            'vbs_1_pt', 'vbs_1_eta', 'vbs_1_phi', 
+            'vjet_0_pt', 'vjet_0_eta', 'vjet_0_phi',
+            'vjet_1_pt', 'vjet_1_eta', 'vjet_1_phi', 
+            'mjj_vbs', 'mjj_vjet',
+            'deltaeta_vbs',  'deltaphi_vbs', 
+            'deltaeta_vjet', 'deltaphi_vjet', 
+            'Zvjets_0',  'Zlep',
+            'Asym_vbs', 'Mtw_lep', 'w_lep_pt', 'w_had_pt',
+            'Mww', 
+            'Centr_vbs', 'Centr_ww', 
+            'vbs_0_qglmorphed_res', 'vbs_1_qglmorphed_res', 'vjet_0_qglmorphed_res', 'vjet_1_qglmorphed_res',
+            'nJets30','PuppiMET_pt', 'PuppiMET_phi',
+            'deltaphi_WV', 'theta_Vhad', 'theta_lep','theta_vjet_0','theta_vjet_1',
+            'deltatheta_Vhad','deltatheta_lep','deltatheta_vjet_0','deltatheta_vjet_1',
+            'cosdeltatheta_Vhad','cosdeltatheta_lep','cosdeltatheta_vjet_0','cosdeltatheta_vjet_1'
+            ]
 
-# res_vars = [
-#             'vbs_0_pt', 'vbs_0_eta', 'vbs_0_phi', 'vbs_0_E',
-#             'vbs_1_pt', 'vbs_1_eta', 'vbs_1_phi', 'vbs_1_E',
-#             'vjet_0_pt', 'vjet_0_eta', 'vjet_0_phi', 'vjet_0_E',
-#             'vjet_1_pt', 'vjet_1_eta', 'vjet_1_phi', 'vjet_1_E',
-#             'mjj_vbs', 'mjj_vjet',
-#             'deltaeta_vbs',  'deltaphi_vbs', 
-#             'deltaeta_vjet', 'deltaphi_vjet', 
-#             'deltaphi_lep_nu', 'deltaeta_lep_nu',
-#             'Rvjets_0', 'Rvjets_1',
-#             'Zvjets_0', 'Zvjets_1', 'Zlep',
-#             'Asym_vbs', 'Asym_vjet', 'Mw_lep', 'Mtw_lep', 'w_lep_pt', 'w_had_pt',
-#             'Mww', 'R_ww', 'R_mw', 'A_ww',
-#             'Centr_vbs', 'Centr_ww', 'Lep_proj', 'Lep_projw',
-#             'vbs_0_qglmorphed_res', 'vbs_1_qglmorphed_res', 'vjet_0_qglmorphed_res', 'vjet_1_qglmorphed_res',
-#             'nJets30','PuppiMET_pt', 'PuppiMET_phi',
-#             'WV_pt', 'WV_eta','WV_phi','WV_deltaphi','WV_theta_star',
-#             'theta_lep','theta_vjet_0','theta_vjet_1','deltatheta_lep','deltatheta_vjet_0','deltatheta_vjet_1'
-#             ]
-
-# res_branches =  { v:v for v in res_vars }
+res_branches =  { v:v for v in res_vars }
 
 
-# boost_vars = ['vbs_0_pt', 'vbs_0_eta', 'vbs_0_phi', 'vbs_0_E',
-#             'vbs_1_pt', 'vbs_1_eta', 'vbs_1_phi', 'vbs_1_E',
-#             'vjet_0_pt', 'vjet_0_eta', 'vjet_0_phi', 'vjet_0_E',
-#             'mjj_vbs', 'mjj_vjet',
-#             'deltaeta_vbs',  'deltaphi_vbs', 
-#             'deltaphi_lep_nu', 'deltaeta_lep_nu',
-#             'Rvjets_0', 'Zvjets_0', 'Zlep',
-#             'Asym_vbs', 'Mw_lep', 'Mtw_lep', 'w_lep_pt',
-#             'Mww', 'R_ww', 'R_mw', 'A_ww',
-#             'Centr_vbs', 'Centr_ww', 'Lep_proj', 'Lep_projw',
-#             #'fatjet_TvsQCD' ,'fatjet_ZvsQCD','fatjet_WvsQCD',
-#             'vbs_0_qglmorphed_boost', 'vbs_1_qglmorphed_boost',
-#             'nJets30','PuppiMET_pt', 'PuppiMET_phi',
-#             'WV_pt', 'WV_eta','WV_phi','WV_deltaphi','WV_theta_star',
-#             'theta_lep','theta_vjet_0','theta_vjet_1','deltatheta_lep','deltatheta_vjet_0','deltatheta_vjet_1'
-#         ]
+boost_vars = ['vbs_0_pt', 'vbs_0_eta', 'vbs_0_phi',
+            'vbs_1_pt', 'vbs_1_eta', 'vbs_1_phi', 
+            'vjet_0_pt', 'vjet_0_eta', 'vjet_0_phi', 
+            'mjj_vbs', 'mjj_vjet',
+            'deltaeta_vbs',  'deltaphi_vbs', 
+            'deltaphi_lep_nu', 'deltaeta_lep_nu',
+            'Zvjets_0', 'Zlep',
+            'Asym_vbs',  'Mtw_lep', 'w_lep_pt','w_had_pt',
+            'Mww', 'Centr_vbs', 'Centr_ww', 
+            #'fatjet_TvsQCD' ,'fatjet_ZvsQCD','fatjet_WvsQCD',
+            'vbs_0_qglmorphed_boost', 'vbs_1_qglmorphed_boost',
+            'nJets30','PuppiMET_pt', 'PuppiMET_phi',
+            'deltaphi_WV', 'theta_Vhad', 'theta_lep','theta_vjet_0','theta_vjet_1',
+            'deltatheta_Vhad','deltatheta_lep','deltatheta_vjet_0','deltatheta_vjet_1',
+            'cosdeltatheta_Vhad','cosdeltatheta_lep','cosdeltatheta_vjet_0','cosdeltatheta_vjet_1'
+        ]
 
-# boost_branches =  { v:v for v in boost_vars }
+boost_branches =  { v:v for v in boost_vars }
 
 
-# #########
-# # add the branches that need expressions
-# for brs in [res_branches, boost_branches]:
-#     brs['Lepton_pt'] = 'Lepton_pt[0]'
-#     brs['Lepton_eta'] = 'Lepton_eta[0]'
-#     brs['Lepton_phi'] = 'Lepton_phi[0]'
-#     brs['nvtxGood'] = 'PV_npvsGood'
-#     # jet systems
+#########
+# add the branches that need expressions
+for brs in [res_branches, boost_branches]:
+    brs['Lepton_pt'] = 'Lepton_pt[0]'
+    brs['Lepton_eta'] = 'Lepton_eta[0]'
+    brs['Lepton_phi'] = 'Lepton_phi[0]'
+    brs['nvtxGood'] = 'PV_npvsGood'
+    # jet systems
 #     brs['vbs_jets_pt'] = 'tag_jets_systems_pt[0]'
 #     brs['four_tag_jets_pt'] = 'tag_jets_systems_pt[1]'
 #     brs['vbs_jets_HT'] = 'tag_jets_systems_pt[2]'
 #     brs['four_tag_jets_HT'] = 'tag_jets_systems_pt[4]'
 #     brs['four_tag_jets_lepton_HT'] = 'tag_jets_systems_pt[5]'
-#     brs['WV_costheta_star'] = 'TMath::Cos(WV_theta_star)'
-#     brs['costheta_lep'] =    'TMath::Cos(theta_lep)'
-#     brs['costheta_vjet_0'] =    'TMath::Cos(theta_vjet_0)'
-#     brs['costheta_vjet_1'] =    'TMath::Cos(theta_vjet_1)'
-#     brs['cosdeltatheta_lep'] = 'TMath::Cos(deltatheta_lep)'
-#     brs['cosdeltatheta_vjet_0'] = 'TMath::Cos(deltatheta_vjet_0)'
-#     brs['cosdeltatheta_vjet_1'] = 'TMath::Cos(deltatheta_vjet_1)'
 
-# # only res branches
+# only res branches
 # res_branches['v_jets_HT'] = 'tag_jets_systems_pt[3]'
 
-# ##################################
+##################################
 
-# variables['dnn_inputs_resolved'] = {
-#     'tree': res_branches,
-#     'cuts' : ['res_sig_ele', 'res_sig_mu']
-# }
+variables['dnn_inputs_resolved'] = {
+    'tree': res_branches,
+    'cuts' : ['res_sig_ele', 'res_sig_mu']
+}
 
-# variables['dnn_inputs_boosted'] = {
-#     'tree':  boost_branches,
-#     'cuts' : ['boost_sig_ele', 'boost_sig_mu']
-# }
+variables['dnn_inputs_boosted'] = {
+    'tree':  boost_branches,
+    'cuts' : ['boost_sig_ele', 'boost_sig_mu']
+}

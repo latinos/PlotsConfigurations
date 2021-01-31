@@ -346,40 +346,48 @@ aliases['BoostedWtagSF_ptextr'] = {
 
 
 
-################
-aliases['tag_jets_systems_pt'] = {
-    'class': 'TagJetsSystemsPt',
-    'args': (),
-    'linesToAdd' : [
-        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-        '.L {}/VBSjjlnu/macros/TagJetsSystemsPt.cc+'.format(configurations)
-    ]   
-}
+# ################
+# aliases['tag_jets_systems_pt'] = {
+#     'class': 'TagJetsSystemsPt',
+#     'args': (),
+#     'linesToAdd' : [
+#         'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+#         '.L {}/VBSjjlnu/macros/TagJetsSystemsPt.cc+'.format(configurations)
+#     ]   
+# }
 
 
-aliases['vbs_jets_pt'] ={
-    'expr' : 'tag_jets_systems_pt[0]'
-}
+# aliases['vbs_jets_pt'] ={
+#     'expr' : 'tag_jets_systems_pt[0]'
+# }
 
 ##########################
 
 aliases['angular_vars'] = {
     'class': 'VBSAngularVars',
-    'args': (False),
+    'args': (True),
     'linesToAdd':[
         'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
         '.L {}/VBSjjlnu/macros/VBSAngularVars.cc+'.format(configurations)
     ],
 }
 
-aliases['WV_pt']= { 'expr': 'angular_vars[0]'}
-aliases['WV_eta']= { 'expr': 'angular_vars[1]'}
-aliases['WV_phi']= { 'expr': 'angular_vars[2]'}
-aliases['WV_deltaphi']= { 'expr': 'angular_vars[3]'}
-aliases['WV_theta_star']= { 'expr': 'angular_vars[4]'}
-aliases['theta_lep']= { 'expr': 'angular_vars[5]'}
-aliases['theta_vjet_0']= { 'expr': 'angular_vars[6]'}
-aliases['theta_vjet_1']= { 'expr': 'angular_vars[7]'}
-aliases['deltatheta_lep']= { 'expr': 'angular_vars[8]'}
-aliases['deltatheta_vjet_0']= { 'expr': 'angular_vars[9]'}
-aliases['deltatheta_vjet_1']= { 'expr': 'angular_vars[10]'}
+#   0) deltaphi_WVplanes
+#   1) theta Vhad
+#   2) theta_lep
+#   3) theta_vjet_0
+#   4) theta_vjet_1
+#   5) delta theta*-WVsyst
+#   6) delta theta_lep_Wlep
+#   7) delta theta_vjet0_Wlep
+#   8) delta theta_vjet1_Wlep
+  
+aliases['deltaphi_WV']= { 'expr': 'angular_vars[0]'}
+aliases['theta_Vhad']= { 'expr': 'angular_vars[1]'}
+aliases['theta_lep']= { 'expr': 'angular_vars[2]'}
+aliases['theta_vjet_0']= { 'expr': 'angular_vars[3]'}
+aliases['theta_vjet_1']= { 'expr': 'angular_vars[4]'}
+aliases['deltatheta_Vhad']= { 'expr': 'angular_vars[5]'}
+aliases['deltatheta_lep']= { 'expr': 'angular_vars[6]'}
+aliases['deltatheta_vjet0']= { 'expr': 'angular_vars[7]'}
+aliases['deltatheta_vjet1']= { 'expr': 'angular_vars[8]'}

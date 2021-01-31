@@ -10,6 +10,7 @@ for ir in range(1,7):
 for ir in range(1,6):
     samples.append("Wjets_HT_boost_"+str(ir))
 
+# samples = ['VBF-V']
 
 for sample_name in samples:
 

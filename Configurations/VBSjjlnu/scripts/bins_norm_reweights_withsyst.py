@@ -170,9 +170,9 @@ for cut in args.cuts:
                     continue
                 nom = reweight_hist.GetBinContent(ibin)
                 w = data_hist.GetBinContent(ibin) / nom
-                err = sqrt(reweight_hist.GetBinContent(ibin))
-                err_sys_up = sqrt(err**2 + errors[sample][0][ibin-1]**2)
-                err_sys_do = sqrt(err**2 + errors[sample][1][ibin-1]**2)
+                #err = sqrt(reweight_hist.GetBinContent(ibin))
+                err_sys_up =  errors[sample][0][ibin-1] #sum square, sqrt(Ndata)
+                err_sys_do =  errors[sample][1][ibin-1]
                 weights.append(w)
                 if w != 1.0:
                     results.append((cut, sample, w, err/nom, err_sys_up/nom, err_sys_do/nom ))

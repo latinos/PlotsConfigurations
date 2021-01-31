@@ -311,11 +311,11 @@ aliases['vbs_1_qgl_boost'] = {
 ###########################
 # Njets nuisances for signal
 
-aliases['njets_herwig_signal'] = {
-    'expr': '(VBS_category==0)*( (nJets30==2)*1.428 + (nJets30==3)*0.590 + (nJets30==4)*0.291 + (nJets30>4)*1) +\
-             (VBS_category==1)*( (nJets30==4)*1.428 + (nJets30==5)*0.590 + (nJets30==6)*0.291 + (nJets30>6)*1)',
-    'samples': ['VBS']
-}
+# aliases['njets_herwig_signal'] = {
+#     'expr': '(VBS_category==0)*( (nJets30==2)*1.428 + (nJets30==3)*0.590 + (nJets30==4)*0.291 + (nJets30>4)*1) +\
+#              (VBS_category==1)*( (nJets30==4)*1.428 + (nJets30==5)*0.590 + (nJets30==6)*0.291 + (nJets30>6)*1)',
+#     'samples': ['VBS']
+# }
 
 ##########################
 # additional uncertainties for Wtagging from pt extrapolation

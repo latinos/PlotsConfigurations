@@ -155,7 +155,7 @@ MVAReaderBoosted_mVauto::bindTree_(multidraw::FunctionLibrary& _library)
   _library.bindBranch(vbs_1_pt, "vbs_1_pt");
   _library.bindBranch(vjet_0_pt, "vjet_0_pt");
   //_library.bindBranch(vjet_0_eta, "vjet_0_eta");
- 
+
   _library.bindBranch(mjj_vbs, "mjj_vbs");
   _library.bindBranch(mjj_vjet, "mjj_vjet");
 
@@ -172,7 +172,7 @@ MVAReaderBoosted_mVauto::bindTree_(multidraw::FunctionLibrary& _library)
 
   _library.bindBranch(vbs_0_qgl_boost, "vbs_0_qgl_boost");
   //_library.bindBranch(vbs_1_qgl_boost, "vbs_1_qgl_boost");
-
+  
 
 }
 

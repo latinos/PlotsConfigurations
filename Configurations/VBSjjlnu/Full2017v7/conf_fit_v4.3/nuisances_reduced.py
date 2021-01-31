@@ -256,7 +256,7 @@ nuisances['muonpt']  = {
 #                 'name'  : 'CMS_jetpuid_2017',
 #                 'kind'  : 'weight',
 #                 'type'  : 'shape',
-#                 'samples'  : dict((skey, ['PUJetIdSF_up/PUJetIdSF','PUJetIdSF_down/PUJetIdSF']) for skey in mc if skey not in ["DY"]),
+#                 'samples'  : dict((skey, ['PUJetIdSF_up/PUJetIdSF','PUJetIdSF_down/PUJetIdSF']) for skey in mc if skey not in ["DY"] ),
 # }
 
 
@@ -282,17 +282,17 @@ for js in jes_systs:
     }
    
 ### Only total variation for fatjetJES
-    nuisances['fatjet' +js]  = {
-                    'name': 'CMS_fj_scale_'+js,
-                        'kind': 'suffix',
-                        'type': 'shape',
-                        'mapUp':   'fatjet'+js+'up',
-                        'mapDown': 'fatjet'+js+'do',
-                        'cuts': phase_spaces_boost, #because we are vetoing fatjets anyway in resolved category 
-                        'samples': dict((skey, ['1.','1.']) for skey in mc if skey not in ['Vg', 'VgS']),
-                        'folderUp' : directory_mc+'_fatjetJESup',
-                        'folderDown' : directory_mc+'_fatjetJESdo'
-    }
+    # nuisances['fatjet' +js]  = {
+    #                 'name': 'CMS_fj_scale_'+js,
+    #                     'kind': 'suffix',
+    #                     'type': 'shape',
+    #                     'mapUp':   'fatjet'+js+'up',
+    #                     'mapDown': 'fatjet'+js+'do',
+    #                     'cuts': phase_spaces_boost, #because we are vetoing fatjets anyway in resolved category 
+    #                     'samples': dict((skey, ['1.','1.']) for skey in mc if skey not in ['Vg', 'VgS']),
+    #                     'folderUp' : directory_mc+'_fatjetJESup',
+    #                     'folderDown' : directory_mc+'_fatjetJESdo'
+    # }
 
 ##### Jet energy resolution
 nuisances['JER']  = {
@@ -306,17 +306,17 @@ nuisances['JER']  = {
                 'folderDown' : directory_mc+'_JERdo'
 }
 
-nuisances['fatjetJER']  = {
-                'name': 'CMS_fatjet_res_2017',
-                'kind': 'suffix',
-                'type': 'shape',
-                'mapUp': 'fatjetJERup',
-                'mapDown': 'fatjetJERdo',
-                'cuts': phase_spaces_boost, #because we are vetoing fatjets anyway in resolved category
-                'samples': dict((skey, ['1.','1.']) for skey in mc if skey not in ["Vg","VgS"]),
-                'folderUp' : directory_mc+'_fatjetJERup',
-                'folderDown' : directory_mc+'_fatjetJERdo',
-}
+# nuisances['fatjetJER']  = {
+#                 'name': 'CMS_fatjet_res_2017',
+#                 'kind': 'suffix',
+#                 'type': 'shape',
+#                 'mapUp': 'fatjetJERup',
+#                 'mapDown': 'fatjetJERdo',
+#                 'cuts': phase_spaces_boost, #because we are vetoing fatjets anyway in resolved category
+#                 'samples': dict((skey, ['1.','1.']) for skey in mc if skey not in ["Vg","VgS"]),
+#                 'folderUp' : directory_mc+'_fatjetJERup',
+#                 'folderDown' : directory_mc+'_fatjetJERdo',
+# }
 
 
 # # ##### MET energy scale
@@ -381,13 +381,13 @@ nuisances['Wtagging_ptextr'] = {
 
 # ######################
 # Theory nuisance
-for sample in mc :
-    nuisances['QCD_scale_'+sample] = {
-        'name'  : 'QCDscale_'+sample,
-        'kind'  : 'weight',
-        'type'  : 'shape',
-        'samples'  :  { sample: ["LHEScaleWeight[0]", "LHEScaleWeight[8]"] }
-    }
+# for sample in mc :
+#     nuisances['QCD_scale_'+sample] = {
+#         'name'  : 'QCDscale_'+sample,
+#         'kind'  : 'weight',
+#         'type'  : 'shape',
+#         'samples'  :  { sample: ["LHEScaleWeight[0]", "LHEScaleWeight[8]"] }
+#     }
 
 
 # #
@@ -414,39 +414,39 @@ for sample in mc :
 # #                 'folderUp'   : treeBaseDir+'Fall2018_nAOD_v1_Full2018v2/MCl1loose2018v2__MCCorr2018__btagPerEvent__l2loose__l2tightOR2018__UEup',
 # #                 'folderDown' : treeBaseDir+'Fall2018_nAOD_v1_Full2018v2/MCl1loose2018v2__MCCorr2018__btagPerEvent__l2loose__l2tightOR2018__UEdo',
 # #                 'AsLnN'      : '1',
-# # }
+# # # }
 
-nuisances['PU']  = {
-                'name'  : 'CMS_PU_2017',
-                'kind'  : 'weight',
-                'type'  : 'shape',
-                'samples'  : dict ( (skey, [ '(puWeight_noeras[1]/puWeight_noeras[0])','(puWeight_noeras[2]/puWeight_noeras[0])']) for skey in mc ),
-                'AsLnN'      : '1',
-}
-
-## Top pT reweighting uncertainty
-
-nuisances['singleTopToTTbar'] = {
-    'name': 'singleTopToTTbar',
-    'skipCMS': 1,
-    'kind': 'weight',
-    'type': 'shape',
-    'samples': { 
-       'top': [
-        'isSingleTop * 1.0816 + isTTbar',
-        'isSingleTop * 0.9184 + isTTbar']
-      }
-}
+# nuisances['PU']  = {
+#                 'name'  : 'CMS_PU_2017',
+#                 'kind'  : 'weight',
+#                 'type'  : 'shape',
+#                 'samples'  : dict ( (skey, [ '(puWeight_noeras[1]/puWeight_noeras[0])','(puWeight_noeras[2]/puWeight_noeras[0])']) for skey in mc ),
+#                 'AsLnN'      : '1',
+# }
 
 ## Top pT reweighting uncertainty
 
-nuisances['TopPtRew'] = {
-   'name': 'CMS_topPtRew',   # Theory uncertainty
-   'kind': 'weight',
-   'type': 'shape',
-   'samples': {'top': ["Top_pTrw*Top_pTrw", "1."]},
-   'symmetrize': True
-}
+# nuisances['singleTopToTTbar'] = {
+#     'name': 'singleTopToTTbar',
+#     'skipCMS': 1,
+#     'kind': 'weight',
+#     'type': 'shape',
+#     'samples': { 
+#        'top': [
+#         'isSingleTop * 1.0816 + isTTbar',
+#         'isSingleTop * 0.9184 + isTTbar']
+#       }
+# }
+
+# ## Top pT reweighting uncertainty
+
+# nuisances['TopPtRew'] = {
+#    'name': 'CMS_topPtRew',   # Theory uncertainty
+#    'kind': 'weight',
+#    'type': 'shape',
+#    'samples': {'top': ["Top_pTrw*Top_pTrw", "1."]},
+#    'symmetrize': True
+# }
 
 
 # #################

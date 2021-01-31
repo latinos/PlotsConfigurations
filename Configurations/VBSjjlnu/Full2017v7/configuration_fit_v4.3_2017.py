@@ -12,7 +12,7 @@ outputDir = 'rootFile_'+tag
 aliasesFile = direc+'/aliases.py'
 
 # file with list of variables
-variablesFile = direc+'/variables_allvars.py'
+variablesFile = direc+'/variables_fit.py'
 
 # file with list of cuts
 cutsFile = direc +'/cuts.py' 
@@ -42,7 +42,7 @@ structureFile = direc+'/structure.py'
 
 
 # nuisances file for mkDatacards and for mkShape
-#nuisancesFile = direc+'/nuisances.py'
+# nuisancesFile = direc+'/nuisances_reduced.py'
 #nuisancesFile = direc+'/nuisances_datacard_join.py'
 # nuisancesFile = direc + '/nuisances_datacard.py'
 

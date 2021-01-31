@@ -49,7 +49,7 @@ double morph_gluon(double x, double eta, double pt ){
         if (pt < 75 && do_morph_gluon_loweta_pt0) {
             y = morph_gluon_loweta_pt0->Eval(x);
         }else if (pt > 75 && do_morph_gluon_loweta_pt1){
-             y = morph_gluon_loweta_pt1->Eval(x);
+            y = morph_gluon_loweta_pt1->Eval(x);
         }
     } 
     if (abs(eta)>=3)  {
@@ -92,32 +92,32 @@ HistosMap getHistos(RNode rdf, string name, string sample, string jet_type){
     if (jet_type =="nogen") qgl_var = "_qgl";
 
     return {
-        {name+"_"+jet_type+"_qgl", rdf.Histo1D({(sample + "_" +name+"_"+jet_type +"_qgl").c_str(), "QGL", 200,0,1}, ( name +qgl_var).c_str(), "weight")},
-        {name+"_"+jet_type+"_qgl_higheta", rdf.Filter( name + "_aeta > 3")
-                                              .Histo1D({(sample + "_" + name +"_"+jet_type+"_qgl_higheta").c_str(), "QGL", 200,0,1}, (name +qgl_var).c_str(), "weight")},
-        {name+"_"+jet_type+"_qgl_loweta",  rdf.Filter( name + "_aeta <= 3")
-                                              .Histo1D({(sample + "_" + name +"_"+jet_type+"_qgl_loweta").c_str(), "QGL", 200,0,1}, (name +qgl_var).c_str(), "weight")},
-        {name+"_"+jet_type+"_qgl_pt0", rdf.Filter(name + "_pt < 50")
-                                          .Histo1D({(sample + "_" +name+"_"+jet_type +"_qgl_pt0").c_str(), "QGL", 200,0,1}, ( name +qgl_var).c_str(), "weight")},
-        {name+"_"+jet_type+"_qgl_pt1", rdf.Filter(name + "_pt >= 50 && "+ name + "_pt < 100")
-                                           .Histo1D({(sample + "_" +name+"_"+jet_type +"_qgl_pt1").c_str(), "QGL", 200,0,1}, ( name +qgl_var).c_str(), "weight")},
-        {name+"_"+jet_type+"_qgl_pt2", rdf.Filter(name + "_pt >= 100")
-                                          .Histo1D({(sample + "_" +name+"_"+jet_type +"_qgl_pt2").c_str(), "QGL", 200,0,1}, ( name +qgl_var).c_str(), "weight")},
+        //{name+"_"+jet_type+"_qgl", rdf.Histo1D({(sample + "_" +name+"_"+jet_type +"_qgl").c_str(), "QGL", 200,0,1}, ( name +qgl_var).c_str(), "weight")},
+        // {name+"_"+jet_type+"_qgl_higheta", rdf.Filter( name + "_aeta > 3")
+        //                                       .Histo1D({(sample + "_" + name +"_"+jet_type+"_qgl_higheta").c_str(), "QGL", 200,0,1}, (name +qgl_var).c_str(), "weight")},
+        // {name+"_"+jet_type+"_qgl_loweta",  rdf.Filter( name + "_aeta <= 3")
+        //                                       .Histo1D({(sample + "_" + name +"_"+jet_type+"_qgl_loweta").c_str(), "QGL", 200,0,1}, (name +qgl_var).c_str(), "weight")},
+        // {name+"_"+jet_type+"_qgl_pt0", rdf.Filter(name + "_pt < 50")
+        //                                   .Histo1D({(sample + "_" +name+"_"+jet_type +"_qgl_pt0").c_str(), "QGL", 200,0,1}, ( name +qgl_var).c_str(), "weight")},
+        // {name+"_"+jet_type+"_qgl_pt1", rdf.Filter(name + "_pt >= 50 && "+ name + "_pt < 100")
+        //                                    .Histo1D({(sample + "_" +name+"_"+jet_type +"_qgl_pt1").c_str(), "QGL", 200,0,1}, ( name +qgl_var).c_str(), "weight")},
+        // {name+"_"+jet_type+"_qgl_pt2", rdf.Filter(name + "_pt >= 100")
+        //                                   .Histo1D({(sample + "_" +name+"_"+jet_type +"_qgl_pt2").c_str(), "QGL", 200,0,1}, ( name +qgl_var).c_str(), "weight")},
         
         {name+"_"+jet_type+"_qgl_higheta_pt0", rdf.Filter( name + "_aeta > 3 && " + name + "_pt < 75")
                                               .Histo1D({(sample + "_" + name +"_"+jet_type+"_qgl_higheta_pt0").c_str(), "QGL", 200,0,1}, (name +qgl_var).c_str(), "weight")},
         {name+"_"+jet_type+"_qgl_higheta_pt1", rdf.Filter( name + "_aeta > 3 && " + name + "_pt >= 75")
                                               .Histo1D({(sample + "_" + name +"_"+jet_type+"_qgl_higheta_pt1").c_str(), "QGL", 200,0,1}, (name +qgl_var).c_str(), "weight")},
-        {name+"_"+jet_type+"_qgl_loweta_pt0",  rdf.Filter( name + "_aeta <= 3 && " + name + "_pt < 75")
+        {name+"_"+jet_type+"_qgl_loweta_pt0",  rdf.Filter( name + "_aeta <= 2 && " + name + "_pt < 75")
                                               .Histo1D({(sample + "_" + name +"_"+jet_type+"_qgl_loweta_pt0").c_str(), "QGL", 200,0,1}, (name +qgl_var).c_str(), "weight")},
-        {name+"_"+jet_type+"_qgl_loweta_pt1",  rdf.Filter( name + "_aeta <= 3 && " + name + "_pt >= 75" )
+        {name+"_"+jet_type+"_qgl_loweta_pt1",  rdf.Filter( name + "_aeta <= 2 && " + name + "_pt >= 75" )
                                               .Histo1D({(sample + "_" + name +"_"+jet_type+"_qgl_loweta_pt1").c_str(), "QGL", 200,0,1}, (name +qgl_var).c_str(), "weight")},
         
-        {name+"_"+jet_type+"_pt", rdf.Histo1D({(sample + "_" +name+"_"+jet_type+ "_pt").c_str(), "pt", 50,30,300}, (name + "_pt").c_str(), "weight")},
-        {name+"_"+jet_type+"_pt_loweta", rdf.Filter( name + "_aeta <= 3").Histo1D({(sample + "_" +name+"_"+jet_type+ "_pt_loweta").c_str(), "pt", 50,30,300}, (name + "_pt").c_str(), "weight")},
-        {name+"_"+jet_type+"_pt_higheta", rdf.Filter( name + "_aeta > 3").Histo1D({(sample + "_" +name+"_"+jet_type+ "_pt_higheta").c_str(), "pt", 50,30,300}, (name + "_pt").c_str(), "weight")},
+        // {name+"_"+jet_type+"_pt", rdf.Histo1D({(sample + "_" +name+"_"+jet_type+ "_pt").c_str(), "pt", 50,30,300}, (name + "_pt").c_str(), "weight")},
+        // {name+"_"+jet_type+"_pt_loweta", rdf.Filter( name + "_aeta <= 3").Histo1D({(sample + "_" +name+"_"+jet_type+ "_pt_loweta").c_str(), "pt", 50,30,300}, (name + "_pt").c_str(), "weight")},
+        // {name+"_"+jet_type+"_pt_higheta", rdf.Filter( name + "_aeta > 3").Histo1D({(sample + "_" +name+"_"+jet_type+ "_pt_higheta").c_str(), "pt", 50,30,300}, (name + "_pt").c_str(), "weight")},
 
-        {name+"_"+jet_type+"_eta", rdf.Histo1D({(sample + "_" +name+"_"+jet_type+ "_eta").c_str(), "eta", 50,0,5}, (name + "_eta").c_str(), "weight")}, 
+        // {name+"_"+jet_type+"_eta", rdf.Histo1D({(sample + "_" +name+"_"+jet_type+ "_eta").c_str(), "eta", 50,0,5}, (name + "_eta").c_str(), "weight")}, 
     };
 }
 
@@ -163,7 +163,7 @@ int main(int argc, char** argv){
     bool mt = true;
     
     //std::vector<string> samples_mc = {"VBS", "DY", "Wjets_HT", "top", "VV","VVV","VBF-V", "Vg","VgS"};
-    std::vector<string> samples_mc = {"VBS", "DY", "Wjets_HT", "top", "VV","VVV", "Vg","VgS"};
+    std::vector<string> samples_mc = {"VBS", "DY", "Wjets_HT", "top", "VV","VVV", "Vg","VgS", "VBF-V"};
     std::vector<string> samples_data = {"DATA", "Fake"};
     
     //Enabling multithread
@@ -205,7 +205,7 @@ int main(int argc, char** argv){
         }
          
         // Trigger 
-        rdf_all_histos[0]["j0_gluon_qgl"]->Draw();
+        rdf_all_histos[0]["j0_gluon_qgl_higheta_pt0"]->Draw();
         // Save all histos
         for ( auto & histos : rdf_all_histos) 
             std::for_each(histos.begin(), histos.end(), [](std::pair<string, RResultPtr<TH1D>> h){ h.second->Write();});
@@ -217,43 +217,41 @@ int main(int argc, char** argv){
     for (int i =0 ; i<4; i++){
         string name = "j" + std::to_string(i);
 
-        final_histos[name + "_gluon_qgl"] =  {(name + "_gluon_qgl").c_str(),"QGL",200,0.,1.};
-        final_histos[name + "_gluon_qgl_higheta"] =  {(name + "_gluon_qgl_higheta").c_str(),"QGL", 200,0.,1.};
-        final_histos[name + "_gluon_qgl_loweta"] =  {(name + "_gluon_qgl_loweta").c_str(),"QGL",200,0.,1.};
+        // final_histos[name + "_gluon_qgl"] =  {(name + "_gluon_qgl").c_str(),"QGL",200,0.,1.};
+        // final_histos[name + "_gluon_qgl_higheta"] =  {(name + "_gluon_qgl_higheta").c_str(),"QGL", 200,0.,1.};
+        // final_histos[name + "_gluon_qgl_loweta"] =  {(name + "_gluon_qgl_loweta").c_str(),"QGL",200,0.,1.};
 
-        final_histos[name + "_gluon_qgl_pt0"] =  {(name + "_gluon_qgl_pt0").c_str(),"QGL",200,0.,1.};
-        final_histos[name + "_gluon_qgl_pt1"] =  {(name + "_gluon_qgl_pt1").c_str(),"QGL",200,0.,1.};
-        final_histos[name + "_gluon_qgl_pt2"] =  {(name + "_gluon_qgl_pt2").c_str(),"QGL",200,0.,1.};
+        // final_histos[name + "_gluon_qgl_pt0"] =  {(name + "_gluon_qgl_pt0").c_str(),"QGL",200,0.,1.};
+        // final_histos[name + "_gluon_qgl_pt1"] =  {(name + "_gluon_qgl_pt1").c_str(),"QGL",200,0.,1.};
+        // final_histos[name + "_gluon_qgl_pt2"] =  {(name + "_gluon_qgl_pt2").c_str(),"QGL",200,0.,1.};
 
         final_histos[name + "_gluon_qgl_higheta_pt0"] =  {(name + "_gluon_qgl_higheta_pt0").c_str(),"QGL", 200,0.,1.};
         final_histos[name + "_gluon_qgl_higheta_pt1"] =  {(name + "_gluon_qgl_higheta_pt1").c_str(),"QGL", 200,0.,1.};
         final_histos[name + "_gluon_qgl_loweta_pt0"] =  {(name + "_gluon_qgl_loweta_pt0").c_str(),"QGL",200,0.,1.};
         final_histos[name + "_gluon_qgl_loweta_pt1"] =  {(name + "_gluon_qgl_loweta_pt1").c_str(),"QGL",200,0.,1.};
 
-        final_histos[name + "_gluon_pt"] =  {(name + "_gluon_pt").c_str(),"pt",  50,30.,300.};
-        final_histos[name + "_gluon_pt_loweta"] =  {(name + "_gluon_pt_loweta").c_str(),"pt",  50,30.,300.};
-        final_histos[name + "_gluon_pt_higheta"] =  {(name + "_gluon_pt_higheta").c_str(),"pt",  50,30.,300.};
-        final_histos[name + "_gluon_eta"] =  {(name + "_gluon_eta").c_str(),"eta", 50,0.,5.};
+        // final_histos[name + "_gluon_pt"] =  {(name + "_gluon_pt").c_str(),"pt",  50,30.,300.};
+        // final_histos[name + "_gluon_pt_loweta"] =  {(name + "_gluon_pt_loweta").c_str(),"pt",  50,30.,300.};
+        // final_histos[name + "_gluon_pt_higheta"] =  {(name + "_gluon_pt_higheta").c_str(),"pt",  50,30.,300.};
+        // final_histos[name + "_gluon_eta"] =  {(name + "_gluon_eta").c_str(),"eta", 50,0.,5.};
         
-
-        final_histos[name + "_quark_qgl"] =  {(name + "_quark_qgl").c_str(),"QGL",200,0.,1.};
-        final_histos[name + "_quark_qgl_higheta"] =  {(name + "_quark_qgl_higheta").c_str(),"QGL", 200,0.,1.};
-        final_histos[name + "_quark_qgl_loweta"] =  {(name + "_quark_qgl_loweta").c_str(),"QGL",200,0.,1.};
+        // final_histos[name + "_quark_qgl"] =  {(name + "_quark_qgl").c_str(),"QGL",200,0.,1.};
+        // final_histos[name + "_quark_qgl_higheta"] =  {(name + "_quark_qgl_higheta").c_str(),"QGL", 200,0.,1.};
+        // final_histos[name + "_quark_qgl_loweta"] =  {(name + "_quark_qgl_loweta").c_str(),"QGL",200,0.,1.};
 
         final_histos[name + "_quark_qgl_higheta_pt0"] =  {(name + "_quark_qgl_higheta_pt0").c_str(),"QGL", 200,0.,1.};
         final_histos[name + "_quark_qgl_higheta_pt1"] =  {(name + "_quark_qgl_higheta_pt1").c_str(),"QGL", 200,0.,1.};
         final_histos[name + "_quark_qgl_loweta_pt0"] =  {(name + "_quark_qgl_loweta_pt0").c_str(),"QGL",200,0.,1.};
         final_histos[name + "_quark_qgl_loweta_pt1"] =  {(name + "_quark_qgl_loweta_pt1").c_str(),"QGL",200,0.,1.};
 
+        // final_histos[name + "_quark_qgl_pt0"] =  {(name + "_quark_qgl_pt0").c_str(),"QGL",200,0.,1.};
+        // final_histos[name + "_quark_qgl_pt1"] =  {(name + "_quark_qgl_pt1").c_str(),"QGL",200,0.,1.};
+        // final_histos[name + "_quark_qgl_pt2"] =  {(name + "_quark_qgl_pt2").c_str(),"QGL",200,0.,1.};
 
-        final_histos[name + "_quark_qgl_pt0"] =  {(name + "_quark_qgl_pt0").c_str(),"QGL",200,0.,1.};
-        final_histos[name + "_quark_qgl_pt1"] =  {(name + "_quark_qgl_pt1").c_str(),"QGL",200,0.,1.};
-        final_histos[name + "_quark_qgl_pt2"] =  {(name + "_quark_qgl_pt2").c_str(),"QGL",200,0.,1.};
-
-        final_histos[name + "_quark_pt"] =  {(name + "_quark_pt").c_str(),"pt",  50,30.,300.};
-        final_histos[name + "_quark_pt_loweta"] =  {(name + "_quark_pt_loweta").c_str(),"pt",  50,30.,300.};
-        final_histos[name + "_quark_pt_higheta"] =  {(name + "_quark_pt_higheta").c_str(),"pt",  50,30.,300.};
-        final_histos[name + "_quark_eta"] =  {(name + "_quark_eta").c_str(),"eta", 50,0.,5.};
+        // final_histos[name + "_quark_pt"] =  {(name + "_quark_pt").c_str(),"pt",  50,30.,300.};
+        // final_histos[name + "_quark_pt_loweta"] =  {(name + "_quark_pt_loweta").c_str(),"pt",  50,30.,300.};
+        // final_histos[name + "_quark_pt_higheta"] =  {(name + "_quark_pt_higheta").c_str(),"pt",  50,30.,300.};
+        // final_histos[name + "_quark_eta"] =  {(name + "_quark_eta").c_str(),"eta", 50,0.,5.};
 
         
     }
@@ -280,7 +278,7 @@ int main(int argc, char** argv){
             rdf_all_histos.push_back( histos);
         }
         // Trigger 
-        rdf_all_histos[0]["j0_nogen_qgl"]->Draw();
+        rdf_all_histos[0]["j0_nogen_qgl_higheta_pt0"]->Draw();
         // Save all histos
        for ( auto & histos : rdf_all_histos) 
             std::for_each(histos.begin(), histos.end(), [](std::pair<string, RResultPtr<TH1D>> h){ h.second->Write();});

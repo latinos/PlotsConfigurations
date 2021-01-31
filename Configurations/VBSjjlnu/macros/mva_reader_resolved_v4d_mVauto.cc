@@ -145,6 +145,8 @@ MVAReaderResolved_mVauto::evaluate(unsigned)
   input.push_back( (float) *(vbs_0_qgl_res->Get()) );
   input.push_back( (float) *(vjet_0_qgl_res->Get()) );
   input.push_back( (float) *(vjet_1_qgl_res->Get()) );
+
+  // std::cout <<  (float) *(vbs_0_qgl_res->Get()) << std::endl;
   
   vector<float> dnn_scores = dnn_tensorflow->analyze(input);
   return dnn_transformation->Eval(dnn_scores.at(0));
@@ -162,7 +164,7 @@ MVAReaderResolved_mVauto::bindTree_(multidraw::FunctionLibrary& _library)
   _library.bindBranch(vbs_1_pt, "vbs_1_pt");
   _library.bindBranch(vjet_0_pt, "vjet_0_pt");
   _library.bindBranch(vjet_1_pt, "vjet_1_pt");
- 
+
   _library.bindBranch(mjj_vbs, "mjj_vbs");
   _library.bindBranch(mjj_vjet, "mjj_vjet");
 
@@ -181,7 +183,8 @@ MVAReaderResolved_mVauto::bindTree_(multidraw::FunctionLibrary& _library)
   _library.bindBranch(vbs_0_qgl_res, "vbs_0_qgl_res");
   _library.bindBranch(vjet_0_qgl_res, "vjet_0_qgl_res");
   _library.bindBranch(vjet_1_qgl_res, "vjet_1_qgl_res");
-
+  
+  
 }
 
 MVAReaderResolved_mVauto::~MVAReaderResolved_mVauto(){

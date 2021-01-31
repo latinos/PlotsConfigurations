@@ -96,13 +96,22 @@ fakeW_jetDown     =  '( fakeWeight_25 / fakeWeight_35  )'
 fakeW_statUp        =  '( fakeWeight_35_statUp / fakeWeight_35  )'
 fakeW_statDown      =  '( fakeWeight_35_statDo / fakeWeight_35  )'
 
-nuisances['fake_syst']  = {
-               'name'  : 'CMS_fake_syst',
+nuisances['fake_syst_ele']  = {
+               'name'  : 'CMS_fake_syst_ele',
                'type'  : 'lnN',
                'samples'  : {
                              'Fake' : '1.30',
                              },
-                'cuts': phase_spaces_tot
+                'cuts': phase_spaces_tot_ele
+               }
+
+nuisances['fake_syst_mu']  = {
+               'name'  : 'CMS_fake_syst_mu',
+               'type'  : 'lnN',
+               'samples'  : {
+                             'Fake' : '1.30',
+                             },
+                'cuts': phase_spaces_tot_mu
                }
 
 nuisances['fake_ele']  = {

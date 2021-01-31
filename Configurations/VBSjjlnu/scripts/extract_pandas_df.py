@@ -36,7 +36,6 @@ for v, var in variables.items():
             for cut in cuts:
                 trees.append((cut, v)) 
 
-pprint(trees)
 
 #iF = R.TFile(outputDir + '/plots_'+tag+'_' + sample + '.root')
 
@@ -49,8 +48,8 @@ for sample in samples:
         rdf = R.RDataFrame(cut+"/"+var+"/tree_"+sample,outputDir + '/plots_'+tag+'_' + sample + '.root' )
 
         df = pd.DataFrame(rdf.AsNumpy())
-        print(df.head())
         df.to_csv("{}/dataframe_{}_{}_{}.csv".format(args.outputdir,sample,cut,var), index=False, sep=",")
+
 
             
 

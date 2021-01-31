@@ -39,7 +39,6 @@ for v in var:
         #c.Draw()
         c.SaveAs(args.output +"/eff_match_"+m + "_" + v + ".png")
 
-        
 
         del eff 
         

@@ -143,3 +143,16 @@ variables['vbs_0_qgl_boost'] = {  'name': 'vbs_0_qgl_boost',
                         'fold': 3,
                         'cuts': boost_cuts
                 }
+
+# variables['Lepton_pt'] = {   'name': 'Lepton_pt[0]',      
+#                         'range' : (40,0,500),  
+#                         'xaxis' : 'Lepton pt', 
+#                         'fold' : 3
+#                         }    
+
+
+# variables['Zlep'] = {   'name': 'Zlep',      
+#                         'range' : (50,-1.1,1.1),  
+#                         'xaxis' : 'Zepp. lepton', 
+#                         'fold' : 3
+#                         }

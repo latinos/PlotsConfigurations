@@ -35,7 +35,7 @@ outputDirPlots = 'plot_'+tag + "/"
 # used by mkDatacards to define output directory for datacards
 #outputDirDatacard = 'datacards_'+tag 
 #outputDirDatacard = 'datacards_'+tag + "/Wjets_njets"
-outputDirDatacard = 'datacards_'+tag + "_nuisNorm_PSsplitAll_njetsVBS_QGLmorphSplit_newFakes_noP2H"
+outputDirDatacard = 'datacards_'+tag + "_plotsCRs"
 
 # structure file for datacard
 structureFile = direc+'/structure.py'

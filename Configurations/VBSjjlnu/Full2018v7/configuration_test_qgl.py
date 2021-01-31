@@ -6,19 +6,19 @@ tag = 'test_qgl'
 direc = "conf_test_qgl"
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFile_'+tag
+outputDir = 'rootFile_'+tag + '_testclosure'
 
 # file with TTree aliases
 aliasesFile = direc+'/aliases.py'
 
 # file with list of variables
-variablesFile = direc+'/variables.py'
+variablesFile = direc+'/variables_testclosure.py'
 
 # file with list of cuts
 cutsFile = direc +'/cuts.py' 
 
 # file with list of samples
-samplesFile = direc+'/samples_tree.py' 
+samplesFile = direc+'/samples.py' 
 #samplesFile = direc+'/samples.py'
 
 #t file with list of samples
@@ -42,7 +42,7 @@ structureFile = direc+'/structure.py'
 
 
 # nuisances file for mkDatacards and for mkShape
-nuisancesFile = direc+'/nuisances.py'
+#uisancesFile = direc+'/nuisances.py'
 #nuisancesFile = direc+'/nuisances_datacard_join.py'
 #nuisancesFile = direc + '/nuisances_datacard.py'
 customizeScript = direc + '/customize.py'

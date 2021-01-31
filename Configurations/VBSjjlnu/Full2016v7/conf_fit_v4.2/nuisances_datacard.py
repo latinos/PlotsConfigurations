@@ -1,7 +1,7 @@
 # # nuisances
 from pprint import pprint
 # # name of samples here must match keys in samples.py 
-mc =["DY", "top",  "Wjets_HT", "VV", "VVV", "Vg", "VgS", "VBS"]
+mc =["DY", "top",  "Wjets_HT", "VV", "VVV", "Vg", "VgS", "VBS", "VBF-V"]
 #mc_norm = [m for m in mc if m not in ["VBS", "VV"]]
 #mc_sep =  ["VBS", "VV"]
 phasespaces = ["res_wjetcr_ele","res_wjetcr_mu" ,"boost_wjetcr_ele" ,"boost_wjetcr_mu",
@@ -85,24 +85,24 @@ fakeW_jetDown     =  '( fakeWeight_25 / fakeWeight_35  )'
 fakeW_statUp        =  '( fakeWeight_35_statUp / fakeWeight_35  )'
 fakeW_statDown      =  '( fakeWeight_35_statDo / fakeWeight_35  )'
 
-nuisances['fake_syst']  = {
-               'name'  : 'CMS_fake_syst',
+
+nuisances['fake_syst_ele']  = {
+               'name'  : 'CMS_fake_syst_ele',
                'type'  : 'lnN',
                'samples'  : {
                              'Fake' : '1.30',
                              },
-                'cuts': phase_spaces_tot
+                'cuts': phase_spaces_tot_ele
                }
 
-nuisances['fake_ele']  = {
-                'name'  : 'CMS_fake_ele_2016',
-                'kind'  : 'weight',
-                'type'  : 'shape',
-                'samples'  : {
-                              'Fake'     : [ fakeW_jetUp , fakeW_jetDown ],
+nuisances['fake_syst_mu']  = {
+               'name'  : 'CMS_fake_syst_mu',
+               'type'  : 'lnN',
+               'samples'  : {
+                             'Fake' : '1.30',
                              },
-                'cuts':  phase_spaces_tot_ele
-}
+                'cuts': phase_spaces_tot_mu
+               }
 
 nuisances['fake_ele_stat']  = {
                 'name'  : 'CMS_fake_ele_stat_2016',
@@ -399,7 +399,7 @@ for jtype in ["quark", "gluon"]:
             'name': 'QGLmorph_{}_{}_16'.format(jtype, jeta),
             'kind': 'suffix',
             'type': 'shape',
-            'samples': dict((skey, ['1.','1.']) for skey in mc),
+            'samples': dict((skey, ['1.','1.']) for skey in mc if skey not in ["VBF-V"]),
         }
 
 ##################

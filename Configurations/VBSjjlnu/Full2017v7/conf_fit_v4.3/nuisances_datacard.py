@@ -1,7 +1,7 @@
 # nuisances
 # # # name of samples here must match keys in samples.py 
 
-mc =["DY", "top",  "Wjets_HT", "VV", "VVV", "VBF-V", "Vg", "VgS", "VBS"]
+mc =["DY", "top",  "Wjets_HT", "VV", "VVV", "VBF-V", "Vg", "VgS", "VBS","ggWW"]
 # mc_norm = [m for m in mc if m not in ["VBS", "VV"]]
 # mc_sep =  ["VBS", "VV"]
 
@@ -96,13 +96,22 @@ fakeW_jetDown     =  '( fakeWeight_25 / fakeWeight_35  )'
 fakeW_statUp        =  '( fakeWeight_35_statUp / fakeWeight_35  )'
 fakeW_statDown      =  '( fakeWeight_35_statDo / fakeWeight_35  )'
 
-nuisances['fake_syst']  = {
-               'name'  : 'CMS_fake_syst',
+nuisances['fake_syst_ele']  = {
+               'name'  : 'CMS_fake_syst_ele',
                'type'  : 'lnN',
                'samples'  : {
-                             'Fake' : '1.30',
+                             'Fake_ele' : '1.30',
                              },
-                'cuts': phase_spaces_tot
+                'cuts': phase_spaces_tot_ele
+               }
+
+nuisances['fake_syst_mu']  = {
+               'name'  : 'CMS_fake_syst_mu',
+               'type'  : 'lnN',
+               'samples'  : {
+                             'Fake_mu' : '1.30',
+                             },
+                'cuts': phase_spaces_tot_mu
                }
 
 nuisances['fake_ele']  = {
@@ -110,7 +119,7 @@ nuisances['fake_ele']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
-                              'Fake'     : [ fakeW_jetUp , fakeW_jetDown ],
+                              'Fake_ele'     : [ fakeW_jetUp , fakeW_jetDown ],
                              },
                 'cuts':  phase_spaces_tot_ele
 }
@@ -120,7 +129,7 @@ nuisances['fake_ele_stat']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
-                              'Fake'      : [ fakeW_statUp , fakeW_statDown ],
+                              'Fake_ele'      : [ fakeW_statUp , fakeW_statDown ],
                              },
                 'cuts':  phase_spaces_tot_ele
 }
@@ -130,7 +139,7 @@ nuisances['fake_mu']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
-                              'Fake'     : [ fakeW_jetUp , fakeW_jetDown ],
+                              'Fake_mu'     : [ fakeW_jetUp , fakeW_jetDown ],
                              },
                 'cuts':  phase_spaces_tot_mu
 }
@@ -141,7 +150,7 @@ nuisances['fake_mu_stat']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
-                              'Fake'     :[ fakeW_statUp , fakeW_statDown ],
+                              'Fake_mu'     :[ fakeW_statUp , fakeW_statDown ],
                              },
                 'cuts':  phase_spaces_tot_mu
 }
@@ -213,16 +222,10 @@ nuisances['electronpt']  = {
                 'mapUp': 'ElepTup',
                 'mapDown': 'ElepTdo',
                 'cuts': phase_spaces_tot_ele,
-                'samples': dict((skey, ['1.','1.']) for skey in mc if skey not in ['Vg', 'VgS']),
+                'samples': dict((skey, ['1.','1.']) for skey in mc if skey not in ['Vg', 'VgS', 'ggWW']),
                 'folderUp' : directory_mc+'_ElepTup',
                 'folderDown' : directory_mc+'_ElepTdo',
 }
-# nuisances['electronpt']  = {
-#                 'name'  : 'CMS_scale_e_2017',
-#                 'type'  : 'lnN',
-#                 'samples'  :   dict((skey, '1.03') for skey in mc),
-#                 'cuts': phase_spaces_tot_ele
-# }
 
 
 # # ##### Muon Efficiency and energy scale
@@ -243,26 +246,20 @@ nuisances['muonpt']  = {
                 'mapUp': 'MupTup',
                 'mapDown': 'MupTdo',
                 'cuts': phase_spaces_tot_mu,
-                'samples': dict((skey, ['1.','1.']) for skey in mc if skey not in ['Vg', 'VgS']),
+                'samples': dict((skey, ['1.','1.']) for skey in mc if skey not in ['Vg', 'VgS', 'ggWW']),
                 'folderUp' : directory_mc+'_MupTup',
                 'folderDown' : directory_mc+'_MupTdo',
 }
-# nuisances['muonpt']  = {
-#                 'name'  : 'CMS_scale_m_2017',
-#                 'type'  : 'lnN',
-#                 'samples'  : dict((skey, '1.03') for skey in mc if skey),
-#                 'cuts':   phase_spaces_tot_mu
-# }
 
 ##################
 # PU jet id
 
-# nuisances['JetPUID_sf']  = {
-#                 'name'  : 'CMS_jetpuid_2017',
-#                 'kind'  : 'weight',
-#                 'type'  : 'shape',
-#                 'samples'  : dict((skey, ['PUJetIdSF_up/PUJetIdSF','PUJetIdSF_down/PUJetIdSF']) for skey in mc if skey not in ["DY"]),
-# }
+nuisances['JetPUID_sf']  = {
+                'name'  : 'CMS_jetpuid_2017',
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : dict((skey, ['PUJetIdSF_up/PUJetIdSF','PUJetIdSF_down/PUJetIdSF']) for skey in mc if skey not in ["DY"]),
+}
 
 
 # ##### Jet energy scale
@@ -279,7 +276,7 @@ for js in jes_systs:
                     'type': 'shape',
                     'mapUp': js+'up',
                     'mapDown': js+'do',
-                    'samples': dict((skey, ['1.','1.']) for skey in mc if skey not in ['Vg', 'VgS']),
+                    'samples': dict((skey, ['1.','1.']) for skey in mc if skey not in ['Vg', 'VgS', 'ggWW']),
                     'folderUp' : directory_mc+'_JESup',
                     'folderDown' : directory_mc+'_JESdo',
                     'AsLnN'      : '1',
@@ -293,7 +290,7 @@ for js in jes_systs:
                         'mapUp':   'fatjet'+js+'up',
                         'mapDown': 'fatjet'+js+'do',
                         'cuts': phase_spaces_boost, #because we are vetoing fatjets anyway in resolved category 
-                        'samples': dict((skey, ['1.','1.']) for skey in mc if skey not in ['Vg', 'VgS']),
+                        'samples': dict((skey, ['1.','1.']) for skey in mc if skey not in ['Vg', 'VgS', 'ggWW'),
                         'folderUp' : directory_mc+'_fatjetJESup',
                         'folderDown' : directory_mc+'_fatjetJESdo',
                         'AsLnN'      : '1',
@@ -306,7 +303,7 @@ nuisances['JER']  = {
                 'type': 'shape',
                 'mapUp': 'JERup',
                 'mapDown': 'JERdo',
-                'samples': dict((skey, ['1.','1.']) for skey in mc if skey not in ['Vg', 'VgS']),
+                'samples': dict((skey, ['1.','1.']) for skey in mc if skey not in ['Vg', 'VgS', 'ggWW']),
                 'folderUp' : directory_mc+'_JERup',
                 'folderDown' : directory_mc+'_JERdo',
                 'AsLnN'      : '1',
@@ -319,7 +316,7 @@ nuisances['fatjetJER']  = {
                 'mapUp': 'fatjetJERup',
                 'mapDown': 'fatjetJERdo',
                 'cuts': phase_spaces_boost, #because we are vetoing fatjets anyway in resolved category
-                'samples': dict((skey, ['1.','1.']) for skey in mc if skey not in ["Vg","VgS"]),
+                'samples': dict((skey, ['1.','1.']) for skey in mc if skey not in ["Vg","VgS", 'ggWW']),
                 'folderUp' : directory_mc+'_fatjetJERup',
                 'folderDown' : directory_mc+'_fatjetJERdo',
                 'AsLnN'      : '1',
@@ -333,7 +330,7 @@ nuisances['MET']  = {
                 'type'  : 'shape',
                 'mapUp':   'METup',
                 'mapDown': 'METdo', 
-                'samples': dict((skey, ['1.','1.']) for skey in mc if skey not in ['Vg', 'VgS']),
+                'samples': dict((skey, ['1.','1.']) for skey in mc if skey not in ['Vg', 'VgS', 'ggWW']),
                 'folderUp' : directory_mc+'_METup',
                 'folderDown' : directory_mc+'_METdo',
                 'AsLnN'      : '1',
@@ -368,11 +365,10 @@ nuisances['fatjetJMR']  = {
         'mapUp': 'fatjetJMRup',
         'mapDown': 'fatjetJMRdo',
         'cuts': phase_spaces_boost, #because we are vetoing fatjets anyway in resolved category
-        'samples': dict((skey, ['1.','1.']) for skey in mc if skey not in ["Vg","VgS"]),
+        'samples': dict((skey, ['1.','1.']) for skey in mc if skey not in ["Vg","VgS", 'ggWW']),
         'folderUp' : directory_mc+'_fatjetJMRup',
         'folderDown' : directory_mc+'_fatjetJMRdo',
         'AsLnN'      : '1',
-
 }
 
 nuisances['fatjetJMS']  = {
@@ -382,7 +378,7 @@ nuisances['fatjetJMS']  = {
     'mapUp': 'fatjetJMSup',
     'mapDown': 'fatjetJMSdo',
     'cuts': phase_spaces_boost, #because we are vetoing fatjets anyway in resolved category
-    'samples': dict((skey, ['1.','1.']) for skey in mc if skey not in ["Vg","VgS"]),
+    'samples': dict((skey, ['1.','1.']) for skey in mc if skey not in ["Vg","VgS", 'ggWW']),
     'folderUp' : directory_mc+'_fatjetJMSup',
     'folderDown' : directory_mc+'_fatjetJMSdo',
     'AsLnN'      : '1',
@@ -415,14 +411,14 @@ nuisances['TopPtRew'] = {
 
 ##################
 
-for jtype in ["quark", "gluon"]:
-      for  jeta in ["higheta", "loweta"]:
-        nuisances['QGLmorphing_{}_{}'.format(jtype, jeta)]  = {
-            'name': 'QGLmorph_{}_{}_1718'.format(jtype, jeta),
-            'kind': 'suffix',
-            'type': 'shape',
-            'samples': dict((skey, ['1.','1.']) for skey in mc),
-        }
+# for jtype in ["quark", "gluon"]:
+#       for  jeta in ["higheta", "loweta"]:
+#         nuisances['QGLmorphing_{}_{}'.format(jtype, jeta)]  = {
+#             'name': 'QGLmorph_{}_{}_1718'.format(jtype, jeta),
+#             'kind': 'suffix',
+#             'type': 'shape',
+#             'samples': dict((skey, ['1.','1.']) for skey in mc),
+#         }
 
 ################
 # Njets Herwig/Pythia for signal
@@ -484,42 +480,42 @@ for ir in range(1,6):
     wjets_bins.append("Wjets_HT_boost_"+str(ir))
 
 
-for sample in ['top','DY','VV','VVV','Vg','VgS','VBF-V'] + wjets_bins:
-    nuisances['PS_ISR_'+sample]  = {
-                    'name'  : 'CMS_PS_ISR_'+sample,
-                    'kind'  : 'weight',
-                    'type'  : 'shape',
-                    'samples'  : {
-                        sample :      ['PSWeight[2]', 'PSWeight[0]'],
-                    }
-                }
-    nuisances['PS_FSR_'+sample]  = {
-                    'name'  : 'CMS_PS_FSR_'+sample,
-                    'kind'  : 'weight',
-                    'type'  : 'shape',
-                    'samples'  : {
-                        sample :      ['PSWeight[3]', 'PSWeight[1]'],
-                    }
-                }
+# for sample in ['top','DY','VV','VVV','Vg','VgS','VBF-V', 'ggWW'] + wjets_bins:
+#     nuisances['PS_ISR_'+sample]  = {
+#                     'name'  : 'CMS_PS_ISR_'+sample,
+#                     'kind'  : 'weight',
+#                     'type'  : 'shape',
+#                     'samples'  : {
+#                         sample :      ['PSWeight[2]', 'PSWeight[0]'],
+#                     }
+#                 }
+#     nuisances['PS_FSR_'+sample]  = {
+#                     'name'  : 'CMS_PS_FSR_'+sample,
+#                     'kind'  : 'weight',
+#                     'type'  : 'shape',
+#                     'samples'  : {
+#                         sample :      ['PSWeight[3]', 'PSWeight[1]'],
+#                     }
+#                 }
             
 
-nuisances['PS_ISR_VBS']  = {
-                'name'  : 'CMS_PS_ISR_VBS',
-                'kind'  : 'weight',
-                'type'  : 'shape',
-                'samples'  : {
-                    "VBS"  :     ['1.','1.'],
-                }
-            }
+# nuisances['PS_ISR_VBS']  = {
+#                 'name'  : 'CMS_PS_ISR_VBS',
+#                 'kind'  : 'weight',
+#                 'type'  : 'shape',
+#                 'samples'  : {
+#                     "VBS"  :     ['1.','1.'],
+#                 }
+#             }
 
-nuisances['PS_FSR_VBS']  = {
-                'name'  : 'CMS_PS_FSR_VBS',
-                'kind'  : 'weight',
-                'type'  : 'shape',
-                 'samples'  : {
-                    "VBS"  :     ['1.','1.'],
-                }
-            }
+# nuisances['PS_FSR_VBS']  = {
+#                 'name'  : 'CMS_PS_FSR_VBS',
+#                 'kind'  : 'weight',
+#                 'type'  : 'shape',
+#                  'samples'  : {
+#                     "VBS"  :     ['1.','1.'],
+#                 }
+#             }
 
 # PS is taken from 2018 shape
 
@@ -559,51 +555,49 @@ nuisances['PU']  = {
 # # }
 
 
-
-
 ################
-# Samples normalizations
-for fl in ['ele','mu']:
-    nuisances['Top_norm_boost_'+fl]  = {
-                'name'  : 'CMS_Top_norm_{}_boost_2017'.format(fl),
-                'samples'  : {
-                    'top' : '1.00',
-                    },
-                'type'  : 'rateParam',
-                'cuts'  : [f for f in phase_spaces_dict["boost"] if fl in f ]
-                }
+# # Samples normalizations
+# for fl in ['ele','mu']:
+#     nuisances['Top_norm_boost_'+fl]  = {
+#                 'name'  : 'CMS_Top_norm_{}_boost_2017'.format(fl),
+#                 'samples'  : {
+#                     'top' : '1.00',
+#                     },
+#                 'type'  : 'rateParam',
+#                 'cuts'  : [f for f in phase_spaces_dict["boost"] if fl in f ]
+#                 }
 
-    nuisances['Top_norm_res_'+fl]  = {
-                'name'  : 'CMS_Top_norm_{}_res_2017'.format(fl),
-                'samples'  : {
-                    'top' : '1.00',
-                    },
-                'type'  : 'rateParam',
-                'cuts'  : [f for f in phase_spaces_dict["res"] if fl in f ]
-                }
+#     nuisances['Top_norm_res_'+fl]  = {
+#                 'name'  : 'CMS_Top_norm_{}_res_2017'.format(fl),
+#                 'samples'  : {
+#                     'top' : '1.00',
+#                     },
+#                 'type'  : 'rateParam',
+#                 'cuts'  : [f for f in phase_spaces_dict["res"] if fl in f ]
+#                 }
 
 
-regrouped_Wjets = False
-for wjbin in wjets_bins:
-    for fl in ["ele", "mu"]:
-        if "boost" in wjbin:
-            nuisances["{}_norm_{}_boost_2017".format(wjbin, fl)]  = {
-                'name'  : 'CMS_{}_norm_{}_boost_2017'.format(wjbin, fl),
-                'samples'  : {wjbin: '1.00'},
-                'type'  : 'rateParam',
-                'cuts'  : [f for f in phase_spaces_dict["boost"] if fl in f ]
-            }
-            if regrouped_Wjets: 
-                nuisances["{}_norm_{}_boost_2017".format(wjbin, fl)]['name'] = 'CMS_Wjets_norm_{}_boost_2017'.format(fl)
-        else:
-            nuisances["{}_norm_{}_res_2017".format(wjbin, fl)] = {
-                'name'  : 'CMS_{}_norm_{}_res_2017'.format(wjbin, fl),
-                'samples'  : { wjbin: '1.00' },
-                'type'  : 'rateParam',
-                'cuts'  : [f for f in phase_spaces_dict["res"] if fl in f]
-            }
-            if regrouped_Wjets: 
-                nuisances["{}_norm_{}_res_2017".format(wjbin, fl)]['name'] = 'CMS_Wjets_norm_{}_res_2017'.format(fl)
+# regrouped_Wjets = False
+# for wjbin in wjets_bins:
+#     for fl in ["ele", "mu"]:
+#         if "boost" in wjbin:
+#             nuisances["{}_norm_{}_boost_2017".format(wjbin, fl)]  = {
+#                 'name'  : 'CMS_{}_norm_{}_boost_2017'.format(wjbin, fl),
+#                 'samples'  : {wjbin: '1.00'},
+#                 'type'  : 'rateParam',
+#                 'cuts'  : [f for f in phase_spaces_dict["boost"] if fl in f ]
+#             }
+#             if regrouped_Wjets: 
+#                 nuisances["{}_norm_{}_boost_2017".format(wjbin, fl)]['name'] = 'CMS_Wjets_norm_{}_boost_2017'.format(fl)
+#         else:
+#             nuisances["{}_norm_{}_res_2017".format(wjbin, fl)] = {
+#                 'name'  : 'CMS_{}_norm_{}_res_2017'.format(wjbin, fl),
+#                 'samples'  : { wjbin: '1.00' },
+#                 'type'  : 'rateParam',
+#                 'cuts'  : [f for f in phase_spaces_dict["res"] if fl in f]
+#             }
+#             if regrouped_Wjets: 
+#                 nuisances["{}_norm_{}_res_2017".format(wjbin, fl)]['name'] = 'CMS_Wjets_norm_{}_res_2017'.format(fl)
 
 
 

@@ -1,6 +1,0 @@
-channel;bin;weight
-boost_wjetcr_ele;Wjets_HT_boost_5;0.43021898950872783
-boost_wjetcr_ele;Wjets_HT_boost_4;0.6832478471295067
-boost_wjetcr_ele;Wjets_HT_boost_3;0.7681836738773492
-boost_wjetcr_ele;Wjets_HT_boost_2;0.9098995721261931
-boost_wjetcr_ele;Wjets_HT_boost_1;1.0605449409501364

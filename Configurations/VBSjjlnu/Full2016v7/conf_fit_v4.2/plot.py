@@ -98,7 +98,7 @@ groupPlot['Others']  = {
                 'nameHR' : "Others",
                 'isSignal' : 0,
                 'color':palette["GreenLighter"],# palette["Green5"],    #Green2
-                'samples'  : [ 'Vg','VgS' ],
+                'samples'  : ['Vg','VgS', 'VBF-V', ],#'ggWW' 
                 'fill': 1001
             }
 
@@ -171,7 +171,15 @@ plot['DY']  = {
                 'scale'    : 1.0,
             }
 
-# plot['VBF-V']  = {
+plot['VBF-V']  = {
+                  'color': colors['kYellow']+3,  
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.   ,
+              }
+
+
+# plot['ggWW']  = {
 #                   'color': colors['kYellow']+3,  
 #                   'isSignal' : 0,
 #                   'isData'   : 0,

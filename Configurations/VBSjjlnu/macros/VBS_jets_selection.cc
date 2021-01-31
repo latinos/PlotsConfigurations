@@ -71,6 +71,10 @@ protected:
   FloatArrayReader* CleanFatJet_phi;
   FloatArrayReader* CleanFatJet_mass;
 
+  IntValueReader * VBS_category_intree;
+  IntArrayReader * V_jets_res;
+  IntArrayReader * VBS_jets_res;
+
   void setValues();
   std::array<double,40> outputValues; 
 };
@@ -322,7 +326,20 @@ VBSJetsSelection::setValues()
 
   filled = true;
 
+  if (debug_){
+    int oldcat =*(VBS_category_intree->Get());
+    std::cout << "VBS category in tree: "<< oldcat << " --> new cat. " << VBS_category << std::endl;
+    if (VBS_category ==1){ 
+        if (VBS_jets_res->At(0) != VBS_jets_index.first) std::cout << "Different VBS 0:" << VBS_jets_res->At(0) << " --> "<<  VBS_jets_index.first << std::endl;
+        if (VBS_jets_res->At(1) != VBS_jets_index.second) std::cout << "Different VBS 1:" << VBS_jets_res->At(1) << " --> "<<  VBS_jets_index.second << std::endl;
+        if (V_jets_res->At(0) != V_jets_index.first) std::cout << "Different Vjet 0:" << V_jets_res->At(0) << " --> "<<  V_jets_index.first << std::endl;
+        if (V_jets_res->At(1) != V_jets_index.second) std::cout << "Different Vjet 1:" << V_jets_res->At(1) << " --> "<<  V_jets_index.second << std::endl;
+        }
+  }
+  
   if (debug_) std::cout << "VBS tagging done!" << std::endl;
+
+  
 }
 
 
@@ -412,6 +429,9 @@ VBSJetsSelection::bindTree_(multidraw::FunctionLibrary& _library)
     _library.bindBranch(CleanFatJet_phi, "CleanFatJet_phi");
     _library.bindBranch(CleanFatJet_mass, "CleanFatJet_mass");
     _library.bindBranch(nCleanFatJet, "nCleanFatJet");
+    _library.bindBranch(VBS_category_intree, "VBS_category");
+    _library.bindBranch(V_jets_res, "V_jets_maxmjj_massWZ");
+    _library.bindBranch(VBS_jets_res, "VBS_jets_maxmjj_massWZ");
 
 }
 

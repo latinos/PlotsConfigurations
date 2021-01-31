@@ -24,6 +24,13 @@ def filter_cuts(cuts, filter):
             new_cuts[k] = c 
     return new_cuts
 
+def filter_vars(vars, filter):
+    new_vars = {}
+    for k, c in vars.items():
+        if re.search(filter, k):
+            new_vars[k] = c 
+    return new_vars
+
 def reorder_plots(groupPlot, order):
     new_group = OrderedDict()
     for g in order:
@@ -229,6 +236,17 @@ def customize(samples,cuts,variables,nuisances,plot,groupPlot, key=None):
         new_groupPlot["VBS"] = groupPlot["VBS"]
         new_plot["VBS"] = plot["VBS"]
         return samples, new_cuts, variables, nuisances, new_plot, new_groupPlot
+
+    if key=="postfit_check":
+        new_cuts = filter_cuts(cuts, r"res_topcr_mu")
+        new_vars = filter_vars(variables, "DNNoutput_res_bins2")
+        return samples, new_cuts, new_vars, nuisances, plot, groupPlot
+
+    if key=="wjets_statMConly":
+        new_cuts = filter_cuts(cuts, r"res_wjetcr_.*")
+        new_groupPlot = reorder_plots(groupPlot,  plots_wjets_order_res)
+        new_nuisances = {'stat':nuisances['stat']}
+        return samples, new_cuts, variables, new_nuisances, plot, new_groupPlot
 
     else:
         return samples,cuts,variables,nuisances,plot,groupPlot

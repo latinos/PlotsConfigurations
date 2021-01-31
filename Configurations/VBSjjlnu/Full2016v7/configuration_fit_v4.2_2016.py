@@ -32,7 +32,7 @@ lumi = 35.867
 outputDirPlots = 'plot_'+tag 
 # used by mkDatacards to define output directory for datacards
 
-outputDirDatacard = 'datacards_' +tag + "_nuisNorm_PSsplitAll_njetsVBS_QGLmorphSplit_newFakes_noP2H"
+outputDirDatacard = 'datacards_' +tag + "_plotsCRs"
 #outputDirDatacard = 'datacards_' +tag +"_v2"
 
 # structure file for datacard

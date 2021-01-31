@@ -14,6 +14,7 @@
 #include "TFile.h"
 #include "TH2.h"
 #include "TH2F.h"
+#include "TVector3.h"
 #include "Math/Vector4Dfwd.h"
 #include "Math/GenVector/LorentzVector.h"
 #include "Math/GenVector/PtEtaPhiM4D.h"
@@ -67,7 +68,7 @@ protected:
   IntArrayReader* subjet_2_index;
 
   void setValues();
-  std::array<float,12> outputValues; 
+  std::array<float,9> outputValues; 
 };
 
 
@@ -80,18 +81,16 @@ double
 VBSAngularVars::evaluate(unsigned iJ)
 {
   /*
-  0) VW pt
-  1) VW eta
-  2) VW phi
-  3) deltaphi_WV
-  4) theta*
-  5) theta_lep
-  6) theta_vjet_0
-  7) theta_vjet_1
-  8) delta theta_lep_Wlep
-  9) delta theta_vjet0_Wlep
-  10) delta theta_vjet1_Wlep
-  11) delta theta*-WVsyst
+  0) deltaphi_WVplanes
+  1) theta_VHad
+  2) theta_lep
+  3) theta_vjet_0
+  4) theta_vjet_1
+  5) delta theta*-WVsyst
+  6) delta theta_lep_Wlep
+  7) delta theta_vjet0_Wlep
+  8) delta theta_vjet1_Wlep
+  
   
   */
   if (!filled) setValues();
@@ -102,7 +101,7 @@ VBSAngularVars::evaluate(unsigned iJ)
 void
 VBSAngularVars::setValues()
 {
-  outputValues.fill(0.);
+  outputValues.fill(-1.);
 
   int category = *(VBS_category->Get());
 
@@ -129,45 +128,43 @@ VBSAngularVars::setValues()
       }
   }
 
-  PtEtaPhiMVector Vhad_CM = WVboost * Vhad;
-  PtEtaPhiMVector Wlep_CM = WVboost * Wlep;
-  PtEtaPhiMVector lep_WCM = Wlep_boost * lep;
-  PtEtaPhiMVector vjet0_VCM = Vhad_boost * v_jets[0];
-  PtEtaPhiMVector vjet1_VCM = Vhad_boost * v_jets[1];
+  PtEtaPhiMVector Vhad_WVcm = WVboost(Vhad);
+  PtEtaPhiMVector Wlep_WVcm = WVboost(Wlep);
+  PtEtaPhiMVector lep_Wcm   = Wlep_boost(lep);
+  PtEtaPhiMVector vjet0_Vcm = Vhad_boost(v_jets[0]);
+  PtEtaPhiMVector vjet1_Vcm = Vhad_boost(v_jets[1]);
 
-  outputValues[0] = WVsyst.Pt();
-  outputValues[1] = WVsyst.Eta();
-  outputValues[2] = WVsyst.Phi();
-  outputValues[3] = VectorUtil::DeltaPhi(Wlep, Vhad);
+  auto Vhad_plane =  vjet0_Vcm.Vect().Cross(vjet1_Vcm.Vect());
+  auto Wlep_plane =  lep_Wcm.Vect().Cross(Wlep.Vect());
 
-  outputValues[4] = Vhad_CM.Theta();
-  outputValues[5] = lep_WCM.Theta();
-  outputValues[6] = vjet0_VCM.Theta();
-  outputValues[7] = vjet1_VCM.Theta();
-  outputValues[8] = VectorUtil::Angle(lep_WCM.Vect(), Wlep.Vect());
-  outputValues[9] = VectorUtil::Angle(vjet0_VCM.Vect(), Vhad.Vect());
-  outputValues[10] = VectorUtil::Angle(vjet1_VCM.Vect(), Vhad.Vect());
-  outputValues[11] = VectorUtil::Angle(Vhad_CM.Vect(), WVsyst.Vect());
+  outputValues[0] = abs(VectorUtil::DeltaPhi(Vhad_plane, Wlep_plane));
+  outputValues[1] = Vhad_WVcm.Theta();
+  outputValues[2] = lep_Wcm.Theta();
+  outputValues[3] = vjet0_Vcm.Theta();
+  outputValues[4] = vjet1_Vcm.Theta();
+  outputValues[5] = VectorUtil::Angle(Vhad_WVcm.Vect(), WVsyst.Vect());
+  outputValues[6] = VectorUtil::Angle(lep_Wcm.Vect(), Wlep_WVcm.Vect());
+  outputValues[7] = VectorUtil::Angle(vjet0_Vcm.Vect(), Vhad_WVcm.Vect());
+  outputValues[8] = VectorUtil::Angle(vjet1_Vcm.Vect(), Vhad_WVcm.Vect());
 
   if (debug_){
     std::cout << "---------------"<< std::endl << "Category: " <<category <<std::endl;
-    std::cout << "WV syst Pt "<< outputValues[0] << std::endl;
-    std::cout << "WV syst Eta "<< outputValues[1] << std::endl;
-    std::cout << "WV syst Phi "<< outputValues[2] << std::endl;
-    std::cout << "WV deltaPhi "<< outputValues[3] << std::endl;
-    std::cout << "Vhad Theta* "<< outputValues[4] << std::endl;
-    std::cout << "Theta lep "<< outputValues[5] << std::endl;
-    std::cout << "Theta Vjet0 "<< outputValues[6] << std::endl;
-    std::cout << "Theta Vjet1 "<< outputValues[7] << std::endl;
-    std::cout << "Angle lep-Wlep "<< outputValues[8] << std::endl;
-    std::cout << "Angle vjet0-Wlep "<< outputValues[9] << std::endl;
-    std::cout << "Angle vjet1-Wlep "<< outputValues[10] << std::endl;
-    std::cout << "Angle Vhad in WVCM and WV "<< outputValues[11] << std::endl;
+    std::cout << "WV planes deltaPhi "<< outputValues[0] << std::endl;
+    std::cout << "Vhad Theta "<< outputValues[1] << std::endl;
+    std::cout << "Theta lep "<< outputValues[2] << std::endl;
+    std::cout << "Theta Vjet0 "<< outputValues[3] << std::endl;
+    std::cout << "Theta Vjet1 "<< outputValues[4] << std::endl;
+    std::cout << "Angle Vhad in WVCM "<< outputValues[5] << std::endl;
+    std::cout << "Angle lep-Wlep "<< outputValues[6] << std::endl;
+    std::cout << "Angle vjet0-Wlep "<< outputValues[7] << std::endl;
+    std::cout << "Angle vjet1-Wlep "<< outputValues[8] << std::endl;
 
-    auto check1 = Vhad_CM + Wlep_CM;
-    std::cout << check1.x() << " "<< check1.y() << " " << check1.z() << std::endl;
-    auto check2 = vjet0_VCM + vjet1_VCM;
-    std::cout << check2.x() << " "<< check2.y() << " " << check2.z() << std::endl;
+    std::cout << "check "<<  outputValues[5] << " ----> " << VectorUtil::Angle(Wlep_WVcm.Vect(), WVsyst.Vect()) << std::endl;
+
+    // auto check1 = Vhad_CM + Wlep_CM;
+    // std::cout << check1.x() << " "<< check1.y() << " " << check1.z() << std::endl;
+    // auto check2 = vjet0_VCM + vjet1_VCM;
+    // std::cout << check2.x() << " "<< check2.y() << " " << check2.z() << std::endl;
   }
 
   filled = true;
