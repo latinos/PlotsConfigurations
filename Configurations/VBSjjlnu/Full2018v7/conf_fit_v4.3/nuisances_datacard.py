@@ -448,16 +448,17 @@ for ir in range(1,6):
     wjets_bins.append("Wjets_HT_boost_"+str(ir))
 
 
+samples_PS = ['top','DY','VV','VVV','Vg','VgS','VBF-V', "ggWW"] + wjets_bins
 # #
 # # PS and UE
 # # #
-for sample in ['top','DY','VV','VVV','Vg','VgS','VBF-V', "ggWW"] + wjets_bins:
+for sample in samples_PS:
     nuisances['PS_ISR_'+sample]  = {
                     'name'  : 'CMS_PS_ISR_'+sample,
                     'kind'  : 'weight',
                     'type'  : 'shape',
                     'samples'  : {
-                        sample :      ['PSWeight[2]', 'PSWeight[0]'],
+                        sample : ['PSWeight[2]', 'PSWeight[0]'],
                     }
                 }
     nuisances['PS_FSR_'+sample]  = {
@@ -465,7 +466,7 @@ for sample in ['top','DY','VV','VVV','Vg','VgS','VBF-V', "ggWW"] + wjets_bins:
                     'kind'  : 'weight',
                     'type'  : 'shape',
                     'samples'  : {
-                        sample :      ['PSWeight[2]', 'PSWeight[0]'],
+                        sample :  ['PSWeight[2]', 'PSWeight[0]'],
                     }
                 }
 

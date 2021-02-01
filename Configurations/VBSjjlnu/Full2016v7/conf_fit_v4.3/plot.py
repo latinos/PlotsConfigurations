@@ -98,7 +98,7 @@ groupPlot['Others']  = {
                 'nameHR' : "Others",
                 'isSignal' : 0,
                 'color':palette["GreenLighter"],# palette["Green5"],    #Green2
-                'samples'  : ['VBF-V',  'Vg','VgS' ],
+                'samples'  : ['VBF-V', 'Vg','VgS','ggWW' ],
                 'fill': 1001
             }
 
@@ -128,7 +128,7 @@ groupPlot["Wjets"]  = {
                         'nameHR' : 'W+Jets',
                         'isSignal' : 0,
                         'color':   palette["Yellow"],
-                        'samples'  : ['Wjets_HT'],
+                        'samples'  : wjets_bins,
                         'fill': 1001
                 }
 
@@ -178,6 +178,13 @@ plot['VBF-V']  = {
                   'scale'    : 1.   ,
               }
 
+plot['ggWW']  = {
+                  'color': colors['kYellow']+3,  
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.   ,
+              }
+
 plot['Vg']  = {
                   'color': colors['kGreen']+3,  
                   'isSignal' : 0,
@@ -209,20 +216,20 @@ plot['top'] = {
                  'scale'    : 1.0 
                  }
 
-plot['Wjets_HT'] = {   
-                 'color': colors['kAzure']-1,
-                 'isSignal' : 0,
-                 'isData'   : 0, 
-                 'scale'    : 1.0 
-                 }
+# plot['Wjets_HT'] = {   
+#                  'color': colors['kAzure']-1,
+#                  'isSignal' : 0,
+#                  'isData'   : 0, 
+#                  'scale'    : 1.0 
+#                  }
 
-# for wjetbin in wjets_bins:
-#     plot[wjetbin] = {   
-#                     'color': colors['kAzure']-1,
-#                     'isSignal' : 0,
-#                     'isData'   : 0, 
-#                     'scale'    : 1.0 
-#                     }
+for wjetbin in wjets_bins:
+    plot[wjetbin] = {   
+                    'color': colors['kAzure']-1,
+                    'isSignal' : 0,
+                    'isData'   : 0, 
+                    'scale'    : 1.0 
+                    }
 
 plot['VBS']  = {
                   'color': colors["kCyan"]+1, 

@@ -582,7 +582,7 @@ for n in nuisances.values():
 
 # }
 
-# nuisances = { "njets_signal": nuisances['njets_signal'] }
+nuisances = {k:v for k,v in nuisances.items() if 'PS' in k} #if 'PS' in k or 'QCD' in k
 
 
    

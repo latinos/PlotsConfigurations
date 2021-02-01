@@ -141,7 +141,7 @@ samples['DY'] = {    'name'   :   #nanoGetSampleFiles(directory_bkg,'DYJetsToLL_
                                   + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-5to50_HT-600toinf')
                                   + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-5to50_HT-600toinf_ext1'),
                        'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*'+DY_photon_filter+'*btagSF_corr_DY'  ,
-                       'FilesPerJob' : 15,
+                       'FilesPerJob' : 9,
                        'EventsPerJob' : 80000,
                        'suppressNegative' :['all'],
                        'suppressNegativeNuisances' :['all'],
@@ -200,7 +200,7 @@ samples['top'] = {
                       + nanoGetSampleFiles(directory_bkg,'TTWJetsToLNu_ext2') 
                       + nanoGetSampleFiles(directory_bkg,'TTZjets'),  
             'weight' :  XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch+'*btagSF_corr_top',
-            'FilesPerJob' : 8,
+            'FilesPerJob' : 6,
             'EventsPerJob' : 80000,
             'suppressNegative' :['all'],
             'suppressNegativeNuisances' :['all'],
@@ -239,7 +239,7 @@ samples['Wjets_HT'] = { 'name' :
           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT2500_inf_ext1')
           ,
         'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch + '* EWKnloW * btagSF_corr_Wjets_HT', 
-        'FilesPerJob' : 8,
+        'FilesPerJob' : 5,
          'subsamples': {
             "res_1": '(VBS_category==1) && (w_lep_pt < 100)',
             "res_2": '(VBS_category==1) && (w_lep_pt >= 100 && w_lep_pt < 200)',
@@ -312,14 +312,14 @@ samples['VVV']  = {  'name'   :   nanoGetSampleFiles(directory_bkg,'ZZZ')
                                 + nanoGetSampleFiles(directory_bkg,'WWW'),
                                 #+ nanoGetSampleFiles(directory,'WWG'), #should this be included? or is it already taken into account in the WW sample?
                     'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch+'*btagSF_corr_VV_VVV_ggWW'  ,
-                    'FilesPerJob' : 20,
+                    'FilesPerJob' : 15,
                     'EventsPerJob' : 70000,
                   }
 
 ############## VBF-V ########
 
 samples['VBF-V']  = {  'name'   : nanoGetSampleFiles(directory_signal,'EWK_LNuJJ')
-                                + nanoGetSampleFiles(directory_signal,'EWK_LLJJ'), #To be added!
+                                + nanoGetSampleFiles(directory_signal,'EWK_LLJJ'), 
                     'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch +'*btagSF_corr_Vg_VgS_VBFV',
                     'FilesPerJob' : 15
                   }
@@ -338,7 +338,7 @@ samples['ggWW']  = {  'name'   :
 samples['Vg']  = {  'name'   :   nanoGetSampleFiles(directory_bkg,'Wg_MADGRAPHMLM')
                                + nanoGetSampleFiles(directory_bkg,'Zg'),
                     'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC+'*(!(Gen_ZGstar_mass > 0))*btagSF_corr_Vg_VgS_VBFV', # 14.02.2020: Changed Vg treatment
-                    'FilesPerJob' : 25,
+                    'FilesPerJob' : 15,
                     'EventsPerJob' : 70000,
                     'suppressNegative' :['all'],
                     'suppressNegativeNuisances' :['all'],
@@ -354,7 +354,7 @@ samples['VgS']  =  {  'name'   :   nanoGetSampleFiles(directory_bkg,'Wg_MADGRAPH
                                  + nanoGetSampleFiles(directory_bkg,'WZTo3LNu_mllmin01'),
                                  #+ nanoGetSampleFiles(directory_bkg,'WZTo3LNu_mllmin01_ext1'),
                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + ' * (gstarLow * 0.94 + gstarHigh * 1.14) *btagSF_corr_Vg_VgS_VBFV',
-                      'FilesPerJob' : 25,
+                      'FilesPerJob' : 15,
                       'EventsPerJob' : 80000,
                       'suppressNegative' :['all'],
                       'suppressNegativeNuisances' :['all'],
@@ -428,4 +428,4 @@ for Run in DataRun :
 
 
 #samples = {k:v for k,v in samples.items() if k  in ['top', 'Wjets_HT']}
-samples = {k:v for k,v in samples.items() if k in ['VBF-V']}
+# samples = {k:v for k,v in samples.items() if k not in ['DY']}

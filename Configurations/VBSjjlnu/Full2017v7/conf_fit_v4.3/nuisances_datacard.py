@@ -517,8 +517,6 @@ for ir in range(1,6):
 #                 }
 #             }
 
-# PS is taken from 2018 shape
-
 
 nuisances['PU']  = {
                 'name'  : 'CMS_PU_2017',

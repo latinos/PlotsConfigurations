@@ -381,4 +381,4 @@ for Run in DataRun :
                         samples['DATA']['weights'].append(DataTrig[DataSet])
 
 
-# samples = {   key:v for key,v in samples.items() if key  in ['Wjets_HT']}
+# samples = {   key:v for key,v in samples.items() if key not in ['Fake','DATA']}
