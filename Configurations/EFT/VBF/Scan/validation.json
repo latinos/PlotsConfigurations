@@ -1,0 +1,14 @@
+{
+    "smallSignalProc": {
+        "hww2l2v_13TeV_SRVH": {
+            "VBF_T1": {
+                "procrate": 0.3884673094970662,
+                "sigrate_tot": 616.59364492428
+            },
+            "ZH_T1": {
+                "procrate": 0.5105776832636113,
+                "sigrate_tot": 616.59364492428
+            }
+        }
+    }
+}

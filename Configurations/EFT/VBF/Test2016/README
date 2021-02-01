@@ -1,0 +1,35 @@
+JJH AC/EFT analysis
+==============
+
+Make samples.py config with all AC sample reweighting included :
+
+    python ../Tools/scripts/MakeSamplesConfig.py
+    cp ../Tools/configs/samples.py .
+
+Produce shapes:
+
+    mkShapesMulti.py --pycfg=configuration.py --doBatch=1 --batchSplit=Samples,Files --batchQueue=longlunch
+
+Add root files:
+
+    mkShapesMulti.py --pycfg=configuration.py --doHadd=1 --batchSplit=Samples,Files
+
+Test reweighting of AC signals:
+
+    python ../Tools/scripts/TestSignalRW.py -b -l
+
+Make some plots:
+
+    mkPlot.py --pycfg=configuration.py --inputFile rootFileJJH/plots_JJH.root --showIntegralLegend 1
+
+Make analysis templates (T1-T5 for Ewk HVV, T1-T3 for ggH HVV, T1-T3 for HGG) for signal model:
+
+    python ../Tools/scripts/MakeAnaTemplates.py -b -l
+
+Make datacards for the HVV AC analysis :
+
+    mkDatacards.py --pycfg=configuration_hvv.py --inputFile rootFileJJH/plots_JJH_HVV.root
+
+Make datacards for the HGG AC analysis :
+
+    mkDatacards.py --pycfg=configuration_hgg.py --inputFile rootFileJJH/plots_JJH_HGG.root
