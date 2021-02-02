@@ -7,11 +7,11 @@ variables['newBDT_Ada13Var']  = {
     'fold'  : 3 
 }   
 
-variables['nloBDT_Ada14Var']  = { 
-    'name': 'nloBDT_Ada14[0]',
+variables['newBDT_Grad11Var']  = { 
+    'name': 'newBDT_Grad11[0]',
     'range' : (500,-1.,1.),
     #'range' : (bdt_bins,),
-    'xaxis' : 'darkHiggs BDT_{Ada14Var}',
+    'xaxis' : 'darkHiggs BDT_{Grad11Var}',
     #'xaxis' : 'BDT',
     'fold'  : 3 
 }   

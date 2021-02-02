@@ -4,7 +4,7 @@
 
 treeName = 'Events'
 
-tag = 'darkHiggs_inv_2016v7'
+tag = 'darkHiggs_inv_2018v7'
 
 # used by mkShape to define output directory for root files
 outputDir = 'darkHiggs_inv_root'
@@ -27,7 +27,7 @@ samplesFile = 'samples.py'
 plotFile = 'plot.py'
 
 # luminosity to normalize to (in 1/fb)
-lumi = 35.9
+lumi = 59.7
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy

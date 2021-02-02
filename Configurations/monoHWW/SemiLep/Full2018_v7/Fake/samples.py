@@ -149,7 +149,6 @@ samples['top'] = {
     'name': files,
     'weight': mcCommonWeight,
     'FilesPerJob': 3,
-    #'FilesPerJob': 2,
 }
 
 # ttbar pT re-weighting
@@ -383,7 +382,6 @@ samples['Wjets'] = {
     #'weight' : mcCommonWeight + '*ewknloW', 
     #'weight' : mcCommonWeight, 
     'FilesPerJob' : 4,
-    #'FilesPerJob' : 3,
 }
 
 ## HT binned
@@ -571,17 +569,17 @@ samples['Higgs'] = {
 ############################################
 ##############   SIGNALS  ##################
 ############################################
-
-signal_file = 'darkHiggs_central.py'
-if os.path.exists(signal_file) :
-    handle = open(signal_file,'r')
-    exec(handle)
-    handle.close()
-else:
-    raise IOError('FILE NOT FOUND: '+signal_file+'does not exist.')
-
-for mp in signal:
-    samples[mp] = copy.deepcopy(signal[mp])
+#
+#signal_file = 'darkHiggs_central.py'
+#if os.path.exists(signal_file) :
+#    handle = open(signal_file,'r')
+#    exec(handle)
+#    handle.close()
+#else:
+#    raise IOError('FILE NOT FOUND: '+signal_file+'does not exist.')
+#
+#for mp in signal:
+#    samples[mp] = copy.deepcopy(signal[mp])
 
 ################################################
 ############ DATA DECLARATION ##################
