@@ -70,25 +70,25 @@ cuts['ww2l2v_13TeV_5j'] = ' mth>60 \
 ## Top control regions
 cuts['ww2l2v_13TeV_top_incl']  =  ' mtw2>30 \
                              && mll>50 \
-                             && ((zeroJet && !bVeto) || bReq)\
+                             && bReq\
                           '
 
 cuts['ww2l2v_13TeV_top_0j']  =  ' mtw2>30 \
                              && mll>50 \
-                             && ((zeroJet && !bVeto) || bReq)\
+                             && bReq\
                              && Alt$(CleanJet_pt[0],0)<30 \
                           '
 
 cuts['ww2l2v_13TeV_top_1j']  =  ' mtw2>30 \
                              && mll>50 \
-                             && ((zeroJet && !bVeto) || bReq)\
+                             && bReq\
                              && Alt$(CleanJet_pt[0],0)>=30 \
                              && Alt$(CleanJet_pt[1],0)<30 \
                            '
 
 cuts['ww2l2v_13TeV_top_2j']  =  ' mtw2>30 \
                              && mll>50 \
-                             && ((zeroJet && !bVeto) || bReq)\
+                             && bReq\
                              && Alt$(CleanJet_pt[0],0)>=30 \
                              && Alt$(CleanJet_pt[1],0)>=30 \
                              && Alt$(CleanJet_pt[2],0)<30 \
@@ -96,7 +96,7 @@ cuts['ww2l2v_13TeV_top_2j']  =  ' mtw2>30 \
 
 cuts['ww2l2v_13TeV_top_3j']  =  ' mtw2>30 \
                              && mll>50 \
-                             && ((zeroJet && !bVeto) || bReq)\
+                             && bReq\
                              && Alt$(CleanJet_pt[0],0)>=30 \
                              && Alt$(CleanJet_pt[1],0)>=30 \
                              && Alt$(CleanJet_pt[2],0)>=30 \
@@ -105,7 +105,7 @@ cuts['ww2l2v_13TeV_top_3j']  =  ' mtw2>30 \
 
 cuts['ww2l2v_13TeV_top_4j']  =  ' mtw2>30 \
                              && mll>50 \
-                             && ((zeroJet && !bVeto) || bReq)\
+                             && bReq\
                              && Alt$(CleanJet_pt[0],0)>=30 \
                              && Alt$(CleanJet_pt[1],0)>=30 \
                              && Alt$(CleanJet_pt[2],0)>=30 \
@@ -115,7 +115,7 @@ cuts['ww2l2v_13TeV_top_4j']  =  ' mtw2>30 \
 
 cuts['ww2l2v_13TeV_top_5j']  =  ' mtw2>30 \
                              && mll>50 \
-                             && ((zeroJet && !bVeto) || bReq)\
+                             && bReq\
                           && Alt$(CleanJet_pt[0],0)>=30 \
                           && Alt$(CleanJet_pt[1],0)>=30 \
                           && Alt$(CleanJet_pt[2],0)>=30 \
@@ -184,3 +184,4 @@ cuts['ww2l2v_13TeV_dytt_5j']  =  ' mth<60 \
                              && Alt$(CleanJet_pt[3],0)>=30 \
                              && Alt$(CleanJet_pt[4],0)>=30 \
                            '
+
