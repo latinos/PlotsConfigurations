@@ -1,8 +1,8 @@
 #RAndKff  = {}
 
 RAndKff['DYmva0p90'] = {
-    'RFile'   : 'rootFile/plots_DYESTIM_ggH_SF_2017_v7_DYMVA090.root' ,
-    'KffFile' : 'rootFile/plots_DYESTIM_ggH_SF_2017_v7_DYMVA080.root' ,
+    'RFile'   : 'rootFile/plots_DYESTIM_2017_v7_DYMVA090.root' ,
+    'KffFile' : 'rootFile/plots_DYESTIM_2017_v7_DYMVA080.root' ,
     'Regions' : {
         '0jee' : {
             'kNum' : '0j_ee_in' ,
