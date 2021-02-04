@@ -36,6 +36,10 @@ Or, if they failed because the wall clock time have been exceeded, resubmit them
 
     mkDYestim_data.py --pycfg=configuration.py --dycfg=dyestim_ggH_SF.py --inputFile=rootFile/plots_ggH_SF_2016_v7.root
 
+With DY nuisances breakdown:
+
+    mkDYestim_data_splitNuisances.py --pycfg=configuration.py --dycfg=dyestim_ggH_SF.py --inputFile=rootFile/plots_ggH_SF_2016_v7.root --year=2016
+
 ### Plot distributions
 
     mkPlot.py --pycfg=configuration.py --inputFile=rootFile/plots_ggH_SF_2016_v7_DYEstimDATA.root --linearOnly --fileFormats=png --onlyPlot=cratio
