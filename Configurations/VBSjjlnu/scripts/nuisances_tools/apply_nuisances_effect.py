@@ -10,6 +10,7 @@ parser.add_argument("--nuisance-effect", help="Nuisance effect file", type=str)
 parser.add_argument("-o","--output", help="Output file", type=str)
 parser.add_argument("-s","--samples", help="Samples", type=str, nargs="+")
 parser.add_argument("-n","--nuisances", help="Nuisances", type=str, nargs="+")
+parser.add_argument("-e","--exclude-vars", help="Exclude vars", type=str, nargs="+")
 
 args = parser.parse_args()
 
@@ -30,13 +31,14 @@ for cut in nF.GetListOfKeys():
 
         print "Cut: ", cut.GetName()
         for var  in R.gDirectory.GetListOfKeys():
+            if args.exclude_vars and var.GetName() in args.exclude_vars: continue
             oF.mkdir(cut.GetName() + "/"+var.GetName())
             print "> Var: ", var.GetName() 
             for sample in args.samples:
                 h_nom = iF.Get("{}/{}/histo_{}".format(cut.GetName(), var.GetName(), sample))
                 # Exclude samples associated explicity to a cut (Wjets bins)
-                if 'res' in cut.GetName() and 'boost' in sample: continue
-                if 'boost' in cut.GetName() and 'res' in sample: continue
+                # if 'res' in cut.GetName() and 'boost' in sample: continue
+                # if 'boost' in cut.GetName() and 'res' in sample: continue
                 
                 for nuis in args.nuisances:
                     h_up = h_nom.Clone("histo_{}_{}Up".format(sample, nuis))

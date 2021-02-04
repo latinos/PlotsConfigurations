@@ -10,7 +10,7 @@ parser.add_argument("--nuisances", help="Nuisances", type=str, nargs="+")
 args = parser.parse_args()
 
 
-samples= ['VBS','DY','top','VV','VVV','Vg','VgS', 'VBF-V']
+samples= ['VBS','DY','top','VV','VVV','Vg','VgS', 'VBF-V','ggWW']
 wjets_bins = []
 for ir in range(1,7):
     wjets_bins.append("Wjets_HT_res_"+str(ir))

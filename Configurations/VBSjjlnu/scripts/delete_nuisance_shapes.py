@@ -4,7 +4,7 @@ import sys
 f = R.TFile(sys.argv[1], "UPDATE")
 nuisance_name = sys.argv[2]
 
-samples = ['VBS','top','DATA','Fake','Wjets_HT','VVV','VV','VgS','Vg','DY','VBF-V']
+samples = ['VBS','top','DATA','Fake','Wjets_HT','VVV','VV','VgS','Vg','DY','VBF-V','ggWW']
 for ir in range(1,7):
     samples.append("Wjets_HT_res_"+str(ir))
 for ir in range(1,6):

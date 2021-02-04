@@ -140,14 +140,18 @@ def postfit_plot(datac):
         plotFile = "plot_wjets_res.py"
     if "wjet" in datac["datacard_name"] and "boost" in datac["datacard_name"]:
         plotFile = "plot_wjets_boost.py"
+    if "sig" in datac["datacard_name"] and "res" in datac["datacard_name"]:
+        plotFile = "plot_wjets_res.py"
+    if "sig" in datac["datacard_name"] and "boost" in datac["datacard_name"]:
+        plotFile = "plot_wjets_boost.py"
 
     cmd = [ """mkPostFitCombinedPlot.py --inputFilePostFitShapesFromWorkspace  ../../../datacards/{0}/output_postfit.root \\
            --outputFile postfit_shapes.root --kind P --cutName combined  \\
-           --variable {1} --structureFile ../../../Full2018v7/conf_fit_v4.2/structure.py \\
-           --plotFile ../{2} --lumiText "137/fb" """.format(datac["outputdir"], 
+           --variable {1} --structureFile ../../../Full2018v7/conf_fit_v4.3/structure.py \\
+           --plotFile ../../{2} --lumiText "137/fb" """.format(datac["outputdir"], 
            datac["phase_spaces"][0]["var"], plotFile),
            """mkPlot.py --pycfg=configuration_combined.py --inputFile=postfit_shapes.root  --showRelativeRatio \\
-            --minLogC 10 --maxLogC 1e2 --minLogCratio 10 --maxLogCratio 1e2 --showIntegralLegend=1 --plotNormalizedDistributions"""
+            --minLogC 10 --maxLogC 1e2 --minLogCratio 10 --maxLogCratio 1e2 --showIntegralLegend=1 --plotNormalizedDistributions """
     ]
     for c in cmd:  log.debug(cmd)
 

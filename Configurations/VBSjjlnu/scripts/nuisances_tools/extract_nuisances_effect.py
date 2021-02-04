@@ -14,12 +14,12 @@ parser.add_argument("-c","--cuts", help="Cut", type=str, nargs="+")
 parser.add_argument("-v","--vars", help="Variables", type=str, nargs="+")
 parser.add_argument("-n","--nuisances", help="Nuisances", type=str, nargs="+")
 parser.add_argument("-f","--fit", help="Fit",action="store_true")
+parser.add_argument("-e","--exclude-vars", help="Exclude vars", type=str, nargs="+")
 args = parser.parse_args()
 
 import ROOT as R 
 R.gROOT.SetBatch(True)
 R.TH1.SetDefaultSumw2()
-
 
 
 iF = R.TFile.Open(args.input, "READ")
@@ -30,6 +30,8 @@ for cut in args.cuts:
     print "Cut: ", cut
     if args.vars[0] == "ALL":
         vars = [k.GetName() for k in iF.Get(cut).GetListOfKeys()]
+        if args.exclude_vars:
+            vars = [ v for v in vars if v not in args.exclude_vars]
     else:
         vars = args.vars 
         
