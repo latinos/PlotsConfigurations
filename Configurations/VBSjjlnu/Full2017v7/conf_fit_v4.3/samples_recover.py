@@ -107,25 +107,27 @@ DataTrig = {
 
 DY_photons_filter = '( !(Sum$(PhotonGen_isPrompt==1 && PhotonGen_pt>10 && abs(PhotonGen_eta)<2.6) > 0 && Sum$(LeptonGen_isPrompt==1 && LeptonGen_pt>15)>=2) )'
 
-samples['DY'] = {    'name'   :   nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-50') 
-                                  + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-50_ext1')
-                                  + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-10to50-LO_ext1')
-                                  #+ nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-50_HT-100to200_newpmx') 
-                                  + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-50_HT-200to400')
-                                  + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-50_HT-200to400_ext1')
-                                  + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-50_HT-400to600_newpmx') 
-                                  + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-50_HT-600to800')
-                                  + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-50_HT-800to1200')
-                                  + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-50_HT-1200to2500')
-                                  + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-50_HT-2500toInf')
-                                  + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-4to50_HT-100to200_newpmx')
-                                  + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-4to50_HT-200to400_newpmx')
-                                  + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-4to50_HT-400to600')
-                                  + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-4to50_HT-400to600_ext1')
-                                  + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-4to50_HT-600toInf')
-                                  + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-4to50_HT-600toInf_ext1') ,
+samples['DY'] = {    'name'   :   [
+      'root://eoscms.cern.ch//eos/cms/store/group/phys_smp/VJets_NLO_VBSanalyses/Fall2017_102X_nAODv7_Full2017v7_skim/MCl1loose2017v7__MCCorr2017v7__MCCombJJLNu2017/nanoLatino_DYJetsToLL_M-50_HT-400to600_newpmx__part1.root', 
+      'root://eoscms.cern.ch//eos/cms/store/group/phys_smp/VJets_NLO_VBSanalyses/Fall2017_102X_nAODv7_Full2017v7_skim/MCl1loose2017v7__MCCorr2017v7__MCCombJJLNu2017/nanoLatino_DYJetsToLL_M-50_HT-400to600_newpmx__part10.root', 
+      'root://eoscms.cern.ch//eos/cms/store/group/phys_smp/VJets_NLO_VBSanalyses/Fall2017_102X_nAODv7_Full2017v7_skim/MCl1loose2017v7__MCCorr2017v7__MCCombJJLNu2017/nanoLatino_DYJetsToLL_M-50_HT-400to600_newpmx__part11.root', 
+      'root://eoscms.cern.ch//eos/cms/store/group/phys_smp/VJets_NLO_VBSanalyses/Fall2017_102X_nAODv7_Full2017v7_skim/MCl1loose2017v7__MCCorr2017v7__MCCombJJLNu2017/nanoLatino_DYJetsToLL_M-50_HT-400to600_newpmx__part2.root', 
+      'root://eoscms.cern.ch//eos/cms/store/group/phys_smp/VJets_NLO_VBSanalyses/Fall2017_102X_nAODv7_Full2017v7_skim/MCl1loose2017v7__MCCorr2017v7__MCCombJJLNu2017/nanoLatino_DYJetsToLL_M-50_HT-400to600_newpmx__part3.root', 
+      'root://eoscms.cern.ch//eos/cms/store/group/phys_smp/VJets_NLO_VBSanalyses/Fall2017_102X_nAODv7_Full2017v7_skim/MCl1loose2017v7__MCCorr2017v7__MCCombJJLNu2017/nanoLatino_DYJetsToLL_M-50_HT-400to600_newpmx__part4.root', 
+      'root://eoscms.cern.ch//eos/cms/store/group/phys_smp/VJets_NLO_VBSanalyses/Fall2017_102X_nAODv7_Full2017v7_skim/MCl1loose2017v7__MCCorr2017v7__MCCombJJLNu2017/nanoLatino_DYJetsToLL_M-50_HT-400to600_newpmx__part5.root', 
+      'root://eoscms.cern.ch//eos/cms/store/group/phys_smp/VJets_NLO_VBSanalyses/Fall2017_102X_nAODv7_Full2017v7_skim/MCl1loose2017v7__MCCorr2017v7__MCCombJJLNu2017/nanoLatino_DYJetsToLL_M-50_HT-400to600_newpmx__part6.root', 
+      'root://eoscms.cern.ch//eos/cms/store/group/phys_smp/VJets_NLO_VBSanalyses/Fall2017_102X_nAODv7_Full2017v7_skim/MCl1loose2017v7__MCCorr2017v7__MCCombJJLNu2017/nanoLatino_DYJetsToLL_M-50_HT-400to600_newpmx__part7.root',
+      'root://eoscms.cern.ch//eos/cms/store/group/phys_smp/VJets_NLO_VBSanalyses/Fall2017_102X_nAODv7_Full2017v7_skim/MCl1loose2017v7__MCCorr2017v7__MCCombJJLNu2017/nanoLatino_DYJetsToLL_M-50_HT-400to600_newpmx__part8.root', 
+      'root://eoscms.cern.ch//eos/cms/store/group/phys_smp/VJets_NLO_VBSanalyses/Fall2017_102X_nAODv7_Full2017v7_skim/MCl1loose2017v7__MCCorr2017v7__MCCombJJLNu2017/nanoLatino_DYJetsToLL_M-50_HT-400to600_newpmx__part9.root', 
+      'root://eoscms.cern.ch//eos/cms/store/group/phys_smp/VJets_NLO_VBSanalyses/Fall2017_102X_nAODv7_Full2017v7_skim/MCl1loose2017v7__MCCorr2017v7__MCCombJJLNu2017/nanoLatino_DYJetsToLL_M-50_HT-600to800__part0.root', 
+      'root://eoscms.cern.ch//eos/cms/store/group/phys_smp/VJets_NLO_VBSanalyses/Fall2017_102X_nAODv7_Full2017v7_skim/MCl1loose2017v7__MCCorr2017v7__MCCombJJLNu2017/nanoLatino_DYJetsToLL_M-50_HT-600to800__part1.root', 
+      'root://eoscms.cern.ch//eos/cms/store/group/phys_smp/VJets_NLO_VBSanalyses/Fall2017_102X_nAODv7_Full2017v7_skim/MCl1loose2017v7__MCCorr2017v7__MCCombJJLNu2017/nanoLatino_DYJetsToLL_M-50_HT-600to800__part2.root', 
+      'root://eoscms.cern.ch//eos/cms/store/group/phys_smp/VJets_NLO_VBSanalyses/Fall2017_102X_nAODv7_Full2017v7_skim/MCl1loose2017v7__MCCorr2017v7__MCCombJJLNu2017/nanoLatino_DYJetsToLL_M-50_HT-600to800__part3.root', 
+      'root://eoscms.cern.ch//eos/cms/store/group/phys_smp/VJets_NLO_VBSanalyses/Fall2017_102X_nAODv7_Full2017v7_skim/MCl1loose2017v7__MCCorr2017v7__MCCombJJLNu2017/nanoLatino_DYJetsToLL_M-50_HT-600to800__part4.root', 
+      'root://eoscms.cern.ch//eos/cms/store/group/phys_smp/VJets_NLO_VBSanalyses/Fall2017_102X_nAODv7_Full2017v7_skim/MCl1loose2017v7__MCCorr2017v7__MCCombJJLNu2017/nanoLatino_DYJetsToLL_M-50_HT-600to800__part5.root', 
+      'root://eoscms.cern.ch//eos/cms/store/group/phys_smp/VJets_NLO_VBSanalyses/Fall2017_102X_nAODv7_Full2017v7_skim/MCl1loose2017v7__MCCorr2017v7__MCCombJJLNu2017/nanoLatino_DYJetsToLL_M-50_HT-600to800__part6.root'],
                        'weight' : (XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+"*"+DY_photons_filter  +'*btagSF_corr_DY').replace("PUJetIdSF",'1.'),
-                       'FilesPerJob' : 9,
+                       'FilesPerJob' : 2,
                        'EventsPerJob' : 80000,
                       #  'suppressNegative' :['all'],
                       #  'suppressNegativeNuisances' :['all'],
@@ -157,7 +159,8 @@ addSampleWeight(samples,'DY','DYJetsToLL_M-4to50_HT-400to600_ext1',  'DY_LO_pTll
 addSampleWeight(samples,'DY','DYJetsToLL_M-4to50_HT-600toInf',       'DY_LO_pTllrw')
 addSampleWeight(samples,'DY','DYJetsToLL_M-4to50_HT-600toInf_ext1',  'DY_LO_pTllrw')
 
-########### Top ############
+## Top
+ #########
 
 samples['top'] = {    'name'   :   nanoGetSampleFiles(directory_bkg,'TTTo2L2Nu')
                                  + nanoGetSampleFiles(directory_bkg,'ST_s-channel') 
@@ -320,26 +323,30 @@ addSampleWeight(samples,'VgS','WZTo3LNu_mllmin01', '(Gen_ZGstar_mass > 0.1)')
 
 #
 samples['VBS']  = { 'name' :  
-                nanoGetSampleFiles(directory_signal,'WmToLNu_ZTo2J',) +
-               nanoGetSampleFiles(directory_signal,'WmTo2J_ZTo2L', ) +
-               nanoGetSampleFiles(directory_signal,'WpTo2J_ZTo2L', ) +
-               nanoGetSampleFiles(directory_signal,'WpToLNu_ZTo2J',) +
-               nanoGetSampleFiles(directory_signal,'WpToLNu_WpTo2J') +
-               nanoGetSampleFiles(directory_signal,'WmToLNu_WmTo2J') +
-               nanoGetSampleFiles(directory_signal,'WpToLNu_WmTo2J') +
-               nanoGetSampleFiles(directory_signal,'WpTo2J_WmToLNu') +
-               nanoGetSampleFiles(directory_signal,'ZTo2L_ZTo2J',  ),
+                ['root://eoscms.cern.ch//eos/cms/store/group/phys_smp/VJets_NLO_VBSanalyses/Fall2017_102X_nAODv7_Full2017v7_skim/MCl1loose2017v7__MCCorr2017v7__MCCombJJLNu2017/nanoLatino_WpToLNu_WmTo2J__part168.root',
+                 'root://eoscms.cern.ch//eos/cms/store/group/phys_smp/VJets_NLO_VBSanalyses/Fall2017_102X_nAODv7_Full2017v7_skim/MCl1loose2017v7__MCCorr2017v7__MCCombJJLNu2017/nanoLatino_WpToLNu_WmTo2J__part169.root', 
+                 'root://eoscms.cern.ch//eos/cms/store/group/phys_smp/VJets_NLO_VBSanalyses/Fall2017_102X_nAODv7_Full2017v7_skim/MCl1loose2017v7__MCCorr2017v7__MCCombJJLNu2017/nanoLatino_WpToLNu_WmTo2J__part17.root',
+                  'root://eoscms.cern.ch//eos/cms/store/group/phys_smp/VJets_NLO_VBSanalyses/Fall2017_102X_nAODv7_Full2017v7_skim/MCl1loose2017v7__MCCorr2017v7__MCCombJJLNu2017/nanoLatino_WpToLNu_WmTo2J__part170.root',
+                  'root://eoscms.cern.ch//eos/cms/store/group/phys_smp/VJets_NLO_VBSanalyses/Fall2017_102X_nAODv7_Full2017v7_skim/MCl1loose2017v7__MCCorr2017v7__MCCombJJLNu2017/nanoLatino_WpToLNu_WmTo2J__part171.root',
+                  'root://eoscms.cern.ch//eos/cms/store/group/phys_smp/VJets_NLO_VBSanalyses/Fall2017_102X_nAODv7_Full2017v7_skim/MCl1loose2017v7__MCCorr2017v7__MCCombJJLNu2017/nanoLatino_WpToLNu_WmTo2J__part172.root',
+                  'root://eoscms.cern.ch//eos/cms/store/group/phys_smp/VJets_NLO_VBSanalyses/Fall2017_102X_nAODv7_Full2017v7_skim/MCl1loose2017v7__MCCorr2017v7__MCCombJJLNu2017/nanoLatino_WpToLNu_WmTo2J__part173.root',
+                  'root://eoscms.cern.ch//eos/cms/store/group/phys_smp/VJets_NLO_VBSanalyses/Fall2017_102X_nAODv7_Full2017v7_skim/MCl1loose2017v7__MCCorr2017v7__MCCombJJLNu2017/nanoLatino_WpToLNu_WmTo2J__part174.root',
+                  'root://eoscms.cern.ch//eos/cms/store/group/phys_smp/VJets_NLO_VBSanalyses/Fall2017_102X_nAODv7_Full2017v7_skim/MCl1loose2017v7__MCCorr2017v7__MCCombJJLNu2017/nanoLatino_WpToLNu_WmTo2J__part175.root',
+                  'root://eoscms.cern.ch//eos/cms/store/group/phys_smp/VJets_NLO_VBSanalyses/Fall2017_102X_nAODv7_Full2017v7_skim/MCl1loose2017v7__MCCorr2017v7__MCCombJJLNu2017/nanoLatino_WpToLNu_WmTo2J__part176.root',
+                  'root://eoscms.cern.ch//eos/cms/store/group/phys_smp/VJets_NLO_VBSanalyses/Fall2017_102X_nAODv7_Full2017v7_skim/MCl1loose2017v7__MCCorr2017v7__MCCombJJLNu2017/nanoLatino_WpToLNu_WmTo2J__part177.root',
+                  'root://eoscms.cern.ch//eos/cms/store/group/phys_smp/VJets_NLO_VBSanalyses/Fall2017_102X_nAODv7_Full2017v7_skim/MCl1loose2017v7__MCCorr2017v7__MCCombJJLNu2017/nanoLatino_WpToLNu_WmTo2J__part178.root',
+                  'root://eoscms.cern.ch//eos/cms/store/group/phys_smp/VJets_NLO_VBSanalyses/Fall2017_102X_nAODv7_Full2017v7_skim/MCl1loose2017v7__MCCorr2017v7__MCCombJJLNu2017/nanoLatino_WpToLNu_WmTo2J__part179.root',
+                  'root://eoscms.cern.ch//eos/cms/store/group/phys_smp/VJets_NLO_VBSanalyses/Fall2017_102X_nAODv7_Full2017v7_skim/MCl1loose2017v7__MCCorr2017v7__MCCombJJLNu2017/nanoLatino_WpToLNu_WmTo2J__part18.root',
+                  'root://eoscms.cern.ch//eos/cms/store/group/phys_smp/VJets_NLO_VBSanalyses/Fall2017_102X_nAODv7_Full2017v7_skim/MCl1loose2017v7__MCCorr2017v7__MCCombJJLNu2017/nanoLatino_WpToLNu_WmTo2J__part19.root'],
        'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch + '*btagSF_corr_VBS',
-       'FilesPerJob' : 15,
+       'FilesPerJob' : 4,
         'EventsPerJob' : 70000,
 }
 
-#################
-
 fake_weight_corrected = "fakeWeight_35"
 
-
-samples['Fake'] = {
+# Fakes
+samples['Fake_ele'] = {
   'name': [],
   'weight': METFilter_DATA+'*'+ fake_weight_corrected,
   'weights': [],
@@ -347,73 +354,56 @@ samples['Fake'] = {
   'FilesPerJob' : 45
 }
 
+samples['Fake_mu'] = {
+  'name': [],
+  'weight': METFilter_DATA+'*'+ fake_weight_corrected,
+  'weights': [],
+  'isData': ['all'],
+  'FilesPerJob' : 45
+}
 
-# #### Fakes
-# samples['Fake_ele'] = {
-#   'name': [],
-#   'weight': METFilter_DATA+'*'+ fake_weight_corrected,
-#   'weights': [],
-#   'isData': ['all'],
-#   'FilesPerJob' : 45
-# }
-
-# samples['Fake_mu'] = {
-#   'name': [],
-#   'weight': METFilter_DATA+'*'+ fake_weight_corrected,
-#   'weights': [],
-#   'isData': ['all'],
-#   'FilesPerJob' : 45
-# }
-
-# #
-# for _, sd in DataRun:
-#   for pd in DataSets:
-#     files = nanoGetSampleFiles(directory_data, pd + '_' + sd)
-#     if pd == "SingleMuon":
-#       # BE Careful --> we use directory_data because the Lepton tight cut was not applied in post-processing
-#       samples['Fake_mu']['name'].extend(files)
-#       samples['Fake_mu']['weights'].extend([DataTrig[pd]] * len(files))
-#     elif pd == "SingleElectron":
-#       # BE Careful --> we use directory_data because the Lepton tight cut was not applied in post-processing
-#       samples['Fake_ele']['name'].extend(files)
-#       samples['Fake_ele']['weights'].extend([DataTrig[pd]] * len(files))
+#
+for _, sd in DataRun:
+  for pd in DataSets:
+    files = nanoGetSampleFiles(directory_data, pd + '_' + sd)
+    if pd == "SingleMuon":
+      # BE Careful --> we use directory_data because the Lepton tight cut was not applied in post-processing
+      samples['Fake_mu']['name'].extend(files)
+      samples['Fake_mu']['weights'].extend([DataTrig[pd]] * len(files))
+    elif pd == "SingleElectron":
+      # BE Careful --> we use directory_data because the Lepton tight cut was not applied in post-processing
+      samples['Fake_ele']['name'].extend(files)
+      samples['Fake_ele']['weights'].extend([DataTrig[pd]] * len(files))
 
 
 ##########################################
 ################# DATA ###################
 ##########################################
 
-# samples['DATA_mu']  = {   'name': [ ] ,
-#                        'weight' : METFilter_DATA+'*'+LepWPCut,
-#                        'weights' : [ ],
-#                        'isData': ['all'],
-#                        'FilesPerJob' : 45,
-#                   }
-
-# samples['DATA_ele']  = {   'name': [ ] ,
-#                        'weight' : METFilter_DATA+'*'+LepWPCut,
-#                        'weights' : [ ],
-#                        'isData': ['all'],
-#                        'FilesPerJob' : 45,
-#                   }
-
-samples['DATA']  = {   'name': [ ] ,
+samples['DATA_mu']  = {   'name': [ ] ,
                        'weight' : METFilter_DATA+'*'+LepWPCut,
                        'weights' : [ ],
                        'isData': ['all'],
                        'FilesPerJob' : 45,
                   }
 
-# for Run in DataRun :
-#         for DataSet in DataSets :
-#                 FileTarget = nanoGetSampleFiles(directory_data,DataSet+'_'+Run[1])
-#                 for iFile in FileTarget:
-#                   if DataSet == "SingleElectron":
-#                     samples['DATA_ele']['name'].append(iFile)
-#                     samples['DATA_ele']['weights'].append(DataTrig[DataSet])
-#                   if DataSet == "SingleMuon":
-#                     samples['DATA_mu']['name'].append(iFile)
-#                     samples['DATA_mu']['weights'].append(DataTrig[DataSet])
+samples['DATA_ele']  = {   'name': [ ] ,
+                       'weight' : METFilter_DATA+'*'+LepWPCut,
+                       'weights' : [ ],
+                       'isData': ['all'],
+                       'FilesPerJob' : 45,
+                  }
+
+for Run in DataRun :
+        for DataSet in DataSets :
+                FileTarget = nanoGetSampleFiles(directory_data,DataSet+'_'+Run[1])
+                for iFile in FileTarget:
+                  if DataSet == "SingleElectron":
+                    samples['DATA_ele']['name'].append(iFile)
+                    samples['DATA_ele']['weights'].append(DataTrig[DataSet])
+                  if DataSet == "SingleMuon":
+                    samples['DATA_mu']['name'].append(iFile)
+                    samples['DATA_mu']['weights'].append(DataTrig[DataSet])
 
 
-# samples = {k:v for k,v in samples.items() if k  in ['Fake_ele',"Fake_mu"]}#
+samples = {k:v for k,v in samples.items() if k  in ['DY','VBS']}#

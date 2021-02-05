@@ -364,6 +364,9 @@ aliases['vbs_0_qgl_res'] = {
    'expr': 'Alt$(CleanJet_qgl_morphed[VBS_jets_maxmjj_massWZ[0]],-1)'
 } 
 
+aliases['vbs_1_qgl_res'] = {
+   'expr': 'Alt$(CleanJet_qgl_morphed[VBS_jets_maxmjj_massWZ[1]],-1)'
+} 
 
 aliases['vjet_0_qgl_res'] = {
     'expr': 'Alt$(CleanJet_qgl_morphed[V_jets_maxmjj_massWZ[0]],-1)'
@@ -461,7 +464,7 @@ aliases['DNNoutput_resolved_v1'] = {
 
 
 aliases['DNNoutput_resolved_v2'] = {
-    'class': 'MVAReaderResolved_mVauto_qglnuis',
+    'class': 'MVAReaderResolved_mVauto_v25e_qglnuis',
     'args': ( models_path+ 'res_sig/models/v25_e/',models_path+ 'res_sig/models/v25_e/cumulative_signal_2016.root', False, 1),
     'linesToAdd':[
         'gSystem->Load("libLatinoAnalysisMultiDraw.so")',

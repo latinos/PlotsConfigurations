@@ -131,27 +131,27 @@ variables['Zlep'] = {   'name': 'Zlep',
 #                         'cuts': boost_cuts
 #                 }
 
-variables['vjet_0_qgl_res'] = {  'name': 'vjet_0_qgl_res',
-                        'range': (41,-0.025,1.),
-                        'xaxis': 'Qgl Vjet 0 jet',
-                        'fold': 3,
-                        'cuts': res_cuts
-                }
+# variables['vjet_0_qgl_res'] = {  'name': 'vjet_0_qgl_res',
+#                         'range': (41,-0.025,1.),
+#                         'xaxis': 'Qgl Vjet 0 jet',
+#                         'fold': 3,
+#                         'cuts': res_cuts
+#                 }
 
-variables['vjet_1_qgl_res'] = {  'name': 'vjet_1_qgl_res',
-                        'range': (41,-0.025,1.),
-                        'xaxis': 'Qgl Vjet 1 jet',
-                        'fold': 3,
-                        'cuts': res_cuts
-                }
+# variables['vjet_1_qgl_res'] = {  'name': 'vjet_1_qgl_res',
+#                         'range': (41,-0.025,1.),
+#                         'xaxis': 'Qgl Vjet 1 jet',
+#                         'fold': 3,
+#                         'cuts': res_cuts
+#                 }
 
 
-variables['vbs_0_qgl_boost'] = {  'name': 'vbs_0_qgl_boost',
-                        'range': (41,-0.025,1.),
-                        'xaxis': 'Qgl VBS 0 jet',
-                        'fold': 3,
-                        'cuts': boost_cuts
-                }
+# variables['vbs_0_qgl_boost'] = {  'name': 'vbs_0_qgl_boost',
+#                         'range': (41,-0.025,1.),
+#                         'xaxis': 'Qgl VBS 0 jet',
+#                         'fold': 3,
+#                         'cuts': boost_cuts
+#                 }
 
 
 variables['vbs_1_pt'] = {   'name': 'vbs_1_pt',      
@@ -190,32 +190,38 @@ variables['deltaphi_vjet'] = {   'name': 'deltaphi_vjet',
                         'cuts': res_cuts
                         }
 
-variables['vjet_0_eta_abs'] = {   'name': 'abs(vjet_0_eta)',      
-                        'range' : (30,0,5),  
-                        'xaxis' : 'leading Vjet #eta', 
-                        'fold' : 3
-                        }
+########################
+# Look at allvars
 
-variables['vbs_0_eta_abs'] = {   'name': 'abs(vbs_0_eta)',      
-                        'range' : (30,0,5),  
-                        'xaxis' : 'leading VBS jet #eta', 
-                        'fold' : 3
-                        }
 
-variables['Lepton_eta_abs'] = {   'name': 'abs(Lepton_eta[0])',      
-                        'range' : (40,0,2.5),  
-                        'xaxis' : 'Lepton #eta', 
-                        'fold' : 3,
-                        'cuts': [c for c in cuts if 'ele' in c]
-                        }
+# variables['vjet_0_eta_abs'] = {   'name': 'abs(vjet_0_eta)',      
+#                         'range' : (30,0,5),  
+#                         'xaxis' : 'leading Vjet #eta', 
+#                         'fold' : 3
+#                         }
 
-variables['Lepton_pt'] = {   'name': 'Lepton_pt[0]',      
-                        'range' : (40,0,500),  
-                        'xaxis' : 'Lepton pt', 
-                        'fold' : 3,
-                        'cuts': [c for c in cuts if 'ele' in c]
-                        }   
+# variables['vbs_0_eta_abs'] = {   'name': 'abs(vbs_0_eta)',      
+#                         'range' : (30,0,5),  
+#                         'xaxis' : 'leading VBS jet #eta', 
+#                         'fold' : 3
+#                         }
 
+# variables['Lepton_eta_abs'] = {   'name': 'abs(Lepton_eta[0])',      
+#                         'range' : (40,0,2.5),  
+#                         'xaxis' : 'Lepton #eta', 
+#                         'fold' : 3,
+#                         'cuts': [c for c in cuts if 'ele' in c]
+#                         }
+
+# variables['Lepton_pt'] = {   'name': 'Lepton_pt[0]',      
+#                         'range' : (40,0,500),  
+#                         'xaxis' : 'Lepton pt', 
+#                         'fold' : 3,
+#                         'cuts': [c for c in cuts if 'ele' in c]
+#                         }   
+
+
+########################
                     
 # variables['Centr_vbs'] = {   'name': 'Centr_vbs',      
 #                         'range' : (30,0,2),  

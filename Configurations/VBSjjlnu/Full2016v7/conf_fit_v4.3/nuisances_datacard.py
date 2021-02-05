@@ -386,14 +386,14 @@ nuisances['TopPtRew'] = {
 
 ##################
 
-# for jtype in ["quark", "gluon"]:
-#       for  jeta in ["higheta", "loweta"]:
-#         nuisances['QGLmorphing_{}_{}'.format(jtype, jeta)]  = {
-#             'name': 'QGLmorph_{}_{}_16'.format(jtype, jeta),
-#             'kind': 'suffix',
-#             'type': 'shape',
-#             'samples': dict((skey, ['1.','1.']) for skey in mc),
-#         }
+for jtype in ["quark", "gluon"]:
+      for  jeta in ["higheta", "loweta"]:
+        nuisances['QGLmorphing_{}_{}'.format(jtype, jeta)]  = {
+            'name': 'QGLmorph_{}_{}_16'.format(jtype, jeta),
+            'kind': 'suffix',
+            'type': 'shape',
+            'samples': dict((skey, ['1.','1.']) for skey in mc),
+        }
 
 ##################
 
@@ -405,14 +405,15 @@ nuisances['TopPtRew'] = {
 #    'samples': {'VBS': ["njets_herwig_signal"]},
 #    'OneSided': True
 # }
+
 # ######################
 # # Theory nuisance
 
 
 ## This should work for samples with either 8 or 9 LHE scale weights (Length$(LHEScaleWeight) == 8 or 9)
 # qcdscale_variations = ['LHEScaleWeight[0]', 'LHEScaleWeight[1]', 'LHEScaleWeight[3]', 'LHEScaleWeight[Length$(LHEScaleWeight)-4]', 'LHEScaleWeight[Length$(LHEScaleWeight)-2]', 'LHEScaleWeight[Length$(LHEScaleWeight)-1]']
-
-for sample in mc :
+qcdscale_samples = [ m for m in mc if m not in ['ggWW']]
+for sample in  qcdscale_samples:
     if sample == 'VBS':
         nuisances['QCD_scale_VBS'] = {
             'name'  : 'QCDscale_VBS_accept',
@@ -446,49 +447,50 @@ for sample in mc :
         # }
 
 
-# wjets_bins = []
-# for ir in range(1,7):
-#     wjets_bins.append("Wjets_HT_res_"+str(ir))
-# for ir in range(1,6):
-#     wjets_bins.append("Wjets_HT_boost_"+str(ir))
+wjets_bins = []
+for ir in range(1,7):
+    wjets_bins.append("Wjets_HT_res_"+str(ir))
+for ir in range(1,6):
+    wjets_bins.append("Wjets_HT_boost_"+str(ir))
 
+samples_PS = ['top','DY','VV','VVV','Vg','VgS','VBF-V'] + wjets_bins
 
-# for sample in ['top','DY','VV','VVV','Vg','VgS','VBF-V'] + wjets_bins:
-#     nuisances['PS_ISR_'+sample]  = {
-#                     'name'  : 'CMS_PS_ISR_'+sample,
-#                     'kind'  : 'weight',
-#                     'type'  : 'shape',
-#                     'samples'  : {
-#                         sample :      ['PSWeight[2]', 'PSWeight[0]'],
-#                     }
-#                 }
-#     nuisances['PS_FSR_'+sample]  = {
-#                     'name'  : 'CMS_PS_FSR_'+sample,
-#                     'kind'  : 'weight',
-#                     'type'  : 'shape',
-#                     'samples'  : {
-#                         sample :      ['PSWeight[3]', 'PSWeight[1]'],
-#                     }
-#                 }
+for sample in samples_PS:
+    nuisances['PS_ISR_'+sample]  = {
+                    'name'  : 'CMS_PS_ISR_'+sample,
+                    'kind'  : 'weight',
+                    'type'  : 'shape',
+                    'samples'  : {
+                        sample :      ['PSWeight[2]', 'PSWeight[0]'],
+                    }
+                }
+    nuisances['PS_FSR_'+sample]  = {
+                    'name'  : 'CMS_PS_FSR_'+sample,
+                    'kind'  : 'weight',
+                    'type'  : 'shape',
+                    'samples'  : {
+                        sample :      ['PSWeight[3]', 'PSWeight[1]'],
+                    }
+                }
     
 
-# nuisances['PS_ISR_VBS']  = {
-#                 'name'  : 'CMS_PS_ISR_VBS',
-#                 'kind'  : 'weight',
-#                 'type'  : 'shape',
-#                 'samples'  : {
-#                     "VBS"  :     ['1.','1.'],
-#                 }
-#             }
+nuisances['PS_ISR_VBS']  = {
+                'name'  : 'CMS_PS_ISR_VBS',
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : {
+                    "VBS"  :     ['1.','1.'],
+                }
+            }
 
-# nuisances['PS_FSR_VBS']  = {
-#                 'name'  : 'CMS_PS_FSR_VBS',
-#                 'kind'  : 'weight',
-#                 'type'  : 'shape',
-#                  'samples'  : {
-#                     "VBS"  :     ['1.','1.'],
-#                 }
-#             }
+nuisances['PS_FSR_VBS']  = {
+                'name'  : 'CMS_PS_FSR_VBS',
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                 'samples'  : {
+                    "VBS"  :     ['1.','1.'],
+                }
+            }
 
 nuisances['PU']  = {
                 'name'  : 'CMS_PU_2016',
@@ -525,55 +527,47 @@ nuisances['PU']  = {
 
 
 
-# for fl in ['ele','mu']:
-#     nuisances['Top_norm_boost_'+fl]  = {
-#                 'name'  : 'CMS_Top_norm_{}_boost_2016'.format(fl),
-#                 'samples'  : {
-#                     'top' : '1.00',
-#                     },
-#                 'type'  : 'rateParam',
-#                 'cuts'  : [f for f in phase_spaces_dict["boost"] if fl in f ]
-#                 }
+for fl in ['ele','mu']:
+    nuisances['Top_norm_boost_'+fl]  = {
+                'name'  : 'CMS_Top_norm_{}_boost_2016'.format(fl),
+                'samples'  : {
+                    'top' : '1.00',
+                    },
+                'type'  : 'rateParam',
+                'cuts'  : [f for f in phase_spaces_dict["boost"] if fl in f ]
+                }
 
-#     nuisances['Top_norm_res_'+fl]  = {
-#                 'name'  : 'CMS_Top_norm_{}_res_2016'.format(fl),
-#                 'samples'  : {
-#                     'top' : '1.00',
-#                     },
-#                 'type'  : 'rateParam',
-#                 'cuts'  : [f for f in phase_spaces_dict["res"] if fl in f ]
-#                 }
-
-
-# wjets_bins = []
-# for ir in range(1,7):
-#     wjets_bins.append("Wjets_HT_res_"+str(ir))
-# for ir in range(1,6):
-#     wjets_bins.append("Wjets_HT_boost_"+str(ir))
+    nuisances['Top_norm_res_'+fl]  = {
+                'name'  : 'CMS_Top_norm_{}_res_2016'.format(fl),
+                'samples'  : {
+                    'top' : '1.00',
+                    },
+                'type'  : 'rateParam',
+                'cuts'  : [f for f in phase_spaces_dict["res"] if fl in f ]
+                }
 
 
-
-# regrouped_Wjets = False
-# for wjbin in wjets_bins:
-#     for fl in ["ele", "mu"]:
-#         if "boost" in wjbin:
-#             nuisances["{}_norm_{}_boost_2016".format(wjbin, fl)]  = {
-#                 'name'  : 'CMS_{}_norm_{}_boost_2016'.format(wjbin, fl),
-#                 'samples'  : {wjbin: '1.00'},
-#                 'type'  : 'rateParam',
-#                 'cuts'  : [f for f in phase_spaces_dict["boost"] if fl in f ]
-#             }
-#             if regrouped_Wjets: 
-#                 nuisances["{}_norm_{}_boost_2016".format(wjbin, fl)]['name'] = 'CMS_Wjets_norm_{}_boost_2016'.format(fl)
-#         else:
-#             nuisances["{}_norm_{}_res_2016".format(wjbin, fl)] = {
-#                 'name'  : 'CMS_{}_norm_{}_res_2016'.format(wjbin, fl),
-#                 'samples'  : { wjbin: '1.00' },
-#                 'type'  : 'rateParam',
-#                 'cuts'  : [f for f in phase_spaces_dict["res"] if fl in f]
-#             }
-#             if regrouped_Wjets: 
-#                 nuisances["{}_norm_{}_res_2016".format(wjbin, fl)]['name'] = 'CMS_Wjets_norm_{}_res_2016'.format(fl)
+regrouped_Wjets = False
+for wjbin in wjets_bins:
+    for fl in ["ele", "mu"]:
+        if "boost" in wjbin:
+            nuisances["{}_norm_{}_boost_2016".format(wjbin, fl)]  = {
+                'name'  : 'CMS_{}_norm_{}_boost_2016'.format(wjbin, fl),
+                'samples'  : {wjbin: '1.00'},
+                'type'  : 'rateParam',
+                'cuts'  : [f for f in phase_spaces_dict["boost"] if fl in f ]
+            }
+            if regrouped_Wjets: 
+                nuisances["{}_norm_{}_boost_2016".format(wjbin, fl)]['name'] = 'CMS_Wjets_norm_{}_boost_2016'.format(fl)
+        else:
+            nuisances["{}_norm_{}_res_2016".format(wjbin, fl)] = {
+                'name'  : 'CMS_{}_norm_{}_res_2016'.format(wjbin, fl),
+                'samples'  : { wjbin: '1.00' },
+                'type'  : 'rateParam',
+                'cuts'  : [f for f in phase_spaces_dict["res"] if fl in f]
+            }
+            if regrouped_Wjets: 
+                nuisances["{}_norm_{}_res_2016".format(wjbin, fl)]['name'] = 'CMS_Wjets_norm_{}_res_2016'.format(fl)
 
 
 
@@ -595,3 +589,4 @@ for n in nuisances.values():
    
 # print ' '.join(nuis['name'] for nname, nuis in nuisances.iteritems() if nname not in ('lumi', 'stat'))
 
+# nuisances = { k:v for k,v in nuisances.items() if "QGL" in k}

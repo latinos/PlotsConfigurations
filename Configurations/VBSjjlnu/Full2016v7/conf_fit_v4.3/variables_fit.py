@@ -131,27 +131,27 @@ variables['Zlep'] = {   'name': 'Zlep',
 #                         'cuts': boost_cuts
 #                 }
 
-variables['vjet_0_qgl_res'] = {  'name': 'vjet_0_qgl_res',
-                        'range': (41,-0.025,1.),
-                        'xaxis': 'Qgl Vjet 0 jet',
-                        'fold': 3,
-                        'cuts': res_cuts
-                }
+# variables['vjet_0_qgl_res'] = {  'name': 'vjet_0_qgl_res',
+#                         'range': (41,-0.025,1.),
+#                         'xaxis': 'Qgl Vjet 0 jet',
+#                         'fold': 3,
+#                         'cuts': res_cuts
+#                 }
 
-variables['vjet_1_qgl_res'] = {  'name': 'vjet_1_qgl_res',
-                        'range': (41,-0.025,1.),
-                        'xaxis': 'Qgl Vjet 1 jet',
-                        'fold': 3,
-                        'cuts': res_cuts
-                }
+# variables['vjet_1_qgl_res'] = {  'name': 'vjet_1_qgl_res',
+#                         'range': (41,-0.025,1.),
+#                         'xaxis': 'Qgl Vjet 1 jet',
+#                         'fold': 3,
+#                         'cuts': res_cuts
+#                 }
 
 
-variables['vbs_0_qgl_boost'] = {  'name': 'vbs_0_qgl_boost',
-                        'range': (41,-0.025,1.),
-                        'xaxis': 'Qgl VBS 0 jet',
-                        'fold': 3,
-                        'cuts': boost_cuts
-                }
+# variables['vbs_0_qgl_boost'] = {  'name': 'vbs_0_qgl_boost',
+#                         'range': (41,-0.025,1.),
+#                         'xaxis': 'Qgl VBS 0 jet',
+#                         'fold': 3,
+#                         'cuts': boost_cuts
+#                 }
 
 
 variables['vbs_1_pt'] = {   'name': 'vbs_1_pt',      

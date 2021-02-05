@@ -141,7 +141,7 @@ samples['DY'] = {    'name'   :   #nanoGetSampleFiles(directory_bkg,'DYJetsToLL_
                                   + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-5to50_HT-600toinf')
                                   + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-5to50_HT-600toinf_ext1'),
                        'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*'+DY_photon_filter  ,
-                       'FilesPerJob' : 15,
+                       'FilesPerJob' : 8,
                        'EventsPerJob' : 80000,
                        'suppressNegative' :['all'],
                        'suppressNegativeNuisances' :['all'],
@@ -431,4 +431,4 @@ for Run in DataRun :
 
 
 #samples = {k:v for k,v in samples.items() if k  in ['top', 'Wjets_HT']}
-# samples = {k:v for k,v in samples.items() if k in ['VBF-V']}
+samples = {k:v for k,v in samples.items() if k in ['DY']}

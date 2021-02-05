@@ -109,7 +109,7 @@ groupPlot['Fake']  = {
                 'nameHR' : "Non-prompt",
                 'isSignal' : 0,
                 'color': palette["LightBlue"],   
-                'samples'  : ['Fake_ele','Fake_mu'],
+                'samples'  : ['Fake'],
                 'fill': 1001
             }
 
@@ -128,7 +128,7 @@ groupPlot["Wjets"]  = {
                         'nameHR' : 'W+Jets',
                         'isSignal' : 0,
                         'color':   palette["Yellow"],
-                        'samples'  : ['Wjets_HT'],
+                        'samples'  : wjets_bins,
                         'fill': 1001
                 }
 
@@ -199,20 +199,12 @@ plot['VgS']  = {
                 'scale'    : 1.0,
             }
 
-plot['Fake_mu']  = {  
+plot['Fake']  = {  
                 'color': colors['kTeal'],
                 'isSignal' : 0,
                 'isData'   : 0, 
                 'scale'    : 1.0,
             }
-
-plot['Fake_ele']  = {  
-                'color': colors['kTeal'],
-                'isSignal' : 0,
-                'isData'   : 0, 
-                'scale'    : 1.0,
-            }
-
 
 
 plot['top'] = {   
@@ -222,20 +214,20 @@ plot['top'] = {
                  'scale'    : 1.0 
                  }
 
-plot['Wjets_HT'] = {   
-                 'color': colors['kAzure']-1,
-                 'isSignal' : 0,
-                 'isData'   : 0, 
-                 'scale'    : 1.0 
-                 }
+# plot['Wjets_HT'] = {   
+#                  'color': colors['kAzure']-1,
+#                  'isSignal' : 0,
+#                  'isData'   : 0, 
+#                  'scale'    : 1.0 
+#                  }
 
-# for wjetbin in wjets_bins:
-#     plot[wjetbin] = {   
-#                     'color': colors['kAzure']-1,
-#                     'isSignal' : 0,
-#                     'isData'   : 0, 
-#                     'scale'    : 1.0 
-#                     }
+for wjetbin in wjets_bins:
+    plot[wjetbin] = {   
+                    'color': colors['kAzure']-1,
+                    'isSignal' : 0,
+                    'isData'   : 0, 
+                    'scale'    : 1.0 
+                    }
 
 plot['VBS']  = {
                   'color': colors["kCyan"]+1, 
@@ -246,7 +238,7 @@ plot['VBS']  = {
 
 # # data
 
-plot['DATA_ele']  = { 
+plot['DATA']  = { 
                  'nameHR' : 'Data',
                  'color': 1 ,  
                  'isSignal' : 0,
@@ -255,13 +247,6 @@ plot['DATA_ele']  = {
              }
 
 
-plot['DATA_mu']  = { 
-                 'nameHR' : 'Data',
-                 'color': 1 ,  
-                 'isSignal' : 0,
-                 'isData'   : 1 ,
-                 'isBlind'  : 0
-             }
 
 
 # additional options

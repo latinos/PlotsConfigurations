@@ -19,6 +19,7 @@ variables['DNNoutput_res_v1'] = {
     'range': (25,0.,1),
     'xaxis': 'DNN output, resolved',
     'fold': 3 ,
+    # 'divideByBinWidth': True,
     'cuts':  res_cuts,
     'blind': { c:[0.6,1] for c in cuts if "_sig_" in c},
 }
@@ -29,6 +30,7 @@ variables['DNNoutput_res_v2'] = {
     'range': (25,0.,1),
     'xaxis': 'DNN output, resolved',
     'fold': 3 ,
+    # 'divideByBinWidth': True,
     'cuts':  res_cuts,
     'blind': { c:[0.6,1] for c in cuts if "_sig_" in c},
 }
@@ -39,6 +41,7 @@ variables['DNNoutput_boost'] = {
     'range': ([0., 0.05, 0.1, 0.15, 0.20, 0.25, 0.3, 0.35, 0.4, 0.55, 0.7, 0.85, 1.],),
     'xaxis': 'DNN output, boosted',
     'fold': 3 ,
+    # 'divideByBinWidth': True,
     'cuts': boost_cuts,
     'blind': { c:[0.6,1] for c in cuts if "_sig_" in c} ,
 }
@@ -131,27 +134,27 @@ variables['Zlep'] = {   'name': 'Zlep',
 #                         'cuts': boost_cuts
 #                 }
 
-variables['vjet_0_qgl_res'] = {  'name': 'vjet_0_qgl_res',
-                        'range': (41,-0.025,1.),
-                        'xaxis': 'Qgl Vjet 0 jet',
-                        'fold': 3,
-                        'cuts': res_cuts
-                }
+# variables['vjet_0_qgl_res'] = {  'name': 'vjet_0_qgl_res',
+#                         'range': (41,-0.025,1.),
+#                         'xaxis': 'Qgl Vjet 0 jet',
+#                         'fold': 3,
+#                         'cuts': res_cuts
+#                 }
 
-variables['vjet_1_qgl_res'] = {  'name': 'vjet_1_qgl_res',
-                        'range': (41,-0.025,1.),
-                        'xaxis': 'Qgl Vjet 1 jet',
-                        'fold': 3,
-                        'cuts': res_cuts
-                }
+# variables['vjet_1_qgl_res'] = {  'name': 'vjet_1_qgl_res',
+#                         'range': (41,-0.025,1.),
+#                         'xaxis': 'Qgl Vjet 1 jet',
+#                         'fold': 3,
+#                         'cuts': res_cuts
+#                 }
 
 
-variables['vbs_0_qgl_boost'] = {  'name': 'vbs_0_qgl_boost',
-                        'range': (41,-0.025,1.),
-                        'xaxis': 'Qgl VBS 0 jet',
-                        'fold': 3,
-                        'cuts': boost_cuts
-                }
+# variables['vbs_0_qgl_boost'] = {  'name': 'vbs_0_qgl_boost',
+#                         'range': (41,-0.025,1.),
+#                         'xaxis': 'Qgl VBS 0 jet',
+#                         'fold': 3,
+#                         'cuts': boost_cuts
+#                 }
 
 
 variables['vbs_1_pt'] = {   'name': 'vbs_1_pt',      

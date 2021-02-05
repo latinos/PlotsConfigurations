@@ -131,7 +131,7 @@ samples['DY'] = {    'name'   :   #nanoGetSampleFiles(directory_bkg,'DYJetsToLL_
                                   + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-50_HT-600to800')
                                   + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-50_HT-800to1200')
                                   + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-50_HT-1200to2500')
-                                  #+ nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-50_HT-2500toinf') # to be included
+                                  + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-50_HT-2500toInf')
                                   + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-5to50_HT-70to100')
                                   + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-5to50_HT-100to200')
                                   + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-5to50_HT-200to400')
@@ -161,7 +161,7 @@ CombineBaseW(samples, 'DY', ['DYJetsToLL_M-5to50_HT-400to600', 'DYJetsToLL_M-5to
 CombineBaseW(samples, 'DY', ['DYJetsToLL_M-5to50_HT-600toinf', 'DYJetsToLL_M-5to50_HT-600toinf_ext1'])
 
 #addSampleWeight(samples,'DY','DYJetsToLL_M-50-LO_ext1',            '(LHE_HT < 70)')
-addSampleWeight(samples,'DY','DYJetsToLL_M-50_ext2',            '(LHE_HT < 70) || (LHE_HT>2500)') # last M50 HT bin is missing
+addSampleWeight(samples,'DY','DYJetsToLL_M-50_ext2',            '(LHE_HT < 70)') # last M50 HT bin is missing
 addSampleWeight(samples,'DY','DYJetsToLL_M-10to50',                '(LHE_HT < 70)')
 addSampleWeight(samples,'DY','DYJetsToLL_M-10to50_ext1',           '(LHE_HT < 70)')
 addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-70to100',         'DY_LO_pTllrw') # HT-binned are LO!
@@ -174,7 +174,7 @@ addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-400to600_ext1',   'DY_LO_pTllrw
 addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-600to800',        'DY_LO_pTllrw')
 addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-800to1200',       'DY_LO_pTllrw')
 addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-1200to2500',      'DY_LO_pTllrw')
-#addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-2500toinf',       'DY_LO_pTllrw')
+addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-2500toInf',       'DY_LO_pTllrw')
 addSampleWeight(samples,'DY','DYJetsToLL_M-5to50_HT-70to100',      'DY_LO_pTllrw')
 addSampleWeight(samples,'DY','DYJetsToLL_M-5to50_HT-100to200',     'DY_LO_pTllrw')
 addSampleWeight(samples,'DY','DYJetsToLL_M-5to50_HT-200to400',     'DY_LO_pTllrw')
@@ -428,4 +428,4 @@ for Run in DataRun :
 
 
 #samples = {k:v for k,v in samples.items() if k  in ['top', 'Wjets_HT']}
-# samples = {k:v for k,v in samples.items() if k not in ['DY']}
+samples = {k:v for k,v in samples.items() if k in ['DY']}
