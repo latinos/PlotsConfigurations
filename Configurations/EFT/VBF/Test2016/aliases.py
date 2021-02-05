@@ -402,6 +402,15 @@ aliases['sr'] = {
     'expr': 'mth>60 && mtw2>30 && bVeto'
 }
 
+##Including matrix elements on the fly (LOURDES)
+
+aliases['ME_onthefly']={
+        'linesToAdd':['.L %s/patches/RecoLevelME_patch.cc+' % configurations],
+        'class': 'RecoLevelME',
+        'samples': mc
+}
+
+
 # B tag scale factors
 
 btagSFSource = '%s/src/PhysicsTools/NanoAODTools/data/btagSF/DeepCSV_94XSF_V2_B_F.csv' % os.getenv('CMSSW_BASE')
