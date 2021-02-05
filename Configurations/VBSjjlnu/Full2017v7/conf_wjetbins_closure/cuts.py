@@ -10,10 +10,6 @@ supercut = '(   (abs(Lepton_pdgId[0])==11 && Lepton_pt[0]>35)\
             && deltaeta_vbs >= 2.5  \
             && mjj_vbs >= 500 \
             && Mtw_lep < 185 \
-            && (abs(vbs_0_eta)<2.65  || abs(vbs_0_eta)>3.139 || (Jet_puId[VBS_jets_maxmjj_massWZ[0]] & (1 << 0))==1) \
-            && (abs(vbs_1_eta)<2.65  || abs(vbs_1_eta)>3.139 || (Jet_puId[VBS_jets_maxmjj_massWZ[1]] & (1 << 0))==1) \
-            && (abs(vjet_0_eta)<2.65 || abs(vjet_0_eta)>3.139 || (Jet_puId[V_jets_maxmjj_massWZ[0]] & (1 << 0))==1) \
-            && (abs(vjet_1_eta)<2.65 || abs(vjet_1_eta)>3.139 || (Jet_puId[V_jets_maxmjj_massWZ[1]] & (1 << 0))==1) \
             '
 
 
