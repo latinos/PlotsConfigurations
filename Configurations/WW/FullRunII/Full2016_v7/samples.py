@@ -113,17 +113,17 @@ addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO','DY_LO_pTllrw')
 
 ###### Top #######
 
-files = nanoGetSampleFiles(mcDirectory, 'TTTo2L2Nu')
-#    nanoGetSampleFiles(mcDirectory, 'ST_s-channel') + \
-#    nanoGetSampleFiles(mcDirectory, 'ST_t-channel_antitop') + \
-#    nanoGetSampleFiles(mcDirectory, 'ST_t-channel_top') + \
-#    nanoGetSampleFiles(mcDirectory, 'ST_tW_antitop') + \
-#    nanoGetSampleFiles(mcDirectory, 'ST_tW_top')
+files = nanoGetSampleFiles(mcDirectory, 'TTTo2L2Nu') + \
+    nanoGetSampleFiles(mcDirectory, 'ST_s-channel') + \
+    nanoGetSampleFiles(mcDirectory, 'ST_t-channel_antitop') + \
+    nanoGetSampleFiles(mcDirectory, 'ST_t-channel_top') + \
+    nanoGetSampleFiles(mcDirectory, 'ST_tW_antitop') + \
+    nanoGetSampleFiles(mcDirectory, 'ST_tW_top')
 
 samples['top'] = {
     'name': files,
     'weight': mcCommonWeight,
-    'FilesPerJob': 1,
+    'FilesPerJob': 5,
     #'EventsPerJob': 100000
 }
 
@@ -222,7 +222,7 @@ samples['WW'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'WWTo2L2Nu'),
     'weight': mcCommonWeight+ '*nllW', # temporary - nllW module not run on PS and UE variation samples
     #'weight': mcCommonWeight + '*nllWOTF', # temporary
-    'FilesPerJob': 1
+    'FilesPerJob': 2
 }
 signals.append('WW')
 

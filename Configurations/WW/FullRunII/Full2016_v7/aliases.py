@@ -192,8 +192,8 @@ aliases['bReqSF'] = {
 }
 
 aliases['btagSF'] = {
-    #'expr': '(bVeto || (topcr && zeroJet))*bVetoSF + (topcr && !zeroJet)*bReqSF',
-    'expr': 'bVeto*bVetoSF',
+    'expr': '(bVeto || (topcr && zeroJet))*bVetoSF + (topcr && !zeroJet)*bReqSF',
+#    'expr': 'bVeto*bVetoSF',
     'samples': mc
 }
 

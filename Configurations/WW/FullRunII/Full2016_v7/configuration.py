@@ -2,8 +2,7 @@
 
 treeName = 'Events'
 
-#tag = 'WW2016_v7'
-tag = 'WW2016_v7_topcr_test'
+tag = 'WW2016_v7'
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFile'
