@@ -99,7 +99,7 @@ DataSets = ['SingleMuon','SingleElectron']
 
 DataTrig = {
             'SingleMuon'     : 'Trigger_sngMu' ,
-            'SingleElectron' : '!Trigger_sngMu && Trigger_sngEl' 
+            'SingleElectron' : '!Trigger_sngMu && ele_passHLT' 
 }
 ###########################################
 #############  BACKGROUNDS  ###############
@@ -124,8 +124,8 @@ samples['DY'] = {    'name'   :   nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M
                                   + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-4to50_HT-400to600_ext1')
                                   + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-4to50_HT-600toInf')
                                   + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-4to50_HT-600toInf_ext1') ,
-                       'weight' : (XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+"*"+DY_photons_filter).replace('PUJetIdSF','1.'),
-                       'FilesPerJob' : 6,
+                       'weight' : (XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+"*"+DY_photons_filter  +'*btagSF_corr_DY').replace("PUJetIdSF",'1.'),
+                       'FilesPerJob' : 9,
                        'EventsPerJob' : 80000,
                       #  'suppressNegative' :['all'],
                       #  'suppressNegativeNuisances' :['all'],
@@ -170,8 +170,8 @@ samples['top'] = {    'name'   :   nanoGetSampleFiles(directory_bkg,'TTTo2L2Nu')
                                  + nanoGetSampleFiles(directory_bkg,'TTZjets_ext1')
                                  + nanoGetSampleFiles(directory_bkg,'TTWjets')
                                  + nanoGetSampleFiles(directory_bkg,'TTWjets_ext1'),
-                     'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-                     'FilesPerJob' : 5,
+                     'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*btagSF_corr_top' ,
+                     'FilesPerJob' : 6,
                      'EventsPerJob' : 70000,
                      'suppressNegative' :['all'],
                      'suppressNegativeNuisances' :['all'],
@@ -199,8 +199,8 @@ samples['Wjets_HT'] = { 'name' :
           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT800_1200')
           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT1200_2500')
           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT2500_inf'),
-        'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch + '* ewknloW' ,
-        'FilesPerJob' : 4,
+        'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch + '* ewknloW * btagSF_corr_Wjets_HT' ,
+        'FilesPerJob' : 5,
         'subsamples': {
             "res_1": '(VBS_category==1) && (w_lep_pt < 100)',
             "res_2": '(VBS_category==1) && (w_lep_pt >= 100 && w_lep_pt < 200)',
@@ -244,8 +244,8 @@ samples['VV']  = { 'name' :
                nanoGetSampleFiles(directory_signal,'WpToLNu_WmTo2J_QCD') +
                nanoGetSampleFiles(directory_signal,'WpToLNu_ZTo2J_QCD' ) +
                nanoGetSampleFiles(directory_signal,'ZTo2L_ZTo2J_QCD' ) , 
-        'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch , # add back ewknlOW
-        'FilesPerJob' : 15,
+        'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch  +'*btagSF_corr_VV_VVV_ggWW', # add back ewknlOW
+        'FilesPerJob' : 14,
         'EventsPerJob' : 70000,
 }
 
@@ -256,19 +256,27 @@ samples['VVV']  = {  'name'   :   nanoGetSampleFiles(directory_bkg,'ZZZ')
                                 + nanoGetSampleFiles(directory_bkg,'WWZ')
                                 + nanoGetSampleFiles(directory_bkg,'WWW'),
                                 #+ nanoGetSampleFiles(directory,'WWG'), #should this be included? or is it already taken into account in the WW sample?
-                    'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch,
+                    'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch +'*btagSF_corr_VV_VVV_ggWW',
                     'FilesPerJob' : 16,
+                    'EventsPerJob' : 70000,
+                  }
+
+##########
+
+samples['ggWW']  = {  'name'   :  
+                                  nanoGetSampleFiles(directory_bkg,'GluGluWWToLNuQQ'),
+                    'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch +'*btagSF_corr_VV_VVV_ggWW',
+                    'FilesPerJob' : 15,
                     'EventsPerJob' : 70000,
                   }
 
 ############## VBF-V ########
 
-
 ###
 samples['VBF-V']  = {  'name'   : 
                                   nanoGetSampleFiles(directory_bkg,'WLNuJJ_EWK')
                                 + nanoGetSampleFiles(directory_bkg,'EWKZ2Jets_ZToLL_M-50_newpmx'),
-                    'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch,
+                    'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch +'*btagSF_corr_Vg_VgS_VBFV',
                     'FilesPerJob' : 16,
                     'EventsPerJob' : 70000,
                   }
@@ -277,7 +285,7 @@ samples['VBF-V']  = {  'name'   :
 
 samples['Vg']  = {  'name'   :   nanoGetSampleFiles(directory_bkg,'Wg_MADGRAPHMLM')
                                + nanoGetSampleFiles(directory_bkg,'ZGToLLG'),
-                    'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC+'*(Gen_ZGstar_mass <= 0)',
+                    'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC+'*(Gen_ZGstar_mass <= 0) *btagSF_corr_Vg_VgS_VBFV',
                     'FilesPerJob' : 16,
                     'EventsPerJob' : 70000,
                     'suppressNegative' :['all'],
@@ -293,7 +301,7 @@ samples['Vg']  = {  'name'   :   nanoGetSampleFiles(directory_bkg,'Wg_MADGRAPHML
 samples['VgS']  =  {  'name'   :   nanoGetSampleFiles(directory_bkg,'Wg_MADGRAPHMLM')
                                  + nanoGetSampleFiles(directory_bkg,'ZGToLLG')
                                  + nanoGetSampleFiles(directory_bkg,'WZTo3LNu_mllmin01'),
-                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + ' * (gstarLow * 0.94 + gstarHigh * 1.14)',
+                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + ' * (gstarLow * 0.94 + gstarHigh * 1.14) *btagSF_corr_Vg_VgS_VBFV',
                       'FilesPerJob' : 16,
                       'EventsPerJob' : 70000,
                       'suppressNegative' :['all'],
@@ -321,14 +329,27 @@ samples['VBS']  = { 'name' :
                nanoGetSampleFiles(directory_signal,'WpToLNu_WmTo2J') +
                nanoGetSampleFiles(directory_signal,'WpTo2J_WmToLNu') +
                nanoGetSampleFiles(directory_signal,'ZTo2L_ZTo2J',  ),
-       'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch,
+       'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch + '*btagSF_corr_VBS',
        'FilesPerJob' : 15,
         'EventsPerJob' : 70000,
 }
 
+#################
+
 fake_weight_corrected = "fakeWeight_35"
+
+
+# samples['Fake'] = {
+#   'name': [],
+#   'weight': METFilter_DATA+'*'+ fake_weight_corrected,
+#   'weights': [],
+#   'isData': ['all'],
+#   'FilesPerJob' : 45
+# }
+
+
 #### Fakes
-samples['Fake'] = {
+samples['Fake_ele'] = {
   'name': [],
   'weight': METFilter_DATA+'*'+ fake_weight_corrected,
   'weights': [],
@@ -336,32 +357,63 @@ samples['Fake'] = {
   'FilesPerJob' : 45
 }
 
-#
+samples['Fake_mu'] = {
+  'name': [],
+  'weight': METFilter_DATA+'*'+ fake_weight_corrected,
+  'weights': [],
+  'isData': ['all'],
+  'FilesPerJob' : 45
+}
+
+# #
 for _, sd in DataRun:
   for pd in DataSets:
-    # BE Careful --> we use directory_data because the Lepton tight cut was not applied in post-processing
     files = nanoGetSampleFiles(directory_data, pd + '_' + sd)
-    samples['Fake']['name'].extend(files)
-    samples['Fake']['weights'].extend([DataTrig[pd]] * len(files))
+    if pd == "SingleMuon":
+      # BE Careful --> we use directory_data because the Lepton tight cut was not applied in post-processing
+      samples['Fake_mu']['name'].extend(files)
+      samples['Fake_mu']['weights'].extend([DataTrig[pd]] * len(files))
+    elif pd == "SingleElectron":
+      # BE Careful --> we use directory_data because the Lepton tight cut was not applied in post-processing
+      samples['Fake_ele']['name'].extend(files)
+      samples['Fake_ele']['weights'].extend([DataTrig[pd]] * len(files))
 
 
 ##########################################
 ################# DATA ###################
 ##########################################
 
-samples['DATA']  = {   'name': [ ] ,
+samples['DATA_mu']  = {   'name': [ ] ,
                        'weight' : METFilter_DATA+'*'+LepWPCut,
                        'weights' : [ ],
                        'isData': ['all'],
                        'FilesPerJob' : 45,
                   }
 
+samples['DATA_ele']  = {   'name': [ ] ,
+                       'weight' : METFilter_DATA+'*'+LepWPCut,
+                       'weights' : [ ],
+                       'isData': ['all'],
+                       'FilesPerJob' : 45,
+                  }
+
+# samples['DATA']  = {   'name': [ ] ,
+#                        'weight' : METFilter_DATA+'*'+LepWPCut,
+#                        'weights' : [ ],
+#                        'isData': ['all'],
+#                        'FilesPerJob' : 45,
+#                   }
+
 for Run in DataRun :
         for DataSet in DataSets :
                 FileTarget = nanoGetSampleFiles(directory_data,DataSet+'_'+Run[1])
                 for iFile in FileTarget:
-                        samples['DATA']['name'].append(iFile)
-                        samples['DATA']['weights'].append(DataTrig[DataSet])
+                  if DataSet == "SingleElectron":
+                    samples['DATA_ele']['name'].append(iFile)
+                    samples['DATA_ele']['weights'].append(DataTrig[DataSet])
+                  if DataSet == "SingleMuon":
+                    samples['DATA_mu']['name'].append(iFile)
+                    samples['DATA_mu']['weights'].append(DataTrig[DataSet])
 
 
-#samples = {k:v for k,v in samples.items() if k  in ['top','Wjets_HT']}
+# samples = {k:v for k,v in samples.items() if k  in ['Fake_ele',"Fake_mu"]}#

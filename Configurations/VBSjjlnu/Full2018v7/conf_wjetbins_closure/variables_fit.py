@@ -15,7 +15,28 @@ variables['events']  = {   'name': '1',
 
 ########################
 
-#####################
+# variables['DNNoutput_res_v1'] = {
+#     'name': 'DNNoutput_resolved_v1',
+#     'range': (25,0.,1),
+#     'xaxis': 'DNN output, resolved',
+#     'fold': 3 ,
+#     # 'divideByBinWidth': True,
+#     'cuts':  res_cuts,
+#     'blind': { c:[0.6,1] for c in cuts if "_sig_" in c},
+# }
+
+
+# variables['DNNoutput_boost'] = {
+#     'name': 'DNNoutput_boosted',
+#     'range': ([0., 0.05, 0.1, 0.15, 0.20, 0.25, 0.3, 0.35, 0.4, 0.55, 0.7, 0.85, 1.],),
+#     'xaxis': 'DNN output, boosted',
+#     'fold': 3 ,
+#     # 'divideByBinWidth': True,
+#     'cuts': boost_cuts,
+#     'blind': { c:[0.6,1] for c in cuts if "_sig_" in c} ,
+# }
+
+###########
 #Fit variables
 
 variables['fit_bins_res'] ={  'name' : 'w_lep_pt',
@@ -64,11 +85,11 @@ variables['whad_pt_boost'] = {
 }
 
 
-variables['vbs_jets_pt'] = {  'name': 'tag_jets_systems_pt[0]',
-                        'range': (50,0.,700),
-                        'xaxis': 'Pt of VBS jets system',
-                        'fold': 3
-                }
+# variables['vbs_jets_pt'] = {  'name': 'tag_jets_systems_pt[0]',
+#                         'range': (50,0.,700),
+#                         'xaxis': 'Pt of VBS jets system',
+#                         'fold': 3
+#                 }
 
 
 variables['Lepton_pt'] = {   'name': 'Lepton_pt[0]',      

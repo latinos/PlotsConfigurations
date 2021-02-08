@@ -7,7 +7,7 @@ conf_folder = configurations +"/VBSjjlnu/Full2017v7"
 
 #aliases = {}
 
-mc = [skey for skey in samples if skey not in ('Fake', 'DATA')]
+mc = [skey for skey in samples if skey not in ('Fake_ele', 'DATA_ele','Fake_mu', 'DATA_mu')]
 
 ####################
 
@@ -18,10 +18,10 @@ aliases['nJets30']= {
 #########################################
 # trigger eff
 
-# aliases['ele_passHLT'] = {
-#     'expr': 'HLT_Ele32_WPTight_Gsf_L1DoubleEG && Sum$((TrigObj_id==11) && (TrigObj_filterBits & 1024) )>0',
-#     'samples': ['Fake', 'DATA']
-# }
+aliases['ele_passHLT'] = {
+    'expr': 'HLT_Ele32_WPTight_Gsf_L1DoubleEG && Sum$((TrigObj_id==11) && (TrigObj_filterBits & 1024) )>0',
+    'samples': ['Fake_ele', 'DATA_ele']
+}
 
 
 aliases['ele_trig_eff_B'] = {
@@ -30,7 +30,7 @@ aliases['ele_trig_eff_B'] = {
         '.L %s/src/PlotsConfigurations/Configurations/patches/triggerEff_1lep.cc+' % os.getenv('CMSSW_BASE')
     ],
     'class': 'TrigEff_1lep',
-    'args': ('/afs/cern.ch/user/a/arun/public/fixedTextfiles/2017/mvaid/Ele35_pt_eta_efficiency_withSys_Run2017B.txt'),
+    'args': ('/afs/cern.ch/user/a/arun/public/fixedTextfiles/2017/mvaid/Ele32_pt_eta_efficiency_withSys_Run2017B.txt'),
     'samples': mc
 }
 
@@ -40,7 +40,7 @@ aliases['ele_trig_eff_CDE'] = {
         '.L %s/src/PlotsConfigurations/Configurations/patches/triggerEff_1lep.cc+' % os.getenv('CMSSW_BASE')
     ],
     'class': 'TrigEff_1lep',
-    'args': ('/afs/cern.ch/user/a/arun/public/fixedTextfiles/2017/mvaid/Ele35_pt_eta_efficiency_withSys_Run2017CDE.txt'),
+    'args': ('/afs/cern.ch/user/a/arun/public/fixedTextfiles/2017/mvaid/Ele32_pt_eta_efficiency_withSys_Run2017CDE.txt'),
     'samples': mc
 }
 
@@ -50,7 +50,7 @@ aliases['ele_trig_eff_F'] = {
         '.L %s/src/PlotsConfigurations/Configurations/patches/triggerEff_1lep.cc+' % os.getenv('CMSSW_BASE')
     ],
     'class': 'TrigEff_1lep',
-    'args': ('/afs/cern.ch/user/a/arun/public/fixedTextfiles/2017/mvaid/Ele35_pt_eta_efficiency_withSys_Run2017F.txt'),
+    'args': ('/afs/cern.ch/user/a/arun/public/fixedTextfiles/2017/mvaid/Ele32_pt_eta_efficiency_withSys_Run2017F.txt'),
     'samples': mc
 }
 
@@ -120,6 +120,30 @@ aliases['btagSF'] = {
     'samples': mc
 }
 
+aliases['nJetsBtag']= {
+    'expr' : 'Sum$(CleanJet_pt > 20 && abs(CleanJet_eta)<2.5)'
+}
+
+btagSF_corr_samples_groups = {
+    'VBS': ['VBS'],
+    'Wjets_HT': ['Wjets_HT'],
+    'Vg_VgS_VBFV':['Vg','VgS','VBF-V'],
+    'VV_VVV_ggWW':['VVV','VV','ggWW'],
+    'top':['top'],
+    'DY': ['DY']
+}
+
+for sgroup_name, sgroup in btagSF_corr_samples_groups.items():
+    aliases['btagSF_corr_'+sgroup_name] = {
+        'class': 'BtagSFNormCorrection',
+        'args': ('{}/VBSjjlnu/weights_files/btagsf_correction/btagsf_corr_2017.root'.format(configurations), sgroup_name),
+        'linesToAdd' : [
+            'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+            '.L {}/VBSjjlnu/macros/btagsf_norm_correction.cc+'.format(configurations)
+        ],     
+        'samples' : sgroup
+    }
+
 
 systs = ['jes','lf','hf','lfstats1','lfstats2','hfstats1','hfstats2','cferr1','cferr2']
 
@@ -166,21 +190,53 @@ aliases['Top_pTrw'] = {
 
 ######################################
 
-# Using tight scale factors for jets in the horn
+# # Using tight scale factors for jets in the horn
+# aliases['PUJetIdSF'] = {
+#   'expr' : 'TMath::Exp(Sum$((Jet_jetId>=2)*( abs(Jet_eta)<2.65 || abs(Jet_eta)>3.139)*TMath::Log(Jet_PUIDSF_loose) + (Jet_jetId>=2)*(abs(Jet_eta)>2.65 && abs(Jet_eta)<3.139)*TMath::Log(Jet_PUIDSF_tight)))',
+#   'samples': [m  for m in mc if m not in ['DY']]
+# }
+
+# aliases['PUJetIdSF_up'] = {
+#   'expr' : 'TMath::Exp(Sum$((Jet_jetId>=2)*( abs(Jet_eta)<2.65 || abs(Jet_eta)>3.139)*TMath::Log(Jet_PUIDSF_loose_up) + (Jet_jetId>=2)*(abs(Jet_eta)>2.65 && abs(Jet_eta)<3.139)*TMath::Log(Jet_PUIDSF_tight_up)))',
+#   'samples':  [m  for m in mc if m not in ['DY']]
+# }
+
+
+# aliases['PUJetIdSF_down'] = {
+#   'expr' : 'TMath::Exp(Sum$((Jet_jetId>=2)*(abs(Jet_eta)<2.65 || abs(Jet_eta)>3.139)*TMath::Log(Jet_PUIDSF_loose_down) + (Jet_jetId>=2)*(abs(Jet_eta)>2.65 && abs(Jet_eta)<3.139)*TMath::Log(Jet_PUIDSF_tight_down)))',
+#   'samples':  [m  for m in mc if m not in ['DY']]
+# }
+
+
 aliases['PUJetIdSF'] = {
-  'expr' : 'TMath::Exp(Sum$((Jet_jetId>=2)*( abs(Jet_eta)<2.65 || abs(Jet_eta)>3.139)*TMath::Log(Jet_PUIDSF_loose) + (Jet_jetId>=2)*(abs(Jet_eta)>2.65 && abs(Jet_eta)<3.139)*TMath::Log(Jet_PUIDSF_tight)))',
-  'samples': mc
+  'expr' : 'TMath::Exp(Sum$( (Jet_jetId>=2 && ( (Jet_electronIdx1 != Lepton_electronIdx[0]) || Jet_electronIdx1 < 0 )  \
+                                          && ( (Jet_muonIdx1 != Lepton_muonIdx[0] ) || Jet_muonIdx1 < 0 ) )*  \
+                                (    (abs(Jet_eta)>=2.65 && abs(Jet_eta)<=3.139 && Jet_pt >=50)*TMath::Log(Jet_PUIDSF_loose) \
+                                 +   (abs(Jet_eta)>=2.65 && abs(Jet_eta)<=3.139 && Jet_pt < 50)*TMath::Log(Jet_PUIDSF_tight)\
+                                 +   (abs(Jet_eta)<2.65  && abs(Jet_eta)>3.139 )*TMath::Log(Jet_PUIDSF_loose)\
+                                ) ))',
+  'samples': [m  for m in mc if m not in ['DY']]
 }
+
 
 aliases['PUJetIdSF_up'] = {
-  'expr' : 'TMath::Exp(Sum$((Jet_jetId>=2)*( abs(Jet_eta)<2.65 || abs(Jet_eta)>3.139)*TMath::Log(Jet_PUIDSF_loose_up) + (Jet_jetId>=2)*(abs(Jet_eta)>2.65 && abs(Jet_eta)<3.139)*TMath::Log(Jet_PUIDSF_tight_up)))',
-  'samples': mc
+  'expr' : 'TMath::Exp(Sum$( (Jet_jetId>=2 && ( (Jet_electronIdx1 != Lepton_electronIdx[0]) || Jet_electronIdx1 < 0 )  \
+                                          && ( (Jet_muonIdx1 != Lepton_muonIdx[0] ) || Jet_muonIdx1 < 0 ) )*  \
+                                (    (abs(Jet_eta)>=2.65 && abs(Jet_eta)<=3.139 && Jet_pt >=50)*TMath::Log(Jet_PUIDSF_loose_up) \
+                                 +   (abs(Jet_eta)>=2.65 && abs(Jet_eta)<=3.139 && Jet_pt < 50)*TMath::Log(Jet_PUIDSF_tight_up)\
+                                 +   (abs(Jet_eta)<2.65  && abs(Jet_eta)>3.139 )*TMath::Log(Jet_PUIDSF_loose_up)\
+                                ) ))',
+  'samples': [m  for m in mc if m not in ['DY']]
 }
 
-
 aliases['PUJetIdSF_down'] = {
-  'expr' : 'TMath::Exp(Sum$((Jet_jetId>=2)*(abs(Jet_eta)<2.65 || abs(Jet_eta)>3.139)*TMath::Log(Jet_PUIDSF_loose_down) + (Jet_jetId>=2)*(abs(Jet_eta)>2.65 && abs(Jet_eta)<3.139)*TMath::Log(Jet_PUIDSF_tight_down)))',
-  'samples': mc
+  'expr' : 'TMath::Exp(Sum$( (Jet_jetId>=2 && ( (Jet_electronIdx1 != Lepton_electronIdx[0]) || Jet_electronIdx1 < 0 )  \
+                                          && ( (Jet_muonIdx1 != Lepton_muonIdx[0] ) || Jet_muonIdx1 < 0 ) )*  \
+                                (    (abs(Jet_eta)>=2.65 && abs(Jet_eta)<=3.139 && Jet_pt >=50)*TMath::Log(Jet_PUIDSF_loose_down) \
+                                 +   (abs(Jet_eta)>=2.65 && abs(Jet_eta)<=3.139 && Jet_pt < 50)*TMath::Log(Jet_PUIDSF_tight_down)\
+                                 +   (abs(Jet_eta)<2.65  && abs(Jet_eta)>3.139 )*TMath::Log(Jet_PUIDSF_loose_down)\
+                                ) ))',
+  'samples': [m  for m in mc if m not in ['DY']]
 }
 
 
@@ -233,7 +289,7 @@ aliases['DY_LO_pTllrw'] = {
 ###########################
 
 
-basedir_fakes = configurations + "/VBSjjlnu/weights_files/fake_rates/2017_Ele35"
+basedir_fakes = configurations + "/VBSjjlnu/weights_files/fake_rates/2017_Ele32"
 
 ets = ["25", "35", "45"]
 el_pr_file = os.getenv('CMSSW_BASE') + "/src/LatinoAnalysis/NanoGardener/python/data/fake_prompt_rates/Full2017v7/mvaFall17V1Iso_WP90/ElePR.root"
@@ -249,7 +305,7 @@ for et in ets:
             'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
             '.L {}/VBSjjlnu/macros/newfakeweight_OTFall.cc+'.format(configurations)
         ],     
-        'samples': ["Fake"]
+        'samples': ["Fake_ele","Fake_mu"]
     }
 
 #stat variations
@@ -259,12 +315,12 @@ mu_fr_file35 = basedir_fakes + "/plot_MuCh_JetEt35_l1_etaVpt_ptmu_fw_ewk_2D.root
 aliases['fakeWeight_35_statUp'] = { 
         'class': 'newFakeWeightOTFall',
         'args': (eleWP, muWP, copy.deepcopy(el_fr_file35), copy.deepcopy(el_pr_file), copy.deepcopy(mu_fr_file35), copy.deepcopy(mu_pr_file), False, True, False),   
-        'samples': ["Fake"]
+        'samples': ["Fake_ele","Fake_mu"]
     }
 aliases['fakeWeight_35_statDo'] = { 
         'class': 'newFakeWeightOTFall',
         'args': (eleWP, muWP, copy.deepcopy(el_fr_file35), copy.deepcopy(el_pr_file), copy.deepcopy(mu_fr_file35), copy.deepcopy(mu_pr_file), False, False, True), 
-        'samples': ["Fake"]
+        'samples': ["Fake_ele","Fake_mu"]
     }
 
 
@@ -295,58 +351,141 @@ aliases['veto_fatjet_180'] = {
 
 ##################################
 
+morphing_file = configurations + "/VBSjjlnu/weights_files/qgl_morphing/morphing_functions_withvars_2018.root"
 
-# morphing_file = configurations + "/VBSjjlnu/weights_files/qgl_morphing/morphing_functions_final_2018.root"
-# do_morph = "11111111"
-# m_gluon_loweta_pt0 = "j3_loweta_pt0_gluon"
-# m_gluon_loweta_pt1 = "j3_loweta_pt1_gluon"
-# m_gluon_higheta_pt0 = "j1_higheta_pt0_gluon"
-# m_gluon_higheta_pt1 = "j1_higheta_pt1_gluon"
-# m_quark_loweta_pt0 = "j1_loweta_pt0_quark"
-# m_quark_loweta_pt1 = "j1_loweta_pt1_quark"
-# m_quark_higheta_pt0 = "j1_higheta_pt0_quark"
-# m_quark_higheta_pt1 = "j0_higheta_pt1_quark"
+aliases["CleanJet_qgl_morphed"]  = {
+    'class': 'QGL_morphing',
+    'args' : (morphing_file, "nom", "0000"),
+    'linesToAdd' : [
+        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+        '.L {}/macros/qgl_morphing.cc+'.format(configurations)
+        ] 
+}
 
-# ###############
-# aliases['vbs_0_qgl_res'] = {
-#     'class': 'QglVarsMorphing',
-#     'args': ('vbs_0_qglmorphed_res', morphing_file, do_morph, m_gluon_loweta_pt0, m_gluon_loweta_pt1, m_gluon_higheta_pt0, m_gluon_higheta_pt1, 
-#                                                        m_quark_loweta_pt0, m_quark_loweta_pt1, m_quark_higheta_pt0, m_quark_higheta_pt1),
-#      'linesToAdd' : [
+# aliases["CleanJet_qgl_morphed_morphUp_gluon_loweta"]  = {
+#     'class': 'QGL_morphing',
+#     'args' : (morphing_file, "up", "0001"),
+#     'linesToAdd' : [
 #         'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-#         '.L {}/VBSjjlnu/macros/qgl_vars_morphing.cc+'.format(configurations)
+#         '.L {}/macros/qgl_morphing.cc+'.format(configurations)
 #         ] 
-# } 
+# }
 
-# # aliases['vbs_1_qgl_res'] = {
-# #     'class': 'QglVarsMorphing',
-# #     'args': ('vbs_1_qglmorphed_res', morphing_file, do_morph, m_gluon_loweta_pt0, m_gluon_loweta_pt1, m_gluon_higheta_pt0, m_gluon_higheta_pt1, 
-# #                                                        m_quark_loweta_pt0, m_quark_loweta_pt1, m_quark_higheta_pt0, m_quark_higheta_pt1 )
-# # } 
+# aliases["CleanJet_qgl_morphed_morphUp_gluon_higheta"]  = {
+#     'class': 'QGL_morphing',
+#     'args' : (morphing_file, "up", "0010"),
+#     'linesToAdd' : [
+#         'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+#         '.L {}/macros/qgl_morphing.cc+'.format(configurations)
+#         ] 
+# }
 
-# aliases['vjet_0_qgl_res'] = {
-#     'class': 'QglVarsMorphing',
-#     'args': ('vjet_0_qglmorphed_res', morphing_file, do_morph, m_gluon_loweta_pt0, m_gluon_loweta_pt1, m_gluon_higheta_pt0, m_gluon_higheta_pt1, 
-#                                                        m_quark_loweta_pt0, m_quark_loweta_pt1, m_quark_higheta_pt0, m_quark_higheta_pt1 )
-# } 
+# aliases["CleanJet_qgl_morphed_morphUp_quark_loweta"]  = {
+#     'class': 'QGL_morphing',
+#     'args' : (morphing_file, "up", "0100"),
+#     'linesToAdd' : [
+#         'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+#         '.L {}/macros/qgl_morphing.cc+'.format(configurations)
+#         ] 
+# }
 
-# aliases['vjet_1_qgl_res'] = {
-#     'class': 'QglVarsMorphing',
-#     'args': ('vjet_1_qglmorphed_res', morphing_file, do_morph, m_gluon_loweta_pt0, m_gluon_loweta_pt1, m_gluon_higheta_pt0, m_gluon_higheta_pt1, 
-#                                                        m_quark_loweta_pt0, m_quark_loweta_pt1, m_quark_higheta_pt0, m_quark_higheta_pt1 )
-# } 
+# aliases["CleanJet_qgl_morphed_morphUp_quark_higheta"]  = {
+#     'class': 'QGL_morphing',
+#     'args' : (morphing_file, "up", "1000"),
+#     'linesToAdd' : [
+#         'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+#         '.L {}/macros/qgl_morphing.cc+'.format(configurations)
+#         ] 
+# }
 
-# aliases['vbs_0_qgl_boost'] = {
-#     'class': 'QglVarsMorphing',
-#     'args': ('vbs_0_qglmorphed_boost', morphing_file, do_morph, m_gluon_loweta_pt0, m_gluon_loweta_pt1, m_gluon_higheta_pt0, m_gluon_higheta_pt1, 
-#                                                        m_quark_loweta_pt0, m_quark_loweta_pt1, m_quark_higheta_pt0, m_quark_higheta_pt1 )
-# } 
+# ######
+# aliases["CleanJet_qgl_morphed_morphDown_gluon_loweta"]  = {
+#     'class': 'QGL_morphing',
+#     'args' : (morphing_file, "down", "0001"),
+#     'linesToAdd' : [
+#         'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+#         '.L {}/macros/qgl_morphing.cc+'.format(configurations)
+#         ] 
+# }
 
-# aliases['vbs_1_qgl_boost'] = {
-#     'class': 'QglVarsMorphing',
-#     'args': ('vbs_1_qglmorphed_boost', morphing_file, do_morph, m_gluon_loweta_pt0, m_gluon_loweta_pt1, m_gluon_higheta_pt0, m_gluon_higheta_pt1, 
-#                                                        m_quark_loweta_pt0, m_quark_loweta_pt1, m_quark_higheta_pt0, m_quark_higheta_pt1 )
-# } 
+# aliases["CleanJet_qgl_morphed_morphDown_gluon_higheta"]  = {
+#     'class': 'QGL_morphing',
+#     'args' : (morphing_file, "down", "0010"),
+#     'linesToAdd' : [
+#         'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+#         '.L {}/macros/qgl_morphing.cc+'.format(configurations)
+#         ] 
+# }
+
+# aliases["CleanJet_qgl_morphed_morphDown_quark_loweta"]  = {
+#     'class': 'QGL_morphing',
+#     'args' : (morphing_file, "down", "0100"),
+#     'linesToAdd' : [
+#         'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+#         '.L {}/macros/qgl_morphing.cc+'.format(configurations)
+#         ] 
+# }
+
+# aliases["CleanJet_qgl_morphed_morphDown_quark_higheta"]  = {
+#     'class': 'QGL_morphing',
+#     'args' : (morphing_file, "down", "1000"),
+#     'linesToAdd' : [
+#         'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+#         '.L {}/macros/qgl_morphing.cc+'.format(configurations)
+#         ] 
+# }
+
+##########################
+
+
+
+aliases['vbs_0_qgl_res'] = {
+   'expr': 'Alt$(CleanJet_qgl_morphed[VBS_jets_maxmjj_massWZ[0]],-1)'
+} 
+
+aliases['vbs_1_qgl_res'] = {
+   'expr': 'Alt$(CleanJet_qgl_morphed[VBS_jets_maxmjj_massWZ[1]],-1)'
+} 
+
+aliases['vjet_0_qgl_res'] = {
+    'expr': 'Alt$(CleanJet_qgl_morphed[V_jets_maxmjj_massWZ[0]],-1)'
+} 
+
+aliases['vjet_1_qgl_res'] = {
+    'expr': 'Alt$(CleanJet_qgl_morphed[V_jets_maxmjj_massWZ[1]],-1)'
+} 
+
+aliases['vbs_0_qgl_boost'] = {
+    'expr': 'Alt$(CleanJet_qgl_morphed[VBS_jets_maxmjj[0]],-1)'
+} 
+
+aliases['vbs_1_qgl_boost'] = {
+    'expr': 'Alt$(CleanJet_qgl_morphed[VBS_jets_maxmjj[1]],-1)'
+} 
+
+###########
+# ## morphUP
+
+# for jt in ['quark', 'gluon']:
+#     for jeta in ['loweta', 'higheta']:
+#         for morph in ['morphUp', 'morphDown']:
+#             jtype = morph + "_" + jt+"_"+jeta
+
+#             aliases['vbs_0_qgl_res_' +jtype ] = {
+#                 'expr': 'Alt$(CleanJet_qgl_morphed_' + jtype + '[VBS_jets_maxmjj_massWZ[0]],-1)'
+#             } 
+#             aliases['vjet_0_qgl_res_' +jtype ] = {
+#                 'expr': 'Alt$(CleanJet_qgl_morphed_' + jtype + '[V_jets_maxmjj_massWZ[0]],-1)'
+#             } 
+#             aliases['vjet_1_qgl_res_' +jtype] = {
+#                 'expr': 'Alt$(CleanJet_qgl_morphed_' + jtype + '[V_jets_maxmjj_massWZ[1]],-1)'
+#             } 
+#             aliases['vbs_0_qgl_boost_' +jtype ] = {
+#                 'expr': 'Alt$(CleanJet_qgl_morphed_' + jtype + '[VBS_jets_maxmjj[0]],-1)'
+#             } 
+#             aliases['vbs_1_qgl_boost_' +jtype ] = {
+#                 'expr': 'Alt$(CleanJet_qgl_morphed_' + jtype + '[VBS_jets_maxmjj[1]],-1)'
+#             } 
 
 ##########################
 # additional uncertainties for Wtagging from pt extrapolation
@@ -358,6 +497,15 @@ aliases['BoostedWtagSF_ptextr'] = {
         '.L {}/VBSjjlnu/macros/Wtagging_SF_ptExtrap.cc+'.format(configurations)
     ]   
 }
+
+###########################
+# Njets nuisances for signal
+
+# aliases['njets_herwig_signal'] = {
+#     'expr': '(VBS_category==0)*( (nJets30==2)*1.428 + (nJets30==3)*0.590 + (nJets30==4)*0.291 + (nJets30>4)*1) +\
+#              (VBS_category==1)*( (nJets30==4)*1.428 + (nJets30==5)*0.590 + (nJets30==6)*0.291 + (nJets30>6)*1)',
+#     'samples': ['VBS']
+# }
 
 #############################
 
@@ -372,7 +520,7 @@ aliases['puWeight_noeras'] = {
     'samples': mc
 }
 
-#########################
+ ####################
 
 # mva_reader_path = os.getenv('CMSSW_BASE') + '/src/PlotsConfigurations/Configurations/VBSjjlnu/macros/'
 # models_path = '/eos/home-d/dvalsecc/www/VBSPlots/DNN_archive/FullRun2_v7/FullRun2_v7/'
@@ -387,7 +535,7 @@ aliases['puWeight_noeras'] = {
 #     ],
 # }
 
-# aliases['DNNoutput_resolved'] = {
+# aliases['DNNoutput_resolved_v1'] = {
 #     'class': 'MVAReaderResolved_mVauto',
 #     'args': ( models_path+ 'res_sig/models/v4_d/',models_path+ 'res_sig/models/v4_d/cumulative_signal_2017.root', False, 1),
 #     'linesToAdd':[
@@ -397,6 +545,55 @@ aliases['puWeight_noeras'] = {
 #     ],
 # }
 
+
+# aliases['DNNoutput_resolved_v2'] = {
+#     'class': 'MVAReaderResolved_mVauto_v25e',
+#     'args': ( models_path+ 'res_sig/models/v25_e/',models_path+ 'res_sig/models/v25_e/cumulative_signal_2017.root', False, 1),
+#     'linesToAdd':[
+#         'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+#         'gSystem->Load("libDNNEvaluator.so")',
+#         '.L ' + mva_reader_path + 'mva_reader_resolved_v25e_mVauto.cc+', 
+#     ],
+# }
+
 # aliases['DNNoutput'] = {
 #     'expr': '(VBS_category==0)*(DNNoutput_boosted) + (VBS_category==1)*(DNNoutput_resolved)'
 # }
+
+
+#########################
+
+# aliases['angular_vars'] = {
+#     'class': 'VBSAngularVars',
+#     'args': (False),
+#     'linesToAdd':[
+#         'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+#         '.L {}/VBSjjlnu/macros/VBSAngularVars.cc+'.format(configurations)
+#     ],
+# }
+# #   0) deltaphi_WVplanes
+# #   1) theta Vhad
+# #   2) theta_lep
+# #   3) theta_vjet_0
+# #   4) theta_vjet_1
+# #   5) delta theta*-WVsyst
+# #   6) delta theta_lep_Wlep
+# #   7) delta theta_vjet0_Wlep
+# #   8) delta theta_vjet1_Wlep
+  
+# aliases['deltaphi_WV']= { 'expr': 'angular_vars[0]'}
+# aliases['theta_Vhad']= { 'expr': 'angular_vars[1]'}
+# aliases['theta_lep']= { 'expr': 'angular_vars[2]'}
+# aliases['theta_vjet_0']= { 'expr': 'angular_vars[3]'}
+# aliases['theta_vjet_1']= { 'expr': 'angular_vars[4]'}
+# aliases['deltatheta_Vhad']= { 'expr': 'angular_vars[5]'}
+# aliases['deltatheta_lep']= { 'expr': 'angular_vars[6]'}
+# aliases['deltatheta_vjet_0']= { 'expr': 'angular_vars[7]'}
+# aliases['deltatheta_vjet_1']= { 'expr': 'angular_vars[8]'}
+
+# aliases['cosdeltatheta_Vhad']= { 'expr': 'TMath::Cos(angular_vars[5])'}
+# aliases['cosdeltatheta_lep']= { 'expr': 'TMath::Cos(angular_vars[6])'}
+# aliases['cosdeltatheta_vjet_0']= { 'expr': 'TMath::Cos(angular_vars[7])'}
+# aliases['cosdeltatheta_vjet_1']= { 'expr': 'TMath::Cos(angular_vars[8])'}
+
+#
