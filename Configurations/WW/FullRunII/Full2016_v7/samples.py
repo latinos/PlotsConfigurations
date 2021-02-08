@@ -113,12 +113,12 @@ addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO','DY_LO_pTllrw')
 
 ###### Top #######
 
-files = nanoGetSampleFiles(mcDirectory, 'TTTo2L2Nu') + \
-    nanoGetSampleFiles(mcDirectory, 'ST_s-channel') + \
-    nanoGetSampleFiles(mcDirectory, 'ST_t-channel_antitop') + \
-    nanoGetSampleFiles(mcDirectory, 'ST_t-channel_top') + \
-    nanoGetSampleFiles(mcDirectory, 'ST_tW_antitop') + \
-    nanoGetSampleFiles(mcDirectory, 'ST_tW_top')
+files = nanoGetSampleFiles(mcDirectory, 'TTTo2L2Nu')
+#    nanoGetSampleFiles(mcDirectory, 'ST_s-channel') + \
+#    nanoGetSampleFiles(mcDirectory, 'ST_t-channel_antitop') + \
+#    nanoGetSampleFiles(mcDirectory, 'ST_t-channel_top') + \
+#    nanoGetSampleFiles(mcDirectory, 'ST_tW_antitop') + \
+#    nanoGetSampleFiles(mcDirectory, 'ST_tW_top')
 
 samples['top'] = {
     'name': files,

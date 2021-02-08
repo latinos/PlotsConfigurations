@@ -1,17 +1,17 @@
 # variables
-
+'''
 variables['events']  = {   'name': '1',      
                         'range' : (1,0,2),  
                         'xaxis' : 'events', 
                         'fold' : 3
                         }
-
+'''
 variables['mll']  = {   'name': 'mll',
                         'range' : (20, 12,200),
                         'xaxis' : 'm_{ll} [GeV]',
                         'fold' : 0
                         }
-
+'''
 variables['mth']  = {   'name': 'mth',
                         'range' : (20, 0,200),
                         'xaxis' : 'm_{T}^{WW} [GeV]',
@@ -73,14 +73,14 @@ variables['puppimet']  = {
                         'xaxis' : 'puppimet [GeV]',
                         'fold'  : 3
                         }
-
+'''
 variables['njet']  = {
                         'name': 'Sum$(CleanJet_pt>30)',
                         'range' : (10,0,10),
                         'xaxis' : 'Number of jets',
                         'fold' : 0   # 0 = not fold (default), 1 = fold underflowbin, 2 = fold overflow bin, 3 = fold underflow and overflow
                         }
-
+'''
 variables['jetpt1']  = {
                         'name': '(Sum$(CleanJet_pt>30)>0)*(Alt$(CleanJet_pt[0], 0)) - (Sum$(CleanJet_pt>30)==0)*99',
                         'range' : (20,0,200),
@@ -106,6 +106,7 @@ variables['jeteta2']  = {  'name': '(Sum$(CleanJet_pt>30)>1)*(Alt$(CleanJet_eta[
                         'xaxis' : '#eta 2nd jet',
                         'fold'  : 0
                         }
+'''
 
 '''
 variables['mllVSmth'] = {   'name': 'mll:mth',            #   variable name    

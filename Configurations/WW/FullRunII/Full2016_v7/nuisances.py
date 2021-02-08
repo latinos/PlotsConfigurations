@@ -37,7 +37,7 @@ for k in cuts:
     else: print 'WARNING: name of category does not contain on either 0j,1j,2j,3j,4j,5j'
 '''
 ################################ EXPERIMENTAL UNCERTAINTIES  #################################
-
+'''
 #### Luminosity
 
 nuisances['lumi_Uncorrelated'] = {
@@ -625,7 +625,7 @@ nuisances['QCDscale_gg_ACCEPT'] = {
     'type': 'lnN',
 }
 
-'''
+
 ## rate parameters
 
 nuisances['DYttnorm']  = {

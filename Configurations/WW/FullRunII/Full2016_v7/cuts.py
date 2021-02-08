@@ -10,6 +10,17 @@ supercut = '   mll>12 \
             && (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13) \
            '
 
+## Top control regions
+cuts['hww2l2v_13TeV_top']  = {
+   'expr' : 'topcr',
+    # Define the sub-categorization of topcr
+   'categories' : {
+      '0j' : 'zeroJet',
+      '1j' : 'oneJet && Alt$(CleanJet_pt[1],0)<30',
+   }
+}
+
+'''
 ## SR 
 cuts['ww2l2v_13TeV_incl'] = 'mth > 60 \
                             && mtw2 > 30  \
@@ -70,7 +81,6 @@ cuts['ww2l2v_13TeV_5j'] = ' mth>60 \
 ## Top control regions
 cuts['ww2l2v_13TeV_top_incl']  =  ' mtw2>30 \
                              && mll>50 \
-                             && bReq\
                           '
 
 cuts['ww2l2v_13TeV_top_0j']  =  ' mtw2>30 \
@@ -184,4 +194,4 @@ cuts['ww2l2v_13TeV_dytt_5j']  =  ' mth<60 \
                              && Alt$(CleanJet_pt[3],0)>=30 \
                              && Alt$(CleanJet_pt[4],0)>=30 \
                            '
-
+'''
