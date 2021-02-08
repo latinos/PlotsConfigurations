@@ -110,12 +110,26 @@ nuisances['fake_ele']  = {
                 'cuts':  phase_spaces_tot_ele
 }
 
+nuisances['fake_ele']  = {
+                'name'  : 'CMS_fake_ele_2017',
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : {
+                            'Fake'     : [ fakeW_jetUp , fakeW_jetDown ],
+                            #   'Fake_ele'     : [ fakeW_jetUp , fakeW_jetDown ],
+                            #   'Fake_mu'      : [ fakeW_jetUp , fakeW_jetDown ],
+                             },
+                'cuts':  phase_spaces_tot_ele
+}
+
 nuisances['fake_ele_stat']  = {
                 'name'  : 'CMS_fake_ele_stat_2017',
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
-                              'Fake'      : [ fakeW_statUp , fakeW_statDown ],
+                            'Fake'      : [ fakeW_statUp , fakeW_statDown ],
+                            #   'Fake_ele'      : [ fakeW_statUp , fakeW_statDown ],
+                            #   'Fake_mu'      : [ fakeW_statUp , fakeW_statDown ],
                              },
                 'cuts':  phase_spaces_tot_ele
 }
@@ -125,7 +139,9 @@ nuisances['fake_mu']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
-                              'Fake'     : [ fakeW_jetUp , fakeW_jetDown ],
+                                'Fake'     : [ fakeW_jetUp , fakeW_jetDown ],
+                            #   'Fake_ele'     : [ fakeW_jetUp , fakeW_jetDown ],
+                            #   'Fake_mu'     : [ fakeW_jetUp , fakeW_jetDown ],
                              },
                 'cuts':  phase_spaces_tot_mu
 }
@@ -136,7 +152,9 @@ nuisances['fake_mu_stat']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
-                              'Fake'     :[ fakeW_statUp , fakeW_statDown ],
+                            'Fake'     :[ fakeW_statUp , fakeW_statDown ],
+                            #   'Fake_ele'     :[ fakeW_statUp , fakeW_statDown ],
+                            #   'Fake_mu'     :[ fakeW_statUp , fakeW_statDown ]
                              },
                 'cuts':  phase_spaces_tot_mu
 }
@@ -239,12 +257,12 @@ nuisances['muonpt']  = {
 
 ##################
 # PU jet id
-nuisances['JetPUID_sf']  = {
-                'name'  : 'CMS_jetpuid_2017',
-                'kind'  : 'weight',
-                'type'  : 'shape',
-                'samples'  : dict((skey, ['PUJetIdSF_up/PUJetIdSF','PUJetIdSF_down/PUJetIdSF']) for skey in mc if skey not in ["DY"]),
-}
+# nuisances['JetPUID_sf']  = {
+#                 'name'  : 'CMS_jetpuid_2017',
+#                 'kind'  : 'weight',
+#                 'type'  : 'shape',
+#                 'samples'  : dict((skey, ['PUJetIdSF_up/PUJetIdSF','PUJetIdSF_down/PUJetIdSF']) for skey in mc if skey not in ["DY"]),
+# }
 
 
 # ##### Jet energy scale

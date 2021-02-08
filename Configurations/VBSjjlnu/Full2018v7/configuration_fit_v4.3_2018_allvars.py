@@ -21,7 +21,7 @@ cutsFile = direc +'/cuts.py'
 samplesFile = direc+'/samples_allvars.py' 
 
 #t file with list of samples
-plotFile = direc+'/plot.py' 
+plotFile = direc+'/plot_allvars.py' 
 
 # luminosity to normalize to (in 1/fb)
 lumi = 59.74
