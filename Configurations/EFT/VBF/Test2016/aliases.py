@@ -405,7 +405,11 @@ aliases['sr'] = {
 ##Including matrix elements on the fly (LOURDES)
 
 aliases['ME_onthefly']={
-        'linesToAdd':['.L %s/patches/RecoLevelME_patch.cc+' % configurations],
+        'linesToAdd': [
+	'gSystem->Load("libZZMatrixElementMELA.so");',
+	'gSystem->Load("%s/src/ZZMatrixElement/MELA/data/%s/libmcfm_707.so");'%(os.getenv('CMSSW_BASE'), os.getenv('SCRAM_ARCH')),
+	'.L %s/patches/RecoLevelME_patch.cc+' % configurations,
+	'.L %s/src/LatinoAnalysis/Gardener/python/variables/melaHiggsEFT.C+g' % os.getenv('CMSSW_BASE')],
         'class': 'RecoLevelME',
         'samples': mc
 }
