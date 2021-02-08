@@ -1,61 +1,76 @@
-/*
-  Temporary on-the-fly wlep1pt var for nanoLatino trees nAODv7_2016/2017/2018v7 or earlier.
-*/
+//  Temporary on-the-fly wlep1pt var for nanoLatino trees nAODv7_2016/2017/2018v7 or earlier.
+
 
 #include "LatinoAnalysis/MultiDraw/interface/TTreeFunction.h"
 #include "LatinoAnalysis/MultiDraw/interface/FunctionLibrary.h"
-
 #include "TSystem.h"
-
-#include <iostream>
-#include <vector>
-
+#include "iostream"
+#include "vector"
 #include "TLorentzVector.h"
 #include "TMath.h"
+#include "ZZMatrixElement/MELA/interface/Mela.h"
 
-class RecoLevelME : public multidraw::TTreeFunction {
+
+class RecoLevelME : public multidraw::TTreeFunction, public Mela {
 	
 	public:
 		RecoLevelME();
 		char const* getName() const override {return "RecoLevelME"; }
 		TTreeFunction* clone() const override {return new RecoLevelME();}
-
 		unsigned getNdata() override {return 1; }
 		double evaluate(unsigned) override;
+		
+		/*double LHCsqrts_ = 13.;
+		double mh_ = 125.;
+		TVar::VerbosityLevel verbosity_=TVar::ERROR;*/
+		//Mela(double LHCsqrts_=13., double mh_=125., TVar::VerbosityLevel verbosity_=TVar::ERROR);
+		//Mela(LHCsqrts_, mh_, verbosity_);
+		//MELA functions
+		Mela* setCandidateDecayMode(TVar::CandidateDecayMode mode);
+		Mela* setInputEvent(SimpleParticleCollection_t* pDaughters,SimpleParticleCollection_t* pAssociated=0, SimpleParticleCollection_t* pMothers=0, bool isGen=false);
+		Mela* setCurrentCandidateFromIndex();
+		Mela* resetInputEvent();
 
 	protected:
 		void bindTree_(multidraw::FunctionLibrary&) override;
 
-		UIntValueReader*  nCleanJet;
-		FloatArrayReader* CleanJet_pt;
-		FloatArrayReader* CleanJet_eta;
-		FloatArrayReader* CleanJet_phi;
+		UIntValueReader*  nCleanJet{};
+		FloatArrayReader* CleanJet_pt{};
+		FloatArrayReader* CleanJet_eta{};
+		FloatArrayReader* CleanJet_phi{};
 
-		UIntValueReader*  nLepton;
-		FloatArrayReader* Lepton_pt;
-		FloatArrayReader* Lepton_eta;
-		FloatArrayReader* Lepton_phi;
 
-		FloatValueReader* MET_pt;
-		FloatValueReader* PuppiMET_pt;
-		FloatValueReader* PuppiMET_phi;
+		UIntValueReader*  nLepton{};
+		FloatArrayReader* Lepton_pt{};
+		FloatArrayReader* Lepton_eta{};
+		FloatArrayReader* Lepton_phi{};
 
-		UIntValueReader*  nCleanFatJet;
-		FloatValueReader* CleanFatJet_pt;
-		IntValueReader*   CleanFatJet_jetIdx;
+		FloatValueReader* MET_pt{};
+		FloatValueReader* PuppiMET_pt{};
+		FloatValueReader* PuppiMET_phi{};
 
-		UIntValueReader*  nSubJet;
-		FloatValueReader* SubJet_pt;
-		FloatValueReader* SubJet_eta;
-		FloatValueReader* SubJet_mass;
-		FloatValueReader* SubJet_phi;
+		UIntValueReader*  nCleanFatJet{};
+		FloatArrayReader* CleanFatJet_pt{};
+		IntArrayReader*  CleanFatJet_jetIdx{};
 
-		UIntValueReader* FatJet_subJetIdx1;
-		UIntValueReader* FatJet_subJetIdx2;
+		UIntValueReader*  nSubJet{};
+		FloatArrayReader* SubJet_pt{};
+		FloatArrayReader* SubJet_eta{};
+		FloatArrayReader* SubJet_mass{};
+		FloatArrayReader* SubJet_phi{};
+
+		IntArrayReader* FatJet_subJetIdx1{};
+		IntArrayReader* FatJet_subJetIdx2{};
+
+		/*double LHCsqrts_ = 13.;
+		double mh_ = 125.;
+		TVar::VerbosityLevel verbosity_=TVar::ERROR;*/
 };
 
 	RecoLevelME::RecoLevelME():
-		TTreeFunction()
+		TTreeFunction(),
+		Mela()
+		//Mela(LHCsqrts_, mh_, verbosity_)
 	{}
 
 	double 
@@ -66,8 +81,8 @@ class RecoLevelME : public multidraw::TTreeFunction {
 		TLorentzVector LL(0.,0.,0.,0.);
 		TLorentzVector NuNu(0.,0.,0.,0.);
 		TLorentzVector Higgs(0.,0.,0.,0.);
-		TLorentzVector LSub1(0.,0.,0.,0.);
-		TLorentzVector LSub2(0.,0.,0.,0.);
+		TLorentzVector J1(0.,0.,0.,0.);
+		TLorentzVector J2(0.,0.,0.,0.);
 
 		unsigned ncleanfatjet{*nCleanFatJet->Get()};
 		unsigned nlep{*nLepton->Get()};
@@ -75,8 +90,6 @@ class RecoLevelME : public multidraw::TTreeFunction {
 		float Pmet_pt{*PuppiMET_pt->Get()};
 		float Pmet_phi{*PuppiMET_phi->Get()};
 		
-		//if( ncleanfatjet == 0 || nlep < 1 || nsubjet < 1 ) continue; //Boosted//
-
 		if(ncleanfatjet>0 && nlep>1 && nsubjet>1){
 
 		//4-vectors of the leptons
@@ -94,15 +107,34 @@ class RecoLevelME : public multidraw::TTreeFunction {
 		NuNu.SetPxPyPzE(nunu_px, nunu_py, nunu_pz, nunu_e);
 		Higgs = LL + NuNu;
 		double hm = Higgs.M();
-		std::cout << "**********ncleanfatjet*******" << ncleanfatjet << std::endl;
-		//4-vector of the 2 subjets associated to the fat jet
-		//int indexfatjet = CleanFatJet_pt->At(0);
-		 
-		/*int indexsubfatjet1 = FatJet_subJetIdx1->At(indexfatjet);
-		int indexsubfatjet2 = FatJet_subJetIdx2->At(indexfatjet);
 
-		LSub1.SetPtEtaPhiM(SubJet_pt->At(indexsubfatjet1), SubJet_eta->At(indexsubfatjet1), SubJet_phi->At(indexsubfatjet1), SubJet_mass->At(indexsubfatjet1));
-		LSub2.SetPtEtaPhiM(SubJet_pt->At(indexsubfatjet2), SubJet_eta->At(indexsubfatjet2), SubJet_phi->At(indexsubfatjet2), SubJet_mass->At(indexsubfatjet2));*/
+		int indexfatjet = CleanFatJet_jetIdx->At(0);
+
+		//std::cout << indexfatjet << std::endl;
+		
+		int indexsubfatjet1 = FatJet_subJetIdx1->At(indexfatjet);
+		int indexsubfatjet2 = FatJet_subJetIdx2->At(indexfatjet);
+		
+		J1.SetPtEtaPhiM(SubJet_pt->At(indexsubfatjet1), SubJet_eta->At(indexsubfatjet1), SubJet_phi->At(indexsubfatjet1), SubJet_mass->At(indexsubfatjet1));
+		J2.SetPtEtaPhiM(SubJet_pt->At(indexsubfatjet2), SubJet_eta->At(indexsubfatjet2), SubJet_phi->At(indexsubfatjet2), SubJet_mass->At(indexsubfatjet2));
+
+		//MELA
+		SimpleParticleCollection_t daughter_coll;
+		SimpleParticleCollection_t associated_coll;	
+
+		SimpleParticle_t daughter(25, Higgs);
+		SimpleParticle_t associated1(0, J1);
+		SimpleParticle_t associated2(0, J2);
+
+		daughter_coll.push_back(daughter);
+		associated_coll.push_back(associated1);
+		associated_coll.push_back(associated2);	
+
+		//setCandidateDecayMode(TVar::CandidateDecay_ZZ);
+		//Mela->setInputEvent(daughter_coll, associated_coll, 0, 0);
+		//Mela->setCurrentCandidateFromIndex(0);
+
+		return 0;
 		}
 		else return -9999;
 	}
@@ -110,7 +142,7 @@ class RecoLevelME : public multidraw::TTreeFunction {
 	void
 	RecoLevelME::bindTree_(multidraw::FunctionLibrary& _library)
 	{
-		std::cout << "************LOADING RECOLEVELME ********" << std::endl;
+		std::cout << "************LOADING RECO LEVEL Matrix Elements (MEs) ********" << std::endl;
 		_library.bindBranch(nCleanJet, "nCleanJet");
   		_library.bindBranch(CleanJet_pt, "CleanJet_pt");
   		_library.bindBranch(CleanJet_eta, "CleanJet_eta");
@@ -127,8 +159,8 @@ class RecoLevelME : public multidraw::TTreeFunction {
 
 		_library.bindBranch(nCleanFatJet, "nCleanFatJet");
 		_library.bindBranch(nSubJet, "nSubJet");
-		//_library.bindBranch(CleanFatJet_pt, "CleanFatJet_pt");
-		/*_library.bindBranch(CleanFatJet_jetIdx, "CleanFatJet_jetIdx");
+		_library.bindBranch(CleanFatJet_pt, "CleanFatJet_pt");
+		_library.bindBranch(CleanFatJet_jetIdx, "CleanFatJet_jetIdx");
 
 		_library.bindBranch(FatJet_subJetIdx1, "FatJet_subJetIdx1");
 		_library.bindBranch(FatJet_subJetIdx2, "FatJet_subJetIdx2");
@@ -137,7 +169,7 @@ class RecoLevelME : public multidraw::TTreeFunction {
 		_library.bindBranch(SubJet_pt, "SubJet_pt");
 		_library.bindBranch(SubJet_eta, "SubJet_eta");
 		_library.bindBranch(SubJet_phi, "SubJet_phi");
-		_library.bindBranch(SubJet_mass, "SubJet_mass");*/
+		_library.bindBranch(SubJet_mass, "SubJet_mass");
 
 	}
 
