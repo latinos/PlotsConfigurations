@@ -1,10 +1,11 @@
 # example of configuration file
 treeName= 'Events'
 
-tag = 'Full2018_em'
+tag = 'Full2018_v2_em'
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFile_'+tag
+#outputDir = 'rootFile'
+outputDir = '../../../../../../../../../../../../../../eos/user/a/arun/SnowMassAnalysis/rootFile_'+tag
 
 # file with TTree aliases
 aliasesFile = 'aliases.py'
