@@ -6,20 +6,22 @@
 
 
 variables['class0_XSF'] = {
-     'name': 'hww_ZH_BDT(Entry$,0)',
+     'name': 'BDT_test[0]',
+     #'name': 'hww_ZH_BDT(Entry$,0)',
      'range' : ([-0.50,-0.25,-0.15,0.,0.15,0.25,0.35,0.50,0.80],),
      'xaxis' : 'MVA discriminant ZH',
      'fold' : 3,
-    'linesToAdd' : ['.L %s/src/PlotsConfigurations/Configurations/ZH4l/STXS_nanoAOD/v6/Full2018nano_STXS_1p1/hww_ZH_BDT.C+' % os.getenv('CMSSW_BASE')]
+    #'linesToAdd' : ['.L %s/src/PlotsConfigurations/Configurations/ZH4l/STXS_nanoAOD/v6/Full2018nano_STXS_1p1/hww_ZH_BDT.C+' % os.getenv('CMSSW_BASE')]
 }  #change the path of macro
 
 variables['class1_XDF'] = {
-     'name': 'hww_ZH_BDT(Entry$,0)',
+     'name': 'BDT_test[0]',
+     #'name': 'hww_ZH_BDT(Entry$,0)',
      #'range' : ([-1.0,-0.50,-0.25,0.,0.20,0.40,0.70,1.0],),
      'range' : ([-0.50,-0.25,0.,0.25,0.50,0.80],),
      'xaxis' : 'MVA discriminant ZH',
      'fold' : 3,
-    'linesToAdd' : ['.L %s/src/PlotsConfigurations/Configurations/ZH4l/STXS_nanoAOD/v6/Full2018nano_STXS_1p1/hww_ZH_BDT.C+' % os.getenv('CMSSW_BASE')]
+    #'linesToAdd' : ['.L %s/src/PlotsConfigurations/Configurations/ZH4l/STXS_nanoAOD/v6/Full2018nano_STXS_1p1/hww_ZH_BDT.C+' % os.getenv('CMSSW_BASE')]
 } #change the path of macro
 
 
