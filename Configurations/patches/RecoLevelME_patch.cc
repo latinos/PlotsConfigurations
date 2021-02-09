@@ -20,21 +20,6 @@ class RecoLevelME : public multidraw::TTreeFunction {
 		TTreeFunction* clone() const override {return new RecoLevelME();}
 		unsigned getNdata() override {return 1; }
 		double evaluate(unsigned) override;
-		
-		/*double LHCsqrts_ = 13.;
-		double mh_ = 125.
-		TVar::VerbosityLevel verbosity_=TVar::ERROR;*/
-		//Mela(double LHCsqrts_=13., double mh_=125., TVar::VerbosityLevel verbosity_=TVar::ERROR);
-		//Mela(LHCsqrts_, mh_, verbosity_);
-		//MELA functions
-		/*Mela* setCandidateDecayMode(TVar::CandidateDecayMode mode);
-		Mela* setInputEvent(SimpleParticleCollection_t* pDaughters,SimpleParticleCollection_t* pAssociated=0, SimpleParticleCollection_t* pMothers=0, bool isGen=false);
-		Mela* setCurrentCandidateFromIndex();
-		Mela* resetInputEvent();*/
-
-		//Double_t LHCsqrts_=13., mh_=125.;
-		//TVar::VerbosityLevel verbosity_=TVar::ERROR;
-		//Mela* mela  = new Mela(LHCsqrts_, mh_, verbosity_);
 
 	protected:
 		void bindTree_(multidraw::FunctionLibrary&) override;
@@ -67,19 +52,26 @@ class RecoLevelME : public multidraw::TTreeFunction {
 		IntArrayReader* FatJet_subJetIdx1{};
 		IntArrayReader* FatJet_subJetIdx2{};
 
+		FloatValueReader* me_Wh_hsm;
+		FloatValueReader* me_Wh_hm;
+		FloatValueReader* me_Wh_hp;
+		FloatValueReader* me_Wh_hl;
+
+		FloatValueReader* me_Zh_hsm;
+		FloatValueReader* me_Zh_hm;
+		FloatValueReader* me_Zh_hp;
+		FloatValueReader* me_Zh_hl;
+
 	private:
-		//Mela* mela  = new Mela();
 		Double_t LHCsqrts_=13., mh_=125.;
 		TVar::VerbosityLevel verbosity_=TVar::ERROR;
 		Mela* mela  = new Mela(LHCsqrts_, mh_, verbosity_);
-		//std::unique_ptr<Mela> mela(new Mela(13, 125));
+		
 
 };
 
 	RecoLevelME::RecoLevelME():
 		TTreeFunction()
-		//Mela()
-		//Mela(LHCsqrts_, mh_, verbosity_)
 	{}
 
 	double 
@@ -119,8 +111,6 @@ class RecoLevelME : public multidraw::TTreeFunction {
 		double hm = Higgs.M();
 
 		int indexfatjet = CleanFatJet_jetIdx->At(0);
-
-		//std::cout << indexfatjet << std::endl;
 		
 		int indexsubfatjet1 = FatJet_subJetIdx1->At(indexfatjet);
 		int indexsubfatjet2 = FatJet_subJetIdx2->At(indexfatjet);
@@ -128,43 +118,78 @@ class RecoLevelME : public multidraw::TTreeFunction {
 		J1.SetPtEtaPhiM(SubJet_pt->At(indexsubfatjet1), SubJet_eta->At(indexsubfatjet1), SubJet_phi->At(indexsubfatjet1), SubJet_mass->At(indexsubfatjet1));
 		J2.SetPtEtaPhiM(SubJet_pt->At(indexsubfatjet2), SubJet_eta->At(indexsubfatjet2), SubJet_phi->At(indexsubfatjet2), SubJet_mass->At(indexsubfatjet2));
 
-		/*std::cout << "Higgs.M() " << hm << std::endl;
-		std::cout << "nunu " << NuNu.M() << std::endl;
-		std::cout << "Indexfatjet " << indexfatjet << std::endl;
-		std::cout << "Indexsubfatjet1 " << indexsubfatjet1 << " Indexsubfatjet2 " << indexsubfatjet2 << std::endl;
-		std::cout << "SUBJET1_PT " << SubJet_pt->At(indexsubfatjet1) << " SUBJET2_PT " << SubJet_pt->At(indexsubfatjet2) << std::endl;*/
-
 		SimpleParticleCollection_t daughter_coll;
 		SimpleParticleCollection_t associated_coll;	
 
-		//daughter_coll.push_back(daughter);
 		daughter_coll.push_back(SimpleParticle_t(25,Higgs));
 		associated_coll.push_back(SimpleParticle_t(0,J1));
 		associated_coll.push_back(SimpleParticle_t(0,J2));	
 
-		std::cout << "MELA 1 " << std::endl;
+		//MELA MATRIX ELEMENTS CALCULATION
 		mela->setCandidateDecayMode(TVar::CandidateDecay_Stable);
-		std::cout << "MELA 2 " << std::endl;
-		//mela->setCandidateDecayMode(TVar::CandidateDecay_ZZ);
 		mela->setInputEvent(&daughter_coll, &associated_coll, 0, 0);
-		std::cout << "MELA 3 "  << daughter_coll.size() << "\t" << associated_coll.size()<< std::endl;
 		mela->setCurrentCandidateFromIndex(0);
-		std::cout << "MELA 4 " << std::endl;
-		mela->setProcess(TVar::HSMHiggs, TVar::JHUGen, TVar::Had_WH);
-		//mela->setProcess(TVar::HSMHiggs, TVar::MCFM, TVar::ZZGG);
-		//mela->setProcess();
-		std::cout << "MELA 5 " << std::endl;
-		float p_smH =0.;
-		mela->computeP(p_smH, false);
-		std::cout << "********matrix element p_smh ********" << p_smH << std::endl;
- 		//float kd, ps, pb;
+		
+		//Processes WH
+		float me_WH_hsm = 0.;
+		float me_WH_hm = 0.;
+		float me_WH_hp = 0.;
+		float me_WH_hl = 0.;
 
-  		//mela->computeKD(210.437,91.872,51.459,0.981,0.175,0.934,-1.980,0.269,kd,ps,pb);
- 
-  		//cout << endl << "KD=" << kd << endl;
-		std::cout << "MELA 6 " << std::endl;
+		//SM Higgs
+		mela->setProcess(TVar::HSMHiggs, TVar::JHUGen, TVar::Had_WH);
+		mela->computeProdP(me_WH_hsm, true);
+
+ 		//Higgs minus
+		mela->setProcess(TVar::H0minus, TVar::JHUGen, TVar::Had_WH);
+		mela->computeProdP(me_WH_hm, true);
+		
+		//Higgs plus
+		mela->setProcess(TVar::H0hplus, TVar::JHUGen, TVar::Had_WH);
+		mela->computeProdP(me_WH_hp, true);
+
+		//Higgs lambda
+		mela->setProcess(TVar::H0_g1prime2, TVar::JHUGen, TVar::Had_WH);
+		mela->computeProdP(me_WH_hl, true);
+
+		//Processes ZH
+		float me_ZH_hsm = 0.;
+		float me_ZH_hm = 0.;
+		float me_ZH_hp = 0.;
+		float me_ZH_hl = 0.;
+
+		//SM Higgs
+		mela->setProcess(TVar::HSMHiggs, TVar::JHUGen, TVar::Had_ZH);
+		mela->computeProdP(me_ZH_hsm, true);
+
+ 		//Higgs minus
+		mela->setProcess(TVar::H0minus, TVar::JHUGen, TVar::Had_ZH);
+		mela->computeProdP(me_ZH_hm, true);
+		
+		//Higgs plus
+		mela->setProcess(TVar::H0hplus, TVar::JHUGen, TVar::Had_ZH);
+		mela->computeProdP(me_ZH_hp, true);
+
+		//Higgs lambda
+		mela->setProcess(TVar::H0_g1prime2, TVar::JHUGen, TVar::Had_ZH);
+		mela->computeProdP(me_ZH_hl, true);
+
 		mela->resetInputEvent();
-		std::cout << "MELA 7 " << std::endl;
+
+		//Comparison to Dermot's ME
+		std::cout << "* Matrix Element WH me_hsm * Lourdes: " << me_WH_hsm << " Dermot: " << *me_Wh_hsm->Get() << std::endl;
+		std::cout << "* Matrix Element WH me_hm * Lourdes: " << me_WH_hm << " Dermot: " << *me_Wh_hm->Get() << std::endl;
+		std::cout << "* Matrix Element WH me_hp * Lourdes: " << me_WH_hp << " Dermot: " << *me_Wh_hp->Get() << std::endl;
+		std::cout << "* Matrix Element WH me_hl * Lourdes: " << me_WH_hl << " Dermot: " << *me_Wh_hl->Get() << std::endl;
+
+		std::cout << "* Matrix Element ZH me_hsm * Lourdes: " << me_ZH_hsm << " Dermot:" << *me_Zh_hsm->Get() << std::endl;
+		std::cout << "* Matrix Element ZH me_hm * Lourdes: " << me_ZH_hm << " Dermot: " << *me_Zh_hm->Get() << std::endl;
+		std::cout << "* Matrix Element ZH me_hp * Lourdes: " << me_ZH_hp << " Dermot: " << *me_Zh_hp->Get() << std::endl;
+		std::cout << "* Matrix Element ZH me_hl * Lourdes: " << me_ZH_hl << " Dermot: " << *me_Zh_hl->Get() << std::endl;
+
+		//VH correction
+
+
 		return 0;
 
 		}
@@ -202,6 +227,17 @@ class RecoLevelME : public multidraw::TTreeFunction {
 		_library.bindBranch(SubJet_eta, "SubJet_eta");
 		_library.bindBranch(SubJet_phi, "SubJet_phi");
 		_library.bindBranch(SubJet_mass, "SubJet_mass");
+
+		_library.bindBranch(me_Wh_hsm,   "me_Wh_hsm");
+		_library.bindBranch(me_Wh_hm,   "me_Wh_hm");
+		_library.bindBranch(me_Wh_hp,   "me_Wh_hp");
+		_library.bindBranch(me_Wh_hl,   "me_Wh_hl");
+
+		_library.bindBranch(me_Zh_hsm,   "me_Zh_hsm");
+		_library.bindBranch(me_Zh_hm,   "me_Zh_hm");
+		_library.bindBranch(me_Zh_hp,   "me_Zh_hp");
+		_library.bindBranch(me_Zh_hl,   "me_Zh_hl");
+
 
 	}
 
