@@ -28,6 +28,10 @@ for wbin in wjets_bins:
         }
 
 
+# structure['Wjets_HT']  = {  
+#                   'isSignal' : 0,
+#                   'isData'   : 0
+#               }
 
 structure['DY']  = {  
                   'isSignal' : 0,

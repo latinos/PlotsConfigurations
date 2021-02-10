@@ -100,46 +100,46 @@ nuisances['fake_syst']  = {
                 'cuts': phase_spaces_tot
                }
 
-nuisances['fake_ele']  = {
-                'name'  : 'CMS_fake_ele_2017',
-                'kind'  : 'weight',
-                'type'  : 'shape',
-                'samples'  : {
-                              'Fake'     : [ fakeW_jetUp , fakeW_jetDown ],
-                             },
-                'cuts':  phase_spaces_tot_ele
-}
+# nuisances['fake_ele']  = {
+#                 'name'  : 'CMS_fake_ele_2017',
+#                 'kind'  : 'weight',
+#                 'type'  : 'shape',
+#                 'samples'  : {
+#                               'Fake'     : [ fakeW_jetUp , fakeW_jetDown ],
+#                              },
+#                 'cuts':  phase_spaces_tot_ele
+# }
 
-nuisances['fake_ele_stat']  = {
-                'name'  : 'CMS_fake_ele_stat_2017',
-                'kind'  : 'weight',
-                'type'  : 'shape',
-                'samples'  : {
-                              'Fake'      : [ fakeW_statUp , fakeW_statDown ],
-                             },
-                'cuts':  phase_spaces_tot_ele
-}
+# nuisances['fake_ele_stat']  = {
+#                 'name'  : 'CMS_fake_ele_stat_2017',
+#                 'kind'  : 'weight',
+#                 'type'  : 'shape',
+#                 'samples'  : {
+#                               'Fake'      : [ fakeW_statUp , fakeW_statDown ],
+#                              },
+#                 'cuts':  phase_spaces_tot_ele
+# }
 
-nuisances['fake_mu']  = {
-                'name'  : 'CMS_fake_mu_2017',
-                'kind'  : 'weight',
-                'type'  : 'shape',
-                'samples'  : {
-                              'Fake'     : [ fakeW_jetUp , fakeW_jetDown ],
-                             },
-                'cuts':  phase_spaces_tot_mu
-}
+# nuisances['fake_mu']  = {
+#                 'name'  : 'CMS_fake_mu_2017',
+#                 'kind'  : 'weight',
+#                 'type'  : 'shape',
+#                 'samples'  : {
+#                               'Fake'     : [ fakeW_jetUp , fakeW_jetDown ],
+#                              },
+#                 'cuts':  phase_spaces_tot_mu
+# }
 
 
-nuisances['fake_mu_stat']  = {
-                'name'  : 'CMS_fake_mu_stat_2017',
-                'kind'  : 'weight',
-                'type'  : 'shape',
-                'samples'  : {
-                              'Fake'     :[ fakeW_statUp , fakeW_statDown ],
-                             },
-                'cuts':  phase_spaces_tot_mu
-}
+# nuisances['fake_mu_stat']  = {
+#                 'name'  : 'CMS_fake_mu_stat_2017',
+#                 'kind'  : 'weight',
+#                 'type'  : 'shape',
+#                 'samples'  : {
+#                               'Fake'     :[ fakeW_statUp , fakeW_statDown ],
+#                              },
+#                 'cuts':  phase_spaces_tot_mu
+# }
 
 # ##### Btag nuisances
 

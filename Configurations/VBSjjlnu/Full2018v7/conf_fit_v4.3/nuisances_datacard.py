@@ -466,7 +466,7 @@ for sample in samples_PS:
                     'kind'  : 'weight',
                     'type'  : 'shape',
                     'samples'  : {
-                        sample :  ['PSWeight[2]', 'PSWeight[0]'],
+                        sample :  ['PSWeight[3]', 'PSWeight[1]'], 
                     }
                 }
 
@@ -510,6 +510,25 @@ nuisances['PU']  = {
                 'AsLnN'      : '1',
 }
 
+######## PDF uncertainty
+for s in mc:        
+    if s in ["VBS", "top","Wjets_HT"]: continue 
+    nuisances['pdf_weight_'+s] = {
+        'name'  : 'pdf_weight_'+s,
+        'kind'  : 'weight_envelope',
+        'type'  : 'shape',
+        'samples' :  { s: [' Alt$(LHEPdfWeight['+str(i)+'], 1.)' for i in range(0,103)]},
+        'AsLnN':  '1'
+    }
+
+import json, os
+VBS_pdf_factors = json.load(open(os.getenv("CMSSW_BASE") + "/src/PlotsConfigurations/Configurations/VBSjjlnu/Full2018v7/conf_fit_v4.3/PDF_VBS_normfactors.json"))
+nuisances['pdf_weight_VBS'] = {
+    'name'  : 'pdf_weight_VBS_accept',
+    'kind'  : 'weight_envelope',
+    'type'  : 'shape',
+    'samples' :  { "VBS": [' Alt$(LHEPdfWeight['+str(i)+'], 1.) * '+ str(VBS_pdf_factors["VBS"]['pdf_weight_'+str(i)])  for i in range(0,103) ]}
+}
 
 # nuisances['UE']  = {
 #                 'name'  : 'UE', 
@@ -586,4 +605,4 @@ for n in nuisances.values():
    
 # print ' '.join(nuis['name'] for nname, nuis in nuisances.iteritems() if nname not in ('lumi', 'stat'))
 
-# nuisances = {k:v for k,v in nuisances.items() if 'PS' in k} #if 'PS' in k or 'QCD' in k
+nuisances = {k:v for k,v in nuisances.items() if 'pdf_weight'  in k} #if 'PS' in k or 'QCD' in k

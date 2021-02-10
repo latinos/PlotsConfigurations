@@ -18,13 +18,13 @@ for cut in iF.GetListOfKeys():
     for var in iF.Get(cut.GetName()).GetListOfKeys():
         if args.exclude_vars and  var.GetName() in args.exclude_vars: continue
         print cut.GetName(), var.GetName()
-        # data_ele = iF.Get("{}/{}/histo_DATA_ele".format(cut.GetName(), var.GetName()))
-        # data_mu = iF.Get("{}/{}/histo_DATA_mu".format(cut.GetName(), var.GetName()))
+        data_ele = iF.Get("{}/{}/histo_DATA_ele".format(cut.GetName(), var.GetName()))
+        data_mu = iF.Get("{}/{}/histo_DATA_mu".format(cut.GetName(), var.GetName()))
         fake_ele = iF.Get("{}/{}/histo_Fake_ele".format(cut.GetName(), var.GetName()))
         fake_mu = iF.Get("{}/{}/histo_Fake_mu".format(cut.GetName(), var.GetName()))
 
-        # data_tot = data_ele.Clone("histo_DATA")
-        # data_tot.Add(data_mu)
+        data_tot = data_ele.Clone("histo_DATA")
+        data_tot.Add(data_mu)
         fake_tot = fake_ele.Clone("histo_Fake")
         fake_tot.Add(fake_mu)
 
@@ -40,7 +40,7 @@ for cut in iF.GetListOfKeys():
                 histo_nuis.append(fake_ntot)
 
         iF.cd("{}/{}/".format(cut.GetName(), var.GetName()))
-        # data_tot.Write()
+        data_tot.Write()
         fake_tot.Write()
         for hn in histo_nuis: hn.Write()
 

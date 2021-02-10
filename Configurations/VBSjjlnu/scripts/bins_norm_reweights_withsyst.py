@@ -27,12 +27,15 @@ exec(open(args.conf))
 exec(open(samplesFile))
 exec(open(nuisancesFile))
 
+print(nuisancesFile)
+
 import LatinoAnalysis.ShapeAnalysis.utils as utils
 
 subsamplesmap = utils.flatten_samples(samples)
 utils.update_nuisances_with_subsamples(nuisances, subsamplesmap)
 
 def get_syst_uncertainty(cutName,sampleName,variableName, histo, fileIn):
+    print ("Working on ", cutName, sampleName, variableName, fileIn)
     mynuisances = {}
     nuisances_vy_up     = {}
     nuisances_vy_do     = {}
@@ -48,7 +51,7 @@ def get_syst_uncertainty(cutName,sampleName,variableName, histo, fileIn):
             #print "skip this nuisance since 100 percent uncertainty :: ", nuisanceName
             else :
                 mynuisances[nuisanceName] = nuisances[nuisanceName]
-        
+    
     nuisanceHistos = ({}, {})
     for nuisanceName, nuisance in mynuisances.iteritems():
         #print ("Nuisance: ", nuisanceName)
@@ -87,8 +90,7 @@ def get_syst_uncertainty(cutName,sampleName,variableName, histo, fileIn):
             for ivar, shapeNameVar in enumerate(shapeNameVars):
                 histoVar = fileIn.Get(shapeNameVar)
                 nuisanceHistos[ivar][nuisanceName] = histoVar
-    #print (nuisanceHistos)
-
+    
     for ivar, nuisances_vy in enumerate([nuisances_vy_up, nuisances_vy_do]):
         for nuisanceName, nuisance in mynuisances.iteritems():
             #print('CCCC', nuisanceName)
@@ -114,9 +116,11 @@ def get_syst_uncertainty(cutName,sampleName,variableName, histo, fileIn):
         # now we need to tell wthether the variation is actually up or down ans sum in quadrature those with the same sign 
         up = nuisances_vy_up[nuisanceName]
         do = nuisances_vy_do[nuisanceName]
+        
         up_is_up = (up > tgrMC_vy)
         dup2 = np.square(up - tgrMC_vy)
         ddo2 = np.square(do - tgrMC_vy)
+        # print(nuisanceName, dup2,ddo2)
         nuisances_err2_up += np.where(up_is_up, dup2, ddo2)
         nuisances_err2_do += np.where(up_is_up, ddo2, dup2)
 
@@ -147,9 +151,10 @@ for cut in args.cuts:
                 tot_mc = h.Clone()
                 tot_mc.SetName("totMC") 
 
-        data_hist = R.gDirectory.Get("histo_DATA")
+        data_hist_orig = R.gDirectory.Get("histo_DATA")
+        data_minus_others = data_hist_orig.Clone("data_minus_others")
         # Remove all others MC from data
-        data_hist.Add(tot_mc, -1)
+        data_minus_others.Add(tot_mc, -1)
         
         samplestoweight = {}
         errors = {}
@@ -168,14 +173,24 @@ for cut in args.cuts:
                     # used for ibin == 1 case
                     weights.append(1.)
                     continue
+
                 nom = reweight_hist.GetBinContent(ibin)
-                w = data_hist.GetBinContent(ibin) / nom
-                #err = sqrt(reweight_hist.GetBinContent(ibin))
-                err_sys_up =  errors[sample][0][ibin-1] #sum square, sqrt(Ndata)
-                err_sys_do =  errors[sample][1][ibin-1]
+                ref = data_minus_others.GetBinContent(ibin)
+                w = ref / nom
+
+                sigma_ref = sqrt(data_hist_orig.GetBinContent(ibin))
+                sigma_nom_up =  errors[sample][0][ibin-1] 
+                sigma_nom_do =  errors[sample][1][ibin-1]
+
+                err_w_up_syst = sqrt( ((ref/nom**2)**2)*sigma_nom_up**2 )
+                err_w_do_syst = sqrt( ((ref/nom**2)**2)*sigma_nom_do**2 )
+                err_w_stat = (sigma_ref/nom)
+                err_tot_up = sqrt(err_w_stat**2 + err_w_up_syst**2)
+                err_tot_do = sqrt(err_w_stat**2 + err_w_do_syst**2)
+                
                 weights.append(w)
                 if w != 1.0:
-                    results.append((cut, sample, w, err/nom, err_sys_up/nom, err_sys_do/nom ))
+                    results.append((cut, sample, w, err_w_stat, err_w_up_syst, err_w_do_syst,err_tot_up,err_tot_do ))
 
             sample_weights[sample] = weights
 
@@ -190,6 +205,6 @@ for cut in args.cuts:
 iF.Close()
 
 import pandas as pd
-df = pd.DataFrame(results, columns=["channel", "bin", "weight", "stat_error","syst_up","syst_do"])
+df = pd.DataFrame(results, columns=["channel", "bin", "weight","err_stat","err_syst_up","err_syst_do","err_tot_up","err_tot_do"])
 print(df)
 df.to_csv(args.output, sep=";", index=False)

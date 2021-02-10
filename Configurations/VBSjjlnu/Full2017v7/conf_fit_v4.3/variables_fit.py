@@ -24,14 +24,14 @@ variables['DNNoutput_res_v1'] = {
 }
 
 
-variables['DNNoutput_res_v2'] = {
-    'name': 'DNNoutput_resolved_v2',
-    'range': (25,0.,1),
-    'xaxis': 'DNN output, resolved',
-    'fold': 3 ,
-    'cuts':  res_cuts,
-    'blind': { c:[0.6,1] for c in cuts if "_sig_" in c},
-}
+# variables['DNNoutput_res_v2'] = {
+#     'name': 'DNNoutput_resolved_v2',
+#     'range': (25,0.,1),
+#     'xaxis': 'DNN output, resolved',
+#     'fold': 3 ,
+#     'cuts':  res_cuts,
+#     'blind': { c:[0.6,1] for c in cuts if "_sig_" in c},
+# }
 
 
 variables['DNNoutput_boost'] = {

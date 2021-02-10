@@ -1,15 +1,20 @@
 #test
-from collections import OrderedDict
+from collections import OrderedDict, defaultdict
 import re
+import os
 from pprint import pprint
 
 
 #Order of sample for plot in top_only 
-plots_top_order = [ "vbfV+VV+VVV", 'Vg+VgS', 'DY', 'Fake', 'Wjets','top','VBS']
-plots_wjets_order = [ "vbfV+VV+VVV", 'Vg+VgS', 'DY', 'Fake', 'top','Wjets', 'VBS']
+plots_top_order_res = [  'VV+VVV', 'DY', "Others",'Fake', 'Wjets','top','VBS']
+plots_wjets_order_res = [  'VV+VVV', 'DY', "Others", 'top','Fake',  'Wjets', 'VBS']
+plots_top_order_boost = [  'VV+VVV',  'DY', "Others",'Fake', 'Wjets','top','VBS']
+plots_wjets_order_boost = [  'VV+VVV', 'DY', "Others",'top','Fake','Wjets', 'VBS']
 
 # '#FF3D00',F57C00
 wjets_palette = ['#FFC400','#FFAB00', '#FF6D00','#FF3D00','#DD2C00','#c41e08']
+
+signal_for_bins = '#eb21a1'
 
 
 def filter_cuts(cuts, filter):
@@ -23,11 +28,12 @@ def reorder_plots(groupPlot, order):
     new_group = OrderedDict()
     for g in order:
         new_group[g] = groupPlot[g]
+    pprint(new_group)
     return new_group
 
 
 
-def define_bins_res(groupPlot,plot):
+def define_bins_res(groupPlot,plot, plot_order):
     new_plots = { k:v for k,v in plot.items() if k != "Wjets_HT"}
     new_group =  { k:v for k,v in groupPlot.items() if k != "Wjets"}
     wjets_list = []
@@ -47,10 +53,18 @@ def define_bins_res(groupPlot,plot):
             'samples'  : [sname],
             'fill': 1001
         }
-    new_group = reorder_plots(new_group, [ "vbfV+VV+VVV", 'Vg+VgS', 'DY', 'Fake', 'top'] + wjets_list + ['VBS'] )
+    new_order = [ ]
+    for o in plot_order:
+        if o == "Wjets":
+            new_order += wjets_list
+        else:
+            new_order.append(o)
+    new_group = reorder_plots(new_group, new_order )
+
+    new_group['VBS']['color'] = signal_for_bins
     return new_group, new_plots
 
-def define_bins_boost(groupPlot,plot):
+def define_bins_boost(groupPlot,plot, plot_order):
     new_plots = { k:v for k,v in plot.items() if k != "Wjets_HT"}
     new_group =  { k:v for k,v in groupPlot.items() if k != "Wjets"}
     wjets_list = []
@@ -70,172 +84,154 @@ def define_bins_boost(groupPlot,plot):
             'samples'  : [sname],
             'fill': 1001
         }
-    new_group = reorder_plots(new_group, [ "vbfV+VV+VVV", 'Vg+VgS', 'DY', 'Fake', 'top'] + wjets_list + ['VBS'] )
+    new_order = [ ]
+    for o in plot_order:
+        if o == "Wjets":
+            new_order += wjets_list
+        else:
+            new_order.append(o)
+    new_group = reorder_plots(new_group, new_order )
+
+    new_group['VBS']['color'] = signal_for_bins
     return new_group, new_plots
 
 
-norm_factors = {
-    "Wjets_HT_res_1": 
-        {
-            "res_wjetcr_ele":1.386,
-            "res_wjetcr_mu": 1.178,
-            "res_wjetcr_ele_mext":  1.430 ,
-            "res_wjetcr_mu_mext" : 1.206  ,
-            "res_wjetcr_ele_mint":  1.430 , # ext weights
-            "res_wjetcr_mu_mint" : 1.206  ,
-        },
-    "Wjets_HT_res_2": 
-        {
-            "res_wjetcr_ele":1.130,
-            "res_wjetcr_mu": 1.028,
-            "res_wjetcr_ele_mext":  1.174 ,
-            "res_wjetcr_mu_mext" :  1.045 ,
-            "res_wjetcr_ele_mint":  1.174 ,
-            "res_wjetcr_mu_mint" :  1.045 ,
-        },
-    "Wjets_HT_res_3": 
-        {
-            "res_wjetcr_ele":0.784,
-            "res_wjetcr_mu": 0.871,
-            "res_wjetcr_ele_mext":  0.777 ,
-            "res_wjetcr_mu_mext" :  0.881 ,
-             "res_wjetcr_ele_mint":  0.777 ,
-            "res_wjetcr_mu_mint" :  0.881 ,
-
-        },
-    "Wjets_HT_res_4": 
-        {
-            "res_wjetcr_ele":0.619,
-            "res_wjetcr_mu": 0.687,
-            "res_wjetcr_ele_mext": 0.59   ,
-            "res_wjetcr_mu_mext" : 0.711 ,
-             "res_wjetcr_ele_mint": 0.59   ,
-            "res_wjetcr_mu_mint" : 0.711 ,
-        },
-    "Wjets_HT_res_5": 
-        {
-            "res_wjetcr_ele":0.470,
-            "res_wjetcr_mu": 0.523,
-            "res_wjetcr_ele_mext": 0.53  ,
-            "res_wjetcr_mu_mext" : 0.527  ,
-             "res_wjetcr_ele_mint": 0.53  ,
-            "res_wjetcr_mu_mint" : 0.527  ,
-        }, 
-    "Wjets_HT_res_6": 
-        {
-            "res_wjetcr_ele":0.370,
-            "res_wjetcr_mu": 0.432,
-            "res_wjetcr_ele_mext": 0.379 ,
-            "res_wjetcr_mu_mext" : 0.397 ,
-            "res_wjetcr_ele_mint": 0.379 ,
-            "res_wjetcr_mu_mint" : 0.397 ,
-        }, 
-     "Wjets_HT_boost_1": 
-        {
-            "boost_wjetcr_ele":0.878,
-            "boost_wjetcr_mu": 0.701,
-            "boost_wjetcr_ele_mext": 0.823 ,
-            "boost_wjetcr_mu_mext": 0.954,
-            "boost_wjetcr_ele_mint": 0.823 ,
-            "boost_wjetcr_mu_mint": 0.954,
-        },
-    "Wjets_HT_boost_2": 
-        {
-            "boost_wjetcr_ele":0.848,
-            "boost_wjetcr_mu": 0.684,
-            "boost_wjetcr_ele_mext": 0.901,
-            "boost_wjetcr_mu_mext": 0.681 ,
-            "boost_wjetcr_ele_mint": 0.901,
-            "boost_wjetcr_mu_mint": 0.681 
-        },
-    "Wjets_HT_boost_3": 
-        {
-            "boost_wjetcr_ele":0.783,
-            "boost_wjetcr_mu": 0.741,
-            "boost_wjetcr_ele_mext": 0.750,
-            "boost_wjetcr_mu_mext": 0.729,
-             "boost_wjetcr_ele_mint": 0.750,
-            "boost_wjetcr_mu_mint": 0.729
-        },
-    "Wjets_HT_boost_4": 
-        {
-            "boost_wjetcr_ele":0.606,
-            "boost_wjetcr_mu": 0.696,
-            "boost_wjetcr_ele_mext": 0.614,
-            "boost_wjetcr_mu_mext": 0.649,
-            "boost_wjetcr_ele_mint": 0.614,
-            "boost_wjetcr_mu_mint": 0.649
-        },
-    "Wjets_HT_boost_5": 
-        {
-            "boost_wjetcr_ele":0.510,
-            "boost_wjetcr_mu": 0.574,
-            "boost_wjetcr_ele_mext": 0.539,
-            "boost_wjetcr_mu_mext": 0.505,
-            "boost_wjetcr_ele_mint": 0.539,
-            "boost_wjetcr_mu_mint": 0.505
-        }, 
-
-}
+def get_wjets_scaling(path):
+    import pandas
+    norm_factors = defaultdict(dict)
+    df = pandas.read_csv(path, sep=";")
+    for a, row in df.iterrows():
+        norm_factors[row.bin][row.channel] = row.weight
+        norm_factors[row.bin][row.channel.replace("wjetcr","topcr")] = row.weight
+        norm_factors[row.bin][row.channel.replace("wjetcr","sig")] = row.weight
+    return norm_factors
 
 
-def scaleBins(plot, cut):
-    for bin,w in norm_factors.items():
-       if cut not in bin: continue
+def scaleBins(plot, norm_factors):
+    for bin, w in norm_factors.items():
+       if bin not in plot: continue
        plot[bin]['cuts'] = w
        plot[bin].pop("scale")
-       print(plot[bin])
+    # for s,v in plot.items():
+    #     print s
+    #     pprint(v)
     return plot
 
 
 
-
 def customize(samples,cuts,variables,nuisances,plot,groupPlot, key=None):
-    if key=="top_only":
-        new_cuts = filter_cuts(cuts, r".*_topcr_.*")
-        new_groupPlot = reorder_plots(groupPlot,  plots_top_order)
+    if key=="top_boost":
+        new_cuts = filter_cuts(cuts, r"boost_topcr_.*")
+        new_groupPlot = reorder_plots(groupPlot,  plots_top_order_boost)
         return samples, new_cuts, variables, nuisances, plot, new_groupPlot
 
-    if key=="wjets_only":
-        new_cuts = filter_cuts(cuts, r".*_wjetcr_.*")
-        new_groupPlot = reorder_plots(groupPlot,  plots_wjets_order)
+    if key=="wjets_boost":
+        new_cuts = filter_cuts(cuts, r"boost_wjetcr_.*")
+        new_groupPlot = reorder_plots(groupPlot,  plots_wjets_order_boost)
         return samples, new_cuts, variables, nuisances, plot, new_groupPlot
 
-    if key=="signal_only":
-        new_cuts = filter_cuts(cuts, r".*_sig_.*")
-        new_groupPlot = reorder_plots(groupPlot,  plots_wjets_order)
+    if key=="signal_boost":
+        new_cuts = filter_cuts(cuts, r"boost_sig_.*")
+        new_groupPlot = reorder_plots(groupPlot,  plots_wjets_order_boost)
+        return samples, new_cuts, variables, nuisances, plot, new_groupPlot
+    
+    if key=="top_res":
+        new_cuts = filter_cuts(cuts, r"res_topcr_.*")
+        new_groupPlot = reorder_plots(groupPlot,  plots_top_order_res)
         return samples, new_cuts, variables, nuisances, plot, new_groupPlot
 
-    if key=="bins_res":
-        new_cuts = filter_cuts(cuts, r"res_.*_.*")
-        new_groupPlot, new_plot = define_bins_res(groupPlot, plot)
+    if key=="wjets_res":
+        new_cuts = filter_cuts(cuts, r"res_wjetcr_.*")
+        new_groupPlot = reorder_plots(groupPlot,  plots_wjets_order_res)
+        return samples, new_cuts, variables, nuisances, plot, new_groupPlot
+
+    if key=="signal_res":
+        new_cuts = filter_cuts(cuts, r"res_sig_.*")
+        new_groupPlot = reorder_plots(groupPlot,  plots_wjets_order_res)
+        return samples, new_cuts, variables, nuisances, plot, new_groupPlot
+
+    ###########################################
+    if key=="bins_wjets_res":
+        new_cuts = filter_cuts(cuts, r"res_wjetcr_.*")
+        new_groupPlot, new_plot = define_bins_res(groupPlot, plot, plots_wjets_order_res)
         return samples, new_cuts, variables, nuisances, new_plot, new_groupPlot
-
-    if key=="bins_boost":
-        new_cuts = filter_cuts(cuts, r"boost_.*_.*")
-        new_groupPlot, new_plot = define_bins_boost(groupPlot, plot)
+    if key=="bins_top_res":
+        new_cuts = filter_cuts(cuts, r"res_topcr_.*")
+        new_groupPlot, new_plot = define_bins_res(groupPlot, plot, plots_top_order_res)
+        return samples, new_cuts, variables, nuisances, new_plot, new_groupPlot
+    if key=="bins_signal_res":
+        new_cuts = filter_cuts(cuts, r"res_sig_.*")
+        new_groupPlot, new_plot = define_bins_res(groupPlot, plot, plots_wjets_order_res)
         return samples, new_cuts, variables, nuisances, new_plot, new_groupPlot
     
-    if key=="bins_res_scale":
-        new_cuts = ["res_wjetcr_mu","res_wjetcr_ele",
-                    "res_wjetcr_mu_mint","res_wjetcr_ele_mint","res_wjetcr_mu_mext","res_wjetcr_ele_mext"]
-        new_groupPlot, new_plot = define_bins_res(groupPlot, plot)
-        scale_plot = scaleBins(new_plot, 'res')
-        return samples, new_cuts, variables, nuisances, scale_plot, new_groupPlot
-
-    if key=="bins_boost_scale":
-        new_cuts = ["boost_wjetcr_mu","boost_wjetcr_ele",
-                   "boost_wjetcr_mu_mint","boost_wjetcr_ele_mint","boost_wjetcr_mu_mext","boost_wjetcr_ele_mext"]
-        new_groupPlot, new_plot = define_bins_boost(groupPlot, plot)
-        scale_plot = scaleBins(new_plot, 'boost')
-        return samples, new_cuts, variables, nuisances, scale_plot, new_groupPlot
-
-    if key=="rescale_VV":
-        new_cuts = filter_cuts(cuts, r"boost_.*_.*")
-        new_groupPlot, new_plot = define_bins_boost(groupPlot, plot)
-        new_plot["VV"]['scale'] = 1.147
+    if key=="bins_wjets_boost":
+        new_cuts = filter_cuts(cuts, r"boost_wjetcr_.*")
+        new_groupPlot, new_plot = define_bins_boost(groupPlot, plot, plots_wjets_order_boost)
         return samples, new_cuts, variables, nuisances, new_plot, new_groupPlot
+    if key=="bins_top_boost":
+        new_cuts = filter_cuts(cuts, r"boost_topcr_.*")
+        new_groupPlot, new_plot = define_bins_boost(groupPlot, plot, plots_top_order_boost)
+        return samples, new_cuts, variables, nuisances, new_plot, new_groupPlot
+    if key=="bins_signal_boost":
+        new_cuts = filter_cuts(cuts, r"boost_sig_.*")
+        new_groupPlot, new_plot = define_bins_boost(groupPlot, plot, plots_wjets_order_boost)
+        return samples, new_cuts, variables, nuisances, new_plot, new_groupPlot
+    
+    ######################################
+    if key == "wjets_rescale_res":
+        norm_factors = get_wjets_scaling(os.path.dirname(__file__) + "/wjets_norm/all.txt")
+        new_cuts = filter_cuts(cuts, r"res_wjetcr_.*")
+        new_groupPlot, new_plot = define_bins_res(groupPlot, plot, plots_wjets_order_res)
+        scale_plot = scaleBins(new_plot,  norm_factors)
+        return samples, new_cuts, variables, nuisances, scale_plot, new_groupPlot
+    if key == "wjets_rescale_boost":
+        norm_factors = get_wjets_scaling(os.path.dirname(__file__) + "/wjets_norm/all.txt")
+        new_cuts = filter_cuts(cuts, r"boost_wjetcr_.*")
+        new_groupPlot, new_plot = define_bins_boost(groupPlot, plot, plots_wjets_order_boost)
+        scale_plot = scaleBins(new_plot,  norm_factors)
+        return samples, new_cuts, variables, nuisances, scale_plot, new_groupPlot
+    if key == "signal_rescale_res":
+        norm_factors = get_wjets_scaling(os.path.dirname(__file__) + "/wjets_norm/all.txt")
+        new_cuts = filter_cuts(cuts, r"res_sig_.*")
+        new_groupPlot, new_plot = define_bins_res(groupPlot, plot, plots_wjets_order_res)
+        scale_plot = scaleBins(new_plot,  norm_factors)
+        return samples, new_cuts, variables, nuisances, scale_plot, new_groupPlot
+    if key == "signal_rescale_boost":
+        norm_factors = get_wjets_scaling(os.path.dirname(__file__) + "/wjets_norm/all.txt")
+        new_cuts = filter_cuts(cuts, r"boost_sig_.*")
+        new_groupPlot, new_plot = define_bins_boost(groupPlot, plot, plots_wjets_order_boost)
+        scale_plot = scaleBins(new_plot,  norm_factors)
+        return samples, new_cuts, variables, nuisances, scale_plot, new_groupPlot
+    if key == "top_rescale_res":
+        norm_factors = get_wjets_scaling(os.path.dirname(__file__) + "/wjets_norm/all.txt")
+        new_cuts = filter_cuts(cuts, r"res_topcr_.*")
+        new_groupPlot, new_plot = define_bins_res(groupPlot, plot, plots_top_order_res)
+        scale_plot = scaleBins(new_plot, norm_factors)
+        return samples, new_cuts, variables, nuisances, scale_plot, new_groupPlot
+    if key == "top_rescale_boost":
+        norm_factors = get_wjets_scaling(os.path.dirname(__file__) + "/wjets_norm/all.txt")
+        new_cuts = filter_cuts(cuts, r"boost_topcr_.*")
+        new_groupPlot, new_plot = define_bins_boost(groupPlot, plot, plots_top_order_boost)
+        scale_plot = scaleBins(new_plot,  norm_factors)
+        return samples, new_cuts, variables, nuisances, scale_plot, new_groupPlot
 
+    if key=="check_nuis":
+        sample = 'Fake'
+        new_cuts = filter_cuts(cuts, r"res_sig_mu")
+        new_groupPlot = OrderedDict()
+        new_plot = OrderedDict()
+        for gr, d in groupPlot.items():
+            if sample in gr:
+                new_groupPlot[gr] = d
+        for gr, d in plot.items():
+            if sample in gr:
+                new_plot[gr] = d
+        new_groupPlot["VBS"] = groupPlot["VBS"]
+        new_plot["VBS"] = plot["VBS"]
+        return samples, new_cuts, variables, nuisances, new_plot, new_groupPlot
 
     else:
         return samples,cuts,variables,nuisances,plot,groupPlot
+
+
+

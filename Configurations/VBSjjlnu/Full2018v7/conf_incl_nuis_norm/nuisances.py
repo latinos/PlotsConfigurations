@@ -1,7 +1,7 @@
 # nuisances
 # # # name of samples here must match keys in samples.py 
 
-mc =["DY", "top",  "Wjets_HT", "VV", "VVV", "VBF-V", "Vg", "VgS", "VBS"]
+mc =["DY", "top",  "Wjets_HT", "VV", "VVV", "VBF-V", "Vg", "VgS", "VBS", "ggWW"]
 # mc_norm = [m for m in mc if m not in ["VBS", "VV"]]
 # mc_sep =  ["VBS", "VV"]
 
@@ -31,13 +31,12 @@ phase_spaces_tot = phase_spaces_tot_ele + phase_spaces_tot_mu
 
 # ######################
 # # Theory nuisance
-for sample in mc :
-    nuisances['QCD_scale_'+sample] = {
-        'name'  : 'QCDscale_'+sample,
-        'kind'  : 'weight',
-        'type'  : 'shape',
-        'samples'  :  { sample: ["LHEScaleWeight[0]", "LHEScaleWeight[8]"] }
-    }
+nuisances['QCD_scale_VBS'] = {
+    'name'  : 'QCDscale_VBS',
+    'kind'  : 'weight',
+    'type'  : 'shape',
+    'samples'  :  { 'VBS': ["LHEScaleWeight[0]", "LHEScaleWeight[8]"] }
+}
 
 # #
 # # PS and UE
@@ -69,15 +68,15 @@ nuisances['PU']  = {
 
 
 
-# # ## Use the following if you want to apply the automatic combine MC stat nuisances.
-# nuisances['stat']  = {
-#               'type'  : 'auto',
-#               'maxPoiss'  : '10',
-#               'includeSignal'  : '1',
-#               #  nuisance ['maxPoiss'] =  Number of threshold events for Poisson modelling
-#               #  nuisance ['includeSignal'] =  Include MC stat nuisances on signal processes (1=True, 0=False)
-#               'samples' : {}
-#              }
+for i in range(0,103):
+    nuisances['pdf_weight_'+str(i)] = {
+        'name'  : 'pdf_weight_'+str(i),
+        'kind'  : 'weight',
+        'OneSided': True,
+        'type'  : 'shape',
+        'samples' :  {'VBS': ['Alt$(LHEPdfWeight['+str(i)+'], 1.)']}
+    }
+
 
 
 

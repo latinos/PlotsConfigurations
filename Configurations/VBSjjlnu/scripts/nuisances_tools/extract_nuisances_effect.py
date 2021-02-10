@@ -43,6 +43,7 @@ for cut in args.cuts:
             h_nom = iF.Get("{}/{}/histo_{}".format(cut, var, s ))
 
             for n in args.nuisances:
+                # print "{}/{}/histo_{}_{}Up".format(cut, var, s, n)
                 h_up = iF.Get("{}/{}/histo_{}_{}Up".format(cut, var, s, n)).Clone()
                 h_do = iF.Get("{}/{}/histo_{}_{}Down".format(cut, var, s, n)).Clone()
 

@@ -1,7 +1,7 @@
 config = {
     "top" :
      { 
-        "nuisances" : [ "CMS_PS_FSR","CMS_PS_ISR","QCDscale_top"],
+        "nuisances" : [ "CMS_PS_FSR","CMS_PS_ISR","QCDscale_top","CMS_PU_2016"],
         "phase_spaces" : {
             "res_ele" :  ["res_sig_ele", "res_wjetcr_ele", "res_topcr_ele"],
             "res_mu" :    ["res_sig_mu", "res_wjetcr_mu", "res_topcr_mu"],
@@ -23,7 +23,7 @@ for ir in range(1,6):
 
 for wj_res in wjets_bins['res']:
     config[wj_res] = { 
-        "nuisances" : [ "CMS_PS_FSR","CMS_PS_ISR","QCDscale_Wjets_HT"],
+        "nuisances" : [ "CMS_PS_FSR","CMS_PS_ISR","QCDscale_Wjets_HT","CMS_PU_2016"],
         "phase_spaces" : {
             "res_ele" :  ["res_sig_ele", "res_wjetcr_ele", "res_topcr_ele"],
             "res_mu" : ["res_sig_mu", "res_wjetcr_mu", "res_topcr_mu"]
@@ -33,7 +33,7 @@ for wj_res in wjets_bins['res']:
 
 for wj_boost in wjets_bins['boost']:
     config[wj_boost] = { 
-        "nuisances" : [ "CMS_PS_FSR","CMS_PS_ISR","QCDscale_Wjets_HT"],
+        "nuisances" : [ "CMS_PS_FSR","CMS_PS_ISR","QCDscale_Wjets_HT","CMS_PU_2016"],
         "phase_spaces" : {
             "boost_ele" : ["boost_sig_ele", "boost_wjetcr_ele", "boost_topcr_ele"],
             "boost_mu" :["boost_sig_mu", "boost_wjetcr_mu", "boost_topcr_mu"]

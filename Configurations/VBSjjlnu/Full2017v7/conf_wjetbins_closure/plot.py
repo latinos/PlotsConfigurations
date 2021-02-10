@@ -80,7 +80,7 @@ groupPlot['VV+VVV']  = {
                   'nameHR' : 'VV+VVV',
                   'isSignal' : 0,
                   'color': palette["Pink"], #palette["Peach3"],  
-                  'samples'  : ['VVV', 'VV'],
+                  'samples'  : ['VVV', 'VV', 'ggWW'],
                   'fill': 1001
               }
 
@@ -95,10 +95,10 @@ groupPlot['DY']  = {
               }
 
 groupPlot['Others']  = {  
-                'nameHR' : "Others",
+                'nameHR' : "VBF-V + V#gamma",
                 'isSignal' : 0,
                 'color':palette["GreenLighter"],# palette["Green5"],    #Green2
-                'samples'  : ['VBF-V', 'Vg','VgS' ],
+                'samples'  : ['VBF-V', 'Vg','VgS', ],
                 'fill': 1001
             }
 
@@ -185,7 +185,12 @@ plot['Vg']  = {
                   'scale'    : 1.   ,
               }   
          
-
+plot['ggWW']  = {
+                  'color': colors['kGreen']+3,  
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.   ,
+              }  
 
 plot['VgS']  = {  
                 'color': colors['kMagenta']+1,
@@ -240,6 +245,7 @@ plot['DATA']  = {
                  'isData'   : 1 ,
                  'isBlind'  : 0
              }
+
 
 
 

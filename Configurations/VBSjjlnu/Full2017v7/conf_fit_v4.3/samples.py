@@ -416,4 +416,4 @@ samples['DATA']  = {   'name': [ ] ,
 #                     samples['DATA_mu']['weights'].append(DataTrig[DataSet])
 
 
-# samples = {k:v for k,v in samples.items() if k  in ['Fake_ele',"Fake_mu"]}#
+#samples = {k:v for k,v in samples.items() if k not in ['Fake', "DATA"]}#

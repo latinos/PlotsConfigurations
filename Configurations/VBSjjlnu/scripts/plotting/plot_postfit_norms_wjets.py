@@ -62,18 +62,20 @@ for iy, year in enumerate((2016,2017,2018)):
         for wjetbin in Wjets_bins[cat]:
             data = df[(df.channel==channel) & (df.bin==wjetbin)]
             data_err = df_postfiterr[(df.channel==channel) & (df.bin==wjetbin)]
+           
             y = float((data.norm/data.prefitnorm).values[0])
+            postfit_err = (data_err.err * data.norm) / data.prefitnorm
+
             g.SetPoint(i, i+1+offset, y)
-            g_err.SetPoint(i, i+1+offset,data.norm/data.prefitnorm )
-            g_err.SetPointError(i, 0.035,0.035, data_err.err,data_err.err )
+            g_err.SetPoint(i, i+1+offset, y )
+            g_err.SetPointError(i, 0.035,0.035, postfit_err,postfit_err)
 
             if y > Max : Max = y
             if y < Min : Min = y
 
             data_pre = df_pre[(df_pre.channel==channel) & (df_pre.bin==wjetbin)]
-            
             g_pre.SetPoint(i, i+1+offset, float(data_pre.weight) )
-            g_pre.SetPointError(i, 0.06, 0.06, data_pre.syst_do, data_pre.syst_up )
+            g_pre.SetPointError(i, 0.06, 0.06, data_pre.err_tot_do, data_pre.err_tot_up )
         
             i+=1
         mg.Add(g_pre, "5")
