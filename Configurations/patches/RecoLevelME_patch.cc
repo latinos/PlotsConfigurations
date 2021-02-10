@@ -1,4 +1,3 @@
-
 //  Temporary on-the-fly wlep1pt var for nanoLatino trees nAODv7_2016/2017/2018v7 or earlier.
 
 
@@ -10,25 +9,28 @@
 #include "TLorentzVector.h"
 #include "TMath.h"
 #include "ZZMatrixElement/MELA/interface/Mela.h"
+#include "TSystem.h"
 
-
-//class RecoLevelME : public multidraw::TTreeFunction, public Mela {
 class RecoLevelME : public multidraw::TTreeFunction {
 	public:
 		RecoLevelME();
 		char const* getName() const override {return "RecoLevelME"; }
 		TTreeFunction* clone() const override {return new RecoLevelME();}
+
 		unsigned getNdata() override {return 1; }
 		double evaluate(unsigned) override;
-
+		
+		
 	protected:
 		void bindTree_(multidraw::FunctionLibrary&) override;
+
+		std::string me_name_;
+		unsigned vindex;
 
 		UIntValueReader*  nCleanJet{};
 		FloatArrayReader* CleanJet_pt{};
 		FloatArrayReader* CleanJet_eta{};
 		FloatArrayReader* CleanJet_phi{};
-
 
 		UIntValueReader*  nLepton{};
 		FloatArrayReader* Lepton_pt{};
@@ -52,7 +54,7 @@ class RecoLevelME : public multidraw::TTreeFunction {
 		IntArrayReader* FatJet_subJetIdx1{};
 		IntArrayReader* FatJet_subJetIdx2{};
 
-		FloatValueReader* me_Wh_hsm;
+		/*FloatValueReader* me_Wh_hsm;
 		FloatValueReader* me_Wh_hm;
 		FloatValueReader* me_Wh_hp;
 		FloatValueReader* me_Wh_hl;
@@ -62,9 +64,18 @@ class RecoLevelME : public multidraw::TTreeFunction {
 		FloatValueReader* me_Zh_hp;
 		FloatValueReader* me_Zh_hl;
 
+		FloatValueReader* pjjSm_Wh;
+		FloatValueReader* pjjTr_Wh;
+		FloatValueReader* pjjSm_Zh;
+		FloatValueReader* pjjTr_Zh;
+		FloatValueReader* meAvg_wh;
+		FloatValueReader* meAvg_zh;*/
+
+		std::string SignalType;
+
 	private:
 		Double_t LHCsqrts_=13., mh_=125.;
-		TVar::VerbosityLevel verbosity_=TVar::ERROR;
+		TVar::VerbosityLevel verbosity_ = TVar::SILENT;//ERROR
 		Mela* mela  = new Mela(LHCsqrts_, mh_, verbosity_);
 		
 
@@ -72,11 +83,16 @@ class RecoLevelME : public multidraw::TTreeFunction {
 
 	RecoLevelME::RecoLevelME():
 		TTreeFunction()
+		//me_name_{me_name}
+		//{
+  	      	//	me_name_ = me_name;
+		//}
 	{}
 
-	double 
+	double
 	RecoLevelME::evaluate(unsigned)
 	{
+		//std::map<char, float> MatrixElementsMap;
 
 		TLorentzVector L1(0.,0.,0.,0.);
 		TLorentzVector L2(0.,0.,0.,0.);
@@ -131,53 +147,109 @@ class RecoLevelME : public multidraw::TTreeFunction {
 		mela->setCurrentCandidateFromIndex(0);
 		
 		//Processes WH
-		float me_WH_hsm = 0.;
-		float me_WH_hm = 0.;
-		float me_WH_hp = 0.;
-		float me_WH_hl = 0.;
+		float me_Wh_hsm = 0.;
+		float me_Wh_hm = 0.;
+		float me_Wh_hp = 0.;
+		float me_Wh_hl = 0.;
+		float me_Wh_mixhm = 0.;
+		float me_Wh_mixhp = 0.;
+		float me_Wh_mixhl = 0.;
 
 		//SM Higgs
 		mela->setProcess(TVar::HSMHiggs, TVar::JHUGen, TVar::Had_WH);
-		mela->computeProdP(me_WH_hsm, true);
+		mela->computeProdP(me_Wh_hsm, true);
+		//MatrixElementsMap.insert({"me_Wh_hsm", me_Wh_hsm});
 
  		//Higgs minus
 		mela->setProcess(TVar::H0minus, TVar::JHUGen, TVar::Had_WH);
-		mela->computeProdP(me_WH_hm, true);
-		
+		mela->computeProdP(me_Wh_hm, true);
+		//MatrixElementsMap.insert({"me_Wh_hm", me_Wh_hm});
+
 		//Higgs plus
 		mela->setProcess(TVar::H0hplus, TVar::JHUGen, TVar::Had_WH);
-		mela->computeProdP(me_WH_hp, true);
+		mela->computeProdP(me_Wh_hp, true);
+		//MatrixElementsMap.insert({"me_Wh_hp", me_Wh_hp});
 
 		//Higgs lambda
 		mela->setProcess(TVar::H0_g1prime2, TVar::JHUGen, TVar::Had_WH);
-		mela->computeProdP(me_WH_hl, true);
+		mela->computeProdP(me_Wh_hl, true);
+		//MatrixElementsMap.insert({"me_Wh_hl", me_Wh_hl});
+
+		//Higgs Mix HM
+		mela->setProcess(TVar::SelfDefine_spin0, TVar::JHUGen, TVar::Had_WH);
+		mela->selfDHzzcoupl[0][gHIGGS_VV_1][0] = 1.;
+  		mela->selfDHzzcoupl[0][gHIGGS_VV_4][0] = 1.; 
+		mela->computeProdP(me_Wh_mixhm, true);
+		//MatrixElementsMap.insert({"me_Wh_mixhm", me_Wh_mixhm});
+
+		//Higgs Mix HP
+		mela->setProcess(TVar::SelfDefine_spin0, TVar::JHUGen, TVar::Had_WH);
+		mela->selfDHzzcoupl[0][gHIGGS_VV_1][0]= 1.;
+  		mela->selfDHzzcoupl[0][gHIGGS_VV_2][0]= 1.;
+		mela->computeProdP(me_Wh_mixhp, true);
+		//MatrixElementsMap.insert({"me_Wh_mixhp", me_Wh_mixhp});
+
+		//Higgs Mix HL
+		mela->setProcess(TVar::SelfDefine_spin0, TVar::JHUGen, TVar::Had_WH);
+		mela->selfDHzzcoupl[0][gHIGGS_VV_1][0]= 1.;
+		mela->selfDHzzcoupl[0][gHIGGS_VV_1_PRIME2][0]= 1;
+		mela->computeProdP(me_Wh_mixhl, true);
+		//MatrixElementsMap.insert({"me_Wh_mixhl", me_Wh_mixhl});
 
 		//Processes ZH
-		float me_ZH_hsm = 0.;
-		float me_ZH_hm = 0.;
-		float me_ZH_hp = 0.;
-		float me_ZH_hl = 0.;
+		float me_Zh_hsm = 0.;
+		float me_Zh_hm = 0.;
+		float me_Zh_hp = 0.;
+		float me_Zh_hl = 0.;
+		float me_Zh_mixhm = 0.;
+		float me_Zh_mixhp = 0.;
+		float me_Zh_mixhl = 0.;
+
+		
 
 		//SM Higgs
 		mela->setProcess(TVar::HSMHiggs, TVar::JHUGen, TVar::Had_ZH);
-		mela->computeProdP(me_ZH_hsm, true);
+		mela->computeProdP(me_Zh_hsm, true);
+		//MatrixElementsMap.insert({"me_Zh_hsm", me_Zh_hsm});
 
  		//Higgs minus
 		mela->setProcess(TVar::H0minus, TVar::JHUGen, TVar::Had_ZH);
-		mela->computeProdP(me_ZH_hm, true);
-		
+		mela->computeProdP(me_Zh_hm, true);
+		//MatrixElementsMap.insert({"me_Zh_hm", me_Zh_hm});
+
 		//Higgs plus
 		mela->setProcess(TVar::H0hplus, TVar::JHUGen, TVar::Had_ZH);
-		mela->computeProdP(me_ZH_hp, true);
+		mela->computeProdP(me_Zh_hp, true);
+		//MatrixElementsMap.insert({"me_Zh_hp", me_Zh_hp});
 
 		//Higgs lambda
 		mela->setProcess(TVar::H0_g1prime2, TVar::JHUGen, TVar::Had_ZH);
-		mela->computeProdP(me_ZH_hl, true);
+		mela->computeProdP(me_Zh_hl, true);
+		//MatrixElementsMap.insert({"me_Zh_hl", me_Zh_hl});
 
-		mela->resetInputEvent();
+		//Higgs Mix HM
+		mela->setProcess(TVar::SelfDefine_spin0, TVar::JHUGen, TVar::Had_ZH);
+		mela->selfDHzzcoupl[0][gHIGGS_VV_1][0] = 1.;
+  		mela->selfDHzzcoupl[0][gHIGGS_VV_4][0] = 1.; 
+		mela->computeProdP(me_Zh_mixhm, true);
+		//MatrixElementsMap.insert({"me_Zh_mixhm", me_Zh_mixhm});
+
+		//Higgs Mix HP
+		mela->setProcess(TVar::SelfDefine_spin0, TVar::JHUGen, TVar::Had_ZH);
+		mela->selfDHzzcoupl[0][gHIGGS_VV_1][0]= 1.;
+  		mela->selfDHzzcoupl[0][gHIGGS_VV_2][0]= 1.;
+		mela->computeProdP(me_Zh_mixhp, true);
+		//MatrixElementsMap.insert({"me_Zh_mixhp", me_Zh_mixhp});
+
+		//Higgs Mix HL
+		mela->setProcess(TVar::SelfDefine_spin0, TVar::JHUGen, TVar::Had_ZH);
+		mela->selfDHzzcoupl[0][gHIGGS_VV_1][0]= 1.;
+		mela->selfDHzzcoupl[0][gHIGGS_VV_1_PRIME2][0]= 1;
+		mela->computeProdP(me_Zh_mixhl, true);
+		//MatrixElementsMap.insert({"me_Zh_mixhl", me_Zh_mixhl});
 
 		//Comparison to Dermot's ME
-		std::cout << "* Matrix Element WH me_hsm * Lourdes: " << me_WH_hsm << " Dermot: " << *me_Wh_hsm->Get() << std::endl;
+		/*std::cout << "* Matrix Element WH me_hsm * Lourdes: " << me_WH_hsm << " Dermot: " << *me_Wh_hsm->Get() << std::endl;
 		std::cout << "* Matrix Element WH me_hm * Lourdes: " << me_WH_hm << " Dermot: " << *me_Wh_hm->Get() << std::endl;
 		std::cout << "* Matrix Element WH me_hp * Lourdes: " << me_WH_hp << " Dermot: " << *me_Wh_hp->Get() << std::endl;
 		std::cout << "* Matrix Element WH me_hl * Lourdes: " << me_WH_hl << " Dermot: " << *me_Wh_hl->Get() << std::endl;
@@ -185,58 +257,140 @@ class RecoLevelME : public multidraw::TTreeFunction {
 		std::cout << "* Matrix Element ZH me_hsm * Lourdes: " << me_ZH_hsm << " Dermot:" << *me_Zh_hsm->Get() << std::endl;
 		std::cout << "* Matrix Element ZH me_hm * Lourdes: " << me_ZH_hm << " Dermot: " << *me_Zh_hm->Get() << std::endl;
 		std::cout << "* Matrix Element ZH me_hp * Lourdes: " << me_ZH_hp << " Dermot: " << *me_Zh_hp->Get() << std::endl;
-		std::cout << "* Matrix Element ZH me_hl * Lourdes: " << me_ZH_hl << " Dermot: " << *me_Zh_hl->Get() << std::endl;
+		std::cout << "* Matrix Element ZH me_hl * Lourdes: " << me_ZH_hl << " Dermot: " << *me_Zh_hl->Get() << std::endl;*/
 
 		//VH correction
+   		float pjjSm_Wh = 0.;
+   		float pjjTr_Wh = 0.;
+   		float meAvg_wh = 0.;
 
+   		float pjjSm_Zh = 0.;
+   		float pjjTr_Zh = 0.;
+   		float meAvg_zh = 0.;
+
+   		mela->setProcess(TVar::HSMHiggs, TVar::JHUGen, TVar::Had_WH);
+   		mela->computeDijetConvBW(pjjSm_Wh, false);
+  		mela->computeDijetConvBW(pjjTr_Wh, true);
+   		mela->computeProdP(meAvg_wh, true); 
+   		mela->getConstant(meAvg_wh); 
+		//MatrixElementsMap.insert({"pjjSm_Wh", pjjSm_Wh});
+		//MatrixElementsMap.insert({"pjjTr_Wh", pjjTr_Wh});
+		//MatrixElementsMap.insert({"meAvg_wh", meAvg_wh});
+
+   		mela->setProcess(TVar::HSMHiggs, TVar::JHUGen, TVar::Had_ZH);
+   		mela->computeDijetConvBW(pjjSm_Zh, false);
+  		mela->computeDijetConvBW(pjjTr_Zh, true);
+   		mela->computeProdP(meAvg_zh, true); 
+   		mela->getConstant(meAvg_zh); 
+		//MatrixElementsMap.insert({"pjjSm_Zh", pjjSm_Zh});
+		//MatrixElementsMap.insert({"pjjTr_Zh", pjjTr_Zh});
+		//MatrixElementsMap.insert({"meAvg_zh", meAvg_zh});
+
+   		//Comparison to Dermot's corrections
+		/*std::cout << "CORRECTION: * PjjSmeared_WH * Lourdes " << PjjSmeared_WH << " Dermot " << *pjjSm_Wh->Get() << std::endl;
+		std::cout << "CORRECTION: * PjjTrue_WH * Lourdes " << PjjTrue_WH << " Dermot " <<*pjjTr_Wh->Get() << std::endl;
+		std::cout << "CORRECTION: * avgME_WH * Lourdes " << avgME_WH << " Dermot " << *meAvg_wh->Get() << std::endl;
+
+		std::cout << "CORRECTION: * PjjSmeared_ZH * Lourdes " << PjjSmeared_ZH << " Dermot " << *pjjSm_Zh->Get()<< std::endl;
+		std::cout << "CORRECTION: * PjjTrue_ZH * Lourdes " << PjjTrue_ZH << " Dermot " << *pjjTr_Zh->Get()<< std::endl;
+		std::cout << "CORRECTION: * avgME_ZH * Lourdes " << avgME_ZH << " Dermot " << *meAvg_zh->Get() << std::endl;*/
+
+		mela->resetInputEvent(); 
+		//std::vector<double> mes = {0.};
+
+		//float required_matrixelement = MatrixElementsMap.find(name)->second();
 
 		return 0;
-
+		
 		}
 		else return -9999;
 	}
 
+
+	/*std::map<TString,float>
+	RecoLevelME::MatrixElementsMap(std::vector<float> mes)
+	{
+		std::map<TString, float> ME_map;
+
+		ME_map.insert({"me_WH_hsm", me_Wh_hsm});
+		ME_map.insert({"me_WH_hm",  me_Wh_hm});
+		ME_map.insert({"me_WH_hp",  me_Wh_hp});
+		ME_map.insert({"me_WH_hl",  me_Wh_hl});
+		ME_map.insert({"me_WH_mixhm", me_Wh_mixhm});
+		ME_map.insert({"me_WH_mixhp", me_Wh_mixhp});
+		ME_map.insert({"me_WH_mixhl", me_Wh_mixhl});
+
+		ME_map.insert({"me_ZH_hsm", me_Zh_hsm});
+		ME_map.insert({"me_ZH_hm",  me_Zh_hm});
+		ME_map.insert({"me_ZH_hp",  me_Zh_hp});
+		ME_map.insert({"me_ZH_hl",  me_Zh_hl});
+		ME_map.insert({"me_ZH_mixhm", me_Zh_mixhm});
+		ME_map.insert({"me_ZH_mixhp", me_Zh_mixhp});
+		ME_map.insert({"me_ZH_mixhl", me_Zh_mixhl});	
+
+		ME_map.insert({"PjjSmeared_WH", PjjSmeared_Wh});
+		ME_map.insert({"PjjTrue_WH", PjjTrue_WH});
+		ME_map.insert({"avgME_WH", avgME_WH});
+		
+		ME_map.insert({"PjjSmeared_ZH", PjjSmeared_ZH});
+		ME_map.insert({"PjjTrue_ZH", PjjTrue_ZH});
+		ME_map.insert({"avgME_ZH", avgME_ZH});
+
+	}*/
+
+
+
+
 	void
 	RecoLevelME::bindTree_(multidraw::FunctionLibrary& _library)
 	{
-		std::cout << "************LOADING RECO LEVEL Matrix Elements (MEs) ********" << std::endl;
-		_library.bindBranch(nCleanJet, "nCleanJet");
-  		_library.bindBranch(CleanJet_pt, "CleanJet_pt");
-  		_library.bindBranch(CleanJet_eta, "CleanJet_eta");
-  		_library.bindBranch(CleanJet_phi, "CleanJet_phi");
+		std::cout << "*LOADING RECO LEVEL Matrix Elements (MEs)*" << std::endl;
 
-  		_library.bindBranch(nLepton, "nLepton");
-  		_library.bindBranch(Lepton_pt, "Lepton_pt");
-  		_library.bindBranch(Lepton_eta, "Lepton_eta");
-  		_library.bindBranch(Lepton_phi, "Lepton_phi");
-
-  		_library.bindBranch(MET_pt, "MET_pt");
-		_library.bindBranch(PuppiMET_pt, "PuppiMET_pt");
-		_library.bindBranch(PuppiMET_phi, "PuppiMET_phi");
-
-		_library.bindBranch(nCleanFatJet, "nCleanFatJet");
-		_library.bindBranch(nSubJet, "nSubJet");
-		_library.bindBranch(CleanFatJet_pt, "CleanFatJet_pt");
+		//CleanJets
+		_library.bindBranch(nCleanJet, 		"nCleanJet");
+  		_library.bindBranch(CleanJet_pt, 	"CleanJet_pt");
+  		_library.bindBranch(CleanJet_eta, 	"CleanJet_eta");
+  		_library.bindBranch(CleanJet_phi, 	"CleanJet_phi");
+		//Leptons
+  		_library.bindBranch(nLepton, 		"nLepton");
+  		_library.bindBranch(Lepton_pt, 		"Lepton_pt");
+  		_library.bindBranch(Lepton_eta, 	"Lepton_eta");
+  		_library.bindBranch(Lepton_phi, 	"Lepton_phi");
+		//MET
+  		_library.bindBranch(MET_pt, 		"MET_pt");
+		_library.bindBranch(PuppiMET_pt, 	"PuppiMET_pt");
+		_library.bindBranch(PuppiMET_phi, 	"PuppiMET_phi");
+		//CleanFatJets
+		_library.bindBranch(nCleanFatJet, 	"nCleanFatJet");
+		_library.bindBranch(nSubJet, 		"nSubJet");
+		_library.bindBranch(CleanFatJet_pt, 	"CleanFatJet_pt");
 		_library.bindBranch(CleanFatJet_jetIdx, "CleanFatJet_jetIdx");
-
-		_library.bindBranch(FatJet_subJetIdx1, "FatJet_subJetIdx1");
-		_library.bindBranch(FatJet_subJetIdx2, "FatJet_subJetIdx2");
-
-		_library.bindBranch(nSubJet, "nSubJet");
-		_library.bindBranch(SubJet_pt, "SubJet_pt");
-		_library.bindBranch(SubJet_eta, "SubJet_eta");
-		_library.bindBranch(SubJet_phi, "SubJet_phi");
-		_library.bindBranch(SubJet_mass, "SubJet_mass");
-
-		_library.bindBranch(me_Wh_hsm,   "me_Wh_hsm");
-		_library.bindBranch(me_Wh_hm,   "me_Wh_hm");
-		_library.bindBranch(me_Wh_hp,   "me_Wh_hp");
-		_library.bindBranch(me_Wh_hl,   "me_Wh_hl");
-
-		_library.bindBranch(me_Zh_hsm,   "me_Zh_hsm");
-		_library.bindBranch(me_Zh_hm,   "me_Zh_hm");
-		_library.bindBranch(me_Zh_hp,   "me_Zh_hp");
-		_library.bindBranch(me_Zh_hl,   "me_Zh_hl");
+		//FatJets
+		_library.bindBranch(FatJet_subJetIdx1, 	"FatJet_subJetIdx1");
+		_library.bindBranch(FatJet_subJetIdx2, 	"FatJet_subJetIdx2");
+		//Subjets
+		_library.bindBranch(nSubJet, 		"nSubJet");
+		_library.bindBranch(SubJet_pt, 		"SubJet_pt");
+		_library.bindBranch(SubJet_eta, 	"SubJet_eta");
+		_library.bindBranch(SubJet_phi, 	"SubJet_phi");
+		_library.bindBranch(SubJet_mass, 	"SubJet_mass");
+		//ME WH
+		/*_library.bindBranch(me_Wh_hsm,   	"me_Wh_hsm");
+		_library.bindBranch(me_Wh_hm,   	"me_Wh_hm");
+		_library.bindBranch(me_Wh_hp,   	"me_Wh_hp");
+		_library.bindBranch(me_Wh_hl,   	"me_Wh_hl");
+		//ME ZH
+		_library.bindBranch(me_Zh_hsm,   	"me_Zh_hsm");
+		_library.bindBranch(me_Zh_hm,   	"me_Zh_hm");
+		_library.bindBranch(me_Zh_hp,   	"me_Zh_hp");
+		_library.bindBranch(me_Zh_hl,   	"me_Zh_hl");
+		//VH Corrections
+		_library.bindBranch(pjjSm_Wh, 		"pjjSm_Wh");
+		_library.bindBranch(pjjTr_Wh, 		"pjjTr_Wh");
+		_library.bindBranch(pjjSm_Zh, 		"pjjSm_Zh");
+		_library.bindBranch(pjjTr_Zh, 		"pjjTr_Zh");
+		_library.bindBranch(meAvg_wh, 		"meAvg_wh");
+		_library.bindBranch(meAvg_zh, 		"meAvg_zh");*/
 
 
 	}
