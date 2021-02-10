@@ -8,12 +8,12 @@
 
 using namespace NNEvaluation;
 
-class DNNprod : public multidraw::TTreeFunction {
+class DNNprodSemi : public multidraw::TTreeFunction {
 public:
-  DNNprod();
+  DNNprodSemi();
 
-  char const* getName() const override { return "DNNprod"; }
-  TTreeFunction* clone() const override { return new DNNprod(); }
+  char const* getName() const override { return "DNNprodSemi"; }
+  TTreeFunction* clone() const override { return new DNNprodSemi(); }
 
   unsigned getNdata() override { return 1; }
   double evaluate(unsigned) override;
@@ -57,7 +57,7 @@ protected:
 
 };
 
-DNNprod::DNNprod() :
+DNNprodSemi::DNNprodSemi() :
   TTreeFunction()
 {
   std::string cmsswbase(gSystem->Getenv("CMSSW_BASE"));
@@ -66,7 +66,7 @@ DNNprod::DNNprod() :
 }
 
 double
-DNNprod::evaluate(unsigned)
+DNNprodSemi::evaluate(unsigned)
 {
 
   unsigned nJet{*nCleanJet->Get()};
@@ -270,7 +270,7 @@ DNNprod::evaluate(unsigned)
 }
 
 void
-DNNprod::bindTree_(multidraw::FunctionLibrary& _library)
+DNNprodSemi::bindTree_(multidraw::FunctionLibrary& _library)
 {
   _library.bindBranch(event, "event");
   _library.bindBranch(Lepton_pt, "Lepton_pt");

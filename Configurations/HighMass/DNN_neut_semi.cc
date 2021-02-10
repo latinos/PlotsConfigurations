@@ -108,11 +108,14 @@ DNNneut::evaluate(unsigned)
     wr2pt = CleanJet_pt->At(wjet2);
     wr2eta = CleanJet_eta->At(wjet2);
     wr2phi = CleanJet_phi->At(wjet2);
-    for (unsigned i{0}; i != 4; ++i) {
-      if (i != wjet1 and i != wjet2){
-        vbfjet.push_back(i);
-      }
-    }
+    //for (unsigned i{0}; i != 4; ++i) {
+    //  if (i != wjet1 and i != wjet2){
+    //    vbfjet.push_back(i);
+    //  }
+    //}
+    // Mistake: Fix this later in next (final) DNN version
+    vbfjet.push_back(0);
+    vbfjet.push_back(1);
   }else{
     return 0.0;
   }

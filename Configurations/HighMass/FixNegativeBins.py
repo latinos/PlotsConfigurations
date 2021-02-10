@@ -36,7 +36,7 @@ for categories in newfile.GetListOfKeys(): # Cut directory
   category = newfile.GetDirectory(categories.GetName())
   newfile2.cd()
   newfile2.mkdir(categories.GetName())
-  for c in ['ggh', 'vbf', '0j', '1j', '2j']:
+  for c in ['ggh', 'vbf', '0j', '1j', '2j', 'notag', 'notag0j', 'notag1j', 'notag2j', 'ggh0j', 'ggh1j', 'ggh2j', 'vbf0j', 'vbf1j', 'vbf2j']:
     if c in categories.GetName(): categ = c
 
   for variables in category.GetListOfKeys(): # Variable directory
