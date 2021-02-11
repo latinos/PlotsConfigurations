@@ -10,3 +10,12 @@ aliases['fiducial'] = {
     'linesToAdd': ['.L %s/WW/FullRunII/fiducial/fiducial.cc+' % configurations],
     'class': 'FiducialRegion'
 }
+
+aliases['notfiducial'] = {
+    'expr': '!fiducial && (DressedLepton_pdgId->At(iPromptL[0]) * DressedLepton_pdgId->At(iPromptL[1]) == -143)'
+}
+
+aliases['nCleanGenJet'] = {
+    'linesToAdd': ['.L %s/Differential/ngenjet.cc+' % configurations],
+    'class': 'CountGenJet',
+}
