@@ -35,6 +35,7 @@ nuisances['pdf_gg_ACCEPT'] = {
     'type': 'lnN',
 }
 
+'''
 ##### Renormalization & factorization scales
 
 ## Shape nuisance due to QCD scale variations for DY
@@ -52,7 +53,7 @@ nuisances['QCDscale_VV'] = {
 #        'WW_alt': variations
     }
 }
-
+'''
 
 # NLL resummation variations
 nuisances['WWresum']  = {
@@ -77,7 +78,7 @@ nuisances['WWqscale']  = {
     },
 }
 
-
+'''
 # NLL resummation variations
 nuisances['WWresum0j']  = {
   'name'  : 'CMS_hww_WWresum_0j',
@@ -150,4 +151,4 @@ nuisances['WWqscale2j']  = {
     },
    'cutspost'  : lambda self, cuts: [cut for cut in cuts if '2j' in cut]
 }
-
+'''

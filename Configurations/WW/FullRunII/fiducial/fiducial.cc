@@ -31,6 +31,7 @@ protected:
   FloatArrayReader* DressedLepton_mass;
   FloatValueReader* GenMET_pt;
   FloatValueReader* GenMET_phi;
+  IntArrayReader* LeptonGen_MotherPID;
 };
 
 FiducialRegion::FiducialRegion() :
@@ -67,6 +68,9 @@ FiducialRegion::evaluate(unsigned)
 
   if (DressedLepton_pdgId->At(iPromptL[0]) * DressedLepton_pdgId->At(iPromptL[1]) != -143)
     return 0.;
+
+  if(abs(LeptonGen_MotherPID->At(iPromptL[0])) == 15 || abs(LeptonGen_MotherPID->At(iPromptL[1])) == 15)
+   return 0.;
 
   if (DressedLepton_pt->At(iPromptL[0]) < 25. || std::abs(DressedLepton_eta->At(iPromptL[0])) > 2.5 ||
       DressedLepton_pt->At(iPromptL[1]) < 20. || std::abs(DressedLepton_eta->At(iPromptL[1])) > 2.5)
@@ -122,4 +126,6 @@ FiducialRegion::bindTree_(multidraw::FunctionLibrary& _library)
   _library.bindBranch(DressedLepton_mass, "DressedLepton_mass");
   _library.bindBranch(GenMET_pt, "GenMET_pt");
   _library.bindBranch(GenMET_phi, "GenMET_phi");
+  _library.bindBranch(LeptonGen_MotherPID, "LeptonGen_MotherPID");
+
 }
