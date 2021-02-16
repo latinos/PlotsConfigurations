@@ -13,7 +13,8 @@ iF = R.TFile.Open(args.inputfile, "READ")
 oF = R.TFile.Open(args.outputfile,"RECREATE")
 oFF = R.TFile.Open(args.outputfile_fit,"UPDATE")
 
-samples= ['VBS','DY','top','VV','VVV','Vg','VgS', 'VBF-V','ggWW']
+# samples= ['VBS','DY','top','VV','VVV','Vg','VgS', 'VBF-V','ggWW']
+samples = ['DY']
 wjets_bins = {"res":[], "boost":[]}
 for ir in range(1,7):
     wjets_bins["res"].append("Wjets_HT_res_"+str(ir))
@@ -21,7 +22,7 @@ for ir in range(1,6):
     wjets_bins["boost"].append("Wjets_HT_boost_"+str(ir))
 
 variables = { 
-    "res": ['DNNoutput_res_v1','DNNoutput_res_v2','vbs_0_qgl_res','vjet_0_qgl_res','vjet_1_qgl_res'],
+    "res": ['DNNoutput_res_v1','vbs_0_qgl_res','vjet_0_qgl_res','vjet_1_qgl_res'],
     "boost":  ['vbs_0_qgl_boost','DNNoutput_boost']#
 }
 

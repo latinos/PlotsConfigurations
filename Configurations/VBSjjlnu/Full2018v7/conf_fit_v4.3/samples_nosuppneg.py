@@ -176,10 +176,10 @@ samples['top'] = {    'name'   :   nanoGetSampleFiles(directory_bkg,'TTTo2L2Nu')
                                  + nanoGetSampleFiles(directory_bkg,'TTWjets'),
                                 #+  nanoGetSampleFiles(directory_bkg,'TTWJetsToLNu'), #also this is available
                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC +'*btagSF_corr_top',
-                     'FilesPerJob' : 10,
+                     'FilesPerJob' : 8,
                      'EventsPerJob' : 70000,
-                     'suppressNegative' :['all'],
-                     'suppressNegativeNuisances' :['all'],
+                    #  'suppressNegative' :['all'],
+                    #  'suppressNegativeNuisances' :['all'],
                  }
 addSampleWeight(samples,'top','TTTo2L2Nu','Top_pTrw')
 addSampleWeight(samples,'top','TTToSemiLeptonic','Top_pTrw')
@@ -193,8 +193,7 @@ addSampleWeight(samples,'top','ST_t-channel_antitop',  "100. / 32.4")
 
 ################################
 ### Wjets samples
-
-Wjets_photon_filter = '!(Sum$( PhotonGen_isPrompt==1 && PhotonGen_pt>10 && abs(PhotonGen_eta)<2.5 ) > 0) '
+Wjets_photon_filter = '( !(Sum$(PhotonGen_isPrompt==1 && PhotonGen_pt>15 && abs(PhotonGen_eta)<2.6) > 0) )'
 
 samples['Wjets_HT'] = { 'name' :   
           nanoGetSampleFiles(directory_bkg, 'WJetsToLNu-LO')
@@ -206,21 +205,21 @@ samples['Wjets_HT'] = { 'name' :
           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT800_1200')
           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT1200_2500')
           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT2500_inf'),
-				'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch + '*' + Wjets_photon_filter +  '* ewknloW * btagSF_corr_Wjets_HT',
-				'FilesPerJob' :3 ,   
-        'subsamples': {
-            "res_1": '(VBS_category==1) && (w_lep_pt < 100)',
-            "res_2": '(VBS_category==1) && (w_lep_pt >= 100 && w_lep_pt < 200)',
-            "res_3": '(VBS_category==1) && (w_lep_pt >= 200 && w_lep_pt < 300)',
-            "res_4": '(VBS_category==1) && (w_lep_pt >= 300 && w_lep_pt < 400)',
-            "res_5": '(VBS_category==1) && (w_lep_pt >= 400 && w_lep_pt < 500)',
-            "res_6": '(VBS_category==1) && (w_lep_pt >= 500)',
-            "boost_1": '(VBS_category==0) && (w_lep_pt < 75)',
-            "boost_2": '(VBS_category==0) && (w_lep_pt >= 75 && w_lep_pt < 150)',
-            "boost_3": '(VBS_category==0) && (w_lep_pt >= 150 && w_lep_pt < 250)',
-            "boost_4": '(VBS_category==0) && (w_lep_pt >= 250 && w_lep_pt < 400)',
-            "boost_5": '(VBS_category==0) && (w_lep_pt >= 400)',
-        }
+				'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch + '* ewknloW * btagSF_corr_Wjets_HT *' + Wjets_photon_filter,
+				'FilesPerJob' :8,   
+        # 'subsamples': {
+        #     "res_1": '(VBS_category==1) && (w_lep_pt < 100)',
+        #     "res_2": '(VBS_category==1) && (w_lep_pt >= 100 && w_lep_pt < 200)',
+        #     "res_3": '(VBS_category==1) && (w_lep_pt >= 200 && w_lep_pt < 300)',
+        #     "res_4": '(VBS_category==1) && (w_lep_pt >= 300 && w_lep_pt < 400)',
+        #     "res_5": '(VBS_category==1) && (w_lep_pt >= 400 && w_lep_pt < 500)',
+        #     "res_6": '(VBS_category==1) && (w_lep_pt >= 500)',
+        #     "boost_1": '(VBS_category==0) && (w_lep_pt < 75)',
+        #     "boost_2": '(VBS_category==0) && (w_lep_pt >= 75 && w_lep_pt < 150)',
+        #     "boost_3": '(VBS_category==0) && (w_lep_pt >= 150 && w_lep_pt < 250)',
+        #     "boost_4": '(VBS_category==0) && (w_lep_pt >= 250 && w_lep_pt < 400)',
+        #     "boost_5": '(VBS_category==0) && (w_lep_pt >= 400)',
+        # }
 		}
 
 # Fix Wjets binned + LO 
@@ -294,8 +293,8 @@ samples['Vg']  = {  'name'   :   nanoGetSampleFiles(directory_bkg,'Wg_MADGRAPHML
                     'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC+'*(Gen_ZGstar_mass <= 0) *btagSF_corr_Vg_VgS_VBFV',
                     'FilesPerJob' : 15,
                     'EventsPerJob' : 70000,
-                    'suppressNegative' :['all'],
-                    'suppressNegativeNuisances' :['all'],
+                    # 'suppressNegative' :['all'],
+                    # 'suppressNegativeNuisances' :['all'],
                   }
 
 # the following baseW correction is needed in both v5 and v6 (for Zg, Not for ZGToLLG)
@@ -310,8 +309,8 @@ samples['VgS']  =  {  'name'   :   nanoGetSampleFiles(directory_bkg,'Wg_MADGRAPH
                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + ' * (gstarLow * 0.94 + gstarHigh * 1.14) *btagSF_corr_Vg_VgS_VBFV',
                       'FilesPerJob' : 15,
                       'EventsPerJob' : 70000,
-                      'suppressNegative' :['all'],
-                      'suppressNegativeNuisances' :['all'],
+                      # 'suppressNegative' :['all'],
+                      # 'suppressNegativeNuisances' :['all'],
                       # 'subsamples': {
                       #   'L': 'gstarLow',
                       #   'H': 'gstarHigh'
@@ -382,4 +381,4 @@ for Run in DataRun :
                         samples['DATA']['weights'].append(DataTrig[DataSet])
 
 
-# samples = {   key:v for key,v in samples.items() if key in ['Wjets_HT']}
+samples = {   key:v for key,v in samples.items() if key in ['Vg','VgS','top','Wjets_HT']}

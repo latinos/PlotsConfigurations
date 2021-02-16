@@ -1,7 +1,7 @@
 config = {
     "top" :
      { 
-        "nuisances" : [ "CMS_PS_FSR","CMS_PS_ISR","QCDscale_top","CMS_PU_2016"],
+        "nuisances" : [ "CMS_PS_FSR","CMS_PS_ISR","QCDscale_top","CMS_PU_2018"],
         "phase_spaces" : {
             "res_ele" :  ["res_sig_ele", "res_wjetcr_ele", "res_topcr_ele"],
             "res_mu" :    ["res_sig_mu", "res_wjetcr_mu", "res_topcr_mu"],

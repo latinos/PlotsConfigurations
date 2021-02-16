@@ -517,15 +517,15 @@ aliases['DNNoutput_resolved_v1'] = {
     ],
 }
 
-aliases['DNNoutput_resolved_v2'] = {
-    'class': 'MVAReaderResolved_mVauto_v25e_qglnuis',
-    'args': ( models_path+ 'res_sig/models/v25_e/',models_path+ 'res_sig/models/v25_e/cumulative_signal_2017.root', False, 1),
-    'linesToAdd':[
-        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-        'gSystem->Load("libDNNEvaluator.so")',
-        '.L ' + mva_reader_path + 'mva_reader_resolved_v25e_mVauto_qglnuis.cc+', 
-    ],
-}
+# aliases['DNNoutput_resolved_v2'] = {
+#     'class': 'MVAReaderResolved_mVauto_v25e_qglnuis',
+#     'args': ( models_path+ 'res_sig/models/v25_e/',models_path+ 'res_sig/models/v25_e/cumulative_signal_2017.root', False, 1),
+#     'linesToAdd':[
+#         'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+#         'gSystem->Load("libDNNEvaluator.so")',
+#         '.L ' + mva_reader_path + 'mva_reader_resolved_v25e_mVauto_qglnuis.cc+', 
+#     ],
+# }
 
 
 # aliases['DNNoutput'] = {

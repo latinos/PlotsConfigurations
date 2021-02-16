@@ -23,14 +23,14 @@ variables['DNNoutput_res_v1'] = {
     'blind': { c:[0.6,1] for c in cuts if "_sig_" in c},
 }
 
-variables['DNNoutput_res_v2'] = {
-    'name': 'DNNoutput_resolved_v2[0]',
-    'range': (25,0.,1),
-    'xaxis': 'DNN output, resolved',
-    'fold': 3 ,
-    'cuts':  res_cuts,
-    'blind': { c:[0.6,1] for c in cuts if "_sig_" in c},
-}
+# variables['DNNoutput_res_v2'] = {
+#     'name': 'DNNoutput_resolved_v2[0]',
+#     'range': (25,0.,1),
+#     'xaxis': 'DNN output, resolved',
+#     'fold': 3 ,
+#     'cuts':  res_cuts,
+#     'blind': { c:[0.6,1] for c in cuts if "_sig_" in c},
+# }
 
 variables['DNNoutput_boost'] = {
     'name': 'DNNoutput_boosted[0]',
@@ -56,14 +56,14 @@ for m in ["morphUp", "morphDown"]:
                 'cuts':  res_cuts,
                 'blind': { c:[0.6,1] for c in cuts if "_sig_" in c},
             }
-        variables['DNNoutput_res_v2_'+mtype] = {
-                'name': 'DNNoutput_resolved_v2['+str(ivar)+']',
-                'range': (25,0.,1),
-                'xaxis': 'DNN output, resolved v2, '+mtype,
-                'fold': 3 ,
-                'cuts':  res_cuts,
-                'blind': { c:[0.6,1] for c in cuts if "_sig_" in c},
-            }
+        # variables['DNNoutput_res_v2_'+mtype] = {
+        #         'name': 'DNNoutput_resolved_v2['+str(ivar)+']',
+        #         'range': (25,0.,1),
+        #         'xaxis': 'DNN output, resolved v2, '+mtype,
+        #         'fold': 3 ,
+        #         'cuts':  res_cuts,
+        #         'blind': { c:[0.6,1] for c in cuts if "_sig_" in c},
+        #     }
         variables['DNNoutput_boost_'+mtype] = {
                 'name': 'DNNoutput_boosted['+str(ivar)+']',
                 'range': ([0., 0.05, 0.1, 0.15, 0.20, 0.25, 0.3, 0.35, 0.4, 0.55, 0.7, 0.85, 1.],),

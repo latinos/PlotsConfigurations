@@ -406,32 +406,30 @@ for jtype in ["quark", "gluon"]:
 #    'OneSided': True
 # }
 
+
 # ######################
 # # Theory nuisance
 
 
 ## This should work for samples with either 8 or 9 LHE scale weights (Length$(LHEScaleWeight) == 8 or 9)
 # qcdscale_variations = ['LHEScaleWeight[0]', 'LHEScaleWeight[1]', 'LHEScaleWeight[3]', 'LHEScaleWeight[Length$(LHEScaleWeight)-4]', 'LHEScaleWeight[Length$(LHEScaleWeight)-2]', 'LHEScaleWeight[Length$(LHEScaleWeight)-1]']
-qcdscale_samples = [ m for m in mc if m not in ['ggWW']]
-for sample in  qcdscale_samples:
+import json, os
+VBS_pdf_factors = json.load(open(os.getenv("CMSSW_BASE") + "/src/PlotsConfigurations/Configurations/VBSjjlnu/Full2016v7/conf_fit_v4.3/pdf_normcorr_VBS.json"))
+nuis_factors = json.load(open(os.getenv("CMSSW_BASE") + "/src/PlotsConfigurations/Configurations/VBSjjlnu/Full2016v7/conf_fit_v4.3/nuisance_incl_norm_factors_2016.json"))
+
+for sample in mc :
+    if sample == "ggWW": continue
     if sample == 'VBS':
         nuisances['QCD_scale_VBS'] = {
             'name'  : 'QCDscale_VBS_accept',
             'kind'  : 'weight',
             'type'  : 'shape',
             # Normalization effect removed from 1l inclusive phase space
-            'samples'  :  { "VBS": ["0.985361285563* LHEScaleWeight[0]", "1.07854193809 * LHEScaleWeight[8]"] }
+            'samples'  :  { "VBS": [
+                                "LHEScaleWeight[0] * {}".format(nuis_factors["VBS"]["QCDscale_VBS"][0]),
+                                "LHEScaleWeight[8] * {}".format(nuis_factors["VBS"]["QCDscale_VBS"][1])
+                            ] }
         }
-        # nuisances['QCD_scale_VBS_accept'] = {
-        #     'name'  : 'QCDscale_VBS_accept',
-        #     'type'  : 'lnN',
-        #     'samples'  :  { "VBS": "1.01485618/0.92717766" }
-        # }
-    #     nuisances['QCD_scale_VBS_env'] = {
-    #         'name'  : 'QCDscale_VBS_env',
-    #         'type'  : 'lnN',
-    #         'samples'  :  { "VBS": qcdscale_variations }
-    #     }
     else:
         nuisances['QCD_scale_'+sample] = {
             'name'  : 'QCDscale_'+sample,
@@ -439,21 +437,16 @@ for sample in  qcdscale_samples:
             'type'  : 'shape',
             'samples'  :  { sample: ["LHEScaleWeight[0]", "LHEScaleWeight[8]"] }
         }
-        # nuisances['QCD_scale_'+sample+"_env"] = {
-        #     'name'  : 'QCDscale_'+sample + "_env",
-        #     'kind'  : 'weight_envelope',
-        #     'type'  : 'shape',
-        #     'samples'  :  { sample: qcdscale_variations }
-        # }
 
 
+### PS nuisance taken from 2018 effect, split by sample
 wjets_bins = []
 for ir in range(1,7):
     wjets_bins.append("Wjets_HT_res_"+str(ir))
 for ir in range(1,6):
     wjets_bins.append("Wjets_HT_boost_"+str(ir))
 
-samples_PS = ['top','DY','VV','VVV','Vg','VgS','VBF-V'] + wjets_bins
+samples_PS = ['top','DY','VV','VVV','Vg','VgS','VBF-V','ggWW'] + wjets_bins
 
 for sample in samples_PS:
     nuisances['PS_ISR_'+sample]  = {
@@ -492,40 +485,47 @@ nuisances['PS_FSR_VBS']  = {
                 }
             }
 
+
+######## PDF uncertainty
+nuisances['pdf_weight'] = {
+    'name'  : 'pdf_weight_16',
+    'kind'  : 'weight_envelope',
+    'type'  : 'shape',
+    'samples' :  { s: [' Alt$(LHEPdfWeight['+str(i)+'], 1.)' for i in range(0,103)] for s in mc if s not in ["VBS", "top","Wjets_HT"]},
+    'AsLnN':  '1'
+}
+nuisances['pdf_weight_VBS'] = {
+    'name'  : 'pdf_weight_16_accept',
+    'kind'  : 'weight_envelope',
+    'type'  : 'shape',
+    'samples' :  { "VBS": [' Alt$(LHEPdfWeight['+str(i)+'], 1.) * '+ str(VBS_pdf_factors["VBS"]['pdf_weight_'+str(i)])  for i in range(0,103) ]}
+}
+
+
+#############################
 nuisances['PU']  = {
                 'name'  : 'CMS_PU_2016',
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
-                    "Wjets_HT" : ['0.99204676881 * (puWeightUp/puWeight)','1.00865460396 * (puWeightDown/puWeight)'],
-                    "top" :      ['0.996091101837 * (puWeightUp/puWeight)','1.00420941803 * (puWeightDown/puWeight)'],
-                    "DY" :       ['0.98121974197 * (puWeightUp/puWeight)','1.02004378271 * (puWeightDown/puWeight)'],
-                    "VV" :       ['0.996601284653 * (puWeightUp/puWeight)','1.00365592352 * (puWeightDown/puWeight)'],
-                    "VVV" :      ['0.99634538233 * (puWeightUp/puWeight)', '1.00379087876 * (puWeightDown/puWeight)'],
-                    "Vg" :       ['0.984114244762 * (puWeightUp/puWeight)','1.01599335819 * (puWeightDown/puWeight)'],
-                    "VgS" :      ['0.998378915986 * (puWeightUp/puWeight)','0.9991876017 * (puWeightDown/puWeight)'],
-                    "VBS" :      ['0.99660348495 * (puWeightUp/puWeight)', '1.00372161204 * (puWeightDown/puWeight)'],
-                },
+                    s : ['(puWeightUp/puWeight) * {}'.format(nuis_factors[s]["CMS_PU_2016"][0]),
+                         '(puWeightDown/puWeight) * {}'.format(nuis_factors[s]["CMS_PU_2016"][1])] for s in mc },
                 'AsLnN'      : '1',
+}
+   
+
+# An overall 1.5% UE uncertainty will cover all the UEup/UEdo variations
+# And we don't observe any dependency of UE variations on njet
+nuisances['UE']  = {
+                'name'  : 'UE_CUET',
+                'skipCMS' : 1,
+                'type': 'lnN',
+                'samples': dict((skey, '1.015') for skey in mc if not skey in ['top','Wjets_HT']),
 }
 
 
-# # nuisances['UE']  = {
-# #                 'name'  : 'UE', 
-# #                 'skipCMS' : 1,
-# #                 'kind'  : 'tree',
-# #                 'type'  : 'shape',
-# #                 'samples'  : {
-# # #                  'WW'      : ['1.12720771849', '1.13963144574'],
-# #                   'ggH_hww' : ['1.00211385568', '0.994966378288'], 
-# #                   'qqH_hww' : ['1.00367895901', '0.994831373195']
-# #                 },
-# #                 'folderUp'   : treeBaseDir+'Fall2018_nAOD_v1_Full2018v2/MCl1loose2018v2__MCCorr2018__btagPerEvent__l2loose__l2tightOR2018__UEup',
-# #                 'folderDown' : treeBaseDir+'Fall2018_nAOD_v1_Full2018v2/MCl1loose2018v2__MCCorr2018__btagPerEvent__l2loose__l2tightOR2018__UEdo',
-# #                 'AsLnN'      : '1',
-# # }
-
-
+#########################
+# Top and W+jets normalizations
 
 for fl in ['ele','mu']:
     nuisances['Top_norm_boost_'+fl]  = {

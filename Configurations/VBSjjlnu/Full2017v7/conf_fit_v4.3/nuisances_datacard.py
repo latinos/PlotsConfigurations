@@ -444,27 +444,24 @@ for jtype in ["quark", "gluon"]:
 
 ## This should work for samples with either 8 or 9 LHE scale weights (Length$(LHEScaleWeight) == 8 or 9)
 # qcdscale_variations = ['LHEScaleWeight[0]', 'LHEScaleWeight[1]', 'LHEScaleWeight[3]', 'LHEScaleWeight[Length$(LHEScaleWeight)-4]', 'LHEScaleWeight[Length$(LHEScaleWeight)-2]', 'LHEScaleWeight[Length$(LHEScaleWeight)-1]']
+import json, os
 
-qcdscale_samples = [ m for m in mc if m not in ['ggWW']]
-for sample in  qcdscale_samples:
+VBS_pdf_factors = json.load(open(os.getenv("CMSSW_BASE") + "/src/PlotsConfigurations/Configurations/VBSjjlnu/Full2017v7/conf_fit_v4.3/pdf_normcorr_VBS.json"))
+nuis_factors = json.load(open(os.getenv("CMSSW_BASE") + "/src/PlotsConfigurations/Configurations/VBSjjlnu/Full2017v7/conf_fit_v4.3/nuisance_incl_norm_factors_2017.json"))
+
+for sample in mc :
+    if sample == "ggWW": continue
     if sample == 'VBS':
         nuisances['QCD_scale_VBS'] = {
             'name'  : 'QCDscale_VBS_accept',
             'kind'  : 'weight',
             'type'  : 'shape',
             # Normalization effect removed from 1l inclusive phase space
-            'samples'  :  { "VBS": ["0.990268645866* LHEScaleWeight[0]", "1.01555157115 * LHEScaleWeight[8]"] }
+            'samples'  :  { "VBS": [
+                                "LHEScaleWeight[0] * {}".format(nuis_factors["VBS"]["QCDscale_VBS"][0]),
+                                "LHEScaleWeight[8] * {}".format(nuis_factors["VBS"]["QCDscale_VBS"][1])
+                            ] }
         }
-        # nuisances['QCD_scale_VBS_accept'] = {
-        #     'name'  : 'QCDscale_VBS_accept',
-        #     'type'  : 'lnN',
-        #     'samples'  :  { "VBS": "1.00982698/0.98468657" }
-        # }
-        # nuisances['QCD_scale_VBS_env'] = {
-        #     'name'  : 'QCDscale_VBS_env',
-        #     'type'  : 'lnN',
-        #     'samples'  :  { "VBS": qcdscale_variations }
-        # }
     else:
         nuisances['QCD_scale_'+sample] = {
             'name'  : 'QCDscale_'+sample,
@@ -472,13 +469,6 @@ for sample in  qcdscale_samples:
             'type'  : 'shape',
             'samples'  :  { sample: ["LHEScaleWeight[0]", "LHEScaleWeight[8]"] }
         }
-        # nuisances['QCD_scale_'+sample+"_env"] = {
-        #     'name'  : 'QCDscale_'+sample + "_env",
-        #     'kind'  : 'weight_envelope',
-        #     'type'  : 'shape',
-        #     'samples'  :  { sample: qcdscale_variations }
-        # }
-
 
 wjets_bins = []
 for ir in range(1,7):
@@ -487,7 +477,8 @@ for ir in range(1,6):
     wjets_bins.append("Wjets_HT_boost_"+str(ir))
 
 
-for sample in ['top','DY','VV','VVV','Vg','VgS','VBF-V'] + wjets_bins:
+# Propagated from 2018 effect, split by sample
+for sample in ['top','DY','VV','VVV','Vg','VgS','VBF-V','ggWW'] + wjets_bins:
     nuisances['PS_ISR_'+sample]  = {
                     'name'  : 'CMS_PS_ISR_'+sample,
                     'kind'  : 'weight',
@@ -523,41 +514,47 @@ nuisances['PS_FSR_VBS']  = {
                 }
             }
 
-
+#########################################
 nuisances['PU']  = {
                 'name'  : 'CMS_PU_2017',
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
-                    "Wjets_HT" : ['0.976587579804 * (puWeight_noeras[1]/puWeight_noeras[0])','1.02296459727 * (puWeight_noeras[2]/puWeight_noeras[0])'],
-                    "top" :      ['0.993602541501 * (puWeight_noeras[1]/puWeight_noeras[0])','1.00656862608 * (puWeight_noeras[2]/puWeight_noeras[0])'],
-                    "DY" :       ['0.969835765743 * (puWeight_noeras[1]/puWeight_noeras[0])','1.03013343493 * (puWeight_noeras[2]/puWeight_noeras[0])'],
-                    "VV" :       ['0.993497172985 * (puWeight_noeras[1]/puWeight_noeras[0])','1.00666698529 * (puWeight_noeras[2]/puWeight_noeras[0])'],
-                    "VVV" :      ['0.992699056452 * (puWeight_noeras[1]/puWeight_noeras[0])','1.00707823846 * (puWeight_noeras[2]/puWeight_noeras[0])'],
-                    "Vg" :       ['0.971791998524 * (puWeight_noeras[1]/puWeight_noeras[0])','1.03183490897 * (puWeight_noeras[2]/puWeight_noeras[0])'],
-                    "VgS" :      ['0.976153836594 * (puWeight_noeras[1]/puWeight_noeras[0])','1.0229053164 * (puWeight_noeras[2]/puWeight_noeras[0])'],
-                    "VBF-V" :    ['0.987693075762 * (puWeight_noeras[1]/puWeight_noeras[0])','1.01210760081 * (puWeight_noeras[2]/puWeight_noeras[0])'],
-                    "VBS" :      ['0.995085134011 * (puWeight_noeras[1]/puWeight_noeras[0])','1.00513809098 * (puWeight_noeras[2]/puWeight_noeras[0])'],
-                },
+                    s : ['(puWeight_noeras[1]/puWeight_noeras[0]) * {}'.format(nuis_factors[s]["CMS_PU_2017"][0]),
+                         '(puWeight_noeras[2]/puWeight_noeras[0]) * {}'.format(nuis_factors[s]["CMS_PU_2017"][1])] for s in mc },
                 'AsLnN'      : '1',
 }
 
 
-# # nuisances['UE']  = {
-# #                 'name'  : 'UE', 
-# #                 'skipCMS' : 1,
-# #                 'kind'  : 'tree',
-# #                 'type'  : 'shape',
-# #                 'samples'  : {
-# # #                  'WW'      : ['1.12720771849', '1.13963144574'],
-# #                   'ggH_hww' : ['1.00211385568', '0.994966378288'], 
-# #                   'qqH_hww' : ['1.00367895901', '0.994831373195']
-# #                 },
-# #                 'folderUp'   : treeBaseDir+'Fall2018_nAOD_v1_Full2018v2/MCl1loose2018v2__MCCorr2018__btagPerEvent__l2loose__l2tightOR2018__UEup',
-# #                 'folderDown' : treeBaseDir+'Fall2018_nAOD_v1_Full2018v2/MCl1loose2018v2__MCCorr2018__btagPerEvent__l2loose__l2tightOR2018__UEdo',
-# #                 'AsLnN'      : '1',
-# # }
+######## PDF uncertainty
+nuisances['pdf_weight'] = {
+    'name'  : 'pdf_weight_1718',
+    'kind'  : 'weight_envelope',
+    'type'  : 'shape',
+    'samples' :  { s: [' Alt$(LHEPdfWeight['+str(i)+'], 1.)' for i in range(0,103)] for s in mc if s not in ["VBS", "top","Wjets_HT"]},
+    'AsLnN':  '1'
+}
 
+nuisances['pdf_weight_VBS'] = {
+    'name'  : 'pdf_weight_1718_accept',
+    'kind'  : 'weight_envelope',
+    'type'  : 'shape',
+    'samples' :  { "VBS": [' Alt$(LHEPdfWeight['+str(i)+'], 1.) * '+ str(VBS_pdf_factors["VBS"]['pdf_weight_'+str(i)])  for i in range(0,103) ]}
+}
+
+
+# An overall 1.5% UE uncertainty will cover all the UEup/UEdo variations
+# And we don't observe any dependency of UE variations on njet
+nuisances['UE']  = {
+                'name'  : 'UE_CP5',
+                'skipCMS' : 1,
+                'type': 'lnN',
+                'samples': dict((skey, '1.015') for skey in mc if skey not in ["Wjets_HT","top"]), 
+}
+
+
+###############
+# Normalization factors
 
 ###############
 # Samples normalizations

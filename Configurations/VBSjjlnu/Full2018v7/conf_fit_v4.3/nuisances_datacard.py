@@ -405,28 +405,23 @@ for jtype in ["quark", "gluon"]:
 # # Theory nuisance
 
 
-## This should work for samples with either 8 or 9 LHE scale weights (Length$(LHEScaleWeight) == 8 or 9)
-#qcdscale_variations = ['LHEScaleWeight[0]', 'LHEScaleWeight[1]', 'LHEScaleWeight[3]', 'LHEScaleWeight[Length$(LHEScaleWeight)-4]', 'LHEScaleWeight[Length$(LHEScaleWeight)-2]', 'LHEScaleWeight[Length$(LHEScaleWeight)-1]']
-qcdscale_samples = [ m for m in mc if m not in ['ggWW']]
-for sample in  qcdscale_samples:
+import json, os
+VBS_pdf_factors = json.load(open("/afs/cern.ch/work/d/dvalsecc/private/CMSSW_11_1_4" + "/src/PlotsConfigurations/Configurations/VBSjjlnu/Full2018v7/conf_fit_v4.3/pdf_normcorr_VBS.json"))
+nuis_factors = json.load(open("/afs/cern.ch/work/d/dvalsecc/private/CMSSW_11_1_4" + "/src/PlotsConfigurations/Configurations/VBSjjlnu/Full2018v7/conf_fit_v4.3/nuisance_incl_norm_factors_2018.json"))
+
+for sample in mc :
+    if sample == "ggWW": continue
     if sample == 'VBS':
         nuisances['QCD_scale_VBS'] = {
             'name'  : 'QCDscale_VBS_accept',
             'kind'  : 'weight',
             'type'  : 'shape',
             # Normalization effect removed from 1l inclusive phase space
-            'samples'  :  { "VBS": ["0.982225136519* LHEScaleWeight[0]", "1.0224891031 * LHEScaleWeight[8]"] }
+            'samples'  :  { "VBS": [
+                                "LHEScaleWeight[0] * {}".format(nuis_factors["VBS"]["QCDscale_VBS"][0]),
+                                "LHEScaleWeight[8] * {}".format(nuis_factors["VBS"]["QCDscale_VBS"][1])
+                            ] }
         }
-        # nuisances['QCD_scale_VBS_accept'] = {
-        #     'name'  : 'QCDscale_VBS_accept',
-        #     'type'  : 'lnN',
-        #     'samples'  :  { "VBS": "1.0180965/0.97800553" }
-        # }
-        # nuisances['QCD_scale_VBS_env'] = {
-        #     'name'  : 'QCDscale_VBS_env',
-        #     'type'  : 'lnN',
-        #     'samples'  :  { "VBS": qcdscale_variations }
-        # }
     else:
         nuisances['QCD_scale_'+sample] = {
             'name'  : 'QCDscale_'+sample,
@@ -434,12 +429,31 @@ for sample in  qcdscale_samples:
             'type'  : 'shape',
             'samples'  :  { sample: ["LHEScaleWeight[0]", "LHEScaleWeight[8]"] }
         }
-        # nuisances['QCD_scale_'+sample+"_env"] = {
-        #     'name'  : 'QCDscale_'+sample + "_env",
-        #     'kind'  : 'weight_envelope',
-        #     'type'  : 'shape',
-        #     'samples'  :  { sample: qcdscale_variations }
-        # }
+
+
+# #
+# # PS and UE
+# # #
+#### USE this for producing shapes
+
+# nuisances['PS_ISR']  = {
+#                 'name'  : 'CMS_PS_ISR',
+#                 'kind'  : 'weight',
+#                 'type'  : 'shape',
+#                 'samples'  : {   
+#                     s : ['PSWeight[2] * {}'.format(nuis_factors[s]["PS_ISR"][0]),
+#                          'PSWeight[0] * {}'.format(nuis_factors[s]["PS_ISR"][1]) ] for s in mc }
+#             }
+
+# nuisances['PS_FSR']  = {
+#                 'name'  : 'CMS_PS_FSR',
+#                 'kind'  : 'weight',
+#                 'type'  : 'shape',
+#                 'samples'  : {   
+#                     s : ['PSWeight[3] * {}'.format(nuis_factors[s]["PS_FSR"][0]),
+#                          'PSWeight[1] * {}'.format(nuis_factors[s]["PS_FSR"][1]) ] for s in mc}
+#             }
+
         
 wjets_bins = []
 for ir in range(1,7):
@@ -447,7 +461,7 @@ for ir in range(1,7):
 for ir in range(1,6):
     wjets_bins.append("Wjets_HT_boost_"+str(ir))
 
-
+######## Use this for datacards
 samples_PS = ['top','DY','VV','VVV','Vg','VgS','VBF-V'] + wjets_bins #noPS in ggWW
 # #
 # # PS and UE
@@ -490,60 +504,48 @@ nuisances['PS_FSR_VBS']  = {
                 }
             }
 
-#########################################
+
+##############
 
 nuisances['PU']  = {
                 'name'  : 'CMS_PU_2018',
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
-                    "Wjets_HT" : ['0.983251695148 * (puWeightUp/puWeight)','1.0168913615 * (puWeightDown/puWeight)'],
-                    "top" :      ['0.994086559794 * (puWeightUp/puWeight)','1.00594961774 * (puWeightDown/puWeight)'],
-                    "DY" :       ['0.973747991721 * (puWeightUp/puWeight)','1.02692487122 * (puWeightDown/puWeight)'],
-                    "VV" :       ['0.993645838554 * (puWeightUp/puWeight)','1.00655724449 * (puWeightDown/puWeight)'],
-                    "VVV" :      ['0.989856734822 * (puWeightUp/puWeight)','1.01001361488 * (puWeightDown/puWeight)'],
-                    "Vg" :       ['0.980622272259 * (puWeightUp/puWeight)','1.01976694136 * (puWeightDown/puWeight)'],
-                    "VgS" :      ['0.972831108836 * (puWeightUp/puWeight)','1.02801095581 * (puWeightDown/puWeight)'],
-                    "VBF-V" :    ['0.988438840863 * (puWeightUp/puWeight)','1.01146288807 * (puWeightDown/puWeight)'],
-                    "VBS" :      ['0.994664864312 * (puWeightUp/puWeight)','1.0054663756 * (puWeightDown/puWeight)'],
-                },
+                    s : ['(puWeightUp/puWeight) * {}'.format(nuis_factors[s]["CMS_PU_2018"][0]),
+                         '(puWeightDown/puWeight) * {}'.format(nuis_factors[s]["CMS_PU_2018"][1])] for s in mc },
                 'AsLnN'      : '1',
 }
 
 ######## PDF uncertainty
-for s in mc:        
-    if s in ["VBS", "top","Wjets_HT"]: continue 
-    nuisances['pdf_weight_'+s] = {
-        'name'  : 'pdf_weight_'+s,
-        'kind'  : 'weight_envelope',
-        'type'  : 'shape',
-        'samples' :  { s: [' Alt$(LHEPdfWeight['+str(i)+'], 1.)' for i in range(0,103)]},
-        'AsLnN':  '1'
-    }
+nuisances['pdf_weight'] = {
+    'name'  : 'pdf_weight_1718',
+    'kind'  : 'weight_envelope',
+    'type'  : 'shape',
+    'samples' :  { s: [' Alt$(LHEPdfWeight['+str(i)+'], 1.)' for i in range(0,103)] for s in mc if s not in ["VBS", "top","Wjets_HT"]},
+    'AsLnN':  '1'
+}
 
-import json, os
-VBS_pdf_factors = json.load(open(os.getenv("CMSSW_BASE") + "/src/PlotsConfigurations/Configurations/VBSjjlnu/Full2018v7/conf_fit_v4.3/PDF_VBS_normfactors.json"))
 nuisances['pdf_weight_VBS'] = {
-    'name'  : 'pdf_weight_VBS_accept',
+    'name'  : 'pdf_weight_1718_accept',
     'kind'  : 'weight_envelope',
     'type'  : 'shape',
     'samples' :  { "VBS": [' Alt$(LHEPdfWeight['+str(i)+'], 1.) * '+ str(VBS_pdf_factors["VBS"]['pdf_weight_'+str(i)])  for i in range(0,103) ]}
 }
 
-# nuisances['UE']  = {
-#                 'name'  : 'UE', 
-#                 'skipCMS' : 1,
-#                 'kind'  : 'tree',
-#                 'type'  : 'shape',
-#                 'samples'  : {
-# #                  'WW'      : ['1.12720771849', '1.13963144574'],
-#                   'ggH_hww' : ['1.00211385568', '0.994966378288'], 
-#                   'qqH_hww' : ['1.00367895901', '0.994831373195']
-#                 },
-#                 'folderUp'   : treeBaseDir+'Fall2018_nAOD_v1_Full2018v2/MCl1loose2018v2__MCCorr2018__btagPerEvent__l2loose__l2tightOR2018__UEup',
-#                 'folderDown' : treeBaseDir+'Fall2018_nAOD_v1_Full2018v2/MCl1loose2018v2__MCCorr2018__btagPerEvent__l2loose__l2tightOR2018__UEdo',
-#                 'AsLnN'      : '1',
-# }
+
+# An overall 1.5% UE uncertainty will cover all the UEup/UEdo variations
+# And we don't observe any dependency of UE variations on njet
+nuisances['UE']  = {
+                'name'  : 'UE_CP5',
+                'skipCMS' : 1,
+                'type': 'lnN',
+                'samples': dict((skey, '1.015') for skey in mc if skey not in ["Wjets_HT","top"]), 
+}
+
+
+###############
+# Normalization factors
 
 for fl in ['ele','mu']:
     nuisances['Top_norm_boost_'+fl]  = {
@@ -605,4 +607,4 @@ for n in nuisances.values():
    
 # print ' '.join(nuis['name'] for nname, nuis in nuisances.iteritems() if nname not in ('lumi', 'stat'))
 
-nuisances = {k:v for k,v in nuisances.items() if 'pdf_weight'  in k} #if 'PS' in k or 'QCD' in k
+# nuisances = {k:v for k,v in nuisances.items() if 'pdf_weight'  in k} #if 'PS' in k or 'QCD' in k

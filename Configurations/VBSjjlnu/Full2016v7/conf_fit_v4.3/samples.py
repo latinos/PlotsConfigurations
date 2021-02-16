@@ -115,7 +115,9 @@ DataTrig = {
 
 ############ DY ############
 
-DY_photon_filter = '*( !(Sum$(PhotonGen_isPrompt==1 && PhotonGen_pt>15 && abs(PhotonGen_eta)<2.6) > 0))'
+# DY_photon_filter = '*( !(Sum$(PhotonGen_isPrompt==1 && PhotonGen_pt>15 && abs(PhotonGen_eta)<2.6) > 0))'
+DY_photon_filter = '( !(Sum$(PhotonGen_isPrompt==1 && PhotonGen_pt>10 && abs(PhotonGen_eta)<2.6) > 0 && Sum$(LeptonGen_isPrompt==1 && LeptonGen_pt>15)>=2) )'
+
 
 samples['DY'] = {    'name'   :   #nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-50-LO_ext1')
                                   nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-50_ext2') 
@@ -141,7 +143,7 @@ samples['DY'] = {    'name'   :   #nanoGetSampleFiles(directory_bkg,'DYJetsToLL_
                                   + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-5to50_HT-600toinf')
                                   + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-5to50_HT-600toinf_ext1'),
                        'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC+'*'+DY_photon_filter+'*btagSF_corr_DY'  ,
-                       'FilesPerJob' : 9,
+                       'FilesPerJob' : 6,
                        'EventsPerJob' : 80000,
                        'suppressNegative' :['all'],
                        'suppressNegativeNuisances' :['all'],
@@ -218,6 +220,7 @@ addSampleWeight(samples,'top','ST_t-channel_antitop',  "100. / 32.4")
 #######################################################
 
 
+Wjets_photon_filter = '!(Sum$( PhotonGen_isPrompt==1 && PhotonGen_pt>10 && abs(PhotonGen_eta)<2.5 ) > 0) '
 samples['Wjets_HT'] = { 'name' :   
           #nanoGetSampleFiles(directory_bkg, 'WJetsToLNu')  #NLO inclusive samples
           nanoGetSampleFiles(directory_bkg, 'WJetsToLNu-LO')
@@ -238,8 +241,8 @@ samples['Wjets_HT'] = { 'name' :
           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT2500_inf')
           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT2500_inf_ext1')
           ,
-        'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch + '* EWKnloW * btagSF_corr_Wjets_HT', 
-        'FilesPerJob' : 6,
+        'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch + '*'+Wjets_photon_filter + '* EWKnloW * btagSF_corr_Wjets_HT', 
+        'FilesPerJob' : 3,
          'subsamples': {
             "res_1": '(VBS_category==1) && (w_lep_pt < 100)',
             "res_2": '(VBS_category==1) && (w_lep_pt >= 100 && w_lep_pt < 200)',
@@ -427,5 +430,5 @@ for Run in DataRun :
                         samples['DATA']['weights'].append(DataTrig[DataSet])
 
 
-#samples = {k:v for k,v in samples.items() if k  in ['top', 'Wjets_HT']}
+# samples = {k:v for k,v in samples.items() if k  in ['DY', 'Wjets_HT']}
 #samples = {k:v for k,v in samples.items() if k not in ['DATA','Fake']}

@@ -10,6 +10,7 @@ parser.add_argument("--nuisance-effect", help="Nuisance effect file", type=str)
 parser.add_argument("-o","--output", help="Output file", type=str)
 parser.add_argument("-s","--samples", help="Samples", type=str, nargs="+")
 parser.add_argument("-n","--nuisances", help="Nuisances", type=str, nargs="+")
+parser.add_argument("-nr","--nuisances-rename", help="Nuisances rename", type=str, nargs="+")
 parser.add_argument("-e","--exclude-vars", help="Exclude vars", type=str, nargs="+")
 
 args = parser.parse_args()
@@ -39,10 +40,11 @@ for cut in nF.GetListOfKeys():
                 # Exclude samples associated explicity to a cut (Wjets bins)
                 # if 'res' in cut.GetName() and 'boost' in sample: continue
                 # if 'boost' in cut.GetName() and 'res' in sample: continue
-                
-                for nuis in args.nuisances:
-                    h_up = h_nom.Clone("histo_{}_{}Up".format(sample, nuis))
-                    h_do = h_nom.Clone("histo_{}_{}Down".format(sample, nuis))
+                if args.nuisances_rename: rename_nuisances = args.nuisances_rename
+                else: rename_nuisances = args.nuisances
+                for nuis, nuis_rename in zip(args.nuisances, rename_nuisances):
+                    h_up = h_nom.Clone("histo_{}_{}Up".format(sample, nuis_rename))
+                    h_do = h_nom.Clone("histo_{}_{}Down".format(sample, nuis_rename))
                     
                     eff_up = nF.Get("{}/{}/histo_{}_{}Up".format(cut.GetName(), var.GetName(), sample, nuis ))
                     eff_do = nF.Get("{}/{}/histo_{}_{}Down".format(cut.GetName(), var.GetName(),  sample, nuis ))

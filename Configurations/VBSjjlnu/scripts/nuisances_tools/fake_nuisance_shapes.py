@@ -1,3 +1,4 @@
+from __future__ import print_function
 import argparse
 
 '''
@@ -7,6 +8,7 @@ if they do not exists.
 parser = argparse.ArgumentParser()
 parser.add_argument("-i","--input", help="Input file", type=str)
 parser.add_argument("--nuisances", help="Nuisances", type=str, nargs="+")
+parser.add_argument("-e","--exclude-vars", help="Exclude vars", type=str, nargs="+")
 args = parser.parse_args()
 
 
@@ -27,13 +29,16 @@ for cut in iF.GetListOfKeys():
     R.gDirectory.cd(cut.GetName())
     for var in R.gDirectory.GetListOfKeys():
         R.gDirectory.cd(var.GetName())
+        if args.exclude_vars and var.GetName() in args.exclude_vars: 
+            R.gDirectory.cd("../")
+            continue
         for sample in samples:
             hnom = R.gDirectory.Get("histo_{}".format(sample))
             for nuis in args.nuisances:
-                print cut, var, sample, nuis
+                print( cut, var, sample, nuis)
                 try:
                     R.gDirectory.GetObject("histo_{}_{}Up".format(sample, nuis),hnom )
-                    print ">>> shape already exists"
+                    print (">>> shape already exists")
                 except LookupError:
                     hup = hnom.Clone("histo_{}_{}Up".format(sample, nuis))
                     hup.SetTitle("histo_{}_{}Up".format(sample, nuis))

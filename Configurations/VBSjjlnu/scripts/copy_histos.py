@@ -21,7 +21,7 @@ for cut in iF.GetListOfKeys():
     oF.mkdir(cut.GetName())
     for var in iF.Get(cut.GetName()).GetListOfKeys():
         oF.mkdir(cut.GetName()+"/"+var.GetName())
-        print cut.GetName(), var.GetName()
+        print (cut.GetName(), var.GetName())
         histos = []
         for h in iF.Get(cut.GetName()+'/'+var.GetName()).GetListOfKeys():
             histo = iF.Get(cut.GetName()+'/'+var.GetName() + "/"+ h.GetName())
@@ -43,15 +43,16 @@ for cut in iF.GetListOfKeys():
 
         oF.cd(cut.GetName()+"/"+var.GetName())
         for h in histos:
-            print (h.GetName())
+            # print (h.GetName())
             h.Write()
+        oF.Flush()
         oF.cd('/')
         
         iF.cd("../")
     iF.cd("../")
 
-    print "------------------------------"
+    print ("------------------------------")
 
-oF.Write()
+# oF.Write()
 oF.Close()
 iF.Close()
