@@ -349,15 +349,62 @@ nuisances['fatjetJMS']  = {
 }
 
 
-# # Theory nuisance
-for sample in mc :
-    nuisances['QCD_scale_'+sample] = {
-        'name'  : 'QCDscale_'+sample,
-        'kind'  : 'weight',
-        'type'  : 'shape',
-        'samples'  :  { sample: ["LHEScaleWeight[0]", "LHEScaleWeight[8]"] }
-    }
-# # #
+import json, os
+# VBS_pdf_factors = json.load(open(os.getenv("CMSSW_BASE") + "/src/PlotsConfigurations/Configurations/VBSjjlnu/Full2016v7/conf_fit_v4.3/pdf_normcorr_VBS.json"))
+# nuis_factors = json.load(open(os.getenv("CMSSW_BASE") + "/src/PlotsConfigurations/Configurations/VBSjjlnu/Full2016v7/conf_fit_v4.3/nuisance_incl_norm_factors_2016.json"))
+
+# for sample in mc :
+#     if sample == 'ggWW': continue
+#     if sample == 'VBS':
+#         nuisances['QCD_scale_VBS'] = {
+#             'name'  : 'QCDscale_VBS_accept',
+#             'kind'  : 'weight',
+#             'type'  : 'shape',
+#             # Normalization effect removed from 1l inclusive phase space
+#             'samples'  :  { "VBS": [
+#                                 "LHEScaleWeight[0] * {}".format(nuis_factors["VBS"]["QCDscale_VBS"][0]),
+#                                 "LHEScaleWeight[8] * {}".format(nuis_factors["VBS"]["QCDscale_VBS"][1])
+#                             ] }
+#         }
+#     else:
+#         nuisances['QCD_scale_'+sample] = {
+#             'name'  : 'QCDscale_'+sample,
+#             'kind'  : 'weight',
+#             'type'  : 'shape',
+#             'samples'  :  { sample: ["LHEScaleWeight[0]", "LHEScaleWeight[8]"] }
+#         }
+        
+
+
+# nuisances['PU']  = {
+#                 'name'  : 'CMS_PU_2016',
+#                 'kind'  : 'weight',
+#                 'type'  : 'shape',
+#                 'samples'  : {
+#                     s : ['(puWeightUp/puWeight) * {}'.format(nuis_factors[s]["CMS_PU_2016"][0]),
+#                          '(puWeightDown/puWeight) * {}'.format(nuis_factors[s]["CMS_PU_2016"][1])] for s in mc if s not in ['ggWW'] },
+#                 'AsLnN'      : '1',
+# }
+
+
+# ######## PDF uncertainty
+# for s in mc:        
+#     if s in ["VBS", "top","Wjets_HT"]: continue 
+#     nuisances['pdf_weight_'+s] = {
+#         'name'  : 'pdf_weight_'+s,
+#         'kind'  : 'weight_envelope',
+#         'type'  : 'shape',
+#         'samples' :  { s: [' Alt$(LHEPdfWeight['+str(i)+'], 1.)' for i in range(0,103)]},
+#         'AsLnN':  '1'
+#     }
+
+# nuisances['pdf_weight_VBS'] = {
+#     'name'  : 'pdf_weight_VBS_accept',
+#     'kind'  : 'weight_envelope',
+#     'type'  : 'shape',
+#     'samples' :  { "VBS": [' Alt$(LHEPdfWeight['+str(i)+'], 1.) * '+ str(VBS_pdf_factors["VBS"]['pdf_weight_'+str(i)])  for i in range(0,103) ]}
+# }
+# # # #
 # # # PS and UE
 # # #
 # nuisances['PS']  = {
@@ -390,22 +437,6 @@ for sample in mc :
 # # }
 
 
-nuisances['PU']  = {
-                'name'  : 'CMS_PU_2016',
-                'kind'  : 'weight',
-                'type'  : 'shape',
-                'samples'  : {
-                    "Wjets_HT" : ['0.99204676881 * (puWeightUp/puWeight)','1.00865460396 * (puWeightDown/puWeight)'],
-                    "top" :      ['0.996091101837 * (puWeightUp/puWeight)','1.00420941803 * (puWeightDown/puWeight)'],
-                    "DY" :       ['0.98121974197 * (puWeightUp/puWeight)','1.02004378271 * (puWeightDown/puWeight)'],
-                    "VV" :       ['0.996601284653 * (puWeightUp/puWeight)','1.00365592352 * (puWeightDown/puWeight)'],
-                    "VVV" :      ['0.99634538233 * (puWeightUp/puWeight)', '1.00379087876 * (puWeightDown/puWeight)'],
-                    "Vg" :       ['0.984114244762 * (puWeightUp/puWeight)','1.01599335819 * (puWeightDown/puWeight)'],
-                    "VgS" :      ['0.998378915986 * (puWeightUp/puWeight)','0.9991876017 * (puWeightDown/puWeight)'],
-                    "VBS" :      ['0.99660348495 * (puWeightUp/puWeight)', '1.00372161204 * (puWeightDown/puWeight)'],
-                },
-                'AsLnN'      : '1',
-}
 
 
 # # Top pT reweighting uncertainty

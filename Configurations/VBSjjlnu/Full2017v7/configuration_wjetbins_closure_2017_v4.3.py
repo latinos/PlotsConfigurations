@@ -6,7 +6,7 @@ tag = 'wjetbins_closure_2017_v4.3'
 direc = "conf_wjetbins_closure"
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFile_'+tag 
+outputDir = 'rootFile_'+tag  +"_redoWjets"
 
 # file with TTree aliases
 aliasesFile = direc+'/aliases.py'

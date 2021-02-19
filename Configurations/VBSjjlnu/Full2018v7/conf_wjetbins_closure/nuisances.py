@@ -389,9 +389,9 @@ nuisances['TopPtRew'] = {
 # ######################
 # # Theory nuisance
 
-
-## This should work for samples with either 8 or 9 LHE scale weights (Length$(LHEScaleWeight) == 8 or 9)
-#qcdscale_variations = ['LHEScaleWeight[0]', 'LHEScaleWeight[1]', 'LHEScaleWeight[3]', 'LHEScaleWeight[Length$(LHEScaleWeight)-4]', 'LHEScaleWeight[Length$(LHEScaleWeight)-2]', 'LHEScaleWeight[Length$(LHEScaleWeight)-1]']
+import json, os
+VBS_pdf_factors = json.load(open(os.getenv("CMSSW_BASE") + "/src/PlotsConfigurations/Configurations/VBSjjlnu/Full2018v7/conf_fit_v4.3/pdf_normcorr_VBS.json"))
+nuis_factors = json.load(open(os.getenv("CMSSW_BASE") + "/src/PlotsConfigurations/Configurations/VBSjjlnu/Full2018v7/conf_fit_v4.3/nuisance_incl_norm_factors_2018.json"))
 
 for sample in mc :
     if sample == 'VBS':
@@ -400,18 +400,11 @@ for sample in mc :
             'kind'  : 'weight',
             'type'  : 'shape',
             # Normalization effect removed from 1l inclusive phase space
-            'samples'  :  { "VBS": ["0.982225136519* LHEScaleWeight[0]", "1.0224891031 * LHEScaleWeight[8]"] }
+            'samples'  :  { "VBS": [
+                                "LHEScaleWeight[0] * {}".format(nuis_factors["VBS"]["QCDscale_VBS"][0]),
+                                "LHEScaleWeight[8] * {}".format(nuis_factors["VBS"]["QCDscale_VBS"][1])
+                            ] }
         }
-        # nuisances['QCD_scale_VBS_accept'] = {
-        #     'name'  : 'QCDscale_VBS_accept',
-        #     'type'  : 'lnN',
-        #     'samples'  :  { "VBS": "1.0180965/0.97800553" }
-        # }
-        # nuisances['QCD_scale_VBS_env'] = {
-        #     'name'  : 'QCDscale_VBS_env',
-        #     'type'  : 'lnN',
-        #     'samples'  :  { "VBS": qcdscale_variations }
-        # }
     else:
         nuisances['QCD_scale_'+sample] = {
             'name'  : 'QCDscale_'+sample,
@@ -419,71 +412,38 @@ for sample in mc :
             'type'  : 'shape',
             'samples'  :  { sample: ["LHEScaleWeight[0]", "LHEScaleWeight[8]"] }
         }
-        # nuisances['QCD_scale_'+sample+"_env"] = {
-        #     'name'  : 'QCDscale_'+sample + "_env",
-        #     'kind'  : 'weight_envelope',
-        #     'type'  : 'shape',
-        #     'samples'  :  { sample: qcdscale_variations }
-        # }
         
-wjets_bins = []
-for ir in range(1,7):
-    wjets_bins.append("Wjets_HT_res_"+str(ir))
-for ir in range(1,6):
-    wjets_bins.append("Wjets_HT_boost_"+str(ir))
+
+# #
+# # PS and UE
+# # #
 
 nuisances['PS_ISR']  = {
                 'name'  : 'CMS_PS_ISR',
                 'kind'  : 'weight',
                 'type'  : 'shape',
-                'samples'  : {
-                    "Wjets_HT" : ['0.982272838085*PSWeight[2]', '1.02181242737*PSWeight[0]'],
-                    "top" :      ['1.03155693519*PSWeight[2]', '0.961815586845*PSWeight[0]'],
-                    "DY" :       ['0.97886720138*PSWeight[2]', '1.02647248945*PSWeight[0]'],
-                    "VV" :       ['1.0465279037*PSWeight[2]', '0.944799010566*PSWeight[0]'],
-                    "VVV" :      ['1.05734355007*PSWeight[2]', '0.932431850085*PSWeight[0]'],
-                    "Vg" :       ['1.01955942491*PSWeight[2]', '0.975230059839*PSWeight[0]'],
-                    "VgS" :      ['1.08107219534*PSWeight[2]', '0.90877489878*PSWeight[0]'],
-                    "VBF-V" :    ['1.06679259757*PSWeight[2]', '0.922182403809*PSWeight[0]'],
-                    "VBS"  :     ['1.0305848645*PSWeight[2]', '0.961661000508*PSWeight[0]'],
-                }
+                'samples'  : {   
+                    s : ['PSWeight[2] * {}'.format(nuis_factors[s]["PS_ISR"][0]),
+                         'PSWeight[0] * {}'.format(nuis_factors[s]["PS_ISR"][1]) ] for s in mc }
             }
 
 nuisances['PS_FSR']  = {
                 'name'  : 'CMS_PS_FSR',
                 'kind'  : 'weight',
                 'type'  : 'shape',
-                 'samples'  : {
-                    "Wjets_HT" : ['0.952155496489*PSWeight[3]', '1.07333378529*PSWeight[1]'],
-                    "top" :      ['0.97787785651 *PSWeight[3]', '1.03588910284*PSWeight[1]'],
-                    "DY" :       ['0.958391503276*PSWeight[3]', '1.06398826279*PSWeight[1]'],
-                    "VV" :       ['0.981257169925*PSWeight[3]', '1.02970402391*PSWeight[1]'],
-                    "VVV" :      ['0.983158151317*PSWeight[3]', '1.02330499999*PSWeight[1]'],
-                    "Vg" :       ['0.975311453995*PSWeight[3]', '1.03255777815*PSWeight[1]'],
-                    "VgS" :      ['0.975277639335*PSWeight[3]', '1.02377054684*PSWeight[1]'],
-                    "VBF-V" :    ['0.998784026001*PSWeight[3]', '1.00519787421*PSWeight[1]'],
-                    "VBS"  :     ['0.986080624716*PSWeight[3]', '1.02220160621*PSWeight[1]'],
-                }
+                'samples'  : {   
+                    s : ['PSWeight[3] * {}'.format(nuis_factors[s]["PS_FSR"][0]),
+                         'PSWeight[1] * {}'.format(nuis_factors[s]["PS_FSR"][1]) ] for s in mc}
             }
 
-
-#########################################
 
 nuisances['PU']  = {
                 'name'  : 'CMS_PU_2018',
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
-                    "Wjets_HT" : ['0.983251695148 * (puWeightUp/puWeight)','1.0168913615 * (puWeightDown/puWeight)'],
-                    "top" :      ['0.994086559794 * (puWeightUp/puWeight)','1.00594961774 * (puWeightDown/puWeight)'],
-                    "DY" :       ['0.973747991721 * (puWeightUp/puWeight)','1.02692487122 * (puWeightDown/puWeight)'],
-                    "VV" :       ['0.993645838554 * (puWeightUp/puWeight)','1.00655724449 * (puWeightDown/puWeight)'],
-                    "VVV" :      ['0.989856734822 * (puWeightUp/puWeight)','1.01001361488 * (puWeightDown/puWeight)'],
-                    "Vg" :       ['0.980622272259 * (puWeightUp/puWeight)','1.01976694136 * (puWeightDown/puWeight)'],
-                    "VgS" :      ['0.972831108836 * (puWeightUp/puWeight)','1.02801095581 * (puWeightDown/puWeight)'],
-                    "VBF-V" :    ['0.988438840863 * (puWeightUp/puWeight)','1.01146288807 * (puWeightDown/puWeight)'],
-                    "VBS" :      ['0.994664864312 * (puWeightUp/puWeight)','1.0054663756 * (puWeightDown/puWeight)'],
-                },
+                    s : ['(puWeightUp/puWeight) * {}'.format(nuis_factors[s]["CMS_PU_2018"][0]),
+                         '(puWeightDown/puWeight) * {}'.format(nuis_factors[s]["CMS_PU_2018"][1])] for s in mc },
                 'AsLnN'      : '1',
 }
 

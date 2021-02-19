@@ -193,6 +193,7 @@ addSampleWeight(samples,'top','ST_t-channel_antitop',  "100. / 32.4")
 
 ################################
 ### Wjets samples
+Wjets_photon_filter = '!(Sum$( PhotonGen_isPrompt==1 && PhotonGen_pt>10 && abs(PhotonGen_eta)<2.5 ) > 0) '
 
 samples['Wjets_HT'] = { 'name' :   
           nanoGetSampleFiles(directory_bkg, 'WJetsToLNu-LO')
@@ -204,7 +205,7 @@ samples['Wjets_HT'] = { 'name' :
           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT800_1200')
           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT1200_2500')
           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT2500_inf'),
-				'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch + '* ewknloW * btagSF_corr_Wjets_HT',
+				'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch + '*' + Wjets_photon_filter +  '* ewknloW * btagSF_corr_Wjets_HT',
 				'FilesPerJob' : 6,   
         # 'subsamples': {
         #     "res_1": '(VBS_category==1) && (w_lep_pt < 100)',
@@ -381,4 +382,4 @@ for Run in DataRun :
                         samples['DATA']['weights'].append(DataTrig[DataSet])
 
 
-# samples = {   key:v for key,v in samples.items() if key not in ['Fake','DATA']}
+samples = {   key:v for key,v in samples.items() if key in ['Wjets_HT']}

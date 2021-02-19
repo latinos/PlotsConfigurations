@@ -21,7 +21,7 @@ for k in f.GetListOfKeys():
         to_delete = []
         for l in R.gDirectory.GetListOfKeys():
             if re.match(pattern, l.GetName()):
-                print "delete ", l.GetName()
+                # print "delete ", l.GetName()
                 to_delete.append(l.GetName())
         for h in to_delete:
             R.gDirectory.Delete(h+";*")

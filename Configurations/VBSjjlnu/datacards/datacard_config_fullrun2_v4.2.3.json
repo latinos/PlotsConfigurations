@@ -1,0 +1,420 @@
+[
+    { 
+      "datacard_name": "run2_all",
+      "folders": [
+        {
+          "basedir": "Full2016v7/datacards_fit_v4.2_2016_nuisNorm_PSsplitAll_QGLmorph_njetsVBS", 
+          "name": 2016
+        },
+        {
+          "basedir": "Full2017v7/datacards_fit_v4.2_2017_nuisNorm_PSsplitAll_QGLmorph_njetsVBS", 
+          "name": 2017
+        },
+        {
+          "basedir": "Full2018v7/datacards_fit_v4.2_2018_nuisNorm_PSsplitAll_QGLmorph_njetsVBS", 
+          "name": 2018
+        }
+      ], 
+      "phase_spaces": [
+        {
+          "name": "res_sig_mu",
+          "var": "DNNoutput_res_bins2", 
+          "cut": "res_sig_mu"
+        },
+        {
+            "name": "res_sig_ele",
+            "var": "DNNoutput_res_bins2", 
+            "cut": "res_sig_ele"
+        },
+        {
+            "name": "boost_sig_mu",
+            "var": "DNNoutput_boost_bins2", 
+            "cut": "boost_sig_mu"
+        },
+        {
+            "name": "boost_sig_ele",
+            "var": "DNNoutput_boost_bins2", 
+            "cut": "boost_sig_ele"
+        },
+  
+  
+        {
+          "name": "res_wjet_mu",
+          "var": "fit_bins_res", 
+          "cut": "res_wjetcr_mu"
+        },
+        {
+            "name": "res_wjet_ele",
+            "var": "fit_bins_res", 
+            "cut": "res_wjetcr_ele"
+        },
+        {
+            "name": "boost_wjet_mu",
+            "var": "fit_bins_boost", 
+            "cut": "boost_wjetcr_mu"
+        },
+        {
+            "name": "boost_wjet_ele",
+            "var": "fit_bins_boost", 
+            "cut": "boost_wjetcr_ele"
+        },
+        
+  
+        {
+          "name": "res_top_mu",
+          "var": "events", 
+          "cut": "res_topcr_mu"
+        },
+        { 
+          "name": "res_top_ele",
+          "var": "events", 
+          "cut": "res_topcr_ele"
+        },
+        {
+          "name": "boost_top_mu",
+          "var": "events", 
+          "cut": "boost_topcr_mu"
+        },
+        { 
+          "name": "boost_top_ele",
+          "var": "events", 
+          "cut": "boost_topcr_ele"
+        }
+      ]
+    },
+    { 
+      "datacard_name": "run2_res",
+      "folders": [
+        {
+          "basedir": "Full2016v7/datacards_fit_v4.2_2016_nuisNorm_PSsplitAll_QGLmorph_njetsVBS", 
+          "name": 2016
+        },
+        {
+          "basedir": "Full2017v7/datacards_fit_v4.2_2017_nuisNorm_PSsplitAll_QGLmorph_njetsVBS", 
+          "name": 2017
+        },
+        {
+          "basedir": "Full2018v7/datacards_fit_v4.2_2018_nuisNorm_PSsplitAll_QGLmorph_njetsVBS", 
+          "name": 2018
+        }
+      ], 
+      "phase_spaces": [
+        {
+          "name": "res_sig_mu",
+          "var": "DNNoutput_res_bins2", 
+          "cut": "res_sig_mu"
+        },
+        {
+            "name": "res_sig_ele",
+            "var": "DNNoutput_res_bins2", 
+            "cut": "res_sig_ele"
+        },
+  
+        {
+          "name": "res_wjet_mu",
+          "var": "fit_bins_res", 
+          "cut": "res_wjetcr_mu"
+        },
+        {
+            "name": "res_wjet_ele",
+            "var": "fit_bins_res", 
+            "cut": "res_wjetcr_ele"
+        },
+  
+        {
+          "name": "res_top_mu",
+          "var": "events", 
+          "cut": "res_topcr_mu"
+        },
+        { 
+          "name": "res_top_ele",
+          "var": "events", 
+          "cut": "res_topcr_ele"
+        }
+      ]
+    },
+
+
+
+    { 
+      "datacard_name": "run2_boost",
+      "folders": [
+        {
+          "basedir": "Full2016v7/datacards_fit_v4.2_2016_nuisNorm_PSsplitAll_QGLmorph_njetsVBS", 
+          "name": 2016
+        },
+        {
+          "basedir": "Full2017v7/datacards_fit_v4.2_2017_nuisNorm_PSsplitAll_QGLmorph_njetsVBS", 
+          "name": 2017
+        },
+        {
+          "basedir": "Full2018v7/datacards_fit_v4.2_2018_nuisNorm_PSsplitAll_QGLmorph_njetsVBS", 
+          "name": 2018
+        }
+      ], 
+      "phase_spaces": [
+        {
+            "name": "boost_sig_mu",
+            "var": "DNNoutput_boost_bins2", 
+            "cut": "boost_sig_mu"
+        },
+        {
+            "name": "boost_sig_ele",
+            "var": "DNNoutput_boost_bins2", 
+            "cut": "boost_sig_ele"
+        },
+  
+       {
+            "name": "boost_wjet_mu",
+            "var": "fit_bins_boost", 
+            "cut": "boost_wjetcr_mu"
+        },
+        {
+            "name": "boost_wjet_ele",
+            "var": "fit_bins_boost", 
+            "cut": "boost_wjetcr_ele"
+        },
+
+        {
+          "name": "boost_top_mu",
+          "var": "events", 
+          "cut": "boost_topcr_mu"
+        },
+        { 
+          "name": "boost_top_ele",
+          "var": "events", 
+          "cut": "boost_topcr_ele"
+        }
+      ]
+    }   ,
+
+
+    { 
+      "datacard_name": "wjets_norms",
+      "folders": [
+        {
+          "basedir": "Full2016v7/datacards_fit_v4.2_2016_nuisNorm_PSsplitAll_QGLmorph_njetsVBS", 
+          "name": 2016
+        },
+        {
+          "basedir": "Full2017v7/datacards_fit_v4.2_2017_nuisNorm_PSsplitAll_QGLmorph_njetsVBS", 
+          "name": 2017
+        },
+        {
+          "basedir": "Full2018v7/datacards_fit_v4.2_2018_nuisNorm_PSsplitAll_QGLmorph_njetsVBS", 
+          "name": 2018
+        }
+      ], 
+      "phase_spaces": [
+        {
+          "name": "res_wjet_mu",
+          "var": "fit_bins_res", 
+          "cut": "res_wjetcr_mu"
+        },
+        {
+            "name": "res_wjet_ele",
+            "var": "fit_bins_res", 
+            "cut": "res_wjetcr_ele"
+        },
+        {
+            "name": "boost_wjet_mu",
+            "var": "fit_bins_boost", 
+            "cut": "boost_wjetcr_mu"
+        },
+        {
+            "name": "boost_wjet_ele",
+            "var": "fit_bins_boost", 
+            "cut": "boost_wjetcr_ele"
+        }
+      ]
+    },
+
+    { 
+      "datacard_name": "run2_res_sig",
+      "folders": [
+        {
+          "basedir": "Full2016v7/datacards_fit_v4.2_2016_nuisNorm_PSsplitAll_QGLmorph_njetsVBS", 
+          "name": 2016
+        },
+        {
+          "basedir": "Full2017v7/datacards_fit_v4.2_2017_nuisNorm_PSsplitAll_QGLmorph_njetsVBS", 
+          "name": 2017
+        },
+        {
+          "basedir": "Full2018v7/datacards_fit_v4.2_2018_nuisNorm_PSsplitAll_QGLmorph_njetsVBS", 
+          "name": 2018
+        }
+      ], 
+      "phase_spaces": [
+        {
+          "name": "res_sig_mu",
+          "var": "DNNoutput_res_bins2", 
+          "cut": "res_sig_mu"
+        },
+        {
+            "name": "res_sig_ele",
+            "var": "DNNoutput_res_bins2", 
+            "cut": "res_sig_ele"
+        }
+      ]
+    },
+    { 
+      "datacard_name": "run2_boost_sig",
+      "folders": [
+        {
+          "basedir": "Full2016v7/datacards_fit_v4.2_2016_nuisNorm_PSsplitAll_QGLmorph_njetsVBS", 
+          "name": 2016
+        },
+        {
+          "basedir": "Full2017v7/datacards_fit_v4.2_2017_nuisNorm_PSsplitAll_QGLmorph_njetsVBS", 
+          "name": 2017
+        },
+        {
+          "basedir": "Full2018v7/datacards_fit_v4.2_2018_nuisNorm_PSsplitAll_QGLmorph_njetsVBS", 
+          "name": 2018
+        }
+      ], 
+      "phase_spaces": [
+        {
+            "name": "boost_sig_mu",
+            "var": "DNNoutput_boost_bins2", 
+            "cut": "boost_sig_mu"
+        },
+        {
+            "name": "boost_sig_ele",
+            "var": "DNNoutput_boost_bins2", 
+            "cut": "boost_sig_ele"
+        }
+      ]
+    },
+
+
+    { 
+      "datacard_name": "run2_boost_wjetDNN",
+      "folders": [
+        {
+          "basedir": "Full2016v7/datacards_fit_v4.2_2016_nuisNorm_PSsplitAll_QGLmorph_njetsVBS", 
+          "name": 2016
+        },
+        {
+          "basedir": "Full2017v7/datacards_fit_v4.2_2017_nuisNorm_PSsplitAll_QGLmorph_njetsVBS", 
+          "name": 2017
+        },
+        {
+          "basedir": "Full2018v7/datacards_fit_v4.2_2018_nuisNorm_PSsplitAll_QGLmorph_njetsVBS", 
+          "name": 2018
+        }
+      ], 
+      "phase_spaces": [
+        {
+            "name": "boost_wjetcr_mu",
+            "var": "DNNoutput_boost_bins2", 
+            "cut": "boost_wjetcr_mu"
+        },
+        {
+            "name": "boost_wjetcr_ele",
+            "var": "DNNoutput_boost_bins2", 
+            "cut": "boost_wjetcr_ele"
+        }
+  
+       
+      ]
+    },
+
+    { 
+      "datacard_name": "run2_boost_topDNN",
+      "folders": [
+        {
+          "basedir": "Full2016v7/datacards_fit_v4.2_2016_nuisNorm_PSsplitAll_QGLmorph_njetsVBS", 
+          "name": 2016
+        },
+        {
+          "basedir": "Full2017v7/datacards_fit_v4.2_2017_nuisNorm_PSsplitAll_QGLmorph_njetsVBS", 
+          "name": 2017
+        },
+        {
+          "basedir": "Full2018v7/datacards_fit_v4.2_2018_nuisNorm_PSsplitAll_QGLmorph_njetsVBS", 
+          "name": 2018
+        }
+      ], 
+      "phase_spaces": [
+        {
+            "name": "boost_topcr_mu",
+            "var": "DNNoutput_boost_bins2", 
+            "cut": "boost_topcr_mu"
+        },
+        {
+            "name": "boost_topcr_ele",
+            "var": "DNNoutput_boost_bins2", 
+            "cut": "boost_topcr_ele"
+        }
+  
+       
+      ]
+    } ,
+
+    { 
+      "datacard_name": "run2_res_wjetDNN",
+      "folders": [
+        {
+          "basedir": "Full2016v7/datacards_fit_v4.2_2016_nuisNorm_PSsplitAll_QGLmorph_njetsVBS", 
+          "name": 2016
+        },
+        {
+          "basedir": "Full2017v7/datacards_fit_v4.2_2017_nuisNorm_PSsplitAll_QGLmorph_njetsVBS", 
+          "name": 2017
+        },
+        {
+          "basedir": "Full2018v7/datacards_fit_v4.2_2018_nuisNorm_PSsplitAll_QGLmorph_njetsVBS", 
+          "name": 2018
+        }
+      ], 
+      "phase_spaces": [
+        {
+            "name": "res_wjetcr_mu",
+            "var": "DNNoutput_res_bins2", 
+            "cut": "res_wjetcr_mu"
+        },
+        {
+            "name": "res_wjetcr_ele",
+            "var": "DNNoutput_res_bins2", 
+            "cut": "res_wjetcr_ele"
+        }
+  
+       
+      ]
+    },
+
+    { 
+      "datacard_name": "run2_res_topDNN",
+      "folders": [
+        {
+          "basedir": "Full2016v7/datacards_fit_v4.2_2016_nuisNorm_PSsplitAll_QGLmorph_njetsVBS", 
+          "name": 2016
+        },
+        {
+          "basedir": "Full2017v7/datacards_fit_v4.2_2017_nuisNorm_PSsplitAll_QGLmorph_njetsVBS", 
+          "name": 2017
+        },
+        {
+          "basedir": "Full2018v7/datacards_fit_v4.2_2018_nuisNorm_PSsplitAll_QGLmorph_njetsVBS", 
+          "name": 2018
+        }
+      ], 
+      "phase_spaces": [
+        {
+            "name": "res_topcr_mu",
+            "var": "DNNoutput_res_bins2", 
+            "cut": "res_topcr_mu"
+        },
+        {
+            "name": "res_topcr_ele",
+            "var": "DNNoutput_res_bins2", 
+            "cut": "res_topcr_ele"
+        }
+      ]
+    } 
+
+
+
+]
