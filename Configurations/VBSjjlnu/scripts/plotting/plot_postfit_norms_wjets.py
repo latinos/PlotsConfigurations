@@ -41,6 +41,7 @@ leg.SetNColumns(4)
 
 offset = 0
 
+pt_bins= { "res": [0,100,200,300,400,500], "boost": [0,75,150,250,400] }
 
 Max = 0
 Min = 2
@@ -99,21 +100,30 @@ for iy, year in enumerate((2016,2017,2018)):
         g_pre.SetLineWidth(2)
 
 mg.Draw("AP PMC PFC PLC")
-mg.GetYaxis().SetRangeUser(Min - 0.6,Max + 0.4)
+mg.GetYaxis().SetRangeUser(Min - 0.4,Max + 0.4)
 if cat == "res":  mg.GetXaxis().SetRangeUser(0.4 , 6.5)
 elif cat == "boost":  mg.GetXaxis().SetRangeUser(0.4 , 5.5)
 
 mg.Draw("AP PMC PFC PLC")
 
+mg.GetXaxis().SetLabelOffset(99)
+
 i = 0
 tt = []
 
-for wjetbin in Wjets_bins[cat]:
-    t = R.TText(i+1-0.45, Min-0.5 , wjetbin)
+for ibin, wjetbin in enumerate(Wjets_bins[cat]):
+    if ibin< len(Wjets_bins[cat])-1:
+        t = R.TLatex(i+1-0.45, Min-0.5 ,  str(pt_bins[cat][ibin]) + " #leq W^{lep}_{pT} #leq "+str(pt_bins[cat][ibin+1]) + " GeV")
+    else:
+        t = R.TLatex(i+1-0.35, Min-0.5,  "W^{lep}_{pT} #geq "+str(pt_bins[cat][ibin]) + " GeV")
 
+    if cat == "boost":
+        t.SetTextSize(22)
+    elif cat == "res":
+        t.SetTextSize(19)
     t.SetTextFont(25)
-    t.SetTextSize(25)
     t.SetTextAngle(0)
+    
     i+=1
     t.Draw("same")
     tt.append(t)
@@ -123,7 +133,7 @@ ls = []
 if cat == "res": nlines = 5
 elif cat == "boost": nlines = 4
 for i in range(nlines):
-    line = R.TLine(i+1.495, Min-0.6, i+1.495,Max+0.4)
+    line = R.TLine(i+1.495, Min-0.4, i+1.495,Max+0.4)
     line.SetLineStyle(8)
     line.Draw("same")
     ls.append(line)

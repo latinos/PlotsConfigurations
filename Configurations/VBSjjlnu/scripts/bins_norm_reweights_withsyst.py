@@ -17,6 +17,7 @@ parser.add_argument("-v", "--vars", help="Variables", nargs="+", type=str)
 parser.add_argument("--cuts", help="cuts to analyze", nargs="+", type=str)
 parser.add_argument("-s", "--samples", help="Samples to analyze", nargs="+", type=str)
 parser.add_argument("-c", "--conf", help="config file", type=str)
+parser.add_argument("-on", "--output-nuisances", help="Output all the nuisances effect",action="store_true")
 parser.add_argument( "--other-samples", help="Samples to be removed from data",nargs="+", type=str)
 args = parser.parse_args()
 
@@ -98,8 +99,7 @@ def get_syst_uncertainty(cutName,sampleName,variableName, histo, fileIn):
                 histoVar = nuisanceHistos[ivar][nuisanceName]
             except KeyError:
                 # put nominal
-                histoVar = histo
-                #print("not found: ", nuisanceName )            
+                histoVar = histo           
             try:
                 vy = nuisances_vy[nuisanceName]
             except KeyError:
@@ -109,6 +109,7 @@ def get_syst_uncertainty(cutName,sampleName,variableName, histo, fileIn):
         
     #print(nuisances_vy_up)
     # Get MC stat err
+    nuis_out = {}
     tgrMC_vy = rnp.hist2array(histo, copy=True)
     nuisances_err2_up = rnp.array(histo.GetSumw2())[1:-1]
     nuisances_err2_do = rnp.array(histo.GetSumw2())[1:-1]
@@ -120,16 +121,21 @@ def get_syst_uncertainty(cutName,sampleName,variableName, histo, fileIn):
         up_is_up = (up > tgrMC_vy)
         dup2 = np.square(up - tgrMC_vy)
         ddo2 = np.square(do - tgrMC_vy)
-        # print(nuisanceName, dup2,ddo2)
+        
         nuisances_err2_up += np.where(up_is_up, dup2, ddo2)
         nuisances_err2_do += np.where(up_is_up, ddo2, dup2)
-
+        # 
+        if np.sum(dup2)!=0 or np.sum(ddo2)!=0:
+            nuis_out[nuisanceName]= (np.sqrt(np.where(up_is_up, dup2, ddo2)), np.sqrt(np.where(up_is_up, ddo2, dup2)))
+        
+        
     # Final 
     nuisances_err_up = np.sqrt(nuisances_err2_up)
     nuisances_err_do = np.sqrt(nuisances_err2_do)
-    return nuisances_err_up, nuisances_err_do
+    return nuisances_err_up, nuisances_err_do, nuis_out
 
 results = []
+nuisances_all = []
 
 iF = R.TFile(args.input, "READ")
 for cut in args.cuts: 
@@ -163,7 +169,7 @@ for cut in args.cuts:
             samplestoweight[s] = h
             errors[s] = get_syst_uncertainty(cut, s, variable, h, iF)
         
-        print(errors)
+        #print(errors)
                
         sample_weights = {}
         for sample, reweight_hist in samplestoweight.items():
@@ -191,6 +197,11 @@ for cut in args.cuts:
                 weights.append(w)
                 if w != 1.0:
                     results.append((cut, sample, w, err_w_stat, err_w_up_syst, err_w_do_syst,err_tot_up,err_tot_do ))
+                    nout = {"sample": sample}
+                    for key, values in errors[sample][2].items():
+                        nout[key+"_up"]= sqrt( ((ref/nom**2)**2)*(values[0][ibin-1])**2 )
+                        nout[key+"_do"]= sqrt( ((ref/nom**2)**2)*(values[1][ibin-1])**2 )
+                    nuisances_all.append(nout)
 
             sample_weights[sample] = weights
 
@@ -208,3 +219,8 @@ import pandas as pd
 df = pd.DataFrame(results, columns=["channel", "bin", "weight","err_stat","err_syst_up","err_syst_do","err_tot_up","err_tot_do"])
 print(df)
 df.to_csv(args.output, sep=";", index=False)
+
+
+if args.output_nuisances:
+    dfn = pd.DataFrame(nuisances_all)
+    dfn.to_csv(args.output+"nuisances", sep=";", index=False)
