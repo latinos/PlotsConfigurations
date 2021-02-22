@@ -8,13 +8,14 @@
 
 using namespace NNEvaluation;
 
-class DNNprod : public multidraw::TTreeFunction {
+class DNNprod_new_ggFVBF : public multidraw::TTreeFunction {
 public:
-  DNNprod();
+  DNNprod_new_ggFVBF(int outvar);
 
-  char const* getName() const override { return "DNNprod"; }
-  TTreeFunction* clone() const override { return new DNNprod(); }
+  char const* getName() const override { return "DNNprod_new_ggFVBF"; }
+  TTreeFunction* clone() const override { return new DNNprod_new_ggFVBF(outvar_); }
 
+  int outvar_;
   unsigned getNdata() override { return 1; }
   double evaluate(unsigned) override;
 
@@ -41,19 +42,27 @@ protected:
   FloatValueReader* ht;
   FloatValueReader* vht_pt;
   FloatValueReader* vht_phi;
+  FloatValueReader* mth;
+  FloatValueReader* mtw1;
+  FloatValueReader* mtw2;
+  FloatValueReader* ptll;
+  FloatValueReader* dphilmet1;
+  FloatValueReader* dphilmet2;
+  FloatValueReader* dphill;
 
 };
 
-DNNprod::DNNprod() :
+DNNprod_new_ggFVBF::DNNprod_new_ggFVBF(int outvar) :
   TTreeFunction()
 {
+  outvar_ = outvar;
   std::string cmsswbase(gSystem->Getenv("CMSSW_BASE"));
-  dnn_tensorflow0 = new DNNEvaluator(cmsswbase + "/src/PlotsConfigurations/Configurations/HighMass/DNNs/Prod_0/", false);
-  dnn_tensorflow1 = new DNNEvaluator(cmsswbase + "/src/PlotsConfigurations/Configurations/HighMass/DNNs/Prod_1/", false);
+  dnn_tensorflow0 = new DNNEvaluator(cmsswbase + "/src/PlotsConfigurations/Configurations/HighMass/DNNs/ProdNew_0/", false);
+  dnn_tensorflow1 = new DNNEvaluator(cmsswbase + "/src/PlotsConfigurations/Configurations/HighMass/DNNs/ProdNew_1/", false);
 }
 
 double
-DNNprod::evaluate(unsigned)
+DNNprod_new_ggFVBF::evaluate(unsigned)
 {
 
   unsigned nJet{*nCleanJet->Get()};
@@ -188,19 +197,27 @@ DNNprod::evaluate(unsigned)
   input.push_back(mjj_34);
   input.push_back(detajj_34);
 
+  input.push_back(*mth->Get());
+  input.push_back(*mtw1->Get());
+  input.push_back(*mtw2->Get());
+  input.push_back(*ptll->Get());
+  input.push_back(*dphilmet1->Get());
+  input.push_back(*dphilmet2->Get());
+  input.push_back(*dphill->Get());
+
   auto ev{*event->Get()};
   if (ev % 2 == 0){
     //std::cout << dnn_tensorflow0->analyze(input) << std::endl;
-    return dnn_tensorflow0->analyze(input)[0];
+    return dnn_tensorflow0->analyze(input)[outvar_];
   }else{
     //std::cout << dnn_tensorflow1->analyze(input) << std::endl;
-    return dnn_tensorflow1->analyze(input)[0];
+    return dnn_tensorflow1->analyze(input)[outvar_];
   }
 
 }
 
 void
-DNNprod::bindTree_(multidraw::FunctionLibrary& _library)
+DNNprod_new_ggFVBF::bindTree_(multidraw::FunctionLibrary& _library)
 {
   _library.bindBranch(event, "event");
   _library.bindBranch(Lepton_pt, "Lepton_pt");
@@ -219,4 +236,11 @@ DNNprod::bindTree_(multidraw::FunctionLibrary& _library)
   _library.bindBranch(ht, "ht");
   _library.bindBranch(vht_pt, "vht_pt");
   _library.bindBranch(vht_phi, "vht_phi");
+  _library.bindBranch(mth, "mth");
+  _library.bindBranch(mtw1, "mtw1");
+  _library.bindBranch(mtw2, "mtw2");
+  _library.bindBranch(ptll, "ptll");
+  _library.bindBranch(dphilmet1, "dphilmet1");
+  _library.bindBranch(dphilmet2, "dphilmet2");
+  _library.bindBranch(dphill, "dphill");
 }

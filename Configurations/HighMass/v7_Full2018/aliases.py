@@ -32,20 +32,22 @@ aliases['mjjGen_OTF'] = {
 }
 
 aliases['DNN_isggFnew_OTF'] = {
-    'class': 'DNNprod_new_ggF',
+    'class': 'DNNprod_new_ggFVBF',
+    'args': ( 0, ),
     'linesToAdd':[
         'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
         'gSystem->Load("libDNNEvaluator.so")',
-        '.L %s/src/PlotsConfigurations/Configurations/HighMass/DNN_prod_new_ggF.cc+' % os.getenv('CMSSW_BASE'), 
+        '.L %s/src/PlotsConfigurations/Configurations/HighMass/DNN_prod_new_ggFVBF.cc+' % os.getenv('CMSSW_BASE'), 
     ],
 }
 
 aliases['DNN_isVBFnew_OTF'] = {
-    'class': 'DNNprod_new_VBF',
+    'class': 'DNNprod_new_ggFVBF',
+    'args': ( 1, ),
     'linesToAdd':[
         'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
         'gSystem->Load("libDNNEvaluator.so")',
-        '.L %s/src/PlotsConfigurations/Configurations/HighMass/DNN_prod_new_VBF.cc+' % os.getenv('CMSSW_BASE'), 
+        '.L %s/src/PlotsConfigurations/Configurations/HighMass/DNN_prod_new_ggFVBF.cc+' % os.getenv('CMSSW_BASE'), 
     ],
 }
 
