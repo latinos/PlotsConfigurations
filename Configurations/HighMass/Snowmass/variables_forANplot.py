@@ -3,11 +3,11 @@
 #variables = {}
 
 
-variables['events']  = {   'name': '1',
-                        'range' : (1,0,2),
-                        'xaxis' : 'events',
-                        'fold' : 3
-                        }
+#variables['events']  = {   'name': '1',
+#                        'range' : (1,0,2),
+#                        'xaxis' : 'events',
+#                        'fold' : 3
+#                        }
 
 ### Discriminants:
 variables['mTi_binning']  = {   'name': 'mTi',
@@ -37,7 +37,7 @@ variables['mTi_highbinning_finer']  = {   'name': 'mTi',
                         'fold' : 3,
                         'divideByBinWidth' : 1
                         }
-'''
+
 variables['DNN_mth_binning']  = {   'name': 'DNN_mth_OTF',
                         'range' : ([0,150,175,200,225,250,280,320,360,400,450,500,550,625,700,800,900,1000,1100,1200,1300,1450,1600,1800,2000,2250,2500,2750,3000,4000],),
                         'xaxis' : 'DNN m_{T} [GeV]',
@@ -65,7 +65,7 @@ variables['DNN_mth_highbinning_finer']  = {   'name': 'DNN_mth_OTF',
                         'fold' : 3,
                         'divideByBinWidth' : 1
                         }
-'''
+
 ### Kinematics:
 variables['pt1']  = {   'name': 'Lepton_pt[0]',
                         'range' : (20,0,200),
@@ -132,7 +132,7 @@ variables['mTi']  = {   'name': 'mTi',
                         'xaxis' : 'm_{reco} [GeV]',
                         'fold' : 3
                         }
-'''
+
 variables['DNN_mth_OTF']  = {
                         'name': 'DNN_mth_OTF',
                         'range' : (30,0,900),
@@ -146,7 +146,7 @@ variables['DNN_mth_OTF_wide']  = {
                         'xaxis' : 'DNN m_{T} [GeV]',
                         'fold'  : 3
                         }
-'''
+
 variables['mll']  = {   'name': 'mll',
                         'range' : (25, 0,500),
                         'xaxis' : 'm_{ll} [GeV]',
@@ -201,7 +201,6 @@ variables['detajj']  = {
                         }
 
 ### DY MVA:
-'''
 if EMorEEorMM != 'em':
   #variables['mva_bdt']  = {
   #                      'name': '(Alt$(CleanJet_pt[0], 0) < 30) * (dymva_bdt_0j) + (Alt$(CleanJet_pt[0], 0) >= 30 && Alt$(CleanJet_pt[1], 0) < 30) * (dymva_bdt_1j) + (Alt$(CleanJet_pt[1], 0) >= 30 && (detajj < 3.5 || mjj < 400)) * (dymva_bdt_2j) + (Alt$(CleanJet_pt[1], 0) >= 30 && (detajj >= 3.5 && mjj >= 400)) * (dymva_bdt_VBF)',
@@ -230,7 +229,7 @@ if EMorEEorMM != 'em':
                         'xaxis' : 'DYMVA DNN score',
                         'fold'  : 3
                         }
-'''
+
 
 ### HM cuts:
 variables['back2back_OTF']  = {

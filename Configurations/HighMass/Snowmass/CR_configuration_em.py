@@ -2,18 +2,18 @@
 treeName= 'Events'
 
 
-tag = 'Full2018_em_CR'
-
+#tag = 'Full2018_v2_em'
+tag = 'Full2018_v3_em_forPlots'
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFile_'+tag
+#outputDir = 'rootFile'
+outputDir = '../../../../../../../../../../../../../../eos/user/a/arun/SnowMassAnalysis/rootFile_'+tag
 
 # file with TTree aliases
 aliasesFile = 'aliases.py'
 
 # file with list of variables
-#variablesFile = 'variables.py'
-variablesFile = 'variables_forANplot.py'
+variablesFile = 'variables.py'
 
 # file with list of cuts
 cutsFile = 'CR_cuts_em.py' 
@@ -39,7 +39,7 @@ outputDirDatacard = 'datacards'
 
 
 # structure file for datacard
-structureFile = 'structure.py' # Is this even needed still?
+#structureFile = 'structure.py' # Is this even needed still?
 
 
 # nuisances file for mkDatacards and for mkShape

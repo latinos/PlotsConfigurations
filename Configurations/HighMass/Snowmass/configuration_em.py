@@ -1,7 +1,8 @@
 # example of configuration file
 treeName= 'Events'
 
-tag = 'Full2018_v2_em'
+#tag = 'Full2018_v2_em'
+tag = 'Full2018_v4_em_forPlots'
 
 # used by mkShape to define output directory for root files
 #outputDir = 'rootFile'
@@ -11,7 +12,8 @@ outputDir = '../../../../../../../../../../../../../../eos/user/a/arun/SnowMassA
 aliasesFile = 'aliases.py'
 
 # file with list of variables
-variablesFile = 'variables.py'
+#variablesFile = 'variables.py'
+variablesFile = 'variables_forANplot.py'
 
 # file with list of cuts
 cutsFile = 'cuts_em.py' 
