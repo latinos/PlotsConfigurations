@@ -67,7 +67,7 @@ l4kin_patch::evaluate(unsigned)
   if (preSelection() == false) return -9999.0;
   float METpt{*PuppiMET_pt->Get()};
   float METphi{*PuppiMET_phi->Get()};
-  if (!(PuppiMET_pt > 0 && std::abs(PuppiMET_phi) < 3.14159265359)) return -9999.0;
+  if (!(METpt > 0 && std::abs(METphi) < 3.14159265359)) return -9999.0;
   std::vector<PtEtaPhiMVector> vLep;
   for (int iL = 0; iL < 4; iL++){
     PtEtaPhiMVector iLep(Lepton_pt->At(iL),Lepton_eta->At(iL),Lepton_phi->At(iL),0.0);
@@ -95,6 +95,11 @@ l4kin_patch::evaluate(unsigned)
 
   if (variable == "z0Mass_zh4l") {
     if (ZLepIdx[0] != -1 && ZLepIdx[1] != -1) return (vLep[ZLepIdx[0]] + vLep[ZLepIdx[1]]).M();
+    else return -9999;
+  }
+
+  if (variable == "z0Pt_zh4l") {
+    if (ZLepIdx[0] != -1 && ZLepIdx[1] != -1) return (vLep[ZLepIdx[0]] + vLep[ZLepIdx[1]]).Pt();
     else return -9999;
   }
 
@@ -141,7 +146,7 @@ l4kin_patch::evaluate(unsigned)
   }
 
   //If we've gotten this far, it wasn't a valid variable
-  std::cout << "Invalid variable! Supported variables are z0Mass_zh4l, z1Mass_zh4l, z1Mt_zh4l, lep1Mt_zh4l, lep2Mt_zh4l, mllll_zh4l, and BDT" << std::endl;
+  std::cout << "Invalid variable! Supported variables are z0Mass_zh4l, z1Mass_zh4l, z0Pt_zh4l, z1Mt_zh4l, lep1Mt_zh4l, lep2Mt_zh4l, mllll_zh4l, and BDT" << std::endl;
   return -9999.0;
 }
 
