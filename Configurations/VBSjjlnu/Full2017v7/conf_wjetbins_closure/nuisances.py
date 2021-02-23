@@ -5,11 +5,14 @@ mc =["DY", "top",  "Wjets_HT", "VV", "VVV", "VBF-V", "Vg", "VgS", "VBS", "VBF-V"
 # mc_norm = [m for m in mc if m not in ["VBS", "VV"]]
 # mc_sep =  ["VBS", "VV"]
 
+phasespaces = ["res_wjetcr_ele_mint","res_wjetcr_mu_mint" ,"boost_wjetcr_ele_mint" ,"boost_wjetcr_mu_mint",
+          "res_wjetcr_ele_mext","res_wjetcr_mu_mext" ,"boost_wjetcr_ele_mext" ,"boost_wjetcr_mu_mext",]
+
 def getSamplesWithout(samples, samples_to_remove):
     return [m for m in samples if m not in samples_to_remove]
 
-phase_spaces_boost = [ c for c in cuts if 'boost' in c]
-phase_spaces_res = [ c for c in cuts if 'res' in c]
+phase_spaces_boost = [ c for c in phasespaces if 'boost' in c]
+phase_spaces_res = [ c for c in phasespaces if 'res' in c]
 
 phase_spaces_res_ele = [ c for c in phase_spaces_res if 'ele' in c]
 phase_spaces_res_mu = [ c for c in phase_spaces_res if 'mu' in c]
@@ -568,7 +571,7 @@ for n in nuisances.values():
     n['skipCMS'] = 1
 
    
-print ' '.join(nuis['name'] for nname, nuis in nuisances.iteritems() if nname not in ('lumi', 'stat'))
+# print ' '.join(nuis['name'] for nname, nuis in nuisances.iteritems() if nname not in ('lumi', 'stat'))
 
 
 

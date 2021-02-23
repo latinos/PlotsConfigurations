@@ -111,7 +111,8 @@ def scaleBins(plot, norm_factors):
     for bin, w in norm_factors.items():
        if bin not in plot: continue
        plot[bin]['cuts'] = w
-       plot[bin].pop("scale")
+       if "scale" in plot[bin]:
+           plot[bin].pop("scale")
     # for s,v in plot.items():
     #     print s
     #     pprint(v)
@@ -179,37 +180,37 @@ def customize(samples,cuts,variables,nuisances,plot,groupPlot, key=None):
     
     ######################################
     if key == "wjets_rescale_res":
-        norm_factors = get_wjets_scaling(os.path.dirname(__file__) + "/wjets_norm/all.txt")
+        norm_factors = get_wjets_scaling(os.path.dirname(__file__) + "/wjets_norm/all_withJER.txt")
         new_cuts = filter_cuts(cuts, r"res_wjetcr_.*")
         new_groupPlot, new_plot = define_bins_res(groupPlot, plot, plots_wjets_order_res)
         scale_plot = scaleBins(new_plot,  norm_factors)
         return samples, new_cuts, variables, nuisances, scale_plot, new_groupPlot
     if key == "wjets_rescale_boost":
-        norm_factors = get_wjets_scaling(os.path.dirname(__file__) + "/wjets_norm/all.txt")
+        norm_factors = get_wjets_scaling(os.path.dirname(__file__) + "/wjets_norm/all_withJER.txt")
         new_cuts = filter_cuts(cuts, r"boost_wjetcr_.*")
         new_groupPlot, new_plot = define_bins_boost(groupPlot, plot, plots_wjets_order_boost)
         scale_plot = scaleBins(new_plot,  norm_factors)
         return samples, new_cuts, variables, nuisances, scale_plot, new_groupPlot
     if key == "signal_rescale_res":
-        norm_factors = get_wjets_scaling(os.path.dirname(__file__) + "/wjets_norm/all.txt")
+        norm_factors = get_wjets_scaling(os.path.dirname(__file__) + "/wjets_norm/all_withJER.txt")
         new_cuts = filter_cuts(cuts, r"res_sig_.*")
         new_groupPlot, new_plot = define_bins_res(groupPlot, plot, plots_wjets_order_res)
         scale_plot = scaleBins(new_plot,  norm_factors)
         return samples, new_cuts, variables, nuisances, scale_plot, new_groupPlot
     if key == "signal_rescale_boost":
-        norm_factors = get_wjets_scaling(os.path.dirname(__file__) + "/wjets_norm/all.txt")
+        norm_factors = get_wjets_scaling(os.path.dirname(__file__) + "/wjets_norm/all_withJER.txt")
         new_cuts = filter_cuts(cuts, r"boost_sig_.*")
         new_groupPlot, new_plot = define_bins_boost(groupPlot, plot, plots_wjets_order_boost)
         scale_plot = scaleBins(new_plot,  norm_factors)
         return samples, new_cuts, variables, nuisances, scale_plot, new_groupPlot
     if key == "top_rescale_res":
-        norm_factors = get_wjets_scaling(os.path.dirname(__file__) + "/wjets_norm/all.txt")
+        norm_factors = get_wjets_scaling(os.path.dirname(__file__) + "/wjets_norm/all_withJER.txt")
         new_cuts = filter_cuts(cuts, r"res_topcr_.*")
         new_groupPlot, new_plot = define_bins_res(groupPlot, plot, plots_top_order_res)
         scale_plot = scaleBins(new_plot, norm_factors)
         return samples, new_cuts, variables, nuisances, scale_plot, new_groupPlot
     if key == "top_rescale_boost":
-        norm_factors = get_wjets_scaling(os.path.dirname(__file__) + "/wjets_norm/all.txt")
+        norm_factors = get_wjets_scaling(os.path.dirname(__file__) + "/wjets_norm/all_withJER.txt")
         new_cuts = filter_cuts(cuts, r"boost_topcr_.*")
         new_groupPlot, new_plot = define_bins_boost(groupPlot, plot, plots_top_order_boost)
         scale_plot = scaleBins(new_plot,  norm_factors)

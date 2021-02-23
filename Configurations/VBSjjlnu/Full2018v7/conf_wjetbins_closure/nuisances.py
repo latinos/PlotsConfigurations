@@ -4,12 +4,14 @@
 mc =["DY", "top",  "Wjets_HT", "VV", "VVV", "VBF-V", "Vg", "VgS", "VBS",'ggWW']
 # mc_norm = [m for m in mc if m not in ["VBS", "VV"]]
 # mc_sep =  ["VBS", "VV"]
+phasespaces = ["res_wjetcr_ele_mint","res_wjetcr_mu_mint" ,"boost_wjetcr_ele_mint" ,"boost_wjetcr_mu_mint",
+          "res_wjetcr_ele_mext","res_wjetcr_mu_mext" ,"boost_wjetcr_ele_mext" ,"boost_wjetcr_mu_mext",]
 
 def getSamplesWithout(samples, samples_to_remove):
     return [m for m in samples if m not in samples_to_remove]
 
-phase_spaces_boost = [ c for c in cuts if 'boost' in c]
-phase_spaces_res = [ c for c in cuts if 'res' in c]
+phase_spaces_boost = [ c for c in phasespaces if 'boost' in c]
+phase_spaces_res = [ c for c in phasespaces if 'res' in c]
 
 phase_spaces_res_ele = [ c for c in phase_spaces_res if 'ele' in c]
 phase_spaces_res_mu = [ c for c in phase_spaces_res if 'mu' in c]
@@ -394,6 +396,7 @@ VBS_pdf_factors = json.load(open(os.getenv("CMSSW_BASE") + "/src/PlotsConfigurat
 nuis_factors = json.load(open(os.getenv("CMSSW_BASE") + "/src/PlotsConfigurations/Configurations/VBSjjlnu/Full2018v7/conf_fit_v4.3/nuisance_incl_norm_factors_2018.json"))
 
 for sample in mc :
+    if sample == "ggWW": continue
     if sample == 'VBS':
         nuisances['QCD_scale_VBS'] = {
             'name'  : 'QCDscale_VBS_accept',
@@ -424,7 +427,7 @@ nuisances['PS_ISR']  = {
                 'type'  : 'shape',
                 'samples'  : {   
                     s : ['PSWeight[2] * {}'.format(nuis_factors[s]["PS_ISR"][0]),
-                         'PSWeight[0] * {}'.format(nuis_factors[s]["PS_ISR"][1]) ] for s in mc }
+                         'PSWeight[0] * {}'.format(nuis_factors[s]["PS_ISR"][1]) ] for s in mc if s not in ['ggWW'] }
             }
 
 nuisances['PS_FSR']  = {
@@ -433,7 +436,7 @@ nuisances['PS_FSR']  = {
                 'type'  : 'shape',
                 'samples'  : {   
                     s : ['PSWeight[3] * {}'.format(nuis_factors[s]["PS_FSR"][0]),
-                         'PSWeight[1] * {}'.format(nuis_factors[s]["PS_FSR"][1]) ] for s in mc}
+                         'PSWeight[1] * {}'.format(nuis_factors[s]["PS_FSR"][1]) ] for s in mc if s not in ['ggWW']} 
             }
 
 
@@ -443,7 +446,7 @@ nuisances['PU']  = {
                 'type'  : 'shape',
                 'samples'  : {
                     s : ['(puWeightUp/puWeight) * {}'.format(nuis_factors[s]["CMS_PU_2018"][0]),
-                         '(puWeightDown/puWeight) * {}'.format(nuis_factors[s]["CMS_PU_2018"][1])] for s in mc },
+                         '(puWeightDown/puWeight) * {}'.format(nuis_factors[s]["CMS_PU_2018"][1])] for s in mc if s not in ['ggWW'] },
                 'AsLnN'      : '1',
 }
 

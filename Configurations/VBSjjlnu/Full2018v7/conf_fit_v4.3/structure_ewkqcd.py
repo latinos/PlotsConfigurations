@@ -61,6 +61,12 @@ structure['VBF-V']  = {
                   'isData'   : 0 
               }
 
+structure['ggWW']  = {  
+                  'isSignal' : 0,
+                  'isData'   : 0 
+              }
+
+
 structure['Vg']  = {  
                   'isSignal' : 0,
                   'isData'   : 0 

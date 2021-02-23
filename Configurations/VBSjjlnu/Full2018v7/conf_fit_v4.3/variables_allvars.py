@@ -13,6 +13,55 @@ variables['events']  = {   'name': '1',
                         'fold' : 3
                         }
 
+##############
+
+variables['DNNoutput_res_v1'] = {
+    'name': 'DNNoutput_resolved_v1',
+    'range': (25,0.,1),
+    'xaxis': 'DNN resolved',
+    'fold': 3 ,
+    'cuts':  res_cuts,
+    'divideByBinWidth': True, 
+    'blind': { c:[0.6,1] for c in cuts if "_sig_" in c},
+}
+
+
+# variables['DNNoutput_res_v2'] = {
+#     'name': 'DNNoutput_resolved_v2',
+#     'range': (25,0.,1),
+#     'xaxis': 'DNN output, resolved',
+#     'fold': 3 ,
+#     'cuts':  res_cuts,
+#     'blind': { c:[0.6,1] for c in cuts if "_sig_" in c},
+# }
+
+
+variables['DNNoutput_boost'] = {
+    'name': 'DNNoutput_boosted',
+    'range': ([0., 0.05, 0.1, 0.15, 0.20, 0.25, 0.3, 0.35, 0.4, 0.55, 0.7, 0.85, 1.],),
+    'xaxis': 'DNN boosted',
+    'fold': 3 ,
+    'cuts': boost_cuts,
+    'divideByBinWidth': True,
+    'blind': { c:[0.6,1] for c in cuts if "_sig_" in c} ,
+}
+#####################
+#Fit variables
+
+variables['fit_bins_res'] ={  'name' : 'w_lep_pt',
+                            'range' : ([0,100,200,300,400,500,700],),
+                            'xaxis' : 'W leptonic Pt', 
+                            'fold' : 3,
+                            'cuts': res_cuts
+}   
+
+variables['fit_bins_boost'] ={  'name' : 'w_lep_pt',
+                            'range' : ([0,75,150,250,400,700],),
+                            'xaxis' : 'W leptonic Pt', 
+                            'fold' : 3,
+                            'cuts': boost_cuts
+}   
+
 # # #leptons
 
 variables['Lepton_eta_abs'] = {   'name': 'abs(Lepton_eta[0])',      

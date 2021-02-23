@@ -53,14 +53,16 @@ for lepfl in ("ele","mu"):
         else: offset = (iy+1)*0.15
         
         for wjetbin in Wjets_bins[cat]:
+            # print channel, wjetbin
             data = df[(df.channel==channel) & (df.bin==wjetbin)]
+            # print(data)
             y = float(data.weight.values[0])
             
             if y > Max : Max = y
             if y < Min : Min = y
             g.SetPoint(i, i+1+offset, y )
             gerr.SetPoint(i, i+1+offset, y)
-            gerr.SetPointError(i, 0.05, 0.05, data.syst_do, data.syst_up)
+            gerr.SetPointError(i, 0.05, 0.05, data.err_tot_do, data.err_tot_up)
             #g.SetPointError(i, 0.,data.error )
 
             i+=1

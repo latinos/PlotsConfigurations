@@ -53,6 +53,7 @@ for iy, year in enumerate((2016,2017,2018)):
         g = R.TGraphErrors()
         g_err = R.TGraphAsymmErrors()
         g_pre = R.TGraphAsymmErrors()
+        # g_stat = R.TGraphErrors()
         leg.AddEntry(g, "{}_{} postfit".format(lepfl,year), "p")
         leg.AddEntry(g_pre, "{}_{} prefit".format(lepfl,year),"f" )
         
@@ -65,7 +66,8 @@ for iy, year in enumerate((2016,2017,2018)):
             data_err = df_postfiterr[(df.channel==channel) & (df.bin==wjetbin)]
            
             y = float((data.norm/data.prefitnorm).values[0])
-            postfit_err = (data_err.err * data.norm) / data.prefitnorm
+            postfit_err = (data_err.postfit_err_rel * data.norm) / data.prefitnorm
+            #postfit_err = data_err.err_rel 
 
             g.SetPoint(i, i+1+offset, y)
             g_err.SetPoint(i, i+1+offset, y )
@@ -77,11 +79,14 @@ for iy, year in enumerate((2016,2017,2018)):
             data_pre = df_pre[(df_pre.channel==channel) & (df_pre.bin==wjetbin)]
             g_pre.SetPoint(i, i+1+offset, float(data_pre.weight) )
             g_pre.SetPointError(i, 0.06, 0.06, data_pre.err_tot_do, data_pre.err_tot_up )
+            # g_stat.SetPoint(i,i+1+offset,float(data_pre.weight))
+            # g_stat.SetPointError(i, 0., data_pre.err_stat)
         
             i+=1
         mg.Add(g_pre, "5")
         mg.Add(g, "P")
         mg.Add(g_err,"2")
+        # mg.Add(g_stat)
 
         if lepfl =="ele":   g.SetMarkerStyle(21)
         else: g.SetMarkerStyle(22)
@@ -99,8 +104,14 @@ for iy, year in enumerate((2016,2017,2018)):
         g_pre.SetFillStyle(0)
         g_pre.SetLineWidth(2)
 
+        # g_stat.SetLineWidth(2)
+        # g_stat.SetLineColor(0)
+        # g_stat.SetMarkerColor(0)
+
 mg.Draw("AP PMC PFC PLC")
-mg.GetYaxis().SetRangeUser(Min - 0.4,Max + 0.4)
+mg.GetYaxis().SetRangeUser(Min - 0.4,Max + 0.6)
+# mg.GetYaxis().SetRangeUser(0.1,2.2)
+
 if cat == "res":  mg.GetXaxis().SetRangeUser(0.4 , 6.5)
 elif cat == "boost":  mg.GetXaxis().SetRangeUser(0.4 , 5.5)
 

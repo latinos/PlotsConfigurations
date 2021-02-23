@@ -17,6 +17,7 @@ parser.add_argument("-v", "--vars", help="Variables", nargs="+", type=str)
 parser.add_argument("--cuts", help="cuts to analyze", nargs="+", type=str)
 parser.add_argument("-s", "--samples", help="Samples to analyze", nargs="+", type=str)
 parser.add_argument("-c", "--conf", help="config file", type=str)
+parser.add_argument("-e", "--exclude-nuisance", help="Exclude nuisaces", nargs="+", type=str)
 parser.add_argument("-on", "--output-nuisances", help="Output all the nuisances effect",action="store_true")
 parser.add_argument( "--other-samples", help="Samples to be removed from data",nargs="+", type=str)
 args = parser.parse_args()
@@ -114,6 +115,9 @@ def get_syst_uncertainty(cutName,sampleName,variableName, histo, fileIn):
     nuisances_err2_up = rnp.array(histo.GetSumw2())[1:-1]
     nuisances_err2_do = rnp.array(histo.GetSumw2())[1:-1]
     for nuisanceName in mynuisances.keys():
+        if args.exclude_nuisance and nuisanceName in args.exclude_nuisance: 
+            print ("Excluding nuisance: ", nuisanceName)
+            continue
         # now we need to tell wthether the variation is actually up or down ans sum in quadrature those with the same sign 
         up = nuisances_vy_up[nuisanceName]
         do = nuisances_vy_do[nuisanceName]
@@ -184,7 +188,7 @@ for cut in args.cuts:
                 ref = data_minus_others.GetBinContent(ibin)
                 w = ref / nom
 
-                sigma_ref = sqrt(data_hist_orig.GetBinContent(ibin))
+                sigma_ref = sqrt(ref)
                 sigma_nom_up =  errors[sample][0][ibin-1] 
                 sigma_nom_do =  errors[sample][1][ibin-1]
 
@@ -196,7 +200,7 @@ for cut in args.cuts:
                 
                 weights.append(w)
                 if w != 1.0:
-                    results.append((cut, sample, w, err_w_stat, err_w_up_syst, err_w_do_syst,err_tot_up,err_tot_do ))
+                    results.append((cut, sample, w, err_w_stat, err_w_up_syst, err_w_do_syst,err_tot_up,err_tot_do, sigma_nom_up/ nom ))
                     nout = {"sample": sample}
                     for key, values in errors[sample][2].items():
                         nout[key+"_up"]= sqrt( ((ref/nom**2)**2)*(values[0][ibin-1])**2 )
@@ -216,7 +220,7 @@ for cut in args.cuts:
 iF.Close()
 
 import pandas as pd
-df = pd.DataFrame(results, columns=["channel", "bin", "weight","err_stat","err_syst_up","err_syst_do","err_tot_up","err_tot_do"])
+df = pd.DataFrame(results, columns=["channel", "bin", "weight","err_stat","err_syst_up","err_syst_do","err_tot_up","err_tot_do","wnorm_prefit_err_rel"])
 print(df)
 df.to_csv(args.output, sep=";", index=False)
 
