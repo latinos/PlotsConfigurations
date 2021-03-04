@@ -16,7 +16,7 @@ variablesFile = 'variables.py'
 # variablesFile = 'variablesLimits.py'
 
 # file with list of cuts
-cutsFile = 'cuts_heavy.py'
+cutsFile = 'cuts_high.py'
 
 # file with list of samples
 samplesFile = 'samples.py'

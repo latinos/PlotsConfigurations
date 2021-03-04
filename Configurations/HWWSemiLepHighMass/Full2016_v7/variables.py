@@ -219,13 +219,15 @@ variables['boostWhadMass'] = {
     'cuts': boosted,
 }
 
-variables['WlepMT'] = {
-    'name': 'WlepMT[0]',
+variables['HM_Wlep_mt'] = {
+    'name': 'HM_Wlep_mt[0]',
     'range': (15, 0.0, 150.0),
     'xaxis': 'M_{T}^{l#nu} [GeV]',
     'fold': 3,
     'cuts': resolved,
 }
+
+
 
 # variables['resolv_btagPt'] = {
 #     'name': 'btagJetPt_resolv[0]',

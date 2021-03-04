@@ -47,13 +47,13 @@ MD_WvsQCD = 'Alt$(FatJet_deepTagMD_WvsQCD[CleanFatJet_jetIdx[idxCleanFatJetW]], 
 
 # mistag rate in permille
 DeepTagCats= {
-    '25_': '({0} > 0.772)'.format(WvsQCD),
+    # '25_': '({0} > 0.772)'.format(WvsQCD),
     '10_': '({0} > 0.925)'.format(WvsQCD),
-    '05_': '({0} > 0.964)'.format(WvsQCD),
+    # '05_': '({0} > 0.964)'.format(WvsQCD),
 
-    '25MD_': '({0} > 0.506)'.format(MD_WvsQCD),
-    '10MD_': '({0} > 0.739)'.format(MD_WvsQCD),
-    '05MD_': '({0} > 0.838)'.format(MD_WvsQCD),
+    # '25MD_': '({0} > 0.506)'.format(MD_WvsQCD),
+    # '10MD_': '({0} > 0.739)'.format(MD_WvsQCD),
+    # '05MD_': '({0} > 0.838)'.format(MD_WvsQCD),
 }
 
 DeepProcCats={
@@ -144,8 +144,10 @@ for Lep in LepCats:
                                 +'&&'+DeepTagCats[DTCat]
     
     for HCat in HMCats:
-        for HProcCat in HMProcCats:
-            cuts[Lep+HProcCat+HCat]=  HMCats[HCat]\
+        for BProcCat in BoostProcCats:
+            for HProcCat in HMProcCats:
+                cuts[Lep+BProcCat+HProcCat+HCat]=  HMCats[HCat]\
+                                +'&&'+BoostProcCats[BProcCat]\
                                 +'&&'+HMProcCats[HProcCat]\
                                 +'&&'+LepCats[Lep]
 
