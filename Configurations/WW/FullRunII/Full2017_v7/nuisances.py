@@ -27,24 +27,24 @@ except NameError:
 from LatinoAnalysis.Tools.HiggsXSection import HiggsXSection
 HiggsXS = HiggsXSection()
 
-'''
+
 cuts0j = []
 cuts1j = []
 cuts2j = []
-cuts3j = []
-cuts4j = []
-cuts5j = []
+#cuts3j = []
+#cuts4j = []
+#cuts5j = []
 
 for k in cuts:
   for cat in cuts[k]['categories']:
     if '0j' in cat: cuts0j.append(k+'_'+cat)
     elif '1j' in cat: cuts1j.append(k+'_'+cat)
     elif '2j' in cat: cuts2j.append(k+'_'+cat)
-    elif '3j' in cat: cuts3j.append(k+'_'+cat)
-    elif '4j' in cat: cuts4j.append(k+'_'+cat)
-    elif '5j' in cat: cuts5j.append(k+'_'+cat)
+#    elif '3j' in cat: cuts3j.append(k+'_'+cat)
+#    elif '4j' in cat: cuts4j.append(k+'_'+cat)
+#    elif '5j' in cat: cuts5j.append(k+'_'+cat)
     else: print 'WARNING: name of category does not contain on either 0j,1j,2j,3j,4j,5j'
-'''
+
 ################################ EXPERIMENTAL UNCERTAINTIES  #################################
 
 #### Luminosity
@@ -362,6 +362,9 @@ nuisances['PS_ISR_1jet']  = {
         'WH_hww' : '1.0017547/0.9978214',
         'ZH_hww' : '1.0015857/0.9980180',
     },
+}
+
+'''
     'cuts'  : [
           'ww2l2v_13TeV_incl',
           'ww2l2v_13TeV_0j',
@@ -386,7 +389,7 @@ nuisances['PS_ISR_1jet']  = {
           'ww2l2v_13TeV_dytt_5j',
 
      ] 
-}   
+'''   
     
 nuisances['PS_ISR_2jet']  = {
     'name': 'PS_ISR',
@@ -400,6 +403,8 @@ nuisances['PS_ISR_2jet']  = {
         'WH_hww' : '0.9993065/1.0007548',
         'ZH_hww' : '0.9995627/1.0005501',
     },
+}
+'''
     'cuts'  : [
           'ww2l2v_13TeV_incl',
           'ww2l2v_13TeV_0j',
@@ -424,8 +429,8 @@ nuisances['PS_ISR_2jet']  = {
           'ww2l2v_13TeV_dytt_5j',
 
      ]
+'''
 
-}
 
 nuisances['PS_FSR_1jet']  = {
     'name': 'PS_FSR',
@@ -439,6 +444,8 @@ nuisances['PS_FSR_1jet']  = {
         'WH_hww' : '0.9990734/1.0065910',
         'ZH_hww' : '0.9936971/1.0145482',
     },
+}
+'''
     'cuts'  : [
           'ww2l2v_13TeV_incl',
           'ww2l2v_13TeV_0j',
@@ -463,7 +470,8 @@ nuisances['PS_FSR_1jet']  = {
           'ww2l2v_13TeV_dytt_5j',
 
      ]
-}
+'''
+
 
 nuisances['PS_FSR_2jet']  = {
     'name': 'PS_FSR',
@@ -477,6 +485,8 @@ nuisances['PS_FSR_2jet']  = {
         'WH_hww' : '1.0174174/0.9737212',
         'ZH_hww' : '1.0079410/0.9854651',
     },
+}
+'''
     'cuts'  : [
           'ww2l2v_13TeV_incl',
           'ww2l2v_13TeV_0j',
@@ -501,7 +511,7 @@ nuisances['PS_FSR_2jet']  = {
           'ww2l2v_13TeV_dytt_5j',
 
      ]
-}
+'''
 
 
 # An overall 1.5% UE uncertainty will cover all the UEup/UEdo variations
@@ -1012,6 +1022,7 @@ nuisances['DYttnorm5j']  = {
 
 
 ############################################
+
 nuisances['DYembnorm0j']  = {
                'name'  : 'CMS_hww_DYttnorm0j',
                'samples'  : {
@@ -1092,6 +1103,7 @@ nuisances['ggWWnorm2j']  = {
                'type'  : 'rateParam',
                'cuts'  : cuts2j
               }
+
 ##############################################################
 nuisances['Topnorm']  = {
                'name'  : 'CMS_hww_Topnorm',

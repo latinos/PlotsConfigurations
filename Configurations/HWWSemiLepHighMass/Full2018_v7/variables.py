@@ -65,19 +65,19 @@ variables['events']  = {
 # ##################  Lepton 0  #######################
 # #####################################################
 #
-# variables['lepton0_pt'] = {
-#     'name' : 'Lepton_pt[0]',
-#     'range': (25,0,400),
-#     'xaxis': 'p_{T} 1st lep. [GeV]',
-#     'fold' : 3
-# }
-# variables['lepton0_eta'] = {
-#     'name' : 'Lepton_eta[0]',
-#     'range': (25, -2.5, 2.5),
-#     'xaxis': '#eta 1st lep.',
-#     # 'divideByBinWidth' : 1,
-#     'fold' : 0
-# }
+variables['lepton0_pt'] = {
+    'name' : 'Lepton_pt[0]',
+    'range': (25,0,400),
+    'xaxis': 'p_{T} 1st lep. [GeV]',
+    'fold' : 3
+}
+variables['lepton0_eta'] = {
+    'name' : 'Lepton_eta[0]',
+    'range': (25, -2.5, 2.5),
+    'xaxis': '#eta 1st lep.',
+    # 'divideByBinWidth' : 1,
+    'fold' : 0
+}
 # variables['lepton0_phi'] = {
 #     'name' : 'Lepton_phi[0]',
 #     'range': (12, -3.142, 3.142),
@@ -92,12 +92,12 @@ variables['events']  = {
 ######################  MET  ########################
 #####################################################
 
-# variables['met_pt'] = {
-#     'name' : 'PuppiMET_pt',
-#     'range': (25,0,400),
-#     'xaxis': 'MET [GeV]',
-#     'fold' : 3
-# }
+variables['met_pt'] = {
+    'name' : 'PuppiMET_pt',
+    'range': (25,0,400),
+    'xaxis': 'MET [GeV]',
+    'fold' : 3
+}
 # variables['met_phi'] = {
 #     'name' : 'PuppiMET_phi',
 #     'range': (12, -3.142, 3.142),
@@ -110,18 +110,18 @@ variables['events']  = {
 ######################  Jets  #######################
 #####################################################
 
-# variables['jet0_pt'] = {
-#    'name' : 'Alt$(CleanJet_pt[0], -1)',
-#    'range': (25, 0, 400),
-#    'xaxis': 'p_{T} 1st jet [GeV]',
-#    'fold' : 3
-# }
-# variables['jet0_eta'] = {
-#     'name' : 'Alt$(CleanJet_eta[0], -99)',
-#     'range': (30, -4.7, 4.7),
-#     'xaxis': '#eta 1st jet',
-#     'fold' : 3
-# }
+variables['jet0_pt'] = {
+   'name' : 'Alt$(CleanJet_pt[0], -1)',
+   'range': (25, 0, 400),
+   'xaxis': 'p_{T} 1st jet [GeV]',
+   'fold' : 3
+}
+variables['jet0_eta'] = {
+    'name' : 'Alt$(CleanJet_eta[0], -99)',
+    'range': (30, -4.7, 4.7),
+    'xaxis': '#eta 1st jet',
+    'fold' : 3
+}
 # variables['jet0_phi'] = {
 #     'name' : 'Alt$(CleanJet_phi[0], -99)',
 #     'range': (12, -3.142, 3.142),
@@ -175,7 +175,7 @@ variables['boostHiggsMass_vbf'] = {
     'range': ([0, 220, 300, 350, 400, 450, 490, 530, 580, 630, 680,
                730, 780, 840, 950, 1100, 1300, 1800, 5000],),
     'xaxis': 'reconstr. H mass [GeV]',
-    'cuts' : set.union(boostedSR, ak8SR),
+    'cuts' : set.union(hmSR, boostedSR, ak8SR),
     'fold' : 3
 }
 variables['hmHiggsMass'] = {
@@ -219,13 +219,15 @@ variables['boostWhadMass'] = {
     'cuts': boosted,
 }
 
-variables['WlepMT'] = {
-    'name': 'WlepMT[0]',
+variables['HM_Wlep_mt'] = {
+    'name': 'HM_Wlep_mt[0]',
     'range': (15, 0.0, 150.0),
     'xaxis': 'M_{T}^{l#nu} [GeV]',
     'fold': 3,
     'cuts': resolved,
 }
+
+
 
 # variables['resolv_btagPt'] = {
 #     'name': 'btagJetPt_resolv[0]',

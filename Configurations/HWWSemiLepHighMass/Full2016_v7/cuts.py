@@ -13,7 +13,7 @@ LepCats['incl_']='( (abs(Lepton_pdgId[0])==11) && Lepton_pt[0]>30 \
                  || (abs(Lepton_pdgId[0])==13) && Lepton_pt[0]>27 )'
 LepCats['ElCh_']='( (abs(Lepton_pdgId[0])==11) && Lepton_pt[0]>30 )'
 LepCats['MuCh_']='( (abs(Lepton_pdgId[0])==13) && Lepton_pt[0]>27 )'
-# FIXME: maybe need to cut > 35 for ele due to fakeW calculation
+
 
 
 BoostProcCats={}
@@ -47,13 +47,13 @@ MD_WvsQCD = 'Alt$(FatJet_deepTagMD_WvsQCD[CleanFatJet_jetIdx[idxCleanFatJetW]], 
 
 # mistag rate in permille
 DeepTagCats= {
-    '25_': '({0} > 0.763)'.format(WvsQCD),
+    # '25_': '({0} > 0.763)'.format(WvsQCD),
     '10_': '({0} > 0.918)'.format(WvsQCD),
-    '05_': '({0} > 0.960)'.format(WvsQCD),
+    # '05_': '({0} > 0.960)'.format(WvsQCD),
 
-    '25MD_': '({0} > 0.506)'.format(MD_WvsQCD),
-    '10MD_': '({0} > 0.731)'.format(MD_WvsQCD),
-    '05MD_': '({0} > 0.828)'.format(MD_WvsQCD),
+    # '25MD_': '({0} > 0.506)'.format(MD_WvsQCD),
+    # '10MD_': '({0} > 0.731)'.format(MD_WvsQCD),
+    # '05MD_': '({0} > 0.828)'.format(MD_WvsQCD),
 }
 
 DeepProcCats={
@@ -144,8 +144,10 @@ for Lep in LepCats:
                                 +'&&'+DeepTagCats[DTCat]
     
     for HCat in HMCats:
-        for HProcCat in HMProcCats:
-            cuts[Lep+HProcCat+HCat]=  HMCats[HCat]\
+        for BProcCat in BoostProcCats:
+            for HProcCat in HMProcCats:
+                cuts[Lep+BProcCat+HProcCat+HCat]=  HMCats[HCat]\
+                                +'&&'+BoostProcCats[BProcCat]\
                                 +'&&'+HMProcCats[HProcCat]\
                                 +'&&'+LepCats[Lep]
 

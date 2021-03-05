@@ -5,7 +5,6 @@ massvbf = ['115', '120', '124', '125', '126', '130', '135', '140', '145', '150',
 # massggh = ['200', '800', '3000']
 # massvbf = ['200', '800', '3000']
 
-
 model = 'RelW0.02'
 
 model_name = '_'+model.replace('.','')
@@ -13,7 +12,5 @@ model_I = model+'_I'
 model_B = model+'_B'
 model_H = model+'_H'
 
-# model = model_H = '1'
-# model_I = model_B = '0'
-plotmasses = ['200', '700', '2000']
-# plotmasses = massggh
+
+plotmasses = ['800', '3000']
