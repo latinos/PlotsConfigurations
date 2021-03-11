@@ -1,3 +1,4 @@
+from __future__ import print_function
 import argparse
 
 '''
@@ -30,11 +31,11 @@ for cut in nF.GetListOfKeys():
         R.gDirectory.Cd(cut.GetName())
         oF.mkdir(cut.GetName())
 
-        print "Cut: ", cut.GetName()
+        print ("Cut: ", cut.GetName())
         for var  in R.gDirectory.GetListOfKeys():
             if args.exclude_vars and var.GetName() in args.exclude_vars: continue
             oF.mkdir(cut.GetName() + "/"+var.GetName())
-            print "> Var: ", var.GetName() 
+            print ("> Var: ", var.GetName() )
             for sample in args.samples:
                 h_nom = iF.Get("{}/{}/histo_{}".format(cut.GetName(), var.GetName(), sample))
                 # Exclude samples associated explicity to a cut (Wjets bins)

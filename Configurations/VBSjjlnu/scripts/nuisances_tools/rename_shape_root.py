@@ -1,3 +1,4 @@
+from __future__ import print_function
 import ROOT as R
 import sys
 import argparse
@@ -32,12 +33,12 @@ for k in f.GetListOfKeys():
                 else:       new_shape_name = rename_shape
 
                 if "histo_"+sample+"_"+shape_name+"Down" == l.GetName():
-                    print l.GetName(),"histo_"+sample+"_"+shape_name+"Down" 
+                    print(l.GetName(),"histo_"+sample+"_"+shape_name+"Down" )
                     obj = R.gDirectory.Get(l.GetName())
                     obj.SetName("histo_" + sample+"_"+new_shape_name+"Down")
                     obj.Write()
                 if "histo_"+sample+"_"+shape_name+"Up" == l.GetName():
-                    print l.GetName(),"histo_"+sample+"_"+shape_name+"Down" 
+                    print(l.GetName(),"histo_"+sample+"_"+shape_name+"Down" )
                     obj = R.gDirectory.Get(l.GetName())
                     obj.SetName("histo_" + sample+"_"+new_shape_name+"Up")
                     obj.Write()

@@ -100,7 +100,7 @@ Available functions to run on datacards
 def postfit_shape(datac):
     log = logging.getLogger(datac["datacard_name"])
     outdir = datac["outputdir"] 
-    log.info("Running combine (Asimov + pre-fit nuisances)")
+    log.info("Running combine")
     cmd = """PostFitShapesFromWorkspace -w combined_{0}.root -d combined_{0}.txt -o output_postfit.root  \\
          -f {1}:fit_s  \\
          --postfit --sampling --total-shapes --print --covariance --skip-prefit > logPostFitShape.txt""".format(datac["datacard_name"], args.input_params)
@@ -140,9 +140,9 @@ def postfit_plot(datac):
         plotFile = "plot_wjets_res.py"
     if "wjet" in datac["datacard_name"] and "boost" in datac["datacard_name"]:
         plotFile = "plot_wjets_boost.py"
-    if "sig" in datac["datacard_name"] and "res" in datac["datacard_name"]:
+    if plotFile == "" and "res" in datac["datacard_name"]:
         plotFile = "plot_wjets_res.py"
-    if "sig" in datac["datacard_name"] and "boost" in datac["datacard_name"]:
+    if plotFile == "" and "boost" in datac["datacard_name"]:
         plotFile = "plot_wjets_boost.py"
 
     cmd = [ """mkPostFitCombinedPlot.py --inputFilePostFitShapesFromWorkspace  ../../../datacards/{0}/output_postfit.root \\

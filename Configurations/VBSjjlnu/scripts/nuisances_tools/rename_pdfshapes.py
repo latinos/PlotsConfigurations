@@ -1,3 +1,4 @@
+from __future__ import print_function
 import ROOT as R
 import sys
 import argparse
@@ -24,7 +25,7 @@ for k in f.GetListOfKeys():
     R.gDirectory.Cd(k.GetName())
     for z in R.gDirectory.GetListOfKeys():
         R.gDirectory.Cd(z.GetName())
-        print ">> ", k.GetName(), z.GetName()
+        print( ">> ", k.GetName(), z.GetName())
         for l in R.gDirectory.GetListOfKeys():
             for sample in samples:
                 if sample == "VBS":

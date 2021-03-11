@@ -103,7 +103,7 @@ nuisances['pdf_weight_VBS'] = {
     'name'  : 'pdf_weight_VBS_accept',
     'kind'  : 'weight_envelope',
     'type'  : 'shape',
-    'samples' :  { "VBS": [' Alt$(LHEPdfWeight['+str(i)+'], 1.) * '+ str(VBS_pdf_factors["VBS"]['pdf_weight_'+str(i)])  for i in range(0,103) ]}
+    'samples' :  { "VBS": [' Alt$(LHEPdfWeight['+str(i)+'], 1.)'+ str(VBS_pdf_factors["VBS"]['pdf_weight_'+str(i)])  for i in range(0,103) ]}
 }
 
 # nuisances = {k:v for k,v in nuisances.items() if 'PS' in k} #if 'PS' in k or 'QCD' in k

@@ -203,7 +203,7 @@ samples['Wjets_HT'] = { 'name' :
           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT1200_2500')
           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT2500_inf'),
         'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch+'*'+ Wjets_photon_filter+'* ewknloW * btagSF_corr_Wjets_HT' ,
-        'FilesPerJob' : 3,
+        'FilesPerJob' : 4,
         'subsamples': {
             "res_1": '(VBS_category==1) && (w_lep_pt < 100)',
             "res_2": '(VBS_category==1) && (w_lep_pt >= 100 && w_lep_pt < 200)',
@@ -351,7 +351,7 @@ samples['Fake'] = {
 }
 
 
-# #### Fakes
+# # #### Fakes
 # samples['Fake_ele'] = {
 #   'name': [],
 #   'weight': METFilter_DATA+'*'+ fake_weight_corrected,
@@ -368,7 +368,7 @@ samples['Fake'] = {
 #   'FilesPerJob' : 45
 # }
 
-# #
+# # #
 # for _, sd in DataRun:
 #   for pd in DataSets:
 #     files = nanoGetSampleFiles(directory_data, pd + '_' + sd)
@@ -386,6 +386,13 @@ samples['Fake'] = {
 ################# DATA ###################
 ##########################################
 
+samples['DATA']  = {   'name': [ ] ,
+                       'weight' : METFilter_DATA+'*'+LepWPCut,
+                       'weights' : [ ],
+                       'isData': ['all'],
+                       'FilesPerJob' : 45,
+                  }
+
 # samples['DATA_mu']  = {   'name': [ ] ,
 #                        'weight' : METFilter_DATA+'*'+LepWPCut,
 #                        'weights' : [ ],
@@ -400,12 +407,6 @@ samples['Fake'] = {
 #                        'FilesPerJob' : 45,
 #                   }
 
-samples['DATA']  = {   'name': [ ] ,
-                       'weight' : METFilter_DATA+'*'+LepWPCut,
-                       'weights' : [ ],
-                       'isData': ['all'],
-                       'FilesPerJob' : 45,
-                  }
 
 # for Run in DataRun :
 #         for DataSet in DataSets :
@@ -419,4 +420,4 @@ samples['DATA']  = {   'name': [ ] ,
 #                     samples['DATA_mu']['weights'].append(DataTrig[DataSet])
 
 
-# samples = {k:v for k,v in samples.items() if k in ["Wjets_HT"]}#
+# samples = {k:v for k,v in samples.items() if k not in ["DATA","Fake"]}#

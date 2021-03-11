@@ -27,7 +27,7 @@ for cut in iF.GetListOfKeys():
             histo = iF.Get(cut.GetName()+'/'+var.GetName() + "/"+ h.GetName())
             
             if args.exclude and re.match(args.exclude, histo.GetName()):
-                #print "Exclude", h.GetName()
+                #print("Exclude", h.GetName())
                 continue 
             else:
                 if args.samples_only:

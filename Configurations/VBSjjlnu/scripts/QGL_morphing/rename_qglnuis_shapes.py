@@ -13,8 +13,8 @@ iF = R.TFile.Open(args.inputfile, "READ")
 oF = R.TFile.Open(args.outputfile,"RECREATE")
 oFF = R.TFile.Open(args.outputfile_fit,"UPDATE")
 
-# samples= ['VBS','DY','top','VV','VVV','Vg','VgS', 'VBF-V','ggWW']
-samples = ['DY']
+samples= ['VBS','DY','top','VV','VVV','Vg','VgS', 'VBF-V','ggWW']
+# samples = ['DY']
 wjets_bins = {"res":[], "boost":[]}
 for ir in range(1,7):
     wjets_bins["res"].append("Wjets_HT_res_"+str(ir))
@@ -27,6 +27,7 @@ variables = {
 }
 
 for cut in iF.GetListOfKeys():
+    if 'sig' not in cut.GetName(): continue
     print cut.GetName()
     oF.mkdir(cut.GetName())
     if "boost" in cut.GetName():

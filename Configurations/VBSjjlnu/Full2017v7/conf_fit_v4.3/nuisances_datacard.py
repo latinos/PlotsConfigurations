@@ -120,8 +120,8 @@ nuisances['fake_ele']  = {
                 'type'  : 'shape',
                 'samples'  : {
                             'Fake'     : [ fakeW_jetUp , fakeW_jetDown ],
-                            #   'Fake_ele'     : [ fakeW_jetUp , fakeW_jetDown ],
-                            #   'Fake_mu'      : [ fakeW_jetUp , fakeW_jetDown ],
+                              'Fake_ele'     : [ fakeW_jetUp , fakeW_jetDown ],
+                              'Fake_mu'      : [ fakeW_jetUp , fakeW_jetDown ],
                              },
                 'cuts':  phase_spaces_tot_ele
 }
@@ -132,8 +132,8 @@ nuisances['fake_ele_stat']  = {
                 'type'  : 'shape',
                 'samples'  : {
                             'Fake'      : [ fakeW_statUp , fakeW_statDown ],
-                            #   'Fake_ele'      : [ fakeW_statUp , fakeW_statDown ],
-                            #   'Fake_mu'      : [ fakeW_statUp , fakeW_statDown ],
+                              'Fake_ele'      : [ fakeW_statUp , fakeW_statDown ],
+                              'Fake_mu'      : [ fakeW_statUp , fakeW_statDown ],
                              },
                 'cuts':  phase_spaces_tot_ele
 }
@@ -144,8 +144,8 @@ nuisances['fake_mu']  = {
                 'type'  : 'shape',
                 'samples'  : {
                                 'Fake'     : [ fakeW_jetUp , fakeW_jetDown ],
-                            #   'Fake_ele'     : [ fakeW_jetUp , fakeW_jetDown ],
-                            #   'Fake_mu'     : [ fakeW_jetUp , fakeW_jetDown ],
+                              'Fake_ele'     : [ fakeW_jetUp , fakeW_jetDown ],
+                              'Fake_mu'     : [ fakeW_jetUp , fakeW_jetDown ],
                              },
                 'cuts':  phase_spaces_tot_mu
 }
@@ -157,8 +157,8 @@ nuisances['fake_mu_stat']  = {
                 'type'  : 'shape',
                 'samples'  : {
                             'Fake'     :[ fakeW_statUp , fakeW_statDown ],
-                            #   'Fake_ele'     :[ fakeW_statUp , fakeW_statDown ],
-                            #   'Fake_mu'     :[ fakeW_statUp , fakeW_statDown ]
+                              'Fake_ele'     :[ fakeW_statUp , fakeW_statDown ],
+                              'Fake_mu'     :[ fakeW_statUp , fakeW_statDown ]
                              },
                 'cuts':  phase_spaces_tot_mu
 }
@@ -446,7 +446,7 @@ for jtype in ["quark", "gluon"]:
 # qcdscale_variations = ['LHEScaleWeight[0]', 'LHEScaleWeight[1]', 'LHEScaleWeight[3]', 'LHEScaleWeight[Length$(LHEScaleWeight)-4]', 'LHEScaleWeight[Length$(LHEScaleWeight)-2]', 'LHEScaleWeight[Length$(LHEScaleWeight)-1]']
 import json, os
 
-VBS_pdf_factors = json.load(open(os.getenv("CMSSW_BASE") + "/src/PlotsConfigurations/Configurations/VBSjjlnu/Full2017v7/conf_fit_v4.3/pdf_normcorr_VBS.json"))
+# VBS_pdf_factors = json.load(open(os.getenv("CMSSW_BASE") + "/src/PlotsConfigurations/Configurations/VBSjjlnu/Full2017v7/conf_fit_v4.3/pdf_normcorr_VBS.json"))
 nuis_factors = json.load(open(os.getenv("CMSSW_BASE") + "/src/PlotsConfigurations/Configurations/VBSjjlnu/Full2017v7/conf_fit_v4.3/nuisance_incl_norm_factors_2017.json"))
 
 for sample in mc :
@@ -457,10 +457,7 @@ for sample in mc :
             'kind'  : 'weight',
             'type'  : 'shape',
             # Normalization effect removed from 1l inclusive phase space
-            'samples'  :  { "VBS": [
-                                "LHEScaleWeight[0] * {}".format(nuis_factors["VBS"]["QCDscale_VBS"][0]),
-                                "LHEScaleWeight[8] * {}".format(nuis_factors["VBS"]["QCDscale_VBS"][1])
-                            ] }
+            'samples'  :  { "VBS": ["QCDscale_normalized[0]", "QCDscale_normalized[8]"] }
         }
     else:
         nuisances['QCD_scale_'+sample] = {
@@ -477,8 +474,8 @@ for ir in range(1,6):
     wjets_bins.append("Wjets_HT_boost_"+str(ir))
 
 
-# Propagated from 2018 effect, split by sample
-for sample in ['top','DY','VV','VVV','Vg','VgS','VBF-V','ggWW'] + wjets_bins:
+### Propagated from 2018 effect, split by sample
+for sample in ['VBS','top','DY','VV','VVV','Vg','VgS','VBF-V','ggWW'] + wjets_bins:
     nuisances['PS_ISR_'+sample]  = {
                     'name'  : 'CMS_PS_ISR_'+sample,
                     'kind'  : 'weight',
@@ -496,23 +493,6 @@ for sample in ['top','DY','VV','VVV','Vg','VgS','VBF-V','ggWW'] + wjets_bins:
                     }
                 }
 
-nuisances['PS_ISR_VBS']  = {
-                'name'  : 'CMS_PS_ISR_VBS',
-                'kind'  : 'weight',
-                'type'  : 'shape',
-                'samples'  : {
-                    "VBS"  :     ['1.','1.'],
-                }
-            }
-
-nuisances['PS_FSR_VBS']  = {
-                'name'  : 'CMS_PS_FSR_VBS',
-                'kind'  : 'weight',
-                'type'  : 'shape',
-                 'samples'  : {
-                    "VBS"  :     ['1.','1.'],
-                }
-            }
 
 #########################################
 nuisances['PU']  = {
@@ -535,13 +515,13 @@ nuisances['pdf_weight'] = {
     'AsLnN':  '1'
 }
 
+
 nuisances['pdf_weight_VBS'] = {
     'name'  : 'pdf_weight_1718_accept',
     'kind'  : 'weight_envelope',
     'type'  : 'shape',
-    'samples' :  { "VBS": [' Alt$(LHEPdfWeight['+str(i)+'], 1.) * '+ str(VBS_pdf_factors["VBS"]['pdf_weight_'+str(i)])  for i in range(0,103) ]}
+    'samples' :  { "VBS": [ 'Alt$(PDFweight_normalized['+str(i)+'], 1.)' for i in range(0,103) ]}
 }
-
 
 # An overall 1.5% UE uncertainty will cover all the UEup/UEdo variations
 # And we don't observe any dependency of UE variations on njet
@@ -617,9 +597,8 @@ for n in nuisances.values():
     n['skipCMS'] = 1
 
    
+
+# nuisances = {k:v for k,v in nuisances.items() if 'fake' in k or k in ["pdf_weight_VBS","QCD_scale_VBS"]} #if 'PS' in k or 'QCD' in k
+
+
 # print ' '.join(nuis['name'] for nname, nuis in nuisances.iteritems() if nname not in ('lumi', 'stat'))
-
-
-
-# nuisances = { k:v for k,v in nuisances.items() if k in ['fake_syst','fake_ele','fake_ele_stat','fake_mu','fake_mu_stat',
-#                                                     'eff_e','eff_m','electronpt_0','muonpt_0','electronpt_1','muonpt_1' ] }

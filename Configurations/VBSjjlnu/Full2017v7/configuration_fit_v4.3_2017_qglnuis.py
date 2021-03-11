@@ -6,7 +6,7 @@ tag = 'fit_v4.3_2017_qglnuis'
 direc = "conf_fit_v4.3"
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFile_'+tag +"_redoWjets"
+outputDir = 'rootFile_'+tag 
 
 # file with TTree aliases
 aliasesFile = direc+'/aliases_qglnuis.py'

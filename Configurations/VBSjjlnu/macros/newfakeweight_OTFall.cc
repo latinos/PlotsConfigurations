@@ -98,7 +98,7 @@ newFakeWeightOTFall::newFakeWeightOTFall(string ele_WP, string mu_WP, string in_
   fr_ele_file = new TFile(fr_ele_path.c_str(), "read");
   pr_ele_file = new TFile(pr_ele_path.c_str(), "read");
   fr_ele_h2 = (TH2F*) fr_ele_file->Get("FR_pT_eta_EWKcorr");   
-  pr_ele_h2 = (TH2F*) pr_ele_file->Get("h_Ele_signal_pt_eta_bin");
+  pr_ele_h2 = (TH2F*) pr_ele_file->Get("PR_pT_eta");
   fr_ele_h2->SetDirectory(0);
   pr_ele_h2->SetDirectory(0);
   fr_ele_file->Close();
@@ -107,7 +107,7 @@ newFakeWeightOTFall::newFakeWeightOTFall(string ele_WP, string mu_WP, string in_
   fr_mu_file = new TFile(fr_mu_path.c_str(), "read");
   pr_mu_file = new TFile(pr_mu_path.c_str(), "read");
   fr_mu_h2 = (TH2F*) fr_mu_file->Get("FR_pT_eta_EWKcorr");   
-  pr_mu_h2 = (TH2F*) pr_mu_file->Get("h_Muon_signal_pt_eta_bin");
+  pr_mu_h2 = (TH2F*) pr_mu_file->Get("PR_pT_eta");
   fr_mu_h2->SetDirectory(0);
   pr_mu_h2->SetDirectory(0);
   fr_mu_file->Close();
@@ -149,13 +149,18 @@ newFakeWeightOTFall::evaluate(unsigned)
         fake_rate_e = fr_mu_h2->GetBinError(fr_mu_h2->FindBin(pt, abseta));
       }
       if (do_statUp){
-          fake_rate += fake_rate_e; 
-          if (fake_rate > 1) fake_rate=0.9999;
+          fake_rate += fake_rate_e;
+          if (fake_rate >=1.) fake_rate = 0.99; 
       }
       if (do_statDo){
           fake_rate -= fake_rate_e; 
           if (fake_rate < 0) fake_rate=0.;
       }
+      // We have to fix this case if not the formula will fail
+       if (fake_rate >= (prompt_rate-0.02)){
+            fake_rate = prompt_rate - 0.02; // Educated guess, keep fake rate 2% less of the prompt rate
+       }
+      //std::cout << "fw: "<< fake_rate << ",  prompt rate "<< prompt_rate << "  " << 1/(prompt_rate - fake_rate) <<" eta,pt "<< abseta << " " << pt << std::endl;
       if (Lepton_isTightMu->At(0)){
           new_fakew = (-1) * fake_rate * (1 - prompt_rate)/(prompt_rate - fake_rate);
       }else{
@@ -181,13 +186,17 @@ newFakeWeightOTFall::evaluate(unsigned)
       }
 
       if (do_statUp){
-          fake_rate += fake_rate_e; 
-          if (fake_rate > 1) fake_rate=0.9999;
+          fake_rate += fake_rate_e;
+          if (fake_rate >=1.) fake_rate = 0.99; 
       }
       if (do_statDo){
           fake_rate -= fake_rate_e; 
           if (fake_rate < 0) fake_rate=0.;
       }
+      // We have to fix this case if not the formula will fail
+       if (fake_rate >= (prompt_rate-0.02)){
+            fake_rate = prompt_rate - 0.02; // Educated guess, keep fake rate 2% less of the prompt rate
+       }
       if (Lepton_isTightEle->At(0)){
           new_fakew = (-1) * fake_rate * (1 - prompt_rate)/(prompt_rate - fake_rate);
       }else{

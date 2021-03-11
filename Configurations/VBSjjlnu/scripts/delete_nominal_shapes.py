@@ -10,6 +10,9 @@ for ir in range(1,7):
 for ir in range(1,6):
     samples.append("Wjets_HT_boost_"+str(ir))
 
+if len(sys.argv)>2:
+    samples = sys.argv[2:]
+
 
 for sample_name in samples:
 
@@ -22,7 +25,7 @@ for sample_name in samples:
             R.gDirectory.Cd(z.GetName())
             for l in R.gDirectory.GetListOfKeys():
                 if "histo_" + sample_name == l.GetName():
-                    print "delete ", l.GetName()
+                    print ("delete ", l.GetName())
                     R.gDirectory.Delete(l.GetName()+";*")
             R.gDirectory.Cd("../")
 

@@ -242,7 +242,7 @@ samples['Wjets_HT'] = { 'name' :
           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT2500_inf_ext1')
           ,
         'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch + '*'+Wjets_photon_filter + '* EWKnloW * btagSF_corr_Wjets_HT', 
-        'FilesPerJob' : 3,
+        'FilesPerJob' : 4,
          'subsamples': {
             "res_1": '(VBS_category==1) && (w_lep_pt < 100)',
             "res_2": '(VBS_category==1) && (w_lep_pt >= 100 && w_lep_pt < 200)',
@@ -431,4 +431,4 @@ for Run in DataRun :
 
 
 # samples = {k:v for k,v in samples.items() if k  in ['DY', 'Wjets_HT']}
-#samples = {k:v for k,v in samples.items() if k not in ['DATA','Fake']}
+# samples = {k:v for k,v in samples.items() if k not in ['Fake',"DATA"]}

@@ -215,8 +215,8 @@ aliases['Top_pTrw'] = {
 basedir_fakes = configurations + "/VBSjjlnu/weights_files/fake_rates/2016"
 
 ets = ["25", "35", "45"]
-el_pr_file = os.getenv('CMSSW_BASE') + "/src/LatinoAnalysis/NanoGardener/python/data/fake_prompt_rates/Full2016v7/mva90pIso2016/ElePR.root"
-mu_pr_file = os.getenv('CMSSW_BASE') + "/src/LatinoAnalysis/NanoGardener/python/data/fake_prompt_rates/Full2016v7/Tight80X/MuonPR.root"
+el_pr_file = configurations + "/VBSjjlnu/weights_files/prompt_rates/2016/plot_ElCh_l1_etaVpt_ptel_2D_pr.root"
+mu_pr_file = configurations + "/VBSjjlnu/weights_files/prompt_rates/2016/plot_MuCh_l1_etaVpt_ptmu_2D_pr.root"
 
 for et in ets:
     el_fr_file = basedir_fakes + "/plot_ElCh_JetEt"+et+"_l1_etaVpt_ptel_aseta_fw_ewk_2D.root" #No absolute value for fakes
@@ -268,6 +268,28 @@ aliases['veto_fatjet_180'] = {
                 '.L {}/VBSjjlnu/macros/veto_fatjet_resolved.cc+'.format(configurations)
             ]           
 }
+
+#######################################
+
+aliases['QCDscale_normalized'] = {
+            'class': 'QCDScaleNormalized',
+            'args': (),
+            'linesToAdd' : [
+                'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+                '.L {}/VBSjjlnu/macros/QCDscale_normalize.cc+'.format(configurations)
+            ] ,
+            'samples':['VBS']          
+}
+
+# aliases['PDFweight_normalized'] = {
+#             'class': 'PDFWeightNormalized',
+#             'args': (),
+#             'linesToAdd' : [
+#                 'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+#                 '.L {}/VBSjjlnu/macros/PDFweight_normalize.cc+'.format(configurations)
+#             ] ,
+#             'samples':['VBS']          
+# }
 
 ###################################3
 # QGL variables

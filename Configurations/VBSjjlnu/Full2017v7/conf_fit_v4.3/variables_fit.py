@@ -105,7 +105,7 @@ variables['mjj_vbs'] = {   'name': 'mjj_vbs',
                         'range' : (30,250,3000) , 
                         'xaxis' : 'M_{jj} VBS', 
                         'fold' : 3,
-                        'blind':  { c: [1500,3000] for c in cuts if 'sig' in c} ,
+                        #'blind':  { c: [1500,3000] for c in cuts if 'sig' in c} ,
                     }
 
 variables['nJets'] = {   'name': 'nJets30',      

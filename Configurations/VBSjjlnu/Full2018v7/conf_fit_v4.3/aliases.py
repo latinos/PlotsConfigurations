@@ -173,8 +173,8 @@ basedir_fakes = configurations + "/VBSjjlnu/weights_files/fake_rates/2018"
 
 ets = ["25", "35", "45"]
 
-el_pr_file = os.getenv('CMSSW_BASE') + "/src/LatinoAnalysis/NanoGardener/python/data/fake_prompt_rates/Full2018v7/mvaFall17V1Iso_WP90/ElePR.root"
-mu_pr_file = os.getenv('CMSSW_BASE') + "/src/LatinoAnalysis/NanoGardener/python/data/fake_prompt_rates/Full2018v7/cut_Tight_HWWW/MuonPR.root"
+el_pr_file = configurations + "/VBSjjlnu/weights_files/prompt_rates/2018/plot_ElCh_l1_etaVpt_ptel_2D_pr.root"
+mu_pr_file = configurations + "/VBSjjlnu/weights_files/prompt_rates/2018/plot_MuCh_l1_etaVpt_ptmu_2D_pr.root"
 
 for et in ets:
     el_fr_file = basedir_fakes + "/plot_ElCh_JetEt"+et+"_l1_etaVpt_ptel_aseta_fw_ewk_2D.root" #No absolute value for fakes
@@ -205,7 +205,7 @@ aliases['fakeWeight_35_statDo'] = {
     }
 
 
-###################################3
+###################################
 
 # PU jet Id SF
 
@@ -271,7 +271,29 @@ aliases['veto_fatjet_180'] = {
             ]           
 }
 
-###################################3
+############################################
+
+aliases['QCDscale_normalized'] = {
+            'class': 'QCDScaleNormalized',
+            'args': (),
+            'linesToAdd' : [
+                'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+                '.L {}/VBSjjlnu/macros/QCDscale_normalize.cc+'.format(configurations)
+            ] ,
+            'samples':['VBS']          
+}
+
+aliases['PDFweight_normalized'] = {
+            'class': 'PDFWeightNormalized',
+            'args': (),
+            'linesToAdd' : [
+                'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+                '.L {}/VBSjjlnu/macros/PDFweight_normalize.cc+'.format(configurations)
+            ] ,
+            'samples':['VBS']          
+}
+
+###################################
 # QGL variables
 
 morphing_file = configurations + "/VBSjjlnu/weights_files/qgl_morphing/morphing_functions_withvars_2018.root"
