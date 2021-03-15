@@ -151,6 +151,12 @@ def customize(samples,cuts,variables,nuisances,plot,groupPlot, key=None):
         new_groupPlot = reorder_plots(groupPlot,  plots_wjets_order_res)
         return samples, new_cuts, variables, nuisances, plot, new_groupPlot
 
+    if key=="signal_vbsbins":
+        new_cuts = filter_cuts(cuts, r".*_sig_.*")
+        new_groupPlot = reorder_plots(groupPlot,  plots_wjets_order_boost)
+        new_variables = {"vbs_1_pt_res": variables["vbs_1_pt_res"]}
+        return samples, new_cuts, new_variables, nuisances, plot, new_groupPlot
+
     ###########################################
     if key=="bins_wjets_res":
         new_cuts = filter_cuts(cuts, r"res_wjetcr_.*")

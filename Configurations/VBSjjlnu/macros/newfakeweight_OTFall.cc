@@ -149,16 +149,18 @@ newFakeWeightOTFall::evaluate(unsigned)
         fake_rate_e = fr_mu_h2->GetBinError(fr_mu_h2->FindBin(pt, abseta));
       }
       if (do_statUp){
-          fake_rate += fake_rate_e;
-          if (fake_rate >=1.) fake_rate = 0.99; 
+        if (pt >=40 ) fake_rate += fake_rate_e / 2; // Only for muons
+        else fake_rate += fake_rate_e;
+        if (fake_rate >=1.) fake_rate = 0.99; 
       }
       if (do_statDo){
-          fake_rate -= fake_rate_e; 
-          if (fake_rate < 0) fake_rate=0.;
+        if (pt >=40 ) fake_rate -= fake_rate_e / 2;
+        else fake_rate -= fake_rate_e;
+        if (fake_rate < 0) fake_rate=0.;
       }
       // We have to fix this case if not the formula will fail
-       if (fake_rate >= (prompt_rate-0.02)){
-            fake_rate = prompt_rate - 0.02; // Educated guess, keep fake rate 2% less of the prompt rate
+       if (fake_rate >= (prompt_rate-0.025)){
+            fake_rate = prompt_rate - 0.025; // Educated guess, keep fake rate 2.5% less of the prompt rate
        }
       //std::cout << "fw: "<< fake_rate << ",  prompt rate "<< prompt_rate << "  " << 1/(prompt_rate - fake_rate) <<" eta,pt "<< abseta << " " << pt << std::endl;
       if (Lepton_isTightMu->At(0)){

@@ -49,6 +49,11 @@ def customize(samples,cuts,variables,nuisances,plot,groupPlot, key=None):
         new_plot , new_groupPlot = filter_plots("boost", plot, groupPlot)
         return samples, new_cuts, variables, nuisances, new_plot, new_groupPlot
 
+    if key=="signal_vbsbins":
+        new_cuts = filter_cuts(cuts, r".*_sig_.*")
+        new_plot , new_groupPlot = filter_plots("res", plot, groupPlot)
+        new_variables = {"vbs_1_pt": variables["vbs_1_pt"]}
+        return samples, new_cuts, new_variables, nuisances, plot, new_groupPlot
     else:
         return samples,cuts,variables,nuisances,plot,groupPlot
 

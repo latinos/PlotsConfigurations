@@ -160,7 +160,7 @@ variables['vbs_0_pt'] = {   'name': 'vbs_0_pt',
                         } 
 
 variables['vbs_1_pt_res'] = {   'name': 'vbs_1_pt',      
-                        'range' : (30,30,400),  
+                        'range' : (14,30,200),  
                         'xaxis' : 'trailing VBS jet pt', 
                         'fold' : 3,
                         'cuts': res_cuts

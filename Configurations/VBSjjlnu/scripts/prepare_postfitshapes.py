@@ -18,11 +18,13 @@ parser.add_argument("-c","--config", help="configuration file", type=str,require
 parser.add_argument("-d","--datacards", help="Datacard names", nargs="+", type=str)
 parser.add_argument("-b","--basedir", help="Baseline folder", type=str,required=True)
 parser.add_argument("-o","--outputdir", help="Output folder", type=str,required=True)
+parser.add_argument("-t","--toys", help="N. toys", type=str,default=500)
 parser.add_argument("-p","--process", help="Process to run", type=str,required=True)
 parser.add_argument("-i","--input-params", help="File with fit parameters to use", type=str, required=True)
 parser.add_argument("--dry", help="Only printout commands", action="store_true", default=False)
 parser.add_argument("-op","--outputdir-plots", help="Output folder for plots", type=str,required=True)
 parser.add_argument("-rw","--redo-workspace", help="Redo workspace", action="store_true")
+parser.add_argument("--add-mcstat", help="Add MCstat uncertainty", action="store_true")
 args = parser.parse_args()
 
 if args.config.endswith(".yaml"):
@@ -102,8 +104,8 @@ def postfit_shape(datac):
     outdir = datac["outputdir"] 
     log.info("Running combine")
     cmd = """PostFitShapesFromWorkspace -w combined_{0}.root -d combined_{0}.txt -o output_postfit.root  \\
-         -f {1}:fit_s  \\
-         --postfit --sampling --total-shapes --print --covariance --skip-prefit > logPostFitShape.txt""".format(datac["datacard_name"], args.input_params)
+         -f {1}:fit_s --samples {2} \\
+         --postfit --sampling --total-shapes --print --covariance --skip-prefit > logPostFitShape.txt""".format(datac["datacard_name"], args.input_params, args.toys)
     log.debug(cmd)
 
     current_path = os.getcwd()
@@ -121,6 +123,8 @@ def postfit_plot(datac):
     log = logging.getLogger(datac["datacard_name"])
     outdir = datac["outputdir"] 
 
+    if not os.path.exists(args.outputdir_plots):
+        os.makedirs(args.outputdir_plots)
     os.chdir(args.outputdir_plots)
     current_path = os.getcwd()
     log.debug("current path " + current_path )
@@ -148,11 +152,46 @@ def postfit_plot(datac):
     cmd = [ """mkPostFitCombinedPlot.py --inputFilePostFitShapesFromWorkspace  ../../../datacards/{0}/output_postfit.root \\
            --outputFile postfit_shapes.root --kind P --cutName combined  \\
            --variable {1} --structureFile ../../../Full2018v7/conf_fit_v4.3/structure.py \\
-           --plotFile ../../{2} --lumiText "137/fb" """.format(datac["outputdir"], 
-           datac["phase_spaces"][0]["var"], plotFile),
+           --plotFile ../../{2} --lumiText "137/fb" """.format(datac["outputdir"], datac["phase_spaces"][0]["var"], plotFile),
+
            """mkPlot.py --pycfg=configuration_combined.py --inputFile=postfit_shapes.root  --showRelativeRatio \\
             --minLogC 10 --maxLogC 1e2 --minLogCratio 10 --maxLogCratio 1e2 --showIntegralLegend=1 --plotNormalizedDistributions """
     ]
+
+    # Check if need to add MC stat uncertainty 
+    if args.add_mcstat:
+        cards= []
+        for folder in datac["folders"]:
+            for card in datac["phase_spaces"] :
+                cards.append("{0}/{1}/{2}/shapes/histos_{1}.root".format( "../../../" + folder["basedir"],card["cut"], card["var"]))
+        cmd[0] += " --nonFitVariable --listOfFilesOriginal {}".format(",".join(cards))
+
+    for c in cmd:  log.debug(cmd)
+
+    if not args.dry:  
+        for cm in cmd:
+            os.system(cm)
+        os.chdir(current_path)    
+    log.info("Done")
+
+
+def postfit_plot_onlyplot(datac):
+    log = logging.getLogger(datac["datacard_name"])
+    outdir = datac["outputdir"] 
+
+    os.chdir(args.outputdir_plots)
+    current_path = os.getcwd()
+    log.debug("current path " + current_path )
+
+    os.chdir(datac["datacard_name"])
+
+    log.info("Plotting")
+    cmd = [ 
+
+           """mkPlot.py --pycfg=configuration_combined.py --inputFile=postfit_shapes_new.root  --showRelativeRatio \\
+            --minLogC 10 --maxLogC 1e2 --minLogCratio 10 --maxLogCratio 1e2 --showIntegralLegend=1 --plotNormalizedDistributions """
+    ]
+
     for c in cmd:  log.debug(cmd)
 
     if not args.dry:  
@@ -189,6 +228,8 @@ elif args.process == "postfit_shapes":
     poll.map(postfit_shape, datacards_to_run)  
 elif args.process == "plot":
     poll.map(postfit_plot, datacards_to_run)
+elif args.process == "only-plot":
+    poll.map(postfit_plot_onlyplot, datacards_to_run)
 elif args.process == "all":
     poll.map(prepare_workspace, datacards_to_run)
     poll.map(postfit_shape, datacards_to_run)  

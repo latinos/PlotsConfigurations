@@ -34,7 +34,7 @@ outputDirPlots = 'plot_'+tag
 
 # used by mkDatacards to define output directory for datacards
 #outputDirDatacard = 'datacards_'+tag 
-outputDirDatacard = 'datacards_'+tag +"_v4SignalPlots"
+outputDirDatacard = 'datacards_'+tag +"_v5SignalPlots"
 
 # structure file for datacard
 structureFile = direc+'/structure.py'
