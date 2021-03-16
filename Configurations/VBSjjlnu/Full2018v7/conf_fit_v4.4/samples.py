@@ -176,7 +176,7 @@ samples['top'] = {    'name'   :   nanoGetSampleFiles(directory_bkg,'TTTo2L2Nu')
                                  + nanoGetSampleFiles(directory_bkg,'TTWjets'),
                                 #+  nanoGetSampleFiles(directory_bkg,'TTWJetsToLNu'), #also this is available
                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC +'*btagSF_corr_top',
-                     'FilesPerJob' : 6,
+                     'FilesPerJob' : 5,
                      'EventsPerJob' : 70000,
                      'suppressNegative' :['all'],
                      'suppressNegativeNuisances' :['all'],
@@ -255,7 +255,7 @@ samples['VV']  = { 'name' :
                nanoGetSampleFiles(directory_signal,'WpToLNu_ZTo2J_QCD',) +
                nanoGetSampleFiles(directory_signal,'ZTo2L_ZTo2J_QCD',  ) ,
         'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch +'*btagSF_corr_VV_VVV_ggWW', # still missing EWKnlowW 
-        'FilesPerJob' : 12,
+        'FilesPerJob' : 10,
         'EventsPerJob' : 70000,
 }
 
@@ -386,4 +386,4 @@ for Run in DataRun :
                         samples['DATA']['weights'].append(DataTrig[DataSet])
 
 
-# samples = {   key:v for key,v in samples.items() if key in ['Fake']}
+# samples = {   key:v for key,v in samples.items() if key in ['Fake','DATA','Vg','VgS','ggWW']}
