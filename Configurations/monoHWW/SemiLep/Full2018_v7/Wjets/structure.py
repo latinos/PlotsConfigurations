@@ -115,21 +115,21 @@ structure['Higgs'] = {
                   'isData'   : 0
                   }
 
-# SIGNAL
-
-if os.path.exists(signal_file) :
-    handle = open(signal_file,'r')
-    exec(handle)
-    handle.close()
-else:
-    raise IOError('FILE NOT FOUND: '+signal_file+'does not exist.')
-
-for mp in signal:
-    structure[mp] = {
-        'isSignal': 2,
-        'isData'  : 0,
-    }
-
+## SIGNAL
+#
+#if os.path.exists(signal_file) :
+#    handle = open(signal_file,'r')
+#    exec(handle)
+#    handle.close()
+#else:
+#    raise IOError('FILE NOT FOUND: '+signal_file+'does not exist.')
+#
+#for mp in signal:
+#    structure[mp] = {
+#        'isSignal': 2,
+#        'isData'  : 0,
+#    }
+#
 
 
 # DATA

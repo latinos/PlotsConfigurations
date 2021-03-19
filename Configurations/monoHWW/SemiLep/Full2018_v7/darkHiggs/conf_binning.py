@@ -5,18 +5,21 @@
 treeName = 'Events'
 
 tag = 'darkHiggs_binning_2018v7'
+#tag = 'darkHiggs_binning_InBveto_2018v7'
 
 # used by mkShape to define output directory for root files
 outputDir = 'darkHiggs_binning_root'
 
 # file with TTree aliases
 aliasesFile = 'aliases.py'
+#aliasesFile = 'aliases_InBveto.py'
 
 # file with list of variables
 variablesFile = 'variables_binning.py'
 
 # file with list of cuts
-cutsFile = 'cuts_InSR.py'
+#cutsFile = 'cuts_InSR.py'
+cutsFile = 'cuts_InSR_binning.py'
 
 # file with list of samples
 samplesFile = 'samples.py'

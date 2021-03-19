@@ -314,6 +314,9 @@ aliases['PUJetIdSF'] = {
 ### Fake-Weight stuff
 #FR_dir = os.getenv('CMSSW_BASE') + "/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/Full2018_v7/2HDMa/FReleTrig/"
 FR_dir = os.getenv('CMSSW_BASE') + "/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/Full2018_v7/2HDMa/FR_NLOWjet/"
+PR_dir = os.getenv('CMSSW_BASE') + "/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/Full2018_v7/PR/PR/"
+el_pr_file = PR_dir+"plot_ElCh_l1_etaVpt_ptel_2D_pr.root"
+mu_pr_file = PR_dir+"plot_MuCh_l1_etaVpt_ptmu_2D_pr.root"
 for lep in ['El', 'Mu']:
     for dEt in [-10, 0, 10]:
         if lep == 'El':
@@ -329,28 +332,27 @@ for lep in ['El', 'Mu']:
         aliases['FW_mu'+str(mu_et)+'_el'+str(el_et)] = {
             'linesToAdd' : [
                 'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-                '.L %s/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/Full2018_v7/Fake/fakeweight_p1_OTF.cc+' % os.getenv('CMSSW_BASE')
+                #'.L %s/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/Full2018_v7/Fake/fakeweight_p1_OTF.cc+' % os.getenv('CMSSW_BASE')
+                '.L %s/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/Full2018_v7/Fake/fakeweight_OTF.cc+' % os.getenv('CMSSW_BASE')
             ],
-            'class': 'fakeWeight_p1_OTF',
-            'args': (eleWP, muWP, copy.deepcopy(el_fr_file), copy.deepcopy(mu_fr_file), False, False), 
+            #'class': 'fakeWeight_p1_OTF',
+            'class': 'fakeWeightOTF',
+            #'args': (eleWP, muWP, copy.deepcopy(el_fr_file), copy.deepcopy(mu_fr_file), False, False), 
+            'args': (eleWP, muWP, copy.deepcopy(el_fr_file), el_pr_file, copy.deepcopy(mu_fr_file), mu_pr_file, False, False), 
             'samples': ["FAKE"]
         }
         aliases['FW_mu'+str(mu_et)+'_el'+str(el_et)+'_statUp'] = {
-            'class': 'fakeWeight_p1_OTF',
-            'args': (eleWP, muWP, copy.deepcopy(el_fr_file), copy.deepcopy(mu_fr_file), True, False), 
-            #'linesToAdd' : [
-            #    'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-            #    '.L %s/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/Full2017_v7/2HDMa/newfakeweight_OTF.cc+' % os.getenv('CMSSW_BASE')
-            # ],
+            #'class': 'fakeWeight_p1_OTF',
+            'class': 'fakeWeightOTF',
+            #'args': (eleWP, muWP, copy.deepcopy(el_fr_file), copy.deepcopy(mu_fr_file), True, False), 
+            'args': (eleWP, muWP, copy.deepcopy(el_fr_file), el_pr_file, copy.deepcopy(mu_fr_file), mu_pr_file, True, False), 
             'samples': ["FAKE"]
         }
         aliases['FW_mu'+str(mu_et)+'_el'+str(el_et)+'_statDown'] = {
-            'class': 'fakeWeight_p1_OTF',
-            'args': (eleWP, muWP, copy.deepcopy(el_fr_file), copy.deepcopy(mu_fr_file), False, True), 
-            #'linesToAdd' : [
-            #    'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-            #    '.L %s/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/Full2017_v7/2HDMa/newfakeweight_OTF.cc+' % os.getenv('CMSSW_BASE')
-            # ],
+            #'class': 'fakeWeight_p1_OTF',
+            'class': 'fakeWeightOTF',
+            #'args': (eleWP, muWP, copy.deepcopy(el_fr_file), copy.deepcopy(mu_fr_file), False, True), 
+            'args': (eleWP, muWP, copy.deepcopy(el_fr_file), el_pr_file, copy.deepcopy(mu_fr_file), mu_pr_file, False, True), 
             'samples': ["FAKE"]
         }
 

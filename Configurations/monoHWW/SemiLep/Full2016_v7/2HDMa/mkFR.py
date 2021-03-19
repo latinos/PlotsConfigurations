@@ -194,6 +194,24 @@ for cut in clean_cuts:
                     title = 'FW_no_ewk_'+cut+'_'+var,
                     invert = True,
                     )
+                time.sleep(0.01)
+                histograms_fr[h_name_total_ewk+'_2D_invert'] = re_roll_2Dh_array(
+                    histograms_fr[h_name_total_ewk], 
+                    variables[var]['range'][0], 
+                    variables[var]['range'][1], 
+                    name = 'FW_ewk_'+cut+'_'+var+'_inv',
+                    title = 'FW_ewk_'+cut+'_'+var,
+                    invert = False,
+                    )
+                time.sleep(0.01)
+                histograms_fr[h_name_total+'_2D_invert'] = re_roll_2Dh_array(
+                    histograms_fr[h_name_total], 
+                    variables[var]['range'][0], 
+                    variables[var]['range'][1], 
+                    name = 'FW_no_ewk_'+cut+'_'+var+'_inv',
+                    title = 'FW_no_ewk_'+cut+'_'+var,
+                    invert = False,
+                    )
 
 
 print('Create plots')
@@ -203,12 +221,24 @@ print('Create plots')
 fr_dir = 'FR_NLOWjet'
 canvas = ROOT.TCanvas('canvas', 'FW canvas', 610, 600)
 for fw in histograms_fr:
+    canvas.SetLogy(0)
     name = 'plot'+fw[1:].replace('_total', '_fw')
     if fw.endswith('_2D'):
         tmp_file = ROOT.TFile(fr_dir+'/'+name+'.root', 'RECREATE')
         histograms_fr[fw].SetName('FR_pT_eta_EWKcorr') #For reading script
         histograms_fr[fw].Write()
         tmp_file.Close()
+        histograms_fr[fw].Draw('colz text')
+    elif fw.endswith('_2D_invert'):
+        title = ''
+        if 'MuCh' in fw: title += 'Muon'
+        else: title += 'Electron'
+        title += ' fake rate 2016' 
+        histograms_fr[fw].SetTitle(title)
+        histograms_fr[fw].GetYaxis().SetTitle('p_{T}')
+        histograms_fr[fw].GetXaxis().SetTitle('#eta')
+        histograms_fr[fw].GetZaxis().SetRangeUser(.3, .85)
+        canvas.SetLogy()
         histograms_fr[fw].Draw('colz text')
     else: histograms_fr[fw].Draw()
     canvas.Update()

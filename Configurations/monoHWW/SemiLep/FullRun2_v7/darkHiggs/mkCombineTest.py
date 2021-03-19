@@ -49,8 +49,8 @@ def prep_and_sub_asimov_impact(card_id, b_only=True):
     if not b_only:
         name_tag = 's+b' 
         sb_str = '-t -1 --expectSignal 1 -n '+name_tag
-    cmd += 'combineTool.py -M Impacts -d '+card_id+'.root '+sb_str+' --rMin -10 --doInitialFit --allPars -m 1\n'
-    cmd += 'combineTool.py -M Impacts -d '+card_id+'.root -o impacts_'+name_tag+'.json '+sb_str+' --rMin -10 --doFits -m 1 --job-mode condor --task-name '+name_tag+' --sub-opts \'+JobFlavour = "espresso"\nrequirements = (OpSysAndVer =?= "CentOS7")\'\n'
+    cmd += 'combineTool.py -M Impacts -d '+card_id+'.root '+sb_str+' --rMin -10 --doInitialFit --allPars -m 125\n'
+    cmd += 'combineTool.py -M Impacts -d '+card_id+'.root -o impacts_'+name_tag+'.json '+sb_str+' --rMin -10 --doFits -m 125 --job-mode condor --task-name '+name_tag+' --sub-opts \'+JobFlavour = "espresso"\nrequirements = (OpSysAndVer =?= "CentOS7")\'\n'
     return cmd
 
 def collect_asimov_impact(card_id, b_only=True):
@@ -58,8 +58,8 @@ def collect_asimov_impact(card_id, b_only=True):
     name_tag = 'b'
     if not b_only: name_tag = 's+b'
 
-    cmd += 'combineTool.py -M Impacts -d '+card_id+'.root -m 1 -n '+name_tag+' -o impacts_'+name_tag+'.json\n'
-    cmd += 'plotImpacts.py -i  impacts_'+name_tag+'.json -o  impacts_'+name_tag+'\n'
+    cmd += 'combineTool.py -M Impacts -d '+card_id+'.root -m 125 -n '+name_tag+' -o impacts_'+name_tag+'.json\n'
+    cmd += 'plotImpacts.py -i impacts_'+name_tag+'.json -o impacts_'+name_tag+'\n'
     return cmd
 
 exec_file = 'current_task.sh'

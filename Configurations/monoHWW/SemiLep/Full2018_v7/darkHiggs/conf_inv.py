@@ -10,15 +10,18 @@ tag = 'darkHiggs_inv_2018v7'
 outputDir = 'darkHiggs_inv_root'
 
 # file with TTree aliases
-#aliasesFile = 'aliases_inv.py'
+#aliasesFile = 'aliases_bveto.py'
 aliasesFile = 'aliases.py'
 
 # file with list of variables
 variablesFile = 'variables_bdt.py'
+#variablesFile = 'variables_lim.py'
+#variablesFile = 'variables_inv.py'
+#variablesFile = 'variables_clean.py'
 
 # file with list of cuts
 #cutsFile = 'cuts.py'
-cutsFile = 'cuts.py'
+cutsFile = 'cuts_inv.py'
 
 # file with list of samples
 samplesFile = 'samples.py'
@@ -41,4 +44,5 @@ structureFile = 'structure.py'
 
 # nuisances file for mkDatacards and for mkShape
 #nuisancesFile = 'nuisances.py'
-#nuisancesFile = 'nuisances_full.py'
+nuisancesFile = 'nuisances_full.py'
+#nuisancesFile = 'nuisances_noJES.py'

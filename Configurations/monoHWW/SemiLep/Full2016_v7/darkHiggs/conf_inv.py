@@ -15,10 +15,11 @@ aliasesFile = 'aliases.py'
 
 # file with list of variables
 variablesFile = 'variables_bdt.py'
+#variablesFile = 'variables_clean.py'
 
 # file with list of cuts
 #cutsFile = 'cuts.py'
-cutsFile = 'cuts.py'
+cutsFile = 'cuts_inv.py'
 
 # file with list of samples
 samplesFile = 'samples.py'
@@ -41,4 +42,5 @@ structureFile = 'structure.py'
 
 # nuisances file for mkDatacards and for mkShape
 #nuisancesFile = 'nuisances.py'
-#nuisancesFile = 'nuisances_full.py'
+nuisancesFile = 'nuisances_full.py'
+#nuisancesFile = 'nuisances_noJES.py'

@@ -325,28 +325,42 @@ aliases['EWKnloW'] = {
         '.L %s/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/Full2017_v6/2HDMa/EWKnloW.cc+' % os.getenv('CMSSW_BASE')
     ],
     'class': 'EWKnloW',
-    'samples': "Wjets"
+    'samples': ["Wjets"]
+    #'samples': ["Wjets", "Wjets_PuppiRW", "Wjets_HTsf"]
 }
 
 
 # PU jet Id SF
 
-puidSFSource = '%s/src/PlotsConfigurations/Configurations/patches/PUID_81XTraining_EffSFandUncties.root' % os.getenv('CMSSW_BASE')
+#puidSFSource = '%s/src/PlotsConfigurations/Configurations/patches/PUID_81XTraining_EffSFandUncties.root' % os.getenv('CMSSW_BASE')
+#
+#aliases['PUJetIdSF'] = {
+#    'linesToAdd': [
+#        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
+#        #'.L %s/src/PlotsConfigurations/Configurations/patches/pujetidsf_event.cc+' % os.getenv('CMSSW_BASE')
+#        '.L %s/src/PlotsConfigurations/Configurations/patches/pujetidsf_event_new.cc+' % os.getenv('CMSSW_BASE')
+#    ],
+#    'class': 'PUJetIdEventSF',
+#    #'class': 'PUJetIdEventSFnew',
+#    'args': (puidSFSource, '2017', 'loose'),
+#    'samples': mc
+#}
 
+#aliases['Jet_PUIDSF'] = {
 aliases['PUJetIdSF'] = {
-    'linesToAdd': [
-        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
-        #'.L %s/src/PlotsConfigurations/Configurations/patches/pujetidsf_event.cc+' % os.getenv('CMSSW_BASE')
-        '.L %s/src/PlotsConfigurations/Configurations/patches/pujetidsf_event_new.cc+' % os.getenv('CMSSW_BASE')
-    ],
-    'class': 'PUJetIdEventSF',
-    #'class': 'PUJetIdEventSFnew',
-    'args': (puidSFSource, '2017', 'loose'),
-    'samples': mc
+  'expr' : 'TMath::Exp(Sum$((Jet_jetId>=2 && ( (Jet_electronIdx1 != Lepton_electronIdx[0]) || Jet_electronIdx1 < 0 )  \
+                                          && ( (Jet_muonIdx1 != Lepton_muonIdx[0] ) || Jet_muonIdx1 < 0 ) \
+                            )*TMath::Log(Jet_PUIDSF_loose)))',
+  'samples': mc
 }
 
-## Fake-Weight stuff
 
+## Fake-Weight stuff
+#FR_dir = os.getenv('CMSSW_BASE') + "/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/Full2018_v7/2HDMa/FReleTrig/"
+FR_dir = os.getenv('CMSSW_BASE') + "/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/Full2017_v7/2HDMa/FR_NLOWjet/"
+PR_dir = os.getenv('CMSSW_BASE') + "/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/Full2017_v7/PR/PR/"
+el_pr_file = PR_dir+"plot_ElCh_l1_etaVpt_ptel_2D_pr.root"
+mu_pr_file = PR_dir+"plot_MuCh_l1_etaVpt_ptmu_2D_pr.root"
 for lep in ['El', 'Mu']:
     for dEt in [-10, 0, 10]:
         if lep == 'El':
@@ -356,28 +370,33 @@ for lep in ['El', 'Mu']:
             el_et = El_jetEt
             mu_et = Mu_jetEt + dEt
 
-        el_fr_file = os.getenv('CMSSW_BASE') + "/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/Full2017_v7/2HDMa/FReleTrig/plot_ElCh_JetEt"+str(el_et)+"_l1_etaVpt_ptel_fw_ewk_2D.root"
-        mu_fr_file = os.getenv('CMSSW_BASE') + "/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/Full2017_v7/2HDMa/FReleTrig/plot_MuCh_JetEt"+str(mu_et)+"_l1_etaVpt_ptmu_fw_ewk_2D.root"
-        el_pr_file = os.getenv('CMSSW_BASE') + "/src/LatinoAnalysis/NanoGardener/python/data/fake_prompt_rates/Full2017v6/mvaFall17V1IsoWP90/ElePR.root"
-        mu_pr_file = os.getenv('CMSSW_BASE') + "/src/LatinoAnalysis/NanoGardener/python/data/fake_prompt_rates/Full2017v6/mvaFall17V1IsoWP90/MuonPR.root"
+        el_fr_file = FR_dir+"plot_ElCh_JetEt"+str(el_et)+"_l1_etaVpt_ptel_fw_ewk_2D.root"
+        mu_fr_file = FR_dir+"plot_MuCh_JetEt"+str(mu_et)+"_l1_etaVpt_ptmu_fw_ewk_2D.root"
     
         aliases['FW_mu'+str(mu_et)+'_el'+str(el_et)] = {
             'linesToAdd' : [
                 'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-                '.L %s/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/Full2017_v7/2HDMa/newfakeweight_OTF.cc+' % os.getenv('CMSSW_BASE')
+                #'.L %s/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/Full2018_v7/Fake/fakeweight_p1_OTF.cc+' % os.getenv('CMSSW_BASE')
+                '.L %s/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/Full2018_v7/Fake/fakeweight_OTF.cc+' % os.getenv('CMSSW_BASE')
             ],
-            'class': 'newFakeWeightOTF',
-            'args': (eleWP, muWP, copy.deepcopy(el_fr_file), copy.deepcopy(el_pr_file), copy.deepcopy(mu_fr_file), copy.deepcopy(mu_pr_file), False, False), 
+            #'class': 'fakeWeight_p1_OTF',
+            'class': 'fakeWeightOTF',
+            #'args': (eleWP, muWP, copy.deepcopy(el_fr_file), copy.deepcopy(mu_fr_file), False, False), 
+            'args': (eleWP, muWP, copy.deepcopy(el_fr_file), el_pr_file, copy.deepcopy(mu_fr_file), mu_pr_file, False, False), 
             'samples': ["FAKE"]
         }
         aliases['FW_mu'+str(mu_et)+'_el'+str(el_et)+'_statUp'] = {
-            'class': 'newFakeWeightOTF',
-            'args': (eleWP, muWP, copy.deepcopy(el_fr_file), copy.deepcopy(el_pr_file), copy.deepcopy(mu_fr_file), copy.deepcopy(mu_pr_file), True, False), 
+            #'class': 'fakeWeight_p1_OTF',
+            'class': 'fakeWeightOTF',
+            #'args': (eleWP, muWP, copy.deepcopy(el_fr_file), copy.deepcopy(mu_fr_file), True, False), 
+            'args': (eleWP, muWP, copy.deepcopy(el_fr_file), el_pr_file, copy.deepcopy(mu_fr_file), mu_pr_file, True, False), 
             'samples': ["FAKE"]
         }
         aliases['FW_mu'+str(mu_et)+'_el'+str(el_et)+'_statDown'] = {
-            'class': 'newFakeWeightOTF',
-            'args': (eleWP, muWP, copy.deepcopy(el_fr_file), copy.deepcopy(el_pr_file), copy.deepcopy(mu_fr_file), copy.deepcopy(mu_pr_file), False, True), 
+            #'class': 'fakeWeight_p1_OTF',
+            'class': 'fakeWeightOTF',
+            #'args': (eleWP, muWP, copy.deepcopy(el_fr_file), copy.deepcopy(mu_fr_file), False, True), 
+            'args': (eleWP, muWP, copy.deepcopy(el_fr_file), el_pr_file, copy.deepcopy(mu_fr_file), mu_pr_file, False, True), 
             'samples': ["FAKE"]
         }
 
@@ -409,69 +428,82 @@ for var in ['Up', 'Down']:
 ## BDT OTF
 
 MVA_folder = '%s/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/MVA/darkHiggs/' % os.getenv('CMSSW_BASE')
-
-xml_file_A13 = MVA_folder + 'UATmva_darkHiggsVWjAndTT_2017_BDT_125Trees_AdaBoost_GiniIndex_20Cuts_CostComplexity_12PruneStrength_13Var.weights.xml' 
-var_file_A13 = MVA_folder + 'Ada_13Var_variables.txt'
-
-aliases['newBDT_Ada13'] = {
-    'linesToAdd': [
-        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
-        '.L %s/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/Full2017_v7/darkHiggs/TMVAfiller_OTF.cc+' % os.getenv('CMSSW_BASE')
-    ],
-    'class': 'TMVAfillerOTF',
-    'args': (var_file_A13, xml_file_A13),
-}
-
-#xml_file_A14 = MVA_folder + 'UATmva_darkHiggsVWjAndTT_2017_BDT_700Trees_AdaBoost_GiniIndex_20Cuts_CostComplexity_12PruneStrength_14Var.weights.xml'
-#var_file_A14 = MVA_folder + 'Ada_14Var_variables.txt'
-#
-#aliases['nloBDT_Ada14'] = {
-#    'linesToAdd': [
-#        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
-#        '.L %s/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/Full2017_v7/darkHiggs/TMVAfiller_OTF.cc+' % os.getenv('CMSSW_BASE')
-#    ],
-#    'class': 'TMVAfillerOTF',
-#    'args': (var_file_A14, xml_file_A14),
-#}
-
-xml_file_A13 = MVA_folder + 'UATmva_darkHiggsVWjAndTT_2017_BDT_125Trees_AdaBoost_GiniIndex_20Cuts_CostComplexity_12PruneStrength_13Var.weights.xml' 
-var_file_A13 = MVA_folder + 'Ada_13Var_variables.txt'
-
-aliases['newBDT_SB_Ada13'] = {
-    'linesToAdd': [
-        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
-        '.L %s/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/Full2017_v7/darkHiggs/TMVAfiller_OTF2.cc+' % os.getenv('CMSSW_BASE')
-    ],
-    'class': 'TMVAfillerOTF2',
-    'args': (var_file_A13, xml_file_A13, True),
-}
-
-xml_file_G11 = MVA_folder + 'UATmva_darkHiggsVWjAndTT_2017_BDT_200Trees_Grad_FalseBagged_0.6BagFrac_1BagShrink_GiniIndex_20Cuts_CostComplexity_12PruneStrength_11Var.weights.xml'
-var_file_G11 = MVA_folder + 'Grad_11Var_variables.txt'
-
-aliases['newBDT_Grad11'] = {
-    'class': 'TMVAfillerOTF',
-    'args': (var_file_G11, xml_file_G11),
-}
-
+# Clean BDT's
 bdt_dict = {
-   'cleanBDT_Ada12': MVA_folder + 'CleanVar/UATmva_darkHiggsVWjAndTT_2017_BDT_1200Trees_AdaBoost_GiniIndex_20Cuts_CostComplexity_12PruneStrength_12Var.weights.xml',
-   'cleanBDT_Ada13': MVA_folder + 'CleanVar_Pup/UATmva_darkHiggsVWjAndTT_2017_BDT_900Trees_AdaBoost_GiniIndex_20Cuts_CostComplexity_12PruneStrength_13Var.weights.xml',
-   'cleanBDT_Grad12': MVA_folder + 'CleanVar/UATmva_darkHiggsVWjAndTT_2017_BDT_1600Trees_Grad_FalseBagged_0.6BagFrac_1BagShrink_GiniIndex_20Cuts_CostComplexity_12PruneStrength_12Var.weights.xml',
-   'cleanBDT_Grad13': MVA_folder + 'CleanVar_Pup/UATmva_darkHiggsVWjAndTT_2017_BDT_900Trees_Grad_FalseBagged_0.6BagFrac_1BagShrink_GiniIndex_20Cuts_CostComplexity_12PruneStrength_13Var.weights.xml',
-   'cleanBDT_NLOAda12': MVA_folder + 'CleanVar/NLO/UATmva_darkHiggsVWjAndTT_2017_BDT_1200Trees_AdaBoost_GiniIndex_20Cuts_CostComplexity_12PruneStrength_12Var.weights.xml',
-   'cleanBDT_NLOAda13': MVA_folder + 'CleanVar_Pup/NLO/UATmva_darkHiggsVWjAndTT_2017_BDT_1200Trees_AdaBoost_GiniIndex_20Cuts_CostComplexity_12PruneStrength_13Var.weights.xml',
-   'cleanBDT_NLOGrad12': MVA_folder + 'CleanVar/NLO/UATmva_darkHiggsVWjAndTT_2017_BDT_900Trees_Grad_FalseBagged_0.6BagFrac_1BagShrink_GiniIndex_20Cuts_CostComplexity_12PruneStrength_12Var.weights.xml',
-   'cleanBDT_NLOGrad13': MVA_folder + 'CleanVar_Pup/NLO/UATmva_darkHiggsVWjAndTT_2017_BDT_700Trees_Grad_FalseBagged_0.6BagFrac_1BagShrink_GiniIndex_20Cuts_CostComplexity_12PruneStrength_13Var.weights.xml',
+   ##'cleanBDT_Ada12': MVA_folder + 'CleanVar/UATmva_darkHiggsVWjAndTT_2017_BDT_1200Trees_AdaBoost_GiniIndex_20Cuts_CostComplexity_12PruneStrength_12Var.weights.xml',
+   ##'cleanBDT_Ada13': MVA_folder + 'CleanVar_Pup/UATmva_darkHiggsVWjAndTT_2017_BDT_900Trees_AdaBoost_GiniIndex_20Cuts_CostComplexity_12PruneStrength_13Var.weights.xml',
+   ##'cleanBDT_Grad12': MVA_folder + 'CleanVar/UATmva_darkHiggsVWjAndTT_2017_BDT_1600Trees_Grad_FalseBagged_0.6BagFrac_1BagShrink_GiniIndex_20Cuts_CostComplexity_12PruneStrength_12Var.weights.xml',
+   ##'cleanBDT_Grad13': MVA_folder + 'CleanVar_Pup/UATmva_darkHiggsVWjAndTT_2017_BDT_900Trees_Grad_FalseBagged_0.6BagFrac_1BagShrink_GiniIndex_20Cuts_CostComplexity_12PruneStrength_13Var.weights.xml',
+   ##'cleanBDT_NLOAda12': MVA_folder + 'CleanVar/NLO/UATmva_darkHiggsVWjAndTT_2017_BDT_1200Trees_AdaBoost_GiniIndex_20Cuts_CostComplexity_12PruneStrength_12Var.weights.xml',
+   #'cleanBDT_NLOAda13' : MVA_folder + 'CleanVar_Pup/NLO/UATmva_darkHiggsVWjAndTT_2017_BDT_1200Trees_AdaBoost_GiniIndex_20Cuts_CostComplexity_12PruneStrength_13Var.weights.xml',
+   ##'cleanBDT_NLOGrad12': MVA_folder + 'CleanVar/NLO/UATmva_darkHiggsVWjAndTT_2017_BDT_900Trees_Grad_FalseBagged_0.6BagFrac_1BagShrink_GiniIndex_20Cuts_CostComplexity_12PruneStrength_12Var.weights.xml',
+   #'cleanBDT_NLOGrad13': MVA_folder + 'CleanVar_Pup/NLO/UATmva_darkHiggsVWjAndTT_2017_BDT_700Trees_Grad_FalseBagged_0.6BagFrac_1BagShrink_GiniIndex_20Cuts_CostComplexity_12PruneStrength_13Var.weights.xml',
+   ##High mZp
+   #'hmZpBDT_NLOAda13' : MVA_folder + 'HighMZp/NLO/UATmva_darkHiggsHighMZpVWjAndTT_2017_BDT_800Trees_AdaBoost_GiniIndex_20Cuts_CostComplexity_12PruneStrength_13Var.weights.xml',
+   #'hmZpBDT_NLOGrad13': MVA_folder + 'HighMZp/NLO/UATmva_darkHiggsHighMZpVWjAndTT_2017_BDT_250Trees_Grad_FalseBagged_0.6BagFrac_1BagShrink_GiniIndex_20Cuts_CostComplexity_12PruneStrength_13Var.weights.xml',
+   #'hmZpBDT_NLOAda7' : MVA_folder + 'HighMZp/NLO/UATmva_darkHiggsHighMZpVWjAndTT_2017_BDT_300Trees_AdaBoost_GiniIndex_20Cuts_CostComplexity_12PruneStrength_7Var.weights.xml',
+   #'hmZpBDT_NLOGrad7': MVA_folder + 'HighMZp/NLO/UATmva_darkHiggsHighMZpVWjAndTT_2017_BDT_300Trees_Grad_FalseBagged_0.6BagFrac_1BagShrink_GiniIndex_20Cuts_CostComplexity_12PruneStrength_7Var.weights.xml',
+   ##'hmZpBDT_NLOAda13tk' : MVA_folder + 'HighMZp/NLO/TkMET/UATmva_darkHiggsHighMZpVWjAndTT_2017_BDT_300Trees_AdaBoost_GiniIndex_20Cuts_CostComplexity_12PruneStrength_13Var.weights.xml',
+   ##'hmZpBDT_NLOGrad13tk': MVA_folder + 'HighMZp/NLO/TkMET/UATmva_darkHiggsHighMZpVWjAndTT_2017_BDT_200Trees_Grad_FalseBagged_0.6BagFrac_1BagShrink_GiniIndex_20Cuts_CostComplexity_12PruneStrength_13Var.weights.xml',
+   ##'hmZpDNN_NLO' : MVA_folder + 'HighMZp/NLO/DNN/darkHiggsHighMZpVWjAndTT_2017_DNN_BN64ReluBN32Relu32Relu32ReluL2reg_400epochs_200batch_10tries_13vars.weights.xml',
+   ##'hmZpDNN_NLO' : MVA_folder + 'HighMZp/NLO/DNN/TMVAClassification_PyKeras.weights.xml',
+
+   # mtw study
+   'BDT_nom' : MVA_folder + '/mtwStudy/lowCut/UATmva_darkHiggsHighMZpVWjAndTT_2017_BDT_500Trees_Grad_FalseBagged_0.6BagFrac_1BagShrink_GiniIndex_20Cuts_CostComplexity_12PruneStrength_13Var.weights.xml',
+   'BDT_mtw' : MVA_folder + '/mtwStudy/lowCut/UATmva_darkHiggsHighMZpVWjAndTT_2017_BDT_500Trees_Grad_FalseBagged_0.6BagFrac_1BagShrink_GiniIndex_20Cuts_CostComplexity_12PruneStrength_14Var.weights.xml',
+   'BDT_hig' : MVA_folder + '/mtwStudy/highCut/UATmva_darkHiggsHighMZpVWjAndTT_2017_BDT_100Trees_Grad_FalseBagged_0.6BagFrac_1BagShrink_GiniIndex_20Cuts_CostComplexity_12PruneStrength_13Var.weights.xml',
+   'DNN_nom' : MVA_folder + '/mtwStudy/lowCut/darkHiggsHighMZpVWjAndTT_2017_DNN_BN32ReluBN16Relu16Relu16ReluL2reg_400epochs_200batch_10tries_13vars.weights.xml',
+   'DNN_mtw' : MVA_folder + '/mtwStudy/lowCut/darkHiggsHighMZpVWjAndTT_2017_DNN_BN32ReluBN16Relu16Relu16ReluL2reg14var_400epochs_200batch_10tries_14vars.weights.xml',
+   'DNN_hig' : MVA_folder + '/mtwStudy/highCut/darkHiggsHighMZpVWjAndTTHighMtW_2017_DNN_BN32ReluBN16Relu16Relu16ReluL2reg_400epochs_200batch_10tries_13vars.weights.xml',
 }
 clean_var = MVA_folder + 'CleanVar.txt'
+clean_var_tk = MVA_folder + 'CleanVar_Tk.txt'
 clean_var_pup = MVA_folder + 'CleanVar_Pup.txt'
+clean_7var_pup = MVA_folder + 'CleanVar_Pup_7var.txt'
 
+puppi_var = MVA_folder + '/mtwStudy/CleanVar_Pup.txt'
+puppi_mtw1_var = MVA_folder + '/mtwStudy/CleanVar_Pup_mtw.txt'
+
+first = True
 for bdt in bdt_dict:
-    cur_var_file = clean_var
-    if '13Var' in bdt_dict[bdt]: cur_var_file =  clean_var_pup
+    cur_var_file = puppi_var
+    do_keras = False
+    #if '13Var' in bdt_dict[bdt]: cur_var_file =  clean_var_pup
+    #if 'TkMET' in bdt_dict[bdt]: cur_var_file =  clean_var_tk
+    #if '7Var' in bdt_dict[bdt]: cur_var_file =  clean_7var_pup
+    #if 'DNN' in bdt_dict[bdt]: 
+    #    do_keras = True
+    #    cur_var_file =  clean_var_pup
+    if '14Var' in bdt_dict[bdt] or '14var' in bdt_dict[bdt]: cur_var_file = puppi_mtw1_var
+    if 'DNN' in bdt_dict[bdt]: 
+        do_keras = True
     aliases[bdt] = {
         'class': 'TMVAfillerOTF',
-        'args': (cur_var_file, bdt_dict[bdt]),
+        'args': (cur_var_file, bdt_dict[bdt], do_keras),
     }
+    if first: 
+        aliases[bdt]['linesToAdd'] = [
+            'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
+            '.L %s/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/Full2017_v7/darkHiggs/TMVAfiller_OTF.cc+' % os.getenv('CMSSW_BASE')
+        ]
+        first = False
     
+## W+jets puppiMET rw
+#aliases['puppi_rw_landau'] = {
+#    'expr': 'TMath::Landau(PuppiMET_pt, 1.53395e+02, 6.91386e+01)*6.88073e+00',
+#    'samples': ['Wjets_PuppiRW']
+#}
+#
+#
+#aliases['Wjets_puppirw'] = {
+#    #'expr': '((PuppiMET_pt < 300.)*(TMath::Landau(PuppiMET_pt, 1.57697e+02, 7.20864e+01)*7.55210e+00) + (PuppiMET_pt > 300.))',
+#    'expr': '((PuppiMET_pt < 100.)*puppi_rw_landau[0] + (PuppiMET_pt > 100.)*((puppi_rw_landau[0]>1.)*puppi_rw_landau[0] + (puppi_rw_landau[0]<1.)))',
+#    #'samples': ['ttop', 'stop']
+#    'samples': ['Wjets_PuppiRW']
+#}
+#
+## W+jets LO HT to NLO Vpt rw
+#aliases['VptSF'] = {
+#    'expr': '(LHE_Vpt < 30.) + (LHE_Vpt > 30. && LHE_Vpt < 550.)*(1.11608 - 0.00112837*LHE_Vpt) + (LHE_Vpt > 550.)*(1.11608 - 0.00112837*550.)',
+#    'samples': ['Wjets_HTsf'],
+#}

@@ -154,6 +154,15 @@ for cut in clean_cuts:
                     title = 'PR_'+cut+'_'+var,
                     invert = True,
                     )
+                time.sleep(0.01)
+                histograms_pr[h_name_total+'_2D_invert'] = re_roll_2Dh(
+                    histograms_pr[h_name_total], 
+                    variables[var]['range'][0], variables[var]['range'][1], variables[var]['range'][2], 
+                    variables[var]['range'][3], variables[var]['range'][4], variables[var]['range'][5], 
+                    name = 'PR_'+cut+'_'+var+'_inv',
+                    title = 'PR_'+cut+'_'+var,
+                    invert = False,
+                    )
             elif len(variables[var]['range']) == 2:
                 time.sleep(0.01)
                 histograms_pr[h_name_total+'_2D'] = re_roll_2Dh_array(
@@ -163,6 +172,15 @@ for cut in clean_cuts:
                     name = 'PR_'+cut+'_'+var,
                     title = 'PR_'+cut+'_'+var,
                     invert = True,
+                    )
+                time.sleep(0.01)
+                histograms_pr[h_name_total+'_2D_invert'] = re_roll_2Dh_array(
+                    histograms_pr[h_name_total], 
+                    variables[var]['range'][0], 
+                    variables[var]['range'][1], 
+                    name = 'PR_'+cut+'_'+var+'_inv',
+                    title = 'PR_'+cut+'_'+var,
+                    invert = False,
                     )
 
 
@@ -174,14 +192,42 @@ fr_dir = 'PR'
 if not os.path.isdir(fr_dir): os.system('mkdir '+fr_dir)
 canvas = ROOT.TCanvas('canvas', 'PR canvas', 610, 600)
 for fw in histograms_pr:
+    canvas.SetLogy(0)
     name = 'plot'+fw[1:]+'_pr'
     if fw.endswith('_2D'):
         tmp_file = ROOT.TFile(fr_dir+'/'+name+'.root', 'RECREATE')
         histograms_pr[fw].SetName('PR_pT_eta') #For reading script
         histograms_pr[fw].Write()
         tmp_file.Close()
+        histograms_pr[fw].GetZaxis().SetRangeUser(.85, 1.)
         histograms_pr[fw].Draw('colz text')
-    else: histograms_pr[fw].Draw()
+    elif fw.endswith('_2D_invert'):
+        #tmp_file = ROOT.TFile(fr_dir+'/'+name+'.root', 'RECREATE')
+        #histograms_pr[fw].SetName('PR_pT_eta') #For reading script
+        #histograms_pr[fw].Write()
+        #tmp_file.Close()
+        title = ''
+        if 'MuCh' in fw: title += 'Muon'
+        else: title += 'Electron'
+        title += ' prompt rate 2016' 
+        histograms_pr[fw].SetTitle(title)
+        histograms_pr[fw].GetYaxis().SetTitle('p_{T}')
+        histograms_pr[fw].GetXaxis().SetTitle('#eta')
+        histograms_pr[fw].GetZaxis().SetRangeUser(.85, 1.)
+        canvas.SetLogy()
+        histograms_pr[fw].Draw('colz text')
+    else: 
+        title = ''
+        if 'MuCh' in fw: title += 'Muon'
+        else: title += 'Electron'
+        title += ' prompt rate 2016' 
+        histograms_pr[fw].SetTitle(title)
+        if 'l1_pt' in fw: histograms_pr[fw].GetXaxis().SetTitle('p_{T}')
+        elif 'l1_etaVpt' in fw: histograms_pr[fw].GetXaxis().SetTitle('bin')
+        else: histograms_pr[fw].GetXaxis().SetTitle('#eta')
+        histograms_pr[fw].GetYaxis().SetTitle('prompt rate')
+        histograms_pr[fw].GetYaxis().SetRangeUser(.85, 1.)
+        histograms_pr[fw].Draw()
     canvas.Update()
     canvas.SaveAs(fr_dir+'/'+name+'.png')
 

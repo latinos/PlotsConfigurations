@@ -315,6 +315,28 @@ aliases['newBDT_Grad11'] = {
     'args': (var_file_G11, xml_file_G11),
 }
 
+# Clean BDT's
+bdt_dict = {
+   'cleanBDT_Ada12': MVA_folder + 'CleanVar/UATmva_darkHiggsVWjAndTT_2017_BDT_1200Trees_AdaBoost_GiniIndex_20Cuts_CostComplexity_12PruneStrength_12Var.weights.xml',
+   'cleanBDT_Ada13': MVA_folder + 'CleanVar_Pup/UATmva_darkHiggsVWjAndTT_2017_BDT_900Trees_AdaBoost_GiniIndex_20Cuts_CostComplexity_12PruneStrength_13Var.weights.xml',
+   'cleanBDT_Grad12': MVA_folder + 'CleanVar/UATmva_darkHiggsVWjAndTT_2017_BDT_1600Trees_Grad_FalseBagged_0.6BagFrac_1BagShrink_GiniIndex_20Cuts_CostComplexity_12PruneStrength_12Var.weights.xml',
+   'cleanBDT_Grad13': MVA_folder + 'CleanVar_Pup/UATmva_darkHiggsVWjAndTT_2017_BDT_900Trees_Grad_FalseBagged_0.6BagFrac_1BagShrink_GiniIndex_20Cuts_CostComplexity_12PruneStrength_13Var.weights.xml',
+   'cleanBDT_NLOAda12': MVA_folder + 'CleanVar/NLO/UATmva_darkHiggsVWjAndTT_2017_BDT_1200Trees_AdaBoost_GiniIndex_20Cuts_CostComplexity_12PruneStrength_12Var.weights.xml',
+   'cleanBDT_NLOAda13': MVA_folder + 'CleanVar_Pup/NLO/UATmva_darkHiggsVWjAndTT_2017_BDT_1200Trees_AdaBoost_GiniIndex_20Cuts_CostComplexity_12PruneStrength_13Var.weights.xml',
+   'cleanBDT_NLOGrad12': MVA_folder + 'CleanVar/NLO/UATmva_darkHiggsVWjAndTT_2017_BDT_900Trees_Grad_FalseBagged_0.6BagFrac_1BagShrink_GiniIndex_20Cuts_CostComplexity_12PruneStrength_12Var.weights.xml',
+   'cleanBDT_NLOGrad13': MVA_folder + 'CleanVar_Pup/NLO/UATmva_darkHiggsVWjAndTT_2017_BDT_700Trees_Grad_FalseBagged_0.6BagFrac_1BagShrink_GiniIndex_20Cuts_CostComplexity_12PruneStrength_13Var.weights.xml',
+}
+clean_var = MVA_folder + 'CleanVar.txt'
+clean_var_pup = MVA_folder + 'CleanVar_Pup.txt'
+
+for bdt in bdt_dict:
+    cur_var_file = clean_var
+    if '13Var' in bdt_dict[bdt]: cur_var_file =  clean_var_pup
+    aliases[bdt] = {
+        'class': 'TMVAfillerOTF',
+        'args': (cur_var_file, bdt_dict[bdt]),
+    }
+
 # Wjets Vpt SF
 # LO to NLOpt
 #aliases['VptSF'] = {
@@ -325,13 +347,17 @@ aliases['newBDT_Grad11'] = {
 #             (LHE_Vpt > 600.)*1.05379095752 ',
 #    'samples': ['Wjets_HTsf'],
 #}
-# HT to NLOpt
+## HT to NLOpt
+#aliases['VptSF'] = {
+#    'expr': '(LHE_Vpt < 50.)*1.08162687972 + \
+#             (LHE_Vpt > 50. && LHE_Vpt < 100.)*1.08162687972 + \
+#             (LHE_Vpt > 100. && LHE_Vpt < 250.)*0.872138741523 + \
+#             (LHE_Vpt > 250. && LHE_Vpt < 400.)*0.688006345764 + \
+#             (LHE_Vpt > 400. && LHE_Vpt < 600.)*0.562798072948 + \
+#             (LHE_Vpt > 600.)*0.447251246062 ',
+#    'samples': ['Wjets_HTsf'],
+#}
 aliases['VptSF'] = {
-    'expr': '(LHE_Vpt < 50.)*1.08162687972 + \
-             (LHE_Vpt > 50. && LHE_Vpt < 100.)*1.08162687972 + \
-             (LHE_Vpt > 100. && LHE_Vpt < 250.)*0.872138741523 + \
-             (LHE_Vpt > 250. && LHE_Vpt < 400.)*0.688006345764 + \
-             (LHE_Vpt > 400. && LHE_Vpt < 600.)*0.562798072948 + \
-             (LHE_Vpt > 600.)*0.447251246062 ',
+    'expr': '(LHE_Vpt < 30.) + (LHE_Vpt > 30. && LHE_Vpt < 550.)*(1.11608 - 0.00112837*LHE_Vpt) + (LHE_Vpt > 550.)*(1.11608 - 0.00112837*550.)',
     'samples': ['Wjets_HTsf'],
 }

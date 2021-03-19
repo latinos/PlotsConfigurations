@@ -308,29 +308,18 @@ nuisances['UE']  = {
 
 
 # ####### Generic "cross section uncertainties"
-#FIXME: correct?
-#apply_on = {
-#    'ttop': [
-#        '(topGenPt * antitopGenPt <= 0.) * 1.0816 + (topGenPt * antitopGenPt > 0.)',
-#        '(topGenPt * antitopGenPt <= 0.) * 0.9184 + (topGenPt * antitopGenPt > 0.)'
-#    ],
-#    'stop': [
-#        '(topGenPt * antitopGenPt <= 0.) * 1.0816 + (topGenPt * antitopGenPt > 0.)',
-#        '(topGenPt * antitopGenPt <= 0.) * 0.9184 + (topGenPt * antitopGenPt > 0.)'
-#    ],
-#    #'top': [
-#    #    '(topGenPt * antitopGenPt <= 0.) * 1.0816 + (topGenPt * antitopGenPt > 0.)',
-#    #    '(topGenPt * antitopGenPt <= 0.) * 0.9184 + (topGenPt * antitopGenPt > 0.)'
-#    #],
-#}
-#
-#nuisances['singleTopToTTbar'] = {
-#    'name': 'singleTopToTTbar',
-#    'skipCMS': 1,
-#    'kind': 'weight',
-#    'type': 'shape',
-#    'samples': apply_on
-#}
+nuisances['singleTopToTTbar'] = {
+    'name': 'singleTopToTTbar',
+    'skipCMS': 1,
+    'kind': 'weight',
+    'type': 'shape',
+    'samples': {
+        'top': [
+        'isSingleTop * 1.0816 + isTTbar',
+        'isSingleTop * 0.9184 + isTTbar']
+      }
+
+}
 
 ## Top pT reweighting uncertainty
 #FIXME: correct?

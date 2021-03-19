@@ -4,6 +4,7 @@ super_cut = [
     '((Lepton_pt[0]>27. && abs(Lepton_pdgId[0])==13) || (Lepton_pt[0]>35. && abs(Lepton_pdgId[0])==11))',
     'Sum$(CleanJet_pt>30.)>=2',
     'MHlnjj_m_jj > -1', # Require 2 good CleanJets (pt > 30; abs(eta) < 4.7; Jet_jetId >= 2; pujetid == 'custom')
+    '(abs(CleanJet_eta[HM_idx_j1]) < 2.4 && abs(CleanJet_eta[HM_idx_j2]) < 2.4)', # Force jets in tracker
 ]
 
 supercut = ' && '.join(super_cut)
@@ -24,6 +25,7 @@ is_mu    = ['abs(Lepton_pdgId[0])==13']
 #veto_1l_I    = ['(nLepton>=2 && Lepton_pt[1] > 20)']
 mt_lmet      = ['mtw1 > 80']
 mt_lmet_I    = ['mtw1 < 30']
+mt_lmet_h    = ['mtw1 > 160']
 met          = ['PuppiMET_pt > 60']
 met_I        = ['PuppiMET_pt < 30']
 dphi_l_jj    = ['MHlnjj_dphi_jjVl < 1.8']
@@ -46,6 +48,10 @@ TCR      = combinecut([super_cut, mt_lmet  , met  , dphi_l_jj, dphi_ljj_met, dr_
 DYCR     = combinecut([super_cut, mt_lmet  , met  , dphi_l_jj, dphi_ljj_met, dr_l_jj, pt_ljj  , m_jj  , veto_b  , veto_1l_I]) # empty due to post-proc sel
 QER      = combinecut([super_cut, mt_lmet_I, met_I, dphi_l_jj, dphi_ljj_met, dr_l_jj, pt_ljj  , m_jj  , veto_b  , veto_1l  ])
 
+SR_h       = combinecut([super_cut, mt_lmet_h, met  , dphi_l_jj, dphi_ljj_met, dr_l_jj, pt_ljj  , m_jj  , veto_b  , veto_1l  ])
+SB_h       = combinecut([super_cut, mt_lmet_h, met  , dphi_l_jj, dphi_ljj_met, dr_l_jj, pt_ljj  , m_jj_I, veto_b  , veto_1l  ])
+TCR_h      = combinecut([super_cut, mt_lmet_h, met  , dphi_l_jj, dphi_ljj_met, dr_l_jj, pt_ljj  , m_jj  , veto_b_I, veto_1l  ])
+
 ## Electron
 #addcut('ElCh_SC'  , combinecut([is_el, SC  ]))
 #addcut('ElCh_SR'  , combinecut([is_el, SR  ]))
@@ -67,6 +73,7 @@ QER      = combinecut([super_cut, mt_lmet_I, met_I, dphi_l_jj, dphi_ljj_met, dr_
 # Inclusive
 #addcut('InCh_SC'  , combinecut([SC  ]))
 addcut('InCh_SR'  , combinecut([SR  ]))
+addcut('InCh_HighMtw_SR'  , combinecut([SR_h  ]))
 #addcut('InCh_CR'  , combinecut([CR  ]))
 #addcut('InCh_SB'  , combinecut([SB  ]))
 #addcut('InCh_TCR' , combinecut([TCR ]))

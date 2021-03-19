@@ -1,7 +1,7 @@
 LHE_Vpt_bins = [0, 50, 100, 250, 400, 600, 13000]
 variables['LHE_Vpt']  = {
     'name': 'LHE_Vpt',
-    'range' : (25,0,400),
+    'range' : (70,0,700),
     'xaxis' : 'LHR Vpt [GeV]',
     'fold'  : 3
 }

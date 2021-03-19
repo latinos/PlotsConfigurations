@@ -310,6 +310,11 @@ aliases['PUJetIdSF'] = {
 
 
 ### Fake-Weight stuff
+#FR_dir = os.getenv('CMSSW_BASE') + "/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/Full2018_v7/2HDMa/FReleTrig/"
+FR_dir = os.getenv('CMSSW_BASE') + "/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/Full2016_v7/2HDMa/FR_NLOWjet/"
+PR_dir = os.getenv('CMSSW_BASE') + "/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/Full2016_v7/PR/PR/"
+el_pr_file = PR_dir+"plot_ElCh_l1_etaVpt_ptel_2D_pr.root"
+mu_pr_file = PR_dir+"plot_MuCh_l1_etaVpt_ptmu_2D_pr.root"
 for lep in ['El', 'Mu']:
     for dEt in [-10, 0, 10]:
         if lep == 'El':
@@ -319,36 +324,33 @@ for lep in ['El', 'Mu']:
             el_et = El_jetEt
             mu_et = Mu_jetEt + dEt
 
-        el_fr_file = os.getenv('CMSSW_BASE') + "/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/Full2016_v7/2HDMa/FReleTrig/plot_ElCh_JetEt"+str(el_et)+"_l1_etaVpt_ptel_fw_ewk_2D.root"
-        mu_fr_file = os.getenv('CMSSW_BASE') + "/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/Full2016_v7/2HDMa/FReleTrig/plot_MuCh_JetEt"+str(mu_et)+"_l1_etaVpt_ptmu_fw_ewk_2D.root"
-        el_pr_file = os.getenv('CMSSW_BASE') + "/src/LatinoAnalysis/NanoGardener/python/data/fake_prompt_rates/Full2016v7/mva90pIso2016/ElePR.root"
-        mu_pr_file = os.getenv('CMSSW_BASE') + "/src/LatinoAnalysis/NanoGardener/python/data/fake_prompt_rates/Full2016v7/Tight80X/MuonPR.root"
+        el_fr_file = FR_dir+"plot_ElCh_JetEt"+str(el_et)+"_l1_etaVpt_ptel_fw_ewk_2D.root"
+        mu_fr_file = FR_dir+"plot_MuCh_JetEt"+str(mu_et)+"_l1_etaVpt_ptmu_fw_ewk_2D.root"
     
         aliases['FW_mu'+str(mu_et)+'_el'+str(el_et)] = {
             'linesToAdd' : [
                 'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-                '.L %s/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/Full2017_v7/2HDMa/newfakeweight_OTF.cc+' % os.getenv('CMSSW_BASE')
+                #'.L %s/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/Full2018_v7/Fake/fakeweight_p1_OTF.cc+' % os.getenv('CMSSW_BASE')
+                '.L %s/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/Full2018_v7/Fake/fakeweight_OTF.cc+' % os.getenv('CMSSW_BASE')
             ],
-            'class': 'newFakeWeightOTF',
-            'args': (eleWP, muWP, copy.deepcopy(el_fr_file), copy.deepcopy(el_pr_file), copy.deepcopy(mu_fr_file), copy.deepcopy(mu_pr_file), False, False), 
+            #'class': 'fakeWeight_p1_OTF',
+            'class': 'fakeWeightOTF',
+            #'args': (eleWP, muWP, copy.deepcopy(el_fr_file), copy.deepcopy(mu_fr_file), False, False), 
+            'args': (eleWP, muWP, copy.deepcopy(el_fr_file), el_pr_file, copy.deepcopy(mu_fr_file), mu_pr_file, False, False), 
             'samples': ["FAKE"]
         }
         aliases['FW_mu'+str(mu_et)+'_el'+str(el_et)+'_statUp'] = {
-            'class': 'newFakeWeightOTF',
-            'args': (eleWP, muWP, copy.deepcopy(el_fr_file), copy.deepcopy(el_pr_file), copy.deepcopy(mu_fr_file), copy.deepcopy(mu_pr_file), True, False), 
-            #'linesToAdd' : [
-            #    'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-            #    '.L %s/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/Full2017_v7/2HDMa/newfakeweight_OTF.cc+' % os.getenv('CMSSW_BASE')
-            # ],
+            #'class': 'fakeWeight_p1_OTF',
+            'class': 'fakeWeightOTF',
+            #'args': (eleWP, muWP, copy.deepcopy(el_fr_file), copy.deepcopy(mu_fr_file), True, False), 
+            'args': (eleWP, muWP, copy.deepcopy(el_fr_file), el_pr_file, copy.deepcopy(mu_fr_file), mu_pr_file, True, False), 
             'samples': ["FAKE"]
         }
         aliases['FW_mu'+str(mu_et)+'_el'+str(el_et)+'_statDown'] = {
-            'class': 'newFakeWeightOTF',
-            'args': (eleWP, muWP, copy.deepcopy(el_fr_file), copy.deepcopy(el_pr_file), copy.deepcopy(mu_fr_file), copy.deepcopy(mu_pr_file), False, True), 
-            #'linesToAdd' : [
-            #    'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-            #    '.L %s/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/Full2017_v7/2HDMa/newfakeweight_OTF.cc+' % os.getenv('CMSSW_BASE')
-            # ],
+            #'class': 'fakeWeight_p1_OTF',
+            'class': 'fakeWeightOTF',
+            #'args': (eleWP, muWP, copy.deepcopy(el_fr_file), copy.deepcopy(mu_fr_file), False, True), 
+            'args': (eleWP, muWP, copy.deepcopy(el_fr_file), el_pr_file, copy.deepcopy(mu_fr_file), mu_pr_file, False, True), 
             'samples': ["FAKE"]
         }
 
@@ -384,34 +386,66 @@ MVA_folder = '%s/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/MVA/dark
 xml_file_A13 = MVA_folder + 'UATmva_darkHiggsVWjAndTT_2017_BDT_125Trees_AdaBoost_GiniIndex_20Cuts_CostComplexity_12PruneStrength_13Var.weights.xml' 
 var_file_A13 = MVA_folder + 'Ada_13Var_variables.txt'
 
-aliases['newBDT_Ada13'] = {
-    'linesToAdd': [
-        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
-        '.L %s/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/Full2017_v7/darkHiggs/TMVAfiller_OTF.cc+' % os.getenv('CMSSW_BASE')
-    ],
-    'class': 'TMVAfillerOTF',
-    'args': (var_file_A13, xml_file_A13),
-}
-
-#xml_file_A14 = MVA_folder + 'UATmva_darkHiggsVWjAndTT_2017_BDT_700Trees_AdaBoost_GiniIndex_20Cuts_CostComplexity_12PruneStrength_14Var.weights.xml'
-#var_file_A14 = MVA_folder + 'Ada_14Var_variables.txt'
-#
-#aliases['nloBDT_Ada14'] = {
+#aliases['newBDT_Ada13'] = {
 #    'linesToAdd': [
 #        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
 #        '.L %s/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/Full2017_v7/darkHiggs/TMVAfiller_OTF.cc+' % os.getenv('CMSSW_BASE')
 #    ],
 #    'class': 'TMVAfillerOTF',
-#    'args': (var_file_A14, xml_file_A14),
+#    'args': (var_file_A13, xml_file_A13),
+#}
+#
+##xml_file_A14 = MVA_folder + 'UATmva_darkHiggsVWjAndTT_2017_BDT_700Trees_AdaBoost_GiniIndex_20Cuts_CostComplexity_12PruneStrength_14Var.weights.xml'
+##var_file_A14 = MVA_folder + 'Ada_14Var_variables.txt'
+##
+##aliases['nloBDT_Ada14'] = {
+##    'linesToAdd': [
+##        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
+##        '.L %s/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/Full2017_v7/darkHiggs/TMVAfiller_OTF.cc+' % os.getenv('CMSSW_BASE')
+##    ],
+##    'class': 'TMVAfillerOTF',
+##    'args': (var_file_A14, xml_file_A14),
+##}
+#
+#xml_file_G11 = MVA_folder + 'UATmva_darkHiggsVWjAndTT_2017_BDT_200Trees_Grad_FalseBagged_0.6BagFrac_1BagShrink_GiniIndex_20Cuts_CostComplexity_12PruneStrength_11Var.weights.xml'
+#var_file_G11 = MVA_folder + 'Grad_11Var_variables.txt'
+#
+#aliases['newBDT_Grad11'] = {
+#    'class': 'TMVAfillerOTF',
+#    'args': (var_file_G11, xml_file_G11),
 #}
 
-xml_file_G11 = MVA_folder + 'UATmva_darkHiggsVWjAndTT_2017_BDT_200Trees_Grad_FalseBagged_0.6BagFrac_1BagShrink_GiniIndex_20Cuts_CostComplexity_12PruneStrength_11Var.weights.xml'
-var_file_G11 = MVA_folder + 'Grad_11Var_variables.txt'
-
-aliases['newBDT_Grad11'] = {
-    'class': 'TMVAfillerOTF',
-    'args': (var_file_G11, xml_file_G11),
+# Clean BDT's
+bdt_dict = {
+   #'cleanBDT_Ada12': MVA_folder + 'CleanVar/UATmva_darkHiggsVWjAndTT_2017_BDT_1200Trees_AdaBoost_GiniIndex_20Cuts_CostComplexity_12PruneStrength_12Var.weights.xml',
+   #'cleanBDT_Ada13': MVA_folder + 'CleanVar_Pup/UATmva_darkHiggsVWjAndTT_2017_BDT_900Trees_AdaBoost_GiniIndex_20Cuts_CostComplexity_12PruneStrength_13Var.weights.xml',
+   #'cleanBDT_Grad12': MVA_folder + 'CleanVar/UATmva_darkHiggsVWjAndTT_2017_BDT_1600Trees_Grad_FalseBagged_0.6BagFrac_1BagShrink_GiniIndex_20Cuts_CostComplexity_12PruneStrength_12Var.weights.xml',
+   #'cleanBDT_Grad13': MVA_folder + 'CleanVar_Pup/UATmva_darkHiggsVWjAndTT_2017_BDT_900Trees_Grad_FalseBagged_0.6BagFrac_1BagShrink_GiniIndex_20Cuts_CostComplexity_12PruneStrength_13Var.weights.xml',
+   #'cleanBDT_NLOAda12': MVA_folder + 'CleanVar/NLO/UATmva_darkHiggsVWjAndTT_2017_BDT_1200Trees_AdaBoost_GiniIndex_20Cuts_CostComplexity_12PruneStrength_12Var.weights.xml',
+   'cleanBDT_NLOAda13': MVA_folder + 'CleanVar_Pup/NLO/UATmva_darkHiggsVWjAndTT_2017_BDT_1200Trees_AdaBoost_GiniIndex_20Cuts_CostComplexity_12PruneStrength_13Var.weights.xml',
+   #'cleanBDT_NLOGrad12': MVA_folder + 'CleanVar/NLO/UATmva_darkHiggsVWjAndTT_2017_BDT_900Trees_Grad_FalseBagged_0.6BagFrac_1BagShrink_GiniIndex_20Cuts_CostComplexity_12PruneStrength_12Var.weights.xml',
+   'cleanBDT_NLOGrad13': MVA_folder + 'CleanVar_Pup/NLO/UATmva_darkHiggsVWjAndTT_2017_BDT_700Trees_Grad_FalseBagged_0.6BagFrac_1BagShrink_GiniIndex_20Cuts_CostComplexity_12PruneStrength_13Var.weights.xml',
+   #High mZp
+   'hmZpBDT_NLOAda13': MVA_folder + 'HighMZp/NLO/UATmva_darkHiggsHighMZpVWjAndTT_2017_BDT_800Trees_AdaBoost_GiniIndex_20Cuts_CostComplexity_12PruneStrength_13Var.weights.xml',
+   'hmZpBDT_NLOGrad13': MVA_folder + 'HighMZp/NLO/UATmva_darkHiggsHighMZpVWjAndTT_2017_BDT_250Trees_Grad_FalseBagged_0.6BagFrac_1BagShrink_GiniIndex_20Cuts_CostComplexity_12PruneStrength_13Var.weights.xml',
 }
+clean_var = MVA_folder + 'CleanVar.txt'
+clean_var_pup = MVA_folder + 'CleanVar_Pup.txt'
+
+first = True
+for bdt in bdt_dict:
+    cur_var_file = clean_var
+    if '13Var' in bdt_dict[bdt]: cur_var_file =  clean_var_pup
+    aliases[bdt] = {
+        'class': 'TMVAfillerOTF',
+        'args': (cur_var_file, bdt_dict[bdt]),
+    }
+    if first: 
+        aliases[bdt]['linesToAdd'] = [
+            'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
+            '.L %s/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/Full2017_v7/darkHiggs/TMVAfiller_OTF.cc+' % os.getenv('CMSSW_BASE')
+        ]
+        first = False
 
 ### Wjets HT to NLOpt
 #aliases['VptSF'] = {

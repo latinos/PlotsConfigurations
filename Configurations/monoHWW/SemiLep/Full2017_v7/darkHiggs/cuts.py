@@ -3,7 +3,8 @@ super_cut = [
     # SingleMuon trigger: IsoMu27, SingleElectron trigger: Ele35_WPTight_Gsf
     '((Lepton_pt[0]>27. && abs(Lepton_pdgId[0])==13) || (Lepton_pt[0]>35. && abs(Lepton_pdgId[0])==11))',
     'Sum$(CleanJet_pt>30.)>=2',
-    'MHlnjj_m_jj > -1', # Require 2 good CleanJets (pt > 30; abs(eta) < 4.7; Jet_jetId >= 2; pujetid == 'custom')
+    'MHlnjj_m_jj > -1',                                                           # Require 2 good CleanJets (pt > 30; abs(eta) < 4.7; Jet_jetId >= 2; pujetid == 'custom')
+    '(abs(CleanJet_eta[HM_idx_j1]) < 2.4 && abs(CleanJet_eta[HM_idx_j2]) < 2.4)', # Force jets in tracker
 ]
 
 supercut = ' && '.join(super_cut)
@@ -24,6 +25,7 @@ is_mu    = ['abs(Lepton_pdgId[0])==13']
 #veto_1l_I    = ['(nLepton>=2 && Lepton_pt[1] > 20)']
 mt_lmet      = ['mtw1 > 80']
 mt_lmet_I    = ['mtw1 < 30']
+mt_lmet_h    = ['mtw1 > 160']
 met          = ['PuppiMET_pt > 60']
 met_I        = ['PuppiMET_pt < 30']
 dphi_l_jj    = ['MHlnjj_dphi_jjVl < 1.8']

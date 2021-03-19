@@ -212,12 +212,11 @@ samples['WWewk'] = {
     'FilesPerJob': 6
 }
 
-# FIXME
-# Missing semi-lep MC, using HM signal sample calulating back to bkg with interference term
 samples['ggWW'] = {
-    'name'   : nanoGetSampleFiles(mcDirectory, 'GluGluHToWWToLNuQQ_M125'),
+    #'name'   : nanoGetSampleFiles(mcDirectory, 'GluGluHToWWToLNuQQ_M125'),
     #'weight' : mcCommonWeight + '*(RelW0.02_B)*(RelW0.02_B < 1000)', 
-    'weight' : mcCommonWeight, # FIXME: RelW0.02_B branch not there in v7 
+    'name'   : nanoGetSampleFiles(mcDirectory, 'GluGluWWToLNuQQ'),
+    'weight' : mcCommonWeight, 
     'FilesPerJob': 4
 }
 
