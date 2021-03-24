@@ -12,8 +12,8 @@ parser.add_argument("-ev","--exclude-vars", help="Exclude vars", type=str, nargs
 parser.add_argument("-ec","--exclude-cuts", help="Exclude cuts", type=str, nargs="+")
 args = parser.parse_args()
 
-
-samples= ['VBS','VBS_dipoleRecoil','DY','top','VV','VVV','Vg','VgS', 'VBF-V','ggWW']
+samples = [] 
+# samples= ['VBS','DY','top','VV','VVV','Vg','VgS', 'VBF-V','ggWW']
 wjets_bins = []
 for ir in range(1,11):
     wjets_bins.append("Wjets_HT_res_"+str(ir))
@@ -27,23 +27,19 @@ iF = R.TFile.Open(args.input, "UPDATE")
 
 
 for cut in iF.GetListOfKeys():
-    if args.exclude_cuts and cut.GetName() in args.exclude_cuts: continue 
+    if args.exclude_cuts and cut.GetName() in args.exclude_cuts: continue
     R.gDirectory.cd(cut.GetName())
     for var in R.gDirectory.GetListOfKeys():
-        if args.exclude_vars and var.GetName() in args.exclude_vars: continue
         R.gDirectory.cd(var.GetName())
+        if args.exclude_vars and var.GetName() in args.exclude_vars: 
+            R.gDirectory.cd("../")
+            continue
         for sample in samples:
-            
-            shapes =  [k.GetName() for k in R.gDirectory.GetListOfKeys()]
-            if "histo_{}".format(sample) in shapes:
-                hnom = R.gDirectory.Get("histo_{}".format(sample))
-            else:
-                print("Sample not found: ", sample, " ---> skip")
-                continue
+            hnom = R.gDirectory.Get("histo_DY")
             for nuis in args.nuisances:
                 print( cut, var, sample, nuis)
                 try:
-                    R.gDirectory.GetObject("histo_{}_{}Up".format(sample, nuis),hnom )
+                    R.gDirectory.GetObject("histo_{}".format(sample),hnom )
                     print (">>> shape already exists")
                 except LookupError:
                     hup = hnom.Clone("histo_{}_{}Up".format(sample, nuis))

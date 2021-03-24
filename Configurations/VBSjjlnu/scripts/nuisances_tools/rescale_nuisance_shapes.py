@@ -2,8 +2,7 @@ from __future__ import print_function
 import argparse
 
 '''
-The script adds up/down shapes equal to nominals in all cuts and vars of the inputfile
-if they do not exists.
+The script rescale up/down shapes equal to nominals in all cuts and vars
 '''
 parser = argparse.ArgumentParser()
 parser.add_argument("-i","--input", help="Input file", type=str)
@@ -27,11 +26,14 @@ iF = R.TFile.Open(args.input, "UPDATE")
 
 
 for cut in iF.GetListOfKeys():
-    if args.exclude_cuts and cut.GetName() in args.exclude_cuts: continue 
+    if args.exclude_cuts and cut.GetName() in args.exclude_cuts: 
+        continue
     R.gDirectory.cd(cut.GetName())
     for var in R.gDirectory.GetListOfKeys():
-        if args.exclude_vars and var.GetName() in args.exclude_vars: continue
+        if args.exclude_vars and var.GetName() in args.exclude_vars: 
+            continue
         R.gDirectory.cd(var.GetName())
+        print( cut, var)
         for sample in samples:
             
             shapes =  [k.GetName() for k in R.gDirectory.GetListOfKeys()]
@@ -41,18 +43,16 @@ for cut in iF.GetListOfKeys():
                 print("Sample not found: ", sample, " ---> skip")
                 continue
             for nuis in args.nuisances:
-                print( cut, var, sample, nuis)
-                try:
-                    R.gDirectory.GetObject("histo_{}_{}Up".format(sample, nuis),hnom )
-                    print (">>> shape already exists")
-                except LookupError:
-                    hup = hnom.Clone("histo_{}_{}Up".format(sample, nuis))
-                    hup.SetTitle("histo_{}_{}Up".format(sample, nuis))
-                    hdo = hup.Clone("histo_{}_{}Down".format(sample, nuis))
-                    hdo.SetTitle("histo_{}_{}Down".format(sample, nuis))
-                    iF.cd("{}/{}".format(cut.GetName(), var.GetName()))
-                    hup.Write()
-                    hdo.Write()
+                # print( cut, var, sample, nuis)
+                hup = R.gDirectory.Get("histo_{}_{}Up".format(sample, nuis))
+                hdo = R.gDirectory.Get("histo_{}_{}Down".format(sample, nuis))
+                if hup.Integral() != 0:
+                    hup.Scale(hnom.Integral()/hup.Integral())
+                if hdo.Integral() != 0:
+                    hdo.Scale(hnom.Integral()/hdo.Integral())
+                iF.cd("{}/{}".format(cut.GetName(), var.GetName()))
+                hup.Write()
+                hdo.Write()
         R.gDirectory.cd("../")
     iF.cd()
 iF.Close()

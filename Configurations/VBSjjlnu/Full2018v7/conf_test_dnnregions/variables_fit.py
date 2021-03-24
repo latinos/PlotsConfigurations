@@ -14,15 +14,15 @@ variables['events']  = {   'name': '1',
 
 ########################
 
-# variables['DNNoutput_res_v1'] = {
-#     'name': 'DNNoutput_resolved_v1',
-#     'range': (25,0.,1),
-#     'xaxis': 'DNN output, resolved',
-#     'fold': 3 ,
-#     # 'divideByBinWidth': True,
-#     'cuts':  res_cuts,
-#     'blind': { c:[0.6,1] for c in cuts if "_sig_" in c},
-# }
+variables['DNNoutput_res_v1'] = {
+    'name': 'DNNoutput_resolved_v1',
+    'range': (25,0.,1),
+    'xaxis': 'DNN output, resolved',
+    'fold': 3 ,
+    # 'divideByBinWidth': True,
+    'cuts':  res_cuts,
+    'blind': { c:[0.6,1] for c in cuts if "_sig_" in c},
+}
 
 
 # variables['DNNoutput_res_v2'] = {
@@ -36,15 +36,15 @@ variables['events']  = {   'name': '1',
 # }
 
 
-# variables['DNNoutput_boost'] = {
-#     'name': 'DNNoutput_boosted',
-#     'range': ([0., 0.05, 0.1, 0.15, 0.20, 0.25, 0.3, 0.35, 0.4, 0.55, 0.7, 0.85, 1.],),
-#     'xaxis': 'DNN output, boosted',
-#     'fold': 3 ,
-#     # 'divideByBinWidth': True,
-#     'cuts': boost_cuts,
-#     'blind': { c:[0.6,1] for c in cuts if "_sig_" in c} ,
-# }
+variables['DNNoutput_boost'] = {
+    'name': 'DNNoutput_boosted',
+    'range': ([0., 0.05, 0.1, 0.15, 0.20, 0.25, 0.3, 0.35, 0.4, 0.55, 0.7, 0.85, 1.],),
+    'xaxis': 'DNN output, boosted',
+    'fold': 3 ,
+    # 'divideByBinWidth': True,
+    'cuts': boost_cuts,
+    'blind': { c:[0.6,1] for c in cuts if "_sig_" in c} ,
+}
 
 #####################
 #Fit variables
@@ -164,7 +164,7 @@ variables['vbs_0_qgl_boost'] = {  'name': 'vbs_0_qgl_boost',
 
 
 variables['vbs_1_pt'] = {   'name': 'vbs_1_pt',      
-                        'range' : (40,30,400),  
+                        'range' : (30,30,250),  
                         'xaxis' : 'trailing VBS jet pt', 
                         'fold' : 3
                         } 

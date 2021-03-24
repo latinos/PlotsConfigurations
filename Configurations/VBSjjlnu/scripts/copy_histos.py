@@ -6,6 +6,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument("-i","--input", help="Input file", type=str)
 parser.add_argument("-o","--output", help="Output file", type=str)
 parser.add_argument("-e","--exclude", help="Exclude histo", type=str)
+parser.add_argument("-c","--cuts-only", help="Cuts only", type=str, nargs="+")
 parser.add_argument("-s","--samples-only", help="Samples only", type=str, nargs="+")
 args = parser.parse_args()
 
@@ -18,6 +19,7 @@ iF = R.TFile.Open(args.input, "READ")
 oF = R.TFile.Open(args.output, "RECREATE")
 
 for cut in iF.GetListOfKeys():
+    if args.cuts_only and cut.GetName() not in args.cuts_only: continue
     oF.mkdir(cut.GetName())
     for var in iF.Get(cut.GetName()).GetListOfKeys():
         oF.mkdir(cut.GetName()+"/"+var.GetName())

@@ -71,7 +71,8 @@ DNNcolors = [ palette["GreenLighter"],palette["LightBlue"],palette["MediumBlue"]
 boost_bins = ['0.','0.1','0.2','0.4','0.65','1.']
 res_bins =   ['0.','0.2','0.4','0.6','0.8','1.']
 
-samples = ['Wjets_HT','DY','top','VV','VVV','VBF-V','Vg','VgS','VBS','ggWW', 'Fake']
+samples = ['Wjets_HT','DY','top','VV','VVV','VBF-V','Vg','VgS','ggWW', 'Fake'] #,'VBS'
+# samples = ['VBS']
 
 for i in range(5,0,-1):
     groupPlot['resDNN'+str(i)]  = {  

@@ -26,15 +26,15 @@ variables['DNNoutput_res_v1'] = {
 }
 
 
-variables['DNNoutput_boost'] = {
-    'name': 'DNNoutput_boosted',
-    'range': ([0., 0.05, 0.1, 0.15, 0.20, 0.25, 0.3, 0.35, 0.4, 0.55, 0.7, 0.85, 1.],),
-    'xaxis': 'DNN boosted',
-    'fold': 3 ,
-    'cuts': boost_cuts,
-    'divideByBinWidth': True,
-    'blind': { c:[0.6,1] for c in cuts if "_sig_" in c} ,
-}
+# variables['DNNoutput_boost'] = {
+#     'name': 'DNNoutput_boosted',
+#     'range': ([0., 0.05, 0.1, 0.15, 0.20, 0.25, 0.3, 0.35, 0.4, 0.55, 0.7, 0.85, 1.],),
+#     'xaxis': 'DNN boosted',
+#     'fold': 3 ,
+#     'cuts': boost_cuts,
+#     'divideByBinWidth': True,
+#     'blind': { c:[0.6,1] for c in cuts if "_sig_" in c} ,
+# }
 #####################
 #Fit variables
 
@@ -45,12 +45,12 @@ variables['fit_bins_res'] ={  'name' : 'fit_bin_res',
                             'cuts': res_cuts
 }   
 
-variables['fit_bins_boost'] ={  'name' : 'w_lep_pt',
-                            'range' : ([0,75,150,250,400,700],),
-                            'xaxis' : 'W leptonic Pt', 
-                            'fold' : 3,
-                            'cuts': boost_cuts
-}   
+# variables['fit_bins_boost'] ={  'name' : 'w_lep_pt',
+#                             'range' : ([0,75,150,250,400,700],),
+#                             'xaxis' : 'W leptonic Pt', 
+#                             'fold' : 3,
+#                             'cuts': boost_cuts
+# }   
 
 ######################
 
@@ -74,19 +74,18 @@ variables['vbs_1_pt_res_morebins'] = {   'name': 'vbs_1_pt',
                         'cuts': res_cuts
 } 
 
-
-variables['vbs_1_pt_boost'] = {   'name': 'vbs_1_pt',      
-                        'range' : (15,30,200),  
-                        'xaxis' : 'trailing VBS jet pt', 
-                        'fold' : 3,
-                        'cuts':  [c for c in boost_cuts if 'sig' in c]
-                        } 
+# variables['vbs_1_pt_boost'] = {   'name': 'vbs_1_pt',      
+#                         'range' : (15,30,200),  
+#                         'xaxis' : 'trailing VBS jet pt', 
+#                         'fold' : 3,
+#                         'cuts': boost_cuts
+#                         } 
 
 variables['whad_pt_boost'] = {  'name': "w_had_pt",
                                 'range': (20, 200, 600),
                                 'xaxis': 'W hadronic Pt',
                                 'fold': 3 ,
-                                'cuts': [c for c in boost_cuts if 'sig' in c]
+                                'cuts': boost_cuts
                             }
 
 
@@ -104,12 +103,12 @@ variables['mjj_vjet_res'] = {   'name': 'mjj_vjet',
                         'cuts' : [c for c in res_cuts if 'wjetcr' not in c] 
                         }
 
-variables['mjj_vjet_boost'] = {   'name': 'mjj_vjet',      
-                        'range' : (15,70,115),  
-                        'xaxis' : 'Whad reco mass', 
-                        'fold' : 3,
-                        'cuts' : [c for c in boost_cuts  if 'wjetcr' not  in c] 
-                        }
+# variables['mjj_vjet_boost'] = {   'name': 'mjj_vjet',      
+#                         'range' : (15,70,115),  
+#                         'xaxis' : 'Whad reco mass', 
+#                         'fold' : 3,
+#                         'cuts' : [c for c in boost_cuts  if 'wjetcr' not  in c] 
+#                         }
 
 
 variables['mjj_vbs'] = {   'name': 'mjj_vbs',      
@@ -126,19 +125,12 @@ variables['nJets_res'] = {   'name': 'nJets30',
                         'cuts': res_cuts
                         }
 
-variables['nJets_boost'] = {   'name': 'nJets30',      
-                        'range' : (6,2,8),  
-                        'xaxis' : 'nJets cleaned from Ak8 >= 30 GeV', 
-                        'fold' : 3,
-                        'cuts': [c for c in boost_cuts if 'sig'  in c]
-                        }
-
-variables['nJets'] = {   'name': 'nJets30',      
-                        'range' : (8,2,10),  
-                        'xaxis' : 'nJets cleaned from Ak8 >= 30 GeV', 
-                        'fold' : 3,
-                        'cuts': [c for c in boost_cuts if 'sig' not in c]
-                        }
+# variables['nJets_boost'] = {   'name': 'nJets30',      
+#                         'range' : (6,2,8),  
+#                         'xaxis' : 'nJets cleaned from Ak8 >= 30 GeV', 
+#                         'fold' : 3,
+#                         'cuts': boost_cuts
+#                         }
 
 variables['Zlep'] = {   'name': 'Zlep',      
                         'range' : (30,-1,1),  
@@ -159,21 +151,21 @@ variables['vbs_0_qgl_res'] = {  'name': 'vbs_0_qgl_res',
                         'range': (26,-0.04,1.),
                         'xaxis': 'Qgl VBS 0 jet',
                         'fold': 3,
-                        'cuts':  [c for c in sig_cuts if "res" in c]
+                        'cuts': sig_cuts
                 }
 
 variables['vjet_0_qgl_res'] = {  'name': 'vjet_0_qgl_res',
                         'range': (26,-0.04,1.),
                         'xaxis': 'Qgl Vjet 0 jet',
                         'fold': 3,
-                        'cuts':  [c for c in sig_cuts if "res" in c]
+                        'cuts': sig_cuts
                 }
 
 variables['vjet_1_qgl_res'] = {  'name': 'vjet_1_qgl_res',
                         'range': (26,-0.04,1.),
                         'xaxis': 'Qgl Vjet 1 jet',
                         'fold': 3,
-                        'cuts': [c for c in sig_cuts if "res" in c]
+                        'cuts': sig_cuts
                 }
 
 
@@ -181,15 +173,14 @@ variables['vbs_0_qgl_boost'] = {  'name': 'vbs_0_qgl_boost',
                         'range': (26,-0.04,1.),
                         'xaxis': 'Qgl VBS 0 jet',
                         'fold': 3,
-                        'cuts':  [c for c in sig_cuts if "boost" in c]
+                        'cuts': sig_cuts
                 }
 
 
 variables['vbs_0_pt'] = {   'name': 'vbs_0_pt',      
                         'range' : (35,50,400),  
                         'xaxis' : 'trailing VBS jet pt', 
-                        'fold' : 3,
-                        'cuts': sig_cuts
+                        'fold' : 3
                         } 
 
 
@@ -200,7 +191,6 @@ variables['vjet_0_pt'] = {   'name': 'vjet_0_pt',
                         'fold' : 3,
                         'cuts': res_cuts
                         }
-
 
 
 variables['vjet_1_pt'] = {   'name': 'vjet_1_pt',      
@@ -247,5 +237,5 @@ variables['deltaeta_vjet'] = {   'name': 'deltaeta_vjet',
                         'range' : (20,0,2),  
                         'xaxis' : '#Delta#eta V jets', 
                         'fold' : 3,
-                        'cuts': [c for c in sig_cuts if "res" in c]
+                        'cuts': sig_cuts
                         }   

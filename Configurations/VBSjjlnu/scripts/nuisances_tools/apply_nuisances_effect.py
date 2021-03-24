@@ -12,7 +12,8 @@ parser.add_argument("-o","--output", help="Output file", type=str)
 parser.add_argument("-s","--samples", help="Samples", type=str, nargs="+")
 parser.add_argument("-n","--nuisances", help="Nuisances", type=str, nargs="+")
 parser.add_argument("-nr","--nuisances-rename", help="Nuisances rename", type=str, nargs="+")
-parser.add_argument("-e","--exclude-vars", help="Exclude vars", type=str, nargs="+")
+parser.add_argument("-ev","--exclude-vars", help="Exclude vars", type=str, nargs="+")
+parser.add_argument("-ec","--exclude-cuts", help="Exclude cuts", type=str, nargs="+")
 
 args = parser.parse_args()
 
@@ -27,7 +28,7 @@ nF = R.TFile.Open(args.nuisance_effect, "READ")
 
 # Iterating on nuisance_effect folders
 for cut in nF.GetListOfKeys():
-
+        if args.exclude_cuts and cut.GetName() in args.exclude_cuts: continue
         R.gDirectory.Cd(cut.GetName())
         oF.mkdir(cut.GetName())
 
@@ -44,18 +45,21 @@ for cut in nF.GetListOfKeys():
                 if args.nuisances_rename: rename_nuisances = args.nuisances_rename
                 else: rename_nuisances = args.nuisances
                 for nuis, nuis_rename in zip(args.nuisances, rename_nuisances):
-                    h_up = h_nom.Clone("histo_{}_{}Up".format(sample, nuis_rename))
-                    h_do = h_nom.Clone("histo_{}_{}Down".format(sample, nuis_rename))
-                    
-                    eff_up = nF.Get("{}/{}/histo_{}_{}Up".format(cut.GetName(), var.GetName(), sample, nuis ))
-                    eff_do = nF.Get("{}/{}/histo_{}_{}Down".format(cut.GetName(), var.GetName(),  sample, nuis ))
+                    try:
+                        h_up = h_nom.Clone("histo_{}_{}Up".format(sample, nuis_rename))
+                        h_do = h_nom.Clone("histo_{}_{}Down".format(sample, nuis_rename))
+                        
+                        eff_up = nF.Get("{}/{}/histo_{}_{}Up".format(cut.GetName(), var.GetName(), sample, nuis ))
+                        eff_do = nF.Get("{}/{}/histo_{}_{}Down".format(cut.GetName(), var.GetName(),  sample, nuis ))
+                        
+                        h_up.Multiply(eff_up)
+                        h_do.Multiply(eff_do)
 
-                    h_up.Multiply(eff_up)
-                    h_do.Multiply(eff_do)
-
-                    oF.cd(cut.GetName() + "/"+var.GetName())
-                    h_up.Write()
-                    h_do.Write()
+                        oF.cd(cut.GetName() + "/"+var.GetName())
+                        h_up.Write()
+                        h_do.Write()
+                    except:
+                        print("Problem with: ", sample, nuis_rename, " --> skipping")
         nF.cd()
 
 oF.Close()

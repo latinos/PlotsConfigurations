@@ -15,6 +15,20 @@ aliases['nJets30']= {
     'expr' : 'Sum$(CleanJet_pt[CleanJetNotFat_jetIdx] >= 30)'
 }
 
+aliases['fit_bin_res'] = {
+    'expr': '(VBS_category==1)*( \
+            1*( (w_lep_pt < 100) && (vbs_1_pt < 80) ) +\
+            2*( (w_lep_pt < 100) && (vbs_1_pt >= 80) && (vbs_1_pt < 130) ) +\
+            3*( (w_lep_pt < 100) && (vbs_1_pt >= 130) ) +\
+            4*( (w_lep_pt >= 100 && w_lep_pt < 200) && (vbs_1_pt < 80) )+\
+            5*( (w_lep_pt >= 100 && w_lep_pt < 200) && (vbs_1_pt >= 80) && (vbs_1_pt < 130) )+\
+            6*( (w_lep_pt >= 100 && w_lep_pt < 200) && (vbs_1_pt >= 130) )+\
+            7*(  w_lep_pt >= 200 && w_lep_pt < 300)+\
+            8*(  w_lep_pt >= 300 && w_lep_pt < 400)+\
+            9*(  w_lep_pt >= 400 && w_lep_pt < 500)+\
+            10*( w_lep_pt >= 500)\
+        ) + (VBS_category==0)*(-1)'
+}
 ###################
 # trigger eff
 
@@ -89,6 +103,7 @@ aliases['nJetsBtag']= {
 
 btagSF_corr_samples_groups = {
     'VBS': ['VBS'],
+     'VBSdipole': ['VBS_dipoleRecoil'],
     'Wjets_HT': ['Wjets_HT'],
     'Vg_VgS_VBFV':['Vg','VgS','VBF-V'],
     'VV_VVV_ggWW':['VVV','VV','ggWW'],
@@ -172,9 +187,8 @@ basedir_fakes = configurations + "/VBSjjlnu/weights_files/fake_rates/2018"
 
 ets = ["25", "35", "45"]
 
-el_pr_file = os.getenv('CMSSW_BASE') + "/src/LatinoAnalysis/NanoGardener/python/data/fake_prompt_rates/Full2018v7/mvaFall17V1Iso_WP90/ElePR.root"
-mu_pr_file = os.getenv('CMSSW_BASE') + "/src/LatinoAnalysis/NanoGardener/python/data/fake_prompt_rates/Full2018v7/cut_Tight_HWWW/MuonPR.root"
-
+el_pr_file = configurations + "/VBSjjlnu/weights_files/prompt_rates/2018/plot_ElCh_l1_etaVpt_ptel_2D_pr.root"
+mu_pr_file = configurations + "/VBSjjlnu/weights_files/prompt_rates/2018/plot_MuCh_l1_etaVpt_ptmu_2D_pr.root"
 for et in ets:
     el_fr_file = basedir_fakes + "/plot_ElCh_JetEt"+et+"_l1_etaVpt_ptel_aseta_fw_ewk_2D.root" #No absolute value for fakes
     mu_fr_file = basedir_fakes + "/plot_MuCh_JetEt"+et+"_l1_etaVpt_ptmu_fw_ewk_2D.root"

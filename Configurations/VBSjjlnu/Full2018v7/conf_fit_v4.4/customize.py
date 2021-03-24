@@ -124,32 +124,38 @@ def customize(samples,cuts,variables,nuisances,plot,groupPlot, key=None):
     if key=="top_boost":
         new_cuts = filter_cuts(cuts, r"boost_topcr.*")
         new_groupPlot = reorder_plots(groupPlot,  plots_top_order_boost)
-        return samples, new_cuts, variables, nuisances, plot, new_groupPlot
+        new_plot ={ k:v for k,v in plot.items() if 'res' not in k}
+        return samples, new_cuts, variables, nuisances, new_plot, new_groupPlot
 
     if key=="wjets_boost":
         new_cuts = filter_cuts(cuts, r"boost_wjetcr_.*")
         new_groupPlot = reorder_plots(groupPlot,  plots_wjets_order_boost)
-        return samples, new_cuts, variables, nuisances, plot, new_groupPlot
+        new_plot ={ k:v for k,v in plot.items() if 'res' not in k}
+        return samples, new_cuts, variables, nuisances, new_plot, new_groupPlot
 
     if key=="signal_boost":
         new_cuts = filter_cuts(cuts, r"boost_sig_.*")
         new_groupPlot = reorder_plots(groupPlot,  plots_wjets_order_boost)
-        return samples, new_cuts, variables, nuisances, plot, new_groupPlot
+        new_plot ={ k:v for k,v in plot.items() if 'res' not in k}
+        return samples, new_cuts, variables, nuisances, new_plot, new_groupPlot
     
     if key=="top_res":
         new_cuts = filter_cuts(cuts, r"res_topcr.*")
         new_groupPlot = reorder_plots(groupPlot,  plots_top_order_res)
-        return samples, new_cuts, variables, nuisances, plot, new_groupPlot
+        new_plot ={ k:v for k,v in plot.items() if 'boost' not in k}
+        return samples, new_cuts, variables, nuisances, new_plot, new_groupPlot
 
     if key=="wjets_res":
         new_cuts = filter_cuts(cuts, r"res_wjetcr_.*")
         new_groupPlot = reorder_plots(groupPlot,  plots_wjets_order_res)
-        return samples, new_cuts, variables, nuisances, plot, new_groupPlot
+        new_plot ={ k:v for k,v in plot.items() if 'boost' not in k}
+        return samples, new_cuts, variables, nuisances, new_plot, new_groupPlot
 
     if key=="signal_res":
         new_cuts = filter_cuts(cuts, r"res_sig_.*")
         new_groupPlot = reorder_plots(groupPlot,  plots_wjets_order_res)
-        return samples, new_cuts, variables, nuisances, plot, new_groupPlot
+        new_plot ={ k:v for k,v in plot.items() if 'boost' not in k}
+        return samples, new_cuts, variables, nuisances, new_plot, new_groupPlot
 
     if key=="signal_vbsbins":
         new_cuts = filter_cuts(cuts, r".*_sig_.*")

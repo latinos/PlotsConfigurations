@@ -122,34 +122,46 @@ def scaleBins(plot, norm_factors):
 
 def customize(samples,cuts,variables,nuisances,plot,groupPlot, key=None):
     if key=="top_boost":
-        new_cuts = filter_cuts(cuts, r"boost_topcr_.*")
+        new_cuts = filter_cuts(cuts, r"boost_topcr.*")
         new_groupPlot = reorder_plots(groupPlot,  plots_top_order_boost)
-        return samples, new_cuts, variables, nuisances, plot, new_groupPlot
+        new_plot ={ k:v for k,v in plot.items() if 'res' not in k}
+        return samples, new_cuts, variables, nuisances, new_plot, new_groupPlot
 
     if key=="wjets_boost":
         new_cuts = filter_cuts(cuts, r"boost_wjetcr_.*")
         new_groupPlot = reorder_plots(groupPlot,  plots_wjets_order_boost)
-        return samples, new_cuts, variables, nuisances, plot, new_groupPlot
+        new_plot ={ k:v for k,v in plot.items() if 'res' not in k}
+        return samples, new_cuts, variables, nuisances, new_plot, new_groupPlot
 
     if key=="signal_boost":
         new_cuts = filter_cuts(cuts, r"boost_sig_.*")
         new_groupPlot = reorder_plots(groupPlot,  plots_wjets_order_boost)
-        return samples, new_cuts, variables, nuisances, plot, new_groupPlot
+        new_plot ={ k:v for k,v in plot.items() if 'res' not in k}
+        return samples, new_cuts, variables, nuisances, new_plot, new_groupPlot
     
     if key=="top_res":
-        new_cuts = filter_cuts(cuts, r"res_topcr_.*")
+        new_cuts = filter_cuts(cuts, r"res_topcr.*")
         new_groupPlot = reorder_plots(groupPlot,  plots_top_order_res)
-        return samples, new_cuts, variables, nuisances, plot, new_groupPlot
+        new_plot ={ k:v for k,v in plot.items() if 'boost' not in k}
+        return samples, new_cuts, variables, nuisances, new_plot, new_groupPlot
 
     if key=="wjets_res":
         new_cuts = filter_cuts(cuts, r"res_wjetcr_.*")
         new_groupPlot = reorder_plots(groupPlot,  plots_wjets_order_res)
-        return samples, new_cuts, variables, nuisances, plot, new_groupPlot
+        new_plot ={ k:v for k,v in plot.items() if 'boost' not in k}
+        return samples, new_cuts, variables, nuisances, new_plot, new_groupPlot
 
     if key=="signal_res":
         new_cuts = filter_cuts(cuts, r"res_sig_.*")
         new_groupPlot = reorder_plots(groupPlot,  plots_wjets_order_res)
-        return samples, new_cuts, variables, nuisances, plot, new_groupPlot
+        new_plot ={ k:v for k,v in plot.items() if 'boost' not in k}
+        return samples, new_cuts, variables, nuisances, new_plot, new_groupPlot
+
+    if key=="signal_vbsbins":
+        new_cuts = filter_cuts(cuts, r".*_sig_.*")
+        new_groupPlot = reorder_plots(groupPlot,  plots_wjets_order_boost)
+        new_variables = {"vbs_1_pt_res": variables["vbs_1_pt_res"]}
+        return samples, new_cuts, new_variables, nuisances, plot, new_groupPlot
 
     ###########################################
     if key=="bins_wjets_res":
@@ -216,7 +228,20 @@ def customize(samples,cuts,variables,nuisances,plot,groupPlot, key=None):
         scale_plot = scaleBins(new_plot,  norm_factors)
         return samples, new_cuts, variables, nuisances, scale_plot, new_groupPlot
 
-
+    if key=="check_nuis":
+        sample = 'Fake'
+        new_cuts = filter_cuts(cuts, r"res_sig_mu")
+        new_groupPlot = OrderedDict()
+        new_plot = OrderedDict()
+        for gr, d in groupPlot.items():
+            if sample in gr:
+                new_groupPlot[gr] = d
+        for gr, d in plot.items():
+            if sample in gr:
+                new_plot[gr] = d
+        new_groupPlot["VBS"] = groupPlot["VBS"]
+        new_plot["VBS"] = plot["VBS"]
+        return samples, new_cuts, variables, nuisances, new_plot, new_groupPlot
 
     else:
         return samples,cuts,variables,nuisances,plot,groupPlot

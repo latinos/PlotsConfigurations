@@ -105,6 +105,7 @@ aliases['nJetsBtag']= {
 
 btagSF_corr_samples_groups = {
     'VBS': ['VBS'],
+    'VBSdipole': ['VBS_dipoleRecoil'],
     'Wjets_HT': ['Wjets_HT'],
     'Vg_VgS_VBFV':['Vg','VgS','VBF-V'],
     'VV_VVV_ggWW':['VVV','VV','ggWW'],
@@ -295,7 +296,7 @@ aliases['QCDscale_normalized'] = {
                 'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
                 '.L {}/VBSjjlnu/macros/QCDscale_normalize.cc+'.format(configurations)
             ] ,
-            'samples':['VBS']          
+            'samples':['VBS','VBS_dipoleRecoil']          
 }
 
 aliases['PDFweight_normalized'] = {
@@ -305,7 +306,7 @@ aliases['PDFweight_normalized'] = {
                 'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
                 '.L {}/VBSjjlnu/macros/PDFweight_normalize.cc+'.format(configurations)
             ] ,
-            'samples':['VBS']          
+            'samples':['VBS','VBS_dipoleRecoil']          
 }
 
 ###################################
@@ -367,15 +368,15 @@ aliases['BoostedWtagSF_ptextr'] = {
 mva_reader_path = os.getenv('CMSSW_BASE') + '/src/PlotsConfigurations/Configurations/VBSjjlnu/macros/'
 models_path = '/eos/home-d/dvalsecc/www/VBSPlots/DNN_archive/FullRun2_v7/FullRun2_v7/'
 
-# aliases['DNNoutput_boosted'] = {
-#     'class': 'MVAReaderBoosted_mVauto',
-#     'args': ( models_path +'boost_sig/models/v3_d/',  models_path +'boost_sig/models/v3_d/cumulative_signal_2018.root', False, 0),
-#     'linesToAdd':[
-#         'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-#         'gSystem->Load("libDNNEvaluator.so")',
-#         '.L ' + mva_reader_path + 'mva_reader_boosted_v3d_mVauto.cc+', 
-#     ],
-# }
+aliases['DNNoutput_boosted'] = {
+    'class': 'MVAReaderBoosted_mVauto',
+    'args': ( models_path +'boost_sig/models/v3_d/',  models_path +'boost_sig/models/v3_d/cumulative_signal_2018.root', False, 0),
+    'linesToAdd':[
+        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+        'gSystem->Load("libDNNEvaluator.so")',
+        '.L ' + mva_reader_path + 'mva_reader_boosted_v3d_mVauto.cc+', 
+    ],
+}
 
 aliases['DNNoutput_resolved_v1'] = {
     'class': 'MVAReaderResolved_mVauto',

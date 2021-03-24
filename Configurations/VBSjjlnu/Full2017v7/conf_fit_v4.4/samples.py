@@ -215,11 +215,11 @@ samples['Wjets_HT'] = { 'name' :
             "res_8": 'fit_bin_res==8',
             "res_9": 'fit_bin_res==9',
             "res_10":'fit_bin_res==10',
-            # "boost_1": '(VBS_category==0) && (w_lep_pt < 75)',
-            # "boost_2": '(VBS_category==0) && (w_lep_pt >= 75 && w_lep_pt < 150)',
-            # "boost_3": '(VBS_category==0) && (w_lep_pt >= 150 && w_lep_pt < 250)',
-            # "boost_4": '(VBS_category==0) && (w_lep_pt >= 250 && w_lep_pt < 400)',
-            # "boost_5": '(VBS_category==0) && (w_lep_pt >= 400)',
+            "boost_1": '(VBS_category==0) && (w_lep_pt < 75)',
+            "boost_2": '(VBS_category==0) && (w_lep_pt >= 75 && w_lep_pt < 150)',
+            "boost_3": '(VBS_category==0) && (w_lep_pt >= 150 && w_lep_pt < 250)',
+            "boost_4": '(VBS_category==0) && (w_lep_pt >= 250 && w_lep_pt < 400)',
+            "boost_5": '(VBS_category==0) && (w_lep_pt >= 400)',
         }
        }
 
@@ -345,7 +345,16 @@ samples['VBS']  = { 'name' :
 
 fake_weight_corrected = "fakeWeight_35"
 
-# samples['Fake'] = {
+samples['Fake'] = {
+  'name': [],
+  'weight': METFilter_DATA+'*'+ fake_weight_corrected,
+  'weights': [],
+  'isData': ['all'],
+  'FilesPerJob' : 45
+}
+
+# #### Fakes
+# samples['Fake_ele'] = {
 #   'name': [],
 #   'weight': METFilter_DATA+'*'+ fake_weight_corrected,
 #   'weights': [],
@@ -353,35 +362,26 @@ fake_weight_corrected = "fakeWeight_35"
 #   'FilesPerJob' : 45
 # }
 
-# #### Fakes
-samples['Fake_ele'] = {
-  'name': [],
-  'weight': METFilter_DATA+'*'+ fake_weight_corrected,
-  'weights': [],
-  'isData': ['all'],
-  'FilesPerJob' : 45
-}
+# samples['Fake_mu'] = {
+#   'name': [],
+#   'weight': METFilter_DATA+'*'+ fake_weight_corrected,
+#   'weights': [],
+#   'isData': ['all'],
+#   'FilesPerJob' : 45
+# }
 
-samples['Fake_mu'] = {
-  'name': [],
-  'weight': METFilter_DATA+'*'+ fake_weight_corrected,
-  'weights': [],
-  'isData': ['all'],
-  'FilesPerJob' : 45
-}
-
-# #
-for _, sd in DataRun:
-  for pd in DataSets:
-    files = nanoGetSampleFiles(directory_data, pd + '_' + sd)
-    if pd == "SingleMuon":
-      # BE Careful --> we use directory_data because the Lepton tight cut was not applied in post-processing
-      samples['Fake_mu']['name'].extend(files)
-      samples['Fake_mu']['weights'].extend([DataTrig[pd]] * len(files))
-    elif pd == "SingleElectron":
-      # BE Careful --> we use directory_data because the Lepton tight cut was not applied in post-processing
-      samples['Fake_ele']['name'].extend(files)
-      samples['Fake_ele']['weights'].extend([DataTrig[pd]] * len(files))
+# # #
+# for _, sd in DataRun:
+#   for pd in DataSets:
+#     files = nanoGetSampleFiles(directory_data, pd + '_' + sd)
+#     if pd == "SingleMuon":
+#       # BE Careful --> we use directory_data because the Lepton tight cut was not applied in post-processing
+#       samples['Fake_mu']['name'].extend(files)
+#       samples['Fake_mu']['weights'].extend([DataTrig[pd]] * len(files))
+#     elif pd == "SingleElectron":
+#       # BE Careful --> we use directory_data because the Lepton tight cut was not applied in post-processing
+#       samples['Fake_ele']['name'].extend(files)
+#       samples['Fake_ele']['weights'].extend([DataTrig[pd]] * len(files))
 
 
 ##########################################
@@ -389,37 +389,37 @@ for _, sd in DataRun:
 ##########################################
 
 
-samples['DATA_mu']  = {   'name': [ ] ,
-                       'weight' : METFilter_DATA+'*'+LepWPCut,
-                       'weights' : [ ],
-                       'isData': ['all'],
-                       'FilesPerJob' : 45,
-                  }
-
-samples['DATA_ele']  = {   'name': [ ] ,
-                       'weight' : METFilter_DATA+'*'+LepWPCut,
-                       'weights' : [ ],
-                       'isData': ['all'],
-                       'FilesPerJob' : 45,
-                  }
-
-
-for Run in DataRun :
-        for DataSet in DataSets :
-                FileTarget = nanoGetSampleFiles(directory_data,DataSet+'_'+Run[1])
-                for iFile in FileTarget:
-                  if DataSet == "SingleElectron":
-                    samples['DATA_ele']['name'].append(iFile)
-                    samples['DATA_ele']['weights'].append(DataTrig[DataSet])
-                  if DataSet == "SingleMuon":
-                    samples['DATA_mu']['name'].append(iFile)
-                    samples['DATA_mu']['weights'].append(DataTrig[DataSet])
-
-# samples['DATA']  = {   'name': [ ] ,
+# samples['DATA_mu']  = {   'name': [ ] ,
 #                        'weight' : METFilter_DATA+'*'+LepWPCut,
 #                        'weights' : [ ],
 #                        'isData': ['all'],
 #                        'FilesPerJob' : 45,
 #                   }
 
-# samples = {k:v for k,v in samples.items() if k in ["DATA_ele","DATA_mu","Fake_ele","Fake_mu","VgS","Vg","ggWW","VVV"]}#
+# samples['DATA_ele']  = {   'name': [ ] ,
+#                        'weight' : METFilter_DATA+'*'+LepWPCut,
+#                        'weights' : [ ],
+#                        'isData': ['all'],
+#                        'FilesPerJob' : 45,
+#                   }
+
+
+# for Run in DataRun :
+#         for DataSet in DataSets :
+#                 FileTarget = nanoGetSampleFiles(directory_data,DataSet+'_'+Run[1])
+#                 for iFile in FileTarget:
+#                   if DataSet == "SingleElectron":
+#                     samples['DATA_ele']['name'].append(iFile)
+#                     samples['DATA_ele']['weights'].append(DataTrig[DataSet])
+#                   if DataSet == "SingleMuon":
+#                     samples['DATA_mu']['name'].append(iFile)
+#                     samples['DATA_mu']['weights'].append(DataTrig[DataSet])
+
+samples['DATA']  = {   'name': [ ] ,
+                       'weight' : METFilter_DATA+'*'+LepWPCut,
+                       'weights' : [ ],
+                       'isData': ['all'],
+                       'FilesPerJob' : 45,
+                  }
+
+# samples = {k:v for k,v in samples.items() if k not in ["DATA_ele","DATA_mu","Fake_ele","Fake_mu"]}#

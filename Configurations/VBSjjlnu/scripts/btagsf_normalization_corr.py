@@ -10,6 +10,7 @@ cuts = ['res_onshell', 'res_offshell', 'boost_onshell', 'boost_offshell']
 
 samples_groups = {
     'VBS': ['VBS'],
+    'VBS_dipoleRecoil' : ['VBS_dipoleRecoil'],
     'Wjets_HT': ['Wjets_HT'],
     'Vg_VgS_VBFV' :['Vg','VgS','VBF-V'],
     'VV_VVV_ggWW':['VVV','VV','ggWW'],
@@ -19,6 +20,7 @@ samples_groups = {
 
 bins = {
     'VBS': 7,
+    'VBS_dipoleRecoil': 7,
     'Wjets_HT': 8,
     'Vg_VgS_VBFV':  5 ,
     'VV_VVV_ggWW': 8 ,

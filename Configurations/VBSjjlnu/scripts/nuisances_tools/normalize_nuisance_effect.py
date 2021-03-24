@@ -1,3 +1,4 @@
+from __future__ import print_function
 import ROOT as R 
 R.gROOT.SetBatch(True)
 import argparse 
@@ -24,14 +25,14 @@ exec(open(args.config))
 
 for sample, sample_conf in config.items():
     sample_conf['results'] = {}
-    print "> Working on sample: ", sample
+    print ("> Working on sample: ", sample)
     for nuis in sample_conf["nuisances"]:
         sample_conf['results'][nuis] = {}
-        print ">> nuisance: ", nuis
+        print (">> nuisance: ", nuis)
         for phase_space, cuts in sample_conf["phase_spaces"].items():
             sample_conf['results'][nuis][phase_space] = {}
             results = sample_conf['results'][nuis][phase_space] 
-            print ">>> phase space: ", phase_space
+            print (">>> phase space: ", phase_space)
             nom, up, down = [],[],[]
             up_histos, down_histos = [],[]
             for cut in cuts:
@@ -50,10 +51,10 @@ for sample, sample_conf in config.items():
             results["down"] = down
             results["ratioUp"] = ratio_up
             results["ratioDown"] = ratio_down
-            print "Nominal: ", nom
-            print "Up: ", up 
-            print "Down: ", down 
-            print "---> ratioUp: ", ratio_up, " ratioDown: ", ratio_down
+            print ("Nominal: ", nom)
+            print ("Up: ", up )
+            print ("Down: ", down )
+            print ("---> ratioUp: ", ratio_up, " ratioDown: ", ratio_down)
             if not args.dry:
                 #now apply
                 for cut in cuts:
@@ -61,7 +62,7 @@ for sample, sample_conf in config.items():
                     iF.cd("/")
                     for var in vars:
                         if args.exclude_vars and var in args.exclude_vars: continue
-                        #print "{}/{}/histo_{}_{}Up".format(cut, var, sample, nuis)
+                        #print ("{}/{}/histo_{}_{}Up".format(cut, var, sample, nuis))
                         try:
                             h_up   = iF.Get("{}/{}/histo_{}_{}Up".format(cut, var, sample, nuis))
                             h_down = iF.Get("{}/{}/histo_{}_{}Down".format(cut, var, sample, nuis))
@@ -71,10 +72,10 @@ for sample, sample_conf in config.items():
                             h_up.Write()
                             h_down.Write()
                         except:
-                            print "problem with var: ", var
+                            print ("problem with var: ", var)
 
                 
-    print "-------------------------------------"
+    print ("-------------------------------------")
 
 json.dump(config, open(args.output,"w"),indent=2)
 

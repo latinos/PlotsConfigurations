@@ -14,6 +14,21 @@ aliases['nJets30']= {
     'expr' : 'Sum$(CleanJet_pt[CleanJetNotFat_jetIdx] >= 30)'
 }
 
+aliases['fit_bin_res'] = {
+    'expr': '(VBS_category==1)*( \
+            1*( (w_lep_pt < 100) && (vbs_1_pt < 80) ) +\
+            2*( (w_lep_pt < 100) && (vbs_1_pt >= 80) && (vbs_1_pt < 130) ) +\
+            3*( (w_lep_pt < 100) && (vbs_1_pt >= 130) ) +\
+            4*( (w_lep_pt >= 100 && w_lep_pt < 200) && (vbs_1_pt < 80) )+\
+            5*( (w_lep_pt >= 100 && w_lep_pt < 200) && (vbs_1_pt >= 80) && (vbs_1_pt < 130) )+\
+            6*( (w_lep_pt >= 100 && w_lep_pt < 200) && (vbs_1_pt >= 130) )+\
+            7*(  w_lep_pt >= 200 && w_lep_pt < 300)+\
+            8*(  w_lep_pt >= 300 && w_lep_pt < 400)+\
+            9*(  w_lep_pt >= 400 && w_lep_pt < 500)+\
+            10*( w_lep_pt >= 500)\
+        ) + (VBS_category==0)*(-1)'
+}
+
 ###################3
 # trigger eff
 
@@ -442,15 +457,15 @@ aliases['BoostedWtagSF_ptextr'] = {
 mva_reader_path = os.getenv('CMSSW_BASE') + '/src/PlotsConfigurations/Configurations/VBSjjlnu/macros/'
 models_path = '/eos/home-d/dvalsecc/www/VBSPlots/DNN_archive/FullRun2_v7/FullRun2_v7/'
 
-aliases['DNNoutput_boosted'] = {
-    'class': 'MVAReaderBoosted_mVauto_qglnuis',
-    'args': ( models_path +'boost_sig/models/v3_d/',  models_path +'boost_sig/models/v3_d/cumulative_signal_2016.root', False, 0),
-    'linesToAdd':[
-        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-        'gSystem->Load("libDNNEvaluator.so")',
-        '.L ' + mva_reader_path + 'mva_reader_boosted_v3d_mVauto_qglnuis.cc+', 
-    ],
-}
+# aliases['DNNoutput_boosted'] = {
+#     'class': 'MVAReaderBoosted_mVauto_qglnuis',
+#     'args': ( models_path +'boost_sig/models/v3_d/',  models_path +'boost_sig/models/v3_d/cumulative_signal_2016.root', False, 0),
+#     'linesToAdd':[
+#         'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+#         'gSystem->Load("libDNNEvaluator.so")',
+#         '.L ' + mva_reader_path + 'mva_reader_boosted_v3d_mVauto_qglnuis.cc+', 
+#     ],
+# }
 
 aliases['DNNoutput_resolved_v1'] = {
     'class': 'MVAReaderResolved_mVauto_qglnuis',

@@ -2,17 +2,17 @@
 treeName= 'Events'
 
 
-tag = 'fit_v4.4_2018'
+tag = 'fit_v4.4_2018_qglnuis'
 direc = "conf_fit_v4.4"
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFile_'+tag 
 
 # file with TTree aliases
-aliasesFile = direc+'/aliases.py'
+aliasesFile = direc+'/aliases_qglnuis.py'
 
 # file with list of variables
-variablesFile = direc+'/variables.py'
+variablesFile = direc+'/variables_qglnuis.py'
 
 # file with list of cuts
 cutsFile = direc +'/cuts.py' 
@@ -34,7 +34,7 @@ outputDirPlots = 'plot_'+tag
 
 # used by mkDatacards to define output directory for datacards
 #outputDirDatacard = 'datacards_'+tag 
-outputDirDatacard = 'datacards_'+tag +"_PythiaDipole_v1"
+outputDirDatacard = 'datacards_'+tag 
 
 # structure file for datacard
 structureFile = direc+'/structure.py'
@@ -42,7 +42,7 @@ structureFile = direc+'/structure.py'
 
 # nuisances file for mkDatacards and for mkShape
 #nuisancesFile = direc+'/nuisances.py'
-nuisancesFile = direc+'/nuisances_datacard.py'
+# nuisancesFile = direc+'/nuisances_datacard.py'
 # nuisancesFile = direc + '/nuisances_recover.py'
 
 

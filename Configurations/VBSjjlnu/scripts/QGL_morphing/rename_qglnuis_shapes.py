@@ -1,3 +1,4 @@
+from __future__ import print_function
 import ROOT as R 
 import os
 import argparse
@@ -13,10 +14,10 @@ iF = R.TFile.Open(args.inputfile, "READ")
 oF = R.TFile.Open(args.outputfile,"RECREATE")
 oFF = R.TFile.Open(args.outputfile_fit,"UPDATE")
 
-samples= ['VBS','DY','top','VV','VVV','Vg','VgS', 'VBF-V','ggWW']
+samples= ['VBS','DY','top','VV','VVV','Vg','VgS', 'VBF-V','ggWW'] #'VBS_dipoleRecoil'
 # samples = ['DY']
 wjets_bins = {"res":[], "boost":[]}
-for ir in range(1,7):
+for ir in range(1,11):
     wjets_bins["res"].append("Wjets_HT_res_"+str(ir))
 for ir in range(1,6):
     wjets_bins["boost"].append("Wjets_HT_boost_"+str(ir))
@@ -27,8 +28,8 @@ variables = {
 }
 
 for cut in iF.GetListOfKeys():
-    if 'sig' not in cut.GetName(): continue
-    print cut.GetName()
+    # if 'sig' not in cut.GetName(): continue
+    print (cut.GetName())
     oF.mkdir(cut.GetName())
     if "boost" in cut.GetName():
         vars = variables["boost"]
@@ -50,7 +51,7 @@ for cut in iF.GetListOfKeys():
                 for jtype in ["quark", "gluon"]:
                     for  jeta in ["higheta", "loweta"]:
                         mtyp = "_".join([m,jtype,jeta])
-                        print "{}/{}_{}/histo_{}".format(cut.GetName(), var, mtyp, sample )
+                        print ("{}/{}_{}/histo_{}".format(cut.GetName(), var, mtyp, sample ))
                         hup = iF.Get("{}/{}_{}/histo_{}".format(cut.GetName(), var, mtyp, sample ))   
                         hdo = iF.Get("{}/{}_{}/histo_{}".format(cut.GetName(), var, mtyp, sample ))
                         if m == "morphUp":
@@ -90,7 +91,7 @@ for cut in iF.GetListOfKeys():
                         oFF.cd("{}/{}".format(cut.GetName(), var))
                         hOv.Write()
 
-    print '-----------------------'
+    print ('-----------------------')
 
 oF.Close()
 iF.Close()

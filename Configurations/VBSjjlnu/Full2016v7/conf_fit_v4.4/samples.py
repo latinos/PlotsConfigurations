@@ -254,11 +254,11 @@ samples['Wjets_HT'] = { 'name' :
             "res_8": 'fit_bin_res==8',
             "res_9": 'fit_bin_res==9',
             "res_10":'fit_bin_res==10',
-            # "boost_1": '(VBS_category==0) && (w_lep_pt < 75)',
-            # "boost_2": '(VBS_category==0) && (w_lep_pt >= 75 && w_lep_pt < 150)',
-            # "boost_3": '(VBS_category==0) && (w_lep_pt >= 150 && w_lep_pt < 250)',
-            # "boost_4": '(VBS_category==0) && (w_lep_pt >= 250 && w_lep_pt < 400)',
-            # "boost_5": '(VBS_category==0) && (w_lep_pt >= 400)',
+            "boost_1": '(VBS_category==0) && (w_lep_pt < 75)',
+            "boost_2": '(VBS_category==0) && (w_lep_pt >= 75 && w_lep_pt < 150)',
+            "boost_3": '(VBS_category==0) && (w_lep_pt >= 150 && w_lep_pt < 250)',
+            "boost_4": '(VBS_category==0) && (w_lep_pt >= 250 && w_lep_pt < 400)',
+            "boost_5": '(VBS_category==0) && (w_lep_pt >= 400)',
         }
        }
 

@@ -64,7 +64,7 @@ python submitSkimWithSystematics.py \
         --branches-remove "HM*" "me_*" "MH*" \
         --save-entrylists \
         -q espresso    \
-        --files-per-job 4 --do-hadd  
+        --files-per-job 4 
 
 
 # Data

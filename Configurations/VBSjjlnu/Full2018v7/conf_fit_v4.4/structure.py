@@ -3,7 +3,7 @@ from itertools import product, chain
 #structure = {}
 
 wjets_bins = []
-for ir in range(1,7):
+for ir in range(1,11):
     wjets_bins.append("Wjets_HT_res_"+str(ir))
 for ir in range(1,6):
     wjets_bins.append("Wjets_HT_boost_"+str(ir))
@@ -80,7 +80,12 @@ structure['VgS']  = {
                   'isData'   : 0 
               }
 
-structure['VBS']  = { 
+# structure['VBS']  = { 
+#                   'isSignal' : 1,
+#                   'isData'   : 0 
+#               }
+
+structure['VBS_dipoleRecoil']  = { 
                   'isSignal' : 1,
                   'isData'   : 0 
               }

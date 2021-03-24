@@ -79,7 +79,7 @@ LepWPWeight = LepWPWeight_1l
 XSWeight   = 'XSWeight'
 SFweight1l = [ 'puWeight', 'SingleLepton_trigEff_corrected[0]',
               'Lepton_RecoSF[0]',LepWPWeight_1l, LepWPCut_1l,
-              'PUJetIdSF', 'BoostedWtagSF_nominal']  #btagSF removed
+              'btagSF','PUJetIdSF', 'BoostedWtagSF_nominal']
 
 SFweight = '*'.join(SFweight1l)
 
@@ -134,9 +134,21 @@ samples['DY'] = {    'name'   :   nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M
                                   + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-4to50_HT-200to400')
                                   + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-4to50_HT-400to600')
                                   + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-4to50_HT-600toInf'),
-                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + '*' + DY_photon_filter ,# missing ewkNLOW
-                       'FilesPerJob' : 16,
+                       'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + '*' + DY_photon_filter +'*btagSF_corr_DY',# missing ewkNLOW
+                       'FilesPerJob' : 10,
                        'EventsPerJob' : 70000,
+                       'subsamples': {
+                         "boost_1": "deltaeta_vbs <= 3.5",
+                         "boost_2": "deltaeta_vbs > 3.5 && deltaeta_vbs <= 4.5",
+                         "boost_3": "deltaeta_vbs > 4.5 && deltaeta_vbs <= 5.5",
+                         "boost_4": "deltaeta_vbs > 5.5 && deltaeta_vbs <= 6.5",
+                         "boost_5": "deltaeta_vbs > 6.5",
+                         "res_1": "deltaeta_vbs <= 3.5",
+                         "res_2": "deltaeta_vbs > 3.5 && deltaeta_vbs <= 4.5",
+                         "res_3": "deltaeta_vbs > 4.5 && deltaeta_vbs <= 5.5",
+                         "res_4": "deltaeta_vbs > 5.5 && deltaeta_vbs <= 6.5",
+                         "res_5": "deltaeta_vbs > 6.5",
+                       }
                       #  'suppressNegative' :['all'],
                       #  'suppressNegativeNuisances' :['all'],
                    }
@@ -175,11 +187,23 @@ samples['top'] = {    'name'   :   nanoGetSampleFiles(directory_bkg,'TTTo2L2Nu')
                                  + nanoGetSampleFiles(directory_bkg,'TTZjets')
                                  + nanoGetSampleFiles(directory_bkg,'TTWjets'),
                                 #+  nanoGetSampleFiles(directory_bkg,'TTWJetsToLNu'), #also this is available
-                     'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-                     'FilesPerJob' : 16,
+                     'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC +'*btagSF_corr_top',
+                     'FilesPerJob' : 8,
                      'EventsPerJob' : 70000,
-                     'suppressNegative' :['all'],
-                     'suppressNegativeNuisances' :['all'],
+                    #  'suppressNegative' :['all'],
+                    #  'suppressNegativeNuisances' :['all'],
+                     'subsamples': {
+                          "boost_1": "deltaeta_vbs <= 3.5",
+                         "boost_2": "deltaeta_vbs > 3.5 && deltaeta_vbs <= 4.5",
+                         "boost_3": "deltaeta_vbs > 4.5 && deltaeta_vbs <= 5.5",
+                         "boost_4": "deltaeta_vbs > 5.5 && deltaeta_vbs <= 6.5",
+                         "boost_5": "deltaeta_vbs > 6.5",
+                         "res_1": "deltaeta_vbs <= 3.5",
+                         "res_2": "deltaeta_vbs > 3.5 && deltaeta_vbs <= 4.5",
+                         "res_3": "deltaeta_vbs > 4.5 && deltaeta_vbs <= 5.5",
+                         "res_4": "deltaeta_vbs > 5.5 && deltaeta_vbs <= 6.5",
+                         "res_5": "deltaeta_vbs > 6.5",
+                       }
                  }
 addSampleWeight(samples,'top','TTTo2L2Nu','Top_pTrw')
 addSampleWeight(samples,'top','TTToSemiLeptonic','Top_pTrw')
@@ -204,21 +228,20 @@ samples['Wjets_HT'] = { 'name' :
           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT800_1200')
           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT1200_2500')
           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT2500_inf'),
-				'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch + '* ewknloW',
-				'FilesPerJob' : 15,   
-        # 'subsamples': {
-        #     "res_1": '(VBS_category==1) && (w_lep_pt < 100)',
-        #     "res_2": '(VBS_category==1) && (w_lep_pt >= 100 && w_lep_pt < 200)',
-        #     "res_3": '(VBS_category==1) && (w_lep_pt >= 200 && w_lep_pt < 300)',
-        #     "res_4": '(VBS_category==1) && (w_lep_pt >= 300 && w_lep_pt < 400)',
-        #     "res_5": '(VBS_category==1) && (w_lep_pt >= 400 && w_lep_pt < 500)',
-        #     "res_6": '(VBS_category==1) && (w_lep_pt >= 500)',
-        #     "boost_1": '(VBS_category==0) && (w_lep_pt < 75)',
-        #     "boost_2": '(VBS_category==0) && (w_lep_pt >= 75 && w_lep_pt < 150)',
-        #     "boost_3": '(VBS_category==0) && (w_lep_pt >= 150 && w_lep_pt < 250)',
-        #     "boost_4": '(VBS_category==0) && (w_lep_pt >= 250 && w_lep_pt < 400)',
-        #     "boost_5": '(VBS_category==0) && (w_lep_pt >= 400)',
-        # }
+				'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch + '* ewknloW * btagSF_corr_Wjets_HT',
+				'FilesPerJob' :8,   
+        'subsamples': {
+                       "boost_1": "deltaeta_vbs <= 3.5",
+                         "boost_2": "deltaeta_vbs > 3.5 && deltaeta_vbs <= 4.5",
+                         "boost_3": "deltaeta_vbs > 4.5 && deltaeta_vbs <= 5.5",
+                         "boost_4": "deltaeta_vbs > 5.5 && deltaeta_vbs <= 6.5",
+                         "boost_5": "deltaeta_vbs > 6.5",
+                         "res_1": "deltaeta_vbs <= 3.5",
+                         "res_2": "deltaeta_vbs > 3.5 && deltaeta_vbs <= 4.5",
+                         "res_3": "deltaeta_vbs > 4.5 && deltaeta_vbs <= 5.5",
+                         "res_4": "deltaeta_vbs > 5.5 && deltaeta_vbs <= 6.5",
+                         "res_5": "deltaeta_vbs > 6.5",
+                    }
 		}
 
 # Fix Wjets binned + LO 
@@ -248,9 +271,21 @@ samples['VV']  = { 'name' :
                nanoGetSampleFiles(directory_signal,'WpToLNu_WmTo2J_QCD') +
                nanoGetSampleFiles(directory_signal,'WpToLNu_ZTo2J_QCD',) +
                nanoGetSampleFiles(directory_signal,'ZTo2L_ZTo2J_QCD',  ) ,
-        'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch, # still missing EWKnlowW 
-        'FilesPerJob' : 17,
+        'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch +'*btagSF_corr_VV_VVV_ggWW', # still missing EWKnlowW 
+        'FilesPerJob' : 12,
         'EventsPerJob' : 70000,
+        'subsamples': {
+                          "boost_1": "deltaeta_vbs <= 3.5",
+                         "boost_2": "deltaeta_vbs > 3.5 && deltaeta_vbs <= 4.5",
+                         "boost_3": "deltaeta_vbs > 4.5 && deltaeta_vbs <= 5.5",
+                         "boost_4": "deltaeta_vbs > 5.5 && deltaeta_vbs <= 6.5",
+                         "boost_5": "deltaeta_vbs > 6.5",
+                         "res_1": "deltaeta_vbs <= 3.5",
+                         "res_2": "deltaeta_vbs > 3.5 && deltaeta_vbs <= 4.5",
+                         "res_3": "deltaeta_vbs > 4.5 && deltaeta_vbs <= 5.5",
+                         "res_4": "deltaeta_vbs > 5.5 && deltaeta_vbs <= 6.5",
+                         "res_5": "deltaeta_vbs > 6.5",
+                       }
 }
 
 ############ VVV ############
@@ -260,9 +295,21 @@ samples['VVV']  = {  'name'   :   nanoGetSampleFiles(directory_bkg,'ZZZ')
                                 + nanoGetSampleFiles(directory_bkg,'WWZ')
                                 + nanoGetSampleFiles(directory_bkg,'WWW'),
                                 #+ nanoGetSampleFiles(directory_bkg,'WWG'), #should this be included? or is it already taken into account in the WW sample?
-                    'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch ,
+                    'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch +'*btagSF_corr_VV_VVV_ggWW',
                     'FilesPerJob' : 15,
                      'EventsPerJob' : 70000,
+                     'subsamples': {
+                          "boost_1": "deltaeta_vbs <= 3.5",
+                         "boost_2": "deltaeta_vbs > 3.5 && deltaeta_vbs <= 4.5",
+                         "boost_3": "deltaeta_vbs > 4.5 && deltaeta_vbs <= 5.5",
+                         "boost_4": "deltaeta_vbs > 5.5 && deltaeta_vbs <= 6.5",
+                         "boost_5": "deltaeta_vbs > 6.5",
+                         "res_1": "deltaeta_vbs <= 3.5",
+                         "res_2": "deltaeta_vbs > 3.5 && deltaeta_vbs <= 4.5",
+                         "res_3": "deltaeta_vbs > 4.5 && deltaeta_vbs <= 5.5",
+                         "res_4": "deltaeta_vbs > 5.5 && deltaeta_vbs <= 6.5",
+                         "res_5": "deltaeta_vbs > 6.5",
+                       }
                   }
 
  ############## VBF-V ########
@@ -270,18 +317,42 @@ samples['VVV']  = {  'name'   :   nanoGetSampleFiles(directory_bkg,'ZZZ')
 samples['VBF-V']  = {  'name'   :  
                                     nanoGetSampleFiles(directory_bkg,'WLNuJJ_EWK') +
                                   nanoGetSampleFiles(directory_bkg,'EWKZ2Jets_ZToLL_M-50'),
-                    'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch,
+                    'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch+'*btagSF_corr_Vg_VgS_VBFV',
                     'FilesPerJob' : 15,
                     'EventsPerJob' : 70000,
+                    'subsamples': {
+                          "boost_1": "deltaeta_vbs <= 3.5",
+                         "boost_2": "deltaeta_vbs > 3.5 && deltaeta_vbs <= 4.5",
+                         "boost_3": "deltaeta_vbs > 4.5 && deltaeta_vbs <= 5.5",
+                         "boost_4": "deltaeta_vbs > 5.5 && deltaeta_vbs <= 6.5",
+                         "boost_5": "deltaeta_vbs > 6.5",
+                         "res_1": "deltaeta_vbs <= 3.5",
+                         "res_2": "deltaeta_vbs > 3.5 && deltaeta_vbs <= 4.5",
+                         "res_3": "deltaeta_vbs > 4.5 && deltaeta_vbs <= 5.5",
+                         "res_4": "deltaeta_vbs > 5.5 && deltaeta_vbs <= 6.5",
+                         "res_5": "deltaeta_vbs > 6.5",
+                       }
                   }
 
 ################ ggWW ##################3
 
 samples['ggWW']  = {  'name'   :  
                                   nanoGetSampleFiles(directory_bkg,'GluGluWWToLNuQQ'),
-                    'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch,
+                    'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch+'*btagSF_corr_VV_VVV_ggWW',
                     'FilesPerJob' : 15,
                     'EventsPerJob' : 70000,
+                    'subsamples': {
+                          "boost_1": "deltaeta_vbs <= 3.5",
+                         "boost_2": "deltaeta_vbs > 3.5 && deltaeta_vbs <= 4.5",
+                         "boost_3": "deltaeta_vbs > 4.5 && deltaeta_vbs <= 5.5",
+                         "boost_4": "deltaeta_vbs > 5.5 && deltaeta_vbs <= 6.5",
+                         "boost_5": "deltaeta_vbs > 6.5",
+                         "res_1": "deltaeta_vbs <= 3.5",
+                         "res_2": "deltaeta_vbs > 3.5 && deltaeta_vbs <= 4.5",
+                         "res_3": "deltaeta_vbs > 4.5 && deltaeta_vbs <= 5.5",
+                         "res_4": "deltaeta_vbs > 5.5 && deltaeta_vbs <= 6.5",
+                         "res_5": "deltaeta_vbs > 6.5",
+                       }
                   }
 
 ##################################################
@@ -289,11 +360,23 @@ samples['ggWW']  = {  'name'   :
 
 samples['Vg']  = {  'name'   :   nanoGetSampleFiles(directory_bkg,'Wg_MADGRAPHMLM')
                                + nanoGetSampleFiles(directory_bkg,'ZGToLLG'),
-                    'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC+'*(Gen_ZGstar_mass <= 0)',
-                    'FilesPerJob' : 16,
+                    'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC+'*(Gen_ZGstar_mass <= 0) *btagSF_corr_Vg_VgS_VBFV',
+                    'FilesPerJob' : 15,
                     'EventsPerJob' : 70000,
                     'suppressNegative' :['all'],
                     'suppressNegativeNuisances' :['all'],
+                    'subsamples': {
+                          "boost_1": "deltaeta_vbs <= 3.5",
+                         "boost_2": "deltaeta_vbs > 3.5 && deltaeta_vbs <= 4.5",
+                         "boost_3": "deltaeta_vbs > 4.5 && deltaeta_vbs <= 5.5",
+                         "boost_4": "deltaeta_vbs > 5.5 && deltaeta_vbs <= 6.5",
+                         "boost_5": "deltaeta_vbs > 6.5",
+                         "res_1": "deltaeta_vbs <= 3.5",
+                         "res_2": "deltaeta_vbs > 3.5 && deltaeta_vbs <= 4.5",
+                         "res_3": "deltaeta_vbs > 4.5 && deltaeta_vbs <= 5.5",
+                         "res_4": "deltaeta_vbs > 5.5 && deltaeta_vbs <= 6.5",
+                         "res_5": "deltaeta_vbs > 6.5",
+                       }
                   }
 
 # the following baseW correction is needed in both v5 and v6 (for Zg, Not for ZGToLLG)
@@ -305,11 +388,23 @@ samples['Vg']  = {  'name'   :   nanoGetSampleFiles(directory_bkg,'Wg_MADGRAPHML
 samples['VgS']  =  {  'name'   :   nanoGetSampleFiles(directory_bkg,'Wg_MADGRAPHMLM')
                                  + nanoGetSampleFiles(directory_bkg,'ZGToLLG')
                                  + nanoGetSampleFiles(directory_bkg,'WZTo3LNu_mllmin01'),
-                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + ' * (gstarLow * 0.94 + gstarHigh * 1.14)',
+                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + ' * (gstarLow * 0.94 + gstarHigh * 1.14) *btagSF_corr_Vg_VgS_VBFV',
                       'FilesPerJob' : 15,
                       'EventsPerJob' : 70000,
                       'suppressNegative' :['all'],
                       'suppressNegativeNuisances' :['all'],
+                      'subsamples': {
+                          "boost_1": "deltaeta_vbs <= 3.5",
+                         "boost_2": "deltaeta_vbs > 3.5 && deltaeta_vbs <= 4.5",
+                         "boost_3": "deltaeta_vbs > 4.5 && deltaeta_vbs <= 5.5",
+                         "boost_4": "deltaeta_vbs > 5.5 && deltaeta_vbs <= 6.5",
+                         "boost_5": "deltaeta_vbs > 6.5",
+                         "res_1": "deltaeta_vbs <= 3.5",
+                         "res_2": "deltaeta_vbs > 3.5 && deltaeta_vbs <= 4.5",
+                         "res_3": "deltaeta_vbs > 4.5 && deltaeta_vbs <= 5.5",
+                         "res_4": "deltaeta_vbs > 5.5 && deltaeta_vbs <= 6.5",
+                         "res_5": "deltaeta_vbs > 6.5",
+                       }
                       # 'subsamples': {
                       #   'L': 'gstarLow',
                       #   'H': 'gstarHigh'
@@ -336,28 +431,22 @@ samples['VBS']  = { 'name' :
                nanoGetSampleFiles(directory_signal,'WpToLNu_WmTo2J') +
                nanoGetSampleFiles(directory_signal,'WpTo2J_WmToLNu') +
                nanoGetSampleFiles(directory_signal,'ZTo2L_ZTo2J',  ),
-       'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch,
-       'FilesPerJob' :16,
+       'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch+'*btagSF_corr_VBS',
+       'FilesPerJob' :12,
        'EventsPerJob' : 70000,
+       'subsamples': {
+                          "boost_1": "deltaeta_vbs <= 3.5",
+                         "boost_2": "deltaeta_vbs > 3.5 && deltaeta_vbs <= 4.5",
+                         "boost_3": "deltaeta_vbs > 4.5 && deltaeta_vbs <= 5.5",
+                         "boost_4": "deltaeta_vbs > 5.5 && deltaeta_vbs <= 6.5",
+                         "boost_5": "deltaeta_vbs > 6.5",
+                         "res_1": "deltaeta_vbs <= 3.5",
+                         "res_2": "deltaeta_vbs > 3.5 && deltaeta_vbs <= 4.5",
+                         "res_3": "deltaeta_vbs > 4.5 && deltaeta_vbs <= 5.5",
+                         "res_4": "deltaeta_vbs > 5.5 && deltaeta_vbs <= 6.5",
+                         "res_5": "deltaeta_vbs > 6.5",
+                       }
 }
-
-
-
-samples['VBS_dipoleRecoil']  = { 'name' :  
-               nanoGetSampleFiles(directory_signal,'WmToLNu_ZTo2J_dipoleRecoil',) + 
-               nanoGetSampleFiles(directory_signal,'WmTo2J_ZTo2L_dipoleRecoil', ) +
-               nanoGetSampleFiles(directory_signal,'WpTo2J_ZTo2L_dipoleRecoil', ) +
-               nanoGetSampleFiles(directory_signal,'WpToLNu_ZTo2J_dipoleRecoil',) +
-               nanoGetSampleFiles(directory_signal,'WpToLNu_WpTo2J_dipoleRecoil') +
-               nanoGetSampleFiles(directory_signal,'WmToLNu_WmTo2J_dipoleRecoil') +
-               nanoGetSampleFiles(directory_signal,'WpToLNu_WmTo2J_dipoleRecoil') +
-               nanoGetSampleFiles(directory_signal,'WpTo2J_WmToLNu_dipoleRecoil') +
-               nanoGetSampleFiles(directory_signal,'ZTo2L_ZTo2J_dipoleRecoil',  ),
-       'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch,
-       'FilesPerJob' :15,
-       'EventsPerJob' : 70000,
-}
-
 
 # Then corrected
 fakeW = 'fakeWeight_35'
@@ -368,7 +457,19 @@ samples['Fake'] = {
   'weight': METFilter_DATA+'*'+fakeW,
   'weights': [],
   'isData': ['all'],
-  'FilesPerJob' : 40
+  'FilesPerJob' : 40,
+  'subsamples': {
+                        "boost_1": "deltaeta_vbs <= 3.5",
+                         "boost_2": "deltaeta_vbs > 3.5 && deltaeta_vbs <= 4.5",
+                         "boost_3": "deltaeta_vbs > 4.5 && deltaeta_vbs <= 5.5",
+                         "boost_4": "deltaeta_vbs > 5.5 && deltaeta_vbs <= 6.5",
+                         "boost_5": "deltaeta_vbs > 6.5",
+                         "res_1": "deltaeta_vbs <= 3.5",
+                         "res_2": "deltaeta_vbs > 3.5 && deltaeta_vbs <= 4.5",
+                         "res_3": "deltaeta_vbs > 4.5 && deltaeta_vbs <= 5.5",
+                         "res_4": "deltaeta_vbs > 5.5 && deltaeta_vbs <= 6.5",
+                         "res_5": "deltaeta_vbs > 6.5",  
+                       }
 }
 
 for _, sd in DataRun:
@@ -387,7 +488,19 @@ samples['DATA']  = {   'name': [ ] ,
                        'weight' : METFilter_DATA+'*'+LepWPCut,
                        'weights' : [ ],
                        'isData': ['all'],
-                       'FilesPerJob' : 40,         
+                       'FilesPerJob' : 40,    
+                       'subsamples': {
+                          "boost_1": "deltaeta_vbs <= 3.5",
+                         "boost_2": "deltaeta_vbs > 3.5 && deltaeta_vbs <= 4.5",
+                         "boost_3": "deltaeta_vbs > 4.5 && deltaeta_vbs <= 5.5",
+                         "boost_4": "deltaeta_vbs > 5.5 && deltaeta_vbs <= 6.5",
+                         "boost_5": "deltaeta_vbs > 6.5",
+                         "res_1": "deltaeta_vbs <= 3.5",
+                         "res_2": "deltaeta_vbs > 3.5 && deltaeta_vbs <= 4.5",
+                         "res_3": "deltaeta_vbs > 4.5 && deltaeta_vbs <= 5.5",
+                         "res_4": "deltaeta_vbs > 5.5 && deltaeta_vbs <= 6.5",
+                         "res_5": "deltaeta_vbs > 6.5",
+                       }     
             }
 
 for Run in DataRun :
@@ -398,4 +511,4 @@ for Run in DataRun :
                         samples['DATA']['weights'].append(DataTrig[DataSet])
 
 
-samples = {   key:v for key,v in samples.items() if key  in ["VBS_dipoleRecoil"]}
+samples = {   key:v for key,v in samples.items() if key not  in ['DATA']}
