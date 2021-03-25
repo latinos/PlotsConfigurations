@@ -23,6 +23,11 @@ def nanoGetSampleFiles(inputDir, sample):
 
 # samples
 
+def CombineBaseW(samples, proc, samplelist):
+  newbaseW = getBaseWnAOD(mcDirectory, 'Fall2017_102X_nAODv7_Full2017v7', samplelist)
+  for s in samplelist:
+    addSampleWeight(samples, proc, s, newbaseW+'/baseW')
+
 try:
     len(samples)
 except NameError:
@@ -61,7 +66,7 @@ mcStepsBR = 'MCl1loose2017v7__MCCorr2017v7__MCCombJJLNu2017__BWReweight'
 
 SITE=os.uname()[1]
 if    'iihe' in SITE:
-  treeBaseDir = '/pnfs/iihe/cms/store/user/xjanssen/HWW2015'
+  treeBaseDir = '/pnfs/iihe/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/'
 elif  'cern' in SITE:
   treeBaseDir = '/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano'
   # treeBaseDir = '/eos/user/s/ssiebert/HWWNano'
@@ -94,6 +99,7 @@ fakeDirectory = os.path.join(treeBaseDir, dataReco, fakeSteps)
 
 mcCommonWeightNoMatch = 'XSWeight*SFweight[0]*METFilter_MC*btagSF[0]*PUJetIdSF[0]*LepWPCut[0]*1tlVeto[0]'
 mcCommonWeightNoXS    =          'SFweight[0]*METFilter_MC*btagSF[0]*PUJetIdSF[0]*LepWPCut[0]*1tlVeto[0]*PromptGenLepMatch1l'
+mcCommonWeightRaw     =                                                          'LepWPCut[0]*1tlVeto[0]*PromptGenLepMatch1l'
 mcCommonWeight        = 'XSWeight*SFweight[0]*METFilter_MC*btagSF[0]*PUJetIdSF[0]*LepWPCut[0]*1tlVeto[0]*PromptGenLepMatch1l'
 
 ###########################################
@@ -121,113 +127,192 @@ mcCommonWeight        = 'XSWeight*SFweight[0]*METFilter_MC*btagSF[0]*PUJetIdSF[0
 
 ########## W+jets #########
 
-# Pt binned + LO
-#files = nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_Pt50to100')
-#files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_Pt100to250')
-#files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_Pt250to400')
-#files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_Pt400to600')
-#files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_Pt600toInf')
-#files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-LO')
+oldbW1J = getBaseWnAOD(mcDirectory, 'Fall2017_102X_nAODv7_Full2017v7', ['WJetsToLNu-1J'])
+extbW1J = getBaseWnAOD(mcDirectory, 'Fall2017_102X_nAODv7_Full2017v7', ['WJetsToLNu-1J_ext1'])
+newbW1J = getBaseWnAOD(mcDirectory, 'Fall2017_102X_nAODv7_Full2017v7', ['WJetsToLNu-1J', 'WJetsToLNu-1J_ext1'])
+newbW1Jw = newbW1J+'/baseW'
+print(' 1J old baseW: '+oldbW1J+', new baseW: '+newbW1J+', ext baseW: '+extbW1J)
 
-# HT binned
-files = nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_HT70_100')
-files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_HT100_200')
-files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_HT200_400')
-files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_HT400_600')
-files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_HT600_800')
-files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_HT800_1200')
-files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_HT1200_2500')
-files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_HT2500_inf')
-files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-LO')
-
-samples['Wjets_HT'] = {
-    'name'   : files,
-    'weight' : mcCommonWeight +'*EWKnloW[0]', # ewk nlo correction https://arxiv.org/pdf/1705.04664v2.pdf 
-    #'weight' : mcCommonWeight + '*ewknloW', 
-    #'weight' : mcCommonWeight, 
-    'FilesPerJob' : 4,
-}
-
-addSampleWeight(samples, 'Wjets_HT', 'WJetsToLNu-LO', '(LHE_HT < 70)') 
-
-# HT stitching from Davide (derived by comparing HT to inclusive LO with only lep pt cuts)
-addSampleWeight(samples, 'Wjets_HT', 'WJetsToLNu_HT70_100', '1.21 * 0.9582') 
-addSampleWeight(samples, 'Wjets_HT', 'WJetsToLNu_HT100_200',    '0.9525') 
-addSampleWeight(samples, 'Wjets_HT', 'WJetsToLNu_HT200_400',    '0.9577') 
-addSampleWeight(samples, 'Wjets_HT', 'WJetsToLNu_HT400_600',    '0.9613') 
-addSampleWeight(samples, 'Wjets_HT', 'WJetsToLNu_HT600_800',    '1.0742') 
-addSampleWeight(samples, 'Wjets_HT', 'WJetsToLNu_HT800_1200',   '1.1698') 
-addSampleWeight(samples, 'Wjets_HT', 'WJetsToLNu_HT1200_2500',  '1.3046') 
-addSampleWeight(samples, 'Wjets_HT', 'WJetsToLNu_HT2500_inf',   '2.1910')
-
-samples['Wjets_HTsf'] = {
-    'name'   : files,
-    'weight' : mcCommonWeight +'*EWKnloW[0]*VptSF[0]', # ewk nlo correction https://arxiv.org/pdf/1705.04664v2.pdf 
-    #'weight' : mcCommonWeight + '*ewknloW', 
-    #'weight' : mcCommonWeight, 
-    'FilesPerJob' : 4,
-}
-
-addSampleWeight(samples, 'Wjets_HTsf', 'WJetsToLNu-LO', '(LHE_HT < 70)') 
-
-# HT stitching from Davide (derived by comparing HT to inclusive LO with only lep pt cuts)
-addSampleWeight(samples, 'Wjets_HTsf', 'WJetsToLNu_HT70_100', '1.21 * 0.9582') 
-addSampleWeight(samples, 'Wjets_HTsf', 'WJetsToLNu_HT100_200',    '0.9525') 
-addSampleWeight(samples, 'Wjets_HTsf', 'WJetsToLNu_HT200_400',    '0.9577') 
-addSampleWeight(samples, 'Wjets_HTsf', 'WJetsToLNu_HT400_600',    '0.9613') 
-addSampleWeight(samples, 'Wjets_HTsf', 'WJetsToLNu_HT600_800',    '1.0742') 
-addSampleWeight(samples, 'Wjets_HTsf', 'WJetsToLNu_HT800_1200',   '1.1698') 
-addSampleWeight(samples, 'Wjets_HTsf', 'WJetsToLNu_HT1200_2500',  '1.3046') 
-addSampleWeight(samples, 'Wjets_HTsf', 'WJetsToLNu_HT2500_inf',   '2.1910')
-
-files = nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-LO')
-
-samples['Wjets_LO'] = {
-    'name'   : files,
-    'weight' : mcCommonWeight +'*EWKnloW[0]', # ewk nlo correction https://arxiv.org/pdf/1705.04664v2.pdf 
-    #'weight' : mcCommonWeight + '*ewknloW', 
-    #'weight' : mcCommonWeight, 
-    'FilesPerJob' : 4,
-}
+oldbW2J = getBaseWnAOD(mcDirectory, 'Fall2017_102X_nAODv7_Full2017v7', ['WJetsToLNu-2J'])
+extbW2J = getBaseWnAOD(mcDirectory, 'Fall2017_102X_nAODv7_Full2017v7', ['WJetsToLNu-2J_ext1'])
+newbW2J = getBaseWnAOD(mcDirectory, 'Fall2017_102X_nAODv7_Full2017v7', ['WJetsToLNu-2J', 'WJetsToLNu-2J_ext1'])
+newbW2Jw = newbW2J+'/baseW'
+print(' 2J old baseW: '+oldbW2J+', new baseW: '+newbW2J+', ext baseW: '+extbW2J)
 
 # nJet binned
 files = nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-0J')
 files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-1J')
 files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-2J')
 
-samples['Wjets_NLO'] = {
+samples['Wjets_NLOnj'] = {
     'name'   : files,
     'weight' : mcCommonWeight +'*EWKnloW[0]', # ewk nlo correction https://arxiv.org/pdf/1705.04664v2.pdf 
     #'weight' : mcCommonWeight + '*ewknloW', 
     #'weight' : mcCommonWeight, 
     'FilesPerJob' : 4,
 }
+
+files = nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-0J')
+files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-1J')
+files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-1J_ext1')
+files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-2J')
+files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-2J_ext1')
+
+samples['Wjets_NLOnjE'] = {
+    'name'   : files,
+    'weight' : mcCommonWeight +'*EWKnloW[0]', # ewk nlo correction https://arxiv.org/pdf/1705.04664v2.pdf 
+    #'weight' : mcCommonWeight + '*ewknloW', 
+    #'weight' : mcCommonWeight, 
+    'FilesPerJob' : 4,
+}
+
+#CombineBaseW(samples, 'Wjets_NLOnjE', ['WJetsToLNu-1J', 'WJetsToLNu-1J_ext1'])
+#CombineBaseW(samples, 'Wjets_NLOnjE', ['WJetsToLNu-2J', 'WJetsToLNu-2J_ext1'])
+addSampleWeight(samples, 'Wjets_NLOnjE', 'WJetsToLNu-1J'     , newbW1Jw)
+addSampleWeight(samples, 'Wjets_NLOnjE', 'WJetsToLNu-1J_ext1', newbW1Jw)
+addSampleWeight(samples, 'Wjets_NLOnjE', 'WJetsToLNu-2J'     , newbW2Jw)
+addSampleWeight(samples, 'Wjets_NLOnjE', 'WJetsToLNu-2J_ext1', newbW2Jw)
+
+samples['Wjets_NLOnjRaw'] = {
+    'name'   : files,
+    'weight' : mcCommonWeightRaw, # ewk nlo correction https://arxiv.org/pdf/1705.04664v2.pdf 
+    'isData': ['all'],
+    'FilesPerJob' : 4,
+}
+
+
+
+## nJet split
+##for j in ['0J', '1J', '2J']:
+#files = nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-0J')
+#files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-1J')
+#files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-1J_ext1')
+#files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-2J')
+#files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-2J_ext1')
+#
+#for pt in ['0to50', '50to100', '100to250', '250to400', '400to600', '600toInf']:
+#    #files = nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-'+j)
+#    samples['Wjets_NLOnj'+pt] = {
+#        'name'   : files,
+#        'weight' : mcCommonWeight +'*EWKnloW[0]', # ewk nlo correction https://arxiv.org/pdf/1705.04664v2.pdf 
+#        #'weight' : mcCommonWeight + '*ewknloW', 
+#        #'weight' : mcCommonWeight, 
+#        'FilesPerJob' : 4,
+#    }
+#    #CombineBaseW(samples, 'Wjets_NLOnj'+pt, ['WJetsToLNu-1J', 'WJetsToLNu-1J_ext1'])
+#    #CombineBaseW(samples, 'Wjets_NLOnj'+pt, ['WJetsToLNu-2J', 'WJetsToLNu-2J_ext1'])
+#    addSampleWeight(samples, 'Wjets_NLOnj'+pt, 'WJetsToLNu-1J'     , newbW1Jw)
+#    addSampleWeight(samples, 'Wjets_NLOnj'+pt, 'WJetsToLNu-1J_ext1', newbW1Jw)
+#    addSampleWeight(samples, 'Wjets_NLOnj'+pt, 'WJetsToLNu-2J'     , newbW2Jw)
+#    addSampleWeight(samples, 'Wjets_NLOnj'+pt, 'WJetsToLNu-2J_ext1', newbW2Jw)
+#
+#    low_pt = pt.split('to')[0]
+#    hig_pt = pt.split('to')[1]
+#    lhe_f = '(LHE_Vpt > ' + low_pt + ' && LHE_Vpt < ' + hig_pt + ')'
+#    if 'Inf' in pt: lhe_f = '(LHE_Vpt > ' + low_pt + ')'
+#    addSampleWeight(samples, 'Wjets_NLOnj'+pt, 'WJetsToLNu-0J',      lhe_f)
+#    addSampleWeight(samples, 'Wjets_NLOnj'+pt, 'WJetsToLNu-1J',      lhe_f)
+#    addSampleWeight(samples, 'Wjets_NLOnj'+pt, 'WJetsToLNu-1J_ext1', lhe_f)
+#    addSampleWeight(samples, 'Wjets_NLOnj'+pt, 'WJetsToLNu-2J',      lhe_f)
+#    addSampleWeight(samples, 'Wjets_NLOnj'+pt, 'WJetsToLNu-2J_ext1', lhe_f)
+
+
+
+#Split in Vpt
+for pt in ['50to100', '100to250', '250to400', '400to600', '600toInf']:
+    files = nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_Pt'+pt)
+    samples['Wjets_NLOpt'+pt] = {
+        'name'   : files,
+        'weight' : mcCommonWeight +'*EWKnloW[0]', # ewk nlo correction https://arxiv.org/pdf/1705.04664v2.pdf 
+        'FilesPerJob' : 4,
+    }
+
+# Pt merge
+files = nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_Pt50to100')
+files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_Pt100to250')
+files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_Pt250to400')
+files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_Pt400to600')
+files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_Pt600toInf')
+files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-0J')
+files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-1J')
+files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-1J_ext1')
+files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-2J')
+files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-2J_ext1')
+
+samples['Wjets_NLOptM'] = {
+    'name'   : files,
+    'weight' : mcCommonWeight +'*EWKnloW[0]', # ewk nlo correction https://arxiv.org/pdf/1705.04664v2.pdf 
+    'FilesPerJob' : 4,
+}
+addSampleWeight(samples, 'Wjets_NLOptM', 'WJetsToLNu-0J',      '(LHE_Vpt < 50)')
+addSampleWeight(samples, 'Wjets_NLOptM', 'WJetsToLNu-1J',      '(LHE_Vpt < 50)')
+addSampleWeight(samples, 'Wjets_NLOptM', 'WJetsToLNu-1J_ext1', '(LHE_Vpt < 50)')
+addSampleWeight(samples, 'Wjets_NLOptM', 'WJetsToLNu-2J',      '(LHE_Vpt < 50)')
+addSampleWeight(samples, 'Wjets_NLOptM', 'WJetsToLNu-2J_ext1', '(LHE_Vpt < 50)')
+
+#CombineBaseW(samples, 'Wjets_NLOptM', ['WJetsToLNu-1J', 'WJetsToLNu-1J_ext1'])
+#CombineBaseW(samples, 'Wjets_NLOptM', ['WJetsToLNu-2J', 'WJetsToLNu-2J_ext1'])
+addSampleWeight(samples, 'Wjets_NLOptM', 'WJetsToLNu-1J'     , newbW1Jw)
+addSampleWeight(samples, 'Wjets_NLOptM', 'WJetsToLNu-1J_ext1', newbW1Jw)
+addSampleWeight(samples, 'Wjets_NLOptM', 'WJetsToLNu-2J'     , newbW2Jw)
+addSampleWeight(samples, 'Wjets_NLOptM', 'WJetsToLNu-2J_ext1', newbW2Jw)
+
 
 files = nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_Pt50to100')
 files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_Pt100to250')
 files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_Pt250to400')
 files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_Pt400to600')
 files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_Pt600toInf')
-files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu')
+#files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-0J')
+#files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-1J')
+#files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-1J_ext1')
+#files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-2J')
+#files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-2J_ext1')
 
-samples['Wjets_NLOpt'] = {
+samples['Wjets_NLOptMRaw'] = {
     'name'   : files,
-    'weight' : mcCommonWeight +'*EWKnloW[0]', # ewk nlo correction https://arxiv.org/pdf/1705.04664v2.pdf 
-    #'weight' : mcCommonWeight + '*ewknloW', 
-    #'weight' : mcCommonWeight, 
+    'weight' : mcCommonWeightRaw, # ewk nlo correction https://arxiv.org/pdf/1705.04664v2.pdf 
+    'isData': ['all'],
     'FilesPerJob' : 4,
 }
-addSampleWeight(samples, 'Wjets_NLOpt', 'WJetsToLNu',   '(LHE_Vpt < 50)')
+#addSampleWeight(samples, 'Wjets_NLOptM', 'WJetsToLNu-0J',      '(LHE_Vpt < 50)')
+#addSampleWeight(samples, 'Wjets_NLOptM', 'WJetsToLNu-1J',      '(LHE_Vpt < 50)')
+#addSampleWeight(samples, 'Wjets_NLOptM', 'WJetsToLNu-1J_ext1', '(LHE_Vpt < 50)')
+#addSampleWeight(samples, 'Wjets_NLOptM', 'WJetsToLNu-2J',      '(LHE_Vpt < 50)')
+#addSampleWeight(samples, 'Wjets_NLOptM', 'WJetsToLNu-2J_ext1', '(LHE_Vpt < 50)')
 
-files = nanoGetSampleFiles(mcDirectory, 'WJetsToLNu')
+files = nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_Pt100to250')
+files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_Pt250to400')
+files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_Pt400to600')
+files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_Pt600toInf')
+files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-0J')
+files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-1J')
+files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-1J_ext1')
+files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-2J')
+files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-2J_ext1')
 
-samples['Wjets_NLOin'] = {
+samples['Wjets_NLOstatM'] = {
     'name'   : files,
     'weight' : mcCommonWeight +'*EWKnloW[0]', # ewk nlo correction https://arxiv.org/pdf/1705.04664v2.pdf 
-    #'weight' : mcCommonWeight + '*ewknloW', 
-    #'weight' : mcCommonWeight, 
     'FilesPerJob' : 4,
 }
+
+# fix baseW for ext
+addSampleWeight(samples, 'Wjets_NLOstatM', 'WJetsToLNu-1J'     , newbW1Jw)
+addSampleWeight(samples, 'Wjets_NLOstatM', 'WJetsToLNu-1J_ext1', newbW1Jw)
+addSampleWeight(samples, 'Wjets_NLOstatM', 'WJetsToLNu-2J'     , newbW2Jw)
+addSampleWeight(samples, 'Wjets_NLOstatM', 'WJetsToLNu-2J_ext1', newbW2Jw)
+
+# fix Vpt fractions
+addSampleWeight(samples, 'Wjets_NLOstatM', 'WJetsToLNu-0J'     , '((LHE_Vpt < 100) + (LHE_Vpt > 100 && LHE_Vpt < 250)*0.3 + (LHE_Vpt > 250)*0.1)')
+addSampleWeight(samples, 'Wjets_NLOstatM', 'WJetsToLNu-1J'     , '((LHE_Vpt < 100) + (LHE_Vpt > 100 && LHE_Vpt < 250)*0.3 + (LHE_Vpt > 250)*0.1)')
+addSampleWeight(samples, 'Wjets_NLOstatM', 'WJetsToLNu-1J_ext1', '((LHE_Vpt < 100) + (LHE_Vpt > 100 && LHE_Vpt < 250)*0.3 + (LHE_Vpt > 250)*0.1)')
+addSampleWeight(samples, 'Wjets_NLOstatM', 'WJetsToLNu-2J'     , '((LHE_Vpt < 100) + (LHE_Vpt > 100 && LHE_Vpt < 250)*0.3 + (LHE_Vpt > 250)*0.1)')
+addSampleWeight(samples, 'Wjets_NLOstatM', 'WJetsToLNu-2J_ext1', '((LHE_Vpt < 100) + (LHE_Vpt > 100 && LHE_Vpt < 250)*0.3 + (LHE_Vpt > 250)*0.1)')
+addSampleWeight(samples, 'Wjets_NLOstatM', 'WJetsToLNu_Pt100to250', '0.7')
+addSampleWeight(samples, 'Wjets_NLOstatM', 'WJetsToLNu_Pt250to400', '0.9')
+addSampleWeight(samples, 'Wjets_NLOstatM', 'WJetsToLNu_Pt400to600', '0.9')
+addSampleWeight(samples, 'Wjets_NLOstatM', 'WJetsToLNu_Pt600toInf', '0.9')
 
 ####### Vg ########
 
