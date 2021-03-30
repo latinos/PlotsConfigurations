@@ -218,6 +218,7 @@ samples['WWewk'] = {
 # ############# ggWW semileptonic ##############
 # #FIXME: samples for this are being produced
 # #FIXME: in the meantime use interference weights?
+# #FIXME: NOTE ! if this is changed at some point, symlink ggWW to BWReweight as for qqWWqq !
 
 samples['ggWW'] = {
     'name'   : nanoGetSampleFiles(signalMCDirectory, 'GluGluHToWWToLNuQQ_M125'),
@@ -227,8 +228,8 @@ samples['ggWW'] = {
 addSampleWeight(samples,'ggWW','GluGluHToWWToLNuQQ_M125', "{0} * ({0} < 50)".format(model_B))
 
 samples['qqWWqq'] = {
-    'name'   : nanoGetSampleFiles(mcDirectory,'WpWmJJ_QCD_noTop') +\
-               nanoGetSampleFiles(mcDirectory,'WpWmJJ_QCD_noTop_ext1'),
+    'name'   : nanoGetSampleFiles(signalMCDirectory,'WpWmJJ_QCD_noTop') +\
+               nanoGetSampleFiles(signalMCDirectory,'WpWmJJ_QCD_noTop_ext1'),
     'weight' : mcCommonWeight+'*(mjjGen_OTF>=100)'+'*(GenLHE)',
     'FilesPerJob': 15
 }
@@ -251,15 +252,15 @@ print("W+jets")
 whad_reweight = '(1.21359e+00 - 1.67107e-03*HM_Whad_mass)'
 files = []
 # files += nanoGetSampleFiles(mcDirectory,'WJetsToLNu-LO' )
-# files += nanoGetSampleFiles(mcDirectory,'WJetsToLNu_Pt50to100')
-# files += nanoGetSampleFiles(mcDirectory,'WJetsToLNu_Pt100to250')
-# files += nanoGetSampleFiles(mcDirectory,'WJetsToLNu_Pt250to400')
-# files += nanoGetSampleFiles(mcDirectory,'WJetsToLNu_Pt400to600')
-# files += nanoGetSampleFiles(mcDirectory,'WJetsToLNu_Pt600toInf')
-
-files  = nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-0J')
-files += nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-1J')
-files += nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-2J')
+files += nanoGetSampleFiles(mcDirectory,'WJetsToLNu_Pt50to100')
+files += nanoGetSampleFiles(mcDirectory,'WJetsToLNu_Pt100to250')
+files += nanoGetSampleFiles(mcDirectory,'WJetsToLNu_Pt250to400')
+files += nanoGetSampleFiles(mcDirectory,'WJetsToLNu_Pt400to600')
+files += nanoGetSampleFiles(mcDirectory,'WJetsToLNu_Pt600toInf')
+# uncertainties not produced for n-jet samples
+# files  = nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-0J')
+# files += nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-1J')
+# files += nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-2J')
 samples['Wjets'] = {
     'name': files,
     'weight': mcCommonWeight +"*EWK_W_correction[0]"
@@ -399,14 +400,14 @@ print("SM Higgs")
 
 ############ ggF H->WW ############
 samples['ggH_hww'] = {
-    'name': nanoGetSampleFiles(mcDirectory, 'GluGluHToWWToLNuQQ_M125'),
+    'name': nanoGetSampleFiles(signalMCDirectory, 'GluGluHToWWToLNuQQ_M125'),
     'weight': mcCommonWeight,
     'FilesPerJob': 30,
 }
 
 ############ VBF H->WW ############
 samples['qqH_hww'] = {
-    'name': nanoGetSampleFiles(mcDirectory, 'VBFHToWWToLNuQQ_M126'),
+    'name': nanoGetSampleFiles(signalMCDirectory, 'VBFHToWWToLNuQQ_M126'),
     'weight': mcCommonWeight,
     'FilesPerJob': 30
 }
@@ -481,7 +482,7 @@ for MX in massggh:
 
     files  = nanoGetSampleFiles(signalMCDirectory, 'GluGluHToWWToLNuQQ_M'+MX)
     files += nanoGetSampleFiles(signalMCDirectory, 'GluGluHToWWToLNuQQ_M125')
-    files += nanoGetSampleFiles(signalMCDirectory, 'GluGluHToWWToLNuQQ_M125_copyBG')
+    files += nanoGetSampleFiles(signalMCDirectory, 'GluGluHToWWToLNuQQ_M125_copyBG') ### These are symlinks to M125
     samples['GGHSBI_'+MX+model_name]  = {
         'name': files,
         'weight': mcCommonWeight,
@@ -515,7 +516,11 @@ for MX in massvbf:
 
     files  = nanoGetSampleFiles(signalMCDirectory, 'VBFHToWWToLNuQQ_M'+MX)
     files += nanoGetSampleFiles(signalMCDirectory, 'VBFHToWWToLNuQQ_M125')
-    files += nanoGetSampleFiles(mcDirectory, 'WpWmJJ_QCD_noTop')
+    files += nanoGetSampleFiles(signalMCDirectory, 'WpWmJJ_QCD_noTop')#THIS IS NOT INCLUDED IN BWREWEIGHT
+    ### IT NEEDS TO BE SYMLINKED THERE IN ORDER TO MAKE SUFFIX NUISANCES WORK
+    ### eg execute this in HWWNano/Autumn... directory:
+    ### find ~+/MCl1loose2018v7__MCCorr2018v7__MCCombJJLNu2018* -type f -name "*WpWmJJ_QCD_noTop*" -exec bash -c 'ln -s "$0" "${0/JJLNu2018/JJLNu2018__BWReweight}"' {} \;
+
     samples['QQHSBI_'+MX+model_name]  = {
         'name': files,
         'weight': mcCommonWeight,

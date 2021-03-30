@@ -48,8 +48,8 @@ MD_WvsQCD = 'Alt$(FatJet_deepTagMD_WvsQCD[CleanFatJet_jetIdx[idxCleanFatJetW]], 
 # mistag rate in permille
 DeepTagCats= {
     # '25_': '({0} > 0.762)'.format(WvsQCD),
-    # '10_': '({0} > 0.918)'.format(WvsQCD),
-    '05_': '({0} > 0.961)'.format(WvsQCD),
+    '10_': '({0} > 0.918)'.format(WvsQCD),
+    # '05_': '({0} > 0.961)'.format(WvsQCD),
 
     # '25MD_': '({0} > 0.479)'.format(MD_WvsQCD),
     # '10MD_': '({0} > 0.704)'.format(MD_WvsQCD),
@@ -129,11 +129,11 @@ QCDCats={}
 ##=== Define cuts ===###
 for Lep in LepCats:
 
-    for BCat in BoostCats:
-        for BProcCat in BoostProcCats:
-            cuts[Lep+BProcCat+BCat]=  BoostCats[BCat]\
-                                +'&&'+BoostProcCats[BProcCat]\
-                                +'&&'+LepCats[Lep]
+    # for BCat in BoostCats:
+    #     for BProcCat in BoostProcCats:
+    #         cuts[Lep+BProcCat+BCat]=  BoostCats[BCat]\
+    #                             +'&&'+BoostProcCats[BProcCat]\
+    #                             +'&&'+LepCats[Lep]
     
     for DCat in DeepCats:
         for DProcCat in DeepProcCats:
@@ -143,13 +143,13 @@ for Lep in LepCats:
                                 +'&&'+LepCats[Lep]\
                                 +'&&'+DeepTagCats[DTCat]
 
-    for HCat in HMCats:
-        for BProcCat in BoostProcCats:
-            for HProcCat in HMProcCats:
-                cuts[Lep+BProcCat+HProcCat+HCat]=  HMCats[HCat]\
-                                +'&&'+BoostProcCats[BProcCat]\
-                                +'&&'+HMProcCats[HProcCat]\
-                                +'&&'+LepCats[Lep]
+    # for HCat in HMCats:
+    #     for BProcCat in BoostProcCats:
+    #         for HProcCat in HMProcCats:
+    #             cuts[Lep+BProcCat+HProcCat+HCat]=  HMCats[HCat]\
+    #                             +'&&'+BoostProcCats[BProcCat]\
+    #                             +'&&'+HMProcCats[HProcCat]\
+    #                             +'&&'+LepCats[Lep]
 
     for RCat in ResolveCats:
         for RProcCat in ResolveProcCats:
