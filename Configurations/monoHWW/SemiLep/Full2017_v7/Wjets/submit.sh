@@ -36,10 +36,10 @@
 #mkShapesMulti.py --pycfg=conf_inv.py --doHadd=True --doNotCleanup --nThreads=8 --batchSplit=Samples,Files
 
 ## plots
-##mkPlot.py --pycfg=conf_inv.py --inputFile=Wjets_inv_root/plots_Wjets_inv_2017v7.root --showIntegralLegend=1 --scaleToPlot=2
-#mkPlot.py --pycfg=conf_inv.py --inputFile=Wjets_inv_root/plots_Wjets_inv_2017v7.root --showIntegralLegend=1 --scaleToPlot=3000. --logOnly 
-#mkPlot.py --pycfg=conf_inv2.py --inputFile=Wjets_inv_root/plots_Wjets_inv_2017v7.root --showIntegralLegend=1 --scaleToPlot=3000. --logOnly 
-#mkPlot.py --pycfg=conf_inv_comp.py --inputFile=Wjets_inv_root/plots_Wjets_inv_2017v7.root --showIntegralLegend=1 --scaleToPlot=3000. --logOnly 
+#mkPlot.py --pycfg=conf_inv.py --inputFile=Wjets_inv_root/plots_Wjets_inv_2017v7.root --showIntegralLegend=1 --scaleToPlot=2
+mkPlot.py --pycfg=conf_inv.py --inputFile=Wjets_inv_root/plots_Wjets_inv_2017v7.root --showIntegralLegend=1 --scaleToPlot=3000. --logOnly 
+mkPlot.py --pycfg=conf_inv2.py --inputFile=Wjets_inv_root/plots_Wjets_inv_2017v7.root --showIntegralLegend=1 --scaleToPlot=3000. --logOnly 
+mkPlot.py --pycfg=conf_inv_comp.py --inputFile=Wjets_inv_root/plots_Wjets_inv_2017v7.root --showIntegralLegend=1 --scaleToPlot=3000. --logOnly 
 mkPlot.py --pycfg=conf_inv_comp2.py --inputFile=Wjets_inv_root/plots_Wjets_inv_2017v7.root --showIntegralLegend=1 --scaleToPlot=3000. --logOnly 
-#mkPlot.py --pycfg=conf_inv_raw.py --inputFile=Wjets_inv_root/plots_Wjets_inv_2017v7.root --showIntegralLegend=1 --scaleToPlot=2
-#mkPlot.py --pycfg=conf_inv_raw.py --inputFile=Wjets_inv_root/plots_Wjets_inv_2017v7.root --showIntegralLegend=1 --scaleToPlot=3000. --logOnly 
+mkPlot.py --pycfg=conf_inv_raw.py --inputFile=Wjets_inv_root/plots_Wjets_inv_2017v7.root --showIntegralLegend=1 --scaleToPlot=2
+mkPlot.py --pycfg=conf_inv_raw.py --inputFile=Wjets_inv_root/plots_Wjets_inv_2017v7.root --showIntegralLegend=1 --scaleToPlot=3000. --logOnly 

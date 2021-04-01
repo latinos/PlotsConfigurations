@@ -19,7 +19,7 @@ for idx,pt in enumerate(['600toInf', '400to600', '250to400', '100to250']):
 
 #plot = {}
 
-plot['Wjets_NLOnjE']  = {
+plot['Wjets_NLOnj']  = {
     'color': 1, # kAzure -4
     'isSignal' : 0,
     'isData'   : 1,
@@ -40,5 +40,5 @@ for idx,pt in enumerate(['600toInf', '400to600', '250to400', '100to250']):
     }
 
 # additional options
-legend['lumi'] = 'L = 35.9/fb'
+legend['lumi'] = 'L = 59.7/fb'
 legend['sqrt'] = '#sqrt{s} = 13 TeV'

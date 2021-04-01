@@ -188,13 +188,22 @@ samples['Wjets_NLOstatM'] = {
     'weight' : mcCommonWeight +'*EWKnloW[0]', # ewk nlo correction https://arxiv.org/pdf/1705.04664v2.pdf 
     'FilesPerJob' : 4,
 }
-addSampleWeight(samples, 'Wjets_NLOstatM', 'WJetsToLNu-0J',   '((LHE_Vpt < 100) + (LHE_Vpt > 100 && LHE_Vpt < 250)*0.15 + (LHE_Vpt > 250)*0.05)')
-addSampleWeight(samples, 'Wjets_NLOstatM', 'WJetsToLNu-1J',   '((LHE_Vpt < 100) + (LHE_Vpt > 100 && LHE_Vpt < 250)*0.15 + (LHE_Vpt > 250)*0.05)')
-addSampleWeight(samples, 'Wjets_NLOstatM', 'WJetsToLNu-2J',   '((LHE_Vpt < 100) + (LHE_Vpt > 100 && LHE_Vpt < 250)*0.15 + (LHE_Vpt > 250)*0.05)')
-addSampleWeight(samples, 'Wjets_NLOstatM', 'WJetsToLNu_Pt100to250',   '0.85')
-addSampleWeight(samples, 'Wjets_NLOstatM', 'WJetsToLNu_Pt250to400',   '0.95')
-addSampleWeight(samples, 'Wjets_NLOstatM', 'WJetsToLNu_Pt400to600',   '0.95')
-addSampleWeight(samples, 'Wjets_NLOstatM', 'WJetsToLNu_Pt600toInf',   '0.95')
+## Not good due to border effects
+#addSampleWeight(samples, 'Wjets_NLOstatM', 'WJetsToLNu-0J',   '((LHE_Vpt < 100) + (LHE_Vpt > 100 && LHE_Vpt < 250)*0.15 + (LHE_Vpt > 250)*0.05)')
+#addSampleWeight(samples, 'Wjets_NLOstatM', 'WJetsToLNu-1J',   '((LHE_Vpt < 100) + (LHE_Vpt > 100 && LHE_Vpt < 250)*0.15 + (LHE_Vpt > 250)*0.05)')
+#addSampleWeight(samples, 'Wjets_NLOstatM', 'WJetsToLNu-2J',   '((LHE_Vpt < 100) + (LHE_Vpt > 100 && LHE_Vpt < 250)*0.15 + (LHE_Vpt > 250)*0.05)')
+#addSampleWeight(samples, 'Wjets_NLOstatM', 'WJetsToLNu_Pt100to250',   '0.85')
+#addSampleWeight(samples, 'Wjets_NLOstatM', 'WJetsToLNu_Pt250to400',   '0.95')
+#addSampleWeight(samples, 'Wjets_NLOstatM', 'WJetsToLNu_Pt400to600',   '0.95')
+#addSampleWeight(samples, 'Wjets_NLOstatM', 'WJetsToLNu_Pt600toInf',   '0.95')
+
+addSampleWeight(samples, 'Wjets_NLOstatM', 'WJetsToLNu-0J',   '(LHE_Vpt < 120)')
+addSampleWeight(samples, 'Wjets_NLOstatM', 'WJetsToLNu-1J',   '(LHE_Vpt < 120)')
+addSampleWeight(samples, 'Wjets_NLOstatM', 'WJetsToLNu-2J',   '(LHE_Vpt < 120)')
+addSampleWeight(samples, 'Wjets_NLOstatM', 'WJetsToLNu_Pt100to250',   '(LHE_Vpt > 120)')
+addSampleWeight(samples, 'Wjets_NLOstatM', 'WJetsToLNu_Pt250to400',   '(LHE_Vpt > 120)')
+addSampleWeight(samples, 'Wjets_NLOstatM', 'WJetsToLNu_Pt400to600',   '(LHE_Vpt > 120)')
+addSampleWeight(samples, 'Wjets_NLOstatM', 'WJetsToLNu_Pt600toInf',   '(LHE_Vpt > 120)')
 
 
 ## Inclusive
