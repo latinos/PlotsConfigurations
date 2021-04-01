@@ -371,19 +371,35 @@ samples['ZZ'] = {
 #files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_Pt600toInf')
 #files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-LO')
 
-# nJet binned
-files = nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-0J')
+# statistical merge
+files = nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_Pt100to250')
+files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_Pt250to400')
+files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_Pt400to600')
+files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_Pt600toInf')
+files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-0J')
 files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-1J')
 files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-2J')
+
 
 samples['Wjets'] = {
     'name'   : files,
     'weight' : mcCommonWeight +'*EWKnloW[0]', # ewk nlo correction https://arxiv.org/pdf/1705.04664v2.pdf 
-    #'weight' : mcCommonWeight + '*ewknloW', 
-    #'weight' : mcCommonWeight, 
     'FilesPerJob' : 4,
     #'FilesPerJob' : 3,
 }
+
+# avoid overlap
+addSampleWeight(samples, 'Wjets', 'WJetsToLNu-0J',   '(LHE_Vpt < 100)')
+addSampleWeight(samples, 'Wjets', 'WJetsToLNu-1J',   '(LHE_Vpt < 100)')
+addSampleWeight(samples, 'Wjets', 'WJetsToLNu-2J',   '(LHE_Vpt < 100)')
+#addSampleWeight(samples, 'Wjets', 'WJetsToLNu-0J',   '((LHE_Vpt < 100) + (LHE_Vpt > 100 && LHE_Vpt < 250)*0.15 + (LHE_Vpt > 250)*0.05)')
+#addSampleWeight(samples, 'Wjets', 'WJetsToLNu-1J',   '((LHE_Vpt < 100) + (LHE_Vpt > 100 && LHE_Vpt < 250)*0.15 + (LHE_Vpt > 250)*0.05)')
+#addSampleWeight(samples, 'Wjets', 'WJetsToLNu-2J',   '((LHE_Vpt < 100) + (LHE_Vpt > 100 && LHE_Vpt < 250)*0.15 + (LHE_Vpt > 250)*0.05)')
+#addSampleWeight(samples, 'Wjets', 'WJetsToLNu_Pt100to250',   '0.85')
+#addSampleWeight(samples, 'Wjets', 'WJetsToLNu_Pt250to400',   '0.95')
+#addSampleWeight(samples, 'Wjets', 'WJetsToLNu_Pt400to600',   '0.95')
+#addSampleWeight(samples, 'Wjets', 'WJetsToLNu_Pt600toInf',   '0.95')
+
 
 ## HT binned
 #files = nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_HT70_100')

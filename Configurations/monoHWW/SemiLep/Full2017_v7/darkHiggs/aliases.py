@@ -452,9 +452,9 @@ bdt_dict = {
    'BDT_nom' : MVA_folder + '/mtwStudy/lowCut/UATmva_darkHiggsHighMZpVWjAndTT_2017_BDT_500Trees_Grad_FalseBagged_0.6BagFrac_1BagShrink_GiniIndex_20Cuts_CostComplexity_12PruneStrength_13Var.weights.xml',
    'BDT_mtw' : MVA_folder + '/mtwStudy/lowCut/UATmva_darkHiggsHighMZpVWjAndTT_2017_BDT_500Trees_Grad_FalseBagged_0.6BagFrac_1BagShrink_GiniIndex_20Cuts_CostComplexity_12PruneStrength_14Var.weights.xml',
    'BDT_hig' : MVA_folder + '/mtwStudy/highCut/UATmva_darkHiggsHighMZpVWjAndTT_2017_BDT_100Trees_Grad_FalseBagged_0.6BagFrac_1BagShrink_GiniIndex_20Cuts_CostComplexity_12PruneStrength_13Var.weights.xml',
-   'DNN_nom' : MVA_folder + '/mtwStudy/lowCut/darkHiggsHighMZpVWjAndTT_2017_DNN_BN32ReluBN16Relu16Relu16ReluL2reg_400epochs_200batch_10tries_13vars.weights.xml',
-   'DNN_mtw' : MVA_folder + '/mtwStudy/lowCut/darkHiggsHighMZpVWjAndTT_2017_DNN_BN32ReluBN16Relu16Relu16ReluL2reg14var_400epochs_200batch_10tries_14vars.weights.xml',
-   'DNN_hig' : MVA_folder + '/mtwStudy/highCut/darkHiggsHighMZpVWjAndTTHighMtW_2017_DNN_BN32ReluBN16Relu16Relu16ReluL2reg_400epochs_200batch_10tries_13vars.weights.xml',
+#   'DNN_nom' : MVA_folder + '/mtwStudy/lowCut/darkHiggsHighMZpVWjAndTT_2017_DNN_BN32ReluBN16Relu16Relu16ReluL2reg_400epochs_200batch_10tries_13vars.weights.xml',
+#   'DNN_mtw' : MVA_folder + '/mtwStudy/lowCut/darkHiggsHighMZpVWjAndTT_2017_DNN_BN32ReluBN16Relu16Relu16ReluL2reg14var_400epochs_200batch_10tries_14vars.weights.xml',
+#   'DNN_hig' : MVA_folder + '/mtwStudy/highCut/darkHiggsHighMZpVWjAndTTHighMtW_2017_DNN_BN32ReluBN16Relu16Relu16ReluL2reg_400epochs_200batch_10tries_13vars.weights.xml',
 }
 clean_var = MVA_folder + 'CleanVar.txt'
 clean_var_tk = MVA_folder + 'CleanVar_Tk.txt'

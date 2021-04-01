@@ -439,18 +439,53 @@ samples['ZZ'] = {
 #files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_Pt600toInf')
 #files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-LO')
 
-# nJet binned
-files = nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-0J')
+# statistical merge
+oldbW1J = getBaseWnAOD(mcDirectory, mcProduction, ['WJetsToLNu-1J'])
+newbW1J = getBaseWnAOD(mcDirectory, mcProduction, ['WJetsToLNu-1J', 'WJetsToLNu-1J_ext1'])
+newbW1Jw = newbW1J+'/baseW'
+
+oldbW2J = getBaseWnAOD(mcDirectory, mcProduction, ['WJetsToLNu-2J'])
+newbW2J = getBaseWnAOD(mcDirectory, mcProduction, ['WJetsToLNu-2J', 'WJetsToLNu-2J_ext1'])
+newbW2Jw = newbW2J+'/baseW'
+
+files = nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_Pt100to250')
+files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_Pt250to400')
+files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_Pt400to600')
+files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_Pt600toInf')
+files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-0J')
 files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-1J')
+files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-1J_ext1')
 files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-2J')
+files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-2J_ext1')
 
 samples['Wjets'] = {
     'name'   : files,
     'weight' : mcCommonWeight +'*EWKnloW[0]', # ewk nlo correction https://arxiv.org/pdf/1705.04664v2.pdf 
-    #'weight' : mcCommonWeight + '*ewknloW', 
-    #'weight' : mcCommonWeight, 
     'FilesPerJob' : 4,
 }
+
+# fix baseW for ext
+addSampleWeight(samples, 'Wjets', 'WJetsToLNu-1J'     , newbW1Jw)
+addSampleWeight(samples, 'Wjets', 'WJetsToLNu-1J_ext1', newbW1Jw)
+addSampleWeight(samples, 'Wjets', 'WJetsToLNu-2J'     , newbW2Jw)
+addSampleWeight(samples, 'Wjets', 'WJetsToLNu-2J_ext1', newbW2Jw)
+
+# avoid overlap
+addSampleWeight(samples, 'Wjets', 'WJetsToLNu-0J'     , '(LHE_Vpt < 100)')
+addSampleWeight(samples, 'Wjets', 'WJetsToLNu-1J'     , '(LHE_Vpt < 100)')
+addSampleWeight(samples, 'Wjets', 'WJetsToLNu-1J_ext1', '(LHE_Vpt < 100)')
+addSampleWeight(samples, 'Wjets', 'WJetsToLNu-2J'     , '(LHE_Vpt < 100)')
+addSampleWeight(samples, 'Wjets', 'WJetsToLNu-2J_ext1', '(LHE_Vpt < 100)')
+#addSampleWeight(samples, 'Wjets', 'WJetsToLNu-0J'     , '((LHE_Vpt < 100) + (LHE_Vpt > 100 && LHE_Vpt < 250)*0.3 + (LHE_Vpt > 250)*0.1)')
+#addSampleWeight(samples, 'Wjets', 'WJetsToLNu-1J'     , '((LHE_Vpt < 100) + (LHE_Vpt > 100 && LHE_Vpt < 250)*0.3 + (LHE_Vpt > 250)*0.1)')
+#addSampleWeight(samples, 'Wjets', 'WJetsToLNu-1J_ext1', '((LHE_Vpt < 100) + (LHE_Vpt > 100 && LHE_Vpt < 250)*0.3 + (LHE_Vpt > 250)*0.1)')
+#addSampleWeight(samples, 'Wjets', 'WJetsToLNu-2J'     , '((LHE_Vpt < 100) + (LHE_Vpt > 100 && LHE_Vpt < 250)*0.3 + (LHE_Vpt > 250)*0.1)')
+#addSampleWeight(samples, 'Wjets', 'WJetsToLNu-2J_ext1', '((LHE_Vpt < 100) + (LHE_Vpt > 100 && LHE_Vpt < 250)*0.3 + (LHE_Vpt > 250)*0.1)')
+#addSampleWeight(samples, 'Wjets', 'WJetsToLNu_Pt100to250', '0.7')
+#addSampleWeight(samples, 'Wjets', 'WJetsToLNu_Pt250to400', '0.9')
+#addSampleWeight(samples, 'Wjets', 'WJetsToLNu_Pt400to600', '0.9')
+#addSampleWeight(samples, 'Wjets', 'WJetsToLNu_Pt600toInf', '0.9')
+
 
 #samples['Wjets_PuppiRW'] = {
 #    'name'   : files,

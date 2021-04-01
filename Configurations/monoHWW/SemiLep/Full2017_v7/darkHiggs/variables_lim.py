@@ -345,35 +345,35 @@ variables['hmZpBDT_hig']  = {
     }
 }
 
-variables['hmZpDNN_nom']  = { 
-    'name': 'DNN_nom[0]',
-    'range' : ([0., 0.2, 0.4, 0.6, 0.7, 0.8, 0.9, 0.94, 0.96, 0.97, 0.98, 0.99, 1.],),
-    'xaxis' : 'high m_{Z\'} NLO DNN_{nominal}',
-    'fold'  : 3, 
-    'blind' : {
-        'InCh_SR' : [0.5, 1.],
-        'InCh_highMtw_SR' : [0.5, 1.],
-    }
-}
-   
-variables['hmZpDNN_mtw']  = { 
-    'name': 'DNN_mtw[0]',
-    'range' : ([0., 0.2, 0.4, 0.6, 0.7, 0.8, 0.9, 0.94, 0.96, 0.97, 0.98, 0.99, 1.],),
-    'xaxis' : 'high m_{Z\'} NLO DNN_{mtw var}',
-    'fold'  : 3, 
-    'blind' : {
-        'InCh_SR' : [0.5, 1.],
-        'InCh_highMtw_SR' : [0.5, 1.],
-    }
-}
-
-variables['hmZpDNN_hig']  = { 
-    'name': 'DNN_hig[0]',
-    'range' : ([0., 0.2, 0.4, 0.55, 0.65, 0.75, 0.8, 0.85, 0.9, 0.94, 1.],),
-    'xaxis' : 'high m_{Z\'} NLO DNN_{high cut}',
-    'fold'  : 3, 
-    'blind' : {
-        'InCh_SR' : [0.5, 1.],
-        'InCh_highMtw_SR' : [0.5, 1.],
-    }
-}
+#variables['hmZpDNN_nom']  = { 
+#    'name': 'DNN_nom[0]',
+#    'range' : ([0., 0.2, 0.4, 0.6, 0.7, 0.8, 0.9, 0.94, 0.96, 0.97, 0.98, 0.99, 1.],),
+#    'xaxis' : 'high m_{Z\'} NLO DNN_{nominal}',
+#    'fold'  : 3, 
+#    'blind' : {
+#        'InCh_SR' : [0.5, 1.],
+#        'InCh_highMtw_SR' : [0.5, 1.],
+#    }
+#}
+#   
+#variables['hmZpDNN_mtw']  = { 
+#    'name': 'DNN_mtw[0]',
+#    'range' : ([0., 0.2, 0.4, 0.6, 0.7, 0.8, 0.9, 0.94, 0.96, 0.97, 0.98, 0.99, 1.],),
+#    'xaxis' : 'high m_{Z\'} NLO DNN_{mtw var}',
+#    'fold'  : 3, 
+#    'blind' : {
+#        'InCh_SR' : [0.5, 1.],
+#        'InCh_highMtw_SR' : [0.5, 1.],
+#    }
+#}
+#
+#variables['hmZpDNN_hig']  = { 
+#    'name': 'DNN_hig[0]',
+#    'range' : ([0., 0.2, 0.4, 0.55, 0.65, 0.75, 0.8, 0.85, 0.9, 0.94, 1.],),
+#    'xaxis' : 'high m_{Z\'} NLO DNN_{high cut}',
+#    'fold'  : 3, 
+#    'blind' : {
+#        'InCh_SR' : [0.5, 1.],
+#        'InCh_highMtw_SR' : [0.5, 1.],
+#    }
+#}

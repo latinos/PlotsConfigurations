@@ -7,7 +7,7 @@ configurations = os.path.dirname(configurations) # Full2018
 configurations = os.path.dirname(configurations) # HWWSemiLepHighMass
 configurations = os.path.dirname(configurations) # Configurations
 
-from LatinoAnalysis.Tools.commonTools import getSampleFiles, getBaseW, addSampleWeight
+from LatinoAnalysis.Tools.commonTools import getSampleFiles, getBaseW, addSampleWeight, getBaseWnAOD
 
 from LatinoAnalysis.Tools.HiggsXSection import HiggsXSection
 HiggsXS = HiggsXSection()
@@ -372,16 +372,58 @@ samples['ZZ'] = {
 #files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_Wpt400To600')
 #files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_Wpt600ToInf')
 
-# NLO inclusive
-files = nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_ext2')
+# NLO combine stat
+oldbW100pt = getBaseWnAOD(mcDirectory, mcProduction, ['WJetsToLNu_Wpt100To250'])
+newbW100pt = getBaseWnAOD(mcDirectory, mcProduction, ['WJetsToLNu_Wpt100To250', 'WJetsToLNu_Wpt100To250_ext1'])
+newbW100w = newbW100pt+'/baseW'
+
+oldbW250pt = getBaseWnAOD(mcDirectory, mcProduction, ['WJetsToLNu_Wpt250To400'])
+newbW250pt = getBaseWnAOD(mcDirectory, mcProduction, ['WJetsToLNu_Wpt250To400', 'WJetsToLNu_Wpt250To400_ext1'])
+newbW250w = newbW250pt+'/baseW'
+
+oldbW400pt = getBaseWnAOD(mcDirectory, mcProduction, ['WJetsToLNu_Wpt400To600'])
+newbW400pt = getBaseWnAOD(mcDirectory, mcProduction, ['WJetsToLNu_Wpt400To600', 'WJetsToLNu_Wpt400To600_ext1'])
+newbW400w = newbW400pt+'/baseW'
+
+oldbW600pt = getBaseWnAOD(mcDirectory, mcProduction, ['WJetsToLNu_Wpt600ToInf'])
+newbW600pt = getBaseWnAOD(mcDirectory, mcProduction, ['WJetsToLNu_Wpt600ToInf', 'WJetsToLNu_Wpt600ToInf_ext1'])
+newbW600w = newbW600pt+'/baseW'
+
+files = nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_Wpt100To250')
+files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_Wpt250To400')
+files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_Wpt400To600')
+files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_Wpt600ToInf')
+files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_Wpt100To250_ext1')
+files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_Wpt250To400_ext1')
+files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_Wpt400To600_ext1')
+files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_Wpt600ToInf_ext1')
+files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_ext2')
 
 samples['Wjets'] = {
     'name'   : files,
     'weight' : mcCommonWeight +'*EWKnloW[0]', # ewk nlo correction https://arxiv.org/pdf/1705.04664v2.pdf 
-    #'weight' : mcCommonWeight + '*ewknloW', 
-    #'weight' : mcCommonWeight, 
     'FilesPerJob' : 4,
 }
+
+# fix baseW for ext samples
+addSampleWeight(samples, 'Wjets', 'WJetsToLNu_Wpt100To250'     , newbW100w)
+addSampleWeight(samples, 'Wjets', 'WJetsToLNu_Wpt100To250_ext1', newbW100w)
+addSampleWeight(samples, 'Wjets', 'WJetsToLNu_Wpt250To400'     , newbW250w)
+addSampleWeight(samples, 'Wjets', 'WJetsToLNu_Wpt250To400_ext1', newbW250w)
+addSampleWeight(samples, 'Wjets', 'WJetsToLNu_Wpt400To600'     , newbW400w)
+addSampleWeight(samples, 'Wjets', 'WJetsToLNu_Wpt400To600_ext1', newbW400w)
+addSampleWeight(samples, 'Wjets', 'WJetsToLNu_Wpt600ToInf'     , newbW600w)
+addSampleWeight(samples, 'Wjets', 'WJetsToLNu_Wpt600ToInf_ext1', newbW600w)
+
+# avoid double counting
+addSampleWeight(samples, 'Wjets', 'WJetsToLNu_ext2', '(LHE_Vpt < 100)')
+
+#addSampleWeight(samples, 'Wjets', 'WJetsToLNu_ext2', '((LHE_Vpt < 100) + (LHE_Vpt > 100 && LHE_Vpt < 250)*0.35 + (LHE_Vpt > 250 && LHE_Vpt < 400)*0.15 + (LHE_Vpt > 400)*0.05)')
+#addSampleWeight(samples, 'Wjets', 'WJetsToLNu_Wpt100To250', '0.65')
+#addSampleWeight(samples, 'Wjets', 'WJetsToLNu_Wpt250To400', '0.85')
+#addSampleWeight(samples, 'Wjets', 'WJetsToLNu_Wpt400To600', '0.95')
+#addSampleWeight(samples, 'Wjets', 'WJetsToLNu_Wpt600ToInf', '0.95')
+
 
 ## HT binned 
 #files = nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-LO')
