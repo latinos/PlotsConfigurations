@@ -21,7 +21,7 @@ eleWP    = 'mva_90p_Iso2016'
 muWP     = 'cut_Tight80x'
 
 aliases['DNN_isVBF_OTF'] = {
-    'class': 'DNNprod',
+    'class': 'DNNprodSemi',
     'linesToAdd':[
         'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
         'gSystem->Load("libDNNEvaluator.so")',

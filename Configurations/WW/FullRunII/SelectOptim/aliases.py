@@ -102,11 +102,11 @@ aliases['nCleanGenJet'] = {
     'samples': mc
 }
 
-aliases['fiducial'] = {
-    'linesToAdd': ['.L %s/WW/FullRunII/Full2017_v7/inclusive/fiducial.cc+' % configurations],
-    'class': 'FiducialRegion',
-    'samples': mc
-}
+#aliases['fiducial'] = {
+#    'linesToAdd': ['.L %s/WW/FullRunII/Full2017_v7/inclusive/fiducial.cc+' % configurations],
+#    'class': 'FiducialRegion',
+#    'samples': mc
+#}
 
 ##### DY Z pT reweighting
 aliases['getGenZpt_OTF'] = {
