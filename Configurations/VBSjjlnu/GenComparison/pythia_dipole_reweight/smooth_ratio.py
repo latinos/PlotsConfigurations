@@ -5,11 +5,8 @@ import sys
 
 iF = R.TFile.Open(sys.argv[1],"UPDATE")
 iF.cd("incl_cleanlep")
-h3 = R.gDirectory.Get("ratio_dipolepythia_njet_vbs1_pt_detajj_bin3")
+h3 = R.gDirectory.Get("ratio_dipolepythia_njet_vbstot_pt_detajj_bin3")
 
-njets = [2,3,4,5,6,7,8,9,10]
-ptbins = [30,40,50,65,80,100,115,130,150,200,500 ]
-detabins = [0,0.5,1.,1.5,2.,2.5,3.,3.5,4.,4.5,5.,5.5,6.,7.,10]
 
 for x in range(1, h3.GetNbinsX()+1):
     # No for each y check when the ratio become 0 and keep the latest value

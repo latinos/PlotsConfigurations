@@ -28,6 +28,8 @@ using namespace ROOT::RDF;
 */
 RVec<float> detaJJ_mjj(RVec<float>& pts,RVec<float>& etas,RVec<float>& phis,RVec<float> &masses){
     if (pts.size()<2) return {-1,-1};
+    // for_each(pts.begin(), pts.end(), [](float m){cout << "Pt " << m <<" ";} );
+    //std::cout << std::endl;
     auto comb = Combinations(pts, 2);
     auto pt1 = Take(pts, comb[0]);
     auto pt2 = Take(pts, comb[1]);
@@ -43,6 +45,7 @@ RVec<float> detaJJ_mjj(RVec<float>& pts,RVec<float>& etas,RVec<float>& phis,RVec
     int max = ArgMax(invmass);
     // std::cout << " max: "<< max << std::endl;
     return {abs(eta1[max]-eta2[max]), invmass[max], pt1[max],pt2[max]};
+    
 }
 
 
@@ -51,8 +54,12 @@ auto deltaRcut(float deltaR){
   return [=](RVec<float>& etas,RVec<float>& phis, float lepton_eta, float lepton_phi){
         RVec<bool> pass;
         for(int i = 0; i < etas.size(); i++){
-            pass.push_back( DeltaR(etas.at(i), lepton_eta, phis.at(i), lepton_phi) > deltaR);
-            // std::cout << pass.at(i) ;
+            auto deta=  DeltaR(etas.at(i), lepton_eta, phis.at(i), lepton_phi);
+            std::cout << etas.at(i)<< " "<< lepton_eta << " "<< phis.at(i) << " "<< lepton_phi << " Deltaeta:" << deta ;
+            std::cout << "DELTAR " << deltaR ;
+            pass.push_back( deta > deltaR);
+            //std::cout << "Jet " << i << " pass: " << pass.at(i) << std::endl;
+            std::cout <<  " pass: " << pass.at(i) << std::endl ;
         }
         // std::for_each(pass.begin(), pass.end(), [](bool& a){std::cout << a << " ";});
         // std::cout << std::endl;
@@ -70,23 +77,16 @@ RNode base_selection(RNode df){
             .Define("lepton_phi","GenPart_phi[(abs(GenPart_pdgId)==11 ||abs(GenPart_pdgId)==13)  && GenPart_status==1 && (GenPart_statusFlags & 1) == 1][0]");
 }
 
-RNode clean_genjets(RNode df, bool clean_lepton){
-    if (clean_lepton){
-        return df.Filter("Sum(GenLep_pt>10)==1","lepton_pt")
-            // Clean the jets from lepton
-            .Define("clean", deltaRcut(0.4), {"GenJet_eta","GenJet_phi","lepton_eta","lepton_phi"})
-            // .Define("cleanAK8", deltaRcut(0.8), {"GenJetAK8_eta","GenJetAK8_phi","lepton_eta","lepton_phi"})
-            .Define("GenJetClean_pt","GenJet_pt[clean]")
-            .Define("GenJetClean_eta","GenJet_eta[clean]")
-            .Define("GenJetClean_phi","GenJet_phi[clean]")
-            .Define("GenJetClean_mass","GenJet_mass[clean]");
-    }else{
-        // Just use same name but no cleaning
-        return df.Define("GenJetClean_pt","GenJet_pt")
-                .Define("GenJetClean_eta","GenJet_eta")
-                .Define("GenJetClean_phi","GenJet_phi")
-                .Define("GenJetClean_mass","GenJet_mass");
-    }
+RNode clean_genjets( RNode df){
+    return df.Filter("Sum(GenLep_pt>10)==1","lepton_pt")
+        // Clean the jets from lepton
+        .Define("clean", deltaRcut(0.4), {"GenJet_eta","GenJet_phi","lepton_eta","lepton_phi"})
+        // .Define("cleanAK8", deltaRcut(0.8), {"GenJetAK8_eta","GenJetAK8_phi","lepton_eta","lepton_phi"})
+        .Define("GenJetClean_pt","GenJet_pt[clean]")
+        .Define("GenJetClean_eta","GenJet_eta[clean]")
+        .Define("GenJetClean_phi","GenJet_phi[clean]")
+        .Define("GenJetClean_mass","GenJet_mass[clean]");
+
 }
 
 RNode define_vars(RNode df){
@@ -107,7 +107,7 @@ RNode define_vars(RNode df){
 }
 
 
-std::vector<RResultPtr<TH1D>> get_histograms_1D(RNode df, string label){
+std::vector<RResultPtr<TH1D>> get_histograms_1D( RNode df, string label){
     double ptjet [] = {30,35,40,45,50,55,60,65,70,75,80,85,90,95,100,110,120,130,150,200,500};
     double ptjet2 [] = {30,40,50,60,70,80,90,100,110,120,130,150,200,500};
     double ptjet3 [] = {60,65,70,75,80,85,90,95,100,105,110,115,120,125,130,135,140,150,160,170,180,200,250,300,350,500};
@@ -158,27 +158,37 @@ std::vector<RResultPtr<TH1D>> get_histograms_1D(RNode df, string label){
 // }
 
 
-auto reweight(vector<TF1*> weights,vector<float> minmjjs ){
-   return [weights,minmjjs](int njets, float mjj){
+auto reweight(vector<TF1*> weights_mjj,vector<float> minmjjs,vector<TF1*> weights_vbstot,vector<std::pair<float,float>> rangevbs ){
+   return [weights_mjj,minmjjs, weights_vbstot,rangevbs](int njets, float mjj, float vbstot){
        if (njets<=7){
            float X_mjj =mjj;
            if(X_mjj < minmjjs[njets-2]) X_mjj = minmjjs[njets-2];
-           return weights[njets-2]->Eval(X_mjj);
+           float X_vbstot = vbstot;
+
+           if (X_vbstot< rangevbs[njets-2].first) X_vbstot = rangevbs[njets-2].first;
+           if (X_vbstot > rangevbs[njets-2].second) X_vbstot = rangevbs[njets-2].second;
+
+           return weights_mjj[njets-2]->Eval(X_mjj) * weights_vbstot[njets-2]->Eval(X_vbstot) ;
        }else{   
            float X_mjj =mjj;
            if(X_mjj < minmjjs[6]) X_mjj = minmjjs[6];
-           return weights[6]->Eval(X_mjj);
+
+           float X_vbstot = vbstot;
+           if (X_vbstot< rangevbs[6].first) X_vbstot = rangevbs[6].first;
+           if (X_vbstot > rangevbs[6].second) X_vbstot = rangevbs[6].second;
+
+           return weights_mjj[6]->Eval(X_mjj) * weights_vbstot[6]->Eval(X_vbstot);
        }
     };
 }
 
-void analyze_sample(string name, RNode df, TFile& output, vector<TF1*> weights,vector<float> minmjjs ){
+void analyze_sample(string name, RNode df, TFile& output,vector<TF1*> weights_mjj,vector<float> minmjjs,vector<TF1*> weights_vbstot,vector<std::pair<float,float>> rangevbs){
     auto base_sel = base_selection(df);
-    auto df_cleanjet_cleanlepton = clean_genjets(base_sel, true);
+    auto df_cleanjet_cleanlepton = clean_genjets(base_sel);
     auto vars_incl_cleanlep = define_vars(df_cleanjet_cleanlepton);
 
     if (name == "pythia")
-    vars_incl_cleanlep = vars_incl_cleanlep.Define("closure_weight", reweight(weights, minmjjs),{"nGenJetClean30","mjj"} )
+    vars_incl_cleanlep = vars_incl_cleanlep.Define("closure_weight", reweight(weights_mjj, minmjjs, weights_vbstot, rangevbs),{"nGenJetClean30","mjj", "vbs_tot_pt"} )
                             .Define("Wtot", "closure_weight * XSWeight_OTF");
     else vars_incl_cleanlep = vars_incl_cleanlep.Define("Wtot", "XSWeight_OTF");
 
@@ -190,44 +200,75 @@ void analyze_sample(string name, RNode df, TFile& output, vector<TF1*> weights,v
     vector<int> njets = {2,3,4,5,6,7,8};
     for (int iJ = 0; iJ<njets.size();iJ++ ){
         if (iJ< njets.size()-1){
-            auto df = vars_incl_cleanlep.Filter([=](int nJ){return nJ==njets[iJ];}, {"nGenJetClean30"});
-            histos["njet"+std::to_string(njets[iJ])] = get_histograms_1D(df, name);
+            auto df_njet = vars_incl_cleanlep.Filter([=](int nJ){return nJ==njets[iJ];}, {"nGenJetClean30"});
+            histos["njet"+std::to_string(njets[iJ])] = get_histograms_1D(df_njet, name);
             // histos2D["njet"+std::to_string(njets[iJ])] = get_histograms_2D(df, name);
         }else{
-            auto df = vars_incl_cleanlep.Filter([=](int nJ){return  nJ>=njets[iJ];}, {"nGenJetClean30"});
-            histos["njet"+std::to_string(njets[iJ])] = get_histograms_1D(df, name);
+            auto df_njet = vars_incl_cleanlep.Filter([=](int nJ){return  nJ>=njets[iJ];}, {"nGenJetClean30"});
+            histos["njet"+std::to_string(njets[iJ])] = get_histograms_1D(df_njet, name);
             // histos2D["njet"+std::to_string(njets[iJ])] = get_histograms_2D(df, name);
         }
     }
     for (int iJ = 0; iJ<njets.size();iJ++ ){
         if (iJ< njets.size()-1){
-            auto df = mjj100_cut.Filter([=](int nJ){return nJ==njets[iJ];}, {"nGenJetClean30"});
-            histos["mjj100_njet"+std::to_string(njets[iJ])] = get_histograms_1D(df, name);
+            auto df_njet = mjj100_cut.Filter([=](int nJ){return nJ==njets[iJ];}, {"nGenJetClean30"});
+            histos["mjj100_njet"+std::to_string(njets[iJ])] = get_histograms_1D(df_njet, name);
             // histos2D["njet"+std::to_string(njets[iJ])] = get_histograms_2D(df, name);
         }else{
-            auto df = mjj100_cut.Filter([=](int nJ){return  nJ>=njets[iJ];}, {"nGenJetClean30"});
-            histos["mjj100_njet"+std::to_string(njets[iJ])] = get_histograms_1D(df, name);
+            auto df_njet = mjj100_cut.Filter([=](int nJ){return  nJ>=njets[iJ];}, {"nGenJetClean30"});
+            histos["mjj100_njet"+std::to_string(njets[iJ])] = get_histograms_1D(df_njet, name);
             // histos2D["njet"+std::to_string(njets[iJ])] = get_histograms_2D(df, name);
         }
     }
+    // inclusive
+    histos["incl"] = get_histograms_1D(vars_incl_cleanlep, name);
+    histos["incl_mjj100"] = get_histograms_1D(mjj100_cut, name);
    
     histos["njet2"][0]->Draw();
 
     output.cd();
 
-    for (auto & [name, hs]: histos){
-        output.mkdir(name.c_str());
-        output.cd(name.c_str());
-        for (auto & h : hs){
-            // Fix overflow bins
-            h->SetBinContent(1, h->GetBinContent(1) + h->GetBinContent(0));
-            h->SetBinContent(h->GetNbinsX(), h->GetBinContent(h->GetNbinsX()) + h->GetBinContent(h->GetNbinsX()+1));
-            h->Write();
-        }
-        output.cd("/");
+    // for (auto & [name, hs]: histos){
+    //     output.mkdir(name.c_str());
+    //     output.cd(name.c_str());
+    //     for (auto & h : hs){
+    //         // Fix overflow bins
+    //         h->SetBinContent(1, h->GetBinContent(1) + h->GetBinContent(0));
+    //         h->SetBinContent(h->GetNbinsX(), h->GetBinContent(h->GetNbinsX()) + h->GetBinContent(h->GetNbinsX()+1));
+    //         h->Write();
+    //     }
+    //     output.cd("/");
+    // }
+
+    auto clean_mask = vars_incl_cleanlep.Take<RVec<bool>>("clean");
+    auto GenJetPt =  vars_incl_cleanlep.Take<RVec<float>>("GenJet_pt");
+    auto GenJetPtClean =  vars_incl_cleanlep.Take<RVec<float>>("GenJetClean_pt");
+    auto GenJetPtClean30 = vars_incl_cleanlep.Take<RVec<float>>("GenJet30_pt");
+    std::cout << " Clean mask: ";
+    for (auto item : clean_mask) {
+         for_each(item.begin(), item.end(), [](bool m){cout << m <<" ";} );
+        std::cout << std::endl;
     }
-   
-   
+
+    std::cout << std::endl;
+    std::cout << " GenJetPt: ";
+    for (auto item : GenJetPt){
+         for_each(item.begin(), item.end(), [](float m){cout << m <<" ";} );
+         std::cout << std::endl;
+    }
+    std::cout << std::endl;
+    std::cout << " GenJetPtClean: ";
+    for (auto item : GenJetPtClean) {
+        for_each(item.begin(), item.end(), [](float m){cout << m <<" ";} );
+        std::cout << std::endl;
+    }
+    std::cout << std::endl;
+    std::cout << " GenJetPtClean30: ";
+    for (auto item : GenJetPtClean30) {
+        for_each(item.begin(), item.end(), [](float m){cout << m <<" ";} );
+        std::cout << std::endl;
+    }
+    std::cout << std::endl;
 }
 
 
@@ -240,13 +281,15 @@ int main(int argc, char** argv){
     std::string reweightfile {argv[5]};
 
     TFile f {reweightfile.c_str(),"READ"};
-    vector<TF1*> weights;
+    vector<TF1*> weights_mjj;
+    vector<TF1*> weights_vbstot;
     vector<int> njets = {2,3,4,5,6,7,8};
     for (auto nj : njets){
-        weights.push_back((TF1*)f.Get(("njet"+std::to_string(nj)+"/fit_mjj").c_str()));
+        weights_mjj.push_back((TF1*)f.Get(("mjj100_njet"+std::to_string(nj)+"/fit_mjj").c_str()));
+        weights_vbstot.push_back((TF1*)f.Get(("mjj100_njet"+std::to_string(nj)+"/fit_vbstot").c_str()));
     }
     vector<float> minmjjs = { 115, 80, 90,80,90,105,110};
-
+    vector<std::pair<float,float>> rangevbs = { {70,400}, {90,600},{90,500},{70,500},{75,550},{65,600},{65,500}};
 
     //Enabling multithread
     if(mt){
@@ -260,12 +303,12 @@ int main(int argc, char** argv){
 
     std::cout << "Opening Pythia "<<  base_path_pythia+"/nanoLatino_"+sample + "__part*" << std::endl;
     RDataFrame rdfP {"Events", base_path_pythia+"/nanoLatino_"+sample + "__part*"};
-    analyze_sample("pythia", rdfP, output_file, weights,minmjjs);
+    analyze_sample("pythia", rdfP.Range(1), output_file, weights_mjj,minmjjs, weights_vbstot, rangevbs);
 
 
     std::cout << "Opening Pythia Dipole "<<  base_path_pythia+"/nanoLatino_"+sample + "_dipoleRecoil__part*" << std::endl;
     RDataFrame rdfPd {"Events", base_path_pythia+"/nanoLatino_"+sample + "_dipoleRecoil__part*"};
-    analyze_sample("pythiaDipole", rdfPd, output_file,weights,minmjjs);
+    analyze_sample("pythiaDipole", rdfPd.Range(1), output_file,weights_mjj,minmjjs, weights_vbstot, rangevbs);
 
     output_file.Close();
     
