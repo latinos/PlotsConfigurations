@@ -51,7 +51,7 @@ RVec<float> detaJJ_mjj(RVec<float>& pts,RVec<float>& etas,RVec<float>& phis,RVec
     // for_each(invmass.begin(), invmass.end(), [](float m){cout << m <<" ";} );
     int max = ArgMax(Map(invmass, [](float f){return abs(f);}) );
     // std::cout << " max: "<< max << std::endl;
-    return {abs(eta1[max]-eta2[max]), invmass[max]};
+    return {abs(eta1[max]-eta2[max]), invmass[max], pt1[max],pt2[max]};
 }
 
 
@@ -99,16 +99,19 @@ RNode clean_genjets(RNode df, bool clean_lepton){
 }
 
 RNode define_vars(RNode df){
-    // Filter at least 4 GenJets with Pt > 30 cleaned from leptons
+    // Filter at least 2 GenJets with Pt > 30 cleaned from leptons
     return df.Define("nGenJetClean", "GenJetClean_pt.size()")
-              .Define("nGenJetClean30", "Sum(GenJetClean_pt>=30)").Filter("nGenJetClean30 >= 4", "genJets")
+              .Define("nGenJetClean30", "Sum(GenJetClean_pt>=30)")
+              .Filter("nGenJetClean30 >= 2", "genJets")
               .Define("GenJet30_pt","GenJetClean_pt[GenJetClean_pt>=30]")
               .Define("GenJet30_eta","GenJetClean_eta[GenJetClean_pt>=30]")
               .Define("GenJet30_phi","GenJetClean_phi[GenJetClean_pt>=30]")
               .Define("GenJet30_mass","GenJetClean_mass[GenJetClean_pt>=30]")
-              .Define("detaGenjj_mjj", detaJJ_mjj, {"GenJet30_pt","GenJet30_eta","GenJet30_phi","GenJet30_mass"})
-              .Define("detajj","detaGenjj_mjj[0]")
-              .Define("mjj","detaGenjj_mjj[1]");
+              .Define("tagjets", detaJJ_mjj, {"GenJet30_pt","GenJet30_eta","GenJet30_phi","GenJet30_mass"})
+              .Define("detajj","tagjets[0]")
+              .Define("mjj","tagjets[1]")
+              .Define("vbs_0_pt","tagjets[2]")
+              .Define("vbs_1_pt","tagjets[3]");
 }
 
 std::vector<RResultPtr<TH1D>> get_histograms(RNode df, string label){
@@ -120,6 +123,8 @@ std::vector<RResultPtr<TH1D>> get_histograms(RNode df, string label){
         df.Histo1D({(label+ "_mjj").c_str(), "mjj", 20, 50, 3000}, "mjj","XSWeight_OTF"),
         df.Histo1D({(label+ "_mjjzoom").c_str(), "mjj", 20, 500, 3000}, "mjj","XSWeight_OTF"),
         df.Histo1D({(label+ "_GenLepPt").c_str(), "GenLepPt", 30, 0, 300}, "lepton_pt","XSWeight_OTF"),
+        df.Histo1D({(label+ "_vbs0_pt").c_str(), "vbs0_pt", 30, 30, 500}, "vbs_0_pt","XSWeight_OTF"),
+        df.Histo1D({(label+ "_vbs1_pt").c_str(), "vbs1_pt", 30, 30, 300}, "vbs_1_pt","XSWeight_OTF"),
         // df.Histo1D({(label+ "_nGenJetAK8_200").c_str(), "nGenJet 200 GeV", 10, 0, 10}, "nGenJetAK8_200","XSWeight_OTF"),
         // df.Histo1D({(label+ "_GenJetAK8_mass").c_str(), "GenJetAK8_mass", 30, 40, 250}, "GenJetAK8_mass_1st","XSWeight_OTF"),
      };

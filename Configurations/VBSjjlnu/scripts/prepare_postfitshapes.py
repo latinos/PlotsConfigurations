@@ -149,13 +149,22 @@ def postfit_plot(datac):
     if plotFile == "" and "boost" in datac["datacard_name"]:
         plotFile = "plot_wjets_boost.py"
 
+    
+    if "bin1" in datac["datacard_name"]: plotFile = "plot_wjets_wlepbin1.py"
+    if "bin2" in datac["datacard_name"]: plotFile = "plot_wjets_wlepbin2.py"
+    if "bin3" in datac["datacard_name"]: plotFile = "plot_wjets_wlepbin3.py"
+    if "bin4" in datac["datacard_name"]: plotFile = "plot_wjets_wlepbin4.py"
+    if "bin5" in datac["datacard_name"]: plotFile = "plot_wjets_wlepbin5.py"
+    if "bin6" in datac["datacard_name"]: plotFile = "plot_wjets_wlepbin6.py"
+
+
     cmd = [ """mkPostFitCombinedPlot.py --inputFilePostFitShapesFromWorkspace  ../../../datacards/{0}/output_postfit.root \\
            --outputFile postfit_shapes.root --kind P --cutName combined  \\
            --variable {1} --structureFile ../../../Full2018v7/conf_fit_v4.3/structure.py \\
            --plotFile ../../{2} --lumiText "137/fb" """.format(datac["outputdir"], datac["phase_spaces"][0]["var"], plotFile),
 
            """mkPlot.py --pycfg=configuration_combined.py --inputFile=postfit_shapes.root  --showRelativeRatio \\
-            --minLogC 10 --maxLogC 1e2 --minLogCratio 10 --maxLogCratio 1e2 --showIntegralLegend=1 --plotNormalizedDistributions """
+            --minLogC 1 --maxLogC 1e2 --minLogCratio 1 --maxLogCratio 1e2 --showIntegralLegend=1 --plotNormalizedDistributions """
     ]
 
     # Check if need to add MC stat uncertainty 

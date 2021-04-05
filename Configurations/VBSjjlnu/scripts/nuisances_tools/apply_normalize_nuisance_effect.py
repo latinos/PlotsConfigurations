@@ -30,47 +30,29 @@ for sample, sample_conf in config.items():
         print (">> nuisance: ", nuis)
         for phase_space, cuts in sample_conf["phase_spaces"].items():
             results = sample_conf['results'][nuis][phase_space]   
-
-            print (">>> phase space: ", phase_space)
-            # nom, up, down = [],[],[]
-            # up_histos, down_histos = [],[]
-            # for cut in cuts:
-            #     print ">>>> cut: ", cut
-            #     h_nom  = iF.Get("{}/events/histo_{}".format(cut, sample))
-            #     h_up   = iF.Get("{}/events/histo_{}_{}Up".format(cut, sample, nuis))
-            #     h_down = iF.Get("{}/events/histo_{}_{}Down".format(cut, sample, nuis))
-            #     nom.append(h_nom.Integral())
-            #     up.append(h_up.Integral())
-            #     down.append(h_down.Integral())
-
-            # if nom != results["nom"] or up != results["up"] or down != results["down"]:
-            #     print("ERROR! N. events mismatch")
-            #     exit(1)
-            
-            if not args.dry:
-                #now apply
-                for cut in cuts:
-                    if cut not in args.cuts: 
-                        print ("! Skim cut: ", cut)
-                        continue
-                    print (">>>> cut: ", cut)
-                    directory = iF.Get(cut)
-                    vars = [k.GetName() for k in directory.GetListOfKeys()]
-                    print(vars)
-                    iF.cd("/")
-                    for var in vars:
-                        if args.exclude_vars and var in args.exclude_vars: continue
-                        #print "{}/{}/histo_{}_{}Up".format(cut, var, sample, nuis)
-                        try:
-                            h_up   = iF.Get("{}/{}/histo_{}_{}Up".format(cut, var, sample, nuis))
-                            h_down = iF.Get("{}/{}/histo_{}_{}Down".format(cut, var, sample, nuis))
+            print (">>> phase space: ", phase_space)            
+            for cut in cuts:
+                if cut not in args.cuts: 
+                    print ("! Skip cut: ", cut)
+                    continue
+                print (">>>> cut: ", cut)
+                directory = iF.Get(cut)
+                vars = [k.GetName() for k in directory.GetListOfKeys()]
+                iF.cd("/")
+                for var in vars:
+                    if args.exclude_vars and var in args.exclude_vars: continue
+                    print ("  Var: ", var)
+                    try:
+                        h_up   = iF.Get("{}/{}/histo_{}_{}Up".format(cut, var, sample, nuis))
+                        h_down = iF.Get("{}/{}/histo_{}_{}Down".format(cut, var, sample, nuis))
+                        if not args.dry:
                             h_up.Scale(results["ratioUp"])
                             h_down.Scale(results["ratioDown"])
                             iF.cd("{}/{}/".format(cut, var))
                             h_up.Write()
                             h_down.Write()
-                        except:
-                            print ("problem with var: ", var)
+                    except:
+                        print ("problem with var: ", var)
 
                 
     print ("-------------------------------------")

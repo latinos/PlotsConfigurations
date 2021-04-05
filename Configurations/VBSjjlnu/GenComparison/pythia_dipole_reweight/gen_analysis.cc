@@ -13,6 +13,7 @@
 #include "TString.h"
 #include "TMath.h"
 #include "TH1D.h"
+#include "TF1.h"
 #include <sstream> 
 
 using namespace std;
@@ -27,6 +28,8 @@ using namespace ROOT::RDF;
 */
 RVec<float> detaJJ_mjj(RVec<float>& pts,RVec<float>& etas,RVec<float>& phis,RVec<float> &masses){
     if (pts.size()<2) return {-1,-1};
+    // for_each(pts.begin(), pts.end(), [](float m){cout << "Pt " << m <<" ";} );
+    //std::cout << std::endl;
     auto comb = Combinations(pts, 2);
     auto pt1 = Take(pts, comb[0]);
     auto pt2 = Take(pts, comb[1]);
@@ -42,16 +45,16 @@ RVec<float> detaJJ_mjj(RVec<float>& pts,RVec<float>& etas,RVec<float>& phis,RVec
     int max = ArgMax(invmass);
     // std::cout << " max: "<< max << std::endl;
     return {abs(eta1[max]-eta2[max]), invmass[max], pt1[max],pt2[max]};
+    
 }
-
-
 
 auto deltaRcut(float deltaR){
   return [=](RVec<float>& etas,RVec<float>& phis, float lepton_eta, float lepton_phi){
         RVec<bool> pass;
         for(int i = 0; i < etas.size(); i++){
             pass.push_back( DeltaR(etas.at(i), lepton_eta, phis.at(i), lepton_phi) > deltaR);
-            // std::cout << pass.at(i) ;
+            //std::cout << "Jet " << i << " pass: " << pass.at(i) << std::endl;
+            //std::cout << pass.at(i) ;
         }
         // std::for_each(pass.begin(), pass.end(), [](bool& a){std::cout << a << " ";});
         // std::cout << std::endl;
@@ -69,23 +72,16 @@ RNode base_selection(RNode df){
             .Define("lepton_phi","GenPart_phi[(abs(GenPart_pdgId)==11 ||abs(GenPart_pdgId)==13)  && GenPart_status==1 && (GenPart_statusFlags & 1) == 1][0]");
 }
 
-RNode clean_genjets(RNode df, bool clean_lepton){
-    if (clean_lepton){
-        return df.Filter("Sum(GenLep_pt>10)==1","lepton_pt")
-            // Clean the jets from lepton
-            .Define("clean", deltaRcut(0.4), {"GenJet_eta","GenJet_phi","lepton_eta","lepton_phi"})
-            // .Define("cleanAK8", deltaRcut(0.8), {"GenJetAK8_eta","GenJetAK8_phi","lepton_eta","lepton_phi"})
-            .Define("GenJetClean_pt","GenJet_pt[clean]")
-            .Define("GenJetClean_eta","GenJet_eta[clean]")
-            .Define("GenJetClean_phi","GenJet_phi[clean]")
-            .Define("GenJetClean_mass","GenJet_mass[clean]");
-    }else{
-        // Just use same name but no cleaning
-        return df.Define("GenJetClean_pt","GenJet_pt")
-                .Define("GenJetClean_eta","GenJet_eta")
-                .Define("GenJetClean_phi","GenJet_phi")
-                .Define("GenJetClean_mass","GenJet_mass");
-    }
+RNode clean_genjets( RNode df){
+    return df.Filter("Sum(GenLep_pt>10)==1","lepton_pt")
+        // Clean the jets from lepton
+        .Define("clean", deltaRcut(0.4), {"GenJet_eta","GenJet_phi","lepton_eta","lepton_phi"})
+        // .Define("cleanAK8", deltaRcut(0.8), {"GenJetAK8_eta","GenJetAK8_phi","lepton_eta","lepton_phi"})
+        .Define("GenJetClean_pt","GenJet_pt[clean]")
+        .Define("GenJetClean_eta","GenJet_eta[clean]")
+        .Define("GenJetClean_phi","GenJet_phi[clean]")
+        .Define("GenJetClean_mass","GenJet_mass[clean]");
+
 }
 
 RNode define_vars(RNode df){
@@ -105,6 +101,7 @@ RNode define_vars(RNode df){
               .Define("vbs_tot_pt", "vbs_0_pt+vbs_1_pt");
 }
 
+
 std::vector<RResultPtr<TH1D>> get_histograms_1D( RNode df, string label){
     double ptjet [] = {30,35,40,45,50,55,60,65,70,75,80,85,90,95,100,110,120,130,150,200,500};
     double ptjet2 [] = {30,40,50,60,70,80,90,100,110,120,130,150,200,500};
@@ -113,17 +110,17 @@ std::vector<RResultPtr<TH1D>> get_histograms_1D( RNode df, string label){
         df.Histo1D({(label+ "_nGenJet").c_str(), "nGenJet", 8, 2, 10}, "nGenJet", "XSWeight_OTF"),
         df.Histo1D({(label+ "_nGenJetClean").c_str(), "nGenJet", 8, 2, 10}, "nGenJetClean", "XSWeight_OTF"),
         df.Histo1D({(label+ "_nGenJetClean30").c_str(), "nGenJet 30 GeV", 8, 2, 10}, "nGenJetClean30", "XSWeight_OTF"),
-        df.Histo1D({(label+ "_detajj").c_str(), "detajj", 25, 0, 9}, "detajj","XSWeight_OTF"),
+        // df.Histo1D({(label+ "_detajj").c_str(), "detajj", 25, 0, 9}, "detajj","XSWeight_OTF"),
         df.Histo1D({(label+ "_detajj_morebins").c_str(), "detajj", 40, 0, 9}, "detajj","XSWeight_OTF"),
-        df.Histo1D({(label+ "_mjj").c_str(), "mjj", 50, 0, 3000}, "mjj","XSWeight_OTF"),
-        df.Histo1D({(label+ "_mjj_morebins").c_str(), "mjj", 60, 50, 2000}, "mjj","XSWeight_OTF"),
-        df.Histo1D({(label+ "_mjj_morebins_100").c_str(), "mjj", 60, 100, 3000}, "mjj","XSWeight_OTF"),
-        df.Histo1D({(label+ "_mjj_zoom").c_str(), "mjj", 100, 50, 3000}, "mjj","XSWeight_OTF"),
-        df.Histo1D({(label+ "_mjj_zoom2").c_str(), "mjj", 200, 50, 1500}, "mjj","XSWeight_OTF"),
+        // df.Histo1D({(label+ "_mjj").c_str(), "mjj", 50, 0, 3000}, "mjj","XSWeight_OTF"),
+        df.Histo1D({(label+ "_mjj").c_str(), "mjj", 60, 50, 2000}, "mjj","XSWeight_OTF"),
+        df.Histo1D({(label+ "_mjj_400").c_str(), "mjj", 50, 400, 3000}, "mjj","XSWeight_OTF"),
+        // df.Histo1D({(label+ "_mjj_zoom").c_str(), "mjj", 100, 50, 3000}, "mjj","XSWeight_OTF"),
+        // df.Histo1D({(label+ "_mjj_zoom2").c_str(), "mjj", 200, 50, 1500}, "mjj","XSWeight_OTF"),
         // df.Histo1D({(label+ "_mjjzoom").c_str(), "mjj", 20, 500, 3000}, "mjj","XSWeight_OTF"),
         df.Histo1D({(label+ "_vbs0_pt").c_str(), "vbs0_pt", 50, 30, 500}, "vbs_0_pt","XSWeight_OTF"),
-        df.Histo1D({(label+ "_vbs1_pt").c_str(), "vbs1_pt", 50, 30, 300}, "vbs_1_pt","XSWeight_OTF"),
-        df.Histo1D({(label+ "_vbs1_pt_bin2").c_str(), "vbs1_pt", 60, 30, 500}, "vbs_1_pt","XSWeight_OTF"),
+        df.Histo1D({(label+ "_vbs1_pt").c_str(), "vbs1_pt", 60, 30, 300}, "vbs_1_pt","XSWeight_OTF"),
+        // df.Histo1D({(label+ "_vbs1_pt_bin2").c_str(), "vbs1_pt", 60, 30, 500}, "vbs_1_pt","XSWeight_OTF"),
         df.Histo1D({(label+ "_vbstot_pt").c_str(), "vbstot_pt", 60, 60, 600}, "vbs_tot_pt","XSWeight_OTF"),
         df.Histo1D({(label+ "_vbstot_pt_zoom").c_str(), "vbstot_pt", 80, 60, 600}, "vbs_tot_pt","XSWeight_OTF"),
         // df.Histo1D({(label+ "_vbs0_pt_zoom").c_str(), "vbs0_pt", 30, 30, 300}, "vbs_0_pt","XSWeight_OTF"),
@@ -131,77 +128,67 @@ std::vector<RResultPtr<TH1D>> get_histograms_1D( RNode df, string label){
         // df.Histo1D({(label+ "_vbs1_pt_bin2").c_str(), "vbs1_pt", 20,ptjet}, "vbs_1_pt","XSWeight_OTF"),
         // df.Histo1D({(label+ "_vbs1_pt_bin3").c_str(), "vbs1_pt", 13,ptjet2}, "vbs_1_pt","XSWeight_OTF"),
         // df.Histo1D({(label+ "_vbstot_pt_bin3").c_str(), "vbstot_pt", 25,ptjet3}, "vbs_tot_pt","XSWeight_OTF"),
-        df.Histo1D({(label+ "_GenLepPt").c_str(), "GenLepPt", 30, 0, 300}, "lepton_pt","XSWeight_OTF"),
+        // df.Histo1D({(label+ "_GenLepPt").c_str(), "GenLepPt", 30, 0, 300}, "lepton_pt","XSWeight_OTF"),
     };
 }
 
-// std::vector<RResultPtr<TH2D>> get_histograms_2D(RNode df, string label){
-//     double njets []  = {2,3,4,5,6,7,8,9,10};
-//     double ptjet [] = {30,35,40,45,50,55,60,65,70,75,80,85,90,95,100,110,120,130,150,200,500};
-//     double ptjet2 [] = {30,35,40,50,60,70,80,90,100,110,120,130,150,200,500};
-//     double ptjet3 [] = {60,65,70,75,80,85,90,95,100,105,110,115,120,130,140,150,180,200,350,600};
-//     return {
-//         // df.Histo2D({(label+ "_njet_vbs0_pt").c_str(), "njet_vbs0_pt", 8, 2, 10, 10, 30, 500}, "nGenJetClean30", "vbs_0_pt","XSWeight_OTF"),
-//         // df.Histo2D({(label+ "_njet_vbs1_pt").c_str(), "njet_vbs1_pt", 8, 2, 10, 10, 30, 300}, "nGenJetClean30", "vbs_1_pt","XSWeight_OTF"),
-//         // df.Histo2D({(label+ "_njet_vbs0_pt_bin2").c_str(), "njet_vbs0_pt", 8,njets, 20,ptjet}, "nGenJetClean30", "vbs_0_pt","XSWeight_OTF"),
-//         // df.Histo2D({(label+ "_njet_vbs1_pt_bin2").c_str(), "njet_vbs1_pt", 8, njets,20,ptjet }, "nGenJetClean30", "vbs_1_pt","XSWeight_OTF"),
-//         // df.Histo2D({(label+ "_njet_vbs1_pt_bin3").c_str(), "njet_vbs1_pt", 8, njets,13,ptjet2 }, "nGenJetClean30", "vbs_1_pt","XSWeight_OTF"),
-//         // df.Histo2D({(label+ "_njet_vbstot_pt_bin3").c_str(), "njet_vbstot_pt", 8, njets,19,ptjet3 }, "nGenJetClean30", "vbs_tot_pt","XSWeight_OTF"),
-//         df.Histo2D({(label+ "_vbs0_vbs1_pt").c_str(), "vbs0_vbs1_pt", 13,ptjet2,13,ptjet2 }, "vbs_0_pt", "vbs_1_pt","XSWeight_OTF"),
-//         df.Histo2D({(label+ "_vbs0_detajj").c_str(), "vbs0_detajj", 13,ptjet2, 8,0,8} , "vbs_0_pt", "detajj","XSWeight_OTF"),
-//         df.Histo2D({(label+ "_vbs1_detajj").c_str(), "vbs1_detajj", 13,ptjet2, 8,0,8} , "vbs_1_pt", "detajj","XSWeight_OTF"),
-//         df.Histo2D({(label+ "_vbstot_detajj").c_str(), "vbstot_detajj", 19,ptjet3, 8,0,8} , "vbs_tot_pt", "detajj","XSWeight_OTF"),
-//         // df.Histo2D({(label+ "_njet_detajj_bin2").c_str(), "njet_detajj", 8, njets, 15,0,8} , "nGenJetClean30", "detajj","XSWeight_OTF"),
-//        };
-// }
+std::vector<RResultPtr<TH2D>> get_histograms_2D(RNode df, string label){
+    double njets []  = {2,3,4,5,6,7,8,9,10};
+    double mjjbin [] = {400,650,900,1200,1600,3000};
+    double ptjet2 [] = {60,80,100,120,150,200,600};
+    double ptjet3 [] = {60,70,80,90,100,115,130,150,200,600};
+    double detabin [] = {2,3,4,5,6,7,8,10};
+    return {
+        // df.Histo2D({(label+ "_njet_vbs0_pt").c_str(), "njet_vbs0_pt", 8, 2, 10, 10, 30, 500}, "nGenJetClean30", "vbs_0_pt","Wtot"),
+        // df.Histo2D({(label+ "_njet_vbs1_pt").c_str(), "njet_vbs1_pt", 8, 2, 10, 10, 30, 300}, "nGenJetClean30", "vbs_1_pt","Wtot"),
+        // df.Histo2D({(label+ "_njet_vbs0_pt_bin2").c_str(), "njet_vbs0_pt", 8,njets, 20,ptjet}, "nGenJetClean30", "vbs_0_pt","Wtot"),
+        // df.Histo2D({(label+ "_njet_vbs1_pt_bin2").c_str(), "njet_vbs1_pt", 8, njets,20,ptjet }, "nGenJetClean30", "vbs_1_pt","Wtot"),
+        // df.Histo2D({(label+ "_njet_vbs1_pt_bin3").c_str(), "njet_vbs1_pt", 8, njets,13,ptjet2 }, "nGenJetClean30", "vbs_1_pt","Wtot"),
+        // df.Histo2D({(label+ "_njet_vbstot_pt_bin3").c_str(), "njet_vbstot_pt", 8, njets,19,ptjet3 }, "nGenJetClean30", "vbs_tot_pt","Wtot"),
+        // df.Histo2D({(label+ "_vbs0_vbs1_pt").c_str(), "vbs0_vbs1_pt", 13,ptjet2,13,ptjet2 }, "vbs_0_pt", "vbs_1_pt","Wtot"),
+        // df.Histo2D({(label+ "_vbs0_detajj").c_str(), "vbs0_detajj", 13,ptjet2, 8,0,8} , "vbs_0_pt", "detajj","Wtot"),
+        // df.Histo2D({(label+ "_vbs1_detajj").c_str(), "vbs1_detajj", 13,ptjet2, 8,0,8} , "vbs_1_pt", "detajj","Wtot"),
+        df.Histo2D({(label+ "_mjj_vbstot").c_str(), "mjj_vbstot", 5,mjjbin, 6, ptjet2 } , "mjj", "vbs_tot_pt","XSWeight_OTF"),
+        df.Histo2D({(label+ "_mjj_vbstot_morebins").c_str(), "mjj_vbstot", 5,mjjbin, 9, ptjet3 } , "mjj", "vbs_tot_pt","XSWeight_OTF"),
+        df.Histo2D({(label+ "_vbstot_detajj").c_str(), "vbstot_detajj",  9, ptjet3, 8, detabin} , "vbs_tot_pt", "detajj","XSWeight_OTF"),
+        // df.Histo2D({(label+ "_njet_detajj_bin2").c_str(), "njet_detajj", 8, njets, 15,0,8} , "nGenJetClean30", "detajj","Wtot"),
+       };
+}
 
-// std::vector<RResultPtr<TH3D>> get_histograms_3D(RNode df, string label){
-//     double njets []  = {2,3,4,5,6,7,8,9,10};
-//     double ptjet [] = {30,35,40,45,50,55,60,65,70,75,80,85,90,95,100,110,120,130,150,200,500};
-//     double ptjet2 [] = {30,40,50,60,70,80,90,100,110,120,130,150,200,500};
-//     double ptjet3 [] = {30,40,50,65,80,100,115,130,150,200,500};
-//     double ptjet4 [ ] = {60,65,70,75,80,85,90,95,100,105,110,120,130,140,150,180,200,350,600};
-//     double detabin [ ] = { 0,0.5,1.,1.5,2.,2.5,3.,3.5,4.,4.5,5.,5.5,6.,6.5,7.,7.5,8};
-//     double detabin2 [ ] = { 0,0.5,1.,1.5,2.,2.5,3.,3.5,4.,4.5,5.,5.5,6.,7.,10};
-//     return {
-//         df.Histo3D({(label+ "_njet_vbs0_vbs1_pt").c_str(), "njet_vbs0_vbs1_pt", 8, 2, 10, 10, 30, 300,10, 30, 300}, "nGenJetClean30", "vbs_0_pt","vbs_1_pt","XSWeight_OTF"),
-//         df.Histo3D({(label+ "_njet_vbs0_vbs1_pt_bin2").c_str(), "njet_vbs0_vbs1_pt_bin2", 8, njets,13,ptjet,20,ptjet }, "nGenJetClean30", "vbs_0_pt","vbs_1_pt","XSWeight_OTF"),
-//         df.Histo3D({(label+ "_njet_vbs0_vbs1_pt_bin3").c_str(), "njet_vbs0_vbs1_pt_bin2", 8, njets,13,ptjet,13,ptjet2 }, "nGenJetClean30", "vbs_0_pt","vbs_1_pt","XSWeight_OTF"),
-//         df.Histo3D({(label+ "_njet_vbs1_pt_detajj").c_str(), "njet_vbs1_pt_detajj", 8, njets,20,ptjet ,16, detabin}, "nGenJetClean30","vbs_1_pt","detajj", "XSWeight_OTF"),
-//         df.Histo3D({(label+ "_njet_vbs1_pt_detajj_bin2").c_str(), "njet_vbs1_pt_detajj", 8, njets,13,ptjet2 ,16, detabin}, "nGenJetClean30","vbs_1_pt","detajj", "XSWeight_OTF"),
-//         df.Histo3D({(label+ "_njet_vbs1_pt_detajj_bin3").c_str(), "njet_vbs1_pt_detajj", 8, njets,10,ptjet3 ,14, detabin2}, "nGenJetClean30","vbs_1_pt","detajj", "XSWeight_OTF"),
-//         df.Histo3D({(label+ "_njet_vbstot_pt_detajj_bin3").c_str(), "njet_vbstot_pt_detajj", 8, njets,18,ptjet4 ,14, detabin2}, "nGenJetClean30","vbs_tot_pt","detajj", "XSWeight_OTF"),
-//         };
-// }
+
 
 void analyze_sample(string name, RNode df, TFile& output){
     auto base_sel = base_selection(df);
-    auto df_cleanjet_cleanlepton = clean_genjets(base_sel, true);
+    auto df_cleanjet_cleanlepton = clean_genjets(base_sel);
     auto vars_incl_cleanlep = define_vars(df_cleanjet_cleanlepton);
-    //auto vars_recocuts_cleanlep = vars_incl_cleanlep.Filter("detajj>=2.5 && mjj >=500 && lepton_pt > 30","reco cuts");
-    // auto vars_incl_nocleanlep = define_vars(df_cleanjet_nocleanlepton);
-    // auto vars_recocuts_nocleanlep = vars_incl_nocleanlep.Filter("detajj>=2.5 && mjj >=500  && lepton_pt > 30","reco cuts");
 
-   
+    // if (name == "pythia")
+    // vars_incl_cleanlep = vars_incl_cleanlep.Define("closure_weight", reweight(weights_mjj, minmjjs, weights_vbstot, rangevbs),{"nGenJetClean30","mjj", "vbs_tot_pt"} )
+    //                         .Define("Wtot", "closure_weight * XSWeight_OTF");
+    // else vars_incl_cleanlep = vars_incl_cleanlep.Define("Wtot", "XSWeight_OTF");
+
+    auto recocut = vars_incl_cleanlep.Filter("mjj>=450 && detajj>2");
+     
     std::map<string, vector<RResultPtr<TH1D>>> histos;
-    // std::map<string, vector<RResultPtr<TH2D>>> histos2D;
+    std::map<string, vector<RResultPtr<TH2D>>> histos2D;
     // std::map<string, vector<RResultPtr<TH3D>>> histos3D;
-    vector<int> njets = {2,3,4,5,6,7,8};
+    vector<int> njets = {2,3,4,5,6,7};
     for (int iJ = 0; iJ<njets.size();iJ++ ){
         if (iJ< njets.size()-1){
-            auto df = vars_incl_cleanlep.Filter([=](int nJ){return nJ==njets[iJ];}, {"nGenJetClean30"});
-            histos["njet"+std::to_string(njets[iJ])] = get_histograms_1D(df, name);
-            // histos2D["njet"+std::to_string(njets[iJ])] = get_histograms_2D(df, name);
+            auto df_njet = recocut.Filter([=](int nJ){return nJ==njets[iJ];}, {"nGenJetClean30"});
+            histos["njet"+std::to_string(njets[iJ])] = get_histograms_1D(df_njet, name);
+            histos2D["njet"+std::to_string(njets[iJ])] = get_histograms_2D(df_njet, name);
         }else{
-            auto df = vars_incl_cleanlep.Filter([=](int nJ){return  nJ>=njets[iJ];}, {"nGenJetClean30"});
-            histos["njet"+std::to_string(njets[iJ])] = get_histograms_1D(df, name);
-            // histos2D["njet"+std::to_string(njets[iJ])] = get_histograms_2D(df, name);
+            auto df_njet = recocut.Filter([=](int nJ){return  nJ>=njets[iJ];}, {"nGenJetClean30"});
+            histos["njet"+std::to_string(njets[iJ])] = get_histograms_1D(df_njet, name);
+            histos2D["njet"+std::to_string(njets[iJ])] = get_histograms_2D(df_njet, name);
         }
     }
-        
-    
-
-    histos["njet2"][0]->Draw();
+    // inclusive
+    histos["incl"] = get_histograms_1D(vars_incl_cleanlep, name);
+    histos["reco"] = get_histograms_1D(recocut, name);
+   
+    histos["incl"][0]->Draw();
 
     output.cd();
 
@@ -216,21 +203,12 @@ void analyze_sample(string name, RNode df, TFile& output){
         }
         output.cd("/");
     }
-    // for (auto & [name, hs]: histos2D){
-    //     output.mkdir(name.c_str());
-    //     output.cd(name.c_str());
-    //     for (auto & h : hs) h->Write();
-    //     output.cd("/");
-    // }
-    // for (auto & [name, hs]: histos3D){
-    //     output.mkdir(name.c_str());
-    //     output.cd(name.c_str());
-    //     for (auto & h : hs) h->Write();
-    //     output.cd("/");
-    // }
-
-    // std::cout << name << " report: " << std::endl;
-    // vars_incl_cleanlep.Report()->Print();
+    for (auto & [name, hs]: histos2D){
+        output.mkdir(name.c_str());
+        output.cd(name.c_str());
+        for (auto & h : hs) h->Write();
+        output.cd("/");
+    }
    
 }
 
@@ -241,6 +219,18 @@ int main(int argc, char** argv){
     string sample { argv[2] };    
     bool mt = std::stoi(argv[3]);
     std::string output {argv[4]};
+    // std::string reweightfile {argv[5]};
+
+    // TFile f {reweightfile.c_str(),"READ"};
+    // vector<TF1*> weights_mjj;
+    // vector<TF1*> weights_vbstot;
+    // vector<int> njets = {2,3,4,5,6,7,8};
+    // for (auto nj : njets){
+    //     weights_mjj.push_back((TF1*)f.Get(("mjj100_njet"+std::to_string(nj)+"/fit_mjj").c_str()));
+    //     weights_vbstot.push_back((TF1*)f.Get(("mjj100_njet"+std::to_string(nj)+"/fit_vbstot").c_str()));
+    // }
+    // vector<float> minmjjs = { 115, 80, 90,80,90,105,110};
+    // vector<std::pair<float,float>> rangevbs = { {70,400}, {90,600},{90,500},{70,500},{75,550},{65,600},{65,500}};
 
     //Enabling multithread
     if(mt){

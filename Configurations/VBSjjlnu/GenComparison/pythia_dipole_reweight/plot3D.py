@@ -8,13 +8,14 @@ tdrStyle.setTDRStyle()
 
 iF = R.TFile.Open(sys.argv[1])
 
+# h3 = iF.Get("incl_cleanlep/ratio_dipolepythia_njet_vbs1_pt_detajj_bin3")\
 h3 = iF.Get("incl_cleanlep/ratio_dipolepythia_njet_vbs1_pt_detajj_bin3")
-
 cache = []
 R.gStyle.SetOptStat(0)
 
 njets = [2,3,4,5,6,7,8,9,10]
-ptbins = [30,40,50,65,80,100,115,130,150,200,500 ]
+ptbins = [ 60,65,70,75,80,85,90,95,100,105,110,120,130,140,150,180,200,350,600]
+# ptbins = [30,40,50,65,80,100,115,130,150,200,500 ]
 detabins = [0,0.5,1.,1.5,2.,2.5,3.,3.5,4.,4.5,5.,5.5,6.,7.,10]
 
 # the first zero it is just to do the first round
@@ -58,7 +59,7 @@ for x in range(0, h3.GetNbinsX()+1):
     yAxisDistro.SetTitle("GEN detaJJ")
     xAxisDistro.SetTitle("GEN VBS 1 pt")
 
-    h2.Draw("COLZ same")
+    h2.Draw("surf2 same")
     pad1.SetLogx(True)
     
     CMS_lumi.writeExtraText = 1

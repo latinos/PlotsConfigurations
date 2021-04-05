@@ -207,7 +207,7 @@ samples['Wjets_HT'] = { 'name' :
           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT1200_2500')
           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT2500_inf'),
 				'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch + '*' + Wjets_photon_filter +  '* ewknloW * btagSF_corr_Wjets_HT',
-				'FilesPerJob' : 4,   
+				'FilesPerJob' : 2,   
         'subsamples': {
             "res_1": 'fit_bin_res==1',
             "res_2": 'fit_bin_res==2',
@@ -347,6 +347,15 @@ samples['VBS']  = { 'name' :
        'EventsPerJob' : 70000,
 }
 
+samples['VBS_ZLL']  = { 'name' :  
+               nanoGetSampleFiles(directory_signal,'WmTo2J_ZTo2L', ) +
+               nanoGetSampleFiles(directory_signal,'WpTo2J_ZTo2L', ) +
+               nanoGetSampleFiles(directory_signal,'ZTo2L_ZTo2J',  ),
+       'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch+'*btagSF_corr_VBS',
+       'FilesPerJob' :8,
+       'EventsPerJob' : 70000,
+}
+
 samples['VBS_dipoleRecoil']  = { 'name' :  
                nanoGetSampleFiles(directory_signal,'WmToLNu_ZTo2J_dipoleRecoil',) + 
                nanoGetSampleFiles(directory_signal,'WmTo2J_ZTo2L_dipoleRecoil', ) +
@@ -401,4 +410,4 @@ for Run in DataRun :
                         samples['DATA']['weights'].append(DataTrig[DataSet])
 
 
-samples = {   key:v for key,v in samples.items() if key not in ['VBS']}
+samples = {   key:v for key,v in samples.items() if key in ['VBS_ZLL']}
