@@ -10,6 +10,7 @@ parser.add_argument("-i","--input", help="Input file", type=str)
 parser.add_argument("--nuisance-effect", help="Nuisance effect file", type=str)
 parser.add_argument("-o","--output", help="Output file", type=str)
 parser.add_argument("-s","--samples", help="Samples", type=str, nargs="+")
+parser.add_argument("-sf","--samples-file", help="Samples file", type=str)
 parser.add_argument("-n","--nuisances", help="Nuisances", type=str, nargs="+")
 parser.add_argument("-nr","--nuisances-rename", help="Nuisances rename", type=str, nargs="+")
 parser.add_argument("-ev","--exclude-vars", help="Exclude vars", type=str, nargs="+")
@@ -20,6 +21,15 @@ args = parser.parse_args()
 import ROOT as R 
 R.gROOT.SetBatch(True)
 R.TH1.SetDefaultSumw2()
+
+
+if args.samples and len(args.samples) > 0:
+    samples = args.samples 
+elif args.samples_file:
+    samples = [f.strip() for f in open(args.samples_file).readlines()]
+else:
+    print("Please provide samples of file with a list of samples")
+    exit(1)
 
 iF = R.TFile.Open(args.input, "READ")
 oF = R.TFile.Open(args.output, "RECREATE")
@@ -37,7 +47,7 @@ for cut in nF.GetListOfKeys():
             if args.exclude_vars and var.GetName() in args.exclude_vars: continue
             oF.mkdir(cut.GetName() + "/"+var.GetName())
             print ("> Var: ", var.GetName() )
-            for sample in args.samples:
+            for sample in samples:
                 h_nom = iF.Get("{}/{}/histo_{}".format(cut.GetName(), var.GetName(), sample))
                 # Exclude samples associated explicity to a cut (Wjets bins)
                 # if 'res' in cut.GetName() and 'boost' in sample: continue

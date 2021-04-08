@@ -20,7 +20,7 @@ def run_jobs(conf):
     cmd = """python  DrawNuisancesAll.py --outputDirPlots {0}  \
         --inputFile {1} \
         --nuisancesFile {2}/conf_{6}/nuisances_datacard.py  \
-        --samplesFile  {2}/conf_{6}/samples.py  \
+        --samplesFile  {2}/conf_{6}/samples_quick.py  \
         --cutName  {3}  \
         --drawYields 1 \
         --onlySample {4} \
@@ -29,8 +29,8 @@ def run_jobs(conf):
     print(cmd)
     os.system(cmd)
 
-tag = "fit_v4.3"
-years = ["2018"]
+tag = "fit_v4.5"
+years = ["2017"]
 datacard_name = args.datacard
 #cuts = ["res_wjetcr_dnnhigh_ele","res_sig_dnnhigh_ele","res_topcr_dnnhigh_ele"]
 # cuts = ["boost_topcr_ele","boost_wjetcr_ele","res_topcr_ele","res_wjetcr_ele",

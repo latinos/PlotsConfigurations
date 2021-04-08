@@ -11,7 +11,9 @@ parser = argparse.ArgumentParser()
 parser.add_argument("-i","--input", help="Input file", type=str)
 parser.add_argument("-o","--output", help="Output file", type=str)
 parser.add_argument("-s","--samples", help="Samples", type=str, nargs="+")
+parser.add_argument("-sf","--samples-file", help="Samples", type=str)
 parser.add_argument("-c","--cuts", help="Cut", type=str, nargs="+")
+parser.add_argument("-cf","--cuts-file", help="Cut", type=str)
 parser.add_argument("-v","--vars", help="Variables", type=str, nargs="+")
 parser.add_argument("-n","--nuisances", help="Nuisances", type=str, nargs="+")
 parser.add_argument("-f","--fit", help="Fit",action="store_true")
@@ -26,7 +28,23 @@ R.TH1.SetDefaultSumw2()
 iF = R.TFile.Open(args.input, "READ")
 oF = R.TFile.Open(args.output, "UPDATE")
 
-for cut in args.cuts:
+if args.samples and len(args.samples) > 0:
+    samples = args.samples 
+elif args.samples_file:
+    samples = [f.strip() for f in open(args.samples_file).readlines()]
+else:
+    print("Please provide samples of file with a list of samples")
+    exit(1)
+
+if args.cuts and len(args.cuts) > 0:
+    cuts = args.cuts 
+elif args.cuts_file:
+    cuts = [c.strip() for c in open(args.cuts_file).readlines()]
+else:
+    print("Please provide cuts of file with a list of cuts")
+    exit(1)
+
+for cut in cuts:
     oF.mkdir(cut)
     print ("Cut: ", cut)
     if args.vars[0] == "ALL":
@@ -39,7 +57,7 @@ for cut in args.cuts:
     for var in vars:
         print ("> Var: ", var )
         oF.mkdir(cut + "/"+var)
-        for s in args.samples:
+        for s in samples:
             print (">> Sample: ", s )
             try:
                 h_nom = iF.Get("{}/{}/histo_{}".format(cut, var, s ))

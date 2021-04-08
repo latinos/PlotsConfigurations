@@ -34,16 +34,15 @@ outputDirPlots = 'plot_'+tag
 
 # used by mkDatacards to define output directory for datacards
 #outputDirDatacard = 'datacards_'+tag 
-outputDirDatacard = 'datacards_'+tag +"_PythiaDipole_v1"
+outputDirDatacard = 'datacards_'+tag +"_noDipole_v1"
 
 # structure file for datacard
 structureFile = direc+'/structure.py'
 
 
 # nuisances file for mkDatacards and for mkShape
-#nuisancesFile = direc+'/nuisances.py'
-nuisancesFile = direc+'/nuisances.py'
-# nuisancesFile = direc + '/nuisances_recover.py'
+# nuisancesFile = direc+'/nuisances.py'
+nuisancesFile = direc + '/nuisances_datacard.py'
 
 
 customizeScript = direc + '/customize.py'

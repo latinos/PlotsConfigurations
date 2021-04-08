@@ -4,18 +4,17 @@ import sys
 f = R.TFile(sys.argv[1], "UPDATE")
 #sample_name = sys.argv[2]
 
-samples = ['VBS','top','DATA','Fake','Wjets_HT','VVV','VV','VgS','Vg','DY','VBF-V', 'ggWW']
-for ir in range(1,7):
-    samples.append("Wjets_HT_res_"+str(ir))
-for ir in range(1,6):
-    samples.append("Wjets_HT_boost_"+str(ir))
+samples = ['VBS','VBS_dipoleRecoil','top','DATA','Fake','VVV','VV','VgS','Vg','DY','VBF-V', 'ggWW']
+for ir in range(1,22):
+    samples.append("Wjets_res_"+str(ir))
+for ir in range(1,8):
+    samples.append("Wjets_boost_"+str(ir))
 
 if len(sys.argv)>2:
     samples = sys.argv[2:]
 
 
 for sample_name in samples:
-
     #f.ls()
     for k in f.GetListOfKeys():
         #print(k)

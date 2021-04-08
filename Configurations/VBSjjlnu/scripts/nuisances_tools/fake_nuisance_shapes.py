@@ -15,10 +15,10 @@ args = parser.parse_args()
 
 samples= ['VBS','VBS_dipoleRecoil','DY','top','VV','VVV','Vg','VgS', 'VBF-V','ggWW']
 wjets_bins = []
-for ir in range(1,11):
-    wjets_bins.append("Wjets_HT_res_"+str(ir))
-for ir in range(1,6):
-    wjets_bins.append("Wjets_HT_boost_"+str(ir))
+for ir in range(1,22):
+    wjets_bins.append("Wjets_res_"+str(ir))
+for ir in range(1,8):
+    wjets_bins.append("Wjets_boost_"+str(ir))
 samples += wjets_bins
 
 import ROOT as R

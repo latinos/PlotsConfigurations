@@ -3,10 +3,10 @@ from itertools import product, chain
 #structure = {}
 
 wjets_bins = []
-for ir in range(1,11):
-    wjets_bins.append("Wjets_HT_res_"+str(ir))
-# for ir in range(1,6):
-#     wjets_bins.append("Wjets_HT_boost_"+str(ir))
+for ir in range(1,22):
+    wjets_bins.append("Wjets_res_"+str(ir))
+for ir in range(1,8):
+    wjets_bins.append("Wjets_boost_"+str(ir))
 
 
 phase_spaces_boost = [c for c in cuts if "boost" in c]

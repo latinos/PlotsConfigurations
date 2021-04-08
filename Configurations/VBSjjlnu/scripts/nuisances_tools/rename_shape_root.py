@@ -15,9 +15,20 @@ parser.add_argument("-i","--input", help="Input file", type=str)
 parser.add_argument("--shape-name", help="Shape name",type=str)
 parser.add_argument("--rename", help="Rename",type=str)
 parser.add_argument("--samples", help="Samples", nargs="+", type=str)
+parser.add_argument("-sf","--samples-file", help="Samples", type=str)
 parser.add_argument("-ev","--exclude-vars", help="Exclude vars", type=str, nargs="+")
 parser.add_argument("-ec","--exclude-cuts", help="Exclude cuts", type=str, nargs="+")
 args = parser.parse_args()
+
+
+if args.samples and len(args.samples) > 0:
+    samples = args.samples 
+elif args.samples_file:
+    samples = [f.strip() for f in open(args.samples_file).readlines()]
+else:
+    print("Please provide samples of file with a list of samples")
+    exit(1)
+
 
 f = R.TFile(args.input, "UPDATE")
 shape_name = args.shape_name
@@ -32,8 +43,7 @@ for k in f.GetListOfKeys():
         print(k.GetName(), z.GetName())
         for l in R.gDirectory.GetListOfKeys():
 
-            for sample in args.samples:
-
+            for sample in samples:
                 if rename_shape == None:  new_shape_name = shape_name +"_"+ sample
                 else:       new_shape_name = rename_shape
 
