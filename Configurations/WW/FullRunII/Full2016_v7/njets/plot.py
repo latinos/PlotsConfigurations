@@ -20,9 +20,16 @@ groupPlot['WW']  = {
                   'nameHR' : 'WW',
                   'isSignal' : 0,
                   'color': 851, # kAzure -9 
-                  #'samples'  : ['WW', 'ggWW']
-                  'samples'  : ['WW_NJ_0','WW_NJ_1','WW_NJ_GE2']
+                  'samples'  : ['WW_fid_NJ_0','WW_fid_NJ_1','WW_fid_NJ_2','WW_fid_NJ_3','WW_fid_NJ_4','WW_fid_NJ_GE5']
               }
+
+groupPlot['WW_nonfid']  = {
+                  'nameHR' : 'WW_nonfid',
+                  'isSignal' : 0,
+                  'color': 853, # kAzure -9 
+                  'samples'  : ['WW_nonfid_NJ_0','WW_nonfid_NJ_1','WW_nonfid_NJ_2','WW_nonfid_NJ_3','WW_nonfid_NJ_4','WW_nonfid_NJ_GE5']
+              }
+
 
 groupPlot['WWewk']  = {
                   'nameHR' : 'WWewk',
@@ -76,14 +83,14 @@ groupPlot['Wg']  = {
                   'color'    : 810,   # kOrange + 10
                   'samples'  : ['Wg']
               }
-
+'''
 groupPlot['Zg']  = {
                   'nameHR' : "Z#gamma",
                   'isSignal' : 0,
                   'color'    : 811,   # kOrange + 10
                   'samples'  : ['Zg']
               }
-
+'''
 groupPlot['WgS']  = {
                   'nameHR' : "W#gamma*",
                   'isSignal' : 0,
@@ -169,72 +176,106 @@ plot['top'] = {
                   'isSignal' : 0,
                   'isData'   : 0, 
                   'scale'    : 1.0,
-                  #'cuts'  : {
-                       #'hww2l2v_13TeV_of0j'      : 0.94 ,
-                       #'hww2l2v_13TeV_top_of0j'  : 0.94 , 
-                       #'hww2l2v_13TeV_dytt_of0j' : 0.94 ,
-                       #'hww2l2v_13TeV_em_0j'     : 0.94 , 
-                       #'hww2l2v_13TeV_me_0j'     : 0.94 , 
-                       ##
-                       #'hww2l2v_13TeV_of1j'      : 0.86 ,
-                       #'hww2l2v_13TeV_top_of1j'  : 0.86 , 
-                       #'hww2l2v_13TeV_dytt_of1j' : 0.86 ,
-                       #'hww2l2v_13TeV_em_1j'     : 0.86 , 
-                       #'hww2l2v_13TeV_me_1j'     : 0.86 , 
-                        #},
                   }
 
-'''
-plot['WW']  = {
-                  'color': 851, # kAzure -9 
-                  'isSignal' : 0,
-                  'isData'   : 0,    
-                  'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
-                  }
-'''
-plot['WW_NJ_0'] = {
+plot['WW_fid_NJ_0'] = {
                   'color': 851, # kAzure -9 
                   'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
                   }
 
-plot['WW_NJ_1'] = {
+plot['WW_fid_NJ_1'] = {
                   'color': 851, # kAzure -9 
                   'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
                   }
 
-plot['WW_NJ_GE2'] = {
+plot['WW_fid_NJ_2'] = {
+                  'color': 851, # kAzure -9 
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
+}
+
+plot['WW_fid_NJ_3'] = {
+                  'color': 851, # kAzure -9 
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
+}
+
+plot['WW_fid_NJ_4'] = {
+                  'color': 851, # kAzure -9 
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
+}
+
+plot['WW_fid_NJ_GE5'] = {
+                  'color': 851, # kAzure -9 
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
+}
+
+plot['WW_nonfid_NJ_0'] = {
                   'color': 851, # kAzure -9 
                   'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
                   }
 
-'''
-plot['ggWW']  = {
-                  'color': 850, # kAzure -10
+plot['WW_nonfid_NJ_1'] = {
+                  'color': 851, # kAzure -9 
                   'isSignal' : 0,
-                  'isData'   : 0,    
-                  'scale'    : 1.0
+                  'isData'   : 0,
+                  'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
                   }
-'''
+
+plot['WW_nonfid_NJ_2'] = {
+                  'color': 851, # kAzure -9 
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
+}
+
+plot['WW_nonfid_NJ_3'] = {
+                  'color': 851, # kAzure -9 
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
+}
+
+plot['WW_nonfid_NJ_4'] = {
+                  'color': 851, # kAzure -9 
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
+}
+
+plot['WW_nonfid_NJ_GE5'] = {
+                  'color': 851, # kAzure -9 
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
+}
+
 plot['WWewk']  = {
                   'color': 851, # kAzure -9 
                   'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
                   }
-
+'''
 plot['Zg']  = {
                   'color': 859, # kAzure -1  
                   'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.0
                   }
-
+'''
 plot['Wg']  = { 
                   'color': 859, # kAzure -1  
                   'isSignal' : 0,
@@ -365,7 +406,7 @@ plot['DATA']  = {
                   'color': 1 ,  
                   'isSignal' : 0,
                   'isData'   : 1 ,
-                  'isBlind'  : 0
+                  'isBlind'  : 1
               }
 
 

@@ -21,9 +21,9 @@ HiggsXS = HiggsXSection()
 cuts0j = []
 cuts1j = []
 cuts2j = []
-#cuts3j = []
-#cuts4j = []
-#cuts5j = []
+cuts3j = []
+cuts4j = []
+cuts5j = []
 
 
 for k in cuts:
@@ -31,9 +31,9 @@ for k in cuts:
     if '0j' in cat: cuts0j.append(k+'_'+cat)
     elif '1j' in cat: cuts1j.append(k+'_'+cat)
     elif '2j' in cat: cuts2j.append(k+'_'+cat)
-#    elif '3j' in cat: cuts3j.append(k+'_'+cat)
-#    elif '4j' in cat: cuts4j.append(k+'_'+cat)
-#    elif '5j' in cat: cuts5j.append(k+'_'+cat)
+    elif '3j' in cat: cuts3j.append(k+'_'+cat)
+    elif '4j' in cat: cuts4j.append(k+'_'+cat)
+    elif '5j' in cat: cuts5j.append(k+'_'+cat)
     else: print 'WARNING: name of category does not contain on either 0j,1j,2j,3j,4j,5j'
 
 ################################ EXPERIMENTAL UNCERTAINTIES  #################################
@@ -667,7 +667,7 @@ nuisances['DYttnorm2j']  = {
                  'type'  : 'rateParam',
                  'cuts'  : cuts2j
                 }
-'''
+
 nuisances['DYttnorm3j']  = {
                  'name'  : 'CMS_hww_DYttnorm3j',
                  'samples'  : {
@@ -694,7 +694,7 @@ nuisances['DYttnorm5j']  = {
                  'type'  : 'rateParam',
                  'cuts'  : cuts5j
                 }
-
+'''
 nuisances['Topnorm']  = {
                'name'  : 'CMS_hww_Topnorm',
                'samples'  : {
@@ -703,6 +703,7 @@ nuisances['Topnorm']  = {
                'type'  : 'rateParam'
               }
 '''
+
 nuisances['Topnorm0j']  = {
                'name'  : 'CMS_hww_Topnorm0j',
                'samples'  : {
@@ -729,7 +730,7 @@ nuisances['Topnorm2j']  = {
                'type'  : 'rateParam',
                'cuts'  : cuts2j
               }
-'''
+
 nuisances['Topnorm3j']  = {
                'name'  : 'CMS_hww_Topnorm3j',
                'samples'  : {
@@ -756,7 +757,7 @@ nuisances['Topnorm5j']  = {
                'type'  : 'rateParam',
                'cuts'  : cuts5j
               }
-'''
+
 ## Use the following if you want to apply the automatic combine MC stat nuisances.
 nuisances['stat'] = {
     'type': 'auto',

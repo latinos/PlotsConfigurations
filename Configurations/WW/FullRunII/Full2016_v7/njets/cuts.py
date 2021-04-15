@@ -8,9 +8,13 @@ supercut = '   mll>12 \
             && ptll>30 \
             && PuppiMET_pt > 20 \
             && (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13) \
-            && mll > 20 \
+            && jetetacut \
            '
 
+            #&& jetetacut \
+
+
+##  signal regions
 ##  signal regions
 cuts['ww2l2v_13TeV_sr']  = {
    'expr' : 'sr',
@@ -18,7 +22,10 @@ cuts['ww2l2v_13TeV_sr']  = {
    'categories' : {
       '0j' : 'zeroJet',
       '1j' : 'oneJet && Alt$(CleanJet_pt[1],0)<30',
-      '2j' : 'twoJet',
+      '2j' : 'twoJet && Alt$(CleanJet_pt[2],0)<30',
+      '3j' : 'threeJet && Alt$(CleanJet_pt[3],0)<30',
+      '4j' : 'fourJet && Alt$(CleanJet_pt[4],0)<30',
+      '5j' : 'fiveJet',
    }
 }
 
@@ -29,7 +36,10 @@ cuts['ww2l2v_13TeV_top']  = {
    'categories' : {
       '0j' : 'zeroJet',
       '1j' : 'oneJet && Alt$(CleanJet_pt[1],0)<30',
-      '2j' : 'twoJet',
+      '2j' : 'twoJet && Alt$(CleanJet_pt[2],0)<30',
+      '3j' : 'threeJet && Alt$(CleanJet_pt[3],0)<30',
+      '4j' : 'fourJet && Alt$(CleanJet_pt[4],0)<30',
+      '5j' : 'fiveJet',
    }
 }
 
@@ -39,6 +49,9 @@ cuts['ww2l2v_13TeV_dytt']  = {
    'categories' : {
       '0j' : 'zeroJet',
       '1j' : 'oneJet && Alt$(CleanJet_pt[1],0)<30',
-      '2j' : 'twoJet',
+      '2j' : 'twoJet && Alt$(CleanJet_pt[2],0)<30',
+      '3j' : 'threeJet && Alt$(CleanJet_pt[3],0)<30',
+      '4j' : 'fourJet && Alt$(CleanJet_pt[4],0)<30',
+      '5j' : 'fiveJet',
    }
 }

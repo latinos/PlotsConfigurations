@@ -59,24 +59,71 @@ structure['top'] = {
                   'isData'   : 0 
                   }
 
-structure['WW_NJ_0'] = {
+structure['WW_fid_NJ_0'] = {
                   'isSignal' : 1,
                   'isData'   : 0    
                   }
 
-structure['WW_NJ_1'] = {
+structure['WW_fid_NJ_1'] = {
                   'isSignal' : 1,
                   'isData'   : 0
                   }
 
-structure['WW_NJ_GE2'] = {
+structure['WW_fid_NJ_2'] = {
                   'isSignal' : 1,
                   'isData'   : 0
                   }
+
+structure['WW_fid_NJ_3'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0
+                  }
+
+structure['WW_fid_NJ_4'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0
+                  }
+
+structure['WW_fid_NJ_GE5'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0
+                  }
+
+structure['WW_nonfid_NJ_0'] = {
+                  'isSignal' : 0,
+                  'isData'   : 0
+                  }
+
+structure['WW_nonfid_NJ_1'] = {
+                  'isSignal' : 0,
+                  'isData'   : 0
+                  }
+
+structure['WW_nonfid_NJ_2'] = {
+                  'isSignal' : 0,
+                  'isData'   : 0
+                  }
+
+structure['WW_nonfid_NJ_3'] = {
+                  'isSignal' : 0,
+                  'isData'   : 0
+                  }
+
+structure['WW_nonfid_NJ_4'] = {
+                  'isSignal' : 0,
+                  'isData'   : 0
+                  }
+
+structure['WW_nonfid_NJ_GE5'] = {
+                  'isSignal' : 0,
+                  'isData'   : 0
+                  }
+
 structure['WWewk']  = {
                   'isSignal' : 0,
                   'isData'   : 0
                   }
+
 structure['ggWW_Int']  = {
                   'isSignal' : 0,
                   'isData'   : 0    

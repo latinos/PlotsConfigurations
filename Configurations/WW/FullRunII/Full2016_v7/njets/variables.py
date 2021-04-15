@@ -5,7 +5,19 @@ variables['events']  = {   'name': '1',
                         'xaxis' : 'events', 
                         'fold' : 3
                         }
-
+'''
+variables['ngenjet'] = { 'name': 'nCleanGenJet',
+                        'range': (10,0,10),
+                        'xaxis' : 'Number of gen jets',
+                        'fold' : 0
+                        }
+variables['njet']  = {
+                        'name': 'Sum$(CleanJet_pt>30)',
+                        'range' : (10,0,10),
+                        'xaxis' : 'Number of jets',
+                        'fold' : 0   # 0 = not fold (default), 1 = fold underflowbin, 2 = fold overflow bin, 3 = fold underflow and overflow
+                        }
+'''
 variables['mll']  = {   'name': 'mll',
                         'range' : (20, 20,200),
                         'xaxis' : 'm_{ll} [GeV]',
@@ -18,6 +30,18 @@ variables['mth']  = {   'name': 'mth',
                         'fold' : 3
                         }
 '''
+variables['genjeteta1']  = {  'name': 'GenJet_eta[0]*(nCleanGenJet > 0)',
+                        'range' : (20,-5.0,5.0),
+                        'xaxis' : '#eta 1st jet',
+                        'fold'  : 0
+                        }
+
+variables['genjeteta2']  = {  'name': 'GenJet_eta[1]*(nCleanGenJet > 1)',
+                        'range' : (20,-5.0,5.0),
+                        'xaxis' : '#eta 2nd jet',
+                        'fold'  : 0
+                        }
+
 variables['mth-more']  = {   'name': 'mth',
                         'range' : (20, 60,200),
                         'xaxis' : 'm_{T}^{WW} [GeV]',

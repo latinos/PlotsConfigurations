@@ -93,6 +93,7 @@ DataTrig = {
 # SFweight does not include btag weights
 mcCommonWeightNoMatch = 'XSWeight*SFweight*METFilter_MC'
 mcCommonWeight = 'XSWeight*SFweight*PromptGenLepMatch2l*METFilter_MC'
+mcCommonWeight_signal = 'genjetetacut*XSWeight*SFweight*PromptGenLepMatch2l*METFilter_MC'
 
 
 ###########################################
@@ -141,7 +142,7 @@ samples['Wg'] = {
     'weight': mcCommonWeightNoMatch + '*(!(Gen_ZGstar_mass > 0))',
     'FilesPerJob': 4
 }
-'''
+
 ######## Zg #######
 
 files = nanoGetSampleFiles(mcDirectory, 'Zg')
@@ -161,7 +162,7 @@ samples['ZgS'] = {
     'FilesPerJob': 4,
     }
 addSampleWeight(samples, 'ZgS', 'Zg', '(Gen_ZGstar_mass > 0)')
-'''
+
 ######## WgS ########
 
 files = nanoGetSampleFiles(mcDirectory, 'Wg_MADGRAPHMLM') + \
@@ -297,8 +298,10 @@ samples['WH_htt'] = {
 #############   SIGNALS  ##################
 ###########################################
 
-njetBinning = ['0', '1', '2+']
+#njetBinning = ['0', '1', '2', '3', '4']
+njetBinning = ['0', '1', '2', '3', '4', '5+']
 ngenjet = 'nCleanGenJet'
+fiducial = 'fiducial'
 
 signals = []
 
@@ -307,8 +310,8 @@ signals = []
 samples['WW'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'WWTo2L2Nu') + \
             nanoGetSampleFiles(mcDirectory, 'GluGluWWTo2L2Nu_MCFM'),
- #   'weight': mcCommonWeight+ '*nllW', # temporary - nllW module not run on PS and UE variation samples
-    'weight': mcCommonWeight,
+    'weight': mcCommonWeight_signal, # temporary - nllW module not run on PS and UE variation samples
+#    'weight': mcCommonWeight,
     'FilesPerJob': 2
 }
 addSampleWeight(samples, 'WW', 'WWTo2L2Nu', 'nllW')
@@ -324,22 +327,21 @@ signals.append('WW')
 #signals.append('ggWW')
 
 
-### Now bin in njets at gen level (inclusive in fiducial)
+### Now bin in (fiducial / nonfiducial) x {njets}
 
 for sname in signals:
   sample = samples[sname]
   sample['subsamples'] = {}
 
-  for nj in njetBinning:
-    if nj.endswith('+'):
-      binName = 'NJ_GE%s' % (nj[:-1])
-      cut = '%s >= %s' % (ngenjet, nj[:-1])
-    else:
-      binName = 'NJ_%s' % (nj)
-      cut = '%s == %s' % (ngenjet, nj)
-  
-    sample['subsamples'][binName] = cut
-  
+  for flabel, fidcut in [('fid', fiducial), ('nonfid', '!('+fiducial+')')]:
+    for nj in njetBinning:
+      if nj.endswith('+'):
+        binName = '%s_NJ_GE%s' % (flabel, nj[:-1])
+        cut = '%s && %s >= %s' % (fidcut, ngenjet, nj[:-1])
+      else:
+        binName = '%s_NJ_%s' % (flabel, nj)
+        cut = '%s && %s == %s' % (fidcut, ngenjet, nj)
+      sample['subsamples'][binName] = cut
 
 ###########################################
 ################## FAKE ###################

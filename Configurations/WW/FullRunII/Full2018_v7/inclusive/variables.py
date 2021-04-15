@@ -1,5 +1,9 @@
 # variables
 
+#variables = {}
+    
+
+
 variables['events']  = {   'name': '1',      
                         'range' : (1,0,2),  
                         'xaxis' : 'events', 
@@ -17,6 +21,7 @@ variables['mth']  = {   'name': 'mth',
                         'xaxis' : 'm_{T}^{WW} [GeV]',
                         'fold' : 3
                         }
+
 '''
 variables['mth-more']  = {   'name': 'mth',
                         'range' : (20, 60,200),
@@ -76,9 +81,9 @@ variables['puppimet']  = {
 
 variables['njet']  = {
                         'name': 'Sum$(CleanJet_pt>30)',
-                        'range' : (10,0,10),
+                        'range' : (5,0,5),
                         'xaxis' : 'Number of jets',
-                        'fold' : 0   # 0 = not fold (default), 1 = fold underflowbin, 2 = fold overflow bin, 3 = fold underflow and overflow
+                        'fold' : 2   # 0 = not fold (default), 1 = fold underflowbin, 2 = fold overflow bin, 3 = fold underflow and overflow
                         }
 
 variables['jetpt1']  = {
@@ -107,21 +112,26 @@ variables['jeteta2']  = {  'name': '(Sum$(CleanJet_pt>30)>1)*(Alt$(CleanJet_eta[
                         'fold'  : 0
                         }
 
-variables['mllVSmth'] = {   'name': 'mll:mth',            #   variable name    
-                        'range' : (5,20,200, 5,60,200),            #   variable range
-                        'xaxis' : 'm_{ll} : m_{T}^{H}',      #   x axis name
-                        'fold' : 3 ,
-                        }
 
 
-variables['mllVSmth_wt'] = {   'name': 'mll:mth',            #   variable name    
-                        'range' : (5,20,200, 5,60,200),            #   variable range
-                        'xaxis' : 'm_{ll} : m_{T}^{H}',      #   x axis name
-                        'fold' : 3 ,
-                        # do weighted plot too
-                        'doWeight' : 1,
-                        'binX'     : 5,
-                        'binY'     : 5
-                        #
-                        }
+variables['mllVSmth_pt2ge20'] = {   'name': 'mll:mth',            #   variable name    
+                             'range' : ([60,80,90,100,110,120,130,150,200],[12,25,35,40,45,50,55,70,90,210],),            #   variable range
+                             'xaxis' : 'm_{ll} : m_{T}^{H}',      #   x axis name
+                             'fold' : 3 ,
+                             # do weighted plot too
+                             'doWeight' : 1,
+                             'binX'     : 8,
+                             'binY'     : 9
+                             #
+                             }
+variables['mllVSmth_pt2lt20'] = {   'name': 'mll:mth',            #   variable name    
+                             'range' : ([60,80,90,110,130,150,200],[12,25,40,50,70,90,210],),            #   variable range
+                             'xaxis' : 'm_{ll} : m_{T}^{H}',      #   x axis name
+                             'fold' : 3 ,
+                             # do weighted plot too
+                             'doWeight' : 1,
+                             'binX'     : 6,
+                             'binY'     : 6
+                             #
+                             }
 '''

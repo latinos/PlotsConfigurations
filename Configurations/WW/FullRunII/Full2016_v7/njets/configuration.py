@@ -2,7 +2,8 @@
 
 treeName = 'Events'
 
-tag = 'WW2016_v7_incl_15Apr'
+#tag = 'WW2016_v7_njets'
+tag = 'WW2016_v7_njets_15Apr'
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFile'
@@ -30,7 +31,7 @@ lumi = 35.867
 outputDirPlots = 'plots'+tag
 
 # used by mkDatacards to define output directory for datacards
-outputDirDatacard = 'datacards'
+outputDirDatacard = 'datacards'+tag
 
 # structure file for datacard
 structureFile = 'structure.py'
