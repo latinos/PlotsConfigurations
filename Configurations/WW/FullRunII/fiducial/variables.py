@@ -3,10 +3,11 @@ variables['events'] = {
     'range': (1,0,1),
     'xaxis': 'events'
 }
+
 '''
 variables['njet'] = {
-    'name': 'HTXS_njets30',
-    'range': (5, 0., 5.),
+    'name': 'nCleanGenJet',
+    'range': (10, 0., 10.),
     'fold': 1,
     'xaxis': 'N_{jet}'
 }
