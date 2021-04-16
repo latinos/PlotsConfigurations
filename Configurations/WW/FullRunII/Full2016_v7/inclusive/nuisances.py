@@ -70,7 +70,7 @@ nuisances['lumi_Ghosts'] = {
     'samples': dict((skey, '1.004') for skey in mc if skey not in ['WgS','WZ'])
 }
 
-'''
+
 #### FAKES
 
 nuisances['fake_syst_em'] = {
@@ -370,8 +370,8 @@ nuisances['PS_FSR_2jet']  = {
 
 
 # PS and UE
-nuisances['UE_whss']  = {
-                'name'  : 'UE_whss',
+nuisances['UE']  = {
+                'name'  : 'UE_CP5',
                 'skipCMS' : 1,
                 'type'  : 'lnN',
                 'samples': dict((skey, '1.015') for skey in mc),
@@ -632,7 +632,7 @@ nuisances['QCDscale_gg_ACCEPT'] = {
 
 
 ## rate parameters
-
+'''
 nuisances['DYttnorm']  = {
                'name'  : 'CMS_hww_DYttnorm',
                'samples'  : {
@@ -640,7 +640,7 @@ nuisances['DYttnorm']  = {
                    },
                'type'  : 'rateParam'
               }
-
+'''
 nuisances['DYttnorm0j']  = {
                'name'  : 'CMS_hww_DYttnorm0j',
                'samples'  : {
@@ -667,7 +667,7 @@ nuisances['DYttnorm2j']  = {
                  'type'  : 'rateParam',
                  'cuts'  : cuts2j
                 }
-
+'''
 nuisances['DYttnorm3j']  = {
                  'name'  : 'CMS_hww_DYttnorm3j',
                  'samples'  : {
@@ -702,7 +702,7 @@ nuisances['Topnorm']  = {
                    },
                'type'  : 'rateParam'
               }
-
+'''
 nuisances['Topnorm0j']  = {
                'name'  : 'CMS_hww_Topnorm0j',
                'samples'  : {
@@ -729,7 +729,7 @@ nuisances['Topnorm2j']  = {
                'type'  : 'rateParam',
                'cuts'  : cuts2j
               }
-
+'''
 nuisances['Topnorm3j']  = {
                'name'  : 'CMS_hww_Topnorm3j',
                'samples'  : {

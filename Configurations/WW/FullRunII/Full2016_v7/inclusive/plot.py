@@ -18,9 +18,10 @@ groupPlot['top']  = {
 
 groupPlot['WW']  = {  
                   'nameHR' : 'WW',
-                  'isSignal' : 1,
+                  'isSignal' : 0,
                   'color': 851, # kAzure -9 
-                  'samples'  : ['WW', 'ggWW']
+                  #'samples'  : ['WW', 'ggWW']
+                  'samples'  : ['WW_NJ_0','WW_NJ_1','WW_NJ_GE2']
               }
 
 groupPlot['WWewk']  = {
@@ -183,21 +184,43 @@ plot['top'] = {
                         #},
                   }
 
-
+'''
 plot['WW']  = {
                   'color': 851, # kAzure -9 
                   'isSignal' : 0,
                   'isData'   : 0,    
                   'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
                   }
+'''
+plot['WW_NJ_0'] = {
+                  'color': 851, # kAzure -9 
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
+                  }
 
+plot['WW_NJ_1'] = {
+                  'color': 851, # kAzure -9 
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
+                  }
+
+plot['WW_NJ_GE2'] = {
+                  'color': 851, # kAzure -9 
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
+                  }
+
+'''
 plot['ggWW']  = {
                   'color': 850, # kAzure -10
                   'isSignal' : 0,
                   'isData'   : 0,    
                   'scale'    : 1.0
                   }
-
+'''
 plot['WWewk']  = {
                   'color': 851, # kAzure -9 
                   'isSignal' : 0,
@@ -256,45 +279,19 @@ plot['VVV']  = {
                   }
 
 # Htautau
-'''
+
 plot['ZH_htt'] = {
                   'nameHR' : 'ZHtt',
                   'color': 632+3, # kRed+3 
-                  'isSignal' : 1,
+                  'isSignal' : 0,
                   'isData'   : 0,    
                   'scale'    : 1    #
                   }
-'''
-#plot['bbH_htt'] = {
-#                  'nameHR' : 'bbHtt',
-#                  'color': 632-1, # kRed-1 
-#                  'isSignal' : 1,
-#                  'isData'   : 0,
-#                  'scale'    : 1    #
-#                  }
-#
-#plot['ttH_htt'] = {
-#                  'nameHR' : 'bbHtt',
-#                  'color': 632-2, # kRed-1 
-#                  'isSignal' : 1,
-#                  'isData'   : 0,
-#                  'scale'    : 1    #
-#                  }
-#
-#
-#plot['ggZH_htt'] = {
-#                  'nameHR' : 'ggZHtt',
-#                  'color': 632+4, # kRed+4
-#                  'isSignal' : 1,
-#                  'isData'   : 0,    
-#                  'scale'    : 1    #
-#                  }
-#
-'''
+
 plot['WH_htt'] = {
                   'nameHR' : 'WHtt',
                   'color': 632+2, # kRed+2 
-                  'isSignal' : 1,
+                  'isSignal' : 0,
                   'isData'   : 0,    
                   'scale'    : 1    #
                   }
@@ -303,7 +300,7 @@ plot['WH_htt'] = {
 plot['qqH_htt'] = {
                   'nameHR' : 'qqHtt',
                   'color': 632+1, # kRed+1 
-                  'isSignal' : 1,
+                  'isSignal' : 0,
                   'isData'   : 0,    
                   'scale'    : 1    #
                   }
@@ -312,25 +309,17 @@ plot['qqH_htt'] = {
 plot['ggH_htt'] = {
                   'nameHR' : 'ggHtt',
                   'color': 632, # kRed 
-                  'isSignal' : 1,
+                  'isSignal' : 0,
                   'isData'   : 0,    
                   'scale'    : 1    #
                   }
-'''
+
 # HWW 
 
-#plot['H_hww'] = {
-#                  'nameHR' : 'Hww',
-#                  'color': 632, # kRed 
-#                  'isSignal' : 1,
-#                  'isData'   : 0,    
-#                  'scale'    : 1    #
-#                  }
-'''
 plot['ZH_hww'] = {
                   'nameHR' : 'ZH',
                   'color': 632+3, # kRed+3 
-                  'isSignal' : 1,
+                  'isSignal' : 0,
                   'isData'   : 0,    
                   'scale'    : 1    #
                   }
@@ -338,7 +327,7 @@ plot['ZH_hww'] = {
 plot['ggZH_hww'] = {
                   'nameHR' : 'ggZH',
                   'color': 632+4, # kRed+4
-                  'isSignal' : 1,
+                  'isSignal' : 0,
                   'isData'   : 0,    
                   'scale'    : 1    #
                   }
@@ -346,16 +335,16 @@ plot['ggZH_hww'] = {
 plot['WH_hww'] = {
                   'nameHR' : 'WH',
                   'color': 632+2, # kRed+2 
-                  'isSignal' : 1,
+                  'isSignal' : 0,
                   'isData'   : 0,    
                   'scale'    : 1    #
                   }
-'''
+
 
 plot['qqH_hww'] = {
                   'nameHR' : 'qqH',
                   'color': 632+1, # kRed+1 
-                  'isSignal' : 1,
+                  'isSignal' : 0,
                   'isData'   : 0,    
                   'scale'    : 1    #
                   }
@@ -364,27 +353,10 @@ plot['qqH_hww'] = {
 plot['ggH_hww'] = {
                   'nameHR' : 'ggH',
                   'color': 632, # kRed 
-                  'isSignal' : 1,
+                  'isSignal' : 0,
                   'isData'   : 0,    
                   'scale'    : 1    #
                   }
-
-#plot['bbH_hww'] = {
-#                  'nameHR' : 'bbH',
-#                  'color': 632+5, # kRed+5 
-#                  'isSignal' : 1,
-#                  'isData'   : 0,
-#                  'scale'    : 1    #
-#                  }
-
-#plot['ttH_hww'] = {
-#                  'nameHR' : 'ttH',
-#                  'color': 632+6, # kRed+6
-#                  'isSignal' : 1,
-#                  'isData'   : 0,
-#                  'scale'    : 1    #
-#                  }
-#
 
 # data
 
@@ -404,7 +376,3 @@ plot['DATA']  = {
 legend['lumi'] = 'L = 35.9/fb'
 
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
-
-
-
-
