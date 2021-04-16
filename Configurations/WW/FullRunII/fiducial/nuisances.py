@@ -54,7 +54,7 @@ nuisances['QCDscale_VV'] = {
     }
 }
 '''
-
+'''
 # NLL resummation variations
 nuisances['WWresum']  = {
   'name'  : 'CMS_hww_WWresum',
@@ -77,7 +77,7 @@ nuisances['WWqscale']  = {
  #     'WW_alt'   : ['nllW_Qup/nllW', 'nllW_Qdown/nllW'],
     },
 }
-
+'''
 '''
 # NLL resummation variations
 nuisances['WWresum0j']  = {

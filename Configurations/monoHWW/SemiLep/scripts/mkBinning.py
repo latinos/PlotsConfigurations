@@ -6,7 +6,7 @@ import argparse
 
 parser = argparse.ArgumentParser(description = "Receive the parameters")
 parser.add_argument('--config', action = 'store', type = str, dest = 'cfg', help = 'Input configuration file')
-parser.add_argument('--var'   , action = 'store', type = str, dest = 'var', default='newBDT_Ada13Var', help = 'Variable to optimize binning')
+parser.add_argument('--var'   , action = 'store', type = str, dest = 'var', default='newBDT_Ada13Var', help = 'Variable to optimize binning (list allowed)')
 parser.add_argument('--cut'   , action = 'store', type = str, dest = 'cut', default='InCh_SR', help = 'Cut to optimize binning')
 parser.add_argument('--last-nbins'  , action = 'store', type = int, dest = 'l_nbins', default=3, help = 'Optimize last n bins')
 parser.add_argument('--events-bkg'  , action = 'store', type = int, dest = 'n_event', default=20, help = 'Request at least n events in bkg bin')

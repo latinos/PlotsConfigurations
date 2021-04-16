@@ -38,7 +38,7 @@ def create_asimov_fitdiag(card_id, combine_dir, b_only=True):
         name_tag = '_s+b' 
         sb_str = '-t -1 --expectSignal 1 -n '+name_tag
 
-    cmd += 'combine -M FitDiagnostics -d '+card_id+'.root '+sb_str+' --rMin -10 --forceRecreateNLL\n'
+    cmd += 'combine -M FitDiagnostics -d '+card_id+'.root '+sb_str+' --rMin -1.5 --forceRecreateNLL\n'
     cmd += 'python '+combine_dir+'/HiggsAnalysis/CombinedLimit/test/diffNuisances.py -a fitDiagnostics'+name_tag+'.root -g plots'+name_tag+'.root >> fitResults'+name_tag+'\n'
     return cmd
 
@@ -49,8 +49,8 @@ def prep_and_sub_asimov_impact(card_id, b_only=True):
     if not b_only:
         name_tag = 's+b' 
         sb_str = '-t -1 --expectSignal 1 -n '+name_tag
-    cmd += 'combineTool.py -M Impacts -d '+card_id+'.root '+sb_str+' --rMin -10 --doInitialFit --allPars -m 125\n'
-    cmd += 'combineTool.py -M Impacts -d '+card_id+'.root -o impacts_'+name_tag+'.json '+sb_str+' --rMin -10 --doFits -m 125 --job-mode condor --task-name '+name_tag+' --sub-opts \'+JobFlavour = "espresso"\nrequirements = (OpSysAndVer =?= "CentOS7")\'\n'
+    cmd += 'combineTool.py -M Impacts -d '+card_id+'.root '+sb_str+' --rMin -1.5 --doInitialFit --allPars -m 125\n'
+    cmd += 'combineTool.py -M Impacts -d '+card_id+'.root -o impacts_'+name_tag+'.json '+sb_str+' --rMin -1.5 --doFits -m 125 --job-mode condor --task-name '+name_tag+' --sub-opts \'+JobFlavour = "espresso"\nrequirements = (OpSysAndVer =?= "CentOS7")\'\n'
     return cmd
 
 def collect_asimov_impact(card_id, b_only=True):
@@ -92,13 +92,13 @@ for data_set in card_dict:
     print('Write workspace')
     if not args.collect:
         if not args.no_workspace: o_file.write(create_workspace_root(card_id))
-        o_file.write(create_asimov_fitdiag(card_id, comb_dir, b_only=True))
+        #o_file.write(create_asimov_fitdiag(card_id, comb_dir, b_only=True))
         o_file.write(prep_and_sub_asimov_impact(card_id, b_only=True))
-        o_file.write(create_asimov_fitdiag(card_id, comb_dir, b_only=False))
-        o_file.write(prep_and_sub_asimov_impact(card_id, b_only=False))
+        #o_file.write(create_asimov_fitdiag(card_id, comb_dir, b_only=False))
+        #o_file.write(prep_and_sub_asimov_impact(card_id, b_only=False))
     else:
         o_file.write(collect_asimov_impact(card_id, b_only=True))
-        o_file.write(collect_asimov_impact(card_id, b_only=False))
+        #o_file.write(collect_asimov_impact(card_id, b_only=False))
 
 o_file.close() 
 

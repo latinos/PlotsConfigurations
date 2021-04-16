@@ -380,65 +380,44 @@ for var in ['Up', 'Down']:
         }
 
 ## BDT OTF
-
 MVA_folder = '%s/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/MVA/darkHiggs/' % os.getenv('CMSSW_BASE')
-
-xml_file_A13 = MVA_folder + 'UATmva_darkHiggsVWjAndTT_2017_BDT_125Trees_AdaBoost_GiniIndex_20Cuts_CostComplexity_12PruneStrength_13Var.weights.xml' 
-var_file_A13 = MVA_folder + 'Ada_13Var_variables.txt'
-
-#aliases['newBDT_Ada13'] = {
-#    'linesToAdd': [
-#        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
-#        '.L %s/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/Full2017_v7/darkHiggs/TMVAfiller_OTF.cc+' % os.getenv('CMSSW_BASE')
-#    ],
-#    'class': 'TMVAfillerOTF',
-#    'args': (var_file_A13, xml_file_A13),
-#}
-#
-##xml_file_A14 = MVA_folder + 'UATmva_darkHiggsVWjAndTT_2017_BDT_700Trees_AdaBoost_GiniIndex_20Cuts_CostComplexity_12PruneStrength_14Var.weights.xml'
-##var_file_A14 = MVA_folder + 'Ada_14Var_variables.txt'
-##
-##aliases['nloBDT_Ada14'] = {
-##    'linesToAdd': [
-##        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
-##        '.L %s/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/Full2017_v7/darkHiggs/TMVAfiller_OTF.cc+' % os.getenv('CMSSW_BASE')
-##    ],
-##    'class': 'TMVAfillerOTF',
-##    'args': (var_file_A14, xml_file_A14),
-##}
-#
-#xml_file_G11 = MVA_folder + 'UATmva_darkHiggsVWjAndTT_2017_BDT_200Trees_Grad_FalseBagged_0.6BagFrac_1BagShrink_GiniIndex_20Cuts_CostComplexity_12PruneStrength_11Var.weights.xml'
-#var_file_G11 = MVA_folder + 'Grad_11Var_variables.txt'
-#
-#aliases['newBDT_Grad11'] = {
-#    'class': 'TMVAfillerOTF',
-#    'args': (var_file_G11, xml_file_G11),
-#}
-
 # Clean BDT's
 bdt_dict = {
-   #'cleanBDT_Ada12': MVA_folder + 'CleanVar/UATmva_darkHiggsVWjAndTT_2017_BDT_1200Trees_AdaBoost_GiniIndex_20Cuts_CostComplexity_12PruneStrength_12Var.weights.xml',
-   #'cleanBDT_Ada13': MVA_folder + 'CleanVar_Pup/UATmva_darkHiggsVWjAndTT_2017_BDT_900Trees_AdaBoost_GiniIndex_20Cuts_CostComplexity_12PruneStrength_13Var.weights.xml',
-   #'cleanBDT_Grad12': MVA_folder + 'CleanVar/UATmva_darkHiggsVWjAndTT_2017_BDT_1600Trees_Grad_FalseBagged_0.6BagFrac_1BagShrink_GiniIndex_20Cuts_CostComplexity_12PruneStrength_12Var.weights.xml',
-   #'cleanBDT_Grad13': MVA_folder + 'CleanVar_Pup/UATmva_darkHiggsVWjAndTT_2017_BDT_900Trees_Grad_FalseBagged_0.6BagFrac_1BagShrink_GiniIndex_20Cuts_CostComplexity_12PruneStrength_13Var.weights.xml',
-   #'cleanBDT_NLOAda12': MVA_folder + 'CleanVar/NLO/UATmva_darkHiggsVWjAndTT_2017_BDT_1200Trees_AdaBoost_GiniIndex_20Cuts_CostComplexity_12PruneStrength_12Var.weights.xml',
-   'cleanBDT_NLOAda13': MVA_folder + 'CleanVar_Pup/NLO/UATmva_darkHiggsVWjAndTT_2017_BDT_1200Trees_AdaBoost_GiniIndex_20Cuts_CostComplexity_12PruneStrength_13Var.weights.xml',
-   #'cleanBDT_NLOGrad12': MVA_folder + 'CleanVar/NLO/UATmva_darkHiggsVWjAndTT_2017_BDT_900Trees_Grad_FalseBagged_0.6BagFrac_1BagShrink_GiniIndex_20Cuts_CostComplexity_12PruneStrength_12Var.weights.xml',
-   'cleanBDT_NLOGrad13': MVA_folder + 'CleanVar_Pup/NLO/UATmva_darkHiggsVWjAndTT_2017_BDT_700Trees_Grad_FalseBagged_0.6BagFrac_1BagShrink_GiniIndex_20Cuts_CostComplexity_12PruneStrength_13Var.weights.xml',
-   #High mZp
-   'hmZpBDT_NLOAda13': MVA_folder + 'HighMZp/NLO/UATmva_darkHiggsHighMZpVWjAndTT_2017_BDT_800Trees_AdaBoost_GiniIndex_20Cuts_CostComplexity_12PruneStrength_13Var.weights.xml',
-   'hmZpBDT_NLOGrad13': MVA_folder + 'HighMZp/NLO/UATmva_darkHiggsHighMZpVWjAndTT_2017_BDT_250Trees_Grad_FalseBagged_0.6BagFrac_1BagShrink_GiniIndex_20Cuts_CostComplexity_12PruneStrength_13Var.weights.xml',
+   # mtw study
+   #'BDT_nom' : MVA_folder + '/mtwStudy/lowCut/UATmva_darkHiggsHighMZpVWjAndTT_2017_BDT_500Trees_Grad_FalseBagged_0.6BagFrac_1BagShrink_GiniIndex_20Cuts_CostComplexity_12PruneStrength_13Var.weights.xml',
+   #'BDT_mtw' : MVA_folder + '/mtwStudy/lowCut/UATmva_darkHiggsHighMZpVWjAndTT_2017_BDT_500Trees_Grad_FalseBagged_0.6BagFrac_1BagShrink_GiniIndex_20Cuts_CostComplexity_12PruneStrength_14Var.weights.xml',
+   #'BDT_hig' : MVA_folder + '/mtwStudy/highCut/UATmva_darkHiggsHighMZpVWjAndTT_2017_BDT_100Trees_Grad_FalseBagged_0.6BagFrac_1BagShrink_GiniIndex_20Cuts_CostComplexity_12PruneStrength_13Var.weights.xml',
+#   'DNN_nom' : MVA_folder + '/mtwStudy/lowCut/darkHiggsHighMZpVWjAndTT_2017_DNN_BN32ReluBN16Relu16Relu16ReluL2reg_400epochs_200batch_10tries_13vars.weights.xml',
+#   'DNN_mtw' : MVA_folder + '/mtwStudy/lowCut/darkHiggsHighMZpVWjAndTT_2017_DNN_BN32ReluBN16Relu16Relu16ReluL2reg14var_400epochs_200batch_10tries_14vars.weights.xml',
+#   'DNN_hig' : MVA_folder + '/mtwStudy/highCut/darkHiggsHighMZpVWjAndTTHighMtW_2017_DNN_BN32ReluBN16Relu16Relu16ReluL2reg_400epochs_200batch_10tries_13vars.weights.xml',
+    # TKcut
+    'BDT_Ada13' : MVA_folder + 'TKcut/UATmva_darkHiggsHighMZpVWjAndTT_2017_BDT_500Trees_AdaBoost_GiniIndex_20Cuts_CostComplexity_12PruneStrength_13Var.weights.xml',
+    'BDT_Ada10' : MVA_folder + 'TKcut/UATmva_darkHiggsHighMZpVWjAndTT_2017_BDT_1200Trees_AdaBoost_GiniIndex_20Cuts_CostComplexity_12PruneStrength_10Var.weights.xml',
+    'BDT_Grad13' : MVA_folder + 'TKcut/UATmva_darkHiggsHighMZpVWjAndTT_2017_BDT_500Trees_Grad_FalseBagged_0.6BagFrac_1BagShrink_GiniIndex_20Cuts_CostComplexity_12PruneStrength_13Var.weights.xml',
+    'BDT_Grad10' : MVA_folder + 'TKcut/UATmva_darkHiggsHighMZpVWjAndTT_2017_BDT_700Trees_Grad_FalseBagged_0.6BagFrac_1BagShrink_GiniIndex_20Cuts_CostComplexity_12PruneStrength_10Var.weights.xml',
+
 }
 clean_var = MVA_folder + 'CleanVar.txt'
+clean_var_tk = MVA_folder + 'CleanVar_Tk.txt'
 clean_var_pup = MVA_folder + 'CleanVar_Pup.txt'
+clean_7var_pup = MVA_folder + 'CleanVar_Pup_7var.txt'
+
+puppi_var = MVA_folder + '/mtwStudy/CleanVar_Pup.txt'
+puppi_mtw1_var = MVA_folder + '/mtwStudy/CleanVar_Pup_mtw.txt'
+
+tkcut_13var = MVA_folder + 'TKcut/Clean13Var.txt'
+tkcut_10var = MVA_folder + 'TKcut/Clean10Var.txt'
 
 first = True
 for bdt in bdt_dict:
-    cur_var_file = clean_var
-    if '13Var' in bdt_dict[bdt]: cur_var_file =  clean_var_pup
+    cur_var_file = tkcut_13var
+    do_keras = False
+    if '10Var' in bdt_dict[bdt] or '10var' in bdt_dict[bdt]: cur_var_file = tkcut_10var
+    if 'DNN' in bdt_dict[bdt]: 
+        do_keras = True
     aliases[bdt] = {
         'class': 'TMVAfillerOTF',
-        'args': (cur_var_file, bdt_dict[bdt]),
+        'args': (cur_var_file, bdt_dict[bdt], do_keras),
     }
     if first: 
         aliases[bdt]['linesToAdd'] = [

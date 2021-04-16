@@ -29,6 +29,7 @@ except NameError:
     import collections
     samples = collections.OrderedDict()
 
+
 ################################################
 ######### Higgs mass samples and models ########
 ################################################
@@ -49,6 +50,9 @@ except NameError:
 dataReco = 'Run2016_102X_nAODv7_Full2016v7'
 dataSteps = 'DATAl1loose2016v7__l2loose'
 
+mcProduction = 'Summer16_102X_nAODv7_Full2016v7'
+mcSteps = 'MCl1loose2016v7__MCCorr2016v7__l2loose'
+
 ##############################################
 ###### Tree base directory for the site ######
 ##############################################
@@ -60,8 +64,50 @@ elif  'cern' in SITE:
   treeBaseDir = '/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano'
   # treeBaseDir = '/eos/user/s/ssiebert/HWWNano'
 
-dataDirectory = os.path.join(treeBaseDir, dataReco, dataSteps)
+def makeMCDirectory(var=None, base=treeBaseDir, step=mcSteps):
+    if var is not None:
+        return os.path.join(base, mcProduction, step+'_'+var)
+    else:
+        return os.path.join(base, mcProduction, step)
 
+dataDirectory = os.path.join(treeBaseDir, dataReco, dataSteps)
+mcDirectory = makeMCDirectory()
+
+#########################################
+############ MC COMMON ##################
+#########################################
+
+#mcCommonWeight        = 'XSWeight*SFweight[0]*METFilter_MC*PromptGenLepMatch1l'
+mcCommonWeight        = 'XSWeight*SFweight[0]*METFilter_MC*PUJetIdSF[0]*PromptGenLepMatch1l'
+
+###########################################
+#############  BACKGROUNDS  ###############
+###########################################
+
+###### DY #######
+
+files = nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_ext2')
+files+= nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-10to50_ext1')
+files+= nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-5to50_HT-70to100')
+files+= nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-5to50_HT-100to200')
+files+= nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-5to50_HT-200to400')
+files+= nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-5to50_HT-400to600')
+files+= nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-5to50_HT-600toinf')
+
+samples['DY'] = {
+    'name': files,
+    'weight': mcCommonWeight + '*(Sum$(GenPart_pdgId == 22 && TMath::Odd(GenPart_statusFlags) && GenPart_pt > 20.) == 0)',
+    'FilesPerJob': 3,
+}
+
+#addSampleWeight(samples,'DY','DYJetsToLL_M-50_ext2',ptllDYW_NLO)
+addSampleWeight(samples,'DY','DYJetsToLL_M-50_ext2', 'DY_NLO_pTllrw')
+addSampleWeight(samples,'DY','DYJetsToLL_M-5to50_HT-70to100',  'DY_LO_pTllrw')
+addSampleWeight(samples,'DY','DYJetsToLL_M-5to50_HT-100to200', 'DY_LO_pTllrw')
+addSampleWeight(samples,'DY','DYJetsToLL_M-5to50_HT-200to400', 'DY_LO_pTllrw')
+addSampleWeight(samples,'DY','DYJetsToLL_M-5to50_HT-400to600', 'DY_LO_pTllrw')
+addSampleWeight(samples,'DY','DYJetsToLL_M-5to50_HT-600toinf', 'DY_LO_pTllrw')
+addSampleWeight(samples,'DY','DYJetsToLL_M-10to50_ext1',       'DY_LO_pTllrw*(LHE_HT<100)')
 
 ################################################
 ############ DATA DECLARATION ##################

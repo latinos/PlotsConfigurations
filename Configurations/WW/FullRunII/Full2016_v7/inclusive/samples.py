@@ -141,7 +141,7 @@ samples['Wg'] = {
     'weight': mcCommonWeightNoMatch + '*(!(Gen_ZGstar_mass > 0))',
     'FilesPerJob': 4
 }
-
+'''
 ######## Zg #######
 
 files = nanoGetSampleFiles(mcDirectory, 'Zg')
@@ -161,7 +161,7 @@ samples['ZgS'] = {
     'FilesPerJob': 4,
     }
 addSampleWeight(samples, 'ZgS', 'Zg', '(Gen_ZGstar_mass > 0)')
-
+'''
 ######## WgS ########
 
 files = nanoGetSampleFiles(mcDirectory, 'Wg_MADGRAPHMLM') + \

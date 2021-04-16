@@ -99,18 +99,11 @@ aliases['Top_pTrw'] = {
     'expr': '(topGenPt * antitopGenPt > 0.) * (TMath::Sqrt((0.103*TMath::Exp(-0.0118*topGenPt) - 0.000134*topGenPt + 0.973) * (0.103*TMath::Exp(-0.0118*antitopGenPt) - 0.000134*antitopGenPt + 0.973))) * (TMath::Sqrt(TMath::Exp(1.61468e-03 + 3.46659e-06*topGenPt - 8.90557e-08*topGenPt*topGenPt) * TMath::Exp(1.61468e-03 + 3.46659e-06*antitopGenPt - 8.90557e-08*antitopGenPt*antitopGenPt))) + (topGenPt * antitopGenPt <= 0.)', # Same Reweighting as other years, but with additional fix for tune CUET -> CP5
     'samples': ['top']
 }
-
 aliases['nCleanGenJet'] = {
-    'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/WW/FullRunII/Full2016_v7/inclusive/ngenjet.cc+' % os.getenv('CMSSW_BASE')],
+    'linesToAdd': ['.L %s/Differential/ngenjet.cc+' % configurations],
     'class': 'CountGenJet',
-
+    'samples': mc
 }
-
-#aliases['nCleanGenJet'] = {
-#    'linesToAdd': ['.L %s/Differential/ngenjet.cc+' % configurations],
-#    'class': 'CountGenJet',
-#    'samples': mc
-#}
 
 ##### DY Z pT reweighting
 aliases['getGenZpt_OTF'] = {
@@ -121,6 +114,7 @@ aliases['getGenZpt_OTF'] = {
 handle = open('%s/src/PlotsConfigurations/Configurations/patches/DYrew30.py' % os.getenv('CMSSW_BASE'),'r')
 exec(handle)
 handle.close()
+
 aliases['DY_NLO_pTllrw'] = {
     'expr': '('+DYrew['2016']['NLO'].replace('x', 'getGenZpt_OTF')+')*(nCleanGenJet == 0)+1.0*(nCleanGenJet > 0)',
     'samples': ['DY']

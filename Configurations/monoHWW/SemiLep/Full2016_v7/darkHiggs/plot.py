@@ -189,7 +189,8 @@ plot['top'] = {
     'color': 400,   # kYellow
     'isSignal' : 0,
     'isData'   : 0,
-    'scale'    : 1.0,
+    #'scale'    : 1.0,
+    'scale'    : 1.02,
     #'scale'    : 1.03,
     #'scale'    : 1.06,
 }
@@ -289,7 +290,8 @@ plot['Wjets']  = {
     'color': 856, # kAzure -4
     'isSignal' : 0,
     'isData'   : 0,
-    'scale'    : 1.0
+    #'scale'    : 1.0
+    'scale'    : 1.04
     #'scale'    : .99
     #'scale'    : 1.02
 }

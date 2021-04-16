@@ -29,14 +29,14 @@ variables['l1_eta']  = {
 
 variables['j1_eta']  = {
     'name': 'MHlnjj_eta_j1',     
-    'range' : (25,-5,5),   
+    'range' : (25,-3,3),   
     'xaxis' : '#eta^{j_{1}}',
     'fold'  : 3                         
 }
 
 variables['j2_eta']  = {
     'name': 'MHlnjj_eta_j2',     
-    'range' : (25,-5,5),   
+    'range' : (25,-3,3),   
     'xaxis' : '#eta^{j_{2}}',
     'fold'  : 3                         
 }
@@ -127,7 +127,7 @@ variables['frac_MTljj_D_Mlmetjj']  = {
 
 variables['dphi_ljj_met']  = {
                         'name': 'MHlnjj_dphi_ljjVmet',
-                        'range' : (25,0,3.14),
+                        'range' : (25,1.5,3.14),
                         'xaxis' : '#Delta#phi(ljj,met)',
                         'fold'  : 3,
                         }
@@ -139,13 +139,13 @@ variables['deta_ljj_met']  = {
                         }
 variables['dphi_l_jj']  = {
                         'name': 'MHlnjj_dphi_jjVl',
-                        'range' : (25,0,3.14),
+                        'range' : (25,0,2),
                         'xaxis' : '#Delta#phi(l,jj)',
                         'fold'  : 3
                         }
 variables['deta_l_jj']  = {
                         'name': 'MHlnjj_deta_jjVl',
-                        'range' : (25,0,5),   
+                        'range' : (25,0,4),   
                         'xaxis' : '#Delta#eta(l,jj)',
                         'fold'  : 3
                         }
@@ -157,7 +157,7 @@ variables['dphi_l_met']  = {
                         }
 variables['deta_l_met']  = {
                         'name': 'MHlnjj_deta_lVmet',
-                        'range' : (25,0,5),   
+                        'range' : (25,0,3),   
                         'xaxis' : '#Delta#eta(l,met)',
                         'fold'  : 3
                         }
@@ -182,7 +182,7 @@ variables['m_ljj']  = {
 
 variables['m_lmetjj']  = {
     'name': 'MHlnjj_m_lmetjj',
-    'range' : (30,0,1000),
+    'range' : (30,0,800),
     'xaxis' : 'm_{lmetjj} [GeV]',
     'fold'  : 3
 }

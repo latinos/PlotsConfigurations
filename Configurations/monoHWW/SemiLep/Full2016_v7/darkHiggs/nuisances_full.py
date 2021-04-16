@@ -315,19 +315,19 @@ nuisances['UE']  = {
 }
 
 
-# ####### Generic "cross section uncertainties"
-nuisances['singleTopToTTbar'] = {
-    'name': 'singleTopToTTbar',
-    'skipCMS': 1,
-    'kind': 'weight',
-    'type': 'shape',
-    'samples': {
-        'top': [
-        'isSingleTop * 1.0816 + isTTbar',
-        'isSingleTop * 0.9184 + isTTbar']
-      }
-
-}
+## ####### Generic "cross section uncertainties"
+#nuisances['singleTopToTTbar'] = {
+#    'name': 'singleTopToTTbar',
+#    'skipCMS': 1,
+#    'kind': 'weight',
+#    'type': 'shape',
+#    'samples': {
+#        'top': [
+#        'isSingleTop * 1.0816 + isTTbar',
+#        'isSingleTop * 0.9184 + isTTbar']
+#      }
+#
+#}
 
 ## Top pT reweighting uncertainty
 #FIXME: correct?
