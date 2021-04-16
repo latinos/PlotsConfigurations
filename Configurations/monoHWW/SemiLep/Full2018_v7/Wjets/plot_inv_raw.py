@@ -1,12 +1,12 @@
 
 groupPlot['Wjets_NLOnjRaw'] = { 
-    'nameHR' : "nJet binned true MC count",
+    'nameHR' : "nJet binned",
     'isSignal' : 0,
     'color': 3, #kRed +3
     'samples'  : ['Wjets_NLOnjRaw']
 }
 groupPlot['Wjets_NLOptMRaw'] = { 
-    'nameHR' : "Vpt binned true MC count",
+    'nameHR' : "Vpt binned",
     'isSignal' : 0,
     'color': 2, #kRed +3
     'samples'  : ['Wjets_NLOptMRaw']

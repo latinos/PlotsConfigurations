@@ -31,9 +31,9 @@
 ##mkShapesMulti.py --pycfg=conf_inv.py --doBatch=True --batchQueue=longlunch --treeName=Events --batchSplit=Samples,Files
 #mkShapesMulti.py --pycfg=conf_inv.py --doBatch=True --batchQueue=workday --treeName=Events --batchSplit=Samples,Files
 
-## hadd
-#rm Wjets_inv_root/plots_Wjets_inv_2017v7.root
-#mkShapesMulti.py --pycfg=conf_inv.py --doHadd=True --doNotCleanup --nThreads=8 --batchSplit=Samples,Files
+# hadd
+rm Wjets_inv_root/plots_Wjets_inv_2017v7.root
+mkShapesMulti.py --pycfg=conf_inv.py --doHadd=True --doNotCleanup --nThreads=10 --batchSplit=Samples,Files
 
 ## plots
 #mkPlot.py --pycfg=conf_inv.py --inputFile=Wjets_inv_root/plots_Wjets_inv_2017v7.root --showIntegralLegend=1 --scaleToPlot=2

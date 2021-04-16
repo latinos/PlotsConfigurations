@@ -7,7 +7,7 @@
 
 #for idx,pt in enumerate(['0to50', '50to100', '100to250', '250to400', '400to600', '600toInf']):
 #for idx,pt in enumerate(['600toInf', '400to600', '250to400', '100to250', '50to100', '0to50']):
-for idx,pt in enumerate(['600toInf', '400to600', '250to400', '100to250', '50to100']):
+for idx,pt in enumerate(['600toInf', '400to600', '250to400', '100to250']):
     col_idx = idx+2
     groupPlot['Wjets_NLOpt'+pt]  = {
         'nameHR' : pt+" NLO",
@@ -18,7 +18,7 @@ for idx,pt in enumerate(['600toInf', '400to600', '250to400', '100to250', '50to10
 
 #plot = {}
 
-plot['Wjets_NLOptM']  = {
+plot['Wjets_NLOstatM']  = {
     'color': 1, # kAzure -4
     'isSignal' : 0,
     'isData'   : 1,
@@ -26,7 +26,7 @@ plot['Wjets_NLOptM']  = {
     'scale'    : 1.0
 }
 
-for idx,pt in enumerate(['600toInf', '400to600', '250to400', '100to250', '50to100']):
+for idx,pt in enumerate(['600toInf', '400to600', '250to400', '100to250']):
     col_idx = idx+2
     plot['Wjets_NLOpt'+pt]  = {
         'color': col_idx, # kAzure -4

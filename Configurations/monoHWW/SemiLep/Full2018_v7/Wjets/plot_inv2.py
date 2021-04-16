@@ -17,6 +17,14 @@ for idx,pt in enumerate(['600toInf', '400to600', '250to400', '100to250']):
         'samples'  : ['Wjets_NLOpt'+pt]
     }
 
+#groupPlot['Wjets_NLOnj']  = {
+#    'nameHR' : "nJet NLO",
+#    'isSignal' : 0,
+#    'isData'   : 1,
+#    'color': 1, 
+#    'samples'  : ['Wjets_NLOnj']
+#}
+
 #plot = {}
 
 plot['Wjets_NLOnj']  = {
