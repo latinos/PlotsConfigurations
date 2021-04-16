@@ -17,6 +17,13 @@ variables['LHE_Vpt_bins']  = {
                         'xaxis' : 'LHE Vpt [GeV]',
                         'fold'  : 3
                         }
+variables['LHE_Vpt_low']  = {
+                        'name': 'LHE_Vpt',
+                        'range' : (90,80,300),
+                        #'range' : (LHE_Vpt_bins,),
+                        'xaxis' : 'LHE Vpt [GeV]',
+                        'fold'  : 2
+                        }
 
 variables['Puppimet']  = {
                         'name': 'PuppiMET_pt',

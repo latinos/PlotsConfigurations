@@ -142,56 +142,92 @@
 #}
 
 
-variables['hmZpBDT_nom']  = { 
-    'name': 'BDT_nom[0]',
-    'range' : (500,-1.,1.),
-    #'range' : (hmZp_grad_binning,),
-    'xaxis' : 'high m_{Z\'} NLO BDT_{nominal}',
-    #'xaxis' : 'BDT',
-    'fold'  : 3, 
-}
-   
-variables['hmZpBDT_mtw']  = { 
-    'name': 'BDT_mtw[0]',
-    'range' : (500,-1.,1.),
-    #'range' : (hmZp_grad_binning,),
-    'xaxis' : 'high m_{Z\'} NLO BDT_{mtw var}',
-    #'xaxis' : 'BDT',
-    'fold'  : 3, 
-}
+#variables['hmZpBDT_nom']  = { 
+#    'name': 'BDT_nom[0]',
+#    'range' : (500,-1.,1.),
+#    #'range' : (hmZp_grad_binning,),
+#    'xaxis' : 'high m_{Z\'} NLO BDT_{nominal}',
+#    #'xaxis' : 'BDT',
+#    'fold'  : 3, 
+#}
+#   
+#variables['hmZpBDT_mtw']  = { 
+#    'name': 'BDT_mtw[0]',
+#    'range' : (500,-1.,1.),
+#    #'range' : (hmZp_grad_binning,),
+#    'xaxis' : 'high m_{Z\'} NLO BDT_{mtw var}',
+#    #'xaxis' : 'BDT',
+#    'fold'  : 3, 
+#}
+#
+#variables['hmZpBDT_hig']  = { 
+#    'name': 'BDT_hig[0]',
+#    'range' : (500,-1.,1.),
+#    #'range' : (hmZp_grad_binning,),
+#    'xaxis' : 'high m_{Z\'} NLO BDT_{high cut}',
+#    #'xaxis' : 'BDT',
+#    'fold'  : 3, 
+#}
+#
+#variables['hmZpDNN_nom']  = { 
+#    'name': 'DNN_nom[0]',
+#    'range' : (500,0.,1.),
+#    #'range' : (hmZp_grad_binning,),
+#    'xaxis' : 'high m_{Z\'} NLO DNN_{nominal}',
+#    #'xaxis' : 'DNN',
+#    'fold'  : 3, 
+#}
+#   
+#variables['hmZpDNN_mtw']  = { 
+#    'name': 'DNN_mtw[0]',
+#    'range' : (500,0.,1.),
+#    #'range' : (hmZp_grad_binning,),
+#    'xaxis' : 'high m_{Z\'} NLO DNN_{mtw var}',
+#    #'xaxis' : 'DNN',
+#    'fold'  : 3, 
+#}
+#
+#variables['hmZpDNN_hig']  = { 
+#    'name': 'DNN_hig[0]',
+#    'range' : (500,0.,1.),
+#    #'range' : (hmZp_grad_binning,),
+#    'xaxis' : 'high m_{Z\'} NLO DNN_{high cut}',
+#    #'xaxis' : 'DNN',
+#    'fold'  : 3, 
+#}
 
-variables['hmZpBDT_hig']  = { 
-    'name': 'BDT_hig[0]',
+#variables['BDT_Ada13']  = { 
+#    'name': '2*BDT_Ada13[0]',
+#    'range' : (500,-1.,1.),
+#    'xaxis' : 'high m_{Z\'} NLO BDT_{Ada13}',
+#    #'xaxis' : 'BDT',
+#    'fold'  : 3, 
+#}
+#variables['BDT_Ada10']  = { 
+#    'name': '2*BDT_Ada10[0]',
+#    'range' : (500,-1.,1.),
+#    'xaxis' : 'high m_{Z\'} NLO BDT_{Ada10}',
+#    #'xaxis' : 'BDT',
+#    'fold'  : 3, 
+#}
+#variables['BDT_Grad13']  = { 
+#    'name': 'BDT_Grad13[0]',
+#    'range' : (500,-1.,1.),
+#    'xaxis' : 'high m_{Z\'} NLO BDT_{Grad13}',
+#    #'xaxis' : 'BDT',
+#    'fold'  : 3, 
+#}
+#variables['BDT_Grad10']  = { 
+#    'name': 'BDT_Grad10[0]',
+#    'range' : (500,-1.,1.),
+#    'xaxis' : 'high m_{Z\'} NLO BDT_{Grad10}',
+#    #'xaxis' : 'BDT',
+#    'fold'  : 3, 
+#}
+variables['BDT_Ada13b']  = { 
+    'name': '2*BDT_Ada13b[0]',
     'range' : (500,-1.,1.),
-    #'range' : (hmZp_grad_binning,),
-    'xaxis' : 'high m_{Z\'} NLO BDT_{high cut}',
+    'xaxis' : 'high m_{Z\'} NLO bveto BDT_{Ada13}',
     #'xaxis' : 'BDT',
-    'fold'  : 3, 
-}
-
-variables['hmZpDNN_nom']  = { 
-    'name': 'DNN_nom[0]',
-    'range' : (500,0.,1.),
-    #'range' : (hmZp_grad_binning,),
-    'xaxis' : 'high m_{Z\'} NLO DNN_{nominal}',
-    #'xaxis' : 'DNN',
-    'fold'  : 3, 
-}
-   
-variables['hmZpDNN_mtw']  = { 
-    'name': 'DNN_mtw[0]',
-    'range' : (500,0.,1.),
-    #'range' : (hmZp_grad_binning,),
-    'xaxis' : 'high m_{Z\'} NLO DNN_{mtw var}',
-    #'xaxis' : 'DNN',
-    'fold'  : 3, 
-}
-
-variables['hmZpDNN_hig']  = { 
-    'name': 'DNN_hig[0]',
-    'range' : (500,0.,1.),
-    #'range' : (hmZp_grad_binning,),
-    'xaxis' : 'high m_{Z\'} NLO DNN_{high cut}',
-    #'xaxis' : 'DNN',
     'fold'  : 3, 
 }

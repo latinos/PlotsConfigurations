@@ -1,0 +1,221 @@
+# structure configuration for datacard
+
+#structure = {}
+
+# keys here must match keys in samples.py
+#
+
+# MC
+
+structure['DY']  = {
+    'isSignal': 2,
+    'isData'   : 0
+}
+
+structure['DYlow']  = {
+    'isSignal': 2,
+    'isData'   : 0
+}
+
+structure['Wjets']  = {
+    'isSignal' : 2,
+    'isData'   : 0
+}
+
+structure['top'] = {
+    'isSignal' : 0,
+    'isData'   : 0
+}
+#structure['stop'] = {
+#    'isSignal' : 0,
+#    'isData'   : 0
+#}
+#structure['ttop'] = {
+#    'isSignal' : 0,
+#    'isData'   : 0
+#}
+
+
+structure['WW']  = {
+    'isSignal': 2,
+    'isData'   : 0
+}
+
+structure['WWewk']  = {
+    'isSignal': 2,
+    'isData'   : 0
+}
+
+structure['ggWW']  = {
+    'isSignal': 2,
+    'isData'   : 0
+}
+
+#structure['qqWWqq']  = {
+#    'isSignal' : 0,
+#    'isData'   : 0
+#}
+#
+#structure['WW2J']  = {
+#    'isSignal' : 0,
+#    'isData'   : 0
+#}
+
+# structure['Wg']  = {
+#                   'isSignal' : 0,
+#                   'isData'   : 0
+#                   }
+
+structure['Vg']  = {
+    'isSignal': 2,
+    'isData'   : 0
+}
+
+#structure['VgS'] = {
+#                  'isSignal' : 0,
+#                  'isData'   : 0
+#                  }
+
+structure['VgS_L'] = {
+    'isSignal': 2,
+    'isData'   : 0
+}
+
+structure['VgS_H'] = {
+    'isSignal': 2,
+    'isData'   : 0
+}
+
+# structure['Zg']  = {
+#                   'isSignal' : 0,
+#                   'isData'   : 0
+#                   }
+
+structure['VBF-V']  = {
+    'isSignal': 2,
+    'isData'   : 0
+}
+
+structure['WZqcd']  = {
+    'isSignal': 2,
+    'isData'   : 0
+}
+
+structure['WZewk']  = {
+    'isSignal': 2,
+    'isData'   : 0
+}
+
+structure['ZZ']  = {
+    'isSignal': 2,
+    'isData'   : 0
+}
+
+
+structure['VVV']  = {
+    'isSignal': 2,
+    'isData'   : 0
+}
+
+structure['FAKE'] = {
+    'isSignal': 2,
+    'isData'   : 0
+}
+
+structure['Higgs'] = {
+    'isSignal': 2,
+    'isData'   : 0
+}
+
+#structure['ggH_hww'] = {
+#                  'isSignal' : 0,
+#                  'isData'   : 0
+#                  }
+#
+#structure['qqH_hww'] = {
+#                  'isSignal' : 0,
+#                  'isData'   : 0
+#                  }
+#
+#structure['WH_hww'] = {
+#                  'isSignal' : 0,
+#                  'isData'   : 0
+#                  }
+#
+#structure['ZH_hww'] = {
+#                  'isSignal' : 0,
+#                  'isData'   : 0
+#                  }
+#
+## structure['ggZH_hww'] = {
+##                   'isSignal' : 0,
+##                   'isData'   : 0
+##                   }
+#
+## structure['bbH_hww'] = {
+##                   'isSignal' : 0,
+##                   'isData'   : 0
+##                   }
+#
+#structure['ttH_hww'] = {
+#                  'isSignal' : 0,
+#                  'isData'   : 0
+#                  }
+#
+#structure['ggH_htt'] = {
+#                  'isSignal' : 0,
+#                  'isData'   : 0,
+#                  }
+#
+#structure['qqH_htt'] = {
+#                  'isSignal' : 0,
+#                  'isData'   : 0,
+#                  }
+#
+## structure['WH_htt'] = {
+##                   'isSignal' : 0,
+##                   'isData'   : 0,
+##                   }
+#
+#structure['ZH_htt'] = {
+#                  'isSignal' : 0,
+#                  'isData'   : 0,
+#                  }
+
+# SIGNAL
+
+if os.path.exists(signal_file) :
+    handle = open(signal_file,'r')
+    exec(handle)
+    handle.close()
+else:
+    raise IOError('FILE NOT FOUND: '+signal_file+'does not exist.')
+
+for mp in signal:
+    structure[mp] = {
+        'isSignal': 2,
+        'isData'  : 0,
+    }
+
+
+
+# DATA
+
+
+structure['DATA']  = {
+                  'isSignal' : 0,
+                  'isData'   : 1
+              }
+
+
+
+# print "INSTRUCTURE"
+# print cuts
+# print nuisances['WWresum0j']
+# print "OK"
+
+for nuis in nuisances.itervalues():
+  if 'cutspost' in nuis:
+    nuis['cuts'] = nuis['cutspost'](nuis, cuts)
+
+    print nuis

@@ -18,7 +18,7 @@ variablesFile = 'variables_lim.py'
 
 # file with list of cuts
 #cutsFile = 'cuts.py'
-cutsFile = 'cuts.py'
+cutsFile = 'cuts_lim.py'
 
 # file with list of samples
 samplesFile = 'samples.py'

@@ -190,7 +190,8 @@ plot['top'] = {
     'isSignal' : 0,
     'isData'   : 0,
     #'scale'    : 1.04,
-    'scale'    : 1.0,
+    #'scale'    : 1.0,
+    'scale'    : 1.05,
     #'scale'    : 1.16,
 }
 

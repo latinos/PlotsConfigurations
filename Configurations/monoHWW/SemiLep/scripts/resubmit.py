@@ -45,7 +45,7 @@ path = jobDir+'/'+job_base
 os.system('rm '+path+'/*/*.py')
 #os.system('mkShapesMulti.py --pycfg='+args.config+' --doBatch=True --batchQueue='+args.queue+' --treeName=Events --batchSplit=Samples,Files -n')
 print('Updating job configs')
-proc = subprocess.Popen(['mkShapesMulti.py', '--pycfg='+args.config, '--doBatch=True', '--batchQueue='+args.queue, '--treeName=Events', '--batchSplit=Samples,Files', '-n'], stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
+proc = subprocess.Popen(['mkShapesMulti.py', '--pycfg='+args.config, '--doBatch=True', '--batchQueue='+args.queue, '--treeName=Events', '--batchSplit=Samples,Files', '--FixNegativeAfterHadd', '-n'], stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
 out, err = proc.communicate()
 if proc.returncode != 0:
     sys.stderr.write(err)

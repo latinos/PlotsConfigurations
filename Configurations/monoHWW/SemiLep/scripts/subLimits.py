@@ -5,8 +5,9 @@ import argparse
 import subprocess
 
 parser = argparse.ArgumentParser(description = "Receive the parameters")
-parser.add_argument('--config', action = 'store', type = str, dest = 'cfg', help = 'Input configuration file')
-parser.add_argument('--var'   , action = 'store', type = str, dest = 'var', default='newBDT_Ada13Var', help = 'Variable to combine with CR\'s')
+parser.add_argument('--config' , action = 'store', type = str, dest = 'cfg'    , help = 'Input configuration file')
+parser.add_argument('--var'    , action = 'store', type = str, dest = 'var'    , default='newBDT_Ada13Var', help = 'Variable to combine with CR\'s')
+parser.add_argument('--cut-tag', action = 'store', type = str, dest = 'cut_tag', default=None, help = 'SR: InCh_<tag>_SR')
 parser.add_argument('--combine-dir', action = 'store', type = str, dest = 'cmbDir', default='/afs/cern.ch/user/s/svanputt/work/monoHiggs/combine/CMSSW_10_2_13/src', help = 'Combine dir for the job')
 parser.add_argument('-q',  '--queue', help='Job queue', default='espresso', type=str)
 parser.add_argument('-n',  '--dry-run', action = 'store_true', help='Do not submit')
@@ -15,10 +16,13 @@ args = parser.parse_args()
 
 execfile(args.cfg)
 
+cut_tag = ''
+if not args.cut_tag is None: cut_tag = '_'+args.cut_tag
+
 pwd = os.getcwd()
 job_dir_src = pwd + '/' + outputDirDatacard + '/job'
-job_dir = job_dir_src + '/' + args.var
-work_dir_src = pwd + '/' + outputDirDatacard + '/InCh_Combi'
+job_dir = job_dir_src + '/' + args.var + cut_tag
+work_dir_src = pwd + '/' + outputDirDatacard + '/InCh'+cut_tag+'_Combi'
 work_dir = work_dir_src + '/' + args.var
 comb_dir = args.cmbDir
 
@@ -65,7 +69,7 @@ def write_job_files(job_dir, job_id, comb_dir, work_dir, comb_cmd, run_cmd):
 
 print('Prepare dirs and files')
 jobs = []
-for fil in os.listdir(outputDirDatacard+'/InCh_SR/'+args.var):
+for fil in os.listdir(outputDirDatacard+'/InCh'+cut_tag+'_SR/'+args.var):
     if not fil.startswith('datacard') : continue
     if not fil.endswith('.txt'): continue
     if not '_' in fil: continue
@@ -74,9 +78,9 @@ for fil in os.listdir(outputDirDatacard+'/InCh_SR/'+args.var):
 
     job_id = mass_point
 
-    SR_path  = pwd + '/' +outputDirDatacard + '/InCh_SR/' + args.var + '/' + fil    
-    TCR_path = pwd + '/' +outputDirDatacard + '/InCh_TCR/Events/' + fil    
-    SB_path  = pwd + '/' +outputDirDatacard + '/InCh_SB/Events/' + fil    
+    SR_path  = pwd + '/' +outputDirDatacard + '/InCh'+cut_tag+'_SR/' + args.var + '/' + fil    
+    TCR_path = pwd + '/' +outputDirDatacard + '/InCh'+cut_tag+'_TCR/Events/' + fil    
+    SB_path  = pwd + '/' +outputDirDatacard + '/InCh'+cut_tag+'_SB/Events/' + fil    
 
     Comb_path_rel = fil.replace('.txt', '_comb.txt')
     SR_path_rel  = SR_path.replace(pwd + '/' +outputDirDatacard, '../..')
@@ -93,7 +97,7 @@ for fil in os.listdir(outputDirDatacard+'/InCh_SR/'+args.var):
         print('Warning: "'+SB_path+'" does not exist, skipped!')
         continue
 
-    comb_cmd = 'combineCards.py '+' '.join([SR_path_rel, TCR_path_rel, SB_path_rel])+' > '+Comb_path_rel
+    comb_cmd = 'combineCards.py '+' '.join(['SR='+SR_path_rel, 'TCR='+TCR_path_rel, 'SB='+SB_path_rel])+' > '+Comb_path_rel
     run_cmd  = 'combine -M AsymptoticLimits --run blind '+Comb_path_rel+' -n _'+mass_point
     
     write_job_files(job_dir, job_id, comb_dir, work_dir, comb_cmd, run_cmd)

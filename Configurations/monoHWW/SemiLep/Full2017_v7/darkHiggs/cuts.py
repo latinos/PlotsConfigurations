@@ -25,7 +25,6 @@ is_mu    = ['abs(Lepton_pdgId[0])==13']
 #veto_1l_I    = ['(nLepton>=2 && Lepton_pt[1] > 20)']
 mt_lmet      = ['mtw1 > 80']
 mt_lmet_I    = ['mtw1 < 30']
-mt_lmet_h    = ['mtw1 > 160']
 met          = ['PuppiMET_pt > 60']
 met_I        = ['PuppiMET_pt < 30']
 dphi_l_jj    = ['MHlnjj_dphi_jjVl < 1.8']
@@ -48,34 +47,18 @@ TCR      = combinecut([super_cut, mt_lmet  , met  , dphi_l_jj, dphi_ljj_met, dr_
 DYCR     = combinecut([super_cut, mt_lmet  , met  , dphi_l_jj, dphi_ljj_met, dr_l_jj, pt_ljj  , m_jj  , veto_b  , veto_1l_I]) # empty due to post-proc sel
 QER      = combinecut([super_cut, mt_lmet_I, met_I, dphi_l_jj, dphi_ljj_met, dr_l_jj, pt_ljj  , m_jj  , veto_b  , veto_1l  ])
 
-# Electron
-addcut('ElCh_SC'  , combinecut([is_el, SC  ]))
-addcut('ElCh_SR'  , combinecut([is_el, SR  ]))
-#addcut('ElCh_CR'  , combinecut([is_el, CR  ]))
-addcut('ElCh_SB'  , combinecut([is_el, SB  ]))
-addcut('ElCh_TCR' , combinecut([is_el, TCR ]))
-#addcut('ElCh_DYCR', combinecut([is_el, DYCR]))
-addcut('ElCh_QER' , combinecut([is_el, QER ]))
+## Electron
+#addcut('ElCh_SR'  , combinecut([is_el, SR  ]))
+#addcut('ElCh_SB'  , combinecut([is_el, SB  ]))
+#addcut('ElCh_TCR' , combinecut([is_el, TCR ]))
 
-# Muon
-addcut('MuCh_SC'  , combinecut([is_mu, SC  ]))
-addcut('MuCh_SR'  , combinecut([is_mu, SR  ]))
-#addcut('MuCh_CR'  , combinecut([is_mu, CR  ]))
-addcut('MuCh_SB'  , combinecut([is_mu, SB  ]))
-addcut('MuCh_TCR' , combinecut([is_mu, TCR ]))
-#addcut('MuCh_DYCR', combinecut([is_mu, DYCR]))
-addcut('MuCh_QER' , combinecut([is_mu, QER ]))
+## Muon
+#addcut('MuCh_SR'  , combinecut([is_mu, SR  ]))
+#addcut('MuCh_SB'  , combinecut([is_mu, SB  ]))
+#addcut('MuCh_TCR' , combinecut([is_mu, TCR ]))
 
 # Inclusive
-addcut('InCh_SC'  , combinecut([SC  ]))
 addcut('InCh_SR'  , combinecut([SR  ]))
-#addcut('InCh_CR'  , combinecut([CR  ]))
 addcut('InCh_SB'  , combinecut([SB  ]))
 addcut('InCh_TCR' , combinecut([TCR ]))
-#addcut('InCh_DYCR', combinecut([DYCR]))
-addcut('InCh_QER' , combinecut([QER ]))
-
-# Mjj fit channel
-#addcut('Mjj_CR'  , combinecut([CR]))
-
 

@@ -13,7 +13,7 @@ outputDir = 'darkHiggs_root'
 aliasesFile = 'aliases.py'
 
 # file with list of variables
-variablesFile = 'variables.py'
+variablesFile = 'variables_bdt.py'
 
 # file with list of cuts
 cutsFile = 'cuts.py'

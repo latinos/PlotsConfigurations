@@ -46,7 +46,8 @@ def get_limits(mhs, mx):
        if not 'mx_'+str(mx) in fil: continue
        if not 'higgsCombine' in fil: continue
        #mass.append(float(fil.split('.')[-2].replace('mH', '')))
-       mZp = float(fil.split('.')[0].split('_')[-1])
+       #mZp = float(fil.split('.')[0].split('_')[-1])
+       mZp = float(fil.split('.')[0].split('_')[-2])
        mass.append(mZp)
        r_file = ROOT.TFile.Open(fil)
        print(fil)

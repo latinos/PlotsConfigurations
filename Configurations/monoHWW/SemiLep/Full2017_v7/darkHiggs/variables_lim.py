@@ -312,38 +312,27 @@ variables['Events']  = {
 #    }
 #}
 
-variables['hmZpBDT_nom']  = { 
-    'name': 'BDT_nom[0]',
-    'range' : ([-1., -0.6, -0.3, 0., 0.2, 0.4, 0.6, 0.7, 0.8, 0.92, 0.94, 0.96, 0.975, 0.99, 1.],),
-    'xaxis' : 'high m_{Z\'} NLO BDT_{nominal}',
-    'fold'  : 3, 
-    'blind' : {
-        'InCh_SR' : [0.5, 1.],
-        'InCh_highMtw_SR' : [0.5, 1.],
-    }
-}
-   
-variables['hmZpBDT_mtw']  = { 
-    'name': 'BDT_mtw[0]',
-    'range' : ([-1., -0.6, -0.3, 0., 0.2, 0.4, 0.6, 0.7, 0.8, 0.9, 0.94, 0.96, 0.97, 0.98, 0.99, 1.],),
-    'xaxis' : 'high m_{Z\'} NLO BDT_{mtw var}',
-    'fold'  : 3, 
-    'blind' : {
-        'InCh_SR' : [0.5, 1.],
-        'InCh_highMtw_SR' : [0.5, 1.],
-    }
-}
-
-variables['hmZpBDT_hig']  = { 
-    'name': 'BDT_hig[0]',
-    'range' : ([-1., -0.5, -0.2, 0., 0.2, 0.4, 0.55, 0.7, 0.8, 0.9, 1.],),
-    'xaxis' : 'high m_{Z\'} NLO BDT_{high cut}',
-    'fold'  : 3, 
-    'blind' : {
-        'InCh_SR' : [0.5, 1.],
-        'InCh_highMtw_SR' : [0.5, 1.],
-    }
-}
+#variables['hmZpBDT_mtw']  = { 
+#    'name': 'BDT_mtw[0]',
+#    'range' : ([-1., -0.6, -0.3, 0., 0.2, 0.4, 0.6, 0.7, 0.8, 0.9, 0.94, 0.96, 0.97, 0.98, 0.99, 1.],),
+#    'xaxis' : 'high m_{Z\'} NLO BDT_{mtw var}',
+#    'fold'  : 3, 
+#    'blind' : {
+#        'InCh_SR' : [0.5, 1.],
+#        'InCh_highMtw_SR' : [0.5, 1.],
+#    }
+#}
+#
+#variables['hmZpBDT_hig']  = { 
+#    'name': 'BDT_hig[0]',
+#    'range' : ([-1., -0.5, -0.2, 0., 0.2, 0.4, 0.55, 0.7, 0.8, 0.9, 1.],),
+#    'xaxis' : 'high m_{Z\'} NLO BDT_{high cut}',
+#    'fold'  : 3, 
+#    'blind' : {
+#        'InCh_SR' : [0.5, 1.],
+#        'InCh_highMtw_SR' : [0.5, 1.],
+#    }
+#}
 
 #variables['hmZpDNN_nom']  = { 
 #    'name': 'DNN_nom[0]',
@@ -377,3 +366,112 @@ variables['hmZpBDT_hig']  = {
 #        'InCh_highMtw_SR' : [0.5, 1.],
 #    }
 #}
+
+#variables['hmZpBDT_nom']  = { 
+#    'name': 'BDT_nom[0]',
+#    'range' : ([-1., -0.6, -0.3, 0., 0.2, 0.4, 0.6, 0.7, 0.8, 0.92, 0.94, 0.96, 0.975, 0.99, 1.],),
+#    'xaxis' : 'high m_{Z\'} NLO BDT_{nominal}',
+#    'fold'  : 3, 
+#    'blind' : {
+#        'InCh_SR' : [0.5, 1.],
+#        'InCh_highMtw_SR' : [0.5, 1.],
+#    }
+#}
+#variables['hmZpBDT_nomM']  = { 
+#    'name': 'BDT_nom[0]',
+#    'range' : ([-1., -0.6, -0.3, 0., 0.2, 0.4, 0.6, 0.7, 0.8, 0.92, 0.94, 0.96, 0.975, 1.],),
+#    'xaxis' : 'high m_{Z\'} NLO BDT_{nominal}',
+#    'fold'  : 3, 
+#    'blind' : {
+#        'InCh_SR' : [0.5, 1.],
+#        'InCh_highMtw_SR' : [0.5, 1.],
+#    }
+#}
+
+variables['BDT_Ada13']  = { 
+    'name': '2*BDT_Ada13[0]',
+    'range' : ([-1., -0.6, -0.2, 0., 0.2, 0.3, 0.4, 0.46, 0.5, 0.54, 0.58, 0.66, 1.],),
+    'xaxis' : 'high m_{Z\'} NLO BDT_{Ada13}',
+    'fold'  : 3, 
+    'blind' : {
+        'InCh_SR' : [0.4, 1.],
+        'InCh_highMtw_SR' : [0.4, 1.],
+    }
+}
+
+variables['BDT_Ada13G']  = { 
+    'name': '2*BDT_Ada13[0]',
+    'range' : ([-1., -0.6, -0.2, 0., 0.2, 0.3, 0.4, 0.45, 0.5, 0.55, 0.64, 1.],),
+    'xaxis' : 'high m_{Z\'} NLO BDT_{Ada13}',
+    'fold'  : 3, 
+    'blind' : {
+        'InCh_SR' : [0.4, 1.],
+        'InCh_highMtw_SR' : [0.4, 1.],
+    }
+}
+   
+variables['BDT_Ada10']  = { 
+    'name': '2*BDT_Ada10[0]',
+    'range' : ([-1., -0.6, -0.2, 0., 0.1, 0.2, 0.3, 0.35, 0.38, 0.43, 0.48, 1.],),
+    'xaxis' : 'high m_{Z\'} NLO BDT_{Ada10}',
+    'fold'  : 3, 
+    'blind' : {
+        'InCh_SR' : [0.4, 1.],
+        'InCh_highMtw_SR' : [0.4, 1.],
+    }
+}
+
+variables['BDT_Ada10G']  = { 
+    'name': '2*BDT_Ada10[0]',
+    'range' : ([-1., -0.6, -0.2, 0., 0.1, 0.2, 0.3, 0.36, 0.4, 0.48, 1.],),
+    'xaxis' : 'high m_{Z\'} NLO BDT_{Ada10}',
+    'fold'  : 3, 
+    'blind' : {
+        'InCh_SR' : [0.4, 1.],
+        'InCh_highMtw_SR' : [0.4, 1.],
+    }
+}
+
+variables['BDT_Grad13']  = { 
+    'name': 'BDT_Grad13[0]',
+    'range' : ([-1., -0.6, -0.3, 0., 0.3, 0.5, 0.7, 0.8, 0.9, 0.94, 0.96, 0.97, 0.98, 1.],),
+    'xaxis' : 'high m_{Z\'} NLO BDT_{Grad13}',
+    'fold'  : 3, 
+    'blind' : {
+        'InCh_SR' : [0.9, 1.],
+        'InCh_highMtw_SR' : [0.9, 1.],
+    }
+}
+
+variables['BDT_Grad13G']  = { 
+    'name': 'BDT_Grad13[0]',
+    'range' : ([-1., -0.6, -0.3, 0., 0.3, 0.5, 0.7, 0.8, 0.9, 0.94, 0.96, 0.98, 1.],),
+    'xaxis' : 'high m_{Z\'} NLO BDT_{Grad13}',
+    'fold'  : 3, 
+    'blind' : {
+        'InCh_SR' : [0.9, 1.],
+        'InCh_highMtw_SR' : [0.9, 1.],
+    }
+}
+
+variables['BDT_Grad10']  = { 
+    'name': 'BDT_Grad10[0]',
+    'range' : ([-1., -0.6, -0.3, 0., 0.3, 0.5, 0.7, 0.8, 0.9, 0.95, 0.96, 0.97, 0.98, 1.],),
+    'xaxis' : 'high m_{Z\'} NLO BDT_{Grad10}',
+    'fold'  : 3, 
+    'blind' : {
+        'InCh_SR' : [0.9, 1.],
+        'InCh_highMtw_SR' : [0.9, 1.],
+    }
+}
+
+variables['BDT_Grad10G']  = { 
+    'name': 'BDT_Grad10[0]',
+    'range' : ([-1., -0.6, -0.3, 0., 0.3, 0.5, 0.7, 0.8, 0.9, 0.94, 0.95, 0.96, 0.98, 1.],),
+    'xaxis' : 'high m_{Z\'} NLO BDT_{Grad10}',
+    'fold'  : 3, 
+    'blind' : {
+        'InCh_SR' : [0.9, 1.],
+        'InCh_highMtw_SR' : [0.9, 1.],
+    }
+}
