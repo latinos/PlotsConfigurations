@@ -211,70 +211,100 @@ nuisances['muonpt'] = {
 }
 
 
-##### Jet energy scale
-jes_systs = ['JESAbsolute','JESAbsolute_2017','JESBBEC1','JESBBEC1_2017','JESEC2','JESEC2_2017','JESFlavorQCD','JESHF','JESHF_2017','JESRelativeBal','JESRelativeSample_2017']
-folderup = ""
-folderdo = ""
+# ##### Jet energy scale
+# jes_systs = ['JESAbsolute','JESAbsolute_2017','JESBBEC1','JESBBEC1_2017','JESEC2','JESEC2_2017','JESFlavorQCD','JESHF','JESHF_2017','JESRelativeBal','JESRelativeSample_2017']
+# folderup = ""
+# folderdo = ""
 
-for js in jes_systs:
-  if 'Absolute' in js: 
-    folderup = makeMCDirectory('JESAbsoluteup_suffix')
-    folderdo = makeMCDirectory('JESAbsolutedo_suffix')
-  elif 'BBEC1' in js:
-    folderup = makeMCDirectory('JESBBEC1up_suffix')
-    folderdo = makeMCDirectory('JESBBEC1do_suffix')
-  elif 'EC2' in js:
-    folderup = makeMCDirectory('JESEC2up_suffix')
-    folderdo = makeMCDirectory('JESEC2do_suffix')
-  elif 'HF' in js:
-    folderup = makeMCDirectory('JESHFup_suffix')
-    folderdo = makeMCDirectory('JESHFdo_suffix')
-  elif 'Relative' in js:
-    folderup = makeMCDirectory('JESRelativeup_suffix')
-    folderdo = makeMCDirectory('JESRelativedo_suffix')
-  elif 'FlavorQCD' in js:
-    folderup = makeMCDirectory('JESFlavorQCDup_suffix')
-    folderdo = makeMCDirectory('JESFlavorQCDdo_suffix')
+# for js in jes_systs:
+#   if 'Absolute' in js: 
+#     folderup = makeMCDirectory('JESAbsoluteup_suffix')
+#     folderdo = makeMCDirectory('JESAbsolutedo_suffix')
+#   elif 'BBEC1' in js:
+#     folderup = makeMCDirectory('JESBBEC1up_suffix')
+#     folderdo = makeMCDirectory('JESBBEC1do_suffix')
+#   elif 'EC2' in js:
+#     folderup = makeMCDirectory('JESEC2up_suffix')
+#     folderdo = makeMCDirectory('JESEC2do_suffix')
+#   elif 'HF' in js:
+#     folderup = makeMCDirectory('JESHFup_suffix')
+#     folderdo = makeMCDirectory('JESHFdo_suffix')
+#   elif 'Relative' in js:
+#     folderup = makeMCDirectory('JESRelativeup_suffix')
+#     folderdo = makeMCDirectory('JESRelativedo_suffix')
+#   elif 'FlavorQCD' in js:
+#     folderup = makeMCDirectory('JESFlavorQCDup_suffix')
+#     folderdo = makeMCDirectory('JESFlavorQCDdo_suffix')
 
-  nuisances[js] = {
-      'name': 'CMS_scale_'+js,
-      'kind': 'suffix',
-      'type': 'shape',
-      'mapUp': js+'up',
-      'mapDown': js+'do',
-      'samples': dict((skey, ['1', '1']) for skey in mc),
-      'folderUp': folderup,
-      'folderDown': folderdo,
-#      'AsLnN': '1'
-  }
+#   nuisances[js] = {
+#       'name': 'CMS_scale_'+js,
+#       'kind': 'suffix',
+#       'type': 'shape',
+#       'mapUp': js+'up',
+#       'mapDown': js+'do',
+#       'samples': dict((skey, ['1', '1']) for skey in mc),
+#       'folderUp': folderup,
+#       'folderDown': folderdo,
+# #      'AsLnN': '1'
+#   }
 
-##### Jet energy resolution
-nuisances['JER'] = {
-    'name': 'CMS_res_j_2017',
-    'kind': 'suffix',
-    'type': 'shape',
-    'mapUp': 'JERup',
-    'mapDown': 'JERdo',
-    'samples': dict((skey, ['1', '1']) for skey in mc),
-    'folderUp': makeMCDirectory('JERup_suffix'),
-    'folderDown': makeMCDirectory('JERdo_suffix'),
-#    'AsLnN': '1'
+# ##### Jet energy resolution
+# nuisances['JER'] = {
+#     'name': 'CMS_res_j_2017',
+#     'kind': 'suffix',
+#     'type': 'shape',
+#     'mapUp': 'JERup',
+#     'mapDown': 'JERdo',
+#     'samples': dict((skey, ['1', '1']) for skey in mc),
+#     'folderUp': makeMCDirectory('JERup_suffix'),
+#     'folderDown': makeMCDirectory('JERdo_suffix'),
+# #    'AsLnN': '1'
+# }
+
+nuisances['jes'] = {
+    'name': 'CMS_scale_JES_2017',
+    'type': 'lnN',
+    'samples': dict((skey, '1.01') for skey in mc), 
 }
 
+nuisances['jer'] = {
+    'name': 'CMS_res_j_2017',
+    'type': 'lnN',
+    'samples': dict((skey, '1.005') for skey in mc), 
+}
 
 
 ##### MET energy scale
 
+# nuisances['met'] = {
+#     'name': 'CMS_scale_met_2017',
+#     'kind': 'suffix',
+#     'type': 'shape',
+#     'mapUp': 'METup',
+#     'mapDown': 'METdo',
+#     'samples': dict((skey, ['1', '1']) for skey in mc),
+#     'folderUp': makeMCDirectory('METup_suffix'),
+#     'folderDown': makeMCDirectory('METdo_suffix'),
+# #    'AsLnN': '1'
+# }
+
+
+
 nuisances['met'] = {
     'name': 'CMS_scale_met_2017',
-    'kind': 'suffix',
-    'type': 'shape',
-    'mapUp': 'METup',
-    'mapDown': 'METdo',
-    'samples': dict((skey, ['1', '1']) for skey in mc),
-    'folderUp': makeMCDirectory('METup_suffix'),
-    'folderDown': makeMCDirectory('METdo_suffix'),
-#    'AsLnN': '1'
+    'type'  : 'lnN',
+    'samples'  : {
+        'DY'      : '1.08',
+        'ggWW'    : '1.02',
+        'WW'      : '1.02',
+        'top'      : '1.04',
+        'WWewk'      : '1.02',
+        'Vg'      : '1.06',
+        'VZ'      : '1.06',
+        'VgS'     : '1.06',
+        'Higgs'     : '1.04',
+        'VVV'      : '1.06'
+    },
 }
 
 ##### Pileup
@@ -421,17 +451,10 @@ nuisances['VgStar'] = {
     'name': 'CMS_hww_VgStarScale',
     'type': 'lnN',
     'samples': {
-        'VgS_L': '1.25'
+        'VgS': '1.2'
     }
 }
 
-nuisances['VZ'] = {
-    'name': 'CMS_hww_VZScale',
-    'type': 'lnN',
-    'samples': {
-        'VgS_H': '1.16'
-    }
-}
 
 nuisances['pdf']  = {
                'name'  : 'pdf',
@@ -675,6 +698,7 @@ nuisances['Topnorm']  = {
                'cuts'  : [
                    'SR_Incl_drll1',
                    'SR_Incl_drll2',
+                   'SR_Incl_drll3',
                    'TopCR_Incl',
                    'WWCR_Incl',
                    'DYttCR_Incl',
@@ -691,6 +715,7 @@ nuisances['WWnorm']  = {
                'cuts'  : [
                    'SR_Incl_drll1',
                    'SR_Incl_drll2',
+                   'SR_Incl_drll3',
                    'TopCR_Incl',
                    'WWCR_Incl',
                    'DYttCR_Incl',
@@ -706,6 +731,7 @@ nuisances['DYnorm']  = {
                'cuts'  : [
                    'SR_Incl_drll1',
                    'SR_Incl_drll2',
+                   'SR_Incl_drll3',
                    'TopCR_Incl',
                    'WWCR_Incl',
                    'DYttCR_Incl',
