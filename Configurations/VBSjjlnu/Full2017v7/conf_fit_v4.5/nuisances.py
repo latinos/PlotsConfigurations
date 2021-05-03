@@ -1,7 +1,7 @@
 # nuisances
 # # # name of samples here must match keys in samples.py 
 
-mc =["DY", "top", "VV", "VVV", "VBF-V", "Vg", "VgS", "VBS","ggWW", "Wjets_boost"] + wjets_res_bins
+mc =["DY", "top", "VV", "VVV", "VBF-V","VBF-V_dipole", "Vg", "VgS", "VBS","VBS_dipoleRecoil","ggWW", "Wjets_boost"] + wjets_res_bins
 # mc_norm = [m for m in mc if m not in ["VBS", "VV"]]
 # mc_sep =  ["VBS", "VV"]
 
@@ -505,13 +505,14 @@ nuis_factors = json.load(open(os.getenv("CMSSW_BASE") + "/src/PlotsConfiguration
 
 for sample in mc :
     if sample == "ggWW": continue
-    if sample == 'VBS':
+    if 'VBS' in sample:
         nuisances['QCD_scale_VBS'] = {
             'name'  : 'QCDscale_VBS_accept',
             'kind'  : 'weight',
             'type'  : 'shape',
             # Normalization effect removed from 1l inclusive phase space
-            'samples'  :  { "VBS": ["QCDscale_normalized[0]", "QCDscale_normalized[8]"] }
+            'samples'  :  { "VBS": ["QCDscale_normalized[0]", "QCDscale_normalized[8]"],
+                            "VBS_dipoleRecoil": ["QCDscale_normalized[0]", "QCDscale_normalized[8]"] }
         }
     else:
         nuisances['QCD_scale_'+sample] = {
@@ -577,7 +578,7 @@ nuisances['pdf_weight'] = {
     'name'  : 'pdf_weight_1718',
     'kind'  : 'weight_envelope',
     'type'  : 'shape',
-    'samples' :  { s: [' Alt$(LHEPdfWeight['+str(i)+'], 1.)' for i in range(0,103)] for s in mc if s not in ["VBS", "top","Wjets_boost"]+wjets_res_bins},
+    'samples' :  { s: [' Alt$(LHEPdfWeight['+str(i)+'], 1.)' for i in range(0,103)] for s in mc if s not in ["VBS","VBS_dipoleRecoil" "top","Wjets_boost"]+wjets_res_bins},
     'AsLnN':  '1'
 }
 
@@ -586,7 +587,8 @@ nuisances['pdf_weight_VBS'] = {
     'name'  : 'pdf_weight_1718_accept',
     'kind'  : 'weight_envelope',
     'type'  : 'shape',
-    'samples' :  { "VBS": [ 'Alt$(PDFweight_normalized['+str(i)+'], 1.)' for i in range(0,103) ]}
+    'samples' :  { "VBS": [ 'Alt$(PDFweight_normalized['+str(i)+'], 1.)' for i in range(0,103) ],
+                 "VBS_dipoleRecoil": [ 'Alt$(PDFweight_normalized['+str(i)+'], 1.)' for i in range(0,103) ]}
 }
 
 # An overall 1.5% UE uncertainty will cover all the UEup/UEdo variations
@@ -599,13 +601,13 @@ nuisances['UE']  = {
 }
 
 ############################
-nuisances['dipole']  = {
-                'name'  : 'dipole',
-                'kind'  : 'weight',
-                'type'  : 'shape',
-                'OneSided': True,
-                'samples'  : { 'VBS': ['dipole_weight']}
-}
+# nuisances['dipole']  = {
+#                 'name'  : 'dipole',
+#                 'kind'  : 'weight',
+#                 'type'  : 'shape',
+#                 'OneSided': True,
+#                 'samples'  : { 'VBS': ['dipole_weight']}
+# }
 
 
 ###############

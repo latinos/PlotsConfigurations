@@ -573,14 +573,14 @@ nuisances['UE']  = {
 }
 
 
-############################
-# nuisances['dipole']  = {
-#                 'name'  : 'dipole',
-#                 'kind'  : 'weight',
-#                 'type'  : 'shape',
-#                 'OneSided': True,
-#                 'samples'  : { 'VBS': ['dipole_weight']}
-# }
+###########################
+nuisances['dipole']  = {
+                'name'  : 'dipole',
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'OneSided': True,
+                'samples'  : { 'VBS': ['dipole_weight']}
+}
 
 #########################
 ## Top and W+jets normalizations

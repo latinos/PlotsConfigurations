@@ -80,9 +80,9 @@ def prepare_workspace(datac, onlyDC=False):
                                 card["name"], folder["name"],  args.basedir + "/" + folder["basedir"],
                                                                 card["cut"], card["var"]))
     if args.masks:
-        txt2wp = "text2workspace.py {0}/combined_{1}.txt -o {0}/combined_{1}.root --channel-masks".format(outdir, datac["datacard_name"])
+        txt2wp = "text2workspace.py {0}/combined_{1}.txt -o {0}/combined_{1}.root --channel-masks --X-pack-asympows".format(outdir, datac["datacard_name"])
     else:
-        txt2wp = "text2workspace.py {0}/combined_{1}.txt -o {0}/combined_{1}.root".format(outdir, datac["datacard_name"])
+        txt2wp = "text2workspace.py {0}/combined_{1}.txt -o {0}/combined_{1}.root --X-pack-asympows ".format(outdir, datac["datacard_name"])
     
     
     cmds = [

@@ -9,12 +9,6 @@ conf_folder = configurations +"/VBSjjlnu/Full2016v7"
 
 mc = [skey for skey in samples if skey not in ('Fake', 'DATA')]
 
-wjets_res_bins = [ ]
-for i in range(1, 22):
-    wjets_res_bins.append("Wjets_res_{}".format(i))
-# for i in range(1, 8):
-#     Wjets_bins.append("Wjets_boost_{}".format(i))
-
 
 aliases['nJets30']= {
     'expr' : 'Sum$(CleanJet_pt[CleanJetNotFat_jetIdx] >= 30)'
@@ -86,7 +80,7 @@ aliases['EWKnloW'] = {
     ],
     'class': 'EWKnloW_otf',
     'args': ('%s/src/LatinoAnalysis/Gardener/python/data/ewk/kewk_w_for_python.txt' % os.getenv('CMSSW_BASE')),
-    'samples': ["Wjets_boost"] + wjets_res_bins
+    'samples': ["Wjets"]
 }
 
 ##################################
@@ -138,7 +132,7 @@ aliases['nJetsBtag']= {
 
 btagSF_corr_samples_groups = {
     'VBS': ['VBS', 'VBS_dipoleRecoil'],
-    'Wjets_HT': ['Wjets_boost']+wjets_res_bins,
+    'Wjets_HT': ['Wjets'],
     'Vg_VgS_VBFV':['Vg','VgS','VBF-V', 'VBF-V_dipole'],
     'VV_VVV_ggWW':['VVV','VV','ggWW'],
     'top':['top'],

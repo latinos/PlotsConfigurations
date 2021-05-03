@@ -40,6 +40,7 @@ directory_bkg    = os.path.join(treeBaseDir_SMP ,  mcProduction , mcSteps)
 directory_signal = os.path.join(treeBaseDir_SMP ,  mcProduction , mcSteps) 
 directory_mc     = os.path.join(treeBaseDir_SMP ,  mcProduction , mcSteps)
 directory_data   = os.path.join(treeBaseDir_SMP,       dataProduction, dataSteps)
+directory_interference = '/eos/user/g/govoni/valsecchi/LatinosSamples/Autumn18_102X_nAODv7_Full2018v7/MCl1loose2018v7__MCCorr2018v7__MCCombJJLNu2018'
 
 wjets_res_bins = []
 wjets_boost_bins = []
@@ -206,62 +207,62 @@ addSampleWeight(samples,'top','ST_t-channel_antitop',  "100. / 32.4")
 
 Wjets_photon_filter = '!(Sum$( PhotonGen_isPrompt==1 && PhotonGen_pt>10 && abs(PhotonGen_eta)<2.5 ) > 0) '
 
-for iwboost, wjbin_boost in enumerate(wjets_boost_bins):
-  samples[wjbin_boost] = { 'name' :   
-            nanoGetSampleFiles(directory_wjets_bins[wjbin_boost], 'WJetsToLNu-LO')
-            + nanoGetSampleFiles(directory_wjets_bins[wjbin_boost], 'WJetsToLNu_HT70_100')
-            + nanoGetSampleFiles(directory_wjets_bins[wjbin_boost], 'WJetsToLNu_HT100_200')
-            + nanoGetSampleFiles(directory_wjets_bins[wjbin_boost], 'WJetsToLNu_HT200_400')
-            + nanoGetSampleFiles(directory_wjets_bins[wjbin_boost], 'WJetsToLNu_HT400_600')
-            + nanoGetSampleFiles(directory_wjets_bins[wjbin_boost], 'WJetsToLNu_HT600_800')
-            + nanoGetSampleFiles(directory_wjets_bins[wjbin_boost], 'WJetsToLNu_HT800_1200')
-            + nanoGetSampleFiles(directory_wjets_bins[wjbin_boost], 'WJetsToLNu_HT1200_2500')
-            + nanoGetSampleFiles(directory_wjets_bins[wjbin_boost], 'WJetsToLNu_HT2500_inf'),
-          'weight': "( fit_bin_boost == {} )*".format(iwboost+1) +XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch + '*' + Wjets_photon_filter +  '* ewknloW * btagSF_corr_Wjets_HT',
-          'FilesPerJob' : nfiles_wjets_boost[iwboost],   
-      }
+# for iwboost, wjbin_boost in enumerate(wjets_boost_bins):
+#   samples[wjbin_boost] = { 'name' :   
+#             nanoGetSampleFiles(directory_wjets_bins[wjbin_boost], 'WJetsToLNu-LO')
+#             + nanoGetSampleFiles(directory_wjets_bins[wjbin_boost], 'WJetsToLNu_HT70_100')
+#             + nanoGetSampleFiles(directory_wjets_bins[wjbin_boost], 'WJetsToLNu_HT100_200')
+#             + nanoGetSampleFiles(directory_wjets_bins[wjbin_boost], 'WJetsToLNu_HT200_400')
+#             + nanoGetSampleFiles(directory_wjets_bins[wjbin_boost], 'WJetsToLNu_HT400_600')
+#             + nanoGetSampleFiles(directory_wjets_bins[wjbin_boost], 'WJetsToLNu_HT600_800')
+#             + nanoGetSampleFiles(directory_wjets_bins[wjbin_boost], 'WJetsToLNu_HT800_1200')
+#             + nanoGetSampleFiles(directory_wjets_bins[wjbin_boost], 'WJetsToLNu_HT1200_2500')
+#             + nanoGetSampleFiles(directory_wjets_bins[wjbin_boost], 'WJetsToLNu_HT2500_inf'),
+#           'weight': "( fit_bin_boost == {} )*".format(iwboost+1) +XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch + '*' + Wjets_photon_filter +  '* ewknloW * btagSF_corr_Wjets_HT',
+#           'FilesPerJob' : nfiles_wjets_boost[iwboost],   
+#       }
 
-  # Fix Wjets binned + LO 
-  addSampleWeight(samples,wjbin_boost, 'WJetsToLNu-LO', '(LHE_HT < 70)') 
-  ############
-  # HT stiching corrections 2018
-  addSampleWeight(samples,wjbin_boost, 'WJetsToLNu_HT70_100',    '1.21 * 0.95148')  #adding also k-factor
-  addSampleWeight(samples,wjbin_boost, 'WJetsToLNu_HT100_200',   '0.9471') 
-  addSampleWeight(samples,wjbin_boost, 'WJetsToLNu_HT200_400',   '0.9515') 
-  addSampleWeight(samples,wjbin_boost, 'WJetsToLNu_HT400_600',   '0.9581') 
-  addSampleWeight(samples,wjbin_boost, 'WJetsToLNu_HT600_800',   '1.0582') 
-  addSampleWeight(samples,wjbin_boost, 'WJetsToLNu_HT800_1200',  '1.1285') 
-  addSampleWeight(samples,wjbin_boost, 'WJetsToLNu_HT1200_2500', '1.3268') 
-  addSampleWeight(samples,wjbin_boost, 'WJetsToLNu_HT2500_inf',  '2.7948') 
+#   # Fix Wjets binned + LO 
+#   addSampleWeight(samples,wjbin_boost, 'WJetsToLNu-LO', '(LHE_HT < 70)') 
+#   ############
+#   # HT stiching corrections 2018
+#   addSampleWeight(samples,wjbin_boost, 'WJetsToLNu_HT70_100',    '1.21 * 0.95148')  #adding also k-factor
+#   addSampleWeight(samples,wjbin_boost, 'WJetsToLNu_HT100_200',   '0.9471') 
+#   addSampleWeight(samples,wjbin_boost, 'WJetsToLNu_HT200_400',   '0.9515') 
+#   addSampleWeight(samples,wjbin_boost, 'WJetsToLNu_HT400_600',   '0.9581') 
+#   addSampleWeight(samples,wjbin_boost, 'WJetsToLNu_HT600_800',   '1.0582') 
+#   addSampleWeight(samples,wjbin_boost, 'WJetsToLNu_HT800_1200',  '1.1285') 
+#   addSampleWeight(samples,wjbin_boost, 'WJetsToLNu_HT1200_2500', '1.3268') 
+#   addSampleWeight(samples,wjbin_boost, 'WJetsToLNu_HT2500_inf',  '2.7948') 
   
-###################################################3
-for iwres, wjbin_res in enumerate(wjets_res_bins):
-  samples[wjbin_res] = { 'name' :   
-            nanoGetSampleFiles(directory_wjets_bins[wjbin_res], 'WJetsToLNu-LO')
-            + nanoGetSampleFiles(directory_wjets_bins[wjbin_res], 'WJetsToLNu_HT70_100')
-            + nanoGetSampleFiles(directory_wjets_bins[wjbin_res], 'WJetsToLNu_HT100_200')
-            + nanoGetSampleFiles(directory_wjets_bins[wjbin_res], 'WJetsToLNu_HT200_400')
-            + nanoGetSampleFiles(directory_wjets_bins[wjbin_res], 'WJetsToLNu_HT400_600')
-            + nanoGetSampleFiles(directory_wjets_bins[wjbin_res], 'WJetsToLNu_HT600_800')
-            + nanoGetSampleFiles(directory_wjets_bins[wjbin_res], 'WJetsToLNu_HT800_1200')
-            + nanoGetSampleFiles(directory_wjets_bins[wjbin_res], 'WJetsToLNu_HT1200_2500')
-            + nanoGetSampleFiles(directory_wjets_bins[wjbin_res], 'WJetsToLNu_HT2500_inf'),
-          'weight': "( fit_bin_res == {} )*".format(iwres+1) +XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch + '*' + Wjets_photon_filter +  '* ewknloW * btagSF_corr_Wjets_HT',
-          'FilesPerJob' : nfiles_wjets_res[iwres],   
-      }
+# ###################################################3
+# for iwres, wjbin_res in enumerate(wjets_res_bins):
+#   samples[wjbin_res] = { 'name' :   
+#             nanoGetSampleFiles(directory_wjets_bins[wjbin_res], 'WJetsToLNu-LO')
+#             + nanoGetSampleFiles(directory_wjets_bins[wjbin_res], 'WJetsToLNu_HT70_100')
+#             + nanoGetSampleFiles(directory_wjets_bins[wjbin_res], 'WJetsToLNu_HT100_200')
+#             + nanoGetSampleFiles(directory_wjets_bins[wjbin_res], 'WJetsToLNu_HT200_400')
+#             + nanoGetSampleFiles(directory_wjets_bins[wjbin_res], 'WJetsToLNu_HT400_600')
+#             + nanoGetSampleFiles(directory_wjets_bins[wjbin_res], 'WJetsToLNu_HT600_800')
+#             + nanoGetSampleFiles(directory_wjets_bins[wjbin_res], 'WJetsToLNu_HT800_1200')
+#             + nanoGetSampleFiles(directory_wjets_bins[wjbin_res], 'WJetsToLNu_HT1200_2500')
+#             + nanoGetSampleFiles(directory_wjets_bins[wjbin_res], 'WJetsToLNu_HT2500_inf'),
+#           'weight': "( fit_bin_res == {} )*".format(iwres+1) +XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch + '*' + Wjets_photon_filter +  '* ewknloW * btagSF_corr_Wjets_HT',
+#           'FilesPerJob' : nfiles_wjets_res[iwres],   
+#       }
 
-  # Fix Wjets binned + LO 
-  addSampleWeight(samples,wjbin_res, 'WJetsToLNu-LO', '(LHE_HT < 70)') 
-  ############
-  # HT stiching corrections 2018
-  addSampleWeight(samples,wjbin_res, 'WJetsToLNu_HT70_100',    '1.21 * 0.95148')  #adding also k-factor
-  addSampleWeight(samples,wjbin_res, 'WJetsToLNu_HT100_200',   '0.9471') 
-  addSampleWeight(samples,wjbin_res, 'WJetsToLNu_HT200_400',   '0.9515') 
-  addSampleWeight(samples,wjbin_res, 'WJetsToLNu_HT400_600',   '0.9581') 
-  addSampleWeight(samples,wjbin_res, 'WJetsToLNu_HT600_800',   '1.0582') 
-  addSampleWeight(samples,wjbin_res, 'WJetsToLNu_HT800_1200',  '1.1285') 
-  addSampleWeight(samples,wjbin_res, 'WJetsToLNu_HT1200_2500', '1.3268') 
-  addSampleWeight(samples,wjbin_res, 'WJetsToLNu_HT2500_inf',  '2.7948') 
+#   # Fix Wjets binned + LO 
+#   addSampleWeight(samples,wjbin_res, 'WJetsToLNu-LO', '(LHE_HT < 70)') 
+#   ############
+#   # HT stiching corrections 2018
+#   addSampleWeight(samples,wjbin_res, 'WJetsToLNu_HT70_100',    '1.21 * 0.95148')  #adding also k-factor
+#   addSampleWeight(samples,wjbin_res, 'WJetsToLNu_HT100_200',   '0.9471') 
+#   addSampleWeight(samples,wjbin_res, 'WJetsToLNu_HT200_400',   '0.9515') 
+#   addSampleWeight(samples,wjbin_res, 'WJetsToLNu_HT400_600',   '0.9581') 
+#   addSampleWeight(samples,wjbin_res, 'WJetsToLNu_HT600_800',   '1.0582') 
+#   addSampleWeight(samples,wjbin_res, 'WJetsToLNu_HT800_1200',  '1.1285') 
+#   addSampleWeight(samples,wjbin_res, 'WJetsToLNu_HT1200_2500', '1.3268') 
+#   addSampleWeight(samples,wjbin_res, 'WJetsToLNu_HT2500_inf',  '2.7948') 
   
 
 ###############################################
@@ -302,6 +303,15 @@ samples['VBF-V']  = {  'name'   :
                     'FilesPerJob' : 15,
                     'EventsPerJob' : 70000,
                   }
+
+samples['VBF-V_dipole']  = {  'name'   :  
+                                    nanoGetSampleFiles(directory_bkg,'EWK_LNuJJ_herwig') +
+                                  nanoGetSampleFiles(directory_bkg,'EWK_LLJJ_herwig'),
+                    'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch+'*btagSF_corr_Vg_VgS_VBFV',
+                    'FilesPerJob' : 8,
+                    'EventsPerJob' : 70000,
+                  }
+
 
 ################ ggWW ##################3
 
@@ -393,6 +403,17 @@ samples['VBS_dipoleRecoil']  = { 'name' :
        'EventsPerJob' : 70000,
 }
 
+samples['VBS_interf']  = { 'name' :  
+               nanoGetSampleFiles(directory_interference,'WmToLNuWpTo2J_EWKQCD',) + 
+               nanoGetSampleFiles(directory_interference,'WpToLNuWmTo2J_EWKQCD', ) +
+               nanoGetSampleFiles(directory_interference,'WToJJZToLL_EWKQCD', ) +
+               nanoGetSampleFiles(directory_interference,'WToLNuZTo2J_EWKQCD',) +
+               nanoGetSampleFiles(directory_interference,'ZToLLZToJJ_EWKQCD') ,
+       'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch,
+       'FilesPerJob' :10,
+       'EventsPerJob' : 70000,
+}
+
 # Then corrected
 fakeW = 'fakeWeight_35'
 
@@ -432,4 +453,4 @@ for Run in DataRun :
                         samples['DATA']['weights'].append(DataTrig[DataSet])
 
 
-samples = {   key:v for key,v in samples.items() if key not in ["VBS_dipoleRecoil"]}
+samples = {   key:v for key,v in samples.items() if key  in ['VBF-V_dipole','VBS_dipoleRecoil']}

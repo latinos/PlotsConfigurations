@@ -67,6 +67,12 @@ def prepare_rateParams(years):
             Wjets_bins.append("Wjets_HT_res_"+str(ir))
         for ir in range(1,6):
             Wjets_bins.append("Wjets_HT_boost_"+str(ir))
+    elif args.wbins == 'v5':
+        Wjets_bins = []
+        for ir in range(1,22):
+            Wjets_bins.append("Wjets_res_"+str(ir))
+        for ir in range(1,8):
+            Wjets_bins.append("Wjets_boost_"+str(ir))
 
 
     else:

@@ -20,31 +20,31 @@ aliases['nJets30']= {
     'expr' : 'Sum$(CleanJet_pt[CleanJetNotFat_jetIdx] >= 30)'
 }
 
-aliases['fit_bin_res'] = {
-    'expr': '(VBS_category==1)*( \
-            1*( (w_lep_pt < 100) && (vbs_1_pt < 55) ) +\
-            2*( (w_lep_pt < 100) && (vbs_1_pt >= 55 && vbs_1_pt < 75) ) +\
-            3*( (w_lep_pt < 100) && (vbs_1_pt >= 75 && vbs_1_pt < 100) ) +\
-            4*( (w_lep_pt < 100) && (vbs_1_pt >= 100 && vbs_1_pt < 135) ) +\
-            5*( (w_lep_pt < 100) && (vbs_1_pt >= 135 && vbs_1_pt < 170) ) +\
-            6*( (w_lep_pt < 100) && (vbs_1_pt >= 170) ) +\
-            7*( (w_lep_pt >= 100 && w_lep_pt < 200) && (vbs_1_pt < 55) ) +\
-            8*( (w_lep_pt >= 100 && w_lep_pt < 200) && (vbs_1_pt >= 55 && vbs_1_pt < 75) ) +\
-            9*( (w_lep_pt >= 100 && w_lep_pt < 200) && (vbs_1_pt >= 75 && vbs_1_pt < 100) ) +\
-            10*( (w_lep_pt >= 100 && w_lep_pt < 200) && (vbs_1_pt >= 100 && vbs_1_pt < 135) ) +\
-            11*( (w_lep_pt >= 100 && w_lep_pt < 200) && (vbs_1_pt >= 135 && vbs_1_pt < 170) ) +\
-            12*( (w_lep_pt >= 100 && w_lep_pt < 200) && (vbs_1_pt >= 170) ) +\
-            13*( (w_lep_pt >= 200 && w_lep_pt < 300) && (vbs_1_pt < 90) ) +\
-            14*( (w_lep_pt >= 200 && w_lep_pt < 300) && (vbs_1_pt >= 90 && vbs_1_pt < 125) ) +\
-            15*( (w_lep_pt >= 200 && w_lep_pt < 300) && (vbs_1_pt >= 125 && vbs_1_pt < 160) ) +\
-            16*( (w_lep_pt >= 200 && w_lep_pt < 300) && (vbs_1_pt >= 160) ) +\
-            17*( (w_lep_pt >= 300 && w_lep_pt < 400) && (vbs_1_pt < 90) ) +\
-            18*( (w_lep_pt >= 300 && w_lep_pt < 400) && (vbs_1_pt >= 90) ) +\
-            19*( (w_lep_pt >= 400 && w_lep_pt < 500) && (vbs_1_pt < 85) ) +\
-            20*( (w_lep_pt >= 400 && w_lep_pt < 500) && (vbs_1_pt >= 85) ) +\
-            21*( w_lep_pt >= 500) \
-            ) + (VBS_category==0)*(-1)'
-}
+# aliases['fit_bin_res'] = {
+#     'expr': '(VBS_category==1)*( \
+#             1*( (w_lep_pt < 100) && (vbs_1_pt < 55) ) +\
+#             2*( (w_lep_pt < 100) && (vbs_1_pt >= 55 && vbs_1_pt < 75) ) +\
+#             3*( (w_lep_pt < 100) && (vbs_1_pt >= 75 && vbs_1_pt < 100) ) +\
+#             4*( (w_lep_pt < 100) && (vbs_1_pt >= 100 && vbs_1_pt < 135) ) +\
+#             5*( (w_lep_pt < 100) && (vbs_1_pt >= 135 && vbs_1_pt < 170) ) +\
+#             6*( (w_lep_pt < 100) && (vbs_1_pt >= 170) ) +\
+#             7*( (w_lep_pt >= 100 && w_lep_pt < 200) && (vbs_1_pt < 55) ) +\
+#             8*( (w_lep_pt >= 100 && w_lep_pt < 200) && (vbs_1_pt >= 55 && vbs_1_pt < 75) ) +\
+#             9*( (w_lep_pt >= 100 && w_lep_pt < 200) && (vbs_1_pt >= 75 && vbs_1_pt < 100) ) +\
+#             10*( (w_lep_pt >= 100 && w_lep_pt < 200) && (vbs_1_pt >= 100 && vbs_1_pt < 135) ) +\
+#             11*( (w_lep_pt >= 100 && w_lep_pt < 200) && (vbs_1_pt >= 135 && vbs_1_pt < 170) ) +\
+#             12*( (w_lep_pt >= 100 && w_lep_pt < 200) && (vbs_1_pt >= 170) ) +\
+#             13*( (w_lep_pt >= 200 && w_lep_pt < 300) && (vbs_1_pt < 90) ) +\
+#             14*( (w_lep_pt >= 200 && w_lep_pt < 300) && (vbs_1_pt >= 90 && vbs_1_pt < 125) ) +\
+#             15*( (w_lep_pt >= 200 && w_lep_pt < 300) && (vbs_1_pt >= 125 && vbs_1_pt < 160) ) +\
+#             16*( (w_lep_pt >= 200 && w_lep_pt < 300) && (vbs_1_pt >= 160) ) +\
+#             17*( (w_lep_pt >= 300 && w_lep_pt < 400) && (vbs_1_pt < 90) ) +\
+#             18*( (w_lep_pt >= 300 && w_lep_pt < 400) && (vbs_1_pt >= 90) ) +\
+#             19*( (w_lep_pt >= 400 && w_lep_pt < 500) && (vbs_1_pt < 85) ) +\
+#             20*( (w_lep_pt >= 400 && w_lep_pt < 500) && (vbs_1_pt >= 85) ) +\
+#             21*( w_lep_pt >= 500) \
+#             ) + (VBS_category==0)*(-1)'
+# }
 
 ###################3
 # trigger eff
@@ -137,9 +137,9 @@ aliases['nJetsBtag']= {
 
 
 btagSF_corr_samples_groups = {
-    'VBS': ['VBS', 'VBS_dipoleRecoil'],
+    'VBS': ['VBS'],
     'Wjets_HT': ['Wjets_boost']+wjets_res_bins,
-    'Vg_VgS_VBFV':['Vg','VgS','VBF-V', 'VBF-V_dipole'],
+    'Vg_VgS_VBFV':['Vg','VgS','VBF-V','VBF_W','VBF_Z',"VBF_W_dipole","VBF_Z_dipole"],
     'VV_VVV_ggWW':['VVV','VV','ggWW'],
     'top':['top'],
     'DY': ['DY']
@@ -303,15 +303,15 @@ aliases['veto_fatjet_180'] = {
 
 #######################################
 
-aliases['QCDscale_normalized'] = {
-            'class': 'QCDScaleNormalized',
-            'args': (),
-            'linesToAdd' : [
-                # 'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-                '.L {}/VBSjjlnu/macros/QCDscale_normalize.cc+'.format(configurations)
-            ] ,
-            'samples':['VBS', 'VBS_dipoleRecoil']          
-}
+# aliases['QCDscale_normalized'] = {
+#             'class': 'QCDScaleNormalized',
+#             'args': (),
+#             'linesToAdd' : [
+#                 # 'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+#                 '.L {}/VBSjjlnu/macros/QCDscale_normalize.cc+'.format(configurations)
+#             ] ,
+#             'samples':['VBS']          
+# }
 
 # aliases['PDFweight_normalized'] = {
 #             'class': 'PDFWeightNormalized',
@@ -320,89 +320,89 @@ aliases['QCDscale_normalized'] = {
 #                 # 'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
 #                 '.L {}/VBSjjlnu/macros/PDFweight_normalize.cc+'.format(configurations)
 #             ] ,
-#             'samples':['VBS', 'VBS_dipoleRecoil']          
+#             'samples':['VBS']          
 # }
 
 ###################################3
 # QGL variables
 
-morphing_file = configurations + "/VBSjjlnu/weights_files/qgl_morphing/morphing_functions_withvars_2016.root"
+# morphing_file = configurations + "/VBSjjlnu/weights_files/qgl_morphing/morphing_functions_withvars_2016.root"
 
 
-aliases["CleanJet_qgl_morphed"]  = {
-    'class': 'QGL_morphing',
-    'args' : (morphing_file, "nom", "0000"),
-    'linesToAdd' : [
-        # 'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-        '.L {}/macros/qgl_morphing.cc+'.format(configurations)
-        ] 
-}
+# aliases["CleanJet_qgl_morphed"]  = {
+#     'class': 'QGL_morphing',
+#     'args' : (morphing_file, "nom", "0000"),
+#     'linesToAdd' : [
+#         # 'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+#         '.L {}/macros/qgl_morphing.cc+'.format(configurations)
+#         ] 
+# }
 
 
 ##########################
 
 
 
-aliases['vbs_0_qgl_res'] = {
-   'expr': 'Alt$(CleanJet_qgl_morphed[VBS_jets_maxmjj_massWZ[0]],-1)'
-} 
+# aliases['vbs_0_qgl_res'] = {
+#    'expr': 'Alt$(CleanJet_qgl_morphed[VBS_jets_maxmjj_massWZ[0]],-1)'
+# } 
 
-aliases['vbs_1_qgl_res'] = {
-   'expr': 'Alt$(CleanJet_qgl_morphed[VBS_jets_maxmjj_massWZ[1]],-1)'
-} 
+# aliases['vbs_1_qgl_res'] = {
+#    'expr': 'Alt$(CleanJet_qgl_morphed[VBS_jets_maxmjj_massWZ[1]],-1)'
+# } 
 
-aliases['vjet_0_qgl_res'] = {
-    'expr': 'Alt$(CleanJet_qgl_morphed[V_jets_maxmjj_massWZ[0]],-1)'
-} 
+# aliases['vjet_0_qgl_res'] = {
+#     'expr': 'Alt$(CleanJet_qgl_morphed[V_jets_maxmjj_massWZ[0]],-1)'
+# } 
 
-aliases['vjet_1_qgl_res'] = {
-    'expr': 'Alt$(CleanJet_qgl_morphed[V_jets_maxmjj_massWZ[1]],-1)'
-} 
+# aliases['vjet_1_qgl_res'] = {
+#     'expr': 'Alt$(CleanJet_qgl_morphed[V_jets_maxmjj_massWZ[1]],-1)'
+# } 
 
-aliases['vbs_0_qgl_boost'] = {
-    'expr': 'Alt$(CleanJet_qgl_morphed[VBS_jets_maxmjj[0]],-1)'
-} 
+# aliases['vbs_0_qgl_boost'] = {
+#     'expr': 'Alt$(CleanJet_qgl_morphed[VBS_jets_maxmjj[0]],-1)'
+# } 
 
-aliases['vbs_1_qgl_boost'] = {
-    'expr': 'Alt$(CleanJet_qgl_morphed[VBS_jets_maxmjj[1]],-1)'
-} 
+# aliases['vbs_1_qgl_boost'] = {
+#     'expr': 'Alt$(CleanJet_qgl_morphed[VBS_jets_maxmjj[1]],-1)'
+# } 
 
-##########################
-# additional uncertainties for Wtagging from pt extrapolation
-aliases['BoostedWtagSF_ptextr'] = {
-    'class': 'Wtagging_SF_ptExtrap',
-    'args': ('2016'),
-    'linesToAdd' : [
-        # 'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-        '.L {}/VBSjjlnu/macros/Wtagging_SF_ptExtrap.cc+'.format(configurations)
-    ]   
-}
+# ##########################
+# # additional uncertainties for Wtagging from pt extrapolation
+# aliases['BoostedWtagSF_ptextr'] = {
+#     'class': 'Wtagging_SF_ptExtrap',
+#     'args': ('2016'),
+#     'linesToAdd' : [
+#         # 'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+#         '.L {}/VBSjjlnu/macros/Wtagging_SF_ptExtrap.cc+'.format(configurations)
+#     ]   
+# }
 
 
-#########################
+# #########################
 
-mva_reader_path = os.getenv('CMSSW_BASE') + '/src/PlotsConfigurations/Configurations/VBSjjlnu/macros/'
-models_path = '/eos/home-d/dvalsecc/www/VBSPlots/DNN_archive/FullRun2_v7/FullRun2_v7/'
+# mva_reader_path = os.getenv('CMSSW_BASE') + '/src/PlotsConfigurations/Configurations/VBSjjlnu/macros/'
+# models_path = '/eos/home-d/dvalsecc/www/VBSPlots/DNN_archive/FullRun2_v7/FullRun2_v7/'
 
-aliases['DNNoutput_boosted'] = {
-    'class': 'MVAReaderBoosted_mVauto',
-    'args': ( models_path +'boost_sig/models/v3_d/',  models_path +'boost_sig/models/v3_d/cumulative_signal_2016.root', False, 0),
-    'linesToAdd':[
-        # 'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-        'gSystem->Load("libDNNEvaluator.so")',
-        '.L ' + mva_reader_path + 'mva_reader_boosted_v3d_mVauto.cc+', 
-    ],
-}
+# aliases['DNNoutput_boosted'] = {
+#     'class': 'MVAReaderBoosted_mVauto',
+#     'args': ( models_path +'boost_sig/models/v3_d/',  models_path +'boost_sig/models/v3_d/cumulative_signal_2016.root', False, 0),
+#     'linesToAdd':[
+#         # 'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+#         'gSystem->Load("libDNNEvaluator.so")',
+#         '.L ' + mva_reader_path + 'mva_reader_boosted_v3d_mVauto.cc+', 
+#     ],
+# }
 
-aliases['DNNoutput_resolved_v1'] = {
-    'class': 'MVAReaderResolved_mVauto',
-    'args': ( models_path+ 'res_sig/models/v4_d/',models_path+ 'res_sig/models/v4_d/cumulative_signal_2016.root', False, 1),
-    'linesToAdd':[
-        # 'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-        'gSystem->Load("libDNNEvaluator.so")',
-        '.L ' + mva_reader_path + 'mva_reader_resolved_v4d_mVauto.cc+', 
-    ],
-}
+# aliases['DNNoutput_resolved_v1'] = {
+#     'class': 'MVAReaderResolved_mVauto',
+#     'args': ( models_path+ 'res_sig/models/v4_d/',models_path+ 'res_sig/models/v4_d/cumulative_signal_2016.root', False, 1),
+#     'linesToAdd':[
+#         # 'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+#         'gSystem->Load("libDNNEvaluator.so")',
+#         '.L ' + mva_reader_path + 'mva_reader_resolved_v4d_mVauto.cc+', 
+#     ],
+# }
 
 
 # aliases['dipole_weight'] = {
@@ -412,5 +412,5 @@ aliases['DNNoutput_resolved_v1'] = {
 #         # 'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
 #             '.L {}/VBSjjlnu/macros/reweight_dnn.cc+'.format(configurations)
 #     ],
-#     'samples': ["VBS", "VBS_dipoleRecoil"]
+#     'samples': ["VBS"]
 # }

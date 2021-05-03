@@ -1,7 +1,7 @@
 # example of configuration file
 treeName= 'Events'
 
-tag = 'fit_v4.5_2016_qglnuis_redodipole'
+tag = 'fit_v4.5_2016_qglnuis'
 direc = 'conf_fit_v4.5'
 
 # used by mkShape to define output directory for root files

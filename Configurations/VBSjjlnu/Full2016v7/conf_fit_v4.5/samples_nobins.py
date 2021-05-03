@@ -232,7 +232,7 @@ addSampleWeight(samples,'top','ST_t-channel_antitop',  "100. / 32.4")
 
 Wjets_photon_filter = '!(Sum$( PhotonGen_isPrompt==1 && PhotonGen_pt>10 && abs(PhotonGen_eta)<2.5 ) > 0) '
 
-samples['Wjets_boost'] = { 'name' :   
+samples['Wjets'] = { 'name' :   
           #nanoGetSampleFiles(directory_bkg, 'WJetsToLNu')  #NLO inclusive samples
           nanoGetSampleFiles(directory_bkg, 'WJetsToLNu-LO')
           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu-LO_ext2')
@@ -253,103 +253,47 @@ samples['Wjets_boost'] = { 'name' :
           + nanoGetSampleFiles(directory_bkg, 'WJetsToLNu_HT2500_inf_ext1')
           ,
         'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch + '*'+Wjets_photon_filter + '* EWKnloW * btagSF_corr_Wjets_HT', 
-        'FilesPerJob' : 4,
-         'subsamples': {
-            "1": '(VBS_category==0) && (w_lep_pt < 50)',
-            "2": '(VBS_category==0) && (w_lep_pt >= 50 && w_lep_pt < 100)',
-            "3": '(VBS_category==0) && (w_lep_pt >= 100 && w_lep_pt < 150)',
-            "4": '(VBS_category==0) && (w_lep_pt >= 150 && w_lep_pt < 200)',
-            "5": '(VBS_category==0) && (w_lep_pt >= 200 && w_lep_pt < 300)',
-            "6": '(VBS_category==0) && (w_lep_pt >= 300 && w_lep_pt < 400)',
-            "7": '(VBS_category==0) && (w_lep_pt >= 400)',
-        }
+        'FilesPerJob' : 6,
+        #  'subsamples': {
+        #     "1": '(VBS_category==0) && (w_lep_pt < 50)',
+        #     "2": '(VBS_category==0) && (w_lep_pt >= 50 && w_lep_pt < 100)',
+        #     "3": '(VBS_category==0) && (w_lep_pt >= 100 && w_lep_pt < 150)',
+        #     "4": '(VBS_category==0) && (w_lep_pt >= 150 && w_lep_pt < 200)',
+        #     "5": '(VBS_category==0) && (w_lep_pt >= 200 && w_lep_pt < 300)',
+        #     "6": '(VBS_category==0) && (w_lep_pt >= 300 && w_lep_pt < 400)',
+        #     "7": '(VBS_category==0) && (w_lep_pt >= 400)',
+        # }
        }
 # No needed HT stiching corrections
 #addSampleWeight(samples,'Wjets_boost', 'WJetsToLNu', '(LHE_HT < 70)') 
-addSampleWeight(samples,'Wjets_boost', 'WJetsToLNu-LO', '(LHE_HT < 70)') 
-addSampleWeight(samples,'Wjets_boost', 'WJetsToLNu-LO_ext2', '(LHE_HT < 70)') 
-CombineBaseW(samples, 'Wjets_boost', ['WJetsToLNu-LO','WJetsToLNu-LO_ext2'])
+addSampleWeight(samples,'Wjets', 'WJetsToLNu-LO', '(LHE_HT < 70)') 
+addSampleWeight(samples,'Wjets', 'WJetsToLNu-LO_ext2', '(LHE_HT < 70)') 
+CombineBaseW(samples, 'Wjets', ['WJetsToLNu-LO','WJetsToLNu-LO_ext2'])
 
-CombineBaseW(samples, 'Wjets_boost', ['WJetsToLNu_HT100_200','WJetsToLNu_HT100_200_ext2'])
-CombineBaseW(samples, 'Wjets_boost', ['WJetsToLNu_HT200_400','WJetsToLNu_HT200_400_ext2'])
-CombineBaseW(samples, 'Wjets_boost', ['WJetsToLNu_HT400_600','WJetsToLNu_HT400_600_ext1'])
-CombineBaseW(samples, 'Wjets_boost', ['WJetsToLNu_HT600_800','WJetsToLNu_HT600_800_ext1'])
-CombineBaseW(samples, 'Wjets_boost', ['WJetsToLNu_HT800_1200','WJetsToLNu_HT800_1200_ext1'])
-CombineBaseW(samples, 'Wjets_boost', ['WJetsToLNu_HT1200_2500','WJetsToLNu_HT1200_2500_ext1'])
-CombineBaseW(samples, 'Wjets_boost', ['WJetsToLNu_HT2500_inf','WJetsToLNu_HT2500_inf_ext1'])
+CombineBaseW(samples, 'Wjets', ['WJetsToLNu_HT100_200','WJetsToLNu_HT100_200_ext2'])
+CombineBaseW(samples, 'Wjets', ['WJetsToLNu_HT200_400','WJetsToLNu_HT200_400_ext2'])
+CombineBaseW(samples, 'Wjets', ['WJetsToLNu_HT400_600','WJetsToLNu_HT400_600_ext1'])
+CombineBaseW(samples, 'Wjets', ['WJetsToLNu_HT600_800','WJetsToLNu_HT600_800_ext1'])
+CombineBaseW(samples, 'Wjets', ['WJetsToLNu_HT800_1200','WJetsToLNu_HT800_1200_ext1'])
+CombineBaseW(samples, 'Wjets', ['WJetsToLNu_HT1200_2500','WJetsToLNu_HT1200_2500_ext1'])
+CombineBaseW(samples, 'Wjets', ['WJetsToLNu_HT2500_inf','WJetsToLNu_HT2500_inf_ext1'])
 
 # HT bins to LO factors 
-addSampleWeight(samples,'Wjets_boost', 'WJetsToLNu_HT70_100',          '1.21 * 1.0346')  #adding also k-factor
-addSampleWeight(samples,'Wjets_boost', 'WJetsToLNu_HT100_200',         '1.019') 
-addSampleWeight(samples,'Wjets_boost', 'WJetsToLNu_HT100_200_ext2',    '1.019') 
-addSampleWeight(samples,'Wjets_boost', 'WJetsToLNu_HT200_400',         '1.012') 
-addSampleWeight(samples,'Wjets_boost', 'WJetsToLNu_HT200_400_ext2',    '1.012') 
-addSampleWeight(samples,'Wjets_boost', 'WJetsToLNu_HT400_600',         '0.9945') 
-addSampleWeight(samples,'Wjets_boost', 'WJetsToLNu_HT400_600_ext1',    '0.9945')
-addSampleWeight(samples,'Wjets_boost', 'WJetsToLNu_HT600_800',         '0.9537') 
-addSampleWeight(samples,'Wjets_boost', 'WJetsToLNu_HT600_800_ext1',    '0.9537') 
-addSampleWeight(samples,'Wjets_boost', 'WJetsToLNu_HT800_1200',        '0.8844') 
-addSampleWeight(samples,'Wjets_boost', 'WJetsToLNu_HT800_1200_ext1',   '0.8844')
-addSampleWeight(samples,'Wjets_boost', 'WJetsToLNu_HT1200_2500',       '0.7643') 
-addSampleWeight(samples,'Wjets_boost', 'WJetsToLNu_HT1200_2500_ext1',  '0.7643') 
-addSampleWeight(samples,'Wjets_boost', 'WJetsToLNu_HT2500_inf',        '0.2422') 
-addSampleWeight(samples,'Wjets_boost', 'WJetsToLNu_HT2500_inf_ext1',   '0.2422') 
-
-####################
-#Resolved bin 
-for iw, wjetbin in enumerate(wjets_res_bins):
-  samples[wjetbin] = { 'name' :   
-            #nanoGetSampleFiles(directory_bkg, 'WJetsToLNu')  #NLO inclusive samples
-            nanoGetSampleFiles(directory_wjets_res_bins[wjetbin], 'WJetsToLNu-LO')
-            + nanoGetSampleFiles(directory_wjets_res_bins[wjetbin], 'WJetsToLNu-LO_ext2')
-            + nanoGetSampleFiles(directory_wjets_res_bins[wjetbin], 'WJetsToLNu_HT70_100')
-            + nanoGetSampleFiles(directory_wjets_res_bins[wjetbin], 'WJetsToLNu_HT100_200')
-            + nanoGetSampleFiles(directory_wjets_res_bins[wjetbin], 'WJetsToLNu_HT100_200_ext2')
-            + nanoGetSampleFiles(directory_wjets_res_bins[wjetbin], 'WJetsToLNu_HT200_400')
-            + nanoGetSampleFiles(directory_wjets_res_bins[wjetbin], 'WJetsToLNu_HT200_400_ext2')
-            + nanoGetSampleFiles(directory_wjets_res_bins[wjetbin], 'WJetsToLNu_HT400_600')
-            + nanoGetSampleFiles(directory_wjets_res_bins[wjetbin], 'WJetsToLNu_HT400_600_ext1')
-            + nanoGetSampleFiles(directory_wjets_res_bins[wjetbin], 'WJetsToLNu_HT600_800')
-            + nanoGetSampleFiles(directory_wjets_res_bins[wjetbin], 'WJetsToLNu_HT600_800_ext1')
-            + nanoGetSampleFiles(directory_wjets_res_bins[wjetbin], 'WJetsToLNu_HT800_1200')
-            + nanoGetSampleFiles(directory_wjets_res_bins[wjetbin], 'WJetsToLNu_HT800_1200_ext1')
-            + nanoGetSampleFiles(directory_wjets_res_bins[wjetbin], 'WJetsToLNu_HT1200_2500')
-            + nanoGetSampleFiles(directory_wjets_res_bins[wjetbin], 'WJetsToLNu_HT1200_2500_ext1')
-            + nanoGetSampleFiles(directory_wjets_res_bins[wjetbin], 'WJetsToLNu_HT2500_inf')
-            + nanoGetSampleFiles(directory_wjets_res_bins[wjetbin], 'WJetsToLNu_HT2500_inf_ext1')
-            ,
-          'weight': "( fit_bin_res == {} )*".format(iw+1) + XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch + '*'+Wjets_photon_filter + '* EWKnloW * btagSF_corr_Wjets_HT', 
-          'FilesPerJob' : nfiles_wjets[iw],
-        }
-  # No needed HT stiching corrections
-  addSampleWeight(samples,wjetbin, 'WJetsToLNu-LO', '(LHE_HT < 70)') 
-  addSampleWeight(samples,wjetbin, 'WJetsToLNu-LO_ext2', '(LHE_HT < 70)') 
-  CombineBaseW(samples, wjetbin, ['WJetsToLNu-LO','WJetsToLNu-LO_ext2'])
-
-  CombineBaseW(samples, wjetbin, ['WJetsToLNu_HT100_200','WJetsToLNu_HT100_200_ext2'])
-  CombineBaseW(samples, wjetbin, ['WJetsToLNu_HT200_400','WJetsToLNu_HT200_400_ext2'])
-  CombineBaseW(samples, wjetbin, ['WJetsToLNu_HT400_600','WJetsToLNu_HT400_600_ext1'])
-  CombineBaseW(samples, wjetbin, ['WJetsToLNu_HT600_800','WJetsToLNu_HT600_800_ext1'])
-  CombineBaseW(samples, wjetbin, ['WJetsToLNu_HT800_1200','WJetsToLNu_HT800_1200_ext1'])
-  CombineBaseW(samples, wjetbin, ['WJetsToLNu_HT1200_2500','WJetsToLNu_HT1200_2500_ext1'])
-  CombineBaseW(samples, wjetbin, ['WJetsToLNu_HT2500_inf','WJetsToLNu_HT2500_inf_ext1'])
-
-  # HT bins to LO factors 
-  addSampleWeight(samples,wjetbin, 'WJetsToLNu_HT70_100',          '1.21 * 1.0346')  #adding also k-factor
-  addSampleWeight(samples,wjetbin, 'WJetsToLNu_HT100_200',         '1.019') 
-  addSampleWeight(samples,wjetbin, 'WJetsToLNu_HT100_200_ext2',    '1.019') 
-  addSampleWeight(samples,wjetbin, 'WJetsToLNu_HT200_400',         '1.012') 
-  addSampleWeight(samples,wjetbin, 'WJetsToLNu_HT200_400_ext2',    '1.012') 
-  addSampleWeight(samples,wjetbin, 'WJetsToLNu_HT400_600',         '0.9945') 
-  addSampleWeight(samples,wjetbin, 'WJetsToLNu_HT400_600_ext1',    '0.9945')
-  addSampleWeight(samples,wjetbin, 'WJetsToLNu_HT600_800',         '0.9537') 
-  addSampleWeight(samples,wjetbin, 'WJetsToLNu_HT600_800_ext1',    '0.9537') 
-  addSampleWeight(samples,wjetbin, 'WJetsToLNu_HT800_1200',        '0.8844') 
-  addSampleWeight(samples,wjetbin, 'WJetsToLNu_HT800_1200_ext1',   '0.8844')
-  addSampleWeight(samples,wjetbin, 'WJetsToLNu_HT1200_2500',       '0.7643') 
-  addSampleWeight(samples,wjetbin, 'WJetsToLNu_HT1200_2500_ext1',  '0.7643') 
-  addSampleWeight(samples,wjetbin, 'WJetsToLNu_HT2500_inf',        '0.2422') 
-  addSampleWeight(samples,wjetbin, 'WJetsToLNu_HT2500_inf_ext1',   '0.2422') 
+addSampleWeight(samples,'Wjets', 'WJetsToLNu_HT70_100',          '1.21 * 1.0346')  #adding also k-factor
+addSampleWeight(samples,'Wjets', 'WJetsToLNu_HT100_200',         '1.019') 
+addSampleWeight(samples,'Wjets', 'WJetsToLNu_HT100_200_ext2',    '1.019') 
+addSampleWeight(samples,'Wjets', 'WJetsToLNu_HT200_400',         '1.012') 
+addSampleWeight(samples,'Wjets', 'WJetsToLNu_HT200_400_ext2',    '1.012') 
+addSampleWeight(samples,'Wjets', 'WJetsToLNu_HT400_600',         '0.9945') 
+addSampleWeight(samples,'Wjets', 'WJetsToLNu_HT400_600_ext1',    '0.9945')
+addSampleWeight(samples,'Wjets', 'WJetsToLNu_HT600_800',         '0.9537') 
+addSampleWeight(samples,'Wjets', 'WJetsToLNu_HT600_800_ext1',    '0.9537') 
+addSampleWeight(samples,'Wjets', 'WJetsToLNu_HT800_1200',        '0.8844') 
+addSampleWeight(samples,'Wjets', 'WJetsToLNu_HT800_1200_ext1',   '0.8844')
+addSampleWeight(samples,'Wjets', 'WJetsToLNu_HT1200_2500',       '0.7643') 
+addSampleWeight(samples,'Wjets', 'WJetsToLNu_HT1200_2500_ext1',  '0.7643') 
+addSampleWeight(samples,'Wjets', 'WJetsToLNu_HT2500_inf',        '0.2422') 
+addSampleWeight(samples,'Wjets', 'WJetsToLNu_HT2500_inf_ext1',   '0.2422') 
 
 #############################################################################
 ###########################################################################
@@ -393,7 +337,7 @@ samples['VBF-V']  = {  'name'   : nanoGetSampleFiles(directory_signal,'EWK_LNuJJ
 samples['VBF-V_dipole']  = {  'name'   : nanoGetSampleFiles(directory_signal,'EWK_LNuJJ_herwig')
                                        + nanoGetSampleFiles(directory_signal,'EWK_LLJJ_herwig'), 
                     'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch +'*btagSF_corr_Vg_VgS_VBFV',
-                    'FilesPerJob' : 6
+                    'FilesPerJob' : 15
                   }
 
 ################ ggWW ##################3
@@ -472,7 +416,7 @@ samples['VBS_dipoleRecoil']  = { 'name' :
                + nanoGetSampleFiles(directory_signal,'WpToLNu_ZTo2J_dipoleRecoil') 
                + nanoGetSampleFiles(directory_signal,'ZTo2L_ZTo2J_dipoleRecoil'),
        'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch+'*btagSF_corr_VBS',
-       'FilesPerJob' : 5,
+       'FilesPerJob' : 15,
         'EventsPerJob' : 70000,
 }
 
@@ -515,4 +459,4 @@ for Run in DataRun :
 
 
 # samples = {k:v for k,v in samples.items() if 'Wjets_res' in k}
-samples = {k:v for k,v in samples.items() if k in ["VBF-V_dipole", "VBS_dipoleRecoil"]}
+# samples = {k:v for k,v in samples.items() if k in ["VBF-V_dipole", "VBS_dipoleRecoil"]}

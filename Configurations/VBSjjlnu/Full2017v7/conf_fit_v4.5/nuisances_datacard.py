@@ -609,14 +609,14 @@ nuisances['UE']  = {
                 'samples': dict((skey, '1.015') for skey in mc if skey not in ["Wjets_boost","top"]+wjets_res_bins), 
 }
 
-############################
-# nuisances['dipole']  = {
-#                 'name'  : 'dipole',
-#                 'kind'  : 'weight',
-#                 'type'  : 'shape',
-#                 'OneSided': True,
-#                 'samples'  : { 'VBS': ['dipole_weight']}
-# }
+###########################
+nuisances['dipole']  = {
+                'name'  : 'dipole',
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'OneSided': True,
+                'samples'  : { 'VBS': ['dipole_weight']}
+}
 
 
 ###############

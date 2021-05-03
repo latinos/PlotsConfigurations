@@ -160,7 +160,7 @@ def postfit_plot(datac):
 
     cmd = [ """mkPostFitCombinedPlot.py --inputFilePostFitShapesFromWorkspace  ../../../datacards/{0}/output_postfit.root \\
            --outputFile postfit_shapes.root --kind P --cutName combined  \\
-           --variable {1} --structureFile ../../../Full2018v7/conf_fit_v4.3/structure.py \\
+           --variable {1} --structureFile ../../../Full2018v7/conf_fit_v4.5/structure.py \\
            --plotFile ../../{2} --lumiText "137/fb" """.format(datac["outputdir"], datac["phase_spaces"][0]["var"], plotFile),
 
            """mkPlot.py --pycfg=configuration_combined.py --inputFile=postfit_shapes.root  --showRelativeRatio \\

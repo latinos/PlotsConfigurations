@@ -130,7 +130,7 @@ btagSF_corr_samples_groups = {
     'VBS': ['VBS','VBS_ZLL'],
     'VBS_dipoleRecoil': ['VBS_dipoleRecoil'],
     'Wjets_HT': wjets_res_bins  + wjets_boost_bins,
-    'Vg_VgS_VBFV':['Vg','VgS','VBF-V'],
+    'Vg_VgS_VBFV':['Vg','VgS','VBF-V','VBF-V_dipole'],
     'VV_VVV_ggWW':['VVV','VV','ggWW'],
     'top':['top'],
     'DY': ['DY']
@@ -412,12 +412,12 @@ aliases['DNNoutput_resolved_v1'] = {
 }
 
 
-aliases['dipole_weight'] = {
-    'class': 'ReweightDNN',
-    'args': (configurations + "/VBSjjlnu/weights_files/DNN_reweight_VBS_dipole.root", False),
-    'linesToAdd': [
-        # 'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-            '.L {}/VBSjjlnu/macros/reweight_dnn.cc+'.format(configurations)
-    ],
-    'samples': ["VBS"]
-}
+# aliases['dipole_weight'] = {
+#     'class': 'ReweightDNN',
+#     'args': (configurations + "/VBSjjlnu/weights_files/DNN_reweight_VBS_dipole.root", False),
+#     'linesToAdd': [
+#         # 'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+#             '.L {}/VBSjjlnu/macros/reweight_dnn.cc+'.format(configurations)
+#     ],
+#     'samples': ["VBS"]
+# }
