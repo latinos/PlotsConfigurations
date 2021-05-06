@@ -254,3 +254,6 @@ variables['deltaeta_vjet'] = {   'name': 'deltaeta_vjet',
                         'fold' : 3,
                         'cuts': [c for c in sig_cuts if "res" in c]
                         }   
+
+
+# variables = {k:v for k,v in variables.items() if k in ["events", "DNNoutput_res_v1", "DNNoutput_boost", "fit_bins_res","fit_bins_boost"]}

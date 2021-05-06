@@ -240,8 +240,8 @@ addSampleWeight(samples,'Wjets_boost', 'WJetsToLNu_HT800_1200',   '1.1698')
 addSampleWeight(samples,'Wjets_boost', 'WJetsToLNu_HT1200_2500',  '1.3046') 
 addSampleWeight(samples,'Wjets_boost', 'WJetsToLNu_HT2500_inf',   '2.1910') 
  
-################
-Resolved bins
+###############
+# Resolved bins
 for iw, wjetbin in enumerate(wjets_res_bins):
   samples[wjetbin] = { 'name' :   
             nanoGetSampleFiles(directory_wjets_res_bins[wjetbin], 'WJetsToLNu-LO')
@@ -481,4 +481,4 @@ samples['DATA']  = {   'name': [ ] ,
                        'FilesPerJob' : 45,
                   }
 
-samples = {k:v for k,v in samples.items() if k in ["VBF-V_dipole","VBS_dipoleRecoil"]}#
+samples = {k:v for k,v in samples.items() if k not in ["VBF-V","VBS"]}#

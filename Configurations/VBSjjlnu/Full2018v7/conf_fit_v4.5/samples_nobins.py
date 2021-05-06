@@ -130,7 +130,7 @@ samples['DY'] = {    'name'   :   nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M
                                   + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-4to50_HT-400to600')
                                   + nanoGetSampleFiles(directory_bkg,'DYJetsToLL_M-4to50_HT-600toInf'),
                        'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC + '*' + DY_photon_filter +'*btagSF_corr_DY',# missing ewkNLOW
-                       'FilesPerJob' : 6,
+                       'FilesPerJob' : 8,
                        'EventsPerJob' : 70000,
                       #  'suppressNegative' :['all'],
                       #  'suppressNegativeNuisances' :['all'],
@@ -171,7 +171,7 @@ samples['top'] = {    'name'   :   nanoGetSampleFiles(directory_bkg,'TTTo2L2Nu')
                                  + nanoGetSampleFiles(directory_bkg,'TTWjets'),
                                 #+  nanoGetSampleFiles(directory_bkg,'TTWJetsToLNu'), #also this is available
                      'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC +'*btagSF_corr_top',
-                     'FilesPerJob' : 4,
+                     'FilesPerJob' : 8,
                      'EventsPerJob' : 70000,
                      'suppressNegative' :['all'],
                      'suppressNegativeNuisances' :['all'],
@@ -205,19 +205,20 @@ samples["Wjets"] = { 'name' :
           'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch + '*' + Wjets_photon_filter +  '* ewknloW * btagSF_corr_Wjets_HT',
           'FilesPerJob' : 6,   
       }
+    
 
   # Fix Wjets binned + LO 
-  addSampleWeight(samples,"Wjets", 'WJetsToLNu-LO', '(LHE_HT < 70)') 
+addSampleWeight(samples,"Wjets", 'WJetsToLNu-LO', '(LHE_HT < 70)') 
   ############
   # HT stiching corrections 2018
-  addSampleWeight(samples,"Wjets", 'WJetsToLNu_HT70_100',    '1.21 * 0.95148')  #adding also k-factor
-  addSampleWeight(samples,"Wjets", 'WJetsToLNu_HT100_200',   '0.9471') 
-  addSampleWeight(samples,"Wjets", 'WJetsToLNu_HT200_400',   '0.9515') 
-  addSampleWeight(samples,"Wjets", 'WJetsToLNu_HT400_600',   '0.9581') 
-  addSampleWeight(samples,"Wjets", 'WJetsToLNu_HT600_800',   '1.0582') 
-  addSampleWeight(samples,"Wjets", 'WJetsToLNu_HT800_1200',  '1.1285') 
-  addSampleWeight(samples,"Wjets", 'WJetsToLNu_HT1200_2500', '1.3268') 
-  addSampleWeight(samples,"Wjets", 'WJetsToLNu_HT2500_inf',  '2.7948') 
+addSampleWeight(samples,"Wjets", 'WJetsToLNu_HT70_100',    '1.21 * 0.95148')  #adding also k-factor
+addSampleWeight(samples,"Wjets", 'WJetsToLNu_HT100_200',   '0.9471') 
+addSampleWeight(samples,"Wjets", 'WJetsToLNu_HT200_400',   '0.9515') 
+addSampleWeight(samples,"Wjets", 'WJetsToLNu_HT400_600',   '0.9581') 
+addSampleWeight(samples,"Wjets", 'WJetsToLNu_HT600_800',   '1.0582') 
+addSampleWeight(samples,"Wjets", 'WJetsToLNu_HT800_1200',  '1.1285') 
+addSampleWeight(samples,"Wjets", 'WJetsToLNu_HT1200_2500', '1.3268') 
+addSampleWeight(samples,"Wjets", 'WJetsToLNu_HT2500_inf',  '2.7948') 
   
 
 ###############################################

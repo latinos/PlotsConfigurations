@@ -307,19 +307,6 @@ nuisances['MET']  = {
                 'AsLnN'      : '1',
 }
 
-for wjbin in wjets_all_bins:
-    nuisances['MET_'+wjbin]  = {
-                'name'  : 'CMS_scale_met_2018',
-                'kind'  : 'suffix',
-                'type'  : 'shape',
-                'mapUp':   'METup',
-                'mapDown': 'METdo', 
-                'samples': { wjbin:  ['1.','1.']},
-                'folderUp' : directory_wjets_bins[wjbin]+'_METup',
-                'folderDown' : directory_wjets_bins[wjbin]+'_METdo',
-                'AsLnN'      : '1',
-    }
-
 ##################################
 ######## Fatjet uncertainties
 

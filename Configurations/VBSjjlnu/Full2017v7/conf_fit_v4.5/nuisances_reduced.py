@@ -511,13 +511,13 @@ nuisances['pdf_weight'] = {
 }
 
 
-nuisances['pdf_weight_VBS'] = {
-    'name'  : 'pdf_weight_1718_accept',
-    'kind'  : 'weight_envelope',
-    'type'  : 'shape',
-    'samples' :  { "VBS": [ 'Alt$(PDFweight_normalized['+str(i)+'], 1.)' for i in range(0,103) ],
-                 "VBS_dipoleRecoil": [ 'Alt$(PDFweight_normalized['+str(i)+'], 1.)' for i in range(0,103) ]}
-}
+# nuisances['pdf_weight_VBS'] = {
+#     'name'  : 'pdf_weight_1718_accept',
+#     'kind'  : 'weight_envelope',
+#     'type'  : 'shape',
+#     'samples' :  { "VBS": [ 'Alt$(PDFweight_normalized['+str(i)+'], 1.)' for i in range(0,103) ],
+#                  "VBS_dipoleRecoil": [ 'Alt$(PDFweight_normalized['+str(i)+'], 1.)' for i in range(0,103) ]}
+# }
 
 # An overall 1.5% UE uncertainty will cover all the UEup/UEdo variations
 # And we don't observe any dependency of UE variations on njet

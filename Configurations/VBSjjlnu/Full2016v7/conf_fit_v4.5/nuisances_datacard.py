@@ -1,7 +1,7 @@
 # # nuisances
 from pprint import pprint
 # # name of samples here must match keys in samples.py 
-mc =["DY", "top", "VV", "VVV", "Vg", "VgS", "VBS", "VBF-V", "ggWW","Wjets_boost"] + wjets_res_bins
+mc =["DY", "top", "VV", "VVV", "Vg", "VgS", "VBS_dipoleRecoil", "VBF-V_dipole", "ggWW","Wjets_boost"] + wjets_res_bins
 #mc_norm = [m for m in mc if m not in ["VBS", "VV"]]
 #mc_sep =  ["VBS", "VV"]
 phasespaces = ["res_wjetcr_ele","res_wjetcr_mu" ,"boost_wjetcr_ele" ,"boost_wjetcr_mu",
@@ -477,13 +477,15 @@ nuis_factors = json.load(open(os.getenv("CMSSW_BASE") + "/src/PlotsConfiguration
 for sample in mc :
     if "Wjets" in sample: continue
     if sample == "ggWW": continue
-    if sample == 'VBS':
+    if 'VBS' in sample:
         nuisances['QCD_scale_VBS'] = {
             'name'  : 'QCDscale_VBS_accept',
             'kind'  : 'weight',
             'type'  : 'shape',
             # Normalization effect removed from 1l inclusive phase space
-            'samples'  :  { "VBS": ["QCDscale_normalized[0]", "QCDscale_normalized[8]"] }
+            'samples'  :  { "VBS": ["QCDscale_normalized[0]", "QCDscale_normalized[8]"],
+                            "VBS_dipoleRecoil": ["QCDscale_normalized[0]", "QCDscale_normalized[8]"] 
+                        }
         }
     else:
         nuisances['QCD_scale_'+sample] = {
@@ -503,7 +505,7 @@ nuisances['QCD_scale_Wjets'] = {
 
 ## PS nuisance taken from 2018 effect, split by sample
 
-samples_PS = ['VBS','top','DY','VV','VVV','Vg','VgS','VBF-V','ggWW'] + wjets_bins
+samples_PS = ['VBS_dipoleRecoil','top','DY','VV','VVV','Vg','VgS','VBF-V_dipole','ggWW'] + wjets_bins
 
 for sample in samples_PS:
     nuisances['PS_ISR_'+sample]  = {
@@ -529,14 +531,15 @@ nuisances['pdf_weight'] = {
     'name'  : 'pdf_weight_16',
     'kind'  : 'weight_envelope',
     'type'  : 'shape',
-    'samples' :  { s: [' Alt$(LHEPdfWeight['+str(i)+'], 1.)' for i in range(0,103)] for s in mc if s not in ["VBS", "VV", "top","Wjets_boost"]+wjets_res_bins},
+    'samples' :  { s: [' Alt$(LHEPdfWeight['+str(i)+'], 1.)' for i in range(0,103)] for s in mc if s not in ["VBS","VBS_dipoleRecoil", "VV", "top","Wjets_boost"]+wjets_res_bins},
     'AsLnN':  '1'
 }
 nuisances['pdf_weight_VBS'] = {
     'name'  : 'pdf_weight_16_accept',
     'kind'  : 'weight_envelope',
     'type'  : 'shape',
-    'samples' :  { "VBS": [ 'Alt$(PDFweight_normalized['+str(i)+'], 1.)' for i in range(0,103) ]}
+    'samples' :  { "VBS": [ 'Alt$(PDFweight_normalized['+str(i)+'], 1.)' for i in range(0,103) ],
+                   "VBS_dipoleRecoil": [ 'Alt$(PDFweight_normalized['+str(i)+'], 1.)' for i in range(0,103) ]}
 }
 
 
@@ -574,13 +577,13 @@ nuisances['UE']  = {
 
 
 ###########################
-nuisances['dipole']  = {
-                'name'  : 'dipole',
-                'kind'  : 'weight',
-                'type'  : 'shape',
-                'OneSided': True,
-                'samples'  : { 'VBS': ['dipole_weight']}
-}
+# nuisances['dipole']  = {
+#                 'name'  : 'dipole',
+#                 'kind'  : 'weight',
+#                 'type'  : 'shape',
+#                 'OneSided': True,
+#                 'samples'  : { 'VBS': ['dipole_weight']}
+# }
 
 #########################
 ## Top and W+jets normalizations

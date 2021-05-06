@@ -98,7 +98,7 @@ groupPlot['Others']  = {
                 'nameHR' : "VBF-V + V#gamma",
                 'isSignal' : 0,
                 'color':palette["GreenLighter"],# palette["Green5"],    #Green2
-                'samples'  : ['VBF-V', 'Vg','VgS', ],
+                'samples'  : ['VBF-V_dipole', 'Vg','VgS', ],
                 'fill': 1001
             }
 
@@ -136,7 +136,7 @@ groupPlot['VBS']  = {
                  'nameHR' : 'VBS',
                  'isSignal' : 1,
                  'color': colors["kRed"]+1,   
-                 'samples'  : ['VBS'],
+                 'samples'  : ['VBS_dipoleRecoil'],
                  'fill': 1001
               }
 
@@ -171,7 +171,7 @@ plot['DY']  = {
                 'scale'    : 1.0,
             }
 
-plot['VBF-V']  = {
+plot['VBF-V_dipole']  = {
                   'color': colors['kYellow']+3,  
                   'isSignal' : 0,
                   'isData'   : 0,
@@ -231,7 +231,7 @@ for wjetbin in wjets_bins:
                     'scale'    : 1.0 
                     }
 
-plot['VBS']  = {
+plot['VBS_dipoleRecoil']  = {
                   'color': colors["kCyan"]+1, 
                   'isSignal' : 1,
                   'isData'   : 0,
