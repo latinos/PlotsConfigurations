@@ -42,23 +42,26 @@ variables['j2_eta']  = {
 }
 
 variables['Puppimet']  = {
-                        'name': 'PuppiMET_pt',
-                        'range' : (25,0,300),
-                        'xaxis' : 'p_{T} puppiMET [GeV]',
-                        'fold'  : 3
-                        }
+    'name': 'PuppiMET_pt',
+    'range' : (25,0,300),
+    'xaxis' : 'p_{T} puppiMET [GeV]',
+    'fold'  : 3
+}
+
 variables['pt_ljj']  = {
-                        'name': 'MHlnjj_pt_ljj',
-                        'range' : (25,0,300),
-                        'xaxis' : 'p_{T}^{ljj} [GeV]',
-                        'fold'  : 3
-                        }
+    'name': 'MHlnjj_pt_ljj',
+    'range' : (25,0,300),
+    'xaxis' : 'p_{T}^{ljj} [GeV]',
+    'fold'  : 3
+}
+
 variables['pt_jj']  = {
-                        'name': 'MHlnjj_pt_jj',
-                        'range' : (25,0,300),
-                        'xaxis' : 'p_{T}^{jj} [GeV]',
-                        'fold'  : 3
-                        }
+    'name': 'MHlnjj_pt_jj',
+    'range' : (25,0,300),
+    'xaxis' : 'p_{T}^{jj} [GeV]',
+    'fold'  : 3
+}
+
 variables['frac_PTljj_D_PTmet']  = {
     'name': 'MHlnjj_PTljj_D_PTmet',
     'range' : (25,0,3),
@@ -101,15 +104,14 @@ variables['frac_MAXPTlj_D_Mlmetjj']  = {
     'fold'  : 3
 }
 
-
 variables['mt_lmet']  = {
-                       #'name': 'MHlnjj_mt_lmet',
-                       'name': 'mtw1',
-                       'range' : (25,0,200),
-                       #'range' : ([50,75,100,125,181,300],),
-                       'xaxis' : 'm_{T}^{lmet} [GeV]',
-                       'fold'  : 3
-                       }
+    #'name': 'MHlnjj_mt_lmet',
+    'name': 'mtw1',
+    'range' : (25,0,200),
+    #'range' : ([50,75,100,125,181,300],),
+    'xaxis' : 'm_{T}^{lmet} [GeV]',
+    'fold'  : 3
+}
 
 variables['frac_MTljj_D_PTmet']  = {
     'name': 'MHlnjj_MTljj_D_PTmet',
@@ -126,53 +128,61 @@ variables['frac_MTljj_D_Mlmetjj']  = {
 }
 
 variables['dphi_ljj_met']  = {
-                        'name': 'MHlnjj_dphi_ljjVmet',
-                        'range' : (25,1.5,3.14),
-                        'xaxis' : '#Delta#phi(ljj,met)',
-                        'fold'  : 3,
-                        }
+    'name': 'MHlnjj_dphi_ljjVmet',
+    'range' : (25,1.5,3.14),
+    'xaxis' : '#Delta#phi(ljj,met)',
+    'fold'  : 3,
+}
+
 variables['deta_ljj_met']  = {
-                        'name': 'MHlnjj_deta_ljjVmet',
-                        'range' : (25,0,5),   
-                        'xaxis' : '#Delta#eta(ljj,met)',
-                        'fold'  : 3,
-                        }
+    'name': 'MHlnjj_deta_ljjVmet',
+    'range' : (25,0,5),   
+    'xaxis' : '#Delta#eta(ljj,met)',
+    'fold'  : 3,
+}
+
 variables['dphi_l_jj']  = {
-                        'name': 'MHlnjj_dphi_jjVl',
-                        'range' : (25,0,2),
-                        'xaxis' : '#Delta#phi(l,jj)',
-                        'fold'  : 3
-                        }
+    'name': 'MHlnjj_dphi_jjVl',
+    'range' : (25,0,2),
+    'xaxis' : '#Delta#phi(l,jj)',
+    'fold'  : 3
+}
+
 variables['deta_l_jj']  = {
-                        'name': 'MHlnjj_deta_jjVl',
-                        'range' : (25,0,4),   
-                        'xaxis' : '#Delta#eta(l,jj)',
-                        'fold'  : 3
-                        }
+    'name': 'MHlnjj_deta_jjVl',
+    'range' : (25,0,4),   
+    'xaxis' : '#Delta#eta(l,jj)',
+    'fold'  : 3
+}
+
 variables['dphi_l_met']  = {
-                        'name': 'MHlnjj_dphi_lVmet',
-                        'range' : (25,0,3.14),
-                        'xaxis' : '#Delta#phi(l,met)',
-                        'fold'  : 3
-                        }
+    'name': 'MHlnjj_dphi_lVmet',
+    'range' : (25,0,3.14),
+    'xaxis' : '#Delta#phi(l,met)',
+    'fold'  : 3
+}
+
 variables['deta_l_met']  = {
-                        'name': 'MHlnjj_deta_lVmet',
-                        'range' : (25,0,3),   
-                        'xaxis' : '#Delta#eta(l,met)',
-                        'fold'  : 3
-                        }
+    'name': 'MHlnjj_deta_lVmet',
+    'range' : (25,0,3),   
+    'xaxis' : '#Delta#eta(l,met)',
+    'fold'  : 3
+}
+
 variables['dphi_j_j']  = {
-                        'name': 'MHlnjj_dphi_jVj',
-                        'range' : (25,0,3.14),
-                        'xaxis' : '#Delta#phi(j,j)',
-                        'fold'  : 3
-                        }
+    'name': 'MHlnjj_dphi_jVj',
+    'range' : (25,0,3.14),
+    'xaxis' : '#Delta#phi(j,j)',
+    'fold'  : 3
+}
+
 variables['deta_j_j']  = {
-                        'name': 'MHlnjj_deta_jVj',
-                        'range' : (25,0,5),   
-                        'xaxis' : '#Delta#eta(j,j)',
-                        'fold'  : 3
-                        }
+    'name': 'MHlnjj_deta_jVj',
+    'range' : (25,0,5),   
+    'xaxis' : '#Delta#eta(j,j)',
+    'fold'  : 3
+}
+
 variables['m_ljj']  = {
     'name': 'MHlnjj_m_ljj',
     'range' : (30,0,400),
@@ -186,10 +196,12 @@ variables['m_lmetjj']  = {
     'xaxis' : 'm_{lmetjj} [GeV]',
     'fold'  : 3
 }
-variables['m_jj']  = {  'name': 'MHlnjj_m_jj',     
-                        'range' : (25,0,250),   
-                        'xaxis' : 'm^{j,j}',
-                        'fold'  : 3                         
-                        }
+
+variables['m_jj']  = {
+    'name': 'MHlnjj_m_jj',     
+    'range' : (25,0,250),   
+    'xaxis' : 'm^{j,j}',
+    'fold'  : 3                         
+}
 
 

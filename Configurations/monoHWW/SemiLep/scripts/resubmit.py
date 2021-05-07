@@ -11,6 +11,7 @@ parser.add_argument("--config", help="configuration file", type=str)
 parser.add_argument("-q", "--queue", help="job queue", type=str)
 parser.add_argument("-r", "--redo", help="forcefully redo comma seperated samples", type=str)
 parser.add_argument("-e", "--exclude", help="skip comma seperated samples", type=str)
+parser.add_argument("--implicit", help="redo/exclude all samples with given string, no longer exactly match", action="store_true")
 args = parser.parse_args()
 
 cms_base = os.getenv('CMSSW_BASE')
@@ -55,21 +56,29 @@ if proc.returncode != 0:
 # Collect jobs to resub
 to_redo = []
 if not args.redo is None: to_redo = args.redo.split(',')
-for idx in range(len(to_redo)):
-    to_redo[idx] += '.'
+if not args.implicit:
+    for idx in range(len(to_redo)):
+        to_redo[idx] += '.'
 to_skip = []
 if not args.exclude is None: to_skip = args.exclude.split(',')
-for idx in range(len(to_skip)):
-    to_skip[idx] += '.'
+if not args.implicit:
+    for idx in range(len(to_skip)):
+        to_skip[idx] += '.'
 jobs = []
 dirs = os.listdir(path)
 print('Jobs to resubmit: ')
 for diry in dirs:
     job_files = path+'/'+diry+'/'+job_base+'__'+diry
     sample = diry.split('.')[0] + '.'
-    if sample in to_skip: continue
+    do_this = True
+    for skippy in to_skip:
+        if skippy in sample: do_this = False
+    if not do_this: continue
+    do_redo = False
+    for redo_pls in to_redo:
+        if redo_pls in sample: do_redo = True 
     if os.path.isfile(job_files+'.py'): 
-        if os.path.isfile(job_files+'.jid') or sample in to_redo:
+        if os.path.isfile(job_files+'.jid') or do_redo:
             jobs.append(job_files)
             check_job_file(job_files+'.sh')
             print('- '+diry)

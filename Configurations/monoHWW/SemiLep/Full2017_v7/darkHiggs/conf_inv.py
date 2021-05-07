@@ -14,9 +14,9 @@ outputDir = 'darkHiggs_inv_root'
 aliasesFile = 'aliases.py'
 
 # file with list of variables
-variablesFile = 'variables_bdt.py'
+#variablesFile = 'variables_bdt.py'
 #variablesFile = 'variables_clean.py'
-#variablesFile = 'variables_inv.py'
+variablesFile = 'variables_inv.py'
 
 # file with list of cuts
 #cutsFile = 'cuts.py'

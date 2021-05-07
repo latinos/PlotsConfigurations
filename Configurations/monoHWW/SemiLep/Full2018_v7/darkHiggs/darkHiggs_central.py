@@ -34,4 +34,35 @@ for model in models:
     }
     print('  - Mass point: '+mp+' ,\t baseW: '+modelDict[model]['baseW']+',\t genEventSumw: '+str(modelDict[model]['genEventSumw']))
     col_idx += 1
-    
+
+# Additional mass points
+mass_points = [
+    'mhs_160_mx_100_mZp_2000', 'mhs_160_mx_100_mZp_2500', 
+    'mhs_160_mx_150_mZp_2000', 'mhs_160_mx_150_mZp_2500',
+    'mhs_160_mx_200_mZp_2000', 'mhs_160_mx_200_mZp_2500',
+    'mhs_160_mx_300_mZp_1000', 'mhs_160_mx_300_mZp_1200', 'mhs_160_mx_300_mZp_1500', 'mhs_160_mx_300_mZp_2000', 'mhs_160_mx_300_mZp_2500', 'mhs_160_mx_300_mZp_800',
+    'mhs_180_mx_100_mZp_2000', 'mhs_180_mx_100_mZp_2500',
+    'mhs_180_mx_150_mZp_2000', 'mhs_180_mx_150_mZp_2500',
+    'mhs_180_mx_200_mZp_2000', 'mhs_180_mx_200_mZp_2500',
+    'mhs_180_mx_300_mZp_1000', 'mhs_180_mx_300_mZp_1200', 'mhs_180_mx_300_mZp_1500', 'mhs_180_mx_300_mZp_2000', 'mhs_180_mx_300_mZp_2500', 'mhs_180_mx_300_mZp_800',
+    'mhs_200_mx_100_mZp_2000', 'mhs_200_mx_100_mZp_2500',
+    'mhs_200_mx_150_mZp_2000', 'mhs_200_mx_150_mZp_2500',
+    'mhs_200_mx_200_mZp_2000', 'mhs_200_mx_200_mZp_2500',
+    'mhs_200_mx_300_mZp_1000', 'mhs_200_mx_300_mZp_1200', 'mhs_200_mx_300_mZp_1500', 'mhs_200_mx_300_mZp_2000', 'mhs_200_mx_300_mZp_2500', 'mhs_200_mx_300_mZp_800',
+    'mhs_300_mx_150_mZp_1000', 'mhs_300_mx_150_mZp_1200', 'mhs_300_mx_150_mZp_1500', 'mhs_300_mx_150_mZp_400', 'mhs_300_mx_150_mZp_500', 'mhs_300_mx_150_mZp_800',
+    'mhs_300_mx_200_mZp_1000', 'mhs_300_mx_200_mZp_1200', 'mhs_300_mx_200_mZp_1500', 'mhs_300_mx_200_mZp_500', 'mhs_300_mx_200_mZp_800',
+    'mhs_300_mx_300_mZp_1000', 'mhs_300_mx_300_mZp_1200', 'mhs_300_mx_300_mZp_800',
+    'mhs_400_mx_200_mZp_1000', 'mhs_400_mx_200_mZp_500', 'mhs_400_mx_200_mZp_800',
+]
+for mp in mass_points:
+    mhs = mp.split('_')[1] 
+    mx  = mp.split('_')[3] 
+    mZp = mp.split('_')[5] 
+    signal['darkHiggs_'+mp] = {
+        'name'   : nanoGetSampleFiles(mcDirectory, 'darkHiggs_ToWWToLNujj_'+mp),
+        'weight' : mcCommonWeight, 
+        'color'  : 632+col_idx,
+        'plot_name'  : 'mhs '+mhs+' mx '+mx+' mZ\' '+mZp,
+        'FilesPerJob': 5,
+    }
+    col_idx += 1

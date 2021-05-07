@@ -231,3 +231,10 @@ variables['BDT_Ada13b']  = {
     #'xaxis' : 'BDT',
     'fold'  : 3, 
 }
+variables['BDT_Ada13']  = { 
+    'name': '2*BDT_Ada13[0]',
+    'range' : (500,-1.,1.),
+    'xaxis' : 'high m_{Z\'} NLO bveto BDT_{Ada13}',
+    #'xaxis' : 'BDT',
+    'fold'  : 3, 
+}

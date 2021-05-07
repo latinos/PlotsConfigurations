@@ -376,6 +376,7 @@ samples['ZZ'] = {
 #files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_Wpt400To600')
 #files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_Wpt600ToInf')
 
+#_ext4 not processed
 # NLO combine stat
 oldbW100pt = getBaseWnAOD(mcDirectory, mcProduction, ['WJetsToLNu_Wpt100To250'])
 newbW100pt = getBaseWnAOD(mcDirectory, mcProduction, ['WJetsToLNu_Wpt100To250', 'WJetsToLNu_Wpt100To250_ext1'])
