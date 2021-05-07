@@ -22,7 +22,7 @@ samplesFile = direc+'/samples_nobins.py'
 #samplesFile = direc+'/samples.py'
 
 #t file with list of samples
-plotFile = direc+'/plot.py' 
+plotFile = direc+'/plot_nobins.py' 
 
 # luminosity to normalize to (in 1/fb)
 lumi = 41.5

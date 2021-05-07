@@ -41,6 +41,18 @@ aliases['fit_bin_res'] = {
             ) + (VBS_category==0)*(-1)'
 }
 
+aliases['fit_bin_boost'] = {
+    'expr':  '(VBS_category==0)*(\
+                1* (w_lep_pt < 50) + \
+                2* (w_lep_pt >= 50 && w_lep_pt < 100) + \
+                3* (w_lep_pt >= 100 && w_lep_pt < 150) + \
+                4* (w_lep_pt >= 150 && w_lep_pt < 200) + \
+                5* (w_lep_pt >= 200 && w_lep_pt < 300) + \
+                6* (w_lep_pt >= 300 && w_lep_pt < 400) + \
+                7* (w_lep_pt >= 400)\
+            ) + (VBS_category==1)*(-1)   '
+}
+
 
 #########################################
 # trigger eff

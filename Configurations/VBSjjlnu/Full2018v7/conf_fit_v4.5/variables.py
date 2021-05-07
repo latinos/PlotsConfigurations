@@ -187,7 +187,7 @@ variables['vbs_0_qgl_boost'] = {  'name': 'vbs_0_qgl_boost',
 
 variables['vbs_0_pt'] = {   'name': 'vbs_0_pt',      
                         'range' : (35,50,400),  
-                        'xaxis' : 'trailing VBS jet pt', 
+                        'xaxis' : 'leading VBS jet pt', 
                         'fold' : 3
                         } 
 

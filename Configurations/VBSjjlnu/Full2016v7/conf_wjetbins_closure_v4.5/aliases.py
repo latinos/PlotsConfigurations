@@ -9,11 +9,6 @@ conf_folder = configurations +"/VBSjjlnu/Full2016v7"
 
 mc = [skey for skey in samples if skey not in ('Fake', 'DATA')]
 
-wjets_res_bins = [ ]
-for i in range(1, 22):
-    wjets_res_bins.append("Wjets_res_{}".format(i))
-# for i in range(1, 8):
-#     Wjets_bins.append("Wjets_boost_{}".format(i))
 
 
 aliases['nJets30']= {
@@ -44,6 +39,18 @@ aliases['fit_bin_res'] = {
             20*( (w_lep_pt >= 400 && w_lep_pt < 500) && (vbs_1_pt >= 85) ) +\
             21*( w_lep_pt >= 500) \
             ) + (VBS_category==0)*(-1)'
+}
+
+aliases['fit_bin_boost'] = {
+    'expr':  '(VBS_category==0)*(\
+                1* (w_lep_pt < 50) + \
+                2* (w_lep_pt >= 50 && w_lep_pt < 100) + \
+                3* (w_lep_pt >= 100 && w_lep_pt < 150) + \
+                4* (w_lep_pt >= 150 && w_lep_pt < 200) + \
+                5* (w_lep_pt >= 200 && w_lep_pt < 300) + \
+                6* (w_lep_pt >= 300 && w_lep_pt < 400) + \
+                7* (w_lep_pt >= 400)\
+            ) + (VBS_category==1)*(-1)   '
 }
 
 ###################3
@@ -138,7 +145,7 @@ aliases['nJetsBtag']= {
 
 btagSF_corr_samples_groups = {
     'VBS': ['VBS', 'VBS_dipoleRecoil'],
-    'Wjets_HT': ['Wjets_boost']+wjets_all_bins,
+    'Wjets_HT': wjets_all_bins,
     'Vg_VgS_VBFV':['Vg','VgS','VBF-V', 'VBF-V_dipole'],
     'VV_VVV_ggWW':['VVV','VV','ggWW'],
     'top':['top'],
