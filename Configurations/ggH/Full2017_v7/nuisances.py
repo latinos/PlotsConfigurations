@@ -500,6 +500,15 @@ nuisances['VgStar'] = {
     }
 }
 
+if useWgFXFX:
+  nuisances['VgScale'] = {
+      'name': 'CMS_hww_VgScale',
+      'type': 'lnN',
+      'samples': {
+          'Vg': '1.5'
+      }
+  }
+
 nuisances['VZ'] = {
     'name': 'CMS_hww_VZScale',
     'type': 'lnN',
@@ -668,17 +677,26 @@ nuisances['QCDscale_V'] = {
     'AsLnN': '1'
 }
 
-nuisances['QCDscale_VV'] = {
-    'name': 'QCDscale_VV',
-    'kind': 'weight_envelope',
-    'type': 'shape',
-    'samples': {
-        'Vg': variations,
-        'VZ': variations,
-        'VgS': variations
-    }
-}
-
+if useWgFXFX:
+  nuisances['QCDscale_VV'] = {
+      'name': 'QCDscale_VV',
+      'kind': 'weight_envelope',
+      'type': 'shape',
+      'samples': {
+          'VZ': variations,
+      },
+  }
+else:
+  nuisances['QCDscale_VV'] = { 
+      'name': 'QCDscale_VV',
+      'kind': 'weight_envelope',
+      'type': 'shape',
+      'samples': { 
+          'Vg': variations,
+          'VZ': variations,
+          'VgS': variations
+      },
+  } 
 
 # ggww and interference
 nuisances['QCDscale_ggVV'] = {
@@ -763,7 +781,7 @@ nuisances['CRSR_accept_DY'] = {
     'type': 'lnN',
     'samples': {'DY': '1.02'},
     'cuts': [cut for cut in cuts if '_CR_' in cut],
-    'cutspost': (lambda self, cuts: [cut for cut in cuts if '_DY_' in cut]),
+    'cutspost': (lambda self, cuts: [cut for cut in cuts if '_dytt_' in cut]),
 }
 
 # Uncertainty on SR/CR ratio

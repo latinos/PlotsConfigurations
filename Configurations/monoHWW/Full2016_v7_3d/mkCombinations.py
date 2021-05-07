@@ -15,7 +15,8 @@ if __name__ == '__main__':
 
     mhs = ['160','180','200','250','300','350','400']
     mDM = ['100','150','200','300']
-    mZp = ['200','300','400','500','600','700','800','900','1000','1100','1200','1300','1400','1500','1600','1700','1800','1900','2000','2100','2200','2300','2400','2500']
+    mZp = ['200','300','400','450','500','550','600','650','700','750','800','900','1000','1100','1200','1300','1400','1500','1600','1700','1800','1900','2000','2100','2200','2300','2400','2500']
+
 #    mZp = ['195','200','295','300','400','500','800','1000','1200','1500','2000','2500']
     
     txt = ''
@@ -23,9 +24,26 @@ if __name__ == '__main__':
     for hs in mhs:
         for DM in mDM:
             for Zp in mZp:
+                if int(hs) == 300 and int(DM) == 150 and int(Zp) == 450:
+                    continue
 #                print('Combining DH_mhs_' + hs + '_mx_' + DM + '_mZp_' + Zp)
                 txt+= 'combineCards.py ' + args.inputDir + '/SR_Incl_drll1/mllVSmtw2_0/datacard_DH_mhs_' + hs + '_mx_' + DM + '_mZp_' + Zp + '.txt '  + args.inputDir + '/SR_Incl_drll2/mllVSmtw2_0/datacard_DH_mhs_' + hs + '_mx_' + DM + '_mZp_' + Zp + '.txt ' + args.inputDir + '/SR_Incl_drll3/mllVSmtw2_0/datacard_DH_mhs_' + hs + '_mx_' + DM + '_mZp_' + Zp + '.txt ' + args.inputDir + '/WWCR_Incl/events/datacard_DH_mhs_' + hs + '_mx_' + DM + '_mZp_' + Zp + '.txt '  + args.inputDir + '/TopCR_Incl/events/datacard_DH_mhs_' + hs + '_mx_' + DM + '_mZp_' + Zp + '.txt '  + args.inputDir + '/DYttCR_Incl/events/datacard_DH_mhs_' + hs + '_mx_' + DM + '_mZp_' + Zp + '.txt > ' + args.inputDir + '/datacard_DH_mhs_' + hs + '_mx_' + DM + '_mZp_' + Zp + '_combined.txt\n'
 
+
+    mhs = ["170","190"]
+    mDM = ["200"]
+    mZp = ["600","700","1100","1300","1400"]
+
+    for hs in mhs:
+        for DM in mDM:
+            for Zp in mZp:
+                if hs == "170":
+                    if int(Zp) == 700 or int(Zp) == 1100 or int(Zp) == 1400:
+                        continue
+                if hs == "190":
+                    if int(Zp) == 600 or int(Zp) == 1300:
+                        continue
+                txt+= 'combineCards.py ' + args.inputDir + '/SR_Incl_drll1/mllVSmtw2_0/datacard_DH_mhs_' + hs + '_mx_' + DM + '_mZp_' + Zp + '.txt '  + args.inputDir + '/SR_Incl_drll2/mllVSmtw2_0/datacard_DH_mhs_' + hs + '_mx_' + DM + '_mZp_' + Zp + '.txt ' + args.inputDir + '/SR_Incl_drll3/mllVSmtw2_0/datacard_DH_mhs_' + hs + '_mx_' + DM + '_mZp_' + Zp + '.txt ' + args.inputDir + '/WWCR_Incl/events/datacard_DH_mhs_' + hs + '_mx_' + DM + '_mZp_' + Zp + '.txt '  + args.inputDir + '/TopCR_Incl/events/datacard_DH_mhs_' + hs + '_mx_' + DM + '_mZp_' + Zp + '.txt '  + args.inputDir + '/DYttCR_Incl/events/datacard_DH_mhs_' + hs + '_mx_' + DM + '_mZp_' + Zp + '.txt > ' + args.inputDir + '/datacard_DH_mhs_' + hs + '_mx_' + DM + '_mZp_' + Zp + '_combined.txt\n'
 
     # mDM = ['150','200']
     # mhs = ['300','400']

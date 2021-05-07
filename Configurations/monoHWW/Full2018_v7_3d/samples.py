@@ -298,7 +298,9 @@ samples['Higgs'] = {
 }
 
 
-########## Signals ######### 
+
+# ######### Signals ######### 
+
 
 mhs = ['160','180','200']
 mDM = ['100','150','200']
@@ -312,7 +314,7 @@ for hs in mhs:
                 'weight': mcCommonWeight,
     'suppressNegative':['all'],
     'suppressNegativeNuisances' :['all'],
-                'FilesPerJob': 10
+                'FilesPerJob': 20
             }
 
 mDM = ['150','200']
@@ -333,7 +335,7 @@ for DM in mDM:
                 'weight': mcCommonWeight,
     'suppressNegative':['all'],
     'suppressNegativeNuisances' :['all'],
-                'FilesPerJob': 10
+                'FilesPerJob': 20
             }
 
 mDM = ['300']
@@ -351,16 +353,15 @@ for DM in mDM:
                 'weight': mcCommonWeight,
     'suppressNegative':['all'],
     'suppressNegativeNuisances' :['all'],
-                'FilesPerJob': 10
+                'FilesPerJob': 20
             }
-
 
 
 ### INTERPOLATIONS
 
 mhs = ['160']
 mDM = ['100','150','200','300']
-mZp = ['600','700','900','1100','1300','1400','1600','1700','1800','1900','2100','2200','2300','2400']
+mZp = ['450','550','600','650','700','750','900','1100','1300','1400','1600','1700','1800','1900','2100','2200','2300','2400']
 
 for hs in mhs:
     for DM in mDM:
@@ -372,13 +373,13 @@ for hs in mhs:
     'suppressNegative':['all'],
     'suppressNegativeNuisances' :['all'],
 
-                'FilesPerJob': 10
+                'FilesPerJob': 20
             }
 
 
 mhs = ['180']
 mDM = ['100','150','200','300']
-mZp = ['600','700','900','1100','1300','1400','1600','1700','1800','1900','2100','2200','2300','2400']
+mZp = ['450','550','600','650','700','750','900','1100','1300','1400','1600','1700','1800','1900','2100','2200','2300','2400']
 
 for hs in mhs:
     for DM in mDM:
@@ -390,13 +391,13 @@ for hs in mhs:
     'suppressNegative':['all'],
     'suppressNegativeNuisances' :['all'],
 
-                'FilesPerJob': 10
+                'FilesPerJob': 20
             }
 
 
 mhs = ['200']
 mDM = ['100','150','200','300']
-mZp = ['600','700','900','1100','1300','1400','1600','1700','1800','1900','2100','2200','2300','2400']
+mZp = ['450','550','600','650','700','750','900','1100','1300','1400','1600','1700','1800','1900','2100','2200','2300','2400']
 
 for hs in mhs:
     for DM in mDM:
@@ -408,14 +409,14 @@ for hs in mhs:
     'suppressNegative':['all'],
     'suppressNegativeNuisances' :['all'],
 
-                'FilesPerJob': 10
+                'FilesPerJob': 20
             }
 
 #######
 
 mhs = ['300']
 mDM = ['100']
-mZp = ['200','300','400','500','600','700','800','900','1000','1100','1200','1300','1400','1500','1600','1700','1800','1900','2000','2100','2200','2300','2400','2500']
+mZp = ['200','300','400','450','550','500','550','600','650','700','750','800','900','1000','1100','1200','1300','1400','1500','1600','1700','1800','1900','2000','2100','2200','2300','2400','2500']
 
 for hs in mhs:
     for DM in mDM:
@@ -427,13 +428,13 @@ for hs in mhs:
     'suppressNegative':['all'],
     'suppressNegativeNuisances' :['all'],
 
-                'FilesPerJob': 10
+                'FilesPerJob': 20
             }
 
 
 mhs = ['400']
 mDM = ['100']
-mZp = ['200','300','400','500','600','700','800','900','1000','1100','1200','1300','1400','1500','1600','1700','1800','1900','2000','2100','2200','2300','2400','2500']
+mZp = ['200','300','400','450','550','500','550','600','650','700','750','800','900','1000','1100','1200','1300','1400','1500','1600','1700','1800','1900','2000','2100','2200','2300','2400','2500']
 
 for hs in mhs:
     for DM in mDM:
@@ -445,7 +446,7 @@ for hs in mhs:
     'suppressNegative':['all'],
     'suppressNegativeNuisances' :['all'],
 
-                'FilesPerJob': 10
+                'FilesPerJob': 20
             }
 
 
@@ -455,7 +456,7 @@ for hs in mhs:
 
 mhs = ['300']
 mDM = ['150']
-mZp = ['200','300','600','700','900','1100','1300','1400','1600','1700','1800','1900','2000','2100','2200','2300','2400','2500']
+mZp = ['200','300','550','600','650','700','750','900','1100','1300','1400','1600','1700','1800','1900','2000','2100','2200','2300','2400','2500'] #450 missing
 
 for hs in mhs:
     for DM in mDM:
@@ -467,14 +468,14 @@ for hs in mhs:
     'suppressNegative':['all'],
     'suppressNegativeNuisances' :['all'],
 
-                'FilesPerJob': 10
+                'FilesPerJob': 20
             }
 
 #########
 
 mhs = ['400']
 mDM = ['150']
-mZp = ['200','300','400','500','600','700','800','900','1000','1100','1200','1300','1400','1500','1600','1700','1800','1900','2000','2100','2200','2300','2400','2500']
+mZp = ['200','300','400','450','550','500','550','600','650','700','750','800','900','1000','1100','1200','1300','1400','1500','1600','1700','1800','1900','2000','2100','2200','2300','2400','2500']
 
 for hs in mhs:
     for DM in mDM:
@@ -486,7 +487,7 @@ for hs in mhs:
     'suppressNegative':['all'],
     'suppressNegativeNuisances' :['all'],
 
-                'FilesPerJob': 10
+                'FilesPerJob': 20
             }
 
 
@@ -494,7 +495,7 @@ for hs in mhs:
 
 mhs = ['300']
 mDM = ['200']
-mZp = ['200','300','400','600','700','900','1100','1300','1400','1600','1700','1800','1900','2000','2100','2200','2300','2400','2500']
+mZp = ['200','300','400','450','550','600','650','700','750','900','1100','1300','1400','1600','1700','1800','1900','2000','2100','2200','2300','2400','2500']
 
 for hs in mhs:
     for DM in mDM:
@@ -506,7 +507,7 @@ for hs in mhs:
     'suppressNegative':['all'],
     'suppressNegativeNuisances' :['all'],
 
-                'FilesPerJob': 10
+                'FilesPerJob': 20
             }
 
 
@@ -515,7 +516,7 @@ for hs in mhs:
 
 mhs = ['400']
 mDM = ['200']
-mZp = ['200','300','400','600','700','900','1100','1200','1300','1400','1500','1600','1700','1800','1900','2000','2100','2200','2300','2400','2500']
+mZp = ['200','300','400','450','550','600','650','700','750','900','1100','1200','1300','1400','1500','1600','1700','1800','1900','2000','2100','2200','2300','2400','2500']
 
 for hs in mhs:
     for DM in mDM:
@@ -527,7 +528,7 @@ for hs in mhs:
     'suppressNegative':['all'],
     'suppressNegativeNuisances' :['all'],
 
-                'FilesPerJob': 10
+                'FilesPerJob': 20
             }
 
 
@@ -535,7 +536,7 @@ for hs in mhs:
 
 mhs = ['160']
 mDM = ['300']
-mZp = ['200','300','400','500','600','700','900','1100','1300','1400','1600','1700','1800','1900','2100','2200','2300','2400']
+mZp = ['200','300','400','450','550','500','600','650','700','750','900','1100','1300','1400','1600','1700','1800','1900','2100','2200','2300','2400']
 
 for hs in mhs:
     for DM in mDM:
@@ -547,7 +548,7 @@ for hs in mhs:
     'suppressNegative':['all'],
     'suppressNegativeNuisances' :['all'],
 
-                'FilesPerJob': 10
+                'FilesPerJob': 20
             }
 
 
@@ -555,7 +556,7 @@ for hs in mhs:
 
 mhs = ['180']
 mDM = ['300']
-mZp = ['200','300','400','500','600','700','900','1100','1300','1400','1600','1700','1800','1900','2100','2200','2300','2400']
+mZp = ['200','300','400','450','550','500','600','650','700','750','900','1100','1300','1400','1600','1700','1800','1900','2100','2200','2300','2400']
 
 for hs in mhs:
     for DM in mDM:
@@ -567,14 +568,14 @@ for hs in mhs:
     'suppressNegative':['all'],
     'suppressNegativeNuisances' :['all'],
 
-                'FilesPerJob': 10
+                'FilesPerJob': 20
             }
 
 
 
 mhs = ['200']
 mDM = ['300']
-mZp = ['200','300','400','500','600','700','900','1100','1300','1400','1600','1700','1800','1900','2100','2200','2300','2400']
+mZp = ['200','300','400','450','550','500','600','650','700','750','900','1100','1300','1400','1600','1700','1800','1900','2100','2200','2300','2400']
 
 for hs in mhs:
     for DM in mDM:
@@ -586,7 +587,7 @@ for hs in mhs:
     'suppressNegative':['all'],
     'suppressNegativeNuisances' :['all'],
 
-                'FilesPerJob': 10
+                'FilesPerJob': 20
             }
 
 
@@ -595,7 +596,7 @@ for hs in mhs:
 
 mhs = ['300']
 mDM = ['300']
-mZp = ['200','300','400','500','600','700','900','1100','1300','1400','1500','1600','1700','1800','1900','2000','2100','2200','2300','2400','2500']
+mZp = ['200','300','400','450','550','500','600','650','700','750','900','1100','1300','1400','1500','1600','1700','1800','1900','2000','2100','2200','2300','2400','2500']
 
 for hs in mhs:
     for DM in mDM:
@@ -607,14 +608,14 @@ for hs in mhs:
     'suppressNegative':['all'],
     'suppressNegativeNuisances' :['all'],
 
-                'FilesPerJob': 10
+                'FilesPerJob': 20
             }
 
 #####
 
 mhs = ['400']
 mDM = ['300']
-mZp = ['200','300','400','500','600','700','800','900','1000','1100','1200','1300','1400','1500','1600','1700','1800','1900','2000','2100','2200','2300','2400','2500']
+mZp = ['200','300','400','450','550','500','600','650','700','750','800','900','1000','1100','1200','1300','1400','1500','1600','1700','1800','1900','2000','2100','2200','2300','2400','2500']
 
 for hs in mhs:
     for DM in mDM:
@@ -626,7 +627,7 @@ for hs in mhs:
     'suppressNegative':['all'],
     'suppressNegativeNuisances' :['all'],
 
-                'FilesPerJob': 10
+                'FilesPerJob': 20
             }
 
 
@@ -637,7 +638,7 @@ for hs in mhs:
 
 mhs = ['250']
 mDM = ['100','150','200','300']
-mZp = ['200','300','400','500','600','700','800','900','1000','1100','1200','1300','1400','1500','1600','1700','1800','1900','2000','2100','2200','2300','2400','2500']
+mZp = ['200','300','400','450','550','500','600','650','700','750','800','900','1000','1100','1200','1300','1400','1500','1600','1700','1800','1900','2000','2100','2200','2300','2400','2500']
 
 for hs in mhs:
     for DM in mDM:
@@ -649,7 +650,7 @@ for hs in mhs:
     'suppressNegative':['all'],
     'suppressNegativeNuisances' :['all'],
 
-                'FilesPerJob': 10
+                'FilesPerJob': 20
             }
 
 
@@ -659,7 +660,7 @@ for hs in mhs:
 
 mhs = ['350']
 mDM = ['100','150','200','300']
-mZp = ['200','300','400','500','600','700','800','900','1000','1100','1200','1300','1400','1500','1600','1700','1800','1900','2000','2100','2200','2300','2400','2500']
+mZp = ['200','300','400','450','550','500','600','650','700','750','800','900','1000','1100','1200','1300','1400','1500','1600','1700','1800','1900','2000','2100','2200','2300','2400','2500']
 
 for hs in mhs:
     for DM in mDM:
@@ -671,8 +672,53 @@ for hs in mhs:
     'suppressNegative':['all'],
     'suppressNegativeNuisances' :['all'],
 
-                'FilesPerJob': 10
+                'FilesPerJob': 20
             }
+
+
+
+### INTERMEDIATE
+
+
+mhs = ['170']
+mDM = ['200']
+mZp = ['600','1300']
+
+for hs in mhs:
+    for DM in mDM:
+        for Zp in mZp:
+            samples['DH_mhs_' + hs + '_mx_' + DM  + '_mZp_' + Zp] = {
+                'name': nanoGetSampleFiles(signalDirectory, 'DarkHiggs_MonoHs_HsToWWTo2l2nu_mhs_160_mx_150_mZp_1200'),
+                'linesToAdd' : ['.L /afs/cern.ch/work/f/fernanpe/framework_monoHFullRun2/CMSSW_10_2_9/src/PlotsConfigurations/Configurations/monoHWW/Full2017_v7_3d/onTheFly/interpolationWeight_mhs_' + hs + '_mx_' + DM + '_mZp_' + Zp + '.C', '.L /afs/cern.ch/work/f/fernanpe/framework_monoHFullRun2/CMSSW_10_2_9/src/PlotsConfigurations/Configurations/monoHWW/Full2017_v7_3d/onTheFly/getxsweight.C'],
+                'weight': mcCommonWeight + '*interpolationWeight_mhs_' + hs + '_mx_' + DM + '_mZp_' + Zp +'(genDarkHiggs_Pt)*getxsweight('+hs+','+DM+','+Zp+',160,150,1200)',
+    'suppressNegative':['all'],
+    'suppressNegativeNuisances' :['all'],
+
+                'FilesPerJob': 20
+            }
+
+
+mhs = ['190']
+mDM = ['200']
+mZp = ['700','1100','1400']
+
+for hs in mhs:
+    for DM in mDM:
+        for Zp in mZp:
+            samples['DH_mhs_' + hs + '_mx_' + DM  + '_mZp_' + Zp] = {
+                'name': nanoGetSampleFiles(signalDirectory, 'DarkHiggs_MonoHs_HsToWWTo2l2nu_mhs_200_mx_150_mZp_1200'),
+                'linesToAdd' : ['.L /afs/cern.ch/work/f/fernanpe/framework_monoHFullRun2/CMSSW_10_2_9/src/PlotsConfigurations/Configurations/monoHWW/Full2017_v7_3d/onTheFly/interpolationWeight_mhs_' + hs + '_mx_' + DM + '_mZp_' + Zp + '.C', '.L /afs/cern.ch/work/f/fernanpe/framework_monoHFullRun2/CMSSW_10_2_9/src/PlotsConfigurations/Configurations/monoHWW/Full2017_v7_3d/onTheFly/getxsweight.C'],
+                'weight': mcCommonWeight + '*interpolationWeight_mhs_' + hs + '_mx_' + DM + '_mZp_' + Zp +'(genDarkHiggs_Pt)*getxsweight('+hs+','+DM+','+Zp+',200,150,1200)',
+    'suppressNegative':['all'],
+    'suppressNegativeNuisances' :['all'],
+
+                'FilesPerJob': 20
+            }
+
+
+
+
+
 
 
 

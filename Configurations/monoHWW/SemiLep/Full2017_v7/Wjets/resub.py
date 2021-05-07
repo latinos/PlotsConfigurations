@@ -486,14 +486,14 @@ resubs = [
     #'Wjets_NLOstatM.226',
     #'Wjets_NLOstatM.227',
     #'Wjets_NLOstatM.228',
-    'Wjets_NLOstatM.6',
-    'Wjets_NLOstatM.4',
     'Wjets_NLOstatM.0',
-    'Wjets_NLOstatM.23',
-    'Wjets_NLOstatM.5',
-    'Wjets_NLOstatM.38',
-    'Wjets_NLOstatM.157',
-    'Wjets_NLOstatM.212',
+    'Wjets_NLOstatM.205',
+    'Wjets_NLOstatM.13',
+    'Wjets_NLOstatM.28',
+    'Wjets_NLOstatM.22',
+    'Wjets_NLOstatM.8',
+    'Wjets_NLOstatM.1',
+    'Wjets_NLOstatM.21',
 ]
 
 

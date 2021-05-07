@@ -462,7 +462,6 @@ nuisances['singleTopToTTbar'] = {
 #     'kind': 'weight',
 #     'type': 'shape',
 #     'samples': {'top': ["Top_pTrw*Top_pTrw", "1."]},
-#     'symmetrize': True
 # }
 
 nuisances['VgStar'] = {
@@ -472,6 +471,15 @@ nuisances['VgStar'] = {
         'VgS_L': '1.25'
     }
 }
+
+if useWgFXFX:
+  nuisances['VgScale'] = {
+      'name': 'CMS_hww_VgScale',
+      'type': 'lnN',
+      'samples': {
+          'Vg': '1.5'
+      }
+  }
 
 nuisances['VZ'] = {
     'name': 'CMS_hww_VZScale',
@@ -641,16 +649,27 @@ nuisances['QCDscale_V'] = {
     'AsLnN': '1'
 }
 
-nuisances['QCDscale_VV'] = {
-    'name': 'QCDscale_VV',
-    'kind': 'weight_envelope',
-    'type': 'shape',
-    'samples': {
-        'Vg': variations,
-        'VZ': variations,
-        'VgS': variations
-    }
-}
+if useWgFXFX:
+  nuisances['QCDscale_VV'] = {
+      'name': 'QCDscale_VV',
+      'kind': 'weight_envelope',
+      'type': 'shape',
+      'samples': {
+          'VZ': variations,
+      }
+  }
+
+else:
+  nuisances['QCDscale_VV'] = {
+      'name': 'QCDscale_VV',
+      'kind': 'weight_envelope',
+      'type': 'shape',
+      'samples': {
+          'Vg': variations,
+          'VZ': variations,
+          'VgS': variations
+      }
+  }
 
 nuisances['QCDscale_ggVV'] = {
     'name': 'QCDscale_ggVV',
