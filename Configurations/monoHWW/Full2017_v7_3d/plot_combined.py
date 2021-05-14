@@ -79,6 +79,8 @@ groupPlot['top']  = {
 
 
 
+
+
 mhs = ['160']
 mDM = ['100']
 mZp = ['500']
@@ -92,11 +94,12 @@ for hs in mhs:
                 'nameHR' : 'dark Higgs signal' ,
 #                'nameHR' : 'DH_' + hs  + '_' + DM + '_' + Zp ,
                 'isSignal' : 2,
-                'color': 1 + j, # kRed
+                'color':  1 + j, # kRed
                 'samples'  : ['DH_mhs_' + hs + '_mx_' + DM +  '_mZp_' + Zp]
             }
 
             
+
 
 # mA = ['200', '300', '400', '500', '600']
 
@@ -109,8 +112,6 @@ for hs in mhs:
 #         'samples'  : ['2HMDa__gg_sinp_0p35_tanb_1p0_mXd_10_MA_' + A + '_ma_150']
 #     }
     
-
-
 
 
 
@@ -226,7 +227,7 @@ plot['Higgs']  = {
                   'scale'    : 1.0
                   }
 
-j=-100 
+j=-100
 for hs in mhs:
     for DM in mDM:
         for Zp in mZp:
@@ -250,7 +251,7 @@ for hs in mhs:
 #     }
 
 
-# data
+
 
 plot['DATA']  = { 
                   'nameHR' : 'Data',
@@ -265,10 +266,12 @@ plot['DATA']  = {
 
 # additional options
 
-legend['lumi'] = 'L = 59.7/fb'
+legend['lumi'] = 'L = 41.5/fb'
 
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
 
 
 
+
+legend['lumi'] = 'L = 41.5 /fb'  
 

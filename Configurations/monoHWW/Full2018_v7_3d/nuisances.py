@@ -42,35 +42,35 @@ cuts2j = []
 
 #### Luminosity
 
-#nuisances['lumi'] = {
-#    'name': 'lumi_13TeV_2018',
-#    'type': 'lnN',
-#    'samples': dict((skey, '1.025') for skey in mc if skey not in ['WW', 'top', 'DY'])
-#}
-
-nuisances['lumi_Uncorrelated'] = {
-    'name': 'lumi_13TeV_2018',
-    'type': 'lnN',
-    'samples': dict((skey, '1.015') for skey in mc if skey not in ['WW', 'top','DY'])
+nuisances['lumi'] = {
+   'name': 'lumi_13TeV_2018',
+   'type': 'lnN',
+   'samples': dict((skey, '1.025') for skey in mc if skey not in ['WW', 'top', 'DY'])
 }
 
-nuisances['lumi_XYFact'] = {
-    'name': 'lumi_13TeV_XYFact',
-    'type': 'lnN',
-    'samples': dict((skey, '1.02') for skey in mc if skey not in ['WW', 'top','DY'])
-}
+# nuisances['lumi_Uncorrelated'] = {
+#     'name': 'lumi_13TeV_2018',
+#     'type': 'lnN',
+#     'samples': dict((skey, '1.015') for skey in mc if skey not in ['WW', 'top','DY'])
+# }
 
-nuisances['lumi_LScale'] = {
-    'name': 'lumi_13TeV_LSCale',
-    'type': 'lnN',
-    'samples': dict((skey, '1.002') for skey in mc if skey not in ['WW', 'top','DY'])
-}
+# nuisances['lumi_XYFact'] = {
+#     'name': 'lumi_13TeV_XYFact',
+#     'type': 'lnN',
+#     'samples': dict((skey, '1.02') for skey in mc if skey not in ['WW', 'top','DY'])
+# }
 
-nuisances['lumi_CurrCalib'] = {
-    'name': 'lumi_13TeV_CurrCalib',
-    'type': 'lnN',
-    'samples': dict((skey, '1.002') for skey in mc if skey not in ['WW', 'top','DY'])
-}
+# nuisances['lumi_LScale'] = {
+#     'name': 'lumi_13TeV_LSCale',
+#     'type': 'lnN',
+#     'samples': dict((skey, '1.002') for skey in mc if skey not in ['WW', 'top','DY'])
+# }
+
+# nuisances['lumi_CurrCalib'] = {
+#     'name': 'lumi_13TeV_CurrCalib',
+#     'type': 'lnN',
+#     'samples': dict((skey, '1.002') for skey in mc if skey not in ['WW', 'top','DY'])
+# }
 
 #### FAKES
 
@@ -269,6 +269,7 @@ nuisances['met'] = {
     'name': 'CMS_scale_met_2018',
     'type'  : 'lnN',
     'samples'  : {
+        'DH_mhs_180_mx_150_mZp_1200' : '1.01',
         'DY'      : '1.08',
         'ggWW'    : '1.02',
         'WW'      : '1.02',

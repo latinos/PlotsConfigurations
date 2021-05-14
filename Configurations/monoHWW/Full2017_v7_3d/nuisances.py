@@ -38,53 +38,53 @@ HiggsXS = HiggsXSection()
 
 #### Luminosity
 
-#nuisances['lumi'] = {
-#    'name': 'lumi_13TeV_2017',
-#    'type': 'lnN',
-#    'samples': dict((skey, '1.023') for skey in mc if skey not in ['WW', 'top', 'DY'])
-#}
-
-nuisances['lumi_Uncorrelated'] = {
-    'name': 'lumi_13TeV_2017',
-    'type': 'lnN',
-    'samples': dict((skey, '1.02') for skey in mc if skey not in ['WW', 'top','DY'])
+nuisances['lumi'] = {
+   'name': 'lumi_13TeV_2017',
+   'type': 'lnN',
+   'samples': dict((skey, '1.023') for skey in mc if skey not in ['WW', 'top', 'DY'])
 }
 
-nuisances['lumi_XYFact'] = {
-    'name': 'lumi_13TeV_XYFact',
-    'type': 'lnN',
-    'samples': dict((skey, '1.008') for skey in mc if skey not in ['WW', 'top','DY'])
-}
+# nuisances['lumi_Uncorrelated'] = {
+#     'name': 'lumi_13TeV_2017',
+#     'type': 'lnN',
+#     'samples': dict((skey, '1.02') for skey in mc if skey not in ['WW', 'top','DY'])
+# }
 
-nuisances['lumi_LScale'] = {
-    'name': 'lumi_13TeV_LSCale',
-    'type': 'lnN',
-    'samples': dict((skey, '1.003') for skey in mc if skey not in ['WW', 'top','DY'])
-}
+# nuisances['lumi_XYFact'] = {
+#     'name': 'lumi_13TeV_XYFact',
+#     'type': 'lnN',
+#     'samples': dict((skey, '1.008') for skey in mc if skey not in ['WW', 'top','DY'])
+# }
 
-nuisances['lumi_BBDefl'] = {
-    'name': 'lumi_13TeV_BBDefl',
-    'type': 'lnN',
-    'samples': dict((skey, '1.004') for skey in mc if skey not in ['WW', 'top','DY'])
-}
+# nuisances['lumi_LScale'] = {
+#     'name': 'lumi_13TeV_LSCale',
+#     'type': 'lnN',
+#     'samples': dict((skey, '1.003') for skey in mc if skey not in ['WW', 'top','DY'])
+# }
 
-nuisances['lumi_DynBeta'] = {
-    'name': 'lumi_13TeV_DynBeta',
-    'type': 'lnN',
-    'samples': dict((skey, '1.005') for skey in mc if skey not in ['WW', 'top','DY'])
-}
+# nuisances['lumi_BBDefl'] = {
+#     'name': 'lumi_13TeV_BBDefl',
+#     'type': 'lnN',
+#     'samples': dict((skey, '1.004') for skey in mc if skey not in ['WW', 'top','DY'])
+# }
 
-nuisances['lumi_CurrCalib'] = {
-    'name': 'lumi_13TeV_CurrCalib',
-    'type': 'lnN',
-    'samples': dict((skey, '1.003') for skey in mc if skey not in ['WW', 'top','DY'])
-}
+# nuisances['lumi_DynBeta'] = {
+#     'name': 'lumi_13TeV_DynBeta',
+#     'type': 'lnN',
+#     'samples': dict((skey, '1.005') for skey in mc if skey not in ['WW', 'top','DY'])
+# }
 
-nuisances['lumi_Ghosts'] = {
-    'name': 'lumi_13TeV_Ghosts',
-    'type': 'lnN',
-    'samples': dict((skey, '1.001') for skey in mc if skey not in ['WW', 'top','DY'])
-}
+# nuisances['lumi_CurrCalib'] = {
+#     'name': 'lumi_13TeV_CurrCalib',
+#     'type': 'lnN',
+#     'samples': dict((skey, '1.003') for skey in mc if skey not in ['WW', 'top','DY'])
+# }
+
+# nuisances['lumi_Ghosts'] = {
+#     'name': 'lumi_13TeV_Ghosts',
+#     'type': 'lnN',
+#     'samples': dict((skey, '1.001') for skey in mc if skey not in ['WW', 'top','DY'])
+# }
 
 #### FAKES
 
@@ -294,6 +294,7 @@ nuisances['met'] = {
     'name': 'CMS_scale_met_2017',
     'type'  : 'lnN',
     'samples'  : {
+        'DH_mhs_180_mx_150_mZp_1200' : '1.01',
         'DY'      : '1.08',
         'ggWW'    : '1.02',
         'WW'      : '1.02',

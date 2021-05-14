@@ -32,41 +32,41 @@ HiggsXS = HiggsXSection()
 
 #### Luminosity
 
-#nuisances['lumi'] = {
-#    'name': 'lumi_13TeV_2016',
-#    'type': 'lnN',
-#    'samples': dict((skey, '1.025') for skey in mc if skey not in ['WW', 'top', 'DY'])
-#}
-
-nuisances['lumi_Uncorrelated'] = {
-    'name': 'lumi_13TeV_2016',
-    'type': 'lnN',
-    'samples': dict((skey, '1.022') for skey in mc if skey not in ['WW', 'top', 'DY'])
+nuisances['lumi'] = {
+   'name': 'lumi_13TeV_2016',
+   'type': 'lnN',
+   'samples': dict((skey, '1.012') for skey in mc if skey not in ['WW', 'top', 'DY'])
 }
 
-nuisances['lumi_XYFact'] = {
-    'name': 'lumi_13TeV_XYFact',
-    'type': 'lnN',
-    'samples': dict((skey, '1.009') for skey in mc if skey not in ['WW', 'top', 'DY'])
-}
+# nuisances['lumi_Uncorrelated'] = {
+#     'name': 'lumi_13TeV_2016',
+#     'type': 'lnN',
+#     'samples': dict((skey, '1.022') for skey in mc if skey not in ['WW', 'top', 'DY'])
+# }
 
-nuisances['lumi_BBDefl'] = {
-    'name': 'lumi_13TeV_BBDefl',
-    'type': 'lnN',
-    'samples': dict((skey, '1.004') for skey in mc if skey not in ['WW', 'top', 'DY'])
-}
+# nuisances['lumi_XYFact'] = {
+#     'name': 'lumi_13TeV_XYFact',
+#     'type': 'lnN',
+#     'samples': dict((skey, '1.009') for skey in mc if skey not in ['WW', 'top', 'DY'])
+# }
 
-nuisances['lumi_DynBeta'] = {
-    'name': 'lumi_13TeV_DynBeta',
-    'type': 'lnN',
-    'samples': dict((skey, '1.005') for skey in mc if skey not in ['WW', 'top', 'DY'])
-}
+# nuisances['lumi_BBDefl'] = {
+#     'name': 'lumi_13TeV_BBDefl',
+#     'type': 'lnN',
+#     'samples': dict((skey, '1.004') for skey in mc if skey not in ['WW', 'top', 'DY'])
+# }
 
-nuisances['lumi_Ghosts'] = {
-    'name': 'lumi_13TeV_Ghosts',
-    'type': 'lnN',
-    'samples': dict((skey, '1.004') for skey in mc if skey not in ['WW', 'top', 'DY'])
-}
+# nuisances['lumi_DynBeta'] = {
+#     'name': 'lumi_13TeV_DynBeta',
+#     'type': 'lnN',
+#     'samples': dict((skey, '1.005') for skey in mc if skey not in ['WW', 'top', 'DY'])
+# }
+
+# nuisances['lumi_Ghosts'] = {
+#     'name': 'lumi_13TeV_Ghosts',
+#     'type': 'lnN',
+#     'samples': dict((skey, '1.004') for skey in mc if skey not in ['WW', 'top', 'DY'])
+# }
 
 #### FAKES
 
@@ -269,6 +269,7 @@ nuisances['met'] = {
     'name': 'CMS_scale_met_2016',
     'type'  : 'lnN',
     'samples'  : {
+        'DH_mhs_180_mx_150_mZp_1200' : '1.01',
         'DY'      : '1.08',
         'ggWW'    : '1.02',
         'WW'      : '1.02',
