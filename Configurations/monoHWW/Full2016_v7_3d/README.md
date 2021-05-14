@@ -138,7 +138,7 @@ Run the limits: (add the postFit normalization factors obtained in the previous 
 
 # 5 - MAKE POSTFIT TABLES
 
-  mkPostFitTable.py --pycfg=configuration_postfit.py    --inputFileCombine fitDiagnostics.root --outputFile table_SR1.txt --variable mllVSmtw2_0 --cut ch1 --cutNameInOriginal SR_Incl_drll1 --inputFile rootFile/plots_darkHiggs2016_v7.root  --getSignalFromPrefit 1
-  mkPostFitTable.py --pycfg=configuration_postfit.py    --inputFileCombine fitDiagnostics.root --outputFile table_SR2.txt --variable mllVSmtw2_0 --cut ch2 --cutNameInOriginal SR_Incl_drll2 --inputFile rootFile/plots_darkHiggs2016_v7.root  --getSignalFromPrefit 1
-  mkPostFitTable.py --pycfg=configuration_postfit.py    --inputFileCombine fitDiagnostics.root --outputFile table_SR3.txt --variable mllVSmtw2_0 --cut ch3 --cutNameInOriginal SR_Incl_drll3 --inputFile rootFile/plots_darkHiggs2016_v7.root  --getSignalFromPrefit 1
+    mkPostFitTable.py --pycfg=configuration_postfit.py    --inputFileCombine fitDiagnostics.root --outputFile table_SR1.txt --variable mllVSmtw2_0 --cut ch1 --cutNameInOriginal SR_Incl_drll1 --inputFile rootFile/plots_darkHiggs2016_v7.root  --getSignalFromPrefit 1
+    mkPostFitTable.py --pycfg=configuration_postfit.py    --inputFileCombine fitDiagnostics.root --outputFile table_SR2.txt --variable mllVSmtw2_0 --cut ch2 --cutNameInOriginal SR_Incl_drll2 --inputFile rootFile/plots_darkHiggs2016_v7.root  --getSignalFromPrefit 1
+    mkPostFitTable.py --pycfg=configuration_postfit.py    --inputFileCombine fitDiagnostics.root --outputFile table_SR3.txt --variable mllVSmtw2_0 --cut ch3 --cutNameInOriginal SR_Incl_drll3 --inputFile rootFile/plots_darkHiggs2016_v7.root  --getSignalFromPrefit 1
 
