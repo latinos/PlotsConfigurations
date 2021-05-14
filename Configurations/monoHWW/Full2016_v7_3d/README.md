@@ -119,8 +119,7 @@ Run the limits: (add the postFit normalization factors obtained in the previous 
     ./runLimits.sh
 
 
-
-# 3 - MAKE POSTFIT PLOTS
+# 4 - MAKE POSTFIT PLOTS
 
     mkPostFitPlot.py --pycfg=configuration_postfit.py    --inputFileCombine fitDiagnostics.root --outputFile out_SR1.root --inputFile rootFile/plots_darkHiggs2016_v7.root --variable mllVSmtw2_0 --cut ch1 --cutNameInOriginal SR_Incl_drll1  --getSignalFromPrefit 1
     mkPostFitPlot.py --pycfg=configuration_postfit.py    --inputFileCombine fitDiagnostics.root --outputFile out_SR2.root --inputFile rootFile/plots_darkHiggs2016_v7.root --variable mllVSmtw2_0 --cut ch2 --cutNameInOriginal SR_Incl_drll2 --getSignalFromPrefit 1
@@ -137,8 +136,7 @@ Run the limits: (add the postFit normalization factors obtained in the previous 
     mkPlot.py --pycfg=configuration_postfit.py root.  --inputFile=out_DYCRonlyCut=DYCR_InclonlyVariable=events --postFit y  --minLogC=0.01 --minLogCratio=0.01 --maxLogC=1000 --maxLogCratio=1000 --fileFormats=pdf,png
 
 
-
-# 4 - MAKE POSTFIT TABLES
+# 5 - MAKE POSTFIT TABLES
 
   mkPostFitTable.py --pycfg=configuration_postfit.py    --inputFileCombine fitDiagnostics.root --outputFile table_SR1.txt --variable mllVSmtw2_0 --cut ch1 --cutNameInOriginal SR_Incl_drll1 --inputFile rootFile/plots_darkHiggs2016_v7.root  --getSignalFromPrefit 1
   mkPostFitTable.py --pycfg=configuration_postfit.py    --inputFileCombine fitDiagnostics.root --outputFile table_SR2.txt --variable mllVSmtw2_0 --cut ch2 --cutNameInOriginal SR_Incl_drll2 --inputFile rootFile/plots_darkHiggs2016_v7.root  --getSignalFromPrefit 1
