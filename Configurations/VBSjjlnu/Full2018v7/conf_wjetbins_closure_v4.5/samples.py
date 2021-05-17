@@ -58,7 +58,7 @@ for i in range(1, 8):
 
 wjets_all_bins = wjets_res_bins + wjets_boost_bins
 
-print "Wjets bins: ", wjets_res_bins, wjets_boost_bins
+# print "Wjets bins: ", wjets_res_bins, wjets_boost_bins
 
 ################################################
 ############ NUMBER OF LEPTONS #################

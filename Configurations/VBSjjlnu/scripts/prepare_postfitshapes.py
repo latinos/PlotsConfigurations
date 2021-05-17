@@ -24,6 +24,8 @@ parser.add_argument("-i","--input-params", help="File with fit parameters to use
 parser.add_argument("--dry", help="Only printout commands", action="store_true", default=False)
 parser.add_argument("-op","--outputdir-plots", help="Output folder for plots", type=str,required=True)
 parser.add_argument("-rw","--redo-workspace", help="Redo workspace", action="store_true")
+parser.add_argument("--do-prefit", help="Do also prefit shapes", action="store_true")
+parser.add_argument("--bkg-fit", help="Use bkg only fit for postfit", action="store_true")
 parser.add_argument("--add-mcstat", help="Add MCstat uncertainty", action="store_true")
 args = parser.parse_args()
 
@@ -75,7 +77,7 @@ def prepare_workspace(datac, onlyDC=False):
             cards.append("{0}_{1}={2}/{3}/{4}/datacard.txt".format(
                                 card["name"], folder["name"],  args.basedir + "/" + folder["basedir"],
                                                                 card["cut"], card["var"]))
-    txt2wp = "text2workspace.py combined_{0}.txt -o combined_{0}.root".format(datac["datacard_name"])
+    txt2wp = "text2workspace.py combined_{0}.txt -o combined_{0}.root --X-pack-asympows".format(datac["datacard_name"])
     
     cmds = [
         "combineCards.py {} > combined_{}.txt".format(" ".join(cards), datac["datacard_name"]),
@@ -104,8 +106,9 @@ def postfit_shape(datac):
     outdir = datac["outputdir"] 
     log.info("Running combine")
     cmd = """PostFitShapesFromWorkspace -w combined_{0}.root -d combined_{0}.txt -o output_postfit.root  \\
-         -f {1}:fit_s --samples {2} \\
-         --postfit --sampling --total-shapes --print --covariance --skip-prefit > logPostFitShape.txt""".format(datac["datacard_name"], args.input_params, args.toys)
+         -f {1}:{4} --samples {2} \\
+         --postfit --sampling --total-shapes --print --covariance {3} > logPostFitShape.txt""".format(datac["datacard_name"], 
+                args.input_params, args.toys, "--skip-prefit" if not args.do_prefit else "", "fit_b" if args.bkg_fit else "fit_s")
     log.debug(cmd)
 
     current_path = os.getcwd()
@@ -164,7 +167,7 @@ def postfit_plot(datac):
            --plotFile ../../{2} --lumiText "137/fb" """.format(datac["outputdir"], datac["phase_spaces"][0]["var"], plotFile),
 
            """mkPlot.py --pycfg=configuration_combined.py --inputFile=postfit_shapes.root  --showRelativeRatio \\
-            --minLogC 1 --maxLogC 1e2 --minLogCratio 1 --maxLogCratio 1e2 --showIntegralLegend=1 --plotNormalizedDistributions """
+            --minLogC 1 --maxLogC 1e2 --minLogCratio 1 --maxLogCratio 1e2 --plotNormalizedDistributions """ #--showIntegralLegend=1 
     ]
 
     # Check if need to add MC stat uncertainty 
@@ -198,7 +201,7 @@ def postfit_plot_onlyplot(datac):
     cmd = [ 
 
            """mkPlot.py --pycfg=configuration_combined.py --inputFile=postfit_shapes_new.root  --showRelativeRatio \\
-            --minLogC 10 --maxLogC 1e2 --minLogCratio 10 --maxLogCratio 1e2 --showIntegralLegend=1 --plotNormalizedDistributions """
+            --minLogC 10 --maxLogC 1e2 --minLogCratio 10 --maxLogCratio 1e2  --plotNormalizedDistributions """ #--showIntegralLegend=1
     ]
 
     for c in cmd:  log.debug(cmd)

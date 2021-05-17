@@ -542,6 +542,7 @@ nuisances['QCD_scale_Wjets'] = {
 # ### Propagated from 2018 effect, split by sample
 samples_PS = ['VBS_dipoleRecoil','top','DY','VV','VVV','Vg','VgS','VBF-V_dipole','ggWW'] + wjets_bins
 
+
 for sample in samples_PS:
     nuisances['PS_ISR_'+sample]  = {
                     'name'  : 'CMS_PS_ISR_'+sample,
@@ -549,7 +550,8 @@ for sample in samples_PS:
                     'type'  : 'shape',
                     'samples'  : {
                         sample :      ['PSWeight[2]', 'PSWeight[0]'],
-                    }
+                    },
+                    'cuts_samples':{'Vg': [ f for f in phasespaces if "boost_topcr" not in f  ]} # necessary only for postfit in the cr
                 }
     nuisances['PS_FSR_'+sample]  = {
                     'name'  : 'CMS_PS_FSR_'+sample,
@@ -557,9 +559,10 @@ for sample in samples_PS:
                     'type'  : 'shape',
                     'samples'  : {
                         sample :      ['PSWeight[3]', 'PSWeight[1]'],
-                    }
+                    },
+                    'cuts_samples':{'Vg': [ f for f in phasespaces if "boost_topcr" not in f  ]}  # necessary only for postfit in the cr
+                    
                 }
-
 
 #########################################
 

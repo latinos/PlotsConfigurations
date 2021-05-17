@@ -12,7 +12,8 @@ plots_top_order_boost = [  'VV+VVV',  'DY', "Others",'Fake', 'Wjets','top','VBS'
 plots_wjets_order_boost = [  'VV+VVV', 'DY', "Others",'top','Fake','Wjets', 'VBS']
 
 # '#FF3D00',F57C00
-wjets_palette = ['#FFC400','#FFAB00', '#FF6D00','#FF3D00','#DD2C00','#c41e08']
+wjets_palette = ['#DF7000', '#FF8A00','#FFA133','#F7C307','#FFE200','#FFE93E','#FFEE66']
+
 
 signal_for_bins = '#eb21a1'
 
@@ -34,11 +35,16 @@ def reorder_plots(groupPlot, order):
 
 
 def define_bins_res(groupPlot,plot, plot_order):
-    new_plots = { k:v for k,v in plot.items() if k != "Wjets_HT"}
+    wjetbin_colormap = {}
+    for i in range(6): wjetbin_colormap[i] = i
+    for i in range(6, 12):  wjetbin_colormap[i] = i-6
+    for i in range(12, 16): wjetbin_colormap[i] = i-12
+    for i in range(16, 22): wjetbin_colormap[i] = i-16
+    new_plots = { k:v for k,v in plot.items() if k != "Wjets"}
     new_group =  { k:v for k,v in groupPlot.items() if k != "Wjets"}
     wjets_list = []
-    for ir in range(1,7):
-        sname = "Wjets_HT_res_"+str(ir)
+    for ir in range(1,22):
+        sname = "Wjets_res_"+str(ir)
         wjets_list.append(sname)
         new_plots[sname] = {
                 'color': 1,
@@ -47,9 +53,9 @@ def define_bins_res(groupPlot,plot, plot_order):
                  'scale'    : 1.0 
         }
         new_group[sname] = {
-            'nameHR' : 'W+Jets bin'+str(ir),
+            'nameHR' : 'Wbin'+str(ir),
             'isSignal' : 0,
-            'color':   wjets_palette[ir-1],
+            'color':   wjets_palette[wjetbin_colormap[ir-1]],
             'samples'  : [sname],
             'fill': 1001
         }
@@ -65,11 +71,11 @@ def define_bins_res(groupPlot,plot, plot_order):
     return new_group, new_plots
 
 def define_bins_boost(groupPlot,plot, plot_order):
-    new_plots = { k:v for k,v in plot.items() if k != "Wjets_HT"}
+    new_plots = { k:v for k,v in plot.items() if k != "Wjets"}
     new_group =  { k:v for k,v in groupPlot.items() if k != "Wjets"}
     wjets_list = []
-    for ir in range(1,6):
-        sname = "Wjets_HT_boost_"+str(ir)
+    for ir in range(1,8):
+        sname = "Wjets_boost_"+str(ir)
         wjets_list.append(sname)
         new_plots[sname] = {
                 'color': 1,
@@ -78,7 +84,7 @@ def define_bins_boost(groupPlot,plot, plot_order):
                  'scale'    : 1.0 
         }
         new_group[sname] = {
-            'nameHR' : 'W+Jets bin'+str(ir),
+            'nameHR' : 'Wbin'+str(ir),
             'isSignal' : 0,
             'color':   wjets_palette[ir-1],
             'samples'  : [sname],
@@ -192,37 +198,37 @@ def customize(samples,cuts,variables,nuisances,plot,groupPlot, key=None):
     
     ######################################
     if key == "wjets_rescale_res":
-        norm_factors = get_wjets_scaling(os.path.dirname(__file__) + "/wjets_norm/all_withJER.txt")
+        norm_factors = get_wjets_scaling(os.path.dirname(__file__) + "/wjets_norm/bins_norm.txt")
         new_cuts = filter_cuts(cuts, r"res_wjetcr_.*")
         new_groupPlot, new_plot = define_bins_res(groupPlot, plot, plots_wjets_order_res)
         scale_plot = scaleBins(new_plot,  norm_factors)
         return samples, new_cuts, variables, nuisances, scale_plot, new_groupPlot
     if key == "wjets_rescale_boost":
-        norm_factors = get_wjets_scaling(os.path.dirname(__file__) + "/wjets_norm/all_withJER.txt")
+        norm_factors = get_wjets_scaling(os.path.dirname(__file__) + "/wjets_norm/bins_norm.txt")
         new_cuts = filter_cuts(cuts, r"boost_wjetcr_.*")
         new_groupPlot, new_plot = define_bins_boost(groupPlot, plot, plots_wjets_order_boost)
         scale_plot = scaleBins(new_plot,  norm_factors)
         return samples, new_cuts, variables, nuisances, scale_plot, new_groupPlot
     if key == "signal_rescale_res":
-        norm_factors = get_wjets_scaling(os.path.dirname(__file__) + "/wjets_norm/all_withJER.txt")
+        norm_factors = get_wjets_scaling(os.path.dirname(__file__) + "/wjets_norm/bins_norm.txt")
         new_cuts = filter_cuts(cuts, r"res_sig_.*")
         new_groupPlot, new_plot = define_bins_res(groupPlot, plot, plots_wjets_order_res)
         scale_plot = scaleBins(new_plot,  norm_factors)
         return samples, new_cuts, variables, nuisances, scale_plot, new_groupPlot
     if key == "signal_rescale_boost":
-        norm_factors = get_wjets_scaling(os.path.dirname(__file__) + "/wjets_norm/all_withJER.txt")
+        norm_factors = get_wjets_scaling(os.path.dirname(__file__) + "/wjets_norm/bins_norm.txt")
         new_cuts = filter_cuts(cuts, r"boost_sig_.*")
         new_groupPlot, new_plot = define_bins_boost(groupPlot, plot, plots_wjets_order_boost)
         scale_plot = scaleBins(new_plot,  norm_factors)
         return samples, new_cuts, variables, nuisances, scale_plot, new_groupPlot
     if key == "top_rescale_res":
-        norm_factors = get_wjets_scaling(os.path.dirname(__file__) + "/wjets_norm/all_withJER.txt")
+        norm_factors = get_wjets_scaling(os.path.dirname(__file__) + "/wjets_norm/bins_norm.txt")
         new_cuts = filter_cuts(cuts, r"res_topcr_.*")
         new_groupPlot, new_plot = define_bins_res(groupPlot, plot, plots_top_order_res)
         scale_plot = scaleBins(new_plot, norm_factors)
         return samples, new_cuts, variables, nuisances, scale_plot, new_groupPlot
     if key == "top_rescale_boost":
-        norm_factors = get_wjets_scaling(os.path.dirname(__file__) + "/wjets_norm/all_withJER.txt")
+        norm_factors = get_wjets_scaling(os.path.dirname(__file__) + "/wjets_norm/bins_norm.txt")
         new_cuts = filter_cuts(cuts, r"boost_topcr_.*")
         new_groupPlot, new_plot = define_bins_boost(groupPlot, plot, plots_top_order_boost)
         scale_plot = scaleBins(new_plot,  norm_factors)
@@ -242,6 +248,15 @@ def customize(samples,cuts,variables,nuisances,plot,groupPlot, key=None):
         new_groupPlot["VBS"] = groupPlot["VBS"]
         new_plot["VBS"] = plot["VBS"]
         return samples, new_cuts, variables, nuisances, new_plot, new_groupPlot
+
+    if key=="redo_mjj_boost":
+        new_cuts = filter_cuts(cuts, r"boost_.*")
+        new_groupPlot = reorder_plots(groupPlot,  plots_wjets_order_res)
+        new_plot ={ k:v for k,v in plot.items() if 'res' not in k}
+        new_variables = { "mjj_vbs": variables["mjj_vbs"]}
+        new_variables["mjj_vbs"]['range'] = (22, 500, 3140)
+        return samples, new_cuts, new_variables, nuisances, new_plot, new_groupPlot
+
 
     else:
         return samples,cuts,variables,nuisances,plot,groupPlot

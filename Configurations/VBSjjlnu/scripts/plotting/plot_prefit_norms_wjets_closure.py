@@ -24,13 +24,14 @@ df = pd.read_csv(args.input, sep=";")
 
 
 Wjets_bins = {"res":[],"boost":[]}
-for ir in range(1,7):
-    Wjets_bins["res"].append("Wjets_HT_res_"+str(ir))
-for ir in range(1,6):
-    Wjets_bins["boost"].append("Wjets_HT_boost_"+str(ir))
+for ir in range(1,22):
+    Wjets_bins["res"].append("Wjets_res_"+str(ir))
+for ir in range(1,8):
+    Wjets_bins["boost"].append("Wjets_boost_"+str(ir))
 
+if cat == "res":    c = canvas_utils.get_canvas(args.year, 700, 1400)
+if cat == "boost":  c = canvas_utils.get_canvas(args.year, 700, 1200)
 
-c = canvas_utils.get_canvas(args.year, 700, 1200)
 mg = R.TMultiGraph()
 mg.SetTitle(";W+jets category;Prefit SF")
 
@@ -72,7 +73,8 @@ for lepfl in ("ele","mu"):
 
         if lepfl =="ele":   g.SetMarkerStyle(21)
         else: g.SetMarkerStyle(22)
-        g.SetMarkerSize(3)
+        if cat == "boost":   g.SetMarkerSize(3)
+        if cat == "res":   g.SetMarkerSize(2)
         g.SetLineWidth(3)
 
         gerr.SetLineColor(12)
@@ -82,9 +84,9 @@ for lepfl in ("ele","mu"):
         
 
 mg.Draw("AP PMC PFC PLC")
-mg.GetYaxis().SetRangeUser(Min - 0.6,Max + 0.5)
-if cat == "res":  mg.GetXaxis().SetRangeUser(0.3 , 7)
-elif cat == "boost":  mg.GetXaxis().SetRangeUser(0.3 , 6)
+mg.GetYaxis().SetRangeUser(Min - 0.4,Max + 0.5)
+if cat == "res":  mg.GetXaxis().SetRangeUser(0.3 , 21.5)
+elif cat == "boost":  mg.GetXaxis().SetRangeUser(0.3 , 12)
 
 mg.Draw("AP PMC PFC PLC")
 
@@ -92,22 +94,22 @@ i = 0
 tt = []
 
 
-for wjetbin in Wjets_bins[cat]:
-    t = R.TText(i+1-0.38, Min - 0.5, wjetbin)
+# for wjetbin in Wjets_bins[cat]:
+#     t = R.TText(i+1-0.38, Min - 0.5, wjetbin)
 
-    t.SetTextFont(25)
-    t.SetTextSize(20)
-    t.SetTextAngle(0)
-    i+=1
-    t.Draw("same")
-    tt.append(t)
+#     t.SetTextFont(25)
+#     t.SetTextSize(20)
+#     t.SetTextAngle(0)
+#     i+=1
+#     t.Draw("same")
+#     tt.append(t)
 
 
 ls = []
-if cat == "res": nlines = 5
-elif cat == "boost": nlines = 4
+if cat == "res": nlines = 21
+elif cat == "boost": nlines = 7
 for i in range(nlines):
-    line = R.TLine(i+1.495, Min - 0.6, i+1.495,Max + 0.5)
+    line = R.TLine(i+1.495, Min - 0.4, i+1.495,Max + 0.5)
     line.SetLineStyle(8)
     line.Draw("same")
     ls.append(line)

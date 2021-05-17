@@ -51,12 +51,12 @@ for i in range(1, 22):
 for i in range(1, 8):
   wjbin = "Wjets_boost_{}".format(i)
   wjets_boost_bins.append(wjbin)
-  directory_wjets_bins[wjbin] = treeBaseDir_SMP + 'Fall2017_102X_nAODv7_Full2017v7_WjetsBins_skim/res_bin_{}/'.format(i) + mcSteps
+  directory_wjets_bins[wjbin] = treeBaseDir_SMP + 'Fall2017_102X_nAODv7_Full2017v7_WjetsBins_skim/boost_bin_{}/'.format(i) + mcSteps
 
 wjets_all_bins = wjets_res_bins + wjets_boost_bins
 
 
-print "Wjets bins: ", wjets_all_bins
+# print "Wjets bins: ", wjets_all_bins
 
 ################################################
 ############ NUMBER OF LEPTONS #################
@@ -407,7 +407,16 @@ samples['VBS_dipoleRecoil']  = { 'name' :
 
 fake_weight_corrected = "fakeWeight_35"
 
-# samples['Fake'] = {
+samples['Fake'] = {
+  'name': [],
+  'weight': METFilter_DATA+'*'+ fake_weight_corrected,
+  'weights': [],
+  'isData': ['all'],
+  'FilesPerJob' : 45
+}
+
+# #### Fakes
+# samples['Fake_ele'] = {
 #   'name': [],
 #   'weight': METFilter_DATA+'*'+ fake_weight_corrected,
 #   'weights': [],
@@ -415,35 +424,26 @@ fake_weight_corrected = "fakeWeight_35"
 #   'FilesPerJob' : 45
 # }
 
-#### Fakes
-samples['Fake_ele'] = {
-  'name': [],
-  'weight': METFilter_DATA+'*'+ fake_weight_corrected,
-  'weights': [],
-  'isData': ['all'],
-  'FilesPerJob' : 45
-}
+# samples['Fake_mu'] = {
+#   'name': [],
+#   'weight': METFilter_DATA+'*'+ fake_weight_corrected,
+#   'weights': [],
+#   'isData': ['all'],
+#   'FilesPerJob' : 45
+# }
 
-samples['Fake_mu'] = {
-  'name': [],
-  'weight': METFilter_DATA+'*'+ fake_weight_corrected,
-  'weights': [],
-  'isData': ['all'],
-  'FilesPerJob' : 45
-}
-
-# #
-for _, sd in DataRun:
-  for pd in DataSets:
-    files = nanoGetSampleFiles(directory_data, pd + '_' + sd)
-    if pd == "SingleMuon":
-      # BE Careful --> we use directory_data because the Lepton tight cut was not applied in post-processing
-      samples['Fake_mu']['name'].extend(files)
-      samples['Fake_mu']['weights'].extend([DataTrig[pd]] * len(files))
-    elif pd == "SingleElectron":
-      # BE Careful --> we use directory_data because the Lepton tight cut was not applied in post-processing
-      samples['Fake_ele']['name'].extend(files)
-      samples['Fake_ele']['weights'].extend([DataTrig[pd]] * len(files))
+# # #
+# for _, sd in DataRun:
+#   for pd in DataSets:
+#     files = nanoGetSampleFiles(directory_data, pd + '_' + sd)
+#     if pd == "SingleMuon":
+#       # BE Careful --> we use directory_data because the Lepton tight cut was not applied in post-processing
+#       samples['Fake_mu']['name'].extend(files)
+#       samples['Fake_mu']['weights'].extend([DataTrig[pd]] * len(files))
+#     elif pd == "SingleElectron":
+#       # BE Careful --> we use directory_data because the Lepton tight cut was not applied in post-processing
+#       samples['Fake_ele']['name'].extend(files)
+#       samples['Fake_ele']['weights'].extend([DataTrig[pd]] * len(files))
 
 
 ##########################################
@@ -451,37 +451,38 @@ for _, sd in DataRun:
 ##########################################
 
 
-samples['DATA_mu']  = {   'name': [ ] ,
-                       'weight' : METFilter_DATA+'*'+LepWPCut,
-                       'weights' : [ ],
-                       'isData': ['all'],
-                       'FilesPerJob' : 45,
-                  }
-
-samples['DATA_ele']  = {   'name': [ ] ,
-                       'weight' : METFilter_DATA+'*'+LepWPCut,
-                       'weights' : [ ],
-                       'isData': ['all'],
-                       'FilesPerJob' : 45,
-                  }
-
-
-for Run in DataRun :
-        for DataSet in DataSets :
-                FileTarget = nanoGetSampleFiles(directory_data,DataSet+'_'+Run[1])
-                for iFile in FileTarget:
-                  if DataSet == "SingleElectron":
-                    samples['DATA_ele']['name'].append(iFile)
-                    samples['DATA_ele']['weights'].append(DataTrig[DataSet])
-                  if DataSet == "SingleMuon":
-                    samples['DATA_mu']['name'].append(iFile)
-                    samples['DATA_mu']['weights'].append(DataTrig[DataSet])
-
-# samples['DATA']  = {   'name': [ ] ,
+# samples['DATA_mu']  = {   'name': [ ] ,
 #                        'weight' : METFilter_DATA+'*'+LepWPCut,
 #                        'weights' : [ ],
 #                        'isData': ['all'],
 #                        'FilesPerJob' : 45,
 #                   }
 
+# samples['DATA_ele']  = {   'name': [ ] ,
+#                        'weight' : METFilter_DATA+'*'+LepWPCut,
+#                        'weights' : [ ],
+#                        'isData': ['all'],
+#                        'FilesPerJob' : 45,
+#                   }
+
+
+# for Run in DataRun :
+#         for DataSet in DataSets :
+#                 FileTarget = nanoGetSampleFiles(directory_data,DataSet+'_'+Run[1])
+#                 for iFile in FileTarget:
+#                   if DataSet == "SingleElectron":
+#                     samples['DATA_ele']['name'].append(iFile)
+#                     samples['DATA_ele']['weights'].append(DataTrig[DataSet])
+#                   if DataSet == "SingleMuon":
+#                     samples['DATA_mu']['name'].append(iFile)
+#                     samples['DATA_mu']['weights'].append(DataTrig[DataSet])
+
+samples['DATA']  = {   'name': [ ] ,
+                       'weight' : METFilter_DATA+'*'+LepWPCut,
+                       'weights' : [ ],
+                       'isData': ['all'],
+                       'FilesPerJob' : 45,
+                  }
+
+# samples = {k:v for k,v in samples.items() if "Wjets_boost" in k  }
 samples = {k:v for k,v in samples.items() if k not in ['VBF-V','VBS'] }#

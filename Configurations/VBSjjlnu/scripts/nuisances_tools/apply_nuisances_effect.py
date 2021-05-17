@@ -68,7 +68,8 @@ for cut in nF.GetListOfKeys():
                         oF.cd(cut.GetName() + "/"+var.GetName())
                         h_up.Write()
                         h_do.Write()
-                    except:
+                    except Exception as e:
+                        print(e)
                         print("Problem with: ", sample, nuis_rename, " --> skipping")
         nF.cd()
 

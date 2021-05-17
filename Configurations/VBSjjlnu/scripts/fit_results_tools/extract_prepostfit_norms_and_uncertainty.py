@@ -15,6 +15,7 @@ parser.add_argument("-y","--years", help="Years", type=str, nargs="+")
 parser.add_argument("-r","--regions", help="Regions", type=str, nargs="+")
 parser.add_argument("-c","--cats", help="Categories", type=str, nargs="+")
 parser.add_argument("-x","--xmin", help="Xmin", type=float)
+parser.add_argument("-b","--blind", help="Bling", action="store_true")
 args = parser.parse_args()
 
 
@@ -25,14 +26,14 @@ for y in args.years:
     for region in args.regions:
         for cat in args.cats:
             for fl in ['ele','mu']:
-                phase_spaces.append('{}_{}_{}_{}'.format(cat,region,fl,y))
+                phase_spaces.append('{}_sig_{}_{}'.format(cat, fl, y))
 
-samples = ["VBS", "top","DY","VV","VVV","Vg","VgS","VBF-V","Fake"]
+samples = ["VBS_dipoleRecoil", "top","DY","VV","VVV","Vg","VgS","VBF-V_dipole","Fake"]
 wjets_bins = {'res':[], 'boost':[]}
-for ir in range(1,7):
-    wjets_bins['res'].append("Wjets_HT_res_"+str(ir))
-for ir in range(1,6):
-    wjets_bins['boost'].append("Wjets_HT_boost_"+str(ir))
+for ir in range(1,22):
+    wjets_bins['res'].append("Wjets_res_"+str(ir))
+for ir in range(1,8):
+    wjets_bins['boost'].append("Wjets_boost_"+str(ir))
 
 
 results = []
@@ -44,6 +45,7 @@ for ph in phase_spaces:
         wjs = wjets_bins['boost']
 
     for sample in samples+wjs:
+        print "{}_prefit/{}".format(ph, sample)
         hpre = iF.Get("{}_prefit/{}".format(ph, sample))
         minbin = hpre.FindBin(args.xmin)
         pre_nom = sum([hpre.GetBinContent(i) for i in range(minbin, hpre.GetNbinsX()+1)])
@@ -95,8 +97,10 @@ for sample in  samples + wjets_bins["res"] + wjets_bins["boost"]:
     for ph in phase_spaces:
         d = df[(df.channel==ph) & (df.process==sample)]
         if len(d) ==0 : continue
-        #line += "& {:.1f} \pm {:.1f}  & {:.1f} \pm  {:.1f}".format(float(d.prefit_norm.values[0]), float(d.prefit_err.values[0]), float(d.postfit_norm.values[0]),float( d.postfit_err.values[0]))
-        line += "& ${:.1f} \pm {:.1f}$  & $X \pm  X$ ".format(float(d.prefit_norm.values[0]), float(d.prefit_err.values[0]))
+        if not args.blind:
+            line += "& {:.1f} \pm {:.1f}  & {:.1f} \pm  {:.1f}".format(float(d.prefit_norm.values[0]), float(d.prefit_err.values[0]), float(d.postfit_norm.values[0]),float( d.postfit_err.values[0]))
+        else:
+            line += "& ${:.1f} \pm {:.1f}$  & $X \pm  X$ ".format(float(d.prefit_norm.values[0]), float(d.prefit_err.values[0]))
     line += r' \\'
     body.append(line)
 

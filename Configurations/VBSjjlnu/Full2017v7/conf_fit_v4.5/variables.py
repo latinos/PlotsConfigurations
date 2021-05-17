@@ -256,4 +256,7 @@ variables['deltaeta_vjet'] = {   'name': 'deltaeta_vjet',
                         }   
 
 
-# variables = {k:v for k,v in variables.items() if k in ["events", "DNNoutput_res_v1", "DNNoutput_boost", "fit_bins_res","fit_bins_boost"]}
+
+# variables = {k:v for k,v in variables.items() if k in ["events", "DNNoutput_res_v1", "DNNoutput_boost", "fit_bins_res","fit_bins_boost", 
+#             "mjj_vbs","w_lep_pt","Zlep",'nJets_boost','deltaeta_vbs', 'vbs_1_pt_boost']}
+# variables = {k:v for k,v in variables.items() if k in ["mjj_vbs"]}

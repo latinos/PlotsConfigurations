@@ -26,13 +26,16 @@ h.GetYaxis().SetTitle("Counts")
 leg.AddEntry(h, "Toys [{}]".format(h.Integral()))
 h.GetYaxis().SetRangeUser(0., h.GetMaximum()*1.3)
 h.Draw()
+h.SetLineWidth(2)
+
+maxy = h.GetMaximum()*1.1
 
 gt = tree.GetEntries('limit>'+str(data_p))
 tot = h.GetEntries()
 print(gt, tot)
 
-h.GetYaxis().SetRangeUser(0,130)
-line = R.TLine(data_p, 0., data_p, 130)
+h.GetYaxis().SetRangeUser(0,maxy)
+line = R.TLine(data_p, 0., data_p, maxy)
 line.SetLineWidth(2)
 line.SetLineColor(R.kRed)
 line.Draw("same")

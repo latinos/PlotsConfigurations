@@ -46,8 +46,8 @@ for i in range(1, 22):
   wjets_res_bins.append(wjbin)
   directory_wjets_res_bins[wjbin] = treeBaseDir_SMP + 'Summer16_102X_nAODv7_Full2016v7_WjetsBins_skim/res_bin_{}/'.format(i) + mcSteps
 
-print "Wjets bins: ", wjets_res_bins
-print directory_wjets_res_bins
+# print "Wjets bins: ", wjets_res_bins
+# print directory_wjets_res_bins
 ################################################
 ############ NUMBER OF LEPTONS #################
 ################################################

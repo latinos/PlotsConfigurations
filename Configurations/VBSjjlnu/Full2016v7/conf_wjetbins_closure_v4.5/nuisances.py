@@ -4,7 +4,8 @@ from pprint import pprint
 mc =["DY", "top", "VV", "VVV", "Vg", "VgS", "VBS", "VBS_dipoleRecoil","VBF-V", "VBF-V_dipole", "ggWW"] + wjets_all_bins
 #mc_norm = [m for m in mc if m not in ["VBS", "VV"]]
 #mc_sep =  ["VBS", "VV"]
-phasespaces = cuts
+phasespaces = ['res_wjetcr_ele_mext','res_wjetcr_mu_mext','res_wjetcr_ele_mint','res_wjetcr_mu_mint',
+            'boost_wjetcr_ele_mext','boost_wjetcr_mu_mext','boost_wjetcr_ele_mint','boost_wjetcr_mu_mint']
 
 
 def getSamplesWithout(samples, samples_to_remove):
@@ -706,4 +707,4 @@ for n in nuisances.values():
 # nuisances = {k:v for k,v in nuisances.items() if 'fake' in k or k in ["QCD_scale_VBS"]} #if 'PS' in k or 'QCD' in k
 
 
-print ' '.join(nname for nname, nuis in nuisances.iteritems() if nname not in ('lumi', 'stat'))
+# print ' '.join(nname for nname, nuis in nuisances.iteritems() if nname not in ('lumi', 'stat'))

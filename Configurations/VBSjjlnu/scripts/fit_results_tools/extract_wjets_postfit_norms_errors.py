@@ -15,14 +15,14 @@ phase_spaces = []
 for y in ['2016','2017','2018']:
     for cat in ['boost','res']:
         for fl in ['ele','mu']:
-            phase_spaces.append('{}_wjet_{}_{}'.format(cat,fl,y))
+            phase_spaces.append('wjetcr_{}_{}_{}'.format(cat,fl,y))
 
 
 wjets_bins = {'res':[], 'boost':[]}
-for ir in range(1,7):
-    wjets_bins['res'].append("Wjets_HT_res_"+str(ir))
-for ir in range(1,6):
-    wjets_bins['boost'].append("Wjets_HT_boost_"+str(ir))
+for ir in range(1,22):
+    wjets_bins['res'].append("Wjets_res_"+str(ir))
+for ir in range(1,8):
+    wjets_bins['boost'].append("Wjets_boost_"+str(ir))
 
 
 results = []
@@ -39,6 +39,7 @@ for ph in phase_spaces:
             pre_err = sum([hpre.GetBinError(i) for i in range(hpre.GetNbinsX()+1)])
         
         hpost = iF.Get("{}_postfit/{}".format(ph, wj))
+        print("{}_postfit/{}".format(ph, wj))
         post_nom = sum([hpost.GetBinContent(i) for i in range(hpost.GetNbinsX()+1)])
         post_err = sum([hpost.GetBinError(i) for i in range(hpost.GetNbinsX()+1)])
         

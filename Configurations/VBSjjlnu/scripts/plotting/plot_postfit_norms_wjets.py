@@ -26,13 +26,13 @@ tdrStyle.setTDRStyle()
 
 
 Wjets_bins = {"res":[],"boost":[]}
-for ir in range(1,7):
-    Wjets_bins["res"].append("Wjets_HT_res_"+str(ir))
-for ir in range(1,6):
-    Wjets_bins["boost"].append("Wjets_HT_boost_"+str(ir))
+for ir in range(1,22):
+    Wjets_bins["res"].append("Wjets_res_"+str(ir))
+for ir in range(1,8):
+    Wjets_bins["boost"].append("Wjets_boost_"+str(ir))
 
-
-c = canvas_utils.get_canvas('2016+2017+2018',900,1400)
+if args.cat == "res":  c = canvas_utils.get_canvas('2016+2017+2018',900,2000)
+if args.cat == "boost":  c = canvas_utils.get_canvas('2016+2017+2018',900,1400)
 mg = R.TMultiGraph()
 mg.SetTitle("Wjets categories prefit/postfit norms;Wjets categories;post(pre)fit SF")
 
@@ -91,7 +91,7 @@ for iy, year in enumerate((2016,2017,2018)):
         if lepfl =="ele":   g.SetMarkerStyle(21)
         else: g.SetMarkerStyle(22)
 
-        g.SetMarkerSize(3)
+        g.SetMarkerSize(2)
         g.SetLineWidth(3)
         g_err.SetLineColor(12)
         g_err.SetFillColor(12)
@@ -109,42 +109,43 @@ for iy, year in enumerate((2016,2017,2018)):
         # g_stat.SetMarkerColor(0)
 
 mg.Draw("AP PMC PFC PLC")
-mg.GetYaxis().SetRangeUser(Min - 0.4,Max + 0.6)
+mg.GetYaxis().SetRangeUser(Min - 0.3,Max + 0.8)
 # mg.GetYaxis().SetRangeUser(0.1,2.2)
 
-if cat == "res":  mg.GetXaxis().SetRangeUser(0.4 , 6.5)
-elif cat == "boost":  mg.GetXaxis().SetRangeUser(0.4 , 5.5)
+if cat == "res":  mg.GetXaxis().SetRangeUser(0.4 , 21.5)
+elif cat == "boost":  mg.GetXaxis().SetRangeUser(0.4 , 7.5)
 
 mg.Draw("AP PMC PFC PLC")
 
-mg.GetXaxis().SetLabelOffset(99)
+# mg.GetXaxis().SetLabelOffset(99)
+# mg.GetXaxis().SetNdivisions(1, False)
 
 i = 0
 tt = []
 
-for ibin, wjetbin in enumerate(Wjets_bins[cat]):
-    if ibin< len(Wjets_bins[cat])-1:
-        t = R.TLatex(i+1-0.45, Min-0.5 ,  str(pt_bins[cat][ibin]) + " #leq W^{lep}_{pT} #leq "+str(pt_bins[cat][ibin+1]) + " GeV")
-    else:
-        t = R.TLatex(i+1-0.35, Min-0.5,  "W^{lep}_{pT} #geq "+str(pt_bins[cat][ibin]) + " GeV")
+# for ibin, wjetbin in enumerate(Wjets_bins[cat]):
+#     # if ibin< len(Wjets_bins[cat])-1:
+#     #     t = R.TLatex(i+1-0.45, Min-0.5 ,  str(pt_bins[cat][ibin]) + " #leq W^{lep}_{pT} #leq "+str(pt_bins[cat][ibin+1]) + " GeV")
+#     # else:
+#     #     t = R.TLatex(i+1-0.35, Min-0.5,  "W^{lep}_{pT} #geq "+str(pt_bins[cat][ibin]) + " GeV")
 
-    if cat == "boost":
-        t.SetTextSize(22)
-    elif cat == "res":
-        t.SetTextSize(19)
-    t.SetTextFont(25)
-    t.SetTextAngle(0)
+#     if cat == "boost":
+#         t.SetTextSize(22)
+#     elif cat == "res":
+#         t.SetTextSize(19)
+#     t.SetTextFont(25)
+#     t.SetTextAngle(0)
     
-    i+=1
-    t.Draw("same")
-    tt.append(t)
+#     i+=1
+#     t.Draw("same")
+#     tt.append(t)
 
 
 ls = []
-if cat == "res": nlines = 5
-elif cat == "boost": nlines = 4
+if cat == "res": nlines = 20
+elif cat == "boost": nlines = 6
 for i in range(nlines):
-    line = R.TLine(i+1.495, Min-0.4, i+1.495,Max+0.4)
+    line = R.TLine(i+1.495, Min-0.3, i+1.495,Max+0.8)
     line.SetLineStyle(8)
     line.Draw("same")
     ls.append(line)

@@ -5,7 +5,8 @@ mc =["DY", "top", "VV", "VVV", "VBF-V","VBF-V_dipole", "Vg", "VgS", "VBS","VBS_d
 # mc_norm = [m for m in mc if m not in ["VBS", "VV"]]
 # mc_sep =  ["VBS", "VV"]
 
-phasespaces = cuts
+phasespaces = ['res_wjetcr_ele_mext','res_wjetcr_mu_mext','res_wjetcr_ele_mint','res_wjetcr_mu_mint',
+            'boost_wjetcr_ele_mext','boost_wjetcr_mu_mext','boost_wjetcr_ele_mint','boost_wjetcr_mu_mint']
 
 
 def getSamplesWithout(samples, samples_to_remove):

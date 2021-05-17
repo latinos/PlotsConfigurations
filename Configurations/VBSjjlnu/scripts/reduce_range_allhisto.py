@@ -16,8 +16,8 @@ oF = R.TFile.Open(args.output,"RECREATE")
 
 def getNewHisto(h, X_newmax):
     oldmaxbin = h.FindBin(X_newmax)
-    #print("Bin max: ", oldmaxbin)
-    #print("New histo settings: ", oldmaxbin, h.GetBinLowEdge(1), h.GetBinLowEdge(oldmaxbin+1))
+    # print("Bin max: ", oldmaxbin)
+    print("New histo settings: ", oldmaxbin, h.GetBinLowEdge(1), h.GetBinLowEdge(oldmaxbin+1))
     newH = R.TH1F(h.GetName(), h.GetTitle(), oldmaxbin, h.GetBinLowEdge(1), h.GetBinLowEdge(oldmaxbin+1))
     for i in range(0, oldmaxbin):
         newH.SetBinContent(i, h.GetBinContent(i))

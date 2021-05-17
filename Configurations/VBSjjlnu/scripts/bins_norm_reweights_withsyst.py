@@ -17,7 +17,7 @@ parser.add_argument("-v", "--vars", help="Variables", nargs="+", type=str)
 parser.add_argument("--cuts", help="cuts to analyze", nargs="+", type=str)
 parser.add_argument("-s", "--samples", help="Samples to analyze", nargs="+", type=str)
 parser.add_argument("-c", "--conf", help="config file", type=str)
-parser.add_argument("-e", "--exclude-nuisance", help="Exclude nuisaces", nargs="+", type=str)
+parser.add_argument("-e", "--exclude-nuisances", help="Exclude nuisaces", nargs="+", type=str)
 parser.add_argument("-on", "--output-nuisances", help="Output all the nuisances effect",action="store_true")
 parser.add_argument( "--other-samples", help="Samples to be removed from data",nargs="+", type=str)
 args = parser.parse_args()
@@ -37,7 +37,7 @@ subsamplesmap = utils.flatten_samples(samples)
 utils.update_nuisances_with_subsamples(nuisances, subsamplesmap)
 
 def get_syst_uncertainty(cutName,sampleName,variableName, histo, fileIn):
-    print ("Working on ", cutName, sampleName, variableName, fileIn)
+    print ("Working on ", cutName, sampleName, variableName, histo)
     mynuisances = {}
     nuisances_vy_up     = {}
     nuisances_vy_do     = {}
@@ -115,7 +115,7 @@ def get_syst_uncertainty(cutName,sampleName,variableName, histo, fileIn):
     nuisances_err2_up = rnp.array(histo.GetSumw2())[1:-1]
     nuisances_err2_do = rnp.array(histo.GetSumw2())[1:-1]
     for nuisanceName in mynuisances.keys():
-        if args.exclude_nuisance and nuisanceName in args.exclude_nuisance: 
+        if args.exclude_nuisances and nuisanceName in args.exclude_nuisances: 
             print ("Excluding nuisance: ", nuisanceName)
             continue
         # now we need to tell wthether the variation is actually up or down ans sum in quadrature those with the same sign 

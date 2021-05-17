@@ -514,7 +514,8 @@ for sample in samples_PS:
                     'type'  : 'shape',
                     'samples'  : {
                         sample :      ['PSWeight[2]', 'PSWeight[0]'],
-                    }
+                    },
+                    'cuts_samples':{'Vg': [ f for f in phasespaces if "boost_topcr" not in f  ]} # necessary only for postfit in the cr
                 }
     nuisances['PS_FSR_'+sample]  = {
                     'name'  : 'CMS_PS_FSR_'+sample,
@@ -522,7 +523,9 @@ for sample in samples_PS:
                     'type'  : 'shape',
                     'samples'  : {
                         sample :      ['PSWeight[3]', 'PSWeight[1]'],
-                    }
+                    },
+                    'cuts_samples':{'Vg': [ f for f in phasespaces if "boost_topcr" not in f  ]}  # necessary only for postfit in the cr
+                    
                 }
 
 
@@ -652,4 +655,4 @@ for n in nuisances.values():
 # nuisances = {k:v for k,v in nuisances.items() if 'fake' in k or k in ["QCD_scale_VBS"]} #if 'PS' in k or 'QCD' in k
 
 
-print ' '.join(nname for nname, nuis in nuisances.iteritems() if nname not in ('lumi', 'stat'))
+# print ' '.join(nname for nname, nuis in nuisances.iteritems() if nname not in ('lumi', 'stat'))

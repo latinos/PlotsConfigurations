@@ -30,7 +30,7 @@ for k in f.GetListOfKeys():
 
         for nuisance_name in args.nuisances:
             #Delete boh up and down
-            R.gDirectory.Delete(args.sample + "_"+nuisance_name+"*;*")
+            R.gDirectory.Delete("histo_" + args.sample + "_"+nuisance_name+"*;*")
                    
         R.gDirectory.Cd("../")
 

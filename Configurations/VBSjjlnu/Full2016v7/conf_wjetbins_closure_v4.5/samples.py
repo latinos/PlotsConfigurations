@@ -50,11 +50,11 @@ for i in range(1, 22):
 for i in range(1, 8):
   wjbin = "Wjets_boost_{}".format(i)
   wjets_boost_bins.append(wjbin)
-  directory_wjets_bins[wjbin] = treeBaseDir_SMP + 'Summer16_102X_nAODv7_Full2016v7_WjetsBins_skim/res_bin_{}/'.format(i) + mcSteps
+  directory_wjets_bins[wjbin] = treeBaseDir_SMP + 'Summer16_102X_nAODv7_Full2016v7_WjetsBins_skim/boost_bin_{}/'.format(i) + mcSteps
 
 wjets_all_bins = wjets_res_bins + wjets_boost_bins
 
-print wjets_all_bins
+# print wjets_all_bins
 ################################################
 ############ NUMBER OF LEPTONS #################
 ################################################
@@ -514,4 +514,5 @@ for Run in DataRun :
 
 
 # samples = {k:v for k,v in samples.items() if 'Wjets_res' in k}
+# samples = {k:v for k,v in samples.items() if "Wjets_boost" in k  }
 samples = {k:v for k,v in samples.items() if k not in ["VBS","VBF-V"]}

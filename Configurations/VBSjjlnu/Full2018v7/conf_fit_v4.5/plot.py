@@ -64,7 +64,7 @@ palette = {
 
 jetbin_detabins = [3,3,2]
 #wjets_palette = ['#FFF59D', '#FFEE58', '#FFD54F', '#FFB300', '#FF8F00', '#F57C00', '#E65100','#BF360C']
-wjets_palette = ['#DD2C00', '#FF3D00',  '#FF6D00','#F57C00', '#FFAB00', '#FFC400', '#FFEA00', '#FFFF00']
+wjets_palette = ['#DF7000', '#FF8A00','#FFA133','#F7C307','#FFE200','#FFEC57']
 
 
 wjets_bins = []
@@ -72,7 +72,6 @@ for ir in range(1,22):
     wjets_bins.append("Wjets_res_"+str(ir))
 for ir in range(1,8):
     wjets_bins.append("Wjets_boost_"+str(ir))
-
 
 
 

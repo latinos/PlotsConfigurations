@@ -18,8 +18,7 @@ variablesFile = direc+'/variables.py'
 cutsFile = direc +'/cuts.py' 
 
 # file with list of samples
-samplesFile = direc+'/samples.py' 
-#samplesFile = direc+'/samples.py'
+samplesFile = direc+'/samples_quick.py' 
 
 #t file with list of samples
 plotFile = direc+'/plot.py' 
