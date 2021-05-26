@@ -91,12 +91,10 @@ structure['Vg']  = {
                   'isSignal' : 0,
                   'isData'   : 0 
                   }
-'''
 structure['ZgS'] = {
                   'isSignal' : 0,
                   'isData'   : 0
                   }
-'''
 structure['WgS'] = {
                   'isSignal' : 0,
                   'isData'   : 0
@@ -116,12 +114,10 @@ structure['VgS_H'] = {
                   'isSignal' : 0,
                   'isData'   : 0
                   }
-'''
 structure['Zg']  = { 
                   'isSignal' : 0,
                   'isData'   : 0 
                   }
-'''
 structure['VZ']  = { 
                   'isSignal' : 0,
                   'isData'   : 0 
