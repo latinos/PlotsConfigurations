@@ -10,28 +10,17 @@ structure['Zjj']  = {
                   'isData'   : 0
               }
 
-structure['DY_lowZ']  = {  
+structure['DY_hardJets']  = {  
                   'isSignal' : 0,
                   'isData'   : 0
               }
 
-structure['DY_highZ']  = {
+structure['DY_PUJets']  = {
                   'isSignal' : 0,
                   'isData'   : 0
-              }
-
-structure['Dyveto']  = {
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  'removeFromCuts' : [ k for k in cuts ],
               }
 
 structure['Wjets']  = {  
-                  'isSignal' : 0,
-                  'isData'   : 0 
-              }
-
-structure['Fake']  = {  
                   'isSignal' : 0,
                   'isData'   : 0 
               }
@@ -67,7 +56,8 @@ structure['top'] = {
 
 structure['WW']  = {
                   'isSignal' : 0,
-                  'isData'   : 0    
+                  'isData'   : 0, 
+                  'scaleSample': 9.
                   }
 
 structure['WWewk']  = {
@@ -222,7 +212,7 @@ structure['DATA']  = {
               }
 
 
-
+'''
 print "INSTRUCTURE"
 print cuts
 #print nuisances['WWresum0j']
@@ -233,3 +223,4 @@ for nuis in nuisances.itervalues():
     nuis['cuts'] = nuis['cutspost'](nuis, cuts)
 
     print nuis
+'''

@@ -159,7 +159,7 @@ aliases['topcr'] = {
 
 aliases['dycr'] = {
 #    'expr': 'mth<60 && mll>40 && mll<80 && bVeto'
-    'expr': 'mth<60 && bVeto'
+    'expr': 'bVeto && abs(mll-91.2)<15 '
 }
 
 aliases['wwcr'] = {
@@ -170,7 +170,7 @@ aliases['wwcr'] = {
 
 aliases['sr'] = {
 #    'expr': 'mth>60 && mtw2>30 && bVeto'
-    'expr': 'mth>60 && bVeto'
+    'expr': 'bVeto'
 }
 
 aliases['LowZ'] = {
@@ -179,6 +179,16 @@ aliases['LowZ'] = {
 
 aliases['HighZ'] = {
     'expr':  '0.5*abs((Lepton_eta[0] + Lepton_eta[1]) - (CleanJet_eta[0] + CleanJet_eta[1])) >= 1'
+}
+
+aliases['hardJets'] = {
+    'expr':  'Jet_genJetIdx[CleanJet_jetIdx[0]] >= 0 && Jet_genJetIdx[CleanJet_jetIdx[1]] >= 0 && GenJet_pt[CleanJet_jetIdx[0]] > 25 && GenJet_pt[CleanJet_jetIdx[1]] > 25',
+    'samples': ['DY']
+}
+
+aliases['PUJets'] = {
+    'expr':  '!(Jet_genJetIdx[CleanJet_jetIdx[0]] >= 0 && Jet_genJetIdx[CleanJet_jetIdx[1]] >= 0 && GenJet_pt[CleanJet_jetIdx[0]] > 25 && GenJet_pt[CleanJet_jetIdx[1]] > 25)',
+    'samples': ['DY']
 }
 
 # B tag SF
