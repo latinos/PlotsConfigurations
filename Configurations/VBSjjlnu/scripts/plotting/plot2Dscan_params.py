@@ -4,6 +4,7 @@ import math
 import json
 import argparse
 import os
+import re
 
 
 parser = argparse.ArgumentParser()
@@ -11,6 +12,7 @@ parser.add_argument('--input', '-i', help='input ROOT file')
 parser.add_argument("-x", help="x var")
 parser.add_argument("--x-label", help="x varlabel")
 parser.add_argument("-ys", help="y vars", nargs="+")
+parser.add_argument("-yr", help="y regex")
 parser.add_argument("--exclude", help="Exclude branches")
 parser.add_argument("--outputdir", "-o", help="outputdir")
 args = parser.parse_args()
@@ -29,6 +31,7 @@ if not os.path.exists(args.outputdir):
 for branches in list_branches:
   #print branches.GetName()
   if args.ys != None and branches.GetName() not in args.ys: continue
+  if args.yr != None and not re.match(args.yr, branches.GetName()): continue
   if args.exclude !=None and args.exclude in branches.GetName(): continue
    
   if branches.GetName() != "limit"  and branches.GetName() != "mh" \

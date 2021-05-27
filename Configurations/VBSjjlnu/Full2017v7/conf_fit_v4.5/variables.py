@@ -20,19 +20,19 @@ variables['DNNoutput_res_v1'] = {
     'xaxis': 'DNN resolved',
     'fold': 3 ,
     'cuts':  res_cuts,
-    'divideByBinWidth': True, 
-    'blind': { c:[0.6,1] for c in cuts if "_sig_" in c},
+    # 'divideByBinWidth': True, 
+   # 'blind': { c:[0.6,1] for c in cuts if "_sig_" in c},
 }
 
-variables['DNNoutput_res_v2'] = {
-    'name': 'DNNoutput_resolved_v1',
-    'range': ([i*0.04 for i in range(20) ] + [0.8+0.025*i for i in range(9)],),
-    'xaxis': 'DNN resolved',
-    'fold': 3 ,
-    'cuts':  res_cuts,
-    'divideByBinWidth': True, 
-    'blind': { c:[0.6,1] for c in cuts if "_sig_" in c},
-}
+# variables['DNNoutput_res_v2'] = {
+#     'name': 'DNNoutput_resolved_v1',
+#     'range': ([i*0.04 for i in range(20) ] + [0.8+0.025*i for i in range(9)],),
+#     'xaxis': 'DNN resolved',
+#     'fold': 3 ,
+#     'cuts':  res_cuts,
+#     'divideByBinWidth': True, 
+#     #'blind': { c:[0.6,1] for c in cuts if "_sig_" in c},
+# }
 
 
 variables['DNNoutput_boost'] = {
@@ -41,8 +41,8 @@ variables['DNNoutput_boost'] = {
     'xaxis': 'DNN boosted',
     'fold': 3 ,
     'cuts': boost_cuts,
-    'divideByBinWidth': True,
-    'blind': { c:[0.6,1] for c in cuts if "_sig_" in c} ,
+    # 'divideByBinWidth': True,
+    #'blind': { c:[0.6,1] for c in cuts if "_sig_" in c} ,
 }
 #####################
 #Fit variables

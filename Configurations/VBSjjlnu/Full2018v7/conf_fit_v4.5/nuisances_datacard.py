@@ -700,6 +700,22 @@ nuisances['UE']  = {
 #                 'samples'  : { 'VBS': ['dipole_weight']}
 # }
 
+nuisances['detavbs_residual']  = {
+                'name'  : 'detaVBS_residual',
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'OneSided': True,
+                'samples'  : { w: ['detaVBS_residual'] for w in wjets_all_bins}
+}
+
+nuisances['zlep_residual']  = {
+                'name'  : 'Zlep_residual',
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'OneSided': True,
+                'samples'  : { w: ['Zlep_residual'] for w in wjets_all_bins}
+}
+
 ###############
 # Normalization factors
 
@@ -764,5 +780,6 @@ for n in nuisances.values():
 
 # nuisances = {k:v for k,v in nuisances.items() if 'dipole' == k} #if 'PS' in k or 'QCD' in k
 
+# nuisances = {k:v for k,v in nuisances.items() if 'zlep_residual' in k} #if 'PS' in k or 'QCD' in k
 
 # print ' '.join(nuis['name'] for nname, nuis in nuisances.iteritems() if nname not in ('lumi', 'stat'))

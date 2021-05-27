@@ -21,7 +21,7 @@ variables['DNNoutput_res_v1'] = {
     'fold': 3 ,
     'cuts':  res_cuts,
     'divideByBinWidth': True, 
-    'blind': { c:[0.6,1] for c in cuts if "_sig_" in c},
+    # 'blind': { c:[0.6,1] for c in cuts if "_sig_" in c},
 }
 
 variables['DNNoutput_res_v2'] = {
@@ -31,7 +31,7 @@ variables['DNNoutput_res_v2'] = {
     'fold': 3 ,
     'cuts':  res_cuts,
     'divideByBinWidth': True, 
-    'blind': { c:[0.6,1] for c in cuts if "_sig_" in c},
+    # 'blind': { c:[0.6,1] for c in cuts if "_sig_" in c},
 }
 
 
@@ -42,7 +42,7 @@ variables['DNNoutput_boost'] = {
     'fold': 3 ,
     'cuts': boost_cuts,
     'divideByBinWidth': True,
-    'blind': { c:[0.6,1] for c in cuts if "_sig_" in c} ,
+    # 'blind': { c:[0.6,1] for c in cuts if "_sig_" in c} ,
 }
 #####################
 #Fit variables
@@ -82,6 +82,32 @@ variables['vbs_1_pt_res_morebins'] = {   'name': 'vbs_1_pt',
                         'fold' : 3,
                         'cuts': res_cuts
 } 
+
+variables['vbs_0_eta'] = {   'name': 'vbs_0_eta',      
+                        'range' : (25,-4.7,4.7),  
+                        'xaxis' : 'leading VBS jet eta', 
+                        'fold' : 3
+} 
+
+variables['vbs_0_eta_morebins'] = {   'name': 'vbs_0_eta',      
+                        'range' : (40,-4.7,4.7),  
+                        'xaxis' : 'leading VBS jet eta', 
+                        'fold' : 3
+} 
+
+variables['vbs_1_eta'] = {   'name': 'vbs_1_eta',      
+                        'range' : (25,-4.7,4.7),  
+                        'xaxis' : 'trailing VBS jet eta', 
+                        'fold' : 3
+} 
+
+variables['vbs_1_eta_morebins'] = {   'name': 'vbs_1_eta',      
+                        'range' : (40,-4.7,4.7),  
+                        'xaxis' : 'trailing VBS jet eta', 
+                        'fold' : 3
+} 
+
+
 
 variables['vbs_1_pt_boost'] = {   'name': 'vbs_1_pt',      
                         'range' : (15,30,200),  

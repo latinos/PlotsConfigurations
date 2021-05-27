@@ -234,6 +234,58 @@ def customize(samples,cuts,variables,nuisances,plot,groupPlot, key=None):
         scale_plot = scaleBins(new_plot,  norm_factors)
         return samples, new_cuts, variables, nuisances, scale_plot, new_groupPlot
 
+    ##############################
+    #rescale but without bins
+    if key=="wjets_boost_rescaled":
+        norm_factors = get_wjets_scaling(os.path.dirname(__file__) + "/wjets_norm/bins_norm.txt")
+        new_cuts = filter_cuts(cuts, r"boost_wjetcr_.*")
+        new_groupPlot = reorder_plots(groupPlot,  plots_wjets_order_boost)
+        new_plot ={ k:v for k,v in plot.items() if 'res' not in k}
+        scale_plot = scaleBins(new_plot,  norm_factors)
+        return samples, new_cuts, variables, nuisances, scale_plot, new_groupPlot
+
+    if key=="signal_boost_rescaled":
+        norm_factors = get_wjets_scaling(os.path.dirname(__file__) + "/wjets_norm/bins_norm.txt")
+        new_cuts = filter_cuts(cuts, r"boost_sig_.*")
+        new_groupPlot = reorder_plots(groupPlot,  plots_wjets_order_boost)
+        new_plot ={ k:v for k,v in plot.items() if 'res' not in k}
+        scale_plot = scaleBins(new_plot,  norm_factors)
+        return samples, new_cuts, variables, nuisances, scale_plot, new_groupPlot
+
+    if key=="top_boost_rescaled":
+        norm_factors = get_wjets_scaling(os.path.dirname(__file__) + "/wjets_norm/bins_norm.txt")
+        new_cuts = filter_cuts(cuts, r"boost_top_.*")
+        new_groupPlot = reorder_plots(groupPlot,  plots_top_order_boost)
+        new_plot ={ k:v for k,v in plot.items() if 'res' not in k}
+        scale_plot = scaleBins(new_plot,  norm_factors)
+        return samples, new_cuts, variables, nuisances, scale_plot, new_groupPlot
+    
+    if key=="wjets_res_rescaled":
+        norm_factors = get_wjets_scaling(os.path.dirname(__file__) + "/wjets_norm/bins_norm.txt")
+        new_cuts = filter_cuts(cuts, r"res_wjetcr_.*")
+        new_groupPlot = reorder_plots(groupPlot,  plots_wjets_order_res)
+        new_plot ={ k:v for k,v in plot.items() if 'boost' not in k}
+        scale_plot = scaleBins(new_plot,  norm_factors)
+        return samples, new_cuts, variables, nuisances, scale_plot, new_groupPlot
+
+    if key=="signal_res_rescaled":
+        norm_factors = get_wjets_scaling(os.path.dirname(__file__) + "/wjets_norm/bins_norm.txt")
+        new_cuts = filter_cuts(cuts, r"res_sig_.*")
+        new_groupPlot = reorder_plots(groupPlot,  plots_wjets_order_res)
+        new_plot ={ k:v for k,v in plot.items() if 'boost' not in k}
+        scale_plot = scaleBins(new_plot,  norm_factors)
+        return samples, new_cuts, variables, nuisances, scale_plot, new_groupPlot
+
+    if key=="top_res_rescaled":
+        norm_factors = get_wjets_scaling(os.path.dirname(__file__) + "/wjets_norm/bins_norm.txt")
+        new_cuts = filter_cuts(cuts, r"res_top_.*")
+        new_groupPlot = reorder_plots(groupPlot,  plots_top_order_boost)
+        new_plot ={ k:v for k,v in plot.items() if 'res' not in k}
+        scale_plot = scaleBins(new_plot,  norm_factors)
+        return samples, new_cuts, variables, nuisances, scale_plot, new_groupPlot
+
+    ####################
+
     if key=="check_nuis":
         sample = 'Fake'
         new_cuts = filter_cuts(cuts, r"res_sig_mu")

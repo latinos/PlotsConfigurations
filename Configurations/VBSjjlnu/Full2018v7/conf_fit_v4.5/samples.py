@@ -219,7 +219,7 @@ for iwboost, wjbin_boost in enumerate(wjets_boost_bins):
             + nanoGetSampleFiles(directory_wjets_bins[wjbin_boost], 'WJetsToLNu_HT1200_2500')
             + nanoGetSampleFiles(directory_wjets_bins[wjbin_boost], 'WJetsToLNu_HT2500_inf'),
           'weight': "( fit_bin_boost == {} )*".format(iwboost+1) +XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch + '*' + Wjets_photon_filter +  '* ewknloW * btagSF_corr_Wjets_HT',
-          'FilesPerJob' : nfiles_wjets_boost[iwboost],   
+          'FilesPerJob' : 10 #nfiles_wjets_boost[iwboost],   
       }
 
   # Fix Wjets binned + LO 
@@ -248,7 +248,7 @@ for iwres, wjbin_res in enumerate(wjets_res_bins):
             + nanoGetSampleFiles(directory_wjets_bins[wjbin_res], 'WJetsToLNu_HT1200_2500')
             + nanoGetSampleFiles(directory_wjets_bins[wjbin_res], 'WJetsToLNu_HT2500_inf'),
           'weight': "( fit_bin_res == {} )*".format(iwres+1) +XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch + '*' + Wjets_photon_filter +  '* ewknloW * btagSF_corr_Wjets_HT',
-          'FilesPerJob' : nfiles_wjets_res[iwres],   
+          'FilesPerJob' : 10#files_wjets_res[iwres],   
       }
 
   # Fix Wjets binned + LO 
@@ -453,5 +453,5 @@ for Run in DataRun :
                         samples['DATA']['weights'].append(DataTrig[DataSet])
 
 
-# samples = {   key:v for key,v in samples.items() if key  in ['VBF-V_dipole']}
-samples = {   key:v for key,v in samples.items() if key not in ['VBF-V','VBS',"VBS_interf"]}
+samples = {   key:v for key,v in samples.items() if "Wjets" in key}
+# samples = {   key:v for key,v in samples.items() if key not in ['VBF-V','VBS',"VBS_interf"]}

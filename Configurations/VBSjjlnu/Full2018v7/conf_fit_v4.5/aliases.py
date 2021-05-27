@@ -385,6 +385,28 @@ aliases['BoostedWtagSF_ptextr'] = {
     ]   
 }
 
+#####################################
+aliases['detaVBS_residual'] = {
+    'class': 'ReweightDeltaEtaVBS',
+    'args': (configurations + "/VBSjjlnu/weights_files/reweight_deltaetaVBS_2018_signalregion.root", False),
+    'linesToAdd' : [
+        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+        '.L {}/VBSjjlnu/macros/reweight_deltaetavbs.cc+'.format(configurations)
+    ] ,
+    'samples': wjets_res_bins  + wjets_boost_bins,
+}
+
+aliases['Zlep_residual'] = {
+    'class': 'ReweightZlep',
+    'args': (configurations + "/VBSjjlnu/weights_files/reweight_Zlep_2018_signalregion.root", False),
+    'linesToAdd' : [
+        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+        '.L {}/VBSjjlnu/macros/reweight_zlep.cc+'.format(configurations)
+    ] ,
+    'samples': wjets_res_bins  + wjets_boost_bins,
+}
+
+
 
 #########################
 
