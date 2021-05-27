@@ -9,7 +9,7 @@ templateCONDOR = """#!/bin/bash
 cd CMSSWRELEASE
 eval `scramv1 runtime -sh`
 cd WORKINGPATH
-combine -M AsymptoticLimits --run blind INPUT -n OUTPUT
+combine -M AsymptoticLimits INPUT -n OUTPUT --cminDefaultMinimizerStrategy 0 --rMin 0
 """
 
 

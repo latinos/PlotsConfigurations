@@ -99,40 +99,6 @@ mcCommonWeight = 'XSWeight*SFweight*PromptGenLepMatch2l*METFilter_MC'
 
 ###### DY #######
 
-useDYtt = True
-
-#ptllDYW_NLO = '(((0.623108 + 0.0722934*gen_ptll - 0.00364918*gen_ptll*gen_ptll + 6.97227e-05*gen_ptll*gen_ptll*gen_ptll - 4.52903e-07*gen_ptll*gen_ptll*gen_ptll*gen_ptll)*(gen_ptll<45)*(gen_ptll>0) + 1*(gen_ptll>=45))*(abs(gen_mll-90)<3) + (abs(gen_mll-90)>3))'
-#ptllDYW_LO = '((0.632927+0.0456956*gen_ptll-0.00154485*gen_ptll*gen_ptll+2.64397e-05*gen_ptll*gen_ptll*gen_ptll-2.19374e-07*gen_ptll*gen_ptll*gen_ptll*gen_ptll+6.99751e-10*gen_ptll*gen_ptll*gen_ptll*gen_ptll*gen_ptll)*(gen_ptll>0)*(gen_ptll<100)+(1.41713-0.00165342*gen_ptll)*(gen_ptll>=100)*(gen_ptll<300)+1*(gen_ptll>=300))'
-"""
-if useDYtt:
-    files = nanoGetSampleFiles(mcDirectory, 'DYJetsToTT_MuEle_M-50') + \
-        nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-10to50-LO_ext1')
-
-    samples['DY'] = {
-        'name': files,
-        'weight': mcCommonWeight + "*( !(Sum$(PhotonGen_isPrompt==1 && PhotonGen_pt>15 && abs(PhotonGen_eta)<2.6) > 0 &&\
-                                         Sum$(LeptonGen_isPrompt==1 && LeptonGen_pt>15)>=2) )",
-        'FilesPerJob': 5,
-    }
-#    addSampleWeight(samples,'DY','DYJetsToTT_MuEle_M-50','DY_NLO_pTllrw')
-#    addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO_ext1','DY_LO_pTllrw')
-
-else:
-    files = nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_ext1') + \
-        nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-10to50-LO_ext1')
-    
-    samples['DY'] = {
-        'name': files,
-        'weight': mcCommonWeight + "*( !(Sum$(PhotonGen_isPrompt==1 && PhotonGen_pt>15 && abs(PhotonGen_eta)<2.6) > 0 &&\
-                                         Sum$(LeptonGen_isPrompt==1 && LeptonGen_pt>15)>=2) )",
-        'FilesPerJob': 8,
-    }
-    #addSampleWeight(samples,'DY','DYJetsToLL_M-50',ptllDYW_NLO)
-    #addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO',ptllDYW_LO)
-
-"""
-
-
 filesDYHT = nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-10to50-LO_ext1') + \
 nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-4to50_HT-100to200_newpmx') + \
 nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-4to50_HT-200to400_newpmx') + \
@@ -217,35 +183,48 @@ samples['ggWW'] = {
 
 ######## Vg ########
 
-files = nanoGetSampleFiles(mcDirectory, 'Wg_MADGRAPHMLM') + \
-    nanoGetSampleFiles(mcDirectory, 'ZGToLLG')
-
+files = nanoGetSampleFiles(mcDirectory, 'Wg_AMCNLOFXFX') + \
+      nanoGetSampleFiles(mcDirectory, 'Wg_AMCNLOFXFX_PDFWeights') + \
+      nanoGetSampleFiles(mcDirectory, 'Wg_AMCNLOFXFX_PDFWeights_ext1') + \
+      nanoGetSampleFiles(mcDirectory, 'ZGToLLG')
+  
 samples['Vg'] = {
-    'name': files,
-    'weight': mcCommonWeightNoMatch + '*!(Gen_ZGstar_mass > 0)',
+      'name': files,
+      'weight': mcCommonWeightNoMatch + '*(Gen_ZGstar_mass <= 0)',
     'suppressNegative':['all'],
     'suppressNegativeNuisances' :['all'],
-    'FilesPerJob': 10
-}
+      'FilesPerJob': 4
+  }
+
+
+wgbasew = getBaseWnAOD(mcDirectory,'Fall2017_102X_nAODv7_Full2017v7',['Wg_AMCNLOFXFX','Wg_AMCNLOFXFX_PDFWeights','Wg_AMCNLOFXFX_PDFWeights_ext1'])
+addSampleWeight(samples,'Vg','Wg_AMCNLOFXFX','191.4/586.*'+wgbasew+'/baseW')
+addSampleWeight(samples,'Vg','Wg_AMCNLOFXFX_PDFWeights','191.4/586.*'+wgbasew+'/baseW')
+addSampleWeight(samples,'Vg','Wg_AMCNLOFXFX_PDFWeights_ext1','191.4/586.*'+wgbasew+'/baseW')
 
 ######## VgS ########
 
-files = nanoGetSampleFiles(mcDirectory, 'Wg_MADGRAPHMLM') + \
-    nanoGetSampleFiles(mcDirectory, 'ZGToLLG') + \
-    nanoGetSampleFiles(mcDirectory, 'WZTo3LNu_mllmin01')
+files = nanoGetSampleFiles(mcDirectory, 'Wg_AMCNLOFXFX') + \
+        nanoGetSampleFiles(mcDirectory, 'Wg_AMCNLOFXFX_PDFWeights') + \
+        nanoGetSampleFiles(mcDirectory, 'Wg_AMCNLOFXFX_PDFWeights_ext1') + \
+        nanoGetSampleFiles(mcDirectory, 'ZGToLLG') + \
+        nanoGetSampleFiles(mcDirectory, 'WZTo3LNu_mllmin01')
+  
 
 samples['VgS'] = {
-    'name': files,
+      'name': files,
     'weight': mcCommonWeight + ' * (gstarLow * 0.94 + gstarHigh * 1.14)',
     'suppressNegative':['all'],
     'suppressNegativeNuisances' :['all'],
     'FilesPerJob': 4,
 }
-
-
-addSampleWeight(samples, 'VgS', 'Wg_MADGRAPHMLM', '(Gen_ZGstar_mass > 0 && Gen_ZGstar_mass < 0.1)')
+  
+addSampleWeight(samples, 'VgS', 'Wg_AMCNLOFXFX', '(Gen_ZGstar_mass > 0 && Gen_ZGstar_mass < 0.1)*191.4/586.*'+wgbasew+'/baseW')
+addSampleWeight(samples, 'VgS', 'Wg_AMCNLOFXFX_PDFWeights', '(Gen_ZGstar_mass > 0 && Gen_ZGstar_mass < 0.1)*191.4/586.*'+wgbasew+'/baseW')
+addSampleWeight(samples, 'VgS', 'Wg_AMCNLOFXFX_PDFWeights_ext1', '(Gen_ZGstar_mass > 0 && Gen_ZGstar_mass < 0.1)*191.4/586.*'+wgbasew+'/baseW')
 addSampleWeight(samples, 'VgS', 'ZGToLLG', '(Gen_ZGstar_mass > 0)')
 addSampleWeight(samples, 'VgS', 'WZTo3LNu_mllmin01', '(Gen_ZGstar_mass > 0.1)')
+
 
 ############ VZ ############
 
@@ -342,369 +321,8 @@ for DM in mDM:
                 'FilesPerJob': 10
             }
 
-# mDM = ['300']
-# mhs = ['160','180','200','300']
-# mZp = ['800','1000','1200','1500','2000','2500']
 
-
-# for DM in mDM:
-#     for hs in mhs:
-#         for Zp in mZp:
-#             if hs == '300' and int(Zp) > 1200:
-#                 continue
-#             samples['DH_mhs_' + hs + '_mx_' + DM  + '_mZp_' + Zp] = {
-#                 'name': nanoGetSampleFiles(signalDirectory, 'DarkHiggs_MonoHs_HsToWWTo2l2nu_mhs_' + hs + '_mx_' + DM  + '_mZp_' + Zp),
-#                 'weight': mcCommonWeight,
-#     'suppressNegative':['all'],
-#     'suppressNegativeNuisances' :['all'],
-#                 'FilesPerJob': 10
-#             }
-
-
-# ### INTERPOLATIONS
-
-# mhs = ['160']
-# mDM = ['100','150','200','300']
-# mZp = ['600','700','900','1100','1300','1400','1600','1700','1800','1900','2100','2200','2300','2400']
-
-# for hs in mhs:
-#     for DM in mDM:
-#         for Zp in mZp:
-#             samples['DH_mhs_' + hs + '_mx_' + DM  + '_mZp_' + Zp] = {
-#                 'name': nanoGetSampleFiles(signalDirectory, 'DarkHiggs_MonoHs_HsToWWTo2l2nu_mhs_160_mx_150_mZp_1200'),
-#                 'linesToAdd' : ['.L /afs/cern.ch/work/f/fernanpe/framework_monoHFullRun2/CMSSW_10_2_9/src/PlotsConfigurations/Configurations/monoHWW/Full2017_v7_3d/onTheFly/interpolationWeight_mhs_' + hs + '_mx_' + DM + '_mZp_' + Zp + '.C', '.L /afs/cern.ch/work/f/fernanpe/framework_monoHFullRun2/CMSSW_10_2_9/src/PlotsConfigurations/Configurations/monoHWW/Full2017_v7_3d/onTheFly/getxsweight.C'],
-#                 'weight': mcCommonWeight + '*interpolationWeight_mhs_' + hs + '_mx_' + DM + '_mZp_' + Zp +'(genDarkHiggs_Pt)*getxsweight('+hs+','+DM+','+Zp+',160,150,1200)',
-#     'suppressNegative':['all'],
-#     'suppressNegativeNuisances' :['all'],
-
-#                 'FilesPerJob': 10
-#             }
-
-
-# mhs = ['180']
-# mDM = ['100','150','200','300']
-# mZp = ['600','700','900','1100','1300','1400','1600','1700','1800','1900','2100','2200','2300','2400']
-
-# for hs in mhs:
-#     for DM in mDM:
-#         for Zp in mZp:
-#             samples['DH_mhs_' + hs + '_mx_' + DM  + '_mZp_' + Zp] = {
-#                 'name': nanoGetSampleFiles(signalDirectory, 'DarkHiggs_MonoHs_HsToWWTo2l2nu_mhs_180_mx_150_mZp_1200'),
-#                 'linesToAdd' : ['.L /afs/cern.ch/work/f/fernanpe/framework_monoHFullRun2/CMSSW_10_2_9/src/PlotsConfigurations/Configurations/monoHWW/Full2017_v7_3d/onTheFly/interpolationWeight_mhs_' + hs + '_mx_' + DM + '_mZp_' + Zp + '.C', '.L /afs/cern.ch/work/f/fernanpe/framework_monoHFullRun2/CMSSW_10_2_9/src/PlotsConfigurations/Configurations/monoHWW/Full2017_v7_3d/onTheFly/getxsweight.C'],
-#                 'weight': mcCommonWeight + '*interpolationWeight_mhs_' + hs + '_mx_' + DM + '_mZp_' + Zp +'(genDarkHiggs_Pt)*getxsweight('+hs+','+DM+','+Zp+',180,150,1200)',
-#     'suppressNegative':['all'],
-#     'suppressNegativeNuisances' :['all'],
-
-#                 'FilesPerJob': 10
-#             }
-
-
-# mhs = ['200']
-# mDM = ['100','150','200','300']
-# mZp = ['600','700','900','1100','1300','1400','1600','1700','1800','1900','2100','2200','2300','2400']
-
-# for hs in mhs:
-#     for DM in mDM:
-#         for Zp in mZp:
-#             samples['DH_mhs_' + hs + '_mx_' + DM  + '_mZp_' + Zp] = {
-#                 'name': nanoGetSampleFiles(signalDirectory, 'DarkHiggs_MonoHs_HsToWWTo2l2nu_mhs_200_mx_150_mZp_1200'),
-#                 'linesToAdd' : ['.L /afs/cern.ch/work/f/fernanpe/framework_monoHFullRun2/CMSSW_10_2_9/src/PlotsConfigurations/Configurations/monoHWW/Full2017_v7_3d/onTheFly/interpolationWeight_mhs_' + hs + '_mx_' + DM + '_mZp_' + Zp + '.C', '.L /afs/cern.ch/work/f/fernanpe/framework_monoHFullRun2/CMSSW_10_2_9/src/PlotsConfigurations/Configurations/monoHWW/Full2017_v7_3d/onTheFly/getxsweight.C'],
-#                 'weight': mcCommonWeight + '*interpolationWeight_mhs_' + hs + '_mx_' + DM + '_mZp_' + Zp +'(genDarkHiggs_Pt)*getxsweight('+hs+','+DM+','+Zp+',200,150,1200)',
-#     'suppressNegative':['all'],
-#     'suppressNegativeNuisances' :['all'],
-
-#                 'FilesPerJob': 10
-#             }
-
-# #######
-
-# mhs = ['300']
-# mDM = ['100']
-# mZp = ['200','300','400','500','600','700','800','900','1000','1100','1200','1300','1400','1500','1600','1700','1800','1900','2000','2100','2200','2300','2400','2500']
-
-# for hs in mhs:
-#     for DM in mDM:
-#         for Zp in mZp:
-#             samples['DH_mhs_' + hs + '_mx_' + DM  + '_mZp_' + Zp] = {
-#                 'name': nanoGetSampleFiles(signalDirectory, 'DarkHiggs_MonoHs_HsToWWTo2l2nu_mhs_300_mx_150_mZp_1200'),
-#                 'linesToAdd' : ['.L /afs/cern.ch/work/f/fernanpe/framework_monoHFullRun2/CMSSW_10_2_9/src/PlotsConfigurations/Configurations/monoHWW/Full2017_v7_3d/onTheFly/interpolationWeight_mhs_' + hs + '_mx_' + DM + '_mZp_' + Zp + '.C', '.L /afs/cern.ch/work/f/fernanpe/framework_monoHFullRun2/CMSSW_10_2_9/src/PlotsConfigurations/Configurations/monoHWW/Full2017_v7_3d/onTheFly/getxsweight.C'],
-#                 'weight': mcCommonWeight + '*interpolationWeight_mhs_' + hs + '_mx_' + DM + '_mZp_' + Zp +'(genDarkHiggs_Pt)*getxsweight('+hs+','+DM+','+Zp+',300,150,1200)',
-#     'suppressNegative':['all'],
-#     'suppressNegativeNuisances' :['all'],
-
-#                 'FilesPerJob': 10
-#             }
-
-
-# mhs = ['400']
-# mDM = ['100']
-# mZp = ['200','300','400','500','600','700','800','900','1000','1100','1200','1300','1400','1500','1600','1700','1800','1900','2000','2100','2200','2300','2400','2500']
-
-# for hs in mhs:
-#     for DM in mDM:
-#         for Zp in mZp:
-#             samples['DH_mhs_' + hs + '_mx_' + DM  + '_mZp_' + Zp] = {
-#                 'name': nanoGetSampleFiles(signalDirectory, 'DarkHiggs_MonoHs_HsToWWTo2l2nu_mhs_400_mx_200_mZp_1000'),
-#                 'linesToAdd' : ['.L /afs/cern.ch/work/f/fernanpe/framework_monoHFullRun2/CMSSW_10_2_9/src/PlotsConfigurations/Configurations/monoHWW/Full2017_v7_3d/onTheFly/interpolationWeight_mhs_' + hs + '_mx_' + DM + '_mZp_' + Zp + '.C', '.L /afs/cern.ch/work/f/fernanpe/framework_monoHFullRun2/CMSSW_10_2_9/src/PlotsConfigurations/Configurations/monoHWW/Full2017_v7_3d/onTheFly/getxsweight.C'],
-#                 'weight': mcCommonWeight + '*interpolationWeight_mhs_' + hs + '_mx_' + DM + '_mZp_' + Zp +'(genDarkHiggs_Pt)*getxsweight('+hs+','+DM+','+Zp+',400,200,1000)',
-#     'suppressNegative':['all'],
-#     'suppressNegativeNuisances' :['all'],
-
-#                 'FilesPerJob': 10
-#             }
-
-
-
-# ######
-
-
-# mhs = ['300']
-# mDM = ['150']
-# mZp = ['200','300','600','700','900','1100','1300','1400','1600','1700','1800','1900','2000','2100','2200','2300','2400','2500']
-
-# for hs in mhs:
-#     for DM in mDM:
-#         for Zp in mZp:
-#             samples['DH_mhs_' + hs + '_mx_' + DM  + '_mZp_' + Zp] = {
-#                 'name': nanoGetSampleFiles(signalDirectory, 'DarkHiggs_MonoHs_HsToWWTo2l2nu_mhs_300_mx_150_mZp_1200'),
-#                 'linesToAdd' : ['.L /afs/cern.ch/work/f/fernanpe/framework_monoHFullRun2/CMSSW_10_2_9/src/PlotsConfigurations/Configurations/monoHWW/Full2017_v7_3d/onTheFly/interpolationWeight_mhs_' + hs + '_mx_' + DM + '_mZp_' + Zp + '.C', '.L /afs/cern.ch/work/f/fernanpe/framework_monoHFullRun2/CMSSW_10_2_9/src/PlotsConfigurations/Configurations/monoHWW/Full2017_v7_3d/onTheFly/getxsweight.C'],
-#                 'weight': mcCommonWeight + '*interpolationWeight_mhs_' + hs + '_mx_' + DM + '_mZp_' + Zp +'(genDarkHiggs_Pt)*getxsweight('+hs+','+DM+','+Zp+',300,150,1200)',
-#     'suppressNegative':['all'],
-#     'suppressNegativeNuisances' :['all'],
-
-#                 'FilesPerJob': 10
-#             }
-
-# #########
-
-# mhs = ['400']
-# mDM = ['150']
-# mZp = ['200','300','400','500','600','700','800','900','1000','1100','1200','1300','1400','1500','1600','1700','1800','1900','2000','2100','2200','2300','2400','2500']
-
-# for hs in mhs:
-#     for DM in mDM:
-#         for Zp in mZp:
-#             samples['DH_mhs_' + hs + '_mx_' + DM  + '_mZp_' + Zp] = {
-#                 'name': nanoGetSampleFiles(signalDirectory, 'DarkHiggs_MonoHs_HsToWWTo2l2nu_mhs_400_mx_200_mZp_1000'),
-#                 'linesToAdd' : ['.L /afs/cern.ch/work/f/fernanpe/framework_monoHFullRun2/CMSSW_10_2_9/src/PlotsConfigurations/Configurations/monoHWW/Full2017_v7_3d/onTheFly/interpolationWeight_mhs_' + hs + '_mx_' + DM + '_mZp_' + Zp + '.C', '.L /afs/cern.ch/work/f/fernanpe/framework_monoHFullRun2/CMSSW_10_2_9/src/PlotsConfigurations/Configurations/monoHWW/Full2017_v7_3d/onTheFly/getxsweight.C'],
-#                 'weight': mcCommonWeight + '*interpolationWeight_mhs_' + hs + '_mx_' + DM + '_mZp_' + Zp +'(genDarkHiggs_Pt)*getxsweight('+hs+','+DM+','+Zp+',400,200,1000)',
-#     'suppressNegative':['all'],
-#     'suppressNegativeNuisances' :['all'],
-
-#                 'FilesPerJob': 10
-#             }
-
-
-# ####
-
-# mhs = ['300']
-# mDM = ['200']
-# mZp = ['200','300','400','600','700','900','1100','1300','1400','1600','1700','1800','1900','2000','2100','2200','2300','2400','2500']
-
-# for hs in mhs:
-#     for DM in mDM:
-#         for Zp in mZp:
-#             samples['DH_mhs_' + hs + '_mx_' + DM  + '_mZp_' + Zp] = {
-#                 'name': nanoGetSampleFiles(signalDirectory, 'DarkHiggs_MonoHs_HsToWWTo2l2nu_mhs_300_mx_150_mZp_1200'),
-#                 'linesToAdd' : ['.L /afs/cern.ch/work/f/fernanpe/framework_monoHFullRun2/CMSSW_10_2_9/src/PlotsConfigurations/Configurations/monoHWW/Full2017_v7_3d/onTheFly/interpolationWeight_mhs_' + hs + '_mx_' + DM + '_mZp_' + Zp + '.C', '.L /afs/cern.ch/work/f/fernanpe/framework_monoHFullRun2/CMSSW_10_2_9/src/PlotsConfigurations/Configurations/monoHWW/Full2017_v7_3d/onTheFly/getxsweight.C'],
-#                 'weight': mcCommonWeight + '*interpolationWeight_mhs_' + hs + '_mx_' + DM + '_mZp_' + Zp +'(genDarkHiggs_Pt)*getxsweight('+hs+','+DM+','+Zp+',300,150,1200)',
-#     'suppressNegative':['all'],
-#     'suppressNegativeNuisances' :['all'],
-
-#                 'FilesPerJob': 10
-#             }
-
-
-
-# #####
-
-# mhs = ['400']
-# mDM = ['200']
-# mZp = ['200','300','400','600','700','900','1100','1200','1300','1400','1500','1600','1700','1800','1900','2000','2100','2200','2300','2400','2500']
-
-# for hs in mhs:
-#     for DM in mDM:
-#         for Zp in mZp:
-#             samples['DH_mhs_' + hs + '_mx_' + DM  + '_mZp_' + Zp] = {
-#                 'name': nanoGetSampleFiles(signalDirectory, 'DarkHiggs_MonoHs_HsToWWTo2l2nu_mhs_400_mx_200_mZp_1000'),
-#                 'linesToAdd' : ['.L /afs/cern.ch/work/f/fernanpe/framework_monoHFullRun2/CMSSW_10_2_9/src/PlotsConfigurations/Configurations/monoHWW/Full2017_v7_3d/onTheFly/interpolationWeight_mhs_' + hs + '_mx_' + DM + '_mZp_' + Zp + '.C', '.L /afs/cern.ch/work/f/fernanpe/framework_monoHFullRun2/CMSSW_10_2_9/src/PlotsConfigurations/Configurations/monoHWW/Full2017_v7_3d/onTheFly/getxsweight.C'],
-#                 'weight': mcCommonWeight + '*interpolationWeight_mhs_' + hs + '_mx_' + DM + '_mZp_' + Zp +'(genDarkHiggs_Pt)*getxsweight('+hs+','+DM+','+Zp+',400,200,1000)',
-#     'suppressNegative':['all'],
-#     'suppressNegativeNuisances' :['all'],
-
-#                 'FilesPerJob': 10
-#             }
-
-
-# #####
-
-# mhs = ['160']
-# mDM = ['300']
-# mZp = ['200','300','400','500','600','700','900','1100','1300','1400','1600','1700','1800','1900','2100','2200','2300','2400']
-
-# for hs in mhs:
-#     for DM in mDM:
-#         for Zp in mZp:
-#             samples['DH_mhs_' + hs + '_mx_' + DM  + '_mZp_' + Zp] = {
-#                 'name': nanoGetSampleFiles(signalDirectory, 'DarkHiggs_MonoHs_HsToWWTo2l2nu_mhs_160_mx_150_mZp_1200'),
-#                 'linesToAdd' : ['.L /afs/cern.ch/work/f/fernanpe/framework_monoHFullRun2/CMSSW_10_2_9/src/PlotsConfigurations/Configurations/monoHWW/Full2017_v7_3d/onTheFly/interpolationWeight_mhs_' + hs + '_mx_' + DM + '_mZp_' + Zp + '.C', '.L /afs/cern.ch/work/f/fernanpe/framework_monoHFullRun2/CMSSW_10_2_9/src/PlotsConfigurations/Configurations/monoHWW/Full2017_v7_3d/onTheFly/getxsweight.C'],
-#                 'weight': mcCommonWeight + '*interpolationWeight_mhs_' + hs + '_mx_' + DM + '_mZp_' + Zp +'(genDarkHiggs_Pt)*getxsweight('+hs+','+DM+','+Zp+',160,150,1200)',
-#     'suppressNegative':['all'],
-#     'suppressNegativeNuisances' :['all'],
-
-#                 'FilesPerJob': 10
-#             }
-
-
-
-
-# mhs = ['180']
-# mDM = ['300']
-# mZp = ['200','300','400','500','600','700','900','1100','1300','1400','1600','1700','1800','1900','2100','2200','2300','2400']
-
-# for hs in mhs:
-#     for DM in mDM:
-#         for Zp in mZp:
-#             samples['DH_mhs_' + hs + '_mx_' + DM  + '_mZp_' + Zp] = {
-#                 'name': nanoGetSampleFiles(signalDirectory, 'DarkHiggs_MonoHs_HsToWWTo2l2nu_mhs_180_mx_150_mZp_1200'),
-#                 'linesToAdd' : ['.L /afs/cern.ch/work/f/fernanpe/framework_monoHFullRun2/CMSSW_10_2_9/src/PlotsConfigurations/Configurations/monoHWW/Full2017_v7_3d/onTheFly/interpolationWeight_mhs_' + hs + '_mx_' + DM + '_mZp_' + Zp + '.C', '.L /afs/cern.ch/work/f/fernanpe/framework_monoHFullRun2/CMSSW_10_2_9/src/PlotsConfigurations/Configurations/monoHWW/Full2017_v7_3d/onTheFly/getxsweight.C'],
-#                 'weight': mcCommonWeight + '*interpolationWeight_mhs_' + hs + '_mx_' + DM + '_mZp_' + Zp +'(genDarkHiggs_Pt)*getxsweight('+hs+','+DM+','+Zp+',180,150,1200)',
-#     'suppressNegative':['all'],
-#     'suppressNegativeNuisances' :['all'],
-
-#                 'FilesPerJob': 10
-#             }
-
-
-
-# mhs = ['200']
-# mDM = ['300']
-# mZp = ['200','300','400','500','600','700','900','1100','1300','1400','1600','1700','1800','1900','2100','2200','2300','2400']
-
-# for hs in mhs:
-#     for DM in mDM:
-#         for Zp in mZp:
-#             samples['DH_mhs_' + hs + '_mx_' + DM  + '_mZp_' + Zp] = {
-#                 'name': nanoGetSampleFiles(signalDirectory, 'DarkHiggs_MonoHs_HsToWWTo2l2nu_mhs_200_mx_150_mZp_1200'),
-#                 'linesToAdd' : ['.L /afs/cern.ch/work/f/fernanpe/framework_monoHFullRun2/CMSSW_10_2_9/src/PlotsConfigurations/Configurations/monoHWW/Full2017_v7_3d/onTheFly/interpolationWeight_mhs_' + hs + '_mx_' + DM + '_mZp_' + Zp + '.C', '.L /afs/cern.ch/work/f/fernanpe/framework_monoHFullRun2/CMSSW_10_2_9/src/PlotsConfigurations/Configurations/monoHWW/Full2017_v7_3d/onTheFly/getxsweight.C'],
-#                 'weight': mcCommonWeight + '*interpolationWeight_mhs_' + hs + '_mx_' + DM + '_mZp_' + Zp +'(genDarkHiggs_Pt)*getxsweight('+hs+','+DM+','+Zp+',200,150,1200)',
-#     'suppressNegative':['all'],
-#     'suppressNegativeNuisances' :['all'],
-
-#                 'FilesPerJob': 10
-#             }
-
-
-
-# #####
-
-# mhs = ['300']
-# mDM = ['300']
-# mZp = ['200','300','400','500','600','700','900','1100','1300','1400','1500','1600','1700','1800','1900','2000','2100','2200','2300','2400','2500']
-
-# for hs in mhs:
-#     for DM in mDM:
-#         for Zp in mZp:
-#             samples['DH_mhs_' + hs + '_mx_' + DM  + '_mZp_' + Zp] = {
-#                 'name': nanoGetSampleFiles(signalDirectory, 'DarkHiggs_MonoHs_HsToWWTo2l2nu_mhs_300_mx_150_mZp_1200'),
-#                 'linesToAdd' : ['.L /afs/cern.ch/work/f/fernanpe/framework_monoHFullRun2/CMSSW_10_2_9/src/PlotsConfigurations/Configurations/monoHWW/Full2017_v7_3d/onTheFly/interpolationWeight_mhs_' + hs + '_mx_' + DM + '_mZp_' + Zp + '.C', '.L /afs/cern.ch/work/f/fernanpe/framework_monoHFullRun2/CMSSW_10_2_9/src/PlotsConfigurations/Configurations/monoHWW/Full2017_v7_3d/onTheFly/getxsweight.C'],
-#                 'weight': mcCommonWeight + '*interpolationWeight_mhs_' + hs + '_mx_' + DM + '_mZp_' + Zp +'(genDarkHiggs_Pt)*getxsweight('+hs+','+DM+','+Zp+',300,150,1200)',
-#     'suppressNegative':['all'],
-#     'suppressNegativeNuisances' :['all'],
-
-#                 'FilesPerJob': 10
-#             }
-
-# #####
-
-# mhs = ['400']
-# mDM = ['300']
-# mZp = ['200','300','400','500','600','700','800','900','1000','1100','1200','1300','1400','1500','1600','1700','1800','1900','2000','2100','2200','2300','2400','2500']
-
-# for hs in mhs:
-#     for DM in mDM:
-#         for Zp in mZp:
-#             samples['DH_mhs_' + hs + '_mx_' + DM  + '_mZp_' + Zp] = {
-#                 'name': nanoGetSampleFiles(signalDirectory, 'DarkHiggs_MonoHs_HsToWWTo2l2nu_mhs_400_mx_200_mZp_1000'),
-#                 'linesToAdd' : ['.L /afs/cern.ch/work/f/fernanpe/framework_monoHFullRun2/CMSSW_10_2_9/src/PlotsConfigurations/Configurations/monoHWW/Full2017_v7_3d/onTheFly/interpolationWeight_mhs_' + hs + '_mx_' + DM + '_mZp_' + Zp + '.C', '.L /afs/cern.ch/work/f/fernanpe/framework_monoHFullRun2/CMSSW_10_2_9/src/PlotsConfigurations/Configurations/monoHWW/Full2017_v7_3d/onTheFly/getxsweight.C'],
-#                 'weight': mcCommonWeight + '*interpolationWeight_mhs_' + hs + '_mx_' + DM + '_mZp_' + Zp +'(genDarkHiggs_Pt)*getxsweight('+hs+','+DM+','+Zp+',400,200,1000)',
-#     'suppressNegative':['all'],
-#     'suppressNegativeNuisances' :['all'],
-
-#                 'FilesPerJob': 10
-#             }
-
-
-
-
-# ####
-
-
-# mhs = ['250']
-# mDM = ['100','150','200','300']
-# mZp = ['200','300','400','500','600','700','800','900','1000','1100','1200','1300','1400','1500','1600','1700','1800','1900','2000','2100','2200','2300','2400','2500']
-
-# for hs in mhs:
-#     for DM in mDM:
-#         for Zp in mZp:
-#             samples['DH_mhs_' + hs + '_mx_' + DM  + '_mZp_' + Zp] = {
-#                 'name': nanoGetSampleFiles(signalDirectory, 'DarkHiggs_MonoHs_HsToWWTo2l2nu_mhs_200_mx_150_mZp_1200'),
-#                 'linesToAdd' : ['.L /afs/cern.ch/work/f/fernanpe/framework_monoHFullRun2/CMSSW_10_2_9/src/PlotsConfigurations/Configurations/monoHWW/Full2017_v7_3d/onTheFly/interpolationWeight_mhs_' + hs + '_mx_' + DM + '_mZp_' + Zp + '.C', '.L /afs/cern.ch/work/f/fernanpe/framework_monoHFullRun2/CMSSW_10_2_9/src/PlotsConfigurations/Configurations/monoHWW/Full2017_v7_3d/onTheFly/getxsweight.C'],
-#                 'weight': mcCommonWeight + '*interpolationWeight_mhs_' + hs + '_mx_' + DM + '_mZp_' + Zp +'(genDarkHiggs_Pt)*getxsweight('+hs+','+DM+','+Zp+',200,150,1200)',
-#     'suppressNegative':['all'],
-#     'suppressNegativeNuisances' :['all'],
-
-#                 'FilesPerJob': 10
-#             }
-
-
-
-
-
-
-# mhs = ['350']
-# mDM = ['100','150','200','300']
-# mZp = ['200','300','400','500','600','700','800','900','1000','1100','1200','1300','1400','1500','1600','1700','1800','1900','2000','2100','2200','2300','2400','2500']
-
-# for hs in mhs:
-#     for DM in mDM:
-#         for Zp in mZp:
-#             samples['DH_mhs_' + hs + '_mx_' + DM  + '_mZp_' + Zp] = {
-#                 'name': nanoGetSampleFiles(signalDirectory, 'DarkHiggs_MonoHs_HsToWWTo2l2nu_mhs_300_mx_150_mZp_1200'),
-#                 'linesToAdd' : ['.L /afs/cern.ch/work/f/fernanpe/framework_monoHFullRun2/CMSSW_10_2_9/src/PlotsConfigurations/Configurations/monoHWW/Full2017_v7_3d/onTheFly/interpolationWeight_mhs_' + hs + '_mx_' + DM + '_mZp_' + Zp + '.C', '.L /afs/cern.ch/work/f/fernanpe/framework_monoHFullRun2/CMSSW_10_2_9/src/PlotsConfigurations/Configurations/monoHWW/Full2017_v7_3d/onTheFly/getxsweight.C'],
-#                 'weight': mcCommonWeight + '*interpolationWeight_mhs_' + hs + '_mx_' + DM + '_mZp_' + Zp +'(genDarkHiggs_Pt)*getxsweight('+hs+','+DM+','+Zp+',300,150,1200)',
-#     'suppressNegative':['all'],
-#     'suppressNegativeNuisances' :['all'],
-
-#                 'FilesPerJob': 10
-#             }
-
-
-
-
-# mA = ['200', '400', '500', '600']
-
-# for A in mA:
-#     samples['2HMDa__gg_sinp_0p35_tanb_1p0_mXd_10_MA_' + A + '_ma_150'] = {
-#         'name': nanoGetSampleFiles(signalDirectory, '2HDMa_HWWTollnunu_gg_sinp_0p35_tanb_1p0_mXd_10_MH3_' + A + '_MH4_150_MH2_' + A + '_MHC_' + A),
-#         'weight': mcCommonWeight,
-#         'FilesPerJob': 1
-#     }
-
-
-# sintheta = ['0p35', '0p7']
-# tanbeta = ['0p5', '1p0', '1p5', '2p0', '4p0', '8p0']
-
-# for theta in sintheta:
-#     for beta in tanbeta:
-#         samples['2HMDa__gg_sinp_' + theta  + '_tanb_' + beta  + '_mXd_10_MA_300_ma_150'] = {
-#             'name': nanoGetSampleFiles(signalDirectory, '2HDMa_HWWTollnunu_gg_sinp_' + theta  + '_tanb_' + beta  + '_mXd_10_MH3_300_MH4_150_MH2_300_MHC_300'),
-#             'weight': mcCommonWeight,
-#             'FilesPerJob': 1
-#         }
-
-
-
+###########################################
 ################## FAKE ###################
 ###########################################
 

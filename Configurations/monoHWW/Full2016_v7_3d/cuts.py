@@ -19,16 +19,6 @@ def addcut(name, exprs):
     cuts[name] = ' && '.join(exprs)
 
 
-
-# _tmp = [
-#     'Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13',
-# #    'bVeto',
-#        ]
-
-# addcut('Supercut', _tmp)
-
-# Jet_btagDeepB
-
 _tmp = [
     'mth > 50.',
     'drll < 1.0',
