@@ -21,6 +21,7 @@ configurations = os.path.dirname(configurations) # Configurations
 
 
 mc = [skey for skey in samples if skey not in ('FAKE', 'DATA')]
+signal_mc = [skey for skey in samples if 'darkHiggs' in skey ]
 
 eleWP    = 'mva_90p_Iso2016'
 muWP     = 'cut_Tight80x'
@@ -309,6 +310,17 @@ aliases['PUJetIdSF'] = {
 }
 
 
+# Gen darkHiggs pt for signal interpolation
+
+aliases['genDarkHiggs_Pt'] = {
+    'linesToAdd':[
+        '.L %s/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/scripts/interpolation/getGenDarkHiggspt.cc+' % os.getenv('CMSSW_BASE'),
+    ],
+    'class': 'getGenDarkHiggspt',
+    'samples': signal_mc
+}
+
+
 ### Fake-Weight stuff
 #FR_dir = os.getenv('CMSSW_BASE') + "/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/Full2018_v7/2HDMa/FReleTrig/"
 FR_dir = os.getenv('CMSSW_BASE') + "/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/Full2016_v7/2HDMa/FR_NLOWjet/"
@@ -392,9 +404,9 @@ bdt_dict = {
 #   'DNN_hig' : MVA_folder + '/mtwStudy/highCut/darkHiggsHighMZpVWjAndTTHighMtW_2017_DNN_BN32ReluBN16Relu16Relu16ReluL2reg_400epochs_200batch_10tries_13vars.weights.xml',
     # TKcut
     'BDT_Ada13' : MVA_folder + 'TKcut/UATmva_darkHiggsHighMZpVWjAndTT_2017_BDT_500Trees_AdaBoost_GiniIndex_20Cuts_CostComplexity_12PruneStrength_13Var.weights.xml',
-    'BDT_Ada10' : MVA_folder + 'TKcut/UATmva_darkHiggsHighMZpVWjAndTT_2017_BDT_1200Trees_AdaBoost_GiniIndex_20Cuts_CostComplexity_12PruneStrength_10Var.weights.xml',
-    'BDT_Grad13' : MVA_folder + 'TKcut/UATmva_darkHiggsHighMZpVWjAndTT_2017_BDT_500Trees_Grad_FalseBagged_0.6BagFrac_1BagShrink_GiniIndex_20Cuts_CostComplexity_12PruneStrength_13Var.weights.xml',
-    'BDT_Grad10' : MVA_folder + 'TKcut/UATmva_darkHiggsHighMZpVWjAndTT_2017_BDT_700Trees_Grad_FalseBagged_0.6BagFrac_1BagShrink_GiniIndex_20Cuts_CostComplexity_12PruneStrength_10Var.weights.xml',
+    #'BDT_Ada10' : MVA_folder + 'TKcut/UATmva_darkHiggsHighMZpVWjAndTT_2017_BDT_1200Trees_AdaBoost_GiniIndex_20Cuts_CostComplexity_12PruneStrength_10Var.weights.xml',
+    #'BDT_Grad13' : MVA_folder + 'TKcut/UATmva_darkHiggsHighMZpVWjAndTT_2017_BDT_500Trees_Grad_FalseBagged_0.6BagFrac_1BagShrink_GiniIndex_20Cuts_CostComplexity_12PruneStrength_13Var.weights.xml',
+    #'BDT_Grad10' : MVA_folder + 'TKcut/UATmva_darkHiggsHighMZpVWjAndTT_2017_BDT_700Trees_Grad_FalseBagged_0.6BagFrac_1BagShrink_GiniIndex_20Cuts_CostComplexity_12PruneStrength_10Var.weights.xml',
 
 }
 clean_var = MVA_folder + 'CleanVar.txt'

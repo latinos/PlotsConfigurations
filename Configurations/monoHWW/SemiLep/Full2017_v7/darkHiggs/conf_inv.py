@@ -23,10 +23,12 @@ variablesFile = 'variables_inv.py'
 cutsFile = 'cuts_inv.py'
 
 # file with list of samples
-samplesFile = 'samples.py'
+#samplesFile = 'samples.py'
+samplesFile = 'samples_inv.py'
 
 # file with list of samples
-plotFile = 'plot.py'
+#plotFile = 'plot_inv.py'
+plotFile = 'plot_inv2.py'
 
 # luminosity to normalize to (in 1/fb)
 lumi = 41.5
@@ -43,5 +45,6 @@ structureFile = 'structure.py'
 
 # nuisances file for mkDatacards and for mkShape
 #nuisancesFile = 'nuisances.py'
-nuisancesFile = 'nuisances_full.py'
+#nuisancesFile = 'nuisances_full.py'
+nuisancesFile = 'nuisances_full_inv.py'
 #nuisancesFile = 'nuisances_noJES.py'

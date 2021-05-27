@@ -68,10 +68,10 @@ QER_h      = combinecut([super_cut, mt_lmet_I, met_I, dphi_l_jj, dphi_ljj_met, d
 #addcut('MuCh_SC'  , combinecut([is_mu, SC  ]))
 
 ## Inclusive
-addcut('InCh_SB'  , combinecut([SB]))
+#addcut('InCh_SB'  , combinecut([SB]))
 addcut('InCh_TCR' , combinecut([TCR]))
-addcut('InCh_TCRi', combinecut([TCRi]))
-addcut('InCh_SR'  , combinecut([SR]))
+#addcut('InCh_TCRi', combinecut([TCRi]))
+#addcut('InCh_SR'  , combinecut([SR]))
 
 #addcut('InCh_HighMtw_SB'  , combinecut([SB_h]))
 #addcut('InCh_HighMtw_TCR' , combinecut([TCR_h]))
