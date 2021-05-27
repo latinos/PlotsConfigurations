@@ -45,6 +45,7 @@ def get_limits(mhs, mx, target_dir):
     dirs = os.listdir(target_dir)
     for fil in dirs:
        if not '.root' in fil: continue
+       if not 'AsymptoticLimits' in fil: continue
        if not 'mhs_'+str(mhs) in fil: continue
        if not 'mx_'+str(mx) in fil: continue
        if not 'higgsCombine' in fil: continue
@@ -400,7 +401,8 @@ def plot_2D(TG2_dict, name, mhs):
     
    
    canvas = ROOT.TCanvas("c_2d_lim_Asymptotic", "canvas with 2d limits for Asymptotic CLs", 630, 600)
-   hr = canvas.DrawFrame(195, 160, 1500, 200, "")
+   #hr = canvas.DrawFrame(195, 160, 1500, 200, "")
+   hr = canvas.DrawFrame(195, 160, 2500, 200, "")
    VV = "ZH"
    
    #hr.SetXTitle("M_{"+models[args.model]['m_str']+"} [GeV]")
@@ -467,8 +469,10 @@ for entry in dirs_l:
 
 for mx in mass_DM:
     for mhs in mass_hs:
+        print('-- Mass points: mhs='+str(mhs)+', mx='+str(mx))
         lim_dict = OrderedDict()
         for key in dirs_d: 
+            print('---- key: '+key)
             lim_dict[key] = {}
             target_dir = dirs_d[key]
             mass, lim_50, lim_2, lim_16, lim_84, lim_97 = get_limits(mhs, mx, target_dir)

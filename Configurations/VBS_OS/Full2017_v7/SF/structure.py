@@ -10,20 +10,14 @@ structure['Zjj']  = {
                   'isData'   : 0
               }
 
-structure['DY_lowZ']  = {  
+structure['DY_hardJets']  = {  
                   'isSignal' : 0,
                   'isData'   : 0
               }
 
-structure['DY_highZ']  = {
+structure['DY_PUJets']  = {
                   'isSignal' : 0,
                   'isData'   : 0
-              }
-
-structure['Dyveto']  = {
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  'removeFromCuts' : [ k for k in cuts ],
               }
 
 structure['Wjets']  = {  

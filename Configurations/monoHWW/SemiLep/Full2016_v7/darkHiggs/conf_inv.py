@@ -14,18 +14,22 @@ outputDir = 'darkHiggs_inv_root'
 aliasesFile = 'aliases.py'
 
 # file with list of variables
-variablesFile = 'variables_bdt.py'
+#variablesFile = 'variables_bdt.py'
 #variablesFile = 'variables_clean.py'
+variablesFile = 'variables_inv.py'
 
 # file with list of cuts
 #cutsFile = 'cuts.py'
 cutsFile = 'cuts_inv.py'
 
 # file with list of samples
-samplesFile = 'samples.py'
+#samplesFile = 'samples.py'
+samplesFile = 'samples_inv.py'
 
 # file with list of samples
-plotFile = 'plot.py'
+#plotFile = 'plot.py'
+#plotFile = 'plot_inv.py'
+plotFile = 'plot_inv2.py'
 
 # luminosity to normalize to (in 1/fb)
 lumi = 35.9

@@ -65,7 +65,7 @@ def makeSuffixVar(name, fix, cuts=None, folder_fix=None):
 # nuisances['lumi'] = {
 #    'name': 'lumi_13TeV_2016',
 #    'type': 'lnN',
-#    'samples': dict((skey, '1.023') for skey in mc if skey not in ['Wjets', 'ttop', 'stop'])
+#    'samples': dict((skey, '1.012') for skey in mc if skey not in ['Wjets', 'top'])
 # }
 
 nuisances['lumi_Uncorrelated'] = {
@@ -247,7 +247,7 @@ nuisances['PS_ISR']  = {
     'name': 'PS_ISR',
     'kind': 'weight',
     'type': 'shape',
-    'AsLnN': '1',
+    #'AsLnN': '1',
     'samples': {
         'Wjets': ['0.997054474752*(nCleanGenJet==0) + 1.01491223907*(nCleanGenJet==1) + 1.00675986689*(nCleanGenJet==2) + 0.973889730523*(nCleanGenJet>=3)', '1.00439657406*(nCleanGenJet==0) + 0.98111895136*(nCleanGenJet==1) + 0.99317366464*(nCleanGenJet==2) + 1.03376665043*(nCleanGenJet>=3)'],
         #'Wjets_HTsf': ['0.997054474752*(nCleanGenJet==0) + 1.01491223907*(nCleanGenJet==1) + 1.00675986689*(nCleanGenJet==2) + 0.973889730523*(nCleanGenJet>=3)', '1.00439657406*(nCleanGenJet==0) + 0.98111895136*(nCleanGenJet==1) + 0.99317366464*(nCleanGenJet==2) + 1.03376665043*(nCleanGenJet>=3)'],
@@ -278,7 +278,7 @@ nuisances['PS_FSR']  = {
     'name': 'PS_FSR',
     'kind': 'weight',
     'type': 'shape',
-    'AsLnN': '1',
+    #'AsLnN': '1',
     'samples': {
         'Wjets': ['0.951581197919*(nCleanGenJet==0) + 0.997755474747*(nCleanGenJet==1) + 1.02983517401*(nCleanGenJet==2) + 1.01143623738*(nCleanGenJet>=3)', '1.08454892632*(nCleanGenJet==0) + 1.0003688082*(nCleanGenJet==1) + 0.980741215888*(nCleanGenJet==2) + 0.97189538569*(nCleanGenJet>=3)'],
         #'Wjets_HTsf': ['0.951581197919*(nCleanGenJet==0) + 0.997755474747*(nCleanGenJet==1) + 1.02983517401*(nCleanGenJet==2) + 1.01143623738*(nCleanGenJet>=3)', '1.08454892632*(nCleanGenJet==0) + 1.0003688082*(nCleanGenJet==1) + 0.980741215888*(nCleanGenJet==2) + 0.97189538569*(nCleanGenJet>=3)'],
@@ -377,120 +377,62 @@ nuisances['pdf']  = {
     },
 }
 
-## account the split higgs
-#valuesggh  = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ggH', '125.09','pdf','sm')
-#valuesggzh = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ggZH','125.09','pdf','sm')
-#valuesbbh  = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','bbH', '125.09','pdf','sm')
-#
-#nuisances['pdf_Higgs_gg'] = {
-#    'name': 'pdf_Higgs_gg',
-#    'samples': {
-#        'ggH_hww' : valuesggh,
-#        'ggH_htt' : valuesggh,
-#        'ggZH_hww': valuesggzh,
-#        'bbH_hww' : valuesbbh
-#    },
-#    'type': 'lnN',
-#}
-#
-#valuesqqh = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','vbfH','125.09','pdf','sm')
-#valueswh = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','WH','125.09','pdf','sm')
-#valueszh = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ZH','125.09','pdf','sm')
-#
-#nuisances['pdf_Higgs_qqbar'] = {
-#    'name': 'pdf_Higgs_qqbar',
-#    'type': 'lnN',
-#    'samples': {
-#        'qqH_hww': valuesqqh,
-#        'qqH_htt': valuesqqh,
-#        'WH_hww': valueswh,
-#        'WH_htt': valueswh,
-#        'ZH_hww': valueszh,
-#        'ZH_htt': valueszh
-#    },
-#}
-#
-#values = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ttH','125.09','pdf','sm')
-#
-#nuisances['pdf_Higgs_ttH'] = {
-#    'name': 'pdf_Higgs_ttH',
-#    'samples': {
-#        'ttH_hww': values
-#    },
-#    'type': 'lnN',
-#}
-#
-#
-#nuisances['pdf_Higgs_gg_ACCEPT'] = {
-#    'name': 'pdf_Higgs_gg_ACCEPT',
-#    'samples': {
-#        'ggH_hww': '1.006',
-#        'ggH_htt': '1.006',
-#        'ggZH_hww': '1.006',
-#        'bbH_hww': '1.006'
-#    },
-#    'type': 'lnN',
-#}
-#
-#nuisances['pdf_gg_ACCEPT'] = {
-#    'name': 'pdf_gg_ACCEPT',
-#    'samples': {
-#        'ggWW': '1.006',
-#    },
-#    'type': 'lnN',
-#}
-#
-#nuisances['pdf_Higgs_qqbar_ACCEPT'] = {
-#    'name': 'pdf_Higgs_qqbar_ACCEPT',
-#    'type': 'lnN',
-#    'samples': {
-#        'qqH_hww': '1.002',
-#        'qqH_htt': '1.002',
-#        'WH_hww': '1.003',
-#        'WH_htt': '1.003',
-#        'ZH_hww': '1.002',
-#        'ZH_htt': '1.002',
-#    },
-#}
-
 
 ##### Renormalization & factorization scales
 
 ## Shape nuisance due to QCD scale variations for DY
 # LHE scale variation weights (w_var / w_nominal)
-# [0] is muR=0.50000E+00 muF=0.50000E+00
-# [1] is muR=0.50000E+00 muF=0.10000E+01
-# [2] is muR=0.50000E+00 muF=0.20000E+01
-# [3] is muR=0.10000E+01 muF=0.50000E+00
-# [4] is muR=0.10000E+01 muF=0.10000E+01
-# [5] is muR=0.10000E+01 muF=0.20000E+01
-# [6] is muR=0.20000E+01 muF=0.50000E+00
-# [7] is muR=0.20000E+01 muF=0.10000E+01
-# [8] is muR=0.20000E+01 muF=0.20000E+01
 
-#variations = ['LHEScaleWeight[%d]' % i for i in [0, 1, 3, 5, 7, 8]]
+#variations = ['LHEScaleWeight[0]', 'LHEScaleWeight[1]', 'LHEScaleWeight[3]', 'LHEScaleWeight[Length$(LHEScaleWeight)-4]', 'LHEScaleWeight[Length$(LHEScaleWeight)-2]', 'LHEScaleWeight[Length$(LHEScaleWeight)-1]']
 #
 #nuisances['QCDscale_V'] = {
 #    'name': 'QCDscale_V',
-#    'skipCMS': 1,
-#    'kind': 'weight',
+#    'kind': 'weight_envelope',
 #    'type': 'shape',
-#    'samples': {'DY': ['LHEScaleWeight[7]', 'LHEScaleWeight[0]']},
-#    'AsLnN': '1'
+#    'samples': {'DY': variations},
 #}
 #
+#
+#variations = ['LHEScaleWeight[%d]' % i for i in [0, 1, 3, 5, 7, 8]]
+#
+## FIXME: LHEScaleWeight missing
 #nuisances['QCDscale_VV'] = {
 #    'name': 'QCDscale_VV',
-#    'kind': 'weight',
+#    'kind': 'weight_envelope',
 #    'type': 'shape',
 #    'samples': {
-#        'Vg': ['LHEScaleWeight[8]', 'LHEScaleWeight[0]'],
-#        # 'VZ': ['LHEScaleWeight[8]', 'LHEScaleWeight[0]'], FIXME missing in WZ
-#        'VgS': ['LHEScaleWeight[8]', 'LHEScaleWeight[0]'],
+#        'Vg': variations,
+#        # 'VZ': variations, #FIXME not all VZ have LHEScaleWeight
+#        'VgS': variations
 #    }
 #}
 #
-## ggww and interference
+#nuisances['QCDscale_top']  = {
+#    'name'  : 'QCDscale_top', 
+#    'kind'  : 'weight_envelope',
+#    'type'  : 'shape',
+#    'samples'  : {
+#        'top' : variations,
+#    }
+#}
+#
+#nuisances['QCDscale_Wjets']  = {
+#    'name'  : 'QCDscale_V', 
+#    'kind'  : 'weight_envelope',
+#    'type'  : 'shape',
+#    'samples'  : {
+#        'Wjets' : variations,
+#    }
+#}
+#
+#nuisances['QCDscale_WWewk']  = {
+#    'name'  : 'QCDscale_VV',
+#    'type'  : 'lnN',
+#    'samples'  : {
+#        'WWewk' : '1.11',
+#    },
+#}
+#
 #nuisances['QCDscale_ggVV'] = {
 #    'name': 'QCDscale_ggVV',
 #    'type': 'lnN',
@@ -498,152 +440,7 @@ nuisances['pdf']  = {
 #        'ggWW': '1.15',
 #    },
 #}
-#
-#
-#
-## Uncertainty on SR/CR ratio
-#nuisances['CRSR_accept_SB'] = {
-#    'name': 'hww_CRSR_accept_SB',
-#    'type': 'lnN',
-#    'samples': {'Wjets': '1.02'}, # TODO what value does this have to be?
-#    #'samples': {'DY': '1.1'},
-#    'cuts': [cut for cut in cuts if 'SB' in cut],
-#    #'cutspost': (lambda self, cuts: [cut for cut in cuts if '_DY_' in cut and cut in self['cuts']]),
-#    'cutspost': (lambda self, cuts: [cut for cut in cuts if 'SB' in cut]),
-#    #'perRecoBin': True
-#}
-#
-## Uncertainty on SR/CR ratio
-#nuisances['CRSR_accept_top'] = {
-#    'name': 'hww_CRSR_accept_top',
-#    'type': 'lnN',
-#    'samples': {
-#        'ttop': '1.01',
-#        'stop': '1.01',
-#        #'top': '1.01',
-#    },
-#    #'samples': {'top': '1.05'},
-#    'cuts': [cut for cut in cuts if 'TCR' in cut],
-#    'cutspost': (lambda self, cuts: [cut for cut in cuts if 'TCR' in cut]),
-#}
 
-# Theory uncertainty for ggH
-#
-#
-#   THU_ggH_Mu, THU_ggH_Res, THU_ggH_Mig01, THU_ggH_Mig12, THU_ggH_VBF2j, THU_ggH_VBF3j, THU_ggH_PT60, THU_ggH_PT120, THU_ggH_qmtop
-#
-#   see https://twiki.cern.ch/twiki/bin/viewauth/CMS/HiggsWG/SignalModelingTools
-
-# thus = [
-#     ('THU_ggH_Mu', 'ggH_mu'),
-#     ('THU_ggH_Res', 'ggH_res'),
-#     ('THU_ggH_Mig01', 'ggH_mig01'),
-#     ('THU_ggH_Mig12', 'ggH_mig12'),
-#     ('THU_ggH_VBF2j', 'ggH_VBF2j'),
-#     ('THU_ggH_VBF3j', 'ggH_VBF3j'),
-#     ('THU_ggH_PT60', 'ggH_pT60'),
-#     ('THU_ggH_PT120', 'ggH_pT120'),
-#     ('THU_ggH_qmtop', 'ggH_qmtop')
-# ]
-#
-# for name, vname in thus:
-#     updown = [vname, '2.-%s' % vname]
-#
-#     nuisances[name] = {
-#         'name': name,
-#         'skipCMS': 1,
-#         'kind': 'weight',
-#         'type': 'shape',
-#         'samples': {
-#           'ggH_hww': updown,
-#           #'ggH_htt': updown
-#         }
-#     }
-
-
-
-
-##### QCD scale uncertainties for Higgs signals other than ggH
-##FIXME: correct?
-## TODO: high mass
-#
-#values = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','vbfH','125.09','scale','sm')
-#
-#nuisances['QCDscale_qqH'] = {
-#    'name': 'QCDscale_qqH',
-#    'samples': {
-#        'qqH_hww': values,
-#        'qqH_htt': values
-#    },
-#    'type': 'lnN'
-#}
-#
-#valueswh = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','WH','125.09','scale','sm')
-#valueszh = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ZH','125.09','scale','sm')
-#
-#nuisances['QCDscale_VH'] = {
-#    'name': 'QCDscale_VH',
-#    'samples': {
-#        'WH_hww': valueswh,
-#        'WH_htt': valueswh,
-#        'ZH_hww': valueszh,
-#        'ZH_htt': valueszh
-#    },
-#    'type': 'lnN',
-#}
-#
-#values = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ggZH','125.09','scale','sm')
-#
-#nuisances['QCDscale_ggZH'] = {
-#    'name': 'QCDscale_ggZH',
-#    'samples': {
-#        'ggZH_hww': values
-#    },
-#    'type': 'lnN',
-#}
-#
-#values = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ttH','125.09','scale','sm')
-#
-#nuisances['QCDscale_ttH'] = {
-#    'name': 'QCDscale_ttH',
-#    'samples': {
-#        'ttH_hww': values
-#    },
-#    'type': 'lnN',
-#}
-#
-#nuisances['QCDscale_WWewk'] = {
-#    'name': 'QCDscale_WWewk',
-#    'samples': {
-#        'WWewk': '1.11',
-#    },
-#    'type': 'lnN'
-#}
-#
-#nuisances['QCDscale_qqbar_ACCEPT'] = {
-#    'name': 'QCDscale_qqbar_ACCEPT',
-#    'type': 'lnN',
-#    'samples': {
-#        'qqH_hww': '1.003',
-#        'qqH_htt': '1.003',
-#        'WH_hww': '1.010',
-#        'WH_htt': '1.010',
-#        'ZH_hww': '1.015',
-#        'ZH_htt': '1.015',
-#        # 'VZ': '1.004', # this shouldn't be here because we have full shape-based uncertainty for VZ
-#    }
-#}
-#
-#nuisances['QCDscale_gg_ACCEPT'] = {
-#    'name': 'QCDscale_gg_ACCEPT',
-#    'samples': {
-#        'ggH_hww': '1.012',
-#        'ggH_htt': '1.012',
-#        'ggZH_hww': '1.012',
-#        'ggWW': '1.012',
-#    },
-#    'type': 'lnN',
-#}
 
 
 ## ewk nlo W corr uncertainty
@@ -669,7 +466,15 @@ nuisances['WWresum']  = {
    },
 }
 
-
+nuisances['WWqscale']  = {
+   'name'  : 'CMS_hww_WWqscale',
+   'skipCMS' : 1,
+   'kind'  : 'weight',
+   'type'  : 'shape',
+   'samples'  : {
+      'WW'   : ['nllW_Qup/nllW', 'nllW_Qdown/nllW'],
+    },
+}
 
 
 ## Use the following if you want to apply the automatic combine MC stat nuisances.

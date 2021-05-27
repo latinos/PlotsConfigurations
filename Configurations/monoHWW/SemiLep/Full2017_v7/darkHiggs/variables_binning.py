@@ -224,16 +224,23 @@
 #    #'xaxis' : 'BDT',
 #    'fold'  : 3, 
 #}
-variables['BDT_Ada13b']  = { 
-    'name': '2*BDT_Ada13b[0]',
-    'range' : (500,-1.,1.),
+#variables['BDT_Ada13b']  = { 
+#    'name': '2*BDT_Ada13b[0]',
+#    'range' : (500,-1.,1.),
+#    'xaxis' : 'high m_{Z\'} NLO bveto BDT_{Ada13}',
+#    #'xaxis' : 'BDT',
+#    'fold'  : 3, 
+#}
+variables['BDT_Ada13']  = { 
+    'name': '2*BDT_Ada13[0]',
+    'range' : (1000,-1.,1.),
     'xaxis' : 'high m_{Z\'} NLO bveto BDT_{Ada13}',
     #'xaxis' : 'BDT',
     'fold'  : 3, 
 }
-variables['BDT_Ada13']  = { 
+variables['BDT_200Ada13']  = { 
     'name': '2*BDT_Ada13[0]',
-    'range' : (500,-1.,1.),
+    'range' : (200,-1.,1.),
     'xaxis' : 'high m_{Z\'} NLO bveto BDT_{Ada13}',
     #'xaxis' : 'BDT',
     'fold'  : 3, 

@@ -79,9 +79,9 @@ addcut('InCh_TCR' , combinecut([TCR ]))
 #addcut('InCh_DYCR', combinecut([DYCR]))
 #addcut('InCh_QER' , combinecut([QER ]))
 
-addcut('InCh_highMtw_SR'  , combinecut([SR_h  ]))
-addcut('InCh_highMtw_SB'  , combinecut([SB_h  ]))
-addcut('InCh_highMtw_TCR' , combinecut([TCR_h ]))
+#addcut('InCh_highMtw_SR'  , combinecut([SR_h  ]))
+#addcut('InCh_highMtw_SB'  , combinecut([SB_h  ]))
+#addcut('InCh_highMtw_TCR' , combinecut([TCR_h ]))
 
 # Mjj fit channel
 #addcut('Mjj_CR'  , combinecut([CR]))

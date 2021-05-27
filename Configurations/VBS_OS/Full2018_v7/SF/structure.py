@@ -4,19 +4,25 @@
 
 # keys here must match keys in samples.py    
 #                    
-structure['DY_lowZ']  = {  
-                  'isSignal' : 0,
-                  'isData'   : 0
-              }
-
-structure['DY_highZ']  = {  
-                  'isSignal' : 0,
-                  'isData'   : 0
-              }
 
 structure['Zjj']  = {  
                   'isSignal' : 0,
                   'isData'   : 0
+              }
+
+structure['DY_hardJets']  = {  
+                  'isSignal' : 0,
+                  'isData'   : 0
+              }
+
+structure['DY_PUJets']  = {
+                  'isSignal' : 0,
+                  'isData'   : 0
+              }
+
+structure['Wjets']  = {  
+                  'isSignal' : 0,
+                  'isData'   : 0 
               }
 
 structure['Fake']  = {  
@@ -41,6 +47,7 @@ structure['ttbar'] = {
                   'isData'   : 0 
                   }
 
+
 structure['singletop'] = {   
                   'isSignal' : 0,
                   'isData'   : 0 
@@ -51,9 +58,11 @@ structure['top'] = {
                   'isData'   : 0 
                   }
 
+
 structure['WW']  = {
                   'isSignal' : 0,
-                  'isData'   : 0    
+                  'isData'   : 0,
+                  'scaleSampleForDatacard': 9.
                   }
 
 structure['WWewk']  = {

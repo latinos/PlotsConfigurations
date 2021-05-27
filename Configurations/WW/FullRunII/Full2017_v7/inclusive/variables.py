@@ -27,13 +27,14 @@ variables['mth']  = {   'name': 'mth',
                         'fold' : 3
                         }
 
-variables['BDTOutput'] = {
-     'name': 'hww_WW_BDTG4D3(Entry$,0)',
-     'range' : (10,-1,1),
-     'xaxis' : 'MVA discriminant WW',
-     'fold' : 3,
-     'linesToAdd' : ['.L /afs/cern.ch/work/a/arun/Latinos/Check_forCC7/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/WW/FullRunII/Full2017_v7/inclusive/hww_WW_BDTG4D3.C+']
-}
+### File does not exist in repository
+#variables['BDTOutput'] = {
+#     'name': 'hww_WW_BDTG4D3(Entry$,0)',
+#     'range' : (10,-1,1),
+#     'xaxis' : 'MVA discriminant WW',
+#     'fold' : 3,
+#     'linesToAdd' : ['.L /afs/cern.ch/work/a/arun/Latinos/Check_forCC7/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/WW/FullRunII/Full2017_v7/inclusive/hww_WW_BDTG4D3.C+']
+#}
 '''
 variables['mth-more']  = {   'name': 'mth',
                         'range' : (20, 60,200),

@@ -168,7 +168,7 @@ aliases['topcr'] = {
 }
 
 aliases['dycr'] = {
-    'expr': 'mth<60 && bVeto'
+    'expr': 'bVeto && abs(mll-91.2)<15'
 }
 
 aliases['wwcr'] = {
@@ -179,7 +179,7 @@ aliases['wwcr'] = {
 
 aliases['sr'] = {
     #'expr': 'mth>60 && mtw2>30 && bVeto'
-    'expr': 'mth>60 && bVeto'
+    'expr': 'bVeto'
 }
 
 aliases['LowZ'] = {
@@ -188,6 +188,16 @@ aliases['LowZ'] = {
 
 aliases['HighZ'] = {
     'expr':  '0.5*abs((Lepton_eta[0] + Lepton_eta[1]) - (CleanJet_eta[0] + CleanJet_eta[1])) >= 1'
+}
+
+aliases['hardJets'] = {
+    'expr':  'Jet_genJetIdx[CleanJet_jetIdx[0]] >= 0 && Jet_genJetIdx[CleanJet_jetIdx[1]] >= 0 && GenJet_pt[CleanJet_jetIdx[0]] > 25 && GenJet_pt[CleanJet_jetIdx[1]] > 25',
+    'samples': ['DY']
+}
+
+aliases['PUJets'] = {
+    'expr':  '!(Jet_genJetIdx[CleanJet_jetIdx[0]] >= 0 && Jet_genJetIdx[CleanJet_jetIdx[1]] >= 0 && GenJet_pt[CleanJet_jetIdx[0]] > 25 && GenJet_pt[CleanJet_jetIdx[1]] > 25)',
+    'samples': ['DY']
 }
 
 # B tag scale factors
@@ -283,9 +293,24 @@ elif btag_algo == "deepflav":
             'samples': mc
         }
 
+aliases['Jet_PUIDSF'] = { 
+  'expr' : 'TMath::Exp(Sum$((Jet_jetId>=2)*TMath::Log(Jet_PUIDSF_loose)))',
+  'samples': mc
+}
+
+aliases['Jet_PUIDSF_up'] = {
+  'expr' : 'TMath::Exp(Sum$((Jet_jetId>=2)*TMath::Log(Jet_PUIDSF_loose_up)))',
+  'samples': mc
+}
+
+aliases['Jet_PUIDSF_down'] = {
+  'expr' : 'TMath::Exp(Sum$((Jet_jetId>=2)*TMath::Log(Jet_PUIDSF_loose_down)))',
+  'samples': mc
+}
+
 # data/MC scale factors
 aliases['SFweight'] = {
-    'expr': ' * '.join(['SFweight2l', 'LepWPCut', 'LepSF2l__ele_' + eleWP + '__mu_' + muWP, 'btagSF', 'Jet_PUIDSF_loose']),
+    'expr': ' * '.join(['SFweight2l', 'LepWPCut', 'LepSF2l__ele_' + eleWP + '__mu_' + muWP, 'btagSF', 'Jet_PUIDSF']),
     'samples': mc
 }
 
@@ -340,3 +365,10 @@ for thu in thus:
         'args': (thu,),
         'samples': ['ggH_hww']
     }
+
+aliases['lhe_mjj'] = {
+    'expr': 'TMath::Sqrt(2. * LHEPart_pt[4] * LHEPart_pt[5] * (TMath::CosH(LHEPart_eta[4] - LHEPart_eta[5]) - TMath::Cos(LHEPart_phi[4] - LHEPart_phi[5])))',
+    'samples': ['Zjj']
+}
+
+

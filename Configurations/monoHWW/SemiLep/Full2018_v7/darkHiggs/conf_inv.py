@@ -14,9 +14,9 @@ outputDir = 'darkHiggs_inv_root'
 aliasesFile = 'aliases.py'
 
 # file with list of variables
-variablesFile = 'variables_bdt.py'
+#variablesFile = 'variables_bdt.py'
 #variablesFile = 'variables_lim.py'
-#variablesFile = 'variables_inv.py'
+variablesFile = 'variables_inv.py'
 #variablesFile = 'variables_clean.py'
 
 # file with list of cuts
@@ -24,7 +24,8 @@ variablesFile = 'variables_bdt.py'
 cutsFile = 'cuts_inv.py'
 
 # file with list of samples
-samplesFile = 'samples.py'
+#samplesFile = 'samples.py'
+samplesFile = 'samples_inv.py'
 
 # file with list of samples
 plotFile = 'plot.py'
@@ -44,5 +45,6 @@ structureFile = 'structure.py'
 
 # nuisances file for mkDatacards and for mkShape
 #nuisancesFile = 'nuisances.py'
-nuisancesFile = 'nuisances_full.py'
+#nuisancesFile = 'nuisances_full.py'
+nuisancesFile = 'nuisances_full_inv.py'
 #nuisancesFile = 'nuisances_noJES.py'

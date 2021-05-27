@@ -1,7 +1,5 @@
 # cuts
 
-
-
 _tmp = [ 
     'Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13',
      'mll>12.',
@@ -18,16 +16,6 @@ supercut = ' && '.join(_tmp)
 def addcut(name, exprs):
     cuts[name] = ' && '.join(exprs)
 
-
-
-# _tmp = [
-#     'Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13',
-# #    'bVeto',
-#        ]
-
-# addcut('Supercut', _tmp)
-
-# Jet_btagDeepB
 
 _tmp = [
     'mth > 50.',
@@ -57,14 +45,14 @@ _tmp = [
 
 addcut('SR_Incl_drll3', _tmp)
 
-# _tmp = [
-#     'Lepton_pdgId[0]*Lepton_pdgId[1] == 11*13',
-#     'mth > 50.',
-#     'drll < 1.5',
-#     'bVeto',
-#        ]
+# # _tmp = [
+# #     'Lepton_pdgId[0]*Lepton_pdgId[1] == 11*13',
+# #     'mth > 50.',
+# #     'drll < 1.5',
+# #     'bVeto',
+# #        ]
 
-# addcut('SS_Incl', _tmp)
+# # addcut('SS_Incl', _tmp)
 
 
 _tmp = [

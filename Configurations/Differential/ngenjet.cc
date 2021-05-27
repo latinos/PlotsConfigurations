@@ -10,6 +10,9 @@
 
 #include <iostream>
 
+#ifndef CountGenJet_HH
+#define CountGenJet_HH
+
 class CountGenJet : public multidraw::TTreeFunction {
 public:
   CountGenJet();
@@ -162,3 +165,4 @@ CountGenJet::bindTree_(multidraw::FunctionLibrary& _library)
   _library.bindBranch(GenJet_eta, "GenJet_eta");
   _library.bindBranch(GenJet_phi, "GenJet_phi");
 }
+#endif

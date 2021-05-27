@@ -198,29 +198,36 @@
 
 variables['BDT_Ada13']  = { 
     'name': '2*BDT_Ada13[0]',
-    'range' : (500,-1.,1.),
+    'range' : (1000,-1.,1.),
     'xaxis' : 'high m_{Z\'} NLO BDT_{Ada13}',
     #'xaxis' : 'BDT',
     'fold'  : 3, 
 }
-variables['BDT_Ada10']  = { 
-    'name': '2*BDT_Ada10[0]',
-    'range' : (500,-1.,1.),
-    'xaxis' : 'high m_{Z\'} NLO BDT_{Ada10}',
+variables['BDT_200Ada13']  = { 
+    'name': '2*BDT_Ada13[0]',
+    'range' : (200,-1.,1.),
+    'xaxis' : 'high m_{Z\'} NLO BDT_{Ada13}',
     #'xaxis' : 'BDT',
     'fold'  : 3, 
 }
-variables['BDT_Grad13']  = { 
-    'name': 'BDT_Grad13[0]',
-    'range' : (500,-1.,1.),
-    'xaxis' : 'high m_{Z\'} NLO BDT_{Grad13}',
-    #'xaxis' : 'BDT',
-    'fold'  : 3, 
-}
-variables['BDT_Grad10']  = { 
-    'name': 'BDT_Grad10[0]',
-    'range' : (500,-1.,1.),
-    'xaxis' : 'high m_{Z\'} NLO BDT_{Grad10}',
-    #'xaxis' : 'BDT',
-    'fold'  : 3, 
-}
+#variables['BDT_Ada10']  = { 
+#    'name': '2*BDT_Ada10[0]',
+#    'range' : (500,-1.,1.),
+#    'xaxis' : 'high m_{Z\'} NLO BDT_{Ada10}',
+#    #'xaxis' : 'BDT',
+#    'fold'  : 3, 
+#}
+#variables['BDT_Grad13']  = { 
+#    'name': 'BDT_Grad13[0]',
+#    'range' : (500,-1.,1.),
+#    'xaxis' : 'high m_{Z\'} NLO BDT_{Grad13}',
+#    #'xaxis' : 'BDT',
+#    'fold'  : 3, 
+#}
+#variables['BDT_Grad10']  = { 
+#    'name': 'BDT_Grad10[0]',
+#    'range' : (500,-1.,1.),
+#    'xaxis' : 'high m_{Z\'} NLO BDT_{Grad10}',
+#    #'xaxis' : 'BDT',
+#    'fold'  : 3, 
+#}
