@@ -254,7 +254,7 @@ for js in jes_systs:
       'type': 'shape',
       'mapUp': js+'up',
       'mapDown': js+'do',
-      'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['VZ', 'Vg', 'VgS']),
+      'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['VZ']),
       'folderUp': folderup,
       'folderDown': folderdo,
       'AsLnN': '1'
@@ -267,7 +267,7 @@ nuisances['JER'] = {
     'type': 'shape',
     'mapUp': 'JERup',
     'mapDown': 'JERdo',
-    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['VZ', 'Vg', 'VgS']),
+    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['VZ']),
     'folderUp': makeMCDirectory('JERup_suffix'),
     'folderDown': makeMCDirectory('JERdo_suffix'),
     'AsLnN': '1'
