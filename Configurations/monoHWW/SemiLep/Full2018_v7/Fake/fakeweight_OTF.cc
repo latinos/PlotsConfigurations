@@ -20,6 +20,9 @@
 
 using namespace std;
 
+#ifndef fakeWeightOTF_HH
+#define fakeWeightOTF_HH
+
 class fakeWeightOTF : public multidraw::TTreeFunction {
 public:
   //fakeWeightOTF(string file, string ele_WP, string mu_WP, string fr_ele_path, string pr_ele_path, string fr_mu_path, string pr_mu_path);
@@ -216,3 +219,5 @@ fakeWeightOTF::~fakeWeightOTF(){
   Lepton_isTightEle=nullptr;
   Lepton_isTightMu=nullptr;
 }
+
+#endif

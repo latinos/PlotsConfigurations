@@ -62,13 +62,14 @@ aliases['LepSF1l__ele_wp__mu_wp'] = {
 }
 
 # single ele trigger eff fix
+eff_dir = os.getenv('CMSSW_BASE') + '/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/TriggEff/fixedTextfiles/'
 aliases['ele_trig_eff_B'] = {
     'linesToAdd': [
         'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
         '.L %s/src/PlotsConfigurations/Configurations/patches/triggerEff_1lep.cc+' % os.getenv('CMSSW_BASE')
     ],
     'class': 'TrigEff_1lep',
-    'args': ('/afs/cern.ch/user/a/arun/public/fixedTextfiles/2017/mvaid/Ele35_pt_eta_efficiency_withSys_Run2017B.txt'),
+    'args': (eff_dir+'2017/mvaid/Ele35_pt_eta_efficiency_withSys_Run2017B.txt'),
     'samples': mc
 }
 
@@ -78,7 +79,7 @@ aliases['ele_trig_eff_CDE'] = {
         '.L %s/src/PlotsConfigurations/Configurations/patches/triggerEff_1lep.cc+' % os.getenv('CMSSW_BASE')
     ],
     'class': 'TrigEff_1lep',
-    'args': ('/afs/cern.ch/user/a/arun/public/fixedTextfiles/2017/mvaid/Ele35_pt_eta_efficiency_withSys_Run2017CDE.txt'),
+    'args': (eff_dir+'2017/mvaid/Ele35_pt_eta_efficiency_withSys_Run2017CDE.txt'),
     'samples': mc
 }
 
@@ -88,7 +89,7 @@ aliases['ele_trig_eff_F'] = {
         '.L %s/src/PlotsConfigurations/Configurations/patches/triggerEff_1lep.cc+' % os.getenv('CMSSW_BASE')
     ],
     'class': 'TrigEff_1lep',
-    'args': ('/afs/cern.ch/user/a/arun/public/fixedTextfiles/2017/mvaid/Ele35_pt_eta_efficiency_withSys_Run2017F.txt'),
+    'args': (eff_dir+'2017/mvaid/Ele35_pt_eta_efficiency_withSys_Run2017F.txt'),
     'samples': mc
 }
 

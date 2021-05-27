@@ -61,7 +61,7 @@ mcStepsBR = 'MCl1loose2017v7__MCCorr2017v7__MCCombJJLNu2017__BWReweight'
 
 SITE=os.uname()[1]
 if    'iihe' in SITE:
-  treeBaseDir = '/pnfs/iihe/cms/store/user/xjanssen/HWW2015'
+  treeBaseDir = '/pnfs/iihe/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/'
 elif  'cern' in SITE:
   treeBaseDir = '/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano'
   # treeBaseDir = '/eos/user/s/ssiebert/HWWNano'
@@ -81,7 +81,10 @@ def makeMCDirectory(var=None, base=treeBaseDir, step=mcSteps):
 mcDirectory = makeMCDirectory()
 mcDirectoryBR = os.path.join(treeBaseDir, mcProduction, mcStepsBR)
 #VBSDirectory = os.path.join('/eos/cms/store/group/phys_smp/VJets_NLO_VBSanalyses', mcProduction, mcSteps)
-VBSDirectory = makeMCDirectory(base='/eos/cms/store/group/phys_smp/VJets_NLO_VBSanalyses')
+if 'iihe' in SITE:
+    VBSDirectory = makeMCDirectory(base='/pnfs/iihe/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano_smp')
+else:
+    VBSDirectory = makeMCDirectory(base='/eos/cms/store/group/phys_smp/VJets_NLO_VBSanalyses')
 dataDirectory = os.path.join(treeBaseDir, dataReco, dataSteps)
 fakeDirectory = os.path.join(treeBaseDir, dataReco, fakeSteps)
 

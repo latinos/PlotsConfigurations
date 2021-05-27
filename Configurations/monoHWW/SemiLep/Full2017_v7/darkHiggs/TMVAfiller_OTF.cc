@@ -8,6 +8,9 @@
 #include <TMVA/Reader.h>
 #include <TMVA/PyMethodBase.h>
 
+#ifndef TMVAfillerOTF_HH
+#define TMVAfillerOTF_HH
+
 using namespace std;
 
 class TMVAfillerOTF : public multidraw::TTreeFunction {
@@ -134,3 +137,4 @@ TMVAfillerOTF::~TMVAfillerOTF(){
         AReaderMap[name]=nullptr;
     }
 }
+#endif
