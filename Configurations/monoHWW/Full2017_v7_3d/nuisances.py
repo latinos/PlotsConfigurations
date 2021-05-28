@@ -302,28 +302,29 @@ nuisances['pdf']  = {
 ## Shape nuisance due to QCD scale variations for DY
 # LHE scale variation weights (w_var / w_nominal)
 
+# removed effect on the normalization (already measured by the fit to the data)
+
 variations = ['LHEScaleWeight[0]', 'LHEScaleWeight[1]', 'LHEScaleWeight[3]', 'LHEScaleWeight[Length$(LHEScaleWeight)-4]', 'LHEScaleWeight[Length$(LHEScaleWeight)-2]', 'LHEScaleWeight[Length$(LHEScaleWeight)-1]']
+variations_dy = ['LHEScaleWeight[0]/(478.7/457.0)', 'LHEScaleWeight[1]/(477.6/457.0)', 'LHEScaleWeight[3]/(455.5/457.0)', 'LHEScaleWeight[Length$(LHEScaleWeight)-4]/(456.5/457.0)', 'LHEScaleWeight[Length$(LHEScaleWeight)-2]/(436.6/457.0)', 'LHEScaleWeight[Length$(LHEScaleWeight)-1]/(437.2/457.0)']
+variations_top = ['LHEScaleWeight[0]/(12357.1/11228.4)', 'LHEScaleWeight[1]/(12274.9/11228.4)', 'LHEScaleWeight[3]/(11331.4/11228.4)', 'LHEScaleWeight[Length$(LHEScaleWeight)-4]/(11167.3/11228.4)', 'LHEScaleWeight[Length$(LHEScaleWeight)-2]/(10242.8/11228.4)', 'LHEScaleWeight[Length$(LHEScaleWeight)-1]/(10160.9/11228.4)']
 
 nuisances['QCDscale_V'] = {
     'name': 'QCDscale_V',
     'kind': 'weight_envelope',
     'type': 'shape',
-    'samples': {'DY': variations},
+    'samples': {'DY': variations_dy},
 }
 
-
-variations = ['LHEScaleWeight[%d]' % i for i in [0, 1, 3, 5, 7, 8]]
-
-# FIXME: LHEScaleWeight missing
 nuisances['QCDscale_VV'] = {
     'name': 'QCDscale_VV',
     'kind': 'weight_envelope',
     'type': 'shape',
     'samples': {
+        'VZ': variations,
         'Vg': variations,
-        # 'VZ': variations, #FIXME not all VZ have LHEScaleWeight
-        'VgS': variations
-    }
+        'VgS': variations,
+    },
+    'symmetrize': True
 }
 
 nuisances['QCDscale_top']  = {
@@ -331,17 +332,18 @@ nuisances['QCDscale_top']  = {
                 'kind'  : 'weight_envelope',
                 'type'  : 'shape',
                 'samples'  : {
-                   'top' : variations,
+                   'top' : variations_top,
                    }
 }
 
 nuisances['QCDscale_WWewk']  = {
-    'name'  : 'QCDscale_VV',
+    'name'  : 'QCDscale_WWewk',
     'type'  : 'lnN',
     'samples'  : {
         'WWewk' : '1.11',
     },
 }
+
 
 nuisances['QCDscale_ggVV'] = {
     'name': 'QCDscale_ggVV',
@@ -352,14 +354,14 @@ nuisances['QCDscale_ggVV'] = {
 }
 
 
-# NLL resummation variations
+# NLL resummation variations. Removed normalization effect
 nuisances['WWresum']  = {
   'name'  : 'CMS_hww_WWresum',
   'skipCMS' : 1,
   'kind'  : 'weight',
   'type'  : 'shape',
   'samples'  : {
-     'WW'   : ['nllW_Rup/nllW', 'nllW_Rdown/nllW'],
+      'WW'   : ['(nllW_Rup/nllW)/(9395.5/9280.9)', '(nllW_Rdown/nllW)/(8854.1/9280.9)'],
    },
 }
 
@@ -369,7 +371,7 @@ nuisances['WWqscale']  = {
    'kind'  : 'weight',
    'type'  : 'shape',
    'samples'  : {
-      'WW'   : ['nllW_Qup/nllW', 'nllW_Qdown/nllW'],
+      'WW'   : ['(nllW_Qup/nllW)/(9218.6/9280.9)', '(nllW_Qdown/nllW)/(9333.6/9280.9)'],
     },
 }
 

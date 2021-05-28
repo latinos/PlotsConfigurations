@@ -283,27 +283,28 @@ nuisances['pdf']  = {
 # ##### Renormalization & factorization scales
 
 variations = ['LHEScaleWeight[0]', 'LHEScaleWeight[1]', 'LHEScaleWeight[3]', 'LHEScaleWeight[Length$(LHEScaleWeight)-4]', 'LHEScaleWeight[Length$(LHEScaleWeight)-2]', 'LHEScaleWeight[Length$(LHEScaleWeight)-1]']
+variations_dy = ['LHEScaleWeight[0]/(656.3/637.2)', 'LHEScaleWeight[1]/(688.3/637.2)', 'LHEScaleWeight[3]/(624.9/637.2)', 'LHEScaleWeight[Length$(LHEScaleWeight)-4]/(644.9/637.2)', 'LHEScaleWeight[Length$(LHEScaleWeight)-2]/(610.3/637.2)', 'LHEScaleWeight[Length$(LHEScaleWeight)-1]/(617.7/637.2)']
+variations_top = ['LHEScaleWeight[0]/(15711.2/14288.2)', 'LHEScaleWeight[1]/(15614.4/14288.2)', 'LHEScaleWeight[3]/(14412.3/14288.2)', 'LHEScaleWeight[Length$(LHEScaleWeight)-4]/(14217.4/14288.2)', 'LHEScaleWeight[Length$(LHEScaleWeight)-2]/(13038.6/14288.2)', 'LHEScaleWeight[Length$(LHEScaleWeight)-1]/(12940.7/11228.4)']
+
 
 nuisances['QCDscale_V'] = {
     'name': 'QCDscale_V',
     'kind': 'weight_envelope',
     'type': 'shape',
-    'samples': {'DY': variations},
+    'samples': {'DY': variations_dy},
 }
 
 
-variations = ['LHEScaleWeight[%d]' % i for i in [0, 1, 3, 5, 7, 8]]
-
-# FIXME: LHEScaleWeight missing
 nuisances['QCDscale_VV'] = {
     'name': 'QCDscale_VV',
     'kind': 'weight_envelope',
     'type': 'shape',
     'samples': {
         'Vg': variations,
-        # 'VZ': variations, #FIXME not all VZ have LHEScaleWeight
+        'VZ': variations,
         'VgS': variations
-    }
+    },
+    'symmetrize': True
 }
 
 nuisances['QCDscale_top']  = {
@@ -311,12 +312,12 @@ nuisances['QCDscale_top']  = {
                 'kind'  : 'weight_envelope',
                 'type'  : 'shape',
                 'samples'  : {
-                   'top' : variations,
+                   'top' : variations_top,
                    }
 }
 
 nuisances['QCDscale_WWewk']  = {
-    'name'  : 'QCDscale_VV',
+    'name'  : 'QCDscale_WWewk',
     'type'  : 'lnN',
     'samples'  : {
         'WWewk' : '1.11',
@@ -339,7 +340,7 @@ nuisances['WWresum']  = {
   'kind'  : 'weight',
   'type'  : 'shape',
   'samples'  : {
-     'WW'   : ['nllW_Rup/nllW', 'nllW_Rdown/nllW'],
+      'WW'   : ['(nllW_Rup/nllW)/(13695.2/13523.2)', '(nllW_Rdown/nllW)/(12894.6/13523.2)'],
    },
 }
 
@@ -349,7 +350,7 @@ nuisances['WWqscale']  = {
    'kind'  : 'weight',
    'type'  : 'shape',
    'samples'  : {
-      'WW'   : ['nllW_Qup/nllW', 'nllW_Qdown/nllW'],
+       'WW'   : ['(nllW_Qup/nllW)/(13428.4/13523.2)', '(nllW_Qdown/nllW)/(13604.7/13523.2)'],
     },
 }
 

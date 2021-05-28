@@ -312,45 +312,49 @@ nuisances['pdf']  = {
 # LHE scale variation weights (w_var / w_nominal)
 
 variations = ['LHEScaleWeight[0]', 'LHEScaleWeight[1]', 'LHEScaleWeight[3]', 'LHEScaleWeight[Length$(LHEScaleWeight)-4]', 'LHEScaleWeight[Length$(LHEScaleWeight)-2]', 'LHEScaleWeight[Length$(LHEScaleWeight)-1]']
+variations_dy = ['LHEScaleWeight[0]/(297.6/293.6)', 'LHEScaleWeight[1]/(310.9/293.6)', 'LHEScaleWeight[3]/(281.6/293.6)', 'LHEScaleWeight[Length$(LHEScaleWeight)-4]/(303.9/293.6)', 'LHEScaleWeight[Length$(LHEScaleWeight)-2]/(279.1/293.6)', 'LHEScaleWeight[Length$(LHEScaleWeight)-1]/(288.3/293.6)']
+variations_top = ['LHEScaleWeight[0]/(7944.5/8880.0)', 'LHEScaleWeight[1]/(7823.9/8880.0)', 'LHEScaleWeight[3]/(7174.5/8880.0)', 'LHEScaleWeight[Length$(LHEScaleWeight)-4]/(6918.4/8880.0)', 'LHEScaleWeight[Length$(LHEScaleWeight)-2]/(6301.7/8880.0)', 'LHEScaleWeight[Length$(LHEScaleWeight)-1]/(6173.9/8880.0)']
+
 
 nuisances['QCDscale_V'] = {
     'name': 'QCDscale_V',
     'kind': 'weight_envelope',
     'type': 'shape',
-    'samples': {'DY': variations},
+    'samples': {'DY': variations_dy},
 }
 
 
-variations = ['LHEScaleWeight[%d]' % i for i in [0, 1, 3, 5, 7, 8]]
-
-# FIXME: LHEScaleWeight missing
 nuisances['QCDscale_VV'] = {
     'name': 'QCDscale_VV',
     'kind': 'weight_envelope',
     'type': 'shape',
     'samples': {
+        'VZ': variations,
         'Vg': variations,
-        # 'VZ': variations, #FIXME not all VZ have LHEScaleWeight
-        'VgS': variations
-    }
+        'VgS': variations,
+    },
+    'symmetrize': True
 }
 
+
 nuisances['QCDscale_top']  = {
-               'name'  : 'QCDscale_top', 
-                'kind'  : 'weight_envelope',
-                'type'  : 'shape',
-                'samples'  : {
-                   'top' : variations,
-                   }
+    'name'  : 'QCDscale_top', 
+    'kind': 'weight_envelope',
+    'type': 'shape',
+    'samples': {
+        'top'     : variations_top,
+    },
+    'symmetrize': True
 }
 
 nuisances['QCDscale_WWewk']  = {
-    'name'  : 'QCDscale_VV',
+    'name'  : 'QCDscale_WWewk',
     'type'  : 'lnN',
     'samples'  : {
         'WWewk' : '1.11',
     },
 }
+
 
 nuisances['QCDscale_ggVV'] = {
     'name': 'QCDscale_ggVV',
@@ -367,7 +371,7 @@ nuisances['WWresum']  = {
   'kind'  : 'weight',
   'type'  : 'shape',
   'samples'  : {
-     'WW'   : ['nllW_Rup/nllW', 'nllW_Rdown/nllW'],
+      'WW'   : ['(nllW_Rup/nllW)/(6986.9/6888.5)', '(nllW_Rdown/nllW)/(6552.4/6888.5)'],
    },
 #  'cutspost'  : lambda self, cuts: [cut for cut in cuts if '0j' in cut]
 } 
@@ -377,7 +381,7 @@ nuisances['WWqscale']  = {
    'kind'  : 'weight',
    'type'  : 'shape',
    'samples'  : {
-      'WW'   : ['nllW_Qup/nllW', 'nllW_Qdown/nllW'],
+      'WW'   : ['(nllW_Qup/nllW)/(6825.2/6888.5)', '(nllW_Qdown/nllW)/(6945.6/6888.5)'],
     },
 #   'cutspost'  : lambda self, cuts: [cut for cut in cuts if '0j' in cut]
 }
