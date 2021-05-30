@@ -79,9 +79,20 @@ variables['BDT_Ada13']  = {
 #    }
 #}
 
-variables['BDT_FineBin']  = { 
+#variables['BDT_FineBin10']  = { 
+#    'name': '2*BDT_Ada13[0]',
+#    'range' : ([-1., -0.5, 0, 0.25, 0.5, 0.6, 0.7, 0.76, 0.8, 0.82, 0.84, 0.89, 0.91, 1.],),
+#    'xaxis' : 'BDT discriminator',
+#    'fold'  : 3, 
+#    'blind' : {
+#        'InCh_SR' : [0.4, 1.],
+#        'InCh_highMtw_SR' : [0.4, 1.],
+#    }
+#}
+
+variables['BDT_FineBin25']  = { 
     'name': '2*BDT_Ada13[0]',
-    'range' : ([-1., -0.5, 0, 0.25, 0.5, 0.6, 0.7, 0.76, 0.8, 0.82, 0.84, 0.89, 0.91, 1.],),
+    'range' : ([-1., -0.5, 0, 0.25, 0.4, 0.55, 0.59, 0.63, 0.67, 0.73, 0.75, 0.79, 0.81, 0.86, 1.],),
     'xaxis' : 'BDT discriminator',
     'fold'  : 3, 
     'blind' : {
