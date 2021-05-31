@@ -8,7 +8,7 @@ configurations = os.path.dirname(configurations) # FullRunII
 configurations = os.path.dirname(configurations) # WW
 configurations = os.path.dirname(configurations) # Configurations
 
-from LatinoAnalysis.Tools.commonTools import getSampleFiles, getBaseW, addSampleWeight
+from LatinoAnalysis.Tools.commonTools import getSampleFiles, getBaseWnAOD, addSampleWeight
 
 def nanoGetSampleFiles(inputDir, sample):
     try:
@@ -103,16 +103,21 @@ mcCommonWeight_signal = 'genjetetacut*XSWeight*SFweight*PromptGenLepMatch2l*METF
 
 ###### DY #######
 
-files = nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50-LO_ext2') + \
-    nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-10to50-LO')
+files = nanoGetSampleFiles(mcDirectory, 'DYJetsToTT_MuEle_M-50') + \
+    nanoGetSampleFiles(mcDirectory, 'DYJetsToTT_MuEle_M-50_ext1') + \
+    nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-10to50')
 
 samples['DY'] = {
     'name': files,
-    'weight': mcCommonWeight + '*( !(Sum$(PhotonGen_isPrompt==1 && PhotonGen_pt>15 && abs(PhotonGen_eta)<2.6) > 0))',
+    'weight': mcCommonWeight + '*( !(Sum$(PhotonGen_isPrompt==1 && PhotonGen_pt>10 && abs(PhotonGen_eta)<2.6) > 0))',
     'FilesPerJob': 4,
 }
-addSampleWeight(samples,'DY','DYJetsToLL_M-50-LO_ext2','DY_LO_pTllrw')
-addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO','DY_LO_pTllrw')
+
+DYbaseW = getBaseWnAOD(mcDirectory, mcProduction, ['DYJetsToTT_MuEle_M-50', 'DYJetsToTT_MuEle_M-50_ext1'])
+
+addSampleWeight(samples,'DY','DYJetsToTT_MuEle_M-50',     'DY_NLO_pTllrw*'+DYbaseW+'/baseW')
+addSampleWeight(samples,'DY','DYJetsToTT_MuEle_M-50_ext1','DY_NLO_pTllrw*'+DYbaseW+'/baseW')
+addSampleWeight(samples,'DY','DYJetsToLL_M-10to50',       'DY_NLO_pTllrw')
 
 ###### Top #######
 
@@ -145,7 +150,7 @@ samples['Wg'] = {
 
 ######## Zg #######
 
-files = nanoGetSampleFiles(mcDirectory, 'Zg')
+files = nanoGetSampleFiles(mcDirectory, 'Zg') + nanoGetSampleFiles(mcDirectory, 'Zg_ext1')
 
 samples['Zg'] = {
     'name': files,
@@ -153,32 +158,46 @@ samples['Zg'] = {
     'FilesPerJob': 4
 }
 
+ZGbaseW = getBaseWnAOD(mcDirectory, mcProduction, ['Zg', 'Zg_ext1'])
+
+addSampleWeight(samples,'Zg','Zg',      ZGbaseW+'/baseW')
+addSampleWeight(samples,'Zg','Zg_ext1', ZGbaseW+'/baseW')
+
 ######## ZgS ########
-files = nanoGetSampleFiles(mcDirectory, 'Zg')
+
+files = nanoGetSampleFiles(mcDirectory, 'Zg') + nanoGetSampleFiles(mcDirectory, 'Zg_ext1')
 
 samples['ZgS'] = {
     'name': files,
-    'weight': mcCommonWeight,
+    'weight': mcCommonWeight + '*(Gen_ZGstar_mass > 0)',
     'FilesPerJob': 4,
     }
-addSampleWeight(samples, 'ZgS', 'Zg', '(Gen_ZGstar_mass > 0)')
+
+addSampleWeight(samples,'ZgS','Zg',      ZGbaseW+'/baseW')
+addSampleWeight(samples,'ZgS','Zg_ext1', ZGbaseW+'/baseW')
 
 ######## WgS ########
 
 files = nanoGetSampleFiles(mcDirectory, 'Wg_MADGRAPHMLM') + \
-    nanoGetSampleFiles(mcDirectory, 'WZTo3LNu_mllmin01')
+    nanoGetSampleFiles(mcDirectory, 'WZTo3LNu_mllmin01') + \
+    nanoGetSampleFiles(mcDirectory, 'WZTo3LNu_mllmin01_ext1')
 
 samples['WgS'] = {
     'name': files,
     'weight': mcCommonWeight + ' * (gstarLow * 0.94)',
     'FilesPerJob': 4,
 }
+
+WZbaseW = getBaseWnAOD(mcDirectory, mcProduction, ['WZTo3LNu_mllmin01', 'WZTo3LNu_mllmin01_ext1'])
+
 addSampleWeight(samples, 'WgS', 'Wg_MADGRAPHMLM', '(Gen_ZGstar_mass > 0 && Gen_ZGstar_mass < 0.1)')
-addSampleWeight(samples, 'WgS', 'WZTo3LNu_mllmin01', '(Gen_ZGstar_mass > 0.1)')
+addSampleWeight(samples, 'WgS', 'WZTo3LNu_mllmin01',      '(Gen_ZGstar_mass > 0.1)*'+WZbaseW+'/baseW')
+addSampleWeight(samples, 'WgS', 'WZTo3LNu_mllmin01_ext1', '(Gen_ZGstar_mass > 0.1)*'+WZbaseW+'/baseW')
 
 ######## WZ ########
 
 files = nanoGetSampleFiles(mcDirectory, 'WZTo3LNu_mllmin01') + \
+        nanoGetSampleFiles(mcDirectory, 'WZTo3LNu_mllmin01_ext1') + \
     nanoGetSampleFiles(mcDirectory, 'WZTo2L2Q')
 
 samples['WZ'] = {
@@ -187,17 +206,30 @@ samples['WZ'] = {
     'FilesPerJob': 4,
 }
 
+addSampleWeight(samples, 'WZ', 'WZTo3LNu_mllmin01',      WZbaseW+'/baseW')
+addSampleWeight(samples, 'WZ', 'WZTo3LNu_mllmin01_ext1', WZbaseW+'/baseW')
+
 ############ ZZ ############
 
 files = nanoGetSampleFiles(mcDirectory, 'ZZTo2L2Nu') + \
+        nanoGetSampleFiles(mcDirectory, 'ZZTo2L2Nu_ext1') + \
     nanoGetSampleFiles(mcDirectory, 'ZZTo2L2Q') + \
-    nanoGetSampleFiles(mcDirectory, 'ZZTo4L')
+    nanoGetSampleFiles(mcDirectory, 'ZZTo4L') + \
+    nanoGetSampleFiles(mcDirectory, 'ZZTo4L_ext1')
 
 samples['ZZ'] = {
     'name': files,
     'weight': mcCommonWeight,
     'FilesPerJob': 4
 }
+
+ZZ2LbaseW = getBaseWnAOD(mcDirectory, mcProduction, ['ZZTo2L2Nu', 'ZZTo2L2Nu_ext1'])
+ZZ4LbaseW = getBaseWnAOD(mcDirectory, mcProduction, ['ZZTo4L', 'ZZTo4L_ext1'])
+
+addSampleWeight(samples, 'ZZ', 'ZZTo2L2Nu',      ZZ2LbaseW+'/baseW')
+addSampleWeight(samples, 'ZZ', 'ZZTo2L2Nu_ext1', ZZ2LbaseW+'/baseW')
+addSampleWeight(samples, 'ZZ', 'ZZTo4L',         ZZ4LbaseW+'/baseW')
+addSampleWeight(samples, 'ZZ', 'ZZTo4L_ext1',    ZZ4LbaseW+'/baseW')
 
 ########## VVV #########
 
@@ -259,14 +291,11 @@ samples['WH_hww'] = {
 
 ############ ttH ############
 
-#FIXME ttH sample missing in v6
-#samples['ttH_hww'] = {
-#    'name':   nanoGetSampleFiles(mcDirectory, 'ttHToNonbb_M125'),
-#    'weight': mcCommonWeight,
-#    'FilesPerJob': 1
-#}
-
-#signals.append('ttH_hww')
+samples['ttH_hww'] = {
+    'name':   nanoGetSampleFiles(mcDirectory, 'ttHToNonbb_M125'),
+    'weight': mcCommonWeight,
+    'FilesPerJob': 1
+}
 
 ############ H->TauTau ############
 
