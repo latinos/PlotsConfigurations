@@ -58,6 +58,6 @@ for histfile in histo_paths:
             var = f0.Get(varhist)
             for ibin in xrange(1,nom.GetNbinsX()+1):
                 #if nom.GetBinContent(ibin) > 0 and var.GetBinContent(ibin) < 0:
-                if var.GetBinContent(ibin) < 0:
+                if var.GetBinContent(ibin) <= 0:
                     print(' - Found negative bin in sample "'+sample_name+'", nuisance "'+var_name+'": bin='+str(ibin)+', val='+str(var.GetBinContent(ibin))+', nominal val='+str(nom.GetBinContent(ibin)))
 

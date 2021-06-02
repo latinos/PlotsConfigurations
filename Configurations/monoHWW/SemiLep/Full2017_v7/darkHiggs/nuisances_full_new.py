@@ -222,8 +222,26 @@ makeSuffixVar('CMS_scale_m_2017', 'MupT', mc_noVBS)
 #
 #for syst in jes_systs:
 #    makeSuffixVar('CMS_scale_'+syst, syst, folder_fix='JES')
-makeSuffixVar('CMS_scale_JES_2017',     'JES', [skey for skey in mc_noVBS if skey in mc_noTop], as_lnN=True)
-makeSuffixVar('CMS_scale_JES_top_2017', 'JES', [skey for skey in mc_noVBS if skey in mc_top] )
+
+
+nuisances['CMS_scale_JES_bogus_2017'] = {
+    'name': 'CMS_scale_JES_2017',
+    'type': 'lnN',
+    'samples': {
+        'DYlow': '1.06',
+        'VgS_L': '1.04',
+        'VBF-V': '1.02',
+    },
+}
+
+mc_forJES = [skey for skey in mc_noVBS if not skey in ['DYlow', 'VgS_L', 'VBF-V']]
+
+## top/rest split
+#makeSuffixVar('CMS_scale_JES_2017',     'JES', [skey for skey in mc_forJES if skey in mc_noTop], as_lnN=True)
+#makeSuffixVar('CMS_scale_JES_top_2017', 'JES', [skey for skey in mc_forJES if skey in mc_top] )
+
+# Unified
+makeSuffixVar('CMS_scale_JES_2017',     'JES', mc_forJES, as_lnN=True)
 
 ##### Jet energy resolution
 
@@ -524,7 +542,23 @@ nuisances['pdf']  = {
 ### Shape nuisance due to QCD scale variations for DY
 ## LHE scale variation weights (w_var / w_nominal)
 
-variations = ['LHEScaleWeight[0]', 'LHEScaleWeight[1]', 'LHEScaleWeight[3]', 'LHEScaleWeight[Length$(LHEScaleWeight)-4]', 'LHEScaleWeight[Length$(LHEScaleWeight)-2]', 'LHEScaleWeight[Length$(LHEScaleWeight)-1]']
+variations = [
+    'LHEScaleWeight[0]', 
+    'LHEScaleWeight[1]', 
+    'LHEScaleWeight[3]', 
+    'LHEScaleWeight[Length$(LHEScaleWeight)-4]', 
+    'LHEScaleWeight[Length$(LHEScaleWeight)-2]', 
+    'LHEScaleWeight[Length$(LHEScaleWeight)-1]'
+]
+
+variations_top = [
+    'LHEScaleWeight[0]*0.89565787001', 
+    'LHEScaleWeight[1]*0.907846201169', 
+    'LHEScaleWeight[3]*0.981615092353', 
+    'LHEScaleWeight[Length$(LHEScaleWeight)-4]*1.01385162888', 
+    'LHEScaleWeight[Length$(LHEScaleWeight)-2]*1.10435044145', 
+    'LHEScaleWeight[Length$(LHEScaleWeight)-1]*1.1245296719'
+]
 
 nuisances['QCDscale_V'] = {
     'name': 'QCDscale_V',
@@ -553,21 +587,22 @@ nuisances['QCDscale_top']  = {
     'kind'  : 'weight_envelope',
     'type'  : 'shape',
     'samples'  : {
-        'top' : variations,
+        #'top' : variations,
+        'top' : variations_top,
     }
 }
 
-nuisances['QCDscale_Wjets']  = {
-    'name'  : 'QCDscale_V', 
-    'kind'  : 'weight_envelope',
-    'type'  : 'shape',
-    'samples'  : {
-        'Wjets' : variations,
-    }
-}
+#nuisances['QCDscale_Wjets']  = {
+#    'name'  : 'QCDscale_V', 
+#    'kind'  : 'weight_envelope',
+#    'type'  : 'shape',
+#    'samples'  : {
+#        'Wjets' : variations,
+#    }
+#}
 
 nuisances['QCDscale_WWewk']  = {
-    'name'  : 'QCDscale_VV',
+    'name'  : 'QCDscale_WWewk',
     'type'  : 'lnN',
     'samples'  : {
         'WWewk' : '1.11',

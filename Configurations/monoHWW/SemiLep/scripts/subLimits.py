@@ -37,6 +37,11 @@ def write_job_files(job_dir, job_id, comb_dir, work_dir, comb_cmd, run_cmd):
     # sh file
     sh_file = open(job+'.sh', 'w')
     sh_file.write('#!/bin/bash\n')
+    sh_file.write('\n')
+    sh_file.write('export SCRAM_ARCH=slc7_amd64_gcc700\n')
+    sh_file.write('export VO_CMS_SW_DIR=/cvmfs/cms.cern.ch\n')
+    sh_file.write('source $VO_CMS_SW_DIR/cmsset_default.sh\n')
+    sh_file.write('\n')
     sh_file.write('cd '+comb_dir+'\n')
     sh_file.write('eval `scramv1 runtime -sh`\n')
     sh_file.write('cd '+work_dir+'\n')

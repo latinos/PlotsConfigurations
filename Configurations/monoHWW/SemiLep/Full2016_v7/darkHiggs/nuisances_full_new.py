@@ -212,8 +212,13 @@ makeSuffixVar('CMS_scale_m_2016', 'MupT', mc_noVBS)
 #
 #for syst in jes_systs:
 #    makeSuffixVar('CMS_scale_'+syst, syst, folder_fix='JES')
+
+# top/rest split
 makeSuffixVar('CMS_scale_JES_2016',     'JES', [skey for skey in mc_noVBS if skey in mc_noTop], as_lnN=True)
 makeSuffixVar('CMS_scale_JES_top_2016', 'JES', [skey for skey in mc_noVBS if skey in mc_top] )
+
+## Unified
+#makeSuffixVar('CMS_scale_JES_2016',     'JES', mc_noVBS, as_lnN=True)
 
 ##### Jet energy resolution
 
@@ -448,7 +453,32 @@ nuisances['pdf']  = {
 ## Shape nuisance due to QCD scale variations for DY
 # LHE scale variation weights (w_var / w_nominal)
 
-variations = ['LHEScaleWeight[0]', 'LHEScaleWeight[1]', 'LHEScaleWeight[3]', 'LHEScaleWeight[Length$(LHEScaleWeight)-4]', 'LHEScaleWeight[Length$(LHEScaleWeight)-2]', 'LHEScaleWeight[Length$(LHEScaleWeight)-1]']
+variations = [
+    'LHEScaleWeight[0]', 
+    'LHEScaleWeight[1]', 
+    'LHEScaleWeight[3]', 
+    'LHEScaleWeight[Length$(LHEScaleWeight)-4]', 
+    'LHEScaleWeight[Length$(LHEScaleWeight)-2]', 
+    'LHEScaleWeight[Length$(LHEScaleWeight)-1]'
+]
+
+variations_top = [
+    'LHEScaleWeight[0]*0.946489813052', 
+    'LHEScaleWeight[1]*0.961787266363', 
+    'LHEScaleWeight[3]*1.04492974683', 
+    'LHEScaleWeight[Length$(LHEScaleWeight)-4]*1.0845741904', 
+    'LHEScaleWeight[Length$(LHEScaleWeight)-2]*1.18612012919', 
+    'LHEScaleWeight[Length$(LHEScaleWeight)-1]*1.21104062635'
+]
+
+variations_wjets = [
+    'LHEScaleWeight[0]*0.9307097563', 
+    'LHEScaleWeight[1]*0.919130428193', 
+    'LHEScaleWeight[3]*1.02150764848', 
+    'LHEScaleWeight[Length$(LHEScaleWeight)-4]*0.983260294042', 
+    'LHEScaleWeight[Length$(LHEScaleWeight)-2]*1.10111511968', 
+    'LHEScaleWeight[Length$(LHEScaleWeight)-1]*1.07918347753'
+]
 
 nuisances['QCDscale_V'] = {
     'name': 'QCDscale_V',
@@ -491,7 +521,7 @@ nuisances['QCDscale_Wjets']  = {
 }
 
 nuisances['QCDscale_WWewk']  = {
-    'name'  : 'QCDscale_VV',
+    'name'  : 'QCDscale_WWewk',
     'type'  : 'lnN',
     'samples'  : {
         'WWewk' : '1.11',

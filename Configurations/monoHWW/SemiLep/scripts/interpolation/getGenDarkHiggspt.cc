@@ -4,6 +4,9 @@
 #include "TMath.h"
 #include <vector>
 
+#ifndef getGenDarkHiggspt_HH
+#define getGenDarkHiggspt_HH
+
 class getGenDarkHiggspt : public multidraw::TTreeFunction {
 public:
   getGenDarkHiggspt();
@@ -54,3 +57,5 @@ getGenDarkHiggspt::bindTree_(multidraw::FunctionLibrary& _library)
   _library.bindBranch(GenPart_pt, "GenPart_pt");
   _library.bindBranch(GenPart_pdgId, "GenPart_pdgId");
 }
+
+#endif
