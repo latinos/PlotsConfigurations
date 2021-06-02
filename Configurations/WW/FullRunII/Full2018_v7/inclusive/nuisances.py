@@ -258,7 +258,7 @@ nuisances['JER'] = {
     'type': 'shape',
     'mapUp': 'JERup',
     'mapDown': 'JERdo',
-    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['WZ', 'ZZ', 'Wg', 'Zg','WgS', 'ZgS']),
+    'samples': dict((skey, ['1', '1']) for skey in mc),
     'folderUp': makeMCDirectory('JERup_suffix'),
     'folderDown': makeMCDirectory('JERdo_suffix'),
     'AsLnN': '1'

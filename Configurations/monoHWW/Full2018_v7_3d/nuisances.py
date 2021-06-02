@@ -284,7 +284,7 @@ nuisances['pdf']  = {
 
 variations = ['LHEScaleWeight[0]', 'LHEScaleWeight[1]', 'LHEScaleWeight[3]', 'LHEScaleWeight[Length$(LHEScaleWeight)-4]', 'LHEScaleWeight[Length$(LHEScaleWeight)-2]', 'LHEScaleWeight[Length$(LHEScaleWeight)-1]']
 variations_dy = ['LHEScaleWeight[0]/(656.3/637.2)', 'LHEScaleWeight[1]/(688.3/637.2)', 'LHEScaleWeight[3]/(624.9/637.2)', 'LHEScaleWeight[Length$(LHEScaleWeight)-4]/(644.9/637.2)', 'LHEScaleWeight[Length$(LHEScaleWeight)-2]/(610.3/637.2)', 'LHEScaleWeight[Length$(LHEScaleWeight)-1]/(617.7/637.2)']
-variations_top = ['LHEScaleWeight[0]/(15711.2/14288.2)', 'LHEScaleWeight[1]/(15614.4/14288.2)', 'LHEScaleWeight[3]/(14412.3/14288.2)', 'LHEScaleWeight[Length$(LHEScaleWeight)-4]/(14217.4/14288.2)', 'LHEScaleWeight[Length$(LHEScaleWeight)-2]/(13038.6/14288.2)', 'LHEScaleWeight[Length$(LHEScaleWeight)-1]/(12940.7/11228.4)']
+variations_top = ['LHEScaleWeight[0]/(15711.2/14288.2)', 'LHEScaleWeight[1]/(15614.4/14288.2)', 'LHEScaleWeight[3]/(14412.3/14288.2)', 'LHEScaleWeight[Length$(LHEScaleWeight)-4]/(14217.4/14288.2)', 'LHEScaleWeight[Length$(LHEScaleWeight)-2]/(13038.6/14288.2)', 'LHEScaleWeight[Length$(LHEScaleWeight)-1]/(12940.7/14288.2)']
 
 
 nuisances['QCDscale_V'] = {
