@@ -47,9 +47,9 @@ To combine datacards for one year, do
                       SR2j=datacards_ZH3l_2016_v7/zh3l_SR_2j/mTlmetjj/datacard.txt \
                     WZCR2j=datacards_ZH3l_2016_v7/zh3l_WZ_CR_2j/events/datacard.txt > Zh3l_2016.txt
 
-Combine datacards for different years:
+To combine datacards for different years, you could go to the ZH3l directory and do:
 
-    combineCards.py zh3l_2016=Zh3l_2016.txt zh3l_2017=Zh3l_2017.txt zh3l_2018=Zh3l_2018.txt > Zh3l_RunII.txt
+    combineCards.py zh3l_2016=Full2016_v7/Zh3l_2016.txt zh3l_2017=Full2017_v7/Zh3l_2017.txt zh3l_2018=Full2018_v7/Zh3l_2018.txt > Zh3l_RunII.txt
     
 Convert datacards to workspaces:
 
@@ -57,6 +57,8 @@ Convert datacards to workspaces:
     text2workspace.py Zh3l_2017.txt  -o Zh3l_2017.root
     text2workspace.py Zh3l_2018.txt  -o Zh3l_2018.root
     text2workspace.py Zh3l_RunII.txt -o Zh3l_RunII.root
+
+where each command is run from the directory containing the .txt datacard.
     
 ## Run fit
 
@@ -74,9 +76,9 @@ Note that the above commands only seem to work in bash shell -- you can copy the
 
 Run impacts:
 
-    combineTool.py -M Impacts -d Zh3l_2016.root -m 125.09 -n Zh3l_2016 --expectSignal=1 -t -1 --setParameterRanges r=-10,10 --doInitialFit --robustFit 1 
-    combineTool.py -M Impacts -d Zh3l_2016.root -m 125.09 -n Zh3l_2016 --expectSignal=1 -t -1 --setParameterRanges r=-10,10 --doFits --robustFit 1 --parallel 8
-    combineTool.py -M Impacts -d Zh3l_2016.root -m 125.09 -n Zh3l_2016 --expectSignal=1 -t -1 --setParameterRanges r=-10,10 -o impacts_Zh3l_2016.json
+    combineTool.py -M Impacts -d Zh3l_2016.root -m 125.09 -n Zh3l_2016 --expectSignal=1 -t -1 --setParameterRanges r=-10,10,CMS_hww_WZ3l1jnorm=-5,5:CMS_hww_WZ3l2jnorm=-5,5 --doInitialFit --robustFit 1 
+    combineTool.py -M Impacts -d Zh3l_2016.root -m 125.09 -n Zh3l_2016 --expectSignal=1 -t -1 --setParameterRanges r=-10,10,CMS_hww_WZ3l1jnorm=-5,5:CMS_hww_WZ3l2jnorm=-5,5 --doFits --robustFit 1 --parallel 8
+    combineTool.py -M Impacts -d Zh3l_2016.root -m 125.09 -n Zh3l_2016 --expectSignal=1 -t -1 --setParameterRanges r=-10,10,CMS_hww_WZ3l1jnorm=-5,5:CMS_hww_WZ3l2jnorm=-5,5 -o impacts_Zh3l_2016.json
     plotImpacts.py -i impacts_Zh3l_2016.json -o impacts_Zh3l_2016
 
 For more info on combine, read the manual at https://cms-analysis.github.io/HiggsAnalysis-CombinedLimit/
