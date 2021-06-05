@@ -76,9 +76,9 @@ Note that the above commands only seem to work in bash shell -- you can copy the
 
 Run impacts:
 
-    combineTool.py -M Impacts -d Zh3l_2016.root -m 125.09 -n Zh3l_2016 --expectSignal=1 -t -1 --setParameterRanges r=-10,10,CMS_hww_WZ3l1jnorm=-5,5:CMS_hww_WZ3l2jnorm=-5,5 --doInitialFit --robustFit 1 
-    combineTool.py -M Impacts -d Zh3l_2016.root -m 125.09 -n Zh3l_2016 --expectSignal=1 -t -1 --setParameterRanges r=-10,10,CMS_hww_WZ3l1jnorm=-5,5:CMS_hww_WZ3l2jnorm=-5,5 --doFits --robustFit 1 --parallel 8
-    combineTool.py -M Impacts -d Zh3l_2016.root -m 125.09 -n Zh3l_2016 --expectSignal=1 -t -1 --setParameterRanges r=-10,10,CMS_hww_WZ3l1jnorm=-5,5:CMS_hww_WZ3l2jnorm=-5,5 -o impacts_Zh3l_2016.json
+    combineTool.py -M Impacts -d Zh3l_2016.root -m 125.09 -n Zh3l_2016 --expectSignal=1 -t -1 --setParameterRanges r=-10,10:CMS_hww_WZ3l1jnorm=-5,5:CMS_hww_WZ3l2jnorm=-5,5 --doInitialFit --robustFit 1 
+    combineTool.py -M Impacts -d Zh3l_2016.root -m 125.09 -n Zh3l_2016 --expectSignal=1 -t -1 --setParameterRanges r=-10,10:CMS_hww_WZ3l1jnorm=-5,5:CMS_hww_WZ3l2jnorm=-5,5 --doFits --robustFit 1 --parallel 8
+    combineTool.py -M Impacts -d Zh3l_2016.root -m 125.09 -n Zh3l_2016 --expectSignal=1 -t -1 --setParameterRanges r=-10,10:CMS_hww_WZ3l1jnorm=-5,5:CMS_hww_WZ3l2jnorm=-5,5 -o impacts_Zh3l_2016.json
     plotImpacts.py -i impacts_Zh3l_2016.json -o impacts_Zh3l_2016
 
 For more info on combine, read the manual at https://cms-analysis.github.io/HiggsAnalysis-CombinedLimit/
