@@ -8,18 +8,11 @@
 # If not defined, normal plots is used
 #
 
-groupPlot['top']  = {  
-                  'nameHR' : 'tW and t#bar{t}',
+groupPlot['SMHiggs']  = {  
+                  'nameHR' : 'SM Higgs',
                   'isSignal' : 0,
-                  'color': 796,   # kOrange -4
-                  'samples'  : ['top']
-              }
-
-groupPlot['WW']  = {  
-                  'nameHR' : 'WW',
-                  'isSignal' : 0,
-                  'color': 851, # kAzure -9
-                  'samples'  : ['WW', 'ggWW', 'WWewk', 'qqWWqq', 'WW2J']
+                  'color': 625, # kRed -7
+		                'samples'  : ['ZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww', 'ZH_htt', 'WH_htt', 'qqH_htt', 'ggH_htt']
               }
 
 groupPlot['Fake']  = {
@@ -29,12 +22,18 @@ groupPlot['Fake']  = {
                   'samples'  : ['Fake_me', 'Fake_em', 'Fake_ee', 'Fake_mm']
 }
 
-
-groupPlot['DY']  = {  
-                  'nameHR' : "DY",
+groupPlot['WW']  = {  
+                  'nameHR' : 'WW',
                   'isSignal' : 0,
-                  'color': 410,    # kGreen -6
-                  'samples'  : ['DY', 'DYemb']
+                  'color': 851, # kAzure -9
+                  'samples'  : ['WW', 'ggWW', 'WWewk', 'qqWWqq', 'WW2J']
+              }
+
+groupPlot['top']  = {  
+                  'nameHR' : 'tW and t#bar{t}',
+                  'isSignal' : 0,
+                  'color': 796,   # kOrange -4
+                  'samples'  : ['top']
               }
 
 groupPlot['VV']  = {  
@@ -44,11 +43,11 @@ groupPlot['VV']  = {
                   'samples'  : ['VZ', 'WZ', 'ZZ', 'Vg', 'VgS_L', 'VgS_H', 'VVV']
               }
 
-groupPlot['SMHiggs']  = {  
-                  'nameHR' : 'SM Higgs',
+groupPlot['DY']  = {  
+                  'nameHR' : "DY",
                   'isSignal' : 0,
-                  'color': 625, # kRed -7
-		                'samples'  : ['ZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww', 'ZH_htt', 'WH_htt', 'qqH_htt', 'ggH_htt']
+                  'color': 410,    # kGreen -6
+                  'samples'  : ['DY', 'DYemb']
               }
 
 model_name = '_'+'RelW0.02'.replace(".","")

@@ -11,43 +11,42 @@
 groupPlot['SMHiggs']  = {  
                   'nameHR' : 'SM Higgs',
                   'isSignal' : 0,
-                  'color': 632, # kRed 
-		  #'samples'  : ['ZH_hww', 'ggZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww','bbH_hww','ttH_hww','ZH_htt', 'WH_htt', 'qqH_htt', 'ggH_htt']
-		  'samples'  : ['ZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww', 'ZH_htt', 'WH_htt', 'qqH_htt', 'ggH_htt']
+                  'color': 625, # kRed -7
+		                'samples'  : ['ZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww', 'ZH_htt', 'WH_htt', 'qqH_htt', 'ggH_htt']
               }
 
 groupPlot['DY']  = {  
                   'nameHR' : "DY",
                   'isSignal' : 0,
-                  'color': 418,    # kGreen+2
+                  'color': 410,    # kGreen -6
                   'samples'  : ['DY', 'DYemb']
               }
 
 groupPlot['VV']  = {  
                   'nameHR' : 'Multiboson',
                   'isSignal' : 0,
-                  'color': 617,   # kViolet +1
+                  'color': 610,   # kMagenta -6
                   'samples'  : ['VZ', 'WZ', 'ZZ', 'Vg', 'VgS_L', 'VgS_H', 'VVV']
               }
 
 groupPlot['Fake']  = {
                   'nameHR' : 'Nonprompt',
                   'isSignal' : 0,
-                  'color': 922,    # kGray +2
+                  'color': 921,    # kGray +1
                   'samples'  : ['Fake_me', 'Fake_em', 'Fake_ee', 'Fake_mm']
 }
 
 groupPlot['WW']  = {  
                   'nameHR' : 'WW',
                   'isSignal' : 0,
-                  'color': 852, # kAzure -8
+                  'color': 851, # kAzure -9
                   'samples'  : ['WW', 'ggWW', 'WWewk', 'qqWWqq', 'WW2J']
               }
 
 groupPlot['top']  = {  
                   'nameHR' : 'tW and t#bar{t}',
                   'isSignal' : 0,
-                  'color': 800,   # kOrange
+                  'color': 796,   # kOrange -4
                   'samples'  : ['top']
               }
 
@@ -73,37 +72,37 @@ model_name = '_'+'RelW0.02'.replace(".","")
 groupPlot['GGH_200']  = {  
                   'nameHR' : 'ggF 200 GeV',
                   'isSignal' : 2,
-                  'color': 2, # kRed
+                  'color': 632, # kRed
                   'samples'  : ['GGH_200'+model_name]
-              }
-groupPlot['GGH_800']  = {  
-                  'nameHR' : 'ggF 800 GeV (x10)',
-                  'isSignal' : 2,
-                  'color': 3, # kGreen
-                  'samples'  : ['GGH_800'+model_name]
-              }
-groupPlot['GGH_2000']  = {  
-                  'nameHR' : 'ggF 2000 GeV (x200)',
-                  'isSignal' : 2,
-                  'color': 4, # kBlue
-                  'samples'  : ['GGH_2000'+model_name]
               }
 groupPlot['QQH_200']  = {  
                   'nameHR' : 'VBF 200 GeV',
                   'isSignal' : 2,
-                  'color': 45, # kRed 
+                  'color': 634, # kRed +2
                   'samples'  : ['QQH_200'+model_name]
+              }
+groupPlot['GGH_800']  = {  
+                  'nameHR' : 'ggF 800 GeV (x10)',
+                  'isSignal' : 2,
+                  'color': 417, # kGreen +1
+                  'samples'  : ['GGH_800'+model_name]
               }
 groupPlot['QQH_800']  = {  
                   'nameHR' : 'VBF 800 GeV (x10)',
                   'isSignal' : 2,
-                  'color': 30, # kGreen
+                  'color': 419, # kGreen +3
                   'samples'  : ['QQH_800'+model_name]
+              }
+groupPlot['GGH_2000']  = {  
+                  'nameHR' : 'ggF 2000 GeV (x200)',
+                  'isSignal' : 2,
+                  'color': 600, # kBlue
+                  'samples'  : ['GGH_2000'+model_name]
               }
 groupPlot['QQH_2000']  = {  
                   'nameHR' : 'VBF 2000 GeV (x200)',
                   'isSignal' : 2,
-                  'color': 38, # kBlue
+                  'color': 602, # kBlue +2
                   'samples'  : ['QQH_2000'+model_name]
               }
 
@@ -401,7 +400,7 @@ plot['DATA']  = {
 
 # additional options
 
-legend['lumi'] = 'L = 59.7/fb'
+legend['lumi'] = 'L = 59.7 fb^{-1}'
 
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
 

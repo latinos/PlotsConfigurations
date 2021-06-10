@@ -8,11 +8,18 @@
 # If not defined, normal plots is used
 #
 
-groupPlot['top']  = {  
-                  'nameHR' : 'tW and t#bar{t}',
+groupPlot['SMHiggs']  = {  
+                  'nameHR' : 'SM Higgs',
                   'isSignal' : 0,
-                  'color': 796,   # kOrange -4
-                  'samples'  : ['top']
+                  'color': 625, # kRed -7
+		                'samples'  : ['ZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww', 'ZH_htt', 'WH_htt', 'qqH_htt', 'ggH_htt']
+              }
+
+groupPlot['VV']  = {  
+                  'nameHR' : 'Multiboson',
+                  'isSignal' : 0,
+                  'color': 610,   # kMagenta -6
+                  'samples'  : ['VZ', 'WZ', 'ZZ', 'Vg', 'VgS_L', 'VgS_H', 'VVV']
               }
 
 groupPlot['WW']  = {  
@@ -29,7 +36,6 @@ groupPlot['Fake']  = {
                   'samples'  : ['Fake_me', 'Fake_em', 'Fake_ee', 'Fake_mm']
 }
 
-
 groupPlot['DY']  = {  
                   'nameHR' : "DY",
                   'isSignal' : 0,
@@ -37,18 +43,11 @@ groupPlot['DY']  = {
                   'samples'  : ['DY', 'DYemb']
               }
 
-groupPlot['VV']  = {  
-                  'nameHR' : 'Multiboson',
+groupPlot['top']  = {  
+                  'nameHR' : 'tW and t#bar{t}',
                   'isSignal' : 0,
-                  'color': 610,   # kMagenta -6
-                  'samples'  : ['VZ', 'WZ', 'ZZ', 'Vg', 'VgS_L', 'VgS_H', 'VVV']
-              }
-
-groupPlot['SMHiggs']  = {  
-                  'nameHR' : 'SM Higgs',
-                  'isSignal' : 0,
-                  'color': 625, # kRed -7
-		                'samples'  : ['ZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww', 'ZH_htt', 'WH_htt', 'qqH_htt', 'ggH_htt']
+                  'color': 796,   # kOrange -4
+                  'samples'  : ['top']
               }
 
 model_name = '_'+'RelW0.02'.replace(".","")
