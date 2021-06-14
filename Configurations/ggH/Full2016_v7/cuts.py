@@ -62,7 +62,7 @@ cuts['hww2l2v_13TeV_dytt']  = {
       '2j' : '(mjj<65 || mjj>105) && mjj<120 && multiJet',
    }
 }
-
+'''
 ## WW control regions
 ## Used only for control plots, no need to add these cuts for the fit
 cuts['hww2l2v_13TeV_ww'] = {
@@ -73,4 +73,4 @@ cuts['hww2l2v_13TeV_ww'] = {
 	    '2j' : '(mjj<65 || mjj>105) && mjj<120 && multiJet'
 	  }
 	}
-
+'''
