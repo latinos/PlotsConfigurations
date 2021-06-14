@@ -170,7 +170,7 @@ nuisances['fake_syst'] = {
     'name': 'CMS_fake_syst',
     'type': 'lnN',
     'samples': {
-        'Fake_me': '1.3'
+        'Fake': '1.3'
     },
     'cutspost': lambda self, cuts: [cut for cut in cuts if '20em' not in cut],
 }
@@ -753,6 +753,16 @@ nuisances['WWqscale2j']  = {
    'cutspost'  : lambda self, cuts: [cut for cut in cuts if '2j' in cut]
 }
 
+nuisances['EWKcorr_WW'] = {
+    'name': 'CMS_hww_EWKcorr_WW',
+    'skipCMS': 1,
+    'kind': 'weight',
+    'type': 'shape',
+    'samples': {
+        'WW': ['1.', '1./ewknloW']
+    },
+    'symmetrize' : True,
+}
 
 # Uncertainty on SR/CR ratio
 
