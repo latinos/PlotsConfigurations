@@ -2,7 +2,7 @@
 
 treeName = 'Events'
 
-tag = 'vbf_2017_15_12_v7'
+tag = 'vbf_2017_21_12_v7'
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFile'
@@ -12,6 +12,7 @@ aliasesFile = 'aliases.py'
 
 # file with list of variables
 variablesFile = 'variables.py'
+#variablesFile = 'variables_input.py'
 
 # file with list of cuts
 cutsFile = 'cuts.py' 

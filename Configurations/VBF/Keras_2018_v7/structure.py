@@ -224,7 +224,7 @@ print cuts
 print "OK"
 
 
-'''
+
 for nuis in nuisances.itervalues():
   if 'cutspost' in nuis:
     nuis['cuts'] = nuis['cutspost'](nuis, cuts)
@@ -232,4 +232,4 @@ for nuis in nuisances.itervalues():
     print nuis
 
 
-'''
+

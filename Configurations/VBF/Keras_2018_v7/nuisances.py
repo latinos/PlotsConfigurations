@@ -551,7 +551,12 @@ topvars2j = []
 ## Factors computed to renormalize the top scale variations such that the integral is not changed in each RECO jet bin (we have rateParams for that)
 #topScaleNormFactors0j = {'LHEScaleWeight[3]': 1.0026322046882807, 'LHEScaleWeight[0]': 1.0761381504953040, 'LHEScaleWeight[1]': 1.0758902481739956, 'LHEScaleWeight[Length$(LHEScaleWeight)-1]': 0.9225780960271310, 'LHEScaleWeight[Length$(LHEScaleWeight)-4]': 1.0006689791003040, 'LHEScaleWeight[Length$(LHEScaleWeight)-2]': 0.9242759920995479}
 #topScaleNormFactors1j = {'LHEScaleWeight[3]': 1.0088973745933350, 'LHEScaleWeight[0]': 1.0858717477880675, 'LHEScaleWeight[1]': 1.0809970696561464, 'LHEScaleWeight[Length$(LHEScaleWeight)-1]': 0.9115155831354494, 'LHEScaleWeight[Length$(LHEScaleWeight)-4]': 0.9950909615738225, 'LHEScaleWeight[Length$(LHEScaleWeight)-2]': 0.9194241285459210}
-topScaleNormFactors2j = {'LHEScaleWeight[3]': 1.0236911155246506, 'LHEScaleWeight[0]': 1.1249360990045656, 'LHEScaleWeight[1]': 1.1054771659922622, 'LHEScaleWeight[Length$(LHEScaleWeight)-1]': 0.8819750427294990, 'LHEScaleWeight[Length$(LHEScaleWeight)-4]': 0.9819208264038879, 'LHEScaleWeight[Length$(LHEScaleWeight)-2]': 0.9025818187649589}
+#topScaleNormFactors2j = {'LHEScaleWeight[3]': 1.0236911155246506, 'LHEScaleWeight[0]': 1.1249360990045656, 'LHEScaleWeight[1]': 1.1054771659922622, 'LHEScaleWeight[Length$(LHEScaleWeight)-1]': 0.8819750427294990, 'LHEScaleWeight[Length$(LHEScaleWeight)-4]': 0.9819208264038879, 'LHEScaleWeight[Length$(LHEScaleWeight)-2]': 0.9025818187649589}
+
+
+
+topScaleNormFactors2j = {'LHEScaleWeight[3]': 1.01676762423417, 'LHEScaleWeight[0]': 1.1025115936138077, 'LHEScaleWeight[1]': 1.091629994134873, 'LHEScaleWeight[Length$(LHEScaleWeight)-2]': 0.9109113094808436, 'LHEScaleWeight[Length$(LHEScaleWeight)-1]': 0.8952146701676956, 'LHEScaleWeight[Length$(LHEScaleWeight)-4]': 0.9879368275826537} #2jets
+
 
 for var in variations:
   #topvars0j.append(var+'/'+str(topScaleNormFactors0j[var]))
@@ -801,7 +806,7 @@ nuisances['stat'] = {
 
 
 nuisances['DYembnorm2j']  = {
-                 'name'  : 'CMS_hww_DYttnorm2j',
+                 'name'  : 'CMS_hww_DYttnorm2j_VBF_DF',
                  'samples'  : {
                    'Dyemb' : '1.00',
                      },
@@ -810,7 +815,7 @@ nuisances['DYembnorm2j']  = {
 
 
 nuisances['WWnorm2j']  = {
-               'name'  : 'CMS_hww_WWnorm2j',
+               'name'  : 'CMS_hww_WWnorm2j_VBF_DF',
                'samples'  : {
                    'WW' : '1.00',
                    },
@@ -818,7 +823,7 @@ nuisances['WWnorm2j']  = {
               }
 
 nuisances['ggWWnorm2j']  = {
-               'name'  : 'CMS_hww_WWnorm2j',
+               'name'  : 'CMS_hww_WWnorm2j_VBF_DF',
                'samples'  : {
                    'ggWW' : '1.00',
                    },
@@ -827,7 +832,7 @@ nuisances['ggWWnorm2j']  = {
 
 
 nuisances['Topnorm2j']  = {
-               'name'  : 'CMS_hww_Topnorm2j',
+               'name'  : 'CMS_hww_Topnorm2j_VBF_DF',
                'samples'  : {
                    'top' : '1.00',
                    },
