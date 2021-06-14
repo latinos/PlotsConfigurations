@@ -351,25 +351,25 @@ for thu in thus:
 
 
 aliases['vbfdnn'] = {
-        'linesToAdd': ['.L /afs/cern.ch/work/r/rceccare/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/VBF/Keras_2018_v7/dnn_quad/evaluate_multiclass_quad.cc+'],
+        'linesToAdd': ['.L %s/VBF/Keras_2018_v7/dnn_quad/evaluate_multiclass_quad.cc+' % configurations],
         'class': 'evaluate_multiclass',
         'args': 0,
 }
 
 aliases['topdnn'] = {
-        'linesToAdd': ['.L /afs/cern.ch/work/r/rceccare/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/VBF/Keras_2018_v7/dnn_quad/evaluate_multiclass_quad.cc+'],
+        'linesToAdd': ['.L %s/VBF/Keras_2018_v7/dnn_quad/evaluate_multiclass_quad.cc+' % configurations],
         'class': 'evaluate_multiclass',
         'args': 1,
 }
 
 aliases['wwdnn'] = {
-        'linesToAdd': ['.L /afs/cern.ch/work/r/rceccare/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/VBF/Keras_2018_v7/dnn_quad/evaluate_multiclass_quad.cc+'],
+        'linesToAdd': ['.L %s/VBF/Keras_2018_v7/dnn_quad/evaluate_multiclass_quad.cc+' % configurations],
         'class': 'evaluate_multiclass',
         'args': 2,
 }
 
 aliases['gghdnn'] = {
-        'linesToAdd': ['.L /afs/cern.ch/work/r/rceccare/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/VBF/Keras_2018_v7/dnn_quad/evaluate_multiclass_quad.cc+'],
+        'linesToAdd': ['.L %s/VBF/Keras_2018_v7/dnn_quad/evaluate_multiclass_quad.cc+' % configurations],
         'class': 'evaluate_multiclass',
         'args': 3,
 }
