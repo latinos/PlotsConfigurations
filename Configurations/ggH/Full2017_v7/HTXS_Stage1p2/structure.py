@@ -144,13 +144,13 @@ with open('vbfDipoleScaleSTXS.pkl', 'rb') as handle:
 print vbfDipoleScale
 
 for signal in signals:
-    #if 'qqH_hww' in signal:
-    #    structure[signal] = {
-    #        'isSignal' : 1,
-    #        'isData'   : 0,
-    #        'scaleSampleForDatacard' : vbfDipoleScale[signal],
-    #    }
-    #else:
+    if 'qqH_hww' in signal:
+        structure[signal] = {
+            'isSignal' : 1,
+            'isData'   : 0,
+            'scaleSampleForDatacard' : vbfDipoleScale[signal],
+        }
+    else:
         structure[signal] = {
             'isSignal' : 1,
             'isData'   : 0,
