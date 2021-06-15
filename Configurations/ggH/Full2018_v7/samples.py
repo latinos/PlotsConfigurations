@@ -207,7 +207,7 @@ addSampleWeight(samples,'top','TTTo2L2Nu','Top_pTrw')
 
 samples['WW'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'WWTo2L2Nu'),
-    'weight': mcCommonWeight+embed_tautauveto + '*nllW',
+    'weight': mcCommonWeight+embed_tautauveto + '*nllW*ewknloW',
     'FilesPerJob': 3
 }
 
@@ -247,7 +247,7 @@ if useWgFXFX:
   samples['Vg'] = {
       'name': files,
       'weight': mcCommonWeightNoMatch+embed_tautauveto + '*(Gen_ZGstar_mass <= 0)',
-      'FilesPerJob': 4
+      'FilesPerJob': 2
   }
   
   wgbasew = getBaseWnAOD(mcDirectory,'Autumn18_102X_nAODv7_Full2018v7',['Wg_AMCNLOFXFX','Wg_AMCNLOFXFX_PDFWeights','Wg_AMCNLOFXFX_PDFWeights_ext1'])

@@ -477,7 +477,7 @@ if useWgFXFX:
       'name': 'CMS_hww_VgScale',
       'type': 'lnN',
       'samples': {
-          'Vg': '1.5'
+          'Vg': '1.06'
       }
   }
 
