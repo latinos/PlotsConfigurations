@@ -10,7 +10,9 @@ groupPlot['multiB'] = {
     'isSignal' : 0,
     #'isSignal' : 1,
     'color': 857, # kAzure -3  
-    'samples'  : ['WW', 'WWewk', 'ggWW', 'WZqcd', 'WZewk', 'ZZ', 'VVV', 'Vg', 'VgS_L', 'VgS_H'] #, 'VBF-V'
+    'samples'  : ['WW', 'WWewk', 'ggWW', 'VBF-V', 'WZqcd', 'WZewk', 'ZZ', 'VVV', 'Vg', 'VgS_L', 'VgS_H'], 
+    #'samples'  : ['WW', 'WWewk', 'ggWW', 'VBF-V', 'WZqcd', 'WZewk', 'ZZ', 'VVV', 'Vg', 'VgS_L', 'VgS_H', 'Higgs'], 
+    #'samples'  : ['WW', 'WWewk', 'ggWW', 'VBF-V', 'WZqcd', 'WZewk', 'ZZ', 'VVV', 'Vg', 'VgS_L', 'VgS_H', 'ggH_hww', 'qqH_hww', 'ZH_hww', 'WH_hww', 'ttH_hww', 'ggH_htt', 'ZH_htt']
 }
 
 groupPlot['DY'] = {
@@ -27,12 +29,14 @@ groupPlot['FAKE'] = {
     'samples'  : ['FAKE']
 }
 
+
 groupPlot['top'] = {
     'nameHR' : 'tW and t#bar{t}',
     'isSignal' : 0,
     'color': 400,   # kYellow
     'samples'  : ['top']
 }
+
 
 groupPlot['Wjets'] = {
     'nameHR' : "W+jets",
@@ -41,31 +45,31 @@ groupPlot['Wjets'] = {
     'samples'  : ['Wjets']
 }
 
-### SIGNAL
-if os.path.exists(signal_file) :
-    handle = open(signal_file,'r')
-    exec(handle)
-    handle.close()
-else:
-    raise IOError('FILE NOT FOUND: '+signal_file+'does not exist.')
-
-for mp in signal:
-    ##if not 'mA_400' in mp: continue
-    #mpo = mp.replace('darkHiggs_', '')
-    #mhs = mpo.split('_')[1] 
-    #mx  = mpo.split('_')[3] 
-    #mZp = mpo.split('_')[5] 
-    ##if not 'mA_400' in mp: continue
-    ##if not mhs == '160' and not mx == '100' in mp: continue
-    #if not mhs == '160': continue 
-    #if not mx == '100' : continue
-    #if not mZp in ['200', '400', '1200']: continue
-    groupPlot[mp] = {
-        'nameHR'   : signal[mp]['plot_name'],
-        'isSignal' : 1,
-        'color'    : signal[mp]['color'],   # kViolet + 1
-        'samples'  : [mp],
-    }
+#### SIGNAL
+#if os.path.exists(signal_file) :
+#    handle = open(signal_file,'r')
+#    exec(handle)
+#    handle.close()
+#else:
+#    raise IOError('FILE NOT FOUND: '+signal_file+'does not exist.')
+#
+#for mp in signal:
+#    ##if not 'mA_400' in mp: continue
+#    #mpo = mp.replace('darkHiggs_', '')
+#    #mhs = mpo.split('_')[1] 
+#    #mx  = mpo.split('_')[3] 
+#    #mZp = mpo.split('_')[5] 
+#    ##if not 'mA_400' in mp: continue
+#    ##if not mhs == '160' and not mx == '100' in mp: continue
+#    #if not mhs == '160': continue 
+#    #if not mx == '100' : continue
+#    #if not mZp in ['200', '400', '1200']: continue
+#    groupPlot[mp] = {
+#        'nameHR'   : signal[mp]['plot_name'],
+#        'isSignal' : 1,
+#        'color'    : signal[mp]['color'],   # kViolet + 1
+#        'samples'  : [mp],
+#    }
 
 #groupPlot['DATA'] = {
 
@@ -93,10 +97,9 @@ plot['top'] = {
     'color': 400,   # kYellow
     'isSignal' : 0,
     'isData'   : 0,
-    #'scale'    : 1.0,
-    'scale'    : 1.02,
+    #'scale'    : 1.,
+    'scale'    : 1.06,
 }
-
 
 plot['WW']  = {
     'color': 851, # kAzure -9
@@ -140,12 +143,12 @@ plot['VgS_L'] = {
     'scale'    : 1.0
 }
 
-#plot['VBF-V']  = {
-#    'color': 859, # kAzure -2
-#    'isSignal' : 0,
-#    'isData'   : 0,
-#    'scale'    : 1.0
-#}
+plot['VBF-V']  = {
+    'color': 859, # kAzure -2
+    'isSignal' : 0,
+    'isData'   : 0,
+    'scale'    : 1.0
+}
 
 plot['WZqcd']  = {
     'color': 858, # kAzure -2
@@ -179,7 +182,7 @@ plot['Wjets']  = {
     'isSignal' : 0,
     'isData'   : 0,
     #'scale'    : 1.0
-    'scale'    : 1.02
+    'scale'    : 1.04,
 }
 
 plot['FAKE']  = {
@@ -192,45 +195,45 @@ plot['FAKE']  = {
 
 # HWW
 plot['Higgs'] = {
-    'nameHR' : 'SM Higgs',
+    'nameHR' : 'Higgs',
     'color': 632+3, # kRed+3
     'isSignal' : 0,
     'isData'   : 0,
     'scale'    : 1    #
 }
 
-### Signal
-for mp in signal:
-    #mpo = mp.replace('darkHiggs_', '')
-    #mhs = mpo.split('_')[1] 
-    #mx  = mpo.split('_')[3] 
-    #mZp = mpo.split('_')[5] 
-    ##if not 'mA_400' in mp: continue
-    #if not mhs == '160': continue 
-    #if not mx == '100' : continue
-    #if not mZp in ['200', '400', '1200']: continue
-    plot[mp] = {
-        'nameHR'   : signal[mp]['plot_name'],
-        'isSignal' : 2,
-        'isData'   : 0,
-        'color'    : signal[mp]['color'],   # kViolet + 1
-        'samples'  : [mp],
-    }
+#### Signal
+#for mp in signal:
+#    #mpo = mp.replace('darkHiggs_', '')
+#    #mhs = mpo.split('_')[1] 
+#    #mx  = mpo.split('_')[3] 
+#    #mZp = mpo.split('_')[5] 
+#    ##if not 'mA_400' in mp: continue
+#    #if not mhs == '160': continue 
+#    #if not mx == '100' : continue
+#    #if not mZp in ['200', '400', '1200']: continue
+#    plot[mp] = {
+#        'nameHR'   : signal[mp]['plot_name'],
+#        'isSignal' : 2,
+#        'isData'   : 0,
+#        'color'    : signal[mp]['color'],   # kViolet + 1
+#        'samples'  : [mp],
+#    }
 
 ## data
 
 plot['DATA']  = {
-    'nameHR' : 'Data',
-    'color': 1 ,
-    'isSignal' : 0,
-    'isData'   : 1 ,
-    'isBlind'  : 0
-}
+                  'nameHR' : 'Data',
+                  'color': 1 ,
+                  'isSignal' : 0,
+                  'isData'   : 1 ,
+                  'isBlind'  : 0
+              }
 
 
 
 
 # additional options
-legend['lumi'] = 'L = 35.9/fb'
+legend['lumi'] = 'L = 41.5/fb'
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
 

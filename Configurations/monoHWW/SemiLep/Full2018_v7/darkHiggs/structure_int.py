@@ -1,4 +1,4 @@
-handle = open('samples.py', 'r')
+handle = open('structure.py', 'r')
 exec(handle)
 handle.close()
 
@@ -21,4 +21,7 @@ else:
 
 
 for mp in signal:
-    samples[mp] = copy.deepcopy(signal[mp])
+    structure[mp] = {
+        'isSignal': 2,
+        'isData'  : 0,
+    }

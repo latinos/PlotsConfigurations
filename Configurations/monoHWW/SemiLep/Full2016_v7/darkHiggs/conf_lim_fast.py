@@ -4,7 +4,7 @@
 
 treeName = 'Events'
 
-tag = 'darkHiggs_lim_2017v7'
+tag = 'darkHiggs_lim_2016v7'
 
 # used by mkShape to define output directory for root files
 outputDir = 'darkHiggs_lim_root'
@@ -20,22 +20,21 @@ variablesFile = 'variables_lim.py'
 cutsFile = 'cuts_lim.py'
 
 # file with list of samples
-#samplesFile = 'samples.py'
-samplesFile = 'samples_int.py'
+samplesFile = 'samples_fast.py'
 
 # file with list of samples
 plotFile = 'plot.py'
 #plotFile = 'plot_lim.py'
 
 # luminosity to normalize to (in 1/fb)
-lumi = 41.5
+lumi = 35.9
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
 outputDirPlots = 'darkHiggs_lim_plots'
 
 # used by mkDatacards to define output directory for datacards
-outputDirDatacard = 'darkHiggs_lim_datacards'
+outputDirDatacard = 'darkHiggs_lim_datacards_fast'
 
 # structure file for datacard
 structureFile = 'structure.py'

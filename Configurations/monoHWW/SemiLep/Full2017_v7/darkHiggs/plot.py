@@ -122,11 +122,8 @@ plot['top'] = {
     'color': 400,   # kYellow
     'isSignal' : 0,
     'isData'   : 0,
-    #'scale'    : 1.09,
     #'scale'    : 1.,
     'scale'    : 1.06,
-    #'scale'    : 1.11,
-    #'scale'    : .98,
 }
 #plot['ttop'] = {
 #    'nameHR' : 't#bar{t}',
@@ -240,12 +237,8 @@ plot['Wjets']  = {
     'color': 856, # kAzure -4
     'isSignal' : 0,
     'isData'   : 0,
-    #'scale'    : 1.08,
     #'scale'    : 1.0
-    'scale'    : 1.05,
-    #'scale'    : 1.11,
-    #'scale'    : 0.94,
-    #'scale'    : 0.75
+    'scale'    : 1.04,
 }
 
 plot['FAKE']  = {

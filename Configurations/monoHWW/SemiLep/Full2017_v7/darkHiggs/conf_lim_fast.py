@@ -20,8 +20,7 @@ variablesFile = 'variables_lim.py'
 cutsFile = 'cuts_lim.py'
 
 # file with list of samples
-#samplesFile = 'samples.py'
-samplesFile = 'samples_int.py'
+samplesFile = 'samples_fast.py'
 
 # file with list of samples
 plotFile = 'plot.py'
@@ -35,12 +34,12 @@ lumi = 41.5
 outputDirPlots = 'darkHiggs_lim_plots'
 
 # used by mkDatacards to define output directory for datacards
-outputDirDatacard = 'darkHiggs_lim_datacards'
+outputDirDatacard = 'darkHiggs_lim_datacards_fast'
 
 # structure file for datacard
-structureFile = 'structure.py'
+structureFile = 'structure_fast.py'
 
 # nuisances file for mkDatacards and for mkShape
 #nuisancesFile = 'nuisances.py'
 #nuisancesFile = 'nuisances_full.py'
-nuisancesFile = 'nuisances_full_new.py'
+nuisancesFile = 'nuisances_full_new_fast.py'
