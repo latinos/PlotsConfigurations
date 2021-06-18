@@ -4,43 +4,38 @@
 
 treeName = 'Events'
 
-tag = 'darkHiggs_lim_2017v7'
+tag = '2HDMa_2017v7'
 
 # used by mkShape to define output directory for root files
-outputDir = 'darkHiggs_lim_root'
+outputDir = '2HDMa_root'
 
 # file with TTree aliases
 aliasesFile = 'aliases.py'
 
 # file with list of variables
-variablesFile = 'variables_lim.py'
+variablesFile = 'variables_rel.py'
 
 # file with list of cuts
-#cutsFile = 'cuts.py'
-cutsFile = 'cuts_lim.py'
+cutsFile = 'cuts.py'
 
 # file with list of samples
-#samplesFile = 'samples.py'
-samplesFile = 'samples_int.py'
+samplesFile = 'samples.py'
 
 # file with list of samples
-plotFile = 'plot.py'
-#plotFile = 'plot_lim.py'
+plotFile = 'plot_mh3_t1p0_s0p35_m4h250.py'
 
 # luminosity to normalize to (in 1/fb)
 lumi = 41.5
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'darkHiggs_lim_plots'
+outputDirPlots = '2HDMa_plots_mh3_t1p0_s0p35_m4h250'
 
 # used by mkDatacards to define output directory for datacards
-outputDirDatacard = 'darkHiggs_lim_datacards'
+outputDirDatacard = '2HDMa_datacards'
 
 # structure file for datacard
 structureFile = 'structure.py'
 
 # nuisances file for mkDatacards and for mkShape
 #nuisancesFile = 'nuisances.py'
-#nuisancesFile = 'nuisances_full.py'
-nuisancesFile = 'nuisances_full_new.py'

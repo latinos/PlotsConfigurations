@@ -12,6 +12,7 @@ parser.add_argument("-q", "--queue", help="job queue", type=str)
 parser.add_argument("-r", "--redo", help="forcefully redo comma seperated samples", type=str)
 parser.add_argument("-e", "--exclude", help="skip comma seperated samples", type=str)
 parser.add_argument("--implicit", help="redo/exclude all samples with given string, no longer exactly match", action="store_true")
+parser.add_argument("--skip-rewrite", help="do not re write the job files", action="store_true")
 args = parser.parse_args()
 
 cms_base = os.getenv('CMSSW_BASE')
@@ -42,20 +43,24 @@ start = time.time()
 job_base = 'mkShapes__'+tag+'__ALL'
 path = jobDir+'/'+job_base
 
-# Rewrite job files
-os.system('rm '+path+'/*/*.py')
-#os.system('mkShapesMulti.py --pycfg='+args.config+' --doBatch=True --batchQueue='+args.queue+' --treeName=Events --batchSplit=Samples,Files -n')
-print('Updating job configs')
-proc = subprocess.Popen(['mkShapesMulti.py', '--pycfg='+args.config, '--doBatch=True', '--batchQueue='+args.queue, '--treeName=Events', '--batchSplit=Samples,Files', '--FixNegativeAfterHadd', '-n'], stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
-out, err = proc.communicate()
-if proc.returncode != 0:
-    sys.stderr.write(err)
-    raise RuntimeError('Rewriting job files failed.')
-#print(out.strip())
+if not args.skip_rewrite:
+    # Rewrite job files
+    os.system('rm '+path+'/*/*.py')
+    #os.system('mkShapesMulti.py --pycfg='+args.config+' --doBatch=True --batchQueue='+args.queue+' --treeName=Events --batchSplit=Samples,Files -n')
+    print('Updating job configs')
+    proc = subprocess.Popen(['mkShapesMulti.py', '--pycfg='+args.config, '--doBatch=True', '--batchQueue='+args.queue, '--treeName=Events', '--batchSplit=Samples,Files', '--FixNegativeAfterHadd', '-n'], stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
+    out, err = proc.communicate()
+    if proc.returncode != 0:
+        sys.stderr.write(err)
+        raise RuntimeError('Rewriting job files failed.')
+    #print(out.strip())
 
 # Collect jobs to resub
 to_redo = []
-if not args.redo is None: to_redo = args.redo.split(',')
+redo_all = False
+if not args.redo is None:
+    if 'ALL' in args.redo: redo_all = True
+    else: to_redo = args.redo.split(',')
 if not args.implicit:
     for idx in range(len(to_redo)):
         to_redo[idx] += '.'
@@ -74,9 +79,11 @@ for diry in dirs:
     for skippy in to_skip:
         if skippy in sample: do_this = False
     if not do_this: continue
-    do_redo = False
-    for redo_pls in to_redo:
-        if redo_pls in sample: do_redo = True 
+    if redo_all: do_redo = True
+    else:
+        do_redo = False
+        for redo_pls in to_redo:
+            if redo_pls in sample: do_redo = True 
     if os.path.isfile(job_files+'.py'): 
         if os.path.isfile(job_files+'.jid') or do_redo:
             jobs.append(job_files)
