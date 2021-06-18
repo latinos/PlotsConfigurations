@@ -1,0 +1,1 @@
+nameFactor.update({'ALL'  : ''})

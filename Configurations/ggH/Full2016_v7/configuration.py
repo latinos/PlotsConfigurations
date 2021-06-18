@@ -2,7 +2,7 @@
 
 treeName = 'Events'
 
-tag = 'ggH2016_v7'
+tag = 'ggH2016_v7_QCDscale_split_WWEWK_corr_pdf_unc'
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFile'
@@ -30,7 +30,7 @@ lumi = 35.867
 outputDirPlots = 'plots'
 
 # used by mkDatacards to define output directory for datacards
-outputDirDatacard = 'datacards'
+outputDirDatacard = 'datacards_' + tag
 
 # structure file for datacard
 structureFile = 'structure.py'

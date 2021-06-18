@@ -519,6 +519,28 @@ for model in models:
     nuisances['PS_FSR']['samples'].update({'QQH_'+m+model_name: PSstring})
     nuisances['PS_FSR']['samples'].update({'QQHINT_'+m+model_name: PSstring})
 
+# Uncorrelate important backgrounds
+for proc in ['DY', 'top', 'WW']:
+  nuisances['PS_ISR_'+proc]  = {
+    'name': 'PS_ISR_'+proc,
+    'kind': 'weight',
+    'type': 'shape',
+    'samples': {
+      proc: nuisances['PS_ISR']['samples'][proc],
+    }
+  }
+  del nuisances['PS_ISR']['samples'][proc]
+
+  nuisances['PS_FSR_'+proc]  = {
+    'name': 'PS_FSR_'+proc,
+    'kind': 'weight',
+    'type': 'shape',
+    'samples': {
+      proc: nuisances['PS_FSR']['samples'][proc],
+    }
+  }
+  del nuisances['PS_FSR']['samples'][proc]
+
 ##### UE
 # An overall 1.5% UE uncertainty will cover all the UEup/UEdo variations
 # And we don't observe any dependency of UE variations on njet
@@ -735,14 +757,16 @@ nuisances['QCDscale_VH_ACCEPT']  = {
 variations = ['LHEScaleWeight[0]', 'LHEScaleWeight[1]', 'LHEScaleWeight[3]', 'LHEScaleWeight[Length$(LHEScaleWeight)-4]', 'LHEScaleWeight[Length$(LHEScaleWeight)-2]', 'LHEScaleWeight[Length$(LHEScaleWeight)-1]']
 
 # Normalize DY QCD scale -> Norm fixed by rateParam
-dyvars = copy.deepcopy(variations)
-dynorms = {"0j": [1.0143332141114483, 0.9622267969241384, 1.0596025134712872, 0.9578457318872, 1.0375774843211096, 0.9908643255041172], "1j": [0.9940901483227454, 0.962059334214635, 1.0372868838613174, 0.9760921051451452, 1.0374644279865524, 1.0106741032623678], "2j": [0.9368854613228692, 0.9418295497969644, 0.9975194312894655, 1.0116251740594764, 1.0547144137430688, 1.0652386252175967]}
-for i,alpha in enumerate(dyvars):
-  dyvars[i] = alpha+"*((Alt$(CleanJet_pt[0], 0) < 30.)*"+str(dynorms["0j"][i])+" + (Alt$(CleanJet_pt[0], 0) >= 30.)*(Alt$(CleanJet_pt[1], 0) < 30.)*"+str(dynorms["1j"][i])+" + (Alt$(CleanJet_pt[1], 0) >= 30.)*"+str(dynorms["2j"][i])+")"
+#dynorms = {"0j": [1.0143332141114483, 0.9622267969241384, 1.0596025134712872, 0.9578457318872, 1.0375774843211096, 0.9908643255041172], "1j": [0.9940901483227454, 0.962059334214635, 1.0372868838613174, 0.9760921051451452, 1.0374644279865524, 1.0106741032623678], "2j": [0.9368854613228692, 0.9418295497969644, 0.9975194312894655, 1.0116251740594764, 1.0547144137430688, 1.0652386252175967]}
+#for i,alpha in enumerate(dyvars):
+#  dyvars[i] = alpha+"*((Alt$(CleanJet_pt[0], 0) < 30.)*"+str(dynorms["0j"][i])+" + (Alt$(CleanJet_pt[0], 0) >= 30.)*(Alt$(CleanJet_pt[1], 0) < 30.)*"+str(dynorms["1j"][i])+" + (Alt$(CleanJet_pt[1], 0) >= 30.)*"+str(dynorms["2j"][i])+")"
+
+#dyvars = copy.deepcopy(variations) # For envelope
+dyvars = ['LHEScaleWeight[0]', 'LHEScaleWeight[Length$(LHEScaleWeight)-1]']
 nuisances['QCDscale_V']  = {
                 'name'  : 'QCDscale_V',
                 'skipCMS' : 1,
-                'kind'  : 'weight_envelope',
+                'kind'  : 'weight', #_envelope
                 'type'  : 'shape',
                 'samples'  : {
                    'DY' : dyvars,
@@ -755,9 +779,9 @@ variations = ['LHEScaleWeight[%d]/LHEScaleWeight[4]' % i for i in [0, 1, 3, 5, 7
 
 # Normalize WW2J QCD scale -> Norm fixed by rateParam
 wwvars = copy.deepcopy(variations)
-wwnorms = {"0j": [0.84383798548*0.933914610874, 0.86466427431*0.932663376857, 0.977964460303*0.999117815167, 1.03009229354*0.997491221906, 1.12456205702*1.07873927178, 1.15566989975*1.07866520474], "1j": [0.85278874621*0.921935869033, 0.883223267365*0.925374783012, 0.969327769019*0.99214009209, 1.03727097531*1.00395526094, 1.10369198376*1.08708105209, 1.14089855114*1.0953294986], "2j": [0.875280127959*0.892065330728, 0.907932347707*0.906435582251, 0.969825671359*0.978014691868, 1.03579782256*1.01735870242, 1.07835570337*1.10633174958, 1.11156964411*1.1311995478]}
-for i,alpha in enumerate(wwvars):
-  wwvars[i] = alpha+"*((Alt$(CleanJet_pt[0], 0) < 30.)*"+str(wwnorms["0j"][i])+" + (Alt$(CleanJet_pt[0], 0) >= 30.)*(Alt$(CleanJet_pt[1], 0) < 30.)*"+str(wwnorms["1j"][i])+" + (Alt$(CleanJet_pt[1], 0) >= 30.)*"+str(wwnorms["2j"][i])+")"
+#wwnorms = {"0j": [0.84383798548*0.933914610874, 0.86466427431*0.932663376857, 0.977964460303*0.999117815167, 1.03009229354*0.997491221906, 1.12456205702*1.07873927178, 1.15566989975*1.07866520474], "1j": [0.85278874621*0.921935869033, 0.883223267365*0.925374783012, 0.969327769019*0.99214009209, 1.03727097531*1.00395526094, 1.10369198376*1.08708105209, 1.14089855114*1.0953294986], "2j": [0.875280127959*0.892065330728, 0.907932347707*0.906435582251, 0.969825671359*0.978014691868, 1.03579782256*1.01735870242, 1.07835570337*1.10633174958, 1.11156964411*1.1311995478]}
+#for i,alpha in enumerate(wwvars):
+#  wwvars[i] = alpha+"*((Alt$(CleanJet_pt[0], 0) < 30.)*"+str(wwnorms["0j"][i])+" + (Alt$(CleanJet_pt[0], 0) >= 30.)*(Alt$(CleanJet_pt[1], 0) < 30.)*"+str(wwnorms["1j"][i])+" + (Alt$(CleanJet_pt[1], 0) >= 30.)*"+str(wwnorms["2j"][i])+")"
 nuisances['QCDscale_WWJJ']  = {
                 'name'  : 'QCDscale_VV',
                 'skipCMS' : 1,
@@ -783,16 +807,18 @@ nuisances['QCDscale_VV']  = {
                    }
 }
 
-# ST_tW_top and ST_tW_antitop samples have no LHEScaleWeight entries. Use Alt$ to check for missing entries:
-topvars = ['Alt$(LHEScaleWeight[%d], 1.0)' % i for i in [0, 1, 3, 5, 7, 8]]
 # Normalize top QCD scale -> Norm fixed by rateParam
-topnorms = {"0j": [1.070761703863844, 1.0721982065714528, 1.0008829637654995, 1.002515087891841, 0.9270080603942781, 0.9270717138194097], "1j": [1.0846741444664376, 1.0806432359691847, 1.0079221754798773, 0.9960603215169435, 0.9198946095840594, 0.9129672863490275], "2j": [1.1209941307567444, 1.103222357530683, 1.0224795274718796, 0.9829374807746288, 0.9038880068177306, 0.8840173265167147]}
-for i,alpha in enumerate(topvars):
-  topvars[i] = alpha+"*((Alt$(CleanJet_pt[0], 0) < 30.)/"+str(topnorms["0j"][i])+" + (Alt$(CleanJet_pt[0], 0) >= 30.)*(Alt$(CleanJet_pt[1], 0) < 30.)/"+str(topnorms["1j"][i])+" + (Alt$(CleanJet_pt[1], 0) >= 30.)/"+str(topnorms["2j"][i])+")"
+#topnorms = {"0j": [1.070761703863844, 1.0721982065714528, 1.0008829637654995, 1.002515087891841, 0.9270080603942781, 0.9270717138194097], "1j": [1.0846741444664376, 1.0806432359691847, 1.0079221754798773, 0.9960603215169435, 0.9198946095840594, 0.9129672863490275], "2j": [1.1209941307567444, 1.103222357530683, 1.0224795274718796, 0.9829374807746288, 0.9038880068177306, 0.8840173265167147]}
+#for i,alpha in enumerate(topvars):
+#  topvars[i] = alpha+"*((Alt$(CleanJet_pt[0], 0) < 30.)/"+str(topnorms["0j"][i])+" + (Alt$(CleanJet_pt[0], 0) >= 30.)*(Alt$(CleanJet_pt[1], 0) < 30.)/"+str(topnorms["1j"][i])+" + (Alt$(CleanJet_pt[1], 0) >= 30.)/"+str(topnorms["2j"][i])+")"
+
+# ST_tW_top and ST_tW_antitop samples have no LHEScaleWeight entries. Use Alt$ to check for missing entries:
+#topvars = ['Alt$(LHEScaleWeight[%d], 1.0)' % i for i in [0, 1, 3, 5, 7, 8]] # For envelope
+topvars = ['Alt$(LHEScaleWeight[0], 1.0)', 'Alt$(LHEScaleWeight[Length$(LHEScaleWeight)-1], 1.0)']
 nuisances['QCDscale_ttbar']  = {
                'name'  : 'QCDscale_ttbar', 
                 'skipCMS' : 1,
-                'kind'  : 'weight_envelope',
+                'kind'  : 'weight', #_envelope
                 'type'  : 'shape',
                 'samples'  : {
                    'top' : topvars,
@@ -801,7 +827,6 @@ nuisances['QCDscale_ttbar']  = {
 
 # Scale uncertainties not needed:
 # WW: Special scale/resum uncertainties below
-# WWewk: ? TODO
 # VVV: Negligible
 
 nuisances['QCDscale_WWewk']  = {
@@ -857,7 +882,7 @@ for model in models:
     nuisances['pdf_Higgs_qqbar']['samples'].update({'QQHINT_'+m+model_name:HiggsXS.GetHiggsProdXSNP('YR4','13TeV','vbfH',int(m),'pdf','bsm')})
 
 # PDF uncertainties not needed:
-# Top, DY, WW, WWewk, WW2J: Taken into account in rateParam, since these are all lnN anyway
+# Top, DY, WW, WW2J: Taken into account in rateParam, since these are all lnN anyway
 
 # PDF for background: https://twiki.cern.ch/twiki/bin/view/CMS/StandardModelCrossSectionsat13TeV and https://twiki.cern.ch/twiki/bin/view/CMS/SummaryTable1G25ns
 
@@ -871,6 +896,7 @@ nuisances['pdf_gg']  = {
                'type'  : 'lnN',
                'samples'  : {
                    'ggWW'    : '1.05',
+                   'WWewk'    : '1.05',
                    },
               }
 
@@ -882,9 +908,46 @@ nuisances['pdf_qqbar']  = {
                    'VZ'      : '1.04',
                    'VgS'     : '1.04',
                    'qqWWqq'  : '1.05',
-                   'DY'      : '1.002', # For HM category, no DY CR
                    },
               }
+
+# PDF shape uncertainties
+pdf_variations = ["LHEPdfWeight[%d]" %i for i in range(100)] # Float_t LHE pdf variation weights (w_var / w_nominal) for LHA IDs 260001 - 260100
+
+nuisances['pdf_WW']  = {
+  'name'  : 'pdf_WW_2016',
+  'skipCMS' : 1,
+  'kind'  : 'weight_rms',
+  'type'  : 'shape',
+  'samples'  : {
+     'WW'   : pdf_variations,
+   },
+}
+
+nuisances['pdf_top']  = {
+  'name'  : 'pdf_top_2016',
+  'skipCMS' : 1,
+  'kind'  : 'weight_rms',
+  'type'  : 'shape',
+  'samples'  : {
+     'top'   : pdf_variations,
+   },
+}
+
+if EMorEEorMM=="em":
+  pdf_variations = ["LHEPdfWeight[%d]" %i for i in range(102)] # Float_t LHE pdf variation weights (w_var / w_nominal) for LHA IDs 292201 - 292302
+else:
+  pdf_variations = ["LHEPdfWeight[%d]" %i for i in range(101)] # Float_t LHE pdf variation weights (w_var / w_nominal) for LHA IDs 262000 - 262100
+
+nuisances['pdf_DY']  = {
+  'name'  : 'pdf_DY_2016',
+  'skipCMS' : 1,
+  'kind'  : 'weight_rms',
+  'type'  : 'shape',
+  'samples'  : {
+     'DY'   : pdf_variations,
+   },
+}
 
 
 nuisances['pdf_Higgs_gg_ACCEPT']  = {
@@ -1102,15 +1165,15 @@ nuisances['VZ'] = {
                    },
                 }
 
-## Top pT reweighting uncertainty
-#nuisances['TopPtRew']  = {
-#                'name'  : 'CMS_topPtRew',
-#                'kind'  : 'weight',
-#                'type'  : 'shape',
-#                'samples' : {
-#                     'top'  : ["1.0/Top_pTrw","Top_pTrw"]
-#                }
-#         }
+# Top pT reweighting uncertainty
+nuisances['TopPtRew']  = {
+                'name'  : 'CMS_topPtRew',
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples' : {
+                     'top'  : ["1.0/Top_pTrw","Top_pTrw"]
+                }
+         }
 
 nuisances['singleTopToTTbar']  = {
                 'name'  : 'singleTopToTTbar',
@@ -1120,6 +1183,36 @@ nuisances['singleTopToTTbar']  = {
                      'top'  : ['(topGenPt * antitopGenPt <= 0.) * 1.0816 + (topGenPt * antitopGenPt > 0.)','(topGenPt * antitopGenPt <= 0.) * 0.9184 + (topGenPt * antitopGenPt > 0.)']
                 },
          }
+
+# DY uncertainties on corrections
+nuisances['DYZptRew']  = {
+                'name'  : 'CMS_DY_ZPtRew_2016',
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples' : {
+                     'DY'  : ["1.0/DY_NLO_pTllrw","DY_NLO_pTllrw"]
+                }
+         }
+
+nuisances['DYNLORew']  = {
+                'name'  : 'CMS_DY_NLORew_2016',
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples' : {
+                     'DY'  : ["(1.0/DY_LOtoNLOonly)*(DY_isLO) + (1.0)*(!DY_isLO)","(DY_LOtoNLOonly)*(DY_isLO) + (1.0)*(!DY_isLO)"]
+                }
+         }
+
+# WW EWK NLO correction uncertainty
+nuisances['EWKcorr_WW'] = {
+    'name': 'CMS_hww_EWKcorr_WW',
+    'skipCMS': 1,
+    'kind': 'weight',
+    'type': 'shape',
+    'samples': {
+        'WW': ['1./ewknloW', 'ewknloW']
+    }
+}
 
 # Replace lnN nuisances (from QCD and PDF only -> Other lnN nuisance are consistent across SBI) for samples contributing to SBI with shape:
 oldnuisances = copy.deepcopy(nuisances)
@@ -1217,48 +1310,51 @@ for nuisname in nuisancename:
 #             }
 
 StatSwitch = True
+# Doing zeroMCError=0 now because apparently it's not well defined otherwise for this analysis (or so I've been told)
+# Also remove individual bbb from background (ggWW/qqWWqq/SM HWW), I'm now absorbing their statistical uncertainty into the nuisances of other more significant backgrounds (unaffected by r), so there's nothing to correlate
 if StatSwitch:
   nuisances['stat']  = {
                   # apply to the following samples: name of samples here must match keys in samples.py
                  'samples'  : {
 
-                     'ggWW': {
-                           'typeStat' : 'bbb',
-                           'zeroMCError' : '1',
-                           'correlate': []
-                     },
-                     'ggH_hww':{
-                           'typeStat' : 'bbb',
-                           'zeroMCError' : '1',
-                           'correlate': []
-                     },
-                     'qqWWqq': {
-                          'typeStat' : 'bbb',
-                           'zeroMCError' : '1',
-                           'correlate': []
-                     },
-                     'qqH_hww':{
-                           'typeStat' : 'bbb',
-                           'zeroMCError' : '1',
-                           'correlate': []
-                     },
+#                     'ggWW': {
+#                           'typeStat' : 'bbb',
+#                           'zeroMCError' : '0',
+#                           'correlate': []
+#                     },
+#                     'ggH_hww':{
+#                           'typeStat' : 'bbb',
+#                           'zeroMCError' : '0',
+#                           'correlate': []
+#                     },
+#                     'qqWWqq': {
+#                          'typeStat' : 'bbb',
+#                           'zeroMCError' : '0',
+#                           'correlate': []
+#                     },
+#                     'qqH_hww':{
+#                           'typeStat' : 'bbb',
+#                           'zeroMCError' : '0',
+#                           'correlate': []
+#                     },
 
 
                    },
-                 'type'  : 'shape'
+                 'type'  : 'shape',
+                 'cuts'  : [cut for cut in cuts if ("dy" not in cut) and ("top" not in cut)]
                 }
 
   for model in models:
     model_name = '_'+model.replace(".","")
     for m in massggh:
-      nuisances['stat']['samples']['GGH_'+m+model_name] = { 'typeStat' : 'bbb', 'zeroMCError' : '1', 'correlate': [] }
-      nuisances['stat']['samples']['ggWW']["correlate"].append('GGHSBI_'+m+model_name)
-      nuisances['stat']['samples']['ggH_hww']["correlate"].append('GGHSBI_'+m+model_name)
+      nuisances['stat']['samples']['GGH_'+m+model_name] = { 'typeStat' : 'bbb', 'zeroMCError' : '0', 'correlate': [] }
+      #nuisances['stat']['samples']['ggWW']["correlate"].append('GGHSBI_'+m+model_name)
+      #nuisances['stat']['samples']['ggH_hww']["correlate"].append('GGHSBI_'+m+model_name)
       nuisances['stat']['samples']['GGH_'+m+model_name]['correlate'].append('GGHSBI_'+m+model_name)
 
     for m in massvbf:
-      nuisances['stat']['samples']['QQH_'+m+model_name] = { 'typeStat' : 'bbb', 'zeroMCError' : '1', 'correlate': [] }
-      nuisances['stat']['samples']['qqWWqq']["correlate"].append('QQHSBI_'+m+model_name)
-      nuisances['stat']['samples']['qqH_hww']["correlate"].append('QQHSBI_'+m+model_name)
+      nuisances['stat']['samples']['QQH_'+m+model_name] = { 'typeStat' : 'bbb', 'zeroMCError' : '0', 'correlate': [] }
+      #nuisances['stat']['samples']['qqWWqq']["correlate"].append('QQHSBI_'+m+model_name)
+      #nuisances['stat']['samples']['qqH_hww']["correlate"].append('QQHSBI_'+m+model_name)
       nuisances['stat']['samples']['QQH_'+m+model_name]['correlate'].append('QQHSBI_'+m+model_name)
 

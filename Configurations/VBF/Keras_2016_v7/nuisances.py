@@ -306,48 +306,7 @@ if useEmbeddedDY:
                        'Dyveto'   : ['0.1', '-0.1'],
                     }
              }
-  else:
-    # These hardcoded numbers have been obtained by running the full Dyveto (with runDYveto=True in samples.py) 
-    # and computing the lnN uncertainty as variation of the up/down integral with respect to the nominal Dyemb integral
-    unc_dict = {}
-    unc_dict['hww2l2v_13TeV_me_pm_0j_pt2lt20']  =   '1.01646'
-    unc_dict['hww2l2v_13TeV_em_pm_0j_pt2ge20']  =   '1.02341'
-    unc_dict['hww2l2v_13TeV_me_mp_0j_pt2ge20']  =   '1.03419'
-    unc_dict['hww2l2v_13TeV_em_mp_0j_pt2lt20']  =   '1.01339'
-    unc_dict['hww2l2v_13TeV_em_pm_0j_pt2lt20']  =   '1.05306'
-    unc_dict['hww2l2v_13TeV_me_mp_0j_pt2lt20']  =   '1.04627'
-    unc_dict['hww2l2v_13TeV_me_pm_0j_pt2ge20']  =   '1.02709'
-    unc_dict['hww2l2v_13TeV_em_mp_0j_pt2ge20']  =   '1.01882'
-    unc_dict['hww2l2v_13TeV_me_pm_1j_pt2lt20']  =   '1.00986'
-    unc_dict['hww2l2v_13TeV_me_pm_1j_pt2ge20']  =   '1.01326'
-    unc_dict['hww2l2v_13TeV_me_mp_1j_pt2ge20']  =   '1.00953'
-    unc_dict['hww2l2v_13TeV_em_mp_1j_pt2lt20']  =   '1.01259'
-    unc_dict['hww2l2v_13TeV_me_mp_1j_pt2lt20']  =   '1.01495'
-    unc_dict['hww2l2v_13TeV_em_pm_1j_pt2lt20']  =   '1.01129'
-    unc_dict['hww2l2v_13TeV_em_pm_1j_pt2ge20']  =   '1.01201'
-    unc_dict['hww2l2v_13TeV_em_mp_1j_pt2ge20']  =   '1.02486'
-    unc_dict['hww2l2v_13TeV_2j']                =   '1.01431' 
-    unc_dict['hww2l2v_13TeV_dytt_0j']           =   '1.00226'
-    unc_dict['hww2l2v_13TeV_dytt_1j']           =   '1.00177'
-    unc_dict['hww2l2v_13TeV_dytt_2j']           =   '1.00248'
-    unc_dict['hww2l2v_13TeV_top_0j']            =   '1.01190'
-    unc_dict['hww2l2v_13TeV_top_1j']            =   '1.01777'
-    unc_dict['hww2l2v_13TeV_top_2j']            =   '1.04778'
-    unc_dict['hww2l2v_13TeV_ww_0j']             =   '1.05776'
-    unc_dict['hww2l2v_13TeV_ww_1j']             =   '1.05914'
-    unc_dict['hww2l2v_13TeV_ww_2j']             =   '1.03698'
-
-    for category,uncertainty in unc_dict.iteritems():
-      nuisances['embedveto_'+category]  = {
-                      'name'  : 'CMS_embed_veto_2016',
-                      'type'  : 'lnN',
-                      'samples'  : {
-                         'Dyemb'    : uncertainty,
-                         },
-                       'cuts': [category],
-                     }
 '''
-
 ### PU ID SF uncertainty
 puid_syst = ['Jet_PUIDSF_up/Jet_PUIDSF', 'Jet_PUIDSF_down/Jet_PUIDSF']
 
@@ -575,7 +534,16 @@ topvars2j = []
 ## Factors computed to renormalize the top scale variations such that the integral is not changed in each RECO jet bin (we have rateParams for that)
 #topScaleNormFactors0j = {'Alt$(LHEScaleWeight[3],1)': 1.0127481603212656, 'Alt$(LHEScaleWeight[0],1)': 1.0781331279433415, 'Alt$(LHEScaleWeight[1],1)': 1.0690928216708382, 'Alt$(LHEScaleWeight[7],1)': 0.9345571161077737, 'Alt$(LHEScaleWeight[8],1)': 0.9227838225449528, 'Alt$(LHEScaleWeight[5],1)': 0.9907270914731349}
 #topScaleNormFactors1j = {'Alt$(LHEScaleWeight[3],1)': 1.0153655578503986, 'Alt$(LHEScaleWeight[0],1)': 1.0907798004584341, 'Alt$(LHEScaleWeight[1],1)': 1.0798026063785011, 'Alt$(LHEScaleWeight[7],1)': 0.92428116499208, 'Alt$(LHEScaleWeight[8],1)': 0.9101690580310614, 'Alt$(LHEScaleWeight[5],1)': 0.9888177133975222}
-topScaleNormFactors2j = {'Alt$(LHEScaleWeight[3],1)': 1.0239541358390016, 'Alt$(LHEScaleWeight[0],1)': 1.125869020564376, 'Alt$(LHEScaleWeight[1],1)': 1.105896547188302, 'Alt$(LHEScaleWeight[7],1)': 0.9037581174447249, 'Alt$(LHEScaleWeight[8],1)': 0.8828417179568193, 'Alt$(LHEScaleWeight[5],1)': 0.981806136304384}
+#topScaleNormFactors2j = {'Alt$(LHEScaleWeight[3],1)': 1.0239541358390016, 'Alt$(LHEScaleWeight[0],1)': 1.125869020564376, 'Alt$(LHEScaleWeight[1],1)': 1.105896547188302, 'Alt$(LHEScaleWeight[7],1)': 0.9037581174447249, 'Alt$(LHEScaleWeight[8],1)': 0.8828417179568193, 'Alt$(LHEScaleWeight[5],1)': 0.981806136304384} #2+jets
+
+topScaleNormFactors2j = {'Alt$(LHEScaleWeight[3],1)': 1.01676762423417, 'Alt$(LHEScaleWeight[0],1)': 1.1025115936138077, 'Alt$(LHEScaleWeight[1],1)': 1.091629994134873, 'Alt$(LHEScaleWeight[7],1)': 0.9109113094808436, 'Alt$(LHEScaleWeight[8],1)': 0.8952146701676956, 'Alt$(LHEScaleWeight[5],1)': 0.9879368275826537} #2jets
+
+#{'hww2l2v_13TeV_equal2j': {'LHEScaleWeight[3]': 1.01676762423417, 'LHEScaleWeight[0]': 1.1025115936138077, 'LHEScaleWeight[1]': 1.091629994134873, 'LHEScaleWeight[Length$(LHEScaleWeight)-1]': 0.8952146701676956, 'LHEScaleWeight[Length$(LHEScaleWeight)-4]': 0.9879368275826537, 'LHEScaleWeight[Length$(LHEScaleWeight)-2]': 0.9109113094808436}}
+
+
+
+
+
 
 for var in topvariations:
   #topvars0j.append(var+'/'+str(topScaleNormFactors0j[var]))
@@ -829,7 +797,7 @@ nuisances['stat'] = {
 
 
 nuisances['DYembnorm2j']  = {
-                 'name'  : 'CMS_hww_DYttnorm2j',
+                 'name'  : 'CMS_hww_DYttnorm2j_VBF_DF_2016',
                  'samples'  : {
                    'Dyemb' : '1.00',
                      },
@@ -838,7 +806,7 @@ nuisances['DYembnorm2j']  = {
 
 
 nuisances['WWnorm2j']  = {
-               'name'  : 'CMS_hww_WWnorm2j',
+               'name'  : 'CMS_hww_WWnorm2j_VBF_DF_2016',
                'samples'  : {
                    'WW' : '1.00',
                    },
@@ -847,7 +815,7 @@ nuisances['WWnorm2j']  = {
 
 
 nuisances['ggWWnorm2j']  = {
-               'name'  : 'CMS_hww_WWnorm2j',
+               'name'  : 'CMS_hww_WWnorm2j_VBF_DF_2016',
                'samples'  : {
                    'ggWW' : '1.00',
                    },
@@ -856,7 +824,7 @@ nuisances['ggWWnorm2j']  = {
 
 
 nuisances['Topnorm2j']  = {
-               'name'  : 'CMS_hww_Topnorm2j',
+               'name'  : 'CMS_hww_Topnorm2j_VBF_DF_2016',
                'samples'  : {
                    'top' : '1.00',
                    },

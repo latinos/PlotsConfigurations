@@ -166,6 +166,20 @@ aliases['DY_LO_pTllrw'] = {
     'expr': '('+DYrew['2018']['LOtoNLO'].replace('x', 'getGenZpt_OTF')+')*(('+DYrew['2018']['NLO'].replace('x', 'getGenZpt_OTF')+')*(nCleanGenJet == 0)+1.0*(nCleanGenJet > 0))',
     'samples': ['DY']
 }
+aliases['DY_LOtoNLOonly'] = {
+    'expr': '('+DYrew['2018']['LOtoNLO'].replace('x', 'getGenZpt_OTF')+')',
+    'samples': ['DY']
+}
+if EMorEEorMM == 'em':
+  aliases['DY_isLO'] = {
+    'expr': '(gen_mll <= 50)',
+    'samples': ['DY']
+  }
+else:
+  aliases['DY_isLO'] = {
+    'expr': '(gen_mll <= 50) || (LHE_HT >= 70)',
+    'samples': ['DY']
+  }
 
 # For SM ggHWW
 aliases['MINLO'] = {
@@ -242,18 +256,47 @@ for shift in ['jes','lf','hf','lfstats1','lfstats2','hfstats1','hfstats2','cferr
 
 # PU jet Id SF
 
+#aliases['Jet_PUIDSF'] = {
+#  'expr' : 'TMath::Exp(Sum$((Jet_jetId>=2)*TMath::Log(Jet_PUIDSF_loose)))',
+#  'samples': mc
+#}
+#
+#aliases['Jet_PUIDSF_up'] = {
+#  'expr' : 'TMath::Exp(Sum$((Jet_jetId>=2)*TMath::Log(Jet_PUIDSF_loose_up)))',
+#  'samples': mc
+#}
+#
+#aliases['Jet_PUIDSF_down'] = {
+#  'expr' : 'TMath::Exp(Sum$((Jet_jetId>=2)*TMath::Log(Jet_PUIDSF_loose_down)))',
+#  'samples': mc
+#}
+
+# Above includes non-lepton-cleaned jets. Use below instead: Alt$(Lepton_pdgId[1], 0)
+
 aliases['Jet_PUIDSF'] = {
-  'expr' : 'TMath::Exp(Sum$((Jet_jetId>=2)*TMath::Log(Jet_PUIDSF_loose)))',
+  'expr' : 'TMath::Exp(Sum$((Jet_jetId>=2 && ( (Jet_electronIdx1 != Alt$(Lepton_electronIdx[0], 0) && Jet_electronIdx1 != Alt$(Lepton_electronIdx[1], 0)) || Jet_electronIdx1 < 0 ) && \
+                                             ( (Jet_electronIdx2 != Alt$(Lepton_electronIdx[0], 0) && Jet_electronIdx2 != Alt$(Lepton_electronIdx[1], 0)) || Jet_electronIdx2 < 0 ) && \
+                                             ( (Jet_muonIdx1 != Alt$(Lepton_muonIdx[0], 0) && Jet_muonIdx1 != Alt$(Lepton_muonIdx[1], 0)) || Jet_muonIdx1 < 0 ) && \
+                                             ( (Jet_muonIdx2 != Alt$(Lepton_muonIdx[0], 0) && Jet_muonIdx2 != Alt$(Lepton_muonIdx[1], 0)) || Jet_muonIdx2 < 0 ) \
+                                             )*TMath::Log(Jet_PUIDSF_loose)))',
   'samples': mc
 }
 
 aliases['Jet_PUIDSF_up'] = {
-  'expr' : 'TMath::Exp(Sum$((Jet_jetId>=2)*TMath::Log(Jet_PUIDSF_loose_up)))',
+  'expr' : 'TMath::Exp(Sum$((Jet_jetId>=2 && ( (Jet_electronIdx1 != Alt$(Lepton_electronIdx[0], 0) && Jet_electronIdx1 != Alt$(Lepton_electronIdx[1], 0)) || Jet_electronIdx1 < 0 ) && \
+                                             ( (Jet_electronIdx2 != Alt$(Lepton_electronIdx[0], 0) && Jet_electronIdx2 != Alt$(Lepton_electronIdx[1], 0)) || Jet_electronIdx2 < 0 ) && \
+                                             ( (Jet_muonIdx1 != Alt$(Lepton_muonIdx[0], 0) && Jet_muonIdx1 != Alt$(Lepton_muonIdx[1], 0)) || Jet_muonIdx1 < 0 ) && \
+                                             ( (Jet_muonIdx2 != Alt$(Lepton_muonIdx[0], 0) && Jet_muonIdx2 != Alt$(Lepton_muonIdx[1], 0)) || Jet_muonIdx2 < 0 ) \
+                                             )*TMath::Log(Jet_PUIDSF_loose_up)))',
   'samples': mc
 }
 
 aliases['Jet_PUIDSF_down'] = {
-  'expr' : 'TMath::Exp(Sum$((Jet_jetId>=2)*TMath::Log(Jet_PUIDSF_loose_down)))',
+  'expr' : 'TMath::Exp(Sum$((Jet_jetId>=2 && ( (Jet_electronIdx1 != Alt$(Lepton_electronIdx[0], 0) && Jet_electronIdx1 != Alt$(Lepton_electronIdx[1], 0)) || Jet_electronIdx1 < 0 ) && \
+                                             ( (Jet_electronIdx2 != Alt$(Lepton_electronIdx[0], 0) && Jet_electronIdx2 != Alt$(Lepton_electronIdx[1], 0)) || Jet_electronIdx2 < 0 ) && \
+                                             ( (Jet_muonIdx1 != Alt$(Lepton_muonIdx[0], 0) && Jet_muonIdx1 != Alt$(Lepton_muonIdx[1], 0)) || Jet_muonIdx1 < 0 ) && \
+                                             ( (Jet_muonIdx2 != Alt$(Lepton_muonIdx[0], 0) && Jet_muonIdx2 != Alt$(Lepton_muonIdx[1], 0)) || Jet_muonIdx2 < 0 ) \
+                                             )*TMath::Log(Jet_PUIDSF_loose_down)))',
   'samples': mc
 }
 

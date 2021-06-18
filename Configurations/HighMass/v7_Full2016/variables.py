@@ -18,7 +18,7 @@ variables['events']  = {   'name': '1',
 #                        'xaxis' : 'm_{reco} [GeV]',
 #                        'fold' : 3,
 #                        'divideByBinWidth' : 1,
-#                        'cuts'  : cutdictSR
+#                        'cuts'  : cutdictSR+cutdictCR
 #                        }
 
 #variables['mTi_highbinning']  = {   'name': 'mTi',
@@ -26,22 +26,22 @@ variables['events']  = {   'name': '1',
 #                        'xaxis' : 'm_{reco} [GeV]',
 #                        'fold' : 3,
 #                        'divideByBinWidth' : 1,
-#                        'cuts'  : cutdictSRhigh
+#                        'cuts'  : cutdictSRhigh+cutdictCR
 #                        }
 
 variables['DNN_mth_binning']  = {   'name': 'DNN_mth_OTF',
                         'range' : ([0,150,175,200,225,250,280,320,360,400,450,500,550,625,700,800,900,1000,1100,1200,1300,1450,1600,1800,2000,2250,2500,2750,3000,3500],),
-                        'xaxis' : 'DNN m_{T} [GeV]',
+                        'xaxis' : 'm_{DNN} [GeV]',
                         'fold' : 3,
                         'divideByBinWidth' : 1,
-                        'cuts'  : cutdictSR
+                        'cuts'  : cutdictSR+cutdictCR
                         }
 
 variables['DNN_mth_highbinning']  = {   'name': 'DNN_mth_OTF',
                         'range' : ([0,400,450,500,550,625,700,800,900,1000,1100,1200,1300,1450,1600,1800,2000,2250,2500,2750,3000,3500],),
-                        'xaxis' : 'DNN m_{T} [GeV]',
+                        'xaxis' : 'm_{DNN} [GeV]',
                         'fold' : 3,
                         'divideByBinWidth' : 1,
-                        'cuts'  : cutdictSRhigh
+                        'cuts'  : cutdictSRhigh+cutdictCR
                         }
 
