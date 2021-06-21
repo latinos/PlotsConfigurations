@@ -183,7 +183,7 @@ DYestim['hww2l2v_13TeV_2j_mm'] = {
 
 DYestim['hww2l2v_13TeV_2j_vbf_ee'] = {
     'rinout'  : 'DYmva0p80' ,
-    'rsyst'   : 0.02 ,
+    'rsyst'   : 0.03 ,
     'ksyst'   : 0.01 ,
     'njet'    : '2jVBF'    ,
     'flavour' : 'ee' ,

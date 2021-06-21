@@ -131,7 +131,8 @@ else:
 
     # Add DY HT Samples
     if useDYHT :
-        samples['DY']['name'] +=     nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-4to50_HT-200to400' ) \
+        samples['DY']['name'] +=     nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-4to50_HT-100to200' ) \
+                                   + nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-4to50_HT-200to400' ) \
                                    + nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-4to50_HT-400to600' ) \
                                    + nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-4to50_HT-600toInf') \
                                    + nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-70to100') \
@@ -238,6 +239,8 @@ if useWgFXFX:
     samples['Vg'] = {
         'name': files,
         'weight': mcCommonWeightNoMatch + '*(Gen_ZGstar_mass <= 0)',
+        'suppressNegative' :['all'],
+        'suppressNegativeNuisances' :['all'],
         'FilesPerJob': 2
     }
   
@@ -259,6 +262,8 @@ if useWgFXFX:
         'name': files,
         'weight': mcCommonWeight + ' * (gstarLow * 0.94 + gstarHigh * 1.14)',
         'FilesPerJob': 4,
+        'suppressNegative' :['all'],
+        'suppressNegativeNuisances' :['all'],
         'subsamples': {
             'L': 'gstarLow',
             'H': 'gstarHigh'
