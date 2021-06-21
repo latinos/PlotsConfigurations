@@ -1,4 +1,3 @@
-
 #RAndKff  = {}
 RAndKff['DYmva0p80'] = {
     'RFile'   : 'rootFile/plots_DYESTIM_2016_v7_DYMVA050.root' ,
@@ -72,7 +71,7 @@ RAndKff['DYmva0p80'] = {
 DYestim['hww2l2v_13TeV_0j_ee'] = {
     'rinout'  : 'DYmva0p80' ,
     'rsyst'   : 0.04 ,
-    'ksyst'   : 0.01 ,
+    'ksyst'   : 0.02 ,
     'njet'    : '0j' ,
     'flavour' : 'ee' ,
     'DYProc'  : 'DY' ,
@@ -223,8 +222,8 @@ DYestim['hww2l2v_13TeV_2j_vbf_mm'] = {
 
 DYestim['hww2l2v_13TeV_2j_vh_ee'] = {
     'rinout'  : 'DYmva0p80' ,
-    'rsyst'   : 0.19 ,
-    'ksyst'   : 0.04 ,
+    'rsyst'   : 0.20 ,
+    'ksyst'   : 0.05 ,
     'njet'    : '2jVH'    ,
     'flavour' : 'ee' ,
     'DYProc'  : 'DY' ,
@@ -243,7 +242,7 @@ DYestim['hww2l2v_13TeV_2j_vh_ee'] = {
 DYestim['hww2l2v_13TeV_2j_vh_mm'] = {
     'rinout'  : 'DYmva0p80' ,
     'rsyst'   : 0.10 ,
-    'ksyst'   : 0.07 ,
+    'ksyst'   : 0.10 ,
     'njet'    : '2jVH'    ,
     'flavour' : 'mm' ,
     'DYProc'  : 'DY' ,
