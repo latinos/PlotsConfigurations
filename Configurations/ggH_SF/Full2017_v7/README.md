@@ -44,6 +44,10 @@ With DY nuisances breakdown:
 
     mkPlot.py --pycfg=configuration.py --inputFile=rootFile/plots_ggH_SF_2017_v7_DYEstimDATA.root --linearOnly --fileFormats=png --onlyPlot=cratio
 
+If DY nuisance breakdown was used:
+
+    mkPlot.py --pycfg=configuration.py --inputFile=rootFile/plots_ggH_SF_2017_v7_DYEstimDATA_breakdown.root --linearOnly --fileFormats=png --onlyPlot=cratio
+
 Repeat, but with data-blind signal region:
 
     mkPlot.py --onlyCut=hww2l2v_13TeV_0j_ee --inputFile=rootFile/plots_ggH_SF_2017_v7_DYEstimDATA.root --linearOnly --fileFormats=png --onlyPlot=cratio --plotFile=plot_blind.py
@@ -57,6 +61,10 @@ Repeat, but with data-blind signal region:
 ### Create datacards
 
     mkDatacards.py --pycfg=configuration.py --inputFile=rootFile/plots_ggH_SF_2017_v7_DYEstimDATA.root --cardList=hww2l2v_13TeV_0j_ee,hww2l2v_13TeV_WW_0j_ee,hww2l2v_13TeV_top_0j_ee,hww2l2v_13TeV_0j_mm,hww2l2v_13TeV_WW_0j_mm,hww2l2v_13TeV_top_0j_mm,hww2l2v_13TeV_1j_ee,hww2l2v_13TeV_WW_1j_ee,hww2l2v_13TeV_top_1j_ee,hww2l2v_13TeV_1j_mm,hww2l2v_13TeV_WW_1j_mm,hww2l2v_13TeV_top_1j_mm,hww2l2v_13TeV_2j_ee,hww2l2v_13TeV_WW_2j_ee,hww2l2v_13TeV_top_2j_ee,hww2l2v_13TeV_2j_mm,hww2l2v_13TeV_WW_2j_mm,hww2l2v_13TeV_top_2j_mm
+
+If DY nuisance breakdown was used:
+
+    mkDatacards.py --pycfg=configuration.py --inputFile=rootFile/plots_ggH_SF_2017_v7_DYEstimDATA_breakdown.root --cardList=hww2l2v_13TeV_0j_ee,hww2l2v_13TeV_WW_0j_ee,hww2l2v_13TeV_top_0j_ee,hww2l2v_13TeV_0j_mm,hww2l2v_13TeV_WW_0j_mm,hww2l2v_13TeV_top_0j_mm,hww2l2v_13TeV_1j_ee,hww2l2v_13TeV_WW_1j_ee,hww2l2v_13TeV_top_1j_ee,hww2l2v_13TeV_1j_mm,hww2l2v_13TeV_WW_1j_mm,hww2l2v_13TeV_top_1j_mm,hww2l2v_13TeV_2j_ee,hww2l2v_13TeV_WW_2j_ee,hww2l2v_13TeV_top_2j_ee,hww2l2v_13TeV_2j_mm,hww2l2v_13TeV_WW_2j_mm,hww2l2v_13TeV_top_2j_mm
 
 ### Combine channels/categories
 

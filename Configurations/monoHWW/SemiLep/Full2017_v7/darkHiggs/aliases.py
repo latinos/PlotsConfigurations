@@ -21,6 +21,7 @@ configurations = os.path.dirname(configurations) # Configurations
 
 
 mc = [skey for skey in samples if skey not in ('FAKE', 'DATA')]
+signal_mc = [skey for skey in samples if 'darkHiggs' in skey ]
 
 eleWP    = 'mvaFall17V1Iso_WP90'
 muWP     = 'cut_Tight_HWWW'
@@ -369,6 +370,15 @@ aliases['PUJetIdSF_down'] = {
   'samples': mc
 }
 
+# Gen darkHiggs pt for signal interpolation
+
+aliases['genDarkHiggs_Pt'] = {
+    'linesToAdd':[
+        '.L %s/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/scripts/interpolation/getGenDarkHiggspt.cc+' % os.getenv('CMSSW_BASE'),
+    ],
+    'class': 'getGenDarkHiggspt',
+    'samples': signal_mc
+}
 
 ## Fake-Weight stuff
 #FR_dir = os.getenv('CMSSW_BASE') + "/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/Full2018_v7/2HDMa/FReleTrig/"

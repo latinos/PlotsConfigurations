@@ -13,7 +13,7 @@ outputDir = '2HDMa_root'
 aliasesFile = 'aliases.py'
 
 # file with list of variables
-variablesFile = 'variables.py'
+variablesFile = 'variables_rel.py'
 
 # file with list of cuts
 cutsFile = 'cuts.py'
@@ -38,4 +38,4 @@ outputDirDatacard = '2HDMa_datacards'
 structureFile = 'structure.py'
 
 # nuisances file for mkDatacards and for mkShape
-nuisancesFile = 'nuisances.py'
+#nuisancesFile = 'nuisances.py'

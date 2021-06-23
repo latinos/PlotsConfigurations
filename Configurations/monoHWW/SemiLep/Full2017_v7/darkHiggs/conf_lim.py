@@ -20,7 +20,8 @@ variablesFile = 'variables_lim.py'
 cutsFile = 'cuts_lim.py'
 
 # file with list of samples
-samplesFile = 'samples.py'
+#samplesFile = 'samples.py'
+samplesFile = 'samples_int.py'
 
 # file with list of samples
 plotFile = 'plot.py'

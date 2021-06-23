@@ -1,7 +1,7 @@
 #RAndKff  = {}
 RAndKff['DYmva0p80'] = {
     'RFile'   : 'rootFile/plots_DYESTIM_2016_v7_Zpeak.root' ,
-    'KffFile' : '../rootFile/plots_DYESTIM_2016_v7_DYMVA080.root' ,
+    'KffFile' : '../rootFile/plots_DYESTIM_ggH_SF_2016_v7_DYMVA080.root' ,
     'Regions' : { 
         '0jee' : {
             'kNum' : '0j_ee_in' ,
@@ -70,7 +70,7 @@ RAndKff['DYmva0p80'] = {
 DYestim['hww2l2v_13TeV_0j_ee'] = {
     'rinout'  : 'DYmva0p80' ,
     'rsyst'   : 0.04 ,
-    'ksyst'   : 0.01 ,
+    'ksyst'   : 0.02 ,
     'njet'    : '0j' ,
     'flavour' : 'ee' ,
     'DYProc'  : 'DY' ,
@@ -88,7 +88,7 @@ DYestim['hww2l2v_13TeV_0j_ee'] = {
 
 DYestim['hww2l2v_13TeV_0j_mm'] = {
     'rinout'  : 'DYmva0p80' ,
-    'rsyst'   : 0.04 , 
+    'rsyst'   : 0.05 , 
     'ksyst'   : 0.03 , 
     'njet'    : '0j'    ,
     'flavour' : 'mm' ,
@@ -107,7 +107,7 @@ DYestim['hww2l2v_13TeV_0j_mm'] = {
 
 DYestim['hww2l2v_13TeV_1j_ee'] = {
     'rinout'  : 'DYmva0p80' ,
-    'rsyst'   : 0.03 , 
+    'rsyst'   : 0.02 , 
     'ksyst'   : 0.01 , 
     'njet'    : '1j'    ,
     'flavour' : 'ee' ,
@@ -183,7 +183,7 @@ DYestim['hww2l2v_13TeV_2j_mm'] = {
 
 DYestim['hww2l2v_13TeV_2j_vbf_ee'] = {
     'rinout'  : 'DYmva0p80' ,
-    'rsyst'   : 0.02 ,
+    'rsyst'   : 0.03 ,
     'ksyst'   : 0.03 ,
     'njet'    : '2jVBF'    ,
     'flavour' : 'ee' ,
@@ -221,7 +221,7 @@ DYestim['hww2l2v_13TeV_2j_vbf_mm'] = {
 
 DYestim['hww2l2v_13TeV_2j_vh_ee'] = {
     'rinout'  : 'DYmva0p80' ,
-    'rsyst'   : 0.24 ,
+    'rsyst'   : 0.20 ,
     'ksyst'   : 0.05 ,
     'njet'    : '2jVH'    ,
     'flavour' : 'ee' ,
@@ -241,7 +241,7 @@ DYestim['hww2l2v_13TeV_2j_vh_ee'] = {
 DYestim['hww2l2v_13TeV_2j_vh_mm'] = {
     'rinout'  : 'DYmva0p80' ,
     'rsyst'   : 0.10 ,
-    'ksyst'   : 0.12 ,
+    'ksyst'   : 0.10 ,
     'njet'    : '2jVH'    ,
     'flavour' : 'mm' ,
     'DYProc'  : 'DY' ,

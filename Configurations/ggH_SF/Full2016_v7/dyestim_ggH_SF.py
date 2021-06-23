@@ -1,8 +1,8 @@
 #RAndKff  = {}
 
 RAndKff['DYmva0p90'] = {
-    'RFile'   : 'rootFile/plots_DYESTIM_2016_v7_DYMVA090.root' ,
-    'KffFile' : 'rootFile/plots_DYESTIM_2016_v7_DYMVA080.root' ,
+    'RFile'   : 'rootFile/plots_DYESTIM_ggH_SF_2016_v7_DYMVA090.root' ,
+    'KffFile' : 'rootFile/plots_DYESTIM_ggH_SF_2016_v7_DYMVA080.root' ,
     'Regions' : { 
         '0jee' : {
             'kNum' : '0j_ee_in' ,
@@ -47,7 +47,7 @@ RAndKff['DYmva0p90'] = {
 DYestim['hww2l2v_13TeV_0j_ee'] = {
     'rinout'  : 'DYmva0p90' ,
     'rsyst'   : 0.04 ,
-    'ksyst'   : 0.01 ,
+    'ksyst'   : 0.02 ,
     'njet'    : '0j' ,
     'flavour' : 'ee' ,
     'DYProc'  : 'DY' ,
@@ -60,12 +60,12 @@ DYestim['hww2l2v_13TeV_0j_ee'] = {
     'NPname'  : 'DYeenorm0j' ,
     'AccNum'  : 'hww2l2v_13TeV_HAccNum_0j_ee/events/histo_DY',
     'AccDen'  : 'hww2l2v_13TeV_AccDen_0j_ee/events/histo_DY',
-    'asyst'   : 0.04 ,
+    'asyst'   : 0.07 ,
 }
 
 DYestim['hww2l2v_13TeV_0j_mm'] = {
     'rinout'  : 'DYmva0p90' ,
-    'rsyst'   : 0.04 , 
+    'rsyst'   : 0.05 , 
     'ksyst'   : 0.03 , 
     'njet'    : '0j'    ,
     'flavour' : 'mm' ,
@@ -84,7 +84,7 @@ DYestim['hww2l2v_13TeV_0j_mm'] = {
 
 DYestim['hww2l2v_13TeV_1j_ee'] = {
     'rinout'  : 'DYmva0p90' ,
-    'rsyst'   : 0.03 , 
+    'rsyst'   : 0.02 , 
     'ksyst'   : 0.01 , 
     'njet'    : '1j'    ,
     'flavour' : 'ee' ,
@@ -98,7 +98,7 @@ DYestim['hww2l2v_13TeV_1j_ee'] = {
     'NPname'  : 'DYeenorm1j' ,
     'AccNum'  : 'hww2l2v_13TeV_HAccNum_1j_ee/events/histo_DY',
     'AccDen'  : 'hww2l2v_13TeV_AccDen_1j_ee/events/histo_DY',
-    'asyst'   : 0.10 , 
+    'asyst'   : 0.12 , 
 } 
 
 DYestim['hww2l2v_13TeV_1j_mm'] = {
@@ -117,7 +117,7 @@ DYestim['hww2l2v_13TeV_1j_mm'] = {
     'NPname'  : 'DYmmnorm1j' ,
     'AccNum'  : 'hww2l2v_13TeV_HAccNum_1j_mm/events/histo_DY',
     'AccDen'  : 'hww2l2v_13TeV_AccDen_1j_mm/events/histo_DY',
-    'asyst'   : 0.08 , 
+    'asyst'   : 0.13 , 
 } 
 
 DYestim['hww2l2v_13TeV_2j_ee'] = {
@@ -136,7 +136,7 @@ DYestim['hww2l2v_13TeV_2j_ee'] = {
     'NPname'  : 'DYeenorm2j' ,
     'AccNum'  : 'hww2l2v_13TeV_HAccNum_2j_ee/events/histo_DY',
     'AccDen'  : 'hww2l2v_13TeV_AccDen_2j_ee/events/histo_DY',
-    'asyst'   : 0.02 ,
+    'asyst'   : 0.03 ,
 }
 
 DYestim['hww2l2v_13TeV_2j_mm'] = {
@@ -189,7 +189,7 @@ DYestim['hww2l2v_13TeV_WW_0j_mm'] = {
     'NPname'  : 'DYmmnorm0j' ,
     'AccNum'  : 'hww2l2v_13TeV_wwAcc_0j_mm/events/histo_DY',
     'AccDen'  : 'hww2l2v_13TeV_AccDen_0j_mm/events/histo_DY',
-    'asyst'   : 0.04 ,
+    'asyst'   : 0.01 ,
 }
 
 DYestim['hww2l2v_13TeV_WW_1j_ee'] = {
@@ -206,7 +206,7 @@ DYestim['hww2l2v_13TeV_WW_1j_ee'] = {
     'NPname'  : 'DYeenorm1j' ,
     'AccNum'  : 'hww2l2v_13TeV_wwAcc_1j_ee/events/histo_DY',
     'AccDen'  : 'hww2l2v_13TeV_AccDen_1j_ee/events/histo_DY',
-    'asyst'   : 0.04 ,
+    'asyst'   : 0.02 ,
 }
 
 DYestim['hww2l2v_13TeV_WW_1j_mm'] = {
@@ -223,7 +223,7 @@ DYestim['hww2l2v_13TeV_WW_1j_mm'] = {
     'NPname'  : 'DYmmnorm1j' ,
     'AccNum'  : 'hww2l2v_13TeV_wwAcc_1j_mm/events/histo_DY',
     'AccDen'  : 'hww2l2v_13TeV_AccDen_1j_mm/events/histo_DY',
-    'asyst'   : 0.05 ,
+    'asyst'   : 0.02 ,
 }
 
 DYestim['hww2l2v_13TeV_WW_2j_ee'] = {
@@ -240,7 +240,7 @@ DYestim['hww2l2v_13TeV_WW_2j_ee'] = {
     'NPname'  : 'DYeenorm2j' ,
     'AccNum'  : 'hww2l2v_13TeV_wwAcc_2j_ee/events/histo_DY',
     'AccDen'  : 'hww2l2v_13TeV_AccDen_2j_ee/events/histo_DY',
-    'asyst'   : 0.01 ,
+    'asyst'   : 0.02 ,
 }
 
 DYestim['hww2l2v_13TeV_WW_2j_mm'] = {

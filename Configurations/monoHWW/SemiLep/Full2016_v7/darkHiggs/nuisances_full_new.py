@@ -192,7 +192,7 @@ nuisances['eff_e'] = {
 }
 
 #makeSuffixVar('CMS_scale_e_2016', 'ElepT')
-makeSuffixVar('CMS_scale_e_2016', 'ElepT', mc_noVBS)
+makeSuffixVar('CMS_scale_e_2016', 'ElepT', mc_noVBS, as_lnN=True)
 
 ##### Muon Efficiency and energy scale
 
@@ -204,7 +204,7 @@ nuisances['eff_m'] = {
 }
 
 #makeSuffixVar('CMS_scale_m_2016', 'MupT')
-makeSuffixVar('CMS_scale_m_2016', 'MupT', mc_noVBS)
+makeSuffixVar('CMS_scale_m_2016', 'MupT', mc_noVBS, as_lnN=True)
 
 ##### Jet energy scale
 
@@ -213,12 +213,12 @@ makeSuffixVar('CMS_scale_m_2016', 'MupT', mc_noVBS)
 #for syst in jes_systs:
 #    makeSuffixVar('CMS_scale_'+syst, syst, folder_fix='JES')
 
-# top/rest split
-makeSuffixVar('CMS_scale_JES_2016',     'JES', [skey for skey in mc_noVBS if skey in mc_noTop], as_lnN=True)
-makeSuffixVar('CMS_scale_JES_top_2016', 'JES', [skey for skey in mc_noVBS if skey in mc_top] )
+## top/rest split
+#makeSuffixVar('CMS_scale_JES_2016',     'JES', [skey for skey in mc_noVBS if skey in mc_noTop], as_lnN=True)
+#makeSuffixVar('CMS_scale_JES_top_2016', 'JES', [skey for skey in mc_noVBS if skey in mc_top] )
 
-## Unified
-#makeSuffixVar('CMS_scale_JES_2016',     'JES', mc_noVBS, as_lnN=True)
+# Unified
+makeSuffixVar('CMS_scale_JES_2016',     'JES', mc_noVBS, as_lnN=True)
 
 ##### Jet energy resolution
 
@@ -255,17 +255,50 @@ nuisances['PU'] = {
         'VVV'  : ['0.998979334821*(puWeightUp/puWeight)',  '1.00104794328*(puWeightDown/puWeight)'],
         'Higgs': ['0.998297228657*(puWeightUp/puWeight)',  '1.00160479904*(puWeightDown/puWeight)'],
     },
-    #'AsLnN': '1',
+    'AsLnN': '1',
 }
 covered_samples = nuisances['PU']['samples'].keys()
 for skey in mc:
     if skey not in covered_samples: nuisances['PU']['samples'][skey] = ['(puWeightUp/puWeight)', '(puWeightDown/puWeight)']
 
-nuisances['JetPUID_sf']  = {
+#nuisances['JetPUID_sf']  = {
+#    'name'  : 'CMS_jetpuid_2016',
+#    #'type': 'lnN',
+#    #'samples': dict((skey, '0.96/1.001') for skey in mc if skey not in ['Wjets', 'top']),
+#    'kind'  : 'weight',
+#    'type'  : 'shape',
+#    'samples'  : dict((skey, ['PUJetIdSF_up/PUJetIdSF','PUJetIdSF_down/PUJetIdSF']) for skey in mc ),
+#    'AsLnN': '1',
+#}
+
+handle = open('../WUpDown/JetPUID_2016_cfg.py', 'r')
+exec(handle)
+handle.close()
+
+puid_dict = {}
+for samp in mc:
+    if samp in jetpuid_dict:
+        #puid_dict[samp] = [jetpuid_dict[samp]['Up'], jetpuid_dict[samp]['Down']]
+        puid_dict[samp] = ['1.', jetpuid_dict[samp]['Down']]
+    elif 'darkHiggs' in samp:
+        #puid_dict[samp] = [jetpuid_dict['darkHiggs']['Up'], jetpuid_dict['darkHiggs']['Down']]
+        puid_dict[samp] = ['1.', jetpuid_dict['darkHiggs']['Down']]
+    elif 'VgS' in samp:
+        #puid_dict[samp] = [jetpuid_dict['VgS_H']['Up'], jetpuid_dict['VgS_H']['Down']]
+        puid_dict[samp] = ['1.', jetpuid_dict['VgS_H']['Down']]
+
+nuisances['JetPUID_fake_sf']  = {
     'name'  : 'CMS_jetpuid_2016',
     'kind'  : 'weight',
     'type'  : 'shape',
-    'samples'  : dict((skey, ['PUJetIdSF_up/PUJetIdSF','PUJetIdSF_down/PUJetIdSF']) for skey in mc ),
+    'samples': puid_dict,
+    #'samples': dict((skey, [jetpuid_dict[skey]['Up'], jetpuid_dict[skey]['Down']]) for skey in jetpuid_dict)
+    #'samples'  : {
+    #    'top'  : jetPUID_top,
+    #    'Wjets': jetPUID_Wjets,
+    #} 
+    'AsLnN': '1',
+    #'symmetrize': True
 }
 
 #
@@ -507,7 +540,8 @@ nuisances['QCDscale_top']  = {
     'kind'  : 'weight_envelope',
     'type'  : 'shape',
     'samples'  : {
-        'top' : variations,
+        #'top' : variations,
+        'top' : variations_top,
     }
 }
 
@@ -516,7 +550,8 @@ nuisances['QCDscale_Wjets']  = {
     'kind'  : 'weight_envelope',
     'type'  : 'shape',
     'samples'  : {
-        'Wjets' : variations,
+        #'Wjets' : variations,
+        'Wjets' : variations_wjets,
     }
 }
 
