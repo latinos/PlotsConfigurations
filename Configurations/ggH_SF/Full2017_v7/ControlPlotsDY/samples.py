@@ -6,7 +6,7 @@ Configurations = os.path.dirname(configurations) # Full2017_v7
 configurations = os.path.dirname(configurations) # ggH_SF 
 configurations = os.path.dirname(configurations) # Configurations
 
-from LatinoAnalysis.Tools.commonTools import getSampleFiles, getBaseW, addSampleWeight
+from LatinoAnalysis.Tools.commonTools import getSampleFiles, getBaseW, addSampleWeight, getBaseWnAOD
 
 def nanoGetSampleFiles(inputDir, sample):
     try:
@@ -237,7 +237,9 @@ if useWgFXFX:
     samples['Vg'] = {
         'name': files,
         'weight': mcCommonWeightNoMatch + '*(Gen_ZGstar_mass <= 0)',
-    'FilesPerJob': 2
+        'suppressNegative' :['all'],
+        'suppressNegativeNuisances' :['all'],
+        'FilesPerJob': 2
     }
     
     wgbasew = getBaseWnAOD(mcDirectory,'Fall2017_102X_nAODv7_Full2017v7',['Wg_AMCNLOFXFX','Wg_AMCNLOFXFX_PDFWeights','Wg_AMCNLOFXFX_PDFWeights_ext1'])
@@ -258,6 +260,8 @@ if useWgFXFX:
         'name': files,
         'weight': mcCommonWeight + ' * (gstarLow * 0.94 + gstarHigh * 1.14)',
         'FilesPerJob': 4,
+        'suppressNegative' :['all'],
+        'suppressNegativeNuisances' :['all'],
         'subsamples': {
             'L': 'gstarLow',
             'H': 'gstarHigh'

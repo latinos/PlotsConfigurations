@@ -1,8 +1,8 @@
 #RAndKff  = {}
 
 RAndKff['DYmva0p90'] = {
-    'RFile'   : 'rootFile/plots_DYESTIM_2017_v7_DYMVA090.root' ,
-    'KffFile' : 'rootFile/plots_DYESTIM_2017_v7_DYMVA080.root' ,
+    'RFile'   : 'rootFile/plots_DYESTIM_ggH_SF_2017_v7_DYMVA090.root' ,
+    'KffFile' : 'rootFile/plots_DYESTIM_ggH_SF_2017_v7_DYMVA080.root' ,
     'Regions' : {
         '0jee' : {
             'kNum' : '0j_ee_in' ,
@@ -85,7 +85,7 @@ DYestim['hww2l2v_13TeV_0j_mm'] = {
 
 DYestim['hww2l2v_13TeV_1j_ee'] = {
     'rinout'  : 'DYmva0p90' ,
-    'rsyst'   : 0.03 , 
+    'rsyst'   : 0.02 , 
     'ksyst'   : 0.01 , 
     'njet'    : '1j'    ,
     'flavour' : 'ee' ,
@@ -137,7 +137,7 @@ DYestim['hww2l2v_13TeV_2j_ee'] = {
     'NPname'  : 'DYeenorm2j' ,
     'AccNum'  : 'hww2l2v_13TeV_HAccNum_2j_ee/events/histo_DY',
     'AccDen'  : 'hww2l2v_13TeV_AccDen_2j_ee/events/histo_DY',
-    'asyst'   : 0.12 ,
+    'asyst'   : 0.24 ,
 }
 
 DYestim['hww2l2v_13TeV_2j_mm'] = {

@@ -237,6 +237,8 @@ if useWgFXFX:
     samples['Vg'] = {
         'name': files,
         'weight': mcCommonWeightNoMatch + '*(Gen_ZGstar_mass <= 0)',
+        'suppressNegative' :['all'],
+        'suppressNegativeNuisances' :['all'],
         'FilesPerJob': 4
     }
     
@@ -258,6 +260,8 @@ if useWgFXFX:
         'name': files,
         'weight': mcCommonWeight + ' * (gstarLow * 0.94 + gstarHigh * 1.14)',
         'FilesPerJob': 4,
+        'suppressNegative' :['all'],
+        'suppressNegativeNuisances' :['all'],
         'subsamples': {
             'L': 'gstarLow',
             'H': 'gstarHigh'

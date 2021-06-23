@@ -1,7 +1,7 @@
 #RAndKff  = {}
 RAndKff['DYmva0p80'] = {
     'RFile'   : 'rootFile/plots_DYESTIM_2017_v7_Zpeak.root' ,
-    'KffFile' : '../rootFile/plots_DYESTIM_2017_v7_DYMVA080.root' ,
+    'KffFile' : '../rootFile/plots_DYESTIM_ggH_SF_2017_v7_DYMVA080.root' ,
     'Regions' : { 
         '0jee' : {
             'kNum' : '0j_ee_in' ,
@@ -65,7 +65,6 @@ RAndKff['DYmva0p80'] = {
         } ,
     } ,
 }
-
 
 #DYestim = {}
 DYestim['hww2l2v_13TeV_0j_ee'] = {
