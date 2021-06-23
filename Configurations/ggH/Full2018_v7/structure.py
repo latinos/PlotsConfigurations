@@ -30,7 +30,7 @@ structure['Fake']  = {
                   'isSignal' : 0,
                   'isData'   : 0 
               }
-
+'''
 structure['Fake_em']  = {  
                   'isSignal' : 0,
                   'isData'   : 0,
@@ -42,7 +42,7 @@ structure['Fake_me']  = {
                   'isData'   : 0,
                   'removeFromCuts' : [ k for k in cuts if 'em' in k],
               }
-
+'''
 structure['ttbar'] = {   
                   'isSignal' : 0,
                   'isData'   : 0 
@@ -210,6 +210,17 @@ structure['H_htt'] = {
 
 # data
 
+import pickle
+with open('vbfDipoleScale.pkl', 'rb') as handle:
+    vbfDipoleScale = pickle.load(handle)
+
+print vbfDipoleScale
+
+structure['qqH_hww'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  'scaleSampleForDatacard' : vbfDipoleScale,
+                  }
 
 structure['DATA']  = { 
                   'isSignal' : 0,
