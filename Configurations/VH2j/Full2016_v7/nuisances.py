@@ -82,7 +82,7 @@ nuisances['lumi_Ghosts'] = {
 #### FAKES
 
 nuisances['fake_syst'] = {
-    'name': 'CMS_fake_syst_em',
+    'name': 'CMS_fake_syst',
     'type': 'lnN',
     'samples': {
         'Fake': '1.3'
