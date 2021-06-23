@@ -183,7 +183,7 @@ nuisances['eff_e'] = {
 }
 
 #makeSuffixVar('CMS_scale_e_2018', 'ElepT')
-makeSuffixVar('CMS_scale_e_2018', 'ElepT', mc_noVBS)
+makeSuffixVar('CMS_scale_e_2018', 'ElepT', mc_noVBS, as_lnN=True)
 
 ##### Muon Efficiency and energy scale
 
@@ -195,7 +195,7 @@ nuisances['eff_m'] = {
 }
 
 #makeSuffixVar('CMS_scale_m_2018', 'MupT')
-makeSuffixVar('CMS_scale_m_2018', 'MupT', mc_noVBS)
+makeSuffixVar('CMS_scale_m_2018', 'MupT', mc_noVBS, as_lnN=True)
 
 ##### Jet energy scale
 
@@ -219,7 +219,7 @@ makeSuffixVar('CMS_res_j_2018', 'JER', mc_noVBS, as_lnN=True)
 ##### MET energy scale
 
 #makeSuffixVar('CMS_scale_met_2018', 'MET')
-makeSuffixVar('CMS_scale_met_2018', 'MET', mc_noVBS, as_lnN=True)
+makeSuffixVar('CMS_scale_met_2018', 'MET', mc_noVBS)
 
 ##### Pileup
 
@@ -254,9 +254,12 @@ for skey in mc:
 
 nuisances['JetPUID_sf']  = {
     'name'  : 'CMS_jetpuid_2018',
+    #'type': 'lnN',
+    #'samples': dict((skey, '0.96/1.001') for skey in mc if skey not in ['Wjets', 'top']),
     'kind'  : 'weight',
     'type'  : 'shape',
     'samples'  : dict((skey, ['PUJetIdSF_up/PUJetIdSF','PUJetIdSF_down/PUJetIdSF']) for skey in mc ),
+    'AsLnN': '1',
 }
 
 #
@@ -559,14 +562,14 @@ nuisances['QCDscale_top']  = {
     }
 }
 
-#nuisances['QCDscale_Wjets']  = {
-#    'name'  : 'QCDscale_V', 
-#    'kind'  : 'weight_envelope',
-#    'type'  : 'shape',
-#    'samples'  : {
-#        'Wjets' : variations,
-#    }
-#}
+nuisances['QCDscale_Wjets']  = {
+    'name'  : 'QCDscale_V', 
+    'kind'  : 'weight_envelope',
+    'type'  : 'shape',
+    'samples'  : {
+        'Wjets' : variations,
+    }
+}
 
 nuisances['QCDscale_WWewk']  = {
     'name'  : 'QCDscale_WWewk',

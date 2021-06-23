@@ -284,19 +284,47 @@ nuisances['VgStar'] = {
 }
 
 
-nuisances['pdf']  = {
-               'name'  : 'pdf',
-               'type'  : 'lnN',
-               'samples'  : {
-                   'ggWW'    : '1.05',
-                   'WW'      : '1.04',
-                   'Vg'      : '1.04',
-                   'VZ'      : '1.04',
-                   'VgS'     : '1.04',
-                   'Higgs'     : '1.04',
-                   'DY'      : '1.002', 
-                   },
-              }
+###### pdf uncertainties
+
+# PDF eigenvariations for WW and top
+for i in range(1,33):
+  # LHEPdfWeight are PDF4LHC variations, while nominal is NNPDF.
+  # LHEPdfWeight[i] reweights from NNPDF nominal to PDF4LHC member i
+  # LHEPdfWeight[0] in particular reweights from NNPDF nominal to PDF4LHC nominal
+  pdf_variations = ["LHEPdfWeight[%d]/LHEPdfWeight[0]" %i, "2. - LHEPdfWeight[%d]/LHEPdfWeight[0]" %i ]
+
+  nuisances['pdf_WW_eigen'+str(i)]  = {
+    'name'  : 'CMS_hww_pdf_WW_eigen'+str(i),
+    'skipCMS' : 1,
+    'kind'  : 'weight',
+    'type'  : 'shape',
+    'samples'  : {
+      'WW'   : pdf_variations,
+    },
+  }
+  nuisances['pdf_top_eigen'+str(i)]  = {
+    'name'  : 'CMS_hww_pdf_top_eigen'+str(i),
+    'skipCMS' : 1,
+    'kind'  : 'weight',
+    'type'  : 'shape',
+    'samples'  : {
+      'top'   : pdf_variations,
+    },
+  }
+
+# nuisances['pdf']  = {
+#                'name'  : 'pdf',
+#                'type'  : 'lnN',
+#                'samples'  : {
+#                    'ggWW'    : '1.05',
+#                    'WW'      : '1.04',
+#                    'Vg'      : '1.04',
+#                    'VZ'      : '1.04',
+#                    'VgS'     : '1.04',
+#                    'Higgs'     : '1.04',
+#                    'DY'      : '1.002', 
+#                    },
+#               }
 
 
 ## Shape nuisance due to QCD scale variations for DY
@@ -375,6 +403,18 @@ nuisances['WWqscale']  = {
     },
 }
 
+
+# WW EWK NLO correction uncertainty
+nuisances['EWKcorr_WW'] = {
+    'name': 'CMS_hww_EWKcorr_WW',
+    'skipCMS': 1,
+    'kind': 'weight',
+    'type': 'shape',
+    'samples': {
+        'WW': ['1.', '1./ewknloW']
+    },
+    'symmetrize' : True,
+}
 
 
 # ## rate parameters

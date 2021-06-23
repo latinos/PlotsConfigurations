@@ -192,7 +192,7 @@ nuisances['eff_e'] = {
 }
 
 #makeSuffixVar('CMS_scale_e_2016', 'ElepT')
-makeSuffixVar('CMS_scale_e_2016', 'ElepT', mc_noVBS)
+makeSuffixVar('CMS_scale_e_2016', 'ElepT', mc_noVBS, as_lnN=True)
 
 ##### Muon Efficiency and energy scale
 
@@ -204,7 +204,7 @@ nuisances['eff_m'] = {
 }
 
 #makeSuffixVar('CMS_scale_m_2016', 'MupT')
-makeSuffixVar('CMS_scale_m_2016', 'MupT', mc_noVBS)
+makeSuffixVar('CMS_scale_m_2016', 'MupT', mc_noVBS, as_lnN=True)
 
 ##### Jet energy scale
 
@@ -213,12 +213,12 @@ makeSuffixVar('CMS_scale_m_2016', 'MupT', mc_noVBS)
 #for syst in jes_systs:
 #    makeSuffixVar('CMS_scale_'+syst, syst, folder_fix='JES')
 
-# top/rest split
-makeSuffixVar('CMS_scale_JES_2016',     'JES', [skey for skey in mc_noVBS if skey in mc_noTop], as_lnN=True)
-makeSuffixVar('CMS_scale_JES_top_2016', 'JES', [skey for skey in mc_noVBS if skey in mc_top] )
+## top/rest split
+#makeSuffixVar('CMS_scale_JES_2016',     'JES', [skey for skey in mc_noVBS if skey in mc_noTop], as_lnN=True)
+#makeSuffixVar('CMS_scale_JES_top_2016', 'JES', [skey for skey in mc_noVBS if skey in mc_top] )
 
-## Unified
-#makeSuffixVar('CMS_scale_JES_2016',     'JES', mc_noVBS, as_lnN=True)
+# Unified
+makeSuffixVar('CMS_scale_JES_2016',     'JES', mc_noVBS, as_lnN=True)
 
 ##### Jet energy resolution
 
@@ -229,7 +229,7 @@ makeSuffixVar('CMS_scale_JES_top_2016', 'JES', [skey for skey in mc_noVBS if ske
 ##### MET energy scale
 
 #makeSuffixVar('CMS_scale_met_2016', 'MET')
-makeSuffixVar('CMS_scale_met_2016', 'MET', mc_noVBS, as_lnN=True)
+makeSuffixVar('CMS_scale_met_2016', 'MET', mc_noVBS)
 
 ##### Pileup
 
@@ -263,9 +263,12 @@ for skey in mc:
 
 nuisances['JetPUID_sf']  = {
     'name'  : 'CMS_jetpuid_2016',
+    #'type': 'lnN',
+    #'samples': dict((skey, '0.96/1.001') for skey in mc if skey not in ['Wjets', 'top']),
     'kind'  : 'weight',
     'type'  : 'shape',
     'samples'  : dict((skey, ['PUJetIdSF_up/PUJetIdSF','PUJetIdSF_down/PUJetIdSF']) for skey in mc ),
+    'AsLnN': '1',
 }
 
 #
@@ -507,7 +510,8 @@ nuisances['QCDscale_top']  = {
     'kind'  : 'weight_envelope',
     'type'  : 'shape',
     'samples'  : {
-        'top' : variations,
+        #'top' : variations,
+        'top' : variations_top,
     }
 }
 
@@ -516,7 +520,8 @@ nuisances['QCDscale_Wjets']  = {
     'kind'  : 'weight_envelope',
     'type'  : 'shape',
     'samples'  : {
-        'Wjets' : variations,
+        #'Wjets' : variations,
+        'Wjets' : variations_wjets,
     }
 }
 

@@ -291,20 +291,44 @@ nuisances['VgStar'] = {
 # ZZ:  0.0027 / 0.0719 = 0.0375522
 # DY: 14.78 / 6077.22 = 0.0024320
 
+pdf_variations = ["LHEPdfWeight[%d]" %i for i in range(100)]
 
-nuisances['pdf']  = {
-               'name'  : 'pdf',
-               'type'  : 'lnN',
-               'samples'  : {
-                   'ggWW'    : '1.05',
-                   'WW'      : '1.04',
-                   'Vg'      : '1.04',
-                   'VZ'      : '1.04',
-                   'VgS'     : '1.04',
-                   'Higgs'     : '1.04',
-                   'DY'      : '1.002', 
-                   },
-              }
+##### PDF uncertainties on WW
+nuisances['pdf_WW']  = {
+  'name'  : 'CMS_hww_pdf_WW_2016',
+  'skipCMS' : 1,
+  'kind'  : 'weight_rms',
+  'type'  : 'shape',
+  'samples'  : {
+     'WW'   : pdf_variations,
+   },
+}
+
+##### PDF uncertainties on top
+nuisances['pdf_top']  = {
+  'name'  : 'CMS_hww_pdf_top_2016',
+  'skipCMS' : 1,
+  'kind'  : 'weight_rms',
+  'type'  : 'shape',
+  'samples'  : {
+     'top'   : pdf_variations,
+   },
+}
+
+
+# nuisances['pdf']  = {
+#                'name'  : 'pdf',
+#                'type'  : 'lnN',
+#                'samples'  : {
+#                    'ggWW'    : '1.05',
+#                    'WW'      : '1.04',
+#                    'Vg'      : '1.04',
+#                    'VZ'      : '1.04',
+#                    'VgS'     : '1.04',
+#                    'Higgs'     : '1.04',
+#                    'DY'      : '1.002', 
+#                    },
+#               }
 
 ##### Renormalization & factorization scales
 
@@ -384,6 +408,18 @@ nuisances['WWqscale']  = {
       'WW'   : ['(nllW_Qup/nllW)/(6825.2/6888.5)', '(nllW_Qdown/nllW)/(6945.6/6888.5)'],
     },
 #   'cutspost'  : lambda self, cuts: [cut for cut in cuts if '0j' in cut]
+}
+
+# WW EWK NLO correction uncertainty
+nuisances['EWKcorr_WW'] = {
+    'name': 'CMS_hww_EWKcorr_WW',
+    'skipCMS': 1,
+    'kind': 'weight',
+    'type': 'shape',
+    'samples': {
+        'WW': ['1.', '1./ewknloW']
+    },
+    'symmetrize' : True,
 }
 
 

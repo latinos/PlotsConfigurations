@@ -1,5 +1,3 @@
-
-
 # nuisances
 
 #nuisances = {}
@@ -255,7 +253,7 @@ for js in jes_systs:
       'type': 'shape',
       'mapUp': js+'up',
       'mapDown': js+'do',
-      'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['DY']),
+      'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['DY','Vg','VgS']),
       'folderUp': folderup,
       'folderDown': folderdo,
       'AsLnN': '1'
@@ -273,6 +271,16 @@ nuisances['met'] = {
     'folderUp': makeMCDirectory('METup_suffix'),
     'folderDown': makeMCDirectory('METdo_suffix'),
     'AsLnN': '1'
+}
+
+### PU ID SF uncertainty
+puid_syst = ['Jet_PUIDSF_up/Jet_PUIDSF', 'Jet_PUIDSF_down/Jet_PUIDSF']
+
+nuisances['jetPUID'] = {
+    'name': 'CMS_PUID_2016',
+    'kind': 'weight',
+    'type': 'shape',
+    'samples': dict((skey, puid_syst) for skey in mc)
 }
 
 ##### Pileup
@@ -372,6 +380,15 @@ nuisances['VgStar'] = {
         'VgS_L': '1.25'
     }
 }
+
+if useWgFXFX:
+  nuisances['VgScale'] = {
+      'name': 'CMS_hww_VgScale',
+      'type': 'lnN',
+      'samples': {
+          'Vg': '1.5'
+      }
+  }
 
 nuisances['VZ'] = {
     'name': 'CMS_hww_VZScale',
@@ -487,20 +504,35 @@ topvars1j = []
 topvars2j = []
 
 ## Factors computed to renormalize the top scale variations such that the integral is not changed in each RECO jet bin (we have rateParams for that)
+#topScaleNormFactors0j = {'LHEScaleWeight[3]': 1.0127481603212656, 'LHEScaleWeight[0]': 1.0781331279433415, 'LHEScaleWeight[1]': 1.0690928216708382, 'LHEScaleWeight[Length$(LHEScaleWeight)-1]': 0.9345571161077737, 'LHEScaleWeight[Length$(LHEScaleWeight)-4]': 0.9227838225449528, 'LHEScaleWeight[Length$(LHEScaleWeight)-2]': 0.9907270914731349}
+# topScaleNormFactors1j = {'LHEScaleWeight[3]': 1.0153655578503986, 'LHEScaleWeight[0]': 1.0907798004584341, 'LHEScaleWeight[1]': 1.0798026063785011, 'LHEScaleWeight[Length$(LHEScaleWeight)-1]': 0.92428116499208, 'LHEScaleWeight[Length$(LHEScaleWeight)-4]': 0.9101690580310614, 'LHEScaleWeight[Length$(LHEScaleWeight)-2]': 0.9888177133975222}
+# topScaleNormFactors2j = {'LHEScaleWeight[3]': 1.0239541358390016, 'LHEScaleWeight[0]': 1.125869020564376, 'LHEScaleWeight[1]': 1.105896547188302, 'LHEScaleWeight[Length$(LHEScaleWeight)-1]': 0.9037581174447249, 'LHEScaleWeight[Length$(LHEScaleWeight)-4]': 0.8828417179568193, 'LHEScaleWeight[Length$(LHEScaleWeight)-2]': 0.981806136304384}
+
 topScaleNormFactors0j = {'Alt$(LHEScaleWeight[3],1)': 1.0127481603212656, 'Alt$(LHEScaleWeight[0],1)': 1.0781331279433415, 'Alt$(LHEScaleWeight[1],1)': 1.0690928216708382, 'Alt$(LHEScaleWeight[7],1)': 0.9345571161077737, 'Alt$(LHEScaleWeight[8],1)': 0.9227838225449528, 'Alt$(LHEScaleWeight[5],1)': 0.9907270914731349}
 topScaleNormFactors1j = {'Alt$(LHEScaleWeight[3],1)': 1.0153655578503986, 'Alt$(LHEScaleWeight[0],1)': 1.0907798004584341, 'Alt$(LHEScaleWeight[1],1)': 1.0798026063785011, 'Alt$(LHEScaleWeight[7],1)': 0.92428116499208, 'Alt$(LHEScaleWeight[8],1)': 0.9101690580310614, 'Alt$(LHEScaleWeight[5],1)': 0.9888177133975222}
 topScaleNormFactors2j = {'Alt$(LHEScaleWeight[3],1)': 1.0239541358390016, 'Alt$(LHEScaleWeight[0],1)': 1.125869020564376, 'Alt$(LHEScaleWeight[1],1)': 1.105896547188302, 'Alt$(LHEScaleWeight[7],1)': 0.9037581174447249, 'Alt$(LHEScaleWeight[8],1)': 0.8828417179568193, 'Alt$(LHEScaleWeight[5],1)': 0.981806136304384}
 
+topvars0j.append('Alt$(LHEScaleWeight[0],1)/'+str(topScaleNormFactors0j['Alt$(LHEScaleWeight[0],1)']))
+topvars0j.append('Alt$(LHEScaleWeight[7],1)/'+str(topScaleNormFactors0j['Alt$(LHEScaleWeight[7],1)']))
+
+topvars1j.append('Alt$(LHEScaleWeight[0],1)/'+str(topScaleNormFactors1j['Alt$(LHEScaleWeight[0],1)']))
+topvars1j.append('Alt$(LHEScaleWeight[7],1)/'+str(topScaleNormFactors1j['Alt$(LHEScaleWeight[7],1)']))
+
+topvars2j.append('Alt$(LHEScaleWeight[0],1)/'+str(topScaleNormFactors2j['Alt$(LHEScaleWeight[0],1)']))
+topvars2j.append('Alt$(LHEScaleWeight[7],1)/'+str(topScaleNormFactors2j['Alt$(LHEScaleWeight[7],1)']))
+
+'''
 for var in topvariations:
   topvars0j.append(var+'/'+str(topScaleNormFactors0j[var]))
   topvars1j.append(var+'/'+str(topScaleNormFactors1j[var]))
   topvars2j.append(var+'/'+str(topScaleNormFactors2j[var]))
+'''
 
 ## QCD scale nuisances for top are decorrelated for each RECO jet bin: the QCD scale is different for different jet multiplicities so it doesn't make sense to correlate them
 nuisances['QCDscale_top_0j']  = {
     'name'  : 'QCDscale_top_0j',
     'skipCMS' : 1,
-    'kind'  : 'weight_envelope',
+    'kind'  : 'weight',
     'type'  : 'shape',
     'cutspost' : lambda self, cuts: [cut for cut in cuts if '0j' in cut],
     'samples'  : {
@@ -511,7 +543,7 @@ nuisances['QCDscale_top_0j']  = {
 nuisances['QCDscale_top_1j']  = {
     'name'  : 'QCDscale_top_1j',
     'skipCMS' : 1,
-    'kind'  : 'weight_envelope',
+    'kind'  : 'weight',
     'type'  : 'shape',
     'cutspost' : lambda self, cuts: [cut for cut in cuts if '1j' in cut],
     'samples'  : {
@@ -522,7 +554,7 @@ nuisances['QCDscale_top_1j']  = {
 nuisances['QCDscale_top_2j']  = {
     'name'  : 'QCDscale_top_2j',
     'skipCMS' : 1,
-    'kind'  : 'weight_envelope',
+    'kind'  : 'weight',
     'type'  : 'shape',
     'cutspost' : lambda self, cuts: [cut for cut in cuts if '2j' in cut],
     'samples'  : {
@@ -530,11 +562,45 @@ nuisances['QCDscale_top_2j']  = {
     }
 }
 
+# ## QCD scale nuisances for top are decorrelated for each RECO jet bin: the QCD scale is different for different jet multiplicities so it doesn't make sense to correlate them
+# nuisances['QCDscale_top_0j']  = {
+#     'name'  : 'QCDscale_top_0j',
+#     'skipCMS' : 1,
+#     'kind'  : 'weight_envelope',
+#     'type'  : 'shape',
+#     'cutspost' : lambda self, cuts: [cut for cut in cuts if '0j' in cut],
+#     'samples'  : {
+#        'top' : topvars0j,
+#     }
+# }
+
+# nuisances['QCDscale_top_1j']  = {
+#     'name'  : 'QCDscale_top_1j',
+#     'skipCMS' : 1,
+#     'kind'  : 'weight_envelope',
+#     'type'  : 'shape',
+#     'cutspost' : lambda self, cuts: [cut for cut in cuts if '1j' in cut],
+#     'samples'  : {
+#        'top' : topvars1j,
+#     }
+# }
+
+# nuisances['QCDscale_top_2j']  = {
+#     'name'  : 'QCDscale_top_2j',
+#     'skipCMS' : 1,
+#     'kind'  : 'weight_envelope',
+#     'type'  : 'shape',
+#     'cutspost' : lambda self, cuts: [cut for cut in cuts if '2j' in cut],
+#     'samples'  : {
+#        'top' : topvars2j,
+#     }
+# }
+
 ## Shape nuisance due to QCD scale variations for DY
 # LHE scale variation weights (w_var / w_nominal)
 
 ## This should work for samples with either 8 or 9 LHE scale weights (Length$(LHEScaleWeight) == 8 or 9)
-variations = ['LHEScaleWeight[0]', 'LHEScaleWeight[1]', 'LHEScaleWeight[3]', 'LHEScaleWeight[Length$(LHEScaleWeight)-4]', 'LHEScaleWeight[Length$(LHEScaleWeight)-2]', 'LHEScaleWeight[Length$(LHEScaleWeight)-1]']
+variations = ['Alt$(LHEScaleWeight[0],1)', 'Alt$(LHEScaleWeight[1],1)', 'Alt$(LHEScaleWeight[3],1)', 'Alt$(LHEScaleWeight[Length$(Alt$(LHEScaleWeight)-4],1)', 'Alt$(LHEScaleWeight[Length$(Alt$(LHEScaleWeight)-2],1)', 'Alt$(LHEScaleWeight[Length$(Alt$(LHEScaleWeight)-1],1)']
 
 #nuisances['QCDscale_V'] = {
 #    'name': 'QCDscale_V',
@@ -545,16 +611,26 @@ variations = ['LHEScaleWeight[0]', 'LHEScaleWeight[1]', 'LHEScaleWeight[3]', 'LH
 #    'AsLnN': '1'
 #}
 
-nuisances['QCDscale_VV'] = {
-    'name': 'QCDscale_VV',
-    'kind': 'weight_envelope',
-    'type': 'shape',
-    'samples': {
-        'Vg': variations,
-        'VZ': variations,
-        'VgS': variations
+if useWgFXFX:
+  nuisances['QCDscale_VV'] = {
+      'name': 'QCDscale_VV',
+      'kind': 'weight_envelope',
+      'type': 'shape',
+      'samples': {
+          'VZ': variations,
+      }
+  }
+else:
+    nuisances['QCDscale_VV'] = {
+        'name': 'QCDscale_VV',
+        'kind': 'weight_envelope',
+        'type': 'shape',
+        'samples': {
+            'Vg': variations,
+            'VZ': variations,
+            'VgS': variations
+        }
     }
-}
 
 # ggww and interference
 nuisances['QCDscale_ggVV'] = {
@@ -630,6 +706,17 @@ nuisances['WWqscale2j']  = {
       'WW'   : ['nllW_Qup/nllW', 'nllW_Qdown/nllW'],
     },
    'cutspost'  : lambda self, cuts: [cut for cut in cuts if '2j' in cut]
+}
+
+nuisances['EWKcorr_WW'] = {
+    'name': 'CMS_hww_EWKcorr_WW',
+    'skipCMS': 1,
+    'kind': 'weight',
+    'type': 'shape',
+    'samples': {
+        'WW': ['1.', '1./ewknloW']
+    },
+    'symmetrize' : True,
 }
 
 # Uncertainty on SR/CR ratio

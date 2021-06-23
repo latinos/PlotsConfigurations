@@ -59,9 +59,10 @@ for categories in newfile.GetListOfKeys(): # Cut directory
       if "histo_DYveto" in histoname: continue
       if histoname.endswith("Up"):
         for key,val in histnames.iteritems():
-          if histoname.startswith(key):
-            histnames[key].append([histoname,histoname.replace("Up", "Down")])
-            break
+          if histoname.startswith(key+"_"):
+            if [histoname,histoname.replace("Up", "Down")] not in histnames[key]:
+              histnames[key].append([histoname,histoname.replace("Up", "Down")])
+              break
 
     for nom,var in sorted(histnames.iteritems()):
       dothese = [nom]

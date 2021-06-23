@@ -6,9 +6,33 @@ variables['Events']  = {
 }
 
 
-variables['BDT_Ada13']  = { 
+# 200 evts in last 5 bins
+variables['BDT_2018bin']  = { 
+    'name': '2*BDT_Ada13[0]',
+    'range' : ([-1., -0.6, -0.2, 0., 0.2, 0.3, 0.4, 0.5, 0.54, 0.58, 0.62, 0.7, 1.],),
+    'xaxis' : 'BDT discriminator',
+    #'xaxis' : 'high m_{Z\'} NLO BDT_{Ada13}',
+    'fold'  : 3, 
+    'blind' : {
+        'InCh_SR' : [0.4, 1.],
+        'InCh_highMtw_SR' : [0.4, 1.],
+    }
+}
+
+variables['BDT_2017bin']  = { 
     'name': '2*BDT_Ada13[0]',
     'range' : ([-1., -0.6, -0.2, 0., 0.2, 0.3, 0.4, 0.46, 0.5, 0.54, 0.58, 0.66, 1.],),
+    'xaxis' : 'BDT discriminator',
+    'fold'  : 3, 
+    'blind' : {
+        'InCh_SR' : [0.4, 1.],
+        'InCh_highMtw_SR' : [0.4, 1.],
+    }
+}
+
+variables['BDT_2016bin']  = { 
+    'name': '2*BDT_Ada13[0]',
+    'range' : ([-1., -0.6, -0.2, 0., 0.2, 0.3, 0.4, 0.45, 0.5, 0.55, 0.64, 1.],),
     'xaxis' : 'BDT discriminator',
     'fold'  : 3, 
     'blind' : {
@@ -105,9 +129,21 @@ variables['BDT_Ada13']  = {
 #    }
 #}
 
-variables['BDT_FineBin25']  = { 
+#variables['BDT_FineBin25']  = { 
+#    'name': '2*BDT_Ada13[0]',
+#    'range' : ([-1., -0.5, 0, 0.25, 0.4, 0.54, 0.59, 0.63, 0.68, 0.72, 0.75, 0.79, 0.84, 1.],),
+#    'xaxis' : 'BDT discriminator',
+#    'fold'  : 3, 
+#    'blind' : {
+#        'InCh_SR' : [0.4, 1.],
+#        'InCh_highMtw_SR' : [0.4, 1.],
+#    }
+#}
+
+variables['BDT_FineBin50']  = { 
     'name': '2*BDT_Ada13[0]',
-    'range' : ([-1., -0.5, 0, 0.25, 0.4, 0.54, 0.59, 0.63, 0.68, 0.72, 0.75, 0.79, 0.84, 1.],),
+    #0.504, 0.554, 0.5960000000000001, 0.6420000000000001, 0.692, 0.746, 0.8
+    'range' : ([-1., -0.5, 0, 0.25, 0.4, 0.5, 0.55, 0.6, 0.64, 0.69, 0.75, 0.8, 1.],),
     'xaxis' : 'BDT discriminator',
     'fold'  : 3, 
     'blind' : {

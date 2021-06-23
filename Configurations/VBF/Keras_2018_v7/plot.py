@@ -91,7 +91,7 @@ groupPlot['Higgs']  = {
 
 groupPlot['VBF']  = {
                   'nameHR' : 'VBF',
-                  'isSignal' : 2,
+                  'isSignal' : 1,
                   'color': 632,
                   'samples'  : ['qqH_hww', 'qqH_htt']
               }

@@ -9,7 +9,8 @@ import argparse
 import subprocess
 
 parser = argparse.ArgumentParser()
-parser.add_argument("--config", help="configuration file", type=str)
+parser.add_argument("--config", help="configuration file", default=None, type=str)
+parser.add_argument("--root-file", help="root file path", default=None, type=str)
 #parser.add_argument("-r", "--redo", help="forcefully redo comma seperated samples", type=str)
 #parser.add_argument("-e", "--exclude", help="skip comma seperated samples", type=str)
 parser.add_argument("-c", "--cut", help="cut to show", default="InCh_SR", type=str)
@@ -21,38 +22,22 @@ parser.add_argument("-l", "--log", help="Set log scale in upper pad", action="st
 parser.add_argument("--hide-stat", help="Do not show stat in ratio panel", action="store_true")
 parser.add_argument("--save", help="save the image", action="store_true")
 parser.add_argument("--do-signal", help="also do all signal samples", action="store_true")
+parser.add_argument("--auto-scale", help="automatically scale range for ratio", action="store_true")
 parser.add_argument("-o", "--output", help="output file", default=".", type=str)
 parser.add_argument("-b", "--batch", help="Run in batch mode", action="store_true")
 parser.add_argument("--draw-together", help="draw nuis together", action="store_true")
 args = parser.parse_args()
 
-
-handle = open(args.config, 'r')
-exec(handle)
-handle.close()
-
-#cuts = {}
-#handle = open(cutsFile, 'r')
-#exec(handle)
-#handle.close()
-
-#samples = {}
-#handle = open(samplesFile, 'r')
-#exec(handle)
-#handle.close()
-
-#nuisances = {}
-#handle = open(nuisancesFile, 'r')
-#exec(handle)
-#handle.close()
-
-#structure = {}
-#handle = open(structureFile, 'r')
-#exec(handle)
-#handle.close()
-
-
-r_file = ROOT.TFile(outputDir+'/plots_'+tag+'.root')
+if not args.config is None: 
+    handle = open(args.config, 'r')
+    exec(handle)
+    handle.close()
+    
+    r_file = ROOT.TFile(outputDir+'/plots_'+tag+'.root')
+elif not args.root_file is None:
+    r_file = ROOT.TFile(args.root_file)
+else:
+    raise ValueError('--config and --root-file can\'t both be None')
 
 
 if 'ALL' in args.sample:
@@ -74,6 +59,7 @@ else: samps = args.sample.split(',')
 nominal = None
 up_var  = None
 do_var  = None
+all_nuis_shown = []
 for samp in samps:
     print('-- Sample: "'+samp+'"')
     # Fill nominal
@@ -122,11 +108,12 @@ for samp in samps:
             print('---- Waring: do var not found -> skipping')
             continue
 
+        if nuis not in all_nuis_shown: all_nuis_shown.append(nuis)
         #print(type(nominal))
         
         nominal.SetLineColor(1)
-        up_var[nuis].SetLineColor(632+cur_it)
-        do_var[nuis].SetLineColor(600+cur_it)
+        up_var[nuis].SetLineColor(632+(cur_it*2))
+        do_var[nuis].SetLineColor(600+(cur_it*2))
         
         #nominal.SetLineStyle(10)
         
@@ -167,8 +154,16 @@ for samp in samps:
         do_var_r[nuis].Divide(nominal)
         
         up_var_r[nuis].SetTitle('')
-        
-        up_var_r[nuis].GetYaxis().SetRangeUser(1.-args.r_range, 1.+args.r_range);
+       
+        if args.auto_scale:
+            max_list = [up_var_r[nuis].GetBinContent(up_var_r[nuis].GetMaximumBin()), do_var_r[nuis].GetBinContent(do_var_r[nuis].GetMaximumBin()), 1.] 
+            min_list = [up_var_r[nuis].GetBinContent(up_var_r[nuis].GetMinimumBin()), do_var_r[nuis].GetBinContent(do_var_r[nuis].GetMinimumBin()), 1.] 
+            y_max = max(max_list)+0.005
+            y_min = min(min_list)-0.005
+            print('Extrema', y_max, y_min)
+            up_var_r[nuis].GetYaxis().SetRangeUser(y_min, y_max)
+        else:
+            up_var_r[nuis].GetYaxis().SetRangeUser(1.-args.r_range, 1.+args.r_range)
         
         if args.hide_stat:
             if cur_it < 1: up_var_r[nuis].Draw('hist')
@@ -194,3 +189,5 @@ for samp in samps:
     if args.draw_together: 
         canvas.Update()
         raw_input('cont')
+all_nuis_shown.sort()
+print('List of nuisances: '+str(all_nuis_shown))
