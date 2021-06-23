@@ -246,7 +246,8 @@ makeSuffixVar('CMS_scale_JES_2017',     'JES', mc_forJES, as_lnN=True)
 ##### Jet energy resolution
 
 #makeSuffixVar('CMS_res_j', 'JER')
-makeSuffixVar('CMS_res_j_2017', 'JER', mc_noVBS, as_lnN=True)
+mc_forJER = [skey for skey in mc_noVBS if not skey in ['top', 'Wjets']]
+makeSuffixVar('CMS_res_j_2017', 'JER', mc_forJER, as_lnN=True)
 
 ##### MET energy scale
 
@@ -284,14 +285,44 @@ covered_samples = nuisances['PU']['samples'].keys()
 for skey in mc:
     if skey not in covered_samples: nuisances['PU']['samples'][skey] = ['(puWeightUp/puWeight)', '(puWeightDown/puWeight)']
 
-nuisances['JetPUID_sf']  = {
+#nuisances['JetPUID_sf']  = {
+#    'name'  : 'CMS_jetpuid_2017',
+#    #'type': 'lnN',
+#    #'samples': dict((skey, '0.96/1.001') for skey in mc if skey not in ['Wjets', 'top']),
+#    'kind'  : 'weight',
+#    'type'  : 'shape',
+#    'samples'  : dict((skey, ['PUJetIdSF_up/PUJetIdSF','PUJetIdSF_down/PUJetIdSF']) for skey in mc ),
+#    'AsLnN': '1',
+#}
+
+handle = open('../WUpDown/JetPUID_2017_cfg.py', 'r')
+exec(handle)
+handle.close()
+
+puid_dict = {}
+for samp in mc:
+    if samp in jetpuid_dict:
+        puid_dict[samp] = [jetpuid_dict[samp]['Up'], jetpuid_dict[samp]['Down']]
+        #puid_dict[samp] = ['1.', jetpuid_dict[samp]['Down']]
+    elif 'darkHiggs' in samp:
+        puid_dict[samp] = [jetpuid_dict['darkHiggs']['Up'], jetpuid_dict['darkHiggs']['Down']]
+        #puid_dict[samp] = ['1.', jetpuid_dict['darkHiggs']['Down']]
+    elif 'VgS' in samp:
+        puid_dict[samp] = [jetpuid_dict['VgS_H']['Up'], jetpuid_dict['VgS_H']['Down']]
+        #puid_dict[samp] = ['1.', jetpuid_dict['VgS_H']['Down']]
+
+nuisances['JetPUID_fake_sf']  = {
     'name'  : 'CMS_jetpuid_2017',
-    #'type': 'lnN',
-    #'samples': dict((skey, '0.96/1.001') for skey in mc if skey not in ['Wjets', 'top']),
     'kind'  : 'weight',
     'type'  : 'shape',
-    'samples'  : dict((skey, ['PUJetIdSF_up/PUJetIdSF','PUJetIdSF_down/PUJetIdSF']) for skey in mc ),
+    'samples': puid_dict,
+    #'samples': dict((skey, [jetpuid_dict[skey]['Up'], jetpuid_dict[skey]['Down']]) for skey in jetpuid_dict)
+    #'samples'  : {
+    #    'top'  : jetPUID_top,
+    #    'Wjets': jetPUID_Wjets,
+    #} 
     'AsLnN': '1',
+    #'symmetrize': True
 }
 
 #
@@ -394,7 +425,7 @@ nuisances['UE']  = {
     'name'  : 'UE_CP5',
     'skipCMS' : 1,
     'type': 'lnN',
-    'samples': dict((skey, '1.015') for skey in mc), 
+    'samples': dict((skey, '1.015') for skey in mc if skey not in ['Wjets', 'top']), 
 }
 
 ## ####### Generic "cross section uncertainties"
