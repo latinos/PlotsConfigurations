@@ -212,7 +212,7 @@ addSampleWeight(samples,'top','TTTo2L2Nu','Top_pTrw')
 
 samples['WW'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'WWTo2L2Nu'),
-    'weight': mcCommonWeight+embed_tautauveto + '*nllW', # temporary - nllW module not run on PS and UE variation samples
+    'weight': mcCommonWeight+embed_tautauveto + '*nllW**ewknloW', # temporary - nllW module not run on PS and UE variation samples
     'FilesPerJob': 1
 }
 
@@ -404,11 +404,12 @@ for _, sd in DataRun:
 
     samples['Fake']['name'].extend(files)
     samples['Fake']['weights'].extend([DataTrig[pd]] * len(files))
-
+'''
 samples['Fake']['subsamples'] = {
   'em': 'abs(Lepton_pdgId[0]) == 11',
   'me': 'abs(Lepton_pdgId[0]) == 13'
 }
+'''
 
 ###########################################
 ################## DATA ###################
