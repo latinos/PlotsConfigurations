@@ -576,31 +576,31 @@ nuisances['pdf_qqbar_ACCEPT'] = {
 
 
 # PDF eigenvariations for WW and top "added"
-#for i in range(1,33):
-#  # LHEPdfWeight are PDF4LHC variations, while nominal is NNPDF.
-#  # LHEPdfWeight[i] reweights from NNPDF nominal to PDF4LHC member i
-#  # LHEPdfWeight[0] in particular reweights from NNPDF nominal to PDF4LHC nominal
-#  pdf_variations = ["LHEPdfWeight[%d]/LHEPdfWeight[0]" %i, "2. - LHEPdfWeight[%d]/LHEPdfWeight[0]" %i ]
-#
-#  nuisances['pdf_WW_eigen'+str(i)]  = {
-#    'name'  : 'CMS_hww_pdf_WW_eigen'+str(i),
-#    'skipCMS' : 1,
-#    'kind'  : 'weight',
-#    'type'  : 'shape',
-#    'samples'  : {
-#      'WW'   : pdf_variations,
-#    },
-#  }
-#  nuisances['pdf_top_eigen'+str(i)]  = {
-#    'name'  : 'CMS_hww_pdf_top_eigen'+str(i),
-#    'skipCMS' : 1,
-#    'kind'  : 'weight',
-#    'type'  : 'shape',
-#    'samples'  : {
-#      'top'   : pdf_variations,
-#    },
-#  }
-#
+for i in range(1,33):
+  # LHEPdfWeight are PDF4LHC variations, while nominal is NNPDF.
+  # LHEPdfWeight[i] reweights from NNPDF nominal to PDF4LHC member i
+  # LHEPdfWeight[0] in particular reweights from NNPDF nominal to PDF4LHC nominal
+  pdf_variations = ["LHEPdfWeight[%d]/LHEPdfWeight[0]" %i, "2. - LHEPdfWeight[%d]/LHEPdfWeight[0]" %i ]
+
+  nuisances['pdf_WW_eigen'+str(i)]  = {
+    'name'  : 'CMS_hww_pdf_WW_eigen'+str(i),
+    'skipCMS' : 1,
+    'kind'  : 'weight',
+    'type'  : 'shape',
+    'samples'  : {
+      'WW'   : pdf_variations,
+    },
+  }
+  nuisances['pdf_top_eigen'+str(i)]  = {
+    'name'  : 'CMS_hww_pdf_top_eigen'+str(i),
+    'skipCMS' : 1,
+    'kind'  : 'weight',
+    'type'  : 'shape',
+    'samples'  : {
+      'top'   : pdf_variations,
+    },
+  }
+
 ##### Renormalization & factorization scales
 
 ## Shape nuisance due to QCD scale variations for DY
