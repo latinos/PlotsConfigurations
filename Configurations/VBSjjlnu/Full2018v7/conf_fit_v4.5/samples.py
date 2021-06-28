@@ -453,5 +453,6 @@ for Run in DataRun :
                         samples['DATA']['weights'].append(DataTrig[DataSet])
 
 
-samples = {   key:v for key,v in samples.items() if "Wjets" in key}
-# samples = {   key:v for key,v in samples.items() if key not in ['VBF-V','VBS',"VBS_interf"]}
+# samples = {   key:v for key,v in samples.items() if key in ["VV"]}
+samples = {   key:v for key,v in samples.items() if key not in ['VBF-V','VBS',"VBS_interf"]}
+

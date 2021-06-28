@@ -98,7 +98,7 @@ for sample in  samples + wjets_bins["res"] + wjets_bins["boost"]:
         d = df[(df.channel==ph) & (df.process==sample)]
         if len(d) ==0 : continue
         if not args.blind:
-            line += "& {:.1f} \pm {:.1f}  & {:.1f} \pm  {:.1f}".format(float(d.prefit_norm.values[0]), float(d.prefit_err.values[0]), float(d.postfit_norm.values[0]),float( d.postfit_err.values[0]))
+            line += "& $ {:.1f} \pm {:.1f}$  &$ {:.1f} \pm  {:.1f}$".format(float(d.prefit_norm.values[0]), float(d.prefit_err.values[0]), float(d.postfit_norm.values[0]),float( d.postfit_err.values[0]))
         else:
             line += "& ${:.1f} \pm {:.1f}$  & $X \pm  X$ ".format(float(d.prefit_norm.values[0]), float(d.prefit_err.values[0]))
     line += r' \\'

@@ -21,7 +21,7 @@ variables['DNNoutput_res_v1'] = {
     'fold': 3 ,
     'cuts':  res_cuts,
     'divideByBinWidth': True, 
-    'blind': { c:[0.6,1] for c in cuts if "_sig_" in c},
+    # 'blind': { c:[0.6,1] for c in cuts if "_sig_" in c},
 }
 
 variables['DNNoutput_res_v2'] = {
@@ -31,7 +31,7 @@ variables['DNNoutput_res_v2'] = {
     'fold': 3 ,
     'cuts':  res_cuts,
     'divideByBinWidth': True, 
-    'blind': { c:[0.6,1] for c in cuts if "_sig_" in c},
+    # 'blind': { c:[0.6,1] for c in cuts if "_sig_" in c},
 }
 
 
@@ -42,7 +42,7 @@ variables['DNNoutput_boost'] = {
     'fold': 3 ,
     'cuts': boost_cuts,
     'divideByBinWidth': True,
-    'blind': { c:[0.6,1] for c in cuts if "_sig_" in c} ,
+    # 'blind': { c:[0.6,1] for c in cuts if "_sig_" in c} ,
 }
 #####################
 #Fit variables
@@ -256,5 +256,5 @@ variables['deltaeta_vjet'] = {   'name': 'deltaeta_vjet',
                         }   
 
 
-# variables = {k:v for k,v in variables.items() if k in ["events", "DNNoutput_res_v1", "DNNoutput_boost", "fit_bins_res","fit_bins_boost"]}
+variables = {k:v for k,v in variables.items() if k in ["events", "DNNoutput_res_v1", "DNNoutput_boost", "fit_bins_res","fit_bins_boost"]}
 # variables = {k:v for k,v in variables.items() if k in ["mjj_vbs"]}

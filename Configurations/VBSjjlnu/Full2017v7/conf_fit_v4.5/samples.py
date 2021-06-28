@@ -287,7 +287,7 @@ samples['VV']  = { 'name' :
                nanoGetSampleFiles(directory_signal,'WpToLNu_ZTo2J_QCD' ) +
                nanoGetSampleFiles(directory_signal,'ZTo2L_ZTo2J_QCD' ) , 
         'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch  +'*btagSF_corr_VV_VVV_ggWW', # add back ewknlOW
-        'FilesPerJob' : 10,
+        'FilesPerJob' : 15,
         'EventsPerJob' : 70000,
 }
 
@@ -481,4 +481,6 @@ for Run in DataRun :
 #                        'FilesPerJob' : 45,
 #                   }
 
-samples = {k:v for k,v in samples.items() if k not in ["VBF-V","VBS","DATA_ele","DATA_mu","Fake_ele","Fake_mu"]}#
+# samples = {k:v for k,v in samples.items() if k not in ["VBF-V","VBS","DATA_ele","DATA_mu","Fake_ele","Fake_mu"]}#
+ 
+# samples = {k:v for k,v in samples.items() if k in ["VV"]}

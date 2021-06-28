@@ -20,6 +20,7 @@ parser.add_argument("-b","--basedir", help="Baseline folder", type=str)
 parser.add_argument("-o","--outputdir", help="Output folder", type=str)
 parser.add_argument("-rw","--redo-workspace", help="Redo workspace", action="store_true")
 parser.add_argument("-p","--process", help="Process to run", type=str)
+parser.add_argument("--unblind", help="Fit on data", action="store_true", default=False)
 parser.add_argument("--dry", help="Only printout commands", action="store_true", default=False)
 parser.add_argument("--masks", help="File with list of channels to mask",  type=str)
 parser.add_argument("--result-name", help="Result name for the file",  type=str, default='')
@@ -40,6 +41,7 @@ fitter_options= {
     '0':  " ",
     'sig1' : "--X-rtd MINIMIZER_MaxCalls=9999999 --X-rtd FITTER_NEW_CROSSING_ALGO --X-rtd FITTER_NEVER_GIVE_UP --X-rtd FITTER_BOUND",
     'sig2' : "--X-rtd=MINIMIZER_analytic --X-rtd MINIMIZER_MaxCalls=9999999 --X-rtd FITTER_NEW_CROSSING_ALGO --X-rtd FITTER_NEVER_GIVE_UP --X-rtd FITTER_BOUND",
+    'sig3' : "--cminDefaultMinimizerStrategy 0 --cminFallbackAlgo Minuit2,Migrad,0:0.2  --X-rtd=MINIMIZER_analytic --X-rtd MINIMIZER_MaxCalls=9999999 --X-rtd FITTER_NEW_CROSSING_ALGO --X-rtd FITTER_NEVER_GIVE_UP --X-rtd FITTER_BOUND",
     '1':  "--robustFit=1 --X-rtd FITTER_NEW_CROSSING_ALGO --X-rtd FITTER_NEVER_GIVE_UP --X-rtd FITTER_BOUND",
     '2':  "--robustFit=1 --cminDefaultMinimizerStrategy 0  --cminFallbackAlgo Minuit2,Migrad,0:0.1 ",
     '3':  "--robustFit=1 --cminDefaultMinimizerStrategy 0  --cminFallbackAlgo Minuit2,Migrad,0:0.1  --X-rtd FITTER_NEW_CROSSING_ALGO --X-rtd FITTER_NEVER_GIVE_UP --X-rtd FITTER_BOUND",
@@ -107,24 +109,36 @@ Available functions to run on datacards
 def significance(datac):
     log = logging.getLogger(datac["datacard_name"])
     outdir = datac["outputdir"] 
-    log.info("Running combine (Asimov + pre-fit nuisances)")
-    cmd = """combine -M Significance -t -1  --expectSignal=1 {0}/combined_{1}.root {2} -v {3} \\
-            > {0}/logSignificance_MCasimov.txt""".format(outdir, datac["datacard_name"], fitter_options[args.fit_options], args.verbosity)
-    log.debug(cmd)
+    if not args.unblind:
+        log.info("Running combine (Asimov + pre-fit nuisances)")
+        cmd = """combine -M Significance -t -1  --expectSignal=1 {0}/combined_{1}.root {2} -v {3} \\
+                > {0}/logSignificance_MCasimov.txt""".format(outdir, datac["datacard_name"], fitter_options[args.fit_options], args.verbosity)
+        log.debug(cmd)
 
-    if not args.dry:  
-        os.system(cmd)
-        with open("{0}/logSignificance_MCasimov.txt".format(outdir)) as f: 
-            log.info(f.read())
+        if not args.dry:  
+            os.system(cmd)
+            with open("{0}/logSignificance_MCasimov.txt".format(outdir)) as f: 
+                log.info(f.read())
 
-    log.info("Running combine (Asimov + post-fit nuisances)")
-    cmd = """combine -M Significance -t -1  --expectSignal=1 --toysFreq {0}/combined_{1}.root {2} -v {3}\\
-            > {0}/logSignificance_data_asimov.txt""".format(outdir, datac["datacard_name"], fitter_options[args.fit_options], args.verbosity)
-    log.debug(cmd)
-    if not args.dry:  
-        os.system(cmd)
-        with open("{0}/logSignificance_data_asimov.txt".format(outdir)) as f: 
-            log.info(f.read())
+        log.info("Running combine (Asimov + post-fit nuisances)")
+        cmd = """combine -M Significance -t -1  --expectSignal=1 --toysFreq {0}/combined_{1}.root {2} -v {3}\\
+                > {0}/logSignificance_data_asimov.txt""".format(outdir, datac["datacard_name"], fitter_options[args.fit_options], args.verbosity)
+        log.debug(cmd)
+        if not args.dry:  
+            os.system(cmd)
+            with open("{0}/logSignificance_data_asimov.txt".format(outdir)) as f: 
+                log.info(f.read())
+    else:
+        log.info("Running combine (Data unblinding)")
+        cmd = """combine -M Significance  {0}/combined_{1}.root {2} -v {3} \\
+                > {0}/logSignificance_Data.txt""".format(outdir, datac["datacard_name"], fitter_options[args.fit_options], args.verbosity)
+        log.debug(cmd)
+
+        if not args.dry:  
+            os.system(cmd)
+            with open("{0}/logSignificance_Data.txt".format(outdir)) as f: 
+                log.info(f.read())
+
     
     log.info("Done")
 
@@ -246,6 +260,11 @@ for datac in config:
         datac["toys_opts"] = "-t -1 --expectSignal 1 --toysFreq"
         if args.result_name: datac["result_name"] = args.result_name
         else: datac["result_name"] = "data_asimov"
+        fit_and_pulls(datac)
+    elif args.process == "fit_and_pulls_data":
+        datac["toys_opts"] = ""
+        if args.result_name: datac["result_name"] = args.result_name
+        else: datac["result_name"] = "data_unblind"
         fit_and_pulls(datac)
     elif args.process == "compatibility":
         compatibility(datac)    

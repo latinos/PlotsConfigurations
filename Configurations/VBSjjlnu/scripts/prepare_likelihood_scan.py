@@ -119,7 +119,15 @@ def do_graph(datac, outputfile):
     log.info("Getting graph: "+ datac['datacard_name'])
     file = R.TFile.Open(outdir + "/higgsCombine.scan_all.POINTS.root")
     tree = file.Get("limit")
-    gr = plot.TGraphFromTree(tree, "r", "2*deltaNLL","")
+    # gr = plot.TGraphFromTree(tree, "r", "2*deltaNLL","")
+    tree.Draw("r:2*deltaNLL","","goff")
+    x = tree.GetV1()
+    y = tree.GetV2()
+    N = tree.GetSelectedRows()
+    gr = R.TGraph(N)
+    for i in range(N):
+        print(i,x[i], y[i])
+        gr.SetPoint(i, x[i], y[i])
     if args.data_asimov:
         gr.SetName(datac["datacard_name"] + "_dataasimov")
         gr.SetTitle(datac["datacard_name"] + "_dataasimov")

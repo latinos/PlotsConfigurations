@@ -86,7 +86,7 @@ aliases['EWKnloW'] = {
     ],
     'class': 'EWKnloW_otf',
     'args': ('%s/src/LatinoAnalysis/Gardener/python/data/ewk/kewk_w_for_python.txt' % os.getenv('CMSSW_BASE')),
-    'samples': wjets_all_bins
+    'samples': wjets_res_bins + ['Wjets_boost']
 }
 
 ##################################
@@ -138,7 +138,7 @@ aliases['nJetsBtag']= {
 
 btagSF_corr_samples_groups = {
     'VBS': ['VBS', 'VBS_dipoleRecoil'],
-    'Wjets_HT': ['Wjets_boost']+wjets_all_bins,
+    'Wjets_HT': ['Wjets_boost']+wjets_res_bins,
     'Vg_VgS_VBFV':['Vg','VgS','VBF-V', 'VBF-V_dipole'],
     'VV_VVV_ggWW':['VVV','VV','ggWW'],
     'top':['top'],
@@ -310,7 +310,7 @@ aliases['QCDscale_normalized'] = {
                 # 'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
                 '.L {}/VBSjjlnu/macros/QCDscale_normalize.cc+'.format(configurations)
             ] ,
-            'samples':['VBS', 'VBS_dipoleRecoil']          
+            'samples':['VBS', 'VBS_dipoleRecoil', 'VV']          
 }
 
 # aliases['PDFweight_normalized'] = {

@@ -549,7 +549,7 @@ nuis_factors = json.load(open("/afs/cern.ch/work/d/dvalsecc/private/CMSSW_11_1_4
 
 for sample in mc :
     if 'Wjets' in sample: continue
-    if sample == "ggWW": continue
+    if sample in ["ggWW", "VV"]: continue
     if 'VBS' in sample:
         nuisances['QCD_scale_VBS'] = {
             'name'  : 'QCDscale_VBS_accept',
@@ -572,6 +572,14 @@ nuisances['QCD_scale_Wjets'] = {
             'kind'  : 'weight',
             'type'  : 'shape',
             'samples'  :  { sample: ["LHEScaleWeight[0]", "LHEScaleWeight[8]"] for sample in wjets_all_bins }
+        }
+
+
+nuisances['QCD_scale_VV'] = {
+            'name'  : 'QCDscale_VV_accept',
+            'kind'  : 'weight',
+            'type'  : 'shape',
+            'samples'  :  { "VV": ["QCDscale_normalized[0]", "QCDscale_normalized[8]"] }
         }
 
 
@@ -668,17 +676,19 @@ nuisances['pdf_weight'] = {
     'name'  : 'pdf_weight_1718',
     'kind'  : 'weight_envelope',
     'type'  : 'shape',
-    'samples' :  { s: [' Alt$(LHEPdfWeight['+str(i)+'], 1.)' for i in range(0,103)] for s in mc if s not in ["VBS", "VBS_dipoleRecoil", "top"]+wjets_all_bins},
+    'samples' :  { s: [' Alt$(LHEPdfWeight['+str(i)+'], 1.)' for i in range(0,103)] for s in mc if s not in ["VBS", "VBS_dipoleRecoil", "top","VV"]+wjets_all_bins},
     'AsLnN':  '1'
 }
 
-nuisances['pdf_weight_VBS'] = {
+nuisances['pdf_weight_accept'] = {
     'name'  : 'pdf_weight_1718_accept',
     'kind'  : 'weight_envelope',
     'type'  : 'shape',
     'samples' :  { "VBS": [ 'Alt$(PDFweight_normalized['+str(i)+'], 1.)' for i in range(0,103) ],
-                   "VBS_dipoleRecoil": [ 'Alt$(PDFweight_normalized['+str(i)+'], 1.)' for i in range(0,103) ]}
+                   "VBS_dipoleRecoil": [ 'Alt$(PDFweight_normalized['+str(i)+'], 1.)' for i in range(0,103) ],
+                   "VV": [ 'Alt$(PDFweight_normalized['+str(i)+'], 1.)' for i in range(0,103) ]}
 }
+
 
 
 # An overall 1.5% UE uncertainty will cover all the UEup/UEdo variations
@@ -778,7 +788,7 @@ for n in nuisances.values():
 
    
 
-# nuisances = {k:v for k,v in nuisances.items() if 'dipole' == k} #if 'PS' in k or 'QCD' in k
+# nuisances = {k:v for k,v in nuisances.items() if k in ['QCD_scale_VV','pdf_weight_VV']} #if 'PS' in k or 'QCD' in k
 
 # nuisances = {k:v for k,v in nuisances.items() if 'zlep_residual' in k} #if 'PS' in k or 'QCD' in k
 

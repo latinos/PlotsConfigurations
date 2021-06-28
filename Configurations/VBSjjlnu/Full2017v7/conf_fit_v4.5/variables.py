@@ -20,7 +20,7 @@ variables['DNNoutput_res_v1'] = {
     'xaxis': 'DNN resolved',
     'fold': 3 ,
     'cuts':  res_cuts,
-    # 'divideByBinWidth': True, 
+    'divideByBinWidth': True, 
    # 'blind': { c:[0.6,1] for c in cuts if "_sig_" in c},
 }
 
@@ -41,7 +41,7 @@ variables['DNNoutput_boost'] = {
     'xaxis': 'DNN boosted',
     'fold': 3 ,
     'cuts': boost_cuts,
-    # 'divideByBinWidth': True,
+    'divideByBinWidth': True,
     #'blind': { c:[0.6,1] for c in cuts if "_sig_" in c} ,
 }
 #####################
@@ -257,6 +257,6 @@ variables['deltaeta_vjet'] = {   'name': 'deltaeta_vjet',
 
 
 
-# variables = {k:v for k,v in variables.items() if k in ["events", "DNNoutput_res_v1", "DNNoutput_boost", "fit_bins_res","fit_bins_boost", 
+variables = {k:v for k,v in variables.items() if k in ["events", "DNNoutput_res_v1", "DNNoutput_boost", "fit_bins_res","fit_bins_boost", ]}
 #             "mjj_vbs","w_lep_pt","Zlep",'nJets_boost','deltaeta_vbs', 'vbs_1_pt_boost']}
 # variables = {k:v for k,v in variables.items() if k in ["mjj_vbs"]}
