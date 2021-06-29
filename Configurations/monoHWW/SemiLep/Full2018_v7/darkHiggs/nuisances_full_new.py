@@ -79,7 +79,7 @@ def makeSuffixVar(name, fix, samples_l, tag='', cuts=None, folder_fix=None, as_l
 nuisances['lumi'] = {
    'name': 'lumi_13TeV_2018',
    'type': 'lnN',
-   'samples': dict((skey, '1.025') for skey in mc if skey not in ['Wjets', 'ttop', 'stop'])
+   'samples': dict((skey, '1.025') for skey in mc if skey not in ['Wjets', 'top'])
 }
 
 #nuisances['lumi_Uncorrelated'] = {
@@ -209,7 +209,9 @@ makeSuffixVar('CMS_scale_m_2018', 'MupT', mc_noVBS, as_lnN=True)
 #makeSuffixVar('CMS_scale_JES_top_2018', 'JES', [skey for skey in mc_noVBS if skey in mc_top], as_lnN=True)
 
 # Unified
-makeSuffixVar('CMS_scale_JES_2018',     'JES', mc_noVBS, as_lnN=True)
+#mc_forJES = [skey for skey in mc_noVBS if not skey in ['Wjets']]
+mc_forJES = [skey for skey in mc_noVBS if not skey in ['']]
+makeSuffixVar('CMS_scale_JES_2018',     'JES', mc_forJES, as_lnN=True)
 
 ##### Jet energy resolution
 
@@ -219,7 +221,7 @@ makeSuffixVar('CMS_res_j_2018', 'JER', mc_noVBS, as_lnN=True)
 ##### MET energy scale
 
 #makeSuffixVar('CMS_scale_met_2018', 'MET')
-makeSuffixVar('CMS_scale_met_2018', 'MET', mc_noVBS)
+makeSuffixVar('CMS_scale_met_2018', 'MET', mc_noVBS, as_lnN=True)
 
 ##### Pileup
 
@@ -246,20 +248,50 @@ nuisances['PU'] = {
         'VVV'  : ['0.997429042863*(puWeightUp/puWeight)', '1.0025500635*(puWeightDown/puWeight)'],
         'Higgs': ['0.995781176783*(puWeightUp/puWeight)', '1.00442626295*(puWeightDown/puWeight)'],
     },
-    #'AsLnN': '1',
+    'AsLnN': '1',
 }
 covered_samples = nuisances['PU']['samples'].keys()
 for skey in mc:
     if skey not in covered_samples: nuisances['PU']['samples'][skey] = ['(puWeightUp/puWeight)', '(puWeightDown/puWeight)']
 
+#nuisances['JetPUID_sf']  = {
+#    'name'  : 'CMS_jetpuid_2018',
+#    #'type': 'lnN',
+#    #'samples': dict((skey, '0.96/1.001') for skey in mc if skey not in ['Wjets', 'top']),
+#    'kind'  : 'weight',
+#    'type'  : 'shape',
+#    'samples'  : dict((skey, ['PUJetIdSF_up/PUJetIdSF','PUJetIdSF_down/PUJetIdSF']) for skey in mc ),
+#    'AsLnN': '1',
+#}
+
+handle = open('../WUpDown/JetPUID_2018_cfg.py', 'r')
+exec(handle)
+handle.close()
+
+puid_dict = {}
+for samp in mc:
+    if samp in jetpuid_dict:
+        #puid_dict[samp] = [jetpuid_dict[samp]['Up'], jetpuid_dict[samp]['Down']]
+        puid_dict[samp] = ['1.', jetpuid_dict[samp]['Down']]
+    elif 'darkHiggs' in samp:
+        #puid_dict[samp] = [jetpuid_dict['darkHiggs']['Up'], jetpuid_dict['darkHiggs']['Down']]
+        puid_dict[samp] = ['1.', jetpuid_dict['darkHiggs']['Down']]
+    elif 'VgS' in samp:
+        #puid_dict[samp] = [jetpuid_dict['VgS_H']['Up'], jetpuid_dict['VgS_H']['Down']]
+        puid_dict[samp] = ['1.', jetpuid_dict['VgS_H']['Down']]
+
 nuisances['JetPUID_sf']  = {
     'name'  : 'CMS_jetpuid_2018',
-    #'type': 'lnN',
-    #'samples': dict((skey, '0.96/1.001') for skey in mc if skey not in ['Wjets', 'top']),
     'kind'  : 'weight',
     'type'  : 'shape',
-    'samples'  : dict((skey, ['PUJetIdSF_up/PUJetIdSF','PUJetIdSF_down/PUJetIdSF']) for skey in mc ),
+    'samples': puid_dict,
+    #'samples': dict((skey, [jetpuid_dict[skey]['Up'], jetpuid_dict[skey]['Down']]) for skey in jetpuid_dict)
+    #'samples'  : {
+    #    'top'  : jetPUID_top,
+    #    'Wjets': jetPUID_Wjets,
+    #} 
     'AsLnN': '1',
+    #'symmetrize': True
 }
 
 #
@@ -361,7 +393,7 @@ nuisances['UE']  = {
     'name'  : 'UE_CP5',
     'skipCMS' : 1,
     'type': 'lnN',
-    'samples': dict((skey, '1.015') for skey in mc), 
+    'samples': dict((skey, '1.015') for skey in mc if skey not in ['top', 'Wjets']), 
 }
 
 
@@ -392,13 +424,13 @@ nuisances['TopPtRew'] = {
     'symmetrize': True
 }
 
-nuisances['VgStar'] = {
-    'name': 'CMS_hww_VgStarScale',
-    'type': 'lnN',
-    'samples': {
-        'VgS_L': '1.25'
-    }
-}
+#nuisances['VgStar'] = {
+#    'name': 'CMS_hww_VgStarScale',
+#    'type': 'lnN',
+#    'samples': {
+#        'VgS_L': '1.25'
+#    }
+#}
 
 nuisances['VZ'] = {
     'name': 'CMS_hww_VZScale',
@@ -571,13 +603,13 @@ nuisances['QCDscale_Wjets']  = {
     }
 }
 
-nuisances['QCDscale_WWewk']  = {
-    'name'  : 'QCDscale_WWewk',
-    'type'  : 'lnN',
-    'samples'  : {
-        'WWewk' : '1.11',
-    },
-}
+#nuisances['QCDscale_WWewk']  = {
+#    'name'  : 'QCDscale_WWewk',
+#    'type'  : 'lnN',
+#    'samples'  : {
+#        'WWewk' : '1.11',
+#    },
+#}
 
 nuisances['QCDscale_ggVV'] = {
     'name': 'QCDscale_ggVV',
