@@ -36,9 +36,17 @@ Or, if they failed because the wall clock time have been exceeded, resubmit them
 
     mkDYestim_data.py --pycfg=configuration.py --dycfg=dyestim_qqH_SF.py --inputFile=rootFile/plots_qqH_SF_2016_v7.root
 
+With DY nuisances breakdown:
+
+    mkDYestim_data_splitNuisances.py --pycfg=configuration.py --dycfg=dyestim_qqH_SF.py --inputFile=rootFile/plots_qqH_SF_2016_v7.root --year=2016
+
 ### Plot distributions
 
     mkPlot.py --pycfg=configuration.py --inputFile=rootFile/plots_qqH_SF_2016_v7_DYEstimDATA.root --linearOnly --fileFormats=png --onlyPlot=cratio
+
+If DY nuisance breakdown was used:
+
+    mkPlot.py --pycfg=configuration.py --inputFile=rootFile/plots_qqH_SF_2016_v7_DYEstimDATA_breakdown.root --linearOnly --fileFormats=png --onlyPlot=cratio
 
 Repeat, but with data-blind signal region:
 
@@ -51,6 +59,10 @@ Repeat, but with data-blind signal region:
 ### Create datacards
 
     mkDatacards.py --pycfg=configuration.py --inputFile=rootFile/plots_qqH_SF_2016_v7_DYEstimDATA.root --cardList=hww2l2v_13TeV_2j_vbf_ee,hww2l2v_13TeV_2j_vbf_mm,hww2l2v_13TeV_2j_vh_ee,hww2l2v_13TeV_2j_vh_mm,hww2l2v_13TeV_WW_2j_vbf_ee,hww2l2v_13TeV_WW_2j_vbf_mm,hww2l2v_13TeV_WW_2j_vh_ee,hww2l2v_13TeV_WW_2j_vh_mm,hww2l2v_13TeV_top_2j_vbf_ee,hww2l2v_13TeV_top_2j_vbf_mm,hww2l2v_13TeV_top_2j_vh_ee,hww2l2v_13TeV_top_2j_vh_mm
+
+If DY nuisance breakdown was used:
+
+    mkDatacards.py --pycfg=configuration.py --inputFile=rootFile/plots_qqH_SF_2016_v7_DYEstimDATA_breakdown.root --cardList=hww2l2v_13TeV_2j_vbf_ee,hww2l2v_13TeV_2j_vbf_mm,hww2l2v_13TeV_2j_vh_ee,hww2l2v_13TeV_2j_vh_mm,hww2l2v_13TeV_WW_2j_vbf_ee,hww2l2v_13TeV_WW_2j_vbf_mm,hww2l2v_13TeV_WW_2j_vh_ee,hww2l2v_13TeV_WW_2j_vh_mm,hww2l2v_13TeV_top_2j_vbf_ee,hww2l2v_13TeV_top_2j_vbf_mm,hww2l2v_13TeV_top_2j_vh_ee,hww2l2v_13TeV_top_2j_vh_mm
 
 ### Combine channels/categories
 
