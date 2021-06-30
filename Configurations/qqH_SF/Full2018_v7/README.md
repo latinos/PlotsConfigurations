@@ -103,7 +103,7 @@ VBF category:
     combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_VBF/comb/datacard.root -m 125 --doFits -t -1 --expectSignal=1 --X-rtd MINIMIZER_analytic --cminDefaultMinimizerStrategy=0 --job-mode=interactive --parallel=10 --rMin=-6 --rMax=10
     combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_VBF/comb/datacard.root -m 125  -t -1 --X-rtd MINIMIZER_analytic --cminDefaultMinimizerStrategy=0 -o datacards/hww2l2v_13TeV_VBF/comb/impacts.json
 
-    plotImpacts.py -i datacards/hww2l2v_13TeV_VBF/comb/impacts_total.json -o Impact_plots/Impact_qqH_2j_vbf_2018
+    plotImpacts.py -i datacards/hww2l2v_13TeV_VBF/comb/impacts.json -o Impact_plots/Impact_qqH_2j_vbf_2018
 
     rm higgsCombine_*
 
@@ -115,7 +115,7 @@ VH category:
     combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_VH/comb/datacard.root -m 125 --doFits -t -1 --expectSignal=1 --X-rtd MINIMIZER_analytic --cminDefaultMinimizerStrategy=0 --job-mode=interactive --parallel=10 --rMin=-6 --rMax=10
     combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_VH/comb/datacard.root -m 125 -t -1 --X-rtd MINIMIZER_analytic --cminDefaultMinimizerStrategy=0 -o datacards/hww2l2v_13TeV_VH/comb/impacts.json
 
-    plotImpacts.py -i datacards/hww2l2v_13TeV_VH/comb/impacts_total.json -o Impact_plots/Impact_qqH_2j_vh_2018
+    plotImpacts.py -i datacards/hww2l2v_13TeV_VH/comb/impacts.json -o Impact_plots/Impact_qqH_2j_vh_2018
 
     rm higgsCombine_*
 
