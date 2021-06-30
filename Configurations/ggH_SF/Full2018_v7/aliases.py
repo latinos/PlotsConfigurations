@@ -89,25 +89,6 @@ aliases['nCleanGenJet'] = {
     'samples': mc
 }
 
-# # PostProcessing did not create (anti)topGenPt for ST samples with _ext1
-# lastcopy = (1 << 13)
-
-# aliases['isTTbar'] = {
-#     'expr': 'Sum$(TMath::Abs(GenPart_pdgId) == 6 && TMath::Odd(GenPart_statusFlags / %d)) == 2' % lastcopy,
-#     'samples': ['top']
-# }
-
-# aliases['isSingleTop'] = {
-#     'expr': 'Sum$(TMath::Abs(GenPart_pdgId) == 6 && TMath::Odd(GenPart_statusFlags / %d)) == 1' % lastcopy,
-#     'samples': ['top']
-# }
-
-# aliases['Top_pTrw'] = {
-#     #'expr': 'isTTbar * (TMath::Sqrt(TMath::Exp(0.0615 - 0.0005 * topGenPt) * TMath::Exp(0.0615 - 0.0005 * antitopGenPt))) + isSingleTop',
-#     'expr': 'isTTbar * (TMath::Sqrt(TMath::Exp(-1.43717e-02 - 1.18358e-04*topGenPt - 1.70651e-07*topGenPt*topGenPt + 4.47969/(topGenPt+28.7)) * TMath::Exp(-1.43717e-02 - 1.18358e-04*antitopGenPt - 1.70651e-07*antitopGenPt*antitopGenPt + 4.47969/(antitopGenPt+28.7)))) + isSingleTop',
-#     'samples': ['top']
-# }
-
 ##### DY Z pT reweighting
 aliases['getGenZpt_OTF'] = {
     'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/patches/getGenZpt.cc+' % os.getenv('CMSSW_BASE')],
