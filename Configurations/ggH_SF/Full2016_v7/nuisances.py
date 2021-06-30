@@ -913,111 +913,111 @@ nuisances['Topnorm2j']  = {
    'cuts'     : cuts2j
 }
 
-# Drell-Yan data-driven uncertainties
+# # Drell-Yan data-driven uncertainties
 
-nuisances['DYeenorm0j']  = {
-   'name'     : 'DYeenorm0j',
-   'kind'     : 'weight',
-   'type'     : 'shape',
-   'samples'  : {
-      'DY'    : ['1.','1.'] ,
-      },
-   'cutspost' : lambda self, cuts: [cut for cut in cuts if '0j' in cut and 'ee' in cut]
-}
+# nuisances['DYeenorm0j']  = {
+#    'name'     : 'DYeenorm0j',
+#    'kind'     : 'weight',
+#    'type'     : 'shape',
+#    'samples'  : {
+#       'DY'    : ['1.','1.'] ,
+#       },
+#    'cutspost' : lambda self, cuts: [cut for cut in cuts if '0j' in cut and 'ee' in cut]
+# }
 
-nuisances['DYmmnorm0j']  = {
-   'name'     : 'DYmmnorm0j',
-   'kind'     : 'weight',
-   'type'     : 'shape',
-   'samples'  : {
-      'DY'    : ['1.','1.'] ,
-      },
-   'cutspost' : lambda self, cuts: [cut for cut in cuts if '0j' in cut and 'mm' in cut]
-}
+# nuisances['DYmmnorm0j']  = {
+#    'name'     : 'DYmmnorm0j',
+#    'kind'     : 'weight',
+#    'type'     : 'shape',
+#    'samples'  : {
+#       'DY'    : ['1.','1.'] ,
+#       },
+#    'cutspost' : lambda self, cuts: [cut for cut in cuts if '0j' in cut and 'mm' in cut]
+# }
 
-nuisances['DYeenorm1j']  = {
-   'name'     : 'DYeenorm1j',
-   'kind'     : 'weight',
-   'type'     : 'shape',
-   'samples'  : {
-      'DY'    : ['1.','1.'] ,
-      },
-   'cutspost' : lambda self, cuts: [cut for cut in cuts if '1j' in cut and 'ee' in cut]
-}
+# nuisances['DYeenorm1j']  = {
+#    'name'     : 'DYeenorm1j',
+#    'kind'     : 'weight',
+#    'type'     : 'shape',
+#    'samples'  : {
+#       'DY'    : ['1.','1.'] ,
+#       },
+#    'cutspost' : lambda self, cuts: [cut for cut in cuts if '1j' in cut and 'ee' in cut]
+# }
 
-nuisances['DYmmnorm1j']  = {
-   'name'     : 'DYmmnorm1j',
-   'kind'     : 'weight',
-   'type'     : 'shape',
-   'samples'  : {
-      'DY'    : ['1.','1.'] ,
-      },
-   'cutspost' : lambda self, cuts: [cut for cut in cuts if '1j' in cut and 'mm' in cut]
-}
+# nuisances['DYmmnorm1j']  = {
+#    'name'     : 'DYmmnorm1j',
+#    'kind'     : 'weight',
+#    'type'     : 'shape',
+#    'samples'  : {
+#       'DY'    : ['1.','1.'] ,
+#       },
+#    'cutspost' : lambda self, cuts: [cut for cut in cuts if '1j' in cut and 'mm' in cut]
+# }
 
-nuisances['DYeenorm2j']  = {
-   'name'     : 'DYeenorm2j',
-   'kind'     : 'weight',
-   'type'     : 'shape',
-   'samples'  : {
-      'DY'    : ['1.','1.'] ,
-      },
-   'cutspost' : lambda self, cuts: [cut for cut in cuts if '2j' in cut and 'ee' in cut and 'vh' not in cut and 'vbf' not in cut]
-}
+# nuisances['DYeenorm2j']  = {
+#    'name'     : 'DYeenorm2j',
+#    'kind'     : 'weight',
+#    'type'     : 'shape',
+#    'samples'  : {
+#       'DY'    : ['1.','1.'] ,
+#       },
+#    'cutspost' : lambda self, cuts: [cut for cut in cuts if '2j' in cut and 'ee' in cut and 'vh' not in cut and 'vbf' not in cut]
+# }
 
-nuisances['DYmmnorm2j']  = {
-   'name'     : 'DYmmnorm2j',
-   'kind'     : 'weight',
-   'type'     : 'shape',
-   'samples'  : {
-      'DY'    : ['1.','1.'] ,
-      },
-   'cutspost' : lambda self, cuts: [cut for cut in cuts if '2j' in cut and 'mm' in cut and 'vh' not in cut and 'vbf' not in cut]
-}
+# nuisances['DYmmnorm2j']  = {
+#    'name'     : 'DYmmnorm2j',
+#    'kind'     : 'weight',
+#    'type'     : 'shape',
+#    'samples'  : {
+#       'DY'    : ['1.','1.'] ,
+#       },
+#    'cutspost' : lambda self, cuts: [cut for cut in cuts if '2j' in cut and 'mm' in cut and 'vh' not in cut and 'vbf' not in cut]
+# }
 
-#nuisances['DYeenormvh']  = {
-#   'name'     : 'DYeenormvh',
-#   'kind'     : 'weight',
-#   'type'     : 'shape',
-#   'samples'  : {
-#      'DY'    : ['1.','1.'] ,
-#      },
-#   'cutspost' : lambda self, cuts: [cut for cut in cuts if 'vh' in cut and 'ee' in cut]
-#   #'cuts'     : [cut for cut in cutsvh if 'ee' in cut]
-#}
+# #nuisances['DYeenormvh']  = {
+# #   'name'     : 'DYeenormvh',
+# #   'kind'     : 'weight',
+# #   'type'     : 'shape',
+# #   'samples'  : {
+# #      'DY'    : ['1.','1.'] ,
+# #      },
+# #   'cutspost' : lambda self, cuts: [cut for cut in cuts if 'vh' in cut and 'ee' in cut]
+# #   #'cuts'     : [cut for cut in cutsvh if 'ee' in cut]
+# #}
 
-#nuisances['DYmmnormvh']  = {
-#   'name'     : 'DYmmnormvh',
-#   'kind'     : 'weight',
-#   'type'     : 'shape',
-#   'samples'  : {
-#      'DY'    : ['1.','1.'] ,
-#      },
-#   'cutspost' : lambda self, cuts: [cut for cut in cuts if 'vh' in cut and 'mm' in cut]
-#   #'cuts'     : [cut for cut in cutsvh if 'mm' in cut]
-#}
+# #nuisances['DYmmnormvh']  = {
+# #   'name'     : 'DYmmnormvh',
+# #   'kind'     : 'weight',
+# #   'type'     : 'shape',
+# #   'samples'  : {
+# #      'DY'    : ['1.','1.'] ,
+# #      },
+# #   'cutspost' : lambda self, cuts: [cut for cut in cuts if 'vh' in cut and 'mm' in cut]
+# #   #'cuts'     : [cut for cut in cutsvh if 'mm' in cut]
+# #}
 
-#nuisances['DYeenormvbf']  = {
-#   'name'     : 'DYeenormvbf',
-#   'kind'     : 'weight',
-#   'type'     : 'shape',
-#   'samples'  : {
-#      'DY'    : ['1.','1.'] ,
-#      },
-#   'cutspost' : lambda self, cuts: [cut for cut in cuts if 'vbf' in cut and 'ee' in cut]
-#   #'cuts'     : [cut for cut in cutsvbf if 'ee' in cut]
-#}
+# #nuisances['DYeenormvbf']  = {
+# #   'name'     : 'DYeenormvbf',
+# #   'kind'     : 'weight',
+# #   'type'     : 'shape',
+# #   'samples'  : {
+# #      'DY'    : ['1.','1.'] ,
+# #      },
+# #   'cutspost' : lambda self, cuts: [cut for cut in cuts if 'vbf' in cut and 'ee' in cut]
+# #   #'cuts'     : [cut for cut in cutsvbf if 'ee' in cut]
+# #}
 
-#nuisances['DYmmnormvbf']  = {
-#   'name'     : 'DYmmnormvbf',
-#   'kind'     : 'weight',
-#   'type'     : 'shape',
-#   'samples'  : {
-#      'DY'    : ['1.','1.'] ,
-#      },
-#   'cutspost' : lambda self, cuts: [cut for cut in cuts if 'vbf' in cut and 'mm' in cut]
-#   #'cuts'     : [cut for cut in cutsvbf if 'mm' in cut]
-#}
+# #nuisances['DYmmnormvbf']  = {
+# #   'name'     : 'DYmmnormvbf',
+# #   'kind'     : 'weight',
+# #   'type'     : 'shape',
+# #   'samples'  : {
+# #      'DY'    : ['1.','1.'] ,
+# #      },
+# #   'cutspost' : lambda self, cuts: [cut for cut in cuts if 'vbf' in cut and 'mm' in cut]
+# #   #'cuts'     : [cut for cut in cutsvbf if 'mm' in cut]
+# #}
 
 # Nuisances breakdown 
  
