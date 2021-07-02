@@ -49,19 +49,24 @@ def get_limits(mhs, mx):
        #mass.append(float(fil.split('.')[-2].replace('mH', '')))
        #mZp = float(fil.split('.')[0].split('_')[-1])
        mZp = float(fil.split('.')[0].split('mZp_')[-1].split('_')[0])
-       mass.append(mZp)
        r_file = ROOT.TFile.Open(fil)
+       tree = r_file.limit
        print(fil)
-       for event in r_file.limit:
-           #print('new event')
-           #print(event.quantileExpected, event.limit)
-           if event.quantileExpected < 0.05: lim_2.append(event.limit)
-           elif event.quantileExpected < 0.30: lim_16.append(event.limit)
-           elif event.quantileExpected < 0.70: lim_50.append(event.limit)
-           elif event.quantileExpected < 0.90: lim_84.append(event.limit)
-           else: lim_97.append(event.limit)
-           #print(event.quantileExpected, event.limit)
-   
+       if tree.GetEntries() < 5:
+           print(' --> Missing entries, skipping '+fil)
+       else:
+           mass.append(mZp)
+           for event in tree:
+               #print('new event')
+               #print(event.quantileExpected, event.limit)
+               if event.quantileExpected < 0.05: lim_2.append(event.limit)
+               elif event.quantileExpected < 0.30: lim_16.append(event.limit)
+               elif event.quantileExpected < 0.70: lim_50.append(event.limit)
+               elif event.quantileExpected < 0.90: lim_84.append(event.limit)
+               else: lim_97.append(event.limit)
+               #print(event.quantileExpected, event.limit)
+       #print(len(mass), len(lim_50))  
+ 
     lim_50 = sort_lim(mass, lim_50)
     lim_2  = sort_lim(mass, lim_2)
     lim_16 = sort_lim(mass, lim_16)
@@ -534,7 +539,10 @@ for fil in all_files:
             tg2_dict[mx_key]['max_mZp'] = 0
             tg2_dict[mx_key]['min_mhs'] = 10000
             tg2_dict[mx_key]['max_mhs'] = 0
+        #print(len(mass), mass)
+        #print(len(lim_50), lim_50)
         for idx,mZp in enumerate(mass):
+            #print(idx)
             tg2_dict[mx_key]['50'].SetPoint(tg2_dict[mx_key]['idx'], mZp, mhs, lim_50[idx])
             tg2_dict[mx_key]['2'] .SetPoint(tg2_dict[mx_key]['idx'], mZp, mhs, lim_2[idx])
             tg2_dict[mx_key]['16'].SetPoint(tg2_dict[mx_key]['idx'], mZp, mhs, lim_16[idx])
@@ -549,39 +557,39 @@ for fil in all_files:
         plot(mass, lim_50, lim_2, lim_16, lim_84, lim_97, mhs, mx, model=options.model)
 
 
-#for key in tg2_dict:
-#    ##Add cheat points to fix contours
-#    #tg2_dict[key]['50'].SetPoint(tg2_dict[key]['idx'], tg2_dict[key]['min_mZp']-100, tg2_dict[key]['max_mhs'], 100)
-#    #tg2_dict[key]['2'] .SetPoint(tg2_dict[key]['idx'], tg2_dict[key]['min_mZp']-100, tg2_dict[key]['max_mhs'], 100)
-#    #tg2_dict[key]['16'].SetPoint(tg2_dict[key]['idx'], tg2_dict[key]['min_mZp']-100, tg2_dict[key]['max_mhs'], 100)
-#    #tg2_dict[key]['84'].SetPoint(tg2_dict[key]['idx'], tg2_dict[key]['min_mZp']-100, tg2_dict[key]['max_mhs'], 100)
-#    #tg2_dict[key]['97'].SetPoint(tg2_dict[key]['idx'], tg2_dict[key]['min_mZp']-100, tg2_dict[key]['max_mhs'], 100)
-#    #tg2_dict[key]['idx'] += 1
-#    #tg2_dict[key]['50'].SetPoint(tg2_dict[key]['idx'], tg2_dict[key]['max_mZp']+100, tg2_dict[key]['max_mhs'], 100)
-#    #tg2_dict[key]['2'] .SetPoint(tg2_dict[key]['idx'], tg2_dict[key]['max_mZp']+100, tg2_dict[key]['max_mhs'], 100)
-#    #tg2_dict[key]['16'].SetPoint(tg2_dict[key]['idx'], tg2_dict[key]['max_mZp']+100, tg2_dict[key]['max_mhs'], 100)
-#    #tg2_dict[key]['84'].SetPoint(tg2_dict[key]['idx'], tg2_dict[key]['max_mZp']+100, tg2_dict[key]['max_mhs'], 100)
-#    #tg2_dict[key]['97'].SetPoint(tg2_dict[key]['idx'], tg2_dict[key]['max_mZp']+100, tg2_dict[key]['max_mhs'], 100)
-#    #tg2_dict[key]['idx'] += 1
-#
-#
-#    mx = int(key.replace('mx_', ''))
-#    ROOT.gStyle.Reset()
-#    #ROOT.gStyle.SetPadBorderMode(1)
-#    #ROOT.gStyle.SetFrameBorderMode(1)
-#    ROOT.gStyle.SetPadRightMargin(0.1)#0.02)
-#    #ROOT.gStyle.SetPadLeftMargin(0.01)#0.02)
-#    canvas = ROOT.TCanvas("debug", "debug", 630, 600)
-#    #canvas.SetRightMargin(0.2)
-#    tg2_dict[key]['50'].Draw('colz')
-#    c_list = tg2_dict[key]['50'].GetContourList(1.)
-#    if c_list:
-#        for thing in c_list:
-#            print(type(thing))
-#            thing.Draw('Lsame')
-#    canvas.Update()
-#    raw_input('cont')
-#    plot_2D(tg2_dict[key]['50'], tg2_dict[key]['2'], tg2_dict[key]['16'], tg2_dict[key]['84'], tg2_dict[key]['97'], tg2_dict[key]['min_mZp'], tg2_dict[key]['max_mZp'], tg2_dict[key]['min_mhs'], tg2_dict[key]['max_mhs'],'limits_'+key+'_darkHiggs.png', mx)
-#    raw_input('cont')
+for key in tg2_dict:
+    ##Add cheat points to fix contours
+    #tg2_dict[key]['50'].SetPoint(tg2_dict[key]['idx'], tg2_dict[key]['min_mZp']-100, tg2_dict[key]['max_mhs'], 100)
+    #tg2_dict[key]['2'] .SetPoint(tg2_dict[key]['idx'], tg2_dict[key]['min_mZp']-100, tg2_dict[key]['max_mhs'], 100)
+    #tg2_dict[key]['16'].SetPoint(tg2_dict[key]['idx'], tg2_dict[key]['min_mZp']-100, tg2_dict[key]['max_mhs'], 100)
+    #tg2_dict[key]['84'].SetPoint(tg2_dict[key]['idx'], tg2_dict[key]['min_mZp']-100, tg2_dict[key]['max_mhs'], 100)
+    #tg2_dict[key]['97'].SetPoint(tg2_dict[key]['idx'], tg2_dict[key]['min_mZp']-100, tg2_dict[key]['max_mhs'], 100)
+    #tg2_dict[key]['idx'] += 1
+    #tg2_dict[key]['50'].SetPoint(tg2_dict[key]['idx'], tg2_dict[key]['max_mZp']+100, tg2_dict[key]['max_mhs'], 100)
+    #tg2_dict[key]['2'] .SetPoint(tg2_dict[key]['idx'], tg2_dict[key]['max_mZp']+100, tg2_dict[key]['max_mhs'], 100)
+    #tg2_dict[key]['16'].SetPoint(tg2_dict[key]['idx'], tg2_dict[key]['max_mZp']+100, tg2_dict[key]['max_mhs'], 100)
+    #tg2_dict[key]['84'].SetPoint(tg2_dict[key]['idx'], tg2_dict[key]['max_mZp']+100, tg2_dict[key]['max_mhs'], 100)
+    #tg2_dict[key]['97'].SetPoint(tg2_dict[key]['idx'], tg2_dict[key]['max_mZp']+100, tg2_dict[key]['max_mhs'], 100)
+    #tg2_dict[key]['idx'] += 1
+
+
+    mx = int(key.replace('mx_', ''))
+    ROOT.gStyle.Reset()
+    #ROOT.gStyle.SetPadBorderMode(1)
+    #ROOT.gStyle.SetFrameBorderMode(1)
+    ROOT.gStyle.SetPadRightMargin(0.1)#0.02)
+    #ROOT.gStyle.SetPadLeftMargin(0.01)#0.02)
+    canvas = ROOT.TCanvas("debug", "debug", 630, 600)
+    #canvas.SetRightMargin(0.2)
+    tg2_dict[key]['50'].Draw('colz')
+    c_list = tg2_dict[key]['50'].GetContourList(1.)
+    if c_list:
+        for thing in c_list:
+            print(type(thing))
+            thing.Draw('Lsame')
+    canvas.Update()
+    raw_input('cont')
+    plot_2D(tg2_dict[key]['50'], tg2_dict[key]['2'], tg2_dict[key]['16'], tg2_dict[key]['84'], tg2_dict[key]['97'], tg2_dict[key]['min_mZp'], tg2_dict[key]['max_mZp'], tg2_dict[key]['min_mhs'], tg2_dict[key]['max_mhs'],'limits_'+key+'_darkHiggs.png', mx)
+    raw_input('cont')
 
 

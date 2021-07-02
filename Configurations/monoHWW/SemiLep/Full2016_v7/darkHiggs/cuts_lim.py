@@ -66,11 +66,12 @@ QER      = combinecut([super_cut, mt_lmet_I, met_I, dphi_l_jj, dphi_ljj_met, dr_
 #addcut('MuCh_QER' , combinecut([is_mu, QER ]))
 
 # Inclusive
-#addcut('InCh_SC'  , combinecut([SC  ]))
-addcut('InCh_SR'  , combinecut([SR  ]))
-#addcut('InCh_CR'  , combinecut([CR  ]))
-addcut('InCh_SB'  , combinecut([SB  ]))
+#addcut('InCh_SR'  , combinecut([SR  ]))
+#addcut('InCh_SB'  , combinecut([SB  ]))
 addcut('InCh_TCR' , combinecut([TCR ]))
+
+#addcut('InCh_SC'  , combinecut([SC  ]))
+#addcut('InCh_CR'  , combinecut([CR  ]))
 #addcut('InCh_DYCR', combinecut([DYCR]))
 #addcut('InCh_QER' , combinecut([QER ]))
 

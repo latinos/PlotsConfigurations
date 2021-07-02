@@ -19,7 +19,8 @@ groupPlot['DY'] = {
     'nameHR' : "DY",
     'isSignal' : 0,
     'color': 418,    # kGreen+2
-    'samples'  : ['DY', 'DYlow']
+    'samples'  : ['DY']
+    #'samples'  : ['DY', 'DYlow']
 }
 
 groupPlot['FAKE'] = {
@@ -110,12 +111,12 @@ plot['DY']  = {
     'scale'    : 1.0,
 }
 
-plot['DYlow']  = {
-    'color': 416,    # kGreen+2
-    'isSignal' : 0,
-    'isData'   : 0,
-    'scale'    : 1.0,
-}
+#plot['DYlow']  = {
+#    'color': 416,    # kGreen+2
+#    'isSignal' : 0,
+#    'isData'   : 0,
+#    'scale'    : 1.0,
+#}
 
 plot['top'] = {
     'nameHR' : 'tW and t#bar{t}',

@@ -216,7 +216,8 @@ makeSuffixVar('CMS_scale_JES_2018',     'JES', mc_forJES, as_lnN=True)
 ##### Jet energy resolution
 
 #makeSuffixVar('CMS_res_j', 'JER')
-makeSuffixVar('CMS_res_j_2018', 'JER', mc_noVBS, as_lnN=True)
+mc_forJER = [skey for skey in mc_noVBS if not skey in ['top', 'Wjets']]
+makeSuffixVar('CMS_res_j_2018', 'JER', mc_forJER, as_lnN=True)
 
 ##### MET energy scale
 
@@ -290,8 +291,8 @@ nuisances['JetPUID_sf']  = {
     #    'top'  : jetPUID_top,
     #    'Wjets': jetPUID_Wjets,
     #} 
-    'AsLnN': '1',
-    #'symmetrize': True
+    #'AsLnN': '1',
+    'symmetrize': True
 }
 
 #
@@ -424,13 +425,13 @@ nuisances['TopPtRew'] = {
     'symmetrize': True
 }
 
-#nuisances['VgStar'] = {
-#    'name': 'CMS_hww_VgStarScale',
-#    'type': 'lnN',
-#    'samples': {
-#        'VgS_L': '1.25'
-#    }
-#}
+nuisances['VgStar'] = {
+    'name': 'CMS_hww_VgStarScale',
+    'type': 'lnN',
+    'samples': {
+        'VgS_L': '1.25'
+    }
+}
 
 nuisances['VZ'] = {
     'name': 'CMS_hww_VZScale',
@@ -603,13 +604,13 @@ nuisances['QCDscale_Wjets']  = {
     }
 }
 
-#nuisances['QCDscale_WWewk']  = {
-#    'name'  : 'QCDscale_WWewk',
-#    'type'  : 'lnN',
-#    'samples'  : {
-#        'WWewk' : '1.11',
-#    },
-#}
+nuisances['QCDscale_WWewk']  = {
+    'name'  : 'QCDscale_WWewk',
+    'type'  : 'lnN',
+    'samples'  : {
+        'WWewk' : '1.11',
+    },
+}
 
 nuisances['QCDscale_ggVV'] = {
     'name': 'QCDscale_ggVV',
