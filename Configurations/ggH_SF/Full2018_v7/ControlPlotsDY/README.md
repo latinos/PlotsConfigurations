@@ -82,7 +82,14 @@ Or, if they failed because the wall clock time have been exceeded, resubmit them
 
     mkDYestim_data.py --pycfg=configuration_loose.py --dycfg=dyestim_loose.py --inputFile=rootFile/plots_DY_validation_loose_2018_v7.root
 
+With DY nuisances breakdown:
+
+    mkDYestim_data_splitNuisances.py --pycfg=configuration_loose.py --dycfg=dyestim_loose.py --inputFile=rootFile/plots_DY_validation_loose_2018_v7.root --year=2018
+
 ### Plot distributions
 
     mkPlot.py --pycfg=configuration_loose.py --inputFile=rootFile/plots_DY_validation_loose_2018_v7_DYEstimDATA.root --linearOnly --fileFormats=png --onlyPlot=cratio
 
+If DY nuisance breakdown was used:
+
+    mkPlot.py --pycfg=configuration_loose.py --inputFile=rootFile/plots_DY_validation_loose_2018_v7_DYEstimDATA_breakdown.root --linearOnly --fileFormats=png --onlyPlot=cratio

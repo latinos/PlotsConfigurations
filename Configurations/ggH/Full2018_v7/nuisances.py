@@ -75,15 +75,15 @@ nuisances['lumi_CurrCalib'] = {
 
 #### FAKES
 
-nuisances['fake_syst_em'] = {
-    'name': 'CMS_fake_syst_em',
+nuisances['fake_syst'] = {
+    'name': 'CMS_fake_syst',
     'type': 'lnN',
     'samples': {
-        'Fake_em': '1.3'
+        'Fake': '1.3'
     },
     'cutspost': lambda self, cuts: [cut for cut in cuts if '20me' not in cut],
 }
-
+'''
 nuisances['fake_syst_me'] = {
     'name': 'CMS_fake_syst_me',
     'type': 'lnN',
@@ -92,7 +92,7 @@ nuisances['fake_syst_me'] = {
     },
     'cutspost': lambda self, cuts: [cut for cut in cuts if '20em' not in cut],
 }
-
+'''
 nuisances['fake_ele'] = {
     'name': 'CMS_fake_e_2018',
     'kind': 'weight',
@@ -254,10 +254,10 @@ for js in jes_systs:
       'type': 'shape',
       'mapUp': js+'up',
       'mapDown': js+'do',
-      'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['VZ']),
+      'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['VZ', 'Vg', 'VgS']),
       'folderUp': folderup,
       'folderDown': folderdo,
-      'AsLnN': '0'
+      'AsLnN': '1'
   }
 
 ##### Jet energy resolution
@@ -267,10 +267,10 @@ nuisances['JER'] = {
     'type': 'shape',
     'mapUp': 'JERup',
     'mapDown': 'JERdo',
-    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['VZ']),
+    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['VZ', 'Vg', 'VgS']),
     'folderUp': makeMCDirectory('JERup_suffix'),
     'folderDown': makeMCDirectory('JERdo_suffix'),
-    'AsLnN': '0'
+    'AsLnN': '1'
 }
 
 ##### MET energy scale
@@ -284,7 +284,7 @@ nuisances['met'] = {
     'samples': dict((skey, ['1', '1']) for skey in mc),
     'folderUp': makeMCDirectory('METup_suffix'),
     'folderDown': makeMCDirectory('METdo_suffix'),
-    'AsLnN': '0'
+    'AsLnN': '1'
 }
 
 ##### Di-Tau vetoing for embedding

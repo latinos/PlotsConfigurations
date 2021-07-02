@@ -303,15 +303,24 @@ elif btag_algo=="deepflav":
             'samples': mc
         }
 
-# aliases['ttHMVA_SF_2l'] = {'linesToAdd': ['.L %s/patches/compute_SF.C+' % configurations],
-#                            'class': 'compute_SF',
-#                            'args' : ('2017', 2, 'total_SF'),
-#                            'samples': mc
-#                           }
+aliases['Jet_PUIDSF'] = { 
+  'expr' : 'TMath::Exp(Sum$((Jet_jetId>=2)*TMath::Log(Jet_PUIDSF_loose)))',
+  'samples': mc
+}
+
+aliases['Jet_PUIDSF_up'] = {
+  'expr' : 'TMath::Exp(Sum$((Jet_jetId>=2)*TMath::Log(Jet_PUIDSF_loose_up)))',
+  'samples': mc
+}
+
+aliases['Jet_PUIDSF_down'] = {
+  'expr' : 'TMath::Exp(Sum$((Jet_jetId>=2)*TMath::Log(Jet_PUIDSF_loose_down)))',
+  'samples': mc
+}
 
 # data/MC scale factors
 aliases['SFweight'] = {
-    'expr': ' * '.join(['SFweight2l', 'LepWPCut', 'LepSF2l__ele_' + eleWP + '__mu_' + muWP, 'btagSF', 'PrefireWeight','Jet_PUIDSF_loose']),
+    'expr': ' * '.join(['SFweight2l', 'LepWPCut', 'LepSF2l__ele_' + eleWP + '__mu_' + muWP, 'btagSF', 'PrefireWeight','Jet_PUIDSF']),
     'samples': mc
 }
 
@@ -342,42 +351,6 @@ aliases['Weight2MINLO'] = {
     'args': '%s/src/LatinoAnalysis/Gardener/python/data/powheg2minlo/NNLOPS_reweight.root' % os.getenv('CMSSW_BASE'),
     'samples' : [skey for skey in samples if 'ggH_hww' in skey],
 }
-
-
-# aliases['ttHMVA_SF_Up_0'] = {'linesToAdd': ['.L %s/patches/compute_SF.C+' % configurations],
-#                              'class': 'compute_SF',
-#                              'args' : ('2017', 2, 'single_SF_up', 0),
-#                              'samples': mc
-#                             }
-# aliases['ttHMVA_SF_Up_1'] = {'linesToAdd': ['.L %s/patches/compute_SF.C+' % configurations],
-#                              'class': 'compute_SF',
-#                              'args' : ('2017', 2, 'single_SF_up', 1),
-#                              'samples': mc
-#                             }
-# aliases['ttHMVA_SF_Down_0'] = {'linesToAdd': ['.L %s/patches/compute_SF.C+' % configurations],
-#                                'class': 'compute_SF',
-#                                'args' : ('2017', 2, 'single_SF_down', 0),
-#                                'samples': mc
-#                               }
-# aliases['ttHMVA_SF_Down_1'] = {'linesToAdd': ['.L %s/patches/compute_SF.C+' % configurations],
-#                                'class': 'compute_SF',
-#                                'args' : ('2017', 2, 'single_SF_down', 1),
-#                                'samples': mc
-#                               }
-# aliases['ttHMVA_2l_mu_SF_Up'] = {'expr' : '(ttHMVA_SF_Up_0*(TMath::Abs(Lepton_pdgId[0]) == 13) + (TMath::Abs(Lepton_pdgId[0]) == 11)) *\
-#                                            (ttHMVA_SF_Up_1*(TMath::Abs(Lepton_pdgId[1]) == 13) + (TMath::Abs(Lepton_pdgId[1]) == 11))',
-#                                  'samples': mc
-#                                 }
-# aliases['ttHMVA_2l_mu_SF_Down'] = {'expr' : '(ttHMVA_SF_Down_0*(TMath::Abs(Lepton_pdgId[0]) == 13) + (TMath::Abs(Lepton_pdgId[0]) == 11)) *\
-#                                              (ttHMVA_SF_Down_1*(TMath::Abs(Lepton_pdgId[1]) == 13) + (TMath::Abs(Lepton_pdgId[1]) == 11))',
-#                                    'samples': mc
-#                                   }
-
-# aliases['nCleanGenJet'] = {
-#     'linesToAdd': ['.L %s/Differential/ngenjet.cc+' % configurations],
-#     'class': 'CountGenJet',
-#     'samples': mc
-# }
 
 # GGHUncertaintyProducer wasn't run for GluGluHToWWTo2L2Nu_Powheg_M125 
 thus = [

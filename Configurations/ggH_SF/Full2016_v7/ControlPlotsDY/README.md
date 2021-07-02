@@ -47,6 +47,7 @@ If DY nuisance breakdown was used:
 
     mkPlot.py --pycfg=configuration_Z.py --inputFile=rootFile/plots_DY_validation_Zpeak_2016_v7_DYEstimDATA_breakdown.root --linearOnly --fileFormats=png --onlyPlot=cratio
 
+
 ## Instructions to produce the plots - Second Validation Region - Loose DNN Selection 
 
 The second validation region is similar to the signal region, but with a looser DNN cut. On top of the R(out/in), the DY contamination is estimated using the sideband-to-region acceptance.
@@ -80,7 +81,14 @@ Or, if they failed because the wall clock time have been exceeded, resubmit them
 
     mkDYestim_data.py --pycfg=configuration_loose.py --dycfg=dyestim_loose.py --inputFile=rootFile/plots_DY_validation_loose_2016_v7.root
 
+With DY nuisances breakdown:
+
+    mkDYestim_data_splitNuisances.py --pycfg=configuration_loose.py --dycfg=dyestim_loose.py --inputFile=rootFile/plots_DY_validation_loose_2016_v7.root --year=2016
+
 ### Plot distributions
 
     mkPlot.py --pycfg=configuration_loose.py --inputFile=rootFile/plots_DY_validation_loose_2016_v7_DYEstimDATA.root --linearOnly --fileFormats=png --onlyPlot=cratio
 
+If DY nuisance breakdown was used:
+
+    mkPlot.py --pycfg=configuration_loose.py --inputFile=rootFile/plots_DY_validation_loose_2016_v7_DYEstimDATA_breakdown.root --linearOnly --fileFormats=png --onlyPlot=cratio

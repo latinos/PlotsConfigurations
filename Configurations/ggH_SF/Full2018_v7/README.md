@@ -122,7 +122,7 @@ Combination:
 
     combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_ggH_0j/comb/datacard.root -m 125 --doFits -t -1 --expectSignal=1 --X-rtd MINIMIZER_analytic --cminDefaultMinimizerStrategy=0 --job-mode=interactive --parallel=10 --rMin=-6 --rMax=10
 
-    combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_ggH_0j/comb/datacard.root -m 125 -t -1 --X-rtd MINIMIZER_analytic --cminDefaultMinimizerStrategy=0 -o datacards/hww2l2v_13TeV_ggH/comb/impacts_total.json
+    combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_ggH_0j/comb/datacard.root -m 125 -t -1 --X-rtd MINIMIZER_analytic --cminDefaultMinimizerStrategy=0 -o datacards/hww2l2v_13TeV_ggH_0j/comb/impacts_total.json
     
     plotImpacts.py -i datacards/hww2l2v_13TeV_ggH_0j/comb/impacts_total.json -o Impact_plots/Impact_ggH_0j_2018
 
@@ -136,7 +136,7 @@ Combination:
 
     combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_ggH_1j/comb/datacard.root -m 125 --doFits -t -1 --expectSignal=1 --X-rtd MINIMIZER_analytic --cminDefaultMinimizerStrategy=0 --job-mode=interactive --parallel=10 --rMin=-6 --rMax=10
 
-    combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_ggH_1j/comb/datacard.root -m 125 -t -1 --X-rtd MINIMIZER_analytic --cminDefaultMinimizerStrategy=0 -o datacards/hww2l2v_13TeV_ggH/comb/impacts_total.json
+    combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_ggH_1j/comb/datacard.root -m 125 -t -1 --X-rtd MINIMIZER_analytic --cminDefaultMinimizerStrategy=0 -o datacards/hww2l2v_13TeV_ggH_1j/comb/impacts_total.json
     
     plotImpacts.py -i datacards/hww2l2v_13TeV_ggH_1j/comb/impacts_total.json -o Impact_plots/Impact_ggH_1j_2018
 
@@ -150,7 +150,7 @@ Combination:
 
     combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_ggH_2j/comb/datacard.root -m 125 --doFits -t -1 --expectSignal=1 --X-rtd MINIMIZER_analytic --cminDefaultMinimizerStrategy=0 --job-mode=interactive --parallel=10 --rMin=-6 --rMax=10
 
-    combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_ggH_2j/comb/datacard.root -m 125 -t -1 --X-rtd MINIMIZER_analytic --cminDefaultMinimizerStrategy=0 -o datacards/hww2l2v_13TeV_ggH/comb/impacts_total.json
+    combineTool.py -M Impacts -d datacards/hww2l2v_13TeV_ggH_2j/comb/datacard.root -m 125 -t -1 --X-rtd MINIMIZER_analytic --cminDefaultMinimizerStrategy=0 -o datacards/hww2l2v_13TeV_ggH_2j/comb/impacts_total.json
     
     plotImpacts.py -i datacards/hww2l2v_13TeV_ggH_2j/comb/impacts_total.json -o Impact_plots/Impact_ggH_2j_2018
 

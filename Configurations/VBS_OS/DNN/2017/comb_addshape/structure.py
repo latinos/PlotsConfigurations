@@ -4,6 +4,12 @@
 
 # keys here must match keys in samples.py    
 #                    
+
+structure['Zjj']  = {  
+                  'isSignal' : 0,
+                  'isData'   : 0
+              }
+
 structure['DY']  = {  
                   'isSignal' : 0,
                   'isData'   : 0
@@ -20,7 +26,6 @@ structure['Dyveto']  = {
                   'removeFromCuts' : [ k for k in cuts ],
               }
 
-
 structure['Wjets']  = {  
                   'isSignal' : 0,
                   'isData'   : 0 
@@ -30,19 +35,19 @@ structure['Fake']  = {
                   'isSignal' : 0,
                   'isData'   : 0 
               }
-'''
-structure['Fake_em']  = {  
+
+structure['Fake_e']  = {  
                   'isSignal' : 0,
                   'isData'   : 0,
-                  'removeFromCuts' : [ k for k in cuts if 'me' in k],
+#                  'removeFromCuts' : [ k for k in cuts if 'me' in k],
               }
 
-structure['Fake_me']  = {  
+structure['Fake_m']  = {  
                   'isSignal' : 0,
                   'isData'   : 0,
-                  'removeFromCuts' : [ k for k in cuts if 'em' in k],
+#                  'removeFromCuts' : [ k for k in cuts if 'em' in k],
               }
-'''
+
 structure['ttbar'] = {   
                   'isSignal' : 0,
                   'isData'   : 0 
@@ -66,7 +71,7 @@ structure['WW']  = {
                   }
 
 structure['WWewk']  = {
-                  'isSignal' : 0,
+                  'isSignal' : 1,
                   'isData'   : 0
                   }
 
@@ -133,94 +138,83 @@ structure['ZZ']  = {
 
 
 structure['ggH'] = {
-                  'isSignal' : 1,
+                  'isSignal' : 0,
                   'isData'   : 0    
                   }
 
 structure['ggH_hww'] = {
-                  'isSignal' : 1,
+                  'isSignal' : 0,
                   'isData'   : 0    
                   }
 
 structure['qqH_hww'] = {
-                  'isSignal' : 1,
+                  'isSignal' : 0,
                   'isData'   : 0    
                   }
 
 structure['qqH_hww'] = {
-                  'isSignal' : 1,
+                  'isSignal' : 0,
                   'isData'   : 0    
                   }
 
 structure['WH_hww'] = {
-                  'isSignal' : 1,
+                  'isSignal' : 0,
                   'isData'   : 0    
                   }
 
 structure['ZH_hww'] = {
-                  'isSignal' : 1,
+                  'isSignal' : 0,
                   'isData'   : 0    
                   }
 
 structure['ggZH_hww'] = {
-                  'isSignal' : 1,
+                  'isSignal' : 0,
                   'isData'   : 0    
                   }
 
 structure['H_hww'] = {
-                  'isSignal' : 1,
+                  'isSignal' : 0,
                   'isData'   : 0    
                   }
 
 structure['bbH_hww'] = {
-                  'isSignal' : 1,
+                  'isSignal' : 0,
                   'isData'   : 0
                   }
 
 structure['ttH_hww'] = {
-                  'isSignal' : 1,
+                  'isSignal' : 0,
                   'isData'   : 0
                   }
 
 structure['ggH_htt'] = {
-                  'isSignal' : 1,
+                  'isSignal' : 0,
                   'isData'   : 0,
                   }
 
 structure['qqH_htt'] = {
-                  'isSignal' : 1,
+                  'isSignal' : 0,
                   'isData'   : 0,
                   }
 
 structure['WH_htt'] = {
-                  'isSignal' : 1,
+                  'isSignal' : 0,
                   'isData'   : 0,
                   }
 
 structure['ZH_htt'] = {
-                  'isSignal' : 1,
+                  'isSignal' : 0,
                   'isData'   : 0,
                   }
 
 structure['H_htt'] = {
-                  'isSignal' : 1,
+                  'isSignal' : 0,
                   'isData'   : 0    
                   }
 
 
 # data
 
-import pickle
-with open('vbfDipoleScale.pkl', 'rb') as handle:
-    vbfDipoleScale = pickle.load(handle)
-
-print vbfDipoleScale
-
-structure['qqH_hww'] = {
-                  'isSignal' : 1,
-                  'isData'   : 0,
-                  'scaleSampleForDatacard' : vbfDipoleScale,
-                  }
 
 structure['DATA']  = { 
                   'isSignal' : 0,
@@ -231,7 +225,7 @@ structure['DATA']  = {
 
 print "INSTRUCTURE"
 print cuts
-print nuisances['WWresum0j']
+#print nuisances['WWresum0j']
 print "OK"
 
 for nuis in nuisances.itervalues():
