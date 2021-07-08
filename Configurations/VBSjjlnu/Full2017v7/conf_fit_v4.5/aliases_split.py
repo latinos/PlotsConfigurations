@@ -9,7 +9,8 @@ conf_folder = configurations +"/VBSjjlnu/Full2017v7"
 
 mc = [skey for skey in samples if skey not in ('Fake_ele', 'DATA_ele','Fake_mu', 'DATA_mu')]
 
-
+VBS_samples = ["VBS_osWW", "VBS_ssWW", "VBS_WZjj", "VBS_WZll", "VBS_ZZ"]
+VV_samples = ["VV_osWW", "VV_ssWW", "VV_WZjj", "VV_WZll", "VV_ZZ"]
 
 ####################
 
@@ -154,10 +155,10 @@ aliases['nJetsBtag']= {
 }
 
 btagSF_corr_samples_groups = {
-    'VBS': ['VBS','VBS_dipoleRecoil'],
-    'Wjets_HT': ['Wjets_boost']+wjets_res_bins,
+    'VBS': ['VBS','VBS_dipoleRecoil'] + VBS_samples,
+    'Wjets_HT': ['Wjets_boost'] + wjets_res_bins,
     'Vg_VgS_VBFV':['Vg','VgS','VBF-V','VBF-V_dipole'],
-    'VV_VVV_ggWW':['VVV','VV','ggWW'],
+    'VV_VVV_ggWW':['VVV','VV','ggWW'] + VV_samples,
     'top':['top'],
     'DY': ['DY']
 }
@@ -386,7 +387,7 @@ aliases['QCDscale_normalized'] = {
                 'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
                 '.L {}/VBSjjlnu/macros/QCDscale_normalize.cc+'.format(configurations)
             ] ,
-            'samples':['VBS','VBS_dipoleRecoil','VV']          
+            'samples':['VBS','VBS_dipoleRecoil','VV'] + VBS_samples + VV_samples      
 }
 
 aliases['PDFweight_normalized'] = {
@@ -396,7 +397,7 @@ aliases['PDFweight_normalized'] = {
                 'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
                 '.L {}/VBSjjlnu/macros/PDFweight_normalize.cc+'.format(configurations)
             ] ,
-            'samples':['VBS','VBS_dipoleRecoil','VV']          
+            'samples':['VBS','VBS_dipoleRecoil','VV'] + VBS_samples + VV_samples     
 }
 
 
@@ -480,25 +481,25 @@ aliases['puWeight_noeras'] = {
 mva_reader_path = os.getenv('CMSSW_BASE') + '/src/PlotsConfigurations/Configurations/VBSjjlnu/macros/'
 models_path = '/eos/home-d/dvalsecc/www/VBSPlots/DNN_archive/FullRun2_v7/FullRun2_v7/'
 
-# aliases['DNNoutput_boosted'] = {
-#     'class': 'MVAReaderBoosted_mVauto',
-#     'args': ( models_path +'boost_sig/models/v3_d/',  models_path +'boost_sig/models/v3_d/cumulative_signal_2017.root', False, 0),
-#     'linesToAdd':[
-#         'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-#         'gSystem->Load("libDNNEvaluator.so")',
-#         '.L ' + mva_reader_path + 'mva_reader_boosted_v3d_mVauto.cc+', 
-#     ],
-# }
+aliases['DNNoutput_boosted'] = {
+    'class': 'MVAReaderBoosted_mVauto',
+    'args': ( models_path +'boost_sig/models/v3_d/',  models_path +'boost_sig/models/v3_d/cumulative_signal_2017.root', False, 0),
+    'linesToAdd':[
+        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+        'gSystem->Load("libDNNEvaluator.so")',
+        '.L ' + mva_reader_path + 'mva_reader_boosted_v3d_mVauto.cc+', 
+    ],
+}
 
-# aliases['DNNoutput_resolved_v1'] = {
-#     'class': 'MVAReaderResolved_mVauto',
-#     'args': ( models_path+ 'res_sig/models/v4_d/',models_path+ 'res_sig/models/v4_d/cumulative_signal_2017.root', False, 1),
-#     'linesToAdd':[
-#         'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-#         'gSystem->Load("libDNNEvaluator.so")',
-#         '.L ' + mva_reader_path + 'mva_reader_resolved_v4d_mVauto.cc+', 
-#     ],
-# }
+aliases['DNNoutput_resolved_v1'] = {
+    'class': 'MVAReaderResolved_mVauto',
+    'args': ( models_path+ 'res_sig/models/v4_d/',models_path+ 'res_sig/models/v4_d/cumulative_signal_2017.root', False, 1),
+    'linesToAdd':[
+        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+        'gSystem->Load("libDNNEvaluator.so")',
+        '.L ' + mva_reader_path + 'mva_reader_resolved_v4d_mVauto.cc+', 
+    ],
+}
 
 
 # aliases['dipole_weight'] = {

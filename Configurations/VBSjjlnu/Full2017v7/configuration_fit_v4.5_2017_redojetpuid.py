@@ -2,7 +2,7 @@
 treeName= 'Events'
 
 
-tag = 'fit_v4.5_2017'
+tag = 'fit_v4.5_2017_redojetpuid'
 direc = "conf_fit_v4.5"
 
 # used by mkShape to define output directory for root files
@@ -12,13 +12,13 @@ outputDir = 'rootFile_'+tag
 aliasesFile = direc+'/aliases.py'
 
 # file with list of variables
-variablesFile = direc+'/variables.py'
+variablesFile = direc+'/variables_all.py'
 
 # file with list of cuts
 cutsFile = direc +'/cuts.py' 
 
 # file with list of samples
-samplesFile = direc+'/samples_quick.py' 
+samplesFile = direc+'/samples.py' 
 #samplesFile = direc+'/samples.py'
 
 #t file with list of samples
@@ -34,7 +34,7 @@ outputDirPlots = 'plot_'+tag
 
 # used by mkDatacards to define output directory for datacards
 #outputDirDatacard = 'datacards_'+tag 
-outputDirDatacard = 'datacards_'+tag +"_Dipole_v2.2"
+outputDirDatacard = 'datacards_'+tag +"_Dipole_v2_CRplot"
 
 # structure file for datacard
 structureFile = direc+'/structure.py'

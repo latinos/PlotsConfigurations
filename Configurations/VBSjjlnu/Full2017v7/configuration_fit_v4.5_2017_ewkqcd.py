@@ -2,7 +2,7 @@
 treeName= 'Events'
 
 
-tag = 'fit_v4.5_2017'
+tag = 'fit_v4.5_2017_ewkqcd'
 direc = "conf_fit_v4.5"
 
 # used by mkShape to define output directory for root files
@@ -34,14 +34,14 @@ outputDirPlots = 'plot_'+tag
 
 # used by mkDatacards to define output directory for datacards
 #outputDirDatacard = 'datacards_'+tag 
-outputDirDatacard = 'datacards_'+tag +"_Dipole_v2.2"
+outputDirDatacard = 'datacards_'+tag +"_ewkqcd_Dipole_v3"
 
 # structure file for datacard
-structureFile = direc+'/structure.py'
+structureFile = direc+'/structure_ewkqcd.py'
 
 
 # nuisances file for mkDatacards and for mkShape
-nuisancesFile = direc+'/nuisances_datacard.py'
+nuisancesFile = direc+'/nuisances_datacard_ewkqcd.py'
 # nuisancesFile = direc+'/nuisances.py'
 
 customizeScript = direc + "/customize.py"

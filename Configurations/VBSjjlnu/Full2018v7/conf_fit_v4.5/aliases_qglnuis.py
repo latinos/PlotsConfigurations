@@ -126,10 +126,10 @@ aliases['nJetsBtag']= {
 
 btagSF_corr_samples_groups = {
     'VBS': ['VBS','VBS_ZLL'],
-    'VBS_dipoleRecoil': ['VBS_dipoleRecoil'],
+    'VBS_dipoleRecoil': ['VBS_dipoleRecoil'] + signal_samples,
     'Wjets_HT': wjets_res_bins  + wjets_boost_bins,
     'Vg_VgS_VBFV':['Vg','VgS','VBF-V','VBF-V_dipole'],
-    'VV_VVV_ggWW':['VVV','VV','ggWW'],
+    'VV_VVV_ggWW':['VVV','VV','ggWW'] + VV_samples,
     'top':['top'],
     'DY': ['DY']
 }

@@ -15,16 +15,23 @@ oF = R.TFile.Open(args.outputfile,"RECREATE")
 oFF = R.TFile.Open(args.outputfile_fit,"UPDATE")
 
 # samples= ['VBS','DY','top','VV','VVV','Vg','VgS', 'VBF-V','ggWW'] # 'VBS_dipoleRecoil'
-samples = ['VBF-V_dipole',"VBS_dipoleRecoil"]
+VBS_samples = ["VBS_osWW", "VBS_ssWW", "VBS_WZjj", "VBS_WZll", "VBS_ZZ"]
+VV_samples = ["VV_osWW", "VV_ssWW", "VV_WZjj", "VV_WZll", "VV_ZZ"]
+samples =  VBS_samples + VV_samples #+['VBF-V_dipole',"VBS_dipoleRecoil"] +
 wjets_bins = {"res":[], "boost":[]}
 # for ir in range(1,22):
 #     wjets_bins["res"].append("Wjets_res_"+str(ir))
 # for ir in range(1,8):
 #     wjets_bins["boost"].append("Wjets_boost_"+str(ir))
 
+# variables = { 
+#     "res": ['DNNoutput_res_v1','vbs_0_qgl_res','vjet_0_qgl_res','vjet_1_qgl_res'],
+#     "boost":  ['vbs_0_qgl_boost','DNNoutput_boost']#
+# }
+
 variables = { 
-    "res": ['DNNoutput_res_v1','vbs_0_qgl_res','vjet_0_qgl_res','vjet_1_qgl_res'],
-    "boost":  ['vbs_0_qgl_boost','DNNoutput_boost']#
+    "res": ['DNNoutput_res_v1'],
+    "boost":  ['DNNoutput_boost']#
 }
 
 for cut in iF.GetListOfKeys():

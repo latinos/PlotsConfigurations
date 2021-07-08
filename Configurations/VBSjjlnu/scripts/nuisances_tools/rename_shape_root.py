@@ -45,7 +45,7 @@ for k in f.GetListOfKeys():
 
             for sample in samples:
                 if rename_shape == None:  new_shape_name = shape_name +"_"+ sample
-                else:       new_shape_name = rename_shape
+                else:  new_shape_name = rename_shape
 
                 if "histo_"+sample+"_"+shape_name+"Down" == l.GetName():
                     #print(l.GetName(),"histo_"+sample+"_"+shape_name+"Down" )

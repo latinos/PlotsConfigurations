@@ -1,7 +1,7 @@
 # # nuisances
 from pprint import pprint
 # # name of samples here must match keys in samples.py 
-mc =["DY", "top", "VV", "VVV", "Vg", "VgS", "VBS", "VBS_dipoleRecoil","VBF-V", "VBF-V_dipole", "ggWW","Wjets_boost"] + wjets_res_bins
+mc =["DY", "top", "VV", "VVV", "Vg", "VgS", "VBS", "VBS_dipoleRecoil","VBF-V", "VBF-V_dipole", "ggWW","Wjets_boost"] + wjets_res_bins + VBS_samples + VV_samples
 #mc_norm = [m for m in mc if m not in ["VBS", "VV"]]
 #mc_sep =  ["VBS", "VV"]
 phasespaces = ["res_wjetcr_ele","res_wjetcr_mu" ,"boost_wjetcr_ele" ,"boost_wjetcr_mu",
@@ -495,25 +495,46 @@ import json, os
 nuis_factors = json.load(open(os.getenv("CMSSW_BASE") + "/src/PlotsConfigurations/Configurations/VBSjjlnu/Full2016v7/conf_fit_v4.5/nuisance_incl_norm_factors_2016.json"))
 
 for sample in mc :
-    # if "Wjets" in mc: continue
-    if sample == "ggWW": continue
-    if 'VBS' in sample:
-        nuisances['QCD_scale_VBS'] = {
+    if sample in ["ggWW", "Wjets_boost"] + wjets_res_bins + VBS_samples + VV_samples : continue
+    nuisances['QCD_scale_'+sample] = {
+        'name'  : 'QCDscale_'+sample,
+        'kind'  : 'weight',
+        'type'  : 'shape',
+        'samples'  :  { sample: ["LHEScaleWeight[0]", "LHEScaleWeight[8]"] }
+    }
+
+#Correlate all signal samples
+nuisances['QCD_scale_VBS'] = {
             'name'  : 'QCDscale_VBS_accept',
             'kind'  : 'weight',
             'type'  : 'shape',
-            # Normalization effect removed from 1l inclusive phase space
-            'samples'  :  { "VBS": ["QCDscale_normalized[0]", "QCDscale_normalized[8]"],
-                            "VBS_dipoleRecoil": ["QCDscale_normalized[0]", "QCDscale_normalized[8]"] 
-                        }
+            # 'samples'  :  { "VBS": ["QCDscale_normalized[0]", "QCDscale_normalized[8]"],
+            #                 "VBS_dipoleRecoil": ["QCDscale_normalized[0]", "QCDscale_normalized[8]"], }
+            'samples': { k:["QCDscale_normalized[0]", "QCDscale_normalized[8]"] for k in VBS_samples }
         }
-    else:
-        nuisances['QCD_scale_'+sample] = {
-            'name'  : 'QCDscale_'+sample,
+
+
+nuisances['QCD_scale_VV_accept'] = {
+            'name'  : 'QCDscale_VV_accept',
             'kind'  : 'weight',
             'type'  : 'shape',
-            'samples'  :  { sample: ["LHEScaleWeight[0]", "LHEScaleWeight[8]"] } #to be inverted again
+            'samples': { k:["QCDscale_normalized[0]", "QCDscale_normalized[8]"] for k in VV_samples }
         }
+
+nuisances['QCD_scale_VV'] = {
+            'name'  : 'QCDscale_VV',
+            'kind'  : 'weight',
+            'type'  : 'shape',
+            'samples': { k:["LHEScaleWeight[0]", "LHEScaleWeight[8]"] for k in VV_samples }
+        }
+
+nuisances['QCD_scale_Wjets'] = {
+            'name'  : 'QCDscale_Wjets',
+            'kind'  : 'weight',
+            'type'  : 'shape',
+            'samples'  :  { sample: ["LHEScaleWeight[0]", "LHEScaleWeight[8]"] for sample in  ["Wjets_boost"] + wjets_res_bins}
+        }
+
 
 # nuisances['QCD_scale_Wjets'] = {
 #             'name'  : 'QCDscale_Wjets',
@@ -530,24 +551,24 @@ for sample in mc :
 # for ir in range(1,8):
 #     wjets_bins.append("Wjets_boost_boost_"+str(ir))
 
-samples_PS = ['VBS','top','DY','VV','VVV','Vg','VgS','VBF-V','ggWW'] + wjets_bins
+# samples_PS = ['VBS','top','DY','VV','VVV','Vg','VgS','VBF-V','ggWW'] + wjets_bins
 
-nuisances['PS_ISR']  = {
-                'name'  : 'CMS_PS_ISR',
-                'kind'  : 'weight',
-                'type'  : 'shape',
-                'samples'  : {
-                    sample :      ['PSWeight[2]', 'PSWeight[0]'] for sample in samples_PS
-                }
-            }
-nuisances['PS_FSR']  = {
-                'name'  : 'CMS_PS_FSR',
-                'kind'  : 'weight',
-                'type'  : 'shape',
-                'samples'  : {
-                    sample :      ['PSWeight[3]', 'PSWeight[1]'] for sample in samples_PS
-                }
-            }
+# nuisances['PS_ISR']  = {
+#                 'name'  : 'CMS_PS_ISR',
+#                 'kind'  : 'weight',
+#                 'type'  : 'shape',
+#                 'samples'  : {
+#                     sample :      ['PSWeight[2]', 'PSWeight[0]'] for sample in samples_PS
+#                 }
+#             }
+# nuisances['PS_FSR']  = {
+#                 'name'  : 'CMS_PS_FSR',
+#                 'kind'  : 'weight',
+#                 'type'  : 'shape',
+#                 'samples'  : {
+#                     sample :      ['PSWeight[3]', 'PSWeight[1]'] for sample in samples_PS
+#                 }
+#             }
 
 
 ####### PDF uncertainty
@@ -572,21 +593,10 @@ nuisances['PU']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
-                    s : ['(puWeightUp/puWeight) * {}'.format(nuis_factors[s]["CMS_PU_2016"][0]),
-                         '(puWeightDown/puWeight) * {}'.format(nuis_factors[s]["CMS_PU_2016"][1])] for s in mc if s not in wjets_res_bins },
+                    s : ['(puWeightUp/puWeight)',
+                         '(puWeightDown/puWeight)'] for s in mc },
                 'AsLnN'      : '1',
 }
-
-nuisances['PU_wjets']  = {
-                'name'  : 'CMS_PU_2016',
-                'kind'  : 'weight',
-                'type'  : 'shape',
-                'samples'  : {
-                    s : ['(puWeightUp/puWeight) * {}'.format(nuis_factors["Wjets_res"]["CMS_PU_2016"][0]),
-                         '(puWeightDown/puWeight) * {}'.format(nuis_factors["Wjets_res"]["CMS_PU_2016"][1])] for s in wjets_res_bins },
-                'AsLnN'      : '1',
-}
-   
 
 # An overall 1.5% UE uncertainty will cover all the UEup/UEdo variations
 # And we don't observe any dependency of UE variations on njet

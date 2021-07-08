@@ -2,14 +2,14 @@
 treeName= 'Events'
 
 
-tag = 'fit_v4.5_2017'
+tag = 'fit_v4.5_2017_split'
 direc = "conf_fit_v4.5"
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFile_'+tag
 
 # file with TTree aliases
-aliasesFile = direc+'/aliases.py'
+aliasesFile = direc+'/aliases_split.py'
 
 # file with list of variables
 variablesFile = direc+'/variables.py'
@@ -18,7 +18,7 @@ variablesFile = direc+'/variables.py'
 cutsFile = direc +'/cuts.py' 
 
 # file with list of samples
-samplesFile = direc+'/samples_quick.py' 
+samplesFile = direc+'/samples_split.py' 
 #samplesFile = direc+'/samples.py'
 
 #t file with list of samples
@@ -34,14 +34,14 @@ outputDirPlots = 'plot_'+tag
 
 # used by mkDatacards to define output directory for datacards
 #outputDirDatacard = 'datacards_'+tag 
-outputDirDatacard = 'datacards_'+tag +"_Dipole_v2.2"
+outputDirDatacard = 'datacards_'+tag +"_Dipole_split_v4"
 
 # structure file for datacard
-structureFile = direc+'/structure.py'
+structureFile = direc+'/structure_split.py'
 
 
 # nuisances file for mkDatacards and for mkShape
-nuisancesFile = direc+'/nuisances_datacard.py'
+nuisancesFile = direc+'/nuisances_datacard_split.py'
 # nuisancesFile = direc+'/nuisances.py'
 
 customizeScript = direc + "/customize.py"

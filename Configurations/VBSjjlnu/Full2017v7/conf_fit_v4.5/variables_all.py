@@ -24,15 +24,15 @@ variables['DNNoutput_res_v1'] = {
     # 'blind': { c:[0.6,1] for c in cuts if "_sig_" in c},
 }
 
-variables['DNNoutput_res_v2'] = {
-    'name': 'DNNoutput_resolved_v1',
-    'range': ([i*0.04 for i in range(20) ] + [0.8+0.025*i for i in range(9)],),
-    'xaxis': 'DNN resolved',
-    'fold': 3 ,
-    'cuts':  res_cuts,
-    'divideByBinWidth': True, 
-    # 'blind': { c:[0.6,1] for c in cuts if "_sig_" in c},
-}
+# variables['DNNoutput_res_v2'] = {
+#     'name': 'DNNoutput_resolved_v1',
+#     'range': ([i*0.04 for i in range(20) ] + [0.8+0.025*i for i in range(9)],),
+#     'xaxis': 'DNN resolved',
+#     'fold': 3 ,
+#     'cuts':  res_cuts,
+#     'divideByBinWidth': True, 
+#     # 'blind': { c:[0.6,1] for c in cuts if "_sig_" in c},
+# }
 
 
 variables['DNNoutput_boost'] = {
@@ -107,6 +107,29 @@ variables['vbs_1_eta_morebins'] = {   'name': 'vbs_1_eta',
                         'fold' : 3
 } 
 
+variables['vjet_0_eta'] = {   'name': 'vjet_0_eta',      
+                        'range' : (25,-4.7,4.7),  
+                        'xaxis' : 'leading vjet jet eta', 
+                        'fold' : 3
+} 
+
+variables['vjet_0_eta_morebins'] = {   'name': 'vjet_0_eta',      
+                        'range' : (40,-4.7,4.7),  
+                        'xaxis' : 'leading vjet jet eta', 
+                        'fold' : 3
+} 
+
+variables['vjet_1_eta'] = {   'name': 'vjet_1_eta',      
+                        'range' : (25,-4.7,4.7),  
+                        'xaxis' : 'trailing vjet jet eta', 
+                        'fold' : 3
+} 
+
+variables['vjet_1_eta_morebins'] = {   'name': 'vjet_1_eta',      
+                        'range' : (40,-4.7,4.7),  
+                        'xaxis' : 'trailing VBS jet eta', 
+                        'fold' : 3
+} 
 
 
 variables['vbs_1_pt_boost'] = {   'name': 'vbs_1_pt',      

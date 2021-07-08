@@ -7,6 +7,7 @@ parser.add_argument("-i","--input", help="Input file", type=str)
 parser.add_argument("-y","--year", help="Year", type=str)
 parser.add_argument("-e","--exclude-vars", help="Exclude vars", type=str, nargs="+")
 parser.add_argument("-ec","--exclude-cuts", help="Exclude cuts", type=str, nargs="+")
+parser.add_argument("-n","--no-nuisances", help="Exclude nuisances", action="store_true")
 args = parser.parse_args()
 
 import ROOT as R 
@@ -36,13 +37,14 @@ for cut in iF.GetListOfKeys():
             histo_nuis = [ ]
             if "ele" in cut.GetName(): lep_fl = "ele"
             if "mu" in cut.GetName(): lep_fl = "mu"
-            for nuis in ["CMS_fake_{}_{}".format(lep_fl,args.year),"CMS_fake_{}_stat_{}".format(lep_fl, args.year)]:
-                for u in ["Up", "Down"]:
-                    fake_ele_s = iF.Get("{}/{}/histo_Fake_ele_{}{}".format(cut.GetName(), var.GetName(), nuis, u))
-                    fake_mu_s = iF.Get("{}/{}/histo_Fake_mu_{}{}".format(cut.GetName(), var.GetName(), nuis, u))
-                    fake_ntot = fake_ele_s.Clone("histo_Fake_{}{}".format(nuis, u))
-                    fake_ntot.Add(fake_mu_s)
-                    histo_nuis.append(fake_ntot)
+            if not args.no_nuisances:
+                for nuis in ["CMS_fake_{}_{}".format(lep_fl,args.year),"CMS_fake_{}_stat_{}".format(lep_fl, args.year)]:
+                    for u in ["Up", "Down"]:
+                        fake_ele_s = iF.Get("{}/{}/histo_Fake_ele_{}{}".format(cut.GetName(), var.GetName(), nuis, u))
+                        fake_mu_s = iF.Get("{}/{}/histo_Fake_mu_{}{}".format(cut.GetName(), var.GetName(), nuis, u))
+                        fake_ntot = fake_ele_s.Clone("histo_Fake_{}{}".format(nuis, u))
+                        fake_ntot.Add(fake_mu_s)
+                        histo_nuis.append(fake_ntot)
 
             iF.cd("{}/{}/".format(cut.GetName(), var.GetName()))
             data_tot.Write()
