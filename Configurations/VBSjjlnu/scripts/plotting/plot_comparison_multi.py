@@ -21,6 +21,7 @@ parser.add_argument("--samples-labels", type=str, nargs="+")
 parser.add_argument("-v","--vars", type=str, nargs="+")
 parser.add_argument("--yratio", type=float, nargs="+",default=[0.5,1.5])
 parser.add_argument("--ratiolabel", type=str,)
+parser.add_argument("--ratiosum", action="store_true")
 args = parser.parse_args()
 
 import ROOT as R 
@@ -54,7 +55,9 @@ def Pad2TAxis(hist):
 
 cache = []
 
-colors = [ R.TColor.GetColor(0, 149, 226),  R.TColor.GetColor(242, 108, 13), R.TColor.GetColor(0, 179, 133),R.TColor.GetColor(45, 255, 255) ] #R.TColor.GetColor(72, 145, 234) 158, 218, 255
+colors = [ R.TColor.GetColor(0, 149, 226),  R.TColor.GetColor(242, 108, 13),
+        R.TColor.GetColor(0, 179, 133),R.TColor.GetColor(45, 255, 255),
+         R.TColor.GetColor(219, 205, 44) ] # 158, 218, 255
 
 for cut in args.cuts:
     for var in args.vars:
@@ -80,20 +83,32 @@ for cut in args.cuts:
         tcanvasRatio = R.TCanvas("c","c", 800,800) 
 
         hs[0].SetTitle(";{};Events".format(var))
-        hs[0].GetYaxis().SetRangeUser(minH*0.8, maxH*1.3)
+        hs[0].GetYaxis().SetRangeUser(minH*0.8, maxH*2)
 
         for i, h in enumerate(hs):
             h.SetLineColor(colors[i])
             h.SetLineWidth(4)
 
-        n_ref = rnp.hist2array( hs[0], copy=False)
+        if args.ratiosum:
+            n_ref = sum([ rnp.hist2array( h, copy=False) for h in hs])
+            print(n_ref)
+        else:
+            n_ref = rnp.hist2array( hs[0], copy=False)
         n_others = [] 
         tgrRatios = []
-        for i, h in enumerate(hs[1:]):
+        if args.ratiosum:
+            htoratio = hs 
+        else:
+            htoratio = hs[1:]
+        for i, h in enumerate(htoratio):
             n_others.append( rnp.hist2array( h, copy=False))
             gr =R.TGraphErrors()
-            gr.SetLineColor(colors[i+1])
-            gr.SetMarkerColor(colors[i+1])
+            if args.ratiosum:
+                gr.SetLineColor(colors[i])
+                gr.SetMarkerColor(colors[i])
+            else:
+                gr.SetLineColor(colors[i+1])
+                gr.SetMarkerColor(colors[i+1])
             tgrRatios.append(gr)
 
         mc_stat_err = [ ]
@@ -139,7 +154,7 @@ for cut in args.cuts:
 
         xAxisDistro.SetTitle(var)
         frameDistro.GetYaxis().SetTitle("Events")
-        frameDistro.GetYaxis().SetRangeUser( 0, maxH*2.5 )
+        frameDistro.GetYaxis().SetRangeUser( 0, maxH*2 )
         
         hs[0].Draw("hist")
         for h in hs[1:]:

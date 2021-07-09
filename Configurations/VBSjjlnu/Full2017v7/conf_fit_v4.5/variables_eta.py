@@ -76,3 +76,6 @@ variables['vjet_1_pt'] = {   'name': 'vjet_1_pt',
                         'fold' : 3,
                         'cuts': res_cuts
                         }
+
+
+variables = {k:v for k,v in variables.items() if 'eta' in k}

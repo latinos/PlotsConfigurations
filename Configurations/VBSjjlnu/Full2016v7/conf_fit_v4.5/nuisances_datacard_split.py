@@ -506,6 +506,15 @@ nuisances['QCD_scale_VBS_ZV'] = {
             'samples': { k:["QCDscale_normalized[0]", "QCDscale_normalized[8]"] for k in VBS_ZV_samples }
         }
 
+### Adding also normalization effect for ZV component
+nuisances['QCD_scale_VBS_ZV_norm'] = {
+            'name'  : 'QCDscale_VBS_ZV',
+            'kind'  : 'weight',
+            'type'  : 'lnN',
+            # 'samples'  :  { "VBS": ["QCDscale_normalized[0]", "QCDscale_normalized[8]"],
+            #                 "VBS_dipoleRecoil": ["QCDscale_normalized[0]", "QCDscale_normalized[8]"], }
+            'samples': { k: "1.007/0.986" for k in VBS_ZV_samples }
+        }
 
 # nuisances['QCD_scale_VV_accept'] = {
 #             'name'  : 'QCDscale_VV_accept',
