@@ -297,8 +297,8 @@ nuisances['JetPUID_fake_sf']  = {
     #    'top'  : jetPUID_top,
     #    'Wjets': jetPUID_Wjets,
     #} 
-    'AsLnN': '1',
-    #'symmetrize': True
+    #'AsLnN': '1',
+    'symmetrize': True
 }
 
 #
@@ -414,7 +414,7 @@ nuisances['UE']  = {
     'name'  : 'UE_CUET',
     'skipCMS' : 1,
     'type': 'lnN',
-    'samples': dict((skey, '1.015') for skey in mc),
+    'samples': dict((skey, '1.015') for skey in mc if skey not in ['Wjets', 'top']),
 }
 
 

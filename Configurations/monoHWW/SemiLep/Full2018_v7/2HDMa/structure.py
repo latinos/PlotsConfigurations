@@ -12,6 +12,10 @@ structure['DY']  = {
     'isData'   : 0
 }
 
+structure['DYlow']  = {
+    'isSignal' : 0,
+    'isData'   : 0
+}
 
 structure['Wjets']  = {
     'isSignal' : 0,
@@ -22,7 +26,6 @@ structure['top'] = {
     'isSignal' : 0,
     'isData'   : 0
 }
-
 
 structure['WW']  = {
     'isSignal' : 0,
@@ -59,10 +62,10 @@ structure['Vg']  = {
                   'isData'   : 0
                   }
 
-structure['VgS'] = {
-                  'isSignal' : 0,
-                  'isData'   : 0
-                  }
+#structure['VgS'] = {
+#                  'isSignal' : 0,
+#                  'isData'   : 0
+#                  }
 
 structure['VgS_L'] = {
                   'isSignal' : 0,
@@ -79,10 +82,10 @@ structure['VgS_H'] = {
 #                   'isData'   : 0
 #                   }
 
-#structure['VBF-V']  = {
-#                  'isSignal' : 0,
-#                  'isData'   : 0
-#                  }
+structure['VBF-V']  = {
+                  'isSignal' : 0,
+                  'isData'   : 0
+                  }
 structure['WZqcd']  = {
                   'isSignal' : 0,
                   'isData'   : 0
@@ -107,59 +110,9 @@ structure['FAKE'] = {
     'isData'   : 0
 }
 
-structure['ggH_hww'] = {
+structure['Higgs'] = {
                   'isSignal' : 0,
                   'isData'   : 0
-                  }
-
-structure['qqH_hww'] = {
-                  'isSignal' : 0,
-                  'isData'   : 0
-                  }
-
-structure['WH_hww'] = {
-                  'isSignal' : 0,
-                  'isData'   : 0
-                  }
-
-structure['ZH_hww'] = {
-                  'isSignal' : 0,
-                  'isData'   : 0
-                  }
-
-# structure['ggZH_hww'] = {
-#                   'isSignal' : 0,
-#                   'isData'   : 0
-#                   }
-
-# structure['bbH_hww'] = {
-#                   'isSignal' : 0,
-#                   'isData'   : 0
-#                   }
-
-structure['ttH_hww'] = {
-                  'isSignal' : 0,
-                  'isData'   : 0
-                  }
-
-structure['ggH_htt'] = {
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  }
-
-structure['qqH_htt'] = {
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  }
-
-# structure['WH_htt'] = {
-#                   'isSignal' : 0,
-#                   'isData'   : 0,
-#                   }
-
-structure['ZH_htt'] = {
-                  'isSignal' : 0,
-                  'isData'   : 0,
                   }
 
 # SIGNAL

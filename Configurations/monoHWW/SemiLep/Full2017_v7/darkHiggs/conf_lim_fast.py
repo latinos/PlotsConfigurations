@@ -42,4 +42,5 @@ structureFile = 'structure_fast.py'
 # nuisances file for mkDatacards and for mkShape
 #nuisancesFile = 'nuisances.py'
 #nuisancesFile = 'nuisances_full.py'
-nuisancesFile = 'nuisances_full_new_fast.py'
+nuisancesFile = 'nuisances_full_new.py'
+#nuisancesFile = 'nuisances_full_new_fast.py'
