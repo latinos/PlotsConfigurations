@@ -54,8 +54,7 @@ RAndKff['DYmva0p8'] = {
     } ,
 }
 
-# 0 Jet
-
+# Signal region - 0 Jets
 DYestim['hww2l2v_13TeV_0j_ee_pth0_10'] = {
     'rinout'  : 'DYmva0p8' ,
     'rsyst'   : 0.06 ,
@@ -132,6 +131,7 @@ DYestim['hww2l2v_13TeV_0j_mm_pth10_200'] = {
     'asyst'   : 0.08 ,
 }
 
+# WW control region - 0 Jets
 DYestim['hww2l2v_13TeV_WW_0j_ee'] = {
     'rinout'  : 'DYmva0p8' ,
     'njet'    : '0j'    ,
@@ -146,7 +146,7 @@ DYestim['hww2l2v_13TeV_WW_0j_ee'] = {
     'NPname'  : 'DYeenorm0j' ,
     'AccNum'  : 'hww2l2v_13TeV_wwAcc_0j_ee/events/histo_DY',
     'AccDen'  : 'hww2l2v_13TeV_AccDen_0j_ee/events/histo_DY',
-    'asyst'   : 0.01 , 
+    'asyst'   : 0.07 , 
 }
 
 DYestim['hww2l2v_13TeV_WW_0j_mm'] = {
@@ -163,13 +163,13 @@ DYestim['hww2l2v_13TeV_WW_0j_mm'] = {
     'NPname'  : 'DYmmnorm0j' ,
     'AccNum'  : 'hww2l2v_13TeV_wwAcc_0j_mm/events/histo_DY',
     'AccDen'  : 'hww2l2v_13TeV_AccDen_0j_mm/events/histo_DY',
-    'asyst'   : 0.01 , 
+    'asyst'   : 0.04 , 
 }
 
-# 1 Jet
+# Signal region - 1 Jet
 DYestim['hww2l2v_13TeV_1j_ee_pth0_60'] = {
     'rinout'  : 'DYmva0p8' ,
-    'rsyst'   : 0.03 , 
+    'rsyst'   : 0.02 , 
     'ksyst'   : 0.01 , 
     'njet'    : '1j'    ,
     'flavour' : 'ee' ,
@@ -188,7 +188,7 @@ DYestim['hww2l2v_13TeV_1j_ee_pth0_60'] = {
 
 DYestim['hww2l2v_13TeV_1j_ee_pth60_120'] = {
     'rinout'  : 'DYmva0p8' ,
-    'rsyst'   : 0.03 ,
+    'rsyst'   : 0.02 ,
     'ksyst'   : 0.01 ,
     'njet'    : '1j'    ,
     'flavour' : 'ee' ,
@@ -207,7 +207,7 @@ DYestim['hww2l2v_13TeV_1j_ee_pth60_120'] = {
 
 DYestim['hww2l2v_13TeV_1j_ee_pth120_200'] = {
     'rinout'  : 'DYmva0p8' ,
-    'rsyst'   : 0.03 ,
+    'rsyst'   : 0.02 ,
     'ksyst'   : 0.01 ,
     'njet'    : '1j'    ,
     'flavour' : 'ee' ,
@@ -281,6 +281,7 @@ DYestim['hww2l2v_13TeV_1j_mm_pth120_200'] = {
     'asyst'   : 0.02 ,
 } 
 
+# WW control region - 1 Jet 
 DYestim['hww2l2v_13TeV_WW_1j_ee'] = {
     'rinout'  : 'DYmva0p8' ,
     'njet'    : '1j'    ,
@@ -295,7 +296,7 @@ DYestim['hww2l2v_13TeV_WW_1j_ee'] = {
     'NPname'  : 'DYeenorm1j' ,
     'AccNum'  : 'hww2l2v_13TeV_wwAcc_1j_ee/events/histo_DY',
     'AccDen'  : 'hww2l2v_13TeV_AccDen_1j_ee/events/histo_DY',
-    'asyst'   : 0.04 , 
+    'asyst'   : 0.02 , 
 }
 
 DYestim['hww2l2v_13TeV_WW_1j_mm'] = {
@@ -312,10 +313,10 @@ DYestim['hww2l2v_13TeV_WW_1j_mm'] = {
     'NPname'  : 'DYmmnorm1j' ,
     'AccNum'  : 'hww2l2v_13TeV_wwAcc_1j_mm/events/histo_DY',
     'AccDen'  : 'hww2l2v_13TeV_AccDen_1j_mm/events/histo_DY',
-    'asyst'   : 0.05 ,
+    'asyst'   : 0.02 ,
 }
 
-# 2 Jets
+# Signal region - 2 Jets
 DYestim['hww2l2v_13TeV_2j_ee_mjj0_350_pth0_60'] = {
     'rinout'  : 'DYmva0p8' ,
     'rsyst'   : 0.07 ,
@@ -332,7 +333,7 @@ DYestim['hww2l2v_13TeV_2j_ee_mjj0_350_pth0_60'] = {
     'NPname'  : 'DYeenorm2j' ,
     'AccNum'  : 'hww2l2v_13TeV_HAccNum_2j_ee_mjj0_350_pth0_60/events/histo_DY',
     'AccDen'  : 'hww2l2v_13TeV_AccDen_2j_ee/events/histo_DY',
-    'asyst'   : 0.12 ,
+    'asyst'   : 0.24 ,
 }
 
 DYestim['hww2l2v_13TeV_2j_ee_mjj0_350_pth60_120'] = {
@@ -351,7 +352,7 @@ DYestim['hww2l2v_13TeV_2j_ee_mjj0_350_pth60_120'] = {
     'NPname'  : 'DYeenorm2j' ,
     'AccNum'  : 'hww2l2v_13TeV_HAccNum_2j_ee_mjj0_350_pth60_120/events/histo_DY',
     'AccDen'  : 'hww2l2v_13TeV_AccDen_2j_ee/events/histo_DY',
-    'asyst'   : 0.12 ,
+    'asyst'   : 0.24 ,
 }
 
 DYestim['hww2l2v_13TeV_2j_ee_mjj0_350_pth120_200'] = {
@@ -370,7 +371,7 @@ DYestim['hww2l2v_13TeV_2j_ee_mjj0_350_pth120_200'] = {
     'NPname'  : 'DYeenorm2j' ,
     'AccNum'  : 'hww2l2v_13TeV_HAccNum_2j_ee_mjj0_350_pth120_200/events/histo_DY',
     'AccDen'  : 'hww2l2v_13TeV_AccDen_2j_ee/events/histo_DY',
-    'asyst'   : 0.12 ,
+    'asyst'   : 0.24 ,
 }
 
 DYestim['hww2l2v_13TeV_2j_ee_mjj350_700_pthjj0_25'] = {
@@ -389,7 +390,7 @@ DYestim['hww2l2v_13TeV_2j_ee_mjj350_700_pthjj0_25'] = {
     'NPname'  : 'DYeenorm2j' ,
     'AccNum'  : 'hww2l2v_13TeV_HAccNum_2j_ee_mjj350_700_pthjj0_25/events/histo_DY',
     'AccDen'  : 'hww2l2v_13TeV_AccDen_2j_ee/events/histo_DY',
-    'asyst'   : 0.12 ,
+    'asyst'   : 0.24 ,
 }
 
 DYestim['hww2l2v_13TeV_2j_ee_mjj350_700_pthjj25'] = {
@@ -408,7 +409,7 @@ DYestim['hww2l2v_13TeV_2j_ee_mjj350_700_pthjj25'] = {
     'NPname'  : 'DYeenorm2j' ,
     'AccNum'  : 'hww2l2v_13TeV_HAccNum_2j_ee_mjj350_700_pthjj25/events/histo_DY',
     'AccDen'  : 'hww2l2v_13TeV_AccDen_2j_ee/events/histo_DY',
-    'asyst'   : 0.12 ,
+    'asyst'   : 0.24 ,
 }
 
 DYestim['hww2l2v_13TeV_2j_ee_mjj700_pthjj0_25'] = {
@@ -427,7 +428,7 @@ DYestim['hww2l2v_13TeV_2j_ee_mjj700_pthjj0_25'] = {
     'NPname'  : 'DYeenorm2j' ,
     'AccNum'  : 'hww2l2v_13TeV_HAccNum_2j_ee_mjj700_pthjj0_25/events/histo_DY',
     'AccDen'  : 'hww2l2v_13TeV_AccDen_2j_ee/events/histo_DY',
-    'asyst'   : 0.12 ,
+    'asyst'   : 0.24 ,
 }
 
 DYestim['hww2l2v_13TeV_2j_ee_mjj700_pthjj25'] = {
@@ -446,7 +447,7 @@ DYestim['hww2l2v_13TeV_2j_ee_mjj700_pthjj25'] = {
     'NPname'  : 'DYeenorm2j' ,
     'AccNum'  : 'hww2l2v_13TeV_HAccNum_2j_ee_mjj700_pthjj25/events/histo_DY',
     'AccDen'  : 'hww2l2v_13TeV_AccDen_2j_ee/events/histo_DY',
-    'asyst'   : 0.12 ,
+    'asyst'   : 0.24 ,
 }
 
 DYestim['hww2l2v_13TeV_2j_mm_mjj0_350_pth0_60'] = {
@@ -582,7 +583,8 @@ DYestim['hww2l2v_13TeV_2j_mm_mjj700_pthjj25'] = {
     'asyst'   : 0.14 ,
 }
 
-DYestim['hww2l2v_13TeV_2016_WW_2j_ee'] = {
+# WW control region - 2 Jets
+DYestim['hww2l2v_13TeV_WW_2j_ee'] = {
     'rinout'  : 'DYmva0p8' ,
     'njet'    : '2j'    ,
     'flavour' : 'ee' ,
@@ -596,10 +598,10 @@ DYestim['hww2l2v_13TeV_2016_WW_2j_ee'] = {
     'NPname'  : 'DYeenorm2j' ,
     'AccNum'  : 'hww2l2v_13TeV_wwAcc_2j_ee/events/histo_DY',
     'AccDen'  : 'hww2l2v_13TeV_AccDen_2j_ee/events/histo_DY',
-    'asyst'   : 0.01 ,
+    'asyst'   : 0.05 ,
 }
 
-DYestim['hww2l2v_13TeV_2016_WW_2j_mm'] = {
+DYestim['hww2l2v_13TeV_WW_2j_mm'] = {
     'rinout'  : 'DYmva0p8' ,
     'njet'    : '2j'    ,
     'flavour' : 'mm' ,
@@ -616,11 +618,11 @@ DYestim['hww2l2v_13TeV_2016_WW_2j_mm'] = {
     'asyst'   : 0.02 ,
 }
 
-# High-pT
+# Signal region - high-pT
 DYestim['hww2l2v_13TeV_hpt_ee_pth200_300'] = {
     'rinout'  : 'DYmva0p8' ,
-    'rsyst'   : 0.03 ,
-    'ksyst'   : 0.06 ,
+    'rsyst'   : 0.02 ,
+    'ksyst'   : 0.02 ,
     'njet'    : 'hpt'    ,
     'flavour' : 'ee' ,
     'DYProc'  : 'DY' ,
@@ -633,13 +635,13 @@ DYestim['hww2l2v_13TeV_hpt_ee_pth200_300'] = {
     'NPname'  : 'DYeenormhpt' ,
     'AccNum'  : 'hww2l2v_13TeV_HAccNum_hpt_ee_pth200_300/events/histo_DY',
     'AccDen'  : 'hww2l2v_13TeV_AccDen_hpt_ee/events/histo_DY',
-    'asyst'   : 0.15 ,
+    'asyst'   : 0.06 ,
 }
 
 DYestim['hww2l2v_13TeV_hpt_mm_pth200_300'] = {
     'rinout'  : 'DYmva0p8' ,
-    'rsyst'   : 0.05 ,
-    'ksyst'   : 0.11 ,
+    'rsyst'   : 0.02 ,
+    'ksyst'   : 0.02 ,
     'njet'    : 'hpt'    ,
     'flavour' : 'mm' ,
     'DYProc'  : 'DY' ,
@@ -652,13 +654,13 @@ DYestim['hww2l2v_13TeV_hpt_mm_pth200_300'] = {
     'NPname'  : 'DYmmnormhpt' ,
     'AccNum'  : 'hww2l2v_13TeV_HAccNum_hpt_mm_pth200_300/events/histo_DY',
     'AccDen'  : 'hww2l2v_13TeV_AccDen_hpt_mm/events/histo_DY',
-    'asyst'   : 0.07 ,
+    'asyst'   : 0.03 ,
 }
 
 DYestim['hww2l2v_13TeV_hpt_ee_pth300_450'] = {
     'rinout'  : 'DYmva0p8' ,
-    'rsyst'   : 0.03 ,
-    'ksyst'   : 0.06 ,
+    'rsyst'   : 0.02 ,
+    'ksyst'   : 0.02 ,
     'njet'    : 'hpt'    ,
     'flavour' : 'ee' ,
     'DYProc'  : 'DY' ,
@@ -671,13 +673,13 @@ DYestim['hww2l2v_13TeV_hpt_ee_pth300_450'] = {
     'NPname'  : 'DYeenormhpt' ,
     'AccNum'  : 'hww2l2v_13TeV_HAccNum_hpt_ee_pth300_450/events/histo_DY',
     'AccDen'  : 'hww2l2v_13TeV_AccDen_hpt_ee/events/histo_DY',
-    'asyst'   : 0.15 ,
+    'asyst'   : 0.06 ,
 }
 
 DYestim['hww2l2v_13TeV_hpt_mm_pth300_450'] = {
     'rinout'  : 'DYmva0p8' ,
-    'rsyst'   : 0.05 ,
-    'ksyst'   : 0.11 ,
+    'rsyst'   : 0.02 ,
+    'ksyst'   : 0.02 ,
     'njet'    : 'hpt'    ,
     'flavour' : 'mm' ,
     'DYProc'  : 'DY' ,
@@ -690,13 +692,13 @@ DYestim['hww2l2v_13TeV_hpt_mm_pth300_450'] = {
     'NPname'  : 'DYmmnormhpt' ,
     'AccNum'  : 'hww2l2v_13TeV_HAccNum_hpt_mm_pth300_450/events/histo_DY',
     'AccDen'  : 'hww2l2v_13TeV_AccDen_hpt_mm/events/histo_DY',
-    'asyst'   : 0.07 ,
+    'asyst'   : 0.03 ,
 }
 
 DYestim['hww2l2v_13TeV_hpt_ee_pth450_650'] = {
     'rinout'  : 'DYmva0p8' ,
-    'rsyst'   : 0.03 ,
-    'ksyst'   : 0.06 ,
+    'rsyst'   : 0.02 ,
+    'ksyst'   : 0.02 ,
     'njet'    : 'hpt'    ,
     'flavour' : 'ee' ,
     'DYProc'  : 'DY' ,
@@ -709,13 +711,13 @@ DYestim['hww2l2v_13TeV_hpt_ee_pth450_650'] = {
     'NPname'  : 'DYeenormhpt' ,
     'AccNum'  : 'hww2l2v_13TeV_HAccNum_hpt_ee_pth450_650/events/histo_DY',
     'AccDen'  : 'hww2l2v_13TeV_AccDen_hpt_ee/events/histo_DY',
-    'asyst'   : 0.15 ,
+    'asyst'   : 0.06 ,
 }
 
 DYestim['hww2l2v_13TeV_hpt_mm_pth450_650'] = {
     'rinout'  : 'DYmva0p8' ,
-    'rsyst'   : 0.05 ,
-    'ksyst'   : 0.11 ,
+    'rsyst'   : 0.02 ,
+    'ksyst'   : 0.02 ,
     'njet'    : 'hpt'    ,
     'flavour' : 'mm' ,
     'DYProc'  : 'DY' ,
@@ -728,13 +730,13 @@ DYestim['hww2l2v_13TeV_hpt_mm_pth450_650'] = {
     'NPname'  : 'DYmmnormhpt' ,
     'AccNum'  : 'hww2l2v_13TeV_HAccNum_hpt_mm_pth450_650/events/histo_DY',
     'AccDen'  : 'hww2l2v_13TeV_AccDen_hpt_mm/events/histo_DY',
-    'asyst'   : 0.07 ,
+    'asyst'   : 0.03 ,
 }
 
 DYestim['hww2l2v_13TeV_hpt_ee_pth650'] = {
     'rinout'  : 'DYmva0p8' ,
-    'rsyst'   : 0.03 ,
-    'ksyst'   : 0.06 ,
+    'rsyst'   : 0.02 ,
+    'ksyst'   : 0.02 ,
     'njet'    : 'hpt'    ,
     'flavour' : 'ee' ,
     'DYProc'  : 'DY' ,
@@ -747,13 +749,13 @@ DYestim['hww2l2v_13TeV_hpt_ee_pth650'] = {
     'NPname'  : 'DYeenormhpt' ,
     'AccNum'  : 'hww2l2v_13TeV_HAccNum_hpt_ee_pth650/events/histo_DY',
     'AccDen'  : 'hww2l2v_13TeV_AccDen_hpt_ee/events/histo_DY',
-    'asyst'   : 0.15 ,
+    'asyst'   : 0.06 ,
 }
 
 DYestim['hww2l2v_13TeV_hpt_mm_pth650'] = {
     'rinout'  : 'DYmva0p8' ,
-    'rsyst'   : 0.05 ,
-    'ksyst'   : 0.11 ,
+    'rsyst'   : 0.02 ,
+    'ksyst'   : 0.02 ,
     'njet'    : 'hpt'    ,
     'flavour' : 'mm' ,
     'DYProc'  : 'DY' ,
@@ -766,9 +768,10 @@ DYestim['hww2l2v_13TeV_hpt_mm_pth650'] = {
     'NPname'  : 'DYmmnormhpt' ,
     'AccNum'  : 'hww2l2v_13TeV_HAccNum_hpt_mm_pth650/events/histo_DY',
     'AccDen'  : 'hww2l2v_13TeV_AccDen_hpt_mm/events/histo_DY',
-    'asyst'   : 0.07 ,
+    'asyst'   : 0.03 ,
 }
 
+# WW control region - high-pT
 DYestim['hww2l2v_13TeV_WW_hpt_ee'] = {
     'rinout'  : 'DYmva0p8' ,
     'njet'    : 'hpt'    ,
@@ -783,7 +786,7 @@ DYestim['hww2l2v_13TeV_WW_hpt_ee'] = {
     'NPname'  : 'DYeenormhpt' ,
     'AccNum'  : 'hww2l2v_13TeV_wwAcc_hpt_ee/events/histo_DY',
     'AccDen'  : 'hww2l2v_13TeV_AccDen_hpt_ee/events/histo_DY',
-    'asyst'   : 0.03 ,
+    'asyst'   : 0.02 ,
 }
 
 DYestim['hww2l2v_13TeV_WW_hpt_mm'] = {
@@ -800,5 +803,5 @@ DYestim['hww2l2v_13TeV_WW_hpt_mm'] = {
     'NPname'  : 'DYmmnormhpt' ,
     'AccNum'  : 'hww2l2v_13TeV_wwAcc_hpt_mm/events/histo_DY',
     'AccDen'  : 'hww2l2v_13TeV_AccDen_hpt_mm/events/histo_DY',
-    'asyst'   : 0.05 ,
+    'asyst'   : 0.02 ,
 }
