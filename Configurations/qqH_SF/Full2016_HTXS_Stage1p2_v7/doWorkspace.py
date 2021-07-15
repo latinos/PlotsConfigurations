@@ -80,4 +80,4 @@ for sample in sampleNames:
   command+="--PO 'map=.*/{}:{}[1,-10,10]' ".format(sample,poi)
 
 print command
-#os.system(command)
+os.system(command)
