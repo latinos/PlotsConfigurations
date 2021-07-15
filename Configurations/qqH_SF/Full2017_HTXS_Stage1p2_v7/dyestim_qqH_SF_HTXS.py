@@ -74,7 +74,7 @@ DYestim['hww2l2v_13TeV_2j_mjj65_105_ee'] = {
 DYestim['hww2l2v_13TeV_2j_mjj65_105_mm'] = {
     'rinout'  : 'DYmva0p8',
     'rsyst'   : 0.03,
-    'ksyst'   : 0.04,
+    'ksyst'   : 0.05,
     'njet'    : '2jVH',
     'flavour' : 'mm',
     'DYProc'  : 'DY',
@@ -92,7 +92,7 @@ DYestim['hww2l2v_13TeV_2j_mjj65_105_mm'] = {
 
 DYestim['hww2l2v_13TeV_2j_mjj350_700_pthLT200_ee'] = {
     'rinout'  : 'DYmva0p9',
-    'rsyst'   : 0.03,
+    'rsyst'   : 0.02,
     'ksyst'   : 0.02,
     'njet'    : '2jVBF',
     'flavour' : 'ee',
@@ -130,7 +130,7 @@ DYestim['hww2l2v_13TeV_2j_mjj350_700_pthLT200_mm'] = {
 
 DYestim['hww2l2v_13TeV_2j_mjjGT700_pthLT200_ee'] = {
     'rinout'  : 'DYmva0p9',
-    'rsyst'   : 0.03,
+    'rsyst'   : 0.02,
     'ksyst'   : 0.02,
     'njet'    : '2jVBF',
     'flavour' : 'ee',
@@ -168,7 +168,7 @@ DYestim['hww2l2v_13TeV_2j_mjjGT700_pthLT200_mm'] = {
 
 DYestim['hww2l2v_13TeV_2j_mjjGT350_pthGT200_ee'] = {
     'rinout'  : 'DYmva0p9',
-    'rsyst'   : 0.03,
+    'rsyst'   : 0.02,
     'ksyst'   : 0.02,
     'njet'    : 'hpt',
     'flavour' : 'ee',
