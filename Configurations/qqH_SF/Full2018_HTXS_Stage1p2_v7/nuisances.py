@@ -321,6 +321,16 @@ nuisances['met'] = {
     'AsLnN': '1'
 }
 
+### PU ID SF uncertainty
+puid_syst = ['Jet_PUIDSF_up/Jet_PUIDSF', 'Jet_PUIDSF_down/Jet_PUIDSF']
+
+nuisances['jetPUID'] = {
+    'name': 'CMS_PUID_2018',
+    'kind': 'weight',
+    'type': 'shape',
+    'samples': dict((skey, puid_syst) for skey in mc if skey not in ['DY'])
+}
+
 ##### Pileup
 
 nuisances['PU'] = {
@@ -335,16 +345,6 @@ nuisances['PU'] = {
         'qqH_hww': ['1.00374694528*(puWeightUp/puWeight)', '0.995878596852*(puWeightDown/puWeight)'],
     },
     'AsLnN': '1',
-}
-
-### PU ID SF uncertainty
-puid_syst = ['Jet_PUIDSF_up/Jet_PUIDSF', 'Jet_PUIDSF_down/Jet_PUIDSF']
-
-nuisances['jetPUID'] = {
-    'name': 'CMS_PUID_2018',
-    'kind': 'weight',
-    'type': 'shape',
-    'samples': dict((skey, puid_syst) for skey in mc if skey not in ['DY'])
 }
 
 ##### PS
@@ -428,6 +428,15 @@ nuisances['VgStar'] = {
         'VgS_L': '1.25'
     }
 }
+
+if useWgFXFX:
+  nuisances['VgScale'] = {
+      'name': 'CMS_hww_VgScale',
+      'type': 'lnN',
+      'samples': {
+          'Vg': '1.06'
+      }
+  }
 
 nuisances['VZ'] = {
     'name': 'CMS_hww_VZScale',
@@ -550,16 +559,27 @@ topScaleNormFactors0j = {'LHEScaleWeight[3]': 1.0026322046882807, 'LHEScaleWeigh
 topScaleNormFactors1j = {'LHEScaleWeight[3]': 1.0088973745933350, 'LHEScaleWeight[0]': 1.0858717477880675, 'LHEScaleWeight[1]': 1.0809970696561464, 'LHEScaleWeight[Length$(LHEScaleWeight)-1]': 0.9115155831354494, 'LHEScaleWeight[Length$(LHEScaleWeight)-4]': 0.9950909615738225, 'LHEScaleWeight[Length$(LHEScaleWeight)-2]': 0.9194241285459210}
 topScaleNormFactors2j = {'LHEScaleWeight[3]': 1.0236911155246506, 'LHEScaleWeight[0]': 1.1249360990045656, 'LHEScaleWeight[1]': 1.1054771659922622, 'LHEScaleWeight[Length$(LHEScaleWeight)-1]': 0.8819750427294990, 'LHEScaleWeight[Length$(LHEScaleWeight)-4]': 0.9819208264038879, 'LHEScaleWeight[Length$(LHEScaleWeight)-2]': 0.9025818187649589}
 
+topvars0j.append('LHEScaleWeight[0]/'+str(topScaleNormFactors0j['LHEScaleWeight[0]']))
+topvars0j.append('LHEScaleWeight[Length$(LHEScaleWeight)-1]/'+str(topScaleNormFactors0j['LHEScaleWeight[Length$(LHEScaleWeight)-1]']))
+
+topvars1j.append('LHEScaleWeight[0]/'+str(topScaleNormFactors1j['LHEScaleWeight[0]']))
+topvars1j.append('LHEScaleWeight[Length$(LHEScaleWeight)-1]/'+str(topScaleNormFactors1j['LHEScaleWeight[Length$(LHEScaleWeight)-1]']))
+
+topvars2j.append('LHEScaleWeight[0]/'+str(topScaleNormFactors2j['LHEScaleWeight[0]']))
+topvars2j.append('LHEScaleWeight[Length$(LHEScaleWeight)-1]/'+str(topScaleNormFactors2j['LHEScaleWeight[Length$(LHEScaleWeight)-1]']))
+
+'''
 for var in variations:
   topvars0j.append(var+'/'+str(topScaleNormFactors0j[var]))
   topvars1j.append(var+'/'+str(topScaleNormFactors1j[var]))
   topvars2j.append(var+'/'+str(topScaleNormFactors2j[var]))
+'''
 
 ## QCD scale nuisances for top are decorrelated for each RECO jet bin: the QCD scale is different for different jet multiplicities so it doesn't make sense to correlate them
 nuisances['QCDscale_top_0j']  = {
     'name'  : 'QCDscale_top_0j',
     'skipCMS' : 1,
-    'kind'  : 'weight_envelope',
+    'kind'  : 'weight',
     'type'  : 'shape',
     'cutspost' : lambda self, cuts: [cut for cut in cuts if '0j' in cut],
     'samples'  : {
@@ -570,7 +590,7 @@ nuisances['QCDscale_top_0j']  = {
 nuisances['QCDscale_top_1j']  = {
     'name'  : 'QCDscale_top_1j',
     'skipCMS' : 1,
-    'kind'  : 'weight_envelope',
+    'kind'  : 'weight',
     'type'  : 'shape',
     'cutspost' : lambda self, cuts: [cut for cut in cuts if '1j' in cut],
     'samples'  : {
@@ -581,7 +601,7 @@ nuisances['QCDscale_top_1j']  = {
 nuisances['QCDscale_top_2j']  = {
     'name'  : 'QCDscale_top_2j',
     'skipCMS' : 1,
-    'kind'  : 'weight_envelope',
+    'kind'  : 'weight',
     'type'  : 'shape',
     'cutspost' : lambda self, cuts: [cut for cut in cuts if '2j' in cut],
     'samples'  : {
@@ -598,16 +618,26 @@ nuisances['QCDscale_top_2j']  = {
 #    'AsLnN': '1'
 #}
 
-nuisances['QCDscale_VV'] = {
+if useWgFXFX:
+    nuisances['QCDscale_VV'] = {
+        'name': 'QCDscale_VV',
+        'kind': 'weight_envelope',
+        'type': 'shape',
+        'samples': {
+            'VZ': variations,
+        }
+    }
+else:
+  nuisances['QCDscale_VV'] = {
     'name': 'QCDscale_VV',
     'kind': 'weight_envelope',
     'type': 'shape',
     'samples': {
-        'Vg': variations,
-        'VZ': variations,
-        'VgS': variations
+      'Vg': variations,
+      'VZ': variations,
+      'VgS': variations
     }
-}
+  }
 
 nuisances['QCDscale_ggVV'] = {
     'name': 'QCDscale_ggVV',
@@ -682,6 +712,17 @@ nuisances['WWqscale2j']  = {
       'WW'   : ['nllW_Qup/nllW', 'nllW_Qdown/nllW'],
     },
    'cutspost'  : lambda self, cuts: [cut for cut in cuts if '2j' in cut]
+}
+
+nuisances['EWKcorr_WW'] = {
+    'name': 'CMS_hww_EWKcorr_WW',
+    'skipCMS': 1,
+    'kind': 'weight',
+    'type': 'shape',
+    'samples': {
+        'WW': ['1.', '1./ewknloW']
+    },
+    'symmetrize' : True,
 }
 
 # Uncertainty on SR/CR ratio
@@ -965,122 +1006,643 @@ nuisances['Topnorm2j']  = {
    'cuts'     : cuts2j
 }
 
-# DYestim norm
+# # DYestim norm
 
-nuisances['DYeenormhpt'] = {
-  'name': 'DYeenormhpt',
-  'type': 'lnN',
-  'samples': {
-    'DY': '1.50',
-  },
-  'cutspost' : lambda self, cutshpt: [cut for cut in cutshpt if 'ee' in cut]
-}
-
-nuisances['DYmmnormhpt'] = {
-  'name': 'DYmmnormhpt',
-  'type': 'lnN',
-  'samples': {
-    'DY': '1.50',
-  },
-  'cutspost' : lambda self, cutshpt: [cut for cut in cutshpt if 'mm' in cut]
-}
-
-nuisances['DYeenormvbf'] = {
-  'name': 'DYeenormvbf',
-  'type': 'lnN',
-  'samples': {
-    'DY': '1.50',
-  },
-  'cutspost' : lambda self, cutsvbf: [cut for cut in cutsvbf if 'ee' in cut]
-}
-
-nuisances['DYmmnormvbf'] = {
-  'name': 'DYmmnormvbf',
-  'type': 'lnN',
-  'samples': {
-    'DY': '1.50',
-  },
-  'cutspost' : lambda self, cutsvbf: [cut for cut in cutsvbf if 'mm' in cut]
-}
-
-nuisances['DYeenormvh'] = {
-  'name': 'DYeenormvh',
-  'type': 'lnN',
-  'samples': {
-    'DY': '1.50',
-  },
-  'cutspost' : lambda self, cutsvh: [cut for cut in cutsvh if 'ee' in cut]
-}
-
-nuisances['DYmmnormvh'] = {
-  'name': 'DYmmnormvh',
-  'type': 'lnN',
-  'samples': {
-    'DY': '1.50',
-  },
-  'cutspost' : lambda self, cutsvh: [cut for cut in cutsvh if 'mm' in cut]
-}
-
-
-# nuisances['DYeenormhpt']  = {
-#    'name'     : 'DYeenormhpt',
-#    'kind'     : 'weight',
-#    'type'     : 'shape',
-#    'samples'  : {
-#       'DY'    : ['1.','1.'] ,
-#       },
+# nuisances['DYeenormhpt'] = {
+#   'name': 'DYeenormhpt',
+#   'type': 'lnN',
+#   'samples': {
+#     'DY': '1.50',
+#   },
 #   'cutspost' : lambda self, cutshpt: [cut for cut in cutshpt if 'ee' in cut]
 # }
 
-# nuisances['DYmmnormhpt']  = {
-#    'name'     : 'DYmmnormhpt',
-#    'kind'     : 'weight',
-#    'type'     : 'shape',
-#    'samples'  : {
-#       'DY'    : ['1.','1.'] ,
-#       },
+# nuisances['DYmmnormhpt'] = {
+#   'name': 'DYmmnormhpt',
+#   'type': 'lnN',
+#   'samples': {
+#     'DY': '1.50',
+#   },
 #   'cutspost' : lambda self, cutshpt: [cut for cut in cutshpt if 'mm' in cut]
 # }
 
-# nuisances['DYeenormvbf']  = {
-#    'name'     : 'DYeenormvbf',
-#    'kind'     : 'weight',
-#    'type'     : 'shape',
-#    'samples'  : {
-#       'DY'    : ['1.','1.'] ,
-#       },
+# nuisances['DYeenormvbf'] = {
+#   'name': 'DYeenormvbf',
+#   'type': 'lnN',
+#   'samples': {
+#     'DY': '1.50',
+#   },
 #   'cutspost' : lambda self, cutsvbf: [cut for cut in cutsvbf if 'ee' in cut]
 # }
 
-# nuisances['DYmmnormvbf']  = {
-#    'name'     : 'DYmmnormvbf',
-#    'kind'     : 'weight',
-#    'type'     : 'shape',
-#    'samples'  : {
-#       'DY'    : ['1.','1.'] ,
-#       },
+# nuisances['DYmmnormvbf'] = {
+#   'name': 'DYmmnormvbf',
+#   'type': 'lnN',
+#   'samples': {
+#     'DY': '1.50',
+#   },
 #   'cutspost' : lambda self, cutsvbf: [cut for cut in cutsvbf if 'mm' in cut]
 # }
 
-# nuisances['DYeenormvh']  = {
-#    'name'     : 'DYeenormvh',
-#    'kind'     : 'weight',
-#    'type'     : 'shape',
-#    'samples'  : {
-#       'DY'    : ['1.','1.'] ,
-#       },
+# nuisances['DYeenormvh'] = {
+#   'name': 'DYeenormvh',
+#   'type': 'lnN',
+#   'samples': {
+#     'DY': '1.50',
+#   },
 #   'cutspost' : lambda self, cutsvh: [cut for cut in cutsvh if 'ee' in cut]
 # }
 
-# nuisances['DYmmnormvh']  = {
-#    'name'     : 'DYmmnormvh',
-#    'kind'     : 'weight',
-#    'type'     : 'shape',
-#    'samples'  : {
-#       'DY'    : ['1.','1.'] ,
-#       },
+# nuisances['DYmmnormvh'] = {
+#   'name': 'DYmmnormvh',
+#   'type': 'lnN',
+#   'samples': {
+#     'DY': '1.50',
+#   },
 #   'cutspost' : lambda self, cutsvh: [cut for cut in cutsvh if 'mm' in cut]
 # }
+
+
+# # nuisances['DYeenormhpt']  = {
+# #    'name'     : 'DYeenormhpt',
+# #    'kind'     : 'weight',
+# #    'type'     : 'shape',
+# #    'samples'  : {
+# #       'DY'    : ['1.','1.'] ,
+# #       },
+# #   'cutspost' : lambda self, cutshpt: [cut for cut in cutshpt if 'ee' in cut]
+# # }
+
+# # nuisances['DYmmnormhpt']  = {
+# #    'name'     : 'DYmmnormhpt',
+# #    'kind'     : 'weight',
+# #    'type'     : 'shape',
+# #    'samples'  : {
+# #       'DY'    : ['1.','1.'] ,
+# #       },
+# #   'cutspost' : lambda self, cutshpt: [cut for cut in cutshpt if 'mm' in cut]
+# # }
+
+# # nuisances['DYeenormvbf']  = {
+# #    'name'     : 'DYeenormvbf',
+# #    'kind'     : 'weight',
+# #    'type'     : 'shape',
+# #    'samples'  : {
+# #       'DY'    : ['1.','1.'] ,
+# #       },
+# #   'cutspost' : lambda self, cutsvbf: [cut for cut in cutsvbf if 'ee' in cut]
+# # }
+
+# # nuisances['DYmmnormvbf']  = {
+# #    'name'     : 'DYmmnormvbf',
+# #    'kind'     : 'weight',
+# #    'type'     : 'shape',
+# #    'samples'  : {
+# #       'DY'    : ['1.','1.'] ,
+# #       },
+# #   'cutspost' : lambda self, cutsvbf: [cut for cut in cutsvbf if 'mm' in cut]
+# # }
+
+# # nuisances['DYeenormvh']  = {
+# #    'name'     : 'DYeenormvh',
+# #    'kind'     : 'weight',
+# #    'type'     : 'shape',
+# #    'samples'  : {
+# #       'DY'    : ['1.','1.'] ,
+# #       },
+# #   'cutspost' : lambda self, cutsvh: [cut for cut in cutsvh if 'ee' in cut]
+# # }
+
+# # nuisances['DYmmnormvh']  = {
+# #    'name'     : 'DYmmnormvh',
+# #    'kind'     : 'weight',
+# #    'type'     : 'shape',
+# #    'samples'  : {
+# #       'DY'    : ['1.','1.'] ,
+# #       },
+# #   'cutspost' : lambda self, cutsvh: [cut for cut in cutsvh if 'mm' in cut]
+# # }
+
+# Nuisances breakdown 
+ 
+# hpt_mm channel 
+nuisances['DYnorm_k_hpt_mm'] = {
+  'name': 'DYnorm_k_hpt_2018',
+  'type': 'lnN',
+  'samples': {
+    'DY': '1.5',
+  },
+  'cuts' : ['hww2l2v_13TeV_2j_mjjGT350_pthGT200_mm'] 
+}
+
+nuisances['DYnorm_em_hpt_mm'] = {
+  'name': 'DYnorm_em_hpt_2018',
+  'type': 'lnN',
+  'samples': {
+    'DY': '1.5',
+  },
+  'cuts' : ['hww2l2v_13TeV_2j_mjjGT350_pthGT200_mm'] 
+}
+
+nuisances['DYnorm_R_hpt_mm'] = {
+  'name': 'DYnorm_R_hpt_mm_2018',
+  'type': 'lnN',
+  'samples': {
+    'DY': '1.5',
+  },
+  'cuts' : ['hww2l2v_13TeV_2j_mjjGT350_pthGT200_mm'] 
+}
+
+nuisances['DYnorm_Acc_hpt_mm'] = {
+  'name': 'DYnorm_Acc_hpt_mm_2018',
+  'type': 'lnN',
+  'samples': {
+    'DY': '0.708/1.413',
+  },
+  'cuts' : ['hww2l2v_13TeV_2j_mjjGT350_pthGT200_mm'] 
+}
+
+# 2jVBF_ee channel 
+nuisances['DYnorm_k_2jVBF_ee'] = {
+  'name': 'DYnorm_k_2jVBF_2018',
+  'type': 'lnN',
+  'samples': {
+    'DY': '1.5',
+  },
+  'cuts' : ['hww2l2v_13TeV_2j_mjjGT700_pthLT200_ee'] 
+}
+
+nuisances['DYnorm_em_2jVBF_ee'] = {
+  'name': 'DYnorm_em_2jVBF_2018',
+  'type': 'lnN',
+  'samples': {
+    'DY': '1.5',
+  },
+  'cuts' : ['hww2l2v_13TeV_2j_mjjGT700_pthLT200_ee'] 
+}
+
+nuisances['DYnorm_R_2jVBF_ee'] = {
+  'name': 'DYnorm_R_2jVBF_ee_2018',
+  'type': 'lnN',
+  'samples': {
+    'DY': '1.5',
+  },
+  'cuts' : ['hww2l2v_13TeV_2j_mjjGT700_pthLT200_ee'] 
+}
+
+nuisances['DYnorm_Acc_2jVBF_ee'] = {
+  'name': 'DYnorm_Acc_2jVBF_ee_2018',
+  'type': 'lnN',
+  'samples': {
+    'DY': '0.726/1.377',
+  },
+  'cuts' : ['hww2l2v_13TeV_2j_mjjGT700_pthLT200_ee'] 
+}
+
+# 2jVBF_mm channel 
+nuisances['DYnorm_k_2jVBF_mm'] = {
+  'name': 'DYnorm_k_2jVBF_2018',
+  'type': 'lnN',
+  'samples': {
+    'DY': '1.5',
+  },
+  'cuts' : ['hww2l2v_13TeV_2j_mjj350_700_pthLT200_mm'] 
+}
+
+nuisances['DYnorm_em_2jVBF_mm'] = {
+  'name': 'DYnorm_em_2jVBF_2018',
+  'type': 'lnN',
+  'samples': {
+    'DY': '1.5',
+  },
+  'cuts' : ['hww2l2v_13TeV_2j_mjj350_700_pthLT200_mm'] 
+}
+
+nuisances['DYnorm_R_2jVBF_mm'] = {
+  'name': 'DYnorm_R_2jVBF_mm_2018',
+  'type': 'lnN',
+  'samples': {
+    'DY': '1.5',
+  },
+  'cuts' : ['hww2l2v_13TeV_2j_mjj350_700_pthLT200_mm'] 
+}
+
+nuisances['DYnorm_Acc_2jVBF_mm'] = {
+  'name': 'DYnorm_Acc_2jVBF_mm_2018',
+  'type': 'lnN',
+  'samples': {
+    'DY': '0.767/1.304',
+  },
+  'cuts' : ['hww2l2v_13TeV_2j_mjj350_700_pthLT200_mm'] 
+}
+
+# hpt_ee channel 
+nuisances['DYnorm_k_hpt_ee'] = {
+  'name': 'DYnorm_k_hpt_2018',
+  'type': 'lnN',
+  'samples': {
+    'DY': '1.5',
+  },
+  'cuts' : ['hww2l2v_13TeV_2j_mjjGT350_pthGT200_ee'] 
+}
+
+nuisances['DYnorm_em_hpt_ee'] = {
+  'name': 'DYnorm_em_hpt_2018',
+  'type': 'lnN',
+  'samples': {
+    'DY': '1.5',
+  },
+  'cuts' : ['hww2l2v_13TeV_2j_mjjGT350_pthGT200_ee'] 
+}
+
+nuisances['DYnorm_R_hpt_ee'] = {
+  'name': 'DYnorm_R_hpt_ee_2018',
+  'type': 'lnN',
+  'samples': {
+    'DY': '1.5',
+  },
+  'cuts' : ['hww2l2v_13TeV_2j_mjjGT350_pthGT200_ee'] 
+}
+
+nuisances['DYnorm_Acc_hpt_ee'] = {
+  'name': 'DYnorm_Acc_hpt_ee_2018',
+  'type': 'lnN',
+  'samples': {
+    'DY': '0.680/1.471',
+  },
+  'cuts' : ['hww2l2v_13TeV_2j_mjjGT350_pthGT200_ee'] 
+}
+
+# 2jVH_ee channel 
+nuisances['DYnorm_k_2jVH_ee'] = {
+  'name': 'DYnorm_k_2jVH_2018',
+  'type': 'lnN',
+  'samples': {
+    'DY': '1.5',
+  },
+  'cuts' : ['hww2l2v_13TeV_2j_mjj65_105_ee'] 
+}
+
+nuisances['DYnorm_em_2jVH_ee'] = {
+  'name': 'DYnorm_em_2jVH_2018',
+  'type': 'lnN',
+  'samples': {
+    'DY': '1.5',
+  },
+  'cuts' : ['hww2l2v_13TeV_2j_mjj65_105_ee'] 
+}
+
+nuisances['DYnorm_R_2jVH_ee'] = {
+  'name': 'DYnorm_R_2jVH_ee_2018',
+  'type': 'lnN',
+  'samples': {
+    'DY': '1.5',
+  },
+  'cuts' : ['hww2l2v_13TeV_2j_mjj65_105_ee'] 
+}
+
+nuisances['DYnorm_Acc_2jVH_ee'] = {
+  'name': 'DYnorm_Acc_2jVH_ee_2018',
+  'type': 'lnN',
+  'samples': {
+    'DY': '0.742/1.347',
+  },
+  'cuts' : ['hww2l2v_13TeV_2j_mjj65_105_ee'] 
+}
+
+# 2jVBF_mm WW channel 
+nuisances['DYnorm_k_2jVBF_mm_WW'] = {
+  'name': 'DYnorm_k_2jVBF_2018',
+  'type': 'lnN',
+  'samples': {
+    'DY': '1.5',
+  },
+  'cuts' : ['hww2l2v_13TeV_WW_2j_vbf_mm'] 
+}
+
+nuisances['DYnorm_em_2jVBF_mm_WW'] = {
+  'name': 'DYnorm_em_2jVBF_2018',
+  'type': 'lnN',
+  'samples': {
+    'DY': '1.5',
+  },
+  'cuts' : ['hww2l2v_13TeV_WW_2j_vbf_mm'] 
+}
+
+nuisances['DYnorm_R_2jVBF_mm_WW'] = {
+  'name': 'DYnorm_R_2jVBF_mm_2018',
+  'type': 'lnN',
+  'samples': {
+    'DY': '1.5',
+  },
+  'cuts' : ['hww2l2v_13TeV_WW_2j_vbf_mm'] 
+}
+
+nuisances['DYnorm_Acc_2jVBF_mm_WW'] = {
+  'name': 'DYnorm_Acc_2jVBF_mm_2018',
+  'type': 'lnN',
+  'samples': {
+    'DY': '0.786/1.272',
+  },
+  'cuts' : ['hww2l2v_13TeV_WW_2j_vbf_mm'] 
+}
+
+# hpt_mm WW channel 
+nuisances['DYnorm_k_hpt_mm_WW'] = {
+  'name': 'DYnorm_k_hpt_2018',
+  'type': 'lnN',
+  'samples': {
+    'DY': '1.5',
+  },
+  'cuts' : ['hww2l2v_13TeV_WW_2j_hpt_mm'] 
+}
+
+nuisances['DYnorm_em_hpt_mm_WW'] = {
+  'name': 'DYnorm_em_hpt_2018',
+  'type': 'lnN',
+  'samples': {
+    'DY': '1.5',
+  },
+  'cuts' : ['hww2l2v_13TeV_WW_2j_hpt_mm'] 
+}
+
+nuisances['DYnorm_R_hpt_mm_WW'] = {
+  'name': 'DYnorm_R_hpt_mm_2018',
+  'type': 'lnN',
+  'samples': {
+    'DY': '1.5',
+  },
+  'cuts' : ['hww2l2v_13TeV_WW_2j_hpt_mm'] 
+}
+
+nuisances['DYnorm_Acc_hpt_mm_WW'] = {
+  'name': 'DYnorm_Acc_hpt_mm_2018',
+  'type': 'lnN',
+  'samples': {
+    'DY': '0.800/1.250',
+  },
+  'cuts' : ['hww2l2v_13TeV_WW_2j_hpt_mm'] 
+}
+
+# 2jVBF_ee WW channel 
+nuisances['DYnorm_k_2jVBF_ee_WW'] = {
+  'name': 'DYnorm_k_2jVBF_2018',
+  'type': 'lnN',
+  'samples': {
+    'DY': '1.5',
+  },
+  'cuts' : ['hww2l2v_13TeV_WW_2j_vbf_ee'] 
+}
+
+nuisances['DYnorm_em_2jVBF_ee_WW'] = {
+  'name': 'DYnorm_em_2jVBF_2018',
+  'type': 'lnN',
+  'samples': {
+    'DY': '1.5',
+  },
+  'cuts' : ['hww2l2v_13TeV_WW_2j_vbf_ee'] 
+}
+
+nuisances['DYnorm_R_2jVBF_ee_WW'] = {
+  'name': 'DYnorm_R_2jVBF_ee_2018',
+  'type': 'lnN',
+  'samples': {
+    'DY': '1.5',
+  },
+  'cuts' : ['hww2l2v_13TeV_WW_2j_vbf_ee'] 
+}
+
+nuisances['DYnorm_Acc_2jVBF_ee_WW'] = {
+  'name': 'DYnorm_Acc_2jVBF_ee_2018',
+  'type': 'lnN',
+  'samples': {
+    'DY': '0.751/1.332',
+  },
+  'cuts' : ['hww2l2v_13TeV_WW_2j_vbf_ee'] 
+}
+
+# 2jVH_ee WW channel 
+nuisances['DYnorm_k_2jVH_ee_WW'] = {
+  'name': 'DYnorm_k_2jVH_2018',
+  'type': 'lnN',
+  'samples': {
+    'DY': '1.5',
+  },
+  'cuts' : ['hww2l2v_13TeV_WW_2j_vh_ee'] 
+}
+
+nuisances['DYnorm_em_2jVH_ee_WW'] = {
+  'name': 'DYnorm_em_2jVH_2018',
+  'type': 'lnN',
+  'samples': {
+    'DY': '1.5',
+  },
+  'cuts' : ['hww2l2v_13TeV_WW_2j_vh_ee'] 
+}
+
+nuisances['DYnorm_R_2jVH_ee_WW'] = {
+  'name': 'DYnorm_R_2jVH_ee_2018',
+  'type': 'lnN',
+  'samples': {
+    'DY': '1.5',
+  },
+  'cuts' : ['hww2l2v_13TeV_WW_2j_vh_ee'] 
+}
+
+nuisances['DYnorm_Acc_2jVH_ee_WW'] = {
+  'name': 'DYnorm_Acc_2jVH_ee_2018',
+  'type': 'lnN',
+  'samples': {
+    'DY': '0.693/1.443',
+  },
+  'cuts' : ['hww2l2v_13TeV_WW_2j_vh_ee'] 
+}
+
+# 2jVH_mm channel 
+nuisances['DYnorm_k_2jVH_mm'] = {
+  'name': 'DYnorm_k_2jVH_2018',
+  'type': 'lnN',
+  'samples': {
+    'DY': '1.5',
+  },
+  'cuts' : ['hww2l2v_13TeV_2j_mjj65_105_mm'] 
+}
+
+nuisances['DYnorm_em_2jVH_mm'] = {
+  'name': 'DYnorm_em_2jVH_2018',
+  'type': 'lnN',
+  'samples': {
+    'DY': '1.5',
+  },
+  'cuts' : ['hww2l2v_13TeV_2j_mjj65_105_mm'] 
+}
+
+nuisances['DYnorm_R_2jVH_mm'] = {
+  'name': 'DYnorm_R_2jVH_mm_2018',
+  'type': 'lnN',
+  'samples': {
+    'DY': '1.5',
+  },
+  'cuts' : ['hww2l2v_13TeV_2j_mjj65_105_mm'] 
+}
+
+nuisances['DYnorm_Acc_2jVH_mm'] = {
+  'name': 'DYnorm_Acc_2jVH_mm_2018',
+  'type': 'lnN',
+  'samples': {
+    'DY': '0.824/1.214',
+  },
+  'cuts' : ['hww2l2v_13TeV_2j_mjj65_105_mm'] 
+}
+
+# 2jVBF_ee channel 
+nuisances['DYnorm_k_2jVBF_ee'] = {
+  'name': 'DYnorm_k_2jVBF_2018',
+  'type': 'lnN',
+  'samples': {
+    'DY': '1.5',
+  },
+  'cuts' : ['hww2l2v_13TeV_2j_mjj350_700_pthLT200_ee'] 
+}
+
+nuisances['DYnorm_em_2jVBF_ee'] = {
+  'name': 'DYnorm_em_2jVBF_2018',
+  'type': 'lnN',
+  'samples': {
+    'DY': '1.5',
+  },
+  'cuts' : ['hww2l2v_13TeV_2j_mjj350_700_pthLT200_ee'] 
+}
+
+nuisances['DYnorm_R_2jVBF_ee'] = {
+  'name': 'DYnorm_R_2jVBF_ee_2018',
+  'type': 'lnN',
+  'samples': {
+    'DY': '1.5',
+  },
+  'cuts' : ['hww2l2v_13TeV_2j_mjj350_700_pthLT200_ee'] 
+}
+
+nuisances['DYnorm_Acc_2jVBF_ee'] = {
+  'name': 'DYnorm_Acc_2jVBF_ee_2018',
+  'type': 'lnN',
+  'samples': {
+    'DY': '0.758/1.320',
+  },
+  'cuts' : ['hww2l2v_13TeV_2j_mjj350_700_pthLT200_ee'] 
+}
+
+# hpt_ee WW channel 
+nuisances['DYnorm_k_hpt_ee_WW'] = {
+  'name': 'DYnorm_k_hpt_2018',
+  'type': 'lnN',
+  'samples': {
+    'DY': '1.5',
+  },
+  'cuts' : ['hww2l2v_13TeV_WW_2j_hpt_ee'] 
+}
+
+nuisances['DYnorm_em_hpt_ee_WW'] = {
+  'name': 'DYnorm_em_hpt_2018',
+  'type': 'lnN',
+  'samples': {
+    'DY': '1.5',
+  },
+  'cuts' : ['hww2l2v_13TeV_WW_2j_hpt_ee'] 
+}
+
+nuisances['DYnorm_R_hpt_ee_WW'] = {
+  'name': 'DYnorm_R_hpt_ee_2018',
+  'type': 'lnN',
+  'samples': {
+    'DY': '1.5',
+  },
+  'cuts' : ['hww2l2v_13TeV_WW_2j_hpt_ee'] 
+}
+
+nuisances['DYnorm_Acc_hpt_ee_WW'] = {
+  'name': 'DYnorm_Acc_hpt_ee_2018',
+  'type': 'lnN',
+  'samples': {
+    'DY': '0.626/1.598',
+  },
+  'cuts' : ['hww2l2v_13TeV_WW_2j_hpt_ee'] 
+}
+
+# 2jVBF_mm channel 
+nuisances['DYnorm_k_2jVBF_mm'] = {
+  'name': 'DYnorm_k_2jVBF_2018',
+  'type': 'lnN',
+  'samples': {
+    'DY': '1.5',
+  },
+  'cuts' : ['hww2l2v_13TeV_2j_mjjGT700_pthLT200_mm'] 
+}
+
+nuisances['DYnorm_em_2jVBF_mm'] = {
+  'name': 'DYnorm_em_2jVBF_2018',
+  'type': 'lnN',
+  'samples': {
+    'DY': '1.5',
+  },
+  'cuts' : ['hww2l2v_13TeV_2j_mjjGT700_pthLT200_mm'] 
+}
+
+nuisances['DYnorm_R_2jVBF_mm'] = {
+  'name': 'DYnorm_R_2jVBF_mm_2018',
+  'type': 'lnN',
+  'samples': {
+    'DY': '1.5',
+  },
+  'cuts' : ['hww2l2v_13TeV_2j_mjjGT700_pthLT200_mm'] 
+}
+
+nuisances['DYnorm_Acc_2jVBF_mm'] = {
+  'name': 'DYnorm_Acc_2jVBF_mm_2018',
+  'type': 'lnN',
+  'samples': {
+    'DY': '0.737/1.357',
+  },
+  'cuts' : ['hww2l2v_13TeV_2j_mjjGT700_pthLT200_mm'] 
+}
+
+# 2jVH_mm WW channel 
+nuisances['DYnorm_k_2jVH_mm_WW'] = {
+  'name': 'DYnorm_k_2jVH_2018',
+  'type': 'lnN',
+  'samples': {
+    'DY': '1.5',
+  },
+  'cuts' : ['hww2l2v_13TeV_WW_2j_vh_mm'] 
+}
+
+nuisances['DYnorm_em_2jVH_mm_WW'] = {
+  'name': 'DYnorm_em_2jVH_2018',
+  'type': 'lnN',
+  'samples': {
+    'DY': '1.5',
+  },
+  'cuts' : ['hww2l2v_13TeV_WW_2j_vh_mm'] 
+}
+
+nuisances['DYnorm_R_2jVH_mm_WW'] = {
+  'name': 'DYnorm_R_2jVH_mm_2018',
+  'type': 'lnN',
+  'samples': {
+    'DY': '1.5',
+  },
+  'cuts' : ['hww2l2v_13TeV_WW_2j_vh_mm'] 
+}
+
+nuisances['DYnorm_Acc_2jVH_mm_WW'] = {
+  'name': 'DYnorm_Acc_2jVH_mm_2018',
+  'type': 'lnN',
+  'samples': {
+    'DY': '0.686/1.458',
+  },
+  'cuts' : ['hww2l2v_13TeV_WW_2j_vh_mm'] 
+}
+
 
 
 for n in nuisances.values():
