@@ -33,12 +33,12 @@ cuts['ww2l2v_13TeV_top']  = {
    }
 }
 
-cuts['ww2l2v_13TeV_dytt']  = {
-   'expr' : 'dycr',
-    # Define the sub-categorization of dycr
-   'categories' : {
-      '0j' : 'zeroJet',
-      '1j' : 'oneJet && Alt$(CleanJet_pt[1],0)<30',
-      '2j' : 'twoJet',
-   }
-}
+#cuts['ww2l2v_13TeV_dytt']  = {
+#   'expr' : 'dycr',
+#    # Define the sub-categorization of dycr
+#   'categories' : {
+#      '0j' : 'zeroJet',
+#      '1j' : 'oneJet && Alt$(CleanJet_pt[1],0)<30',
+#      '2j' : 'twoJet',
+#   }
+#}

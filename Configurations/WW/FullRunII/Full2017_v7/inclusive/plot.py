@@ -20,8 +20,7 @@ groupPlot['WW']  = {
                   'nameHR' : 'WW',
                   'isSignal' : 0,
                   'color': 851, # kAzure -9 
-                  #'samples'  : ['WW', 'ggWW']
-                  'samples'  : ['WW_NJ_0','WW_NJ_1','WW_NJ_GE2']
+                  'samples'  : ['WW', 'ggWW']
               }
 
 groupPlot['WWewk']  = {
@@ -169,43 +168,18 @@ plot['top'] = {
                         #},
                   }
 
-'''
 plot['WW']  = {
                   'color': 851, # kAzure -9 
                   'isSignal' : 0,
                   'isData'   : 0,    
                   'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
                   }
-'''
-plot['WW_NJ_0'] = {
-                  'color': 851, # kAzure -9 
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
-                  }
-
-plot['WW_NJ_1'] = {
-                  'color': 851, # kAzure -9 
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
-                  }
-
-plot['WW_NJ_GE2'] = {
-                  'color': 851, # kAzure -9 
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
-                  }
-
-'''
 plot['ggWW']  = {
                   'color': 850, # kAzure -10
                   'isSignal' : 0,
                   'isData'   : 0,    
                   'scale'    : 1.0
                   }
-'''
 plot['WWewk']  = {
                   'color': 851, # kAzure -9 
                   'isSignal' : 0,
@@ -358,7 +332,7 @@ plot['DATA']  = {
                   'color': 1 ,  
                   'isSignal' : 0,
                   'isData'   : 1 ,
-                  'isBlind'  : 0
+                  'isBlind'  : 1
               }
 
 
