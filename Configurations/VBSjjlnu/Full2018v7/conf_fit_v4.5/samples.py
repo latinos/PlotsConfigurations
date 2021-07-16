@@ -508,7 +508,7 @@ samples['DATA']  = {   'name': [ ] ,
                        'weight' : METFilter_DATA+'*'+LepWPCut,
                        'weights' : [ ],
                        'isData': ['all'],
-                       'FilesPerJob' : 40,         
+                       'FilesPerJob' : 60,         
             }
 
 for Run in DataRun :
@@ -519,5 +519,7 @@ for Run in DataRun :
                         samples['DATA']['weights'].append(DataTrig[DataSet])
 
 
-# samples = {   key:v for key,v in samples.items() if key not in ['VBF-V','VBS',"VBS_interf"]}
-samples = {key:v for key,v in samples.items() if key in ["VBS_osWW", "VBS_ssWW", "VBS_WZjj", "VBS_WZll", "VBS_ZZ"]}
+# samples = {   key:v for key,v in samples.items() if key not in ['VBF-V','VBS_dipoleRecoil']}
+# samples = {key:v for key,v in samples.items() if key in ["VBS_osWW", "VBS_ssWW", "VBS_WZjj", "VBS_WZll", "VBS_ZZ"]}
+
+samples = {k:v for k,v in samples.items() if k == "DATA"}

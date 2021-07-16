@@ -481,4 +481,4 @@ samples['DATA']  = {   'name': [ ] ,
                        'FilesPerJob' : 45,
                   }
 
-samples = {k:v for k,v in samples.items() if k not in ["VBF-V","VBS"]}#
+samples = {k:v for k,v in samples.items() if k not in ["VBF-V","VBS_dipoleRecoil"]}#

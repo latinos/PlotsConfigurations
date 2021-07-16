@@ -515,4 +515,4 @@ for Run in DataRun :
 
 
 # samples = {k:v for k,v in samples.items() if 'Wjets_res' in k}
-samples = {k:v for k,v in samples.items() if k not in ["VBF-V", "VBS"]}
+samples = {k:v for k,v in samples.items() if k not in ["VBF-V", "VBS_dipoleRecoil"]}
