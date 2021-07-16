@@ -256,16 +256,16 @@ variables['deltaeta_vjet'] = {   'name': 'deltaeta_vjet',
                         }   
 
 
-variables['run_info_boost'] = {
-    'tree':  {"run":"run","lumi":"luminosityBlock","event":"event", "DNN":"DNNoutput_boosted"},
-    'cuts' : ['boost_sig_ele', 'boost_sig_mu']
-}
+# variables['run_info_boost'] = {
+#     'tree':  {"run":"run","lumi":"luminosityBlock","event":"event", "DNN":"DNNoutput_boosted"},
+#     'cuts' : ['boost_sig_ele', 'boost_sig_mu']
+# }
 
-variables['run_info_res'] = {
-    'tree':  {"run":"run","lumi":"luminosityBlock","event":"event", "DNN":"DNNoutput_resolved_v1"},
-    'cuts' : ['res_sig_ele', 'res_sig_mu']
-}
+# variables['run_info_res'] = {
+#     'tree':  {"run":"run","lumi":"luminosityBlock","event":"event", "DNN":"DNNoutput_resolved_v1"},
+#     'cuts' : ['res_sig_ele', 'res_sig_mu']
+# }
 
 
-variables = {k:v for k,v in variables.items() if k in ["run_info_res","run_info_boost", "events", "DNNoutput_res_v1", "DNNoutput_boost", "fit_bins_res","fit_bins_boost"]}
+variables = {k:v for k,v in variables.items() if k in ["events", "DNNoutput_res_v1", "DNNoutput_boost", "fit_bins_res","fit_bins_boost"]}
 # variables = {k:v for k,v in variables.items() if k in ["mjj_vbs"]}

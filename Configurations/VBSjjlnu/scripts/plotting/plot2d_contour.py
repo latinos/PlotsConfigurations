@@ -14,7 +14,7 @@ from operator import itemgetter
 
 
 
-def Retrieve2DLikelihoodCombined(file, op, maxNLL, xscale, yscale,name):
+def Retrieve2DLikelihoodCombined(file, op, maxNLL, xscale, yscale,name,Npoints=100):
 
     f = ROOT.TFile(file)
     t = f.Get("limit")
@@ -45,8 +45,8 @@ def Retrieve2DLikelihoodCombined(file, op, maxNLL, xscale, yscale,name):
 
     graphScan = ROOT.TGraph2D(n,x,y,z)
 
-    graphScan.SetNpx(35)
-    graphScan.SetNpy(35)
+    graphScan.SetNpx(Npoints)
+    graphScan.SetNpy(Npoints)
 
     graphScan.GetZaxis().SetRangeUser(0, float(maxNLL))
     graphScan.GetHistogram().GetZaxis().SetRangeUser(0, float(maxNLL))
@@ -76,20 +76,20 @@ max_y = 2
 
 ops = ["muQCD_WV","muEW_WV"]
 
-gs, cont_graphs, exp  = Retrieve2DLikelihoodCombined(sys.argv[1], ops,20,1,1, "exp")
+gs, cont_graphs, exp  = Retrieve2DLikelihoodCombined(sys.argv[1], ops,20,1,1, "exp",Npoints=50)
 
 op_x = ops[0]
 op_y = ops[1]
 
 color = [ ROOT.kRed, ROOT.kBlack]
-linestyle = [10,10]
+linestyle = [2,2]
 
 graphs = []
 
 #set style
 for j in range(len(cont_graphs)):
     for h in range(len(cont_graphs[j])):
-        cont_graphs[j][h].SetLineWidth(5)
+        cont_graphs[j][h].SetLineWidth(3)
 
 for j in range(len(cont_graphs)):
     for h in range(len(cont_graphs[j])):
@@ -100,21 +100,21 @@ for j in range(len(cont_graphs)):
         for h in range(len(cont_graphs[j])):
             cont_graphs[j][h].SetLineStyle(int(linestyle[j]))
 
-graphs.append(["ciao", cont_graphs[0], exp, [min_x, max_x+0.2],[min_y, max_y+0.2], cont_graphs[1]])
+graphs.append(["ciao", cont_graphs[0], exp, [-0.1 + min_x, max_x+0.2],[min_y, max_y+0.25], cont_graphs[1]])
 
 
 
-gs2, cont_graphs2, exp2  = Retrieve2DLikelihoodCombined(sys.argv[2], ops,20,1,1,"measured")
+gs2, cont_graphs2, exp2  = Retrieve2DLikelihoodCombined(sys.argv[2], ops,20,1,1,"measured",Npoints=35)
 
 
 color = [ ROOT.kRed, ROOT.kBlack]
-linestyle = [2,2]
+linestyle = [9,9]
 
 graphs2 = [ ]
 #set style
 for j in range(len(cont_graphs2)):
     for h in range(len(cont_graphs2[j])):
-        cont_graphs2[j][h].SetLineWidth(3)
+        cont_graphs2[j][h].SetLineWidth(4)
 
 for j in range(len(cont_graphs2)):
     for h in range(len(cont_graphs2[j])):
@@ -148,9 +148,9 @@ ROOT.gPad.SetTopMargin(margins)
 ROOT.gPad.SetFrameLineWidth(3)
 ROOT.gPad.SetTicks()
 
-leg = ROOT.TLegend(0.6, 0.6, 0.85, 0.85)
+leg = ROOT.TLegend(0.55, 0.6, 0.85, 0.85)
 leg.SetBorderSize(0)
-leg.SetNColumns((int(len(graphs) + 1)/2))
+# leg.SetNColumns((int(len(graphs) + 1)/2))
 leg.SetTextSize(0.03)
 
 #c.SetGrid()
@@ -191,8 +191,8 @@ for i in range(len(graphs[0][-1])):
     graphs[0][-1][i].GetXaxis().SetTitleOffset(1.1)
     graphs[0][-1][i].GetXaxis().SetTitleSize(.04)
     graphs[0][-1][i].GetYaxis().SetTitleSize(.04)
-    graphs[0][-1][i].GetYaxis().SetTitle("#mu EWK")
-    graphs[0][-1][i].GetXaxis().SetTitle("#mu QCD")
+    graphs[0][-1][i].GetYaxis().SetTitle("\\mu EWK")
+    graphs[0][-1][i].GetXaxis().SetTitle("\\mu QCD")
     graphs[0][-1][i].SetTitle("")
     #graphs[0][-1].SetLineStyle(linestyles[0])
     if i == 0:
@@ -222,9 +222,8 @@ graphs[0][2].SetMarkerColor(ROOT.kGray +2)
 graphs[0][2].Draw("P same")
 
 
-leg.AddEntry(graphs[0][1][0], "1 sigma exp.", "L")
-leg.AddEntry(graphs[0][-1][0], "2 sigma exp.", "L")
-leg.AddEntry(graphs[0][2], "SM", "P")
+leg.AddEntry(graphs[0][1][0], "68% CL expected", "L")
+leg.AddEntry(graphs[0][-1][0], "95% CL expected", "L")
 
 #leg.AddEntry(graphs[0][1][0], name, "L")
 # leg.AddEntry(graphs[0][1][0], ConvertProc(name), "F")
@@ -317,8 +316,9 @@ graphs2[0][2].SetMarkerStyle(34)
 graphs2[0][2].SetMarkerColor(ROOT.kGray +2)
 graphs2[0][2].Draw("P same")
 
-leg.AddEntry(graphs2[0][1][0], "1 sigma", "L")
-leg.AddEntry(graphs2[0][-1][0], "2 sigma", "L")
+leg.AddEntry(graphs2[0][1][0], "68% CL", "L")
+leg.AddEntry(graphs2[0][-1][0], "95% CL", "L")
+leg.AddEntry(graphs[0][2], "SM", "P")
 leg.AddEntry(graphs2[0][2], "best fit", "P")
 
 
@@ -370,7 +370,7 @@ leg.Draw("same")
 
 # if not args2.splitLeg: le2g.Dra2w()
 c.Draw()
-# c.Print(args.outf + "/" + op_pair + ".pdf")
-# c.Print(args.outf + "/" + op_pair + ".png")
+c.SaveAs(sys.argv[3] + ".pdf")
+c.SaveAs(sys.argv[3] +".png")
 
 #unzoomed ve
