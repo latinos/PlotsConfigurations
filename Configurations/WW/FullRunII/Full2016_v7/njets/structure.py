@@ -74,17 +74,7 @@ structure['WW_fid_NJ_2'] = {
                   'isData'   : 0
                   }
 
-structure['WW_fid_NJ_3'] = {
-                  'isSignal' : 1,
-                  'isData'   : 0
-                  }
-
-structure['WW_fid_NJ_4'] = {
-                  'isSignal' : 1,
-                  'isData'   : 0
-                  }
-
-structure['WW_fid_NJ_GE5'] = {
+structure['WW_fid_NJ_GE3'] = {
                   'isSignal' : 1,
                   'isData'   : 0
                   }
@@ -104,17 +94,47 @@ structure['WW_nonfid_NJ_2'] = {
                   'isData'   : 0
                   }
 
-structure['WW_nonfid_NJ_3'] = {
+structure['WW_nonfid_NJ_GE3'] = {
                   'isSignal' : 0,
                   'isData'   : 0
                   }
 
-structure['WW_nonfid_NJ_4'] = {
+structure['ggWW_fid_NJ_0'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0    
+                  }
+
+structure['ggWW_fid_NJ_1'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0
+                  }
+
+structure['ggWW_fid_NJ_2'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0
+                  }
+
+structure['ggWW_fid_NJ_GE3'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0
+                  }
+
+structure['ggWW_nonfid_NJ_0'] = {
                   'isSignal' : 0,
                   'isData'   : 0
                   }
 
-structure['WW_nonfid_NJ_GE5'] = {
+structure['ggWW_nonfid_NJ_1'] = {
+                  'isSignal' : 0,
+                  'isData'   : 0
+                  }
+
+structure['ggWW_nonfid_NJ_2'] = {
+                  'isSignal' : 0,
+                  'isData'   : 0
+                  }
+
+structure['ggWW_nonfid_NJ_GE3'] = {
                   'isSignal' : 0,
                   'isData'   : 0
                   }
@@ -166,7 +186,8 @@ structure['VgS_H'] = {
 
 structure['Zg']  = { 
                   'isSignal' : 0,
-                  'isData'   : 0 
+                  'isData'   : 0, 
+                  'removeFromCuts' : [ k for k in cuts ],
                   }
 
 structure['VZ']  = { 
