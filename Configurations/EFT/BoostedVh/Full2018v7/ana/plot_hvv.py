@@ -39,7 +39,7 @@ groupPlot['DY']  = {
                   'isSignal' : 0,
                   'color': 418,    # kGreen+2
                   'samples'  : ['DY', 'Dyemb'],
-		  'scale' : 0.77
+                  'scale'    : 1,               
               }
 
 '''
@@ -49,26 +49,31 @@ groupPlot['VZ']  = {
                   'color'    : 617,   # kViolet + 1  
                   'samples'  : ['VZ', 'WZ', 'ZZ']
               }
+
 groupPlot['Vg']  = {  
                   'nameHR' : "V#gamma",
                   'isSignal' : 0,
                   'color'    : 810,   # kOrange + 10
                   'samples'  : ['Vg', 'Wg']
               }
+
 groupPlot['VgS']  = {
                   'nameHR' : "V#gamma*",
                   'isSignal' : 0,
                   'color'    : 409,   # kGreen - 9
                   'samples'  : ['VgS_H','VgS_L']
               }
+
 groupPlot['VVV']  = {  
                   'nameHR' : 'VVV',
                   'isSignal' : 0,
                   'color': 857, # kAzure -3  
                   'samples'  : ['VVV']
               }
+'''
 
 
+'''
 groupPlot['Higgs']  = {
                   'nameHR' : 'Gluon Fusion',
                   'isSignal' : 1,
@@ -77,51 +82,53 @@ groupPlot['Higgs']  = {
                   'samples' : ['ZH_hww', 'ggZH_hww', 'WH_hww', 'ggH_hww','bbH_hww','ttH_hww','ZH_htt', 'ggZH_htt', 'WH_htt', 'ggH_htt','bbH_htt','ttH_htt' ]
                   #'samples'  : ['H_htt', 'H_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'ggH_hww','bbH_hww','ttH_hww', 'ggH_htt' ]
               }
+
 groupPlot['VBF']  = {
                   'nameHR' : 'VBF',
                   'isSignal' : 2,
                   'color': 632,
                   'samples'  : ['qqH_hww']
               }
-
 '''
+
 # 3 puts signal on top of stack
 # 2 hist only, included in ratio?
 # 1 on top of stack and hist also, included in ratio?
-scale = 1.
+
+#groupPlot['htt']  = {
+#                  'nameHR' : 'h (other)',
+#                  'isSignal' : 0,
+#                  'color': 633,
+#                  'samples'  : ['ggH_htt','qqH_htt','ZH_htt','WH_htt']
+#              }
+
+
+scale=1
+scaleHBSM= 0.1
 groupPlot['HSM']  = {
-                  'nameHR' : 'SM h',
-                  'isSignal' : 0,
+                  'nameHR' : 'VBF+VH h',
+                  'isSignal' : 2,
                   'color': 632,
-		  'scale': scale,
-                  'samples'  : ['ZH_H0PM','WH_H0PM','VBF_H0PM', 'ggH_htt','qqH_htt','ZH_htt','WH_htt']
+                  'scale'    : scale,
+                  'samples'  : ['ZH_H0PM','WH_H0PM','VBF_H0PM','ggH_htt','qqH_htt','ZH_htt','WH_htt']
               }
 
 groupPlot['HBSM']  = {
-                  'nameHR' : '0^{-}',
+                  'nameHR' : 'VBF+VH 0^{-} (10x)',
                   'isSignal' : 2,
                   'color': 1,
-		  'scale': scale,
+                  'scale'    : scaleHBSM,
                   'samples'  : ['ZH_H0M','WH_H0M','VBF_H0M']
               }
 
 groupPlot['HBSM2']  = {
-                  'nameHR' : '0^{+}',
+                  'nameHR' : 'VBF+VH 0^{+}  (10x)',
                   'isSignal' : 2,
-                  'color': 2,
-		  'scale' : scale,
+                  'color': 4,
+		  'scale': scaleHBSM,
                   'samples'  : ['ZH_H0PH','WH_H0PH','VBF_H0PH']
               }
 
-#
-'''
-groupPlot['HBSM3']  = {
-                  'nameHR' : '0^{#Lambda_{1}}',
-                  'isSignal' : 2,
-                  'color': 4,
-                  'samples'  : ['ZH_H0L1','WH_H0L1','VBF_H0L1']
-              }
-'''
 #plot = {}
 
 # keys here must match keys in samples.py    
@@ -131,7 +138,7 @@ plot['DY']  = {
                   'color': 418,    # kGreen+2
                   'isSignal' : 0,
                   'isData'   : 0, 
-                  'scale'    : 0.77
+                  'scale'    : 0.77,
                   #'cuts'  : {
                        #'hww2l2v_13TeV_of0j'      : 0.95 ,
                        #'hww2l2v_13TeV_top_of0j'  : 0.95 , 
@@ -255,119 +262,88 @@ plot['VVV']  = {
 
 # Htautau
 
-
 plot['ZH_htt'] = {
                   'nameHR' : 'ZHtt',
                   'color': 632+3, # kRed+3 
-                  'isSignal' : 1,
+                  'isSignal' : 2,
                   'isData'   : 0,    
-                  'scale'    : 1    #
+                  'scale'    : scale,    #
                   }
-
-
-#plot['bbH_htt'] = {
-#                  'nameHR' : 'bbHtt',
-#                  'color': 632-1, # kRed-1 
-#                  'isSignal' : 1,
-#                  'isData'   : 0,
-#                  'scale'    : 1    #
-#                  }
-#
-#plot['ttH_htt'] = {
-#                  'nameHR' : 'bbHtt',
-#                  'color': 632-2, # kRed-1 
-#                  'isSignal' : 1,
-#                  'isData'   : 0,
-#                  'scale'    : 1    #
-#                  }
-#
-#
-#plot['ggZH_htt'] = {
-#                  'nameHR' : 'ggZHtt',
-#                  'color': 632+4, # kRed+4
-#                  'isSignal' : 1,
-#                  'isData'   : 0,    
-#                  'scale'    : 1    #
-#                  }
-#
-
 
 plot['WH_htt'] = {
                   'nameHR' : 'WHtt',
                   'color': 632+2, # kRed+2 
-                  'isSignal' : 1,
+                  'isSignal' : 2,
                   'isData'   : 0,    
-                  'scale'    : 1    #
+                  'scale'    : scale,    #
                   }
+
+
 plot['qqH_htt'] = {
                   'nameHR' : 'qqHtt',
                   'color': 632+1, # kRed+1 
-                  'isSignal' : 1,
+                  'isSignal' : 2,
                   'isData'   : 0,    
-                  'scale'    : 1    #
+                  'scale'    : scale,    #
                   }
+
+
 plot['ggH_htt'] = {
                   'nameHR' : 'ggHtt',
                   'color': 632, # kRed 
-                  'isSignal' : 1,
+                  'isSignal' : 2,
                   'isData'   : 0,    
-                  'scale'    : 1    #
+                  'scale'    : scale,    #
                   }
-
 # HWW 
 '''
 plot['H0PM']  =   {
                       'nameHR' : 'h',
                       'color' : 620+1,
-                      'isSignal' : 0, 
+                      'isSignal' : 2, 
                       'isData'   : 0,
-                      'scale'    : 1,
+                      'scale'    : scale,
                      }
 '''
-#
-
 plot['ZH_H0PM']  =   {
                       'nameHR' : 'ZH h',
                       'color' : 620+2,
-                      'isSignal' : 0, 
+                      'isSignal' : 2, 
                       'isData'   : 0,
-                      'scale'    : 1,
+                      'scale'    : scale,
                      }
 
 plot['WH_H0PM']  =   {
                       'nameHR' : 'WH h',
                       'color' : 620+3,
-                      'isSignal' : 0, 
+                      'isSignal' : 2, 
                       'isData'   : 0,
-                      'scale'    : 1,
+                      'scale'    : scale,
                      }
 
 plot['VBF_H0PM']  =   {
                       'nameHR' : 'VBF h',
                       'color' : 620+4,
-                      'isSignal' : 0, 
+                      'isSignal' : 2, 
                       'isData'   : 0,
-                      'scale'    : 1,
+                      'scale'    : scale,
                      }
 
-#
 '''
 plot['H0M']  =   {
                       'nameHR' : '0^{-}',
                       'color' : 632+1,
                       'isSignal' : 2, 
                       'isData'   : 0,
-                      'scale'    : 1,
+                      'scale'    : scale,
                      }
 '''
-#
-
 plot['ZH_H0M']  =   {
                       'nameHR' : 'ZH 0^{-}',
                       'color' : 632+2,
                       'isSignal' : 2, 
                       'isData'   : 0,
-                      'scale'    : 1,
+                      'scale'    : scaleHBSM,
                      }
 
 plot['WH_H0M']  =   {
@@ -375,7 +351,7 @@ plot['WH_H0M']  =   {
                       'color' : 632+3,
                       'isSignal' : 2, 
                       'isData'   : 0,
-                      'scale'    : 1,
+                      'scale'    : scaleHBSM,
                      }
 
 plot['VBF_H0M']  =   {
@@ -383,10 +359,9 @@ plot['VBF_H0M']  =   {
                       'color' : 632+4,
                       'isSignal' : 2, 
                       'isData'   : 0,
-                      'scale'    : 1,
+                      'scale'    : scaleHBSM,
                      }
 
-#
 '''
 plot['H0PH']  =   {
                       'nameHR' : '0^{+}',
@@ -396,14 +371,12 @@ plot['H0PH']  =   {
                       'scale'    : 1,
                      }
 '''
-#
-
 plot['ZH_H0PH']  =   {
                       'nameHR' : 'ZH 0^{+}',
                       'color' : 632+2,
                       'isSignal' : 2, 
                       'isData'   : 0,
-                      'scale'    : 1,
+                      'scale'    : scaleHBSM,
                      }
 
 plot['WH_H0PH']  =   {
@@ -411,7 +384,7 @@ plot['WH_H0PH']  =   {
                       'color' : 632+3,
                       'isSignal' : 2, 
                       'isData'   : 0,
-                      'scale'    : 1,
+                      'scale'    : scaleHBSM,
                      }
 
 plot['VBF_H0PH']  =   {
@@ -419,33 +392,7 @@ plot['VBF_H0PH']  =   {
                       'color' : 632+4,
                       'isSignal' : 2, 
                       'isData'   : 0,
-                      'scale'    : 1,
-                     }
-
-#
-
-plot['ZH_H0L1']  =   {
-                      'nameHR' : 'ZH 0^{#Lambda_{1}}',
-                      'color' : 632+2,
-                      'isSignal' : 2,
-                      'isData'   : 0,
-                      'scale'    : 1,
-                     }
-
-plot['WH_H0L1']  =   {
-                      'nameHR' : 'WH 0^{#Lambda_{1}}',
-                      'color' : 632+3,
-                      'isSignal' : 2,
-                      'isData'   : 0,
-                      'scale'    : 1,
-                     }
-
-plot['VBF_H0L1']  =   {
-                      'nameHR' : 'VBF 0^{#Lambda_{1}}',
-                      'color' : 632+4,
-                      'isSignal' : 2,
-                      'isData'   : 0,
-                      'scale'    : 1,
+                      'scale'    : scaleHBSM,
                      }
 
 #plot['H_hww'] = {
@@ -456,7 +403,7 @@ plot['VBF_H0L1']  =   {
 #                  'scale'    : 1    #
 #                  }
 
-
+'''
 plot['ZH_hww'] = {
                   'nameHR' : 'ZH',
                   'color': 632+3, # kRed+3 
@@ -464,6 +411,7 @@ plot['ZH_hww'] = {
                   'isData'   : 0,    
                   'scale'    : 1    #
                   }
+
 plot['ggZH_hww'] = {
                   'nameHR' : 'ggZH',
                   'color': 632+4, # kRed+4
@@ -471,6 +419,7 @@ plot['ggZH_hww'] = {
                   'isData'   : 0,    
                   'scale'    : 1    #
                   }
+
 plot['WH_hww'] = {
                   'nameHR' : 'WH',
                   'color': 632+2, # kRed+2 
@@ -478,6 +427,8 @@ plot['WH_hww'] = {
                   'isData'   : 0,    
                   'scale'    : 1    #
                   }
+
+
 plot['qqH_hww'] = {
                   'nameHR' : 'qqH',
                   'color': 632+1, # kRed+1 
@@ -485,6 +436,8 @@ plot['qqH_hww'] = {
                   'isData'   : 0,    
                   'scale'    : 1    #
                   }
+
+
 plot['ggH_hww'] = {
                   'nameHR' : 'ggH',
                   'color': 632, # kRed 
@@ -492,6 +445,7 @@ plot['ggH_hww'] = {
                   'isData'   : 0,    
                   'scale'    : 1    #
                   }
+
 #plot['bbH_hww'] = {
 #                  'nameHR' : 'bbH',
 #                  'color': 632+5, # kRed+5 
@@ -499,6 +453,7 @@ plot['ggH_hww'] = {
 #                  'isData'   : 0,
 #                  'scale'    : 1    #
 #                  }
+
 #plot['ttH_hww'] = {
 #                  'nameHR' : 'ttH',
 #                  'color': 632+6, # kRed+6
@@ -507,7 +462,7 @@ plot['ggH_hww'] = {
 #                  'scale'    : 1    #
 #                  }
 #
-
+'''
 
 # data
 
@@ -516,7 +471,7 @@ plot['DATA']  = {
                   'color': 1 ,  
                   'isSignal' : 0,
                   'isData'   : 1 ,
-                  'isBlind'  : 1	
+                  'isBlind'  : 1
               }
 
 
@@ -525,6 +480,7 @@ plot['DATA']  = {
 legend['lumi'] = 'L =  59.7/fb'
 
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
+
 
 
 

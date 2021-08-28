@@ -1,0 +1,9 @@
+condor_submit ../../../../../../../jobs/mkShapes__JJH18__ALL/WH_htt.8/mkShapes__JJH18__ALL__WH_htt.8.jds
+condor_submit ../../../../../../../jobs/mkShapes__JJH18__ALL/WH_htt.7/mkShapes__JJH18__ALL__WH_htt.7.jds
+condor_submit ../../../../../../../jobs/mkShapes__JJH18__ALL/WH_htt.6/mkShapes__JJH18__ALL__WH_htt.6.jds
+condor_submit ../../../../../../../jobs/mkShapes__JJH18__ALL/WH_htt.5/mkShapes__JJH18__ALL__WH_htt.5.jds
+condor_submit ../../../../../../../jobs/mkShapes__JJH18__ALL/WH_htt.4/mkShapes__JJH18__ALL__WH_htt.4.jds
+condor_submit ../../../../../../../jobs/mkShapes__JJH18__ALL/WH_htt.3/mkShapes__JJH18__ALL__WH_htt.3.jds
+condor_submit ../../../../../../../jobs/mkShapes__JJH18__ALL/WH_htt.2/mkShapes__JJH18__ALL__WH_htt.2.jds
+condor_submit ../../../../../../../jobs/mkShapes__JJH18__ALL/WH_htt.1/mkShapes__JJH18__ALL__WH_htt.1.jds
+condor_submit ../../../../../../../jobs/mkShapes__JJH18__ALL/WH_htt.0/mkShapes__JJH18__ALL__WH_htt.0.jds
