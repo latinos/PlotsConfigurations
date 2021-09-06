@@ -2,7 +2,8 @@
 
 treeName = 'Events'
 
-tag = 'ggH2018_v7_QCDscale_split_WWEWK_corr_pdf_unc'
+tag = 'ggH2018_v7_16_08'
+# tag = 'ggH_2018_v7_mthOnly'
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFile'
@@ -27,7 +28,7 @@ lumi = 59.74
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'plots_' + tag
+outputDirPlots = 'plots_' + tag + '_inverted'
 
 # used by mkDatacards to define output directory for datacards
 outputDirDatacard = 'datacards_' + tag
