@@ -3,6 +3,7 @@ import copy
 import inspect
 
 configurations = os.path.realpath(inspect.getfile(inspect.currentframe())) # this file
+configurations = os.path.dirname(configurations) # ExpUnc
 configurations = os.path.dirname(configurations) # inclusive
 configurations = os.path.dirname(configurations) # Full2017_v7
 configurations = os.path.dirname(configurations) # FullRunII

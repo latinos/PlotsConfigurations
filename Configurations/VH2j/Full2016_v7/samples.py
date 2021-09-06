@@ -6,7 +6,7 @@ configurations = os.path.dirname(configurations) # Full2016_v7
 configurations = os.path.dirname(configurations) # VH2j
 configurations = os.path.dirname(configurations) # Configurations
 
-from LatinoAnalysis.Tools.commonTools import getSampleFiles, getBaseW, addSampleWeight
+from LatinoAnalysis.Tools.commonTools import getSampleFiles, getBaseW, addSampleWeight, getBaseWnAOD
 
 def nanoGetSampleFiles(inputDir, sample):
     try:
@@ -69,7 +69,6 @@ embedDirectory = os.path.join(treeBaseDir, embedReco, embedSteps)
 ################################################
 
 DataRun = [
-    ['B','Run2016B-02Apr2020_ver1-v1'],
     ['B','Run2016B-02Apr2020_ver2-v1'],
     ['C','Run2016C-02Apr2020-v1'],
     ['D','Run2016D-02Apr2020-v1'],
@@ -167,15 +166,15 @@ if useEmbeddedDY:
 ## We need to keep DY MC as well, because only embedded events passing the ElMu trigger are considered
 ## Events failing ElMu but passing one of the other triggers are included in the DY MC
 if useDYtt:
-    files = nanoGetSampleFiles(mcDirectory, 'DYJetsToTT_MuEle_M-50') + \
+    files = nanoGetSampleFiles(mcDirectory, 'DYJetsToTT_MuEle_M-50_ext1') + \
         nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-10to50-LO')
     
     samples['DY'] = {
         'name': files,
         'weight': mcCommonWeight+embed_tautauveto + '*( !(Sum$(PhotonGen_isPrompt==1 && PhotonGen_pt>15 && abs(PhotonGen_eta)<2.6) > 0))',
-        'FilesPerJob': 4,
+        'FilesPerJob': 2,
     }
-    addSampleWeight(samples,'DY','DYJetsToTT_MuEle_M-50','DY_NLO_pTllrw')
+    addSampleWeight(samples,'DY','DYJetsToTT_MuEle_M-50_ext1','DY_NLO_pTllrw')
     addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO','DY_LO_pTllrw')
 else:
     files = nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50') + \
@@ -212,13 +211,13 @@ addSampleWeight(samples,'top','TTTo2L2Nu','Top_pTrw')
 
 samples['WW'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'WWTo2L2Nu'),
-    'weight': mcCommonWeight+embed_tautauveto + '*nllW**ewknloW', # temporary - nllW module not run on PS and UE variation samples
+    'weight': mcCommonWeight+embed_tautauveto + '*nllW*ewknloW', # temporary - nllW module not run on PS and UE variation samples
     'FilesPerJob': 1
 }
 
 samples['WWewk'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'WpWmJJ_EWK_noTop'),
-    'weight': mcCommonWeight+embed_tautauveto + '*(Sum$(abs(GenPart_pdgId)==6 || GenPart_pdgId==25)==0)*(lhe_mWm > 60. && lhe_mWm < 100. && lhe_mWp > 60. && lhe_mWp < 100.)', #filter tops and Higgs, limit w mass
+    'weight': mcCommonWeight+embed_tautauveto + '*(Sum$(abs(GenPart_pdgId)==6 || GenPart_pdgId==25)==0)*(lhe_mW1[0] > 60. && lhe_mW1[0] < 100. && lhe_mW2[0] > 60. && lhe_mW2[0] < 100.)', #filter tops and Higgs, limit w mass
     'FilesPerJob': 4
 }
 
@@ -227,7 +226,6 @@ samples['ggWW'] = {
     'weight': mcCommonWeight+embed_tautauveto + '*1.53/1.4', # updating k-factor
     'FilesPerJob': 4
 }
-
 
 ######## Vg ########
 

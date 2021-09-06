@@ -74,17 +74,7 @@ structure['WW_fid_NJ_2'] = {
                   'isData'   : 0
                   }
 
-structure['WW_fid_NJ_3'] = {
-                  'isSignal' : 1,
-                  'isData'   : 0
-                  }
-
-structure['WW_fid_NJ_4'] = {
-                  'isSignal' : 1,
-                  'isData'   : 0
-                  }
-
-structure['WW_fid_NJ_GE5'] = {
+structure['WW_fid_NJ_GE3'] = {
                   'isSignal' : 1,
                   'isData'   : 0
                   }
@@ -104,17 +94,47 @@ structure['WW_nonfid_NJ_2'] = {
                   'isData'   : 0
                   }
 
-structure['WW_nonfid_NJ_3'] = {
+structure['WW_nonfid_NJ_GE3'] = {
                   'isSignal' : 0,
                   'isData'   : 0
                   }
 
-structure['WW_nonfid_NJ_4'] = {
+structure['ggWW_fid_NJ_0'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0    
+                  }
+
+structure['ggWW_fid_NJ_1'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0
+                  }
+
+structure['ggWW_fid_NJ_2'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0
+                  }
+
+structure['ggWW_fid_NJ_GE3'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0
+                  }
+
+structure['ggWW_nonfid_NJ_0'] = {
                   'isSignal' : 0,
                   'isData'   : 0
                   }
 
-structure['WW_nonfid_NJ_GE5'] = {
+structure['ggWW_nonfid_NJ_1'] = {
+                  'isSignal' : 0,
+                  'isData'   : 0
+                  }
+
+structure['ggWW_nonfid_NJ_2'] = {
+                  'isSignal' : 0,
+                  'isData'   : 0
+                  }
+
+structure['ggWW_nonfid_NJ_GE3'] = {
                   'isSignal' : 0,
                   'isData'   : 0
                   }
@@ -122,11 +142,6 @@ structure['WW_nonfid_NJ_GE5'] = {
 structure['WWewk']  = {
                   'isSignal' : 0,
                   'isData'   : 0
-                  }
-
-structure['ggWW_Int']  = {
-                  'isSignal' : 0,
-                  'isData'   : 0    
                   }
 
 structure['Wg']  = { 
@@ -141,7 +156,8 @@ structure['Vg']  = {
 
 structure['ZgS'] = {
                   'isSignal' : 0,
-                  'isData'   : 0
+                  'isData'   : 0,
+                  'removeFromCuts' : ['ww2l2v_13TeV_top_2j']
                   }
 
 structure['WgS'] = {

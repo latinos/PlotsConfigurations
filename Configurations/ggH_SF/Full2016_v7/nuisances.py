@@ -857,60 +857,116 @@ nuisances['stat'] = {
 
 # WW
 
-nuisances['WWnorm0j']  = {
-   'name'     : 'CMS_hww_WWnorm0j',
+nuisances['WWnorm0j_ee']  = {
+   'name'     : 'CMS_hww_WWnorm0j_ee_2016',
    'samples'  : {
       'WW'    : '1.00',
       },
    'type'     : 'rateParam',
-   'cuts'     : cuts0j
+   'cuts'     : [cut for cut in cuts0j if 'ee' in cut] 
 }
 
-nuisances['WWnorm1j']  = {
-   'name'     : 'CMS_hww_WWnorm1j',
+nuisances['WWnorm1j_ee']  = {
+   'name'     : 'CMS_hww_WWnorm1j_ee_2016',
    'samples'  : {
       'WW'    : '1.00',
       },
    'type'     : 'rateParam',
-   'cuts'     : cuts1j
+   'cuts'     : [cut for cut in cuts1j if 'ee' in cut] 
 }
 
-nuisances['WWnorm2j']  = {
-   'name'     : 'CMS_hww_WWnorm2j',
+nuisances['WWnorm2j_ee']  = {
+   'name'     : 'CMS_hww_WWnorm2j_ee_2016',
    'samples'  : {
       'WW'    : '1.00',
       },
    'type'     : 'rateParam',
-   'cuts'     : cuts2j
+   'cuts'     : [cut for cut in cuts2j if 'ee' in cut]
+}
+
+
+nuisances['WWnorm0j_mm']  = {
+   'name'     : 'CMS_hww_WWnorm0j_mm_2016',
+   'samples'  : {
+      'WW'    : '1.00',
+      },
+   'type'     : 'rateParam',
+   'cuts'     : [cut for cut in cuts0j if 'mm' in cut] 
+}
+
+nuisances['WWnorm1j_mm']  = {
+   'name'     : 'CMS_hww_WWnorm1j_mm_2016',
+   'samples'  : {
+      'WW'    : '1.00',
+      },
+   'type'     : 'rateParam',
+   'cuts'     : [cut for cut in cuts1j if 'mm' in cut] 
+}
+
+nuisances['WWnorm2j_mm']  = {
+   'name'     : 'CMS_hww_WWnorm2j_mm_2016',
+   'samples'  : {
+      'WW'    : '1.00',
+      },
+   'type'     : 'rateParam',
+   'cuts'     : [cut for cut in cuts2j if 'mm' in cut]
 }
 
 # Top
 
-nuisances['Topnorm0j']  = {
-   'name'     : 'CMS_hww_Topnorm0j',
+nuisances['Topnorm0j_ee']  = {
+   'name'     : 'CMS_hww_Topnorm0j_ee_2016',
    'samples'  : {
       'top'   : '1.00',
       },
    'type'     : 'rateParam',
-   'cuts'     : cuts0j
+   'cuts'     : [cut for cut in cuts0j if 'ee' in cut]
 }
 
-nuisances['Topnorm1j']  = {
-   'name'     : 'CMS_hww_Topnorm1j',
+nuisances['Topnorm1j_ee']  = {
+   'name'     : 'CMS_hww_Topnorm1j_ee_2016',
    'samples'  : {
       'top'   : '1.00',
       },
    'type'     : 'rateParam',
-   'cuts'     : cuts1j
+   'cuts'     : [cut for cut in cuts1j if 'ee' in cut]
 }
 
-nuisances['Topnorm2j']  = {
-   'name'     : 'CMS_hww_Topnorm2j',
+nuisances['Topnorm2j_ee']  = {
+   'name'     : 'CMS_hww_Topnorm2j_ee_2016',
    'samples'  : {
       'top'   : '1.00',
       },
    'type'     : 'rateParam',
-   'cuts'     : cuts2j
+   'cuts'     : [cut for cut in cuts2j if 'ee' in cut]
+}
+
+
+nuisances['Topnorm0j_mm']  = {
+   'name'     : 'CMS_hww_Topnorm0j_mm_2016',
+   'samples'  : {
+      'top'   : '1.00',
+      },
+   'type'     : 'rateParam',
+   'cuts'     : [cut for cut in cuts0j if 'mm' in cut]
+}
+
+nuisances['Topnorm1j_mm']  = {
+   'name'     : 'CMS_hww_Topnorm1j_mm_2016',
+   'samples'  : {
+      'top'   : '1.00',
+      },
+   'type'     : 'rateParam',
+   'cuts'     : [cut for cut in cuts1j if 'mm' in cut]
+}
+
+nuisances['Topnorm2j_mm']  = {
+   'name'     : 'CMS_hww_Topnorm2j_mm_2016',
+   'samples'  : {
+      'top'   : '1.00',
+      },
+   'type'     : 'rateParam',
+   'cuts'     : [cut for cut in cuts2j if 'mm' in cut]
 }
 
 # # Drell-Yan data-driven uncertainties

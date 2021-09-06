@@ -91,6 +91,7 @@ def CombineBaseW(samples, proc, samplelist):
 useEmbeddedDY = True
 useDYtt = True
 useDYHT = False
+useDYstitching = True
 
 if EMorEEorMM in ['ee', 'mm']:
   useEmbeddedDY = False
@@ -139,7 +140,8 @@ if useEmbeddedDY:
                                  + getSampleFiles(directory,'ZZTo2L2Q',False,'nanoLatino_')
                                  + getSampleFiles(directory,'ZZTo4L',False,'nanoLatino_')
                                  + getSampleFiles(directory,'ZZTo4L_ext1',False,'nanoLatino_')
-                                 + getSampleFiles(directory,'WZTo2L2Q',False,'nanoLatino_'),
+                                 + getSampleFiles(directory,'WZTo2L2Q',False,'nanoLatino_')
+                                 + getSampleFiles(directory,'EWK_LLJJ_MLL-50_MJJ-120',False,'nanoLatino_'),
 
                          'weight' : TotalMC+'*'+'(1-embed_tautauveto)',
                          'FilesPerJob' : 1, # There's some error about not finding sample-specific variables like "nllW" when mixing different samples into a single job; so split them all up instead
@@ -166,7 +168,8 @@ if useEmbeddedDY:
                'ZZTo2L2Q'       : '1.11' ,
                'ZZTo4L'         : '1.11' ,
                'ZZTo4L_ext1'    : '1.11' ,
-               'WZTo2L2Q'       : '1.11'
+               'WZTo2L2Q'       : '1.11' ,
+               'EWK_LLJJ_MLL-50_MJJ-120' : '1'
               }
 
   for v_samp,v_weight in veto_dict.items():
@@ -187,10 +190,10 @@ if useDYtt :
     addSampleWeight(samples,'DY','DYJetsToTT_MuEle_M-50_ext1','DY_NLO_pTllrw')
     addSampleWeight(samples,'DY','DYJetsToLL_M-10to50_ext1','DY_NLO_pTllrw')
     
-else:
+elif not useDYstitching:
   samples['DY'] = {    'name'   :   getSampleFiles(directoryDY,'DYJetsToLL_M-50_ext2',True,'nanoLatino_') # LO_ext1 is DYMVA Training!
                                   + getSampleFiles(directoryDY,'DYJetsToLL_M-10to50_ext1',True,'nanoLatino_'), # NLO(_ext0) is DYMVA Training!
-                       'weight' : TotalMC+embed_tautauveto + '*( !(Sum$(PhotonGen_isPrompt==1 && PhotonGen_pt>15 && abs(PhotonGen_eta)<2.6) > 0))' ,
+                       'weight' : TotalMC+embed_tautauveto + '*( !(Sum$(PhotonGen_isPrompt==1 && PhotonGen_pt>15 && abs(PhotonGen_eta)<2.6) > 0)) * (DY_LowMll)' ,
                        'FilesPerJob' : 10,
                        'EventsPerJob' : 500000,
                        'suppressNegative' :['all'],
@@ -247,6 +250,90 @@ else:
     addSampleWeight(samples,'DY','DYJetsToLL_M-5to50_HT-600toinf',     'DY_LO_pTllrw')
     addSampleWeight(samples,'DY','DYJetsToLL_M-5to50_HT-600toinf_ext1','DY_LO_pTllrw')
 
+else:
+
+  samples['DY'] = {    'name'   :   getSampleFiles(directoryDY,'DYJetsToLL_M-50_ext2',True,'nanoLatino_')
+                                  + getSampleFiles(directoryDY,'DYJetsToLL_M-10to50_ext1',True,'nanoLatino_')
+                                  + getSampleFiles(directoryDY,'DYJetsToLL_M-5to50_HT-70to100',True,'nanoLatino_')
+                                  + getSampleFiles(directoryDY,'DYJetsToLL_M-5to50_HT-100to200',True,'nanoLatino_')
+                                  + getSampleFiles(directoryDY,'DYJetsToLL_M-5to50_HT-200to400',True,'nanoLatino_')
+                                  + getSampleFiles(directoryDY,'DYJetsToLL_M-5to50_HT-200to400_ext1',True,'nanoLatino_')
+                                  + getSampleFiles(directoryDY,'DYJetsToLL_M-5to50_HT-400to600',True,'nanoLatino_')
+                                  + getSampleFiles(directoryDY,'DYJetsToLL_M-5to50_HT-400to600_ext1',True,'nanoLatino_')
+                                  + getSampleFiles(directoryDY,'DYJetsToLL_M-5to50_HT-600toinf',True,'nanoLatino_')
+                                  + getSampleFiles(directoryDY,'DYJetsToLL_M-5to50_HT-600toinf_ext1',True,'nanoLatino_')
+                                  + getSampleFiles(directoryDY,'DYJetsToLL_M-100to200',True,'nanoLatino_')
+                                  + getSampleFiles(directoryDY,'DYJetsToLL_M-200to400',True,'nanoLatino_')
+                                  + getSampleFiles(directoryDY,'DYJetsToLL_M-400to500',True,'nanoLatino_')
+                                  + getSampleFiles(directoryDY,'DYJetsToLL_M-500to700',True,'nanoLatino_')
+                                  + getSampleFiles(directoryDY,'DYJetsToLL_M-700to800',True,'nanoLatino_')
+                                  + getSampleFiles(directoryDY,'DYJetsToLL_M-800to1000',True,'nanoLatino_')
+                                  + getSampleFiles(directoryDY,'DYJetsToLL_M-1000to1500',True,'nanoLatino_')
+                                  + getSampleFiles(directoryDY,'DYJetsToLL_M-1500to2000',True,'nanoLatino_')
+                                  + getSampleFiles(directoryDY,'DYJetsToLL_M-2000to3000',True,'nanoLatino_')
+                                  + getSampleFiles(directoryDY,'DYJetsToLL_Pt-50to100',True,'nanoLatino_')
+                                  + getSampleFiles(directoryDY,'DYJetsToLL_Pt-50to100_ext3',True,'nanoLatino_')
+                                  + getSampleFiles(directoryDY,'DYJetsToLL_Pt-100to250',True,'nanoLatino_')
+                                  + getSampleFiles(directoryDY,'DYJetsToLL_Pt-100to250_ext1',True,'nanoLatino_')
+                                  + getSampleFiles(directoryDY,'DYJetsToLL_Pt-100to250_ext2',True,'nanoLatino_')
+                                  + getSampleFiles(directoryDY,'DYJetsToLL_Pt-100to250_ext5',True,'nanoLatino_')
+                                  + getSampleFiles(directoryDY,'DYJetsToLL_Pt-250to400',True,'nanoLatino_')
+                                  + getSampleFiles(directoryDY,'DYJetsToLL_Pt-250to400_ext1',True,'nanoLatino_')
+                                  + getSampleFiles(directoryDY,'DYJetsToLL_Pt-250to400_ext2',True,'nanoLatino_')
+                                  + getSampleFiles(directoryDY,'DYJetsToLL_Pt-250to400_ext5',True,'nanoLatino_')
+                                  + getSampleFiles(directoryDY,'DYJetsToLL_Pt-400to650',True,'nanoLatino_')
+                                  + getSampleFiles(directoryDY,'DYJetsToLL_Pt-400to650_ext1',True,'nanoLatino_')
+                                  + getSampleFiles(directoryDY,'DYJetsToLL_Pt-400to650_ext2',True,'nanoLatino_')
+                                  + getSampleFiles(directoryDY,'DYJetsToLL_Pt-650toInf',True,'nanoLatino_')
+                                  + getSampleFiles(directoryDY,'DYJetsToLL_Pt-650toInf_ext1',True,'nanoLatino_')
+                                  + getSampleFiles(directoryDY,'DYJetsToLL_Pt-650toInf_ext2',True,'nanoLatino_') ,
+                       'weight' : TotalMC+embed_tautauveto + '*( !(Sum$(PhotonGen_isPrompt==1 && PhotonGen_pt>15 && abs(PhotonGen_eta)<2.6) > 0)) * (DY_LowMll) * DY_StitchWeight' ,
+                       'FilesPerJob' : 10,
+                       'EventsPerJob' : 250000,
+                       'suppressNegative' :['all'],
+                       'suppressNegativeNuisances' :['all'],
+                   }
+
+  CombineBaseW(samples, 'DY', ['DYJetsToLL_M-5to50_HT-200to400', 'DYJetsToLL_M-5to50_HT-200to400_ext1'])
+  CombineBaseW(samples, 'DY', ['DYJetsToLL_M-5to50_HT-400to600', 'DYJetsToLL_M-5to50_HT-400to600_ext1'])
+  CombineBaseW(samples, 'DY', ['DYJetsToLL_M-5to50_HT-600toinf', 'DYJetsToLL_M-5to50_HT-600toinf_ext1'])
+  addSampleWeight(samples,'DY','DYJetsToLL_M-10to50_ext1',           '(LHE_HT < 70)')
+
+  addSampleWeight(samples,'DY','DYJetsToLL_M-50_ext2',               'DY_NLO_pTllrw')
+  addSampleWeight(samples,'DY','DYJetsToLL_M-10to50_ext1',           'DY_NLO_pTllrw')
+  addSampleWeight(samples,'DY','DYJetsToLL_M-5to50_HT-70to100',      'DY_LO_pTllrw')
+  addSampleWeight(samples,'DY','DYJetsToLL_M-5to50_HT-100to200',     'DY_LO_pTllrw')
+  addSampleWeight(samples,'DY','DYJetsToLL_M-5to50_HT-200to400',     'DY_LO_pTllrw')
+  addSampleWeight(samples,'DY','DYJetsToLL_M-5to50_HT-200to400_ext1','DY_LO_pTllrw')
+  addSampleWeight(samples,'DY','DYJetsToLL_M-5to50_HT-400to600',     'DY_LO_pTllrw')
+  addSampleWeight(samples,'DY','DYJetsToLL_M-5to50_HT-400to600_ext1','DY_LO_pTllrw')
+  addSampleWeight(samples,'DY','DYJetsToLL_M-5to50_HT-600toinf',     'DY_LO_pTllrw')
+  addSampleWeight(samples,'DY','DYJetsToLL_M-5to50_HT-600toinf_ext1','DY_LO_pTllrw')
+  addSampleWeight(samples,'DY','DYJetsToLL_M-100to200',              'DY_NLO_pTllrw') # MLL-binned are NLO!
+  addSampleWeight(samples,'DY','DYJetsToLL_M-200to400',              'DY_NLO_pTllrw')
+  addSampleWeight(samples,'DY','DYJetsToLL_M-400to500',              'DY_NLO_pTllrw')
+  addSampleWeight(samples,'DY','DYJetsToLL_M-500to700',              'DY_NLO_pTllrw')
+  addSampleWeight(samples,'DY','DYJetsToLL_M-700to800',              'DY_NLO_pTllrw')
+  addSampleWeight(samples,'DY','DYJetsToLL_M-800to1000',             'DY_NLO_pTllrw')
+  addSampleWeight(samples,'DY','DYJetsToLL_M-1000to1500',            'DY_NLO_pTllrw')
+  addSampleWeight(samples,'DY','DYJetsToLL_M-1500to2000',            'DY_NLO_pTllrw')
+  addSampleWeight(samples,'DY','DYJetsToLL_M-2000to3000',            'DY_NLO_pTllrw')
+  addSampleWeight(samples,'DY','DYJetsToLL_Pt-50to100',              'DY_NLO_pTllrw') # PTLL-binned are NLO, also have M>50 cut!
+  addSampleWeight(samples,'DY','DYJetsToLL_Pt-50to100_ext3',         'DY_NLO_pTllrw')
+  addSampleWeight(samples,'DY','DYJetsToLL_Pt-100to250',             'DY_NLO_pTllrw')
+  addSampleWeight(samples,'DY','DYJetsToLL_Pt-100to250_ext1',        'DY_NLO_pTllrw')
+  addSampleWeight(samples,'DY','DYJetsToLL_Pt-100to250_ext2',        'DY_NLO_pTllrw')
+  addSampleWeight(samples,'DY','DYJetsToLL_Pt-100to250_ext5',        'DY_NLO_pTllrw')
+  addSampleWeight(samples,'DY','DYJetsToLL_Pt-250to400',             'DY_NLO_pTllrw')
+  addSampleWeight(samples,'DY','DYJetsToLL_Pt-250to400_ext1',        'DY_NLO_pTllrw')
+  addSampleWeight(samples,'DY','DYJetsToLL_Pt-250to400_ext2',        'DY_NLO_pTllrw')
+  addSampleWeight(samples,'DY','DYJetsToLL_Pt-250to400_ext5',        'DY_NLO_pTllrw')
+  addSampleWeight(samples,'DY','DYJetsToLL_Pt-400to650',             'DY_NLO_pTllrw')
+  addSampleWeight(samples,'DY','DYJetsToLL_Pt-400to650_ext1',        'DY_NLO_pTllrw')
+  addSampleWeight(samples,'DY','DYJetsToLL_Pt-400to650_ext2',        'DY_NLO_pTllrw')
+  addSampleWeight(samples,'DY','DYJetsToLL_Pt-650toInf',             'DY_NLO_pTllrw')
+  addSampleWeight(samples,'DY','DYJetsToLL_Pt-650toInf_ext1',        'DY_NLO_pTllrw')
+  addSampleWeight(samples,'DY','DYJetsToLL_Pt-650toInf_ext2',        'DY_NLO_pTllrw')
 
 
 ############ Top ############
@@ -328,6 +415,14 @@ samples['VZ']  = {  'name'   :   getSampleFiles(directory,'ZZTo2L2Nu',False,'nan
                  }
 CombineBaseW(samples, 'VZ', ['ZZTo2L2Nu', 'ZZTo2L2Nu_ext1'])
 CombineBaseW(samples, 'VZ', ['ZZTo4L', 'ZZTo4L_ext1'])
+
+samples['Zjj']  = {  'name'   :   getSampleFiles(directory,'EWK_LLJJ_MLL-50_MJJ-120',False,'nanoLatino_'),
+                    'weight' : TotalMC+embed_tautauveto,
+                    'FilesPerJob' : 1,
+                    'EventsPerJob' : 500000,
+                    'suppressNegative' :['all'],
+                    'suppressNegativeNuisances' :['all'],
+                  }
 
 ############ Vg ############
 
@@ -566,6 +661,17 @@ for fakesamp in fakesamples:
 
   samples['Fake_'+fakesamp]  = {   'name': [ ] ,
                          'weight' : 'METFilter_DATA*'+fakeW+'*(abs(Lepton_pdgId[0])=='+lepone+' && abs(Lepton_pdgId[1])=='+leptwo+')',
+                         'weights' : [ ] ,
+                         'isData': ['all'],
+                         'FilesPerJob' : 400 ,
+                         'suppressNegative' :['all'],
+                         'suppressNegativeNuisances' :['all'],
+                      }
+
+if EMorEEorMM == 'em':
+  fakesamples.append("of")
+  samples['Fake_of']  = {   'name': [ ] ,
+                         'weight' : 'METFilter_DATA*'+fakeW+'*((abs(Lepton_pdgId[0])==11 && abs(Lepton_pdgId[1])==13) || (abs(Lepton_pdgId[0])==13 && abs(Lepton_pdgId[1])==11))',
                          'weights' : [ ] ,
                          'isData': ['all'],
                          'FilesPerJob' : 400 ,

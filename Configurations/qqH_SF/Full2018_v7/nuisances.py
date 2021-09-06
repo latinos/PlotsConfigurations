@@ -838,23 +838,86 @@ nuisances['stat'] = {
 }
 
 ## rate parameters
-nuisances['WWnorm2j']  = {
-   'name'     : 'CMS_hww_WWnorm2j',
-   'samples'  : {
-      'WW'    : '1.00',
-      },
-   'type'     : 'rateParam',
-   'cuts'     : cuts2j
+
+# WW
+
+nuisances['WWnorm2j_vh_ee']  = {
+    'name'     : 'CMS_hww_WWnorm2j_vh_ee',
+    'samples'  : {
+        'WW'    : '1.00',
+    },
+    'type'     : 'rateParam',
+    'cuts'     : [cut for cut in cuts2j if 'ee' in cut and 'vh' in cut]
 }
 
-nuisances['Topnorm2j']  = {
-   'name'     : 'CMS_hww_Topnorm2j',
-   'samples'  : {
-      'top'   : '1.00',
-      },
-   'type'     : 'rateParam',
-   'cuts'     : cuts2j
+nuisances['WWnorm2j_vh_mm']  = {
+    'name'     : 'CMS_hww_WWnorm2j_vh_mm',
+    'samples'  : {
+        'WW'    : '1.00',
+    },
+    'type'     : 'rateParam',
+    'cuts'     : [cut for cut in cuts2j if 'mm' in cut and 'vh' in cut]
 }
+
+
+nuisances['WWnorm2j_vbf_ee']  = {
+    'name'     : 'CMS_hww_WWnorm2j_vbf_ee',
+    'samples'  : {
+        'WW'    : '1.00',
+    },
+    'type'     : 'rateParam',
+    'cuts'     : [cut for cut in cuts2j if 'ee' in cut and 'vbf' in cut]
+}
+
+nuisances['WWnorm2j_vbf_mm']  = {
+    'name'     : 'CMS_hww_WWnorm2j_vbf_mm',
+    'samples'  : {
+        'WW'    : '1.00',
+    },
+    'type'     : 'rateParam',
+    'cuts'     : [cut for cut in cuts2j if 'mm' in cut and 'vbf' in cut]
+}
+
+
+# Top
+
+nuisances['Topnorm2j_vh_ee']  = {
+    'name'     : 'CMS_hww_Topnorm2j_vh_ee',
+    'samples'  : {
+        'top'   : '1.00',
+    },
+    'type'     : 'rateParam',
+    'cuts'     : [cut for cut in cuts2j if 'ee' in cut and 'vh' in cut]
+}
+
+nuisances['Topnorm2j_vh_mm']  = {
+    'name'     : 'CMS_hww_Topnorm2j_vh_mm',
+    'samples'  : {
+        'top'   : '1.00',
+    },
+    'type'     : 'rateParam',
+    'cuts'     : [cut for cut in cuts2j if 'mm' in cut and 'vh' in cut]
+}
+
+
+nuisances['Topnorm2j_vbf_ee']  = {
+    'name'     : 'CMS_hww_Topnorm2j_vbf_ee',
+    'samples'  : {
+        'top'   : '1.00',
+    },
+    'type'     : 'rateParam',
+    'cuts'     : [cut for cut in cuts2j if 'ee' in cut and 'vbf' in cut]
+}
+
+nuisances['Topnorm2j_vbf_mm']  = {
+    'name'     : 'CMS_hww_Topnorm2j_vbf_mm',
+    'samples'  : {
+        'top'   : '1.00',
+    },
+    'type'     : 'rateParam',
+    'cuts'     : [cut for cut in cuts2j if 'mm' in cut and 'vbf' in cut]
+}
+
 
 # # DYestim norm
 

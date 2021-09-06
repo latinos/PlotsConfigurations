@@ -14,32 +14,53 @@ mc = [skey for skey in mc_emb if skey != 'DYemb']
 mc_noDYHM = [skey for skey in mc if ('DY' not in skey or EMorEEorMM=="em") and 'GGH' not in skey and 'QQH' not in skey] # Using recoil corrected DY in SF final state -> nuisances in different directory. Same for HM because friend trees broke after adding another postprocessing step
 mc_HM = [skey for skey in mc if 'GGH' in skey or 'QQH' in skey]
 
+# Combined:
 #nuisances['lumi'] = {
 #    'name': 'lumi_13TeV_2018',
 #    'type': 'lnN',
 #    'samples': dict((skey, '1.025') for skey in mc if skey not in ['WW', 'top', 'DY'])
 #}
 
+# Old:
+#nuisances['lumi_Uncorrelated'] = {
+#    'name': 'lumi_13TeV_2018',
+#    'type': 'lnN',
+#    'samples': dict((skey, '1.015') for skey in mc if skey not in ['WW', 'WW2J', 'WWewk', 'top', 'DY'])
+#}
+#
+#nuisances['lumi_XY'] = {
+#    'name': 'lumi_13TeV_XY',
+#    'type': 'lnN',
+#    'samples': dict((skey, '1.02') for skey in mc if skey not in ['WW', 'WW2J', 'WWewk', 'top', 'DY'])
+#}
+#
+#nuisances['lumi_LS'] = {
+#    'name': 'lumi_13TeV_LS',
+#    'type': 'lnN',
+#    'samples': dict((skey, '1.002') for skey in mc if skey not in ['WW', 'WW2J', 'WWewk', 'top', 'DY'])
+#}
+#
+#nuisances['lumi_BCC'] = {
+#    'name': 'lumi_13TeV_BCC',
+#    'type': 'lnN',
+#    'samples': dict((skey, '1.002') for skey in mc if skey not in ['WW', 'WW2J', 'WWewk', 'top', 'DY'])
+#}
+
+# New:
 nuisances['lumi_Uncorrelated'] = {
     'name': 'lumi_13TeV_2018',
     'type': 'lnN',
     'samples': dict((skey, '1.015') for skey in mc if skey not in ['WW', 'WW2J', 'WWewk', 'top', 'DY'])
 }
 
-nuisances['lumi_XY'] = {
-    'name': 'lumi_13TeV_XY',
+nuisances['lumi_Correlated'] = {
+    'name': 'lumi_13TeV_correlated',
     'type': 'lnN',
-    'samples': dict((skey, '1.02') for skey in mc if skey not in ['WW', 'WW2J', 'WWewk', 'top', 'DY'])
+    'samples': dict((skey, '1.020') for skey in mc if skey not in ['WW', 'WW2J', 'WWewk', 'top', 'DY'])
 }
 
-nuisances['lumi_LS'] = {
-    'name': 'lumi_13TeV_LS',
-    'type': 'lnN',
-    'samples': dict((skey, '1.002') for skey in mc if skey not in ['WW', 'WW2J', 'WWewk', 'top', 'DY'])
-}
-
-nuisances['lumi_BCC'] = {
-    'name': 'lumi_13TeV_BCC',
+nuisances['lumi_1718'] = {
+    'name': 'lumi_13TeV_1718',
     'type': 'lnN',
     'samples': dict((skey, '1.002') for skey in mc if skey not in ['WW', 'WW2J', 'WWewk', 'top', 'DY'])
 }
@@ -72,6 +93,13 @@ nuisances['fake_syst_me']  = {
                              'Fake_me' : '1.30',
                              },
                }
+nuisances['fake_syst_of']  = {
+               'name'  : 'CMS_fake_syst_of',
+               'type'  : 'lnN',
+               'samples'  : {
+                             'Fake_of' : '1.30',
+                             },
+               }
 nuisances['fake_syst_ee']  = {
                'name'  : 'CMS_fake_syst_ee',
                'type'  : 'lnN',
@@ -94,6 +122,7 @@ nuisances['fake_ele']  = {
                 'samples'  : {
                               'Fake_em'     : [ fakeW_EleUp , fakeW_EleDown ],
                               'Fake_me'     : [ fakeW_EleUp , fakeW_EleDown ],
+                              'Fake_of'     : [ fakeW_EleUp , fakeW_EleDown ],
                               'Fake_ee'     : [ fakeW_EleUp , fakeW_EleDown ],
                              },
 }
@@ -105,6 +134,7 @@ nuisances['fake_ele_stat']  = {
                 'samples'  : {
                               'Fake_em'      : [ fakeW_statEleUp , fakeW_statEleDown ],
                               'Fake_me'      : [ fakeW_statEleUp , fakeW_statEleDown ],
+                              'Fake_of'      : [ fakeW_statEleUp , fakeW_statEleDown ],
                               'Fake_ee'      : [ fakeW_statEleUp , fakeW_statEleDown ],
                              },
 }
@@ -116,6 +146,7 @@ nuisances['fake_mu']  = {
                 'samples'  : {
                               'Fake_em'     : [ fakeW_MuUp , fakeW_MuDown ],
                               'Fake_me'     : [ fakeW_MuUp , fakeW_MuDown ],
+                              'Fake_of'     : [ fakeW_MuUp , fakeW_MuDown ],
                               'Fake_mm'     : [ fakeW_MuUp , fakeW_MuDown ],
                              },
 }
@@ -128,6 +159,7 @@ nuisances['fake_mu_stat']  = {
                 'samples'  : {
                               'Fake_em'     : [ fakeW_statMuUp , fakeW_statMuDown ],
                               'Fake_me'     : [ fakeW_statMuUp , fakeW_statMuDown ],
+                              'Fake_of'     : [ fakeW_statMuUp , fakeW_statMuDown ],
                               'Fake_mm'     : [ fakeW_statMuUp , fakeW_statMuDown ],
                              },
 }
@@ -879,7 +911,8 @@ for i in range(1,33):
   # LHEPdfWeight are PDF4LHC variations, while nominal is NNPDF.
   # LHEPdfWeight[i] reweights from NNPDF nominal to PDF4LHC member i
   # LHEPdfWeight[0] in particular reweights from NNPDF nominal to PDF4LHC nominal
-  pdf_variations = ["LHEPdfWeight[%d]/LHEPdfWeight[0]" %i, "1/(LHEPdfWeight[%d]/LHEPdfWeight[0])" %i ] # Float_t LHE pdf variation weights (w_var / w_nominal) for LHA IDs 91400 - 91432*
+  #pdf_variations = ["LHEPdfWeight[%d]/LHEPdfWeight[0]" %i, "1/(LHEPdfWeight[%d]/LHEPdfWeight[0])" %i ] # Float_t LHE pdf variation weights (w_var / w_nominal) for LHA IDs 91400 - 91432*
+  pdf_variations = ["1.0*((abs({0})>=50) || (1.0/abs({0})>=50)) + ({0})*(abs({0})<50)*(1.0/abs({0})<50)".format('LHEPdfWeight[%d]/LHEPdfWeight[0]' %(i)), "1.0*((abs({0})>=50) || (1.0/abs({0})>=50)) + (1.0/({0}))*(abs({0})<50)*(1.0/abs({0})<50)".format('LHEPdfWeight[%d]/LHEPdfWeight[0]' %(i)) ] # There's a few events with abnormaly large weights in multiple pdfs.
 
   nuisances['pdf_WW_'+str(i)]  = {
     'name'  : 'pdf_WW_'+str(i)+'_2018',
@@ -1162,6 +1195,16 @@ nuisances['DYNLORew']  = {
                 'type'  : 'shape',
                 'samples' : {
                      'DY'  : ["(1.0/DY_LOtoNLOonly)*(DY_isLO) + (1.0)*(!DY_isLO)","(DY_LOtoNLOonly)*(DY_isLO) + (1.0)*(!DY_isLO)"]
+                }
+         }
+
+if EMorEEorMM!="em":
+  nuisances['DYLowMll']  = {
+                'name'  : 'CMS_DY_mllRew_2018',
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples' : {
+                     'DY'  : ["DY_LowMll","1.0/DY_LowMll"]
                 }
          }
 
