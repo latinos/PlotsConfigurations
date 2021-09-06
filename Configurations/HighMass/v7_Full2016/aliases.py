@@ -1,6 +1,6 @@
 #aliases = {}
 
-mc = [skey for skey in samples if skey not in ('Fake_em', 'Fake_me', 'Fake_ee', 'Fake_mm', 'DATA', 'DYemb')]
+mc = [skey for skey in samples if skey not in ('Fake_em', 'Fake_me', 'Fake_of', 'Fake_ee', 'Fake_mm', 'DATA', 'DYemb')]
 mc_sbi = [skey for skey in samples if "SBI" in skey]
 
 if EMorEEorMM == 'em':
@@ -141,10 +141,11 @@ aliases['Top_pTrw'] = {
 
 ##### DY Z pT reweighting
 aliases['getGenZpt_OTF'] = {
-    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/patches/getGenZpt.cc+' % os.getenv('CMSSW_BASE')],
-    'class': 'getGenZpt',
+    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/patches/getGenZpt_new.cc+' % os.getenv('CMSSW_BASE')],
+    'class': 'getGenZpt_new',
     'samples': ['DY']
 }
+
 handle = open('%s/src/PlotsConfigurations/Configurations/patches/DYrew30.py' % os.getenv('CMSSW_BASE'),'r')
 exec(handle)
 handle.close()
@@ -164,6 +165,91 @@ aliases['DY_LOtoNLOonly'] = {
 aliases['DY_isLO'] = {
     'expr': '(LHE_HT >= 70)',
     'samples': ['DY']
+}
+aliases['DY_LowMll'] = {
+  'expr': '('+DYrew['2016']['LowMll'].replace('x', 'mll')+')*(mll < 70) + 1.0 * (mll >= 70)',
+  'samples': ['DY']
+}
+
+##### DY MC stitching
+aliases['getGenZmass_OTF'] = {
+    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/patches/getGenZmass.cc+' % os.getenv('CMSSW_BASE')],
+    'class': 'getGenZmass',
+    'samples': ['DY']
+}
+handle2 = open('%s/src/PlotsConfigurations/Configurations/patches/DYstitching.py' % os.getenv('CMSSW_BASE'),'r')
+exec(handle2)
+handle2.close()
+MLLbins = ["100", "200", "400", "500", "700", "800", "1000", "1500", "2000", "3000"]
+PTLLbins = ["50", "100", "250", "400", "650"]
+FullStitchWeight = "((getGenZmass_OTF<50)*1.0 + (getGenZmass_OTF>=50)*(" # Leave mll<50 samples alone; only stitch for mll>50
+IndividualParts = []
+for alpha in DYstitching["2016"]["XS"]:
+  if "HT" in alpha: continue
+  aliases['DY_is'+alpha.replace("-","_")] = {
+    'expr': "(abs("+str(DYstitching["2016"]["XS"][alpha])+"/Xsec -1.0) < 1.0e-03)",
+    'samples': ['DY']
+  }
+for i in range(len(PTLLbins)+1):
+  for j in range(len(MLLbins)+1):
+    mllcuts = []
+    ptllcuts = []
+    if i>0: ptllcuts.append("(LHE_Vpt >= "+PTLLbins[i-1]+")")
+    if i<len(PTLLbins): ptllcuts.append("(LHE_Vpt < "+PTLLbins[i]+")")
+    if j>0: mllcuts.append("(getGenZmass_OTF >= "+MLLbins[j-1]+")")
+    if j<len(MLLbins): mllcuts.append("(getGenZmass_OTF < "+MLLbins[j]+")")
+    ForSamples = ["(DY_isincl*"+'*'.join(ptllcuts)+"*"+'*'.join(mllcuts)+")"] # For the inclusive sample, split it along the mll-ptll phase space
+    NoverXSweight = 0.0
+    for alpha in DYstitching["2016"]["NWevents"]:
+      if "HT" in alpha: continue
+      elif "PTLL" in alpha:
+        goodlowbound = (i>0 and "PTLL_"+PTLLbins[i-1]+"-" in alpha)
+        if goodlowbound: ForSamples.append("(DY_is"+alpha.replace("-","_")+"*"+'*'.join(mllcuts)+")") # In a certain ptll bin, selected only events from that specific ptll-binned sample (even the outliers just outside the edges), and just split along mll
+      elif "MLL" in alpha:
+        goodlowbound = (j>0 and "MLL_"+MLLbins[j-1]+"-" in alpha)
+        if goodlowbound: ForSamples.append("(DY_is"+alpha.replace("-","_")+"*"+'*'.join(ptllcuts)+")") # Same as for ptll
+      if (alpha=="incl") or (alpha!="incl" and goodlowbound):
+        NoverXSweight += (DYstitching["2016"]["NWevents"][alpha]/DYstitching["2016"]["GenW"][alpha]) / DYstitching["2016"]["XS"][alpha] # Sum of weighted events normalized by mean absolute genW
+    newbaseW = str(1000.0/NoverXSweight) if NoverXSweight!=0.0 else "0.0"
+    ThisStitchWeight = "(("+'+'.join(ForSamples)+")*"+newbaseW+")"
+    IndividualParts.append(ThisStitchWeight)
+
+# Because abs(genWeight) is not the same for each event in an sample in 2018, do this the complicated way:
+# Instead of adding "/abs(genWeight)" to XSWeight to propagate the normalized genWeight, get the same by-sample normalization factor as used above
+AllNormedGenW = []
+for alpha in DYstitching["2016"]["GenW"]:
+  if "HT" in alpha: continue
+  AllNormedGenW.append("(DY_is"+alpha.replace("-","_")+"*("+str(DYstitching["2016"]["GenW"][alpha] -1.0)+"))") # "-1.0" is offset, as overall "+1.0" is used later to account for any other samples (to avoid error when dividing by 0, when it comes to irrelevant mll<50GeV samples).
+
+aliases['ThisSamplesMeanAbsGenW'] = {
+  'expr': '(1.0+'+'+'.join(AllNormedGenW)+')',
+  #'expr': 'abs(genWeight)', # It's OK in 2016 and 2017 though, EXCEPT for PTLL-binned samples for some reason
+  'samples': ['DY']
+}
+
+# Need to split this up stupidly like this because otherwise there's a crash due to too many operations in a single expression.
+#StitchWeightp1 = IndividualParts[:len(IndividualParts)//2]
+#StitchWeightp2 = IndividualParts[len(IndividualParts)//2:]
+StitchWeightp1 = IndividualParts[:len(IndividualParts)//3]
+StitchWeightp2 = IndividualParts[len(IndividualParts)//3:2*len(IndividualParts)//3]
+StitchWeightp3 = IndividualParts[2*len(IndividualParts)//3:]
+aliases['DY_StitchPartOne'] = {
+  'expr': '+'.join(StitchWeightp1),
+  'samples': ['DY']
+}
+aliases['DY_StitchPartTwo'] = {
+  'expr': '+'.join(StitchWeightp2),
+  'samples': ['DY']
+}
+aliases['DY_StitchPartThree'] = {
+  'expr': '+'.join(StitchWeightp3),
+  'samples': ['DY']
+}
+
+FullStitchWeight = FullStitchWeight + "DY_StitchPartOne+DY_StitchPartTwo+DY_StitchPartThree" + ")/baseW/ThisSamplesMeanAbsGenW)" # Propagate normalized genW to by-event genWeight
+aliases['DY_StitchWeight'] = {
+  'expr': FullStitchWeight,
+  'samples': ['DY']
 }
 
 
@@ -302,6 +388,7 @@ aliases['Jet_PUIDSF_down'] = {
 # Total SF weights
 eleWP='mva_90p_Iso2016'
 muWP='cut_Tight80x'
+
 aliases['SFweight'] = {
     'expr': ' * '.join(['SFweight2l', 'LepCut2l__ele_'+eleWP+'__mu_'+muWP, 'LepSF2l__ele_'+eleWP+'__mu_'+muWP, 'btagSF', 'Jet_PUIDSF', 'PrefireWeight']),
     'samples': mc

@@ -14,40 +14,55 @@ mc = [skey for skey in mc_emb if skey != 'DYemb']
 mc_noDYHM = [skey for skey in mc if ('DY' not in skey or EMorEEorMM=="em") and 'GGH' not in skey and 'QQH' not in skey] # Using recoil corrected DY in SF final state -> nuisances in different directory. Same for HM because friend trees broke after adding another postprocessing step
 mc_HM = [skey for skey in mc if 'GGH' in skey or 'QQH' in skey]
 
+# Combined:
 #nuisances['lumi'] = {
 #    'name': 'lumi_13TeV_2016',
 #    'type': 'lnN',
 #    'samples': dict((skey, '1.025') for skey in mc if skey not in ['WW', 'top', 'DY'])
 #}
 
+# Old:
+#nuisances['lumi_Uncorrelated'] = {
+#    'name': 'lumi_13TeV_2016',
+#    'type': 'lnN',
+#    'samples': dict((skey, '1.022') for skey in mc if skey not in ['WW', 'WW2J', 'WWewk', 'top', 'DY'])
+#}
+#
+#nuisances['lumi_XY'] = {
+#    'name': 'lumi_13TeV_XY',
+#    'type': 'lnN',
+#    'samples': dict((skey, '1.009') for skey in mc if skey not in ['WW', 'WW2J', 'WWewk', 'top', 'DY'])
+#}
+#
+#nuisances['lumi_BBD'] = {
+#    'name': 'lumi_13TeV_BBD',
+#    'type': 'lnN',
+#    'samples': dict((skey, '1.004') for skey in mc if skey not in ['WW', 'WW2J', 'WWewk', 'top', 'DY'])
+#}
+#
+#nuisances['lumi_DB'] = {
+#    'name': 'lumi_13TeV_DB',
+#    'type': 'lnN',
+#    'samples': dict((skey, '1.005') for skey in mc if skey not in ['WW', 'WW2J', 'WWewk', 'top', 'DY'])
+#}
+#
+#nuisances['lumi_GS'] = {
+#    'name': 'lumi_13TeV_GS',
+#    'type': 'lnN',
+#    'samples': dict((skey, '1.004') for skey in mc if skey not in ['WW', 'WW2J', 'WWewk', 'top', 'DY'])
+#}
+
+# New:
 nuisances['lumi_Uncorrelated'] = {
     'name': 'lumi_13TeV_2016',
     'type': 'lnN',
-    'samples': dict((skey, '1.022') for skey in mc if skey not in ['WW', 'WW2J', 'WWewk', 'top', 'DY'])
+    'samples': dict((skey, '1.010') for skey in mc if skey not in ['WW', 'WW2J', 'WWewk', 'top', 'DY'])
 }
 
-nuisances['lumi_XY'] = {
-    'name': 'lumi_13TeV_XY',
+nuisances['lumi_Correlated'] = {
+    'name': 'lumi_13TeV_correlated',
     'type': 'lnN',
-    'samples': dict((skey, '1.009') for skey in mc if skey not in ['WW', 'WW2J', 'WWewk', 'top', 'DY'])
-}
-
-nuisances['lumi_BBD'] = {
-    'name': 'lumi_13TeV_BBD',
-    'type': 'lnN',
-    'samples': dict((skey, '1.004') for skey in mc if skey not in ['WW', 'WW2J', 'WWewk', 'top', 'DY'])
-}
-
-nuisances['lumi_DB'] = {
-    'name': 'lumi_13TeV_DB',
-    'type': 'lnN',
-    'samples': dict((skey, '1.005') for skey in mc if skey not in ['WW', 'WW2J', 'WWewk', 'top', 'DY'])
-}
-
-nuisances['lumi_GS'] = {
-    'name': 'lumi_13TeV_GS',
-    'type': 'lnN',
-    'samples': dict((skey, '1.004') for skey in mc if skey not in ['WW', 'WW2J', 'WWewk', 'top', 'DY'])
+    'samples': dict((skey, '1.006') for skey in mc if skey not in ['WW', 'WW2J', 'WWewk', 'top', 'DY'])
 }
 
 #### FAKES
@@ -78,6 +93,13 @@ nuisances['fake_syst_me']  = {
                              'Fake_me' : '1.30',
                              },
                }
+nuisances['fake_syst_of']  = {
+               'name'  : 'CMS_fake_syst_of',
+               'type'  : 'lnN',
+               'samples'  : {
+                             'Fake_of' : '1.30',
+                             },
+               }
 nuisances['fake_syst_ee']  = {
                'name'  : 'CMS_fake_syst_ee',
                'type'  : 'lnN',
@@ -100,6 +122,7 @@ nuisances['fake_ele']  = {
                 'samples'  : {
                               'Fake_em'     : [ fakeW_EleUp , fakeW_EleDown ],
                               'Fake_me'     : [ fakeW_EleUp , fakeW_EleDown ],
+                              'Fake_of'     : [ fakeW_EleUp , fakeW_EleDown ],
                               'Fake_ee'     : [ fakeW_EleUp , fakeW_EleDown ],
                              },
 }
@@ -111,6 +134,7 @@ nuisances['fake_ele_stat']  = {
                 'samples'  : {
                               'Fake_em'      : [ fakeW_statEleUp , fakeW_statEleDown ],
                               'Fake_me'      : [ fakeW_statEleUp , fakeW_statEleDown ],
+                              'Fake_of'      : [ fakeW_statEleUp , fakeW_statEleDown ],
                               'Fake_ee'      : [ fakeW_statEleUp , fakeW_statEleDown ],
                              },
 }
@@ -122,6 +146,7 @@ nuisances['fake_mu']  = {
                 'samples'  : {
                               'Fake_em'     : [ fakeW_MuUp , fakeW_MuDown ],
                               'Fake_me'     : [ fakeW_MuUp , fakeW_MuDown ],
+                              'Fake_of'     : [ fakeW_MuUp , fakeW_MuDown ],
                               'Fake_mm'     : [ fakeW_MuUp , fakeW_MuDown ],
                              },
 }
@@ -134,6 +159,7 @@ nuisances['fake_mu_stat']  = {
                 'samples'  : {
                               'Fake_em'     : [ fakeW_statMuUp , fakeW_statMuDown ],
                               'Fake_me'     : [ fakeW_statMuUp , fakeW_statMuDown ],
+                              'Fake_of'     : [ fakeW_statMuUp , fakeW_statMuDown ],
                               'Fake_mm'     : [ fakeW_statMuUp , fakeW_statMuDown ],
                              },
 }
@@ -1200,6 +1226,16 @@ nuisances['DYNLORew']  = {
                 'type'  : 'shape',
                 'samples' : {
                      'DY'  : ["(1.0/DY_LOtoNLOonly)*(DY_isLO) + (1.0)*(!DY_isLO)","(DY_LOtoNLOonly)*(DY_isLO) + (1.0)*(!DY_isLO)"]
+                }
+         }
+
+if EMorEEorMM!="em":
+  nuisances['DYLowMll']  = {
+                'name'  : 'CMS_DY_mllRew_2016',
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples' : {
+                     'DY'  : ["DY_LowMll","1.0/DY_LowMll"]
                 }
          }
 

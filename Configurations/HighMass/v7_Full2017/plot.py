@@ -26,7 +26,7 @@ groupPlot['Fake']  = {
                   'nameHR' : 'Nonprompt',
                   'isSignal' : 0,
                   'color': 921,    # kGray +1
-                  'samples'  : ['Fake_me', 'Fake_em', 'Fake_ee', 'Fake_mm']
+                  'samples'  : ['Fake_of', 'Fake_ee', 'Fake_mm'] # 'Fake_me', 'Fake_em'
 }
 
 
@@ -72,6 +72,7 @@ groupPlot['HM_2000']  = {
                   'samples'  : ['GGH_2000'+model_name, 'QQH_2000'+model_name]
               }
 '''
+'''
 groupPlot['GGH_200']  = {  
                   'nameHR' : 'ggF 200 GeV',
                   'isSignal' : 2,
@@ -108,7 +109,7 @@ groupPlot['QQH_2000']  = {
                   'color': 602, # kBlue +2
                   'samples'  : ['QQH_2000'+model_name]
               }
-
+'''
 
 
 
@@ -132,6 +133,7 @@ if useEmbeddedDY:
                 }
 
 if EMorEEorMM == 'em':
+  '''
   plot['Fake_me']  = {  
                   'color': 921,    # kGray + 1
                   'isSignal' : 0,
@@ -140,6 +142,14 @@ if EMorEEorMM == 'em':
               }
 
   plot['Fake_em']  = {  
+                  'color': 921,    # kGray + 1
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0                  
+              }
+  '''
+
+  plot['Fake_of']  = {  
                   'color': 921,    # kGray + 1
                   'isSignal' : 0,
                   'isData'   : 0,
@@ -342,7 +352,7 @@ plot['ggH_hww'] = {
 #                  'scale'    : 1    #
 #                  }
 
-
+'''
 massplot = ['200','800','2000']
 
 for m in massplot:
@@ -385,7 +395,7 @@ for m in massplot:
 #                  'isData'   : 0,
 #                  'scale'    : 1    #
 #                  }
-
+'''
 
 # data
 
@@ -394,7 +404,7 @@ plot['DATA']  = {
                   'color': 1 ,  
                   'isSignal' : 0,
                   'isData'   : 1 ,
-                  'isBlind'  : 1
+                  'isBlind'  : 0
               }
 
 
