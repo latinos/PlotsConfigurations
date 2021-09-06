@@ -131,20 +131,29 @@ nuisances['lumi_Ghosts'] = {
 
 #### FAKES
 
-nuisances['fake_syst_em'] = {
-    'name': 'CMS_fake_syst_em',
-    'type': 'lnN',
-    'samples': {
-        'Fake_em': '1.3'
-    },
-    'cutspost': lambda self, cuts: [cut for cut in cuts if '20me' not in cut],
-}
+# nuisances['fake_syst_em'] = {
+#     'name': 'CMS_fake_syst_em',
+#     'type': 'lnN',
+#     'samples': {
+#         'Fake_em': '1.3'
+#     },
+#     'cutspost': lambda self, cuts: [cut for cut in cuts if '20me' not in cut],
+# }
 
-nuisances['fake_syst_me'] = {
-    'name': 'CMS_fake_syst_me',
+# nuisances['fake_syst_me'] = {
+#     'name': 'CMS_fake_syst_me',
+#     'type': 'lnN',
+#     'samples': {
+#         'Fake_me': '1.3'
+#     },
+#     'cutspost': lambda self, cuts: [cut for cut in cuts if '20em' not in cut],
+# }
+
+nuisances['fake_syst'] = {
+    'name': 'CMS_fake_syst',
     'type': 'lnN',
     'samples': {
-        'Fake_me': '1.3'
+        'Fake': '1.3'
     },
     'cutspost': lambda self, cuts: [cut for cut in cuts if '20em' not in cut],
 }
@@ -479,6 +488,15 @@ nuisances['VgStar'] = {
     }
 }
 
+if useWgFXFX:
+  nuisances['VgScale'] = {
+      'name': 'CMS_hww_VgScale',
+      'type': 'lnN',
+      'samples': {
+          'Vg': '1.06'
+      }
+  }
+
 nuisances['VZ'] = {
     'name': 'CMS_hww_VZScale',
     'type': 'lnN',
@@ -488,6 +506,32 @@ nuisances['VZ'] = {
 }
 
 ###### pdf uncertainties
+
+# PDF eigenvariations for WW and top
+for i in range(1,33):
+  # LHEPdfWeight are PDF4LHC variations, while nominal is NNPDF.
+  # LHEPdfWeight[i] reweights from NNPDF nominal to PDF4LHC member i
+  # LHEPdfWeight[0] in particular reweights from NNPDF nominal to PDF4LHC nominal
+  pdf_variations = ["LHEPdfWeight[%d]/LHEPdfWeight[0]" %i, "2. - LHEPdfWeight[%d]/LHEPdfWeight[0]" %i ]
+
+  nuisances['pdf_WW_eigen'+str(i)]  = {
+    'name'  : 'CMS_hww_pdf_WW_eigen'+str(i),
+    'skipCMS' : 1,
+    'kind'  : 'weight',
+    'type'  : 'shape',
+    'samples'  : {
+      'WW'   : pdf_variations,
+    },
+  }
+  nuisances['pdf_top_eigen'+str(i)]  = {
+    'name'  : 'CMS_hww_pdf_top_eigen'+str(i),
+    'skipCMS' : 1,
+    'kind'  : 'weight',
+    'type'  : 'shape',
+    'samples'  : {
+      'top'   : pdf_variations,
+    },
+  }
 
 valuesggh = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ggH','125.09','pdf','sm')
 valuesggzh = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ggZH','125.09','pdf','sm')
@@ -574,6 +618,8 @@ nuisances['pdf_qqbar_ACCEPT'] = {
 
 ##### Renormalization & factorization scales
 
+
+
 ## Shape nuisance due to QCD scale variations for DY
 # LHE scale variation weights (w_var / w_nominal)
 
@@ -583,18 +629,24 @@ topvars0j = []
 topvars1j = []
 
 ## Factors computed to renormalize the top scale variations such that the integral is not changed in each RECO jet bin (we have rateParams for that)
-topScaleNormFactors0j = {'LHEScaleWeight[3]': 1.0008829637654995, 'LHEScaleWeight[0]': 1.070761703863844, 'LHEScaleWeight[1]': 1.0721982065714528, 'LHEScaleWeight[Length$(LHEScaleWeight)-1]': 0.9270717138194097, 'LHEScaleWeight[Length$(LHEScaleWeight)-4]': 1.002515087891841, 'LHEScaleWeight[Length$(LHEScaleWeight)-2]': 0.9270080603942781}
-topScaleNormFactors1j = {'LHEScaleWeight[3]': 1.0079221754798773, 'LHEScaleWeight[0]': 1.0846741444664376, 'LHEScaleWeight[1]': 1.0806432359691847, 'LHEScaleWeight[Length$(LHEScaleWeight)-1]': 0.9129672863490275, 'LHEScaleWeight[Length$(LHEScaleWeight)-4]': 0.9960603215169435, 'LHEScaleWeight[Length$(LHEScaleWeight)-2]': 0.9198946095840594}
+topScaleNormFactors0j = {'LHEScaleWeight[3]': 1.0026322046882807, 'LHEScaleWeight[0]': 1.0761381504953040, 'LHEScaleWeight[1]': 1.0758902481739956, 'LHEScaleWeight[Length$(LHEScaleWeight)-1]': 0.9225780960271310, 'LHEScaleWeight[Length$(LHEScaleWeight)-4]': 1.0006689791003040, 'LHEScaleWeight[Length$(LHEScaleWeight)-2]': 0.9242759920995479}
+topScaleNormFactors1j = {'LHEScaleWeight[3]': 1.0088973745933350, 'LHEScaleWeight[0]': 1.0858717477880675, 'LHEScaleWeight[1]': 1.0809970696561464, 'LHEScaleWeight[Length$(LHEScaleWeight)-1]': 0.9115155831354494, 'LHEScaleWeight[Length$(LHEScaleWeight)-4]': 0.9950909615738225, 'LHEScaleWeight[Length$(LHEScaleWeight)-2]': 0.9194241285459210}
 
-for var in variations:
-  topvars0j.append(var+'/'+str(topScaleNormFactors0j[var]))
-  topvars1j.append(var+'/'+str(topScaleNormFactors1j[var]))
+topvars0j.append('LHEScaleWeight[0]/'+str(topScaleNormFactors0j['LHEScaleWeight[0]']))
+topvars0j.append('LHEScaleWeight[Length$(LHEScaleWeight)-1]/'+str(topScaleNormFactors0j['LHEScaleWeight[Length$(LHEScaleWeight)-1]']))
+
+topvars1j.append('LHEScaleWeight[0]/'+str(topScaleNormFactors1j['LHEScaleWeight[0]']))
+topvars1j.append('LHEScaleWeight[Length$(LHEScaleWeight)-1]/'+str(topScaleNormFactors1j['LHEScaleWeight[Length$(LHEScaleWeight)-1]']))
+
+# for var in variations:
+#   topvars0j.append(var+'/'+str(topScaleNormFactors0j[var]))
+#   topvars1j.append(var+'/'+str(topScaleNormFactors1j[var]))
 
 ## QCD scale nuisances for top are decorrelated for each RECO jet bin: the QCD scale is different for different jet multiplicities so it doesn't make sense to correlate them
 nuisances['QCDscale_top_0j']  = {
     'name'  : 'QCDscale_top_0j',
     'skipCMS' : 1,
-    'kind'  : 'weight_envelope',
+    'kind'  : 'weight',
     'type'  : 'shape',
     'cutspost' : lambda self, cuts: [cut for cut in cuts if '0j' in cut],
     'samples'  : {
@@ -605,7 +657,7 @@ nuisances['QCDscale_top_0j']  = {
 nuisances['QCDscale_top_1j']  = {
     'name'  : 'QCDscale_top_1j',
     'skipCMS' : 1,
-    'kind'  : 'weight_envelope',
+    'kind'  : 'weight',
     'type'  : 'shape',
     'cutspost' : lambda self, cuts: [cut for cut in cuts if '1j' in cut],
     'samples'  : {
@@ -691,6 +743,17 @@ nuisances['WWqscale1j']  = {
       'WW'   : ['nllW_Qup/nllW', 'nllW_Qdown/nllW'],
     },
    'cutspost'  : lambda self, cuts: [cut for cut in cuts if '1j' in cut]
+}
+
+nuisances['EWKcorr_WW'] = {
+    'name': 'CMS_hww_EWKcorr_WW',
+    'skipCMS': 1,
+    'kind': 'weight',
+    'type': 'shape',
+    'samples': {
+        'WW': ['1.', '1./ewknloW']
+    },
+    'symmetrize' : True,
 }
 
 # Uncertainty on SR/CR ratio

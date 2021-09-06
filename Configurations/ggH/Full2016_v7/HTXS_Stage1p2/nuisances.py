@@ -124,21 +124,31 @@ nuisances['lumi_Ghosts'] = {
 
 #### FAKES
 
-nuisances['fake_syst_em'] = {
-    'name': 'CMS_fake_syst_em',
-    'type': 'lnN',
-    'samples': {
-        'Fake_em': '1.3'
-    },
-    'cutspost': lambda self, cuts: [cut for cut in cuts if '20me' not in cut],
-    #'perRecoBin': True
-}
+# nuisances['fake_syst_em'] = {
+#     'name': 'CMS_fake_syst_em',
+#     'type': 'lnN',
+#     'samples': {
+#         'Fake_em': '1.3'
+#     },
+#     'cutspost': lambda self, cuts: [cut for cut in cuts if '20me' not in cut],
+#     #'perRecoBin': True
+# }
 
-nuisances['fake_syst_me'] = {
-    'name': 'CMS_fake_syst_me',
+# nuisances['fake_syst_me'] = {
+#     'name': 'CMS_fake_syst_me',
+#     'type': 'lnN',
+#     'samples': {
+#         'Fake_me': '1.3'
+#     },
+#     'cutspost': lambda self, cuts: [cut for cut in cuts if '20em' not in cut],
+#     #'perRecoBin': True
+# }
+
+nuisances['fake_syst'] = {
+    'name': 'CMS_fake_syst',
     'type': 'lnN',
     'samples': {
-        'Fake_me': '1.3'
+        'Fake': '1.3'
     },
     'cutspost': lambda self, cuts: [cut for cut in cuts if '20em' not in cut],
     #'perRecoBin': True
@@ -315,7 +325,7 @@ for js in jes_systs:
       'type': 'shape',
       'mapUp': js+'up',
       'mapDown': js+'do',
-      'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['DY']),
+      'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['DY', 'Vg', 'VgS']),
       'folderUp': folderup,
       'folderDown': folderdo,
       'AsLnN': '1'
@@ -500,6 +510,15 @@ nuisances['VgStar'] = {
     }
 }
 
+if useWgFXFX:
+  nuisances['VgScale'] = {
+      'name': 'CMS_hww_VgScale',
+      'type': 'lnN',
+      'samples': {
+          'Vg': '1.06'
+      }
+  }
+
 nuisances['VZ'] = {
     'name': 'CMS_hww_VZScale',
     'type': 'lnN',
@@ -509,6 +528,30 @@ nuisances['VZ'] = {
 }
 
 ###### pdf uncertainties
+
+pdf_variations = ["LHEPdfWeight[%d]" %i for i in range(100)]
+
+##### PDF uncertainties on WW
+nuisances['pdf_WW']  = {
+  'name'  : 'CMS_hww_pdf_WW_2016',
+  'skipCMS' : 1,
+  'kind'  : 'weight_rms',
+  'type'  : 'shape',
+  'samples'  : {
+     'WW'   : pdf_variations,
+   },
+}
+
+##### PDF uncertainties on top
+nuisances['pdf_top']  = {
+  'name'  : 'CMS_hww_pdf_top_2016',
+  'skipCMS' : 1,
+  'kind'  : 'weight_rms',
+  'type'  : 'shape',
+  'samples'  : {
+     'top'   : pdf_variations,
+   },
+}
 
 valuesggh = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ggH','125.09','pdf','sm')
 valuesggzh = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ggZH','125.09','pdf','sm')
@@ -615,12 +658,22 @@ topvars0j = []
 topvars1j = []
 
 ## Factors computed to renormalize the top scale variations such that the integral is not changed in each RECO jet bin (we have rateParams for that)
-topScaleNormFactors0j = {'Alt$(LHEScaleWeight[3],1)': 1.0127481603212656, 'Alt$(LHEScaleWeight[0],1)': 1.0781331279433415, 'Alt$(LHEScaleWeight[1],1)': 1.0690928216708382, 'Alt$(LHEScaleWeight[7],1)': 0.9345571161077737, 'Alt$(LHEScaleWeight[8],1)': 0.9227838225449528, 'Alt$(LHEScaleWeight[5],1)': 0.9907270914731349}
-topScaleNormFactors1j = {'Alt$(LHEScaleWeight[3],1)': 1.0153655578503986, 'Alt$(LHEScaleWeight[0],1)': 1.0907798004584341, 'Alt$(LHEScaleWeight[1],1)': 1.0798026063785011, 'Alt$(LHEScaleWeight[7],1)': 0.92428116499208, 'Alt$(LHEScaleWeight[8],1)': 0.9101690580310614, 'Alt$(LHEScaleWeight[5],1)': 0.9888177133975222}
+topScaleNormFactors0j = {'LHEScaleWeight[3]': 1.0127481603212656, 'LHEScaleWeight[0]': 1.0781331279433415, 'LHEScaleWeight[1]': 1.0690928216708382, 'LHEScaleWeight[Length$(LHEScaleWeight)-1]': 0.9345571161077737, 'LHEScaleWeight[Length$(LHEScaleWeight)-4]': 0.9227838225449528, 'LHEScaleWeight[Length$(LHEScaleWeight)-2]': 0.9907270914731349}
+topScaleNormFactors1j = {'LHEScaleWeight[3]': 1.0153655578503986, 'LHEScaleWeight[0]': 1.0907798004584341, 'LHEScaleWeight[1]': 1.0798026063785011, 'LHEScaleWeight[Length$(LHEScaleWeight)-1]': 0.92428116499208, 'LHEScaleWeight[Length$(LHEScaleWeight)-4]': 0.9101690580310614, 'LHEScaleWeight[Length$(LHEScaleWeight)-2]': 0.9888177133975222}
+topScaleNormFactors2j = {'LHEScaleWeight[3]': 1.0239541358390016, 'LHEScaleWeight[0]': 1.125869020564376, 'LHEScaleWeight[1]': 1.105896547188302, 'LHEScaleWeight[Length$(LHEScaleWeight)-1]': 0.9037581174447249, 'LHEScaleWeight[Length$(LHEScaleWeight)-4]': 0.8828417179568193, 'LHEScaleWeight[Length$(LHEScaleWeight)-2]': 0.981806136304384}
 
-for var in topvariations:
-  topvars0j.append(var+'/'+str(topScaleNormFactors0j[var]))
-  topvars1j.append(var+'/'+str(topScaleNormFactors1j[var]))
+topvars0j.append('LHEScaleWeight[0]/'+str(topScaleNormFactors0j['LHEScaleWeight[0]']))
+topvars0j.append('LHEScaleWeight[Length$(LHEScaleWeight)-1]/'+str(topScaleNormFactors0j['LHEScaleWeight[Length$(LHEScaleWeight)-1]']))
+
+topvars1j.append('LHEScaleWeight[0]/'+str(topScaleNormFactors1j['LHEScaleWeight[0]']))
+topvars1j.append('LHEScaleWeight[Length$(LHEScaleWeight)-1]/'+str(topScaleNormFactors1j['LHEScaleWeight[Length$(LHEScaleWeight)-1]']))
+
+# topScaleNormFactors0j = {'Alt$(LHEScaleWeight[3],1)': 1.0127481603212656, 'Alt$(LHEScaleWeight[0],1)': 1.0781331279433415, 'Alt$(LHEScaleWeight[1],1)': 1.0690928216708382, 'Alt$(LHEScaleWeight[7],1)': 0.9345571161077737, 'Alt$(LHEScaleWeight[8],1)': 0.9227838225449528, 'Alt$(LHEScaleWeight[5],1)': 0.9907270914731349}
+# topScaleNormFactors1j = {'Alt$(LHEScaleWeight[3],1)': 1.0153655578503986, 'Alt$(LHEScaleWeight[0],1)': 1.0907798004584341, 'Alt$(LHEScaleWeight[1],1)': 1.0798026063785011, 'Alt$(LHEScaleWeight[7],1)': 0.92428116499208, 'Alt$(LHEScaleWeight[8],1)': 0.9101690580310614, 'Alt$(LHEScaleWeight[5],1)': 0.9888177133975222}
+
+# for var in topvariations:
+#   topvars0j.append(var+'/'+str(topScaleNormFactors0j[var]))
+#   topvars1j.append(var+'/'+str(topScaleNormFactors1j[var]))
 
 ## QCD scale nuisances for top are decorrelated for each RECO jet bin: the QCD scale is different for different jet multiplicities so it doesn't make sense to correlate them
 nuisances['QCDscale_top_0j']  = {
@@ -662,16 +715,26 @@ nuisances['QCDscale_V'] = {
     'AsLnN': '0'
 }
 
-nuisances['QCDscale_VV'] = {
-    'name': 'QCDscale_VV',
-    'kind': 'weight_envelope',
-    'type': 'shape',
-    'samples': {
-        'Vg': variations,
-        'VZ': variations,
-        'VgS': variations
-    }
-}
+if useWgFXFX:
+  nuisances['QCDscale_VV'] = {
+      'name': 'QCDscale_VV',
+      'kind': 'weight_envelope',
+      'type': 'shape',
+      'samples': {
+          'VZ': variations,
+      }
+  }
+else:
+  nuisances['QCDscale_VV'] = {
+      'name': 'QCDscale_VV',
+      'kind': 'weight_envelope',
+      'type': 'shape',
+      'samples': {
+          'Vg': variations,
+          'VZ': variations,
+          'VgS': variations
+      }
+  }
 
 nuisances['QCDscale_ggVV'] = {
     'name': 'QCDscale_ggVV',
@@ -726,6 +789,16 @@ nuisances['WWqscale1j']  = {
    'cutspost'  : lambda self, cuts: [cut for cut in cuts if '1j' in cut]
 }
 
+nuisances['EWKcorr_WW'] = {
+    'name': 'CMS_hww_EWKcorr_WW',
+    'skipCMS': 1,
+    'kind': 'weight',
+    'type': 'shape',
+    'samples': {
+        'WW': ['1.', '1./ewknloW']
+    },
+    'symmetrize' : True,
+}
 
 # Uncertainty on SR/CR ratio
 nuisances['CRSR_accept_DY'] = {
