@@ -15,25 +15,17 @@ cuts['hww2l2v_13TeV'] = {
    'expr': 'sr',
     # Define the sub-categorization of sr
    'categories' : {
-      'em_pm_0j_pt2ge20' : ' Lepton_pdgId[0]==-11 && Lepton_pt[1]>=20 && zeroJet',
-      'em_mp_0j_pt2ge20' : ' Lepton_pdgId[0]==11 && Lepton_pt[1]>=20 && zeroJet',
-      'me_mp_0j_pt2ge20' : ' Lepton_pdgId[0]==-13 && Lepton_pt[1]>=20 && zeroJet',
-      'me_pm_0j_pt2ge20' : ' Lepton_pdgId[0]==13 && Lepton_pt[1]>=20 && zeroJet',
+      'pm_0j_pt2ge20' : ' Lepton_pdgId[0] < 0 && Lepton_pt[1]>=20 && zeroJet',
+      'mp_0j_pt2ge20' : ' Lepton_pdgId[0] > 0 && Lepton_pt[1]>=20 && zeroJet',
       #
-      'em_pm_0j_pt2lt20' : ' Lepton_pdgId[0]==-11 && Lepton_pt[1]<20 && zeroJet',
-      'em_mp_0j_pt2lt20' : ' Lepton_pdgId[0]==11 && Lepton_pt[1]<20 && zeroJet',
-      'me_mp_0j_pt2lt20' : ' Lepton_pdgId[0]==-13 && Lepton_pt[1]<20 && zeroJet',
-      'me_pm_0j_pt2lt20' : ' Lepton_pdgId[0]==13 && Lepton_pt[1]<20 && zeroJet',
+      'pm_0j_pt2lt20' : ' Lepton_pdgId[0] < 0 && Lepton_pt[1]<20 && zeroJet',
+      'mp_0j_pt2lt20' : ' Lepton_pdgId[0] > 0 && Lepton_pt[1]<20 && zeroJet',
       #
-      'em_pm_1j_pt2ge20' : ' Lepton_pdgId[0]==-11 && Lepton_pt[1]>=20 && oneJet && Alt$(CleanJet_pt[1],0)<30',
-      'em_mp_1j_pt2ge20' : ' Lepton_pdgId[0]==11 && Lepton_pt[1]>=20 && oneJet && Alt$(CleanJet_pt[1],0)<30',
-      'me_mp_1j_pt2ge20' : ' Lepton_pdgId[0]==-13 && Lepton_pt[1]>=20 && oneJet && Alt$(CleanJet_pt[1],0)<30',
-      'me_pm_1j_pt2ge20' : ' Lepton_pdgId[0]==13 && Lepton_pt[1]>=20 && oneJet && Alt$(CleanJet_pt[1],0)<30',
+      'pm_1j_pt2ge20' : ' Lepton_pdgId[0] < 0 && Lepton_pt[1]>=20 && oneJet && Alt$(CleanJet_pt[1],0)<30',
+      'mp_1j_pt2ge20' : ' Lepton_pdgId[0] > 0 && Lepton_pt[1]>=20 && oneJet && Alt$(CleanJet_pt[1],0)<30',
       #
-      'em_pm_1j_pt2lt20' : ' Lepton_pdgId[0]==-11 && Lepton_pt[1]<20 && oneJet && Alt$(CleanJet_pt[1],0)<30',
-      'em_mp_1j_pt2lt20' : ' Lepton_pdgId[0]==11 && Lepton_pt[1]<20 && oneJet && Alt$(CleanJet_pt[1],0)<30',
-      'me_mp_1j_pt2lt20' : ' Lepton_pdgId[0]==-13 && Lepton_pt[1]<20 && oneJet && Alt$(CleanJet_pt[1],0)<30',
-      'me_pm_1j_pt2lt20' : ' Lepton_pdgId[0]==13 && Lepton_pt[1]<20 && oneJet && Alt$(CleanJet_pt[1],0)<30',
+      'pm_1j_pt2lt20' : ' Lepton_pdgId[0] < 0 && Lepton_pt[1]<20 && oneJet && Alt$(CleanJet_pt[1],0)<30',
+      'mp_1j_pt2lt20' : ' Lepton_pdgId[0] > 0 && Lepton_pt[1]<20 && oneJet && Alt$(CleanJet_pt[1],0)<30',
       #
       '2j'               : ' (mjj<65 || mjj>105) && mjj<120 && multiJet', 
    }
@@ -60,7 +52,7 @@ cuts['hww2l2v_13TeV_dytt']  = {
       '2j' : '(mjj<65 || mjj>105) && mjj<120 && multiJet',
    }
 }
-
+'''
 ## WW control regions
 ## Used only for control plots, no need to add these cuts for the fit
 cuts['hww2l2v_13TeV_ww']  = {
@@ -72,4 +64,4 @@ cuts['hww2l2v_13TeV_ww']  = {
       '2j' : '(mjj<65 || mjj>105) && mjj<120 && multiJet && mll>100',
    }
 }
-
+'''
