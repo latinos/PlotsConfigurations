@@ -176,7 +176,7 @@ nuisances['fake_syst'] = {
     'name': 'CMS_fake_syst',
     'type': 'lnN',
     'samples': {
-        'Fake_me': '1.3'
+        'Fake': '1.3'
     },
     'cutspost': lambda self, cuts: [cut for cut in cuts if '20em' not in cut],
 }
