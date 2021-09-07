@@ -24,7 +24,7 @@ cuts['hww2l2v_13TeV'] = {
    }
 }
 
-'''
+
 ## Top control regions
 cuts['hww2l2v_13TeV_top']  = { 
    'expr' : 'topcr',
@@ -44,4 +44,4 @@ cuts['hww2l2v_13TeV_dytt']  = {
       '1j' : 'oneJet && Alt$(CleanJet_pt[1],0)<30',
    }
 }
-'''
+

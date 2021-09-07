@@ -136,6 +136,7 @@ structure['ggH'] = {
                   'isData'   : 0    
                   }
 
+signals = []
 for signal in signals:
     structure[signal] = {
         'isSignal' : 1,
@@ -147,8 +148,6 @@ for signal in signals:
 import pickle
 with open('vbfDipoleScaleSTXS.pkl', 'rb') as handle:
     vbfDipoleScale = pickle.load(handle)
-
-print vbfDipoleScale
 
 for signal in signals:
     if 'qqH_hww' in signal:
@@ -169,10 +168,7 @@ structure['DATA']  = {
               }
 
 
-
-
 for nuis in nuisances.itervalues():
   if 'cutspost' in nuis:
     nuis['cuts'] = nuis['cutspost'](nuis, cuts)
 
-    print nuis
