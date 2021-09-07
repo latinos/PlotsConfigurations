@@ -136,7 +136,6 @@ structure['ggH'] = {
                   'isData'   : 0    
                   }
 
-signals = []
 for signal in signals:
     structure[signal] = {
         'isSignal' : 1,

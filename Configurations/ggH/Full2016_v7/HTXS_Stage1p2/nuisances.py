@@ -1057,7 +1057,7 @@ nuisances['QCDscale_WWewk'] = {
     'kind': 'weight_envelope',
     'type': 'shape',
     'samples': {
-        'WWewk': ['LHEScaleWeight[0]', 'LHEScaleWeight[2]']
+        'WWewk': ['LHEScaleWeight[0]/LHEScaleWeight[1]', 'LHEScaleWeight[2]/LHEScaleWeight[1]']
     }
 }
 
@@ -1098,7 +1098,7 @@ nuisances['stat'] = {
 #rate parameters
 
 nuisances['DYembnorm0j']  = {
-               'name'  : 'CMS_hww_DYttnorm0j',
+               'name'  : 'CMS_hww_DYttnorm0j_2016',
                'samples'  : {
                    'Dyemb' : '1.00',
                    },
@@ -1107,7 +1107,7 @@ nuisances['DYembnorm0j']  = {
               }
 
 nuisances['DYembnorm1j']  = {
-               'name'  : 'CMS_hww_DYttnorm1j',
+               'name'  : 'CMS_hww_DYttnorm1j_2016',
                'samples'  : {
                    'Dyemb' : '1.00',
                    },
@@ -1115,7 +1115,7 @@ nuisances['DYembnorm1j']  = {
                'cuts'  : cuts1j
               }
 nuisances['WWnorm0j']  = {
-               'name'  : 'CMS_hww_WWnorm0j',
+               'name'  : 'CMS_hww_WWnorm0j_2016',
                'samples'  : {
                    'WW' : '1.00',
                    },
@@ -1124,7 +1124,7 @@ nuisances['WWnorm0j']  = {
               }
 
 nuisances['ggWWnorm0j']  = {
-               'name'  : 'CMS_hww_WWnorm0j',
+               'name'  : 'CMS_hww_WWnorm0j_2016',
                'samples'  : {
                    'ggWW' : '1.00',
                    },
@@ -1133,7 +1133,7 @@ nuisances['ggWWnorm0j']  = {
               }
 
 nuisances['WWnorm1j']  = {
-               'name'  : 'CMS_hww_WWnorm1j',
+               'name'  : 'CMS_hww_WWnorm1j_2016',
                'samples'  : {
                    'WW' : '1.00',
                    },
@@ -1142,7 +1142,7 @@ nuisances['WWnorm1j']  = {
               }
 
 nuisances['ggWWnorm1j']  = {
-               'name'  : 'CMS_hww_WWnorm1j',
+               'name'  : 'CMS_hww_WWnorm1j_2016',
                'samples'  : {
                    'ggWW' : '1.00',
                    },
@@ -1151,7 +1151,7 @@ nuisances['ggWWnorm1j']  = {
             }
 
 nuisances['Topnorm0j']  = {
-               'name'  : 'CMS_hww_Topnorm0j',
+               'name'  : 'CMS_hww_Topnorm0j_2016',
                'samples'  : {
                    'top' : '1.00',
                    },
@@ -1160,7 +1160,7 @@ nuisances['Topnorm0j']  = {
               }
 
 nuisances['Topnorm1j']  = {
-               'name'  : 'CMS_hww_Topnorm1j',
+               'name'  : 'CMS_hww_Topnorm1j_2016',
                'samples'  : {
                    'top' : '1.00',
                    },
