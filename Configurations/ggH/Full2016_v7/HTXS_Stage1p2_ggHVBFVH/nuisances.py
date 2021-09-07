@@ -1028,7 +1028,7 @@ nuisances['QCDscale_WWewk'] = {
     'kind': 'weight_envelope',
     'type': 'shape',
     'samples': {
-        'WWewk': ['LHEScaleWeight[0]', 'LHEScaleWeight[2]']
+        'WWewk': ['LHEScaleWeight[0]/LHEScaleWeight[1]', 'LHEScaleWeight[2]/LHEScaleWeight[1]']
     }
 }
 
