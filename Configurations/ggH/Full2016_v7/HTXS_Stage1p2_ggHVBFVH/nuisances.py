@@ -70,7 +70,7 @@ from LatinoAnalysis.Tools.HiggsXSection import HiggsXSection
 HiggsXS = HiggsXSection()
 
 
-uts2j_lowmjj = []
+cuts2j_lowmjj = []
 cuts2j_highmjj = []
 cuts2j_vh = []
 cuts_highptww = []
