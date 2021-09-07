@@ -1096,7 +1096,7 @@ nuisances['WWnorm2j_highmjj']  = {
               }
  
 nuisances['ggWWnorm2j_highmjj']  = {
-               'name'  : 'CMS_hww_WWnorm2j_highmjj_2016'
+               'name'  : 'CMS_hww_WWnorm2j_highmjj_2016',
                'samples'  : {
                    'ggWW' : '1.00',
                    },
