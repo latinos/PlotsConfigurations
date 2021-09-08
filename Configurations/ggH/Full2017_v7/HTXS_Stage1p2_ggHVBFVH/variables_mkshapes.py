@@ -1,7 +1,7 @@
 # variables
 
 #variables = {}
-'''
+
 variables['events']  = {
       'name': '1',      
       'range' : (1,0,2),  
@@ -9,7 +9,7 @@ variables['events']  = {
       'fold' : 3
 }
 
-'''
+
 variables['mll']  = {   
       'name': 'mll',
       'range' : ([10, 100, 210],),
@@ -17,7 +17,7 @@ variables['mll']  = {
       'fold' : 3
 }
 
-'''
+
 variables['mllVSmjj'] = {   'name': 'mll:mjj', #   variable name    
                              'range' : ([65,85,105],[12,40,80,120,160,200],), #(8,65,105,8,12,200), # variable range
                              'xaxis' : 'm_{ll} : m_{jj}',  #   x axis name
@@ -106,7 +106,7 @@ variables['classww'] = {
      'fold'  : 3,
 }
 
-'''
+
 '''
 variables['mllVSmth_3x3bins'] = {   'name': 'mll:mth',            #   variable name    
                                     'range' : ([60, 90, 130, 200],[10, 30, 70, 210],),            #   variable range

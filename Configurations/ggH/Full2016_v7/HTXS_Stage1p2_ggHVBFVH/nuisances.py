@@ -1068,15 +1068,6 @@ nuisances['stat'] = {
 
 #rate parameters
 
-nuisances['DYttnorm2j_highmjj']  = {
-               'name'  : 'CMS_hww_DYttnorm2j_highmjj_2016',
-               'samples'  : {
-                   'DY' : '1.00',
-                   },
-               'type'  : 'rateParam',
-               'cuts'  : cuts2j_highmjj
-              }
- 
 nuisances['DYembnorm2j_highmjj']  = {
                'name'  : 'CMS_hww_DYttnorm2j_highmjj_2016',
                'samples'  : {
@@ -1111,15 +1102,6 @@ nuisances['Topnorm2j_highmjj']  = {
                    },
                'type'  : 'rateParam',
                'cuts'  : cuts2j_highmjj
-              }
- 
-nuisances['DYttnorm2j_lowmjj']  = {
-               'name'  : 'CMS_hww_DYttnorm2j_lowmjj_2016',
-               'samples'  : {
-                   'DY' : '1.00',
-                   },
-               'type'  : 'rateParam',
-               'cuts'  : cuts2j_lowmjj+cuts_highptww
               }
  
 nuisances['DYembnorm2j_lowmjj']  = {
@@ -1180,15 +1162,6 @@ nuisances['Topnorm2j_lowmjj']  = {
                'cuts'  : cuts2j_lowmjj+cuts_highptww
      }
  
- 
-nuisances['DYttnorm2j_vh']  = {
-               'name'  : 'CMS_hww_DYttnorm2j_vh_2016',
-               'samples'  : {
-                   'DY' : '1.00',
-                   },
-               'type'  : 'rateParam',
-               'cuts'  : cuts2j_vh
-             }
  
 nuisances['DYembnorm2j_vh']  = {
                'name'  : 'CMS_hww_DYttnorm2j_vh_2016',

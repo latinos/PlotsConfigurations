@@ -8,13 +8,9 @@ variables['events']  = {
       'xaxis' : 'events', 
       'fold' : 3,
       'cuts' : [
-             #'hww2l2v_13TeV_top_0j', 
-             #'hww2l2v_13TeV_top_1j', 
              'hww2l2v_13TeV_top_2j', 
              'hww2l2v_13TeV_top_2j_vbf', 
              'hww2l2v_13TeV_top_2j_vh',
-             #'hww2l2v_13TeV_dytt_0j', 
-             #'hww2l2v_13TeV_dytt_1j', 
              'hww2l2v_13TeV_dytt_2j', 
              'hww2l2v_13TeV_dytt_2j_vbf', 
              'hww2l2v_13TeV_dytt_2j_vh'
