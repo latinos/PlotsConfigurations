@@ -44,9 +44,8 @@ for categories in newfile.GetListOfKeys(): # Cut directory
     newfile2.GetDirectory(categories.GetName()).GetDirectory(variables.GetName()).cd()
     for histo_ in variable.GetListOfKeys(): # Histograms
       histoname = histo_.GetName()
-      if "DATA" in histoname: continue
       histo = variable.Get(histoname)
-      histo.Scale(lumifactor)
+      if not ("DATA" in histoname or "data_obs" in histoname): histo.Scale(lumifactor)
       histo.Write()
 newfile2.Close()
 #newfile.Close()
