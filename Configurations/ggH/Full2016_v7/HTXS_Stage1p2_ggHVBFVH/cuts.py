@@ -55,10 +55,8 @@ cuts['hww2l2v_13TeV_top']  = {
    'expr' : 'topcr',
     # Define the sub-categorization of topcr
    'categories' : {
-      #'0j' : 'zeroJet',
-      #'1j' : 'oneJet',
-      '2j' : 'multiJet && mjj<350 && (mjj<=65 || mjj>105)',
-      '2j_vbf' : 'multiJet && mjj>350',
+      '2j' : 'multiJet && mjj<350 && (mjj<65 || mjj>105)',
+      '2j_vbf' : 'multiJet && mjj>=350',
       '2j_vh' : 'multiJet && mjj>=65 && mjj<=105'
    }
 }
@@ -68,10 +66,8 @@ cuts['hww2l2v_13TeV_dytt']  = {
    'expr' : 'dycr',
    # Define the sub-categorization of dycr
    'categories' : { 
-      #'0j' : 'zeroJet',
-      #'1j' : 'oneJet',
-      '2j' : 'multiJet && mjj<350 && (mjj<=65 || mjj>105)',
-      '2j_vbf' : 'multiJet && mjj>350',
+      '2j' : 'multiJet && mjj<350 && (mjj<65 || mjj>105)',
+      '2j_vbf' : 'multiJet && mjj>=350',
       '2j_vh' : 'multiJet && mjj>=65 && mjj<=105'
    }
 }

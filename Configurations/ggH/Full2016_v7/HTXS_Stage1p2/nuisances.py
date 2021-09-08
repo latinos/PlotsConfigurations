@@ -77,81 +77,36 @@ cuts_highptww = []
 
 cuts0j = []
 cuts1j = []
+allcuts = []
 
 for k in cuts:
   for cat in cuts[k]['categories']:
+    allcuts.append(k+'_'+cat)
     if '0j' in cat: cuts0j.append(k+'_'+cat)
     elif '1j' in cat: cuts1j.append(k+'_'+cat)
 ################################ EXPERIMENTAL UNCERTAINTIES  #################################
 
 #### Luminosity
 
-#nuisances['lumi'] = {
-#    'name': 'lumi_13TeV_2016',
-#    'type': 'lnN',
-#    'samples': dict((skey, '1.025') for skey in mc if skey not in ['WW', 'top', 'DY'])
-#}
-
 nuisances['lumi_Uncorrelated'] = {
     'name': 'lumi_13TeV_2016',
     'type': 'lnN',
-    'samples': dict((skey, '1.022') for skey in mc if skey not in ['WW', 'top'])
+    'samples': dict((skey, '1.01') for skey in mc if skey not in ['WW', 'top'])
 }
 
-nuisances['lumi_XYFact'] = {
-    'name': 'lumi_13TeV_XYFact',
+nuisances['lumi_correlated'] = {
+    'name': 'lumi_13TeV_correlated',
     'type': 'lnN',
-    'samples': dict((skey, '1.009') for skey in mc if skey not in ['WW', 'top'])
+    'samples': dict((skey, '1.006') for skey in mc if skey not in ['WW', 'top'])
 }
-
-nuisances['lumi_BBDefl'] = {
-    'name': 'lumi_13TeV_BBDefl',
-    'type': 'lnN',
-    'samples': dict((skey, '1.004') for skey in mc if skey not in ['WW', 'top'])
-}
-
-nuisances['lumi_DynBeta'] = {
-    'name': 'lumi_13TeV_DynBeta',
-    'type': 'lnN',
-    'samples': dict((skey, '1.005') for skey in mc if skey not in ['WW', 'top'])
-}
-
-nuisances['lumi_Ghosts'] = {
-    'name': 'lumi_13TeV_Ghosts',
-    'type': 'lnN',
-    'samples': dict((skey, '1.004') for skey in mc if skey not in ['WW', 'top'])
-}
-
-#### FAKES
-
-# nuisances['fake_syst_em'] = {
-#     'name': 'CMS_fake_syst_em',
-#     'type': 'lnN',
-#     'samples': {
-#         'Fake_em': '1.3'
-#     },
-#     'cutspost': lambda self, cuts: [cut for cut in cuts if '20me' not in cut],
-#     #'perRecoBin': True
-# }
-
-# nuisances['fake_syst_me'] = {
-#     'name': 'CMS_fake_syst_me',
-#     'type': 'lnN',
-#     'samples': {
-#         'Fake_me': '1.3'
-#     },
-#     'cutspost': lambda self, cuts: [cut for cut in cuts if '20em' not in cut],
-#     #'perRecoBin': True
-# }
 
 nuisances['fake_syst'] = {
-    'name': 'CMS_fake_syst',
+    'name': 'CMS_fake_syst_2016',
     'type': 'lnN',
     'samples': {
         'Fake': '1.3'
     },
-    'cutspost': lambda self, cuts: [cut for cut in cuts if '20em' not in cut],
-    #'perRecoBin': True
+    'perRecoBin': True
 }
 
 nuisances['fake_ele'] = {
@@ -160,7 +115,8 @@ nuisances['fake_ele'] = {
     'type': 'shape',
     'samples': {
         'Fake': ['fakeWEleUp', 'fakeWEleDown'],
-    }
+    },
+    'perRecoBin': True
 }
 
 nuisances['fake_ele_stat'] = {
@@ -169,7 +125,8 @@ nuisances['fake_ele_stat'] = {
     'type': 'shape',
     'samples': {
         'Fake': ['fakeWStatEleUp', 'fakeWStatEleDown']
-    }
+    },
+    'perRecoBin': True
 }
 
 nuisances['fake_mu'] = {
@@ -178,7 +135,8 @@ nuisances['fake_mu'] = {
     'type': 'shape',
     'samples': {
         'Fake': ['fakeWMuUp', 'fakeWMuDown'],
-    }
+    },
+    'perRecoBin': True
 }
 
 nuisances['fake_mu_stat'] = {
@@ -187,7 +145,8 @@ nuisances['fake_mu_stat'] = {
     'type': 'shape',
     'samples': {
         'Fake': ['fakeWStatMuUp', 'fakeWStatMuDown'],
-    }
+    },
+    'perRecoBin': True
 }
 
 ##### B-tagger
@@ -228,12 +187,24 @@ nuisances['prefire'] = {
 
 ##### Electron Efficiency and energy scale
 
+nuisances['eff_e_CR'] = {
+    'name': 'CMS_eff_e_CR_2016',
+    'kind': 'weight',
+    'type': 'shape',
+    'samples': dict((skey, ['SFweightEleUp', 'SFweightEleDown']) for skey in mc_emb),
+    'cuts': [cut for cut in cuts if '_CR_' in cut or 'top' in cut or 'dytt' in cut],
+    'perRecoBin': True
+}
+
 nuisances['eff_e'] = {
     'name': 'CMS_eff_e_2016',
     'kind': 'weight',
     'type': 'shape',
-    'samples': dict((skey, ['SFweightEleUp', 'SFweightEleDown']) for skey in mc_emb)
+    'samples': dict((skey, ['SFweightEleUp', 'SFweightEleDown']) for skey in mc_emb),
+    'cuts': [cut for cut in cuts if not ('_CR_' in cut or 'top' in cut or 'dytt' in cut)],
+    'perRecoBin': True
 }
+
 
 nuisances['electronpt'] = {
     'name': 'CMS_scale_e_2016',
@@ -262,11 +233,23 @@ if useEmbeddedDY:
 
 ##### Muon Efficiency and energy scale
 
+nuisances['eff_m_CR'] = {
+    'name': 'CMS_eff_m_CR_2016',
+    'kind': 'weight',
+    'type': 'shape',
+    'samples': dict((skey, ['SFweightMuUp', 'SFweightMuDown']) for skey in mc_emb),
+    'cuts': [cut for cut in cuts if '_CR_' in cut or 'top' in cut or 'dytt' in cut],
+    'perRecoBin': True
+}
+
+
 nuisances['eff_m'] = {
     'name': 'CMS_eff_m_2016',
     'kind': 'weight',
     'type': 'shape',
     'samples': dict((skey, ['SFweightMuUp', 'SFweightMuDown']) for skey in mc_emb),
+    'cuts': [cut for cut in cuts if not ('_CR_' in cut or 'top' in cut or 'dytt' in cut)],
+    'perRecoBin': True
 }
 
 nuisances['muonpt'] = {
@@ -346,7 +329,6 @@ nuisances['met'] = {
     'AsLnN': '1'
 }
 
-##### Di-Tau vetoing for embedding
 ##### Di-Tau vetoing for embedding
 if useEmbeddedDY:
   if runDYveto:
@@ -509,13 +491,25 @@ nuisances['VgStar'] = {
         'VgS_L': '1.25'
     }
 }
-
+useWgFXFX=True
 if useWgFXFX:
+#   nuisances['VgScale'] = {
+#       'name': 'CMS_hww_VgScale',
+#       'type': 'lnN',
+#       'samples': {
+#           'Vg': '1.06'
+#       }
+#   }
+
+## Vg scale as a function of nGenJet
+
   nuisances['VgScale'] = {
       'name': 'CMS_hww_VgScale',
-      'type': 'lnN',
+      'type': 'shape',
+      'kind': 'weight',
       'samples': {
-          'Vg': '1.06'
+          'Vg': ['0.984 * (nCleanGenJet==0) + 1.015 * (nCleanGenJet==1) + 1.09 * ( nCleanGenJet>1)',
+                 '1.014 * (nCleanGenJet==0) + 0.985 * (nCleanGenJet==1) + 0.93 * ( nCleanGenJet>1)']
       }
   }
 
@@ -648,7 +642,6 @@ nuisances['pdf_qqbar_ACCEPT'] = {
 
 ##### Renormalization & factorization scales
 
-
 ## Shape nuisance due to QCD scale variations for top
 ## LHE scale variation weights (w_var / w_nominal)
 ## Different approach in this case because LHEScaleWeight is missing in single top samples
@@ -658,28 +651,21 @@ topvars0j = []
 topvars1j = []
 
 ## Factors computed to renormalize the top scale variations such that the integral is not changed in each RECO jet bin (we have rateParams for that)
-topScaleNormFactors0j = {'LHEScaleWeight[3]': 1.0127481603212656, 'LHEScaleWeight[0]': 1.0781331279433415, 'LHEScaleWeight[1]': 1.0690928216708382, 'LHEScaleWeight[Length$(LHEScaleWeight)-1]': 0.9345571161077737, 'LHEScaleWeight[Length$(LHEScaleWeight)-4]': 0.9227838225449528, 'LHEScaleWeight[Length$(LHEScaleWeight)-2]': 0.9907270914731349}
-topScaleNormFactors1j = {'LHEScaleWeight[3]': 1.0153655578503986, 'LHEScaleWeight[0]': 1.0907798004584341, 'LHEScaleWeight[1]': 1.0798026063785011, 'LHEScaleWeight[Length$(LHEScaleWeight)-1]': 0.92428116499208, 'LHEScaleWeight[Length$(LHEScaleWeight)-4]': 0.9101690580310614, 'LHEScaleWeight[Length$(LHEScaleWeight)-2]': 0.9888177133975222}
-topScaleNormFactors2j = {'LHEScaleWeight[3]': 1.0239541358390016, 'LHEScaleWeight[0]': 1.125869020564376, 'LHEScaleWeight[1]': 1.105896547188302, 'LHEScaleWeight[Length$(LHEScaleWeight)-1]': 0.9037581174447249, 'LHEScaleWeight[Length$(LHEScaleWeight)-4]': 0.8828417179568193, 'LHEScaleWeight[Length$(LHEScaleWeight)-2]': 0.981806136304384}
+topScaleNormFactors0j = {'LHEScaleWeight[3]': 1.0127481603212656, 'LHEScaleWeight[0]': 1.0781331279433415, 'LHEScaleWeight[1]': 1.0690928216708382, 'LHEScaleWeight[8]': 0.9345571161077737, 'LHEScaleWeight[Length$(LHEScaleWeight)-4]': 0.9227838225449528, 'LHEScaleWeight[Length$(LHEScaleWeight)-2]': 0.9907270914731349}
+topScaleNormFactors1j = {'LHEScaleWeight[3]': 1.0153655578503986, 'LHEScaleWeight[0]': 1.0907798004584341, 'LHEScaleWeight[1]': 1.0798026063785011, 'LHEScaleWeight[8]': 0.92428116499208, 'LHEScaleWeight[Length$(LHEScaleWeight)-4]': 0.9101690580310614, 'LHEScaleWeight[Length$(LHEScaleWeight)-2]': 0.9888177133975222}
+topScaleNormFactors2j = {'LHEScaleWeight[3]': 1.0239541358390016, 'LHEScaleWeight[0]': 1.125869020564376, 'LHEScaleWeight[1]': 1.105896547188302, 'LHEScaleWeight[8]': 0.9037581174447249, 'LHEScaleWeight[Length$(LHEScaleWeight)-4]': 0.8828417179568193, 'LHEScaleWeight[Length$(LHEScaleWeight)-2]': 0.981806136304384}
 
-topvars0j.append('LHEScaleWeight[0]/'+str(topScaleNormFactors0j['LHEScaleWeight[0]']))
-topvars0j.append('LHEScaleWeight[Length$(LHEScaleWeight)-1]/'+str(topScaleNormFactors0j['LHEScaleWeight[Length$(LHEScaleWeight)-1]']))
+topvars0j.append('Alt$(LHEScaleWeight[0], 1.)/'+str(topScaleNormFactors0j['LHEScaleWeight[0]']))
+topvars0j.append('Alt$(LHEScaleWeight[8], 1.)/'+str(topScaleNormFactors0j['LHEScaleWeight[8]']))
 
-topvars1j.append('LHEScaleWeight[0]/'+str(topScaleNormFactors1j['LHEScaleWeight[0]']))
-topvars1j.append('LHEScaleWeight[Length$(LHEScaleWeight)-1]/'+str(topScaleNormFactors1j['LHEScaleWeight[Length$(LHEScaleWeight)-1]']))
-
-# topScaleNormFactors0j = {'Alt$(LHEScaleWeight[3],1)': 1.0127481603212656, 'Alt$(LHEScaleWeight[0],1)': 1.0781331279433415, 'Alt$(LHEScaleWeight[1],1)': 1.0690928216708382, 'Alt$(LHEScaleWeight[7],1)': 0.9345571161077737, 'Alt$(LHEScaleWeight[8],1)': 0.9227838225449528, 'Alt$(LHEScaleWeight[5],1)': 0.9907270914731349}
-# topScaleNormFactors1j = {'Alt$(LHEScaleWeight[3],1)': 1.0153655578503986, 'Alt$(LHEScaleWeight[0],1)': 1.0907798004584341, 'Alt$(LHEScaleWeight[1],1)': 1.0798026063785011, 'Alt$(LHEScaleWeight[7],1)': 0.92428116499208, 'Alt$(LHEScaleWeight[8],1)': 0.9101690580310614, 'Alt$(LHEScaleWeight[5],1)': 0.9888177133975222}
-
-# for var in topvariations:
-#   topvars0j.append(var+'/'+str(topScaleNormFactors0j[var]))
-#   topvars1j.append(var+'/'+str(topScaleNormFactors1j[var]))
+topvars1j.append('Alt$(LHEScaleWeight[0], 1.)/'+str(topScaleNormFactors1j['LHEScaleWeight[0]']))
+topvars1j.append('Alt$(LHEScaleWeight[8], 1.)/'+str(topScaleNormFactors1j['LHEScaleWeight[8]']))
 
 ## QCD scale nuisances for top are decorrelated for each RECO jet bin: the QCD scale is different for different jet multiplicities so it doesn't make sense to correlate them
 nuisances['QCDscale_top_0j']  = {
-    'name'  : 'QCDscale_top_0j',
+    'name'  : 'QCDscale_top_0j_2016',
     'skipCMS' : 1,
-    'kind'  : 'weight_envelope',
+    'kind'  : 'weight',
     'type'  : 'shape',
     'cutspost' : lambda self, cuts: [cut for cut in cuts if '0j' in cut],
     'samples'  : {
@@ -688,16 +674,15 @@ nuisances['QCDscale_top_0j']  = {
 }
 
 nuisances['QCDscale_top_1j']  = {
-    'name'  : 'QCDscale_top_1j',
+    'name'  : 'QCDscale_top_1j_2016',
     'skipCMS' : 1,
-    'kind'  : 'weight_envelope',
+    'kind'  : 'weight',
     'type'  : 'shape',
     'cutspost' : lambda self, cuts: [cut for cut in cuts if '1j' in cut],
     'samples'  : {
        'top' : topvars1j,
     }
 }
-
 
 ## Shape nuisance due to QCD scale variations for DY
 # LHE scale variation weights (w_var / w_nominal)
@@ -712,7 +697,7 @@ nuisances['QCDscale_V'] = {
     'kind': 'weight_envelope',
     'type': 'shape',
     'samples': {'DY': variations},
-    'AsLnN': '0'
+    'AsLnN': '1'
 }
 
 if useWgFXFX:
@@ -805,11 +790,8 @@ nuisances['CRSR_accept_DY'] = {
     'name': 'CMS_hww_CRSR_accept_DY',
     'type': 'lnN',
     'samples': {'DY': '1.02'},
-    #'samples': {'DY': '1.1'},
-    'cuts': [cut for cut in cuts if '_CR_' in cut],
-    #'cutspost': (lambda self, cuts: [cut for cut in cuts if '_DY_' in cut and cut in self['cuts']]),
-    'cutspost': (lambda self, cuts: [cut for cut in cuts if '_DY_' in cut]),
-    #'perRecoBin': True
+    'cuts': [cut for cut in cuts if 'dytt' in cut],
+    'cutspost': (lambda self, cuts: [cut for cut in cuts if '_dytt_' in cut]),
 }
 
 # Uncertainty on SR/CR ratio
@@ -817,9 +799,8 @@ nuisances['CRSR_accept_top'] = {
     'name': 'CMS_hww_CRSR_accept_top',
     'type': 'lnN',
     'samples': {'top': '1.01'},
-    #'samples': {'top': '1.05'},
-    'cuts': [cut for cut in cuts if '_CR_' in cut],
-    'cutspost': (lambda self, cuts: [cut for cut in cuts if '_top_' in cut]),
+    'cuts': [cut for cut in cuts if 'dytt' in cut],
+    'cutspost': (lambda self, cuts: [cut for cut in cuts if 'dytt' in cut]),
 }
 
 # Theory uncertainty for ggH
@@ -1073,10 +1054,11 @@ nuisances['QCDscale_ttH'] = {
 
 nuisances['QCDscale_WWewk'] = {
     'name': 'QCDscale_WWewk',
+    'kind': 'weight_envelope',
+    'type': 'shape',
     'samples': {
-        'WWewk': '1.11',
-    },
-    'type': 'lnN'
+        'WWewk': ['LHEScaleWeight[0]/LHEScaleWeight[1]', 'LHEScaleWeight[2]/LHEScaleWeight[1]']
+    }
 }
 
 nuisances['QCDscale_qqbar_ACCEPT'] = {
@@ -1116,7 +1098,7 @@ nuisances['stat'] = {
 #rate parameters
 
 nuisances['DYembnorm0j']  = {
-               'name'  : 'CMS_hww_DYttnorm0j',
+               'name'  : 'CMS_hww_DYttnorm0j_2016',
                'samples'  : {
                    'Dyemb' : '1.00',
                    },
@@ -1125,7 +1107,7 @@ nuisances['DYembnorm0j']  = {
               }
 
 nuisances['DYembnorm1j']  = {
-               'name'  : 'CMS_hww_DYttnorm1j',
+               'name'  : 'CMS_hww_DYttnorm1j_2016',
                'samples'  : {
                    'Dyemb' : '1.00',
                    },
@@ -1133,7 +1115,7 @@ nuisances['DYembnorm1j']  = {
                'cuts'  : cuts1j
               }
 nuisances['WWnorm0j']  = {
-               'name'  : 'CMS_hww_WWnorm0j',
+               'name'  : 'CMS_hww_WWnorm0j_2016',
                'samples'  : {
                    'WW' : '1.00',
                    },
@@ -1142,7 +1124,7 @@ nuisances['WWnorm0j']  = {
               }
 
 nuisances['ggWWnorm0j']  = {
-               'name'  : 'CMS_hww_WWnorm0j',
+               'name'  : 'CMS_hww_WWnorm0j_2016',
                'samples'  : {
                    'ggWW' : '1.00',
                    },
@@ -1151,7 +1133,7 @@ nuisances['ggWWnorm0j']  = {
               }
 
 nuisances['WWnorm1j']  = {
-               'name'  : 'CMS_hww_WWnorm1j',
+               'name'  : 'CMS_hww_WWnorm1j_2016',
                'samples'  : {
                    'WW' : '1.00',
                    },
@@ -1160,7 +1142,7 @@ nuisances['WWnorm1j']  = {
               }
 
 nuisances['ggWWnorm1j']  = {
-               'name'  : 'CMS_hww_WWnorm1j',
+               'name'  : 'CMS_hww_WWnorm1j_2016',
                'samples'  : {
                    'ggWW' : '1.00',
                    },
@@ -1169,7 +1151,7 @@ nuisances['ggWWnorm1j']  = {
             }
 
 nuisances['Topnorm0j']  = {
-               'name'  : 'CMS_hww_Topnorm0j',
+               'name'  : 'CMS_hww_Topnorm0j_2016',
                'samples'  : {
                    'top' : '1.00',
                    },
@@ -1178,7 +1160,7 @@ nuisances['Topnorm0j']  = {
               }
 
 nuisances['Topnorm1j']  = {
-               'name'  : 'CMS_hww_Topnorm1j',
+               'name'  : 'CMS_hww_Topnorm1j_2016',
                'samples'  : {
                    'top' : '1.00',
                    },

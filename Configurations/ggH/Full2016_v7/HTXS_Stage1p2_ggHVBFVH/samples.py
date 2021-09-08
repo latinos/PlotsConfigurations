@@ -288,8 +288,8 @@ else:
       'weight': mcCommonWeight+embed_tautauveto + ' * (gstarLow * 0.94 + gstarHigh * 1.14)',
       'FilesPerJob': 4,
       'subsamples': {
-        'L': 'gstarLow',
-        'H': 'gstarHigh'
+      'L': 'gstarLow',
+      'H': 'gstarHigh'
       }
   }
   addSampleWeight(samples, 'VgS', 'Wg_MADGRAPHMLM', '(Gen_ZGstar_mass > 0 && Gen_ZGstar_mass < 0.1)')
@@ -515,12 +515,10 @@ for _, sd in DataRun:
     samples['Fake']['name'].extend(files)
     samples['Fake']['weights'].extend([DataTrig[pd]] * len(files))
 
-'''
-samples['Fake']['subsamples'] = {
-  'em': 'abs(Lepton_pdgId[0]) == 11',
-  'me': 'abs(Lepton_pdgId[0]) == 13'
-}
-'''
+# samples['Fake']['subsamples'] = {
+#   'em': 'abs(Lepton_pdgId[0]) == 11',
+#   'me': 'abs(Lepton_pdgId[0]) == 13'
+# }
 
 ###########################################
 ################## DATA ###################

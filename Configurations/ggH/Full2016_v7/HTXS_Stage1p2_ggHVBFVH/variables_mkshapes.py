@@ -53,21 +53,18 @@ variables['mllVSmth_4x3bins'] = {   'name': 'mll:mth',            #   variable n
 
 variables['classvbf_1'] = {
      'name': 'vbfdnn',
-     #'range' : ([0,0.535,0.635,0.705,1.],),
      'range' : ([0,0.535,0.605,0.665,0.705,0.775,1.],),
      'xaxis' : 'DNN discriminant vbf',
      'fold'  : 3,
 }
 variables['classvbf_2'] = {
      'name': 'vbfdnn',
-     #'range' : ([0,0.625,0.735,0.845,1.],),
      'range' : ([0,0.655,0.725,0.765,0.795,0.825,0.855,0.915,1.],),
      'xaxis' : 'DNN discriminant vbf',
      'fold'  : 3,
 }
 variables['classvbf_3'] = {
      'name': 'vbfdnn',
-     #'range' : ([0,0.715,1.],),
      'range' : ([0,0.745,0.875,1.],),
      'xaxis' : 'DNN discriminant vbf',
      'fold'  : 3,
@@ -103,38 +100,4 @@ variables['classww'] = {
      'xaxis' : 'DNN discriminant ww',
      'fold'  : 3,
 }
-
-
-
-
-
-'''
-variables['classvbf_mjjlow'] = {
-     'name': 'vbfdnn_mjjlow',
-     'range' : ([0.3,0.4,0.5,0.6,0.7,0.8,0.9,1],),
-     'xaxis' : 'DNN discriminant vbf',
-     'fold'  : 3
-}
-
-variables['classggh_mjjlow'] = {
-     'name': 'gghdnn_mjjlow',
-     'range' : ([0.3,0.4,0.5,0.6,0.7,0.8,0.9,1],),
-     'xaxis' : 'DNN discriminant ggh',
-     'fold'  : 3
-}
-
-variables['classtop_mjjlow'] = {
-     'name': 'topdnn_mjjlow',
-     'range' : ([0.3,0.4,0.5,0.6,0.7,0.8,0.9,1],),
-     'xaxis' : 'DNN discriminant top',
-     'fold'  : 3
-}
-
-variables['classww_mjjlow'] = {
-     'name': 'wwdnn_mjjlow',
-     'range' : ([0.3,0.4,0.5,0.6,0.7,0.8,0.9,1],),
-     'xaxis' : 'DNN discriminant ww',
-     'fold'  : 3
-}
-'''
 
