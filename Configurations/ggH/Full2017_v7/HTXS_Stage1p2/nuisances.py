@@ -489,7 +489,7 @@ nuisances['VgStar'] = {
         'VgS_L': '1.25'
     }
 }
-useWgFXFX=True
+
 if useWgFXFX:
 #   nuisances['VgScale'] = {
 #       'name': 'CMS_hww_VgScale',

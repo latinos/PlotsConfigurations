@@ -105,7 +105,7 @@ useDYtt = True
 
 # The Dyveto sample is used to estimate one piece of the Dyemb uncertainty
 # To avoid running it all the times, it was run once and the uncertainty was converted into a lnN (see nuisances.py)
-runDYveto = True
+runDYveto = False
 
 embed_tautauveto = '' #Setup
 if useEmbeddedDY:
@@ -523,11 +523,6 @@ for _, sd in DataRun:
     files = nanoGetSampleFiles(fakeDirectory, pd + '_' + sd)
     samples['Fake']['name'].extend(files)
     samples['Fake']['weights'].extend([DataTrig[pd]] * len(files))
-
-# samples['Fake']['subsamples'] = {
-#   'em': 'abs(Lepton_pdgId[0]) == 11',
-#   'me': 'abs(Lepton_pdgId[0]) == 13'
-# }
 
 ###########################################
 ################## DATA ###################
