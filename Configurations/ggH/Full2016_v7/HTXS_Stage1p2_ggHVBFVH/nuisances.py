@@ -1143,16 +1143,9 @@ nuisances['Topnorm2j_highmjj']  = {
                'type'  : 'rateParam',
                'cuts'  : cuts2j_highmjj
               }
- 
-nuisances['DYembnorm2j_lowmjj']  = {
-               'name'  : 'CMS_hww_DYttnorm2j_lowmjj_2016',
-               'samples'  : {
-                   'Dyemb' : '1.00',
-                   },
-               'type'  : 'rateParam',
-               'cuts'  : cuts2j_lowmjj+cuts_highptww
-                }
- 
+
+#----- 
+
 nuisances['WWnorm2j_lowmjj']  = {
                'name'  : 'CMS_hww_WWnorm2j_lowmjj_2016',
                'samples'  : {
@@ -1170,8 +1163,8 @@ nuisances['ggWWnorm2j_lowmjj']  = {
                'type'  : 'rateParam',
                'cuts'  : cuts2j_lowmjj
               }
- 
- 
+
+#----- 
  
 nuisances['WWnorm2j_highptww']  = {
                'name'  : 'CMS_hww_WWnorm2j_highptww_2016',
@@ -1192,7 +1185,6 @@ nuisances['ggWWnorm2j_highptww']  = {
  
               }
  
- 
 nuisances['Topnorm2j_highptww']  = {
                'name'  : 'CMS_hww_Topnorm2j_lowmjj_2016',
                'samples'  : {
@@ -1201,7 +1193,17 @@ nuisances['Topnorm2j_highptww']  = {
                'type'  : 'rateParam',
                'cuts'  : cuts2j_lowmjj+cuts_highptww
      }
+
+nuisances['DYembnorm2j_highptww']  = {
+               'name'  : 'CMS_hww_DYttnorm2j_highptww_2016',
+               'samples'  : {
+                   'Dyemb' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : cuts2j_lowmjj+cuts_highptww
+                }
  
+#----- 
  
 nuisances['DYembnorm2j_vh']  = {
                'name'  : 'CMS_hww_DYttnorm2j_vh_2016',

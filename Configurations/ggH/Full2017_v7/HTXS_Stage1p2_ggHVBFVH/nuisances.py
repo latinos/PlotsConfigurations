@@ -83,7 +83,6 @@ for k in cuts:
 
 
 
-
 ################################ EXPERIMENTAL UNCERTAINTIES  #################################
 
 #### Luminosity
@@ -161,7 +160,7 @@ nuisances['fake_mu_stat'] = {
 for shift in ['jes', 'lf', 'hfstats1', 'hfstats2', 'lfstats1', 'lfstats2', 'cferr1', 'cferr2']:
     btag_syst = ['(btagSF%sup)/(btagSF)' % shift, '(btagSF%sdown)/(btagSF)' % shift]
 
-    name = 'CMS_btag_%s' % shift
+    name = 'CMS_btag_DeepFlav_%s' % shift
     if 'stats' in shift:
         name += '_2017'
 
@@ -200,7 +199,7 @@ nuisances['eff_e_CR'] = {
     'type': 'shape',
     'samples': dict((skey, ['SFweightEleUp', 'SFweightEleDown']) for skey in mc_emb),
     'cuts': [cut for cut in cuts if '_CR_' in cut or 'top' in cut or 'dytt' in cut],
-    'perRecoBin': True
+#    'perRecoBin': True
 }
 
 nuisances['eff_e'] = {
@@ -209,7 +208,7 @@ nuisances['eff_e'] = {
     'type': 'shape',
     'samples': dict((skey, ['SFweightEleUp', 'SFweightEleDown']) for skey in mc_emb),
     'cuts': [cut for cut in cuts if not ('_CR_' in cut or 'top' in cut or 'dytt' in cut)],
-    'perRecoBin': True
+#    'perRecoBin': True
 }
 
 nuisances['electronpt'] = {
@@ -246,7 +245,7 @@ nuisances['eff_m_CR'] = {
     'type': 'shape',
     'samples': dict((skey, ['SFweightMuUp', 'SFweightMuDown']) for skey in mc_emb),
     'cuts': [cut for cut in cuts if '_CR_' in cut or 'top' in cut or 'dytt' in cut],
-    'perRecoBin': True
+#    'perRecoBin': True
 }
 
 
@@ -256,7 +255,7 @@ nuisances['eff_m'] = {
     'type': 'shape',
     'samples': dict((skey, ['SFweightMuUp', 'SFweightMuDown']) for skey in mc_emb),
     'cuts': [cut for cut in cuts if not ('_CR_' in cut or 'top' in cut or 'dytt' in cut)],
-    'perRecoBin': True
+#    'perRecoBin': True
 }
 
 nuisances['muonpt'] = {
@@ -362,6 +361,47 @@ if useEmbeddedDY:
                        'Dyveto'   : ['0.1', '-0.1'],
                     }
              }
+
+  else:
+    # These hardcoded numbers have been obtained by running the full Dyveto (with runDYveto=True in samples.py) 
+    # and computing the lnN uncertainty as variation of the up/down integral with respect to the nominal Dyemb integral
+    unc_dict = {}
+    unc_dict['hww2l2v_13TeV_dytt_2j_vh']                        = '1.00709'
+    unc_dict['hww2l2v_13TeV_of_pth300_450']                     = '1.00204'
+    unc_dict['hww2l2v_13TeV_top_2j_vbf']                        = '1.05492'
+    unc_dict['hww2l2v_13TeV_of2j_pth60_120']                    = '1.01692'
+    unc_dict['hww2l2v_13TeV_of2j_vbflike_mjj350_700_pthLT200']  = '1.00386'
+    unc_dict['hww2l2v_13TeV_of2j_wwlike_mjjGT350_pthGT200']     = '1.04434'
+    unc_dict['hww2l2v_13TeV_of2j_vbflike_mjjGT700_pthLT200']    = '1.00816'
+    unc_dict['hww2l2v_13TeV_of2j_gghlike_mjjGT350_pthGT200']    = '1.00533'
+    unc_dict['hww2l2v_13TeV_dytt_2j']                           = '1.00353'
+    unc_dict['hww2l2v_13TeV_of2j_toplike_mjjGT350_pthGT200']    = '1.04963'
+    unc_dict['hww2l2v_13TeV_of2j_wwlike_mjj350_700_pthLT200']   = '1.00626'
+    unc_dict['hww2l2v_13TeV_of2j_gghlike_mjj350_700_pthLT200']  = '1.00469'
+    unc_dict['hww2l2v_13TeV_of2j_gghlike_mjjGT700_pthLT200']    = '1.00000'
+    unc_dict['hww2l2v_13TeV_of_pthGT650']                       = '1.04108'
+    unc_dict['hww2l2v_13TeV_dytt_2j_vbf']                       = '1.00744'
+    unc_dict['hww2l2v_13TeV_of2j_mjj65_105']                    = '1.01212'
+    unc_dict['hww2l2v_13TeV_of_pth450_650']                     = '1.08254'
+    unc_dict['hww2l2v_13TeV_of2j_vbflike_mjjGT350_pthGT200']    = '1.00257'
+    unc_dict['hww2l2v_13TeV_of2j_pth0_60']                      = '1.01262'
+    unc_dict['hww2l2v_13TeV_of2j_toplike_mjj350_700_pthLT200']  = '1.01435'
+    unc_dict['hww2l2v_13TeV_top_2j_vh']                         = '1.04955'
+    unc_dict['hww2l2v_13TeV_of2j_wwlike_mjjGT700_pthLT200']     = '1.01714'
+    unc_dict['hww2l2v_13TeV_top_2j']                            = '1.05577'
+    unc_dict['hww2l2v_13TeV_of_pth200_300']                     = '1.02475'
+    unc_dict['hww2l2v_13TeV_of2j_toplike_mjjGT700_pthLT200']    = '1.04102'
+    unc_dict['hww2l2v_13TeV_of2j_pth120_200']                   = '1.02233'
+
+    for category,uncertainty in unc_dict.iteritems():
+      nuisances['embedveto_'+category]  = {
+                      'name'  : 'CMS_embed_veto_2017',
+                      'type'  : 'lnN',
+                      'samples'  : {
+                         'Dyemb'    : uncertainty,
+                         },
+                       'cuts': [category],
+                     }
 
 ##### Pileup
 
@@ -622,8 +662,6 @@ variations = ['LHEScaleWeight[0]', 'LHEScaleWeight[1]', 'LHEScaleWeight[3]', 'LH
 topvars2j = []
 
 ## Factors computed to renormalize the top scale variations such that the integral is not changed in each RECO jet bin (we have rateParams for that)
-#topScaleNormFactors0j = {'LHEScaleWeight[3]': 1.0008829637654995, 'LHEScaleWeight[0]': 1.070761703863844, 'LHEScaleWeight[1]': 1.0721982065714528, 'LHEScaleWeight[Length$(LHEScaleWeight)-1]': 0.9270717138194097, 'LHEScaleWeight[Length$(LHEScaleWeight)-4]': 1.002515087891841, 'LHEScaleWeight[Length$(LHEScaleWeight)-2]': 0.9270080603942781}
-#topScaleNormFactors1j = {'LHEScaleWeight[3]': 1.0079221754798773, 'LHEScaleWeight[0]': 1.0846741444664376, 'LHEScaleWeight[1]': 1.0806432359691847, 'LHEScaleWeight[Length$(LHEScaleWeight)-1]': 0.9129672863490275, 'LHEScaleWeight[Length$(LHEScaleWeight)-4]': 0.9960603215169435, 'LHEScaleWeight[Length$(LHEScaleWeight)-2]': 0.9198946095840594}
 topScaleNormFactors2j = {'LHEScaleWeight[3]': 1.0224795274718796, 'LHEScaleWeight[0]': 1.1209941307567444, 'LHEScaleWeight[1]': 1.103222357530683, 'LHEScaleWeight[Length$(LHEScaleWeight)-1]': 0.8840173265167147, 'LHEScaleWeight[Length$(LHEScaleWeight)-4]': 0.9829374807746288, 'LHEScaleWeight[Length$(LHEScaleWeight)-2]': 0.9038880068177306}
 
 topvars2j.append('LHEScaleWeight[0]/'+str(topScaleNormFactors2j['LHEScaleWeight[0]']))
@@ -1056,7 +1094,7 @@ nuisances['DYembnorm2j_highmjj']  = {
                'type'  : 'rateParam',
                'cuts'  : cuts2j_highmjj
               }
-
+ 
 nuisances['WWnorm2j_highmjj']  = {
                'name'  : 'CMS_hww_WWnorm2j_highmjj',
                'samples'  : {
@@ -1065,7 +1103,7 @@ nuisances['WWnorm2j_highmjj']  = {
                'type'  : 'rateParam',
                'cuts'  : cuts2j_highmjj
               }
-
+ 
 nuisances['ggWWnorm2j_highmjj']  = {
                'name'  : 'CMS_hww_WWnorm2j_highmjj',
                'samples'  : {
@@ -1074,7 +1112,7 @@ nuisances['ggWWnorm2j_highmjj']  = {
                'type'  : 'rateParam',
                'cuts'  : cuts2j_highmjj
               }
-
+ 
 nuisances['Topnorm2j_highmjj']  = {
                'name'  : 'CMS_hww_Topnorm2j_highmjj',
                'samples'  : {
@@ -1084,24 +1122,17 @@ nuisances['Topnorm2j_highmjj']  = {
                'cuts'  : cuts2j_highmjj
               }
 
-nuisances['DYembnorm2j_lowmjj']  = {
-               'name'  : 'CMS_hww_DYttnorm2j_lowmjj',
-               'samples'  : {
-                   'Dyemb' : '1.00',
-                   },
-               'type'  : 'rateParam',
-               'cuts'  : cuts2j_lowmjj+cuts_highptww
-                }
+#----- 
 
 nuisances['WWnorm2j_lowmjj']  = {
-               'name'  : 'CMS_hww_WWnorm2ji_lowmjj',
+               'name'  : 'CMS_hww_WWnorm2j_lowmjj',
                'samples'  : {
                    'WW' : '1.00',
                    },
                'type'  : 'rateParam',
                'cuts'  : cuts2j_lowmjj
               }
-
+ 
 nuisances['ggWWnorm2j_lowmjj']  = {
                'name'  : 'CMS_hww_WWnorm2j_lowmjj',
                'samples'  : {
@@ -1111,27 +1142,28 @@ nuisances['ggWWnorm2j_lowmjj']  = {
                'cuts'  : cuts2j_lowmjj
               }
 
+#----- 
+ 
 nuisances['WWnorm2j_highptww']  = {
-               'name'  : 'CMS_hww_WWnorm2ji_highptww',
+               'name'  : 'CMS_hww_WWnorm2j_highptww',
                'samples'  : {
                    'WW' : '1.00',
                    },
                'type'  : 'rateParam',
                'cuts'  : cuts_highptww
               }
-
-nuisances['ggWWnorm2j_lowmjj']  = {
+ 
+nuisances['ggWWnorm2j_highptww']  = {
                'name'  : 'CMS_hww_WWnorm2j_highptww',
                'samples'  : {
                    'ggWW' : '1.00',
                    },
                'type'  : 'rateParam',
                'cuts'  : cuts_highptww
-
+ 
               }
-
-
-nuisances['Topnorm2j_lowmjj']  = {
+ 
+nuisances['Topnorm2j_highptww']  = {
                'name'  : 'CMS_hww_Topnorm2j_lowmjj',
                'samples'  : {
                    'top' : '1.00',
@@ -1140,7 +1172,17 @@ nuisances['Topnorm2j_lowmjj']  = {
                'cuts'  : cuts2j_lowmjj+cuts_highptww
      }
 
-
+nuisances['DYembnorm2j_highptww']  = {
+               'name'  : 'CMS_hww_DYttnorm2j_highptww',
+               'samples'  : {
+                   'Dyemb' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : cuts2j_lowmjj+cuts_highptww
+                }
+ 
+#----- 
+ 
 nuisances['DYembnorm2j_vh']  = {
                'name'  : 'CMS_hww_DYttnorm2j_vh',
                'samples'  : {
@@ -1149,7 +1191,7 @@ nuisances['DYembnorm2j_vh']  = {
                'type'  : 'rateParam',
                'cuts'  : cuts2j_vh
               }
-
+ 
 nuisances['WWnorm2j_vh']  = {
                'name'  : 'CMS_hww_WWnorm2j_vh',
                'samples'  : {
@@ -1158,7 +1200,7 @@ nuisances['WWnorm2j_vh']  = {
                'type'  : 'rateParam',
                'cuts'  : cuts2j_vh
               }
-
+ 
 nuisances['ggWWnorm2j_vh']  = {
                'name'  : 'CMS_hww_WWnorm2j_vh',
                'samples'  : {
@@ -1167,7 +1209,7 @@ nuisances['ggWWnorm2j_vh']  = {
                'type'  : 'rateParam',
                'cuts'  : cuts2j_vh
               }
-
+ 
 nuisances['Topnorm2j_vh']  = {
                'name'  : 'CMS_hww_Topnorm2j_vh',
                'samples'  : {
@@ -1176,7 +1218,6 @@ nuisances['Topnorm2j_vh']  = {
                'type'  : 'rateParam',
                'cuts'  : cuts2j_vh
               }
-
 
 
 for n in nuisances.values():
