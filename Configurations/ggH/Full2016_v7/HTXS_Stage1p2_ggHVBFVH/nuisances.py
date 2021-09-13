@@ -194,7 +194,7 @@ nuisances['eff_e_CR'] = {
     'type': 'shape',
     'samples': dict((skey, ['SFweightEleUp', 'SFweightEleDown']) for skey in mc_emb),
     'cuts': [cut for cut in cuts if '_CR_' in cut or 'top' in cut or 'dytt' in cut],
-    'perRecoBin': True
+    #'perRecoBin': True
 }
 
 nuisances['eff_e'] = {
@@ -203,7 +203,7 @@ nuisances['eff_e'] = {
     'type': 'shape',
     'samples': dict((skey, ['SFweightEleUp', 'SFweightEleDown']) for skey in mc_emb),
     'cuts': [cut for cut in cuts if not ('_CR_' in cut or 'top' in cut or 'dytt' in cut)],
-    'perRecoBin': True
+    #'perRecoBin': True
 }
 
 nuisances['electronpt'] = {
@@ -239,7 +239,7 @@ nuisances['eff_m_CR'] = {
     'type': 'shape',
     'samples': dict((skey, ['SFweightMuUp', 'SFweightMuDown']) for skey in mc_emb),
     'cuts': [cut for cut in cuts if '_CR_' in cut or 'top' in cut or 'dytt' in cut],
-    'perRecoBin': True
+    #'perRecoBin': True
 }
 
 
@@ -249,7 +249,7 @@ nuisances['eff_m'] = {
     'type': 'shape',
     'samples': dict((skey, ['SFweightMuUp', 'SFweightMuDown']) for skey in mc_emb),
     'cuts': [cut for cut in cuts if not ('_CR_' in cut or 'top' in cut or 'dytt' in cut)],
-    'perRecoBin': True
+    #'perRecoBin': True
 }
 
 nuisances['muonpt'] = {
@@ -539,7 +539,7 @@ nuisances['VZ'] = {
 
 ###### pdf uncertainties
 
-pdf_variations = ["LHEPdfWeight[%d]" %i for i in range(100)]
+pdf_variations = ["Alt$(LHEPdfWeight[%d],1)" %i for i in range(100)]
 
 ##### PDF uncertainties on WW
 nuisances['pdf_WW']  = {
@@ -1182,7 +1182,7 @@ nuisances['WWnorm2j_highptww']  = {
                'cuts'  : cuts_highptww
               }
  
-nuisances['ggWWnorm2j_lowmjj']  = {
+nuisances['ggWWnorm2j_highptww']  = {
                'name'  : 'CMS_hww_WWnorm2j_highptww_2016',
                'samples'  : {
                    'ggWW' : '1.00',
@@ -1193,7 +1193,7 @@ nuisances['ggWWnorm2j_lowmjj']  = {
               }
  
  
-nuisances['Topnorm2j_lowmjj']  = {
+nuisances['Topnorm2j_highptww']  = {
                'name'  : 'CMS_hww_Topnorm2j_lowmjj_2016',
                'samples'  : {
                    'top' : '1.00',
