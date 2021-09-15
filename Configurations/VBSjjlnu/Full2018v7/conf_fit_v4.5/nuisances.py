@@ -733,7 +733,6 @@ nuisances['UE']  = {
 #                 'samples'  : { w: ['Zlep_residual'] for w in wjets_all_bins}
 # }
 
-
 ###############
 # Normalization factors
 

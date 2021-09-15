@@ -493,22 +493,27 @@ for sample in mc :
         'samples'  :  { sample: ["LHEScaleWeight[0]", "LHEScaleWeight[8]"] }
     }
 #Correlate all signal samples
-nuisances['QCD_scale_EWQCD_WV'] = {
-            'name'  : 'QCDscale_EWQCD_WV_accept',
+# nuisances['QCD_scale_EWQCD_WV'] = {
+#             'name'  : 'QCDscale_EWQCD_WV_accept',
+#             'kind'  : 'weight',
+#             'type'  : 'shape',
+#             # 'samples'  :  { "VBS": ["QCDscale_normalized[0]", "QCDscale_normalized[8]"],
+#             #                 "VBS_dipoleRecoil": ["QCDscale_normalized[0]", "QCDscale_normalized[8]"], }
+#             'samples': { k:["QCDscale_normalized[0]", "QCDscale_normalized[8]"] for k in  WV_samples }
+#         }
+
+nuisances['QCD_scale_EWQCD_WV_full'] = {
+            'name'  : 'QCDscale_EWQCD_WV',
             'kind'  : 'weight',
             'type'  : 'shape',
-            # 'samples'  :  { "VBS": ["QCDscale_normalized[0]", "QCDscale_normalized[8]"],
-            #                 "VBS_dipoleRecoil": ["QCDscale_normalized[0]", "QCDscale_normalized[8]"], }
-            'samples': { k:["QCDscale_normalized[0]", "QCDscale_normalized[8]"] for k in  WV_samples }
+            'samples': { k:["LHEScaleWeight[0]", "LHEScaleWeight[8]"] for k in  WV_samples }
         }
 
 nuisances['QCD_scale_EWQCD_ZV'] = {
             'name'  : 'QCDscale_EWQCD_ZV',
             'kind'  : 'weight',
             'type'  : 'shape',
-            # 'samples'  :  { "VBS": ["QCDscale_normalized[0]", "QCDscale_normalized[8]"],
-            #                 "VBS_dipoleRecoil": ["QCDscale_normalized[0]", "QCDscale_normalized[8]"], }
-            'samples': { k:["QCDscale_normalized[0]", "QCDscale_normalized[8]"] for k in  ZV_samples }
+            'samples': { k:["LHEScaleWeight[0]", "LHEScaleWeight[8]"] for k in  ZV_samples }
         }
 
 
@@ -586,22 +591,30 @@ nuisances['PS_FSR_EKQCD_ZV']  = {
 
 
 ###### PDF uncertainty
+# nuisances['pdf_weight'] = {
+#     'name'  : 'pdf_weight_16',
+#     'kind'  : 'weight_envelope',
+#     'type'  : 'shape',
+#     'samples' :  { s: [' Alt$(LHEPdfWeight['+str(i)+'], 1.)' for i in range(0,103)] for s in mc if s not in ["VBS","VBS_dipoleRecoil", "VV", "top","Wjets_boost"]+wjets_res_bins + VBS_samples + VV_WV_samples},
+#     'AsLnN':  '1'
+# }
+
+
 nuisances['pdf_weight'] = {
     'name'  : 'pdf_weight_16',
     'kind'  : 'weight_envelope',
     'type'  : 'shape',
-    'samples' :  { s: [' Alt$(LHEPdfWeight['+str(i)+'], 1.)' for i in range(0,103)] for s in mc if s not in ["VBS","VBS_dipoleRecoil", "VV", "top","Wjets_boost"]+wjets_res_bins + VBS_samples + VV_WV_samples},
+    'samples' :  { s: [' Alt$(LHEPdfWeight['+str(i)+'], 1.)' for i in range(0,103)] for s in mc if s not in ["top","Wjets_boost"]+wjets_res_bins},
     'AsLnN':  '1'
 }
-
-nuisances['pdf_weight_accept'] = {
-    'name'  : 'pdf_weight_16_accept',
-    'kind'  : 'weight_envelope',
-    'type'  : 'shape',
-    # 'samples' :  { "VBS": [ 'Alt$(PDFweight_normalized['+str(i)+'], 1.)' for i in range(0,103) ],
-    #                "VBS_dipoleRecoil": [ 'Alt$(PDFweight_normalized['+str(i)+'], 1.)' for i in range(0,103) ]}
-    'samples': { k : [ 'Alt$(PDFweight_normalized['+str(i)+'], 1.)' for i in range(0,103) ] for k in VBS_samples +VV_WV_samples}
-}
+# nuisances['pdf_weight_accept'] = {
+#     'name'  : 'pdf_weight_16_accept',
+#     'kind'  : 'weight_envelope',
+#     'type'  : 'shape',
+#     # 'samples' :  { "VBS": [ 'Alt$(PDFweight_normalized['+str(i)+'], 1.)' for i in range(0,103) ],
+#     #                "VBS_dipoleRecoil": [ 'Alt$(PDFweight_normalized['+str(i)+'], 1.)' for i in range(0,103) ]}
+#     'samples': { k : [ 'Alt$(PDFweight_normalized['+str(i)+'], 1.)' for i in range(0,103) ] for k in VBS_samples +VV_WV_samples}
+# }
 
 
 #############################

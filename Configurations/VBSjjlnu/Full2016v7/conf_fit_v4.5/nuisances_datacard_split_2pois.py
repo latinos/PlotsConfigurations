@@ -488,9 +488,8 @@ for sample in mc :
         'type'  : 'shape',
         'samples'  :  { sample: ["LHEScaleWeight[0]", "LHEScaleWeight[8]"] }
     }
-
 #Correlate all signal samples
-nuisances['QCD_scale_VBS_WV'] = {
+nuisances['QCD_scale_VBS_WV_accept'] = {
             'name'  : 'QCDscale_VBS_WV_accept',
             'kind'  : 'weight',
             'type'  : 'shape',
@@ -499,7 +498,7 @@ nuisances['QCD_scale_VBS_WV'] = {
             'samples': { k:["QCDscale_normalized[0]", "QCDscale_normalized[8]"] for k in VBS_WV_samples }
         }
 
-nuisances['QCD_scale_VBS_ZV'] = {
+nuisances['QCD_scale_VBS_ZV_accept'] = {
             'name'  : 'QCDscale_VBS_ZV_accept',
             'kind'  : 'weight',
             'type'  : 'shape',
@@ -509,15 +508,31 @@ nuisances['QCD_scale_VBS_ZV'] = {
         }
 
 ### Adding also normalization effect for ZV component
-nuisances['QCD_scale_VBS_ZV_norm'] = {
-            'name'  : 'QCDscale_VBS_ZV',
+# nuisances['QCD_scale_VBS_ZV_norm'] = {
+#             'name'  : 'QCDscale_VBS_ZV',
+#             'kind'  : 'weight',
+#             'type'  : 'lnN',
+#             # 'samples'  :  { "VBS": ["QCDscale_normalized[0]", "QCDscale_normalized[8]"],
+#             #                 "VBS_dipoleRecoil": ["QCDscale_normalized[0]", "QCDscale_normalized[8]"], }
+#             'samples': { k: "1.007/0.986" for k in VBS_ZV_samples }
+#         }
+
+# Adding also the non-normalized 
+nuisances['QCD_scale_VBS_WV_full'] = {
+            'name'  : 'QCDscale_VBS_WV',
             'kind'  : 'weight',
-            'type'  : 'lnN',
-            # 'samples'  :  { "VBS": ["QCDscale_normalized[0]", "QCDscale_normalized[8]"],
-            #                 "VBS_dipoleRecoil": ["QCDscale_normalized[0]", "QCDscale_normalized[8]"], }
-            'samples': { k: "1.007/0.986" for k in VBS_ZV_samples }
+            'type'  : 'shape',
+            'samples': { k:["LHEScaleWeight[0]", "LHEScaleWeight[8]"] for k in VBS_WV_samples }
         }
 
+nuisances['QCD_scale_VBS_ZV_full'] = {
+            'name'  : 'QCDscale_VBS_ZV',
+            'kind'  : 'weight',
+            'type'  : 'shape',
+            'samples': { k:["LHEScaleWeight[0]", "LHEScaleWeight[8]"] for k in VBS_ZV_samples }
+        }
+
+        
 # nuisances['QCD_scale_VV_accept'] = {
 #             'name'  : 'QCDscale_VV_accept',
 #             'kind'  : 'weight',
@@ -525,16 +540,24 @@ nuisances['QCD_scale_VBS_ZV_norm'] = {
 #             'samples': { k:["QCDscale_normalized[0]", "QCDscale_normalized[8]"] for k in VV_samples }
 #         }
 
-
-nuisances['QCD_scale_QCD_WV'] = {
+nuisances['QCD_scale_QCD_WV_accept'] = {
             'name'  : 'QCDscale_QCD_WV_accept',
             'kind'  : 'weight',
             'type'  : 'shape',
+            # 'samples': { k:["LHEScaleWeight[0]", "LHEScaleWeight[8]"] for k in VV_WV_samples } --> It was wrong in 4.5.3
+            'samples': { k:["QCDscale_normalized[0]", "QCDscale_normalized[8]"] for k in VV_WV_samples }
+        }
+
+nuisances['QCD_scale_QCD_WV_full'] = {
+            'name'  : 'QCDscale_QCD_WV',
+            'kind'  : 'weight',
+            'type'  : 'shape',
+            # 'samples': { k:["LHEScaleWeight[0]", "LHEScaleWeight[8]"] for k in VV_WV_samples } --> It was wrong in 4.5.3
             'samples': { k:["LHEScaleWeight[0]", "LHEScaleWeight[8]"] for k in VV_WV_samples }
         }
 
 nuisances['QCD_scale_QCD_ZV'] = {
-            'name'  : 'QCDscale_VV',
+            'name'  : 'QCDscale_QCD_ZV', #==> needs to become QCDscale_QCD_ZV
             'kind'  : 'weight',
             'type'  : 'shape',
             'samples': { k:["LHEScaleWeight[0]", "LHEScaleWeight[8]"] for k in VV_ZV_samples }
@@ -654,11 +677,21 @@ nuisances['PS_FSR_QCD_ZV']  = {
 
 
 ###### PDF uncertainty
-nuisances['pdf_weight'] = {
+
+# --> How it was in fit 4.5.3
+# nuisances['pdf_weight'] = {
+#     'name'  : 'pdf_weight_16',
+#     'kind'  : 'weight_envelope',
+#     'type'  : 'shape',
+#     'samples' :  { s: [' Alt$(LHEPdfWeight['+str(i)+'], 1.)' for i in range(0,103)] for s in mc if s not in ["VBS", "VBS_dipoleRecoil", "top"]+wjets_all_bins+VBS_samples},
+#     'AsLnN':  '1'
+# }
+
+nuisances['pdf_weight'] = { # --> Now save also the normalization one for the signal
     'name'  : 'pdf_weight_16',
     'kind'  : 'weight_envelope',
     'type'  : 'shape',
-    'samples' :  { s: [' Alt$(LHEPdfWeight['+str(i)+'], 1.)' for i in range(0,103)] for s in mc if s not in ["VBS","VBS_dipoleRecoil", "VV", "top","Wjets_boost"]+wjets_res_bins + VBS_samples},
+    'samples' :  { s: [' Alt$(LHEPdfWeight['+str(i)+'], 1.)' for i in range(0,103)] for s in mc if s not in ["top","Wjets_boost"]+wjets_res_bins},
     'AsLnN':  '1'
 }
 
@@ -778,7 +811,12 @@ for n in nuisances.values():
 
 
 
-# nuisances = {k:v for k,v in nuisances.items() if 'fake' in k or k in ["QCD_scale_VBS"]} #if 'PS' in k or 'QCD' in k
+################################
+## Customizations
 
+# Customization to redo the QCDscales
+#nuisances = {k:v for k,v in nuisances.items() if 'QCD_scale' in k or k == "pdf_weight"} #if 'PS' in k or 'QCD' in k
 
-# print ' '.join(nname for nname, nuis in nuisances.iteritems() if nname not in ('lumi', 'stat'))
+# Customization for mu fit with QCDscale normalization included
+exclude = ["QCD_scale_VBS_WV_accept","QCD_scale_VBS_ZV_accept", "QCD_scale_QCD_WV_accept", "pdf_weight_accept"]
+nuisances = {k:v for k,v in nuisances.items() if k not in exclude}

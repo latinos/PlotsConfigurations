@@ -11,7 +11,7 @@ from array import array
 import math
 from collections import OrderedDict
 from operator import itemgetter
-
+import CMS_lumi
 
 
 def Retrieve2DLikelihoodCombined(file, op, maxNLL, xscale, yscale,name,Npoints=100):
@@ -72,7 +72,7 @@ def Retrieve2DLikelihoodCombined(file, op, maxNLL, xscale, yscale,name,Npoints=1
 min_x = -0.1
 max_x = 3
 min_y = 0
-max_y = 2
+max_y = 2.2
 
 ops = ["muQCD_WV","muEW_WV"]
 
@@ -81,8 +81,8 @@ gs, cont_graphs, exp  = Retrieve2DLikelihoodCombined(sys.argv[1], ops,20,1,1, "e
 op_x = ops[0]
 op_y = ops[1]
 
-color = [ ROOT.kRed, ROOT.kBlack]
-linestyle = [2,2]
+color = [ ROOT.kRed, ROOT.kRed]
+linestyle = [2,9]
 
 graphs = []
 
@@ -104,11 +104,11 @@ graphs.append(["ciao", cont_graphs[0], exp, [-0.1 + min_x, max_x+0.2],[min_y, ma
 
 
 
-gs2, cont_graphs2, exp2  = Retrieve2DLikelihoodCombined(sys.argv[2], ops,20,1,1,"measured",Npoints=35)
+gs2, cont_graphs2, exp2  = Retrieve2DLikelihoodCombined(sys.argv[2], ops,20,1,1,"measured",Npoints=25)
 
 
-color = [ ROOT.kRed, ROOT.kBlack]
-linestyle = [9,9]
+color = [ ROOT.kBlack, ROOT.kBlack]
+linestyle = [2,9]
 
 graphs2 = [ ]
 #set style
@@ -161,8 +161,8 @@ for i in range(len(graphs[0][1])):
     graphs[0][1][i].GetXaxis().SetTitleOffset(1.1)
     graphs[0][1][i].GetXaxis().SetTitleSize(.04)
     graphs[0][1][i].GetYaxis().SetTitleSize(.04)
-    graphs[0][1][i].GetYaxis().SetTitle("#mu EWK")
-    graphs[0][1][i].GetXaxis().SetTitle("#mu QCD")
+    graphs[0][1][i].GetYaxis().SetTitle("#mu_{EW}")
+    graphs[0][1][i].GetXaxis().SetTitle("#mu_{QCD}")
     graphs[0][1][i].SetTitle("")
     #graphs[0][1].SetLineStyle(linestyles[0])
     if i == 0:
@@ -191,8 +191,8 @@ for i in range(len(graphs[0][-1])):
     graphs[0][-1][i].GetXaxis().SetTitleOffset(1.1)
     graphs[0][-1][i].GetXaxis().SetTitleSize(.04)
     graphs[0][-1][i].GetYaxis().SetTitleSize(.04)
-    graphs[0][-1][i].GetYaxis().SetTitle("\\mu EWK")
-    graphs[0][-1][i].GetXaxis().SetTitle("\\mu QCD")
+    graphs[0][-1][i].GetYaxis().SetTitle("#mu_{EW}")
+    graphs[0][-1][i].GetXaxis().SetTitle("#mu_{QCD}")
     graphs[0][-1][i].SetTitle("")
     #graphs[0][-1].SetLineStyle(linestyles[0])
     if i == 0:
@@ -256,8 +256,8 @@ for i in range(len(graphs2[0][1])):
     graphs2[0][1][i].GetXaxis().SetTitleOffset(1.1)
     graphs2[0][1][i].GetXaxis().SetTitleSize(.04)
     graphs2[0][1][i].GetYaxis().SetTitleSize(.04)
-    graphs2[0][1][i].GetYaxis().SetTitle("#mu EWK")
-    graphs2[0][1][i].GetXaxis().SetTitle("#mu QCD")
+    graphs2[0][1][i].GetYaxis().SetTitle("#mu_{EW}")
+    graphs2[0][1][i].GetXaxis().SetTitle("#mu_{QCD}")
     graphs2[0][1][i].SetTitle("")
     #graphs2[0][1].SetLineStyle(linestyles[0])
     if i == 0:
@@ -286,8 +286,8 @@ for i in range(len(graphs2[0][-1])):
     graphs2[0][-1][i].GetXaxis().SetTitleOffset(1.1)
     graphs2[0][-1][i].GetXaxis().SetTitleSize(.04)
     graphs2[0][-1][i].GetYaxis().SetTitleSize(.04)
-    graphs2[0][-1][i].GetYaxis().SetTitle("#mu EWK")
-    graphs2[0][-1][i].GetXaxis().SetTitle("#mu QCD")
+    graphs2[0][-1][i].GetYaxis().SetTitle("#mu_{EW}")
+    graphs2[0][-1][i].GetXaxis().SetTitle("#mu_{QCD}")
     graphs2[0][-1][i].SetTitle("")
     #graphs2[0][-1].SetLineStyle(linestyles[0])
     if i == 0:
@@ -328,13 +328,13 @@ leg.AddEntry(graphs2[0][2], "best fit", "P")
 #leg.AddEntry(graphs[0][1][0], name, "L")
 # leg.AddEntry(graphs[0][1][0], ConvertProc(name), "F")
 
-tex3 = ROOT.TLatex(0.86,.89,"137 fb^{-1}   (13 TeV)")
-tex3.SetNDC()
-tex3.SetTextAlign(31)
-tex3.SetTextFont(42)
-tex3.SetTextSize(0.04)
-tex3.SetLineWidth(2)
-tex3.Draw()
+# tex3 = ROOT.TLatex(0.86,.89,"137 fb^{-1}   (13 TeV)")
+# tex3.SetNDC()
+# tex3.SetTextAlign(31)
+# tex3.SetTextFont(42)
+# tex3.SetTextSize(0.04)
+# tex3.SetLineWidth(2)
+# tex3.Draw()
 
 leg.Draw("same")
 
@@ -366,7 +366,22 @@ leg.Draw("same")
 # tex3.SetLineWidth(2)
 # tex3.Draw()
 
+pad = ROOT.gPad 
 
+import CMS_lumi
+CMS_lumi.lumi_13TeV = "137 fb^{-1}"
+CMS_lumi.writeExtraText = False
+# CMS_lumi.extraText = "Preliminary"
+CMS_lumi.relPosX = 0.14
+CMS_lumi.lumi_sqrtS = "13 TeV" # used with iPeriod = 0, e.g. for simulation-only plots (default is an empty string)
+# CMS_lumi.cmsTextFont = 42
+CMS_lumi.cmsTextSize  = 0.45
+CMS_lumi.lumiTextSize = 0.3
+CMS_lumi.extraTextFont = 40
+
+iPeriod = 4
+iPos  = 0
+CMS_lumi.CMS_lumi(pad, iPeriod,iPos)
 
 # if not args2.splitLeg: le2g.Dra2w()
 c.Draw()

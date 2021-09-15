@@ -5,6 +5,11 @@ f = R.TFile(sys.argv[1], "UPDATE")
 #sample_name = sys.argv[2]
 
 samples = ['VBS','VBS_dipoleRecoil','top','DATA','Fake','VVV','VV','VgS','Vg','DY','VBF-V', 'ggWW']
+
+VBS_samples = ["VBS_osWW", "VBS_ssWW", "VBS_WZjj", "VBS_WZll", "VBS_ZZ"]
+VV_samples = ["VV_osWW", "VV_ssWW", "VV_WZjj", "VV_WZll", "VV_ZZ"]
+
+samples += VBS_samples + VV_samples
 for ir in range(1,22):
     samples.append("Wjets_res_"+str(ir))
 for ir in range(1,8):

@@ -32,7 +32,7 @@ lumi = 35.867
 outputDirPlots = 'plot_'+tag 
 # used by mkDatacards to define output directory for datacards
 
-outputDirDatacard = 'datacards_' +tag + "_Dipole_ewkqcd_v4"
+outputDirDatacard = 'datacards_' +tag + "_Dipole_ewkqcd_v5"
 
 # structure file for datacard
 structureFile = direc+'/structure_split_ewkqcd.py'
