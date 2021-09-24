@@ -11,6 +11,7 @@ outputDir = 'darkHiggs_lim_root'
 
 # file with TTree aliases
 aliasesFile = 'aliases.py'
+#aliasesFile = 'aliases_BtagSF.py'
 
 # file with list of variables
 #variablesFile = 'variables.py'
@@ -44,4 +45,4 @@ structureFile = 'structure_int.py'
 # nuisances file for mkDatacards and for mkShape
 #nuisancesFile = 'nuisances.py'
 #nuisancesFile = 'nuisances_full.py'
-nuisancesFile = 'nuisances_full_new.py'
+nuisancesFile = 'nuisances_full_fast.py'

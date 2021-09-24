@@ -6,7 +6,7 @@ groupPlot['Higgs'] = {
 }
 
 groupPlot['multiB'] = {
-    'nameHR' : 'multiB',
+    'nameHR' : 'multi boson',
     'isSignal' : 0,
     #'isSignal' : 1,
     'color': 857, # kAzure -3  
@@ -24,7 +24,7 @@ groupPlot['DY'] = {
 }
 
 groupPlot['FAKE'] = {
-    'nameHR' : "Fake",
+    'nameHR' : "non-prompt",
     'isSignal' : 0,
     'color'    : 617,   # kViolet + 1
     'samples'  : ['FAKE']
@@ -88,11 +88,21 @@ for mp in signal:
     if not mhs == '160': continue 
     if not mx == '100' : continue
     if not mZp in ['200', '400', '1200']: continue
+
+    col = 632 
+    if mZp == '200': col += 0
+    if mZp == '400': col += 2
+    if mZp == '1200': col += 4
+
+    sig_name = 'dark Higgs '+'m_{Z\'} '+mZp
+    #sig_name = 'dark Higgs '+'m_Z\' '+mZp
+
     groupPlot[mp] = {
-    'nameHR'   : signal[mp]['plot_name'],
-#    'isSignal' : 2,
+    #'nameHR'   : signal[mp]['plot_name'],
+    'nameHR'   : sig_name,
     'isSignal' : 1,
-    'color'    : signal[mp]['color'],   # kViolet + 1
+    #'color'    : signal[mp]['color'],   # kViolet + 1
+    'color'    : col,   # kViolet + 1
     'samples'  : [mp],
     #'scale'    : 100000,
     }
@@ -352,11 +362,22 @@ for mp in signal:
     if not mhs == '160': continue 
     if not mx == '100' : continue
     if not mZp in ['200', '400', '1200']: continue
+
+    col = 632 
+    if mZp == '200': col += 0
+    if mZp == '400': col += 2
+    if mZp == '1200': col += 4
+
+    #sig_name = 'dark Higgs '+'m_{Z\'} '+mZp
+    sig_name = 'dark Higgs '+'m_Z\' '+mZp
+
     plot[mp] = {
-    'nameHR'   : signal[mp]['plot_name'],
+    #'nameHR'   : signal[mp]['plot_name'],
+    'nameHR'   : sig_name,
     'isSignal' : 2,
     'isData'   : 0,
-    'color'    : signal[mp]['color'],   # kViolet + 1
+    #'color'    : signal[mp]['color'],   # kViolet + 1
+    'color'    : col,   # kViolet + 1
     'samples'  : [mp],
     #'scale'    : 100000,
     }

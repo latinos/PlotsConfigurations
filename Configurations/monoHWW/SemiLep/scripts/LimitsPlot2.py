@@ -557,39 +557,39 @@ for fil in all_files:
         plot(mass, lim_50, lim_2, lim_16, lim_84, lim_97, mhs, mx, model=options.model)
 
 
-for key in tg2_dict:
-    ##Add cheat points to fix contours
-    #tg2_dict[key]['50'].SetPoint(tg2_dict[key]['idx'], tg2_dict[key]['min_mZp']-100, tg2_dict[key]['max_mhs'], 100)
-    #tg2_dict[key]['2'] .SetPoint(tg2_dict[key]['idx'], tg2_dict[key]['min_mZp']-100, tg2_dict[key]['max_mhs'], 100)
-    #tg2_dict[key]['16'].SetPoint(tg2_dict[key]['idx'], tg2_dict[key]['min_mZp']-100, tg2_dict[key]['max_mhs'], 100)
-    #tg2_dict[key]['84'].SetPoint(tg2_dict[key]['idx'], tg2_dict[key]['min_mZp']-100, tg2_dict[key]['max_mhs'], 100)
-    #tg2_dict[key]['97'].SetPoint(tg2_dict[key]['idx'], tg2_dict[key]['min_mZp']-100, tg2_dict[key]['max_mhs'], 100)
-    #tg2_dict[key]['idx'] += 1
-    #tg2_dict[key]['50'].SetPoint(tg2_dict[key]['idx'], tg2_dict[key]['max_mZp']+100, tg2_dict[key]['max_mhs'], 100)
-    #tg2_dict[key]['2'] .SetPoint(tg2_dict[key]['idx'], tg2_dict[key]['max_mZp']+100, tg2_dict[key]['max_mhs'], 100)
-    #tg2_dict[key]['16'].SetPoint(tg2_dict[key]['idx'], tg2_dict[key]['max_mZp']+100, tg2_dict[key]['max_mhs'], 100)
-    #tg2_dict[key]['84'].SetPoint(tg2_dict[key]['idx'], tg2_dict[key]['max_mZp']+100, tg2_dict[key]['max_mhs'], 100)
-    #tg2_dict[key]['97'].SetPoint(tg2_dict[key]['idx'], tg2_dict[key]['max_mZp']+100, tg2_dict[key]['max_mhs'], 100)
-    #tg2_dict[key]['idx'] += 1
-
-
-    mx = int(key.replace('mx_', ''))
-    ROOT.gStyle.Reset()
-    #ROOT.gStyle.SetPadBorderMode(1)
-    #ROOT.gStyle.SetFrameBorderMode(1)
-    ROOT.gStyle.SetPadRightMargin(0.1)#0.02)
-    #ROOT.gStyle.SetPadLeftMargin(0.01)#0.02)
-    canvas = ROOT.TCanvas("debug", "debug", 630, 600)
-    #canvas.SetRightMargin(0.2)
-    tg2_dict[key]['50'].Draw('colz')
-    c_list = tg2_dict[key]['50'].GetContourList(1.)
-    if c_list:
-        for thing in c_list:
-            print(type(thing))
-            thing.Draw('Lsame')
-    canvas.Update()
-    raw_input('cont')
-    plot_2D(tg2_dict[key]['50'], tg2_dict[key]['2'], tg2_dict[key]['16'], tg2_dict[key]['84'], tg2_dict[key]['97'], tg2_dict[key]['min_mZp'], tg2_dict[key]['max_mZp'], tg2_dict[key]['min_mhs'], tg2_dict[key]['max_mhs'],'limits_'+key+'_darkHiggs.png', mx)
-    raw_input('cont')
+#for key in tg2_dict:
+#    ##Add cheat points to fix contours
+#    #tg2_dict[key]['50'].SetPoint(tg2_dict[key]['idx'], tg2_dict[key]['min_mZp']-100, tg2_dict[key]['max_mhs'], 100)
+#    #tg2_dict[key]['2'] .SetPoint(tg2_dict[key]['idx'], tg2_dict[key]['min_mZp']-100, tg2_dict[key]['max_mhs'], 100)
+#    #tg2_dict[key]['16'].SetPoint(tg2_dict[key]['idx'], tg2_dict[key]['min_mZp']-100, tg2_dict[key]['max_mhs'], 100)
+#    #tg2_dict[key]['84'].SetPoint(tg2_dict[key]['idx'], tg2_dict[key]['min_mZp']-100, tg2_dict[key]['max_mhs'], 100)
+#    #tg2_dict[key]['97'].SetPoint(tg2_dict[key]['idx'], tg2_dict[key]['min_mZp']-100, tg2_dict[key]['max_mhs'], 100)
+#    #tg2_dict[key]['idx'] += 1
+#    #tg2_dict[key]['50'].SetPoint(tg2_dict[key]['idx'], tg2_dict[key]['max_mZp']+100, tg2_dict[key]['max_mhs'], 100)
+#    #tg2_dict[key]['2'] .SetPoint(tg2_dict[key]['idx'], tg2_dict[key]['max_mZp']+100, tg2_dict[key]['max_mhs'], 100)
+#    #tg2_dict[key]['16'].SetPoint(tg2_dict[key]['idx'], tg2_dict[key]['max_mZp']+100, tg2_dict[key]['max_mhs'], 100)
+#    #tg2_dict[key]['84'].SetPoint(tg2_dict[key]['idx'], tg2_dict[key]['max_mZp']+100, tg2_dict[key]['max_mhs'], 100)
+#    #tg2_dict[key]['97'].SetPoint(tg2_dict[key]['idx'], tg2_dict[key]['max_mZp']+100, tg2_dict[key]['max_mhs'], 100)
+#    #tg2_dict[key]['idx'] += 1
+#
+#
+#    mx = int(key.replace('mx_', ''))
+#    ROOT.gStyle.Reset()
+#    #ROOT.gStyle.SetPadBorderMode(1)
+#    #ROOT.gStyle.SetFrameBorderMode(1)
+#    ROOT.gStyle.SetPadRightMargin(0.1)#0.02)
+#    #ROOT.gStyle.SetPadLeftMargin(0.01)#0.02)
+#    canvas = ROOT.TCanvas("debug", "debug", 630, 600)
+#    #canvas.SetRightMargin(0.2)
+#    tg2_dict[key]['50'].Draw('colz')
+#    c_list = tg2_dict[key]['50'].GetContourList(1.)
+#    if c_list:
+#        for thing in c_list:
+#            print(type(thing))
+#            thing.Draw('Lsame')
+#    canvas.Update()
+#    raw_input('cont')
+#    plot_2D(tg2_dict[key]['50'], tg2_dict[key]['2'], tg2_dict[key]['16'], tg2_dict[key]['84'], tg2_dict[key]['97'], tg2_dict[key]['min_mZp'], tg2_dict[key]['max_mZp'], tg2_dict[key]['min_mhs'], tg2_dict[key]['max_mhs'],'limits_'+key+'_darkHiggs.png', mx)
+#    raw_input('cont')
 
 

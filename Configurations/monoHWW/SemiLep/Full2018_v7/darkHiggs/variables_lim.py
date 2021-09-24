@@ -40,6 +40,41 @@ variables['BDT_2016bin']  = {
     }
 }
 
+## Merge last 5 bins for CR
+variables['BDT_2018CRbin']  = { 
+    'name': '2*BDT_Ada13[0]',
+    'range' : ([-1., -0.6, -0.2, 0., 0.2, 0.3, 0.4, 0.5, 1.],),
+    #'range' : ([-1., -0.6, -0.2, 0.2, 0.5, 1.],),
+    'xaxis' : 'BDT discriminator',
+    #'xaxis' : 'high m_{Z\'} NLO BDT_{Ada13}',
+    'fold'  : 3, 
+    'blind' : {
+        'InCh_SR' : [0.4, 1.],
+    }
+}
+
+variables['BDT_2017CRbin']  = { 
+    'name': '2*BDT_Ada13[0]',
+    'range' : ([-1., -0.6, -0.2, 0., 0.2, 0.3, 0.4, 0.46, 1.],),
+    #'range' : ([-1., -0.6, -0.2, 0.2, 0.46, 1.],),
+    'xaxis' : 'BDT discriminator',
+    'fold'  : 3, 
+    'blind' : {
+        'InCh_SR' : [0.4, 1.],
+    }
+}
+
+variables['BDT_2016CRbin']  = { 
+    'name': '2*BDT_Ada13[0]',
+    'range' : ([-1., -0.6, -0.2, 0., 0.2, 0.3, 0.4, 1.],),
+    #'range' : ([-1., -0.6, -0.2, 0.2, 0.4, 1.],),
+    'xaxis' : 'BDT discriminator',
+    'fold'  : 3, 
+    'blind' : {
+        'InCh_SR' : [0.4, 1.],
+    }
+}
+
 #variables['BDT_400bin']  = { 
 #    'name': '2*BDT_Ada13[0]',
 #    'range' : ([-1., 0.42, 0.46, 0.5, 0.54, 0.628, 1.],),
@@ -182,3 +217,84 @@ variables['BDT_UniBin']  = {
         'InCh_highMtw_SR' : [0.4, 1.],
     }
 }
+
+#variables['BDT_b_UniBin']  = { 
+#    'name': '2*BDT_btag[0]',
+#    'range' : (20,-1.,1.),
+#    'xaxis' : 'BDT discriminator',
+#    'fold'  : 3, 
+#    'blind' : {
+#        'InCh_SR' : [0.4, 1.],
+#    }
+#}
+#variables['BDT_nb_UniBin']  = { 
+#    'name': '2*BDT_no_btag[0]',
+#    'range' : (20,-1.,1.),
+#    'xaxis' : 'BDT discriminator',
+#    'fold'  : 3, 
+#    'blind' : {
+#        'InCh_SR' : [0.4, 1.],
+#    }
+#}
+#
+#variables['BDT_nb_2016bin']  = { 
+#    'name': '2*BDT_no_btag[0]',
+#    'range' : ([-1.,-0.6, -0.2, 0., 0.2, 0.3, 0.35, 0.40, 0.42, 0.45, 0.50, 0.55, 1.],),
+#    'xaxis' : 'BDT discriminator',
+#    #'xaxis' : 'BDT',
+#    'fold'  : 3, 
+#    'blind' : {
+#        'InCh_SR' : [0.4, 1.],
+#    }
+#}
+#variables['BDT_b_2016bin']  = { 
+#    'name': '2*BDT_btag[0]',
+#    'range' : ([-1., -0.6, -0.2, 0., 0.2, 0.25, 0.3, 0.35, 0.37, 0.40, 0.43, 0.5, 1.],),
+#    'xaxis' : 'BDT discriminator',
+#    #'xaxis' : 'BDT',
+#    'fold'  : 3, 
+#    'blind' : {
+#        'InCh_SR' : [0.4, 1.],
+#    }
+#}
+#variables['BDT_nb_2017bin']  = { 
+#    'name': '2*BDT_no_btag[0]',
+#    'range' : ([-1., -0.6, -0.2, 0., 0.2, 0.3, 0.35, 0.39, 0.42, 0.45, 0.51, 0.57, 1.],),
+#    'xaxis' : 'BDT discriminator',
+#    #'xaxis' : 'BDT',
+#    'fold'  : 3, 
+#    'blind' : {
+#        'InCh_SR' : [0.4, 1.],
+#    }
+#}
+#variables['BDT_b_2017bin']  = { 
+#    'name': '2*BDT_btag[0]',
+#    'range' : ([-1., -0.6, -0.2, 0., 0.2, 0.3, 0.35, 0.37, 0.40, 0.46, 0.53, 1.],),
+#    'xaxis' : 'BDT discriminator',
+#    #'xaxis' : 'BDT',
+#    'fold'  : 3, 
+#    'blind' : {
+#        'InCh_SR' : [0.4, 1.],
+#    }
+#}
+#variables['BDT_nb_2018bin']  = { 
+#    'name': '2*BDT_no_btag[0]',
+#    'range' : ([-1., -0.6, -0.2, 0., 0.2, 0.35, 0.4, 0.44, 0.47, 0.50, 0.54, 0.58, 1.],),
+#    'xaxis' : 'BDT discriminator',
+#    #'xaxis' : 'BDT',
+#    'fold'  : 3, 
+#    'blind' : {
+#        'InCh_SR' : [0.4, 1.],
+#    }
+#}
+#variables['BDT_b_2018bin']  = { 
+#    'name': '2*BDT_btag[0]',
+#    'range' : ([-1., -0.6, -0.2, 0., 0.2, 0.35, 0.41, 0.44, 0.47, 0.51, 0.57, 1.],),
+#    #'range' : ([-1., -0.6, -0.2, 0., 0.2, 0.35, 0.41, 0.44, 0.47, 0.5, 0.57, 1.],),
+#    'xaxis' : 'BDT discriminator',
+#    #'xaxis' : 'BDT',
+#    'fold'  : 3, 
+#    'blind' : {
+#        'InCh_SR' : [0.4, 1.],
+#    }
+#}

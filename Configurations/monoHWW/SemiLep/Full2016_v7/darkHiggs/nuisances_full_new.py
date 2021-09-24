@@ -224,6 +224,11 @@ makeSuffixVar('CMS_scale_JES_2016',     'JES', mc_noVBS, as_lnN=True)
 
 # No JER in 2016
 #makeSuffixVar('CMS_res_j', 'JER')
+nuisances['CMS_res_j_2016'] = {
+   'name': 'CMS_res_j_2016',
+   'type': 'lnN',
+   'samples': dict((skey, '1.03') for skey in mc if skey not in ['Wjets', 'top'])
+}
 
 
 ##### MET energy scale

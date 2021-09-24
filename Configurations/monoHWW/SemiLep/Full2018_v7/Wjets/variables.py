@@ -44,12 +44,12 @@ variables['Puppimet']  = {
     'fold'  : 3
 }
 
-variables['tkmet']  = {
-    'name': 'TkMET_pt',
-    'range' : (25,0,300),
-    'xaxis' : 'p_{T} TkMET [GeV]',
-    'fold'  : 3
-}
+#variables['tkmet']  = {
+#    'name': 'TkMET_pt',
+#    'range' : (25,0,300),
+#    'xaxis' : 'p_{T} TkMET [GeV]',
+#    'fold'  : 3
+#}
 
 variables['l1_pt']  = { 
     'name': 'Lepton_pt[0]',     
@@ -72,12 +72,12 @@ variables['j2_pt']  = {
     'fold'  : 3
 }
 
-variables['njet']  = {
-    'name': 'Sum$(CleanJet_pt > 30)',     
-    'range' : (10,0,10),   
-    'xaxis' : 'nCleanJet (p_{T} > 30)',
-    'fold'  : 3
-}
+#variables['njet']  = {
+#    'name': 'Sum$(CleanJet_pt > 30)',     
+#    'range' : (10,0,10),   
+#    'xaxis' : 'nCleanJet (p_{T} > 30)',
+#    'fold'  : 3
+#}
 
 #variables['nbjet']  = { 
 #    'name': 'nbJet',     
@@ -292,80 +292,18 @@ variables['frac_PTljj_D_PTmet']  = {
 #    'fold'  : 3
 #}
 
-#variables['2HDMaBDT_Grad22Var']  = { 
-#    'name': 'MHlnjj_2HDMaBDT_Grad22Var',
-#    'range' : (10,-1.1,1.1),
-#    'xaxis' : '2HDMa BDT_{Grad22Var}',
-#    'fold'  : 3 
-#}
-   
-#variables['2HDMaBDT_Grad15Var']  = { 
-#    'name': 'MHlnjj_2HDMaBDT_Grad15Var',
-#    'range' : (10,-1.1,1.1),
-#    'xaxis' : '2HDMa BDT_{Grad15Var}',
-#    #'xaxis' : 'BDT',
-#    'fold'  : 3 
-#}   
 
-#variables['2HDMaBDT_Grad12Var']  = { 
-#    'name': 'MHlnjj_2HDMaBDT_Grad12Var',
-#    'range' : (10,-1.1,1.1),
-#    'xaxis' : '2HDMa BDT_{Grad12Var}',
-#    #'xaxis' : 'BDT',
-#    'fold'  : 3 
-#}   
-
-#variables['2HDMaBDT_Ada22Var']  = { 
-#    'name': 'MHlnjj_2HDMaBDT_Ada22Var',
-#    'range' : (10,-1.1,1.1),
-#    'xaxis' : '2HDMa BDT_{Ada22Var}',
-#    #'xaxis' : 'BDT',
-#    'fold'  : 3 
-#}   
-
-#variables['2HDMaBDT_Ada15Var']  = { 
-#    'name': 'MHlnjj_2HDMaBDT_Ada15Var',
-#    'range' : (10,-1.1,1.1),
-#    'xaxis' : '2HDMa BDT_{Ada15Var}',
-#    #'xaxis' : 'BDT',
-#    'fold'  : 3 
-#}   
-
-#variables['2HDMaBDT_Ada12Var']  = { 
-#    'name': 'MHlnjj_2HDMaBDT_Ada12Var',
-#    'range' : (10,-1.1,1.1),
-#    'xaxis' : '2HDMa BDT_{Ada12Var}',
-#    #'xaxis' : 'BDT',
-#    'fold'  : 3 
-#}   
-
-bdt_bins   = [-1.,-0.8,-0.6,-0.4,-0.2,0.,0.2,0.4,0.6,1.]
-bdt_bins_M = [-1.,-0.2,0.,0.2,0.4,0.6,1.]
-
-#variables['darkHiggsBDT_Ada16Var']  = { 
-#    'name': 'MHlnjj_darkHiggsBDT_Ada16Var',
-#    #'range' : (10,-1.1,1.1),
-#    'range' : (bdt_bins,),
-#    'xaxis' : 'darkHiggs BDT_{Ada16Var}',
-#    #'xaxis' : 'BDT',
-#    'fold'  : 3 
-#}   
-
-#variables['darkHiggsBDT_Grad16Var']  = { 
-#    'name': 'MHlnjj_darkHiggsBDT_Grad16Var',
-#    #'range' : (10,-1.1,1.1),
-#    'range' : (bdt_bins,),
-#    'xaxis' : 'darkHiggs BDT_{Grad16Var}',
-#    #'xaxis' : 'BDT',
-#    'fold'  : 3 
-#}   
-
-variables['newBDT_Ada13Var']  = { 
-    'name': 'newBDT_Ada13[0]',
-    #'range' : (10,-1.1,1.1),
-    'range' : (bdt_bins,),
-    'xaxis' : 'darkHiggs BDT_{Ada13Var}',
-    #'xaxis' : 'BDT',
-    'fold'  : 3 
-}   
-
+variables['BDT_2018bin']  = { 
+    'name': '2*BDT_Ada13[0]',
+    'range' : ([-1., -0.6, -0.2, 0., 0.2, 0.3, 0.4, 0.5, 0.54, 0.58, 0.62, 0.7, 1.],),
+    'xaxis' : 'BDT discriminator',
+    #'xaxis' : 'high m_{Z\'} NLO BDT_{Ada13}',
+    'fold'  : 3, 
+}
+variables['BDT_2018bin_5last']  = { 
+    'name': '2*BDT_Ada13[0]',
+    'range' : ([-1., -0.6, -0.2, 0., 0.2, 0.3, 0.4, 0.5, 0.54, 0.58, 0.62, 0.7, 1.],),
+    'xaxis' : 'BDT discriminator',
+    #'xaxis' : 'high m_{Z\'} NLO BDT_{Ada13}',
+    'fold'  : 0, 
+}

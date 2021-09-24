@@ -77,6 +77,7 @@ for var in var_list:
     for samp in bkg:
         histo_name = root_dir + 'histo_' + samp 
         curr_histo = r_file.Get(histo_name)
+        if not curr_histo: print(histo_name+' not found')
         #print(' - '+histo_name)    
     
         if bkg_hist is None: bkg_hist = copy.deepcopy(curr_histo)

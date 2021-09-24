@@ -128,9 +128,9 @@ for part in sng_dict:
     tot_count_sng   += sng_dict[part]['total']
     tot_count_sng_n += sng_dict[part]['lastn']
 print('__SIGNAL_MAX__')
-print('Total       '                    +sng_max_name_total+' in '+args.cut+': '+str(sng_dict[sng_max_name_total]['total']))
+print('Total       '                    +str(sng_max_name_total)+' in '+args.cut+': '+str(sng_dict[sng_max_name_total]['total']))
 #print('Last '+str(args.l_nbins)+' bins '+part+' in '+args.cut+': '+str(sng_dict[part]['lastn']))
-print('Last '+str(args.l_nbins)+' bins '+sng_max_name_lastn+' in '+args.cut+': '+str(sng_dict[sng_max_name_lastn]['lastn']) +' ('+str((sng_dict[sng_max_name_lastn]['lastn'] - sng_dict[sng_max_name_lastn]['total'])*100./(sng_dict[sng_max_name_lastn]['total']+0.000001))+'%)')
+print('Last '+str(args.l_nbins)+' bins '+str(sng_max_name_lastn)+' in '+args.cut+': '+str(sng_dict[sng_max_name_lastn]['lastn']) +' ('+str((sng_dict[sng_max_name_lastn]['lastn'] - sng_dict[sng_max_name_lastn]['total'])*100./(sng_dict[sng_max_name_lastn]['total']+0.000001))+'%)')
 
 
 print('__BACKGROUND__')

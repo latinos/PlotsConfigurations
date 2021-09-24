@@ -96,5 +96,5 @@ addcut('InCh_SC'  , combinecut([SC]))
 
 #addcut('InCh_HighMtw_SB'  , combinecut([SB_h]))
 #addcut('InCh_HighMtw_TCR' , combinecut([TCR_h]))
-addcut('InCh_HighMtw_SR'  , combinecut([SR_h]))
+#addcut('InCh_HighMtw_SR'  , combinecut([SR_h]))
 

@@ -31,6 +31,23 @@ if not os.path.isdir(job_dir): os.system('mkdir '+job_dir)
 if not os.path.isdir(work_dir_src): os.system('mkdir '+work_dir_src)
 if not os.path.isdir(work_dir): os.system('mkdir '+work_dir)
 
+def add_rateparam_bounds(txt_file):
+    o_file = open(txt_file, 'r')
+    lines = o_file.readlines()
+    o_file.close()
+    
+    o_file = open(txt_file, 'w')
+    for line in lines:
+        if 'rateParam' in line:
+            str_to_add = '[0.1,10]'
+            number_of_spaces = line.split('rateParam')[0].count(' ')
+            if not str_to_add in line: 
+                o_file.write(line.replace('1.0000', '1.0000'+' '*number_of_spaces+str_to_add))
+            else:
+                o_file.write(line)
+        else: o_file.write(line)
+    o_file.close()
+
 
 def write_job_files(job_dir, job_id, comb_dir, work_dir, comb_cmd, run_cmd):
     job = job_dir+'/'+job_id
@@ -87,6 +104,10 @@ for fil in os.listdir(outputDirDatacard+'/InCh'+cut_tag+'_SR/'+args.var):
     TCR_path = pwd + '/' +outputDirDatacard + '/InCh'+cut_tag+'_TCR/Events/' + fil    
     SB_path  = pwd + '/' +outputDirDatacard + '/InCh'+cut_tag+'_SB/Events/' + fil    
 
+    add_rateparam_bounds(SR_path)
+    add_rateparam_bounds(TCR_path)
+    add_rateparam_bounds(SB_path)
+
     Comb_path_rel = fil.replace('.txt', '_comb.txt')
     SR_path_rel  = SR_path.replace(pwd + '/' +outputDirDatacard, '../..')
     TCR_path_rel = TCR_path.replace(pwd + '/' +outputDirDatacard, '../..')
@@ -107,9 +128,8 @@ for fil in os.listdir(outputDirDatacard+'/InCh'+cut_tag+'_SR/'+args.var):
     
     write_job_files(job_dir, job_id, comb_dir, work_dir, comb_cmd, run_cmd)
     jobs.append(job_dir +'/'+job_id)
- 
 
-
+# Submit the jobs
 if not args.dry_run:
     print('Submit job')
     job_f = open(jobs[0]+'.jds', 'r')

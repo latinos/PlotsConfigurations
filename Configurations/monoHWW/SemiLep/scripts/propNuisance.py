@@ -118,6 +118,7 @@ for cut in cuts:
         o_nom = o_file.Get(nom_name)
         o_up  = o_file.Get(nom_name+'_'+nuis+'Up')
         o_do  = o_file.Get(nom_name+'_'+nuis+'Down')
+        if not o_nom: print('"'+nom_name+'" not found in '+args.output)
 
         # Propagate relative shapes
         n_bins = o_nom.GetNbinsX()

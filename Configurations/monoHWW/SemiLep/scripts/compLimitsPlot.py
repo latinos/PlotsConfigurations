@@ -55,7 +55,13 @@ def get_limits(mhs, mx, target_dir):
        mass.append(mZp)
        r_file = ROOT.TFile.Open(target_dir+'/'+fil)
        print(fil)
-       for event in r_file.limit:
+       tree = r_file.Get('limit')
+       if not tree:
+           print('No limit tree found in '+fil)
+           print(' --> skipping')
+           #list_of_unusual.append(fil)
+           continue
+       for event in tree:
            #print('new event')
            #print(event.quantileExpected, event.limit)
            if event.quantileExpected < 0.05: lim_2.append(event.limit)
@@ -458,8 +464,10 @@ def plot_2D(TG2_dict, name, mhs):
 
    canvas.SaveAs(name)
 
-mass_hs = [160, 180, 200]
-mass_DM = [100, 150, 200]
+#mass_hs = [160, 180, 200]
+mass_hs = [160, 180, 200, 250]
+#mass_DM = [100, 150, 200]
+mass_DM = [100, 150, 200, 300]
 mass_Zp = [195, 200, 295, 300, 400, 500, 800, 1000, 1200, 1500]
 
 dirs_l = options.dirs.split(',')
@@ -485,28 +493,28 @@ for mx in mass_DM:
  
         plot(lim_dict, mhs, mx, model=options.model)
 
-tg2_dict = {} 
-for mx in mass_DM:
-    tg2_dict[mx] = OrderedDict()
-    for key in dirs_d:
-        target_dir = dirs_d[key]
-        tg2_dict[mx][key] = {}
-        tg2_dict[mx][key]['50'] = ROOT.TGraph2D()
-        tg2_dict[mx][key]['2']  = ROOT.TGraph2D()
-        tg2_dict[mx][key]['16'] = ROOT.TGraph2D()
-        tg2_dict[mx][key]['84'] = ROOT.TGraph2D()
-        tg2_dict[mx][key]['97'] = ROOT.TGraph2D()
-        tg2_dict[mx][key]['idx'] = 0
-        for mhs in mass_hs:
-            mass, lim_50, lim_2, lim_16, lim_84, lim_97 = get_limits(mhs, mx, target_dir)
-            for idx,mZp in enumerate(mass):
-                tg2_dict[mx][key]['50'].SetPoint(tg2_dict[mx][key]['idx'], mZp, mhs, lim_50[idx])
-                tg2_dict[mx][key]['2'] .SetPoint(tg2_dict[mx][key]['idx'], mZp, mhs, lim_2[idx])
-                tg2_dict[mx][key]['16'].SetPoint(tg2_dict[mx][key]['idx'], mZp, mhs, lim_16[idx])
-                tg2_dict[mx][key]['84'].SetPoint(tg2_dict[mx][key]['idx'], mZp, mhs, lim_84[idx])
-                tg2_dict[mx][key]['97'].SetPoint(tg2_dict[mx][key]['idx'], mZp, mhs, lim_97[idx])
-                tg2_dict[mx][key]['idx'] += 1
-    plot_2D(tg2_dict[mx], 'limits_mx_'+str(mx)+'_darkHiggs.png', mx)
+#tg2_dict = {} 
+#for mx in mass_DM:
+#    tg2_dict[mx] = OrderedDict()
+#    for key in dirs_d:
+#        target_dir = dirs_d[key]
+#        tg2_dict[mx][key] = {}
+#        tg2_dict[mx][key]['50'] = ROOT.TGraph2D()
+#        tg2_dict[mx][key]['2']  = ROOT.TGraph2D()
+#        tg2_dict[mx][key]['16'] = ROOT.TGraph2D()
+#        tg2_dict[mx][key]['84'] = ROOT.TGraph2D()
+#        tg2_dict[mx][key]['97'] = ROOT.TGraph2D()
+#        tg2_dict[mx][key]['idx'] = 0
+#        for mhs in mass_hs:
+#            mass, lim_50, lim_2, lim_16, lim_84, lim_97 = get_limits(mhs, mx, target_dir)
+#            for idx,mZp in enumerate(mass):
+#                tg2_dict[mx][key]['50'].SetPoint(tg2_dict[mx][key]['idx'], mZp, mhs, lim_50[idx])
+#                tg2_dict[mx][key]['2'] .SetPoint(tg2_dict[mx][key]['idx'], mZp, mhs, lim_2[idx])
+#                tg2_dict[mx][key]['16'].SetPoint(tg2_dict[mx][key]['idx'], mZp, mhs, lim_16[idx])
+#                tg2_dict[mx][key]['84'].SetPoint(tg2_dict[mx][key]['idx'], mZp, mhs, lim_84[idx])
+#                tg2_dict[mx][key]['97'].SetPoint(tg2_dict[mx][key]['idx'], mZp, mhs, lim_97[idx])
+#                tg2_dict[mx][key]['idx'] += 1
+#    plot_2D(tg2_dict[mx], 'limits_mx_'+str(mx)+'_darkHiggs.png', mx)
 
 
  

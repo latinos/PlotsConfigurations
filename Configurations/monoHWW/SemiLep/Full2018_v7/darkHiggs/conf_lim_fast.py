@@ -15,6 +15,8 @@ aliasesFile = 'aliases.py'
 # file with list of variables
 #variablesFile = 'variables.py'
 variablesFile = 'variables_lim.py'
+#variablesFile = 'variables_lim_datacard.py'
+#variablesFile = 'variables_lim_fast.py'
 
 # file with list of cuts
 #cutsFile = 'cuts.py'
@@ -24,7 +26,8 @@ cutsFile = 'cuts_lim.py'
 samplesFile = 'samples_fast.py'
 
 # file with list of samples
-plotFile = 'plot.py'
+#plotFile = 'plot.py'
+plotFile = 'plot_lim_fast.py'
 
 # luminosity to normalize to (in 1/fb)
 lumi = 59.74
@@ -42,4 +45,6 @@ structureFile = 'structure.py'
 # nuisances file for mkDatacards and for mkShape
 #nuisancesFile = 'nuisances.py'
 #nuisancesFile = 'nuisances_full.py'
-nuisancesFile = 'nuisances_full_new.py'
+#nuisancesFile = 'nuisances_full_new.py'
+#nuisancesFile = 'nuisances_full_new_JER.py'
+nuisancesFile = 'nuisances_full_fast.py'

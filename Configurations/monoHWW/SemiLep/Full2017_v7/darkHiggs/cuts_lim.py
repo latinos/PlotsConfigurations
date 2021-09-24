@@ -71,8 +71,8 @@ TCR_h    = combinecut([super_cut, mt_lmet_h  , met  , dphi_l_jj, dphi_ljj_met, d
 #addcut('MuCh_QER' , combinecut([is_mu, QER ]))
 
 # Inclusive
-#addcut('InCh_SR'  , combinecut([SR  ]))
-#addcut('InCh_SB'  , combinecut([SB  ]))
+addcut('InCh_SR'  , combinecut([SR  ]))
+addcut('InCh_SB'  , combinecut([SB  ]))
 addcut('InCh_TCR' , combinecut([TCR ]))
 
 #addcut('InCh_SC'  , combinecut([SC  ]))
