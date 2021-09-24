@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # cmsenv in Latinos environment
-cd $HOME/work/latinos/CMSSW_10_6_4/src/
+cd $HOME/work/latinos/unblinding/CMSSW_10_6_4/src/
 eval `scramv1 runtime -sh`
 cd -
 

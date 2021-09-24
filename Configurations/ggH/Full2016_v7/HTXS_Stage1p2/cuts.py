@@ -24,14 +24,16 @@ cuts['hww2l2v_13TeV'] = {
    }
 }
 
-
 ## Top control regions
 cuts['hww2l2v_13TeV_top']  = { 
    'expr' : 'topcr',
     # Define the sub-categorization of topcr
    'categories' : {
-      '0j' : 'zeroJet',
-      '1j' : 'oneJet && Alt$(CleanJet_pt[1],0)<30',
+      '0j_pth0_10' : 'zeroJet && pTWW <= 10 ',
+      '0j_pth10_200' : ' zeroJet && pTWW > 10 && pTWW <= 200 ',
+      '1j_pth0_60' : ' oneJet && Alt$(CleanJet_pt[1],0)<30 && pTWW <= 60 ',
+      '1j_pth60_120' : ' oneJet && Alt$(CleanJet_pt[1],0)<30 && pTWW > 60 && pTWW <= 120 ',
+      '1j_pth120_200' : ' oneJet && Alt$(CleanJet_pt[1],0)<30 && pTWW > 120 && pTWW <= 200 ',
    }
 }
 
@@ -39,9 +41,12 @@ cuts['hww2l2v_13TeV_top']  = {
 cuts['hww2l2v_13TeV_dytt']  = { 
    'expr' : 'dycr',
    # Define the sub-categorization of dycr
-   'categories' : { 
-      '0j' : 'zeroJet',
-      '1j' : 'oneJet && Alt$(CleanJet_pt[1],0)<30',
+   'categories' : {
+      '0j_pth0_10' : 'zeroJet && pTWW <= 10 ',
+      '0j_pth10_200' : ' zeroJet && pTWW > 10 && pTWW <= 200 ',
+      '1j_pth0_60' : ' oneJet && Alt$(CleanJet_pt[1],0)<30 && pTWW <= 60 ',
+      '1j_pth60_120' : ' oneJet && Alt$(CleanJet_pt[1],0)<30 && pTWW > 60 && pTWW <= 120 ',
+      '1j_pth120_200' : ' oneJet && Alt$(CleanJet_pt[1],0)<30 && pTWW > 120 && pTWW <= 200 ', 
    }
 }
 

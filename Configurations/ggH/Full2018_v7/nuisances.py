@@ -392,6 +392,7 @@ nuisances['PS_ISR_ForBuggySamples']  = {
     'samples': {
         'Vg'     : ['1.00227428567253*(nCleanGenJet==0) + 1.00572014989997*(nCleanGenJet==1) + 0.970824885256465*(nCleanGenJet==2) + 0.927346068071086*(nCleanGenJet>=3)', '0.996488506572636*(nCleanGenJet==0) + 0.993582795375765*(nCleanGenJet==1) + 1.03643678934568*(nCleanGenJet==2) + 1.09735277266955*(nCleanGenJet>=3)'],
         'VgS'    : ['1.0000536116408023*(nCleanGenJet==0) + 1.0100100693580492*(nCleanGenJet==1) + 0.959068359375*(nCleanGenJet==2) + 0.9117049260469496*(nCleanGenJet>=3)', '0.9999367833485968*(nCleanGenJet==0) + 0.9873682892005163*(nCleanGenJet==1) + 1.0492717737268518*(nCleanGenJet==2) + 1.1176958835210322*(nCleanGenJet>=3)'],
+        'WWewk'  : ['1./1.00259*(nCleanGenJet==0) + 1./1.0179*(nCleanGenJet==1) + 1./1.01821*(nCleanGenJet==2) + 1./0.965982*(nCleanGenJet>=3)', '1./0.998322*(nCleanGenJet==0) + 1./0.979654*(nCleanGenJet==1) + 1./0.978425*(nCleanGenJet==2) + 1./1.04488*(nCleanGenJet>=3)']
     },
 }
 
@@ -402,6 +403,7 @@ nuisances['PS_FSR_ForBuggySamples']  = {
     'samples': {
         'Vg'     : ['0.999935529935028*(nCleanGenJet==0) + 0.997948255568351*(nCleanGenJet==1) + 1.00561645493085*(nCleanGenJet==2) + 1.0212896960035*(nCleanGenJet>=3)', '1.00757702771109*(nCleanGenJet==0) + 1.00256681166083*(nCleanGenJet==1) + 0.93676371569867*(nCleanGenJet==2) + 0.956448336052435*(nCleanGenJet>=3)'],
         'VgS'    : ['0.9976593177227735*(nCleanGenJet==0) + 1.0016125187585532*(nCleanGenJet==1) + 1.0049344618055556*(nCleanGenJet==2) + 1.0195631514301164*(nCleanGenJet>=3)', '1.0026951855766457*(nCleanGenJet==0) + 1.0008132148661049*(nCleanGenJet==1) + 1.003949291087963*(nCleanGenJet==2) + 0.9708160910230832*(nCleanGenJet>=3)'],
+        'WWewk'  : ['1./0.991982*(nCleanGenJet==0) + 1./0.995154*(nCleanGenJet==1) + 1./1.00456*(nCleanGenJet==2) + 1./1.00597*(nCleanGenJet>=3)', '1./1.01669*(nCleanGenJet==0) + 1./1.01253*(nCleanGenJet==1) + 1./0.997909*(nCleanGenJet==2) + 1./0.991305*(nCleanGenJet>=3)']
     },
 }
 
@@ -473,11 +475,23 @@ nuisances['VgStar'] = {
 }
 
 if useWgFXFX:
+#   nuisances['VgScale'] = {
+#       'name': 'CMS_hww_VgScale',
+#       'type': 'lnN',
+#       'samples': {
+#           'Vg': '1.06'
+#       }
+#   }
+
+## Vg scale as a function of nGenJet
+
   nuisances['VgScale'] = {
       'name': 'CMS_hww_VgScale',
-      'type': 'lnN',
+      'type': 'shape',
+      'kind': 'weight',
       'samples': {
-          'Vg': '1.06'
+          'Vg': ['0.984 * (nCleanGenJet==0) + 1.015 * (nCleanGenJet==1) + 1.09 * ( nCleanGenJet>1)',
+                 '1.014 * (nCleanGenJet==0) + 0.985 * (nCleanGenJet==1) + 0.93 * ( nCleanGenJet>1)']
       }
   }
 
@@ -623,18 +637,18 @@ topvars2j = []
 
 # FIXME these need to be recalculated for 2018
 ## Factors computed to renormalize the top scale variations such that the integral is not changed in each RECO jet bin (we have rateParams for that)
-topScaleNormFactors0j = {'LHEScaleWeight[3]': 1.0026322046882807, 'LHEScaleWeight[0]': 1.0761381504953040, 'LHEScaleWeight[1]': 1.0758902481739956, 'LHEScaleWeight[Length$(LHEScaleWeight)-1]': 0.9225780960271310, 'LHEScaleWeight[Length$(LHEScaleWeight)-4]': 1.0006689791003040, 'LHEScaleWeight[Length$(LHEScaleWeight)-2]': 0.9242759920995479}
-topScaleNormFactors1j = {'LHEScaleWeight[3]': 1.0088973745933350, 'LHEScaleWeight[0]': 1.0858717477880675, 'LHEScaleWeight[1]': 1.0809970696561464, 'LHEScaleWeight[Length$(LHEScaleWeight)-1]': 0.9115155831354494, 'LHEScaleWeight[Length$(LHEScaleWeight)-4]': 0.9950909615738225, 'LHEScaleWeight[Length$(LHEScaleWeight)-2]': 0.9194241285459210}
-topScaleNormFactors2j = {'LHEScaleWeight[3]': 1.0236911155246506, 'LHEScaleWeight[0]': 1.1249360990045656, 'LHEScaleWeight[1]': 1.1054771659922622, 'LHEScaleWeight[Length$(LHEScaleWeight)-1]': 0.8819750427294990, 'LHEScaleWeight[Length$(LHEScaleWeight)-4]': 0.9819208264038879, 'LHEScaleWeight[Length$(LHEScaleWeight)-2]': 0.9025818187649589}
+topScaleNormFactors0j = {'LHEScaleWeight[3]': 1.0026322046882807, 'LHEScaleWeight[0]': 1.0761381504953040, 'LHEScaleWeight[1]': 1.0758902481739956, 'LHEScaleWeight[8]': 0.9225780960271310, 'LHEScaleWeight[Length$(LHEScaleWeight)-4]': 1.0006689791003040, 'LHEScaleWeight[Length$(LHEScaleWeight)-2]': 0.9242759920995479}
+topScaleNormFactors1j = {'LHEScaleWeight[3]': 1.0088973745933350, 'LHEScaleWeight[0]': 1.0858717477880675, 'LHEScaleWeight[1]': 1.0809970696561464, 'LHEScaleWeight[8]': 0.9115155831354494, 'LHEScaleWeight[Length$(LHEScaleWeight)-4]': 0.9950909615738225, 'LHEScaleWeight[Length$(LHEScaleWeight)-2]': 0.9194241285459210}
+topScaleNormFactors2j = {'LHEScaleWeight[3]': 1.0236911155246506, 'LHEScaleWeight[0]': 1.1249360990045656, 'LHEScaleWeight[1]': 1.1054771659922622, 'LHEScaleWeight[8]': 0.8819750427294990, 'LHEScaleWeight[Length$(LHEScaleWeight)-4]': 0.9819208264038879, 'LHEScaleWeight[Length$(LHEScaleWeight)-2]': 0.9025818187649589}
 
-topvars0j.append('LHEScaleWeight[0]/'+str(topScaleNormFactors0j['LHEScaleWeight[0]']))
-topvars0j.append('LHEScaleWeight[Length$(LHEScaleWeight)-1]/'+str(topScaleNormFactors0j['LHEScaleWeight[Length$(LHEScaleWeight)-1]']))
+topvars0j.append('Alt$(LHEScaleWeight[0], 1.)/'+str(topScaleNormFactors0j['LHEScaleWeight[0]']))
+topvars0j.append('Alt$(LHEScaleWeight[8], 1.)/'+str(topScaleNormFactors0j['LHEScaleWeight[8]']))
 
-topvars1j.append('LHEScaleWeight[0]/'+str(topScaleNormFactors1j['LHEScaleWeight[0]']))
-topvars1j.append('LHEScaleWeight[Length$(LHEScaleWeight)-1]/'+str(topScaleNormFactors1j['LHEScaleWeight[Length$(LHEScaleWeight)-1]']))
+topvars1j.append('Alt$(LHEScaleWeight[0], 1.)/'+str(topScaleNormFactors1j['LHEScaleWeight[0]']))
+topvars1j.append('Alt$(LHEScaleWeight[8], 1.)/'+str(topScaleNormFactors1j['LHEScaleWeight[8]']))
 
-topvars2j.append('LHEScaleWeight[0]/'+str(topScaleNormFactors2j['LHEScaleWeight[0]']))
-topvars2j.append('LHEScaleWeight[Length$(LHEScaleWeight)-1]/'+str(topScaleNormFactors2j['LHEScaleWeight[Length$(LHEScaleWeight)-1]']))
+topvars2j.append('Alt$(LHEScaleWeight[0], 1.)/'+str(topScaleNormFactors2j['LHEScaleWeight[0]']))
+topvars2j.append('Alt$(LHEScaleWeight[8], 1.)/'+str(topScaleNormFactors2j['LHEScaleWeight[8]']))
 
 '''
 for var in variations:
@@ -926,10 +940,11 @@ nuisances['QCDscale_ttH'] = {
 
 nuisances['QCDscale_WWewk'] = {
     'name': 'QCDscale_WWewk',
+    'kind': 'weight_envelope',
+    'type': 'shape',
     'samples': {
-        'WWewk': '1.11',
-    },
-    'type': 'lnN'
+        'WWewk': ['LHEScaleWeight[0]', 'LHEScaleWeight[2]']
+    }
 }
 
 nuisances['QCDscale_qqbar_ACCEPT'] = {
@@ -970,7 +985,7 @@ nuisances['stat'] = {
 
 
 nuisances['DYembnorm0j']  = {
-               'name'  : 'CMS_hww_DYttnorm0j',
+               'name'  : 'CMS_hww_DYttnorm0j_2018',
                'samples'  : {
                    'Dyemb' : '1.00',
                    },
@@ -979,7 +994,7 @@ nuisances['DYembnorm0j']  = {
               }
 
 nuisances['DYembnorm1j']  = {
-               'name'  : 'CMS_hww_DYttnorm1j',
+               'name'  : 'CMS_hww_DYttnorm1j_2018',
                'samples'  : {
                    'Dyemb' : '1.00',
                    },
@@ -988,7 +1003,7 @@ nuisances['DYembnorm1j']  = {
               }
 
 nuisances['DYembnorm2j']  = {
-                 'name'  : 'CMS_hww_DYttnorm2j',
+                 'name'  : 'CMS_hww_DYttnorm2j_2018',
                  'samples'  : {
                    'Dyemb' : '1.00',
                      },

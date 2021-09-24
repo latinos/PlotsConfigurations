@@ -6,7 +6,7 @@ configurations = os.path.dirname(configurations) # Full2017_v7
 configurations = os.path.dirname(configurations) # VH2j 
 configurations = os.path.dirname(configurations) # Configurations
 
-from LatinoAnalysis.Tools.commonTools import getSampleFiles, getBaseW, addSampleWeight
+from LatinoAnalysis.Tools.commonTools import getSampleFiles, getBaseW, addSampleWeight, getBaseWnAOD
 
 def nanoGetSampleFiles(inputDir, sample):
     try:

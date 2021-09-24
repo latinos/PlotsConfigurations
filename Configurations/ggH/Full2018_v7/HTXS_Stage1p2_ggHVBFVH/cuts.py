@@ -49,7 +49,6 @@ cuts['hww2l2v_13TeV'] = {
    }
 }
 
-
 ## Top control regions
 cuts['hww2l2v_13TeV_top']  = { 
    'expr' : 'topcr',
@@ -75,4 +74,3 @@ cuts['hww2l2v_13TeV_dytt']  = {
       '2j_vh' : 'multiJet && mjj>=65 && mjj<=105'
    }
 }
-

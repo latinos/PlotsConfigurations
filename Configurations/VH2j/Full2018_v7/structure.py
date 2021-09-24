@@ -20,16 +20,9 @@ structure['Dyveto']  = {
     'removeFromCuts' : [ k for k in cuts ],
 }
 
-structure['Fake_em']  = {  
+structure['Fake']  = {  
     'isSignal' : 0,
     'isData'   : 0,
-    'removeFromCuts' : [ k for k in cuts if 'me' in k],
-}
-
-structure['Fake_me']  = {  
-    'isSignal' : 0,
-    'isData'   : 0,
-    'removeFromCuts' : [ k for k in cuts if 'em' in k],
 }
 
 structure['top'] = {   

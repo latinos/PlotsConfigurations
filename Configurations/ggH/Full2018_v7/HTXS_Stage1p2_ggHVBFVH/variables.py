@@ -26,7 +26,6 @@ variables['events']  = {
       ]
 }
 
-
 variables['mll']  = {   
       'name': 'mll',
       'range' : ([10, 100, 210],),
@@ -166,8 +165,8 @@ variables['classww'] = {
             'hww2l2v_13TeV_of2j_wwlike_mjjGT350_pthGT200'
     ]
 }
-
 '''
+
 variables['mllVSmth_3x3bins'] = {   'name': 'mll:mth',            #   variable name    
                                     'range' : ([60, 90, 130, 200],[10, 30, 70, 210],),            #   variable range
                                     'xaxis' : 'm_{ll} : m_{T}^{H}',      #   x axis name
@@ -238,4 +237,3 @@ variables['classww_mjjlow'] = {
      ]
 }
 '''
-

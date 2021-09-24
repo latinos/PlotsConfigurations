@@ -2,8 +2,8 @@ import os
 import inspect
 
 configurations = os.path.realpath(inspect.getfile(inspect.currentframe())) # this file
-configurations = os.path.dirname(configurations) # Full2016_v6
-configurations = os.path.dirname(configurations) # Full2016_v6
+configurations = os.path.dirname(configurations) # inclusive
+configurations = os.path.dirname(configurations) # Full2016_v7
 configurations = os.path.dirname(configurations) # FullRunII
 configurations = os.path.dirname(configurations) # WW
 configurations = os.path.dirname(configurations) # Configurations
@@ -325,49 +325,19 @@ samples['WH_htt'] = {
 #############   SIGNALS  ##################
 ###########################################
 
-njetBinning = ['0', '1', '2+']
-ngenjet = 'nCleanGenJet'
-
-signals = []
-
 ###### WW ########
 
 samples['WW'] = {
-    'name': nanoGetSampleFiles(mcDirectory, 'WWTo2L2Nu') + \
-            nanoGetSampleFiles(mcDirectory, 'GluGluWWTo2L2Nu_MCFM'),
- #   'weight': mcCommonWeight+ '*nllW', # temporary - nllW module not run on PS and UE variation samples
-    'weight': mcCommonWeight,
+    'name': nanoGetSampleFiles(mcDirectory, 'WWTo2L2Nu'),
+    'weight': mcCommonWeight+ '*nllW',
     'FilesPerJob': 4
 }
-addSampleWeight(samples, 'WW', 'WWTo2L2Nu', 'nllW')
-addSampleWeight(samples, 'WW', 'GluGluWWTo2L2Nu_MCFM', '1.53/1.4')
 
-signals.append('WW')
-
-#samples['ggWW'] = {
-#    'name': nanoGetSampleFiles(mcDirectory, 'GluGluWWTo2L2Nu_MCFM'),
-#    'weight': mcCommonWeight+'*1.53/1.4', # updating k-factor
-#    'FilesPerJob': 4
-#}
-#signals.append('ggWW')
-
-
-### Now bin in njets at gen level (inclusive in fiducial)
-
-for sname in signals:
-  sample = samples[sname]
-  sample['subsamples'] = {}
-
-  for nj in njetBinning:
-    if nj.endswith('+'):
-      binName = 'NJ_GE%s' % (nj[:-1])
-      cut = '%s >= %s' % (ngenjet, nj[:-1])
-    else:
-      binName = 'NJ_%s' % (nj)
-      cut = '%s == %s' % (ngenjet, nj)
-  
-    sample['subsamples'][binName] = cut
-  
+samples['ggWW'] = {
+    'name': nanoGetSampleFiles(mcDirectory, 'GluGluWWTo2L2Nu_MCFM'),
+    'weight': mcCommonWeight+'*1.53/1.4', # updating k-factor
+    'FilesPerJob': 4
+}
 
 ###########################################
 ################## FAKE ###################

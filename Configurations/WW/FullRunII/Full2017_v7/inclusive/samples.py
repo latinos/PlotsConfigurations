@@ -291,16 +291,18 @@ samples['WH_htt'] = {
 #############   SIGNALS  ##################
 ###########################################
 
-njetBinning = ['0', '1', '2+']
-ngenjet = 'nCleanGenJet'
-
-signals = []
-
 ###### WW ########
 
 samples['WW'] = {
-    'name': nanoGetSampleFiles(mcDirectory, 'WWTo2L2Nu') + \
-            nanoGetSampleFiles(mcDirectory, 'GluGluToWWToENEN') + \
+    'name': nanoGetSampleFiles(mcDirectory, 'WWTo2L2Nu'),
+    'weight': mcCommonWeight+'*nllW',
+    'FilesPerJob': 2
+}
+
+###### ggWW ########
+
+samples['ggWW'] = {
+    'name': nanoGetSampleFiles(mcDirectory, 'GluGluToWWToENEN') + \
             nanoGetSampleFiles(mcDirectory, 'GluGluToWWToENMN') + \
             nanoGetSampleFiles(mcDirectory, 'GluGluToWWToENTN') + \
             nanoGetSampleFiles(mcDirectory, 'GluGluToWWToMNEN') + \
@@ -309,38 +311,9 @@ samples['WW'] = {
             nanoGetSampleFiles(mcDirectory, 'GluGluToWWToTNEN') + \
             nanoGetSampleFiles(mcDirectory, 'GluGluToWWToTNMN') + \
             nanoGetSampleFiles(mcDirectory, 'GluGluToWWToTNTN'),
-    'weight': mcCommonWeight,
+    'weight': mcCommonWeight+'*1.53/1.4',
     'FilesPerJob': 2
 }
-
-addSampleWeight(samples, 'WW', 'WWTo2L2Nu', 'nllW')
-addSampleWeight(samples, 'WW', 'GluGluToWWToENEN', '1.53/1.4')
-addSampleWeight(samples, 'WW', 'GluGluToWWToENMN', '1.53/1.4')
-addSampleWeight(samples, 'WW', 'GluGluToWWToENTN', '1.53/1.4')
-addSampleWeight(samples, 'WW', 'GluGluToWWToMNEN', '1.53/1.4')
-addSampleWeight(samples, 'WW', 'GluGluToWWToMNMN', '1.53/1.4')
-addSampleWeight(samples, 'WW', 'GluGluToWWToMNTN', '1.53/1.4')
-addSampleWeight(samples, 'WW', 'GluGluToWWToTNEN', '1.53/1.4')
-addSampleWeight(samples, 'WW', 'GluGluToWWToTNMN', '1.53/1.4')
-addSampleWeight(samples, 'WW', 'GluGluToWWToTNTN', '1.53/1.4')
-
-signals.append('WW')
-
-### Now bin in njets at gen level (inclusive in fiducial)
-
-for sname in signals:
-  sample = samples[sname]
-  sample['subsamples'] = {}
-
-  for nj in njetBinning:
-    if nj.endswith('+'):
-      binName = 'NJ_GE%s' % (nj[:-1])
-      cut = '%s >= %s' % (ngenjet, nj[:-1])
-    else:
-      binName = 'NJ_%s' % (nj)
-      cut = '%s == %s' % (ngenjet, nj)
-
-    sample['subsamples'][binName] = cut
 
 ###########################################
 ################## FAKE ###################

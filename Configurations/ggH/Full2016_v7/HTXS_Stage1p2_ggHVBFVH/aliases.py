@@ -226,7 +226,7 @@ elif btag_algo=="deepflav":
     }
  
  
-    aliases['bVetoSF'] = {                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
+    aliases['bVetoSF'] = { 
         'expr': 'TMath::Exp(Sum$(TMath::Log((CleanJet_pt>20 && abs(CleanJet_eta)<2.5)*Jet_btagSF_deepflav_shape[CleanJet_jetIdx]+1*(CleanJet_pt<20 || abs(CleanJet_eta)>2.5))))',
         'samples': mc
     }
@@ -270,11 +270,6 @@ elif btag_algo=="deepflav":
             'samples': mc
         }
  
- 
-
-
-
-
 
 aliases['Jet_PUIDSF'] = {
   'expr' : 'TMath::Exp(Sum$((Jet_jetId>=2)*TMath::Log(Jet_PUIDSF_loose)))',
@@ -362,7 +357,6 @@ aliases['lhe_mW2'] = {
     'expr': 'TMath::Sqrt(2. * LHEPart_pt[4] * LHEPart_pt[5] * (TMath::CosH(LHEPart_eta[4] - LHEPart_eta[5]) - TMath::Cos(LHEPart_phi[4] - LHEPart_phi[5])))',
     'samples': ['WWewk']
 }
-
 
 
 aliases['vbfdnn'] = {

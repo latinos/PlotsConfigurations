@@ -7,6 +7,10 @@ configurations = os.path.dirname(configurations) # Full2017_v7
 configurations = os.path.dirname(configurations) # ggH
 configurations = os.path.dirname(configurations) # Configurations
 
+print('DIOCANEEEEEEEEEEEEEEEEEEEEEEE')
+print(configurations)
+print('DIOCANEEEEEEEEEEEEEEEEEEEEEEE')
+
 #aliases = {}
 
 # imported from samples.py:

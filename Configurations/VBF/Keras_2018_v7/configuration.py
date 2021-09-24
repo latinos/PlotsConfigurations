@@ -2,8 +2,8 @@
 
 treeName = 'Events'
 
-tag = 'vbf_2018_25_01_v7'
-#tag = 'vbf_2018_19_12_v7'
+# tag = 'vbf_2018_v7_08_07_QCDscale_top_fix'
+tag = 'DNN_inputs_2018'
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFile'
@@ -12,8 +12,8 @@ outputDir = 'rootFile'
 aliasesFile = 'aliases.py'
 
 # file with list of variables
-#variablesFile = 'variables_input.py'
-variablesFile = 'variables.py'
+variablesFile = 'variables_input.py'
+# variablesFile = 'variables.py'
 
 # file with list of cuts
 cutsFile = 'cuts.py' 
@@ -29,10 +29,10 @@ lumi = 59.74
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'plots'
+outputDirPlots = 'plots_' + tag
 
 # used by mkDatacards to define output directory for datacards
-outputDirDatacard = 'datacards'
+outputDirDatacard = 'datacards_' + tag
 
 # structure file for datacard
 structureFile = 'structure.py'

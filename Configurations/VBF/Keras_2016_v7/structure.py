@@ -147,9 +147,16 @@ structure['qqH_hww'] = {
                   'isData'   : 0    
                   }
 
+import pickle
+with open('vbfDipoleScale.pkl', 'rb') as handle:
+    vbfDipoleScale = pickle.load(handle)
+
+print vbfDipoleScale
+
 structure['qqH_hww'] = {
                   'isSignal' : 1,
-                  'isData'   : 0    
+                  'isData'   : 0,
+                  'scaleSampleForDatacard' : vbfDipoleScale,
                   }
 
 structure['WH_hww'] = {

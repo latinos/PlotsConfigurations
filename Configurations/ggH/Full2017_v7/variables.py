@@ -16,7 +16,7 @@ variables['events']  = {   'name': '1',
 #                         'fold' : 3
 #                      }
 #
-
+'''
 variables['mll']  = {   'name': 'mll',
                         'range' : (20, 12,200),
                         'xaxis' : 'm_{ll} [GeV]',
@@ -118,7 +118,7 @@ variables['jeteta2']  = {  'name': '(Sum$(CleanJet_pt>30)>1)*(Alt$(CleanJet_eta[
                         'fold'  : 0
                         }
 
-
+'''
 variables['mllVSmth_pt2ge20'] = {   'name': 'mll:mth',            #   variable name    
                              'range' : ([60,80,90,100,110,120,130,150,200],[12,25,35,40,45,50,55,70,90,210],),            #   variable range
                              'xaxis' : 'm_{ll} : m_{T}^{H}',      #   x axis name
@@ -130,7 +130,7 @@ variables['mllVSmth_pt2ge20'] = {   'name': 'mll:mth',            #   variable n
                              #
                              }
 
-
+'''
 variables['mllVSmth_optim'] = {   'name': 'mll:mth',            #   variable name    
                              'range' : ([60,95,110,135,200],[12,17,25,30,35,40,45,65,200],),            #   variable range
                              'xaxis' : 'm_{ll} : m_{T}^{H}',      #   x axis name
@@ -153,7 +153,7 @@ variables['mllVSmth_low_optim'] = {   'name': 'mll:mth',            #   variable
                              #
                              }
 
-
+'''
 variables['mllVSmth_pt2lt20'] = {   'name': 'mll:mth',            #   variable name    
                              'range' : ([60,80,90,110,130,150,200],[12,25,40,50,70,90,210],),            #   variable range
                              'xaxis' : 'm_{ll} : m_{T}^{H}',      #   x axis name
