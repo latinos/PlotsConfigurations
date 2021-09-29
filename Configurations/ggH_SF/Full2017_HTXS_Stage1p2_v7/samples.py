@@ -119,7 +119,7 @@ if useDYtt:
     addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO_ext1','DY_LO_pTllrw')
 
 else:
-    files = nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50') + \
+    files = nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_ext1') + \
             nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-10to50-LO_ext1')
 
     samples['DY'] = {
@@ -146,12 +146,12 @@ else:
                                    + nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-1200to2500') \
                                    + nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-2500toInf')
 
-    addSampleWeight(samples,'DY','DYJetsToLL_M-50','DY_NLO_pTllrw')
-    addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO_ext1','DY_LO_pTllrw')
+    addSampleWeight(samples,'DY','DYJetsToLL_M-50_ext1',        'DY_NLO_pTllrw')
+    addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO_ext1', 'DY_LO_pTllrw')
 
     if useDYHT :
         # Remove high HT from inclusive samples
-        addSampleWeight(samples,'DY','DYJetsToLL_M-50'       , 'LHE_HT<100.0')
+        addSampleWeight(samples,'DY','DYJetsToLL_M-50_ext1'       , 'LHE_HT<100.0')
         addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO_ext1', 'LHE_HT<100.0')
         # pt_ll weight
         addSampleWeight(samples,'DY','DYJetsToLL_M-4to50_HT-100to200_ext1'   ,'DY_LO_pTllrw')
