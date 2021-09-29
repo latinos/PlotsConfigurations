@@ -65,7 +65,6 @@ dataDirectory = os.path.join(treeBaseDir, dataReco, dataSteps)
 ################################################
 
 DataRun = [
-    ['B','Run2016B-02Apr2020_ver1-v1'],
     ['B','Run2016B-02Apr2020_ver2-v1'],
     ['C','Run2016C-02Apr2020-v1'],
     ['D','Run2016D-02Apr2020-v1'],
