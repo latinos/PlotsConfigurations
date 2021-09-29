@@ -100,6 +100,12 @@ Remove nuisances giving negative yileds:
 
 ### Prepare the workspace
 
+Source combine:
+
+    cd $HOME/work/combine/CMSSW_10_2_13/src/
+    cmsenv
+    cd -
+
 To avoid possible segmentation fault errors, run this command:
 
     ulimit -s unlimited
