@@ -2,7 +2,7 @@
 
 treeName = 'Events'
 
-tag = 'WW2017_v7_njets_15Apr'
+tag = 'WW2016_v7_njets_NormFact'
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFile'
@@ -19,22 +19,8 @@ cutsFile = 'cuts.py'
 # file with list of samples
 samplesFile = 'samples.py' 
 
-# file with list of samples
-plotFile = 'plot.py' 
-
 # luminosity to normalize to (in 1/fb)
-lumi = 41.53
-
-# used by mkPlot to define output directory for plots
-# different from "outputDir" to do things more tidy
-outputDirPlots = 'plots'
-
-# used by mkDatacards to define output directory for datacards
-outputDirDatacard = 'datacards'
-
-# structure file for datacard
-structureFile = 'structure.py'
+lumi = 35.867
 
 # nuisances file for mkDatacards and for mkShape
 nuisancesFile = 'nuisances.py'
-

@@ -9,7 +9,6 @@ supercut = '   mll>12 \
             && PuppiMET_pt > 20 \
             && (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13) \
             && mll > 20 \
-            && jetetacut \
            '
 
 ##  signal regions
@@ -17,10 +16,10 @@ cuts['ww2l2v_13TeV_sr']  = {
    'expr' : 'sr',
     # Define the sub-categorization of signal region
    'categories' : {
-      '0j' : 'zeroJet',
-      '1j' : 'oneJet && Alt$(CleanJet_pt[1],0)<30',
-      '2j' : 'twoJet && Alt$(CleanJet_pt[2],0)<30',
-      '3j' : 'threeJet',
+       'B0' : 'nGoodCleanJet == 0',
+       'B1' : 'nGoodCleanJet == 1',
+       'B2' : 'nGoodCleanJet == 2',
+       'B3' : 'nGoodCleanJet >= 3'
    }
 }
 
@@ -29,21 +28,10 @@ cuts['ww2l2v_13TeV_top']  = {
    'expr' : 'topcr',
     # Define the sub-categorization of topcr
    'categories' : {
-      '0j' : 'zeroJet',
-      '1j' : 'oneJet && Alt$(CleanJet_pt[1],0)<30',
-      '2j' : 'twoJet && Alt$(CleanJet_pt[2],0)<30',
-      '3j' : 'threeJet',
+       'B0' : 'nGoodCleanJet == 0',
+       'B1' : 'nGoodCleanJet == 1',
+       'B2' : 'nGoodCleanJet == 2',
+       'B3' : 'nGoodCleanJet >= 3'
    }
 }
-
-#cuts['ww2l2v_13TeV_dytt']  = {
-#   'expr' : 'dycr',
-#    # Define the sub-categorization of dycr
-#   'categories' : {
-#      '0j' : 'zeroJet',
-#      '1j' : 'oneJet && Alt$(CleanJet_pt[1],0)<30',
-#      '2j' : 'twoJet && Alt$(CleanJet_pt[2],0)<30',
-#      '3j' : 'threeJet',
-#   }
-#}
 

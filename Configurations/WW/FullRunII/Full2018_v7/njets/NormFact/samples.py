@@ -1,6 +1,14 @@
 import os
 import inspect
 
+configurations = os.path.realpath(inspect.getfile(inspect.currentframe())) # this file
+configurations = os.path.dirname(configurations) # NormFact
+configurations = os.path.dirname(configurations) # njets
+configurations = os.path.dirname(configurations) # Full2018_v7
+configurations = os.path.dirname(configurations) # FullRunII
+configurations = os.path.dirname(configurations) # WW
+configurations = os.path.dirname(configurations) # Configurations
+
 from LatinoAnalysis.Tools.commonTools import getSampleFiles, getBaseWnAOD, addSampleWeight
 
 def nanoGetSampleFiles(inputDir, sample):
@@ -24,9 +32,9 @@ except NameError:
 ################# SKIMS ########################
 ################################################
 
-mcProduction = 'Summer16_102X_nAODv7_Full2016v7'
+mcProduction = 'Autumn18_102X_nAODv7_Full2018v7'
 
-mcSteps = 'MCl1loose2016v7__MCCorr2016v7'
+mcSteps = 'MCl1loose2018v7__MCCorr2018v7__l2loose__l2tightOR2018v7{var}'
 
 ##############################################
 ###### Tree base directory for the site ######
@@ -50,50 +58,22 @@ mcDirectory = makeMCDirectory()
 ############ MC COMMON ##################
 #########################################
 
-mcCommonWeight = 'XSWeight'
+mcCommonWeight = 'XSWeight*SFweight*PromptGenLepMatch2l*METFilter_MC'
 
-###########################################
-#############   SIGNALS  ##################
-###########################################
+###### Top #######
 
-gen_binning = {
-    'B0' : 'nGoodGenJet == 0',
-    'B1' : 'nGoodGenJet == 1',
-    'B2' : 'nGoodGenJet == 2',
-    'B3' : 'nGoodGenJet >= 3'
+files = nanoGetSampleFiles(mcDirectory, 'TTTo2L2Nu') + \
+    nanoGetSampleFiles(mcDirectory, 'ST_s-channel_ext1') + \
+    nanoGetSampleFiles(mcDirectory, 'ST_t-channel_antitop') + \
+    nanoGetSampleFiles(mcDirectory, 'ST_t-channel_top') + \
+    nanoGetSampleFiles(mcDirectory, 'ST_tW_antitop_ext1') + \
+    nanoGetSampleFiles(mcDirectory, 'ST_tW_top_ext1')
+
+samples['top'] = {
+    'name': files,
+    'weight': mcCommonWeight,
+    'FilesPerJob': 4,
 }
 
-fiducial = 'fiducial'
+addSampleWeight(samples,'top','TTTo2L2Nu','Top_pTrw')
 
-signals = []
-
-###### WW ########
-
-samples['WW'] = {
-    'name': nanoGetSampleFiles(mcDirectory, 'WWTo2L2Nu'),
-    'weight': mcCommonWeight+'*nllW',
-    'FilesPerJob': 2
-}
-
-signals.append('WW')
-
-
-### Add if weights become available for theo unc.
-#samples['ggWW'] = {
-#    'name': nanoGetSampleFiles(mcDirectory, 'GluGluWWTo2L2Nu_MCFM'),
-#    'weight': mcCommonWeight+'*1.53/1.4', # updating k-factor
-#    'FilesPerJob': 4
-#}
-#signals.append('ggWW')
-
-
-### Now bin in (fiducial / nonfiducial) x {njets}
-
-for sname in signals:
-  sample = samples[sname]
-  sample['subsamples'] = {}
-
-  sample['subsamples']['nonfid'] = '!('+fiducial+')'
-
-  for binname,bincut in gen_binning.iteritems():
-      sample['subsamples'][binname] = fiducial+' && '+bincut

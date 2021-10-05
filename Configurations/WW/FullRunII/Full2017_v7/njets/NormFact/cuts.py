@@ -12,21 +12,8 @@ supercut = '   mll>12 \
            '
 
 ##  signal regions
-cuts['ww2l2v_13TeV_sr']  = {
-   'expr' : 'sr',
-    # Define the sub-categorization of signal region
-   'categories' : {
-       'B0' : 'nGoodCleanJet == 0',
-       'B1' : 'nGoodCleanJet == 1',
-       'B2' : 'nGoodCleanJet == 2',
-       'B3' : 'nGoodCleanJet >= 3'
-   }
-}
-
-## Top control regions
-cuts['ww2l2v_13TeV_top']  = {
-   'expr' : 'topcr',
-    # Define the sub-categorization of topcr
+cuts['ww2l2v_13TeV']  = {
+   'expr' : '(sr) || (topcr)',
    'categories' : {
        'B0' : 'nGoodCleanJet == 0',
        'B1' : 'nGoodCleanJet == 1',

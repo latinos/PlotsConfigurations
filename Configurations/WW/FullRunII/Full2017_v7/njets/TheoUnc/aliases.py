@@ -5,7 +5,7 @@ import inspect
 configurations = os.path.realpath(inspect.getfile(inspect.currentframe())) # this file
 configurations = os.path.dirname(configurations) # TheoUnc
 configurations = os.path.dirname(configurations) # njets
-configurations = os.path.dirname(configurations) # Full2018_v7
+configurations = os.path.dirname(configurations) # Full2017_v7
 configurations = os.path.dirname(configurations) # FullRunII
 configurations = os.path.dirname(configurations) # WW
 configurations = os.path.dirname(configurations) # Configurations
@@ -22,8 +22,10 @@ aliases['fiducial'] = {
     'samples': ['WW']
 }
 
-aliases['genjetetacut'] = {
-    'expr': 'Sum$(abs(GenJet_eta) > 2.5) == 0',
+aliases['nGoodGenJet'] = {
+    'linesToAdd': ['.L %s/WW/FullRunII/goodgenjet.cc+' % configurations],
+    'class': 'CleanGenJet',
+    'args': ("njet"),
     'samples': ['WW']
 }
 

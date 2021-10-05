@@ -2,8 +2,8 @@ import os
 import inspect
 
 configurations = os.path.realpath(inspect.getfile(inspect.currentframe())) # this file
-configurations = os.path.dirname(configurations) # Full2017_v6
-configurations = os.path.dirname(configurations) # Full2017_v6
+configurations = os.path.dirname(configurations) # njets
+configurations = os.path.dirname(configurations) # Full2017_v7
 configurations = os.path.dirname(configurations) # FullRunII
 configurations = os.path.dirname(configurations) # WW
 configurations = os.path.dirname(configurations) # Configurations
@@ -91,8 +91,6 @@ DataTrig = {
 # SFweight does not include btag weights
 mcCommonWeightNoMatch = 'XSWeight*SFweight*METFilter_MC'
 mcCommonWeight = 'XSWeight*SFweight*PromptGenLepMatch2l*METFilter_MC'
-mcCommonWeight_signal = 'genjetetacut*XSWeight*SFweight*PromptGenLepMatch2l*METFilter_MC'
-
 
 ###########################################
 #############  BACKGROUNDS  ###############
@@ -293,17 +291,13 @@ samples['WH_htt'] = {
 #############   SIGNALS  ##################
 ###########################################
 
-njetBinning = ['0', '1', '2', '3+']
-ngenjet = 'nCleanGenJet'
-fiducial = 'fiducial'
-
 signals = []
 
 ###### WW ########
 
 samples['WW'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'WWTo2L2Nu'),
-    'weight': mcCommonWeight_signal+'*nllW',
+    'weight': mcCommonWeight+'*nllW',
     'FilesPerJob': 1
 }
 
@@ -321,7 +315,7 @@ samples['ggWW'] = {
             nanoGetSampleFiles(mcDirectory, 'GluGluToWWToTNEN') + \
             nanoGetSampleFiles(mcDirectory, 'GluGluToWWToTNMN') + \
             nanoGetSampleFiles(mcDirectory, 'GluGluToWWToTNTN'),
-    'weight': mcCommonWeight_signal+'*1.53/1.4',
+    'weight': mcCommonWeight+'*1.53/1.4',
     'FilesPerJob': 2
 }
 
@@ -333,16 +327,10 @@ for sname in signals:
   sample = samples[sname]
   sample['subsamples'] = {}
 
-  for flabel, fidcut in [('fid', fiducial), ('nonfid', '!('+fiducial+')')]:
-    for nj in njetBinning:
-      if nj.endswith('+'):
-        binName = '%s_NJ_GE%s' % (flabel, nj[:-1])
-        cut = '%s && %s >= %s' % (fidcut, ngenjet, nj[:-1])
-      else:
-        binName = '%s_NJ_%s' % (flabel, nj)
-        cut = '%s && %s == %s' % (fidcut, ngenjet, nj)
+  sample['subsamples']['nonfid'] = '!(fiducial)'
 
-      sample['subsamples'][binName] = cut
+  for i in range(4):
+      sample['subsamples']['B%d'%i] ='fiducial && B%d'%i
 
 ###########################################
 ################## FAKE ###################

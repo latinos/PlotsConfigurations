@@ -12,16 +12,18 @@ configurations = os.path.dirname(configurations) # Configurations
 
 aliases['nCleanGenJet'] = {
     'linesToAdd': ['.L %s/Differential/ngenjet.cc+' % configurations],
-    'class': 'CountGenJet'
+    'class': 'CountGenJet',
 }
 
 aliases['fiducial'] = {
     'linesToAdd': ['.L %s/WW/FullRunII/fiducial.cc+' % configurations],
-    'class': 'FiducialRegion'
+    'class': 'FiducialRegion',
+    'samples': ['WW','ggWW']
 }
 
-aliases['genjetetacut'] = {
-    'expr': 'Sum$(abs(GenJet_eta) > 2.5) == 0',
+aliases['nGoodGenJet'] = {
+    'linesToAdd': ['.L %s/WW/FullRunII/goodgenjet.cc+' % configurations],
+    'class': 'CleanGenJet',
+    'args': ("njet"),
+    'samples': ['WW','ggWW']
 }
-
-
