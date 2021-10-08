@@ -1,11 +1,10 @@
 #!/bin/bash
 
-## FIXME this is where the Combine framework is installed
-cd /afs/cern.ch/user/d/dittmer/private/Combine/CMSSW_10_2_13/src/
+cd $COMBINE_DIR
 eval `scramv1 runtime -sh`
 cd -
 
-## work directory
+ulimit -s unlimited
 
 datacardDir_2016=Full2016_v7/njets/datacards
 datacardDir_2017=Full2017_v7/njets/datacards
@@ -74,3 +73,8 @@ text2workspace.py -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel \
                   --PO 'map=.*/.*WW_B2:r_2[1, -10, 10]' \
                   --PO 'map=.*/.*WW_B3:r_3[1, -10, 10]' \
                   FullRunII_WW_njet.txt -o FullRunII_njet.root
+
+text2workspace.py -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel \
+                  --PO 'map=.*/.*WW_B*:r[1, -10, 10]' \
+                  FullRunII_WW_njet.txt -o FullRunII_njet_incl.root
+
