@@ -20,7 +20,7 @@ mc_ggh.append('ggH_hww')
 mc_qqh = [skey for skey in samples if skey.startswith('VBF_H0')]
 #mc_qqh.append('qqH_hww')
 
-btag_algo="deepcsv"
+btag_algo="deepflav"
 
 eleWP = 'mvaFall17V1Iso_WP90'
 muWP = 'cut_Tight_HWWW_tthmva_80'
@@ -41,7 +41,7 @@ aliases['gstarHigh'] = {
 }
 
 aliases['embedtotal'] = {
-    'expr': 'embed_total_mva16',  # wrt. eleWP
+    'expr': 'embed_total_WP90V1',  # wrt. eleWP
     'samples': 'Dyemb'
 }
 
@@ -214,7 +214,8 @@ if btag_algo=="deepcsv":
         }
 
 elif btag_algo=="deepflav":
-    btagSFSource = '%s/src/PhysicsTools/NanoAODTools/data/btagSF/DeepJet_2017LegacySF_V1.csv' % os.getenv('CMSSW_BASE')
+#    btagSFSource = '%s/src/PhysicsTools/NanoAODTools/data/btagSF/DeepJet_2017LegacySF_V1.csv' % os.getenv('CMSSW_BASE')
+    btagSFSource = '%s/src/PhysicsTools/NanoAODTools/data/btagSF/DeepJet_102XSF_V1.csv' % os.getenv('CMSSW_BASE') #dm Is this correct?
 
     aliases['Jet_btagSF_deepflav_shape'] = {
         'linesToAdd': [
@@ -290,13 +291,6 @@ aliases['Jet_PUIDSF_down'] = {
   'samples': mc
 }
 
-##fatjetcorr#
-'''
-aliases['FatJet_corr'] = {
-    'expr': 'FatJet_msoftdrop*FatJet_msoftdrop_corr_PUPPI*FatJet_msoftdrop_corr_JMS*FatJet_msoftdrop_corr_JMR',
-    'samples': mc
-}
-'''
 # data/MC scale factors
 aliases['SFweight'] = {
     'expr': ' * '.join(['SFweight2l','LepWPCut', 'LepSF2l__ele_' + eleWP + '__mu_' + muWP, 'btagSF', 'PrefireWeight', 'Jet_PUIDSF']),
@@ -305,7 +299,7 @@ aliases['SFweight'] = {
 
 # Muon ttHMVA SF needed for tau embedded samples
 aliases['Muon_ttHMVA_SF'] = {
-    'expr': '( (abs(Lepton_pdgId[0]) == 13)*(Lepton_tightMuon_cut_Tight80x_tthmva_80_IdIsoSF[0]/Lepton_tightMuon_cut_Tight80x_IdIsoSF[0])+(abs(Lepton_pdgId[0]) == 11) )*( (abs(Lepton_pdgId[1]) == 13)*(Lepton_tightMuon_cut_Tight80x_tthmva_80_IdIsoSF[1]/Lepton_tightMuon_cut_Tight80x_IdIsoSF[1])+ (abs(Lepton_pdgId[1]) == 11) )',
+    'expr': '( (abs(Lepton_pdgId[0]) == 13)*(Lepton_tightMuon_cut_Tight_HWWW_tthmva_80_IdIsoSF[0]/Lepton_tightMuon_cut_Tight_HWWW_IdIsoSF[0])+(abs(Lepton_pdgId[0]) == 11) )*( (abs(Lepton_pdgId[1]) == 13)*(Lepton_tightMuon_cut_Tight_HWWW_tthmva_80_IdIsoSF[1]/Lepton_tightMuon_cut_Tight_HWWW_IdIsoSF[1])+ (abs(Lepton_pdgId[1]) == 11) )',
     'samples' : ['Dyemb']
 }
 
@@ -429,6 +423,7 @@ aliases['L1_HWW']  = {'expr': '-13752.22'}
 aliases['G2_VBF']  = {'expr': '0.27196538'}
 aliases['G4_VBF']  = {'expr': '0.29797901870'}
 aliases['L1_VBF']  = {'expr': '-2158.21307286'}
+aliases['LZg_VBF'] = {'expr': '-4091.051456694223'}
 
 aliases['G2_WH']   = {'expr': '0.0998956'}
 aliases['G4_WH']   = {'expr': '0.1236136'}
@@ -437,6 +432,7 @@ aliases['L1_WH']   = {'expr': '-525.274'}
 aliases['G2_ZH']   = {'expr': '0.112481'}
 aliases['G4_ZH']   = {'expr': '0.144057'}
 aliases['L1_ZH']   = {'expr': '-517.788'}
+aliases['LZg_ZH'] = {'expr': '-642.9534550379002'}
 
 # Cross-sections : Decay 
 
@@ -457,6 +453,7 @@ aliases['JHUXSVBFL1']   = {'expr': '0.00020829261'}
 aliases['JHUXSVBFa1a2'] = {'expr': '2207.6738'}
 aliases['JHUXSVBFa1a3'] = {'expr': '1936.4327'}
 aliases['JHUXSVBFa1L1'] = {'expr': '2861.7003'}
+aliases['JHUXSVBFa1LZg']= {'expr': '1574.5833'}
 
 aliases['JHUXSWHa1']   = {'expr': '14813072'}
 aliases['JHUXSWHa2']   = {'expr': '1.4845783e+09'}
@@ -473,6 +470,7 @@ aliases['JHUXSZHL1']   = {'expr': '5.3610896'}
 aliases['JHUXSZHa1a2'] = {'expr': '678434.94'}
 aliases['JHUXSZHa1a3'] = {'expr': '2873685.9'}
 aliases['JHUXSZHa1L1'] = {'expr': '1091656.8'}
+aliases['JHUXSZHa1LZg']= {'expr': '3480087'}
 
 # Normalisation Weights
 
@@ -507,6 +505,7 @@ aliases['VBF_H0L1_W']    = { 'expr': 'H0L1_W*(JHUXSVBFL1/JHUXSVBFa1)'}
 aliases['VBF_H0Mf05_W']  = { 'expr': 'H0Mf05VBF_W*(JHUXSVBFa1a3/JHUXSVBFa1)'}
 aliases['VBF_H0PHf05_W'] = { 'expr': 'H0PHf05VBF_W*(JHUXSVBFa1a2/JHUXSVBFa1)'}
 aliases['VBF_H0L1f05_W'] = { 'expr': 'H0L1f05VBF_W*(JHUXSVBFa1L1/JHUXSVBFa1)'}
+aliases['VBF_H0LZgf05_W']= { 'expr': '1*(JHUXSVBFa1LZg/JHUXSVBFa1)'}
 
 aliases['WH_H0PM_W']    = { 'expr': '1'}
 aliases['WH_H0M_W']     = { 'expr': 'H0M_W*(JHUXSWHa3/JHUXSWHa1)'}
@@ -523,6 +522,7 @@ aliases['ZH_H0L1_W']    = { 'expr': 'H0L1_W*(JHUXSZHL1/JHUXSZHa1)'}
 aliases['ZH_H0Mf05_W']  = { 'expr': 'H0Mf05ZH_W*(JHUXSZHa1a3/JHUXSZHa1)'}
 aliases['ZH_H0PHf05_W'] = { 'expr': 'H0PHf05ZH_W*(JHUXSZHa1a2/JHUXSZHa1)'}
 aliases['ZH_H0L1f05_W'] = { 'expr': 'H0L1f05ZH_W*(JHUXSZHa1L1/JHUXSZHa1)'}
+aliases['ZH_H0LZgf05_W']= { 'expr': '1*(JHUXSZHa1LZg/JHUXSZHa1)'}
 
 # Get MEs for signal reweighting
 
@@ -530,6 +530,7 @@ mes = [ 'ME_H0PM',
     'ME_H0M', 'ME_H0M_M0', 'ME_H0M_M1', 'ME_H0M_M2', 'ME_H0M_M3', 'ME_H0Mf05', 
     'ME_H0PH','ME_H0PH_M0','ME_H0PH_M1','ME_H0PH_M2','ME_H0PH_M3','ME_H0PHf05',
     'ME_H0L1','ME_H0L1_M0','ME_H0L1_M1','ME_H0L1_M2','ME_H0L1_M3','ME_H0L1f05',
+    'ME_H0LZg','ME_H0LZg_M0','ME_H0LZg_M1','ME_H0LZg_M2','ME_H0LZg_M3','ME_H0LZgf05',
 ]
 
 for me in mes:
@@ -545,6 +546,7 @@ cons = [
     'G4VBF','G4WH','G4ZH','G4VH',
     'G2VBF','G2WH','G2ZH','G2VH',
     'L1VBF','L1WH','L1ZH',
+    'LZgVBF','LZgZH',
 ]
 
 for con in cons:
@@ -573,9 +575,9 @@ aliases['dphis'] = { 'expr': 'dphip<-pi? dphip + 2*pi : dphip'  }
 ###########################################################################
 #Boosted ME
 
-mes_WH = ['me_Wh_hsm', 'me_Wh_hm', 'me_Wh_hp', 'me_Wh_hl', 'me_Wh_mixhm', 'me_Wh_mixhp', 'me_Wh_mixhl', 'pjjSm_Wh', 'pjjTr_Wh']
+mes_WH = ['me_Wh_hsm', 'me_Wh_hm', 'me_Wh_hp', 'me_Wh_hl', 'me_Wh_mixhm', 'me_Wh_mixhp', 'me_Wh_mixhl', 'pjjSm_Wh', 'pjjTr_Wh', 'InvMSubjets']
 
-mes_ZH = ['me_Zh_hsm', 'me_Zh_hm', 'me_Zh_hp', 'me_Zh_hl', 'me_Zh_mixhm', 'me_Zh_mixhp', 'me_Zh_mixhl', 'pjjSm_Zh', 'pjjTr_Zh']
+mes_ZH = ['me_Zh_hsm', 'me_Zh_hm', 'me_Zh_hp', 'me_Zh_hl', 'me_Zh_mixhm', 'me_Zh_mixhp', 'me_Zh_mixhl', 'pjjSm_Zh', 'pjjTr_Zh', 'me_Zh_hlzg']
 
 for me in mes_WH+mes_ZH:
     aliases[me]={
@@ -608,7 +610,7 @@ aliases['kd_hlZh'] = { 'expr': '1/(1+((me_QCD_hsm*CZH)/(me_Zh_hl*pjj_Zh*L1ZH**2)
 aliases['kd_hlVh'] = { 'expr': 'max(kd_hlWh, kd_hlZh)' }
 aliases['kd_Vh']   = { 'expr': 'max(max(kd_smVh, kd_hmVh), max(kd_hpVh, kd_hlVh))' }
 '''
-aliases['kd_Vh']   = { 'expr': '1'}
+#aliases['kd_Vh']   = { 'expr': '1'}
 
 aliases['kd_Wh_hm']    = { 'expr': '1/(1+(me_Wh_hsm/(me_Wh_hm*G4WH**2)))' }
 aliases['kd_Zh_hm']    = { 'expr': '1/(1+(me_Zh_hsm/(me_Zh_hm*G4ZH**2)))' }
@@ -621,6 +623,7 @@ aliases['kd_Vh_hp']    = { 'expr': 'max(kd_Wh_hp, kd_Zh_hp)' }
 aliases['kd_Wh_hl']    = { 'expr': '1/(1+(me_Wh_hsm/(me_Wh_hl*L1WH**2)))' }
 aliases['kd_Zh_hl']    = { 'expr': '1/(1+(me_Zh_hsm/(me_Zh_hl*L1ZH**2)))' }
 aliases['kd_Vh_hl']    = { 'expr': 'max(kd_Wh_hl, kd_Zh_hl)' }
+aliases['kd_Vh_hlzg']  = { 'expr': '1/(1+(me_Zh_hsm/(me_Zh_hlzg*LZgZH**2)))' }
 
 aliases['me_Vh_hsm']    = { 'expr': '(me_Wh_hsm/meAvg_wh) + (me_Zh_hsm/meAvg_zh)' }
 aliases['me_Vh_hm']     = { 'expr': '(me_Wh_hm/meAvg_wh) + (me_Zh_hm/meAvg_zh)' }

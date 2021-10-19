@@ -533,8 +533,8 @@ mes = [ 'ME_H0PM',
     'ME_H0M', 'ME_H0M_M0', 'ME_H0M_M1', 'ME_H0M_M2', 'ME_H0M_M3', 'ME_H0Mf05', 
     'ME_H0PH','ME_H0PH_M0','ME_H0PH_M1','ME_H0PH_M2','ME_H0PH_M3','ME_H0PHf05',
     'ME_H0L1','ME_H0L1_M0','ME_H0L1_M1','ME_H0L1_M2','ME_H0L1_M3','ME_H0L1f05',
+    'ME_H0LZg','ME_H0LZg_M0','ME_H0LZg_M1','ME_H0LZg_M2','ME_H0LZg_M3','ME_H0LZgf05',
 ]
-# 'ME_H0LZg','ME_H0LZg_M0','ME_H0LZg_M1','ME_H0LZg_M2','ME_H0LZg_M3','ME_H0LZgf05',
 
 for me in mes:
     aliases[me] = {
@@ -549,8 +549,9 @@ cons = [
     'G4VBF','G4WH','G4ZH','G4VH',
     'G2VBF','G2WH','G2ZH','G2VH',
     'L1VBF','L1WH','L1ZH',
+    'LZgVBF','LZgZH',
 ]
-#'LZgVBF','LZgZH',
+#    'LZgVBF','LZgZH',
 
 for con in cons:
     aliases[con] = {
@@ -575,28 +576,13 @@ aliases['dphip'] = { 'expr': 'dphi>pi? dphi - 2*pi : dphi'  }
 aliases['dphis'] = { 'expr': 'dphip<-pi? dphip + 2*pi : dphip'  }
 
 ###########################################################################
-# Additional reco MEs that arent in v7 
-'''
-mes_add = ['me_qcd_hm','me_qcd_mixhm','me_zh_hlzg','me_vbf_hlzg']
-#I think I have to remove the last one 'me_vbf_hlzg'
-
-for me in mes_add:
-    aliases[me]={
-    'linesToAdd': [
-    'gSystem->Load("%s/src/ZZMatrixElement/MELA/data/%s/libmcfm_707.so","", kTRUE);'%(os.getenv('CMSSW_BASE'), os.getenv('SCRAM_ARCH')),
-    'gSystem->Load("libZZMatrixElementMELA.so","", kTRUE);',
-    '.L %s/EFT/VBF/Tools/addrecome.cc+' % configurations],
-    'class': 'AddRecoME',
-    'args': (me,)
-    }
-'''
 #Boosted ME
 
 mes_WH = ['me_Wh_hsm', 'me_Wh_hm', 'me_Wh_hp', 'me_Wh_hl', 'me_Wh_mixhm', 'me_Wh_mixhp', 'me_Wh_mixhl', 'pjjSm_Wh', 'pjjTr_Wh', 'InvMSubjets']
 
 #'InvMSubjets, J1pt, J2pt
 
-mes_ZH = ['me_Zh_hsm', 'me_Zh_hm', 'me_Zh_hp', 'me_Zh_hl', 'me_Zh_mixhm', 'me_Zh_mixhp', 'me_Zh_mixhl', 'pjjSm_Zh', 'pjjTr_Zh']
+mes_ZH = ['me_Zh_hsm', 'me_Zh_hm', 'me_Zh_hp', 'me_Zh_hl', 'me_Zh_mixhm', 'me_Zh_mixhp', 'me_Zh_mixhl', 'pjjSm_Zh', 'pjjTr_Zh', 'me_Zh_hlzg']
 
 for me in mes_WH+mes_ZH:
     aliases[me]={
@@ -644,7 +630,7 @@ aliases['kd_Vh_hp']    = { 'expr': 'max(kd_Wh_hp, kd_Zh_hp)' }
 aliases['kd_Wh_hl']    = { 'expr': '1/(1+(me_Wh_hsm/(me_Wh_hl*L1WH**2)))' }
 aliases['kd_Zh_hl']    = { 'expr': '1/(1+(me_Zh_hsm/(me_Zh_hl*L1ZH**2)))' }
 aliases['kd_Vh_hl']    = { 'expr': 'max(kd_Wh_hl, kd_Zh_hl)' }
-#aliases['kd_Vh_hlzg']  = { 'expr': '1/(1+(me_zh_hsm/(me_zh_hlzg*LZgZH**2)))' }
+aliases['kd_Vh_hlzg']  = { 'expr': '1/(1+(me_Zh_hsm/(me_Zh_hlzg*LZgZH**2)))' }
 
 aliases['me_Vh_hsm']    = { 'expr': '(me_Wh_hsm/meAvg_wh) + (me_Zh_hsm/meAvg_zh)' }
 aliases['me_Vh_hm']     = { 'expr': '(me_Wh_hm/meAvg_wh) + (me_Zh_hm/meAvg_zh)' }
