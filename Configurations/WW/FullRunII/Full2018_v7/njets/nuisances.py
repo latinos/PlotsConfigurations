@@ -27,13 +27,6 @@ except NameError:
 from LatinoAnalysis.Tools.HiggsXSection import HiggsXSection
 HiggsXS = HiggsXSection()
 
-allcuts = []
-for cut in cuts:
-    if 'categories' in cuts[cut]:
-        allcuts = allcuts + [cut+'_'+cat for cat in cuts[cut]['categories']]
-    else:
-        allcuts.append(cut)
-
 ############ Load norm factors / differential binning to normalize signal ####################
 import os
 import json
@@ -611,7 +604,7 @@ nuisances['QCDscale_top_0j']  = {
     'name'  : 'QCDscale_top_0j',
     'kind'  : 'weight',
     'type'  : 'shape',
-    'cuts' : [cut for cut in allcuts if 'B0' in cut],
+    'cutspost' : lambda self, cuts: [cut for cut in cuts if 'B0' in cut],
     'samples'  : {
        'top' : topvars0j,
     }
@@ -621,7 +614,7 @@ nuisances['QCDscale_top_1j']  = {
     'name'  : 'QCDscale_top_1j',
     'kind'  : 'weight',
     'type'  : 'shape',
-    'cuts' : [cut for cut in allcuts if 'B1' in cut],
+    'cutspost' : lambda self, cuts: [cut for cut in cuts if 'B1' in cut],
     'samples'  : {
        'top' : topvars1j,
     }
@@ -631,7 +624,7 @@ nuisances['QCDscale_top_2j']  = {
     'name'  : 'QCDscale_top_2j',
     'kind'  : 'weight',
     'type'  : 'shape',
-    'cuts' : [cut for cut in allcuts if 'B2' in cut],
+    'cutspost' : lambda self, cuts: [cut for cut in cuts if 'B2' in cut],
     'samples'  : {
        'top' : topvars2j,
     }
@@ -641,7 +634,7 @@ nuisances['QCDscale_top_3j']  = {
     'name'  : 'QCDscale_top_3j',
     'kind'  : 'weight',
     'type'  : 'shape',
-    'cuts' : [cut for cut in allcuts if 'B3' in cut],
+    'cutspost' : lambda self, cuts: [cut for cut in cuts if 'B3' in cut],
     'samples'  : {
        'top' : topvars3j,
     }
@@ -915,7 +908,7 @@ nuisances['Topnorm0j']  = {
                    'top' : '1.00',
                    },
                'type'  : 'rateParam',
-               'cuts'  : [cut for cut in allcuts if 'B0' in cut]
+               'cutspost' : lambda self, cuts: [cut for cut in cuts if 'B0' in cut],
               }
 
 nuisances['Topnorm1j']  = {
@@ -924,7 +917,7 @@ nuisances['Topnorm1j']  = {
                    'top' : '1.00',
                    },
                'type'  : 'rateParam',
-               'cuts'  : [cut for cut in allcuts if 'B1' in cut]
+               'cutspost' : lambda self, cuts: [cut for cut in cuts if 'B1' in cut],
               }
 
 nuisances['Topnorm2j']  = {
@@ -933,7 +926,7 @@ nuisances['Topnorm2j']  = {
                    'top' : '1.00',
                    },
                'type'  : 'rateParam',
-               'cuts'  : [cut for cut in allcuts if 'B2' in cut]
+               'cutspost' : lambda self, cuts: [cut for cut in cuts if 'B2' in cut],
               }
 
 nuisances['Topnorm3j']  = {
@@ -942,7 +935,7 @@ nuisances['Topnorm3j']  = {
                    'top' : '1.00',
                    },
                'type'  : 'rateParam',
-               'cuts'  : [cut for cut in allcuts if 'B3' in cut]
+               'cutspost' : lambda self, cuts: [cut for cut in cuts if 'B3' in cut],
               }
 
 
