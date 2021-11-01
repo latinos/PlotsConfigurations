@@ -1,15 +1,28 @@
 from ROOT import TFile, TH1
 import collections
 import json
+import sys
+import re
+import os
 
 TH1.AddDirectory(0)
 
 doTable = False
 
-#differential = ["njets","njet"]
-#nbins = 4
-differential = ["dphijj","dphijj"]
-nbins = 14
+if len(sys.argv) < 2:
+    print "Usage: python diffVar"
+    exit()
+
+diffVar = sys.argv[1]
+if diffVar == "inclusive":
+    shortname = "incl"
+    nbins = 1
+if diffVar == "njets":
+    shortname = "njet"
+    nbins = 4
+if diffVar == "dphijj":
+    shortname = "dphijj"
+    nbins = 14
 
 subsamples = ["B%d"%i for i in xrange(nbins)]
 
@@ -23,9 +36,13 @@ nfdict = collections.OrderedDict()
 
 for year in ["2016","2017","2018"]:
 
-    nfdict[year] = {}
+    filename = "../Full%s_v7/%s/TheoUnc/rootFile/plots_WW%s_v7_%s_TheoUnc.root"%(year,diffVar,year,shortname)
+    if not os.path.isfile(filename):
+        print "Warning: %s does not exist. Will not make WWnorm.json for this year."
+        continue
 
-    f0 = TFile("../Full%s_v7/%s/TheoUnc/rootFile/plots_WW%s_v7_%s_TheoUnc.root"%(year,differential[0],year,differential[1]))
+    f0 = TFile(filename)
+    nfdict[year] = {}
 
     # Normalize WW theoretical variations
     for nuisance in nuis_by_year[year]:
@@ -49,7 +66,7 @@ for year in ["2016","2017","2018"]:
 
     if year == '2018':
         samples = collections.OrderedDict()
-        handle = open('../Full%s_v7/%s/TheoUnc/samples.py'%(year,differential[0]),'r')
+        handle = open('../Full%s_v7/%s/TheoUnc/samples.py'%(year,diffVar),'r')
         exec(handle)
         handle.close()
 
@@ -64,8 +81,8 @@ for year in ["2016","2017","2018"]:
             print('Copy these values to nuisances.py for PS_'+ps)
             print('--------------------------------------------')
 
-            nfdict['2016']['PS_'+ps] = {}
-            nfdict['2017']['PS_'+ps] = {}
+            if '2016' in nfdict: nfdict['2016']['PS_'+ps] = {}
+            if '2017' in nfdict: nfdict['2017']['PS_'+ps] = {}
             nfdict['2018']['PS_'+ps] = {}
 
             for sample in allsamples:
@@ -91,15 +108,16 @@ for year in ["2016","2017","2018"]:
                     for ijet in range(4):
                         weight[0+ijet] = weight[0+ijet]*norm_up
                         weight[4+ijet] = weight[4+ijet]*norm_down
-                    nfdict['2016']["PS_"+ps][sample] = weight
-                    nfdict['2017']["PS_"+ps][sample] = weight
+                    if '2016' in nfdict: nfdict['2016']["PS_"+ps][sample] = weight
+                    if '2017' in nfdict: nfdict['2017']["PS_"+ps][sample] = weight
                     nfdict['2018']["PS_"+ps][sample] = [norm_up,norm_down]
                 elif 'nonfid' in sample:
-                    nfdict['2016']["PS_"+ps][sample] = weight
-                    nfdict['2017']["PS_"+ps][sample] = weight
+                    if '2016' in nfdict: nfdict['2016']["PS_"+ps][sample] = weight
+                    if '2017' in nfdict: nfdict['2017']["PS_"+ps][sample] = weight
                 else:
                     print("'{sample}' : ['{}*(nCleanGenJet==0) + {}*(nCleanGenJet==1) + {}*(nCleanGenJet==2) + {}*(nCleanGenJet>=3)', '{}*(nCleanGenJet==0) + {}*(nCleanGenJet==1) + {}*(nCleanGenJet==2) + {}*(nCleanGenJet>=3)'],".format(*weight,sample=sample))
 
 for year in ['2016','2017','2018']:
-    with open("../Full%s_v7/%s/WWnorm.json"%(year,differential[0]),"w") as outfile:
-        json.dump(nfdict[year], outfile, indent=4)
+    if year in nfdict:
+        with open("../Full%s_v7/%s/WWnorm.json"%(year,diffVar),"w") as outfile:
+            json.dump(nfdict[year], outfile, indent=4)
