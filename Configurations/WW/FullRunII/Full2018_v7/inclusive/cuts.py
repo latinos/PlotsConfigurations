@@ -11,34 +11,24 @@ supercut = '   mll>12 \
             && mll > 20 \
            '
 
+catCR = {
+    '0j' : 'Alt$(CleanJet_pt[0],0) < 30',
+    '1j' : 'Alt$(CleanJet_pt[0],0) > 30 && Alt$(CleanJet_pt[1] < 30',
+    '2j' : 'Alt$(CleanJet_pt[0],0) > 30 && Alt$(CleanJet_pt[1] > 30'
+}
+
+catSR = {
+    'B0' : '1'
+}
+
 ##  signal regions
 cuts['ww2l2v_13TeV_sr']  = {
-   'expr' : 'sr',
-    # Define the sub-categorization of signal region
-   'categories' : {
-      '0j' : 'zeroJet',
-      '1j' : 'oneJet && Alt$(CleanJet_pt[1],0)<30',
-      '2j' : 'twoJet',
-   }
+    'expr' : 'sr',
+    'categories' : dict((iCR+'_'+iSR,catCR[iCR]+' && '+catSR[iSR]) for iCR in catCR.keys() for iSR in catSR.keys()) 
 }
 
 ## Top control regions
 cuts['ww2l2v_13TeV_top']  = {
-   'expr' : 'topcr',
-    # Define the sub-categorization of topcr
-   'categories' : {
-      '0j' : 'zeroJet',
-      '1j' : 'oneJet && Alt$(CleanJet_pt[1],0)<30',
-      '2j' : 'twoJet',
-   }
+    'expr' : 'topcr',
+    'categories' : catCR
 }
-
-#cuts['ww2l2v_13TeV_dytt']  = {
-#   'expr' : 'dycr',
-#    # Define the sub-categorization of dycr
-#   'categories' : {
-#      '0j' : 'zeroJet',
-#      '1j' : 'oneJet && Alt$(CleanJet_pt[1],0)<30',
-#      '2j' : 'twoJet',
-#   }
-#}

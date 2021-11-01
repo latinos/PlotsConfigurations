@@ -339,7 +339,9 @@ samples['ggWW'] = {
 
 signals.append('ggWW')
 
-### Now bin in nonfiducial / fiducial x dphijj
+### Now bin in nonfiducial / fiducial x bins
+
+nbins = 14
 
 for sname in signals:
   sample = samples[sname]
@@ -347,7 +349,7 @@ for sname in signals:
 
   sample['subsamples']['nonfid'] = '!(fid)'
 
-  for i in range(14):
+  for i in range(nbins):
       sample['subsamples']['B%d'%i] = 'fid && B%d'%i
 
 ###########################################

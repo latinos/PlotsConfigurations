@@ -27,3 +27,25 @@ aliases['nGoodGenJet'] = {
     'args': ("njet"),
     'samples': ['WW','ggWW']
 }
+
+aliases['B0'] = {
+    'expr' : 'nGoodGenJet == 0',
+    'samples' : ['WW','ggWW']
+}
+aliases['B1'] = {
+    'expr' : 'nGoodGenJet == 1',
+    'samples' : ['WW','ggWW']
+}
+aliases['B2'] = {
+    'expr' : 'nGoodGenJet == 2',
+    'samples' : ['WW','ggWW']
+}
+aliases['B3'] = {
+    'expr' : 'nGoodGenJet >= 3',
+    'samples' : ['WW','ggWW']
+}
+
+aliases['fid'] = {
+    'expr' : 'fiducial',
+    'samples' : ['WW','ggWW']
+}

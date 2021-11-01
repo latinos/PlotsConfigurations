@@ -14,8 +14,7 @@ configurations = os.path.dirname(configurations) # Configurations
 # imported from samples.py:
 # samples, signals
 
-mc = [skey for skey in samples if skey not in ('Fake', 'DATA', 'Dyemb')]
-mc_emb = [skey for skey in samples if skey not in ('Fake', 'DATA')]
+mc = [skey for skey in samples if skey not in ('Fake', 'DATA')]
 
 eleWP = 'mvaFall17V1Iso_WP90_tthmva_70'
 muWP = 'cut_Tight_HWWW_tthmva_80'
@@ -210,19 +209,19 @@ aliases['SFweight'] = {
 # variations
 aliases['SFweightEleUp'] = {
     'expr': 'LepSF2l__ele_'+eleWP+'__Up',
-    'samples': mc_emb
+    'samples': mc
 }
 aliases['SFweightEleDown'] = {
     'expr': 'LepSF2l__ele_'+eleWP+'__Do',
-    'samples': mc_emb
+    'samples': mc
 }
 aliases['SFweightMuUp'] = {
     'expr': 'LepSF2l__mu_'+muWP+'__Up',
-    'samples': mc_emb
+    'samples': mc
 }
 aliases['SFweightMuDown'] = {
     'expr': 'LepSF2l__mu_'+muWP+'__Do',
-    'samples': mc_emb
+    'samples': mc
 }
 
 '''

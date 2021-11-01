@@ -577,21 +577,26 @@ nuisances['QCDscale_WW']  = {
 }
 
 ## Factors computed to renormalize the top scale variations such that the integral is not changed in each RECO jet bin (we have rateParams for that)
-topScaleNormFactors = {'Alt$(LHEScaleWeight[0],1)' : 1.125353, 'Alt$(LHEScaleWeight[8],1)' : 0.881596}
+topScaleNormFactors = {
+    '2j' : {'Alt$(LHEScaleWeight[0],1)' : 1.125353, 'Alt$(LHEScaleWeight[8],1)' : 0.881596}
+}
 
-topvars = []
-topvars.append('Alt$(LHEScaleWeight[0],1)/'+str(topScaleNormFactors['Alt$(LHEScaleWeight[0],1)']))
-topvars.append('Alt$(LHEScaleWeight[8],1)/'+str(topScaleNormFactors['Alt$(LHEScaleWeight[8],1)']))
 
 ## QCD scale nuisances for top are decorrelated for each RECO jet bin: the QCD scale is different for different jet multiplicities so it doesn't make sense to correlate them
-nuisances['QCDscale_top']  = {
-    'name'  : 'QCDscale_top',
-    'kind'  : 'weight',
-    'type'  : 'shape',
-    'samples'  : {
-       'top' : topvars,
+for ibin in cuts['ww2l2v_13TeV_top']['categories']:
+    topvars = []
+    topvars.append('Alt$(LHEScaleWeight[0],1)/'+str(topScaleNormFactors[ibin]['Alt$(LHEScaleWeight[0],1)']))
+    topvars.append('Alt$(LHEScaleWeight[8],1)/'+str(topScaleNormFactors[ibin]['Alt$(LHEScaleWeight[8],1)']))
+
+    nuisances['QCDscale_top_'+ibin]  = {
+        'name'  : 'QCDscale_top_'+ibin,
+        'kind'  : 'weight',
+        'type'  : 'shape',
+        'cutspost' : lambda self, cuts: [cut for cut in cuts if ibin in cut],
+        'samples'  : {
+            'top' : topvars,
+        }
     }
-}
 
 '''
 nuisances['QCDscale_ggVV'] = {
@@ -845,14 +850,6 @@ nuisances['QCDscale_gg_ACCEPT'] = {
     'type': 'lnN',
 }
 
-nuisances['Topnorm']  = {
-               'name'  : 'CMS_hww_Topnorm',
-               'samples'  : {
-                   'top' : '1.00',
-                   },
-               'type'  : 'rateParam',
-              }
-
 ## Use the following if you want to apply the automatic combine MC stat nuisances.
 nuisances['stat'] = {
     'type': 'auto',
@@ -862,6 +859,16 @@ nuisances['stat'] = {
     #  nuisance ['includeSignal'] =  Include MC stat nuisances on signal processes (1=True, 0=False)
     'samples': {}
 }
+
+for ibin in cuts['ww2l2v_13TeV_top']['categories']:
+    nuisances['Topnorm'+ibin]  = {
+        'name'  : 'CMS_hww_Topnorm'+ibin,
+        'samples'  : {
+            'top' : '1.00',
+        },
+        'type'  : 'rateParam',
+        'cutspost' : lambda self, cuts: [cut for cut in cuts if ibin in cut],
+    }
 
 for n in nuisances.values():
     n['skipCMS'] = 1

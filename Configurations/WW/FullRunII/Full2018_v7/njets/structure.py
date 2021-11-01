@@ -1,9 +1,9 @@
 # structure configuration for datacard
 
-#structure = {}
-
 # keys here must match keys in samples.py    
-#                    
+
+nbins = 4
+
 structure['DY']  = {  
                   'isSignal' : 0,
                   'isData'   : 0
@@ -59,7 +59,7 @@ structure['top'] = {
                   'isData'   : 0 
                   }
 
-for i in xrange(4):
+for i in xrange(nbins):
   structure['WW_B%d'%i] = {
     'isSignal' : 1,
     'isData'   : 0    
@@ -98,7 +98,7 @@ structure['Vg']  = {
 structure['ZgS'] = {
                   'isSignal' : 0,
                   'isData'   : 0,
-                  'removeFromCuts' : ['ww2l2v_13TeV_top_B2']
+                  'removeFromCuts' : ['ww2l2v_13TeV_top_2j']
                   }
 
 structure['WgS'] = {
