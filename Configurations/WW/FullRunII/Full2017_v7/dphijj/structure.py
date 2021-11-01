@@ -1,13 +1,13 @@
 # structure configuration for datacard
 
-#structure = {}
-
 # keys here must match keys in samples.py    
-#                    
+
+nbins = 14
+
 structure['DY']  = {  
                   'isSignal' : 0,
                   'isData'   : 0,
-  'removeFromCuts' : ['ww2l2v_13TeV_sr_B3']
+                  'removeFromCuts' : ['ww2l2v_13TeV_sr_2j_B3']
  }
 
 structure['Dyemb']  = {
@@ -20,7 +20,6 @@ structure['Dyveto']  = {
                   'isData'   : 0,
                   'removeFromCuts' : [ k for k in cuts ],
               }
-
 
 structure['Wjets']  = {  
                   'isSignal' : 0,
@@ -60,7 +59,7 @@ structure['top'] = {
                   'isData'   : 0 
                   }
 
-for i in xrange(14):
+for i in xrange(nbins):
   structure['WW_B%d'%i] = {
     'isSignal' : 1,
     'isData'   : 0    
@@ -99,7 +98,7 @@ structure['Vg']  = {
 structure['ZgS'] = {
                   'isSignal' : 0,
                   'isData'   : 0,
-  'removeFromCuts' : ['ww2l2v_13TeV_sr_B9', 'ww2l2v_13TeV_sr_B2']    
+                  'removeFromCuts' : ['ww2l2v_13TeV_sr_2j_B2', 'ww2l2v_13TeV_sr_2j_B9']    
 }
 
 structure['WgS'] = {
@@ -125,7 +124,7 @@ structure['VgS_H'] = {
 structure['Zg']  = { 
                   'isSignal' : 0,
                   'isData'   : 0, 
-                  'removeFromCuts' : ['ww2l2v_13TeV_sr_B13', 'ww2l2v_13TeV_sr_B2', 'ww2l2v_13TeV_sr_B1']
+                  'removeFromCuts' : ['ww2l2v_13TeV_sr_2j_B13', 'ww2l2v_13TeV_sr_2j_B2', 'ww2l2v_13TeV_sr_2j_B1']
                   }
 
 structure['VZ']  = { 

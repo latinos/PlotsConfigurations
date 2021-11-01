@@ -586,73 +586,29 @@ nuisances['QCDscale_WW']  = {
     }
 }
 
-topvars0j = []
-topvars1j = []
-topvars2j = []
-topvars3j = []
-
 ## Factors computed to renormalize the top scale variations such that the integral is not changed in each RECO jet bin (we have rateParams for that)
-topScaleNormFactors0j = {'Alt$(LHEScaleWeight[0],1)' : 1.077576, 'Alt$(LHEScaleWeight[8],1)' : 0.921477}
-topScaleNormFactors1j = {'Alt$(LHEScaleWeight[0],1)' : 1.090153, 'Alt$(LHEScaleWeight[8],1)' : 0.908104}
-topScaleNormFactors2j = {'Alt$(LHEScaleWeight[0],1)' : 1.106371, 'Alt$(LHEScaleWeight[8],1)' : 0.892378}
-topScaleNormFactors3j = {'Alt$(LHEScaleWeight[0],1)' : 1.145785, 'Alt$(LHEScaleWeight[8],1)' : 0.869801}
-
-topvars0j.append('Alt$(LHEScaleWeight[0],1)/'+str(topScaleNormFactors0j['Alt$(LHEScaleWeight[0],1)']))
-topvars0j.append('Alt$(LHEScaleWeight[8],1)/'+str(topScaleNormFactors0j['Alt$(LHEScaleWeight[8],1)']))
-
-topvars1j.append('Alt$(LHEScaleWeight[0],1)/'+str(topScaleNormFactors1j['Alt$(LHEScaleWeight[0],1)']))
-topvars1j.append('Alt$(LHEScaleWeight[8],1)/'+str(topScaleNormFactors1j['Alt$(LHEScaleWeight[8],1)']))
-
-topvars2j.append('Alt$(LHEScaleWeight[0],1)/'+str(topScaleNormFactors2j['Alt$(LHEScaleWeight[0],1)']))
-topvars2j.append('Alt$(LHEScaleWeight[8],1)/'+str(topScaleNormFactors2j['Alt$(LHEScaleWeight[8],1)']))
-
-topvars3j.append('Alt$(LHEScaleWeight[0],1)/'+str(topScaleNormFactors3j['Alt$(LHEScaleWeight[0],1)']))
-topvars3j.append('Alt$(LHEScaleWeight[8],1)/'+str(topScaleNormFactors3j['Alt$(LHEScaleWeight[8],1)']))
+topScaleNormFactors = {
+    '0j' : {'Alt$(LHEScaleWeight[0],1)' : 1.077576, 'Alt$(LHEScaleWeight[8],1)' : 0.921477},
+    '1j' : {'Alt$(LHEScaleWeight[0],1)' : 1.090153, 'Alt$(LHEScaleWeight[8],1)' : 0.908104},
+    '2j' : {'Alt$(LHEScaleWeight[0],1)' : 1.106371, 'Alt$(LHEScaleWeight[8],1)' : 0.892378},
+    '3j' : {'Alt$(LHEScaleWeight[0],1)' : 1.145785, 'Alt$(LHEScaleWeight[8],1)' : 0.869801}
+}
 
 ## QCD scale nuisances for top are decorrelated for each RECO jet bin: the QCD scale is different for different jet multiplicities so it doesn't make sense to correlate them
-nuisances['QCDscale_top_0j']  = {
-    'name'  : 'QCDscale_top_0j',
-    'skipCMS' : 1,
-    'kind'  : 'weight',
-    'type'  : 'shape',
-    'cutspost' : lambda self, cuts: [cut for cut in cuts if 'B0' in cut],
-    'samples'  : {
-       'top' : topvars0j,
-    }
-}
+for ibin in cuts['ww2l2v_13TeV_top']['categories']:
+    topvars = []
+    topvars.append('Alt$(LHEScaleWeight[0],1)/'+str(topScaleNormFactors[ibin]['Alt$(LHEScaleWeight[0],1)']))
+    topvars.append('Alt$(LHEScaleWeight[8],1)/'+str(topScaleNormFactors[ibin]['Alt$(LHEScaleWeight[8],1)']))
 
-nuisances['QCDscale_top_1j']  = {
-    'name'  : 'QCDscale_top_1j',
-    'skipCMS' : 1,
-    'kind'  : 'weight',
-    'type'  : 'shape',
-    'cutspost' : lambda self, cuts: [cut for cut in cuts if 'B1' in cut],
-    'samples'  : {
-       'top' : topvars1j,
+    nuisances['QCDscale_top_'+ibin]  = {
+        'name'  : 'QCDscale_top_'+ibin,
+        'kind'  : 'weight',
+        'type'  : 'shape',
+        'cutspost' : lambda self, cuts: [cut for cut in cuts if ibin in cut],
+        'samples'  : {
+            'top' : topvars,
+        }
     }
-}
-
-nuisances['QCDscale_top_2j']  = {
-    'name'  : 'QCDscale_top_2j',
-    'skipCMS' : 1,
-    'kind'  : 'weight',
-    'type'  : 'shape',
-    'cutspost' : lambda self, cuts: [cut for cut in cuts if 'B2' in cut],
-    'samples'  : {
-       'top' : topvars2j,
-    }
-}
-
-nuisances['QCDscale_top_3j']  = {
-    'name'  : 'QCDscale_top_3j',
-    'skipCMS' : 1,
-    'kind'  : 'weight',
-    'type'  : 'shape',
-    'cutspost' : lambda self, cuts: [cut for cut in cuts if 'B3' in cut],
-    'samples'  : {
-       'top' : topvars3j,
-    }
-}
 
 # ggww and interference
 #nuisances['QCDscale_ggVV'] = {
@@ -750,41 +706,15 @@ nuisances['CRSR_accept_top'] = {
 }
 
 ## rate parameters
-nuisances['Topnorm0j']  = {
-               'name'  : 'CMS_hww_Topnorm0j',
-               'samples'  : {
-                   'top' : '1.00',
-                   },
-               'type'  : 'rateParam',
-               'cutspost' : lambda self, cuts: [cut for cut in cuts if 'B0' in cut],
-              }
-
-nuisances['Topnorm1j']  = {
-               'name'  : 'CMS_hww_Topnorm1j',
-               'samples'  : {
-                   'top' : '1.00',
-                   },
-               'type'  : 'rateParam',
-               'cutspost' : lambda self, cuts: [cut for cut in cuts if 'B1' in cut],
-              }
-
-nuisances['Topnorm2j']  = {
-               'name'  : 'CMS_hww_Topnorm2j',
-               'samples'  : {
-                   'top' : '1.00',
-                   },
-               'type'  : 'rateParam',
-               'cutspost' : lambda self, cuts: [cut for cut in cuts if 'B2' in cut],
-              }
-
-nuisances['Topnorm3j']  = {
-               'name'  : 'CMS_hww_Topnorm3j',
-               'samples'  : {
-                   'top' : '1.00',
-                   },
-               'type'  : 'rateParam',
-               'cutspost' : lambda self, cuts: [cut for cut in cuts if 'B3' in cut],
-              }
+for ibin in cuts['ww2l2v_13TeV_top']['categories']:
+    nuisances['Topnorm'+ibin]  = {
+        'name'  : 'CMS_hww_Topnorm'+ibin,
+        'samples'  : {
+            'top' : '1.00',
+        },
+        'type'  : 'rateParam',
+        'cutspost' : lambda self, cuts: [cut for cut in cuts if ibin in cut],
+    }
 
 ## Use the following if you want to apply the automatic combine MC stat nuisances.
 nuisances['stat'] = {

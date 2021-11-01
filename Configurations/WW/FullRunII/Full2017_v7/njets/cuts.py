@@ -11,27 +11,26 @@ supercut = '   mll>12 \
             && mll > 20 \
            '
 
+catCR = {
+    '0j' : 'nGoodCleanJet == 0',
+    '1j' : 'nGoodCleanJet == 1',
+    '2j' : 'nGoodCleanJet == 2',
+    '3j' : 'nGoodCleanJet >= 3'
+}
+
+catSR = {
+    'B0' : '1'
+}
+
 ##  signal regions
 cuts['ww2l2v_13TeV_sr']  = {
-   'expr' : 'sr',
-    # Define the sub-categorization of signal region
-   'categories' : {
-       'B0' : 'nGoodCleanJet == 0',
-       'B1' : 'nGoodCleanJet == 1',
-       'B2' : 'nGoodCleanJet == 2',
-       'B3' : 'nGoodCleanJet >= 3'
-   }
+    'expr' : 'sr',
+    'categories' : dict((iCR+'_'+iSR,catCR[iCR]+' && '+catSR[iSR]) for iCR in catCR.keys() for iSR in catSR.keys()) 
 }
 
 ## Top control regions
 cuts['ww2l2v_13TeV_top']  = {
-   'expr' : 'topcr',
-    # Define the sub-categorization of topcr
-   'categories' : {
-       'B0' : 'nGoodCleanJet == 0',
-       'B1' : 'nGoodCleanJet == 1',
-       'B2' : 'nGoodCleanJet == 2',
-       'B3' : 'nGoodCleanJet >= 3'
-   }
+    'expr' : 'topcr',
+    'categories' : catCR
 }
 

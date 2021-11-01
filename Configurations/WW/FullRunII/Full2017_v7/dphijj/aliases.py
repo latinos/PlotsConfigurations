@@ -9,11 +9,6 @@ configurations = os.path.dirname(configurations) # FullRunII
 configurations = os.path.dirname(configurations) # WW
 configurations = os.path.dirname(configurations) # Configurations
 
-#aliases = {}
-
-# imported from samples.py:
-# samples, signals
-
 mc = [skey for skey in samples if skey not in ('Fake', 'DATA')]
 btag_algo="deepcsv"#deepflav
 
@@ -225,7 +220,7 @@ elif btag_algo=="deepflav":
     }
     
     aliases['btagSF'] = {
-        'expr': '(bVeto || (topcr && zeroJet))*bVetoSF + (topcr && !zeroJet)*bReqSF',
+        'expr': '(bVeto || (topcr && Sum$(CleanJet_pt > 30.) == 0))*bVetoSF + (topcr && Sum$(CleanJet_pt > 30.) > 0)*bReqSF',
         'samples': mc
     }
     

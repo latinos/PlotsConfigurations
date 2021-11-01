@@ -220,7 +220,7 @@ elif btag_algo=="deepflav":
     }
     
     aliases['btagSF'] = {
-        'expr': '(bVeto || (topcr && zeroJet))*bVetoSF + (topcr && !zeroJet)*bReqSF',
+        'expr': '(bVeto || (topcr && Sum$(CleanJet_pt > 30.) == 0))*bVetoSF + (topcr && Sum$(CleanJet_pt > 30.) > 0)*bReqSF',
         'samples': mc
     }
     
@@ -336,13 +336,6 @@ aliases['Weight2MINLO'] = {
     'samples' : [skey for skey in samples if 'ggH_hww' in skey],
 }
 
-
-aliases['nCleanGenJet'] = {
-    'linesToAdd': ['.L %s/Differential/ngenjet.cc+' % configurations],
-    'class': 'CountGenJet',
-    'samples': mc
-}
-
 thusQQ = [
   "qqH_YIELD",
   "qqH_PTH200",
@@ -431,5 +424,10 @@ aliases['B2'] = {
 }
 aliases['B3'] = {
     'expr' : 'nGoodGenJet >= 3',
+    'samples' : ['WW','ggWW']
+}
+
+aliases['fid'] = {
+    'expr' : 'fiducial',
     'samples' : ['WW','ggWW']
 }
