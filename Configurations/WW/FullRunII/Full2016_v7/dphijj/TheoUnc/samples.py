@@ -56,25 +56,6 @@ mcCommonWeight = 'XSWeight'
 #############   SIGNALS  ##################
 ###########################################
 
-gen_binning = {
-'B0'  : 'dphijjsigngen >= 0.0       && dphijjsigngen < 1./7.*pi',
-'B1'  : 'dphijjsigngen >= 1./7.*pi  && dphijjsigngen < 2./7.*pi',
-'B2'  : 'dphijjsigngen >= 2./7.*pi  && dphijjsigngen < 3./7.*pi',
-'B3'  : 'dphijjsigngen >= 3./7.*pi  && dphijjsigngen < 4./7.*pi',
-'B4'  : 'dphijjsigngen >= 4./7.*pi  && dphijjsigngen < 5./7.*pi',
-'B5'  : 'dphijjsigngen >= 5./7.*pi  && dphijjsigngen < 6./7.*pi',
-'B6'  : 'dphijjsigngen >= 6./7.*pi  && dphijjsigngen < pi',
-'B7'  : 'dphijjsigngen >= pi        && dphijjsigngen < 8./7.*pi',
-'B8'  : 'dphijjsigngen >= 8./7.*pi  && dphijjsigngen < 9./7.*pi',
-'B9'  : 'dphijjsigngen >= 9./7.*pi  && dphijjsigngen < 10./7.*pi',
-'B10' : 'dphijjsigngen >= 10./7.*pi && dphijjsigngen < 11./7.*pi',
-'B11' : 'dphijjsigngen >= 11./7.*pi && dphijjsigngen < 12./7.*pi',
-'B12' : 'dphijjsigngen >= 12./7.*pi && dphijjsigngen < 13./7.*pi',
-'B13' : 'dphijjsigngen >= 13./7.*pi && dphijjsigngen < 2.*pi'
-}
-
-fiducial = 'fiducial && nGoodGenJet >= 2'
-
 signals = []
 
 ###### WW ########
@@ -95,13 +76,15 @@ signals.append('WW')
 #}
 #signals.append('ggWW')
 
-### Now bin in (fiducial / nonfiducial) x {njets}
+### Now bin in nonfiducial / fiducial x bins
+
+nbins = 14
 
 for sname in signals:
   sample = samples[sname]
   sample['subsamples'] = {}
 
-  sample['subsamples']['nonfid'] = '!('+fiducial+')'
+  sample['subsamples']['nonfid'] = '!(fid)'
 
-  for binname,bincut in gen_binning.iteritems():
-      sample['subsamples'][binname] = fiducial+' && '+bincut
+  for i in range(nbins):
+      sample['subsamples']['B%d'%i] = 'fid && B%d'%i

@@ -310,3 +310,8 @@ aliases['B3'] = {
     'expr' : 'nGoodGenJet >= 3',
     'samples' : ['WW','ggWW']
 }
+
+aliases['fid'] = {
+    'expr' : 'fiducial',
+    'samples' : ['WW','ggWW']
+}

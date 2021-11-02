@@ -56,15 +56,6 @@ mcCommonWeight = 'XSWeight'
 #############   SIGNALS  ##################
 ###########################################
 
-gen_binning = {
-    'B0' : 'nGoodGenJet == 0',
-    'B1' : 'nGoodGenJet == 1',
-    'B2' : 'nGoodGenJet == 2',
-    'B3' : 'nGoodGenJet >= 3'
-}
-
-fiducial = 'fiducial'
-
 signals = []
 
 ###### WW ########
@@ -77,7 +68,6 @@ samples['WW'] = {
 
 signals.append('WW')
 
-
 ### Add if weights become available for theo unc.
 #samples['ggWW'] = {
 #    'name': nanoGetSampleFiles(mcDirectory, 'GluGluWWTo2L2Nu_MCFM'),
@@ -87,13 +77,15 @@ signals.append('WW')
 #signals.append('ggWW')
 
 
-### Now bin in (fiducial / nonfiducial) x {njets}
+### Now bin in nonfiducial / fiducial x bins
+
+nbins = 4
 
 for sname in signals:
   sample = samples[sname]
   sample['subsamples'] = {}
 
-  sample['subsamples']['nonfid'] = '!('+fiducial+')'
+  sample['subsamples']['nonfid'] = '!(fid)'
 
-  for binname,bincut in gen_binning.iteritems():
-      sample['subsamples'][binname] = fiducial+' && '+bincut
+  for i in range(nbins):
+      sample['subsamples']['B%d'%i] = 'fid && B%d'%i

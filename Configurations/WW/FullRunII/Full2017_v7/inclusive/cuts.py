@@ -13,8 +13,8 @@ supercut = '   mll>12 \
 
 catCR = {
     '0j' : 'Alt$(CleanJet_pt[0],0) < 30',
-    '1j' : 'Alt$(CleanJet_pt[0],0) > 30 && Alt$(CleanJet_pt[1] < 30',
-    '2j' : 'Alt$(CleanJet_pt[0],0) > 30 && Alt$(CleanJet_pt[1] > 30'
+    '1j' : 'Alt$(CleanJet_pt[0],0) > 30 && Alt$(CleanJet_pt[1],0) < 30',
+    '2j' : 'Alt$(CleanJet_pt[0],0) > 30 && Alt$(CleanJet_pt[1],0) > 30'
 }
 
 catSR = {
