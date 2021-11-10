@@ -51,7 +51,45 @@ groupPlot['DY_PUJets']  = {
                   'color': 416,    # kGreen
                   'samples'  : ['DY_PUJets']
               }
+'''
+groupPlot['DY']  = {  
+                  'nameHR' : "DY",
+                  'isSignal' : 0,
+                  'color': 418,    # kGreen+2
+                  'samples'  : ['DY_lowZ', 'DY_highZ']
+              }
 
+
+groupPlot['VVV']  = {  
+                  'nameHR' : 'VVV',
+                  'isSignal' : 0,
+                  'color': 857, # kAzure -3  
+                  'samples'  : ['VVV']
+              }
+
+
+groupPlot['VZ']  = {  
+                  'nameHR' : "VZ",
+                  'isSignal' : 0,
+                  'color'    : 617,   # kViolet + 1  
+                  'samples'  : ['VZ', 'WZ', 'ZZ']
+              }
+
+groupPlot['Vg']  = {  
+                  'nameHR' : "V#gamma",
+                  'isSignal' : 0,
+                  'color'    : 800,  #810,   # kOrange + 10
+                  'samples'  : ['Vg', 'Wg']
+              }
+
+groupPlot['VgS']  = {
+                  'nameHR' : "V#gamma*",
+                  'isSignal' : 0,
+                  'color'    : 409,   # kGreen - 9
+                  'samples'  : ['VgS_H','VgS_L']
+              }
+
+'''
 groupPlot['top']  = {  
                   'nameHR' : 'tW and t#bar{t}',
                   'isSignal' : 0,
@@ -204,7 +242,7 @@ plot['DATA']  = {
 
 # additional options
 
-legend['lumi'] = 'L = 59.7/fb'
+legend['lumi'] = 'L = 59.7 fb^-1'
 
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
 
