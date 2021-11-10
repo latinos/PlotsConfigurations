@@ -396,7 +396,7 @@ plot['DATA']  = {
 
 # additional options
 
-legend['lumi'] = 'L = 35.9/fb'
+legend['lumi'] = 'L = 36.3 fb^{-1}'
 
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
 
