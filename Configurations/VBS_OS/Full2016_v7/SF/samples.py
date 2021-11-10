@@ -210,7 +210,7 @@ addSampleWeight(samples,'top','TTTo2L2Nu','Top_pTrw')
 
 samples['WW'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'WWJTo2L2Nu_NNLOPS'),
-    'weight': mcCommonWeight,
+    'weight': mcCommonWeight + '*9',
     'FilesPerJob': 1
 }
 
