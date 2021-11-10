@@ -155,12 +155,10 @@ elif btag_algo=="deepflav":
 # CR definitions
 
 aliases['topcr'] = {
-#    'expr': 'mtw2>30 && mll>50 && ((zeroJet && !bVeto) || bReq)'
     'expr': 'mll>50 && ((zeroJet && !bVeto) || bReq)'
 }
 
 aliases['dycr'] = {
-#    'expr': 'mth<60 && mll>40 && mll<80 && bVeto'
     'expr': 'bVeto && abs(mll-91.2)<15'
 
 }
@@ -172,28 +170,25 @@ aliases['wwcr'] = {
 # SR definition
 
 aliases['sr'] = {
-#    'expr': 'mth>60 && mtw2>30 && bVeto'
     'expr': 'bVeto'
 
 }
 
 aliases['LowZ'] = {
     'expr':  '0.5*abs((Lepton_eta[0] + Lepton_eta[1]) - (CleanJet_eta[0] + CleanJet_eta[1])) < 1',
-    'samples': 'DY'
 }
 
 aliases['HighZ'] = {
     'expr':  '0.5*abs((Lepton_eta[0] + Lepton_eta[1]) - (CleanJet_eta[0] + CleanJet_eta[1])) >= 1',
-    'samples': 'DY'
 }
 
 aliases['hardJets'] = {
-    'expr':  'Jet_genJetIdx[CleanJet_jetIdx[0]] >= 0 && Jet_genJetIdx[CleanJet_jetIdx[1]] >= 0 && GenJet_pt[CleanJet_jetIdx[0]] > 25 && GenJet_pt[CleanJet_jetIdx[1]] > 25',
+    'expr':  'Jet_genJetIdx[CleanJet_jetIdx[0]] >= 0 && Jet_genJetIdx[CleanJet_jetIdx[1]] >= 0 && GenJet_pt[Jet_genJetIdx[CleanJet_jetIdx[0]]] > 25 && GenJet_pt[Jet_genJetIdx[CleanJet_jetIdx[1]]] > 25', 
     'samples': ['DY']
 }
 
 aliases['PUJets'] = {
-    'expr':  '!(Jet_genJetIdx[CleanJet_jetIdx[0]] >= 0 && Jet_genJetIdx[CleanJet_jetIdx[1]] >= 0 && GenJet_pt[CleanJet_jetIdx[0]] > 25 && GenJet_pt[CleanJet_jetIdx[1]] > 25)',
+    'expr':  '!(Jet_genJetIdx[CleanJet_jetIdx[0]] >= 0 && Jet_genJetIdx[CleanJet_jetIdx[1]] >= 0 && GenJet_pt[Jet_genJetIdx[CleanJet_jetIdx[0]]] > 25 && GenJet_pt[Jet_genJetIdx[CleanJet_jetIdx[1]]] > 25)',
     'samples': ['DY']
 }
 
@@ -338,35 +333,6 @@ aliases['SFweightMuDown'] = {
     'expr': 'LepSF2l__mu_'+muWP+'__Do',
     'samples': mc_emb
 }
-
-aliases['Weight2MINLO'] = {
-    'linesToAdd': ['.L %s/Differential/weight2MINLO.cc+' % configurations],
-    'class': 'Weight2MINLO',
-    'args': '%s/src/LatinoAnalysis/Gardener/python/data/powheg2minlo/NNLOPS_reweight.root' % os.getenv('CMSSW_BASE'),
-    'samples' : [skey for skey in samples if 'ggH_hww' in skey],
-}
-
-## GGHUncertaintyProducer wasn't run for GluGluHToWWTo2L2Nu_Powheg_M125 
-thus = [
-    'ggH_mu',
-    'ggH_res',
-    'ggH_mig01',
-    'ggH_mig12',
-    'ggH_VBF2j',
-    'ggH_VBF3j',
-    'ggH_pT60',
-    'ggH_pT120',
-    'ggH_qmtop'
-]
-
-for thu in thus:
-    aliases[thu+'_2'] = {
-        'linesToAdd': ['.L %s/Differential/gghuncertainty.cc+' % configurations],
-        'class': 'GGHUncertainty',
-        'args': (thu,),
-        'samples': ['ggH_hww']
-    }
-
 
 # Needed for top QCD scale uncertainty
 lastcopy = (1 << 13)
