@@ -2,8 +2,8 @@
 
 treeName = 'Events'
 
-# tag = 'vbf_2016_v7_08_07_QCDscale_top_fix'
-tag = 'DNN_inputs_2016'
+tag = 'vbf_2016_v7_11_11'
+# tag = 'DNN_inputs_2016'
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFile'
@@ -12,8 +12,8 @@ outputDir = 'rootFile'
 aliasesFile = 'aliases.py'
 
 # file with list of variables
-variablesFile = 'variables_input.py'
-# variablesFile = 'variables.py'
+# variablesFile = 'variables_input.py'
+variablesFile = 'variables.py'
 
 # file with list of cuts
 cutsFile = 'cuts.py' 
@@ -25,7 +25,7 @@ samplesFile = 'samples.py'
 plotFile = 'plot.py' 
 
 # luminosity to normalize to (in 1/fb)
-lumi = 35.867
+lumi = 36.33
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
