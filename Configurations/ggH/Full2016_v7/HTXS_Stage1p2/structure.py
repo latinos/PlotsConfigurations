@@ -144,40 +144,45 @@ for signal in signals:
 
 # data
 
+print(signals)
+
 import pickle
 with open('vbfDipoleScaleSTXS.pkl', 'rb') as handle:
     vbfDipoleScale = pickle.load(handle)
+
+with open('STXS_fraction_equalization.pkl') as handle:
+    STXS_frac_eq = pickle.load(handle)
 
 for signal in signals:
     if 'qqH_hww' in signal:
         structure[signal] = {
             'isSignal' : 1,
             'isData'   : 0,
-            'scaleSampleForDatacard' : {cut : vbfDipoleScale[signal][cut] * 1.03621 for cut in cuts if cut in vbfDipoleScale[signal].keys()},
+            'scaleSampleForDatacard' : {cut : vbfDipoleScale[signal][cut] * STXS_frac_eq[signal] * 1.03621 for cut in cuts if cut in vbfDipoleScale[signal].keys()},
         }
     elif 'ggH_hww' in signal:
         structure[signal] = {
             'isSignal' : 1,
             'isData'   : 0,
-            'scaleSampleForDatacard' : {cut : 1.03364 for cut in cuts},
+            'scaleSampleForDatacard' : {cut : STXS_frac_eq[signal] * 1.03364 for cut in cuts},
         }
     elif 'WH_hww' in signal:
         structure[signal] = {
             'isSignal' : 1,
             'isData'   : 0,
-            'scaleSampleForDatacard' : {cut : 1.01724 for cut in cuts},
+            'scaleSampleForDatacard' : {cut : STXS_frac_eq[signal] * 1.01724 for cut in cuts},
         }
     elif 'ZH_hww' in signal:
         structure[signal] = {
             'isSignal' : 1,
             'isData'   : 0,
-            'scaleSampleForDatacard' : {cut : 1.01994 for cut in cuts},
+            'scaleSampleForDatacard' : {cut : STXS_frac_eq[signal] * 1.01994 for cut in cuts},
         }
     elif 'ggZH_hww' in signal:
         structure[signal] = {
             'isSignal' : 1,
             'isData'   : 0,
-            'scaleSampleForDatacard' : {cut : 1.02494 for cut in cuts},
+            'scaleSampleForDatacard' : {cut : STXS_frac_eq[signal] * 1.02494 for cut in cuts},
         }
     else:
         structure[signal] = {
