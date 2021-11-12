@@ -64,7 +64,6 @@ dataDirectory = os.path.join(treeBaseDir, dataReco, dataSteps)
 ################################################
 
 DataRun = [
-    ['B','Run2016B-02Apr2020_ver1-v1'],
     ['B','Run2016B-02Apr2020_ver2-v1'],
     ['C','Run2016C-02Apr2020-v1'],
     ['D','Run2016D-02Apr2020-v1'],
@@ -142,20 +141,20 @@ else:
                                  + nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-400to600_ext1') \
                                  + nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-600to800') \
                                  + nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-800to1200') \
-                                 + nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-1200to2500')
-                                 #+ nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-2500toinf') Missing! Is it a problem?
+                                 + nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-1200to2500') \
+                                 + nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-2500toInf')
 
-    addSampleWeight(samples,'DY','DYJetsToLL_M-50'    ,'DY_NLO_pTllrw')
-    addSampleWeight(samples,'DY','DYJetsToLL_M-10to50','DY_NLO_pTllrw')
+    addSampleWeight(samples,'DY','DYJetsToLL_M-50_ext2', 'DY_NLO_pTllrw')
+    addSampleWeight(samples,'DY','DYJetsToLL_M-10to50',  'DY_NLO_pTllrw')
 
     if useDYHT :
         # Remove high HT from inclusive samples
-        addSampleWeight(samples,'DY','DYJetsToLL_M-50'    , 'LHE_HT<70.0')
-        addSampleWeight(samples,'DY','DYJetsToLL_M-10to50', 'LHE_HT<70.0')
+        addSampleWeight(samples,'DY','DYJetsToLL_M-50_ext2', 'LHE_HT<70.0')
+        addSampleWeight(samples,'DY','DYJetsToLL_M-10to50',  'LHE_HT<70.0')
         # pt_ll weight
         addSampleWeight(samples,'DY','DYJetsToLL_M-5to50_HT-70to100'       ,'DY_LO_pTllrw')
-        addSampleWeight(samples,'DY','DYJetsToLL_M-5to50_HT-100to200_ext1' ,'DY_LO_pTllrw')
-        addSampleWeight(samples,'DY','DYJetsToLL_M-5to50_HT-200to400_ext1' ,'DY_LO_pTllrw')
+        addSampleWeight(samples,'DY','DYJetsToLL_M-5to50_HT-100to200'      ,'DY_LO_pTllrw')
+        addSampleWeight(samples,'DY','DYJetsToLL_M-5to50_HT-200to400'      ,'DY_LO_pTllrw')
         addSampleWeight(samples,'DY','DYJetsToLL_M-5to50_HT-400to600_ext1' ,'DY_LO_pTllrw')
         addSampleWeight(samples,'DY','DYJetsToLL_M-5to50_HT-600toinf'      ,'DY_LO_pTllrw')
         addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-70to100'          ,'DY_LO_pTllrw')
@@ -165,7 +164,7 @@ else:
         addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-600to800'         ,'DY_LO_pTllrw')
         addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-800to1200'        ,'DY_LO_pTllrw')
         addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-1200to2500'       ,'DY_LO_pTllrw')
-        #addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-2500toinf'        ,'DY_LO_pTllrw') Missing! Is it a problem? 
+        addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-2500toInf'        ,'DY_LO_pTllrw')
 
 ###### Top #######
 

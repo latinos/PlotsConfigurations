@@ -15,7 +15,7 @@ variables['events']   = {   'name': '1',
                         }
 
 variables['mjj']      = {   'name': 'mjj',            #   variable name    
-                            'range' : ([300., 500., 750., 1000., 1500., 2000., 4000.],),    #   variable range
+                            'range' : ([500., 750., 1000., 1500., 2000., 4000.],),    #   variable range
                             'xaxis' : 'm_{jj} [GeV]',  #   x axis name
                             'fold' :3
                         }
@@ -28,7 +28,6 @@ variables['mjj_s1_sb4_berr03_ee_lowZ']      = {
                             #'divideByBinWidth': 1,
                             'fold' :3
                         }
-
 # ee highZ
 variables['mjj_s1_sb4_berr03_ee_highZ']      = {   
                             'name': 'mjj',            #   variable name    
@@ -37,7 +36,6 @@ variables['mjj_s1_sb4_berr03_ee_highZ']      = {
                             #'divideByBinWidth': 1,
                             'fold' :3
                         }
-
 # mm lowZ
 variables['mjj_s1_sb4_berr03_mm_lowZ']      = {   
                             'name': 'mjj',            #   variable name    
@@ -46,7 +44,6 @@ variables['mjj_s1_sb4_berr03_mm_lowZ']      = {
                             #'divideByBinWidth': 1,
                             'fold' :3
                         }
-
 # mm highZ
 variables['mjj_s1_sb4_berr03_mm_highZ']      = {   
                             'name': 'mjj',            #   variable name    
@@ -55,4 +52,3 @@ variables['mjj_s1_sb4_berr03_mm_highZ']      = {
                             #'divideByBinWidth': 1,
                             'fold' :3
                         }
-

@@ -11,8 +11,8 @@ tag = 'darkHiggs_binning_2018v7'
 outputDir = 'darkHiggs_binning_root'
 
 # file with TTree aliases
-aliasesFile = 'aliases.py'
-#aliasesFile = 'aliases_InBveto.py'
+#aliasesFile = 'aliases.py'
+aliasesFile = 'aliases_BtagSF.py'
 
 # file with list of variables
 variablesFile = 'variables_binning.py'

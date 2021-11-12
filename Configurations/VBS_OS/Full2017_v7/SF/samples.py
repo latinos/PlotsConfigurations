@@ -200,17 +200,9 @@ addSampleWeight(samples,'top','TTTo2L2Nu_PSWeights','Top_pTrw')
 
 samples['WW'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'WWJTo2L2Nu_NNLOPS'),
-    'weight': mcCommonWeight+'*9',
+    'weight': mcCommonWeight+ '*9',
     'FilesPerJob': 1
 }
-
-'''
-samples['WW'] = {
-    'name': nanoGetSampleFiles(mcDirectory, 'WpWmJJ_QCD_noTop'),
-    'weight': mcCommonWeight,
-    'FilesPerJob': 1
-}
-'''
 
 # k-factor 1.4 already taken into account in XSWeight
 files = nanoGetSampleFiles(mcDirectory, 'GluGluToWWToENEN') + \
@@ -290,7 +282,8 @@ samples['VVV'] = {
 signals = []
 
 samples['WWewk'] = {
-    'name': nanoGetSampleFiles(mcDirectory, 'WpWmJJ_EWK_noTop'),
+    #'name': nanoGetSampleFiles(mcDirectory, 'WpWmJJ_EWK_noTop'),
+    'name': nanoGetSampleFiles(mcDirectory, 'WpWmJJ_EWK_noTop_dipoleRecoil_private'),
     'weight': mcCommonWeight + '*(Sum$(abs(GenPart_pdgId)==6 || GenPart_pdgId==25)==0)', #filter tops and Higgs
     'FilesPerJob': 2
 }
@@ -338,4 +331,3 @@ for _, sd in DataRun:
     files = nanoGetSampleFiles(dataDirectory, pd + '_' + sd)
     samples['DATA']['name'].extend(files)
     samples['DATA']['weights'].extend([DataTrig[pd]] * len(files))
-

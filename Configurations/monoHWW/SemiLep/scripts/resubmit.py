@@ -64,6 +64,7 @@ if not args.redo is None:
 if not args.implicit:
     for idx in range(len(to_redo)):
         to_redo[idx] += '.'
+print('To redo: '+str(to_redo))
 to_skip = []
 if not args.exclude is None: to_skip = args.exclude.split(',')
 if not args.implicit:
@@ -84,6 +85,7 @@ for diry in dirs:
         do_redo = False
         for redo_pls in to_redo:
             if redo_pls in sample: do_redo = True 
+            #print(redo_pls, sample, do_redo)
     if os.path.isfile(job_files+'.py'): 
         if os.path.isfile(job_files+'.jid') or do_redo:
             jobs.append(job_files)

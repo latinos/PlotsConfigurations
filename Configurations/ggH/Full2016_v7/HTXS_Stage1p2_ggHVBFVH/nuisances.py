@@ -194,7 +194,7 @@ nuisances['eff_e_CR'] = {
     'type': 'shape',
     'samples': dict((skey, ['SFweightEleUp', 'SFweightEleDown']) for skey in mc_emb),
     'cuts': [cut for cut in cuts if '_CR_' in cut or 'top' in cut or 'dytt' in cut],
-    'perRecoBin': True
+    #'perRecoBin': True
 }
 
 nuisances['eff_e'] = {
@@ -203,7 +203,7 @@ nuisances['eff_e'] = {
     'type': 'shape',
     'samples': dict((skey, ['SFweightEleUp', 'SFweightEleDown']) for skey in mc_emb),
     'cuts': [cut for cut in cuts if not ('_CR_' in cut or 'top' in cut or 'dytt' in cut)],
-    'perRecoBin': True
+    #'perRecoBin': True
 }
 
 nuisances['electronpt'] = {
@@ -239,7 +239,7 @@ nuisances['eff_m_CR'] = {
     'type': 'shape',
     'samples': dict((skey, ['SFweightMuUp', 'SFweightMuDown']) for skey in mc_emb),
     'cuts': [cut for cut in cuts if '_CR_' in cut or 'top' in cut or 'dytt' in cut],
-    'perRecoBin': True
+    #'perRecoBin': True
 }
 
 
@@ -249,7 +249,7 @@ nuisances['eff_m'] = {
     'type': 'shape',
     'samples': dict((skey, ['SFweightMuUp', 'SFweightMuDown']) for skey in mc_emb),
     'cuts': [cut for cut in cuts if not ('_CR_' in cut or 'top' in cut or 'dytt' in cut)],
-    'perRecoBin': True
+    #'perRecoBin': True
 }
 
 nuisances['muonpt'] = {
@@ -330,7 +330,6 @@ nuisances['met'] = {
 }
 
 ##### Di-Tau vetoing for embedding
-##### Di-Tau vetoing for embedding
 if useEmbeddedDY:
   if runDYveto:
     nuisances['embedveto']  = {
@@ -342,6 +341,47 @@ if useEmbeddedDY:
                        'Dyveto'   : ['0.1', '-0.1'],
                     }
              }
+
+  else:
+    # These hardcoded numbers have been obtained by running the full Dyveto (with runDYveto=True in samples.py) 
+    # and computing the lnN uncertainty as variation of the up/down integral with respect to the nominal Dyemb integral
+    unc_dict = {}
+    unc_dict['hww2l2v_13TeV_dytt_2j_vh']                        = '1.00709' 
+    unc_dict['hww2l2v_13TeV_of_pth300_450']                     = '1.00204'
+    unc_dict['hww2l2v_13TeV_top_2j_vbf']                        = '1.05492'
+    unc_dict['hww2l2v_13TeV_of2j_pth60_120']                    = '1.01692'
+    unc_dict['hww2l2v_13TeV_of2j_vbflike_mjj350_700_pthLT200']  = '1.00386'
+    unc_dict['hww2l2v_13TeV_of2j_wwlike_mjjGT350_pthGT200']     = '1.04434'
+    unc_dict['hww2l2v_13TeV_of2j_vbflike_mjjGT700_pthLT200']    = '1.00816'
+    unc_dict['hww2l2v_13TeV_of2j_gghlike_mjjGT350_pthGT200']    = '1.00533'
+    unc_dict['hww2l2v_13TeV_dytt_2j']                           = '1.00353'
+    unc_dict['hww2l2v_13TeV_of2j_toplike_mjjGT350_pthGT200']    = '1.04963'
+    unc_dict['hww2l2v_13TeV_of2j_wwlike_mjj350_700_pthLT200']   = '1.00626'
+    unc_dict['hww2l2v_13TeV_of2j_gghlike_mjj350_700_pthLT200']  = '1.00469'
+    unc_dict['hww2l2v_13TeV_of2j_gghlike_mjjGT700_pthLT200']    = '1.00000'
+    unc_dict['hww2l2v_13TeV_of_pthGT650']                       = '1.04108'
+    unc_dict['hww2l2v_13TeV_dytt_2j_vbf']                       = '1.00744'
+    unc_dict['hww2l2v_13TeV_of2j_mjj65_105']                    = '1.01212'
+    unc_dict['hww2l2v_13TeV_of_pth450_650']                     = '1.08254'
+    unc_dict['hww2l2v_13TeV_of2j_vbflike_mjjGT350_pthGT200']    = '1.00257'
+    unc_dict['hww2l2v_13TeV_of2j_pth0_60']                      = '1.01262'
+    unc_dict['hww2l2v_13TeV_of2j_toplike_mjj350_700_pthLT200']  = '1.01435'
+    unc_dict['hww2l2v_13TeV_top_2j_vh']                         = '1.04955'
+    unc_dict['hww2l2v_13TeV_of2j_wwlike_mjjGT700_pthLT200']     = '1.01714'
+    unc_dict['hww2l2v_13TeV_top_2j']                            = '1.05577'
+    unc_dict['hww2l2v_13TeV_of_pth200_300']                     = '1.02475'
+    unc_dict['hww2l2v_13TeV_of2j_toplike_mjjGT700_pthLT200']    = '1.04102'
+    unc_dict['hww2l2v_13TeV_of2j_pth120_200']                   = '1.02233'
+
+    for category,uncertainty in unc_dict.iteritems():
+      nuisances['embedveto_'+category]  = {
+                      'name'  : 'CMS_embed_veto_2016',
+                      'type'  : 'lnN',
+                      'samples'  : {
+                         'Dyemb'    : uncertainty,
+                         },
+                       'cuts': [category],
+                     }
 
 ### PU ID SF uncertainty
 puid_syst = ['Jet_PUIDSF_up/Jet_PUIDSF', 'Jet_PUIDSF_down/Jet_PUIDSF']
@@ -499,7 +539,7 @@ nuisances['VZ'] = {
 
 ###### pdf uncertainties
 
-pdf_variations = ["LHEPdfWeight[%d]" %i for i in range(100)]
+pdf_variations = ["Alt$(LHEPdfWeight[%d],1)" %i for i in range(100)]
 
 ##### PDF uncertainties on WW
 nuisances['pdf_WW']  = {
@@ -1103,16 +1143,9 @@ nuisances['Topnorm2j_highmjj']  = {
                'type'  : 'rateParam',
                'cuts'  : cuts2j_highmjj
               }
- 
-nuisances['DYembnorm2j_lowmjj']  = {
-               'name'  : 'CMS_hww_DYttnorm2j_lowmjj_2016',
-               'samples'  : {
-                   'Dyemb' : '1.00',
-                   },
-               'type'  : 'rateParam',
-               'cuts'  : cuts2j_lowmjj+cuts_highptww
-                }
- 
+
+#----- 
+
 nuisances['WWnorm2j_lowmjj']  = {
                'name'  : 'CMS_hww_WWnorm2j_lowmjj_2016',
                'samples'  : {
@@ -1130,8 +1163,8 @@ nuisances['ggWWnorm2j_lowmjj']  = {
                'type'  : 'rateParam',
                'cuts'  : cuts2j_lowmjj
               }
- 
- 
+
+#----- 
  
 nuisances['WWnorm2j_highptww']  = {
                'name'  : 'CMS_hww_WWnorm2j_highptww_2016',
@@ -1142,7 +1175,7 @@ nuisances['WWnorm2j_highptww']  = {
                'cuts'  : cuts_highptww
               }
  
-nuisances['ggWWnorm2j_lowmjj']  = {
+nuisances['ggWWnorm2j_highptww']  = {
                'name'  : 'CMS_hww_WWnorm2j_highptww_2016',
                'samples'  : {
                    'ggWW' : '1.00',
@@ -1152,8 +1185,7 @@ nuisances['ggWWnorm2j_lowmjj']  = {
  
               }
  
- 
-nuisances['Topnorm2j_lowmjj']  = {
+nuisances['Topnorm2j_highptww']  = {
                'name'  : 'CMS_hww_Topnorm2j_lowmjj_2016',
                'samples'  : {
                    'top' : '1.00',
@@ -1161,7 +1193,17 @@ nuisances['Topnorm2j_lowmjj']  = {
                'type'  : 'rateParam',
                'cuts'  : cuts2j_lowmjj+cuts_highptww
      }
+
+nuisances['DYembnorm2j_highptww']  = {
+               'name'  : 'CMS_hww_DYttnorm2j_highptww_2016',
+               'samples'  : {
+                   'Dyemb' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : cuts2j_lowmjj+cuts_highptww
+                }
  
+#----- 
  
 nuisances['DYembnorm2j_vh']  = {
                'name'  : 'CMS_hww_DYttnorm2j_vh_2016',

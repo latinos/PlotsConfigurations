@@ -52,35 +52,37 @@ variables['njet']  = {   'name': 'Sum$(CleanJet_pt > 30)',
                         'fold'  : 3
                         }
 
-variables['hmZpBDT_nom']  = { 
-    'name': 'BDT_nom[0]',
-    'range' : ([-1., -0.6, -0.3, 0., 0.2, 0.4, 0.6, 0.7, 0.8, 0.92, 0.94, 0.96, 0.975, 0.99, 1.],),
-    'xaxis' : 'high m_{Z\'} NLO BDT_{nominal}',
+variables['BDT_2018bin']  = { 
+    'name': '2*BDT_Ada13[0]',
+    'range' : ([-1., -0.6, -0.2, 0., 0.2, 0.3, 0.4, 0.5, 0.54, 0.58, 0.62, 0.7, 1.],),
+    'xaxis' : 'BDT discriminator',
+    #'xaxis' : 'high m_{Z\'} NLO BDT_{Ada13}',
     'fold'  : 3, 
-    #'blind' : {
-    #    'InCh_SR' : [0.5, 1.],
-    #    'InCh_highMtw_SR' : [0.5, 1.],
-    #}
 }
-   
-variables['hmZpBDT_nomLast']  = { 
-    'name': 'BDT_mtw[0]',
-    'range' : ([0.8, 0.9, 0.94, 0.96, 0.97, 0.98, 0.99, 1.],),
-    'xaxis' : 'high m_{Z\'} NLO BDT_{mtw var}',
+variables['BDT_2018bin_5last']  = { 
+    'name': '2*BDT_Ada13[0]',
+    'range' : ([0.5, 0.54, 0.58, 0.62, 0.7, 1.],),
+    'xaxis' : 'BDT discriminator',
+    #'xaxis' : 'high m_{Z\'} NLO BDT_{Ada13}',
     'fold'  : 2, 
-    #'blind' : {
-    #    'InCh_SR' : [0.5, 1.],
-    #    'InCh_highMtw_SR' : [0.5, 1.],
-    #}
 }
-
-variables['hmZpBDT_hig']  = { 
-    'name': 'BDT_hig[0]',
-    'range' : ([-1., -0.5, -0.2, 0., 0.2, 0.4, 0.55, 0.7, 0.8, 0.9, 1.],),
-    'xaxis' : 'high m_{Z\'} NLO BDT_{high cut}',
-    'fold'  : 3, 
-    #'blind' : {
-    #    'InCh_SR' : [0.5, 1.],
-    #    'InCh_highMtw_SR' : [0.5, 1.],
-    #}
-}
+#variables['BDT_nb_2018bin']  = { 
+#    'name': '2*BDT_no_btag[0]',
+#    'range' : ([-1., -0.6, -0.2, 0., 0.2, 0.35, 0.4, 0.44, 0.47, 0.50, 0.54, 0.58, 1.],),
+#    'xaxis' : 'BDT discriminator',
+#    #'xaxis' : 'BDT',
+#    'fold'  : 3, 
+#    'blind' : {
+#        'InCh_SR' : [0.4, 1.],
+#    }
+#}
+#variables['BDT_b_2018bin']  = { 
+#    'name': '2*BDT_btag[0]',
+#    'range' : ([-1., -0.6, -0.2, 0., 0.2, 0.35,  0.41, 0.44, 0.47, 0.51, 0.57, 1.],),
+#    'xaxis' : 'BDT discriminator',
+#    #'xaxis' : 'BDT',
+#    'fold'  : 3, 
+#    'blind' : {
+#        'InCh_SR' : [0.4, 1.],
+#    }
+#}

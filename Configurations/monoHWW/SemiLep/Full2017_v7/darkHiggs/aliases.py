@@ -452,6 +452,13 @@ for var in ['Up', 'Down']:
 
 ## BDT OTF
 
+aliases['MHlnjj_j1_btag'] = {
+    'expr': 'Jet_btagDeepB[CleanJet_jetIdx[HM_idx_j1]]',
+}
+aliases['MHlnjj_j2_btag'] = {
+    'expr': 'Jet_btagDeepB[CleanJet_jetIdx[HM_idx_j2]]',
+}
+
 MVA_folder = '%s/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/MVA/darkHiggs/' % os.getenv('CMSSW_BASE')
 # Clean BDT's
 bdt_dict = {
@@ -487,6 +494,11 @@ bdt_dict = {
     #'BDT_Grad13' : MVA_folder + 'TKcut/UATmva_darkHiggsHighMZpVWjAndTT_2017_BDT_500Trees_Grad_FalseBagged_0.6BagFrac_1BagShrink_GiniIndex_20Cuts_CostComplexity_12PruneStrength_13Var.weights.xml',
     #'BDT_Grad10' : MVA_folder + 'TKcut/UATmva_darkHiggsHighMZpVWjAndTT_2017_BDT_700Trees_Grad_FalseBagged_0.6BagFrac_1BagShrink_GiniIndex_20Cuts_CostComplexity_12PruneStrength_10Var.weights.xml',
     #'BDT_Ada13b' : MVA_folder + 'TKcut/Bveto/UATmva_darkHiggsHighMZpVWjAndTT_2017_BDT_700Trees_AdaBoost_GiniIndex_20Cuts_CostComplexity_12PruneStrength_13Var.weights.xml',
+
+    # b-tag study
+    #'BDT_no_btag' : MVA_folder+'btag_study/no_btag/UATmva_darkHiggsHighMZpVWjAndTT_2017_BDT_900Trees_AdaBoost_GiniIndex_20Cuts_CostComplexity_12PruneStrength_13Var.weights.xml', 
+    #'BDT_btag'    : MVA_folder+'btag_study/btag/UATmva_darkHiggsHighMZpVWjAndTT_2017_BDT_900Trees_AdaBoost_GiniIndex_20Cuts_CostComplexity_12PruneStrength_15Var.weights.xml',
+
 }
 clean_var = MVA_folder + 'CleanVar.txt'
 clean_var_tk = MVA_folder + 'CleanVar_Tk.txt'
@@ -498,22 +510,26 @@ puppi_mtw1_var = MVA_folder + '/mtwStudy/CleanVar_Pup_mtw.txt'
 
 tkcut_13var = MVA_folder + 'TKcut/Clean13Var.txt'
 tkcut_10var = MVA_folder + 'TKcut/Clean10Var.txt'
+tkcut_15var = MVA_folder + 'btag_study/btag/Clean15Var.txt'
 
 first = True
 for bdt in bdt_dict:
     cur_var_file = tkcut_13var
     do_keras = False
     if '10Var' in bdt_dict[bdt] or '10var' in bdt_dict[bdt]: cur_var_file = tkcut_10var
+    if '15Var' in bdt_dict[bdt] or '15var' in bdt_dict[bdt]: cur_var_file = tkcut_15var
     if 'DNN' in bdt_dict[bdt]: 
         do_keras = True
     aliases[bdt] = {
-        'class': 'TMVAfillerOTF',
+        #'class': 'TMVAfillerOTF',
+        'class': 'TMVAfillerOTFnew',
         'args': (cur_var_file, bdt_dict[bdt], do_keras),
     }
     if first: 
         aliases[bdt]['linesToAdd'] = [
             'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
-            '.L %s/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/Full2017_v7/darkHiggs/TMVAfiller_OTF.cc+' % os.getenv('CMSSW_BASE')
+            #'.L %s/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/Full2017_v7/darkHiggs/TMVAfiller_OTF.cc+' % os.getenv('CMSSW_BASE')
+            '.L %s/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/scripts/TMVAfiller_OTF_new.cc+' % os.getenv('CMSSW_BASE')
         ]
         first = False
     

@@ -66,11 +66,11 @@ dataDirectory = os.path.join(treeBaseDir, dataReco, dataSteps)
 ################################################
 
 DataRun = [
-            ['A','Run2018A-02Apr2020-v1'] ,
-            ['B','Run2018B-02Apr2020-v1'] ,
-            ['C','Run2018C-02Apr2020-v1'] ,
-            ['D','Run2018D-02Apr2020-v1'] ,
-          ]
+    ['A','Run2018A-02Apr2020-v1'] ,
+    ['B','Run2018B-02Apr2020-v1'] ,
+    ['C','Run2018C-02Apr2020-v1'] ,
+    ['D','Run2018D-02Apr2020-v1'] ,
+]
 
 DataSets = ['MuonEG','DoubleMuon','SingleMuon','EGamma']
 
@@ -130,8 +130,8 @@ else:
 
     # Add DY HT Samples
     if useDYHT :
-        samples['DY']['name'] +=      nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-4to50_HT-100to200' ) \
-                                   +  nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-4to50_HT-200to400' ) \
+        samples['DY']['name'] +=     nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-4to50_HT-100to200' ) \
+                                   + nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-4to50_HT-200to400' ) \
                                    + nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-4to50_HT-400to600' ) \
                                    + nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-4to50_HT-600toInf') \
                                    + nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-70to100') \

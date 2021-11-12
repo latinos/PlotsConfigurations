@@ -1,9 +1,9 @@
 # structure configuration for datacard
 
-#structure = {}
-
 # keys here must match keys in samples.py    
-#                    
+
+nbins = 1
+
 structure['DY']  = {  
                   'isSignal' : 0,
                   'isData'   : 0
@@ -19,7 +19,6 @@ structure['Dyveto']  = {
                   'isData'   : 0,
                   'removeFromCuts' : [ k for k in cuts ],
               }
-
 
 structure['Wjets']  = {  
                   'isSignal' : 0,
@@ -59,24 +58,30 @@ structure['top'] = {
                   'isData'   : 0 
                   }
 
-structure['WW']  = {
-                  'isSignal' : 1,
-                  'isData'   : 0    
+for i in xrange(nbins):
+  structure['WW_B%d'%i] = {
+    'isSignal' : 1,
+    'isData'   : 0    
+  }
+
+  structure['ggWW_B%d'%i] = {
+    'isSignal' : 1,
+    'isData' : 0
+  }
+
+structure['WW_nonfid'] = {
+                  'isSignal' : 0,
+                  'isData'   : 0
+                  }
+
+structure['ggWW_nonfid'] = {
+                  'isSignal' : 0,
+                  'isData'   : 0
                   }
 
 structure['WWewk']  = {
                   'isSignal' : 0,
                   'isData'   : 0
-                  }
-
-structure['ggWW']  = {
-                  'isSignal' : 1,
-                  'isData'   : 0    
-                  }
-
-structure['ggWW_Int']  = {
-                  'isSignal' : 0,
-                  'isData'   : 0    
                   }
 
 structure['Wg']  = { 

@@ -13,13 +13,13 @@ variables['events']   = {   'name': '1',
                             'xaxis' : 'events',
                             'fold' : 3
                         }
+
 variables['mjj']      = {   'name': 'mjj',            #   variable name    
                             'range' : ([500., 750., 1000., 1500., 2000., 4000.],),    #   variable range
                             'xaxis' : 'm_{jj} [GeV]',  #   x axis name
                             'fold' :3
                         }
-                       
-# ee lowZ
+
 variables['mjj_s1_sb4_berr03_ee_lowZ']      = {   
                             'name': 'mjj',            #   variable name    
                             'range' : ([500., 645., 1465., 2035., 4000.],),    #   variable range
@@ -27,7 +27,6 @@ variables['mjj_s1_sb4_berr03_ee_lowZ']      = {
                             'fold' :3
                         }
 
-# ee highZ
 variables['mjj_s1_sb4_berr03_ee_highZ']      = {   
                             'name': 'mjj',            #   variable name    
                             'range' : ([500., 945., 1685., 4000.],),    #   variable range
@@ -35,7 +34,6 @@ variables['mjj_s1_sb4_berr03_ee_highZ']      = {
                             'fold' :3
                         }
 
-# mm lowZ
 variables['mjj_s1_sb4_berr03_mm_lowZ']      = {   
                             'name': 'mjj',            #   variable name    
                             'range' : ([500., 690., 885., 1060., 1260., 1865., 2330., 4000.],),    #   variable range
@@ -43,11 +41,9 @@ variables['mjj_s1_sb4_berr03_mm_lowZ']      = {
                             'fold' :3
                         }
 
-# mm highZ
 variables['mjj_s1_sb4_berr03_mm_highZ']      = {   
                             'name': 'mjj',            #   variable name    
                             'range' : ([500., 610., 960., 1500., 4000.],),    #   variable range
                             'xaxis' : 'm_{jj} [GeV]',  #   x axis name
                             'fold' :3
                         }
-

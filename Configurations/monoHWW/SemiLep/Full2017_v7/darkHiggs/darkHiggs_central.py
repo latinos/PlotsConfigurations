@@ -50,13 +50,15 @@ mass_points = [
     'mhs_200_mx_200_mZp_2000', 'mhs_200_mx_200_mZp_2500',
     'mhs_200_mx_300_mZp_1000', 'mhs_200_mx_300_mZp_1200', 'mhs_200_mx_300_mZp_1500', 'mhs_200_mx_300_mZp_2000', 'mhs_200_mx_300_mZp_2500', 'mhs_200_mx_300_mZp_800',
     'mhs_300_mx_150_mZp_1000', 'mhs_300_mx_150_mZp_1200', 'mhs_300_mx_150_mZp_1500', 'mhs_300_mx_150_mZp_400', 'mhs_300_mx_150_mZp_500', 
-    #'mhs_300_mx_150_mZp_800', #FIXME missing file
+    'mhs_300_mx_150_mZp_800', #FIXME missing file
     'mhs_300_mx_200_mZp_1000', 
-    #'mhs_300_mx_200_mZp_1200', #FIXME missing file
+    'mhs_300_mx_200_mZp_1200', #FIXME missing file
     'mhs_300_mx_200_mZp_1500', 'mhs_300_mx_200_mZp_500', 'mhs_300_mx_200_mZp_800',
-    #'mhs_300_mx_300_mZp_1000', #FIXME missing file
+    'mhs_300_mx_300_mZp_1000', #FIXME missing file
     'mhs_300_mx_300_mZp_1200', 'mhs_300_mx_300_mZp_800',
     'mhs_400_mx_200_mZp_1000', 'mhs_400_mx_200_mZp_500', 'mhs_400_mx_200_mZp_800',
+    # Additional private sample
+    'mhs_250_mx_150_mZp_1200',
 ]
 for mp in mass_points:
     mhs = mp.split('_')[1] 
@@ -70,3 +72,4 @@ for mp in mass_points:
         'FilesPerJob': 5,
     }
     col_idx += 1
+    if mp == 'mhs_250_mx_150_mZp_1200': signal['darkHiggs_'+mp]['FilesPerJob'] = 50

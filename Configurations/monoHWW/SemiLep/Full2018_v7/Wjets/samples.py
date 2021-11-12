@@ -119,26 +119,26 @@ samples['Wjets_NLOnj'] = {
     'FilesPerJob' : 4,
 }
 
-# Pt binned
-files = nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_Pt50to100')
-files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_Pt100to250')
-files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_Pt250to400')
-files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_Pt400to600')
-files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_Pt600toInf')
-files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-0J')
-files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-1J')
-files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-2J')
-
-samples['Wjets_NLOptM'] = {
-    'name'   : files,
-    'weight' : mcCommonWeight +'*EWKnloW[0]', # ewk nlo correction https://arxiv.org/pdf/1705.04664v2.pdf 
-    #'weight' : mcCommonWeight + '*ewknloW', 
-    #'weight' : mcCommonWeight, 
-    'FilesPerJob' : 4,
-}
-addSampleWeight(samples, 'Wjets_NLOptM', 'WJetsToLNu-0J',   '(LHE_Vpt < 50)')
-addSampleWeight(samples, 'Wjets_NLOptM', 'WJetsToLNu-1J',   '(LHE_Vpt < 50)')
-addSampleWeight(samples, 'Wjets_NLOptM', 'WJetsToLNu-2J',   '(LHE_Vpt < 50)')
+## Pt binned
+#files = nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_Pt50to100')
+#files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_Pt100to250')
+#files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_Pt250to400')
+#files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_Pt400to600')
+#files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_Pt600toInf')
+#files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-0J')
+#files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-1J')
+#files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-2J')
+#
+#samples['Wjets_NLOptM'] = {
+#    'name'   : files,
+#    'weight' : mcCommonWeight +'*EWKnloW[0]', # ewk nlo correction https://arxiv.org/pdf/1705.04664v2.pdf 
+#    #'weight' : mcCommonWeight + '*ewknloW', 
+#    #'weight' : mcCommonWeight, 
+#    'FilesPerJob' : 4,
+#}
+#addSampleWeight(samples, 'Wjets_NLOptM', 'WJetsToLNu-0J',   '(LHE_Vpt < 50)')
+#addSampleWeight(samples, 'Wjets_NLOptM', 'WJetsToLNu-1J',   '(LHE_Vpt < 50)')
+#addSampleWeight(samples, 'Wjets_NLOptM', 'WJetsToLNu-2J',   '(LHE_Vpt < 50)')
 
 # Pt split
 for pt in ['50to100', '100to250', '250to400', '400to600', '600toInf']:
@@ -148,31 +148,31 @@ for pt in ['50to100', '100to250', '250to400', '400to600', '600toInf']:
         'FilesPerJob' : 4,
     }
     
-# nJet binned Raw
-files = nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-0J')
-files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-1J')
-files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-2J')
-
-samples['Wjets_NLOnjRaw'] = {
-    'name'   : files,
-    'weight' : mcCommonWeightRaw ,
-    'isData': ['all'],
-    'FilesPerJob' : 4,
-}
-
-# Pt binned Raw
-files = nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_Pt50to100')
-files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_Pt100to250')
-files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_Pt250to400')
-files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_Pt400to600')
-files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_Pt600toInf')
-
-samples['Wjets_NLOptMRaw'] = {
-    'name'   : files,
-    'weight' : mcCommonWeightRaw, 
-    'isData': ['all'],
-    'FilesPerJob' : 4,
-}
+## nJet binned Raw
+#files = nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-0J')
+#files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-1J')
+#files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-2J')
+#
+#samples['Wjets_NLOnjRaw'] = {
+#    'name'   : files,
+#    'weight' : mcCommonWeightRaw ,
+#    'isData': ['all'],
+#    'FilesPerJob' : 4,
+#}
+#
+## Pt binned Raw
+#files = nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_Pt50to100')
+#files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_Pt100to250')
+#files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_Pt250to400')
+#files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_Pt400to600')
+#files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_Pt600toInf')
+#
+#samples['Wjets_NLOptMRaw'] = {
+#    'name'   : files,
+#    'weight' : mcCommonWeightRaw, 
+#    'isData': ['all'],
+#    'FilesPerJob' : 4,
+#}
 
 # Stat merge
 files = nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_Pt100to250')

@@ -28,6 +28,10 @@ models = {
     },
 }
 
+INC_FILE = 'Incomplete_files.txt'
+o_file = open(INC_FILE, 'w')
+o_file.close()
+
 #channel = {'ele' : 'e', 'mu' : '#mu', 'elemu': 'l'}
 
 # 2016
@@ -67,12 +71,16 @@ mhs = ['160','180','200','250','300','350','400']
 mDM = ['100','150','200','300']
 mZp = ['200','300','400','500','600','700','800','900','1000','1100','1200','1300','1400','1500','1600','1700','1800','1900','2000','2100','2200','2300','2400','2500']
 
+PRIVATE_MP = [
+    ('250', '150', '1200'),
+]
+
 INTERPOLATED_MP = []
 for hs in mhs:
     for DM in mDM:
         for Zp in mZp:
             mp_tuple = (hs, DM, Zp)
-            if mp_tuple not in CENTRAL_MP: INTERPOLATED_MP.append(mp_tuple)
+            if mp_tuple not in CENTRAL_MP and mp_tuple not in PRIVATE_MP: INTERPOLATED_MP.append(mp_tuple)
 
 
 
@@ -177,6 +185,7 @@ def get_mx_th2_limits(mx, output_file, blind=True):
     if not blind: th2f_obs = ROOT.TH2F('raw_obs_mx'+str(mx), 'raw_obs', len(mZp_a)-1, mZp_a, len(mhs_a)-1, mhs_a)
 
     # Fill 2D histograms
+    list_of_unusual = []
     for x_idx,mZp in enumerate(mZp_l):
         for y_idx,mhs in enumerate(mhs_l):
             # Select right masspoint file
@@ -199,6 +208,7 @@ def get_mx_th2_limits(mx, output_file, blind=True):
             if not tree:
                 print('No limit tree found in '+fil)
                 print(' --> skipping')
+                list_of_unusual.append(fil)
                 continue
 
             n_lim = tree.GetEntries()
@@ -207,6 +217,7 @@ def get_mx_th2_limits(mx, output_file, blind=True):
             if n_lim < n_exp_lim: 
                 print('Unexpected amount of limits found, '+str(n_lim)+' in stead of '+str(n_exp_lim)+' in '+fil)
                 print(' --> skipping')
+                list_of_unusual.append(fil)
                 continue
 
             # Set right contents
@@ -230,6 +241,12 @@ def get_mx_th2_limits(mx, output_file, blind=True):
     for hist in limits_th2_l:
         hist.Write()
     o_file.Close()
+
+    # Make list for potential resub
+    o_file = open(INC_FILE, 'a')
+    for fil in list_of_unusual:
+        o_file.write(fil+'\n')
+    o_file.close()
 
     return limits_th2_l
 
@@ -434,6 +451,20 @@ def plot_limits(output_file, mx, tg2_HD_list, contours_list, show_int=False):
             #cen_x.append(float(point[2]))
             #cen_y.append(float(point[0])) 
 
+        # Load private points
+        mp_pri = ROOT.TGraph()
+        idx = 0
+        #cen_x = array('d', [])
+        #cen_y = array('d', [])
+        for point in PRIVATE_MP:
+            if not int(point[1]) == int(mx): continue
+            x = float(point[2])
+            y = float(point[0])
+            mp_pri.SetPoint(idx, x, y)
+            idx += 1
+            #cen_x.append(float(point[2]))
+            #cen_y.append(float(point[0])) 
+
         # Load interpolated points
         mp_int = ROOT.TGraph()
         idx = 0
@@ -450,16 +481,20 @@ def plot_limits(output_file, mx, tg2_HD_list, contours_list, show_int=False):
        
         # Set Style
         mp_cen.SetMarkerStyle(20) 
+        mp_pri.SetMarkerStyle(20) 
         mp_int.SetMarkerStyle(20) 
         mp_cen.SetMarkerColor(1) 
+        mp_pri.SetMarkerColor(2) 
         mp_int.SetMarkerColor(600)
 
         # Draw points
         mp_cen.Draw('same,p')
+        mp_pri.Draw('same,p')
         mp_int.Draw('same,p')
 
         # Add to legend
         leg.AddEntry(mp_cen, 'Central mass points', 'p')
+        leg.AddEntry(mp_pri, 'Private mass points', 'p')
         leg.AddEntry(mp_int, 'Interpolated mass points', 'p')
         leg.Draw()
 

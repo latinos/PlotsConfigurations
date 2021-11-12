@@ -77,12 +77,23 @@ structure['ggH'] = {
     'isData'   : 0    
 }
 
+import pickle
+with open('vbfDipoleScaleSTXS.pkl', 'rb') as handle:
+    vbfDipoleScale = pickle.load(handle)
+    
 for signal in signals:
     print(signal)
-    structure[signal] = {
-        'isSignal' : 1,
-        'isData'   : 0
-    }
+    if 'qqH_hww' in signal:
+        structure[signal] = {
+            'isSignal' : 1,
+            'isData'   : 0,
+            'scaleSampleForDatacard' : vbfDipoleScale[signal],
+        }
+    else:
+        structure[signal] = {
+            'isSignal' : 1,
+            'isData'   : 0
+        }
 
 
 # data

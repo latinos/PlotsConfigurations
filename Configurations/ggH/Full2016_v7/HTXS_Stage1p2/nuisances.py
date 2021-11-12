@@ -69,21 +69,6 @@ except NameError:
 from LatinoAnalysis.Tools.HiggsXSection import HiggsXSection
 HiggsXS = HiggsXSection()
 
-
-cuts2j_lowmjj = []
-cuts2j_highmjj = []
-cuts2j_vh = []
-cuts_highptww = []
-
-cuts0j = []
-cuts1j = []
-allcuts = []
-
-for k in cuts:
-  for cat in cuts[k]['categories']:
-    allcuts.append(k+'_'+cat)
-    if '0j' in cat: cuts0j.append(k+'_'+cat)
-    elif '1j' in cat: cuts1j.append(k+'_'+cat)
 ################################ EXPERIMENTAL UNCERTAINTIES  #################################
 
 #### Luminosity
@@ -193,7 +178,7 @@ nuisances['eff_e_CR'] = {
     'type': 'shape',
     'samples': dict((skey, ['SFweightEleUp', 'SFweightEleDown']) for skey in mc_emb),
     'cuts': [cut for cut in cuts if '_CR_' in cut or 'top' in cut or 'dytt' in cut],
-    'perRecoBin': True
+#    'perRecoBin': True
 }
 
 nuisances['eff_e'] = {
@@ -202,7 +187,7 @@ nuisances['eff_e'] = {
     'type': 'shape',
     'samples': dict((skey, ['SFweightEleUp', 'SFweightEleDown']) for skey in mc_emb),
     'cuts': [cut for cut in cuts if not ('_CR_' in cut or 'top' in cut or 'dytt' in cut)],
-    'perRecoBin': True
+#    'perRecoBin': True
 }
 
 
@@ -239,7 +224,7 @@ nuisances['eff_m_CR'] = {
     'type': 'shape',
     'samples': dict((skey, ['SFweightMuUp', 'SFweightMuDown']) for skey in mc_emb),
     'cuts': [cut for cut in cuts if '_CR_' in cut or 'top' in cut or 'dytt' in cut],
-    'perRecoBin': True
+#    'perRecoBin': True
 }
 
 
@@ -249,7 +234,7 @@ nuisances['eff_m'] = {
     'type': 'shape',
     'samples': dict((skey, ['SFweightMuUp', 'SFweightMuDown']) for skey in mc_emb),
     'cuts': [cut for cut in cuts if not ('_CR_' in cut or 'top' in cut or 'dytt' in cut)],
-    'perRecoBin': True
+#    'perRecoBin': True
 }
 
 nuisances['muonpt'] = {
@@ -351,10 +336,16 @@ if useEmbeddedDY:
     unc_dict['hww2l2v_13TeV_of1j_pth0_60']      =   '1.01188'
     unc_dict['hww2l2v_13TeV_of1j_pth60_120']    =   '1.02647'
     unc_dict['hww2l2v_13TeV_of1j_pth120_200']   =   '1.01830'
-    unc_dict['hww2l2v_13TeV_dytt_0j']           =   '1.00226'
-    unc_dict['hww2l2v_13TeV_dytt_1j']           =   '1.00177'
-    unc_dict['hww2l2v_13TeV_top_0j']            =   '1.01190'
-    unc_dict['hww2l2v_13TeV_top_1j']            =   '1.01777'
+    unc_dict['hww2l2v_13TeV_dytt_0j_pth0_10']   =   '1.00226'
+    unc_dict['hww2l2v_13TeV_dytt_0j_pth10_200'] =   '1.00226'
+    unc_dict['hww2l2v_13TeV_dytt_1j_pth0_60']   =   '1.00177'
+    unc_dict['hww2l2v_13TeV_dytt_1j_pth60_120'] =   '1.00177'
+    unc_dict['hww2l2v_13TeV_dytt_1j_pth120_200']=   '1.00177'
+    unc_dict['hww2l2v_13TeV_top_0j_pth0_10']    =   '1.01190'
+    unc_dict['hww2l2v_13TeV_top_0j_pth10_20']   =   '1.01190'
+    unc_dict['hww2l2v_13TeV_top_1j_pth0_60']    =   '1.01777'
+    unc_dict['hww2l2v_13TeV_top_1j_pth60_120']  =   '1.01777'
+    unc_dict['hww2l2v_13TeV_top_1j_pth120_200'] =   '1.01777'
     unc_dict['hww2l2v_13TeV_ww_0j']             =   '1.05776'
     unc_dict['hww2l2v_13TeV_ww_1j']             =   '1.05914'
 
@@ -523,7 +514,7 @@ nuisances['VZ'] = {
 
 ###### pdf uncertainties
 
-pdf_variations = ["LHEPdfWeight[%d]" %i for i in range(100)]
+pdf_variations = ["Alt$(LHEPdfWeight[%d],1)" %i for i in range(100)]
 
 ##### PDF uncertainties on WW
 nuisances['pdf_WW']  = {
@@ -1096,77 +1087,53 @@ nuisances['stat'] = {
 }
 
 #rate parameters
+cutdict = {}
+tags = ['0j_pth0_10','0j_pth10_200','1j_pth0_60','1j_pth60_120','1j_pth120_200']
+for tag in tags: cutdict[tag] = []
 
-nuisances['DYembnorm0j']  = {
-               'name'  : 'CMS_hww_DYttnorm0j_2016',
-               'samples'  : {
-                   'Dyemb' : '1.00',
-                   },
-               'type'  : 'rateParam',
-               'cuts'  : cuts0j
-              }
+for k in cuts:
+  for cat in cuts[k]['categories']:
+    for tag in tags:
+       if tag in cat: cutdict[tag].append(k+'_'+cat) 
 
-nuisances['DYembnorm1j']  = {
-               'name'  : 'CMS_hww_DYttnorm1j_2016',
-               'samples'  : {
-                   'Dyemb' : '1.00',
-                   },
-               'type'  : 'rateParam',
-               'cuts'  : cuts1j
-              }
-nuisances['WWnorm0j']  = {
-               'name'  : 'CMS_hww_WWnorm0j_2016',
-               'samples'  : {
-                   'WW' : '1.00',
-                   },
-               'type'  : 'rateParam',
-               'cuts'  : cuts0j
-              }
+for tag in tags:
 
-nuisances['ggWWnorm0j']  = {
-               'name'  : 'CMS_hww_WWnorm0j_2016',
-               'samples'  : {
-                   'ggWW' : '1.00',
-                   },
-               'type'  : 'rateParam',
-               'cuts'  : cuts0j
-              }
+  nuisances['DYembnorm'+tag]  = {
+                 'name'  : 'CMS_hww_DYttnorm'+tag+'_2016',
+                 'samples'  : {
+                     'Dyemb' : '1.00',
+                     },
+                 'type'  : 'rateParam',
+                 'cuts'  : cutdict[tag]
+                }
 
-nuisances['WWnorm1j']  = {
-               'name'  : 'CMS_hww_WWnorm1j_2016',
-               'samples'  : {
-                   'WW' : '1.00',
-                   },
-               'type'  : 'rateParam',
-               'cuts'  : cuts1j
-              }
+  nuisances['WWnorm'+tag]  = {
+                 'name'  : 'CMS_hww_WWnorm'+tag+'_2016',
+                 'samples'  : {
+                     'WW' : '1.00',
+                     },
+                 'type'  : 'rateParam',
+                 'cuts'  : cutdict[tag]
+                }
+  
+  nuisances['ggWWnorm'+tag]  = {
+                 'name'  : 'CMS_hww_WWnorm'+tag+'_2016',
+                 'samples'  : {
+                     'ggWW' : '1.00',
+                     },
+                 'type'  : 'rateParam',
+                 'cuts'  : cutdict[tag]
+                }
 
-nuisances['ggWWnorm1j']  = {
-               'name'  : 'CMS_hww_WWnorm1j_2016',
-               'samples'  : {
-                   'ggWW' : '1.00',
-                   },
-               'type'  : 'rateParam',
-               'cuts'  : cuts1j
-            }
+  nuisances['Topnorm'+tag]  = {
+                 'name'  : 'CMS_hww_Topnorm'+tag+'_2016',
+                 'samples'  : {
+                     'top' : '1.00',
+                     },
+                 'type'  : 'rateParam',
+                 'cuts'  : cutdict[tag]
+                }
 
-nuisances['Topnorm0j']  = {
-               'name'  : 'CMS_hww_Topnorm0j_2016',
-               'samples'  : {
-                   'top' : '1.00',
-                   },
-               'type'  : 'rateParam',
-               'cuts'  : cuts0j
-              }
-
-nuisances['Topnorm1j']  = {
-               'name'  : 'CMS_hww_Topnorm1j_2016',
-               'samples'  : {
-                   'top' : '1.00',
-                   },
-               'type'  : 'rateParam',
-               'cuts'  : cuts1j
-              }
 
 for n in nuisances.values():
     n['skipCMS'] = 1
