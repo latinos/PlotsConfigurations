@@ -149,8 +149,7 @@ nuisances['eff_e'] = {
     'kind': 'weight',
     'type': 'shape',
     'samples': dict((skey, ['SFweightEleUp', 'SFweightEleDown']) for skey in mc_emb),
-    'cuts': [cut for cut in cuts if not '_CR_' in cut or 'top' in cut or 'dytt' in cut],
-    'perRecoBin': True
+    'cuts': [cut for cut in cuts if not ('_CR_' in cut or 'top' in cut or 'dytt' in cut)]
 }
 
 nuisances['eff_e_CR'] = {
@@ -158,8 +157,7 @@ nuisances['eff_e_CR'] = {
     'kind': 'weight',
     'type': 'shape',
     'samples': dict((skey, ['SFweightEleUp', 'SFweightEleDown']) for skey in mc_emb),
-    'cuts': [cut for cut in cuts if '_CR_' in cut or 'top' in cut or 'dytt' in cut],
-    'perRecoBin': True
+    'cuts': [cut for cut in cuts if '_CR_' in cut or 'top' in cut or 'dytt' in cut]
 }
 
 nuisances['electronpt'] = {
@@ -196,8 +194,7 @@ nuisances['eff_m'] = {
     'kind': 'weight',
     'type': 'shape',
     'samples': dict((skey, ['SFweightMuUp', 'SFweightMuDown']) for skey in mc_emb),
-    'cuts': [cut for cut in cuts if '_CR_' in cut or 'top' in cut or 'dytt' in cut],
-    'perRecoBin': True
+    'cuts': [cut for cut in cuts if not ('_CR_' in cut or 'top' in cut or 'dytt' in cut)]
 }
 
 nuisances['eff_m_CR'] = {
@@ -205,8 +202,7 @@ nuisances['eff_m_CR'] = {
     'kind': 'weight',
     'type': 'shape',
     'samples': dict((skey, ['SFweightMuUp', 'SFweightMuDown']) for skey in mc_emb),
-    'cuts': [cut for cut in cuts if not '_CR_' in cut or 'top' in cut or 'dytt' in cut],
-    'perRecoBin': True
+    'cuts': [cut for cut in cuts if '_CR_' in cut or 'top' in cut or 'dytt' in cut]
 }
 
 nuisances['muonpt'] = {
@@ -484,7 +480,7 @@ nuisances['VZ'] = {
 
 ###### pdf uncertainties
 
-pdf_variations = ["LHEPdfWeight[%d]" %i for i in range(100)]
+pdf_variations = ["Alt$(LHEPdfWeight[%d],1)" %i for i in range(100)]
 
 ##### PDF uncertainties on WW
 nuisances['pdf_WW']  = {

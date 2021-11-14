@@ -1,9 +1,9 @@
 # structure configuration for datacard
 
-#structure = {}
-
 # keys here must match keys in samples.py    
-#                    
+
+nbins = 4
+
 structure['DY']  = {  
                   'isSignal' : 0,
                   'isData'   : 0
@@ -59,82 +59,23 @@ structure['top'] = {
                   'isData'   : 0 
                   }
 
-structure['WW_fid_NJ_0'] = {
-                  'isSignal' : 1,
-                  'isData'   : 0    
-                  }
+for i in xrange(nbins):
+  structure['WW_B%d'%i] = {
+    'isSignal' : 1,
+    'isData'   : 0    
+  }
 
-structure['WW_fid_NJ_1'] = {
-                  'isSignal' : 1,
-                  'isData'   : 0
-                  }
+  structure['ggWW_B%d'%i] = {
+    'isSignal' : 1,
+    'isData' : 0
+  }
 
-structure['WW_fid_NJ_2'] = {
-                  'isSignal' : 1,
-                  'isData'   : 0
-                  }
-
-structure['WW_fid_NJ_GE3'] = {
-                  'isSignal' : 1,
-                  'isData'   : 0
-                  }
-
-structure['WW_nonfid_NJ_0'] = {
+structure['WW_nonfid'] = {
                   'isSignal' : 0,
                   'isData'   : 0
                   }
 
-structure['WW_nonfid_NJ_1'] = {
-                  'isSignal' : 0,
-                  'isData'   : 0
-                  }
-
-structure['WW_nonfid_NJ_2'] = {
-                  'isSignal' : 0,
-                  'isData'   : 0
-                  }
-
-structure['WW_nonfid_NJ_GE3'] = {
-                  'isSignal' : 0,
-                  'isData'   : 0
-                  }
-
-structure['ggWW_fid_NJ_0'] = {
-                  'isSignal' : 1,
-                  'isData'   : 0    
-                  }
-
-structure['ggWW_fid_NJ_1'] = {
-                  'isSignal' : 1,
-                  'isData'   : 0
-                  }
-
-structure['ggWW_fid_NJ_2'] = {
-                  'isSignal' : 1,
-                  'isData'   : 0
-                  }
-
-structure['ggWW_fid_NJ_GE3'] = {
-                  'isSignal' : 1,
-                  'isData'   : 0
-                  }
-
-structure['ggWW_nonfid_NJ_0'] = {
-                  'isSignal' : 0,
-                  'isData'   : 0
-                  }
-
-structure['ggWW_nonfid_NJ_1'] = {
-                  'isSignal' : 0,
-                  'isData'   : 0
-                  }
-
-structure['ggWW_nonfid_NJ_2'] = {
-                  'isSignal' : 0,
-                  'isData'   : 0
-                  }
-
-structure['ggWW_nonfid_NJ_GE3'] = {
+structure['ggWW_nonfid'] = {
                   'isSignal' : 0,
                   'isData'   : 0
                   }
