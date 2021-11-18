@@ -140,25 +140,21 @@ structure['ggH'] = {
 structure['ggH_hww'] = {
                   'isSignal' : 1,
                   'isData'   : 0,
-                  'scaleSampleForDatacard' : {cut : 1.03364 for cut in cuts.keys()}, # XSECxBR correction for mH = 125.38
                   }
 
 structure['WH_hww'] = {
                   'isSignal' : 1,
                   'isData'   : 0,
-                  'scaleSampleForDatacard' : {cut : 1.01724 for cut in cuts.keys()}, # XSECxBR correction for mH = 125.38 
                   }
 
 structure['ZH_hww'] = {
                   'isSignal' : 1,
                   'isData'   : 0,
-                  'scaleSampleForDatacard' : {cut : 1.01994 for cut in cuts.keys()}, # XSECxBR correction for mH = 125.38
                   }
 
 structure['ggZH_hww'] = {
                   'isSignal' : 1,
                   'isData'   : 0,
-                  'scaleSampleForDatacard' : {cut : 1.02494 for cut in cuts.keys()}, # XSECxBR correction for mH = 125.38
                   }
 
 structure['H_hww'] = {
@@ -205,10 +201,6 @@ import pickle
 with open('vbfDipoleScaleSTXS.pkl', 'rb') as handle:
     vbfDipoleScale = pickle.load(handle)
 
-# XSECxBR correction for mH = 125.38
-for key, val in vbfDipoleScale.items():
-    vbfDipoleScale[key] = val * 1.03621
-
 print vbfDipoleScale
 
 for signal in signals:
@@ -216,7 +208,31 @@ for signal in signals:
         structure[signal] = {
             'isSignal' : 1,
             'isData'   : 0,
-            'scaleSampleForDatacard' : vbfDipoleScale[signal],
+            'scaleSampleForDatacard' : {cut : vbfDipoleScale[signal][cut] * 1.03621 for cut in cuts if cut in vbfDipoleScale[signal].keys()},
+        }
+    elif 'ggH_hww' in signal:
+        structure[signal] = {
+            'isSignal' : 1,
+            'isData'   : 0,
+            'scaleSampleForDatacard' : {cut : 1.03364 for cut in cuts},
+        }
+    elif signal.startswith('WH'):
+        structure[signal] = {
+            'isSignal' : 1,
+            'isData'   : 0,
+            'scaleSampleForDatacard' : {cut : STXS_frac_eq[signal] * 1.01724 for cut in cuts},
+        }
+    elif signal.startswith('ZH'):
+        structure[signal] = {
+            'isSignal' : 1,
+            'isData'   : 0,
+            'scaleSampleForDatacard' : {cut : STXS_frac_eq[signal] * 1.01994 for cut in cuts},
+        }
+    elif signal.startswith('ggZH'):
+        structure[signal] = {
+            'isSignal' : 1,
+            'isData'   : 0,
+            'scaleSampleForDatacard' : {cut : STXS_frac_eq[signal] * 1.02494 for cut in cuts},
         }
     else:
         structure[signal] = {

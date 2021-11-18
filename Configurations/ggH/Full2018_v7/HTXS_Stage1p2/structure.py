@@ -226,23 +226,23 @@ for signal in signals:
             'isData'   : 0,
             'scaleSampleForDatacard' : {cut : 1.03364 for cut in cuts},
         }
-    elif 'WH_hww' in signal:
+    elif signal.startswith('WH'):
         structure[signal] = {
             'isSignal' : 1,
             'isData'   : 0,
-            'scaleSampleForDatacard' : {cut : 1.01724 for cut in cuts},
+            'scaleSampleForDatacard' : {cut : STXS_frac_eq[signal] * 1.01724 for cut in cuts},
         }
-    elif 'ZH_hww' in signal:
+    elif signal.startswith('ZH'):
         structure[signal] = {
             'isSignal' : 1,
             'isData'   : 0,
-            'scaleSampleForDatacard' : {cut : 1.01994 for cut in cuts},
+            'scaleSampleForDatacard' : {cut : STXS_frac_eq[signal] * 1.01994 for cut in cuts},
         }
-    elif 'ggZH_hww' in signal:
+    elif signal.startswith('ggZH'):
         structure[signal] = {
             'isSignal' : 1,
             'isData'   : 0,
-            'scaleSampleForDatacard' : {cut : 1.02494 for cut in cuts},
+            'scaleSampleForDatacard' : {cut : STXS_frac_eq[signal] * 1.02494 for cut in cuts},
         }
     else:
         structure[signal] = {
