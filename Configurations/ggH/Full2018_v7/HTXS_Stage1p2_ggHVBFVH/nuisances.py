@@ -69,17 +69,28 @@ except NameError:
 from LatinoAnalysis.Tools.HiggsXSection import HiggsXSection
 HiggsXS = HiggsXSection()
 
-cuts2j_lowmjj = []
-cuts2j_highmjj = []
+cuts2j_mjj350_700 = []
+cuts2j_mjjGT350_pthGT200 = []
+cuts2j_mjjGT700 = []
+cuts2j_pth0_60 = []
+cuts2j_pth60_120 = []
+cuts2j_pth120_200 = []
+cuts_pth200_300 = []
+cuts_pthGT300 = []
 cuts2j_vh = []
-cuts_highptww = []
 
 for k in cuts:
   for cat in cuts[k]['categories']:
-    if 'mjj350_700' in cat or 'mjjGT700' in cat or 'mjjGT350' in cat or '2j_vbf' in cat: cuts2j_highmjj.append(k+'_'+cat)
+    if 'mjj350_700' in cat: cuts2j_mjj350_700.append(k+'_'+cat)
+    elif 'mjjGT350_pthGT200' in cat: cuts2j_mjjGT350_pthGT200.append(k+'_'+cat)
+    elif 'mjjGT700' in cat: cuts2j_mjjGT700.append(k+'_'+cat)
     elif 'mjj65_105' in cat or '2j_vh' in cat: cuts2j_vh.append(k+'_'+cat)
-    elif 'of_pth' in cat: cuts_highptww.append(k+'_'+cat)
-    elif 'of2j_pth' in cat or '2j' in cat: cuts2j_lowmjj.append(k+'_'+cat)
+    elif '2j_pth0_60' in cat: cuts2j_pth0_60.append(k+'_'+cat)
+    elif '2j_pth60_120' in cat: cuts2j_pth60_120.append(k+'_'+cat)
+    elif '2j_pth120_200' in cat: cuts2j_pth120_200.append(k+'_'+cat)
+    elif 'pth200_300' in cat: cuts_pth200_300.append(k+'_'+cat)
+    elif 'pthGT300' in cat: cuts_pthGT300.append(k+'_'+cat)
+
  
 ################################ EXPERIMENTAL UNCERTAINTIES  #################################
 
@@ -358,6 +369,7 @@ if useEmbeddedDY:
     unc_dict = {}
     unc_dict['hww2l2v_13TeV_dytt_2j_vh']                        = '1.00709'
     unc_dict['hww2l2v_13TeV_of_pth300_450']                     = '1.00204'
+    unc_dict['hww2l2v_13TeV_of_pthGT300']                     = '1.00204'
     unc_dict['hww2l2v_13TeV_top_2j_vbf']                        = '1.05492'
     unc_dict['hww2l2v_13TeV_of2j_pth60_120']                    = '1.01692'
     unc_dict['hww2l2v_13TeV_of2j_vbflike_mjj350_700_pthLT200']  = '1.00386'
@@ -1059,103 +1071,328 @@ nuisances['stat'] = {
     'samples': {}
 }
 
-## rate parameters
+#rate parameters
 
-nuisances['DYembnorm2j_highmjj']  = {
-               'name'  : 'CMS_hww_DYttnorm2j_highmjj',
+nuisances['DYembnorm2j_mjj350_700']  = {
+               'name'  : 'CMS_hww_DYttnorm2j_mjj350_700',
                'samples'  : {
                    'Dyemb' : '1.00',
                    },
                'type'  : 'rateParam',
-               'cuts'  : cuts2j_highmjj
+               'cuts'  : cuts2j_mjj350_700
               }
  
-nuisances['WWnorm2j_highmjj']  = {
-               'name'  : 'CMS_hww_WWnorm2j_highmjj',
+nuisances['WWnorm2j_mjj350_700']  = {
+               'name'  : 'CMS_hww_WWnorm2j_mjj350_700',
                'samples'  : {
                    'WW' : '1.00',
                    },
                'type'  : 'rateParam',
-               'cuts'  : cuts2j_highmjj
+               'cuts'  : cuts2j_mjj350_700
               }
  
-nuisances['ggWWnorm2j_highmjj']  = {
-               'name'  : 'CMS_hww_WWnorm2j_highmjj',
+nuisances['ggWWnorm2j_mjj350_700']  = {
+               'name'  : 'CMS_hww_WWnorm2j_mjj350_700',
                'samples'  : {
                    'ggWW' : '1.00',
                    },
                'type'  : 'rateParam',
-               'cuts'  : cuts2j_highmjj
+               'cuts'  : cuts2j_mjj350_700
               }
  
-nuisances['Topnorm2j_highmjj']  = {
-               'name'  : 'CMS_hww_Topnorm2j_highmjj',
+nuisances['Topnorm2j_mjj350_700']  = {
+               'name'  : 'CMS_hww_Topnorm2j_mjj350_700',
                'samples'  : {
                    'top' : '1.00',
                    },
                'type'  : 'rateParam',
-               'cuts'  : cuts2j_highmjj
+               'cuts'  : cuts2j_mjj350_700
               }
 
-#----- 
+#-----
 
-nuisances['WWnorm2j_lowmjj']  = {
-               'name'  : 'CMS_hww_WWnorm2j_lowmjj',
-               'samples'  : {
-                   'WW' : '1.00',
-                   },
-               'type'  : 'rateParam',
-               'cuts'  : cuts2j_lowmjj
-              }
- 
-nuisances['ggWWnorm2j_lowmjj']  = {
-               'name'  : 'CMS_hww_WWnorm2j_lowmjj',
-               'samples'  : {
-                   'ggWW' : '1.00',
-                   },
-               'type'  : 'rateParam',
-               'cuts'  : cuts2j_lowmjj
-              }
-
-#----- 
- 
-nuisances['WWnorm2j_highptww']  = {
-               'name'  : 'CMS_hww_WWnorm2j_highptww',
-               'samples'  : {
-                   'WW' : '1.00',
-                   },
-               'type'  : 'rateParam',
-               'cuts'  : cuts_highptww
-              }
- 
-nuisances['ggWWnorm2j_highptww']  = {
-               'name'  : 'CMS_hww_WWnorm2j_highptww',
-               'samples'  : {
-                   'ggWW' : '1.00',
-                   },
-               'type'  : 'rateParam',
-               'cuts'  : cuts_highptww
- 
-              }
- 
-nuisances['Topnorm2j_highptww']  = {
-               'name'  : 'CMS_hww_Topnorm2j_lowmjj',
-               'samples'  : {
-                   'top' : '1.00',
-                   },
-               'type'  : 'rateParam',
-               'cuts'  : cuts2j_lowmjj+cuts_highptww
-     }
-
-nuisances['DYembnorm2j_highptww']  = {
-               'name'  : 'CMS_hww_DYttnorm2j_highptww',
+nuisances['DYembnorm2j_mjjGT350_pthGT200']  = {
+               'name'  : 'CMS_hww_DYttnorm2j_mjjGT350_pthGT200',
                'samples'  : {
                    'Dyemb' : '1.00',
                    },
                'type'  : 'rateParam',
-               'cuts'  : cuts2j_lowmjj+cuts_highptww
-                }
+               'cuts'  : cuts2j_mjjGT350_pthGT200
+              }
+
+nuisances['WWnorm2j_mjjGT350_pthGT200']  = {
+               'name'  : 'CMS_hww_WWnorm2j_mjjGT350_pthGT200',
+               'samples'  : {
+                   'WW' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : cuts2j_mjjGT350_pthGT200
+              }
+
+nuisances['ggWWnorm2j_mjjGT350_pthGT200']  = {
+               'name'  : 'CMS_hww_WWnorm2j_mjjGT350_pthGT200',
+               'samples'  : {
+                   'ggWW' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : cuts2j_mjjGT350_pthGT200
+              }
+
+nuisances['Topnorm2j_mjjGT350_pthGT200']  = {
+               'name'  : 'CMS_hww_Topnorm2j_mjjGT350_pthGT200',
+               'samples'  : {
+                   'top' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : cuts2j_mjjGT350_pthGT200
+              }
+
+
+
+#-------
+
+
+nuisances['DYembnorm2j_mjjGT700']  = {
+               'name'  : 'CMS_hww_DYttnorm2j_mjjGT700',
+               'samples'  : {
+                   'Dyemb' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : cuts2j_mjjGT700
+              }
+
+nuisances['WWnorm2j_mjjGT700']  = {
+               'name'  : 'CMS_hww_WWnorm2j_mjjGT700',
+               'samples'  : {
+                   'WW' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : cuts2j_mjjGT700
+              }
+
+nuisances['ggWWnorm2j_mjjGT700']  = {
+               'name'  : 'CMS_hww_WWnorm2j_mjjGT700',
+               'samples'  : {
+                   'ggWW' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : cuts2j_mjjGT700
+              }
+
+nuisances['Topnorm2j_mjjGT700']  = {
+               'name'  : 'CMS_hww_Topnorm2j_mjjGT700',
+               'samples'  : {
+                   'top' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : cuts2j_mjjGT700
+              }
+
+
+#--------
+
+
+nuisances['DYembnorm2j_pth0_60']  = {
+               'name'  : 'CMS_hww_DYttnorm2j_pth0_60',
+               'samples'  : {
+                   'Dyemb' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : cuts2j_pth0_60
+              }
+
+nuisances['WWnorm2j_pth0_60']  = {
+               'name'  : 'CMS_hww_WWnorm2j_pth0_60',
+               'samples'  : {
+                   'WW' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : cuts2j_pth0_60
+              }
+
+nuisances['ggWWnorm2j_pth0_60']  = {
+               'name'  : 'CMS_hww_WWnorm2j_pth0_60',
+               'samples'  : {
+                   'ggWW' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : cuts2j_pth0_60
+              }
+
+nuisances['Topnorm2j_pth0_60']  = {
+               'name'  : 'CMS_hww_Topnorm2j_pth0_60',
+               'samples'  : {
+                   'top' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : cuts2j_pth0_60
+              }
+
+
+
+#-------
+
+
+
+nuisances['DYembnorm2j_pth60_120']  = {
+               'name'  : 'CMS_hww_DYttnorm2j_pth60_120',
+               'samples'  : {
+                   'Dyemb' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : cuts2j_pth60_120
+              }
+
+nuisances['WWnorm2j_pth60_120']  = {
+               'name'  : 'CMS_hww_WWnorm2j_pth60_120',
+               'samples'  : {
+                   'WW' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : cuts2j_pth60_120
+              }
+
+nuisances['ggWWnorm2j_pth60_120']  = {
+               'name'  : 'CMS_hww_WWnorm2j_pth60_120',
+               'samples'  : {
+                   'ggWW' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : cuts2j_pth60_120
+              }
+
+nuisances['Topnorm2j_pth60_120']  = {
+               'name'  : 'CMS_hww_Topnorm2j_pth60_120',
+               'samples'  : {
+                   'top' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : cuts2j_pth60_120
+              }
+
+
+
+#--------------------
+
+
+nuisances['DYembnorm2j_pth120_200']  = {
+               'name'  : 'CMS_hww_DYttnorm2j_pth120_200',
+               'samples'  : {
+                   'Dyemb' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : cuts2j_pth120_200
+              }
+
+nuisances['WWnorm2j_pth120_200']  = {
+               'name'  : 'CMS_hww_WWnorm2j_pth120_200',
+               'samples'  : {
+                   'WW' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : cuts2j_pth120_200
+              }
+
+nuisances['ggWWnorm2j_pth120_200']  = {
+               'name'  : 'CMS_hww_WWnorm2j_pth120_200',
+               'samples'  : {
+                   'ggWW' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : cuts2j_pth120_200
+              }
+
+nuisances['Topnorm2j_pth120_200']  = {
+               'name'  : 'CMS_hww_Topnorm2j_pth120_200',
+               'samples'  : {
+                   'top' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : cuts2j_pth120_200
+              }
+
+
+#------------------
+
+
+nuisances['DYembnorm_pth200_300']  = {
+               'name'  : 'CMS_hww_DYttnorm_pth200_300',
+               'samples'  : {
+                   'Dyemb' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : cuts_pth200_300
+              }
+
+nuisances['WWnorm_pth200_300']  = {
+               'name'  : 'CMS_hww_WWnorm_pth200_300',
+               'samples'  : {
+                   'WW' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : cuts_pth200_300
+              }
+
+nuisances['ggWWnorm_pth200_300']  = {
+               'name'  : 'CMS_hww_WWnorm_pth200_300',
+               'samples'  : {
+                   'ggWW' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : cuts_pth200_300
+              }
+
+nuisances['Topnorm_pth200_300']  = {
+               'name'  : 'CMS_hww_Topnorm_pth200_300',
+               'samples'  : {
+                   'top' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : cuts_pth200_300
+              }
+
+
+
+#------------------
+
+
+nuisances['DYembnorm_pthGT300']  = {
+               'name'  : 'CMS_hww_DYttnorm_pthGT300',
+               'samples'  : {
+                   'Dyemb' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : cuts_pthGT300
+              }
+
+nuisances['WWnorm_pthGT300']  = {
+               'name'  : 'CMS_hww_WWnorm_pthGT300',
+               'samples'  : {
+                   'WW' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : cuts_pthGT300
+              }
+
+nuisances['ggWWnorm_pthGT300']  = {
+               'name'  : 'CMS_hww_WWnorm_pthGT300',
+               'samples'  : {
+                   'ggWW' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : cuts_pthGT300
+              }
+
+nuisances['Topnorm_pthGT300']  = {
+               'name'  : 'CMS_hww_Topnorm_pthGT300',
+               'samples'  : {
+                   'top' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : cuts_pthGT300
+              }
  
+
 #----- 
  
 nuisances['DYembnorm2j_vh']  = {
@@ -1193,6 +1430,8 @@ nuisances['Topnorm2j_vh']  = {
                'type'  : 'rateParam',
                'cuts'  : cuts2j_vh
               }
+ 
+
 
 
 
