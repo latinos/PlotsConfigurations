@@ -220,19 +220,19 @@ for signal in signals:
         structure[signal] = {
             'isSignal' : 1,
             'isData'   : 0,
-            'scaleSampleForDatacard' : {cut : STXS_frac_eq[signal] * 1.01724 for cut in cuts},
+            'scaleSampleForDatacard' : {cut : 1.01724 for cut in cuts},
         }
     elif signal.startswith('ZH'):
         structure[signal] = {
             'isSignal' : 1,
             'isData'   : 0,
-            'scaleSampleForDatacard' : {cut : STXS_frac_eq[signal] * 1.01994 for cut in cuts},
+            'scaleSampleForDatacard' : {cut : 1.01994 for cut in cuts},
         }
     elif signal.startswith('ggZH'):
         structure[signal] = {
             'isSignal' : 1,
             'isData'   : 0,
-            'scaleSampleForDatacard' : {cut : STXS_frac_eq[signal] * 1.02494 for cut in cuts},
+            'scaleSampleForDatacard' : {cut : 1.02494 for cut in cuts},
         }
     else:
         structure[signal] = {
