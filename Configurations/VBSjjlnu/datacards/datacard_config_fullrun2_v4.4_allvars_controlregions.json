@@ -1,0 +1,962 @@
+[
+  {
+    "folders": [
+      {
+        "basedir": "Full2016v7/datacards_fit_v4.4_2016_Pythia_v1", 
+        "name": 2016
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "fit_bins_res", 
+        "cut": "res_wjetcr_ele", 
+        "name": "wjetcr_res_ele"
+      }
+    ], 
+    "datacard_name": "2016_res_ele_fit_bins_res"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2016v7/datacards_fit_v4.4_2016_Pythia_v1", 
+        "name": 2016
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "fit_bins_res", 
+        "cut": "res_wjetcr_mu", 
+        "name": "wjetcr_res_mu"
+      }
+    ], 
+    "datacard_name": "2016_res_mu_fit_bins_res"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.4_2017_Pythia_v1", 
+        "name": 2017
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "fit_bins_res", 
+        "cut": "res_wjetcr_ele", 
+        "name": "wjetcr_res_ele"
+      }
+    ], 
+    "datacard_name": "2017_res_ele_fit_bins_res"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.4_2017_Pythia_v1", 
+        "name": 2017
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "fit_bins_res", 
+        "cut": "res_wjetcr_mu", 
+        "name": "wjetcr_res_mu"
+      }
+    ], 
+    "datacard_name": "2017_res_mu_fit_bins_res"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2018v7/datacards_fit_v4.4_2018_Pythia_v1", 
+        "name": 2018
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "fit_bins_res", 
+        "cut": "res_wjetcr_ele", 
+        "name": "wjetcr_res_ele"
+      }
+    ], 
+    "datacard_name": "2018_res_ele_fit_bins_res"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2018v7/datacards_fit_v4.4_2018_Pythia_v1", 
+        "name": 2018
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "fit_bins_res", 
+        "cut": "res_wjetcr_mu", 
+        "name": "wjetcr_res_mu"
+      }
+    ], 
+    "datacard_name": "2018_res_mu_fit_bins_res"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2016v7/datacards_fit_v4.4_2016_Pythia_v1", 
+        "name": 2016
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "w_lep_pt", 
+        "cut": "res_wjetcr_ele", 
+        "name": "wjetcr_res_ele"
+      }
+    ], 
+    "datacard_name": "2016_res_ele_w_lep_pt"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2016v7/datacards_fit_v4.4_2016_Pythia_v1", 
+        "name": 2016
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "w_lep_pt", 
+        "cut": "res_wjetcr_mu", 
+        "name": "wjetcr_res_mu"
+      }
+    ], 
+    "datacard_name": "2016_res_mu_w_lep_pt"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.4_2017_Pythia_v1", 
+        "name": 2017
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "w_lep_pt", 
+        "cut": "res_wjetcr_ele", 
+        "name": "wjetcr_res_ele"
+      }
+    ], 
+    "datacard_name": "2017_res_ele_w_lep_pt"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.4_2017_Pythia_v1", 
+        "name": 2017
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "w_lep_pt", 
+        "cut": "res_wjetcr_mu", 
+        "name": "wjetcr_res_mu"
+      }
+    ], 
+    "datacard_name": "2017_res_mu_w_lep_pt"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2018v7/datacards_fit_v4.4_2018_Pythia_v1", 
+        "name": 2018
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "w_lep_pt", 
+        "cut": "res_wjetcr_ele", 
+        "name": "wjetcr_res_ele"
+      }
+    ], 
+    "datacard_name": "2018_res_ele_w_lep_pt"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2018v7/datacards_fit_v4.4_2018_Pythia_v1", 
+        "name": 2018
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "w_lep_pt", 
+        "cut": "res_wjetcr_mu", 
+        "name": "wjetcr_res_mu"
+      }
+    ], 
+    "datacard_name": "2018_res_mu_w_lep_pt"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2016v7/datacards_fit_v4.4_2016_Pythia_v1", 
+        "name": 2016
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "deltaeta_vbs", 
+        "cut": "res_wjetcr_ele", 
+        "name": "wjetcr_res_ele"
+      }
+    ], 
+    "datacard_name": "2016_res_ele_deltaeta_vbs"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2016v7/datacards_fit_v4.4_2016_Pythia_v1", 
+        "name": 2016
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "deltaeta_vbs", 
+        "cut": "res_wjetcr_mu", 
+        "name": "wjetcr_res_mu"
+      }
+    ], 
+    "datacard_name": "2016_res_mu_deltaeta_vbs"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.4_2017_Pythia_v1", 
+        "name": 2017
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "deltaeta_vbs", 
+        "cut": "res_wjetcr_ele", 
+        "name": "wjetcr_res_ele"
+      }
+    ], 
+    "datacard_name": "2017_res_ele_deltaeta_vbs"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.4_2017_Pythia_v1", 
+        "name": 2017
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "deltaeta_vbs", 
+        "cut": "res_wjetcr_mu", 
+        "name": "wjetcr_res_mu"
+      }
+    ], 
+    "datacard_name": "2017_res_mu_deltaeta_vbs"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2018v7/datacards_fit_v4.4_2018_Pythia_v1", 
+        "name": 2018
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "deltaeta_vbs", 
+        "cut": "res_wjetcr_ele", 
+        "name": "wjetcr_res_ele"
+      }
+    ], 
+    "datacard_name": "2018_res_ele_deltaeta_vbs"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2018v7/datacards_fit_v4.4_2018_Pythia_v1", 
+        "name": 2018
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "deltaeta_vbs", 
+        "cut": "res_wjetcr_mu", 
+        "name": "wjetcr_res_mu"
+      }
+    ], 
+    "datacard_name": "2018_res_mu_deltaeta_vbs"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2016v7/datacards_fit_v4.4_2016_Pythia_v1", 
+        "name": 2016
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "mjj_vbs", 
+        "cut": "res_wjetcr_ele", 
+        "name": "wjetcr_res_ele"
+      }
+    ], 
+    "datacard_name": "2016_res_ele_mjj_vbs"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2016v7/datacards_fit_v4.4_2016_Pythia_v1", 
+        "name": 2016
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "mjj_vbs", 
+        "cut": "res_wjetcr_mu", 
+        "name": "wjetcr_res_mu"
+      }
+    ], 
+    "datacard_name": "2016_res_mu_mjj_vbs"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.4_2017_Pythia_v1", 
+        "name": 2017
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "mjj_vbs", 
+        "cut": "res_wjetcr_ele", 
+        "name": "wjetcr_res_ele"
+      }
+    ], 
+    "datacard_name": "2017_res_ele_mjj_vbs"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.4_2017_Pythia_v1", 
+        "name": 2017
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "mjj_vbs", 
+        "cut": "res_wjetcr_mu", 
+        "name": "wjetcr_res_mu"
+      }
+    ], 
+    "datacard_name": "2017_res_mu_mjj_vbs"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2018v7/datacards_fit_v4.4_2018_Pythia_v1", 
+        "name": 2018
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "mjj_vbs", 
+        "cut": "res_wjetcr_ele", 
+        "name": "wjetcr_res_ele"
+      }
+    ], 
+    "datacard_name": "2018_res_ele_mjj_vbs"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2018v7/datacards_fit_v4.4_2018_Pythia_v1", 
+        "name": 2018
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "mjj_vbs", 
+        "cut": "res_wjetcr_mu", 
+        "name": "wjetcr_res_mu"
+      }
+    ], 
+    "datacard_name": "2018_res_mu_mjj_vbs"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2016v7/datacards_fit_v4.4_2016_Pythia_v1", 
+        "name": 2016
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "nJets_res", 
+        "cut": "res_wjetcr_ele", 
+        "name": "wjetcr_res_ele"
+      }
+    ], 
+    "datacard_name": "2016_res_ele_nJets_res"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2016v7/datacards_fit_v4.4_2016_Pythia_v1", 
+        "name": 2016
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "nJets_res", 
+        "cut": "res_wjetcr_mu", 
+        "name": "wjetcr_res_mu"
+      }
+    ], 
+    "datacard_name": "2016_res_mu_nJets_res"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.4_2017_Pythia_v1", 
+        "name": 2017
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "nJets_res", 
+        "cut": "res_wjetcr_ele", 
+        "name": "wjetcr_res_ele"
+      }
+    ], 
+    "datacard_name": "2017_res_ele_nJets_res"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.4_2017_Pythia_v1", 
+        "name": 2017
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "nJets_res", 
+        "cut": "res_wjetcr_mu", 
+        "name": "wjetcr_res_mu"
+      }
+    ], 
+    "datacard_name": "2017_res_mu_nJets_res"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2018v7/datacards_fit_v4.4_2018_Pythia_v1", 
+        "name": 2018
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "nJets_res", 
+        "cut": "res_wjetcr_ele", 
+        "name": "wjetcr_res_ele"
+      }
+    ], 
+    "datacard_name": "2018_res_ele_nJets_res"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2018v7/datacards_fit_v4.4_2018_Pythia_v1", 
+        "name": 2018
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "nJets_res", 
+        "cut": "res_wjetcr_mu", 
+        "name": "wjetcr_res_mu"
+      }
+    ], 
+    "datacard_name": "2018_res_mu_nJets_res"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2016v7/datacards_fit_v4.4_2016_Pythia_v1", 
+        "name": 2016
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "vbs_1_pt_res", 
+        "cut": "res_wjetcr_ele", 
+        "name": "wjetcr_res_ele"
+      }
+    ], 
+    "datacard_name": "2016_res_ele_vbs_1_pt_res"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2016v7/datacards_fit_v4.4_2016_Pythia_v1", 
+        "name": 2016
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "vbs_1_pt_res", 
+        "cut": "res_wjetcr_mu", 
+        "name": "wjetcr_res_mu"
+      }
+    ], 
+    "datacard_name": "2016_res_mu_vbs_1_pt_res"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.4_2017_Pythia_v1", 
+        "name": 2017
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "vbs_1_pt_res", 
+        "cut": "res_wjetcr_ele", 
+        "name": "wjetcr_res_ele"
+      }
+    ], 
+    "datacard_name": "2017_res_ele_vbs_1_pt_res"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.4_2017_Pythia_v1", 
+        "name": 2017
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "vbs_1_pt_res", 
+        "cut": "res_wjetcr_mu", 
+        "name": "wjetcr_res_mu"
+      }
+    ], 
+    "datacard_name": "2017_res_mu_vbs_1_pt_res"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2018v7/datacards_fit_v4.4_2018_Pythia_v1", 
+        "name": 2018
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "vbs_1_pt_res", 
+        "cut": "res_wjetcr_ele", 
+        "name": "wjetcr_res_ele"
+      }
+    ], 
+    "datacard_name": "2018_res_ele_vbs_1_pt_res"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2018v7/datacards_fit_v4.4_2018_Pythia_v1", 
+        "name": 2018
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "vbs_1_pt_res", 
+        "cut": "res_wjetcr_mu", 
+        "name": "wjetcr_res_mu"
+      }
+    ], 
+    "datacard_name": "2018_res_mu_vbs_1_pt_res"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2016v7/datacards_fit_v4.4_2016_Pythia_v1", 
+        "name": 2016
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "fit_bins_boost", 
+        "cut": "boost_wjetcr_ele", 
+        "name": "wjetcr_boost_ele"
+      }
+    ], 
+    "datacard_name": "2016_boost_ele_fit_bins_boost"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2016v7/datacards_fit_v4.4_2016_Pythia_v1", 
+        "name": 2016
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "fit_bins_boost", 
+        "cut": "boost_wjetcr_mu", 
+        "name": "wjetcr_boost_mu"
+      }
+    ], 
+    "datacard_name": "2016_boost_mu_fit_bins_boost"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.4_2017_Pythia_v1", 
+        "name": 2017
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "fit_bins_boost", 
+        "cut": "boost_wjetcr_ele", 
+        "name": "wjetcr_boost_ele"
+      }
+    ], 
+    "datacard_name": "2017_boost_ele_fit_bins_boost"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.4_2017_Pythia_v1", 
+        "name": 2017
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "fit_bins_boost", 
+        "cut": "boost_wjetcr_mu", 
+        "name": "wjetcr_boost_mu"
+      }
+    ], 
+    "datacard_name": "2017_boost_mu_fit_bins_boost"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2018v7/datacards_fit_v4.4_2018_Pythia_v1", 
+        "name": 2018
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "fit_bins_boost", 
+        "cut": "boost_wjetcr_ele", 
+        "name": "wjetcr_boost_ele"
+      }
+    ], 
+    "datacard_name": "2018_boost_ele_fit_bins_boost"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2018v7/datacards_fit_v4.4_2018_Pythia_v1", 
+        "name": 2018
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "fit_bins_boost", 
+        "cut": "boost_wjetcr_mu", 
+        "name": "wjetcr_boost_mu"
+      }
+    ], 
+    "datacard_name": "2018_boost_mu_fit_bins_boost"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2016v7/datacards_fit_v4.4_2016_Pythia_v1", 
+        "name": 2016
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "w_lep_pt", 
+        "cut": "boost_wjetcr_ele", 
+        "name": "wjetcr_boost_ele"
+      }
+    ], 
+    "datacard_name": "2016_boost_ele_w_lep_pt"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2016v7/datacards_fit_v4.4_2016_Pythia_v1", 
+        "name": 2016
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "w_lep_pt", 
+        "cut": "boost_wjetcr_mu", 
+        "name": "wjetcr_boost_mu"
+      }
+    ], 
+    "datacard_name": "2016_boost_mu_w_lep_pt"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.4_2017_Pythia_v1", 
+        "name": 2017
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "w_lep_pt", 
+        "cut": "boost_wjetcr_ele", 
+        "name": "wjetcr_boost_ele"
+      }
+    ], 
+    "datacard_name": "2017_boost_ele_w_lep_pt"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.4_2017_Pythia_v1", 
+        "name": 2017
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "w_lep_pt", 
+        "cut": "boost_wjetcr_mu", 
+        "name": "wjetcr_boost_mu"
+      }
+    ], 
+    "datacard_name": "2017_boost_mu_w_lep_pt"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2018v7/datacards_fit_v4.4_2018_Pythia_v1", 
+        "name": 2018
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "w_lep_pt", 
+        "cut": "boost_wjetcr_ele", 
+        "name": "wjetcr_boost_ele"
+      }
+    ], 
+    "datacard_name": "2018_boost_ele_w_lep_pt"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2018v7/datacards_fit_v4.4_2018_Pythia_v1", 
+        "name": 2018
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "w_lep_pt", 
+        "cut": "boost_wjetcr_mu", 
+        "name": "wjetcr_boost_mu"
+      }
+    ], 
+    "datacard_name": "2018_boost_mu_w_lep_pt"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2016v7/datacards_fit_v4.4_2016_Pythia_v1", 
+        "name": 2016
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "deltaeta_vbs", 
+        "cut": "boost_wjetcr_ele", 
+        "name": "wjetcr_boost_ele"
+      }
+    ], 
+    "datacard_name": "2016_boost_ele_deltaeta_vbs"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2016v7/datacards_fit_v4.4_2016_Pythia_v1", 
+        "name": 2016
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "deltaeta_vbs", 
+        "cut": "boost_wjetcr_mu", 
+        "name": "wjetcr_boost_mu"
+      }
+    ], 
+    "datacard_name": "2016_boost_mu_deltaeta_vbs"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.4_2017_Pythia_v1", 
+        "name": 2017
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "deltaeta_vbs", 
+        "cut": "boost_wjetcr_ele", 
+        "name": "wjetcr_boost_ele"
+      }
+    ], 
+    "datacard_name": "2017_boost_ele_deltaeta_vbs"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.4_2017_Pythia_v1", 
+        "name": 2017
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "deltaeta_vbs", 
+        "cut": "boost_wjetcr_mu", 
+        "name": "wjetcr_boost_mu"
+      }
+    ], 
+    "datacard_name": "2017_boost_mu_deltaeta_vbs"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2018v7/datacards_fit_v4.4_2018_Pythia_v1", 
+        "name": 2018
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "deltaeta_vbs", 
+        "cut": "boost_wjetcr_ele", 
+        "name": "wjetcr_boost_ele"
+      }
+    ], 
+    "datacard_name": "2018_boost_ele_deltaeta_vbs"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2018v7/datacards_fit_v4.4_2018_Pythia_v1", 
+        "name": 2018
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "deltaeta_vbs", 
+        "cut": "boost_wjetcr_mu", 
+        "name": "wjetcr_boost_mu"
+      }
+    ], 
+    "datacard_name": "2018_boost_mu_deltaeta_vbs"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2016v7/datacards_fit_v4.4_2016_Pythia_v1", 
+        "name": 2016
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "mjj_vbs", 
+        "cut": "boost_wjetcr_ele", 
+        "name": "wjetcr_boost_ele"
+      }
+    ], 
+    "datacard_name": "2016_boost_ele_mjj_vbs"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2016v7/datacards_fit_v4.4_2016_Pythia_v1", 
+        "name": 2016
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "mjj_vbs", 
+        "cut": "boost_wjetcr_mu", 
+        "name": "wjetcr_boost_mu"
+      }
+    ], 
+    "datacard_name": "2016_boost_mu_mjj_vbs"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.4_2017_Pythia_v1", 
+        "name": 2017
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "mjj_vbs", 
+        "cut": "boost_wjetcr_ele", 
+        "name": "wjetcr_boost_ele"
+      }
+    ], 
+    "datacard_name": "2017_boost_ele_mjj_vbs"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.4_2017_Pythia_v1", 
+        "name": 2017
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "mjj_vbs", 
+        "cut": "boost_wjetcr_mu", 
+        "name": "wjetcr_boost_mu"
+      }
+    ], 
+    "datacard_name": "2017_boost_mu_mjj_vbs"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2018v7/datacards_fit_v4.4_2018_Pythia_v1", 
+        "name": 2018
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "mjj_vbs", 
+        "cut": "boost_wjetcr_ele", 
+        "name": "wjetcr_boost_ele"
+      }
+    ], 
+    "datacard_name": "2018_boost_ele_mjj_vbs"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2018v7/datacards_fit_v4.4_2018_Pythia_v1", 
+        "name": 2018
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "mjj_vbs", 
+        "cut": "boost_wjetcr_mu", 
+        "name": "wjetcr_boost_mu"
+      }
+    ], 
+    "datacard_name": "2018_boost_mu_mjj_vbs"
+  }
+]

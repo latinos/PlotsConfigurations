@@ -114,8 +114,7 @@ structure['DATA']  = {
 
 
 
-
-
-
-
-
+for sample in structure.values():
+    if sample['isData'] != 1:
+        # Correct the luminosity
+        sample['scaleSampleForDatacard'] = 36.33/35.867

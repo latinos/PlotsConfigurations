@@ -1,0 +1,524 @@
+[
+    {
+        "folders": [
+            {
+                "basedir": "Full2016v7/datacards_fit_v4.3_2016_v3NewWjets", 
+                "name": 2016
+            }, 
+            {
+                "basedir": "Full2017v7/datacards_fit_v4.3_2017_v3NewWjets", 
+                "name": 2017
+            }, 
+            {
+                "basedir": "Full2018v7/datacards_fit_v4.3_2018_v3NewWjets", 
+                "name": 2018
+            }
+        ], 
+        "phase_spaces": [
+            {
+                "var": "fit_bins_res", 
+                "cut": "res_sig_mu", 
+                "name": "sig_res_mu"
+            }, 
+            {
+                "var": "fit_bins_res", 
+                "cut": "res_sig_ele", 
+                "name": "sig_res_ele"
+            }
+        ], 
+        "datacard_name": "run2_res_fit_bins_res"
+    }, 
+    {
+        "folders": [
+            {
+                "basedir": "Full2016v7/datacards_fit_v4.3_2016_v3NewWjets", 
+                "name": 2016
+            }, 
+            {
+                "basedir": "Full2017v7/datacards_fit_v4.3_2017_v3NewWjets", 
+                "name": 2017
+            }, 
+            {
+                "basedir": "Full2018v7/datacards_fit_v4.3_2018_v3NewWjets", 
+                "name": 2018
+            }
+        ], 
+        "phase_spaces": [
+            {
+                "var": "w_lep_pt", 
+                "cut": "res_sig_mu", 
+                "name": "sig_res_mu"
+            }, 
+            {
+                "var": "w_lep_pt", 
+                "cut": "res_sig_ele", 
+                "name": "sig_res_ele"
+            }
+        ], 
+        "datacard_name": "run2_res_w_lep_pt"
+    }, 
+    {
+        "folders": [
+            {
+                "basedir": "Full2016v7/datacards_fit_v4.3_2016_v3NewWjets", 
+                "name": 2016
+            }, 
+            {
+                "basedir": "Full2017v7/datacards_fit_v4.3_2017_v3NewWjets", 
+                "name": 2017
+            }, 
+            {
+                "basedir": "Full2018v7/datacards_fit_v4.3_2018_v3NewWjets", 
+                "name": 2018
+            }
+        ], 
+        "phase_spaces": [
+            {
+                "var": "deltaeta_vbs", 
+                "cut": "res_sig_mu", 
+                "name": "sig_res_mu"
+            }, 
+            {
+                "var": "deltaeta_vbs", 
+                "cut": "res_sig_ele", 
+                "name": "sig_res_ele"
+            }
+        ], 
+        "datacard_name": "run2_res_deltaeta_vbs"
+    }, 
+    {
+        "folders": [
+            {
+                "basedir": "Full2016v7/datacards_fit_v4.3_2016_v3NewWjets", 
+                "name": 2016
+            }, 
+            {
+                "basedir": "Full2017v7/datacards_fit_v4.3_2017_v3NewWjets", 
+                "name": 2017
+            }, 
+            {
+                "basedir": "Full2018v7/datacards_fit_v4.3_2018_v3NewWjets", 
+                "name": 2018
+            }
+        ], 
+        "phase_spaces": [
+            {
+                "var": "mjj_vjet_res", 
+                "cut": "res_sig_mu", 
+                "name": "sig_res_mu"
+            }, 
+            {
+                "var": "mjj_vjet_res", 
+                "cut": "res_sig_ele", 
+                "name": "sig_res_ele"
+            }
+        ], 
+        "datacard_name": "run2_res_mjj_vjet_res"
+    }, 
+    {
+        "folders": [
+            {
+                "basedir": "Full2016v7/datacards_fit_v4.3_2016_v3NewWjets", 
+                "name": 2016
+            }, 
+            {
+                "basedir": "Full2017v7/datacards_fit_v4.3_2017_v3NewWjets", 
+                "name": 2017
+            }, 
+            {
+                "basedir": "Full2018v7/datacards_fit_v4.3_2018_v3NewWjets", 
+                "name": 2018
+            }
+        ], 
+        "phase_spaces": [
+            {
+                "var": "mjj_vbs", 
+                "cut": "res_sig_mu", 
+                "name": "sig_res_mu"
+            }, 
+            {
+                "var": "mjj_vbs", 
+                "cut": "res_sig_ele", 
+                "name": "sig_res_ele"
+            }
+        ], 
+        "datacard_name": "run2_res_mjj_vbs"
+    }, 
+    {
+        "folders": [
+            {
+                "basedir": "Full2016v7/datacards_fit_v4.3_2016_v3NewWjets", 
+                "name": 2016
+            }, 
+            {
+                "basedir": "Full2017v7/datacards_fit_v4.3_2017_v3NewWjets", 
+                "name": 2017
+            }, 
+            {
+                "basedir": "Full2018v7/datacards_fit_v4.3_2018_v3NewWjets", 
+                "name": 2018
+            }
+        ], 
+        "phase_spaces": [
+            {
+                "var": "nJets", 
+                "cut": "res_sig_mu", 
+                "name": "sig_res_mu"
+            }, 
+            {
+                "var": "nJets", 
+                "cut": "res_sig_ele", 
+                "name": "sig_res_ele"
+            }
+        ], 
+        "datacard_name": "run2_res_nJets"
+    }, 
+    {
+        "folders": [
+            {
+                "basedir": "Full2016v7/datacards_fit_v4.3_2016_v3NewWjets", 
+                "name": 2016
+            }, 
+            {
+                "basedir": "Full2017v7/datacards_fit_v4.3_2017_v3NewWjets", 
+                "name": 2017
+            }, 
+            {
+                "basedir": "Full2018v7/datacards_fit_v4.3_2018_v3NewWjets", 
+                "name": 2018
+            }
+        ], 
+        "phase_spaces": [
+            {
+                "var": "Zlep", 
+                "cut": "res_sig_mu", 
+                "name": "sig_res_mu"
+            }, 
+            {
+                "var": "Zlep", 
+                "cut": "res_sig_ele", 
+                "name": "sig_res_ele"
+            }
+        ], 
+        "datacard_name": "run2_res_Zlep"
+    }, 
+    {
+        "folders": [
+            {
+                "basedir": "Full2016v7/datacards_fit_v4.3_2016_v3NewWjets", 
+                "name": 2016
+            }, 
+            {
+                "basedir": "Full2017v7/datacards_fit_v4.3_2017_v3NewWjets", 
+                "name": 2017
+            }, 
+            {
+                "basedir": "Full2018v7/datacards_fit_v4.3_2018_v3NewWjets", 
+                "name": 2018
+            }
+        ], 
+        "phase_spaces": [
+            {
+                "var": "vbs_1_pt", 
+                "cut": "res_sig_mu", 
+                "name": "sig_res_mu"
+            }, 
+            {
+                "var": "vbs_1_pt", 
+                "cut": "res_sig_ele", 
+                "name": "sig_res_ele"
+            }
+        ], 
+        "datacard_name": "run2_res_vbs_1_pt"
+    }, 
+    {
+        "folders": [
+            {
+                "basedir": "Full2016v7/datacards_fit_v4.3_2016_v3NewWjets", 
+                "name": 2016
+            }, 
+            {
+                "basedir": "Full2017v7/datacards_fit_v4.3_2017_v3NewWjets", 
+                "name": 2017
+            }, 
+            {
+                "basedir": "Full2018v7/datacards_fit_v4.3_2018_v3NewWjets", 
+                "name": 2018
+            }
+        ], 
+        "phase_spaces": [
+            {
+                "var": "vjet_0_pt", 
+                "cut": "res_sig_mu", 
+                "name": "sig_res_mu"
+            }, 
+            {
+                "var": "vjet_0_pt", 
+                "cut": "res_sig_ele", 
+                "name": "sig_res_ele"
+            }
+        ], 
+        "datacard_name": "run2_res_vjet_0_pt"
+    }, 
+    {
+        "folders": [
+            {
+                "basedir": "Full2016v7/datacards_fit_v4.3_2016_v3NewWjets", 
+                "name": 2016
+            }, 
+            {
+                "basedir": "Full2017v7/datacards_fit_v4.3_2017_v3NewWjets", 
+                "name": 2017
+            }, 
+            {
+                "basedir": "Full2018v7/datacards_fit_v4.3_2018_v3NewWjets", 
+                "name": 2018
+            }
+        ], 
+        "phase_spaces": [
+            {
+                "var": "fit_bins_boost", 
+                "cut": "boost_sig_mu", 
+                "name": "sig_boost_mu"
+            }, 
+            {
+                "var": "fit_bins_boost", 
+                "cut": "boost_sig_ele", 
+                "name": "sig_boost_ele"
+            }
+        ], 
+        "datacard_name": "run2_boost_fit_bins_boost"
+    }, 
+    {
+        "folders": [
+            {
+                "basedir": "Full2016v7/datacards_fit_v4.3_2016_v3NewWjets", 
+                "name": 2016
+            }, 
+            {
+                "basedir": "Full2017v7/datacards_fit_v4.3_2017_v3NewWjets", 
+                "name": 2017
+            }, 
+            {
+                "basedir": "Full2018v7/datacards_fit_v4.3_2018_v3NewWjets", 
+                "name": 2018
+            }
+        ], 
+        "phase_spaces": [
+            {
+                "var": "w_lep_pt", 
+                "cut": "boost_sig_mu", 
+                "name": "sig_boost_mu"
+            }, 
+            {
+                "var": "w_lep_pt", 
+                "cut": "boost_sig_ele", 
+                "name": "sig_boost_ele"
+            }
+        ], 
+        "datacard_name": "run2_boost_w_lep_pt"
+    }, 
+    {
+        "folders": [
+            {
+                "basedir": "Full2016v7/datacards_fit_v4.3_2016_v3NewWjets", 
+                "name": 2016
+            }, 
+            {
+                "basedir": "Full2017v7/datacards_fit_v4.3_2017_v3NewWjets", 
+                "name": 2017
+            }, 
+            {
+                "basedir": "Full2018v7/datacards_fit_v4.3_2018_v3NewWjets", 
+                "name": 2018
+            }
+        ], 
+        "phase_spaces": [
+            {
+                "var": "deltaeta_vbs", 
+                "cut": "boost_sig_mu", 
+                "name": "sig_boost_mu"
+            }, 
+            {
+                "var": "deltaeta_vbs", 
+                "cut": "boost_sig_ele", 
+                "name": "sig_boost_ele"
+            }
+        ], 
+        "datacard_name": "run2_boost_deltaeta_vbs"
+    }, 
+    {
+        "folders": [
+            {
+                "basedir": "Full2016v7/datacards_fit_v4.3_2016_v3NewWjets", 
+                "name": 2016
+            }, 
+            {
+                "basedir": "Full2017v7/datacards_fit_v4.3_2017_v3NewWjets", 
+                "name": 2017
+            }, 
+            {
+                "basedir": "Full2018v7/datacards_fit_v4.3_2018_v3NewWjets", 
+                "name": 2018
+            }
+        ], 
+        "phase_spaces": [
+            {
+                "var": "mjj_vjet_boost", 
+                "cut": "boost_sig_mu", 
+                "name": "sig_boost_mu"
+            }, 
+            {
+                "var": "mjj_vjet_boost", 
+                "cut": "boost_sig_ele", 
+                "name": "sig_boost_ele"
+            }
+        ], 
+        "datacard_name": "run2_boost_mjj_vjet_boost"
+    }, 
+    {
+        "folders": [
+            {
+                "basedir": "Full2016v7/datacards_fit_v4.3_2016_v3NewWjets", 
+                "name": 2016
+            }, 
+            {
+                "basedir": "Full2017v7/datacards_fit_v4.3_2017_v3NewWjets", 
+                "name": 2017
+            }, 
+            {
+                "basedir": "Full2018v7/datacards_fit_v4.3_2018_v3NewWjets", 
+                "name": 2018
+            }
+        ], 
+        "phase_spaces": [
+            {
+                "var": "mjj_vbs", 
+                "cut": "boost_sig_mu", 
+                "name": "sig_boost_mu"
+            }, 
+            {
+                "var": "mjj_vbs", 
+                "cut": "boost_sig_ele", 
+                "name": "sig_boost_ele"
+            }
+        ], 
+        "datacard_name": "run2_boost_mjj_vbs"
+    }, 
+    {
+        "folders": [
+            {
+                "basedir": "Full2016v7/datacards_fit_v4.3_2016_v3NewWjets", 
+                "name": 2016
+            }, 
+            {
+                "basedir": "Full2017v7/datacards_fit_v4.3_2017_v3NewWjets", 
+                "name": 2017
+            }, 
+            {
+                "basedir": "Full2018v7/datacards_fit_v4.3_2018_v3NewWjets", 
+                "name": 2018
+            }
+        ], 
+        "phase_spaces": [
+            {
+                "var": "nJets", 
+                "cut": "boost_sig_mu", 
+                "name": "sig_boost_mu"
+            }, 
+            {
+                "var": "nJets", 
+                "cut": "boost_sig_ele", 
+                "name": "sig_boost_ele"
+            }
+        ], 
+        "datacard_name": "run2_boost_nJets"
+    }, 
+    {
+        "folders": [
+            {
+                "basedir": "Full2016v7/datacards_fit_v4.3_2016_v3NewWjets", 
+                "name": 2016
+            }, 
+            {
+                "basedir": "Full2017v7/datacards_fit_v4.3_2017_v3NewWjets", 
+                "name": 2017
+            }, 
+            {
+                "basedir": "Full2018v7/datacards_fit_v4.3_2018_v3NewWjets", 
+                "name": 2018
+            }
+        ], 
+        "phase_spaces": [
+            {
+                "var": "Zlep", 
+                "cut": "boost_sig_mu", 
+                "name": "sig_boost_mu"
+            }, 
+            {
+                "var": "Zlep", 
+                "cut": "boost_sig_ele", 
+                "name": "sig_boost_ele"
+            }
+        ], 
+        "datacard_name": "run2_boost_Zlep"
+    }, 
+    {
+        "folders": [
+            {
+                "basedir": "Full2016v7/datacards_fit_v4.3_2016_v3NewWjets", 
+                "name": 2016
+            }, 
+            {
+                "basedir": "Full2017v7/datacards_fit_v4.3_2017_v3NewWjets", 
+                "name": 2017
+            }, 
+            {
+                "basedir": "Full2018v7/datacards_fit_v4.3_2018_v3NewWjets", 
+                "name": 2018
+            }
+        ], 
+        "phase_spaces": [
+            {
+                "var": "vbs_1_pt", 
+                "cut": "boost_sig_mu", 
+                "name": "sig_boost_mu"
+            }, 
+            {
+                "var": "vbs_1_pt", 
+                "cut": "boost_sig_ele", 
+                "name": "sig_boost_ele"
+            }
+        ], 
+        "datacard_name": "run2_boost_vbs_1_pt"
+    }, 
+    {
+        "folders": [
+            {
+                "basedir": "Full2016v7/datacards_fit_v4.3_2016_v3NewWjets", 
+                "name": 2016
+            }, 
+            {
+                "basedir": "Full2017v7/datacards_fit_v4.3_2017_v3NewWjets", 
+                "name": 2017
+            }, 
+            {
+                "basedir": "Full2018v7/datacards_fit_v4.3_2018_v3NewWjets", 
+                "name": 2018
+            }
+        ], 
+        "phase_spaces": [
+            {
+                "var": "vjet_0_pt", 
+                "cut": "boost_sig_mu", 
+                "name": "sig_boost_mu"
+            }, 
+            {
+                "var": "vjet_0_pt", 
+                "cut": "boost_sig_ele", 
+                "name": "sig_boost_ele"
+            }
+        ], 
+        "datacard_name": "run2_boost_vjet_0_pt"
+    }
+]

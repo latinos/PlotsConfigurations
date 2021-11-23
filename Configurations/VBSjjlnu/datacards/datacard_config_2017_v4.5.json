@@ -1,0 +1,485 @@
+[
+  { 
+    "datacard_name": "2017_all_noDipole_dnn1",
+    "folders": [
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.5_2017_noDipole_v1", 
+        "name": 2017
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "name": "res_sig_mu",
+        "var": "DNNoutput_res_v1", 
+        "cut": "res_sig_mu"
+      },
+      {
+          "name": "res_sig_ele",
+          "var": "DNNoutput_res_v1", 
+          "cut": "res_sig_ele"
+      },
+      {
+          "name": "boost_sig_mu",
+          "var": "DNNoutput_boost", 
+          "cut": "boost_sig_mu"
+      },
+      {
+          "name": "boost_sig_ele",
+          "var": "DNNoutput_boost", 
+          "cut": "boost_sig_ele"
+      },
+
+
+      {
+        "name": "res_wjet_mu",
+        "var": "fit_bins_res", 
+        "cut": "res_wjetcr_mu"
+      },
+      {
+          "name": "res_wjet_ele",
+          "var": "fit_bins_res", 
+          "cut": "res_wjetcr_ele"
+      },
+      {
+          "name": "boost_wjet_mu",
+          "var": "fit_bins_boost", 
+          "cut": "boost_wjetcr_mu"
+      },
+      {
+          "name": "boost_wjet_ele",
+          "var": "fit_bins_boost", 
+          "cut": "boost_wjetcr_ele"
+      },
+      
+
+      {
+        "name": "res_top_mu",
+        "var": "events", 
+        "cut": "res_topcr_mu"
+      },
+      { 
+        "name": "res_top_ele",
+        "var": "events", 
+        "cut": "res_topcr_ele"
+      },
+      {
+        "name": "boost_top_mu",
+        "var": "events", 
+        "cut": "boost_topcr_mu"
+      },
+      { 
+        "name": "boost_top_ele",
+        "var": "events", 
+        "cut": "boost_topcr_ele"
+      }
+    ]
+  },
+
+
+  { 
+    "datacard_name": "2017_res_noDipole_dnn1",
+    "folders": [
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.5_2017_noDipole_v1", 
+        "name": 2017
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "name": "res_sig_mu",
+        "var": "DNNoutput_res_v1", 
+        "cut": "res_sig_mu"
+      },
+      {
+          "name": "res_sig_ele",
+          "var": "DNNoutput_res_v1", 
+          "cut": "res_sig_ele"
+      },
+
+      {
+        "name": "res_wjet_mu",
+        "var": "fit_bins_res", 
+        "cut": "res_wjetcr_mu"
+      },
+      {
+          "name": "res_wjet_ele",
+          "var": "fit_bins_res", 
+          "cut": "res_wjetcr_ele"
+      },
+
+      {
+        "name": "res_top_mu",
+        "var": "events", 
+        "cut": "res_topcr_mu"
+      },
+      { 
+        "name": "res_top_ele",
+        "var": "events", 
+        "cut": "res_topcr_ele"
+      }
+    ]
+  },
+
+  { 
+    "datacard_name": "2017_res_ele_noDipole_dnn1",
+    "folders": [
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.5_2017_noDipole_v1", 
+        "name": 2017
+      }
+    ], 
+    "phase_spaces": [
+      {
+          "name": "res_sig_ele",
+          "var": "DNNoutput_res_v1", 
+          "cut": "res_sig_ele"
+      },
+      {
+          "name": "res_wjet_ele",
+          "var": "fit_bins_res", 
+          "cut": "res_wjetcr_ele"
+      },
+      { 
+        "name": "res_top_ele",
+        "var": "events", 
+        "cut": "res_topcr_ele"
+      }
+    ]
+  },
+
+  { 
+    "datacard_name": "2017_res_mu_noDipole_dnn1",
+    "folders": [
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.5_2017_noDipole_v1", 
+        "name": 2017
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "name": "res_sig_mu",
+        "var": "DNNoutput_res_v1", 
+        "cut": "res_sig_mu"
+      },
+      {
+        "name": "res_wjet_mu",
+        "var": "fit_bins_res", 
+        "cut": "res_wjetcr_mu"
+      },
+      
+      {
+        "name": "res_top_mu",
+        "var": "events", 
+        "cut": "res_topcr_mu"
+      }
+    ]
+  },
+
+
+
+
+
+
+
+  { 
+    "datacard_name": "2017_all_noDipole_dnn2",
+    "folders": [
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.5_2017_noDipole_v1", 
+        "name": 2017
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "name": "res_sig_mu",
+        "var": "DNNoutput_res_v2", 
+        "cut": "res_sig_mu"
+      },
+      {
+          "name": "res_sig_ele",
+          "var": "DNNoutput_res_v2", 
+          "cut": "res_sig_ele"
+      },
+      {
+          "name": "boost_sig_mu",
+          "var": "DNNoutput_boost", 
+          "cut": "boost_sig_mu"
+      },
+      {
+          "name": "boost_sig_ele",
+          "var": "DNNoutput_boost", 
+          "cut": "boost_sig_ele"
+      },
+
+
+      {
+        "name": "res_wjet_mu",
+        "var": "fit_bins_res", 
+        "cut": "res_wjetcr_mu"
+      },
+      {
+          "name": "res_wjet_ele",
+          "var": "fit_bins_res", 
+          "cut": "res_wjetcr_ele"
+      },
+      {
+          "name": "boost_wjet_mu",
+          "var": "fit_bins_boost", 
+          "cut": "boost_wjetcr_mu"
+      },
+      {
+          "name": "boost_wjet_ele",
+          "var": "fit_bins_boost", 
+          "cut": "boost_wjetcr_ele"
+      },
+      
+
+      {
+        "name": "res_top_mu",
+        "var": "events", 
+        "cut": "res_topcr_mu"
+      },
+      { 
+        "name": "res_top_ele",
+        "var": "events", 
+        "cut": "res_topcr_ele"
+      },
+      {
+        "name": "boost_top_mu",
+        "var": "events", 
+        "cut": "boost_topcr_mu"
+      },
+      { 
+        "name": "boost_top_ele",
+        "var": "events", 
+        "cut": "boost_topcr_ele"
+      }
+    ]
+  },
+
+
+  { 
+    "datacard_name": "2017_res_noDipole_dnn2",
+    "folders": [
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.5_2017_noDipole_v1", 
+        "name": 2017
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "name": "res_sig_mu",
+        "var": "DNNoutput_res_v2", 
+        "cut": "res_sig_mu"
+      },
+      {
+          "name": "res_sig_ele",
+          "var": "DNNoutput_res_v2", 
+          "cut": "res_sig_ele"
+      },
+
+      {
+        "name": "res_wjet_mu",
+        "var": "fit_bins_res", 
+        "cut": "res_wjetcr_mu"
+      },
+      {
+          "name": "res_wjet_ele",
+          "var": "fit_bins_res", 
+          "cut": "res_wjetcr_ele"
+      },
+
+      {
+        "name": "res_top_mu",
+        "var": "events", 
+        "cut": "res_topcr_mu"
+      },
+      { 
+        "name": "res_top_ele",
+        "var": "events", 
+        "cut": "res_topcr_ele"
+      }
+    ]
+  },
+
+  { 
+    "datacard_name": "2017_res_ele_noDipole_dnn2",
+    "folders": [
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.5_2017_noDipole_v1", 
+        "name": 2017
+      }
+    ], 
+    "phase_spaces": [
+      {
+          "name": "res_sig_ele",
+          "var": "DNNoutput_res_v2", 
+          "cut": "res_sig_ele"
+      },
+      {
+          "name": "res_wjet_ele",
+          "var": "fit_bins_res", 
+          "cut": "res_wjetcr_ele"
+      },
+      { 
+        "name": "res_top_ele",
+        "var": "events", 
+        "cut": "res_topcr_ele"
+      }
+    ]
+  },
+
+  { 
+    "datacard_name": "2017_res_mu_noDipole_dnn2",
+    "folders": [
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.5_2017_noDipole_v1", 
+        "name": 2017
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "name": "res_sig_mu",
+        "var": "DNNoutput_res_v2", 
+        "cut": "res_sig_mu"
+      },
+      {
+        "name": "res_wjet_mu",
+        "var": "fit_bins_res", 
+        "cut": "res_wjetcr_mu"
+      },
+      
+      {
+        "name": "res_top_mu",
+        "var": "events", 
+        "cut": "res_topcr_mu"
+      }
+    ]
+  },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  { 
+    "datacard_name": "2017_boost_noDipole",
+    "folders": [
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.5_2017_noDipole_v1", 
+        "name": 2017
+      }
+    ], 
+    "phase_spaces": [
+      {
+          "name": "boost_sig_mu",
+          "var": "DNNoutput_boost", 
+          "cut": "boost_sig_mu"
+      },
+      {
+          "name": "boost_sig_ele",
+          "var": "DNNoutput_boost", 
+          "cut": "boost_sig_ele"
+      },
+
+     {
+          "name": "boost_wjet_mu",
+          "var": "fit_bins_boost", 
+          "cut": "boost_wjetcr_mu"
+      },
+      {
+          "name": "boost_wjet_ele",
+          "var": "fit_bins_boost", 
+          "cut": "boost_wjetcr_ele"
+      },
+
+      {
+        "name": "boost_top_mu",
+        "var": "events", 
+        "cut": "boost_topcr_mu"
+      },
+      { 
+        "name": "boost_top_ele",
+        "var": "events", 
+        "cut": "boost_topcr_ele"
+      }
+    ]
+  },
+  { 
+    "datacard_name": "2017_boost_ele_noDipole",
+    "folders": [
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.5_2017_noDipole_v1", 
+        "name": 2017
+      }
+    ], 
+    "phase_spaces": [
+    
+      {
+          "name": "boost_sig_ele",
+          "var": "DNNoutput_boost", 
+          "cut": "boost_sig_ele"
+      },
+      {
+          "name": "boost_wjet_ele",
+          "var": "fit_bins_boost", 
+          "cut": "boost_wjetcr_ele"
+      },
+      { 
+        "name": "boost_top_ele",
+        "var": "events", 
+        "cut": "boost_topcr_ele"
+      }
+    ]
+  },
+
+  { 
+    "datacard_name": "2017_boost_mu_noDipole",
+    "folders": [
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.5_2017_noDipole_v1", 
+        "name": 2017
+      }
+    ], 
+    "phase_spaces": [
+      {
+          "name": "boost_sig_mu",
+          "var": "DNNoutput_boost", 
+          "cut": "boost_sig_mu"
+      },
+    
+     {
+          "name": "boost_wjet_mu",
+          "var": "fit_bins_boost", 
+          "cut": "boost_wjetcr_mu"
+      },
+     
+
+      {
+        "name": "boost_top_mu",
+        "var": "events", 
+        "cut": "boost_topcr_mu"
+      }
+    
+    ]
+  }
+ 
+  
+]

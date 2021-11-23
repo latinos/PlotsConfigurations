@@ -50,34 +50,50 @@ phase_spaces_tot = phase_spaces_tot_ele + phase_spaces_tot_mu
 
 # #### Luminosity
 
+# nuisances['lumi_Uncorrelated'] = {
+#     'name': 'lumi_13TeV_2016',
+#     'type': 'lnN',
+#     'samples': dict((skey, '1.01') for skey in mc if skey not in ['WW', 'top'])
+# }
+
+# nuisances['lumi_correlated'] = {
+#     'name': 'lumi_13TeV_correlated',
+#     'type': 'lnN',
+#     'samples': dict((skey, '1.006') for skey in mc if skey not in ['WW', 'top'])
+# }
+
+
 nuisances['lumi_Uncorrelated'] = {
     'name': 'lumi_13TeV_2016',
     'type': 'lnN',
-    'samples': dict((skey, '1.022') for skey in mc if skey not in ['Wjets_boost', 'top'] +wjets_res_bins)
+    'samples': dict((skey, '1.01') for skey in mc if skey not in ['Wjets_boost', 'top'] +wjets_res_bins)
 }
 
-nuisances['lumi_XYFact'] = {
-    'name': 'lumi_13TeV_XYFact',
-    'type': 'lnN',
-    'samples': dict((skey, '1.009') for skey in mc if skey not in ['Wjets_boost', 'top']+wjets_res_bins)
-}
 
-nuisances['lumi_BBDefl'] = {
-    'name': 'lumi_13TeV_BBDefl',
+nuisances['lumi_CurrCalib'] = {
+    'name': 'lumi_13TeV_CurrCalib',
     'type': 'lnN',
-    'samples': dict((skey, '1.004') for skey in mc if skey not in ['Wjets_boost', 'top']+wjets_res_bins)
-}
-
-nuisances['lumi_DynBeta'] = {
-    'name': 'lumi_13TeV_DynBeta',
-    'type': 'lnN',
-    'samples': dict((skey, '1.005') for skey in mc if skey not in ['Wjets_boost', 'top']+wjets_res_bins)
+    'samples': dict((skey, '1.002') for skey in mc if skey not in ['top', "Wjets_boost"]+wjets_res_bins)
 }
 
 nuisances['lumi_Ghosts'] = {
     'name': 'lumi_13TeV_Ghosts',
     'type': 'lnN',
-    'samples': dict((skey, '1.004') for skey in mc if skey not in ['Wjets_boost', 'top']+wjets_res_bins)
+    'samples': dict((skey, '1.001') for skey in mc if skey not in ['Wjets_boost', 'top']+wjets_res_bins)
+}
+
+
+nuisances['lumi_LScale'] = {
+    'name': 'lumi_13TeV_LSCale',
+    'type': 'lnN',
+    'samples': dict((skey, '1.003') for skey in mc if skey not in ['top', "Wjets_boost"]+wjets_res_bins)
+}
+
+
+nuisances['lumi_XYFact'] = {
+    'name': 'lumi_13TeV_XYFact',
+    'type': 'lnN',
+    'samples': dict((skey, '1.005') for skey in mc if skey not in ['Wjets_boost', 'top']+wjets_res_bins)
 }
 
 
@@ -800,6 +816,10 @@ for n in nuisances.values():
 # Customization for mu fit with QCDscale normalization included
 # exclude = ["QCD_scale_VBS_WV_accept","QCD_scale_VBS_ZV_accept", "QCD_scale_QCD_WV_accept", "pdf_weight_accept"]
 # nuisances = {k:v for k,v in nuisances.items() if k not in exclude}
+
+# Customization for mu fit with QCDscale normalization excluded
+exclude = ["QCD_scale_VBS_WV_full","QCD_scale_VBS_ZV_accept", "QCD_scale_QCD_WV_accept", "pdf_weight"]
+nuisances = {k:v for k,v in nuisances.items() if k not in exclude}
 
 
 # print ' '.join(nname for nname, nuis in nuisances.iteritems() if nname not in ('lumi', 'stat'))

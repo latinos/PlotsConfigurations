@@ -543,4 +543,4 @@ samples['VV_ZZ']  = { 'name' :
 VBS_samples = ["VBS_osWW", "VBS_ssWW", "VBS_WZjj", "VBS_WZll", "VBS_ZZ"]
 VV_samples = ["VV_osWW", "VV_ssWW", "VV_WZjj", "VV_WZll", "VV_ZZ"]
 
-# samples = {   key:v for key,v in samples.items() if key in VBS_samples+VV_samples}
+# samples = {   key:v for key,v in samples.items() if key in VBS_samples}

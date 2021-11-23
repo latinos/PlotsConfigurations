@@ -1,0 +1,1104 @@
+[
+  {
+    "folders": [
+      {
+        "basedir": "Full2016v7/datacards_fit_v4.5_2016_Dipole_v2", 
+        "name": 2016
+      }, 
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.5_2017_Dipole_v2.1", 
+        "name": 2017
+      }, 
+      {
+        "basedir": "Full2018v7/datacards_fit_v4.5_2018_Dipole_v2", 
+        "name": 2018
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "DNNoutput_res_v1", 
+        "cut": "res_sig_mu", 
+        "name": "res_sig_mu"
+      }, 
+      {
+        "var": "DNNoutput_res_v1", 
+        "cut": "res_sig_ele", 
+        "name": "res_sig_ele"
+      }
+    ], 
+    "datacard_name": "run2_res_DNNoutput_res_v1"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2016v7/datacards_fit_v4.5_2016_Dipole_v2", 
+        "name": 2016
+      }, 
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.5_2017_Dipole_v2.1", 
+        "name": 2017
+      }, 
+      {
+        "basedir": "Full2018v7/datacards_fit_v4.5_2018_Dipole_v2", 
+        "name": 2018
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "fit_bins_res", 
+        "cut": "res_sig_mu", 
+        "name": "res_sig_mu_var"
+      }, 
+      {
+        "var": "fit_bins_res", 
+        "cut": "res_sig_ele", 
+        "name": "res_sig_ele_var"
+      }
+    ], 
+    "datacard_name": "run2_res_fit_bins_res"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2016v7/datacards_fit_v4.5_2016_Dipole_v2", 
+        "name": 2016
+      }, 
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.5_2017_Dipole_v2.1", 
+        "name": 2017
+      }, 
+      {
+        "basedir": "Full2018v7/datacards_fit_v4.5_2018_Dipole_v2", 
+        "name": 2018
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "w_lep_pt", 
+        "cut": "res_sig_mu", 
+        "name": "res_sig_mu_var"
+      }, 
+      {
+        "var": "w_lep_pt", 
+        "cut": "res_sig_ele", 
+        "name": "res_sig_ele_var"
+      }
+    ], 
+    "datacard_name": "run2_res_w_lep_pt"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2016v7/datacards_fit_v4.5_2016_Dipole_v2", 
+        "name": 2016
+      }, 
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.5_2017_Dipole_v2.1", 
+        "name": 2017
+      }, 
+      {
+        "basedir": "Full2018v7/datacards_fit_v4.5_2018_Dipole_v2", 
+        "name": 2018
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "deltaeta_vbs", 
+        "cut": "res_sig_mu", 
+        "name": "res_sig_mu_var"
+      }, 
+      {
+        "var": "deltaeta_vbs", 
+        "cut": "res_sig_ele", 
+        "name": "res_sig_ele_var"
+      }
+    ], 
+    "datacard_name": "run2_res_deltaeta_vbs"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2016v7/datacards_fit_v4.5_2016_Dipole_v2", 
+        "name": 2016
+      }, 
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.5_2017_Dipole_v2.1", 
+        "name": 2017
+      }, 
+      {
+        "basedir": "Full2018v7/datacards_fit_v4.5_2018_Dipole_v2", 
+        "name": 2018
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "mjj_vjet_res", 
+        "cut": "res_sig_mu", 
+        "name": "res_sig_mu_var"
+      }, 
+      {
+        "var": "mjj_vjet_res", 
+        "cut": "res_sig_ele", 
+        "name": "res_sig_ele_var"
+      }
+    ], 
+    "datacard_name": "run2_res_mjj_vjet_res"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2016v7/datacards_fit_v4.5_2016_Dipole_v2", 
+        "name": 2016
+      }, 
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.5_2017_Dipole_v2.1", 
+        "name": 2017
+      }, 
+      {
+        "basedir": "Full2018v7/datacards_fit_v4.5_2018_Dipole_v2", 
+        "name": 2018
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "mjj_vbs", 
+        "cut": "res_sig_mu", 
+        "name": "res_sig_mu_var"
+      }, 
+      {
+        "var": "mjj_vbs", 
+        "cut": "res_sig_ele", 
+        "name": "res_sig_ele_var"
+      }
+    ], 
+    "datacard_name": "run2_res_mjj_vbs"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2016v7/datacards_fit_v4.5_2016_Dipole_v2", 
+        "name": 2016
+      }, 
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.5_2017_Dipole_v2.1", 
+        "name": 2017
+      }, 
+      {
+        "basedir": "Full2018v7/datacards_fit_v4.5_2018_Dipole_v2", 
+        "name": 2018
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "nJets_res", 
+        "cut": "res_sig_mu", 
+        "name": "res_sig_mu_var"
+      }, 
+      {
+        "var": "nJets_res", 
+        "cut": "res_sig_ele", 
+        "name": "res_sig_ele_var"
+      }
+    ], 
+    "datacard_name": "run2_res_nJets_res"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2016v7/datacards_fit_v4.5_2016_Dipole_v2", 
+        "name": 2016
+      }, 
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.5_2017_Dipole_v2.1", 
+        "name": 2017
+      }, 
+      {
+        "basedir": "Full2018v7/datacards_fit_v4.5_2018_Dipole_v2", 
+        "name": 2018
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "Zlep", 
+        "cut": "res_sig_mu", 
+        "name": "res_sig_mu_var"
+      }, 
+      {
+        "var": "Zlep", 
+        "cut": "res_sig_ele", 
+        "name": "res_sig_ele_var"
+      }
+    ], 
+    "datacard_name": "run2_res_Zlep"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2016v7/datacards_fit_v4.5_2016_Dipole_v2", 
+        "name": 2016
+      }, 
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.5_2017_Dipole_v2.1", 
+        "name": 2017
+      }, 
+      {
+        "basedir": "Full2018v7/datacards_fit_v4.5_2018_Dipole_v2", 
+        "name": 2018
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "vbs_0_pt", 
+        "cut": "res_sig_mu", 
+        "name": "res_sig_mu_var"
+      }, 
+      {
+        "var": "vbs_0_pt", 
+        "cut": "res_sig_ele", 
+        "name": "res_sig_ele_var"
+      }
+    ], 
+    "datacard_name": "run2_res_vbs_0_pt"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2016v7/datacards_fit_v4.5_2016_Dipole_v2", 
+        "name": 2016
+      }, 
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.5_2017_Dipole_v2.1", 
+        "name": 2017
+      }, 
+      {
+        "basedir": "Full2018v7/datacards_fit_v4.5_2018_Dipole_v2", 
+        "name": 2018
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "vbs_1_pt_res", 
+        "cut": "res_sig_mu", 
+        "name": "res_sig_mu_var"
+      }, 
+      {
+        "var": "vbs_1_pt_res", 
+        "cut": "res_sig_ele", 
+        "name": "res_sig_ele_var"
+      }
+    ], 
+    "datacard_name": "run2_res_vbs_1_pt_res"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2016v7/datacards_fit_v4.5_2016_Dipole_v2", 
+        "name": 2016
+      }, 
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.5_2017_Dipole_v2.1", 
+        "name": 2017
+      }, 
+      {
+        "basedir": "Full2018v7/datacards_fit_v4.5_2018_Dipole_v2", 
+        "name": 2018
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "vjet_0_pt", 
+        "cut": "res_sig_mu", 
+        "name": "res_sig_mu_var"
+      }, 
+      {
+        "var": "vjet_0_pt", 
+        "cut": "res_sig_ele", 
+        "name": "res_sig_ele_var"
+      }
+    ], 
+    "datacard_name": "run2_res_vjet_0_pt"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2016v7/datacards_fit_v4.5_2016_Dipole_v2", 
+        "name": 2016
+      }, 
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.5_2017_Dipole_v2.1", 
+        "name": 2017
+      }, 
+      {
+        "basedir": "Full2018v7/datacards_fit_v4.5_2018_Dipole_v2", 
+        "name": 2018
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "vjet_1_pt", 
+        "cut": "res_sig_mu", 
+        "name": "res_sig_mu_var"
+      }, 
+      {
+        "var": "vjet_1_pt", 
+        "cut": "res_sig_ele", 
+        "name": "res_sig_ele_var"
+      }
+    ], 
+    "datacard_name": "run2_res_vjet_1_pt"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2016v7/datacards_fit_v4.5_2016_Dipole_v2", 
+        "name": 2016
+      }, 
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.5_2017_Dipole_v2.1", 
+        "name": 2017
+      }, 
+      {
+        "basedir": "Full2018v7/datacards_fit_v4.5_2018_Dipole_v2", 
+        "name": 2018
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "Zvjets_0", 
+        "cut": "res_sig_mu", 
+        "name": "res_sig_mu_var"
+      }, 
+      {
+        "var": "Zvjets_0", 
+        "cut": "res_sig_ele", 
+        "name": "res_sig_ele_var"
+      }
+    ], 
+    "datacard_name": "run2_res_Zvjets_0"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2016v7/datacards_fit_v4.5_2016_Dipole_v2", 
+        "name": 2016
+      }, 
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.5_2017_Dipole_v2.1", 
+        "name": 2017
+      }, 
+      {
+        "basedir": "Full2018v7/datacards_fit_v4.5_2018_Dipole_v2", 
+        "name": 2018
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "deltaphi_vbs", 
+        "cut": "res_sig_mu", 
+        "name": "res_sig_mu_var"
+      }, 
+      {
+        "var": "deltaphi_vbs", 
+        "cut": "res_sig_ele", 
+        "name": "res_sig_ele_var"
+      }
+    ], 
+    "datacard_name": "run2_res_deltaphi_vbs"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2016v7/datacards_fit_v4.5_2016_Dipole_v2", 
+        "name": 2016
+      }, 
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.5_2017_Dipole_v2.1", 
+        "name": 2017
+      }, 
+      {
+        "basedir": "Full2018v7/datacards_fit_v4.5_2018_Dipole_v2", 
+        "name": 2018
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "vbs_0_qgl_res", 
+        "cut": "res_sig_mu", 
+        "name": "res_sig_mu_var"
+      }, 
+      {
+        "var": "vbs_0_qgl_res", 
+        "cut": "res_sig_ele", 
+        "name": "res_sig_ele_var"
+      }
+    ], 
+    "datacard_name": "run2_res_vbs_0_qgl_res"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2016v7/datacards_fit_v4.5_2016_Dipole_v2", 
+        "name": 2016
+      }, 
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.5_2017_Dipole_v2.1", 
+        "name": 2017
+      }, 
+      {
+        "basedir": "Full2018v7/datacards_fit_v4.5_2018_Dipole_v2", 
+        "name": 2018
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "vjet_0_qgl_res", 
+        "cut": "res_sig_mu", 
+        "name": "res_sig_mu_var"
+      }, 
+      {
+        "var": "vjet_0_qgl_res", 
+        "cut": "res_sig_ele", 
+        "name": "res_sig_ele_var"
+      }
+    ], 
+    "datacard_name": "run2_res_vjet_0_qgl_res"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2016v7/datacards_fit_v4.5_2016_Dipole_v2", 
+        "name": 2016
+      }, 
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.5_2017_Dipole_v2.1", 
+        "name": 2017
+      }, 
+      {
+        "basedir": "Full2018v7/datacards_fit_v4.5_2018_Dipole_v2", 
+        "name": 2018
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "vjet_1_qgl_res", 
+        "cut": "res_sig_mu", 
+        "name": "res_sig_mu_var"
+      }, 
+      {
+        "var": "vjet_1_qgl_res", 
+        "cut": "res_sig_ele", 
+        "name": "res_sig_ele_var"
+      }
+    ], 
+    "datacard_name": "run2_res_vjet_1_qgl_res"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2016v7/datacards_fit_v4.5_2016_Dipole_v2", 
+        "name": 2016
+      }, 
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.5_2017_Dipole_v2.1", 
+        "name": 2017
+      }, 
+      {
+        "basedir": "Full2018v7/datacards_fit_v4.5_2018_Dipole_v2", 
+        "name": 2018
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "Lepton_eta", 
+        "cut": "res_sig_mu", 
+        "name": "res_sig_mu_var"
+      }, 
+      {
+        "var": "Lepton_eta", 
+        "cut": "res_sig_ele", 
+        "name": "res_sig_ele_var"
+      }
+    ], 
+    "datacard_name": "run2_res_Lepton_eta"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2016v7/datacards_fit_v4.5_2016_Dipole_v2", 
+        "name": 2016
+      }, 
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.5_2017_Dipole_v2.1", 
+        "name": 2017
+      }, 
+      {
+        "basedir": "Full2018v7/datacards_fit_v4.5_2018_Dipole_v2", 
+        "name": 2018
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "Lepton_pt", 
+        "cut": "res_sig_mu", 
+        "name": "res_sig_mu_var"
+      }, 
+      {
+        "var": "Lepton_pt", 
+        "cut": "res_sig_ele", 
+        "name": "res_sig_ele_var"
+      }
+    ], 
+    "datacard_name": "run2_res_Lepton_pt"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2016v7/datacards_fit_v4.5_2016_Dipole_v2", 
+        "name": 2016
+      }, 
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.5_2017_Dipole_v2.1", 
+        "name": 2017
+      }, 
+      {
+        "basedir": "Full2018v7/datacards_fit_v4.5_2018_Dipole_v2", 
+        "name": 2018
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "Centr_ww", 
+        "cut": "res_sig_mu", 
+        "name": "res_sig_mu_var"
+      }, 
+      {
+        "var": "Centr_ww", 
+        "cut": "res_sig_ele", 
+        "name": "res_sig_ele_var"
+      }
+    ], 
+    "datacard_name": "run2_res_Centr_ww"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2016v7/datacards_fit_v4.5_2016_Dipole_v2", 
+        "name": 2016
+      }, 
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.5_2017_Dipole_v2.1", 
+        "name": 2017
+      }, 
+      {
+        "basedir": "Full2018v7/datacards_fit_v4.5_2018_Dipole_v2", 
+        "name": 2018
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "deltaeta_vjet", 
+        "cut": "res_sig_mu", 
+        "name": "res_sig_mu_var"
+      }, 
+      {
+        "var": "deltaeta_vjet", 
+        "cut": "res_sig_ele", 
+        "name": "res_sig_ele_var"
+      }
+    ], 
+    "datacard_name": "run2_res_deltaeta_vjet"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2016v7/datacards_fit_v4.5_2016_Dipole_v2", 
+        "name": 2016
+      }, 
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.5_2017_Dipole_v2.1", 
+        "name": 2017
+      }, 
+      {
+        "basedir": "Full2018v7/datacards_fit_v4.5_2018_Dipole_v2", 
+        "name": 2018
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "DNNoutput_boost", 
+        "cut": "boost_sig_mu", 
+        "name": "boost_sig_mu"
+      }, 
+      {
+        "var": "DNNoutput_boost", 
+        "cut": "boost_sig_ele", 
+        "name": "boost_sig_ele"
+      }
+    ], 
+    "datacard_name": "run2_boost_DNNoutput_boost"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2016v7/datacards_fit_v4.5_2016_Dipole_v2", 
+        "name": 2016
+      }, 
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.5_2017_Dipole_v2.1", 
+        "name": 2017
+      }, 
+      {
+        "basedir": "Full2018v7/datacards_fit_v4.5_2018_Dipole_v2", 
+        "name": 2018
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "fit_bins_boost", 
+        "cut": "boost_sig_mu", 
+        "name": "boost_sig_mu_var"
+      }, 
+      {
+        "var": "fit_bins_boost", 
+        "cut": "boost_sig_ele", 
+        "name": "boost_sig_ele_var"
+      }
+    ], 
+    "datacard_name": "run2_boost_fit_bins_boost"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2016v7/datacards_fit_v4.5_2016_Dipole_v2", 
+        "name": 2016
+      }, 
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.5_2017_Dipole_v2.1", 
+        "name": 2017
+      }, 
+      {
+        "basedir": "Full2018v7/datacards_fit_v4.5_2018_Dipole_v2", 
+        "name": 2018
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "w_lep_pt", 
+        "cut": "boost_sig_mu", 
+        "name": "boost_sig_mu_var"
+      }, 
+      {
+        "var": "w_lep_pt", 
+        "cut": "boost_sig_ele", 
+        "name": "boost_sig_ele_var"
+      }
+    ], 
+    "datacard_name": "run2_boost_w_lep_pt"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2016v7/datacards_fit_v4.5_2016_Dipole_v2", 
+        "name": 2016
+      }, 
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.5_2017_Dipole_v2.1", 
+        "name": 2017
+      }, 
+      {
+        "basedir": "Full2018v7/datacards_fit_v4.5_2018_Dipole_v2", 
+        "name": 2018
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "deltaeta_vbs", 
+        "cut": "boost_sig_mu", 
+        "name": "boost_sig_mu_var"
+      }, 
+      {
+        "var": "deltaeta_vbs", 
+        "cut": "boost_sig_ele", 
+        "name": "boost_sig_ele_var"
+      }
+    ], 
+    "datacard_name": "run2_boost_deltaeta_vbs"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2016v7/datacards_fit_v4.5_2016_Dipole_v2", 
+        "name": 2016
+      }, 
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.5_2017_Dipole_v2.1", 
+        "name": 2017
+      }, 
+      {
+        "basedir": "Full2018v7/datacards_fit_v4.5_2018_Dipole_v2", 
+        "name": 2018
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "mjj_vjet_boost", 
+        "cut": "boost_sig_mu", 
+        "name": "boost_sig_mu_var"
+      }, 
+      {
+        "var": "mjj_vjet_boost", 
+        "cut": "boost_sig_ele", 
+        "name": "boost_sig_ele_var"
+      }
+    ], 
+    "datacard_name": "run2_boost_mjj_vjet_boost"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2016v7/datacards_fit_v4.5_2016_Dipole_v2", 
+        "name": 2016
+      }, 
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.5_2017_Dipole_v2.1", 
+        "name": 2017
+      }, 
+      {
+        "basedir": "Full2018v7/datacards_fit_v4.5_2018_Dipole_v2", 
+        "name": 2018
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "mjj_vbs", 
+        "cut": "boost_sig_mu", 
+        "name": "boost_sig_mu_var"
+      }, 
+      {
+        "var": "mjj_vbs", 
+        "cut": "boost_sig_ele", 
+        "name": "boost_sig_ele_var"
+      }
+    ], 
+    "datacard_name": "run2_boost_mjj_vbs"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2016v7/datacards_fit_v4.5_2016_Dipole_v2", 
+        "name": 2016
+      }, 
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.5_2017_Dipole_v2.1", 
+        "name": 2017
+      }, 
+      {
+        "basedir": "Full2018v7/datacards_fit_v4.5_2018_Dipole_v2", 
+        "name": 2018
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "nJets_boost", 
+        "cut": "boost_sig_mu", 
+        "name": "boost_sig_mu_var"
+      }, 
+      {
+        "var": "nJets_boost", 
+        "cut": "boost_sig_ele", 
+        "name": "boost_sig_ele_var"
+      }
+    ], 
+    "datacard_name": "run2_boost_nJets_boost"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2016v7/datacards_fit_v4.5_2016_Dipole_v2", 
+        "name": 2016
+      }, 
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.5_2017_Dipole_v2.1", 
+        "name": 2017
+      }, 
+      {
+        "basedir": "Full2018v7/datacards_fit_v4.5_2018_Dipole_v2", 
+        "name": 2018
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "Zlep", 
+        "cut": "boost_sig_mu", 
+        "name": "boost_sig_mu_var"
+      }, 
+      {
+        "var": "Zlep", 
+        "cut": "boost_sig_ele", 
+        "name": "boost_sig_ele_var"
+      }
+    ], 
+    "datacard_name": "run2_boost_Zlep"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2016v7/datacards_fit_v4.5_2016_Dipole_v2", 
+        "name": 2016
+      }, 
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.5_2017_Dipole_v2.1", 
+        "name": 2017
+      }, 
+      {
+        "basedir": "Full2018v7/datacards_fit_v4.5_2018_Dipole_v2", 
+        "name": 2018
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "vbs_0_pt", 
+        "cut": "boost_sig_mu", 
+        "name": "boost_sig_mu_var"
+      }, 
+      {
+        "var": "vbs_0_pt", 
+        "cut": "boost_sig_ele", 
+        "name": "boost_sig_ele_var"
+      }
+    ], 
+    "datacard_name": "run2_boost_vbs_0_pt"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2016v7/datacards_fit_v4.5_2016_Dipole_v2", 
+        "name": 2016
+      }, 
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.5_2017_Dipole_v2.1", 
+        "name": 2017
+      }, 
+      {
+        "basedir": "Full2018v7/datacards_fit_v4.5_2018_Dipole_v2", 
+        "name": 2018
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "vbs_1_pt_boost", 
+        "cut": "boost_sig_mu", 
+        "name": "boost_sig_mu_var"
+      }, 
+      {
+        "var": "vbs_1_pt_boost", 
+        "cut": "boost_sig_ele", 
+        "name": "boost_sig_ele_var"
+      }
+    ], 
+    "datacard_name": "run2_boost_vbs_1_pt_boost"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2016v7/datacards_fit_v4.5_2016_Dipole_v2", 
+        "name": 2016
+      }, 
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.5_2017_Dipole_v2.1", 
+        "name": 2017
+      }, 
+      {
+        "basedir": "Full2018v7/datacards_fit_v4.5_2018_Dipole_v2", 
+        "name": 2018
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "Zvjets_0", 
+        "cut": "boost_sig_mu", 
+        "name": "boost_sig_mu_var"
+      }, 
+      {
+        "var": "Zvjets_0", 
+        "cut": "boost_sig_ele", 
+        "name": "boost_sig_ele_var"
+      }
+    ], 
+    "datacard_name": "run2_boost_Zvjets_0"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2016v7/datacards_fit_v4.5_2016_Dipole_v2", 
+        "name": 2016
+      }, 
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.5_2017_Dipole_v2.1", 
+        "name": 2017
+      }, 
+      {
+        "basedir": "Full2018v7/datacards_fit_v4.5_2018_Dipole_v2", 
+        "name": 2018
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "deltaphi_vbs", 
+        "cut": "boost_sig_mu", 
+        "name": "boost_sig_mu_var"
+      }, 
+      {
+        "var": "deltaphi_vbs", 
+        "cut": "boost_sig_ele", 
+        "name": "boost_sig_ele_var"
+      }
+    ], 
+    "datacard_name": "run2_boost_deltaphi_vbs"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2016v7/datacards_fit_v4.5_2016_Dipole_v2", 
+        "name": 2016
+      }, 
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.5_2017_Dipole_v2.1", 
+        "name": 2017
+      }, 
+      {
+        "basedir": "Full2018v7/datacards_fit_v4.5_2018_Dipole_v2", 
+        "name": 2018
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "vbs_0_qgl_boost", 
+        "cut": "boost_sig_mu", 
+        "name": "boost_sig_mu_var"
+      }, 
+      {
+        "var": "vbs_0_qgl_boost", 
+        "cut": "boost_sig_ele", 
+        "name": "boost_sig_ele_var"
+      }
+    ], 
+    "datacard_name": "run2_boost_vbs_0_qgl_boost"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2016v7/datacards_fit_v4.5_2016_Dipole_v2", 
+        "name": 2016
+      }, 
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.5_2017_Dipole_v2.1", 
+        "name": 2017
+      }, 
+      {
+        "basedir": "Full2018v7/datacards_fit_v4.5_2018_Dipole_v2", 
+        "name": 2018
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "whad_pt_boost", 
+        "cut": "boost_sig_mu", 
+        "name": "boost_sig_mu_var"
+      }, 
+      {
+        "var": "whad_pt_boost", 
+        "cut": "boost_sig_ele", 
+        "name": "boost_sig_ele_var"
+      }
+    ], 
+    "datacard_name": "run2_boost_whad_pt_boost"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2016v7/datacards_fit_v4.5_2016_Dipole_v2", 
+        "name": 2016
+      }, 
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.5_2017_Dipole_v2.1", 
+        "name": 2017
+      }, 
+      {
+        "basedir": "Full2018v7/datacards_fit_v4.5_2018_Dipole_v2", 
+        "name": 2018
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "Lepton_eta", 
+        "cut": "boost_sig_mu", 
+        "name": "boost_sig_mu_var"
+      }, 
+      {
+        "var": "Lepton_eta", 
+        "cut": "boost_sig_ele", 
+        "name": "boost_sig_ele_var"
+      }
+    ], 
+    "datacard_name": "run2_boost_Lepton_eta"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2016v7/datacards_fit_v4.5_2016_Dipole_v2", 
+        "name": 2016
+      }, 
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.5_2017_Dipole_v2.1", 
+        "name": 2017
+      }, 
+      {
+        "basedir": "Full2018v7/datacards_fit_v4.5_2018_Dipole_v2", 
+        "name": 2018
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "Lepton_pt", 
+        "cut": "boost_sig_mu", 
+        "name": "boost_sig_mu_var"
+      }, 
+      {
+        "var": "Lepton_pt", 
+        "cut": "boost_sig_ele", 
+        "name": "boost_sig_ele_var"
+      }
+    ], 
+    "datacard_name": "run2_boost_Lepton_pt"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2016v7/datacards_fit_v4.5_2016_Dipole_v2", 
+        "name": 2016
+      }, 
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.5_2017_Dipole_v2.1", 
+        "name": 2017
+      }, 
+      {
+        "basedir": "Full2018v7/datacards_fit_v4.5_2018_Dipole_v2", 
+        "name": 2018
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "Centr_ww", 
+        "cut": "boost_sig_mu", 
+        "name": "boost_sig_mu_var"
+      }, 
+      {
+        "var": "Centr_ww", 
+        "cut": "boost_sig_ele", 
+        "name": "boost_sig_ele_var"
+      }
+    ], 
+    "datacard_name": "run2_boost_Centr_ww"
+  }
+]

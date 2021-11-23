@@ -492,15 +492,15 @@ for sample in mc :
         'type'  : 'shape',
         'samples'  :  { sample: ["LHEScaleWeight[0]", "LHEScaleWeight[8]"] }
     }
-#Correlate all signal samples
-# nuisances['QCD_scale_EWQCD_WV'] = {
-#             'name'  : 'QCDscale_EWQCD_WV_accept',
-#             'kind'  : 'weight',
-#             'type'  : 'shape',
-#             # 'samples'  :  { "VBS": ["QCDscale_normalized[0]", "QCDscale_normalized[8]"],
-#             #                 "VBS_dipoleRecoil": ["QCDscale_normalized[0]", "QCDscale_normalized[8]"], }
-#             'samples': { k:["QCDscale_normalized[0]", "QCDscale_normalized[8]"] for k in  WV_samples }
-#         }
+# Correlate all signal samples
+nuisances['QCD_scale_EWQCD_WV'] = {
+            'name'  : 'QCDscale_EWQCD_WV_accept',
+            'kind'  : 'weight',
+            'type'  : 'shape',
+            # 'samples'  :  { "VBS": ["QCDscale_normalized[0]", "QCDscale_normalized[8]"],
+            #                 "VBS_dipoleRecoil": ["QCDscale_normalized[0]", "QCDscale_normalized[8]"], }
+            'samples': { k:["QCDscale_normalized[0]", "QCDscale_normalized[8]"] for k in  WV_samples }
+        }
 
 nuisances['QCD_scale_EWQCD_WV_full'] = {
             'name'  : 'QCDscale_EWQCD_WV',
@@ -723,7 +723,17 @@ for n in nuisances.values():
 
 
 
-# nuisances = {k:v for k,v in nuisances.items() if 'fake' in k or k in ["QCD_scale_VBS"]} #if 'PS' in k or 'QCD' in k
+#
+################################
+## Customizations
 
+# Customization to redo the QCDscales
+#nuisances = {k:v for k,v in nuisances.items() if 'QCD_scale' in k or k == "pdf_weight"} #if 'PS' in k or 'QCD' in k
 
-# print ' '.join(nname for nname, nuis in nuisances.iteritems() if nname not in ('lumi', 'stat'))
+# Customization for mu fit with QCDscale normalization included
+# exclude = ["QCD_scale_EWQCD_WV"]
+# nuisances = {k:v for k,v in nuisances.items() if k not in exclude}
+
+# Customization for mu fit with QCDscale normalization excluded
+exclude = ["QCD_scale_EWQCD_WV_full"]
+nuisances = {k:v for k,v in nuisances.items() if k not in exclude}

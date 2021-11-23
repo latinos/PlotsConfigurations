@@ -1,0 +1,502 @@
+[
+  {
+    "folders": [
+      {
+        "basedir": "Full2016v7/datacards_fit_v4.5_2016_Dipole_split_v6", 
+        "name": 2016
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "DNNoutput_res_v1", 
+        "cut": "res_wjetcr_ele", 
+        "name": "wjetcr_res_ele"
+      }
+    ], 
+    "datacard_name": "2016_res_ele_DNNoutput_res_v1_wjetcr"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2016v7/datacards_fit_v4.5_2016_Dipole_split_v6", 
+        "name": 2016
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "DNNoutput_res_v1", 
+        "cut": "res_topcr_ele", 
+        "name": "topcr_res_ele"
+      }
+    ], 
+    "datacard_name": "2016_res_ele_DNNoutput_res_v1_topcr"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2016v7/datacards_fit_v4.5_2016_Dipole_split_v6", 
+        "name": 2016
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "DNNoutput_res_v1", 
+        "cut": "res_wjetcr_mu", 
+        "name": "wjetcr_res_mu"
+      }
+    ], 
+    "datacard_name": "2016_res_mu_DNNoutput_res_v1_wjetcr"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2016v7/datacards_fit_v4.5_2016_Dipole_split_v6", 
+        "name": 2016
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "DNNoutput_res_v1", 
+        "cut": "res_topcr_mu", 
+        "name": "topcr_res_mu"
+      }
+    ], 
+    "datacard_name": "2016_res_mu_DNNoutput_res_v1_topcr"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.5_2017_Dipole_split_v5", 
+        "name": 2017
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "DNNoutput_res_v1", 
+        "cut": "res_wjetcr_ele", 
+        "name": "wjetcr_res_ele"
+      }
+    ], 
+    "datacard_name": "2017_res_ele_DNNoutput_res_v1_wjetcr"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.5_2017_Dipole_split_v5", 
+        "name": 2017
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "DNNoutput_res_v1", 
+        "cut": "res_topcr_ele", 
+        "name": "topcr_res_ele"
+      }
+    ], 
+    "datacard_name": "2017_res_ele_DNNoutput_res_v1_topcr"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.5_2017_Dipole_split_v5", 
+        "name": 2017
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "DNNoutput_res_v1", 
+        "cut": "res_wjetcr_mu", 
+        "name": "wjetcr_res_mu"
+      }
+    ], 
+    "datacard_name": "2017_res_mu_DNNoutput_res_v1_wjetcr"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.5_2017_Dipole_split_v5", 
+        "name": 2017
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "DNNoutput_res_v1", 
+        "cut": "res_topcr_mu", 
+        "name": "topcr_res_mu"
+      }
+    ], 
+    "datacard_name": "2017_res_mu_DNNoutput_res_v1_topcr"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2018v7/datacards_fit_v4.5_2018_Dipole_split_v5", 
+        "name": 2018
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "DNNoutput_res_v1", 
+        "cut": "res_wjetcr_ele", 
+        "name": "wjetcr_res_ele"
+      }
+    ], 
+    "datacard_name": "2018_res_ele_DNNoutput_res_v1_wjetcr"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2018v7/datacards_fit_v4.5_2018_Dipole_split_v5", 
+        "name": 2018
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "DNNoutput_res_v1", 
+        "cut": "res_topcr_ele", 
+        "name": "topcr_res_ele"
+      }
+    ], 
+    "datacard_name": "2018_res_ele_DNNoutput_res_v1_topcr"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2018v7/datacards_fit_v4.5_2018_Dipole_split_v5", 
+        "name": 2018
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "DNNoutput_res_v1", 
+        "cut": "res_wjetcr_mu", 
+        "name": "wjetcr_res_mu"
+      }
+    ], 
+    "datacard_name": "2018_res_mu_DNNoutput_res_v1_wjetcr"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2018v7/datacards_fit_v4.5_2018_Dipole_split_v5", 
+        "name": 2018
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "DNNoutput_res_v1", 
+        "cut": "res_topcr_mu", 
+        "name": "topcr_res_mu"
+      }
+    ], 
+    "datacard_name": "2018_res_mu_DNNoutput_res_v1_topcr"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2016v7/datacards_fit_v4.5_2016_Dipole_split_v6", 
+        "name": 2016
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "DNNoutput_boost", 
+        "cut": "boost_wjetcr_ele", 
+        "name": "wjetcr_boost_ele"
+      }
+    ], 
+    "datacard_name": "2016_boost_ele_DNNoutput_boost_wjetcr"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2016v7/datacards_fit_v4.5_2016_Dipole_split_v6", 
+        "name": 2016
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "DNNoutput_boost", 
+        "cut": "boost_topcr_ele", 
+        "name": "topcr_boost_ele"
+      }
+    ], 
+    "datacard_name": "2016_boost_ele_DNNoutput_boost_topcr"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2016v7/datacards_fit_v4.5_2016_Dipole_split_v6", 
+        "name": 2016
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "DNNoutput_boost", 
+        "cut": "boost_wjetcr_mu", 
+        "name": "wjetcr_boost_mu"
+      }
+    ], 
+    "datacard_name": "2016_boost_mu_DNNoutput_boost_wjetcr"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2016v7/datacards_fit_v4.5_2016_Dipole_split_v6", 
+        "name": 2016
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "DNNoutput_boost", 
+        "cut": "boost_topcr_mu", 
+        "name": "topcr_boost_mu"
+      }
+    ], 
+    "datacard_name": "2016_boost_mu_DNNoutput_boost_topcr"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.5_2017_Dipole_split_v5", 
+        "name": 2017
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "DNNoutput_boost", 
+        "cut": "boost_wjetcr_ele", 
+        "name": "wjetcr_boost_ele"
+      }
+    ], 
+    "datacard_name": "2017_boost_ele_DNNoutput_boost_wjetcr"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.5_2017_Dipole_split_v5", 
+        "name": 2017
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "DNNoutput_boost", 
+        "cut": "boost_topcr_ele", 
+        "name": "topcr_boost_ele"
+      }
+    ], 
+    "datacard_name": "2017_boost_ele_DNNoutput_boost_topcr"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.5_2017_Dipole_split_v5", 
+        "name": 2017
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "DNNoutput_boost", 
+        "cut": "boost_wjetcr_mu", 
+        "name": "wjetcr_boost_mu"
+      }
+    ], 
+    "datacard_name": "2017_boost_mu_DNNoutput_boost_wjetcr"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.5_2017_Dipole_split_v5", 
+        "name": 2017
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "DNNoutput_boost", 
+        "cut": "boost_topcr_mu", 
+        "name": "topcr_boost_mu"
+      }
+    ], 
+    "datacard_name": "2017_boost_mu_DNNoutput_boost_topcr"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2018v7/datacards_fit_v4.5_2018_Dipole_split_v5", 
+        "name": 2018
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "DNNoutput_boost", 
+        "cut": "boost_wjetcr_ele", 
+        "name": "wjetcr_boost_ele"
+      }
+    ], 
+    "datacard_name": "2018_boost_ele_DNNoutput_boost_wjetcr"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2018v7/datacards_fit_v4.5_2018_Dipole_split_v5", 
+        "name": 2018
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "DNNoutput_boost", 
+        "cut": "boost_topcr_ele", 
+        "name": "topcr_boost_ele"
+      }
+    ], 
+    "datacard_name": "2018_boost_ele_DNNoutput_boost_topcr"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2018v7/datacards_fit_v4.5_2018_Dipole_split_v5", 
+        "name": 2018
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "DNNoutput_boost", 
+        "cut": "boost_wjetcr_mu", 
+        "name": "wjetcr_boost_mu"
+      }
+    ], 
+    "datacard_name": "2018_boost_mu_DNNoutput_boost_wjetcr"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2018v7/datacards_fit_v4.5_2018_Dipole_split_v5", 
+        "name": 2018
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "DNNoutput_boost", 
+        "cut": "boost_topcr_mu", 
+        "name": "topcr_boost_mu"
+      }
+    ], 
+    "datacard_name": "2018_boost_mu_DNNoutput_boost_topcr"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2016v7/datacards_fit_v4.5_2016_Dipole_split_v6", 
+        "name": 2016
+      }, 
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.5_2017_Dipole_split_v5", 
+        "name": 2017
+      }, 
+      {
+        "basedir": "Full2018v7/datacards_fit_v4.5_2018_Dipole_split_v5", 
+        "name": 2018
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "DNNoutput_res_v1", 
+        "cut": "res_wjetcr_mu", 
+        "name": "wjetcr_res_mu"
+      }, 
+      {
+        "var": "DNNoutput_res_v1", 
+        "cut": "res_wjetcr_ele", 
+        "name": "wjetcr_res_ele"
+      }
+    ], 
+    "datacard_name": "run2_res_DNNoutput_res_v1_wjetcr"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2016v7/datacards_fit_v4.5_2016_Dipole_split_v6", 
+        "name": 2016
+      }, 
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.5_2017_Dipole_split_v5", 
+        "name": 2017
+      }, 
+      {
+        "basedir": "Full2018v7/datacards_fit_v4.5_2018_Dipole_split_v5", 
+        "name": 2018
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "DNNoutput_res_v1", 
+        "cut": "res_topcr_mu", 
+        "name": "topcr_res_mu"
+      }, 
+      {
+        "var": "DNNoutput_res_v1", 
+        "cut": "res_topcr_ele", 
+        "name": "topcr_res_ele"
+      }
+    ], 
+    "datacard_name": "run2_res_DNNoutput_res_v1_topcr"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2016v7/datacards_fit_v4.5_2016_Dipole_split_v6", 
+        "name": 2016
+      }, 
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.5_2017_Dipole_split_v5", 
+        "name": 2017
+      }, 
+      {
+        "basedir": "Full2018v7/datacards_fit_v4.5_2018_Dipole_split_v5", 
+        "name": 2018
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "DNNoutput_boost", 
+        "cut": "boost_wjetcr_mu", 
+        "name": "wjetcr_boost_mu"
+      }, 
+      {
+        "var": "DNNoutput_boost", 
+        "cut": "boost_wjetcr_ele", 
+        "name": "wjetcr_boost_ele"
+      }
+    ], 
+    "datacard_name": "run2_boost_DNNoutput_boost_wjetcr"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2016v7/datacards_fit_v4.5_2016_Dipole_split_v6", 
+        "name": 2016
+      }, 
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.5_2017_Dipole_split_v5", 
+        "name": 2017
+      }, 
+      {
+        "basedir": "Full2018v7/datacards_fit_v4.5_2018_Dipole_split_v5", 
+        "name": 2018
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "DNNoutput_boost", 
+        "cut": "boost_topcr_mu", 
+        "name": "topcr_boost_mu"
+      }, 
+      {
+        "var": "DNNoutput_boost", 
+        "cut": "boost_topcr_ele", 
+        "name": "topcr_boost_ele"
+      }
+    ], 
+    "datacard_name": "run2_boost_DNNoutput_boost_topcr"
+  }
+]

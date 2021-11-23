@@ -1,0 +1,194 @@
+[
+  {
+    "folders": [
+      {
+        "basedir": "Full2016v7/datacards_fit_v4.5_2016_Dipole_split_v4", 
+        "name": 2016
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "DNNoutput_res_v1", 
+        "cut": "res_sig_ele", 
+        "name": "res_sig_ele"
+      }
+    ], 
+    "datacard_name": "2016_res_ele_DNNoutput_res_v1"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2016v7/datacards_fit_v4.5_2016_Dipole_split_v4", 
+        "name": 2016
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "DNNoutput_res_v1", 
+        "cut": "res_sig_mu", 
+        "name": "res_sig_mu"
+      }
+    ], 
+    "datacard_name": "2016_res_mu_DNNoutput_res_v1"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.5_2017_Dipole_split_v4", 
+        "name": 2017
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "DNNoutput_res_v1", 
+        "cut": "res_sig_ele", 
+        "name": "res_sig_ele"
+      }
+    ], 
+    "datacard_name": "2017_res_ele_DNNoutput_res_v1"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.5_2017_Dipole_split_v4", 
+        "name": 2017
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "DNNoutput_res_v1", 
+        "cut": "res_sig_mu", 
+        "name": "res_sig_mu"
+      }
+    ], 
+    "datacard_name": "2017_res_mu_DNNoutput_res_v1"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2018v7/datacards_fit_v4.5_2018_Dipole_split_v4", 
+        "name": 2018
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "DNNoutput_res_v1", 
+        "cut": "res_sig_ele", 
+        "name": "res_sig_ele"
+      }
+    ], 
+    "datacard_name": "2018_res_ele_DNNoutput_res_v1"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2018v7/datacards_fit_v4.5_2018_Dipole_split_v4", 
+        "name": 2018
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "DNNoutput_res_v1", 
+        "cut": "res_sig_mu", 
+        "name": "res_sig_mu"
+      }
+    ], 
+    "datacard_name": "2018_res_mu_DNNoutput_res_v1"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2016v7/datacards_fit_v4.5_2016_Dipole_split_v4", 
+        "name": 2016
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "DNNoutput_boost", 
+        "cut": "boost_sig_ele", 
+        "name": "boost_sig_ele"
+      }
+    ], 
+    "datacard_name": "2016_boost_ele_DNNoutput_boost"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2016v7/datacards_fit_v4.5_2016_Dipole_split_v4", 
+        "name": 2016
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "DNNoutput_boost", 
+        "cut": "boost_sig_mu", 
+        "name": "boost_sig_mu"
+      }
+    ], 
+    "datacard_name": "2016_boost_mu_DNNoutput_boost"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.5_2017_Dipole_split_v4", 
+        "name": 2017
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "DNNoutput_boost", 
+        "cut": "boost_sig_ele", 
+        "name": "boost_sig_ele"
+      }
+    ], 
+    "datacard_name": "2017_boost_ele_DNNoutput_boost"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.5_2017_Dipole_split_v4", 
+        "name": 2017
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "DNNoutput_boost", 
+        "cut": "boost_sig_mu", 
+        "name": "boost_sig_mu"
+      }
+    ], 
+    "datacard_name": "2017_boost_mu_DNNoutput_boost"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2018v7/datacards_fit_v4.5_2018_Dipole_split_v4", 
+        "name": 2018
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "DNNoutput_boost", 
+        "cut": "boost_sig_ele", 
+        "name": "boost_sig_ele"
+      }
+    ], 
+    "datacard_name": "2018_boost_ele_DNNoutput_boost"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2018v7/datacards_fit_v4.5_2018_Dipole_split_v4", 
+        "name": 2018
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "DNNoutput_boost", 
+        "cut": "boost_sig_mu", 
+        "name": "boost_sig_mu"
+      }
+    ], 
+    "datacard_name": "2018_boost_mu_DNNoutput_boost"
+  }
+]

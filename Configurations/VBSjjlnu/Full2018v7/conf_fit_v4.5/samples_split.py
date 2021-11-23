@@ -485,7 +485,7 @@ samples['VBS_ssWW']  = { 'name' :
                nanoGetSampleFiles(directory_signal,'WpToLNu_WpTo2J_dipoleRecoil') +
                nanoGetSampleFiles(directory_signal,'WmToLNu_WmTo2J_dipoleRecoil'),
        'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch+'*btagSF_corr_VBS_dipoleRecoil',
-       'FilesPerJob' :15,
+       'FilesPerJob' :5,
        'EventsPerJob' : 70000,
 }
 
@@ -493,7 +493,7 @@ samples['VBS_osWW']  = { 'name' :
                nanoGetSampleFiles(directory_signal,'WpToLNu_WmTo2J_dipoleRecoil') +
                nanoGetSampleFiles(directory_signal,'WpTo2J_WmToLNu_dipoleRecoil'),
        'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch+'*btagSF_corr_VBS_dipoleRecoil',
-       'FilesPerJob' :15,
+       'FilesPerJob' :5,
        'EventsPerJob' : 70000,
 }
 
@@ -502,7 +502,7 @@ samples['VBS_WZjj']  = { 'name' :
                nanoGetSampleFiles(directory_signal,'WmToLNu_ZTo2J_dipoleRecoil',) +
                nanoGetSampleFiles(directory_signal,'WpToLNu_ZTo2J_dipoleRecoil',),
        'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch+'*btagSF_corr_VBS_dipoleRecoil',
-       'FilesPerJob' :15,
+       'FilesPerJob' :5,
        'EventsPerJob' : 70000,
 }
 
@@ -510,7 +510,7 @@ samples['VBS_WZll']  = { 'name' :
                nanoGetSampleFiles(directory_signal,'WmTo2J_ZTo2L_dipoleRecoil', ) +
                nanoGetSampleFiles(directory_signal,'WpTo2J_ZTo2L_dipoleRecoil', ),
        'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch+'*btagSF_corr_VBS_dipoleRecoil',
-       'FilesPerJob' :15,
+       'FilesPerJob' :5,
        'EventsPerJob' : 70000,
 }
 
@@ -518,7 +518,7 @@ samples['VBS_WZll']  = { 'name' :
 samples['VBS_ZZ']  = { 'name' :  
                nanoGetSampleFiles(directory_signal,'ZTo2L_ZTo2J_dipoleRecoil',  ),
        'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch+'*btagSF_corr_VBS_dipoleRecoil',
-       'FilesPerJob' :15,
+       'FilesPerJob' :5,
        'EventsPerJob' : 70000,
 }
 
@@ -577,6 +577,6 @@ VV_samples = ["VV_osWW", "VV_ssWW", "VV_WZjj", "VV_WZll", "VV_ZZ"]
 
 
 
-# samples = {   key:v for key,v in samples.items() if key in VBS_samples+VV_samples}
+# samples = {   key:v for key,v in samples.items() if key in VBS_samples}
 # samples = {key:v for key,v in samples.items() if key in ["VBS_osWW", "VBS_ssWW", "VBS_WZjj", "VBS_WZll", "VBS_ZZ"]}
 

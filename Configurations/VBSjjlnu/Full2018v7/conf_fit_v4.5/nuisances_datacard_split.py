@@ -711,7 +711,6 @@ for sample in mc:
                 }
 
 
-
 nuisances['PS_ISR_VBS_WV']  = {
                     'name'  : 'CMS_PS_ISR_VBS_WV',
                     'kind'  : 'weight',
@@ -921,8 +920,12 @@ for n in nuisances.values():
 #nuisances = {k:v for k,v in nuisances.items() if 'QCD_scale' in k or k == "pdf_weight"} #if 'PS' in k or 'QCD' in k
 
 # Customization for mu fit with QCDscale normalization included
-# exclude = ["QCD_scale_VBS_WV_accept","QCD_scale_VBS_ZV_accept", "QCD_scale_QCD_WV_accept", "pdf_weight_accept"]
+exclude = ["QCD_scale_VBS_WV_accept","QCD_scale_VBS_ZV_accept", "QCD_scale_QCD_WV_accept", "pdf_weight_accept"]
+nuisances = {k:v for k,v in nuisances.items() if k not in exclude}
+
+# exclude = ["QCD_scale_VBS_WV_full","QCD_scale_VBS_ZV_accept", "QCD_scale_QCD_WV_accept", "pdf_weight"]
 # nuisances = {k:v for k,v in nuisances.items() if k not in exclude}
+
 
 # print ' '.join(nuis['name'] for nname, nuis in nuisances.iteritems() if nname not in ('lumi', 'stat'))
 # print ' '.join(nuis['name'] for nname, nuis in nuisances.iteritems() if nname not in ('lumi', 'stat'))

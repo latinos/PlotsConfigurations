@@ -386,25 +386,25 @@ aliases['BoostedWtagSF_ptextr'] = {
 mva_reader_path = os.getenv('CMSSW_BASE') + '/src/PlotsConfigurations/Configurations/VBSjjlnu/macros/'
 models_path = '/eos/home-d/dvalsecc/www/VBSPlots/DNN_archive/FullRun2_v7/FullRun2_v7/'
 
-aliases['DNNoutput_boosted'] = {
-    'class': 'MVAReaderBoosted_mVauto',
-    'args': ( models_path +'boost_sig/models/v3_d/',  models_path +'boost_sig/models/v3_d/cumulative_signal_2016.root', False, 0),
-    'linesToAdd':[
-        # 'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-        'gSystem->Load("libDNNEvaluator.so")',
-        '.L ' + mva_reader_path + 'mva_reader_boosted_v3d_mVauto.cc+', 
-    ],
-}
+# aliases['DNNoutput_boosted'] = {
+#     'class': 'MVAReaderBoosted_mVauto',
+#     'args': ( models_path +'boost_sig/models/v3_d/',  models_path +'boost_sig/models/v3_d/cumulative_signal_2016.root', False, 0),
+#     'linesToAdd':[
+#         # 'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+#         'gSystem->Load("libDNNEvaluator.so")',
+#         '.L ' + mva_reader_path + 'mva_reader_boosted_v3d_mVauto.cc+', 
+#     ],
+# }
 
-aliases['DNNoutput_resolved_v1'] = {
-    'class': 'MVAReaderResolved_mVauto',
-    'args': ( models_path+ 'res_sig/models/v4_d/',models_path+ 'res_sig/models/v4_d/cumulative_signal_2016.root', False, 1),
-    'linesToAdd':[
-        # 'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-        'gSystem->Load("libDNNEvaluator.so")',
-        '.L ' + mva_reader_path + 'mva_reader_resolved_v4d_mVauto.cc+', 
-    ],
-}
+# aliases['DNNoutput_resolved_v1'] = {
+#     'class': 'MVAReaderResolved_mVauto',
+#     'args': ( models_path+ 'res_sig/models/v4_d/',models_path+ 'res_sig/models/v4_d/cumulative_signal_2016.root', False, 1),
+#     'linesToAdd':[
+#         # 'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+#         'gSystem->Load("libDNNEvaluator.so")',
+#         '.L ' + mva_reader_path + 'mva_reader_resolved_v4d_mVauto.cc+', 
+#     ],
+# }
 
 
 # aliases['dipole_weight'] = {
