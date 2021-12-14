@@ -665,7 +665,7 @@ nuisances['QCDscale_top_2j']  = {
     'skipCMS' : 1,
     'kind'  : 'weight',
     'type'  : 'shape',
-    'cutspost' : lambda self, cuts: [cut for cut in cuts if ('2j' in cut or 'of_pth' in cut)],
+    'cutspost' : lambda self, cuts: [cut for cut in cuts if ('2j' in cut or 'pth' in cut)],
     'samples'  : {
        'top' : topvars2j,
     }
@@ -781,9 +781,15 @@ nuisances['CRSR_accept_DY'] = {
     'type': 'lnN',
     'samples': {'DY': '1.02'},
     'cuts': [
-            'hww2l2v_13TeV_dytt_2j'
-            'hww2l2v_13TeV_dytt_2j_vbf'
-            'hww2l2v_13TeV_dytt_2j_vh'
+            'hww2l2v_13TeV_dytt_2j_vh',
+            'hww2l2v_13TeV_dytt_2j_mjj350_700',
+            'hww2l2v_13TeV_dytt_2j_mjjGT350_pthGT200',
+            'hww2l2v_13TeV_dytt_2j_mjjGT700' ,
+            'hww2l2v_13TeV_dytt_2j_pth0_60'  ,
+            'hww2l2v_13TeV_dytt_2j_pth60_120',
+            'hww2l2v_13TeV_dytt_2j_pth120_200',
+            'hww2l2v_13TeV_dytt_pth200_300'   ,
+            'hww2l2v_13TeV_dytt_pthGT300',
             ]   
 }
 
@@ -793,9 +799,15 @@ nuisances['CRSR_accept_top'] = {
     'type': 'lnN',
     'samples': {'top': '1.01'},
     'cuts': [
-              'hww2l2v_13TeV_top_2j'
-              'hww2l2v_13TeV_top_2j_vbf'
-              'hww2l2v_13TeV_top_2j_vh'
+            'hww2l2v_13TeV_top_2j_vh',
+            'hww2l2v_13TeV_top_2j_mjj350_700',
+            'hww2l2v_13TeV_top_2j_mjjGT350_pthGT200',
+            'hww2l2v_13TeV_top_2j_mjjGT700' ,
+            'hww2l2v_13TeV_top_2j_pth0_60'  ,
+            'hww2l2v_13TeV_top_2j_pth60_120',
+            'hww2l2v_13TeV_top_2j_pth120_200',
+            'hww2l2v_13TeV_top_pth200_300'   ,
+            'hww2l2v_13TeV_top_pthGT300',
             ]
 }
 
