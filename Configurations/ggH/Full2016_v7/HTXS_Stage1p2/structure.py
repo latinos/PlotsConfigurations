@@ -136,6 +136,62 @@ structure['ggH'] = {
                   'isData'   : 0    
                   }
 
+structure['ggH_hww'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  }
+
+structure['WH_hww'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  }
+
+structure['ZH_hww'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  }
+
+structure['ggZH_hww'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  }
+
+structure['H_hww'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0
+                  }
+
+structure['bbH_hww'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0
+                  }
+
+structure['ttH_hww'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0
+                  }
+
+structure['ggH_htt'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  }
+
+structure['qqH_htt'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  }
+
+structure['WH_htt'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  }
+
+structure['ZH_htt'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  }
+
+
 for signal in signals:
     structure[signal] = {
         'isSignal' : 1,
@@ -166,19 +222,19 @@ for signal in signals:
             'isData'   : 0,
             'scaleSampleForDatacard' : {cut : STXS_frac_eq[signal] * 1.03364 for cut in cuts},
         }
-    elif signal.startswith('WH'):
+    elif signal.startswith('WH') and not 'htt' in signal:
         structure[signal] = {
             'isSignal' : 1,
             'isData'   : 0,
             'scaleSampleForDatacard' : {cut : STXS_frac_eq[signal] * 1.01724 for cut in cuts},
         }
-    elif signal.startswith('ZH'):
+    elif signal.startswith('ZH') and not 'htt' in signal:
         structure[signal] = {
             'isSignal' : 1,
             'isData'   : 0,
             'scaleSampleForDatacard' : {cut : STXS_frac_eq[signal] * 1.01994 for cut in cuts},
         }
-    elif signal.startswith('ggZH'):
+    elif signal.startswith('ggZH') and not 'htt' in signal:
         structure[signal] = {
             'isSignal' : 1,
             'isData'   : 0,
