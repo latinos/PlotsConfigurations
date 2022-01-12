@@ -38,6 +38,12 @@ aliases['embedtotal'] = {
     'samples': 'Dyemb'
 }
 
+# Correct trigger efficiencies
+aliases['SFweight2lAlt'] = {
+    'expr'   : 'puWeight*TriggerAltEffWeight_2l*Lepton_RecoSF[0]*Lepton_RecoSF[1]*EMTFbug_veto',
+    'samples': mc
+}
+
 # Fake leptons transfer factor
 aliases['fakeW'] = {
     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP,
@@ -210,7 +216,7 @@ aliases['Jet_PUIDSF_down'] = {
 
 # data/MC scale factors
 aliases['SFweight'] = {
-    'expr': ' * '.join(['SFweight2l','LepWPCut', 'LepSF2l__ele_' + eleWP + '__mu_' + muWP, 'btagSF', 'PrefireWeight', 'Jet_PUIDSF']),
+    'expr': ' * '.join(['SFweight2lAlt','LepWPCut', 'LepSF2l__ele_' + eleWP + '__mu_' + muWP, 'btagSF', 'PrefireWeight', 'Jet_PUIDSF']),
     'samples': mc
 }
 
