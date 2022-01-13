@@ -57,7 +57,7 @@ def makeMCDirectory(var=''):
     if var:
         return os.path.join(treeBaseDir, mcProduction, mcSteps.format(var='__' + var))
     else:
-        return os.path.join(treeBaseDir, mcProduction, mcSteps.format(var=''))
+        return os.path.join(treeBaseDir, mcProduction, mcSteps.format(var='__trigFix'))
 
 mcDirectory = makeMCDirectory()
 fakeDirectory = os.path.join(treeBaseDir, dataReco, fakeSteps)
@@ -203,7 +203,7 @@ files = nanoGetSampleFiles(mcDirectory, 'TTTo2L2Nu') + \
 samples['top'] = {
     'name': files,
     'weight': mcCommonWeight+embed_tautauveto,
-    'FilesPerJob': 1,
+    'FilesPerJob': 2,
 }
 
 addSampleWeight(samples,'top','TTTo2L2Nu','Top_pTrw')
@@ -240,7 +240,7 @@ if useWgFXFX:
   samples['Vg'] = {
       'name': files,
       'weight': mcCommonWeightNoMatch+embed_tautauveto + '*(!(Gen_ZGstar_mass > 0))',
-      'FilesPerJob': 2
+      'FilesPerJob': 4
   }
   wgbasew = getBaseWnAOD(mcDirectory,'Summer16_102X_nAODv7_Full2016v7',['Wg_AMCNLOFXFX_01J','Wg_AMCNLOFXFX_01J_ext1'])
   addSampleWeight(samples,'Vg','Wg_AMCNLOFXFX_01J','191.4/586.*'+wgbasew+'/baseW')
@@ -274,7 +274,7 @@ else:
   samples['Vg'] = {
       'name': files,
       'weight': mcCommonWeightNoMatch+embed_tautauveto + '*(!(Gen_ZGstar_mass > 0))',
-      'FilesPerJob': 4
+      'FilesPerJob': 5
   }
 
   ######## VgS ########
@@ -286,7 +286,7 @@ else:
   samples['VgS'] = {
       'name': files,
       'weight': mcCommonWeight+embed_tautauveto + ' * (gstarLow * 0.94 + gstarHigh * 1.14)',
-      'FilesPerJob': 4,
+      'FilesPerJob': 5,
       'subsamples': {
       'L': 'gstarLow',
       'H': 'gstarHigh'
