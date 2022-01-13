@@ -57,7 +57,7 @@ def makeMCDirectory(var=''):
     if var:
         return os.path.join(treeBaseDir, mcProduction, mcSteps.format(var='__' + var))
     else:
-        return os.path.join(treeBaseDir, mcProduction, mcSteps.format(var=''))
+        return os.path.join(treeBaseDir, mcProduction, mcSteps.format(var='__trigFix'))
 
 mcDirectory = makeMCDirectory()
 fakeDirectory = os.path.join(treeBaseDir, dataReco, fakeSteps)
@@ -204,7 +204,7 @@ files = nanoGetSampleFiles(mcDirectory, 'TTTo2L2Nu_PSWeights') + \
 samples['top'] = {
     'name': files,
     'weight': mcCommonWeight+embed_tautauveto,
-    'FilesPerJob': 1,
+    'FilesPerJob': 2,
 }
 
 addSampleWeight(samples,'top','TTTo2L2Nu_PSWeights','Top_pTrw')
@@ -253,7 +253,7 @@ if useWgFXFX:
   samples['Vg'] = {
       'name': files,
       'weight': mcCommonWeightNoMatch+embed_tautauveto + '*(Gen_ZGstar_mass <= 0)',
-      'FilesPerJob': 2
+      'FilesPerJob': 4
   }
   
   wgbasew = getBaseWnAOD(mcDirectory,'Fall2017_102X_nAODv7_Full2017v7',['Wg_AMCNLOFXFX','Wg_AMCNLOFXFX_PDFWeights','Wg_AMCNLOFXFX_PDFWeights_ext1'])
