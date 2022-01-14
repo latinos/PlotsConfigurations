@@ -126,38 +126,40 @@ if useEmbeddedDY:
       samples['Dyemb']['name'].extend(files)
       samples['Dyemb']['weights'].extend(['Trigger_ElMu'] * len(files))
 
-  # Vetoed MC: Needed for uncertainty
-  files = nanoGetSampleFiles(mcDirectory, 'TTTo2L2Nu') + \
-      nanoGetSampleFiles(mcDirectory, 'ST_tW_antitop_ext1') + \
-      nanoGetSampleFiles(mcDirectory, 'ST_tW_top_ext1') + \
-      nanoGetSampleFiles(mcDirectory, 'WWTo2L2Nu') + \
-      nanoGetSampleFiles(mcDirectory, 'WpWmJJ_EWK') + \
-      nanoGetSampleFiles(mcDirectory, 'GluGluToWWToTNTN') + \
-      nanoGetSampleFiles(mcDirectory, 'ZZTo2L2Nu_ext1') + \
-      nanoGetSampleFiles(mcDirectory, 'ZZTo2L2Q') + \
-      nanoGetSampleFiles(mcDirectory, 'ZZTo4L_ext1') + \
-      nanoGetSampleFiles(mcDirectory, 'WZTo2L2Q') + \
-      nanoGetSampleFiles(mcDirectory, 'ZGToLLG') + \
-      nanoGetSampleFiles(mcDirectory, 'WZTo3LNu_mllmin01')
 
-  samples['Dyveto'] = {
-      'name': files,
-      'weight': '(1-embed_tautauveto)',
-      'FilesPerJob': 1, # There's some error about not finding sample-specific variables like "nllW" when mixing different samples into a single job; so split them all up instead
-  }
+  if runDYveto:
+      # Vetoed MC: Needed for uncertainty
+      files = nanoGetSampleFiles(mcDirectory, 'TTTo2L2Nu') + \
+          nanoGetSampleFiles(mcDirectory, 'ST_tW_antitop_ext1') + \
+          nanoGetSampleFiles(mcDirectory, 'ST_tW_top_ext1') + \
+          nanoGetSampleFiles(mcDirectory, 'WWTo2L2Nu') + \
+          nanoGetSampleFiles(mcDirectory, 'WpWmJJ_EWK') + \
+          nanoGetSampleFiles(mcDirectory, 'GluGluToWWToTNTN') + \
+          nanoGetSampleFiles(mcDirectory, 'ZZTo2L2Nu_ext1') + \
+          nanoGetSampleFiles(mcDirectory, 'ZZTo2L2Q') + \
+          nanoGetSampleFiles(mcDirectory, 'ZZTo4L_ext1') + \
+          nanoGetSampleFiles(mcDirectory, 'WZTo2L2Q') + \
+          nanoGetSampleFiles(mcDirectory, 'ZGToLLG') + \
+          nanoGetSampleFiles(mcDirectory, 'WZTo3LNu_mllmin01')
 
-  addSampleWeight(samples, 'Dyveto', 'TTTo2L2Nu', mcCommonWeight + '* (topGenPt * antitopGenPt > 0.) * (TMath::Sqrt((0.103*TMath::Exp(-0.0118*topGenPt) - 0.000134*topGenPt + 0.973) * (0.103*TMath::Exp(-0.0118*antitopGenPt) - 0.000134*antitopGenPt + 0.973))) + (topGenPt * antitopGenPt <= 0.)')
-  addSampleWeight(samples, 'Dyveto', 'ST_tW_antitop_ext1', mcCommonWeight)
-  addSampleWeight(samples, 'Dyveto', 'ST_tW_top_ext1', mcCommonWeight)
-  addSampleWeight(samples, 'Dyveto', 'WWTo2L2Nu', mcCommonWeight + '*nllW')
-  addSampleWeight(samples, 'Dyveto', 'WpWmJJ_EWK', mcCommonWeight + '*(Sum$(abs(GenPart_pdgId)==6 || GenPart_pdgId==25)==0)')
-  addSampleWeight(samples, 'Dyveto', 'GluGluToWWToTNTN', mcCommonWeight + '*1.53/1.4')
-  addSampleWeight(samples, 'Dyveto', 'ZZTo2L2Nu_ext1', mcCommonWeight + '*1.11')
-  addSampleWeight(samples, 'Dyveto', 'ZZTo2L2Q', mcCommonWeight + '*1.11')
-  addSampleWeight(samples, 'Dyveto', 'ZZTo4L_ext1', mcCommonWeight + '*1.11')
-  addSampleWeight(samples, 'Dyveto', 'WZTo2L2Q', mcCommonWeight + '*1.11')
-  addSampleWeight(samples, 'Dyveto', 'ZGToLLG', ' ( ' + mcCommonWeightNoMatch + '*(!(Gen_ZGstar_mass > 0))' + ' ) + ( ' + mcCommonWeight + ' * ((Gen_ZGstar_mass >0 && Gen_ZGstar_mass < 4) * 0.94 + (Gen_ZGstar_mass <0 || Gen_ZGstar_mass > 4) * 1.14) * (Gen_ZGstar_mass > 0)' + ' ) ') # Vg contribution + VgS contribution
-  addSampleWeight(samples, 'Dyveto', 'WZTo3LNu_mllmin01', mcCommonWeight + '*((Gen_ZGstar_mass >0 && Gen_ZGstar_mass < 4) * 0.94 + (Gen_ZGstar_mass <0 || Gen_ZGstar_mass > 4) * 1.14) * (Gen_ZGstar_mass > 0.1)')
+      samples['Dyveto'] = {
+          'name': files,
+          'weight': '(1-embed_tautauveto)',
+          'FilesPerJob': 1, # There's some error about not finding sample-specific variables like "nllW" when mixing different samples into a single job; so split them all up instead
+      }
+    
+      addSampleWeight(samples, 'Dyveto', 'TTTo2L2Nu', mcCommonWeight + '* (topGenPt * antitopGenPt > 0.) * (TMath::Sqrt((0.103*TMath::Exp(-0.0118*topGenPt) - 0.000134*topGenPt + 0.973) * (0.103*TMath::Exp(-0.0118*antitopGenPt) - 0.000134*antitopGenPt + 0.973))) + (topGenPt * antitopGenPt <= 0.)')
+      addSampleWeight(samples, 'Dyveto', 'ST_tW_antitop_ext1', mcCommonWeight)
+      addSampleWeight(samples, 'Dyveto', 'ST_tW_top_ext1', mcCommonWeight)
+      addSampleWeight(samples, 'Dyveto', 'WWTo2L2Nu', mcCommonWeight + '*nllW')
+      addSampleWeight(samples, 'Dyveto', 'WpWmJJ_EWK', mcCommonWeight + '*(Sum$(abs(GenPart_pdgId)==6 || GenPart_pdgId==25)==0)')
+      addSampleWeight(samples, 'Dyveto', 'GluGluToWWToTNTN', mcCommonWeight + '*1.53/1.4')
+      addSampleWeight(samples, 'Dyveto', 'ZZTo2L2Nu_ext1', mcCommonWeight + '*1.11')
+      addSampleWeight(samples, 'Dyveto', 'ZZTo2L2Q', mcCommonWeight + '*1.11')
+      addSampleWeight(samples, 'Dyveto', 'ZZTo4L_ext1', mcCommonWeight + '*1.11')
+      addSampleWeight(samples, 'Dyveto', 'WZTo2L2Q', mcCommonWeight + '*1.11')
+      addSampleWeight(samples, 'Dyveto', 'ZGToLLG', ' ( ' + mcCommonWeightNoMatch + '*(!(Gen_ZGstar_mass > 0))' + ' ) + ( ' + mcCommonWeight + ' * ((Gen_ZGstar_mass >0 && Gen_ZGstar_mass < 4) * 0.94 + (Gen_ZGstar_mass <0 || Gen_ZGstar_mass > 4) * 1.14) * (Gen_ZGstar_mass > 0)' + ' ) ') # Vg contribution + VgS contribution
+      addSampleWeight(samples, 'Dyveto', 'WZTo3LNu_mllmin01', mcCommonWeight + '*((Gen_ZGstar_mass >0 && Gen_ZGstar_mass < 4) * 0.94 + (Gen_ZGstar_mass <0 || Gen_ZGstar_mass > 4) * 1.14) * (Gen_ZGstar_mass > 0.1)')
 
 
 ###### DY MC ######

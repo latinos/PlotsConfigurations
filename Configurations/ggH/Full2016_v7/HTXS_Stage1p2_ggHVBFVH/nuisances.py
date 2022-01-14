@@ -184,8 +184,18 @@ nuisances['trigg'] = {
     'name': 'CMS_eff_hwwtrigger_2016',
     'kind': 'weight',
     'type': 'shape',
-    'samples': dict((skey, trig_syst) for skey in mc_emb)
+    'samples': dict((skey, trig_syst) for skey in mc)
 }
+
+trig_syst_emb = ['((TriggerEffWeight_2l_u)/(TriggerEffWeight_2l))*(TriggerEffWeight_2l>0.02) + (TriggerEffWeight_2l<=0.02)', '(TriggerEffWeight_2l_d)/(TriggerEffWeight_2l)']
+
+nuisances['trigg_emb'] = {
+    'name': 'CMS_eff_hwwtrigger_embedded_2016',
+    'kind': 'weight',
+    'type': 'shape',
+    'samples': {'Dyemb' : trig_syst_emb},
+}
+
 
 prefire_syst = ['PrefireWeight_Up/PrefireWeight', 'PrefireWeight_Down/PrefireWeight']
 
