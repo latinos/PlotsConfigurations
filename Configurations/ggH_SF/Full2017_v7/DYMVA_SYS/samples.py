@@ -6,7 +6,7 @@ configurations = os.path.dirname(configurations) # Full2017_v7
 configurations = os.path.dirname(configurations) # ggH_SF 
 configurations = os.path.dirname(configurations) # Configurations
 
-from LatinoAnalysis.Tools.commonTools import getSampleFiles, getBaseW, addSampleWeight
+from LatinoAnalysis.Tools.commonTools import getSampleFiles, getBaseW, addSampleWeight, getBaseWnAOD
 
 def nanoGetSampleFiles(inputDir, sample):
     try:
@@ -56,7 +56,8 @@ def makeMCDirectory(var=''):
     if var:
         return os.path.join(treeBaseDir, mcProduction, mcSteps.format(var='__' + var))
     else:
-        return os.path.join(treeBaseDir, mcProduction, mcSteps.format(var=''))
+        # return os.path.join(treeBaseDir, mcProduction, mcSteps.format(var=''))
+        return os.path.join(treeBaseDir, mcProduction, mcSteps.format(var='__trigFix'))
 
 mcDirectory = makeMCDirectory()
 fakeDirectory = os.path.join(treeBaseDir, fakeReco, fakeSteps)
