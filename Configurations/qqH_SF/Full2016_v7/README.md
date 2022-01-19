@@ -36,7 +36,8 @@ Or, if they failed because the wall clock time have been exceeded, resubmit them
 
     mkDYestim_data_splitNuisances.py --pycfg=configuration.py --dycfg=dyestim_qqH_SF.py --inputFile=rootFile/plots_qqH_SF_2016_v7.root --year=2016
 
-This step will also produce a new file, 'Nuisances_file.txt': copy its content in nuisances.py to properly consider uncertainty on the DY process. Remember to first delete the old values of the uncertainties! You can find them in nuisances.py, looking for the string 'Nuisances breakdown'.
+This step will also produce a new file, 'Nuisances_file.txt': copy its content in nuisances.py to properly consider uncertainties on the DY process. 
+Remember to first delete the old values of the uncertainties! You can find them in nuisances.py, looking for the string 'Nuisances breakdown'.
 
 ### Plot distributions
 
