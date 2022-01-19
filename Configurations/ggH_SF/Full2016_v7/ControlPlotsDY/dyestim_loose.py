@@ -70,8 +70,8 @@ RAndKff['DYmva0p80'] = {
 #DYestim = {}
 DYestim['hww2l2v_13TeV_0j_ee'] = {
     'rinout'  : 'DYmva0p80' ,
-    'rsyst'   : 0.04 ,
-    'ksyst'   : 0.02 ,
+    'rsyst'   : 0.03 ,
+    'ksyst'   : 0.01 ,
     'njet'    : '0j' ,
     'flavour' : 'ee' ,
     'DYProc'  : 'DY' ,
@@ -103,7 +103,7 @@ DYestim['hww2l2v_13TeV_0j_mm'] = {
     'NPname'  : 'DYmmnorm0j' ,
     'AccNum'  : 'hww2l2v_13TeV_0j_mm/events/histo_DY',
     'AccDen'  : 'hww2l2v_13TeV_AccDen_0j_mm/events/histo_DY',
-    'asyst'   : 0.08 ,
+    'asyst'   : 0.04 ,
 } 
 
 DYestim['hww2l2v_13TeV_1j_ee'] = {
@@ -141,12 +141,12 @@ DYestim['hww2l2v_13TeV_1j_mm'] = {
     'NPname'  : 'DYmmnorm1j' ,
     'AccNum'  : 'hww2l2v_13TeV_1j_mm/events/histo_DY',
     'AccDen'  : 'hww2l2v_13TeV_AccDen_1j_mm/events/histo_DY',
-    'asyst'   : 0.13 ,
+    'asyst'   : 0.12 ,
 } 
 
 DYestim['hww2l2v_13TeV_2j_ee'] = {
     'rinout'  : 'DYmva0p80' ,
-    'rsyst'   : 0.07 ,
+    'rsyst'   : 0.06 ,
     'ksyst'   : 0.01 ,
     'njet'    : '2j'    ,
     'flavour' : 'ee' ,
@@ -165,7 +165,7 @@ DYestim['hww2l2v_13TeV_2j_ee'] = {
 
 DYestim['hww2l2v_13TeV_2j_mm'] = {
     'rinout'  : 'DYmva0p80' ,
-    'rsyst'   : 0.01 ,
+    'rsyst'   : 0.02 ,
     'ksyst'   : 0.01 ,
     'njet'    : '2j'    ,
     'flavour' : 'mm' ,
@@ -222,7 +222,7 @@ DYestim['hww2l2v_13TeV_2j_vbf_mm'] = {
 
 DYestim['hww2l2v_13TeV_2j_vh_ee'] = {
     'rinout'  : 'DYmva0p80' ,
-    'rsyst'   : 0.20 ,
+    'rsyst'   : 0.06 ,
     'ksyst'   : 0.05 ,
     'njet'    : '2jVH'    ,
     'flavour' : 'ee' ,
@@ -236,12 +236,12 @@ DYestim['hww2l2v_13TeV_2j_vh_ee'] = {
     'NPname'  : 'DYeenorm2jvh' ,
     'AccNum'  : 'hww2l2v_13TeV_HAccNum_2j_vh_ee/events/histo_DY',
     'AccDen'  : 'hww2l2v_13TeV_AccDen_2j_vh_ee/events/histo_DY',
-    'asyst'   : 0.24 ,
+    'asyst'   : 0.10 ,
 }
 
 DYestim['hww2l2v_13TeV_2j_vh_mm'] = {
     'rinout'  : 'DYmva0p80' ,
-    'rsyst'   : 0.10 ,
+    'rsyst'   : 0.02 ,
     'ksyst'   : 0.10 ,
     'njet'    : '2jVH'    ,
     'flavour' : 'mm' ,
@@ -255,5 +255,5 @@ DYestim['hww2l2v_13TeV_2j_vh_mm'] = {
     'NPname'  : 'DYmmnorm2jvh' ,
     'AccNum'  : 'hww2l2v_13TeV_HAccNum_2j_vh_mm/events/histo_DY',
     'AccDen'  : 'hww2l2v_13TeV_AccDen_2j_vh_mm/events/histo_DY',
-    'asyst'   : 0.05 ,
+    'asyst'   : 0.06 ,
 }
