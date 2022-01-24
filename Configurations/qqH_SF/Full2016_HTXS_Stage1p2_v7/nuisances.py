@@ -260,8 +260,8 @@ nuisances['electronpt'] = {
     'mapUp' : 'ElepTup',
     'mapDown': 'ElepTdo',
     'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['DY']),
-    'folderUp': makeMCDirectory('ElepTup_suffix'),
-    'folderDown': makeMCDirectory('ElepTdo_suffix'),
+    'folderUp': makeMCDirectory('trigFix__ElepTup_suffix'),
+    'folderDown': makeMCDirectory('trigFix__ElepTdo_suffix'),
     'AsLnN': '1'
 }
 
@@ -281,8 +281,8 @@ nuisances['muonpt'] = {
     'mapUp': 'MupTup',
     'mapDown': 'MupTdo',
     'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['DY']),
-    'folderUp': makeMCDirectory('MupTup_suffix'),
-    'folderDown': makeMCDirectory('MupTdo_suffix'),
+    'folderUp': makeMCDirectory('trigFix__MupTup_suffix'),
+    'folderDown': makeMCDirectory('trigFix__MupTdo_suffix'),
     'AsLnN': '1'
 }
 
@@ -1195,68 +1195,7 @@ nuisances['Topnorm2j_vbf_mm']  = {
     'cuts'     : [cut for cut in cutshpt if 'mm' in cut]
 }
 
-
-# # Drell-Yan data-driven uncertainties
-
-# nuisances['DYeenormhpt']  = {
-#    'name'     : 'DYeenormhpt',
-#    'kind'     : 'weight',
-#    'type'     : 'shape',
-#    'samples'  : {
-#       'DY'    : ['1.','1.'] ,
-#       },
-#   'cutspost' : lambda self, cutshpt: [cut for cut in cutshpt if 'ee' in cut]
-# }
-
-# nuisances['DYmmnormhpt']  = {
-#    'name'     : 'DYmmnormhpt',
-#    'kind'     : 'weight',
-#    'type'     : 'shape',
-#    'samples'  : {
-#       'DY'    : ['1.','1.'] ,
-#       },
-#   'cutspost' : lambda self, cutshpt: [cut for cut in cutshpt if 'mm' in cut]
-# }
-
-# nuisances['DYeenormvbf']  = {
-#    'name'     : 'DYeenormvbf',
-#    'kind'     : 'weight',
-#    'type'     : 'shape',
-#    'samples'  : {
-#       'DY'    : ['1.','1.'] ,
-#       },
-#   'cutspost' : lambda self, cutsvbf: [cut for cut in cutsvbf if 'ee' in cut]
-# }
-
-# nuisances['DYmmnormvbf']  = {
-#    'name'     : 'DYmmnormvbf',
-#    'kind'     : 'weight',
-#    'type'     : 'shape',
-#    'samples'  : {
-#       'DY'    : ['1.','1.'] ,
-#       },
-#   'cutspost' : lambda self, cutsvbf: [cut for cut in cutsvbf if 'mm' in cut]
-# }
-
-# nuisances['DYeenormvh']  = {
-#    'name'     : 'DYeenormvh',
-#    'kind'     : 'weight',
-#    'type'     : 'shape',
-#    'samples'  : {
-#       'DY'    : ['1.','1.'] ,
-#       },
-#   'cutspost' : lambda self, cutsvh: [cut for cut in cutsvh if 'ee' in cut]
-# }
-
-# nuisances['DYmmnormvh']  = {
-#    'name'     : 'DYmmnormvh',
-#    'kind'     : 'weight',
-#    'type'     : 'shape',
-#    'samples'  : {
-#       'DY'    : ['1.','1.'] ,
-#       },
-#   'cutspost' : lambda self, cutsvh: [cut for cut in cutsvh if 'mm' in cut]
-# }
+# Drell-Yan data-driven uncertainties
 
 # Nuisances breakdown 
  
@@ -1274,7 +1213,7 @@ nuisances['DYnorm_em_hpt_mm_hww2l2v_13TeV_2j_mjjGT350_pthGT200_mm'] = {
   'name': 'DYnorm_em_hpt_2016',
   'type': 'lnN',
   'samples': {
-    'DY': '1.143/0.875',
+    'DY': '1.142/0.876',
   },
   'cuts' : ['hww2l2v_13TeV_2j_mjjGT350_pthGT200_mm'] 
 }
@@ -1283,7 +1222,7 @@ nuisances['DYnorm_R_hpt_mm_hww2l2v_13TeV_2j_mjjGT350_pthGT200_mm'] = {
   'name': 'DYnorm_R_hpt_mm_2016',
   'type': 'lnN',
   'samples': {
-    'DY': '0.842/1.187',
+    'DY': '0.844/1.185',
   },
   'cuts' : ['hww2l2v_13TeV_2j_mjjGT350_pthGT200_mm'] 
 }
@@ -1292,7 +1231,7 @@ nuisances['DYnorm_Acc_hpt_mm_hww2l2v_13TeV_2j_mjjGT350_pthGT200_mm'] = {
   'name': 'DYnorm_Acc_hpt_mm_2016',
   'type': 'lnN',
   'samples': {
-    'DY': '0.507/1.974',
+    'DY': '0.536/1.865',
   },
   'cuts' : ['hww2l2v_13TeV_2j_mjjGT350_pthGT200_mm'] 
 }
@@ -1320,7 +1259,7 @@ nuisances['DYnorm_R_2jVBF_ee_hww2l2v_13TeV_2j_mjjGT700_pthLT200_ee'] = {
   'name': 'DYnorm_R_2jVBF_ee_2016',
   'type': 'lnN',
   'samples': {
-    'DY': '0.850/1.176',
+    'DY': '0.851/1.176',
   },
   'cuts' : ['hww2l2v_13TeV_2j_mjjGT700_pthLT200_ee'] 
 }
@@ -1329,7 +1268,7 @@ nuisances['DYnorm_Acc_2jVBF_ee_hww2l2v_13TeV_2j_mjjGT700_pthLT200_ee'] = {
   'name': 'DYnorm_Acc_2jVBF_ee_2016',
   'type': 'lnN',
   'samples': {
-    'DY': '0.645/1.551',
+    'DY': '0.634/1.578',
   },
   'cuts' : ['hww2l2v_13TeV_2j_mjjGT700_pthLT200_ee'] 
 }
@@ -1348,7 +1287,7 @@ nuisances['DYnorm_em_2jVBF_mm_hww2l2v_13TeV_2j_mjj350_700_pthLT200_mm'] = {
   'name': 'DYnorm_em_2jVBF_2016',
   'type': 'lnN',
   'samples': {
-    'DY': '1.112/0.900',
+    'DY': '1.111/0.900',
   },
   'cuts' : ['hww2l2v_13TeV_2j_mjj350_700_pthLT200_mm'] 
 }
@@ -1357,7 +1296,7 @@ nuisances['DYnorm_R_2jVBF_mm_hww2l2v_13TeV_2j_mjj350_700_pthLT200_mm'] = {
   'name': 'DYnorm_R_2jVBF_mm_2016',
   'type': 'lnN',
   'samples': {
-    'DY': '0.898/1.113',
+    'DY': '0.900/1.112',
   },
   'cuts' : ['hww2l2v_13TeV_2j_mjj350_700_pthLT200_mm'] 
 }
@@ -1366,7 +1305,7 @@ nuisances['DYnorm_Acc_2jVBF_mm_hww2l2v_13TeV_2j_mjj350_700_pthLT200_mm'] = {
   'name': 'DYnorm_Acc_2jVBF_mm_2016',
   'type': 'lnN',
   'samples': {
-    'DY': '0.626/1.596',
+    'DY': '0.635/1.574',
   },
   'cuts' : ['hww2l2v_13TeV_2j_mjj350_700_pthLT200_mm'] 
 }
@@ -1385,7 +1324,7 @@ nuisances['DYnorm_em_hpt_ee_hww2l2v_13TeV_2j_mjjGT350_pthGT200_ee'] = {
   'name': 'DYnorm_em_hpt_2016',
   'type': 'lnN',
   'samples': {
-    'DY': '1.148/0.871',
+    'DY': '1.147/0.872',
   },
   'cuts' : ['hww2l2v_13TeV_2j_mjjGT350_pthGT200_ee'] 
 }
@@ -1394,7 +1333,7 @@ nuisances['DYnorm_R_hpt_ee_hww2l2v_13TeV_2j_mjjGT350_pthGT200_ee'] = {
   'name': 'DYnorm_R_hpt_ee_2016',
   'type': 'lnN',
   'samples': {
-    'DY': '0.820/1.220',
+    'DY': '0.820/1.219',
   },
   'cuts' : ['hww2l2v_13TeV_2j_mjjGT350_pthGT200_ee'] 
 }
@@ -1403,7 +1342,7 @@ nuisances['DYnorm_Acc_hpt_ee_hww2l2v_13TeV_2j_mjjGT350_pthGT200_ee'] = {
   'name': 'DYnorm_Acc_hpt_ee_2016',
   'type': 'lnN',
   'samples': {
-    'DY': '0.555/1.800',
+    'DY': '0.333/2.999',
   },
   'cuts' : ['hww2l2v_13TeV_2j_mjjGT350_pthGT200_ee'] 
 }
@@ -1422,7 +1361,7 @@ nuisances['DYnorm_em_2jVH_ee_hww2l2v_13TeV_2j_mjj65_105_ee'] = {
   'name': 'DYnorm_em_2jVH_2016',
   'type': 'lnN',
   'samples': {
-    'DY': '1.091/0.916',
+    'DY': '1.091/0.917',
   },
   'cuts' : ['hww2l2v_13TeV_2j_mjj65_105_ee'] 
 }
@@ -1431,7 +1370,7 @@ nuisances['DYnorm_R_2jVH_ee_hww2l2v_13TeV_2j_mjj65_105_ee'] = {
   'name': 'DYnorm_R_2jVH_ee_2016',
   'type': 'lnN',
   'samples': {
-    'DY': '0.517/1.933',
+    'DY': '0.750/1.333',
   },
   'cuts' : ['hww2l2v_13TeV_2j_mjj65_105_ee'] 
 }
@@ -1440,7 +1379,7 @@ nuisances['DYnorm_Acc_2jVH_ee_hww2l2v_13TeV_2j_mjj65_105_ee'] = {
   'name': 'DYnorm_Acc_2jVH_ee_2016',
   'type': 'lnN',
   'samples': {
-    'DY': '0.608/1.644',
+    'DY': '0.709/1.411',
   },
   'cuts' : ['hww2l2v_13TeV_2j_mjj65_105_ee'] 
 }
@@ -1459,7 +1398,7 @@ nuisances['DYnorm_em_2jVBF_mm_WW_hww2l2v_13TeV_WW_2j_vbf_mm'] = {
   'name': 'DYnorm_em_2jVBF_2016',
   'type': 'lnN',
   'samples': {
-    'DY': '1.112/0.900',
+    'DY': '1.111/0.900',
   },
   'cuts' : ['hww2l2v_13TeV_WW_2j_vbf_mm'] 
 }
@@ -1468,7 +1407,7 @@ nuisances['DYnorm_R_2jVBF_mm_WW_hww2l2v_13TeV_WW_2j_vbf_mm'] = {
   'name': 'DYnorm_R_2jVBF_mm_2016',
   'type': 'lnN',
   'samples': {
-    'DY': '0.921/1.085',
+    'DY': '0.922/1.084',
   },
   'cuts' : ['hww2l2v_13TeV_WW_2j_vbf_mm'] 
 }
@@ -1477,7 +1416,7 @@ nuisances['DYnorm_Acc_2jVBF_mm_WW_hww2l2v_13TeV_WW_2j_vbf_mm'] = {
   'name': 'DYnorm_Acc_2jVBF_mm_2016',
   'type': 'lnN',
   'samples': {
-    'DY': '0.595/1.682',
+    'DY': '0.595/1.680',
   },
   'cuts' : ['hww2l2v_13TeV_WW_2j_vbf_mm'] 
 }
@@ -1496,7 +1435,7 @@ nuisances['DYnorm_em_hpt_mm_WW_hww2l2v_13TeV_WW_2j_hpt_mm'] = {
   'name': 'DYnorm_em_hpt_2016',
   'type': 'lnN',
   'samples': {
-    'DY': '1.143/0.875',
+    'DY': '1.142/0.876',
   },
   'cuts' : ['hww2l2v_13TeV_WW_2j_hpt_mm'] 
 }
@@ -1505,7 +1444,7 @@ nuisances['DYnorm_R_hpt_mm_WW_hww2l2v_13TeV_WW_2j_hpt_mm'] = {
   'name': 'DYnorm_R_hpt_mm_2016',
   'type': 'lnN',
   'samples': {
-    'DY': '0.878/1.139',
+    'DY': '0.879/1.137',
   },
   'cuts' : ['hww2l2v_13TeV_WW_2j_hpt_mm'] 
 }
@@ -1514,7 +1453,7 @@ nuisances['DYnorm_Acc_hpt_mm_WW_hww2l2v_13TeV_WW_2j_hpt_mm'] = {
   'name': 'DYnorm_Acc_hpt_mm_2016',
   'type': 'lnN',
   'samples': {
-    'DY': '0.796/1.256',
+    'DY': '0.799/1.252',
   },
   'cuts' : ['hww2l2v_13TeV_WW_2j_hpt_mm'] 
 }
@@ -1551,7 +1490,7 @@ nuisances['DYnorm_Acc_2jVBF_ee_WW_hww2l2v_13TeV_WW_2j_vbf_ee'] = {
   'name': 'DYnorm_Acc_2jVBF_ee_2016',
   'type': 'lnN',
   'samples': {
-    'DY': '0.531/1.882',
+    'DY': '0.532/1.879',
   },
   'cuts' : ['hww2l2v_13TeV_WW_2j_vbf_ee'] 
 }
@@ -1570,7 +1509,7 @@ nuisances['DYnorm_em_2jVH_ee_WW_hww2l2v_13TeV_WW_2j_vh_ee'] = {
   'name': 'DYnorm_em_2jVH_2016',
   'type': 'lnN',
   'samples': {
-    'DY': '1.091/0.916',
+    'DY': '1.091/0.917',
   },
   'cuts' : ['hww2l2v_13TeV_WW_2j_vh_ee'] 
 }
@@ -1579,7 +1518,7 @@ nuisances['DYnorm_R_2jVH_ee_WW_hww2l2v_13TeV_WW_2j_vh_ee'] = {
   'name': 'DYnorm_R_2jVH_ee_2016',
   'type': 'lnN',
   'samples': {
-    'DY': '0.841/1.190',
+    'DY': '0.841/1.189',
   },
   'cuts' : ['hww2l2v_13TeV_WW_2j_vh_ee'] 
 }
@@ -1588,9 +1527,46 @@ nuisances['DYnorm_Acc_2jVH_ee_WW_hww2l2v_13TeV_WW_2j_vh_ee'] = {
   'name': 'DYnorm_Acc_2jVH_ee_2016',
   'type': 'lnN',
   'samples': {
-    'DY': '0.467/2.139',
+    'DY': '0.464/2.154',
   },
   'cuts' : ['hww2l2v_13TeV_WW_2j_vh_ee'] 
+}
+
+# 2jVBF_mm channel 
+nuisances['DYnorm_k_2jVBF_mm_hww2l2v_13TeV_2j_mjjGT700_pthLT200_mm'] = {
+  'name': 'DYnorm_k_2jVBF_2016',
+  'type': 'lnN',
+  'samples': {
+    'DY': '1.005/0.995',
+  },
+  'cuts' : ['hww2l2v_13TeV_2j_mjjGT700_pthLT200_mm'] 
+}
+
+nuisances['DYnorm_em_2jVBF_mm_hww2l2v_13TeV_2j_mjjGT700_pthLT200_mm'] = {
+  'name': 'DYnorm_em_2jVBF_2016',
+  'type': 'lnN',
+  'samples': {
+    'DY': '1.111/0.900',
+  },
+  'cuts' : ['hww2l2v_13TeV_2j_mjjGT700_pthLT200_mm'] 
+}
+
+nuisances['DYnorm_R_2jVBF_mm_hww2l2v_13TeV_2j_mjjGT700_pthLT200_mm'] = {
+  'name': 'DYnorm_R_2jVBF_mm_2016',
+  'type': 'lnN',
+  'samples': {
+    'DY': '0.900/1.112',
+  },
+  'cuts' : ['hww2l2v_13TeV_2j_mjjGT700_pthLT200_mm'] 
+}
+
+nuisances['DYnorm_Acc_2jVBF_mm_hww2l2v_13TeV_2j_mjjGT700_pthLT200_mm'] = {
+  'name': 'DYnorm_Acc_2jVBF_mm_2016',
+  'type': 'lnN',
+  'samples': {
+    'DY': '0.614/1.628',
+  },
+  'cuts' : ['hww2l2v_13TeV_2j_mjjGT700_pthLT200_mm'] 
 }
 
 # 2jVH_mm channel 
@@ -1616,7 +1592,7 @@ nuisances['DYnorm_R_2jVH_mm_hww2l2v_13TeV_2j_mjj65_105_mm'] = {
   'name': 'DYnorm_R_2jVH_mm_2016',
   'type': 'lnN',
   'samples': {
-    'DY': '0.720/1.389',
+    'DY': '0.884/1.131',
   },
   'cuts' : ['hww2l2v_13TeV_2j_mjj65_105_mm'] 
 }
@@ -1625,7 +1601,7 @@ nuisances['DYnorm_Acc_2jVH_mm_hww2l2v_13TeV_2j_mjj65_105_mm'] = {
   'name': 'DYnorm_Acc_2jVH_mm_2016',
   'type': 'lnN',
   'samples': {
-    'DY': '0.762/1.312',
+    'DY': '0.759/1.317',
   },
   'cuts' : ['hww2l2v_13TeV_2j_mjj65_105_mm'] 
 }
@@ -1653,7 +1629,7 @@ nuisances['DYnorm_R_2jVBF_ee_hww2l2v_13TeV_2j_mjj350_700_pthLT200_ee'] = {
   'name': 'DYnorm_R_2jVBF_ee_2016',
   'type': 'lnN',
   'samples': {
-    'DY': '0.850/1.176',
+    'DY': '0.851/1.176',
   },
   'cuts' : ['hww2l2v_13TeV_2j_mjj350_700_pthLT200_ee'] 
 }
@@ -1662,7 +1638,7 @@ nuisances['DYnorm_Acc_2jVBF_ee_hww2l2v_13TeV_2j_mjj350_700_pthLT200_ee'] = {
   'name': 'DYnorm_Acc_2jVBF_ee_2016',
   'type': 'lnN',
   'samples': {
-    'DY': '0.439/2.276',
+    'DY': '0.437/2.286',
   },
   'cuts' : ['hww2l2v_13TeV_2j_mjj350_700_pthLT200_ee'] 
 }
@@ -1681,7 +1657,7 @@ nuisances['DYnorm_em_hpt_ee_WW_hww2l2v_13TeV_WW_2j_hpt_ee'] = {
   'name': 'DYnorm_em_hpt_2016',
   'type': 'lnN',
   'samples': {
-    'DY': '1.148/0.871',
+    'DY': '1.147/0.872',
   },
   'cuts' : ['hww2l2v_13TeV_WW_2j_hpt_ee'] 
 }
@@ -1690,7 +1666,7 @@ nuisances['DYnorm_R_hpt_ee_WW_hww2l2v_13TeV_WW_2j_hpt_ee'] = {
   'name': 'DYnorm_R_hpt_ee_2016',
   'type': 'lnN',
   'samples': {
-    'DY': '0.849/1.177',
+    'DY': '0.850/1.176',
   },
   'cuts' : ['hww2l2v_13TeV_WW_2j_hpt_ee'] 
 }
@@ -1699,46 +1675,9 @@ nuisances['DYnorm_Acc_hpt_ee_WW_hww2l2v_13TeV_WW_2j_hpt_ee'] = {
   'name': 'DYnorm_Acc_hpt_ee_2016',
   'type': 'lnN',
   'samples': {
-    'DY': '0.729/1.371',
+    'DY': '0.729/1.372',
   },
   'cuts' : ['hww2l2v_13TeV_WW_2j_hpt_ee'] 
-}
-
-# 2jVBF_mm channel 
-nuisances['DYnorm_k_2jVBF_mm_hww2l2v_13TeV_2j_mjjGT700_pthLT200_mm'] = {
-  'name': 'DYnorm_k_2jVBF_2016',
-  'type': 'lnN',
-  'samples': {
-    'DY': '1.005/0.995',
-  },
-  'cuts' : ['hww2l2v_13TeV_2j_mjjGT700_pthLT200_mm'] 
-}
-
-nuisances['DYnorm_em_2jVBF_mm_hww2l2v_13TeV_2j_mjjGT700_pthLT200_mm'] = {
-  'name': 'DYnorm_em_2jVBF_2016',
-  'type': 'lnN',
-  'samples': {
-    'DY': '1.112/0.900',
-  },
-  'cuts' : ['hww2l2v_13TeV_2j_mjjGT700_pthLT200_mm'] 
-}
-
-nuisances['DYnorm_R_2jVBF_mm_hww2l2v_13TeV_2j_mjjGT700_pthLT200_mm'] = {
-  'name': 'DYnorm_R_2jVBF_mm_2016',
-  'type': 'lnN',
-  'samples': {
-    'DY': '0.898/1.113',
-  },
-  'cuts' : ['hww2l2v_13TeV_2j_mjjGT700_pthLT200_mm'] 
-}
-
-nuisances['DYnorm_Acc_2jVBF_mm_hww2l2v_13TeV_2j_mjjGT700_pthLT200_mm'] = {
-  'name': 'DYnorm_Acc_2jVBF_mm_2016',
-  'type': 'lnN',
-  'samples': {
-    'DY': '0.603/1.660',
-  },
-  'cuts' : ['hww2l2v_13TeV_2j_mjjGT700_pthLT200_mm'] 
 }
 
 # 2jVH_mm WW channel 
@@ -1764,7 +1703,7 @@ nuisances['DYnorm_R_2jVH_mm_WW_hww2l2v_13TeV_WW_2j_vh_mm'] = {
   'name': 'DYnorm_R_2jVH_mm_2016',
   'type': 'lnN',
   'samples': {
-    'DY': '0.897/1.114',
+    'DY': '0.901/1.109',
   },
   'cuts' : ['hww2l2v_13TeV_WW_2j_vh_mm'] 
 }
@@ -1773,7 +1712,7 @@ nuisances['DYnorm_Acc_2jVH_mm_WW_hww2l2v_13TeV_WW_2j_vh_mm'] = {
   'name': 'DYnorm_Acc_2jVH_mm_2016',
   'type': 'lnN',
   'samples': {
-    'DY': '0.528/1.896',
+    'DY': '0.713/1.402',
   },
   'cuts' : ['hww2l2v_13TeV_WW_2j_vh_mm'] 
 }

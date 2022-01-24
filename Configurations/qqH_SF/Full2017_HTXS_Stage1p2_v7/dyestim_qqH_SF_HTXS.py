@@ -51,11 +51,10 @@ RAndKff['DYmva0p9'] = {
 
 
 ## DYestim in the signal regions
-
 DYestim['hww2l2v_13TeV_2j_mjj65_105_ee'] = {
     'rinout'  : 'DYmva0p8',
-    'rsyst'   : 0.02,
-    'ksyst'   : 0.02,
+    'rsyst'   : 0.05,
+    'ksyst'   : 0.03,
     'njet'    : '2jVH',
     'flavour' : 'ee',
     'DYProc'  : 'DY',
@@ -68,7 +67,7 @@ DYestim['hww2l2v_13TeV_2j_mjj65_105_ee'] = {
     'NPname'  : 'DYeenormvh',
     'AccNum'  : 'hww2l2v_13TeV_HAccNum_2j_mjj65_105_ee/events/histo_DY',
     'AccDen'  : 'hww2l2v_13TeV_AccDen_2j_vh_ee/events/histo_DY',
-    'asyst'   : 0.12,
+    'asyst'   : 0.19,
 }
 
 DYestim['hww2l2v_13TeV_2j_mjj65_105_mm'] = {
@@ -87,7 +86,7 @@ DYestim['hww2l2v_13TeV_2j_mjj65_105_mm'] = {
     'NPname'  : 'DYmmnormvh',
     'AccNum'  : 'hww2l2v_13TeV_HAccNum_2j_mjj65_105_mm/events/histo_DY',
     'AccDen'  : 'hww2l2v_13TeV_AccDen_2j_vh_mm/events/histo_DY',
-    'asyst'   : 0.02,
+    'asyst'   : 0.20,
 }
 
 DYestim['hww2l2v_13TeV_2j_mjj350_700_pthLT200_ee'] = {
@@ -205,7 +204,6 @@ DYestim['hww2l2v_13TeV_2j_mjjGT350_pthGT200_mm'] = {
 }
 
 ## DYestim in the WW control regions
-
 DYestim['hww2l2v_13TeV_WW_2j_vh_ee'] = {
     'rinout'  : 'DYmva0p8',
     'njet'    : '2jVH',
@@ -220,7 +218,7 @@ DYestim['hww2l2v_13TeV_WW_2j_vh_ee'] = {
     'NPname'  : 'DYeenormvh',
     'AccNum'  : 'hww2l2v_13TeV_wwAcc_2j_vh_ee/events/histo_DY',
     'AccDen'  : 'hww2l2v_13TeV_AccDen_2j_vh_ee/events/histo_DY',
-    'asyst'   : 0.10,
+    'asyst'   : 0.05,
 }
 
 DYestim['hww2l2v_13TeV_WW_2j_vh_mm'] = {
@@ -237,7 +235,7 @@ DYestim['hww2l2v_13TeV_WW_2j_vh_mm'] = {
     'NPname'  : 'DYmmnormvh',
     'AccNum'  : 'hww2l2v_13TeV_wwAcc_2j_vh_mm/events/histo_DY',
     'AccDen'  : 'hww2l2v_13TeV_AccDen_2j_vh_mm/events/histo_DY',
-    'asyst'   : 0.02,
+    'asyst'   : 0.10,
 }
 
 DYestim['hww2l2v_13TeV_WW_2j_vbf_ee'] = {

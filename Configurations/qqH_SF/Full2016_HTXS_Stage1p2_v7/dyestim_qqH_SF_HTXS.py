@@ -53,7 +53,7 @@ RAndKff['DYmva0p9'] = {
 ## DYestim in the signal regions
 DYestim['hww2l2v_13TeV_2j_mjj65_105_ee'] = {
     'rinout'  : 'DYmva0p8',
-    'rsyst'   : 0.20,
+    'rsyst'   : 0.06,
     'ksyst'   : 0.05,
     'njet'    : '2jVH',
     'flavour' : 'ee',
@@ -67,12 +67,12 @@ DYestim['hww2l2v_13TeV_2j_mjj65_105_ee'] = {
     'NPname'  : 'DYeenormvh',
     'AccNum'  : 'hww2l2v_13TeV_HAccNum_2j_mjj65_105_ee/events/histo_DY',
     'AccDen'  : 'hww2l2v_13TeV_AccDen_2j_vh_ee/events/histo_DY',
-    'asyst'   : 0.24,
+    'asyst'   : 0.10,
 }
 
 DYestim['hww2l2v_13TeV_2j_mjj65_105_mm'] = {
     'rinout'  : 'DYmva0p8',
-    'rsyst'   : 0.10,
+    'rsyst'   : 0.02,
     'ksyst'   : 0.10,
     'njet'    : '2jVH',
     'flavour' : 'mm',
@@ -86,7 +86,7 @@ DYestim['hww2l2v_13TeV_2j_mjj65_105_mm'] = {
     'NPname'  : 'DYmmnormvh',
     'AccNum'  : 'hww2l2v_13TeV_HAccNum_2j_mjj65_105_mm/events/histo_DY',
     'AccDen'  : 'hww2l2v_13TeV_AccDen_2j_vh_mm/events/histo_DY',
-    'asyst'   : 0.05,
+    'asyst'   : 0.06,
 }
 
 DYestim['hww2l2v_13TeV_2j_mjj350_700_pthLT200_ee'] = {
@@ -143,7 +143,7 @@ DYestim['hww2l2v_13TeV_2j_mjjGT700_pthLT200_ee'] = {
     'NPname'  : 'DYeenormvbf',
     'AccNum'  : 'hww2l2v_13TeV_HAccNum_2j_mjjGT700_pthLT200_ee/events/histo_DY',
     'AccDen'  : 'hww2l2v_13TeV_AccDen_2j_vbf_ee/events/histo_DY',
-    'asyst'   : 0.03,
+    'asyst'   : 0.08,
 }
 
 DYestim['hww2l2v_13TeV_2j_mjjGT700_pthLT200_mm'] = {
@@ -181,7 +181,7 @@ DYestim['hww2l2v_13TeV_2j_mjjGT350_pthGT200_ee'] = {
     'NPname'  : 'DYeenormhpt',
     'AccNum'  : 'hww2l2v_13TeV_HAccNum_2j_mjjGT350_pthGT200_ee/events/histo_DY',
     'AccDen'  : 'hww2l2v_13TeV_AccDen_2j_hpt_ee/events/histo_DY',
-    'asyst'   : 0.03,
+    'asyst'   : 0.08,
 }
 
 DYestim['hww2l2v_13TeV_2j_mjjGT350_pthGT200_mm'] = {
@@ -236,7 +236,7 @@ DYestim['hww2l2v_13TeV_WW_2j_vh_mm'] = {
     'NPname'  : 'DYmmnormvh',
     'AccNum'  : 'hww2l2v_13TeV_wwAcc_2j_vh_mm/events/histo_DY',
     'AccDen'  : 'hww2l2v_13TeV_AccDen_2j_vh_mm/events/histo_DY',
-    'asyst'   : 0.06,
+    'asyst'   : 0.02,
 }
 
 DYestim['hww2l2v_13TeV_WW_2j_vbf_ee'] = {

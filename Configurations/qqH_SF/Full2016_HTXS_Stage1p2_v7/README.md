@@ -1,4 +1,4 @@
-# Quark-quark tag simplified template cross-section analysis 2016
+B1;5202;0c# Quark-quark tag simplified template cross-section analysis 2016
 
 Configuration for the same-flavor qqH-tag simplified template cross-section analysis using 2016 Data.
 
@@ -34,17 +34,9 @@ Or, if they failed because the wall clock time have been exceeded, resubmit them
 
 ### Use previously-produced data-driven DY estimation histograms to correct yields in original distributions
 
-    mkDYestim_data.py --pycfg=configuration.py --dycfg=dyestim_qqH_SF_HTXS.py --inputFile=rootFile/plots_qqH_HTXS_SF_2016_v7.root
-
-With DY nuisances breakdown:
-
     mkDYestim_data_splitNuisances.py --pycfg=configuration.py --dycfg=dyestim_qqH_SF_HTXS.py --inputFile=rootFile/plots_qqH_HTXS_SF_2016_v7.root --year=2016
 
 ### Plot distributions
-
-    mkPlot.py --pycfg=configuration.py --inputFile=rootFile/plots_qqH_HTXS_SF_2016_v7_DYEstimDATA.root --linearOnly --fileFormats=png --onlyPlot=cratio
-
-If DY nuisance breakdown was used:
 
     mkPlot.py --pycfg=configuration.py --inputFile=rootFile/plots_qqH_HTXS_SF_2016_v7_DYEstimDATA_breakdown.root --linearOnly --fileFormats=png --onlyPlot=cratio
 
