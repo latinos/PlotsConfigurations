@@ -164,16 +164,3 @@ variables['events']  = {   'name': '1',
 #                        }
 #
 #
-variables['jetpt1']  = {   'name': 'std_vector_jet_pt[0]',     
-                        #'range' : (40,0,100),   
-                        'range' : (10,30,200),   
-                        'xaxis' : 'p_{T} 1st jet',
-                        'fold'  : 0                        
-                        }
-
-variables['jetpt2']  = {   'name': 'std_vector_jet_pt[1]',     
-                        #'range' : (40,0,100),   
-                        'range' : (10,30,200),   
-                        'xaxis' : 'p_{T} 2nd jet',
-                        'fold'  : 0                        
-                        }

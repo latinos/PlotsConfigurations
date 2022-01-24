@@ -11,6 +11,7 @@ configurations = os.path.dirname(configurations) # Configurations
 
 mc = [skey for skey in samples if skey not in ('Fake', 'DATA')]
 btag_algo="deepcsv"#deepflav
+btagWP = '0.0532'
 
 eleWP = 'mvaFall17V1Iso_WP90_tthmva_70'
 muWP = 'cut_Tight_HWWW_tthmva_80'
@@ -119,20 +120,20 @@ aliases['DY_LO_pTllrw'] = {
 
 if btag_algo=="deepcsv":
     aliases['bVeto'] = {
-        'expr': 'Sum$(CleanJet_pt > 20. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.1522) == 0'
+        'expr': 'Sum$(CleanJet_pt > 20. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > '+btagWP+') == 0'
     }
     
     aliases['bReq'] = {
-        'expr': 'Sum$(CleanJet_pt > 30. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.1522) >= 1'
+        'expr': 'Sum$(CleanJet_pt > 30. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > '+btagWP+') >= 1'
     }
   
 elif btag_algo=="deepflav":
     aliases['bVeto'] = {
-        'expr': 'Sum$(CleanJet_pt > 20. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepFlavB[CleanJet_jetIdx] >  0.0521) == 0'
+        'expr': 'Sum$(CleanJet_pt > 20. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepFlavB[CleanJet_jetIdx] >  '+btagWP+') == 0'
     }
     
     aliases['bReq'] = {
-        'expr': 'Sum$(CleanJet_pt > 30. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepFlavB[CleanJet_jetIdx] >  0.0521) >= 1'
+        'expr': 'Sum$(CleanJet_pt > 30. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepFlavB[CleanJet_jetIdx] >  '+btagWP+') >= 1'
     }
 
 # CR definitions
@@ -365,4 +366,9 @@ aliases['B0'] = {
 aliases['fid'] = {
     'expr' : 'fiducial',
     'samples' : ['WW','ggWW']
+}
+
+aliases['BDTOutput'] = {
+    'class': 'ww_top_bdt_2j',
+    'linesToAdd' : ['.L %s/WW/FullRunII/Full2017_v7/inclusive/WW_BDT.cc+' % configurations],
 }

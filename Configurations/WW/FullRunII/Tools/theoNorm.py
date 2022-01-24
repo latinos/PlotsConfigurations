@@ -10,7 +10,7 @@ TH1.AddDirectory(0)
 doTable = False
 
 if len(sys.argv) < 2:
-    print "Usage: python diffVar"
+    print "Usage: python theoNorm.py <diffVar>"
     exit()
 
 diffVar = sys.argv[1]
