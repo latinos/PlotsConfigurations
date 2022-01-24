@@ -18,6 +18,7 @@ dymvaVBF  = 'dymva_alt_dnn_VBF > 0.975'
 dymvaVH   = 'dymva_alt_dnn_VH  > 0.840'
 dymvahpt  = '('+dymva0jet+' || '+dymva1jet+' || '+dymva2jet+' || '+dymvaVBF+' || '+dymvaVH+')'
 dymvahpt_loose  = '(dymva_alt_dnn_0j > 0.8 || dymva_alt_dnn_1j > 0.8 || dymva_alt_dnn_2j > 0.8 || dymva_alt_dnn_VH > 0.8 || dymva_alt_dnn_VBF > 0.8)'
+dymvaVBF_veto  = 'dymva_alt_dnn_VBF < 0.975'
 
 # Higgs Signal Regions: ee/uu * 0/1/2 jet
 cuts['hww2l2v_13TeV_0j'] = {
@@ -41,7 +42,7 @@ cuts['hww2l2v_13TeV_1j'] = {
    }
 }
 cuts['hww2l2v_13TeV_2j'] = {
-   'expr': 'sr && (Lepton_pdgId[0]==-Lepton_pdgId[1]) && 2jggH && Higgs2jet && pTWW <= 200 && '+dymva2jet,
+   'expr': 'sr && (Lepton_pdgId[0]==-Lepton_pdgId[1]) && 2jggH && Higgs2jet && pTWW <= 200 && '+dymva2jet + ' && ' + dymvaVBF_veto,
    'categories' : {
        'ee_mjj0_350_pth0_60'     : '(Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11) && mjj <= 350 && pTWW <= 60',
        'mm_mjj0_350_pth0_60'     : '(Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13) && mjj <= 350 && pTWW <= 60',
