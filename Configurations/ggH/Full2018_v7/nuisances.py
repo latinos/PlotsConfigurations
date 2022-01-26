@@ -145,14 +145,22 @@ nuisances['trigg_drll_rw_unc'] = {
     'symmetrize' : True,
 }
 
-
-trig_syst = ['((TriggerEffWeight_2l_u)/(TriggerEffWeight_2l))*(TriggerEffWeight_2l>0.02) + (TriggerEffWeight_2l<=0.02)', '(TriggerEffWeight_2l_d)/(TriggerEffWeight_2l)']
+trig_syst = ['((TriggerAltEffWeight_2l_u)/(TriggerAltEffWeight_2l))*(TriggerAltEffWeight_2l>0.02) + (TriggerAltEffWeight_2l<=0.02)', '(TriggerAltEffWeight_2l_d)/(TriggerAltEffWeight_2l)']
 
 nuisances['trigg'] = {
     'name': 'CMS_eff_hwwtrigger_2018',
     'kind': 'weight',
     'type': 'shape',
-    'samples': dict((skey, trig_syst) for skey in mc_emb)
+    'samples': dict((skey, trig_syst) for skey in mc),
+}
+
+trig_syst_emb = ['((TriggerEffWeight_2l_u)/(TriggerEffWeight_2l))*(TriggerEffWeight_2l>0.02) + (TriggerEffWeight_2l<=0.02)', '(TriggerEffWeight_2l_d)/(TriggerEffWeight_2l)']
+
+nuisances['trigg_emb'] = {
+    'name': 'CMS_eff_hwwtrigger_embedded_2018',
+    'kind': 'weight',
+    'type': 'shape',
+    'samples': {'Dyemb' : trig_syst_emb},
 }
 
 ##### Electron Efficiency and energy scale
@@ -180,8 +188,8 @@ nuisances['electronpt'] = {
     'mapUp': 'ElepTup',
     'mapDown': 'ElepTdo',
     'samples': dict((skey, ['1', '1']) for skey in mc),
-    'folderUp': makeMCDirectory('ElepTup_suffix'),
-    'folderDown': makeMCDirectory('ElepTdo_suffix'),
+    'folderUp': makeMCDirectory('trigFix__ElepTup_suffix'),
+    'folderDown': makeMCDirectory('trigFix__ElepTdo_suffix'),
     'AsLnN': '1'
 }
 
@@ -223,8 +231,8 @@ nuisances['muonpt'] = {
     'mapUp': 'MupTup',
     'mapDown': 'MupTdo',
     'samples': dict((skey, ['1', '1']) for skey in mc),
-    'folderUp': makeMCDirectory('MupTup_suffix'),
-    'folderDown': makeMCDirectory('MupTdo_suffix'),
+    'folderUp': makeMCDirectory('trigFix__MupTup_suffix'),
+    'folderDown': makeMCDirectory('trigFix__MupTdo_suffix'),
     'AsLnN': '1'
 }
 
