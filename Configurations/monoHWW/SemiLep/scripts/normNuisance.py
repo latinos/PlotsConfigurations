@@ -26,8 +26,13 @@ handle = open(args.config, 'r')
 exec(handle)
 handle.close()
 
-#cuts = {}
-#handle = open(cutsFile, 'r')
+#variables = {}
+#handle = open(variablesFile, 'r')
+#exec(handle)
+#handle.close()
+
+#cuts_norm = {}
+#handle = open(cuts_normFile, 'r')
 #exec(handle)
 #handle.close()
 
@@ -53,28 +58,60 @@ else:
     org_name = outputDir+'/plots_'+tag+'.root'
     new_name = org_name
     if not args.output is None: new_name = args.output
-    if not org_name == new_name: os.system('cp '+org_name+' '+new_name)
+    if not org_name == new_name: 
+        if not os.path.exists(new_name): os.system('cp '+org_name+' '+new_name)
     r_file = ROOT.TFile(new_name, 'UPDATE') 
     
 
-cuts = args.cut.split(',')
+cuts_norm = args.cut.split(',')
 samples_todo = args.sample.split(',')
 uncert_todo = args.nuis.split(',')
-variables = []
-for key in r_file.Get(cuts[0]).GetListOfKeys():
-    variables.append(key.GetName())
-if 'Events' in variables:
+variables_list = []
+for key in r_file.Get(cuts_norm[0]).GetListOfKeys():
+    variables_list.append(key.GetName())
+#variables_list = variables.keys()
+
+if 'Events' in variables_list:
     var_def = 'Events'
 else:
-    var_def = variables[0]
+    var_def = variables_list[0]
+#elif 'Puppimet' in variables_list:
+#    var_def = 'Puppimet'
 
-for nuis in uncert_todo:
-    print('Nuisance: '+nuis)
-    for samp in samples_todo:
-        print('-- Sample: '+samp)
-        
+cuts_todo = []
+for key in r_file.GetListOfKeys():
+    cuts_todo.append(key.GetName())
+print('Found cuts: '+str(cuts_todo))
+
+for samp in samples_todo:
+    print('Sample: '+samp)
+
+    # Catch case: do ALL nuisances (is sample dependant)
+    if 'ALL' in args.nuis:
+        print(' looking for ALL nuisances')
+        #print(' looking in '+cuts_norm[0]+'/'+var_def)
+        uncert_todo = []
+        keys = r_file.Get(cuts_norm[0]).Get(var_def).GetListOfKeys()
+        for key in keys:
+            name = key.GetName()
+            #if 'Wjets' in name: print('   - name: '+name)
+            if 'histo_'+samp+'_' in name: 
+                if name.endswith('Up'):
+                    nuis = name.replace('histo_'+samp+'_', '').replace('Up', '')
+                    #print(name , nuis)
+                    if nuis not in uncert_todo: uncert_todo.append(nuis)
+        print(' found nuisances: '+str(uncert_todo))
+
+    for nuis in uncert_todo:
+        print('-- Nuisance: '+nuis)
+
+        # Skip stat
+        if nuis.startswith('ibin') and nuis.endswith('stat'): 
+            print('---- Bin stat nuis skipped')
+            continue
+            
         #Check if nuis exists for this samp
-        if not r_file.Get(cuts[0]+'/'+var_def+'/histo_'+samp+'_'+nuis+'Up'):
+        if not r_file.Get(cuts_norm[0]+'/'+var_def+'/histo_'+samp+'_'+nuis+'Up'):
             print('---- No "'+nuis+'" found for this sample')
             continue
         
@@ -82,7 +119,7 @@ for nuis in uncert_todo:
         n_up  = 0
         n_do  = 0
     
-        for cut in cuts:
+        for cut in cuts_norm:
             n_nom += r_file.Get(cut+'/'+var_def+'/histo_'+samp).Integral()
             n_up  += r_file.Get(cut+'/'+var_def+'/histo_'+samp+'_'+nuis+'Up').Integral()
             n_do  += r_file.Get(cut+'/'+var_def+'/histo_'+samp+'_'+nuis+'Down').Integral()
@@ -93,8 +130,14 @@ for nuis in uncert_todo:
         print('---- Up norm factor: nom/up='+str(up_f)+', Down norm factor: nom/do='+str(do_f)+' (yields '+str(n_nom)+'/'+str(n_up)+'/'+str(n_do)+')')
 
         if not args.write: continue
-        for cut in cuts:
-            for var in variables:
+        for cut in cuts_todo:
+            for var in variables_list:
+
+                # Check if var exists for this cut
+                if not r_file.Get(cut+'/'+var):
+                    print('---- Variable "'+var+'" not found for cut "'+cut+'"')
+                    continue
+
                 up = r_file.Get(cut+'/'+var+'/histo_'+samp+'_'+nuis+'Up')
                 do = r_file.Get(cut+'/'+var+'/histo_'+samp+'_'+nuis+'Down')
         
@@ -107,80 +150,3 @@ for nuis in uncert_todo:
                 do.Write('', ROOT.TObject.kOverwrite)
                 r_file.cd()
 
-#        
-#
-#
-#
-#if 'ALL' in args.sample:
-#    samps = []
-#    keys = r_file.Get(args.cut.split(',')[0]).Get(args.var).GetListOfKeys()
-#    for skey in keys:
-#        name = skey.GetName()
-#        if not name.startswith('histo_'): continue
-#        if not name.endswith('Up') and not name.endswith('Down'):
-#            samp = name.replace('histo_', '')
-#            if 'darkHiggs' in samp and not args.do_signal: 
-#                if not 'mhs_160_mx_100_mZp_500' in samp: continue
-#
-#            # var test
-#            var_name = args.cut.split(',')[0]+'/'+args.var+'/histo_'+samp+'_'+args.nuis.split(',')[0]+'Up'
-#            if not r_file.Get(var_name): continue 
-#            print(name, samp)
-#
-#            if samp not in samps: samps.append(samp)
-#else: samps = args.sample.split(',')
-##exit()
-#
-#for samp in samps:
-#    nominal = None
-#    up_var = None
-#    do_var = None
-#    for cut in args.cut.split(','):
-#        #print('-- Sample: "'+samp+'"')
-#        # Fill nominal
-#        nom_name = cut+'/'+args.var+'/histo_'+samp
-#        if nominal is None: nominal = copy.deepcopy(r_file.Get(nom_name))    
-#        else: nominal.Add(r_file.Get(nom_name))
-#
-#        if 'ALL' in args.nuis:
-#            nuis_list = []
-#            keys = r_file.Get(cut).Get(args.var).GetListOfKeys()
-#            for key in keys:
-#                name = key.GetName()
-#                if 'histo_'+samp+'_' in name: 
-#                    if name.endswith('Up'):
-#                        nuis = name.replace('histo_'+samp+'_', '').replace('Up', '')
-#                        #print(name , nuis)
-#                        if nuis not in nuis_list: nuis_list.append(nuis)
-#            #exit()
-#        else: nuis_list = args.nuis.split(',')
-#        if len(nuis_list) > 1: raise ValueError('Multiple nuis not supported for now')
-#        for nuis in nuis_list:
-#            #print('---- Nuisance: "'+nuis+'"')
-#            # Fill up
-#            up_name = nom_name+'_'+nuis+'Up'
-#            tmp_up = r_file.Get(up_name)
-#            if not tmp_up: 
-#                print('---- Waring: up var not found -> skipping')
-#                continue
-#            if up_var is None: up_var = copy.deepcopy(tmp_up)
-#            else: up_var.Add(tmp_up)
-#
-#            # Fill do
-#            do_name = nom_name+'_'+nuis+'Down'
-#            tmp_do = r_file.Get(do_name)
-#            if not tmp_do: 
-#                print('---- Waring: do var not found -> skipping')
-#                continue
-#            if do_var is None: do_var = copy.deepcopy(tmp_do)
-#            else: do_var.Add(tmp_do)
-#
-#
-#            n_nom = nominal.Integral()
-#            n_up = up_var.Integral()
-#            n_do = do_var.Integral()
-#    if args.lnN:
-#        print('Nuisance "'+nuis+'", sample "'+samp+'" : up/nom='+str(n_up/n_nom)+', do/nom='+str(n_do/n_nom)+' (yields '+str(n_nom)+'/'+str(n_up)+'/'+str(n_do)+')')
-#    else: 
-#        print('Nuisance "'+nuis+'", sample "'+samp+'" : nom/up='+str(n_nom/n_up)+', nom/do='+str(n_nom/n_do)+' (yields '+str(n_nom)+'/'+str(n_up)+'/'+str(n_do)+')')
-#

@@ -12,7 +12,7 @@
 #    'scale'    : 1.0
 #}
 
-plot['Wjets_NLO']  = {
+plot['Wjets_NLOnj']  = {
     'color': 856-1, # kAzure -4
     'isSignal' : 0,
     'isData'   : 0,
@@ -60,5 +60,5 @@ plot['Wjets_NLOin']  = {
 
 
 # additional options
-legend['lumi'] = 'L = 35.9/fb'
+legend['lumi'] = 'L = 41.5/fb'
 legend['sqrt'] = '#sqrt{s} = 13 TeV'

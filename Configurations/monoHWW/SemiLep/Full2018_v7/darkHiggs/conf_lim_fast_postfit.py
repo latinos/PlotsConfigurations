@@ -24,10 +24,12 @@ cutsFile = 'cuts_lim.py'
 
 # file with list of samples
 samplesFile = 'samples_fast.py'
+#samplesFile = 'samples_fast_postfit.py'
 
 # file with list of samples
 #plotFile = 'plot.py'
 plotFile = 'plot_lim_fast.py'
+#plotFile = 'plot_lim_fast_postfit.py'
 
 # luminosity to normalize to (in 1/fb)
 lumi = 59.74

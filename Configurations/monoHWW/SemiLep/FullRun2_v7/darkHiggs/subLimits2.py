@@ -5,11 +5,13 @@ import argparse
 import subprocess
 
 parser = argparse.ArgumentParser(description = "Receive the parameters")
-parser.add_argument('--var'   , action = 'store', type = str, dest = 'var', default='newBDT_Ada13Var', help = 'Variable to combine with CR\'s')
+parser.add_argument('--var'   , action = 'store', type = str, dest = 'var'  , default='newBDT_Ada13Var', help = 'Variable to combine with CR\'s')
+parser.add_argument('--varCR' , action = 'store', type = str, dest = 'varCR', default='Events'         , help = 'Variable in the CR\'s')
 parser.add_argument('--combine-dir', action = 'store', type = str, dest = 'cmbDir', default='/afs/cern.ch/user/s/svanputt/work/monoHiggs/combine/CMSSW_10_2_13/src', help = 'Combine dir for the job')
 parser.add_argument('-q',  '--queue', help='Job queue', default='espresso', type=str)
 parser.add_argument('--tag', action = 'store', type = str, dest = 'tag', default='', help = 'tag in datacard path: darkHiggs_lim_datacards<TAG>')
 parser.add_argument('--no-cp', action = 'store_true', help='Do not cp/overwrite datacards')
+parser.add_argument('--unblind', action = 'store_true', help='Unblind limits')
 parser.add_argument('--resub', action = 'store_true', help='Resubmit missing jobs')
 parser.add_argument('-n',  '--dry-run', action = 'store_true', help='Do not submit')
 
@@ -39,7 +41,7 @@ job_dir = job_dir_base + '/' + args.var.replace('YEAR', 'Run2')
 if not os.path.isdir(job_dir): os.system('mkdir '+job_dir)
 
 channels = ['InCh_SR', 'InCh_SB', 'InCh_TCR', 'InCh_Combi']
-channel_vars = [args.var, 'Events', 'Events', args.var]
+channel_vars = [args.var, args.varCR, args.varCR, args.var]
 run2 = ['2016', '2017', '2018']
 
 if not args.resub: 
@@ -158,6 +160,7 @@ if not args.resub:
         #comb_cmd = 'combineCards.py '+' '.join([f2016_path_rel, f2017_path_rel, f2018_path_rel])+' > '+Comb_path_rel
         comb_cmd = 'combineCards.py '+' '.join(['Year2016='+f2016_path_rel, 'Year2017='+f2017_path_rel, 'Year2018='+f2018_path_rel])+' > '+Comb_path_rel
         run_cmd  = 'combine -M AsymptoticLimits --run blind '+Comb_path_rel+' -n _'+mass_point
+        if args.unblind: run_cmd  = 'combine -M AsymptoticLimits '+Comb_path_rel+' -n _'+mass_point
         
         write_job_files(job_dir, job_id, args.cmbDir, abs_work_dir, comb_cmd, run_cmd)
         jobs.append(job_dir +'/'+job_id)

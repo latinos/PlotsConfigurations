@@ -263,90 +263,118 @@ aliases['PUJetIdSF'] = {
 
 ### Fake-Weight stuff
 
-## BDT OTF
-
-MVA_folder = '%s/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/MVA/darkHiggs/' % os.getenv('CMSSW_BASE')
-
-xml_file_A13 = MVA_folder + 'UATmva_darkHiggsVWjAndTT_2017_BDT_125Trees_AdaBoost_GiniIndex_20Cuts_CostComplexity_12PruneStrength_13Var.weights.xml' 
-var_file_A13 = MVA_folder + 'Ada_13Var_variables.txt'
-
-aliases['newBDT_Ada13'] = {
-    'linesToAdd': [
-        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
-        '.L %s/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/Full2017_v7/darkHiggs/TMVAfiller_OTF.cc+' % os.getenv('CMSSW_BASE')
-    ],
-    'class': 'TMVAfillerOTF',
-    'args': (var_file_A13, xml_file_A13),
+### BDT OTF
+aliases['MHlnjj_j1_btag'] = {
+    'expr': 'Jet_btagDeepB[CleanJet_jetIdx[HM_idx_j1]]',
 }
-
-xml_file_G11 = MVA_folder + 'UATmva_darkHiggsVWjAndTT_2017_BDT_200Trees_Grad_FalseBagged_0.6BagFrac_1BagShrink_GiniIndex_20Cuts_CostComplexity_12PruneStrength_11Var.weights.xml'
-var_file_G11 = MVA_folder + 'Grad_11Var_variables.txt'
-
-aliases['newBDT_Grad11'] = {
-    'class': 'TMVAfillerOTF',
-    'args': (var_file_G11, xml_file_G11),
+aliases['MHlnjj_j2_btag'] = {
+    'expr': 'Jet_btagDeepB[CleanJet_jetIdx[HM_idx_j2]]',
 }
-
-# Clean BDT's
 MVA_folder = '%s/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/MVA/darkHiggs/' % os.getenv('CMSSW_BASE')
 # Clean BDT's
 bdt_dict = {
-   # mtw study
-   'BDT_nom' : MVA_folder + '/mtwStudy/lowCut/UATmva_darkHiggsHighMZpVWjAndTT_2017_BDT_500Trees_Grad_FalseBagged_0.6BagFrac_1BagShrink_GiniIndex_20Cuts_CostComplexity_12PruneStrength_13Var.weights.xml',
-   'BDT_mtw' : MVA_folder + '/mtwStudy/lowCut/UATmva_darkHiggsHighMZpVWjAndTT_2017_BDT_500Trees_Grad_FalseBagged_0.6BagFrac_1BagShrink_GiniIndex_20Cuts_CostComplexity_12PruneStrength_14Var.weights.xml',
-   'BDT_hig' : MVA_folder + '/mtwStudy/highCut/UATmva_darkHiggsHighMZpVWjAndTT_2017_BDT_100Trees_Grad_FalseBagged_0.6BagFrac_1BagShrink_GiniIndex_20Cuts_CostComplexity_12PruneStrength_13Var.weights.xml',
-   #'DNN_nom' : MVA_folder + '/mtwStudy/lowCut/darkHiggsHighMZpVWjAndTT_2017_DNN_BN32ReluBN16Relu16Relu16ReluL2reg_400epochs_200batch_10tries_13vars.weights.xml',
-   #'DNN_mtw' : MVA_folder + '/mtwStudy/lowCut/darkHiggsHighMZpVWjAndTT_2017_DNN_BN32ReluBN16Relu16Relu16ReluL2reg14var_400epochs_200batch_10tries_14vars.weights.xml',
-   #'DNN_hig' : MVA_folder + '/mtwStudy/highCut/darkHiggsHighMZpVWjAndTTHighMtW_2017_DNN_BN32ReluBN16Relu16Relu16ReluL2reg_400epochs_200batch_10tries_13vars.weights.xml',
+    'BDT_Ada13' : MVA_folder + 'TKcut/UATmva_darkHiggsHighMZpVWjAndTT_2017_BDT_500Trees_AdaBoost_GiniIndex_20Cuts_CostComplexity_12PruneStrength_13Var.weights.xml',
 }
-clean_var = MVA_folder + 'CleanVar.txt'
-clean_var_tk = MVA_folder + 'CleanVar_Tk.txt'
-clean_var_pup = MVA_folder + 'CleanVar_Pup.txt'
-clean_7var_pup = MVA_folder + 'CleanVar_Pup_7var.txt'
 
-puppi_var = MVA_folder + '/mtwStudy/CleanVar_Pup.txt'
-puppi_mtw1_var = MVA_folder + '/mtwStudy/CleanVar_Pup_mtw.txt'
+tkcut_13var = MVA_folder + 'TKcut/Clean13Var.txt'
+tkcut_10var = MVA_folder + 'TKcut/Clean10Var.txt'
+tkcut_15var = MVA_folder + 'btag_study/btag/Clean15Var.txt'
 
 first = True
 for bdt in bdt_dict:
-    cur_var_file = puppi_var
+    cur_var_file = tkcut_13var
     do_keras = False
-    #if '13Var' in bdt_dict[bdt]: cur_var_file =  clean_var_pup
-    #if 'TkMET' in bdt_dict[bdt]: cur_var_file =  clean_var_tk
-    #if '7Var' in bdt_dict[bdt]: cur_var_file =  clean_7var_pup
-    #if 'DNN' in bdt_dict[bdt]: 
-    #    do_keras = True
-    #    cur_var_file =  clean_var_pup
-    if '14Var' in bdt_dict[bdt] or '14var' in bdt_dict[bdt]: cur_var_file = puppi_mtw1_var
+    if '10Var' in bdt_dict[bdt] or '10var' in bdt_dict[bdt]: cur_var_file = tkcut_10var
+    if '15Var' in bdt_dict[bdt] or '15var' in bdt_dict[bdt]: cur_var_file = tkcut_15var
     if 'DNN' in bdt_dict[bdt]: 
         do_keras = True
     aliases[bdt] = {
-        'class': 'TMVAfillerOTF',
+        #'class': 'TMVAfillerOTF',
+        'class': 'TMVAfillerOTFnew',
         'args': (cur_var_file, bdt_dict[bdt], do_keras),
     }
     if first: 
         aliases[bdt]['linesToAdd'] = [
             'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
-            '.L %s/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/Full2017_v7/darkHiggs/TMVAfiller_OTF.cc+' % os.getenv('CMSSW_BASE')
+            #'.L %s/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/Full2017_v7/darkHiggs/TMVAfiller_OTF.cc+' % os.getenv('CMSSW_BASE')
+            '.L %s/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/scripts/TMVAfiller_OTF_new.cc+' % os.getenv('CMSSW_BASE')
         ]
         first = False
 
-# Wjets Vpt SF
-# LO to NLOpt
-#aliases['VptSF'] = {
-#    'expr': '(LHE_Vpt < 100.) + \
-#             (LHE_Vpt > 100. && LHE_Vpt < 250.)*1.0072653458 + \
-#             (LHE_Vpt > 250. && LHE_Vpt < 400.)*0.904452152293 + \
-#             (LHE_Vpt > 400. && LHE_Vpt < 600.)*0.835180817618 + \
-#             (LHE_Vpt > 600.)*1.05379095752 ',
-#    'samples': ['Wjets_HTsf'],
-#}
-# HT to NLOpt
-aliases['VptSF'] = {
-    'expr': '(LHE_Vpt < 100.)*1.00938328954 + \
-             (LHE_Vpt > 100. && LHE_Vpt < 250.)*1.00938328954 + \
-             (LHE_Vpt > 250. && LHE_Vpt < 400.)*0.886890353455 + \
-             (LHE_Vpt > 400. && LHE_Vpt < 600.)*0.805548635994 + \
-             (LHE_Vpt > 600.)*0.726442956827 ',
-    'samples': ['Wjets_HTsf'],
+
+# Gen W stuff
+lastcopy = (1 << 13)
+aliases['GenW_pt'] = {
+    'expr': '(Sum$((GenPart_pt)*(abs(GenPart_pdgId) == 24 && (GenPart_statusFlags & '+str(lastcopy)+'))) - 1*(Sum$(abs(GenPart_pdgId) == 24 && (GenPart_statusFlags & '+str(lastcopy)+') == 0)))',
+    'samples': mc
+}
+aliases['GenW_mass'] = {
+    'expr': '(Sum$((GenPart_mass)*(abs(GenPart_pdgId) == 24 && (GenPart_statusFlags & '+str(lastcopy)+'))) - 1*(Sum$(abs(GenPart_pdgId) == 24 && (GenPart_statusFlags & '+str(lastcopy)+') == 0)))',
+    'samples': mc
+}
+aliases['nGenW'] = {
+    'expr': '(Sum$(abs(GenPart_pdgId) == 24 && (GenPart_statusFlags & '+str(lastcopy)+')))',
+    'samples': mc
+}
+aliases['GenW_mt'] = {
+    'expr': 'TMath::Sqrt(GenW_mass*GenW_mass + GenW_pt*GenW_pt)*(nGenW[0] == 1) - 1*(nGenW[0] == 0)',
+    'samples': mc
+}
+
+aliases['genW_pt'] = {
+    'linesToAdd': [
+        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_RELEASE_BASE'),
+        '.L %s/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/scripts/getGenWpt.cc+' % os.getenv('CMSSW_BASE')
+    ],
+    'class': 'getGenWpt',
+    'samples': mc
+}
+
+aliases['Wrecoil'] = {
+    'linesToAdd': [
+        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_RELEASE_BASE'),
+        '.L %s/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/scripts/getGenWrecoil.cc+' % os.getenv('CMSSW_BASE')
+    ],
+    'class': 'getGenWrecoil',
+    'samples': mc
+}
+
+aliases['kfact1D'] = { 
+    'linesToAdd': [
+        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_RELEASE_BASE'),
+        '.L %s/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/scripts/k_factor_unc2.cc+' % os.getenv('CMSSW_BASE')
+    ],  
+    'class': 'kFactorUnc2',
+    'args': ('PlotsConfigurations/Configurations/monoHWW/SemiLep/Wjets_kfactors/HT_to_NLO_QCD_k_factors3.root', 'k_factor_2016'),
+    'samples': mc,
+}
+aliases['kfact2D'] = { 
+    'linesToAdd': [
+        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_RELEASE_BASE'),
+        '.L %s/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/scripts/k_factor_2D_rec_unc.cc+' % os.getenv('CMSSW_BASE'),
+        #'.L %s/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/scripts/k_factor_2D_unc.cc+' % os.getenv('CMSSW_BASE'),
+    ],  
+    'class': 'kFactor2DRecUnc',
+    'args': ('PlotsConfigurations/Configurations/monoHWW/SemiLep/Wjets_kfactors/HT_to_NLO_QCD_2D_rec_k_factors.root', 'k_factor_2016'),
+    #'class': 'kFactor2DUnc',
+    #'args': ('PlotsConfigurations/Configurations/monoHWW/SemiLep/Wjets_kfactors/HT_to_NLO_QCD_2D_k_factors.root', 'k_factor_2016'),
+    'samples': mc,
+}
+aliases['kfactMjj'] = { 
+    'linesToAdd': [
+        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_RELEASE_BASE'),
+        '.L %s/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/scripts/k_factor_mjj_unc.cc+' % os.getenv('CMSSW_BASE')
+    ],  
+    'class': 'kFactorMjjUnc',
+    'args': ('PlotsConfigurations/Configurations/monoHWW/SemiLep/Wjets_kfactors/HT_to_NLO_QCD_k_factors_2016_mjj.root', 'k_factor_2016'),
+    'samples': mc,
+}
+aliases['kfactDetajj'] = { 
+    'linesToAdd': [
+        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_RELEASE_BASE'),
+        '.L %s/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/scripts/k_factor_detajj_unc.cc+' % os.getenv('CMSSW_BASE')
+    ],  
+    'class': 'kFactorDetajjUnc',
+    'args': ('PlotsConfigurations/Configurations/monoHWW/SemiLep/Wjets_kfactors/HT_to_NLO_QCD_k_factors_2016_detajj.root', 'k_factor_2016'),
+    'samples': mc,
 }
