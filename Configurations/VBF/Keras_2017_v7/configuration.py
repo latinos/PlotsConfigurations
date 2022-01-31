@@ -2,8 +2,8 @@
 
 treeName = 'Events'
 
-# tag = 'vbf_2017_v7_08_07_QCDscale_top_fix'
-tag = 'DNN_inputs_2017'
+tag = 'vbf_2017_v7_11_11'
+# tag = 'DNN_inputs_2017'
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFile'
@@ -12,8 +12,8 @@ outputDir = 'rootFile'
 aliasesFile = 'aliases.py'
 
 # file with list of variables
-# variablesFile = 'variables.py'
-variablesFile = 'variables_input.py'
+variablesFile = 'variables.py'
+# variablesFile = 'variables_input.py'
 
 # file with list of cuts
 cutsFile = 'cuts.py' 

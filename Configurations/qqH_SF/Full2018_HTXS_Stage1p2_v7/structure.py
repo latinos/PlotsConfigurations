@@ -77,11 +77,64 @@ structure['ggH'] = {
     'isData'   : 0    
 }
 
+import pickle
+with open('vbfDipoleScaleSTXS.pkl', 'rb') as handle:
+    vbfDipoleScale = pickle.load(handle)
+    
+with open('STXS_fraction_equalization.pkl') as handle:
+    STXS_frac_eq = pickle.load(handle)
+
 for signal in signals:
-    structure[signal] = {
-        'isSignal' : 1,
-        'isData'   : 0
-    }
+    print(signal)
+    if 'qqH_hww' in signal:
+        structure[signal] = {
+            'isSignal' : 1,
+            'isData'   : 0,
+            'scaleSampleForDatacard' : {cut : vbfDipoleScale[signal][cut] * STXS_frac_eq[signal] * 1.03621 for cut in cuts if cut in vbfDipoleScale[signal].keys()},
+        }
+    elif 'ggH_hww' in signal:
+        structure[signal] = {
+            'isSignal' : 1,
+            'isData'   : 0,
+            'scaleSampleForDatacard' : {cut : STXS_frac_eq[signal] * 1.03364 for cut in cuts},
+        }
+    elif ('WH_lep_hww' in signal or 'WH_had_hww' in signal):
+        structure[signal] = {
+            'isSignal' : 1,
+            'isData'   : 0,
+            'scaleSampleForDatacard' : {cut : STXS_frac_eq[signal] * 1.01724 for cut in cuts},
+        }
+    elif ('ZH_lep_hww' in signal or 'ZH_had_hww' in signal):
+        structure[signal] = {
+            'isSignal' : 1,
+            'isData'   : 0,
+            'scaleSampleForDatacard' : {cut : STXS_frac_eq[signal] * 1.01994 for cut in cuts},
+        }
+    elif 'ggZH_hww' in signal:
+        structure[signal] = {
+            'isSignal' : 1,
+            'isData'   : 0,
+            'scaleSampleForDatacard' : {cut : STXS_frac_eq[signal] * 1.02494 for cut in cuts},
+        }
+    else:
+        structure[signal] = {
+            'isSignal' : 1,
+            'isData'   : 0
+        }
+
+# for signal in signals:
+#     print(signal)
+#     if 'qqH_hww' in signal:
+#         structure[signal] = {
+#             'isSignal' : 1,
+#             'isData'   : 0,
+#             'scaleSampleForDatacard' : vbfDipoleScale[signal],
+#         }
+#     else:
+#         structure[signal] = {
+#             'isSignal' : 1,
+#             'isData'   : 0
+#         }
 
 
 # data

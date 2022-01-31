@@ -8,12 +8,24 @@ variables['events']  = {
       'xaxis' : 'events', 
       'fold' : 3,
       'cuts' : [
-             'hww2l2v_13TeV_top_2j', 
-             'hww2l2v_13TeV_top_2j_vbf', 
-             'hww2l2v_13TeV_top_2j_vh',
-             'hww2l2v_13TeV_dytt_2j', 
-             'hww2l2v_13TeV_dytt_2j_vbf', 
-             'hww2l2v_13TeV_dytt_2j_vh'
+           'hww2l2v_13TeV_top_2j_vh',
+            'hww2l2v_13TeV_top_2j_mjj350_700',
+            'hww2l2v_13TeV_top_2j_mjjGT350_pthGT200',
+            'hww2l2v_13TeV_top_2j_mjjGT700' ,
+            'hww2l2v_13TeV_top_2j_pth0_60'  ,
+            'hww2l2v_13TeV_top_2j_pth60_120',
+            'hww2l2v_13TeV_top_2j_pth120_200',
+            'hww2l2v_13TeV_top_pth200_300'   ,
+            'hww2l2v_13TeV_top_pthGT300',
+            'hww2l2v_13TeV_dytt_2j_vh',
+            'hww2l2v_13TeV_dytt_2j_mjj350_700',
+            'hww2l2v_13TeV_dytt_2j_mjjGT350_pthGT200',
+            'hww2l2v_13TeV_dytt_2j_mjjGT700' ,
+            'hww2l2v_13TeV_dytt_2j_pth0_60'  ,
+            'hww2l2v_13TeV_dytt_2j_pth60_120',
+            'hww2l2v_13TeV_dytt_2j_pth120_200',
+            'hww2l2v_13TeV_dytt_pth200_300'   ,
+            'hww2l2v_13TeV_dytt_pthGT300',
       ]
 }
 
@@ -74,7 +86,8 @@ variables['mllVSmth_4x3bins'] = {   'name': 'mll:mth',            #   variable n
                                      #
                                      
                                     'cuts' : [
-                                          'hww2l2v_13TeV_of_pth300_450'
+                                          'hww2l2v_13TeV_of_pth300_450',
+                                          'hww2l2v_13TeV_of_pthGT300',
                                     ]
                                 }
 

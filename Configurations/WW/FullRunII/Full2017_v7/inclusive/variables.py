@@ -1,14 +1,12 @@
 # variables
-'''
+
 variables['BDTOutput'] = {
-     'name': 'hww_WW_BDT(Entry$,0)',
-#     'range' : ([-0.50,-0.25,-0.15,0.,0.15,0.25,0.35,0.50,0.80],),
-     'range' : (10,-1,1),
-     'xaxis' : 'MVA discriminant WW',
-     'fold' : 3,
-     'linesToAdd' : ['.L /afs/cern.ch/work/a/arun/Latinos/Check_forCC7/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/WW/FullRunII/Full2017_v7/inclusive/hww_WW_BDT.C+']
-}  #change the path of macro
-'''
+    'name': 'BDTOutput',
+    'range' : ([-1.0,-0.5,-0.25,0.,0.25,0.5,1.0],),
+    'xaxis' : 'MVA discriminant WW',
+    'fold' : 3,
+}
+
 variables['events']  = {   'name': '1',      
                         'range' : (1,0,2),  
                         'xaxis' : 'events', 
@@ -27,119 +25,128 @@ variables['mth']  = {   'name': 'mth',
                         'fold' : 3
                         }
 
-### File does not exist in repository
-#variables['BDTOutput'] = {
-#     'name': 'hww_WW_BDTG4D3(Entry$,0)',
-#     'range' : (10,-1,1),
-#     'xaxis' : 'MVA discriminant WW',
-#     'fold' : 3,
-#     'linesToAdd' : ['.L /afs/cern.ch/work/a/arun/Latinos/Check_forCC7/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/WW/FullRunII/Full2017_v7/inclusive/hww_WW_BDTG4D3.C+']
-#}
-'''
-variables['mth-more']  = {   'name': 'mth',
-                        'range' : (20, 60,200),
-                        'xaxis' : 'm_{T}^{WW} [GeV]',
-                        'fold' : 3
-                        }
-
-variables['ptll']  = {   'name': 'ptll',
-                        'range' : (20, 0.,200),
-                        'xaxis' : 'p_{T}^{ll} [GeV]',
-                        'fold' : 0
-                        }
-
-variables['pt1']  = {   'name': 'Lepton_pt[0]',
+variables['pt1']  = {   'name': 'pt1',
                         'range' : (20,20,100),
-                        'xaxis' : 'p_{T} 1st lep',
-                        'fold'  : 0
-                        }
-
-variables['pt2']  = {   'name': 'Lepton_pt[1]',
-                        'range' : (20,10,100),
-                        'xaxis' : 'p_{T} 2nd lep',
-                        'fold'  : 0
-                        }
-
-variables['eta1']  = {  'name': 'Lepton_eta[0]',
-                        'range' : (20,-3,3),
-                        'xaxis' : '#eta 1st lep',
+                        'xaxis' : 'pt1',
                         'fold'  : 3
                         }
 
-variables['eta2']  = {  'name': 'Lepton_eta[1]',
-                        'range' : (20,-3,3),
-                        'xaxis' : '#eta 2nd lep',
+variables['drll']  = {  'name': 'drll',
+                        'range' : (20,0,6),
+                        'xaxis' : 'drll',
                         'fold'  : 3
                         }
 
+variables['dphillmet'] = { 'name': 'dphillmet',
+                           'range' : (20,0,3.15),
+                           'xaxis' : 'dphillmet',
+                           'fold'  : 3
+                       }
 
-variables['phi1']  = {  'name': 'Lepton_phi[0]',
-                        'range' : (20,-3.2,3.2),
-                        'xaxis' : '#phi 1st lep',
-                        'fold'  : 3
-                        }
-
-variables['phi2']  = {  'name': 'Lepton_phi[1]',
-                        'range' : (20,-3.2,3.2),
-                        'xaxis' : '#phi 2nd lep',
-                        'fold'  : 3
-                        }
-
-variables['puppimet']  = {
-                        'name': 'PuppiMET_pt',
+variables['mtw1']  = {  'name': 'mtw1',
                         'range' : (20,0,200),
-                        'xaxis' : 'puppimet [GeV]',
+                        'xaxis' : 'mtw1',
                         'fold'  : 3
                         }
 
-variables['njet']  = {
-                        'name': 'Sum$(CleanJet_pt>30)',
-                        'range' : (10,0,10),
-                        'xaxis' : 'Number of jets',
-                        'fold' : 0   # 0 = not fold (default), 1 = fold underflowbin, 2 = fold overflow bin, 3 = fold underflow and overflow
-                        }
-
-variables['jetpt1']  = {
-                        'name': '(Sum$(CleanJet_pt>30)>0)*(Alt$(CleanJet_pt[0], 0)) - (Sum$(CleanJet_pt>30)==0)*99',
+variables['mtw2']  = {  'name': 'mtw2',
                         'range' : (20,0,200),
-                        'xaxis' : 'p_{T} 1st jet',
-                        'fold' : 2   # 0 = not fold (default), 1 = fold underflowbin, 2 = fold overflow bin, 3 = fold underflow and overflow
+                        'xaxis' : 'mtw2',
+                        'fold'  : 3
                         }
 
-variables['jetpt2']  = {
-                        'name': '(Sum$(CleanJet_pt>30)>0)*(Alt$(CleanJet_pt[1], 0)) - (Sum$(CleanJet_pt>30)==0)*99',
+variables['pTWW']  = {  'name': 'pTWW',
                         'range' : (20,0,200),
-                        'xaxis' : 'p_{T} 2nd jet',
-                        'fold' : 2   # 0 = not fold (default), 1 = fold underflowbin, 2 = fold overflow bin, 3 = fold underflow and overflow
+                        'xaxis' : 'pTWW',
+                        'fold'  : 3
                         }
 
-variables['jeteta1']  = {  'name': '(Sum$(CleanJet_pt>30)>0)*(Alt$(CleanJet_eta[0], 0)) - (Sum$(CleanJet_pt>30)==0)*99',
-                        'range' : (20,-5.0,5.0),
-                        'xaxis' : '#eta 1st jet',
-                        'fold'  : 0
+variables['pTHjj']  = { 'name': 'pTHjj',
+                        'range' : (20,0,200),
+                        'xaxis' : 'pTHjj',
+                        'fold'  : 3
                         }
 
-variables['jeteta2']  = {  'name': '(Sum$(CleanJet_pt>30)>1)*(Alt$(CleanJet_eta[1], 0)) - (Sum$(CleanJet_pt>30)<=1)*99',
-                        'range' : (20,-5.0,5.0),
-                        'xaxis' : '#eta 2nd jet',
-                        'fold'  : 0
+variables['mjj']  = {   'name': 'mjj',
+                        'range' : (20,15,215),
+                        'xaxis' : 'mjj',
+                        'fold'  : 3
                         }
 
-variables['mllVSmth'] = {   'name': 'mll:mth',            #   variable name    
-                        'range' : (5,20,200, 5,60,200),            #   variable range
-                        'xaxis' : 'm_{ll} : m_{T}^{H}',      #   x axis name
-                        'fold' : 3 ,
+variables['detajj'] = { 'name': 'detajj',
+                        'range' : (20,0,10),
+                        'xaxis' : 'detajj',
+                        'fold'  : 3
                         }
 
-
-variables['mllVSmth_wt'] = {   'name': 'mll:mth',            #   variable name    
-                        'range' : (5,20,200, 5,60,200),            #   variable range
-                        'xaxis' : 'm_{ll} : m_{T}^{H}',      #   x axis name
-                        'fold' : 3 ,
-                        # do weighted plot too
-                        'doWeight' : 1,
-                        'binX'     : 5,
-                        'binY'     : 5
-                        #
+variables['dphijj'] = { 'name': 'dphijj',
+                        'range' : (20,0,3.15),
+                        'xaxis' : 'dphijj',
+                        'fold'  : 3
                         }
-'''
+
+variables['dphijet2met'] = { 'name': 'dphijet2met',
+                             'range' : (20,0,3.15),
+                             'xaxis' : 'dphijet2met',
+                             'fold'  : 3
+                         }
+
+variables['dphijjmet'] = { 'name'  : 'dphijjmet',
+                           'range' : (20,0,3.15),
+                           'xaxis' : 'dphijjmet',
+                           'fold'  : 3
+                        }
+
+variables['dphilep1jet1'] = { 'name'  : 'dphilep1jet1',
+                              'range' : (20,0,3.15),
+                              'xaxis' : 'dphilep1jet1',
+                              'fold'  : 3
+                        }
+
+variables['dphilep1jet2'] = { 'name'  : 'dphilep1jet2',
+                              'range' : (20,0,3.15),
+                              'xaxis' : 'dphilep1jet2',
+                              'fold'  : 3
+                        }
+
+variables['mindetajl'] = { 'name'  : 'mindetajl',
+                           'range' : (20,0,6),
+                           'xaxis' : 'mindetajl',
+                           'fold'  : 3
+                        }
+
+variables['jetpt0'] = { 'name'  : 'Alt$(CleanJet_pt[0],0)',
+                        'range' : (20,0,100),
+                        'xaxis' : 'Alt$(CleanJet_pt[0],0)',
+                        'fold'  : 3
+                        }
+
+variables['jetpt1'] = { 'name'  : 'Alt$(CleanJet_pt[1],0)',
+                        'range' : (20,0,100),
+                        'xaxis' : 'Alt$(CleanJet_pt[1],0)',
+                        'fold'  : 3
+                        }
+
+variables['jeteta0'] = { 'name'  : 'Alt$(CleanJet_eta[0],0)',
+                         'range' : (20,-5,5),
+                         'xaxis' : 'Alt$(CleanJet_eta[0],0)',
+                         'fold'  : 3
+                        }
+
+variables['jeteta1'] = { 'name'  : 'Alt$(CleanJet_eta[1],0)',
+                         'range' : (20,-5,5),
+                         'xaxis' : 'Alt$(CleanJet_eta[1],0)',
+                         'fold'  : 3
+                        }
+
+variables['jetbtag0'] = { 'name'  : 'Alt$(Jet_btagDeepB[CleanJet_jetIdx[0]],-2)',
+                          'range' : (22,-0.1,1),
+                          'xaxis' : 'Alt$(Jet_btagDeepB[CleanJet_jetIdx[0]],-2)',
+                          'fold'  : 3
+                        }
+
+variables['jetbtag1'] = { 'name'  : 'Alt$(Jet_btagDeepB[CleanJet_jetIdx[1]],-2)',
+                          'range' : (22,-0.1,1),
+                          'xaxis' : 'Alt$(Jet_btagDeepB[CleanJet_jetIdx[1]],-2)',
+                          'fold'  : 3
+                        }

@@ -3,19 +3,13 @@ import copy
 import inspect
 
 configurations = os.path.realpath(inspect.getfile(inspect.currentframe())) # this file
-configurations = os.path.dirname(configurations) # ggH2018
-configurations = os.path.dirname(configurations) # ggH2018
-configurations = os.path.dirname(configurations) # Differential
+configurations = os.path.dirname(configurations) # njets
+configurations = os.path.dirname(configurations) # Full2018_v7
+configurations = os.path.dirname(configurations) # FullRunII
+configurations = os.path.dirname(configurations) # WW
 configurations = os.path.dirname(configurations) # Configurations
-configurations = os.path.dirname(configurations) # Configurations
 
-#aliases = {}
-
-# imported from samples.py:
-# samples, signals
-
-mc = [skey for skey in samples if skey not in ('Fake', 'DATA', 'Dyemb')]
-mc_emb = [skey for skey in samples if skey not in ('Fake', 'DATA')]
+mc = [skey for skey in samples if skey not in ('Fake', 'DATA')]
 
 eleWP = 'mvaFall17V1Iso_WP90_tthmva_70'
 muWP = 'cut_Tight_HWWW_tthmva_80'
@@ -103,10 +97,6 @@ aliases['fiducial'] = {
     'samples': mc
 }
 
-aliases['genjetetacut'] = {
-    'expr': 'Sum$(abs(GenJet_eta) > 2.5) == 0',
-    'samples': mc
-}
 ##### DY Z pT reweighting
 aliases['getGenZpt_OTF'] = {
     'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/patches/getGenZpt.cc+' % os.getenv('CMSSW_BASE')],
@@ -125,38 +115,6 @@ aliases['DY_LO_pTllrw'] = {
     'samples': ['DY']
 }
 
-aliases['jetetacut'] = {
-    'expr': 'Sum$(abs(CleanJet_eta) > 2.5) == 0'
-}
-
-# Jet bins
-# using Alt$(CleanJet_pt[n], 0) instead of Sum$(CleanJet_pt >= 30) because jet pt ordering is not strictly followed in JES-varied samples
-
-# No jet with pt > 30 GeV
-aliases['zeroJet'] = {
-    'expr': 'Alt$(CleanJet_pt[0], 0) < 30.'
-}
-
-aliases['oneJet'] = {
-    'expr': 'Alt$(CleanJet_pt[0], 0) > 30.'
-}
-
-aliases['twoJet'] = {
-    'expr': 'Alt$(CleanJet_pt[1], 0) > 30.'
-}
-
-aliases['threeJet'] = {
-    'expr': 'Alt$(CleanJet_pt[2], 0) > 30.'
-}
-
-aliases['fourJet'] = {
-    'expr': 'Alt$(CleanJet_pt[3], 0) > 30.'
-}
-
-aliases['fiveJet'] = {
-    'expr': 'Alt$(CleanJet_pt[4], 0) > 30.'
-}
-
 # B tagging
 
 aliases['bVeto'] = {
@@ -170,7 +128,7 @@ aliases['bReq'] = {
 # CR definitions
 
 aliases['topcr'] = {
-    'expr': 'mtw2>30 && mll>50 && ((zeroJet && !bVeto) || bReq)'
+    'expr': 'mtw2>30 && mll>50 && ((Sum$(CleanJet_pt > 30.) == 0 && !bVeto) || bReq)'
 }
 
 aliases['dycr'] = {
@@ -200,7 +158,7 @@ aliases['bReqSF'] = {
 }
 
 aliases['btagSF'] = {
-    'expr': '(bVeto || (topcr && zeroJet))*bVetoSF + (topcr && !zeroJet)*bReqSF',
+    'expr': '(bVeto || (topcr && Sum$(CleanJet_pt > 30.) == 0))*bVetoSF + (topcr && Sum$(CleanJet_pt > 30.) > 0)*bReqSF',
     'samples': mc
 }
 
@@ -246,19 +204,19 @@ aliases['SFweight'] = {
 # variations
 aliases['SFweightEleUp'] = {
     'expr': 'LepSF2l__ele_'+eleWP+'__Up',
-    'samples': mc_emb
+    'samples': mc
 }
 aliases['SFweightEleDown'] = {
     'expr': 'LepSF2l__ele_'+eleWP+'__Do',
-    'samples': mc_emb
+    'samples': mc
 }
 aliases['SFweightMuUp'] = {
     'expr': 'LepSF2l__mu_'+muWP+'__Up',
-    'samples': mc_emb
+    'samples': mc
 }
 aliases['SFweightMuDown'] = {
     'expr': 'LepSF2l__mu_'+muWP+'__Do',
-    'samples': mc_emb
+    'samples': mc
 }
 
 '''
@@ -315,3 +273,42 @@ for thu in thusQQ:
         'nominalOnly': True
     }
 '''
+
+# Macros / aliases needed to define differential variable
+# Want to only consider jets with |eta| < 2.5
+# dphijj defined from leading and subleading jets -- both must have pt > 30
+
+aliases['nGoodCleanJet'] = {
+    'linesToAdd': ['.L %s/WW/FullRunII/goodcleanjet.cc+' % configurations],
+    'class': 'GoodCleanJet',
+    'args': ("njet"),
+}
+
+aliases['nGoodGenJet'] = {
+    'linesToAdd': ['.L %s/WW/FullRunII/goodgenjet.cc+' % configurations],
+    'class': 'CleanGenJet',
+    'args': ("njet"),
+    'samples': mc
+}
+
+aliases['B0'] = {
+    'expr' : 'nGoodGenJet == 0',
+    'samples' : ['WW','ggWW']
+}
+aliases['B1'] = {
+    'expr' : 'nGoodGenJet == 1',
+    'samples' : ['WW','ggWW']
+}
+aliases['B2'] = {
+    'expr' : 'nGoodGenJet == 2',
+    'samples' : ['WW','ggWW']
+}
+aliases['B3'] = {
+    'expr' : 'nGoodGenJet >= 3',
+    'samples' : ['WW','ggWW']
+}
+
+aliases['fid'] = {
+    'expr' : 'fiducial',
+    'samples' : ['WW','ggWW']
+}

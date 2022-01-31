@@ -34,17 +34,9 @@ Or, if they failed because the wall clock time have been exceeded, resubmit them
 
 ### Use previously-produced data-driven DY estimation histograms to correct yields in original distributions
 
-    mkDYestim_data.py --pycfg=configuration.py --dycfg=dyestim_ggH_SF_HTXS.py --inputFile=rootFile/plots_ggH_HTXS_SF_2017_v7.root
-
-With DY nuisances breakdown:
-
     mkDYestim_data_splitNuisances.py --pycfg=configuration.py --dycfg=dyestim_ggH_SF_HTXS.py --inputFile=rootFile/plots_ggH_HTXS_SF_2017_v7.root --year=2017
 
 ### Plot distributions
-
-    mkPlot.py --pycfg=configuration.py --inputFile=rootFile/plots_ggH_HTXS_SF_2017_v7_DYEstimDATA.root --linearOnly --fileFormats=png --onlyPlot=cratio
-
-If DY nuisance breakdown was used:
 
     mkPlot.py --pycfg=configuration.py --inputFile=rootFile/plots_ggH_HTXS_SF_2017_v7_DYEstimDATA_breakdown.root --linearOnly --fileFormats=png --onlyPlot=cratio
 

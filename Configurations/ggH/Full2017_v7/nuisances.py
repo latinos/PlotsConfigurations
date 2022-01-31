@@ -51,74 +51,32 @@ for k in cuts:
 nuisances['lumi_Uncorrelated'] = {
     'name': 'lumi_13TeV_2017',
     'type': 'lnN',
-    'samples': dict((skey, '1.02')  for skey in mc if skey not in ['WW', 'top'] )
+    'samples': dict((skey, '1.02') for skey in mc if skey not in ['WW', 'top'])
 }
 
-nuisances['lumi_XYFact'] = {
-    'name': 'lumi_13TeV_XYFact',
+nuisances['lumi_correlated'] = {
+    'name': 'lumi_13TeV_correlated',
     'type': 'lnN',
-    'samples': dict((skey, '1.008') for skey in mc if skey not in ['WW', 'top'])
+    'samples': dict((skey, '1.009') for skey in mc if skey not in ['WW', 'top'])
 }
 
-nuisances['lumi_LScale'] = {
-    'name': 'lumi_13TeV_LSCale',
+nuisances['lumi_correlated_1718'] = {
+    'name': 'lumi_13TeV_correlated_1718',
     'type': 'lnN',
-    'samples': dict((skey, '1.003') for skey in mc if skey not in ['WW', 'top'])
-}
-
-nuisances['lumi_BBDefl'] = {
-    'name': 'lumi_13TeV_BBDefl',
-    'type': 'lnN',
-    'samples': dict((skey, '1.004') for skey in mc if skey not in ['WW', 'top'])
-}
-
-nuisances['lumi_DynBeta'] = {
-    'name': 'lumi_13TeV_DynBeta',
-    'type': 'lnN',
-    'samples': dict((skey, '1.005') for skey in mc if skey not in ['WW', 'top'])
-}
-
-nuisances['lumi_CurrCalib'] = {
-    'name': 'lumi_13TeV_CurrCalib',
-    'type': 'lnN',
-    'samples': dict((skey, '1.003') for skey in mc if skey not in ['WW', 'top'])
-}
-
-nuisances['lumi_Ghosts'] = {
-    'name': 'lumi_13TeV_Ghosts',
-    'type': 'lnN',
-    'samples': dict((skey, '1.001') for skey in mc if skey not in ['WW', 'top'])
+    'samples': dict((skey, '1.006') for skey in mc if skey not in ['WW', 'top'])
 }
 
 #### FAKES
 
 nuisances['fake_syst'] = {
-    'name': 'CMS_fake_syst',
+    'name': 'CMS_fake_syst_2017',
     'type': 'lnN',
     'samples': {
         'Fake' : '1.3'
     },
-    'cutspost': lambda self, cuts: [cut for cut in cuts if '20me' not in cut],
-}
-'''
-nuisances['fake_syst_em'] = {
-    'name': 'CMS_fake_syst_em',
-    'type': 'lnN',
-    'samples': {
-        'Fake_em': '1.3'
-    },
-    'cutspost': lambda self, cuts: [cut for cut in cuts if '20me' not in cut],
+    'perRecoBin': True
 }
 
-nuisances['fake_syst_me'] = {
-    'name': 'CMS_fake_syst_me',
-    'type': 'lnN',
-    'samples': {
-        'Fake_me': '1.3'
-    },
-    'cutspost': lambda self, cuts: [cut for cut in cuts if '20em' not in cut],
-}
-'''
 nuisances['fake_ele'] = {
     'name': 'CMS_fake_e_2017',
     'kind': 'weight',
@@ -126,6 +84,7 @@ nuisances['fake_ele'] = {
     'samples': {
         'Fake': ['fakeWEleUp', 'fakeWEleDown'],
     },
+    'perRecoBin': True
 }
 
 nuisances['fake_ele_stat'] = {
@@ -135,6 +94,7 @@ nuisances['fake_ele_stat'] = {
     'samples': {
         'Fake': ['fakeWStatEleUp', 'fakeWStatEleDown']
     },
+    'perRecoBin': True
 }
 
 nuisances['fake_mu'] = {
@@ -144,6 +104,7 @@ nuisances['fake_mu'] = {
     'samples': {
         'Fake': ['fakeWMuUp', 'fakeWMuDown'],
     },
+    'perRecoBin': True
 }
 
 nuisances['fake_mu_stat'] = {
@@ -153,6 +114,7 @@ nuisances['fake_mu_stat'] = {
     'samples': {
         'Fake': ['fakeWStatMuUp', 'fakeWStatMuDown'],
     },
+    'perRecoBin': True
 }
 
 ##### B-tagger
@@ -172,14 +134,32 @@ for shift in ['jes', 'lf', 'hf', 'hfstats1', 'hfstats2', 'lfstats1', 'lfstats2',
     }
 
 ##### Trigger Efficiency
+trig_drll_rw_syst = ['1.', '1./trig_drll_rw']
 
-trig_syst = ['((TriggerEffWeight_2l_u)/(TriggerEffWeight_2l))*(TriggerEffWeight_2l>0.02) + (TriggerEffWeight_2l<=0.02)', '(TriggerEffWeight_2l_d)/(TriggerEffWeight_2l)']
+nuisances['trigg_drll_rw_unc'] = {
+    'name': 'CMS_eff_hwwtrigger_drllrw_2017',
+    'kind': 'weight',
+    'type': 'shape',
+    'samples': dict((skey, trig_drll_rw_syst) for skey in mc),
+    'symmetrize' : True,
+}
+
+trig_syst = ['((TriggerAltEffWeight_2l_u)/(TriggerAltEffWeight_2l))*(TriggerAltEffWeight_2l>0.02) + (TriggerAltEffWeight_2l<=0.02)', '(TriggerAltEffWeight_2l_d)/(TriggerAltEffWeight_2l)']
 
 nuisances['trigg'] = {
     'name': 'CMS_eff_hwwtrigger_2017',
     'kind': 'weight',
     'type': 'shape',
-    'samples': dict((skey, trig_syst) for skey in mc_emb),
+    'samples': dict((skey, trig_syst) for skey in mc),
+}
+
+trig_syst_emb = ['((TriggerEffWeight_2l_u)/(TriggerEffWeight_2l))*(TriggerEffWeight_2l>0.02) + (TriggerEffWeight_2l<=0.02)', '(TriggerEffWeight_2l_d)/(TriggerEffWeight_2l)']
+
+nuisances['trigg_emb'] = {
+    'name': 'CMS_eff_hwwtrigger_embedded_2017',
+    'kind': 'weight',
+    'type': 'shape',
+    'samples': {'Dyemb' : trig_syst_emb},
 }
 
 prefire_syst = ['PrefireWeight_Up/PrefireWeight', 'PrefireWeight_Down/PrefireWeight']
@@ -198,6 +178,15 @@ nuisances['eff_e'] = {
     'kind': 'weight',
     'type': 'shape',
     'samples': dict((skey, ['SFweightEleUp', 'SFweightEleDown']) for skey in mc_emb),
+    'cuts': [cut for cut in cuts if not ('_CR_' in cut or 'top' in cut or 'dytt' in cut)]
+}
+
+nuisances['eff_e_CR'] = {
+    'name': 'CMS_eff_e_CR_2017',
+    'kind': 'weight',
+    'type': 'shape',
+    'samples': dict((skey, ['SFweightEleUp', 'SFweightEleDown']) for skey in mc_emb),
+    'cuts': [cut for cut in cuts if '_CR_' in cut or 'top' in cut or 'dytt' in cut]
 }
 
 nuisances['electronpt'] = {
@@ -207,8 +196,8 @@ nuisances['electronpt'] = {
     'mapUp': 'ElepTup',
     'mapDown': 'ElepTdo',
     'samples': dict((skey, ['1', '1']) for skey in mc if not skey in ['DY']),
-    'folderUp': makeMCDirectory('ElepTup_suffix'),
-    'folderDown': makeMCDirectory('ElepTdo_suffix'),
+    'folderUp': makeMCDirectory('trigFix__ElepTup_suffix'),
+    'folderDown': makeMCDirectory('trigFix__ElepTdo_suffix'),
     'AsLnN': '1'
 }
 
@@ -232,6 +221,15 @@ nuisances['eff_m'] = {
     'kind': 'weight',
     'type': 'shape',
     'samples': dict((skey, ['SFweightMuUp', 'SFweightMuDown']) for skey in mc_emb),
+    'cuts': [cut for cut in cuts if not ('_CR_' in cut or 'top' in cut or 'dytt' in cut)]
+}
+
+nuisances['eff_m_CR'] = {
+    'name': 'CMS_eff_m_CR_2017',
+    'kind': 'weight',
+    'type': 'shape',
+    'samples': dict((skey, ['SFweightMuUp', 'SFweightMuDown']) for skey in mc_emb),
+    'cuts': [cut for cut in cuts if '_CR_' in cut or 'top' in cut or 'dytt' in cut]
 }
 
 nuisances['muonpt'] = {
@@ -241,8 +239,8 @@ nuisances['muonpt'] = {
     'mapUp': 'MupTup',
     'mapDown': 'MupTdo',
     'samples': dict((skey, ['1', '1']) for skey in mc if not skey in ['DY']),
-    'folderUp': makeMCDirectory('MupTup_suffix'),
-    'folderDown': makeMCDirectory('MupTdo_suffix'),
+    'folderUp': makeMCDirectory('trigFix__MupTup_suffix'),
+    'folderDown': makeMCDirectory('trigFix__MupTdo_suffix'),
     'AsLnN': '1'
 }
 
@@ -342,22 +340,14 @@ if useEmbeddedDY:
     # These hardcoded numbers have been obtained by running the full Dyveto (with runDYveto=True in samples.py) 
     # and computing the lnN uncertainty as variation of the up/down integral with respect to the nominal Dyemb integral
     unc_dict = {}
-    unc_dict['hww2l2v_13TeV_me_pm_0j_pt2lt20']   =  '1.01407' 
-    unc_dict['hww2l2v_13TeV_em_pm_0j_pt2ge20']   =  '1.02195'
-    unc_dict['hww2l2v_13TeV_me_mp_0j_pt2ge20']   =  '1.02491'
-    unc_dict['hww2l2v_13TeV_em_mp_0j_pt2lt20']   =  '1.01688'
-    unc_dict['hww2l2v_13TeV_em_pm_0j_pt2lt20']   =  '1.03110'
-    unc_dict['hww2l2v_13TeV_em_mp_0j_pt2ge20']   =  '1.02300'
-    unc_dict['hww2l2v_13TeV_me_pm_0j_pt2ge20']   =  '1.02149'
-    unc_dict['hww2l2v_13TeV_me_mp_0j_pt2lt20']   =  '1.02521'
-    unc_dict['hww2l2v_13TeV_me_pm_1j_pt2lt20']   =  '1.01241'
-    unc_dict['hww2l2v_13TeV_me_pm_1j_pt2ge20']   =  '1.01400'
-    unc_dict['hww2l2v_13TeV_me_mp_1j_pt2ge20']   =  '1.01162'
-    unc_dict['hww2l2v_13TeV_em_mp_1j_pt2lt20']   =  '1.00842'
-    unc_dict['hww2l2v_13TeV_em_pm_1j_pt2lt20']   =  '1.00516'
-    unc_dict['hww2l2v_13TeV_em_pm_1j_pt2ge20']   =  '1.01565'
-    unc_dict['hww2l2v_13TeV_em_mp_1j_pt2ge20']   =  '1.01445'
-    unc_dict['hww2l2v_13TeV_me_mp_1j_pt2lt20']   =  '1.00711'
+    unc_dict['hww2l2v_13TeV_pm_0j_pt2lt20']   =  '1.02259' 
+    unc_dict['hww2l2v_13TeV_pm_0j_pt2ge20']   =  '1.02172'
+    unc_dict['hww2l2v_13TeV_mp_0j_pt2ge20']   =  '1.02396'
+    unc_dict['hww2l2v_13TeV_mp_0j_pt2lt20']   =  '1.02105'
+    unc_dict['hww2l2v_13TeV_pm_1j_pt2lt20']   =  '1.00879'
+    unc_dict['hww2l2v_13TeV_pm_1j_pt2ge20']   =  '1.01483'
+    unc_dict['hww2l2v_13TeV_mp_1j_pt2ge20']   =  '1.01304'
+    unc_dict['hww2l2v_13TeV_mp_1j_pt2lt20']   =  '1.00777'
     unc_dict['hww2l2v_13TeV_2j']                 =  '1.01211'
     unc_dict['hww2l2v_13TeV_dytt_0j']            =  '1.00339'
     unc_dict['hww2l2v_13TeV_dytt_1j']            =  '1.00172'
@@ -697,7 +687,7 @@ for var in variations:
 
 ## QCD scale nuisances for top are decorrelated for each RECO jet bin: the QCD scale is different for different jet multiplicities so it doesn't make sense to correlate them
 nuisances['QCDscale_top_0j']  = {
-    'name'  : 'QCDscale_top_0j',
+    'name'  : 'QCDscale_top_0j_2017',
     'skipCMS' : 1,
     'kind'  : 'weight',
     'type'  : 'shape',
@@ -708,7 +698,7 @@ nuisances['QCDscale_top_0j']  = {
 }
 
 nuisances['QCDscale_top_1j']  = {
-    'name'  : 'QCDscale_top_1j',
+    'name'  : 'QCDscale_top_1j_2017',
     'skipCMS' : 1,
     'kind'  : 'weight',
     'type'  : 'shape',
@@ -719,7 +709,7 @@ nuisances['QCDscale_top_1j']  = {
 }
 
 nuisances['QCDscale_top_2j']  = {
-    'name'  : 'QCDscale_top_2j',
+    'name'  : 'QCDscale_top_2j_2017',
     'skipCMS' : 1,
     'kind'  : 'weight',
     'type'  : 'shape',

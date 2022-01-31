@@ -1,6 +1,6 @@
 # plot configuration
 
-
+nbins = 4
 
 # groupPlot = {}
 # 
@@ -18,18 +18,17 @@ groupPlot['top']  = {
 
 groupPlot['WW']  = {  
                   'nameHR' : 'WW',
-                  'isSignal' : 1,
+                  'isSignal' : 0,
                   'color': 851, # kAzure -9 
-                  'samples'  : ['WW_fid_NJ_0','WW_fid_NJ_1','WW_fid_NJ_2','WW_fid_NJ_GE3','ggWW_fid_NJ_0','ggWW_fid_NJ_1','ggWW_fid_NJ_2','ggWW_fid_NJ_GE3']
+                  'samples'  : ['WW_B%d'%i for i in xrange(nbins)]+['ggWW_B%d'%i for i in xrange(nbins)]
               }
 
 groupPlot['WW_nonfid']  = {
-                  'nameHR' : 'WW_nonfid',
+                  'nameHR' : 'WW nonfid',
                   'isSignal' : 0,
                   'color': 853, # kAzure -9 
-                  'samples'  : ['WW_nonfid_NJ_0','WW_nonfid_NJ_1','WW_nonfid_NJ_2','WW_nonfid_NJ_GE3','ggWW_nonfid_NJ_0','ggWW_nonfid_NJ_1','ggWW_nonfid_NJ_2','ggWW_nonfid_NJ_GE3']
+                  'samples'  : ['WW_nonfid', 'ggWW_nonfid']
               }
-
 
 groupPlot['WWewk']  = {
                   'nameHR' : 'WWewk',
@@ -112,7 +111,6 @@ groupPlot['Higgs']  = {
                   'isSignal' : 0,
                   'color': 632, # kRed 
 		  'samples'  : ['ZH_hww', 'ggZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww','bbH_hww','ttH_hww','ZH_htt', 'ggZH_htt', 'WH_htt', 'qqH_htt', 'ggH_htt','bbH_htt','ttH_htt' ]
-		  #'samples'  : ['H_htt', 'H_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww','bbH_hww','ttH_hww', 'qqH_htt', 'ggH_htt' ]
               }
 
 
@@ -128,30 +126,7 @@ plot['DY']  = {
                   'isSignal' : 0,
                   'isData'   : 0, 
                   'scale'    : 1.0,
-                  #'cuts'  : {
-                       #'hww2l2v_13TeV_of0j'      : 0.95 ,
-                       #'hww2l2v_13TeV_top_of0j'  : 0.95 , 
-                       #'hww2l2v_13TeV_dytt_of0j' : 0.95 ,
-                       #'hww2l2v_13TeV_em_0j'     : 0.95 , 
-                       #'hww2l2v_13TeV_me_0j'     : 0.95 , 
-                       ##
-                       #'hww2l2v_13TeV_of1j'      : 1.08 ,
-                       #'hww2l2v_13TeV_top_of1j'  : 1.08 , 
-                       #'hww2l2v_13TeV_dytt_of1j' : 1.08 ,
-                       #'hww2l2v_13TeV_em_1j'     : 1.08 , 
-                       #'hww2l2v_13TeV_me_1j'     : 1.08 , 
-                        #},
-
               }
-
-
-#if useEmbeddedDY:
-#  plot['Dyemb']  = {  
-#                  'color': 418,    # kGreen+2
-#                  'isSignal' : 0,
-#                  'isData'   : 0, 
-#                  'scale'    : 1.0,
-#              }
 
 
 plot['Fake_me']  = {  
@@ -178,117 +153,34 @@ plot['top'] = {
                   'scale'    : 1.0,
                   }
 
-plot['WW_fid_NJ_0'] = {
-                  'color': 851, # kAzure -9 
-                  'isSignal' : 1,
-                  'isData'   : 0,
-                  'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
-                  }
+for i in xrange(nbins):
+    plot['WW_B%d'%i] = {
+        'color': 851, # kAzure -9 
+        'isSignal' : 0,
+        'isData'   : 0,
+        'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
+    }
 
-plot['WW_fid_NJ_1'] = {
-                  'color': 851, # kAzure -9 
-                  'isSignal' : 1,
-                  'isData'   : 0,
-                  'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
-                  }
+    plot['ggWW_B%d'%i] = {
+        'color': 851, # kAzure -9 
+        'isSignal' : 0,
+        'isData'   : 0,
+        'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
+    }
 
-plot['WW_fid_NJ_2'] = {
-                  'color': 851, # kAzure -9 
-                  'isSignal' : 1,
-                  'isData'   : 0,
-                  'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
-}
-
-plot['WW_fid_NJ_GE3'] = {
-                  'color': 851, # kAzure -9 
-                  'isSignal' : 1,
-                  'isData'   : 0,
-                  'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
-}
-
-plot['ggWW_fid_NJ_0'] = {
-                  'color': 851, # kAzure -9 
-                  'isSignal' : 1,
-                  'isData'   : 0,
-                  'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
-                  }
-
-plot['ggWW_fid_NJ_1'] = {
-                  'color': 851, # kAzure -9 
-                  'isSignal' : 1,
-                  'isData'   : 0,
-                  'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
-                  }
-
-plot['ggWW_fid_NJ_2'] = {
-                  'color': 851, # kAzure -9 
-                  'isSignal' : 1,
-                  'isData'   : 0,
-                  'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
-}
-
-plot['ggWW_fid_NJ_GE3'] = {
-                  'color': 851, # kAzure -9 
-                  'isSignal' : 1,
-                  'isData'   : 0,
-                  'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
-}
-
-plot['WW_nonfid_NJ_0'] = {
-                  'color': 851, # kAzure -9 
+plot['WW_nonfid'] = {
+                  'color': 853, # kAzure -9 
                   'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
                   }
 
-plot['WW_nonfid_NJ_1'] = {
-                  'color': 851, # kAzure -9 
+plot['ggWW_nonfid'] = {
+                  'color': 853, # kAzure -9 
                   'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
                   }
-
-plot['WW_nonfid_NJ_2'] = {
-                  'color': 851, # kAzure -9 
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
-}
-
-plot['WW_nonfid_NJ_GE3'] = {
-                  'color': 851, # kAzure -9 
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
-}
-
-plot['ggWW_nonfid_NJ_0'] = {
-                  'color': 851, # kAzure -9 
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
-                  }
-
-plot['ggWW_nonfid_NJ_1'] = {
-                  'color': 851, # kAzure -9 
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
-                  }
-
-plot['ggWW_nonfid_NJ_2'] = {
-                  'color': 851, # kAzure -9 
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
-}
-
-plot['ggWW_nonfid_NJ_GE3'] = {
-                  'color': 851, # kAzure -9 
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
-}
 
 plot['WWewk']  = {
                   'color': 851, # kAzure -9 

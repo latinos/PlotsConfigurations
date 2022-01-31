@@ -68,7 +68,7 @@ FiducialRegion::evaluate(unsigned)
     return 0.; // false
 
   if (iPromptL.size() >= 3 && DressedLepton_pt->At(iPromptL[2]) > 10.)
-    
+    return 0.;
 
 //  if ((DressedLepton_pdgId->At(iPromptL[0]) * DressedLepton_pdgId->At(iPromptL[1]) != -143) && (DressedLepton_pdgId->At(iPromptL[0]) * DressedLepton_pdgId->At(iPromptL[1]) != -121) && (DressedLepton_pdgId->At(iPromptL[0]) * DressedLepton_pdgId->At(iPromptL[1]) != -169))
   if (DressedLepton_pdgId->At(iPromptL[0]) * DressedLepton_pdgId->At(iPromptL[1]) != -143) 

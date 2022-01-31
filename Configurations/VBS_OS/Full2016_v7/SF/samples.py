@@ -210,16 +210,10 @@ addSampleWeight(samples,'top','TTTo2L2Nu','Top_pTrw')
 
 samples['WW'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'WWJTo2L2Nu_NNLOPS'),
-    'weight': mcCommonWeight, # temporary - nllW module not run on PS and UE variation samples
+    'weight': mcCommonWeight + '*9',
     'FilesPerJob': 1
 }
-'''
-samples['WW'] = {
-    'name': nanoGetSampleFiles(mcDirectory, 'WpWmJJ_QCD_noTop'),
-    'weight': mcCommonWeight + '*(Sum$(abs(GenPart_pdgId)==6 || GenPart_pdgId==25)==0)*(lhe_mW1[0] > 63. && lhe_mW1[0] < 100. && lhe_mW2[0] > 63. && lhe_mW2[0] < 100.)', # filter tops and Higgs, limit w mass
-    'FilesPerJob': 1
-}
-'''
+
 samples['ggWW'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'GluGluWWTo2L2Nu_MCFM'),
     'weight': mcCommonWeight + '*1.53/1.4', # updating k-factor
@@ -289,8 +283,8 @@ samples['VVV'] = {
 signals = []
 
 samples['WWewk'] = {
-    'name': nanoGetSampleFiles(mcDirectory, 'WpWmJJ_EWK_noTop'),
-    'weight': mcCommonWeight + '*(Sum$(abs(GenPart_pdgId)==6 || GenPart_pdgId==25)==0)*(lhe_mW1[0] > 63. && lhe_mW1[0] < 100. && lhe_mW2[0] > 63. && lhe_mW2[0] < 100.)', # filter tops and Higgs, limit w mass
+    'name': nanoGetSampleFiles(mcDirectory, 'WpWmJJ_EWK_noTop_dipoleRecoil_private'),
+    'weight': mcCommonWeight + '*(Sum$(abs(GenPart_pdgId)==6 || GenPart_pdgId==25)==0)', # filter tops and Higgs, limit w mass
     'FilesPerJob': 4
 }
 
@@ -339,4 +333,3 @@ for _, sd in DataRun:
     
     samples['DATA']['name'].extend(files)
     samples['DATA']['weights'].extend([DataTrig[pd]] * len(files))
-

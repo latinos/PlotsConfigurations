@@ -50,28 +50,22 @@ for k in cuts:
 #}
 
 nuisances['lumi_Uncorrelated'] = {
-    'name': 'lumi_13TeV_2018',
-    'type': 'lnN',
-    'samples': dict((skey, '1.015') for skey in mc if skey not in ['WW', 'top', 'DY'])
+        'name': 'lumi_13TeV_2018',
+        'type': 'lnN',
+        'samples': dict((skey, '1.015') for skey in mc if skey not in ['WW', 'top', 'DY'])
 }
 
-nuisances['lumi_XYFact'] = {
-    'name': 'lumi_13TeV_XYFact',
-    'type': 'lnN',
-    'samples': dict((skey, '1.02') for skey in mc if skey not in ['WW', 'top', 'DY'])
+nuisances['lumi_correlated'] = {
+        'name': 'lumi_13TeV_correlated',
+        'type': 'lnN',
+        'samples': dict((skey, '1.02') for skey in mc if skey not in ['WW', 'top', 'DY'])
 }
 
-nuisances['lumi_LScale'] = {
-    'name': 'lumi_13TeV_LSCale',
-    'type': 'lnN',
-    'samples': dict((skey, '1.002') for skey in mc if skey not in ['WW', 'top', 'DY'])
-}
-
-nuisances['lumi_CurrCalib'] = {
-    'name': 'lumi_13TeV_CurrCalib',
-    'type': 'lnN',
-    'samples': dict((skey, '1.002') for skey in mc if skey not in ['WW', 'top', 'DY'])
-}
+nuisances['lumi_correlated_1718'] = {
+        'name': 'lumi_13TeV_correlated_1718',
+        'type': 'lnN',
+        'samples': dict((skey, '1.002') for skey in mc if skey not in ['WW', 'top', 'DY'])
+}  
 
 #### FAKES
 
@@ -337,20 +331,6 @@ nuisances['UE']  = {
                 'samples': dict((skey, '1.015') for skey in mc), 
 }
 
-#nuisances['UE']  = {
-#                'name'  : 'UE_CP5',
-#                'skipCMS' : 1,
-#                'kind'  : 'tree',
-#                'type'  : 'shape',
-#                'samples'  : {
-#                  'WW'      : ['1.0017139', '0.99350287'],
-#                  'ggH_hww' : ['1.0272226', '1.0123689'],
-#                  'qqH_hww' : ['1.0000192', '0.98367442']
-#                },
-#                'folderUp': makeMCDirectory('UEup'),
-#                'folderDown': makeMCDirectory('UEdo'),
-#                'AsLnN'      : '1',
-#}
 
 ####### Generic "cross section uncertainties"
 
@@ -405,7 +385,7 @@ nuisances['VZ'] = {
 
 ##### Renormalization & factorization scales
 
-## Shape nuisance due to QCD scale variations for DY
+## Shape nuisance due to QCD scale variations
 # LHE scale variation weights (w_var / w_nominal)
 
 ## This should work for samples with either 8 or 9 LHE scale weights (Length$(LHEScaleWeight) == 8 or 9)
@@ -424,17 +404,6 @@ topScaleNormFactors0j = {'LHEScaleWeight[3]': 1.0026322046882807, 'LHEScaleWeigh
 topScaleNormFactors1j = {'LHEScaleWeight[3]': 1.0088973745933350, 'LHEScaleWeight[0]': 1.0858717477880675, 'LHEScaleWeight[1]': 1.0809970696561464, 'LHEScaleWeight[Length$(LHEScaleWeight)-1]': 0.9115155831354494, 'LHEScaleWeight[Length$(LHEScaleWeight)-4]': 0.9950909615738225, 'LHEScaleWeight[Length$(LHEScaleWeight)-2]': 0.9194241285459210}
 topScaleNormFactors2j = {'LHEScaleWeight[3]': 1.0236911155246506, 'LHEScaleWeight[0]': 1.1249360990045656, 'LHEScaleWeight[1]': 1.1054771659922622, 'LHEScaleWeight[Length$(LHEScaleWeight)-1]': 0.8819750427294990, 'LHEScaleWeight[Length$(LHEScaleWeight)-4]': 0.9819208264038879, 'LHEScaleWeight[Length$(LHEScaleWeight)-2]': 0.9025818187649589}
 
-### WWJJ_QCD_noTop ###
-'''
-WWScaleNormFactors2j = {
-    'LHEScaleWeight[0]': 1.265600, 
-    'LHEScaleWeight[1]': 1.217540, 
-    'LHEScaleWeight[3]': 1.035100, 
-    'LHEScaleWeight[Length$(LHEScaleWeight)-4]': 0.957124, 
-    'LHEScaleWeight[Length$(LHEScaleWeight)-2]': 0.830682, 
-    'LHEScaleWeight[Length$(LHEScaleWeight)-1]': 0.798242
-}
-'''
 
 ### WWJTo2L2Nu_NNLOPS ###
 WWScaleNormFactors2j = {
@@ -454,6 +423,16 @@ for var in variations:
   WWvars2j.append(var+'/'+str(WWScaleNormFactors2j[var]))
 
 ## QCD scale nuisances for top are decorrelated for each RECO jet bin: the QCD scale is different for different jet multiplicities so it doesn't make sense to correlate them
+
+nuisances['QCDscale_WWewk'] = {
+    'name': 'QCDscale_WWewk',
+    'kind': 'weight_envelope',
+    'type': 'shape',
+    'samples': {
+        'WWewk': VBSvariations
+    }
+}
+
 nuisances['QCDscale_top_2j']  = {
     'name'  : 'QCDscale_top_2j',
     'skipCMS' : 1,
@@ -504,45 +483,13 @@ nuisances['QCDscale_ggVV'] = {
     },
 }
 
-##### Renormalization & factorization scales
-nuisances['QCDscale_WWewk'] = {
-    'name': 'QCDscale_WWewk',
-    'kind': 'weight_envelope',
-    'type': 'shape',
-    'samples': {
-        'WWewk': VBSvariations
-    }
-}
-'''
-nuisances['WWresum2j']  = {
-  'name'  : 'CMS_hww_WWresum_2j',
-  'skipCMS' : 1,
-  'kind'  : 'weight',
-  'type'  : 'shape',
-  'samples'  : {
-     'WW'   : ['nllW_Rup/nllW', 'nllW_Rdown/nllW'],
-   },
-  'cutspost'  : lambda self, cuts: [cut for cut in cuts if '2j' in cut]
-}
-
-nuisances['WWqscale2j']  = {
-   'name'  : 'CMS_hww_WWqscale_2j',
-   'skipCMS' : 1,
-   'kind'  : 'weight',
-   'type'  : 'shape',
-   'samples'  : {
-      'WW'   : ['nllW_Qup/nllW', 'nllW_Qdown/nllW'],
-    },
-   'cutspost'  : lambda self, cuts: [cut for cut in cuts if '2j' in cut]
-}
-'''
 # Uncertainty on SR/CR ratio
 nuisances['CRSR_accept_DY'] = {
     'name': 'CMS_hww_CRSR_accept_DY',
     'type': 'lnN',
     'samples': {'DY': '1.02'},
-    'cuts': [cut for cut in cuts if '_CR_' in cut],
-    'cutspost': (lambda self, cuts: [cut for cut in cuts if '_DY_' in cut]),
+    'cuts': [cut for cut in cuts if 'DY' in cut],
+    'cutspost': (lambda self, cuts: [cut for cut in cuts if 'DY' in cut]),
 }
 
 # Uncertainty on SR/CR ratio
@@ -550,8 +497,8 @@ nuisances['CRSR_accept_top'] = {
     'name': 'CMS_hww_CRSR_accept_top',
     'type': 'lnN',
     'samples': {'top': '1.01'},
-    'cuts': [cut for cut in cuts if '_CR_' in cut],
-    'cutspost': (lambda self, cuts: [cut for cut in cuts if '_top_' in cut]),
+    'cuts': [cut for cut in cuts if 'top' in cut],
+    'cutspost': (lambda self, cuts: [cut for cut in cuts if 'top' in cut]),
 }
 
 ## Use the following if you want to apply the automatic combine MC stat nuisances.

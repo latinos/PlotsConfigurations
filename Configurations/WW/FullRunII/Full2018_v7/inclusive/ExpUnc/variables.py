@@ -1,7 +1,7 @@
 # variables
 
-variables['mth']  = {   'name': 'mth',
-                        'range' : (20, 60,300),
-                        'xaxis' : 'm_{T}^{WW} [GeV]',
-                        'fold' : 3
-                        }
+variables['nGoodCleanJet']  = {   'name': 'nGoodCleanJet',
+                                  'range' : (4, 0, 4),
+                                  'xaxis' : 'nGoodCleanJet',
+                                  'fold' : 3
+                              }

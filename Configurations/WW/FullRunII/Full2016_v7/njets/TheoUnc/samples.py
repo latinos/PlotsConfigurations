@@ -50,15 +50,11 @@ mcDirectory = makeMCDirectory()
 ############ MC COMMON ##################
 #########################################
 
-mcCommonWeight_signal = 'genjetetacut*XSWeight'
+mcCommonWeight = 'XSWeight'
 
 ###########################################
 #############   SIGNALS  ##################
 ###########################################
-
-njetBinning = ['0', '1', '2', '3+']
-ngenjet = 'nCleanGenJet'
-fiducial = 'fiducial'
 
 signals = []
 
@@ -66,12 +62,13 @@ signals = []
 
 samples['WW'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'WWTo2L2Nu'),
-    'weight': mcCommonWeight_signal+'*nllW',
+    'weight': mcCommonWeight+'*nllW',
     'FilesPerJob': 2
 }
 
 signals.append('WW')
 
+### Add if weights become available for theo unc.
 #samples['ggWW'] = {
 #    'name': nanoGetSampleFiles(mcDirectory, 'GluGluWWTo2L2Nu_MCFM'),
 #    'weight': mcCommonWeight+'*1.53/1.4', # updating k-factor
@@ -80,19 +77,15 @@ signals.append('WW')
 #signals.append('ggWW')
 
 
-### Now bin in (fiducial / nonfiducial) x {njets}
+### Now bin in nonfiducial / fiducial x bins
+
+nbins = 4
 
 for sname in signals:
   sample = samples[sname]
   sample['subsamples'] = {}
 
-  for flabel, fidcut in [('fid', fiducial), ('nonfid', '!('+fiducial+')')]:
-    for nj in njetBinning:
-      if nj.endswith('+'):
-        binName = '%s_NJ_GE%s' % (flabel, nj[:-1])
-        cut = '%s && %s >= %s' % (fidcut, ngenjet, nj[:-1])
-      else:
-        binName = '%s_NJ_%s' % (flabel, nj)
-        cut = '%s && %s == %s' % (fidcut, ngenjet, nj)
-      sample['subsamples'][binName] = cut
+  sample['subsamples']['nonfid'] = '!(fid)'
 
+  for i in range(nbins):
+      sample['subsamples']['B%d'%i] = 'fid && B%d'%i

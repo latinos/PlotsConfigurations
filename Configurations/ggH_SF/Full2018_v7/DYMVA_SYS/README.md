@@ -25,36 +25,11 @@ Configuration for the extraction of the systematic uncertainties associated to t
 
 ### Plot input distributions
 
-    mkPlot.py --inputFile=rootFile/plots_ggH_SF_2018_v7_DYMVA_SYS.root --fileFormats=png --onlyPlot=cratio --outputDirPlots=plots_sr_ggH2018_v7_noDY --minLogCratio=1 --maxLogCratio=1000000 
+    mkPlot.py --inputFile=rootFile/plots_ggH_SF_2018_v7_DYMVA_SYS.root --fileFormats=png --onlyPlot=cratio --outputDirPlots=plots_DYDNN_CR_2018 --minLogCratio=1 --maxLogCratio=1000000 --onlyCut=0j --onlyVariable=dymva_alt_dnn_0j
+    mkPlot.py --inputFile=rootFile/plots_ggH_SF_2018_v7_DYMVA_SYS.root --fileFormats=png --onlyPlot=cratio --outputDirPlots=plots_DYDNN_CR_2018 --minLogCratio=1 --maxLogCratio=1000000 --onlyCut=1j --onlyVariable=dymva_alt_dnn_1j
+    mkPlot.py --inputFile=rootFile/plots_ggH_SF_2018_v7_DYMVA_SYS.root --fileFormats=png --onlyPlot=cratio --outputDirPlots=plots_DYDNN_CR_2018 --minLogCratio=1 --maxLogCratio=1000000 --onlyCut=2j --onlyVariable=dymva_alt_dnn_2j
+    mkPlot.py --inputFile=rootFile/plots_ggH_SF_2018_v7_DYMVA_SYS.root --fileFormats=png --onlyPlot=cratio --outputDirPlots=plots_DYDNN_CR_2018 --minLogCratio=1 --maxLogCratio=1000000 --onlyCut=VBF --onlyVariable=dymva_alt_dnn_VBF
+    mkPlot.py --inputFile=rootFile/plots_ggH_SF_2018_v7_DYMVA_SYS.root --fileFormats=png --onlyPlot=cratio --outputDirPlots=plots_DYDNN_CR_2018 --minLogCratio=1 --maxLogCratio=1000000 --onlyCut=VH --onlyVariable=dymva_alt_dnn_VH
 
-### Remove meaningless plots
-
-    rm plots_sr_ggH2018_v7_noDY/*cratio*H*
-    rm plots_sr_ggH2018_v7_noDY/*cratio*ww*
-    rm plots_sr_ggH2018_v7_noDY/*cratio*btag*
-
-    rm plots_sr_ggH2018_v7_noDY/*cratio*_0j_*dnn_1j* 
-    rm plots_sr_ggH2018_v7_noDY/*cratio*_0j_*dnn_2j* 
-    rm plots_sr_ggH2018_v7_noDY/*cratio*_0j_*dnn_VH* 
-    rm plots_sr_ggH2018_v7_noDY/*cratio*_0j_*dnn_VBF* 
-
-    rm plots_sr_ggH2018_v7_noDY/*cratio*_1j_*dnn_0j* 
-    rm plots_sr_ggH2018_v7_noDY/*cratio*_1j_*dnn_2j* 
-    rm plots_sr_ggH2018_v7_noDY/*cratio*_1j_*dnn_VH* 
-    rm plots_sr_ggH2018_v7_noDY/*cratio*_1j_*dnn_VBF* 
-
-    rm plots_sr_ggH2018_v7_noDY/*cratio*_2j_*dnn_0j* 
-    rm plots_sr_ggH2018_v7_noDY/*cratio*_2j_*dnn_1j* 
-    rm plots_sr_ggH2018_v7_noDY/*cratio*_2j_*dnn_VH* 
-    rm plots_sr_ggH2018_v7_noDY/*cratio*_2j_*dnn_VBF* 
-
-    rm plots_sr_ggH2018_v7_noDY/*cratio*_VBF_*dnn_0j* 
-    rm plots_sr_ggH2018_v7_noDY/*cratio*_VBF_*dnn_1j* 
-    rm plots_sr_ggH2018_v7_noDY/*cratio*_VBF_*dnn_2j* 
-    rm plots_sr_ggH2018_v7_noDY/*cratio*_VBF_*dnn_VH* 
-
-    rm plots_sr_ggH2018_v7_noDY/*cratio*_VH_*dnn_0j* 
-    rm plots_sr_ggH2018_v7_noDY/*cratio*_VH_*dnn_1j* 
-    rm plots_sr_ggH2018_v7_noDY/*cratio*_VH_*dnn_2j* 
-    rm plots_sr_ggH2018_v7_noDY/*cratio*_VH_*dnn_VBF* 
-
+    mkPlot.py --inputFile=rootFile/plots_ggH_SF_2018_v7_DYMVA_SYS.root --fileFormats=png --onlyPlot=cratio --outputDirPlots=plots_DYDNN_CR_2018 --minLogCratio=1 --maxLogCratio=1000000 --onlyVariable=ptll
+    mkPlot.py --inputFile=rootFile/plots_ggH_SF_2018_v7_DYMVA_SYS.root --fileFormats=png --onlyPlot=cratio --outputDirPlots=plots_DYDNN_CR_2018 --minLogCratio=1 --maxLogCratio=1000000 --onlyVariable=puppimet

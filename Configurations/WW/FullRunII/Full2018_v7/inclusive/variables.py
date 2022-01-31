@@ -22,6 +22,12 @@ variables['mth']  = {   'name': 'mth',
                         'fold' : 3
                         }
 
+variables['BDTOutput'] = { 'name' : 'BDTOutput',
+                           'range' : (10, -1, 1),
+                           'xaxis' : 'BDT discriminant',
+                           'fold' : 3
+}
+
 '''
 variables['mth-more']  = {   'name': 'mth',
                         'range' : (20, 60,200),

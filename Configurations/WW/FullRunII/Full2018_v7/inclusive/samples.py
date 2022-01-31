@@ -3,7 +3,7 @@ import inspect
 
 configurations = os.path.realpath(inspect.getfile(inspect.currentframe())) # this file
 configurations = os.path.dirname(configurations) # inclusive
-configurations = os.path.dirname(configurations) # 2018_v7
+configurations = os.path.dirname(configurations) # Full2018_v7
 configurations = os.path.dirname(configurations) # FullRunII
 configurations = os.path.dirname(configurations) # WW
 configurations = os.path.dirname(configurations) # Configurations
@@ -309,13 +309,17 @@ samples['WH_htt'] = {
 #############   SIGNALS  ##################
 ###########################################
 
+signals = []
+
 ###### WW ########
 
 samples['WW'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'WWTo2L2Nu'),
     'weight': mcCommonWeight+'*nllW',
-    'FilesPerJob': 2
+    'FilesPerJob': 1
 }
+
+signals.append('WW')
 
 ###### ggWW ########
 
@@ -330,8 +334,23 @@ samples['ggWW'] = {
             nanoGetSampleFiles(mcDirectory, 'GluGluToWWToTNMN') + \
             nanoGetSampleFiles(mcDirectory, 'GluGluToWWToTNTN'),
     'weight': mcCommonWeight+'*1.53/1.4',
-    'FilesPerJob': 2
+    'FilesPerJob': 1
 }
+
+signals.append('ggWW')
+
+### Now bin in nonfiducial / fiducial x bins
+
+nbins = 1
+
+for sname in signals:
+  sample = samples[sname]
+  sample['subsamples'] = {}
+
+  sample['subsamples']['nonfid'] = '!(fid)'
+
+  for i in range(nbins):
+      sample['subsamples']['B%d'%i] = 'fid && B%d'%i
 
 ###########################################
 ################## FAKE ###################

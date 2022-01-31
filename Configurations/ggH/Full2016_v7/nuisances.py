@@ -123,14 +123,32 @@ for shift in ['jes', 'lf', 'hf', 'hfstats1', 'hfstats2', 'lfstats1', 'lfstats2',
     }
 
 ##### Trigger Efficiency
+trig_drll_rw_syst = ['1.', '1./trig_drll_rw']
 
-trig_syst = ['((TriggerEffWeight_2l_u)/(TriggerEffWeight_2l))*(TriggerEffWeight_2l>0.02) + (TriggerEffWeight_2l<=0.02)', '(TriggerEffWeight_2l_d)/(TriggerEffWeight_2l)']
+nuisances['trigg_drll_rw_unc'] = {
+    'name': 'CMS_eff_hwwtrigger_drllrw_2016',
+    'kind': 'weight',
+    'type': 'shape',
+    'samples': dict((skey, trig_drll_rw_syst) for skey in mc),
+    'symmetrize' : True,
+}
+
+trig_syst = ['((TriggerAltEffWeight_2l_u)/(TriggerAltEffWeight_2l))*(TriggerAltEffWeight_2l>0.02) + (TriggerAltEffWeight_2l<=0.02)', '(TriggerAltEffWeight_2l_d)/(TriggerAltEffWeight_2l)']
 
 nuisances['trigg'] = {
     'name': 'CMS_eff_hwwtrigger_2016',
     'kind': 'weight',
     'type': 'shape',
-    'samples': dict((skey, trig_syst) for skey in mc_emb)
+    'samples': dict((skey, trig_syst) for skey in mc),
+}
+
+trig_syst_emb = ['((TriggerEffWeight_2l_u)/(TriggerEffWeight_2l))*(TriggerEffWeight_2l>0.02) + (TriggerEffWeight_2l<=0.02)', '(TriggerEffWeight_2l_d)/(TriggerEffWeight_2l)']
+
+nuisances['trigg_emb'] = {
+    'name': 'CMS_eff_hwwtrigger_embedded_2016',
+    'kind': 'weight',
+    'type': 'shape',
+    'samples': {'Dyemb' : trig_syst_emb},
 }
 
 prefire_syst = ['PrefireWeight_Up/PrefireWeight', 'PrefireWeight_Down/PrefireWeight']
@@ -149,8 +167,7 @@ nuisances['eff_e'] = {
     'kind': 'weight',
     'type': 'shape',
     'samples': dict((skey, ['SFweightEleUp', 'SFweightEleDown']) for skey in mc_emb),
-    'cuts': [cut for cut in cuts if not '_CR_' in cut or 'top' in cut or 'dytt' in cut],
-    'perRecoBin': True
+    'cuts': [cut for cut in cuts if not ('_CR_' in cut or 'top' in cut or 'dytt' in cut)]
 }
 
 nuisances['eff_e_CR'] = {
@@ -158,8 +175,7 @@ nuisances['eff_e_CR'] = {
     'kind': 'weight',
     'type': 'shape',
     'samples': dict((skey, ['SFweightEleUp', 'SFweightEleDown']) for skey in mc_emb),
-    'cuts': [cut for cut in cuts if '_CR_' in cut or 'top' in cut or 'dytt' in cut],
-    'perRecoBin': True
+    'cuts': [cut for cut in cuts if '_CR_' in cut or 'top' in cut or 'dytt' in cut]
 }
 
 nuisances['electronpt'] = {
@@ -169,8 +185,8 @@ nuisances['electronpt'] = {
     'mapUp' : 'ElepTup',
     'mapDown': 'ElepTdo',
     'samples': dict((skey, ['1', '1']) for skey in mc),
-    'folderUp': makeMCDirectory('ElepTup_suffix'),
-    'folderDown': makeMCDirectory('ElepTdo_suffix'),
+    'folderUp': makeMCDirectory('trigFix__ElepTup_suffix'),
+    'folderDown': makeMCDirectory('trigFix__ElepTdo_suffix'),
     'AsLnN': '1'
 }
 
@@ -196,8 +212,7 @@ nuisances['eff_m'] = {
     'kind': 'weight',
     'type': 'shape',
     'samples': dict((skey, ['SFweightMuUp', 'SFweightMuDown']) for skey in mc_emb),
-    'cuts': [cut for cut in cuts if '_CR_' in cut or 'top' in cut or 'dytt' in cut],
-    'perRecoBin': True
+    'cuts': [cut for cut in cuts if not ('_CR_' in cut or 'top' in cut or 'dytt' in cut)]
 }
 
 nuisances['eff_m_CR'] = {
@@ -205,8 +220,7 @@ nuisances['eff_m_CR'] = {
     'kind': 'weight',
     'type': 'shape',
     'samples': dict((skey, ['SFweightMuUp', 'SFweightMuDown']) for skey in mc_emb),
-    'cuts': [cut for cut in cuts if not '_CR_' in cut or 'top' in cut or 'dytt' in cut],
-    'perRecoBin': True
+    'cuts': [cut for cut in cuts if '_CR_' in cut or 'top' in cut or 'dytt' in cut]
 }
 
 nuisances['muonpt'] = {
@@ -216,8 +230,8 @@ nuisances['muonpt'] = {
     'mapUp': 'MupTup',
     'mapDown': 'MupTdo',
     'samples': dict((skey, ['1', '1']) for skey in mc),
-    'folderUp': makeMCDirectory('MupTup_suffix'),
-    'folderDown': makeMCDirectory('MupTdo_suffix'),
+    'folderUp': makeMCDirectory('trigFix__MupTup_suffix'),
+    'folderDown': makeMCDirectory('trigFix__MupTdo_suffix'),
     'AsLnN': '1'
 }
 
@@ -302,22 +316,14 @@ if useEmbeddedDY:
     # These hardcoded numbers have been obtained by running the full Dyveto (with runDYveto=True in samples.py) 
     # and computing the lnN uncertainty as variation of the up/down integral with respect to the nominal Dyemb integral
     unc_dict = {}
-    unc_dict['hww2l2v_13TeV_me_pm_0j_pt2lt20']  =   '1.01646'
-    unc_dict['hww2l2v_13TeV_em_pm_0j_pt2ge20']  =   '1.02341'
-    unc_dict['hww2l2v_13TeV_me_mp_0j_pt2ge20']  =   '1.03419'
-    unc_dict['hww2l2v_13TeV_em_mp_0j_pt2lt20']  =   '1.01339'
-    unc_dict['hww2l2v_13TeV_em_pm_0j_pt2lt20']  =   '1.05306'
-    unc_dict['hww2l2v_13TeV_me_mp_0j_pt2lt20']  =   '1.04627'
-    unc_dict['hww2l2v_13TeV_me_pm_0j_pt2ge20']  =   '1.02709'
-    unc_dict['hww2l2v_13TeV_em_mp_0j_pt2ge20']  =   '1.01882'
-    unc_dict['hww2l2v_13TeV_me_pm_1j_pt2lt20']  =   '1.00986'
-    unc_dict['hww2l2v_13TeV_me_pm_1j_pt2ge20']  =   '1.01326'
-    unc_dict['hww2l2v_13TeV_me_mp_1j_pt2ge20']  =   '1.00953'
-    unc_dict['hww2l2v_13TeV_em_mp_1j_pt2lt20']  =   '1.01259'
-    unc_dict['hww2l2v_13TeV_me_mp_1j_pt2lt20']  =   '1.01495'
-    unc_dict['hww2l2v_13TeV_em_pm_1j_pt2lt20']  =   '1.01129'
-    unc_dict['hww2l2v_13TeV_em_pm_1j_pt2ge20']  =   '1.01201'
-    unc_dict['hww2l2v_13TeV_em_mp_1j_pt2ge20']  =   '1.02486'
+    unc_dict['hww2l2v_13TeV_pm_0j_pt2lt20']  =   '1.03476'
+    unc_dict['hww2l2v_13TeV_pm_0j_pt2ge20']  =   '1.02525'
+    unc_dict['hww2l2v_13TeV_mp_0j_pt2ge20']  =   '1.02651'
+    unc_dict['hww2l2v_13TeV_mp_0j_pt2lt20']  =   '1.02983'
+    unc_dict['hww2l2v_13TeV_pm_1j_pt2lt20']  =   '1.01058'
+    unc_dict['hww2l2v_13TeV_pm_1j_pt2ge20']  =   '1.01264'
+    unc_dict['hww2l2v_13TeV_mp_1j_pt2ge20']  =   '1.01720'
+    unc_dict['hww2l2v_13TeV_mp_1j_pt2lt20']  =   '1.01377'
     unc_dict['hww2l2v_13TeV_2j']                =   '1.01431' 
     unc_dict['hww2l2v_13TeV_dytt_0j']           =   '1.00226'
     unc_dict['hww2l2v_13TeV_dytt_1j']           =   '1.00177'
@@ -484,7 +490,7 @@ nuisances['VZ'] = {
 
 ###### pdf uncertainties
 
-pdf_variations = ["LHEPdfWeight[%d]" %i for i in range(100)]
+pdf_variations = ["Alt$(LHEPdfWeight[%d],1)" %i for i in range(100)]
 
 ##### PDF uncertainties on WW
 nuisances['pdf_WW']  = {

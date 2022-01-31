@@ -2,17 +2,17 @@
 
 treeName = 'Events'
 
-tag = 'ggH_vbf_VH_2018v7_STXS_23_12'
+tag = '2j_2018_v7_STXS'
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFile_'+tag
+outputDir = 'rootFile'
 
 # file with TTree aliases
 aliasesFile = 'aliases.py'
 
 # file with list of variables
-variablesFile = 'variables.py'
-# variablesFile = 'variables_mkshapes.py'
+#variablesFile = 'variables.py'
+variablesFile = 'variables_mkshapes.py'
 
 # file with list of cuts
 cutsFile = 'cuts.py' 
@@ -28,10 +28,10 @@ lumi = 59.74
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'plots_'+tag
+outputDirPlots = 'plots'
 
 # used by mkDatacards to define output directory for datacards
-outputDirDatacard = 'datacards_'+tag
+outputDirDatacard = 'datacards'
 
 # structure file for datacard
 structureFile = 'structure.py'

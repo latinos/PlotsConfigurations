@@ -12,16 +12,40 @@ configurations = os.path.dirname(configurations) # Configurations
 
 aliases['nCleanGenJet'] = {
     'linesToAdd': ['.L %s/Differential/ngenjet.cc+' % configurations],
-    'class': 'CountGenJet'
+    'class': 'CountGenJet',
 }
 
 aliases['fiducial'] = {
     'linesToAdd': ['.L %s/WW/FullRunII/fiducial.cc+' % configurations],
-    'class': 'FiducialRegion'
+    'class': 'FiducialRegion',
+    'samples': ['WW','ggWW']
 }
 
-aliases['genjetetacut'] = {
-    'expr': 'Sum$(abs(GenJet_eta) > 2.5) == 0',
+aliases['nGoodGenJet'] = {
+    'linesToAdd': ['.L %s/WW/FullRunII/goodgenjet.cc+' % configurations],
+    'class': 'CleanGenJet',
+    'args': ("njet"),
+    'samples': ['WW','ggWW']
 }
 
+aliases['B0'] = {
+    'expr' : 'nGoodGenJet == 0',
+    'samples' : ['WW','ggWW']
+}
+aliases['B1'] = {
+    'expr' : 'nGoodGenJet == 1',
+    'samples' : ['WW','ggWW']
+}
+aliases['B2'] = {
+    'expr' : 'nGoodGenJet == 2',
+    'samples' : ['WW','ggWW']
+}
+aliases['B3'] = {
+    'expr' : 'nGoodGenJet >= 3',
+    'samples' : ['WW','ggWW']
+}
 
+aliases['fid'] = {
+    'expr' : 'fiducial',
+    'samples' : ['WW','ggWW']
+}

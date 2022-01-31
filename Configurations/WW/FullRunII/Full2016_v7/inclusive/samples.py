@@ -325,19 +325,37 @@ samples['WH_htt'] = {
 #############   SIGNALS  ##################
 ###########################################
 
+signals = []
+
 ###### WW ########
 
 samples['WW'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'WWTo2L2Nu'),
-    'weight': mcCommonWeight+ '*nllW',
-    'FilesPerJob': 4
+    'weight': mcCommonWeight+'*nllW',
+    'FilesPerJob': 2
 }
+
+signals.append('WW')
 
 samples['ggWW'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'GluGluWWTo2L2Nu_MCFM'),
     'weight': mcCommonWeight+'*1.53/1.4', # updating k-factor
     'FilesPerJob': 4
 }
+signals.append('ggWW')
+
+### Now bin in nonfiducial / fiducial x bins
+
+nbins = 1
+
+for sname in signals:
+  sample = samples[sname]
+  sample['subsamples'] = {}
+
+  sample['subsamples']['nonfid'] = '!(fid)'
+
+  for i in range(nbins):
+      sample['subsamples']['B%d'%i] = 'fid && B%d'%i
 
 ###########################################
 ################## FAKE ###################

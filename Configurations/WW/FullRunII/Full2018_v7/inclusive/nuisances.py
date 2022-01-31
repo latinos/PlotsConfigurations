@@ -27,17 +27,18 @@ except NameError:
 from LatinoAnalysis.Tools.HiggsXSection import HiggsXSection
 HiggsXS = HiggsXSection()
 
+############ Load norm factors / differential binning to normalize signal ####################
+import os
+import json
+configurations = os.path.realpath(inspect.getfile(inspect.currentframe())) # this file
+configurations = os.path.dirname(configurations) # inclusive
+configurations = os.path.dirname(configurations) # Full2018_v7
+configurations = os.path.dirname(configurations) # FullRunII
+configurations = os.path.dirname(configurations) # WW
+configurations = os.path.dirname(configurations) # Configurations
 
-cuts0j = []
-cuts1j = []
-cuts2j = []
-
-for k in cuts:
-  for cat in cuts[k]['categories']:
-    if '0j' in cat: cuts0j.append(k+'_'+cat)
-    elif '1j' in cat: cuts1j.append(k+'_'+cat)
-    elif '2j' in cat: cuts2j.append(k+'_'+cat)
-    else: print 'WARNING: name of category does not contain either 0j,1j,2j'
+diffcuts = samples['WW']['subsamples'] if 'WW' in samples else {}
+nfdict = json.load(open("%s/WW/FullRunII/Full2018_v7/inclusive/WWnorm.json"%configurations))
 
 ################################ EXPERIMENTAL UNCERTAINTIES  #################################
 
@@ -298,6 +299,7 @@ nuisances['PU'] = {
         'DY'      : ['1.005805*(puWeightUp/puWeight)', '0.995182*(puWeightDown/puWeight)'],
         'WW'      : ['1.007590*(puWeightUp/puWeight)', '0.992894*(puWeightDown/puWeight)'],
         'ggWW'    : ['1.008988*(puWeightUp/puWeight)', '0.991468*(puWeightDown/puWeight)'],
+        'WWewk'   : ['1.005414*(puWeightUp/puWeight)', '0.995500*(puWeightDown/puWeight)'],
         'Wg'      : ['0.999840*(puWeightUp/puWeight)', '0.998649*(puWeightDown/puWeight)'],
         'WgS'     : ['0.997904*(puWeightUp/puWeight)', '1.002574*(puWeightDown/puWeight)'],
         'Zg'      : ['1.009464*(puWeightUp/puWeight)', '0.986684*(puWeightDown/puWeight)'],
@@ -315,8 +317,7 @@ nuisances['PU'] = {
         'WH_hww'  : ['1.007771*(puWeightUp/puWeight)', '0.992116*(puWeightDown/puWeight)'],
         'ZH_hww'  : ['1.005918*(puWeightUp/puWeight)', '0.993548*(puWeightDown/puWeight)'],
         'ggZH_hww': ['1.009085*(puWeightUp/puWeight)', '0.990974*(puWeightDown/puWeight)'],
-        'ttH_hww' : ['1.000352*(puWeightUp/puWeight)', '0.999734*(puWeightDown/puWeight)']
-
+        'ttH_hww' : ['1.000352*(puWeightUp/puWeight)', '0.999734*(puWeightDown/puWeight)'],
     },
     'AsLnN': '1',
 }
@@ -332,67 +333,45 @@ nuisances['jetPUID'] = {
 }
 
 ##### PS
-nuisances['PS_ISR_noNorm']  = {
+nuisances['PS_ISR']  = {
     'name': 'PS_ISR',
     'kind': 'weight',
     'type': 'shape',
     'samples': dict((skey, ['PSWeight[2]', 'PSWeight[0]']) for skey in mc if skey not in ['WW','ggWW']),
 }
 
-nuisances['PS_FSR_noNorm']  = {
+norm_ISR_WW   = ['+'.join(['({})*1.0'.format(diffcuts[binname]) if binname == "nonfid" else '({})*({})'.format(diffcuts[binname],nfdict["PS_ISR"]["WW_"+binname][i]) for binname in diffcuts]) for i in range(2)]
+norm_ISR_ggWW = ['+'.join(['({})*1.0'.format(diffcuts[binname]) if binname == "nonfid" else '({})*({})'.format(diffcuts[binname],nfdict["PS_ISR"]["ggWW_"+binname][i]) for binname in diffcuts]) for i in range(2)]
+
+nuisances['PS_ISR_WW']  = {
+    'name': 'PS_ISR',
+    'kind' : 'weight',
+    'type': 'shape',
+    'samples': {        
+        'WW'   : ['({})*PSWeight[3]'.format(norm_ISR_WW[0]),'({})*PSWeight[1]'.format(norm_ISR_WW[1])],
+        'ggWW' : ['({})*PSWeight[3]'.format(norm_ISR_ggWW[0]),'({})*PSWeight[1]'.format(norm_ISR_ggWW[1])]
+    }
+}
+
+nuisances['PS_FSR']  = {
     'name': 'PS_FSR',
     'kind': 'weight',
     'type': 'shape',
     'samples': dict((skey, ['PSWeight[3]', 'PSWeight[1]']) for skey in mc if skey not in ['WW','ggWW']),
 }
 
-nuisances['PS_ISR_Norm']  = {
-    'name': 'PS_ISR',
-    'kind': 'weight',
-    'type': 'shape',
-    'samples': {
-        'WW'   : ['PSWeight[2]*0.999798', 'PSWeight[0]*0.999466'],
-        'ggWW' : ['PSWeight[2]*0.999925', 'PSWeight[0]*0.999347'],
-    }
-}
+norm_FSR_WW   = ['+'.join(['({})*1.0'.format(diffcuts[binname]) if binname == "nonfid" else '({})*({})'.format(diffcuts[binname],nfdict["PS_FSR"]["WW_"+binname][i]) for binname in diffcuts]) for i in range(2)]
+norm_FSR_ggWW = ['+'.join(['({})*1.0'.format(diffcuts[binname]) if binname == "nonfid" else '({})*({})'.format(diffcuts[binname],nfdict["PS_FSR"]["ggWW_"+binname][i]) for binname in diffcuts]) for i in range(2)]
 
-nuisances['PS_FSR_Norm']  = {
+nuisances['PS_FSR_WW']  = {
     'name': 'PS_FSR',
-    'kind': 'weight',
+    'kind' : 'weight',
     'type': 'shape',
-    'samples': {
-        'WW'   : ['PSWeight[3]*0.999445', 'PSWeight[1]*1.000198'],
-        'ggWW' : ['PSWeight[3]*0.999501', 'PSWeight[1]*1.000445'],
+    'samples': {        
+        'WW'   : ['({})*PSWeight[3]'.format(norm_FSR_WW[0]),'({})*PSWeight[1]'.format(norm_FSR_WW[1])],
+        'ggWW' : ['({})*PSWeight[3]'.format(norm_FSR_ggWW[0]),'({})*PSWeight[1]'.format(norm_FSR_ggWW[1])]
     }
 }
-
-#### Ignore following for now -- samples look fine?
-
-## PS nuisances computed by hand as a function of nCleanGenJets using alternative samples (when available). Needed if nominal samples have buggy PSWeights
-#nuisances['PS_ISR_ForBuggySamples']  = {
-#    'name': 'PS_ISR',
-#    'kind': 'weight',
-#    'type': 'shape',
-#    'samples': {
-#        'Wg'     : ['1.00227428567253*(nCleanGenJet==0) + 1.00572014989997*(nCleanGenJet==1) + 0.970824885256465*(nCleanGenJet==2) + 0.927346068071086*(nCleanGenJet>=3)', '0.996488506572636*(nCleanGenJet==0) + 0.993582795375765*(nCleanGenJet==1) + 1.03643678934568*(nCleanGenJet==2) + 1.09735277266955*(nCleanGenJet>=3)'],
-#        'Zg'     : ['1.00227428567253*(nCleanGenJet==0) + 1.00572014989997*(nCleanGenJet==1) + 0.970824885256465*(nCleanGenJet==2) + 0.927346068071086*(nCleanGenJet>=3)', '0.996488506572636*(nCleanGenJet==0) + 0.993582795375765*(nCleanGenJet==1) + 1.03643678934568*(nCleanGenJet==2) + 1.09735277266955*(nCleanGenJet>=3)'],
-#        'WgS'    : ['1.0000536116408023*(nCleanGenJet==0) + 1.0100100693580492*(nCleanGenJet==1) + 0.959068359375*(nCleanGenJet==2) + 0.9117049260469496*(nCleanGenJet>=3)', '0.9999367833485968*(nCleanGenJet==0) + 0.9873682892005163*(nCleanGenJet==1) + 1.0492717737268518*(nCleanGenJet==2) + 1.1176958835210322*(nCleanGenJet>=3)'],
-#        'ZgS'    : ['1.0000536116408023*(nCleanGenJet==0) + 1.0100100693580492*(nCleanGenJet==1) + 0.959068359375*(nCleanGenJet==2) + 0.9117049260469496*(nCleanGenJet>=3)', '0.9999367833485968*(nCleanGenJet==0) + 0.9873682892005163*(nCleanGenJet==1) + 1.0492717737268518*(nCleanGenJet==2) + 1.1176958835210322*(nCleanGenJet>=3)'],
-#    },
-#}
-
-#nuisances['PS_FSR_ForBuggySamples']  = {
-#    'name': 'PS_FSR',
-#    'kind': 'weight',
-#    'type': 'shape',
-#    'samples': {
-#        'Wg'     : ['0.999935529935028*(nCleanGenJet==0) + 0.997948255568351*(nCleanGenJet==1) + 1.00561645493085*(nCleanGenJet==2) + 1.0212896960035*(nCleanGenJet>=3)', '1.00757702771109*(nCleanGenJet==0) + 1.00256681166083*(nCleanGenJet==1) + 0.93676371569867*(nCleanGenJet==2) + 0.956448336052435*(nCleanGenJet>=3)'],
-#        'Zg'     : ['0.999935529935028*(nCleanGenJet==0) + 0.997948255568351*(nCleanGenJet==1) + 1.00561645493085*(nCleanGenJet==2) + 1.0212896960035*(nCleanGenJet>=3)', '1.00757702771109*(nCleanGenJet==0) + 1.00256681166083*(nCleanGenJet==1) + 0.93676371569867*(nCleanGenJet==2) + 0.956448336052435*(nCleanGenJet>=3)'],
-#        'WgS'    : ['0.9976593177227735*(nCleanGenJet==0) + 1.0016125187585532*(nCleanGenJet==1) + 1.0049344618055556*(nCleanGenJet==2) + 1.0195631514301164*(nCleanGenJet>=3)', '1.0026951855766457*(nCleanGenJet==0) + 1.0008132148661049*(nCleanGenJet==1) + 1.003949291087963*(nCleanGenJet==2) + 0.9708160910230832*(nCleanGenJet>=3)'],
-#        'ZgS'    : ['0.9976593177227735*(nCleanGenJet==0) + 1.0016125187585532*(nCleanGenJet==1) + 1.0049344618055556*(nCleanGenJet==2) + 1.0195631514301164*(nCleanGenJet>=3)', '1.0026951855766457*(nCleanGenJet==0) + 1.0008132148661049*(nCleanGenJet==1) + 1.003949291087963*(nCleanGenJet==2) + 0.9708160910230832*(nCleanGenJet>=3)'],
-#    },
-#}
-
 
 # An overall 1.5% UE uncertainty will cover all the UEup/UEdo variations
 # And we don't observe any dependency of UE variations on njet
@@ -539,34 +518,24 @@ nuisances['pdf_qqbar_ACCEPT'] = {
     },
 }
 
-pdf_norms = [[0.9926415872319974, 1.0074683227712715], [0.9935853042798772, 1.0064980618998398], [1.0009170685914497, 0.9990846103587336], 
-             [1.005904594070119, 0.9941643205662333], [1.0049204314971152, 0.9951275179313672], [0.9992803454792569, 1.0007206918189846], 
-             [1.0006279235475097, 0.9993728640393689], [0.9978369147908045, 1.0021724837441055], [1.0006671444115744, 0.9993337445656111], 
-             [1.0015358144833437, 0.9984688885230187], [0.9973298715346199, 1.0026844641939001], [1.0016618601281775, 0.9983436451320543], 
-             [0.9988551504952163, 1.0011474768814608], [1.000155832220027, 0.9998442163321976], [0.9975712938577829, 1.0024405609529599], 
-             [1.000124427901909, 0.9998756030549878], [1.0013130186068753, 0.9986904203978881], [0.9991885079937842, 1.0008128111857804], 
-             [0.9991219987378559, 1.0008795457466932], [1.0049163695819845, 0.9951315010978343], [1.0022231543223206, 0.9977866867515146], 
-             [1.0001947882249635, 0.9998052876303801], [0.9998793085033189, 1.0001207206365814], [1.0010973305991457, 0.998905072395981], 
-             [0.9986417806261628, 1.0013619189432226], [1.0008899778739397, 0.9991116034326295], [1.0023793586446614, 0.9976319104241463], 
-             [1.0015461164816484, 0.9984586497324554], [0.998500514606388, 1.0015039958331806], [0.997811600647364, 1.0021980196421643], 
-             [1.0100074438973363, 0.9901889236940669], [0.9924219949086001, 1.0076946249048027]]
+varupstring   = "(     LHEPdfWeight[{i}]/LHEPdfWeight[0] *(abs(LHEPdfWeight[{i}]/LHEPdfWeight[0])<=100)+1.0*(abs(LHEPdfWeight[{i}]/LHEPdfWeight[0])>100))"
+vardownstring = "((2.0-LHEPdfWeight[{i}]/LHEPdfWeight[0])*(abs(LHEPdfWeight[{i}]/LHEPdfWeight[0])<=100)+1.0*(abs(LHEPdfWeight[{i}]/LHEPdfWeight[0])>100))"
 
 for i in range(1,33):
-  # LHEPdfWeight are PDF4LHC variations, while nominal is NNPDF.
-  # LHEPdfWeight[i] reweights from NNPDF nominal to PDF4LHC member i
-  # LHEPdfWeight[0] in particular reweights from NNPDF nominal to PDF4LHC nominal
-  # Float_t LHE pdf variation weights (w_var / w_nominal) for LHA IDs 91400 - 91432*
-  pdf_variations = ["(LHEPdfWeight[%d]/LHEPdfWeight[0]*(abs(LHEPdfWeight[%d]/LHEPdfWeight[0])<=100)+1.0*(abs(LHEPdfWeight[%d]/LHEPdfWeight[0])>100))*%f"%(i,i,i,pdf_norms[i-1][0]), 
-                    "((2.0-(LHEPdfWeight[%d]/LHEPdfWeight[0]))*(abs(LHEPdfWeight[%d]/LHEPdfWeight[0])<=100)+1.0*(abs(LHEPdfWeight[%d]/LHEPdfWeight[0])>100))*%f"%(i,i,i,pdf_norms[i-1][1])] 
+    # LHEPdfWeight are PDF4LHC variations, while nominal is NNPDF.
+    # LHEPdfWeight[i] reweights from NNPDF nominal to PDF4LHC member i
+    # LHEPdfWeight[0] in particular reweights from NNPDF nominal to PDF4LHC nominal
+    norm_PDF = ['+'.join(['({})*1.0'.format(diffcuts[binname]) if binname == "nonfid" else '({})*({})'.format(diffcuts[binname],nfdict["pdf_WW_eigen%d"%i]["WW_"+binname][0]) for binname in diffcuts]),
+                '+'.join(['({})*1.0'.format(diffcuts[binname]) if binname == "nonfid" else '({})*({})'.format(diffcuts[binname],nfdict["pdf_WW_eigen%d"%i]["WW_"+binname][1]) for binname in diffcuts])]
 
-  nuisances['pdf_WW_eigen'+str(i)]  = {
-    'name'  : 'CMS_hww_pdf_WW_eigen'+str(i),
-    'kind'  : 'weight',
-    'type'  : 'shape',
-    'samples'  : {
-      'WW'   : pdf_variations,
-    },
-  }
+    nuisances['pdf_WW_eigen'+str(i)]  = {
+        'name'  : 'CMS_hww_pdf_WW_eigen'+str(i),
+        'kind'  : 'weight',
+        'type'  : 'shape',
+        'samples': {
+            'WW' : [varupstring.format(i=i)+'*('+norm_PDF[0]+')', vardownstring.format(i=i)+'*('+norm_PDF[1]+')']
+        },
+    }
 
 ##### Renormalization & factorization scales
 
@@ -600,79 +569,51 @@ nuisances['QCDscale_VV'] = {
     }
 }
 
+norm_QCD = ['+'.join(['({})*1.0'.format(diffcuts[binname]) if binname == "nonfid" else '({})*({})'.format(diffcuts[binname],nfdict["QCDscale_WW"]["WW_"+binname][0]) for binname in diffcuts]),
+            '+'.join(['({})*1.0'.format(diffcuts[binname]) if binname == "nonfid" else '({})*({})'.format(diffcuts[binname],nfdict["QCDscale_WW"]["WW_"+binname][1]) for binname in diffcuts])]
+
 nuisances['QCDscale_WW']  = {
     'name'  : 'QCDscale_WW',
     'kind'  : 'weight',
     'type'  : 'shape',
     'samples'  : {
-       'WW' : ['Alt$(LHEScaleWeight[0],1)*0.986927','Alt$(LHEScaleWeight[8],1)*1.008902']
+        'WW' : ['Alt$(LHEScaleWeight[0],1)*('+norm_QCD[0]+')','Alt$(LHEScaleWeight[8],1)*('+norm_QCD[1]+')'],
     }
 }
 
-topvars0j = []
-topvars1j = []
-topvars2j = []
-
-## Factors computed to renormalize the top scale variations such that the integral is not changed in each RECO jet bin (we have rateParams for that)
-topScaleNormFactors0j = {'Alt$(LHEScaleWeight[0],1)' : 1.076819, 'Alt$(LHEScaleWeight[1],1)' : 1.076075, 'Alt$(LHEScaleWeight[5],1)' : 1.000304, 'Alt$(LHEScaleWeight[8],1)' : 0.922032, 'Alt$(LHEScaleWeight[3],1)' : 1.003073, 'Alt$(LHEScaleWeight[7],1)' : 0.924058}
-topScaleNormFactors1j = {'Alt$(LHEScaleWeight[0],1)' : 1.085179, 'Alt$(LHEScaleWeight[1],1)' : 1.080271, 'Alt$(LHEScaleWeight[5],1)' : 0.995034, 'Alt$(LHEScaleWeight[8],1)' : 0.911793, 'Alt$(LHEScaleWeight[3],1)' : 1.008987, 'Alt$(LHEScaleWeight[7],1)' : 0.919795}
-topScaleNormFactors2j = {'Alt$(LHEScaleWeight[0],1)' : 1.124310, 'Alt$(LHEScaleWeight[1],1)' : 1.105049, 'Alt$(LHEScaleWeight[5],1)' : 0.982068, 'Alt$(LHEScaleWeight[8],1)' : 0.882327, 'Alt$(LHEScaleWeight[3],1)' : 1.023542, 'Alt$(LHEScaleWeight[7],1)' : 0.902828}
-
-topvars0j.append('Alt$(LHEScaleWeight[0],1)/'+str(topScaleNormFactors0j['Alt$(LHEScaleWeight[0],1)']))
-topvars0j.append('Alt$(LHEScaleWeight[8],1)/'+str(topScaleNormFactors0j['Alt$(LHEScaleWeight[8],1)']))
-
-topvars1j.append('Alt$(LHEScaleWeight[0],1)/'+str(topScaleNormFactors1j['Alt$(LHEScaleWeight[0],1)']))
-topvars1j.append('Alt$(LHEScaleWeight[8],1)/'+str(topScaleNormFactors1j['Alt$(LHEScaleWeight[8],1)']))
-
-topvars2j.append('Alt$(LHEScaleWeight[0],1)/'+str(topScaleNormFactors2j['Alt$(LHEScaleWeight[0],1)']))
-topvars2j.append('Alt$(LHEScaleWeight[8],1)/'+str(topScaleNormFactors2j['Alt$(LHEScaleWeight[8],1)']))
+topScaleNormFactors = {
+    '0j' : {'Alt$(LHEScaleWeight[0],1)' : 1.076819, 'Alt$(LHEScaleWeight[1],1)' : 1.076075, 'Alt$(LHEScaleWeight[5],1)' : 1.000304, 'Alt$(LHEScaleWeight[8],1)' : 0.922032, 'Alt$(LHEScaleWeight[3],1)' : 1.003073, 'Alt$(LHEScaleWeight[7],1)' : 0.924058},
+    '1j' : {'Alt$(LHEScaleWeight[0],1)' : 1.085179, 'Alt$(LHEScaleWeight[1],1)' : 1.080271, 'Alt$(LHEScaleWeight[5],1)' : 0.995034, 'Alt$(LHEScaleWeight[8],1)' : 0.911793, 'Alt$(LHEScaleWeight[3],1)' : 1.008987, 'Alt$(LHEScaleWeight[7],1)' : 0.919795},
+    '2j' : {'Alt$(LHEScaleWeight[0],1)' : 1.124310, 'Alt$(LHEScaleWeight[1],1)' : 1.105049, 'Alt$(LHEScaleWeight[5],1)' : 0.982068, 'Alt$(LHEScaleWeight[8],1)' : 0.882327, 'Alt$(LHEScaleWeight[3],1)' : 1.023542, 'Alt$(LHEScaleWeight[7],1)' : 0.902828}
+}
 
 ## QCD scale nuisances for top are decorrelated for each RECO jet bin: the QCD scale is different for different jet multiplicities so it doesn't make sense to correlate them
-nuisances['QCDscale_top_0j']  = {
-    'name'  : 'QCDscale_top_0j',
-    'skipCMS' : 1,
-    'kind'  : 'weight',
-    'type'  : 'shape',
-    'cuts' : [cut for cut in cuts if '0j' in cut],
-    'samples'  : {
-       'top' : topvars0j,
-    }
-}
+for ibin in cuts['ww2l2v_13TeV_top']['categories']:
+    topvars = []
+    topvars.append('Alt$(LHEScaleWeight[0],1)/'+str(topScaleNormFactors[ibin]['Alt$(LHEScaleWeight[0],1)']))
+    topvars.append('Alt$(LHEScaleWeight[8],1)/'+str(topScaleNormFactors[ibin]['Alt$(LHEScaleWeight[8],1)']))
 
-nuisances['QCDscale_top_1j']  = {
-    'name'  : 'QCDscale_top_1j',
-    'skipCMS' : 1,
-    'kind'  : 'weight',
-    'type'  : 'shape',
-    'cuts' : [cut for cut in cuts if '1j' in cut],
-    'samples'  : {
-       'top' : topvars1j,
+    nuisances['QCDscale_top_'+ibin]  = {
+        'name'  : 'QCDscale_top_'+ibin,
+        'kind'  : 'weight',
+        'type'  : 'shape',
+        'cutspost' : lambda self, cuts: [cut for cut in cuts if self['name'].split('_')[-1] in cut],
+        'samples'  : {
+            'top' : topvars,
+        }
     }
-}
-
-nuisances['QCDscale_top_2j']  = {
-    'name'  : 'QCDscale_top_2j',
-    'skipCMS' : 1,
-    'kind'  : 'weight',
-    'type'  : 'shape',
-    'cuts' : [cut for cut in cuts if '2j' in cut],
-    'samples'  : {
-       'top' : topvars2j,
-    }
-}
 
 # TODO update
-#nuisances['QCDscale_ggVV'] = {
-#    'name': 'QCDscale_ggVV',
-#    'type': 'lnN',
-#    'samples': {
-#        'ggWW': '1.15',
-#    },
-#}
+'''
+nuisances['QCDscale_ggVV'] = {
+    'name': 'QCDscale_ggVV',
+    'type': 'lnN',
+    'samples': {
+        'ggWW': '1.15',
+    },
+}
 
 ##### Renormalization & factorization scales
-# TODO -- keep skeleton for now
-'''
 nuisances['WWresum0j']  = {
   'name'  : 'CMS_hww_WWresum_0j',
   'skipCMS' : 1,
@@ -741,19 +682,11 @@ nuisances['WWqscale2j']  = {
 '''
 
 # Uncertainty on SR/CR ratio
-#nuisances['CRSR_accept_DY'] = {
-#    'name': 'CMS_hww_CRSR_accept_DY',
-#    'type': 'lnN',
-#    'samples': {'DY': '1.02'},
-#    'cuts': [cut for cut in cuts if '_dytt_' in cut],
-#}
-
-# Uncertainty on SR/CR ratio
 nuisances['CRSR_accept_top'] = {
     'name': 'CMS_hww_CRSR_accept_top',
     'type': 'lnN',
     'samples': {'top': '1.01'},
-    'cuts': [cut for cut in cuts if '_top_' in cut],
+    'cuts': [cut for cut in cuts if 'top' in cut],
 }
 '''
 # Theory uncertainty for ggH
@@ -914,88 +847,15 @@ nuisances['stat'] = {
 }
 
 ##rate parameters
-'''
-nuisances['DYttnorm0j']  = {
-               'name'  : 'CMS_hww_DYttnorm0j',
-               'samples'  : {
-                   'DY' : '1.00',
-                   },
-               'type'  : 'rateParam',
-               'cuts'  : cuts0j
-              }
-
-nuisances['DYttnorm1j']  = {
-               'name'  : 'CMS_hww_DYttnorm1j',
-               'samples'  : {
-                   'DY' : '1.00',
-                   },
-               'type'  : 'rateParam',
-               'cuts'  : cuts1j
-              }
-
-nuisances['DYttnorm2j']  = {
-                 'name'  : 'CMS_hww_DYttnorm2j',
-                 'samples'  : {
-                   'DY' : '1.00',
-                     },
-                 'type'  : 'rateParam',
-                 'cuts'  : cuts2j
-                }
-
-nuisances['DYembnorm0j']  = {
-               'name'  : 'CMS_hww_DYttnorm0j',
-               'samples'  : {
-                   'Dyemb' : '1.00',
-                   },
-               'type'  : 'rateParam',
-               'cuts'  : cuts0j
-              }
-
-nuisances['DYembnorm1j']  = {
-               'name'  : 'CMS_hww_DYttnorm1j',
-               'samples'  : {
-                   'Dyemb' : '1.00',
-                   },
-               'type'  : 'rateParam',
-               'cuts'  : cuts1j
-              }
-
-nuisances['DYembnorm2j']  = {
-                 'name'  : 'CMS_hww_DYttnorm2j',
-                 'samples'  : {
-                   'Dyemb' : '1.00',
-                     },
-                 'type'  : 'rateParam',
-                 'cuts'  : cuts2j
-                }
-'''
-nuisances['Topnorm0j']  = {
-               'name'  : 'CMS_hww_Topnorm0j',
-               'samples'  : {
-                   'top' : '1.00',
-                   },
-               'type'  : 'rateParam',
-               'cuts'  : cuts0j
-              }
-
-nuisances['Topnorm1j']  = {
-               'name'  : 'CMS_hww_Topnorm1j',
-               'samples'  : {
-                   'top' : '1.00',
-                   },
-               'type'  : 'rateParam',
-               'cuts'  : cuts1j
-              }
-
-nuisances['Topnorm2j']  = {
-               'name'  : 'CMS_hww_Topnorm2j',
-               'samples'  : {
-                   'top' : '1.00',
-                   },
-               'type'  : 'rateParam',
-               'cuts'  : cuts2j
-              }
-
+for ibin in cuts['ww2l2v_13TeV_top']['categories']:
+    nuisances['Topnorm_'+ibin]  = {
+        'name'  : 'CMS_hww_Topnorm_'+ibin,
+        'samples'  : {
+            'top' : '1.00',
+        },
+        'type'  : 'rateParam',
+        'cutspost' : lambda self, cuts: [cut for cut in cuts if self['name'].split('_')[-1] in cut],
+    }
 
 for n in nuisances.values():
     n['skipCMS'] = 1
