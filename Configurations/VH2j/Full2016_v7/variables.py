@@ -48,6 +48,13 @@ variables['mll10GeV'] = {
     'fold'  : 0
 }
 
+variables['mll_from12'] = {     
+    'name'  : 'mll',
+    'range' : (15, 0., 180.),
+    'xaxis' : 'm_{ll} [GeV]',
+    'fold'  : 3
+}
+
 
 # variables['bdt'] = {    
 #     'name'  : 'VH2j_TMVAReader(Entry$)',
