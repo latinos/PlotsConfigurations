@@ -26,8 +26,8 @@ except NameError:
 from LatinoAnalysis.Tools.HiggsXSection import HiggsXSection
 HiggsXS = HiggsXSection()
 
-mu_cuts = [ c for c in cuts if 'MuCh' in c] 
-el_cuts = [ c for c in cuts if 'ElCh' in c] 
+#mu_cuts = [ c for c in cuts if 'MuCh' in c] 
+#el_cuts = [ c for c in cuts if 'ElCh' in c] 
 
 mc_VBS   = ['WWewk', 'WZqcd', 'WZewk', 'ZZ']
 # Broken since pull in September 2021
@@ -230,7 +230,7 @@ nuisances['CMS_scale_met_2018']  = {
     'name'  : 'CMS_scale_met_2018',
     'type'  : 'lnN',
     'samples'  : {
-        'Wjets'  : '1.02',
+        #'Wjets'  : '1.02',
         #'WZewk'  : '1.0416406210649',
         'WW'     : '1.03',
         'DY'     : '1.08',
@@ -239,7 +239,7 @@ nuisances['CMS_scale_met_2018']  = {
         'VVV'    : '1.01',
         'ggWW'   : '1.02',
         'Vg'     : '1.06',
-        'top'    : '1.01',
+        #'top'    : '1.01',
         'VBF-V'  : '1.02',
         #'WWewk'  : '1.0734941788458',
         #'WZqcd'  : '1.0679605960038',
@@ -299,14 +299,17 @@ handle.close()
 puid_dict = {}
 for samp in mc:
     if samp in jetpuid_dict:
-        #puid_dict[samp] = [jetpuid_dict[samp]['Up'], jetpuid_dict[samp]['Down']]
-        puid_dict[samp] = ['1.', jetpuid_dict[samp]['Down']]
+        puid_dict[samp] = [jetpuid_dict[samp]['Up'], jetpuid_dict[samp]['Down']]
+        #puid_dict[samp] = ['1.', jetpuid_dict[samp]['Down']]
+        #puid_dict[samp] = ['1./('+jetpuid_dict[samp]['Down']+')', jetpuid_dict[samp]['Down']]
     elif 'darkHiggs' in samp:
-        #puid_dict[samp] = [jetpuid_dict['darkHiggs']['Up'], jetpuid_dict['darkHiggs']['Down']]
-        puid_dict[samp] = ['1.', jetpuid_dict['darkHiggs']['Down']]
+        puid_dict[samp] = [jetpuid_dict['darkHiggs']['Up'], jetpuid_dict['darkHiggs']['Down']]
+        #puid_dict[samp] = ['1.', jetpuid_dict['darkHiggs']['Down']]
+        #puid_dict[samp] = ['1./('+jetpuid_dict['darkHiggs']['Down']+')', jetpuid_dict['darkHiggs']['Down']]
     elif 'VgS' in samp:
-        #puid_dict[samp] = [jetpuid_dict['VgS_H']['Up'], jetpuid_dict['VgS_H']['Down']]
-        puid_dict[samp] = ['1.', jetpuid_dict['VgS_H']['Down']]
+        puid_dict[samp] = [jetpuid_dict['VgS_H']['Up'], jetpuid_dict['VgS_H']['Down']]
+        #puid_dict[samp] = ['1.', jetpuid_dict['VgS_H']['Down']]
+        #puid_dict[samp] = ['1./('+jetpuid_dict['VgS_H']['Down']+')', jetpuid_dict['VgS_H']['Down']]
 
 nuisances['JetPUID_sf']  = {
     'name'  : 'CMS_jetpuid_2018',
@@ -349,7 +352,7 @@ nuisances['PS_ISR']  = {
     'name': 'PS_ISR',
     'kind': 'weight',
     'type': 'shape',
-    'AsLnN': '1',
+    #'AsLnN': '1',
     'samples': {
         'Wjets': ['0.999361844313*(nCleanGenJet==0) + 1.00932187819*(nCleanGenJet==1) + 1.01036957312*(nCleanGenJet==2) + 0.980802963847*(nCleanGenJet>=3)', 
                   '1.00133729681*(nCleanGenJet==0) + 0.989165456129*(nCleanGenJet==1) + 0.988125359076*(nCleanGenJet==2) + 1.02558360248*(nCleanGenJet>=3)'],
@@ -384,7 +387,7 @@ nuisances['PS_FSR']  = {
     'name': 'PS_FSR',
     'kind': 'weight',
     'type': 'shape',
-    'AsLnN': '1',
+    #'AsLnN': '1',
     'samples': {
         'Wjets': ['0.951581197919*(nCleanGenJet==0) + 0.997755474747*(nCleanGenJet==1) + 1.02983517401*(nCleanGenJet==2) + 1.01143623738*(nCleanGenJet>=3)', 
                    '1.08454892632*(nCleanGenJet==0) + 1.0003688082*(nCleanGenJet==1) + 0.980741215888*(nCleanGenJet==2) + 0.97189538569*(nCleanGenJet>=3)'],
@@ -426,19 +429,38 @@ nuisances['UE']  = {
 
 
 
-## ####### Generic "cross section uncertainties"
-#nuisances['singleTopToTTbar'] = {
-#    'name': 'singleTopToTTbar',
-#    'skipCMS': 1,
-#    'kind': 'weight',
-#    'type': 'shape',
-#    'samples': {
-#        'top': [
-#        'isSingleTop * 1.0816 + isTTbar',
-#        'isSingleTop * 0.9184 + isTTbar']
-#      }
-#
-#}
+####### Generic "cross section uncertainties"
+
+lastcopy     = (1 << 13)
+topGenPt     = '(Sum$((GenPart_pdgId == 6 && (GenPart_statusFlags & %d)) * GenPart_pt))' % lastcopy
+antitopGenPt = '(Sum$((GenPart_pdgId == -6 && (GenPart_statusFlags & %d)) * GenPart_pt))' % lastcopy
+
+nuisances['singleTopToTTbar'] = {
+    'name': 'singleTopToTTbar',
+    'skipCMS': 1,
+    'kind': 'weight',
+    'type': 'shape',
+    'samples': {
+        'top': [
+            '('+topGenPt+' * '+antitopGenPt+' <= 0.) * 1.0816 + ('+topGenPt+' * '+antitopGenPt+' > 0.)',
+            '('+topGenPt+' * '+antitopGenPt+' <= 0.) * 0.9184 + ('+topGenPt+' * '+antitopGenPt+' > 0.)'
+        ],
+    }
+
+}
+
+nuisances['Wjets_merge'] = {
+    'name': 'Wjets_merge_2018',
+    'skipCMS': 1,
+    'kind': 'weight',
+    'type': 'shape',
+    'samples': {
+        'Wjets': [
+            '(LHE_Vpt > 120)*1.05 + (LHE_Vpt < 120)*1.',
+            '(LHE_Vpt > 120)*0.95 + (LHE_Vpt < 120)*1.'
+        ],
+    }
+}
 
 ## Top pT reweighting uncertainty
 #FIXME: correct?
@@ -447,9 +469,9 @@ nuisances['TopPtRew'] = {
     'kind': 'weight',
     'type': 'shape',
     'samples': {
-        'top': ["1.", "1./Top_pTrw"],
+        'top': ["1./Top_pTrw", "Top_pTrw"],
     },
-    'symmetrize': True
+    #'symmetrize': True
 }
 
 nuisances['VgStar'] = {
@@ -674,11 +696,36 @@ nuisances['QCDscale_top']  = {
 }
 
 nuisances['QCDscale_Wjets']  = {
-    'name'  : 'QCDscale_V', 
+    'name'  : 'QCDscale_Wjets', 
     'kind'  : 'weight_envelope',
     'type'  : 'shape',
     'samples'  : {
         'Wjets' : variations,
+    }
+}
+
+nuisances['QCDscale_1_Wjets']  = {
+    'name'  : 'QCDscale_1_Wjets', 
+    'kind'  : 'weight',
+    'type'  : 'shape',
+    'samples'  : {
+        'Wjets' : ['LHEScaleWeight[0]', 'LHEScaleWeight[Length$(LHEScaleWeight)-1]'],
+    }
+}
+nuisances['QCDscale_2_Wjets']  = {
+    'name'  : 'QCDscale_2_Wjets', 
+    'kind'  : 'weight',
+    'type'  : 'shape',
+    'samples'  : {
+        'Wjets' : ['LHEScaleWeight[1]', 'LHEScaleWeight[Length$(LHEScaleWeight)-2]'],
+    }
+}
+nuisances['QCDscale_3_Wjets']  = {
+    'name'  : 'QCDscale_3_Wjets', 
+    'kind'  : 'weight',
+    'type'  : 'shape',
+    'samples'  : {
+        'Wjets' : ['LHEScaleWeight[3]', 'LHEScaleWeight[Length$(LHEScaleWeight)-4]'],
     }
 }
 
@@ -769,6 +816,12 @@ nuisances['Wjetsnorm']  = {
         'InCh_SB',
     ]
 }
+
+#for n_key in nuisances:
+#    if 'AsLnN' in nuisances[n_key] and nuisances[n_key]['AsLnN'] == '1':
+#        if 'top' in nuisances[n_key]['samples']: del nuisances[n_key]['samples']['top']
+#        if 'Wjets' in nuisances[n_key]['samples']: del nuisances[n_key]['samples']['Wjets']
+            
 
 for n in nuisances.values():
     n['skipCMS'] = 1

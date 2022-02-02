@@ -135,7 +135,8 @@ files = nanoGetSampleFiles(mcDirectory, 'TTToSemiLeptonic') + \
 samples['top'] = {
     'name': files,
     'weight': mcCommonWeight,
-    'FilesPerJob': 3,
+    #'FilesPerJob': 3,
+    'FilesPerJob': 2,
 }
 
 # ttbar pT re-weighting
@@ -357,19 +358,19 @@ samples['ZZ'] = {
 
 #_ext4 not processed
 # NLO combine stat
-oldbW100pt = getBaseWnAOD(mcDirectory, mcProduction, ['WJetsToLNu_Wpt100To250'])
+#oldbW100pt = getBaseWnAOD(mcDirectory, mcProduction, ['WJetsToLNu_Wpt100To250'])
 newbW100pt = getBaseWnAOD(mcDirectory, mcProduction, ['WJetsToLNu_Wpt100To250', 'WJetsToLNu_Wpt100To250_ext1'])
 newbW100w = newbW100pt+'/baseW'
 
-oldbW250pt = getBaseWnAOD(mcDirectory, mcProduction, ['WJetsToLNu_Wpt250To400'])
+#oldbW250pt = getBaseWnAOD(mcDirectory, mcProduction, ['WJetsToLNu_Wpt250To400'])
 newbW250pt = getBaseWnAOD(mcDirectory, mcProduction, ['WJetsToLNu_Wpt250To400', 'WJetsToLNu_Wpt250To400_ext1'])
 newbW250w = newbW250pt+'/baseW'
 
-oldbW400pt = getBaseWnAOD(mcDirectory, mcProduction, ['WJetsToLNu_Wpt400To600'])
+#oldbW400pt = getBaseWnAOD(mcDirectory, mcProduction, ['WJetsToLNu_Wpt400To600'])
 newbW400pt = getBaseWnAOD(mcDirectory, mcProduction, ['WJetsToLNu_Wpt400To600', 'WJetsToLNu_Wpt400To600_ext1'])
 newbW400w = newbW400pt+'/baseW'
 
-oldbW600pt = getBaseWnAOD(mcDirectory, mcProduction, ['WJetsToLNu_Wpt600ToInf'])
+#oldbW600pt = getBaseWnAOD(mcDirectory, mcProduction, ['WJetsToLNu_Wpt600ToInf'])
 newbW600pt = getBaseWnAOD(mcDirectory, mcProduction, ['WJetsToLNu_Wpt600ToInf', 'WJetsToLNu_Wpt600ToInf_ext1'])
 newbW600w = newbW600pt+'/baseW'
 

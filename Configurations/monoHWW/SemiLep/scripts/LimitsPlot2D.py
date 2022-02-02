@@ -10,6 +10,7 @@ parser = optparse.OptionParser(usage)
 parser.add_option("-m", "--model"  ,  dest="model"  , help="Model we are looking at, examples: 2HDMa, darkHiggs" , default='2HDMa' , type='string')
 parser.add_option("-l", "--lumi"   ,  dest="lumi"   , help="Luminosity of the limit (35.9 in 2016, 41.5 in 2017, 59.7 in 2018, 137.1 in run2)" , type=float)
 parser.add_option(      "--points" ,  dest="points" , action="store_true", help="Indicate mass points" , default=False)
+parser.add_option(      "--unblind",  dest="unblind", action="store_true", help="Expect unblinded results" , default=False)
 parser.add_option("-b", "--batch"  ,  dest="batch"  , action="store_true", help="Run in batch mode" , default=False)
 
 (options, args) = parser.parse_args()
@@ -158,6 +159,7 @@ def get_mx_th2_limits(mx, output_file, blind=True):
        if not 'mx_'+str(mx) in fil: continue
        if not 'higgsCombine' in fil: continue
        if not 'AsymptoticLimits' in fil: continue
+       if 'darkHiggsVal' in fil: continue
        mZp = float(fil.split('mZp_')[-1].split('_')[0].split('.')[0]) 
        mhs = float(fil.split('mhs_')[-1].split('_')[0].split('.')[0])
  
@@ -202,7 +204,12 @@ def get_mx_th2_limits(mx, output_file, blind=True):
             
             # Load and check tree
             r_file = ROOT.TFile.Open(curr_file)
-
+            if not r_file:
+                print('Corrupted file? '+fil)
+                print(' --> skipping')
+                list_of_unusual.append(fil)
+                continue
+                
             #tree = r_file.limit
             tree = r_file.Get('limit')
             if not tree:
@@ -228,7 +235,7 @@ def get_mx_th2_limits(mx, output_file, blind=True):
                 elif entry == 2: th2f_exp.SetBinContent(xbin, ybin, event.limit) 
                 elif entry == 3: th2f_1up.SetBinContent(xbin, ybin, event.limit) 
                 elif entry == 4: th2f_2up.SetBinContent(xbin, ybin, event.limit) 
-                elif entry == 5: th2f_obs.SetBinContent(xbin, ybin, event.limit) 
+                elif entry == 5 and not blind: th2f_obs.SetBinContent(xbin, ybin, event.limit) 
                 entry +=1
 
             r_file.Close()
@@ -414,7 +421,7 @@ def plot_limits(output_file, mx, tg2_HD_list, contours_list, show_int=False):
     leg.SetHeader(mdl_str)
     #leg.SetHeader('#splitline{'+mdl_str+'}{'+msp_str+'}')
     leg.AddEntry(wanted_c[0][0], "Expected 95% CL", "l")
-    if not blind: leg.AddEntry(wanted_c[-1][0], "Observed 95\% CL", "l")
+    if not blind: leg.AddEntry(wanted_c[-1][0], "Observed", "l")
     leg.AddEntry(wanted_c[1][0], "#pm 1 std. dev.", "l")
     leg.Draw()
  
@@ -502,11 +509,13 @@ def plot_limits(output_file, mx, tg2_HD_list, contours_list, show_int=False):
         canvas.SaveAs(output_file.replace('_darkHiggs.root', '_points_darkHiggs.png'))
 
 #for mx in [200]:
+blind = True
+if options.unblind: blind = False
 obj_dict = {}
 for mx in [100, 150, 200, 300]:
     obj_dict[mx] = {}
     output_file = 'limits_mx_'+str(mx)+'_darkHiggs.root'
-    raw_hist = get_mx_th2_limits(mx, output_file, blind=True)
+    raw_hist = get_mx_th2_limits(mx, output_file, blind)
     gap_filled_hist = [fill_gaps(output_file, hist) for hist in raw_hist]
     contours = []
     hd_2D_graphs = []

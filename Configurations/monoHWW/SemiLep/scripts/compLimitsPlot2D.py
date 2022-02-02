@@ -237,7 +237,7 @@ def get_mx_th2_limits(mx, output_file, directory='.', blind=True):
                 elif entry == 2: th2f_exp.SetBinContent(xbin, ybin, event.limit) 
                 elif entry == 3: th2f_1up.SetBinContent(xbin, ybin, event.limit) 
                 elif entry == 4: th2f_2up.SetBinContent(xbin, ybin, event.limit) 
-                elif entry == 5: th2f_obs.SetBinContent(xbin, ybin, event.limit) 
+                elif entry == 5 and not blind: th2f_obs.SetBinContent(xbin, ybin, event.limit) 
                 entry +=1
 
             r_file.Close()

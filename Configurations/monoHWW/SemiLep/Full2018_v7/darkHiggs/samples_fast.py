@@ -163,14 +163,14 @@ addSampleWeight(samples,'top','ST_t-channel_top',     lepD_to_incD)
 
 ###### VBF V ######
 
-files = nanoGetSampleFiles(mcDirectory,'WLNuJJ_EWK')
-files+= nanoGetSampleFiles(mcDirectory,'EWKZ2Jets_ZToLL_M-50')
-
-samples['VBF-V']  = {
-    'name' : files,
-    'weight': mcCommonWeight, 
-    'FilesPerJob' : 6,
-}
+#files = nanoGetSampleFiles(mcDirectory,'WLNuJJ_EWK')
+#files+= nanoGetSampleFiles(mcDirectory,'EWKZ2Jets_ZToLL_M-50')
+#
+#samples['VBF-V']  = {
+#    'name' : files,
+#    'weight': mcCommonWeight, 
+#    'FilesPerJob' : 6,
+#}
 
 
 

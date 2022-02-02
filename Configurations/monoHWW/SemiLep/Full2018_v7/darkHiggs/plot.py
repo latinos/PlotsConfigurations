@@ -190,8 +190,8 @@ plot['top'] = {
     'color': 400,   # kYellow
     'isSignal' : 0,
     'isData'   : 0,
-    #'scale'    : 1.0,
-    'scale'    : 1.04,
+    'scale'    : 1.0,
+    #'scale'    : 1.04,
 }
 
 
@@ -289,8 +289,8 @@ plot['Wjets']  = {
     'color': 856, # kAzure -4
     'isSignal' : 0,
     'isData'   : 0,
-    #'scale'    : 1.0
-    'scale'    : 0.98
+    'scale'    : 1.0
+    #'scale'    : 0.98
 }
 
 plot['FAKE']  = {

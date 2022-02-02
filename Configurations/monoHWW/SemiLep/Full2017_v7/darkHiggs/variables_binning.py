@@ -246,13 +246,13 @@ variables['BDT_200Ada13']  = {
     'fold'  : 3, 
 }
 
-variables['BDT_no_btag']  = { 
-    'name': '2*BDT_no_btag[0]',
-    'range' : (1000,-1.,1.),
-    'xaxis' : 'high m_{Z\'} NLO no bveto BDT',
-    #'xaxis' : 'BDT',
-    'fold'  : 3, 
-}
+#variables['BDT_no_btag']  = { 
+#    'name': '2*BDT_no_btag[0]',
+#    'range' : (1000,-1.,1.),
+#    'xaxis' : 'high m_{Z\'} NLO no bveto BDT',
+#    #'xaxis' : 'BDT',
+#    'fold'  : 3, 
+#}
 
 variables['BDT_btag']  = { 
     'name': '2*BDT_btag[0]',

@@ -46,9 +46,11 @@ SC       = super_cut
 SR       = combinecut([super_cut, mt_lmet  , met  , dphi_l_jj, dphi_ljj_met, dr_l_jj, pt_ljj  , m_jj  , veto_b  , veto_1l  ])
 CR       = combinecut([super_cut, mt_lmet  , met  , dphi_l_jj, dphi_ljj_met, dr_l_jj, pt_ljj_I, veto_b  , veto_1l  ])
 SB       = combinecut([super_cut, mt_lmet  , met  , dphi_l_jj, dphi_ljj_met, dr_l_jj, pt_ljj  , m_jj_I, veto_b  , veto_1l  ])
+SBl      = combinecut([super_cut, mt_lmet  , met  , dphi_l_jj, dphi_ljj_met, dr_l_jj, pt_ljj  ,         veto_b  , veto_1l  ])
 SBlow    = combinecut([super_cut, mt_lmet  , met  , dphi_l_jj, dphi_ljj_met, dr_l_jj, pt_ljj  , m_jj_l, veto_b  , veto_1l  ])
 SBhigh   = combinecut([super_cut, mt_lmet  , met  , dphi_l_jj, dphi_ljj_met, dr_l_jj, pt_ljj  , m_jj_h, veto_b  , veto_1l  ])
 TCR      = combinecut([super_cut, mt_lmet  , met  , dphi_l_jj, dphi_ljj_met, dr_l_jj, pt_ljj  , m_jj  , veto_b_I, veto_1l  ])
+TCRl     = combinecut([super_cut, mt_lmet  , met  , dphi_l_jj, dphi_ljj_met, dr_l_jj, pt_ljj  ,         veto_b_I, veto_1l  ])
 TCRi     = combinecut([super_cut, mt_lmet  , met  , dphi_l_jj, dphi_ljj_met, dr_l_jj, pt_ljj  , veto_b_I, veto_1l  ])
 DYCR     = combinecut([super_cut, mt_lmet  , met  , dphi_l_jj, dphi_ljj_met, dr_l_jj, pt_ljj  , m_jj  , veto_b  , veto_1l_I]) # empty due to post-proc sel
 QER      = combinecut([super_cut, mt_lmet_I, met_I, dphi_l_jj, dphi_ljj_met, dr_l_jj, pt_ljj  , m_jj  , veto_b  , veto_1l  ])
@@ -67,11 +69,13 @@ QER_h      = combinecut([super_cut, mt_lmet_I, met_I, dphi_l_jj, dphi_ljj_met, d
 ## Muon
 #addcut('MuCh_SC'  , combinecut([is_mu, SC  ]))
 
-## Inclusive
-#addcut('InCh_SB'  , combinecut([SB]))
-addcut('InCh_TCR' , combinecut([TCR]))
-#addcut('InCh_TCRi', combinecut([TCRi]))
-#addcut('InCh_SR'  , combinecut([SR]))
+# Inclusive
+addcut('InCh_SR'   , combinecut([SR  ]))
+addcut('InCh_SB'   , combinecut([SB  ]))
+#addcut('InCh_SBl'  , combinecut([SBl ]))
+addcut('InCh_SBh'  , combinecut([SBhigh ]))
+addcut('InCh_TCR'  , combinecut([TCR ]))
+#addcut('InCh_TCRl' , combinecut([TCRl]))
 
 #addcut('InCh_HighMtw_SB'  , combinecut([SB_h]))
 #addcut('InCh_HighMtw_TCR' , combinecut([TCR_h]))
