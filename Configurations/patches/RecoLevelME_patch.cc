@@ -70,6 +70,7 @@ class RecoLevelME : public multidraw::TTreeFunction {
 
 		IntArrayReader*   FatJet_subJetIdx1{};
 		IntArrayReader*   FatJet_subJetIdx2{};
+		FloatArrayReader* FatJet_pt{};
 
 	private:
 
@@ -111,7 +112,7 @@ Mela* RecoLevelME :: mela = 0;
 		float Pmet_pt{*PuppiMET_pt->Get()};
 		float Pmet_phi{*PuppiMET_phi->Get()};
 
-		//Conditions to select the event
+		//Conditions to select the event (originally nsubjet>1)
 		if(ncleanfatjet>0 && nlep>1 && nsubjet>1){
 		//STEP-1
 		//4-vectors of the leptons
@@ -127,15 +128,42 @@ Mela* RecoLevelME :: mela = 0;
 		double nunu_e = sqrt(nunu_px*nunu_px + nunu_py*nunu_py + nunu_pz*nunu_pz + nunu_m*nunu_m);
 		NuNu.SetPxPyPzE(nunu_px, nunu_py, nunu_pz, nunu_e);
 		Higgs = LL + NuNu;
-		double hm = Higgs.M();
-
+		double higgsmass = Higgs.M();
+		float higgsmass_float = (float) higgsmass;
+		MatrixElementsMap.insert({"higgsmass", higgsmass_float});
+		//std::cout <<"****HIGGS MASS*****" << hm_float <<std::endl;
 		//FAT JET
 		int indexfatjet = CleanFatJet_jetIdx->At(0);
 		int indexsubfatjet1 = FatJet_subJetIdx1->At(indexfatjet);
 		int indexsubfatjet2 = FatJet_subJetIdx2->At(indexfatjet);
+		//std::cout << indexsubfatjet1 << "\t" << indexsubfatjet2 << std::endl;
+		if(indexsubfatjet1 == -1 || indexsubfatjet2 == -1)
+		{
+		  std::cout << indexsubfatjet1 << "\t" << indexsubfatjet2 << std::endl;
+		  return -9999;
+		}
+		double subjetpt1 = SubJet_pt->At(indexsubfatjet1);
+		double subjeteta1 = SubJet_eta->At(indexsubfatjet1);
+		double subjetphi1 = SubJet_phi->At(indexsubfatjet1);
+		double subjetmass1 = SubJet_mass->At(indexsubfatjet1);
+                double subjetpt2 = SubJet_pt->At(indexsubfatjet2);
+                double subjeteta2 = SubJet_eta->At(indexsubfatjet2);
+                double subjetphi2 = SubJet_phi->At(indexsubfatjet2);
+                double subjetmass2 = SubJet_mass->At(indexsubfatjet2);
 
-		J1.SetPtEtaPhiM(SubJet_pt->At(indexsubfatjet1), SubJet_eta->At(indexsubfatjet1), SubJet_phi->At(indexsubfatjet1), SubJet_mass->At(indexsubfatjet1));
-		J2.SetPtEtaPhiM(SubJet_pt->At(indexsubfatjet2), SubJet_eta->At(indexsubfatjet2), SubJet_phi->At(indexsubfatjet2), SubJet_mass->At(indexsubfatjet2));
+		//J1.SetPtEtaPhiM(SubJet_pt->At(indexsubfatjet1), SubJet_eta->At(indexsubfatjet1), SubJet_phi->At(indexsubfatjet1), SubJet_mass->At(indexsubfatjet1));
+		//J2.SetPtEtaPhiM(SubJet_pt->At(indexsubfatjet2), SubJet_eta->At(indexsubfatjet2), SubJet_phi->At(indexsubfatjet2), SubJet_mass->At(indexsubfatjet2));
+                J1.SetPtEtaPhiM(subjetpt1, subjeteta1, subjetphi1, subjetmass1);
+		J2.SetPtEtaPhiM(subjetpt2, subjeteta2, subjetphi2, subjetmass2);
+		double InvMSubjets = (J1+J2).M();
+                float InvMSubjets_float = (float) InvMSubjets;
+                MatrixElementsMap.insert({"InvMSubjets", InvMSubjets_float});
+		double J1pt = J1.Pt();
+		double J2pt = J2.Pt();
+		float J1pt_float = (float) J1pt;
+		float J2pt_float = (float) J2pt;
+		MatrixElementsMap.insert({"J1pt", J1pt_float});
+                MatrixElementsMap.insert({"J2pt", J2pt_float});
 
 		SimpleParticleCollection_t daughter_coll;
 		SimpleParticleCollection_t associated_coll;	
@@ -150,139 +178,142 @@ Mela* RecoLevelME :: mela = 0;
 		mela->setCurrentCandidateFromIndex(0);
 
 		//->WH Processes
-		float RecoLevel_me_Wh_hsm = 0.;
-		float RecoLevel_me_Wh_hm = 0.;
-		float RecoLevel_me_Wh_hp = 0.;
-		float RecoLevel_me_Wh_hl = 0.;
-		float RecoLevel_me_Wh_mixhm = 0.;
-		float RecoLevel_me_Wh_mixhp = 0.;
-		float RecoLevel_me_Wh_mixhl = 0.;
+		float me_Wh_hsm = 0.;
+		float me_Wh_hm = 0.;
+		float me_Wh_hp = 0.;
+		float me_Wh_hl = 0.;
+		float me_Wh_mixhm = 0.;
+		float me_Wh_mixhp = 0.;
+		float me_Wh_mixhl = 0.;
 
 		//STEP-3
 		//SM Higgs
 		mela->setProcess(TVar::HSMHiggs, TVar::JHUGen, TVar::Had_WH);
-		mela->computeProdP(RecoLevel_me_Wh_hsm, true);
-		MatrixElementsMap.insert({"RecoLevel_me_Wh_hsm", RecoLevel_me_Wh_hsm});
+		mela->computeProdP(me_Wh_hsm, true);
+		MatrixElementsMap.insert({"me_Wh_hsm", me_Wh_hsm});
 
  		//Higgs minus
 		mela->setProcess(TVar::H0minus, TVar::JHUGen, TVar::Had_WH);
-		mela->computeProdP(RecoLevel_me_Wh_hm, true);
-		MatrixElementsMap.insert({"RecoLevel_me_Wh_hm", RecoLevel_me_Wh_hm});
+		mela->computeProdP(me_Wh_hm, true);
+		MatrixElementsMap.insert({"me_Wh_hm", me_Wh_hm});
 
 		//Higgs plus
 		mela->setProcess(TVar::H0hplus, TVar::JHUGen, TVar::Had_WH);
-		mela->computeProdP(RecoLevel_me_Wh_hp, true);
-		MatrixElementsMap.insert({"RecoLevel_me_Wh_hp", RecoLevel_me_Wh_hp});
+		mela->computeProdP(me_Wh_hp, true);
+		MatrixElementsMap.insert({"me_Wh_hp", me_Wh_hp});
 
 		//Higgs lambda
 		mela->setProcess(TVar::H0_g1prime2, TVar::JHUGen, TVar::Had_WH);
-		mela->computeProdP(RecoLevel_me_Wh_hl, true);
-		MatrixElementsMap.insert({"RecoLevel_me_Wh_hl", RecoLevel_me_Wh_hl});
+		mela->computeProdP(me_Wh_hl, true);
+		MatrixElementsMap.insert({"me_Wh_hl", me_Wh_hl});
 
 		//Higgs Mix HM
 		mela->setProcess(TVar::SelfDefine_spin0, TVar::JHUGen, TVar::Had_WH);
 		mela->selfDHzzcoupl[0][gHIGGS_VV_1][0] = 1.;
   		mela->selfDHzzcoupl[0][gHIGGS_VV_4][0] = 1.; 
-		mela->computeProdP(RecoLevel_me_Wh_mixhm, true);
-		MatrixElementsMap.insert({"RecoLevel_me_Wh_mixhm", RecoLevel_me_Wh_mixhm});
+		mela->computeProdP(me_Wh_mixhm, true);
+		MatrixElementsMap.insert({"me_Wh_mixhm", me_Wh_mixhm});
 
 		//Higgs Mix HP
 		mela->setProcess(TVar::SelfDefine_spin0, TVar::JHUGen, TVar::Had_WH);
 		mela->selfDHzzcoupl[0][gHIGGS_VV_1][0]= 1.;
   		mela->selfDHzzcoupl[0][gHIGGS_VV_2][0]= 1.;
-		mela->computeProdP(RecoLevel_me_Wh_mixhp, true);
-		MatrixElementsMap.insert({"RecoLevel_me_Wh_mixhp", RecoLevel_me_Wh_mixhp});
+		mela->computeProdP(me_Wh_mixhp, true);
+		MatrixElementsMap.insert({"me_Wh_mixhp", me_Wh_mixhp});
 
 		//Higgs Mix HL
 		mela->setProcess(TVar::SelfDefine_spin0, TVar::JHUGen, TVar::Had_WH);
 		mela->selfDHzzcoupl[0][gHIGGS_VV_1][0]= 1.;
 		mela->selfDHzzcoupl[0][gHIGGS_VV_1_PRIME2][0]= 1;
-		mela->computeProdP(RecoLevel_me_Wh_mixhl, true);
-		MatrixElementsMap.insert({"RecoLevel_me_Wh_mixhl", RecoLevel_me_Wh_mixhl});
+		mela->computeProdP(me_Wh_mixhl, true);
+		MatrixElementsMap.insert({"me_Wh_mixhl", me_Wh_mixhl});
 
 		//->ZH Processes
-		float RecoLevel_me_Zh_hsm = 0.;
-		float RecoLevel_me_Zh_hm = 0.;
-		float RecoLevel_me_Zh_hp = 0.;
-		float RecoLevel_me_Zh_hl = 0.;
-		float RecoLevel_me_Zh_mixhm = 0.;
-		float RecoLevel_me_Zh_mixhp = 0.;
-		float RecoLevel_me_Zh_mixhl = 0.;
-
+		float me_Zh_hsm = 0.;
+		float me_Zh_hm = 0.;
+		float me_Zh_hp = 0.;
+		float me_Zh_hl = 0.;
+		float me_Zh_mixhm = 0.;
+		float me_Zh_mixhp = 0.;
+ 		float me_Zh_mixhl = 0.;
+		float me_Zh_hlzg = 0.;
 		//SM Higgs
 		mela->setProcess(TVar::HSMHiggs, TVar::JHUGen, TVar::Had_ZH);
-		mela->computeProdP(RecoLevel_me_Zh_hsm, true);
-		MatrixElementsMap.insert({"RecoLevel_me_Zh_hsm", RecoLevel_me_Zh_hsm});
+		mela->computeProdP(me_Zh_hsm, true);
+		MatrixElementsMap.insert({"me_Zh_hsm", me_Zh_hsm});
 
  		//Higgs minus
 		mela->setProcess(TVar::H0minus, TVar::JHUGen, TVar::Had_ZH);
-		mela->computeProdP(RecoLevel_me_Zh_hm, true);
-		MatrixElementsMap.insert({"RecoLevel_me_Zh_hm", RecoLevel_me_Zh_hm});
+		mela->computeProdP(me_Zh_hm, true);
+		MatrixElementsMap.insert({"me_Zh_hm", me_Zh_hm});
 
 		//Higgs plus
 		mela->setProcess(TVar::H0hplus, TVar::JHUGen, TVar::Had_ZH);
-		mela->computeProdP(RecoLevel_me_Zh_hp, true);
-		MatrixElementsMap.insert({"RecoLevel_me_Zh_hp", RecoLevel_me_Zh_hp});
+		mela->computeProdP(me_Zh_hp, true);
+		MatrixElementsMap.insert({"me_Zh_hp", me_Zh_hp});
 
 		//Higgs lambda
 		mela->setProcess(TVar::H0_g1prime2, TVar::JHUGen, TVar::Had_ZH);
-		mela->computeProdP(RecoLevel_me_Zh_hl, true);
-		MatrixElementsMap.insert({"RecoLevel_me_Zh_hl", RecoLevel_me_Zh_hl});
+		mela->computeProdP(me_Zh_hl, true);
+		MatrixElementsMap.insert({"me_Zh_hl", me_Zh_hl});
 
 		//Higgs Mix HM
 		mela->setProcess(TVar::SelfDefine_spin0, TVar::JHUGen, TVar::Had_ZH);
 		mela->selfDHzzcoupl[0][gHIGGS_VV_1][0] = 1.;
   		mela->selfDHzzcoupl[0][gHIGGS_VV_4][0] = 1.; 
-		mela->computeProdP(RecoLevel_me_Zh_mixhm, true);
-		MatrixElementsMap.insert({"RecoLevel_me_Zh_mixhm", RecoLevel_me_Zh_mixhm});
+		mela->computeProdP(me_Zh_mixhm, true);
+		MatrixElementsMap.insert({"me_Zh_mixhm", me_Zh_mixhm});
 
 		//Higgs Mix HP
 		mela->setProcess(TVar::SelfDefine_spin0, TVar::JHUGen, TVar::Had_ZH);
 		mela->selfDHzzcoupl[0][gHIGGS_VV_1][0]= 1.;
   		mela->selfDHzzcoupl[0][gHIGGS_VV_2][0]= 1.;
-		mela->computeProdP(RecoLevel_me_Zh_mixhp, true);
-		MatrixElementsMap.insert({"RecoLevel_me_Zh_mixhp", RecoLevel_me_Zh_mixhp});
+		mela->computeProdP(me_Zh_mixhp, true);
+		MatrixElementsMap.insert({"me_Zh_mixhp", me_Zh_mixhp});
 
 		//Higgs Mix HL
 		mela->setProcess(TVar::SelfDefine_spin0, TVar::JHUGen, TVar::Had_ZH);
 		mela->selfDHzzcoupl[0][gHIGGS_VV_1][0]= 1.;
 		mela->selfDHzzcoupl[0][gHIGGS_VV_1_PRIME2][0]= 1;
-		mela->computeProdP(RecoLevel_me_Zh_mixhl, true);
-		MatrixElementsMap.insert({"RecoLevel_me_Zh_mixhl", RecoLevel_me_Zh_mixhl});
+		mela->computeProdP(me_Zh_mixhl, true);
+		MatrixElementsMap.insert({"me_Zh_mixhl", me_Zh_mixhl});
+
+		//Higgs Zg
+		mela->setProcess(TVar::H0_Zgsg1prime2, TVar::JHUGen, TVar::Had_ZH);
+		mela->computeProdP(me_Zh_hlzg, true);
+		MatrixElementsMap.insert({"me_Zh_hlzg", me_Zh_hlzg});
 
 		//->VH correction
-   		float RecoLevel_pjjSm_Wh = 0.;
-   		float RecoLevel_pjjTr_Wh = 0.;
-   		float RecoLevel_meAvg_wh = 0.;
+   		float pjjSm_Wh = 0.;
+   		float pjjTr_Wh = 0.;
+   		float meAvg_wh = 0.;
 
-   		float RecoLevel_pjjSm_Zh = 0.;
-   		float RecoLevel_pjjTr_Zh = 0.;
-   		float RecoLevel_meAvg_zh = 0.;
+   		float pjjSm_Zh = 0.;
+   		float pjjTr_Zh = 0.;
+   		float meAvg_zh = 0.;
 
    		mela->setProcess(TVar::HSMHiggs, TVar::JHUGen, TVar::Had_WH);
-   		mela->computeDijetConvBW(RecoLevel_pjjSm_Wh, false);
-  		mela->computeDijetConvBW(RecoLevel_pjjTr_Wh, true);
-   		mela->computeProdP(RecoLevel_meAvg_wh, true); 
-   		mela->getConstant(RecoLevel_meAvg_wh); 
-		MatrixElementsMap.insert({"RecoLevel_pjjSm_Wh", RecoLevel_pjjSm_Wh});
-		MatrixElementsMap.insert({"RecoLevel_pjjTr_Wh", RecoLevel_pjjTr_Wh});
-		MatrixElementsMap.insert({"RecoLevel_meAvg_wh", RecoLevel_meAvg_wh});
+   		mela->computeDijetConvBW(pjjSm_Wh, false);
+  		mela->computeDijetConvBW(pjjTr_Wh, true);
+   		mela->computeProdP(meAvg_wh, true); 
+   		mela->getConstant(meAvg_wh); 
+		MatrixElementsMap.insert({"pjjSm_Wh", pjjSm_Wh});
+		MatrixElementsMap.insert({"pjjTr_Wh", pjjTr_Wh});
+		MatrixElementsMap.insert({"meAvg_wh", meAvg_wh});
 
    		mela->setProcess(TVar::HSMHiggs, TVar::JHUGen, TVar::Had_ZH);
-   		mela->computeDijetConvBW(RecoLevel_pjjSm_Zh, false);
-  		mela->computeDijetConvBW(RecoLevel_pjjTr_Zh, true);
-   		mela->computeProdP(RecoLevel_meAvg_zh, true); 
-   		mela->getConstant(RecoLevel_meAvg_zh); 
-		MatrixElementsMap.insert({"RecoLevel_pjjSm_Zh", RecoLevel_pjjSm_Zh});
-		MatrixElementsMap.insert({"RecoLevel_pjjTr_Zh", RecoLevel_pjjTr_Zh});
-		MatrixElementsMap.insert({"RecoLevel_meAvg_zh", RecoLevel_meAvg_zh});
+   		mela->computeDijetConvBW(pjjSm_Zh, false);
+  		mela->computeDijetConvBW(pjjTr_Zh, true);
+   		mela->computeProdP(meAvg_zh, true); 
+   		mela->getConstant(meAvg_zh); 
+		MatrixElementsMap.insert({"pjjSm_Zh", pjjSm_Zh});
+		MatrixElementsMap.insert({"pjjTr_Zh", pjjTr_Zh});
+		MatrixElementsMap.insert({"meAvg_zh", meAvg_zh});
 
 		mela->resetInputEvent(); 
-		
 		float required_matrixelement = MatrixElementsMap.find(name_)->second;
 
 		return (double)required_matrixelement;
-		
 		}
 		else return -9999;
 	}
@@ -311,6 +342,7 @@ Mela* RecoLevelME :: mela = 0;
 		//FatJets
 		_library.bindBranch(FatJet_subJetIdx1, 	"FatJet_subJetIdx1");
 		_library.bindBranch(FatJet_subJetIdx2, 	"FatJet_subJetIdx2");
+                _library.bindBranch(FatJet_pt,  "FatJet_pt");
 		//Subjets
 		_library.bindBranch(nSubJet, 		"nSubJet");
 		_library.bindBranch(SubJet_pt, 		"SubJet_pt");

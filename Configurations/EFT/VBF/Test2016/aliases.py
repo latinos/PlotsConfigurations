@@ -260,9 +260,8 @@ for con in cons:
     'args': (con,),
 }
 
-
 # VBF KDs
-'''
+
 aliases['kd_smvbf']     = { 'expr': '1/(1+((me_qcd_hsm*CVBF)/me_vbf_hsm))' }
 aliases['kd_hmvbf']     = { 'expr': '1/(1+((me_qcd_hsm*CVBF)/(me_vbf_hm*G4VBF**2)))' }
 aliases['kd_hpvbf']     = { 'expr': '1/(1+((me_qcd_hsm*CVBF)/(me_vbf_hp*G2VBF**2)))' }
@@ -320,38 +319,11 @@ aliases['kd_vh_mixhp'] = { 'expr': '(me_vh_mixhp*G2VH) / (me_vh_hsm + (me_vh_hp*
 aliases['kd_qcd_hm']    = { 'expr': '1/(1+(me_qcd_hsm/(me_qcd_hm*G4_GGHjj**2)))' }
 aliases['kd_qcd_mixhm'] = { 'expr': '(me_qcd_mixhm - me_qcd_hsm - me_qcd_hm)/(2*sqrt(me_qcd_hsm*me_qcd_hm))' }
 
-##Including matrix elements on the fly (LOURDES)
-'''
-mes_WH = ['RecoLevel_me_Wh_hsm', 'RecoLevel_me_Wh_hm', 'RecoLevel_me_Wh_hp', 'RecoLevel_me_Wh_hl', 'RecoLevel_me_Wh_mixhm', 'RecoLevel_me_Wh_mixhp', 
-          'RecoLevel_me_Wh_mixhl', 'RecoLevel_pjjSm_Wh', 'RecoLevel_pjjTr_Wh', 'RecoLevel_meAvg_wh']
-
-#mes_WH = ['me_Wh_hsm', 'me_Wh_hm', 'me_Wh_hp', 'me_Wh_hl', 'me_Wh_mixhm', 'me_Wh_mixhp', 'me_Wh_mixhl', 'pjjSm_Wh', 'pjjTr_Wh']
-
-mes_ZH = ['RecoLevel_me_Zh_hsm', 'RecoLevel_me_Zh_hm', 'RecoLevel_me_Zh_hp', 'RecoLevel_me_Zh_hl', 'RecoLevel_me_Zh_mixhm', 'RecoLevel_me_Zh_mixhp', 
-	  'RecoLevel_me_Zh_mixhl', 'RecoLevel_pjjSm_Zh', 'RecoLevel_pjjTr_Zh', 'RecoLevel_meAvg_zh']
-
-#mes_WH = ['me_Wh_hsm_lou']
-#mes_ZH = ['me_Zh_hsm_lou']
-for me in mes_WH+mes_ZH:
-    aliases[me]={
-    'linesToAdd': [
-    'gSystem->Load("%s/src/ZZMatrixElement/MELA/data/%s/libmcfm_707.so","", kTRUE);'%(os.getenv('CMSSW_BASE'), os.getenv('SCRAM_ARCH')),
-    'gSystem->Load("libZZMatrixElementMELA.so","", kTRUE);',
-    '.L %s/patches/RecoLevelME_patch.cc+' % configurations],
-    'class': 'RecoLevelME',
-    'args': (me,)
-    }
-
-#    'gSystem->AddIncludePath("-I %s/interface/");'%os.getenv('CMSSW_BASE'),
-#    'gSystem->AddIncludePath("-I %s/src/");'%os.getenv('CMSSW_BASE'),
-
 # Boosted VH KDs
 
 aliases['pjj_Wh'] = { 'expr':'pjjSm_Wh/pjjTr_Wh' }
 aliases['pjj_Zh'] = { 'expr':'pjjSm_Zh/pjjTr_Zh' }
 
-
-'''
 aliases['kd_smWh'] = { 'expr': '1/(1+((me_QCD_hsm*CWH)/(me_Wh_hsm*pjj_Wh)))' }
 aliases['kd_smZh'] = { 'expr': '1/(1+((me_QCD_hsm*CZH)/(me_Zh_hsm*pjj_Zh)))' }
 aliases['kd_smVh'] = { 'expr': 'max(kd_smWh, kd_smZh)' }
@@ -365,7 +337,7 @@ aliases['kd_hlWh'] = { 'expr': '1/(1+((me_QCD_hsm*CWH)/(me_Wh_hl*pjj_Wh*L1WH**2)
 aliases['kd_hlZh'] = { 'expr': '1/(1+((me_QCD_hsm*CZH)/(me_Zh_hl*pjj_Zh*L1ZH**2)))' }
 aliases['kd_hlVh'] = { 'expr': 'max(kd_hlWh, kd_hlZh)' }
 aliases['kd_Vh']   = { 'expr': 'max(max(kd_smVh, kd_hmVh), max(kd_hpVh, kd_hlVh))' }
-'''
+
 aliases['kd_Wh_hm']    = { 'expr': '1/(1+(me_Wh_hsm/(me_Wh_hm*G4WH**2)))' }
 aliases['kd_Zh_hm']    = { 'expr': '1/(1+(me_Zh_hsm/(me_Zh_hm*G4ZH**2)))' }
 aliases['kd_Vh_hm']    = { 'expr': 'max(kd_Wh_hm, kd_Zh_hm)' }
@@ -387,35 +359,9 @@ aliases['me_Vh_hp']     = { 'expr': '(me_Wh_hp/meAvg_wh) + (me_Zh_hp/meAvg_zh)' 
 aliases['me_Vh_mixhp']  = { 'expr': '((me_Wh_mixhp - me_Wh_hsm - me_Wh_hp)/meAvg_wh) + ((me_Zh_mixhp - me_Zh_hsm - me_Zh_hp)/meAvg_zh)' }
 aliases['kd_Vh_mixhp'] = { 'expr': '(me_Vh_mixhp*G2VH) / (me_Vh_hsm + (me_Vh_hp*G2VH**2))' }
 
-# RecoLevel Boosted VH KDs
-aliases['RecoLevel_pjj_Wh'] = { 'expr':'RecoLevel_pjjSm_Wh/RecoLevel_pjjTr_Wh' }
-aliases['RecoLevel_pjj_Zh'] = { 'expr':'RecoLevel_pjjSm_Zh/RecoLevel_pjjTr_Zh' }
-
-aliases['RecoLevel_kd_Wh_hm']    = { 'expr': '1/(1+(RecoLevel_me_Wh_hsm/(RecoLevel_me_Wh_hm*G4WH**2)))' }
-aliases['RecoLevel_kd_Zh_hm']    = { 'expr': '1/(1+(RecoLevel_me_Zh_hsm/(RecoLevel_me_Zh_hm*G4ZH**2)))' }
-aliases['RecoLevel_kd_Vh_hm']    = { 'expr': 'max(RecoLevel_kd_Wh_hm, RecoLevel_kd_Zh_hm)' }
-
-aliases['RecoLevel_kd_Wh_hp']    = { 'expr': '1/(1+(RecoLevel_me_Wh_hsm/(RecoLevel_me_Wh_hp*G2WH**2)))' }
-aliases['RecoLevel_kd_Zh_hp']    = { 'expr': '1/(1+(RecoLevel_me_Zh_hsm/(RecoLevel_me_Zh_hp*G2ZH**2)))' }
-aliases['RecoLevel_kd_Vh_hp']    = { 'expr': 'max(RecoLevel_kd_Wh_hp, RecoLevel_kd_Zh_hp)' }
-
-aliases['RecoLevel_kd_Wh_hl']    = { 'expr': '1/(1+(RecoLevel_me_Wh_hsm/(RecoLevel_me_Wh_hl*L1WH**2)))' }
-aliases['RecoLevel_kd_Zh_hl']    = { 'expr': '1/(1+(RecoLevel_me_Zh_hsm/(RecoLevel_me_Zh_hl*L1ZH**2)))' }
-aliases['RecoLevel_kd_Vh_hl']    = { 'expr': 'max(RecoLevel_kd_Wh_hl, RecoLevel_kd_Zh_hl)' }
-
-aliases['RecoLevel_me_Vh_hsm']    = { 'expr': '(RecoLevel_me_Wh_hsm/RecoLevel_meAvg_wh) + (RecoLevel_me_Zh_hsm/RecoLevel_meAvg_zh)' }
-aliases['RecoLevel_me_Vh_hm']     = { 'expr': '(RecoLevel_me_Wh_hm/RecoLevel_meAvg_wh) + (RecoLevel_me_Zh_hm/RecoLevel_meAvg_zh)' }
-aliases['RecoLevel_me_Vh_mixhm']  = { 'expr': '((RecoLevel_me_Wh_mixhm - RecoLevel_me_Wh_hsm - RecoLevel_me_Wh_hm)/RecoLevel_meAvg_wh) + ((RecoLevel_me_Zh_mixhm - RecoLevel_me_Zh_hsm - RecoLevel_me_Zh_hm)/RecoLevel_meAvg_zh)' }
-aliases['RecoLevel_kd_Vh_mixhm'] = { 'expr': '(RecoLevel_me_Vh_mixhm*G4VH) / (RecoLevel_me_Vh_hsm + (RecoLevel_me_Vh_hm*G4VH**2))' }
-
-aliases['RecoLevel_me_Vh_hp']     = { 'expr': '(RecoLevel_me_Wh_hp/RecoLevel_meAvg_wh) + (RecoLevel_me_Zh_hp/RecoLevel_meAvg_zh)' }
-aliases['RecoLevel_me_Vh_mixhp']  = { 'expr': '((RecoLevel_me_Wh_mixhp - RecoLevel_me_Wh_hsm - RecoLevel_me_Wh_hp)/RecoLevel_meAvg_wh) + ((RecoLevel_me_Zh_mixhp - RecoLevel_me_Zh_hsm - RecoLevel_me_Zh_hp)/RecoLevel_meAvg_zh)' }
-aliases['RecoLevel_kd_Vh_mixhp'] = { 'expr': '(RecoLevel_me_Vh_mixhp*G2VH) / (RecoLevel_me_Vh_hsm + (RecoLevel_me_Vh_hp*G2VH**2))' }
-
 ################## Additional variables ##############################
 
 aliases['mV'] = { 'expr': 'FatJet_msoftdrop[CleanFatJet_jetIdx[0]]' }
-aliases['RecoLevel_mV'] = { 'expr': 'FatJet_msoftdrop[CleanFatJet_jetIdx[0]]' }
 
 aliases['j1_px'] = { 'expr': 'CleanJet_pt[0]*cos(CleanJet_phi[0])' }
 aliases['j2_px'] = { 'expr': 'CleanJet_pt[1]*cos(CleanJet_phi[1])' }
@@ -455,8 +401,6 @@ aliases['wwcr'] = {
 aliases['sr'] = {
     'expr': 'mth>60 && mtw2>30 && bVeto'
 }
-
-
 
 # B tag scale factors
 

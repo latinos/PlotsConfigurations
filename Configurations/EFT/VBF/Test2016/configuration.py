@@ -2,9 +2,8 @@
 # example of configuration file
 treeName= 'Events'
 
-tag = 'JETS'
-#tag = 'VH_0plus_MCTogether'
-#tag = 'VH_Bsel'
+tag = 'JJH'
+
 # used by mkShape to define output directory for root files
 outputDir = 'rootFile'+tag
 

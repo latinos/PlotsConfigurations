@@ -9,8 +9,8 @@ from os import path
 ROOT.gStyle.SetOptStat(0)
 ROOT.gStyle.SetOptTitle(0)
 
-#src = path.realpath("rootFileJJH/plots_JJH.root")
-src = path.realpath("rootFileJETS/plots_JETS.root")
+src = path.realpath("rootFileJJH/plots_JJH.root")
+
 #########################################################
 
 def CompareHVVRW(Cat, Var, Prod, Hyp):
@@ -46,6 +46,8 @@ def CompareHVVRW(Cat, Var, Prod, Hyp):
 
  f.Close()
 
+ print H1.Integral(),H2.Integral(),H3.Integral(),H4.Integral(),H5.Integral(),H6.Integral(),H7.Integral()
+
  ########################## Naive sum ###############################
  
  Sum = H1.Clone()
@@ -59,7 +61,7 @@ def CompareHVVRW(Cat, Var, Prod, Hyp):
  Sum.Scale(0.143)
 
  ######################## weighted sum by hand ######################
-
+ '''
  SumW = H1.Clone()
  SumW.SetDirectory(0)
 
@@ -120,7 +122,7 @@ def CompareHVVRW(Cat, Var, Prod, Hyp):
 
    SumW.SetBinContent(i, avg)
    SumW.SetBinError(i, e_avg)
-
+ '''
  ################# weighted sum using Average bit #####################
 
  SumA = H1.Clone()
@@ -174,7 +176,7 @@ def CompareHVVRW(Cat, Var, Prod, Hyp):
  H7.SetLineColor(ROOT.kBlack)
  Sum.SetLineColor(ROOT.kGreen)
  SumA.SetLineColor(ROOT.kRed)
- SumW.SetLineColor(ROOT.kOrange)
+# SumW.SetLineColor(ROOT.kOrange)
 
  H1.SetLineWidth(1)
  H2.SetLineWidth(1)
@@ -185,11 +187,11 @@ def CompareHVVRW(Cat, Var, Prod, Hyp):
  H7.SetLineWidth(1)
  Sum.SetLineWidth(3)
  SumA.SetLineWidth(3)
- SumW.SetLineWidth(3)
+# SumW.SetLineWidth(3)
 
  canvasM = ROOT.TCanvas('canvasM', '', 500, 500)
 
- H1.SetMinimum(-5*Sum.GetMaximum())
+ H1.SetMinimum(-1*Sum.GetMaximum())
  H1.SetMaximum(5*Sum.GetMaximum())
  H1.GetXaxis().SetTitle(""+Var+"")
 
@@ -201,7 +203,7 @@ def CompareHVVRW(Cat, Var, Prod, Hyp):
  H6.Draw("same e")
  H7.Draw("same e")
 
- Sum.Draw("same hist")
+ # Sum.Draw("same hist")
  # Sum.Draw("same e")
  # SumA.Draw("same e")
  SumA.Draw("same hist")
@@ -217,14 +219,14 @@ def CompareHVVRW(Cat, Var, Prod, Hyp):
  legend.AddEntry(H5,"H0Mf05","l")
  legend.AddEntry(H6,"H0PHf05","l")
  legend.AddEntry(H7,"H0L1f05","l")
- legend.AddEntry(Sum,"Sum","l")
+# legend.AddEntry(Sum,"Sum","l")
  legend.AddEntry(SumA,"Avg Sum","l")
 # legend.AddEntry(SumW,"Wgt Sum","l")
  legend.Draw()
 
  # canvasM.SetLogy()
- canvasM.SaveAs("plotJJH/HVVRW_"+Cat+"_"+Var+"_"+Prod+Hyp+".pdf")
- canvasM.SaveAs("plotJJH/HVVRW_"+Cat+"_"+Var+"_"+Prod+Hyp+".png")
+ canvasM.SaveAs("plotJJH/Temps/HVVRW_"+Cat+"_"+Var+"_"+Prod+Hyp+".pdf")
+ canvasM.SaveAs("plotJJH/Temps/HVVRW_"+Cat+"_"+Var+"_"+Prod+Hyp+".png")
 
 
 def CompareHGGRW(Cat, Var, Prod, Hyp):
@@ -296,7 +298,7 @@ def CompareHGGRW(Cat, Var, Prod, Hyp):
  H3.SetLineWidth(1)
 
  Sum.SetLineWidth(3)
- SumA.SetLineWidth(3)
+ SumA.SetLineWidth(4)
 
  canvasM = ROOT.TCanvas('canvasM', '', 500, 500)
 
@@ -319,90 +321,29 @@ def CompareHGGRW(Cat, Var, Prod, Hyp):
  legend.Draw()
 
  # canvasM.SetLogy()
- canvasM.SaveAs("plotJJH/HGGRW_"+Cat+"_"+Var+"_"+Prod+Hyp+".pdf")
- canvasM.SaveAs("plotJJH/HGGRW_"+Cat+"_"+Var+"_"+Prod+Hyp+".png")
+ canvasM.SaveAs("plotJJH/Temps/HGGRW_"+Cat+"_"+Var+"_"+Prod+Hyp+".pdf")
+ canvasM.SaveAs("plotJJH/Temps/HGGRW_"+Cat+"_"+Var+"_"+Prod+Hyp+".png")
 
 ##########################################################
-
-WHConfig = [  ("SRVH",  "kd_vh_hm", "WH_", "H0PM"),
-              ("SRVH",  "kd_vh_hm", "WH_", "H0M_M0"),
-              ("SRVH",  "kd_vh_hm", "WH_", "H0M_M1"),
-              ("SRVH",  "kd_vh_hm", "WH_", "H0M_M2"),
-              ("SRVH",  "kd_vh_hm", "WH_", "H0M_M3"),
-              ("SRVH",  "kd_vh_hp", "WH_", "H0PH_M0"),
-              ("SRVH",  "kd_vh_hp", "WH_", "H0PH_M1"),
-              ("SRVH",  "kd_vh_hp", "WH_", "H0PH_M2"),
-              ("SRVH",  "kd_vh_hp", "WH_", "H0PH_M3"),
-              ("SRVH",  "kd_vh_hl", "WH_", "H0L1_M0"), 
-              ("SRVH",  "kd_vh_hl", "WH_", "H0L1_M1"), 
-              ("SRVH",  "kd_vh_hl", "WH_", "H0L1_M2"), 
-              ("SRVH",  "kd_vh_hl", "WH_", "H0L1_M3"), 
+Config = [("of2j_vbf", "kd3d_vbf_hm", "VBF_", "H0PM"),
+          ("of2j_vbf_hmip", "kd3d_vbf_hm", "VBF_", "H0M_M0"),
+          ("of2j_vbf_hmin", "kd3d_vbf_hm", "VBF_", "H0M_M0"),
+          ("of2j_vbf_hmip", "kd3d_vbf_hm", "VBF_", "EFTH0M_M0"),
+          ("of2j_vbf_hmin", "kd3d_vbf_hm", "VBF_", "EFTH0M_M0"),
 ]
 
-ZHConfig = [  ("SRVH",  "kd_vh_hm", "ZH_", "H0PM"),
-              ("SRVH",  "kd_vh_hm", "ZH_", "H0M_M0"),
-              ("SRVH",  "kd_vh_hm", "ZH_", "H0M_M1"),
-              ("SRVH",  "kd_vh_hm", "ZH_", "H0M_M2"),
-              ("SRVH",  "kd_vh_hm", "ZH_", "H0M_M3"),
-              ("SRVH",  "kd_vh_hp", "ZH_", "H0PH_M0"),
-              ("SRVH",  "kd_vh_hp", "ZH_", "H0PH_M1"),
-              ("SRVH",  "kd_vh_hp", "ZH_", "H0PH_M2"),
-              ("SRVH",  "kd_vh_hp", "ZH_", "H0PH_M3"),
-              ("SRVH",  "kd_vh_hl", "ZH_", "H0L1_M0"), 
-              ("SRVH",  "kd_vh_hl", "ZH_", "H0L1_M1"), 
-              ("SRVH",  "kd_vh_hl", "ZH_", "H0L1_M2"), 
-              ("SRVH",  "kd_vh_hl", "ZH_", "H0L1_M3"), 
-]
-
-
-VBFConfig = [ ("SRVBF",  "kd_vbf_hm", "VBF_", "H0PM"),
-              ("SRVBF",  "kd_vbf_hm", "VBF_", "H0M_M0"),
-              ("SRVBF",  "kd_vbf_hm", "VBF_", "H0M_M1"),
-              ("SRVBF",  "kd_vbf_hm", "VBF_", "H0M_M2"),
-              ("SRVBF",  "kd_vbf_hm", "VBF_", "H0M_M3"),
-              ("SRVBF",  "kd_vbf_hp", "VBF_", "H0PH_M0"),
-              ("SRVBF",  "kd_vbf_hp", "VBF_", "H0PH_M1"),
-              ("SRVBF",  "kd_vbf_hp", "VBF_", "H0PH_M2"),
-              ("SRVBF",  "kd_vbf_hp", "VBF_", "H0PH_M3"),
-              ("SRVBF",  "kd_vbf_hl", "VBF_", "H0L1_M0"), 
-              ("SRVBF",  "kd_vbf_hl", "VBF_", "H0L1_M1"), 
-              ("SRVBF",  "kd_vbf_hl", "VBF_", "H0L1_M2"), 
-              ("SRVBF",  "kd_vbf_hl", "VBF_", "H0L1_M3"), 
-]
-
-GGFConfig = [ ("SRVBF",  "kd_vbf_hm", "", "H0PM"),
-              ("SRVBF",  "kd_vbf_hp", "", "H0PM"),
-              ("SRVBF",  "kd_vbf_hm", "", "H0M"),
-              ("SRVBF",  "kd_vbf_hm", "", "H0Mf05"),           
-              ("SRVBF",  "kd_vbf_hp", "", "H0PH"),
-              ("SRVBF",  "kd_vbf_hp", "", "H0PHf05"),         
-              ("SRVBF",  "kd_vbf_hl", "", "H0L1"),
-              ("SRVBF",  "kd_vbf_hl", "", "H0L1f05"),     
-              ("SRVH",   "kd_vh_hm",  "", "H0PM"),
-              ("SRVH",   "kd_vh_hm",  "", "H0M"),
-              ("SRVH",   "kd_vh_hm",  "", "H0Mf05"),           
-              ("SRVH",   "kd_vh_hp",  "", "H0PH"),
-              ("SRVH",   "kd_vh_hp",  "", "H0PHf05"),         
-              ("SRVH",   "kd_vh_hl",  "", "H0L1"),
-              ("SRVH",   "kd_vh_hl",  "", "H0L1f05"),    
-]
-
-SigConfig = GGFConfig + VBFConfig + ZHConfig + WHConfig
-
+SigConfig = Config
 for cat, var, prod, hyp in SigConfig :
  CompareHVVRW(cat, var, prod, hyp)
 
-
+##########################################################
 '''
-
-GGHJJConfig = [ ("SRHJJ",  "kd_qcd_hm", "GGHjj_", "H0PM"),
-                ("SRHJJ",  "kd_qcd_hm", "GGHjj_", "H0M"),
-                ("SRHJJ",  "kd_qcd_hm", "GGHjj_", "H0Mf05"),           
-]
+GGHJJConfig = [ ("of2j_ggh_t", "kd_ggh_hm", "GGHjj_", "H0M"),
+                ("of2j_ggh_t", "kd_ggh_hm", "GGHjj_", "H0Mf05"),
+                
+]  
 
 SigConfig = GGHJJConfig
-
 for cat, var, prod, hyp in SigConfig :
  CompareHGGRW(cat, var, prod, hyp)
-
 '''

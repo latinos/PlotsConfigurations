@@ -1,7 +1,7 @@
 # example of configuration file
 treeName= 'Events'
 
-tag = 'JJH_test'
+tag = 'JJH16B'
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFile'+tag
@@ -11,9 +11,10 @@ aliasesFile = 'aliases.py'
 
 variablesFile = 'variables.py'
 
-samplesFile = 'samples_WH.py' 
+samplesFile = 'samples.py' 
 
 cutsFile = 'cuts.py' 
+#cutsFile = 'Folder_checks/cuts_prog2.py'
 
 # file with list of samples
 plotFile = 'plot.py' 
@@ -36,5 +37,5 @@ structureFile = 'structure.py'
 
 # nuisances file for mkDatacards and for mkShape
 nuisancesFile = 'nuisances.py'
-
+#nuiscancesFile = 'nano Folder_checks/nuisances_WH.py'
 

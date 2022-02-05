@@ -24,8 +24,7 @@ public:
   
   std::vector<float> CforHM(float mass);
 
-  //TString loc = "/afs/cern.ch/work/d/dmoran/private/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/EFT/VBF/Tools/constants";
-  TString loc = "/afs/cern.ch/work/l/lurda/CMS/EFT/Latinos/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/EFT/VBF/Tools/constants";
+  TString loc = "/afs/cern.ch/work/l/lurda/CMS/ACHWW/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/EFT/VBF/Tools/constants";
 
   TFile* f_DjjVBF = TFile::Open(""+loc+"/SmoothKDConstant_m4l_DjjVBF_13TeV.root","read");
   TSpline3 *DjjVBF = (TSpline3*)f_DjjVBF->Get("sp_gr_varReco_Constant_Smooth");
@@ -69,6 +68,12 @@ public:
 
   TFile* f_DL1ZH = TFile::Open(""+loc+"/gConstant_ZH_L1.root","read");
   TSpline3 *DL1ZH = (TSpline3*)f_DL1ZH->Get("sp_tgfinal_ZH_SM_over_tgfinal_ZH_L1");
+
+  TFile* f_DLZgVBF = TFile::Open(""+loc+"/gConstant_VBF_L1Zgs.root","read");
+  TSpline3 *DLZgVBF = (TSpline3*)f_DLZgVBF->Get("sp_tgfinal_VBF_SM_photoncut_over_tgfinal_VBF_L1Zgs");
+
+  TFile* f_DLZgZH = TFile::Open(""+loc+"/gConstant_ZH_L1Zgs.root","read");
+  TSpline3 *DLZgZH = (TSpline3*)f_DLZgZH->Get("sp_tgfinal_ZH_SM_photoncut_over_tgfinal_ZH_L1Zgs");
 
 };
 
@@ -117,6 +122,11 @@ std::vector<float> getconstant::CforHM(float mass){
   float L1ZH  = DL1ZH->Eval(mass);
   result.push_back(L1ZH);
 
+  float LZgVBF = DLZgVBF->Eval(mass);
+  result.push_back(LZgVBF);
+  float LZgZH  = DLZgZH->Eval(mass);
+  result.push_back(LZgZH);
+
   return result;
 }
 
@@ -158,34 +168,17 @@ GetConstant::GetConstant(char const* name) :
   TTreeFunction(),
   name_{name}
 {
-  if (name_ == "CVBF")
-    vindex = 0;
-  else if (name_ == "CWH")
-    vindex = 1;
-  else if (name_ == "CZH")
-    vindex = 2;
-  else if (name_ == "G4VBF")
-    vindex = 3;
-  else if (name_ == "G4WH")
-    vindex = 4;
-  else if (name_ == "G4ZH")
-    vindex = 5;
-  else if (name_ == "G4VH")
-    vindex = 6;
-  else if (name_ == "G2VBF")
-    vindex = 7;
-  else if (name_ == "G2WH")
-    vindex = 8;
-  else if (name_ == "G2ZH")
-    vindex = 9;
-  else if (name_ == "G2VH")
-    vindex = 10;
-  else if (name_ == "L1VBF")
-    vindex = 11;
-  else if (name_ == "L1WH")
-    vindex = 12;
-  else if (name_ == "L1ZH")
-    vindex = 13;
+
+ std::map<std::string, unsigned> con_index = {
+     {"CVBF",0},{"CWH",1},{"CZH",2},
+     {"G4VBF",3},{"G4WH",4},{"G4ZH",5},{"G4VH",6},
+     {"G2VBF",7},{"G2WH",8},{"G2ZH",9},{"G2VH",10},
+     {"L1VBF",11},{"L1WH",12},{"L1ZH",13},
+     {"LZgVBF",14},{"LZgZH",15}
+ };
+
+ if(con_index.count(name_)>0) vindex = con_index.find(name_)->second;
+ else std::cerr <<"Error : "+name_+" is not defined!" <<std::endl;
 
 }
 
@@ -234,3 +227,6 @@ GetConstant::setValues(long long _iEntry)
   constants = worker.CforHM(m);
 
 }
+
+
+

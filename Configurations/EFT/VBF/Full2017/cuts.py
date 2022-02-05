@@ -1,37 +1,56 @@
+# cuts
 
-#cuts = {}
-# Aliases in supercut doesnt seem to work!
-
-supercut = 'mll>12  \
-            && Lepton_pt[0]>25 && Lepton_pt[1]>10 \
-            && (nLepton>=2 && Alt$(Lepton_pt[2],0)<10) \
-            && (abs(Lepton_pdgId[1]) == 13 || Lepton_pt[1]>13) \
-            && (Lepton_pdgId[0] * Lepton_pdgId[1] == -11*13) \
-            && ptll > 30 \
-            && PuppiMET_pt > 20 \
-            && hm > 0  \
+supercut = 'Lepton_pt[0]>25 && Lepton_pt[1]>13 \
+            && Lepton_pdgId[0]*Lepton_pdgId[1]==-11*13 \
+            && Alt$(Lepton_pt[2],0)<10 \
+            && Sum$(CleanJet_pt>30)==2 \
+            && ptll>30 \
+            && PuppiMET_pt>20 \
+            && hm > 0 \
+            && nCleanFatJet==0 \
             '
 
-# && CleanJet_pt[0]>=30 && CleanJet_pt[1]>=30 \
-# && abs(CleanJet_eta[0])<4.7 && abs(CleanJet_eta[1])<4.7 \
-# && (abs((Lepton_eta[0] - (CleanJet_eta[0]+CleanJet_eta[1])/2)/detajj) < 0.5) \
-# && (abs((Lepton_eta[1] - (CleanJet_eta[0]+CleanJet_eta[1])/2)/detajj) < 0.5) \'
-# selection  'bVeto && (mth>=60 && mth<125) && (njet==2) && (detajj>3.5 && mjj>400) && lepcen1<0.5 && lepcen2<0.5' 
-# control regions top 'mll>50 && (njet==2) && (detajj>3.5 && mjj>400) && bReq'
-# control regions dy  '(mth<60) && mll>40 && mll<80 && (njet==2) && (detajj>3.5 && mjj>400) && bVeto' 
-# cuts['hww2l2v_13TeV_SR']     = 'bVeto && (mth>=60 && mth<125) && (njet==2) && (detajj>3.5 && mjj>400) && lepcen1<0.5 && lepcen2<0.5'
+#DM - Removed for mth study () (Maybe its correlated with high pt events!) 
 
-#cuts['hww2l2v_13TeV_Sel']    = 'bVeto && CleanJet_pt[0]>=30 && CleanJet_pt[1]>=30 && abs(CleanJet_eta[0])<4.7 && abs(CleanJet_eta[1])<4.7 && CleanJet_pt[2]<30'
+## Signal regions
 
-#cuts['hww2l2v_13TeV_SRVBF']  = 'bVeto && CleanJet_pt[0]>=30 && CleanJet_pt[1]>=30 && abs(CleanJet_eta[0])<4.7 && abs(CleanJet_eta[1])<4.7 && CleanJet_pt[2]<30 \
-#                                && kd_vbf>0.8 \
-#                                && mjj>200 \
-#                                && (mth>=30 && mth<125)'
 
-cuts['hww2l2v_13TeV_SRVH']   = 'bVeto && CleanJet_pt[0]>=30 && CleanJet_pt[1]>=30 && abs(CleanJet_eta[0])<2.4 && abs(CleanJet_eta[1])<2.4 && CleanJet_pt[2]<30 \
-                                && kd_vh>0.9 \
-                                && (mjj>60 && mjj<120) \
-                                && (mth>=30 && mth<125)'
- 
+cuts['hww2l2v_13TeV_of2j_vbf']  = 'mth>=60 && mth<125 && ((mll>12 && mll<76.2) || mll>106.2) && (abs(CleanJet_eta[0])<4.7) && (abs(CleanJet_eta[1])<4.7) && bVeto && mtw2>30 && mjj>120'
 
-# && nCleanFatJet==0 \
+cuts['hww2l2v_13TeV_of2j_vbf_hmip']  = 'mth>=60 && mth<125 && ((mll>12 && mll<76.2) || mll>106.2) && (abs(CleanJet_eta[0])<4.7) && (abs(CleanJet_eta[1])<4.7) && bVeto && mtw2>30 && mjj>120 && kd_vbf_mixhm>0'
+
+cuts['hww2l2v_13TeV_of2j_vbf_hmin']  = 'mth>=60 && mth<125 && ((mll>12 && mll<76.2) || mll>106.2) && (abs(CleanJet_eta[0])<4.7) && (abs(CleanJet_eta[1])<4.7) && bVeto && mtw2>30 && mjj>120 && kd_vbf_mixhm<0'
+
+cuts['hww2l2v_13TeV_of2j_vbf_hpip']  = 'mth>=60 && mth<125 && ((mll>12 && mll<76.2) || mll>106.2) && (abs(CleanJet_eta[0])<4.7) && (abs(CleanJet_eta[1])<4.7) && bVeto && mtw2>30 && mjj>120 && kd_vbf_mixhp>0.8 '
+
+cuts['hww2l2v_13TeV_of2j_vbf_hpin']  = 'mth>=60 && mth<125 && ((mll>12 && mll<76.2) || mll>106.2) && (abs(CleanJet_eta[0])<4.7) && (abs(CleanJet_eta[1])<4.7) && bVeto && mtw2>30 && mjj>120 && kd_vbf_mixhp<0.8 '
+
+cuts['hww2l2v_13TeV_of2j_vh']  = 'mth>=60 && mth<125 && ((mll>12 && mll<76.2) || mll>106.2) && (abs(CleanJet_eta[0])<2.4) && (abs(CleanJet_eta[1])<2.4) && bVeto && mtw2>30 && (mjj>60 && mjj<120)'
+
+cuts['hww2l2v_13TeV_of2j_vh_hmip']  = 'mth>=60 && mth<125 && ((mll>12 && mll<76.2) || mll>106.2) && (abs(CleanJet_eta[0])<2.4) && (abs(CleanJet_eta[1])<2.4) && bVeto && mtw2>30 && (mjj>60 && mjj<120) && kd_vh_mixhm>0'
+
+cuts['hww2l2v_13TeV_of2j_vh_hmin']  = 'mth>=60 && mth<125 && ((mll>12 && mll<76.2) || mll>106.2) && (abs(CleanJet_eta[0])<2.4) && (abs(CleanJet_eta[1])<2.4) && bVeto && mtw2>30 && (mjj>60 && mjj<120) && kd_vh_mixhm<0 '
+
+cuts['hww2l2v_13TeV_of2j_vh_hpip']  = 'mth>=60 && mth<125 && ((mll>12 && mll<76.2) || mll>106.2) && (abs(CleanJet_eta[0])<2.4) && (abs(CleanJet_eta[1])<2.4) && bVeto && mtw2>30 && (mjj>60 && mjj<120) && kd_vh_mixhp>-0.8'
+
+cuts['hww2l2v_13TeV_of2j_vh_hpin']  = 'mth>=60 && mth<125 && ((mll>12 && mll<76.2) || mll>106.2) && (abs(CleanJet_eta[0])<2.4) && (abs(CleanJet_eta[1])<2.4) && bVeto && mtw2>30 && (mjj>60 && mjj<120) && kd_vh_mixhp<-0.8'
+
+# Not used in final fit
+cuts['hww2l2v_13TeV_of2j_ggh_t']  = 'mth>=60 && mth<125 && ((mll>12 && mll<76.2) || mll>106.2) && abs(CleanJet_eta[0])<4.7 && abs(CleanJet_eta[1])<4.7 && bVeto && mtw2>30 && mjj>300'
+
+cuts['hww2l2v_13TeV_of2j_ggh_l']  = 'mth>=60 && mth<125 && ((mll>12 && mll<76.2) || mll>106.2) && abs(CleanJet_eta[0])<4.7 && abs(CleanJet_eta[1])<4.7 && bVeto && mtw2>30 && mjj<300'
+
+cuts['hww2l2v_13TeV_of2j_ggh_thmip']  = 'mth>=60 && mth<125 && ((mll>12 && mll<76.2) || mll>106.2) && abs(CleanJet_eta[0])<4.7 && abs(CleanJet_eta[1])<4.7 && bVeto && mtw2>30 && mjj>300 && kd_ggh_mixhm>0 '
+
+cuts['hww2l2v_13TeV_of2j_ggh_thmin']  = 'mth>=60 && mth<125 && ((mll>12 && mll<76.2) || mll>106.2) && abs(CleanJet_eta[0])<4.7 && abs(CleanJet_eta[1])<4.7 && bVeto && mtw2>30 && mjj>300 && kd_ggh_mixhm<0 '
+
+cuts['hww2l2v_13TeV_of2j_ggh_lhmip']  = 'mth>=60 && mth<125 && ((mll>12 && mll<76.2) || mll>106.2) && abs(CleanJet_eta[0])<4.7 && abs(CleanJet_eta[1])<4.7 && bVeto && mtw2>30 && mjj<300 && kd_ggh_mixhm>0'
+
+cuts['hww2l2v_13TeV_of2j_ggh_lhmin']  = 'mth>=60 && mth<125 && ((mll>12 && mll<76.2) || mll>106.2) && abs(CleanJet_eta[0])<4.7 && abs(CleanJet_eta[1])<4.7 && bVeto && mtw2>30 && mjj<300 && kd_ggh_mixhm<0'
+
+
+
+## Control regions
+
+cuts['hww2l2v_13TeV_top_of2j']  = 'topcr'
+cuts['hww2l2v_13TeV_dytt_of2j']  = 'mth<60 && mll>40 && mll<80 && bVeto'

@@ -1,5 +1,9 @@
-
 #!/usr/bin/env python
+
+import sys
+
+Year = str(sys.argv[1])
+print 'Samples v7 config for year :', Year
 
 #################################################
 
@@ -11,40 +15,57 @@ Prod = [ "VBF", "WH", "ZH", "GGH", "GGHjj"  ]
 
 ## HVV AC MC samples  
 
-HVVSigOrg  = [ "H0PM", "H0M", "H0Mf05", "H0PH", "H0PHf05", "H0L1", "H0L1f05" ] 
+HVV_Org  = [ "H0PM", "H0M", "H0Mf05", "H0PH", "H0PHf05", "H0L1", "H0L1f05" ] 
 
-## Reweight all 7 original samples to these hypotheses (ME) for GGH (1 vertex - 3 hypotheses)
+## Reweight all 7 original samples to these hypotheses (ME) 
+## GGH : 1 decay vertex - 3 hypotheses
+## VBF, WH, and ZH HVV : 2 vertices - 5 hypotheses
+## VBF and ZH have HZg production vertex 
 
-HVVSigRW1 = [("H0PM"),
-          ("H0M"), ("H0Mf05"),
+HVV_GGH_RW = [("H0PM"),
+          ("H0M"),("H0Mf05"),
           ("H0PH"),("H0PHf05"),
-          ("H0L1"),("H0L1f05")
+          ("H0L1"),("H0L1f05"),
+          ("EFTH0M"),("EFTH0Mf05"),
+          ("EFTH0PH"),("EFTH0PHf05"),
+          ("EFTH0L1"),("EFTH0L1f05")
         ]
 
-## Reweight all 7 original samples to these hypotheses (ME) for VBF, WH, and ZH (2 vertices - 5 hypotheses)
-
-HVVSigRW2 = [("H0PM"),
+HVV_WH_RW = [("H0PM"),
           ("H0M_M0"), ("H0M_M1"), ("H0M_M2"), ("H0M_M3"),
           ("H0PH_M0"),("H0PH_M1"),("H0PH_M2"),("H0PH_M3"),
-          ("H0L1_M0"),("H0L1_M1"),("H0L1_M2"),("H0L1_M3")
-        ]
+          ("H0L1_M0"),("H0L1_M1"),("H0L1_M2"),("H0L1_M3"),
+          ("EFTH0M_M0"), ("EFTH0M_M1"), ("EFTH0M_M2"), ("EFTH0M_M3"),
+          ("EFTH0PH_M0"),("EFTH0PH_M1"),("EFTH0PH_M2"),("EFTH0PH_M3"),
+          ("EFTH0L1_M0"),("EFTH0L1_M1"),("EFTH0L1_M2"),("EFTH0L1_M3")
+            ]
+
+HVV_XH_RW = [("H0PM"),
+          ("H0M_M0"), ("H0M_M1"), ("H0M_M2"), ("H0M_M3"),
+          ("H0PH_M0"),("H0PH_M1"),("H0PH_M2"),("H0PH_M3"),
+          ("H0L1_M0"),("H0L1_M1"),("H0L1_M2"),("H0L1_M3"),
+          ("H0LZg_M0"),("H0LZg_M1"),("H0LZg_M2"),("H0LZg_M3"), 
+          ("EFTH0M_M0"), ("EFTH0M_M1"), ("EFTH0M_M2"), ("EFTH0M_M3"),
+          ("EFTH0PH_M0"),("EFTH0PH_M1"),("EFTH0PH_M2"),("EFTH0PH_M3"),
+          ("EFTH0L1_M0"),("EFTH0L1_M1"),("EFTH0L1_M2"),("EFTH0L1_M3")
+            ]
 
 ##################################################
 
 ## HGG AC MC samples  
 
-HGGSigOrg  = [ "H0PM", "H0M", "H0Mf05" ] 
+HGG_Org  = [ "H0PM", "H0M", "H0Mf05" ] 
 
 ## Reweight all 3 original samples to these hypotheses (ME) for GGHjj (1 vertex - 3 hypotheses)
 
-HGGSigRW1 = [("H0PM"),
-             ("H0M"), ("H0Mf05"),
-            ]
+HGG_RW = [("H0PM"),
+          ("H0M"), ("H0Mf05"),
+         ]
 
 ##################### make config ##########################
 
-config = " "
-basefile = "/afs/cern.ch/work/d/dmoran/private/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/EFT/VBF/Tools/configs/samples_bkg_2016v7.py"
+config = ""
+basefile = "/afs/cern.ch/work/d/dmoran/private/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/EFT/VBF/Tools/configs/samples_bkg_"+Year+"v7.py"
 with open(basefile) as fp:
  lines = fp.read().splitlines()
 with open(basefile) as fp:
@@ -62,15 +83,17 @@ for pr in Prod :
  config += " \n"
 
  p = ""+pr+"_"
- SigOrg = HVVSigOrg
- SigRW  = HVVSigRW2
+ SigOrg = HVV_Org
+ SigRW  = HVV_XH_RW
  
  if pr == "GGH" : 
   p = ""
-  SigRW  = HVVSigRW1
+  SigRW  = HVV_GGH_RW
+ elif pr == "WH" : 
+  SigRW  = HVV_WH_RW
  elif pr == "GGHjj" : 
-  SigOrg = HGGSigOrg
-  SigRW  = HGGSigRW1
+  SigOrg = HGG_Org
+  SigRW  = HGG_RW
 
  # First add original samples, no reweighting!
  config += "# Original "+pr+" samples \n"
@@ -103,6 +126,7 @@ for pr in Prod :
       config += "signals_rw.append('"+p+so+"_"+srw+"')  \n"
       config += " \n"
 
-fout = open ("/afs/cern.ch/work/d/dmoran/private/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/EFT/VBF/Tools/configs/samples.py", "w")
+#fout = open ("/afs/cern.ch/work/d/dmoran/private/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/EFT/VBF/Tools/configs/samples.py", "w")
+fout = open ("/afs/cern.ch/work/l/lurda/CMS/ACHWW/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/EFT/VBF/Tools/configs/samples.py", "w")
 fout.write( config )
 

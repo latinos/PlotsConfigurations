@@ -58,3 +58,10 @@ JJH AC/EFT analysis
 -------Make datacards for the HGG AC analysis -- To be updated! :
 
  mkDatacards.py --pycfg=configuration_hgg.py --inputFile rootFileJJH/plots_JJH_HGG.root
+HWWACproc.py hww2l2v_13TeV_of2j_Vh HVV_H0L1 _17B_MCStatsOFF
+ HWWACproc.py hww2l2v_13TeV_of2j_Vh_hmin HVV_H0M _17B_MCStatsOFF
+ HWWACproc.py hww2l2v_13TeV_of2j_Vh_hmip HVV_H0M _17B_MCStatsOFF
+ HWWACproc.py hww2l2v_13TeV_of2j_Vh_hpin HVV_H0PH _17B_MCStatsOFF
+ HWWACproc.py hww2l2v_13TeV_of2j_Vh_hpip HVV_H0PH _17B_MCStatsOFF
+ HWWACproc.py hww2l2v_13TeV_of2j_Vh HVV_H0LZg _17B_MCStatsOFF
+

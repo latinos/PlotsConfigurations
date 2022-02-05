@@ -1,7 +1,8 @@
+
 # example of configuration file
 treeName= 'Events'
 
-tag = 'VBF'
+tag = 'JJH16'
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFile'+tag
@@ -9,15 +10,10 @@ outputDir = 'rootFile'+tag
 # file with TTree aliases
 aliasesFile = 'aliases.py'
 
-# use _ana configs for DC maker
-
 variablesFile = 'variables.py'
+
 samplesFile = 'samples.py' 
 
-#variablesFile = 'variables_ana.py'
-#samplesFile = 'samples_ana.py' 
-
-# file with list of cuts
 cutsFile = 'cuts.py' 
 
 # file with list of samples
