@@ -2,9 +2,8 @@
 # Aliases in supercut doesnt seem to work!
 #            && hm > 0  \not used for boosted category --> also changed in getconstant.cc macro
 
-supercut = 'Lepton_pt[0]>25 && Lepton_pt[1]>10 \
+supercut = 'Lepton_pt[0]>25 && Lepton_pt[1]>13 \
             && Lepton_pdgId[0]*Lepton_pdgId[1]==-11*13 \
-            && (abs(Lepton_pdgId[1] == 13) || Lepton_pt[1]>13) \
             && Alt$(Lepton_pt[2],0)<10 \
             && ptll>30 \
             && PuppiMET_pt>20 \
