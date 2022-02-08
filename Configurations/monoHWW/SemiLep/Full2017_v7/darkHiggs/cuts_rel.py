@@ -1,13 +1,10 @@
 super_cut = [ 
-    '(nLepton>=1 && Alt$(Lepton_pt[1],0)<10.)',
+    'nLepton>=1',
     # SingleMuon trigger: IsoMu27, SingleElectron trigger: Ele35_WPTight_Gsf
     '((Lepton_pt[0]>27. && abs(Lepton_pdgId[0])==13) || (Lepton_pt[0]>35. && abs(Lepton_pdgId[0])==11))',
-    #'PuppiMET_pt > 50.',
     'Sum$(CleanJet_pt>30.)>=2',
-    'MHlnjj_m_jj > -1', # Require 2 good CleanJets (pt > 30; abs(eta) < 4.7; Jet_jetId >= 2; pujetid == 'custom')
-    # Additional cuts
-    #'MHlnjj_dphi_jjVl < 2.',
-    #'MHlnjj_dphi_ljjVmet > 2.',
+    'MHlnjj_m_jj > -1',                                                           # Require 2 good CleanJets (pt > 30; abs(eta) < 4.7; Jet_jetId >= 2; pujetid == 'custom')
+    '(abs(CleanJet_eta[HM_idx_j1]) < 2.4 && abs(CleanJet_eta[HM_idx_j2]) < 2.4)', # Force jets in tracker
 ]
 
 supercut = ' && '.join(super_cut)
@@ -21,62 +18,45 @@ def combinecut(cut_list):
 def addcut(name, exprs):
     cuts[name] = ' && '.join(exprs)
 
-#hMET     = ['PuppiMET_pt > 50']
-#lMET     = ['PuppiMET_pt < 50']
 is_el    = ['abs(Lepton_pdgId[0])==11']
 is_mu    = ['abs(Lepton_pdgId[0])==13']
-bVeto    = ['bVeto']
-IbVeto   = ['bReq']
-WhadM    = ['MHlnjj_m_jj > 65. && MHlnjj_m_jj < 105.']
-#IWhadM   = ['(MHlnjj_m_jj < 65. || MHlnjj_m_jj > 105.)']
-IWhadM   = ['(MHlnjj_m_jj < 65. || MHlnjj_m_jj > 105.) && MHlnjj_m_jj > 40. && MHlnjj_m_jj < 250.']
-#idx_j    = ['MHlnjj_m_jj > -1']     # Require 2 good CleanJets (pt > 30; abs(eta) < 4.7; Jet_jetId >= 2; pujetid == 'custom')
-#mt       = ['MHlnjj_mt_lmet > 25']
-#Imt      = ['MHlnjj_mt_lmet < 25']
-QCDf     = ['MHlnjj_mt_lmet > 50', 'MHlnjj_dphi_ljjVmet > 2.', 'PuppiMET_pt > 50']
-IQCDf    = ['MHlnjj_mt_lmet < 50', 'MHlnjj_dphi_ljjVmet < 2.', 'PuppiMET_pt < 50']
 
+#veto_1l      = ['Alt$(Lepton_pt[1],0)<10.']
+#veto_1l_I    = ['(nLepton>=2 && Lepton_pt[1] > 20)']
 mt_lmet      = ['mtw1 > 80']
+mt_lmet_I    = ['mtw1 < 30']
 met          = ['PuppiMET_pt > 60']
+met_I        = ['PuppiMET_pt < 30']
 dphi_l_jj    = ['MHlnjj_dphi_jjVl < 1.8']
 dphi_ljj_met = ['MHlnjj_dphi_ljjVmet > 2.']
 dr_l_jj      = ['MHlnjj_dr_jjVl < 3.']
 pt_ljj       = ['MHlnjj_pt_ljj > 60']
 pt_ljj_I     = ['MHlnjj_pt_ljj < 60']
-bVeto        = ['bVeto']
-bVeto_I      = ['bReq']
+veto_1l      = ['Alt$(Lepton_pt[1],0)<10.']
+veto_1l_I    = ['(nLepton>=2 && Lepton_pt[1] > 20)']
+veto_b       = ['bVeto']
+veto_b_I     = ['bReq']
 m_jj         = ['(MHlnjj_m_jj > 65. && MHlnjj_m_jj < 105.)']
 m_jj_I       = ['(MHlnjj_m_jj < 65. || MHlnjj_m_jj > 105.)']
 
-SC       = super_cut
-SR       = combinecut([super_cut, mt_lmet, met, dphi_l_jj, dphi_ljj_met, dr_l_jj, pt_ljj , m_jj  , bVeto  ])
-CR       = combinecut([super_cut, mt_lmet, met, dphi_l_jj, dphi_ljj_met, dr_l_jj, pt_ljj_I, m_jj  , bVeto  ])
-SB       = combinecut([super_cut, mt_lmet, met, dphi_l_jj, dphi_ljj_met, dr_l_jj, pt_ljj , m_jj_I, bVeto  ])
-TCR      = combinecut([super_cut, mt_lmet, met, dphi_l_jj, dphi_ljj_met, dr_l_jj, pt_ljj , m_jj  , bVeto_I])
-#SB       = combinecut([QCDf , bVeto , IWhadM, super_cut])
-#TCR      = combinecut([QCDf , IbVeto, WhadM , super_cut])
-#QCR      = combinecut([IQCDf, bVeto , super_cut])
-##QCR      = combinecut([Imt, bVeto , WhadM , idx_j, super_cut])
-##QCR      = combinecut([Imt, bVeto , idx_j, super_cut])
+SC       = combinecut([super_cut, veto_1l , m_jj  , veto_b])
+SR       = combinecut([super_cut, veto_1l , m_jj  , veto_b  , mt_lmet  , met  , dphi_l_jj, dphi_ljj_met, dr_l_jj, pt_ljj])
+SB       = combinecut([super_cut, veto_1l , m_jj_I, veto_b  , mt_lmet  , met  , dphi_l_jj, dphi_ljj_met, dr_l_jj, pt_ljj])
+TCR      = combinecut([super_cut, veto_1l , m_jj  , veto_b_I, mt_lmet  , met  , dphi_l_jj, dphi_ljj_met, dr_l_jj, pt_ljj])
 
-# Electron
-addcut('ElCh_SC' , combinecut([is_el, SC]))
-addcut('ElCh_SR' , combinecut([is_el, SR]))
-addcut('ElCh_CR' , combinecut([is_el, CR]))
-addcut('ElCh_SB' , combinecut([is_el, SB]))
-addcut('ElCh_TCR', combinecut([is_el, TCR]))
-#addcut('ElCh_QCR', combinecut([is_el, QCR]))
+## Electron
+#addcut('ElCh_SR'  , combinecut([is_el, SR  ]))
+#addcut('ElCh_SB'  , combinecut([is_el, SB  ]))
+#addcut('ElCh_TCR' , combinecut([is_el, TCR ]))
 
-# Muon
-addcut('MuCh_SC'  , combinecut([is_mu, SC]))
-addcut('MuCh_SR'  , combinecut([is_mu, SR]))
-addcut('MuCh_CR'  , combinecut([is_mu, CR]))
-addcut('MuCh_SB'  , combinecut([is_mu, SB]))
-addcut('MuCh_TCR' , combinecut([is_mu, TCR]))
-#addcut('MuCh_QCR' , combinecut([is_mu, QCR]))
+## Muon
+#addcut('MuCh_SR'  , combinecut([is_mu, SR  ]))
+#addcut('MuCh_SB'  , combinecut([is_mu, SB  ]))
+#addcut('MuCh_TCR' , combinecut([is_mu, TCR ]))
 
-#addcut('SSR_el', combinecut([is_el, SR, phi_jj, phi_lmet]))
-#addcut('SSR_mu', combinecut([is_mu, SR, phi_jj, phi_lmet]))
-
-
+# Inclusive
+addcut('InCh_SC'  , combinecut([SC  ]))
+addcut('InCh_SR'  , combinecut([SR  ]))
+addcut('InCh_SB'  , combinecut([SB  ]))
+addcut('InCh_TCR' , combinecut([TCR ]))
 

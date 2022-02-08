@@ -9,8 +9,24 @@ supercut = '   mll>20 \
             && PuppiMET_pt > 30 \
            '
 
-## Default Signal regions
+# mll > 20        : Remove Fakes and Vg
+# 1.lep pt > 30   : Seems pretty baseline, doesn't remove many events with all other cuts.
+# 2.lep pt > 20   : Loose cut that removes few background (good in 0j)
+# 3.lep veto      : Absolutely no signal here
+# Lep eta < 2.5   : Actually useless because there's already no events here
+# ptll > 30       : Loose cut that removes few background
+# PuppiMET > 30   : Loose cut that removes few background
 
+# mth > 60        : Orthogonality with tautau analysis
+# bVeto           : Remove tops
+
+# mtw2 > 20       : Good for 0j category, reduced DY especially, but also (some) very high mass signal! So don't use!
+# VBF from 1jet   : Brings some background form 1j to VBF category. Very useful for VBF signal in high mass region though.
+# HM dphilmet     : dphilmet = min(dphi_l1,met ; dphi_l2,met). Distribution similar to dphi_l2,met, but dphi_l2,met has signal events in tail
+
+
+## Default Signal regions
+'''
 cuts['hww2l2v_13TeV_em_0j']  = '   mth>60 \
                                 && Alt$(CleanJet_pt[0],0)<30 \
                                 && !VBFcut \
@@ -33,7 +49,7 @@ cuts['hww2l2v_13TeV_em_2j']  = '   mth>60 \
                                 && bVeto \
                                 && finalstate \
                               '
-
+'''
 cuts['hww2l2v_13TeV_em_ggh']  = '   mth>60 \
                                 && !VBFcut \
                                 && bVeto \
@@ -46,6 +62,7 @@ cuts['hww2l2v_13TeV_em_vbf']  = '   mth>60 \
                                 && finalstate \
                               '
 
+'''
 ## Default Top control regions
 cuts['hww2l2v_13TeV_em_top_0j']  = '   mth>60 \
                                     && Alt$(CleanJet_pt[0],0)<30 \
@@ -69,7 +86,7 @@ cuts['hww2l2v_13TeV_em_top_2j']  = '   mth>60 \
                                     && bReq \
                                     && finalstate \
                                    '
-
+'''
 cuts['hww2l2v_13TeV_em_top_ggh']  = '   mth>60 \
                                     && !VBFcut \
                                     && bReq \
@@ -82,7 +99,7 @@ cuts['hww2l2v_13TeV_em_top_vbf']  = '   mth>60 \
                                      && finalstate \
                                     '
 
-
+'''
 ## Default DYtt control regions
 cuts['hww2l2v_13TeV_em_dy_0j']  = '   mth<60 \
                                    && mll<90 \
@@ -109,7 +126,7 @@ cuts['hww2l2v_13TeV_em_dy_2j']  = '   mth<60 \
                                    && bVeto \
                                    && finalstate \
                                   '
-
+'''
 cuts['hww2l2v_13TeV_em_dy_ggh']  = '   mth<60 \
                                    && mll<90 \
                                    && !VBFcut \
@@ -123,7 +140,6 @@ cuts['hww2l2v_13TeV_em_dy_vbf']  = '   mth<60 \
                                     && bVeto \
                                     && finalstate \
                                    '
-
 '''
 ## High mass Signal regions
 
@@ -152,7 +168,7 @@ cuts['hww2l2v_13TeV_em_high2j']  = '   mth>60 \
                                     && finalstate \
                                     && HighMass \
                               '
-
+'''
 cuts['hww2l2v_13TeV_em_highggh']  = '   mth>60 \
                                     && !VBFcut_HM \
                                     && bVeto \
@@ -166,7 +182,7 @@ cuts['hww2l2v_13TeV_em_highvbf']  = '   mth>60 \
                                     && finalstate \
                                     && HighMass \
                               '
-
+'''
 ## High mass Top control regions
 cuts['hww2l2v_13TeV_em_top_high0j']  = '   mth>60 \
                                         && Alt$(CleanJet_pt[0],0)<30 \
@@ -193,7 +209,7 @@ cuts['hww2l2v_13TeV_em_top_high2j']  = '   mth>60 \
                                         && finalstate \
                                         && HighMass \
                                    '
-
+'''
 cuts['hww2l2v_13TeV_em_top_highggh']  = '   mth>60 \
                                         && !VBFcut_HM \
                                         && bReq \
@@ -207,7 +223,7 @@ cuts['hww2l2v_13TeV_em_top_highvbf']  = '   mth>60 \
                                          && finalstate \
                                          && HighMass \
                                     '
-'''
+
 
 ## High mass DYtt control regions
 #cuts['hww2l2v_13TeV_em_dy_high0j']  = '   mth<60 \

@@ -123,7 +123,7 @@ files = nanoGetSampleFiles(mcDirectory, 'TTTo2L2Nu') + \
 samples['top'] = {
     'name': files,
     'weight': mcCommonWeight,
-    'FilesPerJob': 1,
+    'FilesPerJob': 5,
     #'EventsPerJob': 100000
 }
 
@@ -222,7 +222,7 @@ samples['WW'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'WWTo2L2Nu'),
     'weight': mcCommonWeight+ '*nllW', # temporary - nllW module not run on PS and UE variation samples
     #'weight': mcCommonWeight + '*nllWOTF', # temporary
-    'FilesPerJob': 1
+    'FilesPerJob': 2
 }
 signals.append('WW')
 

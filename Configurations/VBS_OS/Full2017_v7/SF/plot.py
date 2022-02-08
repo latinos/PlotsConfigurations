@@ -7,13 +7,35 @@
 # Groups of samples to improve the plots.
 # If not defined, normal plots is used
 #
-
-
-groupPlot['top']  = {  
-                  'nameHR' : 'tW and t#bar{t}',
+'''
+groupPlot['Higgs']  = {  
+                  'nameHR' : 'Higgs',
                   'isSignal' : 0,
-                  'color': 400,   # kYellow
-                  'samples'  : ['top']
+                  'color': 632, # kRed 
+		  'samples'  : ['H_htt', 'H_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww','bbH_hww','ttH_hww','ZH_htt', 'ggZH_htt', 'WH_htt', 'qqH_htt', 'ggH_htt','bbH_htt','ttH_htt' ]
+		  #'samples'  : ['H_htt', 'H_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww','bbH_hww','ttH_hww', 'qqH_htt', 'ggH_htt' ]
+              }
+'''
+
+groupPlot['Fake']  = {
+                  'nameHR' : 'nonprompt',
+                  'isSignal' : 0,
+                  'color': 921,    # kGray + 1
+                  'samples'  : ['Fake_m', 'Fake_e']
+}
+
+groupPlot['Multiboson']  = {  
+                  'nameHR' : 'Multiboson',
+                  'isSignal' : 0,
+                  'color': 617, # kViolet + 1  
+                  'samples'  : ['VVV', 'VZ', 'WZ', 'ZZ', 'Vg', 'Wg', 'VgS_H', 'VgS_L']
+              }
+
+groupPlot['Zjj']  = {  
+                  'nameHR': 'Zjj',
+                  'isSignal' : 0,
+                  'color': 600,    # kBlue
+                  'samples'    : ['Zjj']
               }
 
 groupPlot['WW']  = {  
@@ -23,14 +45,20 @@ groupPlot['WW']  = {
                   'samples'  : ['WW', 'ggWW']
               }
 
-groupPlot['Fake']  = {
-                  'nameHR' : 'nonprompt',
+groupPlot['DY_hardJets']  = {  
+                  'nameHR' : "DY no PU jets",
                   'isSignal' : 0,
-                  'color': 921,    # kGray + 1
-                  'samples'  : ['Fake_m', 'Fake_e']
-}
+                  'color': 418,    # kGreen+2
+                  'samples'  : ['DY_hardJets']
+              }
 
-
+groupPlot['DY_PUJets']  = {  
+                  'nameHR' : "DY 1 PU jet",
+                  'isSignal' : 0,
+                  'color': 416,    # kGreen
+                  'samples'  : ['DY_PUJets']
+              }
+'''
 groupPlot['DY']  = {  
                   'nameHR' : "DY",
                   'isSignal' : 0,
@@ -38,7 +66,7 @@ groupPlot['DY']  = {
                   'samples'  : ['DY_lowZ', 'DY_highZ']
               }
 
-'''
+
 groupPlot['VVV']  = {  
                   'nameHR' : 'VVV',
                   'isSignal' : 0,
@@ -69,26 +97,11 @@ groupPlot['VgS']  = {
               }
 '''
 
-groupPlot['Multiboson']  = {  
-                  'nameHR' : 'Multiboson',
+groupPlot['top']  = {  
+                  'nameHR' : 'tW and t#bar{t}',
                   'isSignal' : 0,
-                  'color': 617, # kViolet + 1  
-                  'samples'  : ['VVV', 'VZ', 'WZ', 'ZZ', 'Vg', 'Wg', 'VgS_H', 'VgS_L']
-              }
-
-groupPlot['Higgs']  = {  
-                  'nameHR' : 'Higgs',
-                  'isSignal' : 0,
-                  'color': 632, # kRed 
-		  'samples'  : ['H_htt', 'H_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww','bbH_hww','ttH_hww','ZH_htt', 'ggZH_htt', 'WH_htt', 'qqH_htt', 'ggH_htt','bbH_htt','ttH_htt' ]
-		  #'samples'  : ['H_htt', 'H_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww','bbH_hww','ttH_hww', 'qqH_htt', 'ggH_htt' ]
-              }
-
-groupPlot['Zjj']  = {  
-                  'nameHR': 'Zjj',
-                  'isSignal' : 0,
-                  'color': 600,    # kBlue
-                  'samples'    : ['Zjj']
+                  'color': 400,   # kYellow
+                  'samples'  : ['top']
               }
 
 groupPlot['VBS']  = {
@@ -103,7 +116,21 @@ groupPlot['VBS']  = {
 #plot = {}
 
 # keys here must match keys in samples.py    
-#                    
+#             
+plot['DY_hardJets']  = {  
+                  'color': 418,    # kGreen+2
+                  'isSignal' : 0,
+                  'isData'   : 0, 
+                  'scale'    : 1.0,
+              }
+
+plot['DY_PUJets']  = {  
+                  'color': 416,    # kGreen
+                  'isSignal' : 0,
+                  'isData'   : 0, 
+                  'scale'    : 1.0,
+              }
+'''
 plot['DY_lowZ']  = {  
                   'color': 418,    # kGreen+2
                   'isSignal' : 0,
@@ -117,7 +144,7 @@ plot['DY_highZ']  = {
                   'isData'   : 0, 
                   'scale'    : 1.0,
               }
-
+'''
 plot['Zjj']  = {  
                   'color': 600,    # kBlue
                   'isSignal' : 0,
@@ -221,7 +248,7 @@ plot['VVV']  = {
                   }
 
 # Htautau
-
+'''
 plot['ZH_htt'] = {
                   'nameHR' : 'ZHtt',
                   'color': 632+3, # kRed+3 
@@ -348,7 +375,7 @@ plot['ttH_hww'] = {
                   'isData'   : 0,
                   'scale'    : 1    #
                   }
-
+'''
 
 # data
 
@@ -357,7 +384,7 @@ plot['DATA']  = {
                   'color': 1 ,  
                   'isSignal' : 0,
                   'isData'   : 1 ,
-                  'isBlind'  : 1
+                  'isBlind'  : 0
               }
 
 
@@ -365,7 +392,7 @@ plot['DATA']  = {
 
 # additional options
 
-legend['lumi'] = 'L = 41.5/fb'
+legend['lumi'] = 'L = 41.5 fb^-1'
 
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
 

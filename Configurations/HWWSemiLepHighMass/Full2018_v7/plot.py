@@ -15,30 +15,31 @@ else:
 # If not defined, normal plots is used
 #
 
-groupPlot['SM Higgs'] = {
-'nameHR': 'SM Higgs',
-'isSignal' : 0,
-'color': 863, # kAzure +3
-'samples'  : ['ggH_hww', 'qqH_hww', 'ZH_hww', 'WH_hww', 'ggH_htt', 'qqH_htt', 'ZH_htt', 'WH_htt']
-}
+# groupPlot['SM Higgs'] = {
+# 'nameHR': 'SM Higgs',
+# 'isSignal' : 0,
+# 'color': 863, # kAzure +3
+# 'samples'  : ['ggH_hww', 'qqH_hww', 'ZH_hww', 'WH_hww', 'ggH_htt', 'qqH_htt', 'ZH_htt', 'WH_htt']
+# }
 groupPlot['multiboson']  = {
 'nameHR' : 'multiboson',
 'isSignal' : 0,
 'color': 857, # kAzure -3
-'samples'  : ['WW', 'ggWW', 'WWewk', 'qqWWqq', 'WW2J', 'VVV', 'VZ', 'Vg', 'VgS_H',  'VgS_L']
-}
-groupPlot['QCD'] = {
-'nameHR' : "QCD",
-'isSignal' : 0,
-'color'    : 617,   # kViolet + 1
-'samples'  : ['QCD']
+# 'samples'  : ['WW', 'ggWW', 'WWewk', 'qqWWqq', 'WW2J', 'VVV', 'VZ', 'Vg', 'VgS_H',  'VgS_L']
+'samples'  : ['WW', 'ggWW', 'WWewk', 'qqWWqq', 'WW2J', 'VVV', 'VZ', 'Vg', 'VgS_H',  'VgS_L', 'ggH_hww', 'qqH_hww', 'ZH_hww', 'WH_hww', 'ggH_htt', 'qqH_htt', 'ZH_htt', 'WH_htt']
 }
 groupPlot['FAKE'] = {
-'nameHR' : "Fake",
+'nameHR' : "QCD and Fake",
 'isSignal' : 0,
 'color'    : 617,   # kViolet + 1
-'samples'  : ['FAKE']
+'samples'  : ['FAKE', 'QCD']
 }
+# groupPlot['QCD'] = {
+# 'nameHR' : "QCD",
+# 'isSignal' : 0,
+# 'color'    : 617,   # kViolet + 1
+# 'samples'  : ['QCD']
+# }
 groupPlot['DY']  = {
 'nameHR' : "DY",
 'isSignal' : 0,
@@ -59,11 +60,29 @@ groupPlot['Wjets'] = {
 }
 
 for counter, MX in enumerate(plotmasses):
-    groupPlot['Higgs{}'.format(MX)] = {
-        'nameHR'  : 'Higgs {}'.format(MX),
+    groupPlot['Higgs{}_QQ'.format(MX)] = {
+        'nameHR'  : 'ggF {}'.format(MX),
         'isSignal': 2,
-        'color'   : counter+1,
-        'samples' : ['GGH_{}_RelW002'.format(MX), 'GGHINT_{}_RelW002'.format(MX), 'QQH_{}_RelW002'.format(MX),'QQHINT_{}_RelW002'.format(MX)]
+        'color'   : 4*counter+1,
+        'samples' : ['GGH_{}_RelW002'.format(MX), 'GGHINT_{}_RelW002'.format(MX)]
+    }
+    groupPlot['Higgs{}_QQINT'.format(MX)] = {
+        'nameHR'  : 'ggF int {}'.format(MX),
+        'isSignal': 2,
+        'color'   : 4*counter+2,
+        'samples' : ['GGHINT_{}_RelW002'.format(MX)]
+    }
+    groupPlot['Higgs{}_GG'.format(MX)] = {
+        'nameHR'  : 'VBF {}'.format(MX),
+        'isSignal': 2,
+        'color'   : 4*counter+3,
+        'samples' : ['QQH_{}_RelW002'.format(MX),'QQHINT_{}_RelW002'.format(MX)]
+    }
+    groupPlot['Higgs{}_GGINT'.format(MX)] = {
+        'nameHR'  : 'VBF int {}'.format(MX),
+        'isSignal': 2,
+        'color'   : 4*counter+4,
+        'samples' : ['QQHINT_{}_RelW002'.format(MX)]
     }
 
 
@@ -286,7 +305,7 @@ plot['DATA']  = {
     'color': 1 ,
     'isSignal' : 0,
     'isData'   : 1 ,
-    'isBlind'  : 0
+    'isBlind'  : 1
 }
 
 

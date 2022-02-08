@@ -5,7 +5,7 @@ treeName = 'Events'
 tag = 'vbs_2016'
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFile/AN_config'
+outputDir = 'rootFile'
 
 # file with TTree aliases
 aliasesFile = 'aliases.py'
@@ -23,14 +23,14 @@ samplesFile = 'samples.py'
 plotFile = 'plot.py'
 
 # luminosity to normalize to (in 1/fb)
-lumi = 35.867
+lumi = 36.33
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'plots/AN_config'
+outputDirPlots = 'plots'
 
 # used by mkDatacards to define output directory for datacards
-outputDirDatacard = 'datacards/AN_config'
+outputDirDatacard = 'datacards'
 
 # structure file for datacard
 structureFile = 'structure.py'

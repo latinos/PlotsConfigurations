@@ -33,11 +33,12 @@ Or, if they failed because the wall clock time have been exceeded, resubmit them
 
 ### Use previously-produced data-driven DY estimation histograms to correct yields in original distributions
 
-    mkDYestim_data.py --pycfg=configuration_Z.py --dycfg=dyestim_Zpeak.py --inputFile=rootFile/plots_DY_validation_Zpeak_2016_v7.root
+    mkDYestim_data_splitNuisances.py --pycfg=configuration_Z.py --dycfg=dyestim_Zpeak.py --inputFile=rootFile/plots_DY_validation_Zpeak_2016_v7.root --year=2016
 
 ### Plot distributions
 
-    mkPlot.py --pycfg=configuration_Z.py --inputFile=rootFile/plots_DY_validation_Zpeak_2016_v7_DYEstimDATA.root --linearOnly --fileFormats=png --onlyPlot=cratio
+    mkPlot.py --pycfg=configuration_Z.py --inputFile=rootFile/plots_DY_validation_Zpeak_2016_v7_DYEstimDATA_breakdown.root --linearOnly --fileFormats=png --onlyPlot=cratio
+
 
 
 ## Instructions to produce the plots - Second Validation Region - Loose DNN Selection 
@@ -71,9 +72,8 @@ Or, if they failed because the wall clock time have been exceeded, resubmit them
 
 ### Use previously-produced data-driven DY estimation histograms to correct yields in original distributions
 
-    mkDYestim_data.py --pycfg=configuration_loose.py --dycfg=dyestim_loose.py --inputFile=rootFile/plots_DY_validation_loose_2016_v7.root
+    mkDYestim_data_splitNuisances.py --pycfg=configuration_loose.py --dycfg=dyestim_loose.py --inputFile=rootFile/plots_DY_validation_loose_2016_v7.root --year=2016
 
 ### Plot distributions
 
-    mkPlot.py --pycfg=configuration_loose.py --inputFile=rootFile/plots_DY_validation_loose_2016_v7_DYEstimDATA.root --linearOnly --fileFormats=png --onlyPlot=cratio
-
+    mkPlot.py --pycfg=configuration_loose.py --inputFile=rootFile/plots_DY_validation_loose_2016_v7_DYEstimDATA_breakdown.root --linearOnly --fileFormats=png --onlyPlot=cratio

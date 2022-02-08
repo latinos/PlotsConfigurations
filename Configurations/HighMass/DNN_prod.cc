@@ -191,10 +191,10 @@ DNNprod::evaluate(unsigned)
   auto ev{*event->Get()};
   if (ev % 2 == 0){
     //std::cout << dnn_tensorflow0->analyze(input) << std::endl;
-    return dnn_tensorflow0->analyze(input);
+    return dnn_tensorflow0->analyze(input)[0];
   }else{
     //std::cout << dnn_tensorflow1->analyze(input) << std::endl;
-    return dnn_tensorflow1->analyze(input);
+    return dnn_tensorflow1->analyze(input)[0];
   }
 
 }

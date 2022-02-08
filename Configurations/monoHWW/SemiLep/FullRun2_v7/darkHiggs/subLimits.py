@@ -152,7 +152,8 @@ for fil in all_files:
         print('Warning: "'+f2018_path+'" does not exist, skipped!')
         continue
 
-    comb_cmd = 'combineCards.py '+' '.join([f2016_path_rel, f2017_path_rel, f2018_path_rel])+' > '+Comb_path_rel
+    #comb_cmd = 'combineCards.py '+' '.join([f2016_path_rel, f2017_path_rel, f2018_path_rel])+' > '+Comb_path_rel
+    comb_cmd = 'combineCards.py '+' '.join(['Year2016='+f2016_path_rel, 'Year2017='+f2017_path_rel, 'Year2018='+f2018_path_rel])+' > '+Comb_path_rel
     run_cmd  = 'combine -M AsymptoticLimits --run blind '+Comb_path_rel+' -n _'+mass_point
     
     write_job_files(job_dir, job_id, args.cmbDir, abs_work_dir, comb_cmd, run_cmd)

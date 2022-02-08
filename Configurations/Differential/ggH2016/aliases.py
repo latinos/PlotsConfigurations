@@ -14,6 +14,8 @@ configurations = os.path.dirname(configurations) # Configurations
 
 mc = [skey for skey in samples if skey not in ('Fake', 'DATA')]
 
+print mc
+
 eleWP = 'mva_90p_Iso2016'
 muWP = 'cut_Tight80x'
 
@@ -229,9 +231,15 @@ aliases['nllWOTF'] = {
     'linesToAdd': ['.L %s/Differential/nllW.cc+' % configurations],
     'class': 'WWNLLW',
     'args': ('central',),
-    'samples': ['WW']
+    'samples': ['WW', 'WWold', 'WW_PS_HerwigUp', 'WW_PS_HerwigUp', 'WW_PS_HerwigUp', 'WW_UE_CUETPUp', 'WW_UE_CUETPUp', 'WW_UE_CUETPDown', 'WW_UE_CUETPDown', 'WW_UE_CUETPDown']
 }
 
+aliases['qq2vvOTF'] = {
+    'linesToAdd': ['.L %s/Differential/qq2vvEWK.cc+' % configurations],
+    'class': 'WWEWKW',
+    'args': ('central',),
+    'samples': ['WW', 'WW_PS_HerwigUp', 'WW_PS_HerwigUp', 'WW_PS_HerwigUp', 'WW_UE_CUETPUp', 'WW_UE_CUETPUp', 'WW_UE_CUETPDown', 'WW_UE_CUETPDown', 'WW_UE_CUETPDown']
+}
 # In WpWmJJ_EWK events, partons [0] and [1] are always the decay products of the first W
 aliases['lhe_mW1'] = {
     'expr': 'TMath::Sqrt(2. * LHEPart_pt[0] * LHEPart_pt[1] * (TMath::CosH(LHEPart_eta[0] - LHEPart_eta[1]) - TMath::Cos(LHEPart_phi[0] - LHEPart_phi[1])))',

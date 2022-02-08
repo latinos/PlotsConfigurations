@@ -172,6 +172,7 @@ samples['ttW'] =  {  'name'   :   nanoGetSampleFiles(mcDirectory,'TTWJetsToLNu')
 
 samples['ttZ']  = {    'name': nanoGetSampleFiles(mcDirectory,'TTZjets'),
                       'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC,
+                       'FilesPerJob' : 15,
 }
 ############ Top ############
 '''
@@ -239,7 +240,7 @@ samples['Wg']  =  {     'name'   :   nanoGetSampleFiles(mcDirectory,'Wg_MADGRAPH
                         'FilesPerJob' : 5 ,
                   }
 
-samples['Zg']  =  {     'name'   : nanoGetSampleFiles(mcDirectory,'Zg'),
+samples['Zg']  =  {     'name'   : nanoGetSampleFiles(mcDirectory,'ZGToLLG'),
                         'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC+'* (!(Gen_ZGstar_mass > 0))',
                         'FilesPerJob' : 5 ,
                   }

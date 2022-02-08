@@ -4,7 +4,7 @@
 
 # keys here must match keys in samples.py
 #
-plot['Wjets_LO']  = {
+plot['Wjets_HT']  = {
     'color': 856, # kAzure -4
     'isSignal' : 0,
     'isData'   : 0,
@@ -12,7 +12,7 @@ plot['Wjets_LO']  = {
     'scale'    : 1.0
 }
 
-plot['Wjets_NLO']  = {
+plot['Wjets_NLOin']  = {
     'color': 856-1, # kAzure -4
     'isSignal' : 0,
     'isData'   : 1,

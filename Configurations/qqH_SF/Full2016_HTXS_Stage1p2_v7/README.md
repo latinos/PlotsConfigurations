@@ -1,4 +1,4 @@
-# Quark-quark tag simplified template cross-section analysis 2016
+B1;5202;0c# Quark-quark tag simplified template cross-section analysis 2016
 
 Configuration for the same-flavor qqH-tag simplified template cross-section analysis using 2016 Data.
 
@@ -34,11 +34,11 @@ Or, if they failed because the wall clock time have been exceeded, resubmit them
 
 ### Use previously-produced data-driven DY estimation histograms to correct yields in original distributions
 
-    mkDYestim_data.py --pycfg=configuration.py --dycfg=dyestim_qqH_SF_HTXS.py --inputFile=rootFile/plots_qqH_HTXS_SF_2016_v7.root
+    mkDYestim_data_splitNuisances.py --pycfg=configuration.py --dycfg=dyestim_qqH_SF_HTXS.py --inputFile=rootFile/plots_qqH_HTXS_SF_2016_v7.root --year=2016
 
 ### Plot distributions
 
-    mkPlot.py --pycfg=configuration.py --inputFile=rootFile/plots_qqH_HTXS_SF_2016_v7_DYEstimDATA.root --linearOnly --fileFormats=png --onlyPlot=cratio
+    mkPlot.py --pycfg=configuration.py --inputFile=rootFile/plots_qqH_HTXS_SF_2016_v7_DYEstimDATA_breakdown.root --linearOnly --fileFormats=png --onlyPlot=cratio
 
 Repeat, but with data-blind signal region:
 
@@ -54,7 +54,7 @@ Repeat, but with data-blind signal region:
 
 ### Create datacards
 
-    mkDatacards.py --pycfg=configuration.py --inputFile=rootFile/plots_qqH_HTXS_SF_2016_v7_DYEstimDATA.root --cardList=hww2l2v_13TeV_2j_mjj65_105_ee,hww2l2v_13TeV_2j_mjj65_105_mm,hww2l2v_13TeV_2j_mjj350_700_pthLT200_ee,hww2l2v_13TeV_2j_mjj350_700_pthLT200_mm,hww2l2v_13TeV_2j_mjjGT700_pthLT200_ee,hww2l2v_13TeV_2j_mjjGT700_pthLT200_mm,hww2l2v_13TeV_2j_mjjGT350_pthGT200_ee,hww2l2v_13TeV_2j_mjjGT350_pthGT200_mm,hww2l2v_13TeV_top_2j_vh_ee,hww2l2v_13TeV_top_2j_vh_mm,hww2l2v_13TeV_top_2j_vbf_ee,hww2l2v_13TeV_top_2j_vbf_mm,hww2l2v_13TeV_top_2j_hpt_ee,hww2l2v_13TeV_top_2j_hpt_mm,hww2l2v_13TeV_WW_2j_vh_ee,hww2l2v_13TeV_WW_2j_vh_mm,hww2l2v_13TeV_WW_2j_vbf_ee,hww2l2v_13TeV_WW_2j_vbf_mm,hww2l2v_13TeV_WW_2j_hpt_ee,hww2l2v_13TeV_WW_2j_hpt_mm
+    mkDatacards.py --pycfg=configuration.py --inputFile=rootFile/plots_qqH_HTXS_SF_2016_v7_DYEstimDATA_breakdown.root --cardList=hww2l2v_13TeV_2j_mjj65_105_ee,hww2l2v_13TeV_2j_mjj65_105_mm,hww2l2v_13TeV_2j_mjj350_700_pthLT200_ee,hww2l2v_13TeV_2j_mjj350_700_pthLT200_mm,hww2l2v_13TeV_2j_mjjGT700_pthLT200_ee,hww2l2v_13TeV_2j_mjjGT700_pthLT200_mm,hww2l2v_13TeV_2j_mjjGT350_pthGT200_ee,hww2l2v_13TeV_2j_mjjGT350_pthGT200_mm,hww2l2v_13TeV_top_2j_vh_ee,hww2l2v_13TeV_top_2j_vh_mm,hww2l2v_13TeV_top_2j_vbf_ee,hww2l2v_13TeV_top_2j_vbf_mm,hww2l2v_13TeV_top_2j_hpt_ee,hww2l2v_13TeV_top_2j_hpt_mm,hww2l2v_13TeV_WW_2j_vh_ee,hww2l2v_13TeV_WW_2j_vh_mm,hww2l2v_13TeV_WW_2j_vbf_ee,hww2l2v_13TeV_WW_2j_vbf_mm,hww2l2v_13TeV_WW_2j_hpt_ee,hww2l2v_13TeV_WW_2j_hpt_mm
 
 ### Combine channels/categories:
 
@@ -67,6 +67,12 @@ Remove nuisances giving negative yileds:
     ./dropNuisances.sh
 
 ### Prepare the workspace
+
+Source combine:
+
+    cd $HOME/work/combine/CMSSW_10_2_13/src/
+    eval `scramv1 runtime -sh`
+    cd -
 
 To avoid possible segmentation fault errors, run this command:
 
@@ -85,12 +91,6 @@ And then, actually produce the workspace:
     cat Combination/FitResults.txt
 
 ### Produce Impact Plots
-
-Source combine:
-
-    cd $HOME/work/combine/CMSSW_10_2_13/src/
-    cmsenv
-    cd -
 
 Prepare directory:
 
@@ -124,3 +124,10 @@ Create impact plots, one for each POI:
     plotImpacts.py -i Combination/impacts_total.json -o Impact_plots_HTXS/Impact_qqH_hww_MJJ_350_700_PTH_LT200	     --POI r_qqH_hww_MJJ_350_700_PTH_LT200
     plotImpacts.py -i Combination/impacts_total.json -o Impact_plots_HTXS/Impact_qqH_hww_MJJ_GT350_PTH_GT200	     --POI r_qqH_hww_MJJ_GT350_PTH_GT200
     plotImpacts.py -i Combination/impacts_total.json -o Impact_plots_HTXS/Impact_qqH_hww_MJJ_GT700_PTH_LT200	     --POI r_qqH_hww_MJJ_GT700_PTH_LT200
+
+Clean the mess:
+
+    rm higgsCombine_*
+    rm combine_* 
+    rm condor_combine_task.s*
+

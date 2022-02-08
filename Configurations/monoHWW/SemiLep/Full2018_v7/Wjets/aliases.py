@@ -62,13 +62,14 @@ aliases['LepSF1l__ele_wp__mu_wp'] = {
 }
 
 # single ele trigger eff fix
+eff_dir = os.getenv('CMSSW_BASE') + '/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/TriggEff/fixedTextfiles/'
 aliases['ele_trig_eff'] = {
     'linesToAdd': [
         'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
         '.L %s/src/PlotsConfigurations/Configurations/patches/triggerEff_1lep.cc+' % os.getenv('CMSSW_BASE')
     ],
     'class': 'TrigEff_1lep',
-    'args': ('/afs/cern.ch/user/a/arun/public/fixedTextfiles/2018/mvaid/Ele32_pt_eta_efficiency_withSys_Run2018.txt'),
+    'args': (eff_dir + '2018/mvaid/Ele32_pt_eta_efficiency_withSys_Run2018.txt'),
     'samples': mc
 }
 
@@ -245,39 +246,99 @@ aliases['EWKnloW'] = {
 puidSFSource = '%s/src/PlotsConfigurations/Configurations/patches/PUID_81XTraining_EffSFandUncties.root' % os.getenv('CMSSW_BASE')
 
 aliases['PUJetIdSF'] = {
-    'linesToAdd': [
-        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
-        #'.L %s/src/PlotsConfigurations/Configurations/patches/pujetidsf_event.cc+' % os.getenv('CMSSW_BASE')
-        '.L %s/src/PlotsConfigurations/Configurations/patches/pujetidsf_event_new.cc+' % os.getenv('CMSSW_BASE')
-    ],
-    'class': 'PUJetIdEventSF',
-    'args': (puidSFSource, '2018', 'loose'),
-    'samples': mc
+  'expr' : 'TMath::Exp(Sum$((Jet_jetId>=2 && ( (Jet_electronIdx1 != Lepton_electronIdx[0]) || Jet_electronIdx1 < 0 )  \
+                                          && ( (Jet_muonIdx1 != Lepton_muonIdx[0] ) || Jet_muonIdx1 < 0 ) \
+                            )*TMath::Log(Jet_PUIDSF_loose)))',
+  'samples': mc
 }
-
 
 ### Fake-Weight stuff
 
-## BDT OTF
-
+### BDT OTF
 MVA_folder = '%s/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/MVA/darkHiggs/' % os.getenv('CMSSW_BASE')
-
-xml_file_A13 = MVA_folder + 'UATmva_darkHiggsVWjAndTT_2017_BDT_125Trees_AdaBoost_GiniIndex_20Cuts_CostComplexity_12PruneStrength_13Var.weights.xml' 
-var_file_A13 = MVA_folder + 'Ada_13Var_variables.txt'
-
-aliases['newBDT_Ada13'] = {
-    'linesToAdd': [
-        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
-        '.L %s/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/Full2017_v7/darkHiggs/TMVAfiller_OTF.cc+' % os.getenv('CMSSW_BASE')
-    ],
-    'class': 'TMVAfillerOTF',
-    'args': (var_file_A13, xml_file_A13),
+# Clean BDT's
+bdt_dict = {
+    'BDT_Ada13' : MVA_folder + 'TKcut/UATmva_darkHiggsHighMZpVWjAndTT_2017_BDT_500Trees_AdaBoost_GiniIndex_20Cuts_CostComplexity_12PruneStrength_13Var.weights.xml',
 }
 
-xml_file_G11 = MVA_folder + 'UATmva_darkHiggsVWjAndTT_2017_BDT_200Trees_Grad_FalseBagged_0.6BagFrac_1BagShrink_GiniIndex_20Cuts_CostComplexity_12PruneStrength_11Var.weights.xml'
-var_file_G11 = MVA_folder + 'Grad_11Var_variables.txt'
+tkcut_13var = MVA_folder + 'TKcut/Clean13Var.txt'
+tkcut_10var = MVA_folder + 'TKcut/Clean10Var.txt'
+tkcut_15var = MVA_folder + 'btag_study/btag/Clean15Var.txt'
 
-aliases['newBDT_Grad11'] = {
-    'class': 'TMVAfillerOTF',
-    'args': (var_file_G11, xml_file_G11),
+first = True
+for bdt in bdt_dict:
+    cur_var_file = tkcut_13var
+    do_keras = False
+    if '10Var' in bdt_dict[bdt] or '10var' in bdt_dict[bdt]: cur_var_file = tkcut_10var
+    if '15Var' in bdt_dict[bdt] or '15var' in bdt_dict[bdt]: cur_var_file = tkcut_15var
+    if 'DNN' in bdt_dict[bdt]: 
+        do_keras = True
+    aliases[bdt] = {
+        #'class': 'TMVAfillerOTF',
+        'class': 'TMVAfillerOTFnew',
+        'args': (cur_var_file, bdt_dict[bdt], do_keras),
+    }
+    if first: 
+        aliases[bdt]['linesToAdd'] = [
+            'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
+            #'.L %s/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/Full2017_v7/darkHiggs/TMVAfiller_OTF.cc+' % os.getenv('CMSSW_BASE')
+            '.L %s/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/scripts/TMVAfiller_OTF_new.cc+' % os.getenv('CMSSW_BASE')
+        ]
+        first = False
+
+# Gen W stuff
+lastcopy = (1 << 13)
+aliases['GenW_pt'] = {
+    'expr': '(Sum$((GenPart_pt)*(abs(GenPart_pdgId) == 24 && (GenPart_statusFlags & '+str(lastcopy)+'))) - 1*(Sum$(abs(GenPart_pdgId) == 24 && (GenPart_statusFlags & '+str(lastcopy)+') == 0)))',
+    'samples': mc
+}
+aliases['GenW_mass'] = {
+    'expr': '(Sum$((GenPart_mass)*(abs(GenPart_pdgId) == 24 && (GenPart_statusFlags & '+str(lastcopy)+'))) - 1*(Sum$(abs(GenPart_pdgId) == 24 && (GenPart_statusFlags & '+str(lastcopy)+') == 0)))',
+    'samples': mc
+}
+aliases['nGenW'] = {
+    'expr': '(Sum$(abs(GenPart_pdgId) == 24 && (GenPart_statusFlags & '+str(lastcopy)+')))',
+    'samples': mc
+}
+aliases['GenW_mt'] = {
+    'expr': 'TMath::Sqrt(GenW_mass*GenW_mass + GenW_pt*GenW_pt)*(nGenW[0] == 1) - 1*(nGenW[0] == 0)',
+    'samples': mc
+}
+
+aliases['genW_pt'] = {
+    'linesToAdd': [
+        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_RELEASE_BASE'),
+        '.L %s/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/scripts/getGenWpt.cc+' % os.getenv('CMSSW_BASE')
+    ],
+    'class': 'getGenWpt',
+    'samples': mc
+}
+
+aliases['Wrecoil'] = {
+    'linesToAdd': [
+        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_RELEASE_BASE'),
+        '.L %s/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/scripts/getGenWrecoil.cc+' % os.getenv('CMSSW_BASE')
+    ],
+    'class': 'getGenWrecoil',
+    'samples': mc
+}
+
+#aliases['kfact'] = {
+#    'linesToAdd': [
+#        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_RELEASE_BASE'),
+#        '.L %s/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/scripts/k_factor.cc+' % os.getenv('CMSSW_BASE')
+#    ],
+#    'class': 'kFactor',
+#    'args': ('PlotsConfigurations/Configurations/monoHWW/SemiLep/Wjets_kfactors/HT_to_NLO_QCD_k_factors.root', 'k_factors_2018'),
+#    'samples': mc, 
+#    #'samples': "Wjets"
+#}
+aliases['kfact'] = {
+    'linesToAdd': [
+        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_RELEASE_BASE'),
+        '.L %s/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/scripts/k_factor_unc2.cc+' % os.getenv('CMSSW_BASE')
+    ],
+    'class': 'kFactorUnc2',
+    'args': ('PlotsConfigurations/Configurations/monoHWW/SemiLep/Wjets_kfactors/HT_to_NLO_QCD_k_factors3.root', 'k_factor_2018'),
+    'samples': ['Wjets_HTkf']
 }

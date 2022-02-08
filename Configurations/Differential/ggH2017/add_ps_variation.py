@@ -32,7 +32,7 @@ for ckey in source.GetListOfKeys():
         variable = vkey.GetName()
 
         sdir = cdir.GetDirectory(variable)
-
+        if  "ggH2J" in tcut: continue;
         tdir = target.GetDirectory('%s/%s' % (tcut, variable))
 
         for hkey in sdir.GetListOfKeys():
@@ -50,10 +50,12 @@ for ckey in source.GetListOfKeys():
 
             sdir.cd()
             hnomsource = hkey.ReadObj()
-
+            print '%s/%s histo_%s' % (tcut, variable, sname)
             hnomtarget = tdir.Get('histo_%s' % sname)
 
             for v in ['Up', 'Down']:
+                if "Var" in hname:
+                  continue
                 hvarsource = sdir.Get('histo_%s_%s%s' % (sname, nuisance, v))
                 tdir.cd()
                 try:
@@ -61,6 +63,7 @@ for ckey in source.GetListOfKeys():
                 except:
                     print scut, variable, hname
                     raise
+                print scut, variable, hname
                 if hnomsource.GetSumOfWeights() > 0.:
                     hvartarget.Scale(hvarsource.GetSumOfWeights() / hnomsource.GetSumOfWeights())
     
@@ -68,5 +71,6 @@ for ckey in source.GetListOfKeys():
                 hvartarget.Delete()
                 hvarsource.Delete()
             
-            hnomtarget.Delete()
+            if hnomtarget != None:
+              hnomtarget.Delete()
             hnomsource.Delete()

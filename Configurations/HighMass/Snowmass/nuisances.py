@@ -1186,7 +1186,7 @@ for nuisname in nuisancename:
 #              'samples' : {}
 #             }
 
-StatSwitch = False
+StatSwitch = True
 if StatSwitch:
   nuisances['stat']  = {
                   # apply to the following samples: name of samples here must match keys in samples.py

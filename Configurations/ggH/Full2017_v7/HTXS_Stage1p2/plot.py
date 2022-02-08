@@ -27,7 +27,7 @@ groupPlot['Fake']  = {
                   'nameHR' : 'nonprompt',
                   'isSignal' : 0,
                   'color': 921,    # kGray + 1
-                  'samples'  : ['Fake_me', 'Fake_em']
+                  'samples'  : ['Fake']
 }
 
 
@@ -69,12 +69,25 @@ groupPlot['VgS']  = {
               }
 
 
-print signals
-groupPlot['Higgs']  = {  
-                  'nameHR' : 'Higgs',
+groupPlot['Higgs_ggH']  = {
+                  'nameHR' : 'ggH',
+                  'isSignal' : 1,
+                  'color': 418, # kRed 
+                  'samples'  : [s for s in signals if 'ggH_hww' in s],
+              }
+
+groupPlot['Higgs_qqH']  = {
+                  'nameHR' : 'qqH',
                   'isSignal' : 1,
                   'color': 632, # kRed 
-                  'samples'  : signals,
+                  'samples'  : [s for s in signals if 'qqH_hww' in s],
+              }
+
+groupPlot['Higgs_VH']  = {
+                  'nameHR' : 'VH',
+                  'isSignal' : 1,
+                  'color': 613, # kRed 
+                  'samples'  : [s for s in signals if 'ZH' in s or 'WH' in s],
               }
 
 
@@ -99,7 +112,7 @@ if useEmbeddedDY:
                   'scale'    : 1.0,
               }
 
-plot['Fake_me']  = {  
+plot['Fake']  = {  
                   'color': 921,    # kGray + 1
                   'isSignal' : 0,
                   'isData'   : 0,
@@ -107,14 +120,6 @@ plot['Fake_me']  = {
               }
 
 
-plot['Fake_em']  = {  
-                  'color': 921,    # kGray + 1
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  'scale'    : 1.0                  
-              }
-
-              
 plot['top'] = {   
                   'nameHR' : 'tW and t#bar{t}',
                   'color': 400,   # kYellow
@@ -200,7 +205,7 @@ plot['DATA']  = {
                   'color': 1 ,  
                   'isSignal' : 0,
                   'isData'   : 1 ,
-                  'isBlind'  : 1
+                  'isBlind'  : 0
               }
 
 
@@ -208,7 +213,7 @@ plot['DATA']  = {
 
 # additional options
 
-legend['lumi'] = 'L = 41.5/fb'
+legend['lumi'] = 'L = 41.5 fb^{-1}'
 
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
 

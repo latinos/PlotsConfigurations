@@ -35,5 +35,9 @@ for root, dirnames, filenames in os.walk('.'):
                     if var.GetBinContent(ibin) < 0:
                         print '%s: Setting bin %d of %s to 0 (was %.3f)'%(histfile,ibin,varhist,var.GetBinContent(ibin))
                         var.SetBinContent(ibin,0.00001)
+            for ibin in xrange(1,nom.GetNbinsX()+1):
+                if nom.GetBinContent(ibin) < 0:
+                    print '%s: Setting bin %d of %s to 0 (was %.3f)'%(histfile,ibin,nomhist,nom.GetBinContent(ibin))
+                    nom.SetBinContent(ibin,0.00001)
 
         f0.Write("",TObject.kOverwrite)

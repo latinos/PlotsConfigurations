@@ -48,7 +48,7 @@ for sample in sampleNames:
   command+="--PO 'map=.*/{}:r_{}[1,-10,10]' ".format(sample,sample)
 
 print command
-#os.system(command)
+os.system(command)
 
 #Merge some bins
 command="text2workspace.py Full2017_SF_ggH_HTXS_Stage1p2_v7.txt -o Full2017_SF_ggH_HTXS_Stage1p2_merged_v7.root -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel --PO verbose "
@@ -64,4 +64,4 @@ for sample in sampleNames:
   command+="--PO 'map=.*/{}:{}[1,-10,10]' ".format(sample,poi)
 
 print command
-#os.system(command)
+os.system(command)

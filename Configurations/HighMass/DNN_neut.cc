@@ -101,9 +101,9 @@ DNNneut::evaluate(unsigned)
 
   auto ev{*event->Get()};
   if (ev % 2 == 0){
-    return dnn_tensorflow0->analyze(input);
+    return dnn_tensorflow0->analyze(input)[0];
   }else{
-    return dnn_tensorflow1->analyze(input);
+    return dnn_tensorflow1->analyze(input)[0];
   }
 
 }

@@ -294,29 +294,17 @@ nuisances['UE']  = {
     'samples': dict((skey, '1.015') for skey in mc), 
 }
 
-# ####### Generic "cross section uncertainties"
-##FIXME: correct?
-#apply_on = {
-#    'ttop': [
-#        '(topGenPt * antitopGenPt <= 0.) * 1.0816 + (topGenPt * antitopGenPt > 0.)',
-#        '(topGenPt * antitopGenPt <= 0.) * 0.9184 + (topGenPt * antitopGenPt > 0.)'
-#    ],
-#    'stop': [
-#        '(topGenPt * antitopGenPt <= 0.) * 1.0816 + (topGenPt * antitopGenPt > 0.)',
-#        '(topGenPt * antitopGenPt <= 0.) * 0.9184 + (topGenPt * antitopGenPt > 0.)'
-#    ],
-#    #'top': [
-#    #    '(topGenPt * antitopGenPt <= 0.) * 1.0816 + (topGenPt * antitopGenPt > 0.)',
-#    #    '(topGenPt * antitopGenPt <= 0.) * 0.9184 + (topGenPt * antitopGenPt > 0.)'
-#    #],
-#}
-#
+## ####### Generic "cross section uncertainties"
 #nuisances['singleTopToTTbar'] = {
 #    'name': 'singleTopToTTbar',
 #    'skipCMS': 1,
 #    'kind': 'weight',
 #    'type': 'shape',
-#    'samples': apply_on
+#    'samples': {
+#        'top': [
+#        'isSingleTop * 1.0816 + isTTbar',
+#        'isSingleTop * 0.9184 + isTTbar']
+#      }
 #}
 
 ## Top pT reweighting uncertainty
@@ -649,6 +637,20 @@ nuisances['EWKnloW_Wjets'] = {
     'samples': {
         #'Wjets': ['1./ewknloW', 'ewknloW'],
         'Wjets': ['1./EWKnloW[0]', 'EWKnloW[0]'],
+        'Wjets_PuppiRW': ['1./EWKnloW[0]', 'EWKnloW[0]'],
+        'Wjets_HTsf': ['1./EWKnloW[0]', 'EWKnloW[0]'],
+    }
+}
+
+
+nuisances['Wjets_corrSF'] = {
+    'name': 'Wjets_corrSF',
+    'kind'  : 'weight',
+    'type'  : 'shape',
+    'samples': {
+        #'Wjets': ['1./ewknloW', 'ewknloW'],
+        'Wjets_PuppiRW': ['1./Wjets_puppirw[0]', 'Wjets_puppirw[0]'],
+        'Wjets_HTsf': ['1./VptSF[0]', 'VptSF[0]'],
     }
 }
 

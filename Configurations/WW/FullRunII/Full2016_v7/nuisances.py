@@ -17,7 +17,7 @@ except NameError:
 from LatinoAnalysis.Tools.HiggsXSection import HiggsXSection
 HiggsXS = HiggsXSection()
 
-'''
+
 cuts0j = []
 cuts1j = []
 cuts2j = []
@@ -35,7 +35,7 @@ for k in cuts:
     elif '4j' in cat: cuts4j.append(k+'_'+cat)
     elif '5j' in cat: cuts5j.append(k+'_'+cat)
     else: print 'WARNING: name of category does not contain on either 0j,1j,2j,3j,4j,5j'
-'''
+
 ################################ EXPERIMENTAL UNCERTAINTIES  #################################
 
 #### Luminosity
@@ -625,7 +625,7 @@ nuisances['QCDscale_gg_ACCEPT'] = {
     'type': 'lnN',
 }
 
-'''
+
 ## rate parameters
 
 nuisances['DYttnorm']  = {
@@ -751,7 +751,7 @@ nuisances['Topnorm5j']  = {
                'type'  : 'rateParam',
                'cuts'  : cuts5j
               }
-'''
+
 ## Use the following if you want to apply the automatic combine MC stat nuisances.
 nuisances['stat'] = {
     'type': 'auto',

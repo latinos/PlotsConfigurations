@@ -51,7 +51,7 @@ for sample in sampleNames:
 command = command[:-1]
 
 print command
-#os.system(command)
+os.system(command)
 
 # Merge some bins
 command="combine -M MultiDimFit --algo=singles --X-rtd MINIMIZER_analytic Full2016_SF_qqH_HTXS_Stage1p2_v7.root -t -1 --freezeParameters 'rgx{.*}' --setParameters "
@@ -87,4 +87,4 @@ for sample in sampleNames:
 command = command[:-1]
 command = command + " > FitResults.txt"
 print command
-#os.system(command)
+os.system(command)

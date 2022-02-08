@@ -20,6 +20,9 @@ variables['classvbf'] = {
      'range' : ([0,0.545,0.635,0.695,0.745,0.785,1.],),
      'xaxis' : 'DNN discriminant vbf',
      'fold'  : 3,
+     'doWeight' : 1,
+     'binX' : 1,
+     'binY' : 6
 }
 
 
@@ -28,6 +31,9 @@ variables['classtop'] = {
     'range' : (15,0.25,1.),
      'xaxis' : 'DNN discriminant top',
      'fold'  : 3,
+     'doWeight' : 1,
+     'binX' : 1,
+     'binY' : 15
 }
 
 
@@ -36,6 +42,9 @@ variables['classww'] = {
      'range' : (15,0.25,1.),
      'xaxis' : 'DNN discriminant ww',
      'fold'  : 3,
+     'doWeight' : 1,
+     'binX' : 1,
+     'binY' : 15
 }
 
 #S=5,B=10,E=0.2
@@ -44,6 +53,9 @@ variables['classggh'] = {
      'range' : ([0.,0.485, 0.555, 0.615, 0.665, 0.715, 0.775, 0.865, 1.],),
      'xaxis' : 'DNN discriminant ggh',
      'fold'  : 3,
+     'doWeight' : 1,
+     'binX' : 1,
+     'binY' : 8
 }
 
 
@@ -152,16 +164,3 @@ variables['events']  = {   'name': '1',
 #                        }
 #
 #
-#variables['jetpt1']  = {   'name': 'std_vector_jet_pt[0]',     
-#                        #'range' : (40,0,100),   
-#                        'range' : (10,30,200),   
-#                        'xaxis' : 'p_{T} 1st jet',
-#                        'fold'  : 0                        
-#                        }
-#
-#variables['jetpt2']  = {   'name': 'std_vector_jet_pt[1]',     
-#                        #'range' : (40,0,100),   
-#                        'range' : (10,30,200),   
-#                        'xaxis' : 'p_{T} 2nd jet',
-#                        'fold'  : 0                        
-#                        }

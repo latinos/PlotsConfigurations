@@ -36,13 +36,14 @@ for categories in newfile.GetListOfKeys(): # Cut directory
   category = newfile.GetDirectory(categories.GetName())
   newfile2.cd()
   newfile2.mkdir(categories.GetName())
-  for c in ['ggh', 'vbf', '0j', '1j', '2j']:
+  for c in ['ggh', 'vbf', '0j', '1j', '2j', 'notag', 'notag0j', 'notag1j', 'notag2j', 'ggh0j', 'ggh1j', 'ggh2j', 'vbf0j', 'vbf1j', 'vbf2j']:
     if c in categories.GetName(): categ = c
 
   for variables in category.GetListOfKeys(): # Variable directory
     isCR = 1 if ("top" in categories.GetName() or "dy" in categories.GetName() or "TopCR" in categories.GetName() or "SB" in categories.GetName()) else 0
     # if (variables.GetName() == "events" and isCR) or ("_binning" in variables.GetName() and "high" not in categories.GetName() and (not isCR)) or ("highbinning" in variables.GetName() and "high" in categories.GetName() and (not isCR))
-    if not ((variables.GetName() == "events" and isCR) or ("_binning" in variables.GetName() and "high" not in categories.GetName() and (not isCR)) or ("highbinning" in variables.GetName() and "high" in categories.GetName() and (not isCR)) or ("SR" in categories.GetName() and (variables.GetName() in ["boostHigssMass","resolvHiggsMass"]) )): continue
+    if not ((variables.GetName() == "events" and isCR) or ("_binning" in variables.GetName() and "high" not in categories.GetName() and (not isCR)) or ("highbinning" in variables.GetName() and "high" in categories.GetName() and (not isCR)) or ("SR" in categories.GetName() and (variables.GetName() in ["boostHigssMass","resolvHiggsMass"]) )):
+      if not (("_binning" in variables.GetName()) and "high" not in categories.GetName() and (isCR)): continue ##### Additionaly, keep nominal shapes in CR for test
     variable = category.GetDirectory(variables.GetName())
     newfile2.GetDirectory(categories.GetName()).cd()
     ROOT.gDirectory.mkdir(variables.GetName())
@@ -59,9 +60,10 @@ for categories in newfile.GetListOfKeys(): # Cut directory
       if "histo_DYveto" in histoname: continue
       if histoname.endswith("Up"):
         for key,val in histnames.iteritems():
-          if histoname.startswith(key):
-            histnames[key].append([histoname,histoname.replace("Up", "Down")])
-            break
+          if histoname.startswith(key+"_"):
+            if [histoname,histoname.replace("Up", "Down")] not in histnames[key]:
+              histnames[key].append([histoname,histoname.replace("Up", "Down")])
+              break
 
     for nom,var in sorted(histnames.iteritems()):
       dothese = [nom]

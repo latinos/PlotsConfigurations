@@ -294,11 +294,46 @@ samples['Higgs'] = {
 
 mhs = ['160','180','200']
 mDM = ['100','150','200']
-mZp = ['195','200','295','300','400','500','800','1000','1200','1500']
+mZp = ['195','200','295','300','400','500','800','1000','1200','1500','2000','2500']
 
 for hs in mhs:
     for DM in mDM:
         for Zp in mZp:
+            samples['DH_mhs_' + hs + '_mx_' + DM  + '_mZp_' + Zp] = {
+                'name': nanoGetSampleFiles(signalDirectory, 'DarkHiggs_MonoHs_HsToWWTo2l2nu_mhs_' + hs + '_mx_' + DM  + '_mZp_' + Zp),
+                'weight': mcCommonWeight,
+                'FilesPerJob': 1
+            }
+
+mDM = ['150','200']
+mhs = ['300','400']
+mZp = ['400','500','800','1000','1200','1500']
+
+for DM in mDM:
+    for hs in mhs:
+        if DM == '150' and hs == '400':
+            continue
+        for Zp in mZp:
+            if DM == '200' and Zp == '400':
+                continue
+            if DM == '200' and hs == '400' and int(Zp) > 1000:
+                continue
+            samples['DH_mhs_' + hs + '_mx_' + DM  + '_mZp_' + Zp] = {
+                'name': nanoGetSampleFiles(signalDirectory, 'DarkHiggs_MonoHs_HsToWWTo2l2nu_mhs_' + hs + '_mx_' + DM  + '_mZp_' + Zp),
+                'weight': mcCommonWeight,
+                'FilesPerJob': 1
+            }
+
+mDM = ['300']
+mhs = ['160','180','200','300']
+mZp = ['800','1000','1200','1500','2000','2500']
+
+
+for DM in mDM:
+    for hs in mhs:
+        for Zp in mZp:
+            if hs == '300' and int(Zp) > 1200:
+                continue
             samples['DH_mhs_' + hs + '_mx_' + DM  + '_mZp_' + Zp] = {
                 'name': nanoGetSampleFiles(signalDirectory, 'DarkHiggs_MonoHs_HsToWWTo2l2nu_mhs_' + hs + '_mx_' + DM  + '_mZp_' + Zp),
                 'weight': mcCommonWeight,

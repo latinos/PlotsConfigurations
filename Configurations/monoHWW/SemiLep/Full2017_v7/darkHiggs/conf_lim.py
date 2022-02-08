@@ -16,10 +16,12 @@ aliasesFile = 'aliases.py'
 variablesFile = 'variables_lim.py'
 
 # file with list of cuts
-cutsFile = 'cuts.py'
+#cutsFile = 'cuts.py'
+cutsFile = 'cuts_lim.py'
 
 # file with list of samples
-samplesFile = 'samples.py'
+#samplesFile = 'samples.py'
+samplesFile = 'samples_int.py'
 
 # file with list of samples
 plotFile = 'plot.py'
@@ -40,4 +42,6 @@ structureFile = 'structure.py'
 
 # nuisances file for mkDatacards and for mkShape
 #nuisancesFile = 'nuisances.py'
-nuisancesFile = 'nuisances_full.py'
+#nuisancesFile = 'nuisances_full.py'
+#nuisancesFile = 'nuisances_full_new.py'
+nuisancesFile = 'nuisances_full_fast.py'

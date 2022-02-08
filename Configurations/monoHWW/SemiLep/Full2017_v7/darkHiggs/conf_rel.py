@@ -16,7 +16,7 @@ aliasesFile = 'aliases.py'
 variablesFile = 'variables_rel.py'
 
 # file with list of cuts
-cutsFile = 'cuts.py'
+cutsFile = 'cuts_rel.py'
 
 # file with list of samples
 samplesFile = 'samples.py'

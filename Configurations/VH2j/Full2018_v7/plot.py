@@ -27,7 +27,7 @@ groupPlot['Fake']  = {
   'nameHR' : 'nonprompt',
   'isSignal' : 0,
   'color': 921,    # kGray + 1
-  'samples'  : ['Fake_me', 'Fake_em']
+  'samples'  : ['Fake']
 }
 
 groupPlot['DY']  = {  
@@ -92,20 +92,13 @@ if useEmbeddedDY:
     'scale'    : 1.0,
   }
   
-plot['Fake_me']  = {  
+plot['Fake']  = {  
   'color': 921,    # kGray + 1
   'isSignal' : 0,
   'isData'   : 0,
   'scale'    : 1.0                  
 }
 
-plot['Fake_em']  = {  
-  'color': 921,    # kGray + 1
-  'isSignal' : 0,
-  'isData'   : 0,
-  'scale'    : 1.0                  
-}
-              
 plot['top'] = {   
   'nameHR' : 'tW and t#bar{t}',
   'color': 400,   # kYellow

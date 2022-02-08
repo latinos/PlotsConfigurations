@@ -234,30 +234,30 @@ for shift in ['jes','lf','hf','lfstats1','lfstats2','hfstats1','hfstats2','cferr
         'samples': mc
     }
 
-#puidSFSource = '{}/patches/PUID_80XTraining_EffSFandUncties.root'.format(configurations)
+aliases['Jet_PUIDSF'] = {
+  'expr' : 'TMath::Exp(Sum$((Jet_jetId>=2)*TMath::Log(Jet_PUIDSF_loose)))',
+  'samples': mc
+}
 
-#aliases['PUJetIdSF'] = {
-#    'linesToAdd': [
-#        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
-#        '.L %s/patches/pujetidsf_event_new.cc+' % configurations
-#    ],
-#    'class': 'PUJetIdEventSF',
-#    'args': (puidSFSource, '2016', 'loose'),
-#    'samples': mc
-#}
+aliases['Jet_PUIDSF_up'] = {
+  'expr' : 'TMath::Exp(Sum$((Jet_jetId>=2)*TMath::Log(Jet_PUIDSF_loose_up)))',
+  'samples': mc
+}
 
+aliases['Jet_PUIDSF_down'] = {
+  'expr' : 'TMath::Exp(Sum$((Jet_jetId>=2)*TMath::Log(Jet_PUIDSF_loose_down)))',
+  'samples': mc
+}
 
-# aliases['ttHMVA_SF_2l'] = {'linesToAdd': ['.L %s/patches/compute_SF.C+' % configurations],
-#                            'class': 'compute_SF',
-#                            'args' : ('2016', 2, 'total_SF'),
-#                            'samples': mc
-#                           }
-
-
+# Correct trigger efficiencies
+aliases['SFweight2lAlt'] = {
+    'expr'   : 'puWeight*TriggerAltEffWeight_2l*Lepton_RecoSF[0]*Lepton_RecoSF[1]*EMTFbug_veto',
+    'samples': mc
+}
 
 # data/MC scale factors
 aliases['SFweight'] = {
-    'expr': ' * '.join(['SFweight2l','LepWPCut', 'LepSF2l__ele_' + eleWP + '__mu_' + muWP, 'btagSF', 'PrefireWeight', 'Jet_PUIDSF_loose']),
+    'expr': ' * '.join(['SFweight2lAlt','LepWPCut', 'LepSF2l__ele_' + eleWP + '__mu_' + muWP, 'btagSF', 'PrefireWeight', 'Jet_PUIDSF']),
     'samples': mc
 }
 
@@ -281,58 +281,6 @@ aliases['SFweightMuDown'] = {
     'expr': 'LepSF2l__mu_'+muWP+'__Do',
     'samples': mc
 }
-
-
-
-# aliases['ttHMVA_SF_Up_0'] = {'linesToAdd': ['.L %s/patches/compute_SF.C+' % configurations],
-#                              'class': 'compute_SF',
-#                              'args' : ('2016', 2, 'single_SF_up', 0),
-#                              'samples': mc
-#                             }
-# aliases['ttHMVA_SF_Up_1'] = {'linesToAdd': ['.L %s/patches/compute_SF.C+' % configurations],
-#                              'class': 'compute_SF',
-#                              'args' : ('2016', 2, 'single_SF_up', 1),
-#                              'samples': mc
-#                             }
-# aliases['ttHMVA_SF_Down_0'] = {'linesToAdd': ['.L %s/patches/compute_SF.C+' % configurations],
-#                                'class': 'compute_SF',
-#                                'args' : ('2016', 2, 'single_SF_down', 0),
-#                                'samples': mc
-#                               }
-# aliases['ttHMVA_SF_Down_1'] = {'linesToAdd': ['.L %s/patches/compute_SF.C+' % configurations],
-#                                'class': 'compute_SF',
-#                                'args' : ('2016', 2, 'single_SF_down', 1),
-#                                'samples': mc
-#                               }
-# aliases['ttHMVA_2l_mu_SF_Up'] = {'expr' : '(ttHMVA_SF_Up_0*(TMath::Abs(Lepton_pdgId[0]) == 13) + (TMath::Abs(Lepton_pdgId[0]) == 11)) *\
-#                                            (ttHMVA_SF_Up_1*(TMath::Abs(Lepton_pdgId[1]) == 13) + (TMath::Abs(Lepton_pdgId[1]) == 11))',
-#                                  'samples': mc
-#                                 }
-# aliases['ttHMVA_2l_mu_SF_Down'] = {'expr' : '(ttHMVA_SF_Down_0*(TMath::Abs(Lepton_pdgId[0]) == 13) + (TMath::Abs(Lepton_pdgId[0]) == 11)) *\
-#                                              (ttHMVA_SF_Down_1*(TMath::Abs(Lepton_pdgId[1]) == 13) + (TMath::Abs(Lepton_pdgId[1]) == 11))',
-#                                    'samples': mc
-#                                   }
-
-
-# aliases['nllWOTF'] = {
-#     'linesToAdd': ['.L %s/Differential/nllW.cc+' % configurations],
-#     'class': 'WWNLLW',
-#     'args': ('central',),
-#     'samples': ['WW']
-# }
-
-
-# # In WpWmJJ_EWK events, partons [0] and [1] are always the decay products of the first W
-# aliases['lhe_mW1'] = {
-#     'expr': 'TMath::Sqrt(2. * LHEPart_pt[0] * LHEPart_pt[1] * (TMath::CosH(LHEPart_eta[0] - LHEPart_eta[1]) - TMath::Cos(LHEPart_phi[0] - LHEPart_phi[1])))',
-#     'samples': ['WWewk']
-# }
-
-# # and [2] [3] are the second W
-# aliases['lhe_mW2'] = {
-#     'expr': 'TMath::Sqrt(2. * LHEPart_pt[2] * LHEPart_pt[3] * (TMath::CosH(LHEPart_eta[2] - LHEPart_eta[3]) - TMath::Cos(LHEPart_phi[2] - LHEPart_phi[3])))',
-#     'samples': ['WWewk']
-# }
 
 aliases['Weight2MINLO'] = {
     'linesToAdd': ['.L %s/Differential/weight2MINLO.cc+' % configurations],
@@ -363,3 +311,14 @@ for thu in thus:
         'nominalOnly': True
     }
 
+# In WpWmJJ_EWK events, partons [0] and [1] are always the decay products of the first W
+aliases['lhe_mW1'] = {
+    'expr': 'TMath::Sqrt(2. * LHEPart_pt[2] * LHEPart_pt[3] * (TMath::CosH(LHEPart_eta[2] - LHEPart_eta[3]) - TMath::Cos(LHEPart_phi[2] - LHEPart_phi[3])))',
+    'samples': ['WWewk']
+}
+
+# and [2] [3] are the second W
+aliases['lhe_mW2'] = {
+    'expr': 'TMath::Sqrt(2. * LHEPart_pt[4] * LHEPart_pt[5] * (TMath::CosH(LHEPart_eta[4] - LHEPart_eta[5]) - TMath::Cos(LHEPart_phi[4] - LHEPart_phi[5])))',
+    'samples': ['WWewk']
+}

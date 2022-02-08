@@ -13,7 +13,7 @@ outputDir = 'darkHiggs_root'
 aliasesFile = 'aliases.py'
 
 # file with list of variables
-variablesFile = 'variables.py'
+variablesFile = 'variables_bdt.py'
 
 # file with list of cuts
 cutsFile = 'cuts.py'
@@ -39,4 +39,5 @@ structureFile = 'structure.py'
 
 # nuisances file for mkDatacards and for mkShape
 #nuisancesFile = 'nuisances.py'
-nuisancesFile = 'nuisances_full.py'
+#nuisancesFile = 'nuisances_full.py'
+nuisancesFile = 'nuisances_full_new.py'

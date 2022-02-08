@@ -11,16 +11,18 @@ outputDir = 'darkHiggs_lim_root'
 
 # file with TTree aliases
 aliasesFile = 'aliases.py'
+#aliasesFile = 'aliases_BtagSF.py'
 
 # file with list of variables
 variablesFile = 'variables_lim.py'
 
 # file with list of cuts
 #cutsFile = 'cuts.py'
-cutsFile = 'cuts.py'
+cutsFile = 'cuts_lim.py'
 
 # file with list of samples
-samplesFile = 'samples.py'
+#samplesFile = 'samples.py'
+samplesFile = 'samples_int.py'
 
 # file with list of samples
 plotFile = 'plot.py'
@@ -37,8 +39,11 @@ outputDirPlots = 'darkHiggs_lim_plots'
 outputDirDatacard = 'darkHiggs_lim_datacards'
 
 # structure file for datacard
-structureFile = 'structure.py'
+#structureFile = 'structure.py'
+structureFile = 'structure_int.py'
 
 # nuisances file for mkDatacards and for mkShape
-nuisancesFile = 'nuisances.py'
+#nuisancesFile = 'nuisances.py'
 #nuisancesFile = 'nuisances_full.py'
+#nuisancesFile = 'nuisances_full_new.py'
+nuisancesFile = 'nuisances_full_fast.py'

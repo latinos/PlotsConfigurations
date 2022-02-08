@@ -4,6 +4,9 @@
 #include "TMath.h"
 #include <vector>
 
+#ifndef getGenZpt_HH
+#define getGenZpt_HH
+
 class getGenZpt : public multidraw::TTreeFunction {
 public:
   getGenZpt();
@@ -86,3 +89,4 @@ getGenZpt::bindTree_(multidraw::FunctionLibrary& _library)
   _library.bindBranch(GenPart_statusFlags, "GenPart_statusFlags");
   _library.bindBranch(gen_ptll, "gen_ptll");
 }
+#endif

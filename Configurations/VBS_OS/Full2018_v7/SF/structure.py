@@ -4,24 +4,20 @@
 
 # keys here must match keys in samples.py    
 #                    
-structure['DY_lowZ']  = {  
-                  'isSignal' : 0,
-                  'isData'   : 0
-              }
-
-structure['DY_highZ']  = {  
-                  'isSignal' : 0,
-                  'isData'   : 0
-              }
 
 structure['Zjj']  = {  
                   'isSignal' : 0,
                   'isData'   : 0
               }
 
-structure['Fake']  = {  
+structure['DY_hardJets']  = {  
                   'isSignal' : 0,
-                  'isData'   : 0 
+                  'isData'   : 0
+              }
+
+structure['DY_PUJets']  = {
+                  'isSignal' : 0,
+                  'isData'   : 0
               }
 
 structure['Fake_e']  = {  
@@ -36,24 +32,15 @@ structure['Fake_m']  = {
 #                  'removeFromCuts' : [ k for k in cuts if 'em' in k],
               }
 
-structure['ttbar'] = {   
-                  'isSignal' : 0,
-                  'isData'   : 0 
-                  }
-
-structure['singletop'] = {   
-                  'isSignal' : 0,
-                  'isData'   : 0 
-                  }
-
 structure['top'] = {   
                   'isSignal' : 0,
                   'isData'   : 0 
                   }
 
+
 structure['WW']  = {
                   'isSignal' : 0,
-                  'isData'   : 0    
+                  'isData'   : 0,
                   }
 
 structure['WWewk']  = {
@@ -62,11 +49,6 @@ structure['WWewk']  = {
                   }
 
 structure['ggWW']  = {
-                  'isSignal' : 0,
-                  'isData'   : 0    
-                  }
-
-structure['ggWW_Int']  = {
                   'isSignal' : 0,
                   'isData'   : 0    
                   }
@@ -123,82 +105,6 @@ structure['ZZ']  = {
                   }
 
 
-structure['ggH'] = {
-                  'isSignal' : 0,
-                  'isData'   : 0    
-                  }
-
-structure['ggH_hww'] = {
-                  'isSignal' : 0,
-                  'isData'   : 0    
-                  }
-
-structure['qqH_hww'] = {
-                  'isSignal' : 0,
-                  'isData'   : 0    
-                  }
-
-structure['qqH_hww'] = {
-                  'isSignal' : 0,
-                  'isData'   : 0    
-                  }
-
-structure['WH_hww'] = {
-                  'isSignal' : 0,
-                  'isData'   : 0    
-                  }
-
-structure['ZH_hww'] = {
-                  'isSignal' : 0,
-                  'isData'   : 0    
-                  }
-
-structure['ggZH_hww'] = {
-                  'isSignal' : 0,
-                  'isData'   : 0    
-                  }
-
-structure['H_hww'] = {
-                  'isSignal' : 0,
-                  'isData'   : 0    
-                  }
-
-structure['bbH_hww'] = {
-                  'isSignal' : 0,
-                  'isData'   : 0
-                  }
-
-structure['ttH_hww'] = {
-                  'isSignal' : 0,
-                  'isData'   : 0
-                  }
-
-structure['ggH_htt'] = {
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  }
-
-structure['qqH_htt'] = {
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  }
-
-structure['WH_htt'] = {
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  }
-
-structure['ZH_htt'] = {
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  }
-
-structure['H_htt'] = {
-                  'isSignal' : 0,
-                  'isData'   : 0    
-                  }
-
-
 # data
 
 
@@ -208,7 +114,7 @@ structure['DATA']  = {
               }
 
 
-
+'''
 print "INSTRUCTURE"
 print cuts
 #print nuisances['WWresum0j']
@@ -219,3 +125,4 @@ for nuis in nuisances.itervalues():
     nuis['cuts'] = nuis['cutspost'](nuis, cuts)
 
     print nuis
+'''

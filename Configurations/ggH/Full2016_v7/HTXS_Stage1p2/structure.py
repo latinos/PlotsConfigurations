@@ -136,6 +136,62 @@ structure['ggH'] = {
                   'isData'   : 0    
                   }
 
+structure['ggH_hww'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  }
+
+structure['WH_hww'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  }
+
+structure['ZH_hww'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  }
+
+structure['ggZH_hww'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  }
+
+structure['H_hww'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0
+                  }
+
+structure['bbH_hww'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0
+                  }
+
+structure['ttH_hww'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0
+                  }
+
+structure['ggH_htt'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  }
+
+structure['qqH_htt'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  }
+
+structure['WH_htt'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  }
+
+structure['ZH_htt'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  }
+
+
 for signal in signals:
     structure[signal] = {
         'isSignal' : 1,
@@ -144,17 +200,59 @@ for signal in signals:
 
 # data
 
+print(signals)
+
+import pickle
+with open('vbfDipoleScaleSTXS.pkl', 'rb') as handle:
+    vbfDipoleScale = pickle.load(handle)
+
+with open('STXS_fraction_equalization.pkl') as handle:
+    STXS_frac_eq = pickle.load(handle)
+
+for signal in signals:
+    if 'qqH_hww' in signal:
+        structure[signal] = {
+            'isSignal' : 1,
+            'isData'   : 0,
+            'scaleSampleForDatacard' : {cut : vbfDipoleScale[signal][cut] * STXS_frac_eq[signal] * 1.03621 for cut in cuts if cut in vbfDipoleScale[signal].keys()},
+        }
+    elif 'ggH_hww' in signal:
+        structure[signal] = {
+            'isSignal' : 1,
+            'isData'   : 0,
+            'scaleSampleForDatacard' : {cut : STXS_frac_eq[signal] * 1.03364 for cut in cuts},
+        }
+    elif signal.startswith('WH') and not 'htt' in signal:
+        structure[signal] = {
+            'isSignal' : 1,
+            'isData'   : 0,
+            'scaleSampleForDatacard' : {cut : STXS_frac_eq[signal] * 1.01724 for cut in cuts},
+        }
+    elif signal.startswith('ZH') and not 'htt' in signal:
+        structure[signal] = {
+            'isSignal' : 1,
+            'isData'   : 0,
+            'scaleSampleForDatacard' : {cut : STXS_frac_eq[signal] * 1.01994 for cut in cuts},
+        }
+    elif signal.startswith('ggZH') and not 'htt' in signal:
+        structure[signal] = {
+            'isSignal' : 1,
+            'isData'   : 0,
+            'scaleSampleForDatacard' : {cut : STXS_frac_eq[signal] * 1.02494 for cut in cuts},
+        }
+    else:
+        structure[signal] = {
+            'isSignal' : 1,
+            'isData'   : 0,
+        }
 
 structure['DATA']  = { 
                   'isSignal' : 0,
-                  'isData'   : 1 
+                  'isData'   : 1
               }
-
-
 
 
 for nuis in nuisances.itervalues():
   if 'cutspost' in nuis:
     nuis['cuts'] = nuis['cutspost'](nuis, cuts)
 
-    print nuis
