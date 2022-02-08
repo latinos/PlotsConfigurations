@@ -1,0 +1,4 @@
+/afs/cern.ch/work/l/lurda/CMS/ACHWW/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/patches/Samples/2016/Signal/VBF_H0PM_ToWWTo2L2Nu.txt
+/afs/cern.ch/work/l/lurda/CMS/ACHWW/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/patches/Samples/2016/Signal/VBF_H0M_ToWWTo2L2Nu.txt
+/afs/cern.ch/work/l/lurda/CMS/ACHWW/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/patches/Samples/2016/Signal/VBF_H0PH_ToWWTo2L2Nu.txt
+/afs/cern.ch/work/l/lurda/CMS/ACHWW/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/patches/Samples/2016/Signal/VBF_H0L1_ToWWTo2L2Nu.txt

@@ -2,7 +2,7 @@
 
 treeName = 'Events'
 
-tag = 'hmlnjj_2016v7'
+tag = 'ttsemileptonic'
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFile'

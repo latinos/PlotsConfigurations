@@ -1,0 +1,39 @@
+tags:
+
+'DATAl1loose2016v7': {
+                  'isChain'    : True  ,
+                  'do4MC'      : False ,
+                  'do4Data'    : True  ,
+                  'selection'  : '"((nElectron+nMuon)>0)"' ,
+                  'subTargets' : ['leptonMaker','lepSel','jetSelCustom','CorrFatJetData','CleanFatJet','rochesterDATA' , 'l2Kin', 'l3Kin', 'l4Kin','trigData', 'formulasDATA'],
+                 },
+
+'l2loose' :  {
+                  'isChain'    : True  ,
+                  'do4MC'      : True  ,
+                  'do4Data'    : True  ,
+                  'selection'  : '"(nLepton>=2)"' ,
+                  'subTargets' : ['DYMVA','MonoHiggsMVA','JJHEFT'],
+                  'excludeSample' : LNuQQSamples
+                },
+
+'l2tightOR2016v7' : {
+                  'isChain'    : False ,
+                  'do4MC'      : True  ,
+                  'do4Data'    : True  ,
+                  'selection'  : '" (nLepton>=2 && Lepton_pt[0]>18 && Lepton_pt[1]>8 ) \
+                                    && (    Lepton_isTightElectron_mva_90p_Iso2016[0] > 0.5        \
+                                         || Lepton_isTightElectron_mva_90p_Iso2016_tthmva_70[0] > 0.5        \
+                                         || Lepton_isTightElectron_mva_90p_Iso2016_SS[0] > 0.5     \
+                                         || Lepton_isTightElectron_mva_90p_Iso2016_SS_tthmva_70[0] > 0.5     \
+                                         || Lepton_isTightMuon_cut_Tight80x[0] > 0.5              \
+                                         || Lepton_isTightMuon_cut_Tight80x_tthmva_80[0] > 0.5             ) \
+                                    && (    Lepton_isTightElectron_mva_90p_Iso2016[1] > 0.5        \
+                                         || Lepton_isTightElectron_mva_90p_Iso2016_tthmva_70[1] > 0.5        \
+                                         || Lepton_isTightElectron_mva_90p_Iso2016_SS[1] > 0.5     \
+                                         || Lepton_isTightElectron_mva_90p_Iso2016_SS_tthmva_70[1] > 0.5     \
+                                         || Lepton_isTightMuon_cut_Tight80x[1] > 0.5              \
+                                         || Lepton_isTightMuon_cut_Tight80x_tthmva_80[1] > 0.5             ) \
+                                  "' ,
+                 },
+
