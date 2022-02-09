@@ -199,7 +199,8 @@ nuisances['electronpt'] = {
     'AsLnN': '1'
 }
 
-#DM 
+#DM
+''' 
 if useEmbeddedDY:
   nuisances['electronpt_emb'] = {
     'name': 'CMS_scale_e_2016',
@@ -212,7 +213,7 @@ if useEmbeddedDY:
     'folderDown': treeBaseDir+'/Embedding2016_102X_nAODv7_Full2016v7/DATAl1loose2016v7__l2loose__l2tightOR2016v7__Embedding__EmbElepTdo_suffix/',
     'AsLnN': '1'
   }
-
+'''
 ##### Muon Efficiency and energy scale
 
 nuisances['eff_m'] = {
@@ -244,7 +245,8 @@ nuisances['muonpt'] = {
     'folderDown': 'root://eoscms.cern.ch/'+makeMCDirectory('trigFix__MupTdo_suffix'),
     'AsLnN': '1'
 }
-
+#DM
+'''
 if useEmbeddedDY:
   nuisances['muonpt_emb'] = {
     'name': 'CMS_scale_m_2016',
@@ -257,7 +259,7 @@ if useEmbeddedDY:
     'folderDown': treeBaseDir+'/Embedding2016_102X_nAODv7_Full2016v7/DATAl1loose2016v7__l2loose__l2tightOR2016v7__Embedding__EmbMupTdo_suffix/',
     'AsLnN': '1'
   }
-
+'''
 ##### Jet energy scale
 jes_systs = ['JESAbsolute','JESAbsolute_2016','JESBBEC1','JESBBEC1_2016','JESEC2','JESEC2_2016','JESFlavorQCD','JESHF','JESHF_2016','JESRelativeBal','JESRelativeSample_2016']
 folderup = ""
