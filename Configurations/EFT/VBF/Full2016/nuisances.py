@@ -889,7 +889,7 @@ nuisances['stat'] = {
 
 
 nuisances['DYembnorm2j']  = {
-                 'name'  : 'CMS_hww_DYttnorm2j',
+                 'name'  : 'CMS_hww_DYttnorm2j_2016',
                  'samples'  : {
                    'Dyemb' : '1.00',
                      },
@@ -898,7 +898,7 @@ nuisances['DYembnorm2j']  = {
 
 
 nuisances['WWnorm2j']  = {
-               'name'  : 'CMS_hww_WWnorm2j',
+               'name'  : 'CMS_hww_WWnorm2j_2016',
                'samples'  : {
                    'WW' : '1.00',
                    },
@@ -907,7 +907,7 @@ nuisances['WWnorm2j']  = {
 
 
 nuisances['ggWWnorm2j']  = {
-               'name'  : 'CMS_hww_WWnorm2j',
+               'name'  : 'CMS_hww_WWnorm2j_2016',
                'samples'  : {
                    'ggWW' : '1.00',
                    },
@@ -916,7 +916,7 @@ nuisances['ggWWnorm2j']  = {
 
 
 nuisances['Topnorm2j']  = {
-               'name'  : 'CMS_hww_Topnorm2j',
+               'name'  : 'CMS_hww_Topnorm2j_2016',
                'samples'  : {
                    'top' : '1.00',
                    },
