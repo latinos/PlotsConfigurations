@@ -590,8 +590,8 @@ mes_add = ['me_qcd_hm','me_qcd_mixhm','me_zh_hlzg','me_vbf_hlzg']
 for me in mes_add:
     aliases[me]={
     'linesToAdd': [
-    'gSystem->Load("%s/src/ZZMatrixElement/MELA/data/%s/libmcfm_707.so","", kTRUE);'%(os.getenv('CMSSW_BASE'), os.getenv('SCRAM_ARCH')),
-    'gSystem->Load("libZZMatrixElementMELA.so","", kTRUE);',
+    'gSystem->Load("%s/src/JHUGenMELA/MELA/data/%s/libmcfm_707.so","", kTRUE);'%(os.getenv('CMSSW_BASE'), os.getenv('SCRAM_ARCH')),
+    'gSystem->Load("libJHUGenMELAMELA.so","", kTRUE);',
     '.L %s/EFT/VBF/Tools/addrecome.cc+' % configurations],
     'class': 'AddRecoME',
     'args': (me,)

@@ -18,7 +18,7 @@
 #include "vector"
 #include "TLorentzVector.h"
 #include "TMath.h"
-#include "ZZMatrixElement/MELA/interface/Mela.h"
+#include "JHUGenMELA/MELA/interface/Mela.h"
 #include "TSystem.h"
 #include <map>
 #include "TString.h"

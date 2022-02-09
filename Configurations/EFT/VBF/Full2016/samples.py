@@ -236,7 +236,7 @@ samples['ggWW'] = {
 
 
 ######## Vg ########
-useWgFXFX=False
+useWgFXFX=True
 
 if useWgFXFX:
   files = nanoGetSampleFiles(mcDirectory, 'Wg_AMCNLOFXFX_01J') + \
