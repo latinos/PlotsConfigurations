@@ -1,5 +1,26 @@
 # variables
 
+variables['BDTOutput_0j'] = {
+    'name': 'BDTOutput_0j',
+    'range' : ([-1.0,-0.5,-0.25,0.,0.25,0.5,1.0],),
+    'xaxis' : 'MVA discriminant WW',
+    'fold' : 3,
+}
+
+variables['BDTOutput_1j'] = {
+    'name': 'BDTOutput_1j',
+    'range' : ([-1.0,-0.5,-0.25,0.,0.25,0.5,1.0],),
+    'xaxis' : 'MVA discriminant WW',
+    'fold' : 3,
+}
+
+variables['BDTOutput_2j'] = {
+    'name': 'BDTOutput_2j',
+    'range' : ([-1.0,-0.5,-0.25,0.,0.25,0.5,1.0],),
+    'xaxis' : 'MVA discriminant WW',
+    'fold' : 3,
+}
+
 variables['events']  = {   'name': '1',      
                         'range' : (1,0,2),  
                         'xaxis' : 'events', 
@@ -7,7 +28,7 @@ variables['events']  = {   'name': '1',
                         }
 
 variables['mll']  = {   'name': 'mll',
-                        'range' : (20, 20,200),
+                        'range' : (20, 80,200),
                         'xaxis' : 'm_{ll} [GeV]',
                         'fold' : 3
                         }

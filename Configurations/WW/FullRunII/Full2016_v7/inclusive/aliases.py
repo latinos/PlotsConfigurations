@@ -11,6 +11,8 @@ configurations = os.path.dirname(configurations) # Configurations
 
 mc = [skey for skey in samples if skey not in ('Fake', 'DATA')]
 
+btagWP = '0.3093' # Medium b-tag WP for 2016
+
 eleWP = 'mva_90p_Iso2016_tthmva_70'
 muWP = 'cut_Tight80x_tthmva_80'
 
@@ -122,11 +124,11 @@ aliases['DY_LO_pTllrw'] = {
 # B tagging
 
 aliases['bVeto'] = {
-    'expr': 'Sum$(CleanJet_pt > 20. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.2217) == 0'
+    'expr': 'Sum$(CleanJet_pt > 20. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > '+btagWP+') == 0'
 }
 
 aliases['bReq'] = {
-    'expr': 'Sum$(CleanJet_pt > 30. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.2217) >= 1'
+    'expr': 'Sum$(CleanJet_pt > 30. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > '+btagWP+') >= 1'
 }
 
 # CR definitions
@@ -289,4 +291,19 @@ aliases['B0'] = {
 aliases['fid'] = {
     'expr' : 'fiducial',
     'samples' : ['WW','ggWW']
+}
+
+aliases['BDTOutput_0j'] = {
+    'class': 'ww_top_bdt_0j',
+    'linesToAdd' : ['.L %s/WW/FullRunII/Full2016_v7/inclusive/WW_BDT_0j.cc+' % configurations],
+}
+
+aliases['BDTOutput_1j'] = {
+    'class': 'ww_top_bdt_1j',
+    'linesToAdd' : ['.L %s/WW/FullRunII/Full2016_v7/inclusive/WW_BDT_1j.cc+' % configurations],
+}
+
+aliases['BDTOutput_2j'] = {
+    'class': 'ww_top_bdt_2j',
+    'linesToAdd' : ['.L %s/WW/FullRunII/Full2016_v7/inclusive/WW_BDT_2j.cc+' % configurations],
 }
