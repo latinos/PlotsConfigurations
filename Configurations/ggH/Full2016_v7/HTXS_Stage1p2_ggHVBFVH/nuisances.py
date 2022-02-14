@@ -196,6 +196,14 @@ nuisances['trigg_emb'] = {
     'samples': {'Dyemb' : trig_syst_emb},
 }
 
+trig_drll_rw_syst = ['2. - 1/trig_drll_rw', '1./trig_drll_rw']
+
+nuisances['trigg_drll_rw_unc'] = {
+    'name': 'CMS_eff_hwwtrigger_drllrw_2016',
+    'kind': 'weight',
+    'type': 'shape',
+    'samples': dict((skey, trig_drll_rw_syst) for skey in mc),
+}
 
 prefire_syst = ['PrefireWeight_Up/PrefireWeight', 'PrefireWeight_Down/PrefireWeight']
 

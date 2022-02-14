@@ -19,7 +19,8 @@ class TMVAfillerOTFnew : public multidraw::TTreeFunction {
         TMVAfillerOTFnew(string variables_file, string xml_file, bool doKeras); 
  
         void init();
-   
+        void clearFloatMap(); 
+  
         char const* getName() const override { 
             return "TMVAfillerOTFnew"; 
         }
@@ -46,6 +47,9 @@ class TMVAfillerOTFnew : public multidraw::TTreeFunction {
         vector<TTreeReaderArray<double>*> DReaders;
         map<TString, float> FloatMap;
         TMVA::Reader *reader = new TMVA::Reader();
+
+        TTreeReaderArray<float>* MHlnjj_pt_ljj;
+        TTreeReaderArray<float>* MHlnjj_pt_jj;
 };
 
 TMVAfillerOTFnew::TMVAfillerOTFnew(string variables_file, string xml_file): 
@@ -124,20 +128,43 @@ TMVAfillerOTFnew::evaluate(unsigned)
     //cout << "Evaluating " << endl;
     //cout << "Variables: ";
     //vector<float> tmp;
+    clearFloatMap();
     for (unsigned int idx=0; idx < variables.size(); idx++){
         TString name = variables[idx];
         TString key  = keys[idx];
+        //cout << "Variable: " << name << endl;
         if (key.BeginsWith("D")) {
             string key_idx=key.ReplaceAll("D", "").Data();
             int d_idx = stoi(key_idx);
             FloatMap[name] = float(DReaders[d_idx]->At(0));
+            //cout << " Double: " << DReaders[d_idx]->At(0) << ", same as? " << FloatMap[name] << endl;
         }
         if (key.BeginsWith("F")) {
             string key_idx=key.ReplaceAll("F", "").Data();
             int f_idx = stoi(key_idx);
             FloatMap[name] = float(FReaders[f_idx]->At(0));
+            //cout << " Float: " << FReaders[f_idx]->At(0) << ", same as? " << FloatMap[name] << endl;
         }
     }
+
+    //bool safe = true;
+    //if (abs(MHlnjj_pt_ljj->At(0) - FloatMap["Test_pt_ljj"]) > 0.001) {
+    //    cout << "True pt ljj: " << MHlnjj_pt_ljj->At(0) << ", Test pt ljj: " << FloatMap["Test_pt_ljj"] << endl;
+    //    safe = false;
+    //}
+    //if (abs(MHlnjj_pt_jj->At(0) - FloatMap["Test_pt_jj"]) > 0.001) {
+    //    cout << "True pt  jj: " << MHlnjj_pt_jj->At(0) << ", Test pt  jj: " << FloatMap["Test_pt_jj"] << endl;
+    //    safe = false;
+    //}
+
+
+
+
+
+    //if (safe) {
+    //    cout << "Safe" << endl;
+    //}
+
     //for (auto var: variables){
     //    string name(var);
     //    FloatMap[name] = AReaderMap[name]->At(0);
@@ -158,6 +185,9 @@ TMVAfillerOTFnew::evaluate(unsigned)
 void
 TMVAfillerOTFnew::bindTree_(multidraw::FunctionLibrary& _library)
 {   
+    _library.bindBranch(MHlnjj_pt_ljj, "MHlnjj_pt_ljj");
+    _library.bindBranch(MHlnjj_pt_jj, "MHlnjj_pt_jj");
+
     //cout << "Binding tree's " << endl;
     for (unsigned int idx=0; idx < variables.size(); idx++){
         TString name = variables[idx];
@@ -195,6 +225,15 @@ TMVAfillerOTFnew::bindTree_(multidraw::FunctionLibrary& _library)
     }
 }
 
+void
+TMVAfillerOTFnew::clearFloatMap(){
+    map<TString, float>::iterator it;
+    for (it = FloatMap.begin(); it != FloatMap.end(); it++) {
+        it->second = 0.;
+    }
+}
+
+
 TMVAfillerOTFnew::~TMVAfillerOTFnew(){
     for (auto Fre: FReaders){
         Fre=nullptr;
@@ -206,5 +245,7 @@ TMVAfillerOTFnew::~TMVAfillerOTFnew(){
         //string name(var);
         //AReaderMap[name]=nullptr;
     }
+    MHlnjj_pt_ljj=nullptr;
+    MHlnjj_pt_jj=nullptr;
 }
 #endif

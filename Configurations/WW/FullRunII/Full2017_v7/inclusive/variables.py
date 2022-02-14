@@ -1,7 +1,21 @@
 # variables
 
-variables['BDTOutput'] = {
-    'name': 'BDTOutput',
+variables['BDTOutput_0j'] = {
+    'name': 'BDTOutput_0j',
+    'range' : ([-1.0,-0.5,-0.25,0.,0.25,0.5,1.0],),
+    'xaxis' : 'MVA discriminant WW',
+    'fold' : 3,
+}
+
+variables['BDTOutput_1j'] = {
+    'name': 'BDTOutput_1j',
+    'range' : ([-1.0,-0.5,-0.25,0.,0.25,0.5,1.0],),
+    'xaxis' : 'MVA discriminant WW',
+    'fold' : 3,
+}
+
+variables['BDTOutput_2j'] = {
+    'name': 'BDTOutput_2j',
     'range' : ([-1.0,-0.5,-0.25,0.,0.25,0.5,1.0],),
     'xaxis' : 'MVA discriminant WW',
     'fold' : 3,
@@ -24,7 +38,7 @@ variables['mth']  = {   'name': 'mth',
                         'xaxis' : 'm_{T}^{WW} [GeV]',
                         'fold' : 3
                         }
-
+'''
 variables['pt1']  = {   'name': 'pt1',
                         'range' : (20,20,100),
                         'xaxis' : 'pt1',
@@ -150,3 +164,4 @@ variables['jetbtag1'] = { 'name'  : 'Alt$(Jet_btagDeepB[CleanJet_jetIdx[1]],-2)'
                           'xaxis' : 'Alt$(Jet_btagDeepB[CleanJet_jetIdx[1]],-2)',
                           'fold'  : 3
                         }
+'''

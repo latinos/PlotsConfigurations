@@ -23,6 +23,9 @@ if diffVar == "njets":
 if diffVar == "dphijj":
     shortname = "dphijj"
     nbins = 14
+if diffVar == "leadlepPT":
+    shortname = "leadlepPT"
+    nbins = 13
 
 subsamples = ["B%d"%i for i in xrange(nbins)]
 

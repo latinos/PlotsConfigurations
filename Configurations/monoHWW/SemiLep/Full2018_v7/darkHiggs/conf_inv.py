@@ -11,6 +11,7 @@ outputDir = 'darkHiggs_inv_root'
 
 # file with TTree aliases
 #aliasesFile = 'aliases_bveto.py'
+#aliasesFile = 'aliases_inv.py'
 aliasesFile = 'aliases.py'
 
 # file with list of variables
@@ -28,7 +29,8 @@ cutsFile = 'cuts_inv.py'
 samplesFile = 'samples_inv.py'
 
 # file with list of samples
-plotFile = 'plot.py'
+#plotFile = 'plot.py'
+plotFile = 'plot_inv.py'
 
 # luminosity to normalize to (in 1/fb)
 lumi = 59.7
@@ -42,9 +44,11 @@ outputDirDatacard = 'darkHiggs_inv_datacards'
 
 # structure file for datacard
 structureFile = 'structure.py'
+#structureFile = 'structure_inv.py'
 
 # nuisances file for mkDatacards and for mkShape
 #nuisancesFile = 'nuisances.py'
 #nuisancesFile = 'nuisances_full.py'
-nuisancesFile = 'nuisances_full_inv.py'
+nuisancesFile = 'nuisances_full_fast.py'
+#nuisancesFile = 'nuisances_full_fast_inv.py'
 #nuisancesFile = 'nuisances_noJES.py'

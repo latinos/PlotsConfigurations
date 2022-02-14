@@ -38,12 +38,16 @@ veto_b       = ['bVeto']
 veto_b_I     = ['bReq']
 m_jj         = ['(MHlnjj_m_jj > 65. && MHlnjj_m_jj < 105.)']
 m_jj_I       = ['(MHlnjj_m_jj < 65. || MHlnjj_m_jj > 105.)']
+m_jj_H       = ['(MHlnjj_m_jj > 105.)']
 
 SC       = super_cut
 SR       = combinecut([super_cut, mt_lmet  , met  , dphi_l_jj, dphi_ljj_met, dr_l_jj, pt_ljj  , m_jj  , veto_b  , veto_1l  ])
 CR       = combinecut([super_cut, mt_lmet  , met  , dphi_l_jj, dphi_ljj_met, dr_l_jj, pt_ljj_I, veto_b  , veto_1l  ])
 SB       = combinecut([super_cut, mt_lmet  , met  , dphi_l_jj, dphi_ljj_met, dr_l_jj, pt_ljj  , m_jj_I, veto_b  , veto_1l  ])
+SBl      = combinecut([super_cut, mt_lmet  , met  , dphi_l_jj, dphi_ljj_met, dr_l_jj, pt_ljj  ,         veto_b  , veto_1l  ])
+SBh      = combinecut([super_cut, mt_lmet  , met  , dphi_l_jj, dphi_ljj_met, dr_l_jj, pt_ljj  , m_jj_H, veto_b  , veto_1l  ])
 TCR      = combinecut([super_cut, mt_lmet  , met  , dphi_l_jj, dphi_ljj_met, dr_l_jj, pt_ljj  , m_jj  , veto_b_I, veto_1l  ])
+TCRl     = combinecut([super_cut, mt_lmet  , met  , dphi_l_jj, dphi_ljj_met, dr_l_jj, pt_ljj  ,         veto_b_I, veto_1l  ])
 DYCR     = combinecut([super_cut, mt_lmet  , met  , dphi_l_jj, dphi_ljj_met, dr_l_jj, pt_ljj  , m_jj  , veto_b  , veto_1l_I])
 QER      = combinecut([super_cut, mt_lmet_I, met_I, dphi_l_jj, dphi_ljj_met, dr_l_jj, pt_ljj  , m_jj  , veto_b  , veto_1l  ])
 
@@ -58,7 +62,10 @@ QER      = combinecut([super_cut, mt_lmet_I, met_I, dphi_l_jj, dphi_ljj_met, dr_
 #addcut('MuCh_TCR' , combinecut([is_mu, TCR ]))
 
 # Inclusive
-#addcut('InCh_SR'  , combinecut([SR  ]))
-#addcut('InCh_SB'  , combinecut([SB  ]))
-addcut('InCh_TCR' , combinecut([TCR ]))
+addcut('InCh_SR'   , combinecut([SR  ]))
+addcut('InCh_SB'   , combinecut([SB  ]))
+#addcut('InCh_SBl'  , combinecut([SBl ]))
+addcut('InCh_SBh'  , combinecut([SBh ]))
+addcut('InCh_TCR'  , combinecut([TCR ]))
+#addcut('InCh_TCRl' , combinecut([TCRl]))
 

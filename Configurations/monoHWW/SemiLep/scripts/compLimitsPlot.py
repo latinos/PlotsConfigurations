@@ -52,7 +52,6 @@ def get_limits(mhs, mx, target_dir):
        #mass.append(float(fil.split('.')[-2].replace('mH', '')))
        #mZp = float(fil.split('.')[0].split('_')[-1])
        mZp = float(fil.split('.')[0].split('mZp_')[-1].split('_')[0])
-       mass.append(mZp)
        r_file = ROOT.TFile.Open(target_dir+'/'+fil)
        print(fil)
        tree = r_file.Get('limit')
@@ -61,15 +60,20 @@ def get_limits(mhs, mx, target_dir):
            print(' --> skipping')
            #list_of_unusual.append(fil)
            continue
-       for event in tree:
-           #print('new event')
-           #print(event.quantileExpected, event.limit)
-           if event.quantileExpected < 0.05: lim_2.append(event.limit)
-           elif event.quantileExpected < 0.30: lim_16.append(event.limit)
-           elif event.quantileExpected < 0.70: lim_50.append(event.limit)
-           elif event.quantileExpected < 0.90: lim_84.append(event.limit)
-           else: lim_97.append(event.limit)
-           #print(event.quantileExpected, event.limit)
+       if tree.GetEntries() < 5:
+           print(' --> Missing entries, skipping '+fil)
+       else:
+           mass.append(mZp)
+           for event in tree:
+               #print('new event')
+               #print(event.quantileExpected, event.limit)
+               if event.quantileExpected < 0.: continue
+               elif event.quantileExpected < 0.05: lim_2.append(event.limit)
+               elif event.quantileExpected < 0.30: lim_16.append(event.limit)
+               elif event.quantileExpected < 0.70: lim_50.append(event.limit)
+               elif event.quantileExpected < 0.90: lim_84.append(event.limit)
+               else: lim_97.append(event.limit)
+               #print(event.quantileExpected, event.limit)
    
     lim_50 = sort_lim(mass, lim_50)
     lim_2  = sort_lim(mass, lim_2)
@@ -81,6 +85,7 @@ def get_limits(mhs, mx, target_dir):
     return mass, lim_50, lim_2, lim_16, lim_84, lim_97
 
 def sort_lim(mass, lim):
+    if len(lim) == 0: return lim
     list1, list2 = (list(t) for t in zip(*sorted(zip(mass, lim))))
     return array('d', list2)
 
@@ -148,6 +153,10 @@ def set_style():
 
 #def plot(mass, lim_50, lim_2, lim_16, lim_84, lim_97, mhs, mx, model='2HDMa'):
 def plot(lim_dict, mhs, mx, model='2HDMa'):
+   # Catch empty
+   for key in lim_dict:
+       if len(lim_dict[key]['50']) < 1: return
+
    set_style()
    mdl_str = models[model]['model_str']
    msp_str = models[model]['spec_str'].replace('MHS', str(mhs)).replace('MDM', str(mx)) 
@@ -465,7 +474,7 @@ def plot_2D(TG2_dict, name, mhs):
    canvas.SaveAs(name)
 
 #mass_hs = [160, 180, 200]
-mass_hs = [160, 180, 200, 250]
+mass_hs = [160, 180, 200, 250, 300, 400]
 #mass_DM = [100, 150, 200]
 mass_DM = [100, 150, 200, 300]
 mass_Zp = [195, 200, 295, 300, 400, 500, 800, 1000, 1200, 1500]

@@ -11,7 +11,7 @@ configurations = os.path.dirname(configurations) # Configurations
 
 mc = [skey for skey in samples if skey not in ('Fake', 'DATA')]
 btag_algo="deepcsv"#deepflav
-btagWP = '0.0532'
+btagWP = '0.3040'
 
 eleWP = 'mvaFall17V1Iso_WP90_tthmva_70'
 muWP = 'cut_Tight_HWWW_tthmva_80'
@@ -368,7 +368,17 @@ aliases['fid'] = {
     'samples' : ['WW','ggWW']
 }
 
-aliases['BDTOutput'] = {
+aliases['BDTOutput_0j'] = {
+    'class': 'ww_top_bdt_0j',
+    'linesToAdd' : ['.L %s/WW/FullRunII/Full2017_v7/inclusive/WW_BDT_0j.cc+' % configurations],
+}
+
+aliases['BDTOutput_1j'] = {
+    'class': 'ww_top_bdt_1j',
+    'linesToAdd' : ['.L %s/WW/FullRunII/Full2017_v7/inclusive/WW_BDT_1j.cc+' % configurations],
+}
+
+aliases['BDTOutput_2j'] = {
     'class': 'ww_top_bdt_2j',
-    'linesToAdd' : ['.L %s/WW/FullRunII/Full2017_v7/inclusive/WW_BDT.cc+' % configurations],
+    'linesToAdd' : ['.L %s/WW/FullRunII/Full2017_v7/inclusive/WW_BDT_2j.cc+' % configurations],
 }

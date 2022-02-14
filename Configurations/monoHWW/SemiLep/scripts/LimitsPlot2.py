@@ -40,17 +40,23 @@ def get_limits(mhs, mx):
     lim_16 = array( 'd', [])
     lim_84 = array( 'd', [])
     lim_97 = array( 'd', [])
+    lim_ob = array( 'd', [])
     dirs = os.listdir('.')
     for fil in dirs:
        if not '.root' in fil: continue
        if not 'mhs_'+str(mhs) in fil: continue
        if not 'mx_'+str(mx) in fil: continue
        if not 'higgsCombine' in fil: continue
+       if 'darkHiggsVal' in fil: continue
        #mass.append(float(fil.split('.')[-2].replace('mH', '')))
        #mZp = float(fil.split('.')[0].split('_')[-1])
        mZp = float(fil.split('.')[0].split('mZp_')[-1].split('_')[0])
        r_file = ROOT.TFile.Open(fil)
-       tree = r_file.limit
+       #tree = r_file.limit
+       tree = r_file.Get('limit')
+       if not tree: 
+           print(' --> Missing limit tree, skipping '+fil)
+           continue
        print(fil)
        if tree.GetEntries() < 5:
            print(' --> Missing entries, skipping '+fil)
@@ -59,7 +65,8 @@ def get_limits(mhs, mx):
            for event in tree:
                #print('new event')
                #print(event.quantileExpected, event.limit)
-               if event.quantileExpected < 0.05: lim_2.append(event.limit)
+               if event.quantileExpected < 0.: lim_ob.append(event.limit)
+               elif event.quantileExpected < 0.05: lim_2.append(event.limit)
                elif event.quantileExpected < 0.30: lim_16.append(event.limit)
                elif event.quantileExpected < 0.70: lim_50.append(event.limit)
                elif event.quantileExpected < 0.90: lim_84.append(event.limit)
@@ -67,6 +74,7 @@ def get_limits(mhs, mx):
                #print(event.quantileExpected, event.limit)
        #print(len(mass), len(lim_50))  
  
+    lim_ob = sort_lim(mass, lim_ob)
     lim_50 = sort_lim(mass, lim_50)
     lim_2  = sort_lim(mass, lim_2)
     lim_16 = sort_lim(mass, lim_16)
@@ -74,9 +82,10 @@ def get_limits(mhs, mx):
     lim_97 = sort_lim(mass, lim_97)
     mass   = sort_lim(mass, mass)
 
-    return mass, lim_50, lim_2, lim_16, lim_84, lim_97
+    return mass, lim_50, lim_2, lim_16, lim_84, lim_97, lim_ob
 
 def sort_lim(mass, lim):
+    if len(lim) == 0: return lim
     list1, list2 = (list(t) for t in zip(*sorted(zip(mass, lim))))
     return array('d', list2)
 
@@ -142,11 +151,14 @@ def set_style():
    ROOT.gStyle.SetTitleFillColor(10)
    ROOT.gStyle.SetTitleFontSize(0.05)
 
-def plot(mass, lim_50, lim_2, lim_16, lim_84, lim_97, mhs, mx, model='2HDMa'):
+def plot(mass, lim_50, lim_2, lim_16, lim_84, lim_97, lim_ob, mhs, mx, model='2HDMa'):
    set_style()
    mdl_str = models[model]['model_str']
    msp_str = models[model]['spec_str'].replace('MHS', str(mhs)).replace('MDM', str(mx)) 
    mp_str = 'mhs_'+str(mhs)+'_mx_'+str(mx)
+
+   unblind = False
+   if len(lim_ob) == len(lim_50): unblind = True
 
    lim_50_95up = array('d', [])
    lim_50_95dn = array('d', [])
@@ -166,6 +178,10 @@ def plot(mass, lim_50, lim_2, lim_16, lim_84, lim_97, mhs, mx, model='2HDMa'):
    #TG68 = ROOT.TGraphAsymmErrors(len(mass), mass, lim_50, 0, 0, lim_16, lim_84)
    TG68 = ROOT.TGraphAsymmErrors(len(mass), mass, lim_50, array('d', [0]*len(mass)), array('d', [0]*len(mass)), lim_50_68dn, lim_50_68up) 
    TG68.SetTitle('Limit68CLs')
+
+   if unblind: 
+       TGob = ROOT.TGraphAsymmErrors(len(mass), mass, lim_ob)
+       TGob.SetTitle('Observed') 
     
    TGSM = ROOT.TGraph(len(mass) , mass, array('d', [1]*len(mass)))
    TGSM.SetName("SMXSection")
@@ -223,8 +239,14 @@ def plot(mass, lim_50, lim_2, lim_16, lim_84, lim_97, mhs, mx, model='2HDMa'):
    TG50.SetMarkerColor(ROOT.kBlack)
    TG50.SetLineStyle(2)
    TG50.SetLineWidth(3)
+   if unblind:
+       TGob.SetMarkerStyle(24)
+       TGob.SetMarkerColor(ROOT.kRed)
+       TGob.SetLineColor(ROOT.kRed)
+       TGob.SetLineStyle(2)
+       TGob.SetLineWidth(3)
 
-   TGSM.SetLineColor(ROOT.kRed)
+   TGSM.SetLineColor(ROOT.kBlack)
    TGSM.SetLineWidth(2)
    TGSM.SetLineStyle(ROOT.kSolid)
    TGSM.SetFillColor(ROOT.kRed)
@@ -233,6 +255,8 @@ def plot(mass, lim_50, lim_2, lim_16, lim_84, lim_97, mhs, mx, model='2HDMa'):
  
    TGSM.Draw("L3")
    TG50.Draw("L")   
+   if unblind:
+       TGob.Draw("L")
 
    canvas.Update()
 
@@ -266,6 +290,8 @@ def plot(mass, lim_50, lim_2, lim_16, lim_84, lim_97, mhs, mx, model='2HDMa'):
    leg.AddEntry(TG68, "Frequentist CL_{S}  Expected #pm 1#sigma", "LF")
    leg.AddEntry(TG95, "Frequentist CL_{S}  Expected #pm 2#sigma", "LF")
    leg.AddEntry(TGSM, "#sigma_{TH}", "L")
+   if unblind:
+       leg.AddEntry(TGob, "Observed", "L")
 #     leg.AddEntry(grthSM, "#sigma_{TH} x BR(Z' #rightarrow " + VV + "), #tilde{k}=0.50", "L") # #rightarrow 2l2q
 #     leg.AddEntry(grthSM10, "#sigma_{TH} x BR(Z' #rightarrow " + VV + "), #tilde{k}=0.20", "L") # #rightarrow 2l2q
    leg.Draw()
@@ -525,7 +551,7 @@ for fil in all_files:
     if pair_str in covered_mhs_mx_pairs: continue
     else:
         covered_mhs_mx_pairs.append(pair_str)
-        mass, lim_50, lim_2, lim_16, lim_84, lim_97 = get_limits(mhs, mx)
+        mass, lim_50, lim_2, lim_16, lim_84, lim_97, lim_ob = get_limits(mhs, mx)
         mx_key = 'mx_'+str(mx)
         if not mx_key in tg2_dict: 
             tg2_dict[mx_key] = {}
@@ -554,7 +580,7 @@ for fil in all_files:
             if mZp > tg2_dict[mx_key]['max_mZp']: tg2_dict[mx_key]['max_mZp'] = mZp
             if mZp < tg2_dict[mx_key]['min_mZp']: tg2_dict[mx_key]['min_mZp'] = mZp
 
-        plot(mass, lim_50, lim_2, lim_16, lim_84, lim_97, mhs, mx, model=options.model)
+        plot(mass, lim_50, lim_2, lim_16, lim_84, lim_97, lim_ob, mhs, mx, model=options.model)
 
 
 #for key in tg2_dict:

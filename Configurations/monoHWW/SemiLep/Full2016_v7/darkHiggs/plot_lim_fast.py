@@ -128,12 +128,18 @@ groupPlot['Wjets'] = {
 #}
 
 ### SIGNAL
-if os.path.exists(signal_file) :
-    handle = open(signal_file,'r')
-    exec(handle)
-    handle.close()
-else:
-    raise IOError('FILE NOT FOUND: '+signal_file+'does not exist.')
+#if os.path.exists(signal_file) :
+#    handle = open(signal_file,'r')
+#    exec(handle)
+#    handle.close()
+#else:
+#    raise IOError('FILE NOT FOUND: '+signal_file+'does not exist.')
+
+signal = {}
+signal['darkHiggs_mhs_160_mx_100_mZp_500'] = {
+    'plot_name': 'signal',
+    'color'    : 2,
+}
 
 #mhs_list = ['160', '180', '200']
 #mx_list = ['100', '150', '200']
@@ -190,8 +196,8 @@ plot['top'] = {
     'color': 400,   # kYellow
     'isSignal' : 0,
     'isData'   : 0,
-    #'scale'    : 1.0,
-    'scale'    : 1.02,
+    'scale'    : 1.0,
+    #'scale'    : 1.02,
 }
 
 
@@ -289,8 +295,8 @@ plot['Wjets']  = {
     'color': 856, # kAzure -4
     'isSignal' : 0,
     'isData'   : 0,
-    #'scale'    : 1.0
-    'scale'    : 1.02
+    'scale'    : 1.0
+    #'scale'    : 1.02
 }
 
 plot['FAKE']  = {

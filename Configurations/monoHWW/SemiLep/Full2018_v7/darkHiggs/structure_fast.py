@@ -116,10 +116,19 @@ structure['Higgs'] = {
                   }
 
 # SIGNAL
-structure['darkHiggs_mhs_160_mx_100_mZp_500'] = {
-    'isSignal': 2,
-    'isData'  : 0,
-}
+
+if os.path.exists(signal_file) :
+    handle = open(signal_file,'r')
+    exec(handle)
+    handle.close()
+else:
+    raise IOError('FILE NOT FOUND: '+signal_file+'does not exist.')
+
+for mp in signal:
+    structure[mp] = {
+        'isSignal': 2,
+        'isData'  : 0,
+    }
 
 
 
@@ -133,3 +142,13 @@ structure['DATA']  = {
 
 
 
+# print "INSTRUCTURE"
+# print cuts
+# print nuisances['WWresum0j']
+# print "OK"
+
+#for nuis in nuisances.itervalues():
+#  if 'cutspost' in nuis:
+#    nuis['cuts'] = nuis['cutspost'](nuis, cuts)
+#
+#    print nuis

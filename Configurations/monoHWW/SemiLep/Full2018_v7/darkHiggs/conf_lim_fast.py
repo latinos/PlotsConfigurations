@@ -40,7 +40,7 @@ outputDirPlots = 'darkHiggs_lim_plots'
 outputDirDatacard = 'darkHiggs_lim_datacards_fast'
 
 # structure file for datacard
-structureFile = 'structure.py'
+structureFile = 'structure_fast.py'
 
 # nuisances file for mkDatacards and for mkShape
 #nuisancesFile = 'nuisances.py'
