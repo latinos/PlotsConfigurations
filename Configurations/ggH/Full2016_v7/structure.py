@@ -7,7 +7,6 @@
 structure['DY']  = {  
                   'isSignal' : 0,
                   'isData'   : 0,
-                  'scaleSampleForDatacard' : 0.,
               }
 
 structure['Dyemb']  = {

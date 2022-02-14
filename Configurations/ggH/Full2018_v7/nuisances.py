@@ -31,7 +31,7 @@ HiggsXS = HiggsXSection()
 cuts0j = []
 cuts1j = []
 cuts2j = []
-
+#cuts=[]
 for k in cuts:
   for cat in cuts[k]['categories']:
     if '0j' in cat: cuts0j.append(k+'_'+cat)
@@ -135,14 +135,14 @@ for shift in ['jes', 'lf', 'hf', 'hfstats1', 'hfstats2', 'lfstats1', 'lfstats2',
     }
 
 ##### Trigger Efficiency
-trig_drll_rw_syst = ['1.', '1./trig_drll_rw']
+trig_drll_rw_syst = ['2. - 1/trig_drll_rw', '1./trig_drll_rw']
 
 nuisances['trigg_drll_rw_unc'] = {
     'name': 'CMS_eff_hwwtrigger_drllrw_2018',
     'kind': 'weight',
     'type': 'shape',
     'samples': dict((skey, trig_drll_rw_syst) for skey in mc),
-    'symmetrize' : True,
+    #'symmetrize' : True,
 }
 
 trig_syst = ['((TriggerAltEffWeight_2l_u)/(TriggerAltEffWeight_2l))*(TriggerAltEffWeight_2l>0.02) + (TriggerAltEffWeight_2l<=0.02)', '(TriggerAltEffWeight_2l_d)/(TriggerAltEffWeight_2l)']
