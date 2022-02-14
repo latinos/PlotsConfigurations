@@ -98,7 +98,7 @@ Considering all Higgs processes  as a single signal:
 
 We define de asymmetry as:
 
-$ A = \frac{#sigma(W^+h) - #sigma(W^-h)}{#sigma(W^+h) + #sigma(W^-h)} $
+\[ A = \frac{#sigma(W^+h) - #sigma(W^-h)}{#sigma(W^+h) + #sigma(W^-h)} \]
 
 Considering the Yellow Report Cross sections for the two processes (https://twiki.cern.ch/twiki/bin/view/LHCPhysics/CERNYellowReportPageAt13TeV):
 - XS W+h = 0.8380 pb
