@@ -1,7 +1,7 @@
 # example of configuration file
 treeName= 'Events'
 
-tag = 'JJH16Bset0'
+tag = 'JJH16B'
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFile'+tag
@@ -13,7 +13,7 @@ variablesFile = 'variables.py'
 
 samplesFile = 'samples.py' 
 
-cutsFile = 'cutsset0.py' 
+cutsFile = 'cuts.py' 
 #cutsFile = 'Folder_checks/cuts_prog2.py'
 
 # file with list of samples

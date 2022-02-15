@@ -157,15 +157,16 @@ nuisances['trigg_emb'] = {
     'samples': {'Dyemb' : trig_syst_emb},
 }
 
-trig_drll_rw_syst = ['1.', '1./trig_drll_rw']
+#trig_drll_rw_syst = ['1.', '1./trig_drll_rw']
+trig_drll_rw_syst = ['2. - 1/trig_drll_rw', '1./trig_drll_rw']
 
 nuisances['trigg_drll_rw_unc'] = {
     'name': 'CMS_eff_hwwtrigger_drllrw_2018',
     'kind': 'weight',
     'type': 'shape',
     'samples': dict((skey, trig_drll_rw_syst) for skey in mc),
-    'symmetrize' : True,
 }
+#    'symmetrize' : True,
 
 ##### Electron Efficiency and energy scale
 
@@ -198,7 +199,7 @@ nuisances['electronpt'] = {
     'folderDown': 'root://eoscms.cern.ch/'+makeMCDirectory('trigFix__ElepTdo_suffix'),
     'AsLnN': '1'
 }
-
+'''
 if useEmbeddedDY:
   nuisances['electronpt_emb'] = {
     'name': 'CMS_scale_e_2018',
@@ -211,7 +212,7 @@ if useEmbeddedDY:
     'folderDown': treeBaseDir+'/Embedding2018_102X_nAODv7_Full2018v7/DATAl1loose2018v7__l2loose__l2tightOR2018v7__Embedding__EmbElepTdo_suffix/',
     'AsLnN': '1'
   }
-
+'''
 ##### Muon Efficiency and energy scale
 
 nuisances['eff_m'] = {
@@ -245,6 +246,7 @@ nuisances['muonpt'] = {
     'folderDown': 'root://eoscms.cern.ch/'+makeMCDirectory('trigFix__MupTdo_suffix'),
     'AsLnN': '1'
 }
+'''
 if useEmbeddedDY:
   nuisances['muonpt_emb'] = {
     'name': 'CMS_scale_m_2018',
@@ -257,7 +259,7 @@ if useEmbeddedDY:
     'folderDown': treeBaseDir+'/Embedding2018_102X_nAODv7_Full2018v7/DATAl1loose2018v7__l2loose__l2tightOR2018v7__Embedding__EmbMupTdo_suffix/',
     'AsLnN': '1'
   }
-
+'''
 ##### Jet energy scale
 jes_systs = ['JESAbsolute','JESAbsolute_2018','JESBBEC1','JESBBEC1_2018','JESEC2','JESEC2_2018','JESFlavorQCD','JESHF','JESHF_2018','JESRelativeBal','JESRelativeSample_2018']
 
@@ -292,7 +294,7 @@ for js in jes_systs:
       'folderDown': folderdo,
       'AsLnN': '1'
   }
-
+'''
 ##### Jet energy resolution
 nuisances['JER'] = {
     'name': 'CMS_res_j_2018',
@@ -305,7 +307,7 @@ nuisances['JER'] = {
     'folderDown': 'root://eoscms.cern.ch/'+makeMCDirectory('JERdo_suffix'),
     'AsLnN': '1'
 }
-
+'''
 ##### MET energy scale
 
 nuisances['met'] = {
@@ -321,6 +323,7 @@ nuisances['met'] = {
 }
 
 ##### Di-Tau vetoing for embedding
+'''
 if useEmbeddedDY:
     if runDYveto:
         nuisances['embedveto']  = {
@@ -333,23 +336,24 @@ if useEmbeddedDY:
                         }
         }
 
-
+'''
 ##### Pileup
+
+PUDict = { 'DY': ['0.993259983266*(puWeightUp/puWeight)', '0.997656381501*(puWeightDown/puWeight)'],
+           'top': ['1.00331969187*(puWeightUp/puWeight)', '0.999199609528*(puWeightDown/puWeight)'],
+           'WW': ['1.0033022059*(puWeightUp/puWeight)', '0.997085330608*(puWeightDown/puWeight)'],
+           'ggH_hww': ['1.0036768006*(puWeightUp/puWeight)', '0.995996570285*(puWeightDown/puWeight)'],
+           'qqH_hww': ['1.00374694528*(puWeightUp/puWeight)', '0.995878596852*(puWeightDown/puWeight)'], }
+PUDict.update(dict((skey, ['1.0036768006*(puWeightUp/puWeight)', '0.995996570285*(puWeightDown/puWeight)']) for skey in gghAC))
+PUDict.update(dict((skey, ['1.00374694528*(puWeightUp/puWeight)', '0.995878596852*(puWeightDown/puWeight)']) for skey in qqhAC))
 
 nuisances['PU'] = {
     'name': 'CMS_PU_2018',
     'kind': 'weight',
     'type': 'shape',
-    'samples': {
-        'DY': ['0.993259983266*(puWeightUp/puWeight)', '0.997656381501*(puWeightDown/puWeight)'],
-        'top': ['1.00331969187*(puWeightUp/puWeight)', '0.999199609528*(puWeightDown/puWeight)'],
-        'WW': ['1.0033022059*(puWeightUp/puWeight)', '0.997085330608*(puWeightDown/puWeight)'],
-        'ggH_hww': ['1.0036768006*(puWeightUp/puWeight)', '0.995996570285*(puWeightDown/puWeight)'],
-        'qqH_hww': ['1.00374694528*(puWeightUp/puWeight)', '0.995878596852*(puWeightDown/puWeight)'],
-    },
+    'samples': PUDict,
     'AsLnN': '1',
 }
-
 ### PU ID SF uncertainty
 puid_syst = ['Jet_PUIDSF_up/Jet_PUIDSF', 'Jet_PUIDSF_down/Jet_PUIDSF']
 
@@ -643,9 +647,9 @@ for var in variations:
 
 
 nuisances['QCDscale_top_2j']  = {
-    'name'  : 'QCDscale_top_2j',
+    'name'  : 'QCDscale_top_2j_2018',
     'skipCMS' : 1,
-    'kind'  : 'weight_envelope',
+    'kind'  : 'weight',
     'type'  : 'shape',
     'samples'  : {
        'top' : topvars2j,
@@ -711,6 +715,17 @@ nuisances['WWqscale2j']  = {
    'samples'  : {
       'WW'   : ['nllW_Qup/nllW', 'nllW_Qdown/nllW'],
     },
+}
+
+nuisances['EWKcorr_WW'] = {
+    'name': 'CMS_hww_EWKcorr_WW',
+    'skipCMS': 1,
+    'kind': 'weight',
+    'type': 'shape',
+    'samples': {
+        'WW': ['1.', '1./ewknloW']
+    },
+    'symmetrize' : True,
 }
 
 # Uncertainty on SR/CR ratio
@@ -900,7 +915,7 @@ nuisances['stat'] = {
 
 
 nuisances['DYembnorm2j']  = {
-                 'name'  : 'CMS_hww_DYttnorm2j',
+                 'name'  : 'CMS_hww_DYttnorm2j_2018',
                  'samples'  : {
                    'Dyemb' : '1.00',
                      },

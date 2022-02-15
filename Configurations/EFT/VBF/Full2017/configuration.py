@@ -2,7 +2,7 @@
 # example of configuration file
 treeName= 'Events'
 
-tag = 'JJH17set0'
+tag = 'JJH17'
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFile'+tag
@@ -10,11 +10,11 @@ outputDir = 'rootFile'+tag
 # file with TTree aliases
 aliasesFile = 'aliases.py'
 
-variablesFile = 'variables_new.py'
+variablesFile = 'variables.py'
 
 samplesFile = 'samples.py' 
 
-cutsFile = 'cutsset0.py' 
+cutsFile = 'cuts.py' 
 
 # file with list of samples
 plotFile = 'plot.py' 

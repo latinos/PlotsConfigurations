@@ -7,7 +7,7 @@ configurations = os.path.dirname(configurations) #
 configurations = os.path.dirname(configurations) # 
 configurations = os.path.dirname(configurations) # Configurations
 
-from LatinoAnalysis.Tools.commonTools import getSampleFiles, getBaseW, addSampleWeight
+from LatinoAnalysis.Tools.commonTools import getSampleFiles, getBaseW, addSampleWeight, getBaseWnAOD
 
 def nanoGetSampleFiles(inputDir, sample):
     try:
@@ -215,7 +215,7 @@ addSampleWeight(samples,'top','TTTo2L2Nu','Top_pTrw')
 
 samples['WW'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'WWTo2L2Nu'),
-    'weight': mcCommonWeight+embed_tautauveto + '*nllW', # temporary - nllW module not run on PS and UE variation samples
+    'weight': mcCommonWeight+embed_tautauveto + '*nllW*ewknloW', # temporary - nllW module not run on PS and UE variation samples
     'FilesPerJob': 1
 }
 
@@ -233,8 +233,6 @@ samples['ggWW'] = {
 }
 
 
-
-
 ######## Vg ########
 useWgFXFX=True
 
@@ -242,7 +240,7 @@ if useWgFXFX:
   files = nanoGetSampleFiles(mcDirectory, 'Wg_AMCNLOFXFX_01J') + \
       nanoGetSampleFiles(mcDirectory, 'Wg_AMCNLOFXFX_01J_ext1') + \
       nanoGetSampleFiles(mcDirectory, 'Zg')
-
+  
   samples['Vg'] = {
       'name': files,
       'weight': mcCommonWeightNoMatch+embed_tautauveto + '*(!(Gen_ZGstar_mass > 0))',
@@ -251,14 +249,14 @@ if useWgFXFX:
   wgbasew = getBaseWnAOD(mcDirectory,'Summer16_102X_nAODv7_Full2016v7',['Wg_AMCNLOFXFX_01J','Wg_AMCNLOFXFX_01J_ext1'])
   addSampleWeight(samples,'Vg','Wg_AMCNLOFXFX_01J','191.4/586.*'+wgbasew+'/baseW')
   addSampleWeight(samples,'Vg','Wg_AMCNLOFXFX_01J_ext1','191.4/586.*'+wgbasew+'/baseW')
-
+  
   ######## VgS ########
-
+  
   files = nanoGetSampleFiles(mcDirectory, 'Wg_AMCNLOFXFX_01J') + \
       nanoGetSampleFiles(mcDirectory, 'Wg_AMCNLOFXFX_01J_ext1') + \
       nanoGetSampleFiles(mcDirectory, 'Zg') + \
       nanoGetSampleFiles(mcDirectory, 'WZTo3LNu_mllmin01')
-
+  
   samples['VgS'] = {
       'name': files,
       'weight': mcCommonWeight+embed_tautauveto + ' * (gstarLow * 0.94 + gstarHigh * 1.14)',
@@ -301,6 +299,7 @@ else:
   addSampleWeight(samples, 'VgS', 'Wg_MADGRAPHMLM', '(Gen_ZGstar_mass > 0 && Gen_ZGstar_mass < 0.1)')
   addSampleWeight(samples, 'VgS', 'Zg', '(Gen_ZGstar_mass > 0)')
   addSampleWeight(samples, 'VgS', 'WZTo3LNu_mllmin01', '(Gen_ZGstar_mass > 0.1)')
+
 ############ VZ ############
 
 files = nanoGetSampleFiles(mcDirectory, 'ZZTo2L2Nu') + \
@@ -444,6 +443,7 @@ for _, sd in DataRun:
 
     samples['Fake']['name'].extend(files)
     samples['Fake']['weights'].extend([DataTrig[pd]] * len(files))
+
 '''
 samples['Fake']['subsamples'] = {
   'em': 'abs(Lepton_pdgId[0]) == 11',
@@ -468,19 +468,15 @@ for _, sd in DataRun:
     
     samples['DATA']['name'].extend(files)
     samples['DATA']['weights'].extend([DataTrig[pd]] * len(files))
-
-
-  
-
  
 #### AC/EFT Signals 
  
 signals_rw = [] 
- 
+
 # VBF MC samples 
  
 # Original VBF samples 
- 
+
 samples['VBF_H0PM'] = { 
    'name':   nanoGetSampleFiles(mcDirectory, 'VBF_H0PM_ToWWTo2L2Nu'), 
    'weight': mcCommonWeight+ '*VBF_H0PM_W',   'FilesPerJob': 4, } 
@@ -3969,5 +3965,4 @@ signals_rw.append('GGHjj_H0Mf05_H0PM')
 samples['GGHjj_H0Mf05_H0M'] = { 
    'name':   nanoGetSampleFiles(mcDirectory, 'GGHjj_H0Mf05_ToWWTo2L2Nu'), 
    'weight': mcCommonWeight+ '*GGHjj_H0Mf05_W*(ME_H0M/ME_H0Mf05)',   'FilesPerJob': 4, } 
-signals_rw.append('GGHjj_H0Mf05_H0M')  
- 
+signals_rw.append('GGHjj_H0Mf05_H0M')

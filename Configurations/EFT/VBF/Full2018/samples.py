@@ -7,7 +7,7 @@ configurations = os.path.dirname(configurations) #
 configurations = os.path.dirname(configurations) # 
 configurations = os.path.dirname(configurations) # Configurations
 
-from LatinoAnalysis.Tools.commonTools import getSampleFiles, getBaseW, addSampleWeight
+from LatinoAnalysis.Tools.commonTools import getSampleFiles, getBaseW, addSampleWeight, getBaseWnAOD
 
 def nanoGetSampleFiles(inputDir, sample):
     try:
@@ -60,7 +60,7 @@ def makeMCDirectory(var=''):
     if var:
         return os.path.join(treeBaseDir, mcProduction, mcSteps.format(var='__' + var))
     else:
-        return os.path.join(treeBaseDir, mcProduction, mcSteps.format(var=''))
+        return os.path.join(treeBaseDir, mcProduction, mcSteps.format(var='__trigFix'))
 
 mcDirectory = makeMCDirectory()
 fakeDirectory = os.path.join(treeBaseDir, fakeReco, fakeSteps)
@@ -207,7 +207,7 @@ addSampleWeight(samples,'top','TTTo2L2Nu','Top_pTrw')
 
 samples['WW'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'WWTo2L2Nu'),
-    'weight': mcCommonWeight+embed_tautauveto + '*nllW',
+    'weight': mcCommonWeight+embed_tautauveto + '*nllW*ewknloW',
     'FilesPerJob': 3
 }
 
@@ -235,7 +235,7 @@ samples['ggWW'] = {
 }
 
 ######## Vg ########
-useWgFXFX=False
+useWgFXFX=True
 
 if useWgFXFX:
   files = nanoGetSampleFiles(mcDirectory, 'Wg_AMCNLOFXFX') + \
@@ -482,12 +482,13 @@ for _, sd in DataRun:
     files = nanoGetSampleFiles(fakeDirectory, pd + '_' + sd)
     samples['Fake']['name'].extend(files)
     samples['Fake']['weights'].extend([DataTrig[pd]] * len(files))
-
+'''
 samples['Fake']['subsamples'] = {
   'em': 'abs(Lepton_pdgId[0]) == 11',
   'me': 'abs(Lepton_pdgId[0]) == 13'
-}
 
+}
+'''
 ###########################################
 ################## DATA ###################
 ###########################################

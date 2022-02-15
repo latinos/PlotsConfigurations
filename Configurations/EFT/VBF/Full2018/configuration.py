@@ -2,7 +2,7 @@
 # example of configuration file
 treeName= 'Events'
 
-tag = 'JJH17set0'
+tag = 'JJH18set0'
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFile'+tag
@@ -10,7 +10,7 @@ outputDir = 'rootFile'+tag
 # file with TTree aliases
 aliasesFile = 'aliases.py'
 
-variablesFile = 'variables_new.py'
+variablesFile = 'variables.py'
 
 samplesFile = 'samples.py' 
 
@@ -20,7 +20,7 @@ cutsFile = 'cutsset0.py'
 plotFile = 'plot.py' 
 
 # luminosity to normalize to (in 1/fb)
-lumi = 41.53
+lumi = 59.74
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy

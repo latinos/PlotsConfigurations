@@ -18,7 +18,7 @@ mc_emb = [skey for skey in samples if skey not in ('Fake', 'DATA')]
 mc_ggh = [skey for skey in samples if (skey.startswith('H0') or skey.startswith('GGHjj_H0'))]
 mc_ggh.append('ggH_hww')
 mc_qqh = [skey for skey in samples if skey.startswith('VBF_H0')]
-
+#mc_wg = [skey for skey in samples if skey in ('Wg_AMCNLOFXFX', 'Wg_AMCNLOFXFX_S')]
 btag_algo="deepflav"
 
 eleWP = 'mva_90p_Iso2016'
@@ -564,7 +564,7 @@ mes = [ 'ME_H0PM',
     'ME_EFTH0PH','ME_EFTH0PH_M0','ME_EFTH0PH_M1','ME_EFTH0PH_M2','ME_EFTH0PH_M3','ME_EFTH0PHf05',
     'ME_EFTH0L1','ME_EFTH0L1_M0','ME_EFTH0L1_M1','ME_EFTH0L1_M2','ME_EFTH0L1_M3','ME_EFTH0L1f05'
 ]
-
+    
 for me in mes:
     aliases[me] = {
     'linesToAdd': ['.L %s/EFT/VBF/Tools/getme.cc+' % configurations ],
@@ -589,8 +589,19 @@ for con in cons:
 }
 
 # Additional reco MEs that arent in v7 
+#print("sampleNameLourdes", sampleName, type(sampleName), type(nanoGetSampleFiles(mcDirectory, 'Wg_AMCNLOFXFX_01J')), skey, type(skey),'Wg_AMCNL0FXFX_S')
+#if sampleName is "Wg_AMCNLOFXFX_S": print("true")
+#else: print("false")
+#if skey in ['Wg_AMCNLOFXFX_01J']:
+#if "Wg_AMCNLOFXFX" in sampleName:
+#    print("inside the loop") 
+#    mes_add = ['me_zh_hlzg','me_vbf_hlzg']
 
-mes_add = ['me_qcd_hm','me_qcd_mixhm','me_zh_hlzg','me_vbf_hlzg']
+#else:
+    #print("has entrado en el else, MAL!")
+    #mes_add = ['me_qcd_hm','me_qcd_mixhm','me_zh_hlzg','me_vbf_hlzg']
+mes_add = ['ME_qcd_hm','ME_qcd_mixhm','ME_zh_hlzg','ME_vbf_hlzg']
+#print("estas aqui, after the loop")
 
 for me in mes_add:
     aliases[me]={
@@ -613,7 +624,7 @@ aliases['kd_vbf']       = { 'expr': 'max(max(kd_smvbf, kd_hmvbf), max(kd_hpvbf, 
 aliases['kd_vbf_hm']    = { 'expr': '1/(1+(me_vbf_hsm/(me_vbf_hm*G4VBF**2)))' }
 aliases['kd_vbf_hp']    = { 'expr': '1/(1+(me_vbf_hsm/(me_vbf_hp*G2VBF**2)))' }
 aliases['kd_vbf_hl']    = { 'expr': '1/(1+(me_vbf_hsm/(me_vbf_hl*L1VBF**2)))' }
-aliases['kd_vbf_hlzg']  = { 'expr': '1/(1+(me_vbf_hsm/(me_vbf_hlzg*LZgVBF**2)))' }
+aliases['kd_vbf_hlzg']  = { 'expr': '1/(1+(me_vbf_hsm/(ME_vbf_hlzg*LZgVBF**2)))' }
 aliases['kd_vbf_mixhm'] = { 'expr': '(me_vbf_mixhm - me_vbf_hsm - me_vbf_hm)/(2*sqrt(me_vbf_hsm*me_vbf_hm))' }
 aliases['kd_vbf_mixhp'] = { 'expr': '(me_vbf_mixhp - me_vbf_hsm - me_vbf_hp)/(2*sqrt(me_vbf_hsm*me_vbf_hp))' }
 
@@ -648,7 +659,7 @@ aliases['kd_wh_hl']    = { 'expr': '1/(1+(me_wh_hsm/(me_wh_hl*L1WH**2)))' }
 aliases['kd_zh_hl']    = { 'expr': '1/(1+(me_zh_hsm/(me_zh_hl*L1ZH**2)))' }
 aliases['kd_vh_hl']    = { 'expr': 'max(kd_wh_hl, kd_zh_hl)' }
 
-aliases['kd_vh_hlzg']  = { 'expr': '1/(1+(me_zh_hsm/(me_zh_hlzg*LZgZH**2)))' }
+aliases['kd_vh_hlzg']  = { 'expr': '1/(1+(me_zh_hsm/(ME_zh_hlzg*LZgZH**2)))' }
 
 aliases['me_vh_hsm']   = { 'expr': '(me_wh_hsm/meAvg_wh) + (me_zh_hsm/meAvg_zh)' }
 aliases['me_vh_hm']    = { 'expr': '(me_wh_hm/meAvg_wh) + (me_zh_hm/meAvg_zh)' }
@@ -665,8 +676,8 @@ aliases['kd_smggh']     = { 'expr': '1/(1+(me_vbf_hsm/(me_qcd_hsm*CVBF)))' }
 aliases['kd_hmggh']     = { 'expr': '1/(1+((me_vbf_hm*G4VBF**2)/(me_qcd_hsm*CVBF)))' }
 aliases['kd_ggh']       = { 'expr': 'max(kd_smggh, kd_hmggh)' }
 
-aliases['kd_ggh_hm']    = { 'expr': '1/(1+(me_qcd_hsm/(me_qcd_hm*G4_GGHjj**2)))' }
-aliases['kd_ggh_mixhm'] = { 'expr': '(me_qcd_mixhm - me_qcd_hsm - me_qcd_hm)/(2*sqrt(me_qcd_hsm*me_qcd_hm))' }
+aliases['kd_ggh_hm']    = { 'expr': '1/(1+(me_qcd_hsm/(ME_qcd_hm*G4_GGHjj**2)))' }
+aliases['kd_ggh_mixhm'] = { 'expr': '(ME_qcd_mixhm - me_qcd_hsm - ME_qcd_hm)/(2*sqrt(me_qcd_hsm*ME_qcd_hm))' }
 
 ################## Additional variables ##############################
 
