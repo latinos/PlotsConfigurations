@@ -22,21 +22,24 @@ And as backgrounds:
 The instructions to run the trainings follow.
 
 
-### Train OSSF BDT
+### Train BDTs
 
-    python ClassificationBDTOSSF.py
-
-### Train SSSF BDT
+SS-SF:
 
     python ClassificationBDTSSSF.py
 
+OS-SF:
+
+    python ClassificationBDTOSSF.py
+
+
 ### Plot training results
 
-OS-SF:
+SS-SF:
 
      root -l -b -q 'plotAll.C("./","TMVA_SSSF","plots_BDT_SSSF","datasetSSSF")'
 
-SS-SF:
+OS-SF:
 
      root -l -b -q 'plotAll.C("./","TMVA_OSSF","plots_BDT_OSSF","datasetOSSF")'
 

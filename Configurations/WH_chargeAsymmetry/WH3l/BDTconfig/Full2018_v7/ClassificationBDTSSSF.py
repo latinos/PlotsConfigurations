@@ -35,11 +35,33 @@ def runJob():
     dataloader.PrepareTrainingAndTestTree(TCut(config.cut),'SplitMode=Random:NormMode=NumEvents:!V')
     # dataloader.PrepareTrainingAndTestTree(TCut(config.cut),'nTrain_Signal=100000:nTrain_Background=100000:SplitMode=Random:NormMode=NumEvents:!V')
 
-    factory.BookMethod(dataloader, TMVA.Types.kBDT, "BDTG1",  "!H:!V:NTrees=400:MinNodeSize=1.0%:BoostType=Grad:Shrinkage=0.03:UseBaggedBoost:GradBaggingFraction=0.4:nCuts=500:MaxDepth=2" );
-    factory.BookMethod(dataloader, TMVA.Types.kBDT, "BDTG4D3",   "!H:!V:NTrees=1500:MinNodeSize=1.5%:BoostType=Grad:Shrinkage=0.05:UseBaggedBoost:GradBaggingFraction=0.5:nCuts=500:MaxDepth=3" );
-    factory.BookMethod(dataloader, TMVA.Types.kBDT, "BDTG4C3", "!H:!V:NTrees=1500:MinNodeSize=1.5%:BoostType=Grad:Shrinkage=0.05:UseBaggedBoost:GradBaggingFraction=0.5:nCuts=300:MaxDepth=2" );
-    factory.BookMethod(dataloader, TMVA.Types.kBDT, "BDTG4SK01",   "!H:!V:NTrees=500:MinNodeSize=1.5%:BoostType=Grad:Shrinkage=0.01:UseBaggedBoost:GradBaggingFraction=0.5:nCuts=500:MaxDepth=2" );
-    factory.BookMethod(dataloader, TMVA.Types.kBDT, "BDTG4F07"    ,   "!H:!V:NTrees=500:MinNodeSize=1.5%:BoostType=Grad:Shrinkage=0.05:UseBaggedBoost:GradBaggingFraction=0.7:nCuts=500:MaxDepth=2" );
+    factory.BookMethod(dataloader, TMVA.Types.kBDT, "BDTG4SK01", 
+                       "!H:!V:NTrees=500:MinNodeSize=1.5%:BoostType=Grad:Shrinkage=0.01:UseBaggedBoost:GradBaggingFraction=0.5:nCuts=500:MaxDepth=2" );
+
+    factory.BookMethod(dataloader, TMVA.Types.kBDT, "BDTG4SK01_1000Trees", 
+                       "!H:!V:NTrees=1000:MinNodeSize=1.5%:BoostType=Grad:Shrinkage=0.01:UseBaggedBoost:GradBaggingFraction=0.5:nCuts=500:MaxDepth=2" );
+
+    factory.BookMethod(dataloader, TMVA.Types.kBDT, "BDTG4SK01_1000Trees_1000cuts", 
+                       "!H:!V:NTrees=1000:MinNodeSize=1.5%:BoostType=Grad:Shrinkage=0.01:UseBaggedBoost:GradBaggingFraction=0.5:nCuts=1000:MaxDepth=2" );
+
+    factory.BookMethod(dataloader, TMVA.Types.kBDT, "BDTG4SK01_1000Trees_02baggingfraction", 
+                       "!H:!V:NTrees=1000:MinNodeSize=1.5%:BoostType=Grad:Shrinkage=0.01:UseBaggedBoost:GradBaggingFraction=0.2:nCuts=500:MaxDepth=2" );
+
+    factory.BookMethod(dataloader, TMVA.Types.kBDT, "BDTG4SK01_05shrinkage",     
+                       "!H:!V:NTrees=500:MinNodeSize=1.5%:BoostType=Grad:Shrinkage=0.05:UseBaggedBoost:GradBaggingFraction=0.5:nCuts=500:MaxDepth=2" );
+
+    factory.BookMethod(dataloader, TMVA.Types.kBDT, "BDTGSK01_02baggingfraction",     
+                       "!H:!V:NTrees=500:MinNodeSize=1.5%:BoostType=Grad:Shrinkage=0.01:UseBaggedBoost:GradBaggingFraction=0.2:nCuts=500:MaxDepth=2" );
+
+
+    # factory.BookMethod(dataloader, TMVA.Types.kBDT, "BDTG1",     
+    #                    "!H:!V:NTrees=400:MinNodeSize=1.0%:BoostType=Grad:Shrinkage=0.03:UseBaggedBoost:GradBaggingFraction=0.4:nCuts=500:MaxDepth=2" );
+
+    # factory.BookMethod(dataloader, TMVA.Types.kBDT, "BDTG4F07" , 
+    #                    "!H:!V:NTrees=500:MinNodeSize=1.5%:BoostType=Grad:Shrinkage=0.05:UseBaggedBoost:GradBaggingFraction=0.7:nCuts=500:MaxDepth=2" );
+
+    # factory.BookMethod(dataloader, TMVA.Types.kBDT, "BDTG4C3", "!H:!V:NTrees=1500:MinNodeSize=1.5%:BoostType=Grad:Shrinkage=0.05:UseBaggedBoost:GradBaggingFraction=0.5:nCuts=300:MaxDepth=2" );
+    # factory.BookMethod(dataloader, TMVA.Types.kBDT, "BDTG4D3", "!H:!V:NTrees=1500:MinNodeSize=1.5%:BoostType=Grad:Shrinkage=0.05:UseBaggedBoost:GradBaggingFraction=0.5:nCuts=500:MaxDepth=3" );
 
 
     # Run training, test and evaluation
