@@ -6,8 +6,10 @@ variables['events']  = {   'name': '1',
                         'fold' : 3
                         }
 
-variables['mth']  = {   'name': 'mth',
-                        'range' : (20, 60,300),
-                        'xaxis' : 'm_{T}^{WW} [GeV]',
-                        'fold' : 3
-                        }
+variables['BDTOutput_2j'] = {
+    'name': 'BDTOutput_2j',
+    'range' : ([-1.0,-0.5,-0.25,0.,0.25,0.5,1.0],),
+    'xaxis' : 'MVA discriminant WW',
+    'fold' : 3,
+}
+
