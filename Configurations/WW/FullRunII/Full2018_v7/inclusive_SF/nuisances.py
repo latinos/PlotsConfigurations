@@ -47,20 +47,31 @@ nfdict = json.load(open("%s/WW/FullRunII/Full2018_v7/inclusive/WWnorm.json"%conf
 nuisances['lumi_Uncorrelated'] = {
     'name': 'lumi_13TeV_2018',
     'type': 'lnN',
-    'samples': dict((skey, '1.015') for skey in mc if skey not in ['top'])
+    'samples': dict((skey, '1.015') for skey in mc if skey not in ['top','DY'])
 }
 
 nuisances['lumi_Correlated'] = {
     'name': 'lumi_13TeV_correlated',
     'type': 'lnN',
-    'samples': dict((skey, '1.020') for skey in mc if skey not in ['top'])
+    'samples': dict((skey, '1.020') for skey in mc if skey not in ['top','DY'])
 }
 
 nuisances['lumi_1718'] = {
     'name': 'lumi_13TeV_1718',
     'type': 'lnN',
-    'samples': dict((skey, '1.002') for skey in mc if skey not in ['top'])
+    'samples': dict((skey, '1.002') for skey in mc if skey not in ['top','DY'])
 }
+
+#### Rinout
+
+nuisances['DYestim_2018'] = {
+    'name': 'DYestim_2018',
+    'type': 'lnN',
+    'samples': {
+        'DY': '1.3'
+    },
+}
+
 
 #### FAKES
 
@@ -121,7 +132,7 @@ for shift in ['jes', 'lf', 'hf', 'hfstats1', 'hfstats2', 'lfstats1', 'lfstats2',
         'name': name,
         'kind': 'weight',
         'type': 'shape',
-        'samples': dict((skey, btag_syst) for skey in mc),
+        'samples': dict((skey, btag_syst) for skey in mc if skey not in ['DY']),
 #        'AsLnN': '1'
     }
 
@@ -133,7 +144,7 @@ nuisances['trigg'] = {
     'name': 'CMS_eff_hwwtrigger_2018',
     'kind': 'weight',
     'type': 'shape',
-    'samples': dict((skey, trig_syst) for skey in mc_emb),
+    'samples': dict((skey, trig_syst) for skey in mc_emb if skey not in ['DY']),
 #    'AsLnN': '1'
 }
 
@@ -143,8 +154,8 @@ nuisances['eff_e'] = {
     'name': 'CMS_eff_e_2018',
     'kind': 'weight',
     'type': 'shape',
-    'samples': dict((skey, ['SFweightEleUp', 'SFweightEleDown']) for skey in mc_emb),
-#    'AsLnN': '1' #already commented
+    'samples': dict((skey, ['SFweightEleUp', 'SFweightEleDown']) for skey in mc_emb if skey not in ['DY']),
+#    'AsLnN': '1' #already uncommmented
 }
 
 nuisances['electronpt'] = {
@@ -153,7 +164,7 @@ nuisances['electronpt'] = {
     'type': 'shape',
     'mapUp': 'ElepTup',
     'mapDown': 'ElepTdo',
-    'samples': dict((skey, ['1', '1']) for skey in mc),
+    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['DY']),
     'folderUp': makeMCDirectory('ElepTup_suffix'),
     'folderDown': makeMCDirectory('ElepTdo_suffix'),
 #    'AsLnN': '1'
@@ -178,8 +189,8 @@ nuisances['eff_m'] = {
     'name': 'CMS_eff_m_2018',
     'kind': 'weight',
     'type': 'shape',
-    'samples': dict((skey, ['SFweightMuUp', 'SFweightMuDown']) for skey in mc_emb),
-#    'AsLnN': '1' #already commented
+    'samples': dict((skey, ['SFweightMuUp', 'SFweightMuDown']) for skey in mc_emb if skey not in ['DY']),
+#    'AsLnN': '1' #already uncommented
 }
 
 nuisances['muonpt'] = {
@@ -188,7 +199,7 @@ nuisances['muonpt'] = {
     'type': 'shape',
     'mapUp': 'MupTup',
     'mapDown': 'MupTdo',
-    'samples': dict((skey, ['1', '1']) for skey in mc),
+    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['DY']),
     'folderUp': makeMCDirectory('MupTup_suffix'),
     'folderDown': makeMCDirectory('MupTdo_suffix'),
 #    'AsLnN': '1'
@@ -236,13 +247,13 @@ for js in jes_systs:
       'type': 'shape',
       'mapUp': js+'up',
       'mapDown': js+'do',
-      'samples': dict((skey, ['1', '1']) for skey in mc),
+      'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['VZ', 'Vg', 'VgS', 'DY']),
       'folderUp': folderup,
       'folderDown': folderdo,
 #      'AsLnN': '1'
   }
 
-##### Jet energy resolution
+# ##### Jet energy resolution
 # nuisances['JER'] = {
 #     'name': 'CMS_res_j_2018',
 #     'kind': 'suffix',
@@ -263,7 +274,7 @@ nuisances['met'] = {
     'type': 'shape',
     'mapUp': 'METup',
     'mapDown': 'METdo',
-    'samples': dict((skey, ['1', '1']) for skey in mc),
+    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['DY']),
     'folderUp': makeMCDirectory('METup_suffix'),
     'folderDown': makeMCDirectory('METdo_suffix'),
 #    'AsLnN': '1'
@@ -288,7 +299,7 @@ nuisances['PU'] = {
     'kind': 'weight',
     'type': 'shape',
     'samples': {
-        'DY'      : ['1.005805*(puWeightUp/puWeight)', '0.995182*(puWeightDown/puWeight)'],
+        #'DY'      : ['1.005805*(puWeightUp/puWeight)', '0.995182*(puWeightDown/puWeight)'],
         'WW'      : ['1.007590*(puWeightUp/puWeight)', '0.992894*(puWeightDown/puWeight)'],
         'ggWW'    : ['1.008988*(puWeightUp/puWeight)', '0.991468*(puWeightDown/puWeight)'],
         'WWewk'   : ['1.005414*(puWeightUp/puWeight)', '0.995500*(puWeightDown/puWeight)'],
@@ -321,7 +332,7 @@ nuisances['jetPUID'] = {
     'name': 'CMS_PUID_2018',
     'kind': 'weight',
     'type': 'shape',
-    'samples': dict((skey, puid_syst) for skey in mc)
+    'samples': dict((skey, puid_syst) for skey in mc if skey not in ['DY'])
 }
 
 ##### PS
@@ -329,7 +340,7 @@ nuisances['PS_ISR']  = {
     'name': 'PS_ISR',
     'kind': 'weight',
     'type': 'shape',
-    'samples': dict((skey, ['PSWeight[2]', 'PSWeight[0]']) for skey in mc if skey not in ['WW','ggWW']),
+    'samples': dict((skey, ['PSWeight[2]', 'PSWeight[0]']) for skey in mc if skey not in ['WW','ggWW','DY']),
 }
 
 norm_ISR_WW   = ['+'.join(['({})*1.0'.format(diffcuts[binname]) if binname == "nonfid" else '({})*({})'.format(diffcuts[binname],nfdict["PS_ISR"]["WW_"+binname][i]) for binname in diffcuts]) for i in range(2)]
@@ -349,7 +360,7 @@ nuisances['PS_FSR']  = {
     'name': 'PS_FSR',
     'kind': 'weight',
     'type': 'shape',
-    'samples': dict((skey, ['PSWeight[3]', 'PSWeight[1]']) for skey in mc if skey not in ['WW','ggWW']),
+    'samples': dict((skey, ['PSWeight[3]', 'PSWeight[1]']) for skey in mc if skey not in ['WW','ggWW','DY']),
 }
 
 norm_FSR_WW   = ['+'.join(['({})*1.0'.format(diffcuts[binname]) if binname == "nonfid" else '({})*({})'.format(diffcuts[binname],nfdict["PS_FSR"]["WW_"+binname][i]) for binname in diffcuts]) for i in range(2)]
@@ -371,7 +382,7 @@ nuisances['UE']  = {
                 'name'  : 'UE_CP5',
                 'skipCMS' : 1,
                 'type': 'lnN',
-                'samples': dict((skey, '1.015') for skey in mc if skey not in ['WW','ggWW']), 
+                'samples': dict((skey, '1.015') for skey in mc if skey not in ['WW','ggWW','DY']), 
 }
 
 ####### Generic "cross section uncertainties"
@@ -538,14 +549,14 @@ for i in range(1,33):
 DYvariations = ['Alt$(LHEScaleWeight[0],1)', 'Alt$(LHEScaleWeight[1],1)', 'Alt$(LHEScaleWeight[3],1)', 'Alt$(LHEScaleWeight[4],1)', 'Alt$(LHEScaleWeight[6],1)', 'Alt$(LHEScaleWeight[7],1)']
 variations   = ['Alt$(LHEScaleWeight[0],1)', 'Alt$(LHEScaleWeight[1],1)', 'Alt$(LHEScaleWeight[3],1)', 'Alt$(LHEScaleWeight[5],1)', 'Alt$(LHEScaleWeight[7],1)', 'Alt$(LHEScaleWeight[8],1)']
 
-nuisances['QCDscale_V'] = {
-    'name': 'QCDscale_V',
-    'skipCMS': 1,
-    'kind': 'weight_envelope',
-    'type': 'shape',
-    'samples': {'DY': DYvariations},
-#    'AsLnN': '1'
-}
+# nuisances['QCDscale_V'] = {
+#     'name': 'QCDscale_V',
+#     'skipCMS': 1,
+#     'kind': 'weight_envelope',
+#     'type': 'shape',
+#     'samples': {'DY': DYvariations},
+#     'AsLnN': '1'
+# }
 
 nuisances['QCDscale_VV'] = {
     'name': 'QCDscale_VV',
@@ -876,8 +887,8 @@ nuisances['Topnorm_0j_2018']  = {
                    },
                'type'  : 'rateParam',
                'cuts'  : [
-                   'SR_DF_0j',
-                   'topCR_DF_0j',
+                   'SR_SF_0j',
+                   'topCR_SF_0j',
                    ]
               }
 
@@ -888,8 +899,8 @@ nuisances['Topnorm_1j_2018']  = {
                    },
                'type'  : 'rateParam',
                'cuts'  : [
-                   'SR_DF_1j',
-                   'topCR_DF_1j',
+                   'SR_SF_1j',
+                   'topCR_SF_1j',
                    ]
               }
 
@@ -901,48 +912,8 @@ nuisances['Topnorm_2j_2018']  = {
                    },
                'type'  : 'rateParam',
                'cuts'  : [
-                   'SR_DF_2j',
-                   'topCR_DF_2j',
-                   ]
-              }
-
-
-
-
-nuisances['DYnorm_0j_2018']  = {
-               'name'  : 'DYnorm_0j_2018',
-               'samples'  : {
-                   'DY' : '1.00',
-                   },
-               'type'  : 'rateParam',
-               'cuts'  : [
-                   'SR_DF_0j',
-                   'DYCR_DF_0j',
-                   ]
-              }
-
-nuisances['DYnorm_1j_2018']  = {
-               'name'  : 'DYnorm_1j_2018',
-               'samples'  : {
-                   'DY' : '1.00',
-                   },
-               'type'  : 'rateParam',
-               'cuts'  : [
-                   'SR_DF_1j',
-                   'DYCR_DF_1j',
-                   ]
-              }
-
-
-nuisances['DYnorm_2j_2018']  = {
-               'name'  : 'DYnorm_2j_2018',
-               'samples'  : {
-                   'DY' : '1.00',
-                   },
-               'type'  : 'rateParam',
-               'cuts'  : [
-                   'SR_DF_2j',
-                   'DYCR_DF_2j',
+                   'SR_SF_2j',
+                   'topCR_SF_2j',
                    ]
               }
 

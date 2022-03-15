@@ -96,21 +96,75 @@ mcCommonWeight = 'XSWeight*SFweight*PromptGenLepMatch2l*METFilter_MC'
 #############  BACKGROUNDS  ###############
 ###########################################
 
+
 ###### DY #######
 
-files = nanoGetSampleFiles(mcDirectory, 'DYJetsToTT_MuEle_M-50') + \
-   nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-10to50-LO_ext1')
+useDYtt = False
+useDYHT = True
 
-samples['DY'] = {
-    'name': files,
-    'weight': mcCommonWeight + "*( !(Sum$(PhotonGen_isPrompt==1 && PhotonGen_pt>15 && abs(PhotonGen_eta)<2.6) > 0 &&\
-                                    Sum$(LeptonGen_isPrompt==1 && LeptonGen_pt>15)>=2) )",
-    'FilesPerJob': 10,
-    'suppressNegative' :['all'],
-    'suppressNegativeNuisances' :['all'],
-}
-addSampleWeight(samples,'DY','DYJetsToTT_MuEle_M-50','DY_NLO_pTllrw')
-addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO_ext1','DY_LO_pTllrw')
+
+if useDYtt:
+    files = nanoGetSampleFiles(mcDirectory, 'DYJetsToTT_MuEle_M-50') + \
+            nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-10to50-LO_ext1')
+
+    samples['DY'] = {
+        'name': files,
+        'weight': mcCommonWeight + "*( !(Sum$(PhotonGen_isPrompt==1 && PhotonGen_pt>15 && abs(PhotonGen_eta)<2.6) > 0 &&\
+                                         Sum$(LeptonGen_isPrompt==1 && LeptonGen_pt>15)>=2) )",
+        'FilesPerJob': 5,
+        'suppressNegative' :['all'],
+        'suppressNegativeNuisances' :['all'],
+    }
+    addSampleWeight(samples,'DY','DYJetsToTT_MuEle_M-50','DY_NLO_pTllrw')
+    addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO_ext1','DY_LO_pTllrw')
+
+else:
+    files = nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_ext1') + \
+            nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-10to50-LO_ext1')
+
+    samples['DY'] = {
+        'name': files,
+        'weight': mcCommonWeight + "*( !(Sum$(PhotonGen_isPrompt==1 && PhotonGen_pt>15 && abs(PhotonGen_eta)<2.6) > 0 &&\
+                                         Sum$(LeptonGen_isPrompt==1 && LeptonGen_pt>15)>=2) )",
+        'FilesPerJob': 4,
+        'suppressNegative' :['all'],
+        'suppressNegativeNuisances' :['all'],
+
+    }
+
+    # Add DY HT Samples
+    if useDYHT :
+        samples['DY']['name'] +=     nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-4to50_HT-100to200_ext1') \
+                                   + nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-4to50_HT-200to400_newpmx') \
+                                   + nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-4to50_HT-400to600') \
+                                   + nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-4to50_HT-600toInf') \
+                                   + nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-100to200') \
+                                   + nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-200to400') \
+                                   + nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-400to600_ext1') \
+                                   + nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-600to800') \
+                                   + nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-800to1200') \
+                                   + nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-1200to2500') \
+                                   + nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-2500toInf')
+
+    addSampleWeight(samples,'DY','DYJetsToLL_M-50_ext1',        'DY_NLO_pTllrw')
+    addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO_ext1', 'DY_LO_pTllrw')
+
+    if useDYHT :
+        # Remove high HT from inclusive samples
+        addSampleWeight(samples,'DY','DYJetsToLL_M-50_ext1'       , '(LHE_HT<100.0)*(RinoutSFs_0j + RinoutSFs_1j + RinoutSFs_2j)')
+        addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO_ext1', '(LHE_HT<100.0)*(RinoutSFs_0j + RinoutSFs_1j + RinoutSFs_2j)')
+        # pt_ll weight
+        addSampleWeight(samples,'DY','DYJetsToLL_M-4to50_HT-100to200_ext1'   ,'DY_LO_pTllrw*(RinoutSFs_0j + RinoutSFs_1j + RinoutSFs_2j)')
+        addSampleWeight(samples,'DY','DYJetsToLL_M-4to50_HT-200to400_newpmx' ,'DY_LO_pTllrw*(RinoutSFs_0j + RinoutSFs_1j + RinoutSFs_2j)')
+        addSampleWeight(samples,'DY','DYJetsToLL_M-4to50_HT-400to600'        ,'DY_LO_pTllrw*(RinoutSFs_0j + RinoutSFs_1j + RinoutSFs_2j)')
+        addSampleWeight(samples,'DY','DYJetsToLL_M-4to50_HT-600toInf'        ,'DY_LO_pTllrw*(RinoutSFs_0j + RinoutSFs_1j + RinoutSFs_2j)')
+        addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-100to200'           ,'DY_LO_pTllrw*(RinoutSFs_0j + RinoutSFs_1j + RinoutSFs_2j)')
+        addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-200to400'           ,'DY_LO_pTllrw*(RinoutSFs_0j + RinoutSFs_1j + RinoutSFs_2j)')
+        addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-400to600_ext1'      ,'DY_LO_pTllrw*(RinoutSFs_0j + RinoutSFs_1j + RinoutSFs_2j)')
+        addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-600to800'           ,'DY_LO_pTllrw*(RinoutSFs_0j + RinoutSFs_1j + RinoutSFs_2j)')
+        addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-800to1200'          ,'DY_LO_pTllrw*(RinoutSFs_0j + RinoutSFs_1j + RinoutSFs_2j)')
+        addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-1200to2500'         ,'DY_LO_pTllrw*(RinoutSFs_0j + RinoutSFs_1j + RinoutSFs_2j)')
+        addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-2500toInf'          ,'DY_LO_pTllrw*(RinoutSFs_0j + RinoutSFs_1j + RinoutSFs_2j)')
 
 
 ###### Top #######
@@ -160,7 +214,7 @@ files = nanoGetSampleFiles(mcDirectory, 'ZGToLLG')
 samples['Zg'] = {
     'name': files,
     'weight': mcCommonWeightNoMatch + '*(!(Gen_ZGstar_mass > 0))',
-    'FilesPerJob': 8,
+    'FilesPerJob': 7,
     'suppressNegative' :['all'],
     'suppressNegativeNuisances' :['all'],
 }
@@ -171,7 +225,7 @@ files = nanoGetSampleFiles(mcDirectory, 'ZGToLLG')
 samples['ZgS'] = {
     'name': files,
     'weight': mcCommonWeight,
-    'FilesPerJob': 8,
+    'FilesPerJob': 7,
     'suppressNegative' :['all'],
     'suppressNegativeNuisances' :['all'],
     }
@@ -185,7 +239,7 @@ files = nanoGetSampleFiles(mcDirectory, 'Wg_MADGRAPHMLM') + \
 samples['WgS'] = {
     'name': files,
     'weight': mcCommonWeight + ' * (gstarLow * 0.94)',
-    'FilesPerJob': 8,
+    'FilesPerJob': 7,
     'suppressNegative' :['all'],
     'suppressNegativeNuisances' :['all'],
 }
@@ -200,7 +254,7 @@ files = nanoGetSampleFiles(mcDirectory, 'WZTo3LNu_mllmin01') + \
 samples['WZ'] = {
     'name': files,
     'weight': mcCommonWeight + ' * (gstarHigh)',
-    'FilesPerJob': 4,
+    'FilesPerJob': 3,
     'suppressNegative' :['all'],
     'suppressNegativeNuisances' :['all'],
 }
@@ -214,7 +268,7 @@ files = nanoGetSampleFiles(mcDirectory, 'ZZTo2L2Nu') + \
 samples['ZZ'] = {
     'name': files,
     'weight': mcCommonWeight,
-    'FilesPerJob': 2,
+    'FilesPerJob': 1,
     'suppressNegative' :['all'],
     'suppressNegativeNuisances' :['all'],
 }

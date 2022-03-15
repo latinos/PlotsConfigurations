@@ -1,14 +1,13 @@
-
-
 # cuts
 
 _tmp = [ 
-    '(Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13)',
+    '(Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11 || Lepton_pdgId[0]*Lepton_pdgId[1] == -13*13)',
     'Lepton_pt[0]>25.',
     'Lepton_pt[1]>20.',
     '(nLepton>=2 && Alt$(Lepton_pt[2],0)<10.)',
     'abs(Lepton_eta[0])<2.5 && abs(Lepton_eta[1])<2.5',
     'mll>20.',
+    'ptll>30.',
     'PuppiMET_pt > 20.',
     'mpmet > 20',
 ]
@@ -19,79 +18,52 @@ supercut = ' && '.join(_tmp)
 def addcut(name, exprs):
     cuts[name] = ' && '.join(exprs)
 
-
-_tmp = [
-    'ptll>30.',
-    'zeroJet',
-    'bVeto',
-       ]
-addcut('SR_DF_0j', _tmp)
-
-
-_tmp = [
-    'ptll>30.',
-    'oneJet',
-    'bVeto',
-       ]
-addcut('SR_DF_1j', _tmp)
-
-
-_tmp = [
-    'ptll>30.',
-    'multiJet',
-    'bVeto',
-       ]
-addcut('SR_DF_2j', _tmp)
-
-
-_tmp = [
-    'ptll>30.',
-    'zeroJet',
-    '((zeroJet && !bVeto) || bReq)',
-       ]
-addcut('topCR_DF_0j', _tmp)
-
-
-_tmp = [
-    'ptll>30.',
-    'oneJet',
-    '((zeroJet && !bVeto) || bReq)',
-       ]
-addcut('topCR_DF_1j', _tmp)
-
-
-_tmp = [
-    'ptll>30.',
-    'multiJet',
-    '((zeroJet && !bVeto) || bReq)',
-       ]
-addcut('topCR_DF_2j', _tmp)
-
-
 _tmp = [
     'zeroJet',
+    'ZVeto',
     'bVeto',
-    'ptll < 30.',
-    'mll < 80.',
        ]
-addcut('DYCR_DF_0j', _tmp)
+addcut('SR_SF_0j', _tmp)
 
 
 _tmp = [
     'oneJet',
+    'ZVeto',
     'bVeto',
-    'ptll < 30.',
-    'mll < 80.',
        ]
-addcut('DYCR_DF_1j', _tmp)
+addcut('SR_SF_1j', _tmp)
 
 
 _tmp = [
     'multiJet',
+    'ZVeto',
     'bVeto',
-    'ptll < 30.',
-    'mll < 80.',
        ]
-addcut('DYCR_DF_2j', _tmp)
+addcut('SR_SF_2j', _tmp)
+
+
+_tmp = [
+    'zeroJet',
+    'ZVeto',
+    '((zeroJet && !bVeto) || bReq)',
+       ]
+addcut('topCR_SF_0j', _tmp)
+
+
+_tmp = [
+    'oneJet',
+    'ZVeto',
+    '((zeroJet && !bVeto) || bReq)',
+       ]
+addcut('topCR_SF_1j', _tmp)
+
+
+_tmp = [
+    'multiJet',
+    'ZVeto',
+    '((zeroJet && !bVeto) || bReq)',
+       ]
+addcut('topCR_SF_2j', _tmp)
+
 
 

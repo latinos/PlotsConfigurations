@@ -16,6 +16,37 @@ btagWP = '0.3040'
 eleWP = 'mvaFall17V1Iso_WP90_tthmva_70'
 muWP = 'cut_Tight_HWWW_tthmva_80'
 
+
+aliases['BDTOutput_0j_Top'] = {
+    'class': 'ww_top_bdt_0j',
+    'linesToAdd' : ['.L %s/WW/FullRunII/Full2016_v7/inclusive/WW_BDT_0j.cc+' % configurations],
+}
+
+aliases['BDTOutput_1j_Top'] = {
+    'class': 'ww_top_bdt_1j',
+    'linesToAdd' : ['.L %s/WW/FullRunII/Full2016_v7/inclusive/WW_BDT_1j.cc+' % configurations],
+}
+
+aliases['BDTOutput_2j_Top'] = {
+    'class': 'ww_top_bdt_2j',
+    'linesToAdd' : ['.L %s/WW/FullRunII/Full2016_v7/inclusive/WW_BDT_2j.cc+' % configurations],
+}
+
+aliases['BDTOutput_0j_DY'] = {
+    'class': 'ww_dy_bdt_0j',
+    'linesToAdd' : ['.L %s/WW/FullRunII/Full2018_v7/inclusive_SF/WW_BDT_0j_DY.cc+' % configurations],
+}
+
+aliases['BDTOutput_1j_DY'] = {
+    'class': 'ww_dy_bdt_1j',
+    'linesToAdd' : ['.L %s/WW/FullRunII/Full2018_v7/inclusive_SF/WW_BDT_1j_DY.cc+' % configurations],
+}
+
+aliases['BDTOutput_2j_DY'] = {
+    'class': 'ww_dy_bdt_2j',
+    'linesToAdd' : ['.L %s/WW/FullRunII/Full2018_v7/inclusive_SF/WW_BDT_2j_DY.cc+' % configurations],
+}
+
 aliases['zeroJet'] = {
     'expr': 'Alt$(CleanJet_pt[0], 0) < 30.'
 }
@@ -26,6 +57,28 @@ aliases['oneJet'] = {
 
 aliases['multiJet'] = {
     'expr': 'Alt$(CleanJet_pt[0],0) > 30 && Alt$(CleanJet_pt[1],0) > 30'
+}
+
+aliases['ZVeto'] = {
+    'expr': '(fabs(91.1876 - mll) > 15)'
+}
+
+
+aliases['RinoutSFs_0j'] = {
+    'expr': '(1.351 * (BDTOutput_0j_DY > -1 && BDTOutput_0j_DY < -0.6 && abs(Lepton_pdgId[0] * Lepton_pdgId[1]) == 11*11 && zeroJet) + 1.327 * (BDTOutput_0j_DY > -1 && BDTOutput_0j_DY < -0.6 && abs(Lepton_pdgId[0] * Lepton_pdgId[1]) == 13*13 && zeroJet) + 1.394 * (BDTOutput_0j_DY > -0.6 && BDTOutput_0j_DY < -0.3 && abs(Lepton_pdgId[0] * Lepton_pdgId[1]) == 11*11 && zeroJet) + 1.332 * (BDTOutput_0j_DY > -0.6 && BDTOutput_0j_DY < -0.3 && abs(Lepton_pdgId[0] * Lepton_pdgId[1]) == 13*13 && zeroJet) + 1.541 * (BDTOutput_0j_DY > -0.3 && BDTOutput_0j_DY < 0.0 && abs(Lepton_pdgId[0] * Lepton_pdgId[1]) == 11*11 && zeroJet) + 1.513 * (BDTOutput_0j_DY > -0.3 && BDTOutput_0j_DY < 0.0 && abs(Lepton_pdgId[0] * Lepton_pdgId[1]) == 13*13 && zeroJet) + 1.380 * (BDTOutput_0j_DY > 0.0 && BDTOutput_0j_DY < 0.3 && abs(Lepton_pdgId[0] * Lepton_pdgId[1]) == 11*11 && zeroJet) + 1.550 * (BDTOutput_0j_DY > 0.0 && BDTOutput_0j_DY < 0.3 && abs(Lepton_pdgId[0] * Lepton_pdgId[1]) == 13*13 && zeroJet) + 1.768 * (BDTOutput_0j_DY > 0.3 && BDTOutput_0j_DY < 0.6 && abs(Lepton_pdgId[0] * Lepton_pdgId[1]) == 11*11 && zeroJet) + 1.609 * (BDTOutput_0j_DY > 0.3 && BDTOutput_0j_DY < 0.6 && abs(Lepton_pdgId[0] * Lepton_pdgId[1]) == 13*13 && zeroJet) + 2.086 * (BDTOutput_0j_DY > 0.6 && BDTOutput_0j_DY < 0.9 && abs(Lepton_pdgId[0] * Lepton_pdgId[1]) == 11*11 && zeroJet) + 1.583 * (BDTOutput_0j_DY > 0.6 && BDTOutput_0j_DY < 0.9 && abs(Lepton_pdgId[0] * Lepton_pdgId[1]) == 13*13 && zeroJet) + 2.065 * (BDTOutput_0j_DY > 0.9 && BDTOutput_0j_DY < 1.0 && abs(Lepton_pdgId[0] * Lepton_pdgId[1]) == 11*11 && zeroJet) + 1.236 * (BDTOutput_0j_DY > 0.9 && BDTOutput_0j_DY < 1.0 && abs(Lepton_pdgId[0] * Lepton_pdgId[1]) == 13*13 && zeroJet))',
+    'samples': mc
+}
+
+
+aliases['RinoutSFs_1j'] = {
+    'expr': '(1.267 * (BDTOutput_0j_DY > -1 && BDTOutput_0j_DY < -0.6 && abs(Lepton_pdgId[0] * Lepton_pdgId[1]) == 11*11 && oneJet) + 1.066 * (BDTOutput_0j_DY > -1 && BDTOutput_0j_DY < -0.6 && abs(Lepton_pdgId[0] * Lepton_pdgId[1]) == 13*13 && oneJet) + 1.093 * (BDTOutput_0j_DY > -0.6 && BDTOutput_0j_DY < -0.3 && abs(Lepton_pdgId[0] * Lepton_pdgId[1]) == 11*11 && oneJet) + 1.132 * (BDTOutput_0j_DY > -0.6 && BDTOutput_0j_DY < -0.3 && abs(Lepton_pdgId[0] * Lepton_pdgId[1]) == 13*13 && oneJet) + 1.172 * (BDTOutput_0j_DY > -0.3 && BDTOutput_0j_DY < 0.0 && abs(Lepton_pdgId[0] * Lepton_pdgId[1]) == 11*11 && oneJet) + 1.074 * (BDTOutput_0j_DY > -0.3 && BDTOutput_0j_DY < 0.0 && abs(Lepton_pdgId[0] * Lepton_pdgId[1]) == 13*13 && oneJet) + 1.205 * (BDTOutput_0j_DY > 0.0 && BDTOutput_0j_DY < 0.3 && abs(Lepton_pdgId[0] * Lepton_pdgId[1]) == 11*11 && oneJet) + 1.149 * (BDTOutput_0j_DY > 0.0 && BDTOutput_0j_DY < 0.3 && abs(Lepton_pdgId[0] * Lepton_pdgId[1]) == 13*13 && oneJet) + 1.183 * (BDTOutput_0j_DY > 0.3 && BDTOutput_0j_DY < 0.6 && abs(Lepton_pdgId[0] * Lepton_pdgId[1]) == 11*11 && oneJet) + 1.170 * (BDTOutput_0j_DY > 0.3 && BDTOutput_0j_DY < 0.6 && abs(Lepton_pdgId[0] * Lepton_pdgId[1]) == 13*13 && oneJet) + 1.355 * (BDTOutput_0j_DY > 0.6 && BDTOutput_0j_DY < 0.9 && abs(Lepton_pdgId[0] * Lepton_pdgId[1]) == 11*11 && oneJet) + 1.278 * (BDTOutput_0j_DY > 0.6 && BDTOutput_0j_DY < 0.9 && abs(Lepton_pdgId[0] * Lepton_pdgId[1]) == 13*13 && oneJet) + 2.133 * (BDTOutput_0j_DY > 0.9 && BDTOutput_0j_DY < 1.0 && abs(Lepton_pdgId[0] * Lepton_pdgId[1]) == 11*11 && oneJet) + 1.786 * (BDTOutput_0j_DY > 0.9 && BDTOutput_0j_DY < 1.0 && abs(Lepton_pdgId[0] * Lepton_pdgId[1]) == 13*13 && oneJet))',
+    'samples': mc
+}
+
+
+aliases['RinoutSFs_2j'] = {
+    'expr': '(1.261 * (BDTOutput_0j_DY > -1 && BDTOutput_0j_DY < -0.6 && abs(Lepton_pdgId[0] * Lepton_pdgId[1]) == 11*11 && multiJet) + 1.151 * (BDTOutput_0j_DY > -1 && BDTOutput_0j_DY < -0.6 && abs(Lepton_pdgId[0] * Lepton_pdgId[1]) == 13*13 && multiJet) + 1.611 * (BDTOutput_0j_DY > -0.6 && BDTOutput_0j_DY < -0.3 && abs(Lepton_pdgId[0] * Lepton_pdgId[1]) == 11*11 && multiJet) + 1.379 * (BDTOutput_0j_DY > -0.6 && BDTOutput_0j_DY < -0.3 && abs(Lepton_pdgId[0] * Lepton_pdgId[1]) == 13*13 && multiJet) + 1.627 * (BDTOutput_0j_DY > -0.3 && BDTOutput_0j_DY < 0.0 && abs(Lepton_pdgId[0] * Lepton_pdgId[1]) == 11*11 && multiJet) + 1.396 * (BDTOutput_0j_DY > -0.3 && BDTOutput_0j_DY < 0.0 && abs(Lepton_pdgId[0] * Lepton_pdgId[1]) == 13*13 && multiJet) + 1.490 * (BDTOutput_0j_DY > 0.0 && BDTOutput_0j_DY < 0.3 && abs(Lepton_pdgId[0] * Lepton_pdgId[1]) == 11*11 && multiJet) + 1.452 * (BDTOutput_0j_DY > 0.0 && BDTOutput_0j_DY < 0.3 && abs(Lepton_pdgId[0] * Lepton_pdgId[1]) == 13*13 && multiJet) + 1.565 * (BDTOutput_0j_DY > 0.3 && BDTOutput_0j_DY < 0.6 && abs(Lepton_pdgId[0] * Lepton_pdgId[1]) == 11*11 && multiJet) + 1.533 * (BDTOutput_0j_DY > 0.3 && BDTOutput_0j_DY < 0.6 && abs(Lepton_pdgId[0] * Lepton_pdgId[1]) == 13*13 && multiJet) + 1.791 * (BDTOutput_0j_DY > 0.6 && BDTOutput_0j_DY < 0.9 && abs(Lepton_pdgId[0] * Lepton_pdgId[1]) == 11*11 && multiJet) + 1.575 * (BDTOutput_0j_DY > 0.6 && BDTOutput_0j_DY < 0.9 && abs(Lepton_pdgId[0] * Lepton_pdgId[1]) == 13*13 && multiJet) + 2.073 * (BDTOutput_0j_DY > 0.9 && BDTOutput_0j_DY < 1.0 && abs(Lepton_pdgId[0] * Lepton_pdgId[1]) == 11*11 && multiJet) + 2.007 * (BDTOutput_0j_DY > 0.9 && BDTOutput_0j_DY < 1.0 && abs(Lepton_pdgId[0] * Lepton_pdgId[1]) == 13*13 && multiJet))',
+    'samples': mc
 }
 
 
@@ -152,7 +205,7 @@ elif btag_algo=="deepflav":
 # CR definitions
 
 aliases['topcr'] = {
-    'expr': '(ptll>30. && ((Sum$(CleanJet_pt > 30.) == 0 && !bVeto) || bReq))'
+    'expr': '(ZVeto && ((Sum$(CleanJet_pt > 30.) == 0 && !bVeto) || bReq))'
 }
 
 # B tag scale factors
@@ -367,17 +420,8 @@ aliases['fid'] = {
     'samples' : ['WW','ggWW']
 }
 
-aliases['BDTOutput_0j_Top'] = {
-    'class': 'ww_top_bdt_0j',
-    'linesToAdd' : ['.L %s/WW/FullRunII/Full2017_v7/inclusive/WW_BDT_0j.cc+' % configurations],
-}
 
-aliases['BDTOutput_1j_Top'] = {
-    'class': 'ww_top_bdt_1j',
-    'linesToAdd' : ['.L %s/WW/FullRunII/Full2017_v7/inclusive/WW_BDT_1j.cc+' % configurations],
-}
-
-aliases['BDTOutput_2j_Top'] = {
-    'class': 'ww_top_bdt_2j',
-    'linesToAdd' : ['.L %s/WW/FullRunII/Full2017_v7/inclusive/WW_BDT_2j.cc+' % configurations],
-}
+# aliases['BDTOutput_2j'] = {
+#     'class': 'ww_top_bdt_2j',
+#     'linesToAdd' : ['.L %s/WW/FullRunII/Full2017_v7/inclusive/WW_BDT_2j.cc+' % configurations],
+# }

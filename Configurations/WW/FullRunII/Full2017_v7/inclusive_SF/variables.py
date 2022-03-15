@@ -3,6 +3,7 @@
 SignalRegions = set(x for x in cuts if 'SR' in x)
 ControlRegions = set(x for x in cuts if 'CR' in x)
 
+
 variables['BDTOutput_0j_Top'] = {
     'name': 'BDTOutput_0j_Top',
     'range' : ([-1.0,-0.5,-0.25,0.,0.25,0.5,1.0],),
@@ -19,6 +20,7 @@ variables['BDTOutput_1j_Top'] = {
     'cuts' : SignalRegions
 }
 
+
 variables['BDTOutput_2j_Top'] = {
     'name': 'BDTOutput_2j_Top',
     'range' : ([-1.0,-0.5,-0.25,0.,0.25,0.5,1.0],),
@@ -27,11 +29,66 @@ variables['BDTOutput_2j_Top'] = {
     'cuts' : SignalRegions
 }
 
+variables['BDTOutput_0j_DY'] = {
+    'name': 'BDTOutput_0j_DY',
+    'range' : ([-1.0,-0.5,-0.25,0.,0.25,0.5,1.0],),
+    'xaxis' : 'DY MVA discriminant WW',
+    'fold' : 3,
+    'cuts' : SignalRegions
+}
+
+variables['BDTOutput_1j_DY'] = {
+    'name': 'BDTOutput_1j_DY',
+    'range' : ([-1.0,-0.5,-0.25,0.,0.25,0.5,1.0],),
+    'xaxis' : 'DY MVA discriminant WW',
+    'fold' : 3,
+    'cuts' : SignalRegions
+}
+
+variables['BDTOutput_2j_DY'] = {
+    'name': 'BDTOutput_2j_DY',
+    'range' : ([-1.0,-0.5,-0.25,0.,0.25,0.5,1.0],),
+    'xaxis' : 'DY MVA discriminant WW',
+    'fold' : 3,
+    'cuts' : SignalRegions
+}
+
+variables['BDTs_0j_2d']  = {   'name': 'BDTOutput_0j_DY:BDTOutput_0j_Top',
+                                'range' : ([-1.0,-0.5,0.,0.5,1.0],[-1.0,-0.5,0.,0.5,1.0],),
+                                'xaxis' : 'BDTOutput_0j_Top : BDTOutput_0j_DY', 
+                                'fold' : 3,
+                              'doWeight' : 1,
+                              'binX'     : 4,
+                              'binY'     : 4,
+                              'cuts' : SignalRegions
+                        }
+
+variables['BDTs_1j_2d']  = {   'name': 'BDTOutput_1j_DY:BDTOutput_1j_Top',
+                                'range' : ([-1.0,-0.5,0.,0.5,1.0],[-1.0,-0.5,0.,0.5,1.0],),
+                                'xaxis' : 'BDTOutput_1j_Top : BDTOutput_1j_DY', 
+                                'fold' : 3,
+                              'doWeight' : 1,
+                              'binX'     : 4,
+                              'binY'     : 4,
+                              'cuts' : SignalRegions
+                        }
+
+variables['BDTs_2j_2d']  = {   'name': 'BDTOutput_2j_DY:BDTOutput_2j_Top',
+                                'range' : ([-1.0,-0.5,0.,0.5,1.0],[-1.0,-0.5,0.,0.5,1.0],),
+                                'xaxis' : 'BDTOutput_2j_Top : BDTOutput_2j_DY', 
+                                'fold' : 3,
+                              'doWeight' : 1,
+                              'binX'     : 4,
+                              'binY'     : 4,
+                              'cuts' : SignalRegions
+                        }
+
 variables['events']  = {   'name': '1',      
                         'range' : (1,0,2),  
                         'xaxis' : 'events', 
                         'fold' : 3
                         }
+
 
 variables['mll']  = {   'name': 'mll',
                         'range' : (30, 20,250),
