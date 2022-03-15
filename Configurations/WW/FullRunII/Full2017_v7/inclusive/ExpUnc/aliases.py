@@ -12,6 +12,11 @@ configurations = os.path.dirname(configurations) # Configurations
 
 mc = [skey for skey in samples if skey not in ('Fake', 'DATA')]
 
+btag_algo="deepcsv"#deepflav
+btagWP = '0.1522' #deepcsv
+#btagWP = '0.0521' #deepflav
+#btagWP = '0.3093' #BDT training
+
 eleWP = 'mvaFall17V1Iso_WP90'
 muWP = 'cut_Tight_HWWW'
 

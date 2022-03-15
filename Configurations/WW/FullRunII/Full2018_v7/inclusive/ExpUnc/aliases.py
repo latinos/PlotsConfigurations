@@ -18,6 +18,9 @@ muWP = 'cut_Tight_HWWW'
 btag_algo = "deepflav"
 btagWP = '0.3093' #BDT training
 
+btagWP = '0.1241' #deepcsv
+#btagWP = '0.3093' #bdt
+
 aliases['LepWPCut'] = {
     'expr': 'LepCut2l__ele_'+eleWP+'__mu_'+muWP,
     'samples': mc + ['DATA']

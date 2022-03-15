@@ -18,6 +18,9 @@ muWP = 'cut_Tight80x'
 btag_algo = "deepflav"
 btagWP = '0.3093' #BDT training
 
+btagWP = '0.2217' #deepcsv
+#btagWP = '0.3093' #bdt
+
 aliases['LepWPCut'] = {
     'expr': 'LepCut2l__ele_'+eleWP+'__mu_'+muWP,
     'samples': mc + ['DATA']
@@ -92,8 +95,6 @@ elif btag_algo=="deepflav":
     aliases['bReq'] = {
         'expr': 'Sum$(CleanJet_pt > 30. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepFlavB[CleanJet_jetIdx] >  '+btagWP+') >= 1'
     }
-
-
 
 # CR definitions
 
