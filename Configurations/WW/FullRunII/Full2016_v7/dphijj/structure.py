@@ -98,7 +98,7 @@ structure['Vg']  = {
 structure['ZgS'] = {
                   'isSignal' : 0,
                   'isData'   : 0,
-                  'removeFromCuts' : ['ww2l2v_13TeV_sr_2j_B11', 'ww2l2v_13TeV_sr_2j_B5','ww2l2v_13TeV_sr_2j_B7','ww2l2v_13TeV_top_2j']
+                  'removeFromCuts' : ['ww2l2v_13TeV_sr_2j_B11', 'ww2l2v_13TeV_sr_2j_B5']
 }
 
 structure['WgS'] = {
@@ -124,7 +124,7 @@ structure['VgS_H'] = {
 structure['Zg']  = { 
                   'isSignal' : 0,
                   'isData'   : 0, 
-                  'removeFromCuts' : ['ww2l2v_13TeV_sr_2j_B4','ww2l2v_13TeV_sr_2j_B3']
+                  'removeFromCuts' : [ 'ww2l2v_13TeV_sr_2j_B4', 'ww2l2v_13TeV_sr_2j_B8', 'ww2l2v_13TeV_sr_2j_B3']
                   }
 
 structure['VZ']  = { 

@@ -122,6 +122,7 @@ structure['VgS_H'] = {
 structure['Zg']  = { 
                   'isSignal' : 0,
                   'isData'   : 0, 
+                  'removeFromCuts' : ['ww2l2v_13TeV_sr_2j_B0','ww2l2v_13TeV_top_1j']
                   }
 
 structure['VZ']  = { 

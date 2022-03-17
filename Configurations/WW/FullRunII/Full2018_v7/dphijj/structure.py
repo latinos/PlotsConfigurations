@@ -7,6 +7,7 @@ nbins = 14
 structure['DY']  = {  
                   'isSignal' : 0,
                   'isData'   : 0,
+  'removeFromCuts' : ['ww2l2v_13TeV_sr_2j_B2']              
 }
 
 structure['Dyemb']  = {
@@ -98,7 +99,7 @@ structure['Vg']  = {
 structure['ZgS'] = {
                   'isSignal' : 0,
                   'isData'   : 0,
-                  'removeFromCuts' : ['ww2l2v_13TeV_top_2j']
+                  'removeFromCuts' : ['ww2l2v_13TeV_sr_2j_B7', 'ww2l2v_13TeV_sr_2j_B5']
                   }
 
 structure['WgS'] = {
@@ -124,6 +125,7 @@ structure['VgS_H'] = {
 structure['Zg']  = { 
                   'isSignal' : 0,
                   'isData'   : 0, 
+                  'removeFromCuts' : ['ww2l2v_13TeV_sr_2j_B9']
 }
 
 structure['VZ']  = { 

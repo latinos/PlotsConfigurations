@@ -577,10 +577,10 @@ nuisances['QCDscale_WW']  = {
 }
 
 topScaleNormFactors = {
-    '0j' : {'Alt$(LHEScaleWeight[0],1)' : 1.080930, 'Alt$(LHEScaleWeight[1],1)' : 1.078813, 'Alt$(LHEScaleWeight[3],1)' : 1.004866, 'Alt$(LHEScaleWeight[5],1)' : 0.998639, 'Alt$(LHEScaleWeight[7],1)' : 0.922097, 'Alt$(LHEScaleWeight[8],1)' : 0.918274},
-    '1j' : {'Alt$(LHEScaleWeight[0],1)' : 1.091501, 'Alt$(LHEScaleWeight[1],1)' : 1.084509, 'Alt$(LHEScaleWeight[3],1)' : 1.011233, 'Alt$(LHEScaleWeight[5],1)' : 0.993024, 'Alt$(LHEScaleWeight[7],1)' : 0.916969, 'Alt$(LHEScaleWeight[8],1)' : 0.906980},
-    '2j' : {'Alt$(LHEScaleWeight[0],1)' : 1.106257, 'Alt$(LHEScaleWeight[1],1)' : 1.093749, 'Alt$(LHEScaleWeight[3],1)' : 1.018348, 'Alt$(LHEScaleWeight[5],1)' : 0.986592, 'Alt$(LHEScaleWeight[7],1)' : 0.909447, 'Alt$(LHEScaleWeight[8],1)' : 0.892469},
-    '3j' : {'Alt$(LHEScaleWeight[0],1)' : 1.146778, 'Alt$(LHEScaleWeight[1],1)' : 1.119128, 'Alt$(LHEScaleWeight[3],1)' : 1.030053, 'Alt$(LHEScaleWeight[5],1)' : 0.976388, 'Alt$(LHEScaleWeight[7],1)' : 0.894395, 'Alt$(LHEScaleWeight[8],1)' : 0.869418},
+    '0j' : {'Alt$(LHEScaleWeight[0],1)' : 1.080111, 'Alt$(LHEScaleWeight[1],1)' : 1.078248, 'Alt$(LHEScaleWeight[3],1)' : 1.004575, 'Alt$(LHEScaleWeight[5],1)' : 0.998903, 'Alt$(LHEScaleWeight[7],1)' : 0.922504, 'Alt$(LHEScaleWeight[8],1)' : 0.918951},
+    '1j' : {'Alt$(LHEScaleWeight[0],1)' : 1.091556, 'Alt$(LHEScaleWeight[1],1)' : 1.084440, 'Alt$(LHEScaleWeight[3],1)' : 1.011436, 'Alt$(LHEScaleWeight[5],1)' : 0.992847, 'Alt$(LHEScaleWeight[7],1)' : 0.916969, 'Alt$(LHEScaleWeight[8],1)' : 0.906770},
+    '2j' : {'Alt$(LHEScaleWeight[0],1)' : 1.106451, 'Alt$(LHEScaleWeight[1],1)' : 1.093773, 'Alt$(LHEScaleWeight[3],1)' : 1.018502, 'Alt$(LHEScaleWeight[5],1)' : 0.986458, 'Alt$(LHEScaleWeight[7],1)' : 0.909438, 'Alt$(LHEScaleWeight[8],1)' : 0.892341},
+    '3j' : {'Alt$(LHEScaleWeight[0],1)' : 1.147189, 'Alt$(LHEScaleWeight[1],1)' : 1.119375, 'Alt$(LHEScaleWeight[3],1)' : 1.030187, 'Alt$(LHEScaleWeight[5],1)' : 0.976274, 'Alt$(LHEScaleWeight[7],1)' : 0.894255, 'Alt$(LHEScaleWeight[8],1)' : 0.869184},
 }
 
 ## QCD scale nuisances for top are decorrelated for each RECO jet bin: the QCD scale is different for different jet multiplicities so it doesn't make sense to correlate them

@@ -162,8 +162,8 @@ nuisances['electronpt'] = {
     'mapUp' : 'ElepTup',
     'mapDown': 'ElepTdo',
     'samples': dict((skey, ['1', '1']) for skey in mc),
-    'folderUp': 'root://eoscms.cern.ch/'+makeMCDirectory('ElepTup_suffix'),
-    'folderDown': 'root://eoscms.cern.ch/'+makeMCDirectory('ElepTdo_suffix'),
+    'folderUp': makeMCDirectory('ElepTup_suffix'),
+    'folderDown': makeMCDirectory('ElepTdo_suffix'),
     'AsLnN': '1'
 }
 
@@ -184,8 +184,8 @@ nuisances['muonpt'] = {
     'mapUp': 'MupTup',
     'mapDown': 'MupTdo',
     'samples': dict((skey, ['1', '1']) for skey in mc),
-    'folderUp': 'root://eoscms.cern.ch/'+makeMCDirectory('MupTup_suffix'),
-    'folderDown': 'root://eoscms.cern.ch/'+makeMCDirectory('MupTdo_suffix'),
+    'folderUp': makeMCDirectory('MupTup_suffix'),
+    'folderDown': makeMCDirectory('MupTdo_suffix'),
     'AsLnN': '1'
 }
 
@@ -198,23 +198,23 @@ folderdo = ""
 
 for js in jes_systs:
   if 'Absolute' in js:
-    folderup = 'root://eoscms.cern.ch/'+makeMCDirectory('JESAbsoluteup_suffix')
-    folderdo = 'root://eoscms.cern.ch/'+makeMCDirectory('JESAbsolutedo_suffix')
+    folderup = makeMCDirectory('JESAbsoluteup_suffix')
+    folderdo = makeMCDirectory('JESAbsolutedo_suffix')
   elif 'BBEC1' in js:
-    folderup = 'root://eoscms.cern.ch/'+makeMCDirectory('JESBBEC1up_suffix')
-    folderdo = 'root://eoscms.cern.ch/'+makeMCDirectory('JESBBEC1do_suffix')
+    folderup = makeMCDirectory('JESBBEC1up_suffix')
+    folderdo = makeMCDirectory('JESBBEC1do_suffix')
   elif 'EC2' in js:
-    folderup = 'root://eoscms.cern.ch/'+makeMCDirectory('JESEC2up_suffix')
-    folderdo = 'root://eoscms.cern.ch/'+makeMCDirectory('JESEC2do_suffix')
+    folderup = makeMCDirectory('JESEC2up_suffix')
+    folderdo = makeMCDirectory('JESEC2do_suffix')
   elif 'HF' in js:
-    folderup = 'root://eoscms.cern.ch/'+makeMCDirectory('JESHFup_suffix')
-    folderdo = 'root://eoscms.cern.ch/'+makeMCDirectory('JESHFdo_suffix')
+    folderup = makeMCDirectory('JESHFup_suffix')
+    folderdo = makeMCDirectory('JESHFdo_suffix')
   elif 'Relative' in js:
-    folderup = 'root://eoscms.cern.ch/'+makeMCDirectory('JESRelativeup_suffix')
-    folderdo = 'root://eoscms.cern.ch/'+makeMCDirectory('JESRelativedo_suffix')
+    folderup = makeMCDirectory('JESRelativeup_suffix')
+    folderdo = makeMCDirectory('JESRelativedo_suffix')
   elif 'FlavorQCD' in js:
-    folderup = 'root://eoscms.cern.ch/'+makeMCDirectory('JESFlavorQCDup_suffix')
-    folderdo = 'root://eoscms.cern.ch/'+makeMCDirectory('JESFlavorQCDdo_suffix')
+    folderup = makeMCDirectory('JESFlavorQCDup_suffix')
+    folderdo = makeMCDirectory('JESFlavorQCDdo_suffix')
 
   nuisances[js] = {
       'name': 'CMS_scale_'+js,
@@ -236,8 +236,8 @@ nuisances['JER'] = {
     'mapUp': 'JERup',
     'mapDown': 'JERdo',
     'samples': dict((skey, ['1', '1']) for skey in mc),
-    'folderUp': 'root://eoscms.cern.ch/'+makeMCDirectory('JERup_suffix'),
-    'folderDown': 'root://eoscms.cern.ch/'+makeMCDirectory('JERdo_suffix'),
+    'folderUp': makeMCDirectory('JERup_suffix'),
+    'folderDown': makeMCDirectory('JERdo_suffix'),
     'AsLnN': '1'
 }
 
@@ -250,8 +250,8 @@ nuisances['met'] = {
     'mapUp': 'METup',
     'mapDown': 'METdo',
     'samples': dict((skey, ['1', '1']) for skey in mc),
-    'folderUp': 'root://eoscms.cern.ch/'+makeMCDirectory('METup_suffix'),
-    'folderDown': 'root://eoscms.cern.ch/'+makeMCDirectory('METdo_suffix'),
+    'folderUp': makeMCDirectory('METup_suffix'),
+    'folderDown': makeMCDirectory('METdo_suffix'),
     'AsLnN': '1'
 }
 
@@ -272,28 +272,28 @@ nuisances['PU'] = {
     'kind': 'weight',
     'type': 'shape',
     'samples': {
-        'DY'      : ['1.005442*(puWeightUp/puWeight)', '0.997306*(puWeightDown/puWeight)'],
-        'WW'      : ['1.005595*(puWeightUp/puWeight)', '0.995128*(puWeightDown/puWeight)'],
-        'ggWW'    : ['1.006793*(puWeightUp/puWeight)', '0.993846*(puWeightDown/puWeight)'],
-        'WWewk'   : ['1.004402*(puWeightUp/puWeight)', '0.996370*(puWeightDown/puWeight)'],
-        'Wg'      : ['0.987987*(puWeightUp/puWeight)', '1.002624*(puWeightDown/puWeight)'],
-        'WgS'     : ['1.022388*(puWeightUp/puWeight)', '0.984038*(puWeightDown/puWeight)'],
-        'Zg'      : ['1.017654*(puWeightUp/puWeight)', '0.984169*(puWeightDown/puWeight)'],
-        'ZgS'     : ['0.994019*(puWeightUp/puWeight)', '0.995307*(puWeightDown/puWeight)'],
-        'WZ'      : ['1.003433*(puWeightUp/puWeight)', '0.996847*(puWeightDown/puWeight)'],
-        'ZZ'      : ['1.001819*(puWeightUp/puWeight)', '0.998331*(puWeightDown/puWeight)'],
-        'VVV'     : ['1.005570*(puWeightUp/puWeight)', '0.992936*(puWeightDown/puWeight)'],
-        'top'     : ['1.004435*(puWeightUp/puWeight)', '0.996045*(puWeightDown/puWeight)'],
-        'ggH_htt' : ['1.004937*(puWeightUp/puWeight)', '0.994581*(puWeightDown/puWeight)'],
-        'qqH_htt' : ['1.006474*(puWeightUp/puWeight)', '0.995437*(puWeightDown/puWeight)'],
-        'WH_htt'  : ['1.007642*(puWeightUp/puWeight)', '0.992562*(puWeightDown/puWeight)'],
-        'ZH_htt'  : ['1.006509*(puWeightUp/puWeight)', '0.995197*(puWeightDown/puWeight)'],
-        'ggH_hww' : ['1.012883*(puWeightUp/puWeight)', '0.988162*(puWeightDown/puWeight)'],
-        'qqH_hww' : ['1.008240*(puWeightUp/puWeight)', '0.991381*(puWeightDown/puWeight)'],
-        'WH_hww'  : ['1.000874*(puWeightUp/puWeight)', '0.996329*(puWeightDown/puWeight)'],
-        'ZH_hww'  : ['1.007779*(puWeightUp/puWeight)', '0.993029*(puWeightDown/puWeight)'],
-        'ggZH_hww': ['1.011625*(puWeightUp/puWeight)', '0.989982*(puWeightDown/puWeight)'],
-        'ttH_hww' : ['0.999573*(puWeightUp/puWeight)', '1.000442*(puWeightDown/puWeight)'],
+        'DY'      : ['1.003503*(puWeightUp/puWeight)', '0.999513*(puWeightDown/puWeight)'],
+        'WW'      : ['1.002625*(puWeightUp/puWeight)', '0.997327*(puWeightDown/puWeight)'],
+        'ggWW'    : ['1.001264*(puWeightUp/puWeight)', '0.998704*(puWeightDown/puWeight)'],
+        'WWewk'   : ['0.993839*(puWeightUp/puWeight)', '1.007065*(puWeightDown/puWeight)'],
+        'Wg'      : ['0.980407*(puWeightUp/puWeight)', '1.014145*(puWeightDown/puWeight)'],
+        'WgS'     : ['1.024605*(puWeightUp/puWeight)', '0.985998*(puWeightDown/puWeight)'],
+        'Zg'      : ['1.012141*(puWeightUp/puWeight)', '0.980756*(puWeightDown/puWeight)'],
+        'ZgS'     : ['1.014742*(puWeightUp/puWeight)', '0.960314*(puWeightDown/puWeight)'],
+        'WZ'      : ['0.999711*(puWeightUp/puWeight)', '1.000477*(puWeightDown/puWeight)'],
+        'ZZ'      : ['0.997605*(puWeightUp/puWeight)', '1.004147*(puWeightDown/puWeight)'],
+        'VVV'     : ['1.002731*(puWeightUp/puWeight)', '0.996791*(puWeightDown/puWeight)'],
+        'top'     : ['0.997822*(puWeightUp/puWeight)', '1.002323*(puWeightDown/puWeight)'],
+        'ggH_htt' : ['0.996476*(puWeightUp/puWeight)', '1.002580*(puWeightDown/puWeight)'],
+        'qqH_htt' : ['0.999965*(puWeightUp/puWeight)', '1.001360*(puWeightDown/puWeight)'],
+        'WH_htt'  : ['1.002330*(puWeightUp/puWeight)', '0.996302*(puWeightDown/puWeight)'],
+        'ZH_htt'  : ['0.998019*(puWeightUp/puWeight)', '1.002496*(puWeightDown/puWeight)'],
+        'ggH_hww' : ['1.006138*(puWeightUp/puWeight)', '0.994070*(puWeightDown/puWeight)'],
+        'qqH_hww' : ['0.990306*(puWeightUp/puWeight)', '1.003009*(puWeightDown/puWeight)'],
+        'WH_hww'  : ['0.999042*(puWeightUp/puWeight)', '0.995221*(puWeightDown/puWeight)'],
+        'ZH_hww'  : ['1.003854*(puWeightUp/puWeight)', '0.995834*(puWeightDown/puWeight)'],
+        'ggZH_hww': ['1.010503*(puWeightUp/puWeight)', '0.991139*(puWeightDown/puWeight)'],
+        'ttH_hww' : ['0.992959*(puWeightUp/puWeight)', '1.005952*(puWeightDown/puWeight)'],
     },
     'AsLnN': '1',
 }
@@ -588,7 +588,7 @@ nuisances['QCDscale_WW']  = {
 
 ## Factors computed to renormalize the top scale variations such that the integral is not changed in each RECO jet bin (we have rateParams for that)
 topScaleNormFactors = {
-    '2j' : {'Alt$(LHEScaleWeight[0],1)' : 1.124347, 'Alt$(LHEScaleWeight[1],1)' : 1.105389, 'Alt$(LHEScaleWeight[3],1)' : 1.023328, 'Alt$(LHEScaleWeight[5],1)' : 0.982204, 'Alt$(LHEScaleWeight[7],1)' : 0.902505, 'Alt$(LHEScaleWeight[8],1)' : 0.882089},
+    '2j' : {'Alt$(LHEScaleWeight[0],1)' : 1.124567, 'Alt$(LHEScaleWeight[8],1)' : 0.881955}
 }
 
 ## QCD scale nuisances for top are decorrelated for each RECO jet bin: the QCD scale is different for different jet multiplicities so it doesn't make sense to correlate them
