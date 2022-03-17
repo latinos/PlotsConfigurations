@@ -52,7 +52,7 @@ nuisances['DYestim_2016'] = {
     'name': 'DYestim_2016',
     'type': 'lnN',
     'samples': {
-        'DY': '1.3'
+        'DY': '1.2'
     },
 }
 
