@@ -19,6 +19,14 @@ def nanoGetSampleFiles(inputDir, sample):
 
     return getSampleFiles(inputDir, sample, True, 'nanoLatino_')
 
+def getBaseWFast(mcDir, mcProd, sampleList):
+    try:
+        if _samples_noload:
+            return 'baseW'
+    except NameError:
+        pass
+    return getBaseWnAOD(mcDir, mcProd, sampleList)
+
 # samples
 
 try:
@@ -116,7 +124,7 @@ samples['DY'] = {
     'FilesPerJob': 10,
 }
 
-DYbaseW = getBaseWnAOD(mcDirectory, mcProduction, ['DYJetsToLL_M-10to50-LO', 'DYJetsToLL_M-10to50-LO_ext1'])
+DYbaseW = getBaseWFast(mcDirectory, mcProduction, ['DYJetsToLL_M-10to50-LO', 'DYJetsToLL_M-10to50-LO_ext1'])
 
 addSampleWeight(samples,'DY','DYJetsToTT_MuEle_M-50',      'DY_NLO_pTllrw')
 addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO',     'DY_LO_pTllrw*'+DYbaseW+'/baseW')
@@ -211,8 +219,8 @@ samples['ZZ'] = {
     'FilesPerJob': 4
 }
 
-ZZ2LbaseW = getBaseWnAOD(mcDirectory, mcProduction, ['ZZTo2L2Nu_ext1', 'ZZTo2L2Nu_ext2'])
-ZZ4LbaseW = getBaseWnAOD(mcDirectory, mcProduction, ['ZZTo4L_ext1',    'ZZTo4L_ext2'])
+ZZ2LbaseW = getBaseWFast(mcDirectory, mcProduction, ['ZZTo2L2Nu_ext1', 'ZZTo2L2Nu_ext2'])
+ZZ4LbaseW = getBaseWFast(mcDirectory, mcProduction, ['ZZTo4L_ext1',    'ZZTo4L_ext2'])
 
 addSampleWeight(samples,'ZZ','ZZTo2L2Nu_ext1',ZZ2LbaseW+'/baseW')
 addSampleWeight(samples,'ZZ','ZZTo2L2Nu_ext2',ZZ2LbaseW+'/baseW')

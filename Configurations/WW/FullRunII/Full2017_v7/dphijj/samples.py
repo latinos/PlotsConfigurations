@@ -19,6 +19,14 @@ def nanoGetSampleFiles(inputDir, sample):
 
     return getSampleFiles(inputDir, sample, True, 'nanoLatino_')
 
+def getBaseWFast(mcDir, mcProd, sampleList):
+    try:
+        if _samples_noload:
+            return 'baseW'
+    except NameError:
+        pass
+    return getBaseWnAOD(mcDir, mcProd, sampleList)
+
 # samples
 
 try:
