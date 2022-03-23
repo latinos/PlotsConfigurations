@@ -61,6 +61,16 @@ GoodCleanJet::evaluate(unsigned)
     return static_cast<double>(njet);
   }
 
+  else if (variable == "jetpt0") {
+    if (njet < 1) return -9999.0;
+    else return goodjets[0].pt();
+  }
+
+  else if (variable == "jetpt1") {
+    if (njet < 2) return -9999.0;
+    else return goodjets[1].pt();
+  }
+
   else if (variable == "dphijj") {
     if (njet < 2) return -9999.0;
     else {
@@ -69,8 +79,13 @@ GoodCleanJet::evaluate(unsigned)
     }
   }
 
+  else if (variable == "mjj") {
+    if (njet < 2) return -9999.0;
+    else return (goodjets[0]+goodjets[1]).M();
+  }
+
   else {
-    std::cout << "Invalid variable! Supported variables are njet, dphijj" << std::endl;
+    std::cout << "Invalid variable! Supported variables are njet, jetpt0, jetpt1, dphijj, mjj" << std::endl;
     return -9999.0;
   }
 }

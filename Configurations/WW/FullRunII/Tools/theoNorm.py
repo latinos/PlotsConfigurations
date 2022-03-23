@@ -17,15 +17,27 @@ diffVar = sys.argv[1]
 if diffVar == "inclusive":
     shortname = "incl"
     nbins = 1
-if diffVar == "njets":
+elif diffVar == "njets":
     shortname = "njet"
     nbins = 4
-if diffVar == "dphijj":
+elif diffVar == "dphijj":
     shortname = "dphijj"
     nbins = 14
-if diffVar == "leadlepPT":
+elif diffVar == "leadlepPT":
     shortname = "leadlepPT"
     nbins = 13
+elif diffVar == "mjj":
+    shortname = "mjj"
+    nbins = 12
+elif diffVar == "jetpt0":
+    shortname = "jetpt0"
+    nbins = 12
+elif diffVar == "jetpt1":
+    shortname = "jetpt1"
+    nbins = 8
+else:
+    print 'Allowed variables are: inclusive, njets, dphijj, mjj, jetpt0, jetpt1, leadlepPT.'
+    exit()
 
 subsamples = ["B%d"%i for i in xrange(nbins)]
 
@@ -41,7 +53,7 @@ for year in ["2016","2017","2018"]:
 
     filename = "../Full%s_v7/%s/TheoUnc/rootFile/plots_WW%s_v7_%s_TheoUnc.root"%(year,diffVar,year,shortname)
     if not os.path.isfile(filename):
-        print "Warning: %s does not exist. Will not make WWnorm.json for this year."
+        print "Warning: %s does not exist. Will not make WWnorm.json for this year."%(filename)
         continue
 
     f0 = TFile(filename)
@@ -118,7 +130,10 @@ for year in ["2016","2017","2018"]:
                     if '2016' in nfdict: nfdict['2016']["PS_"+ps][sample] = weight
                     if '2017' in nfdict: nfdict['2017']["PS_"+ps][sample] = weight
                 else:
-                    print("'{sample}' : ['{}*(nCleanGenJet==0) + {}*(nCleanGenJet==1) + {}*(nCleanGenJet==2) + {}*(nCleanGenJet>=3)', '{}*(nCleanGenJet==0) + {}*(nCleanGenJet==1) + {}*(nCleanGenJet==2) + {}*(nCleanGenJet>=3)'],".format(*weight,sample=sample))
+                    if doTable:
+                        print("{sample} {} {} {} {} {} {} {} {}".format(*weight,sample=sample))
+                    else:
+                        print("'{sample}' : ['{}*(nCleanGenJet==0) + {}*(nCleanGenJet==1) + {}*(nCleanGenJet==2) + {}*(nCleanGenJet>=3)', '{}*(nCleanGenJet==0) + {}*(nCleanGenJet==1) + {}*(nCleanGenJet==2) + {}*(nCleanGenJet>=3)'],".format(*weight,sample=sample))
 
 for year in ['2016','2017','2018']:
     if year in nfdict:

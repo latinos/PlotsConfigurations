@@ -70,15 +70,32 @@ CleanGenJet::evaluate(unsigned)
   } //end jet loop
 
   if (variable == "njet") return cleanGenJets.size();
+
+  else if (variable == "jetpt0") {
+    if (cleanGenJets.size() < 1) return -9999.0;
+    else return cleanGenJets[0].pt();
+  }
+
+  else if (variable == "jetpt1") {
+    if (cleanGenJets.size() < 2) return -9999.0;
+    else return cleanGenJets[1].pt();
+  }
+
   else if (variable == "dphijj") {
-    if (cleanGenJets.size() < 2) return -1.0;
+    if (cleanGenJets.size() < 2) return -9999.0;
     else {
       float dphijj = cleanGenJets[0].eta() > cleanGenJets[1].eta() ? TVector2::Phi_0_2pi(cleanGenJets[0].phi() - cleanGenJets[1].phi()) : TVector2::Phi_0_2pi(cleanGenJets[1].phi() - cleanGenJets[0].phi());
       return dphijj;
     }
   }
+
+  else if (variable == "mjj") {
+    if (cleanGenJets.size() < 2) return -9999.0;
+    else return (cleanGenJets[0]+cleanGenJets[1]).M();
+  }
+
   else {
-    std::cout << "Invalid variable! Supported variables are njet, dphijj" << std::endl;
+    std::cout << "Invalid variable! Supported variables are njet, jetpt0, jetpt1, dphijj, mjj" << std::endl;
     return -9999.0;
   }
 }
