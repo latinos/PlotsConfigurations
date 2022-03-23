@@ -556,10 +556,10 @@ nuisances['QCDscale_WW']  = {
 
 ## Factors computed to renormalize the top scale variations such that the integral is not changed in each RECO jet bin (we have rateParams for that)
 topScaleNormFactors = {
-    '0j' : {'Alt$(LHEScaleWeight[0],1)' : 1.083936, 'Alt$(LHEScaleWeight[1],1)' : 1.073285, 'Alt$(LHEScaleWeight[3],1)' : 1.014385, 'Alt$(LHEScaleWeight[5],1)' : 0.989335, 'Alt$(LHEScaleWeight[7],1)' : 0.931330, 'Alt$(LHEScaleWeight[8],1)' : 0.918210},
-    '1j' : {'Alt$(LHEScaleWeight[0],1)' : 1.097249, 'Alt$(LHEScaleWeight[1],1)' : 1.084610, 'Alt$(LHEScaleWeight[3],1)' : 1.017123, 'Alt$(LHEScaleWeight[5],1)' : 0.987405, 'Alt$(LHEScaleWeight[7],1)' : 0.920448, 'Alt$(LHEScaleWeight[8],1)' : 0.904884},
-    '2j' : {'Alt$(LHEScaleWeight[0],1)' : 1.113319, 'Alt$(LHEScaleWeight[1],1)' : 1.098198, 'Alt$(LHEScaleWeight[3],1)' : 1.020209, 'Alt$(LHEScaleWeight[5],1)' : 0.985052, 'Alt$(LHEScaleWeight[7],1)' : 0.908153, 'Alt$(LHEScaleWeight[8],1)' : 0.889797},
-    '3j' : {'Alt$(LHEScaleWeight[0],1)' : 1.147147, 'Alt$(LHEScaleWeight[1],1)' : 1.119209, 'Alt$(LHEScaleWeight[3],1)' : 1.029732, 'Alt$(LHEScaleWeight[5],1)' : 0.976827, 'Alt$(LHEScaleWeight[7],1)' : 0.895698, 'Alt$(LHEScaleWeight[8],1)' : 0.871071},
+    '0j' : {'Alt$(LHEScaleWeight[0],1)' : 1.084299, 'Alt$(LHEScaleWeight[1],1)' : 1.073612, 'Alt$(LHEScaleWeight[3],1)' : 1.014443, 'Alt$(LHEScaleWeight[5],1)' : 0.989290, 'Alt$(LHEScaleWeight[7],1)' : 0.931072, 'Alt$(LHEScaleWeight[8],1)' : 0.917901},
+    '1j' : {'Alt$(LHEScaleWeight[0],1)' : 1.097258, 'Alt$(LHEScaleWeight[1],1)' : 1.084600, 'Alt$(LHEScaleWeight[3],1)' : 1.017115, 'Alt$(LHEScaleWeight[5],1)' : 0.987409, 'Alt$(LHEScaleWeight[7],1)' : 0.920476, 'Alt$(LHEScaleWeight[8],1)' : 0.904929},
+    '2j' : {'Alt$(LHEScaleWeight[0],1)' : 1.113248, 'Alt$(LHEScaleWeight[1],1)' : 1.098188, 'Alt$(LHEScaleWeight[3],1)' : 1.020159, 'Alt$(LHEScaleWeight[5],1)' : 0.985086, 'Alt$(LHEScaleWeight[7],1)' : 0.908155, 'Alt$(LHEScaleWeight[8],1)' : 0.889831},
+    '3j' : {'Alt$(LHEScaleWeight[0],1)' : 1.146980, 'Alt$(LHEScaleWeight[1],1)' : 1.119150, 'Alt$(LHEScaleWeight[3],1)' : 1.029645, 'Alt$(LHEScaleWeight[5],1)' : 0.976904, 'Alt$(LHEScaleWeight[7],1)' : 0.895730, 'Alt$(LHEScaleWeight[8],1)' : 0.871164},
 }
 
 

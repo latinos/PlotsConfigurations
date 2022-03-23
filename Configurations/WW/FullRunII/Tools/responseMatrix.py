@@ -16,10 +16,13 @@ if len(sys.argv) < 2:
 
 rootfile = sys.argv[1]
 
-diffvar = 'dphijj'
-nbins = 14
+#### Lines to modify ####
+diffvar = 'jetpt0'    # Differential variable
+nbins = 12            # Number of bins in differential variable
+jetbins = ['1j','2j'] # Number of jet bins (in CR / SR)
+
 genbins = ['B%d'%i for i in range(nbins)]
-recobins = [['ww2l2v_13TeV_sr_B%d'%i] for i in range(nbins)]
+recobins = [['ww2l2v_13TeV_sr_%s_B%d'%(j,i) for j in jetbins] for i in range(nbins)]
 binedges = range(nbins+1)
 
 ######## Extract RM from mkShapes output ########

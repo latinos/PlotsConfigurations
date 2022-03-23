@@ -16,10 +16,10 @@ ulimit -s unlimited
 #########
 
 ### Signal strengths
-#combine -M MultiDimFit --algo singles -t -1 --setParameters r_0=1,r_1=1,r_2=1,r_3=1 -d Full2016_njet.root --X-rtd MINIMIZER_analytic
-#combine -M MultiDimFit --algo singles -t -1 --setParameters r_0=1,r_1=1,r_2=1,r_3=1 -d Full2017_njet.root --X-rtd MINIMIZER_analytic
-#combine -M MultiDimFit --algo singles -t -1 --setParameters r_0=1,r_1=1,r_2=1,r_3=1 -d Full2018_njet.root --X-rtd MINIMIZER_analytic
-#combine -M MultiDimFit --algo singles -t -1 --setParameters r_0=1,r_1=1,r_2=1,r_3=1 -d FullRunII_njet.root --X-rtd MINIMIZER_analytic
+#combine -M MultiDimFit --algo singles -t -1 --setParameters r_0=1,r_1=1,r_2=1,r_3=1 -d Full2016_njet.root --X-rtd MINIMIZER_analytic --robustFit=1 > Full2016_njet.out
+#combine -M MultiDimFit --algo singles -t -1 --setParameters r_0=1,r_1=1,r_2=1,r_3=1 -d Full2017_njet.root --X-rtd MINIMIZER_analytic --robustFit=1 > Full2017_njet.out
+#combine -M MultiDimFit --algo singles -t -1 --setParameters r_0=1,r_1=1,r_2=1,r_3=1 -d Full2018_njet.root --X-rtd MINIMIZER_analytic --robustFit=1 > Full2018_njet.out
+#combine -M MultiDimFit --algo singles -t -1 --setParameters r_0=1,r_1=1,r_2=1,r_3=1 -d FullRunII_njet.root --X-rtd MINIMIZER_analytic --robustFit=1 > FullRunII_njet.out
 
 ### Posterior nuisance parameters / correlations
 #combine -M FitDiagnostics -t -1 --setParameters r_0=1,r_1=1,r_2=1,r_3=1 -d FullRunII_njet.root --X-rtd MINIMIZER_analytic --skipBOnlyFit
@@ -38,10 +38,10 @@ ulimit -s unlimited
 ##########
 
 ### Signal strengths
-#combine -M MultiDimFit --algo singles -t -1 --setParameters r_0=1,r_1=1,r_2=1,r_3=1,r_4=1,r_5=1,r_6=1,r_7=1,r_8=1,r_9=1,r_10=1,r_11=1,r_12=1,r_13=1 -d Full2016_dphijj.root --X-rtd MINIMIZER_analytic
-#combine -M MultiDimFit --algo singles -t -1 --setParameters r_0=1,r_1=1,r_2=1,r_3=1,r_4=1,r_5=1,r_6=1,r_7=1,r_8=1,r_9=1,r_10=1,r_11=1,r_12=1,r_13=1 -d Full2017_dphijj.root --X-rtd MINIMIZER_analytic
-#combine -M MultiDimFit --algo singles -t -1 --setParameters r_0=1,r_1=1,r_2=1,r_3=1,r_4=1,r_5=1,r_6=1,r_7=1,r_8=1,r_9=1,r_10=1,r_11=1,r_12=1,r_13=1 -d Full2018_dphijj.root --X-rtd MINIMIZER_analytic
-#combine -M MultiDimFit --algo singles -t -1 --setParameters r_0=1,r_1=1,r_2=1,r_3=1,r_4=1,r_5=1,r_6=1,r_7=1,r_8=1,r_9=1,r_10=1,r_11=1,r_12=1,r_13=1 -d FullRunII_WW_dphijj.root --X-rtd MINIMIZER_analytic
+#combine -M MultiDimFit --algo singles -t -1 --setParameters r_0=1,r_1=1,r_2=1,r_3=1,r_4=1,r_5=1,r_6=1,r_7=1,r_8=1,r_9=1,r_10=1,r_11=1,r_12=1,r_13=1 -d Full2016_dphijj.root --X-rtd MINIMIZER_analytic > Full2016_dphijj.out
+#combine -M MultiDimFit --algo singles -t -1 --setParameters r_0=1,r_1=1,r_2=1,r_3=1,r_4=1,r_5=1,r_6=1,r_7=1,r_8=1,r_9=1,r_10=1,r_11=1,r_12=1,r_13=1 -d Full2017_dphijj.root --X-rtd MINIMIZER_analytic > Full2017_dphijj.out
+#combine -M MultiDimFit --algo singles -t -1 --setParameters r_0=1,r_1=1,r_2=1,r_3=1,r_4=1,r_5=1,r_6=1,r_7=1,r_8=1,r_9=1,r_10=1,r_11=1,r_12=1,r_13=1 -d Full2018_dphijj.root --X-rtd MINIMIZER_analytic > Full2018_dphijj.out
+#combine -M MultiDimFit --algo singles -t -1 --setParameters r_0=1,r_1=1,r_2=1,r_3=1,r_4=1,r_5=1,r_6=1,r_7=1,r_8=1,r_9=1,r_10=1,r_11=1,r_12=1,r_13=1 -d FullRunII_WW_dphijj.root --X-rtd MINIMIZER_analytic > FullRunII_dphijj.out
 
 ### Posterior nuisance parameters / correlations
 #combine -M FitDiagnostics -t -1 --setParameters r_0=1,r_1=1,r_2=1,r_3=1,r_4=1,r_5=1,r_6=1,r_7=1,r_8=1,r_9=1,r_10=1,r_11=1,r_12=1,r_13=1 -d FullRunII_WW_dphijj.root --X-rtd MINIMIZER_analytic --skipBOnlyFit

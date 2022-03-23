@@ -16,6 +16,19 @@ btagWP = '0.2783'
 eleWP = 'mvaFall17V1Iso_WP90_tthmva_70'
 muWP = 'cut_Tight_HWWW_tthmva_80'
 
+aliases['zeroJet'] = {
+    'expr': 'Alt$(CleanJet_pt[0], 0) < 30.'
+}
+
+aliases['oneJet'] = {
+    'expr': 'Alt$(CleanJet_pt[0],0) > 30 && Alt$(CleanJet_pt[1],0) < 30'
+}
+
+aliases['multiJet'] = {
+    'expr': 'Alt$(CleanJet_pt[0],0) > 30 && Alt$(CleanJet_pt[1],0) > 30'
+}
+
+
 aliases['LepWPCut'] = {
     'expr': 'LepCut2l__ele_'+eleWP+'__mu_'+muWP,
     'samples': mc + ['DATA']
@@ -131,21 +144,7 @@ aliases['bReq'] = {
 # CR definitions
 
 aliases['topcr'] = {
-    'expr': 'mtw2>30 && mll>50 && ((Sum$(CleanJet_pt > 30.) == 0 && !bVeto) || bReq)'
-}
-
-aliases['dycr'] = {
-    'expr': 'mth<60 && mll>40 && mll<80 && bVeto'
-}
-
-aliases['wwcr'] = {
-    'expr': 'mth>60 && mtw2>30 && mll>100 && bVeto'
-}
-
-# SR definition
-
-aliases['sr'] = {
-    'expr': 'mth>60 && mtw2>30 && bVeto'
+    'expr': '(ptll>30. && ((Sum$(CleanJet_pt > 30.) == 0 && !bVeto) || bReq))'
 }
 
 # B tag scale factors
@@ -286,17 +285,17 @@ aliases['fid'] = {
     'samples' : ['WW','ggWW']
 }
 
-aliases['BDTOutput_0j'] = {
+aliases['BDTOutput_0j_Top'] = {
     'class': 'ww_top_bdt_0j',
     'linesToAdd' : ['.L %s/WW/FullRunII/Full2018_v7/inclusive/WW_BDT_0j.cc+' % configurations],
 }
 
-aliases['BDTOutput_1j'] = {
+aliases['BDTOutput_1j_Top'] = {
     'class': 'ww_top_bdt_1j',
     'linesToAdd' : ['.L %s/WW/FullRunII/Full2018_v7/inclusive/WW_BDT_1j.cc+' % configurations],
 }
 
-aliases['BDTOutput_2j'] = {
+aliases['BDTOutput_2j_Top'] = {
     'class': 'ww_top_bdt_2j',
     'linesToAdd' : ['.L %s/WW/FullRunII/Full2018_v7/inclusive/WW_BDT_2j.cc+' % configurations],
 }

@@ -19,6 +19,14 @@ def nanoGetSampleFiles(inputDir, sample):
 
     return getSampleFiles(inputDir, sample, True, 'nanoLatino_')
 
+def getBaseWFast(mcDir, mcProd, sampleList):
+    try:
+        if _samples_noload:
+            return 'baseW'
+    except NameError:
+        pass
+    return getBaseWnAOD(mcDir, mcProd, sampleList)
+
 # samples
 
 try:
@@ -111,7 +119,7 @@ samples['DY'] = {
     'FilesPerJob': 8,
 }
 
-DYbaseW = getBaseWnAOD(mcDirectory, mcProduction, ['DYJetsToTT_MuEle_M-50', 'DYJetsToTT_MuEle_M-50_ext1'])
+DYbaseW = getBaseWFast(mcDirectory, mcProduction, ['DYJetsToTT_MuEle_M-50', 'DYJetsToTT_MuEle_M-50_ext1'])
 
 addSampleWeight(samples,'DY','DYJetsToTT_MuEle_M-50',     'DY_NLO_pTllrw*'+DYbaseW+'/baseW')
 addSampleWeight(samples,'DY','DYJetsToTT_MuEle_M-50_ext1','DY_NLO_pTllrw*'+DYbaseW+'/baseW')
@@ -155,7 +163,7 @@ samples['Zg'] = {
     'FilesPerJob': 8
 }
 
-ZGbaseW = getBaseWnAOD(mcDirectory, mcProduction, ['Zg', 'Zg_ext1'])
+ZGbaseW = getBaseWFast(mcDirectory, mcProduction, ['Zg', 'Zg_ext1'])
 
 addSampleWeight(samples,'Zg','Zg',      ZGbaseW+'/baseW')
 addSampleWeight(samples,'Zg','Zg_ext1', ZGbaseW+'/baseW')
@@ -185,7 +193,7 @@ samples['WgS'] = {
     'FilesPerJob': 8,
 }
 
-WZbaseW = getBaseWnAOD(mcDirectory, mcProduction, ['WZTo3LNu_mllmin01', 'WZTo3LNu_mllmin01_ext1'])
+WZbaseW = getBaseWFast(mcDirectory, mcProduction, ['WZTo3LNu_mllmin01', 'WZTo3LNu_mllmin01_ext1'])
 
 addSampleWeight(samples, 'WgS', 'Wg_MADGRAPHMLM', '(Gen_ZGstar_mass > 0 && Gen_ZGstar_mass < 0.1)')
 addSampleWeight(samples, 'WgS', 'WZTo3LNu_mllmin01',      '(Gen_ZGstar_mass > 0.1)*'+WZbaseW+'/baseW')
@@ -220,8 +228,8 @@ samples['ZZ'] = {
     'FilesPerJob': 4
 }
 
-ZZ2LbaseW = getBaseWnAOD(mcDirectory, mcProduction, ['ZZTo2L2Nu', 'ZZTo2L2Nu_ext1'])
-ZZ4LbaseW = getBaseWnAOD(mcDirectory, mcProduction, ['ZZTo4L', 'ZZTo4L_ext1'])
+ZZ2LbaseW = getBaseWFast(mcDirectory, mcProduction, ['ZZTo2L2Nu', 'ZZTo2L2Nu_ext1'])
+ZZ4LbaseW = getBaseWFast(mcDirectory, mcProduction, ['ZZTo4L', 'ZZTo4L_ext1'])
 
 addSampleWeight(samples, 'ZZ', 'ZZTo2L2Nu',      ZZ2LbaseW+'/baseW')
 addSampleWeight(samples, 'ZZ', 'ZZTo2L2Nu_ext1', ZZ2LbaseW+'/baseW')
