@@ -140,9 +140,14 @@ aliases['DY_LO_pTllrw'] = {
 ### Total SFs, i.e. ttHMVA+old lepton SFs ###
 #############################################
 
+aliases['SFweight2lAlt'] = {
+    'expr'   : 'puWeight*TriggerAltEffWeight_2l*Lepton_RecoSF[0]*Lepton_RecoSF[1]*EMTFbug_veto',
+    'samples': mc
+}
+
 # data/MC scale factors
 aliases['SFweight'] = {
-    'expr': ' * '.join(['SFweight2l', 'LepSF2l__ele_' + eleWP + '__mu_' + muWP, 'LepWPCut','Jet_PUIDSF_loose']),
+    'expr': ' * '.join(['SFweight2lAlt', 'LepSF2l__ele_' + eleWP + '__mu_' + muWP, 'LepWPCut','Jet_PUIDSF_loose']),
     'samples': mc
 }
 
