@@ -301,6 +301,57 @@ for js in jes_systs:
   }
 
 ##### Jet energy resolution
+
+##CR dictionaries
+WWdic = {'WW':['1.055767476','0.9188079875'], 'top': ['1.009986818','0.9943685377']}
+dyttdic = {'top': ['1.015037512','0.9931574724']}
+topdic = {'WW':['1.072977923','0.9716781657'], 'top': ['0.9833770431','1.018976536'], 'VZ':['1.064654759','0.9943710906']}
+
+##SR dictionaries
+vbfdic = {'WW':['1.074287190','0.9438125605'], 'top': ['1.015192491','0.9807139066']}
+vbfdic.update(dict((skey, ['0.976459288', '1.028667918']) for skey in qqhAC))
+vbfdic.update(dict((skey, ['1.056837423','0.9146273253']) for skey in gghAC))
+
+vhdic = {'top': ['0.9803292691','0.9945667245']}
+vhdic.update(dict((skey, ['0.9789657795', '1.043034875']) for skey in whAC))
+vhdic.update(dict((skey, ['0.9979158124','1.026264064']) for skey in zhAC))
+
+gghtdic = {'WW':['1.095336164','0.9273242515'], 'top': ['1.036151827','0.9767741911']}
+gghtdic.update(dict((skey, ['1.090790731', '0.9101950993']) for skey in gghAC))
+gghtdic.update(dict((skey, ['0.9759033595', '1.028580797']) for skey in qqhAC))
+
+gghuntdic = {'WW':['0.9980645','1.0039527'], 'top': ['1.0037805','0.9961219'], 'VZ':['0.9967010','1.0072043']}
+gghuntdic.update(dict((skey, ['0.9975080', '1.0051925']) for skey in gghAC))
+gghuntdic.update(dict((skey, ['0.9983457', '1.0079377']) for skey in qqhAC))
+#gghuntdic.update(dict((skey, ['0.9979255', '0.9950424']) for skey in zhAC))
+#gghuntdic.update(dict((skey, ['0.9983327', '1.0023855']) for skey in whAC))
+
+key_dic = {
+	'hww2l2v_13TeV_WW_of2j':WWdic,
+	'hww2l2v_13TeV_of2j_ggh_t':gghtdic,
+	'hww2l2v_13TeV_of2j_vbf':vbfdic,
+	'hww2l2v_13TeV_of2j_vbf_hmin':vbfdic,
+	'hww2l2v_13TeV_of2j_vbf_hmip':vbfdic,
+	'hww2l2v_13TeV_of2j_vbf_hpin':vbfdic,
+	'hww2l2v_13TeV_of2j_vbf_hpip':vbfdic,
+        'hww2l2v_13TeV_of2j_vh':vhdic, 
+	'hww2l2v_13TeV_of2j_vh_hmin':vhdic, 
+	'hww2l2v_13TeV_of2j_vh_hmip':vhdic, 
+	'hww2l2v_13TeV_of2j_vh_hpin':vhdic, 
+	'hww2l2v_13TeV_of2j_vh_hpip':vhdic,
+	'hww2l2v_13TeV_dytt_of2j':dyttdic,
+	'hww2l2v_13TeV_top_of2j':topdic,
+	'hww2l2v_13TeV_of2j_ggh_untagged':gghuntdic,
+} 
+for key,dic in key_dic:
+  nuisances['JER'+'_'+key]  = {
+                      'name'  : 'CMS_res_j_2017',
+                      'type'  : 'lnN',
+                      'samples'  : dic,
+                      'cuts': key,
+                     }
+
+
 '''
 nuisances['JER'] = {
     'name': 'CMS_res_j_2017',
