@@ -24,7 +24,7 @@ groupPlot['Fake']  = {
                   'nameHR' : 'nonprompt',
                   'isSignal' : 0,
                   'color': 921,    # kGray + 1
-                  'samples'  : ['Fake_me', 'Fake_em']
+                  'samples'  : ['Fake_me', 'Fake_em', 'Fake']
 }
 
 groupPlot['VV']  = {  
@@ -39,7 +39,7 @@ groupPlot['DY']  = {
                   'isSignal' : 0,
                   'color': 418,    # kGreen+2
                   'samples'  : ['DY', 'Dyemb'],
-                  'scale'    : 1,               
+                  'scale'    : 0.77,               
               }
 
 '''
@@ -101,6 +101,8 @@ groupPlot['HSM']  = {
                   'color': 632,
                   'samples'  : ['H0PM','ZH_H0PM','WH_H0PM','VBF_H0PM','ggH_htt','qqH_htt','ZH_htt','WH_htt']
               }
+#                  'samples'  : ['H0PM','ZH_H0PM','WH_H0PM','VBF_H0PM','ggH_htt','ZH_htt','WH_htt']
+
 
 '''
 groupPlot['HBSM']  = {
@@ -160,7 +162,12 @@ plot['Fake_em']  = {
                   'scale'    : 1.0                  
               }
 
-              
+plot['Fake']  = {
+                  'color': 921,    # kGray + 1
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0
+              }        
 plot['top'] = {   
                   'nameHR' : 'tW and t#bar{t}',
                   'color': 400,   # kYellow
@@ -269,7 +276,7 @@ plot['qqH_htt'] = {
                   'isData'   : 0,    
                   'scale'    : 1    #
                   }
-
+	
 
 plot['ggH_htt'] = {
                   'nameHR' : 'ggHtt',
@@ -429,8 +436,9 @@ plot['DATA']  = {
 
 # additional options
 
-legend['lumi'] = 'L =  35.867/fb'
-
+legend['lumi'] = 'L =  36.33/fb'
+#legend['lumi'] = 'L =  41.5/fb'
+#legend['lumi'] = 'L =  59.7/fb'
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
 
 

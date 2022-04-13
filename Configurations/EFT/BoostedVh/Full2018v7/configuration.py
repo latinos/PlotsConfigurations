@@ -1,7 +1,7 @@
 # example of configuration file
 treeName= 'Events'
 
-tag = 'JJH18B'
+tag = 'JJH18BDipoleRecoil'
 
 # used by mkShape to define output directory for root files
 #outputDir = 'rootFile'+tag
@@ -35,6 +35,6 @@ structureFile = 'structure.py'
 
 
 # nuisances file for mkDatacards and for mkShape
-nuisancesFile = 'nuisances.py'
+nuisancesFile = 'nuisances_short.py'
 
 

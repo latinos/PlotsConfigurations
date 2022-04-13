@@ -52,6 +52,7 @@ for k in cuts:
 #    'type': 'lnN',
 #    'samples': dict((skey, '1.025') for skey in mc if skey not in ['WW', 'top', 'DY'])
 #}
+
 nuisances['lumi_Uncorrelated'] = {
     'name': 'lumi_13TeV_2016',
     'type': 'lnN',
@@ -216,6 +217,14 @@ if useEmbeddedDY:
     'AsLnN': '1'
   }
 '''
+if useEmbeddedDY:
+  nuisances['electronpt_emb'] = {
+    'name': 'CMS_scale_e_2016',
+    'kind': 'suffix',
+    'type': 'shape',
+    'samples': {'Dyemb': ['1.006', '1.003']},
+    'AsLnN': '1'
+  }
 ##### Muon Efficiency and energy scale
 
 nuisances['eff_m'] = {
@@ -247,8 +256,19 @@ nuisances['muonpt'] = {
     'folderDown': 'root://eoscms.cern.ch/'+makeMCDirectory('trigFix__MupTdo_suffix'),
     'AsLnN': '1'
 }
+
 #DM
 '''
+#Lourdes
+EmbDicMuUp = { 	'hww2l2v_13TeV_of2j_vbf':'1.000090880',
+		'hww2l2v_13TeV_of2j_vh':'1.000000000',
+		'hww2l2v_13TeV_WW_of2j':'1.000000000',
+		'hww2l2v_13TeV_top_of2j':'1.003798413',
+		'hww2l2v_13TeV_dytt_of2j':'1.001579323',
+		'hww2l2v_13TeV_of2j_ggh_t':'1.000443149',
+		'hww2l2v_13TeV_of2j_ggh_untagged':'1.004532644',			
+	}
+
 if useEmbeddedDY:
   nuisances['muonpt_emb'] = {
     'name': 'CMS_scale_m_2016',
@@ -262,7 +282,16 @@ if useEmbeddedDY:
     'AsLnN': '1'
   }
 '''
+if useEmbeddedDY:
+  nuisances['muonpt_emb'] = {
+    'name': 'CMS_scale_m_2016',
+    'kind': 'suffix',
+    'type': 'shape',
+    'samples': {'Dyemb': ['1.005', '1.004']}, #https://docs.google.com/spreadsheets/d/1VQiHo4aTBSL-kciuGS6DE81ueK5s8e3ddVA6WW7p9uE/edit#gid=0
+    'AsLnN': '1'
+  }
 ##### Jet energy scale
+
 jes_systs = ['JESAbsolute','JESAbsolute_2016','JESBBEC1','JESBBEC1_2016','JESEC2','JESEC2_2016','JESFlavorQCD','JESHF','JESHF_2016','JESRelativeBal','JESRelativeSample_2016']
 folderup = ""
 folderdo = ""
@@ -596,6 +625,8 @@ topScaleNormFactors2j = {'LHEScaleWeight[3]': 1.01676762423417, 'LHEScaleWeight[
 
 topvars2j.append('Alt$(LHEScaleWeight[0], 1.)/'+str(topScaleNormFactors2j['LHEScaleWeight[0]']))
 topvars2j.append('Alt$(LHEScaleWeight[8], 1.)/'+str(topScaleNormFactors2j['LHEScaleWeight[8]']))
+
+#
 '''
 topScaleNormFactors2j = {'Alt$(LHEScaleWeight[3],1)': 1.0239541358390016, 'Alt$(LHEScaleWeight[0],1)': 1.125869020564376, 'Alt$(LHEScaleWeight[1],1)': 1.105896547188302, 'Alt$(LHEScaleWeight[7],1)': 0.9037581174447249, 'Alt$(LHEScaleWeight[8],1)': 0.8828417179568193, 'Alt$(LHEScaleWeight[5],1)': 0.981806136304384}
 
@@ -690,11 +721,11 @@ nuisances['EWKcorr_WW'] = {
     'kind': 'weight',
     'type': 'shape',
     'samples': {
-        'WW': ['1.', '1./ewknloW']
+        'WW': ['2. - 1./ewknloW', '1./ewknloW']
     },
-    'symmetrize' : True,
 }
-
+#    'symmetrize' : True,
+#'WW': ['1.', '1./ewknloW']
 # Uncertainty on SR/CR ratio
 nuisances['CRSR_accept_DY'] = {
     'name': 'CMS_hww_CRSR_accept_DY',
@@ -931,4 +962,3 @@ for n in nuisances.values():
     n['skipCMS'] = 1
 
 print ' '.join(nuis['name'] for nname, nuis in nuisances.iteritems() if nname not in ('lumi', 'stat'))
-

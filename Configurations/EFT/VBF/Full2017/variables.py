@@ -112,23 +112,25 @@ variables['mll_1'] = { 'name' : 'mll',
                      'xaxis': 'm_{ll}',
                      'fold' : 3 
                    }
-'''
+
 variables['mll'] = { 'name' : 'mll',
                      'range': ([10,40,76.2,210],),
                      'xaxis': 'm_{ll}',
                      'fold' : 3
                    }
+'''
 variables['events']  = {   'name': '1',
                         'range' : (1,0,2),
                         'xaxis' : 'events',
                          'fold' : 3
                         }
+'''
 variables['mth'] = { 'name' : 'mth',
                      'range': (20,0,200),
                      'xaxis': 'm_{T}^{H}',
                      'fold' : 3
                    }
-
+'''
 ####################################
 def DeclareKD3D(KDName,Xaxis, mainvar,mainbinning,sub1var,sub1binning,sub2var,sub2binning, Cuts):
 
@@ -218,7 +220,7 @@ DeclareKD3D('vbf_hlzg','D_{VBF 0^{#Lambda_{1}^{Z#gamma}}}', 'kd_vbf',[0.0,0.5,0.
 #['hww2l2v_13TeV_top_of2j','hww2l2v_13TeV_dytt_of2j','hww2l2v_13TeV_of2j_vbf'])
 
 ############ VBF KD ############## 
-
+'''
 variables['kd_vbf'] = { 'name' : 'kd_vbf',
                        'range': (10,0,1),
                        'xaxis': 'D_{VBF}',
@@ -495,7 +497,7 @@ variables['kd2d_ggh_hm'] = { 'name': 'kd_ggh_hm:mll',
 
 #DeclareKD3D('ggh_hm_1','D_{ggH 0^{-}}', 'kd_ggh',[0.5,0.75,1],'mll',[10,35,55,76.2,210],'kd_ggh_hm',[0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1],
 #['hww2l2v_13TeV_top_of2j','hww2l2v_13TeV_dytt_of2j', 'hww2l2v_13TeV_of2j_ggh_t','hww2l2v_13TeV_of2j_ggh_thmip','hww2l2v_13TeV_of2j_ggh_thmin'])
-
+'''
 #OPTION 2
 DeclareKD3D('ggh_hm','D_{ggH 0^{-}}', 'kd_ggh',[0.0,0.5,0.75,1],'mll',[10,40,76.2,210],'kd_ggh_hm',[0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1],
 ['hww2l2v_13TeV_top_of2j','hww2l2v_13TeV_dytt_of2j', 'hww2l2v_13TeV_of2j_ggh_t','hww2l2v_13TeV_of2j_ggh_thmip','hww2l2v_13TeV_of2j_ggh_thmin'])
@@ -505,3 +507,4 @@ DeclareKD3D('ggh_hm','D_{ggH 0^{-}}', 'kd_ggh',[0.0,0.5,0.75,1],'mll',[10,40,76.
 
 #DeclareKD3D('ggh_hm_4','D_{ggH 0^{-}}', 'kd_ggh',[0.0,0.5,0.75,1],'mll',[10,40,76.2],'kd_ggh_hm',[0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1],
 #['hww2l2v_13TeV_top_of2j','hww2l2v_13TeV_dytt_of2j','hww2l2v_13TeV_of2j_ggh_l','hww2l2v_13TeV_of2j_ggh_lhmip','hww2l2v_13TeV_of2j_ggh_lhmin'])
+

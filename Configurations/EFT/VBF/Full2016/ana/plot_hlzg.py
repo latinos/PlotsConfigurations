@@ -24,7 +24,7 @@ groupPlot['Fake']  = {
                   'nameHR' : 'nonprompt',
                   'isSignal' : 0,
                   'color': 921,    # kGray + 1
-                  'samples'  : ['Fake_me', 'Fake_em']
+                  'samples'  : ['Fake_me', 'Fake_em', 'Fake']
 }
 
 groupPlot['VV']  = {  
@@ -103,7 +103,7 @@ groupPlot['VBF']  = {
 #              }
 
 
-scale=10
+scale=1
 
 # Mix of a1=1 (SM) + a2=-7500 (gZZ=-7613,gWW_VBF=-4091)
 groupPlot['HBSM']  = { 
@@ -179,7 +179,12 @@ plot['Fake_em']  = {
                   'isData'   : 0,
                   'scale'    : 1.0                  
               }
-
+plot['Fake']  = {
+                  'color': 921,    # kGray + 1
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0
+              }
               
 plot['top'] = {   
                   'nameHR' : 'tW and t#bar{t}',
@@ -494,7 +499,7 @@ plot['DATA']  = {
 
 # additional options
 
-legend['lumi'] = 'L =  35.867/fb'
+legend['lumi'] = 'L =  36.33/fb'
 
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
 

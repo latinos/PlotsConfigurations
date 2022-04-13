@@ -32,8 +32,8 @@ cons = {"VBF_H0M" : 0.29797901870, "VBF_H0PH" : 0.27196538, "VBF_H0L1" : -2158.2
         "ggHjj_H0M" : 1.0062 
        }
 
-#suffix="_2"
 suffix=""
+MCStats="OFF"
 
 ########## Split Scalings such that templates have a significant normalisation for combine 
 
@@ -72,20 +72,19 @@ print "- For each analysis channel we should check which templates are negative"
 print "- They are added to lists (NegList.py) and forced positive -- Must be taken into account in Signal Model! "
 
 ###################################################################
-year = "17"
+year = "16B"
 _year = "_"+year
-MCStats="OFF"
 
 src = "rootFileJJH"+year+"/plots_JJH"+year+".root"
-dst = "rootFileJJH"+year+"/plots_JJH"+year+"_AC_MCStats"+MCStats+suffix+".root"
+dst = "rootFileJJH"+year+"/plots_JJH"+year+"SF_AC_MCStats"+MCStats+suffix+".root"
 
 #DM In the following logic htt is assumed to be suppressed - not treated as AC signal
 
-othertemp_hvv = ['DATA','WW','WWewk','ggWW','top','DY','Dyemb','Vg','VgS_L','VgS_H','VZ','VVV','Fake_em','Fake_me','ggH_htt','qqH_htt','ZH_htt','WH_htt'] 
+othertemp_hvv = ['DATA','WW','WWewk','ggWW','top','DY','Dyemb','Vg','VgS_L','VgS_H','VZ','VVV','Fake_em','Fake_me','Fake','ggH_htt','qqH_htt','ZH_htt','WH_htt', 'ggH_hww'] 
 
-othertemp_hlzg = ['DATA','WW','WWewk','ggWW','top','DY','Dyemb','Vg','VgS_L','VgS_H','VZ','VVV','Fake_em','Fake_me','ggH_htt','qqH_htt','ZH_htt','WH_htt','WH_hww','ggH_hww'] #DM Should I use AC samples here for gghww and whww?
+othertemp_hlzg = ['DATA','WW','WWewk','ggWW','top','DY','Dyemb','Vg','VgS_L','VgS_H','VZ','VVV','Fake_em','Fake_me','Fake','ggH_htt','qqH_htt','ZH_htt','WH_htt','WH_hww','ggH_hww'] #DM Should I use AC samples here for gghww and whww?
 
-othertemp_hgg = ['DATA','WW','WWewk','ggWW','top','DY','Dyemb','Vg','VgS_L','VgS_H','VZ','VVV','Fake_em','Fake_me','ggH_htt','qqH_htt','ZH_htt','WH_htt','qqH_hww','WH_hww','ZH_hww']
+othertemp_hgg = ['DATA','WW','WWewk','ggWW','top','DY','Dyemb','Vg','VgS_L','VgS_H','VZ','VVV','Fake_em','Fake_me','Fake','ggH_htt','qqH_htt','ZH_htt','WH_htt','qqH_hww','WH_hww','ZH_hww']
 
 if os.path.exists(dst):
     os.remove(dst)
@@ -107,20 +106,10 @@ print " "
 
 ###################################################
 def setSigStatTo0(Cat, Var, Prod, AC):
- #print("prod", Prod)
- #if Prod is "ggH_" or "ggHjj_": 
- # print("or here")
- # NT = 3
- #else:
- # print("you are selecting NT = 5")
- # NT = 5
- if Prod is "ggH_" or Prod is "ggHjj_" : 
-  #print("or here")
-  NT = 3
- else :
-  #print("NT5")              
-  NT = 5
 
+ if Prod is "ggH_" : NT = 1
+ else :              NT = 5
+ 
  if Prod is "ggHjj_" :
   vertex = "HGG"
   othertemp = othertemp_hgg
@@ -154,14 +143,17 @@ def AddOtherTemplates(Cat, Var, Prod, AC):
   print " ", Cat, Var
   print " " 
 
- if Prod is "ggHjj_" or Prod is "ggHjj_" :
+ if Prod is "ggHjj_" :
   vertex = "HGG"
   othertemp = othertemp_hgg
  else :
   vertex = "HVV"
-  othertemp = othertemp_hvv
-
- if AC is "H0LZg" : othertemp = othertemp_hlzg
+  othertemp = othertemp_hvv	
+  #print("YOU ARE HERE SELECTED ADDOTHER TEMPLATES VERTEX HVV")
+ #print ("your AC is ", AC ) 
+ if AC is "H0LZg" : 
+   othertemp = othertemp_hlzg
+   #print("You are here")
 
  f = ROOT.TFile.Open(''+src+'', 'read')
 
@@ -184,12 +176,14 @@ def AddOtherTemplates(Cat, Var, Prod, AC):
       if h.Integral() < 0 : #DM combine wont take negative pdfs (OK for jjH ana but should implement better fix for this!!)
        h.Scale(0)
        if Verbose is True : print "Setting to 0 : ", h.GetName(), Cat, Var 
-      if AC is "H0LZg" :  #DM Set names such that templates are scaled by Mu*Fa1 in signal model
+      if AC is "H0LZg" or vertex is "HVV":  #DM Set names such that templates are scaled by Mu*Fa1 in signal model
+      #if AC is "H0LZg":
        if "WH_hww" in h.GetName() : 
         name = h.GetName() 
         name = name.replace("WH_hww","WH_T1")
         h.SetName(name)
-       if "ggH_hww" in h.GetName() :
+       if "ggH_hww" in h.GetName() : #I took this line of of the H0LZg loop for the boosted analysis
+        #print("Changing the name of ggh_hww to ggh_T1")
         name = h.GetName() 
         name = name.replace("ggH_hww","ggH_T1")
         h.SetName(name)
@@ -266,6 +260,67 @@ def getSumOfRWHVVSamples(f, BaseN, Hyp, Sys):
    Sum.SetBinError(i, e)
 
  return Sum
+
+#############################################
+
+def getPWGSF_notused(f, Cat, Var, Prod):
+
+ jhu = f.Get("hww2l2v_13TeV_"+Cat+"/"+Var+"/histo_"+Prod+"H0PM") 
+
+ if   Prod is "VBF_"   : 
+  jhu = f.Get("hww2l2v_13TeV_"+Cat+"/"+Var+"/histo_"+Prod+"H0PM") 
+  pwg = f.Get("hww2l2v_13TeV_"+Cat+"/"+Var+"/histo_qqH_hww")
+ elif Prod is "WH_" or  Prod is "ZH_"   : 
+  if "vbf" in Cat : 
+   jhu = f.Get("hww2l2v_13TeV_of2j_vh/events/histo_"+Prod+"H0PM") 
+   pwg = f.Get("hww2l2v_13TeV_of2j_vh/events/histo_"+Prod+"hww")
+  else :
+   jhu = f.Get("hww2l2v_13TeV_"+Cat+"/"+Var+"/histo_"+Prod+"H0PM") 
+   pwg = f.Get("hww2l2v_13TeV_"+Cat+"/"+Var+"/histo_"+Prod+"hww")
+ elif Prod is "ggHjj_" : 
+  jhu = f.Get("hww2l2v_13TeV_"+Cat+"/"+Var+"/histo_GGHjj_H0PM") 
+  pwg = f.Get("hww2l2v_13TeV_"+Cat+"/"+Var+"/histo_ggH_hww")
+ elif Prod is "ggH_"   : 
+  jhu = f.Get("hww2l2v_13TeV_"+Cat+"/"+Var+"/histo_H0PM") 
+  pwg = f.Get("hww2l2v_13TeV_"+Cat+"/"+Var+"/histo_ggH_hww")
+ else : "Prod not recognised by getPWGSF"
+
+ scale =  pwg.Integral()/jhu.Integral()
+
+ return scale
+
+######################################
+
+def getPWGSF(f, Cat, Var, Prod):
+
+ if Prod is "VBF_"   :
+   jhu = f.Get("hww2l2v_13TeV_of2j_vbf/events/histo_"+Prod+"H0PM")
+   pwg = f.Get("hww2l2v_13TeV_of2j_vbf/events/histo_qqH_hww")
+   print pwg.Integral()
+ elif Prod is "WH_" or  Prod is "ZH_"  :
+   jhu = f.Get("hww2l2v_13TeV_of2j_Vh/events/histo_"+Prod+"H0PM")
+   pwg = f.Get("hww2l2v_13TeV_of2j_Vh/events/histo_"+Prod+"hww")
+ else : "Prod not recognised by getPWGSF"
+
+# XSECxBR correction for mH = 125.38
+ if   Prod is "VBF_" :   pwg.Scale(1.03621)
+ elif Prod is "WH_" :    pwg.Scale(1.01724)
+ elif Prod is "ZH_" :    pwg.Scale(1.01994)
+ # VBF Dipole correction 
+ if Prod is "VBF_" :
+  if "vbf" in cat   : pwg.Scale(1.08)
+  elif "Vh"  in cat : pwg.Scale(1.54)
+
+ scale =  pwg.Integral()/jhu.Integral()
+ if pwg.Integral()==0 : scale = 1
+
+# if 'top' in Cat or 'dytt' in Cat or 'WW' in Cat : scale = 1.0
+
+ print ("pwg.Integral()", pwg.Integral(), "jhu.Integral()", jhu.Integral())
+
+ return scale
+
+############################################
 
 def getSumOfRWHGGSamples(f, BaseN, Hyp, Sys): 
 
@@ -373,6 +428,16 @@ def create2VIntTemplates(Cat, Var, Prod, AC, Sys, Test):
  M2 = getSumOfRWHVVSamples(f, BaseN, AC+"_M2",Sys)
  M3 = getSumOfRWHVVSamples(f, BaseN, AC+"_M3",Sys)
  
+ PWG_SF = getPWGSF(f, Cat, Var, Prod)
+
+ print  Cat, Var, Prod, PWG_SF
+
+ SM.Scale(PWG_SF)
+ M0.Scale(PWG_SF)
+ M1.Scale(PWG_SF)
+ M2.Scale(PWG_SF)
+ M3.Scale(PWG_SF)
+
  if MCForThisAC is True :
   SM_Org  = f.Get(''+BaseN+'H0PM'+Sys+'')
   BSM_Org = f.Get(''+BaseN+AC+Sys+'')
@@ -386,6 +451,9 @@ def create2VIntTemplates(Cat, Var, Prod, AC, Sys, Test):
   SM_Org.SetLineWidth(2)
   BSM_Org.SetLineWidth(2)
   f05_Org.SetLineWidth(2)
+  SM_Org.Scale(PWG_SF)
+  BSM_Org.Scale(PWG_SF)
+  f05_Org.Scale(PWG_SF)
 
  f.Close()
 
@@ -705,6 +773,14 @@ def create1VIntTemplates(Cat, Var, Prod, AC, Sys, Test):
   SM  = getSumOfRWHVVSamples(f, BaseN, "H0PM",  Sys)
   BSM = getSumOfRWHVVSamples(f, BaseN, AC,      Sys)
   f05 = getSumOfRWHVVSamples(f, BaseN, AC+"f05",Sys)
+
+ PWG_SF = getPWGSF(f, Cat, Var, Prod)
+
+ print  Cat, Var, Prod, PWG_SF
+
+ SM.Scale(PWG_SF)
+ BSM.Scale(PWG_SF)
+ f05.Scale(PWG_SF)
             
  if MCForThisAC is True :
   SM_Org  = f.Get(''+BaseN+'H0PM'+Sys+'')
@@ -719,6 +795,10 @@ def create1VIntTemplates(Cat, Var, Prod, AC, Sys, Test):
   SM_Org.SetLineWidth(2)
   BSM_Org.SetLineWidth(2)
   f05_Org.SetLineWidth(2)
+
+  SM_Org.Scale(PWG_SF)
+  BSM_Org.Scale(PWG_SF)
+  f05_Org.Scale(PWG_SF)
 
  f.Close()
 
@@ -880,17 +960,19 @@ def create1VIntTemplates(Cat, Var, Prod, AC, Sys, Test):
 
 ################### AC Signal Shape Sys #######################################
 
-DoSys=True
+DoSys=False
 DoTest=False
 AddOtherTemps=True
 
-Yr="_2017"
+Yr="_2016"
 #"CMS_btag_cferr1", "CMS_eff_prefiring"+Yr,
-Sys = [ "CMS_btag_cferr1", "CMS_btag_cferr2","CMS_scale_e"+Yr, "CMS_scale_m"+Yr, "CMS_eff_m"+Yr, "CMS_eff_e"+Yr, 
+Sys = ["CMS_btag_cferr1", "CMS_btag_cferr2","CMS_scale_e"+Yr, "CMS_scale_m"+Yr, "CMS_eff_m"+Yr, "CMS_eff_e"+Yr, 
 "CMS_scale_JESHF"+Yr, "CMS_scale_JESBBEC1","CMS_scale_JESRelativeSample"+Yr, "CMS_scale_JESEC2","CMS_scale_JESFlavorQCD","CMS_scale_JESBBEC1"+Yr,"CMS_scale_JESAbsolute", "CMS_scale_JESHF","CMS_scale_JESEC2"+Yr,"CMS_scale_JESAbsolute"+Yr,"CMS_scale_JESRelativeBal",
 "CMS_btag_jes","CMS_btag_lf","CMS_btag_lfstats1"+Yr, "CMS_btag_lfstats2"+Yr,"CMS_btag_hfstats1"+Yr, "CMS_btag_hfstats2"+Yr,"CMS_btag_cferr2",
-"CMS_PUID"+Yr,"CMS_scale_met"+Yr,
-"CMS_eff_hwwtrigger"+Yr,"CMS_eff_prefiring"+Yr,
+"CMS_PUID"+Yr,"CMS_scale_met"+Yr,"CMS_eff_prefiring"+Yr,
+"CMS_eff_hwwtrigger"+Yr,
+"CMS_scale_cleanfatJES"+Yr, "CMS_scale_cleanfatJER"+Yr, "CMS_scale_mVjmr"+Yr, "CMS_scale_mVjms"+Yr, "CMS_scale_mVjer"+Yr, "CMS_scale_mVjesTotal"+Yr,
+"CMS_scale_subjetjer"+Yr, "CMS_scale_subjetjes"+Yr,
 "PS_ISR", "PS_FSR" ] 
 
 Sys_ggh = [ "THU_ggH_Mu","THU_ggH_Res","THU_ggH_Mig01","THU_ggH_Mig12", "THU_ggH_VBF2j","THU_ggH_VBF3j", "THU_ggH_PT60", "THU_ggH_PT120", "THU_ggH_qmtop","CMS_PU"+Yr ]
@@ -902,30 +984,30 @@ Sys_VBF = [ "THU_qqH_YIELD","THU_qqH_PTH200","THU_qqH_Mjj60","THU_qqH_Mjj120","T
 ####### HVV setup  ######
 
 XHProd = ["VBF_","ZH_","WH_"]
-
+#XHProd = ["VBF_"]
 ACConfig  = [ 
-       	      ("of2j_vbf_hmip", "kd3d_vbf_hm"+suffix, "H0M"),
-              ("of2j_vbf_hmin", "kd3d_vbf_hm"+suffix, "H0M"),
-              ("of2j_vh_hmip",  "kd2d_vh_hm"+suffix,  "H0M"),
-              ("of2j_vh_hmin",  "kd2d_vh_hm"+suffix,  "H0M"),
-              ("top_of2j",      "events",      "H0M"),
-              ("dytt_of2j",     "events",      "H0M"),
-              ("of2j_vbf_hpip", "kd3d_vbf_hp"+suffix, "H0PH"),
-              ("of2j_vbf_hpin", "kd3d_vbf_hp"+suffix, "H0PH"),
-              ("of2j_vh_hpip",  "kd2d_vh_hp"+suffix,  "H0PH"),
-              ("of2j_vh_hpin",  "kd2d_vh_hp"+suffix,  "H0PH"),
-              ("top_of2j",      "events",      "H0PH"),
-              ("dytt_of2j",     "events",      "H0PH"),
-              ("of2j_vbf",      "kd3d_vbf_hl"+suffix, "H0L1"),
-              ("of2j_vh",       "kd2d_vh_hl"+suffix,  "H0L1"), 
-              ("top_of2j",      "events",      "H0L1"),
-              ("dytt_of2j",     "events",      "H0L1"),  
+              ("of2j_Vh_hmip",  "kd2d_Vh_hm"+suffix,  "H0M"),
+              ("of2j_Vh_hmin",  "kd2d_Vh_hm"+suffix,  "H0M"),
+              ("top_fj",      "events",      "H0M"),
+#              ("dytt_fj",     "events",      "H0M"),
+#              ("of2j_Vh_hpip",  "kd2d_Vh_hp"+suffix,  "H0PH"),
+#              ("of2j_Vh_hpin",  "kd2d_Vh_hp"+suffix,  "H0PH"),
+              ("of2j_Vh",  "kd2d_Vh_hp"+suffix,  "H0PH"),
+              ("top_fj",      "events",      "H0PH"),
+#              ("dytt_fj",     "events",      "H0PH"),
+              ("of2j_Vh",       "kd2d_Vh_hl"+suffix,  "H0L1"), 
+              ("top_fj",      "events",      "H0L1"),
+#              ("dytt_fj",     "events",      "H0L1"),  
+#              ("WW_fj",     "events",      "H0M"),
+#              ("WW_fj",     "events",      "H0PH"),
+#              ("WW_fj",     "events",      "H0L1"),
 ]
 
-LZGConfig = [ ("of2j_vbf",  "kd3d_vbf_hlzg"+suffix,"H0LZg"),
-              ("of2j_vh",   "kd2d_vh_hlzg"+suffix, "H0LZg"),
-              ("top_of2j",  "events",       "H0LZg"),
-              ("dytt_of2j", "events",       "H0LZg"),
+LZGConfig = [ 
+              ("of2j_Vh",   "kd2d_Vh_hlzg"+suffix, "H0LZg"),
+              ("top_fj",  "events",       "H0LZg"),
+#              ("dytt_fj", "events",       "H0LZg"),
+#              ("WW_fj", "events",	  "H0LZg"),
 ]
 EFTConfig = []
 '''
@@ -954,6 +1036,7 @@ for prod in XHProd :
  else : SigConfig = ACConfig + EFTConfig
 
  for cat, var, sig in SigConfig :
+  #print("Test1", cat, var, sig)
   create2VIntTemplates(cat, var, prod, sig, "", DoTest)
   if DoSys is True :
    for sys in Sys :
@@ -974,16 +1057,15 @@ for prod in XHProd :
      checkForBadSys(cat, var, prod, sig, "_"+sys+"","T4")
      checkForBadSys(cat, var, prod, sig, "_"+sys+"","T5")
   
-  #if MCStats is 'OFF':
-  #print("hola", prod)
-  if DoTest is False : setSigStatTo0(cat, var, prod, sig)
-  #print("hola2", prod)
+  if DoTest is False : setSigStatTo0(cat, var, prod, sig) #Run line if you want to set MCStats OFF 
 
+'''
 prod = "ggH_" 
 print "------------------------------------", prod
 SigConfig = ACConfig + EFTConfig
 
 for cat, var, sig in SigConfig :
+
  create1VIntTemplates(cat, var, prod, sig, "", DoTest)
  if DoSys is True :
   for sys in Sys :
@@ -998,8 +1080,9 @@ for cat, var, sig in SigConfig :
    checkForBadSys(cat, var, prod, sig, "_"+sys+"","T1")
    checkForBadSys(cat, var, prod, sig, "_"+sys+"","T2")
    checkForBadSys(cat, var, prod, sig, "_"+sys+"","T3")
- 
+
  if DoTest is False : setSigStatTo0(cat, var, prod, sig)
+'''
 
 SigConfig = ACConfig + LZGConfig + EFTConfig
 
@@ -1008,9 +1091,10 @@ if AddOtherTemps is True :
   AddOtherTemplates(cat, var, prod, sig)
 
 ####### ggH+2Jet setup  ######
+'''
 GGHJJConfig = [
-	        ("of2j_ggh_thmip", "kd3d_ggh_hm"+suffix, "H0M"),
-                ("of2j_ggh_thmin", "kd3d_ggh_hm"+suffix, "H0M"),
+	        #("of2j_ggh_thmip", "kd3d_ggh_hm"+suffix, "H0M"),
+                #("of2j_ggh_thmin", "kd3d_ggh_hm"+suffix, "H0M"),
                 ("of2j_ggh_lhmip", "kd2d_ggh_hm"+suffix, "H0M"),
                 ("of2j_ggh_lhmin", "kd2d_ggh_hm"+suffix, "H0M"),
                 ("top_of2j",       "events",      "H0M"),
@@ -1036,11 +1120,8 @@ for cat, var, sig in GGHJJConfig :
    checkForBadSys(cat, var, prod, sig, "_"+sys+"","T2")
    checkForBadSys(cat, var, prod, sig, "_"+sys+"","T3")
 
- #if MCStats is 'OFF':
- if DoTest is False : setSigStatTo0(cat, var, prod, sig)
-
 if AddOtherTemps is True :
  for cat, var, sig in GGHJJConfig :
   AddOtherTemplates(cat, var, prod, sig)
-
+'''
 print "Its done!!!"

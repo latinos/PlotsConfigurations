@@ -4,57 +4,66 @@ Reading the 0 NegList
 - For Ewk HVV (2V) need templates : T1 -(4,0), T2 -(3,1), T3 -(2,2), T4 -(1,3), T5 -(0,4)
 Get from SM-BSM mixture hypotheses : SM(1,0), M0(0,1), M1(1,.25), M2(1,.5), M3(1,.75) 
 and G matrices Gai, Gl1, Gl1Zg
-- Will create new file : rootFileJJH16Bset0/plots_JJH16Bset0_AC_MCStatsOFF.root with HVV analysis templates
+- Will create new file : rootFileJJH16B/plots_JJH16BNOSPLIT_AC_MCStatsOFF.root with HVV analysis templates
  
 - For ggF HVV (1V) need templates T1 -(2,0), T2 -(1,1), T3 -(0,2)
 Get from SM-BSM MC : SM(1,0), BSM(0,1), M1(1,gMix) 
-- Will create new file : rootFileJJH16Bset0/plots_JJH16Bset0_AC_MCStatsOFF.root with HVV analysis templates
+- Will create new file : rootFileJJH16B/plots_JJH16BNOSPLIT_AC_MCStatsOFF.root with HVV analysis templates
  
 - For ggH+2Jet HGG (1V) need templates T1 -(2,0), T2 -(1,1), T3 -(0,2)
 Get from SM-BSM MC : SM(1,0), BSM(0,1), M1(1,gMix) 
-- Will create new file : rootFileJJH16Bset0/plots_JJH16Bset0_AC_MCStatsOFF.root with HGG analysis templates
+- Will create new file : rootFileJJH16B/plots_JJH16BNOSPLIT_AC_MCStatsOFF.root with HGG analysis templates
  
 ------------------------------------ VBF_
-MESSAGE: H0M  ("of2j_Vh_hmin","H0M","VBF_","T4"),
-MESSAGE: H0M  ("dytt_fj","H0M","VBF_","T2"),
+of2j_Vh_hmip kd2d_Vh_hm VBF_ 3.45937117616
+of2j_Vh_hmin kd2d_Vh_hm VBF_ 0.0
+top_fj events VBF_ 0.012699212198
+of2j_Vh kd2d_Vh_hp VBF_ 1.46950567653
+top_fj events VBF_ 0.012699212198
+of2j_Vh kd2d_Vh_hl VBF_ 1.46950567653
 MESSAGE: H0L1  ("of2j_Vh","H0L1","VBF_","T4"),
+top_fj events VBF_ 0.012699212198
 MESSAGE: H0L1  ("top_fj","H0L1","VBF_","T4"),
-MESSAGE: H0L1  ("dytt_fj","H0L1","VBF_","T4"),
-MESSAGE: H0LZg  ("dytt_fj","H0LZg","VBF_","T2"),
+of2j_Vh kd2d_Vh_hlzg VBF_ 1.46950567653
+MESSAGE: H0LZg  ("of2j_Vh","H0LZg","VBF_","T2"),
+top_fj events VBF_ 0.012699212198
 ------------------------------------ ZH_
+of2j_Vh_hmip kd2d_Vh_hm ZH_ 2.77705746551
 MESSAGE: H0M  ("of2j_Vh_hmip","H0M","ZH_","T4"),
+of2j_Vh_hmin kd2d_Vh_hm ZH_ 4.82916198207
 MESSAGE: H0M  ("of2j_Vh_hmin","H0M","ZH_","T2"),
 MESSAGE: H0M  ("of2j_Vh_hmin","H0M","ZH_","T4"),
+top_fj events ZH_ 4.12534009108
 MESSAGE: H0M  ("top_fj","H0M","ZH_","T2"),
 MESSAGE: H0M  ("top_fj","H0M","ZH_","T4"),
-MESSAGE: H0M  ("dytt_fj","H0M","ZH_","T2"),
-MESSAGE: H0M  ("dytt_fj","H0M","ZH_","T4"),
-MESSAGE: H0PH  ("of2j_Vh_hpip","H0PH","ZH_","T2"),
-MESSAGE: H0PH  ("of2j_Vh_hpin","H0PH","ZH_","T2"),
+of2j_Vh kd2d_Vh_hp ZH_ 3.58611345207
+MESSAGE: H0PH  ("of2j_Vh","H0PH","ZH_","T2"),
+top_fj events ZH_ 4.12534009108
 MESSAGE: H0PH  ("top_fj","H0PH","ZH_","T2"),
-MESSAGE: H0PH  ("dytt_fj","H0PH","ZH_","T2"),
+of2j_Vh kd2d_Vh_hl ZH_ 3.58611345207
 MESSAGE: H0L1  ("of2j_Vh","H0L1","ZH_","T2"),
 MESSAGE: H0L1  ("of2j_Vh","H0L1","ZH_","T4"),
+top_fj events ZH_ 4.12534009108
 MESSAGE: H0L1  ("top_fj","H0L1","ZH_","T2"),
 MESSAGE: H0L1  ("top_fj","H0L1","ZH_","T4"),
-MESSAGE: H0L1  ("dytt_fj","H0L1","ZH_","T2"),
-MESSAGE: H0L1  ("dytt_fj","H0L1","ZH_","T4"),
+of2j_Vh kd2d_Vh_hlzg ZH_ 3.58611345207
+top_fj events ZH_ 4.12534009108
 ------------------------------------ WH_
+of2j_Vh_hmip kd2d_Vh_hm WH_ 3.06695899672
 MESSAGE: H0M  ("of2j_Vh_hmip","H0M","WH_","T4"),
+of2j_Vh_hmin kd2d_Vh_hm WH_ 2.29688726243
 MESSAGE: H0M  ("of2j_Vh_hmin","H0M","WH_","T2"),
 MESSAGE: H0M  ("of2j_Vh_hmin","H0M","WH_","T4"),
+top_fj events WH_ 5.9528897983
 MESSAGE: H0M  ("top_fj","H0M","WH_","T2"),
-MESSAGE: H0M  ("top_fj","H0M","WH_","T4"),
-MESSAGE: H0M  ("dytt_fj","H0M","WH_","T2"),
-MESSAGE: H0M  ("dytt_fj","H0M","WH_","T4"),
-MESSAGE: H0PH  ("of2j_Vh_hpip","H0PH","WH_","T2"),
-MESSAGE: H0PH  ("of2j_Vh_hpin","H0PH","WH_","T2"),
+of2j_Vh kd2d_Vh_hp WH_ 2.68376656883
+MESSAGE: H0PH  ("of2j_Vh","H0PH","WH_","T2"),
+top_fj events WH_ 5.9528897983
 MESSAGE: H0PH  ("top_fj","H0PH","WH_","T2"),
-MESSAGE: H0PH  ("dytt_fj","H0PH","WH_","T2"),
+of2j_Vh kd2d_Vh_hl WH_ 2.68376656883
 MESSAGE: H0L1  ("of2j_Vh","H0L1","WH_","T2"),
 MESSAGE: H0L1  ("of2j_Vh","H0L1","WH_","T4"),
+top_fj events WH_ 5.9528897983
 MESSAGE: H0L1  ("top_fj","H0L1","WH_","T2"),
 MESSAGE: H0L1  ("top_fj","H0L1","WH_","T4"),
-MESSAGE: H0L1  ("dytt_fj","H0L1","WH_","T2"),
-MESSAGE: H0L1  ("dytt_fj","H0L1","WH_","T4"),
 Its done!!!

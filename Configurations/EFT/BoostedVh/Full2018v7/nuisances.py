@@ -52,7 +52,7 @@ for k in cuts:
 #    'type': 'lnN',
 #    'samples': dict((skey, '1.025') for skey in mc if skey not in ['WW', 'top', 'DY'])
 #}
-
+'''
 nuisances['lumi_Uncorrelated'] = {
     'name': 'lumi_13TeV_2018',
     'type': 'lnN',
@@ -300,7 +300,7 @@ nuisances['electronpt'] = {
     'folderDown': 'root://eoscms.cern.ch/'+makeMCDirectory('trigFix__ElepTdo_suffix'),
     'AsLnN': '1'
 }
-
+'''
 '''
 if useEmbeddedDY:
   nuisances['electronpt_emb'] = {
@@ -316,7 +316,7 @@ if useEmbeddedDY:
   }
 '''
 ##### Muon Efficiency and energy scale
-
+'''
 nuisances['eff_m'] = {
     'name': 'CMS_eff_m_2018',
     'kind': 'weight',
@@ -348,7 +348,7 @@ nuisances['muonpt'] = {
     'folderDown': 'root://eoscms.cern.ch/'+makeMCDirectory('trigFix__MupTdo_suffix'),
     'AsLnN': '1'
 }
-
+'''
 '''
 if useEmbeddedDY:
   nuisances['muonpt_emb'] = {
@@ -364,7 +364,7 @@ if useEmbeddedDY:
   }
 '''
 ##### Jet energy scale
-
+'''
 jes_systs = ['JESAbsolute','JESAbsolute_2018','JESBBEC1','JESBBEC1_2018','JESEC2','JESEC2_2018','JESFlavorQCD','JESHF','JESHF_2018','JESRelativeBal','JESRelativeSample_2018']
 
 for js in jes_systs:
@@ -398,7 +398,7 @@ for js in jes_systs:
       'folderDown': folderdo,
       'AsLnN': '1'
   }
-
+'''
 '''
 ##### Jet energy resolution
 nuisances['JER'] = {
@@ -414,7 +414,7 @@ nuisances['JER'] = {
 }
 '''
 ##### MET energy scale
-
+'''
 nuisances['met'] = {
     'name': 'CMS_scale_met_2018',
     'kind': 'suffix',
@@ -426,7 +426,7 @@ nuisances['met'] = {
     'folderDown': 'root://eoscms.cern.ch/'+makeMCDirectory('METdo_suffix'),
     'AsLnN': '1'
 }
-
+'''
 ##### Di-Tau vetoing for embedding
 '''
 if useEmbeddedDY:
@@ -443,7 +443,7 @@ if useEmbeddedDY:
 
 '''
 ##### Pileup
-
+'''
 PUDict = { 'DY': ['0.993259983266*(puWeightUp/puWeight)', '0.997656381501*(puWeightDown/puWeight)'],
            'top': ['1.00331969187*(puWeightUp/puWeight)', '0.999199609528*(puWeightDown/puWeight)'],
            'WW': ['1.0033022059*(puWeightUp/puWeight)', '0.997085330608*(puWeightDown/puWeight)'],
@@ -737,7 +737,7 @@ topScaleNormFactors2j = {'LHEScaleWeight[3]': 1.01676762423417, 'LHEScaleWeight[
 
 topvars2j.append('Alt$(LHEScaleWeight[0], 1.)/'+str(topScaleNormFactors2j['LHEScaleWeight[0]']))
 topvars2j.append('Alt$(LHEScaleWeight[8], 1.)/'+str(topScaleNormFactors2j['LHEScaleWeight[8]']))
-
+'''
 '''
 topScaleNormFactors2j = {'LHEScaleWeight[3]': 1.0236911155246506, 'LHEScaleWeight[0]': 1.1249360990045656, 'LHEScaleWeight[1]': 1.1054771659922622, 'LHEScaleWeight[Length$(LHEScaleWeight)-1]': 0.8819750427294990, 'LHEScaleWeight[Length$(LHEScaleWeight)-4]': 0.9819208264038879, 'LHEScaleWeight[Length$(LHEScaleWeight)-2]': 0.9025818187649589}
 
@@ -750,8 +750,7 @@ for var in variations:
   topvars2j.append(var+'/'+str(topScaleNormFactors2j[var]))
 '''
 ## QCD scale nuisances for top are decorrelated for each RECO jet bin: the QCD scale is different for different jet multiplicities so it doesn't make sense to correlate them
-
-
+'''
 nuisances['QCDscale_top_2j']  = {
     'name'  : 'QCDscale_top_2j_2018',
     'skipCMS' : 1,
@@ -1005,7 +1004,7 @@ nuisances['QCDscale_gg_ACCEPT'] = {
     'samples': QCDHggADict,
     'type': 'lnN',
 }
-
+'''
 ## Use the following if you want to apply the automatic combine MC stat nuisances.
 nuisances['stat'] = {
     'type': 'auto',

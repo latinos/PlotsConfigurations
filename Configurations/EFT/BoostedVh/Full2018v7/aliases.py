@@ -641,3 +641,4 @@ aliases['kd_Vh_mixhm'] = { 'expr': '(me_Vh_mixhm*G4VH) / (me_Vh_hsm + (me_Vh_hm*
 aliases['me_Vh_hp']     = { 'expr': '(me_Wh_hp/meAvg_wh) + (me_Zh_hp/meAvg_zh)' }
 aliases['me_Vh_mixhp']  = { 'expr': '((me_Wh_mixhp - me_Wh_hsm - me_Wh_hp)/meAvg_wh) + ((me_Zh_mixhp - me_Zh_hsm - me_Zh_hp)/meAvg_zh)' }
 aliases['kd_Vh_mixhp'] = { 'expr': '(me_Vh_mixhp*G2VH) / (me_Vh_hsm + (me_Vh_hp*G2VH**2))' }
+aliases['VtagSF'] = {'expr': 'FatJet_tau2/FatJet_tau1'}

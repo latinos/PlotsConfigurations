@@ -111,7 +111,7 @@ runDYveto = False
 embed_tautauveto = '' #Setup
 if useEmbeddedDY:
   embed_tautauveto = '*embed_tautauveto'
-
+'''
 if useEmbeddedDY:
   # Actual embedded data
   samples['Dyemb'] = {
@@ -308,7 +308,7 @@ else:
   addSampleWeight(samples, 'VgS', 'Wg_MADGRAPHMLM', '(Gen_ZGstar_mass > 0 && Gen_ZGstar_mass < 0.1)')
   addSampleWeight(samples, 'VgS', 'ZGToLLG', '(Gen_ZGstar_mass > 0)')
   addSampleWeight(samples, 'VgS', 'WZTo3LNu_mllmin01', '(Gen_ZGstar_mass > 0.1)')
-
+'''
 
 '''
 files = nanoGetSampleFiles(mcDirectory, 'Wg_MADGRAPHMLM') + \
@@ -341,7 +341,7 @@ addSampleWeight(samples, 'VgS', 'ZGToLLG', '(Gen_ZGstar_mass > 0)')
 addSampleWeight(samples, 'VgS', 'WZTo3LNu_mllmin01', '(Gen_ZGstar_mass > 0.1)')
 '''
 ############ VZ ############
-
+'''
 files = nanoGetSampleFiles(mcDirectory, 'ZZTo2L2Nu_ext2') + \
     nanoGetSampleFiles(mcDirectory, 'ZZTo2L2Q') + \
     nanoGetSampleFiles(mcDirectory, 'ZZTo4L_ext2') + \
@@ -369,11 +369,11 @@ samples['VVV'] = {
 ###########################################
 #############   SIGNALS  ##################
 ###########################################
-
+'''
 signals = []
 
 #### ggH -> WW
-
+'''
 samples['ggH_hww'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'GluGluHToWWTo2L2Nu_M125') + nanoGetSampleFiles(mcDirectory, 'GGHjjToWWTo2L2Nu_minloHJJ_M125'),
     'weight': mcCommonWeight,
@@ -383,7 +383,7 @@ addSampleWeight(samples, 'ggH_hww', 'GluGluHToWWTo2L2Nu_M125', '(HTXS_stage1_1_c
 addSampleWeight(samples, 'ggH_hww', 'GGHjjToWWTo2L2Nu_minloHJJ_M125', '(HTXS_stage1_1_cat_pTjet30GeV>106)*1092.7640/1073.2567')
 
 signals.append('ggH_hww')
-
+'''
 ############ VBF H->WW ############
 samples['qqH_hww'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'VBFHToWWTo2L2Nu_M125'),
@@ -393,6 +393,14 @@ samples['qqH_hww'] = {
 
 signals.append('qqH_hww')
 
+samples['qqH_hww_DipoleRecoil'] = {
+    'name': nanoGetSampleFiles(mcDirectory, 'VBFHToWWTo2L2Nu_M125_DipoleRecoil_private'),
+    'weight': mcCommonWeight,
+    'FilesPerJob': 4
+}
+
+signals.append('qqH_hww_DipoleRecoil')
+'''
 ############ ZH H->WW ############
 
 samples['ZH_hww'] = {
@@ -464,11 +472,11 @@ samples['WH_htt'] = {
 }
 
 signals.append('WH_htt')
-
+'''
 ###########################################
 ################## FAKE ###################
 ###########################################
-
+'''
 samples['Fake'] = {
   'name': [],
   'weight': 'METFilter_DATA*fakeW',
@@ -483,6 +491,7 @@ for _, sd in DataRun:
     samples['Fake']['name'].extend(files)
     samples['Fake']['weights'].extend([DataTrig[pd]] * len(files))
 '''
+'''
 samples['Fake']['subsamples'] = {
   'em': 'abs(Lepton_pdgId[0]) == 11',
   'me': 'abs(Lepton_pdgId[0]) == 13'
@@ -492,7 +501,7 @@ samples['Fake']['subsamples'] = {
 ###########################################
 ################## DATA ###################
 ###########################################
-
+'''
 samples['DATA'] = {
   'name': [],
   'weight': 'METFilter_DATA*LepWPCut',
@@ -509,9 +518,9 @@ for _, sd in DataRun:
 
 
 #### AC/EFT Signals 
- 
+''' 
 signals_rw = [] 
- 
+'''
 # VBF MC samples 
  
 # Original VBF samples 
@@ -2536,3 +2545,4 @@ samples['GGHjj_H0Mf05_H0M'] = {
    'weight': mcCommonWeight+ '*GGHjj_H0Mf05_W*(ME_H0M/ME_H0Mf05)',   'FilesPerJob': 4, } 
 signals_rw.append('GGHjj_H0Mf05_H0M')  
  
+'''

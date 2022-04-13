@@ -52,7 +52,7 @@ for k in cuts:
 #    'type': 'lnN',
 #    'samples': dict((skey, '1.025') for skey in mc if skey not in ['WW', 'top', 'DY'])
 #}
-
+'''
 nuisances['lumi_Uncorrelated'] = {
     'name': 'lumi_13TeV_2016',
     'type': 'lnN',
@@ -304,7 +304,7 @@ nuisances['electronpt'] = {
     'folderDown': 'root://eoscms.cern.ch/'+makeMCDirectory('trigFix__ElepTdo_suffix'),
     'AsLnN': '1'
 }
-
+'''
 #DM
 ''' 
 if useEmbeddedDY:
@@ -321,7 +321,7 @@ if useEmbeddedDY:
   }
 '''
 ##### Muon Efficiency and energy scale
-
+'''
 nuisances['eff_m'] = {
     'name': 'CMS_eff_m_2016',
     'kind': 'weight',
@@ -351,7 +351,7 @@ nuisances['muonpt'] = {
     'folderDown': 'root://eoscms.cern.ch/'+makeMCDirectory('trigFix__MupTdo_suffix'),
     'AsLnN': '1'
 }
-
+'''
 #DM
 '''
 if useEmbeddedDY:
@@ -368,7 +368,7 @@ if useEmbeddedDY:
   }
 '''
 ##### Jet energy scale
-
+'''
 jes_systs = ['JESAbsolute','JESAbsolute_2016','JESBBEC1','JESBBEC1_2016','JESEC2','JESEC2_2016','JESFlavorQCD','JESHF','JESHF_2016','JESRelativeBal','JESRelativeSample_2016']
 folderup = ""
 folderdo = ""
@@ -974,7 +974,7 @@ nuisances['QCDscale_gg_ACCEPT'] = {
     },
     'type': 'lnN',
 }
-
+'''
 ## Use the following if you want to apply the automatic combine MC stat nuisances.
 nuisances['stat'] = {
     'type': 'auto',

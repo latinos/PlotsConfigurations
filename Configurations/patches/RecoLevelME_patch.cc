@@ -95,7 +95,6 @@ Mela* RecoLevelME :: mela = 0;
 	{
 		//Map to store the ME
 		std::map<TString, float> MatrixElementsMap;
-
 		//Initializing 4-vectors
 		TLorentzVector L1(0.,0.,0.,0.);
 		TLorentzVector L2(0.,0.,0.,0.);
@@ -241,7 +240,6 @@ Mela* RecoLevelME :: mela = 0;
 		mela->setProcess(TVar::HSMHiggs, TVar::JHUGen, TVar::Had_ZH);
 		mela->computeProdP(me_Zh_hsm, true);
 		MatrixElementsMap.insert({"me_Zh_hsm", me_Zh_hsm});
-
  		//Higgs minus
 		mela->setProcess(TVar::H0minus, TVar::JHUGen, TVar::Had_ZH);
 		mela->computeProdP(me_Zh_hm, true);

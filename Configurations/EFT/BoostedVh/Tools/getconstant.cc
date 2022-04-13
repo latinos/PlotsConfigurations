@@ -24,7 +24,7 @@ public:
   
   std::vector<float> CforHM(float mass);
 
-  TString loc = "/afs/cern.ch/work/l/lurda/CMS/Test/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/EFT/BoostedVh/Tools/constants";
+  TString loc = "/afs/cern.ch/work/l/lurda/CMS/Test/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/EFT/VBF/Tools/constants";
 
   TFile* f_DjjVBF = TFile::Open(""+loc+"/SmoothKDConstant_m4l_DjjVBF_13TeV.root","read");
   TSpline3 *DjjVBF = (TSpline3*)f_DjjVBF->Get("sp_gr_varReco_Constant_Smooth");
@@ -87,7 +87,7 @@ std::vector<float> getconstant::CforHM(float mass){
 
   std::vector<float> result;
 
-  if(mass<0)mass=0;
+  if(mass<0.1)mass=0.1;
   if(mass>12000)mass=12000;
 
   float cVBF = DjjVBF->Eval(mass);
@@ -127,6 +127,9 @@ std::vector<float> getconstant::CforHM(float mass){
   float LZgZH  = DLZgZH->Eval(mass);
   result.push_back(LZgZH);
 
+  result.push_back(mass);
+  // result.push_back(mass_nn);
+
   return result;
 }
 
@@ -151,6 +154,19 @@ protected:
   // this is horrible
   static long long currentEntry;
   static FloatValueReader* hm;
+  static UIntValueReader*  nLepton;
+  static FloatArrayReader* Lepton_pt;
+  static FloatArrayReader* Lepton_eta;
+  static FloatArrayReader* Lepton_phi;
+
+  // static UIntValueReader*  nNeutrinoGen;
+  //  static FloatArrayReader* NeutrinoGen_pt;
+  // static FloatArrayReader* NeutrinoGen_eta;
+  //  static FloatArrayReader* NeutrinoGen_phi;
+
+  static FloatValueReader* MET_pt;
+  static FloatValueReader* PuppiMET_pt;
+  static FloatValueReader* PuppiMET_phi;
 
   static void setValues(long long);
 
@@ -160,6 +176,19 @@ protected:
 
 long long GetConstant::currentEntry{-2};
 FloatValueReader* GetConstant::hm{};
+UIntValueReader*  GetConstant::nLepton{};
+FloatArrayReader* GetConstant::Lepton_pt{};
+FloatArrayReader* GetConstant::Lepton_eta{};
+FloatArrayReader* GetConstant::Lepton_phi{};
+
+//UIntValueReader*  GetConstant::nNeutrinoGen{};
+//FloatArrayReader* GetConstant::NeutrinoGen_pt{};
+//FloatArrayReader* GetConstant::NeutrinoGen_eta{};
+//FloatArrayReader* GetConstant::NeutrinoGen_phi{};
+
+FloatValueReader* GetConstant::MET_pt{};
+FloatValueReader* GetConstant::PuppiMET_pt{};
+FloatValueReader* GetConstant::PuppiMET_phi{};
 
 getconstant GetConstant::worker{};
 std::vector<float> GetConstant::constants{};
@@ -174,7 +203,8 @@ GetConstant::GetConstant(char const* name) :
      {"G4VBF",3},{"G4WH",4},{"G4ZH",5},{"G4VH",6},
      {"G2VBF",7},{"G2WH",8},{"G2ZH",9},{"G2VH",10},
      {"L1VBF",11},{"L1WH",12},{"L1ZH",13},
-     {"LZgVBF",14},{"LZgZH",15}
+     {"LZgVBF",14},{"LZgZH",15},
+     {"m_H",16} //,{"m_NN",17}
  };
 
  if(con_index.count(name_)>0) vindex = con_index.find(name_)->second;
@@ -207,12 +237,34 @@ GetConstant::bindTree_(multidraw::FunctionLibrary& _library)
   if (currentEntry == -2) {
     currentEntry = -1;
     _library.bindBranch(hm, "hm");
-   
+    _library.bindBranch(nLepton,            "nLepton");
+    _library.bindBranch(Lepton_pt,          "Lepton_pt");
+    _library.bindBranch(Lepton_eta,         "Lepton_eta");
+    _library.bindBranch(Lepton_phi,         "Lepton_phi");
+    //  _library.bindBranch(nNeutrinoGen,            "nNeutrinoGen");
+    // _library.bindBranch(NeutrinoGen_pt,          "NeutrinoGen_pt");
+    // _library.bindBranch(NeutrinoGen_eta,         "NeutrinoGen_eta");
+    //  _library.bindBranch(NeutrinoGen_phi,         "NeutrinoGen_phi");
+    _library.bindBranch(MET_pt,             "MET_pt");
+    _library.bindBranch(PuppiMET_pt,        "PuppiMET_pt");
+    _library.bindBranch(PuppiMET_phi,       "PuppiMET_phi");
+
     _library.addDestructorCallback([]() {
-        currentEntry = -2;
-        hm = nullptr;
-      });
-  }
+     currentEntry = -2;
+     hm = nullptr;
+     nLepton = nullptr;
+     Lepton_pt = nullptr;
+     Lepton_eta = nullptr;
+     Lepton_phi = nullptr;
+     // nNeutrinoGen = nullptr;
+     // NeutrinoGen_pt = nullptr;
+     // NeutrinoGen_eta = nullptr;
+     // NeutrinoGen_phi = nullptr;
+     MET_pt = nullptr;
+     PuppiMET_pt = nullptr;
+     PuppiMET_phi = nullptr;
+    });
+   }
 }
 
 void
@@ -224,6 +276,45 @@ GetConstant::setValues(long long _iEntry)
   currentEntry = _iEntry;
 
   float m(*hm->Get());
+  unsigned nlep(*nLepton->Get());
+  float Pmet_pt(*PuppiMET_pt->Get());
+  float Pmet_phi(*PuppiMET_phi->Get());
+
+  if(nlep>1 && m<0.1){
+
+   TLorentzVector L1(0.,0.,0.,0.);
+   TLorentzVector L2(0.,0.,0.,0.);
+   TLorentzVector LL(0.,0.,0.,0.);
+   TLorentzVector NuNu(0.,0.,0.,0.);
+   TLorentzVector Higgs(0.,0.,0.,0.);
+
+   L1.SetPtEtaPhiM(Lepton_pt->At(0), Lepton_eta->At(0), Lepton_phi->At(0), 0.0);
+   L2.SetPtEtaPhiM(Lepton_pt->At(1), Lepton_eta->At(1), Lepton_phi->At(1), 0.0);
+   LL = L1 + L2;
+   double nunu_px = Pmet_pt*cos(Pmet_phi);
+   double nunu_py = Pmet_pt*sin(Pmet_phi);
+   double nunu_pz = LL.Pz();
+   double nunu_m = 30.0; 
+   double nunu_e = sqrt(nunu_px*nunu_px + nunu_py*nunu_py + nunu_pz*nunu_pz + nunu_m*nunu_m);
+   NuNu.SetPxPyPzE(nunu_px, nunu_py, nunu_pz, nunu_e);
+   Higgs = LL + NuNu;
+   m = Higgs.M();
+  }
+
+  // float m_nn = 0;
+  // unsigned nNeu(*nNeutrinoGen->Get());
+  // if(nNeu>1){
+
+  // TLorentzVector N1(0.,0.,0.,0.);
+  //  TLorentzVector N2(0.,0.,0.,0.);
+  // TLorentzVector NN(0.,0.,0.,0.);
+
+  // N1.SetPtEtaPhiM(NeutrinoGen_pt->At(0), NeutrinoGen_eta->At(0), NeutrinoGen_phi->At(0), 0.0);
+  // N2.SetPtEtaPhiM(NeutrinoGen_pt->At(1), NeutrinoGen_eta->At(1), NeutrinoGen_phi->At(1), 0.0);
+  // NN = N1 + N2;
+  //  m_nn = NN.M();
+  // }
+
   constants = worker.CforHM(m);
 
 }

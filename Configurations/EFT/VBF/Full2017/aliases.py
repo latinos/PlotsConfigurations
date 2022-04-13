@@ -299,7 +299,7 @@ aliases['trig_drll_rw'] = {
 }
 # data/MC scale factors
 aliases['SFweight'] = {
-    'expr': ' * '.join(['SFweight2l', 'LepWPCut', 'LepSF2l__ele_' + eleWP + '__mu_' + muWP, 'btagSF', 'PrefireWeight','Jet_PUIDSF','trig_drll_rw']),
+    'expr': ' * '.join(['SFweight2lAlt', 'LepWPCut', 'LepSF2l__ele_' + eleWP + '__mu_' + muWP, 'btagSF', 'PrefireWeight','Jet_PUIDSF','trig_drll_rw']),
     'samples': mc
 }
 

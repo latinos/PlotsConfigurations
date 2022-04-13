@@ -47,10 +47,10 @@ samples['VgS_L'] = {}
 samples['VgS_H'] = {}
 samples['VZ'] = {}
 samples['VVV'] = {}
-samples['Fake_em'] = {}
-samples['Fake_me'] = {}
-
-samples['qqH_htt'] = {}
+#samples['Fake_em'] = {}
+#samples['Fake_me'] = {}
+samples['Fake'] = {} 
+#samples['qqH_htt'] = {}
 samples['ZH_htt'] = {}
 samples['WH_htt'] = {}
 samples['ggH_htt'] = {}

@@ -736,10 +736,10 @@ nuisances['EWKcorr_WW'] = {
     'kind': 'weight',
     'type': 'shape',
     'samples': {
-        'WW': ['1.', '1./ewknloW']
+        'WW': ['2. - 1./ewknloW', '1./ewknloW']
     },
-    'symmetrize' : True,
 }
+#    'symmetrize' : True,
 
 # Uncertainty on SR/CR ratio
 nuisances['CRSR_accept_DY'] = {

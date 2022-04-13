@@ -11,7 +11,7 @@ groupPlot['top']  = {
                   'isSignal' : 0,
                   'color': 400,   # kYellow
                   'samples'  : ['top'],
-		  'scale' : 0.92,
+		  'scale' : 1.1,
               }
 
 groupPlot['WW']  = {  
@@ -25,7 +25,7 @@ groupPlot['Fake']  = {
                   'nameHR' : 'nonprompt',
                   'isSignal' : 0,
                   'color': 921,    # kGray + 1
-                  'samples'  : ['Fake_me', 'Fake_em']
+                  'samples'  : ['Fake_me', 'Fake_em', 'Fake']
 }
 
 groupPlot['VV']  = {  
@@ -40,7 +40,7 @@ groupPlot['DY']  = {
                   'isSignal' : 0,
                   'color': 418,    # kGreen+2
                   'samples'  : ['DY', 'Dyemb'],
-                  'scale'    : 1.2,               
+                  'scale'    : 0.77,               
               }
 
 '''
@@ -138,7 +138,7 @@ if useEmbeddedDY:
                   'color': 418,    # kGreen+2
                   'isSignal' : 0,
                   'isData'   : 0, 
-                  'scale'    : 1.2,
+                  'scale'    : 0.77,
               }
 
 
@@ -156,14 +156,19 @@ plot['Fake_em']  = {
                   'isData'   : 0,
                   'scale'    : 1.0                  
               }
-
+plot['Fake']  = {
+                  'color': 921,    # kGray + 1
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0
+              }
               
 plot['top'] = {   
                   'nameHR' : 'tW and t#bar{t}',
                   'color': 400,   # kYellow
                   'isSignal' : 0,
                   'isData'   : 0, 
-                  'scale'    : 0.92,
+                  'scale'    : 1.1,
                   #'cuts'  : {
                        #'hww2l2v_13TeV_of0j'      : 0.94 ,
                        #'hww2l2v_13TeV_top_of0j'  : 0.94 , 
@@ -184,7 +189,7 @@ plot['WW']  = {
                   'color': 851, # kAzure -9 
                   'isSignal' : 0,
                   'isData'   : 0,    
-                  'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
+                  'scale'    : 1.2   # ele/mu trigger efficiency   datadriven
                   }
 
 plot['ggWW']  = {

@@ -308,6 +308,14 @@ if useEmbeddedDY:
     'AsLnN': '1'
   }
 '''
+if useEmbeddedDY:
+  nuisances['electronpt_emb'] = {
+    'name': 'CMS_scale_e_2016',
+    'kind': 'suffix',
+    'type': 'shape',
+    'samples': {'Dyemb': ['1.002', '1.005']},
+    'AsLnN': '1'
+  }
 ##### Muon Efficiency and energy scale
 
 nuisances['eff_m'] = {
@@ -354,6 +362,14 @@ if useEmbeddedDY:
     'AsLnN': '1'
   }
 '''
+if useEmbeddedDY:
+  nuisances['muonpt_emb'] = {
+    'name': 'CMS_scale_m_2016',
+    'kind': 'suffix',
+    'type': 'shape',
+    'samples': {'Dyemb': ['1.002', '1.005']},
+    'AsLnN': '1'
+  }
 ##### Jet energy scale
 jes_systs = ['JESAbsolute','JESAbsolute_2016','JESBBEC1','JESBBEC1_2016','JESEC2','JESEC2_2016','JESFlavorQCD','JESHF','JESHF_2016','JESRelativeBal','JESRelativeSample_2016']
 folderup = ""

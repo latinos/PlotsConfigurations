@@ -589,7 +589,7 @@ aliases['dphis'] = { 'expr': 'dphip<-pi? dphip + 2*pi : dphip'  }
 ###########################################################################
 #Boosted ME
 
-mes_WH = ['me_Wh_hsm', 'me_Wh_hm', 'me_Wh_hp', 'me_Wh_hl', 'me_Wh_mixhm', 'me_Wh_mixhp', 'me_Wh_mixhl', 'pjjSm_Wh', 'pjjTr_Wh', 'InvMSubjets']
+mes_WH = ['me_Wh_hsm', 'me_Wh_hm', 'me_Wh_hp', 'me_Wh_hl', 'me_Wh_mixhm', 'me_Wh_mixhp', 'me_Wh_mixhl', 'pjjSm_Wh', 'pjjTr_Wh', 'InvMSubjets', 'higgsmass']
 
 #'InvMSubjets, J1pt, J2pt
 
