@@ -35,7 +35,7 @@ mcProduction = 'Fall2017_102X_nAODv7_Full2017v7'
 
 embedReco = 'Embedding2017_102X_nAODv7_Full2017v7'
 
-mcSteps = 'MCl1loose2017v7__MCCorr2017v7__l2loose__l2tightOR2017v7{var}'
+mcSteps = 'MCl1loose2017v7__MCCorr2017v7__l2loose__l2tightOR2017v7__trigFix{var}'
 
 fakeSteps = 'DATAl1loose2017v7__l2loose__fakeW'
 
