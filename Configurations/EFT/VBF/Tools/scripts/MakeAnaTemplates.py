@@ -72,20 +72,20 @@ print "- For each analysis channel we should check which templates are negative"
 print "- They are added to lists (NegList.py) and forced positive -- Must be taken into account in Signal Model! "
 
 ###################################################################
-year = "17"
+year = "16"
 _year = "_"+year
 MCStats="OFF"
 
 src = "rootFileJJH"+year+"/plots_JJH"+year+".root"
-dst = "rootFileJJH"+year+"/plots_JJH"+year+"_AC_MCStats"+MCStats+suffix+".root"
+dst = "rootFileJJH"+year+"/plots_JJH"+year+"SF_AC_MCStats"+MCStats+suffix+".root"
 
 #DM In the following logic htt is assumed to be suppressed - not treated as AC signal
 
-othertemp_hvv = ['DATA','WW','WWewk','ggWW','top','DY','Dyemb','Vg','VgS_L','VgS_H','VZ','VVV','Fake_em','Fake_me','ggH_htt','qqH_htt','ZH_htt','WH_htt'] 
+othertemp_hvv = ['DATA','WW','WWewk','ggWW','top','DY','Dyemb','Vg','VgS_L','VgS_H','VZ','VVV','Fake_em','Fake_me','Fake','ggH_htt','qqH_htt','ZH_htt','WH_htt'] 
 
-othertemp_hlzg = ['DATA','WW','WWewk','ggWW','top','DY','Dyemb','Vg','VgS_L','VgS_H','VZ','VVV','Fake_em','Fake_me','ggH_htt','qqH_htt','ZH_htt','WH_htt','WH_hww','ggH_hww'] #DM Should I use AC samples here for gghww and whww?
+othertemp_hlzg = ['DATA','WW','WWewk','ggWW','top','DY','Dyemb','Vg','VgS_L','VgS_H','VZ','VVV','Fake_em','Fake_me','Fake','ggH_htt','qqH_htt','ZH_htt','WH_htt','WH_hww','ggH_hww'] #DM Should I use AC samples here for gghww and whww?
 
-othertemp_hgg = ['DATA','WW','WWewk','ggWW','top','DY','Dyemb','Vg','VgS_L','VgS_H','VZ','VVV','Fake_em','Fake_me','ggH_htt','qqH_htt','ZH_htt','WH_htt','qqH_hww','WH_hww','ZH_hww']
+othertemp_hgg = ['DATA','WW','WWewk','ggWW','top','DY','Dyemb','Vg','VgS_L','VgS_H','VZ','VVV','Fake_em','Fake_me','Fake', 'ggH_htt','qqH_htt','ZH_htt','WH_htt','qqH_hww','WH_hww','ZH_hww']
 
 if os.path.exists(dst):
     os.remove(dst)
@@ -211,6 +211,77 @@ def AddOtherTemplates(Cat, Var, Prod, AC):
      print h.GetName(), h.Integral()
 
  fout.Close()
+
+############################################
+
+def getPWGSF_notused(f, Cat, Var, Prod):
+
+# jhu = f.Get("hww2l2v_13TeV_"+Cat+"/"+Var+"/histo_"+Prod+"H0PM") 
+
+ if   Prod is "VBF_"   : 
+  jhu = f.Get("hww2l2v_13TeV_"+Cat+"/"+Var+"/histo_"+Prod+"H0PM") 
+  pwg = f.Get("hww2l2v_13TeV_"+Cat+"/"+Var+"/histo_qqH_hww")
+ elif Prod is "WH_" or  Prod is "ZH_"   : 
+  if "vbf" in Cat : 
+   jhu = f.Get("hww2l2v_13TeV_of2j_vh/events/histo_"+Prod+"H0PM") 
+   pwg = f.Get("hww2l2v_13TeV_of2j_vh/events/histo_"+Prod+"hww")
+  else :
+   jhu = f.Get("hww2l2v_13TeV_"+Cat+"/"+Var+"/histo_"+Prod+"H0PM") 
+   pwg = f.Get("hww2l2v_13TeV_"+Cat+"/"+Var+"/histo_"+Prod+"hww")
+ elif Prod is "ggHjj_" : 
+  jhu = f.Get("hww2l2v_13TeV_"+Cat+"/"+Var+"/histo_GGHjj_H0PM") 
+  pwg = f.Get("hww2l2v_13TeV_"+Cat+"/"+Var+"/histo_ggH_hww")
+ elif Prod is "ggH_"   : 
+  jhu = f.Get("hww2l2v_13TeV_"+Cat+"/"+Var+"/histo_H0PM") 
+  pwg = f.Get("hww2l2v_13TeV_"+Cat+"/"+Var+"/histo_ggH_hww")
+ else : "Prod not recognised by getPWGSF"
+
+ scale =  pwg.Integral()/jhu.Integral()
+ if pwg.Integral()==0 : scale = 1
+
+ print ("pwg.Integral()", pwg.Integral(), "jhu.Integral()", jhu.Integral())
+ 
+ return scale
+
+######################################
+
+def getPWGSF(f, Cat, Var, Prod):
+
+ if Prod is "VBF_"   : 
+   jhu = f.Get("hww2l2v_13TeV_of2j_vbf/events/histo_"+Prod+"H0PM") 
+   pwg = f.Get("hww2l2v_13TeV_of2j_vbf/events/histo_qqH_hww")
+   print pwg.Integral()
+ elif Prod is "WH_" or  Prod is "ZH_"  : 
+   jhu = f.Get("hww2l2v_13TeV_of2j_vh/events/histo_"+Prod+"H0PM") 
+   pwg = f.Get("hww2l2v_13TeV_of2j_vh/events/histo_"+Prod+"hww")
+ elif Prod is "ggHjj_" :  
+   jhu = f.Get("hww2l2v_13TeV_ggh_t/events/histo_GGHjj_H0PM") 
+   pwg = f.Get("hww2l2v_13TeV_ggh_t/events/histo_ggH_hww")
+ elif Prod is "ggH_"   : 
+   jhu = f.Get("hww2l2v_13TeV_of2j_vbf/events/histo_H0PM") 
+   pwg = f.Get("hww2l2v_13TeV_of2j_vbf/events/histo_ggH_hww")
+ else : "Prod not recognised by getPWGSF"
+
+# XSECxBR correction for mH = 125.38
+ if   Prod is "VBF_" :   pwg.Scale(1.03621) 
+ elif Prod is "WH_" :    pwg.Scale(1.01724)
+ elif Prod is "ZH_" :    pwg.Scale(1.01994)
+ elif Prod is "ggHjj_" : pwg.Scale(1.03364) 
+ elif Prod is "ggH_" :   pwg.Scale(1.03364)
+ # VBF Dipole correction 
+ if Prod is "VBF_" :   
+  if "vbf" in cat   : pwg.Scale(1.08) 
+  elif "vh"  in cat : pwg.Scale(0.83)
+ elif Prod is "ggHjj_" : pwg.Scale(1.08) 
+
+ scale =  pwg.Integral()/jhu.Integral()
+ if pwg.Integral()==0 : scale = 1
+
+# if 'top' in Cat or 'dytt' in Cat or 'WW' in Cat : scale = 1.0
+
+ print ("pwg.Integral()", pwg.Integral(), "jhu.Integral()", jhu.Integral())
+
+ return scale
 
 ############################################
 
@@ -373,6 +444,16 @@ def create2VIntTemplates(Cat, Var, Prod, AC, Sys, Test):
  M2 = getSumOfRWHVVSamples(f, BaseN, AC+"_M2",Sys)
  M3 = getSumOfRWHVVSamples(f, BaseN, AC+"_M3",Sys)
  
+ PWG_SF = getPWGSF(f, Cat, Var, Prod)
+
+ print  Cat, Var, Prod, PWG_SF
+
+ SM.Scale(PWG_SF)
+ M0.Scale(PWG_SF)
+ M1.Scale(PWG_SF)
+ M2.Scale(PWG_SF)
+ M3.Scale(PWG_SF)
+
  if MCForThisAC is True :
   SM_Org  = f.Get(''+BaseN+'H0PM'+Sys+'')
   BSM_Org = f.Get(''+BaseN+AC+Sys+'')
@@ -386,6 +467,9 @@ def create2VIntTemplates(Cat, Var, Prod, AC, Sys, Test):
   SM_Org.SetLineWidth(2)
   BSM_Org.SetLineWidth(2)
   f05_Org.SetLineWidth(2)
+  SM_Org.Scale(PWG_SF)
+  BSM_Org.Scale(PWG_SF)
+  f05_Org.Scale(PWG_SF)
 
  f.Close()
 
@@ -705,7 +789,15 @@ def create1VIntTemplates(Cat, Var, Prod, AC, Sys, Test):
   SM  = getSumOfRWHVVSamples(f, BaseN, "H0PM",  Sys)
   BSM = getSumOfRWHVVSamples(f, BaseN, AC,      Sys)
   f05 = getSumOfRWHVVSamples(f, BaseN, AC+"f05",Sys)
-            
+        
+ PWG_SF = getPWGSF(f, Cat, Var, Prod)
+
+ print  Cat, Var, Prod, PWG_SF
+
+ SM.Scale(PWG_SF)
+ BSM.Scale(PWG_SF)
+ f05.Scale(PWG_SF)
+    
  if MCForThisAC is True :
   SM_Org  = f.Get(''+BaseN+'H0PM'+Sys+'')
   BSM_Org = f.Get(''+BaseN+AC+Sys+'')
@@ -719,6 +811,9 @@ def create1VIntTemplates(Cat, Var, Prod, AC, Sys, Test):
   SM_Org.SetLineWidth(2)
   BSM_Org.SetLineWidth(2)
   f05_Org.SetLineWidth(2)
+  SM_Org.Scale(PWG_SF)
+  BSM_Org.Scale(PWG_SF)
+  f05_Org.Scale(PWG_SF)
 
  f.Close()
 
@@ -880,17 +975,18 @@ def create1VIntTemplates(Cat, Var, Prod, AC, Sys, Test):
 
 ################### AC Signal Shape Sys #######################################
 
-DoSys=True
+DoSys=False
 DoTest=False
 AddOtherTemps=True
 
-Yr="_2017"
+Yr="_2016"
 #"CMS_btag_cferr1", "CMS_eff_prefiring"+Yr,
-Sys = [ "CMS_btag_cferr1", "CMS_btag_cferr2","CMS_scale_e"+Yr, "CMS_scale_m"+Yr, "CMS_eff_m"+Yr, "CMS_eff_e"+Yr, 
-"CMS_scale_JESHF"+Yr, "CMS_scale_JESBBEC1","CMS_scale_JESRelativeSample"+Yr, "CMS_scale_JESEC2","CMS_scale_JESFlavorQCD","CMS_scale_JESBBEC1"+Yr,"CMS_scale_JESAbsolute", "CMS_scale_JESHF","CMS_scale_JESEC2"+Yr,"CMS_scale_JESAbsolute"+Yr,"CMS_scale_JESRelativeBal",
-"CMS_btag_jes","CMS_btag_lf","CMS_btag_lfstats1"+Yr, "CMS_btag_lfstats2"+Yr,"CMS_btag_hfstats1"+Yr, "CMS_btag_hfstats2"+Yr,"CMS_btag_cferr2",
+Sys = [ "CMS_btag_DeepFlav_cferr1"+Yr, "CMS_btag_DeepFlav_cferr2"+Yr,"CMS_scale_e"+Yr, "CMS_scale_m"+Yr, "CMS_eff_m"+Yr, "CMS_eff_e"+Yr, "CMS_eff_e_CR"+Yr, "CMS_eff_m_CR"+Yr,
+"CMS_scale_JESHF"+Yr, "CMS_scale_JESBBEC1","CMS_scale_JESRelativeSample"+Yr, "CMS_scale_JESEC2","CMS_scale_JESFlavorQCD","CMS_scale_JESBBEC1"+Yr,"CMS_scale_JESAbsolute", "CMS_scale_JESHF",
+"CMS_scale_JESEC2"+Yr,"CMS_scale_JESAbsolute"+Yr,"CMS_scale_JESRelativeBal",
+"CMS_btag_DeepFlav_jes"+Yr,"CMS_btag_DeepFlav_lf"+Yr,"CMS_btag_DeepFlav_lfstats1"+Yr, "CMS_btag_DeepFlav_lfstats2"+Yr,"CMS_btag_DeepFlav_hfstats1"+Yr, "CMS_btag_DeepFlav_hfstats2"+Yr,
 "CMS_PUID"+Yr,"CMS_scale_met"+Yr,
-"CMS_eff_hwwtrigger"+Yr,"CMS_eff_prefiring"+Yr,
+"CMS_eff_hwwtrigger"+Yr,"CMS_eff_hwwtrigger_drllrw"+Yr, "CMS_eff_prefiring"+Yr,
 "PS_ISR", "PS_FSR" ] 
 
 Sys_ggh = [ "THU_ggH_Mu","THU_ggH_Res","THU_ggH_Mig01","THU_ggH_Mig12", "THU_ggH_VBF2j","THU_ggH_VBF3j", "THU_ggH_PT60", "THU_ggH_PT120", "THU_ggH_qmtop","CMS_PU"+Yr ]
@@ -912,20 +1008,25 @@ ACConfig  = [
               ("dytt_of2j",     "events",      "H0M"),
               ("of2j_vbf_hpip", "kd3d_vbf_hp"+suffix, "H0PH"),
               ("of2j_vbf_hpin", "kd3d_vbf_hp"+suffix, "H0PH"),
-              ("of2j_vh_hpip",  "kd2d_vh_hp"+suffix,  "H0PH"),
-              ("of2j_vh_hpin",  "kd2d_vh_hp"+suffix,  "H0PH"),
+#              ("of2j_vh_hpip",  "kd2d_vh_hp"+suffix,  "H0PH"),
+#              ("of2j_vh_hpin",  "kd2d_vh_hp"+suffix,  "H0PH"),
+              ("of2j_vh",  "kd2d_vh_hp"+suffix,  "H0PH"),
               ("top_of2j",      "events",      "H0PH"),
               ("dytt_of2j",     "events",      "H0PH"),
               ("of2j_vbf",      "kd3d_vbf_hl"+suffix, "H0L1"),
               ("of2j_vh",       "kd2d_vh_hl"+suffix,  "H0L1"), 
               ("top_of2j",      "events",      "H0L1"),
               ("dytt_of2j",     "events",      "H0L1"),  
+              ("WW_of2j",     "events",      "H0M"),
+              ("WW_of2j",     "events",      "H0PH"),
+              ("WW_of2j",     "events",      "H0L1"),
 ]
 
 LZGConfig = [ ("of2j_vbf",  "kd3d_vbf_hlzg"+suffix,"H0LZg"),
               ("of2j_vh",   "kd2d_vh_hlzg"+suffix, "H0LZg"),
               ("top_of2j",  "events",       "H0LZg"),
               ("dytt_of2j", "events",       "H0LZg"),
+              ("WW_of2j", "events",       "H0LZg"),
 ]
 EFTConfig = []
 '''
@@ -1016,7 +1117,7 @@ GGHJJConfig = [
                 ("top_of2j",       "events",      "H0M"),
                 ("dytt_of2j",      "events",      "H0M"),
 ]  
-
+'''
 prod = "ggHjj_"
 print "------------------------------------", prod
 
@@ -1042,5 +1143,5 @@ for cat, var, sig in GGHJJConfig :
 if AddOtherTemps is True :
  for cat, var, sig in GGHJJConfig :
   AddOtherTemplates(cat, var, prod, sig)
-
+'''
 print "Its done!!!"

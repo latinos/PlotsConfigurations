@@ -215,6 +215,7 @@ if btag_algo=="deepcsv":
         }
 
 elif btag_algo=="deepflav":
+
     btagSFSource = '%s/src/PhysicsTools/NanoAODTools/data/btagSF/DeepJet_2016LegacySF_V1.csv' % os.getenv('CMSSW_BASE')
 
     aliases['Jet_btagSF_deepflav_shape'] = {
@@ -245,6 +246,7 @@ elif btag_algo=="deepflav":
         'samples': mc
     }
     #'hf' 
+    
     for shift in ['jes', 'lf','lfstats1', 'lfstats2', 'hfstats1', 'hfstats2', 'cferr1', 'cferr2']:
         aliases['Jet_btagSF_deepflav_shape_up_%s' % shift] = {
             'class': 'BtagSF',
@@ -273,7 +275,7 @@ elif btag_algo=="deepflav":
             'expr': aliases['btagSF']['expr'].replace('SF', 'SF' + shift + 'down'),
             'samples': mc
         }
-
+    
 #PUIDSF
 
 aliases['Jet_PUIDSF'] = {
@@ -302,7 +304,7 @@ aliases['trig_drll_rw'] = {
 }
 # data/MC scale factors
 aliases['SFweight'] = {
-    'expr': ' * '.join(['SFweight2l','LepWPCut', 'LepSF2l__ele_' + eleWP + '__mu_' + muWP, 'btagSF', 'PrefireWeight', 'Jet_PUIDSF', 'trig_drll_rw']),
+    'expr': ' * '.join(['SFweight2lAlt','LepWPCut', 'LepSF2l__ele_' + eleWP + '__mu_' + muWP, 'btagSF', 'PrefireWeight', 'Jet_PUIDSF', 'trig_drll_rw']),
     'samples': mc
 }
 #'expr': ' * '.join(['SFweight2l','LepWPCut', 'LepSF2l__ele_' + eleWP + '__mu_' + muWP, 'btagSF', 'PrefireWeight', 'Jet_PUIDSF']),
@@ -603,13 +605,10 @@ for me in mes_WH+mes_ZH:
     'args': (me,)
     }
 
-
 # Boosted VH KDs
 
 aliases['pjj_Wh'] = { 'expr':'pjjSm_Wh/pjjTr_Wh' }
 aliases['pjj_Zh'] = { 'expr':'pjjSm_Zh/pjjTr_Zh' }
-
-
 '''
 aliases['kd_smWh'] = { 'expr': '1/(1+((me_QCD_hsm*CWH)/(me_Wh_hsm*pjj_Wh)))' }
 aliases['kd_smZh'] = { 'expr': '1/(1+((me_QCD_hsm*CZH)/(me_Zh_hsm*pjj_Zh)))' }
@@ -625,7 +624,6 @@ aliases['kd_hlZh'] = { 'expr': '1/(1+((me_QCD_hsm*CZH)/(me_Zh_hl*pjj_Zh*L1ZH**2)
 aliases['kd_hlVh'] = { 'expr': 'max(kd_hlWh, kd_hlZh)' }
 aliases['kd_Vh']   = { 'expr': 'max(max(kd_smVh, kd_hmVh), max(kd_hpVh, kd_hlVh))' }
 '''
-
 #aliases['kd_Vh']   = { 'expr': '1'}
 
 aliases['kd_Wh_hm']    = { 'expr': '1/(1+(me_Wh_hsm/(me_Wh_hm*G4WH**2)))' }

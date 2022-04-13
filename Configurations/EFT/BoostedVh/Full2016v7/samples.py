@@ -114,7 +114,7 @@ runDYveto = True
 embed_tautauveto = '' #Setup
 if useEmbeddedDY:
   embed_tautauveto = '*embed_tautauveto'
-'''
+
 if useEmbeddedDY:
   # Actual embedded data
   samples['Dyemb'] = {
@@ -143,7 +143,7 @@ if useEmbeddedDY:
       nanoGetSampleFiles(mcDirectory, 'WZTo2L2Q') + \
       nanoGetSampleFiles(mcDirectory, 'Zg') + \
       nanoGetSampleFiles(mcDirectory, 'WZTo3LNu_mllmin01')
-'''
+
 '''
   if runDYveto:
       samples['Dyveto'] = {
@@ -169,7 +169,7 @@ if useEmbeddedDY:
 ###### DY MC ######
 ## We need to keep DY MC as well, because only embedded events passing the ElMu trigger are considered
 ## Events failing ElMu but passing one of the other triggers are included in the DY MC
-'''
+
 if useDYtt:
     files = nanoGetSampleFiles(mcDirectory, 'DYJetsToTT_MuEle_M-50_ext1') + \
         nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-10to50-LO')
@@ -193,33 +193,32 @@ else:
     }
     addSampleWeight(samples,'DY','DYJetsToLL_M-50','DY_NLO_pTllrw')
     addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO_ext1','DY_LO_pTllrw')
-'''
+
 
 ###### Top #######
 
-files = nanoGetSampleFiles(mcDirectory, 'TTTo2L2Nu') + \
-    nanoGetSampleFiles(mcDirectory, 'ST_s-channel') + \
-    nanoGetSampleFiles(mcDirectory, 'ST_t-channel_antitop') + \
-    nanoGetSampleFiles(mcDirectory, 'ST_t-channel_top') + \
-    nanoGetSampleFiles(mcDirectory, 'ST_tW_antitop') + \
-    nanoGetSampleFiles(mcDirectory, 'ST_tW_top')
+files = nanoGetSampleFiles(mcDirectory, 'TTTo2L2Nu')
+#    nanoGetSampleFiles(mcDirectory, 'ST_s-channel') + \
+#    nanoGetSampleFiles(mcDirectory, 'ST_t-channel_antitop') + \
+#    nanoGetSampleFiles(mcDirectory, 'ST_t-channel_top') + \
+#    nanoGetSampleFiles(mcDirectory, 'ST_tW_antitop') + \
+#    nanoGetSampleFiles(mcDirectory, 'ST_tW_top')
 
 samples['top'] = {
     'name': files,
     'weight': mcCommonWeight+embed_tautauveto,
-    'FilesPerJob': 1,
+    'FilesPerJob': 2,
 }
 
 addSampleWeight(samples,'top','TTTo2L2Nu','Top_pTrw')
 
 ###### WW ########
-'''
+
 samples['WW'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'WWTo2L2Nu'),
     'weight': mcCommonWeight+embed_tautauveto + '*nllW*ewknloW', # temporary - nllW module not run on PS and UE variation samples
     'FilesPerJob': 1
 }
-
 
 samples['WWewk'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'WpWmJJ_EWK_noTop'),
@@ -233,10 +232,10 @@ samples['ggWW'] = {
     'FilesPerJob': 4
 }
 
-'''
+
 ######## Vg ########
-useWgFXFX=True
-'''
+useWgFXFX=False
+
 if useWgFXFX:
   files = nanoGetSampleFiles(mcDirectory, 'Wg_AMCNLOFXFX_01J') + \
       nanoGetSampleFiles(mcDirectory, 'Wg_AMCNLOFXFX_01J_ext1') + \
@@ -444,7 +443,7 @@ for _, sd in DataRun:
 
     samples['Fake']['name'].extend(files)
     samples['Fake']['weights'].extend([DataTrig[pd]] * len(files))
-'''
+
 '''
 samples['Fake']['subsamples'] = {
   'em': 'abs(Lepton_pdgId[0]) == 11',
@@ -454,7 +453,7 @@ samples['Fake']['subsamples'] = {
 ###########################################
 ################## DATA ###################
 ###########################################
-'''
+
 samples['DATA'] = {
   'name': [],
   'weight': 'METFilter_DATA*LepWPCut',
@@ -469,7 +468,7 @@ for _, sd in DataRun:
     
     samples['DATA']['name'].extend(files)
     samples['DATA']['weights'].extend([DataTrig[pd]] * len(files))
-'''
+
 #### AC/EFT Signals 
  
 signals_rw = [] 
@@ -477,7 +476,7 @@ signals_rw = []
 # VBF MC samples 
  
 # Original VBF samples 
-'''
+
 samples['VBF_H0PM'] = { 
    'name':   nanoGetSampleFiles(mcDirectory, 'VBF_H0PM_ToWWTo2L2Nu'), 
    'weight': mcCommonWeight+ '*VBF_H0PM_W',   'FilesPerJob': 4, } 
@@ -588,66 +587,6 @@ samples['VBF_H0PM_H0LZg_M3'] = {
    'weight': mcCommonWeight+ '*VBF_H0PM_W*(ME_H0LZg_M3/ME_H0PM)',   'FilesPerJob': 4, } 
 signals_rw.append('VBF_H0PM_H0LZg_M3')  
  
-samples['VBF_H0PM_EFTH0M_M0'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'VBF_H0PM_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*VBF_H0PM_W*(ME_EFTH0M_M0/ME_H0PM)',   'FilesPerJob': 4, } 
-signals_rw.append('VBF_H0PM_EFTH0M_M0')  
- 
-samples['VBF_H0PM_EFTH0M_M1'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'VBF_H0PM_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*VBF_H0PM_W*(ME_EFTH0M_M1/ME_H0PM)',   'FilesPerJob': 4, } 
-signals_rw.append('VBF_H0PM_EFTH0M_M1')  
- 
-samples['VBF_H0PM_EFTH0M_M2'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'VBF_H0PM_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*VBF_H0PM_W*(ME_EFTH0M_M2/ME_H0PM)',   'FilesPerJob': 4, } 
-signals_rw.append('VBF_H0PM_EFTH0M_M2')  
- 
-samples['VBF_H0PM_EFTH0M_M3'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'VBF_H0PM_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*VBF_H0PM_W*(ME_EFTH0M_M3/ME_H0PM)',   'FilesPerJob': 4, } 
-signals_rw.append('VBF_H0PM_EFTH0M_M3')  
- 
-samples['VBF_H0PM_EFTH0PH_M0'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'VBF_H0PM_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*VBF_H0PM_W*(ME_EFTH0PH_M0/ME_H0PM)',   'FilesPerJob': 4, } 
-signals_rw.append('VBF_H0PM_EFTH0PH_M0')  
- 
-samples['VBF_H0PM_EFTH0PH_M1'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'VBF_H0PM_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*VBF_H0PM_W*(ME_EFTH0PH_M1/ME_H0PM)',   'FilesPerJob': 4, } 
-signals_rw.append('VBF_H0PM_EFTH0PH_M1')  
- 
-samples['VBF_H0PM_EFTH0PH_M2'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'VBF_H0PM_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*VBF_H0PM_W*(ME_EFTH0PH_M2/ME_H0PM)',   'FilesPerJob': 4, } 
-signals_rw.append('VBF_H0PM_EFTH0PH_M2')  
- 
-samples['VBF_H0PM_EFTH0PH_M3'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'VBF_H0PM_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*VBF_H0PM_W*(ME_EFTH0PH_M3/ME_H0PM)',   'FilesPerJob': 4, } 
-signals_rw.append('VBF_H0PM_EFTH0PH_M3')  
- 
-samples['VBF_H0PM_EFTH0L1_M0'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'VBF_H0PM_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*VBF_H0PM_W*(ME_EFTH0L1_M0/ME_H0PM)',   'FilesPerJob': 4, } 
-signals_rw.append('VBF_H0PM_EFTH0L1_M0')  
- 
-samples['VBF_H0PM_EFTH0L1_M1'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'VBF_H0PM_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*VBF_H0PM_W*(ME_EFTH0L1_M1/ME_H0PM)',   'FilesPerJob': 4, } 
-signals_rw.append('VBF_H0PM_EFTH0L1_M1')  
- 
-samples['VBF_H0PM_EFTH0L1_M2'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'VBF_H0PM_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*VBF_H0PM_W*(ME_EFTH0L1_M2/ME_H0PM)',   'FilesPerJob': 4, } 
-signals_rw.append('VBF_H0PM_EFTH0L1_M2')  
- 
-samples['VBF_H0PM_EFTH0L1_M3'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'VBF_H0PM_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*VBF_H0PM_W*(ME_EFTH0L1_M3/ME_H0PM)',   'FilesPerJob': 4, } 
-signals_rw.append('VBF_H0PM_EFTH0L1_M3')  
- 
 samples['VBF_H0M_H0PM'] = { 
    'name':   nanoGetSampleFiles(mcDirectory, 'VBF_H0M_ToWWTo2L2Nu'), 
    'weight': mcCommonWeight+ '*VBF_H0M_W*(ME_H0PM/ME_H0M)',   'FilesPerJob': 4, } 
@@ -732,66 +671,6 @@ samples['VBF_H0M_H0LZg_M3'] = {
    'name':   nanoGetSampleFiles(mcDirectory, 'VBF_H0M_ToWWTo2L2Nu'), 
    'weight': mcCommonWeight+ '*VBF_H0M_W*(ME_H0LZg_M3/ME_H0M)',   'FilesPerJob': 4, } 
 signals_rw.append('VBF_H0M_H0LZg_M3')  
- 
-samples['VBF_H0M_EFTH0M_M0'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'VBF_H0M_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*VBF_H0M_W*(ME_EFTH0M_M0/ME_H0M)',   'FilesPerJob': 4, } 
-signals_rw.append('VBF_H0M_EFTH0M_M0')  
- 
-samples['VBF_H0M_EFTH0M_M1'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'VBF_H0M_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*VBF_H0M_W*(ME_EFTH0M_M1/ME_H0M)',   'FilesPerJob': 4, } 
-signals_rw.append('VBF_H0M_EFTH0M_M1')  
- 
-samples['VBF_H0M_EFTH0M_M2'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'VBF_H0M_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*VBF_H0M_W*(ME_EFTH0M_M2/ME_H0M)',   'FilesPerJob': 4, } 
-signals_rw.append('VBF_H0M_EFTH0M_M2')  
- 
-samples['VBF_H0M_EFTH0M_M3'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'VBF_H0M_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*VBF_H0M_W*(ME_EFTH0M_M3/ME_H0M)',   'FilesPerJob': 4, } 
-signals_rw.append('VBF_H0M_EFTH0M_M3')  
- 
-samples['VBF_H0M_EFTH0PH_M0'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'VBF_H0M_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*VBF_H0M_W*(ME_EFTH0PH_M0/ME_H0M)',   'FilesPerJob': 4, } 
-signals_rw.append('VBF_H0M_EFTH0PH_M0')  
- 
-samples['VBF_H0M_EFTH0PH_M1'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'VBF_H0M_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*VBF_H0M_W*(ME_EFTH0PH_M1/ME_H0M)',   'FilesPerJob': 4, } 
-signals_rw.append('VBF_H0M_EFTH0PH_M1')  
- 
-samples['VBF_H0M_EFTH0PH_M2'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'VBF_H0M_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*VBF_H0M_W*(ME_EFTH0PH_M2/ME_H0M)',   'FilesPerJob': 4, } 
-signals_rw.append('VBF_H0M_EFTH0PH_M2')  
- 
-samples['VBF_H0M_EFTH0PH_M3'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'VBF_H0M_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*VBF_H0M_W*(ME_EFTH0PH_M3/ME_H0M)',   'FilesPerJob': 4, } 
-signals_rw.append('VBF_H0M_EFTH0PH_M3')  
- 
-samples['VBF_H0M_EFTH0L1_M0'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'VBF_H0M_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*VBF_H0M_W*(ME_EFTH0L1_M0/ME_H0M)',   'FilesPerJob': 4, } 
-signals_rw.append('VBF_H0M_EFTH0L1_M0')  
- 
-samples['VBF_H0M_EFTH0L1_M1'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'VBF_H0M_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*VBF_H0M_W*(ME_EFTH0L1_M1/ME_H0M)',   'FilesPerJob': 4, } 
-signals_rw.append('VBF_H0M_EFTH0L1_M1')  
- 
-samples['VBF_H0M_EFTH0L1_M2'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'VBF_H0M_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*VBF_H0M_W*(ME_EFTH0L1_M2/ME_H0M)',   'FilesPerJob': 4, } 
-signals_rw.append('VBF_H0M_EFTH0L1_M2')  
- 
-samples['VBF_H0M_EFTH0L1_M3'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'VBF_H0M_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*VBF_H0M_W*(ME_EFTH0L1_M3/ME_H0M)',   'FilesPerJob': 4, } 
-signals_rw.append('VBF_H0M_EFTH0L1_M3')  
  
 samples['VBF_H0Mf05_H0PM'] = { 
    'name':   nanoGetSampleFiles(mcDirectory, 'VBF_H0Mf05_ToWWTo2L2Nu'), 
@@ -878,66 +757,6 @@ samples['VBF_H0Mf05_H0LZg_M3'] = {
    'weight': mcCommonWeight+ '*VBF_H0Mf05_W*(ME_H0LZg_M3/ME_H0Mf05)',   'FilesPerJob': 4, } 
 signals_rw.append('VBF_H0Mf05_H0LZg_M3')  
  
-samples['VBF_H0Mf05_EFTH0M_M0'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'VBF_H0Mf05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*VBF_H0Mf05_W*(ME_EFTH0M_M0/ME_H0Mf05)',   'FilesPerJob': 4, } 
-signals_rw.append('VBF_H0Mf05_EFTH0M_M0')  
- 
-samples['VBF_H0Mf05_EFTH0M_M1'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'VBF_H0Mf05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*VBF_H0Mf05_W*(ME_EFTH0M_M1/ME_H0Mf05)',   'FilesPerJob': 4, } 
-signals_rw.append('VBF_H0Mf05_EFTH0M_M1')  
- 
-samples['VBF_H0Mf05_EFTH0M_M2'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'VBF_H0Mf05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*VBF_H0Mf05_W*(ME_EFTH0M_M2/ME_H0Mf05)',   'FilesPerJob': 4, } 
-signals_rw.append('VBF_H0Mf05_EFTH0M_M2')  
- 
-samples['VBF_H0Mf05_EFTH0M_M3'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'VBF_H0Mf05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*VBF_H0Mf05_W*(ME_EFTH0M_M3/ME_H0Mf05)',   'FilesPerJob': 4, } 
-signals_rw.append('VBF_H0Mf05_EFTH0M_M3')  
- 
-samples['VBF_H0Mf05_EFTH0PH_M0'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'VBF_H0Mf05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*VBF_H0Mf05_W*(ME_EFTH0PH_M0/ME_H0Mf05)',   'FilesPerJob': 4, } 
-signals_rw.append('VBF_H0Mf05_EFTH0PH_M0')  
- 
-samples['VBF_H0Mf05_EFTH0PH_M1'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'VBF_H0Mf05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*VBF_H0Mf05_W*(ME_EFTH0PH_M1/ME_H0Mf05)',   'FilesPerJob': 4, } 
-signals_rw.append('VBF_H0Mf05_EFTH0PH_M1')  
- 
-samples['VBF_H0Mf05_EFTH0PH_M2'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'VBF_H0Mf05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*VBF_H0Mf05_W*(ME_EFTH0PH_M2/ME_H0Mf05)',   'FilesPerJob': 4, } 
-signals_rw.append('VBF_H0Mf05_EFTH0PH_M2')  
- 
-samples['VBF_H0Mf05_EFTH0PH_M3'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'VBF_H0Mf05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*VBF_H0Mf05_W*(ME_EFTH0PH_M3/ME_H0Mf05)',   'FilesPerJob': 4, } 
-signals_rw.append('VBF_H0Mf05_EFTH0PH_M3')  
- 
-samples['VBF_H0Mf05_EFTH0L1_M0'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'VBF_H0Mf05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*VBF_H0Mf05_W*(ME_EFTH0L1_M0/ME_H0Mf05)',   'FilesPerJob': 4, } 
-signals_rw.append('VBF_H0Mf05_EFTH0L1_M0')  
- 
-samples['VBF_H0Mf05_EFTH0L1_M1'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'VBF_H0Mf05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*VBF_H0Mf05_W*(ME_EFTH0L1_M1/ME_H0Mf05)',   'FilesPerJob': 4, } 
-signals_rw.append('VBF_H0Mf05_EFTH0L1_M1')  
- 
-samples['VBF_H0Mf05_EFTH0L1_M2'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'VBF_H0Mf05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*VBF_H0Mf05_W*(ME_EFTH0L1_M2/ME_H0Mf05)',   'FilesPerJob': 4, } 
-signals_rw.append('VBF_H0Mf05_EFTH0L1_M2')  
- 
-samples['VBF_H0Mf05_EFTH0L1_M3'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'VBF_H0Mf05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*VBF_H0Mf05_W*(ME_EFTH0L1_M3/ME_H0Mf05)',   'FilesPerJob': 4, } 
-signals_rw.append('VBF_H0Mf05_EFTH0L1_M3')  
- 
 samples['VBF_H0PH_H0PM'] = { 
    'name':   nanoGetSampleFiles(mcDirectory, 'VBF_H0PH_ToWWTo2L2Nu'), 
    'weight': mcCommonWeight+ '*VBF_H0PH_W*(ME_H0PM/ME_H0PH)',   'FilesPerJob': 4, } 
@@ -1022,66 +841,6 @@ samples['VBF_H0PH_H0LZg_M3'] = {
    'name':   nanoGetSampleFiles(mcDirectory, 'VBF_H0PH_ToWWTo2L2Nu'), 
    'weight': mcCommonWeight+ '*VBF_H0PH_W*(ME_H0LZg_M3/ME_H0PH)',   'FilesPerJob': 4, } 
 signals_rw.append('VBF_H0PH_H0LZg_M3')  
- 
-samples['VBF_H0PH_EFTH0M_M0'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'VBF_H0PH_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*VBF_H0PH_W*(ME_EFTH0M_M0/ME_H0PH)',   'FilesPerJob': 4, } 
-signals_rw.append('VBF_H0PH_EFTH0M_M0')  
- 
-samples['VBF_H0PH_EFTH0M_M1'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'VBF_H0PH_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*VBF_H0PH_W*(ME_EFTH0M_M1/ME_H0PH)',   'FilesPerJob': 4, } 
-signals_rw.append('VBF_H0PH_EFTH0M_M1')  
- 
-samples['VBF_H0PH_EFTH0M_M2'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'VBF_H0PH_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*VBF_H0PH_W*(ME_EFTH0M_M2/ME_H0PH)',   'FilesPerJob': 4, } 
-signals_rw.append('VBF_H0PH_EFTH0M_M2')  
- 
-samples['VBF_H0PH_EFTH0M_M3'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'VBF_H0PH_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*VBF_H0PH_W*(ME_EFTH0M_M3/ME_H0PH)',   'FilesPerJob': 4, } 
-signals_rw.append('VBF_H0PH_EFTH0M_M3')  
- 
-samples['VBF_H0PH_EFTH0PH_M0'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'VBF_H0PH_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*VBF_H0PH_W*(ME_EFTH0PH_M0/ME_H0PH)',   'FilesPerJob': 4, } 
-signals_rw.append('VBF_H0PH_EFTH0PH_M0')  
- 
-samples['VBF_H0PH_EFTH0PH_M1'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'VBF_H0PH_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*VBF_H0PH_W*(ME_EFTH0PH_M1/ME_H0PH)',   'FilesPerJob': 4, } 
-signals_rw.append('VBF_H0PH_EFTH0PH_M1')  
- 
-samples['VBF_H0PH_EFTH0PH_M2'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'VBF_H0PH_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*VBF_H0PH_W*(ME_EFTH0PH_M2/ME_H0PH)',   'FilesPerJob': 4, } 
-signals_rw.append('VBF_H0PH_EFTH0PH_M2')  
- 
-samples['VBF_H0PH_EFTH0PH_M3'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'VBF_H0PH_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*VBF_H0PH_W*(ME_EFTH0PH_M3/ME_H0PH)',   'FilesPerJob': 4, } 
-signals_rw.append('VBF_H0PH_EFTH0PH_M3')  
- 
-samples['VBF_H0PH_EFTH0L1_M0'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'VBF_H0PH_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*VBF_H0PH_W*(ME_EFTH0L1_M0/ME_H0PH)',   'FilesPerJob': 4, } 
-signals_rw.append('VBF_H0PH_EFTH0L1_M0')  
- 
-samples['VBF_H0PH_EFTH0L1_M1'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'VBF_H0PH_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*VBF_H0PH_W*(ME_EFTH0L1_M1/ME_H0PH)',   'FilesPerJob': 4, } 
-signals_rw.append('VBF_H0PH_EFTH0L1_M1')  
- 
-samples['VBF_H0PH_EFTH0L1_M2'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'VBF_H0PH_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*VBF_H0PH_W*(ME_EFTH0L1_M2/ME_H0PH)',   'FilesPerJob': 4, } 
-signals_rw.append('VBF_H0PH_EFTH0L1_M2')  
- 
-samples['VBF_H0PH_EFTH0L1_M3'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'VBF_H0PH_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*VBF_H0PH_W*(ME_EFTH0L1_M3/ME_H0PH)',   'FilesPerJob': 4, } 
-signals_rw.append('VBF_H0PH_EFTH0L1_M3')  
  
 samples['VBF_H0PHf05_H0PM'] = { 
    'name':   nanoGetSampleFiles(mcDirectory, 'VBF_H0PHf05_ToWWTo2L2Nu'), 
@@ -1168,66 +927,6 @@ samples['VBF_H0PHf05_H0LZg_M3'] = {
    'weight': mcCommonWeight+ '*VBF_H0PHf05_W*(ME_H0LZg_M3/ME_H0PHf05)',   'FilesPerJob': 4, } 
 signals_rw.append('VBF_H0PHf05_H0LZg_M3')  
  
-samples['VBF_H0PHf05_EFTH0M_M0'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'VBF_H0PHf05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*VBF_H0PHf05_W*(ME_EFTH0M_M0/ME_H0PHf05)',   'FilesPerJob': 4, } 
-signals_rw.append('VBF_H0PHf05_EFTH0M_M0')  
- 
-samples['VBF_H0PHf05_EFTH0M_M1'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'VBF_H0PHf05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*VBF_H0PHf05_W*(ME_EFTH0M_M1/ME_H0PHf05)',   'FilesPerJob': 4, } 
-signals_rw.append('VBF_H0PHf05_EFTH0M_M1')  
- 
-samples['VBF_H0PHf05_EFTH0M_M2'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'VBF_H0PHf05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*VBF_H0PHf05_W*(ME_EFTH0M_M2/ME_H0PHf05)',   'FilesPerJob': 4, } 
-signals_rw.append('VBF_H0PHf05_EFTH0M_M2')  
- 
-samples['VBF_H0PHf05_EFTH0M_M3'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'VBF_H0PHf05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*VBF_H0PHf05_W*(ME_EFTH0M_M3/ME_H0PHf05)',   'FilesPerJob': 4, } 
-signals_rw.append('VBF_H0PHf05_EFTH0M_M3')  
- 
-samples['VBF_H0PHf05_EFTH0PH_M0'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'VBF_H0PHf05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*VBF_H0PHf05_W*(ME_EFTH0PH_M0/ME_H0PHf05)',   'FilesPerJob': 4, } 
-signals_rw.append('VBF_H0PHf05_EFTH0PH_M0')  
- 
-samples['VBF_H0PHf05_EFTH0PH_M1'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'VBF_H0PHf05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*VBF_H0PHf05_W*(ME_EFTH0PH_M1/ME_H0PHf05)',   'FilesPerJob': 4, } 
-signals_rw.append('VBF_H0PHf05_EFTH0PH_M1')  
- 
-samples['VBF_H0PHf05_EFTH0PH_M2'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'VBF_H0PHf05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*VBF_H0PHf05_W*(ME_EFTH0PH_M2/ME_H0PHf05)',   'FilesPerJob': 4, } 
-signals_rw.append('VBF_H0PHf05_EFTH0PH_M2')  
- 
-samples['VBF_H0PHf05_EFTH0PH_M3'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'VBF_H0PHf05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*VBF_H0PHf05_W*(ME_EFTH0PH_M3/ME_H0PHf05)',   'FilesPerJob': 4, } 
-signals_rw.append('VBF_H0PHf05_EFTH0PH_M3')  
- 
-samples['VBF_H0PHf05_EFTH0L1_M0'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'VBF_H0PHf05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*VBF_H0PHf05_W*(ME_EFTH0L1_M0/ME_H0PHf05)',   'FilesPerJob': 4, } 
-signals_rw.append('VBF_H0PHf05_EFTH0L1_M0')  
- 
-samples['VBF_H0PHf05_EFTH0L1_M1'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'VBF_H0PHf05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*VBF_H0PHf05_W*(ME_EFTH0L1_M1/ME_H0PHf05)',   'FilesPerJob': 4, } 
-signals_rw.append('VBF_H0PHf05_EFTH0L1_M1')  
- 
-samples['VBF_H0PHf05_EFTH0L1_M2'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'VBF_H0PHf05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*VBF_H0PHf05_W*(ME_EFTH0L1_M2/ME_H0PHf05)',   'FilesPerJob': 4, } 
-signals_rw.append('VBF_H0PHf05_EFTH0L1_M2')  
- 
-samples['VBF_H0PHf05_EFTH0L1_M3'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'VBF_H0PHf05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*VBF_H0PHf05_W*(ME_EFTH0L1_M3/ME_H0PHf05)',   'FilesPerJob': 4, } 
-signals_rw.append('VBF_H0PHf05_EFTH0L1_M3')  
- 
 samples['VBF_H0L1_H0PM'] = { 
    'name':   nanoGetSampleFiles(mcDirectory, 'VBF_H0L1_ToWWTo2L2Nu'), 
    'weight': mcCommonWeight+ '*VBF_H0L1_W*(ME_H0PM/ME_H0L1)',   'FilesPerJob': 4, } 
@@ -1313,66 +1012,6 @@ samples['VBF_H0L1_H0LZg_M3'] = {
    'weight': mcCommonWeight+ '*VBF_H0L1_W*(ME_H0LZg_M3/ME_H0L1)',   'FilesPerJob': 4, } 
 signals_rw.append('VBF_H0L1_H0LZg_M3')  
  
-samples['VBF_H0L1_EFTH0M_M0'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'VBF_H0L1_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*VBF_H0L1_W*(ME_EFTH0M_M0/ME_H0L1)',   'FilesPerJob': 4, } 
-signals_rw.append('VBF_H0L1_EFTH0M_M0')  
- 
-samples['VBF_H0L1_EFTH0M_M1'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'VBF_H0L1_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*VBF_H0L1_W*(ME_EFTH0M_M1/ME_H0L1)',   'FilesPerJob': 4, } 
-signals_rw.append('VBF_H0L1_EFTH0M_M1')  
- 
-samples['VBF_H0L1_EFTH0M_M2'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'VBF_H0L1_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*VBF_H0L1_W*(ME_EFTH0M_M2/ME_H0L1)',   'FilesPerJob': 4, } 
-signals_rw.append('VBF_H0L1_EFTH0M_M2')  
- 
-samples['VBF_H0L1_EFTH0M_M3'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'VBF_H0L1_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*VBF_H0L1_W*(ME_EFTH0M_M3/ME_H0L1)',   'FilesPerJob': 4, } 
-signals_rw.append('VBF_H0L1_EFTH0M_M3')  
- 
-samples['VBF_H0L1_EFTH0PH_M0'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'VBF_H0L1_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*VBF_H0L1_W*(ME_EFTH0PH_M0/ME_H0L1)',   'FilesPerJob': 4, } 
-signals_rw.append('VBF_H0L1_EFTH0PH_M0')  
- 
-samples['VBF_H0L1_EFTH0PH_M1'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'VBF_H0L1_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*VBF_H0L1_W*(ME_EFTH0PH_M1/ME_H0L1)',   'FilesPerJob': 4, } 
-signals_rw.append('VBF_H0L1_EFTH0PH_M1')  
- 
-samples['VBF_H0L1_EFTH0PH_M2'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'VBF_H0L1_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*VBF_H0L1_W*(ME_EFTH0PH_M2/ME_H0L1)',   'FilesPerJob': 4, } 
-signals_rw.append('VBF_H0L1_EFTH0PH_M2')  
- 
-samples['VBF_H0L1_EFTH0PH_M3'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'VBF_H0L1_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*VBF_H0L1_W*(ME_EFTH0PH_M3/ME_H0L1)',   'FilesPerJob': 4, } 
-signals_rw.append('VBF_H0L1_EFTH0PH_M3')  
- 
-samples['VBF_H0L1_EFTH0L1_M0'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'VBF_H0L1_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*VBF_H0L1_W*(ME_EFTH0L1_M0/ME_H0L1)',   'FilesPerJob': 4, } 
-signals_rw.append('VBF_H0L1_EFTH0L1_M0')  
- 
-samples['VBF_H0L1_EFTH0L1_M1'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'VBF_H0L1_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*VBF_H0L1_W*(ME_EFTH0L1_M1/ME_H0L1)',   'FilesPerJob': 4, } 
-signals_rw.append('VBF_H0L1_EFTH0L1_M1')  
- 
-samples['VBF_H0L1_EFTH0L1_M2'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'VBF_H0L1_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*VBF_H0L1_W*(ME_EFTH0L1_M2/ME_H0L1)',   'FilesPerJob': 4, } 
-signals_rw.append('VBF_H0L1_EFTH0L1_M2')  
- 
-samples['VBF_H0L1_EFTH0L1_M3'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'VBF_H0L1_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*VBF_H0L1_W*(ME_EFTH0L1_M3/ME_H0L1)',   'FilesPerJob': 4, } 
-signals_rw.append('VBF_H0L1_EFTH0L1_M3')  
- 
 samples['VBF_H0L1f05_H0PM'] = { 
    'name':   nanoGetSampleFiles(mcDirectory, 'VBF_H0L1f05_ToWWTo2L2Nu'), 
    'weight': mcCommonWeight+ '*VBF_H0L1f05_W*(ME_H0PM/ME_H0L1f05)',   'FilesPerJob': 4, } 
@@ -1457,67 +1096,7 @@ samples['VBF_H0L1f05_H0LZg_M3'] = {
    'name':   nanoGetSampleFiles(mcDirectory, 'VBF_H0L1f05_ToWWTo2L2Nu'), 
    'weight': mcCommonWeight+ '*VBF_H0L1f05_W*(ME_H0LZg_M3/ME_H0L1f05)',   'FilesPerJob': 4, } 
 signals_rw.append('VBF_H0L1f05_H0LZg_M3')  
- 
-samples['VBF_H0L1f05_EFTH0M_M0'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'VBF_H0L1f05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*VBF_H0L1f05_W*(ME_EFTH0M_M0/ME_H0L1f05)',   'FilesPerJob': 4, } 
-signals_rw.append('VBF_H0L1f05_EFTH0M_M0')  
- 
-samples['VBF_H0L1f05_EFTH0M_M1'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'VBF_H0L1f05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*VBF_H0L1f05_W*(ME_EFTH0M_M1/ME_H0L1f05)',   'FilesPerJob': 4, } 
-signals_rw.append('VBF_H0L1f05_EFTH0M_M1')  
- 
-samples['VBF_H0L1f05_EFTH0M_M2'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'VBF_H0L1f05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*VBF_H0L1f05_W*(ME_EFTH0M_M2/ME_H0L1f05)',   'FilesPerJob': 4, } 
-signals_rw.append('VBF_H0L1f05_EFTH0M_M2')  
- 
-samples['VBF_H0L1f05_EFTH0M_M3'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'VBF_H0L1f05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*VBF_H0L1f05_W*(ME_EFTH0M_M3/ME_H0L1f05)',   'FilesPerJob': 4, } 
-signals_rw.append('VBF_H0L1f05_EFTH0M_M3')  
- 
-samples['VBF_H0L1f05_EFTH0PH_M0'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'VBF_H0L1f05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*VBF_H0L1f05_W*(ME_EFTH0PH_M0/ME_H0L1f05)',   'FilesPerJob': 4, } 
-signals_rw.append('VBF_H0L1f05_EFTH0PH_M0')  
- 
-samples['VBF_H0L1f05_EFTH0PH_M1'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'VBF_H0L1f05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*VBF_H0L1f05_W*(ME_EFTH0PH_M1/ME_H0L1f05)',   'FilesPerJob': 4, } 
-signals_rw.append('VBF_H0L1f05_EFTH0PH_M1')  
- 
-samples['VBF_H0L1f05_EFTH0PH_M2'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'VBF_H0L1f05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*VBF_H0L1f05_W*(ME_EFTH0PH_M2/ME_H0L1f05)',   'FilesPerJob': 4, } 
-signals_rw.append('VBF_H0L1f05_EFTH0PH_M2')  
- 
-samples['VBF_H0L1f05_EFTH0PH_M3'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'VBF_H0L1f05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*VBF_H0L1f05_W*(ME_EFTH0PH_M3/ME_H0L1f05)',   'FilesPerJob': 4, } 
-signals_rw.append('VBF_H0L1f05_EFTH0PH_M3')  
- 
-samples['VBF_H0L1f05_EFTH0L1_M0'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'VBF_H0L1f05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*VBF_H0L1f05_W*(ME_EFTH0L1_M0/ME_H0L1f05)',   'FilesPerJob': 4, } 
-signals_rw.append('VBF_H0L1f05_EFTH0L1_M0')  
- 
-samples['VBF_H0L1f05_EFTH0L1_M1'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'VBF_H0L1f05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*VBF_H0L1f05_W*(ME_EFTH0L1_M1/ME_H0L1f05)',   'FilesPerJob': 4, } 
-signals_rw.append('VBF_H0L1f05_EFTH0L1_M1')  
- 
-samples['VBF_H0L1f05_EFTH0L1_M2'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'VBF_H0L1f05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*VBF_H0L1f05_W*(ME_EFTH0L1_M2/ME_H0L1f05)',   'FilesPerJob': 4, } 
-signals_rw.append('VBF_H0L1f05_EFTH0L1_M2')  
- 
-samples['VBF_H0L1f05_EFTH0L1_M3'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'VBF_H0L1f05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*VBF_H0L1f05_W*(ME_EFTH0L1_M3/ME_H0L1f05)',   'FilesPerJob': 4, } 
-signals_rw.append('VBF_H0L1f05_EFTH0L1_M3')  
- 
+
 # WH MC samples 
  
 # Original WH samples 
@@ -1551,7 +1130,7 @@ samples['WH_H0L1f05'] = {
    'weight': mcCommonWeight+ '*WH_H0L1f05_W',   'FilesPerJob': 4, } 
  
 # Reweighted WH samples 
- 
+
 samples['WH_H0PM_H0M_M0'] = { 
    'name':   nanoGetSampleFiles(mcDirectory, 'WH_H0PM_ToWWTo2L2Nu'), 
    'weight': mcCommonWeight+ '*WH_H0PM_W*(ME_H0M_M0/ME_H0PM)',   'FilesPerJob': 4, } 
@@ -1611,66 +1190,6 @@ samples['WH_H0PM_H0L1_M3'] = {
    'name':   nanoGetSampleFiles(mcDirectory, 'WH_H0PM_ToWWTo2L2Nu'), 
    'weight': mcCommonWeight+ '*WH_H0PM_W*(ME_H0L1_M3/ME_H0PM)',   'FilesPerJob': 4, } 
 signals_rw.append('WH_H0PM_H0L1_M3')  
- 
-samples['WH_H0PM_EFTH0M_M0'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'WH_H0PM_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*WH_H0PM_W*(ME_EFTH0M_M0/ME_H0PM)',   'FilesPerJob': 4, } 
-signals_rw.append('WH_H0PM_EFTH0M_M0')  
- 
-samples['WH_H0PM_EFTH0M_M1'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'WH_H0PM_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*WH_H0PM_W*(ME_EFTH0M_M1/ME_H0PM)',   'FilesPerJob': 4, } 
-signals_rw.append('WH_H0PM_EFTH0M_M1')  
- 
-samples['WH_H0PM_EFTH0M_M2'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'WH_H0PM_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*WH_H0PM_W*(ME_EFTH0M_M2/ME_H0PM)',   'FilesPerJob': 4, } 
-signals_rw.append('WH_H0PM_EFTH0M_M2')  
- 
-samples['WH_H0PM_EFTH0M_M3'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'WH_H0PM_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*WH_H0PM_W*(ME_EFTH0M_M3/ME_H0PM)',   'FilesPerJob': 4, } 
-signals_rw.append('WH_H0PM_EFTH0M_M3')  
- 
-samples['WH_H0PM_EFTH0PH_M0'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'WH_H0PM_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*WH_H0PM_W*(ME_EFTH0PH_M0/ME_H0PM)',   'FilesPerJob': 4, } 
-signals_rw.append('WH_H0PM_EFTH0PH_M0')  
- 
-samples['WH_H0PM_EFTH0PH_M1'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'WH_H0PM_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*WH_H0PM_W*(ME_EFTH0PH_M1/ME_H0PM)',   'FilesPerJob': 4, } 
-signals_rw.append('WH_H0PM_EFTH0PH_M1')  
- 
-samples['WH_H0PM_EFTH0PH_M2'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'WH_H0PM_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*WH_H0PM_W*(ME_EFTH0PH_M2/ME_H0PM)',   'FilesPerJob': 4, } 
-signals_rw.append('WH_H0PM_EFTH0PH_M2')  
- 
-samples['WH_H0PM_EFTH0PH_M3'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'WH_H0PM_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*WH_H0PM_W*(ME_EFTH0PH_M3/ME_H0PM)',   'FilesPerJob': 4, } 
-signals_rw.append('WH_H0PM_EFTH0PH_M3')  
- 
-samples['WH_H0PM_EFTH0L1_M0'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'WH_H0PM_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*WH_H0PM_W*(ME_EFTH0L1_M0/ME_H0PM)',   'FilesPerJob': 4, } 
-signals_rw.append('WH_H0PM_EFTH0L1_M0')  
- 
-samples['WH_H0PM_EFTH0L1_M1'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'WH_H0PM_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*WH_H0PM_W*(ME_EFTH0L1_M1/ME_H0PM)',   'FilesPerJob': 4, } 
-signals_rw.append('WH_H0PM_EFTH0L1_M1')  
- 
-samples['WH_H0PM_EFTH0L1_M2'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'WH_H0PM_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*WH_H0PM_W*(ME_EFTH0L1_M2/ME_H0PM)',   'FilesPerJob': 4, } 
-signals_rw.append('WH_H0PM_EFTH0L1_M2')  
- 
-samples['WH_H0PM_EFTH0L1_M3'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'WH_H0PM_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*WH_H0PM_W*(ME_EFTH0L1_M3/ME_H0PM)',   'FilesPerJob': 4, } 
-signals_rw.append('WH_H0PM_EFTH0L1_M3')  
  
 samples['WH_H0M_H0PM'] = { 
    'name':   nanoGetSampleFiles(mcDirectory, 'WH_H0M_ToWWTo2L2Nu'), 
@@ -1737,66 +1256,6 @@ samples['WH_H0M_H0L1_M3'] = {
    'weight': mcCommonWeight+ '*WH_H0M_W*(ME_H0L1_M3/ME_H0M)',   'FilesPerJob': 4, } 
 signals_rw.append('WH_H0M_H0L1_M3')  
  
-samples['WH_H0M_EFTH0M_M0'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'WH_H0M_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*WH_H0M_W*(ME_EFTH0M_M0/ME_H0M)',   'FilesPerJob': 4, } 
-signals_rw.append('WH_H0M_EFTH0M_M0')  
- 
-samples['WH_H0M_EFTH0M_M1'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'WH_H0M_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*WH_H0M_W*(ME_EFTH0M_M1/ME_H0M)',   'FilesPerJob': 4, } 
-signals_rw.append('WH_H0M_EFTH0M_M1')  
- 
-samples['WH_H0M_EFTH0M_M2'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'WH_H0M_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*WH_H0M_W*(ME_EFTH0M_M2/ME_H0M)',   'FilesPerJob': 4, } 
-signals_rw.append('WH_H0M_EFTH0M_M2')  
- 
-samples['WH_H0M_EFTH0M_M3'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'WH_H0M_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*WH_H0M_W*(ME_EFTH0M_M3/ME_H0M)',   'FilesPerJob': 4, } 
-signals_rw.append('WH_H0M_EFTH0M_M3')  
- 
-samples['WH_H0M_EFTH0PH_M0'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'WH_H0M_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*WH_H0M_W*(ME_EFTH0PH_M0/ME_H0M)',   'FilesPerJob': 4, } 
-signals_rw.append('WH_H0M_EFTH0PH_M0')  
- 
-samples['WH_H0M_EFTH0PH_M1'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'WH_H0M_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*WH_H0M_W*(ME_EFTH0PH_M1/ME_H0M)',   'FilesPerJob': 4, } 
-signals_rw.append('WH_H0M_EFTH0PH_M1')  
- 
-samples['WH_H0M_EFTH0PH_M2'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'WH_H0M_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*WH_H0M_W*(ME_EFTH0PH_M2/ME_H0M)',   'FilesPerJob': 4, } 
-signals_rw.append('WH_H0M_EFTH0PH_M2')  
- 
-samples['WH_H0M_EFTH0PH_M3'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'WH_H0M_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*WH_H0M_W*(ME_EFTH0PH_M3/ME_H0M)',   'FilesPerJob': 4, } 
-signals_rw.append('WH_H0M_EFTH0PH_M3')  
- 
-samples['WH_H0M_EFTH0L1_M0'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'WH_H0M_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*WH_H0M_W*(ME_EFTH0L1_M0/ME_H0M)',   'FilesPerJob': 4, } 
-signals_rw.append('WH_H0M_EFTH0L1_M0')  
- 
-samples['WH_H0M_EFTH0L1_M1'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'WH_H0M_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*WH_H0M_W*(ME_EFTH0L1_M1/ME_H0M)',   'FilesPerJob': 4, } 
-signals_rw.append('WH_H0M_EFTH0L1_M1')  
- 
-samples['WH_H0M_EFTH0L1_M2'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'WH_H0M_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*WH_H0M_W*(ME_EFTH0L1_M2/ME_H0M)',   'FilesPerJob': 4, } 
-signals_rw.append('WH_H0M_EFTH0L1_M2')  
- 
-samples['WH_H0M_EFTH0L1_M3'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'WH_H0M_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*WH_H0M_W*(ME_EFTH0L1_M3/ME_H0M)',   'FilesPerJob': 4, } 
-signals_rw.append('WH_H0M_EFTH0L1_M3')  
- 
 samples['WH_H0Mf05_H0PM'] = { 
    'name':   nanoGetSampleFiles(mcDirectory, 'WH_H0Mf05_ToWWTo2L2Nu'), 
    'weight': mcCommonWeight+ '*WH_H0Mf05_W*(ME_H0PM/ME_H0Mf05)',   'FilesPerJob': 4, } 
@@ -1861,66 +1320,6 @@ samples['WH_H0Mf05_H0L1_M3'] = {
    'name':   nanoGetSampleFiles(mcDirectory, 'WH_H0Mf05_ToWWTo2L2Nu'), 
    'weight': mcCommonWeight+ '*WH_H0Mf05_W*(ME_H0L1_M3/ME_H0Mf05)',   'FilesPerJob': 4, } 
 signals_rw.append('WH_H0Mf05_H0L1_M3')  
- 
-samples['WH_H0Mf05_EFTH0M_M0'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'WH_H0Mf05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*WH_H0Mf05_W*(ME_EFTH0M_M0/ME_H0Mf05)',   'FilesPerJob': 4, } 
-signals_rw.append('WH_H0Mf05_EFTH0M_M0')  
- 
-samples['WH_H0Mf05_EFTH0M_M1'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'WH_H0Mf05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*WH_H0Mf05_W*(ME_EFTH0M_M1/ME_H0Mf05)',   'FilesPerJob': 4, } 
-signals_rw.append('WH_H0Mf05_EFTH0M_M1')  
- 
-samples['WH_H0Mf05_EFTH0M_M2'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'WH_H0Mf05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*WH_H0Mf05_W*(ME_EFTH0M_M2/ME_H0Mf05)',   'FilesPerJob': 4, } 
-signals_rw.append('WH_H0Mf05_EFTH0M_M2')  
- 
-samples['WH_H0Mf05_EFTH0M_M3'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'WH_H0Mf05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*WH_H0Mf05_W*(ME_EFTH0M_M3/ME_H0Mf05)',   'FilesPerJob': 4, } 
-signals_rw.append('WH_H0Mf05_EFTH0M_M3')  
- 
-samples['WH_H0Mf05_EFTH0PH_M0'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'WH_H0Mf05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*WH_H0Mf05_W*(ME_EFTH0PH_M0/ME_H0Mf05)',   'FilesPerJob': 4, } 
-signals_rw.append('WH_H0Mf05_EFTH0PH_M0')  
- 
-samples['WH_H0Mf05_EFTH0PH_M1'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'WH_H0Mf05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*WH_H0Mf05_W*(ME_EFTH0PH_M1/ME_H0Mf05)',   'FilesPerJob': 4, } 
-signals_rw.append('WH_H0Mf05_EFTH0PH_M1')  
- 
-samples['WH_H0Mf05_EFTH0PH_M2'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'WH_H0Mf05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*WH_H0Mf05_W*(ME_EFTH0PH_M2/ME_H0Mf05)',   'FilesPerJob': 4, } 
-signals_rw.append('WH_H0Mf05_EFTH0PH_M2')  
- 
-samples['WH_H0Mf05_EFTH0PH_M3'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'WH_H0Mf05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*WH_H0Mf05_W*(ME_EFTH0PH_M3/ME_H0Mf05)',   'FilesPerJob': 4, } 
-signals_rw.append('WH_H0Mf05_EFTH0PH_M3')  
- 
-samples['WH_H0Mf05_EFTH0L1_M0'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'WH_H0Mf05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*WH_H0Mf05_W*(ME_EFTH0L1_M0/ME_H0Mf05)',   'FilesPerJob': 4, } 
-signals_rw.append('WH_H0Mf05_EFTH0L1_M0')  
- 
-samples['WH_H0Mf05_EFTH0L1_M1'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'WH_H0Mf05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*WH_H0Mf05_W*(ME_EFTH0L1_M1/ME_H0Mf05)',   'FilesPerJob': 4, } 
-signals_rw.append('WH_H0Mf05_EFTH0L1_M1')  
- 
-samples['WH_H0Mf05_EFTH0L1_M2'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'WH_H0Mf05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*WH_H0Mf05_W*(ME_EFTH0L1_M2/ME_H0Mf05)',   'FilesPerJob': 4, } 
-signals_rw.append('WH_H0Mf05_EFTH0L1_M2')  
- 
-samples['WH_H0Mf05_EFTH0L1_M3'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'WH_H0Mf05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*WH_H0Mf05_W*(ME_EFTH0L1_M3/ME_H0Mf05)',   'FilesPerJob': 4, } 
-signals_rw.append('WH_H0Mf05_EFTH0L1_M3')  
  
 samples['WH_H0PH_H0PM'] = { 
    'name':   nanoGetSampleFiles(mcDirectory, 'WH_H0PH_ToWWTo2L2Nu'), 
@@ -1987,66 +1386,6 @@ samples['WH_H0PH_H0L1_M3'] = {
    'weight': mcCommonWeight+ '*WH_H0PH_W*(ME_H0L1_M3/ME_H0PH)',   'FilesPerJob': 4, } 
 signals_rw.append('WH_H0PH_H0L1_M3')  
  
-samples['WH_H0PH_EFTH0M_M0'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'WH_H0PH_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*WH_H0PH_W*(ME_EFTH0M_M0/ME_H0PH)',   'FilesPerJob': 4, } 
-signals_rw.append('WH_H0PH_EFTH0M_M0')  
- 
-samples['WH_H0PH_EFTH0M_M1'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'WH_H0PH_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*WH_H0PH_W*(ME_EFTH0M_M1/ME_H0PH)',   'FilesPerJob': 4, } 
-signals_rw.append('WH_H0PH_EFTH0M_M1')  
- 
-samples['WH_H0PH_EFTH0M_M2'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'WH_H0PH_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*WH_H0PH_W*(ME_EFTH0M_M2/ME_H0PH)',   'FilesPerJob': 4, } 
-signals_rw.append('WH_H0PH_EFTH0M_M2')  
- 
-samples['WH_H0PH_EFTH0M_M3'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'WH_H0PH_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*WH_H0PH_W*(ME_EFTH0M_M3/ME_H0PH)',   'FilesPerJob': 4, } 
-signals_rw.append('WH_H0PH_EFTH0M_M3')  
- 
-samples['WH_H0PH_EFTH0PH_M0'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'WH_H0PH_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*WH_H0PH_W*(ME_EFTH0PH_M0/ME_H0PH)',   'FilesPerJob': 4, } 
-signals_rw.append('WH_H0PH_EFTH0PH_M0')  
- 
-samples['WH_H0PH_EFTH0PH_M1'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'WH_H0PH_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*WH_H0PH_W*(ME_EFTH0PH_M1/ME_H0PH)',   'FilesPerJob': 4, } 
-signals_rw.append('WH_H0PH_EFTH0PH_M1')  
- 
-samples['WH_H0PH_EFTH0PH_M2'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'WH_H0PH_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*WH_H0PH_W*(ME_EFTH0PH_M2/ME_H0PH)',   'FilesPerJob': 4, } 
-signals_rw.append('WH_H0PH_EFTH0PH_M2')  
- 
-samples['WH_H0PH_EFTH0PH_M3'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'WH_H0PH_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*WH_H0PH_W*(ME_EFTH0PH_M3/ME_H0PH)',   'FilesPerJob': 4, } 
-signals_rw.append('WH_H0PH_EFTH0PH_M3')  
- 
-samples['WH_H0PH_EFTH0L1_M0'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'WH_H0PH_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*WH_H0PH_W*(ME_EFTH0L1_M0/ME_H0PH)',   'FilesPerJob': 4, } 
-signals_rw.append('WH_H0PH_EFTH0L1_M0')  
- 
-samples['WH_H0PH_EFTH0L1_M1'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'WH_H0PH_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*WH_H0PH_W*(ME_EFTH0L1_M1/ME_H0PH)',   'FilesPerJob': 4, } 
-signals_rw.append('WH_H0PH_EFTH0L1_M1')  
- 
-samples['WH_H0PH_EFTH0L1_M2'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'WH_H0PH_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*WH_H0PH_W*(ME_EFTH0L1_M2/ME_H0PH)',   'FilesPerJob': 4, } 
-signals_rw.append('WH_H0PH_EFTH0L1_M2')  
- 
-samples['WH_H0PH_EFTH0L1_M3'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'WH_H0PH_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*WH_H0PH_W*(ME_EFTH0L1_M3/ME_H0PH)',   'FilesPerJob': 4, } 
-signals_rw.append('WH_H0PH_EFTH0L1_M3')  
- 
 samples['WH_H0PHf05_H0PM'] = { 
    'name':   nanoGetSampleFiles(mcDirectory, 'WH_H0PHf05_ToWWTo2L2Nu'), 
    'weight': mcCommonWeight+ '*WH_H0PHf05_W*(ME_H0PM/ME_H0PHf05)',   'FilesPerJob': 4, } 
@@ -2111,66 +1450,6 @@ samples['WH_H0PHf05_H0L1_M3'] = {
    'name':   nanoGetSampleFiles(mcDirectory, 'WH_H0PHf05_ToWWTo2L2Nu'), 
    'weight': mcCommonWeight+ '*WH_H0PHf05_W*(ME_H0L1_M3/ME_H0PHf05)',   'FilesPerJob': 4, } 
 signals_rw.append('WH_H0PHf05_H0L1_M3')  
- 
-samples['WH_H0PHf05_EFTH0M_M0'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'WH_H0PHf05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*WH_H0PHf05_W*(ME_EFTH0M_M0/ME_H0PHf05)',   'FilesPerJob': 4, } 
-signals_rw.append('WH_H0PHf05_EFTH0M_M0')  
- 
-samples['WH_H0PHf05_EFTH0M_M1'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'WH_H0PHf05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*WH_H0PHf05_W*(ME_EFTH0M_M1/ME_H0PHf05)',   'FilesPerJob': 4, } 
-signals_rw.append('WH_H0PHf05_EFTH0M_M1')  
- 
-samples['WH_H0PHf05_EFTH0M_M2'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'WH_H0PHf05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*WH_H0PHf05_W*(ME_EFTH0M_M2/ME_H0PHf05)',   'FilesPerJob': 4, } 
-signals_rw.append('WH_H0PHf05_EFTH0M_M2')  
- 
-samples['WH_H0PHf05_EFTH0M_M3'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'WH_H0PHf05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*WH_H0PHf05_W*(ME_EFTH0M_M3/ME_H0PHf05)',   'FilesPerJob': 4, } 
-signals_rw.append('WH_H0PHf05_EFTH0M_M3')  
- 
-samples['WH_H0PHf05_EFTH0PH_M0'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'WH_H0PHf05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*WH_H0PHf05_W*(ME_EFTH0PH_M0/ME_H0PHf05)',   'FilesPerJob': 4, } 
-signals_rw.append('WH_H0PHf05_EFTH0PH_M0')  
- 
-samples['WH_H0PHf05_EFTH0PH_M1'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'WH_H0PHf05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*WH_H0PHf05_W*(ME_EFTH0PH_M1/ME_H0PHf05)',   'FilesPerJob': 4, } 
-signals_rw.append('WH_H0PHf05_EFTH0PH_M1')  
- 
-samples['WH_H0PHf05_EFTH0PH_M2'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'WH_H0PHf05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*WH_H0PHf05_W*(ME_EFTH0PH_M2/ME_H0PHf05)',   'FilesPerJob': 4, } 
-signals_rw.append('WH_H0PHf05_EFTH0PH_M2')  
- 
-samples['WH_H0PHf05_EFTH0PH_M3'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'WH_H0PHf05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*WH_H0PHf05_W*(ME_EFTH0PH_M3/ME_H0PHf05)',   'FilesPerJob': 4, } 
-signals_rw.append('WH_H0PHf05_EFTH0PH_M3')  
- 
-samples['WH_H0PHf05_EFTH0L1_M0'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'WH_H0PHf05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*WH_H0PHf05_W*(ME_EFTH0L1_M0/ME_H0PHf05)',   'FilesPerJob': 4, } 
-signals_rw.append('WH_H0PHf05_EFTH0L1_M0')  
- 
-samples['WH_H0PHf05_EFTH0L1_M1'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'WH_H0PHf05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*WH_H0PHf05_W*(ME_EFTH0L1_M1/ME_H0PHf05)',   'FilesPerJob': 4, } 
-signals_rw.append('WH_H0PHf05_EFTH0L1_M1')  
- 
-samples['WH_H0PHf05_EFTH0L1_M2'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'WH_H0PHf05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*WH_H0PHf05_W*(ME_EFTH0L1_M2/ME_H0PHf05)',   'FilesPerJob': 4, } 
-signals_rw.append('WH_H0PHf05_EFTH0L1_M2')  
- 
-samples['WH_H0PHf05_EFTH0L1_M3'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'WH_H0PHf05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*WH_H0PHf05_W*(ME_EFTH0L1_M3/ME_H0PHf05)',   'FilesPerJob': 4, } 
-signals_rw.append('WH_H0PHf05_EFTH0L1_M3')  
  
 samples['WH_H0L1_H0PM'] = { 
    'name':   nanoGetSampleFiles(mcDirectory, 'WH_H0L1_ToWWTo2L2Nu'), 
@@ -2237,66 +1516,6 @@ samples['WH_H0L1_H0L1_M3'] = {
    'weight': mcCommonWeight+ '*WH_H0L1_W*(ME_H0L1_M3/ME_H0L1)',   'FilesPerJob': 4, } 
 signals_rw.append('WH_H0L1_H0L1_M3')  
  
-samples['WH_H0L1_EFTH0M_M0'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'WH_H0L1_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*WH_H0L1_W*(ME_EFTH0M_M0/ME_H0L1)',   'FilesPerJob': 4, } 
-signals_rw.append('WH_H0L1_EFTH0M_M0')  
- 
-samples['WH_H0L1_EFTH0M_M1'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'WH_H0L1_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*WH_H0L1_W*(ME_EFTH0M_M1/ME_H0L1)',   'FilesPerJob': 4, } 
-signals_rw.append('WH_H0L1_EFTH0M_M1')  
- 
-samples['WH_H0L1_EFTH0M_M2'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'WH_H0L1_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*WH_H0L1_W*(ME_EFTH0M_M2/ME_H0L1)',   'FilesPerJob': 4, } 
-signals_rw.append('WH_H0L1_EFTH0M_M2')  
- 
-samples['WH_H0L1_EFTH0M_M3'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'WH_H0L1_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*WH_H0L1_W*(ME_EFTH0M_M3/ME_H0L1)',   'FilesPerJob': 4, } 
-signals_rw.append('WH_H0L1_EFTH0M_M3')  
- 
-samples['WH_H0L1_EFTH0PH_M0'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'WH_H0L1_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*WH_H0L1_W*(ME_EFTH0PH_M0/ME_H0L1)',   'FilesPerJob': 4, } 
-signals_rw.append('WH_H0L1_EFTH0PH_M0')  
- 
-samples['WH_H0L1_EFTH0PH_M1'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'WH_H0L1_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*WH_H0L1_W*(ME_EFTH0PH_M1/ME_H0L1)',   'FilesPerJob': 4, } 
-signals_rw.append('WH_H0L1_EFTH0PH_M1')  
- 
-samples['WH_H0L1_EFTH0PH_M2'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'WH_H0L1_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*WH_H0L1_W*(ME_EFTH0PH_M2/ME_H0L1)',   'FilesPerJob': 4, } 
-signals_rw.append('WH_H0L1_EFTH0PH_M2')  
- 
-samples['WH_H0L1_EFTH0PH_M3'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'WH_H0L1_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*WH_H0L1_W*(ME_EFTH0PH_M3/ME_H0L1)',   'FilesPerJob': 4, } 
-signals_rw.append('WH_H0L1_EFTH0PH_M3')  
- 
-samples['WH_H0L1_EFTH0L1_M0'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'WH_H0L1_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*WH_H0L1_W*(ME_EFTH0L1_M0/ME_H0L1)',   'FilesPerJob': 4, } 
-signals_rw.append('WH_H0L1_EFTH0L1_M0')  
- 
-samples['WH_H0L1_EFTH0L1_M1'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'WH_H0L1_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*WH_H0L1_W*(ME_EFTH0L1_M1/ME_H0L1)',   'FilesPerJob': 4, } 
-signals_rw.append('WH_H0L1_EFTH0L1_M1')  
- 
-samples['WH_H0L1_EFTH0L1_M2'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'WH_H0L1_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*WH_H0L1_W*(ME_EFTH0L1_M2/ME_H0L1)',   'FilesPerJob': 4, } 
-signals_rw.append('WH_H0L1_EFTH0L1_M2')  
- 
-samples['WH_H0L1_EFTH0L1_M3'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'WH_H0L1_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*WH_H0L1_W*(ME_EFTH0L1_M3/ME_H0L1)',   'FilesPerJob': 4, } 
-signals_rw.append('WH_H0L1_EFTH0L1_M3')  
- 
 samples['WH_H0L1f05_H0PM'] = { 
    'name':   nanoGetSampleFiles(mcDirectory, 'WH_H0L1f05_ToWWTo2L2Nu'), 
    'weight': mcCommonWeight+ '*WH_H0L1f05_W*(ME_H0PM/ME_H0L1f05)',   'FilesPerJob': 4, } 
@@ -2361,67 +1580,7 @@ samples['WH_H0L1f05_H0L1_M3'] = {
    'name':   nanoGetSampleFiles(mcDirectory, 'WH_H0L1f05_ToWWTo2L2Nu'), 
    'weight': mcCommonWeight+ '*WH_H0L1f05_W*(ME_H0L1_M3/ME_H0L1f05)',   'FilesPerJob': 4, } 
 signals_rw.append('WH_H0L1f05_H0L1_M3')  
- 
-samples['WH_H0L1f05_EFTH0M_M0'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'WH_H0L1f05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*WH_H0L1f05_W*(ME_EFTH0M_M0/ME_H0L1f05)',   'FilesPerJob': 4, } 
-signals_rw.append('WH_H0L1f05_EFTH0M_M0')  
- 
-samples['WH_H0L1f05_EFTH0M_M1'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'WH_H0L1f05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*WH_H0L1f05_W*(ME_EFTH0M_M1/ME_H0L1f05)',   'FilesPerJob': 4, } 
-signals_rw.append('WH_H0L1f05_EFTH0M_M1')  
- 
-samples['WH_H0L1f05_EFTH0M_M2'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'WH_H0L1f05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*WH_H0L1f05_W*(ME_EFTH0M_M2/ME_H0L1f05)',   'FilesPerJob': 4, } 
-signals_rw.append('WH_H0L1f05_EFTH0M_M2')  
- 
-samples['WH_H0L1f05_EFTH0M_M3'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'WH_H0L1f05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*WH_H0L1f05_W*(ME_EFTH0M_M3/ME_H0L1f05)',   'FilesPerJob': 4, } 
-signals_rw.append('WH_H0L1f05_EFTH0M_M3')  
- 
-samples['WH_H0L1f05_EFTH0PH_M0'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'WH_H0L1f05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*WH_H0L1f05_W*(ME_EFTH0PH_M0/ME_H0L1f05)',   'FilesPerJob': 4, } 
-signals_rw.append('WH_H0L1f05_EFTH0PH_M0')  
- 
-samples['WH_H0L1f05_EFTH0PH_M1'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'WH_H0L1f05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*WH_H0L1f05_W*(ME_EFTH0PH_M1/ME_H0L1f05)',   'FilesPerJob': 4, } 
-signals_rw.append('WH_H0L1f05_EFTH0PH_M1')  
- 
-samples['WH_H0L1f05_EFTH0PH_M2'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'WH_H0L1f05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*WH_H0L1f05_W*(ME_EFTH0PH_M2/ME_H0L1f05)',   'FilesPerJob': 4, } 
-signals_rw.append('WH_H0L1f05_EFTH0PH_M2')  
- 
-samples['WH_H0L1f05_EFTH0PH_M3'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'WH_H0L1f05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*WH_H0L1f05_W*(ME_EFTH0PH_M3/ME_H0L1f05)',   'FilesPerJob': 4, } 
-signals_rw.append('WH_H0L1f05_EFTH0PH_M3')  
- 
-samples['WH_H0L1f05_EFTH0L1_M0'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'WH_H0L1f05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*WH_H0L1f05_W*(ME_EFTH0L1_M0/ME_H0L1f05)',   'FilesPerJob': 4, } 
-signals_rw.append('WH_H0L1f05_EFTH0L1_M0')  
- 
-samples['WH_H0L1f05_EFTH0L1_M1'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'WH_H0L1f05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*WH_H0L1f05_W*(ME_EFTH0L1_M1/ME_H0L1f05)',   'FilesPerJob': 4, } 
-signals_rw.append('WH_H0L1f05_EFTH0L1_M1')  
- 
-samples['WH_H0L1f05_EFTH0L1_M2'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'WH_H0L1f05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*WH_H0L1f05_W*(ME_EFTH0L1_M2/ME_H0L1f05)',   'FilesPerJob': 4, } 
-signals_rw.append('WH_H0L1f05_EFTH0L1_M2')  
- 
-samples['WH_H0L1f05_EFTH0L1_M3'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'WH_H0L1f05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*WH_H0L1f05_W*(ME_EFTH0L1_M3/ME_H0L1f05)',   'FilesPerJob': 4, } 
-signals_rw.append('WH_H0L1f05_EFTH0L1_M3')  
- 
+
 # ZH MC samples 
  
 # Original ZH samples 
@@ -2455,7 +1614,7 @@ samples['ZH_H0L1f05'] = {
    'weight': mcCommonWeight+ '*ZH_H0L1f05_W',   'FilesPerJob': 4, } 
  
 # Reweighted ZH samples 
- 
+
 samples['ZH_H0PM_H0M_M0'] = { 
    'name':   nanoGetSampleFiles(mcDirectory, 'ZH_H0PM_ToWWTo2L2Nu'), 
    'weight': mcCommonWeight+ '*ZH_H0PM_W*(ME_H0M_M0/ME_H0PM)',   'FilesPerJob': 4, } 
@@ -2535,66 +1694,6 @@ samples['ZH_H0PM_H0LZg_M3'] = {
    'name':   nanoGetSampleFiles(mcDirectory, 'ZH_H0PM_ToWWTo2L2Nu'), 
    'weight': mcCommonWeight+ '*ZH_H0PM_W*(ME_H0LZg_M3/ME_H0PM)',   'FilesPerJob': 4, } 
 signals_rw.append('ZH_H0PM_H0LZg_M3')  
- 
-samples['ZH_H0PM_EFTH0M_M0'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'ZH_H0PM_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*ZH_H0PM_W*(ME_EFTH0M_M0/ME_H0PM)',   'FilesPerJob': 4, } 
-signals_rw.append('ZH_H0PM_EFTH0M_M0')  
- 
-samples['ZH_H0PM_EFTH0M_M1'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'ZH_H0PM_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*ZH_H0PM_W*(ME_EFTH0M_M1/ME_H0PM)',   'FilesPerJob': 4, } 
-signals_rw.append('ZH_H0PM_EFTH0M_M1')  
- 
-samples['ZH_H0PM_EFTH0M_M2'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'ZH_H0PM_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*ZH_H0PM_W*(ME_EFTH0M_M2/ME_H0PM)',   'FilesPerJob': 4, } 
-signals_rw.append('ZH_H0PM_EFTH0M_M2')  
- 
-samples['ZH_H0PM_EFTH0M_M3'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'ZH_H0PM_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*ZH_H0PM_W*(ME_EFTH0M_M3/ME_H0PM)',   'FilesPerJob': 4, } 
-signals_rw.append('ZH_H0PM_EFTH0M_M3')  
- 
-samples['ZH_H0PM_EFTH0PH_M0'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'ZH_H0PM_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*ZH_H0PM_W*(ME_EFTH0PH_M0/ME_H0PM)',   'FilesPerJob': 4, } 
-signals_rw.append('ZH_H0PM_EFTH0PH_M0')  
- 
-samples['ZH_H0PM_EFTH0PH_M1'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'ZH_H0PM_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*ZH_H0PM_W*(ME_EFTH0PH_M1/ME_H0PM)',   'FilesPerJob': 4, } 
-signals_rw.append('ZH_H0PM_EFTH0PH_M1')  
- 
-samples['ZH_H0PM_EFTH0PH_M2'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'ZH_H0PM_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*ZH_H0PM_W*(ME_EFTH0PH_M2/ME_H0PM)',   'FilesPerJob': 4, } 
-signals_rw.append('ZH_H0PM_EFTH0PH_M2')  
- 
-samples['ZH_H0PM_EFTH0PH_M3'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'ZH_H0PM_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*ZH_H0PM_W*(ME_EFTH0PH_M3/ME_H0PM)',   'FilesPerJob': 4, } 
-signals_rw.append('ZH_H0PM_EFTH0PH_M3')  
- 
-samples['ZH_H0PM_EFTH0L1_M0'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'ZH_H0PM_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*ZH_H0PM_W*(ME_EFTH0L1_M0/ME_H0PM)',   'FilesPerJob': 4, } 
-signals_rw.append('ZH_H0PM_EFTH0L1_M0')  
- 
-samples['ZH_H0PM_EFTH0L1_M1'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'ZH_H0PM_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*ZH_H0PM_W*(ME_EFTH0L1_M1/ME_H0PM)',   'FilesPerJob': 4, } 
-signals_rw.append('ZH_H0PM_EFTH0L1_M1')  
- 
-samples['ZH_H0PM_EFTH0L1_M2'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'ZH_H0PM_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*ZH_H0PM_W*(ME_EFTH0L1_M2/ME_H0PM)',   'FilesPerJob': 4, } 
-signals_rw.append('ZH_H0PM_EFTH0L1_M2')  
- 
-samples['ZH_H0PM_EFTH0L1_M3'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'ZH_H0PM_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*ZH_H0PM_W*(ME_EFTH0L1_M3/ME_H0PM)',   'FilesPerJob': 4, } 
-signals_rw.append('ZH_H0PM_EFTH0L1_M3')  
  
 samples['ZH_H0M_H0PM'] = { 
    'name':   nanoGetSampleFiles(mcDirectory, 'ZH_H0M_ToWWTo2L2Nu'), 
@@ -2681,66 +1780,6 @@ samples['ZH_H0M_H0LZg_M3'] = {
    'weight': mcCommonWeight+ '*ZH_H0M_W*(ME_H0LZg_M3/ME_H0M)',   'FilesPerJob': 4, } 
 signals_rw.append('ZH_H0M_H0LZg_M3')  
  
-samples['ZH_H0M_EFTH0M_M0'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'ZH_H0M_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*ZH_H0M_W*(ME_EFTH0M_M0/ME_H0M)',   'FilesPerJob': 4, } 
-signals_rw.append('ZH_H0M_EFTH0M_M0')  
- 
-samples['ZH_H0M_EFTH0M_M1'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'ZH_H0M_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*ZH_H0M_W*(ME_EFTH0M_M1/ME_H0M)',   'FilesPerJob': 4, } 
-signals_rw.append('ZH_H0M_EFTH0M_M1')  
- 
-samples['ZH_H0M_EFTH0M_M2'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'ZH_H0M_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*ZH_H0M_W*(ME_EFTH0M_M2/ME_H0M)',   'FilesPerJob': 4, } 
-signals_rw.append('ZH_H0M_EFTH0M_M2')  
- 
-samples['ZH_H0M_EFTH0M_M3'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'ZH_H0M_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*ZH_H0M_W*(ME_EFTH0M_M3/ME_H0M)',   'FilesPerJob': 4, } 
-signals_rw.append('ZH_H0M_EFTH0M_M3')  
- 
-samples['ZH_H0M_EFTH0PH_M0'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'ZH_H0M_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*ZH_H0M_W*(ME_EFTH0PH_M0/ME_H0M)',   'FilesPerJob': 4, } 
-signals_rw.append('ZH_H0M_EFTH0PH_M0')  
- 
-samples['ZH_H0M_EFTH0PH_M1'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'ZH_H0M_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*ZH_H0M_W*(ME_EFTH0PH_M1/ME_H0M)',   'FilesPerJob': 4, } 
-signals_rw.append('ZH_H0M_EFTH0PH_M1')  
- 
-samples['ZH_H0M_EFTH0PH_M2'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'ZH_H0M_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*ZH_H0M_W*(ME_EFTH0PH_M2/ME_H0M)',   'FilesPerJob': 4, } 
-signals_rw.append('ZH_H0M_EFTH0PH_M2')  
- 
-samples['ZH_H0M_EFTH0PH_M3'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'ZH_H0M_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*ZH_H0M_W*(ME_EFTH0PH_M3/ME_H0M)',   'FilesPerJob': 4, } 
-signals_rw.append('ZH_H0M_EFTH0PH_M3')  
- 
-samples['ZH_H0M_EFTH0L1_M0'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'ZH_H0M_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*ZH_H0M_W*(ME_EFTH0L1_M0/ME_H0M)',   'FilesPerJob': 4, } 
-signals_rw.append('ZH_H0M_EFTH0L1_M0')  
- 
-samples['ZH_H0M_EFTH0L1_M1'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'ZH_H0M_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*ZH_H0M_W*(ME_EFTH0L1_M1/ME_H0M)',   'FilesPerJob': 4, } 
-signals_rw.append('ZH_H0M_EFTH0L1_M1')  
- 
-samples['ZH_H0M_EFTH0L1_M2'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'ZH_H0M_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*ZH_H0M_W*(ME_EFTH0L1_M2/ME_H0M)',   'FilesPerJob': 4, } 
-signals_rw.append('ZH_H0M_EFTH0L1_M2')  
- 
-samples['ZH_H0M_EFTH0L1_M3'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'ZH_H0M_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*ZH_H0M_W*(ME_EFTH0L1_M3/ME_H0M)',   'FilesPerJob': 4, } 
-signals_rw.append('ZH_H0M_EFTH0L1_M3')  
- 
 samples['ZH_H0Mf05_H0PM'] = { 
    'name':   nanoGetSampleFiles(mcDirectory, 'ZH_H0Mf05_ToWWTo2L2Nu'), 
    'weight': mcCommonWeight+ '*ZH_H0Mf05_W*(ME_H0PM/ME_H0Mf05)',   'FilesPerJob': 4, } 
@@ -2825,66 +1864,6 @@ samples['ZH_H0Mf05_H0LZg_M3'] = {
    'name':   nanoGetSampleFiles(mcDirectory, 'ZH_H0Mf05_ToWWTo2L2Nu'), 
    'weight': mcCommonWeight+ '*ZH_H0Mf05_W*(ME_H0LZg_M3/ME_H0Mf05)',   'FilesPerJob': 4, } 
 signals_rw.append('ZH_H0Mf05_H0LZg_M3')  
- 
-samples['ZH_H0Mf05_EFTH0M_M0'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'ZH_H0Mf05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*ZH_H0Mf05_W*(ME_EFTH0M_M0/ME_H0Mf05)',   'FilesPerJob': 4, } 
-signals_rw.append('ZH_H0Mf05_EFTH0M_M0')  
- 
-samples['ZH_H0Mf05_EFTH0M_M1'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'ZH_H0Mf05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*ZH_H0Mf05_W*(ME_EFTH0M_M1/ME_H0Mf05)',   'FilesPerJob': 4, } 
-signals_rw.append('ZH_H0Mf05_EFTH0M_M1')  
- 
-samples['ZH_H0Mf05_EFTH0M_M2'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'ZH_H0Mf05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*ZH_H0Mf05_W*(ME_EFTH0M_M2/ME_H0Mf05)',   'FilesPerJob': 4, } 
-signals_rw.append('ZH_H0Mf05_EFTH0M_M2')  
- 
-samples['ZH_H0Mf05_EFTH0M_M3'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'ZH_H0Mf05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*ZH_H0Mf05_W*(ME_EFTH0M_M3/ME_H0Mf05)',   'FilesPerJob': 4, } 
-signals_rw.append('ZH_H0Mf05_EFTH0M_M3')  
- 
-samples['ZH_H0Mf05_EFTH0PH_M0'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'ZH_H0Mf05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*ZH_H0Mf05_W*(ME_EFTH0PH_M0/ME_H0Mf05)',   'FilesPerJob': 4, } 
-signals_rw.append('ZH_H0Mf05_EFTH0PH_M0')  
- 
-samples['ZH_H0Mf05_EFTH0PH_M1'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'ZH_H0Mf05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*ZH_H0Mf05_W*(ME_EFTH0PH_M1/ME_H0Mf05)',   'FilesPerJob': 4, } 
-signals_rw.append('ZH_H0Mf05_EFTH0PH_M1')  
- 
-samples['ZH_H0Mf05_EFTH0PH_M2'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'ZH_H0Mf05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*ZH_H0Mf05_W*(ME_EFTH0PH_M2/ME_H0Mf05)',   'FilesPerJob': 4, } 
-signals_rw.append('ZH_H0Mf05_EFTH0PH_M2')  
- 
-samples['ZH_H0Mf05_EFTH0PH_M3'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'ZH_H0Mf05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*ZH_H0Mf05_W*(ME_EFTH0PH_M3/ME_H0Mf05)',   'FilesPerJob': 4, } 
-signals_rw.append('ZH_H0Mf05_EFTH0PH_M3')  
- 
-samples['ZH_H0Mf05_EFTH0L1_M0'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'ZH_H0Mf05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*ZH_H0Mf05_W*(ME_EFTH0L1_M0/ME_H0Mf05)',   'FilesPerJob': 4, } 
-signals_rw.append('ZH_H0Mf05_EFTH0L1_M0')  
- 
-samples['ZH_H0Mf05_EFTH0L1_M1'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'ZH_H0Mf05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*ZH_H0Mf05_W*(ME_EFTH0L1_M1/ME_H0Mf05)',   'FilesPerJob': 4, } 
-signals_rw.append('ZH_H0Mf05_EFTH0L1_M1')  
- 
-samples['ZH_H0Mf05_EFTH0L1_M2'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'ZH_H0Mf05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*ZH_H0Mf05_W*(ME_EFTH0L1_M2/ME_H0Mf05)',   'FilesPerJob': 4, } 
-signals_rw.append('ZH_H0Mf05_EFTH0L1_M2')  
- 
-samples['ZH_H0Mf05_EFTH0L1_M3'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'ZH_H0Mf05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*ZH_H0Mf05_W*(ME_EFTH0L1_M3/ME_H0Mf05)',   'FilesPerJob': 4, } 
-signals_rw.append('ZH_H0Mf05_EFTH0L1_M3')  
  
 samples['ZH_H0PH_H0PM'] = { 
    'name':   nanoGetSampleFiles(mcDirectory, 'ZH_H0PH_ToWWTo2L2Nu'), 
@@ -2971,66 +1950,6 @@ samples['ZH_H0PH_H0LZg_M3'] = {
    'weight': mcCommonWeight+ '*ZH_H0PH_W*(ME_H0LZg_M3/ME_H0PH)',   'FilesPerJob': 4, } 
 signals_rw.append('ZH_H0PH_H0LZg_M3')  
  
-samples['ZH_H0PH_EFTH0M_M0'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'ZH_H0PH_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*ZH_H0PH_W*(ME_EFTH0M_M0/ME_H0PH)',   'FilesPerJob': 4, } 
-signals_rw.append('ZH_H0PH_EFTH0M_M0')  
- 
-samples['ZH_H0PH_EFTH0M_M1'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'ZH_H0PH_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*ZH_H0PH_W*(ME_EFTH0M_M1/ME_H0PH)',   'FilesPerJob': 4, } 
-signals_rw.append('ZH_H0PH_EFTH0M_M1')  
- 
-samples['ZH_H0PH_EFTH0M_M2'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'ZH_H0PH_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*ZH_H0PH_W*(ME_EFTH0M_M2/ME_H0PH)',   'FilesPerJob': 4, } 
-signals_rw.append('ZH_H0PH_EFTH0M_M2')  
- 
-samples['ZH_H0PH_EFTH0M_M3'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'ZH_H0PH_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*ZH_H0PH_W*(ME_EFTH0M_M3/ME_H0PH)',   'FilesPerJob': 4, } 
-signals_rw.append('ZH_H0PH_EFTH0M_M3')  
- 
-samples['ZH_H0PH_EFTH0PH_M0'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'ZH_H0PH_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*ZH_H0PH_W*(ME_EFTH0PH_M0/ME_H0PH)',   'FilesPerJob': 4, } 
-signals_rw.append('ZH_H0PH_EFTH0PH_M0')  
- 
-samples['ZH_H0PH_EFTH0PH_M1'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'ZH_H0PH_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*ZH_H0PH_W*(ME_EFTH0PH_M1/ME_H0PH)',   'FilesPerJob': 4, } 
-signals_rw.append('ZH_H0PH_EFTH0PH_M1')  
- 
-samples['ZH_H0PH_EFTH0PH_M2'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'ZH_H0PH_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*ZH_H0PH_W*(ME_EFTH0PH_M2/ME_H0PH)',   'FilesPerJob': 4, } 
-signals_rw.append('ZH_H0PH_EFTH0PH_M2')  
- 
-samples['ZH_H0PH_EFTH0PH_M3'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'ZH_H0PH_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*ZH_H0PH_W*(ME_EFTH0PH_M3/ME_H0PH)',   'FilesPerJob': 4, } 
-signals_rw.append('ZH_H0PH_EFTH0PH_M3')  
- 
-samples['ZH_H0PH_EFTH0L1_M0'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'ZH_H0PH_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*ZH_H0PH_W*(ME_EFTH0L1_M0/ME_H0PH)',   'FilesPerJob': 4, } 
-signals_rw.append('ZH_H0PH_EFTH0L1_M0')  
- 
-samples['ZH_H0PH_EFTH0L1_M1'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'ZH_H0PH_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*ZH_H0PH_W*(ME_EFTH0L1_M1/ME_H0PH)',   'FilesPerJob': 4, } 
-signals_rw.append('ZH_H0PH_EFTH0L1_M1')  
- 
-samples['ZH_H0PH_EFTH0L1_M2'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'ZH_H0PH_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*ZH_H0PH_W*(ME_EFTH0L1_M2/ME_H0PH)',   'FilesPerJob': 4, } 
-signals_rw.append('ZH_H0PH_EFTH0L1_M2')  
- 
-samples['ZH_H0PH_EFTH0L1_M3'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'ZH_H0PH_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*ZH_H0PH_W*(ME_EFTH0L1_M3/ME_H0PH)',   'FilesPerJob': 4, } 
-signals_rw.append('ZH_H0PH_EFTH0L1_M3')  
- 
 samples['ZH_H0PHf05_H0PM'] = { 
    'name':   nanoGetSampleFiles(mcDirectory, 'ZH_H0PHf05_ToWWTo2L2Nu'), 
    'weight': mcCommonWeight+ '*ZH_H0PHf05_W*(ME_H0PM/ME_H0PHf05)',   'FilesPerJob': 4, } 
@@ -3115,66 +2034,6 @@ samples['ZH_H0PHf05_H0LZg_M3'] = {
    'name':   nanoGetSampleFiles(mcDirectory, 'ZH_H0PHf05_ToWWTo2L2Nu'), 
    'weight': mcCommonWeight+ '*ZH_H0PHf05_W*(ME_H0LZg_M3/ME_H0PHf05)',   'FilesPerJob': 4, } 
 signals_rw.append('ZH_H0PHf05_H0LZg_M3')  
- 
-samples['ZH_H0PHf05_EFTH0M_M0'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'ZH_H0PHf05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*ZH_H0PHf05_W*(ME_EFTH0M_M0/ME_H0PHf05)',   'FilesPerJob': 4, } 
-signals_rw.append('ZH_H0PHf05_EFTH0M_M0')  
- 
-samples['ZH_H0PHf05_EFTH0M_M1'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'ZH_H0PHf05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*ZH_H0PHf05_W*(ME_EFTH0M_M1/ME_H0PHf05)',   'FilesPerJob': 4, } 
-signals_rw.append('ZH_H0PHf05_EFTH0M_M1')  
- 
-samples['ZH_H0PHf05_EFTH0M_M2'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'ZH_H0PHf05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*ZH_H0PHf05_W*(ME_EFTH0M_M2/ME_H0PHf05)',   'FilesPerJob': 4, } 
-signals_rw.append('ZH_H0PHf05_EFTH0M_M2')  
- 
-samples['ZH_H0PHf05_EFTH0M_M3'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'ZH_H0PHf05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*ZH_H0PHf05_W*(ME_EFTH0M_M3/ME_H0PHf05)',   'FilesPerJob': 4, } 
-signals_rw.append('ZH_H0PHf05_EFTH0M_M3')  
- 
-samples['ZH_H0PHf05_EFTH0PH_M0'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'ZH_H0PHf05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*ZH_H0PHf05_W*(ME_EFTH0PH_M0/ME_H0PHf05)',   'FilesPerJob': 4, } 
-signals_rw.append('ZH_H0PHf05_EFTH0PH_M0')  
- 
-samples['ZH_H0PHf05_EFTH0PH_M1'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'ZH_H0PHf05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*ZH_H0PHf05_W*(ME_EFTH0PH_M1/ME_H0PHf05)',   'FilesPerJob': 4, } 
-signals_rw.append('ZH_H0PHf05_EFTH0PH_M1')  
- 
-samples['ZH_H0PHf05_EFTH0PH_M2'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'ZH_H0PHf05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*ZH_H0PHf05_W*(ME_EFTH0PH_M2/ME_H0PHf05)',   'FilesPerJob': 4, } 
-signals_rw.append('ZH_H0PHf05_EFTH0PH_M2')  
- 
-samples['ZH_H0PHf05_EFTH0PH_M3'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'ZH_H0PHf05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*ZH_H0PHf05_W*(ME_EFTH0PH_M3/ME_H0PHf05)',   'FilesPerJob': 4, } 
-signals_rw.append('ZH_H0PHf05_EFTH0PH_M3')  
- 
-samples['ZH_H0PHf05_EFTH0L1_M0'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'ZH_H0PHf05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*ZH_H0PHf05_W*(ME_EFTH0L1_M0/ME_H0PHf05)',   'FilesPerJob': 4, } 
-signals_rw.append('ZH_H0PHf05_EFTH0L1_M0')  
- 
-samples['ZH_H0PHf05_EFTH0L1_M1'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'ZH_H0PHf05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*ZH_H0PHf05_W*(ME_EFTH0L1_M1/ME_H0PHf05)',   'FilesPerJob': 4, } 
-signals_rw.append('ZH_H0PHf05_EFTH0L1_M1')  
- 
-samples['ZH_H0PHf05_EFTH0L1_M2'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'ZH_H0PHf05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*ZH_H0PHf05_W*(ME_EFTH0L1_M2/ME_H0PHf05)',   'FilesPerJob': 4, } 
-signals_rw.append('ZH_H0PHf05_EFTH0L1_M2')  
- 
-samples['ZH_H0PHf05_EFTH0L1_M3'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'ZH_H0PHf05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*ZH_H0PHf05_W*(ME_EFTH0L1_M3/ME_H0PHf05)',   'FilesPerJob': 4, } 
-signals_rw.append('ZH_H0PHf05_EFTH0L1_M3')  
  
 samples['ZH_H0L1_H0PM'] = { 
    'name':   nanoGetSampleFiles(mcDirectory, 'ZH_H0L1_ToWWTo2L2Nu'), 
@@ -3261,66 +2120,6 @@ samples['ZH_H0L1_H0LZg_M3'] = {
    'weight': mcCommonWeight+ '*ZH_H0L1_W*(ME_H0LZg_M3/ME_H0L1)',   'FilesPerJob': 4, } 
 signals_rw.append('ZH_H0L1_H0LZg_M3')  
  
-samples['ZH_H0L1_EFTH0M_M0'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'ZH_H0L1_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*ZH_H0L1_W*(ME_EFTH0M_M0/ME_H0L1)',   'FilesPerJob': 4, } 
-signals_rw.append('ZH_H0L1_EFTH0M_M0')  
- 
-samples['ZH_H0L1_EFTH0M_M1'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'ZH_H0L1_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*ZH_H0L1_W*(ME_EFTH0M_M1/ME_H0L1)',   'FilesPerJob': 4, } 
-signals_rw.append('ZH_H0L1_EFTH0M_M1')  
- 
-samples['ZH_H0L1_EFTH0M_M2'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'ZH_H0L1_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*ZH_H0L1_W*(ME_EFTH0M_M2/ME_H0L1)',   'FilesPerJob': 4, } 
-signals_rw.append('ZH_H0L1_EFTH0M_M2')  
- 
-samples['ZH_H0L1_EFTH0M_M3'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'ZH_H0L1_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*ZH_H0L1_W*(ME_EFTH0M_M3/ME_H0L1)',   'FilesPerJob': 4, } 
-signals_rw.append('ZH_H0L1_EFTH0M_M3')  
- 
-samples['ZH_H0L1_EFTH0PH_M0'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'ZH_H0L1_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*ZH_H0L1_W*(ME_EFTH0PH_M0/ME_H0L1)',   'FilesPerJob': 4, } 
-signals_rw.append('ZH_H0L1_EFTH0PH_M0')  
- 
-samples['ZH_H0L1_EFTH0PH_M1'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'ZH_H0L1_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*ZH_H0L1_W*(ME_EFTH0PH_M1/ME_H0L1)',   'FilesPerJob': 4, } 
-signals_rw.append('ZH_H0L1_EFTH0PH_M1')  
- 
-samples['ZH_H0L1_EFTH0PH_M2'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'ZH_H0L1_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*ZH_H0L1_W*(ME_EFTH0PH_M2/ME_H0L1)',   'FilesPerJob': 4, } 
-signals_rw.append('ZH_H0L1_EFTH0PH_M2')  
- 
-samples['ZH_H0L1_EFTH0PH_M3'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'ZH_H0L1_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*ZH_H0L1_W*(ME_EFTH0PH_M3/ME_H0L1)',   'FilesPerJob': 4, } 
-signals_rw.append('ZH_H0L1_EFTH0PH_M3')  
- 
-samples['ZH_H0L1_EFTH0L1_M0'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'ZH_H0L1_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*ZH_H0L1_W*(ME_EFTH0L1_M0/ME_H0L1)',   'FilesPerJob': 4, } 
-signals_rw.append('ZH_H0L1_EFTH0L1_M0')  
- 
-samples['ZH_H0L1_EFTH0L1_M1'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'ZH_H0L1_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*ZH_H0L1_W*(ME_EFTH0L1_M1/ME_H0L1)',   'FilesPerJob': 4, } 
-signals_rw.append('ZH_H0L1_EFTH0L1_M1')  
- 
-samples['ZH_H0L1_EFTH0L1_M2'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'ZH_H0L1_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*ZH_H0L1_W*(ME_EFTH0L1_M2/ME_H0L1)',   'FilesPerJob': 4, } 
-signals_rw.append('ZH_H0L1_EFTH0L1_M2')  
- 
-samples['ZH_H0L1_EFTH0L1_M3'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'ZH_H0L1_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*ZH_H0L1_W*(ME_EFTH0L1_M3/ME_H0L1)',   'FilesPerJob': 4, } 
-signals_rw.append('ZH_H0L1_EFTH0L1_M3')  
- 
 samples['ZH_H0L1f05_H0PM'] = { 
    'name':   nanoGetSampleFiles(mcDirectory, 'ZH_H0L1f05_ToWWTo2L2Nu'), 
    'weight': mcCommonWeight+ '*ZH_H0L1f05_W*(ME_H0PM/ME_H0L1f05)',   'FilesPerJob': 4, } 
@@ -3405,67 +2204,7 @@ samples['ZH_H0L1f05_H0LZg_M3'] = {
    'name':   nanoGetSampleFiles(mcDirectory, 'ZH_H0L1f05_ToWWTo2L2Nu'), 
    'weight': mcCommonWeight+ '*ZH_H0L1f05_W*(ME_H0LZg_M3/ME_H0L1f05)',   'FilesPerJob': 4, } 
 signals_rw.append('ZH_H0L1f05_H0LZg_M3')  
- 
-samples['ZH_H0L1f05_EFTH0M_M0'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'ZH_H0L1f05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*ZH_H0L1f05_W*(ME_EFTH0M_M0/ME_H0L1f05)',   'FilesPerJob': 4, } 
-signals_rw.append('ZH_H0L1f05_EFTH0M_M0')  
- 
-samples['ZH_H0L1f05_EFTH0M_M1'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'ZH_H0L1f05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*ZH_H0L1f05_W*(ME_EFTH0M_M1/ME_H0L1f05)',   'FilesPerJob': 4, } 
-signals_rw.append('ZH_H0L1f05_EFTH0M_M1')  
- 
-samples['ZH_H0L1f05_EFTH0M_M2'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'ZH_H0L1f05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*ZH_H0L1f05_W*(ME_EFTH0M_M2/ME_H0L1f05)',   'FilesPerJob': 4, } 
-signals_rw.append('ZH_H0L1f05_EFTH0M_M2')  
- 
-samples['ZH_H0L1f05_EFTH0M_M3'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'ZH_H0L1f05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*ZH_H0L1f05_W*(ME_EFTH0M_M3/ME_H0L1f05)',   'FilesPerJob': 4, } 
-signals_rw.append('ZH_H0L1f05_EFTH0M_M3')  
- 
-samples['ZH_H0L1f05_EFTH0PH_M0'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'ZH_H0L1f05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*ZH_H0L1f05_W*(ME_EFTH0PH_M0/ME_H0L1f05)',   'FilesPerJob': 4, } 
-signals_rw.append('ZH_H0L1f05_EFTH0PH_M0')  
- 
-samples['ZH_H0L1f05_EFTH0PH_M1'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'ZH_H0L1f05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*ZH_H0L1f05_W*(ME_EFTH0PH_M1/ME_H0L1f05)',   'FilesPerJob': 4, } 
-signals_rw.append('ZH_H0L1f05_EFTH0PH_M1')  
- 
-samples['ZH_H0L1f05_EFTH0PH_M2'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'ZH_H0L1f05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*ZH_H0L1f05_W*(ME_EFTH0PH_M2/ME_H0L1f05)',   'FilesPerJob': 4, } 
-signals_rw.append('ZH_H0L1f05_EFTH0PH_M2')  
- 
-samples['ZH_H0L1f05_EFTH0PH_M3'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'ZH_H0L1f05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*ZH_H0L1f05_W*(ME_EFTH0PH_M3/ME_H0L1f05)',   'FilesPerJob': 4, } 
-signals_rw.append('ZH_H0L1f05_EFTH0PH_M3')  
- 
-samples['ZH_H0L1f05_EFTH0L1_M0'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'ZH_H0L1f05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*ZH_H0L1f05_W*(ME_EFTH0L1_M0/ME_H0L1f05)',   'FilesPerJob': 4, } 
-signals_rw.append('ZH_H0L1f05_EFTH0L1_M0')  
- 
-samples['ZH_H0L1f05_EFTH0L1_M1'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'ZH_H0L1f05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*ZH_H0L1f05_W*(ME_EFTH0L1_M1/ME_H0L1f05)',   'FilesPerJob': 4, } 
-signals_rw.append('ZH_H0L1f05_EFTH0L1_M1')  
- 
-samples['ZH_H0L1f05_EFTH0L1_M2'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'ZH_H0L1f05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*ZH_H0L1f05_W*(ME_EFTH0L1_M2/ME_H0L1f05)',   'FilesPerJob': 4, } 
-signals_rw.append('ZH_H0L1f05_EFTH0L1_M2')  
- 
-samples['ZH_H0L1f05_EFTH0L1_M3'] = { 
-   'name':   nanoGetSampleFiles(mcDirectory, 'ZH_H0L1f05_ToWWTo2L2Nu'), 
-   'weight': mcCommonWeight+ '*ZH_H0L1f05_W*(ME_EFTH0L1_M3/ME_H0L1f05)',   'FilesPerJob': 4, } 
-signals_rw.append('ZH_H0L1f05_EFTH0L1_M3')  
-''' 
+
 # GGH MC samples 
 ''' 
 # Original GGH samples 

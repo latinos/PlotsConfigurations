@@ -4,8 +4,8 @@ treeName= 'Events'
 tag = 'JJH16B'
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFile'+tag
-
+#outputDir = 'rootFile'+tag
+outputDir= '/eos/user/l/lurda/test/'+'rootFile'+tag
 # file with TTree aliases
 aliasesFile = 'aliases.py'
 
@@ -21,7 +21,7 @@ plotFile = 'plot.py'
 
 # luminosity to normalize to (in 1/fb)
 lumi = 36.33
-
+#lumi = 59.74
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
 outputDirPlots = 'plot'+tag
@@ -36,6 +36,6 @@ structureFile = 'structure.py'
 
 
 # nuisances file for mkDatacards and for mkShape
-nuisancesFile = 'nuisances.py'
+nuisancesFile = 'nuisances_fj.py'
 #nuiscancesFile = 'nano Folder_checks/nuisances_WH.py'
 

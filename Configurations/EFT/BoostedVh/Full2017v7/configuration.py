@@ -4,7 +4,7 @@ treeName= 'Events'
 tag = 'JJH17B'
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFile'+tag
+outputDir = '/eos/user/l/lurda/test/'+'rootFile'+tag
 
 # file with TTree aliases
 aliasesFile = 'aliases.py'

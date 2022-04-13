@@ -10,7 +10,8 @@ groupPlot['top']  = {
                   'nameHR' : 'tW and t#bar{t}',
                   'isSignal' : 0,
                   'color': 400,   # kYellow
-                  'samples'  : ['top']
+                  'samples'  : ['top'],
+		  'scale' : 0.92,
               }
 
 groupPlot['WW']  = {  
@@ -39,7 +40,7 @@ groupPlot['DY']  = {
                   'isSignal' : 0,
                   'color': 418,    # kGreen+2
                   'samples'  : ['DY', 'Dyemb'],
-                  'scale'    : 1,               
+                  'scale'    : 1.2,               
               }
 
 '''
@@ -115,7 +116,7 @@ plot['DY']  = {
                   'color': 418,    # kGreen+2
                   'isSignal' : 0,
                   'isData'   : 0, 
-                  'scale'    : 0.77,
+                  'scale'    : 1.2,
                   #'cuts'  : {
                        #'hww2l2v_13TeV_of0j'      : 0.95 ,
                        #'hww2l2v_13TeV_top_of0j'  : 0.95 , 
@@ -137,7 +138,7 @@ if useEmbeddedDY:
                   'color': 418,    # kGreen+2
                   'isSignal' : 0,
                   'isData'   : 0, 
-                  'scale'    : 0.77,
+                  'scale'    : 1.2,
               }
 
 
@@ -162,7 +163,7 @@ plot['top'] = {
                   'color': 400,   # kYellow
                   'isSignal' : 0,
                   'isData'   : 0, 
-                  'scale'    : 1.0,
+                  'scale'    : 0.92,
                   #'cuts'  : {
                        #'hww2l2v_13TeV_of0j'      : 0.94 ,
                        #'hww2l2v_13TeV_top_of0j'  : 0.94 , 
@@ -438,6 +439,7 @@ plot['DATA']  = {
 
 # additional options
 
-legend['lumi'] = 'L =  35.867/fb'
-
+#legend['lumi'] = 'L =  35.867/fb'
+#legend['lumi'] = 'L =  41.5/fb'
+legend['lumi'] = 'L =  59.7/fb'
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
