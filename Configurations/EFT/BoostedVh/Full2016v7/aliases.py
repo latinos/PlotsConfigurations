@@ -15,7 +15,7 @@ configurations = os.path.dirname(configurations) # Configurations
 
 mc = [skey for skey in samples if skey not in ('Fake', 'DATA', 'Dyemb')]
 mc_emb = [skey for skey in samples if skey not in ('Fake', 'DATA')]
-mc_ggh = [skey for skey in samples if skey.startswith('H0')]
+mc_ggh = [skey for skey in samples if skey.startswith('H0') or skey.startswith('GGHjj_H0'))]
 mc_ggh.append('ggH_hww')
 mc_qqh = [skey for skey in samples if skey.startswith('VBF_H0')]
 #mc_qqh.append('qqH_hww')

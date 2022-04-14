@@ -311,7 +311,7 @@ if useEmbeddedDY:
 if useEmbeddedDY:
   nuisances['electronpt_emb'] = {
     'name': 'CMS_scale_e_2016',
-    'kind': 'suffix',
+    'kind': 'weight',
     'type': 'shape',
     'samples': {'Dyemb': ['1.002', '1.005']},
     'AsLnN': '1'
@@ -365,7 +365,7 @@ if useEmbeddedDY:
 if useEmbeddedDY:
   nuisances['muonpt_emb'] = {
     'name': 'CMS_scale_m_2016',
-    'kind': 'suffix',
+    'kind': 'weight',
     'type': 'shape',
     'samples': {'Dyemb': ['1.002', '1.005']},
     'AsLnN': '1'

@@ -320,6 +320,14 @@ if useEmbeddedDY:
     'AsLnN': '1'
   }
 '''
+if useEmbeddedDY:
+  nuisances['electronpt_emb'] = {
+    'name': 'CMS_scale_e_2017',
+    'kind': 'weight',
+    'type': 'shape',
+    'samples': {'Dyemb': ['1.001659203', '0.998524317']},
+    'AsLnN': '1'
+  }
 ##### Muon Efficiency and energy scale
 
 nuisances['eff_m'] = {
@@ -363,6 +371,14 @@ if useEmbeddedDY:
     'AsLnN': '1'
   }
 '''
+if useEmbeddedDY:
+  nuisances['muonpt_emb'] = {
+    'name': 'CMS_scale_m_2017',
+    'kind': 'weight',
+    'type': 'shape',
+    'samples': {'Dyemb': ['1.000000000', '0.999213404']},
+    'AsLnN': '1'
+  }
 ##### Jet energy scale
 jes_systs = ['JESAbsolute','JESAbsolute_2017','JESBBEC1','JESBBEC1_2017','JESEC2','JESEC2_2017','JESFlavorQCD','JESHF','JESHF_2017','JESRelativeBal','JESRelativeSample_2017']
 folderup = ""
@@ -401,6 +417,38 @@ for js in jes_systs:
   }
 
 ##### Jet energy resolution
+##CR dictionaries
+topdic = {'top': ['0.9991712341','1.000008876'], 'WW':['1.005804126','1.00016611']}
+
+##SR dictionaries
+vhdic = {'top': ['0.9866414996','0.9871777691']}
+vhdic.update(dict((skey, ['0.9954314708', '1.010587017']) for skey in whAC))
+vhdic.update(dict((skey, ['0.9886307334','1.004893154']) for skey in zhAC))
+
+key_dic = {
+        'hww2l2v_13TeV_of2j_vh':vhdic,
+        'hww2l2v_13TeV_of2j_vh_hmin':vhdic,
+        'hww2l2v_13TeV_of2j_vh_hmip':vhdic,
+        'hww2l2v_13TeV_of2j_vh_hpin':vhdic,
+        'hww2l2v_13TeV_of2j_vh_hpip':vhdic,
+        'hww2l2v_13TeV_top_fj':topdic,
+}
+#WWdic = {'top': ['0.9939820041','0.9795947452'], 'WW': ['0.9808137639','1.0']}
+#dyttdic = {'top': ['0.9889316329','1.028162212'], 'DY': ['1.080670943','0.9418709398']}
+#	'hww2l2v_13TeV_WW_fj':WWdic,
+#        'hww2l2v_13TeV_dytt_fj':dyttdic,
+
+for key,dic in key_dic.iteritems():
+  nuisances['JER'+'_'+key]  = {
+                      'name'  : 'CMS_res_j_2017',
+                      'kind' : 'weight',
+                      'type'  : 'shape',
+                      'samples'  : dic,
+                      'cuts': key,
+                      'AsLnN': '1'
+                     }
+
+
 '''
 nuisances['JER'] = {
     'name': 'CMS_res_j_2017',
@@ -414,6 +462,8 @@ nuisances['JER'] = {
     'AsLnN': '1'
 }
 '''
+
+
 ##### MET energy scale
 
 nuisances['met'] = {

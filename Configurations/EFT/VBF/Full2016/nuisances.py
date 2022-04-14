@@ -220,7 +220,7 @@ if useEmbeddedDY:
 if useEmbeddedDY:
   nuisances['electronpt_emb'] = {
     'name': 'CMS_scale_e_2016',
-    'kind': 'suffix',
+    'kind': 'weight',
     'type': 'shape',
     'samples': {'Dyemb': ['1.006', '1.003']},
     'AsLnN': '1'
@@ -285,7 +285,7 @@ if useEmbeddedDY:
 if useEmbeddedDY:
   nuisances['muonpt_emb'] = {
     'name': 'CMS_scale_m_2016',
-    'kind': 'suffix',
+    'kind': 'weight',
     'type': 'shape',
     'samples': {'Dyemb': ['1.005', '1.004']}, #https://docs.google.com/spreadsheets/d/1VQiHo4aTBSL-kciuGS6DE81ueK5s8e3ddVA6WW7p9uE/edit#gid=0
     'AsLnN': '1'

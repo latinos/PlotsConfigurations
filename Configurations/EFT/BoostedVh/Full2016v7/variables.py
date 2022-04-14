@@ -15,35 +15,35 @@ variables['events']  = {   'name': '1',
 #                     'fold' : 3 
 #                   }
 
-#variables['njet'] = { 'name' : 'njet',
-#                      'range': (6,0,6),
-#                      'xaxis': 'number of jets',
-#                      'fold' : 3 
-#                   }
+variables['njet'] = { 'name' : 'njet',
+                      'range': (6,0,6),
+                      'xaxis': 'number of jets',
+                      'fold' : 3 
+                   }
 
-#variables['nfjet'] = { 'name' : 'nCleanFatJet', # pt and tau21 cuts applied
-#                      'range': (5,0,5),
-#                      'xaxis': 'number of clean fat jets',
-#                      'fold' : 3 
-#                   }
+variables['nfjet'] = { 'name' : 'nCleanFatJet', # pt and tau21 cuts applied
+                      'range': (5,0,5),
+                      'xaxis': 'number of clean fat jets',
+                      'fold' : 3 
+                   }
 
-#variables['ptll'] = {   'name': 'ptll',
-#                        'range': (20,0,400),
-#                        'xaxis': 'p_{T}^{ll}',
-#                        'fold': 3
-#                       }
+variables['ptll'] = {   'name': 'ptll',
+                        'range': (20,0,400),
+                        'xaxis': 'p_{T}^{ll}',
+                        'fold': 3
+                       }
 
-#variables['mjj'] = { 'name' : 'mjj',
-#                     'range': (25,0,1000),
-#                     'xaxis': 'm_{jj}',
-#                     'fold' : 3 
-#                   }
+variables['mjj'] = { 'name' : 'mjj',
+                     'range': (25,0,1000),
+                     'xaxis': 'm_{jj}',
+                     'fold' : 3 
+                   }
 
-#variables['dphi'] = { 'name' : 'dphis',
-#                      'range': (10,-3.2,3.2),
-#                     'xaxis': 'DPhi_{jj}',
-#                     'fold' : 3 
-#                   }
+variables['dphi'] = { 'name' : 'dphis',
+                      'range': (10,-3.2,3.2),
+                     'xaxis': 'DPhi_{jj}',
+                     'fold' : 3 
+                   }
 
 #variables['mll_2'] = { 'name' : 'mll',
 #                     'range': ([10,25,35,40,45,50,55,70,90,210],),
@@ -66,7 +66,7 @@ variables['mth'] = { 'name' : 'mth',
                      'xaxis': 'm_{T}^{H}',
                      'fold' : 3
                    }
-'''
+
 variables['mtw2'] = { 'name' : 'mtw2',
                      'range': (20,0,200),
                      'xaxis': 'm_{T}^{W2}',
@@ -85,7 +85,7 @@ variables['pTWW'] = { 'name' : 'pTWW',
                      'fold' : 3
                    }
 
-
+'''
 variables['hm'] = { 'name' : 'hm',
                      'range': (40,0,400),
                      'xaxis': 'm_{H}',
