@@ -119,6 +119,16 @@ nuisances['fake_mu_stat'] = {
     },
     'perRecoBin': True
 }
+#BOOSTEDWTAGGED
+boostedVtag_sys = ['BoostedWtagSF_up/BoostedWtagSF_nominal', 'BoostedWtagSF_up/BoostedWtagSF_nominal']
+
+nuisances['BoostedVtag'] = {
+    'name': 'CMS_BoostedVtag_2017',
+    'kind': 'weight',
+    'type': 'shape',
+    'samples': dict((skey, boostedVtag_sys) for skey in samples if (skey.startswith('WH_') or skey.startswith('ZH_') or skey.startswith('ggZH_') or skey.startswith('VVV') or skey.startswith('VZ') or skey.startswith('ttH')))
+}
+
 #FATJET
 nuisances['cfj_pt_JESTotal'] = {
     'name': 'CMS_scale_cleanfatJES_2017',
@@ -426,11 +436,11 @@ vhdic.update(dict((skey, ['0.9954314708', '1.010587017']) for skey in whAC))
 vhdic.update(dict((skey, ['0.9886307334','1.004893154']) for skey in zhAC))
 
 key_dic = {
-        'hww2l2v_13TeV_of2j_vh':vhdic,
-        'hww2l2v_13TeV_of2j_vh_hmin':vhdic,
-        'hww2l2v_13TeV_of2j_vh_hmip':vhdic,
-        'hww2l2v_13TeV_of2j_vh_hpin':vhdic,
-        'hww2l2v_13TeV_of2j_vh_hpip':vhdic,
+        'hww2l2v_13TeV_of2j_Vh':vhdic,
+        'hww2l2v_13TeV_of2j_Vh_hmin':vhdic,
+        'hww2l2v_13TeV_of2j_Vh_hmip':vhdic,
+        'hww2l2v_13TeV_of2j_Vh_hpin':vhdic,
+        'hww2l2v_13TeV_of2j_Vh_hpip':vhdic,
         'hww2l2v_13TeV_top_fj':topdic,
 }
 #WWdic = {'top': ['0.9939820041','0.9795947452'], 'WW': ['0.9808137639','1.0']}
@@ -479,8 +489,7 @@ nuisances['met'] = {
 }
 
 ##### Di-Tau vetoing for embedding
-'''
-if useEmbeddedDY: 
+if useEmbeddedDY:
   if runDYveto:
     nuisances['embedveto']  = {
                     'name'  : 'CMS_embed_veto_2017',
@@ -491,7 +500,28 @@ if useEmbeddedDY:
                        'Dyveto'   : ['0.1', '-0.1'],
                     }
              }
-'''
+  else:
+    # These hardcoded numbers have been obtained by running the full Dyveto (with runDYveto=True in samples.py) 
+    # and computing the lnN uncertainty as variation of the up/down integral with respect to the nominal Dyemb integral
+    unc_dict = {}
+    unc_dict['hww2l2v_13TeV_WW_fj']  =   '1.00000'
+    unc_dict['hww2l2v_13TeV_of2j_Vh']  =   '1.0253079737'
+    unc_dict['hww2l2v_13TeV_of2j_Vh_hmin']  =   '1.0253079737'
+    unc_dict['hww2l2v_13TeV_of2j_Vh_hmip']  =   '1.0253079737'
+    unc_dict['hww2l2v_13TeV_of2j_Vh_hpin']  =   '1.0253079737'
+    unc_dict['hww2l2v_13TeV_of2j_Vh_hpip']  =   '1.0253079737'
+    unc_dict['hww2l2v_13TeV_dytt_fj']  =   '1.01009293521'
+    unc_dict['hww2l2v_13TeV_top_fj']  =   '1.05163266251'
+
+    for category,uncertainty in unc_dict.iteritems():
+      nuisances['embedveto_'+category]  = {
+                      'name'  : 'CMS_embed_veto_2017',
+                      'type'  : 'lnN',
+                      'samples'  : {
+                         'Dyemb'    : uncertainty,
+                         },
+                       'cuts': [category],
+                     }
 ##### Pileup
 
 PUDict = { 'DY': ['0.993259983266*(puWeightUp/puWeight)', '0.997656381501*(puWeightDown/puWeight)'],

@@ -258,30 +258,6 @@ nuisances['muonpt'] = {
 }
 
 #DM
-'''
-#Lourdes
-EmbDicMuUp = { 	'hww2l2v_13TeV_of2j_vbf':'1.000090880',
-		'hww2l2v_13TeV_of2j_vh':'1.000000000',
-		'hww2l2v_13TeV_WW_of2j':'1.000000000',
-		'hww2l2v_13TeV_top_of2j':'1.003798413',
-		'hww2l2v_13TeV_dytt_of2j':'1.001579323',
-		'hww2l2v_13TeV_of2j_ggh_t':'1.000443149',
-		'hww2l2v_13TeV_of2j_ggh_untagged':'1.004532644',			
-	}
-
-if useEmbeddedDY:
-  nuisances['muonpt_emb'] = {
-    'name': 'CMS_scale_m_2016',
-    'kind': 'suffix',
-    'type': 'shape',
-    'mapUp' : 'MupTup',
-    'mapDown': 'MupTdo',
-    'samples': {'Dyemb': ['1', '1']},
-    'folderUp': treeBaseDir+'/Embedding2016_102X_nAODv7_Full2016v7/DATAl1loose2016v7__l2loose__l2tightOR2016v7__Embedding__EmbMupTup_suffix/',
-    'folderDown': treeBaseDir+'/Embedding2016_102X_nAODv7_Full2016v7/DATAl1loose2016v7__l2loose__l2tightOR2016v7__Embedding__EmbMupTdo_suffix/',
-    'AsLnN': '1'
-  }
-'''
 if useEmbeddedDY:
   nuisances['muonpt_emb'] = {
     'name': 'CMS_scale_m_2016',
@@ -341,7 +317,48 @@ nuisances['met'] = {
     'AsLnN': '1'
 }
 ##### Di-Tau vetoing for embedding
+if useEmbeddedDY:
+  if runDYveto:
+    nuisances['embedveto']  = {
+                    'name'  : 'CMS_embed_veto_2016',
+                    'kind'  : 'weight',
+                    'type'  : 'shape',
+                    'samples'  : {
+                       'Dyemb'    : ['1', '1'],
+                       'Dyveto'   : ['0.1', '-0.1'],
+                    }
+             }
+  else:
+    # These hardcoded numbers have been obtained by running the full Dyveto (with runDYveto=True in samples.py) 
+    # and computing the lnN uncertainty as variation of the up/down integral with respect to the nominal Dyemb integral
+    unc_dict = {}
+    unc_dict['hww2l2v_13TeV_WW_of2j']  =   '1.03123374655'
+    unc_dict['hww2l2v_13TeV_of2j_ggh_thmin']  =   '1.00614517806'
+    unc_dict['hww2l2v_13TeV_of2j_ggh_thmip']  =   '1.00614517806'
+    unc_dict['hww2l2v_13TeV_of2j_vbf']  =   '1.00920422276'
+    unc_dict['hww2l2v_13TeV_of2j_vbf_hmin']  =   '1.00920422276'
+    unc_dict['hww2l2v_13TeV_of2j_vbf_hmip']  =   '1.00920422276'
+    unc_dict['hww2l2v_13TeV_of2j_vbf_hpin']  =   '1.00920422276'
+    unc_dict['hww2l2v_13TeV_of2j_vbf_hpip']  =   '1.00920422276'
+    unc_dict['hww2l2v_13TeV_of2j_vh']  =   '1.01021232534'
+    unc_dict['hww2l2v_13TeV_of2j_vh_hmin']  =   '1.01021232534'
+    unc_dict['hww2l2v_13TeV_of2j_vh_hmip']  =   '1.01021232534'
+    unc_dict['hww2l2v_13TeV_of2j_vh_hpin']  =   '1.01021232534'
+    unc_dict['hww2l2v_13TeV_of2j_vh_hpip']  =   '1.01021232534'
+    unc_dict['hww2l2v_13TeV_dytt_of2j']  =   '1.00344515003'
+    unc_dict['hww2l2v_13TeV_top_of2j']  =   '1.03906135258'
+    unc_dict['hww2l2v_13TeV_of2j_ggh_untagged']  =   '1.01435963606'
+    unc_dict['hww2l2v_13TeV_top_of2j_nofjveto']  =   '1.03906135258'
 
+    for category,uncertainty in unc_dict.iteritems():
+      nuisances['embedveto_'+category]  = {
+                      'name'  : 'CMS_embed_veto_2016',
+                      'type'  : 'lnN',
+                      'samples'  : {
+                         'Dyemb'    : uncertainty,
+                         },
+                       'cuts': [category],
+                     }
 
 ### PU ID SF uncertainty
 puid_syst = ['Jet_PUIDSF_up/Jet_PUIDSF', 'Jet_PUIDSF_down/Jet_PUIDSF']

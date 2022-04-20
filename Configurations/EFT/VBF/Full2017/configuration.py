@@ -2,11 +2,11 @@
 # example of configuration file
 treeName= 'Events'
 
-tag = 'JJH17_Test'
+tag = 'JJH17'
 
 # used by mkShape to define output directory for root files
 outputDir = '/eos/user/l/lurda/test/'+'rootFile'+tag
-#outputDir = '/eos/user/l/lurda/www/EFT_AC/VBF_VHRESOLVED/rootFileJJH17/'
+
 # file with TTree aliases
 aliasesFile = 'aliases.py'
 

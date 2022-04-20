@@ -216,19 +216,19 @@ if btag_algo=="deepcsv":
 
 elif btag_algo=="deepflav":
 #    btagSFSource = '%s/src/PhysicsTools/NanoAODTools/data/btagSF/DeepJet_2018LegacySF_V1.csv' % os.getenv('CMSSW_BASE')
-    #btagSFSource = '%s/src/PhysicsTools/NanoAODTools/data/btagSF/DeepJet_102XSF_V1.csv' % os.getenv('CMSSW_BASE') #dm should be v2? 
+    btagSFSource = '%s/src/PhysicsTools/NanoAODTools/data/btagSF/DeepJet_102XSF_V2.csv' % os.getenv('CMSSW_BASE') #dm should be v2? 
 
-    aliases['Jet_btagSF_deepflav_shape'] = {'expr':'1.0'}
-    #    'linesToAdd': [
-    #        'gSystem->Load("libCondFormatsBTauObjects.so");',
-    #        'gSystem->Load("libCondToolsBTau.so");',
-    #        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_RELEASE_BASE'),
-    #        '.L %s/patches/btagsfpatch.cc+' % configurations
-    #    ],
-    #    'class': 'BtagSF',
-    #    'args': (btagSFSource,'central','deepjet'),
-    #    'samples': mc
-    #}
+    aliases['Jet_btagSF_deepflav_shape'] = {
+        'linesToAdd': [
+            'gSystem->Load("libCondFormatsBTauObjects.so");',
+            'gSystem->Load("libCondToolsBTau.so");',
+            'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_RELEASE_BASE'),
+            '.L %s/patches/btagsfpatch.cc+' % configurations
+        ],
+        'class': 'BtagSF',
+        'args': (btagSFSource,'central','deepjet'),
+        'samples': mc
+    }
 
 
     aliases['bVetoSF'] = {
@@ -247,16 +247,16 @@ elif btag_algo=="deepflav":
     }
     #'hf' 
     for shift in ['jes', 'lf','lfstats1', 'lfstats2', 'hfstats1', 'hfstats2', 'cferr1', 'cferr2']:
-        aliases['Jet_btagSF_deepflav_shape_up_%s' % shift] = {'expr':'1.0'}
-        #    'class': 'BtagSF',
-        #    'args': (btagSFSource, 'up_' + shift,'deepjet'),
-        #    'samples': mc
-        #}
-        aliases['Jet_btagSF_deepflav_shape_down_%s' % shift] = {'expr':'1.0'}
-        #    'class': 'BtagSF',
-        #    'args': (btagSFSource, 'down_' + shift,'deepjet'),
-        #    'samples': mc
-        #}
+        aliases['Jet_btagSF_deepflav_shape_up_%s' % shift] = {
+            'class': 'BtagSF',
+            'args': (btagSFSource, 'up_' + shift,'deepjet'),
+            'samples': mc
+        }
+        aliases['Jet_btagSF_deepflav_shape_down_%s' % shift] = {
+            'class': 'BtagSF',
+            'args': (btagSFSource, 'down_' + shift,'deepjet'),
+            'samples': mc
+        }
 
         for targ in ['bVeto', 'bReq']:
             alias = aliases['%sSF%sup' % (targ, shift)] = copy.deepcopy(aliases['%sSF' % targ])
@@ -300,6 +300,12 @@ aliases['trig_drll_rw'] = {
      'expr' : '( ((drll >= 0.00 && drll <0.25)*0.019013 + (drll >= 0.25 && drll <0.50)*0.903772 + (drll >= 0.50 && drll <1.00)*0.996569 + (drll >= 1.00 && drll <1.50)*0.996051 + (drll >= 1.50 && drll <2.00)*0.997844 + (drll >= 2.00 && drll <2.50)*0.998130 + (drll >= 2.50 && drll <3.00)*0.998615 + (drll >= 3.00 && drll <3.50)*0.997920 + (drll >= 3.50 && drll <4.00)*0.997854 + (drll >= 4.00 && drll <4.50)*1.001182 + (drll >= 4.50)*0.994173)*(abs(Lepton_pdgId[0])==11 && abs(Lepton_pdgId[1])==11) + ((drll >= 0.00 && drll <0.25)*0.770696 + (drll >= 0.25 && drll <0.50)*1.003577 + (drll >= 0.50 && drll <1.00)*1.003401 + (drll >= 1.00 && drll <1.50)*1.002837 + (drll >= 1.50 && drll <2.00)*1.004616 + (drll >= 2.00 && drll <2.50)*1.004096 + (drll >= 2.50 && drll <3.00)*1.004561 + (drll >= 3.00 && drll <3.50)*1.004589 + (drll >= 3.50 && drll <4.00)*1.005748 + (drll >= 4.00 && drll <4.50)*1.006065 + (drll >= 4.50)*0.992700)*(abs(Lepton_pdgId[0])==11 && abs(Lepton_pdgId[1])==13) + ((drll >= 0.00 && drll <0.25)*0.857813 + (drll >= 0.25 && drll <0.50)*1.002417 + (drll >= 0.50 && drll <1.00)*0.999297 + (drll >= 1.00 && drll <1.50)*0.999881 + (drll >= 1.50 && drll <2.00)*0.998123 + (drll >= 2.00 && drll <2.50)*0.999193 + (drll >= 2.50 && drll <3.00)*0.997161 + (drll >= 3.00 && drll <3.50)*0.998346 + (drll >= 3.50 && drll <4.00)*0.995930 + (drll >= 4.00 && drll <4.50)*0.998973 + (drll >= 4.50)*0.977712)*(abs(Lepton_pdgId[0])==13 && abs(Lepton_pdgId[1])==11) + ((drll >= 0.00 && drll <0.25)*0.980155 + (drll >= 0.25 && drll <0.50)*0.993574 + (drll >= 0.50 && drll <1.00)*0.998352 + (drll >= 1.00 && drll <1.50)*1.001700 + (drll >= 1.50 && drll <2.00)*1.001031 + (drll >= 2.00 && drll <2.50)*0.999796 + (drll >= 2.50 && drll <3.00)*0.999189 + (drll >= 3.00 && drll <3.50)*1.000540 + (drll >= 3.50 && drll <4.00)*1.000136 + (drll >= 4.00 && drll <4.50)*1.003553 + (drll >= 4.50)*0.992509)*(abs(Lepton_pdgId[0])==13 && abs(Lepton_pdgId[1])==13) )',
     'samples' : mc
 }
+
+aliases['VtagSF'] = {
+        'expr':'BoostedWtagSF_nominal',
+	'samples': [skey for skey in samples if (skey.startswith('WH_') or skey.startswith('ZH_') or skey.startswith('ggZH_')or skey.startswith('VZ') or skey.startswith('VVV') or skey.startswith('ttH'))]
+}
+
 # data/MC scale factors
 aliases['SFweight'] = {
     'expr': ' * '.join(['SFweight2lAlt','LepWPCut', 'LepSF2l__ele_' + eleWP + '__mu_' + muWP, 'btagSF', 'Jet_PUIDSF','trig_drll_rw']),
@@ -641,4 +647,4 @@ aliases['kd_Vh_mixhm'] = { 'expr': '(me_Vh_mixhm*G4VH) / (me_Vh_hsm + (me_Vh_hm*
 aliases['me_Vh_hp']     = { 'expr': '(me_Wh_hp/meAvg_wh) + (me_Zh_hp/meAvg_zh)' }
 aliases['me_Vh_mixhp']  = { 'expr': '((me_Wh_mixhp - me_Wh_hsm - me_Wh_hp)/meAvg_wh) + ((me_Zh_mixhp - me_Zh_hsm - me_Zh_hp)/meAvg_zh)' }
 aliases['kd_Vh_mixhp'] = { 'expr': '(me_Vh_mixhp*G2VH) / (me_Vh_hsm + (me_Vh_hp*G2VH**2))' }
-aliases['VtagSF'] = {'expr': 'FatJet_tau2/FatJet_tau1'}
+#aliases['VtagSF'] = {'expr': 'FatJet_tau2/FatJet_tau1'}

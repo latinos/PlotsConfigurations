@@ -111,6 +111,15 @@ nuisances['fake_mu_stat'] = {
     },
     'perRecoBin': True
 }
+##BOOSTED
+boostedVtag_sys = ['BoostedWtagSF_up/BoostedWtagSF_nominal', 'BoostedWtagSF_up/BoostedWtagSF_nominal']
+
+nuisances['BoostedVtag'] = {
+    'name': 'CMS_BoostedVtag_2016',
+    'kind': 'weight',
+    'type': 'shape',
+    'samples': dict((skey, boostedVtag_sys) for skey in samples if (skey.startswith('WH_') or skey.startswith('ZH_') or skey.startswith('ggZH_') or skey.startswith('VZ') or skey.startswith('VVV') or skey.startswith('ttH')))
+}
 
 #### Clean Fat jets ####
 nuisances['cfj_pt_JESTotal'] = {
@@ -420,7 +429,39 @@ nuisances['met'] = {
     'AsLnN': '1'
 }
 ##### Di-Tau vetoing for embedding
+if useEmbeddedDY:
+  if runDYveto:
+    nuisances['embedveto']  = {
+                    'name'  : 'CMS_embed_veto_2016',
+                    'kind'  : 'weight',
+                    'type'  : 'shape',
+                    'samples'  : {
+                       'Dyemb'    : ['1', '1'],
+                       'Dyveto'   : ['0.1', '-0.1'],
+                    }
+             }
+  else:
+    # These hardcoded numbers have been obtained by running the full Dyveto (with runDYveto=True in samples.py) 
+    # and computing the lnN uncertainty as variation of the up/down integral with respect to the nominal Dyemb integral
+    unc_dict = {}
+    unc_dict['hww2l2v_13TeV_WW_fj']  =   '1.00785410821'
+    unc_dict['hww2l2v_13TeV_of2j_Vh']  =   '1.00838864735'
+    unc_dict['hww2l2v_13TeV_of2j_Vh_hmin']  =   '1.00838864735'
+    unc_dict['hww2l2v_13TeV_of2j_Vh_hmip']  =   '1.00838864735'
+    unc_dict['hww2l2v_13TeV_of2j_Vh_hpin']  =   '1.00838864735'
+    unc_dict['hww2l2v_13TeV_of2j_Vh_hpip']  =   '1.00838864735'
+    unc_dict['hww2l2v_13TeV_dytt_fj']  =   '1.0082139724'
+    unc_dict['hww2l2v_13TeV_top_fj']  =   '1.05198221826'
 
+    for category,uncertainty in unc_dict.iteritems():
+      nuisances['embedveto_'+category]  = {
+                      'name'  : 'CMS_embed_veto_2016',
+                      'type'  : 'lnN',
+                      'samples'  : {
+                         'Dyemb'    : uncertainty,
+                         },
+                       'cuts': [category],
+                     }
 
 ### PU ID SF uncertainty
 puid_syst = ['Jet_PUIDSF_up/Jet_PUIDSF', 'Jet_PUIDSF_down/Jet_PUIDSF']

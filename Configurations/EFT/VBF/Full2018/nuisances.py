@@ -52,7 +52,7 @@ for k in cuts:
 #    'type': 'lnN',
 #    'samples': dict((skey, '1.025') for skey in mc if skey not in ['WW', 'top', 'DY'])
 #}
-'''
+
 nuisances['lumi_Uncorrelated'] = {
     'name': 'lumi_13TeV_2018',
     'type': 'lnN',
@@ -199,7 +199,7 @@ nuisances['electronpt'] = {
     'folderDown': 'root://eoscms.cern.ch/'+makeMCDirectory('trigFix__ElepTdo_suffix'),
     'AsLnN': '1'
 }
-'''
+
 '''
 if useEmbeddedDY:
   nuisances['electronpt_emb'] = {
@@ -214,8 +214,16 @@ if useEmbeddedDY:
     'AsLnN': '1'
   }
 '''
+if useEmbeddedDY:
+  nuisances['electronpt_emb'] = {
+    'name': 'CMS_scale_e_2018',
+    'kind': 'weight',
+    'type': 'shape',
+    'samples': {'Dyemb': ['1.003048852', '0.994417762']},
+    'AsLnN': '1'
+  }
 ##### Muon Efficiency and energy scale
-'''
+
 nuisances['eff_m'] = {
     'name': 'CMS_eff_m_2018',
     'kind': 'weight',
@@ -247,7 +255,7 @@ nuisances['muonpt'] = {
     'folderDown': 'root://eoscms.cern.ch/'+makeMCDirectory('trigFix__MupTdo_suffix'),
     'AsLnN': '1'
 }
-'''
+
 '''
 if useEmbeddedDY:
   nuisances['muonpt_emb'] = {
@@ -262,8 +270,16 @@ if useEmbeddedDY:
     'AsLnN': '1'
   }
 '''
+if useEmbeddedDY:
+  nuisances['muonpt_emb'] = {
+    'name': 'CMS_scale_m_2018',
+    'kind': 'weight',
+    'type': 'shape',
+    'samples': {'Dyemb': ['1.003048852', '0.995615456']},
+    'AsLnN': '1'
+  }
 ##### Jet energy scale
-'''
+
 jes_systs = ['JESAbsolute','JESAbsolute_2018','JESBBEC1','JESBBEC1_2018','JESEC2','JESEC2_2018','JESFlavorQCD','JESHF','JESHF_2018','JESRelativeBal','JESRelativeSample_2018']
 
 for js in jes_systs:
@@ -297,9 +313,61 @@ for js in jes_systs:
       'folderDown': folderdo,
       'AsLnN': '1'
   }
-'''
-'''
+
 ##### Jet energy resolution
+##CR dictionaries
+WWdic = {'WW':['1.042121137','0.9923541107'], 'top': ['1.01122449','0.9971833975']}
+dyttdic = {'top': ['0.9966506491','1.007485145'], 'DY': ['1.051410195','0.9523834389'], 'WW':['1.020055375','0.9967475401']}
+topdic = {'WW':['1.033528972','0.9872317807'], 'top': ['0.9862727582','1.007347052']}
+
+##SR dictionaries
+vbfdic = {'WW':['1.059283341','0.9800987808'], 'top': ['1.00248847','0.9992857364']}
+vbfdic.update(dict((skey, ['0.97435237', '1.017059067']) for skey in qqhAC))
+vbfdic.update(dict((skey, ['1.075103755','0.9627059055']) for skey in gghAC))
+
+vhdic = {'top': ['0.9808777063','1.014796023'], 'WW':['0.983959566','0.9952959675']}
+vhdic.update(dict((skey, ['0.9898468575', '1.009762474']) for skey in whAC))
+vhdic.update(dict((skey, ['0.9711226412','1.015296079']) for skey in zhAC))
+
+gghtdic = {'WW':['1.061632276','0.9788255862'], 'top': ['1.0162976','0.9908861454']}
+gghtdic.update(dict((skey, ['1.087473189', '0.9551229137']) for skey in gghAC))
+gghtdic.update(dict((skey, ['0.9743060498', '1.01676037']) for skey in qqhAC))
+
+gghuntdic = {'WW':['0.9981448898','1.003236117'], 'top': ['0.9988008218','0.9981614319']}
+gghuntdic.update(dict((skey, ['0.9968768189', '1.004767371']) for skey in gghAC))
+gghuntdic.update(dict((skey, ['0.9940492956', '1.006006723']) for skey in qqhAC))
+#gghuntdic.update(dict((skey, ['0.9979255', '0.9950424']) for skey in zhAC))
+#gghuntdic.update(dict((skey, ['0.9983327', '1.0023855']) for skey in whAC))
+
+key_dic = {
+	'hww2l2v_13TeV_WW_of2j':WWdic,
+        'hww2l2v_13TeV_of2j_ggh_t':gghtdic,
+        'hww2l2v_13TeV_of2j_vbf':vbfdic,
+        'hww2l2v_13TeV_of2j_vbf_hmin':vbfdic,
+        'hww2l2v_13TeV_of2j_vbf_hmip':vbfdic,
+        'hww2l2v_13TeV_of2j_vbf_hpin':vbfdic,
+        'hww2l2v_13TeV_of2j_vbf_hpip':vbfdic,
+        'hww2l2v_13TeV_of2j_vh':vhdic,
+        'hww2l2v_13TeV_of2j_vh_hmin':vhdic,
+        'hww2l2v_13TeV_of2j_vh_hmip':vhdic,
+        'hww2l2v_13TeV_of2j_vh_hpin':vhdic,
+        'hww2l2v_13TeV_of2j_vh_hpip':vhdic,
+        'hww2l2v_13TeV_dytt_of2j':dyttdic,
+        'hww2l2v_13TeV_top_of2j':topdic,
+        'hww2l2v_13TeV_of2j_ggh_untagged':gghuntdic,
+}
+for key,dic in key_dic.iteritems():
+  nuisances['JER']  = {
+                      'name'  : 'CMS_res_j_2018',
+                      'kind' : 'weight',
+                      'type'  : 'shape',
+                      'samples'  : dic,
+                      'cuts': key,
+                      'AsLnN': '1'
+                     }
+
+
+'''
 nuisances['JER'] = {
     'name': 'CMS_res_j_2018',
     'kind': 'suffix',
@@ -313,7 +381,7 @@ nuisances['JER'] = {
 }
 '''
 ##### MET energy scale
-'''
+
 nuisances['met'] = {
     'name': 'CMS_scale_met_2018',
     'kind': 'suffix',
@@ -325,9 +393,9 @@ nuisances['met'] = {
     'folderDown': 'root://eoscms.cern.ch/'+makeMCDirectory('METdo_suffix'),
     'AsLnN': '1'
 }
-'''
+
 ##### Di-Tau vetoing for embedding
-'''
+
 if useEmbeddedDY:
     if runDYveto:
         nuisances['embedveto']  = {
@@ -340,9 +408,40 @@ if useEmbeddedDY:
                         }
         }
 
-'''
+    else:
+      # These hardcoded numbers have been obtained by running the full Dyveto (with runDYveto=True in samples.py) 
+      # and computing the lnN uncertainty as variation of the up/down integral with respect to the nominal Dyemb integral
+      unc_dict = {}
+      unc_dict['hww2l2v_13TeV_WW_of2j']  =   '1.03888833435'
+      unc_dict['hww2l2v_13TeV_of2j_ggh_thmin']  =   '1.00860538361'
+      unc_dict['hww2l2v_13TeV_of2j_ggh_thmip']  =   '1.00860538361'
+      unc_dict['hww2l2v_13TeV_of2j_vbf']  =   '1.0075176059'
+      unc_dict['hww2l2v_13TeV_of2j_vbf_hmin']  =   '1.0075176059'
+      unc_dict['hww2l2v_13TeV_of2j_vbf_hmip']  =   '1.0075176059'
+      unc_dict['hww2l2v_13TeV_of2j_vbf_hpin']  =   '1.0075176059'
+      unc_dict['hww2l2v_13TeV_of2j_vbf_hpip']  =   '1.0075176059'
+      unc_dict['hww2l2v_13TeV_of2j_vh']  =   '1.01151460549'
+      unc_dict['hww2l2v_13TeV_of2j_vh_hmin']  =   '1.01151460549'
+      unc_dict['hww2l2v_13TeV_of2j_vh_hmip']  =   '1.01151460549'
+      unc_dict['hww2l2v_13TeV_of2j_vh_hpin']  =   '1.01151460549'
+      unc_dict['hww2l2v_13TeV_of2j_vh_hpip']  =   '1.01151460549'
+      unc_dict['hww2l2v_13TeV_dytt_of2j']  =   '1.00314261038'
+      unc_dict['hww2l2v_13TeV_top_of2j']  =   '1.04994935116'
+      unc_dict['hww2l2v_13TeV_of2j_ggh_untagged']  =   '1.01611795904'
+      unc_dict['hww2l2v_13TeV_top_of2j_nofjveto']  =   '1.04994935116'
+
+      for category,uncertainty in unc_dict.iteritems():
+        nuisances['embedveto_'+category]  = {
+                      'name'  : 'CMS_embed_veto_2018',
+                      'type'  : 'lnN',
+                      'samples'  : {
+                         'Dyemb'    : uncertainty,
+                         },
+                       'cuts': [category],
+                     }
+
 ##### Pileup
-'''
+
 PUDict = { 'DY': ['0.993259983266*(puWeightUp/puWeight)', '0.997656381501*(puWeightDown/puWeight)'],
            'top': ['1.00331969187*(puWeightUp/puWeight)', '0.999199609528*(puWeightDown/puWeight)'],
            'WW': ['1.0033022059*(puWeightUp/puWeight)', '0.997085330608*(puWeightDown/puWeight)'],
@@ -636,13 +735,8 @@ topScaleNormFactors2j = {'LHEScaleWeight[3]': 1.01676762423417, 'LHEScaleWeight[
 
 topvars2j.append('Alt$(LHEScaleWeight[0], 1.)/'+str(topScaleNormFactors2j['LHEScaleWeight[0]']))
 topvars2j.append('Alt$(LHEScaleWeight[8], 1.)/'+str(topScaleNormFactors2j['LHEScaleWeight[8]']))
-'''
-'''
-topScaleNormFactors2j = {'LHEScaleWeight[3]': 1.0236911155246506, 'LHEScaleWeight[0]': 1.1249360990045656, 'LHEScaleWeight[1]': 1.1054771659922622, 'LHEScaleWeight[Length$(LHEScaleWeight)-1]': 0.8819750427294990, 'LHEScaleWeight[Length$(LHEScaleWeight)-4]': 0.9819208264038879, 'LHEScaleWeight[Length$(LHEScaleWeight)-2]': 0.9025818187649589}
 
-topvars2j.append('Alt$(LHEScaleWeight[0], 1.)/'+str(topScaleNormFactors2j['LHEScaleWeight[0]']))
-topvars2j.append('Alt$(LHEScaleWeight[8], 1.)/'+str(topScaleNormFactors2j['LHEScaleWeight[8]']))
-
+'''
 for var in variations:
   #topvars0j.append(var+'/'+str(topScaleNormFactors0j[var]))
   #topvars1j.append(var+'/'+str(topScaleNormFactors1j[var]))
@@ -650,7 +744,6 @@ for var in variations:
 '''
 ## QCD scale nuisances for top are decorrelated for each RECO jet bin: the QCD scale is different for different jet multiplicities so it doesn't make sense to correlate them
 
-'''
 nuisances['QCDscale_top_2j']  = {
     'name'  : 'QCDscale_top_2j_2018',
     'skipCMS' : 1,
@@ -904,7 +997,7 @@ nuisances['QCDscale_gg_ACCEPT'] = {
     'samples': QCDHggADict,
     'type': 'lnN',
 }
-'''
+
 ## Use the following if you want to apply the automatic combine MC stat nuisances.
 nuisances['stat'] = {
     'type': 'auto',

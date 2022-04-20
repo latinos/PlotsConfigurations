@@ -372,20 +372,6 @@ for key,dic in key_dic.iteritems():
 		      'AsLnN': '1'
                      }
 
-'''
-
-nuisances['JER'] = {
-    'name': 'CMS_res_j_2017',
-    'kind': 'suffix',
-    'type': 'shape',
-    'mapUp': 'JERup',
-    'mapDown': 'JERdo',
-    'samples': dict((skey, ['1', '1']) for skey in mc),
-    'folderUp': 'root://eoscms.cern.ch/'+makeMCDirectory('JERup_suffix'),
-    'folderDown': 'root://eoscms.cern.ch/'+makeMCDirectory('JERdo_suffix'),
-    'AsLnN': '1'
-}
-'''
 ##### MET energy scale
 
 nuisances['met'] = {
@@ -401,8 +387,7 @@ nuisances['met'] = {
 }
 
 ##### Di-Tau vetoing for embedding
-'''
-if useEmbeddedDY: 
+if useEmbeddedDY:
   if runDYveto:
     nuisances['embedveto']  = {
                     'name'  : 'CMS_embed_veto_2017',
@@ -413,7 +398,38 @@ if useEmbeddedDY:
                        'Dyveto'   : ['0.1', '-0.1'],
                     }
              }
-'''
+  else:
+    # These hardcoded numbers have been obtained by running the full Dyveto (with runDYveto=True in samples.py) 
+    # and computing the lnN uncertainty as variation of the up/down integral with respect to the nominal Dyemb integral
+    unc_dict = {}
+    unc_dict['hww2l2v_13TeV_WW_of2j']  =   '1.02409781488'
+    unc_dict['hww2l2v_13TeV_of2j_ggh_thmin']  =   '1.00659451707'
+    unc_dict['hww2l2v_13TeV_of2j_ggh_thmip']  =   '1.00659451707'
+    unc_dict['hww2l2v_13TeV_of2j_vbf']  =   '1.00536497925'
+    unc_dict['hww2l2v_13TeV_of2j_vbf_hmin']  =   '1.00536497925'
+    unc_dict['hww2l2v_13TeV_of2j_vbf_hmip']  =   '1.00536497925'
+    unc_dict['hww2l2v_13TeV_of2j_vbf_hpin']  =   '1.00536497925'
+    unc_dict['hww2l2v_13TeV_of2j_vbf_hpip']  =   '1.00536497925'
+    unc_dict['hww2l2v_13TeV_of2j_vh']  =   '1.00914422871'
+    unc_dict['hww2l2v_13TeV_of2j_vh_hmin']  =   '1.00914422871'
+    unc_dict['hww2l2v_13TeV_of2j_vh_hmip']  =   '1.00914422871'
+    unc_dict['hww2l2v_13TeV_of2j_vh_hpin']  =   '1.00914422871'
+    unc_dict['hww2l2v_13TeV_of2j_vh_hpip']  =   '1.00914422871'
+    unc_dict['hww2l2v_13TeV_dytt_of2j']  =   '1.00241796375'
+    unc_dict['hww2l2v_13TeV_top_of2j']  =   '1.04516867316'
+    unc_dict['hww2l2v_13TeV_of2j_ggh_untagged']  =   '1.01258444009'
+    unc_dict['hww2l2v_13TeV_top_of2j_nofjveto']  =   '1.04516867316'
+
+    for category,uncertainty in unc_dict.iteritems():
+      nuisances['embedveto_'+category]  = {
+                      'name'  : 'CMS_embed_veto_2017',
+                      'type'  : 'lnN',
+                      'samples'  : {
+                         'Dyemb'    : uncertainty,
+                         },
+                       'cuts': [category],
+                     }
+
 ##### Pileup
 
 PUDict = { 'DY': ['0.993259983266*(puWeightUp/puWeight)', '0.997656381501*(puWeightDown/puWeight)'],

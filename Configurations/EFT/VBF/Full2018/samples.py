@@ -111,7 +111,7 @@ runDYveto = False
 embed_tautauveto = '' #Setup
 if useEmbeddedDY:
   embed_tautauveto = '*embed_tautauveto'
-'''
+
 if useEmbeddedDY:
   # Actual embedded data
   samples['Dyemb'] = {
@@ -126,7 +126,7 @@ if useEmbeddedDY:
       files = nanoGetSampleFiles(embedDirectory, 'DYToTT_MuEle_Embedded_Run2018' + run_)
       samples['Dyemb']['name'].extend(files)
       samples['Dyemb']['weights'].extend(['Trigger_ElMu'] * len(files))
-
+'''
   if runDYveto:
    # Vetoed MC: Needed for uncertainty
    files = nanoGetSampleFiles(mcDirectory, 'TTTo2L2Nu') + \
@@ -160,7 +160,7 @@ if useEmbeddedDY:
    addSampleWeight(samples, 'Dyveto', 'WZTo2L2Q', mcCommonWeight + '*1.11')
    addSampleWeight(samples, 'Dyveto', 'ZGToLLG', ' ( ' + mcCommonWeightNoMatch + '*(!(Gen_ZGstar_mass > 0))' + ' ) + ( ' + mcCommonWeight + ' * ((Gen_ZGstar_mass >0 && Gen_ZGstar_mass < 4) * 0.94 + (Gen_ZGstar_mass <0 || Gen_ZGstar_mass > 4) * 1.14) * (Gen_ZGstar_mass > 0)' + ' ) ') # Vg contribution + VgS contribution
    addSampleWeight(samples, 'Dyveto', 'WZTo3LNu_mllmin01', mcCommonWeight + '*((Gen_ZGstar_mass >0 && Gen_ZGstar_mass < 4) * 0.94 + (Gen_ZGstar_mass <0 || Gen_ZGstar_mass > 4) * 1.14) * (Gen_ZGstar_mass > 0.1)')
-
+'''
 
 ###### DY MC ######
 ## We need to keep DY MC as well, because only embedded events passing the ElMu trigger are considered
@@ -308,40 +308,9 @@ else:
   addSampleWeight(samples, 'VgS', 'Wg_MADGRAPHMLM', '(Gen_ZGstar_mass > 0 && Gen_ZGstar_mass < 0.1)')
   addSampleWeight(samples, 'VgS', 'ZGToLLG', '(Gen_ZGstar_mass > 0)')
   addSampleWeight(samples, 'VgS', 'WZTo3LNu_mllmin01', '(Gen_ZGstar_mass > 0.1)')
-'''
 
-'''
-files = nanoGetSampleFiles(mcDirectory, 'Wg_MADGRAPHMLM') + \
-    nanoGetSampleFiles(mcDirectory, 'ZGToLLG')
-
-samples['Vg'] = {
-    'name': files,
-    'weight': mcCommonWeightNoMatch+embed_tautauveto + '*(Gen_ZGstar_mass <= 0)',
-    'FilesPerJob': 4
-}
-
-
-######## VgS ########
-
-files = nanoGetSampleFiles(mcDirectory, 'Wg_MADGRAPHMLM') + \
-    nanoGetSampleFiles(mcDirectory, 'ZGToLLG') + \
-    nanoGetSampleFiles(mcDirectory, 'WZTo3LNu_mllmin01')
-
-samples['VgS'] = {
-    'name': files,
-    'weight': mcCommonWeight+embed_tautauveto + ' * (gstarLow * 0.94 + gstarHigh * 1.14)',
-    'FilesPerJob': 4,
-    'subsamples': {
-      'L': 'gstarLow',
-      'H': 'gstarHigh'
-    }
-}
-addSampleWeight(samples, 'VgS', 'Wg_MADGRAPHMLM', '(Gen_ZGstar_mass > 0 && Gen_ZGstar_mass < 0.1)')
-addSampleWeight(samples, 'VgS', 'ZGToLLG', '(Gen_ZGstar_mass > 0)')
-addSampleWeight(samples, 'VgS', 'WZTo3LNu_mllmin01', '(Gen_ZGstar_mass > 0.1)')
-'''
 ############ VZ ############
-'''
+
 files = nanoGetSampleFiles(mcDirectory, 'ZZTo2L2Nu_ext2') + \
     nanoGetSampleFiles(mcDirectory, 'ZZTo2L2Q') + \
     nanoGetSampleFiles(mcDirectory, 'ZZTo4L_ext2') + \
@@ -369,11 +338,11 @@ samples['VVV'] = {
 ###########################################
 #############   SIGNALS  ##################
 ###########################################
-'''
+
 signals = []
 
 #### ggH -> WW
-'''
+
 samples['ggH_hww'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'GluGluHToWWTo2L2Nu_M125') + nanoGetSampleFiles(mcDirectory, 'GGHjjToWWTo2L2Nu_minloHJJ_M125'),
     'weight': mcCommonWeight,
@@ -383,7 +352,7 @@ addSampleWeight(samples, 'ggH_hww', 'GluGluHToWWTo2L2Nu_M125', '(HTXS_stage1_1_c
 addSampleWeight(samples, 'ggH_hww', 'GGHjjToWWTo2L2Nu_minloHJJ_M125', '(HTXS_stage1_1_cat_pTjet30GeV>106)*1092.7640/1073.2567')
 
 signals.append('ggH_hww')
-'''
+
 ############ VBF H->WW ############
 samples['qqH_hww'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'VBFHToWWTo2L2Nu_M125'),
@@ -393,14 +362,13 @@ samples['qqH_hww'] = {
 
 signals.append('qqH_hww')
 
-samples['qqH_hww_DipoleRecoil'] = {
-    'name': nanoGetSampleFiles(mcDirectory, 'VBFHToWWTo2L2Nu_M125_DipoleRecoil_private'),
-    'weight': mcCommonWeight,
-    'FilesPerJob': 4
-}
+#samples['qqH_hww_DipoleRecoil'] = {
+#    'name': nanoGetSampleFiles(mcDirectory, 'VBFHToWWTo2L2Nu_M125_DipoleRecoil_private'),
+#    'weight': mcCommonWeight,
+#    'FilesPerJob': 4
+#}
+#signals.append('qqH_hww_DipoleRecoil')
 
-signals.append('qqH_hww_DipoleRecoil')
-'''
 ############ ZH H->WW ############
 
 samples['ZH_hww'] = {
@@ -472,11 +440,11 @@ samples['WH_htt'] = {
 }
 
 signals.append('WH_htt')
-'''
+
 ###########################################
 ################## FAKE ###################
 ###########################################
-'''
+
 samples['Fake'] = {
   'name': [],
   'weight': 'METFilter_DATA*fakeW',
@@ -490,7 +458,7 @@ for _, sd in DataRun:
     files = nanoGetSampleFiles(fakeDirectory, pd + '_' + sd)
     samples['Fake']['name'].extend(files)
     samples['Fake']['weights'].extend([DataTrig[pd]] * len(files))
-'''
+
 '''
 samples['Fake']['subsamples'] = {
   'em': 'abs(Lepton_pdgId[0]) == 11',
@@ -501,7 +469,7 @@ samples['Fake']['subsamples'] = {
 ###########################################
 ################## DATA ###################
 ###########################################
-'''
+
 samples['DATA'] = {
   'name': [],
   'weight': 'METFilter_DATA*LepWPCut',
@@ -518,9 +486,9 @@ for _, sd in DataRun:
 
 
 #### AC/EFT Signals 
-''' 
+ 
 signals_rw = [] 
-'''
+
 # VBF MC samples 
  
 # Original VBF samples 
@@ -2544,5 +2512,4 @@ samples['GGHjj_H0Mf05_H0M'] = {
    'name':   nanoGetSampleFiles(mcDirectory, 'GGHjj_H0Mf05_ToWWTo2L2Nu'), 
    'weight': mcCommonWeight+ '*GGHjj_H0Mf05_W*(ME_H0M/ME_H0Mf05)',   'FilesPerJob': 4, } 
 signals_rw.append('GGHjj_H0Mf05_H0M')  
- 
-'''
+
