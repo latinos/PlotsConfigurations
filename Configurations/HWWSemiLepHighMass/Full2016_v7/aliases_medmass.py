@@ -20,14 +20,14 @@ mc = [skey for skey in samples if skey not in ('FAKE', 'DATA')]
 eleWP    = 'mva_90p_Iso2016'
 muWP     = 'cut_Tight80x'
 
-aliases['DNN_isVBF_OTF'] = {
-    'class': 'DNNprodSemi',
-    'linesToAdd':[
-        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-        'gSystem->Load("libDNNEvaluator.so")',
-        '.L %s/src/PlotsConfigurations/Configurations/HighMass/DNN_prod_semi.cc+' % os.getenv('CMSSW_BASE'),
-    ],
-}
+#aliases['DNN_isVBF_OTF'] = {
+#    'class': 'DNNprodSemi',
+#    'linesToAdd':[
+#        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+#        'gSystem->Load("libDNNEvaluator.so")',
+#        '.L %s/src/PlotsConfigurations/Configurations/HighMass/DNN_prod_semi.cc+' % os.getenv('CMSSW_BASE'),
+#    ],
+#}
 
 #aliases['btagJetPt_resolv'] = {
  #   'linesToAdd': [
@@ -691,6 +691,25 @@ aliases['SBI_isHM'] = {
     'expr': '( !SBI_isSMggh && !SBI_isSMVBF && !SBI_isggWW && !SBI_isqqWWqq )',
     'samples': mc_sbi
 }
+
+
+aliases["MelaVBFvsGGH_boosted"]={
+    'linesToAdd': [
+    'gSystem->Load("%s/src/JHUGenMELA/MELA/data/%s/libmcfm_707.so","", kTRUE);'%(os.getenv('CMSSW_BASE'), os.getenv('SCRAM_ARCH')),
+    'gSystem->Load("libJHUGenMELAMELA.so","", kTRUE);',
+    '.L %s/HWWSemiLepHighMass/MelaGGFvsVBF.cc+' % configurations],
+    'class': 'MelaGGFvsVBF',
+    'args': 0
+}
+aliases["MelaVBFvsGGH_resolved"]={
+    'linesToAdd': [
+    'gSystem->Load("%s/src/JHUGenMELA/MELA/data/%s/libmcfm_707.so","", kTRUE);'%(os.getenv('CMSSW_BASE'), os.getenv('SCRAM_ARCH')),
+    'gSystem->Load("libJHUGenMELAMELA.so","", kTRUE);',
+    '.L %s/HWWSemiLepHighMass/MelaGGFvsVBF.cc+' % configurations],
+    'class': 'MelaGGFvsVBF',
+    'args': 1
+}
+
 
 #aliases['SBI_isSMggh'] = {
  #   'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/isSample.cc+' % os.getenv('CMSSW_BASE')],
