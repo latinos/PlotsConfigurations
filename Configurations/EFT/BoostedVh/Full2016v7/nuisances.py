@@ -118,7 +118,8 @@ nuisances['BoostedVtag'] = {
     'name': 'CMS_BoostedVtag_2016',
     'kind': 'weight',
     'type': 'shape',
-    'samples': dict((skey, boostedVtag_sys) for skey in samples if (skey.startswith('WH_') or skey.startswith('ZH_') or skey.startswith('ggZH_') or skey.startswith('VZ') or skey.startswith('VVV') or skey.startswith('ttH')))
+    'samples': dict((skey, boostedVtag_sys) for skey in samples if (skey.startswith('WH_') or skey.startswith('ZH_') or skey.startswith('ggZH_') or skey.startswith('VZ') or skey.startswith('VVV') or skey.startswith('ttH'))),
+    'AsLnN' : '1'
 }
 
 #### Clean Fat jets ####

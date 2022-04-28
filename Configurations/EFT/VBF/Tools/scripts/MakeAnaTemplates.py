@@ -77,7 +77,7 @@ _year = "_"+year
 MCStats="OFF"
 
 src = "rootFileJJH"+year+"/plots_JJH"+year+".root"
-dst = "rootFileJJH"+year+"/plots_JJH"+year+"SF_AC_MCStats"+MCStats+suffix+".root"
+dst = "rootFileJJH"+year+"/plots_JJH"+year+"_AC"+MCStats+suffix+".root"
 
 #DM In the following logic htt is assumed to be suppressed - not treated as AC signal
 
@@ -214,7 +214,7 @@ def AddOtherTemplates(Cat, Var, Prod, AC):
 
 ############################################
 
-def getPWGSF_notused(f, Cat, Var, Prod):
+def getPWGSF(f, Cat, Var, Prod):
 
 # jhu = f.Get("hww2l2v_13TeV_"+Cat+"/"+Var+"/histo_"+Prod+"H0PM") 
 
@@ -236,6 +236,18 @@ def getPWGSF_notused(f, Cat, Var, Prod):
   pwg = f.Get("hww2l2v_13TeV_"+Cat+"/"+Var+"/histo_ggH_hww")
  else : "Prod not recognised by getPWGSF"
 
+# XSECxBR correction for mH = 125.38
+ if   Prod is "VBF_" :   pwg.Scale(1.03621)
+ elif Prod is "WH_" :    pwg.Scale(1.01724)
+ elif Prod is "ZH_" :    pwg.Scale(1.01994)
+ elif Prod is "ggHjj_" : pwg.Scale(1.03364)
+ elif Prod is "ggH_" :   pwg.Scale(1.03364)
+ # VBF Dipole correction 
+ if Prod is "VBF_" :
+  if "vbf" in cat   : pwg.Scale(1.08)
+  elif "vh"  in cat : pwg.Scale(0.83)
+  elif "ggh" in cat: pwg.Scale(1.08)
+
  scale =  pwg.Integral()/jhu.Integral()
  if pwg.Integral()==0 : scale = 1
 
@@ -245,7 +257,7 @@ def getPWGSF_notused(f, Cat, Var, Prod):
 
 ######################################
 
-def getPWGSF(f, Cat, Var, Prod):
+def getPWGSF_notused(f, Cat, Var, Prod):
 
  if Prod is "VBF_"   : 
    jhu = f.Get("hww2l2v_13TeV_of2j_vbf/events/histo_"+Prod+"H0PM") 
@@ -1110,12 +1122,14 @@ if AddOtherTemps is True :
 
 ####### ggH+2Jet setup  ######
 GGHJJConfig = [
-	        ("of2j_ggh_thmip", "kd3d_ggh_hm"+suffix, "H0M"),
-                ("of2j_ggh_thmin", "kd3d_ggh_hm"+suffix, "H0M"),
-                ("of2j_ggh_lhmip", "kd2d_ggh_hm"+suffix, "H0M"),
-                ("of2j_ggh_lhmin", "kd2d_ggh_hm"+suffix, "H0M"),
+	        ("of2j_ggh_thmip", "kd2d_ggh_hm"+suffix, "H0M"),
+                ("of2j_ggh_thmin", "kd2d_ggh_hm"+suffix, "H0M"),
+                ("of2j_ggh_untagged", "kd2d_ggh_hm"+suffix, "H0M"),
+#                ("of2j_ggh_lhmip", "kd2d_ggh_hm"+suffix, "H0M"),
+#                ("of2j_ggh_lhmin", "kd2d_ggh_hm"+suffix, "H0M"),
                 ("top_of2j",       "events",      "H0M"),
                 ("dytt_of2j",      "events",      "H0M"),
+                ("WW_of2j",     "events",      "H0M"),
 ]  
 '''
 prod = "ggHjj_"

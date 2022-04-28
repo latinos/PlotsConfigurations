@@ -101,18 +101,18 @@ groupPlot['VBF']  = {
 #                  'color': 634,
 #                  'samples'  : ['ggH_htt','qqH_htt','ZH_htt','WH_htt']
 #              }
-
+'''
 groupPlot['HSM']  = {
                   'nameHR' : 'VBF+VH h',
                   'isSignal' : 0,
                   'color': 633,
                   'samples'  : ['qqH_hww','ZH_hww','WH_hww','qqH_htt','ZH_htt','WH_htt']
               }
-
-scale = 10
+'''
+scale = 20
 
 groupPlot['HSM_AC']  = {
-                  'nameHR' : 'ggF h',
+                  'nameHR' : 'ggF h (x20)',
                   'isSignal' : 2,
                   'color': 632,
                   'scale'    : scale,
@@ -120,7 +120,7 @@ groupPlot['HSM_AC']  = {
               }
 
 groupPlot['HBSM']  = {
-                  'nameHR' : 'ggF 0^{-}',
+                  'nameHR' : 'ggF 0^{-} (x20)',
                   'isSignal' : 2,
                   'color': 1,
                   'scale'    : scale,
@@ -454,7 +454,7 @@ plot['DATA']  = {
 
 # additional options
 
-legend['lumi'] = 'L =  35.867/fb'
+legend['lumi'] = 'L =  36.33/fb'
 
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
 

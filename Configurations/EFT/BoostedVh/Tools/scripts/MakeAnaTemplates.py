@@ -76,7 +76,7 @@ year = "16B"
 _year = "_"+year
 
 src = "rootFileJJH"+year+"/plots_JJH"+year+".root"
-dst = "rootFileJJH"+year+"/plots_JJH"+year+"SF_AC_MCStats"+MCStats+suffix+".root"
+dst = "rootFileJJH"+year+"/plots_JJH"+year+"_AC_MCStats"+MCStats+suffix+".root"
 
 #DM In the following logic htt is assumed to be suppressed - not treated as AC signal
 
@@ -293,28 +293,40 @@ def getPWGSF_notused(f, Cat, Var, Prod):
 
 def getPWGSF(f, Cat, Var, Prod):
 
- if Prod is "VBF_"   :
-   jhu = f.Get("hww2l2v_13TeV_of2j_vbf/events/histo_"+Prod+"H0PM")
-   pwg = f.Get("hww2l2v_13TeV_of2j_vbf/events/histo_qqH_hww")
-   print pwg.Integral()
- elif Prod is "WH_" or  Prod is "ZH_"  :
+# jhu = f.Get("hww2l2v_13TeV_"+Cat+"/"+Var+"/histo_"+Prod+"H0PM") 
+
+ if   Prod is "VBF_"   :
+  jhu = f.Get("hww2l2v_13TeV_"+Cat+"/"+Var+"/histo_"+Prod+"H0PM")
+  pwg = f.Get("hww2l2v_13TeV_"+Cat+"/"+Var+"/histo_qqH_hww")
+ elif Prod is "WH_" or  Prod is "ZH_"   :
+  if "vbf" in Cat :
    jhu = f.Get("hww2l2v_13TeV_of2j_Vh/events/histo_"+Prod+"H0PM")
    pwg = f.Get("hww2l2v_13TeV_of2j_Vh/events/histo_"+Prod+"hww")
+  else :
+   jhu = f.Get("hww2l2v_13TeV_"+Cat+"/"+Var+"/histo_"+Prod+"H0PM")
+   pwg = f.Get("hww2l2v_13TeV_"+Cat+"/"+Var+"/histo_"+Prod+"hww")
+ elif Prod is "ggHjj_" :
+  jhu = f.Get("hww2l2v_13TeV_"+Cat+"/"+Var+"/histo_GGHjj_H0PM")
+  pwg = f.Get("hww2l2v_13TeV_"+Cat+"/"+Var+"/histo_ggH_hww")
+ elif Prod is "ggH_"   :
+  jhu = f.Get("hww2l2v_13TeV_"+Cat+"/"+Var+"/histo_H0PM")
+  pwg = f.Get("hww2l2v_13TeV_"+Cat+"/"+Var+"/histo_ggH_hww")
  else : "Prod not recognised by getPWGSF"
 
 # XSECxBR correction for mH = 125.38
  if   Prod is "VBF_" :   pwg.Scale(1.03621)
  elif Prod is "WH_" :    pwg.Scale(1.01724)
  elif Prod is "ZH_" :    pwg.Scale(1.01994)
+ elif Prod is "ggHjj_" : pwg.Scale(1.03364)
+ elif Prod is "ggH_" :   pwg.Scale(1.03364)
  # VBF Dipole correction 
  if Prod is "VBF_" :
   if "vbf" in cat   : pwg.Scale(1.08)
   elif "Vh"  in cat : pwg.Scale(1.54)
+  elif "ggh" in cat: pwg.Scale(1.08)
 
  scale =  pwg.Integral()/jhu.Integral()
  if pwg.Integral()==0 : scale = 1
-
-# if 'top' in Cat or 'dytt' in Cat or 'WW' in Cat : scale = 1.0
 
  print ("pwg.Integral()", pwg.Integral(), "jhu.Integral()", jhu.Integral())
 
@@ -960,17 +972,17 @@ def create1VIntTemplates(Cat, Var, Prod, AC, Sys, Test):
 
 ################### AC Signal Shape Sys #######################################
 
-DoSys=False
+DoSys=True
 DoTest=False
 AddOtherTemps=True
-
+#"CMS_scale_JESHF"+Yr,
 Yr="_2016"
-#"CMS_btag_cferr1", "CMS_eff_prefiring"+Yr,
-Sys = ["CMS_btag_cferr1", "CMS_btag_cferr2","CMS_scale_e"+Yr, "CMS_scale_m"+Yr, "CMS_eff_m"+Yr, "CMS_eff_e"+Yr, 
-"CMS_scale_JESHF"+Yr, "CMS_scale_JESBBEC1","CMS_scale_JESRelativeSample"+Yr, "CMS_scale_JESEC2","CMS_scale_JESFlavorQCD","CMS_scale_JESBBEC1"+Yr,"CMS_scale_JESAbsolute", "CMS_scale_JESHF","CMS_scale_JESEC2"+Yr,"CMS_scale_JESAbsolute"+Yr,"CMS_scale_JESRelativeBal",
-"CMS_btag_jes","CMS_btag_lf","CMS_btag_lfstats1"+Yr, "CMS_btag_lfstats2"+Yr,"CMS_btag_hfstats1"+Yr, "CMS_btag_hfstats2"+Yr,"CMS_btag_cferr2",
-"CMS_PUID"+Yr,"CMS_scale_met"+Yr,"CMS_eff_prefiring"+Yr,
-"CMS_eff_hwwtrigger"+Yr,
+#"CMS_btag_cferr1", "CMS_eff_prefiring"+Yr, "CMS_eff_m"+Yr, "CMS_eff_e_CR"+Yr
+Sys = ["CMS_btag_DeepFlav_cferr1", "CMS_btag_DeepFlav_cferr2","CMS_scale_e"+Yr, "CMS_scale_m"+Yr, "CMS_eff_m"+Yr, "CMS_eff_e_CR"+Yr,"CMS_eff_e"+Yr, "CMS_eff_m_CR"+Yr, "CMS_scale_JESHF"+Yr,
+"CMS_scale_JESBBEC1","CMS_scale_JESRelativeSample"+Yr, "CMS_scale_JESEC2","CMS_scale_JESFlavorQCD","CMS_scale_JESBBEC1"+Yr,"CMS_scale_JESAbsolute", "CMS_scale_JESHF","CMS_scale_JESEC2"+Yr,"CMS_scale_JESAbsolute"+Yr,"CMS_scale_JESRelativeBal",
+"CMS_btag_DeepFlav_jes","CMS_btag_DeepFlav_lf","CMS_btag_DeepFlav_lfstats1"+Yr, "CMS_btag_DeepFlav_lfstats2"+Yr,"CMS_btag_DeepFlav_hfstats1"+Yr, "CMS_btag_DeepFlav_hfstats2"+Yr,
+"CMS_PUID"+Yr,"CMS_scale_met"+Yr,"CMS_eff_prefiring"+Yr, "CMS_BoostedVtag"+Yr,
+"CMS_eff_hwwtrigger"+Yr, "CMS_eff_hwwtrigger_drllrw"+Yr,
 "CMS_scale_cleanfatJES"+Yr, "CMS_scale_cleanfatJER"+Yr, "CMS_scale_mVjmr"+Yr, "CMS_scale_mVjms"+Yr, "CMS_scale_mVjer"+Yr, "CMS_scale_mVjesTotal"+Yr,
 "CMS_scale_subjetjer"+Yr, "CMS_scale_subjetjes"+Yr,
 "PS_ISR", "PS_FSR" ] 
@@ -1036,17 +1048,21 @@ for prod in XHProd :
  else : SigConfig = ACConfig + EFTConfig
 
  for cat, var, sig in SigConfig :
-  #print("Test1", cat, var, sig)
+  print("Test1", cat, var, sig)
   create2VIntTemplates(cat, var, prod, sig, "", DoTest)
   if DoSys is True :
    for sys in Sys :
-    create2VIntTemplates(cat, var, prod, sig, "_"+sys+"Up", False)
-    create2VIntTemplates(cat, var, prod, sig, "_"+sys+"Down", False)
-    checkForBadSys(cat, var, prod, sig, "_"+sys+"","T1")
-    checkForBadSys(cat, var, prod, sig, "_"+sys+"","T2")
-    checkForBadSys(cat, var, prod, sig, "_"+sys+"","T3")
-    checkForBadSys(cat, var, prod, sig, "_"+sys+"","T4")
-    checkForBadSys(cat, var, prod, sig, "_"+sys+"","T5")
+    try:
+     print("Test2 ", cat, var, sig, sys)
+     create2VIntTemplates(cat, var, prod, sig, "_"+sys+"Up", False)
+     create2VIntTemplates(cat, var, prod, sig, "_"+sys+"Down", False)
+     checkForBadSys(cat, var, prod, sig, "_"+sys+"","T1")
+     checkForBadSys(cat, var, prod, sig, "_"+sys+"","T2")
+     checkForBadSys(cat, var, prod, sig, "_"+sys+"","T3")
+     checkForBadSys(cat, var, prod, sig, "_"+sys+"","T4")
+     checkForBadSys(cat, var, prod, sig, "_"+sys+"","T5")
+    except: 
+     continue
    if "VBF_" in prod :
     for sys in Sys_VBF :
      create2VIntTemplates(cat, var, prod, sig, "_"+sys+"Up", False)

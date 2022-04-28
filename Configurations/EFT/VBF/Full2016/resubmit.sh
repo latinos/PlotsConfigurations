@@ -1,4 +1,11 @@
-condor_submit ../../../../../../../jobs/mkShapes__JJH18__ALL/top.8/mkShapes__JJH18__ALL__top.8.jds
-condor_submit ../../../../../../../jobs/mkShapes__JJH18__ALL/top.1/mkShapes__JJH18__ALL__top.1.jds
-condor_submit ../../../../../../../jobs/mkShapes__JJH18__ALL/top.29/mkShapes__JJH18__ALL__top.29.jds
-condor_submit ../../../../../../../jobs/mkShapes__JJH18__ALL/H0PM_H0M.2/mkShapes__JJH18__ALL__H0PM_H0M.2.jds
+condor_submit ../../../../../../../jobs/mkShapes__JJH16__ALL/top.58/mkShapes__JJH16__ALL__top.58.jds
+condor_submit ../../../../../../../jobs/mkShapes__JJH16__ALL/top.35/mkShapes__JJH16__ALL__top.35.jds
+condor_submit ../../../../../../../jobs/mkShapes__JJH16__ALL/top.164/mkShapes__JJH16__ALL__top.164.jds
+condor_submit ../../../../../../../jobs/mkShapes__JJH16__ALL/Vg.60/mkShapes__JJH16__ALL__Vg.60.jds
+condor_submit ../../../../../../../jobs/mkShapes__JJH16__ALL/Vg.41/mkShapes__JJH16__ALL__Vg.41.jds
+condor_submit ../../../../../../../jobs/mkShapes__JJH16__ALL/Vg.34/mkShapes__JJH16__ALL__Vg.34.jds
+condor_submit ../../../../../../../jobs/mkShapes__JJH16__ALL/Vg.0/mkShapes__JJH16__ALL__Vg.0.jds
+condor_submit ../../../../../../../jobs/mkShapes__JJH16__ALL/top.246/mkShapes__JJH16__ALL__top.246.jds
+condor_submit ../../../../../../../jobs/mkShapes__JJH16__ALL/ggWW/mkShapes__JJH16__ALL__ggWW.jds
+condor_submit ../../../../../../../jobs/mkShapes__JJH16__ALL/Fake.36/mkShapes__JJH16__ALL__Fake.36.jds
+condor_submit ../../../../../../../jobs/mkShapes__JJH16__ALL/VBF_H0PH_H0LZg_M2/mkShapes__JJH16__ALL__VBF_H0PH_H0LZg_M2.jds

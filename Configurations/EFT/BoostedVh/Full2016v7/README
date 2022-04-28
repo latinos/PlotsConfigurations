@@ -12,7 +12,7 @@ python ../Tools/scripts/MakeAnaTemplates.py -b -lthon ../Tools/scripts/MakeAnaTe
 
 -------Resubmit failed jobs (condor_submit jds file) :
 
-ls -alrth ../../../../../../../jobs/mkShapes__JJH__ALL/*/*.jid | awk '{print "condor_submit " $9}'  | sed 's/jid/jds/' > resubmit.sh
+ls -alrth ../../../../../../../jobs/mkShapes__JJH__ALL/*/*.jid | awk '{print "condor_submit " $9}' | sed 's/jid/jds/' > resubmit.sh
 
 -------Add root files:
 

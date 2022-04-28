@@ -443,10 +443,6 @@ key_dic = {
         'hww2l2v_13TeV_of2j_Vh_hpip':vhdic,
         'hww2l2v_13TeV_top_fj':topdic,
 }
-#WWdic = {'top': ['0.9939820041','0.9795947452'], 'WW': ['0.9808137639','1.0']}
-#dyttdic = {'top': ['0.9889316329','1.028162212'], 'DY': ['1.080670943','0.9418709398']}
-#	'hww2l2v_13TeV_WW_fj':WWdic,
-#        'hww2l2v_13TeV_dytt_fj':dyttdic,
 
 for key,dic in key_dic.iteritems():
   nuisances['JER'+'_'+key]  = {
@@ -454,7 +450,7 @@ for key,dic in key_dic.iteritems():
                       'kind' : 'weight',
                       'type'  : 'shape',
                       'samples'  : dic,
-                      'cuts': key,
+                      'cuts': [key],
                       'AsLnN': '1'
                      }
 

@@ -24,7 +24,7 @@ groupPlot['Fake']  = {
                   'nameHR' : 'nonprompt',
                   'isSignal' : 0,
                   'color': 921,    # kGray + 1
-                  'samples'  : ['Fake_me', 'Fake_em']
+                  'samples'  : ['Fake_me', 'Fake_em', 'Fake']
 }
 
 groupPlot['VV']  = {  
@@ -103,22 +103,21 @@ groupPlot['VBF']  = {
 #              }
 
 
-scale=0.033
 
 # Mix of a1=1 (SM) + a2=-7500 (gZZ=-7613,gWW_VBF=-4091)
 groupPlot['HBSM']  = { 
-                  'nameHR' : 'VBF+VH h/0^{#Lambda_{1}}_{Z#gamma} (30x)',
+                  'nameHR' : 'VBF+VH h/0^{#Lambda_{1}}_{Z#gamma}',
                   'isSignal' : 2,
                   'color': 1,
-                  'scale'    : scale,
                   'samples'  : ['ZH_H0L1f05_H0LZg_M3','WH_H0PM','VBF_H0L1f05_H0LZg_M3']
               }
+scale=1.0
 
 groupPlot['HSM']  = {
                   'nameHR' : 'VBF+VH h',
                   'isSignal' : 2,
                   'color': 632,
-                  'scale'    : 1,
+                  'scale'    : scale,
                   'samples'  : ['ZH_H0PM','WH_H0PM','VBF_H0PM','ggH_htt','qqH_htt','ZH_htt','WH_htt']
               }
 
@@ -126,7 +125,7 @@ groupPlot['HSM']  = {
 #groupPlot['HBSM2']  = {
 #                  'nameHR' : 'ggF+VBF+VH 0^{+}',
 #                  'isSignal' : 2,
-#                  'color': 2,
+#                  'color': 4,
 #                  'samples'  : ['H0PH','ZH_H0PH','WH_H0PH','VBF_H0PH']
 #              }
 
@@ -178,6 +177,12 @@ plot['Fake_em']  = {
                   'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.0                  
+              }
+plot['Fake']  = {
+                  'color': 921,    # kGray + 1
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0
               }
 
               
@@ -262,6 +267,7 @@ plot['VVV']  = {
                   }
 
 # Htautau
+scale=1.0
 
 plot['ZH_htt'] = {
                   'nameHR' : 'ZHtt',
@@ -330,6 +336,8 @@ plot['VBF_H0PM']  =   {
                       'scale'    : scale,
                      }
 
+
+scale =1.0
 plot['ZH_H0L1f05_H0LZg_M3']  =   {
                       'nameHR' : 'ZH h/0^{#Lambda_{1}^{Z#gamma}}',
                       'color' : 632+2,

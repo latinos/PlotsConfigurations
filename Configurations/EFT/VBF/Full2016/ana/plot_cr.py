@@ -10,6 +10,7 @@ groupPlot['top']  = {
                   'nameHR' : 'tW and t#bar{t}',
                   'isSignal' : 0,
                   'color': 400,   # kYellow
+                  'scale' : 0.85,
                   'samples'  : ['top']
               }
 
@@ -17,6 +18,7 @@ groupPlot['WW']  = {
                   'nameHR' : 'WW',
                   'isSignal' : 0,
                   'color': 851, # kAzure -9 
+		  'scale' : 0.80,
                   'samples'  : ['WW', 'ggWW', 'WWewk']
               }
 
@@ -39,7 +41,7 @@ groupPlot['DY']  = {
                   'isSignal' : 0,
                   'color': 418,    # kGreen+2
                   'samples'  : ['DY', 'Dyemb'],
-                  'scale'    : 0.77,               
+                  'scale'    : 0.65,               
               }
 
 '''
@@ -121,7 +123,7 @@ plot['DY']  = {
                   'color': 418,    # kGreen+2
                   'isSignal' : 0,
                   'isData'   : 0, 
-                  'scale'    : 0.77,
+                  'scale'    : 0.65,
                   #'cuts'  : {
                        #'hww2l2v_13TeV_of0j'      : 0.95 ,
                        #'hww2l2v_13TeV_top_of0j'  : 0.95 , 
@@ -143,7 +145,7 @@ if useEmbeddedDY:
                   'color': 418,    # kGreen+2
                   'isSignal' : 0,
                   'isData'   : 0, 
-                  'scale'    : 0.77,
+                  'scale'    : 0.65,
               }
 
 
@@ -173,7 +175,7 @@ plot['top'] = {
                   'color': 400,   # kYellow
                   'isSignal' : 0,
                   'isData'   : 0, 
-                  'scale'    : 1.0,
+                  'scale'    : 0.85,
                   #'cuts'  : {
                        #'hww2l2v_13TeV_of0j'      : 0.94 ,
                        #'hww2l2v_13TeV_top_of0j'  : 0.94 , 
@@ -194,21 +196,21 @@ plot['WW']  = {
                   'color': 851, # kAzure -9 
                   'isSignal' : 0,
                   'isData'   : 0,    
-                  'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
+                  'scale'    : 0.8   # ele/mu trigger efficiency   datadriven
                   }
 
 plot['ggWW']  = {
                   'color': 850, # kAzure -10
                   'isSignal' : 0,
                   'isData'   : 0,    
-                  'scale'    : 1.0
+                  'scale'    : 0.8
                   }
 
 plot['WWewk']  = {
                   'color': 851, # kAzure -9 
                   'isSignal' : 0,
                   'isData'   : 0,
-                  'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
+                  'scale'    : 0.9	   # ele/mu trigger efficiency   datadriven
                   }
 
 

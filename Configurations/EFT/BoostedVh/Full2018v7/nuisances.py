@@ -456,7 +456,7 @@ for key,dic in key_dic.iteritems():
                       'kind' : 'weight',
                       'type'  : 'shape',
                       'samples'  : dic,
-                      'cuts': key,
+                      'cuts': [key],
                       'AsLnN': '1'
                      }
 

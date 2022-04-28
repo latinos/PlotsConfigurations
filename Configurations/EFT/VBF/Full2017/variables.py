@@ -7,102 +7,120 @@
 variables['ptjj'] = { 'name' : 'ptjj[0]',
                      'range': (50,0,1000),
                      'xaxis': 'p_{T}^{jj}',
-                     'fold' : 3
+                     'fold' : 3,
+                     'cuts' : ['hww2l2v_13TeV_top_of2j','hww2l2v_13TeV_dytt_of2j','hww2l2v_13TeV_WW_of2j', 'hww2l2v_13TeV_top_of2j_nofjveto']
                    }
-
+'''
 variables['ptl1'] = { 'name' : 'Lepton_pt[0]',
                      'range': (20,0,400),
                      'xaxis': 'p_{T}^{lep1}',
-                     'fold' : 3
+                     'fold' : 3,
+                     'cuts' : ['hww2l2v_13TeV_top_of2j','hww2l2v_13TeV_dytt_of2j','hww2l2v_13TeV_WW_of2j']
+
                    }
 
 variables['ptl2'] = { 'name' : 'Lepton_pt[1]',
                      'range': (20,0,400),
                       'xaxis': 'p_{T}^{lep2}',
-                     'fold' : 3
+                     'fold' : 3,
+                     'cuts' : ['hww2l2v_13TeV_top_of2j','hww2l2v_13TeV_dytt_of2j','hww2l2v_13TeV_WW_of2j']
                    }
 
 variables['met'] = { 'name' : 'PuppiMET_pt',
                      'range': (20,0,400),
                      'xaxis': 'MET',
-                     'fold' : 3
+                     'fold' : 3,
+                     'cuts' : ['hww2l2v_13TeV_top_of2j','hww2l2v_13TeV_dytt_of2j','hww2l2v_13TeV_WW_of2j']
                    }
-
+'''
 variables['mjj'] = { 'name' : 'mjj',
                      'range': (80,0,400),
                      'xaxis': 'm_{jj}',
-                     'fold' : 3
+                     'fold' : 3,
+                     'cuts' : ['hww2l2v_13TeV_top_of2j','hww2l2v_13TeV_dytt_of2j','hww2l2v_13TeV_WW_of2j']
                    }
-
+'''
 variables['detajj'] = { 'name' : 'detajj',
                         'range': (30,0,10),
                         'xaxis': '#Delta#eta_{jj}',
-                        'fold' : 3
+                        'fold' : 3,
+                        'cuts' : ['hww2l2v_13TeV_top_of2j','hww2l2v_13TeV_dytt_of2j','hww2l2v_13TeV_WW_of2j']
                    }
 
 variables['njet'] = { 'name' : 'njet',
                       'range': (6,0,6),
                       'xaxis': 'number of jets',
-                      'fold' : 3
+                      'fold' : 3,
+                     'cuts' : ['hww2l2v_13TeV_top_of2j','hww2l2v_13TeV_dytt_of2j','hww2l2v_13TeV_WW_of2j']
                    }
 
 variables['nfjet'] = { 'name' : 'nCleanFatJet', # pt and tau21 cuts applied
                       'range': (5,0,5),
                       'xaxis': 'number of fat jets',
-                      'fold' : 3
+                      'fold' : 3,
+                      'cuts' : ['hww2l2v_13TeV_top_of2j','hww2l2v_13TeV_dytt_of2j','hww2l2v_13TeV_WW_of2j']
                    }
-
+'''
 variables['ptll'] = {   'name': 'ptll',
                         'range': (20,0,400),
                         'xaxis': 'p_{T}^{ll}',
-                        'fold': 3
+                        'fold': 3,
+                        'cuts' : ['hww2l2v_13TeV_top_of2j','hww2l2v_13TeV_dytt_of2j','hww2l2v_13TeV_WW_of2j']
                        }
-
+'''
 variables['mtw2'] = { 'name' : 'mtw2',
                      'range': (20,0,150),
                      'xaxis': 'm_{T}^{W2}',
-                     'fold' : 3
+                     'fold' : 3,
+                     'cuts' : ['hww2l2v_13TeV_top_of2j','hww2l2v_13TeV_dytt_of2j','hww2l2v_13TeV_WW_of2j']
                     }
 
 variables['mtw1'] = { 'name' : 'mtw1',
                      'range': (20,0,150),
                       'xaxis': 'm_{T}^{W1}',
-                     'fold' : 3
+                     'fold' : 3,
+                     'cuts' : ['hww2l2v_13TeV_top_of2j','hww2l2v_13TeV_dytt_of2j','hww2l2v_13TeV_WW_of2j']
                     }
 
 variables['pTWW'] = { 'name' : 'pTWW',
                      'range': (50,0,1000),
                      'xaxis': 'p_{T}^{H}',
-                     'fold' : 3
+                     'fold' : 3,
+                     'cuts' : ['hww2l2v_13TeV_top_of2j','hww2l2v_13TeV_dytt_of2j','hww2l2v_13TeV_WW_of2j']
                    }
 
 
 variables['hm'] = { 'name' : 'hm',
                      'range': (20,0,200),
                      'xaxis': 'm_{H}',
-                     'fold' : 3
+                     'fold' : 3,
+                     'cuts' : ['hww2l2v_13TeV_top_of2j','hww2l2v_13TeV_dytt_of2j','hww2l2v_13TeV_WW_of2j']
 		  }
 
 variables['dphi'] = { 'name' : 'dphis',
                       'range': (10,-3.2,3.2),
                      'xaxis': 'DPhi_{jj}',
-                     'fold' : 3 
+                     'fold' : 3,
+                     'cuts' : ['hww2l2v_13TeV_top_of2j','hww2l2v_13TeV_dytt_of2j','hww2l2v_13TeV_WW_of2j']
                    }
-
+'''
 variables['mll'] = { 'name' : 'mll',
                      'range': ([10,45,210],),
                      'xaxis': 'm_{ll}',
-                     'fold' : 3
+                     'fold' : 3,
+                     'cuts' : ['hww2l2v_13TeV_top_of2j','hww2l2v_13TeV_dytt_of2j','hww2l2v_13TeV_WW_of2j']
                    }
 variables['events']  = {   'name': '1',
                         'range' : (1,0,2),
                         'xaxis' : 'events',
-                         'fold' : 3
+                         'fold' : 3,
+                     'cuts' : ['hww2l2v_13TeV_top_of2j','hww2l2v_13TeV_dytt_of2j','hww2l2v_13TeV_WW_of2j']
                         }
 variables['mth'] = { 'name' : 'mth',
                      'range': (20,0,200),
                      'xaxis': 'm_{T}^{H}',
-                     'fold' : 3
+                     'fold' : 3,
+                     'cuts' : ['hww2l2v_13TeV_top_of2j','hww2l2v_13TeV_dytt_of2j','hww2l2v_13TeV_WW_of2j']
                    }
 
 ####################################
@@ -169,41 +187,41 @@ variables['kd_vbf'] = { 'name' : 'kd_vbf',
                        'range': (10,0,1),
                        'xaxis': 'D_{VBF}',
                        'fold' : 3,
-                       'cuts' : ['hww2l2v_13TeV_top_of2j','hww2l2v_13TeV_dytt_of2j','hww2l2v_13TeV_of2j_vbf','hww2l2v_13TeV_WW_of2j']
+                       'cuts' : ['hww2l2v_13TeV_top_of2j','hww2l2v_13TeV_dytt_of2j','hww2l2v_13TeV_WW_of2j']
                      }
 variables['kd_vbf_2'] = { 'name' : 'kd_vbf',
                        'range': (10,0,1),
                        'xaxis': 'D_{VBF}',
                        'fold' : 3,
-                       'cuts' : ['hww2l2v_13TeV_top_of2j','hww2l2v_13TeV_dytt_of2j','hww2l2v_13TeV_of2j_vbf','hww2l2v_13TeV_WW_of2j', 'hww2l2v_13TeV_of2j_ggh_thmin', 'hww2l2v_13TeV_of2j_ggh_thmip', 'hww2l2v_13TeV_of2j_ggh_untagged']
+                       'cuts' : ['hww2l2v_13TeV_top_of2j','hww2l2v_13TeV_dytt_of2j','hww2l2v_13TeV_WW_of2j']
                      }
 
 variables['kd_vbf_hm'] = { 'name' : 'kd_vbf_hm',
                        'range': (20,0,1),
                        'xaxis': 'D_{VBF 0^{-}}',
                        'fold' : 3,
-                       'cuts' : ['hww2l2v_13TeV_top_of2j','hww2l2v_13TeV_dytt_of2j','hww2l2v_13TeV_of2j_vbf','hww2l2v_13TeV_WW_of2j']
+                       'cuts' : ['hww2l2v_13TeV_top_of2j','hww2l2v_13TeV_dytt_of2j','hww2l2v_13TeV_WW_of2j']
                      }
 
 variables['kd_vbf_hp'] = { 'name' : 'kd_vbf_hp',
                        'range': (20,0,1),
                        'xaxis': 'D_{VBF 0^{+}}',
                        'fold' : 3,
-                       'cuts' : ['hww2l2v_13TeV_top_of2j','hww2l2v_13TeV_dytt_of2j','hww2l2v_13TeV_of2j_vbf','hww2l2v_13TeV_WW_of2j']
+                       'cuts' : ['hww2l2v_13TeV_top_of2j','hww2l2v_13TeV_dytt_of2j','hww2l2v_13TeV_WW_of2j']
                      }
 
 variables['kd_vbf_hl'] = { 'name' : 'kd_vbf_hl',
                        'range': (20,0,1),
                         'xaxis': 'D_{VBF 0^{#Lambda_{1}}}',
                        'fold' : 3,
-                       'cuts' : ['hww2l2v_13TeV_top_of2j','hww2l2v_13TeV_dytt_of2j','hww2l2v_13TeV_of2j_vbf','hww2l2v_13TeV_WW_of2j']
+                       'cuts' : ['hww2l2v_13TeV_top_of2j','hww2l2v_13TeV_dytt_of2j','hww2l2v_13TeV_WW_of2j']
                      }
 
 variables['kd_vbf_hlzg'] = { 'name' : 'kd_vbf_hlzg',
                        'range': (20,0,1),
                              'xaxis': 'D_{VBF 0^{#Lambda_{1}^{Z#gamma}}}',
                        'fold' : 3,
-                       'cuts' : ['hww2l2v_13TeV_top_of2j','hww2l2v_13TeV_dytt_of2j','hww2l2v_13TeV_of2j_vbf','hww2l2v_13TeV_WW_of2j']
+                       'cuts' : ['hww2l2v_13TeV_top_of2j','hww2l2v_13TeV_dytt_of2j','hww2l2v_13TeV_WW_of2j']
                      }
 
 
@@ -211,14 +229,14 @@ variables['kd_vbf_mixhm'] = { 'name' : 'kd_vbf_mixhm',
                               'range': (20,-1,1),
                           'xaxis': 'D_{VBF CP}',
                           'fold' : 3,
-                          'cuts' : ['hww2l2v_13TeV_top_of2j','hww2l2v_13TeV_dytt_of2j','hww2l2v_13TeV_of2j_vbf','hww2l2v_13TeV_WW_of2j']
+                          'cuts' : ['hww2l2v_13TeV_top_of2j','hww2l2v_13TeV_dytt_of2j','hww2l2v_13TeV_WW_of2j']
                         }
 
 variables['kd_vbf_mixhp'] = { 'name' : 'kd_vbf_mixhp',
                           'range': (20,-1,1),
                           'xaxis': 'D_{VBF Int}',
                           'fold' : 3,
-                          'cuts' : ['hww2l2v_13TeV_top_of2j','hww2l2v_13TeV_dytt_of2j','hww2l2v_13TeV_of2j_vbf','hww2l2v_13TeV_WW_of2j']
+                          'cuts' : ['hww2l2v_13TeV_top_of2j','hww2l2v_13TeV_dytt_of2j','hww2l2v_13TeV_WW_of2j']
                         }
 
 
@@ -234,35 +252,35 @@ variables['kd_vh'] = { 'name' : 'kd_vh',
                        'range': (10,0,1),
                        'xaxis': 'D_{VH}',
                        'fold' : 3,
-                       'cuts' : ['hww2l2v_13TeV_top_of2j','hww2l2v_13TeV_dytt_of2j','hww2l2v_13TeV_of2j_vh','hww2l2v_13TeV_WW_of2j']
+                       'cuts' : ['hww2l2v_13TeV_top_of2j','hww2l2v_13TeV_dytt_of2j','hww2l2v_13TeV_WW_of2j']
                      }
 
 variables['kd_vh_hm'] = { 'name' : 'kd_vh_hm',
                        'range': (20,0,1),
                        'xaxis': 'D_{VH 0^{-}}',
                        'fold' : 3,
-                       'cuts' : ['hww2l2v_13TeV_top_of2j','hww2l2v_13TeV_dytt_of2j','hww2l2v_13TeV_of2j_vh','hww2l2v_13TeV_WW_of2j']
+                       'cuts' : ['hww2l2v_13TeV_top_of2j','hww2l2v_13TeV_dytt_of2j','hww2l2v_13TeV_WW_of2j']
                      }
 
 variables['kd_vh_hp'] = { 'name' : 'kd_vh_hp',
                        'range': (20,0,1),
                        'xaxis': 'D_{VH 0^{+}}',
                        'fold' : 3,
-                       'cuts' : ['hww2l2v_13TeV_top_of2j','hww2l2v_13TeV_dytt_of2j','hww2l2v_13TeV_of2j_vh','hww2l2v_13TeV_WW_of2j']
+                       'cuts' : ['hww2l2v_13TeV_top_of2j','hww2l2v_13TeV_dytt_of2j','hww2l2v_13TeV_WW_of2j']
                      }
 
 variables['kd_vh_hl'] = { 'name' : 'kd_vh_hl',
                        'range': (20,0,1),
                        'xaxis': 'D_{VH 0^{#Lambda_{1}}}',
                        'fold' : 3,
-                       'cuts' : ['hww2l2v_13TeV_top_of2j','hww2l2v_13TeV_dytt_of2j','hww2l2v_13TeV_of2j_vh','hww2l2v_13TeV_WW_of2j']
+                       'cuts' : ['hww2l2v_13TeV_top_of2j','hww2l2v_13TeV_dytt_of2j','hww2l2v_13TeV_WW_of2j']
                      }
 
 variables['kd_vh_hlzg'] = { 'name' : 'kd_vh_hlzg',
                        'range': (20,0,1),
                        'xaxis': 'D_{VH 0^{#Lambda_{1}^{Z#gamma}}}',
                        'fold' : 3,
-                       'cuts' : ['hww2l2v_13TeV_top_of2j','hww2l2v_13TeV_dytt_of2j','hww2l2v_13TeV_of2j_vh','hww2l2v_13TeV_WW_of2j']
+                       'cuts' : ['hww2l2v_13TeV_top_of2j','hww2l2v_13TeV_dytt_of2j','hww2l2v_13TeV_WW_of2j']
                      }
 
 
@@ -270,14 +288,14 @@ variables['kd_vh_mixhm'] = { 'name' : 'kd_vh_mixhm',
                              'range': (20,-1,1),
                           'xaxis': 'D_{VH CP}',
                           'fold' : 3,
-                          'cuts' : ['hww2l2v_13TeV_top_of2j','hww2l2v_13TeV_dytt_of2j','hww2l2v_13TeV_of2j_vh','hww2l2v_13TeV_WW_of2j']
+                          'cuts' : ['hww2l2v_13TeV_top_of2j','hww2l2v_13TeV_dytt_of2j','hww2l2v_13TeV_WW_of2j']
                         }
 
 variables['kd_vh_mixhp'] = { 'name' : 'kd_vh_mixhp',
                              'range': (20,-1,1),
                           'xaxis': 'D_{VH Int}',
                           'fold' : 3,
-                          'cuts' : ['hww2l2v_13TeV_top_of2j','hww2l2v_13TeV_dytt_of2j','hww2l2v_13TeV_of2j_vh','hww2l2v_13TeV_WW_of2j']
+                          'cuts' : ['hww2l2v_13TeV_top_of2j','hww2l2v_13TeV_dytt_of2j','hww2l2v_13TeV_WW_of2j']
                         }
 
 ################################################
@@ -310,7 +328,7 @@ variables['kd2d_vh_hp'] = { 'name': 'kd_vh_hp:mll',
                          'range' : ([10,45,106.2],[0,0.25,0.50,0.75,1],),
                             'xaxis' : 'D_{VH 0^{+}:m_{ll}}',
                          'fold' : 3,
-                         'cuts' : ['hww2l2v_13TeV_top_of2j','hww2l2v_13TeV_dytt_of2j','hww2l2v_13TeV_of2j_vh','hww2l2v_13TeV_of2j_vh_hpip','hww2l2v_13TeV_of2j_vh_hpin','hww2l2v_13TeV_WW_of2j']
+                         'cuts' : ['hww2l2v_13TeV_top_of2j','hww2l2v_13TeV_dytt_of2j','hww2l2v_13TeV_of2j_vh','hww2l2v_13TeV_WW_of2j']
                           }
 
 ##################################################
@@ -350,20 +368,20 @@ variables['kd_ggh'] = { 'name' : 'kd_ggh',
                        'range': (10,0,1),
                         'xaxis': 'D_{ggH}',
                        'fold' : 3,
-                        'cuts' : ['hww2l2v_13TeV_top_of2j','hww2l2v_13TeV_dytt_of2j','hww2l2v_13TeV_of2j_ggh_thmip','hww2l2v_13TeV_of2j_ggh_thmin', 'hww2l2v_13TeV_of2j_ggh_untagged','hww2l2v_13TeV_WW_of2j']
+                        'cuts' : ['hww2l2v_13TeV_top_of2j','hww2l2v_13TeV_dytt_of2j','hww2l2v_13TeV_WW_of2j']
                      }
 
 variables['kd_ggh_hm'] = { 'name' : 'kd_ggh_hm',
                        'range': (10,0,1),
                        'xaxis': 'D_{ggH 0^{-}}',
                        'fold' : 3,
-                       'cuts' : ['hww2l2v_13TeV_top_of2j','hww2l2v_13TeV_dytt_of2j','hww2l2v_13TeV_of2j_ggh_thmip','hww2l2v_13TeV_of2j_ggh_thmin', 'hww2l2v_13TeV_of2j_ggh_untagged','hww2l2v_13TeV_WW_of2j']
+                       'cuts' : ['hww2l2v_13TeV_top_of2j','hww2l2v_13TeV_dytt_of2j','hww2l2v_13TeV_WW_of2j']
                      }
 variables['kd_ggh_mixhm'] = { 'name' : 'kd_ggh_mixhm',
                        'range': (20,-1,1),
                        'xaxis': 'D_{ggH CP}',
                        'fold' : 3,
-                       'cuts' : ['hww2l2v_13TeV_top_of2j','hww2l2v_13TeV_dytt_of2j','hww2l2v_13TeV_of2j_ggh_thmip','hww2l2v_13TeV_of2j_ggh_thmin', 'hww2l2v_13TeV_of2j_ggh_untagged','hww2l2v_13TeV_WW_of2j']
+                       'cuts' : ['hww2l2v_13TeV_top_of2j','hww2l2v_13TeV_dytt_of2j','hww2l2v_13TeV_WW_of2j']
                      }
 
 #OPTION 2
@@ -376,14 +394,14 @@ variables['kd_ggh_mixhm'] = { 'name' : 'kd_ggh_mixhm',
 #DeclareKD3D('ggh_hm_1','D_{ggH 0^{-}}', 'kd_vbf_2',[0.0,0.75,1],'mll',[10,45,106.2],'kd_ggh_hm',[0,0.3,0.4,0.5,0.6,0.7,1],
 #['hww2l2v_13TeV_top_of2j','hww2l2v_13TeV_dytt_of2j', 'hww2l2v_13TeV_of2j_ggh_untagged','hww2l2v_13TeV_of2j_ggh_thmip','hww2l2v_13TeV_of2j_ggh_thmin', 'hww2l2v_13TeV_WW_of2j'])
 
-DeclareKD3D('ggh_hm_alt','D_{ggH 0^{-}}', 'kd_vbf_2',[0.0,0.5,1],'mll',[10,45,106.2],'kd_ggh_hm',[0,0.2,0.3,0.4,0.5,0.6,0.7,0.8,1],
-['hww2l2v_13TeV_top_of2j','hww2l2v_13TeV_dytt_of2j', 'hww2l2v_13TeV_of2j_ggh_untagged','hww2l2v_13TeV_of2j_ggh_thmip','hww2l2v_13TeV_of2j_ggh_thmin', 'hww2l2v_13TeV_WW_of2j'])
+#DeclareKD3D('ggh_hm_alt','D_{ggH 0^{-}}', 'kd_vbf_2',[0.0,0.5,1],'mll',[10,45,106.2],'kd_ggh_hm',[0,0.2,0.3,0.4,0.5,0.6,0.7,0.8,1],
+#['hww2l2v_13TeV_of2j_ggh_untagged','hww2l2v_13TeV_of2j_ggh_thmip','hww2l2v_13TeV_of2j_ggh_thmin'])
 
 #DeclareKD3D('ggh_hm_2','D_{ggH 0^{-}}', 'kd_vbf_2',[0.0,0.5,1],'mll',[10,45,106.2],'kd_ggh_hm',[0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1],
 #['hww2l2v_13TeV_top_of2j','hww2l2v_13TeV_dytt_of2j', 'hww2l2v_13TeV_of2j_ggh_untagged','hww2l2v_13TeV_of2j_ggh_thmip','hww2l2v_13TeV_of2j_ggh_thmin', 'hww2l2v_13TeV_WW_of2j'])
 
-DeclareKD3D('ggh_hm','D_{ggH 0^{-}}', 'kd_vbf_2',[0.0,0.6,1],'mll',[10,45,106.2],'kd_ggh_hm',[0,0.2,0.3,0.4,0.5,0.6,0.7,0.8,1],
-['hww2l2v_13TeV_top_of2j','hww2l2v_13TeV_dytt_of2j', 'hww2l2v_13TeV_of2j_ggh_untagged','hww2l2v_13TeV_of2j_ggh_thmip','hww2l2v_13TeV_of2j_ggh_thmin', 'hww2l2v_13TeV_WW_of2j'])
+#DeclareKD3D('ggh_hm','D_{ggH 0^{-}}', 'kd_vbf_2',[0.0,0.6,1],'mll',[10,45,106.2],'kd_ggh_hm',[0,0.2,0.3,0.4,0.5,0.6,0.7,0.8,1],
+#['hww2l2v_13TeV_of2j_ggh_untagged','hww2l2v_13TeV_of2j_ggh_thmip','hww2l2v_13TeV_of2j_ggh_thmin'])
 
 #DeclareKD3D('ggh_hm_4','D_{ggH 0^{-}}', 'kd_vbf_2',[0.0,0.6,1],'mll',[10,45,106.2],'kd_ggh_hm',[0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1],
 #['hww2l2v_13TeV_top_of2j','hww2l2v_13TeV_dytt_of2j', 'hww2l2v_13TeV_of2j_ggh_untagged','hww2l2v_13TeV_of2j_ggh_thmip','hww2l2v_13TeV_of2j_ggh_thmin', 'hww2l2v_13TeV_WW_of2j'])
@@ -402,12 +420,12 @@ DeclareKD3D('ggh_hm','D_{ggH 0^{-}}', 'kd_vbf_2',[0.0,0.6,1],'mll',[10,45,106.2]
 #                         'cuts' : ['hww2l2v_13TeV_top_of2j','hww2l2v_13TeV_dytt_of2j', 'hww2l2v_13TeV_of2j_ggh_untagged','hww2l2v_13TeV_of2j_ggh_thmip','hww2l2v_13TeV_of2j_ggh_thmin', 'hww2l2v_13TeV_WW_of2j']
 #                          }
 
-variables['kd2d_ggh_hm_alt'] = { 'name': 'kd_ggh_hm:kd_vbf_2',
-                         'range' : ([0.0,0.5,1],[0,0.2,0.3,0.4,0.5,0.6,0.7,0.8,1],),
-                         'xaxis' : 'D_{VH 0^{-}:kd_ggh}',
-                         'fold' : 3,
-                         'cuts' : ['hww2l2v_13TeV_top_of2j','hww2l2v_13TeV_dytt_of2j', 'hww2l2v_13TeV_of2j_ggh_untagged','hww2l2v_13TeV_of2j_ggh_thmip','hww2l2v_13TeV_of2j_ggh_thmin', 'hww2l2v_13TeV_WW_of2j']
-                          }
+#variables['kd2d_ggh_hm_alt'] = { 'name': 'kd_ggh_hm:kd_vbf_2',
+#                         'range' : ([0.0,0.5,1],[0,0.2,0.3,0.4,0.5,0.6,0.7,0.8,1],),
+#                         'xaxis' : 'D_{VH 0^{-}:kd_ggh}',
+#                         'fold' : 3,
+#                         'cuts' : ['hww2l2v_13TeV_of2j_ggh_thmip','hww2l2v_13TeV_of2j_ggh_thmin']
+#                          }
 #variables['kd2d_ggh_hm_2'] = { 'name': 'kd_ggh_hm:kd_vbf_2',
 #                         'range' : ([0.0,0.5,1],[0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1],),
 #                         'xaxis' : 'D_{VH 0^{-}:kd_ggh}',
@@ -418,7 +436,7 @@ variables['kd2d_ggh_hm'] = { 'name': 'kd_ggh_hm:kd_vbf_2',
                          'range' : ([0.0,0.6,1],[0,0.2,0.3,0.4,0.5,0.6,0.7,0.8,1],),
                          'xaxis' : 'D_{VH 0^{-}:kd_ggh}',
                          'fold' : 3,
-                         'cuts' : ['hww2l2v_13TeV_top_of2j','hww2l2v_13TeV_dytt_of2j', 'hww2l2v_13TeV_of2j_ggh_untagged','hww2l2v_13TeV_of2j_ggh_thmip','hww2l2v_13TeV_of2j_ggh_thmin', 'hww2l2v_13TeV_WW_of2j']
+                         'cuts' : ['hww2l2v_13TeV_top_of2j','hww2l2v_13TeV_dytt_of2j', 'hww2l2v_13TeV_of2j_ggh_thmip','hww2l2v_13TeV_of2j_ggh_thmin', 'hww2l2v_13TeV_WW_of2j']
                           }
 #variables['kd2d_ggh_hm_4'] = { 'name': 'kd_ggh_hm:kd_vbf_2',
 #                         'range' : ([0.0,0.6,1],[0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1],),
@@ -426,3 +444,10 @@ variables['kd2d_ggh_hm'] = { 'name': 'kd_ggh_hm:kd_vbf_2',
 #                         'fold' : 3,
 #                         'cuts' : ['hww2l2v_13TeV_top_of2j','hww2l2v_13TeV_dytt_of2j', 'hww2l2v_13TeV_of2j_ggh_untagged','hww2l2v_13TeV_of2j_ggh_thmip','hww2l2v_13TeV_of2j_ggh_thmin', 'hww2l2v_13TeV_WW_of2j']
 #                          }
+variables['mllVSmth'] = {   'name': 'mll:mth',
+                           'range': ([60,70,80,90,100,110,125],[12,25,40,55,70,100,120,140,160,180,200],),
+                           'xaxis': 'm_{ll} : m_{T}^{H}',
+                           'fold': 3,
+                           'cuts' : ['hww2l2v_13TeV_of2j_ggh_untagged']
+                       }
+

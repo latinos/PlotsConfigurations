@@ -103,30 +103,38 @@ groupPlot['VBF']  = {
 #              }
 
 
-scale=1
-scaleHBSM= 0.1
+
+scale =1.0
 groupPlot['HSM']  = {
                   'nameHR' : 'VBF+VH h',
                   'isSignal' : 2,
                   'color': 632,
-                  'scale'    : scale,
+                  'scale'    : 1.0,
                   'samples'  : ['ZH_H0PM','WH_H0PM','VBF_H0PM','ggH_htt','qqH_htt','ZH_htt','WH_htt']
               }
-
+'''
 groupPlot['HBSM']  = {
-                  'nameHR' : 'VBF+VH 0^{-} (10x)',
+                  'nameHR' : 'VBF+VH 0^{-}',
                   'isSignal' : 2,
                   'color': 1,
-                  'scale'    : scaleHBSM,
+                  'scale'    : 1.0,
                   'samples'  : ['ZH_H0M','WH_H0M','VBF_H0M']
               }
 
 groupPlot['HBSM2']  = {
-                  'nameHR' : 'VBF+VH 0^{+}  (10x)',
+                  'nameHR' : 'VBF+VH 0^{+}',
                   'isSignal' : 2,
                   'color': 4,
-		  'scale': scaleHBSM,
+	          'scale':1,
                   'samples'  : ['ZH_H0PH','WH_H0PH','VBF_H0PH']
+              }
+'''
+groupPlot['HBSM3']  = {
+                  'nameHR' : 'VBF+VH 0^{#Lambda_{1}}',
+                  'isSignal' : 2,
+                  'color': 4,
+                  'scale':5e14,
+                  'samples'  : ['ZH_H0L1','WH_H0L1','VBF_H0L1']
               }
 
 #plot = {}
@@ -163,7 +171,6 @@ if useEmbeddedDY:
                   'scale'    : 0.77,
               }
 
-
 plot['Fake_me']  = {  
                   'color': 921,    # kGray + 1
                   'isSignal' : 0,
@@ -178,12 +185,14 @@ plot['Fake_em']  = {
                   'isData'   : 0,
                   'scale'    : 1.0                  
               }
+
 plot['Fake']  = {
                   'color': 921,    # kGray + 1
                   'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.0
               }
+
               
 plot['top'] = {   
                   'nameHR' : 'tW and t#bar{t}',
@@ -310,6 +319,7 @@ plot['H0PM']  =   {
                       'scale'    : scale,
                      }
 '''
+scale=1.0
 plot['ZH_H0PM']  =   {
                       'nameHR' : 'ZH h',
                       'color' : 620+2,
@@ -334,6 +344,7 @@ plot['VBF_H0PM']  =   {
                       'scale'    : scale,
                      }
 
+
 '''
 plot['H0M']  =   {
                       'nameHR' : '0^{-}',
@@ -343,12 +354,13 @@ plot['H0M']  =   {
                       'scale'    : scale,
                      }
 '''
+scale=1.0
 plot['ZH_H0M']  =   {
                       'nameHR' : 'ZH 0^{-}',
                       'color' : 632+2,
                       'isSignal' : 2, 
                       'isData'   : 0,
-                      'scale'    : scaleHBSM,
+                      'scale'    : scale,
                      }
 
 plot['WH_H0M']  =   {
@@ -356,7 +368,7 @@ plot['WH_H0M']  =   {
                       'color' : 632+3,
                       'isSignal' : 2, 
                       'isData'   : 0,
-                      'scale'    : scaleHBSM,
+                      'scale'    : scale,
                      }
 
 plot['VBF_H0M']  =   {
@@ -364,7 +376,7 @@ plot['VBF_H0M']  =   {
                       'color' : 632+4,
                       'isSignal' : 2, 
                       'isData'   : 0,
-                      'scale'    : scaleHBSM,
+                      'scale'    : scale,
                      }
 
 '''
@@ -381,7 +393,7 @@ plot['ZH_H0PH']  =   {
                       'color' : 632+2,
                       'isSignal' : 2, 
                       'isData'   : 0,
-                      'scale'    : scaleHBSM,
+                      'scale'    : 1,
                      }
 
 plot['WH_H0PH']  =   {
@@ -389,7 +401,7 @@ plot['WH_H0PH']  =   {
                       'color' : 632+3,
                       'isSignal' : 2, 
                       'isData'   : 0,
-                      'scale'    : scaleHBSM,
+                      'scale'    : 1,
                      }
 
 plot['VBF_H0PH']  =   {
@@ -397,7 +409,30 @@ plot['VBF_H0PH']  =   {
                       'color' : 632+4,
                       'isSignal' : 2, 
                       'isData'   : 0,
-                      'scale'    : scaleHBSM,
+                      'scale'    : 1,
+                     }
+plot['ZH_H0L1']  =   {
+                      'nameHR' : 'ZH 0^{#Lambda_{1}}',
+                      'color' : 620+2,
+                      'isSignal' : 2,
+                      'isData'   : 0,
+                      'scale'    : 5e14,
+                     }
+
+plot['WH_H0L1']  =   {
+                      'nameHR' : 'WH 0^{#Lambda_{1}}',
+                      'color' : 620+3,
+                      'isSignal' : 2,
+                      'isData'   : 0,
+                      'scale'    : 5e14,
+                     }
+
+plot['VBF_H0L1']  =   {
+                      'nameHR' : 'VBF 0^{#Lambda_{1}}',
+                      'color' : 620+4,
+                      'isSignal' : 2,
+                      'isData'   : 0,
+                      'scale'    : 5e14,
                      }
 
 #plot['H_hww'] = {
