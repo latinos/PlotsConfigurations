@@ -100,6 +100,7 @@ for samp in samples_todo:
                     nuis = name.replace('histo_'+samp+'_', '').replace('Up', '')
                     #print(name , nuis)
                     if nuis not in uncert_todo: uncert_todo.append(nuis)
+        uncert_todo.sort()
         print(' found nuisances: '+str(uncert_todo))
 
     for nuis in uncert_todo:
@@ -126,6 +127,7 @@ for samp in samples_todo:
 
         up_f = n_nom/n_up
         do_f = n_nom/n_do 
+        if up_f > 1.5 or up_f < 0.5 or do_f > 1.5 or do_f < 0.5: print('WARNING: large normalisation detected')
 
         print('---- Up norm factor: nom/up='+str(up_f)+', Down norm factor: nom/do='+str(do_f)+' (yields '+str(n_nom)+'/'+str(n_up)+'/'+str(n_do)+')')
 

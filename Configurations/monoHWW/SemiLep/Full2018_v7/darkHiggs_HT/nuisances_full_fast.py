@@ -29,14 +29,15 @@ HiggsXS = HiggsXSection()
 #mu_cuts = [ c for c in cuts if 'MuCh' in c] 
 #el_cuts = [ c for c in cuts if 'ElCh' in c] 
 
-mc_VBS   = ['WWewk', 'WZqcd', 'WZewk', 'ZZ']
+mc_myeos = [skey for skey in mc if 'mhs_350' in skey]
+mc_smeos = ['WWewk', 'WZqcd', 'WZewk', 'ZZ']
 # Broken since pull in September 2021
-#mc_VBS   = [skey for skey in mc if '_smp' in samples[skey]['name'][0]]
-mc_noVBS = [skey for skey in mc if not skey in mc_VBS]
+#mc_smeos   = [skey for skey in mc if '_smp' in samples[skey]['name'][0]]
+mc_ameos = [skey for skey in mc if not skey in mc_smeos and not skey in mc_myeos]
 mc_noTop = [skey for skey in mc if not 'top' in skey]
 mc_top   = [skey for skey in mc if 'top' in skey]
 Wjet_samples = [skey for skey in mc if skey.startswith('Wjets')]
-#print('VBS samples:' + str(mc_VBS))
+#print('VBS samples:' + str(mc_smeos))
 
 def makeSuffixVar(name, fix, samples_l, tag='', cuts=None, folder_fix=None, as_lnN=False):
     nuis = {}
@@ -52,19 +53,26 @@ def makeSuffixVar(name, fix, samples_l, tag='', cuts=None, folder_fix=None, as_l
     
     #if not 'JES' in fix:    
     #    nuis_VBS = copy.deepcopy(nuis)
-    #    nuis_VBS['samples']    = dict((skey, ['1.', '1.']) for skey in mc_VBS)
+    #    nuis_VBS['samples']    = dict((skey, ['1.', '1.']) for skey in mc_smeos)
     #    nuis_VBS['folderUp']   = makeMCDirectory(var=f_fix+'up', base='/eos/cms/store/group/phys_smp/VJets_NLO_VBSanalyses')    
     #    nuis_VBS['folderDown'] = makeMCDirectory(var=f_fix+'do', base='/eos/cms/store/group/phys_smp/VJets_NLO_VBSanalyses')    
     #    nuisances[name+'_VBS'] = copy.deepcopy(nuis_VBS)
 
     detect_VBS = False
-    if samples_l[0] in mc_VBS: detect_VBS = True
+    if len(samples_l) > 0 and samples_l[0] in mc_smeos: detect_VBS = True
+    detect_my_eos = False
+    if len(samples_l) > 0 and 'mhs_350' in samples_l[0]: detect_my_eos = True
 
     nuis_noVBS = copy.deepcopy(nuis)
     nuis_noVBS['samples']    = dict((skey, ['1.', '1.']) for skey in samples_l)
     if not detect_VBS:
-        nuis_noVBS['folderUp']   = makeMCDirectory(var=f_fix+'up')    
-        nuis_noVBS['folderDown'] = makeMCDirectory(var=f_fix+'do')
+        if not detect_my_eos:
+            nuis_noVBS['folderUp']   = makeMCDirectory(var=f_fix+'up')    
+            nuis_noVBS['folderDown'] = makeMCDirectory(var=f_fix+'do')
+        else:
+            base='/eos/user/s/svanputt/monoHWW/samples/HWWNano'
+            nuis_noVBS['folderUp']   = makeMCDirectory(var=f_fix+'up', base=base)    
+            nuis_noVBS['folderDown'] = makeMCDirectory(var=f_fix+'do', base=base)
     else:
         if 'iihe' in SITE:
             base = '/pnfs/iihe/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano_smp'
@@ -216,7 +224,8 @@ nuisances['eff_e'] = {
 }
 
 #makeSuffixVar('CMS_scale_e_2018', 'ElepT')
-makeSuffixVar('CMS_scale_e_2018', 'ElepT', mc_noVBS, as_lnN=True)
+makeSuffixVar('CMS_scale_e_2018', 'ElepT', mc_ameos, as_lnN=True)
+makeSuffixVar('CMS_scale_e_2018', 'ElepT', mc_myeos, as_lnN=True, tag='_MYeos')
 
 ##### Muon Efficiency and energy scale
 
@@ -228,7 +237,8 @@ nuisances['eff_m'] = {
 }
 
 #makeSuffixVar('CMS_scale_m_2018', 'MupT')
-makeSuffixVar('CMS_scale_m_2018', 'MupT', mc_noVBS, as_lnN=True)
+makeSuffixVar('CMS_scale_m_2018', 'MupT', mc_ameos, as_lnN=True)
+makeSuffixVar('CMS_scale_m_2018', 'MupT', mc_myeos, as_lnN=True, tag='_MYeos')
 
 ##### Jet energy scale
 
@@ -238,26 +248,29 @@ makeSuffixVar('CMS_scale_m_2018', 'MupT', mc_noVBS, as_lnN=True)
 #    makeSuffixVar('CMS_scale_'+syst, syst, folder_fix='JES')
 
 ## top/rest split
-#makeSuffixVar('CMS_scale_JES_2018',     'JES', [skey for skey in mc_noVBS if skey in mc_noTop], as_lnN=True)
-#makeSuffixVar('CMS_scale_JES_top_2018', 'JES', [skey for skey in mc_noVBS if skey in mc_top], as_lnN=True)
+#makeSuffixVar('CMS_scale_JES_2018',     'JES', [skey for skey in mc_ameos if skey in mc_noTop], as_lnN=True)
+#makeSuffixVar('CMS_scale_JES_top_2018', 'JES', [skey for skey in mc_ameos if skey in mc_top], as_lnN=True)
 
 # Unified
-#mc_forJES = [skey for skey in mc_noVBS if not skey in ['Wjets', 'WjetsNLO']]
-mc_forJES = [skey for skey in mc_noVBS if not skey in ['']]
+#mc_forJES = [skey for skey in mc_ameos if not skey in ['Wjets', 'WjetsNLO']]
+mc_forJES = [skey for skey in mc_ameos if not skey in ['']]
 makeSuffixVar('CMS_scale_JES_2018',     'JES', mc_forJES, as_lnN=True)
 #makeSuffixVar('CMS_scale_JES_2018',     'JES', mc_forJES, as_lnN=False)
+makeSuffixVar('CMS_scale_JES_2018',     'JES',  mc_myeos, as_lnN=True, tag='_MYeos')
 
 ##### Jet energy resolution
 
 #makeSuffixVar('CMS_res_j', 'JER')
-mc_forJER = [skey for skey in mc_noVBS if not skey in ['WjetsNLO', 'Wjets', 'top']]
+mc_forJER = [skey for skey in mc_ameos if not skey in ['WjetsNLO', 'Wjets', 'top']]
 makeSuffixVar('CMS_res_j_2018', 'JER', mc_forJER, as_lnN=True)
+makeSuffixVar('CMS_res_j_2018', 'JER',  mc_myeos, as_lnN=True, tag='_MYeos')
 
 ##### MET energy scale
 
-mc_forMET = [skey for skey in mc_noVBS if not skey in ['WjetsNLO', 'Wjets', 'top']]
+mc_forMET = [skey for skey in mc_ameos if not skey in ['WjetsNLO', 'Wjets', 'top']]
 #makeSuffixVar('CMS_scale_met_2018', 'MET')
 makeSuffixVar('CMS_scale_met_2018', 'MET', mc_forMET, as_lnN=True)
+makeSuffixVar('CMS_scale_met_2018', 'MET',  mc_myeos, as_lnN=True, tag='_MYeos')
 
 #nuisances['CMS_scale_met_2018']  = {
 #    'name'  : 'CMS_scale_met_2018',
@@ -597,13 +610,53 @@ nuisances['VZ'] = {
 }
 
 ###### pdf uncertainties
-nuisances['pdf_weight'] = {
-    'name'  : 'pdf_weight_2017_18',
-    'kind'  : 'weight_envelope',
-    'type'  : 'shape',
-    'samples' :  { s: [' Alt$(LHEPdfWeight['+str(i)+'], 1.)' for i in range(0,103)] for s in mc if s not in ['top','Wjets', 'WjetsNLO']},
-    'AsLnN':  '1'
-}
+#nuisances['pdf_weight'] = {
+#    'name'  : 'pdf_weight_2017_18',
+#    'kind'  : 'weight_envelope',
+#    'type'  : 'shape',
+#    'samples' :  { s: [' Alt$(LHEPdfWeight['+str(i)+'], 1.)' for i in range(0,103)] for s in mc if s not in ['top','Wjets', 'WjetsNLO']},
+#    'AsLnN':  '1'
+#}
+
+# For compiance with full-lep 
+for i in range(1,33):
+    # LHEPdfWeight are PDF4LHC variations, while nominal is NNPDF.
+    # LHEPdfWeight[i] reweights from NNPDF nominal to PDF4LHC member i
+    # LHEPdfWeight[0] in particular reweights from NNPDF nominal to PDF4LHC nominal
+
+    pdf_weight = 'LHEPdfWeight['+str(i)+']/LHEPdfWeight[0]'
+    # Filter out spikes
+    pdf_weight_sp = '(('+pdf_weight+')*(abs('+pdf_weight+') < 3.) + 1.*(abs('+pdf_weight+') > 3.))'
+
+    pdf_variations = [pdf_weight_sp, '2. - '+pdf_weight_sp ]
+    
+    #nuisances['pdf_eigen'+str(i)]  = {
+    #    'name'  : 'CMS_hww_pdf_eigen'+str(i),
+    #    'skipCMS' : 1,
+    #    'kind'  : 'weight',
+    #    'type'  : 'shape',
+    #    'samples'  : {s: pdf_variations for s in mc if s not in ['top','Wjets', 'WjetsNLO']},
+    #}
+    nuisances['pdf_top_eigen'+str(i)]  = {
+        'name'  : 'CMS_hww_pdf_top_eigen'+str(i),
+        'skipCMS' : 1,
+        'kind'  : 'weight',
+        'type'  : 'shape',
+        'samples'  : {
+            'top'   : pdf_variations,
+        },
+    }
+    nuisances['pdf_Wjets_eigen'+str(i)]  = {
+        'name'  : 'CMS_hww_pdf_Wjets_eigen'+str(i),
+        'skipCMS' : 1,
+        'kind'  : 'weight',
+        'type'  : 'shape',
+        'samples'  : {
+            'Wjets'   : pdf_variations,
+            'WjetsNLO'   : pdf_variations,
+            'WjetsMjj'   : pdf_variations,
+        },
+    }
 
 #nuisances['pdf']  = {
 #    'name'  : 'pdf',
