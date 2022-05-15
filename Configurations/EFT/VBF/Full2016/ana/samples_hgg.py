@@ -31,6 +31,10 @@ mcDirectory = makeMCDirectory()
 fakeDirectory = os.path.join(treeBaseDir, dataReco, fakeSteps)
 dataDirectory = os.path.join(treeBaseDir, dataReco, dataSteps)
 embedDirectory = os.path.join(treeBaseDir, embedReco, embedSteps)
+
+useEmbeddedDY = True
+runDYveto = False
+useWgFXFX = True
                                                    
 samples['DATA']  = {}
 samples['DY']    = {}
@@ -39,12 +43,14 @@ samples['top'] = {}
 samples['WW']    = {}
 samples['WWewk']  = {}
 samples['ggWW'] = {}
-samples['VgS_L'] = {}
-samples['VgS_H'] = {}
+#samples['VgS_L'] = {}
+#samples['VgS_H'] = {}
+samples['Vg'] = {}
 samples['VZ'] = {}
 samples['VVV'] = {}
-samples['Fake_em'] = {}
-samples['Fake_me'] = {}
+#samples['Fake_em'] = {}
+#samples['Fake_me'] = {}
+samples['Fake'] = {}
 
 samples['qqH_htt'] = {}
 samples['ZH_htt'] = {}

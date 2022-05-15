@@ -33,14 +33,14 @@ variables['met'] = { 'name' : 'PuppiMET_pt',
                      'cuts' : ['hww2l2v_13TeV_top_of2j','hww2l2v_13TeV_dytt_of2j','hww2l2v_13TeV_WW_of2j']
                    }
 '''
-'''
+
 variables['mjj'] = { 'name' : 'mjj',
                      'range': (80,0,400),
                      'xaxis': 'm_{jj}',
                      'fold' : 3,
                      'cuts' : ['hww2l2v_13TeV_top_of2j','hww2l2v_13TeV_dytt_of2j','hww2l2v_13TeV_WW_of2j']
                    }
-'''
+
 '''
 variables['detajj'] = { 'name' : 'detajj',
                         'range': (30,0,10),
@@ -63,14 +63,14 @@ variables['nfjet'] = { 'name' : 'nCleanFatJet', # pt and tau21 cuts applied
                       'cuts' : ['hww2l2v_13TeV_top_of2j','hww2l2v_13TeV_dytt_of2j','hww2l2v_13TeV_WW_of2j']
                    }
 '''
-'''
+
 variables['ptll'] = {   'name': 'ptll',
                         'range': (20,0,400),
                         'xaxis': 'p_{T}^{ll}',
                         'fold': 3,
                         'cuts' : ['hww2l2v_13TeV_top_of2j','hww2l2v_13TeV_dytt_of2j','hww2l2v_13TeV_WW_of2j']
                        }
-'''
+
 '''
 variables['mtw2'] = { 'name' : 'mtw2',
                      'range': (20,0,150),
@@ -108,28 +108,28 @@ variables['dphi'] = { 'name' : 'dphis',
                      'cuts' : ['hww2l2v_13TeV_top_of2j','hww2l2v_13TeV_dytt_of2j','hww2l2v_13TeV_WW_of2j']
                    }
 '''
-'''
+
 variables['mll'] = { 'name' : 'mll',
                      'range': ([10,45,210],),
                      'xaxis': 'm_{ll}',
                      'fold' : 3,
                      'cuts' : ['hww2l2v_13TeV_top_of2j','hww2l2v_13TeV_dytt_of2j','hww2l2v_13TeV_WW_of2j']
                    }
-'''
+
 variables['events']  = {   'name': '1',
                         'range' : (1,0,2),
                         'xaxis' : 'events',
                          'fold' : 3,
                      'cuts' : ['hww2l2v_13TeV_top_of2j','hww2l2v_13TeV_dytt_of2j','hww2l2v_13TeV_WW_of2j']
                         }
-'''
+
 variables['mth'] = { 'name' : 'mth',
                      'range': (20,0,200),
                      'xaxis': 'm_{T}^{H}',
                      'fold' : 3,
                      'cuts' : ['hww2l2v_13TeV_top_of2j','hww2l2v_13TeV_dytt_of2j','hww2l2v_13TeV_WW_of2j']
                    }
-'''
+
 ####################################
 def DeclareKD3D(KDName,Xaxis, mainvar,mainbinning,sub1var,sub1binning,sub2var,sub2binning, Cuts):
 
@@ -159,7 +159,7 @@ def DeclareKD3D(KDName,Xaxis, mainvar,mainbinning,sub1var,sub1binning,sub2var,su
     'xaxis': Xaxis,
     'cuts' : Cuts
  }
-'''
+
 #DeclareKD3D('vbf_hm','D_{VBF 0^{-}}', 'kd_vbf',[0.0,0.5,0.75,1],'mll',[10,40,76.2,210],'kd_vbf_hm',[0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1],
 #['hww2l2v_13TeV_top_of2j','hww2l2v_13TeV_dytt_of2j','hww2l2v_13TeV_of2j_vbf_hmip','hww2l2v_13TeV_of2j_vbf_hmin'])
 
@@ -457,4 +457,4 @@ variables['mllVSmth'] = {   'name': 'mll:mth',
                            'fold': 3,
 			   'cuts' : ['hww2l2v_13TeV_of2j_ggh_untagged']
                        }
-'''
+

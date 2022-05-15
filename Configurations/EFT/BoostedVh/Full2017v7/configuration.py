@@ -1,7 +1,7 @@
 # example of configuration file
 treeName= 'Events'
 
-tag = 'JJH17B'
+tag = 'JJH17Bfatjets'
 
 # used by mkShape to define output directory for root files
 outputDir = '/eos/user/l/lurda/test/'+'rootFile'+tag

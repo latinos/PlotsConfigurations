@@ -1,3 +1,4 @@
+
 # plot configuration
 
 # groupPlot = {}
@@ -24,14 +25,14 @@ groupPlot['Fake']  = {
                   'nameHR' : 'nonprompt',
                   'isSignal' : 0,
                   'color': 921,    # kGray + 1
-                  'samples'  : ['Fake_me', 'Fake_em', 'Fake']
+                  'samples'  : ['Fake']
 }
 
 groupPlot['VV']  = {  
                   'nameHR' : 'Multiboson',
                   'isSignal' : 0,
                   'color': 617,   # kViolet +1
-                  'samples'  : ['VZ', 'Vg', 'VgS_L', 'VgS_H', 'VVV']
+                  'samples'  : ['VZ', 'Vg', 'VgS', 'VVV']
               }
 
 groupPlot['DY']  = {  
@@ -41,55 +42,6 @@ groupPlot['DY']  = {
                   'samples'  : ['DY', 'Dyemb'],
                   'scale'    : 1,               
               }
-
-'''
-groupPlot['VZ']  = {  
-                  'nameHR' : "VZ",
-                  'isSignal' : 0,
-                  'color'    : 617,   # kViolet + 1  
-                  'samples'  : ['VZ', 'WZ', 'ZZ']
-              }
-
-groupPlot['Vg']  = {  
-                  'nameHR' : "V#gamma",
-                  'isSignal' : 0,
-                  'color'    : 810,   # kOrange + 10
-                  'samples'  : ['Vg', 'Wg']
-              }
-
-groupPlot['VgS']  = {
-                  'nameHR' : "V#gamma*",
-                  'isSignal' : 0,
-                  'color'    : 409,   # kGreen - 9
-                  'samples'  : ['VgS_H','VgS_L']
-              }
-
-groupPlot['VVV']  = {  
-                  'nameHR' : 'VVV',
-                  'isSignal' : 0,
-                  'color': 857, # kAzure -3  
-                  'samples'  : ['VVV']
-              }
-'''
-
-
-'''
-groupPlot['Higgs']  = {
-                  'nameHR' : 'Gluon Fusion',
-                  'isSignal' : 1,
-                  'color': 409, # kRed 
-                  #'samples'  : ['H_htt', 'H_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'ggH_hww','bbH_hww','ttH_hww','ZH_htt', 'ggZH_htt', 'WH_htt', 'ggH_htt','bbH_htt','ttH_htt' ]
-                  'samples' : ['ZH_hww', 'ggZH_hww', 'WH_hww', 'ggH_hww','bbH_hww','ttH_hww','ZH_htt', 'ggZH_htt', 'WH_htt', 'ggH_htt','bbH_htt','ttH_htt' ]
-                  #'samples'  : ['H_htt', 'H_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'ggH_hww','bbH_hww','ttH_hww', 'ggH_htt' ]
-              }
-
-groupPlot['VBF']  = {
-                  'nameHR' : 'VBF',
-                  'isSignal' : 2,
-                  'color': 632,
-                  'samples'  : ['qqH_hww']
-              }
-'''
 
 # 3 puts signal on top of stack
 # 2 hist only, included in ratio?
@@ -101,18 +53,10 @@ groupPlot['VBF']  = {
 #                  'color': 634,
 #                  'samples'  : ['ggH_htt','qqH_htt','ZH_htt','WH_htt']
 #              }
-'''
-groupPlot['HSM']  = {
-                  'nameHR' : 'VBF+VH h',
-                  'isSignal' : 0,
-                  'color': 633,
-                  'samples'  : ['qqH_hww','ZH_hww','WH_hww','qqH_htt','ZH_htt','WH_htt']
-              }
-'''
-scale = 20
+scale = 1.0
 
 groupPlot['HSM_AC']  = {
-                  'nameHR' : 'ggF h (x20)',
+                  'nameHR' : 'ggF h',
                   'isSignal' : 2,
                   'color': 632,
                   'scale'    : scale,
@@ -120,7 +64,7 @@ groupPlot['HSM_AC']  = {
               }
 
 groupPlot['HBSM']  = {
-                  'nameHR' : 'ggF 0^{-} (x20)',
+                  'nameHR' : 'ggF 0^{-}',
                   'isSignal' : 2,
                   'color': 1,
                   'scale'    : scale,
@@ -135,20 +79,7 @@ plot['DY']  = {
                   'color': 418,    # kGreen+2
                   'isSignal' : 0,
                   'isData'   : 0, 
-                  'scale'    : 0.77,
-                  #'cuts'  : {
-                       #'hww2l2v_13TeV_of0j'      : 0.95 ,
-                       #'hww2l2v_13TeV_top_of0j'  : 0.95 , 
-                       #'hww2l2v_13TeV_dytt_of0j' : 0.95 ,
-                       #'hww2l2v_13TeV_em_0j'     : 0.95 , 
-                       #'hww2l2v_13TeV_me_0j'     : 0.95 , 
-                       ##
-                       #'hww2l2v_13TeV_of1j'      : 1.08 ,
-                       #'hww2l2v_13TeV_top_of1j'  : 1.08 , 
-                       #'hww2l2v_13TeV_dytt_of1j' : 1.08 ,
-                       #'hww2l2v_13TeV_em_1j'     : 1.08 , 
-                       #'hww2l2v_13TeV_me_1j'     : 1.08 , 
-                        #},
+                  'scale'    : 1.0,
 
               }
 
@@ -157,24 +88,10 @@ if useEmbeddedDY:
                   'color': 418,    # kGreen+2
                   'isSignal' : 0,
                   'isData'   : 0, 
-                  'scale'    : 0.77,
+                  'scale'    : 1.0,
               }
 
 
-plot['Fake_me']  = {  
-                  'color': 921,    # kGray + 1
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  'scale'    : 1.0                  
-              }
-
-
-plot['Fake_em']  = {  
-                  'color': 921,    # kGray + 1
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  'scale'    : 1.0                  
-              }
 plot['Fake']  = {
                   'color': 921,    # kGray + 1
                   'isSignal' : 0,
@@ -188,19 +105,6 @@ plot['top'] = {
                   'isSignal' : 0,
                   'isData'   : 0, 
                   'scale'    : 1.0,
-                  #'cuts'  : {
-                       #'hww2l2v_13TeV_of0j'      : 0.94 ,
-                       #'hww2l2v_13TeV_top_of0j'  : 0.94 , 
-                       #'hww2l2v_13TeV_dytt_of0j' : 0.94 ,
-                       #'hww2l2v_13TeV_em_0j'     : 0.94 , 
-                       #'hww2l2v_13TeV_me_0j'     : 0.94 , 
-                       ##
-                       #'hww2l2v_13TeV_of1j'      : 0.86 ,
-                       #'hww2l2v_13TeV_top_of1j'  : 0.86 , 
-                       #'hww2l2v_13TeV_dytt_of1j' : 0.86 ,
-                       #'hww2l2v_13TeV_em_1j'     : 0.86 , 
-                       #'hww2l2v_13TeV_me_1j'     : 0.86 , 
-                        #},
                   }
 
 
@@ -233,14 +137,7 @@ plot['Vg']  = {
                   'scale'    : 1.0
                   }
 
-plot['VgS_H'] = { 
-                  'color'    : 617,   # kViolet + 1  
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  'scale'    : 1.0
-                  }
-
-plot['VgS_L'] = {
+plot['VgS'] = {
                   'color'    : 617,   # kViolet + 1  
                   'isSignal' : 0,
                   'isData'   : 0,

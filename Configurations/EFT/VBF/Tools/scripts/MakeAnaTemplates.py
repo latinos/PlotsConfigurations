@@ -1,4 +1,3 @@
-
 import sys
 import ROOT 
 import numpy as np
@@ -72,20 +71,16 @@ print "- For each analysis channel we should check which templates are negative"
 print "- They are added to lists (NegList.py) and forced positive -- Must be taken into account in Signal Model! "
 
 ###################################################################
-year = "16"
+year = "17"
 _year = "_"+year
 MCStats="OFF"
 
-src = "rootFileJJH"+year+"/plots_JJH"+year+".root"
-dst = "rootFileJJH"+year+"/plots_JJH"+year+"_AC"+MCStats+suffix+".root"
+eosdirectory = '/eos/user/l/lurda/test/'
+src = eosdirectory+"rootFileJJH"+year+"/plots_JJH"+year+".root"
+dst = "rootFileJJH"+year+"/plots_JJH"+year+"_AC_MCStats"+MCStats+suffix+".root"
 
 #DM In the following logic htt is assumed to be suppressed - not treated as AC signal
 
-othertemp_hvv = ['DATA','WW','WWewk','ggWW','top','DY','Dyemb','Vg','VgS_L','VgS_H','VZ','VVV','Fake_em','Fake_me','Fake','ggH_htt','qqH_htt','ZH_htt','WH_htt'] 
-
-othertemp_hlzg = ['DATA','WW','WWewk','ggWW','top','DY','Dyemb','Vg','VgS_L','VgS_H','VZ','VVV','Fake_em','Fake_me','Fake','ggH_htt','qqH_htt','ZH_htt','WH_htt','WH_hww','ggH_hww'] #DM Should I use AC samples here for gghww and whww?
-
-othertemp_hgg = ['DATA','WW','WWewk','ggWW','top','DY','Dyemb','Vg','VgS_L','VgS_H','VZ','VVV','Fake_em','Fake_me','Fake', 'ggH_htt','qqH_htt','ZH_htt','WH_htt','qqH_hww','WH_hww','ZH_hww']
 
 if os.path.exists(dst):
     os.remove(dst)
@@ -107,28 +102,12 @@ print " "
 
 ###################################################
 def setSigStatTo0(Cat, Var, Prod, AC):
- #print("prod", Prod)
- #if Prod is "ggH_" or "ggHjj_": 
- # print("or here")
- # NT = 3
- #else:
- # print("you are selecting NT = 5")
- # NT = 5
- if Prod is "ggH_" or Prod is "ggHjj_" : 
-  #print("or here")
-  NT = 3
- else :
-  #print("NT5")              
-  NT = 5
 
- if Prod is "ggHjj_" :
-  vertex = "HGG"
-  othertemp = othertemp_hgg
- else :
-  vertex = "HVV"
-  othertemp = othertemp_hvv
-
- if AC is "H0LZg" : othertemp = othertemp_hlzg
+ if Prod is "ggH_" or Prod is "ggHjj_" : NT = 3
+ else : NT = 5
+ 
+ if Prod == "ggHjj_" : vertex = "HGG"
+ else :                vertex = "HVV"
 
  fout = ROOT.TFile.Open(''+dst+'', 'update')#DM should be in loop??
 
@@ -147,55 +126,56 @@ def setSigStatTo0(Cat, Var, Prod, AC):
 
  fout.Close()   
 
-def AddOtherTemplates(Cat, Var, Prod, AC):
+def AddOtherTemplates(Cat, Var, vertex, AC, src_ot, othertemp):
 
  if Verbose is True :  
   print " " 
   print " ", Cat, Var
   print " " 
 
- if Prod is "ggHjj_" or Prod is "ggHjj_" :
-  vertex = "HGG"
-  othertemp = othertemp_hgg
- else :
-  vertex = "HVV"
-  othertemp = othertemp_hvv
-
- if AC is "H0LZg" : othertemp = othertemp_hlzg
-
- f = ROOT.TFile.Open(''+src+'', 'read')
+ f = ROOT.TFile.Open(''+src_ot+'', 'read')
 
  HistList = ROOT.TObjArray()
  HistNameList = []
 
  f.cd("hww2l2v_13TeV_"+Cat+"/"+Var+"/")
  d = ROOT.gDirectory
+
  for ih in d.GetListOfKeys():
     h = ih.ReadObj()
     if any(x in h.GetName() for x in othertemp) :
 
-     QCDVar = False
+     VarSys = False
      Sys    = False
      if "Up" in h.GetName() or "Down" in h.GetName(): Sys = True
-     if Sys is False and "QCDscale" in h.GetName():  QCDVar = True
+     if Sys is False and "QCDscale" in h.GetName(): VarSys = True
+     if Sys is False and "pdf" in h.GetName(): VarSys = True
 
-     if QCDVar is False and h.GetName() not in HistNameList :
+     if VarSys is False and h.GetName() not in HistNameList :
       h.SetDirectory(0)
       if h.Integral() < 0 : #DM combine wont take negative pdfs (OK for jjH ana but should implement better fix for this!!)
        h.Scale(0)
        if Verbose is True : print "Setting to 0 : ", h.GetName(), Cat, Var 
       if AC is "H0LZg" :  #DM Set names such that templates are scaled by Mu*Fa1 in signal model
-       if "WH_hww" in h.GetName() : 
+       if "WH_H0PM" in h.GetName() : 
         name = h.GetName() 
-        name = name.replace("WH_hww","WH_T1")
+        name = name.replace("WH_H0PM","WH_T1")
         h.SetName(name)
-       if "ggH_hww" in h.GetName() :
+        PWG_SF = getPWGSF(f, Cat, Var, "WH_")
+        h.Scale(PWG_SF)
+       if 'H0PM' in h.GetName() and 'WH' not in h.GetName() and 'ZH' not in h.GetName() and 'VBF_' not in h.GetName() and 'GGHjj' not in h.GetName() and 'H0M' not in h.GetName() and 'H0PH' not in h.GetName() and 'H0L1' not in h.GetName() and 'H0LZg' not in h.GetName() and 'f05' not in h.GetName():
+#       if 'H0PM' in h.GetName():
+        #if ('Mig12' in h.GetName()): print("***********************--------------h.GetName()", h.GetName())
         name = h.GetName() 
-        name = name.replace("ggH_hww","ggH_T1")
+        name = name.replace("H0PM","ggH_T1")
         h.SetName(name)
+	PWG_SF = getPWGSF(f, Cat, Var, "ggH_")
+        h.Scale(PWG_SF)
+      if vertex is "HGG":
+        if "qqH_hww" in h.GetName(): h.Scale(1.03621*1.08)
       HistList.Add(h)
       HistNameList.append(h.GetName())
-
+ 
  f.Close()
 
  fout = ROOT.TFile.Open(''+dst+'', 'update')
@@ -217,14 +197,14 @@ def AddOtherTemplates(Cat, Var, Prod, AC):
 def getPWGSF(f, Cat, Var, Prod):
 
 # jhu = f.Get("hww2l2v_13TeV_"+Cat+"/"+Var+"/histo_"+Prod+"H0PM") 
-
+ 
  if   Prod is "VBF_"   : 
   jhu = f.Get("hww2l2v_13TeV_"+Cat+"/"+Var+"/histo_"+Prod+"H0PM") 
   pwg = f.Get("hww2l2v_13TeV_"+Cat+"/"+Var+"/histo_qqH_hww")
  elif Prod is "WH_" or  Prod is "ZH_"   : 
-  if "vbf" in Cat : 
-   jhu = f.Get("hww2l2v_13TeV_of2j_vh/events/histo_"+Prod+"H0PM") 
-   pwg = f.Get("hww2l2v_13TeV_of2j_vh/events/histo_"+Prod+"hww")
+  if "vbf" in Cat :
+   jhu = f.Get("hww2l2v_13TeV_of2j_vh/kd2d_vh_hp/histo_"+Prod+"H0PM") #in future use events 
+   pwg = f.Get("hww2l2v_13TeV_of2j_vh/kd2d_vh_hp/histo_"+Prod+"hww")
   else :
    jhu = f.Get("hww2l2v_13TeV_"+Cat+"/"+Var+"/histo_"+Prod+"H0PM") 
    pwg = f.Get("hww2l2v_13TeV_"+Cat+"/"+Var+"/histo_"+Prod+"hww")
@@ -237,6 +217,8 @@ def getPWGSF(f, Cat, Var, Prod):
  else : "Prod not recognised by getPWGSF"
 
 # XSECxBR correction for mH = 125.38
+ jhu.SetDirectory(0)
+ pwg.SetDirectory(0)
  if   Prod is "VBF_" :   pwg.Scale(1.03621)
  elif Prod is "WH_" :    pwg.Scale(1.01724)
  elif Prod is "ZH_" :    pwg.Scale(1.01994)
@@ -248,10 +230,11 @@ def getPWGSF(f, Cat, Var, Prod):
   elif "vh"  in cat : pwg.Scale(0.83)
   elif "ggh" in cat: pwg.Scale(1.08)
 
- scale =  pwg.Integral()/jhu.Integral()
+ if jhu.Integral()==0 : scale = 1
+ else: scale =  pwg.Integral()/jhu.Integral()
  if pwg.Integral()==0 : scale = 1
 
- print ("pwg.Integral()", pwg.Integral(), "jhu.Integral()", jhu.Integral())
+ #print (Prod, Cat, "pwg.Integral()", pwg.Integral(), "jhu.Integral()", jhu.Integral(), scale)
  
  return scale
 
@@ -291,7 +274,7 @@ def getPWGSF_notused(f, Cat, Var, Prod):
 
 # if 'top' in Cat or 'dytt' in Cat or 'WW' in Cat : scale = 1.0
 
- print ("pwg.Integral()", pwg.Integral(), "jhu.Integral()", jhu.Integral())
+ #print ("pwg.Integral()", pwg.Integral(), "jhu.Integral()", jhu.Integral())
 
  return scale
 
@@ -635,6 +618,9 @@ def create2VIntTemplates(Cat, Var, Prod, AC, Sys, Test):
  T4.Scale(Gsc**3) 
  T5.Scale(Gsc**4)
 
+# T2.Scale(0)
+# T4.Scale(0)
+
  NegList = XHNegList[AC]
 
  for c, s, p, t in NegList :
@@ -783,7 +769,8 @@ def create1VIntTemplates(Cat, Var, Prod, AC, Sys, Test):
   print " " 
   print " ", Cat, Var, Prod, AC, Sys, Test
   print " " 
-
+ 
+ print " ", Cat, Var, Prod, AC, Sys, Test
  f = ROOT.TFile.Open(''+src+'', 'read')
 
  MCForThisAC = True
@@ -987,41 +974,54 @@ def create1VIntTemplates(Cat, Var, Prod, AC, Sys, Test):
 
 ################### AC Signal Shape Sys #######################################
 
-DoSys=False
+DoSys=True
 DoTest=False
 AddOtherTemps=True
 
-Yr="_2016"
-#"CMS_btag_cferr1", "CMS_eff_prefiring"+Yr,
-Sys = [ "CMS_btag_DeepFlav_cferr1"+Yr, "CMS_btag_DeepFlav_cferr2"+Yr,"CMS_scale_e"+Yr, "CMS_scale_m"+Yr, "CMS_eff_m"+Yr, "CMS_eff_e"+Yr, "CMS_eff_e_CR"+Yr, "CMS_eff_m_CR"+Yr,
+Yr="_2017"
+
+Sys =[
+"CMS_btag_DeepFlav_cferr1", "CMS_btag_DeepFlav_cferr2","CMS_scale_e"+Yr, "CMS_scale_m"+Yr, "CMS_eff_m"+Yr, "CMS_eff_e"+Yr, "CMS_eff_e_CR"+Yr, "CMS_eff_m_CR"+Yr,
 "CMS_scale_JESHF"+Yr, "CMS_scale_JESBBEC1","CMS_scale_JESRelativeSample"+Yr, "CMS_scale_JESEC2","CMS_scale_JESFlavorQCD","CMS_scale_JESBBEC1"+Yr,"CMS_scale_JESAbsolute", "CMS_scale_JESHF",
 "CMS_scale_JESEC2"+Yr,"CMS_scale_JESAbsolute"+Yr,"CMS_scale_JESRelativeBal",
-"CMS_btag_DeepFlav_jes"+Yr,"CMS_btag_DeepFlav_lf"+Yr,"CMS_btag_DeepFlav_lfstats1"+Yr, "CMS_btag_DeepFlav_lfstats2"+Yr,"CMS_btag_DeepFlav_hfstats1"+Yr, "CMS_btag_DeepFlav_hfstats2"+Yr,
-"CMS_PUID"+Yr,"CMS_scale_met"+Yr,
+"CMS_btag_DeepFlav_jes","CMS_btag_DeepFlav_lf","CMS_btag_DeepFlav_lfstats1"+Yr, "CMS_btag_DeepFlav_lfstats2"+Yr,"CMS_btag_DeepFlav_hfstats1"+Yr, "CMS_btag_DeepFlav_hfstats2"+Yr,
+"CMS_PUID"+Yr,"CMS_scale_met"+Yr, "CMS_res_j"+Yr,
 "CMS_eff_hwwtrigger"+Yr,"CMS_eff_hwwtrigger_drllrw"+Yr, "CMS_eff_prefiring"+Yr,
-"PS_ISR", "PS_FSR" ] 
+"PS_ISR", "PS_FSR"
+] 
 
-Sys_ggh = [ "THU_ggH_Mu","THU_ggH_Res","THU_ggH_Mig01","THU_ggH_Mig12", "THU_ggH_VBF2j","THU_ggH_VBF3j", "THU_ggH_PT60", "THU_ggH_PT120", "THU_ggH_qmtop","CMS_PU"+Yr ]
+Sys_ggh = [ 
+"THU_ggH_Mu","THU_ggH_Res","THU_ggH_Mig01","THU_ggH_Mig12", "THU_ggH_VBF2j","THU_ggH_VBF3j", "THU_ggH_PT60", "THU_ggH_PT120", "THU_ggH_qmtop","CMS_PU"+Yr
+]
 
-Sys_VBF = [ "THU_qqH_YIELD","THU_qqH_PTH200","THU_qqH_Mjj60","THU_qqH_Mjj120","THU_qqH_Mjj350","THU_qqH_Mjj700","THU_qqH_Mjj1000","THU_qqH_Mjj1500","THU_qqH_PTH25","THU_qqH_JET01","THU_qqH_EWK","CMS_PU"+Yr ] 
+Sys_VBF = [ 
+"THU_qqH_YIELD","THU_qqH_PTH200","THU_qqH_Mjj60","THU_qqH_Mjj120","THU_qqH_Mjj350","THU_qqH_Mjj700","THU_qqH_Mjj1000","THU_qqH_Mjj1500","THU_qqH_PTH25","THU_qqH_JET01","THU_qqH_EWK","CMS_PU"+Yr
+] 
 
-####################################################################################
+#################################################################################
+ot_topww = ['WW', 'top', 'DY', 'VZ', 'Vg', 'VgS', 'WWewk']
 
+
+ot_hvv = ['DATA','ggWW','Dyemb','VVV','Fake','ggH_htt','qqH_htt','ZH_htt','WH_htt'] + ot_topww
+ot_hlzg = ['DATA','ggWW','Dyemb','VVV','Fake','ggH_htt','qqH_htt','ZH_htt','WH_htt','WH_H0PM','H0PM'] + ot_topww #DM Should I use AC samples here for gghww and whww?
+ot_hgg = ['DATA','ggWW','Dyemb','VVV','Fake', 'ggH_htt','qqH_htt','ZH_htt','WH_htt','qqH_hww','WH_hww','ZH_hww'] + ot_topww
+
+
+src_topww = eosdirectory+"rootFileJJH"+year+"/plots_JJH"+year+"_Var.root"
 ####### HVV setup  ######
 
 XHProd = ["VBF_","ZH_","WH_"]
-
+#XHProd = ["ZH_","WH_"]
+#XHProd = ["VBF_"]
 ACConfig  = [ 
-       	      ("of2j_vbf_hmip", "kd3d_vbf_hm"+suffix, "H0M"),
+	      ("of2j_vbf_hmip", "kd3d_vbf_hm"+suffix, "H0M"),
               ("of2j_vbf_hmin", "kd3d_vbf_hm"+suffix, "H0M"),
               ("of2j_vh_hmip",  "kd2d_vh_hm"+suffix,  "H0M"),
               ("of2j_vh_hmin",  "kd2d_vh_hm"+suffix,  "H0M"),
               ("top_of2j",      "events",      "H0M"),
               ("dytt_of2j",     "events",      "H0M"),
-              ("of2j_vbf_hpip", "kd3d_vbf_hp"+suffix, "H0PH"),
-              ("of2j_vbf_hpin", "kd3d_vbf_hp"+suffix, "H0PH"),
-#              ("of2j_vh_hpip",  "kd2d_vh_hp"+suffix,  "H0PH"),
-#              ("of2j_vh_hpin",  "kd2d_vh_hp"+suffix,  "H0PH"),
+              ("of2j_vbf_hpip", "kd3d_vbf_hp", "H0PH"),
+              ("of2j_vbf_hpin", "kd3d_vbf_hp", "H0PH"),
               ("of2j_vh",  "kd2d_vh_hp"+suffix,  "H0PH"),
               ("top_of2j",      "events",      "H0PH"),
               ("dytt_of2j",     "events",      "H0PH"),
@@ -1034,49 +1034,38 @@ ACConfig  = [
               ("WW_of2j",     "events",      "H0L1"),
 ]
 
-LZGConfig = [ ("of2j_vbf",  "kd3d_vbf_hlzg"+suffix,"H0LZg"),
+LZGConfig = [ 
+              ("of2j_vbf",  "kd3d_vbf_hlzg"+suffix,"H0LZg"),
               ("of2j_vh",   "kd2d_vh_hlzg"+suffix, "H0LZg"),
               ("top_of2j",  "events",       "H0LZg"),
               ("dytt_of2j", "events",       "H0LZg"),
               ("WW_of2j", "events",       "H0LZg"),
 ]
 EFTConfig = []
-'''
-EFTConfig = [ ("of2j_vbf_hmip", "kd3d_vbf_hm"+suffix, "EFTH0M"),
-              ("of2j_vbf_hmin", "kd3d_vbf_hm"+suffix, "EFTH0M"),
-              ("of2j_vh_hmip",  "kd2d_vh_hm"+suffix,  "EFTH0M"),
-              ("of2j_vh_hmin",  "kd2d_vh_hm"+suffix,  "EFTH0M"),
-              ("top_of2j",      "events",      "EFTH0M"),
-              ("dytt_of2j",     "events",      "EFTH0M"),
-              ("of2j_vbf_hpip", "kd3d_vbf_hp"+suffix, "EFTH0PH"),
-              ("of2j_vbf_hpin", "kd3d_vbf_hp"+suffix, "EFTH0PH"),
-              ("of2j_vh_hpip",  "kd2d_vh_hp"+suffix,  "EFTH0PH"),
-              ("of2j_vh_hpin",  "kd2d_vh_hp"+suffix,  "EFTH0PH"),
-              ("top_of2j",      "events",      "EFTH0PH"),
-              ("dytt_of2j",     "events",      "EFTH0PH"),
-              ("of2j_vbf",      "kd3d_vbf_hl"+suffix, "EFTH0L1"),
-              ("of2j_vh",       "kd2d_vh_hl"+suffix,  "EFTH0L1"), 
-              ("top_of2j",      "events",      "EFTH0L1"),
-              ("dytt_of2j",     "events",      "EFTH0L1"),  
-]
-'''
+
 for prod in XHProd :
 
  print "------------------------------------", prod
+
  if prod is "ZH_" or prod is "VBF_" : SigConfig = ACConfig + LZGConfig + EFTConfig
  else : SigConfig = ACConfig + EFTConfig
 
  for cat, var, sig in SigConfig :
   create2VIntTemplates(cat, var, prod, sig, "", DoTest)
   if DoSys is True :
-   for sys in Sys :
-    create2VIntTemplates(cat, var, prod, sig, "_"+sys+"Up", False)
-    create2VIntTemplates(cat, var, prod, sig, "_"+sys+"Down", False)
-    checkForBadSys(cat, var, prod, sig, "_"+sys+"","T1")
-    checkForBadSys(cat, var, prod, sig, "_"+sys+"","T2")
-    checkForBadSys(cat, var, prod, sig, "_"+sys+"","T3")
-    checkForBadSys(cat, var, prod, sig, "_"+sys+"","T4")
-    checkForBadSys(cat, var, prod, sig, "_"+sys+"","T5")
+   for sys in Sys:
+    try:
+     create2VIntTemplates(cat, var, prod, sig, "_"+sys+"Up", False)
+     create2VIntTemplates(cat, var, prod, sig, "_"+sys+"Down", False)
+     checkForBadSys(cat, var, prod, sig, "_"+sys+"","T1")
+     checkForBadSys(cat, var, prod, sig, "_"+sys+"","T2")
+     checkForBadSys(cat, var, prod, sig, "_"+sys+"","T3")
+     checkForBadSys(cat, var, prod, sig, "_"+sys+"","T4")
+     checkForBadSys(cat, var, prod, sig, "_"+sys+"","T5")
+    except: 
+     print("****ALERTTTTTTT*****", cat, var, prod, sig, "_"+sys+"Up")
+     print(cat, var, prod, sig, "_"+sys+"Down")
+     continue
    if "VBF_" in prod :
     for sys in Sys_VBF :
      create2VIntTemplates(cat, var, prod, sig, "_"+sys+"Up", False)
@@ -1086,7 +1075,6 @@ for prod in XHProd :
      checkForBadSys(cat, var, prod, sig, "_"+sys+"","T3")
      checkForBadSys(cat, var, prod, sig, "_"+sys+"","T4")
      checkForBadSys(cat, var, prod, sig, "_"+sys+"","T5")
-  
   #if MCStats is 'OFF':
   #print("hola", prod)
   if DoTest is False : setSigStatTo0(cat, var, prod, sig)
@@ -1097,41 +1085,42 @@ print "------------------------------------", prod
 SigConfig = ACConfig + EFTConfig
 
 for cat, var, sig in SigConfig :
+
  create1VIntTemplates(cat, var, prod, sig, "", DoTest)
  if DoSys is True :
   for sys in Sys :
-   create1VIntTemplates(cat, var, prod, sig, "_"+sys+"Up", False)
-   create1VIntTemplates(cat, var, prod, sig, "_"+sys+"Down", False) 
-   checkForBadSys(cat, var, prod, sig, "_"+sys+"","T1")
-   checkForBadSys(cat, var, prod, sig, "_"+sys+"","T2")
-   checkForBadSys(cat, var, prod, sig, "_"+sys+"","T3")
+   try:
+    create1VIntTemplates(cat, var, prod, sig, "_"+sys+"Up", False)
+    create1VIntTemplates(cat, var, prod, sig, "_"+sys+"Down", False) 
+    checkForBadSys(cat, var, prod, sig, "_"+sys+"","T1")
+    checkForBadSys(cat, var, prod, sig, "_"+sys+"","T2")
+    checkForBadSys(cat, var, prod, sig, "_"+sys+"","T3")
+   except: continue
   for sys in Sys_ggh :
    create1VIntTemplates(cat, var, prod, sig, "_"+sys+"Up", False)
    create1VIntTemplates(cat, var, prod, sig, "_"+sys+"Down", False)    
    checkForBadSys(cat, var, prod, sig, "_"+sys+"","T1")
    checkForBadSys(cat, var, prod, sig, "_"+sys+"","T2")
    checkForBadSys(cat, var, prod, sig, "_"+sys+"","T3")
- 
  if DoTest is False : setSigStatTo0(cat, var, prod, sig)
 
 SigConfig = ACConfig + LZGConfig + EFTConfig
 
 if AddOtherTemps is True :
  for cat, var, sig in SigConfig :
-  AddOtherTemplates(cat, var, prod, sig)
-
+  if "H0LZg" in sig : AddOtherTemplates(cat, var, "HVV", sig, src, ot_hlzg)
+  else             : AddOtherTemplates(cat, var, "HVV", sig, src, ot_hvv)
+#  AddOtherTemplates(cat, var, "HVV", sig, src_topww, ot_topww)
 ####### ggH+2Jet setup  ######
 GGHJJConfig = [
-	        ("of2j_ggh_thmip", "kd2d_ggh_hm"+suffix, "H0M"),
-                ("of2j_ggh_thmin", "kd2d_ggh_hm"+suffix, "H0M"),
-                ("of2j_ggh_untagged", "kd2d_ggh_hm"+suffix, "H0M"),
-#                ("of2j_ggh_lhmip", "kd2d_ggh_hm"+suffix, "H0M"),
-#                ("of2j_ggh_lhmin", "kd2d_ggh_hm"+suffix, "H0M"),
+	        ("of2j_ggh_thmip", "kd2d_ggh_hm", "H0M"),
+                ("of2j_ggh_thmin", "kd2d_ggh_hm", "H0M"),
+                ("of2j_ggh_untagged", "mllVSmth", "H0M"),
                 ("top_of2j",       "events",      "H0M"),
                 ("dytt_of2j",      "events",      "H0M"),
                 ("WW_of2j",     "events",      "H0M"),
 ]  
-'''
+
 prod = "ggHjj_"
 print "------------------------------------", prod
 
@@ -1139,23 +1128,24 @@ for cat, var, sig in GGHJJConfig :
  create1VIntTemplates(cat, var, prod, sig, "", DoTest)
  if DoSys is True :
   for sys in Sys :
-   create1VIntTemplates(cat, var, prod, sig, "_"+sys+"Up", False)
-   create1VIntTemplates(cat, var, prod, sig, "_"+sys+"Down", False)  
-   checkForBadSys(cat, var, prod, sig, "_"+sys+"","T1")
-   checkForBadSys(cat, var, prod, sig, "_"+sys+"","T2")
-   checkForBadSys(cat, var, prod, sig, "_"+sys+"","T3")
+   try:
+    create1VIntTemplates(cat, var, prod, sig, "_"+sys+"Up", False)
+    create1VIntTemplates(cat, var, prod, sig, "_"+sys+"Down", False)  
+    checkForBadSys(cat, var, prod, sig, "_"+sys+"","T1")
+    checkForBadSys(cat, var, prod, sig, "_"+sys+"","T2")
+    checkForBadSys(cat, var, prod, sig, "_"+sys+"","T3")
+   except: continue
   for sys in Sys_ggh :
    create1VIntTemplates(cat, var, prod, sig, "_"+sys+"Up", False)
    create1VIntTemplates(cat, var, prod, sig, "_"+sys+"Down", False)    
    checkForBadSys(cat, var, prod, sig, "_"+sys+"","T1")
    checkForBadSys(cat, var, prod, sig, "_"+sys+"","T2")
    checkForBadSys(cat, var, prod, sig, "_"+sys+"","T3")
-
  #if MCStats is 'OFF':
  if DoTest is False : setSigStatTo0(cat, var, prod, sig)
 
 if AddOtherTemps is True :
  for cat, var, sig in GGHJJConfig :
-  AddOtherTemplates(cat, var, prod, sig)
-'''
+  AddOtherTemplates(cat, var, "HGG", sig, src, ot_hgg)
+#  AddOtherTemplates(cat, var, "HGG", sig, src_topww, ot_topww) #just 2016
 print "Its done!!!"

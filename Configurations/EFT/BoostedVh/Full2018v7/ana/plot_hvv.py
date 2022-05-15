@@ -31,7 +31,7 @@ groupPlot['VV']  = {
                   'nameHR' : 'Multiboson',
                   'isSignal' : 0,
                   'color': 617,   # kViolet +1
-                  'samples'  : ['VZ', 'Vg', 'VgS_L', 'VgS_H', 'VVV']
+                  'samples'  : ['VZ', 'Vg', 'VgS', 'VVV']
               }
 
 groupPlot['DY']  = {  
@@ -133,7 +133,7 @@ groupPlot['HBSM3']  = {
                   'nameHR' : 'VBF+VH 0^{#Lambda_{1}}',
                   'isSignal' : 2,
                   'color': 4,
-                  'scale':5e14,
+                  'scale':0.5e16,
                   'samples'  : ['ZH_H0L1','WH_H0L1','VBF_H0L1']
               }
 
@@ -146,7 +146,7 @@ plot['DY']  = {
                   'color': 418,    # kGreen+2
                   'isSignal' : 0,
                   'isData'   : 0, 
-                  'scale'    : 0.77,
+                  'scale'    : 1.0,
                   #'cuts'  : {
                        #'hww2l2v_13TeV_of0j'      : 0.95 ,
                        #'hww2l2v_13TeV_top_of0j'  : 0.95 , 
@@ -168,7 +168,7 @@ if useEmbeddedDY:
                   'color': 418,    # kGreen+2
                   'isSignal' : 0,
                   'isData'   : 0, 
-                  'scale'    : 0.77,
+                  'scale'    : 1.0,
               }
 
 plot['Fake_me']  = {  
@@ -245,21 +245,13 @@ plot['Vg']  = {
                   'scale'    : 1.0
                   }
 
-plot['VgS_H'] = { 
+
+plot['VgS'] = {
                   'color'    : 617,   # kViolet + 1  
                   'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.0
                   }
-
-plot['VgS_L'] = {
-                  'color'    : 617,   # kViolet + 1  
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  'scale'    : 1.0
-                  }
-
-
 plot['VZ']  = { 
                   'color': 858, # kAzure -2  
                   'isSignal' : 0,
@@ -416,7 +408,7 @@ plot['ZH_H0L1']  =   {
                       'color' : 620+2,
                       'isSignal' : 2,
                       'isData'   : 0,
-                      'scale'    : 5e14,
+                      'scale'    : 0.5e16,
                      }
 
 plot['WH_H0L1']  =   {
@@ -424,7 +416,7 @@ plot['WH_H0L1']  =   {
                       'color' : 620+3,
                       'isSignal' : 2,
                       'isData'   : 0,
-                      'scale'    : 5e14,
+                      'scale'    : 0.5e16,
                      }
 
 plot['VBF_H0L1']  =   {
@@ -432,7 +424,7 @@ plot['VBF_H0L1']  =   {
                       'color' : 620+4,
                       'isSignal' : 2,
                       'isData'   : 0,
-                      'scale'    : 5e14,
+                      'scale'    : 0.5e16,
                      }
 
 #plot['H_hww'] = {

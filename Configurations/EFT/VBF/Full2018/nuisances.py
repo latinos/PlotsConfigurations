@@ -356,6 +356,7 @@ key_dic = {
         'hww2l2v_13TeV_top_of2j':topdic,
         'hww2l2v_13TeV_of2j_ggh_untagged':gghuntdic,
 }
+
 for key,dic in key_dic.iteritems():
   nuisances['JER'+'_'+key]  = {
                       'name'  : 'CMS_res_j_2018',
@@ -606,15 +607,21 @@ for i in range(1,33):
       'WW'   : pdf_variations,
     },
   }
+
+for i in range(1,3)+range(5,6)+range(7,10)+range(13,18)+range(19,20)+range(23,24)+range(25,26)+range(29,33):
+#  if str(i) is not '3' or str(i) is not '12':
+  print("i", i)   
+#BAD STATISTICAL FLUCTUATIONS KILL IT
   nuisances['pdf_top_eigen'+str(i)]  = {
-    'name'  : 'CMS_hww_pdf_top_eigen'+str(i),
-    'skipCMS' : 1,
-    'kind'  : 'weight',
-    'type'  : 'shape',
-    'samples'  : {
+      'name'  : 'CMS_hww_pdf_top_eigen'+str(i),
+      'skipCMS' : 1,
+      'kind'  : 'weight',
+      'type'  : 'shape',
+      'samples'  : {
       'top'   : pdf_variations,
-    },
+      },
   }
+
 
 valuesggh = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ggH','125.09','pdf','sm')
 valuesggzh = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ggZH','125.09','pdf','sm')
@@ -869,15 +876,15 @@ thus = [
 for name, vname in thus:
     updown = [vname, '2.-%s' % vname]
 
+    GGHDict = { 'ggH_hww': updown }  #'ggH_htt': updown
+    GGHDict.update(dict((skey, updown) for skey in gghAC))
+
     nuisances[name] = {
         'name': name,
         'skipCMS': 1,
         'kind': 'weight',
         'type': 'shape',
-        'samples': {
-          'ggH_hww': updown,
-          #'ggH_htt': updown
-        }
+        'samples': GGHDict,
     }
 
 # Theory uncertainty for qqH 
@@ -902,14 +909,15 @@ thusQQH = [
 for name, vname in thusQQH:
     updown = [vname, '2.-%s' % vname]
 
+    QQHDict = { 'qqH_hww': updown }
+    QQHDict.update(dict((skey, updown) for skey in qqhAC))
+
     nuisances[name] = {
         'name': name,
         'skipCMS': 1,
         'kind': 'weight',
         'type': 'shape',
-        'samples': {
-          'qqH_hww': updown,
-        }
+        'samples': QQHDict
     }
 
 #### QCD scale uncertainties for Higgs signals other than ggH

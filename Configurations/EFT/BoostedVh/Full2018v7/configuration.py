@@ -1,7 +1,7 @@
 # example of configuration file
 treeName= 'Events'
 
-tag = 'JJH18B'
+tag = 'JJH18Bfatjets'
 
 # used by mkShape to define output directory for root files
 #outputDir = 'rootFile'+tag

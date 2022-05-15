@@ -52,7 +52,7 @@ for k in cuts:
 #    'type': 'lnN',
 #    'samples': dict((skey, '1.025') for skey in mc if skey not in ['WW', 'top', 'DY'])
 #}
-
+'''
 nuisances['lumi_Uncorrelated'] = {
     'name': 'lumi_13TeV_2018',
     'type': 'lnN',
@@ -127,7 +127,8 @@ nuisances['BoostedVtag'] = {
     'name': 'CMS_BoostedVtag_2018',
     'kind': 'weight',
     'type': 'shape',
-    'samples': dict((skey, boostedVtag_sys) for skey in samples if (skey.startswith('WH_') or skey.startswith('ZH_') or skey.startswith('ggZH_') or skey.startswith('VZ') or skey.startswith('VVV') or skey.startswith('ttH')))
+    'samples': dict((skey, boostedVtag_sys) for skey in samples if (skey.startswith('WH_') or skey.startswith('ZH_') or skey.startswith('ggZH_') or skey.startswith('VZ') or skey.startswith('VVV') or skey.startswith('ttH'))),
+    'AsLnN': '1'
 }
 
 #FATJET
@@ -139,8 +140,6 @@ nuisances['cfj_pt_JESTotal'] = {
     'mapUp' : 'pt_jesTotalUp',
     'mapDown': 'pt_jesTotalDown',
     'samples': dict((skey, ['1', '1']) for skey in mc),
-    'folderUp': 'root://eoscms.cern.ch/'+makeMCDirectory(''),
-    'folderDown': 'root://eoscms.cern.ch/'+makeMCDirectory(''),
     'AsLnN': '1'
 }
 
@@ -152,8 +151,6 @@ nuisances['cfj_pt_JER'] = {
     'mapUp' : 'pt_jerUp',
     'mapDown': 'pt_jerDown',
     'samples': dict((skey, ['1', '1']) for skey in mc),
-    'folderUp': 'root://eoscms.cern.ch/'+makeMCDirectory(''),
-    'folderDown': 'root://eoscms.cern.ch/'+makeMCDirectory(''),
     'AsLnN': '1'
 }
 nuisances['mV_jms'] = {
@@ -163,9 +160,7 @@ nuisances['mV_jms'] = {
     'auxname': 'FatJet_msoftdrop',
     'mapUp' : 'jmsUp',
     'mapDown': 'jmsDown',
-    'samples': dict((skey, ['1', '1']) for skey in mc),
-    'folderUp': 'root://eoscms.cern.ch/'+makeMCDirectory(''),
-    'folderDown': 'root://eoscms.cern.ch/'+makeMCDirectory(''),
+    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in qqhAC+gghAC)),
     'AsLnN': '1'
 }
 nuisances['mV_jmr'] = {
@@ -175,9 +170,7 @@ nuisances['mV_jmr'] = {
     'auxname': 'FatJet_msoftdrop',
     'mapUp': 'jmrUp',
     'mapDown': 'jmrDown',
-    'samples': dict((skey, ['1', '1']) for skey in mc),
-    'folderUp': 'root://eoscms.cern.ch/'+makeMCDirectory(''),
-    'folderDown': 'root://eoscms.cern.ch/'+makeMCDirectory(''),
+    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in qqhAC+gghAC)),
     'AsLnN': '1'
 }
 nuisances['mV_jesTotal'] = {
@@ -187,9 +180,7 @@ nuisances['mV_jesTotal'] = {
     'auxname': 'FatJet_msoftdrop',
     'mapUp' : 'jesTotalUp',
     'mapDown': 'jesTotalDown',
-    'samples': dict((skey, ['1', '1']) for skey in mc),
-    'folderUp': 'root://eoscms.cern.ch/'+makeMCDirectory(''),
-    'folderDown': 'root://eoscms.cern.ch/'+makeMCDirectory(''),
+    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in qqhAC+gghAC)),
     'AsLnN': '1'
 }
 
@@ -200,11 +191,10 @@ nuisances['mV_jer'] = {
     'auxname': 'FatJet_msoftdrop',
     'mapUp' : 'jerUp',
     'mapDown': 'jerDown',
-    'samples': dict((skey, ['1', '1']) for skey in mc),
-    'folderUp': 'root://eoscms.cern.ch/'+makeMCDirectory(''),
-    'folderDown': 'root://eoscms.cern.ch/'+makeMCDirectory(''),
+    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in qqhAC+gghAC)),
     'AsLnN': '1'
 }
+
 subjetsDirectory = '/eos/user/l/lurda/CMS/Latinos/Autumn18_102X_nAODv7_Full2018v7/MCl1loose2018v7__MCCorr2018v7__l2loose__l2tightOR2018v7__'
 
 nuisances['subjet_jer']  = {
@@ -325,6 +315,7 @@ if useEmbeddedDY:
     'AsLnN': '1'
   }
 '''
+
 if useEmbeddedDY:
   nuisances['electronpt_emb'] = {
     'name': 'CMS_scale_e_2018',
@@ -382,6 +373,7 @@ if useEmbeddedDY:
     'AsLnN': '1'
   }
 '''
+
 if useEmbeddedDY:
   nuisances['muonpt_emb'] = {
     'name': 'CMS_scale_m_2018',
@@ -958,15 +950,15 @@ thus = [
 for name, vname in thus:
     updown = [vname, '2.-%s' % vname]
 
+    GGHDict = { 'ggH_hww': updown }  #'ggH_htt': updown
+    GGHDict.update(dict((skey, updown) for skey in gghAC))
+
     nuisances[name] = {
         'name': name,
         'skipCMS': 1,
         'kind': 'weight',
         'type': 'shape',
-        'samples': {
-          'ggH_hww': updown,
-          #'ggH_htt': updown
-        }
+        'samples': GGHDict
     }
 
 # Theory uncertainty for qqH 
@@ -991,14 +983,15 @@ thusQQH = [
 for name, vname in thusQQH:
     updown = [vname, '2.-%s' % vname]
 
+    QQHDict = { 'qqH_hww': updown }
+    QQHDict.update(dict((skey, updown) for skey in qqhAC))
+
     nuisances[name] = {
         'name': name,
         'skipCMS': 1,
         'kind': 'weight',
         'type': 'shape',
-        'samples': {
-          'qqH_hww': updown,
-        }
+        'samples': QQHDict
     }
 
 #### QCD scale uncertainties for Higgs signals other than ggH
@@ -1134,7 +1127,6 @@ nuisances['Topnorm2j']  = {
                    },
                'type'  : 'rateParam',
               }
-
 
 for n in nuisances.values():
     n['skipCMS'] = 1

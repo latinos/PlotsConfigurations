@@ -33,6 +33,10 @@ fakeDirectory = os.path.join(treeBaseDir, dataReco, fakeSteps)
 dataDirectory = os.path.join(treeBaseDir, dataReco, dataSteps)
 embedDirectory = os.path.join(treeBaseDir, embedReco, embedSteps)
 
+useEmbeddedDY = True
+runDYveto = False
+useWgFXFX = True
+
 ###
 
 samples['DATA']  = {}
@@ -42,9 +46,11 @@ samples['top'] = {}
 samples['WW']    = {}
 samples['WWewk']  = {}
 samples['ggWW'] = {}
-samples['Vg'] = {}
-samples['VgS_L'] = {}
-samples['VgS_H'] = {}
+#samples['VgS'] = {}
+#samples['VgS_L'] = {}
+#samples['VgS_H'] = {}
+#samples['VgS'] = {}
+#samples['VgS']
 samples['VZ'] = {}
 samples['VVV'] = {}
 #samples['Fake_em'] = {}

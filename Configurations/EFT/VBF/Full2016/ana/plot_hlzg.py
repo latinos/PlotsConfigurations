@@ -103,11 +103,11 @@ groupPlot['VBF']  = {
 #              }
 
 
-scale=5
+scale=1
 
 # Mix of a1=1 (SM) + a2=-7500 (gZZ=-7613,gWW_VBF=-4091)
 groupPlot['HBSM']  = { 
-                  'nameHR' : 'ggF+VBF+VH h 0^{#Lambda_{1}^{Z#gamma}} (x5)',
+                  'nameHR' : 'ggF+VBF+VH h 0^{#Lambda_{1}^{Z#gamma}}',
                   'isSignal' : 2,
                   'color': 1,
                   'scale'    : scale,
@@ -115,7 +115,7 @@ groupPlot['HBSM']  = {
               }
 
 groupPlot['HSM']  = {
-                  'nameHR' : 'ggF+VBF+VH h (x5)',
+                  'nameHR' : 'ggF+VBF+VH h',
                   'isSignal' : 2,
                   'color': 632,
                   'scale'    : scale,

@@ -1,18 +1,3 @@
-'''
-mcProduction = 'Summer16_102X_nAODv7_Full2016v7'
-
-dataReco = 'Run2016_102X_nAODv7_Full2016v7'
-
-embedReco = 'Embedding2016_102X_nAODv7_Full2016v7'
-
-mcSteps = 'MCl1loose2016v7__MCCorr2016v7__l2loose__l2tightOR2016v7{var}'
-
-fakeSteps = 'DATAl1loose2016v7__l2loose__fakeW'
-
-dataSteps = 'DATAl1loose2016v7__l2loose__l2tightOR2016v7'
-
-embedSteps = 'DATAl1loose2016v7__l2loose__l2tightOR2016v7__Embedding'
-'''
 mcProduction = 'Autumn18_102X_nAODv7_Full2018v7'
 
 dataReco = 'Run2018_102X_nAODv7_Full2018v7'
@@ -48,6 +33,9 @@ fakeDirectory = os.path.join(treeBaseDir, dataReco, fakeSteps)
 dataDirectory = os.path.join(treeBaseDir, dataReco, dataSteps)
 embedDirectory = os.path.join(treeBaseDir, embedReco, embedSteps)
 
+useEmbeddedDY = True
+runDYveto = False
+useWgFXFX = True
 ###
 
 samples['DATA']  = {}
@@ -58,13 +46,14 @@ samples['WW']    = {}
 samples['WWewk']  = {}
 samples['ggWW'] = {}
 #samples['Vg'] = {}
-samples['VgS_L'] = {}
-samples['VgS_H'] = {}
+#samples['VgS_L'] = {}
+#samples['VgS_H'] = {}
+#samples['VgS'] = {}
 samples['VZ'] = {}
 samples['VVV'] = {}
-samples['Fake_em'] = {}
-samples['Fake_me'] = {}
-
+#samples['Fake_em'] = {}
+#samples['Fake_me'] = {}
+samples['Fake'] = {}
 samples['qqH_htt'] = {}
 samples['ZH_htt'] = {}
 samples['WH_htt'] = {}

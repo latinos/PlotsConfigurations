@@ -37,9 +37,7 @@ cuts['hww2l2v_13TeV_top_of2j']  = 'topcr && Sum$(CleanJet_pt>30)==2 && nCleanFat
 
 cuts['hww2l2v_13TeV_dytt_of2j']  = 'mth<60 && mll>40 && mll<80 && bVeto && Sum$(CleanJet_pt>30)==2'
 
-cuts['hww2l2v_13TeV_top_of2j_nofjveto']  = 'topcr && Sum$(CleanJet_pt>30)==2'
-
-
+#cuts['hww2l2v_13TeV_top_of2j_nofjveto']  = 'topcr && Sum$(CleanJet_pt>30)==2'
 
 
 

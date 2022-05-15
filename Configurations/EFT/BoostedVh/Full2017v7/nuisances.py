@@ -126,7 +126,8 @@ nuisances['BoostedVtag'] = {
     'name': 'CMS_BoostedVtag_2017',
     'kind': 'weight',
     'type': 'shape',
-    'samples': dict((skey, boostedVtag_sys) for skey in samples if (skey.startswith('WH_') or skey.startswith('ZH_') or skey.startswith('ggZH_') or skey.startswith('VVV') or skey.startswith('VZ') or skey.startswith('ttH')))
+    'samples': dict((skey, boostedVtag_sys) for skey in samples if (skey.startswith('WH_') or skey.startswith('ZH_') or skey.startswith('ggZH_') or skey.startswith('VVV') or skey.startswith('VZ') or skey.startswith('ttH'))),
+    'AsLnN': '1'
 }
 
 #FATJET
@@ -138,8 +139,6 @@ nuisances['cfj_pt_JESTotal'] = {
     'mapUp' : 'pt_jesTotalUp',
     'mapDown': 'pt_jesTotalDown',
     'samples': dict((skey, ['1', '1']) for skey in mc),
-    'folderUp': 'root://eoscms.cern.ch/'+makeMCDirectory(''),
-    'folderDown': 'root://eoscms.cern.ch/'+makeMCDirectory(''),
     'AsLnN': '1'
 }
 
@@ -151,8 +150,6 @@ nuisances['cfj_pt_JER'] = {
     'mapUp' : 'pt_jerUp',
     'mapDown': 'pt_jerDown',
     'samples': dict((skey, ['1', '1']) for skey in mc),
-    'folderUp': 'root://eoscms.cern.ch/'+makeMCDirectory(''),
-    'folderDown': 'root://eoscms.cern.ch/'+makeMCDirectory(''),
     'AsLnN': '1'
 }
 nuisances['mV_jms'] = {
@@ -162,9 +159,7 @@ nuisances['mV_jms'] = {
     'auxname': 'FatJet_msoftdrop',
     'mapUp' : 'jmsUp',
     'mapDown': 'jmsDown',
-    'samples': dict((skey, ['1', '1']) for skey in mc),
-    'folderUp': 'root://eoscms.cern.ch/'+makeMCDirectory(''),
-    'folderDown': 'root://eoscms.cern.ch/'+makeMCDirectory(''),
+    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in qqhAC+gghAC)),
     'AsLnN': '1'
 }
 nuisances['mV_jmr'] = {
@@ -174,9 +169,7 @@ nuisances['mV_jmr'] = {
     'auxname': 'FatJet_msoftdrop',
     'mapUp': 'jmrUp',
     'mapDown': 'jmrDown',
-    'samples': dict((skey, ['1', '1']) for skey in mc),
-    'folderUp': 'root://eoscms.cern.ch/'+makeMCDirectory(''),
-    'folderDown': 'root://eoscms.cern.ch/'+makeMCDirectory(''),
+    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in qqhAC+gghAC)),
     'AsLnN': '1'
 }
 
@@ -187,9 +180,7 @@ nuisances['mV_jesTotal'] = {
     'auxname': 'FatJet_msoftdrop',
     'mapUp' : 'jesTotalUp',
     'mapDown': 'jesTotalDown',
-    'samples': dict((skey, ['1', '1']) for skey in mc),
-    'folderUp': 'root://eoscms.cern.ch/'+makeMCDirectory(''),
-    'folderDown': 'root://eoscms.cern.ch/'+makeMCDirectory(''),
+    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in qqhAC+gghAC)),
     'AsLnN': '1'
 }
 
@@ -200,9 +191,7 @@ nuisances['mV_jer'] = {
     'auxname': 'FatJet_msoftdrop',
     'mapUp' : 'jerUp',
     'mapDown': 'jerDown',
-    'samples': dict((skey, ['1', '1']) for skey in mc),
-    'folderUp': 'root://eoscms.cern.ch/'+makeMCDirectory(''),
-    'folderDown': 'root://eoscms.cern.ch/'+makeMCDirectory(''),
+    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in qqhAC+gghAC)),
     'AsLnN': '1'
 }
 
@@ -293,7 +282,7 @@ nuisances['eff_e'] = {
     'kind': 'weight',
     'type': 'shape',
     'samples': dict((skey, ['SFweightEleUp', 'SFweightEleDown']) for skey in mc_emb),
-    'cuts': [cut for cut in cuts if not ('_CR_' in cut or 'top' in cut or 'dytt' in cut)],
+    'cuts': [cut for cut in cuts if not ('_CR_' in cut or 'top' in cut or 'dytt' in cut or 'WW' in cut)],
     'perRecoBin': True
 }
 nuisances['eff_e_CR'] = {
@@ -301,7 +290,7 @@ nuisances['eff_e_CR'] = {
     'kind': 'weight',
     'type': 'shape',
     'samples': dict((skey, ['SFweightEleUp', 'SFweightEleDown']) for skey in mc_emb),
-    'cuts': [cut for cut in cuts if '_CR_' in cut or 'top' in cut or 'dytt' in cut],
+    'cuts': [cut for cut in cuts if '_CR_' in cut or 'top' in cut or 'dytt' in cut or 'WW' in cut],
     'perRecoBin': True
 }
 nuisances['electronpt'] = {
@@ -330,6 +319,7 @@ if useEmbeddedDY:
     'AsLnN': '1'
   }
 '''
+
 if useEmbeddedDY:
   nuisances['electronpt_emb'] = {
     'name': 'CMS_scale_e_2017',
@@ -345,7 +335,7 @@ nuisances['eff_m'] = {
     'kind': 'weight',
     'type': 'shape',
     'samples': dict((skey, ['SFweightMuUp', 'SFweightMuDown']) for skey in mc_emb),
-    'cuts': [cut for cut in cuts if not ('_CR_' in cut or 'top' in cut or 'dytt' in cut)],
+    'cuts': [cut for cut in cuts if not ('_CR_' in cut or 'top' in cut or 'dytt' in cut or 'WW' in cut)],
     'perRecoBin': True
 }
 nuisances['eff_m_CR'] = {
@@ -353,7 +343,7 @@ nuisances['eff_m_CR'] = {
     'kind': 'weight',
     'type': 'shape',
     'samples': dict((skey, ['SFweightMuUp', 'SFweightMuDown']) for skey in mc_emb),
-    'cuts': [cut for cut in cuts if '_CR_' in cut or 'top' in cut or 'dytt' in cut],
+    'cuts': [cut for cut in cuts if '_CR_' in cut or 'top' in cut or 'dytt' in cut or 'WW' in cut],
     'perRecoBin': True
 }
 nuisances['muonpt'] = {
@@ -367,7 +357,10 @@ nuisances['muonpt'] = {
     'folderDown': 'root://eoscms.cern.ch/'+makeMCDirectory('trigFix__MupTdo_suffix'),
     'AsLnN': '1'
 }
-'''#dm
+
+
+#dm
+'''
 if useEmbeddedDY:
   nuisances['muonpt_emb'] = {
     'name': 'CMS_scale_m_2017',
@@ -381,6 +374,7 @@ if useEmbeddedDY:
     'AsLnN': '1'
   }
 '''
+
 if useEmbeddedDY:
   nuisances['muonpt_emb'] = {
     'name': 'CMS_scale_m_2017',
@@ -468,7 +462,6 @@ nuisances['JER'] = {
     'AsLnN': '1'
 }
 '''
-
 
 ##### MET energy scale
 
@@ -825,12 +818,14 @@ topScaleNormFactors2j = {'LHEScaleWeight[3]': 1.01676762423417, 'LHEScaleWeight[
 
 topvars2j.append('Alt$(LHEScaleWeight[0], 1.)/'+str(topScaleNormFactors2j['LHEScaleWeight[0]']))
 topvars2j.append('Alt$(LHEScaleWeight[8], 1.)/'+str(topScaleNormFactors2j['LHEScaleWeight[8]']))
+
 '''
 for var in variations:
   #topvars0j.append(var+'/'+str(topScaleNormFactors0j[var]))
   #topvars1j.append(var+'/'+str(topScaleNormFactors1j[var]))
   topvars2j.append(var+'/'+str(topScaleNormFactors2j[var]))
 '''
+
 ## QCD scale nuisances for top are decorrelated for each RECO jet bin: the QCD scale is different for different jet multiplicities so it doesn't make sense to correlate them
 nuisances['QCDscale_top_2j']  = {
     'name'  : 'QCDscale_top_2j_2017',
@@ -1165,7 +1160,6 @@ nuisances['Topnorm2j']  = {
                    },
                'type'  : 'rateParam',
               }
-
 
 for n in nuisances.values():
     n['skipCMS'] = 1
