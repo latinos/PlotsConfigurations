@@ -8,10 +8,46 @@
 
 #include <iostream>
 
+class getconstant {
+public:
+  //! constructor
+  getconstant(TString baseloc);
+  
+  virtual ~getconstant() {}
+  
+  float CforHM(float mass);
+
+  TString loc;
+
+  TFile* f_DjjVBF;
+  TSpline3 *DjjVBF;
+
+
+};
+
+
+getconstant::getconstant(TString baseloc) { 
+  loc = baseloc;
+  f_DjjVBF = TFile::Open(""+loc+"/SmoothKDConstant_m4l_DjjVBF_13TeV.root","read");
+  DjjVBF = (TSpline3*)f_DjjVBF->Get("sp_gr_varReco_Constant_Smooth");
+}
+
+
+float getconstant::CforHM(float mass){
+
+
+  if(mass<0)mass=0;
+  if(mass>12000)mass=12000;
+
+  float cVBF = DjjVBF->Eval(mass);
+  return cVBF;
+}
+
+
 class MelaGGFvsVBF : public multidraw::TTreeFunction {
 public:
   MelaGGFvsVBF();
-  MelaGGFvsVBF(unsigned int i);
+  MelaGGFvsVBF(unsigned int i, const char* baseconstants);
 
   char const* getName() const override { return "MelaGGFvsVBF"; }
   TTreeFunction* clone() const override { return new MelaGGFvsVBF(); }
@@ -55,6 +91,7 @@ protected:
   static float discriminatorBoosted;
   static float discriminatorResolved;
   static Mela* _mela;
+  static getconstant* _constants;
 
 
 };
@@ -86,6 +123,7 @@ FloatValueReader* MelaGGFvsVBF::Wlep_phi{};
 float MelaGGFvsVBF::discriminatorBoosted{-999.};
 float MelaGGFvsVBF::discriminatorResolved{-999.};
 Mela* MelaGGFvsVBF::_mela{};
+getconstant* MelaGGFvsVBF::_constants{};
 
 MelaGGFvsVBF::MelaGGFvsVBF() :
   TTreeFunction()
@@ -93,11 +131,12 @@ MelaGGFvsVBF::MelaGGFvsVBF() :
   _mela = new Mela(13., 125.);
 }
 
-MelaGGFvsVBF::MelaGGFvsVBF(unsigned int i) :
+MelaGGFvsVBF::MelaGGFvsVBF(unsigned int i, const char* baseconstants) :
   TTreeFunction()
 {
   _mela = new Mela(13., 125.);
   _which = i;
+  _constants = new getconstant(baseconstants);
 }
 
 void MelaGGFvsVBF::beginEvent(long long iEntry){
@@ -119,6 +158,9 @@ MelaGGFvsVBF::setValues(long long _iEntry)
    int idx_j2{*HM_idx_j2->Get()};      
 
    int idx_fat{*idxWfat->Get()};
+   TLorentzVector jfat;
+   if (idx_fat >= 0)
+    jfat.SetPtEtaPhiM(CleanFatJet_pt->At(idx_fat), CleanFatJet_eta->At(idx_fat), CleanFatJet_phi->At(idx_fat), CleanFatJet_mass->At(idx_fat));
 
    TLorentzVector lep;
    lep.SetPtEtaPhiM(*Wlep_pt->Get(), *Wlep_eta->Get(), *Wlep_phi->Get(), *Wlep_mass->Get());
@@ -134,9 +176,13 @@ MelaGGFvsVBF::setValues(long long _iEntry)
      for (int ij2 = ij1+1; ij2 < *nCleanJet->Get(); ++ij2){
        // skip if it is one of the two jets from the resolved candidate 
        if (ij1 == idx_j1 || ij1 == idx_j2 || ij2 == idx_j1 || ij2 == idx_j2) continue;
+       // we also skip jets if they overlap with the boosted candidate
        TLorentzVector tmpj1, tmpj2;
        tmpj1.SetPtEtaPhiM(CleanJet_pt->At(ij1), CleanJet_eta->At(ij1), CleanJet_phi->At(ij1), Jet_mass->At(CleanJet_jetIdx->At(ij1)));
        tmpj2.SetPtEtaPhiM(CleanJet_pt->At(ij2), CleanJet_eta->At(ij2), CleanJet_phi->At(ij2), Jet_mass->At(CleanJet_jetIdx->At(ij2)));
+       if (idx_fat >= 0) {
+        if ( (tmpj1.DeltaR(jfat) < 0.4) || (tmpj2.DeltaR(jfat) < 0.4) ) continue;
+       } 
        double tmpmjj = (tmpj1+tmpj2).M();
        if (tmpmjj > mjjmax ){
           foundVBFjets= true;
@@ -147,8 +193,8 @@ MelaGGFvsVBF::setValues(long long _iEntry)
      }       
    }
    if (! foundVBFjets) return;
-   vbfj1.Print();
-   vbfj2.Print();
+   //vbfj1.Print();
+   //vbfj2.Print();
    SimpleParticleCollection_t daughter_coll;
    SimpleParticleCollection_t associated_coll;       
    associated_coll.push_back(SimpleParticle_t(0,vbfj1));
@@ -160,7 +206,8 @@ MelaGGFvsVBF::setValues(long long _iEntry)
       TLorentzVector j2;
       j2.SetPtEtaPhiM(CleanJet_pt->At(idx_j2), CleanJet_eta->At(idx_j2), CleanJet_phi->At(idx_j2), Jet_mass->At(CleanJet_jetIdx->At(idx_j2)));
       TLorentzVector h = lep+j1+j2;
-      
+      float CforHM = _constants->CforHM(h.M());
+      //std::cout << CforHM << std::endl;  
       daughter_coll.push_back(SimpleParticle_t(25,h));
       _mela->setCandidateDecayMode(TVar::CandidateDecay_Stable);
       _mela->setInputEvent(&daughter_coll, &associated_coll, 0, 0);
@@ -169,24 +216,24 @@ MelaGGFvsVBF::setValues(long long _iEntry)
       float me_ggH = 0.;
       _mela->setProcess(TVar::HSMHiggs, TVar::JHUGen, TVar::JJVBF);
       // set the two resonances AFTER setting the process
-      _mela->setMelaHiggsMassWidth(h.M(), 10., 0);
+      _mela->setMelaHiggsMassWidth(h.M(), 10, 0);
       _mela->setMelaHiggsMassWidth(125., 4.07e-3, 1);
       _mela->computeProdP(me_vbf, true);
       _mela->setProcess(TVar::HSMHiggs, TVar::JHUGen, TVar::JJQCD);
       // set the two resonances AFTER setting the process
-      _mela->setMelaHiggsMassWidth(h.M(), 10., 0);
+      _mela->setMelaHiggsMassWidth(h.M(), 10, 0);
       _mela->setMelaHiggsMassWidth(125., 4.07e-3, 1);
       _mela->computeProdP(me_ggH, true);
 
+      //vbfj1.Print();
+      //vbfj2.Print();
       //std::cout << "me_vbf: " << me_vbf << " me_ggH: " << me_ggH << std::endl;
-      discriminatorResolved = me_vbf/(me_vbf+me_ggH);    
+      discriminatorResolved = me_vbf/(me_vbf+CforHM*me_ggH);    
    }
    // we have a boosted candidate
    if (idx_fat >= 0){
-      TLorentzVector jfat;
-      jfat.SetPtEtaPhiM(CleanFatJet_pt->At(idx_fat), CleanFatJet_eta->At(idx_fat), CleanFatJet_phi->At(idx_fat), CleanFatJet_mass->At(idx_fat));
       TLorentzVector h = lep+jfat;
-      
+      float CforHM = _constants->CforHM(h.M());  
       daughter_coll.push_back(SimpleParticle_t(25,h));
       _mela->setCandidateDecayMode(TVar::CandidateDecay_Stable);
       _mela->setInputEvent(&daughter_coll, &associated_coll, 0, 0);
@@ -195,15 +242,15 @@ MelaGGFvsVBF::setValues(long long _iEntry)
       float me_ggH = 0.;
       _mela->setProcess(TVar::HSMHiggs, TVar::JHUGen, TVar::JJVBF);
       // set the two resonances AFTER setting the process
-      _mela->setMelaHiggsMassWidth(h.M(), 10., 0);
+      _mela->setMelaHiggsMassWidth(h.M(), 10, 0);
       _mela->setMelaHiggsMassWidth(125., 4.07e-3, 1);
       _mela->computeProdP(me_vbf, true);
       _mela->setProcess(TVar::HSMHiggs, TVar::JHUGen, TVar::JJQCD);
       // set the two resonances AFTER setting the process
-      _mela->setMelaHiggsMassWidth(h.M(), 10., 0);
+      _mela->setMelaHiggsMassWidth(h.M(), 10, 0);
       _mela->setMelaHiggsMassWidth(125., 4.07e-3, 1);
       _mela->computeProdP(me_ggH, true);
-      discriminatorBoosted = me_vbf/(me_vbf+me_ggH);    
+      discriminatorBoosted = me_vbf/(me_vbf+CforHM*me_ggH);    
    }
 }   
 
