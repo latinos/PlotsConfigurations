@@ -27,6 +27,8 @@ parser.add_argument('--resub', action = 'store_true', help='Resubmit missing job
 args = parser.parse_args()
 
 pwd = os.getcwd()
+run2 = ['2016', '2017', '2018']
+
 semi_lep_dirs = {
     '2016': os.getenv('CMSSW_BASE') + '/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/Full2016_v7/darkHiggs_HT/darkHiggs_HT_datacards_ALL/', 
     '2017': os.getenv('CMSSW_BASE') + '/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/Full2017_v7/darkHiggs_HT/darkHiggs_HT_datacards_ALL/', 
@@ -52,12 +54,17 @@ semi_lep_var_dict = {
     },
 }
 
+
+#/eos/user/f/fernanpe/datacards_dilep_v3_added_ms_400/
+#/eos/user/f/fernanpe/datacards_dilep_v2_new_ms_350/
+#/eos/user/f/fernanpe/datacards_dilep
 full_lep_dirs = {
-    '2016': '/eos/user/f/fernanpe/datacards_dilep/datacards_2016/', 
-    '2017': '/eos/user/f/fernanpe/datacards_dilep/datacards_2017/', 
-    '2018': '/eos/user/f/fernanpe/datacards_dilep/datacards_2018/', 
+    '2016': '/eos/user/f/fernanpe/datacards_dilep_v3_added_ms_400/datacards_2016/', 
+    '2017': '/eos/user/f/fernanpe/datacards_dilep_v3_added_ms_400/datacards_2017/', 
+    '2018': '/eos/user/f/fernanpe/datacards_dilep_v3_added_ms_400/datacards_2018/', 
 }
-full_lep_regions = ['SR_drll1', 'SR_drll2', 'DYttCR', 'WWCR', 'TopCR']
+full_lep_regions = ['SR_drll1', 'SR_drll2', 'SR_drll3', 'DYttCR', 'WWCR', 'TopCR']
+#full_lep_regions = ['SR_drll1', 'SR_drll2', 'DYttCR', 'WWCR', 'TopCR']
 full_lep_var = 'mllVSmtw2_YEAR'
 full_lep_var_dic = {
     '2016': '0',
@@ -68,6 +75,7 @@ full_lep_var_dic = {
 mhs = ['160','180','200','250','300','350','400']
 mDM = ['100','150','200','300']
 mZp = ['200','300','400','500','600','700','800','900','1000','1100','1200','1300','1400','1500','1600','1700','1800','1900','2000','2100','2200','2300','2400','2500']
+#mZp = ['200']
 all_mp = []
 for hs in mhs:
     for DM in mDM:
@@ -97,7 +105,7 @@ if not args.resub:
                 for mp in eff_mp:
                     in_card = None
                     for fil in os.listdir(region_sd):
-                        if 'darkHiggs_'+mp in fil and fil.endswith('.txt'): in_card = region_sd+'/'+fil
+                        if 'darkHiggs_'+mp+'.' in fil and fil.endswith('.txt'): in_card = region_sd+'/'+fil
                     if in_card is None: 
                         missing_s_input_mp.append(mp)
                         if not mp in miss_mp: miss_mp.append(mp)
@@ -114,7 +122,7 @@ if not args.resub:
                 for mp in eff_mp:
                     in_card = None
                     for fil in os.listdir(region_sd):
-                        if 'DH_'+mp in fil and fil.endswith('.txt'): in_card = region_sd+'/'+fil
+                        if 'DH_'+mp+'.' in fil and fil.endswith('.txt'): in_card = region_sd+'/'+fil
                     if in_card is None: 
                         missing_f_input_mp.append(mp)
                         if not mp in miss_mp: miss_mp.append(mp)
@@ -154,6 +162,30 @@ def add_ranges_bkgnorm(data_card):
         if 'rateParam' in line and not ranges in line:
             o_file.write(line.replace('1.0000', '1.0000  '+ranges))
         else: o_file.write(line)
+    o_file.close()
+
+def delete_line(data_card, match_strings):
+    o_file = open(data_card, 'r')
+    lines = o_file.readlines()
+    o_file.close()
+
+    o_file = open(data_card, 'w')
+    for line in lines:
+        delete = True
+        for string in match_strings:
+            if not string in line:
+                delete = False
+                break
+        if delete: continue
+        else: o_file.write(line)
+    o_file.close()
+
+def rename_nuisance(data_card, old_name, new_name, channel, process='*'):
+
+    edit_cmd = 'nuisance edit rename '+process+' '+channel+' '+old_name+' '+new_name +' ifexists'
+
+    o_file = open(data_card, 'a')
+    o_file.write(edit_cmd+'\n')
     o_file.close()
 
 def exec_combine_cmd(cmd, target_dir):
@@ -279,10 +311,6 @@ def get_n_root(file_path, histo_names):
     r_file.Close()
     return n
 
-def prep_card_thread(card_name, cmd_str, target_dir):
-    exec_combine_cmd(cmd_str, target_dir)
-    add_ranges_bkgnorm(target_dir+'/'+card_name)
-
 class MyThread(Thread):
     def run(self):
         try:
@@ -296,12 +324,71 @@ class MyThread(Thread):
 # Output dir
 pwd = os.getcwd()
 base_dir = 'datacards_FullCombi'
+#base_dir = 'datacards_FullCombi_test'
 if not os.path.isdir(base_dir): os.system('mkdir '+base_dir)
 semi_dir = base_dir+'/semi_lep'
 if not os.path.isdir(semi_dir): os.system('mkdir '+semi_dir)
 full_dir = base_dir+'/full_lep'
 if not os.path.isdir(full_dir): os.system('mkdir '+full_dir)
+
+def fix_corr(data_card):
+
+    # Fix full lep
+    if full_dir in data_card:
+        # Separate years
+        for year in run2: 
+            if 'datacard_'+year+'_' in data_card:
+                # Trigger
+                rename_nuisance(data_card, 'CMS_eff_hwwtrigger_'+year, 'CMS_eff_2l2nu_trigger_'+year, '*') 
+                # Fake nuisances
+                rename_nuisance(data_card, 'CMS_fake_syst', 'CMS_fake_2l2nu_syst_'+year, '*', 'Fake') 
+                rename_nuisance(data_card, 'CMS_fake_m_'+year, 'CMS_fake_2l2nu_m_recoil_'+year, '*', 'Fake') 
+                rename_nuisance(data_card, 'CMS_fake_e_'+year, 'CMS_fake_2l2nu_e_recoil_'+year, '*', 'Fake') 
+                rename_nuisance(data_card, 'CMS_fake_stat_m_'+year, 'CMS_fake_2l2nu_m_stat_'+year, '*', 'Fake') 
+                rename_nuisance(data_card, 'CMS_fake_stat_e_'+year, 'CMS_fake_2l2nu_e_stat_'+year, '*', 'Fake') 
+
+        # Run2 comb
+        if 'datacard_Run2_' in data_card:
+            delete_line(data_card, ['nuisance', 'edit', 'rename', 'CMS_eff_hwwtrigger'])
+            for year in run2:
+                rename_nuisance(data_card, 'CMS_eff_hwwtrigger_'+year, 'CMS_eff_2l2nu_trigger_'+year, '*')
     
+    # Fix semi lep
+    if semi_dir in data_card:
+        # Separate years
+        for year in run2: 
+            if 'datacard_'+year+'_' in data_card:
+                # Trigger
+                rename_nuisance(data_card, 'CMS_eff_hwwtrigger_'+year, 'CMS_eff_lnujj_trigger_'+year, '*') 
+                # Fake nuisances
+                rename_nuisance(data_card, 'CMS_fake_m_stat_'+year    , 'CMS_fake_lnujj_m_stat_'+year, '*', 'FAKE') 
+                rename_nuisance(data_card, 'CMS_fake_e_stat_'+year    , 'CMS_fake_lnujj_e_stat_'+year, '*', 'FAKE')
+                if year == '2016': 
+                    rename_nuisance(data_card, 'CMS_fake_syst_'+year    , 'CMS_fake_lnujj_syst_'+year, '*', 'FAKE') 
+                    rename_nuisance(data_card, 'CMS_fake_m_recoil_'+year, 'CMS_fake_lnujj_m_recoil_'+year, '*', 'FAKE') 
+                    rename_nuisance(data_card, 'CMS_fake_e_recoil_'+year, 'CMS_fake_lnujj_e_recoil_'+year, '*', 'FAKE') 
+                else:
+                    rename_nuisance(data_card, 'CMS_fake_syst_2017_18'    , 'CMS_fake_lnujj_syst_'+year, '*', 'FAKE') 
+                    rename_nuisance(data_card, 'CMS_fake_m_recoil_2017_18', 'CMS_fake_lnujj_m_recoil_'+year, '*', 'FAKE') 
+                    rename_nuisance(data_card, 'CMS_fake_e_recoil_2017_18', 'CMS_fake_lnujj_e_recoil_'+year, '*', 'FAKE')
+
+        # Run2 comb
+        if 'datacard_Run2_' in data_card:
+            delete_line(data_card, ['nuisance', 'edit', 'rename', 'CMS_eff_hwwtrigger'])
+            for year in run2:
+                rename_nuisance(data_card, 'CMS_eff_hwwtrigger_'+year, 'CMS_eff_lnujj_trigger_'+year, '*')
+
+    # Full combination
+    if 'datacard_FullCombi_' in data_card: 
+        delete_line(data_card, ['nuisance', 'edit', 'rename', 'CMS_eff_hwwtrigger'])
+        for year in run2:
+            rename_nuisance(data_card, 'CMS_eff_hwwtrigger_'+year, 'CMS_eff_lnujj_trigger_'+year, 'Semi_*')
+            rename_nuisance(data_card, 'CMS_eff_hwwtrigger_'+year, 'CMS_eff_2l2nu_trigger_'+year, 'Full_*')
+
+def prep_card_thread(card_name, cmd_str, target_dir):
+    exec_combine_cmd(cmd_str, target_dir)
+    add_ranges_bkgnorm(target_dir+'/'+card_name)
+    fix_corr(target_dir+'/'+card_name)
     
 ### Collect separate process cards
 if not args.resub:
@@ -358,7 +445,7 @@ if not args.resub:
                         data_card = region_wd+'/datacard_'+mp+'.txt'
                         in_card = None
                         for fil in os.listdir(region_sd):
-                            if datacard_str in fil and mp in fil and fil.endswith('.txt'): in_card = region_sd+'/'+fil
+                            if datacard_str in fil and mp+'.' in fil and fil.endswith('.txt'): in_card = region_sd+'/'+fil
     
                         if os.path.isfile(data_card): os.system('rm '+data_card)
                         os.system('cp '+in_card+' '+data_card)
@@ -518,13 +605,28 @@ def write_sh(file_path, data_card_name, exec_dir, un_blind=False):
     o_file.write('#!/bin/bash\n')
     o_file.write('cd '+args.cmbDir+'\n')
     o_file.write('eval `scramv1 runtime -sh`\n')
-    o_file.write('cd '+exec_dir+'\n')
     o_file.write('\n')
+
+    # Change to path with dirs, copy structure to TMPDIR, copy shapes and card
+    o_file.write('cd '+exec_dir+'\n')
+    o_file.write('find . -type d -links 2 -exec mkdir -p "$TMPDIR/{}" \\;\n')
+    o_file.write('find . -type d -links 2 -name shapes -exec rm -rf "$TMPDIR/{}" \\;\n')
+    o_file.write('find . -type d -links 2 -name shapes -exec cp -r "{}" "$TMPDIR/{}" \\;\n')
+    #o_file.write('cp -r '+exec_dir+'/*\n')
+    o_file.write('cp '+data_card_name+' $TMPDIR/.\n')
+    o_file.write('cd $TMPDIR\n')
+    o_file.write('ls -larth\n')
+    o_file.write('\n')
+
     name_tag = data_card_name.replace('datacard', '').replace('.txt', '')
     if not un_blind:
         o_file.write('combine -M AsymptoticLimits --run blind '+data_card_name+' -n '+name_tag+'\n')
     else:
         o_file.write('combine -M AsymptoticLimits '+data_card_name+' -n '+name_tag+'\n')
+    o_file.write('\n')
+
+    o_file.write('ls -larth\n')
+    o_file.write('mv *'+name_tag+'*.root '+exec_dir+'/.\n')
     o_file.write('\n')
     
     jid_file = file_path.replace('.sh', '.jid')
@@ -568,6 +670,7 @@ def submit_jobs(jobs):
         else: jds += line.replace(jobs[0], '$(JName)')
     jds += 'queue JName in (\n'
     for job in jobs:
+        #print(job)
         jds += job + '\n'
     jds += ')\n'
     #print(jds)
@@ -586,11 +689,11 @@ def submit_dir(in_dir, job_dir, mass_points):
         if not fil.endswith('.txt'): continue
         if not 'datacard' in fil: continue
         for mp in mass_points:
-            if mp in fil:
+            if mp+'.' in fil:
                 if not fil in data_cards: 
                     data_cards.append(fil)
                     job_id = job_dir+'/'+mp
-                    jobs.append(job_id)
+                    if not job_id in jobs: jobs.append(job_id)
                     write_sh(job_id+'.sh', fil, in_dir, un_blind=args.un_blind)
                     write_jds(job_id+'.jds')
                 break
@@ -608,7 +711,8 @@ def resub_dir(job_dir):
     #print(job_dir, jobs)
     submit_jobs(jobs)
  
-job_dir = pwd +'/'+base_dir + '/job'
+#job_dir = pwd +'/'+base_dir + '/job'
+job_dir = pwd + '/job'
 if not os.path.isdir(job_dir): os.system('mkdir '+job_dir)
 job_dir_c = job_dir + '/Comb'
 if not os.path.isdir(job_dir_c): os.system('mkdir '+job_dir_c)
@@ -619,14 +723,24 @@ if not os.path.isdir(job_dir_f): os.system('mkdir '+job_dir_f)
 
 if not args.resub:
     if not args.skip_sub:
+        print('Submitting Full Combination: ')
         submit_dir(pwd +'/'+base_dir, job_dir_c, eff_mp) 
         
-        if not args.skip_semi_sub: submit_dir(pwd +'/'+semi_dir, job_dir_s, eff_mp) 
+        if not args.skip_semi_sub:
+            print('Submitting Semi-Lep: ')
+            submit_dir(pwd +'/'+semi_dir, job_dir_s, eff_mp) 
         
-        if not args.skip_full_sub: submit_dir(pwd +'/'+full_dir, job_dir_f, eff_mp) 
+        if not args.skip_full_sub:
+            print('Submitting Full-Lep: ')
+            submit_dir(pwd +'/'+full_dir, job_dir_f, eff_mp) 
 
 if args.resub:
+   print('Re-submitting Full Combination: ')
    resub_dir(job_dir_c) 
-   if not args.skip_semi_sub: resub_dir(job_dir_s) 
-   if not args.skip_full_sub: resub_dir(job_dir_f) 
+   if not args.skip_semi_sub: 
+       print('Re-submitting Semi-Lep: ')
+       resub_dir(job_dir_s) 
+   if not args.skip_full_sub:
+       print('Re-submitting Full-Lep: ')
+       resub_dir(job_dir_f) 
 

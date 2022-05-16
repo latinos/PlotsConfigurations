@@ -63,6 +63,7 @@ if 'iihe' in SITE:
     VBSDirectory = makeMCDirectory(base='/pnfs/iihe/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano_smp')
 else:
     VBSDirectory = makeMCDirectory(base='/eos/cms/store/group/phys_smp/VJets_NLO_VBSanalyses')
+myMcDirectory = makeMCDirectory(base='/eos/user/s/svanputt/monoHWW/samples/HWWNano')
 dataDirectory = os.path.join(treeBaseDir, dataReco, dataSteps)
 fakeDirectory = os.path.join(treeBaseDir, dataReco, fakeSteps)
 
@@ -624,15 +625,8 @@ else:
 
 for mp in signal:
     mpo = mp.replace('darkHiggs_', '')
-    #mhs = mpo.split('_')[1] 
-    #mx  = mpo.split('_')[3] 
-    #mZp = mpo.split('_')[5] 
-    ##if not 'mA_400' in mp: continue
-    ##if not mhs == '160' and not mx == '100' in mp: continue
-    #if not mhs == '160': continue 
-    #if not mx == '100' : continue
-    #if not mZp in ['500']: continue
-    if not mpo in ['mhs_160_mx_100_mZp_500', 'mhs_180_mx_100_mZp_1200', 'mhs_180_mx_100_mZp_1500', 'mhs_180_mx_100_mZp_2000']: continue
+    #if not mpo in ['mhs_160_mx_100_mZp_500', 'mhs_180_mx_100_mZp_1200', 'mhs_180_mx_100_mZp_1500', 'mhs_180_mx_100_mZp_2000']: continue
+    if not mpo in ['mhs_160_mx_100_mZp_500']: continue
     samples[mp] = copy.deepcopy(signal[mp])
 
 ################################################

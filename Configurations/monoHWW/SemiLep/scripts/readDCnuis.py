@@ -34,7 +34,7 @@ for nuis in nuis_list:
     nuis_line = '' 
     chan_line = '' 
     for line in lines:
-        if line.startswith('process') and 'Wjets' in line:
+        if line.startswith('process') and 'top' in line:
             proc_line = line.replace('\n', '')
         if line.startswith(nuis):
             nuis_line = line.replace('\n', '')
@@ -56,7 +56,9 @@ for nuis in nuis_list:
     
     print(' - Collect info')
     for idx in range(-1, (n_nuis-1)*-1, -1):
+        #print(idx)
         #print(' -- '+' '+str(idx)+' '+str(proc_line_f[idx])+' '+str(nuis_line_f[idx])+' '+str(chan_line_f[idx]))
+
         chan = chan_line_f[idx]
         samp = proc_line_f[idx]
         val = nuis_line_f[idx]

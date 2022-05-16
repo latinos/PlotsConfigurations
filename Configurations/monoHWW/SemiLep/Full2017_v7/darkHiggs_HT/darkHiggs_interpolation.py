@@ -19,6 +19,7 @@ central_mass_points = [
     'mhs_400_mx_200_mZp_1000', 'mhs_400_mx_200_mZp_500', 'mhs_400_mx_200_mZp_800',
     # Additional private sample
     'mhs_250_mx_150_mZp_1200',
+    'mhs_350_mx_200_mZp_1200',
 ]
 
 mhs = ['160', '180', '200']
@@ -57,7 +58,7 @@ for hs in mhs:
             ref_DM = '150'
             ref_Zp = '1200'
             #if hs == '250': ref_hs = '200'
-            if hs == '350': ref_hs = '300'
+            if hs == '350': ref_DM = '200'
             elif hs == '400':
                 ref_DM = '200'
                 ref_Zp = '1000'
