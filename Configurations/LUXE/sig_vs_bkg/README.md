@@ -53,3 +53,8 @@ Plots will be visible at:
 In our example case:
 
     https://etpwww.etp.kit.edu/~ntrevisa/2022_04_05/plots_Luxe/
+    
+
+At KIT, you can find the gallery.py file at:
+
+    /work/ntrevisa/utils/gallery.py
