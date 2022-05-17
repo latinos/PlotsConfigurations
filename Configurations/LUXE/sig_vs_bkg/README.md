@@ -4,7 +4,7 @@ Configuration to simply dump MC distributions from LUXE-NPOD experiment. Current
 
 The instructions to produce the plots follow.
 
-### Produce distributions using mkShapesMulti.py in batch mode
+### Produce distributions using mkShapes.py in batch mode
 
     mkShapes.py --pycfg=configuration.py --doBatch=1 --batchQueue=testmatch --batchSplit=AsMuchAsPossible
 
