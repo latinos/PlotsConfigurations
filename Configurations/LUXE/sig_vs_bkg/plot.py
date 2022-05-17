@@ -46,5 +46,7 @@ plot['Bkg_phase1'] = {
 
 # additional options
 
-legend['lumi'] = 'Aribtrary Luminosity'
-legend['sqrt'] = 'Beam Dump'
+legend['lumi']   = 'Aribtrary Luminosity'
+legend['sqrt']   = 'Beam Dump'
+legend['cms']    = 'LUXE'
+legend['period'] = 'LUXE'

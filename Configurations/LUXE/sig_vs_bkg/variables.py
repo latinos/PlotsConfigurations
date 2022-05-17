@@ -69,7 +69,7 @@ variables['z'] = {
 # Track time
 variables['t'] = {
     'name' : 't',
-    'range': (100,0,10),
+    'range': (100,0,1000),
     'xaxis': 'Track time []',
     'fold' : 3
 }
@@ -175,5 +175,13 @@ variables['nsecondary'] = {
     'name' : 'nsecondary', 
     'range': (100,0,500),
     'xaxis': 'Track number of secondary particles',
+    'fold' : 3
+}
+
+# Detector ID
+variables['detid'] = {
+    'name' : 'detid', 
+    'range': (1000,0,10000),
+    'xaxis': 'Detector ID',
     'fold' : 3
 }
