@@ -152,7 +152,6 @@ MelaGGFvsVBF::setValues(long long _iEntry)
    currentEntry = _iEntry;
    discriminatorBoosted = -999;
    discriminatorResolved = -999;
-   _mela->resetInputEvent();
  
    int idx_j1{*HM_idx_j1->Get()};      
    int idx_j2{*HM_idx_j2->Get()};      
@@ -168,6 +167,7 @@ MelaGGFvsVBF::setValues(long long _iEntry)
    // nothing to do if we don't have at least 2 jets 
    if (*nCleanJet->Get() < 2)
     return;
+   /*
    // loop over the jets and find the pair with the highest invariant mass
    float mjjmax = 0;
    TLorentzVector vbfj1, vbfj2;
@@ -180,8 +180,9 @@ MelaGGFvsVBF::setValues(long long _iEntry)
        TLorentzVector tmpj1, tmpj2;
        tmpj1.SetPtEtaPhiM(CleanJet_pt->At(ij1), CleanJet_eta->At(ij1), CleanJet_phi->At(ij1), Jet_mass->At(CleanJet_jetIdx->At(ij1)));
        tmpj2.SetPtEtaPhiM(CleanJet_pt->At(ij2), CleanJet_eta->At(ij2), CleanJet_phi->At(ij2), Jet_mass->At(CleanJet_jetIdx->At(ij2)));
+       if (tmpj1.Pt() < 30 || tmpj2.Pt() < 30) continue;
        if (idx_fat >= 0) {
-        if ( (tmpj1.DeltaR(jfat) < 0.4) || (tmpj2.DeltaR(jfat) < 0.4) ) continue;
+        if ( (tmpj1.DeltaR(jfat) < 0.8) || (tmpj2.DeltaR(jfat) < 0.8) ) continue;
        } 
        double tmpmjj = (tmpj1+tmpj2).M();
        if (tmpmjj > mjjmax ){
@@ -192,13 +193,34 @@ MelaGGFvsVBF::setValues(long long _iEntry)
        }
      }       
    }
+   */
+   // loop over the jets and find the two leading not overlapping with the candidate
+   TLorentzVector vbfj1, vbfj2;
+   int nVBF = 0;
+   for (int ij = 0; ij < *nCleanJet->Get()-1 && nVBF <=2 ; ++ij){
+     if (ij == idx_j1 || ij == idx_j2) continue;
+     TLorentzVector tmpj;
+     tmpj.SetPtEtaPhiM(CleanJet_pt->At(ij), CleanJet_eta->At(ij), CleanJet_phi->At(ij), Jet_mass->At(CleanJet_jetIdx->At(ij)));
+     if (tmpj.Pt() < 30) continue;
+     if (idx_fat >= 0) {
+        if ( tmpj.DeltaR(jfat) < 0.8) continue;
+     }
+     nVBF+=1; 
+     if (nVBF == 1)
+       vbfj1 = tmpj;
+     else if (nVBF == 2)
+       vbfj2 = tmpj;
+   }    
+   bool foundVBFjets = (nVBF==2);
+
    if (! foundVBFjets) return;
+   // if they are not correctly ordered in pT, reorder. Mela requires this
    //vbfj1.Print();
    //vbfj2.Print();
    SimpleParticleCollection_t daughter_coll;
    SimpleParticleCollection_t associated_coll;       
-   associated_coll.push_back(SimpleParticle_t(0,vbfj1));
-   associated_coll.push_back(SimpleParticle_t(0,vbfj2));
+   associated_coll.push_back(SimpleParticle_t(0,vbfj1.Pt()>vbfj2.Pt() ? vbfj1 : vbfj2));
+   associated_coll.push_back(SimpleParticle_t(0,vbfj1.Pt()>vbfj2.Pt() ? vbfj2 : vbfj1));
    // we have a resolved candidate
    if (idx_j1>=0){
       TLorentzVector j1;
@@ -207,7 +229,9 @@ MelaGGFvsVBF::setValues(long long _iEntry)
       j2.SetPtEtaPhiM(CleanJet_pt->At(idx_j2), CleanJet_eta->At(idx_j2), CleanJet_phi->At(idx_j2), Jet_mass->At(CleanJet_jetIdx->At(idx_j2)));
       TLorentzVector h = lep+j1+j2;
       float CforHM = _constants->CforHM(h.M());
-      //std::cout << CforHM << std::endl;  
+      //std::cout << CforHM << std::endl; 
+      // reset to make sure...
+      _mela->resetInputEvent();
       daughter_coll.push_back(SimpleParticle_t(25,h));
       _mela->setCandidateDecayMode(TVar::CandidateDecay_Stable);
       _mela->setInputEvent(&daughter_coll, &associated_coll, 0, 0);
@@ -215,14 +239,10 @@ MelaGGFvsVBF::setValues(long long _iEntry)
       float me_vbf = 0.;
       float me_ggH = 0.;
       _mela->setProcess(TVar::HSMHiggs, TVar::JHUGen, TVar::JJVBF);
-      // set the two resonances AFTER setting the process
       _mela->setMelaHiggsMassWidth(h.M(), 10, 0);
-      _mela->setMelaHiggsMassWidth(125., 4.07e-3, 1);
       _mela->computeProdP(me_vbf, true);
       _mela->setProcess(TVar::HSMHiggs, TVar::JHUGen, TVar::JJQCD);
-      // set the two resonances AFTER setting the process
       _mela->setMelaHiggsMassWidth(h.M(), 10, 0);
-      _mela->setMelaHiggsMassWidth(125., 4.07e-3, 1);
       _mela->computeProdP(me_ggH, true);
 
       //vbfj1.Print();
@@ -235,20 +255,18 @@ MelaGGFvsVBF::setValues(long long _iEntry)
       TLorentzVector h = lep+jfat;
       float CforHM = _constants->CforHM(h.M());  
       daughter_coll.push_back(SimpleParticle_t(25,h));
+      // important to reset here, in case we have both resolved and boosted candidates
+      _mela->resetInputEvent();
       _mela->setCandidateDecayMode(TVar::CandidateDecay_Stable);
       _mela->setInputEvent(&daughter_coll, &associated_coll, 0, 0);
       _mela->setCurrentCandidateFromIndex(0);
       float me_vbf = 0.;
       float me_ggH = 0.;
       _mela->setProcess(TVar::HSMHiggs, TVar::JHUGen, TVar::JJVBF);
-      // set the two resonances AFTER setting the process
       _mela->setMelaHiggsMassWidth(h.M(), 10, 0);
-      _mela->setMelaHiggsMassWidth(125., 4.07e-3, 1);
       _mela->computeProdP(me_vbf, true);
       _mela->setProcess(TVar::HSMHiggs, TVar::JHUGen, TVar::JJQCD);
-      // set the two resonances AFTER setting the process
       _mela->setMelaHiggsMassWidth(h.M(), 10, 0);
-      _mela->setMelaHiggsMassWidth(125., 4.07e-3, 1);
       _mela->computeProdP(me_ggH, true);
       discriminatorBoosted = me_vbf/(me_vbf+CforHM*me_ggH);    
    }
