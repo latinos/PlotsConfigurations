@@ -693,13 +693,10 @@ aliases['SBI_isHM'] = {
     'samples': mc_sbi
 }
 
-<<<<<<< HEAD
 aliases["nJetHigh2"]={
     'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/getNJet.cc+'  % os.getenv('CMSSW_BASE')],
     'class': 'getNJet',
 }
-=======
->>>>>>> d329c22b1fc40ba7a550b642af564f4a5df7bc6f
 
 aliases["MelaVBFvsGGH_boosted"]={
     'linesToAdd': [
@@ -719,7 +716,6 @@ aliases["MelaVBFvsGGH_resolved"]={
 }
 
 
-<<<<<<< HEAD
 aliases['kfact'] = { 
     'linesToAdd': [
 	'gSystem->Load("%s/src/JHUGenMELA/MELA/data/%s/libmcfm_707.so","", kTRUE);'%(os.getenv('CMSSW_BASE'), os.getenv('SCRAM_ARCH')),
@@ -746,8 +742,6 @@ aliases['kfact'] = {
 
 
 
-=======
->>>>>>> d329c22b1fc40ba7a550b642af564f4a5df7bc6f
 #aliases['SBI_isSMggh'] = {
  #   'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/isSample.cc+' % os.getenv('CMSSW_BASE')],
  #   'expr' : 'is_SMggh()',
