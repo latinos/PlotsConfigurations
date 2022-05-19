@@ -699,7 +699,7 @@ aliases["MelaVBFvsGGH_boosted"]={
     'gSystem->Load("libJHUGenMELAMELA.so","", kTRUE);',
     '.L %s/HWWSemiLepHighMass/MelaGGFvsVBF.cc+' % configurations],
     'class': 'MelaGGFvsVBF',
-    'args': 0
+    'args': (0, "%s/HWWSemiLepHighMass/" % configurations)
 }
 aliases["MelaVBFvsGGH_resolved"]={
     'linesToAdd': [
@@ -707,7 +707,7 @@ aliases["MelaVBFvsGGH_resolved"]={
     'gSystem->Load("libJHUGenMELAMELA.so","", kTRUE);',
     '.L %s/HWWSemiLepHighMass/MelaGGFvsVBF.cc+' % configurations],
     'class': 'MelaGGFvsVBF',
-    'args': 1
+    'args': (1,  "%s/HWWSemiLepHighMass/" % configurations)
 }
 
 
