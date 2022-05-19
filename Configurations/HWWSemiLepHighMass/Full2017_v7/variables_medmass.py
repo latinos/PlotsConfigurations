@@ -141,31 +141,31 @@ variables['events']  = {
 #     'fold' : 0
 # }
 
-#variables['Fat_jet_pt'] = {
-#   'name' : 'FatJet_pt[0]',
-#   'range': (24, 0, 1200),
-#   'xaxis': 'clFATJet pt',
-#   'fold' : 0
-#}
+variables['Fat_jet_pt'] = {
+   'name' : 'FatJet_pt[0]',
+   'range': (24, 0, 1200),
+   'xaxis': 'clFATJet pt',
+   'fold' : 0
+}
 #variables['FatJet_mass'] = {
 #    'name' : 'FatJet_mass[0]',
 #    'range': (25,0,250),
 #    'xaxis': 'CleanFatJetMass [GeV]',
 #    'fold' : 0
 #}
-#variables['CleanFatJet_mass'] = {
-#    'name' : 'CleanFatJet_mass[0]',
-#    'range': (25,0,250),
-#    'xaxis': 'FatJetMass [GeV]',
-#    'fold' : 0
-#}
-#variables['Fatjet_eta'] = {
-#    'name' : 'FatJet_eta[0]',
-#    'range': (30, -3.0, 3.0),
-#    'xaxis': 'clJet[1] eta',
-#     # 'divideByBinWidth' : 1,
-#    'fold' : 0
-#}
+variables['CleanFatJet_mass'] = {
+    'name' : 'CleanFatJet_mass[0]',
+    'range': (25,0,250),
+    'xaxis': 'FatJetMass [GeV]',
+    'fold' : 0
+}
+variables['Fatjet_eta'] = {
+    'name' : 'FatJet_eta[0]',
+    'range': (30, -3.0, 3.0),
+    'xaxis': 'clJet[1] eta',
+     # 'divideByBinWidth' : 1,
+    'fold' : 0
+}
 
 
 #####################################################
@@ -279,12 +279,12 @@ variables['HvOverJJ'] = {
 ##   'fold' : 0
 ##}
 ##
-##variables['DeepTag'] = {
-##   'name' : 'FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[idxCleanFatJetW]] ',
-##   'range': ([0,0.960,1],),
-##   'xaxis': 'DeepTag_FatJet',
-##   'fold' : 0
-##}
+variables['DeepTag'] = {
+   'name' : 'FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[idxCleanFatJetW]] ',
+   'range': ([0,0.964,1],),
+   'xaxis': 'DeepTag_FatJet',
+   'fold' : 0
+}
 ##
 ##variables['DeepTag_leadingFatJet'] = {
 ##   'name' : 'FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]] ',
@@ -293,24 +293,24 @@ variables['HvOverJJ'] = {
 ##   'fold' : 0
 ##}
 #
-##variables['mass_HIGGS_FAT_binned'] = {
-##   'name' : 'mass_HIGGS_FAT[0]',
-##   'range': ([0, 200, 250, 300, 350, 400, 450, 500, 550, 600,
-##               650, 700, 750, 800, 850, 900, 950, 1000, 1050,
-##  	       1100, 1150, 1200, 1250, 1300, 1350, 1400, 1450, 1500, 1700, 2000, 3000 ],),
-##   'xaxis': 'Higgs Mass [GeV]',
-##   'fold' : 0 ,
-##   'cuts' : boosted ,
-##}
-##
-##
-##variables['mass_HIGGS_FAT'] = {
-##   'name' : 'mass_HIGGS_FAT[0]',
-##   'range': (15, 0, 3000),
-##   'xaxis': 'Higgs Mass [GeV]',
-##   'fold' : 0
-##}
-#
+variables['mass_HIGGS_FAT_binned'] = {
+   'name' : 'mass_HIGGS_FAT[0]',
+   'range': ([0, 200, 250, 300, 350, 400, 450, 500, 550, 600,
+               650, 700, 750, 800, 850, 900, 950, 1000, 1050,
+  	       1100, 1150, 1200, 1250, 1300, 1350, 1400, 1450, 1500, 1700, 2000, 3000 ],),
+   'xaxis': 'Higgs Mass [GeV]',
+   'fold' : 0 ,
+   'cuts' : boosted ,
+}
+
+
+variables['mass_HIGGS_FAT'] = {
+   'name' : 'mass_HIGGS_FAT[0]',
+   'range': (15, 0, 3000),
+   'xaxis': 'Higgs Mass [GeV]',
+   'fold' : 0
+}
+
 variables['mass_HIGGS_twojet_binned'] = {
    'name' : 'mass_HIGGS_JJ[0]',
    'range': ([0, 200, 250, 300, 350, 400, 450, 500, 550, 600,
@@ -327,9 +327,16 @@ variables['mass_HIGGS_twojet'] = {
    'fold' : 0
 }
 
-#
-##variables['Mela_boosted'] = {
-##   'name': 'MelaVBFvsGGH_boosted[0]',
+variables['m_jj']  = {
+    'name': 'MHlnjj_m_jj',     
+    'range' : (60,0,300),   
+    'xaxis' : 'm^{j,j}',
+    'fold'  : 0                         
+}
+
+
+#variables['Mela_boosted'] = {
+#   'name': 'MelaVBFvsGGH_boosted[0]',
 ##   'range': (15,0,1),
 ##   'xaxis': 'Mela_disc',
 ##   'fold': 0,
@@ -380,12 +387,12 @@ variables['mass_HIGGS_twojet'] = {
 ##    'fold' : 0, 
 ##}
 #
-variables['wlep_eta'] = {
-    'name' : 'HM_Wlep_eta_Puppi',
-    'range': (25, -2.5, 2.5),
-    'xaxis': 'reconstr. W lep eta',
-    'fold' : 0, 
-}
+#variables['wlep_eta'] = {
+#    'name' : 'HM_Wlep_eta_Puppi',
+#    'range': (25, -2.5, 2.5),
+#    'xaxis': 'reconstr. W lep eta',
+#    'fold' : 0, 
+#}
 variables['wlep_pt'] = {
     'name' : 'HM_Wlep_pt_Puppi',
     'range': (50, 0, 1000),
@@ -398,12 +405,12 @@ variables['whad_pt'] = {
     'xaxis': 'reconstr. W had Pt [GeV]',
     'fold' : 0, 
 }
-variables['whad_eta'] = {
-    'name' : 'HM_Whad_eta',
-    'range': (25, -2.5, 2.5),
-    'xaxis': 'reconstr. W had eta',
-    'fold' : 0, 
-}
+#variables['whad_eta'] = {
+#    'name' : 'HM_Whad_eta',
+#    'range': (25, -2.5, 2.5),
+#    'xaxis': 'reconstr. W had eta',
+#    'fold' : 0, 
+#}
 variables['whad_mass'] = {
     'name' : 'HM_Whad_mass',
     'range': (25, 0, 250),
@@ -632,15 +639,15 @@ variables['whad_mass'] = {
 ##     'fold' : 3
 ## }
 #
-#variables['nCleanJet'] = {
-#    'name' : 'nCleanJet',
-#    'range': ([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],),
-#    'xaxis': 'nCleanJet',
-#    'fold' : 0
-#}
-#variables['nCleanFatJet'] = {
-#    'name' : 'nCleanFatJet',
-#    'range': ([0, 1, 2, 3, 4, 5],),
-#    'xaxis': 'nCleanFatJet',
-#    'fold' : 0
-#}
+variables['nCleanJet'] = {
+    'name' : 'Sum$(CleanJet_pt>30)',
+    'range': ([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],),
+    'xaxis': 'nCleanJet',
+    'fold' : 0
+}
+variables['nCleanFatJet'] = {
+    'name' : 'nCleanFatJet',
+    'range': ([0, 1, 2, 3, 4, 5],),
+    'xaxis': 'nCleanFatJet',
+    'fold' : 0
+}

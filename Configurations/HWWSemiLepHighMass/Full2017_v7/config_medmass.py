@@ -2,10 +2,10 @@
 
 treeName = 'Events'
 
-tag = 'hm_Wjets_Pt'
+tag = 'hm_trial'
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFile_Wjets_Pt'
+outputDir = 'rootFile_2017'
 
 # file with TTree aliases
 aliasesFile = 'aliases_medmass.py'
@@ -16,7 +16,7 @@ variablesFile = 'variables_medmass.py'
 # variablesFile = 'variablesLimits.py'
 
 # file with list of cuts
-cutsFile = 'cuts_medmass_dc.py'
+cutsFile = 'cuts_medmass.py'
 
 # file with list of samples
 samplesFile = 'samples_medmass.py'
@@ -25,11 +25,11 @@ samplesFile = 'samples_medmass.py'
 plotFile = 'plot_medmass.py'
 
 # luminosity to normalize to (in 1/fb)
-lumi = 35.9
+lumi = 41.5
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'plot_wjets_rewei_mjj'
+outputDirPlots = 'Plots'
 
 
 # used by mkDatacards to define output directory for datacards
