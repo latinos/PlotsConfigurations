@@ -4,11 +4,19 @@ import ROOT
 from array import array
 import optparse 
 
+cms_base = os.getenv('CMSSW_BASE')
+
+exec(open(cms_base+'/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/scripts/modelPtxt.py'))
+
 usage = 'usage: %prog [options]'
 parser = optparse.OptionParser(usage)
 
 parser.add_option("-m", "--model"  ,  dest="model"  , help="Model we are looking at, examples: 2HDMa, darkHiggs" , default='2HDMa' , type='string')
-parser.add_option("-l", "--lumi"   ,  dest="lumi"   , help="Luminosity of the limit (35.9 in 2016, 41.5 in 2017, 59.7 in 2018, 137.1 in run2)" , type=float)
+parser.add_option("-l", "--lumi"   ,  dest="lumi"   , help="Luminosity of the limit (35.9 in 2016, 41.5 in 2017, 59.7 in 2018, 137.1 in run2)" , type=str)
+parser.add_option(      "--ww"     ,  dest="ww"     , action="store_true", help="Full combination (2l2n + lnjj)" , default=False)
+parser.add_option(      "--full"   ,  dest="full"   , action="store_true", help="Full leptonic (2l2n)" , default=False)
+parser.add_option(      "--kin-lim",  dest="kin_lim", action="store_true", help="Draw kinematic boarders" , default=False)
+parser.add_option(      "--x-sec"  ,  dest="x_sec"  , action="store_true", help="True x-sec on y-axis" , default=False)
 parser.add_option("-b", "--batch"  ,  dest="batch"  , action="store_true", help="Run in batch mode" , default=False)
 
 (options, args) = parser.parse_args()
@@ -16,16 +24,67 @@ parser.add_option("-b", "--batch"  ,  dest="batch"  , action="store_true", help=
 
 models = {
     '2HDMa': {
-        'model_str': '2HDM+a, A #rightarrow a + h (WW #rightarrow qq\'l#nu)',
+        'model_str': '2HDM+a, A #rightarrow a + h (WW #rightarrow l#nuqq\')',
         'spec_str' : 'sin#theta = 0.35, tan#beta = 1.0, m_{a} = 150 GeV, m_{#chi} = 10 GeV',
         'm_str'    : 'A',
     },
     'darkHiggs': {
-        'model_str': 'darkHiggs, Z\' #rightarrow #chi #bar{#chi} + s (WW #rightarrow qq\'l#nu)',
+        'model_str': 'darkHiggs, Z\' #rightarrow #chi #bar{#chi} + s (WW #rightarrow l#nuqq\')',
         'spec_str' : '#theta = 0.01, g_{q} = 0.25, g_{#chi} = 1, m_{s} = MHS GeV, m_{#chi} = MDM GeV',
         'm_str'     : 'Z\'',
     },
 }
+
+if options.ww:
+    mdl_str = models['2HDMa']['model_str'].replace('(WW #rightarrow l#nuqq\')', '(WW)')
+    models['2HDMa']['model_str']     = mdl_str 
+    mdl_str = models['darkHiggs']['model_str'].replace('(WW #rightarrow l#nuqq\')', '(WW)')
+    models['darkHiggs']['model_str'] = mdl_str
+elif options.full:
+    mdl_str = models['2HDMa']['model_str'].replace('(WW #rightarrow l#nuqq\')', '(WW #rightarrow 2l2#nu)')
+    models['2HDMa']['model_str']     = mdl_str 
+    mdl_str = models['darkHiggs']['model_str'].replace('(WW #rightarrow l#nuqq\')', '(WW #rightarrow 2l2#nu)')
+    models['darkHiggs']['model_str'] = mdl_str
+
+# X-sec reading
+
+xsec_file = '/afs/cern.ch/user/f/fernanpe/public/for_MonoH_analysis/xsecs.csv'
+
+def extract_xsec_dict(file_name):
+    o_file = open(file_name, 'r')
+    lines = o_file.readlines()
+    o_file.close()
+
+    xsec_dict = {}
+    for line in lines:
+        splt_line = line.replace('\n', '').split('\t')
+        if len(splt_line) != 4: continue
+        mhs = int(splt_line[0])
+        mx = int(splt_line[1])
+        mZp = int(splt_line[2])
+        xsec = float(splt_line[3])
+
+        if not mhs in xsec_dict: xsec_dict[mhs] = {}
+        if not mx in xsec_dict[mhs]: 
+            xsec_dict[mhs][mx] = {}
+            #xsec_dict[mhs][mx]['mZp_list'] = []
+            #xsec_dict[mhs][mx]['Xsec_list'] = []
+        xsec_dict[mhs][mx][mZp] = xsec
+        #xsec_dict[mhs][mx]['Xsec_list'].append(xsec)
+    return xsec_dict
+
+#def sort_xsec_dict(xsec_dict):
+#    for mhs in xsec_dict:
+#        for mx in xsec_dict[mhs]:
+#            list1 = xsec_dict[mhs][mx]['mZp_list']
+#            list2 = xsec_dict[mhs][mx]['Xsec_list']
+#            list1_tmp, list2_tmp = (list(t) for t in zip(*sorted(zip(list1, list2))))
+#            xsec_dict[mhs][mx]['mZp_list'] = list1_tmp
+#            xsec_dict[mhs][mx]['Xsec_list'] = list2_tmp
+
+if options.x_sec:
+    xsec_dict = extract_xsec_dict(xsec_file)
+    #sort_xsec_dict(xsec_dict)
 
 #channel = {'ele' : 'e', 'mu' : '#mu', 'elemu': 'l'}
 
@@ -48,6 +107,7 @@ def get_limits(mhs, mx):
        if not 'mx_'+str(mx) in fil: continue
        if not 'higgsCombine' in fil: continue
        if 'darkHiggsVal' in fil: continue
+       if '95' in fil: continue
        #mass.append(float(fil.split('.')[-2].replace('mH', '')))
        #mZp = float(fil.split('.')[0].split('_')[-1])
        mZp = float(fil.split('.')[0].split('mZp_')[-1].split('_')[0])
@@ -155,7 +215,9 @@ def plot(mass, lim_50, lim_2, lim_16, lim_84, lim_97, lim_ob, mhs, mx, model='2H
    set_style()
    mdl_str = models[model]['model_str']
    msp_str = models[model]['spec_str'].replace('MHS', str(mhs)).replace('MDM', str(mx)) 
-   mp_str = 'mhs_'+str(mhs)+'_mx_'+str(mx)
+   cs_str = '#theta = 0.01, g_{q} = 0.25, g_{#chi} = 1'  
+   mp_str = 'm_{s} = '+str(mhs)+', m_{#chi} = '+str(mx) + ' [GeV]'
+   mp_str_f = 'mhs_'+str(mhs)+'_mx_'+str(mx)
 
    unblind = False
    if len(lim_ob) == len(lim_50): unblind = True
@@ -164,7 +226,12 @@ def plot(mass, lim_50, lim_2, lim_16, lim_84, lim_97, lim_ob, mhs, mx, model='2H
    lim_50_95dn = array('d', [])
    lim_50_68up = array('d', [])
    lim_50_68dn = array('d', [])
+   theory = array('d', [1]*len(mass))
    for idx in range(len(lim_50)):
+       if options.x_sec:
+           xsec = xsec_dict[int(mhs)][int(mx)][int(mass[idx])]
+           for obj in [lim_50, lim_2, lim_16, lim_84, lim_97, lim_ob, theory]:
+               if len(obj) == len(mass): obj[idx] = obj[idx]*xsec
        lim_50_95up.append(abs(lim_97[idx] - lim_50[idx]))
        lim_50_95dn.append(abs(lim_2[idx] - lim_50[idx]))
        lim_50_68up.append(abs(lim_84[idx] - lim_50[idx]))
@@ -183,7 +250,7 @@ def plot(mass, lim_50, lim_2, lim_16, lim_84, lim_97, lim_ob, mhs, mx, model='2H
        TGob = ROOT.TGraphAsymmErrors(len(mass), mass, lim_ob)
        TGob.SetTitle('Observed') 
     
-   TGSM = ROOT.TGraph(len(mass) , mass, array('d', [1]*len(mass)))
+   TGSM = ROOT.TGraph(len(mass) , mass, theory)
    TGSM.SetName("SMXSection")
 
 
@@ -198,9 +265,10 @@ def plot(mass, lim_50, lim_2, lim_16, lim_84, lim_97, lim_ob, mhs, mx, model='2H
 
    max_factor = 1000.
    #max_factor = 3.
-   min_factor = 2.
+   min_factor = 20.
    y_max = max(lim_97)*max_factor
    y_min = min(min(lim_2)/min_factor, 0.1)
+   if options.x_sec: y_min = max(min(lim_2)/min_factor, 0.000001)
    x_max = max(mass)
    x_min = min(mass)
 
@@ -209,7 +277,8 @@ def plot(mass, lim_50, lim_2, lim_16, lim_84, lim_97, lim_ob, mhs, mx, model='2H
    
    hr.SetXTitle("m_{"+models[model]['m_str']+"} [GeV]")
    #hr.SetYTitle("#sigma_{95%} [pb]") # #rightarrow 2l2q
-   hr.SetYTitle("#sigma_{obs} / #sigma_{th} (95% C.L.)")
+   hr.SetYTitle("#sigma_{obs} / #sigma_{theory} (95% C.L.)")
+   if options.x_sec: hr.SetYTitle("#sigma_{theory} {pp #rightarrow Z' #rightarrow #chi #bar{#chi} + s (WW)}")
    hr.SetMinimum(y_min)
    hr.SetMaximum(y_max)
 
@@ -268,7 +337,13 @@ def plot(mass, lim_50, lim_2, lim_16, lim_84, lim_97, lim_ob, mhs, mx, model='2H
 
    #more graphics
 
-   leg = ROOT.TLegend(.20, .60, .70, .92)
+   x1_leg = .20
+   x2_leg = .75
+
+   y1_leg = .62
+   y2_leg = .77
+
+   leg = ROOT.TLegend(x1_leg, y1_leg, x2_leg, y2_leg)
    #   TLegend *leg = new TLegend(.35,.71,.90,.90)
    leg.SetFillColor(0)
    leg.SetLineColor(0)
@@ -278,7 +353,7 @@ def plot(mass, lim_50, lim_2, lim_16, lim_84, lim_97, lim_ob, mhs, mx, model='2H
    #   leg.SetBorderMode(0)
    #if (model == "2HDM"){
    #leg.SetHeader(models[model]['model_str'])
-   leg.SetHeader('#splitline{'+mdl_str+'}{'+msp_str+'}')
+   #leg.SetHeader('#splitline{'+mdl_str+'}{'+msp_str+'}')
    #leg.AddEntry((TObject*)0, "Sin#theta = 0.35, tan#beta = 1.0, m_{a} = 150 GeV, m_{#chi} = 10 GeV", "")
    #leg.AddEntry(None, models[model]['spec_str'], "")
    #}
@@ -289,12 +364,32 @@ def plot(mass, lim_50, lim_2, lim_16, lim_84, lim_97, lim_ob, mhs, mx, model='2H
    #if(obs) leg.AddEntry(grobslim_cls, "Frequentist CL_{S} Observed", "LP") 
    leg.AddEntry(TG68, "Frequentist CL_{S}  Expected #pm 1#sigma", "LF")
    leg.AddEntry(TG95, "Frequentist CL_{S}  Expected #pm 2#sigma", "LF")
-   leg.AddEntry(TGSM, "#sigma_{TH}", "L")
    if unblind:
        leg.AddEntry(TGob, "Observed", "L")
 #     leg.AddEntry(grthSM, "#sigma_{TH} x BR(Z' #rightarrow " + VV + "), #tilde{k}=0.50", "L") # #rightarrow 2l2q
 #     leg.AddEntry(grthSM10, "#sigma_{TH} x BR(Z' #rightarrow " + VV + "), #tilde{k}=0.20", "L") # #rightarrow 2l2q
+   leg.AddEntry(TGSM, "#sigma_{theory}", "L")
    leg.Draw()
+
+   chan = 'semi'
+   if options.ww: chan = 'ww' 
+   if options.full: chan = 'full' 
+
+   pt = mod_PT(x1_leg,y2_leg,x2_leg,y2_leg+0.13, 'darkHiggs', mp_str, chan=chan) 
+   pt.Draw()
+   #pavetext = ROOT.TPaveText(x1_leg,y2_leg,x2_leg,y2_leg+0.13, 'NDC')
+   ##pavetext.SetNDC()
+   #pavetext.SetLineColor(0)
+   #pavetext.SetFillColor(0)
+   #pavetext.SetBorderSize(1)
+   #pavetext.SetShadowColor(0)
+   #pavetext.SetTextFont(42)
+   #pavetext.SetTextSize(0.035)
+   #pavetext.SetTextAlign(11)
+   #pavetext.AddText(mdl_str)
+   #pavetext.AddText(cs_str)
+   #pavetext.AddText(mp_str)
+   #pavetext.Draw()
  
    intLumi = LUMI
 
@@ -305,8 +400,32 @@ def plot(mass, lim_50, lim_2, lim_16, lim_84, lim_97, lim_ob, mhs, mx, model='2H
    latex.SetTextAlign(11) # align left
    latex.DrawLatex(0.16, 0.96, "#bf{CMS} #it{preliminary}")
    latex.SetTextAlign(31)
-   latex.DrawLatex(0.95, 0.96, str(intLumi)+" fb^{-1} at #sqrt{s} = 13 TeV")
+   #latex.DrawLatex(0.95, 0.96, str(intLumi)+" fb^{-1} at #sqrt{s} = 13 TeV")
+   latex.DrawLatex(0.95, 0.96, str(intLumi)+" fb^{-1} (13 TeV)")
    
+   if options.kin_lim:
+       n_pts = 100
+       step = (y_max - y_min+0.)/(n_pts + 0.)
+
+       #mZp = 2*mx + mhs
+       Zp_lim = ROOT.TGraph()
+       for idx in range(n_pts):
+           m_y =  y_min + idx*step
+           m_x = mhs + 2*mx
+           Zp_lim.SetPoint(idx, m_x, m_y)
+       Zp_lim.SetLineWidth(2)
+       Zp_lim.SetLineColor(2)
+       Zp_lim.Draw('pl,same')
+
+       #mZp = 2*mx
+       mx2_lim = ROOT.TGraph()
+       for idx in range(n_pts):
+           m_y =  y_min + idx*step
+           m_x = 2*mx
+           mx2_lim.SetPoint(idx, m_x, m_y)
+       mx2_lim.SetLineWidth(2)
+       mx2_lim.SetLineColor(2)
+       mx2_lim.Draw('pl,same')
 
    # cMCMC.RedrawAxis("")
    ROOT.gPad.RedrawAxis("")
@@ -320,7 +439,8 @@ def plot(mass, lim_50, lim_2, lim_16, lim_84, lim_97, lim_ob, mhs, mx, model='2H
    ROOT.gPad.SetLogy()
    canvas.Update()
 
-   file_str = 'limits_'+mp_str+'_'+model+'.png'
+   file_str = 'limits_'+mp_str_f+'_'+model+'.png'
+   if options.x_sec: file_str = 'limits_xsec_'+mp_str_f+'_'+model+'.png'
    canvas.SaveAs(file_str)
 
    #raw_input('continue')
@@ -434,7 +554,8 @@ def plot_2D(tg2_50, tg2_2, tg2_16, tg2_84, tg2_97, min_mZp, max_mZp, min_mhs, ma
    leg.SetShadowColor(0)
    leg.SetTextFont(42)
    leg.SetTextSize(0.02)
-   mdl_str = 'darkHiggs, Z\' #rightarrow #chi #bar{#chi} + s (WW #rightarrow qq\'l#nu)'
+   mdl_str = models['darkHiggs']['model_str']
+   #mdl_str = 'darkHiggs, Z\' #rightarrow #chi #bar{#chi} + s (WW #rightarrow l#nuqq\')'
    msp_str = '#theta = 0.01, g_{q} = 0.25, g_{#chi} = 1, m_{#chi} = '+str(mhs)+' GeV'
    #leg.SetHeader('#splitline{'+mdl_str+'}{'+msp_str+'}')
    leg.AddEntry(tg_16, "Frequentist CL_{S}  Expected #pm 1#sigma", "LF")

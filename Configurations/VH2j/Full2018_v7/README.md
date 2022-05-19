@@ -1,4 +1,4 @@
-# VH-2j analysis 2018
+# VH2j analysis 2018
 
 Configuration for the different-flavor VH-2j analysis using 2018 Data.
 

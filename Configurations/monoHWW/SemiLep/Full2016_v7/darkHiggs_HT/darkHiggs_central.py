@@ -79,13 +79,16 @@ mass_points = [
     'mhs_400_mx_200_mZp_1000', 'mhs_400_mx_200_mZp_500', 'mhs_400_mx_200_mZp_800',
     # Additional private sample
     'mhs_250_mx_150_mZp_1200',
+    'mhs_350_mx_200_mZp_1200',
 ]
 for mp in mass_points:
+    if mp == 'mhs_350_mx_200_mZp_1200': files = nanoGetSampleFiles(myMcDirectory, 'darkHiggs_ToWWToLNujj_'+mp)
+    else: files = nanoGetSampleFiles(mcDirectory, 'darkHiggs_ToWWToLNujj_'+mp)
     mhs = mp.split('_')[1] 
     mx  = mp.split('_')[3] 
     mZp = mp.split('_')[5] 
     signal['darkHiggs_'+mp] = {
-        'name'   : nanoGetSampleFiles(mcDirectory, 'darkHiggs_ToWWToLNujj_'+mp),
+        'name'   : files,
         'weight' : mcCommonWeight, 
         'color'  : 632+col_idx,
         'plot_name'  : 'mhs '+mhs+' mx '+mx+' mZ\' '+mZp,
@@ -94,3 +97,4 @@ for mp in mass_points:
     }
     col_idx += 1
     if mp == 'mhs_250_mx_150_mZp_1200': signal['darkHiggs_'+mp]['FilesPerJob'] = 50
+    if mp == 'mhs_350_mx_200_mZp_1200': signal['darkHiggs_'+mp]['FilesPerJob'] = 50

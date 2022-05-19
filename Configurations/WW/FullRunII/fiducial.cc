@@ -101,8 +101,8 @@ FiducialRegion::evaluate(unsigned)
 
   double genMet{*GenMET_pt->Get()};
 
-  //if (genMet < 20.)
- //   return 0.;
+  if (genMet < 20.)
+    return 0.;
 
   if (pll.M() < 20.)
     return 0.;

@@ -4,13 +4,21 @@ import ROOT
 from array import array
 import optparse 
 
+cms_base = os.getenv('CMSSW_BASE')
+
+exec(open(cms_base+'/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/scripts/modelPtxt.py'))
+
 usage = 'usage: %prog [options]'
 parser = optparse.OptionParser(usage)
 
 parser.add_option("-m", "--model"  ,  dest="model"  , help="Model we are looking at, examples: 2HDMa, darkHiggs" , default='2HDMa' , type='string')
-parser.add_option("-l", "--lumi"   ,  dest="lumi"   , help="Luminosity of the limit (35.9 in 2016, 41.5 in 2017, 59.7 in 2018, 137.1 in run2)" , type=float)
-parser.add_option(      "--points" ,  dest="points" , action="store_true", help="Indicate mass points" , default=False)
+parser.add_option("-l", "--lumi"   ,  dest="lumi"   , help="Luminosity of the limit (35.9 in 2016, 41.5 in 2017, 59.7 in 2018, 137.1 in run2)" , type=str)
 parser.add_option(      "--unblind",  dest="unblind", action="store_true", help="Expect unblinded results" , default=False)
+parser.add_option(      "--ww"     ,  dest="ww"     , action="store_true", help="Full combination (2l2n + lnjj)" , default=False)
+parser.add_option(      "--full"   ,  dest="full"   , action="store_true", help="Full leptonic (2l2n)" , default=False)
+parser.add_option(      "--kin-lim",  dest="kin_lim", action="store_true", help="Draw kinematic boarders" , default=False)
+parser.add_option(      "--points" ,  dest="points" , action="store_true", help="Indicate mass points" , default=False)
+parser.add_option(      "--as-pdf" ,  dest="as_pdf" , action="store_true", help="Store as pdf in stead of png" , default=False)
 parser.add_option("-b", "--batch"  ,  dest="batch"  , action="store_true", help="Run in batch mode" , default=False)
 
 (options, args) = parser.parse_args()
@@ -18,16 +26,27 @@ parser.add_option("-b", "--batch"  ,  dest="batch"  , action="store_true", help=
 
 models = {
     '2HDMa': {
-        'model_str': '2HDM+a, A #rightarrow a + h (WW #rightarrow qq\'l#nu)',
+        'model_str': '2HDM+a, A #rightarrow a + h (WW #rightarrow l#nuqq\')',
         'spec_str' : 'sin#theta = 0.35, tan#beta = 1.0, m_{a} = 150 GeV, m_{#chi} = 10 GeV',
         'm_str'    : 'A',
     },
     'darkHiggs': {
-        'model_str': 'darkHiggs, Z\' #rightarrow #chi #bar{#chi} + s (WW #rightarrow qq\'l#nu)',
+        'model_str': 'darkHiggs, Z\' #rightarrow #chi #bar{#chi} + s (WW #rightarrow l#nuqq\')',
         'spec_str' : '#theta = 0.01, g_{q} = 0.25, g_{#chi} = 1, m_{s} = MHS GeV, m_{#chi} = MDM GeV',
         'm_str'     : 'Z\'',
     },
 }
+
+if options.ww:
+    mdl_str = models['2HDMa']['model_str'].replace('(WW #rightarrow l#nuqq\')', '(WW)')
+    models['2HDMa']['model_str']     = mdl_str 
+    mdl_str = models['darkHiggs']['model_str'].replace('(WW #rightarrow l#nuqq\')', '(WW)')
+    models['darkHiggs']['model_str'] = mdl_str
+elif options.full:
+    mdl_str = models['2HDMa']['model_str'].replace('(WW #rightarrow l#nuqq\')', '(WW #rightarrow 2l2#nu)')
+    models['2HDMa']['model_str']     = mdl_str 
+    mdl_str = models['darkHiggs']['model_str'].replace('(WW #rightarrow l#nuqq\')', '(WW #rightarrow 2l2#nu)')
+    models['darkHiggs']['model_str'] = mdl_str
 
 INC_FILE = 'Incomplete_files.txt'
 o_file = open(INC_FILE, 'w')
@@ -68,12 +87,14 @@ for hs in mhs:
             mp_tuple = (hs, DM, Zp)
             CENTRAL_MP.append(mp_tuple)
 
-mhs = ['160','180','200','250','300','350','400']
+#mhs = ['160','180','200','250','300','350','400']
+mhs = ['160','180','200','250','300']
 mDM = ['100','150','200','300']
 mZp = ['200','300','400','500','600','700','800','900','1000','1100','1200','1300','1400','1500','1600','1700','1800','1900','2000','2100','2200','2300','2400','2500']
 
 PRIVATE_MP = [
     ('250', '150', '1200'),
+    ('350', '200', '1200'),
 ]
 
 INTERPOLATED_MP = []
@@ -134,8 +155,9 @@ def set_style():
    ROOT.gStyle.SetTitleColor(1, "XYZ")
    ROOT.gStyle.SetTitleFont(42, "XYZ")
    ROOT.gStyle.SetTitleSize(0.05, "XYZ")
-   ROOT.gStyle.SetTitleXOffset(1.15)#0.9)
-   ROOT.gStyle.SetTitleYOffset(1.3) # => 1.15 if exponents
+   #ROOT.gStyle.SetTitleXOffset(1.15)#0.9)
+   ROOT.gStyle.SetTitleXOffset(1.0)#1.0)
+   ROOT.gStyle.SetTitleYOffset(1.0) # => 1.15 if exponents
    ROOT.gStyle.SetLabelColor(1, "XYZ")
    ROOT.gStyle.SetLabelFont(42, "XYZ")
    ROOT.gStyle.SetLabelOffset(0.007, "XYZ")
@@ -317,6 +339,12 @@ def get_contours(output_file, th2_lims, nx_tg=200, ny_tg=200):
             y_val = th2_lims.GetYaxis().GetBinLowEdge(ybin)
             l_val = th2_lims.GetBinContent(xbin, ybin)
 
+            # Avoid white boarders?
+            if xbin == 1: x_val -= 1. #mzp
+            if ybin == 1: y_val -= 1.
+            if xbin == th2_lims.GetNbinsX(): x_val += 4. #mzp
+            if ybin == th2_lims.GetNbinsY(): y_val += 1.
+
             x.append(x_val)
             y.append(y_val)
             l.append(l_val)
@@ -366,14 +394,21 @@ def plot_limits(output_file, mx, tg2_HD_list, contours_list, show_int=False):
     blind = True
     if len(tg2_HD_list) > 5: blind = False
 
+    mZp_min = 200
+    mZp_max = 2500
+    mhs_min = 160
+    #mhs_max = 350
+    mhs_max = 400
+
     exp_h = tg2_HD_list[2].GetHistogram()
     #exp_h.Smooth(1, 'k3a')
-    exp_h.GetXaxis().SetTitle('m_{Z\'} [GeV]')
-    exp_h.GetYaxis().SetTitle('m_{s} [GeV]')
-    exp_h.GetXaxis().SetRangeUser(200, 2500)
-    #exp_h.GetYaxis().SetRangeUser(160, 400)
-    exp_h.GetYaxis().SetRangeUser(160, 300)
-    exp_h.GetZaxis().SetRangeUser(0.1, 30)
+    #exp_h.GetXaxis().SetTitle('m_{Z\'} [GeV]')
+    #exp_h.GetYaxis().SetTitle('m_{s} [GeV]')
+    #exp_h.GetXaxis().SetRangeUser(mZp_min, mZp_max)
+    ##exp_h.GetYaxis().SetRangeUser(160, 400)
+    ##exp_h.GetYaxis().SetRangeUser(160, 350)
+    #exp_h.GetYaxis().SetRangeUser(mhs_min, mhs_max)
+    exp_h.GetZaxis().SetRangeUser(0.05, 50)
     exp_h.SetTitle('')
 
     exp_c = contours_list[2]
@@ -383,18 +418,32 @@ def plot_limits(output_file, mx, tg2_HD_list, contours_list, show_int=False):
     wanted_c = [exp_c, s1up_c, s1do_c]
     if not blind: wanted_c.append(contours_list[5])
 
-    canvas = ROOT.TCanvas('c_'+str(mx),'c_'+str(mx),800,800)
+    #canvas = ROOT.TCanvas('c_'+str(mx),'c_'+str(mx),800,800)
+    canvas = ROOT.TCanvas('c_'+str(mx),'c_'+str(mx),800,600)
     canvas.cd()
 
     pad1 = ROOT.TPad("pad1","pad1",0.,0.,1.,1.)
-    pad1.SetLeftMargin(0.15)
+    #pad1.SetLeftMargin(0.15)
+    #pad1.SetLeftMargin(0.135)
+    pad1.SetLeftMargin(0.11)
+    #pad1.SetRightMargin(0.12)
     pad1.SetRightMargin(0.15)
-    pad1.SetBottomMargin(0.20)
+    pad1.SetBottomMargin(0.12)
     pad1.Draw()
     pad1.cd()
     pad1.SetLogz()
 
-    exp_h.Draw('colz')
+    ROOT.gStyle.SetOptStat(0)
+    #ghost = ROOT.TH2D("postGrid", "", 1, mZp_min-100, mZp_max+100, 1, mhs_min-100, mhs_max+100)
+    ghost = ROOT.TH1D('ghost', '', 1, mZp_min, mZp_max)
+    ghost.GetYaxis().SetRangeUser(mhs_min, mhs_max)
+    ghost.GetXaxis().SetTitle('m_{Z\'} [GeV]')
+    ghost.GetYaxis().SetTitle('m_{s} [GeV]')
+    #ghost.Draw("AXIG")
+    ghost.Draw()
+
+
+    exp_h.Draw('colz, same')
     for idx,cont_l in enumerate(wanted_c):
         for cont in cont_l:
             if idx == 0:
@@ -404,26 +453,63 @@ def plot_limits(output_file, mx, tg2_HD_list, contours_list, show_int=False):
             elif idx > 2 and idx == len(wanted_c)-1:
                 cont.SetLineWidth(4)
                 cont.SetLineColor(ROOT.kRed)
-            cont.Draw('pl,same')
+            cont.Draw('l,same')
+    ROOT.gPad.RedrawAxis('')
 
 
-    #leg = ROOT.TLegend(.17, .18, .52, .3)
-    #leg = ROOT.TLegend(1-.52, 1-.3, 1-.17, 1-.18)
-    leg = ROOT.TLegend(1-.52, 1-.2, 1-.17, 1-.08)
+    if not show_int:
+        #x1_leg = 1-.52
+        #x2_leg = 1-.13
+        x1_leg = 1-.55
+        x2_leg = 1-.16
+
+        #y1_leg = 1-.231
+        #y2_leg = 1-.151
+        y1_leg = 1-.291
+        y2_leg = 1-.191
+        if options.ww:
+            #x1_leg = 1-.44
+            #x2_leg = 1-.13
+            x1_leg = 1-.47
+            x2_leg = 1-.16
+
+            #y1_leg = 1-.201
+            #y2_leg = 1-.121
+    else:
+        x1_leg = 1-.53
+        #y1_leg = 1-.2
+        y1_leg = 1-.27
+        #x2_leg = 1-.17
+        x2_leg = 1-.18
+        #y2_leg = 1-.08
+        y2_leg = 1-.15
+
+    leg = ROOT.TLegend(x1_leg, y1_leg, x2_leg, y2_leg)
     leg.SetFillColor(0)
     leg.SetLineColor(0)
     leg.SetShadowColor(0)
     leg.SetTextFont(42)
-    leg.SetTextSize(0.02)
-    mdl_str = 'darkHiggs, Z\' #rightarrow #chi #bar{#chi} + s (WW #rightarrow qq\'l#nu)'
-    #mdl_str = 'darkHiggs, Z\' #rightarrow #chi #bar{#chi} + s (WW #rightarrow qq\'l#nu)'
+    leg.SetTextSize(0.025)
+    ##mdl_str = 'darkHiggs, Z\' #rightarrow #chi #bar{#chi} + s (WW #rightarrow l#nuqq\')'
+    #mdl_str = models['darkHiggs']['model_str']
+    ##mdl_str = 'darkHiggs, Z\' #rightarrow #chi #bar{#chi} + s (WW #rightarrow l#nuqq\')'
+    #cs_str = '#theta = 0.01, g_{q} = 0.25, g_{#chi} = 1'
+    mp_str = 'm_{#chi} = '+str(mx)+' GeV'
     #msp_str = '#theta = 0.01, g_{q} = 0.25, g_{#chi} = 1, m_{#chi} = '+str(mx)+' GeV'
-    leg.SetHeader(mdl_str)
-    #leg.SetHeader('#splitline{'+mdl_str+'}{'+msp_str+'}')
+    ##leg.SetHeader(mdl_str)
+    ##leg.SetHeader('#splitline{'+mdl_str+'}{'+msp_str+'}')
+    ##leg.SetHeader('#splitline{#splitline{'+mdl_str+'}{'+msp_str+'}}{ }')
     leg.AddEntry(wanted_c[0][0], "Expected 95% CL", "l")
-    if not blind: leg.AddEntry(wanted_c[-1][0], "Observed", "l")
+    if not blind: leg.AddEntry(wanted_c[-1][0], "Observed 95% CL", "l")
     leg.AddEntry(wanted_c[1][0], "#pm 1 std. dev.", "l")
     leg.Draw()
+  
+    chan = 'semi'
+    if options.ww: chan = 'ww' 
+    if options.full: chan = 'full' 
+
+    pt = mod_PT(x1_leg,y2_leg,x2_leg,y2_leg+0.13, 'darkHiggs', mp_str, chan=chan) 
+    pt.Draw()
  
     intLumi = LUMI
 
@@ -432,17 +518,45 @@ def plot_limits(output_file, mx, tg2_HD_list, contours_list, show_int=False):
     latex.SetTextFont(42)
     latex.SetTextSize(0.04)
     latex.SetTextAlign(11) # align left
-    latex.DrawLatex(0.16, 0.96, "#bf{CMS} #it{preliminary}")
+    latex.DrawLatex(0.11, 0.96, "#bf{CMS} #it{preliminary}")
     latex.SetTextAlign(31)
-    #latex.DrawLatex(0.95, 0.96, str(intLumi)+" fb^{-1} at #sqrt{s} = 13 TeV")
-    latex.DrawLatex(0.95, 0.96, str(intLumi)+" fb^{-1} (13 TeV)")
-    latex.SetTextAlign(11)
-    latex.SetTextSize(0.03)
-    #latex.DrawLatex(.18, .89, '#splitline{'+mdl_str+'}{'+msp_str+'}')
+    latex.DrawLatex(0.85, 0.96, str(intLumi)+" fb^{-1} (13 TeV)")
+
+    latex.SetTextSize(0.05)
+    latex.SetTextAlign(33)
+    latex.SetTextAngle(90)
+    latex.DrawLatex(0.945, 0.95, '#sigma/#sigma_{theory}')
+
+    if options.kin_lim:
+
+        #mZp = 2*mx + mhs
+        Zp_lim = ROOT.TGraph()
+        idx = 0
+        for m in range(mhs_min -50, mhs_max+100, 10):
+            m_y = m
+            m_x = m + 2*mx
+            Zp_lim.SetPoint(idx, m_x, m_y)
+            idx += 1
+        Zp_lim.SetLineWidth(2)
+        Zp_lim.SetLineColor(2)
+        Zp_lim.Draw('pl,same')
+
+        #mZp = 2*mx
+        mx2_lim = ROOT.TGraph()
+        idx = 0
+        for m in range(mhs_min -50, mhs_max+100, 10):
+            m_y = m
+            m_x = 2*mx
+            mx2_lim.SetPoint(idx, m_x, m_y)
+            idx += 1
+        mx2_lim.SetLineWidth(2)
+        mx2_lim.SetLineColor(2)
+        mx2_lim.Draw('pl,same')
 
     if not show_int:
         canvas.Update()
-        canvas.SaveAs(output_file.replace('.root', '.png'))
+        if options.as_pdf: canvas.SaveAs(output_file.replace('.root', '.pdf'))
+        else: canvas.SaveAs(output_file.replace('.root', '.png'))
     else:
         # Load central points
         mp_cen = ROOT.TGraph()
@@ -506,7 +620,8 @@ def plot_limits(output_file, mx, tg2_HD_list, contours_list, show_int=False):
         leg.Draw()
 
         canvas.Update()
-        canvas.SaveAs(output_file.replace('_darkHiggs.root', '_points_darkHiggs.png'))
+        if options.as_pdf: canvas.SaveAs(output_file.replace('.root', '.pdf'))
+        else: canvas.SaveAs(output_file.replace('.root', '.png'))
 
 #for mx in [200]:
 blind = True

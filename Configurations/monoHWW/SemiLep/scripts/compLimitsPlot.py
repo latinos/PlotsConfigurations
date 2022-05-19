@@ -5,11 +5,16 @@ from array import array
 import optparse 
 from collections import OrderedDict
 
+cms_base = os.getenv('CMSSW_BASE')
+
+exec(open(cms_base+'/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/scripts/modelPtxt.py'))
+
 usage = 'usage: %prog [options]'
 parser = optparse.OptionParser(usage)
 
 parser.add_option("-m", "--model"  ,  dest="model"  , help="Model we are looking at, examples: 2HDMa, darkHiggs" , default='2HDMa' , type='string')
-parser.add_option("-l", "--lumi"   ,  dest="lumi"   , help="Luminosity of the limit (35.9 in 2016, 41.5 in 2017, 59.7 in 2018, 137.1 in run2)" , type=float)
+parser.add_option("-l", "--lumi"   ,  dest="lumi"   , help="Luminosity of the limit (35.9 in 2016, 41.5 in 2017, 59.7 in 2018, 137.1 in run2)" , type=str)
+parser.add_option(      "--ww"     ,  dest="ww"     , action="store_true", help="Full combination (2l2n + lnjj)" , default=False)
 parser.add_option("-b", "--batch"  ,  dest="batch"  , action="store_true", help="Run in batch mode" , default=False)
 parser.add_option("-d", "--dirs"   ,  dest="dirs"  , help="Directiries from which to compare in format: <name_1>:<dir_1>,<name_2>:<dir_2>,...", type='string')
 
@@ -18,16 +23,22 @@ parser.add_option("-d", "--dirs"   ,  dest="dirs"  , help="Directiries from whic
 
 models = {
     '2HDMa': {
-        'model_str': '2HDM+a, A #rightarrow a + h (WW #rightarrow qq\'l#nu)',
+        'model_str': '2HDM+a, A #rightarrow a + h (WW #rightarrow l#nuqq\')',
         'spec_str' : 'sin#theta = 0.35, tan#beta = 1.0, m_{a} = 150 GeV, m_{#chi} = 10 GeV',
         'm_str'    : 'A',
     },
     'darkHiggs': {
-        'model_str': 'darkHiggs, Z\' #rightarrow #chi #bar{#chi} + s (WW #rightarrow qq\'l#nu)',
+        'model_str': 'darkHiggs, Z\' #rightarrow #chi #bar{#chi} + s (WW #rightarrow l#nuqq\')',
         'spec_str' : '#theta = 0.01, g_{q} = 0.25, g_{#chi} = 1, m_{s} = MHS GeV, m_{#chi} = MDM GeV',
         'm_str'     : 'Z\'',
     },
 }
+
+if options.ww:
+    mdl_str = models['2HDMa']['model_str'].replace('(WW #rightarrow l#nuqq\')', '(WW)')
+    models['2HDMa']['model_str']     = mdl_str 
+    mdl_str = models['darkHiggs']['model_str'].replace('(WW #rightarrow l#nuqq\')', '(WW)')
+    models['darkHiggs']['model_str'] = mdl_str
 
 #channel = {'ele' : 'e', 'mu' : '#mu', 'elemu': 'l'}
 
@@ -160,7 +171,9 @@ def plot(lim_dict, mhs, mx, model='2HDMa'):
    set_style()
    mdl_str = models[model]['model_str']
    msp_str = models[model]['spec_str'].replace('MHS', str(mhs)).replace('MDM', str(mx)) 
-   mp_str = 'mhs_'+str(mhs)+'_mx_'+str(mx)
+   cs_str = '#theta = 0.01, g_{q} = 0.25, g_{#chi} = 1'  
+   mp_str = 'm_{s} = '+str(mhs)+', m_{#chi} = '+str(mx) + ' [GeV]'
+   mp_str_f = 'mhs_'+str(mhs)+'_mx_'+str(mx)
 
    TG_dict = OrderedDict()
    y_max = 2
@@ -276,7 +289,14 @@ def plot(lim_dict, mhs, mx, model='2HDMa'):
 
    #more graphics
 
-   leg = ROOT.TLegend(.20, .60, .70, .92)
+   x1_leg = .20
+   x2_leg = .75
+
+   y1_leg = .58
+   y2_leg = .77
+
+   leg = ROOT.TLegend(x1_leg, y1_leg, x2_leg, y2_leg)
+   #leg = ROOT.TLegend(.20, .60, .70, .92)
    #   TLegend *leg = new TLegend(.35,.71,.90,.90)
    leg.SetFillColor(0)
    leg.SetLineColor(0)
@@ -286,7 +306,7 @@ def plot(lim_dict, mhs, mx, model='2HDMa'):
    #   leg.SetBorderMode(0)
    #if (model == "2HDM"){
    #leg.SetHeader(models[model]['model_str'])
-   leg.SetHeader('#splitline{'+mdl_str+'}{'+msp_str+'}')
+   #leg.SetHeader('#splitline{'+mdl_str+'}{'+msp_str+'}')
    #leg.AddEntry((TObject*)0, "Sin#theta = 0.35, tan#beta = 1.0, m_{a} = 150 GeV, m_{#chi} = 10 GeV", "")
    #leg.AddEntry(None, models[model]['spec_str'], "")
    #}
@@ -301,13 +321,33 @@ def plot(lim_dict, mhs, mx, model='2HDMa'):
        if first_key:
            leg.AddEntry(TG_dict[key]['95'], "Frequentist CL_{S}  Expected #pm 1#sigma", "LF")
            leg.AddEntry(TG_dict[key]['68'], "Frequentist CL_{S}  Expected #pm 2#sigma", "LF")
+           leg.AddEntry(TG_dict['SMbaseLine'], "#sigma_{TH}", "L")
            first_key = False
        leg.AddEntry(TG_dict[key]['50'], key, "L")
        #leg.AddEntry(TG_dict[key]['68'], key, "LF")
-   leg.AddEntry(TG_dict['SMbaseLine'], "#sigma_{TH}", "L")
 #     leg.AddEntry(grthSM, "#sigma_{TH} x BR(Z' #rightarrow " + VV + "), #tilde{k}=0.50", "L") # #rightarrow 2l2q
 #     leg.AddEntry(grthSM10, "#sigma_{TH} x BR(Z' #rightarrow " + VV + "), #tilde{k}=0.20", "L") # #rightarrow 2l2q
    leg.Draw()
+
+   chan = 'semi'
+   if options.ww: chan = 'ww' 
+   #if options.full: chan = 'full' 
+
+   pt = mod_PT(x1_leg,y2_leg,x2_leg,y2_leg+0.13, 'darkHiggs', mp_str, chan=chan) 
+   pt.Draw()
+   #pavetext = ROOT.TPaveText(x1_leg,y2_leg,x2_leg,y2_leg+0.13, 'NDC')
+   ##pavetext.SetNDC()
+   #pavetext.SetLineColor(0)
+   #pavetext.SetFillColor(0)
+   #pavetext.SetBorderSize(1)
+   #pavetext.SetShadowColor(0)
+   #pavetext.SetTextFont(42)
+   #pavetext.SetTextSize(0.035)
+   #pavetext.SetTextAlign(11)
+   #pavetext.AddText(mdl_str)
+   #pavetext.AddText(cs_str)
+   #pavetext.AddText(mp_str)
+   #pavetext.Draw()
  
    intLumi = LUMI
 
@@ -333,7 +373,7 @@ def plot(lim_dict, mhs, mx, model='2HDMa'):
    ROOT.gPad.SetLogy()
    canvas.Update()
 
-   file_str = 'limits_'+mp_str+'_'+model+'.png'
+   file_str = 'limits_'+mp_str_f+'_'+model+'.png'
    canvas.SaveAs(file_str)
 
    #raw_input('continue')
@@ -443,7 +483,7 @@ def plot_2D(TG2_dict, name, mhs):
    leg.SetShadowColor(0)
    leg.SetTextFont(42)
    leg.SetTextSize(0.02)
-   mdl_str = 'darkHiggs, Z\' #rightarrow #chi #bar{#chi} + s (WW #rightarrow qq\'l#nu)'
+   mdl_str = 'darkHiggs, Z\' #rightarrow #chi #bar{#chi} + s (WW #rightarrow l#nuqq\')'
    msp_str = '#theta = 0.01, g_{q} = 0.25, g_{#chi} = 1, m_{#chi} = '+str(mhs)+' GeV'
    #leg.SetHeader('#splitline{'+mdl_str+'}{'+msp_str+'}')
    first_loop = True

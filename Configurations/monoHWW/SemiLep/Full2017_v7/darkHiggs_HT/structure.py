@@ -117,7 +117,8 @@ signal = {
 }
 #for mp in signal:
 #    structure[mp] = {
-for mp in ['mhs_160_mx_100_mZp_500', 'mhs_180_mx_100_mZp_1200', 'mhs_180_mx_100_mZp_1500', 'mhs_180_mx_100_mZp_2000']:
+#for mp in ['mhs_160_mx_100_mZp_500', 'mhs_180_mx_100_mZp_1200', 'mhs_180_mx_100_mZp_1500', 'mhs_180_mx_100_mZp_2000']:
+for mp in ['mhs_160_mx_100_mZp_500']:
     structure['darkHiggs_'+mp] = {
         'isSignal': 2,
         'isData'  : 0,

@@ -24,7 +24,6 @@ is_mu    = ['abs(Lepton_pdgId[0])==13']
 #veto_1l      = ['Alt$(Lepton_pt[1],0)<10.']
 #veto_1l_I    = ['(nLepton>=2 && Lepton_pt[1] > 20)']
 mt_lmet      = ['mtw1 > 80']
-mt_lmet_h    = ['mtw1 > 160']
 mt_lmet_I    = ['mtw1 < 30']
 met          = ['PuppiMET_pt > 60']
 met_I        = ['PuppiMET_pt < 30']
@@ -42,15 +41,9 @@ m_jj_I       = ['(MHlnjj_m_jj < 65. || MHlnjj_m_jj > 105.)']
 
 SC       = super_cut
 SR       = combinecut([super_cut, mt_lmet  , met  , dphi_l_jj, dphi_ljj_met, dr_l_jj, pt_ljj  , m_jj  , veto_b  , veto_1l  ])
-CR       = combinecut([super_cut, mt_lmet  , met  , dphi_l_jj, dphi_ljj_met, dr_l_jj, pt_ljj_I, veto_b  , veto_1l  ])
 SB       = combinecut([super_cut, mt_lmet  , met  , dphi_l_jj, dphi_ljj_met, dr_l_jj, pt_ljj  , m_jj_I, veto_b  , veto_1l  ])
 TCR      = combinecut([super_cut, mt_lmet  , met  , dphi_l_jj, dphi_ljj_met, dr_l_jj, pt_ljj  , m_jj  , veto_b_I, veto_1l  ])
-DYCR     = combinecut([super_cut, mt_lmet  , met  , dphi_l_jj, dphi_ljj_met, dr_l_jj, pt_ljj  , m_jj  , veto_b  , veto_1l_I]) # empty due to post-proc sel
 QER      = combinecut([super_cut, mt_lmet_I, met_I, dphi_l_jj, dphi_ljj_met, dr_l_jj, pt_ljj  , m_jj  , veto_b  , veto_1l  ])
-
-SR_h     = combinecut([super_cut, mt_lmet_h  , met  , dphi_l_jj, dphi_ljj_met, dr_l_jj, pt_ljj  , m_jj  , veto_b  , veto_1l  ])
-SB_h     = combinecut([super_cut, mt_lmet_h  , met  , dphi_l_jj, dphi_ljj_met, dr_l_jj, pt_ljj  , m_jj_I, veto_b  , veto_1l  ])
-TCR_h    = combinecut([super_cut, mt_lmet_h  , met  , dphi_l_jj, dphi_ljj_met, dr_l_jj, pt_ljj  , m_jj  , veto_b_I, veto_1l  ])
 
 ## Electron
 #addcut('ElCh_SC'  , combinecut([is_el, SC  ]))
@@ -74,6 +67,7 @@ TCR_h    = combinecut([super_cut, mt_lmet_h  , met  , dphi_l_jj, dphi_ljj_met, d
 addcut('InCh_SR'  , combinecut([SR  ]))
 addcut('InCh_SB'  , combinecut([SB  ]))
 addcut('InCh_TCR' , combinecut([TCR ]))
+addcut('InCh_QER' , combinecut([QER ]))
 
 #addcut('InCh_SC'  , combinecut([SC  ]))
 #addcut('InCh_CR'  , combinecut([CR  ]))
