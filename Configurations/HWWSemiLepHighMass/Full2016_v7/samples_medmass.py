@@ -121,11 +121,11 @@ def CombineBaseW(directory, samples, proc, samplelist):
 mcCommonWeightNoMatch = 'XSWeight*SFweight*METFilter_MC*LepWPCut[0]*(nTightLep==1)'
 mcCommonWeight = mcCommonWeightNoMatch+'*Lepton_promptgenmatched[0]'
 
-###########################################
-#############  BACKGROUNDS  ###############
-###########################################
+############################################
+##############  BACKGROUNDS  ###############
+#############################################
 
-###### DY #######
+#### DY #######
 print("DY")
 
 # NLO
@@ -173,7 +173,7 @@ addSampleWeight(samples,'DY','DYJetsToLL_M-5to50_HT-600toinf_ext1','(gen_mll<10)
 
 
 
-###### Top #######
+##### Top #######
 print("top")
 
 files  = nanoGetSampleFiles(mcDirectory, 'TTToSemiLeptonic')
@@ -198,6 +198,7 @@ CombineBaseW(mcDirectory, samples, 'top',
 
 addSampleWeight(samples,'top','TTToSemiLeptonic','Top_pTrw')
 addSampleWeight(samples,'top','TTTo2L2Nu'       ,'Top_pTrw')
+addSampleWeight(samples,'top','TTWJetsToLNu_ext1'       ,'Top_pTrw')
 
 # Xsec correction single top t channel: xsec in tree is leptonDecays, but sample is inclusiveDecays
 lepD_to_incD = '(100./(10.75 + 10.57 + 11.25))'
@@ -214,7 +215,7 @@ files += nanoGetSampleFiles(mcDirectory, 'WWToLNuQQ_ext1')
 samples['WW'] = {
     'name': files,
     'weight': mcCommonWeight+'*(mjjGen_OTF<100)',
-    'FilesPerJob': 4
+    'FilesPerJob': 2
 }
 CombineBaseW(mcDirectory, samples, 'WW',
             ['WWToLNuQQ', 'WWToLNuQQ_ext1'])
@@ -255,11 +256,11 @@ samples['qqWWqq'] = {
 # nanoGetSampleFiles(signalMCDirectory,'WpWmJJ_QCD_noTop') ,
 #'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch,
 #mcCommonWeight+'*(mjjGen_OTF>=100)'+'*(GenLHE)',
-samples['WW2J'] = {
-    'name'   :   nanoGetSampleFiles(mcDirectory,'WpWmJJ_QCD_noTop') ,
-    'weight' : mcCommonWeight+'*(mjjGen_OTF>=100)'+'*(!GenLHE)',
-    'FilesPerJob': 10
-}
+#samples['WW2J'] = {
+#    'name'   :   nanoGetSampleFiles(mcDirectory,'WpWmJJ_QCD_noTop') ,
+#    'weight' : mcCommonWeight+'*(mjjGen_OTF>=100)'+'*(!GenLHE)',
+#    'FilesPerJob': 10
+#}
 
 
 
@@ -287,8 +288,8 @@ files += nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_HT800_1200_ext1')
 
 samples['Wjets'] = {
     'name'   : files,
-    'weight' : mcCommonWeight +"*EWK_W_correction[0]"
-                +"*(resolved*{0}+!resolved*1)".format(whad_reweight),
+    'weight' : mcCommonWeight +"*EWK_W_correction[0]*kfact[0]",
+               # +"*(resolved*{0}+!resolved*1)".format(whad_reweight),
     'FilesPerJob' : 1,
 }
 CombineBaseW(mcDirectory, samples, 'Wjets',
@@ -310,7 +311,7 @@ CombineBaseW(mcDirectory, samples, 'Wjets',
 
 addSampleWeight(samples,'Wjets','WJetsToLNU','(LHE_HT < 70)')
 addSampleWeight(samples,'Wjets','WJetsToLNu_ext2','(LHE_HT < 70)')
-#addSampleWeight(samples,'Wjets','WJetsToLNu_HT70_100','1.2')
+addSampleWeight(samples,'Wjets','WJetsToLNu_HT70_100','1.2')
 
 ####### Vg ########
 print("Vg")
@@ -558,9 +559,9 @@ for key in samples:
 
 
 
-###########################################
-################## DATA ###################
-###########################################
+##########################################
+################# DATA ###################
+##########################################
 print("FAKE")
 ########### FAKE ###########
 eleWP    = 'mva_90p_Iso2016'
