@@ -128,13 +128,13 @@ getconstant* MelaGGFvsVBF::_constants{};
 MelaGGFvsVBF::MelaGGFvsVBF() :
   TTreeFunction()
 {
-  _mela = new Mela(13., 125.);
+  _mela = new Mela(14., 125.);
 }
 
 MelaGGFvsVBF::MelaGGFvsVBF(unsigned int i, const char* baseconstants) :
   TTreeFunction()
 {
-  _mela = new Mela(13., 125.);
+  _mela = new Mela(14., 125.);
   _which = i;
   _constants = new getconstant(baseconstants);
 }
@@ -195,34 +195,45 @@ MelaGGFvsVBF::setValues(long long _iEntry)
    }
    */
    // loop over the jets and find the two leading not overlapping with the candidate
-   TLorentzVector vbfj1, vbfj2;
-   int nVBF = 0;
-   for (int ij = 0; ij < *nCleanJet->Get()-1 && nVBF <=2 ; ++ij){
+   TLorentzVector vbfj1_res, vbfj2_res;
+   int nVBF_res = 0;
+   for (int ij = 0; ij < *nCleanJet->Get() && nVBF_res <=2 ; ++ij){
      if (ij == idx_j1 || ij == idx_j2) continue;
+     TLorentzVector tmpj;
+     tmpj.SetPtEtaPhiM(CleanJet_pt->At(ij), CleanJet_eta->At(ij), CleanJet_phi->At(ij), Jet_mass->At(CleanJet_jetIdx->At(ij)));
+     if (tmpj.Pt() < 30) continue;
+     nVBF_res+=1; 
+     if (nVBF_res == 1)
+       vbfj1_res = tmpj;
+     else if (nVBF_res == 2)
+       vbfj2_res = tmpj;
+   }    
+   
+   TLorentzVector vbfj1_boo, vbfj2_boo;
+   int nVBF_boo = 0;
+   for (int ij = 0; ij < *nCleanJet->Get() && nVBF_boo <=2 ; ++ij){
      TLorentzVector tmpj;
      tmpj.SetPtEtaPhiM(CleanJet_pt->At(ij), CleanJet_eta->At(ij), CleanJet_phi->At(ij), Jet_mass->At(CleanJet_jetIdx->At(ij)));
      if (tmpj.Pt() < 30) continue;
      if (idx_fat >= 0) {
         if ( tmpj.DeltaR(jfat) < 0.8) continue;
      }
-     nVBF+=1; 
-     if (nVBF == 1)
-       vbfj1 = tmpj;
-     else if (nVBF == 2)
-       vbfj2 = tmpj;
+     nVBF_boo+=1; 
+     if (nVBF_boo == 1)
+       vbfj1_boo = tmpj;
+     else if (nVBF_boo == 2)
+       vbfj2_boo = tmpj;
    }    
-   bool foundVBFjets = (nVBF==2);
 
-   if (! foundVBFjets) return;
    // if they are not correctly ordered in pT, reorder. Mela requires this
    //vbfj1.Print();
    //vbfj2.Print();
    SimpleParticleCollection_t daughter_coll;
-   SimpleParticleCollection_t associated_coll;       
-   associated_coll.push_back(SimpleParticle_t(0,vbfj1.Pt()>vbfj2.Pt() ? vbfj1 : vbfj2));
-   associated_coll.push_back(SimpleParticle_t(0,vbfj1.Pt()>vbfj2.Pt() ? vbfj2 : vbfj1));
    // we have a resolved candidate
-   if (idx_j1>=0){
+   if (idx_j1>=0 && nVBF_res == 2){
+      SimpleParticleCollection_t associated_coll;       
+      associated_coll.push_back(SimpleParticle_t(0,vbfj1_res.Pt()>vbfj2_res.Pt() ? vbfj1_res : vbfj2_res));
+      associated_coll.push_back(SimpleParticle_t(0,vbfj1_res.Pt()>vbfj2_res.Pt() ? vbfj2_res : vbfj1_res));
       TLorentzVector j1;
       j1.SetPtEtaPhiM(CleanJet_pt->At(idx_j1), CleanJet_eta->At(idx_j1), CleanJet_phi->At(idx_j1), Jet_mass->At(CleanJet_jetIdx->At(idx_j1)));
       TLorentzVector j2;
@@ -251,7 +262,10 @@ MelaGGFvsVBF::setValues(long long _iEntry)
       discriminatorResolved = me_vbf/(me_vbf+CforHM*me_ggH);    
    }
    // we have a boosted candidate
-   if (idx_fat >= 0){
+   if (idx_fat >= 0 && nVBF_boo){
+      SimpleParticleCollection_t associated_coll;       
+      associated_coll.push_back(SimpleParticle_t(0,vbfj1_boo.Pt()>vbfj2_boo.Pt() ? vbfj1_boo : vbfj2_boo));
+      associated_coll.push_back(SimpleParticle_t(0,vbfj1_boo.Pt()>vbfj2_boo.Pt() ? vbfj2_boo : vbfj1_boo));
       TLorentzVector h = lep+jfat;
       float CforHM = _constants->CforHM(h.M());  
       daughter_coll.push_back(SimpleParticle_t(25,h));
