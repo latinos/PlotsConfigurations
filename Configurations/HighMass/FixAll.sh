@@ -71,16 +71,3 @@ python FixSysNorms3_apply.py v7_Full2018/rootFile_Full2018_em/plots_Full2018_em.
 python FixSysNorms3_apply.py v7_Full2018/rootFile_Full2018_ee/plots_Full2018_ee.root > FixSys3_18ee.txt
 python FixSysNorms3_apply.py v7_Full2018/rootFile_Full2018_mm/plots_Full2018_mm.root > FixSys3_18mm.txt
 
-# FixLumiLegacy.py:
-# Update new luminosities: Scale all processes (but data)
-
-python FixLumiLegacy.py v7_Full2016/rootFile_Full2016_em/plots_Full2016_em.root > FixLumi_16em.txt
-python FixLumiLegacy.py v7_Full2016/rootFile_Full2016_ee/plots_Full2016_ee.root > FixLumi_16ee.txt
-python FixLumiLegacy.py v7_Full2016/rootFile_Full2016_mm/plots_Full2016_mm.root > FixLumi_16mm.txt
-#python FixLumiLegacy.py v7_Full2017/rootFile_Full2017_em/plots_Full2017_em.root > FixLumi_17em.txt
-#python FixLumiLegacy.py v7_Full2017/rootFile_Full2017_ee/plots_Full2017_ee.root > FixLumi_17ee.txt
-#python FixLumiLegacy.py v7_Full2017/rootFile_Full2017_mm/plots_Full2017_mm.root > FixLumi_17mm.txt
-#python FixLumiLegacy.py v7_Full2018/rootFile_Full2018_em/plots_Full2018_em.root > FixLumi_18em.txt
-#python FixLumiLegacy.py v7_Full2018/rootFile_Full2018_ee/plots_Full2018_ee.root > FixLumi_18ee.txt
-#python FixLumiLegacy.py v7_Full2018/rootFile_Full2018_mm/plots_Full2018_mm.root > FixLumi_18mm.txt
-

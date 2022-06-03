@@ -491,8 +491,12 @@ INToverSBI = False
 noSMxsec = '(1.0/Xsec)'
 
 for model in models:
-  model_I = model+'_I'
   model_name = '_'+model.replace(".","")
+  if model == 'SMWidth':
+    model = '1.0'
+    model_I = '0.0'
+  else:
+    model_I = model+'_I'
 
   ############ HIGH MASS ggH H->WW ############
 

@@ -284,8 +284,8 @@ nuisances['electronpt_HM']  = {
                 'mapUp'  : 'ElepTup',
                 'mapDown'  : 'ElepTdo',
                 'samples': dict((skey, ['1', '1']) for skey in mc_HM),
-                'folderUp'   : '/eos/home-d/dmroy/HWWNano/Fall2017_102X_nAODv7_Full2017v7/MCl1loose2017v7__MCCorr2017v7__l2loose__l2tightOR2017v7__BWReweight__ElepTup_suffix',
-                'folderDown' : '/eos/home-d/dmroy/HWWNano/Fall2017_102X_nAODv7_Full2017v7/MCl1loose2017v7__MCCorr2017v7__l2loose__l2tightOR2017v7__BWReweight__ElepTdo_suffix',
+                'folderUp'   : treeBaseDir+'Fall2017_102X_nAODv7_Full2017v7/MCl1loose2017v7__MCCorr2017v7__l2loose__l2tightOR2017v7__BWReweight__ElepTup_suffix',
+                'folderDown' : treeBaseDir+'Fall2017_102X_nAODv7_Full2017v7/MCl1loose2017v7__MCCorr2017v7__l2loose__l2tightOR2017v7__BWReweight__ElepTdo_suffix',
 }
 
 if EMorEEorMM!="em":
@@ -342,8 +342,8 @@ nuisances['muonpt_HM']  = {
                 'mapUp'  : 'MupTup',
                 'mapDown'  : 'MupTdo',
                 'samples': dict((skey, ['1', '1']) for skey in mc_HM),
-                'folderUp'   : '/eos/home-d/dmroy/HWWNano/Fall2017_102X_nAODv7_Full2017v7/MCl1loose2017v7__MCCorr2017v7__l2loose__l2tightOR2017v7__BWReweight__MupTup_suffix',
-                'folderDown' : '/eos/home-d/dmroy/HWWNano/Fall2017_102X_nAODv7_Full2017v7/MCl1loose2017v7__MCCorr2017v7__l2loose__l2tightOR2017v7__BWReweight__MupTdo_suffix',
+                'folderUp'   : treeBaseDir+'Fall2017_102X_nAODv7_Full2017v7/MCl1loose2017v7__MCCorr2017v7__l2loose__l2tightOR2017v7__BWReweight__MupTup_suffix',
+                'folderDown' : treeBaseDir+'Fall2017_102X_nAODv7_Full2017v7/MCl1loose2017v7__MCCorr2017v7__l2loose__l2tightOR2017v7__BWReweight__MupTdo_suffix',
 }
 
 if EMorEEorMM!="em":
@@ -398,8 +398,8 @@ for js in jes_systs:
                 'mapUp'  : js+'up',
                 'mapDown'  : js+'do',
                 'samples': dict((skey, ['1', '1']) for skey in mc_HM),
-                'folderUp'   : '/eos/home-d/dmroy/HWWNano/Fall2017_102X_nAODv7_Full2017v7/MCl1loose2017v7__MCCorr2017v7__l2loose__l2tightOR2017v7__BWReweight__JES'+JesDirName+'up_suffix',
-                'folderDown' : '/eos/home-d/dmroy/HWWNano/Fall2017_102X_nAODv7_Full2017v7/MCl1loose2017v7__MCCorr2017v7__l2loose__l2tightOR2017v7__BWReweight__JES'+JesDirName+'do_suffix',
+                'folderUp'   : treeBaseDir+'Fall2017_102X_nAODv7_Full2017v7/MCl1loose2017v7__MCCorr2017v7__l2loose__l2tightOR2017v7__BWReweight__JES'+JesDirName+'up_suffix',
+                'folderDown' : treeBaseDir+'Fall2017_102X_nAODv7_Full2017v7/MCl1loose2017v7__MCCorr2017v7__l2loose__l2tightOR2017v7__BWReweight__JES'+JesDirName+'do_suffix',
   }
   if EMorEEorMM!="em":
     nuisances[js+'_DY']  = {
@@ -434,8 +434,8 @@ nuisances['jer_HM']  = {
                 'mapUp'  : 'JERup',
                 'mapDown'  : 'JERdo',
                 'samples': dict((skey, ['1', '1']) for skey in mc_HM),
-                'folderUp'   : '/eos/home-d/dmroy/HWWNano/Fall2017_102X_nAODv7_Full2017v7/MCl1loose2017v7__MCCorr2017v7__l2loose__l2tightOR2017v7__BWReweight__JERup_suffix',
-                'folderDown' : '/eos/home-d/dmroy/HWWNano/Fall2017_102X_nAODv7_Full2017v7/MCl1loose2017v7__MCCorr2017v7__l2loose__l2tightOR2017v7__BWReweight__JERdo_suffix',
+                'folderUp'   : treeBaseDir+'Fall2017_102X_nAODv7_Full2017v7/MCl1loose2017v7__MCCorr2017v7__l2loose__l2tightOR2017v7__BWReweight__JERup_suffix',
+                'folderDown' : treeBaseDir+'Fall2017_102X_nAODv7_Full2017v7/MCl1loose2017v7__MCCorr2017v7__l2loose__l2tightOR2017v7__BWReweight__JERdo_suffix',
 }
 
 if EMorEEorMM!="em":
@@ -471,8 +471,8 @@ nuisances['met_HM']  = {
                 'mapUp'  : 'METup',
                 'mapDown'  : 'METdo',
                 'samples': dict((skey, ['1', '1']) for skey in mc_HM),
-                'folderUp'   : '/eos/home-d/dmroy/HWWNano/Fall2017_102X_nAODv7_Full2017v7/MCl1loose2017v7__MCCorr2017v7__l2loose__l2tightOR2017v7__BWReweight__METup_suffix',
-                'folderDown' : '/eos/home-d/dmroy/HWWNano/Fall2017_102X_nAODv7_Full2017v7/MCl1loose2017v7__MCCorr2017v7__l2loose__l2tightOR2017v7__BWReweight__METdo_suffix',
+                'folderUp'   : treeBaseDir+'Fall2017_102X_nAODv7_Full2017v7/MCl1loose2017v7__MCCorr2017v7__l2loose__l2tightOR2017v7__BWReweight__METup_suffix',
+                'folderDown' : treeBaseDir+'Fall2017_102X_nAODv7_Full2017v7/MCl1loose2017v7__MCCorr2017v7__l2loose__l2tightOR2017v7__BWReweight__METdo_suffix',
 }
 
 if EMorEEorMM!="em":
@@ -1274,7 +1274,7 @@ nuisances['DYZptRew']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples' : {
-                     'DY'  : ["1.0/DY_NLO_pTllrw","DY_NLO_pTllrw"]
+                     'DY'  : ["DY_NLO_pTllrw","1.0/DY_NLO_pTllrw"]
                 }
          }
 
@@ -1283,7 +1283,7 @@ nuisances['DYNLORew']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples' : {
-                     'DY'  : ["(1.0/DY_LOtoNLOonly)*(DY_isLO) + (1.0)*(!DY_isLO)","(DY_LOtoNLOonly)*(DY_isLO) + (1.0)*(!DY_isLO)"]
+                     'DY'  : ["(DY_LOtoNLOonly)*(DY_isLO) + (1.0)*(!DY_isLO)","(1.0/DY_LOtoNLOonly)*(DY_isLO) + (1.0)*(!DY_isLO)"]
                 }
          }
 

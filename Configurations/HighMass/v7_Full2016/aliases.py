@@ -145,7 +145,11 @@ aliases['getGenZpt_OTF'] = {
     'class': 'getGenZpt_new',
     'samples': ['DY']
 }
-
+aliases['getGenZmass_OTF'] = {
+    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/patches/getGenZmass.cc+' % os.getenv('CMSSW_BASE')],
+    'class': 'getGenZmass',
+    'samples': ['DY']
+}
 handle = open('%s/src/PlotsConfigurations/Configurations/patches/DYrew30.py' % os.getenv('CMSSW_BASE'),'r')
 exec(handle)
 handle.close()
@@ -162,21 +166,22 @@ aliases['DY_LOtoNLOonly'] = {
     'expr': '('+DYrew['2016']['LOtoNLO'].replace('x', 'getGenZpt_OTF')+')',
     'samples': ['DY']
 }
-aliases['DY_isLO'] = {
-    'expr': '(LHE_HT >= 70)',
+if EMorEEorMM == 'em':
+  aliases['DY_isLO'] = {
+    'expr': '(0)',
     'samples': ['DY']
-}
+  }
+else:
+  aliases['DY_isLO'] = {
+    'expr': '(getGenZmass_OTF < 50) && (LHE_HT >= 70)',
+    'samples': ['DY']
+  }
 aliases['DY_LowMll'] = {
   'expr': '('+DYrew['2016']['LowMll'].replace('x', 'mll')+')*(mll < 70) + 1.0 * (mll >= 70)',
   'samples': ['DY']
 }
 
 ##### DY MC stitching
-aliases['getGenZmass_OTF'] = {
-    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/patches/getGenZmass.cc+' % os.getenv('CMSSW_BASE')],
-    'class': 'getGenZmass',
-    'samples': ['DY']
-}
 handle2 = open('%s/src/PlotsConfigurations/Configurations/patches/DYstitching.py' % os.getenv('CMSSW_BASE'),'r')
 exec(handle2)
 handle2.close()
@@ -186,8 +191,9 @@ FullStitchWeight = "((getGenZmass_OTF<50)*1.0 + (getGenZmass_OTF>=50)*(" # Leave
 IndividualParts = []
 for alpha in DYstitching["2016"]["XS"]:
   if "HT" in alpha: continue
+  XSkey = "OldXS" if "PTLL" in alpha else "XS"
   aliases['DY_is'+alpha.replace("-","_")] = {
-    'expr': "(abs("+str(DYstitching["2016"]["XS"][alpha])+"/Xsec -1.0) < 1.0e-03)",
+    'expr': "(abs("+str(DYstitching["2016"][XSkey][alpha])+"/Xsec -1.0) < 1.0e-03)",
     'samples': ['DY']
   }
 for i in range(len(PTLLbins)+1):

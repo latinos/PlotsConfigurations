@@ -1,4 +1,5 @@
 from LatinoAnalysis.Tools.commonTools import *
+HiggsXS = HiggsXSection()
 nuisances = {}
 
 mc = ['DY', 'top', 'WW', 'WWewk', 'ggWW', 'qqWWqq', 'WW2J', 'VZ', 'Vg', 'VgS_L', 'VgS_H', 'VVV', 'ggH_hww', 'qqH_hww', 'ZH_hww', 'WH_hww', 'ggH_htt', 'qqH_htt', 'ZH_htt', 'WH_htt']

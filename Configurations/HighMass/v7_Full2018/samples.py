@@ -277,7 +277,6 @@ else:
                        'suppressNegative' :['all'],
                        'suppressNegativeNuisances' :['all'],
                    }
-  #                                  + getSampleFiles(directoryDY,'DYJetsToLL_Pt-0to50',True,'nanoLatino_')
 
   CombineBaseW(samples, 'DY', ['DYJetsToLL_M-10to50-LO', 'DYJetsToLL_M-10to50-LO_ext1'])
   addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO',        '(LHE_HT < 100)')
@@ -301,7 +300,6 @@ else:
   addSampleWeight(samples,'DY','DYJetsToLL_M-1500to2000',              'DY_NLO_pTllrw')
   addSampleWeight(samples,'DY','DYJetsToLL_M-2000to3000',              'DY_NLO_pTllrw')
   addSampleWeight(samples,'DY','DYJetsToLL_M-3000toInf',               'DY_NLO_pTllrw')
-  #addSampleWeight(samples,'DY','DYJetsToLL_Pt-0to50',                  'DY_NLO_pTllrw') # PTLL-binned are NLO, also have M>50 cut!
   addSampleWeight(samples,'DY','DYJetsToLL_Pt-50to100',                'DY_NLO_pTllrw')
   addSampleWeight(samples,'DY','DYJetsToLL_Pt-100to250',               'DY_NLO_pTllrw')
   addSampleWeight(samples,'DY','DYJetsToLL_Pt-250to400',               'DY_NLO_pTllrw')
@@ -471,8 +469,12 @@ INToverSBI = False
 noSMxsec = '(1.0/Xsec)'
 
 for model in models:
-  model_I = model+'_I'
   model_name = '_'+model.replace(".","")
+  if model == 'SMWidth':
+    model = '1.0'
+    model_I = '0.0'
+  else:
+    model_I = model+'_I'
 
   ############ HIGH MASS ggH H->WW ############
 
@@ -559,7 +561,7 @@ for model in models:
 
       CombineBaseW(samples, 'QQHSBI_'+mass+model_name, ['WpWmJJ_QCD_noTop', 'WpWmJJ_QCD_noTop_ext1'])
 
-      addSampleWeight(samples, 'QQHSBI_'+mass+model_name, 'VBFHToWWTo2L2Nu_M'+mass, noSMxsec+'*'+'('+model+' + '+model_I+'*(abs('+model_I+')<20))', directoryHM) # SM sample same as HM at 125 GeV -> Hack needed: Check that HM sample comes from 'directoryHM' (hardcoded local change)
+      addSampleWeight(samples, 'QQHSBI_'+mass+model_name, 'VBFHToWWTo2L2Nu_M'+mass, noSMxsec+'*'+'('+model+' + '+model_I+'*(abs('+model_I+')<20))', directoryHM)
       addSampleWeight(samples, 'QQHSBI_'+mass+model_name, 'WpWmJJ_QCD_noTop', '(mjjGen_OTF>100)*(GenLHE)'+embed_tautauveto)
       addSampleWeight(samples, 'QQHSBI_'+mass+model_name, 'WpWmJJ_QCD_noTop_ext1', '(mjjGen_OTF>100)*(GenLHE)'+embed_tautauveto)
 
