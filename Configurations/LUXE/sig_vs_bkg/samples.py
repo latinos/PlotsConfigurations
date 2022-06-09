@@ -35,20 +35,58 @@ except NameError:
 #############  BACKGROUNDS  ###############
 ###########################################
 
-bkg_files_phase0 = luxeGetSampleFiles('/ceph/ferber/LUXE/ptarmigan-v0.8.1/e-laser/phase0/gpc/7.0/', 'e0gpc_', 'xi70', '')
+# bkg_files_phase0 = luxeGetSampleFiles('/ceph/ferber/LUXE/ptarmigan-v0.8.1/e-laser/phase0/gpc/7.0/', 'e0gpc_', 'xi70', '')
 
-samples['Bkg_phase0'] = {
-    'name'   : bkg_files_phase0,
-    'weight' : '1',
+# # samples['Bkg_phase0'] = {
+# #     'name'   : bkg_files_phase0,
+# #     'weight' : 'weight',
+# #     'Filesperjob': 1,
+# # }
+
+
+# bkg_files_phase1 = luxeGetSampleFiles('/ceph/ferber/LUXE/ptarmigan-v0.8.1/e-laser/phase1/gpca/7.0/', 'e1gpc_', '70_000', '')
+
+# samples['Bkg_phase1'] = {
+#     'name'   : bkg_files_phase1,
+#     'weight' : 'weight',
+#     'FilesPerJob': 1,
+# }
+
+
+#bkg_files_phase0_ppw = luxeGetSampleFiles('/ceph/ferber/LUXE/ptarmigan-v0.8.1/e-laser/phase0/ppw/', 'e0gpc_', 'xi70', '')
+ppw_folder = "/ceph/ferber/LUXE/ptarmigan-v0.8.1/e-laser/phase0/ppw/"
+
+bkg_files_phase0_ppw_xi_3_0 = luxeGetSampleFiles('/ceph/ferber/LUXE/ptarmigan-v0.8.1/e-laser/phase0/ppw/', 'e0ppw_', '3_0', '')
+
+print(bkg_files_phase0_ppw_xi_3_0)
+
+# bkg_files_phase0_ppw_xi_3_0 = [
+#     ppw_folder + "e0ppw_3_0_0_particles_g4.root",
+#     ppw_folder + "e0ppw_3_0_1_particles_g4.root",
+#     ppw_folder + "e0ppw_3_0_2_particles_g4.root",
+#     ppw_folder + "e0ppw_3_0_3_particles_g4.root",
+# ]
+
+samples['Bkg_phase0_ppw_xi_3_0'] = {
+    'name'   : bkg_files_phase0_ppw_xi_3_0,
+    'weight' : 'weight/1.5e9',
     'FilesPerJob': 1,
 }
 
 
-bkg_files_phase1 = luxeGetSampleFiles('/ceph/ferber/LUXE/ptarmigan-v0.8.1/e-laser/phase1/gpca/7.0/', 'e1gpc_', '70_000', '')
+bkg_files_phase0_ppw_xi_7_0 = luxeGetSampleFiles('/ceph/ferber/LUXE/ptarmigan-v0.8.1/e-laser/phase0/ppw/', 'e0ppw_', '7_0', '')
 
-samples['Bkg_phase1'] = {
-    'name'   : bkg_files_phase1,
-    'weight' : '1',
+print(bkg_files_phase0_ppw_xi_7_0)
+
+# Bkg-_files_phase0_ppw_xi_7_0 = [
+#     ppw_folder + "e0ppw_7_0_0_particles_g4.root",
+#     ppw_folder + "e0ppw_7_0_1_particles_g4.root",
+#     ppw_folder + "e0ppw_7_0_2_particles_g4.root",
+#     ppw_folder + "e0ppw_7_0_3_particles_g4.root",
+# ]
+
+samples['Bkg_phase0_ppw_xi_7_0'] = {
+    'name'   : bkg_files_phase0_ppw_xi_7_0,
+    'weight' : 'weight/1.5e9',
     'FilesPerJob': 1,
 }
-

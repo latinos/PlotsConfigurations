@@ -8,6 +8,8 @@ The instructions to produce the plots follow.
 
     mkShapes.py --pycfg=configuration.py --doBatch=1 --batchQueue=testmatch --batchSplit=AsMuchAsPossible
 
+    mkShapes.py --pycfg=configuration.py --doThreads=True --nThreads=8
+
 Resubmit failed jobs.
 
     cd $HOME/scripts/jobs/mkShapes__WHSS2018_v7_chargeAsymmetry/
@@ -26,7 +28,7 @@ Or, if they failed because the wall clock time has been exceeded, resubmit them 
 
 ### Plot distributions
 
-    mkPlot.py --pycfg=configuration.py --inputFile=rootFile/plots_Luxe.root --fileFormats=png --onlyPlot=c
+    mkPlot.py --pycfg=configuration.py --inputFile=rootFile/plots_Luxe.root --fileFormats=png --onlyPlot=c --maxLogC=1e4 --minLogC=100
 
 ### Copy the plots on the web
 
@@ -40,11 +42,11 @@ General instructions:
 
 One specific example:
 
-    mkdir -p /etpwww/web/ntrevisa/public_html/2022_05_16/
+    mkdir -p /etpwww/web/ntrevisa/public_html/2022_06_09/
 
-    cp -r plots_Luxe  /etpwww/web/ntrevisa/public_html/2022_05_16/
+    cp -r plots_Luxe  /etpwww/web/ntrevisa/public_html/2022_06_09/
 
-    python gallery.py /etpwww/web/ntrevisa/public_html/2022_05_16/plots_Luxe/
+    python gallery.py /etpwww/web/ntrevisa/public_html/2022_06_09/plots_Luxe/
 
 Plots will be visible at:
 

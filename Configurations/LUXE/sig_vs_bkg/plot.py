@@ -19,17 +19,33 @@
 # keys here must match keys in samples.py    
 #     
 
-plot['Bkg_phase0'] = {
-    'nameHR'   : 'Phase0_background',
-    'color'    : 600, #kBlue # 632, # kRed 
+# plot['Bkg_phase0'] = {
+#     'nameHR'   : 'Phase0_background',
+#     'color'    : 600, #kBlue # 632, # kRed 
+#     'isSignal' : 1,
+#     'isData'   : 0,    
+#     'scale'    : 1    #
+# }
+
+# plot['Bkg_phase1'] = {
+#     'nameHR'   : 'Phase1_background',
+#     'color'    : 632, #kBlue # 632, # kRed 
+#     'isSignal' : 1,
+#     'isData'   : 0,    
+#     'scale'    : 1    #
+# }
+
+plot['Bkg_phase0_ppw_xi_3_0'] = {
+    'nameHR'   : 'Phase0 bkg xi=3.0',
+    'color'    : 600, # kBlue
     'isSignal' : 1,
     'isData'   : 0,    
     'scale'    : 1    #
 }
 
-plot['Bkg_phase1'] = {
-    'nameHR'   : 'Phase1_background',
-    'color'    : 632, #kBlue # 632, # kRed 
+plot['Bkg_phase0_ppw_xi_7_0'] = {
+    'nameHR'   : 'Phase0 bkg xi=7.0',
+    'color'    : 632, # kBlue
     'isSignal' : 1,
     'isData'   : 0,    
     'scale'    : 1    #

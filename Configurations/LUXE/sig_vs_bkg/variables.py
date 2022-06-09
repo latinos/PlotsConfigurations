@@ -34,10 +34,34 @@ variables['physproc'] = {
     'fold' : 3
 }
 
+# Physics process - zooming around 0 
+variables['physproc_zoom'] = {
+    'name' : 'physproc', 
+    'range': (100,0,100),
+    'xaxis': 'Track secondary production process (zoom)',
+    'fold' : 3
+}
+
 # Track energy
 variables['energy'] = {
     'name' : 'E', 
     'range': (100,0,25),
+    'xaxis': 'Track energy [GeV]',
+    'fold' : 3
+}
+
+# Track energy (0.05 GeV bins)
+variables['energy_high_res'] = {
+    'name' : 'E', 
+    'range': (500,0,25),
+    'xaxis': 'Track energy [GeV]',
+    'fold' : 3
+}
+
+# Track energy (0.05 GeV bins) x axis in (0,12)
+variables['energy_high_res_zoom'] = {
+    'name' : 'E', 
+    'range': (240,0,12),
     'xaxis': 'Track energy [GeV]',
     'fold' : 3
 }
