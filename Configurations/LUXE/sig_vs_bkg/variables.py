@@ -122,6 +122,13 @@ variables['vtx_z'] = {
     'fold' : 3
 }
 
+variables['vtx_z_zoom'] = {
+    'name' : 'vtxz',
+    'range': (100,-0.1,0.1),
+    'xaxis': 'Vertex z position [mm]',
+    'fold' : 3
+}
+
 # Track x momentum
 variables['px'] = {
     'name' : 'px',
