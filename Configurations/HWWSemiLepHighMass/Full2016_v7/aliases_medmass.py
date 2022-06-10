@@ -238,6 +238,12 @@ aliases['HvOverJJ'] = {
     'args': 3
 }
 
+#aliases['DeltaR_jj'] = {
+#    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/DeltaR_jj.cc+'  % os.getenv('CMSSW_BASE')],
+#    'class': 'DeltaR_jj',
+#}
+
+
 aliases['HvOverLEP'] = {
     'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/getResBoo.cc+'  % os.getenv('CMSSW_BASE')],
     'class': 'getResBoo',
@@ -260,31 +266,50 @@ aliases['fat_jet'] ={
     'expr': 'nCleanFatJet >= 1 '
 }
 
+#aliases['DeltaR_jj'] ={
+#    'expr' : 'TMath::Sqrt((Alt$(CleanJet_phi[HM_idx_j1], -1) - Alt$(CleanJet_phi[HM_idx_j2], -1))*(Alt$(CleanJet_phi[HM_idx_j1], -1) - Alt$(CleanJet_phi[HM_idx_j2], -1)) + (Alt$(CleanJet_eta[HM_idx_j1],-1) - Alt$(CleanJet_eta[HM_idx_j2], -1))*(Alt$(CleanJet_eta[HM_idx_j1], -1) - Alt$(CleanJet_eta[HM_idx_j2], -1)))'
+#}
+#
+aliases['DeltaR_jj_Lpt'] ={
+    'expr' : 'TMath::Sqrt((CleanJet_phi[0] - CleanJet_phi[1])*(CleanJet_phi[0] - CleanJet_phi[1]) + (CleanJet_eta[0] - CleanJet_eta[1])*(CleanJet_eta[0] - CleanJet_eta[1]))'
+}
+
+
 aliases['boosted_nocut'] = {
     'expr': 'PuppiMET_pt > 40 \
-            && idxCleanFatJetW != 999 \
-            && Alt$(CleanFatJet_pt[idxCleanFatJetW], 0) > 200 \
-            && Alt$(CleanFatJet_eta[idxCleanFatJetW], 999) < 2.4'
+            && Alt$(CleanFatJet_pt[0], 0) > 200 \
+            && Alt$(CleanFatJet_eta[0], 999) < 2.4'
 }
+
+aliases['resolved_nocut'] = {
+    'expr': 'nCleanJet >= 2 \
+            && HM_Whad_mass > 0 \
+            && CleanJet_pt[0] > 30 \
+            && PuppiMET_pt[0] > 30 \
+            && CleanJet_pt[1] > 30'
+}
+
+
+#            && idxCleanFatJetW != 999 \
 
 aliases['boosted_fat_jet'] = {
     'expr': 'PuppiMET_pt > 40 \
-            && idxCleanFatJetW != 999 \
             && Alt$(CleanFatJet_pt[idxCleanFatJetW], 0) > 200 \
-            && FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[idxCleanFatJetW]] > 0.960 \
+            && FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[idxCleanFatJetW]] > 0.918 \
             && HvOverFat > 0.4 \
             && Alt$(CleanFatJet_eta[idxCleanFatJetW], 999) < 2.4'
 }
 
+            # && idxCleanFatJetW != 999 \
+
 aliases['two_jet_res'] ={
     'expr': 'nCleanJet >= 2 \
             && !boosted_fat_jet[0] \
-            && HM_Whad_mass > 0 \
-            && CleanJet_pt[0] > 30 \
+            && HM_idx_j1 != 0 \
             && PuppiMET_pt[0] > 30 \
             && HM_Hlnjj_MT[0] > 60 \
             && HvOverJJ[0] > 0.4 \
-            && CleanJet_pt[1] > 30'
+            && HM_idx_j2 != 0'
 }
 
 
@@ -362,6 +387,7 @@ bTagResolved = '(Sum$(Jet_btagDeepB[CleanJet_jetIdx] > bWP[0] && {0}) == 0)'\
                 .format(resolvedJetBVetoCondition)
 
 bTemplate = '((boosted_fat_jet[0]*{0}) || ( two_jet_res[0]*{1}))'.format(bTagBoosted, bTagResolved)
+#bTemplate = '((boosted_nocut[0]*{0}) || ( resolved_nocut[0]*{1}))'.format(bTagBoosted, bTagResolved)
 
 aliases['bVeto'] = {
     'expr': bTemplate.format(threshold=vetoThreshold)
@@ -503,7 +529,7 @@ with open(configurations+'/HWWSemiLepHighMass/DeepAK8V2_W_SFs.csv') as csvfile:
 # 300 400
 # 400 800
 year = '2016'
-mtr = '0p5'
+mtr = '1p0'
 aliases['DeepAK8_SF'] = {
     'expr': "( 1 * two_jet_res[0] + !two_jet_res[0]*(" +\
         \
@@ -609,20 +635,20 @@ lastcopy = (1 << 13)
 
 aliases['isTTbar'] = {
     'expr': 'Sum$(TMath::Abs(GenPart_pdgId) == 6 && TMath::Odd(GenPart_statusFlags / %d)) == 2' % lastcopy,
-    'samples': ['top',]
+    'samples': ['top', 'top_semi_redo',]
 }
 aliases['isSingleTop'] = {
     'expr': 'Sum$(TMath::Abs(GenPart_pdgId) == 6 && TMath::Odd(GenPart_statusFlags / %d)) == 1' % lastcopy,
-    'samples': ['top',]
+    'samples': ['top','top_semi_redo',]
 }
 
 aliases['topGenPtOTF'] = {
     'expr': 'Sum$((GenPart_pdgId == 6 && TMath::Odd(GenPart_statusFlags / %d)) * GenPart_pt)' % lastcopy,
-    'samples': ['top',]
+    'samples': ['top','top_semi_redo',]
 }
 aliases['antitopGenPtOTF'] = {
     'expr': 'Sum$((GenPart_pdgId == -6 && TMath::Odd(GenPart_statusFlags / %d)) * GenPart_pt)' % lastcopy,
-    'samples': ['top',]
+    'samples': ['top','top_semi_redo',]
 }
 
 
@@ -630,7 +656,7 @@ aliases['antitopGenPtOTF'] = {
 
 aliases['Top_pTrw'] = {# New Top PAG
     'expr': '(topGenPtOTF * antitopGenPtOTF > 0.) * (TMath::Sqrt((0.103*TMath::Exp(-0.0118*topGenPtOTF) - 0.000134*topGenPtOTF + 0.973) * (0.103*TMath::Exp(-0.0118*antitopGenPtOTF) - 0.000134*antitopGenPtOTF + 0.973))) * (TMath::Sqrt(TMath::Exp(1.61468e-03 + 3.46659e-06*topGenPtOTF - 8.90557e-08*topGenPtOTF*topGenPtOTF) * TMath::Exp(1.61468e-03 + 3.46659e-06*antitopGenPtOTF - 8.90557e-08*antitopGenPtOTF*antitopGenPtOTF))) + (topGenPtOTF * antitopGenPtOTF <= 0.)', # Same Reweighting as other years, but with additional fix for tune CUET -> CP5
-    'samples': ['top',]
+    'samples': ['top','top_semi_redo',]
 }
 
 
@@ -698,24 +724,6 @@ aliases["nJetHigh2"]={
     'class': 'getNJet',
 }
 
-aliases["MelaVBFvsGGH_boosted"]={
-    'linesToAdd': [
-    'gSystem->Load("%s/src/JHUGenMELA/MELA/data/%s/libmcfm_707.so","", kTRUE);'%(os.getenv('CMSSW_BASE'), os.getenv('SCRAM_ARCH')),
-    'gSystem->Load("libJHUGenMELAMELA.so","", kTRUE);',
-    '.L %s/HWWSemiLepHighMass/MelaGGFvsVBF.cc+' % configurations],
-    'class': 'MelaGGFvsVBF',
-    'args': 0
-}
-aliases["MelaVBFvsGGH_resolved"]={
-    'linesToAdd': [
-    'gSystem->Load("%s/src/JHUGenMELA/MELA/data/%s/libmcfm_707.so","", kTRUE);'%(os.getenv('CMSSW_BASE'), os.getenv('SCRAM_ARCH')),
-    'gSystem->Load("libJHUGenMELAMELA.so","", kTRUE);',
-    '.L %s/HWWSemiLepHighMass/MelaGGFvsVBF.cc+' % configurations],
-    'class': 'MelaGGFvsVBF',
-    'args': 1
-}
-
-
 aliases['kfact'] = { 
     'linesToAdd': [
 	'gSystem->Load("%s/src/JHUGenMELA/MELA/data/%s/libmcfm_707.so","", kTRUE);'%(os.getenv('CMSSW_BASE'), os.getenv('SCRAM_ARCH')),
@@ -727,6 +735,24 @@ aliases['kfact'] = {
     'args': ('PlotsConfigurations/Configurations/HWWSemiLepHighMass/wjets_kfactor_DH/HT_to_NLO_QCD_k_factors3.root', 'k_factor_2016'),
     'samples': 'Wjets', 
 }
+aliases["MelaVBFvsGGH_boosted"]={
+    'linesToAdd': [
+    'gSystem->Load("%s/src/JHUGenMELA/MELA/data/%s/libmcfm_707.so","", kTRUE);'%(os.getenv('CMSSW_BASE'), os.getenv('SCRAM_ARCH')),
+    'gSystem->Load("libJHUGenMELAMELA.so","", kTRUE);',
+    '.L %s/HWWSemiLepHighMass/MelaGGFvsVBF.cc+' % configurations],
+    'class': 'MelaGGFvsVBF',
+    'args': (0, "%s/HWWSemiLepHighMass/" % configurations)
+}
+#aliases["MelaVBFvsGGH_resolved"]={
+#    'linesToAdd': [
+#    'gSystem->Load("%s/src/JHUGenMELA/MELA/data/%s/libmcfm_707.so","", kTRUE);'%(os.getenv('CMSSW_BASE'), os.getenv('SCRAM_ARCH')),
+#    'gSystem->Load("libJHUGenMELAMELA.so","", kTRUE);',
+#    '.L %s/HWWSemiLepHighMass/MelaGGFvsVBF.cc+' % configurations],
+#    'class': 'MelaGGFvsVBF',
+#    'args': (1,  "%s/HWWSemiLepHighMass/" % configurations)
+#}
+
+
 
 
 #aliases['kfactMjj'] = { 

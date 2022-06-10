@@ -2,21 +2,21 @@
 
 treeName = 'Events'
 
-tag = 'hm_Wjets_Pt'
+tag = 'hm_dhuiehfiushfs'
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFile_Wjets_Pt'
+outputDir = 'rootFile_again'
 
 # file with TTree aliases
 aliasesFile = 'aliases_medmass.py'
 
 # file with list of variables
-variablesFile = 'variables_medmass.py'
+variablesFile = 'variables_medmass_tree.py'
 # variablesFile = 'variablesPlot.py'
 # variablesFile = 'variablesLimits.py'
 
 # file with list of cuts
-cutsFile = 'cuts_medmass_dc.py'
+cutsFile = 'cuts_medmass.py'
 
 # file with list of samples
 samplesFile = 'samples_medmass.py'
@@ -29,11 +29,11 @@ lumi = 35.9
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'plot_wjets_rewei_mjj'
+outputDirPlots = 'Plots'
 
 
 # used by mkDatacards to define output directory for datacards
-outputDirDatacard = 'Datacards_0.5'
+outputDirDatacard = 'datacards'
 
 # structure file for datacard
 structureFile = 'structure_medmass.py'
