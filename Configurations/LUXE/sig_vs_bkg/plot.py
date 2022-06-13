@@ -46,7 +46,7 @@ plot['Bkg_phase0_ppw_xi_3_0'] = {
 plot['Bkg_phase0_ppw_xi_7_0'] = {
     'nameHR'   : 'Phase0 bkg xi=7.0',
     'color'    : 632, # kBlue
-    'isSignal' : 1,
+    'isSignal' : 2,
     'isData'   : 0,    
     'scale'    : 1    #
 }
