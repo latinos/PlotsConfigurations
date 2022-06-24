@@ -259,10 +259,12 @@ MelaGGFvsVBF::setValues(long long _iEntry)
       //vbfj1.Print();
       //vbfj2.Print();
       //std::cout << "me_vbf: " << me_vbf << " me_ggH: " << me_ggH << std::endl;
-      discriminatorResolved = me_vbf/(me_vbf+CforHM*me_ggH);    
+      discriminatorResolved = me_vbf/(me_vbf+CforHM*me_ggH);  
    }
    // we have a boosted candidate
-   if (idx_fat >= 0 && nVBF_boo){
+
+if (idx_fat >= 0 && nVBF_boo ==2){
+
       SimpleParticleCollection_t associated_coll;       
       associated_coll.push_back(SimpleParticle_t(0,vbfj1_boo.Pt()>vbfj2_boo.Pt() ? vbfj1_boo : vbfj2_boo));
       associated_coll.push_back(SimpleParticle_t(0,vbfj1_boo.Pt()>vbfj2_boo.Pt() ? vbfj2_boo : vbfj1_boo));
