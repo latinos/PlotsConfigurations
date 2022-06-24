@@ -1,47 +1,39 @@
-# example of configuration file
-treeName= 'Events'
+# Configuration file to produce initial root files -- has both merged and binned ggH samples
 
+treeName = 'Events'
 
-tag = 'Full2017_mm'
-
+tag = 'Full2018v9_DZ'
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFile_'+tag
+outputDir = 'rootFile'
 
 # file with TTree aliases
 aliasesFile = 'aliases.py'
 
 # file with list of variables
-variablesFile = 'variables_forANplot.py'
+variablesFile = 'variables.py'
 
 # file with list of cuts
-cutsFile = 'CR_cuts_ee_mm.py' 
+cutsFile = 'cuts.py' 
 
 # file with list of samples
 samplesFile = 'samples.py' 
 
 # file with list of samples
-plotFile = 'CR_plot_log_top.py' 
-
-
+plotFile = 'plot.py' 
 
 # luminosity to normalize to (in 1/fb)
-lumi = 41.53
+lumi = 59.74
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'plot_'+tag
-
+outputDirPlots = 'plots_' + tag
 
 # used by mkDatacards to define output directory for datacards
-outputDirDatacard = 'datacards'
-
+outputDirDatacard = 'datacards_' + tag
 
 # structure file for datacard
-#structureFile = 'structure.py' # Is this even needed still?
-
+structureFile = 'structure.py'
 
 # nuisances file for mkDatacards and for mkShape
 nuisancesFile = 'nuisances.py'
-
-

@@ -6,7 +6,7 @@ tag = 'Full2017_ee'
 
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFile_'+tag # '../../../../../../../../../../../../eos/home-d/dmroy/temp_shapes/2021_01_20_OwnShapes/rootFile_'+tag # 'rootFile_'+tag
+outputDir = 'rootFile_'+tag
 
 # file with TTree aliases
 aliasesFile = 'aliases.py'

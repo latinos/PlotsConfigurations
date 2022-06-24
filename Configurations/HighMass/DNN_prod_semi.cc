@@ -131,7 +131,7 @@ DNNprodSemi::evaluate(unsigned)
     wr2eta = 0.0;
     wr2phi = 0.0;
     wr2mass = 0.0;
-    for (int i{0}; i != 4 and (unsigned)i != nJet ; ++i) {
+    for (int i{0}; i != 4 and i != nJet ; ++i) {
       vbfjet[i] = i;
     }
   }else if (*HM_idx_j1->Get() != -1){
@@ -150,8 +150,8 @@ DNNprodSemi::evaluate(unsigned)
     wr2eta = CleanJet_eta->At(wjet2);
     wr2phi = CleanJet_phi->At(wjet2);
     wr2mass = Jet_mass->At(CleanJet_phi->At(wjet2));
-    for (int i{0}; j != 4 and (unsigned)i != nJet ; ++i) {
-      if ( (unsigned)i != wjet1 and (unsigned) i != wjet2){
+    for (int i{0}; j != 4 and i != nJet ; ++i) {
+      if (i != wjet1 and i != wjet2){
         vbfjet[j] = i;
         j++;
       }
@@ -262,9 +262,9 @@ DNNprodSemi::evaluate(unsigned)
 
   auto ev{*event->Get()};
   if (ev % 2 == 0){
-    return dnn_tensorflow0->analyze(input)[0];
+    return dnn_tensorflow0->analyze(input);
   }else{
-    return dnn_tensorflow1->analyze(input)[0];
+    return dnn_tensorflow1->analyze(input);
   }
 
 }

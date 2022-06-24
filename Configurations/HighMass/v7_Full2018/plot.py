@@ -60,7 +60,7 @@ groupPlot['HM_200']  = {
                   'samples'  : ['GGH_200'+model_name, 'QQH_200'+model_name]
               }
 groupPlot['HM_800']  = {  
-                  'nameHR' : '800 GeV (x10)',
+                  'nameHR' : '800 GeV (x4)',
                   'isSignal' : 2,
                   'color': 3, # kGreen
                   'samples'  : ['GGH_800'+model_name, 'QQH_800'+model_name]
@@ -71,7 +71,6 @@ groupPlot['HM_2000']  = {
                   'color': 4, # kBlue
                   'samples'  : ['GGH_2000'+model_name, 'QQH_2000'+model_name]
               }
-'''
 '''
 groupPlot['GGH_200']  = {  
                   'nameHR' : 'ggF 200 GeV',
@@ -86,13 +85,13 @@ groupPlot['QQH_200']  = {
                   'samples'  : ['QQH_200'+model_name]
               }
 groupPlot['GGH_800']  = {  
-                  'nameHR' : 'ggF 800 GeV (x10)',
+                  'nameHR' : 'ggF 800 GeV (x4)',
                   'isSignal' : 2,
                   'color': 417, # kGreen +1
                   'samples'  : ['GGH_800'+model_name]
               }
 groupPlot['QQH_800']  = {  
-                  'nameHR' : 'VBF 800 GeV (x10)',
+                  'nameHR' : 'VBF 800 GeV (x4)',
                   'isSignal' : 2,
                   'color': 419, # kGreen +3
                   'samples'  : ['QQH_800'+model_name]
@@ -109,7 +108,7 @@ groupPlot['QQH_2000']  = {
                   'color': 602, # kBlue +2
                   'samples'  : ['QQH_2000'+model_name]
               }
-'''
+
 
 
 
@@ -352,7 +351,7 @@ plot['ggH_hww'] = {
 #                  'scale'    : 1    #
 #                  }
 
-'''
+
 massplot = ['200','800','2000']
 
 for m in massplot:
@@ -360,8 +359,8 @@ for m in massplot:
     multggh = 1.0 * HiggsXS.GetHiggsXS4Sample('YR4','13TeV','GluGluHToWWTo2L2Nu_M200')['xs']
     multqqh = 1.0 * HiggsXS.GetHiggsXS4Sample('YR4','13TeV','VBFHToWWTo2L2Nu_M200')['xs']
   elif m == '800':
-    multggh = 10.0 * HiggsXS.GetHiggsXS4Sample('YR4','13TeV','GluGluHToWWTo2L2Nu_M800')['xs']
-    multqqh = 10.0 * HiggsXS.GetHiggsXS4Sample('YR4','13TeV','VBFHToWWTo2L2Nu_M800')['xs']
+    multggh = 4.0 * HiggsXS.GetHiggsXS4Sample('YR4','13TeV','GluGluHToWWTo2L2Nu_M800')['xs']
+    multqqh = 4.0 * HiggsXS.GetHiggsXS4Sample('YR4','13TeV','VBFHToWWTo2L2Nu_M800')['xs']
   elif m == '2000':
     multggh = 200.0 * HiggsXS.GetHiggsXS4Sample('YR4','13TeV','GluGluHToWWTo2L2Nu_M2000')['xs']
     multqqh = 200.0 * HiggsXS.GetHiggsXS4Sample('YR4','13TeV','VBFHToWWTo2L2Nu_M2000')['xs']
@@ -395,7 +394,7 @@ for m in massplot:
 #                  'isData'   : 0,
 #                  'scale'    : 1    #
 #                  }
-'''
+
 
 # data
 

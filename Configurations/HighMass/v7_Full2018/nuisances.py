@@ -266,8 +266,8 @@ nuisances['electronpt_HM']  = {
                 'mapUp'  : 'ElepTup',
                 'mapDown'  : 'ElepTdo',
                 'samples': dict((skey, ['1', '1']) for skey in mc_HM),
-                'folderUp'   : '/eos/home-d/dmroy/HWWNano/Autumn18_102X_nAODv7_Full2018v7/MCl1loose2018v7__MCCorr2018v7__l2loose__l2tightOR2018v7__BWReweight__ElepTup_suffix',
-                'folderDown' : '/eos/home-d/dmroy/HWWNano/Autumn18_102X_nAODv7_Full2018v7/MCl1loose2018v7__MCCorr2018v7__l2loose__l2tightOR2018v7__BWReweight__ElepTdo_suffix',
+                'folderUp'   : treeBaseDir+'Autumn18_102X_nAODv7_Full2018v7/MCl1loose2018v7__MCCorr2018v7__l2loose__l2tightOR2018v7__BWReweight__ElepTup_suffix',
+                'folderDown' : treeBaseDir+'Autumn18_102X_nAODv7_Full2018v7/MCl1loose2018v7__MCCorr2018v7__l2loose__l2tightOR2018v7__BWReweight__ElepTdo_suffix',
 }
 
 if EMorEEorMM!="em":
@@ -324,8 +324,8 @@ nuisances['muonpt_HM']  = {
                 'mapUp'  : 'MupTup',
                 'mapDown'  : 'MupTdo',
                 'samples': dict((skey, ['1', '1']) for skey in mc_HM),
-                'folderUp'   : '/eos/home-d/dmroy/HWWNano/Autumn18_102X_nAODv7_Full2018v7/MCl1loose2018v7__MCCorr2018v7__l2loose__l2tightOR2018v7__BWReweight__MupTup_suffix',
-                'folderDown' : '/eos/home-d/dmroy/HWWNano/Autumn18_102X_nAODv7_Full2018v7/MCl1loose2018v7__MCCorr2018v7__l2loose__l2tightOR2018v7__BWReweight__MupTdo_suffix',
+                'folderUp'   : treeBaseDir+'Autumn18_102X_nAODv7_Full2018v7/MCl1loose2018v7__MCCorr2018v7__l2loose__l2tightOR2018v7__BWReweight__MupTup_suffix',
+                'folderDown' : treeBaseDir+'Autumn18_102X_nAODv7_Full2018v7/MCl1loose2018v7__MCCorr2018v7__l2loose__l2tightOR2018v7__BWReweight__MupTdo_suffix',
 }
 
 if EMorEEorMM!="em":
@@ -380,8 +380,8 @@ for js in jes_systs:
                 'mapUp'  : js+'up',
                 'mapDown'  : js+'do',
                 'samples': dict((skey, ['1', '1']) for skey in mc_HM),
-                'folderUp'   : '/eos/home-d/dmroy/HWWNano/Autumn18_102X_nAODv7_Full2018v7/MCl1loose2018v7__MCCorr2018v7__l2loose__l2tightOR2018v7__BWReweight__JES'+JesDirName+'up_suffix',
-                'folderDown' : '/eos/home-d/dmroy/HWWNano/Autumn18_102X_nAODv7_Full2018v7/MCl1loose2018v7__MCCorr2018v7__l2loose__l2tightOR2018v7__BWReweight__JES'+JesDirName+'do_suffix',
+                'folderUp'   : treeBaseDir+'Autumn18_102X_nAODv7_Full2018v7/MCl1loose2018v7__MCCorr2018v7__l2loose__l2tightOR2018v7__BWReweight__JES'+JesDirName+'up_suffix',
+                'folderDown' : treeBaseDir+'Autumn18_102X_nAODv7_Full2018v7/MCl1loose2018v7__MCCorr2018v7__l2loose__l2tightOR2018v7__BWReweight__JES'+JesDirName+'do_suffix',
   }
   if EMorEEorMM!="em":
     nuisances[js+'_DY']  = {
@@ -416,8 +416,8 @@ nuisances['jer_HM']  = {
                 'mapUp'  : 'JERup',
                 'mapDown'  : 'JERdo',
                 'samples': dict((skey, ['1', '1']) for skey in mc_HM),
-                'folderUp'   : '/eos/home-d/dmroy/HWWNano/Autumn18_102X_nAODv7_Full2018v7/MCl1loose2018v7__MCCorr2018v7__l2loose__l2tightOR2018v7__BWReweight__JERup_suffix',
-                'folderDown' : '/eos/home-d/dmroy/HWWNano/Autumn18_102X_nAODv7_Full2018v7/MCl1loose2018v7__MCCorr2018v7__l2loose__l2tightOR2018v7__BWReweight__JERdo_suffix',
+                'folderUp'   : treeBaseDir+'Autumn18_102X_nAODv7_Full2018v7/MCl1loose2018v7__MCCorr2018v7__l2loose__l2tightOR2018v7__BWReweight__JERup_suffix',
+                'folderDown' : treeBaseDir+'Autumn18_102X_nAODv7_Full2018v7/MCl1loose2018v7__MCCorr2018v7__l2loose__l2tightOR2018v7__BWReweight__JERdo_suffix',
 }
 
 if EMorEEorMM!="em":
@@ -453,8 +453,8 @@ nuisances['met_HM']  = {
                 'mapUp'  : 'METup',
                 'mapDown'  : 'METdo',
                 'samples': dict((skey, ['1', '1']) for skey in mc_HM),
-                'folderUp'   : '/eos/home-d/dmroy/HWWNano/Autumn18_102X_nAODv7_Full2018v7/MCl1loose2018v7__MCCorr2018v7__l2loose__l2tightOR2018v7__BWReweight__METup_suffix',
-                'folderDown' : '/eos/home-d/dmroy/HWWNano/Autumn18_102X_nAODv7_Full2018v7/MCl1loose2018v7__MCCorr2018v7__l2loose__l2tightOR2018v7__BWReweight__METdo_suffix',
+                'folderUp'   : treeBaseDir+'Autumn18_102X_nAODv7_Full2018v7/MCl1loose2018v7__MCCorr2018v7__l2loose__l2tightOR2018v7__BWReweight__METup_suffix',
+                'folderDown' : treeBaseDir+'Autumn18_102X_nAODv7_Full2018v7/MCl1loose2018v7__MCCorr2018v7__l2loose__l2tightOR2018v7__BWReweight__METdo_suffix',
 }
 
 if EMorEEorMM!="em":
@@ -487,9 +487,8 @@ if useEmbeddedDY:
   }
 
 ##### PS
-# WpWmJJ_EWK_noTop, WpWmJJ_QCD_noTop_ext1, Wg_MADGRAPHMLM, DY HT-binned: PS Weights not properly normalized! Use manually fixed values:
+# WpWmJJ_EWK_noTop, WpWmJJ_QCD_noTop_ext1, Wg_MADGRAPHMLM (and some DY_M-50 HT-binned, but not using anymore): PS Weights not properly normalized! Use manually fixed values:
 ManualISRFSR = ["qqWWqq", "WW2J", "WWewk", "Vg", "VgS"]
-if (EMorEEorMM in ['ee', 'mm']) and (useDYHT == True): ManualISRFSR.append("DY")
 nuisances['PS_ISR']  = {
     'name': 'PS_ISR',
     'kind': 'weight',
@@ -501,7 +500,6 @@ nuisances['PS_ISR']['samples'].update({'WW2J': ['1.031198192*(nCleanGenJet==0) +
 nuisances['PS_ISR']['samples'].update({'WWewk': ['1.000046239608802*(nCleanGenJet==0) + 1.0133437345113673*(nCleanGenJet==1) + 1.0144565712441801*(nCleanGenJet==2) + 0.9633224709814209*(nCleanGenJet>=3)', '0.9972924400977996*(nCleanGenJet==0) + 0.9796025428294364*(nCleanGenJet==1) + 0.9785038122896787*(nCleanGenJet==2) + 1.043894692205412*(nCleanGenJet>=3)']}) # From WpWmJJ_EWK_noTop
 nuisances['PS_ISR']['samples'].update({'Vg': ['1.0039055667905552*(nCleanGenJet==0) + 1.0059752448648116*(nCleanGenJet==1) + 0.9926179336643974*(nCleanGenJet==2) + 0.9524471129275528*(nCleanGenJet>=3)', '0.9949355050284215*(nCleanGenJet==0) + 0.9926938538727195*(nCleanGenJet==1) + 1.0093671414600691*(nCleanGenJet==2) + 1.060578524662196*(nCleanGenJet>=3)']}) # From Zg
 nuisances['PS_ISR']['samples'].update({'VgS': ['1.0000536116408023*(nCleanGenJet==0) + 1.0100100693580492*(nCleanGenJet==1) + 0.959068359375*(nCleanGenJet==2) + 0.9117049260469496*(nCleanGenJet>=3)', '0.9999367833485968*(nCleanGenJet==0) + 0.9873682892005163*(nCleanGenJet==1) + 1.0492717737268518*(nCleanGenJet==2) + 1.1176958835210322*(nCleanGenJet>=3)']}) # From WZTo3LNu_mllmin01
-if "DY" in ManualISRFSR: nuisances['PS_ISR']['samples'].update({'DY': ['0.9998177685645392*(nCleanGenJet==0) + 1.0080838149428026*(nCleanGenJet==1) + 1.0057948912950987*(nCleanGenJet==2) + 0.9721358221196619*(nCleanGenJet>=3)', '1.0003244155266309*(nCleanGenJet==0) + 0.9897992135367016*(nCleanGenJet==1) + 0.9928782069009531*(nCleanGenJet==2) + 1.0348902921423981*(nCleanGenJet>=3)']}) # From DYJetsToTT_MuEle_M-50
 
 nuisances['PS_FSR']  = {
     'name': 'PS_FSR',
@@ -514,7 +512,6 @@ nuisances['PS_FSR']['samples'].update({'WW2J': ['0.976538004*(nCleanGenJet==0) +
 nuisances['PS_FSR']['samples'].update({'WWewk': ['0.9919173789731052*(nCleanGenJet==0) + 0.994273375713824*(nCleanGenJet==1) + 1.0009783801226202*(nCleanGenJet==2) + 1.0046943184676753*(nCleanGenJet>=3)', '1.0081780733496333*(nCleanGenJet==0) + 1.0052172826204072*(nCleanGenJet==1) + 0.9984786981975752*(nCleanGenJet==2) + 0.9881601609947174*(nCleanGenJet>=3)']})
 nuisances['PS_FSR']['samples'].update({'Vg': ['0.9981385958679493*(nCleanGenJet==0) + 1.000785005516636*(nCleanGenJet==1) + 1.0072453356787239*(nCleanGenJet==2) + 1.016190506425758*(nCleanGenJet>=3)', '1.0032725732400525*(nCleanGenJet==0) + 1.0019489593245505*(nCleanGenJet==1) + 0.986995604774182*(nCleanGenJet==2) + 0.9629840158493718*(nCleanGenJet>=3)']})
 nuisances['PS_FSR']['samples'].update({'VgS': ['0.9976593177227735*(nCleanGenJet==0) + 1.0016125187585532*(nCleanGenJet==1) + 1.0049344618055556*(nCleanGenJet==2) + 1.0195631514301164*(nCleanGenJet>=3)', '1.0026951855766457*(nCleanGenJet==0) + 1.0008132148661049*(nCleanGenJet==1) + 1.003949291087963*(nCleanGenJet==2) + 0.9708160910230832*(nCleanGenJet>=3)']})
-if "DY" in ManualISRFSR: nuisances['PS_FSR']['samples'].update({'DY': ['0.9958763409773141*(nCleanGenJet==0) + 1.0041335498093422*(nCleanGenJet==1) + 1.0163363150953029*(nCleanGenJet==2) + 1.0296733670670226*(nCleanGenJet>=3)', '1.0066775262249232*(nCleanGenJet==0) + 0.9945601465681602*(nCleanGenJet==1) + 0.9662459619335311*(nCleanGenJet==2) + 0.9479423453563661*(nCleanGenJet>=3)']})
 
 # Uncorrelate important backgrounds
 for proc in ['DY', 'top', 'WW']:
@@ -1185,7 +1182,7 @@ nuisances['DYZptRew']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples' : {
-                     'DY'  : ["1.0/DY_NLO_pTllrw","DY_NLO_pTllrw"]
+                     'DY'  : ["DY_NLO_pTllrw","1.0/DY_NLO_pTllrw"]
                 }
          }
 
@@ -1194,7 +1191,7 @@ nuisances['DYNLORew']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples' : {
-                     'DY'  : ["(1.0/DY_LOtoNLOonly)*(DY_isLO) + (1.0)*(!DY_isLO)","(DY_LOtoNLOonly)*(DY_isLO) + (1.0)*(!DY_isLO)"]
+                     'DY'  : ["(DY_LOtoNLOonly)*(DY_isLO) + (1.0)*(!DY_isLO)","(1.0/DY_LOtoNLOonly)*(DY_isLO) + (1.0)*(!DY_isLO)"]
                 }
          }
 

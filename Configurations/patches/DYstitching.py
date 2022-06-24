@@ -71,11 +71,20 @@ DYstitching["2016"]["XS"]["MLL_800-1000"] = 0.03047
 DYstitching["2016"]["XS"]["MLL_1000-1500"] = 0.01636
 DYstitching["2016"]["XS"]["MLL_1500-2000"] = 0.00218
 DYstitching["2016"]["XS"]["MLL_2000-3000"] = 0.0005156
-DYstitching["2016"]["XS"]["PTLL_50-100"] = 354.8
-DYstitching["2016"]["XS"]["PTLL_100-250"] = 81.22
-DYstitching["2016"]["XS"]["PTLL_250-400"] = 2.991
-DYstitching["2016"]["XS"]["PTLL_400-650"] = 0.3882
-DYstitching["2016"]["XS"]["PTLL_650-Inf"] = 0.03737
+# New Xsecs: https://indico.cern.ch/event/673253/contributions/2756806/attachments/1541203/2416962/20171016_VJetsXsecsUpdate_PH-GEN.pdf
+# But new values are NNLO: Remove 0.971 k-factor to be consistent with other NLO events
+DYstitching["2016"]["XS"]["PTLL_50-100"] = 363.81428/0.971
+DYstitching["2016"]["XS"]["PTLL_100-250"] = 84.014804/0.971
+DYstitching["2016"]["XS"]["PTLL_250-400"] = 3.228256512/0.971
+DYstitching["2016"]["XS"]["PTLL_400-650"] = 0.436041144/0.971
+DYstitching["2016"]["XS"]["PTLL_650-Inf"] = 0.040981055/0.971
+# Still need old Xsecs stored in ntuples
+DYstitching["2016"]["OldXS"] = {}
+DYstitching["2016"]["OldXS"]["PTLL_50-100"] = 354.8
+DYstitching["2016"]["OldXS"]["PTLL_100-250"] = 81.22
+DYstitching["2016"]["OldXS"]["PTLL_250-400"] = 2.991
+DYstitching["2016"]["OldXS"]["PTLL_400-650"] = 0.3882
+DYstitching["2016"]["OldXS"]["PTLL_650-Inf"] = 0.03737
 DYstitching["2016"]["GenW"] = {}
 DYstitching["2016"]["GenW"]["incl"] = 23443.4238281
 DYstitching["2016"]["GenW"]["HT_70-100"] = 1.0

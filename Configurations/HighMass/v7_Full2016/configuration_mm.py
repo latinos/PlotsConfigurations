@@ -6,7 +6,7 @@ tag = 'Full2016_mm'
 
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFile_'+tag # '../../../../../../../../../../../../eos/home-d/dmroy/temp_shapes/2021_01_20_OwnShapes/rootFile_'+tag # 'rootFile_'+tag
+outputDir = 'rootFile_'+tag
 
 # file with TTree aliases
 aliasesFile = 'aliases.py'
@@ -26,7 +26,7 @@ plotFile = 'plot.py'
 
 
 # luminosity to normalize to (in 1/fb)
-lumi = 35.867
+lumi = 36.33
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy

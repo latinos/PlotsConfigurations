@@ -262,7 +262,9 @@ MelaGGFvsVBF::setValues(long long _iEntry)
       discriminatorResolved = me_vbf/(me_vbf+CforHM*me_ggH);  
    }
    // we have a boosted candidate
-   if (idx_fat >= 0 && nVBF_boo ==2){
+
+if (idx_fat >= 0 && nVBF_boo ==2){
+
       SimpleParticleCollection_t associated_coll;       
       associated_coll.push_back(SimpleParticle_t(0,vbfj1_boo.Pt()>vbfj2_boo.Pt() ? vbfj1_boo : vbfj2_boo));
       associated_coll.push_back(SimpleParticle_t(0,vbfj1_boo.Pt()>vbfj2_boo.Pt() ? vbfj2_boo : vbfj1_boo));
