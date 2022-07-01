@@ -1,8 +1,10 @@
 import inspect
 
+# /afs/cern.ch/user/n/ntrevisa/work/latinos/unblinding/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/WH_chargeAsymmetry/WHSS/Full2018_v7
+
 configurations = os.path.realpath(inspect.getfile(inspect.currentframe())) # this file
-configurations = os.path.dirname(configurations) # Full2018nanov7
-configurations = os.path.dirname(configurations) # WH_SS
+configurations = os.path.dirname(configurations) # Full2018_v7
+configurations = os.path.dirname(configurations) # WHSS
 configurations = os.path.dirname(configurations) # WH_chargeAsymmetry
 configurations = os.path.dirname(configurations) # Configurations
 
@@ -110,18 +112,18 @@ aliases['nCleanGenJet'] = {
 aliases['getGenZpt_OTF'] = {
     'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/patches/getGenZpt.cc+' % os.getenv('CMSSW_BASE')],
     'class': 'getGenZpt',
-    'samples': ['DY']
+    'samples': ['DY', 'DY_OS']
 }
 handle = open('%s/src/PlotsConfigurations/Configurations/patches/DYrew30.py' % os.getenv('CMSSW_BASE'),'r')
 exec(handle)
 handle.close()
 aliases['DY_NLO_pTllrw'] = {
     'expr': '('+DYrew['2018']['NLO'].replace('x', 'getGenZpt_OTF')+')*(nCleanGenJet == 0)+1.0*(nCleanGenJet > 0)',
-    'samples': ['DY']
+    'samples': ['DY', 'DY_OS']
 }
 aliases['DY_LO_pTllrw'] = {
     'expr': '('+DYrew['2018']['LO'].replace('x', 'getGenZpt_OTF')+')*(nCleanGenJet == 0)+1.0*(nCleanGenJet > 0)',
-    'samples': ['DY']
+    'samples': ['DY', 'DY_OS']
 }
 
 # No jet with pt > 30 GeV
@@ -244,18 +246,18 @@ aliases['antitopGenPtOTF'] = {
     'samples': ['top']
 }
 
-aliases['ZH3l_dphilmetjj_test'] = {
-    'linesToAdd': [
-        '.L %s/src/PlotsConfigurations/Configurations/ZH3l/scripts/ZH3l_patch.cc+' % os.getenv('CMSSW_BASE')
-    ],
-    'class': 'ZH3l_patch',
-    'args': ("dphilmetjj")
-}
+# aliases['ZH3l_dphilmetjj_test'] = {
+#     'linesToAdd': [
+#         '.L %s/src/PlotsConfigurations/Configurations/ZH3l/scripts/ZH3l_patch.cc+' % os.getenv('CMSSW_BASE')
+#     ],
+#     'class': 'ZH3l_patch',
+#     'args': ("dphilmetjj")
+# }
 
-aliases['ZH3l_dphilmetj_test'] = {
-    'class': 'ZH3l_patch',
-    'args': ("dphilmetj")
-}
+# aliases['ZH3l_dphilmetj_test'] = {
+#     'class': 'ZH3l_patch',
+#     'args': ("dphilmetj")
+# }
 
 # variations
 aliases['SFweightEleUp'] = {
@@ -279,15 +281,34 @@ aliases['SFweightMuDown'] = {
 ### Charge misid SFs ###
 ########################
 
-aliases['ttHMVA_SF_flip_2l'] = {'linesToAdd': ['.L %s/macros/flipper.C+' % configurations],
-                           'class': 'flipper',
-                           'args' : ('2018', 2, 'Total_SF'),
-                           'samples': ['DY','WW','top']
-                          }
+aliases['ttHMVA_SF_flip_2l'] = {
+    'linesToAdd': ['.L %s/macros/flipper.C+' % configurations],
+    'class': 'flipper',
+    'args' : ('2018', 2, 'Total_SF'),
+    'samples': ['DY','WW','top']
+}
 
 aliases['ttHMVA_SF_err_flip_2l'] = {
-                           'class': 'flipper',
-                           'args' : ('2018', 2, 'Total_SF_err'),
-                           'samples': ['DY','WW','top']
-                          }
+    'linesToAdd': ['.L %s/macros/flipper.C+' % configurations],
+    'class': 'flipper',
+    'args' : ('2018', 2, 'Total_SF_err'),
+    'samples': ['DY','WW','top']
+}
 
+##################################
+### Charge misid probabilities ###
+##################################
+
+aliases['ttHMVA_eff_flip_2l'] = {
+    'linesToAdd': ['.L %s/macros/flipper_eff.C+' % configurations],
+    'class': 'flipper_eff',
+    'args' : ('2018', 2, 'Total_SF'),
+    'samples': ['DY_OS']
+}
+
+aliases['ttHMVA_eff_err_flip_2l'] = {
+    'linesToAdd': ['.L %s/macros/flipper_eff.C+' % configurations],
+    'class': 'flipper_eff',
+    'args' : ('2018', 2, 'Total_SF_err'),
+    'samples': ['DY_OS']
+}

@@ -64,6 +64,15 @@ nuisances['fake_syst_em'] = {
     },
 }
 
+nuisances['fake_syst_mm'] = {
+    'name': 'CMS_fake_syst_mm',
+    'type': 'lnN',
+    'samples': {
+        'Fake_ee': '1.3'
+    },
+}
+
+
 nuisances['fake_ele'] = {
     'name': 'CMS_fake_e_2018',
     'kind': 'weight',
