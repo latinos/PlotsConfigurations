@@ -211,7 +211,7 @@ if btag_algo=="deepcsv":
         }
 
 elif btag_algo=="deepflav":
-    btagSFSource = '%s/src/PhysicsTools/NanoAODTools/data/btagSF/DeepFlavour_94XSF_V3_B_F.csv' % os.getenv('CMSSW_BASE')
+    btagSFSource = '%s/src/PhysicsTools/NanoAODTools/data/btagSF/DeepJet_2016LegacySF_V1_TuneCP5.csv' % os.getenv('CMSSW_BASE')
     
     aliases['Jet_btagSF_deepflav_shape'] = {
         'linesToAdd': [
