@@ -18,7 +18,7 @@ groupPlot['top']  = {
 
 groupPlot['WW']  = {  
                   'nameHR' : 'WW',
-                  'isSignal' : 0,
+                  'isSignal' : 1,
                   'color': 851, # kAzure -9 
                   'samples'  : ['WW_B%d'%i for i in xrange(nbins)]+['ggWW_B%d'%i for i in xrange(nbins)]
               }
