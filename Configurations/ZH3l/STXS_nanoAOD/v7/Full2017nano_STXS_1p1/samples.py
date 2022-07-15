@@ -170,32 +170,24 @@ samples['VVV']  = {  'name'   :   getSampleFilesNano(directory,'ZZZ')
 ################ SIGNALS #################
 ##########################################
 
+signals = []
+if os.path.exists('%s/src/PlotsConfigurations/Configurations/ZH3l/STXS_nanoAOD/v7/HTXS_stage1p2_categories.py'%os.getenv('CMSSW_BASE')) :
+  handle = open('%s/src/PlotsConfigurations/Configurations/ZH3l/STXS_nanoAOD/v7/HTXS_stage1p2_categories.py'%os.getenv('CMSSW_BASE'),'r')
+  exec(handle)
+  handle.close()
+
 ############ ZH H->WW ############
-
-#samples['ZH_hww']  = {  'name'   :   getSampleFilesNano(directory,'HZJ_HToWW_M125'),
-#                        'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC ,
-#                     }
-
-#samples['ggZH_hww']  = {  'name'   :   getSampleFilesNano(directory,'GluGluZH_HToWW_M125'),
-#                        'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC ,
-#                     }
 
 samples['ZH_hww']  = {  'name': getSampleFilesNano(directory,'HZJ_HToWW_M125'),
                         'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC,
                         'FilesPerJob' : 3,
-                        'subsamples' : { 'PTV_LT150' : 'HTXS_stage1_1_cat_pTjet30GeV==401 || HTXS_stage1_1_cat_pTjet30GeV==402',
-                                         'PTV_GT150' : 'HTXS_stage1_1_cat_pTjet30GeV==403 || HTXS_stage1_1_cat_pTjet30GeV==404 || HTXS_stage1_1_cat_pTjet30GeV==405',
-                                         'FWDH'      : 'HTXS_stage1_1_cat_pTjet30GeV==400'
-                                       }
+                        'subsamples' : {}
                     }
 
 samples['ggZH_hww'] = {  'name': getSampleFilesNano(directory,'GluGluZH_HToWW_M125'),
                          'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC,
                          'FilesPerJob' : 3,
-                        'subsamples' : { 'PTV_LT150' : 'HTXS_stage1_1_cat_pTjet30GeV==501 || HTXS_stage1_1_cat_pTjet30GeV==502',
-                                         'PTV_GT150' : 'HTXS_stage1_1_cat_pTjet30GeV==503 || HTXS_stage1_1_cat_pTjet30GeV==504 || HTXS_stage1_1_cat_pTjet30GeV==505',
-                                         'FWDH'      : 'HTXS_stage1_1_cat_pTjet30GeV==500'
-                                       }
+                         'subsamples' : {}
                      }
 
 ############ WH H->WW ############
@@ -203,28 +195,45 @@ samples['ggZH_hww'] = {  'name': getSampleFilesNano(directory,'GluGluZH_HToWW_M1
 samples['WH_hww']  = {  'name'   :   getSampleFilesNano(directory,'HWplusJ_HToWW_M125')
                                    + getSampleFilesNano(directory,'HWminusJ_HToWW_M125'),
                         'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC ,
+                        'subsamples' : {}
                      }
 
 ############ ttH ############
 
 samples['ttH_hww']  = { 'name'   :   getSampleFilesNano(directory,'ttHToNonbb_M125'),
                         'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC ,
+                        'subsamples' : {}
                      }
-
-
-############ bbH ############
-# Not available for Latinos 2016 v6
 
 ############ H->TauTau ############
 
 samples['ZH_htt'] = { 'name'   :   getSampleFilesNano(directory,'HZJ_HToTauTau_M125'),
                       'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC ,
+                      'subsamples' : {}
                   }
 
 samples['WH_htt'] = { 'name'   :   getSampleFilesNano(directory,'HWplusJ_HToTauTau_M125')
                                  + getSampleFilesNano(directory,'HWminusJ_HToTauTau_M125'),
                       'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC ,
+                      'subsamples' : {}
                   }
+
+for cat,num in HTXSStage1_2Categories.iteritems():
+    if 'QQ2HQQ' in cat: #qqVH had
+        samples['WH_hww']['subsamples'][cat]   = 'HTXS_stage1_2_cat_pTjet30GeV == '+str(num)
+        samples['WH_htt']['subsamples'][cat]   = 'HTXS_stage1_2_cat_pTjet30GeV == '+str(num)
+        samples['ZH_hww']['subsamples'][cat]   = 'HTXS_stage1_2_cat_pTjet30GeV == '+str(num)
+        samples['ZH_htt']['subsamples'][cat]   = 'HTXS_stage1_2_cat_pTjet30GeV == '+str(num)
+    elif 'QQ2HLNU' in cat: #qqWH lep
+        samples['WH_hww']['subsamples'][cat]   = 'HTXS_stage1_2_cat_pTjet30GeV == '+str(num)
+        samples['WH_htt']['subsamples'][cat]   = 'HTXS_stage1_2_cat_pTjet30GeV == '+str(num)
+    elif 'QQ2HLL' in cat: #qqZH lep
+        samples['ZH_hww']['subsamples'][cat]   = 'HTXS_stage1_2_cat_pTjet30GeV == '+str(num)
+        samples['ZH_htt']['subsamples'][cat]   = 'HTXS_stage1_2_cat_pTjet30GeV == '+str(num)
+    elif 'GG2HLL' in cat: #ggZH lep
+        samples['ggZH_hww']['subsamples'][cat] = 'HTXS_stage1_2_cat_pTjet30GeV == '+str(num)
+    elif 'TTH' in cat:
+        samples['ttH_hww']['subsamples'][cat]  = 'HTXS_stage1_2_cat_pTjet30GeV == '+str(num)
 
 ###########################################
 ################## FAKE ###################

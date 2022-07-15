@@ -17,6 +17,9 @@ variables['events']     = { 'name': '1',
 variables['njet']       = { 'name'  : 'ZH3l_njet',
                             'range' : (10,0,10),
                             'xaxis' : 'N_{jet}',
+                            'doWeight' : 1,
+                            'binX' : 1,
+                            'binY' : 10,
                             'fold' : 0
                         }
 
@@ -29,12 +32,18 @@ variables['pt1']        = { 'name': 'Lepton_pt[0]',
 variables['dphilmetj'] = {  'name' : 'ZH3l_dphilmetj_test[0]', #FIXME
                             'range' : (16,0,3.14159),
                             'xaxis' : 'dphilmetj',
+                            'doWeight' : 1,
+                            'binX' : 1,
+                            'binY' : 16,
                             'fold' : 0
                            }
 
 variables['dphilmetjj'] = { 'name' : 'ZH3l_dphilmetjj_test[0]', #FIXME
                             'range' : (16,0,3.14159),
                             'xaxis' : 'dphilmetjj',
+                            'doWeight' : 1,
+                            'binX' : 1,
+                            'binY' : 16,
                             'fold' : 0,
                             'cuts' : [cut for cut in cuts if '1j' not in cut]
                         }
@@ -54,20 +63,29 @@ variables['pTlmetjj'] = {   'name' : 'ZH3l_pTlmetjj',
 
 variables['mTlmetjj']   = { 'name' : 'ZH3l_mTlmetjj_test[0]', #FIXME
                             'range' : (16,50,450),
-                            'xaxis' : 'mTlmetjj',
+                            'xaxis' : 'm_{T}^{H} [GeV]',
+                            'doWeight' : 1,
+                            'binX' : 1,
+                            'binY' : 16,
                             'fold' : 3,
                             'cuts' : [cut for cut in cuts if '1j' not in cut]
                         }
 
 variables['mTlmetj']   = { 'name' : 'ZH3l_mTlmetj_test[0]', #FIXME
                             'range' : (10,0,250),
-                            'xaxis' : 'mTlmetj',
+                            'xaxis' : 'm_{T}^{H} [GeV]',
+                            'doWeight' : 1,
+                            'binX' : 1,
+                            'binY' : 10,
                             'fold' : 2,
                         }
 
 variables['ptz']        = { 'name' : 'ZH3l_pTZ',
                             'range' : (20,0,400),
                             'xaxis' : 'ptz',
+                            'doWeight' : 1,
+                            'binX' : 1,
+                            'binY' : 20,
                             'fold' : 0
                         }
 
@@ -80,12 +98,18 @@ variables['mtw_notZ']   = { 'name' : 'ZH3l_mTlmet_test[0]', #FIXME
 variables['mtw_fit']    = { 'name' : 'ZH3l_mTlmet_test[0]', #FIXME
                             'range' : (8,0,160),
                             'xaxis' : 'mTlmet',
+                            'doWeight' : 1,
+                            'binX' : 1,
+                            'binY' : 8,
                             'fold' : 2
                         }
 
 variables['checkmZ']    = { 'name' : 'ZH3l_checkmZ',
                             'range' : (20,0,200),
                             'xaxis' : 'checkmZ',
+                            'doWeight' : 1,
+                            'binX' : 1,
+                            'binY' : 20,
                             'fold' : 0
                         }
 

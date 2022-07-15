@@ -2,7 +2,7 @@ import os
 import argparse
 from datetime import datetime,timedelta
 
-FMT = '%H:%M:%S'
+FMT = '%m/%d %H:%M:%S'
 
 parser = argparse.ArgumentParser()
 parser.add_argument("job_dir", help="job dir")
@@ -19,10 +19,10 @@ for filename in os.listdir(dirname):
         sample = (filename.rsplit('__',1)[1]).split('.')[0]
         with open(dirname+'/'+filename) as f:
             for line in f:
-                if 'Started transferring input files' in line: starttime = line.split(' ')[3]
-                if 'Started transferring output files' in line: endtime = line.split(' ')[3]        
+                if 'Started transferring input files' in line: starttime = line.split(' ')[2]+' '+line.split(' ')[3]
+                if 'Started transferring output files' in line: endtime = line.split(' ')[2]+' '+line.split(' ')[3]        
         if (starttime == '' or endtime == '') : continue
-        duration = datetime.strptime(endtime, '%H:%M:%S') - datetime.strptime(starttime, '%H:%M:%S')
+        duration = datetime.strptime(endtime, FMT) - datetime.strptime(starttime, FMT)
         if sample in times : 
             times[sample].append(duration)
         else : 

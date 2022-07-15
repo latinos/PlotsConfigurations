@@ -19,7 +19,7 @@ groupPlot['ttV']  = {
                   'nameHR' : 'ttV',
                   'isSignal' : 0,
                   'color': 418,    # kGreen+3
-                  'samples'  : ['ttW','ttZ']
+                  'samples'  : ['ttZ']
               }
 '''
 groupPlot['WW']  = {  
@@ -42,7 +42,7 @@ groupPlot['VVV']  = {
                   'nameHR' : 'VVV',
                   'isSignal' : 0,
                   'color': 618, # kAzure -3  
-                  'samples'  : ['VVV','WWW']
+                  'samples'  : ['VVV']
               }
 
 '''
@@ -81,7 +81,7 @@ groupPlot['ZH4l']  = {
                   'isSignal' : 1,
                   'color': 632, # kRed 
                   #'samples'  : ['ZH_hww','ggZH_hww','WH_hww','qqH_hww','ggH_hww','ZH_htt', 'WH_htt', 'qqH_htt', 'ggH_htt']
-                  'samples'  : ['ZH_hww_PTV_LT150' , 'ZH_hww_PTV_GT150' , 'ggZH_hww_PTV_LT150' , 'ggZH_hww_PTV_GT150' , 'WH_hww','qqH_hww','ggH_hww','ZH_htt', 'WH_htt', 'qqH_htt', 'ggH_htt']
+                  'samples'  : ['ZH_hww_PTV_LT150' , 'ZH_hww_PTV_GT150' , 'ggZH_hww_PTV_LT150' , 'ggZH_hww_PTV_GT150' , 'ZH_htt']
               }
 
 
@@ -154,12 +154,12 @@ plot['ttZ']  = {
                   'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
                   }
 
-plot['ttW']  = {
-                  'color': 419,    # kGreen+3
-                  'isSignal' : 0,
-                  'isData'   : 0,    
-                  'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
-                  }
+#plot['ttW']  = {
+#                  'color': 419,    # kGreen+3
+#                  'isSignal' : 0,
+#                  'isData'   : 0,    
+#                  'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
+#                  }
 
               
 '''           
@@ -191,7 +191,6 @@ plot['WW']  = {
                   'isData'   : 0,    
                   'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
                   }
-'''
 plot['ggWW']  = {
                   'color': 851, # kAzure -10
                   'isSignal' : 0,
@@ -206,6 +205,7 @@ plot['WWewk']  = {
                   'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
                   }
 
+'''
 '''
 plot['Vg']  = { 
                   'color': 922, # kAzure -1  
@@ -294,31 +294,31 @@ plot['ZH_htt'] = {
 #                  'scale'    : 1    #
 #                  }
 ###
-plot['WH_htt'] = {
-                  'nameHR' : 'WHtt',
-                  'color': 632+2, # kRed+2 
-                 'isSignal' : 1,
-                 'isData'   : 0,    
-                  'scale'    : 1    #
-                  }
+#plot['WH_htt'] = {
+#                  'nameHR' : 'WHtt',
+#                  'color': 632+2, # kRed+2 
+#                 'isSignal' : 1,
+#                 'isData'   : 0,    
+#                  'scale'    : 1    #
+#                  }
 
 ###
-plot['qqH_htt'] = {
-                  'nameHR' : 'qqHtt',
-                  'color': 632+1, # kRed+1 
-                  'isSignal' : 1,
-                 'isData'   : 0,    
-                  'scale'    : 1    #
-                  }
+#plot['qqH_htt'] = {
+#                  'nameHR' : 'qqHtt',
+#                  'color': 632+1, # kRed+1 
+#                  'isSignal' : 1,
+#                 'isData'   : 0,    
+#                  'scale'    : 1    #
+#                  }
 ##
 ###
-plot['ggH_htt'] = {
-                  'nameHR' : 'ggHtt',
-                  'color': 632, # kRed 
-                  'isSignal' : 1,
-                  'isData'   : 0,    
-                  'scale'    : 1    #
-                  }
+#plot['ggH_htt'] = {
+#                  'nameHR' : 'ggHtt',
+#                  'color': 632, # kRed 
+#                  'isSignal' : 1,
+#                  'isData'   : 0,    
+#                  'scale'    : 1    #
+#                  }
 
 # HWW 
 
@@ -346,31 +346,31 @@ plot['ggH_htt'] = {
 #                  'scale'    : 1    #
 #                  }
 
-plot['WH_hww'] = {
-                  'nameHR' : 'WH',
-                  'color': 632+2, # kRed+2 
-                  'isSignal' : 1,
-                  'isData'   : 0,    
-                  'scale'    : 1    #
-                  }
+#plot['WH_hww'] = {
+#                  'nameHR' : 'WH',
+#                  'color': 632+2, # kRed+2 
+#                  'isSignal' : 1,
+#                  'isData'   : 0,    
+#                  'scale'    : 1    #
+#                  }
 
 
-plot['qqH_hww'] = {
-                  'nameHR' : 'qqH',
-                  'color': 632+1, # kRed+1 
-                  'isSignal' : 1,
-                'isData'   : 0,    
-                  'scale'    : 1    #
-                  }
+#plot['qqH_hww'] = {
+#                  'nameHR' : 'qqH',
+#                  'color': 632+1, # kRed+1 
+#                  'isSignal' : 1,
+#                'isData'   : 0,    
+#                  'scale'    : 1    #
+#                  }
 
 
-plot['ggH_hww'] = {
-                  'nameHR' : 'ggH',
-                  'color': 632, # kRed 
-                  'isSignal' : 1,
-                  'isData'   : 0,    
-                  'scale'    : 1    #
-                  }
+#plot['ggH_hww'] = {
+#                  'nameHR' : 'ggH',
+#                  'color': 632, # kRed 
+#                  'isSignal' : 1,
+#                  'isData'   : 0,    
+#                  'scale'    : 1    #
+#                  }
 
 #plot['bbH_hww'] = {
 #                  'nameHR' : 'bbH',
@@ -396,7 +396,7 @@ plot['DATA']  = {
                   'color': 1 ,  
                   'isSignal' : 0,
                   'isData'   : 1,
-                  'isBlind'  : 1
+                  'isBlind'  : 0
               }
 
 
@@ -409,5 +409,7 @@ legend['lumi'] = 'L = 59.74/fb'
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
 
 
-
-
+#zh4l_XDF_13TeV_ptv_lt150: WH_hww, qqH_hww, ggH_hww, qqH_htt, ggH_htt, WH_htt,                WWewk, WW, WZhad,     Wg, ttW, ggWW, ZZhad, WWW, Zg
+#zh4l_XSF_13TeV_ptv_lt150: WH_hww, qqH_hww, ggH_hww, qqH_htt, ggH_htt, WH_htt, ggZH_hww_FWDH, WWewk, WW, WZhad, WZ, Wg, ttW, ggWW, ZZhad, WWW, Zg
+#zh4l_XDF_13TeV_ptv_gt150: WH_hww, qqH_hww, ggH_hww, qqH_htt, ggH_htt, WH_htt, ggZH_hww_FWDH, WWewk, WW, WZhad, WZ, Wg, ttW, ggWW, ZZhad, WWW, Zg
+#zh4l_XSF_13TeV_ptv_gt150: WH_hww, qqH_hww, ggH_hww, qqH_htt, ggH_htt, WH_htt, ggZH_hww_FWDH, WWewk, WW, WZhad, WZ, Wg, ttW, ggWW, ZZhad, WWW, Zg

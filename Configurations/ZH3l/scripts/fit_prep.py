@@ -3,6 +3,7 @@ from ROOT import *
 import collections
 import argparse
 import re
+import math
 
 parser = argparse.ArgumentParser()
 parser.add_argument("rootfile", help="file path")
@@ -67,4 +68,3 @@ for cut in f0.GetListOfKeys():
       print 'WARNING: empty histogram %s in %s/%s' % (hist.GetName(),cut.GetName(),template)
     if hist.Integral() < 0.0:
       print 'ERROR: histogram %s in %s/%s has negative integral (%d)' % (hist.GetName(),cut.GetName(),template,hist.Integral())
-      

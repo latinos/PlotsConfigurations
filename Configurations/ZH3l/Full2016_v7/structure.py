@@ -12,21 +12,21 @@ structure['Fake_m']  = {
                   'isData'   : 0,
               }
 
-structure['DY']  = { 
-                  'isSignal' : 0,
-                  'isData'   : 0 
-                  }
+#structure['DY']  = { 
+#                  'isSignal' : 0,
+#                  'isData'   : 0 
+#                  }
 
-structure['Zg']  = { 
-                  'isSignal' : 0,
-                  'isData'   : 0 
-                  }
+#structure['Zg']  = { 
+#                  'isSignal' : 0,
+#                  'isData'   : 0 
+#                  }
 
-structure['ZgS']  = { 
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  'removeFromCuts' : ['zh3l_SR_2j_met']
-                  }
+#structure['ZgS']  = { 
+#                  'isSignal' : 0,
+#                  'isData'   : 0,
+#                  'removeFromCuts' : ['zh3l_SR_2j_met']
+#                  }
 
 #structure['WW']  = { 
 #                  'isSignal' : 0,
@@ -63,11 +63,11 @@ structure['ttV']  = {
                   'isData'   : 0    
                   }
 
-structure['top']  = {
-                  'isSignal' : 0,
-                  'isData'   : 0, 
-                  'removeFromCuts' : ['zh3l_WZ_CR_2j','zh3l_SR_1j','zh3l_SR_2j']
-                  }
+#structure['top']  = {
+#                  'isSignal' : 0,
+#                  'isData'   : 0, 
+#                  'removeFromCuts' : ['zh3l_WZ_CR_2j','zh3l_SR_1j','zh3l_SR_2j']
+#                  }
 
 # Signal
 structure['WH_hww'] = {

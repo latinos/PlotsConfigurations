@@ -4,10 +4,10 @@ import string
 import inspect 
 
 configurations = os.path.realpath(inspect.getfile(inspect.currentframe())) # this file
-configurations = os.path.dirname(configurations) # Full2016
+configurations = os.path.dirname(configurations) # Full2017nano_STXS_1p1
+configurations = os.path.dirname(configurations) # v7
+configurations = os.path.dirname(configurations) # STXS_nanoAOD
 configurations = os.path.dirname(configurations) # ZH4l
-configurations = os.path.dirname(configurations) # Configurations
-
 
 global getSampleFiles
 from LatinoAnalysis.Tools.commonTools import getSampleFiles, addSampleWeight, getBaseWnAOD
@@ -323,6 +323,11 @@ samples['WWW'] = {'name'   :nanoGetSampleFiles(mcDirectory,'WWW'),
 ################ SIGNALS #################
 ##########################################
 
+if os.path.exists('%s/src/PlotsConfigurations/Configurations/ZH3l/STXS_nanoAOD/v7/HTXS_stage1p2_categories.py'%os.getenv('CMSSW_BASE')) :
+  handle = open('%s/src/PlotsConfigurations/Configurations/ZH3l/STXS_nanoAOD/v7/HTXS_stage1p2_categories.py'%os.getenv('CMSSW_BASE'),'r')
+  exec(handle)
+  handle.close()
+
 ############ ggH H->WW ############
 #FIXME Add reweighting to MiNLO NNLOPS or use NNLOPS sample when available
 samples['ggH_hww']  = {  'name'   :   nanoGetSampleFiles(mcDirectory,'GluGluHToWWTo2L2Nu_Powheg_M125'),
@@ -336,32 +341,18 @@ samples['qqH_hww']  = {  'name'   :   nanoGetSampleFiles(mcDirectory,'VBFHToWWTo
 
 ############ ZH H->WW ############
 
-#samples['ZH_hww']  = {  'name'   :   nanoGetSampleFiles(mcDirectory,'HZJ_HToWWTo2L2Nu_M125'), #FIXME replace with 125 GeV sample when available
-#                        'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC ,
-#                     }
-
-#samples['ggZH_hww']  = {  'name'   :   nanoGetSampleFiles(mcDirectory,'GluGluZH_HToWWTo2L2Nu_M125'),
-#                        'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC ,
-#                     }
-
 samples['ZH_hww']  = {  'name': nanoGetSampleFiles(mcDirectory,'HZJ_HToWWTo2L2Nu_M125'),
                         'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC,
                         'suppressNegativeNuisances' :['all'],
                         'FilesPerJob' : 3,
-                        'subsamples' : { 'PTV_LT150' : 'HTXS_stage1_1_cat_pTjet30GeV==401 || HTXS_stage1_1_cat_pTjet30GeV==402',
-                                         'PTV_GT150' : 'HTXS_stage1_1_cat_pTjet30GeV==403 || HTXS_stage1_1_cat_pTjet30GeV==404 || HTXS_stage1_1_cat_pTjet30GeV==405',
-                                         'FWDH'      : 'HTXS_stage1_1_cat_pTjet30GeV==400'
-                                       }
+                        'subsamples' : {}
                     }
 
 samples['ggZH_hww'] = {  'name': nanoGetSampleFiles(mcDirectory,'GluGluZH_HToWWTo2L2Nu_M125'),
                          'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC,
                          'suppressNegativeNuisances' :['all'],
                          'FilesPerJob' : 5,
-                        'subsamples' : { 'PTV_LT150' : 'HTXS_stage1_1_cat_pTjet30GeV==501 || HTXS_stage1_1_cat_pTjet30GeV==502',
-                                         'PTV_GT150' : 'HTXS_stage1_1_cat_pTjet30GeV==503 || HTXS_stage1_1_cat_pTjet30GeV==504 || HTXS_stage1_1_cat_pTjet30GeV==505',
-                                         'FWDH'      : 'HTXS_stage1_1_cat_pTjet30GeV==500'
-                                       }
+                        'subsamples' : {}
                      }
 
 ############ WH H->WW ############
@@ -370,16 +361,6 @@ samples['WH_hww']  = {  'name'   :   nanoGetSampleFiles(mcDirectory,'HWplusJ_HTo
                                    + nanoGetSampleFiles(mcDirectory,'HWminusJ_HToWW_M125'),
                         'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC ,
                      }
-
-############ ttH ############
-
-#samples['ttH_hww']  = {  'name'   :   getSampleFiles(directory,'ttHToNonbb_M125',False,'nanoLatino_'),
-#                         'weight' : XSWeight+'*'+SFweight+'*'+GenLepMatch+'*'+METFilter_MC ,
-#                     }
-
-############ bbH ############
-#FIXME Missing samples
-
 
 ############ H->TauTau ############
 '''
@@ -414,6 +395,7 @@ samples['ZH_htt']  = {  'name'   : nanoGetSampleFiles(mcDirectory,'HZJ_HToTauTau
                            'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC ,
                            'suppressNegative' :['all'],
                            'suppressNegativeNuisances' :['all'],
+                           'subsamples' : {}
                         }
 
 samples['WH_htt']  = {  'name'   :  nanoGetSampleFiles(mcDirectory,'HWplusJ_HToTauTau_M125')
@@ -423,6 +405,15 @@ samples['WH_htt']  = {  'name'   :  nanoGetSampleFiles(mcDirectory,'HWplusJ_HToT
                            'suppressNegativeNuisances' :['all'],
                         }
 
+for cat,num in HTXSStage1_2Categories.iteritems():
+    if 'QQ2HQQ' in cat: #qqVH had
+        samples['ZH_hww']['subsamples'][cat]   = 'HTXS_stage1_2_cat_pTjet30GeV == '+str(num)
+        samples['ZH_htt']['subsamples'][cat]   = 'HTXS_stage1_2_cat_pTjet30GeV == '+str(num)
+    elif 'QQ2HLL' in cat: #qqZH lep
+        samples['ZH_hww']['subsamples'][cat]   = 'HTXS_stage1_2_cat_pTjet30GeV == '+str(num)
+        samples['ZH_htt']['subsamples'][cat]   = 'HTXS_stage1_2_cat_pTjet30GeV == '+str(num)
+    elif 'GG2HLL' in cat: #ggZH lep
+        samples['ggZH_hww']['subsamples'][cat] = 'HTXS_stage1_2_cat_pTjet30GeV == '+str(num)
 
 ###########################################
 ################## FAKE ###################

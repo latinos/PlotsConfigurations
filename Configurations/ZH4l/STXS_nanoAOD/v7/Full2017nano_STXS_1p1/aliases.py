@@ -3,9 +3,10 @@ import copy
 import inspect
 
 configurations = os.path.realpath(inspect.getfile(inspect.currentframe())) # this file
-configurations = os.path.dirname(configurations) # Full2016_nanoAODv4_CR
-configurations = os.path.dirname(configurations) # ggH
-configurations = os.path.dirname(configurations) # Configurations
+configurations = os.path.dirname(configurations) # Full2017nano_STXS_1p1
+configurations = os.path.dirname(configurations) # v7
+configurations = os.path.dirname(configurations) # STXS_nanoAOD
+configurations = os.path.dirname(configurations) # ZH4l
 
 #aliases = {}
 

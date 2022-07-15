@@ -178,6 +178,10 @@ samples['VVV'] = {
 ###########################################
 
 signals = []
+if os.path.exists('%s/src/PlotsConfigurations/Configurations/ZH3l/STXS_nanoAOD/v7/HTXS_stage1p2_categories.py'%os.getenv('CMSSW_BASE')) :
+  handle = open('%s/src/PlotsConfigurations/Configurations/ZH3l/STXS_nanoAOD/v7/HTXS_stage1p2_categories.py'%os.getenv('CMSSW_BASE'),'r')
+  exec(handle)
+  handle.close()
 
 #### ggH -> WW
 
@@ -204,6 +208,7 @@ samples['ZH_hww'] = {
     'name':   nanoGetSampleFiles(mcDirectory, 'HZJ_HToWWTo2L2Nu_M125'),
     'weight': mcCommonWeight,
     'FilesPerJob': 4,
+    'subsamples' : {}
 }
 
 signals.append('ZH_hww')
@@ -212,6 +217,7 @@ samples['ggZH_hww'] = {
     'name':   nanoGetSampleFiles(mcDirectory, 'GluGluZH_HToWWTo2L2Nu_M125'),
     'weight': mcCommonWeight,
     'FilesPerJob': 4,
+    'subsamples' : {}
 }
 
 signals.append('ggZH_hww')
@@ -222,11 +228,7 @@ samples['WH_hww'] = {
     'name':   nanoGetSampleFiles(mcDirectory, 'HWplusJ_HToWW_M125') + nanoGetSampleFiles(mcDirectory, 'HWminusJ_HToWW_M125'),
     'weight': mcCommonWeight,
     'FilesPerJob': 4,
-    'subsamples' : {
-        'PTV_LT150' : 'HTXS_stage1_1_cat_pTjet30GeV==301 || HTXS_stage1_1_cat_pTjet30GeV==302',
-        'PTV_GT150' : 'HTXS_stage1_1_cat_pTjet30GeV==303 || HTXS_stage1_1_cat_pTjet30GeV==304 || HTXS_stage1_1_cat_pTjet30GeV==305',
-        'FWDH'      : 'HTXS_stage1_1_cat_pTjet30GeV==300'
-    }
+    'subsamples' : {}
 }
 
 signals.append('WH_hww')
@@ -263,6 +265,7 @@ samples['ZH_htt'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'HZJ_HToTauTau_M125'),
     'weight': mcCommonWeight,
     'FilesPerJob': 4,
+    'subsamples' : {}
 }
 
 signals.append('ZH_htt')
@@ -270,10 +273,25 @@ signals.append('ZH_htt')
 samples['WH_htt'] = {
     'name':  nanoGetSampleFiles(mcDirectory, 'HWplusJ_HToTauTau_M125') + nanoGetSampleFiles(mcDirectory, 'HWminusJ_HToTauTau_M125'),
     'weight': mcCommonWeight,
-    'FilesPerJob': 4
+    'FilesPerJob': 4,
+    'subsamples' : {}
 }
 signals.append('WH_htt')
 
+for cat,num in HTXSStage1_2Categories.iteritems():
+    if 'QQ2HQQ' in cat: #qqVH had
+        samples['WH_hww']['subsamples'][cat]   = 'HTXS_stage1_2_cat_pTjet30GeV == '+str(num)
+        samples['WH_htt']['subsamples'][cat]   = 'HTXS_stage1_2_cat_pTjet30GeV == '+str(num)
+        samples['ZH_hww']['subsamples'][cat]   = 'HTXS_stage1_2_cat_pTjet30GeV == '+str(num)
+        samples['ZH_htt']['subsamples'][cat]   = 'HTXS_stage1_2_cat_pTjet30GeV == '+str(num)
+    elif 'QQ2HLNU' in cat: #qqWH lep
+        samples['WH_hww']['subsamples'][cat]   = 'HTXS_stage1_2_cat_pTjet30GeV == '+str(num)
+        samples['WH_htt']['subsamples'][cat]   = 'HTXS_stage1_2_cat_pTjet30GeV == '+str(num)
+    elif 'QQ2HLL' in cat: #qqZH lep
+        samples['ZH_hww']['subsamples'][cat]   = 'HTXS_stage1_2_cat_pTjet30GeV == '+str(num)
+        samples['ZH_htt']['subsamples'][cat]   = 'HTXS_stage1_2_cat_pTjet30GeV == '+str(num)
+    elif 'GG2HLL' in cat: #ggZH lep
+        samples['ggZH_hww']['subsamples'][cat] = 'HTXS_stage1_2_cat_pTjet30GeV == '+str(num)
 
 ############ WH H->WW ############
 

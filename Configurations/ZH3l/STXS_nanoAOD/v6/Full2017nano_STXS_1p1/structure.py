@@ -3,7 +3,7 @@
 structure ={}
 
 #missing qqH_htt
-nominal= [ 'ggWW', 'ZgS', 'WWewk', 'VVV', 'top', 'Zg', 'ttV', 'WH_htt', 'WW', 'Fake_e', 'Fake', 'WH_hww', 'ZZ', 'DY', 'ttH_hww', 'Fake_m', 'ZH_htt', 'DATA', 'WZ' ]
+nominal= [ 'ggWW', 'ZgS', 'WWewk', 'VVV', 'top', 'Zg', 'ttV', 'WH_htt', 'WW', 'Fake_e', 'WH_hww', 'ZZ', 'DY', 'ttH_hww', 'Fake_m', 'ZH_htt', 'DATA', 'WZ' ]
 stxs= [ 'ZH_hww_PTV_LT150' , 'ZH_hww_PTV_GT150' , 'ZH_hww_FWDH' , 'ggZH_hww_PTV_LT150' , 'ggZH_hww_PTV_GT150' , 'ggZH_hww_FWDH' ]
 
 # keys here must match keys in samples.py 

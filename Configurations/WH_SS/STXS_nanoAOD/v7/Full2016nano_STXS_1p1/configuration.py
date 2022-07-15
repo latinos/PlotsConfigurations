@@ -2,10 +2,10 @@
 
 treeName= 'Events'
 
-tag = 'WHSS2016_v7_STXS'
+tag = 'WHSS_2016_v7_STXS_sigFix'
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFile'
+outputDir = 'rootFile_'+tag
 
 # file with TTree aliases
 aliasesFile = 'aliases.py'
@@ -30,11 +30,11 @@ lumi = 35.867
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'plot'+tag
+outputDirPlots = 'plot_'+tag
 
 
 # used by mkDatacards to define output directory for datacards
-outputDirDatacard = 'datacards'+tag
+outputDirDatacard = 'datacards_'+tag
 
 
 # structure file for datacard

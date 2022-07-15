@@ -6,13 +6,13 @@ tag = 'ZH3l_2017_v7'
 outputDir = 'rootFiles_'+tag
 
 # file with list of variables
-variablesFile = 'variables.py'
+variablesFile = 'variables_forFit.py'
 
 # file with TTree aliases
 aliasesFile = 'aliases.py'
 
 # file with list of cuts
-cutsFile = 'cuts.py' 
+cutsFile = 'cuts_forFit.py' 
 
 # file with list of samples
 samplesFile = 'samples.py' 

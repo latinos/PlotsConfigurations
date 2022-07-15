@@ -16,7 +16,7 @@ variablesFile = 'variables.py'
 cutsFile = 'cuts.py' 
 
 # file with list of samples
-samplesFile = 'samples_test.py' 
+samplesFile = 'samples.py' 
 
 # file with list of samples
 plotFile = 'plot.py' 
@@ -29,7 +29,7 @@ lumi = 59.74
 outputDirPlots = 'plot_'+tag
 
 # used by mkDatacards to define output directory for datacards
-outputDirDatacard = 'datacard_'+tag
+outputDirDatacard = 'datacard_'+tag+'_sigFix'
 
 # structure file for datacard
 structureFile = 'structure.py'

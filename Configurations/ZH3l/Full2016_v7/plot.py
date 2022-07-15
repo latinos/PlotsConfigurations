@@ -4,12 +4,12 @@
 # Groups of samples to improve the plots.
 # If not defined, normal plots is used
 
-groupPlot['DY']  = {
-  		   'nameHR' : 'DY',
-		   'color': 616, # kMagenta    
-		   'isSignal' : 0,
-		   'samples' : ['DY']
-}
+#groupPlot['DY']  = {
+#  		   'nameHR' : 'DY',
+#		   'color': 616, # kMagenta    
+#		   'isSignal' : 0,
+#		   'samples' : ['DY']
+#}
 
 #groupPlot['WW']  = {
 #  		   'nameHR' : 'WW',
@@ -54,12 +54,12 @@ groupPlot['VVV']  = {
               }
 
 
-groupPlot['top']  = {
-  		   'nameHR' : 'top',
-		   'color': 416,    # kGreen
-		   'isSignal' : 0,
-		   'samples' : ['top']
-}
+#groupPlot['top']  = {
+#  		   'nameHR' : 'top',
+#		   'color': 416,    # kGreen
+#		   'isSignal' : 0,
+#		   'samples' : ['top']
+#}
 
 groupPlot['ttV']  = {
   		   'nameHR' : 'ttV',
@@ -85,13 +85,13 @@ groupPlot['Higgs']  = {
 
 # Individual plots
 
-plot['DY']  = { 
-                  'nameHR' : 'DY',
-                  'color': 858, # kAzure -2  
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  'scale'    : 1.0
-                  }
+#plot['DY']  = { 
+#                  'nameHR' : 'DY',
+#                  'color': 858, # kAzure -2  
+#                  'isSignal' : 0,
+#                  'isData'   : 0,
+#                  'scale'    : 1.0
+#                  }
 
 #plot['WW']  = { 
 #                  'nameHR' : 'WW',
@@ -158,12 +158,12 @@ plot['VVV']  = {
                   'scale'    : 1.0
                   }
 
-plot['top']  = {
-		  'color': 419,    # kGreen+3
-		  'isSignal' : 0,
-		  'isData'   : 0,
-		  'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
-}
+#plot['top']  = {
+#		  'color': 419,    # kGreen+3
+#		  'isSignal' : 0,
+#		  'isData'   : 0,
+#		  'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
+#}
 
 plot['ttV']  = {
 		  'color': 419,    # kGreen+3

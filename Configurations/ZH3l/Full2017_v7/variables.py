@@ -26,13 +26,13 @@ variables['pt1']        = { 'name': 'Lepton_pt[0]',
                             'fold' : 0
                         }
 
-variables['dphilmetj'] = {  'name' : 'ZH3l_dphilmetj', #FIXME
+variables['dphilmetj'] = {  'name' : 'ZH3l_dphilmetj_test[0]', #FIXME
                             'range' : (16,0,3.14159),
                             'xaxis' : 'dphilmetj',
                             'fold' : 0
                            }
 
-variables['dphilmetjj'] = { 'name' : 'ZH3l_dphilmetjj', #FIXME
+variables['dphilmetjj'] = { 'name' : 'ZH3l_dphilmetjj_test[0]', #FIXME
                             'range' : (16,0,3.14159),
                             'xaxis' : 'dphilmetjj',
                             'fold' : 0,
@@ -52,14 +52,14 @@ variables['pTlmetjj'] = {   'name' : 'ZH3l_pTlmetjj',
                             'cuts' : [cut for cut in cuts if '1j' not in cut]
                             }
 
-variables['mTlmetjj']   = { 'name' : 'ZH3l_mTlmetjj', #FIXME
+variables['mTlmetjj']   = { 'name' : 'ZH3l_mTlmetjj_test[0]', #FIXME
                             'range' : (16,50,450),
                             'xaxis' : 'mTlmetjj',
                             'fold' : 3,
                             'cuts' : [cut for cut in cuts if '1j' not in cut]
                         }
 
-variables['mTlmetj']   = { 'name' : 'ZH3l_mTlmetj', #FIXME
+variables['mTlmetj']   = { 'name' : 'ZH3l_mTlmetj_test[0]', #FIXME
                             'range' : (10,0,250),
                             'xaxis' : 'mTlmetj',
                             'fold' : 2,

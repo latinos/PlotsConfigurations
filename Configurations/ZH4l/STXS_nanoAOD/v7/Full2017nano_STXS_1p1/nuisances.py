@@ -355,11 +355,11 @@ nuisances['PS_zh4l']  = {
                 },
 }
 '''
-nuisances['UE_zh4l']  = {
-                'name'  : 'UE_zh4l',
+nuisances['UE_CP5']  = {
+                'name'  : 'UE_CP5',
                 'skipCMS' : 1,
                 'type'  : 'lnN',
-                'samples': dict((skey, '1.015') for skey in mc),
+                'samples': dict((skey, '1.015') for skey in mc if skey not in ['ZH_hww','ggZH_hww','ZH_htt']),
 }
 
 
@@ -376,7 +376,7 @@ nuisances['CMS_hww_ZZ4lnorm']  = {
             'zh4l_XDF_13TeV_ptv_lt150',
             'zh4l_XDF_13TeV_ptv_gt150',
             ]
-        }
+}
 
 
 ## Shape nuisance due to QCD scale variations for DY
@@ -431,16 +431,16 @@ nuisances['QCDscale_qqH']  = {
                'type'  : 'lnN',
               }
 
-nuisances['QCDscale_VH']  = {
-               'name'  : 'QCDscale_VH', 
-               'samples'  : {
-                   'WH_hww' : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','WH','125.09','scale','sm'),
-                   'WH_htt' : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','WH','125.09','scale','sm'),
-                   #'ZH_hww' : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ZH','125.09','scale','sm'),
-                   'ZH_htt' : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ZH','125.09','scale','sm'),
-                   },
-               'type'  : 'lnN',
-              }
+#nuisances['QCDscale_VH']  = {
+#               'name'  : 'QCDscale_VH', 
+#               'samples'  : {
+#                   'WH_hww' : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','WH','125.09','scale','sm'),
+#                   'WH_htt' : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','WH','125.09','scale','sm'),
+#                   'ZH_hww' : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ZH','125.09','scale','sm'),
+#                   'ZH_htt' : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ZH','125.09','scale','sm'),
+#                   },
+#               'type'  : 'lnN',
+#              }
 
 #nuisances['QCDscale_ggZH']  = {
 #               'name'  : 'QCDscale_ggZH', 
@@ -466,10 +466,10 @@ nuisances['QCDscale_qqbar_ACCEPT']  = {
                'samples'  : {
                    'qqH_hww' : '1.003',
                    'qqH_htt' : '1.003',
-                   'WH_hww'  : '1.010',
-                   'WH_htt'  : '1.010',
+                   #'WH_hww'  : '1.010',
+                   #'WH_htt'  : '1.010',
                    #'ZH_hww'  : '1.015',
-                   'ZH_htt'  : '1.015',
+                   #'ZH_htt'  : '1.015',
                    'VZ'      : '1.029',
                    },
               }
@@ -513,10 +513,10 @@ nuisances['pdf_Higgs_qqbar']  = {
                'samples'  : {
                    'qqH_hww' : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','vbfH','125.09','pdf','sm'),
                    'qqH_htt' : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','vbfH','125.09','pdf','sm'),
-                   'WH_hww'  : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','WH' ,'125.09','pdf','sm'),
-                   'WH_htt'  : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','WH' ,'125.09','pdf','sm'),
+                   #'WH_hww'  : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','WH' ,'125.09','pdf','sm'),
+                   #'WH_htt'  : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','WH' ,'125.09','pdf','sm'),
                    #'ZH_hww'  : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ZH' ,'125.09','pdf','sm'),
-                   'ZH_htt'  : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ZH' ,'125.09','pdf','sm'),
+                   #'ZH_htt'  : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ZH' ,'125.09','pdf','sm'),
                    },
               }
 
@@ -554,13 +554,12 @@ nuisances['pdf_Higgs_qqbar_ACCEPT']  = {
                'name'  : 'pdf_Higgs_qqbar_ACCEPT',
                'type'  : 'lnN',
                'samples'  : {
-                   #
                    'qqH_hww' : '1.002',
                    'qqH_htt' : '1.002',
-                   'WH_hww'  : '1.003',
-                   'WH_htt'  : '1.003',
+                   #'WH_hww'  : '1.003',
+                   #'WH_htt'  : '1.003',
                    #'ZH_hww'  : '1.002',
-                   'ZH_htt'  : '1.002',
+                   #'ZH_htt'  : '1.002',
                    },
               }
 
@@ -574,6 +573,62 @@ nuisances['pdf_qqbar_ACCEPT']  = {
                    'WZhad'      : '1.001',                 
                    },
               }
+
+### QCD STXS accept                                                                                                                           
+
+STXS_QCDUnc = {
+    'VH_scale_0jet'           : ['QQ2HQQ_0J'], 
+    'VH_scale_1jet'           : ['QQ2HQQ_1J'],
+    'VH_scale_lowmjj'         : ['QQ2HQQ_GE2J_MJJ_0_60', 'QQ2HQQ_GE2J_MJJ_60_120', 'QQ2HQQ_GE2J_MJJ_120_350'],
+    'VH_scale_highmjj_lowpt'  : ['QQ2HQQ_GE2J_MJJ_350_700_PTH_0_200_PTHJJ_0_25', 'QQ2HQQ_GE2J_MJJ_350_700_PTH_0_200_PTHJJ_GT25', 'QQ2HQQ_GE2J_MJJ_GT700_PTH_0_200_PTHJJ_0_25', 'QQ2HQQ_GE2J_MJJ_GT700_PTH_0_200_PTHJJ_GT25'],
+    'VH_scale_highmjj_highpt' : ['QQ2HQQ_GE2J_MJJ_GT350_PTH_GT200'],
+    'ZH_scale_lowpt'          : ['QQ2HLL_PTV_0_75', 'QQ2HLL_PTV_75_150', 'QQ2HLL_PTV_150_250_0J', 'QQ2HLL_PTV_150_250_GE1J', 'GG2HLL_PTV_0_75', 'GG2HLL_PTV_75_150', 'GG2HLL_PTV_150_250_0J', 'GG2HLL_PTV_150_250_GE1J'],
+    'ZH_scale_highpt'         : ['QQ2HLL_PTV_GT250', 'GG2HLL_PTV_GT250']
+}
+
+# Norm factors -- note norm factors in QCDScaleFactors are [LHEScaleWeight[0]/nom, LHEScaleWeight[8]/nom]
+import json
+QCDScaleFactors = json.load(open('%s/src/PlotsConfigurations/Configurations/ZH3l/STXS_nanoAOD/v7/QCDScaleFactors.json'%os.getenv('CMSSW_BASE')))
+
+for unc in STXS_QCDUnc.keys():
+    nuisances[unc] = {
+        'name' : unc,
+        'kind' : 'weight',
+        'type' : 'shape',
+        'samples' : {}
+    }
+
+    for signal in ['ZH_hww','ggZH_hww','ZH_htt']:
+        bins_applied = list(set(QCDScaleFactors[signal].keys()) & set(STXS_QCDUnc[unc]))
+        if len(bins_applied) > 0:
+            norm_QCD = ['+'.join(['(HTXS_stage1_2_cat_pTjet30GeV == {})*({})'.format(HTXSStage1_2Categories[binname],QCDScaleFactors[signal][binname][0]) for binname in bins_applied]),
+                        '+'.join(['(HTXS_stage1_2_cat_pTjet30GeV == {})*({})'.format(HTXSStage1_2Categories[binname],QCDScaleFactors[signal][binname][1]) for binname in bins_applied])]
+            nuisances[unc]['samples'][signal] = ['Alt$(LHEScaleWeight[0],1)/('+norm_QCD[0]+')','Alt$(LHEScaleWeight[8],1)/('+norm_QCD[1]+')']
+
+#STXS VHlep migration uncertainties
+STXS_migUnc = {
+    'THU_ZH_inc'      : {'PTV_0_75' : '0.994/1.005', 'PTV_75_150' : '0.994/1.005', 'PTV_150_250_0J' : '0.994/1.005', 'PTV_150_250_GE1J' : '0.994/1.005', 'PTV_GT250' : '0.994/1.005'},
+    'THU_ZH_mig75'    : {'PTV_0_75' : '0.963',       'PTV_75_150' : '1.040',       'PTV_150_250_0J' : '1.04',        'PTV_150_250_GE1J' : '1.04',        'PTV_GT250' : '1.04'},
+    'THU_ZH_mig150'   : {                            'PTV_75_150' : '0.995',       'PTV_150_250_0J' : '1.013',       'PTV_150_250_GE1J' : '1.013',       'PTV_GT250' : '1.013'},
+    'THU_ZH_mig250'   : {                                                          'PTV_150_250_0J' : '1.9958',      'PTV_150_250_GE1J' : '0.9958',      'PTV_GT250' : '1.014'},
+    'THU_ZH_mig01'    : {                                                          'PTV_150_250_0J' : '0.956',       'PTV_150_250_GE1J' : '1.053'},
+    'THU_ggZH_inc'    : {'PTV_0_75' : '0.811/1.251', 'PTV_75_150' : '0.811/1.251', 'PTV_150_250_0J' : '0.811/1.251', 'PTV_150_250_GE1J' : '0.811/1.251', 'PTV_GT250' : '0.811/1.251'},
+    'THU_ggZH_mig75'  : {'PTV_0_75' : '1.9/0.1',     'PTV_75_150' : '1.27',        'PTV_150_250_0J' : '1.27',        'PTV_150_250_GE1J' : '1.27',        'PTV_GT250' : '1.27'},
+    'THU_ggZH_mig150' : {                            'PTV_75_150' : '0.882',       'PTV_150_250_0J' : '1.142',       'PTV_150_250_GE1J' : '1.142',       'PTV_GT250' : '1.142'},
+    'THU_ggZH_mig250' : {                                                          'PTV_150_250_0J' : '0.963',       'PTV_150_250_GE1J' : '0.963',       'PTV_GE250' : '1.154'},
+    'THU_ggZH_mig01'  : {                                                          'PTV_150_250_0J' : '1.6/0.393',   'PTV_150_250_GE1J' : '1.277'} 
+}
+
+prefix = {'ZH' : 'QQ2HLL', 'ggZH' : 'GG2HLL'}
+
+for unc in STXS_migUnc.keys():
+    prod = unc.split('_')[1]
+    samples_prod = [skey for skey in mc if skey.split('_')[0] == prod]
+    nuisances[unc] = {
+        'name' : unc,
+        'type' : 'lnN',
+        'samples': dict((skey+'_'+prefix[prod]+'_'+binname, STXS_migUnc[unc][binname]) for binname in STXS_migUnc[unc] for skey in samples_prod)
+    }
 
 ### Generic "cross section uncertainties"
 

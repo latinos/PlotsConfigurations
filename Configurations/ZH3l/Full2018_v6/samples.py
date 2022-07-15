@@ -50,7 +50,7 @@ LepWPweight     = 'ttHMVA_SF_3l[0]' #SF for new WPs, defined in aliases
 ################################################
 
 XSWeight      = 'XSWeight'
-SFweight      = 'SFweight'+Nlep+'l*'+LepWPweight+'*'+LepWPCut+'*PUJetIdSF'
+SFweight      = 'SFweight'+Nlep+'l*'+LepWPweight+'*'+LepWPCut
 PromptGenLepMatch   = 'PromptGenLepMatch'+Nlep+'l'
 
 ################################################

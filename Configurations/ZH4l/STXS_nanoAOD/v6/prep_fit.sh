@@ -4,7 +4,6 @@ set -e
 
 DIR=$PWD
 ANALYSIS="ZH4l"
-#FITVAR="mtw_fit"
 
 for year in Full2016nano_STXS_1p1 Full2017nano_STXS_1p1 Full2018nano_STXS_1p1
 do
@@ -25,7 +24,7 @@ do
     fi
 
     datacardDir=${PWD}/datacards_${ANALYSIS}_${YEAR}_v6_STXS
-    # zh4l_ZZ_MET_13TeV=$datacardDir/zh4l_ZZ_MET_13TeV/events/datacard.txt.pruned.txt
+
     # combine the datacards                    
     combineCards.py \
 	zh4l_XSF_13TeV_ptv_lt150=$datacardDir/zh4l_XSF_13TeV_ptv_lt150/class0_XSF/datacard.txt.pruned.txt \

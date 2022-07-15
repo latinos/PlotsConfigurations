@@ -7,7 +7,7 @@ supercut = ' Lepton_pt[0]>25 \
             && (nLepton>=4 && Alt$(Lepton_pt[4],0)<10) \
             && chllll_zh4l == 0 \
             && z0Mass_zh4l_test[0]>12 \
-            && Sum$(CleanJet_pt > 20. && abs(CleanJet_eta)<2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.2217) == 0 \
+            && bVeto \
                   '
 
 #cuts['zh4l_preselection_13TeV'] = '((flagZ1SF_zh4l==1)&&(mllll_zh4l > 140)) || (flagZ1SF_zh4l==0)'

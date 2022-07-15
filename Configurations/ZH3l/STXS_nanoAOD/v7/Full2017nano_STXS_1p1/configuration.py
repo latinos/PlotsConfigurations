@@ -3,7 +3,7 @@
 tag = 'ZH3l_2017_v7_STXS'
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFiles_'+tag
+outputDir = 'rootFiles_'+tag+'_sigFix'
 
 # file with list of variables
 variablesFile = 'variables.py'
@@ -27,7 +27,7 @@ lumi = 41.53
 outputDirPlots = 'plot_'+tag
 
 # used by mkDatacards to define output directory for datacards
-outputDirDatacard = 'datacards_'+tag
+outputDirDatacard = 'datacards_'+tag+'_sigFix'
 
 # structure file for datacard
 structureFile = 'structure.py'

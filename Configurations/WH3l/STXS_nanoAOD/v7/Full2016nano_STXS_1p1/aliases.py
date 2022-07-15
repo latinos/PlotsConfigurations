@@ -351,15 +351,75 @@ aliases['BDT_SSSF2016'] = {
     'class': 'WH3l_patch_BDT1718',
     'args': ("BDT_SSSF2016")
 }
-aliases['BDT_SSSFcombin'] = {
+aliases['BDT_SSSF2016_v1'] = {
     'class': 'WH3l_patch_BDT1718',
-    'args': ("BDT_SSSFcombin")
+    'args': ("BDT_SSSF2016_v1")
 }
+aliases['BDT_SSSF2016_v2'] = {
+    'class': 'WH3l_patch_BDT1718',
+    'args': ("BDT_SSSF2016_v2")
+}
+aliases['BDT_SSSF2016_v3'] = {
+    'class': 'WH3l_patch_BDT1718',
+    'args': ("BDT_SSSF2016_v3")
+}
+aliases['BDT_SSSF2016_v4'] = {
+    'class': 'WH3l_patch_BDT1718',
+    'args': ("BDT_SSSF2016_v4")
+}
+aliases['BDT_SSSF2016_v5'] = {
+    'class': 'WH3l_patch_BDT1718',
+    'args': ("BDT_SSSF2016_v5")
+}
+aliases['BDT_SSSF2016_v6'] = {
+    'class': 'WH3l_patch_BDT1718',
+    'args': ("BDT_SSSF2016_v6")
+}
+aliases['BDT_SSSF2016_v7'] = {
+    'class': 'WH3l_patch_BDT1718',
+    'args': ("BDT_SSSF2016_v7")
+}
+#aliases['BDT_SSSFcombin'] = {
+#    'class': 'WH3l_patch_BDT1718',
+#    'args': ("BDT_SSSFcombin")
+#}
 aliases['BDT_OSSF2016'] = {
     'class': 'WH3l_patch_BDT1718',
     'args': ("BDT_OSSF2016")
 }
-aliases['BDT_OSSFcombin'] = {
+aliases['BDT_OSSF2016_v1'] = {
     'class': 'WH3l_patch_BDT1718',
-    'args': ("BDT_OSSFcombin")
+    'args': ("BDT_OSSF2016_v1")
 }
+aliases['BDT_OSSF2016_v2'] = {
+    'class': 'WH3l_patch_BDT1718',
+    'args': ("BDT_OSSF2016_v2")
+}
+aliases['BDT_OSSF2016_v3'] = {
+    'class': 'WH3l_patch_BDT1718',
+    'args': ("BDT_OSSF2016_v3")
+}
+aliases['BDT_OSSF2016_v4'] = {
+    'class': 'WH3l_patch_BDT1718',
+    'args': ("BDT_OSSF2016_v4")
+}
+aliases['BDT_OSSF2016_v5'] = {
+    'class': 'WH3l_patch_BDT1718',
+    'args': ("BDT_OSSF2016_v5")
+}
+aliases['BDT_OSSF2016_v6'] = {
+    'class': 'WH3l_patch_BDT1718',
+    'args': ("BDT_OSSF2016_v6")
+}
+aliases['BDT_OSSF2016_v7'] = {
+    'class': 'WH3l_patch_BDT1718',
+    'args': ("BDT_OSSF2016_v7")
+}
+aliases['BDT_OSSF2016_v8'] = {
+    'class': 'WH3l_patch_BDT1718',
+    'args': ("BDT_OSSF2016_v8")
+}
+#aliases['BDT_OSSFcombin'] = {
+#    'class': 'WH3l_patch_BDT1718',
+#    'args': ("BDT_OSSFcombin")
+#}
