@@ -1,13 +1,6 @@
 import os
 import inspect
 
-configurations = os.path.realpath(inspect.getfile(inspect.currentframe())) # this file
-configurations = os.path.dirname(configurations) # dphijj
-configurations = os.path.dirname(configurations) # Full2018_v7
-configurations = os.path.dirname(configurations) # FullRunII
-configurations = os.path.dirname(configurations) # WW
-configurations = os.path.dirname(configurations) # Configurations
-
 from LatinoAnalysis.Tools.commonTools import getSampleFiles, getBaseWnAOD, addSampleWeight
 
 def nanoGetSampleFiles(inputDir, sample):
@@ -33,8 +26,7 @@ except NameError:
 
 mcProduction = 'Autumn18_102X_nAODv7_Full2018v7'
 
-mcSteps = 'MCl1loose2018v7__MCCorr2018v7__l2loose__l2tightOR2018v7{var}'
-
+mcSteps = 'MCl1loose2018v7__MCCorr2018v7'
 
 ##############################################
 ###### Tree base directory for the site ######
@@ -107,4 +99,3 @@ for sname in signals:
 
   for i in range(nbins):
       sample['subsamples']['B%d'%i] = 'fid && B%d'%i
-

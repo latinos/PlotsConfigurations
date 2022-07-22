@@ -3,18 +3,12 @@ import copy
 import inspect
 
 configurations = os.path.realpath(inspect.getfile(inspect.currentframe())) # this file
-configurations = os.path.dirname(configurations) # leadlepPT
-configurations = os.path.dirname(configurations) # leadlepPT
-configurations = os.path.dirname(configurations) # Full2018v7
+configurations = os.path.dirname(configurations) # TheoUnc
+configurations = os.path.dirname(configurations) # ptll
+configurations = os.path.dirname(configurations) # Full2018_v7
 configurations = os.path.dirname(configurations) # FullRunII
 configurations = os.path.dirname(configurations) # WW
 configurations = os.path.dirname(configurations) # Configurations
-
-#aliases = {}
-
-# imported from samples.py:
-# samples, signals
-
 
 aliases['nCleanGenJet'] = {
     'linesToAdd': ['.L %s/Differential/ngenjet.cc+' % configurations],

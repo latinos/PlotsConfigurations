@@ -26,6 +26,15 @@ elif diffVar == "dphijj":
 elif diffVar == "leadlepPT":
     shortname = "leadlepPT"
     nbins = 13
+elif diffVar == "sublepPT":
+    shortname = "sublepPT"
+    nbins = 13
+elif diffVar == "mll":
+    shortname = "mll"
+    nbins = 13
+elif diffVar == "ptll":
+    shortname = "ptll"
+    nbins = 13
 elif diffVar == "mjj":
     shortname = "mjj"
     nbins = 12
@@ -36,7 +45,7 @@ elif diffVar == "jetpt1":
     shortname = "jetpt1"
     nbins = 8
 else:
-    print 'Allowed variables are: inclusive, njets, dphijj, mjj, jetpt0, jetpt1, leadlepPT.'
+    print 'Allowed variables are: inclusive, njets, dphijj, mjj, jetpt0, jetpt1, leadlepPT, sublepPT, mll, ptll.'
     exit()
 
 subsamples = ["B%d"%i for i in xrange(nbins)]
@@ -105,6 +114,7 @@ for year in ["2016","2017","2018"]:
                 h_nom = f0.Get("presel/nCleanGenJet/histo_%s"%(sample))
 
                 if h_nom.Integral() <= 0:
+		    print("Integral Issue! ")
                     continue
 
                 # Calculate PS weights

@@ -3,17 +3,12 @@ import copy
 import inspect
 
 configurations = os.path.realpath(inspect.getfile(inspect.currentframe())) # this file
+configurations = os.path.dirname(configurations) # TheoUnc
 configurations = os.path.dirname(configurations) # leadlepPT
-configurations = os.path.dirname(configurations) # leadlepPT
-configurations = os.path.dirname(configurations) # Full2018v7
+configurations = os.path.dirname(configurations) # Full2018_v7
 configurations = os.path.dirname(configurations) # FullRunII
 configurations = os.path.dirname(configurations) # WW
 configurations = os.path.dirname(configurations) # Configurations
-
-#aliases = {}
-
-# imported from samples.py:
-# samples, signals
 
 aliases['nCleanGenJet'] = {
     'linesToAdd': ['.L %s/Differential/ngenjet.cc+' % configurations],
@@ -34,19 +29,21 @@ aliases['nGoodGenJet'] = {
     'samples': ['WW','ggWW']
 }
 
-
 aliases['B0'] = {
     'expr' : 'DressedLepton_pt[0] > 25. && DressedLepton_pt[0] <= 35.',
     'samples' : ['WW','ggWW']
 }
+
 aliases['B1'] = {
     'expr' : 'DressedLepton_pt[0] > 35. && DressedLepton_pt[0] <= 40.',
     'samples' : ['WW','ggWW']
 }
+
 aliases['B2'] = {
     'expr' : 'DressedLepton_pt[0] > 40. && DressedLepton_pt[0] <= 45.',
     'samples' : ['WW','ggWW']
 }
+
 aliases['B3'] = {
     'expr' : 'DressedLepton_pt[0] > 45. && DressedLepton_pt[0] <= 50.',
     'samples' : ['WW','ggWW']
