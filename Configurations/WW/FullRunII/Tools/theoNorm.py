@@ -114,7 +114,6 @@ for year in ["2016","2017","2018"]:
                 h_nom = f0.Get("presel/nCleanGenJet/histo_%s"%(sample))
 
                 if h_nom.Integral() <= 0:
-		    print("Integral Issue! ")
                     continue
 
                 # Calculate PS weights
