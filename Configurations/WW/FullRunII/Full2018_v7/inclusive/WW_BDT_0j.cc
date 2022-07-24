@@ -33,7 +33,7 @@ protected:
   FloatValueReader* pTWW{};
   UIntValueReader* nCleanJet{};
   IntArrayReader* CleanJet_jetIdx{};
-  FloatArrayReader* Jet_btagDeepB{};
+  FloatArrayReader* Jet_btagDeepFlavB{};
   
   // Variables fed into the BDT
   float pt1_;
@@ -47,7 +47,7 @@ protected:
   float mtw1_;
   float mtw2_;
   float pTWW_;
-  float Jet_btagDeepB_CleanJet_jetIdx_0_;
+  float Jet_btagDeepFlavB_CleanJet_jetIdx_0_;
 
   TMVA::Reader *reader = new TMVA::Reader();
 };
@@ -65,9 +65,9 @@ ww_top_bdt_0j::ww_top_bdt_0j() : TTreeFunction()
   reader->AddVariable("mtw1", &mtw1_);	
   reader->AddVariable("mtw2", &mtw2_);	
   reader->AddVariable("pTWW", &pTWW_);
-  reader->AddVariable("Alt$(Jet_btagDeepB[CleanJet_jetIdx[0]],-2)", &Jet_btagDeepB_CleanJet_jetIdx_0_);
+  reader->AddVariable("Alt$(Jet_btagDeepFlavB[CleanJet_jetIdx[0]],-2)", &Jet_btagDeepFlavB_CleanJet_jetIdx_0_);
 
-  reader->BookMVA("BDT","/afs/cern.ch/user/s/ssaumya/public/WeightFiles/BDT_MergedTrainingMediumBveto2016/0jet/TMVAClassification_BDTG4D3.weights.xml"); 
+  reader->BookMVA("BDT","/afs/cern.ch/user/s/ssaumya/public/WeightFiles/BDT_MergedTrainingDeepJet/0jet/TMVAClassification_BDTG4D3.weights.xml"); 
 
 }
 
@@ -89,15 +89,15 @@ ww_top_bdt_0j::evaluate(unsigned)
     unsigned njet = *nCleanJet->Get();
 
     if (njet == 0){
-      Jet_btagDeepB_CleanJet_jetIdx_0_ = -2;
+      Jet_btagDeepFlavB_CleanJet_jetIdx_0_ = -2;
     }
     else if (njet == 1){
       int jetIdx0 = CleanJet_jetIdx->At(0);
-      Jet_btagDeepB_CleanJet_jetIdx_0_ = jetIdx0 >= 0 ? Jet_btagDeepB->At(jetIdx0) : -2;
+      Jet_btagDeepFlavB_CleanJet_jetIdx_0_ = jetIdx0 >= 0 ? Jet_btagDeepFlavB->At(jetIdx0) : -2;
     }
     else {
       int jetIdx0 = CleanJet_jetIdx->At(0);
-      Jet_btagDeepB_CleanJet_jetIdx_0_ = jetIdx0 >= 0 ? Jet_btagDeepB->At(jetIdx0) : -2;
+      Jet_btagDeepFlavB_CleanJet_jetIdx_0_ = jetIdx0 >= 0 ? Jet_btagDeepFlavB->At(jetIdx0) : -2;
     }
 
     double classifier = reader->EvaluateMVA("BDT");
@@ -121,7 +121,7 @@ ww_top_bdt_0j::bindTree_(multidraw::FunctionLibrary& _library)
   _library.bindBranch(mtw2,"mtw2");
   _library.bindBranch(pTWW,"pTWW");
   _library.bindBranch(nCleanJet,"nCleanJet");
-  _library.bindBranch(Jet_btagDeepB,"Jet_btagDeepB");
+  _library.bindBranch(Jet_btagDeepFlavB,"Jet_btagDeepFlavB");
   _library.bindBranch(CleanJet_jetIdx,"CleanJet_jetIdx");
   
 }
