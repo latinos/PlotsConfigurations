@@ -15,6 +15,7 @@ eleWP = 'mva_90p_Iso2016'
 muWP = 'cut_Tight80x'
 
 btagWP = '0.3093' #BDT training
+btag_algo="deepflav"# deepflav or deepcsv
 
 aliases['LepWPCut'] = {
     'expr': 'LepCut2l__ele_'+eleWP+'__mu_'+muWP,
