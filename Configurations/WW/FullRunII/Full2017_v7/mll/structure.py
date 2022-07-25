@@ -7,8 +7,7 @@ nbins = 13
 structure['DY']  = {  
                   'isSignal' : 0,
                   'isData'   : 0,
-#                  'removeFromCuts' : ['ww2l2v_13TeV_ww_sr_2j_B12','ww2l2v_13TeV_sr_0j_B12','ww2l2v_13TeV_sr_0j_B2','ww2l2v_13TeV_sr_0j_B1']              
-}
+ }
 
 structure['Dyemb']  = {
                   'isSignal' : 0,
@@ -47,6 +46,7 @@ structure['ttbar'] = {
                   'isSignal' : 0,
                   'isData'   : 0 
                   }
+
 
 structure['singletop'] = {   
                   'isSignal' : 0,
@@ -97,8 +97,8 @@ structure['Vg']  = {
 structure['ZgS'] = {
                   'isSignal' : 0,
                   'isData'   : 0,
-#                  'removeFromCuts' : ['ww2l2v_13TeV_sr_2j_B7', 'ww2l2v_13TeV_sr_2j_B5']
-                  }
+#                  'removeFromCuts' : ['ww2l2v_13TeV_sr_2j_B2']
+}
 
 structure['WgS'] = {
                   'isSignal' : 0,
@@ -123,8 +123,8 @@ structure['VgS_H'] = {
 structure['Zg']  = { 
                   'isSignal' : 0,
                   'isData'   : 0, 
-#                  'removeFromCuts' : ['ww2l2v_13TeV_sr_2j_B9']
-		  }
+#                  'removeFromCuts' : ['ww2l2v_13TeV_sr_2j_B13','ww2l2v_13TeV_sr_2j_B1','ww2l2v_13TeV_sr_2j_B2']
+                  }
 
 structure['VZ']  = { 
                   'isSignal' : 0,
@@ -136,6 +136,7 @@ structure['WZ']  = {
                   'isData'   : 0 
                   }
 
+
 structure['VVV']  = { 
                   'isSignal' : 0,
                   'isData'   : 0 
@@ -145,6 +146,7 @@ structure['ZZ']  = {
                   'isSignal' : 0,
                   'isData'   : 0    
                   }
+
 
 structure['ggH'] = {
                   'isSignal' : 0,
@@ -214,7 +216,6 @@ structure['WH_htt'] = {
 structure['ZH_htt'] = {
                   'isSignal' : 0,
                   'isData'   : 0,
-#                  'removeFromCuts' : ['ww2l2v_13TeV_sr_0j_B11']
                   }
 
 structure['H_htt'] = {

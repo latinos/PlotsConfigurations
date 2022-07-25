@@ -130,7 +130,7 @@ plot['Fake_em']  = {
                   'isData'   : 0,
                   'scale'    : 1.0                  
               }
-            
+
 plot['top'] = {   
                   'nameHR' : 'tW and t#bar{t}',
                   'color': 400,   # kYellow
@@ -203,6 +203,7 @@ plot['ZgS'] = {
                   'scale'    : 1.0
                   }
 
+
 plot['WZ']  = { 
                   'color': 858, # kAzure -2  
                   'isSignal' : 0,
@@ -242,6 +243,7 @@ plot['WH_htt'] = {
                   'scale'    : 1    #
                   }
 
+
 plot['qqH_htt'] = {
                   'nameHR' : 'qqHtt',
                   'color': 632+1, # kRed+1 
@@ -249,6 +251,7 @@ plot['qqH_htt'] = {
                   'isData'   : 0,    
                   'scale'    : 1    #
                   }
+
 
 plot['ggH_htt'] = {
                   'nameHR' : 'ggHtt',
@@ -284,6 +287,7 @@ plot['WH_hww'] = {
                   'scale'    : 1    #
                   }
 
+
 plot['qqH_hww'] = {
                   'nameHR' : 'qqH',
                   'color': 632+1, # kRed+1 
@@ -313,6 +317,6 @@ plot['DATA']  = {
 
 # additional options
 
-legend['lumi'] = 'L = 59.7/fb'
+legend['lumi'] = 'L = 35.9/fb'
 
 legend['sqrt'] = '#sqrt{s} = 13 TeV'

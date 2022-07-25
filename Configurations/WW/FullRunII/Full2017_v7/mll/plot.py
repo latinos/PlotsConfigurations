@@ -130,7 +130,7 @@ plot['Fake_em']  = {
                   'isData'   : 0,
                   'scale'    : 1.0                  
               }
-            
+
 plot['top'] = {   
                   'nameHR' : 'tW and t#bar{t}',
                   'color': 400,   # kYellow
@@ -168,6 +168,7 @@ plot['ggWW_nonfid'] = {
                   'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
                   }
 
+
 plot['WWewk']  = {
                   'color': 851, # kAzure -9 
                   'isSignal' : 0,
@@ -202,6 +203,7 @@ plot['ZgS'] = {
                   'isData'   : 0,
                   'scale'    : 1.0
                   }
+
 
 plot['WZ']  = { 
                   'color': 858, # kAzure -2  
@@ -242,6 +244,7 @@ plot['WH_htt'] = {
                   'scale'    : 1    #
                   }
 
+
 plot['qqH_htt'] = {
                   'nameHR' : 'qqHtt',
                   'color': 632+1, # kRed+1 
@@ -249,6 +252,7 @@ plot['qqH_htt'] = {
                   'isData'   : 0,    
                   'scale'    : 1    #
                   }
+
 
 plot['ggH_htt'] = {
                   'nameHR' : 'ggHtt',
@@ -284,6 +288,7 @@ plot['WH_hww'] = {
                   'scale'    : 1    #
                   }
 
+
 plot['qqH_hww'] = {
                   'nameHR' : 'qqH',
                   'color': 632+1, # kRed+1 
@@ -291,7 +296,6 @@ plot['qqH_hww'] = {
                   'isData'   : 0,    
                   'scale'    : 1    #
                   }
-
 
 plot['ggH_hww'] = {
                   'nameHR' : 'ggH',
@@ -313,6 +317,6 @@ plot['DATA']  = {
 
 # additional options
 
-legend['lumi'] = 'L = 59.7/fb'
+legend['lumi'] = 'L = 41.5/fb'
 
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
