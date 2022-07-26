@@ -331,7 +331,7 @@ signals.append('ggWW')
 
 ### Now bin in nonfiducial / fiducial x bins
 
-nbins = 14
+nbins = 13
 
 for sname in signals:
   sample = samples[sname]
