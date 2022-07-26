@@ -2,7 +2,7 @@ import os
 import inspect
 
 configurations = os.path.realpath(inspect.getfile(inspect.currentframe())) # this file
-configurations = os.path.dirname(configurations) # sublepPT
+configurations = os.path.dirname(configurations) # ptll
 configurations = os.path.dirname(configurations) # Full2016_v7
 configurations = os.path.dirname(configurations) # FullRunII
 configurations = os.path.dirname(configurations) # WW

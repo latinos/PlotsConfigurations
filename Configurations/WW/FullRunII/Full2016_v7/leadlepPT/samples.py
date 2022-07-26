@@ -2,8 +2,8 @@ import os
 import inspect
 
 configurations = os.path.realpath(inspect.getfile(inspect.currentframe())) # this file
-configurations = os.path.dirname(configurations) # Full2016_v6
-configurations = os.path.dirname(configurations) # Full2016_v6
+configurations = os.path.dirname(configurations) # leadlepPT
+configurations = os.path.dirname(configurations) # Full2016_v7
 configurations = os.path.dirname(configurations) # FullRunII
 configurations = os.path.dirname(configurations) # WW
 configurations = os.path.dirname(configurations) # Configurations
@@ -18,6 +18,14 @@ def nanoGetSampleFiles(inputDir, sample):
         pass
 
     return getSampleFiles(inputDir, sample, True, 'nanoLatino_')
+
+def getBaseWFast(mcDir, mcProd, sampleList):
+    try:
+        if _samples_noload:
+            return 'baseW'
+    except NameError:
+        pass
+    return getBaseWnAOD(mcDir, mcProd, sampleList)
 
 # samples
 
@@ -93,7 +101,6 @@ DataTrig = {
 # SFweight does not include btag weights
 mcCommonWeightNoMatch = 'XSWeight*SFweight*METFilter_MC'
 mcCommonWeight = 'XSWeight*SFweight*PromptGenLepMatch2l*METFilter_MC'
-mcCommonWeight_signal = 'genjetetacut*XSWeight*SFweight*PromptGenLepMatch2l*METFilter_MC'
 
 ###########################################
 #############  BACKGROUNDS  ###############
@@ -112,7 +119,7 @@ samples['DY'] = {
     'FilesPerJob': 8,
 }
 
-DYbaseW = getBaseWnAOD(mcDirectory, mcProduction, ['DYJetsToTT_MuEle_M-50', 'DYJetsToTT_MuEle_M-50_ext1'])
+DYbaseW = getBaseWFast(mcDirectory, mcProduction, ['DYJetsToTT_MuEle_M-50', 'DYJetsToTT_MuEle_M-50_ext1'])
 
 addSampleWeight(samples,'DY','DYJetsToTT_MuEle_M-50',     'DY_NLO_pTllrw*'+DYbaseW+'/baseW')
 addSampleWeight(samples,'DY','DYJetsToTT_MuEle_M-50_ext1','DY_NLO_pTllrw*'+DYbaseW+'/baseW')
@@ -156,7 +163,7 @@ samples['Zg'] = {
     'FilesPerJob': 8
 }
 
-ZGbaseW = getBaseWnAOD(mcDirectory, mcProduction, ['Zg', 'Zg_ext1'])
+ZGbaseW = getBaseWFast(mcDirectory, mcProduction, ['Zg', 'Zg_ext1'])
 
 addSampleWeight(samples,'Zg','Zg',      ZGbaseW+'/baseW')
 addSampleWeight(samples,'Zg','Zg_ext1', ZGbaseW+'/baseW')
@@ -186,7 +193,7 @@ samples['WgS'] = {
     'FilesPerJob': 8,
 }
 
-WZbaseW = getBaseWnAOD(mcDirectory, mcProduction, ['WZTo3LNu_mllmin01', 'WZTo3LNu_mllmin01_ext1'])
+WZbaseW = getBaseWFast(mcDirectory, mcProduction, ['WZTo3LNu_mllmin01', 'WZTo3LNu_mllmin01_ext1'])
 
 addSampleWeight(samples, 'WgS', 'Wg_MADGRAPHMLM', '(Gen_ZGstar_mass > 0 && Gen_ZGstar_mass < 0.1)')
 addSampleWeight(samples, 'WgS', 'WZTo3LNu_mllmin01',      '(Gen_ZGstar_mass > 0.1)*'+WZbaseW+'/baseW')
@@ -221,8 +228,8 @@ samples['ZZ'] = {
     'FilesPerJob': 4
 }
 
-ZZ2LbaseW = getBaseWnAOD(mcDirectory, mcProduction, ['ZZTo2L2Nu', 'ZZTo2L2Nu_ext1'])
-ZZ4LbaseW = getBaseWnAOD(mcDirectory, mcProduction, ['ZZTo4L', 'ZZTo4L_ext1'])
+ZZ2LbaseW = getBaseWFast(mcDirectory, mcProduction, ['ZZTo2L2Nu', 'ZZTo2L2Nu_ext1'])
+ZZ4LbaseW = getBaseWFast(mcDirectory, mcProduction, ['ZZTo4L', 'ZZTo4L_ext1'])
 
 addSampleWeight(samples, 'ZZ', 'ZZTo2L2Nu',      ZZ2LbaseW+'/baseW')
 addSampleWeight(samples, 'ZZ', 'ZZTo2L2Nu_ext1', ZZ2LbaseW+'/baseW')
@@ -325,48 +332,37 @@ samples['WH_htt'] = {
 #############   SIGNALS  ##################
 ###########################################
 
-ptlowedge = ['25.', '35.', '40.', '45.', '50.', '55.', '60.', '70.', '80.', '90.', '100.', '120.', '150.','200.', '300.']
-pthighedge = ['35.', '40.', '45.', '50.', '55.', '60.', '70.', '80.', '90.', '100.', '120.', '150.', '200.', '300.', '9999.']
-leadlepPT = 'DressedLepton_pt[0]'
-
-fiducial = 'fiducial'
-nj = 0
-nj1 = 0
-
 signals = []
 
 ###### WW ########
 
 samples['WW'] = {
-    'name': nanoGetSampleFiles(mcDirectory, 'WWTo2L2Nu') + \
-            nanoGetSampleFiles(mcDirectory, 'GluGluWWTo2L2Nu_MCFM'),
-    'weight': mcCommonWeight_signal, # temporary - nllW module not run on PS and UE variation samples
-#    'weight': mcCommonWeight,
+    'name': nanoGetSampleFiles(mcDirectory, 'WWTo2L2Nu'),
+    'weight': mcCommonWeight+'*nllW',
     'FilesPerJob': 2
 }
-addSampleWeight(samples, 'WW', 'WWTo2L2Nu', 'nllW')
-addSampleWeight(samples, 'WW', 'GluGluWWTo2L2Nu_MCFM', '1.53/1.4')
 
 signals.append('WW')
 
-### Now bin in (fiducial / nonfiducial) x {njets}
+samples['ggWW'] = {
+    'name': nanoGetSampleFiles(mcDirectory, 'GluGluWWTo2L2Nu_MCFM'),
+    'weight': mcCommonWeight+'*1.53/1.4', # updating k-factor
+    'FilesPerJob': 4
+}
+signals.append('ggWW')
+
+### Now bin in nonfiducial / fiducial x bins
+
+nbins = 13
 
 for sname in signals:
   sample = samples[sname]
   sample['subsamples'] = {}
 
-  while nj < len(ptlowedge):
-    binName = 'fid_Bin%s' % (nj)
-    cut = '%s && %s > %s && %s <= %s ' % (fiducial, leadlepPT, ptlowedge[nj],leadlepPT,pthighedge[nj])
-    nj = nj+1
-    sample['subsamples'][binName] = cut
+  sample['subsamples']['nonfid'] = '!(fid)'
 
-  while nj1 < len(ptlowedge):
-    binName = 'nonfid_Bin%s' % (nj1)
-    cutnonfid = '%s && %s > %s && %s <= %s ' % ('!'+fiducial, leadlepPT, ptlowedge[nj1],leadlepPT,pthighedge[nj1])
-    nj1 = nj1+1
-    sample['subsamples'][binName] = cutnonfid
- 
+  for i in range(nbins):
+      sample['subsamples']['B%d'%i] = 'fid && B%d'%i
 
 ###########################################
 ################## FAKE ###################
@@ -378,7 +374,7 @@ samples['Fake'] = {
   'weights': [],
   'isData': ['all'],
   'FilesPerJob': 100,
-  'suppressNegativeNuisances' : ['all'],
+  'suppressNegativeNuisances' : ['all']
 }
 
 for _, sd in DataRun:

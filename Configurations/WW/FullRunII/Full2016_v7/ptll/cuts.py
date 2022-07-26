@@ -17,19 +17,19 @@ catCR = {
 }
 
 catSR = {
-    'B0'  : 'Lepton_pt[1] > 20       && Lepton_pt[1] <= 25',
-    'B1'  : 'Lepton_pt[1] > 25       && Lepton_pt[1] <= 30',
-    'B2'  : 'Lepton_pt[1] > 30       && Lepton_pt[1] <= 35',
-    'B3'  : 'Lepton_pt[1] > 35       && Lepton_pt[1] <= 40',
-    'B4'  : 'Lepton_pt[1] > 40       && Lepton_pt[1] <= 45',
-    'B5'  : 'Lepton_pt[1] > 45       && Lepton_pt[1] <= 50',
-    'B6'  : 'Lepton_pt[1] > 50       && Lepton_pt[1] <= 60',
-    'B7'  : 'Lepton_pt[1] > 60       && Lepton_pt[1] <= 80',
-    'B8'  : 'Lepton_pt[1] > 80       && Lepton_pt[1] <= 100',
-    'B9'  : 'Lepton_pt[1] > 100       && Lepton_pt[1] <= 150',
-    'B10'  : 'Lepton_pt[1] > 150       && Lepton_pt[1] <= 200',
-    'B11'  : 'Lepton_pt[1] > 200       && Lepton_pt[1] <= 300',
-    'B12'  : 'Lepton_pt[1] > 300'
+    'B0'  : 'ptll > 30       && ptll <= 35',
+    'B1'  : 'ptll > 35       && ptll <= 40',
+    'B2'  : 'ptll > 40       && ptll <= 45',
+    'B3'  : 'ptll > 45       && ptll <= 50',
+    'B4'  : 'ptll > 50       && ptll <= 55',
+    'B5'  : 'ptll > 55       && ptll <= 60',
+    'B6'  : 'ptll > 60       && ptll <= 70',
+    'B7'  : 'ptll > 70       && ptll <= 80',
+    'B8'  : 'ptll > 80       && ptll <= 100',
+    'B9'  : 'ptll > 100       && ptll <= 150',
+    'B10'  : 'ptll > 150       && ptll <= 200',
+    'B11'  : 'ptll > 200       && ptll <= 300',
+    'B12'  : 'ptll > 300'
 }
 
 ##  signal regions

@@ -1,4 +1,5 @@
-#L nuisances
+
+# nuisances
 # name of samples here must match keys in samples.py 
 from LatinoAnalysis.Tools.commonTools import getSampleFiles, getBaseW, addSampleWeight
 
@@ -17,24 +18,18 @@ except NameError:
 from LatinoAnalysis.Tools.HiggsXSection import HiggsXSection
 HiggsXS = HiggsXSection()
 
+############ Load norm factors / differential binning to normalize signal ####################
+import os
+import json
+configurations = os.path.realpath(inspect.getfile(inspect.currentframe())) # this file
+configurations = os.path.dirname(configurations) # leadlepPT
+configurations = os.path.dirname(configurations) # Full2016_v7
+configurations = os.path.dirname(configurations) # FullRunII
+configurations = os.path.dirname(configurations) # WW
+configurations = os.path.dirname(configurations) # Configurations
 
-cuts0j = []
-cuts1j = []
-cuts2j = []
-#cuts3j = []
-#cuts4j = []
-#cuts5j = []
-
-
-for k in cuts:
-  for cat in cuts[k]['categories']:
-    if '0j' in cat: cuts0j.append(k+'_'+cat)
-    elif '1j' in cat: cuts1j.append(k+'_'+cat)
-    elif '2j' in cat: cuts2j.append(k+'_'+cat)
-#    elif '3j' in cat: cuts3j.append(k+'_'+cat)
-#    elif '4j' in cat: cuts4j.append(k+'_'+cat)
-#    elif '5j' in cat: cuts5j.append(k+'_'+cat)
-    else: print 'WARNING: name of category does not contain on either 0j,1j,2j,3j,4j,5j'
+diffcuts = samples['WW']['subsamples'] if 'WW' in samples else {}
+nfdict = json.load(open("%s/WW/FullRunII/Full2016_v7/mll/WWnorm.json"%configurations))
 
 ################################ EXPERIMENTAL UNCERTAINTIES  #################################
 
@@ -162,8 +157,8 @@ nuisances['electronpt'] = {
     'mapUp' : 'ElepTup',
     'mapDown': 'ElepTdo',
     'samples': dict((skey, ['1', '1']) for skey in mc),
-    'folderUp': makeMCDirectory('ElepTup_suffix'),
-    'folderDown': makeMCDirectory('ElepTdo_suffix'),
+    'folderUp': 'root://eoscms.cern.ch/'+makeMCDirectory('ElepTup_suffix'),
+    'folderDown': 'root://eoscms.cern.ch/'+makeMCDirectory('ElepTdo_suffix'),
     'AsLnN': '1'
 }
 
@@ -184,8 +179,8 @@ nuisances['muonpt'] = {
     'mapUp': 'MupTup',
     'mapDown': 'MupTdo',
     'samples': dict((skey, ['1', '1']) for skey in mc),
-    'folderUp': makeMCDirectory('MupTup_suffix'),
-    'folderDown': makeMCDirectory('MupTdo_suffix'),
+    'folderUp': 'root://eoscms.cern.ch/'+makeMCDirectory('MupTup_suffix'),
+    'folderDown': 'root://eoscms.cern.ch/'+makeMCDirectory('MupTdo_suffix'),
     'AsLnN': '1'
 }
 
@@ -198,23 +193,23 @@ folderdo = ""
 
 for js in jes_systs:
   if 'Absolute' in js:
-    folderup = makeMCDirectory('JESAbsoluteup_suffix')
-    folderdo = makeMCDirectory('JESAbsolutedo_suffix')
+    folderup = 'root://eoscms.cern.ch/'+makeMCDirectory('JESAbsoluteup_suffix')
+    folderdo = 'root://eoscms.cern.ch/'+makeMCDirectory('JESAbsolutedo_suffix')
   elif 'BBEC1' in js:
-    folderup = makeMCDirectory('JESBBEC1up_suffix')
-    folderdo = makeMCDirectory('JESBBEC1do_suffix')
+    folderup = 'root://eoscms.cern.ch/'+makeMCDirectory('JESBBEC1up_suffix')
+    folderdo = 'root://eoscms.cern.ch/'+makeMCDirectory('JESBBEC1do_suffix')
   elif 'EC2' in js:
-    folderup = makeMCDirectory('JESEC2up_suffix')
-    folderdo = makeMCDirectory('JESEC2do_suffix')
+    folderup = 'root://eoscms.cern.ch/'+makeMCDirectory('JESEC2up_suffix')
+    folderdo = 'root://eoscms.cern.ch/'+makeMCDirectory('JESEC2do_suffix')
   elif 'HF' in js:
-    folderup = makeMCDirectory('JESHFup_suffix')
-    folderdo = makeMCDirectory('JESHFdo_suffix')
+    folderup = 'root://eoscms.cern.ch/'+makeMCDirectory('JESHFup_suffix')
+    folderdo = 'root://eoscms.cern.ch/'+makeMCDirectory('JESHFdo_suffix')
   elif 'Relative' in js:
-    folderup = makeMCDirectory('JESRelativeup_suffix')
-    folderdo = makeMCDirectory('JESRelativedo_suffix')
+    folderup = 'root://eoscms.cern.ch/'+makeMCDirectory('JESRelativeup_suffix')
+    folderdo = 'root://eoscms.cern.ch/'+makeMCDirectory('JESRelativedo_suffix')
   elif 'FlavorQCD' in js:
-    folderup = makeMCDirectory('JESFlavorQCDup_suffix')
-    folderdo = makeMCDirectory('JESFlavorQCDdo_suffix')
+    folderup = 'root://eoscms.cern.ch/'+makeMCDirectory('JESFlavorQCDup_suffix')
+    folderdo = 'root://eoscms.cern.ch/'+makeMCDirectory('JESFlavorQCDdo_suffix')
 
   nuisances[js] = {
       'name': 'CMS_scale_'+js,
@@ -237,8 +232,8 @@ nuisances['met'] = {
     'mapUp': 'METup',
     'mapDown': 'METdo',
     'samples': dict((skey, ['1', '1']) for skey in mc),
-    'folderUp': makeMCDirectory('METup_suffix'),
-    'folderDown': makeMCDirectory('METdo_suffix'),
+    'folderUp': 'root://eoscms.cern.ch/'+makeMCDirectory('METup_suffix'),
+    'folderDown': 'root://eoscms.cern.ch/'+makeMCDirectory('METdo_suffix'),
     'AsLnN': '1'
 }
 
@@ -259,92 +254,118 @@ nuisances['PU'] = {
     'kind': 'weight',
     'type': 'shape',
     'samples': {
-        'DY'      : ['1.003484*(puWeightUp/puWeight)', '0.996816*(puWeightDown/puWeight)'],
-        'WW'      : ['1.008397*(puWeightUp/puWeight)', '0.991855*(puWeightDown/puWeight)'],
-        'Wg'      : ['1.012900*(puWeightUp/puWeight)', '0.979484*(puWeightDown/puWeight)'],
-        'WgS'     : ['1.011962*(puWeightUp/puWeight)', '0.985127*(puWeightDown/puWeight)'],
-        'Zg'      : ['1.011036*(puWeightUp/puWeight)', '0.989823*(puWeightDown/puWeight)'],
-        'ZgS'     : ['0.984636*(puWeightUp/puWeight)', '1.022516*(puWeightDown/puWeight)'],
-        'WZ'      : ['1.000767*(puWeightUp/puWeight)', '0.998905*(puWeightDown/puWeight)'],
-        'ZZ'      : ['1.004665*(puWeightUp/puWeight)', '0.992858*(puWeightDown/puWeight)'],
-        'VVV'     : ['1.007817*(puWeightUp/puWeight)', '0.993875*(puWeightDown/puWeight)'],
-        'top'     : ['1.006970*(puWeightUp/puWeight)', '0.993341*(puWeightDown/puWeight)'],
-        'ggH_htt' : ['1.007839*(puWeightUp/puWeight)', '0.992967*(puWeightDown/puWeight)'],
-        'qqH_htt' : ['1.005672*(puWeightUp/puWeight)', '0.995547*(puWeightDown/puWeight)'],
-        'WH_htt'  : ['1.009957*(puWeightUp/puWeight)', '0.989407*(puWeightDown/puWeight)'],
-        'ZH_htt'  : ['0.999774*(puWeightUp/puWeight)', '0.999087*(puWeightDown/puWeight)'],
-        'ggH_hww' : ['1.013197*(puWeightUp/puWeight)', '0.987288*(puWeightDown/puWeight)'],
-        'qqH_hww' : ['1.014660*(puWeightUp/puWeight)', '0.985525*(puWeightDown/puWeight)'],
-        'WH_hww'  : ['1.007439*(puWeightUp/puWeight)', '0.993157*(puWeightDown/puWeight)'],
-        'ZH_hww'  : ['0.995723*(puWeightUp/puWeight)', '1.004141*(puWeightDown/puWeight)'],
-        'ggZH_hww': ['1.003244*(puWeightUp/puWeight)', '0.993388*(puWeightDown/puWeight)'],
-        'ttH_hww' : ['1.005207*(puWeightUp/puWeight)', '0.995109*(puWeightDown/puWeight)']
+        'DY'      : ['0.997972*(puWeightUp/puWeight)', '1.002311*(puWeightDown/puWeight)'],
+        'WW'      : ['1.005742*(puWeightUp/puWeight)', '0.994523*(puWeightDown/puWeight)'],
+        'ggWW'    : ['1.004407*(puWeightUp/puWeight)', '0.995770*(puWeightDown/puWeight)'],
+        'Wg'      : ['1.003449*(puWeightUp/puWeight)', '0.994471*(puWeightDown/puWeight)'],
+        'WgS'     : ['1.011419*(puWeightUp/puWeight)', '0.988532*(puWeightDown/puWeight)'],
+        'Zg'      : ['1.001969*(puWeightUp/puWeight)', '0.998883*(puWeightDown/puWeight)'],
+        'ZgS'     : ['0.987158*(puWeightUp/puWeight)', '1.013052*(puWeightDown/puWeight)'],
+        'WZ'      : ['0.996128*(puWeightUp/puWeight)', '1.003751*(puWeightDown/puWeight)'],
+        'ZZ'      : ['1.000313*(puWeightUp/puWeight)', '0.998217*(puWeightDown/puWeight)'],
+        'VVV'     : ['1.002442*(puWeightUp/puWeight)', '0.998130*(puWeightDown/puWeight)'],
+        'top'     : ['1.004342*(puWeightUp/puWeight)', '0.995847*(puWeightDown/puWeight)'],
+        'ggH_htt' : ['1.002599*(puWeightUp/puWeight)', '0.998040*(puWeightDown/puWeight)'],
+        'qqH_htt' : ['1.001258*(puWeightUp/puWeight)', '0.999380*(puWeightDown/puWeight)'],
+        'WH_htt'  : ['1.005544*(puWeightUp/puWeight)', '0.993659*(puWeightDown/puWeight)'],
+        'ZH_htt'  : ['0.999916*(puWeightUp/puWeight)', '0.998152*(puWeightDown/puWeight)'],
+        'ggH_hww' : ['1.007089*(puWeightUp/puWeight)', '0.993263*(puWeightDown/puWeight)'],
+        'qqH_hww' : ['1.010403*(puWeightUp/puWeight)', '0.989428*(puWeightDown/puWeight)'],
+        'WH_hww'  : ['1.003999*(puWeightUp/puWeight)', '0.996201*(puWeightDown/puWeight)'],
+        'ZH_hww'  : ['0.991079*(puWeightUp/puWeight)', '1.008521*(puWeightDown/puWeight)'],
+        'ggZH_hww': ['1.004855*(puWeightUp/puWeight)', '0.993307*(puWeightDown/puWeight)'],
+        'ttH_hww' : ['1.002693*(puWeightUp/puWeight)', '0.997429*(puWeightDown/puWeight)'],
     },
     'AsLnN': '1',
 }
 
 nuisances['PS_ISR']  = {
     'name': 'PS_ISR',
-    'type': 'lnN',
+    'kind' : 'weight',
+    'type': 'shape',
     'samples': {
-        'Wg' : ['1.014304*(nCleanGenJet==0) + 1.018703*(nCleanGenJet==1) + 1.026550*(nCleanGenJet==2) + 1.017949*(nCleanGenJet>=3)', '0.981961*(nCleanGenJet==0) + 0.977149*(nCleanGenJet==1) + 0.967787*(nCleanGenJet==2) + 0.978191*(nCleanGenJet>=3)'],
-        'qqH_htt' : ['1.001636*(nCleanGenJet==0) + 1.001440*(nCleanGenJet==1) + 1.001425*(nCleanGenJet==2) + 0.999432*(nCleanGenJet>=3)', '0.997969*(nCleanGenJet==0) + 0.998348*(nCleanGenJet==1) + 0.998412*(nCleanGenJet==2) + 1.001137*(nCleanGenJet>=3)'],
-        'ggZH_hww' : ['1.069218*(nCleanGenJet==0) + 1.032507*(nCleanGenJet==1) + 1.024448*(nCleanGenJet==2) + 0.957216*(nCleanGenJet>=3)', '0.918649*(nCleanGenJet==0) + 0.959342*(nCleanGenJet==1) + 0.969951*(nCleanGenJet==2) + 1.053126*(nCleanGenJet>=3)'],
-        'ZgS' : ['1.004636*(nCleanGenJet==0) + 1.006154*(nCleanGenJet==1) + 0.990664*(nCleanGenJet==2) + 0.963996*(nCleanGenJet>=3)', '0.994919*(nCleanGenJet==0) + 0.993443*(nCleanGenJet==1) + 1.012717*(nCleanGenJet==2) + 1.048817*(nCleanGenJet>=3)'],
-        'WWewk' : ['1.001360*(nCleanGenJet==0) + 1.013643*(nCleanGenJet==1) + 1.018233*(nCleanGenJet==2) + 0.978900*(nCleanGenJet>=3)', '0.999573*(nCleanGenJet==0) + 0.984542*(nCleanGenJet==1) + 0.978716*(nCleanGenJet==2) + 1.029163*(nCleanGenJet>=3)'],
-        'ZZ' : ['1.003577*(nCleanGenJet==0) + 1.017518*(nCleanGenJet==1) + 1.014146*(nCleanGenJet==2) + 0.991771*(nCleanGenJet>=3)', '0.995710*(nCleanGenJet==0) + 0.978990*(nCleanGenJet==1) + 0.983367*(nCleanGenJet==2) + 1.011966*(nCleanGenJet>=3)'],
-        'qqH_hww' : ['1.001109*(nCleanGenJet==0) + 1.001298*(nCleanGenJet==1) + 1.001838*(nCleanGenJet==2) + 0.993539*(nCleanGenJet>=3)', '0.999032*(nCleanGenJet==0) + 0.998879*(nCleanGenJet==1) + 0.998157*(nCleanGenJet==2) + 1.009187*(nCleanGenJet>=3)'],
-        'VVV' : ['1.029801*(nCleanGenJet==0) + 1.023223*(nCleanGenJet==1) + 1.014967*(nCleanGenJet==2) + 0.988107*(nCleanGenJet>=3)', '0.965169*(nCleanGenJet==0) + 0.973398*(nCleanGenJet==1) + 0.983274*(nCleanGenJet==2) + 1.017666*(nCleanGenJet>=3)'],
-        'top' : ['1.003249*(nCleanGenJet==0) + 1.004238*(nCleanGenJet==1) + 1.007028*(nCleanGenJet==2) + 0.994845*(nCleanGenJet>=3)', '0.996583*(nCleanGenJet==0) + 0.995410*(nCleanGenJet==1) + 0.992050*(nCleanGenJet==2) + 1.007418*(nCleanGenJet>=3)'],
-        'Zg' : ['1.004975*(nCleanGenJet==0) + 1.005094*(nCleanGenJet==1) + 0.999746*(nCleanGenJet==2) + 0.972614*(nCleanGenJet>=3)', '0.994292*(nCleanGenJet==0) + 0.994702*(nCleanGenJet==1) + 1.001410*(nCleanGenJet==2) + 1.036578*(nCleanGenJet>=3)'],
-        'WH_htt' : ['1.001389*(nCleanGenJet==0) + 1.001266*(nCleanGenJet==1) + 1.001466*(nCleanGenJet==2) + 0.998421*(nCleanGenJet>=3)', '0.998367*(nCleanGenJet==0) + 0.998580*(nCleanGenJet==1) + 0.998398*(nCleanGenJet==2) + 1.002523*(nCleanGenJet>=3)'],
-        'ggH_htt' : ['1.001442*(nCleanGenJet==0) + 1.003629*(nCleanGenJet==1) + 1.007302*(nCleanGenJet==2) + 0.975903*(nCleanGenJet>=3)', '0.998076*(nCleanGenJet==0) + 0.995487*(nCleanGenJet==1) + 0.991072*(nCleanGenJet==2) + 1.030245*(nCleanGenJet>=3)'],
-        'WW' : ['1.002789*(nCleanGenJet==0) + 1.009692*(nCleanGenJet==1) + 0.983937*(nCleanGenJet==2) + 0.939155*(nCleanGenJet>=3)', '0.997050*(nCleanGenJet==0) + 0.988698*(nCleanGenJet==1) + 1.020484*(nCleanGenJet==2) + 1.080895*(nCleanGenJet>=3)'],
-        'WH_hww' : ['1.001589*(nCleanGenJet==0) + 1.001313*(nCleanGenJet==1) + 1.001779*(nCleanGenJet==2) + 0.997988*(nCleanGenJet>=3)', '0.998331*(nCleanGenJet==0) + 0.998817*(nCleanGenJet==1) + 0.998250*(nCleanGenJet==2) + 1.003334*(nCleanGenJet>=3)'],
-        'WgS' : ['1.001626*(nCleanGenJet==0) + 1.009729*(nCleanGenJet==1) + 0.973977*(nCleanGenJet==2) + 0.942461*(nCleanGenJet>=3)', '0.998044*(nCleanGenJet==0) + 0.988403*(nCleanGenJet==1) + 1.032467*(nCleanGenJet==2) + 1.077206*(nCleanGenJet>=3)'],
-        'DY' : ['0.985171*(nCleanGenJet==0) + 1.022800*(nCleanGenJet==1) + 1.031006*(nCleanGenJet==2) + 1.020337*(nCleanGenJet>=3)', '1.020163*(nCleanGenJet==0) + 0.972308*(nCleanGenJet==1) + 0.962288*(nCleanGenJet==2) + 0.975766*(nCleanGenJet>=3)'],
-        'ttH_hww' : ['1.007367*(nCleanGenJet==0) + 1.004293*(nCleanGenJet==1) + 1.006553*(nCleanGenJet==2) + 1.000628*(nCleanGenJet>=3)', '0.991053*(nCleanGenJet==0) + 0.995519*(nCleanGenJet==1) + 0.992692*(nCleanGenJet==2) + 1.000272*(nCleanGenJet>=3)'],
-        'ZH_htt' : ['1.000841*(nCleanGenJet==0) + 1.001182*(nCleanGenJet==1) + 1.001219*(nCleanGenJet==2) + 0.998623*(nCleanGenJet>=3)', '0.999036*(nCleanGenJet==0) + 0.998601*(nCleanGenJet==1) + 0.998586*(nCleanGenJet==2) + 1.002005*(nCleanGenJet>=3)'],
-        'ggH_hww' : ['1.001146*(nCleanGenJet==0) + 1.015768*(nCleanGenJet==1) + 0.977128*(nCleanGenJet==2) + 0.931272*(nCleanGenJet>=3)', '0.998761*(nCleanGenJet==0) + 0.981259*(nCleanGenJet==1) + 1.027158*(nCleanGenJet==2) + 1.088906*(nCleanGenJet>=3)'],
-        'WZ' : ['1.003084*(nCleanGenJet==0) + 1.017410*(nCleanGenJet==1) + 1.011448*(nCleanGenJet==2) + 0.985965*(nCleanGenJet>=3)', '0.996397*(nCleanGenJet==0) + 0.979282*(nCleanGenJet==1) + 0.986800*(nCleanGenJet==2) + 1.019525*(nCleanGenJet>=3)'],
-        'ZH_hww' : ['1.001094*(nCleanGenJet==0) + 1.001365*(nCleanGenJet==1) + 1.001625*(nCleanGenJet==2) + 0.998067*(nCleanGenJet>=3)', '0.999004*(nCleanGenJet==0) + 0.998607*(nCleanGenJet==1) + 0.998286*(nCleanGenJet==2) + 1.003031*(nCleanGenJet>=3)']
+        'DY' : ['0.985440537674*(nCleanGenJet==0) + 1.02638180215*(nCleanGenJet==1) + 1.03421524738*(nCleanGenJet==2) + 1.02164156161*(nCleanGenJet>=3)', '1.01981055284*(nCleanGenJet==0) + 0.967816399042*(nCleanGenJet==1) + 0.958365174347*(nCleanGenJet==2) + 0.974128844617*(nCleanGenJet>=3)'],
+        'top' : ['1.00310494175*(nCleanGenJet==0) + 1.00448162172*(nCleanGenJet==1) + 1.00759806378*(nCleanGenJet==2) + 0.99273296777*(nCleanGenJet>=3)', '0.996748431798*(nCleanGenJet==0) + 0.995124711561*(nCleanGenJet==1) + 0.991357055388*(nCleanGenJet==2) + 1.01006497507*(nCleanGenJet>=3)'],
+        'WWewk' : ['1.00130276597*(nCleanGenJet==0) + 1.01574481738*(nCleanGenJet==1) + 1.01853470643*(nCleanGenJet==2) + 0.965430113576*(nCleanGenJet>=3)', '0.999755205017*(nCleanGenJet==0) + 0.981919078707*(nCleanGenJet==1) + 0.978330331874*(nCleanGenJet==2) + 1.04643758776*(nCleanGenJet>=3)'],
+        'Wg' : ['1.01413446394*(nCleanGenJet==0) + 1.0200293271*(nCleanGenJet==1) + 1.02664937106*(nCleanGenJet==2) + 1.01687421291*(nCleanGenJet>=3)', '0.982180609174*(nCleanGenJet==0) + 0.975566617544*(nCleanGenJet==1) + 0.967630874339*(nCleanGenJet==2) + 0.979539715261*(nCleanGenJet>=3)'],
+        'Zg' : ['1.00483960633*(nCleanGenJet==0) + 1.00566057582*(nCleanGenJet==1) + 0.997165975993*(nCleanGenJet==2) + 0.962710034668*(nCleanGenJet>=3)', '0.994479127985*(nCleanGenJet==0) + 0.994074640477*(nCleanGenJet==1) + 1.00464516524*(nCleanGenJet==2) + 1.04945946796*(nCleanGenJet>=3)'],
+        'ZgS' : ['1.00446124252*(nCleanGenJet==0) + 1.00686034242*(nCleanGenJet==1) + 0.982749275023*(nCleanGenJet==2) + 0.947024687562*(nCleanGenJet>=3)', '0.995204061177*(nCleanGenJet==0) + 0.992695489328*(nCleanGenJet==1) + 1.02196797265*(nCleanGenJet==2) + 1.07151632305*(nCleanGenJet>=3)'],
+        'WgS' : ['1.00162607175*(nCleanGenJet==0) + 1.01076021151*(nCleanGenJet==1) + 0.965329289621*(nCleanGenJet==2) + 0.934253052983*(nCleanGenJet>=3)', '0.998052819158*(nCleanGenJet==0) + 0.987112102624*(nCleanGenJet==1) + 1.04323441024*(nCleanGenJet==2) + 1.08887553954*(nCleanGenJet>=3)'],
+        'WZ' : ['1.00299713875*(nCleanGenJet==0) + 1.01943485859*(nCleanGenJet==1) + 1.00910533031*(nCleanGenJet==2) + 0.982077222876*(nCleanGenJet>=3)', '0.996520605154*(nCleanGenJet==0) + 0.976836751779*(nCleanGenJet==1) + 0.98971945742*(nCleanGenJet==2) + 1.02461772899*(nCleanGenJet>=3)'],
+        'ZZ' : ['1.00353805641*(nCleanGenJet==0) + 1.01883467177*(nCleanGenJet==1) + 1.0134834166*(nCleanGenJet==2) + 0.987256038157*(nCleanGenJet>=3)', '0.995767500709*(nCleanGenJet==0) + 0.977406949327*(nCleanGenJet==1) + 0.984223148462*(nCleanGenJet==2) + 1.01776727574*(nCleanGenJet>=3)'],
+        'VVV' : ['1.02898908893*(nCleanGenJet==0) + 1.02145356118*(nCleanGenJet==1) + 1.01340018265*(nCleanGenJet==2) + 0.986639400724*(nCleanGenJet>=3)', '0.966314484219*(nCleanGenJet==0) + 0.975572768266*(nCleanGenJet==1) + 0.985231148645*(nCleanGenJet==2) + 1.01953430171*(nCleanGenJet>=3)'],
+        'ggH_hww' : ['1.00105785908*(nCleanGenJet==0) + 1.01789823317*(nCleanGenJet==1) + 0.965110606027*(nCleanGenJet==2) + 0.919216674555*(nCleanGenJet>=3)', '0.99886858413*(nCleanGenJet==0) + 0.978698037502*(nCleanGenJet==1) + 1.04139342082*(nCleanGenJet==2) + 1.10574836802*(nCleanGenJet>=3)'],
+        'qqH_hww' : ['1.00098678619*(nCleanGenJet==0) + 1.00129151703*(nCleanGenJet==1) + 1.00186464138*(nCleanGenJet==2) + 0.989340162982*(nCleanGenJet>=3)', '0.99921370008*(nCleanGenJet==0) + 0.9988882169*(nCleanGenJet==1) + 0.998130102022*(nCleanGenJet==2) + 1.01471664219*(nCleanGenJet>=3)'],
+        'ZH_hww' : ['1.00103196718*(nCleanGenJet==0) + 1.0013347957*(nCleanGenJet==1) + 1.00168419218*(nCleanGenJet==2) + 0.997776033293*(nCleanGenJet>=3)', '0.99908158841*(nCleanGenJet==0) + 0.998674841907*(nCleanGenJet==1) + 0.998215355011*(nCleanGenJet==2) + 1.00338954316*(nCleanGenJet>=3)'],
+        'ggZH_hww' : ['1.06858192843*(nCleanGenJet==0) + 1.02503320856*(nCleanGenJet==1) + 1.02190285627*(nCleanGenJet==2) + 0.949650533979*(nCleanGenJet>=3)', '0.919439849605*(nCleanGenJet==0) + 0.967570390729*(nCleanGenJet==1) + 0.973268327072*(nCleanGenJet==2) + 1.06261930574*(nCleanGenJet>=3)'],
+        'WH_hww' : ['1.00144260946*(nCleanGenJet==0) + 1.00146776932*(nCleanGenJet==1) + 1.00177757517*(nCleanGenJet==2) + 0.997573060819*(nCleanGenJet>=3)', '0.998574801767*(nCleanGenJet==0) + 0.998617702556*(nCleanGenJet==1) + 0.99826400411*(nCleanGenJet==2) + 1.00386007209*(nCleanGenJet>=3)'],
+        'ttH_hww' : ['1.00347789798*(nCleanGenJet==0) + 1.00482550745*(nCleanGenJet==1) + 1.00759934464*(nCleanGenJet==2) + 1.00030524481*(nCleanGenJet>=3)', '0.996144343946*(nCleanGenJet==0) + 0.994823067317*(nCleanGenJet==1) + 0.991392742226*(nCleanGenJet==2) + 1.00068351641*(nCleanGenJet>=3)'],
+        'ggH_htt' : ['1.00097525758*(nCleanGenJet==0) + 1.01767682451*(nCleanGenJet==1) + 0.966730328818*(nCleanGenJet==2) + 0.919948920589*(nCleanGenJet>=3)', '0.998694487949*(nCleanGenJet==0) + 0.978554125014*(nCleanGenJet==1) + 1.03921319299*(nCleanGenJet==2) + 1.1045549565*(nCleanGenJet>=3)'],
+        'qqH_htt' : ['1.00148706688*(nCleanGenJet==0) + 1.00113347691*(nCleanGenJet==1) + 1.00205592345*(nCleanGenJet==2) + 0.989085882482*(nCleanGenJet>=3)', '0.998189157179*(nCleanGenJet==0) + 0.998816246805*(nCleanGenJet==1) + 0.997667601061*(nCleanGenJet==2) + 1.01476730259*(nCleanGenJet>=3)'],
+        'ZH_htt' : ['1.00098411822*(nCleanGenJet==0) + 1.00112017797*(nCleanGenJet==1) + 1.00159685386*(nCleanGenJet==2) + 0.993243490186*(nCleanGenJet>=3)', '0.99885657529*(nCleanGenJet==0) + 0.99873159193*(nCleanGenJet==1) + 0.998192936009*(nCleanGenJet==2) + 1.00888405731*(nCleanGenJet>=3)'],
+        'WH_htt' : ['1.0011518207*(nCleanGenJet==0) + 1.00151612758*(nCleanGenJet==1) + 1.00215926694*(nCleanGenJet==2) + 0.990861486803*(nCleanGenJet>=3)', '0.998714889246*(nCleanGenJet==0) + 0.998364470791*(nCleanGenJet==1) + 0.997638812079*(nCleanGenJet==2) + 1.01242136791*(nCleanGenJet>=3)'],
     }
+}
+
+norm_ISR_WW   = ['+'.join(['({})*({})'.format(diffcuts[binname],nfdict["PS_ISR"]["WW_"+binname][i]) for binname in diffcuts]) for i in range(8)]
+norm_ISR_ggWW = ['+'.join(['({})*({})'.format(diffcuts[binname],nfdict["PS_ISR"]["ggWW_"+binname][i]) for binname in diffcuts]) for i in range(8)]
+
+nuisances['PS_ISR_WW']  = {
+    'name': 'PS_ISR',
+    'kind' : 'weight',
+    'type': 'shape',
+    'samples': {        
+        'WW'   : ['({})*(nCleanGenJet==0) + ({})*(nCleanGenJet==1) + ({})*(nCleanGenJet==2) + ({})*(nCleanGenJet>=3)'.format(*norm_ISR_WW[:4]), '({})*(nCleanGenJet==0) + ({})*(nCleanGenJet==1) + ({})*(nCleanGenJet==2) + ({})*(nCleanGenJet>=3)'.format(*norm_ISR_WW[4:])],
+        'ggWW' : ['({})*(nCleanGenJet==0) + ({})*(nCleanGenJet==1) + ({})*(nCleanGenJet==2) + ({})*(nCleanGenJet>=3)'.format(*norm_ISR_ggWW[:4]), '({})*(nCleanGenJet==0) + ({})*(nCleanGenJet==1) + ({})*(nCleanGenJet==2) + ({})*(nCleanGenJet>=3)'.format(*norm_ISR_ggWW[4:])],
+            }
 }
 
 nuisances['PS_FSR']  = {
     'name': 'PS_FSR',
-    'type': 'lnN',
+    'kind' : 'weight',
+    'type': 'shape',
     'samples': {
-        'Wg' : ['0.998499*(nCleanGenJet==0) + 1.002516*(nCleanGenJet==1) + 1.010931*(nCleanGenJet==2) + 1.022480*(nCleanGenJet>=3)', '1.002691*(nCleanGenJet==0) + 0.996103*(nCleanGenJet==1) + 0.986051*(nCleanGenJet==2) + 0.965687*(nCleanGenJet>=3)'],
-        'qqH_htt' : ['0.989338*(nCleanGenJet==0) + 0.993552*(nCleanGenJet==1) + 0.997811*(nCleanGenJet==2) + 1.003063*(nCleanGenJet>=3)', '1.017324*(nCleanGenJet==0) + 1.010448*(nCleanGenJet==1) + 1.003853*(nCleanGenJet==2) + 0.995370*(nCleanGenJet>=3)'],
-        'ggZH_hww' : ['0.989364*(nCleanGenJet==0) + 0.994689*(nCleanGenJet==1) + 1.000746*(nCleanGenJet==2) + 1.005121*(nCleanGenJet>=3)', '1.019046*(nCleanGenJet==0) + 1.010387*(nCleanGenJet==1) + 0.999806*(nCleanGenJet==2) + 0.991099*(nCleanGenJet>=3)'],
-        'ZgS' : ['0.995934*(nCleanGenJet==0) + 0.999515*(nCleanGenJet==1) + 1.011560*(nCleanGenJet==2) + 1.012256*(nCleanGenJet>=3)', '1.009319*(nCleanGenJet==0) + 0.999850*(nCleanGenJet==1) + 0.980498*(nCleanGenJet==2) + 0.991662*(nCleanGenJet>=3)'],
-        'WWewk' : ['0.995947*(nCleanGenJet==0) + 0.992510*(nCleanGenJet==1) + 1.001655*(nCleanGenJet==2) + 1.005298*(nCleanGenJet>=3)', '1.010954*(nCleanGenJet==0) + 1.013522*(nCleanGenJet==1) + 1.002440*(nCleanGenJet==2) + 0.992618*(nCleanGenJet>=3)'],
-        'ZZ' : ['0.991587*(nCleanGenJet==0) + 0.992929*(nCleanGenJet==1) + 1.012970*(nCleanGenJet==2) + 1.016515*(nCleanGenJet>=3)', '1.014142*(nCleanGenJet==0) + 1.011743*(nCleanGenJet==1) + 0.981318*(nCleanGenJet==2) + 0.975038*(nCleanGenJet>=3)'],
-        'qqH_hww' : ['0.988529*(nCleanGenJet==0) + 0.995156*(nCleanGenJet==1) + 1.002831*(nCleanGenJet==2) + 1.006874*(nCleanGenJet>=3)', '1.019434*(nCleanGenJet==0) + 1.009592*(nCleanGenJet==1) + 0.996446*(nCleanGenJet==2) + 0.987870*(nCleanGenJet>=3)'],
-        'VVV' : ['0.983508*(nCleanGenJet==0) + 0.981997*(nCleanGenJet==1) + 0.997410*(nCleanGenJet==2) + 1.007869*(nCleanGenJet>=3)', '1.033115*(nCleanGenJet==0) + 1.037701*(nCleanGenJet==1) + 1.005039*(nCleanGenJet==2) + 0.989125*(nCleanGenJet>=3)'],
-        'top' : ['0.967216*(nCleanGenJet==0) + 0.985317*(nCleanGenJet==1) + 0.998997*(nCleanGenJet==2) + 1.009215*(nCleanGenJet>=3)', '1.054514*(nCleanGenJet==0) + 1.025097*(nCleanGenJet==1) + 1.003452*(nCleanGenJet==2) + 0.985540*(nCleanGenJet>=3)'],
-        'Zg' : ['0.998215*(nCleanGenJet==0) + 1.001862*(nCleanGenJet==1) + 1.007594*(nCleanGenJet==2) + 1.010195*(nCleanGenJet>=3)', '1.004154*(nCleanGenJet==0) + 0.998441*(nCleanGenJet==1) + 0.988809*(nCleanGenJet==2) + 0.982113*(nCleanGenJet>=3)'],
-        'WH_htt' : ['0.995061*(nCleanGenJet==0) + 0.995369*(nCleanGenJet==1) + 0.998315*(nCleanGenJet==2) + 1.006990*(nCleanGenJet>=3)', '1.007351*(nCleanGenJet==0) + 1.008102*(nCleanGenJet==1) + 1.003708*(nCleanGenJet==2) + 0.988784*(nCleanGenJet>=3)'],
-        'ggH_htt' : ['0.995097*(nCleanGenJet==0) + 0.997162*(nCleanGenJet==1) + 1.001839*(nCleanGenJet==2) + 1.009490*(nCleanGenJet>=3)', '1.007767*(nCleanGenJet==0) + 1.004924*(nCleanGenJet==1) + 0.997556*(nCleanGenJet==2) + 0.984463*(nCleanGenJet>=3)'],
-        'WW' : ['0.996885*(nCleanGenJet==0) + 1.003349*(nCleanGenJet==1) + 1.008058*(nCleanGenJet==2) + 1.009325*(nCleanGenJet>=3)', '1.005624*(nCleanGenJet==0) + 0.995508*(nCleanGenJet==1) + 0.988498*(nCleanGenJet==2) + 0.982871*(nCleanGenJet>=3)'],
-        'WH_hww' : ['0.983519*(nCleanGenJet==0) + 0.990857*(nCleanGenJet==1) + 1.003508*(nCleanGenJet==2) + 1.013440*(nCleanGenJet>=3)', '1.028846*(nCleanGenJet==0) + 1.015130*(nCleanGenJet==1) + 0.995645*(nCleanGenJet==2) + 0.976518*(nCleanGenJet>=3)'],
-        'WgS' : ['0.998573*(nCleanGenJet==0) + 1.005628*(nCleanGenJet==1) + 1.012487*(nCleanGenJet==2) + 1.021938*(nCleanGenJet>=3)', '1.002361*(nCleanGenJet==0) + 0.990041*(nCleanGenJet==1) + 0.977852*(nCleanGenJet==2) + 0.960815*(nCleanGenJet>=3)'],
-        'DY' : ['0.999082*(nCleanGenJet==0) + 1.008946*(nCleanGenJet==1) + 1.021937*(nCleanGenJet==2) + 1.036636*(nCleanGenJet>=3)', '1.001778*(nCleanGenJet==0) + 0.986464*(nCleanGenJet==1) + 0.967420*(nCleanGenJet==2) + 0.945891*(nCleanGenJet>=3)'],
-        'ttH_hww' : ['0.950068*(nCleanGenJet==0) + 0.967830*(nCleanGenJet==1) + 0.978124*(nCleanGenJet==2) + 1.004002*(nCleanGenJet>=3)', '1.080054*(nCleanGenJet==0) + 1.051037*(nCleanGenJet==1) + 1.037129*(nCleanGenJet==2) + 0.994590*(nCleanGenJet>=3)'],
-        'ZH_htt' : ['0.993117*(nCleanGenJet==0) + 0.993923*(nCleanGenJet==1) + 0.997415*(nCleanGenJet==2) + 1.006050*(nCleanGenJet>=3)', '1.009033*(nCleanGenJet==0) + 1.011145*(nCleanGenJet==1) + 1.005303*(nCleanGenJet==2) + 0.990038*(nCleanGenJet>=3)'],
-        'ggH_hww' : ['0.994251*(nCleanGenJet==0) + 1.006168*(nCleanGenJet==1) + 1.014524*(nCleanGenJet==2) + 1.007508*(nCleanGenJet>=3)', '1.010724*(nCleanGenJet==0) + 0.989138*(nCleanGenJet==1) + 0.979000*(nCleanGenJet==2) + 0.986060*(nCleanGenJet>=3)'],
-        'WZ' : ['0.992511*(nCleanGenJet==0) + 0.996287*(nCleanGenJet==1) + 1.009594*(nCleanGenJet==2) + 1.012830*(nCleanGenJet>=3)', '1.012632*(nCleanGenJet==0) + 1.006897*(nCleanGenJet==1) + 0.987080*(nCleanGenJet==2) + 0.980566*(nCleanGenJet>=3)'],
-        'ZH_hww' : ['0.986658*(nCleanGenJet==0) + 0.989349*(nCleanGenJet==1) + 1.000700*(nCleanGenJet==2) + 1.009635*(nCleanGenJet>=3)', '1.025451*(nCleanGenJet==0) + 1.017128*(nCleanGenJet==1) + 1.000351*(nCleanGenJet==2) + 0.981914*(nCleanGenJet>=3)']
+        'DY' : ['0.999034943442*(nCleanGenJet==0) + 1.01048258595*(nCleanGenJet==1) + 1.02686861439*(nCleanGenJet==2) + 1.04528303751*(nCleanGenJet>=3)', '1.00187061921*(nCleanGenJet==0) + 0.983954838312*(nCleanGenJet==1) + 0.960151681064*(nCleanGenJet==2) + 0.932643380237*(nCleanGenJet>=3)'],
+        'top' : ['0.968583092212*(nCleanGenJet==0) + 0.986351880374*(nCleanGenJet==1) + 1.00018267642*(nCleanGenJet==2) + 1.0104588116*(nCleanGenJet>=3)', '1.0522390504*(nCleanGenJet==0) + 1.02340713009*(nCleanGenJet==1) + 1.00165176093*(nCleanGenJet==2) + 0.98327330073*(nCleanGenJet>=3)'],
+        'WWewk' : ['0.994199235812*(nCleanGenJet==0) + 0.992834453851*(nCleanGenJet==1) + 1.00309615752*(nCleanGenJet==2) + 1.00570717429*(nCleanGenJet>=3)', '1.01213557622*(nCleanGenJet==0) + 1.01387241327*(nCleanGenJet==1) + 1.00087902037*(nCleanGenJet==2) + 0.989680037573*(nCleanGenJet>=3)'],
+        'Wg' : ['0.998528328566*(nCleanGenJet==0) + 1.00298975355*(nCleanGenJet==1) + 1.01155338451*(nCleanGenJet==2) + 1.02367310417*(nCleanGenJet>=3)', '1.00255752739*(nCleanGenJet==0) + 0.995648537441*(nCleanGenJet==1) + 0.985184149062*(nCleanGenJet==2) + 0.963826005923*(nCleanGenJet>=3)'],
+        'Zg' : ['0.998198313098*(nCleanGenJet==0) + 1.00278367171*(nCleanGenJet==1) + 1.00957031538*(nCleanGenJet==2) + 1.00994035619*(nCleanGenJet>=3)', '1.00414055807*(nCleanGenJet==0) + 0.996938800806*(nCleanGenJet==1) + 0.985648642754*(nCleanGenJet==2) + 0.982638426891*(nCleanGenJet>=3)'],
+        'ZgS' : ['0.995820472365*(nCleanGenJet==0) + 1.00380962932*(nCleanGenJet==1) + 1.00777699514*(nCleanGenJet==2) + 1.02112039086*(nCleanGenJet>=3)', '1.00984231193*(nCleanGenJet==0) + 0.989287770416*(nCleanGenJet==1) + 0.989546806509*(nCleanGenJet==2) + 0.987447787622*(nCleanGenJet>=3)'],
+        'WgS' : ['0.998534603585*(nCleanGenJet==0) + 1.00688658779*(nCleanGenJet==1) + 1.01410290774*(nCleanGenJet==2) + 1.01967528225*(nCleanGenJet>=3)', '1.0024506556*(nCleanGenJet==0) + 0.987863046627*(nCleanGenJet==1) + 0.974641197133*(nCleanGenJet==2) + 0.963153338687*(nCleanGenJet>=3)'],
+        'WZ' : ['0.992635980783*(nCleanGenJet==0) + 0.997040150074*(nCleanGenJet==1) + 1.01133185292*(nCleanGenJet==2) + 1.01428967784*(nCleanGenJet>=3)', '1.01258517727*(nCleanGenJet==0) + 1.00569421309*(nCleanGenJet==1) + 0.984327801316*(nCleanGenJet==2) + 0.978031865216*(nCleanGenJet>=3)'],
+        'ZZ' : ['0.991730714434*(nCleanGenJet==0) + 0.993542723151*(nCleanGenJet==1) + 1.01484404591*(nCleanGenJet==2) + 1.01842693137*(nCleanGenJet>=3)', '1.01387410188*(nCleanGenJet==0) + 1.01088820242*(nCleanGenJet==1) + 0.978459837909*(nCleanGenJet==2) + 0.971776819933*(nCleanGenJet>=3)'],
+        'VVV' : ['0.985336718207*(nCleanGenJet==0) + 0.982590559736*(nCleanGenJet==1) + 0.999610278411*(nCleanGenJet==2) + 1.00823953062*(nCleanGenJet>=3)', '1.03073292399*(nCleanGenJet==0) + 1.0345245633*(nCleanGenJet==1) + 1.00289740392*(nCleanGenJet==2) + 0.98810694336*(nCleanGenJet>=3)'],
+        'ggH_hww' : ['0.994121107057*(nCleanGenJet==0) + 1.00815577993*(nCleanGenJet==1) + 1.01549228324*(nCleanGenJet==2) + 1.00694930929*(nCleanGenJet>=3)', '1.01077211015*(nCleanGenJet==0) + 0.986560584318*(nCleanGenJet==1) + 0.975620345777*(nCleanGenJet==2) + 0.988232901036*(nCleanGenJet>=3)'],
+        'qqH_hww' : ['0.988540259523*(nCleanGenJet==0) + 0.995460902773*(nCleanGenJet==1) + 1.0029923985*(nCleanGenJet==2) + 1.01015397456*(nCleanGenJet>=3)', '1.01917892144*(nCleanGenJet==0) + 1.00931082215*(nCleanGenJet==1) + 0.995951333429*(nCleanGenJet==2) + 0.981790670801*(nCleanGenJet>=3)'],
+        'ZH_hww' : ['0.986749537737*(nCleanGenJet==0) + 0.9896727508*(nCleanGenJet==1) + 1.0021049134*(nCleanGenJet==2) + 1.01021793338*(nCleanGenJet>=3)', '1.02532580649*(nCleanGenJet==0) + 1.01685827613*(nCleanGenJet==1) + 0.998161268083*(nCleanGenJet==2) + 0.980179506471*(nCleanGenJet>=3)'],
+        'ggZH_hww' : ['0.989766640077*(nCleanGenJet==0) + 0.995886277294*(nCleanGenJet==1) + 1.00106694842*(nCleanGenJet==2) + 1.00586583722*(nCleanGenJet>=3)', '1.0173223182*(nCleanGenJet==0) + 1.00910824738*(nCleanGenJet==1) + 0.999818799238*(nCleanGenJet==2) + 0.989128964476*(nCleanGenJet>=3)'],
+        'WH_hww' : ['0.984627490561*(nCleanGenJet==0) + 0.991796997819*(nCleanGenJet==1) + 1.00441108567*(nCleanGenJet==2) + 1.01419380641*(nCleanGenJet>=3)', '1.0273817844*(nCleanGenJet==0) + 1.01342713428*(nCleanGenJet==1) + 0.993657106218*(nCleanGenJet==2) + 0.97548886182*(nCleanGenJet>=3)'],
+        'ttH_hww' : ['0.964517261436*(nCleanGenJet==0) + 0.97668786149*(nCleanGenJet==1) + 0.983313699328*(nCleanGenJet==2) + 1.0047518176*(nCleanGenJet>=3)', '1.04919690491*(nCleanGenJet==0) + 1.0404990363*(nCleanGenJet==1) + 1.027496367*(nCleanGenJet==2) + 0.993415347035*(nCleanGenJet>=3)'],
+        'ggH_htt' : ['0.994264476199*(nCleanGenJet==0) + 1.00729149431*(nCleanGenJet==1) + 1.0153702392*(nCleanGenJet==2) + 1.0093041208*(nCleanGenJet>=3)', '1.00951348904*(nCleanGenJet==0) + 0.988694938402*(nCleanGenJet==1) + 0.975538504823*(nCleanGenJet==2) + 0.982292707597*(nCleanGenJet>=3)'],
+        'qqH_htt' : ['0.989853695401*(nCleanGenJet==0) + 0.995382642632*(nCleanGenJet==1) + 1.00260280327*(nCleanGenJet==2) + 1.01153721967*(nCleanGenJet>=3)', '1.01683592386*(nCleanGenJet==0) + 1.00739314187*(nCleanGenJet==1) + 0.996680906651*(nCleanGenJet==2) + 0.980014121579*(nCleanGenJet>=3)'],
+        'ZH_htt' : ['0.993028706237*(nCleanGenJet==0) + 0.994614533828*(nCleanGenJet==1) + 1.00765951428*(nCleanGenJet==2) + 1.01248486855*(nCleanGenJet>=3)', '1.01147354983*(nCleanGenJet==0) + 1.01026926444*(nCleanGenJet==1) + 0.988171114077*(nCleanGenJet==2) + 0.978017093191*(nCleanGenJet>=3)'],
+        'WH_htt' : ['0.994578161618*(nCleanGenJet==0) + 0.997095960776*(nCleanGenJet==1) + 1.00897262496*(nCleanGenJet==2) + 1.01302598407*(nCleanGenJet>=3)', '1.00908031106*(nCleanGenJet==0) + 1.00489452892*(nCleanGenJet==1) + 0.986833856649*(nCleanGenJet==2) + 0.978573005202*(nCleanGenJet>=3)'],
     },
+}
+
+norm_FSR_WW   = ['+'.join(['({})*({})'.format(diffcuts[binname],nfdict["PS_FSR"]["WW_"+binname][i]) for binname in diffcuts]) for i in range(8)]
+norm_FSR_ggWW = ['+'.join(['({})*({})'.format(diffcuts[binname],nfdict["PS_FSR"]["ggWW_"+binname][i]) for binname in diffcuts]) for i in range(8)]
+
+nuisances['PS_FSR_WW']  = {
+    'name': 'PS_FSR',
+    'kind' : 'weight',
+    'type': 'shape',
+    'samples': {        
+        'WW'   : ['({})*(nCleanGenJet==0) + ({})*(nCleanGenJet==1) + ({})*(nCleanGenJet==2) + ({})*(nCleanGenJet>=3)'.format(*norm_FSR_WW[:4]), '({})*(nCleanGenJet==0) + ({})*(nCleanGenJet==1) + ({})*(nCleanGenJet==2) + ({})*(nCleanGenJet>=3)'.format(*norm_FSR_WW[4:])],
+        'ggWW' : ['({})*(nCleanGenJet==0) + ({})*(nCleanGenJet==1) + ({})*(nCleanGenJet==2) + ({})*(nCleanGenJet>=3)'.format(*norm_FSR_ggWW[:4]), '({})*(nCleanGenJet==0) + ({})*(nCleanGenJet==1) + ({})*(nCleanGenJet==2) + ({})*(nCleanGenJet>=3)'.format(*norm_FSR_ggWW[4:])],
+            }
 }
 
 # PS and UE
 nuisances['UE']  = {
                 'name'  : 'UE_CUET',
-                'skipCMS' : 1,
                 'type'  : 'lnN',
-                'samples': dict((skey, '1.015') for skey in mc),
+                'samples': dict((skey, '1.015') for skey in mc if skey not in ['WW','ggWW']),
 }
 
 ####### Generic "cross section uncertainties"
@@ -358,7 +379,6 @@ apply_on = {
 
 nuisances['singleTopToTTbar'] = {
     'name': 'singleTopToTTbar',
-    'skipCMS': 1,
     'kind': 'weight',
     'type': 'shape',
     'samples': apply_on
@@ -427,7 +447,6 @@ nuisances['pdf_Higgs_qqbar'] = {
     },
 }
 
-# TODO update
 nuisances['pdf_qqbar'] = {
     'name': 'pdf_qqbar',
     'type': 'lnN',
@@ -441,7 +460,6 @@ nuisances['pdf_qqbar'] = {
     },
 }
 
-# TODO update
 nuisances['pdf_Higgs_gg_ACCEPT'] = {
     'name': 'pdf_Higgs_gg_ACCEPT',
     'samples': {
@@ -453,16 +471,14 @@ nuisances['pdf_Higgs_gg_ACCEPT'] = {
     'type': 'lnN',
 }
 
-# TODO update
-nuisances['pdf_gg_ACCEPT'] = {
-    'name': 'pdf_gg_ACCEPT',
-    'samples': {
-        'ggWW': '1.006',
-    },
-    'type': 'lnN',
-}
+#nuisances['pdf_gg_ACCEPT'] = {
+#    'name': 'pdf_gg_ACCEPT',
+#    'samples': {
+#        'ggWW': '1.006',
+#    },
+#    'type': 'lnN',
+#}
 
-# TODO update
 nuisances['pdf_Higgs_qqbar_ACCEPT'] = {
     'name': 'pdf_Higgs_qqbar_ACCEPT',
     'type': 'lnN',
@@ -476,7 +492,6 @@ nuisances['pdf_Higgs_qqbar_ACCEPT'] = {
     },
 }
 
-# TODO update
 nuisances['pdf_qqbar_ACCEPT'] = {
     'name': 'pdf_qqbar_ACCEPT',
     'type': 'lnN',
@@ -484,6 +499,18 @@ nuisances['pdf_qqbar_ACCEPT'] = {
         'ZZ': '1.001',
         'WZ': '1.001',
     },
+}
+
+# PDF
+pdf_variations = ["LHEPdfWeight[%d]" %i for i in range(100)] # Float_t LHE pdf variation weights (w_var / w_nominal) for LHA IDs 260001 - 260100
+nuisances['pdf_WW']  = {
+    'name'  : 'CMS_hww_pdf_WW_2016',
+    'kind'  : 'weight_rms',
+    'type'  : 'shape',
+    'samples'  : {
+        'WW'   : pdf_variations,
+    },
+    'scale' : nfdict["pdf_WW_2016"]
 }
 
 ##### Renormalization & factorization scales
@@ -496,7 +523,6 @@ variations = ['Alt$(LHEScaleWeight[0],1)', 'Alt$(LHEScaleWeight[1],1)', 'Alt$(LH
 
 nuisances['QCDscale_V'] = {
     'name': 'QCDscale_V',
-    'skipCMS': 1,
     'kind': 'weight_envelope',
     'type': 'shape',
     'samples': {'DY': variations},
@@ -517,103 +543,49 @@ nuisances['QCDscale_VV'] = {
     }
 }
 
-#nuisances['QCDscale_edge_WW']  = {
-#    'name'  : 'QCDscale_edge_WW',
-#    'kind'  : 'weight',
-#    'type'  : 'shape',
-#    'samples'  : {
-#       'WW' : ['Alt$(LHEScaleWeight[0],1)','Alt$(LHEScaleWeight[8],1)']
-#    }
-#}
+norm_QCD = ['+'.join(['({})*1.0'.format(diffcuts[binname]) if binname == "nonfid" else '({})*({})'.format(diffcuts[binname],nfdict["QCDscale_WW"]["WW_"+binname][0]) for binname in diffcuts]),
+            '+'.join(['({})*1.0'.format(diffcuts[binname]) if binname == "nonfid" else '({})*({})'.format(diffcuts[binname],nfdict["QCDscale_WW"]["WW_"+binname][1]) for binname in diffcuts])]
 
-#nuisances['QCDscale_env_WW'] = {
-#    'name': 'QCDscale_env_WW',
-#    'kind': 'weight_envelope',
-#    'type': 'shape',
-#    'samples': {
-#        'WW': variations,
-#    }
-#}
-
-#nuisances['QCDscale_uR_WW']  = {
-#    'name'  : 'QCDscale_uR_WW',
-#    'kind'  : 'weight',
-#    'type'  : 'shape',
-#    'samples'  : {
-#        'WW' : ['Alt$(LHEScaleWeight[1],1)','Alt$(LHEScaleWeight[7],1)']
-#    }
-#}
-
-#nuisances['QCDscale_uF_WW']  = {
-#    'name'  : 'QCDscale_uF_WW',
-#    'kind'  : 'weight',
-#    'type'  : 'shape',
-#    'samples'  : {
-#        'WW' : ['Alt$(LHEScaleWeight[3],1)','Alt$(LHEScaleWeight[5],1)']
-#    }
-#}
-
-topvars0j = []
-topvars1j = []
-topvars2j = []
+nuisances['QCDscale_WW']  = {
+    'name'  : 'QCDscale_WW',
+    'kind'  : 'weight',
+    'type'  : 'shape',
+    'samples'  : {
+        'WW' : ['Alt$(LHEScaleWeight[0],1)*('+norm_QCD[0]+')','Alt$(LHEScaleWeight[8],1)*('+norm_QCD[1]+')'],
+    }
+}
 
 ## Factors computed to renormalize the top scale variations such that the integral is not changed in each RECO jet bin (we have rateParams for that)
-topScaleNormFactors0j = {'Alt$(LHEScaleWeight[0],1)' : 1.079029, 'Alt$(LHEScaleWeight[1],1)' : 1.069761, 'Alt$(LHEScaleWeight[5],1)' : 0.990571, 'Alt$(LHEScaleWeight[8],1)' : 0.922116, 'Alt$(LHEScaleWeight[3],1)' : 1.012908, 'Alt$(LHEScaleWeight[7],1)' : 0.934027}
-topScaleNormFactors1j = {'Alt$(LHEScaleWeight[0],1)' : 1.090985, 'Alt$(LHEScaleWeight[1],1)' : 1.079970, 'Alt$(LHEScaleWeight[5],1)' : 0.988780, 'Alt$(LHEScaleWeight[8],1)' : 0.909765, 'Alt$(LHEScaleWeight[3],1)' : 1.015425, 'Alt$(LHEScaleWeight[7],1)' : 0.923934}
-topScaleNormFactors2j = {'Alt$(LHEScaleWeight[0],1)' : 1.127828, 'Alt$(LHEScaleWeight[1],1)' : 1.107106, 'Alt$(LHEScaleWeight[5],1)' : 0.981428, 'Alt$(LHEScaleWeight[8],1)' : 0.881906, 'Alt$(LHEScaleWeight[3],1)' : 1.024399, 'Alt$(LHEScaleWeight[7],1)' : 0.903034}
-
-topvars0j.append('Alt$(LHEScaleWeight[0],1)/'+str(topScaleNormFactors0j['Alt$(LHEScaleWeight[0],1)']))
-topvars0j.append('Alt$(LHEScaleWeight[8],1)/'+str(topScaleNormFactors0j['Alt$(LHEScaleWeight[8],1)']))
-
-topvars1j.append('Alt$(LHEScaleWeight[0],1)/'+str(topScaleNormFactors1j['Alt$(LHEScaleWeight[0],1)']))
-topvars1j.append('Alt$(LHEScaleWeight[8],1)/'+str(topScaleNormFactors1j['Alt$(LHEScaleWeight[8],1)']))
-
-topvars2j.append('Alt$(LHEScaleWeight[0],1)/'+str(topScaleNormFactors2j['Alt$(LHEScaleWeight[0],1)']))
-topvars2j.append('Alt$(LHEScaleWeight[8],1)/'+str(topScaleNormFactors2j['Alt$(LHEScaleWeight[8],1)']))
+topScaleNormFactors = {
+    '0j' : {'Alt$(LHEScaleWeight[0],1)' : 1.079241, 'Alt$(LHEScaleWeight[1],1)' : 1.069953, 'Alt$(LHEScaleWeight[3],1)' : 1.012916, 'Alt$(LHEScaleWeight[5],1)' : 0.990561, 'Alt$(LHEScaleWeight[7],1)' : 0.933777, 'Alt$(LHEScaleWeight[8],1)' : 0.921872},
+    '1j' : {'Alt$(LHEScaleWeight[0],1)' : 1.090860, 'Alt$(LHEScaleWeight[1],1)' : 1.079945, 'Alt$(LHEScaleWeight[3],1)' : 1.015331, 'Alt$(LHEScaleWeight[5],1)' : 0.988850, 'Alt$(LHEScaleWeight[7],1)' : 0.924001, 'Alt$(LHEScaleWeight[8],1)' : 0.909899},
+    '2j' : {'Alt$(LHEScaleWeight[0],1)' : 1.127259, 'Alt$(LHEScaleWeight[1],1)' : 1.106784, 'Alt$(LHEScaleWeight[3],1)' : 1.024219, 'Alt$(LHEScaleWeight[5],1)' : 0.981581, 'Alt$(LHEScaleWeight[7],1)' : 0.903191, 'Alt$(LHEScaleWeight[8],1)' : 0.882175},
+}
 
 ## QCD scale nuisances for top are decorrelated for each RECO jet bin: the QCD scale is different for different jet multiplicities so it doesn't make sense to correlate them
-nuisances['QCDscale_top_0j']  = {
-    'name'  : 'QCDscale_top_0j',
-    'skipCMS' : 1,
-    'kind'  : 'weight',
-    'type'  : 'shape',
-    'cutspost' : lambda self, cuts: [cut for cut in cuts if '0j' in cut],
-    'samples'  : {
-       'top' : topvars0j,
-    }
-}
+for ibin in cuts['ww2l2v_13TeV_top']['categories']:
+    topvars = []
+    topvars.append('Alt$(LHEScaleWeight[0],1)/'+str(topScaleNormFactors[ibin]['Alt$(LHEScaleWeight[0],1)']))
+    topvars.append('Alt$(LHEScaleWeight[8],1)/'+str(topScaleNormFactors[ibin]['Alt$(LHEScaleWeight[8],1)']))
 
-nuisances['QCDscale_top_1j']  = {
-    'name'  : 'QCDscale_top_1j',
-    'skipCMS' : 1,
-    'kind'  : 'weight',
-    'type'  : 'shape',
-    'cutspost' : lambda self, cuts: [cut for cut in cuts if '1j' in cut],
-    'samples'  : {
-       'top' : topvars1j,
+    nuisances['QCDscale_top_'+ibin]  = {
+        'name'  : 'QCDscale_top_'+ibin,
+        'kind'  : 'weight',
+        'type'  : 'shape',
+        'cutspost' : lambda self, cuts: [cut for cut in cuts if ibin in cut],
+        'samples'  : {
+            'top' : topvars,
+        }
     }
-}
 
-nuisances['QCDscale_top_2j']  = {
-    'name'  : 'QCDscale_top_2j',
-    'skipCMS' : 1,
-    'kind'  : 'weight',
-    'type'  : 'shape',
-    'cutspost' : lambda self, cuts: [cut for cut in cuts if '2j' in cut],
-    'samples'  : {
-       'top' : topvars2j,
-    }
-}
-
-# TODO update
 # ggww and interference
-nuisances['QCDscale_ggVV'] = {
-    'name': 'QCDscale_ggVV',
-    'type': 'lnN',
-    'samples': {
-        'ggWW': '1.15',
-    },
-}
+#nuisances['QCDscale_ggVV'] = {
+#    'name': 'QCDscale_ggVV',
+#    'type': 'lnN',
+#    'samples': {
+#        'ggWW': '1.15',
+#    },
+#}
 
 #### QCD scale uncertainties for Higgs signals other than ggH
 
@@ -662,7 +634,6 @@ nuisances['QCDscale_ttH'] = {
     'type': 'lnN',
 }
 
-# TODO update
 nuisances['QCDscale_WWewk'] = {
     'name': 'QCDscale_WWewk',
     'samples': {
@@ -671,7 +642,6 @@ nuisances['QCDscale_WWewk'] = {
     'type': 'lnN'
 }
 
-# TODO update
 nuisances['QCDscale_qqbar_ACCEPT'] = {
     'name': 'QCDscale_qqbar_ACCEPT',
     'type': 'lnN',
@@ -685,90 +655,35 @@ nuisances['QCDscale_qqbar_ACCEPT'] = {
     }
 }
 
-# TODO update
 nuisances['QCDscale_gg_ACCEPT'] = {
     'name': 'QCDscale_gg_ACCEPT',
     'samples': {
         'ggH_htt': '1.012',
         'ggZH_hww': '1.012',
-        'ggWW': '1.012',
+        #'ggWW': '1.012',
     },
     'type': 'lnN',
 }
-
-# Uncertainty on SR/CR ratio
-#nuisances['CRSR_accept_DY'] = {
-#    'name': 'CMS_hww_CRSR_accept_DY',
-#    'type': 'lnN',
-#    'samples': {'DY': '1.02'},
-#    'cuts': [cut for cut in cuts if '_CR_' in cut],
-#    'cutspost': (lambda self, cuts: [cut for cut in cuts if '_DY_' in cut]),
-#}
 
 # Uncertainty on SR/CR ratio
 nuisances['CRSR_accept_top'] = {
     'name': 'CMS_hww_CRSR_accept_top',
     'type': 'lnN',
     'samples': {'top': '1.01'},
-    'cuts': [cut for cut in cuts if '_CR_' in cut],
-    'cutspost': (lambda self, cuts: [cut for cut in cuts if '_top_' in cut]),
+    'cuts': [cut for cut in cuts if 'top' in cut],
 }
 
 ## rate parameters
-'''
-nuisances['DYttnorm0j']  = {
-               'name'  : 'CMS_hww_DYttnorm0j',
-               'samples'  : {
-                   'DY' : '1.00',
-                   },
-               'type'  : 'rateParam',
-               'cuts'  : cuts0j
-              }
 
-nuisances['DYttnorm1j']  = {
-               'name'  : 'CMS_hww_DYttnorm1j',
-               'samples'  : {
-                   'DY' : '1.00',
-                   },
-               'type'  : 'rateParam',
-               'cuts'  : cuts1j
-              }
-
-nuisances['DYttnorm2j']  = {
-                 'name'  : 'CMS_hww_DYttnorm2j',
-                 'samples'  : {
-                   'DY' : '1.00',
-                     },
-                 'type'  : 'rateParam',
-                 'cuts'  : cuts2j
-                }
-'''
-nuisances['Topnorm0j']  = {
-               'name'  : 'CMS_hww_Topnorm0j',
-               'samples'  : {
-                   'top' : '1.00',
-                   },
-               'type'  : 'rateParam',
-               'cuts'  : cuts0j
-              }
-
-nuisances['Topnorm1j']  = {
-               'name'  : 'CMS_hww_Topnorm1j',
-               'samples'  : {
-                   'top' : '1.00',
-                   },
-               'type'  : 'rateParam',
-               'cuts'  : cuts1j
-              }
-
-nuisances['Topnorm2j']  = {
-               'name'  : 'CMS_hww_Topnorm2j',
-               'samples'  : {
-                   'top' : '1.00',
-                   },
-               'type'  : 'rateParam',
-               'cuts'  : cuts2j
-              }
+for ibin in cuts['ww2l2v_13TeV_top']['categories']:
+    nuisances['Topnorm'+ibin]  = {
+        'name'  : 'CMS_hww_Topnorm'+ibin,
+        'samples'  : {
+            'top' : '1.00',
+        },
+        'type'  : 'rateParam',
+        'cutspost' : lambda self, cuts: [cut for cut in cuts if ibin in cut],
+    }
 
 ## Use the following if you want to apply the automatic combine MC stat nuisances.
 nuisances['stat'] = {

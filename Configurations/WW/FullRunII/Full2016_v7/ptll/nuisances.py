@@ -1,3 +1,4 @@
+
 # nuisances
 # name of samples here must match keys in samples.py 
 from LatinoAnalysis.Tools.commonTools import getSampleFiles, getBaseW, addSampleWeight
@@ -21,33 +22,27 @@ HiggsXS = HiggsXSection()
 import os
 import json
 configurations = os.path.realpath(inspect.getfile(inspect.currentframe())) # this file
-configurations = os.path.dirname(configurations) # mll
-configurations = os.path.dirname(configurations) # Full2017_v7
+configurations = os.path.dirname(configurations) # ptll
+configurations = os.path.dirname(configurations) # Full2016_v7
 configurations = os.path.dirname(configurations) # FullRunII
 configurations = os.path.dirname(configurations) # WW
 configurations = os.path.dirname(configurations) # Configurations
 
 diffcuts = samples['WW']['subsamples'] if 'WW' in samples else {}
-nfdict = json.load(open("%s/WW/FullRunII/Full2017_v7/mll/WWnorm.json"%configurations))
+nfdict = json.load(open("%s/WW/FullRunII/Full2016_v7/ptll/WWnorm.json"%configurations))
 
 ################################ EXPERIMENTAL UNCERTAINTIES  #################################
 
 #### Luminosity
 
 nuisances['lumi_Uncorrelated'] = {
-    'name': 'lumi_13TeV_2017',
+    'name': 'lumi_13TeV_2016',
     'type': 'lnN',
-    'samples': dict((skey, '1.020') for skey in mc if skey not in ['top'])
+    'samples': dict((skey, '1.010') for skey in mc if skey not in ['top'])
 }
 
 nuisances['lumi_Correlated'] = {
     'name': 'lumi_13TeV_correlated',
-    'type': 'lnN',
-    'samples': dict((skey, '1.009') for skey in mc if skey not in ['top'])
-}
-
-nuisances['lumi_1718'] = {
-    'name': 'lumi_13TeV_1718',
     'type': 'lnN',
     'samples': dict((skey, '1.006') for skey in mc if skey not in ['top'])
 }
@@ -71,7 +66,7 @@ nuisances['fake_syst_me'] = {
 }
 
 nuisances['fake_ele'] = {
-    'name': 'CMS_fake_e_2017',
+    'name': 'CMS_fake_e_2016',
     'kind': 'weight',
     'type': 'shape',
     'samples': {
@@ -80,7 +75,7 @@ nuisances['fake_ele'] = {
 }
 
 nuisances['fake_ele_stat'] = {
-    'name': 'CMS_fake_stat_e_2017',
+    'name': 'CMS_fake_stat_e_2016',
     'kind': 'weight',
     'type': 'shape',
     'samples': {
@@ -89,7 +84,7 @@ nuisances['fake_ele_stat'] = {
 }
 
 nuisances['fake_mu'] = {
-    'name': 'CMS_fake_m_2017',
+    'name': 'CMS_fake_m_2016',
     'kind': 'weight',
     'type': 'shape',
     'samples': {
@@ -98,7 +93,7 @@ nuisances['fake_mu'] = {
 }
 
 nuisances['fake_mu_stat'] = {
-    'name': 'CMS_fake_stat_m_2017',
+    'name': 'CMS_fake_stat_m_2016',
     'kind': 'weight',
     'type': 'shape',
     'samples': {
@@ -113,7 +108,7 @@ for shift in ['jes', 'lf', 'hf', 'hfstats1', 'hfstats2', 'lfstats1', 'lfstats2',
 
     name = 'CMS_btag_%s' % shift
     if 'stats' in shift:
-        name += '_2017'
+        name += '_2016'
 
     nuisances['btag_shape_%s' % shift] = {
         'name': name,
@@ -128,7 +123,7 @@ for shift in ['jes', 'lf', 'hf', 'hfstats1', 'hfstats2', 'lfstats1', 'lfstats2',
 trig_syst = ['((TriggerEffWeight_2l_u)/(TriggerEffWeight_2l))*(TriggerEffWeight_2l>0.02) + (TriggerEffWeight_2l<=0.02)', '(TriggerEffWeight_2l_d)/(TriggerEffWeight_2l)']
 
 nuisances['trigg'] = {
-    'name': 'CMS_eff_hwwtrigger_2017',
+    'name': 'CMS_eff_hwwtrigger_2016',
     'kind': 'weight',
     'type': 'shape',
     'samples': dict((skey, trig_syst) for skey in mc),
@@ -138,7 +133,7 @@ nuisances['trigg'] = {
 prefire_syst = ['PrefireWeight_Up/PrefireWeight', 'PrefireWeight_Down/PrefireWeight']
 
 nuisances['prefire'] = {
-    'name': 'CMS_eff_prefiring_2017',
+    'name': 'CMS_eff_prefiring_2016',
     'kind': 'weight',
     'type': 'shape',
     'samples': dict((skey, prefire_syst) for skey in mc),
@@ -148,7 +143,7 @@ nuisances['prefire'] = {
 ##### Electron Efficiency and energy scale
 
 nuisances['eff_e'] = {
-    'name': 'CMS_eff_e_2017',
+    'name': 'CMS_eff_e_2016',
     'kind': 'weight',
     'type': 'shape',
     'samples': dict((skey, ['SFweightEleUp', 'SFweightEleDown']) for skey in mc),
@@ -156,7 +151,7 @@ nuisances['eff_e'] = {
 }
 
 nuisances['electronpt'] = {
-    'name': 'CMS_scale_e_2017',
+    'name': 'CMS_scale_e_2016',
     'kind': 'suffix',
     'type': 'shape',
     'mapUp' : 'ElepTup',
@@ -170,7 +165,7 @@ nuisances['electronpt'] = {
 ##### Muon Efficiency and energy scale
 
 nuisances['eff_m'] = {
-    'name': 'CMS_eff_m_2017',
+    'name': 'CMS_eff_m_2016',
     'kind': 'weight',
     'type': 'shape',
     'samples': dict((skey, ['SFweightMuUp', 'SFweightMuDown']) for skey in mc),
@@ -178,7 +173,7 @@ nuisances['eff_m'] = {
 }
 
 nuisances['muonpt'] = {
-    'name': 'CMS_scale_m_2017',
+    'name': 'CMS_scale_m_2016',
     'kind': 'suffix',
     'type': 'shape',
     'mapUp': 'MupTup',
@@ -192,7 +187,7 @@ nuisances['muonpt'] = {
 ###### Jet energy scale
 
 ##### Jet energy scale
-jes_systs = ['JESAbsolute','JESAbsolute_2017','JESBBEC1','JESBBEC1_2017','JESEC2','JESEC2_2017','JESFlavorQCD','JESHF','JESHF_2017','JESRelativeBal','JESRelativeSample_2017']
+jes_systs = ['JESAbsolute','JESAbsolute_2016','JESBBEC1','JESBBEC1_2016','JESEC2','JESEC2_2016','JESFlavorQCD','JESHF','JESHF_2016','JESRelativeBal','JESRelativeSample_2016']
 folderup = ""
 folderdo = ""
 
@@ -228,23 +223,10 @@ for js in jes_systs:
       'AsLnN': '1'
   }
 
-##### Jet energy resolution
-nuisances['JER'] = {
-    'name': 'CMS_res_j_2017',
-    'kind': 'suffix',
-    'type': 'shape',
-    'mapUp': 'JERup',
-    'mapDown': 'JERdo',
-    'samples': dict((skey, ['1', '1']) for skey in mc),
-    'folderUp': 'root://eoscms.cern.ch/'+makeMCDirectory('JERup_suffix'),
-    'folderDown': 'root://eoscms.cern.ch/'+makeMCDirectory('JERdo_suffix'),
-    'AsLnN': '1'
-}
-
 ##### MET energy scale
 
 nuisances['met'] = {
-    'name': 'CMS_scale_met_2017',
+    'name': 'CMS_scale_met_2016',
     'kind': 'suffix',
     'type': 'shape',
     'mapUp': 'METup',
@@ -259,7 +241,7 @@ nuisances['met'] = {
 puid_syst = ['Jet_PUIDSF_up/Jet_PUIDSF', 'Jet_PUIDSF_down/Jet_PUIDSF']
 
 nuisances['jetPUID'] = {
-    'name': 'CMS_PUID_2017',
+    'name': 'CMS_PUID_2016',
     'kind': 'weight',
     'type': 'shape',
     'samples': dict((skey, puid_syst) for skey in mc)
@@ -268,32 +250,31 @@ nuisances['jetPUID'] = {
 ##### Pileup
 
 nuisances['PU'] = {
-    'name': 'CMS_PU_2017',
+    'name': 'CMS_PU_2016',
     'kind': 'weight',
     'type': 'shape',
     'samples': {
-        'DY'      : ['0.995697*(puWeightUp/puWeight)', '1.005906*(puWeightDown/puWeight)'],
-        'WW'      : ['1.000251*(puWeightUp/puWeight)', '0.999776*(puWeightDown/puWeight)'],
-        'ggWW'    : ['1.001459*(puWeightUp/puWeight)', '0.998709*(puWeightDown/puWeight)'],
-        'WWewk'   : ['0.999722*(puWeightUp/puWeight)', '1.000240*(puWeightDown/puWeight)'],
-        'Wg'      : ['0.998178*(puWeightUp/puWeight)', '1.006280*(puWeightDown/puWeight)'],
-        'WgS'     : ['0.999951*(puWeightUp/puWeight)', '0.996760*(puWeightDown/puWeight)'],
-        'Zg'      : ['0.999988*(puWeightUp/puWeight)', '1.001711*(puWeightDown/puWeight)'],
-        'ZgS'     : ['0.987554*(puWeightUp/puWeight)', '0.994789*(puWeightDown/puWeight)'],
-        'WZ'      : ['0.995182*(puWeightUp/puWeight)', '1.004196*(puWeightDown/puWeight)'],
-        'ZZ'      : ['0.992033*(puWeightUp/puWeight)', '1.007040*(puWeightDown/puWeight)'],
-        'VVV'     : ['0.999638*(puWeightUp/puWeight)', '0.998203*(puWeightDown/puWeight)'],
-        'top'     : ['0.999425*(puWeightUp/puWeight)', '1.000633*(puWeightDown/puWeight)'],
-        'ggH_htt' : ['0.994609*(puWeightUp/puWeight)', '1.004188*(puWeightDown/puWeight)'],
-        'qqH_htt' : ['1.000303*(puWeightUp/puWeight)', '1.001167*(puWeightDown/puWeight)'],
-        'WH_htt'  : ['0.999343*(puWeightUp/puWeight)', '1.000266*(puWeightDown/puWeight)'],
-        'ZH_htt'  : ['0.999043*(puWeightUp/puWeight)', '1.000930*(puWeightDown/puWeight)'],
-        'ggH_hww' : ['1.004440*(puWeightUp/puWeight)', '0.995114*(puWeightDown/puWeight)'],
-        'qqH_hww' : ['0.998879*(puWeightUp/puWeight)', '1.000525*(puWeightDown/puWeight)'],
-        'WH_hww'  : ['0.990826*(puWeightUp/puWeight)', '1.008647*(puWeightDown/puWeight)'],
-        'ZH_hww'  : ['0.998655*(puWeightUp/puWeight)', '1.001054*(puWeightDown/puWeight)'],
-        'ggZH_hww': ['0.999687*(puWeightUp/puWeight)', '1.000597*(puWeightDown/puWeight)'],
-        'ttH_hww' : ['0.993518*(puWeightUp/puWeight)', '1.006089*(puWeightDown/puWeight)'],
+        'DY'      : ['0.997972*(puWeightUp/puWeight)', '1.002311*(puWeightDown/puWeight)'],
+        'WW'      : ['1.005742*(puWeightUp/puWeight)', '0.994523*(puWeightDown/puWeight)'],
+        'ggWW'    : ['1.004407*(puWeightUp/puWeight)', '0.995770*(puWeightDown/puWeight)'],
+        'Wg'      : ['1.003449*(puWeightUp/puWeight)', '0.994471*(puWeightDown/puWeight)'],
+        'WgS'     : ['1.011419*(puWeightUp/puWeight)', '0.988532*(puWeightDown/puWeight)'],
+        'Zg'      : ['1.001969*(puWeightUp/puWeight)', '0.998883*(puWeightDown/puWeight)'],
+        'ZgS'     : ['0.987158*(puWeightUp/puWeight)', '1.013052*(puWeightDown/puWeight)'],
+        'WZ'      : ['0.996128*(puWeightUp/puWeight)', '1.003751*(puWeightDown/puWeight)'],
+        'ZZ'      : ['1.000313*(puWeightUp/puWeight)', '0.998217*(puWeightDown/puWeight)'],
+        'VVV'     : ['1.002442*(puWeightUp/puWeight)', '0.998130*(puWeightDown/puWeight)'],
+        'top'     : ['1.004342*(puWeightUp/puWeight)', '0.995847*(puWeightDown/puWeight)'],
+        'ggH_htt' : ['1.002599*(puWeightUp/puWeight)', '0.998040*(puWeightDown/puWeight)'],
+        'qqH_htt' : ['1.001258*(puWeightUp/puWeight)', '0.999380*(puWeightDown/puWeight)'],
+        'WH_htt'  : ['1.005544*(puWeightUp/puWeight)', '0.993659*(puWeightDown/puWeight)'],
+        'ZH_htt'  : ['0.999916*(puWeightUp/puWeight)', '0.998152*(puWeightDown/puWeight)'],
+        'ggH_hww' : ['1.007089*(puWeightUp/puWeight)', '0.993263*(puWeightDown/puWeight)'],
+        'qqH_hww' : ['1.010403*(puWeightUp/puWeight)', '0.989428*(puWeightDown/puWeight)'],
+        'WH_hww'  : ['1.003999*(puWeightUp/puWeight)', '0.996201*(puWeightDown/puWeight)'],
+        'ZH_hww'  : ['0.991079*(puWeightUp/puWeight)', '1.008521*(puWeightDown/puWeight)'],
+        'ggZH_hww': ['1.004855*(puWeightUp/puWeight)', '0.993307*(puWeightDown/puWeight)'],
+        'ttH_hww' : ['1.002693*(puWeightUp/puWeight)', '0.997429*(puWeightDown/puWeight)'],
     },
     'AsLnN': '1',
 }
@@ -381,9 +362,8 @@ nuisances['PS_FSR_WW']  = {
 }
 
 # PS and UE
-nuisances['UE_whss']  = {
-                'name'  : 'UE_CP5',
-                'skipCMS' : 1,
+nuisances['UE']  = {
+                'name'  : 'UE_CUET',
                 'type'  : 'lnN',
                 'samples': dict((skey, '1.015') for skey in mc if skey not in ['WW','ggWW']),
 }
@@ -399,7 +379,6 @@ apply_on = {
 
 nuisances['singleTopToTTbar'] = {
     'name': 'singleTopToTTbar',
-    'skipCMS': 1,
     'kind': 'weight',
     'type': 'shape',
     'samples': apply_on
@@ -522,41 +501,31 @@ nuisances['pdf_qqbar_ACCEPT'] = {
     },
 }
 
-varupstring   = "(     LHEPdfWeight[{i}]/LHEPdfWeight[0] *(abs(LHEPdfWeight[{i}]/LHEPdfWeight[0])<=100)+1.0*(abs(LHEPdfWeight[{i}]/LHEPdfWeight[0])>100))"
-vardownstring = "((2.0-LHEPdfWeight[{i}]/LHEPdfWeight[0])*(abs(LHEPdfWeight[{i}]/LHEPdfWeight[0])<=100)+1.0*(abs(LHEPdfWeight[{i}]/LHEPdfWeight[0])>100))"
-
-for i in range(1,33):
-    # LHEPdfWeight are PDF4LHC variations, while nominal is NNPDF.
-    # LHEPdfWeight[i] reweights from NNPDF nominal to PDF4LHC member i
-    # LHEPdfWeight[0] in particular reweights from NNPDF nominal to PDF4LHC nominal
-    norm_PDF = ['+'.join(['({})*1.0'.format(diffcuts[binname]) if binname == "nonfid" else '({})*({})'.format(diffcuts[binname],nfdict["pdf_WW_eigen%d"%i]["WW_"+binname][0]) for binname in diffcuts]),
-                '+'.join(['({})*1.0'.format(diffcuts[binname]) if binname == "nonfid" else '({})*({})'.format(diffcuts[binname],nfdict["pdf_WW_eigen%d"%i]["WW_"+binname][1]) for binname in diffcuts])]
-    
-    nuisances['pdf_WW_eigen'+str(i)]  = {
-        'name'  : 'CMS_hww_pdf_WW_eigen'+str(i),
-        'kind'  : 'weight',
-        'type'  : 'shape',
-        'samples': {
-            'WW' : [varupstring.format(i=i)+'*('+norm_PDF[0]+')', vardownstring.format(i=i)+'*('+norm_PDF[1]+')']
-        },
-    }
+# PDF
+pdf_variations = ["LHEPdfWeight[%d]" %i for i in range(100)] # Float_t LHE pdf variation weights (w_var / w_nominal) for LHA IDs 260001 - 260100
+nuisances['pdf_WW']  = {
+    'name'  : 'CMS_hww_pdf_WW_2016',
+    'kind'  : 'weight_rms',
+    'type'  : 'shape',
+    'samples'  : {
+        'WW'   : pdf_variations,
+    },
+    'scale' : nfdict["pdf_WW_2016"]
+}
 
 ##### Renormalization & factorization scales
 
 ## Shape nuisance due to QCD scale variations for DY
 # LHE scale variation weights (w_var / w_nominal)
 
-## This should work for samples with either 8 or 9 LHE scale weights (Length$(LHEScaleWeight) == 8 or 9)
-## DY has 8 LHEScaleWeights; all others have 9 or 0
-DYvariations = ['Alt$(LHEScaleWeight[0],1)', 'Alt$(LHEScaleWeight[1],1)', 'Alt$(LHEScaleWeight[3],1)', 'Alt$(LHEScaleWeight[4],1)', 'Alt$(LHEScaleWeight[6],1)', 'Alt$(LHEScaleWeight[7],1)']
-variations   = ['Alt$(LHEScaleWeight[0],1)', 'Alt$(LHEScaleWeight[1],1)', 'Alt$(LHEScaleWeight[3],1)', 'Alt$(LHEScaleWeight[5],1)', 'Alt$(LHEScaleWeight[7],1)', 'Alt$(LHEScaleWeight[8],1)']
+## All 2016 samples have either 0 or 9 LHEScaleWeights
+variations = ['Alt$(LHEScaleWeight[0],1)', 'Alt$(LHEScaleWeight[1],1)', 'Alt$(LHEScaleWeight[3],1)', 'Alt$(LHEScaleWeight[5],1)', 'Alt$(LHEScaleWeight[7],1)', 'Alt$(LHEScaleWeight[8],1)']
 
 nuisances['QCDscale_V'] = {
     'name': 'QCDscale_V',
-    'skipCMS': 1,
     'kind': 'weight_envelope',
     'type': 'shape',
-    'samples': {'DY': DYvariations},
+    'samples': {'DY': variations},
     'AsLnN': '1'
 }
 
@@ -588,9 +557,9 @@ nuisances['QCDscale_WW']  = {
 
 ## Factors computed to renormalize the top scale variations such that the integral is not changed in each RECO jet bin (we have rateParams for that)
 topScaleNormFactors = {
-    '0j' : {'Alt$(LHEScaleWeight[0],1)' : 1.073958, 'Alt$(LHEScaleWeight[1],1)' : 1.074688, 'Alt$(LHEScaleWeight[3],1)' : 1.001634, 'Alt$(LHEScaleWeight[5],1)' : 1.001717, 'Alt$(LHEScaleWeight[7],1)' : 0.925177, 'Alt$(LHEScaleWeight[8],1)' : 0.924476},
-    '1j' : {'Alt$(LHEScaleWeight[0],1)' : 1.084455, 'Alt$(LHEScaleWeight[1],1)' : 1.080430, 'Alt$(LHEScaleWeight[3],1)' : 1.008044, 'Alt$(LHEScaleWeight[5],1)' : 0.995956, 'Alt$(LHEScaleWeight[7],1)' : 0.919923, 'Alt$(LHEScaleWeight[8],1)' : 0.912828},
-    '2j' : {'Alt$(LHEScaleWeight[0],1)' : 1.123980, 'Alt$(LHEScaleWeight[1],1)' : 1.105074, 'Alt$(LHEScaleWeight[3],1)' : 1.023258, 'Alt$(LHEScaleWeight[5],1)' : 0.982276, 'Alt$(LHEScaleWeight[7],1)' : 0.902784, 'Alt$(LHEScaleWeight[8],1)' : 0.882455},
+    '0j' : {'Alt$(LHEScaleWeight[0],1)' : 1.079241, 'Alt$(LHEScaleWeight[1],1)' : 1.069953, 'Alt$(LHEScaleWeight[3],1)' : 1.012916, 'Alt$(LHEScaleWeight[5],1)' : 0.990561, 'Alt$(LHEScaleWeight[7],1)' : 0.933777, 'Alt$(LHEScaleWeight[8],1)' : 0.921872},
+    '1j' : {'Alt$(LHEScaleWeight[0],1)' : 1.090860, 'Alt$(LHEScaleWeight[1],1)' : 1.079945, 'Alt$(LHEScaleWeight[3],1)' : 1.015331, 'Alt$(LHEScaleWeight[5],1)' : 0.988850, 'Alt$(LHEScaleWeight[7],1)' : 0.924001, 'Alt$(LHEScaleWeight[8],1)' : 0.909899},
+    '2j' : {'Alt$(LHEScaleWeight[0],1)' : 1.127259, 'Alt$(LHEScaleWeight[1],1)' : 1.106784, 'Alt$(LHEScaleWeight[3],1)' : 1.024219, 'Alt$(LHEScaleWeight[5],1)' : 0.981581, 'Alt$(LHEScaleWeight[7],1)' : 0.903191, 'Alt$(LHEScaleWeight[8],1)' : 0.882175},
 }
 
 ## QCD scale nuisances for top are decorrelated for each RECO jet bin: the QCD scale is different for different jet multiplicities so it doesn't make sense to correlate them
