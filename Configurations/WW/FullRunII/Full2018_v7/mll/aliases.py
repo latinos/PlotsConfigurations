@@ -120,22 +120,22 @@ aliases['DY_LO_pTllrw'] = {
 # B tagging
 
 if btag_algo=="deepcsv":
-    aliases['bVeto'] = {
-        'expr': 'Sum$(CleanJet_pt > 20. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > '+btagWP+') == 0'
-}
+	aliases['bVeto'] = {
+	'expr': 'Sum$(CleanJet_pt > 20. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > '+btagWP+') == 0'
+	}
 
-    aliases['bReq'] = {
+	aliases['bReq'] = {
         'expr': 'Sum$(CleanJet_pt > 30. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > '+btagWP+') >= 1'
-}
+	}	
 
 elif btag_algo=="deepflav":
-    aliases['bVeto'] = {
+	aliases['bVeto'] = {
         'expr': 'Sum$(CleanJet_pt > 20. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepFlavB[CleanJet_jetIdx] >  '+btagWP+') == 0'
-    }
+	}
     
-    aliases['bReq'] = {
+	aliases['bReq'] = {
         'expr': 'Sum$(CleanJet_pt > 30. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepFlavB[CleanJet_jetIdx] >  '+btagWP+') >= 1'
-    }
+	}
 
 # CR definitions
 
@@ -316,14 +316,17 @@ aliases['B0'] = {
     'expr' : 'genmll > 20. && genmll <= 30.',
     'samples' : ['WW','ggWW']
 }
+
 aliases['B1'] = {
     'expr' : 'genmll > 30. && genmll <= 40.',
     'samples' : ['WW','ggWW']
 }
+
 aliases['B2'] = {
     'expr' : 'genmll > 40. && genmll <= 45.',
     'samples' : ['WW','ggWW']
 }
+
 aliases['B3'] = {
     'expr' : 'genmll > 45. && genmll <= 50.',
     'samples' : ['WW','ggWW']

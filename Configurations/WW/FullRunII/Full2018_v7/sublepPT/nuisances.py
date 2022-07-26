@@ -290,34 +290,33 @@ if useEmbeddedDY:
   }
 '''
 ##### Pileup
-
 nuisances['PU'] = {
     'name': 'CMS_PU_2018',
     'kind': 'weight',
     'type': 'shape',
     'samples': {
-        'DY'      : ['1.009793*(puWeightUp/puWeight)', '0.991033*(puWeightDown/puWeight)'],
-        'WW'      : ['1.010996*(puWeightUp/puWeight)', '0.989136*(puWeightDown/puWeight)'],
-        'ggWW'    : ['1.010540*(puWeightUp/puWeight)', '0.989944*(puWeightDown/puWeight)'],
-        'WWewk'   : ['1.002531*(puWeightUp/puWeight)', '0.997567*(puWeightDown/puWeight)'],
-        'Wg'      : ['0.984219*(puWeightUp/puWeight)', '1.014413*(puWeightDown/puWeight)'],
-        'WgS'     : ['1.000596*(puWeightUp/puWeight)', '1.000260*(puWeightDown/puWeight)'],
-        'Zg'      : ['1.010885*(puWeightUp/puWeight)', '0.985743*(puWeightDown/puWeight)'],
-        'ZgS'     : ['1.053390*(puWeightUp/puWeight)', '0.950510*(puWeightDown/puWeight)'],
-        'WZ'      : ['1.001859*(puWeightUp/puWeight)', '0.998242*(puWeightDown/puWeight)'],
-        'ZZ'      : ['1.005540*(puWeightUp/puWeight)', '0.994286*(puWeightDown/puWeight)'],
-        'VVV'     : ['1.007710*(puWeightUp/puWeight)', '0.992067*(puWeightDown/puWeight)'],
-        'top'     : ['1.005290*(puWeightUp/puWeight)', '0.994964*(puWeightDown/puWeight)'],
-        'ggH_htt' : ['1.003255*(puWeightUp/puWeight)', '0.996632*(puWeightDown/puWeight)'],
-        'qqH_htt' : ['0.999568*(puWeightUp/puWeight)', '1.000504*(puWeightDown/puWeight)'],
-        'WH_htt'  : ['1.009995*(puWeightUp/puWeight)', '0.990249*(puWeightDown/puWeight)'],
-        'ZH_htt'  : ['1.007817*(puWeightUp/puWeight)', '0.991347*(puWeightDown/puWeight)'],
-        'ggH_hww' : ['1.012350*(puWeightUp/puWeight)', '0.988249*(puWeightDown/puWeight)'],
-        'qqH_hww' : ['1.009921*(puWeightUp/puWeight)', '0.989533*(puWeightDown/puWeight)'],
-        'WH_hww'  : ['1.006620*(puWeightUp/puWeight)', '0.992165*(puWeightDown/puWeight)'],
-        'ZH_hww'  : ['1.001434*(puWeightUp/puWeight)', '0.998009*(puWeightDown/puWeight)'],
-        'ggZH_hww': ['1.009646*(puWeightUp/puWeight)', '0.990326*(puWeightDown/puWeight)'],
-        'ttH_hww' : ['1.002873*(puWeightUp/puWeight)', '0.996800*(puWeightDown/puWeight)'],
+        'DY'      : ['0.996330*(puWeightUp/puWeight)', '1.004361*(puWeightDown/puWeight)'],
+        'WW'      : ['1.002285*(puWeightUp/puWeight)', '0.997916*(puWeightDown/puWeight)'],
+        'ggWW'    : ['1.003398*(puWeightUp/puWeight)', '0.996771*(puWeightDown/puWeight)'],
+        'WWewk'   : ['0.999699*(puWeightUp/puWeight)', '1.000878*(puWeightDown/puWeight)'],
+        'Wg'      : ['0.998213*(puWeightUp/puWeight)', '0.994692*(puWeightDown/puWeight)'],
+        'WgS'     : ['0.995771*(puWeightUp/puWeight)', '1.002593*(puWeightDown/puWeight)'],
+        'Zg'      : ['1.009025*(puWeightUp/puWeight)', '0.989881*(puWeightDown/puWeight)'],
+        'ZgS'     : ['0.986492*(puWeightUp/puWeight)', '1.008521*(puWeightDown/puWeight)'],
+        'WZ'      : ['0.994550*(puWeightUp/puWeight)', '1.005367*(puWeightDown/puWeight)'],
+        'ZZ'      : ['0.993192*(puWeightUp/puWeight)', '1.007404*(puWeightDown/puWeight)'],
+        'VVV'     : ['0.998195*(puWeightUp/puWeight)', '1.001628*(puWeightDown/puWeight)'],
+        'top'     : ['1.000612*(puWeightUp/puWeight)', '0.999489*(puWeightDown/puWeight)'],
+        'ggH_htt' : ['0.997554*(puWeightUp/puWeight)', '1.002596*(puWeightDown/puWeight)'],
+        'qqH_htt' : ['1.000445*(puWeightUp/puWeight)', '0.999705*(puWeightDown/puWeight)'],
+        'WH_htt'  : ['0.999921*(puWeightUp/puWeight)', '1.000256*(puWeightDown/puWeight)'],
+        'ZH_htt'  : ['0.997806*(puWeightUp/puWeight)', '1.002317*(puWeightDown/puWeight)'],
+        'ggH_hww' : ['1.000719*(puWeightUp/puWeight)', '0.999546*(puWeightDown/puWeight)'],
+        'qqH_hww' : ['1.001517*(puWeightUp/puWeight)', '0.998632*(puWeightDown/puWeight)'],
+        'WH_hww'  : ['1.000061*(puWeightUp/puWeight)', '0.999363*(puWeightDown/puWeight)'],
+        'ZH_hww'  : ['0.996657*(puWeightUp/puWeight)', '1.002646*(puWeightDown/puWeight)'],
+        'ggZH_hww': ['0.998468*(puWeightUp/puWeight)', '1.001186*(puWeightDown/puWeight)'],
+        'ttH_hww' : ['0.996658*(puWeightUp/puWeight)', '1.003175*(puWeightDown/puWeight)'],
     },
     'AsLnN': '1',
 }
@@ -578,11 +577,10 @@ nuisances['QCDscale_WW']  = {
 
 ## Factors computed to renormalize the top scale variations such that the integral is not changed in each RECO jet bin (we have rateParams for that)
 topScaleNormFactors = {
-    '0j' : {'Alt$(LHEScaleWeight[0],1)' : 1.080111, 'Alt$(LHEScaleWeight[8],1)' : 0.918951},
-    '1j' : {'Alt$(LHEScaleWeight[0],1)' : 1.091556, 'Alt$(LHEScaleWeight[8],1)' : 0.906770},
-    '2j' : {'Alt$(LHEScaleWeight[0],1)' : 1.106451, 'Alt$(LHEScaleWeight[8],1)' : 0.892341}
+    '0j' : {'Alt$(LHEScaleWeight[0],1)' : 1.076953, 'Alt$(LHEScaleWeight[1],1)' : 1.076126, 'Alt$(LHEScaleWeight[3],1)' : 1.003151, 'Alt$(LHEScaleWeight[5],1)' : 1.000189, 'Alt$(LHEScaleWeight[7],1)' : 0.923987, 'Alt$(LHEScaleWeight[8],1)' : 0.921860},
+    '1j' : {'Alt$(LHEScaleWeight[0],1)' : 1.085760, 'Alt$(LHEScaleWeight[1],1)' : 1.080839, 'Alt$(LHEScaleWeight[3],1)' : 1.008950, 'Alt$(LHEScaleWeight[5],1)' : 0.995062, 'Alt$(LHEScaleWeight[7],1)' : 0.919487, 'Alt$(LHEScaleWeight[8],1)' : 0.911542},
+    '2j' : {'Alt$(LHEScaleWeight[0],1)' : 1.124515, 'Alt$(LHEScaleWeight[1],1)' : 1.105190, 'Alt$(LHEScaleWeight[3],1)' : 1.023628, 'Alt$(LHEScaleWeight[5],1)' : 0.981981, 'Alt$(LHEScaleWeight[7],1)' : 0.902728, 'Alt$(LHEScaleWeight[8],1)' : 0.882141},
 }
-
 
 ## QCD scale nuisances for top are decorrelated for each RECO jet bin: the QCD scale is different for different jet multiplicities so it doesn't make sense to correlate them
 for ibin in cuts['ww2l2v_13TeV_top']['categories']:

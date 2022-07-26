@@ -6,8 +6,7 @@ nbins = 13
 
 structure['DY']  = {  
                   'isSignal' : 0,
-                  'isData'   : 0
-#  'removeFromCuts' : ['ww2l2v_13TeV_sr_2j_B2']              
+                  'isData'   : 0,
 }
 
 structure['Dyemb']  = {
@@ -20,7 +19,6 @@ structure['Dyveto']  = {
                   'isData'   : 0,
                   'removeFromCuts' : [ k for k in cuts ],
               }
-
 
 structure['Wjets']  = {  
                   'isSignal' : 0,
@@ -48,7 +46,6 @@ structure['ttbar'] = {
                   'isSignal' : 0,
                   'isData'   : 0 
                   }
-
 
 structure['singletop'] = {   
                   'isSignal' : 0,
@@ -95,13 +92,12 @@ structure['Vg']  = {
                   'isSignal' : 0,
                   'isData'   : 0 
                   }
-'''
+
 structure['ZgS'] = {
                   'isSignal' : 0,
                   'isData'   : 0,
-                  'removeFromCuts' : ['ww2l2v_13TeV_sr_2j_B7', 'ww2l2v_13TeV_sr_2j_B5']
                   }
-'''
+
 structure['WgS'] = {
                   'isSignal' : 0,
                   'isData'   : 0
@@ -125,8 +121,7 @@ structure['VgS_H'] = {
 structure['Zg']  = { 
                   'isSignal' : 0,
                   'isData'   : 0, 
-                  'removeFromCuts' : ['ww2l2v_13TeV_sr_2j_B9']
-}
+		  }
 
 structure['VZ']  = { 
                   'isSignal' : 0,
@@ -138,7 +133,6 @@ structure['WZ']  = {
                   'isData'   : 0 
                   }
 
-
 structure['VVV']  = { 
                   'isSignal' : 0,
                   'isData'   : 0 
@@ -148,7 +142,6 @@ structure['ZZ']  = {
                   'isSignal' : 0,
                   'isData'   : 0    
                   }
-
 
 structure['ggH'] = {
                   'isSignal' : 0,
@@ -225,9 +218,7 @@ structure['H_htt'] = {
                   'isData'   : 0    
                   }
 
-
 # data
-
 
 structure['DATA']  = { 
                   'isSignal' : 0,

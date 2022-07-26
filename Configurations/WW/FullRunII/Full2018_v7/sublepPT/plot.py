@@ -8,7 +8,6 @@ nbins = 13
 # If not defined, normal plots is used
 #
 
-
 groupPlot['top']  = {  
                   'nameHR' : 'tW and t#bar{t}',
                   'isSignal' : 0,
@@ -44,7 +43,6 @@ groupPlot['Fake']  = {
                   'samples'  : ['Fake_me', 'Fake_em']
 }
 
-
 groupPlot['DY']  = {  
                   'nameHR' : "DY",
                   'isSignal' : 0,
@@ -52,15 +50,12 @@ groupPlot['DY']  = {
                   'samples'  : ['DY']
               }
 
-
-
 groupPlot['VVV']  = {  
                   'nameHR' : 'VVV',
                   'isSignal' : 0,
                   'color': 857, # kAzure -3  
                   'samples'  : ['VVV']
               }
-
 
 groupPlot['WZ']  = {  
                   'nameHR' : "WZ",
@@ -82,29 +77,27 @@ groupPlot['Wg']  = {
                   'color'    : 810,   # kOrange + 10
                   'samples'  : ['Wg']
               }
-'''
+
 groupPlot['Zg']  = {
                   'nameHR' : "Z#gamma",
                   'isSignal' : 0,
                   'color'    : 811,   # kOrange + 10
                   'samples'  : ['Zg']
               }
-'''
+
 groupPlot['WgS']  = {
                   'nameHR' : "W#gamma*",
                   'isSignal' : 0,
                   'color'    : 409,   # kGreen - 9
                   'samples'  : ['WgS']
               }
-'''
+
 groupPlot['ZgS']  = {
                   'nameHR' : "Z#gamma*",
                   'isSignal' : 0,
                   'color'    : 410,   # kGreen - 9
                   'samples'  : ['ZgS']
               }
-'''
-
 
 groupPlot['Higgs']  = {  
                   'nameHR' : 'Higgs',
@@ -112,10 +105,6 @@ groupPlot['Higgs']  = {
                   'color': 632, # kRed 
 		  'samples'  : ['ZH_hww', 'ggZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww','bbH_hww','ttH_hww','ZH_htt', 'ggZH_htt', 'WH_htt', 'qqH_htt', 'ggH_htt','bbH_htt','ttH_htt' ]
               }
-
-
-
-
 
 #plot = {}
 
@@ -128,7 +117,6 @@ plot['DY']  = {
                   'scale'    : 1.0,
               }
 
-
 plot['Fake_me']  = {  
                   'color': 921,    # kGray + 1
                   'isSignal' : 0,
@@ -136,15 +124,13 @@ plot['Fake_me']  = {
                   'scale'    : 1.0                  
               }
 
-
 plot['Fake_em']  = {  
                   'color': 921,    # kGray + 1
                   'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.0                  
               }
-
-              
+            
 plot['top'] = {   
                   'nameHR' : 'tW and t#bar{t}',
                   'color': 400,   # kYellow
@@ -217,7 +203,6 @@ plot['ZgS'] = {
                   'scale'    : 1.0
                   }
 
-
 plot['WZ']  = { 
                   'color': 858, # kAzure -2  
                   'isSignal' : 0,
@@ -257,7 +242,6 @@ plot['WH_htt'] = {
                   'scale'    : 1    #
                   }
 
-
 plot['qqH_htt'] = {
                   'nameHR' : 'qqHtt',
                   'color': 632+1, # kRed+1 
@@ -265,7 +249,6 @@ plot['qqH_htt'] = {
                   'isData'   : 0,    
                   'scale'    : 1    #
                   }
-
 
 plot['ggH_htt'] = {
                   'nameHR' : 'ggHtt',
@@ -301,7 +284,6 @@ plot['WH_hww'] = {
                   'scale'    : 1    #
                   }
 
-
 plot['qqH_hww'] = {
                   'nameHR' : 'qqH',
                   'color': 632+1, # kRed+1 
@@ -328,9 +310,6 @@ plot['DATA']  = {
                   'isData'   : 1 ,
                   'isBlind'  : 1
               }
-
-
-
 
 # additional options
 

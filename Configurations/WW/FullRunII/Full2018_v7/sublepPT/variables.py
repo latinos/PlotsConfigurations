@@ -1,9 +1,5 @@
 # variables
 
-#variables = {}
-    
-
-
 variables['events']  = {   'name': '1',      
                         'range' : (1,0,2),  
                         'xaxis' : 'events', 
@@ -12,7 +8,7 @@ variables['events']  = {   'name': '1',
 
 variables['BDTOutput_0j'] = {
     'name': 'BDTOutput_0j',
-    'range' : ([-1.0,-0.5,0.,1.0],),
+    'range' : ([-1.0,-0.5,-0.25,0.,0.25,0.5,1.0],),
     'xaxis' : 'MVA discriminant WW',
     'fold' : 3,
 }
@@ -37,13 +33,20 @@ variables['mll']  = {   'name': 'mll',
                         'xaxis' : 'm_{ll} [GeV]',
                         'fold' : 3
                         }
-'''
+
+
+variables['mll']  = {   'name': 'mll',
+                        'range' : ([20., 30., 40., 45., 50., 55., 60., 70., 80., 100., 150.,200., 300.],),
+                        'xaxis' : 'm_{ll} [GeV]',
+                        'fold' : 3
+                        }
+
 variables['mth']  = {   'name': 'mth',
-                        'range' : (10,60,300),
+                        'range' : (20, 60,300),
                         'xaxis' : 'm_{T}^{WW} [GeV]',
                         'fold' : 3
                         }
-'''
+
 variables['pt1']  = {   'name': 'Lepton_pt[0]',
                         'range' : ([25., 35., 40., 45., 50., 55., 60., 70., 80., 100., 150.,200., 300.],),
                         #'range' : (15,25,300),
