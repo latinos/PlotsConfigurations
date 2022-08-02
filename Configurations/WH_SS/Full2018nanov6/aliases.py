@@ -225,12 +225,12 @@ aliases['ZH3l_dphilmetj_test'] = {
 
 # PU jet Id SF
 
-puidSFSource = '%s/src/LatinoAnalysis/NanoGardener/python/data/JetPUID_effcyandSF.root' % os.getenv('CMSSW_BASE')
+puidSFSource = '{}/patches/PUID_80XTraining_EffSFandUncties.root'.format(configurations)
 
 aliases['PUJetIdSF'] = {
     'linesToAdd': [
         'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
-        '.L %s/patches/pujetidsf_event.cc+' % configurations
+        '.L %s/patches/pujetidsf_event_new.cc+' % configurations
     ],
     'class': 'PUJetIdEventSF',
     'args': (puidSFSource, '2018', 'loose'),
@@ -275,25 +275,25 @@ aliases['ttHMVA_SF_2l'] = {'linesToAdd': ['.L %s/patches/compute_SF_BETA.C+' % c
 ### Up/Down variations for single leptons in order of Pt ###
 ############################################################
 
-aliases['ttHMVA_SF_Up_0'] = {'linesToAdd': ['.L %s/patches/compute_SF_BETA.C+' % configurations],
+aliases['ttHMVA_SF_Up_0'] = {
                              'class': 'compute_SF',
                              'args' : ('2018', 4, 'single_SF_up', 0),
                              'samples': mc
                             }
 
-aliases['ttHMVA_SF_Up_1'] = {'linesToAdd': ['.L %s/patches/compute_SF_BETA.C+' % configurations],
+aliases['ttHMVA_SF_Up_1'] = {
                              'class': 'compute_SF',
                              'args' : ('2018', 4, 'single_SF_up', 1),
                              'samples': mc
                             }
 
-aliases['ttHMVA_SF_Down_0'] = {'linesToAdd': ['.L %s/patches/compute_SF_BETA.C+' % configurations],
+aliases['ttHMVA_SF_Down_0'] = {
                                'class': 'compute_SF',
                                'args' : ('2018', 4, 'single_SF_down', 0),
                                'samples': mc
                               }
 
-aliases['ttHMVA_SF_Down_1'] = {'linesToAdd': ['.L %s/patches/compute_SF_BETA.C+' % configurations],
+aliases['ttHMVA_SF_Down_1'] = {
                                'class': 'compute_SF',
                                'args' : ('2018', 4, 'single_SF_down', 1),
                                'samples': mc
@@ -332,3 +332,20 @@ aliases['SFweight'] = {
     'expr': ' * '.join(['SFweight2l', 'ttHMVA_SF_2l', 'LepWPCut', 'btagSF','PUJetIdSF']),
     'samples': mc
 }
+
+########################
+### Charge misid SFs ###
+########################
+
+aliases['ttHMVA_SF_flip_2l'] = {'linesToAdd': ['.L %s/macros/flipper.C+' % configurations],
+                           'class': 'flipper',
+                           'args' : ('2018', 2, 'Total_SF'),
+                           'samples': ['DY','WW','top']
+                          }
+
+aliases['ttHMVA_SF_err_flip_2l'] = {
+                           'class': 'flipper',
+                           'args' : ('2018', 2, 'Total_SF_err'),
+                           'samples': ['DY','WW','top']
+                          }
+

@@ -523,6 +523,16 @@ for nj in ['zeroJet', 'oneJet', 'multiJet']:
         'group': 'theoretical'
     }
 
+nuisances['EWKcorr_WW'] = {
+    'name': 'CMS_hww_EWKcorr_WW',
+    'skipCMS': 1,
+    'kind': 'weight',
+    'type': 'shape',
+    'samples': {
+        'WW': ['1.', '1./qq2vvOTF']
+    },
+    'group': 'theoretical'
+}
 # Uncertainty on SR/CR ratio
 nuisances['CRSR_accept_DY'] = {
     'name': 'CMS_hww_CRSR_accept_DY',

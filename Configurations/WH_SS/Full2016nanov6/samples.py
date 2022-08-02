@@ -110,7 +110,7 @@ files = nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50-LO_ext2') + \
 
 samples['DY'] = {
     'name': files,
-    'weight': mcCommonWeight + '*( !(Sum$(PhotonGen_isPrompt==1 && PhotonGen_pt>15 && abs(PhotonGen_eta)<2.6) > 0))',
+    'weight': mcCommonWeight + '*( !(Sum$(PhotonGen_isPrompt==1 && PhotonGen_pt>15 && abs(PhotonGen_eta)<2.6) > 0))*ttHMVA_SF_flip_2l[0]',
     'FilesPerJob': 4,
 }
 addSampleWeight(samples,'DY','DYJetsToLL_M-50-LO_ext2',ptllDYW_LO)
@@ -127,7 +127,7 @@ files = nanoGetSampleFiles(mcDirectory, 'TTTo2L2Nu') + \
 
 samples['top'] = {
     'name': files,
-    'weight': mcCommonWeight,
+    'weight': mcCommonWeight + "*ttHMVA_SF_flip_2l[0]",
     'FilesPerJob': 1,
     #'EventsPerJob': 100000
 }
@@ -137,7 +137,7 @@ addSampleWeight(samples,'top','TTTo2L2Nu','Top_pTrw')
 
 samples['WW'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'WWTo2L2Nu'),
-    'weight': mcCommonWeight + '*nllW', # temporary - nllW module not run on PS and UE variation samples
+    'weight': mcCommonWeight + '*nllW*ttHMVA_SF_flip_2l[0]', # temporary - nllW module not run on PS and UE variation samples
     #'weight': mcCommonWeight + '*nllWOTF', # temporary
     'FilesPerJob': 1
 }

@@ -11,12 +11,12 @@ groupPlot['DY']  = {
 		   'samples' : ['DY']
 }
 
-groupPlot['WW']  = {
-  		   'nameHR' : 'WW',
-		   'color': 632,    # kRed
-		   'isSignal' : 0,
-		   'samples' : ['WW','WWewk','ggWW']
-}
+#groupPlot['WW']  = {
+#  		   'nameHR' : 'WW',
+#		   'color': 632,    # kRed
+#		   'isSignal' : 0,
+#		   'samples' : ['WW','WWewk','ggWW']
+#}
 
 groupPlot['Zg']  = {
                   'nameHR' : 'Zg',
@@ -79,8 +79,9 @@ groupPlot['Higgs']  = {
                   'nameHR' : 'Higgs',
                   'isSignal' : 1,
                   'color': 632, # kRed 
+                  'scaleMultiplicativeOverlaid' : 10.0,
                   #'samples'  : ['WH_hww', 'ZH_hww', 'ggZH_hww', 'ttH_hww', 'ggH_htt', 'qqH_htt', 'WH_htt', 'ZH_htt'] #qqH_htt #ggH_htt
-                   'samples'  : ['WH_hww', 'ttH_hww', 'WH_htt', 'ZH_htt' , 'ZH_hww_PTV_LT150' , 'ZH_hww_PTV_GT150' , 'ggZH_hww_PTV_LT150' , 'ggZH_hww_PTV_GT150' ]
+                   'samples'  : ['WH_hww', 'ttH_hww', 'WH_htt', 'ZH_htt' , 'ZH_hww_PTV_LT150', 'ZH_hww_PTV_GT150', 'ggZH_hww_PTV_LT150', 'ggZH_hww_PTV_GT150' ]
               }
 
 # Individual plots
@@ -93,29 +94,29 @@ plot['DY']  = {
                   'scale'    : 1.0
                   }
 
-plot['WW']  = { 
-                  'nameHR' : 'WW',
-                  'color': 858, # kAzure -2  
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  'scale'    : 1.0
-                  }
+#plot['WW']  = { 
+#                  'nameHR' : 'WW',
+#                  'color': 858, # kAzure -2  
+#                  'isSignal' : 0,
+#                  'isData'   : 0,
+#                  'scale'    : 1.0
+#                  }
 
-plot['WWewk']  = { 
-                  'nameHR' : 'WWewk',
-                  'color': 858, # kAzure -2  
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  'scale'    : 1.0
-                  }
+#plot['WWewk']  = { 
+#                  'nameHR' : 'WWewk',
+#                  'color': 858, # kAzure -2  
+#                  'isSignal' : 0,
+#                  'isData'   : 0,
+#                  'scale'    : 1.0
+#                  }
 
-plot['ggWW']  = { 
-                  'nameHR' : 'ggWW',
-                  'color': 858, # kAzure -2  
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  'scale'    : 1.0
-                  }
+#plot['ggWW']  = { 
+#                  'nameHR' : 'ggWW',
+#                  'color': 858, # kAzure -2  
+#                  'isSignal' : 0,
+#                  'isData'   : 0,
+#                  'scale'    : 1.0
+#                  }
 
 plot['Zg']  = { 
                   'nameHR' : 'Zg',
@@ -139,6 +140,8 @@ plot['WZ']  = {
                   'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.0
+                  #'scale'    : 0.89 #1j norm
+                  #'scale'    : 1.22 #2j norm
                   }
 
 plot['ZZ']  = { 
@@ -301,10 +304,14 @@ plot['DATA']  = {
                   'color': 1 ,  
                   'isSignal' : 0,
                   'isData'   : 1 ,
-                  'isBlind'  : 1
+                  'isBlind'  : 0
               }
 
 # additional options
 legend['lumi'] = 'L = 59.7/fb'
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
 
+#zh3l_SR_1j_ptv_lt150:                                                        DY, top
+#zh3l_SR_2j_ptv_lt150:                                      ZH_hww_PTV_GT150,                                  
+#zh3l_SR_1j_ptv_gt150: WH_hww, ttH_hww, ggZH_hww_PTV_LT150,                   DY, top
+#zh3l_SR_2j_ptv_gt150: WH_hww,          ggZH_hww_PTV_LT150, ZH_hww_PTV_LT150, top, ZgS

@@ -3,9 +3,7 @@
 #variables = {}
 
 cutdictSR = ['hww2l2v_13TeV_'+EMorEEorMM+'_0j', 'hww2l2v_13TeV_'+EMorEEorMM+'_1j', 'hww2l2v_13TeV_'+EMorEEorMM+'_2j', 'hww2l2v_13TeV_'+EMorEEorMM+'_ggh', 'hww2l2v_13TeV_'+EMorEEorMM+'_vbf']
-
 cutdictSRhigh = ['hww2l2v_13TeV_'+EMorEEorMM+'_high0j', 'hww2l2v_13TeV_'+EMorEEorMM+'_high1j', 'hww2l2v_13TeV_'+EMorEEorMM+'_high2j', 'hww2l2v_13TeV_'+EMorEEorMM+'_highggh', 'hww2l2v_13TeV_'+EMorEEorMM+'_highvbf']
-
 cutdictCR = ['hww2l2v_13TeV_'+EMorEEorMM+'_dy_0j', 'hww2l2v_13TeV_'+EMorEEorMM+'_dy_1j', 'hww2l2v_13TeV_'+EMorEEorMM+'_dy_2j', 'hww2l2v_13TeV_'+EMorEEorMM+'_dy_ggh', 'hww2l2v_13TeV_'+EMorEEorMM+'_dy_vbf', 'hww2l2v_13TeV_'+EMorEEorMM+'_top_0j', 'hww2l2v_13TeV_'+EMorEEorMM+'_top_1j', 'hww2l2v_13TeV_'+EMorEEorMM+'_top_2j', 'hww2l2v_13TeV_'+EMorEEorMM+'_top_ggh', 'hww2l2v_13TeV_'+EMorEEorMM+'_top_vbf', 'hww2l2v_13TeV_'+EMorEEorMM+'_dy_high0j', 'hww2l2v_13TeV_'+EMorEEorMM+'_dy_high1j', 'hww2l2v_13TeV_'+EMorEEorMM+'_dy_high2j', 'hww2l2v_13TeV_'+EMorEEorMM+'_dy_highggh', 'hww2l2v_13TeV_'+EMorEEorMM+'_dy_highvbf', 'hww2l2v_13TeV_'+EMorEEorMM+'_top_high0j', 'hww2l2v_13TeV_'+EMorEEorMM+'_top_high1j', 'hww2l2v_13TeV_'+EMorEEorMM+'_top_high2j', 'hww2l2v_13TeV_'+EMorEEorMM+'_top_highggh', 'hww2l2v_13TeV_'+EMorEEorMM+'_top_highvbf']
 
 
@@ -47,3 +45,4 @@ variables['DNN_mth_highbinning']  = {   'name': 'DNN_mth_OTF',
                         'divideByBinWidth' : 1,
                         'cuts'  : cutdictSRhigh
                         }
+

@@ -189,12 +189,13 @@ for shift in ['jes','lf','hf','lfstats1','lfstats2','hfstats1','hfstats2','cferr
         'samples': mc
     }
 
-puidSFSource = '%s/src/LatinoAnalysis/NanoGardener/python/data/JetPUID_effcyandSF.root' % os.getenv('CMSSW_BASE')
+#puidSFSource = '%s/src/LatinoAnalysis/NanoGardener/python/data/JetPUID_effcyandSF.root' % os.getenv('CMSSW_BASE')
+puidSFSource = '%s/src/PlotsConfigurations/Configurations/patches/PUID_80XTraining_EffSFandUncties.root' % os.getenv('CMSSW_BASE')
 
 aliases['PUJetIdSF'] = {
     'linesToAdd': [
         'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
-        '.L %s/../../patches/pujetidsf_event.cc+' % configurations
+        '.L %s/../../patches/pujetidsf_event_new.cc+' % configurations
     ],
     'class': 'PUJetIdEventSF',
     'args': (puidSFSource, '2017', 'loose'),
@@ -229,3 +230,27 @@ aliases['ZH4l_pTZ'] = {
            +sqrt(Lepton_pt[1]^2+Lepton_pt[3]^2+2*Lepton_pt[1]*Lepton_pt[3]*cos(z0DeltaPhi_zh4l))*(fabs(TVector2::Phi_mpi_pi(Lepton_phi[1]-Lepton_phi[3])-z0DeltaPhi_zh4l)<0.00001) \
            +sqrt(Lepton_pt[2]^2+Lepton_pt[3]^2+2*Lepton_pt[2]*Lepton_pt[3]*cos(z0DeltaPhi_zh4l))*(fabs(TVector2::Phi_mpi_pi(Lepton_phi[2]-Lepton_phi[3])-z0DeltaPhi_zh4l)<0.00001)'
 }
+
+aliases['z0Mass_zh4l_test'] = {
+    'linesToAdd': [
+        '.L %s/src/PlotsConfigurations/Configurations/ZH4l/STXS_nanoAOD/v6/l4kin_patch.cc+' % os.getenv('CMSSW_BASE')
+    ],
+    'class': 'l4kin_patch',
+    'args': ("z0Mass_zh4l")
+}
+
+aliases['z1Mass_zh4l_test'] = {
+    'class': 'l4kin_patch',
+    'args': ("z1Mass_zh4l")
+}
+
+aliases['mllll_zh4l_test'] = {
+    'class': 'l4kin_patch',
+    'args': ("mllll_zh4l")
+}
+
+aliases['BDT_test'] = {
+    'class' : 'l4kin_patch',
+    'args' : ("BDT")
+}
+

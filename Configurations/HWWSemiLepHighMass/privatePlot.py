@@ -15,10 +15,10 @@ from collections import OrderedDict
 
 
 # X. Janssen - 21 March 2018
-# PlotFactory splitted from this file and moved to python to be able to use in other scripts (mkACPlot.py) 
+# PlotFactory splitted from this file and moved to python to be able to use in other scripts (mkACPlot.py)
 #
 
-from linearFit import PlotFactory   
+from linearFit import PlotFactory
 
 if __name__ == '__main__':
     sys.argv = argv
@@ -26,13 +26,13 @@ if __name__ == '__main__':
     print '''
 --------------------------------------------------------------------------------------------------
 
-   _ \   |         |         \  |         |                
-  |   |  |   _ \   __|      |\/ |   _` |  |  /   _ \   __| 
-  ___/   |  (   |  |        |   |  (   |    <    __/  |    
- _|     _| \___/  \__|     _|  _| \__,_| _|\_\ \___| _|   
- 
+   _ \   |         |         \  |         |
+  |   |  |   _ \   __|      |\/ |   _` |  |  /   _ \   __|
+  ___/   |  (   |  |        |   |  (   |    <    __/  |
+ _|     _| \___/  \__|     _|  _| \__,_| _|\_\ \___| _|
+
 --------------------------------------------------------------------------------------------------
-'''    
+'''
     usage = 'usage: %prog [options]'
     parser = optparse.OptionParser(usage)
 
@@ -61,15 +61,15 @@ if __name__ == '__main__':
     parser.add_option('--plotNormalizedDistributionsTHstack'  , dest='plotNormalizedDistributionsTHstack'  , help='plot also normalized distributions for optimization purposes, with stacked sig and bkg'  ,    action='store_true'       , default=None )
 
     parser.add_option('--showIntegralLegend'           , dest='showIntegralLegend'           , help='show the integral, the yields, in the legend'                         , default=0,    type=float )
-          
+
     parser.add_option('--showRelativeRatio'   , dest='showRelativeRatio'   , help='draw instead of data-expected, (data-expected) / expected' ,    action='store_true', default=False)
     parser.add_option('--showDataMinusBkgOnly', dest='showDataMinusBkgOnly', help='draw instead of data-expected, data-expected background only' , action='store_true', default=False)
-         
+
     parser.add_option('--removeWeight', dest='removeWeight', help='Remove weight S/B for PR plots, just do the sum' , action='store_true', default=False)
 
     parser.add_option('--invertXY', dest='invertXY', help='Invert the weighting for X <-> Y. Instead of slices along Y, do slices along X' , action='store_true', default=False)
 
-    parser.add_option('--postFit', dest='postFit', help='Plot sum of post-fit backgrounds, and the data/post-fit ratio.' , default='n') 
+    parser.add_option('--postFit', dest='postFit', help='Plot sum of post-fit backgrounds, and the data/post-fit ratio.' , default='n')
 
     # read default parsing options as well
     hwwtools.addOptions(parser)
@@ -85,7 +85,7 @@ if __name__ == '__main__':
     print "                   inputFile =", opt.inputFile
     print "              outputDirPlots =", opt.outputDirPlots
     print " plotNormalizedDistributions =", opt.plotNormalizedDistributions
-    print "   plotNormalizedIncludeData =", opt.plotNormalizedIncludeData  
+    print "   plotNormalizedIncludeData =", opt.plotNormalizedIncludeData
     print " plotNormalizedDistributionsTHstack =", opt.plotNormalizedDistributionsTHstack
     print "          showIntegralLegend =", opt.showIntegralLegend
     print "                 scaleToPlot =", opt.scaleToPlot
@@ -96,7 +96,7 @@ if __name__ == '__main__':
     print "           showRelativeRatio =", opt.showRelativeRatio
     print "        showDataMinusBkgOnly =", opt.showDataMinusBkgOnly
     print "                removeWeight =", opt.removeWeight
-    print "                    invertXY =", opt.invertXY    
+    print "                    invertXY =", opt.invertXY
     print "                    postFit  =", opt.postFit
     print ""
 
@@ -116,7 +116,7 @@ if __name__ == '__main__':
         print 'Logging level set to INFO (%d)' % opt.debug
         logging.basicConfig( level=logging.INFO )
 
-      
+
     factory = PlotFactory()
     factory._tag       = opt.tag
     factory._energy    = opt.energy
@@ -131,9 +131,9 @@ if __name__ == '__main__':
     factory._plotLinear = opt.linearOnly or not opt.logOnly
     factory._plotLog = opt.logOnly or not opt.linearOnly
 
-    factory._scaleToPlot = opt.scaleToPlot 
-    factory._minLogC = opt.minLogC 
-    factory._maxLogC = opt.maxLogC 
+    factory._scaleToPlot = opt.scaleToPlot
+    factory._minLogC = opt.minLogC
+    factory._maxLogC = opt.maxLogC
     factory._minLogCratio = opt.minLogCratio
     factory._maxLogCratio = opt.maxLogCratio
     factory._maxLinearScale = opt.maxLinearScale
@@ -149,19 +149,19 @@ if __name__ == '__main__':
     factory._invertXY = opt.invertXY
 
     factory._fileFormats = opt.fileFormats.split(',')
-    
+
     factory._postFit = opt.postFit
 
-    
+
     #samples = {}
     samples = OrderedDict()
     if opt.samplesFile == None :
-      print " Please provide the samples structure (not strictly needed in mkPlot, since list of samples read from plot.py) "    
+      print " Please provide the samples structure (not strictly needed in mkPlot, since list of samples read from plot.py) "
     elif os.path.exists(opt.samplesFile) :
       handle = open(opt.samplesFile,'r')
       exec(handle)
       handle.close()
-   
+
     cuts = {}
     if os.path.exists(opt.cutsFile) :
       handle = open(opt.cutsFile,'r')
@@ -190,11 +190,11 @@ if __name__ == '__main__':
     utils.update_variables_with_categories(variables, categoriesmap)
     utils.update_nuisances_with_subsamples(nuisances, subsamplesmap)
     utils.update_nuisances_with_categories(nuisances, categoriesmap)
-   
+
     # check if only one cut or only one variable
     # is requested, and filter th elist of cuts and variables
     # using this piece of information
-    
+
     if opt.onlyVariable != None :
       list_to_remove = []
       for variableName, variable in variables.iteritems():
@@ -202,7 +202,7 @@ if __name__ == '__main__':
            list_to_remove.append(variableName)
       for toRemove in list_to_remove:
         del variables[toRemove]
-           
+
       print  " variables = ", variables
 
     if opt.onlyCut != None :
@@ -214,15 +214,16 @@ if __name__ == '__main__':
         del cuts[toRemove]
 
       print  " cuts = ", cuts
-       
+
     groupPlot = OrderedDict()
     plot = {}
     legend = {}
     if os.path.exists(opt.plotFile) :
-      handle = open(opt.plotFile,'r')
-      exec(handle)
-      handle.close()
-   
-    factory.makePlot( opt.inputFile ,opt.outputDirPlots, variables, cuts, samples, plot, nuisances, legend, groupPlot)
-    
+        handle = open(opt.plotFile,'r')
+        exec(handle)
+        handle.close()
+
+    inputFile = opt.inputFile if opt.inputFile != 'input.root' else 'rootFile/plots_{}.root'.format(opt.tag)
+    factory.makePlot( inputFile ,opt.outputDirPlots, variables, cuts, samples, plot, nuisances, legend, groupPlot)
+
     print '... and now closing ...'

@@ -134,6 +134,19 @@ Get the bkg normalization factors taken from the fit to the data. If blinded, us
     root -l fitDiagnostics.root 
     fit_s->Print()
 
+Get PostFit tables and plots
+    combine datacards_2016/datacard_DH_mhs_160_mx_100_mZp_500_combined_corr.root -M FitDiagnostics --saveShapes --saveWithUncertainties
+
+    mkPostFitTable.py --inputFileCombine fitDiagnostics.root --outputFile out.root --variable mtw2 --cut ch1_ch1 --cutNameInOriginal  SR_Incl --inputFile rootFile/plots_darkHiggs2017_v7.root --kind b
+    mkPostFitPlot.py --inputFileCombine fitDiagnostics.root --outputFile out.root --variable mtw2 --cut ch1_ch1 --cutNameInOriginal  SR_Incl --inputFile rootFile/plots_darkHiggs2017_v7.root --kind b
+
+or
+    root -l fitDiagnostics.root
+    _file0->cd("shapes_fit_s/ch1")
+    Double_t errorVal = 0.0
+    Fake->IntegralAndError(-1, Fake->GetNbinsX(), errorVal)
+    errorVal
+
 Run the limits: (add the postFit normalization factors obtained in the previous step in mkLimits.py)
 
     python mkLimits.py datacards_2016 /afs/cern.ch/work/f/fernanpe/CMSSW_10_2_13/src/HiggsAnalysis/CombinedLimit /afs/cern.ch/work/f/fernanpe/framework_monoHFullRun2/CMSSW_10_2_9/src/PlotsConfigurations/Configurations/monoHWW/Full2016_v7/ 

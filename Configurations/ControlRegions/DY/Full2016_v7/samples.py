@@ -35,7 +35,7 @@ dataReco = 'Run2016_102X_nAODv7_Full2016v7'
 
 embedReco = 'Embedding2016_102X_nAODv7_Full2016v7'
 
-mcSteps = 'MCl1loose2016v7__MCCorr2016v7__l2loose__l2tightOR2016v7{var}'
+mcSteps = 'MCl1loose2016v7__MCCorr2016v7__l2loose__l2tightOR2016v7__trigFix{var}'
 
 fakeSteps = 'DATAl1loose2016v7__l2loose__fakeW'
 

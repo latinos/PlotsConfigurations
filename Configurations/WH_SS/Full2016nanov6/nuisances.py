@@ -362,6 +362,16 @@ nuisances['WgStar'] = {
     }
 }
 
+## Charge flip SF
+
+nuisances['chargeFlip'] = {
+    'name': 'CMS_whss_chargeFlip',
+    'kind': 'weight',
+    'type': 'shape',
+    'samples': dict((skey, ['1-ttHMVA_SF_err_flip_2l[0]', '1+ttHMVA_SF_err_flip_2l[0]']) for skey in ['DY','WW','top']),
+}
+
+
 ###### pdf uncertainties
 
 valuesggh = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ggH','125.09','pdf','sm')

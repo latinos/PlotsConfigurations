@@ -233,12 +233,13 @@ aliases['Top_pTrw'] = {
 
 # PU jet Id SF
 
-puidSFSource = '%s/src/LatinoAnalysis/NanoGardener/python/data/JetPUID_effcyandSF.root' % os.getenv('CMSSW_BASE')
+#puidSFSource = '%s/src/LatinoAnalysis/NanoGardener/python/data/JetPUID_effcyandSF.root' % os.getenv('CMSSW_BASE')
+puidSFSource = '{}/../../patches/PUID_80XTraining_EffSFandUncties.root'.format(configurations)
 
 aliases['PUJetIdSF'] = {
     'linesToAdd': [
         'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
-        '.L %s/../../patches/pujetidsf_event.cc+' % configurations
+        '.L %s/../../patches/pujetidsf_event_new.cc+' % configurations
     ],
     'class': 'PUJetIdEventSF',
     'args': (puidSFSource, '2018', 'loose'),
@@ -340,3 +341,15 @@ aliases['SFweight'] = {
     'expr': ' * '.join(['SFweight2l', 'ttHMVA_SF_2l', 'LepWPCut', 'btagSF','PUJetIdSF']),
     'samples': mc
 }
+
+aliases['ttHMVA_SF_flip_2l'] = {'linesToAdd': ['.L %s/../../macros/flipper.C+' % configurations],
+                           'class': 'flipper',
+                           'args' : ('2018', 2, 'Total_SF'),
+                           'samples': ['WW','top','DY']
+                          }
+
+aliases['ttHMVA_SF_err_flip_2l'] = {
+                           'class': 'flipper',
+                           'args' : ('2018', 2, 'Total_SF_err'),
+                           'samples': ['WW','top','DY']
+                          }

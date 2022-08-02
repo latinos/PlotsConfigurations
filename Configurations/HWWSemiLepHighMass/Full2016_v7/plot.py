@@ -15,30 +15,31 @@ else:
 # If not defined, normal plots is used
 #
 
-groupPlot['SM Higgs'] = {
-'nameHR': 'SM Higgs',
-'isSignal' : 0,
-'color': 863, # kAzure +3
-'samples'  : ['ggH_hww', 'qqH_hww', 'ZH_hww', 'WH_hww', 'ggH_htt', 'qqH_htt', 'ZH_htt', 'WH_htt']
-}
+# groupPlot['SM Higgs'] = {
+# 'nameHR': 'SM Higgs',
+# 'isSignal' : 0,
+# 'color': 863, # kAzure +3
+# 'samples'  : ['ggH_hww', 'qqH_hww', 'ZH_hww', 'WH_hww', 'ggH_htt', 'qqH_htt', 'ZH_htt', 'WH_htt']
+# }
 groupPlot['multiboson']  = {
 'nameHR' : 'multiboson',
 'isSignal' : 0,
 'color': 857, # kAzure -3
-'samples'  : ['WW', 'ggWW', 'WWewk', 'qqWWqq', 'WW2J', 'VVV', 'VZ', 'Vg', 'VgS_H',  'VgS_L']
-}
-groupPlot['QCD'] = {
-'nameHR' : "QCD",
-'isSignal' : 0,
-'color'    : 617,   # kViolet + 1
-'samples'  : ['QCD']
+# 'samples'  : ['WW', 'ggWW', 'WWewk', 'qqWWqq', 'WW2J', 'VVV', 'VZ', 'Vg', 'VgS_H',  'VgS_L']
+'samples'  : ['WW', 'ggWW', 'WWewk', 'qqWWqq', 'WW2J', 'VVV', 'VZ', 'Vg', 'VgS_H',  'VgS_L', 'ggH_hww', 'qqH_hww', 'ZH_hww', 'WH_hww', 'ggH_htt', 'qqH_htt', 'ZH_htt', 'WH_htt']
 }
 groupPlot['FAKE'] = {
-'nameHR' : "Fake",
+'nameHR' : "QCD and Fake",
 'isSignal' : 0,
 'color'    : 617,   # kViolet + 1
-'samples'  : ['FAKE']
+'samples'  : ['FAKE', 'QCD']
 }
+# groupPlot['QCD'] = {
+# 'nameHR' : "QCD",
+# 'isSignal' : 0,
+# 'color'    : 617,   # kViolet + 1
+# 'samples'  : ['QCD']
+# }
 groupPlot['DY']  = {
 'nameHR' : "DY",
 'isSignal' : 0,
@@ -58,7 +59,6 @@ groupPlot['Wjets'] = {
     'samples'  : ['Wjets'],
 }
 
-# Signal
 for counter, MX in enumerate(plotmasses):
     groupPlot['Higgs{}'.format(MX)] = {
         'nameHR'  : 'Higgs {}'.format(MX),
@@ -105,6 +105,7 @@ plot['top'] = {
     'isData'   : 0,
     'scale'    : 1.0,
 }
+
 
 plot['WW']  = {
     'color': 851, # kAzure -9
@@ -193,7 +194,6 @@ plot['qqH_hww'] = {
     'isData'   : 0,
     'scale'    : 1    #
 }
-
 plot['ggH_hww'] = {
     # 'nameHR' : 'ggH',
     'color': 632, # kRed

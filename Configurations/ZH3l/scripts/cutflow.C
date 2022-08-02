@@ -1,27 +1,34 @@
 {
-  TFile *f0 = TFile::Open("rootFiles_ZH3l_2016_CR_noNF/plots_ZH3l_2016_CR_noNF.root");
+  TFile *f0 = TFile::Open("../Full2016/rootFiles_ZH3l_2016_v6_newWP/plots_ZH3l_2016_v6_newWP.root");
 
   // Fragile, because it must match the name and ordering in cuts.py
-  TString cutslist[12] = {"preselection", "zmass_cut", "zh3l_Zg_CR_1j", "zh3l_WZ_CR_1j", "jet_cut_1j", "bveto_1j", "z4lveto_1j", "zh3l_Zg_CR_2j", "zh3l_WZ_CR_2j", "jet_cut_2j", "bveto_2j", "z4lveto_2j"};
-  int ncut = 12;
-  // TString cutslist[14] = {"preselection", "zmass_cut", "zh3l_Zg_CR_1j", "zh3l_WZ_CR_1j", "jet_cut_1j", "bveto_1j", "z4lveto_1j", "zh3l_SR_1j", "zh3l_Zg_CR_2j", "zh3l_WZ_CR_2j", "jet_cut_2j", "bveto_2j", "z4lveto_2j", "zh3l_SR_2j"};
-  // int ncut = 14;
+  //TString cutslist[12] = {"preselection", "zmass_cut", "zh3l_Zg_CR_1j", "zh3l_WZ_CR_1j", "jet_cut_1j", "bveto_1j", "z4lveto_1j", "zh3l_Zg_CR_2j", "zh3l_WZ_CR_2j", "jet_cut_2j", "bveto_2j", "z4lveto_2j"};
+  //int ncut = 12;
+  TString cutslist[14] = {"preselection", "zmass_cut", "zh3l_Zg_CR_1j", "zh3l_WZ_CR_1j", "jet_cut_1j", "bveto_1j", "z4lveto_1j", "zh3l_SR_1j", "zh3l_Zg_CR_2j", "zh3l_WZ_CR_2j", "jet_cut_2j", "bveto_2j", "z4lveto_2j", "zh3l_SR_2j"};
+  int ncut = 14;
 
   // Would be good to split out so that NFs are calculated separately and you don't have to
   // print them at an awkward point in the cutflow.
 
   bool do_ratios = false;
-  bool apply_NFs = true;
-  bool tex_mode = false;
+  bool apply_NFs = false;
+  bool tex_mode = true;
   bool signal_region = false;
 
-  float n_ZH = 0.0;
-  float n_ggZH = 0.0;
+  float n_WW = 0.0;
+  float n_WWewk = 0.0;
+  float n_ggWW = 0.0;
+  float n_DY = 0.0;
+  float n_ZgS = 0.0;
+  float n_ZH_hww = 0.0;
+  float n_ggZH_hww = 0.0;
+  float n_WH_hww = 0.0;
+  float n_ttH_hww = 0.0;
+  float n_WH_htt = 0.0;
+  float n_ZH_htt = 0.0;
   float n_ttZ = 0.0;
   float n_Zg = 0.0;
   float n_VVV = 0.0;
-  float n_WH_htt = 0.0;
-  float n_WH_hww = 0.0;
   float n_ZZ = 0.0;
   float n_Fake = 0.0;
   float n_DATA = 0.0;
@@ -77,8 +84,8 @@
   }
 
   for (int i = 0; i < ncut; i++) {
-    n_ZH 	= ((TH1F*) f0->Get(cutslist[i]+"/events/histo_ZH_hww"))->Integral();
-    n_ggZH 	= ((TH1F*) f0->Get(cutslist[i]+"/events/histo_ggZH_hww"))->Integral();
+    n_ZH_hww 	= ((TH1F*) f0->Get(cutslist[i]+"/events/histo_ZH_hww"))->Integral();
+    n_ggZH_hww 	= ((TH1F*) f0->Get(cutslist[i]+"/events/histo_ggZH_hww"))->Integral();
     n_ttZ 	= ((TH1F*) f0->Get(cutslist[i]+"/events/histo_ttZ"))->Integral();
     if (cutslist[i].Contains("1j") && apply_NFs) 
       n_Zg 	= Zg_1j_NF * ((TH1F*) f0->Get(cutslist[i]+"/events/histo_Zg"))->Integral();
@@ -89,9 +96,11 @@
 
     n_VVV 	= ((TH1F*) f0->Get(cutslist[i]+"/events/histo_VVV"))->Integral();
     n_WH_hww 	= ((TH1F*) f0->Get(cutslist[i]+"/events/histo_WH_hww"))->Integral();
+    n_WH_htt 	= ((TH1F*) f0->Get(cutslist[i]+"/events/histo_WH_htt"))->Integral();
+    n_ZH_htt 	= ((TH1F*) f0->Get(cutslist[i]+"/events/histo_ZH_htt"))->Integral();
     n_ZZ 	= ((TH1F*) f0->Get(cutslist[i]+"/events/histo_ZZ"))->Integral();
     n_Fake 	= ((TH1F*) f0->Get(cutslist[i]+"/events/histo_Fake_me"))->Integral();
-    n_Fake 	+= ((TH1F*) f0->Get(cutslist[i]+"/events/histo_Fake_em"))->Integral();
+    //n_Fake 	+= ((TH1F*) f0->Get(cutslist[i]+"/events/histo_Fake_em"))->Integral();
     n_DATA 	= ((TH1F*) f0->Get(cutslist[i]+"/events/histo_DATA"))->Integral();
     if (cutslist[i].Contains("1j") && apply_NFs) 
       n_WZ 	= WZ_1j_NF * ((TH1F*) f0->Get(cutslist[i]+"/events/histo_WZ"))->Integral();
@@ -100,13 +109,13 @@
     else
       n_WZ 	= ((TH1F*) f0->Get(cutslist[i]+"/events/histo_WZ"))->Integral();
 
-    n_Higgs = n_ZH + n_ggZH + n_WH_htt  +  n_WH_hww;
+    n_Higgs = n_ZH_hww + n_ggZH_hww + n_WH_htt + n_ZH_htt + n_WH_hww;
     n_BG = n_ttZ + n_Zg + n_VVV + n_ZZ + n_Fake + n_WZ;
     n_Pred = n_Higgs + n_BG;
 
     if (do_ratios) {
-      n_ZH 	= n_ZH	   / n_Pred * 100;
-      n_ggZH 	= n_ggZH   / n_Pred * 100;
+      n_ZH_hww 	= n_ZH_hww	   / n_Pred * 100;
+      n_ggZH_hww 	= n_ggZH_hww   / n_Pred * 100;
       n_ttZ 	= n_ttZ    / n_Pred * 100;
       n_Zg 	= n_Zg 	   / n_Pred * 100;
       n_VVV 	= n_VVV    / n_Pred * 100;
@@ -144,8 +153,8 @@
 	  n_Fake , 
 	  n_ttZ , 
 	  n_BG, 
-	  n_ZH, 
-	  n_ggZH, 
+	  n_ZH_hww, 
+	  n_ggZH_hww, 
 	  n_Higgs , 
 	  n_Higgs/n_BG,
 	  n_Pred,

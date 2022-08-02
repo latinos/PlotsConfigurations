@@ -19,7 +19,15 @@ variables['WH2l_pTW'] = {'name' : 'WH2l_pTW[0]',
 variables['mlljj20_whss']  = {   'name': 'mlljj20_whss',
                         'range' : ([60.,100.,110.,120.,130.,140.,150.,200.,250.,300.],),
                         'xaxis' : 'mlljj20_whss [GeV]',
-                        'fold' : 0
+                        'fold' : 0,
+                        'cuts' : [cut for cut in cuts if cut != 'hww2l2v_13TeV_of2j_WH_SS_uu_2j_ptv_gt150']
+                        }
+
+variables['mlljj20_whss_4']  = {   'name': 'mlljj20_whss',
+                        'range' : ([60.,100.,110.,120.,130.,140.,150.,200.,250.,300.],),
+                        'xaxis' : 'mlljj20_whss [GeV]',
+                        'fold' : 0,
+                        'cuts' : ['hww2l2v_13TeV_of2j_WH_SS_uu_2j_ptv_gt150']
                         }
 
 '''

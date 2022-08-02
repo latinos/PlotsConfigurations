@@ -55,15 +55,45 @@ class WH3l_patch_BDT1718 : public multidraw::TTreeFunction
 
         std::unique_ptr<TMVA::Reader> mvaReader_BDTGOSSF2016{new TMVA::Reader()};
         double get_BDTGOSSF2016();
+        std::unique_ptr<TMVA::Reader> mvaReader_BDTGOSSF2016_v1{new TMVA::Reader()};
+        double get_BDTGOSSF2016_v1();
+        std::unique_ptr<TMVA::Reader> mvaReader_BDTGOSSF2016_v2{new TMVA::Reader()};
+        double get_BDTGOSSF2016_v2();
+        std::unique_ptr<TMVA::Reader> mvaReader_BDTGOSSF2016_v3{new TMVA::Reader()};
+        double get_BDTGOSSF2016_v3();
+        std::unique_ptr<TMVA::Reader> mvaReader_BDTGOSSF2016_v4{new TMVA::Reader()};
+        double get_BDTGOSSF2016_v4();
+        std::unique_ptr<TMVA::Reader> mvaReader_BDTGOSSF2016_v5{new TMVA::Reader()};
+        double get_BDTGOSSF2016_v5();
+        std::unique_ptr<TMVA::Reader> mvaReader_BDTGOSSF2016_v6{new TMVA::Reader()};
+        double get_BDTGOSSF2016_v6();
+        std::unique_ptr<TMVA::Reader> mvaReader_BDTGOSSF2016_v7{new TMVA::Reader()};
+        double get_BDTGOSSF2016_v7();
+        std::unique_ptr<TMVA::Reader> mvaReader_BDTGOSSF2016_v8{new TMVA::Reader()};
+        double get_BDTGOSSF2016_v8();
 
-        std::unique_ptr<TMVA::Reader> mvaReader_BDTGOSSF1718{new TMVA::Reader()};
-        double get_BDTGOSSF1718();
+  //std::unique_ptr<TMVA::Reader> mvaReader_BDTGOSSF1718{new TMVA::Reader()};
+  //double get_BDTGOSSF1718();
 
         std::unique_ptr<TMVA::Reader> mvaReader_BDTGSSSF2016{new TMVA::Reader()};
         double get_BDTGSSSF2016();
+        std::unique_ptr<TMVA::Reader> mvaReader_BDTGSSSF2016_v1{new TMVA::Reader()};
+        double get_BDTGSSSF2016_v1();
+        std::unique_ptr<TMVA::Reader> mvaReader_BDTGSSSF2016_v2{new TMVA::Reader()};
+        double get_BDTGSSSF2016_v2();
+        std::unique_ptr<TMVA::Reader> mvaReader_BDTGSSSF2016_v3{new TMVA::Reader()};
+        double get_BDTGSSSF2016_v3();
+        std::unique_ptr<TMVA::Reader> mvaReader_BDTGSSSF2016_v4{new TMVA::Reader()};
+        double get_BDTGSSSF2016_v4();
+        std::unique_ptr<TMVA::Reader> mvaReader_BDTGSSSF2016_v5{new TMVA::Reader()};
+        double get_BDTGSSSF2016_v5();
+        std::unique_ptr<TMVA::Reader> mvaReader_BDTGSSSF2016_v6{new TMVA::Reader()};
+        double get_BDTGSSSF2016_v6();
+        std::unique_ptr<TMVA::Reader> mvaReader_BDTGSSSF2016_v7{new TMVA::Reader()};
+        double get_BDTGSSSF2016_v7();
 
-        std::unique_ptr<TMVA::Reader> mvaReader_BDTGSSSF1718{new TMVA::Reader()};
-        double get_BDTGSSSF1718();
+  //std::unique_ptr<TMVA::Reader> mvaReader_BDTGSSSF1718{new TMVA::Reader()};
+  //double get_BDTGSSSF1718();
 
     protected:
         void bindTree_(multidraw::FunctionLibrary&) override;
@@ -108,10 +138,28 @@ WH3l_patch_BDT1718::WH3l_patch_BDT1718(const char* variable_) :
     TTreeFunction(),
     variable{variable_}
 {
-    initMvaReader_BDTGOSSF(mvaReader_BDTGOSSF2016   , "BDTG4F07","/afs/cern.ch/user/p/pyu/public/HWWAnalysis/FullRunII06Apr_v6/TMVAClassification_2016OSSF.weights.xml");
-    initMvaReader_BDTGOSSF(mvaReader_BDTGOSSF1718   , "BDTG4F07D31C2","/afs/cern.ch/user/p/pyu/public/HWWAnalysis/FullRunII06Apr_v6/TMVAClassification_2017OSSF.weights.xml");
-    initMvaReader_BDTGSSSF(mvaReader_BDTGSSSF2016   , "BDTGC10D4C10S1","/afs/cern.ch/user/p/pyu/public/HWWAnalysis/FullRunII06Apr_v6/TMVAClassification_2016SSSF.weights.xml");
-    initMvaReader_BDTGSSSF(mvaReader_BDTGSSSF1718   , "BDTGC10D4C10S1","/afs/cern.ch/user/p/pyu/public/HWWAnalysis/FullRunII06Apr_v6/TMVAClassification_2017SSSF.weights.xml");
+    initMvaReader_BDTGOSSF(mvaReader_BDTGOSSF2016   , "BDTG4F07",    "/afs/cern.ch/user/d/dittmer/private/hww2018/CMSSW_9_4_12/src/PlotsConfigurations/Configurations/WH3l/BDT_training/16/datasetOSSF/weights/TMVAClassification_BDTG4F07.weights.xml");
+    initMvaReader_BDTGOSSF(mvaReader_BDTGOSSF2016_v1, "BDTG4",       "/afs/cern.ch/user/d/dittmer/private/hww2018/CMSSW_9_4_12/src/PlotsConfigurations/Configurations/WH3l/BDT_training/16/datasetOSSF/weights/TMVAClassification_BDTG4.weights.xml");
+    initMvaReader_BDTGOSSF(mvaReader_BDTGOSSF2016_v2, "BDTG4C3",     "/afs/cern.ch/user/d/dittmer/private/hww2018/CMSSW_9_4_12/src/PlotsConfigurations/Configurations/WH3l/BDT_training/16/datasetOSSF/weights/TMVAClassification_BDTG4C3.weights.xml");
+    initMvaReader_BDTGOSSF(mvaReader_BDTGOSSF2016_v3, "BDTG4D3",     "/afs/cern.ch/user/d/dittmer/private/hww2018/CMSSW_9_4_12/src/PlotsConfigurations/Configurations/WH3l/BDT_training/16/datasetOSSF/weights/TMVAClassification_BDTG4D3.weights.xml");
+    initMvaReader_BDTGOSSF(mvaReader_BDTGOSSF2016_v4, "BDTG4D4",     "/afs/cern.ch/user/d/dittmer/private/hww2018/CMSSW_9_4_12/src/PlotsConfigurations/Configurations/WH3l/BDT_training/16/datasetOSSF/weights/TMVAClassification_BDTG4D4.weights.xml");
+    initMvaReader_BDTGOSSF(mvaReader_BDTGOSSF2016_v5, "BDTG4D5",     "/afs/cern.ch/user/d/dittmer/private/hww2018/CMSSW_9_4_12/src/PlotsConfigurations/Configurations/WH3l/BDT_training/16/datasetOSSF/weights/TMVAClassification_BDTG4D5.weights.xml");
+    initMvaReader_BDTGOSSF(mvaReader_BDTGOSSF2016_v6, "BDTG4D6",     "/afs/cern.ch/user/d/dittmer/private/hww2018/CMSSW_9_4_12/src/PlotsConfigurations/Configurations/WH3l/BDT_training/16/datasetOSSF/weights/TMVAClassification_BDTG4D6.weights.xml");
+    initMvaReader_BDTGOSSF(mvaReader_BDTGOSSF2016_v7, "BDTG4SK01",   "/afs/cern.ch/user/d/dittmer/private/hww2018/CMSSW_9_4_12/src/PlotsConfigurations/Configurations/WH3l/BDT_training/16/datasetOSSF/weights/TMVAClassification_BDTG4SK01.weights.xml");
+    initMvaReader_BDTGOSSF(mvaReader_BDTGOSSF2016_v8, "BDTG4SK01F07","/afs/cern.ch/user/d/dittmer/private/hww2018/CMSSW_9_4_12/src/PlotsConfigurations/Configurations/WH3l/BDT_training/16/datasetOSSF/weights/TMVAClassification_BDTG4SK01F07.weights.xml");
+
+    //initMvaReader_BDTGOSSF(mvaReader_BDTGOSSF1718   , "BDTG4F07D31C2","/afs/cern.ch/user/p/pyu/public/HWWAnalysis/FullRunII06Apr_v6/TMVAClassification_2017OSSF.weights.xml");
+    //initMvaReader_BDTGSSSF(mvaReader_BDTGSSSF2016   , "BDTGC10D4C10S1","/afs/cern.ch/user/p/pyu/public/HWWAnalysis/FullRunII06Apr_v6/TMVAClassification_2016SSSF.weights.xml");
+    initMvaReader_BDTGSSSF(mvaReader_BDTGSSSF2016   , "BDTG4SK01C10D4_1000Trees","/afs/cern.ch/user/d/dittmer/private/hww2018/CMSSW_9_4_12/src/PlotsConfigurations/Configurations/WH3l/BDT_training/16/datasetSSSF/weights/TMVAClassification_BDTG4SK01C10D4_1000Trees.weights.xml");
+    initMvaReader_BDTGSSSF(mvaReader_BDTGSSSF2016_v1, "BDTG4",                   "/afs/cern.ch/user/d/dittmer/private/hww2018/CMSSW_9_4_12/src/PlotsConfigurations/Configurations/WH3l/BDT_training/16/datasetSSSF/weights/TMVAClassification_BDTG4.weights.xml");
+    initMvaReader_BDTGSSSF(mvaReader_BDTGSSSF2016_v2, "BDTG4C10",                "/afs/cern.ch/user/d/dittmer/private/hww2018/CMSSW_9_4_12/src/PlotsConfigurations/Configurations/WH3l/BDT_training/16/datasetSSSF/weights/TMVAClassification_BDTG4C10.weights.xml");
+    initMvaReader_BDTGSSSF(mvaReader_BDTGSSSF2016_v3, "BDTG4SK01",               "/afs/cern.ch/user/d/dittmer/private/hww2018/CMSSW_9_4_12/src/PlotsConfigurations/Configurations/WH3l/BDT_training/16/datasetSSSF/weights/TMVAClassification_BDTG4SK01.weights.xml");
+    initMvaReader_BDTGSSSF(mvaReader_BDTGSSSF2016_v4, "BDTG4SK01C10_1000Trees",  "/afs/cern.ch/user/d/dittmer/private/hww2018/CMSSW_9_4_12/src/PlotsConfigurations/Configurations/WH3l/BDT_training/16/datasetSSSF/weights/TMVAClassification_BDTG4SK01C10_1000Trees.weights.xml");
+    initMvaReader_BDTGSSSF(mvaReader_BDTGSSSF2016_v5, "BDTG4SK01F02",            "/afs/cern.ch/user/d/dittmer/private/hww2018/CMSSW_9_4_12/src/PlotsConfigurations/Configurations/WH3l/BDT_training/16/datasetSSSF/weights/TMVAClassification_BDTG4SK01F02.weights.xml");
+    initMvaReader_BDTGSSSF(mvaReader_BDTGSSSF2016_v6, "BDTG4SK01F02_1000Trees",  "/afs/cern.ch/user/d/dittmer/private/hww2018/CMSSW_9_4_12/src/PlotsConfigurations/Configurations/WH3l/BDT_training/16/datasetSSSF/weights/TMVAClassification_BDTG4SK01F02_1000Trees.weights.xml");
+    initMvaReader_BDTGSSSF(mvaReader_BDTGSSSF2016_v7, "BDTG4SK01_1000Trees",     "/afs/cern.ch/user/d/dittmer/private/hww2018/CMSSW_9_4_12/src/PlotsConfigurations/Configurations/WH3l/BDT_training/16/datasetSSSF/weights/TMVAClassification_BDTG4SK01_1000Trees.weights.xml");
+    //initMvaReader_BDTGSSSF(mvaReader_BDTGSSSF1718   , "BDTGC10D4C10S1","/afs/cern.ch/user/p/pyu/public/HWWAnalysis/FullRunII06Apr_v6/TMVAClassification_2017SSSF.weights.xml");
+
 }
 
 void
@@ -335,15 +383,60 @@ WH3l_patch_BDT1718::getValue(std::string variableName)
     else if (variableName == "BDT_OSSF2016"){
         return get_BDTGOSSF2016();
     }
-    else if (variableName == "BDT_OSSF1718"){
-        return get_BDTGOSSF1718();
+    else if (variableName == "BDT_OSSF2016_v1"){
+        return get_BDTGOSSF2016_v1();
     }
+    else if (variableName == "BDT_OSSF2016_v2"){
+        return get_BDTGOSSF2016_v2();
+    }
+    else if (variableName == "BDT_OSSF2016_v3"){
+        return get_BDTGOSSF2016_v3();
+    }
+    else if (variableName == "BDT_OSSF2016_v4"){
+        return get_BDTGOSSF2016_v4();
+    }
+    else if (variableName == "BDT_OSSF2016_v5"){
+        return get_BDTGOSSF2016_v5();
+    }
+    else if (variableName == "BDT_OSSF2016_v6"){
+        return get_BDTGOSSF2016_v6();
+    }
+    else if (variableName == "BDT_OSSF2016_v7"){
+        return get_BDTGOSSF2016_v7();
+    }
+    else if (variableName == "BDT_OSSF2016_v8"){
+        return get_BDTGOSSF2016_v8();
+    }
+    //else if (variableName == "BDT_OSSF1718"){
+    //    return get_BDTGOSSF1718();
+    //}
     else if (variableName == "BDT_SSSF2016"){
         return get_BDTGSSSF2016();
     }
-    else if (variableName == "BDT_SSSF1718"){
-        return get_BDTGSSSF1718();
+    else if (variableName == "BDT_SSSF2016_v1"){
+        return get_BDTGSSSF2016_v1();
     }
+    else if (variableName == "BDT_SSSF2016_v2"){
+        return get_BDTGSSSF2016_v2();
+    }
+    else if (variableName == "BDT_SSSF2016_v3"){
+        return get_BDTGSSSF2016_v3();
+    }
+    else if (variableName == "BDT_SSSF2016_v4"){
+        return get_BDTGSSSF2016_v4();
+    }
+    else if (variableName == "BDT_SSSF2016_v5"){
+        return get_BDTGSSSF2016_v5();
+    }
+    else if (variableName == "BDT_SSSF2016_v6"){
+        return get_BDTGSSSF2016_v6();
+    }
+    else if (variableName == "BDT_SSSF2016_v7"){
+        return get_BDTGSSSF2016_v7();
+    }
+    //else if (variableName == "BDT_SSSF1718"){
+    //    return get_BDTGSSSF1718();
+    //}
     else {
         std::cout << "Invalid variable!!!" << std::endl;
         return -BIGNUMBER;
@@ -448,21 +541,129 @@ WH3l_patch_BDT1718::get_BDTGOSSF2016()
 }
 
 double
-WH3l_patch_BDT1718::get_BDTGOSSF1718()
+WH3l_patch_BDT1718::get_BDTGOSSF2016_v1()
 {
     updateMvaVariable_BDTGOSSF();
-    return mvaReader_BDTGOSSF1718->EvaluateMVA("BDTG4F07D31C2");
+    return mvaReader_BDTGOSSF2016_v1->EvaluateMVA("BDTG4");
 }
+
+double
+WH3l_patch_BDT1718::get_BDTGOSSF2016_v2()
+{
+    updateMvaVariable_BDTGOSSF();
+    return mvaReader_BDTGOSSF2016_v2->EvaluateMVA("BDTG4C3");
+}
+
+double
+WH3l_patch_BDT1718::get_BDTGOSSF2016_v3()
+{
+    updateMvaVariable_BDTGOSSF();
+    return mvaReader_BDTGOSSF2016_v3->EvaluateMVA("BDTG4D3");
+}
+
+double
+WH3l_patch_BDT1718::get_BDTGOSSF2016_v4()
+{
+    updateMvaVariable_BDTGOSSF();
+    return mvaReader_BDTGOSSF2016_v4->EvaluateMVA("BDTG4D4");
+}
+
+double
+WH3l_patch_BDT1718::get_BDTGOSSF2016_v5()
+{
+    updateMvaVariable_BDTGOSSF();
+    return mvaReader_BDTGOSSF2016_v5->EvaluateMVA("BDTG4D5");
+}
+
+double
+WH3l_patch_BDT1718::get_BDTGOSSF2016_v6()
+{
+    updateMvaVariable_BDTGOSSF();
+    return mvaReader_BDTGOSSF2016_v6->EvaluateMVA("BDTG4D6");
+}
+
+double
+WH3l_patch_BDT1718::get_BDTGOSSF2016_v7()
+{
+    updateMvaVariable_BDTGOSSF();
+    return mvaReader_BDTGOSSF2016_v7->EvaluateMVA("BDTG4SK01");
+}
+
+double
+WH3l_patch_BDT1718::get_BDTGOSSF2016_v8()
+{
+    updateMvaVariable_BDTGOSSF();
+    return mvaReader_BDTGOSSF2016_v8->EvaluateMVA("BDTG4SK01F07");
+}
+
+//double
+//WH3l_patch_BDT1718::get_BDTGOSSF1718()
+//{
+//    updateMvaVariable_BDTGOSSF();
+//    return mvaReader_BDTGOSSF1718->EvaluateMVA("BDTG4F07D31C2");
+//}
 
 double
 WH3l_patch_BDT1718::get_BDTGSSSF2016()
 {
     updateMvaVariable_BDTGSSSF();
-    return mvaReader_BDTGSSSF2016->EvaluateMVA("BDTGC10D4C10S1");
+    return mvaReader_BDTGSSSF2016->EvaluateMVA("BDTG4SK01C10D4_1000Trees");
 }
+
 double
-WH3l_patch_BDT1718::get_BDTGSSSF1718()
+WH3l_patch_BDT1718::get_BDTGSSSF2016_v1()
 {
     updateMvaVariable_BDTGSSSF();
-    return mvaReader_BDTGSSSF1718->EvaluateMVA("BDTGC10D4C10S1");
+    return mvaReader_BDTGSSSF2016_v1->EvaluateMVA("BDTG4");
 }
+
+double
+WH3l_patch_BDT1718::get_BDTGSSSF2016_v2()
+{
+    updateMvaVariable_BDTGSSSF();
+    return mvaReader_BDTGSSSF2016_v2->EvaluateMVA("BDTG4C10");
+}
+
+double
+WH3l_patch_BDT1718::get_BDTGSSSF2016_v3()
+{
+    updateMvaVariable_BDTGSSSF();
+    return mvaReader_BDTGSSSF2016_v3->EvaluateMVA("BDTG4SK01");
+}
+
+double
+WH3l_patch_BDT1718::get_BDTGSSSF2016_v4()
+{
+    updateMvaVariable_BDTGSSSF();
+    return mvaReader_BDTGSSSF2016_v4->EvaluateMVA("BDTG4SK01C10_1000Trees");
+}
+
+double
+WH3l_patch_BDT1718::get_BDTGSSSF2016_v5()
+{
+    updateMvaVariable_BDTGSSSF();
+    return mvaReader_BDTGSSSF2016_v5->EvaluateMVA("BDTG4SK01F02");
+}
+
+double
+WH3l_patch_BDT1718::get_BDTGSSSF2016_v6()
+{
+    updateMvaVariable_BDTGSSSF();
+    return mvaReader_BDTGSSSF2016_v6->EvaluateMVA("BDTG4SK01F02_1000Trees");
+}
+
+double
+WH3l_patch_BDT1718::get_BDTGSSSF2016_v7()
+{
+    updateMvaVariable_BDTGSSSF();
+    return mvaReader_BDTGSSSF2016_v7->EvaluateMVA("BDTG4SK01_1000Trees");
+}
+//double
+//WH3l_patch_BDT1718::get_BDTGSSSF1718()
+//{
+//    updateMvaVariable_BDTGSSSF();
+//    return mvaReader_BDTGSSSF1718->EvaluateMVA("BDTGC10D4C10S1");
+//}
+
+
+

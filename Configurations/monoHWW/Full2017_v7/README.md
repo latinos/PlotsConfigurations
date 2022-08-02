@@ -120,6 +120,9 @@ Run the impacts and checks:
     combineTool.py -M Impacts -d datacards_2017/datacard_DH_mhs_160_mx_100_mZp_500_combined_corr.root -o impacts_t0.json -t -1 --expectSignal 0 --rMin -10 --doFits -m 1 -n t0 --job-mode condor --task-name t0 --sub-opts '+JobFlavour = "espresso"\nrequirements = (OpSysAndVer =?= "CentOS7")'
     combineTool.py -M Impacts -d datacards_2017/datacard_DH_mhs_160_mx_100_mZp_500_combined_corr.root -o impacts_t1.json -t -1 --expectSignal 1 --rMin -10 --doFits -m 1 -n t1 --job-mode condor --task-name t1 --sub-opts '+JobFlavour = "espresso"\nrequirements = (OpSysAndVer =?= "CentOS7")'
 
+
+    combine -M MultiDimFit -n _paramFit_t1_CMS_scale_met_2017 --algo impact --redefineSignalPOIs r -P CMS_scale_met_2017 --floatOtherPOIs 1 --saveInactivePOI 1 -t -1 --expectSignal=1 --robustFit 1 -m 1 -d datacards_2017/datacard_DH_mhs_160_mx_100_mZp_500_combined_corr.root --rMin 1.0 --rMax 2.0
+
     combineTool.py -M Impacts -d datacards_2017/datacard_DH_mhs_160_mx_100_mZp_500_combined_corr.root -m 1 -n t0 -o impacts_t0.json
     combineTool.py -M Impacts -d datacards_2017/datacard_DH_mhs_160_mx_100_mZp_500_combined_corr.root -m 1 -n t1 -o impacts_t1.json
 

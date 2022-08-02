@@ -8,12 +8,12 @@
 
 using namespace NNEvaluation;
 
-class DNNprod : public multidraw::TTreeFunction {
+class DNNprodSemi : public multidraw::TTreeFunction {
 public:
-  DNNprod();
+  DNNprodSemi();
 
-  char const* getName() const override { return "DNNprod"; }
-  TTreeFunction* clone() const override { return new DNNprod(); }
+  char const* getName() const override { return "DNNprodSemi"; }
+  TTreeFunction* clone() const override { return new DNNprodSemi(); }
 
   unsigned getNdata() override { return 1; }
   double evaluate(unsigned) override;
@@ -41,7 +41,7 @@ protected:
   FloatArrayReader* HM_CleanFatJetPassMBoosted_eta;
   FloatArrayReader* HM_CleanFatJetPassMBoosted_phi;
   FloatArrayReader* HM_CleanFatJetPassMBoosted_mass;
-  FloatArrayReader* HM_CleanFatJetPassMBoosted_HlnFat_mass;
+  //FloatArrayReader* HM_CleanFatJetPassMBoosted_HlnFat_mass;
   FloatValueReader* HM_Whad_pt;
   FloatValueReader* HM_Whad_eta;
   FloatValueReader* HM_Whad_phi;
@@ -50,14 +50,14 @@ protected:
   FloatValueReader* HM_Wlep_eta_Puppi;
   FloatValueReader* HM_Wlep_phi_Puppi;
   FloatValueReader* HM_Wlep_mass_Puppi;
-  FloatValueReader* HM_Hlnjj_mass;
+  //FloatValueReader* HM_Hlnjj_mass;
   IntValueReader* HM_idx_j1;
   IntValueReader* HM_idx_j2;
   FloatValueReader* HM_largest_nonW_mjj;
 
 };
 
-DNNprod::DNNprod() :
+DNNprodSemi::DNNprodSemi() :
   TTreeFunction()
 {
   std::string cmsswbase(gSystem->Getenv("CMSSW_BASE"));
@@ -66,7 +66,7 @@ DNNprod::DNNprod() :
 }
 
 double
-DNNprod::evaluate(unsigned)
+DNNprodSemi::evaluate(unsigned)
 {
 
   unsigned nJet{*nCleanJet->Get()};
@@ -110,7 +110,7 @@ DNNprod::evaluate(unsigned)
   TLorentzVector LorJ1,LorJ2,LorJ3,LorJ4;
 
   std::vector<float> input{};
-  float wpt, weta, wphi, wmass, WWmass, wr1pt, wr1eta, wr1phi, wr1mass, wr2pt, wr2eta, wr2phi, wr2mass;
+  float wpt, weta, wphi, wmass, wr1pt, wr1eta, wr1phi, wr1mass, wr2pt, wr2eta, wr2phi, wr2mass; //, WWmass
   unsigned wjet1, wjet2;
   std::vector<int> vbfjet = {-1, -1, -1, -1};
   unsigned j = 0;
@@ -122,7 +122,7 @@ DNNprod::evaluate(unsigned)
     weta = HM_CleanFatJetPassMBoosted_eta->At(0);
     wphi = HM_CleanFatJetPassMBoosted_phi->At(0);
     wmass = HM_CleanFatJetPassMBoosted_mass->At(0);
-    WWmass = HM_CleanFatJetPassMBoosted_HlnFat_mass->At(0);
+    //WWmass = HM_CleanFatJetPassMBoosted_HlnFat_mass->At(0);
     wr1pt = 0.0;
     wr1eta = 0.0;
     wr1phi = 0.0;
@@ -139,7 +139,7 @@ DNNprod::evaluate(unsigned)
     weta = *HM_Whad_eta->Get();
     wphi = *HM_Whad_phi->Get();
     wmass = *HM_Whad_mass->Get();
-    WWmass = *HM_Hlnjj_mass->Get();
+    //WWmass = *HM_Hlnjj_mass->Get();
     wjet1 = *HM_idx_j1->Get();
     wjet2 = *HM_idx_j2->Get();
     wr1pt = CleanJet_pt->At(wjet1);
@@ -245,7 +245,7 @@ DNNprod::evaluate(unsigned)
   input.push_back(*nCleanJet->Get());
   input.push_back(njet30);
   input.push_back(*HM_largest_nonW_mjj->Get());
-  input.push_back(WWmass);
+  //input.push_back(WWmass);
 
   input.push_back(mjj_12);
   input.push_back(detajj_12);
@@ -270,7 +270,7 @@ DNNprod::evaluate(unsigned)
 }
 
 void
-DNNprod::bindTree_(multidraw::FunctionLibrary& _library)
+DNNprodSemi::bindTree_(multidraw::FunctionLibrary& _library)
 {
   _library.bindBranch(event, "event");
   _library.bindBranch(Lepton_pt, "Lepton_pt");
@@ -289,7 +289,7 @@ DNNprod::bindTree_(multidraw::FunctionLibrary& _library)
   _library.bindBranch(HM_CleanFatJetPassMBoosted_eta, "HM_CleanFatJetPassMBoosted_eta");
   _library.bindBranch(HM_CleanFatJetPassMBoosted_phi, "HM_CleanFatJetPassMBoosted_phi");
   _library.bindBranch(HM_CleanFatJetPassMBoosted_mass, "HM_CleanFatJetPassMBoosted_mass");
-  _library.bindBranch(HM_CleanFatJetPassMBoosted_HlnFat_mass, "HM_CleanFatJetPassMBoosted_HlnFat_mass");
+  //_library.bindBranch(HM_CleanFatJetPassMBoosted_HlnFat_mass, "HM_CleanFatJetPassMBoosted_HlnFat_mass");
   _library.bindBranch(HM_Whad_pt, "HM_Whad_pt");
   _library.bindBranch(HM_Whad_eta, "HM_Whad_eta");
   _library.bindBranch(HM_Whad_phi, "HM_Whad_phi");
@@ -298,7 +298,7 @@ DNNprod::bindTree_(multidraw::FunctionLibrary& _library)
   _library.bindBranch(HM_Wlep_eta_Puppi, "HM_Wlep_eta_Puppi");
   _library.bindBranch(HM_Wlep_phi_Puppi, "HM_Wlep_phi_Puppi");
   _library.bindBranch(HM_Wlep_mass_Puppi, "HM_Wlep_mass_Puppi");
-  _library.bindBranch(HM_Hlnjj_mass, "HM_Hlnjj_mass");
+  //_library.bindBranch(HM_Hlnjj_mass, "HM_Hlnjj_mass");
   _library.bindBranch(HM_idx_j1, "HM_idx_j1");
   _library.bindBranch(HM_idx_j2, "HM_idx_j2");
   _library.bindBranch(HM_largest_nonW_mjj, "HM_largest_nonW_mjj");

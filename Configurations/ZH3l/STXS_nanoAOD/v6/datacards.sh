@@ -12,17 +12,17 @@ do
     YEAR=`echo $year | awk -F "Full" '{print $2}' | awk -F "nano" '{print $1}'`
     cd $DIR; cd $year
 
-    echo "suppressNegativeBins.py rootFiles_ZH3l_${YEAR}_v6_STXS/plots_ZH3l_${YEAR}_v6_STXS.root"
-    python ${CMSSW_BASE}/src/PlotsConfigurations/Configurations/Template/STXS_VHlep/suppressNegativeBins.py rootFiles_ZH3l_${YEAR}_v6_STXS/plots_ZH3l_${YEAR}_v6_STXS.root
+    #echo "mkDatacards.py --pycfg configuration.py --inputFile rootFiles_ZH3l_${YEAR}_v6_STXS/plots_ZH3l_${YEAR}_v6_STXS.root"
+    #mkDatacards.py --pycfg configuration.py --inputFile rootFiles_ZH3l_${YEAR}_v6_STXS/plots_ZH3l_${YEAR}_v6_STXS.root
 
-    echo "mkDatacards.py --pycfg configuration.py --inputFile rootFiles_ZH3l_${YEAR}_v6_STXS/plots_ZH3l_${YEAR}_v6_STXS.root"
-    mkDatacards.py --pycfg configuration.py --inputFile rootFiles_ZH3l_${YEAR}_v6_STXS/plots_ZH3l_${YEAR}_v6_STXS.root
+    # Zero bins
+    python /afs/cern.ch/user/d/dittmer/public/zeroBins.py
 
     # pruning datacard
     echo "  --> Pruning"
-    find -L datacards_ZH3l_${YEAR}_v6_STXS -name 'datacard.txt' | egrep 'SR..............mtw|CR....events' | while read line
+    find -L datacards_ZH3l_${YEAR}_v6_STXS -name 'datacard.txt' | while read line
     do 
-	echo "python ${CMSSW_BASE}/src/ModificationDatacards/PruneDatacard.py -d $line -o $line.pruned.txt -i ${inputPRUNE} --suppressFluctuationError=1 -t 0.00001"
-	python ${CMSSW_BASE}/src/ModificationDatacards/PruneDatacard.py -d $line -o $line.pruned.txt -i ${inputPRUNE} --suppressFluctuationError=1 -t 0.00001
+	echo "python /afs/cern.ch/user/d/dittmer/private/Combine/ModificationDatacards/PruneDatacard.py -d $line -o $line.pruned.txt -i ${inputPRUNE} --suppressFluctuationError=1 -t 0.00001"
+	python /afs/cern.ch/user/d/dittmer/private/Combine/ModificationDatacards/PruneDatacard.py -d $line -o $line.pruned.txt -i ${inputPRUNE} --suppressFluctuationError=1 -t 0.00001
     done
 done

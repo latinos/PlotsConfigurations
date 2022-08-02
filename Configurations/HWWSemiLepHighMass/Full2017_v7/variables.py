@@ -36,12 +36,20 @@ variables['events']  = {
 #     'xaxis': '(boosted) WW deviation from b2b',
 #     'fold' : 3
 # }
+# HM ##############################################
 # variables['dPhi_WW_boosted'] = {
 #     'name' : 'abs(dPhi_WW_boosted[0])',
 #     'range': (15, 0, 3.5),
-#     'xaxis': '(boosted) abs(#Delta#Phi WW)',
+#     'xaxis': 'abs(#Delta#Phi WW)',
 #     'fold' : 3
 # }
+# variables['pt_sum_boosted'] = {
+#     'name' : 'Lepton_pt[0] + PuppiMET_pt + Alt$(HM_CleanFatJetPassMBoosted_pt[0], -9099)',
+#     'range': (50,0,2500),
+#     'xaxis': 'p_{T}^{l} + E_{T}^{miss} + p_{T}^{J} [GeV]',
+#     'fold' : 3
+# }
+# END HM ########################################
 # variables['dPhi_LNu'] = {
 #     'name' : 'abs(dPhi_LNu[0])',
 #     'range': (15,0,2.5),
@@ -52,12 +60,6 @@ variables['events']  = {
 #     'name' : 'Alt$(HM_CleanFatJetPassMBoosted_pt[0], -9099)',
 #     'range': (24,0,1200),
 #     'xaxis': '(boosted) W ',
-#     'fold' : 3
-# }
-# variables['pt_sum_boosted'] = {
-#     'name' : 'Lepton_pt[0] + PuppiMET_pt + Alt$(HM_CleanFatJetPassMBoosted_pt[0], -9099)',
-#     'range': (50,0,2500),
-#     'xaxis': '(boosted) sum(pT)',
 #     'fold' : 3
 # }
 
@@ -219,13 +221,15 @@ variables['boostWhadMass'] = {
     'cuts': boosted,
 }
 
-variables['WlepMT'] = {
-    'name': 'WlepMT[0]',
+variables['HM_Wlep_mt'] = {
+    'name': 'HM_Wlep_mt[0]',
     'range': (15, 0.0, 150.0),
     'xaxis': 'M_{T}^{l#nu} [GeV]',
     'fold': 3,
     'cuts': resolved,
 }
+
+
 
 # variables['resolv_btagPt'] = {
 #     'name': 'btagJetPt_resolv[0]',
@@ -249,7 +253,7 @@ variables['WlepMT'] = {
 #     'fold': 0
 # }
 # variables['WvsQCD_notau'] = {
-#     'name': 'Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[(int)idxCleanFatJetW]], -1)',
+#     'name': 'Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[idxCleanFatJetW]], -1)',
 #     'range': (40, 0.0, 1.0),
 #     'xaxis': 'WvsQCD DNN score',
 #     'fold': 0
@@ -262,25 +266,25 @@ variables['WlepMT'] = {
 #     'fold': 0
 # }
 # variables['WvsQCD_notau_MD'] = {
-#     'name': 'Alt$(FatJet_deepTagMD_WvsQCD[CleanFatJet_jetIdx[(int)idxCleanFatJetW]], -1)',
+#     'name': 'Alt$(FatJet_deepTagMD_WvsQCD[CleanFatJet_jetIdx[idxCleanFatJetW]], -1)',
 #     'range': (40, 0.0, 1.0),
 #     'xaxis': 'WvsQCD MD DNN score',
 #     'fold': 0
 # }
-
+# HM ###################################
 # variables['tau21'] = {
-    # 'name': 'Alt$(CleanFatJet_tau21[(int)idxCleanFatJetW], 999)',
-    # 'range': (40, 0.0, 1.0),
-    # 'xaxis': 'tau_{21}',
-    # 'fold': 3
+#     'name': 'Alt$(CleanFatJet_tau21[idxCleanFatJetW], 999)',
+#     'range': (30, 0.0, 1.0),
+#     'xaxis': 'tau_{21}',
+#     'fold': 3
 # }
 # variables['tau21DDT'] = {
 #     'name': 'tau21DDT[0]',
-#     'range': (40, 0.0, 1.0),
+#     'range': (30, 0.0, 1.0),
 #     'xaxis': 'tau_{21} DDT',
 #     'fold': 3
 # }
-#
+# END HM #################################
 #
 # variables['bVeto'] = {
 #     'name': 'bVeto[0]',

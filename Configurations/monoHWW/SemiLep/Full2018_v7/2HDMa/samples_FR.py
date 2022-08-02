@@ -47,11 +47,11 @@ except NameError:
 ################################################
 
 dataReco = 'Run2018_102X_nAODv7_Full2018v7'
-dataSteps = 'DATAl1loose2018v7__DATACombJJLNu2018'
-fakeSteps = 'DATAl1loose2018v7__DATACombJJLNu2018'
+dataSteps = 'DATAl1loose2018v7'
+fakeSteps = 'DATAl1loose2018v7'
 
 mcProduction = 'Autumn18_102X_nAODv7_Full2018v7'
-mcSteps = 'MCl1loose2018v7__MCCorr2018v7__MCCombJJLNu2018'
+mcSteps = 'MCl1loose2018v7__MCCorr2018v7'
 
 ##############################################
 ###### Tree base directory for the site ######
@@ -64,11 +64,11 @@ elif  'cern' in SITE:
   treeBaseDir = '/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano'
   # treeBaseDir = '/eos/user/s/ssiebert/HWWNano'
 
-def makeMCDirectory(var=''):
-    if var:
-        return os.path.join(treeBaseDir, mcProduction, mcSteps.format(var='__' + var))
+def makeMCDirectory(var=None):
+    if var is not None:
+        return os.path.join(treeBaseDir, mcProduction, mcSteps+'_'+var)
     else:
-        return os.path.join(treeBaseDir, mcProduction, mcSteps.format(var=''))
+        return os.path.join(treeBaseDir, mcProduction, mcSteps)
 
 mcDirectory = makeMCDirectory()
 #mcDirectory = os.path.join(treeBaseDir, mcProduction, mcSteps)
@@ -100,10 +100,11 @@ files = nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50')
 samples['DY'] = {
     'name': files,
     'weight': mcCommonWeight + '*(Sum$(GenPart_pdgId == 22 && TMath::Odd(GenPart_statusFlags) && GenPart_pt > 20.) == 0)',
-    'FilesPerJob': 10,
+    'FilesPerJob': 5,
 }
 
-addSampleWeight(samples,'DY','DYJetsToLL_M-50',ptllDYW_NLO)
+#addSampleWeight(samples,'DY','DYJetsToLL_M-50',ptllDYW_NLO)
+addSampleWeight(samples,'DY','DYJetsToLL_M-50', 'DY_NLO_pTllrw')
 
 files = nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-10to50-LO_ext1')
 files+= nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-4to50_HT-100to200')
@@ -114,15 +115,21 @@ files+= nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-4to50_HT-600toInf')
 samples['DYlow'] = {
     'name': files,
     'weight': mcCommonWeight + '*(Sum$(GenPart_pdgId == 22 && TMath::Odd(GenPart_statusFlags) && GenPart_pt > 20.) == 0)',
-    'FilesPerJob': 10,
+    'FilesPerJob': 5,
 }
 
 
-addSampleWeight(samples,'DYlow','DYJetsToLL_M-4to50_HT-100to200', ptllDYW_LO)
-addSampleWeight(samples,'DYlow','DYJetsToLL_M-4to50_HT-200to400', ptllDYW_LO)
-addSampleWeight(samples,'DYlow','DYJetsToLL_M-4to50_HT-400to600', ptllDYW_LO)
-addSampleWeight(samples,'DYlow','DYJetsToLL_M-4to50_HT-600toInf', ptllDYW_LO)
-addSampleWeight(samples,'DYlow','DYJetsToLL_M-10to50-LO_ext1',    ptllDYW_LO+'*(LHE_HT<100)')
+#addSampleWeight(samples,'DYlow','DYJetsToLL_M-4to50_HT-100to200', ptllDYW_LO)
+#addSampleWeight(samples,'DYlow','DYJetsToLL_M-4to50_HT-200to400', ptllDYW_LO)
+#addSampleWeight(samples,'DYlow','DYJetsToLL_M-4to50_HT-400to600', ptllDYW_LO)
+#addSampleWeight(samples,'DYlow','DYJetsToLL_M-4to50_HT-600toInf', ptllDYW_LO)
+#addSampleWeight(samples,'DYlow','DYJetsToLL_M-10to50-LO_ext1',    ptllDYW_LO+'*(LHE_HT<100)')
+#addSampleWeight(samples,'DYlow','DYJetsToLL_M-4to50_HT-100to200', ptllDYW_LO)
+
+addSampleWeight(samples,'DYlow','DYJetsToLL_M-4to50_HT-200to400', 'DY_LO_pTllrw')
+addSampleWeight(samples,'DYlow','DYJetsToLL_M-4to50_HT-400to600', 'DY_LO_pTllrw')
+addSampleWeight(samples,'DYlow','DYJetsToLL_M-4to50_HT-600toInf', 'DY_LO_pTllrw')
+addSampleWeight(samples,'DYlow','DYJetsToLL_M-10to50-LO_ext1',    'DY_LO_pTllrw*(LHE_HT<100)')
 
 ###### Top #######
 
@@ -168,28 +175,58 @@ addSampleWeight(samples,'DYlow','DYJetsToLL_M-10to50-LO_ext1',    ptllDYW_LO+'*(
 #     'FilesPerJob' : 6,
 # }
 
+########## W+jets #########
 
-files =   nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-LO')\
-        + nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_Pt50to100')\
-        + nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_Pt100to250')\
-        + nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_Pt250to400')\
-        + nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_Pt400to600')\
-        + nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_Pt600toInf')
+#files =   nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-LO')\
+#        + nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_Pt50to100')\
+#        + nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_Pt100to250')\
+#        + nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_Pt250to400')\
+#        + nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_Pt400to600')\
+#        + nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_Pt600toInf')
+
+# nJet binned
+files = nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-0J')
+files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-1J')
+files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-2J')
 
 samples['Wjets'] = {
     'name'   : files,
-    #'weight' : mcCommonWeight +'*EWKnloW[0]', # ewk nlo correction https://arxiv.org/pdf/1705.04664v2.pdf 
-    'weight' : mcCommonWeight + '*EWKnloW[0]', 
-    'FilesPerJob' : 10,
+    'weight' : mcCommonWeight +'*EWKnloW[0]', # ewk nlo correction https://arxiv.org/pdf/1705.04664v2.pdf 
+    #'weight' : mcCommonWeight + '*ewknloW', 
+    #'weight' : mcCommonWeight, 
+    'FilesPerJob' : 4,
 }
 
-addSampleWeight(samples, "Wjets","WJetsToLNu-LO",  "LHE_Vpt < 50" )
-# Xsec*k-factor correction https://indico.cern.ch/event/673253/contributions/2756806/attachments/1541203/2416962/20171016_VJetsXsecsUpdate_PH-GEN.pdf
-# Fixed in v7
-#addSampleWeight(samples, 'Wjets', 'WJetsToLNu-0J', '0.90209625793*1.0176') # 49264.92/54611.6 = 0.90209625793
-#addSampleWeight(samples, 'Wjets', 'WJetsToLNu-1J', '0.92350828667*1.0176') # 8280.36/8966.2   = 0.92350828667 
-#addSampleWeight(samples, 'Wjets', 'WJetsToLNu-2J', '0.85588177166*1.0176') # 3118.08/3643.12  = 0.85588177166
-
+# HT binned
+#files = nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-LO')
+#files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_HT70_100')
+#files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_HT100_200')
+#files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_HT200_400')
+#files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_HT400_600')
+#files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_HT600_800')
+#files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_HT800_1200')
+#files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_HT1200_2500')
+#files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_HT2500_inf')
+#
+#samples['Wjets'] = {
+#    'name'   : files,
+#    'weight' : mcCommonWeight +'*EWKnloW[0]', # ewk nlo correction https://arxiv.org/pdf/1705.04664v2.pdf 
+#    #'weight' : mcCommonWeight + '*ewknloW', 
+#    'FilesPerJob' : 5,
+#}
+#
+##addSampleWeight(samples, "Wjets","WJetsToLNu-LO",  "LHE_Vpt < 50" )
+#addSampleWeight(samples, "Wjets","WJetsToLNu-LO",  "LHE_HT < 70" )
+#
+## HT stitching from Davide (derived by comparing HT to inclusive LO with only lep pt cuts)
+#addSampleWeight(samples,'Wjets', 'WJetsToLNu_HT70_100',    '1.21 * 0.95148')  
+#addSampleWeight(samples,'Wjets', 'WJetsToLNu_HT100_200',   '0.9471') 
+#addSampleWeight(samples,'Wjets', 'WJetsToLNu_HT200_400',   '0.9515') 
+#addSampleWeight(samples,'Wjets', 'WJetsToLNu_HT400_600',   '0.9581') 
+#addSampleWeight(samples,'Wjets', 'WJetsToLNu_HT600_800',   '1.0582') 
+#addSampleWeight(samples,'Wjets', 'WJetsToLNu_HT800_1200',  '1.1285') 
+#addSampleWeight(samples,'Wjets', 'WJetsToLNu_HT1200_2500', '1.3268') 
+#addSampleWeight(samples,'Wjets', 'WJetsToLNu_HT2500_inf',  '2.7948') 
 
 
 ################################################

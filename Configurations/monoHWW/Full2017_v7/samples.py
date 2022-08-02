@@ -226,10 +226,6 @@ samples['VgS'] = {
     'name': files,
     'weight': mcCommonWeight + ' * (gstarLow * 0.94 + gstarHigh * 1.14)',
     'FilesPerJob': 4,
-    'subsamples': {
-      'L': 'gstarLow',
-      'H': 'gstarHigh'
-    }
 }
 
 
@@ -290,15 +286,15 @@ samples['Higgs'] = {
 ######### Signals ######### 
 
 
-samples['DH_mhs_160_mx_100_mZp_500'] = {
-    'name': nanoGetSampleFiles(signalDirectory, 'DarkHiggs_MonoHs_HsToWWTo2l2nu_mhs_160_mx_100_mZp_500'),
-    'weight': mcCommonWeight,
-    'FilesPerJob': 1
-}
+# samples['DH_mhs_160_mx_100_mZp_500'] = {
+#     'name': nanoGetSampleFiles(signalDirectory, 'DarkHiggs_MonoHs_HsToWWTo2l2nu_mhs_160_mx_100_mZp_500'),
+#     'weight': mcCommonWeight,
+#     'FilesPerJob': 1
+# }
 
 mhs = ['160','180','200']
 mDM = ['100','150','200']
-mZp = ['195','200','295','300','400','500','800','1000','1200','1500']
+mZp = ['195','200','295','300','400','500','800','1000','1200','1500','2000','2500']
 
 for hs in mhs:
     for DM in mDM:
@@ -309,26 +305,61 @@ for hs in mhs:
                 'FilesPerJob': 1
             }
 
-mA = ['200', '400', '500', '600']
+mDM = ['150','200']
+mhs = ['300','400']
+mZp = ['400','500','800','1000','1200','1500']
 
-for A in mA:
-    samples['2HMDa__gg_sinp_0p35_tanb_1p0_mXd_10_MA_' + A + '_ma_150'] = {
-        'name': nanoGetSampleFiles(signalDirectory, '2HDMa_HWWTollnunu_gg_sinp_0p35_tanb_1p0_mXd_10_MH3_' + A + '_MH4_150_MH2_' + A + '_MHC_' + A),
-        'weight': mcCommonWeight,
-        'FilesPerJob': 1
-    }
+for DM in mDM:
+    for hs in mhs:
+        if DM == '150' and hs == '400':
+            continue
+        for Zp in mZp:
+            if DM == '200' and Zp == '400':
+                continue
+            if DM == '200' and hs == '400' and int(Zp) > 1000:
+                continue
+            samples['DH_mhs_' + hs + '_mx_' + DM  + '_mZp_' + Zp] = {
+                'name': nanoGetSampleFiles(signalDirectory, 'DarkHiggs_MonoHs_HsToWWTo2l2nu_mhs_' + hs + '_mx_' + DM  + '_mZp_' + Zp),
+                'weight': mcCommonWeight,
+                'FilesPerJob': 1
+            }
+
+mDM = ['300']
+mhs = ['160','180','200','300']
+mZp = ['800','1000','1200','1500','2000','2500']
 
 
-sintheta = ['0p35', '0p7']
-tanbeta = ['0p5', '1p0', '1p5', '2p0', '4p0', '8p0']
+for DM in mDM:
+    for hs in mhs:
+        for Zp in mZp:
+            if hs == '300' and int(Zp) > 1200:
+                continue
+            samples['DH_mhs_' + hs + '_mx_' + DM  + '_mZp_' + Zp] = {
+                'name': nanoGetSampleFiles(signalDirectory, 'DarkHiggs_MonoHs_HsToWWTo2l2nu_mhs_' + hs + '_mx_' + DM  + '_mZp_' + Zp),
+                'weight': mcCommonWeight,
+                'FilesPerJob': 1
+            }
 
-for theta in sintheta:
-    for beta in tanbeta:
-        samples['2HMDa__gg_sinp_' + theta  + '_tanb_' + beta  + '_mXd_10_MA_300_ma_150'] = {
-            'name': nanoGetSampleFiles(signalDirectory, '2HDMa_HWWTollnunu_gg_sinp_' + theta  + '_tanb_' + beta  + '_mXd_10_MH3_300_MH4_150_MH2_300_MHC_300'),
-            'weight': mcCommonWeight,
-            'FilesPerJob': 1
-        }
+# mA = ['200', '400', '500', '600']
+
+# for A in mA:
+#     samples['2HMDa__gg_sinp_0p35_tanb_1p0_mXd_10_MA_' + A + '_ma_150'] = {
+#         'name': nanoGetSampleFiles(signalDirectory, '2HDMa_HWWTollnunu_gg_sinp_0p35_tanb_1p0_mXd_10_MH3_' + A + '_MH4_150_MH2_' + A + '_MHC_' + A),
+#         'weight': mcCommonWeight,
+#         'FilesPerJob': 1
+#     }
+
+
+# sintheta = ['0p35', '0p7']
+# tanbeta = ['0p5', '1p0', '1p5', '2p0', '4p0', '8p0']
+
+# for theta in sintheta:
+#     for beta in tanbeta:
+#         samples['2HMDa__gg_sinp_' + theta  + '_tanb_' + beta  + '_mXd_10_MA_300_ma_150'] = {
+#             'name': nanoGetSampleFiles(signalDirectory, '2HDMa_HWWTollnunu_gg_sinp_' + theta  + '_tanb_' + beta  + '_mXd_10_MH3_300_MH4_150_MH2_300_MHC_300'),
+#             'weight': mcCommonWeight,
+#             'FilesPerJob': 1
+#         }
 
 
 ###########################################

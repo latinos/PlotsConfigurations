@@ -47,12 +47,11 @@ except NameError:
 ################################################
 
 dataReco = 'Run2016_102X_nAODv7_Full2016v7'
-dataSteps = 'DATAl1loose2016v7__DATACombJJLNu2016'
-fakeSteps = 'DATAl1loose2016v7__DATACombJJLNu2016'
-
+dataSteps = 'DATAl1loose2016v7'
+fakeSteps = 'DATAl1loose2016v7'
 
 mcProduction = 'Summer16_102X_nAODv7_Full2016v7'
-mcSteps = 'MCl1loose2016v7__MCCorr2016v7__MCCombJJLNu2016'
+mcSteps = 'MCl1loose2016v7__MCCorr2016v7'
 
 ##############################################
 ###### Tree base directory for the site ######
@@ -65,11 +64,11 @@ elif  'cern' in SITE:
   treeBaseDir = '/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano'
   # treeBaseDir = '/eos/user/s/ssiebert/HWWNano'
 
-def makeMCDirectory(var=''):
-    if var:
-        return os.path.join(treeBaseDir, mcProduction, mcSteps.format(var='__' + var))
+def makeMCDirectory(var=None):
+    if var is not None:
+        return os.path.join(treeBaseDir, mcProduction, mcSteps+'_'+var)
     else:
-        return os.path.join(treeBaseDir, mcProduction, mcSteps.format(var=''))
+        return os.path.join(treeBaseDir, mcProduction, mcSteps)
 
 mcDirectory = makeMCDirectory()
 #mcDirectory = os.path.join(treeBaseDir, mcProduction, mcSteps)
@@ -137,10 +136,6 @@ addSampleWeight(samples,'DYlow','DYJetsToLL_M-10to50_ext1',       'DY_LO_pTllrw*
 
 ########## W+jets #########
 
-#files = nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_Wpt100To250')
-#files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_Wpt250To400')
-#files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_Wpt400To600')
-#files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_Wpt600ToInf')
 files = nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_ext2')
 
 samples['Wjets'] = {
@@ -149,11 +144,52 @@ samples['Wjets'] = {
     #'weight' : mcCommonWeight + '*ewknloW', 
     'FilesPerJob' : 4,
 }
-# Xsec*k-factor correction https://indico.cern.ch/event/673253/contributions/2756806/attachments/1541203/2416962/20171016_VJetsXsecsUpdate_PH-GEN.pdf
-# Fixed in v7
-#addSampleWeight(samples, 'Wjets', 'WJetsToLNu-0J', '0.90209625793*1.0176') # 49264.92/54611.6 = 0.90209625793
-#addSampleWeight(samples, 'Wjets', 'WJetsToLNu-1J', '0.92350828667*1.0176') # 8280.36/8966.2   = 0.92350828667 
-#addSampleWeight(samples, 'Wjets', 'WJetsToLNu-2J', '0.85588177166*1.0176') # 3118.08/3643.12  = 0.85588177166
+
+#files = nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-LO')
+##files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-LO_ext2')
+#files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_HT70_100')
+#files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_HT100_200')
+##files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_HT100_200_ext2')
+#files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_HT200_400')
+##files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_HT200_400_ext2')
+#files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_HT400_600')
+##files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_HT400_600_ext1')
+#files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_HT600_800')
+##files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_HT600_800_ext1')
+#files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_HT800_1200')
+##files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_HT800_1200_ext1')
+#files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_HT1200_2500')
+##files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_HT1200_2500_ext1')
+#files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_HT2500_inf')
+##files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_HT2500_inf_ext1')
+#
+#samples['Wjets'] = {
+#    'name'   : files,
+#    'weight' : mcCommonWeight +'*EWKnloW[0]', # ewk nlo correction https://arxiv.org/pdf/1705.04664v2.pdf 
+#    #'weight' : mcCommonWeight + '*ewknloW', 
+#    #'weight' : mcCommonWeight, 
+#    'FilesPerJob' : 4,
+#}
+#
+#addSampleWeight(samples, 'Wjets', 'WJetsToLNu-LO', '(LHE_HT < 70)') 
+##addSampleWeight(samples, 'Wjets', 'WJetsToLNu-LO_ext2', '(LHE_HT < 70)') 
+#
+## HT stitching from Davide (derived by comparing HT to inclusive LO with only lep pt cuts)
+#addSampleWeight(samples, 'Wjets', 'WJetsToLNu_HT70_100',          '1.21 * 1.0346')  #adding also k-factor
+#addSampleWeight(samples, 'Wjets', 'WJetsToLNu_HT100_200',         '1.019') 
+##addSampleWeight(samples, 'Wjets', 'WJetsToLNu_HT100_200_ext2',    '1.019') 
+#addSampleWeight(samples, 'Wjets', 'WJetsToLNu_HT200_400',         '1.012') 
+##addSampleWeight(samples, 'Wjets', 'WJetsToLNu_HT200_400_ext2',    '1.012') 
+#addSampleWeight(samples, 'Wjets', 'WJetsToLNu_HT400_600',         '0.9945') 
+##addSampleWeight(samples, 'Wjets', 'WJetsToLNu_HT400_600_ext1',    '0.9945')
+#addSampleWeight(samples, 'Wjets', 'WJetsToLNu_HT600_800',         '0.9537') 
+##addSampleWeight(samples, 'Wjets', 'WJetsToLNu_HT600_800_ext1',    '0.9537') 
+#addSampleWeight(samples, 'Wjets', 'WJetsToLNu_HT800_1200',        '0.8844') 
+##addSampleWeight(samples, 'Wjets', 'WJetsToLNu_HT800_1200_ext1',   '0.8844')
+#addSampleWeight(samples, 'Wjets', 'WJetsToLNu_HT1200_2500',       '0.7643') 
+##addSampleWeight(samples, 'Wjets', 'WJetsToLNu_HT1200_2500_ext1',  '0.7643') 
+#addSampleWeight(samples, 'Wjets', 'WJetsToLNu_HT2500_inf',        '0.2422') 
+##addSampleWeight(samples, 'Wjets', 'WJetsToLNu_HT2500_inf_ext1',   '0.2422') 
 
 ################################################
 ############ DATA DECLARATION ##################

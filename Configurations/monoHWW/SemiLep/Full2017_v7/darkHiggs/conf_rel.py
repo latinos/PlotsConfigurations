@@ -22,7 +22,7 @@ cutsFile = 'cuts_rel.py'
 samplesFile = 'samples.py'
 
 # file with list of samples
-plotFile = 'plot_rel.py'
+plotFile = 'plot.py'
 
 # luminosity to normalize to (in 1/fb)
 lumi = 41.5
@@ -38,4 +38,4 @@ outputDirDatacard = 'darkHiggs_rel_datacards'
 structureFile = 'structure.py'
 
 # nuisances file for mkDatacards and for mkShape
-nuisancesFile = 'nuisances.py'
+#nuisancesFile = 'nuisances.py'

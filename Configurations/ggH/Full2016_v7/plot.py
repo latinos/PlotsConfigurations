@@ -27,7 +27,8 @@ groupPlot['Fake']  = {
                   'nameHR' : 'nonprompt',
                   'isSignal' : 0,
                   'color': 921,    # kGray + 1
-                  'samples'  : ['Fake_me', 'Fake_em']
+                  # 'samples'  : ['Fake_me', 'Fake_em']
+                  'samples'  : ['Fake']
 }
 
 
@@ -75,7 +76,7 @@ groupPlot['Higgs']  = {
                   'nameHR' : 'Higgs',
                   'isSignal' : 1,
                   'color': 632, # kRed 
-		  'samples'  : ['ZH_hww', 'ggZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww','bbH_hww','ttH_hww','ZH_htt', 'ggZH_htt', 'WH_htt', 'qqH_htt', 'ggH_htt','bbH_htt','ttH_htt' ]
+		  'samples'  : ['H_htt', 'H_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww','bbH_hww','ttH_hww','ZH_htt', 'ggZH_htt', 'WH_htt', 'qqH_htt', 'ggH_htt','bbH_htt','ttH_htt' ]
 		  #'samples'  : ['H_htt', 'H_hww', 'ZH_hww', 'ggZH_hww', 'WH_hww', 'qqH_hww', 'ggH_hww','bbH_hww','ttH_hww', 'qqH_htt', 'ggH_htt' ]
               }
 
@@ -117,7 +118,13 @@ if useEmbeddedDY:
                   'scale'    : 1.0,
               }
 
-
+plot['Fake']  = {
+                  'color': 921,    # kGray + 1
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0
+              }
+'''
 plot['Fake_me']  = {  
                   'color': 921,    # kGray + 1
                   'isSignal' : 0,
@@ -132,7 +139,7 @@ plot['Fake_em']  = {
                   'isData'   : 0,
                   'scale'    : 1.0                  
               }
-
+'''
               
 plot['top'] = {   
                   'nameHR' : 'tW and t#bar{t}',
@@ -248,7 +255,7 @@ plot['ZH_htt'] = {
 #                  'isData'   : 0,    
 #                  'scale'    : 1    #
 #                  }
-#
+
 plot['WH_htt'] = {
                   'nameHR' : 'WHtt',
                   'color': 632+2, # kRed+2 
@@ -257,15 +264,15 @@ plot['WH_htt'] = {
                   'scale'    : 1    #
                   }
 
-
-#plot['qqH_htt'] = {
-#                  'nameHR' : 'qqHtt',
-#                  'color': 632+1, # kRed+1 
-#                  'isSignal' : 1,
-#                  'isData'   : 0,    
-#                  'scale'    : 1    #
-#                  }
-
+'''
+plot['qqH_htt'] = {
+                  'nameHR' : 'qqHtt',
+                  'color': 632+1, # kRed+1 
+                  'isSignal' : 1,
+                  'isData'   : 0,    
+                  'scale'    : 1    #
+                  }
+'''
 
 plot['ggH_htt'] = {
                   'nameHR' : 'ggHtt',
@@ -335,14 +342,14 @@ plot['ggH_hww'] = {
 #                  'scale'    : 1    #
 #                  }
 
-#plot['ttH_hww'] = {
-#                  'nameHR' : 'ttH',
-#                  'color': 632+6, # kRed+6
-#                  'isSignal' : 1,
-#                  'isData'   : 0,
-#                  'scale'    : 1    #
-#                  }
-#
+plot['ttH_hww'] = {
+                  'nameHR' : 'ttH',
+                  'color': 632+6, # kRed+6
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  'scale'    : 1    #
+                  }
+
 
 # data
 
@@ -359,12 +366,10 @@ plot['DATA']  = {
 
 # additional options
 
-legend['lumi'] = 'L = 35.9/fb'
+legend['lumi'] = 'L = 36.3 fb^{-1}'
 
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
 
 
-for nuis in nuisances.itervalues():
-  if 'cutspost' in nuis:
-    nuis['cuts'] = nuis['cutspost'](nuis, cuts)
+
 

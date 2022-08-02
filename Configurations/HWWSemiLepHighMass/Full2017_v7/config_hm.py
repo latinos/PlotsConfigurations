@@ -2,7 +2,7 @@
 
 treeName = 'Events'
 
-tag = 'hm_heavy_2017_v7'
+tag = 'hm_qcd_2017_v7'
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFile'
@@ -11,12 +11,13 @@ outputDir = 'rootFile'
 aliasesFile = 'aliases.py'
 
 # file with list of variables
-variablesFile = 'variables.py'
+# variablesFile = 'variables.py'
+variablesFile = 'variables_hm.py'
 # variablesFile = 'variablesPlot.py'
 # variablesFile = 'variablesLimits.py'
 
 # file with list of cuts
-cutsFile = 'cuts_heavy.py'
+cutsFile = 'cuts_high.py'
 
 # file with list of samples
 samplesFile = 'samples.py'

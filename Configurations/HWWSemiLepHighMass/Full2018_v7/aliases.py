@@ -5,7 +5,7 @@ import inspect
 import numpy as np
 
 configurations = os.path.realpath(inspect.getfile(inspect.currentframe())) # this file
-configurations = os.path.dirname(configurations) # Full2017v7
+configurations = os.path.dirname(configurations) # Full2018v7
 configurations = os.path.dirname(configurations) # HM
 configurations = os.path.dirname(configurations) # Configurations
 
@@ -21,7 +21,7 @@ eleWP    = 'mvaFall17V1Iso_WP90'
 muWP     = 'cut_Tight_HWWW'
 
 aliases['DNN_isVBF_OTF'] = {
-    'class': 'DNNprod',
+    'class': 'DNNprodSemi',
     'linesToAdd':[
         'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
         'gSystem->Load("libDNNEvaluator.so")',
@@ -29,6 +29,20 @@ aliases['DNN_isVBF_OTF'] = {
     ],
 }
 
+aliases['btagJetPt_resolv'] = {
+    'linesToAdd': [
+        '.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/btagJetPt.cc+' % os.getenv('CMSSW_BASE')
+    ],
+    'class': 'BtagJetPt',
+    'args': ('resolved', '2018')
+}
+aliases['btagJetPt_boost'] = {
+    'linesToAdd': [
+        '.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/btagJetPt.cc+' % os.getenv('CMSSW_BASE')
+    ],
+    'class': 'BtagJetPt',
+    'args': ('boosted', '2018')
+}
 
 aliases['mjjGen_OTF'] = {
     'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/HighMass/HMvars_mjjgen.cc+' % os.getenv('CMSSW_BASE')],
@@ -55,13 +69,6 @@ aliases['nTightLep'] = {
 }
 
 
-aliases['WlepMT'] = {
-    'expr': 'HM_Wlep_mt'
-}
-# aliases['boostHiggsMT'] = {
-#     'expr': 'TMath::Sqrt( 2*HM_Wlep_pt_Puppi*Alt$(HM_CleanFatJetPassMBoosted_pt[0], 0) \
-#     *( 1-TMath::Cos(HM_Wlep_phi_Puppi-Alt$(HM_CleanFatJetPassMBoosted_phi[0], 0)) ) )'
-# }
 aliases['resolvHiggsMT'] = {
     # 'expr': 'HM_Hlnjj_mt'
     'expr': 'TMath::Sqrt( 2*Lepton_pt[0]*PuppiMET_pt \
@@ -70,9 +77,6 @@ aliases['resolvHiggsMT'] = {
 
 aliases['idxCleanFatJetW'] = {
     'expr': '(HM_idxWfat_noTau21Cut*(HM_idxWfat_noTau21Cut>=0) + 999*(HM_idxWfat_noTau21Cut<0))'
-}
-aliases['manualHfatM'] = {
-    'expr': 'HM_HlnFatMass_noTau21Cut'
 }
 
 aliases['tau21Cut'] = {
@@ -91,8 +95,8 @@ aliases['boostedNoTau21'] = {
     'expr': 'PuppiMET_pt > 40 \
             && idxCleanFatJetW != 999 \
             && Alt$(CleanFatJet_pt[idxCleanFatJetW], 0) > 200 \
-            && Alt$(CleanFatJet_pt[idxCleanFatJetW], 0) / manualHfatM > 0.4 \
-            && manualHfatM > 0 && HM_Wlep_pt_Puppi / manualHfatM > 0.4 \
+            && Alt$(CleanFatJet_pt[idxCleanFatJetW], 0) / HM_HlnFatMass_noTau21Cut > 0.4 \
+            && HM_HlnFatMass_noTau21Cut > 0 && HM_Wlep_pt_Puppi / HM_HlnFatMass_noTau21Cut > 0.4 \
             && Alt$(CleanFatJet_mass[idxCleanFatJetW], 0) > 40 \
             && Alt$(CleanFatJet_eta[idxCleanFatJetW], 999) < 2.4'
 }
@@ -150,8 +154,16 @@ aliases['highResolvedSidebandWMass'] = {
 
 aliases['resolvedQCDcr'] = {
     'expr': 'resolvedSignalWMass \
-            && WlepMT < 50 && 0 < resolvHiggsMT \
+            && HM_Wlep_mt < 50 && 0 < resolvHiggsMT \
             && resolvHiggsMT < 60 && HM_WptOvHak4M < 0.35'
+}
+aliases['resolvedQCDSR'] = {
+    'expr': '!boosted[0] \
+            && resolvedSignalWMass \
+            && PuppiMET_pt > 30 \
+            && HM_WptOvHak4M > 0.35 \
+            && resolvHiggsMT > 60 \
+            && HM_Whad_pt > 30'
 }
 # boostedQCDcr not possible RN since boosted W candidate always fulfills WptOvHfatM > 0.4
 
@@ -349,24 +361,108 @@ aliases['SFweightMuDown'] = {
 
 
 
-# PU jet Id SF
-puidSFSource = '%s/src/PlotsConfigurations/Configurations/patches/PUID_81XTraining_EffSFandUncties.root' % os.getenv('CMSSW_BASE')
+# # PU jet Id SF
+# puidSFSource = '%s/src/PlotsConfigurations/Configurations/patches/PUID_81XTraining_EffSFandUncties.root' % os.getenv('CMSSW_BASE')
+
+# aliases['PUJetIdSF_old'] = {
+#     'linesToAdd': [
+#         'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
+#         '.L %s/src/PlotsConfigurations/Configurations/patches/pujetidsf_event_new.cc+' % os.getenv('CMSSW_BASE')
+#     ],
+#     'class': 'PUJetIdEventSF',
+#     'args': (puidSFSource, '2018', 'loose'),
+#     'samples': mc
+# }
+
 
 aliases['PUJetIdSF'] = {
-    'linesToAdd': [
-        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
-        '.L %s/src/PlotsConfigurations/Configurations/patches/pujetidsf_event_new.cc+' % os.getenv('CMSSW_BASE')
-    ],
-    'class': 'PUJetIdEventSF',
-    'args': (puidSFSource, '2018', 'loose'),
+    'expr' : 'TMath::Exp(Sum$( \
+        (Jet_jetId>=2 \
+        && ( (Jet_electronIdx1 != Lepton_electronIdx[0]) || Jet_electronIdx1 < 0 )  \
+        && ( (Jet_muonIdx1 != Lepton_muonIdx[0] ) || Jet_muonIdx1 < 0 ) \
+        )*TMath::Log(Jet_PUIDSF_loose)\
+    ))',
+  'samples': mc
+}
+
+
+
+
+with open(configurations+'/HWWSemiLepHighMass/DeepAK8V2_W_SFs.csv') as csvfile:
+    reader = csv.DictReader(row for row in csvfile if not row.startswith('#'))
+    deepAK8Dict = dict()
+    for row in reader:
+        name = '{y}_{ver}_{mtr}_{pT_l}_{pT_h}'.format(
+            y    = row['Year'],
+            ver  = row['version'],
+            mtr  = row['MistaggingRate[%]'],
+            pT_l = row['pT_low[GeV]'],
+            pT_h = row['pT_high[GeV]']
+        )
+        deepAK8Dict[name]         = str(row['SF'])
+        deepAK8Dict[name+'_up']   = str(float(row['SF'])+float(row['SF_upperErr']))
+        deepAK8Dict[name+'_down'] = str(float(row['SF'])+float(row['SF_lowerErr']))
+# 200 300
+# 300 400
+# 400 800
+year = '2018'
+mtr = '1p0'
+aliases['DeepAK8_SF'] = {
+    'expr': "( 1 * resolved[0] + !resolved[0]*(" +\
+        \
+        deepAK8Dict[year+'_Nominal_'+mtr+'_200_300'] +\
+        "* (100 < Alt$(CleanFatJet_pt[idxCleanFatJetW],0) \
+        && Alt$(CleanFatJet_pt[idxCleanFatJetW],0) < 300)   +" +\
+        \
+        deepAK8Dict[year+'_Nominal_'+mtr+'_300_400'] +\
+        "* (300 < Alt$(CleanFatJet_pt[idxCleanFatJetW],0) \
+        && Alt$(CleanFatJet_pt[idxCleanFatJetW],0) < 400)   +" +\
+        \
+        deepAK8Dict[year+'_Nominal_'+mtr+'_400_800'] +\
+        "* (400 < Alt$(CleanFatJet_pt[idxCleanFatJetW],0))   ))",
+    'samples': mc
+}
+
+aliases['DeepAK8_SF_up'] = {
+    'expr': "( 1 * resolved[0] + !resolved[0]*(" +\
+        \
+        deepAK8Dict[year+'_Nominal_'+mtr+'_200_300_up'] +\
+        "* (100 < Alt$(CleanFatJet_pt[idxCleanFatJetW],0) \
+        && Alt$(CleanFatJet_pt[idxCleanFatJetW],0) < 300)   +" +\
+        \
+        deepAK8Dict[year+'_Nominal_'+mtr+'_300_400_up'] +\
+        "* (300 < Alt$(CleanFatJet_pt[idxCleanFatJetW],0) \
+        && Alt$(CleanFatJet_pt[idxCleanFatJetW],0) < 400)   +" +\
+        \
+        deepAK8Dict[year+'_Nominal_'+mtr+'_400_800_up'] +\
+        "* (400 < Alt$(CleanFatJet_pt[idxCleanFatJetW],0))   ))",
+    'samples': mc
+}
+
+aliases['DeepAK8_SF_down'] = {
+    'expr': "( 1 * resolved[0] + !resolved[0]*(" +\
+        \
+        deepAK8Dict[year+'_Nominal_'+mtr+'_200_300_down'] +\
+        "* (100 < Alt$(CleanFatJet_pt[idxCleanFatJetW],0) \
+        && Alt$(CleanFatJet_pt[idxCleanFatJetW],0) < 300)   +" +\
+        \
+        deepAK8Dict[year+'_Nominal_'+mtr+'_300_400_down'] +\
+        "* (300 < Alt$(CleanFatJet_pt[idxCleanFatJetW],0) \
+        && Alt$(CleanFatJet_pt[idxCleanFatJetW],0) < 400)   +" +\
+        \
+        deepAK8Dict[year+'_Nominal_'+mtr+'_400_800_down'] +\
+        "* (400 < Alt$(CleanFatJet_pt[idxCleanFatJetW],0))   ))",
     'samples': mc
 }
 
 
 
+
+# TODO: choice here between boosted W tagging with tau21 (WtagSF)
+#       or DeepAK8 (DeepAK8_SF)
 # # data/MC scale factors
 aliases['SFweight'] = {
-    'expr': ' * '.join(['puWeight', 'TriggerEffWeight_1l', 'EMTFbug_veto', 'LepWPSF[0]', 'btagSF[0]', 'PUJetIdSF[0]', 'WtagSF[0]']),
+    'expr': ' * '.join(['puWeight', 'TriggerEffWeight_1l', 'EMTFbug_veto', 'LepWPSF[0]', 'btagSF[0]', 'PUJetIdSF[0]', 'DeepAK8_SF[0]']),
     'samples': mc
 }
 
@@ -428,6 +524,9 @@ aliases['DY_LO_pTllrw'] = {
 }
 
 
+
+
+
 mc_sbi = [skey for skey in samples if "SBI" in skey]
 aliases['SBI_isSMggh'] = {
     'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/isSample.cc+' % os.getenv('CMSSW_BASE')],
@@ -453,27 +552,3 @@ aliases['SBI_isHM'] = {
     'expr': '( !SBI_isSMggh && !SBI_isSMVBF && !SBI_isggWW && !SBI_isqqWWqq )',
     'samples': mc_sbi
 }
-
-
-# with open('../DeepAK8V2_W_SFs.csv') as csvfile:
-#     reader = csv.DictReader(csvfile)
-#     for row in reader:
-#         name = 'DeepAK8_SF_{y}_{ver}_{mtr}_{ptl}_{pth}'.format(
-#             y=row['Year'],
-#             ver=row['version'],
-#             mtr=row['MistaggingRate[%]'],
-#             ptl=row['pT_low[GeV]'],
-#             pth=row['pT_high[GeV]']
-#         )
-#         aliases[name] = {
-#             'expr': str(row['SF']),
-#             'samples': mc
-#         }
-#         aliases[name+'_up'] = {
-#             'expr': str(row['SF_upperErr']),
-#             'samples': mc
-#         }
-#         aliases[name+'_down'] = {
-#             'expr': str(row['SF_lowerErr']),
-#             'samples': mc
-#         }

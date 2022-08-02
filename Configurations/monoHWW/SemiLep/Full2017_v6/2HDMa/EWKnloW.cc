@@ -10,6 +10,10 @@
 
 //#include <iostream>
 
+
+#ifndef EWKnloW_HH
+#define EWKnloW_HH
+
 class EWKnloW : public multidraw::TTreeFunction {
 public:
   EWKnloW();
@@ -30,7 +34,9 @@ protected:
   FloatArrayReader* LHEPart_phi{};
   IntArrayReader* LHEPart_pdgId{};
 
-  TGraph* Wpt_map=new TGraph("/afs/cern.ch/user/s/svanputt/work/monoHiggs/PR/CMSSW_10_6_5/src/LatinoAnalysis/Gardener/python/data/ewk/kewk_w_for_python.txt");
+  //TGraph* Wpt_map=new TGraph("/afs/cern.ch/user/s/svanputt/work/monoHiggs/PR/CMSSW_10_6_5/src/LatinoAnalysis/Gardener/python/data/ewk/kewk_w_for_python.txt");
+  TGraph* Wpt_map=new TGraph(TString(std::getenv("CMSSW_BASE"))+"/src/LatinoAnalysis/Gardener/python/data/ewk/kewk_w_for_python.txt");
+  //TGraph* Wpt_map=new TGraph("/user/svanputt/monoHiggs/condor/CMSSW_10_6_5/src/LatinoAnalysis/Gardener/python/data/ewk/kewk_w_for_python.txt");
 };
 
 EWKnloW::EWKnloW() :
@@ -104,3 +110,5 @@ EWKnloW::bindTree_(multidraw::FunctionLibrary& _library)
   _library.bindBranch(LHEPart_phi, "LHEPart_phi");
   _library.bindBranch(LHEPart_pdgId, "LHEPart_pdgId");
 }
+
+#endif

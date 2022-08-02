@@ -6,7 +6,7 @@
 #                    
 structure['DY']  = {  
                   'isSignal' : 0,
-                  'isData'   : 0
+                  'isData'   : 0,
               }
 
 structure['Dyemb']  = {
@@ -139,32 +139,26 @@ structure['ggH'] = {
 
 structure['ggH_hww'] = {
                   'isSignal' : 1,
-                  'isData'   : 0    
-                  }
-
-structure['qqH_hww'] = {
-                  'isSignal' : 1,
-                  'isData'   : 0    
-                  }
-
-structure['qqH_hww'] = {
-                  'isSignal' : 1,
-                  'isData'   : 0    
+                  'isData'   : 0,
+                  'scaleSampleForDatacard' : {cut : 1.03364 for cut in cuts.keys()}, # XSECxBR correction for mH = 125.38
                   }
 
 structure['WH_hww'] = {
                   'isSignal' : 1,
-                  'isData'   : 0    
+                  'isData'   : 0,
+                  'scaleSampleForDatacard' : {cut : 1.01724 for cut in cuts.keys()}, # XSECxBR correction for mH = 125.38 
                   }
 
 structure['ZH_hww'] = {
                   'isSignal' : 1,
-                  'isData'   : 0    
+                  'isData'   : 0,
+                  'scaleSampleForDatacard' : {cut : 1.01994 for cut in cuts.keys()}, # XSECxBR correction for mH = 125.38
                   }
 
 structure['ggZH_hww'] = {
                   'isSignal' : 1,
-                  'isData'   : 0    
+                  'isData'   : 0,
+                  'scaleSampleForDatacard' : {cut : 1.02494 for cut in cuts.keys()}, # XSECxBR correction for mH = 125.38
                   }
 
 structure['H_hww'] = {
@@ -207,6 +201,21 @@ structure['H_htt'] = {
                   'isData'   : 0    
                   }
 
+import pickle
+with open('vbfDipoleScale.pkl', 'rb') as handle:
+    vbfDipoleScale = pickle.load(handle)
+
+print vbfDipoleScale
+
+# XSECxBR correction for mH = 125.38
+for key, val in vbfDipoleScale.items():
+    vbfDipoleScale[key] = val * 1.03621
+
+structure['qqH_hww'] = {
+                  'isSignal' : 1,
+                  'isData'   : 0,
+                  'scaleSampleForDatacard' : vbfDipoleScale,
+                  }
 
 # data
 

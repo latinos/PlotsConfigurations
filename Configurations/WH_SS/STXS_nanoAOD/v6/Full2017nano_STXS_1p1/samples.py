@@ -125,7 +125,7 @@ else:
     
     samples['DY'] = {
         'name': files,
-        'weight': mcCommonWeight + '*(Sum$(GenPart_pdgId == 22 && TMath::Odd(GenPart_statusFlags) && GenPart_pt > 20.) == 0)',
+        'weight': mcCommonWeight + '*(Sum$(GenPart_pdgId == 22 && TMath::Odd(GenPart_statusFlags) && GenPart_pt > 20.) == 0)*ttHMVA_SF_flip_2l[0]',
         'FilesPerJob': 10,
     }
     addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO_ext1',ptllDYW_LO)
@@ -142,7 +142,7 @@ files = nanoGetSampleFiles(mcDirectory, 'TTTo2L2Nu') + \
 
 samples['top'] = {
     'name': files,
-    'weight': mcCommonWeight,
+    'weight': mcCommonWeight+'*ttHMVA_SF_flip_2l[0]',
     'FilesPerJob': 1,
 }
 
@@ -152,7 +152,7 @@ addSampleWeight(samples,'top','TTTo2L2Nu','Top_pTrw')
 
 samples['WW'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'WWTo2L2Nu'),
-    'weight': mcCommonWeight + '*nllW',
+    'weight': mcCommonWeight + '*nllW*ttHMVA_SF_flip_2l[0]',
     'FilesPerJob': 1
 }
 

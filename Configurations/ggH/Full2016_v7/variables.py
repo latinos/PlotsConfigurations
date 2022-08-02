@@ -9,24 +9,17 @@ variables['events']  = {   'name': '1',
                         'xaxis' : 'events', 
                         'fold' : 3
                         }
-
-#variables['nvtx']  = {   'name': 'PV_npvsGood',
-#                        'range' : (20,0,100),
-#                        'xaxis' : 'nvtx',
-#                         'fold' : 3
-#                      }
-#
-
+'''
 variables['mll']  = {   'name': 'mll',
                         'range' : (20, 12,200),
                         'xaxis' : 'm_{ll} [GeV]',
-                        'fold' : 0
+                        'fold' : 3
                         }
 
 variables['mth']  = {   'name': 'mth',
                         'range' : (20, 60,200),
                         'xaxis' : 'm_{T}^{H} [GeV]',
-                        'fold' : 0
+                        'fold' : 3
                         }
 
 variables['mth-DY']  = {   'name': 'mth',
@@ -117,7 +110,7 @@ variables['jeteta2']  = {  'name': '(Sum$(CleanJet_pt>30)>1)*(Alt$(CleanJet_eta[
                         'xaxis' : '#eta 2nd jet',
                         'fold'  : 0
                         }
-
+'''
 
 variables['mllVSmth_pt2ge20'] = {   'name': 'mll:mth',            #   variable name    
                              'range' : ([60,80,90,100,110,120,130,150,200],[12,25,35,40,45,50,55,70,90,210],),            #   variable range
@@ -130,7 +123,7 @@ variables['mllVSmth_pt2ge20'] = {   'name': 'mll:mth',            #   variable n
                              #
                              }
 
-
+'''
 variables['mllVSmth_optim'] = {   'name': 'mll:mth',            #   variable name    
                              'range' : ([60,95,110,135,200],[12,17,25,30,35,40,45,65,200],),            #   variable range
                              'xaxis' : 'm_{ll} : m_{T}^{H}',      #   x axis name
@@ -152,7 +145,7 @@ variables['mllVSmth_low_optim'] = {   'name': 'mll:mth',            #   variable
                              'binY'     : 3
                              #
                              }
-
+'''
 
 variables['mllVSmth_pt2lt20'] = {   'name': 'mll:mth',            #   variable name    
                              'range' : ([60,80,90,110,130,150,200],[12,25,40,50,70,90,210],),            #   variable range
@@ -164,4 +157,3 @@ variables['mllVSmth_pt2lt20'] = {   'name': 'mll:mth',            #   variable n
                              'binY'     : 6
                              #
                              }
-

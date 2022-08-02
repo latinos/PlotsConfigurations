@@ -40,29 +40,6 @@ BoostCats['BoostedTopCR_']='1 \
 
 
 
-# High Mass category
-dPhiWWCut  ='&& abs(dPhi_WW_boosted[0]) > 2.2'
-sumPtCut   ='&& Lepton_pt[0] + PuppiMET_pt + Alt$(HM_CleanFatJetPassMBoosted_pt[0], -9999) > 850'
-
-HMProcCats={}
-HMProcCats['55']='tau21DDT<0.55'+dPhiWWCut+sumPtCut
-
-
-HMCats={}
-HMCats['HMSR_']='boostedNoTau21[0] \
-                && boostedSignalWMassNoTau21[0] \
-                && bVeto[0]'
-HMCats['HMSB_']='boostedNoTau21[0] \
-               && !boostedSignalWMassNoTau21[0] \
-               && boostedSidebandWMassNoTau21[0] \
-               && bVeto[0]'
-HMCats['HMTopCR_']='boostedNoTau21[0] \
-               && boostedSignalWMassNoTau21[0] \
-               && !bVeto[0]'
-
-
-
-
 
 
 WvsQCD = 'Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[idxCleanFatJetW]], -1)'
@@ -70,13 +47,13 @@ MD_WvsQCD = 'Alt$(FatJet_deepTagMD_WvsQCD[CleanFatJet_jetIdx[idxCleanFatJetW]], 
 
 # mistag rate in permille
 DeepTagCats= {
-    '25_': '({0} > 0.762)'.format(WvsQCD),
+    # '25_': '({0} > 0.762)'.format(WvsQCD),
     '10_': '({0} > 0.918)'.format(WvsQCD),
-    '05_': '({0} > 0.961)'.format(WvsQCD),
+    # '05_': '({0} > 0.961)'.format(WvsQCD),
 
-    '25MD_': '({0} > 0.479)'.format(MD_WvsQCD),
-    '10MD_': '({0} > 0.704)'.format(MD_WvsQCD),
-    '05MD_': '({0} > 0.806)'.format(MD_WvsQCD),
+    # '25MD_': '({0} > 0.479)'.format(MD_WvsQCD),
+    # '10MD_': '({0} > 0.704)'.format(MD_WvsQCD),
+    # '05MD_': '({0} > 0.806)'.format(MD_WvsQCD),
 }
 
 DeepProcCats={
@@ -105,6 +82,29 @@ DeepCats={
 
 
 
+# High Mass category
+dPhiWWCut  ='&& abs(dPhi_WW_boosted[0]) > 2.2'
+sumPtCut   ='&& Lepton_pt[0] + PuppiMET_pt + Alt$(HM_CleanFatJetPassMBoosted_pt[0], -9999) > 850'
+
+HMProcCats={}
+HMProcCats['55']='tau21DDT<0.55'+dPhiWWCut+sumPtCut
+
+
+HMCats={}
+HMCats['HMSR_']='boostedNoTau21[0] \
+                && boostedSignalWMassNoTau21[0] \
+                && bVeto[0]'
+HMCats['HMSB_']='boostedNoTau21[0] \
+               && !boostedSignalWMassNoTau21[0] \
+               && boostedSidebandWMassNoTau21[0] \
+               && bVeto[0]'
+HMCats['HMTopCR_']='boostedNoTau21[0] \
+               && boostedSignalWMassNoTau21[0] \
+               && !bVeto[0]'
+
+
+
+
 
 ResolveProcCats={}
 ResolveProcCats['']='1'
@@ -129,19 +129,12 @@ QCDCats={}
 ##=== Define cuts ===###
 for Lep in LepCats:
 
-    for BCat in BoostCats:
-        for BProcCat in BoostProcCats:
-            cuts[Lep+BProcCat+BCat]=  BoostCats[BCat]\
-                                +'&&'+BoostProcCats[BProcCat]\
-                                +'&&'+LepCats[Lep]
-
-    for HCat in HMCats:
-        for HProcCat in HMProcCats:
-            cuts[Lep+HProcCat+HCat]=  HMCats[HCat]\
-                                +'&&'+HMProcCats[HProcCat]\
-                                +'&&'+LepCats[Lep]
-
-
+    # for BCat in BoostCats:
+    #     for BProcCat in BoostProcCats:
+    #         cuts[Lep+BProcCat+BCat]=  BoostCats[BCat]\
+    #                             +'&&'+BoostProcCats[BProcCat]\
+    #                             +'&&'+LepCats[Lep]
+    
     for DCat in DeepCats:
         for DProcCat in DeepProcCats:
             for DTCat in DeepTagCats:
@@ -150,6 +143,13 @@ for Lep in LepCats:
                                 +'&&'+LepCats[Lep]\
                                 +'&&'+DeepTagCats[DTCat]
 
+    # for HCat in HMCats:
+    #     for BProcCat in BoostProcCats:
+    #         for HProcCat in HMProcCats:
+    #             cuts[Lep+BProcCat+HProcCat+HCat]=  HMCats[HCat]\
+    #                             +'&&'+BoostProcCats[BProcCat]\
+    #                             +'&&'+HMProcCats[HProcCat]\
+    #                             +'&&'+LepCats[Lep]
 
     for RCat in ResolveCats:
         for RProcCat in ResolveProcCats:

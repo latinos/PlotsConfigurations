@@ -1,3 +1,4 @@
+
 import os
 import copy
 import inspect
@@ -256,44 +257,51 @@ for thu in thus:
 # VBF DNN
 
 aliases['vbfdnn'] = {
-        'linesToAdd': ['.L $CMSSW_BASE/src/PlotsConfigurations/Configurations/VBF/Snowmass/extended/evaluate_multiclass.cc+'],
+        'linesToAdd': ['.L $CMSSW_BASE/src/PlotsConfigurations/Configurations/VBF/Keras_2018_v6/dnn_quad/evaluate_multiclass_quad.cc+'],
         'class': 'evaluate_multiclass',
         'args': 0,
 }
 
-aliases['topdnn'] = {
-        'linesToAdd': ['.L $CMSSW_BASE/src/PlotsConfigurations/Configurations/VBF/Snowmass/extended/evaluate_multiclass.cc+'],
-        'class': 'evaluate_multiclass',
-        'args': 1,
-}
 
-aliases['wwdnn'] = {
-        'linesToAdd': ['.L $CMSSW_BASE/src/PlotsConfigurations/Configurations/VBF/Snowmass/extended/evaluate_multiclass.cc+'],
-        'class': 'evaluate_multiclass',
-        'args': 2,
-}
+# aliases['vbfdnn'] = {
+#         'linesToAdd': ['.L $CMSSW_BASE/src/PlotsConfigurations/Configurations/VBF/Snowmass/extended/evaluate_multiclass.cc+'],
+#         'class': 'evaluate_multiclass',
+#         'args': 0,
+# }
 
-aliases['gghdnn'] = {
-        'linesToAdd': ['.L $CMSSW_BASE/src/PlotsConfigurations/Configurations/VBF/Snowmass/extended/evaluate_multiclass.cc+'],
-        'class': 'evaluate_multiclass',
-        'args': 3,
-}
+# aliases['topdnn'] = {
+#         'linesToAdd': ['.L $CMSSW_BASE/src/PlotsConfigurations/Configurations/VBF/Snowmass/extended/evaluate_multiclass.cc+'],
+#         'class': 'evaluate_multiclass',
+#         'args': 1,
+# }
 
-aliases['vbflike'] = { 
-        'expr': 'vbfdnn>gghdnn && vbfdnn>topdnn && vbfdnn>wwdnn',
-}
+# aliases['wwdnn'] = {
+#         'linesToAdd': ['.L $CMSSW_BASE/src/PlotsConfigurations/Configurations/VBF/Snowmass/extended/evaluate_multiclass.cc+'],
+#         'class': 'evaluate_multiclass',
+#         'args': 2,
+# }
 
-aliases['toplike'] = { 
-        'expr': 'topdnn>gghdnn && topdnn>vbfdnn && topdnn>wwdnn',
-}
+# aliases['gghdnn'] = {
+#         'linesToAdd': ['.L $CMSSW_BASE/src/PlotsConfigurations/Configurations/VBF/Snowmass/extended/evaluate_multiclass.cc+'],
+#         'class': 'evaluate_multiclass',
+#         'args': 3,
+# }
 
-aliases['wwlike'] = { 
-        'expr': 'wwdnn>gghdnn && wwdnn>topdnn && wwdnn>vbfdnn',
-}
+# aliases['vbflike'] = { 
+#         'expr': 'vbfdnn>gghdnn && vbfdnn>topdnn && vbfdnn>wwdnn',
+# }
 
-aliases['gghlike'] = { 
-        'expr': 'gghdnn>vbfdnn && gghdnn>topdnn && gghdnn>wwdnn',
-}
+# aliases['toplike'] = { 
+#         'expr': 'topdnn>gghdnn && topdnn>vbfdnn && topdnn>wwdnn',
+# }
+
+# aliases['wwlike'] = { 
+#         'expr': 'wwdnn>gghdnn && wwdnn>topdnn && wwdnn>vbfdnn',
+# }
+
+# aliases['gghlike'] = { 
+#         'expr': 'gghdnn>vbfdnn && gghdnn>topdnn && gghdnn>wwdnn',
+# }
 
 # Delta Phi JJ
 
@@ -301,4 +309,9 @@ aliases['GenDeltaPhiJJ'] = {
     'linesToAdd' : ['.L %s/VBF/Snowmass/extended/GetGenJetDeltaPhi.cc+' % configurations],
     'class' : 'GetGenJetDeltaPhi',
     'samples' : mc
+}
+
+aliases['DeltaPhi'] = {
+    'linesToAdd' : ['.L %s/VBF/Snowmass/extended/GetDeltaPhi.cc+' % configurations],
+    'class' : 'GetDeltaPhi',
 }

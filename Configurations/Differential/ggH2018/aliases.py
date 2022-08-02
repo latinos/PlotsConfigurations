@@ -71,6 +71,12 @@ aliases['fakeWStatMuDown'] = {
     'samples': ['Fake']
 }
 
+aliases['qq2vvOTF'] = {
+    'linesToAdd': ['.L %s/Differential/qq2vvEWK.cc+' % configurations],
+    'class': 'WWEWKW',
+    'args': ('central',),
+    'samples': ['WW', 'WW_UE_CP5Up','WW_UE_CP5Down']
+}
 # gen-matching to prompt only (GenLepMatch2l matches to *any* gen lepton)
 aliases['PromptGenLepMatch2l'] = {
     'expr': 'Alt$(Lepton_promptgenmatched[0]*Lepton_promptgenmatched[1], 0)',
