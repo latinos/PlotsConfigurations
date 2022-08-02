@@ -1,0 +1,194 @@
+[ { 
+  "datacard_name": "2016_res_wjet_mu_DNN_v2",
+  "folders": [
+    {
+      "basedir": "Full2016v7/datacards_fit_v4.3_2016_v1", 
+      "name": 2016
+    }
+  ], 
+  "phase_spaces": [
+    {
+        "name": "res_wjetcr_mu",
+        "var": "DNNoutput_res_v2", 
+        "cut": "res_wjetcr_mu"
+    }
+  ]
+},
+{ 
+  "datacard_name": "2016_res_wjet_ele_DNN_v2",
+  "folders": [
+    {
+      "basedir": "Full2016v7/datacards_fit_v4.3_2016_v1", 
+      "name": 2016
+    }
+  ], 
+  "phase_spaces": [
+    {
+        "name": "res_wjetcr_ele",
+        "var": "DNNoutput_res_v2", 
+        "cut": "res_wjetcr_ele"
+    }
+  ]
+},
+{ 
+  "datacard_name": "2017_res_wjet_mu_DNN_v2",
+  "folders": [
+    {
+      "basedir": "Full2017v7/datacards_fit_v4.3_2017_v1", 
+      "name": 2017
+    }
+  ], 
+  "phase_spaces": [
+    {
+        "name": "res_wjetcr_mu",
+        "var": "DNNoutput_res_v2", 
+        "cut": "res_wjetcr_mu"
+    }
+  ]
+},
+{ 
+  "datacard_name": "2017_res_wjet_ele_DNN_v2",
+  "folders": [
+    {
+      "basedir": "Full2017v7/datacards_fit_v4.3_2017_v1", 
+      "name": 2017
+    }
+  ], 
+  "phase_spaces": [
+    {
+        "name": "res_wjetcr_ele",
+        "var": "DNNoutput_res_v2", 
+        "cut": "res_wjetcr_ele"
+    }
+  ]
+},
+{ 
+  "datacard_name": "2018_res_wjet_mu_DNN_v2",
+  "folders": [
+    {
+      "basedir": "Full2018v7/datacards_fit_v4.3_2018_v1", 
+      "name": 2018
+    }
+  ], 
+  "phase_spaces": [
+    {
+        "name": "res_wjetcr_mu",
+        "var": "DNNoutput_res_v2", 
+        "cut": "res_wjetcr_mu"
+    }
+  ]
+},
+{ 
+  "datacard_name": "2018_res_wjet_ele_DNN_v2",
+  "folders": [
+    {
+      "basedir": "Full2018v7/datacards_fit_v4.3_2018_v1", 
+      "name": 2018
+    }
+  ], 
+  "phase_spaces": [
+    {
+        "name": "res_wjetcr_ele",
+        "var": "DNNoutput_res_v2", 
+        "cut": "res_wjetcr_ele"
+    }
+  ]
+},
+{ 
+  "datacard_name": "2016_res_top_mu_DNN_v2",
+  "folders": [
+    {
+      "basedir": "Full2016v7/datacards_fit_v4.3_2016_v1", 
+      "name": 2016
+    }
+  ], 
+  "phase_spaces": [
+    {
+        "name": "res_topcr_mu",
+        "var": "DNNoutput_res_v2", 
+        "cut": "res_topcr_mu"
+    }
+  ]
+},
+{ 
+  "datacard_name": "2016_res_top_ele_DNN_v2",
+  "folders": [
+    {
+      "basedir": "Full2016v7/datacards_fit_v4.3_2016_v1", 
+      "name": 2016
+    }
+  ], 
+  "phase_spaces": [
+    {
+        "name": "res_topcr_ele",
+        "var": "DNNoutput_res_v2", 
+        "cut": "res_topcr_ele"
+    }
+  ]
+},
+{ 
+  "datacard_name": "2017_res_top_mu_DNN_v2",
+  "folders": [
+    {
+      "basedir": "Full2017v7/datacards_fit_v4.3_2017_v1", 
+      "name": 2017
+    }
+  ], 
+  "phase_spaces": [
+    {
+        "name": "res_topcr_mu",
+        "var": "DNNoutput_res_v2", 
+        "cut": "res_topcr_mu"
+    }
+  ]
+},
+{ 
+  "datacard_name": "2017_res_top_ele_DNN_v2",
+  "folders": [
+    {
+      "basedir": "Full2017v7/datacards_fit_v4.3_2017_v1", 
+      "name": 2017
+    }
+  ], 
+  "phase_spaces": [
+    {
+        "name": "res_topcr_ele",
+        "var": "DNNoutput_res_v2", 
+        "cut": "res_topcr_ele"
+    }
+  ]
+},
+{ 
+  "datacard_name": "2018_res_top_mu_DNN_v2",
+  "folders": [
+    {
+      "basedir": "Full2018v7/datacards_fit_v4.3_2018_v1", 
+      "name": 2018
+    }
+  ], 
+  "phase_spaces": [
+    {
+        "name": "res_topcr_mu",
+        "var": "DNNoutput_res_v2", 
+        "cut": "res_topcr_mu"
+    }
+  ]
+},
+{ 
+  "datacard_name": "2018_res_top_ele_DNN_v2",
+  "folders": [
+    {
+      "basedir": "Full2018v7/datacards_fit_v4.3_2018_v1", 
+      "name": 2018
+    }
+  ], 
+  "phase_spaces": [
+    {
+        "name": "res_topcr_ele",
+        "var": "DNNoutput_res_v2", 
+        "cut": "res_topcr_ele"
+    }
+  ]
+}
+
+]

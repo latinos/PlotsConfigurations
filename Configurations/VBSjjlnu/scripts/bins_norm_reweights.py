@@ -2,7 +2,7 @@ from __future__ import print_function
 import ROOT as R 
 import argparse
 import pandas as pd
-
+from math import sqrt
 
 '''
 This script extracts the weights to correct data/MC ratio bin by bin on selected cut and variable, 
@@ -14,7 +14,7 @@ parser.add_argument("-i","--input", help="input file", type=str)
 parser.add_argument("-o","--output", help="output file", type=str)
 parser.add_argument("-v", "--vars", help="Variables", nargs="+", type=str)
 parser.add_argument("--cuts", help="cuts to analyze", nargs="+", type=str)
-parser.add_argument("-s", "--samples", help="Samples to analyzer", nargs="+", type=str)
+parser.add_argument("-s", "--samples", help="Samples to analyze", nargs="+", type=str)
 parser.add_argument( "--other-samples", help="Samples to be removed from data",nargs="+", type=str)
 args = parser.parse_args()
 
@@ -61,9 +61,10 @@ for cut in args.cuts:
                     continue
                 
                 w = data_hist.GetBinContent(ibin) / reweight_hist.GetBinContent(ibin)
+                err = 1/ sqrt(reweight_hist.GetBinContent(ibin))
                 weights.append(w)
                 if w != 1.0:
-                    results.append((cut, sample, w))
+                    results.append((cut, sample, w, err))
 
             sample_weights[sample] = weights
 
@@ -78,6 +79,6 @@ iF.Write()
 iF.Close()
 
 
-df = pd.DataFrame(results, columns=["channel", "bin", "weight"])
+df = pd.DataFrame(results, columns=["channel", "bin", "weight", "error"])
 print(df)
 df.to_csv(args.output, sep=";", index=False)

@@ -3,7 +3,7 @@
 
 # # # name of samples here must match keys in samples.py 
 
-# mc =["DY", "top", "VV", "VVV", "VBF-V", "Vg", "VgS", "top", "VBS", "Wjets_HT"]
+mc =["DY", "top", "VV", "VVV", "VBF-V", "Vg", "VgS", "top", "VBS", "Wjets_HT"]
 
 
 # phase_spaces_boost = []
@@ -81,6 +81,21 @@ nuisances['lumi_CurrCalib'] = {
 # #   fakeW_statEleDown = '( fakeW_ele_'+eleWP+'_mu_'+muWP+'_'+Nlep+'lstatElDown / fakeW_ele_'+eleWP+'_mu_'+muWP+'_'+Nlep+'l )'
 # #   fakeW_statMuUp    = '( fakeW_ele_'+eleWP+'_mu_'+muWP+'_'+Nlep+'lstatMuUp   / fakeW_ele_'+eleWP+'_mu_'+muWP+'_'+Nlep+'l )'
 # #   fakeW_statMuDown  = '( fakeW_ele_'+eleWP+'_mu_'+muWP+'_'+Nlep+'lstatMuDown / fakeW_ele_'+eleWP+'_mu_'+muWP+'_'+Nlep+'l )'
+
+
+nuisances['fake_stat']  = {
+                'name'  : 'fake_stat_2018',
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples'  : {}
+}
+
+for et in [10,25,35,45]:
+    fakeW_statUp= 'FW_mu{0}_el{0}_statUp / FW_mu{0}_el{0}'.format(et)
+    fakeW_statDo= 'FW_mu{0}_el{0}_statDo / FW_mu{0}_el{0}'.format(et)
+    nuisances['fake_stat']['samples']['ECAL'+str(et)] = [fakeW_statUp, fakeW_statDo]
+
+
 
 # nuisances['fake_syst']  = {
 #                'name'  : 'CMS_fake_syst',
@@ -517,15 +532,15 @@ nuisances['lumi_CurrCalib'] = {
 
 
 
-# ## Use the following if you want to apply the automatic combine MC stat nuisances.
-# nuisances['stat']  = {
-#               'type'  : 'auto',
-#               'maxPoiss'  : '10',
-#               'includeSignal'  : '1',
-#               #  nuisance ['maxPoiss'] =  Number of threshold events for Poisson modelling
-#               #  nuisance ['includeSignal'] =  Include MC stat nuisances on signal processes (1=True, 0=False)
-#               'samples' : {}
-#              }
+## Use the following if you want to apply the automatic combine MC stat nuisances.
+nuisances['stat']  = {
+              'type'  : 'auto',
+              'maxPoiss'  : '10',
+              'includeSignal'  : '1',
+              #  nuisance ['maxPoiss'] =  Number of threshold events for Poisson modelling
+              #  nuisance ['includeSignal'] =  Include MC stat nuisances on signal processes (1=True, 0=False)
+              'samples' : {}
+             }
 
 
 

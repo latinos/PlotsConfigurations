@@ -23,14 +23,14 @@ using namespace std;
 class newFakeWeightOTF : public multidraw::TTreeFunction {
 public:
   //newFakeWeightOTF(string file, string ele_WP, string mu_WP, string fr_ele_path, string pr_ele_path, string fr_mu_path, string pr_mu_path);
-  newFakeWeightOTF(string ele_WP, string mu_WP, string fr_ele_path, string pr_ele_path, string fr_mu_path, string pr_mu_path);
+  newFakeWeightOTF(string ele_WP, string mu_WP, string fr_ele_path, string pr_ele_path, string fr_mu_path, string pr_mu_path, bool do_statUp, bool do_statDo);
 
   char const* getName() const override { 
       return "newFakeWeightOTF"; 
   }
   TTreeFunction* clone() const override { 
       //return new newFakeWeightOTF(inputfile_path, ele_WP, mu_WP, fr_ele_path, pr_ele_path, fr_mu_path, pr_mu_path); 
-      return new newFakeWeightOTF(ele_WP, mu_WP, fr_ele_path, pr_ele_path, fr_mu_path, pr_mu_path); 
+      return new newFakeWeightOTF(ele_WP, mu_WP, fr_ele_path, pr_ele_path, fr_mu_path, pr_mu_path, do_statUp, do_statDo); 
   }
 
   unsigned getNdata() override { return 1; }
@@ -39,6 +39,9 @@ public:
 protected:  
   ~newFakeWeightOTF();
   void bindTree_(multidraw::FunctionLibrary&) override;
+  bool do_statUp;
+  bool do_statDo;
+
   
   //string inputfile_path;
   string pr_ele_path;
@@ -71,12 +74,13 @@ protected:
 };
 
 //newFakeWeightOTF::newFakeWeightOTF(string in_file, string ele_WP, string mu_WP, string in_fr_ele_path, string in_pr_ele_path, string in_fr_mu_path, string in_pr_mu_path) :
-newFakeWeightOTF::newFakeWeightOTF(string ele_WP, string mu_WP, string in_fr_ele_path, string in_pr_ele_path, string in_fr_mu_path, string in_pr_mu_path) :
+newFakeWeightOTF::newFakeWeightOTF(string ele_WP, string mu_WP, string in_fr_ele_path, string in_pr_ele_path, string in_fr_mu_path, string in_pr_mu_path, bool do_statUp = false, bool do_statDo = false) :
   TTreeFunction(), 
                   //inputfile_path(in_file), 
                   fr_ele_path(in_fr_ele_path), pr_ele_path(in_pr_ele_path),
                   fr_mu_path(in_fr_mu_path), pr_mu_path(in_pr_mu_path),
-                  ele_WP(ele_WP), mu_WP(mu_WP) 
+                  ele_WP(ele_WP), mu_WP(mu_WP),
+                  do_statUp(do_statUp), do_statDo(do_statDo) 
 {
   //inputfile = new TFile(inputfile_path.c_str(), "read");
   //for (int i = 1; i<=10; i++){
@@ -104,6 +108,9 @@ newFakeWeightOTF::newFakeWeightOTF(string ele_WP, string mu_WP, string in_fr_ele
   fr_mu_file->Close();
   fr_mu_file->Close();
   
+  if (do_statUp && do_statDo){
+      throw std::runtime_error("Can't do both up and down at once");
+  }
 }
 
 
@@ -119,17 +126,19 @@ newFakeWeightOTF::evaluate(unsigned)
       float maxpt = pr_mu_h2->GetXaxis()->GetBinCenter(pr_mu_h2->GetNbinsX());
       float prompt_rate;
       if (pt > maxpt){
-        prompt_rate = pr_mu_h2->GetBinContent(pr_mu_h2->FindBin(maxpt,aeta));
+        prompt_rate   = pr_mu_h2->GetBinContent(pr_mu_h2->FindBin(maxpt,aeta));
       }else{
-        prompt_rate = pr_mu_h2->GetBinContent(pr_mu_h2->FindBin(pt,aeta));
+        prompt_rate   = pr_mu_h2->GetBinContent(pr_mu_h2->FindBin(pt,aeta));
       }
-      float fake_rate; 
+      float fake_rate, fake_rate_e; 
       //maxpt = 35.; 
       maxpt = fr_mu_h2->GetXaxis()->GetBinCenter(fr_mu_h2->GetNbinsX());
       if (pt > maxpt){
-        fake_rate = fr_mu_h2->GetBinContent(fr_mu_h2->FindBin(maxpt, aeta));
+        fake_rate   = fr_mu_h2->GetBinContent(fr_mu_h2->FindBin(maxpt, aeta));
+        fake_rate_e = fr_mu_h2->GetBinError(fr_mu_h2->FindBin(maxpt, aeta));
       }else{
-        fake_rate = fr_mu_h2->GetBinContent(fr_mu_h2->FindBin(pt, aeta));
+        fake_rate   = fr_mu_h2->GetBinContent(fr_mu_h2->FindBin(pt, aeta));
+        fake_rate_e = fr_mu_h2->GetBinError(fr_mu_h2->FindBin(pt, aeta));
       }
 
       if (Lepton_isTightMu->At(0)){
@@ -141,17 +150,19 @@ newFakeWeightOTF::evaluate(unsigned)
       float maxpt = pr_ele_h2->GetXaxis()->GetBinCenter(pr_ele_h2->GetNbinsX());
       float prompt_rate;
       if (pt > maxpt){
-        prompt_rate = pr_ele_h2->GetBinContent(pr_ele_h2->FindBin(maxpt,aeta));
+        prompt_rate   = pr_ele_h2->GetBinContent(pr_ele_h2->FindBin(maxpt,aeta));
       }else{
-        prompt_rate = pr_ele_h2->GetBinContent(pr_ele_h2->FindBin(pt,aeta));
+        prompt_rate   = pr_ele_h2->GetBinContent(pr_ele_h2->FindBin(pt,aeta));
       }
-      float fake_rate; 
+      float fake_rate, fake_rate_e; 
       //maxpt = 35.; 
       maxpt = fr_ele_h2->GetXaxis()->GetBinCenter(fr_ele_h2->GetNbinsX());
       if (pt > maxpt){
-        fake_rate = fr_ele_h2->GetBinContent(fr_ele_h2->FindBin(maxpt, aeta));
+        fake_rate   = fr_ele_h2->GetBinContent(fr_ele_h2->FindBin(maxpt, aeta));
+        fake_rate_e = fr_ele_h2->GetBinError(fr_ele_h2->FindBin(maxpt, aeta));
       }else{
-        fake_rate = fr_ele_h2->GetBinContent(fr_ele_h2->FindBin(pt, aeta));
+        fake_rate   = fr_ele_h2->GetBinContent(fr_ele_h2->FindBin(pt, aeta));
+        fake_rate_e = fr_ele_h2->GetBinError(fr_ele_h2->FindBin(pt, aeta));
       }
       //vector<float> etabins = {-2.5,-2.1,-1.566,-1.442,-0.8,0.0,0.8,1.442,1.566,2.1,2.5,3};
       //int etabin = -1;
@@ -171,6 +182,14 @@ newFakeWeightOTF::evaluate(unsigned)
       //}else{
       //  new_fakew =  R_factor * (fake_rate*prompt_rate)/(prompt_rate-fake_rate);
       //}
+      float fr = fake_rate;
+      if (do_statUp){
+          fr += fake_rate_e; 
+      }
+      if (do_statDo){
+          fr -= fake_rate_e; 
+      }
+
       if (Lepton_isTightEle->At(0)){
           new_fakew = (-1) * fake_rate * (1 - prompt_rate)/(prompt_rate - fake_rate);
       }else{

@@ -1,0 +1,386 @@
+[
+  {
+    "folders": [
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.5_2017_etajets_Dipole_v2.2", 
+        "name": 2017
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "vbs_0_eta", 
+        "cut": "res_sig_ele", 
+        "name": "res_sig_ele_etajets"
+      }
+    ], 
+    "datacard_name": "2017_res_sig_ele_vbs_0_eta"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.5_2017_etajets_Dipole_v2.2", 
+        "name": 2017
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "vbs_0_eta", 
+        "cut": "res_sig_mu", 
+        "name": "res_sig_mu_etajets"
+      }
+    ], 
+    "datacard_name": "2017_res_sig_mu_vbs_0_eta"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.5_2017_etajets_Dipole_v2.2", 
+        "name": 2017
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "vbs_0_eta", 
+        "cut": "res_wjetcr_ele", 
+        "name": "res_wjetcr_ele_etajets"
+      }
+    ], 
+    "datacard_name": "2017_res_wjetcr_ele_vbs_0_eta"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.5_2017_etajets_Dipole_v2.2", 
+        "name": 2017
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "vbs_0_eta", 
+        "cut": "res_wjetcr_mu", 
+        "name": "res_wjetcr_mu_etajets"
+      }
+    ], 
+    "datacard_name": "2017_res_wjetcr_mu_vbs_0_eta"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.5_2017_etajets_Dipole_v2.2", 
+        "name": 2017
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "vbs_0_eta", 
+        "cut": "res_topcr_ele", 
+        "name": "res_topcr_ele_etajets"
+      }
+    ], 
+    "datacard_name": "2017_res_topcr_ele_vbs_0_eta"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.5_2017_etajets_Dipole_v2.2", 
+        "name": 2017
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "vbs_0_eta", 
+        "cut": "res_topcr_mu", 
+        "name": "res_topcr_mu_etajets"
+      }
+    ], 
+    "datacard_name": "2017_res_topcr_mu_vbs_0_eta"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.5_2017_etajets_Dipole_v2.2", 
+        "name": 2017
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "vbs_1_eta", 
+        "cut": "res_sig_ele", 
+        "name": "res_sig_ele_etajets"
+      }
+    ], 
+    "datacard_name": "2017_res_sig_ele_vbs_1_eta"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.5_2017_etajets_Dipole_v2.2", 
+        "name": 2017
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "vbs_1_eta", 
+        "cut": "res_sig_mu", 
+        "name": "res_sig_mu_etajets"
+      }
+    ], 
+    "datacard_name": "2017_res_sig_mu_vbs_1_eta"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.5_2017_etajets_Dipole_v2.2", 
+        "name": 2017
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "vbs_1_eta", 
+        "cut": "res_wjetcr_ele", 
+        "name": "res_wjetcr_ele_etajets"
+      }
+    ], 
+    "datacard_name": "2017_res_wjetcr_ele_vbs_1_eta"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.5_2017_etajets_Dipole_v2.2", 
+        "name": 2017
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "vbs_1_eta", 
+        "cut": "res_wjetcr_mu", 
+        "name": "res_wjetcr_mu_etajets"
+      }
+    ], 
+    "datacard_name": "2017_res_wjetcr_mu_vbs_1_eta"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.5_2017_etajets_Dipole_v2.2", 
+        "name": 2017
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "vbs_1_eta", 
+        "cut": "res_topcr_ele", 
+        "name": "res_topcr_ele_etajets"
+      }
+    ], 
+    "datacard_name": "2017_res_topcr_ele_vbs_1_eta"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.5_2017_etajets_Dipole_v2.2", 
+        "name": 2017
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "vbs_1_eta", 
+        "cut": "res_topcr_mu", 
+        "name": "res_topcr_mu_etajets"
+      }
+    ], 
+    "datacard_name": "2017_res_topcr_mu_vbs_1_eta"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.5_2017_etajets_Dipole_v2.2", 
+        "name": 2017
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "vjet_0_eta", 
+        "cut": "res_sig_ele", 
+        "name": "res_sig_ele_etajets"
+      }
+    ], 
+    "datacard_name": "2017_res_sig_ele_vjet_0_eta"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.5_2017_etajets_Dipole_v2.2", 
+        "name": 2017
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "vjet_0_eta", 
+        "cut": "res_sig_mu", 
+        "name": "res_sig_mu_etajets"
+      }
+    ], 
+    "datacard_name": "2017_res_sig_mu_vjet_0_eta"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.5_2017_etajets_Dipole_v2.2", 
+        "name": 2017
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "vjet_0_eta", 
+        "cut": "res_wjetcr_ele", 
+        "name": "res_wjetcr_ele_etajets"
+      }
+    ], 
+    "datacard_name": "2017_res_wjetcr_ele_vjet_0_eta"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.5_2017_etajets_Dipole_v2.2", 
+        "name": 2017
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "vjet_0_eta", 
+        "cut": "res_wjetcr_mu", 
+        "name": "res_wjetcr_mu_etajets"
+      }
+    ], 
+    "datacard_name": "2017_res_wjetcr_mu_vjet_0_eta"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.5_2017_etajets_Dipole_v2.2", 
+        "name": 2017
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "vjet_0_eta", 
+        "cut": "res_topcr_ele", 
+        "name": "res_topcr_ele_etajets"
+      }
+    ], 
+    "datacard_name": "2017_res_topcr_ele_vjet_0_eta"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.5_2017_etajets_Dipole_v2.2", 
+        "name": 2017
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "vjet_0_eta", 
+        "cut": "res_topcr_mu", 
+        "name": "res_topcr_mu_etajets"
+      }
+    ], 
+    "datacard_name": "2017_res_topcr_mu_vjet_0_eta"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.5_2017_etajets_Dipole_v2.2", 
+        "name": 2017
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "vjet_1_eta", 
+        "cut": "res_sig_ele", 
+        "name": "res_sig_ele_etajets"
+      }
+    ], 
+    "datacard_name": "2017_res_sig_ele_vjet_1_eta"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.5_2017_etajets_Dipole_v2.2", 
+        "name": 2017
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "vjet_1_eta", 
+        "cut": "res_sig_mu", 
+        "name": "res_sig_mu_etajets"
+      }
+    ], 
+    "datacard_name": "2017_res_sig_mu_vjet_1_eta"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.5_2017_etajets_Dipole_v2.2", 
+        "name": 2017
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "vjet_1_eta", 
+        "cut": "res_wjetcr_ele", 
+        "name": "res_wjetcr_ele_etajets"
+      }
+    ], 
+    "datacard_name": "2017_res_wjetcr_ele_vjet_1_eta"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.5_2017_etajets_Dipole_v2.2", 
+        "name": 2017
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "vjet_1_eta", 
+        "cut": "res_wjetcr_mu", 
+        "name": "res_wjetcr_mu_etajets"
+      }
+    ], 
+    "datacard_name": "2017_res_wjetcr_mu_vjet_1_eta"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.5_2017_etajets_Dipole_v2.2", 
+        "name": 2017
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "vjet_1_eta", 
+        "cut": "res_topcr_ele", 
+        "name": "res_topcr_ele_etajets"
+      }
+    ], 
+    "datacard_name": "2017_res_topcr_ele_vjet_1_eta"
+  }, 
+  {
+    "folders": [
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.5_2017_etajets_Dipole_v2.2", 
+        "name": 2017
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "var": "vjet_1_eta", 
+        "cut": "res_topcr_mu", 
+        "name": "res_topcr_mu_etajets"
+      }
+    ], 
+    "datacard_name": "2017_res_topcr_mu_vjet_1_eta"
+  }
+]

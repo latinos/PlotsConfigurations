@@ -12,7 +12,7 @@ outputDir = 'rootFile_'+tag
 aliasesFile = direc+'/aliases.py'
 
 # file with list of variables
-variablesFile = direc+'/variables.py'
+variablesFile = direc+'/variables_fit.py'
 
 # file with list of cuts
 cutsFile = direc +'/cuts.py' 
@@ -30,18 +30,20 @@ lumi = 41.5
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
 #outputDirPlots = 'plot_'+tag +"_rescaled/detajpt_ext"
-outputDirPlots = 'plot_'+tag 
+outputDirPlots = 'plot_'+tag + "/"
 
 # used by mkDatacards to define output directory for datacards
 #outputDirDatacard = 'datacards_'+tag 
 #outputDirDatacard = 'datacards_'+tag + "/Wjets_njets"
-outputDirDatacard = 'datacards_'+tag 
+outputDirDatacard = 'datacards_'+tag + "_asLnN"
 
 # structure file for datacard
 structureFile = direc+'/structure.py'
 
 
 # nuisances file for mkDatacards and for mkShape
-#nuisancesFile = direc+'/nuisances.py'
+nuisancesFile = direc+'/nuisances_datacard.py'
 #nuisancesFile = direc+'/nuisances_datacard_join.py'
 #nuisancesFile = direc + '/nuisances_datacard.py'
+
+customizeScript = direc + "/customize.py"

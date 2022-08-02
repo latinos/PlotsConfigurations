@@ -1,4 +1,4 @@
-void Draw2D() {
+void Draw2D(TTree * limit) {
   
   int n =  limit->Draw("2*deltaNLL:muGGH:muVBF","deltaNLL<10","goff");
   

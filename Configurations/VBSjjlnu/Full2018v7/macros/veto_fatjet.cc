@@ -8,9 +8,14 @@
 #include <string>
 #include <tuple>
 
+
+#ifndef VetoFatJet_HH
+#define VetoFatJet_HH
+
 class VetoFatJet : public multidraw::TTreeFunction {
 public:
   VetoFatJet(float pt_max);
+  ~VetoFatJet();
 
   char const* getName() const override { return "VetoFatJet"; }
   TTreeFunction* clone() const override { return new VetoFatJet(pt_max); }
@@ -24,6 +29,7 @@ protected:
 
   void bindTree_(multidraw::FunctionLibrary&) override;
 
+  IntValueReader* VBS_category{};
   UIntValueReader* nFatJet{}; 
   FloatArrayReader* FatJet_pt{};
   FloatArrayReader* FatJet_eta{};
@@ -43,8 +49,16 @@ VetoFatJet::VetoFatJet(float ptmax) :
 
 double
 VetoFatJet::evaluate(unsigned)
-{
-   bool nofatjet_event = true;
+{ 
+  // Filter out some events
+  int vbs_cat = *(VBS_category->Get());
+  if (vbs_cat != 1){
+    // The module returns true (no filter) for category different from resolved
+    return true;
+  }
+
+
+  bool nofatjet_event = true;
    // Look for fatjet passing tau21 and mass selection, and not overlap with leptons, with pt > max
   for(int ifj=0; ifj < *(nFatJet->Get()); ifj++){
       
@@ -81,5 +95,22 @@ VetoFatJet::bindTree_(multidraw::FunctionLibrary& _library)
     _library.bindBranch(Lepton_pt, "Lepton_pt");
     _library.bindBranch(Lepton_eta, "Lepton_eta");
     _library.bindBranch(Lepton_phi, "Lepton_phi");
-
+    _library.bindBranch(VBS_category, "VBS_category");
 }   
+
+
+VetoFatJet::~VetoFatJet(){
+    nFatJet = nullptr;
+    FatJet_pt = nullptr;
+    FatJet_eta = nullptr;
+    FatJet_phi = nullptr;
+    FatJet_mass = nullptr;
+    FatJet_tau2 = nullptr;
+    FatJet_tau1 = nullptr;
+    Lepton_pt = nullptr;
+    Lepton_eta = nullptr;
+    Lepton_phi = nullptr;
+    VBS_category = nullptr;
+}
+
+#endif

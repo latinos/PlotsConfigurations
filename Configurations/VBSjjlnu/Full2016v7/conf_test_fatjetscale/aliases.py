@@ -9,22 +9,33 @@ conf_folder = configurations +"/VBSjjlnu/Full2016v7"
 
 mc = [skey for skey in samples if skey not in ('Fake', 'DATA')]
 
-aliases["sip3d_cut"]= {
-    'linesToAdd': [
-        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
-        '.L {}/VBSjjlnu/Full2018v7/macros/sip3d_cut.cc+'.format(configurations)
-    ],
-    'class': 'Sip3dcut',
-    'args': ()
+
+
+aliases['is_wjetsSample'] =  {
+    'expr' : 'getSampleName()',
+    'linesToAdd' : [
+        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+        '.L {}/VBSjjlnu/Full2018v7/macros/samples_id.cc+'.format(configurations)
+    ]
 }
+
+
+# aliases["sip3d_cut"]= {
+#     'linesToAdd': [
+#         'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
+#         '.L {}/VBSjjlnu/Full2018v7/macros/sip3d_cut.cc+'.format(configurations)
+#     ],
+#     'class': 'Sip3dcut',
+#     'args': ()
+# }
 
 aliases['fatjetpt08']= {
     'expr': ' (is_wjetsSample)*( Alt$(CleanFatJet_pt[0],0) * 0.8) + (!is_wjetsSample)*(Alt$(CleanFatJet_pt[0],0))'
 }
 
-# aliases['fatjetpt09']= {
-#     'expr': ' (is_wjetsSample)*( Alt$(CleanFatJet_pt[0],0) * 0.9) + (!is_wjetsSample)*(Alt$(CleanFatJet_pt[0],0))'
-# }
+aliases['fatjetpt09']= {
+    'expr': ' (is_wjetsSample)*( Alt$(CleanFatJet_pt[0],0) * 0.9) + (!is_wjetsSample)*(Alt$(CleanFatJet_pt[0],0))'
+}
 
 # aliases['fatjetpt095']= {
 #     'expr': ' (is_wjetsSample)*( Alt$(CleanFatJet_pt[0],0) * 0.95) + (!is_wjetsSample)*(Alt$(CleanFatJet_pt[0],0))'
@@ -49,6 +60,10 @@ aliases['fatjetpt087']= {
 ############################
 aliases['mjj_vjet08']= {
     'expr': ' (is_wjetsSample)*( mjj_vjet * 0.8) + (!is_wjetsSample)*(mjj_vjet)'
+}
+
+aliases['mjj_vjet09']= {
+   'expr': ' (is_wjetsSample)*( mjj_vjet * 0.9) + (!is_wjetsSample)*(mjj_vjet)'
 }
 
 aliases['mjj_vjet085']= {
@@ -77,6 +92,7 @@ aliases['veto_fatjet_180'] = {
                 '.L {}/VBSjjlnu/Full2018v7/macros/veto_fatjet.cc+'.format(configurations)
             ]           
 }
+
 
 aliases['veto_fatjet_153'] = {
             'class': 'VetoFatJet',

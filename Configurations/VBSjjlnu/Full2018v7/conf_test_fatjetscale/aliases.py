@@ -17,7 +17,6 @@ aliases['is_wjetsSample'] =  {
     ]
 }
 
-
 aliases['fatjetpt08']= {
     'expr': ' (is_wjetsSample)*( Alt$(CleanFatJet_pt[0],0) * 0.8) + (!is_wjetsSample)*(Alt$(CleanFatJet_pt[0],0))'
 }

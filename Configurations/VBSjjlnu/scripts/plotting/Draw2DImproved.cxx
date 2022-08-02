@@ -5,7 +5,7 @@
 #include "tdrstyle.C"
 
 
-void Draw2DImproved(std::string xName = "r_{1}", std::string yName = "r_{3}", std::string xNameVar = "r1", std::string yNameVar = "r3" , int dimension = 2 , std::string cut = "1", int FillHighLL = 1) {
+void Draw2DImproved(TTree * limit, std::string xName = "r_{1}", std::string yName = "r_{3}", std::string xNameVar = "r1", std::string yNameVar = "r3" , int dimension = 2 , std::string cut = "1", int FillHighLL = 1) {
   
   
   gStyle->SetOptStat(0);
@@ -250,7 +250,7 @@ void Draw2DImproved(std::string xName = "r_{1}", std::string yName = "r_{3}", st
   TLatex * tex3;
 //   tex3 = new TLatex(0.236,0.92,"L = 12.9 fb^{-1}  Preliminary");
 //   tex3 = new TLatex(0.236,0.92,"L = 15.2 fb^{-1}");
-    tex3 = new TLatex(0.55,0.92,"L = 15.2 fb^{-1}   (13 TeV)");
+    tex3 = new TLatex(0.55,0.92,"L = 137 fb^{-1}   (13 TeV)");
   //   tex3 = new TLatex(0.55,0.92,"L = 2.3 fb^{-1}   (13 TeV)");
 //     tex3 = new TLatex(0.55,0.92,"L = 12.9 fb^{-1}   (13 TeV)");
   tex3->SetNDC();

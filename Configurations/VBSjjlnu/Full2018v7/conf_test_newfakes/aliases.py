@@ -7,23 +7,36 @@ conf_folder = configurations +"/VBSjjlnu/Full2018v7"
 
 #aliases = {}
 
-mc = [skey for skey in samples if skey not in ['DATA'] + [ 'Fake'+str(et) for et in [10,25,35,45] ] ]
+mc = [skey for skey in samples if skey not in ['DATA'] + [ 'ECAL'+str(et) for et in [10,25,35,45] ] ]
 ###########################################################################################
 # v3 fake weights have not abs value for eta.
 
+basedir_fakes = conf_folder +"/corrections/new_fake_rates/v5"
+
 for et in [10,25,35,45]:
-    el_fr_file = conf_folder +"/corrections/new_fake_rates/v3/plot_ElCh_JetEt"+str(et)+"_l1_etaVpt_fw_ewk_2D.root"
-    mu_fr_file = conf_folder +"/corrections/new_fake_rates/v3/plot_MuCh_JetEt"+str(et)+"_l1_etaVpt_fw_ewk_2D.root"
+    el_fr_file = basedir_fakes + "/plot_ElCh_JetEt"+str(et)+"_l1_etaVpt_ptel_aseta_fw_ewk_2D.root"
+    mu_fr_file = basedir_fakes + "/plot_MuCh_JetEt"+str(et)+"_l1_etaVpt_ptmu_fw_ewk_2D.root"
     el_pr_file = os.getenv('CMSSW_BASE') + "/src/LatinoAnalysis/NanoGardener/python/data/fake_prompt_rates/Full2018v6/mvaFall17V1IsoWP90/ElePR.root"
     mu_pr_file = os.getenv('CMSSW_BASE') + "/src/LatinoAnalysis/NanoGardener/python/data/fake_prompt_rates/Full2018v6/mvaFall17V1IsoWP90/MuonPR.root"
+    
     aliases['FW_mu'+str(et)+'_el'+str(et)] = { 
-        'class': 'newFakeWeightOTF_noabs',
-        'args': (eleWP, muWP, copy.deepcopy(el_fr_file), copy.deepcopy(el_pr_file), copy.deepcopy(mu_fr_file), copy.deepcopy(mu_pr_file)), 
+        'class': 'newFakeWeightOTF',
+        'args': (eleWP, muWP, copy.deepcopy(el_fr_file), copy.deepcopy(el_pr_file), copy.deepcopy(mu_fr_file), copy.deepcopy(mu_pr_file), False, False), 
         'linesToAdd' : [
             'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-            '.L %s/corrections/newfakeweight_OTF_noabseta.cc+' % conf_folder
+            '.L %s/corrections/newfakeweight_OTF.cc+' % conf_folder
             ],     
-        'samples': ["Fake"+str(et)]
+        'samples': ["ECAL"+str(et)]
+    }
+    aliases['FW_mu'+str(et)+'_el'+str(et)+"_statUp"] = { 
+        'class': 'newFakeWeightOTF',
+        'args': (eleWP, muWP, copy.deepcopy(el_fr_file), copy.deepcopy(el_pr_file), copy.deepcopy(mu_fr_file), copy.deepcopy(mu_pr_file), True, False),    
+        'samples': ["ECAL"+str(et)]
+    }
+    aliases['FW_mu'+str(et)+'_el'+str(et)+"_statDo"] = { 
+        'class': 'newFakeWeightOTF',
+        'args': (eleWP, muWP, copy.deepcopy(el_fr_file), copy.deepcopy(el_pr_file), copy.deepcopy(mu_fr_file), copy.deepcopy(mu_pr_file), False, True), 
+        'samples': ["ECAL"+str(et)]
     }
 
 ############################################

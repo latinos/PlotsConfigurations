@@ -4,6 +4,8 @@ import copy
 import ROOT
 import array
 
+ROOT.gROOT.SetBatch(True)
+
 ROOT.gStyle.SetOptStat(0)
 
 def re_roll_2Dh(h1D, xbin, xmin, xmax, ybin, ymin, ymax, name=None, title=None, invert=False):
@@ -157,7 +159,7 @@ for cut in clean_cuts:
 
         if ':' in variables[var]['name']:
             if len(variables[var]['range']) == 6:
-                time.sleep(0.01)
+                #time.sleep(0.01)
                 histograms_fr[h_name_total_ewk+'_2D'] = re_roll_2Dh(
                     histograms_fr[h_name_total_ewk], 
                     variables[var]['range'][0], variables[var]['range'][1], variables[var]['range'][2], 
@@ -166,7 +168,7 @@ for cut in clean_cuts:
                     title = 'FW_ewk_'+cut+'_'+var,
                     invert = True,
                     )
-                time.sleep(0.01)
+                #time.sleep(0.01)
                 histograms_fr[h_name_total+'_2D'] = re_roll_2Dh(
                     histograms_fr[h_name_total], 
                     variables[var]['range'][0], variables[var]['range'][1], variables[var]['range'][2], 
@@ -176,7 +178,7 @@ for cut in clean_cuts:
                     invert = True,
                     )
             elif len(variables[var]['range']) == 2:
-                time.sleep(0.01)
+                #time.sleep(0.01)
                 histograms_fr[h_name_total_ewk+'_2D'] = re_roll_2Dh_array(
                     histograms_fr[h_name_total_ewk], 
                     variables[var]['range'][0], 
@@ -185,7 +187,7 @@ for cut in clean_cuts:
                     title = 'FW_ewk_'+cut+'_'+var,
                     invert = True,
                     )
-                time.sleep(0.01)
+                #time.sleep(0.01)
                 histograms_fr[h_name_total+'_2D'] = re_roll_2Dh_array(
                     histograms_fr[h_name_total], 
                     variables[var]['range'][0], 
@@ -283,6 +285,7 @@ for var in variables:
             histograms_fr[h_name].GetYaxis().SetTitle('fake rate')
             if idx == 0: histograms_fr[h_name].Draw()
             else: histograms_fr[h_name].Draw('same')
+
         legend.Draw('same')
         canvas.Update()
         name = '_'.join(['plot', 'allJetEt', key, var])

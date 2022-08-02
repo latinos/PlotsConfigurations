@@ -4,7 +4,7 @@ R.TH1.SetDefaultSumw2()
 import argparse
 
 '''
-This script joins the histograms of subsamples reading datacards shapes files. 
+This script joins the histograms of subsamples reading root shapes files. 
 '''
 
 parser = argparse.ArgumentParser()

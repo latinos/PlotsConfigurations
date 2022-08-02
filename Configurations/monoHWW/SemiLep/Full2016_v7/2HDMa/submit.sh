@@ -15,8 +15,9 @@ mkShapesMulti.py --pycfg=conf.py --doBatch=True --batchQueue=longlunch --treeNam
 ### FR
 ## Shapes
 #rm ../../../../../../job/mkShapes__FR_2016v7__ALL/*/*.py
-#mkShapesMulti.py --pycfg=conf_FR.py --doBatch=True --batchQueue=microcentury --treeName=Events --batchSplit=Samples,Files
+#mkShapesMulti.py --pycfg=conf_FR.py --doBatch=True --batchQueue=espresso --treeName=Events --batchSplit=Samples,Files
 ##mkShapesMulti.py --pycfg=conf_FR.py --doBatch=True --batchQueue=longlunch --treeName=Events --batchSplit=Samples,Files
+
 
 ## hadd
 #rm FR_root/plots_FR_2016v7.root

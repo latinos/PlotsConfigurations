@@ -237,3 +237,4 @@ for _, sd in DataRun:
     samples['DATA']['name'].extend(files)
     samples['DATA']['weights'].extend([DataTrig[pd]] * len(files))
 
+#samples = {k:v for k,v in samples.items() if k != "Wjets"}

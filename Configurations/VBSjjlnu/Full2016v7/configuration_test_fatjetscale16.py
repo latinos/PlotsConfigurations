@@ -29,7 +29,7 @@ lumi = 35.867
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'plot_'+tag + "/rescaled_EB"
+outputDirPlots = 'plot_'+tag 
 # used by mkDatacards to define output directory for datacards
 
 outputDirDatacard = 'datacards_' +tag

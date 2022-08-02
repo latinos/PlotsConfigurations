@@ -1,9 +1,8 @@
-import ROOT as R 
 import argparse
 
 parser = argparse.ArgumentParser()
-parser.add_argument("-a", help="File A", type=str, )
-parser.add_argument("-b", help="File B", type=str)
+parser.add_argument("-A", help="File A", type=str, )
+parser.add_argument("-B", help="File B", type=str)
 parser.add_argument("--ta", help="Title A", type=str)
 parser.add_argument("--tb", help="Title B", type=str)
 parser.add_argument("--cut", help="Cut", type=str)
@@ -12,9 +11,12 @@ parser.add_argument("--sample", help="Var", type=str)
 parser.add_argument("-o", "--output", help="Output", type=str)
 args = parser.parse_args()
 
-fA = R.TFile(args.a)
-fB = R.TFile(args.b)
 
+import ROOT as R 
+
+R.gStyle.SetOptStat(0)
+fA = R.TFile(args.A)
+fB = R.TFile(args.B)
 hA = fA.Get(args.cut +"/"+ args.var +"/histo_"+ args.sample)
 
 
@@ -31,4 +33,4 @@ hA.GetXaxis().SetTitle("eta")
 hR1.Draw()
 leg.Draw()
 c.Draw()
-c.SaveAs(args.output+".png")
+#c.SaveAs(args.output+".png")

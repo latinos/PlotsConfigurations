@@ -57,10 +57,11 @@ void Draw2DLine(std::string xName = "r_{1}", std::string yName = "r_{3}",
   
   
   int n =  limit->Draw(whatToDraw.Data(),cutToDraw.Data(),"goff");
-  
+
   TGraph2D *graphScan = new TGraph2D(n,limit->GetV2(),limit->GetV3(),limit->GetV1());
   graphScan->SetNpx(200);
   graphScan->SetNpy(200);
+  
   
   graphScan->SetLineWidth(3);
     
@@ -70,6 +71,7 @@ void Draw2DLine(std::string xName = "r_{1}", std::string yName = "r_{3}",
 //   graphScan->SetLineColor(kRed);
   
   graphScan->Draw("colz");
+  
   
   graphScan->GetXaxis()->SetTitle(xName.c_str());
   graphScan->GetYaxis()->SetTitle(yName.c_str());
@@ -87,7 +89,8 @@ void Draw2DLine(std::string xName = "r_{1}", std::string yName = "r_{3}",
   graphScan->GetHistogram()->GetYaxis()->SetTitle(yName.c_str());
   graphScan->GetHistogram()->GetZaxis()->SetTitle("- 2#Delta logL");
   graphScan->GetHistogram()->GetZaxis()->SetRangeUser(0,9.99);  
-  
+
+
   TH2F* myHisto = (TH2F*) graphScan->GetHistogram()->Clone("myHisto");
   for (int i=0; i<myHisto->GetSize(); i++) {
     myHisto->SetBinContent(i+1, 0);

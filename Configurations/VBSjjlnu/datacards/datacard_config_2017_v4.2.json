@@ -1,0 +1,266 @@
+[
+  { 
+    "datacard_name": "2017_all",
+    "folders": [
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.2_2017_AsLnN", 
+        "name": 2017
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "name": "res_sig_mu",
+        "var": "DNNoutput_res_bins2", 
+        "cut": "res_sig_mu"
+      },
+      {
+          "name": "res_sig_ele",
+          "var": "DNNoutput_res_bins2", 
+          "cut": "res_sig_ele"
+      },
+      {
+          "name": "boost_sig_mu",
+          "var": "DNNoutput_boost_bins2", 
+          "cut": "boost_sig_mu"
+      },
+      {
+          "name": "boost_sig_ele",
+          "var": "DNNoutput_boost_bins2", 
+          "cut": "boost_sig_ele"
+      },
+
+
+      {
+        "name": "res_wjet_mu",
+        "var": "fit_bins_res", 
+        "cut": "res_wjetcr_mu"
+      },
+      {
+          "name": "res_wjet_ele",
+          "var": "fit_bins_res", 
+          "cut": "res_wjetcr_ele"
+      },
+      {
+          "name": "boost_wjet_mu",
+          "var": "fit_bins_boost", 
+          "cut": "boost_wjetcr_mu"
+      },
+      {
+          "name": "boost_wjet_ele",
+          "var": "fit_bins_boost", 
+          "cut": "boost_wjetcr_ele"
+      },
+      
+
+      {
+        "name": "res_top_mu",
+        "var": "events", 
+        "cut": "res_topcr_mu"
+      },
+      { 
+        "name": "res_top_ele",
+        "var": "events", 
+        "cut": "res_topcr_ele"
+      },
+      {
+        "name": "boost_top_mu",
+        "var": "events", 
+        "cut": "boost_topcr_mu"
+      },
+      { 
+        "name": "boost_top_ele",
+        "var": "events", 
+        "cut": "boost_topcr_ele"
+      }
+    ]
+  },
+  
+  { 
+    "datacard_name": "2017_res",
+    "folders": [
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.2_2017_AsLnN", 
+        "name": 2017
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "name": "res_sig_mu",
+        "var": "DNNoutput_res_bins2", 
+        "cut": "res_sig_mu"
+      },
+      {
+          "name": "res_sig_ele",
+          "var": "DNNoutput_res_bins2", 
+          "cut": "res_sig_ele"
+      },
+      {
+        "name": "res_wjet_mu",
+        "var": "fit_bins_res", 
+        "cut": "res_wjetcr_mu"
+      },
+      {
+          "name": "res_wjet_ele",
+          "var": "fit_bins_res", 
+          "cut": "res_wjetcr_ele"
+      },
+      {
+        "name": "res_top_mu",
+        "var": "events", 
+        "cut": "res_topcr_mu"
+      },
+      { 
+        "name": "res_top_ele",
+        "var": "events", 
+        "cut": "res_topcr_ele"
+      }
+    ]
+  },
+  { 
+    "datacard_name": "2017_res_ele",
+    "folders": [
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.2_2017_AsLnN", 
+        "name": 2017
+      }
+    ], 
+    "phase_spaces": [
+      {
+          "name": "res_sig_ele",
+          "var": "DNNoutput_res_bins2", 
+          "cut": "res_sig_ele"
+      },
+      {
+          "name": "res_wjet_ele",
+          "var": "fit_bins_res", 
+          "cut": "res_wjetcr_ele"
+      },
+      { 
+        "name": "res_top_ele",
+        "var": "events", 
+        "cut": "res_topcr_ele"
+      }
+    ]
+  },
+  { 
+    "datacard_name": "2017_res_mu",
+    "folders": [
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.2_2017_AsLnN", 
+        "name": 2017
+      }
+    ], 
+    "phase_spaces": [
+      {
+        "name": "res_sig_mu",
+        "var": "DNNoutput_res_bins2", 
+        "cut": "res_sig_mu"
+      },
+      {
+        "name": "res_wjet_mu",
+        "var": "fit_bins_res", 
+        "cut": "res_wjetcr_mu"
+      },
+      {
+        "name": "res_top_mu",
+        "var": "events", 
+        "cut": "res_topcr_mu"
+      }
+    ]
+  },
+  { 
+    "datacard_name": "2017_boost",
+    "folders": [
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.2_2017_AsLnN", 
+        "name": 2017
+      }
+    ], 
+    "phase_spaces": [
+      {
+          "name": "boost_sig_mu",
+          "var": "DNNoutput_boost_bins2", 
+          "cut": "boost_sig_mu"
+      },
+      {
+          "name": "boost_sig_ele",
+          "var": "DNNoutput_boost_bins2", 
+          "cut": "boost_sig_ele"
+      },
+
+     {
+          "name": "boost_wjet_mu",
+          "var": "fit_bins_boost", 
+          "cut": "boost_wjetcr_mu"
+      },
+      {
+          "name": "boost_wjet_ele",
+          "var": "fit_bins_boost", 
+          "cut": "boost_wjetcr_ele"
+      },
+
+      {
+        "name": "boost_top_mu",
+        "var": "events", 
+        "cut": "boost_topcr_mu"
+      },
+      { 
+        "name": "boost_top_ele",
+        "var": "events", 
+        "cut": "boost_topcr_ele"
+      }
+    ]
+  },
+  { 
+    "datacard_name": "2017_boost_ele",
+    "folders": [
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.2_2017_AsLnN", 
+        "name": 2017
+      }
+    ], 
+    "phase_spaces": [
+      {
+          "name": "boost_sig_ele",
+          "var": "DNNoutput_boost_bins2", 
+          "cut": "boost_sig_ele"
+      },
+      {
+          "name": "boost_wjet_ele",
+          "var": "fit_bins_boost", 
+          "cut": "boost_wjetcr_ele"
+      },
+      { 
+        "name": "boost_top_ele",
+        "var": "events", 
+        "cut": "boost_topcr_ele"
+      }
+    ]
+  },
+  { 
+    "datacard_name": "2017_boost_mu",
+    "folders": [
+      {
+        "basedir": "Full2017v7/datacards_fit_v4.2_2017_AsLnN", 
+        "name": 2017
+      }
+    ], 
+    "phase_spaces": [
+      {
+          "name": "boost_sig_mu",
+          "var": "DNNoutput_boost_bins2", 
+          "cut": "boost_sig_mu"
+      },
+     {
+          "name": "boost_wjet_mu",
+          "var": "fit_bins_boost", 
+          "cut": "boost_wjetcr_mu"
+      },
+      {
+        "name": "boost_top_mu",
+        "var": "events", 
+        "cut": "boost_topcr_mu"
+      }
+    ]
+  }
+]

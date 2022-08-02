@@ -17,6 +17,7 @@
 class EWKnloW : public multidraw::TTreeFunction {
 public:
   EWKnloW();
+  ~EWKnloW();
 
   char const* getName() const override { return "EWKnloW"; }
   TTreeFunction* clone() const override { return new EWKnloW(); }
@@ -42,6 +43,15 @@ EWKnloW::EWKnloW() :
   TTreeFunction()
 {
 std::cout << "EWKnloW constructor" << std::endl;
+}
+
+EWKnloW::~EWKnloW(){
+  nLHEPart = nullptr;
+  LHEPart_pt = nullptr;
+  LHEPart_eta = nullptr;
+  LHEPart_phi = nullptr;
+  LHEPart_pdgId = nullptr;
+  delete Wpt_map;
 }
 
 double

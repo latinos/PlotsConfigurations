@@ -331,7 +331,7 @@ samples['VBS']  = { 'name' :
 #fakeW = 'fakeW_ele_mvaFall17V1Iso_WP90_mu_cut_Tight_HWWW_mu20_ele35'
 
 ### Fakes
-samples['Fake10'] = {
+samples['ECAL10'] = {
   'name': [],
   'weight': METFilter_DATA+'* FW_mu10_el10',
   'weights': [],
@@ -340,7 +340,7 @@ samples['Fake10'] = {
 }
 
 ### Fakes
-samples['Fake25'] = {
+samples['ECAL25'] = {
   'name': [],
   'weight': METFilter_DATA+'* FW_mu25_el25',
   'weights': [],
@@ -349,7 +349,7 @@ samples['Fake25'] = {
 }
 
 ### Fakes
-samples['Fake35'] = {
+samples['ECAL35'] = {
   'name': [],
   'weight': METFilter_DATA+'* FW_mu35_el35',
   'weights': [],
@@ -358,7 +358,7 @@ samples['Fake35'] = {
 }
 
 ### Fakes
-samples['Fake45'] = {
+samples['ECAL45'] = {
   'name': [],
   'weight': METFilter_DATA+'* FW_mu45_el45',
   'weights': [],
@@ -371,8 +371,8 @@ for et in [10,25,35,45]:
     for pd in DataSets:
       # BE Careful --> we use directory_data because the Lepton tight cut was not applied in post-processing
       files = nanoGetSampleFiles(directory_data, pd + '_' + sd)
-      samples['Fake'+str(et)]['name'].extend(files)
-      samples['Fake'+str(et)]['weights'].extend([DataTrig[pd]] * len(files))
+      samples['ECAL'+str(et)]['name'].extend(files)
+      samples['ECAL'+str(et)]['weights'].extend([DataTrig[pd]] * len(files))
 
 
 #########################################
@@ -393,4 +393,6 @@ for Run in DataRun :
                         samples['DATA']['name'].append(iFile)
                         samples['DATA']['weights'].append(DataTrig[DataSet])
 
-samples = {   key:v for key,v in samples.items() if key in ['Fake'+ str(et) for et in [10,25,35,45]] }
+#samples = {   key:v for key,v in samples.items() if key in ['ECAL'+ str(et) for et in [10,25,35,45]] }
+
+#samples = {   key:v for key,v in samples.items() if key in ['Fake35'] }
