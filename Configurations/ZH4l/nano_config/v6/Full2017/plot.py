@@ -199,7 +199,7 @@ plot['ZZ']  = {
                   'color': 857, # kAzure -2  
                   'isSignal' : 0,
                   'isData'   : 0,
-                  'scale'    : 1.02
+                  'scale'    : 1.0
                   }
 '''
 plot['ggZZ']  = {
@@ -363,7 +363,7 @@ plot['DATA']  = {
                   'color': 1 ,  
                   'isSignal' : 0,
                   'isData'   : 1,
-                  'isBlind'  : 0
+                  'isBlind'  : 1
               }
 
 

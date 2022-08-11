@@ -1,4 +1,4 @@
-tag = "WH3l_2016_v7_STXS_test"
+tag = "WH3l_2016_v7_STXS"
 
 treeName= 'Events'
 
@@ -24,14 +24,14 @@ lumi = 35.867
 structureFile = 'structure.py'
 
 # nuisances file for mkDatacards and for mkShape
-nuisancesFile = 'nuisances_dummy.py'
+nuisancesFile = 'nuisances.py'
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFiles_'+tag
+outputDir = 'rootFiles'+tag
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'plot_'+tag
+outputDirPlots = 'plot'+tag
 
 # used by mkDatacards to define output directory for datacards
-outputDirDatacard = 'datacards_'+tag
+outputDirDatacard = 'datacards'+tag
