@@ -29,7 +29,7 @@ lumi = 59.7
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'Plots'
+outputDirPlots = 'Plotterz'
 
 
 # used by mkDatacards to define output directory for datacards
