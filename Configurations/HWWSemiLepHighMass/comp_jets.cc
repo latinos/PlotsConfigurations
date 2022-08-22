@@ -124,7 +124,7 @@ comp_jets::evaluate(unsigned)
   TLorentzVector J1,J2;
 
   int nCFJ{*HM_nCleanFatJetPassMBoosted->Get()};
-  if (nCFJ >= 0){
+  /*if (nCFJ >= 0){
     wpt = HM_CleanFatJetPassMBoosted_pt->At(0);
     weta = HM_CleanFatJetPassMBoosted_eta->At(0);
     wphi = HM_CleanFatJetPassMBoosted_phi->At(0);
@@ -141,7 +141,7 @@ comp_jets::evaluate(unsigned)
     for (int i{0}; i != 4 and (unsigned)i != nJet ; ++i) {
       vbfjet[i] = i;
     }
-  }else if (*HM_idx_j1->Get() != -1){
+  }else*/ if (*HM_idx_j1->Get() != -1 && *HM_idx_j2->Get() != -1){
     wpt = *HM_Whad_pt->Get();
     weta = *HM_Whad_eta->Get();
     wphi = *HM_Whad_phi->Get();
@@ -152,11 +152,11 @@ comp_jets::evaluate(unsigned)
     wr1pt = CleanJet_pt->At(wjet1);
     wr1eta = CleanJet_eta->At(wjet1);
     wr1phi = CleanJet_phi->At(wjet1);
-    wr1mass = Jet_mass->At(CleanJet_phi->At(wjet1));
+    wr1mass = Jet_mass->At(CleanJet_jetIdx->At(wjet1));
     wr2pt = CleanJet_pt->At(wjet2);
     wr2eta = CleanJet_eta->At(wjet2);
     wr2phi = CleanJet_phi->At(wjet2);
-    wr2mass = Jet_mass->At(CleanJet_phi->At(wjet2));
+    wr2mass = Jet_mass->At(CleanJet_jetIdx->At(wjet2));
     for (int i{0}; j != 4 and (unsigned)i != nJet ; ++i) {
       if ( (unsigned)i != wjet1 and (unsigned) i != wjet2){
         vbfjet[j] = i;

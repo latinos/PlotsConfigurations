@@ -8,8 +8,7 @@ if os.path.exists(massesAndModelsFile) :
 else:
     print "!!! ERROR file ", massesAndModelsFile, " does not exist."
 
-
-# groupPlot = {}
+#groupPlot = {}
 #
 # Groups of samples to improve the plots.
 # If not defined, normal plots is used
@@ -20,37 +19,32 @@ else:
 # 'isSignal' : 0,
 # 'color': 863, # kAzure +3
 # 'samples'  : [] #['ggH_hww', 'qqH_hww', 'ZH_hww', 'WH_hww', 'ggH_htt', 'qqH_htt', 'ZH_htt', 'WH_htt']
-#}
+##}
+
 groupPlot['multiboson']  = {
 'nameHR' : 'multiboson',
 'isSignal' : 0,
 'color': 857, # kAzure -3
 #'samples'  : ['WW', 'ggWW', 'WWewk', 'qqWWqq', 'WW2J', 'VVV', 'VZ', 'Vg', 'VgS_H',  'VgS_L']
-'samples'  : ['WW', 'ggWW', 'WWewk', 'qqWWqq', 'WW2J', 'VVV', 'VZ', 'Vg', 'VgS_H',  'VgS_L', 'ggH_hww', 'qqH_hww', 'ZH_hww', 'WH_hww', 'ggH_htt', 'qqH_htt', 'ZH_htt', 'WH_htt']
+'samples'  : ['WW', 'ggWW', 'WWewk', 'qqWWqq', 'VVV', 'VZ', 'Vg', 'VgS_H',  'VgS_L', 'ggH_hww', 'qqH_hww', 'ZH_hww', 'WH_hww', 'ggH_htt', 'qqH_htt', 'ZH_htt', 'WH_htt']
 }
 groupPlot['FAKE'] = {
 'nameHR' : "Fake",
 'isSignal' : 0,
 'color'    : 617,   # kViolet + 1
-'samples'  : ['FAKE', 'QCD']
+'samples'  : ['FAKE']
 }
-#groupPlot['QCD'] = {
-# 'nameHR' : "QCD",
-# 'isSignal' : 0,
-# 'color'    : 617,   # kViolet + 1
-# 'samples'  : ['QCD']
-#}
+##groupPlot['QCD'] = {
+## 'nameHR' : "QCD",
+## 'isSignal' : 0,
+## 'color'    : 617,   # kViolet + 1
+## 'samples'  : ['QCD']
+##}
 groupPlot['DY']  = {
 'nameHR' : "DY",
 'isSignal' : 0,
 'color': 418,    # kGreen+2
-'samples'  : ['DY']
-}
-groupPlot['top']  = {
-    'nameHR' : 't#bar{t} and ST',
-    'isSignal' : 0,
-    'color': 400,   # kYellow
-    'samples'  : ['top']
+'samples'  : ['DY', 'DYlow']
 }
 groupPlot['Wjets'] = {
     'nameHR' : "W+jets",
@@ -59,22 +53,21 @@ groupPlot['Wjets'] = {
     'samples'  : ['Wjets'],
 }
 
-for counter, MX in enumerate(plotmasses):
-    groupPlot['Higgs{}'.format(MX)] = {
-        'nameHR'  : 'Higgs {}'.format(MX),
-        'isSignal': 1,
-        'color'   : counter+1,
-        'samples' : ['GGH_{}_RelW002'.format(MX), 'QQH_{}_RelW002'.format(MX)] #'GGHINT_{}_RelW002'.format(MX), 'QQH_{}_RelW002'.format(MX),'QQHINT_{}_RelW002'.format(MX), 'QQHSBI_{}_RelW002'.format(MX), 'GGHSBI_{}_RelW002'.format(MX)]
-    }
+
+groupPlot['top']  = {
+    'nameHR' : 't#bar{t}',
+    'isSignal' : 0,
+    'color': 400,   # kYellow
+    'samples'  : ['top']
+}
 
 
 
 
-
-#plot = {}
+plot = {}
 
 # keys here must match keys in samples.py
-#
+
 
 plot['FAKE']  = {
     'color': 855, # kAzure -5
@@ -83,14 +76,14 @@ plot['FAKE']  = {
     'scale'    : 1.0
 }
 
-plot['QCD']  = {
-    'color': 1,
-    'isSignal' : 0,
-    'isData'   : 0 ,
-    'isBlind'   :  0 ,
-    'scale'    : 1.0
-}
-
+#plot['QCD']  = {
+#    'color': 1,
+#    'isSignal' : 0,
+#    'isData'   : 0 ,
+#    'isBlind'   :  0 ,
+#    'scale'    : 1.0
+#}
+#
 plot['DY']  = {
     'color': 418,    # kGreen+2
     'isSignal' : 0,
@@ -98,14 +91,26 @@ plot['DY']  = {
     'scale'    : 1.0,
 }
 
-plot['top'] = {
-   # 'nameHR' : 'tW and t#bar{t}',
-    'color': 400,   # kYellow
+#plot['DYlow']  = {
+#    'color': 416,    # kGreen+2
+#    'isSignal' : 0,
+#    'isData'   : 0,
+#    'scale'    : 1.0,
+#}
+#
+plot['Wjets']  = {
+    'color': 856, # kAzure -4
     'isSignal' : 0,
     'isData'   : 0,
-    'scale'    : 1.0,
+    'scale'    : 1.0
 }
 
+plot['top']  = {
+    'color': 400, # kAzure -4
+    'isSignal' : 0,
+    'isData'   : 0,
+    'scale'    : 1.0
+}
 
 plot['WW']  = {
     'color': 851, # kAzure -9
@@ -135,12 +140,6 @@ plot['qqWWqq']  = {
     'scale'    : 1.0
 }
 
-plot['WW2J']  = {
-    'color': 852, # kAzure -8
-    'isSignal' : 0,
-    'isData'   : 0,
-    'scale'    : 1.0
-}
 
 plot['Vg']  = {
     'color': 859, # kAzure -1
@@ -177,12 +176,6 @@ plot['VVV']  = {
     'scale'    : 1.0
 }
 
-plot['Wjets']  = {
-    'color': 856, # kAzure -4
-    'isSignal' : 0,
-    'isData'   : 0,
-    'scale'    : 1.0
-}
 
 
 
@@ -241,61 +234,6 @@ plot['WH_htt']  = {
     'isData'   : 0,
     'scale'    : 1.0,
 }
-
-
-
-# Signal
-for MX in plotmasses:
-    xs_ggf = HiggsXS.GetHiggsXS4Sample('YR4','13TeV','GluGluHToWWToLNuQQ_M{}'.format(MX))['xs']
-    xs_vbf = HiggsXS.GetHiggsXS4Sample('YR4','13TeV','VBFHToWWToLNuQQ_M{}'.format(MX))['xs']
-    plot['QQH_{}_RelW002'.format(MX)] = {
-        'nameHR'  : 'qqH{}'.format(MX),
-        'color'   : 1,
-        'isSignal': 1,
-        'isData'  : 0,
-        'scale'   : 1.0 * xs_ggf
-    }
-   # plot['QQHINT_{}_RelW002'.format(MX)] = {
-   #     'nameHR'  : 'qqH{}'.format(MX),
-   #     'color'   : 1,
-   #     'isSignal': 1,
-   #     'isData'  : 0,
-   #     'scale'   : 1.0 * xs_ggf
-   # }
-   # plot['QQHSBI_{}_RelW002'.format(MX)] = {
-   #     'nameHR'  : 'qqH{}'.format(MX),
-   #     'color'   : 1,
-   #     'isSignal': 1,
-   #     'isData'  : 0,
-   #     'scale'   : 1.0 * xs_ggf
-   # }
-    plot['GGH_{}_RelW002'.format(MX)] = {
-        'nameHR'  : 'ggH{}'.format(MX),
-        'color'   : 1,
-        'isSignal': 1,
-        'isData'  : 0,
-        'scale'   : 1.0 * xs_vbf
-    }
-   # plot['GGHINT_{}_RelW002'.format(MX)] = {
-   #     'nameHR'  : 'ggH{}'.format(MX),
-   #     'color'   : 1,
-   #     'isSignal': 1,
-   #     'isData'  : 0,
-   #     'scale'   : 1.0 * xs_vbf
-   # }
-
-   # plot['GGHSBI_{}_RelW002'.format(MX)] = {
-   #     'nameHR'  : 'ggH{}'.format(MX),
-   #     'color'   : 1,
-   #     'isSignal': 1,
-   #     'isData'  : 0,
-   #     'scale'   : 1.0 * xs_vbf
-   # }
-
-
-
-# data
-
 plot['DATA']  = {
     'nameHR' : 'Data',
     'color': 1 ,
@@ -309,6 +247,6 @@ plot['DATA']  = {
 
 # additional options
 
-legend['lumi'] = 'L = 41.5/fb'
+legend['lumi'] = 'L = 59.7/fb'
 
 legend['sqrt'] = '#sqrt{s} = 13 TeV'

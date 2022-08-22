@@ -63,18 +63,66 @@ getNJet::evaluate(unsigned)
 
    int idx_fat{*idxWfat->Get()};
 
+   if (*nCleanJet->Get() < 2)
+    return -1;
+   
    TLorentzVector lep;
    lep.SetPtEtaPhiM(*Wlep_pt->Get(), *Wlep_eta->Get(), *Wlep_phi->Get(), *Wlep_mass->Get());        
     //std::cout << "nCleanJet: " << *nCleanJet->Get() << std::endl;
-   if (*nCleanJet->Get() < 2)
-     return -1.;    
-   
-  /* float mjjmax = 0;
+/*   if ((*nCleanJet->Get() < 1) && (idx_fat >=0))
+     return 1.;    
+   if ((*nCleanJet->Get() < 2) && (idx_fat >=0)){
+       TLorentzVector tmpj;
+       TLorentzVector jfat_t;
+       jfat_t.SetPtEtaPhiM(CleanFatJet_pt->At(idx_fat), CleanFatJet_eta->At(idx_fat), CleanFatJet_phi->At(idx_fat), CleanFatJet_mass->At(idx_fat));
+       tmpj.SetPtEtaPhiM(CleanJet_pt->At(0), CleanJet_eta->At(0), CleanJet_phi->At(0), Jet_mass->At(CleanJet_jetIdx->At(0)));
+       if ( tmpj.DeltaR(jfat_t) < 0.8) 
+	return 1.;    
+   }
+   if ((*nCleanJet->Get() >= 2) && (idx_fat >=0)){
+	bool ij_fj = false;
+	bool ij_sj = false;
+	TLorentzVector jfat_t;
+        jfat_t.SetPtEtaPhiM(CleanFatJet_pt->At(idx_fat), CleanFatJet_eta->At(idx_fat), CleanFatJet_phi->At(idx_fat), CleanFatJet_mass->At(idx_fat));
+	
+   	for (int ij = 0; ij < *nCleanJet->Get()  ; ++ij){
+     		if (ij == idx_j1){
+			TLorentzVector tmpj;
+       			tmpj.SetPtEtaPhiM(CleanJet_pt->At(ij), CleanJet_eta->At(ij), CleanJet_phi->At(ij), Jet_mass->At(CleanJet_jetIdx->At(ij)));
+			if(tmpj.DeltaR(jfat_t) > 0.8) {
+				return -1 ;}else{
+			ij_fj = true;
+			}
+		} 
+	
+     		if (ij == idx_j2){
+			TLorentzVector tmpj2;
+       			tmpj2.SetPtEtaPhiM(CleanJet_pt->At(ij), CleanJet_eta->At(ij), CleanJet_phi->At(ij), Jet_mass->At(CleanJet_jetIdx->At(ij)));
+			if(tmpj2.DeltaR(jfat_t) > 0.8) {
+				return -1 ;}else{
+			ij_sj = true;
+			}
+		} 
+                if(ij != idx_j1 && ij != idx_j2){
+   			TLorentzVector tmpj_nojj;
+   			tmpj_nojj.SetPtEtaPhiM(CleanJet_pt->At(ij), CleanJet_eta->At(ij), CleanJet_phi->At(ij), Jet_mass->At(CleanJet_jetIdx->At(ij)));
+    			if (tmpj_nojj.Pt() > 30) return -1;
+		 }			
+
+		if( ij == *nCleanJet->Get() -1){
+			return 1;
+		}
+	}
+}
+*/
+
+	
+   float mjjmax = 0;
    TLorentzVector vbfj1, vbfj2;
    bool foundVBFjets = false;
    for (int ij1 = 0; ij1 < *nCleanJet->Get()-1; ++ij1){
      for (int ij2 = ij1+1; ij2 < *nCleanJet->Get(); ++ij2){     
-      if (ij1 == idx_j1 || ij1 == idx_j2 || ij2 == idx_j1 || ij2 == idx_j2) continue;
+      //if (ij1 == idx_j1 || ij1 == idx_j2 || ij2 == idx_j1 || ij2 == idx_j2) continue;
        TLorentzVector tmpj1, tmpj2;
        tmpj1.SetPtEtaPhiM(CleanJet_pt->At(ij1), CleanJet_eta->At(ij1), CleanJet_phi->At(ij1), Jet_mass->At(CleanJet_jetIdx->At(ij1)));
        tmpj2.SetPtEtaPhiM(CleanJet_pt->At(ij2), CleanJet_eta->At(ij2), CleanJet_phi->At(ij2), Jet_mass->At(CleanJet_jetIdx->At(ij2)));
@@ -91,10 +139,9 @@ getNJet::evaluate(unsigned)
       	jfat.SetPtEtaPhiM(CleanFatJet_pt->At(idx_fat), CleanFatJet_eta->At(idx_fat), CleanFatJet_phi->At(idx_fat), CleanFatJet_mass->At(idx_fat));
 	DeltaR1 = sqrt( pow(tmpj1.Phi() - CleanFatJet_phi->At(idx_fat),2) + pow(tmpj1.Eta() - CleanFatJet_eta->At(idx_fat),2));
 	DeltaR2 = sqrt( pow(tmpj2.Phi() - CleanFatJet_phi->At(idx_fat),2) + pow(tmpj2.Eta() - CleanFatJet_eta->At(idx_fat),2));
-	if ((DeltaR1 < 0.8) || (DeltaR2 < 0.8))continue;
+	if ((tmpj1.DeltaR(jfat) < 0.8) || (tmpj2.DeltaR(jfat) < 0.8))continue;
 	}
 	if ( tmpj1.Pt()  > 30 && tmpj2.Pt() > 30 && idx_fat >= 0) { 
-	     foundVBFjets= true;
 	     return 1.;
 	}
 	
@@ -104,7 +151,7 @@ getNJet::evaluate(unsigned)
   // std::cout << "##################" << std::endl;
    bool cross_check = false;
 
-*/ TLorentzVector vbfj1_res, vbfj2_res;
+/* TLorentzVector vbfj1_res, vbfj2_res;
    int nVBF_res = 0;
    for (int ij = 0; ij < *nCleanJet->Get() && nVBF_res <=2 ; ++ij){
      if (ij == idx_j1 || ij == idx_j2) continue;
@@ -137,7 +184,7 @@ getNJet::evaluate(unsigned)
    }  
 
 
-  if( idx_fat >= 0 && nVBF_boo == 2){
+  if( idx_fat >= 0 && nVBF_boo == 0){
 //	foundVBFjets = true;
 	return 1;
 }
@@ -145,8 +192,7 @@ getNJet::evaluate(unsigned)
 //  std::cout << cross_check << std::endl;
  // std::cout <<"___________________________"<< std::endl;
 
-
-  
+ */ 
  return -1.;
 	
 }   

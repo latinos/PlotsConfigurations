@@ -8,8 +8,7 @@ if os.path.exists(massesAndModelsFile) :
 else:
     print "!!! ERROR file ", massesAndModelsFile, " does not exist."
 
-
-# groupPlot = {}
+#groupPlot = {}
 #
 # Groups of samples to improve the plots.
 # If not defined, normal plots is used
@@ -20,7 +19,7 @@ else:
 # 'isSignal' : 0,
 # 'color': 863, # kAzure +3
 # 'samples'  : [] #['ggH_hww', 'qqH_hww', 'ZH_hww', 'WH_hww', 'ggH_htt', 'qqH_htt', 'ZH_htt', 'WH_htt']
-#}
+##}
 groupPlot['multiboson']  = {
 'nameHR' : 'multiboson',
 'isSignal' : 0,
@@ -71,10 +70,10 @@ for counter, MX in enumerate(plotmasses):
 
 
 
-#plot = {}
+plot = {}
 
 # keys here must match keys in samples.py
-#
+
 
 plot['FAKE']  = {
     'color': 855, # kAzure -5
@@ -83,14 +82,14 @@ plot['FAKE']  = {
     'scale'    : 1.0
 }
 
-plot['QCD']  = {
-    'color': 1,
-    'isSignal' : 0,
-    'isData'   : 0 ,
-    'isBlind'   :  0 ,
-    'scale'    : 1.0
-}
-
+#plot['QCD']  = {
+#    'color': 1,
+#    'isSignal' : 0,
+#    'isData'   : 0 ,
+#    'isBlind'   :  0 ,
+#    'scale'    : 1.0
+#}
+#
 plot['DY']  = {
     'color': 418,    # kGreen+2
     'isSignal' : 0,
@@ -246,8 +245,8 @@ plot['WH_htt']  = {
 
 # Signal
 for MX in plotmasses:
-    xs_ggf = HiggsXS.GetHiggsXS4Sample('YR4','13TeV','GluGluHToWWToLNuQQ_M{}'.format(MX))['xs']
-    xs_vbf = HiggsXS.GetHiggsXS4Sample('YR4','13TeV','VBFHToWWToLNuQQ_M{}'.format(MX))['xs']
+    xs_ggf = 2*HiggsXS.GetHiggsXS4Sample('YR4','13TeV','GluGluHToWWToLNuQQ_M{}'.format(MX))['xs']
+    xs_vbf = 2*HiggsXS.GetHiggsXS4Sample('YR4','13TeV','VBFHToWWToLNuQQ_M{}'.format(MX))['xs']
     plot['QQH_{}_RelW002'.format(MX)] = {
         'nameHR'  : 'qqH{}'.format(MX),
         'color'   : 1,

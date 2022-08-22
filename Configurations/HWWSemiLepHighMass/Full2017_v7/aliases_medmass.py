@@ -15,6 +15,8 @@ configurations = os.path.dirname(configurations) # Configurations
 # samples, signals
 
 mc = [skey for skey in samples if skey not in ('FAKE', 'DATA')]
+mc_deep =[skey for skey in samples if skey not in ['DY', 'top', 'Wjets', 'Vg', 'VgS','VZ', 'FAKE', 'DATA', 'VVV', 'ZH_htt', 'WH_htt', 'ggH_htt', 'qqH_htt']]  
+wjets = [skey for skey in samples if skey.startswith('Wjets')]
 
 
 eleWP    = 'mvaFall17V1Iso_WP90'
@@ -189,7 +191,6 @@ aliases['resolvedQCDSR'] = {
 }
 # boostedQCDcr not possible RN since boosted W candidate always fulfills WptOvHfatM > 0.4
 
-
 aliases['tau21DDT'] = {
     'expr': '( Alt$(CleanFatJet_tau21[idxCleanFatJetW], -999) + 0.080 * TMath::Log( Alt$(CleanFatJet_mass[idxCleanFatJetW]*CleanFatJet_mass[idxCleanFatJetW], 0) / Alt$(CleanFatJet_pt[idxCleanFatJetW], 1) ) )'
 }
@@ -267,25 +268,67 @@ aliases['boosted_nocut'] = {
             && Alt$(CleanFatJet_eta[idxCleanFatJetW], 999) < 2.4'
 }
 
+
+aliases['boosted_nocut_tau_up'] = {
+    'expr': 'PuppiMET_pt > 40 \
+            && Alt$(CleanFatJet_pt[0], 0) > 200 \
+            && FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]] > 0.964 \
+            && Alt$(CleanFatJet_eta[0], 999) < 2.4'
+}
+
+aliases['boosted_nocut_tau_down'] = {
+    'expr': 'PuppiMET_pt > 40 \
+            && Alt$(CleanFatJet_pt[0], 0) > 200 \
+            && FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]] < 0.964 \
+            && Alt$(CleanFatJet_eta[0], 999) < 2.4'
+}
+
+aliases['boosted_nocut'] = {
+    'expr': 'PuppiMET_pt > 40 \
+            && Alt$(CleanFatJet_pt[0], 0) > 200 \
+            && Alt$(CleanFatJet_eta[0], 999) < 2.4'
+}
+
+            #&& FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]] > 0.960 \
+aliases['boosted_nocut_do'] = {
+    'expr': 'PuppiMET_pt > 40 \
+            && Alt$(CleanFatJet_pt[0], 0) > 200 \
+            && FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]] > 0.964 \
+            && HvOverFat < 0.3 \
+            && Alt$(CleanFatJet_eta[0], 999) < 2.4'
+}
+
+aliases['resolved_nocut'] = {
+    'expr': 'nCleanJet >= 2 \
+            && HM_Whad_mass > 0 \
+            && CleanJet_pt[0] > 30 \
+            && PuppiMET_pt[0] > 30 \
+            && CleanJet_pt[1] > 30'
+}
+
+
+#            && idxCleanFatJetW != 999 \
+
 aliases['boosted_fat_jet'] = {
     'expr': 'PuppiMET_pt > 40 \
-            && idxCleanFatJetW != 999 \
-            && Alt$(CleanFatJet_pt[idxCleanFatJetW], 0) > 200 \
-            && FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[idxCleanFatJetW]] > 0.964 \
+            && Alt$(CleanFatJet_pt[0], 0) > 200 \
+            && FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]] > 0.960 \
             && HvOverFat > 0.4 \
-            && Alt$(CleanFatJet_eta[idxCleanFatJetW], 999) < 2.4'
+            && Alt$(CleanFatJet_eta[0], 999) < 2.4'
 }
+
+            # && idxCleanFatJetW != 999 \
 
 aliases['two_jet_res'] ={
     'expr': 'nCleanJet >= 2 \
             && !boosted_fat_jet[0] \
-            && HM_Whad_mass > 0 \
-            && CleanJet_pt[0] > 30 \
+            && HM_idx_j1 != 0 \
             && PuppiMET_pt[0] > 30 \
             && HM_Hlnjj_MT[0] > 60 \
             && HvOverJJ[0] > 0.4 \
-            && CleanJet_pt[1] > 30'
+            && HM_idx_j2 != 0'
 }
+
 
 
 aliases['LHEPartWlepPt'] = {
@@ -361,7 +404,7 @@ bTagBoosted = '(Sum$(Jet_btagDeepB[CleanJet_jetIdx[CleanJetNotFat_jetIdx]] > bWP
 bTagResolved = '(Sum$(Jet_btagDeepB[CleanJet_jetIdx] > bWP[0] && {0}) == 0)'\
                 .format(resolvedJetBVetoCondition)
 
-bTemplate = '((boosted_fat_jet[0]*{0}) || ( two_jet_res[0]*{1}))'.format(bTagBoosted, bTagResolved)
+bTemplate = '((boosted_nocut[0]*{0}) || ( resolved_nocut[0]*{1}))'.format(bTagBoosted, bTagResolved)
 
 aliases['bVeto'] = {
     'expr': bTemplate.format(threshold=vetoThreshold)
@@ -485,74 +528,6 @@ aliases['PUJetIdSF'] = {
 
 
 
-with open(configurations+'/HWWSemiLepHighMass/DeepAK8V2_W_SFs.csv') as csvfile:
-    reader = csv.DictReader(row for row in csvfile if not row.startswith('#'))
-    deepAK8Dict = dict()
-    for row in reader:
-        name = '{y}_{ver}_{mtr}_{pT_l}_{pT_h}'.format(
-            y    = row['Year'],
-            ver  = row['version'],
-            mtr  = row['MistaggingRate[%]'],
-            pT_l = row['pT_low[GeV]'],
-            pT_h = row['pT_high[GeV]']
-        )
-        deepAK8Dict[name]         = str(row['SF'])
-        deepAK8Dict[name+'_up']   = str(float(row['SF'])+float(row['SF_upperErr']))
-        deepAK8Dict[name+'_down'] = str(float(row['SF'])+float(row['SF_lowerErr']))
-# 200 300
-# 300 400
-# 400 800
-year = '2017'
-mtr = '0p5'
-aliases['DeepAK8_SF'] = {
-    'expr': "( 1 * two_jet_res[0] + !two_jet_res[0]*(" +\
-        \
-        deepAK8Dict[year+'_Nominal_'+mtr+'_200_300'] +\
-        "* (100 < Alt$(CleanFatJet_pt[idxCleanFatJetW],0) \
-        && Alt$(CleanFatJet_pt[idxCleanFatJetW],0) < 300)   +" +\
-        \
-        deepAK8Dict[year+'_Nominal_'+mtr+'_300_400'] +\
-        "* (300 < Alt$(CleanFatJet_pt[idxCleanFatJetW],0) \
-        && Alt$(CleanFatJet_pt[idxCleanFatJetW],0) < 400)   +" +\
-        \
-        deepAK8Dict[year+'_Nominal_'+mtr+'_400_800'] +\
-        "* (400 < Alt$(CleanFatJet_pt[idxCleanFatJetW],0))   ))",
-    'samples': mc
-}
-
-aliases['DeepAK8_SF_up'] = {
-    'expr': "( 1 * two_jet_res[0] + !two_jet_res[0]*(" +\
-        \
-        deepAK8Dict[year+'_Nominal_'+mtr+'_200_300_up'] +\
-        "* (100 < Alt$(CleanFatJet_pt[idxCleanFatJetW],0) \
-        && Alt$(CleanFatJet_pt[idxCleanFatJetW],0) < 300)   +" +\
-        \
-        deepAK8Dict[year+'_Nominal_'+mtr+'_300_400_up'] +\
-        "* (300 < Alt$(CleanFatJet_pt[idxCleanFatJetW],0) \
-        && Alt$(CleanFatJet_pt[idxCleanFatJetW],0) < 400)   +" +\
-        \
-        deepAK8Dict[year+'_Nominal_'+mtr+'_400_800_up'] +\
-        "* (400 < Alt$(CleanFatJet_pt[idxCleanFatJetW],0))   ))",
-    'samples': mc
-}
-
-aliases['DeepAK8_SF_down'] = {
-    'expr': "( 1 * two_jet_res[0] + !two_jet_res[0]*(" +\
-        \
-        deepAK8Dict[year+'_Nominal_'+mtr+'_200_300_down'] +\
-        "* (100 < Alt$(CleanFatJet_pt[idxCleanFatJetW],0) \
-        && Alt$(CleanFatJet_pt[idxCleanFatJetW],0) < 300)   +" +\
-        \
-        deepAK8Dict[year+'_Nominal_'+mtr+'_300_400_down'] +\
-        "* (300 < Alt$(CleanFatJet_pt[idxCleanFatJetW],0) \
-        && Alt$(CleanFatJet_pt[idxCleanFatJetW],0) < 400)   +" +\
-        \
-        deepAK8Dict[year+'_Nominal_'+mtr+'_400_800_down'] +\
-        "* (400 < Alt$(CleanFatJet_pt[idxCleanFatJetW],0))   ))",
-    'samples': mc
-}
-
-
 
 
 
@@ -587,20 +562,91 @@ aliases['passSingleElectronHLT']= {
 #}
 
 
+with open(configurations+'/HWWSemiLepHighMass/DeepAK8V2_W_SFs.csv') as csvfile:
+    reader = csv.DictReader(row for row in csvfile if not row.startswith('#'))
+    deepAK8Dict = dict()
+    for row in reader:
+        name = '{y}_{ver}_{mtr}_{pT_l}_{pT_h}'.format(
+            y    = row['Year'],
+            ver  = row['version'],
+            mtr  = row['MistaggingRate[%]'],
+            pT_l = row['pT_low[GeV]'],
+            pT_h = row['pT_high[GeV]']
+        )
+        deepAK8Dict[name]         = str(row['SF'])
+        deepAK8Dict[name+'_up']   = str(float(row['SF'])+float(row['SF_upperErr']))
+        deepAK8Dict[name+'_down'] = str(float(row['SF'])+float(row['SF_lowerErr']))
+# 200 300
+# 300 400
+# 400 800
+year = '2017'
+mtr = '0p5'
+aliases['DeepAK8_SF'] = {
+    'expr': "( 1 * !boosted_nocut[0] + boosted_nocut[0]*(" +\
+    #'expr': "( 1 * two_jet_res[0] + !two_jet_res[0]*(" +\
+        \
+        deepAK8Dict[year+'_Nominal_'+mtr+'_200_300'] +\
+        "* (100 < Alt$(CleanFatJet_pt[0],0) \
+        && Alt$(CleanFatJet_pt[0],0) < 300)   +" +\
+        \
+        deepAK8Dict[year+'_Nominal_'+mtr+'_300_400'] +\
+        "* (300 < Alt$(CleanFatJet_pt[0],0) \
+        && Alt$(CleanFatJet_pt[0],0) < 400)   +" +\
+        \
+        deepAK8Dict[year+'_Nominal_'+mtr+'_400_800'] +\
+        "* (400 < Alt$(CleanFatJet_pt[0],0))   ))",
+    'samples': mc_deep
+}
+
+aliases['DeepAK8_SF_up'] = {
+    #'expr': "( 1 * two_jet_res[0] + !two_jet_res[0]*(" +\
+    'expr': "( 1 * !boosted_nocut[0] + boosted_nocut[0]*(" +\
+        \
+        deepAK8Dict[year+'_Nominal_'+mtr+'_200_300_up'] +\
+        "* (100 < Alt$(CleanFatJet_pt[0],0) \
+        && Alt$(CleanFatJet_pt[0],0) < 300)   +" +\
+        \
+        deepAK8Dict[year+'_Nominal_'+mtr+'_300_400_up'] +\
+        "* (300 < Alt$(CleanFatJet_pt[0],0) \
+        && Alt$(CleanFatJet_pt[0],0) < 400)   +" +\
+        \
+        deepAK8Dict[year+'_Nominal_'+mtr+'_400_800_up'] +\
+        "* (400 < Alt$(CleanFatJet_pt[0],0))   ))",
+    'samples': mc_deep
+}
+
+aliases['DeepAK8_SF_down'] = {
+    #'expr': "( 1 * two_jet_res[0] + !two_jet_res[0]*(" +\
+    'expr': "( 1 * !boosted_nocut[0] + boosted_nocut[0]*(" +\
+        \
+        deepAK8Dict[year+'_Nominal_'+mtr+'_200_300_down'] +\
+        "* (100 < Alt$(CleanFatJet_pt[0],0) \
+        && Alt$(CleanFatJet_pt[0],0) < 300)   +" +\
+        \
+        deepAK8Dict[year+'_Nominal_'+mtr+'_300_400_down'] +\
+        "* (300 < Alt$(CleanFatJet_pt[0],0) \
+        && Alt$(CleanFatJet_pt[0],0) < 400)   +" +\
+        \
+        deepAK8Dict[year+'_Nominal_'+mtr+'_400_800_down'] +\
+        "* (400 < Alt$(CleanFatJet_pt[0],0))   ))",
+    'samples': mc_deep
+}
 
 
 
-# TODO: choice here between boosted W tagging with tau21 (WtagSF)
-#       or DeepAK8 (DeepAK8_SF)
-# # data/MC scale factors
+
 aliases['SFweight'] = {
     #'expr': ' * '.join(['puWeight', 'TriggerEffWeight_1l', 'EMTFbug_veto',  'PrefireWeight', 'LepWPSF[0]', 'btagSF[0]', 'PUJetIdSF[0]']),
-    'expr': ' * '.join(['puWeight', 'TriggerEffWeight_1l', 'EMTFbug_veto',  'PrefireWeight', 'LepWPSF[0]', 'btagSF[0]', 'PUJetIdSF[0]', 'DeepAK8_SF[0]']),
-    #'expr': ' * '.join(['puWeight', 'TriggerEffWeight_1l', 'EMTFbug_veto',  'PrefireWeight', 'LepWPSF[0]', 'btagSF[0]', 'PUJetIdSF[0]', 'WtagSF[0]']),
-    #'expr': ' * '.join(['puWeight', 'trigWeight', 'EMTFbug_veto',  'PrefireWeight', 'LepWPSF[0]', 'btagSF[0]', 'PUJetIdSF[0]', 'DeepAK8_SF[0]']),
+    'expr': ' * '.join(['puWeight', 'TriggerEffWeight_1l', 'EMTFbug_veto',  'PrefireWeight', 'LepWPSF[0]', 'btagSF[0]', 'PUJetIdSF[0]']),
     'samples': mc
 }
 
+
+aliases['SFweight_deep'] = {
+    'expr': ' * '.join(['puWeight', 'TriggerEffWeight_1l', 'EMTFbug_veto',  'PrefireWeight', 'LepWPSF[0]', 'btagSF[0]', 'PUJetIdSF[0]', 'DeepAK8_SF[0]']),
+    #'expr': ' * '.join(['puWeight', 'TriggerEffWeight_1l', 'EMTFbug_veto',  'PrefireWeight', 'LepWPSF[0]', 'btagSF[0]', 'PUJetIdSF[0]', 'WtagSF[0]']),
+    'samples': mc_deep
+}
 
 
 # FIXME top stuff
@@ -609,29 +655,84 @@ lastcopy = (1 << 13)
 
 aliases['isTTbar'] = {
     'expr': 'Sum$(TMath::Abs(GenPart_pdgId) == 6 && TMath::Odd(GenPart_statusFlags / %d)) == 2' % lastcopy,
-    'samples': ['top',]
+    'samples': ['top', 'top_semi_redo',]
 }
 aliases['isSingleTop'] = {
     'expr': 'Sum$(TMath::Abs(GenPart_pdgId) == 6 && TMath::Odd(GenPart_statusFlags / %d)) == 1' % lastcopy,
-    'samples': ['top',]
+    'samples': ['top','top_semi_redo',]
 }
 
 aliases['topGenPtOTF'] = {
     'expr': 'Sum$((GenPart_pdgId == 6 && TMath::Odd(GenPart_statusFlags / %d)) * GenPart_pt)' % lastcopy,
-    'samples': ['top',]
+    'samples': ['top','top_semi_redo',]
 }
 aliases['antitopGenPtOTF'] = {
     'expr': 'Sum$((GenPart_pdgId == -6 && TMath::Odd(GenPart_statusFlags / %d)) * GenPart_pt)' % lastcopy,
+    'samples': ['top','top_semi_redo',]
+}
+
+
+aliases['DeepAK8_SF_top'] = {
+    #'expr': "( 1 * two_jet_res[0] + !two_jet_res[0]*(" +\
+    'expr': "(1*( topGenPtOTF * antitopGenPtOTF <= 0.) + (topGenPtOTF * antitopGenPtOTF > 0.)*( 1 * !boosted_nocut[0] + boosted_nocut[0]*(" +\
+        \
+        deepAK8Dict[year+'_Nominal_'+mtr+'_200_300'] +\
+        "* (100 < Alt$(CleanFatJet_pt[0],0) \
+        && Alt$(CleanFatJet_pt[0],0) < 300)   +" +\
+        \
+        deepAK8Dict[year+'_Nominal_'+mtr+'_300_400'] +\
+        "* (300 < Alt$(CleanFatJet_pt[0],0) \
+        && Alt$(CleanFatJet_pt[0],0) < 400)   +" +\
+        \
+        deepAK8Dict[year+'_Nominal_'+mtr+'_400_800'] +\
+        "* (400 < Alt$(CleanFatJet_pt[0],0))   )))",
+    'samples': ['top',]
+}
+
+aliases['DeepAK8_SF_top_up'] = {
+    #'expr': "(1*( topGenPtOTF * antitopGenPtOTF <= 0.) + (topGenPtOTF * antitopGenPtOTF > 0.)*( 1 * two_jet_res[0] + !two_jet_res[0]*(" +\
+    'expr': "(1*( topGenPtOTF * antitopGenPtOTF <= 0.) + (topGenPtOTF * antitopGenPtOTF > 0.)*( 1 * !boosted_nocut[0] + boosted_nocut[0]*(" +\
+        \
+        deepAK8Dict[year+'_Nominal_'+mtr+'_200_300_up'] +\
+        "* (100 < Alt$(CleanFatJet_pt[0],0) \
+        && Alt$(CleanFatJet_pt[0],0) < 300)   +" +\
+        \
+        deepAK8Dict[year+'_Nominal_'+mtr+'_300_400_up'] +\
+        "* (300 < Alt$(CleanFatJet_pt[0],0) \
+        && Alt$(CleanFatJet_pt[0],0) < 400)   +" +\
+        \
+        deepAK8Dict[year+'_Nominal_'+mtr+'_400_800_up'] +\
+        "* (400 < Alt$(CleanFatJet_pt[0],0))   )))",
+    'samples': ['top',]
+}
+
+aliases['DeepAK8_SF_top_down'] = {
+    #'expr': "(1*( topGenPtOTF * antitopGenPtOTF <= 0.) + (topGenPtOTF * antitopGenPtOTF > 0.)*(1 * two_jet_res[0] + !two_jet_res[0]*(" +\
+    'expr': "(1*( topGenPtOTF * antitopGenPtOTF <= 0.) + (topGenPtOTF * antitopGenPtOTF > 0.)*( 1 * !boosted_nocut[0] + boosted_nocut[0]*(" +\
+        \
+        deepAK8Dict[year+'_Nominal_'+mtr+'_200_300_down'] +\
+        "* (100 < Alt$(CleanFatJet_pt[0],0) \
+        && Alt$(CleanFatJet_pt[0],0) < 300)   +" +\
+        \
+        deepAK8Dict[year+'_Nominal_'+mtr+'_300_400_down'] +\
+        "* (300 < Alt$(CleanFatJet_pt[0],0) \
+        && Alt$(CleanFatJet_pt[0],0) < 400)   +" +\
+        \
+        deepAK8Dict[year+'_Nominal_'+mtr+'_400_800_down'] +\
+        "* (400 < Alt$(CleanFatJet_pt[0],0))   )))",
     'samples': ['top',]
 }
 
 
+aliases['SFweight_top'] = {
+    #'expr': ' * '.join(['puWeight', 'TriggerEffWeight_1l', 'EMTFbug_veto',  'PrefireWeight', 'LepWPSF[0]', 'btagSF[0]', 'PUJetIdSF[0]']),
+    'expr': ' * '.join(['puWeight', 'TriggerEffWeight_1l', 'EMTFbug_veto',  'PrefireWeight', 'LepWPSF[0]', 'btagSF[0]', 'PUJetIdSF[0]', 'DeepAK8_SF_top[0]']),
+    #'expr': ' * '.join(['puWeight', 'TriggerEffWeight_1l', 'EMTFbug_veto',  'PrefireWeight', 'LepWPSF[0]', 'btagSF[0]', 'PUJetIdSF[0]']),
+    #'expr': ' * '.join(['puWeight', 'TriggerEffWeight_1l', 'EMTFbug_veto',  'PrefireWeight', 'LepWPSF[0]', 'btagSF[0]', 'PUJetIdSF[0]', 'WtagSF[0]']),
+    #'expr': ' * '.join(['puWeight', 'trigWeight', 'EMTFbug_veto',  'PrefireWeight', 'LepWPSF[0]', 'btagSF[0]', 'PUJetIdSF[0]', 'DeepAK8_SF[0]']),
+    'samples': ['top',]
+}
 
-
-#aliases['Top_pTrw'] = {# New Top PAG
-#    'expr': '(topGenPtOTF * antitopGenPtOTF > 0.) * (TMath::Sqrt((0.103*TMath::Exp(-0.0118*topGenPtOTF) - 0.000134*topGenPtOTF + 0.973) * (0.103*TMath::Exp(-0.0118*antitopGenPtOTF) - 0.000134*antitopGenPtOTF + 0.973))) * (TMath::Sqrt(TMath::Exp(1.61468e-03 + 3.46659e-06*topGenPtOTF - 8.90557e-08*topGenPtOTF*topGenPtOTF) * TMath::Exp(1.61468e-03 + 3.46659e-06*antitopGenPtOTF - 8.90557e-08*antitopGenPtOTF*antitopGenPtOTF))) + (topGenPtOTF * antitopGenPtOTF <= 0.)', # Same Reweighting as other years, but with additional fix for tune CUET -> CP5
-#    'samples': ['top',]
-#}
 
 
 aliases['Top_pTrw'] = {# New Top PAG
@@ -734,6 +835,72 @@ aliases['kfact'] = {
 }
 
 
+FR_dir = os.getenv('CMSSW_BASE') + "/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/FAKE_RW/FR/2017/"
+PR_dir = os.getenv('CMSSW_BASE') + "/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/FAKE_RW/PR/2017/"
+el_pr_file = PR_dir+"plot_ElCh_l1_etaVpt_ptel_2D_pr.root"
+mu_pr_file = PR_dir+"plot_MuCh_l1_etaVpt_ptmu_2D_pr.root"
+for lep in ['El', 'Mu']:
+    for dEt in [-10, 0,10]:
+        if lep == 'El':
+            el_et = El_jetEt + dEt
+            mu_et = Mu_jetEt
+        elif lep == 'Mu':
+            el_et = El_jetEt
+            mu_et = Mu_jetEt + dEt
+
+        el_fr_file = FR_dir+"plot_ElCh_JetEt"+str(el_et)+"_l1_etaVpt_ptel_fw_ewk_2D.root"
+        mu_fr_file = FR_dir+"plot_MuCh_JetEt"+str(mu_et)+"_l1_etaVpt_ptmu_fw_ewk_2D.root"
+    
+        aliases['FW_mu'+str(mu_et)+'_el'+str(el_et)] = {
+            'linesToAdd' : [
+                'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+                #'.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/fakeweight_p1_OTF.cc+' % os.getenv('CMSSW_BASE')
+                '.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/fakeweight_OTF.cc+' % os.getenv('CMSSW_BASE')
+            ],
+            #'class': 'fakeWeight_p1_OTF',
+            'class': 'fakeWeightOTF',
+            #'args': (eleWP, muWP, copy.deepcopy(el_fr_file), copy.deepcopy(mu_fr_file), False, False), 
+            'args': (eleWP, muWP, copy.deepcopy(el_fr_file), el_pr_file, copy.deepcopy(mu_fr_file), mu_pr_file, False, False), 
+            'samples': ["FAKE"]
+        }
+        aliases['FW_mu'+str(mu_et)+'_el'+str(el_et)+'_statUp'] = {
+            #'class': 'fakeWeight_p1_OTF',
+            'class': 'fakeWeightOTF',
+            #'args': (eleWP, muWP, copy.deepcopy(el_fr_file), copy.deepcopy(mu_fr_file), True, False), 
+            'args': (eleWP, muWP, copy.deepcopy(el_fr_file), el_pr_file, copy.deepcopy(mu_fr_file), mu_pr_file, True, False), 
+            'samples': ["FAKE"]
+        }
+        aliases['FW_mu'+str(mu_et)+'_el'+str(el_et)+'_statDown'] = {
+            #'class': 'fakeWeight_p1_OTF',
+            'class': 'fakeWeightOTF',
+            #'args': (eleWP, muWP, copy.deepcopy(el_fr_file), copy.deepcopy(mu_fr_file), False, True), 
+            'args': (eleWP, muWP, copy.deepcopy(el_fr_file), el_pr_file, copy.deepcopy(mu_fr_file), mu_pr_file, False, True), 
+            'samples': ["FAKE"]
+        }
+
+for var in ['Up', 'Down']:
+    for lep in ['El', 'Mu']:
+        el_et = El_jetEt
+        mu_et = Mu_jetEt
+        if var == 'Down': dEt = -10
+        elif var == 'Up': dEt = 10
+        if lep == 'El': 
+            el_et = El_jetEt + dEt
+            is_lep = '(TMath::Abs(Lepton_pdgId[0]) == 11)'
+            no_lep = '(TMath::Abs(Lepton_pdgId[0]) == 13)'
+        elif lep == 'Mu': 
+            mu_et = mu_et + dEt
+            is_lep = '(TMath::Abs(Lepton_pdgId[0]) == 13)'
+            no_lep = '(TMath::Abs(Lepton_pdgId[0]) == 11)'
+
+        aliases['FW_mu'+str(Mu_jetEt)+'_el'+str(El_jetEt)+'_'+lep+var] = {
+            'expr': '('+is_lep+'*(FW_mu'+str(mu_et)+'_el'+str(el_et)+'[0]/FW_mu'+str(Mu_jetEt)+'_el'+str(El_jetEt)+'[0]) + '+no_lep+')',
+            'samples': ["FAKE"]
+        }
+        aliases['FW_mu'+str(Mu_jetEt)+'_el'+str(El_jetEt)+'_stat'+lep+var] = {
+            'expr': '('+is_lep+'*(FW_mu'+str(Mu_jetEt)+'_el'+str(El_jetEt)+'_stat'+var+'[0]/FW_mu'+str(Mu_jetEt)+'_el'+str(El_jetEt)+'[0]) + '+no_lep+')',
+            'samples': ["FAKE"]
+        }
 
 #aliases['SBI_isSMggh'] = {
  #   'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/isSample.cc+' % os.getenv('CMSSW_BASE')],

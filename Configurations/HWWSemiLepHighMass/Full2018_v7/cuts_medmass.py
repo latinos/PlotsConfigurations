@@ -9,8 +9,8 @@ supercut = '\
 
 ##=== Define categories ===###
 LepCats={}
-LepCats['incl_']='( (abs(Lepton_pdgId[0])==11) && Lepton_pt[0]>30 \
-                 || (abs(Lepton_pdgId[0])==13) && Lepton_pt[0]>27 )'
+LepCats['incl_']='( (abs(Lepton_pdgId[0])==11) && Lepton_pt[0]>32 \
+                 || (abs(Lepton_pdgId[0])==13) && Lepton_pt[0]>24 )'
 #LepCats['ElCh_']='( (abs(Lepton_pdgId[0])==11) && Lepton_pt[0]>30 )'
 #LepCats['MuCh_']='( (abs(Lepton_pdgId[0])==13) && Lepton_pt[0]>27 )'
 # FIXME: maybe need to cut > 35 for ele due to fakeW calculation
@@ -34,11 +34,6 @@ BoostCats={}
 #BoostCats['ResolvedSR_']='(1 \
 #                       && two_jet_res[0] \
 #                       && resolvedSignalWMass[0] \
-#                       && bVeto[0])'
-#BoostCats['BoostedSB_']='(1 \
-#                       && boosted_nocut[0] \
-#                       && !boostedSignalWMass[0] \
-#                       && boostedSidebandWMass[0] \
 #                       && bVeto[0])'
 #BoostCats['ResolvedSB_']='(1 \
 #                       && two_jet_res[0] \

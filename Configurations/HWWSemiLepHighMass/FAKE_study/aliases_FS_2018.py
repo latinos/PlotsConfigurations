@@ -5,7 +5,7 @@ import inspect
 import numpy as np
 
 configurations = os.path.realpath(inspect.getfile(inspect.currentframe())) # this file
-configurations = os.path.dirname(configurations) # Full2016v7
+configurations = os.path.dirname(configurations) # Full2017v7
 configurations = os.path.dirname(configurations) # HM
 configurations = os.path.dirname(configurations) # Configurations
 
@@ -15,10 +15,12 @@ configurations = os.path.dirname(configurations) # Configurations
 # samples, signals
 
 mc = [skey for skey in samples if skey not in ('FAKE', 'DATA')]
+mc_deep =[skey for skey in samples if skey not in ['DY', 'top', 'Wjets', 'Vg', 'VgS','VZ', 'FAKE', 'FAKE_old', 'DATA', 'VVV', 'ZH_htt', 'WH_htt', 'ggH_htt', 'qqH_htt']]  
 wjets = [skey for skey in samples if skey.startswith('Wjets')]
 
-eleWP    = 'mva_90p_Iso2016'
-muWP     = 'cut_Tight80x'
+
+eleWP    = 'mvaFall17V1Iso_WP90'
+muWP     = 'cut_Tight_HWWW'
 
 #aliases['DNN_isVBF_OTF'] = {
 #    'class': 'DNNprodSemi',
@@ -49,12 +51,11 @@ aliases['mjjGen_OTF'] = {
     'class': 'HMvarsmjjgen',
     'samples': [skey for skey in samples if "QQHSBI" in skey or skey in ['WW', 'qqWWqq', 'WW2J', 'DYveto']]
 }
-
 aliases['bWP'] = {
-    'expr': '0.2217'
+    'expr': '0.1241'
 }
 aliases['tau21WP'] = {
-    'expr': '0.4'
+    'expr': '0.45'
 }
 aliases['LepWPCut'] = {
     'expr': '(Lepton_isTightElectron_'+eleWP+'[0] > 0.5 \
@@ -238,42 +239,30 @@ aliases['HvOverJJ'] = {
     'args': 3
 }
 
-#aliases['DeltaR_jj'] = {
-#    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/DeltaR_jj.cc+'  % os.getenv('CMSSW_BASE')],
-#    'class': 'DeltaR_jj',
-#}
-
-
 aliases['HvOverLEP'] = {
     'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/getResBoo.cc+'  % os.getenv('CMSSW_BASE')],
     'class': 'getResBoo',
     'args': 4
 }
 
-aliases['cohe_jet'] ={
-    'expr': 'deltaR < 1 \
-            && nCleanFatJet >= 1 \
-            && nCleanJet >= 2 \
-            && CleanJet_pt[0] > 30 \
-            && CleanJet_pt[1] > 30 \
-            && PuppiMET_pt[0] > 40 \
-            && Alt$(CleanFatJet_pt[idxCleanFatJetW], 0) > 200 \
-            && Alt$(CleanFatJet_eta[idxCleanFatJetW], 999) < 2.4'
+aliases['boosted_nocut_tau_up'] = {
+    'expr': 'Alt$(CleanFatJet_pt[0], 0) > 200 \
+            && FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]] > 0.961 \
+            && Alt$(CleanFatJet_eta[0], 999) < 2.4'
 }
 
-
-aliases['fat_jet'] ={
-    'expr': 'nCleanFatJet >= 1 '
-}
-
-#aliases['DeltaR_jj'] ={
-#    'expr' : 'TMath::Sqrt((Alt$(CleanJet_phi[HM_idx_j1], -1) - Alt$(CleanJet_phi[HM_idx_j2], -1))*(Alt$(CleanJet_phi[HM_idx_j1], -1) - Alt$(CleanJet_phi[HM_idx_j2], -1)) + (Alt$(CleanJet_eta[HM_idx_j1],-1) - Alt$(CleanJet_eta[HM_idx_j2], -1))*(Alt$(CleanJet_eta[HM_idx_j1], -1) - Alt$(CleanJet_eta[HM_idx_j2], -1)))'
+#aliases['boosted_nocut_tau_up'] = {
+#    'expr': 'Alt$(CleanFatJet_pt[0], 0) > 200 \
+#            && Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0) > 0.960 \
+#            && Alt$(abs(CleanFatJet_eta[0]), 999) < 2.4'
 #}
-#
-aliases['DeltaR_jj_Lpt'] ={
-    'expr' : 'TMath::Sqrt((CleanJet_phi[0] - CleanJet_phi[1])*(CleanJet_phi[0] - CleanJet_phi[1]) + (CleanJet_eta[0] - CleanJet_eta[1])*(CleanJet_eta[0] - CleanJet_eta[1]))'
-}
 
+aliases['boosted_nocut_tau_down'] = {
+    'expr': 'PuppiMET_pt > 40 \
+            && Alt$(CleanFatJet_pt[0], 0) > 200 \
+            && FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]] < 0.961 \
+            && Alt$(CleanFatJet_eta[0], 999) < 2.4'
+}
 
 aliases['boosted_nocut'] = {
     'expr': 'PuppiMET_pt > 40 \
@@ -281,11 +270,19 @@ aliases['boosted_nocut'] = {
             && Alt$(CleanFatJet_eta[0], 999) < 2.4'
 }
 
+            #&& FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]] > 0.960 \
+aliases['boosted_nocut_do'] = {
+    'expr': 'PuppiMET_pt > 40 \
+            && Alt$(CleanFatJet_pt[0], 0) > 200 \
+            && FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]] > 0.961 \
+            && HvOverFat < 0.3 \
+            && Alt$(CleanFatJet_eta[0], 999) < 2.4'
+}
+
 aliases['resolved_nocut'] = {
     'expr': 'nCleanJet >= 2 \
             && HM_Whad_mass > 0 \
             && CleanJet_pt[0] > 30 \
-            && PuppiMET_pt[0] > 30 \
             && CleanJet_pt[1] > 30'
 }
 
@@ -294,10 +291,10 @@ aliases['resolved_nocut'] = {
 
 aliases['boosted_fat_jet'] = {
     'expr': 'PuppiMET_pt > 40 \
-            && Alt$(CleanFatJet_pt[idxCleanFatJetW], 0) > 200 \
-            && FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[idxCleanFatJetW]] > 0.960 \
+            && Alt$(CleanFatJet_pt[0], 0) > 200 \
+            && FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]] > 0.961 \
             && HvOverFat > 0.4 \
-            && Alt$(CleanFatJet_eta[idxCleanFatJetW], 999) < 2.4'
+            && Alt$(CleanFatJet_eta[0], 999) < 2.4'
 }
 
             # && idxCleanFatJetW != 999 \
@@ -311,6 +308,15 @@ aliases['two_jet_res'] ={
             && HvOverJJ[0] > 0.4 \
             && HM_idx_j2 != 0'
 }
+
+aliases['two_jet_FAKE'] ={
+    'expr': 'nCleanJet >= 2 \
+            && !boosted_nocut_tau_up[0] \
+            && HvOverJJ[0] > 0.4 \
+            && HM_idx_j1 != 0 \
+            && HM_idx_j2 != 0'
+}
+
 
 
 aliases['LHEPartWlepPt'] = {
@@ -365,8 +371,6 @@ aliases['GenLHE'] = {
 }
 
 
-
-
 # # B-Stuff
 vetoThreshold = 20
 reqThreshold  = 30
@@ -386,8 +390,8 @@ bTagBoosted = '(Sum$(Jet_btagDeepB[CleanJet_jetIdx[CleanJetNotFat_jetIdx]] > bWP
 bTagResolved = '(Sum$(Jet_btagDeepB[CleanJet_jetIdx] > bWP[0] && {0}) == 0)'\
                 .format(resolvedJetBVetoCondition)
 
-bTemplate = '((boosted_fat_jet[0]*{0}) || ( two_jet_res[0]*{1}))'.format(bTagBoosted, bTagResolved)
-#bTemplate = '((boosted_nocut[0]*{0}) || ( resolved_nocut[0]*{1}))'.format(bTagBoosted, bTagResolved)
+#bTemplate = '((boosted_fat_jet[0]*{0}) || ( two_jet_res[0]*{1}))'.format(bTagBoosted, bTagResolved)
+bTemplate = '((boosted_nocut[0]*{0}) || ( resolved_nocut[0]*{1}))'.format(bTagBoosted, bTagResolved)
 
 aliases['bVeto'] = {
     'expr': bTemplate.format(threshold=vetoThreshold)
@@ -439,6 +443,7 @@ for shift in ['jes','lf','hf','lfstats1','lfstats2','hfstats1','hfstats2','cferr
 
 
 
+
 # https://twiki.cern.ch/twiki/bin/viewauth/CMS/JetWtagging
 aliases['WtagSF'] = {
     'expr': '(boostedNoTau21[0] * (1.0*tau21Cut[0] + 0.96*!tau21Cut[0]) + (1-boostedNoTau21[0]))',
@@ -483,21 +488,6 @@ aliases['SFweightMuDown'] = {
 
 
 
-
-# # PU jet Id SF
-# puidSFSource = '%s/src/PlotsConfigurations/Configurations/patches/PUID_81XTraining_EffSFandUncties.root' % os.getenv('CMSSW_BASE')
-
-# aliases['PUJetIdSF'] = {
-#     'linesToAdd': [
-#         'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
-#         '.L %s/src/PlotsConfigurations/Configurations/patches/pujetidsf_event_new.cc+' % os.getenv('CMSSW_BASE')
-#     ],
-#     'class': 'PUJetIdEventSF',
-#     'args': (puidSFSource, '2016', 'loose'),
-#     'samples': mc
-# }
-
-
 aliases['PUJetIdSF'] = {
     'expr' : 'TMath::Exp(Sum$( \
         (Jet_jetId>=2 \
@@ -509,6 +499,9 @@ aliases['PUJetIdSF'] = {
 }
 
 
+aliases['passSingleElectronHLT']= {
+    'expr':'HLT_Ele27_WPTight_Gsf'
+}
 
 
 with open(configurations+'/HWWSemiLepHighMass/DeepAK8V2_W_SFs.csv') as csvfile:
@@ -528,105 +521,80 @@ with open(configurations+'/HWWSemiLepHighMass/DeepAK8V2_W_SFs.csv') as csvfile:
 # 200 300
 # 300 400
 # 400 800
-year = '2016'
+year = '2018'
 mtr = '0p5'
 aliases['DeepAK8_SF'] = {
-    'expr': "( 1 * two_jet_res[0] + !two_jet_res[0]*(" +\
+    'expr': "( 1 * !boosted_nocut[0] + boosted_nocut[0]*(" +\
+    #'expr': "( 1 * two_jet_res[0] + !two_jet_res[0]*(" +\
         \
         deepAK8Dict[year+'_Nominal_'+mtr+'_200_300'] +\
-        "* (100 < Alt$(CleanFatJet_pt[idxCleanFatJetW],0) \
-        && Alt$(CleanFatJet_pt[idxCleanFatJetW],0) < 300)   +" +\
+        "* (100 < Alt$(CleanFatJet_pt[0],0) \
+        && Alt$(CleanFatJet_pt[0],0) < 300)   +" +\
         \
         deepAK8Dict[year+'_Nominal_'+mtr+'_300_400'] +\
-        "* (300 < Alt$(CleanFatJet_pt[idxCleanFatJetW],0) \
-        && Alt$(CleanFatJet_pt[idxCleanFatJetW],0) < 400)   +" +\
+        "* (300 < Alt$(CleanFatJet_pt[0],0) \
+        && Alt$(CleanFatJet_pt[0],0) < 400)   +" +\
         \
         deepAK8Dict[year+'_Nominal_'+mtr+'_400_800'] +\
-        "* (400 < Alt$(CleanFatJet_pt[idxCleanFatJetW],0))   ))",
-    'samples': mc
+        "* (400 < Alt$(CleanFatJet_pt[0],0))   ))",
+    'samples': mc_deep
 }
 
 aliases['DeepAK8_SF_up'] = {
-    'expr': "( 1 * two_jet_res[0] + !two_jet_res[0]*(" +\
+    #'expr': "( 1 * two_jet_res[0] + !two_jet_res[0]*(" +\
+    'expr': "( 1 * !boosted_nocut[0] + boosted_nocut[0]*(" +\
         \
         deepAK8Dict[year+'_Nominal_'+mtr+'_200_300_up'] +\
-        "* (100 < Alt$(CleanFatJet_pt[idxCleanFatJetW],0) \
-        && Alt$(CleanFatJet_pt[idxCleanFatJetW],0) < 300)   +" +\
+        "* (100 < Alt$(CleanFatJet_pt[0],0) \
+        && Alt$(CleanFatJet_pt[0],0) < 300)   +" +\
         \
         deepAK8Dict[year+'_Nominal_'+mtr+'_300_400_up'] +\
-        "* (300 < Alt$(CleanFatJet_pt[idxCleanFatJetW],0) \
-        && Alt$(CleanFatJet_pt[idxCleanFatJetW],0) < 400)   +" +\
+        "* (300 < Alt$(CleanFatJet_pt[0],0) \
+        && Alt$(CleanFatJet_pt[0],0) < 400)   +" +\
         \
         deepAK8Dict[year+'_Nominal_'+mtr+'_400_800_up'] +\
-        "* (400 < Alt$(CleanFatJet_pt[idxCleanFatJetW],0))   ))",
-    'samples': mc
+        "* (400 < Alt$(CleanFatJet_pt[0],0))   ))",
+    'samples': mc_deep
 }
 
 aliases['DeepAK8_SF_down'] = {
-    'expr': "( 1 * two_jet_res[0] + !two_jet_res[0]*(" +\
+    #'expr': "( 1 * two_jet_res[0] + !two_jet_res[0]*(" +\
+    'expr': "( 1 * !boosted_nocut[0] + boosted_nocut[0]*(" +\
         \
         deepAK8Dict[year+'_Nominal_'+mtr+'_200_300_down'] +\
-        "* (100 < Alt$(CleanFatJet_pt[idxCleanFatJetW],0) \
-        && Alt$(CleanFatJet_pt[idxCleanFatJetW],0) < 300)   +" +\
+        "* (100 < Alt$(CleanFatJet_pt[0],0) \
+        && Alt$(CleanFatJet_pt[0],0) < 300)   +" +\
         \
         deepAK8Dict[year+'_Nominal_'+mtr+'_300_400_down'] +\
-        "* (300 < Alt$(CleanFatJet_pt[idxCleanFatJetW],0) \
-        && Alt$(CleanFatJet_pt[idxCleanFatJetW],0) < 400)   +" +\
+        "* (300 < Alt$(CleanFatJet_pt[0],0) \
+        && Alt$(CleanFatJet_pt[0],0) < 400)   +" +\
         \
         deepAK8Dict[year+'_Nominal_'+mtr+'_400_800_down'] +\
-        "* (400 < Alt$(CleanFatJet_pt[idxCleanFatJetW],0))   ))",
-    'samples': mc
+        "* (400 < Alt$(CleanFatJet_pt[0],0))   ))",
+    'samples': mc_deep
 }
 
 
 
 
-
-# Fix for single ele trigger eff in 2016
-
-#eleTrigFile = '%s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/EleTrigEffAndSF.root' % os.getenv('CMSSW_BASE')
-
-#aliases['EleTrigWeight2016'] = {
-#    'linesToAdd': [
-#        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
-#        '.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/weightReader.cc+' % os.getenv('CMSSW_BASE')
-#    ],
-#    'class': 'WeightReader',
-#    'args': (eleTrigFile,'eff_2016BCDEFGH'),
-#    'samples': mc
-#}
-
-aliases['passSingleElectronHLT']= {
-    'expr':'HLT_Ele27_WPTight_Gsf'
-}
-
-#aliases['EleTrigSF'] = {
- #   'class': 'WeightReader',
-#    'args': (eleTrigFile,'SF_2016BCDEFGH_SF'),
-#    'samples': mc
-#}
-
-#aliases['trigWeight'] = {
-#    'expr' : 'TriggerEffWeight_1l*'+'(Lepton_isTightMuon_'+muWP+'[0]>0.5) +\
-#            EleTrigSF*passSingleElectronHLT*(Lepton_isTightElectron_'+eleWP+'[0]>0.5)',
-#    'samples':mc
-#}
-
-
-
-
-
-# TODO: choice here between boosted W tagging with tau21 (WtagSF)
-#       or DeepAK8 (DeepAK8_SF)
-# # data/MC scale factors
 aliases['SFweight'] = {
-    #'expr': ' * '.join(['puWeight', 'TriggerEffWeight_1l', 'EMTFbug_veto',  'PrefireWeight', 'LepWPSF[0]', 'btagSF[0]', 'PUJetIdSF[0]']),
-    #'expr': ' * '.join(['puWeight', 'TriggerEffWeight_1l', 'EMTFbug_veto',  'PrefireWeight', 'LepWPSF[0]', 'btagSF[0]', 'PUJetIdSF[0]', 'DeepAK8_SF[0]']),
-    'expr': ' * '.join(['puWeight', 'TriggerEffWeight_1l', 'EMTFbug_veto',  'PrefireWeight', 'LepWPSF[0]', 'btagSF[0]', 'PUJetIdSF[0]']),
-    #'expr': ' * '.join(['puWeight', 'trigWeight', 'EMTFbug_veto',  'PrefireWeight', 'LepWPSF[0]', 'btagSF[0]', 'PUJetIdSF[0]', 'DeepAK8_SF[0]']),
+    #'expr': ' * '.join(['puWeight', 'TriggerEffWeight_1l', 'EMTFbug_veto',   'LepWPSF[0]', 'btagSF[0]', 'PUJetIdSF[0]']),
+    'expr': ' * '.join(['puWeight', 'TriggerEffWeight_1l', 'EMTFbug_veto',   'LepWPSF[0]', 'btagSF[0]', 'PUJetIdSF[0]']),
+    #'expr': ' * '.join(['puWeight', 'TriggerEffWeight_1l', 'EMTFbug_veto',   'LepWPSF[0]', 'btagSF[0]', 'PUJetIdSF[0]', 'DeepAK8_SF[0]']),
+    #'expr': ' * '.join(['puWeight', 'TriggerEffWeight_1l', 'EMTFbug_veto',   'LepWPSF[0]', 'btagSF[0]', 'PUJetIdSF[0]', 'WtagSF[0]']),
+    #'expr': ' * '.join(['puWeight', 'trigWeight', 'EMTFbug_veto',   'LepWPSF[0]', 'btagSF[0]', 'PUJetIdSF[0]', 'DeepAK8_SF[0]']),
     'samples': mc
 }
 
+
+aliases['SFweight_deep'] = {
+    #'expr': ' * '.join(['puWeight', 'TriggerEffWeight_1l', 'EMTFbug_veto',   'LepWPSF[0]', 'btagSF[0]', 'PUJetIdSF[0]']),
+#    'expr': ' * '.join(['puWeight', 'TriggerEffWeight_1l', 'EMTFbug_veto',   'LepWPSF[0]', 'btagSF[0]', 'PUJetIdSF[0]']),
+    'expr': ' * '.join(['puWeight', 'TriggerEffWeight_1l', 'EMTFbug_veto',   'LepWPSF[0]', 'btagSF[0]', 'PUJetIdSF[0]', 'DeepAK8_SF[0]']),
+    #'expr': ' * '.join(['puWeight', 'TriggerEffWeight_1l', 'EMTFbug_veto',   'LepWPSF[0]', 'btagSF[0]', 'PUJetIdSF[0]', 'WtagSF[0]']),
+    #'expr': ' * '.join(['puWeight', 'trigWeight', 'EMTFbug_veto',   'LepWPSF[0]', 'btagSF[0]', 'PUJetIdSF[0]', 'DeepAK8_SF[0]']),
+    'samples': mc_deep
+}
 
 
 # FIXME top stuff
@@ -652,13 +620,85 @@ aliases['antitopGenPtOTF'] = {
 }
 
 
+aliases['DeepAK8_SF_top'] = {
+    #'expr': "( 1 * two_jet_res[0] + !two_jet_res[0]*(" +\
+    'expr': "(1*( topGenPtOTF * antitopGenPtOTF <= 0.) + (topGenPtOTF * antitopGenPtOTF > 0.)*( 1 * !boosted_nocut[0] + boosted_nocut[0]*(" +\
+        \
+        deepAK8Dict[year+'_Nominal_'+mtr+'_200_300'] +\
+        "* (100 < Alt$(CleanFatJet_pt[0],0) \
+        && Alt$(CleanFatJet_pt[0],0) < 300)   +" +\
+        \
+        deepAK8Dict[year+'_Nominal_'+mtr+'_300_400'] +\
+        "* (300 < Alt$(CleanFatJet_pt[0],0) \
+        && Alt$(CleanFatJet_pt[0],0) < 400)   +" +\
+        \
+        deepAK8Dict[year+'_Nominal_'+mtr+'_400_800'] +\
+        "* (400 < Alt$(CleanFatJet_pt[0],0))   )))",
+    'samples': ['top',]
+}
 
+aliases['DeepAK8_SF_top_up'] = {
+    #'expr': "(1*( topGenPtOTF * antitopGenPtOTF <= 0.) + (topGenPtOTF * antitopGenPtOTF > 0.)*( 1 * two_jet_res[0] + !two_jet_res[0]*(" +\
+    'expr': "(1*( topGenPtOTF * antitopGenPtOTF <= 0.) + (topGenPtOTF * antitopGenPtOTF > 0.)*( 1 * !boosted_nocut[0] + boosted_nocut[0]*(" +\
+        \
+        deepAK8Dict[year+'_Nominal_'+mtr+'_200_300_up'] +\
+        "* (100 < Alt$(CleanFatJet_pt[0],0) \
+        && Alt$(CleanFatJet_pt[0],0) < 300)   +" +\
+        \
+        deepAK8Dict[year+'_Nominal_'+mtr+'_300_400_up'] +\
+        "* (300 < Alt$(CleanFatJet_pt[0],0) \
+        && Alt$(CleanFatJet_pt[0],0) < 400)   +" +\
+        \
+        deepAK8Dict[year+'_Nominal_'+mtr+'_400_800_up'] +\
+        "* (400 < Alt$(CleanFatJet_pt[0],0))   )))",
+    'samples': ['top',]
+}
+
+aliases['DeepAK8_SF_top_down'] = {
+    #'expr': "(1*( topGenPtOTF * antitopGenPtOTF <= 0.) + (topGenPtOTF * antitopGenPtOTF > 0.)*(1 * two_jet_res[0] + !two_jet_res[0]*(" +\
+    'expr': "(1*( topGenPtOTF * antitopGenPtOTF <= 0.) + (topGenPtOTF * antitopGenPtOTF > 0.)*( 1 * !boosted_nocut[0] + boosted_nocut[0]*(" +\
+        \
+        deepAK8Dict[year+'_Nominal_'+mtr+'_200_300_down'] +\
+        "* (100 < Alt$(CleanFatJet_pt[0],0) \
+        && Alt$(CleanFatJet_pt[0],0) < 300)   +" +\
+        \
+        deepAK8Dict[year+'_Nominal_'+mtr+'_300_400_down'] +\
+        "* (300 < Alt$(CleanFatJet_pt[0],0) \
+        && Alt$(CleanFatJet_pt[0],0) < 400)   +" +\
+        \
+        deepAK8Dict[year+'_Nominal_'+mtr+'_400_800_down'] +\
+        "* (400 < Alt$(CleanFatJet_pt[0],0))   )))",
+    'samples': ['top',]
+}
+
+
+aliases['SFweight_top'] = {
+    #'expr': ' * '.join(['puWeight', 'TriggerEffWeight_1l', 'EMTFbug_veto',   'LepWPSF[0]', 'btagSF[0]', 'PUJetIdSF[0]']),
+    'expr': ' * '.join(['puWeight', 'TriggerEffWeight_1l', 'EMTFbug_veto', 'LepWPSF[0]', 'btagSF[0]', 'PUJetIdSF[0]', 'DeepAK8_SF_top[0]']),
+    #'expr': ' * '.join(['puWeight', 'TriggerEffWeight_1l', 'EMTFbug_veto',   'LepWPSF[0]', 'btagSF[0]', 'PUJetIdSF[0]']),
+    #'expr': ' * '.join(['puWeight', 'TriggerEffWeight_1l', 'EMTFbug_veto',   'LepWPSF[0]', 'btagSF[0]', 'PUJetIdSF[0]', 'WtagSF[0]']),
+    #'expr': ' * '.join(['puWeight', 'trigWeight', 'EMTFbug_veto',   'LepWPSF[0]', 'btagSF[0]', 'PUJetIdSF[0]', 'DeepAK8_SF[0]']),
+    'samples': ['top',]
+}
 
 aliases['Top_pTrw'] = {# New Top PAG
     'expr': '(topGenPtOTF * antitopGenPtOTF > 0.) * (TMath::Sqrt((0.103*TMath::Exp(-0.0118*topGenPtOTF) - 0.000134*topGenPtOTF + 0.973) * (0.103*TMath::Exp(-0.0118*antitopGenPtOTF) - 0.000134*antitopGenPtOTF + 0.973))) * (TMath::Sqrt(TMath::Exp(1.61468e-03 + 3.46659e-06*topGenPtOTF - 8.90557e-08*topGenPtOTF*topGenPtOTF) * TMath::Exp(1.61468e-03 + 3.46659e-06*antitopGenPtOTF - 8.90557e-08*antitopGenPtOTF*antitopGenPtOTF))) + (topGenPtOTF * antitopGenPtOTF <= 0.)', # Same Reweighting as other years, but with additional fix for tune CUET -> CP5
     'samples': ['top','top_semi_redo',]
 }
 
+
+aliases['nCleanGenJet'] = {
+    'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/Differential/ngenjet.cc+' % os.getenv('CMSSW_BASE')],
+    'class': 'CountGenJet',
+    'samples': mc
+}
+
+
+
+aliases['Top_pTrw'] = {# New Top PAG
+    'expr': '((topGenPtOTF * antitopGenPtOTF > 0.) * (TMath::Sqrt((0.103*TMath::Exp(-0.0118*topGenPtOTF) - 0.000134*topGenPtOTF + 0.973) * (0.103*TMath::Exp(-0.0118*antitopGenPtOTF) - 0.000134*antitopGenPtOTF + 0.973))) + (topGenPtOTF * antitopGenPtOTF <= 0.))',
+    'samples': ['top']
+}
 
 aliases['nCleanGenJet'] = {
     'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/Differential/ngenjet.cc+' % os.getenv('CMSSW_BASE')],
@@ -676,11 +716,11 @@ handle = open('%s/src/PlotsConfigurations/Configurations/patches/DYrew30.py' % o
 exec(handle)
 handle.close()
 aliases['DY_NLO_pTllrw'] = {
-    'expr': '('+DYrew['2016']['NLO'].replace('x', 'getGenZpt_OTF')+')*(nCleanGenJet == 0)+1.0*(nCleanGenJet > 0)',
+    'expr': '('+DYrew['2017']['NLO'].replace('x', 'getGenZpt_OTF')+')*(nCleanGenJet == 0)+1.0*(nCleanGenJet > 0)',
     'samples': ['DY']
 }
 aliases['DY_LO_pTllrw'] = {
-    'expr': '('+DYrew['2016']['LO'].replace('x', 'getGenZpt_OTF')+')*(nCleanGenJet == 0)+1.0*(nCleanGenJet > 0)',
+    'expr': '('+DYrew['2017']['LO'].replace('x', 'getGenZpt_OTF')+')*(nCleanGenJet == 0)+1.0*(nCleanGenJet > 0)',
     'samples': ['DY']
 }
 
@@ -724,6 +764,24 @@ aliases["nJetHigh2"]={
     'class': 'getNJet',
 }
 
+#aliases["MelaVBFvsGGH_boosted"]={
+#    'linesToAdd': [
+#    'gSystem->Load("%s/src/JHUGenMELA/MELA/data/%s/libmcfm_707.so","", kTRUE);'%(os.getenv('CMSSW_BASE'), os.getenv('SCRAM_ARCH')),
+#    'gSystem->Load("libJHUGenMELAMELA.so","", kTRUE);',
+#    '.L %s/HWWSemiLepHighMass/MelaGGFvsVBF.cc+' % configurations],
+#    'class': 'MelaGGFvsVBF',
+#    'args': 0
+#}
+#aliases["MelaVBFvsGGH_resolved"]={
+#    'linesToAdd': [
+#    'gSystem->Load("%s/src/JHUGenMELA/MELA/data/%s/libmcfm_707.so","", kTRUE);'%(os.getenv('CMSSW_BASE'), os.getenv('SCRAM_ARCH')),
+#    'gSystem->Load("libJHUGenMELAMELA.so","", kTRUE);',
+#    '.L %s/HWWSemiLepHighMass/MelaGGFvsVBF.cc+' % configurations],
+#    'class': 'MelaGGFvsVBF',
+#    'args': 1
+#}
+
+
 aliases['kfact'] = { 
     'linesToAdd': [
 	'gSystem->Load("%s/src/JHUGenMELA/MELA/data/%s/libmcfm_707.so","", kTRUE);'%(os.getenv('CMSSW_BASE'), os.getenv('SCRAM_ARCH')),
@@ -732,338 +790,79 @@ aliases['kfact'] = {
         '.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/kFactorUnc2.cc+' % os.getenv('CMSSW_BASE')
     ],  
     'class': 'kFactorUnc2',
-    'args': ('PlotsConfigurations/Configurations/HWWSemiLepHighMass/wjets_kfactor_DH/HT_to_NLO_QCD_k_factors3.root', 'k_factor_2016'),
+    'args': ('PlotsConfigurations/Configurations/HWWSemiLepHighMass/wjets_kfactor_DH/HT_to_NLO_QCD_k_factors3.root', 'k_factor_2017'),
     'samples': 'Wjets', 
 }
 
+### Fake-Weight stuff
+#FR_dir = os.getenv('CMSSW_BASE') + "/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/Full2018_v7/2HDMa/FReleTrig/"
+FR_dir = os.getenv('CMSSW_BASE') + "/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/FAKE_RW/FR/2018/"
+PR_dir = os.getenv('CMSSW_BASE') + "/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/FAKE_RW/PR/2018/"
+el_pr_file = PR_dir+"plot_ElCh_l1_etaVpt_ptel_2D_pr.root"
+mu_pr_file = PR_dir+"plot_MuCh_l1_etaVpt_ptmu_2D_pr.root"
+for lep in ['El', 'Mu']:
+    for dEt in [-10, 0, 10]:
+        if lep == 'El':
+            el_et = El_jetEt + dEt
+            mu_et = Mu_jetEt
+        elif lep == 'Mu':
+            el_et = El_jetEt
+            mu_et = Mu_jetEt + dEt
 
-aliases['lep_px'] = {
-    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/comp_jets.cc+'  % os.getenv('CMSSW_BASE')],
-    'class': 'comp_jets',
-    'args': 0
-}
-aliases['lep_py'] = {
-    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/comp_jets.cc+'  % os.getenv('CMSSW_BASE')],
-    'class': 'comp_jets',
-    'args': 1
-}
-aliases['lep_pz'] = {
-    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/comp_jets.cc+'  % os.getenv('CMSSW_BASE')],
-    'class': 'comp_jets',
-    'args': 2
-}
-aliases['j1_px'] = {
-    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/comp_jets.cc+'  % os.getenv('CMSSW_BASE')],
-    'class': 'comp_jets',
-    'args': 3
-}
-aliases['j1_py'] = {
-    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/comp_jets.cc+'  % os.getenv('CMSSW_BASE')],
-    'class': 'comp_jets',
-    'args': 4
-}
-aliases['j1_pz'] = {
-    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/comp_jets.cc+'  % os.getenv('CMSSW_BASE')],
-    'class': 'comp_jets',
-    'args': 5
-}
-aliases['j1_mass'] = {
-    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/comp_jets.cc+'  % os.getenv('CMSSW_BASE')],
-    'class': 'comp_jets',
-    'args': 6
-}
-aliases['j2_px'] = {
-    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/comp_jets.cc+'  % os.getenv('CMSSW_BASE')],
-    'class': 'comp_jets',
-    'args': 7
-}
-aliases['j2_py'] = {
-    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/comp_jets.cc+'  % os.getenv('CMSSW_BASE')],
-    'class': 'comp_jets',
-    'args': 8
-}
-aliases['j2_pz'] = {
-    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/comp_jets.cc+'  % os.getenv('CMSSW_BASE')],
-    'class': 'comp_jets',
-    'args': 9
-}
-aliases['j2_mass'] = {
-    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/comp_jets.cc+'  % os.getenv('CMSSW_BASE')],
-    'class': 'comp_jets',
-    'args': 10
-}
-aliases['j3_px'] = {
-    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/comp_jets.cc+'  % os.getenv('CMSSW_BASE')],
-    'class': 'comp_jets',
-    'args': 11
-}
-aliases['j3_py'] = {
-    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/comp_jets.cc+'  % os.getenv('CMSSW_BASE')],
-    'class': 'comp_jets',
-    'args': 12
-}
-aliases['j3_pz'] = {
-    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/comp_jets.cc+'  % os.getenv('CMSSW_BASE')],
-    'class': 'comp_jets',
-    'args': 13
-}
-aliases['j3_mass'] = {
-    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/comp_jets.cc+'  % os.getenv('CMSSW_BASE')],
-    'class': 'comp_jets',
-    'args': 14
-}
-aliases['j4_px'] = {
-    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/comp_jets.cc+'  % os.getenv('CMSSW_BASE')],
-    'class': 'comp_jets',
-    'args': 15
-}
-aliases['j4_py'] = {
-    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/comp_jets.cc+'  % os.getenv('CMSSW_BASE')],
-    'class': 'comp_jets',
-    'args': 16
-}
-aliases['j4_pz'] = {
-    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/comp_jets.cc+'  % os.getenv('CMSSW_BASE')],
-    'class': 'comp_jets',
-    'args': 17
-}
-aliases['j4_mass'] = {
-    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/comp_jets.cc+'  % os.getenv('CMSSW_BASE')],
-    'class': 'comp_jets',
-    'args': 18
-}
-aliases['wh_px'] = {
-    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/comp_jets.cc+'  % os.getenv('CMSSW_BASE')],
-    'class': 'comp_jets',
-    'args': 19
-}
-aliases['wh_py'] = {
-    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/comp_jets.cc+'  % os.getenv('CMSSW_BASE')],
-    'class': 'comp_jets',
-    'args': 20
-}
-aliases['wh_pz'] = {
-    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/comp_jets.cc+'  % os.getenv('CMSSW_BASE')],
-    'class': 'comp_jets',
-    'args': 21
-}
-aliases['wh_mass'] = {
-    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/comp_jets.cc+'  % os.getenv('CMSSW_BASE')],
-    'class': 'comp_jets',
-    'args': 22
-}
-aliases['wl_px'] = {
-    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/comp_jets.cc+'  % os.getenv('CMSSW_BASE')],
-    'class': 'comp_jets',
-    'args': 23
-}
-aliases['wl_py'] = {
-    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/comp_jets.cc+'  % os.getenv('CMSSW_BASE')],
-    'class': 'comp_jets',
-    'args': 24
-}
-aliases['wl_pz'] = {
-    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/comp_jets.cc+'  % os.getenv('CMSSW_BASE')],
-    'class': 'comp_jets',
-    'args': 25
-}
-aliases['wl_mass'] = {
-    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/comp_jets.cc+'  % os.getenv('CMSSW_BASE')],
-    'class': 'comp_jets',
-    'args': 26
-}
-aliases['w1_px'] = {
-    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/comp_jets.cc+'  % os.getenv('CMSSW_BASE')],
-    'class': 'comp_jets',
-    'args': 27
-}
-aliases['w1_py'] = {
-    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/comp_jets.cc+'  % os.getenv('CMSSW_BASE')],
-    'class': 'comp_jets',
-    'args': 28
-}
-aliases['w1_pz'] = {
-    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/comp_jets.cc+'  % os.getenv('CMSSW_BASE')],
-    'class': 'comp_jets',
-    'args': 29
-}
-aliases['w1_mass'] = {
-    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/comp_jets.cc+'  % os.getenv('CMSSW_BASE')],
-    'class': 'comp_jets',
-    'args': 30
-}
-aliases['w2_px'] = {
-    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/comp_jets.cc+'  % os.getenv('CMSSW_BASE')],
-    'class': 'comp_jets',
-    'args': 31
-}
-aliases['w2_py'] = {
-    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/comp_jets.cc+'  % os.getenv('CMSSW_BASE')],
-    'class': 'comp_jets',
-    'args': 32
-}
-aliases['w2_pz'] = {
-    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/comp_jets.cc+'  % os.getenv('CMSSW_BASE')],
-    'class': 'comp_jets',
-    'args': 33
-}
-aliases['w2_mass'] = {
-    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/comp_jets.cc+'  % os.getenv('CMSSW_BASE')],
-    'class': 'comp_jets',
-    'args': 34
-}
+        el_fr_file = FR_dir+"plot_ElCh_JetEt"+str(el_et)+"_l1_etaVpt_ptel_fw_ewk_2D.root"
+        mu_fr_file = FR_dir+"plot_MuCh_JetEt"+str(mu_et)+"_l1_etaVpt_ptmu_fw_ewk_2D.root"
+    
+        aliases['FW_mu'+str(mu_et)+'_el'+str(el_et)] = {
+            'linesToAdd' : [
+                'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+                #'.L %s/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/Full2018_v7/Fake/fakeweight_p1_OTF.cc+' % os.getenv('CMSSW_BASE')
+                '.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/fakeweight_OTF.cc+' % os.getenv('CMSSW_BASE')
+            ],
+            #'class': 'fakeWeight_p1_OTF',
+            'class': 'fakeWeightOTF',
+            #'args': (eleWP, muWP, copy.deepcopy(el_fr_file), copy.deepcopy(mu_fr_file), False, False), 
+            'args': (eleWP, muWP, copy.deepcopy(el_fr_file), el_pr_file, copy.deepcopy(mu_fr_file), mu_pr_file, False, False), 
+            'samples': ["FAKE"]
+        }
+        aliases['FW_mu'+str(mu_et)+'_el'+str(el_et)+'_statUp'] = {
+            #'class': 'fakeWeight_p1_OTF',
+            'class': 'fakeWeightOTF',
+            #'args': (eleWP, muWP, copy.deepcopy(el_fr_file), copy.deepcopy(mu_fr_file), True, False), 
+            'args': (eleWP, muWP, copy.deepcopy(el_fr_file), el_pr_file, copy.deepcopy(mu_fr_file), mu_pr_file, True, False), 
+            'samples': ["FAKE"]
+        }
+        aliases['FW_mu'+str(mu_et)+'_el'+str(el_et)+'_statDown'] = {
+            #'class': 'fakeWeight_p1_OTF',
+            'class': 'fakeWeightOTF',
+            #'args': (eleWP, muWP, copy.deepcopy(el_fr_file), copy.deepcopy(mu_fr_file), False, True), 
+            'args': (eleWP, muWP, copy.deepcopy(el_fr_file), el_pr_file, copy.deepcopy(mu_fr_file), mu_pr_file, False, True), 
+            'samples': ["FAKE"]
+        }
 
-aliases['met_px'] = {
-    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/comp_jets.cc+'  % os.getenv('CMSSW_BASE')],
-    'class': 'comp_jets',
-    'args': 35
-}
-aliases['met_py'] = {
-    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/comp_jets.cc+'  % os.getenv('CMSSW_BASE')],
-    'class': 'comp_jets',
-    'args': 36
-}
-aliases['nJets_no'] = {
-    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/comp_jets.cc+'  % os.getenv('CMSSW_BASE')],
-    'class': 'comp_jets',
-    'args': 37
-}
-aliases['nJets_30'] = {
-    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/comp_jets.cc+'  % os.getenv('CMSSW_BASE')],
-    'class': 'comp_jets',
-    'args': 38
-}
-aliases['nonresW_mjj'] = {
-    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/comp_jets.cc+'  % os.getenv('CMSSW_BASE')],
-    'class': 'comp_jets',
-    'args': 39
-}
-aliases['mjj_12'] = {
-    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/comp_jets.cc+'  % os.getenv('CMSSW_BASE')],
-    'class': 'comp_jets',
-    'args': 40
-}
-aliases['detajj_12'] = {
-    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/comp_jets.cc+'  % os.getenv('CMSSW_BASE')],
-    'class': 'comp_jets',
-    'args': 41
-}
-aliases['mjj_13'] = {
-    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/comp_jets.cc+'  % os.getenv('CMSSW_BASE')],
-    'class': 'comp_jets',
-    'args': 42
-}
-aliases['detajj_13'] = {
-    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/comp_jets.cc+'  % os.getenv('CMSSW_BASE')],
-    'class': 'comp_jets',
-    'args': 43
-}
-aliases['mjj_14'] = {
-    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/comp_jets.cc+'  % os.getenv('CMSSW_BASE')],
-    'class': 'comp_jets',
-    'args': 44
-}
-aliases['detajj_14'] = {
-    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/comp_jets.cc+'  % os.getenv('CMSSW_BASE')],
-    'class': 'comp_jets',
-    'args': 45
-}
-aliases['mjj_23'] = {
-    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/comp_jets.cc+'  % os.getenv('CMSSW_BASE')],
-    'class': 'comp_jets',
-    'args': 46
-}
-aliases['detajj_23'] = {
-    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/comp_jets.cc+'  % os.getenv('CMSSW_BASE')],
-    'class': 'comp_jets',
-    'args': 47
-}
-aliases['mjj_24'] = {
-    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/comp_jets.cc+'  % os.getenv('CMSSW_BASE')],
-    'class': 'comp_jets',
-    'args': 48
-}
-aliases['detajj_24'] = {
-    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/comp_jets.cc+'  % os.getenv('CMSSW_BASE')],
-    'class': 'comp_jets',
-    'args': 49
-}
-aliases['mjj_34'] = {
-    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/comp_jets.cc+'  % os.getenv('CMSSW_BASE')],
-    'class': 'comp_jets',
-    'args': 50
-}
-aliases['detajj_34'] = {
-    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/comp_jets.cc+'  % os.getenv('CMSSW_BASE')],
-    'class': 'comp_jets',
-    'args': 51
-}
+# Et Up/Down var
+for var in ['Up', 'Down']:
+    for lep in ['El', 'Mu']:
+        el_et = El_jetEt
+        mu_et = Mu_jetEt
+        if var == 'Down': dEt = -10
+        elif var == 'Up': dEt = 10
+        if lep == 'El': 
+            el_et = El_jetEt + dEt
+            is_lep = '(TMath::Abs(Lepton_pdgId[0]) == 11)'
+            no_lep = '(TMath::Abs(Lepton_pdgId[0]) == 13)'
+        elif lep == 'Mu': 
+            mu_et = mu_et + dEt
+            is_lep = '(TMath::Abs(Lepton_pdgId[0]) == 13)'
+            no_lep = '(TMath::Abs(Lepton_pdgId[0]) == 11)'
 
-
-
-
-
-
-
-
-#aliases["MelaVBFvsGGH_boosted"]={
-#    'linesToAdd': [
-#    'gSystem->Load("%s/src/JHUGenMELA/MELA/data/%s/libmcfm_707.so","", kTRUE);'%(os.getenv('CMSSW_BASE'), os.getenv('SCRAM_ARCH')),
-#    'gSystem->Load("libJHUGenMELAMELA.so","", kTRUE);',
-#    '.L %s/HWWSemiLepHighMass/MelaGGFvsVBF.cc+' % configurations],
-#    'class': 'MelaGGFvsVBF',
-#    'args': (0, "%s/HWWSemiLepHighMass/" % configurations)
-#}
-#aliases["MelaVBFvsGGH_resolved"]={
-#    'linesToAdd': [
-#    'gSystem->Load("%s/src/JHUGenMELA/MELA/data/%s/libmcfm_707.so","", kTRUE);'%(os.getenv('CMSSW_BASE'), os.getenv('SCRAM_ARCH')),
-#    'gSystem->Load("libJHUGenMELAMELA.so","", kTRUE);',
-#    '.L %s/HWWSemiLepHighMass/MelaGGFvsVBF.cc+' % configurations],
-#    'class': 'MelaGGFvsVBF',
-#    'args': (1,  "%s/HWWSemiLepHighMass/" % configurations)
-#}
-
-
-aliases['DNN_out_isVBF'] = {
-    'class': 'DNNprodSemiNew',
-    'linesToAdd':[
-        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-        'gSystem->Load("libDNNEvaluator.so")',
-        '.L %s/src/PlotsConfigurations/Configurations/HighMass/DNN_prod_semi_new.cc+' % os.getenv('CMSSW_BASE'),
-    ],
-    'args': 0,
-}
-
-aliases['DNN_out_isGGH'] = {
-    'class': 'DNNprodSemiNew',
-    'linesToAdd':[
-        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-        'gSystem->Load("libDNNEvaluator.so")',
-        '.L %s/src/PlotsConfigurations/Configurations/HighMass/DNN_prod_semi_new.cc+' % os.getenv('CMSSW_BASE'),
-    ],
-    'args': 1,
-}
-
-aliases['DNN_out_isBKG'] = {
-    'class': 'DNNprodSemiNew',
-    'linesToAdd':[
-        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-        'gSystem->Load("libDNNEvaluator.so")',
-        '.L %s/src/PlotsConfigurations/Configurations/HighMass/DNN_prod_semi_new.cc+' % os.getenv('CMSSW_BASE'),
-    ],
-    'args': 0,
-}
-
-#aliases['kfactMjj'] = { 
-#    'linesToAdd': [
-#        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_RELEASE_BASE'),
-#        '.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/k_factor_mjj_unc.cc+' % os.getenv('CMSSW_BASE')
-#    ],  
-#    'class': 'kFactorMjjUnc',
-#    #'args': ('PlotsConfigurations/Configurations/monoHWW/SemiLep/Wjets_kfactors/HT_to_NLO_QCD_k_factors_2016_mjj.root', 'k_factor_2016'),
-#    'args': ('PlotsConfigurations/Configurations/HWWSemiLepHighMass/wjets_kfactor_DH/HT_to_NLO_QCD_k_factors_mjj.root', 'k_factor_2016'),
-#    'samples': 'Wjets', 
-#}
+        aliases['FW_mu'+str(Mu_jetEt)+'_el'+str(El_jetEt)+'_'+lep+var] = {
+            'expr': '('+is_lep+'*(FW_mu'+str(mu_et)+'_el'+str(el_et)+'[0]/FW_mu'+str(Mu_jetEt)+'_el'+str(El_jetEt)+'[0]) + '+no_lep+')',
+            'samples': ["FAKE"]
+        }
+        aliases['FW_mu'+str(Mu_jetEt)+'_el'+str(El_jetEt)+'_stat'+lep+var] = {
+            'expr': '('+is_lep+'*(FW_mu'+str(Mu_jetEt)+'_el'+str(El_jetEt)+'_stat'+var+'[0]/FW_mu'+str(Mu_jetEt)+'_el'+str(El_jetEt)+'[0]) + '+no_lep+')',
+            'samples': ["FAKE"]
+        }
 
 
 
@@ -1091,3 +890,39 @@ aliases['DNN_out_isBKG'] = {
 #    'expr': '( !SBI_isSMggh && !SBI_isSMVBF && !SBI_isggWW && !SBI_isqqWWqq )',
 #    'samples': mc_sbi
 #}
+
+
+aliases['WPTight'] = {
+    'expr': 'LepWPCut',
+}
+
+aliases['WPTight1'] = {
+    'expr': 'Lep1WPCut',
+}
+
+aliases['Adphi_lVj'] = {
+    'expr': 'TMath::Abs(Lepton_phi[0] - CleanJet_phi)',
+}
+
+aliases['dphi_lVj'] = {
+    'expr': '(Adphi_lVj < 3.141592653)*Adphi_lVj + (Adphi_lVj >= 3.141592653)*TMath::Abs(Adphi_lVj - 2*3.141592653)',
+}
+
+aliases['deta_lVj'] = {
+    'expr': 'TMath::Abs(Lepton_eta[0] - CleanJet_eta)',
+}
+
+aliases['dR_lVj'] = {
+    'expr': 'TMath::Sqrt(deta_lVj*deta_lVj + dphi_lVj*dphi_lVj)',
+}
+
+#Jet_Et = 20
+for Jet_Et in [10, 15, 20, 25, 30, 35, 40, 45]:
+    aliases['PassJet_Et'+str(Jet_Et)] = {
+        'expr': 'Sum$((dR_lVj > 1.)*(CleanJet_pt > '+str(Jet_Et)+')*(CleanJet_pt > 10 && abs(CleanJet_eta) < 2.5)) > 0.',
+    }
+
+aliases["nJetHigh2"]={
+    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/getNJet.cc+'  % os.getenv('CMSSW_BASE')],
+    'class': 'getNJet',
+}
