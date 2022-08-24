@@ -96,7 +96,7 @@ DataTrig = {
 
 # SFweight does not include btag weights
 # mcCommonWeightNoMatch = 'XSWeight*SFweight*METFilter_MC'
-mcCommonWeight = 'XSWeight*SFweight*PromptGenLepMatch2l*METFilter_MC*TriggerEmulator[0]'
+mcCommonWeight = 'XSWeight*SFweight*METFilter_MC' # *PromptGenLepMatch2l
 
 ###########################################
 #############  BACKGROUNDS  ###############
@@ -130,7 +130,7 @@ files = nanoGetSampleFiles(mcDirectory, 'TTTo2L2Nu') + \
 
 samples['top'] = {
     'name': files,
-    'weight': mcCommonWeight+embed_tautauveto,
+    'weight': mcCommonWeight,
     'FilesPerJob': 1,
 }
 
@@ -140,8 +140,7 @@ addSampleWeight(samples,'top','TTTo2L2Nu','Top_pTrw')
 
 samples['WW'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'WWTo2L2Nu'),
-    'weight': mcCommonWeight+embed_tautauveto + '*nllW', # temporary - nllW module not run on PS and UE variation samples
-    #'weight': mcCommonWeight + '*nllWOTF', # temporary
+    'weight': mcCommonWeight + '*nllW', # temporary - nllW module not run on PS and UE variation samples
     'FilesPerJob': 1
 }
 
@@ -258,7 +257,12 @@ samples['DATA'] = {
 for _, sd in DataRun:
   for pd in DataSets:
     tag = pd + '_' + sd
-    if 'DoubleMuon' in pd and 'Run2016G' in sd: tag = tag.replace('v1','v2')
+    if 'DoubleMuon' in pd and 'Run2016G' in sd: 
+        print("sd      = {}".format(sd))
+        print("pd      = {}".format(pd))
+        print("Old tag = {}".format(tag))
+        tag = tag.replace('v1','v2')
+        print("New tag = {}".format(tag))
 
     files = nanoGetSampleFiles(dataDirectory, tag)
 

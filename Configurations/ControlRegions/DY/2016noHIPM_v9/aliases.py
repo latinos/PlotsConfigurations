@@ -28,60 +28,62 @@ aliases['LepWPSF'] = {
     'samples': mc_emb
 }
 
-aliases['gstarLow'] = {
-    'expr': 'Gen_ZGstar_mass >0 && Gen_ZGstar_mass < 4',
-    'samples': 'VgS'
-}
 
-aliases['gstarHigh'] = {
-    'expr': 'Gen_ZGstar_mass <0 || Gen_ZGstar_mass > 4',
-    'samples': 'VgS'
-}
+# aliases['gstarLow'] = {
+#     'expr': 'Gen_ZGstar_mass >0 && Gen_ZGstar_mass < 4',
+#     'samples': 'VgS'
+# }
 
-aliases['embedtotal'] = {
-    'expr': 'embed_total_mva16',  # wrt. eleWP
-    'samples': 'Dyemb'
-}
+# aliases['gstarHigh'] = {
+#     'expr': 'Gen_ZGstar_mass <0 || Gen_ZGstar_mass > 4',
+#     'samples': 'VgS'
+# }
 
-# Fake leptons transfer factor
-aliases['fakeW'] = {
-    'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP,
-    'samples': ['Fake']
-}
+# aliases['embedtotal'] = {
+#     'expr': 'embed_total_mva16',  # wrt. eleWP
+#     'samples': 'Dyemb'
+# }
 
-# And variations - already divided by central values in formulas !
-aliases['fakeWEleUp'] = {
-    'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_EleUp',
-    'samples': ['Fake']
-}
-aliases['fakeWEleDown'] = {
-    'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_EleDown',
-    'samples': ['Fake']
-}
-aliases['fakeWMuUp'] = {
-    'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_MuUp',
-    'samples': ['Fake']
-}
-aliases['fakeWMuDown'] = {
-    'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_MuDown',
-    'samples': ['Fake']
-}
-aliases['fakeWStatEleUp'] = {
-    'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_statEleUp',
-    'samples': ['Fake']
-}
-aliases['fakeWStatEleDown'] = {
-    'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_statEleDown',
-    'samples': ['Fake']
-}
-aliases['fakeWStatMuUp'] = {
-    'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_statMuUp',
-    'samples': ['Fake']
-}
-aliases['fakeWStatMuDown'] = {
-    'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_statMuDown',
-    'samples': ['Fake']
-}
+
+# # Fake leptons transfer factor
+# aliases['fakeW'] = {
+#     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP,
+#     'samples': ['Fake']
+# }
+
+# # And variations - already divided by central values in formulas !
+# aliases['fakeWEleUp'] = {
+#     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_EleUp',
+#     'samples': ['Fake']
+# }
+# aliases['fakeWEleDown'] = {
+#     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_EleDown',
+#     'samples': ['Fake']
+# }
+# aliases['fakeWMuUp'] = {
+#     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_MuUp',
+#     'samples': ['Fake']
+# }
+# aliases['fakeWMuDown'] = {
+#     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_MuDown',
+#     'samples': ['Fake']
+# }
+# aliases['fakeWStatEleUp'] = {
+#     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_statEleUp',
+#     'samples': ['Fake']
+# }
+# aliases['fakeWStatEleDown'] = {
+#     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_statEleDown',
+#     'samples': ['Fake']
+# }
+# aliases['fakeWStatMuUp'] = {
+#     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_statMuUp',
+#     'samples': ['Fake']
+# }
+# aliases['fakeWStatMuDown'] = {
+#     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_statMuDown',
+#     'samples': ['Fake']
+# }
 
 aliases['nCleanGenJet'] = {
     'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/Differential/ngenjet.cc+' % os.getenv('CMSSW_BASE')],
@@ -101,23 +103,23 @@ aliases['Top_pTrw'] = {
 }
 
 
-##### DY Z pT reweighting
-aliases['getGenZpt_OTF'] = {
-    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/patches/getGenZpt.cc+' % os.getenv('CMSSW_BASE')],
-    'class': 'getGenZpt',
-    'samples': ['DY']
-}
-handle = open('%s/src/PlotsConfigurations/Configurations/patches/DYrew30.py' % os.getenv('CMSSW_BASE'),'r')
-exec(handle)
-handle.close()
-aliases['DY_NLO_pTllrw'] = {
-    'expr': '('+DYrew['2016']['NLO'].replace('x', 'getGenZpt_OTF')+')*(nCleanGenJet == 0)+1.0*(nCleanGenJet > 0)',
-    'samples': ['DY']
-}
-aliases['DY_LO_pTllrw'] = {
-    'expr': '('+DYrew['2016']['LO'].replace('x', 'getGenZpt_OTF')+')*(nCleanGenJet == 0)+1.0*(nCleanGenJet > 0)',
-    'samples': ['DY']
-}
+# ##### DY Z pT reweighting
+# aliases['getGenZpt_OTF'] = {
+#     'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/patches/getGenZpt.cc+' % os.getenv('CMSSW_BASE')],
+#     'class': 'getGenZpt',
+#     'samples': ['DY']
+# }
+# handle = open('%s/src/PlotsConfigurations/Configurations/patches/DYrew30.py' % os.getenv('CMSSW_BASE'),'r')
+# exec(handle)
+# handle.close()
+# aliases['DY_NLO_pTllrw'] = {
+#     'expr': '('+DYrew['2016']['NLO'].replace('x', 'getGenZpt_OTF')+')*(nCleanGenJet == 0)+1.0*(nCleanGenJet > 0)',
+#     'samples': ['DY']
+# }
+# aliases['DY_LO_pTllrw'] = {
+#     'expr': '('+DYrew['2016']['LO'].replace('x', 'getGenZpt_OTF')+')*(nCleanGenJet == 0)+1.0*(nCleanGenJet > 0)',
+#     'samples': ['DY']
+# }
 
 
 # Jet bins
@@ -141,39 +143,55 @@ aliases['SFweight2lAlt'] = {
     'samples': mc
 }
 
+aliases['trigger_bits'] = {
+    'expr'    : 'HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL \
+                 || HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL \
+                 || HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL_DZ \
+                 || HLT_Mu12_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL_DZ \
+                 || HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL \
+                 || HLT_Mu17_TrkIsoVVL_TkMu8_TrkIsoVVL \
+                 || HLT_IsoTkMu24 \
+                 || HLT_IsoMu24 \
+                 || HLT_Ele23_Ele12_CaloIdL_TrackIdL_IsoVL_DZ \
+                 || HLT_Ele27_WPTight_Gsf \
+                 || HLT_Ele25_eta2p1_WPTight_Gsf',
+    'samples' : mc
+}
+
 # data/MC scale factors
 aliases['SFweight'] = {
-    'expr': ' * '.join(['SFweight2lAlt', 'LepWPCut', 'LepWPSF','PrefireWeight','Jet_PUIDSF_loose']),
+    # 'expr': ' * '.join(['SFweight2lAlt', 'LepWPCut', 'LepWPSF','PrefireWeight','Jet_PUIDSF_loose']),
+    'expr': ' * '.join(['LepWPCut']), # , 'LepWPSF']),
     'samples': mc
 }
 
-# variations
-aliases['SFweightEleUp'] = {
-    'expr': 'LepSF2l__ele_'+eleWP+'__Up',
-    'samples': mc_emb
-}
-aliases['SFweightEleDown'] = {
-    'expr': 'LepSF2l__ele_'+eleWP+'__Do',
-    'samples': mc_emb
-}
-aliases['SFweightMuUp'] = {
-    'expr': 'LepSF2l__mu_'+muWP+'__Up',
-    'samples': mc_emb
-}
-aliases['SFweightMuDown'] = {
-    'expr': 'LepSF2l__mu_'+muWP+'__Do',
-    'samples': mc_emb
-}
+# # variations
+# aliases['SFweightEleUp'] = {
+#     'expr': 'LepSF2l__ele_'+eleWP+'__Up',
+#     'samples': mc_emb
+# }
+# aliases['SFweightEleDown'] = {
+#     'expr': 'LepSF2l__ele_'+eleWP+'__Do',
+#     'samples': mc_emb
+# }
+# aliases['SFweightMuUp'] = {
+#     'expr': 'LepSF2l__mu_'+muWP+'__Up',
+#     'samples': mc_emb
+# }
+# aliases['SFweightMuDown'] = {
+#     'expr': 'LepSF2l__mu_'+muWP+'__Do',
+#     'samples': mc_emb
+# }
 
-# In WpWmJJ_EWK events, partons [0] and [1] are always the decay products of the first W
-aliases['lhe_mW1'] = {
-    'expr': 'TMath::Sqrt(2. * LHEPart_pt[0] * LHEPart_pt[1] * (TMath::CosH(LHEPart_eta[0] - LHEPart_eta[1]) - TMath::Cos(LHEPart_phi[0] - LHEPart_phi[1])))',
-    'samples': ['WWewk']
-}
+# # In WpWmJJ_EWK events, partons [0] and [1] are always the decay products of the first W
+# aliases['lhe_mW1'] = {
+#     'expr': 'TMath::Sqrt(2. * LHEPart_pt[0] * LHEPart_pt[1] * (TMath::CosH(LHEPart_eta[0] - LHEPart_eta[1]) - TMath::Cos(LHEPart_phi[0] - LHEPart_phi[1])))',
+#     'samples': ['WWewk']
+# }
 
-# and [2] [3] are the second W
-aliases['lhe_mW2'] = {
-    'expr': 'TMath::Sqrt(2. * LHEPart_pt[2] * LHEPart_pt[3] * (TMath::CosH(LHEPart_eta[2] - LHEPart_eta[3]) - TMath::Cos(LHEPart_phi[2] - LHEPart_phi[3])))',
-    'samples': ['WWewk']
-}
+# # and [2] [3] are the second W
+# aliases['lhe_mW2'] = {
+#     'expr': 'TMath::Sqrt(2. * LHEPart_pt[2] * LHEPart_pt[3] * (TMath::CosH(LHEPart_eta[2] - LHEPart_eta[3]) - TMath::Cos(LHEPart_phi[2] - LHEPart_phi[3])))',
+#     'samples': ['WWewk']
+# }
 

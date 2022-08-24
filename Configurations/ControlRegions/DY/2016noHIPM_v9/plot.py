@@ -11,14 +11,14 @@
 groupPlot['top']  = {  
     'nameHR' : 'tW and t#bar{t}',
     'isSignal' : 0,
-    'color': 400,   # kYellow
+    'color'    : 400,   # kYellow
     'samples'  : ['top']
 }
 
 groupPlot['WW']  = {  
     'nameHR' : 'WW',
     'isSignal' : 0,
-    'color': 851, # kAzure -9 
+    'color'    : 851, # kAzure -9 
     'samples'  : ['WW', 'ggWW']
 }
 
@@ -33,7 +33,7 @@ groupPlot['WW']  = {
 groupPlot['DY']  = {  
     'nameHR' : "DY",
     'isSignal' : 0,
-    'color': 418,    # kGreen+2
+    'color'    : 418,    # kGreen+2
     'samples'  : ['DY']
 }
 
@@ -42,7 +42,7 @@ groupPlot['DY']  = {
 groupPlot['VVV']  = {  
     'nameHR' : 'VVV',
     'isSignal' : 0,
-    'color': 857, # kAzure -3  
+    'color'    : 857, # kAzure -3  
     'samples'  : ['VVV']
 }
 
@@ -86,7 +86,8 @@ groupPlot['Higgs']  = {
 # keys here must match keys in samples.py    
 #                    
 plot['DY']  = {  
-    'color': 418,    # kGreen+2
+    'nameHR'   : 'DY',
+    'color'    : 418,    # kGreen+2
     'isSignal' : 0,
     'isData'   : 0, 
     'scale'    : 1.0,
@@ -101,8 +102,8 @@ plot['DY']  = {
 
               
 plot['top'] = {   
-    'nameHR' : 'tW and t#bar{t}',
-    'color': 400,   # kYellow
+    'nameHR'   : 'tW and t#bar{t}',
+    'color'    : 400,   # kYellow
     'isSignal' : 0,
     'isData'   : 0, 
     'scale'    : 1.0,
@@ -117,7 +118,7 @@ plot['WW']  = {
 }
 
 plot['ggWW']  = {
-    'color': 850, # kAzure -10
+    'color'    : 850, # kAzure -10
     'isSignal' : 0,
     'isData'   : 0,    
     'scale'    : 1.0
@@ -139,7 +140,7 @@ plot['ggWW']  = {
 #                   }
 
 plot['VVV']  = { 
-    'color': 857, # kAzure -3  
+    'color'    : 857, # kAzure -3  
     'isSignal' : 0,
     'isData'   : 0,
     'scale'    : 1.0
@@ -301,8 +302,8 @@ plot['ttH_hww'] = {
 # data
 
 plot['DATA']  = { 
-    'nameHR' : 'Data',
-    'color': 1 ,  
+    'nameHR'   : 'Data',
+    'color'    : 1 ,  
     'isSignal' : 0,
     'isData'   : 1 ,
     'isBlind'  : 0
