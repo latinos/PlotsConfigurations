@@ -23,3 +23,7 @@ Or, if they failed because the wall clock time has been exceeded, resubmit them 
 ### Merge rootfiles using hadd
 
     mkShapesMulti.py --pycfg=configuration.py --doHadd=1 --batchSplit=Samples,Files --doNotCleanup --nThreads=8
+
+### Plot distributions
+
+    mkPlot.py --pycfg=configuration.py --inputFile=rootFile/plots_DY_2016HIPM_v9.root --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1

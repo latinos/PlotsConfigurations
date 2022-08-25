@@ -98,8 +98,9 @@ DataTrig = {
 #########################################
 
 # SFweight does not include btag weights
-mcCommonWeightNoMatch = 'XSWeight*SFweight*METFilter_MC'
-mcCommonWeight = 'XSWeight*SFweight*PromptGenLepMatch2l*METFilter_MC'
+# mcCommonWeightNoMatch = 'XSWeight*SFweight*METFilter_MC'
+# mcCommonWeight = 'XSWeight*SFweight*PromptGenLepMatch2l*METFilter_MC'
+mcCommonWeight = 'XSWeight*LepCut2l__ele_mvaFall17V2Iso_WP90_tthmva_70__mu_cut_Tight80x_tthmva_80*METFilter_MC*(HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL || HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL || HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL_DZ || HLT_Mu12_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL_DZ || HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL || HLT_Mu17_TrkIsoVVL_TkMu8_TrkIsoVVL || HLT_IsoTkMu24 || HLT_IsoMu24 || HLT_Ele23_Ele12_CaloIdL_TrackIdL_IsoVL_DZ || HLT_Ele27_WPTight_Gsf || HLT_Ele25_eta2p1_WPTight_Gsf)'
 
 ###########################################
 #############  BACKGROUNDS  ###############
@@ -137,7 +138,7 @@ samples['top'] = {
     'FilesPerJob': 1,
 }
 
-addSampleWeight(samples,'top','TTTo2L2Nu','Top_pTrw')
+# addSampleWeight(samples,'top','TTTo2L2Nu','Top_pTrw')
 
 ###### WW ########
 
@@ -260,8 +261,18 @@ samples['DATA'] = {
 
 for _, sd in DataRun:
   for pd in DataSets:
-    files = nanoGetSampleFiles(dataDirectory, pd + '_' + sd)
-    
+    # files = nanoGetSampleFiles(dataDirectory, pd + '_' + sd)
+    tag = pd + '_' + sd
+    if 'DoubleEG' in pd and 'Run2016B-ver2' in sd:  # Run2016B-ver2_HIPM_UL2016-v2
+        print("sd      = {}".format(sd))
+        print("pd      = {}".format(pd))
+        print("Old tag = {}".format(tag))
+        tag = tag.replace('v2','v3')
+        print("New tag = {}".format(tag))
+
+    files = nanoGetSampleFiles(dataDirectory, tag)
+
+
     samples['DATA']['name'].extend(files)
     samples['DATA']['weights'].extend([DataTrig[pd]] * len(files))
 
