@@ -1,4 +1,4 @@
-# Top Control Plots in 2016 postVFP UL
+# WZ Control Plots in 2016 postVFP UL
 
 Control plots in a WZ phase space, using the second part of the 2016 Run 2 dataset.
 
