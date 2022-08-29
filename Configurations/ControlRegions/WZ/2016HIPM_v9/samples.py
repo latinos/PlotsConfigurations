@@ -1,11 +1,11 @@
 import os
 import inspect
 
-# /afs/cern.ch/user/n/ntrevisa/work/latinos/unblinding/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/ControlRegions/Top/2016HIPM_v9
+# /afs/cern.ch/user/n/ntrevisa/work/latinos/unblinding/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/ControlRegions/WZ/2016HIPM_v9
 
 configurations = os.path.realpath(inspect.getfile(inspect.currentframe())) # this file
 configurations = os.path.dirname(configurations) # 2016HIPM_v9
-configurations = os.path.dirname(configurations) # Top
+configurations = os.path.dirname(configurations) # WZ
 configurations = os.path.dirname(configurations) # ControlRegions
 configurations = os.path.dirname(configurations) # Configurations
 
@@ -254,7 +254,7 @@ samples['VVV'] = {
 
 samples['DATA'] = {
   'name': [],
-  'weight': 'LepWPCut*METFilter_DATA',
+  'weight': 'LepWPCut*METFilter_DATA_fix',
   'weights': [],
   'isData': ['all'],
   'FilesPerJob': 50

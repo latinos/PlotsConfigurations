@@ -2,11 +2,11 @@ import os
 import copy
 import inspect
 
-# /afs/cern.ch/user/n/ntrevisa/work/latinos/unblinding/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/ControlRegions/WZ/2016HIPM_v9
+# /afs/cern.ch/user/n/ntrevisa/work/latinos/unblinding/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/ControlRegions/Top/2016noHIPM_v9
 
 configurations = os.path.realpath(inspect.getfile(inspect.currentframe())) # this file
-configurations = os.path.dirname(configurations) # 2016HIPM_v9
-configurations = os.path.dirname(configurations) # WZ
+configurations = os.path.dirname(configurations) # 2016noHIPM_v9
+configurations = os.path.dirname(configurations) # Top
 configurations = os.path.dirname(configurations) # ControlRegions
 configurations = os.path.dirname(configurations) # Configurations
 
@@ -16,17 +16,17 @@ configurations = os.path.dirname(configurations) # Configurations
 mc     = [skey for skey in samples if skey not in ('Fake', 'DATA', 'Dyemb')]
 mc_emb = [skey for skey in samples if skey not in ('Fake', 'DATA')]
 
-# LepCut3l__ele_mvaFall17V2Iso_WP90_tthmva_70__mu_cut_Tight80x_tthmva_80
+# LepCut2l__ele_mvaFall17V2Iso_WP90_tthmva_70__mu_cut_Tight80x_tthmva_80
 eleWP = 'mvaFall17V2Iso_WP90_tthmva_70'
 muWP  = 'cut_Tight80x_tthmva_80'
 
 aliases['LepWPCut'] = {
-    'expr': 'LepCut3l__ele_'+eleWP+'__mu_'+muWP,
+    'expr': 'LepCut2l__ele_'+eleWP+'__mu_'+muWP,
     'samples': mc_emb + ['DATA']
 }
 
 aliases['LepWPSF'] = {
-    'expr': 'LepSF3l__ele_'+eleWP+'__mu_'+muWP,
+    'expr': 'LepSF2l__ele_'+eleWP+'__mu_'+muWP,
     'samples': mc_emb
 }
 
@@ -45,6 +45,7 @@ aliases['gstarHigh'] = {
 #     'expr': 'embed_total_mva16',  # wrt. eleWP
 #     'samples': 'Dyemb'
 # }
+
 
 # # Fake leptons transfer factor
 # aliases['fakeW'] = {
@@ -86,9 +87,9 @@ aliases['gstarHigh'] = {
 #     'samples': ['Fake']
 # }
 
-# gen-matching to prompt only (GenLepMatch3l matches to *any* gen lepton)
-aliases['PromptGenLepMatch3l'] = {
-    'expr': 'Alt$(Lepton_promptgenmatched[0]*Lepton_promptgenmatched[1]*Lepton_promptgenmatched[2], 0)',
+# gen-matching to prompt only (GenLepMatch2l matches to *any* gen lepton)
+aliases['PromptGenLepMatch2l'] = {
+    'expr': 'Alt$(Lepton_promptgenmatched[0]*Lepton_promptgenmatched[1], 0)',
     'samples': mc
 }
 
@@ -140,13 +141,13 @@ aliases['multiJet'] = {
 }
 
 # aliases['SFweight2lAlt'] = {
-#     'expr'   : 'puWeight*TriggerAltEffWeight_2l*Lepton_RecoSF[0]*Lepton_RecoSF[1]*EMTFbug_veto',
+#     'expr'   : 'puWeight*TriggerSFWeight_2l*Lepton_RecoSF[0]*Lepton_RecoSF[1]*EMTFbug_veto',
 #     'samples': mc
 # }
 
 # data/MC scale factors
 aliases['SFweight'] = {
-    'expr': ' * '.join(['SFweight3l', 'LepWPCut', 'LepWPSF','PrefireWeight','Jet_PUIDSF_loose']),
+    'expr': ' * '.join(['SFweight2l', 'LepWPCut', 'LepWPSF','PrefireWeight','Jet_PUIDSF_loose']),
     'samples': mc
 }
 

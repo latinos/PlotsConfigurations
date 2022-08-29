@@ -1,11 +1,11 @@
 import os
 import inspect
 
-# /afs/cern.ch/user/n/ntrevisa/work/latinos/unblinding/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/ControlRegions/DY/2016noHIPM_v9
+# /afs/cern.ch/user/n/ntrevisa/work/latinos/unblinding/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/ControlRegions/Top/2016noHIPM_v9
 
 configurations = os.path.realpath(inspect.getfile(inspect.currentframe())) # this file
 configurations = os.path.dirname(configurations) # 201no6HIPM_v9
-configurations = os.path.dirname(configurations) # DY
+configurations = os.path.dirname(configurations) # Top
 configurations = os.path.dirname(configurations) # ControlRegions
 configurations = os.path.dirname(configurations) # Configurations
 
@@ -101,6 +101,7 @@ DataTrig = {
 #########################################
 
 # SFweight does not include btag weights
+
 mcCommonWeightNoMatch = 'XSWeight*SFweight*METFilter_MC'
 mcCommonWeight = 'XSWeight*SFweight*METFilter_MC*PromptGenLepMatch2l'
 

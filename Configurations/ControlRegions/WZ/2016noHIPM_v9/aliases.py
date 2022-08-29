@@ -2,11 +2,11 @@ import os
 import copy
 import inspect
 
-# /afs/cern.ch/user/n/ntrevisa/work/latinos/unblinding/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/ControlRegions/DY/2016noHIPM_v9
+# /afs/cern.ch/user/n/ntrevisa/work/latinos/unblinding/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/ControlRegions/WZ/2016noHIPM_v9
 
 configurations = os.path.realpath(inspect.getfile(inspect.currentframe())) # this file
 configurations = os.path.dirname(configurations) # 2016noHIPM_v9
-configurations = os.path.dirname(configurations) # DY
+configurations = os.path.dirname(configurations) # WZ
 configurations = os.path.dirname(configurations) # ControlRegions
 configurations = os.path.dirname(configurations) # Configurations
 
@@ -196,3 +196,8 @@ aliases['topcr'] = {
 #     'samples': ['WWewk']
 # }
 
+# Fix METFilter_DATA definition: Flag_ecalBadCalibFilter is removed since it is not needed in 2016
+aliases['METFilter_DATA_fix'] = {
+    'expr' : 'Flag_goodVertices*Flag_globalSuperTightHalo2016Filter*Flag_HBHENoiseFilter*Flag_HBHENoiseIsoFilter*Flag_EcalDeadCellTriggerPrimitiveFilter*Flag_BadPFMuonFilter*Flag_BadPFMuonDzFilter*Flag_eeBadScFilter',
+    'samples': ['DATA']
+}

@@ -254,7 +254,7 @@ samples['VVV'] = {
 
 samples['DATA'] = {
   'name': [],
-  'weight': 'LepWPCut*METFilter_DATA',
+  'weight': 'LepWPCut*METFilter_DATA_fix',
   'weights': [],
   'isData': ['all'],
   'FilesPerJob': 50
