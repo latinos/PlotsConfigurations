@@ -16,9 +16,9 @@ configurations = os.path.dirname(configurations) # Configurations
 mc     = [skey for skey in samples if skey not in ('Fake', 'DATA', 'Dyemb')]
 mc_emb = [skey for skey in samples if skey not in ('Fake', 'DATA')]
 
-# LepCut2l__ele_mvaFall17V2Iso_WP90__mu_cut_Tight80x
-eleWP = 'mvaFall17V2Iso_WP90'
-muWP  = 'cut_Tight80x'
+# LepCut2l__ele_mvaFall17V2Iso_WP90_tthmva_70__mu_cut_Tight80x_tthmva_80
+eleWP = 'mvaFall17V2Iso_WP90_tthmva_70'
+muWP  = 'cut_Tight80x_tthmva_80'
 
 aliases['LepWPCut'] = {
     'expr': 'LepCut2l__ele_'+eleWP+'__mu_'+muWP,
@@ -30,15 +30,15 @@ aliases['LepWPSF'] = {
     'samples': mc_emb
 }
 
-# aliases['gstarLow'] = {
-#     'expr': 'Gen_ZGstar_mass >0 && Gen_ZGstar_mass < 4',
-#     'samples': 'VgS'
-# }
+aliases['gstarLow'] = {
+    'expr': 'Gen_ZGstar_mass > 0 && Gen_ZGstar_mass < 4',
+    'samples': 'VgS'
+}
 
-# aliases['gstarHigh'] = {
-#     'expr': 'Gen_ZGstar_mass <0 || Gen_ZGstar_mass > 4',
-#     'samples': 'VgS'
-# }
+aliases['gstarHigh'] = {
+    'expr': 'Gen_ZGstar_mass < 0 || Gen_ZGstar_mass > 4',
+    'samples': 'VgS'
+}
 
 # aliases['embedtotal'] = {
 #     'expr': 'embed_total_mva16',  # wrt. eleWP
@@ -85,16 +85,16 @@ aliases['LepWPSF'] = {
 #     'samples': ['Fake']
 # }
 
-# # gen-matching to prompt only (GenLepMatch2l matches to *any* gen lepton)
-# aliases['PromptGenLepMatch2l'] = {
-#     'expr': 'Alt$(Lepton_promptgenmatched[0]*Lepton_promptgenmatched[1], 0)',
-#     'samples': mc
-# }
+# gen-matching to prompt only (GenLepMatch2l matches to *any* gen lepton)
+aliases['PromptGenLepMatch2l'] = {
+    'expr': 'Alt$(Lepton_promptgenmatched[0]*Lepton_promptgenmatched[1], 0)',
+    'samples': mc
+}
 
-# aliases['Top_pTrw'] = {
-#     'expr': '(topGenPt * antitopGenPt > 0.) * (TMath::Sqrt((0.103*TMath::Exp(-0.0118*topGenPt) - 0.000134*topGenPt + 0.973) * (0.103*TMath::Exp(-0.0118*antitopGenPt) - 0.000134*antitopGenPt + 0.973))) * (TMath::Sqrt(TMath::Exp(1.61468e-03 + 3.46659e-06*topGenPt - 8.90557e-08*topGenPt*topGenPt) * TMath::Exp(1.61468e-03 + 3.46659e-06*antitopGenPt - 8.90557e-08*antitopGenPt*antitopGenPt))) + (topGenPt * antitopGenPt <= 0.)', # Same Reweighting as other years, but with additional fix for tune CUET -> CP5
-#     'samples': ['top']
-# }
+aliases['Top_pTrw'] = {
+    'expr': '(topGenPt * antitopGenPt > 0.) * (TMath::Sqrt((0.103*TMath::Exp(-0.0118*topGenPt) - 0.000134*topGenPt + 0.973) * (0.103*TMath::Exp(-0.0118*antitopGenPt) - 0.000134*antitopGenPt + 0.973))) * (TMath::Sqrt(TMath::Exp(1.61468e-03 + 3.46659e-06*topGenPt - 8.90557e-08*topGenPt*topGenPt) * TMath::Exp(1.61468e-03 + 3.46659e-06*antitopGenPt - 8.90557e-08*antitopGenPt*antitopGenPt))) + (topGenPt * antitopGenPt <= 0.)', # Same Reweighting as other years, but with additional fix for tune CUET -> CP5
+    'samples': ['top']
+}
 
 
 # ##### DY Z pT reweighting
@@ -143,11 +143,11 @@ aliases['multiJet'] = {
 #     'samples': mc
 # }
 
-# # data/MC scale factors
-# aliases['SFweight'] = {
-#     'expr': ' * '.join(['SFweight2lAlt', 'LepWPCut', 'LepWPSF','PrefireWeight','Jet_PUIDSF_loose']),
-#     'samples': mc
-# }
+# data/MC scale factors
+aliases['SFweight'] = {
+    'expr': ' * '.join(['SFweight2l', 'LepWPCut', 'LepWPSF','PrefireWeight','Jet_PUIDSF_loose']),
+    'samples': mc
+}
 
 # # variations
 # aliases['SFweightEleUp'] = {

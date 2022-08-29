@@ -10,13 +10,13 @@ The instructions to produce the plots follow.
 
 Resubmit failed jobs.
 
-    cd $HOME/scripts/jobs/mkShapes__WHSS2018_v7_chargeAsymmetry/
+    cd $HOME/scripts/jobs/mkShapes__DY_2016HIPM_v9/
     for i in *jid; do condor_submit ${i/jid/jds}; done
     cd -
 
 Or, if they failed because the wall clock time has been exceeded, resubmit them on a longer-time queue.
 
-    cd $HOME/scripts/jobs/mkShapes__WHSS2018_v7_chargeAsymmetry/
+    cd $HOME/scripts/jobs/mkShapes__DY_2016HIPM_v9/
     for i in *jid; do sed -i "s/longlunch/workday/g" ${i/jid/jds}; condor_submit ${i/jid/jds}; done
     cd -
 

@@ -2,21 +2,23 @@ import os
 import copy
 import inspect
 
+# /afs/cern.ch/user/n/ntrevisa/work/latinos/unblinding/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/ControlRegions/DY/2016noHIPM_v9
+
 configurations = os.path.realpath(inspect.getfile(inspect.currentframe())) # this file
-configurations = os.path.dirname(configurations) # ggH2016
-configurations = os.path.dirname(configurations) # Differential
-configurations = os.path.dirname(configurations) # Configurations
+configurations = os.path.dirname(configurations) # 2016noHIPM_v9
+configurations = os.path.dirname(configurations) # DY
+configurations = os.path.dirname(configurations) # ControlRegions
 configurations = os.path.dirname(configurations) # Configurations
 
 #aliases = {}
 
 
-mc = [skey for skey in samples if skey not in ('Fake', 'DATA', 'Dyemb')]
+mc     = [skey for skey in samples if skey not in ('Fake', 'DATA', 'Dyemb')]
 mc_emb = [skey for skey in samples if skey not in ('Fake', 'DATA')]
 
-# LepCut2l__ele_mvaFall17V2Iso_WP90__mu_cut_Tight80x
-eleWP = 'mvaFall17V2Iso_WP90'
-muWP  = 'cut_Tight80x'
+# LepCut2l__ele_mvaFall17V2Iso_WP90_tthmva_70__mu_cut_Tight80x_tthmva_80
+eleWP = 'mvaFall17V2Iso_WP90_tthmva_70'
+muWP  = 'cut_Tight80x_tthmva_80'
 
 aliases['LepWPCut'] = {
     'expr': 'LepCut2l__ele_'+eleWP+'__mu_'+muWP,
@@ -29,15 +31,15 @@ aliases['LepWPSF'] = {
 }
 
 
-# aliases['gstarLow'] = {
-#     'expr': 'Gen_ZGstar_mass >0 && Gen_ZGstar_mass < 4',
-#     'samples': 'VgS'
-# }
+aliases['gstarLow'] = {
+    'expr': 'Gen_ZGstar_mass > 0 && Gen_ZGstar_mass < 4',
+    'samples': 'VgS'
+}
 
-# aliases['gstarHigh'] = {
-#     'expr': 'Gen_ZGstar_mass <0 || Gen_ZGstar_mass > 4',
-#     'samples': 'VgS'
-# }
+aliases['gstarHigh'] = {
+    'expr': 'Gen_ZGstar_mass < 0 || Gen_ZGstar_mass > 4',
+    'samples': 'VgS'
+}
 
 # aliases['embedtotal'] = {
 #     'expr': 'embed_total_mva16',  # wrt. eleWP
@@ -85,12 +87,6 @@ aliases['LepWPSF'] = {
 #     'samples': ['Fake']
 # }
 
-aliases['nCleanGenJet'] = {
-    'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/Differential/ngenjet.cc+' % os.getenv('CMSSW_BASE')],
-    'class': 'CountGenJet',
-    'samples': mc
-}
-
 # gen-matching to prompt only (GenLepMatch2l matches to *any* gen lepton)
 aliases['PromptGenLepMatch2l'] = {
     'expr': 'Alt$(Lepton_promptgenmatched[0]*Lepton_promptgenmatched[1], 0)',
@@ -104,6 +100,12 @@ aliases['Top_pTrw'] = {
 
 
 # ##### DY Z pT reweighting
+# aliases['nCleanGenJet'] = {
+#     'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/Differential/ngenjet.cc+' % os.getenv('CMSSW_BASE')],
+#     'class': 'CountGenJet',
+#     'samples': mc
+# }
+
 # aliases['getGenZpt_OTF'] = {
 #     'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/patches/getGenZpt.cc+' % os.getenv('CMSSW_BASE')],
 #     'class': 'getGenZpt',
@@ -138,30 +140,19 @@ aliases['multiJet'] = {
     'expr': 'Alt$(CleanJet_pt[1], 0) > 30.'
 }
 
-aliases['SFweight2lAlt'] = {
-    'expr'   : 'puWeight*TriggerSFWeight_2l*Lepton_RecoSF[0]*Lepton_RecoSF[1]*EMTFbug_veto',
-    'samples': mc
-}
+# aliases['SFweight2lAlt'] = {
+#     'expr'   : 'puWeight*TriggerSFWeight_2l*Lepton_RecoSF[0]*Lepton_RecoSF[1]*EMTFbug_veto',
+#     'samples': mc
+# }
 
-aliases['trigger_bits'] = {
-    'expr'    : 'HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL \
-                 || HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL \
-                 || HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL_DZ \
-                 || HLT_Mu12_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL_DZ \
-                 || HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL \
-                 || HLT_Mu17_TrkIsoVVL_TkMu8_TrkIsoVVL \
-                 || HLT_IsoTkMu24 \
-                 || HLT_IsoMu24 \
-                 || HLT_Ele23_Ele12_CaloIdL_TrackIdL_IsoVL_DZ \
-                 || HLT_Ele27_WPTight_Gsf \
-                 || HLT_Ele25_eta2p1_WPTight_Gsf',
-    'samples' : mc
-}
+# aliases['trigger_bits'] = {
+#     'expr'    : 'HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL || HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL || HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL_DZ || HLT_Mu12_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL_DZ || HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL || HLT_Mu17_TrkIsoVVL_TkMu8_TrkIsoVVL || HLT_IsoTkMu24 || HLT_IsoMu24 || HLT_Ele23_Ele12_CaloIdL_TrackIdL_IsoVL_DZ || HLT_Ele27_WPTight_Gsf || HLT_Ele25_eta2p1_WPTight_Gsf',
+#     'samples' : mc
+# }
 
 # data/MC scale factors
 aliases['SFweight'] = {
-    # 'expr': ' * '.join(['SFweight2lAlt', 'LepWPCut', 'LepWPSF','PrefireWeight','Jet_PUIDSF_loose']),
-    'expr': ' * '.join(['LepWPCut']), # , 'LepWPSF']),
+    'expr': ' * '.join(['SFweight2l', 'LepWPCut', 'LepWPSF','PrefireWeight','Jet_PUIDSF_loose']),
     'samples': mc
 }
 
