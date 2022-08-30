@@ -26,4 +26,4 @@ Or, if they failed because the wall clock time has been exceeded, resubmit them 
 
 ### Plot distributions
 
-    mkPlot.py --pycfg=configuration.py --inputFile=rootFile/plots_DY_2016noHIPM_v9.root --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1
+    mkPlot.py --pycfg=configuration.py --inputFile=rootFile/plots_DY_2016noHIPM_v9.root --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1 --minLogCratio=1
