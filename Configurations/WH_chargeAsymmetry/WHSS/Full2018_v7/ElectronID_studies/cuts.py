@@ -140,6 +140,33 @@ cuts['hww2l2v_13TeV_ZH3l_WZ_CR_2j'] = 'MinIf$( WH3l_mOSll[], WH3l_mOSll[Iteratio
                                     '         
 
 
+## DY->ee CR - 2 same-sign electrons IN the Z peak. To check the charge-flip probability method to estimate DY in the signal region
+
+# CR 2jets
+cuts['hww2l2v_13TeV_WH_SS_DYee_2j'] = {
+    'expr' : '(Lepton_pdgId[0]*Lepton_pdgId[1] == 11*11) && nLepton==2 && Alt$(CleanJet_pt[0],0)>30 && Alt$(CleanJet_pt[1],0)>30 && mjj < 100 && abs(Lepton_eta[0] - Lepton_eta[1])<2.0 && abs(mll-91.2)<15 && mlljj20_whss > 50.',
+    'categories' : {
+        # Sub-leading lepton pT >= 20 GeV
+        'plus_pt2ge20'  : 'Lepton_pdgId[0] == -11 && Lepton_pdgId[1] == -11 && Lepton_pt[1]>=20',
+        'minus_pt2ge20' : 'Lepton_pdgId[0] == +11 && Lepton_pdgId[1] == +11 && Lepton_pt[1]>=20',
+        # Sub-leading lepton pT < 20 GeV
+        'plus_pt2lt20'  : 'Lepton_pdgId[0] == -11 && Lepton_pdgId[1] == -11 && Lepton_pt[1]<20',
+        'minus_pt2lt20' : 'Lepton_pdgId[0] == +11 && Lepton_pdgId[1] == +11 && Lepton_pt[1]<20',
+    }
+}
+
+# CR 1jets
+cuts['hww2l2v_13TeV_WH_SS_DYee_1j'] = {
+    'expr' : '(Lepton_pdgId[0]*Lepton_pdgId[1] == 11*11) && nLepton==2 && Alt$(CleanJet_pt[0],0)>30 && Alt$(CleanJet_pt[1],0)<30 && abs(Lepton_eta[0] - Lepton_eta[1])<2.0 && abs(mll-91.2)<15 && mlljj20_whss > 50.',
+    'categories' : {
+        # Sub-leading lepton pT >= 20 GeV
+        'plus_pt2ge20'  : 'Lepton_pdgId[0] == -11 && Lepton_pdgId[1] == -11 && Lepton_pt[1]>=20',
+        'minus_pt2ge20' : 'Lepton_pdgId[0] == +11 && Lepton_pdgId[1] == +11 && Lepton_pt[1]>=20',
+        # Sub-leading lepton pT < 20 GeV
+        'plus_pt2lt20'  : 'Lepton_pdgId[0] == -11 && Lepton_pdgId[1] == -11 && Lepton_pt[1]<20',
+        'minus_pt2lt20' : 'Lepton_pdgId[0] == +11 && Lepton_pdgId[1] == +11 && Lepton_pt[1]<20',
+    }
+}
 
 # mlljj20_whss:
 # inv_mass of: (jet1, jet2, 2*closest_lep_to_jets)

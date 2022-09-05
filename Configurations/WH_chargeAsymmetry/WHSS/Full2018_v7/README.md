@@ -32,7 +32,41 @@ Go into the `DY_OS_CR` directory and follow the instructions in the `README` fil
     
 ### Plot original distributions with DY->ee data-driven histograms
 
-    mkPlot.py --pycfg=configuration.py --inputFile=rootFile/plots_WHSS_2018_v7_chargeAsymmetry_DYflip.root --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1 --outputDirPlots=plots_WHSS_2018_v7_chargeAsymmetry_DYflip
+    mkPlot.py --pycfg=configuration.py --inputFile=rootFile/plots_WHSS_2018_v7_chargeAsymmetry_DYflip.root --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1 --outputDirPlots=plots_WHSS_2018_v7_chargeAsymmetry_DYflip_halfDY --plotFile=plot_halfDY.py
+
+Repeat, but with data-blind signal region:
+
+    mkPlot.py --pycfg=configuration.py --inputFile=rootFile/plots_WHSS_2018_v7_chargeAsymmetry_DYflip.root --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1 --onlyCut=hww2l2v_13TeV_WH_SS_mm_2j_plus_pt2ge20 --plotFile=plot_blind_halfDY.py  --outputDirPlots=plots_WHSS_2018_v7_chargeAsymmetry_DYflip_data_halfDY
+    mkPlot.py --pycfg=configuration.py --inputFile=rootFile/plots_WHSS_2018_v7_chargeAsymmetry_DYflip.root --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1 --onlyCut=hww2l2v_13TeV_WH_SS_mm_2j_plus_pt2lt20 --plotFile=plot_blind_halfDY.py  --outputDirPlots=plots_WHSS_2018_v7_chargeAsymmetry_DYflip_data_halfDY
+    mkPlot.py --pycfg=configuration.py --inputFile=rootFile/plots_WHSS_2018_v7_chargeAsymmetry_DYflip.root --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1 --onlyCut=hww2l2v_13TeV_WH_SS_mm_2j_minus_pt2ge20 --plotFile=plot_blind_halfDY.py --outputDirPlots=plots_WHSS_2018_v7_chargeAsymmetry_DYflip_data_halfDY
+    mkPlot.py --pycfg=configuration.py --inputFile=rootFile/plots_WHSS_2018_v7_chargeAsymmetry_DYflip.root --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1 --onlyCut=hww2l2v_13TeV_WH_SS_mm_2j_minus_pt2lt20 --plotFile=plot_blind_halfDY.py --outputDirPlots=plots_WHSS_2018_v7_chargeAsymmetry_DYflip_data_halfDY
+
+    mkPlot.py --pycfg=configuration.py --inputFile=rootFile/plots_WHSS_2018_v7_chargeAsymmetry_DYflip.root --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1 --onlyCut=hww2l2v_13TeV_WH_SS_mm_1j_plus_pt2ge20 --plotFile=plot_blind_halfDY.py  --outputDirPlots=plots_WHSS_2018_v7_chargeAsymmetry_DYflip_data_halfDY
+    mkPlot.py --pycfg=configuration.py --inputFile=rootFile/plots_WHSS_2018_v7_chargeAsymmetry_DYflip.root --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1 --onlyCut=hww2l2v_13TeV_WH_SS_mm_1j_plus_pt2lt20 --plotFile=plot_blind_halfDY.py  --outputDirPlots=plots_WHSS_2018_v7_chargeAsymmetry_DYflip_data_halfDY
+    mkPlot.py --pycfg=configuration.py --inputFile=rootFile/plots_WHSS_2018_v7_chargeAsymmetry_DYflip.root --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1 --onlyCut=hww2l2v_13TeV_WH_SS_mm_1j_minus_pt2ge20 --plotFile=plot_blind_halfDY.py --outputDirPlots=plots_WHSS_2018_v7_chargeAsymmetry_DYflip_data_halfDY
+    mkPlot.py --pycfg=configuration.py --inputFile=rootFile/plots_WHSS_2018_v7_chargeAsymmetry_DYflip.root --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1 --onlyCut=hww2l2v_13TeV_WH_SS_mm_1j_minus_pt2lt20 --plotFile=plot_blind_halfDY.py --outputDirPlots=plots_WHSS_2018_v7_chargeAsymmetry_DYflip_data_halfDY
+
+
+    mkPlot.py --pycfg=configuration.py --inputFile=rootFile/plots_WHSS_2018_v7_chargeAsymmetry_DYflip.root --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1 --onlyCut=hww2l2v_13TeV_WH_SS_em_2j_plus_pt2ge20 --plotFile=plot_blind_halfDY.py  --outputDirPlots=plots_WHSS_2018_v7_chargeAsymmetry_DYflip_data_halfDY
+    mkPlot.py --pycfg=configuration.py --inputFile=rootFile/plots_WHSS_2018_v7_chargeAsymmetry_DYflip.root --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1 --onlyCut=hww2l2v_13TeV_WH_SS_em_2j_plus_pt2lt20 --plotFile=plot_blind_halfDY.py  --outputDirPlots=plots_WHSS_2018_v7_chargeAsymmetry_DYflip_data_halfDY
+    mkPlot.py --pycfg=configuration.py --inputFile=rootFile/plots_WHSS_2018_v7_chargeAsymmetry_DYflip.root --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1 --onlyCut=hww2l2v_13TeV_WH_SS_em_2j_minus_pt2ge20 --plotFile=plot_blind_halfDY.py --outputDirPlots=plots_WHSS_2018_v7_chargeAsymmetry_DYflip_data_halfDY
+    mkPlot.py --pycfg=configuration.py --inputFile=rootFile/plots_WHSS_2018_v7_chargeAsymmetry_DYflip.root --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1 --onlyCut=hww2l2v_13TeV_WH_SS_em_2j_minus_pt2lt20 --plotFile=plot_blind_halfDY.py --outputDirPlots=plots_WHSS_2018_v7_chargeAsymmetry_DYflip_data_halfDY
+
+    mkPlot.py --pycfg=configuration.py --inputFile=rootFile/plots_WHSS_2018_v7_chargeAsymmetry_DYflip.root --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1 --onlyCut=hww2l2v_13TeV_WH_SS_em_1j_plus_pt2ge20 --plotFile=plot_blind_halfDY.py  --outputDirPlots=plots_WHSS_2018_v7_chargeAsymmetry_DYflip_data_halfDY
+    mkPlot.py --pycfg=configuration.py --inputFile=rootFile/plots_WHSS_2018_v7_chargeAsymmetry_DYflip.root --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1 --onlyCut=hww2l2v_13TeV_WH_SS_em_1j_plus_pt2lt20 --plotFile=plot_blind_halfDY.py  --outputDirPlots=plots_WHSS_2018_v7_chargeAsymmetry_DYflip_data_halfDY
+    mkPlot.py --pycfg=configuration.py --inputFile=rootFile/plots_WHSS_2018_v7_chargeAsymmetry_DYflip.root --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1 --onlyCut=hww2l2v_13TeV_WH_SS_em_1j_minus_pt2ge20 --plotFile=plot_blind_halfDY.py --outputDirPlots=plots_WHSS_2018_v7_chargeAsymmetry_DYflip_data_halfDY
+    mkPlot.py --pycfg=configuration.py --inputFile=rootFile/plots_WHSS_2018_v7_chargeAsymmetry_DYflip.root --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1 --onlyCut=hww2l2v_13TeV_WH_SS_em_1j_minus_pt2lt20 --plotFile=plot_blind_halfDY.py --outputDirPlots=plots_WHSS_2018_v7_chargeAsymmetry_DYflip_data_halfDY
+
+
+    mkPlot.py --pycfg=configuration.py --inputFile=rootFile/plots_WHSS_2018_v7_chargeAsymmetry_DYflip.root --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1 --onlyCut=hww2l2v_13TeV_WH_SS_ee_2j_plus_pt2ge20 --plotFile=plot_blind_halfDY.py  --outputDirPlots=plots_WHSS_2018_v7_chargeAsymmetry_DYflip_data_halfDY
+    mkPlot.py --pycfg=configuration.py --inputFile=rootFile/plots_WHSS_2018_v7_chargeAsymmetry_DYflip.root --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1 --onlyCut=hww2l2v_13TeV_WH_SS_ee_2j_plus_pt2lt20 --plotFile=plot_blind_halfDY.py  --outputDirPlots=plots_WHSS_2018_v7_chargeAsymmetry_DYflip_data_halfDY
+    mkPlot.py --pycfg=configuration.py --inputFile=rootFile/plots_WHSS_2018_v7_chargeAsymmetry_DYflip.root --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1 --onlyCut=hww2l2v_13TeV_WH_SS_ee_2j_minus_pt2ge20 --plotFile=plot_blind_halfDY.py --outputDirPlots=plots_WHSS_2018_v7_chargeAsymmetry_DYflip_data_halfDY
+    mkPlot.py --pycfg=configuration.py --inputFile=rootFile/plots_WHSS_2018_v7_chargeAsymmetry_DYflip.root --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1 --onlyCut=hww2l2v_13TeV_WH_SS_ee_2j_minus_pt2lt20 --plotFile=plot_blind_halfDY.py --outputDirPlots=plots_WHSS_2018_v7_chargeAsymmetry_DYflip_data_halfDY
+
+    mkPlot.py --pycfg=configuration.py --inputFile=rootFile/plots_WHSS_2018_v7_chargeAsymmetry_DYflip.root --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1 --onlyCut=hww2l2v_13TeV_WH_SS_ee_1j_plus_pt2ge20 --plotFile=plot_blind_halfDY.py  --outputDirPlots=plots_WHSS_2018_v7_chargeAsymmetry_DYflip_data_halfDY
+    mkPlot.py --pycfg=configuration.py --inputFile=rootFile/plots_WHSS_2018_v7_chargeAsymmetry_DYflip.root --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1 --onlyCut=hww2l2v_13TeV_WH_SS_ee_1j_plus_pt2lt20 --plotFile=plot_blind_halfDY.py  --outputDirPlots=plots_WHSS_2018_v7_chargeAsymmetry_DYflip_data_halfDY
+    mkPlot.py --pycfg=configuration.py --inputFile=rootFile/plots_WHSS_2018_v7_chargeAsymmetry_DYflip.root --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1 --onlyCut=hww2l2v_13TeV_WH_SS_ee_1j_minus_pt2ge20 --plotFile=plot_blind_halfDY.py --outputDirPlots=plots_WHSS_2018_v7_chargeAsymmetry_DYflip_data_halfDY
+    mkPlot.py --pycfg=configuration.py --inputFile=rootFile/plots_WHSS_2018_v7_chargeAsymmetry_DYflip.root --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1 --onlyCut=hww2l2v_13TeV_WH_SS_ee_1j_minus_pt2lt20 --plotFile=plot_blind_halfDY.py --outputDirPlots=plots_WHSS_2018_v7_chargeAsymmetry_DYflip_data_halfDY   
 
 ### Plot original distributions
 
@@ -72,10 +106,15 @@ Repeat, but with data-blind signal region:
     mkPlot.py --pycfg=configuration.py --inputFile=rootFile/plots_WHSS_2018_v7_chargeAsymmetry.root --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1 --onlyCut=hww2l2v_13TeV_WH_SS_ee_1j_minus_pt2ge20 --plotFile=plot_blind.py
     mkPlot.py --pycfg=configuration.py --inputFile=rootFile/plots_WHSS_2018_v7_chargeAsymmetry.root --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1 --onlyCut=hww2l2v_13TeV_WH_SS_ee_1j_minus_pt2lt20 --plotFile=plot_blind.py
 
-
 ### Create datacards
 
-    mkDatacards.py --pycfg=configuration.py --inputFile=rootFile/plots_WHSS_2018_v7_chargeAsymmetry.root
+Using DY->ee data-driven distributions:
+
+    mkDatacards.py --pycfg=configuration.py --inputFile=rootFile/plots_WHSS_2018_v7_chargeAsymmetry_DYflip.root --outputDirDatacard=datacards_DYflip
+
+Using original distributions:
+
+    mkDatacards.py --pycfg=configuration.py --inputFile=rootFile/plots_WHSS_2018_v7_chargeAsymmetry.root --outputDirDatacard=datacards
 
 ### Combine datacards
 
@@ -88,6 +127,90 @@ Load combine:
 Actually combine datacards:
 
      mkdir -p Combination
+
+Using DY->ee data-driven distributions:
+
+     combineCards.py WH_SS_ee_2j_minus=datacards_DYflip/hww2l2v_13TeV_WH_SS_ee_2j_minus_pt2ge20/mlljj20_whss_2j_bin/datacard.txt \
+		     WH_SS_ee_2j_plus=datacards_DYflip/hww2l2v_13TeV_WH_SS_ee_2j_plus_pt2ge20/mlljj20_whss_2j_bin/datacard.txt \
+                     WH_SS_ee_1j_minus=datacards_DYflip/hww2l2v_13TeV_WH_SS_ee_1j_minus_pt2ge20/mlljj20_whss_1j_bin/datacard.txt \
+                     WH_SS_ee_1j_plus=datacards_DYflip/hww2l2v_13TeV_WH_SS_ee_1j_plus_pt2ge20/mlljj20_whss_1j_bin/datacard.txt \
+                     ZH3l_WZ_CR_1j=datacards_DYflip/hww2l2v_13TeV_ZH3l_WZ_CR_1j/events/datacard.txt \
+                     ZH3l_WZ_CR_2j=datacards_DYflip/hww2l2v_13TeV_ZH3l_WZ_CR_2j/events/datacard.txt \
+		     > Combination/WH_chargeAsymmetry_WH_SS_Full2018_v7_eeFinalState_DYflip.txt
+
+     combineCards.py WH_SS_em_2j_minus=datacards_DYflip/hww2l2v_13TeV_WH_SS_em_2j_minus_pt2ge20/mlljj20_whss_2j_bin/datacard.txt \
+                     WH_SS_em_2j_plus=datacards_DYflip/hww2l2v_13TeV_WH_SS_em_2j_plus_pt2ge20/mlljj20_whss_2j_bin/datacard.txt \
+		     WH_SS_mm_2j_minus=datacards_DYflip/hww2l2v_13TeV_WH_SS_mm_2j_minus_pt2ge20/mlljj20_whss_2j_bin/datacard.txt \
+		     WH_SS_mm_2j_plus=datacards_DYflip/hww2l2v_13TeV_WH_SS_mm_2j_plus_pt2ge20/mlljj20_whss_2j_bin/datacard.txt \
+		     WH_SS_ee_2j_minus=datacards_DYflip/hww2l2v_13TeV_WH_SS_ee_2j_minus_pt2ge20/mlljj20_whss_2j_bin/datacard.txt \
+		     WH_SS_ee_2j_plus=datacards_DYflip/hww2l2v_13TeV_WH_SS_ee_2j_plus_pt2ge20/mlljj20_whss_2j_bin/datacard.txt \
+                     WH_SS_em_1j_minus=datacards_DYflip/hww2l2v_13TeV_WH_SS_em_1j_minus_pt2ge20/mlljj20_whss_1j_bin/datacard.txt \
+                     WH_SS_em_1j_plus=datacards_DYflip/hww2l2v_13TeV_WH_SS_em_1j_plus_pt2ge20/mlljj20_whss_1j_bin/datacard.txt \
+                     WH_SS_mm_1j_minus=datacards_DYflip/hww2l2v_13TeV_WH_SS_mm_1j_minus_pt2ge20/mlljj20_whss_1j_bin/datacard.txt \
+                     WH_SS_mm_1j_plus=datacards_DYflip/hww2l2v_13TeV_WH_SS_mm_1j_plus_pt2ge20/mlljj20_whss_1j_bin/datacard.txt \
+                     WH_SS_ee_1j_minus=datacards_DYflip/hww2l2v_13TeV_WH_SS_ee_1j_minus_pt2ge20/mlljj20_whss_1j_bin/datacard.txt \
+                     WH_SS_ee_1j_plus=datacards_DYflip/hww2l2v_13TeV_WH_SS_ee_1j_plus_pt2ge20/mlljj20_whss_1j_bin/datacard.txt \
+                     ZH3l_WZ_CR_1j=datacards_DYflip/hww2l2v_13TeV_ZH3l_WZ_CR_1j/events/datacard.txt \
+                     ZH3l_WZ_CR_2j=datacards_DYflip/hww2l2v_13TeV_ZH3l_WZ_CR_2j/events/datacard.txt \
+		     > Combination/WH_chargeAsymmetry_WH_SS_Full2018_v7_allFinalStates_DYflip.txt
+
+     combineCards.py WH_SS_em_2j_minus=datacards_DYflip/hww2l2v_13TeV_WH_SS_em_2j_minus_pt2ge20/mlljj20_whss_2j_bin/datacard.txt \
+                     WH_SS_em_2j_plus=datacards_DYflip/hww2l2v_13TeV_WH_SS_em_2j_plus_pt2ge20/mlljj20_whss_2j_bin/datacard.txt \
+		     WH_SS_mm_2j_minus=datacards_DYflip/hww2l2v_13TeV_WH_SS_mm_2j_minus_pt2ge20/mlljj20_whss_2j_bin/datacard.txt \
+		     WH_SS_mm_2j_plus=datacards_DYflip/hww2l2v_13TeV_WH_SS_mm_2j_plus_pt2ge20/mlljj20_whss_2j_bin/datacard.txt \
+                     WH_SS_em_1j_minus=datacards_DYflip/hww2l2v_13TeV_WH_SS_em_1j_minus_pt2ge20/mlljj20_whss_1j_bin/datacard.txt \
+                     WH_SS_em_1j_plus=datacards_DYflip/hww2l2v_13TeV_WH_SS_em_1j_plus_pt2ge20/mlljj20_whss_1j_bin/datacard.txt \
+                     WH_SS_mm_1j_minus=datacards_DYflip/hww2l2v_13TeV_WH_SS_mm_1j_minus_pt2ge20/mlljj20_whss_1j_bin/datacard.txt \
+                     WH_SS_mm_1j_plus=datacards_DYflip/hww2l2v_13TeV_WH_SS_mm_1j_plus_pt2ge20/mlljj20_whss_1j_bin/datacard.txt \
+                     WH_SS_em_2j_minus_low_pt=datacards_DYflip/hww2l2v_13TeV_WH_SS_em_2j_minus_pt2lt20/mlljj20_whss_2j_bin/datacard.txt \
+                     WH_SS_em_2j_plus_low_pt=datacards_DYflip/hww2l2v_13TeV_WH_SS_em_2j_plus_pt2lt20/mlljj20_whss_2j_bin/datacard.txt \
+                     WH_SS_mm_2j_minus_low_pt=datacards_DYflip/hww2l2v_13TeV_WH_SS_mm_2j_minus_pt2lt20/mlljj20_whss_2j_bin/datacard.txt \
+                     WH_SS_mm_2j_plus_low_pt=datacards_DYflip/hww2l2v_13TeV_WH_SS_mm_2j_plus_pt2lt20/mlljj20_whss_2j_bin/datacard.txt \
+                     WH_SS_em_1j_minus_low_pt=datacards_DYflip/hww2l2v_13TeV_WH_SS_em_1j_minus_pt2lt20/mlljj20_whss_1j_bin/datacard.txt \
+                     WH_SS_em_1j_plus_low_pt=datacards_DYflip/hww2l2v_13TeV_WH_SS_em_1j_plus_pt2lt20/mlljj20_whss_1j_bin/datacard.txt \
+                     WH_SS_mm_1j_minus_low_pt=datacards_DYflip/hww2l2v_13TeV_WH_SS_mm_1j_minus_pt2lt20/mlljj20_whss_1j_bin/datacard.txt \
+                     WH_SS_mm_1j_plus_low_pt=datacards_DYflip/hww2l2v_13TeV_WH_SS_mm_1j_plus_pt2lt20/mlljj20_whss_1j_bin/datacard.txt \
+                     ZH3l_WZ_CR_1j=datacards_DYflip/hww2l2v_13TeV_ZH3l_WZ_CR_1j/events/datacard.txt \
+                     ZH3l_WZ_CR_2j=datacards_DYflip/hww2l2v_13TeV_ZH3l_WZ_CR_2j/events/datacard.txt \
+		     > Combination/WH_chargeAsymmetry_WH_SS_Full2018_v7_alsoLowPt_DYflip.txt
+
+     combineCards.py WH_SS_em_2j_minus=datacards_DYflip/hww2l2v_13TeV_WH_SS_em_2j_minus_pt2ge20/mlljj20_whss_2j_bin/datacard.txt \
+                     WH_SS_em_2j_plus=datacards_DYflip/hww2l2v_13TeV_WH_SS_em_2j_plus_pt2ge20/mlljj20_whss_2j_bin/datacard.txt \
+		     WH_SS_mm_2j_minus=datacards_DYflip/hww2l2v_13TeV_WH_SS_mm_2j_minus_pt2ge20/mlljj20_whss_2j_bin/datacard.txt \
+		     WH_SS_mm_2j_plus=datacards_DYflip/hww2l2v_13TeV_WH_SS_mm_2j_plus_pt2ge20/mlljj20_whss_2j_bin/datacard.txt \
+		     WH_SS_ee_2j_minus=datacards_DYflip/hww2l2v_13TeV_WH_SS_ee_2j_minus_pt2ge20/mlljj20_whss_2j_bin/datacard.txt \
+		     WH_SS_ee_2j_plus=datacards_DYflip/hww2l2v_13TeV_WH_SS_ee_2j_plus_pt2ge20/mlljj20_whss_2j_bin/datacard.txt \
+                     WH_SS_em_1j_minus=datacards_DYflip/hww2l2v_13TeV_WH_SS_em_1j_minus_pt2ge20/mlljj20_whss_1j_bin/datacard.txt \
+                     WH_SS_em_1j_plus=datacards_DYflip/hww2l2v_13TeV_WH_SS_em_1j_plus_pt2ge20/mlljj20_whss_1j_bin/datacard.txt \
+                     WH_SS_mm_1j_minus=datacards_DYflip/hww2l2v_13TeV_WH_SS_mm_1j_minus_pt2ge20/mlljj20_whss_1j_bin/datacard.txt \
+                     WH_SS_mm_1j_plus=datacards_DYflip/hww2l2v_13TeV_WH_SS_mm_1j_plus_pt2ge20/mlljj20_whss_1j_bin/datacard.txt \
+                     WH_SS_ee_1j_minus=datacards_DYflip/hww2l2v_13TeV_WH_SS_ee_1j_minus_pt2ge20/mlljj20_whss_1j_bin/datacard.txt \
+                     WH_SS_ee_1j_plus=datacards_DYflip/hww2l2v_13TeV_WH_SS_ee_1j_plus_pt2ge20/mlljj20_whss_1j_bin/datacard.txt \
+                     WH_SS_em_2j_minus_low_pt=datacards_DYflip/hww2l2v_13TeV_WH_SS_em_2j_minus_pt2lt20/mlljj20_whss_2j_bin/datacard.txt \
+                     WH_SS_em_2j_plus_low_pt=datacards_DYflip/hww2l2v_13TeV_WH_SS_em_2j_plus_pt2lt20/mlljj20_whss_2j_bin/datacard.txt \
+                     WH_SS_mm_2j_minus_low_pt=datacards_DYflip/hww2l2v_13TeV_WH_SS_mm_2j_minus_pt2lt20/mlljj20_whss_2j_bin/datacard.txt \
+                     WH_SS_mm_2j_plus_low_pt=datacards_DYflip/hww2l2v_13TeV_WH_SS_mm_2j_plus_pt2lt20/mlljj20_whss_2j_bin/datacard.txt \
+                     WH_SS_ee_2j_minus_low_pt=datacards_DYflip/hww2l2v_13TeV_WH_SS_ee_2j_minus_pt2lt20/mlljj20_whss_2j_bin/datacard.txt \
+                     WH_SS_ee_2j_plus_low_pt=datacards_DYflip/hww2l2v_13TeV_WH_SS_ee_2j_plus_pt2lt20/mlljj20_whss_2j_bin/datacard.txt \
+                     WH_SS_em_1j_minus_low_pt=datacards_DYflip/hww2l2v_13TeV_WH_SS_em_1j_minus_pt2lt20/mlljj20_whss_1j_bin/datacard.txt \
+                     WH_SS_em_1j_plus_low_pt=datacards_DYflip/hww2l2v_13TeV_WH_SS_em_1j_plus_pt2lt20/mlljj20_whss_1j_bin/datacard.txt \
+                     WH_SS_mm_1j_minus_low_pt=datacards_DYflip/hww2l2v_13TeV_WH_SS_mm_1j_minus_pt2lt20/mlljj20_whss_1j_bin/datacard.txt \
+                     WH_SS_mm_1j_plus_low_pt=datacards_DYflip/hww2l2v_13TeV_WH_SS_mm_1j_plus_pt2lt20/mlljj20_whss_1j_bin/datacard.txt \
+                     WH_SS_ee_1j_minus_low_pt=datacards_DYflip/hww2l2v_13TeV_WH_SS_ee_1j_minus_pt2lt20/mlljj20_whss_1j_bin/datacard.txt \
+                     WH_SS_ee_1j_plus_low_pt=datacards_DYflip/hww2l2v_13TeV_WH_SS_ee_1j_plus_pt2lt20/mlljj20_whss_1j_bin/datacard.txt \
+                     ZH3l_WZ_CR_1j=datacards_DYflip/hww2l2v_13TeV_ZH3l_WZ_CR_1j/events/datacard.txt \
+                     ZH3l_WZ_CR_2j=datacards_DYflip/hww2l2v_13TeV_ZH3l_WZ_CR_2j/events/datacard.txt \
+		     > Combination/WH_chargeAsymmetry_WH_SS_Full2018_v7_allFinalStates_alsoLowPt_DYflip.txt
+
+Using original distributions:
+
+     combineCards.py WH_SS_ee_2j_minus=datacards/hww2l2v_13TeV_WH_SS_ee_2j_minus_pt2ge20/mlljj20_whss_2j_bin/datacard.txt \
+		     WH_SS_ee_2j_plus=datacards/hww2l2v_13TeV_WH_SS_ee_2j_plus_pt2ge20/mlljj20_whss_2j_bin/datacard.txt \
+                     WH_SS_ee_1j_minus=datacards/hww2l2v_13TeV_WH_SS_ee_1j_minus_pt2ge20/mlljj20_whss_1j_bin/datacard.txt \
+                     WH_SS_ee_1j_plus=datacards/hww2l2v_13TeV_WH_SS_ee_1j_plus_pt2ge20/mlljj20_whss_1j_bin/datacard.txt \
+                     ZH3l_WZ_CR_1j=datacards/hww2l2v_13TeV_ZH3l_WZ_CR_1j/events/datacard.txt \
+                     ZH3l_WZ_CR_2j=datacards/hww2l2v_13TeV_ZH3l_WZ_CR_2j/events/datacard.txt \
+		     > Combination/WH_chargeAsymmetry_WH_SS_Full2018_v7_eeFinalState.txt
 
      combineCards.py WH_SS_em_2j_minus=datacards/hww2l2v_13TeV_WH_SS_em_2j_minus_pt2ge20/mlljj20_whss_2j_bin/datacard.txt \
                      WH_SS_em_2j_plus=datacards/hww2l2v_13TeV_WH_SS_em_2j_plus_pt2ge20/mlljj20_whss_2j_bin/datacard.txt \
@@ -175,7 +298,47 @@ Drop nuisances giving negative yields in the datacards:
 
      ./dropNuisances.sh
 
-### Create workspace for combine and do the fit
+
+### Create workspace for combine and do the fit using DY->ee data-driven distributions
+
+Only ee final state:
+
+     text2workspace.py Combination/WH_chargeAsymmetry_WH_SS_Full2018_v7_eeFinalState_DYflip.txt -o Combination/WH_chargeAsymmetry_WH_SS_Full2018_v7_eeFinalState_DYflip.root -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel --PO verbose \
+     --PO 'map=.*/ggH_hww:r_higgs[1,-10,10]' \
+     --PO 'map=.*/qqH_hww:r_higgs[1,-10,10]' \
+     --PO 'map=.*/ZH_hww:r_higgs[1,-10,10]' \
+     --PO 'map=.*/ggZH_hww:r_higgs[1,-10,10]' \
+     --PO 'map=.*/ttH_hww:r_higgs[1,-10,10]' \
+     --PO 'map=.*/ggH_htt:r_higgs[1,-10,10]' \
+     --PO 'map=.*/qqH_htt:r_higgs[1,-10,10]' \
+     --PO 'map=.*/ZH_htt:r_higgs[1,-10,10]' \
+     --PO 'map=.*/WH_htt_plus:r_WH_plus[1,-10,10]' \
+     --PO 'map=.*/WH_hww_plus:r_WH_plus[1,-10,10]' \
+     --PO 'map=.*/WH_htt_minus:r_WH_minus[1,-10,10]' \
+     --PO 'map=.*/WH_hww_minus:r_WH_minus[1,-10,10]'
+
+     combine -M MultiDimFit --algo=singles --X-rtd MINIMIZER_analytic Combination/WH_chargeAsymmetry_WH_SS_Full2018_v7_eeFinalState_DYflip.root -t -1 --setParameters r_WH_minus=1,r_WH_plus=1,r_higgs=1 > Combination/FitResults_eeFinalState_DYflip.txt
+
+Checking how including ee final state affects the analysis:
+
+     text2workspace.py Combination/WH_chargeAsymmetry_WH_SS_Full2018_v7_allFinalStates_DYflip.txt -o Combination/WH_chargeAsymmetry_WH_SS_Full2018_v7_allFinalStates_DYflip.root -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel --PO verbose \
+     --PO 'map=.*/ggH_hww:r_higgs[1,-10,10]' \
+     --PO 'map=.*/qqH_hww:r_higgs[1,-10,10]' \
+     --PO 'map=.*/ZH_hww:r_higgs[1,-10,10]' \
+     --PO 'map=.*/ggZH_hww:r_higgs[1,-10,10]' \
+     --PO 'map=.*/ttH_hww:r_higgs[1,-10,10]' \
+     --PO 'map=.*/ggH_htt:r_higgs[1,-10,10]' \
+     --PO 'map=.*/qqH_htt:r_higgs[1,-10,10]' \
+     --PO 'map=.*/ZH_htt:r_higgs[1,-10,10]' \
+     --PO 'map=.*/WH_htt_plus:r_WH_plus[1,-10,10]' \
+     --PO 'map=.*/WH_hww_plus:r_WH_plus[1,-10,10]' \
+     --PO 'map=.*/WH_htt_minus:r_WH_minus[1,-10,10]' \
+     --PO 'map=.*/WH_hww_minus:r_WH_minus[1,-10,10]'
+
+     combine -M MultiDimFit --algo=singles --X-rtd MINIMIZER_analytic Combination/WH_chargeAsymmetry_WH_SS_Full2018_v7_allFinalStates_DYflip.root -t -1 --setParameters r_WH_minus=1,r_WH_plus=1,r_higgs=1 > Combination/FitResults_allFinalStates_DYflip.txt
+
+
+### Create workspace for combine and do the fit using original distributions
 
 Considering W+ and W- as separate signals:
 
@@ -253,6 +416,25 @@ Checking how including ee final state affects the analysis:
      combine -M MultiDimFit --algo=singles --X-rtd MINIMIZER_analytic Combination/WH_chargeAsymmetry_WH_SS_Full2018_v7_allFinalStates.root -t -1 --setParameters r_WH_minus=1,r_WH_plus=1,r_higgs=1 > Combination/FitResults_allFinalStates.txt
 
 
+Only ee final state:
+
+     text2workspace.py Combination/WH_chargeAsymmetry_WH_SS_Full2018_v7_eeFinalState.txt -o Combination/WH_chargeAsymmetry_WH_SS_Full2018_v7_eeFinalState.root -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel --PO verbose \
+     --PO 'map=.*/ggH_hww:r_higgs[1,-10,10]' \
+     --PO 'map=.*/qqH_hww:r_higgs[1,-10,10]' \
+     --PO 'map=.*/ZH_hww:r_higgs[1,-10,10]' \
+     --PO 'map=.*/ggZH_hww:r_higgs[1,-10,10]' \
+     --PO 'map=.*/ttH_hww:r_higgs[1,-10,10]' \
+     --PO 'map=.*/ggH_htt:r_higgs[1,-10,10]' \
+     --PO 'map=.*/qqH_htt:r_higgs[1,-10,10]' \
+     --PO 'map=.*/ZH_htt:r_higgs[1,-10,10]' \
+     --PO 'map=.*/WH_htt_plus:r_WH_plus[1,-10,10]' \
+     --PO 'map=.*/WH_hww_plus:r_WH_plus[1,-10,10]' \
+     --PO 'map=.*/WH_htt_minus:r_WH_minus[1,-10,10]' \
+     --PO 'map=.*/WH_hww_minus:r_WH_minus[1,-10,10]'
+
+     combine -M MultiDimFit --algo=singles --X-rtd MINIMIZER_analytic Combination/WH_chargeAsymmetry_WH_SS_Full2018_v7_eeFinalState.root -t -1 --setParameters r_WH_minus=1,r_WH_plus=1,r_higgs=1 > Combination/FitResults_eeFinalState.txt
+
+
 Including also ee final state and splitting into high-pT and low-pT sub-leading leptons categories:
 
      text2workspace.py Combination/WH_chargeAsymmetry_WH_SS_Full2018_v7_allFinalStates_alsoLowPt.txt -o Combination/WH_chargeAsymmetry_WH_SS_Full2018_v7_allFinalStates_alsoLowPt.root -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel --PO verbose \
@@ -282,9 +464,323 @@ Considering the Yellow Report Cross sections for the two processes (https://twik
 - XS W+h = 0.8380 pb
 - XS W-h = 0.5313 pb
 
-We can extract both the asymmetry and its uncertainty, based on the results stored in Combination/FitResults.txt. For the moment, just use the macro:
+When fitting, it is more convenient to re-define the quantities we want to measure:
 
-     python getAsymmetry.py
+     A = (sigma+ - sigma-)/(sigma+ - sigma-)
+
+     S = sigma+ + sigma- #sigma $\sigma$
+
+This means that:
+
+     sigma+ = S*(1+A)/2
+
+     sigma- = S*(1-A)/2
+
+In the combine 'notation':
+
+     sigma+ = r_WH_plus * sigma+_theory
+
+     sigma- = r_WH_minus * sigma-_theory
+
+And this brings to:
+
+     r_WH_plus  = S*(1+A)/(2*sigma+_theory)
+
+     r_WH_minus = S*(1-A)/(2*sigma-_theory)
+
+### Extract the asymmetry from a physics model in combine
+
+Considering mm and em final states (as in legacy analysis):
+
+     text2workspace.py \
+     Combination/WH_chargeAsymmetry_WH_SS_Full2018_v7.txt \
+     -o Combination/WH_chargeAsymmetry_WH_SS_Full2018_v7.root \
+     -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel \
+     -m 125 \
+     --PO 'map=.*/ggH_hww:r_higgs[1,-10,10]' \
+     --PO 'map=.*/qqH_hww:r_higgs[1,-10,10]' \
+     --PO 'map=.*/ZH_hww:r_higgs[1,-10,10]' \
+     --PO 'map=.*/ggZH_hww:r_higgs[1,-10,10]' \
+     --PO 'map=.*/ttH_hww:r_higgs[1,-10,10]' \
+     --PO 'map=.*/ggH_htt:r_higgs[1,-10,10]' \
+     --PO 'map=.*/qqH_htt:r_higgs[1,-10,10]' \
+     --PO 'map=.*/ZH_htt:r_higgs[1,-10,10]' \
+     --PO 'map=.*/WH_h.*_plus:r_WH_plus=expr;;r_WH_plus("@0*(1+@1)/(2*0.8380)",r_S[1.3693,0,20],r_A[0.224,-1,100])' \
+     --PO 'map=.*/WH_h.*_minus:r_WH_minus=expr;;r_WH_minus("@0*(1-@1)/(2*0.5313)",r_S[1.3693,0,20],r_A[0.224,-1,100])' \
+     --PO verbose
+
+     combine \
+     -M MultiDimFit \
+     --algo=singles \
+     -d Combination/WH_chargeAsymmetry_WH_SS_Full2018_v7.root \
+     -t -1 \
+     --setParameters r_S=1.3693,r_A=0.224,r_higgs=1 \
+     --setParameterRanges r_S=0,20:r_A=-1,100:r_higgs=-10,10 \
+     --redefineSignalPOIs r_S,r_A,r_higgs > Combination/FitResults_Asymmetry_A_S.txt
+
+
+Considering mm and em final states and the low-pT categories:
+
+     text2workspace.py \
+     Combination/WH_chargeAsymmetry_WH_SS_Full2018_v7_alsoLowPt.txt \
+     -o Combination/WH_chargeAsymmetry_WH_SS_Full2018_v7_alsoLowPt.root \
+     -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel \
+     -m 125 \
+     --PO 'map=.*/ggH_hww:r_higgs[1,-10,10]' \
+     --PO 'map=.*/qqH_hww:r_higgs[1,-10,10]' \
+     --PO 'map=.*/ZH_hww:r_higgs[1,-10,10]' \
+     --PO 'map=.*/ggZH_hww:r_higgs[1,-10,10]' \
+     --PO 'map=.*/ttH_hww:r_higgs[1,-10,10]' \
+     --PO 'map=.*/ggH_htt:r_higgs[1,-10,10]' \
+     --PO 'map=.*/qqH_htt:r_higgs[1,-10,10]' \
+     --PO 'map=.*/ZH_htt:r_higgs[1,-10,10]' \
+     --PO 'map=.*/WH_h.*_plus:r_WH_plus=expr;;r_WH_plus("@0*(1+@1)/(2*0.8380)",r_S[1.3693,0,20],r_A[0.224,-1,100])' \
+     --PO 'map=.*/WH_h.*_minus:r_WH_minus=expr;;r_WH_minus("@0*(1-@1)/(2*0.5313)",r_S[1.3693,0,20],r_A[0.224,-1,100])' \
+     --PO verbose
+
+     combine \
+     -M MultiDimFit \
+     --algo=singles \
+     -d Combination/WH_chargeAsymmetry_WH_SS_Full2018_v7_alsoLowPt.root \
+     -t -1 \
+     --setParameters r_S=1.3693,r_A=0.224,r_higgs=1 \
+     --setParameterRanges r_S=0,20:r_A=-1,100:r_higgs=-10,10 \
+     --redefineSignalPOIs r_S,r_A,r_higgs > Combination/FitResults_Asymmetry_A_S_alsoLowPt.txt
+
+
+Considering only the ee final state:
+
+     text2workspace.py \
+     Combination/WH_chargeAsymmetry_WH_SS_Full2018_v7_eeFinalState.txt \
+     -o Combination/WH_chargeAsymmetry_WH_SS_Full2018_v7_eeFinalState.root \
+     -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel \
+     -m 125 \
+     --PO 'map=.*/ggH_hww:r_higgs[1,-10,10]' \
+     --PO 'map=.*/qqH_hww:r_higgs[1,-10,10]' \
+     --PO 'map=.*/ZH_hww:r_higgs[1,-10,10]' \
+     --PO 'map=.*/ggZH_hww:r_higgs[1,-10,10]' \
+     --PO 'map=.*/ttH_hww:r_higgs[1,-10,10]' \
+     --PO 'map=.*/ggH_htt:r_higgs[1,-10,10]' \
+     --PO 'map=.*/qqH_htt:r_higgs[1,-10,10]' \
+     --PO 'map=.*/ZH_htt:r_higgs[1,-10,10]' \
+     --PO 'map=.*/WH_h.*_plus:r_WH_plus=expr;;r_WH_plus("@0*(1+@1)/(2*0.8380)",r_S[1.3693,0,20],r_A[0.224,-1,100])' \
+     --PO 'map=.*/WH_h.*_minus:r_WH_minus=expr;;r_WH_minus("@0*(1-@1)/(2*0.5313)",r_S[1.3693,0,20],r_A[0.224,-1,100])' \
+     --PO verbose
+
+     combine \
+     -M MultiDimFit \
+     --algo=singles \
+     -d Combination/WH_chargeAsymmetry_WH_SS_Full2018_v7_eeFinalState.root \
+     -t -1 \
+     --setParameters r_S=1.3693,r_A=0.224,r_higgs=1 \
+     --setParameterRanges r_S=0,20:r_A=-1,100:r_higgs=-10,10 \
+     --redefineSignalPOIs r_S,r_A,r_higgs > Combination/FitResults_Asymmetry_A_S_eeFinalState.txt
+
+Considering all the final states:
+
+     text2workspace.py \
+     Combination/WH_chargeAsymmetry_WH_SS_Full2018_v7_allFinalStates.txt \
+     -o Combination/WH_chargeAsymmetry_WH_SS_Full2018_v7_allFinalStates.root \
+     -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel \
+     -m 125 \
+     --PO 'map=.*/ggH_hww:r_higgs[1,-10,10]' \
+     --PO 'map=.*/qqH_hww:r_higgs[1,-10,10]' \
+     --PO 'map=.*/ZH_hww:r_higgs[1,-10,10]' \
+     --PO 'map=.*/ggZH_hww:r_higgs[1,-10,10]' \
+     --PO 'map=.*/ttH_hww:r_higgs[1,-10,10]' \
+     --PO 'map=.*/ggH_htt:r_higgs[1,-10,10]' \
+     --PO 'map=.*/qqH_htt:r_higgs[1,-10,10]' \
+     --PO 'map=.*/ZH_htt:r_higgs[1,-10,10]' \
+     --PO 'map=.*/WH_h.*_plus:r_WH_plus=expr;;r_WH_plus("@0*(1+@1)/(2*0.8380)",r_S[1.3693,0,20],r_A[0.224,-1,100])' \
+     --PO 'map=.*/WH_h.*_minus:r_WH_minus=expr;;r_WH_minus("@0*(1-@1)/(2*0.5313)",r_S[1.3693,0,20],r_A[0.224,-1,100])' \
+     --PO verbose
+
+     combine \
+     -M MultiDimFit \
+     --algo=singles \
+     -d Combination/WH_chargeAsymmetry_WH_SS_Full2018_v7_allFinalStates.root \
+     -t -1 \
+     --setParameters r_S=1.3693,r_A=0.224,r_higgs=1 \
+     --setParameterRanges r_S=0,20:r_A=-1,100:r_higgs=-10,10 \
+     --redefineSignalPOIs r_S,r_A,r_higgs > Combination/FitResults_Asymmetry_A_S_allFinalStates.txt
+
+
+Considering all the final states and the low-pT categories:
+
+     text2workspace.py \
+     Combination/WH_chargeAsymmetry_WH_SS_Full2018_v7_allFinalStates_alsoLowPt.txt \
+     -o Combination/WH_chargeAsymmetry_WH_SS_Full2018_v7_allFinalStates_alsoLowPt.root \
+     -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel \
+     -m 125 \
+     --PO 'map=.*/ggH_hww:r_higgs[1,-10,10]' \
+     --PO 'map=.*/qqH_hww:r_higgs[1,-10,10]' \
+     --PO 'map=.*/ZH_hww:r_higgs[1,-10,10]' \
+     --PO 'map=.*/ggZH_hww:r_higgs[1,-10,10]' \
+     --PO 'map=.*/ttH_hww:r_higgs[1,-10,10]' \
+     --PO 'map=.*/ggH_htt:r_higgs[1,-10,10]' \
+     --PO 'map=.*/qqH_htt:r_higgs[1,-10,10]' \
+     --PO 'map=.*/ZH_htt:r_higgs[1,-10,10]' \
+     --PO 'map=.*/WH_h.*_plus:r_WH_plus=expr;;r_WH_plus("@0*(1+@1)/(2*0.8380)",r_S[1.3693,0,20],r_A[0.224,-1,100])' \
+     --PO 'map=.*/WH_h.*_minus:r_WH_minus=expr;;r_WH_minus("@0*(1-@1)/(2*0.5313)",r_S[1.3693,0,20],r_A[0.224,-1,100])' \
+     --PO verbose
+
+     combine \
+     -M MultiDimFit \
+     --algo=singles \
+     -d Combination/WH_chargeAsymmetry_WH_SS_Full2018_v7_allFinalStates_alsoLowPt.root \
+     -t -1 \
+     --setParameters r_S=1.3693,r_A=0.224,r_higgs=1 \
+     --setParameterRanges r_S=0,20:r_A=-1,100:r_higgs=-10,10 \
+     --redefineSignalPOIs r_S,r_A,r_higgs > Combination/FitResults_Asymmetry_A_S_allFinalStates_alsoLowPt.txt
+
+
+Considering only the ee final state, estimated using charge-flip probabilities:
+
+     text2workspace.py \
+     Combination/WH_chargeAsymmetry_WH_SS_Full2018_v7_eeFinalState_DYflip.txt \
+     -o Combination/WH_chargeAsymmetry_WH_SS_Full2018_v7_eeFinalState_DYflip.root \
+     -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel \
+     -m 125 \
+     --PO 'map=.*/ggH_hww:r_higgs[1,-10,10]' \
+     --PO 'map=.*/qqH_hww:r_higgs[1,-10,10]' \
+     --PO 'map=.*/ZH_hww:r_higgs[1,-10,10]' \
+     --PO 'map=.*/ggZH_hww:r_higgs[1,-10,10]' \
+     --PO 'map=.*/ttH_hww:r_higgs[1,-10,10]' \
+     --PO 'map=.*/ggH_htt:r_higgs[1,-10,10]' \
+     --PO 'map=.*/qqH_htt:r_higgs[1,-10,10]' \
+     --PO 'map=.*/ZH_htt:r_higgs[1,-10,10]' \
+     --PO 'map=.*/WH_h.*_plus:r_WH_plus=expr;;r_WH_plus("@0*(1+@1)/(2*0.8380)",r_S[1.3693,0,20],r_A[0.224,-1,100])' \
+     --PO 'map=.*/WH_h.*_minus:r_WH_minus=expr;;r_WH_minus("@0*(1-@1)/(2*0.5313)",r_S[1.3693,0,20],r_A[0.224,-1,100])' \
+     --PO verbose
+
+     combine \
+     -M MultiDimFit \
+     --algo=singles \
+     -d Combination/WH_chargeAsymmetry_WH_SS_Full2018_v7_eeFinalState_DYflip.root \
+     -t -1 \
+     --setParameters r_S=1.3693,r_A=0.224,r_higgs=1 \
+     --setParameterRanges r_S=0,20:r_A=-1,100:r_higgs=-10,10 \
+     --redefineSignalPOIs r_S,r_A,r_higgs > Combination/FitResults_Asymmetry_A_S_eeFinalState_DYflip.txt
+
+
+Considering all final states, estimated using charge-flip probabilities:
+
+     text2workspace.py \
+     Combination/WH_chargeAsymmetry_WH_SS_Full2018_v7_allFinalStates_DYflip.txt \
+     -o Combination/WH_chargeAsymmetry_WH_SS_Full2018_v7_allFinalStates_DYflip.root \
+     -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel \
+     -m 125 \
+     --PO 'map=.*/ggH_hww:r_higgs[1,-10,10]' \
+     --PO 'map=.*/qqH_hww:r_higgs[1,-10,10]' \
+     --PO 'map=.*/ZH_hww:r_higgs[1,-10,10]' \
+     --PO 'map=.*/ggZH_hww:r_higgs[1,-10,10]' \
+     --PO 'map=.*/ttH_hww:r_higgs[1,-10,10]' \
+     --PO 'map=.*/ggH_htt:r_higgs[1,-10,10]' \
+     --PO 'map=.*/qqH_htt:r_higgs[1,-10,10]' \
+     --PO 'map=.*/ZH_htt:r_higgs[1,-10,10]' \
+     --PO 'map=.*/WH_h.*_plus:r_WH_plus=expr;;r_WH_plus("@0*(1+@1)/(2*0.8380)",r_S[1.3693,0,20],r_A[0.224,-1,100])' \
+     --PO 'map=.*/WH_h.*_minus:r_WH_minus=expr;;r_WH_minus("@0*(1-@1)/(2*0.5313)",r_S[1.3693,0,20],r_A[0.224,-1,100])' \
+     --PO verbose
+
+     combine \
+     -M MultiDimFit \
+     --algo=singles \
+     -d Combination/WH_chargeAsymmetry_WH_SS_Full2018_v7_allFinalStates_DYflip.root \
+     -t -1 \
+     --setParameters r_S=1.3693,r_A=0.224,r_higgs=1 \
+     --setParameterRanges r_S=0,20:r_A=-1,100:r_higgs=-10,10 \
+     --redefineSignalPOIs r_S,r_A,r_higgs > Combination/FitResults_Asymmetry_A_S_allFinalStates_DYflip.txt
+
+
+Considering all final states, estimated using charge-flip probabilities, and including the low-pT categories:
+
+     text2workspace.py \
+     Combination/WH_chargeAsymmetry_WH_SS_Full2018_v7_allFinalStates_alsoLowPt_DYflip.txt \
+     -o Combination/WH_chargeAsymmetry_WH_SS_Full2018_v7_allFinalStates_alsoLowPt_DYflip.root \
+     -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel \
+     -m 125 \
+     --PO 'map=.*/ggH_hww:r_higgs[1,-10,10]' \
+     --PO 'map=.*/qqH_hww:r_higgs[1,-10,10]' \
+     --PO 'map=.*/ZH_hww:r_higgs[1,-10,10]' \
+     --PO 'map=.*/ggZH_hww:r_higgs[1,-10,10]' \
+     --PO 'map=.*/ttH_hww:r_higgs[1,-10,10]' \
+     --PO 'map=.*/ggH_htt:r_higgs[1,-10,10]' \
+     --PO 'map=.*/qqH_htt:r_higgs[1,-10,10]' \
+     --PO 'map=.*/ZH_htt:r_higgs[1,-10,10]' \
+     --PO 'map=.*/WH_h.*_plus:r_WH_plus=expr;;r_WH_plus("@0*(1+@1)/(2*0.8380)",r_S[1.3693,0,20],r_A[0.224,-1,100])' \
+     --PO 'map=.*/WH_h.*_minus:r_WH_minus=expr;;r_WH_minus("@0*(1-@1)/(2*0.5313)",r_S[1.3693,0,20],r_A[0.224,-1,100])' \
+     --PO verbose
+
+     combine \
+     -M MultiDimFit \
+     --algo=singles \
+     -d Combination/WH_chargeAsymmetry_WH_SS_Full2018_v7_allFinalStates_alsoLowPt_DYflip.root \
+     -t -1 \
+     --setParameters r_S=1.3693,r_A=0.224,r_higgs=1 \
+     --setParameterRanges r_S=0,20:r_A=-1,100:r_higgs=-10,10 \
+     --redefineSignalPOIs r_S,r_A,r_higgs > Combination/FitResults_Asymmetry_A_S_allFinalStates_alsoLowPt_DYflip.txt
+
+
+### Fit sanity checks
+
+Produce likelihood scan. First, generate toys:
+
+     combine -M GenerateOnly Combination/WH_chargeAsymmetry_WH_SS_Full2018_v7_eeFinalState.root -t -1 --saveToys --setParameters r_S=1.3693,r_A=0.224,r_higgs=1 
+
+The, use the toys to perform the scan:
+
+     combineTool.py -M FastScan -w Combination/WH_chargeAsymmetry_WH_SS_Full2018_v7_eeFinalState.root.root:w -d higgsCombineTest.GenerateOnly.mH120.123456.root:toys/toy_asimov
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ### Extract the asymmetry from a physics model in combine
 
@@ -309,8 +805,6 @@ First, we need to create the workspace. We want to use define one of the WH sign
      --PO 'map=.*/WH_h.*_minus:r_WH_minus=expr;;r_WH_minus("0.8380/0.5313*@0*(1-@1)/(1+@1)",r_WH_plus,r_Asym[0.224,0,10])' \
      --PO verbose
 
-
-
 Then, do the actual fit:
 
      combine \
@@ -324,6 +818,56 @@ Then, do the actual fit:
 
 
 ,r_higgs 
+
+
+
+Only ee final state, using charge-flip probabilities:
+
+     text2workspace.py \
+     Combination/WH_chargeAsymmetry_WH_SS_Full2018_v7_eeFinalState_DYflip.txt \
+     -o Combination/WH_chargeAsymmetry_WH_SS_Full2018_v7_physicsModel_eeFinalState_DYflip.root \
+     -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel \
+     -m 125 \
+     --PO 'map=.*/WH_h.*_plus:r_WH_plus[1,-20,20]' \
+     --PO 'map=.*/WH_h.*_minus:r_WH_minus=expr;;r_WH_minus("0.8380/0.5313*@0*(1-@1)/(1+@1)",r_WH_plus,r_Asym[0.224,0,10])' \
+     --PO verbose
+
+     combine \
+     -M MultiDimFit \
+     --algo=singles \
+     -d Combination/WH_chargeAsymmetry_WH_SS_Full2018_v7_physicsModel_eeFinalState_DYflip.root \
+     -t -1 \
+     --setParameters r_WH_plus=1,r_Asym=0.224 \
+     --setParameterRanges r_WH_plus=-20,20:r_Asym=0,10 \
+     --redefineSignalPOIs r_WH_plus,r_Asym > Combination/PhysicsModel_eeFinalState_DYflip.txt
+
+Only ee final state, using old approach:
+
+     text2workspace.py \
+     Combination/WH_chargeAsymmetry_WH_SS_Full2018_v7_eeFinalState.txt \
+     -o Combination/WH_chargeAsymmetry_WH_SS_Full2018_v7_physicsModel_eeFinalState.root \
+     -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel \
+     -m 125 \
+     --PO 'map=.*/WH_h.*_plus:r_WH_plus[1,-20,20]' \
+     --PO 'map=.*/WH_h.*_minus:r_WH_minus=expr;;r_WH_minus("0.8380/0.5313*@0*(1-@1)/(1+@1)",r_WH_plus,r_Asym[0.224,0,10])' \
+     --PO verbose
+
+     combine \
+     -M MultiDimFit \
+     --algo=singles \
+     -d Combination/WH_chargeAsymmetry_WH_SS_Full2018_v7_physicsModel_eeFinalState.root \
+     -t -1 \
+     --setParameters r_WH_plus=1,r_Asym=0.224 \
+     --setParameterRanges r_WH_plus=-20,20:r_Asym=0,10 \
+     --redefineSignalPOIs r_WH_plus,r_Asym > Combination/PhysicsModel_eeFinalState.txt
+
+
+
+
+
+
+
+
 
 
 

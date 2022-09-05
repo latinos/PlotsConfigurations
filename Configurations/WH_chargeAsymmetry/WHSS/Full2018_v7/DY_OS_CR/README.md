@@ -46,3 +46,13 @@ This step creates the file `../rootFile/plots_WHSS_2018_v7_chargeAsymmetry_DYfli
     --cutName hww2l2v_13TeV_WH_OS_ee_2j_DYeeCR_pt2ge20
 
     cd -
+
+### Plot distributions in an OS-like signal region
+
+We can plot all the distributions in the OS-like signal region. This allows to check the data/MC agreement in the region we use to estimate the DY contamination in the SS signal region. Additionally, we can try to to a completely data-driven estimation: we consider data, remove all non-DY MC contributions: This will be our data-driven DY estimation in the OS phase space. Reweighting it by the charge-flip probabilities, we can get the DY contamination in the SS signal region.
+
+    mkShapesMulti.py --pycfg=configuration_DY_OS.py --doBatch=1 --batchSplit=Samples,Files --batchQueue=testmatch
+
+    mkShapesMulti.py --pycfg=configuration_DY_OS.py --doHadd=1 --batchSplit=Samples,Files --doNotCleanup --nThreads=8
+
+    mkPlot.py        --pycfg=configuration_DY_OS.py --inputFile=rootFile_OS/plots_WHSS_DY_OSCR_2018_v7_chargeAsymmetry.root --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1

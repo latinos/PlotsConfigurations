@@ -6,7 +6,8 @@
 #                    
 structure['DY']  = {  
     'isSignal' : 0,
-    'isData'   : 0
+    'isData'   : 0,
+    'scaleSampleForDatacard' : 0.5
 }
 
 structure['Fake_ee']  = {

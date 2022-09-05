@@ -9,12 +9,14 @@ configurations = os.path.dirname(configurations) # Configurations
 
 #aliases = {}
 
-#mc = [skey for skey in samples if skey not in ('Fakes', 'DATA')]
+# mc = [skey for skey in samples if skey not in ('Fakes', 'DATA')]
 mc = [skey for skey in samples if skey not in ('Fake', 'DATA')]
 
 
 bAlgo = 'DeepB'
 bWP = '0.1241'
+
+# LepCut2l__ele_mvaFall17V1Iso_WP90_SS_tthmva_70__mu_cut_Tight_HWWW_tthmva_80
 
 eleWP = 'mvaFall17V1Iso_WP90_SS_tthmva_70'
 muWP = 'cut_Tight_HWWW_tthmva_80'
@@ -245,18 +247,18 @@ aliases['antitopGenPtOTF'] = {
     'samples': ['top']
 }
 
-aliases['ZH3l_dphilmetjj_test'] = {
-    'linesToAdd': [
-        '.L %s/src/PlotsConfigurations/Configurations/ZH3l/scripts/ZH3l_patch.cc+' % os.getenv('CMSSW_BASE')
-    ],
-    'class': 'ZH3l_patch',
-    'args': ("dphilmetjj")
-}
+# aliases['ZH3l_dphilmetjj_test'] = {
+#     'linesToAdd': [
+#         '.L %s/src/PlotsConfigurations/Configurations/ZH3l/scripts/ZH3l_patch.cc+' % os.getenv('CMSSW_BASE')
+#     ],
+#     'class': 'ZH3l_patch',
+#     'args': ("dphilmetjj")
+# }
 
-aliases['ZH3l_dphilmetj_test'] = {
-    'class': 'ZH3l_patch',
-    'args': ("dphilmetj")
-}
+# aliases['ZH3l_dphilmetj_test'] = {
+#     'class': 'ZH3l_patch',
+#     'args': ("dphilmetj")
+# }
 
 # variations
 aliases['SFweightEleUp'] = {
@@ -276,20 +278,37 @@ aliases['SFweightMuDown'] = {
     'samples': mc
 }
 
-########################
-### Charge misid SFs ###
-########################
+##########################################
+### Charge misid SFs (tight charge ID) ###
+##########################################
 
 aliases['ttHMVA_SF_flip_2l'] = {
     'linesToAdd': ['.L %s/macros/flipper.C+' % configurations],
     'class': 'flipper',
-    'args' : ('2018', 2, 'Total_SF'),
+    'args' : ('2018', 2, 'Total_SF', 'true'),
     'samples': ['DY','WW','top']
 }
 
 aliases['ttHMVA_SF_err_flip_2l'] = {
     'class': 'flipper',
-    'args' : ('2018', 2, 'Total_SF_err'),
+    'args' : ('2018', 2, 'Total_SF_err', 'true'),
     'samples': ['DY','WW','top']
 }
 
+####################################################
+### Charge misid probabilities (tight charge ID) ###
+####################################################
+
+aliases['ttHMVA_eff_flip_2l'] = {
+    'linesToAdd': ['.L %s/macros/flipper_eff.C+' % configurations],
+    'class': 'flipper_eff',
+    'args' : ('2018', 2, 'Total_SF', 'true'),
+    'samples': ['DY_OS']
+}
+
+aliases['ttHMVA_eff_err_flip_2l'] = {
+    'linesToAdd': ['.L %s/macros/flipper_eff.C+' % configurations],
+    'class': 'flipper_eff',
+    'args' : ('2018', 2, 'Total_SF_err', 'true'),
+    'samples': ['DY_OS']
+}
