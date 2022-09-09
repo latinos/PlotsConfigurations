@@ -27,3 +27,21 @@ Or, if they failed because the wall clock time has been exceeded, resubmit them 
 ### Plot distributions
 
     mkPlot.py --pycfg=configuration.py --inputFile=rootFile/plots_DY_2017_v9.root --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1 --minLogCratio=1
+
+
+## To check the effect of COMPLETELY REMOVING the jet energy resolutions smearing factors
+
+    mkShapesMulti.py --pycfg=configuration_noJER.py --doBatch=1 --batchSplit=Samples,Files --batchQueue=testmatch
+
+    mkShapesMulti.py --pycfg=configuration_noJER.py --doHadd=1 --batchSplit=Samples,Files --doNotCleanup --nThreads=8
+
+    mkPlot.py --pycfg=configuration_noJER.py --inputFile=rootFile_noJER/plots_DY_2017_v9_noJER.root --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1 --minLogCratio=1
+
+
+## To check the effect of applying the jet energy resolutions smearing factors only to jets with PT > 50 GeV
+
+    mkShapesMulti.py --pycfg=configuration_50GeVJER.py --doBatch=1 --batchSplit=Samples,Files --batchQueue=testmatch
+
+    mkShapesMulti.py --pycfg=configuration_50GeVJER.py --doHadd=1 --batchSplit=Samples,Files --doNotCleanup --nThreads=8
+
+    mkPlot.py --pycfg=configuration_50GeVJER.py --inputFile=rootFile_50GeVJER/plots_DY_2017_v9_50GeVJER.root --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1 --minLogCratio=1
