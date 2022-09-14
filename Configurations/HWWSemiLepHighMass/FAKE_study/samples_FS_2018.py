@@ -265,7 +265,7 @@ samples['qqWWqq'] = {
 print("W+jets")
 whad_reweight = '(1.27217e+00 - 1.78593e-03*HM_Whad_mass)'
 
-files  = nanoGetSampleFiles(mcDirectory, 'WJetsToLNu')
+files  = nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-LO')
 #files  = nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-LO')
 #files += nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-LO_ext1')
 files += nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_HT100_200')
@@ -306,10 +306,15 @@ samples['Wjets'] = {
 #CombineBaseW(mcDirectory, samples, 'Wjets',
 #            ['WJetsToLNu_HT800_1200', 'WJetsToLNu_HT800_1200_ext1'])
 
-addSampleWeight(samples,'Wjets','WJetsToLNu','(LHE_HT < 70)')
-addSampleWeight(samples,'Wjets','WJetsToLNu_ext2','(LHE_HT < 70)')
+addSampleWeight(samples,'Wjets','WJetsToLNu-LO','(LHE_HT < 70)')
 addSampleWeight(samples, 'Wjets', 'WJetsToLNu_HT70_100', '1.21')
-
+addSampleWeight(samples, 'Wjets', 'WJetsToLNu_HT100_200', '0.993')
+addSampleWeight(samples, 'Wjets', 'WJetsToLNu_HT200_400', '1.002')
+addSampleWeight(samples, 'Wjets', 'WJetsToLNu_HT400_600', '1.009')
+addSampleWeight(samples, 'Wjets', 'WJetsToLNu_HT600_800', '1.120')
+addSampleWeight(samples, 'Wjets', 'WJetsToLNu_HT800_1200', '1.202')
+addSampleWeight(samples, 'Wjets', 'WJetsToLNu_HT1200_2500', '1.332')
+addSampleWeight(samples, 'Wjets', 'WJetsToLNu_HT2500_inf','4.2')
 
 
 ####### Vg ########

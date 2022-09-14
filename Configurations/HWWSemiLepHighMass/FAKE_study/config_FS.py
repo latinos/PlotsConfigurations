@@ -2,13 +2,13 @@
 
 treeName = 'Events'
 
-tag = 'hm_FAKE_2018'
+tag = 'hm_FAKE_2017'
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFile_FAKE_2018'
+outputDir = 'rootFile_FAKE_2017'
 
 # file with TTree aliases
-aliasesFile = 'aliases_FS_2018.py'
+aliasesFile = 'aliases_FS_2017.py'
 
 # file with list of variables
 variablesFile = 'variables_FS.py'
@@ -19,17 +19,17 @@ variablesFile = 'variables_FS.py'
 cutsFile = 'cuts_FS.py'
 
 # file with list of samples
-samplesFile = 'samples_FS_2018.py'
+samplesFile = 'samples_FS_2017.py'
 
 # file with list of samples
 plotFile = 'plot_FS.py'
 
 # luminosity to normalize to (in 1/fb)
-lumi = 59.7 #41.5 #35.9 #59.7
+lumi = 41.5 #41.5 #35.9 #59.7
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'plottini_2018'
+outputDirPlots = 'plottini_2017'
 
 
 # used by mkDatacards to define output directory for datacards
