@@ -129,8 +129,8 @@ mcCommonWeightTaggerTop = 'XSWeight*SFweight_top*METFilter_MC*LepWPCut[0]*(nTigh
 
 print("DY")
 
- NLO
- prefer M-10to50 NLO and fill M-5to10 with HT-binned LO
+# NLO
+# prefer M-10to50 NLO and fill M-5to10 with HT-binned LO
 files  = nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-10to50')
 files += nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-10to50_ext1')
 files += nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_ext2')
