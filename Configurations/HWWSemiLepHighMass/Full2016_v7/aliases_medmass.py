@@ -276,19 +276,19 @@ aliases['DeltaR_jj_Lpt'] ={
 }
 
 
-aliases['boosted_nocut_tau_up'] = {
-    'expr': 'PuppiMET_pt > 40 \
-            && Alt$(CleanFatJet_pt[0], 0) > 200 \
-            && FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]] > 0.960 \
-            && Alt$(CleanFatJet_eta[0], 999) < 2.4'
-}
+#aliases['boosted_nocut_tau_up'] = {
+#    'expr': 'PuppiMET_pt > 40 \
+#            && Alt$(CleanFatJet_pt[0], 0) > 200 \
+#            && FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]] > 0.960 \
+#            && Alt$(CleanFatJet_eta[0], 999) < 2.4'
+#}
 
-aliases['boosted_nocut_tau_down'] = {
-    'expr': 'PuppiMET_pt > 40 \
-            && Alt$(CleanFatJet_pt[0], 0) > 200 \
-            && FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]] < 0.960 \
-            && Alt$(CleanFatJet_eta[0], 999) < 2.4'
-}
+#aliases['boosted_nocut_tau_down'] = {
+#    'expr': 'PuppiMET_pt > 40 \
+#            && Alt$(CleanFatJet_pt[0], 0) > 200 \
+#            && FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]] < 0.960 \
+#            && Alt$(CleanFatJet_eta[0], 999) < 2.4'
+#}
 
 aliases['boosted_nocut'] = {
     'expr': 'PuppiMET_pt > 40 \
@@ -297,14 +297,20 @@ aliases['boosted_nocut'] = {
 }
 
             #&& FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]] > 0.960 \
-aliases['boosted_nocut_do'] = {
+#aliases['boosted_nocut_do'] = {
+#    'expr': 'PuppiMET_pt > 40 \
+#            && Alt$(CleanFatJet_pt[0], 0) > 200 \
+#            && FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]] > 0.960 \
+#            && HvOverFat < 0.3 \
+#            && Alt$(CleanFatJet_eta[0], 999) < 2.4'
+#}
+
+aliases['boosted_nocut_res'] = {
     'expr': 'PuppiMET_pt > 40 \
             && Alt$(CleanFatJet_pt[0], 0) > 200 \
             && FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]] > 0.960 \
-            && HvOverFat < 0.3 \
             && Alt$(CleanFatJet_eta[0], 999) < 2.4'
 }
-
 aliases['resolved_nocut'] = {
     'expr': 'nCleanJet >= 2 \
             && HM_Whad_mass > 0 \
@@ -314,28 +320,24 @@ aliases['resolved_nocut'] = {
 }
 
 
-#            && idxCleanFatJetW != 999 \
 
-aliases['boosted_fat_jet'] = {
-    'expr': 'PuppiMET_pt > 40 \
-            && Alt$(CleanFatJet_pt[0], 0) > 200 \
-            && FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]] > 0.960 \
-            && HvOverFat > 0.4 \
-            && Alt$(CleanFatJet_eta[0], 999) < 2.4'
-}
-
-            # && idxCleanFatJetW != 999 \
+#aliases['boosted_fat_jet'] = {
+#    'expr': 'PuppiMET_pt > 40 \
+#            && Alt$(CleanFatJet_pt[0], 0) > 200 \
+#            && FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]] > 0.960 \
+#            && HvOverFat > 0.4 \
+#            && Alt$(CleanFatJet_eta[0], 999) < 2.4'
+#}
 
 aliases['two_jet_res'] ={
     'expr': 'nCleanJet >= 2 \
-            && !boosted_fat_jet[0] \
-            && HM_idx_j1 != 0 \
+            && HM_idx_j1 >= 0 \
+            && !boosted_nocut_res[0] \
             && PuppiMET_pt[0] > 30 \
+            && HM_idx_j2 >= 0 \
             && HM_Hlnjj_MT[0] > 60 \
-            && HvOverJJ[0] > 0.4 \
-            && HM_idx_j2 != 0'
+            && HvOverJJ[0] > 0.4'
 }
-
 
 aliases['LHEPartWlepPt'] = {
     'linesToAdd': ['.L %s/HWWSemiLepHighMass/LHEPartWlepPt.cc+' % configurations],
@@ -391,6 +393,9 @@ aliases['GenLHE'] = {
 
 
 
+#&& ((CleanJet_phi[CleanJet_jetIdx] - Alt$(CleanFatJet_phi[0],999))*(CleanJet_phi[CleanJet_jetIdx] - Alt$(CleanFatJet_phi[0],999)) + (CleanJet_eta[CleanJet_jetIdx] - Alt$(CleanFatJet_eta[0],999))*(CleanJet_eta[CleanJet_jetIdx] - Alt$(CleanFatJet_eta[0],999)))> 0.64\
+#&& ((CleanJet_phi[CleanJet_jetIdx] - Alt$(CleanFatJet_phi[0],999))*(CleanJet_phi[CleanJet_jetIdx] - Alt$(CleanFatJet_phi[0],999)) + (CleanJet_eta[CleanJet_jetIdx] - Alt$(CleanFatJet_eta[0],999))*(CleanJet_eta[CleanJet_jetIdx] - Alt$(CleanFatJet_eta[0],999)))> 0.64\
+#- Alt$(CleanFatJet_phi[0],999))*(CleanJet_phi[CleanJet_jetIdx] - Alt$(CleanFatJet_phi[0],0)) + (CleanJet_eta[CleanJet_jetIdx] - Alt$(CleanFatJet_eta[0]))*(CleanJet_eta[CleanJet_jetIdx] - Alt$(CleanFatJet_eta[0]))) > 0.8 \
 # # B-Stuff
 vetoThreshold = 20
 reqThreshold  = 30
@@ -411,7 +416,7 @@ bTagResolved = '(Sum$(Jet_btagDeepB[CleanJet_jetIdx] > bWP[0] && {0}) == 0)'\
                 .format(resolvedJetBVetoCondition)
 
 #bTemplate = '((boosted_fat_jet[0]*{0}) || ( two_jet_res[0]*{1}))'.format(bTagBoosted, bTagResolved)
-bTemplate = '((boosted_nocut[0]*{0}) || ( resolved_nocut[0]*{1}))'.format(bTagBoosted, bTagResolved)
+bTemplate = '((boosted_nocut_res[0]*{0}) || ( two_jet_res[0]*{1}))'.format(bTagBoosted, bTagResolved)
 
 aliases['bVeto'] = {
     'expr': bTemplate.format(threshold=vetoThreshold)
@@ -932,35 +937,35 @@ for var in ['Up', 'Down']:
 #}
 
 
-aliases['DNN_out_isVBF'] = {
-    'class': 'DNNprodSemiNew',
-    'linesToAdd':[
-        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-        'gSystem->Load("libDNNEvaluator.so")',
-        '.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/DNN_prod_semi_new.cc+' % os.getenv('CMSSW_BASE'),
-    ],
-    'args': 0,
-}
-
-aliases['DNN_out_isGGH'] = {
-    'class': 'DNNprodSemiNew',
-    'linesToAdd':[
-        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-        'gSystem->Load("libDNNEvaluator.so")',
-        '.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/DNN_prod_semi_new.cc+' % os.getenv('CMSSW_BASE'),
-    ],
-    'args': 1,
-}
-
-aliases['DNN_out_isBKG'] = {
-    'class': 'DNNprodSemiNew',
-    'linesToAdd':[
-        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-        'gSystem->Load("libDNNEvaluator.so")',
-        '.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/DNN_prod_semi_new.cc+' % os.getenv('CMSSW_BASE'),
-    ],
-    'args': 2,
-}
+#aliases['DNN_out_isVBF'] = {
+#    'class': 'DNNprodSemiNew',
+#    'linesToAdd':[
+#        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+#        'gSystem->Load("libDNNEvaluator.so")',
+#        '.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/DNN_prod_semi_new.cc+' % os.getenv('CMSSW_BASE'),
+#    ],
+#    'args': 0,
+#}
+#
+#aliases['DNN_out_isGGH'] = {
+#    'class': 'DNNprodSemiNew',
+#    'linesToAdd':[
+#        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+#        'gSystem->Load("libDNNEvaluator.so")',
+#        '.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/DNN_prod_semi_new.cc+' % os.getenv('CMSSW_BASE'),
+#    ],
+#    'args': 1,
+#}
+#
+#aliases['DNN_out_isBKG'] = {
+#    'class': 'DNNprodSemiNew',
+#    'linesToAdd':[
+#        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+#        'gSystem->Load("libDNNEvaluator.so")',
+#        '.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/DNN_prod_semi_new.cc+' % os.getenv('CMSSW_BASE'),
+#    ],
+#    'args': 2,
+#}
 
 #aliases['isVBF'] = {
 #    'expr': 'DNN_out_isVBF[0] > DNN_out_isGGH[0] &&  DNN_out_isVBF[0] > DNN_out_isBKG[0] ',

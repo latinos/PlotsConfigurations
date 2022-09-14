@@ -25,42 +25,34 @@ BoostProcCats['']='1'
 BoostCats={}
 #BoostCats['fatjet'] = 'boosted_fat_jet[0] && bVeto[0]'
 #BoostCats['fatjet_noboost']='two_jet_res[0] && bVeto[0] '
-#BoostCats['BoostedSR_']='(1 \
-#                       && boosted_fat_jet[0] \
-#                       && boostedSignalWMass[0] \
-#                       && bVeto[0])'
-#
-#                       #&& boostedSignalWMass[0] \
-#BoostCats['ResolvedSR_']='(1 \
-#                       && two_jet_res[0] \
-#                       && resolvedSignalWMass[0] \
-#                       && bVeto[0])'
-#BoostCats['BoostedSB_']='(1 \
-#                       && boosted_nocut[0] \
-#                       && !boostedSignalWMass[0] \
-#                       && boostedSidebandWMass[0] \
-#                       && bVeto[0])'
-#BoostCats['ResolvedSB_']='(1 \
-#                       && two_jet_res[0] \
-#                       && !resolvedSignalWMass[0] \
-#                       && resolvedSidebandWMass[0] \
-#                       && bVeto[0])'
-BoostCats['BoostedSB_']='(1 \
-                       && boosted_nocut_do[0] \
+BoostCats['BoostedSR_']='(1 \
+                       && boosted_nocut_res[0] \
+                       && HvOverFat[0] > 0.4 \
                        && boostedSignalWMass[0] \
                        && bVeto[0])'
-BoostCats['BoostedSR_']='(1 \
-                       && boosted_fat_jet[0] \
+BoostCats['BoostedSB_']='(1 \
+                       && boosted_nocut_res[0] \
+                       && HvOverFat[0] < 0.4 \
                        && boostedSignalWMass[0] \
+                       && bVeto[0])'
+BoostCats['ResolvedSB_']='(1 \
+                       && two_jet_res[0] \
+                       && !resolvedSignalWMass[0] \
+                       && resolvedSidebandWMass[0] \
+                       && bVeto[0])'
+BoostCats['ResolvedSR_']='(1 \
+                       && two_jet_res[0] \
+                       && resolvedSignalWMass[0] \
                        && bVeto[0])'
 BoostCats['BoostedTopCR_']='(1 \
-                       && boosted_fat_jet[0] \
+                       && boosted_nocut_res[0] \
+                       && HvOverFat[0] > 0.4 \
                        && boostedSignalWMass[0] \
                        && !bVeto[0])'
-#BoostCats['ResolvedTopCR_']='(1 \
-#                       && two_jet_res[0] \
-#                       && resolvedSignalWMass[0] \
-#                       && !bVeto[0])'
+BoostCats['ResolvedTopCR_']='(1 \
+                       && two_jet_res[0] \
+                       && resolvedSignalWMass[0] \
+                       && !bVeto[0])'
 
 ##=== Define cuts ===###
 for Lep in LepCats:

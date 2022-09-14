@@ -111,8 +111,36 @@ variables['Puppimet']  = {
 
 variables['l1_pt']  = { 
     'name': 'Lepton_pt[0]',     
-    'range' : (25,20,100),   
+    'range' : (26,20,150),   
     'xaxis' : 'p_{T}^{l_{1}}',
+    'fold'  : 3
+}
+
+variables['j1_pt']  = { 
+    'name': 'CleanJet_pt[0]',     
+    'range' : (25,30,180),   
+    'xaxis' : 'p_{T}^{j_{1}}',
+    'fold'  : 3
+}
+
+variables['j1_eta']  = { 
+    'name': 'CleanJet_eta[0]',     
+    'range' : (15,-3,3),   
+    'xaxis' : '#eta^{j_{1}}',
+    'fold'  : 3
+}
+
+variables['j2_eta']  = { 
+    'name': 'CleanJet_eta[1]',     
+    'range' : (15,-3,3),   
+    'xaxis' : '#eta^{j_{2}}',
+    'fold'  : 3
+}
+
+variables['j2_pt']  = { 
+    'name': 'CleanJet_pt[1]',     
+    'range' : (25,30,180),   
+    'xaxis' : 'p_{T}^{j_{2}}',
     'fold'  : 3
 }
 
