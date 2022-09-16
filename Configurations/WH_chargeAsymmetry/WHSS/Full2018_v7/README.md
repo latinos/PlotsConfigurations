@@ -478,9 +478,9 @@ $$ \sigma(W^-h) = \frac{S(1-A)}{2} $$
 
 In the combine 'notation':
 
-$$ \sigma(W^+h) = \mathrm{r_WH_plus} \sigma_{theory}(W^+h) $$
+$$ \sigma(W^+h) = r(W^+h) \sigma_{theory}(W^+h) $$
 
-$$ \sigma(W^-h) = r_WH_minus \sigma_{theory}(W^-h) $$
+$$ \sigma(W^-h) = r(W^-h) \sigma_{theory}(W^-h) $$
 
 And this brings to:
 
