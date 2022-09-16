@@ -458,7 +458,7 @@ Including also ee final state and splitting into high-pT and low-pT sub-leading 
 
 We define de asymmetry as:
 
-$$ A = \frac{#sigma(W^+h) - #sigma(W^-h)}{#sigma(W^+h) + #sigma(W^-h)}$$
+$$ A = \frac{\sigma(W^+h) - \sigma(W^-h)}{\sigma(W^+h) + \sigma(W^-h)}$$
 
 Considering the Yellow Report Cross sections for the two processes (https://twiki.cern.ch/twiki/bin/view/LHCPhysics/CERNYellowReportPageAt13TeV):
 - XS W+h = 0.8380 pb
@@ -468,7 +468,7 @@ When fitting, it is more convenient to re-define the quantities we want to measu
 
      A = (sigma+ - sigma-)/(sigma+ - sigma-)
 
-     S = sigma+ + sigma- #sigma $\sigma$
+     S = sigma+ + sigma-
 
 This means that:
 
