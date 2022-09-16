@@ -466,9 +466,9 @@ Considering the Yellow Report Cross sections for the two processes (https://twik
 
 When fitting, it is more convenient to re-define the quantities we want to measure:
 
-$$ A = \frac{\sigma(W^+h) - \sigma(W^-h)}{\sigma(W^+h) + \sigma(W^-h)}$$
-
 $$ S = \sigma(W^+h) + \sigma(W^-h) $$
+
+$$ A = \frac{\sigma(W^+h) - \sigma(W^-h)}{S}$$
 
 This means that:
 
