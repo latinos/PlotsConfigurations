@@ -466,21 +466,21 @@ Considering the Yellow Report Cross sections for the two processes (https://twik
 
 When fitting, it is more convenient to re-define the quantities we want to measure:
 
-$$ A = (\sigma(W^+h) - \sigma(W^-h))/(\sigma(W^+h) - \sigma(W^-h)) $$
+$$ A = \frac{\sigma(W^+h) - \sigma(W^-h)}{\sigma(W^+h) + \sigma(W^-h)}$$
 
 $$ S = \sigma(W^+h) + \sigma(W^-h) $$
 
 This means that:
 
-     sigma+ = S*(1+A)/2
+$$ \sigma(W^+h) = \frac{S(1+A)}{2} $$
 
-     sigma- = S*(1-A)/2
+$$ \sigma(W^-h) = \frac{S(1-A)}{2} $$
 
 In the combine 'notation':
 
-     sigma+ = r_WH_plus * sigma+_theory
+$$ \sigma(W^+h) = r\_WH\_plus \sigma_{theory}(W^+h) $$
 
-     sigma- = r_WH_minus * sigma-_theory
+$$ \sigma(W^-h) = r\_WH\_minus \sigma_{theory}(W^-h) $$
 
 And this brings to:
 
