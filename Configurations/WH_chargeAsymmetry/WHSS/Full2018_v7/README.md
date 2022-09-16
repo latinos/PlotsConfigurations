@@ -488,6 +488,7 @@ $$ r(W^+h) = \frac{S (1+A)}{2 \sigma_{theory}(W^+h)} $$
 
 $$ r(W^-h) = \frac{S (1-A)}{2 \sigma_{theory}(W^-h)} $$
 
+Since S appears in the denominator of the asymmetry expression, it cannot be 0, and we will require it to be always positive to avoid poles in the asymmetry definition.
 
 ### Extract the asymmetry from a physics model in combine
 
