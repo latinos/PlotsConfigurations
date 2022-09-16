@@ -478,15 +478,16 @@ $$ \sigma(W^-h) = \frac{S(1-A)}{2} $$
 
 In the combine 'notation':
 
-$$ \sigma(W^+h) = r(W^+h) \sigma_{theory}(W^+h) $$
+$$ \sigma(W^+h) = r(W^+h) \times \sigma_{theory}(W^+h) $$
 
-$$ \sigma(W^-h) = r(W^-h) \sigma_{theory}(W^-h) $$
+$$ \sigma(W^-h) = r(W^-h) \times \sigma_{theory}(W^-h) $$
 
 And this brings to:
 
-     r_WH_plus  = S*(1+A)/(2*sigma+_theory)
+$$ r(W^+h) = \frac{S (1+A)}{2 \sigma_{theory}(W^+h)} $$
 
-     r_WH_minus = S*(1-A)/(2*sigma-_theory)
+$$ r(W^-h) = \frac{S (1-A)}{2 \sigma_{theory}(W^-h)} $$
+
 
 ### Extract the asymmetry from a physics model in combine
 
