@@ -499,16 +499,16 @@ Considering mm and em final states (as in legacy analysis):
      -o Combination/WH_chargeAsymmetry_WH_SS_Full2018_v7.root \
      -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel \
      -m 125 \
-     --PO 'map=.*/ggH_hww:r_higgs[1,-10,10]' \
-     --PO 'map=.*/qqH_hww:r_higgs[1,-10,10]' \
-     --PO 'map=.*/ZH_hww:r_higgs[1,-10,10]' \
-     --PO 'map=.*/ggZH_hww:r_higgs[1,-10,10]' \
-     --PO 'map=.*/ttH_hww:r_higgs[1,-10,10]' \
-     --PO 'map=.*/ggH_htt:r_higgs[1,-10,10]' \
-     --PO 'map=.*/qqH_htt:r_higgs[1,-10,10]' \
-     --PO 'map=.*/ZH_htt:r_higgs[1,-10,10]' \
-     --PO 'map=.*/WH_h.*_plus:r_WH_plus=expr;;r_WH_plus("@0*(1+@1)/(2*0.8380)",r_S[1.3693,0,20],r_A[0.224,-1,100])' \
-     --PO 'map=.*/WH_h.*_minus:r_WH_minus=expr;;r_WH_minus("@0*(1-@1)/(2*0.5313)",r_S[1.3693,0,20],r_A[0.224,-1,100])' \
+     --PO 'map=.*/ggH_hww:r_higgs[1,-100,100]' \
+     --PO 'map=.*/qqH_hww:r_higgs[1,-100,100]' \
+     --PO 'map=.*/ZH_hww:r_higgs[1,-100,100]' \
+     --PO 'map=.*/ggZH_hww:r_higgs[1,-100,100]' \
+     --PO 'map=.*/ttH_hww:r_higgs[1,-100,100]' \
+     --PO 'map=.*/ggH_htt:r_higgs[1,-100,100]' \
+     --PO 'map=.*/qqH_htt:r_higgs[1,-100,100]' \
+     --PO 'map=.*/ZH_htt:r_higgs[1,-100,100]' \
+     --PO 'map=.*/WH_h.*_plus:r_WH_plus=expr;;r_WH_plus("@0*(1+@1)/(2*0.8380)",r_S[1.3693,0,20],r_A[0.224,-8,5])' \
+     --PO 'map=.*/WH_h.*_minus:r_WH_minus=expr;;r_WH_minus("@0*(1-@1)/(2*0.5313)",r_S[1.3693,0,20],r_A[0.224,-8,5])' \
      --PO verbose
 
      combine \
@@ -517,9 +517,25 @@ Considering mm and em final states (as in legacy analysis):
      -d Combination/WH_chargeAsymmetry_WH_SS_Full2018_v7.root \
      -t -1 \
      --setParameters r_S=1.3693,r_A=0.224,r_higgs=1 \
-     --setParameterRanges r_S=0,20:r_A=-1,100:r_higgs=-10,10 \
+     --setParameterRanges r_S=0,20:r_A=-8,5:r_higgs=-100,100 \
      --redefineSignalPOIs r_S,r_A,r_higgs > Combination/FitResults_Asymmetry_A_S.txt
 
+Fit sanity checks:
+
+     combine \
+     -M MultiDimFit \
+     --algo=grid \
+     --points=1000 \
+     -d Combination/WH_chargeAsymmetry_WH_SS_Full2018_v7.root \
+     -t -1 \
+     --setParameters r_S=1.3693,r_A=0.224,r_higgs=1 \
+     --setParameterRanges r_S=0,20:r_A=-8,5:r_higgs=-100,100 \
+     --redefineSignalPOIs r_S,r_A,r_higgs
+
+     combine -M GenerateOnly Combination/WH_chargeAsymmetry_WH_SS_Full2018_v7.root -t -1 --saveToys --setParameters r_S=1.3693,r_A=0.224,r_higgs=1 
+     combineTool.py -M FastScan --robustHesse=1 -w Combination/WH_chargeAsymmetry_WH_SS_Full2018_v7.root:w -d higgsCombineTest.GenerateOnly.mH120.123456.root:toys/toy_asimov
+
+     combine -M FitDiagnostics Combination/WH_chargeAsymmetry_WH_SS_Full2018_v7.root -t -1 --setParameters r_S=1.3693,r_A=0.224,r_higgs=1 --saveWithUncertainties --saveOverallShapes --numToysForShapes 200
 
 Considering mm and em final states and the low-pT categories:
 
