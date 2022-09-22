@@ -60,6 +60,21 @@ variables['pt2'] = {
     'fold'  : 3                         
 }
 
+variables['BDTG6'] = {
+    'name': 'BDT_SS_v7',     
+    'range' : (40,-1,1),   
+    'xaxis' : 'BDT discriminant',
+    'fold'  : 3
+}
+
+variables['BDTG6_more'] = {
+    'name': 'BDT_SS_v7',     
+    'range' : (1000,-1,1),   
+    'xaxis' : 'BDT discriminant',
+    'fold'  : 3
+}
+
+
 # variables['mlljj20_whss_bin2'] = {
 #     'name': 'mlljj20_whss',
 #     'range' : ([60.,100.,110.,120.,130.,140.,150.,160.,170.,180.,190.,200.,250.,300.],),
