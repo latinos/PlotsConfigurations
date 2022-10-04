@@ -2,7 +2,7 @@
 
 treeName = 'Events'
 
-tag = 'hm_trial_2018'
+tag = 'hm_e_eff_2018'
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFile_2018'
@@ -29,7 +29,7 @@ lumi = 59.7
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'Plotterz'
+outputDirPlots = 'Plot_kfact'
 
 
 # used by mkDatacards to define output directory for datacards

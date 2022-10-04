@@ -2,16 +2,16 @@
 
 treeName = 'Events'
 
-tag = 'hm_vs'
+tag = 'hm_res_2'
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFile_vs'
+outputDir = 'rootFile_resolved'
 
 # file with TTree aliases
 aliasesFile = 'aliases_medmass.py'
 
 # file with list of variables
-variablesFile = 'variables_vs.py'
+variablesFile = 'variables_medmass.py'
 # variablesFile = 'variablesPlot.py'
 # variablesFile = 'variablesLimits.py'
 
@@ -29,7 +29,7 @@ lumi = 35.9
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'plot_last'
+outputDirPlots = 'Plot_kfact'
 
 
 # used by mkDatacards to define output directory for datacards

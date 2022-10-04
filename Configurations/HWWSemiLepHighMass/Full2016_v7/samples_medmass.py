@@ -323,7 +323,7 @@ files += nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_HT800_1200_ext1')
 
 samples['Wjets'] = {
     'name'   : files,
-    'weight' : mcCommonWeight +"*EWK_W_correction[0]*kfact[0]",
+    'weight' : mcCommonWeight +"*EWK_W_correction[0]", #*kfact[0]",
 #+"*(boosted_fat_jet*{0}+!boosted_fat_jet*1)".format(wboo_reweight),
     'FilesPerJob' : 1,
 }
@@ -629,18 +629,18 @@ for _, sd in DataRun:
     samples['FAKE']['name'].extend(files)
     samples['FAKE']['weights'].extend([DataTrig[pd]] * len(files))
 
-#print("DATA")
-#samples['DATA'] = {
-#  'name': [],
-#  'weight': 'METFilter_DATA*LepWPCut[0]*(nTightLep==1)',
-#  'weights': [],
-#  'isData': ['all'],
-#  'FilesPerJob': 40
-#}
-#
-#for _, sd in DataRun:
-#  for pd in DataSets:
-#    files = nanoGetSampleFiles(dataDirectory, pd + '_' + sd)
-#    samples['DATA']['name'].extend(files)
-#    samples['DATA']['weights'].extend([DataTrig[pd]] * len(files))
+print("DATA")
+samples['DATA'] = {
+  'name': [],
+  'weight': 'METFilter_DATA*LepWPCut[0]*(nTightLep==1)',
+  'weights': [],
+  'isData': ['all'],
+  'FilesPerJob': 40
+}
+
+for _, sd in DataRun:
+  for pd in DataSets:
+    files = nanoGetSampleFiles(dataDirectory, pd + '_' + sd)
+    samples['DATA']['name'].extend(files)
+    samples['DATA']['weights'].extend([DataTrig[pd]] * len(files))
 
