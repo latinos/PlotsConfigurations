@@ -1,97 +1,33 @@
-
-
 # cuts
+supercut = '   mll>12 \
+            && Lepton_pt[0]>25 \
+            && Lepton_pt[1]>20 \
+            && (nLepton>=2 && Alt$(Lepton_pt[2],0)<10) \
+            && abs(Lepton_eta[0])<2.5 && abs(Lepton_eta[1])<2.5 \
+            && ptll>30 \
+            && PuppiMET_pt > 20 \
+            && (Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13) \
+            && mll > 20 \
+           '
 
-_tmp = [ 
-    '(Lepton_pdgId[0]*Lepton_pdgId[1] == -11*13)',
-    'Lepton_pt[0]>25.',
-    'Lepton_pt[1]>20.',
-    '(nLepton>=2 && Alt$(Lepton_pt[2],0)<10.)',
-    'abs(Lepton_eta[0])<2.5 && abs(Lepton_eta[1])<2.5',
-    'mll>20.',
-    'PuppiMET_pt > 20.',
-    'mpmet > 20',
-]
+catCR = {
+    '0j' : 'Alt$(CleanJet_pt[0],0) < 30',
+    '1j' : 'Alt$(CleanJet_pt[0],0) > 30 && Alt$(CleanJet_pt[1],0) < 30',
+    '2j' : 'Alt$(CleanJet_pt[0],0) > 30 && Alt$(CleanJet_pt[1],0) > 30'
+}
 
-supercut = ' && '.join(_tmp)
+catSR = {
+    'B0' : '1'
+}
 
+##  signal regions
+cuts['ww2l2v_13TeV_sr']  = {
+    'expr' : 'sr',
+    'categories' : dict((iCR+'_'+iSR,catCR[iCR]+' && '+catSR[iSR]) for iCR in catCR.keys() for iSR in catSR.keys()) 
+}
 
-def addcut(name, exprs):
-    cuts[name] = ' && '.join(exprs)
-
-
-_tmp = [
-    'ptll>30.',
-    'zeroJet',
-    'bVeto',
-       ]
-addcut('SR_DF_0j', _tmp)
-
-
-_tmp = [
-    'ptll>30.',
-    'oneJet',
-    'bVeto',
-       ]
-addcut('SR_DF_1j', _tmp)
-
-
-_tmp = [
-    'ptll>30.',
-    'multiJet',
-    'bVeto',
-       ]
-addcut('SR_DF_2j', _tmp)
-
-
-_tmp = [
-    'ptll>30.',
-    'zeroJet',
-    '((zeroJet && !bVeto) || bReq)',
-       ]
-addcut('topCR_DF_0j', _tmp)
-
-
-_tmp = [
-    'ptll>30.',
-    'oneJet',
-    '((zeroJet && !bVeto) || bReq)',
-       ]
-addcut('topCR_DF_1j', _tmp)
-
-
-_tmp = [
-    'ptll>30.',
-    'multiJet',
-    '((zeroJet && !bVeto) || bReq)',
-       ]
-addcut('topCR_DF_2j', _tmp)
-
-
-_tmp = [
-    'zeroJet',
-    'bVeto',
-    'ptll < 30.',
-    'mll < 80.',
-       ]
-addcut('DYCR_DF_0j', _tmp)
-
-
-_tmp = [
-    'oneJet',
-    'bVeto',
-    'ptll < 30.',
-    'mll < 80.',
-       ]
-addcut('DYCR_DF_1j', _tmp)
-
-
-_tmp = [
-    'multiJet',
-    'bVeto',
-    'ptll < 30.',
-    'mll < 80.',
-       ]
-addcut('DYCR_DF_2j', _tmp)
-
-
+# Top control region
+cuts['ww2l2v_13TeV_top']  = {
+    'expr' : 'topcr',
+    'categories' : catCR
+}

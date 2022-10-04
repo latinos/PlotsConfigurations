@@ -41,7 +41,7 @@ groupPlot['Fake']  = {
                   'nameHR' : 'nonprompt',
                   'isSignal' : 0,
                   'color': 921,    # kGray + 1
-                  'samples'  : ['Fake']
+                  'samples'  : ['Fake_me', 'Fake_em']
 }
 
 
@@ -128,11 +128,19 @@ plot['DY']  = {
                   'scale'    : 1.0,
               }
 
-plot['Fake']  = {  
-                  'color': 921,    # kGray + 1
+groupPlot['Fake']  = {
+                  'nameHR' : 'nonprompt',
                   'isSignal' : 0,
-                  'isData'   : 0,
-                  'scale'    : 1.0                  
+                  'color': 921,    # kGray + 1
+                  'samples'  : ['Fake_me', 'Fake_em']
+}
+
+
+groupPlot['DY']  = {  
+                  'nameHR' : "DY",
+                  'isSignal' : 0,
+                  'color': 418,    # kGreen+2
+                  'samples'  : ['DY']
               }
 
 
@@ -326,7 +334,7 @@ plot['DATA']  = {
                   'color': 1 ,  
                   'isSignal' : 0,
                   'isData'   : 1 ,
-                  'isBlind'  : 0
+                  'isBlind'  : 1
               }
 
 

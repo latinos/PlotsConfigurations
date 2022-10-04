@@ -10,24 +10,12 @@ configurations = os.path.dirname(configurations) # WW
 configurations = os.path.dirname(configurations) # Configurations
 
 mc = [skey for skey in samples if skey not in ('Fake', 'DATA')]
-btag_algo="deepcsv"#deepflav
-btagWP = '0.3040'
 
-eleWP = 'mvaFall17V1Iso_WP90_tthmva_70'
-muWP = 'cut_Tight_HWWW_tthmva_80'
+btag_algo="deepflav" #deepflav or deepcsv
+btagWP = '0.3093' #BDT training
 
-aliases['zeroJet'] = {
-    'expr': 'Alt$(CleanJet_pt[0], 0) < 30.'
-}
-
-aliases['oneJet'] = {
-    'expr': 'Alt$(CleanJet_pt[0],0) > 30 && Alt$(CleanJet_pt[1],0) < 30'
-}
-
-aliases['multiJet'] = {
-    'expr': 'Alt$(CleanJet_pt[0],0) > 30 && Alt$(CleanJet_pt[1],0) > 30'
-}
-
+eleWP = 'mvaFall17V1Iso_WP90'
+muWP = 'cut_Tight_HWWW'
 
 aliases['LepWPCut'] = {
     'expr': 'LepCut2l__ele_'+eleWP+'__mu_'+muWP,
@@ -134,28 +122,40 @@ aliases['DY_LO_pTllrw'] = {
 if btag_algo=="deepcsv":
     aliases['bVeto'] = {
         'expr': 'Sum$(CleanJet_pt > 20. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > '+btagWP+') == 0'
-    }
-    
+	}
+
     aliases['bReq'] = {
         'expr': 'Sum$(CleanJet_pt > 30. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > '+btagWP+') >= 1'
-    }
-  
+	}
+
 elif btag_algo=="deepflav":
     aliases['bVeto'] = {
         'expr': 'Sum$(CleanJet_pt > 20. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepFlavB[CleanJet_jetIdx] >  '+btagWP+') == 0'
-    }
+	}
     
     aliases['bReq'] = {
-        'expr': 'Sum$(CleanJet_pt > 30. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepFlavB[CleanJet_jetIdx] >  '+btagWP+') >= 1'
-    }
+	'expr': 'Sum$(CleanJet_pt > 30. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepFlavB[CleanJet_jetIdx] >  '+btagWP+') >= 1'
+	}
 
 # CR definitions
 
 aliases['topcr'] = {
-    'expr': '(ptll>30. && ((Sum$(CleanJet_pt > 30.) == 0 && !bVeto) || bReq))'
+    'expr': 'mtw2>30 && mll>50 && ((Sum$(CleanJet_pt > 30.) == 0 && !bVeto) || bReq)'
 }
 
-# B tag scale factors
+aliases['dycr'] = {
+    'expr': 'mth<60 && mll>40 && mll<80 && bVeto'
+}
+
+aliases['wwcr'] = {
+    'expr': 'mth>60 && mtw2>30 && mll>100 && bVeto'
+}
+
+# SR definition
+
+aliases['sr'] = {
+    'expr': 'mth>60 && mtw2>30 && bVeto'
+}
 
 # B tag scale factors
 if btag_algo=="deepcsv":
@@ -207,7 +207,6 @@ elif btag_algo=="deepflav":
         'args': (btagSFSource,'central','deepjet'),
         'samples': mc
     }
-    
     
     aliases['bVetoSF'] = {
         'expr': 'TMath::Exp(Sum$(TMath::Log((CleanJet_pt>20 && abs(CleanJet_eta)<2.5)*Jet_btagSF_deepflav_shape[CleanJet_jetIdx]+1*(CleanJet_pt<20 || abs(CleanJet_eta)>2.5))))',
@@ -268,7 +267,6 @@ aliases['Jet_PUIDSF_down'] = {
   'samples': mc
 }
 
-
 # data/MC scale factors
 aliases['SFweight'] = {
     'expr': ' * '.join(['SFweight2l','LepWPCut', 'LepSF2l__ele_' + eleWP + '__mu_' + muWP, 'btagSF', 'PrefireWeight', 'Jet_PUIDSF']),
@@ -313,7 +311,6 @@ thusQQ = [
   "qqH_JET01",
   "qqH_EWK",
 ]
-
 for thu in thusQQ:
     aliases[thu] = {
         'linesToAdd': ['.L %s/patches/qqhuncertainty.cc+' % configurations],
@@ -322,7 +319,6 @@ for thu in thusQQ:
         'samples': ['qqH_hww'],
         'nominalOnly': True
     }
-
 thus = [
     'ggH_mu',
     'ggH_res',
@@ -334,7 +330,6 @@ thus = [
     'ggH_pT120',
     'ggH_qmtop'
 ]
-
 for thu in thus:
     aliases[thu+'_2'] = {
         'linesToAdd': ['.L %s/Differential/gghuncertainty.cc+' % configurations],
@@ -342,7 +337,7 @@ for thu in thus:
         'args': (thu,),
         'samples': ['ggH_hww']
     }
-
+'''
 
 # Needed for top QCD scale uncertainty
 lastcopy = (1 << 13)
@@ -356,7 +351,7 @@ aliases['isSingleTop'] = {
     'expr': 'Sum$(TMath::Abs(GenPart_pdgId) == 6 && TMath::Odd(GenPart_statusFlags / %d)) == 1' % lastcopy,
     'samples': ['top']
 }
-'''
+
 aliases['B0'] = {
     'expr' : '1',
     'samples' : ['WW','ggWW']
@@ -367,17 +362,17 @@ aliases['fid'] = {
     'samples' : ['WW','ggWW']
 }
 
-aliases['BDTOutput_0j_Top'] = {
+aliases['BDTOutput_0j'] = {
     'class': 'ww_top_bdt_0j',
-    'linesToAdd' : ['.L %s/WW/FullRunII/Full2017_v7/inclusive/WW_BDT_0j.cc+' % configurations],
+    'linesToAdd' : ['.L %s/WW/FullRunII/Full2018_v7/inclusive/WW_BDT_0j.cc+' % configurations],
 }
 
-aliases['BDTOutput_1j_Top'] = {
+aliases['BDTOutput_1j'] = {
     'class': 'ww_top_bdt_1j',
-    'linesToAdd' : ['.L %s/WW/FullRunII/Full2017_v7/inclusive/WW_BDT_1j.cc+' % configurations],
+    'linesToAdd' : ['.L %s/WW/FullRunII/Full2018_v7/inclusive/WW_BDT_1j.cc+' % configurations],
 }
 
-aliases['BDTOutput_2j_Top'] = {
+aliases['BDTOutput_2j'] = {
     'class': 'ww_top_bdt_2j',
-    'linesToAdd' : ['.L %s/WW/FullRunII/Full2017_v7/inclusive/WW_BDT_2j.cc+' % configurations],
+    'linesToAdd' : ['.L %s/WW/FullRunII/Full2018_v7/inclusive/WW_BDT_2j.cc+' % configurations],
 }
