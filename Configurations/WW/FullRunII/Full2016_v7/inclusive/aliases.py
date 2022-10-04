@@ -211,7 +211,7 @@ if btag_algo=="deepcsv":
         }
 
 elif btag_algo=="deepflav":
-    btagSFSource = '%s/src/PhysicsTools/NanoAODTools/data/btagSF/DeepJet_2016LegacySF_V1_TuneCP5.csv' % os.getenv('CMSSW_BASE')
+    btagSFSource = '%s/src/PhysicsTools/NanoAODTools/data/btagSF/DeepFlavour_94XSF_V3_B_F.csv' % os.getenv('CMSSW_BASE')
     
     aliases['Jet_btagSF_deepflav_shape'] = {
         'linesToAdd': [
@@ -376,16 +376,16 @@ aliases['fid'] = {
 
 aliases['BDTOutput_0j'] = {
     'class': 'ww_top_bdt_0j',
-    'linesToAdd' : ['.L %s/WW/FullRunII/Full2016_v7/inclusive/WW_BDT_0j.cc+' % configurations],
+    'linesToAdd' : ['.L %s/WW/FullRunII/Full2018_v7/inclusive/WW_BDT_0j.cc+' % configurations],
 }
 
 aliases['BDTOutput_1j'] = {
     'class': 'ww_top_bdt_1j',
-    'linesToAdd' : ['.L %s/WW/FullRunII/Full2016_v7/inlcusive/WW_BDT_1j.cc+' % configurations],
+    'linesToAdd' : ['.L %s/WW/FullRunII/Full2018_v7/inlcusive/WW_BDT_1j.cc+' % configurations],
 }
 
 aliases['BDTOutput_2j'] = {
     'class': 'ww_top_bdt_2j',
-    'linesToAdd' : ['.L %s/WW/FullRunII/Full2016_v7/inclusive/WW_BDT_2j.cc+' % configurations],
+    'linesToAdd' : ['.L %s/WW/FullRunII/Full2018_v7/inclusive/WW_BDT_2j.cc+' % configurations],
 }
 
