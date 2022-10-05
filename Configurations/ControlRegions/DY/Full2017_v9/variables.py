@@ -99,6 +99,20 @@ variables['jetpt2']  = {
     'fold' : 0
 }
 
+variables['jetpt1_more']  = {
+    'name': '(Sum$(CleanJet_pt>30)>0)*(Alt$(CleanJet_pt[0], 0)) - (Sum$(CleanJet_pt>30)==0)*99',     
+    'range' : (40,0,200),   
+    'xaxis' : 'p_{T} 1st jet',
+    'fold' : 0
+}
+
+variables['jetpt2_more']  = {
+    'name': '(Sum$(CleanJet_pt>30)>1)*(Alt$(CleanJet_pt[1], 0)) - (Sum$(CleanJet_pt>30)<=1)*99',     
+    'range' : (40,0,200),   
+    'xaxis' : 'p_{T} 2nd jet',
+    'fold' : 0
+}
+
 variables['jeteta1']  = {
     'name': '(Sum$(CleanJet_pt>30)>0)*(Alt$(CleanJet_eta[0], 0)) - (Sum$(CleanJet_pt>30)==0)*99',
     'range' : (20,-5.0,5.0),

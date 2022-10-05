@@ -6,11 +6,25 @@
 # If not defined, normal plots is used
 #
 
-groupPlot['DY']  = {  
-    'nameHR' : "DY",
+groupPlot['DY_nHardJets_0']  = {  
+    'nameHR' : "DY_nHardJets_0",
+    'isSignal' : 0,
+    'color'    : 420,    # kGreen+4
+    'samples'  : ['DY_nHardJets_0']
+}
+
+groupPlot['DY_nHardJets_1']  = {  
+    'nameHR' : "DY_nHardJets_1",
     'isSignal' : 0,
     'color'    : 418,    # kGreen+2
-    'samples'  : ['DY']
+    'samples'  : ['DY_nHardJets_1']
+}
+
+groupPlot['DY_nHardJets_2']  = {  
+    'nameHR' : "DY_nHardJets_2",
+    'isSignal' : 0,
+    'color'    : 416,    # kGreen
+    'samples'  : ['DY_nHardJets_2']
 }
 
 
@@ -19,8 +33,21 @@ groupPlot['DY']  = {
 # keys here must match keys in samples.py    
 #                    
 
-plot['DY']  = {  
-    'nameHR'   : 'DY',
+plot['DY_nHardJets_0']  = {  
+    'color'    : 418,    # kGreen+2
+    'isSignal' : 0,
+    'isData'   : 0, 
+    'scale'    : 1.0,
+}
+
+plot['DY_nHardJets_1']  = {  
+    'color'    : 418,    # kGreen+2
+    'isSignal' : 0,
+    'isData'   : 0, 
+    'scale'    : 1.0,
+}
+
+plot['DY_nHardJets_2']  = {  
     'color'    : 418,    # kGreen+2
     'isSignal' : 0,
     'isData'   : 0, 
@@ -28,7 +55,6 @@ plot['DY']  = {
 }
 
 
-# '''
 # data
 
 plot['DATA']  = { 
@@ -45,7 +71,3 @@ plot['DATA']  = {
 legend['lumi'] = 'L = 41.5 fb^{-1}'
 
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
-
-
-
-

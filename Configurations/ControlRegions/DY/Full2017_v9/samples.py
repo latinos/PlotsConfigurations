@@ -41,7 +41,7 @@ dataReco = 'Run2017_UL2017_nAODv9_Full2017v9'
 
 # embedReco = 'Embedding2016_102X_nAODv7_Full2016v7'
 
-mcSteps = 'MCl1loose2017v9__MCCorr2017v9NEW' #MCl1loose2017v9__MCCorr2017v9NEW
+mcSteps = 'MCl1loose2017v9__MCCorr2017v9__l2tightOR2017v9'
 
 # fakeSteps = 'DATAl1loose2016v7__l2loose__fakeW'
 
@@ -97,8 +97,8 @@ DataTrig = {
 #########################################
 
 # SFweight does not include btag weights
-mcCommonWeightNoMatch = 'XSWeight*METFilter_MC*SFweight' # *SFweight*METFilter_MC'
-mcCommonWeight = 'XSWeight*METFilter_MC*PromptGenLepMatch2l*SFweight' # *SFweight*METFilter_MC*PromptGenLepMatch2l'
+mcCommonWeightNoMatch = 'XSWeight*METFilter_MC*SFweight'
+mcCommonWeight = 'XSWeight*METFilter_MC*PromptGenLepMatch2l*SFweight'
 
 ###########################################
 #############  BACKGROUNDS  ###############

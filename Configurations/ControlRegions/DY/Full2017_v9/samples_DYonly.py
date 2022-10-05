@@ -32,7 +32,7 @@ except NameError:
 ################# SKIMS ########################
 ################################################
 
-# MC:   /eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Summer20UL17_106x_nAODv9_Full2017v9/MCl1loose2017v9__MCCorr2017v9JERHighPt
+# MC:   /eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Summer20UL17_106x_nAODv9_Full2017v9/MCl1loose2017v9__MCCorr2017v9noJER
 # DATA: /eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Run2017_UL2017_nAODv9_Full2017v9/DATAl1loose2017v9__l2loose__l2tightOR2017v9/
 
 mcProduction = 'Summer20UL17_106x_nAODv9_Full2017v9'
@@ -41,7 +41,7 @@ dataReco = 'Run2017_UL2017_nAODv9_Full2017v9'
 
 # embedReco = 'Embedding2016_102X_nAODv7_Full2016v7'
 
-mcSteps = 'MCl1loose2017v9__MCCorr2017v9JERHighPt'
+mcSteps = 'MCl1loose2017v9__MCCorr2017v9__l2tightOR2017v9'
 
 # fakeSteps = 'DATAl1loose2016v7__l2loose__fakeW'
 
