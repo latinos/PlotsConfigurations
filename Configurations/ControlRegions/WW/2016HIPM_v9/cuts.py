@@ -15,10 +15,10 @@ supercut = '   mll>12 \
 
 ## WW control regions
 cuts['hww2l2v_13TeV_ww'] = {
-  'expr' : 'wwcr',
-      'categories' : {
-              '0j' : 'zeroJet',
-              '1j' : 'oneJet && Alt$(CleanJet_pt[1],0)<30',
-              '2j' : '(mjj<65 || mjj>105) && mjj<120 && multiJet'
-            }
+    'expr' : 'wwcr',
+    'categories' : {
+        '0j' : 'zeroJet',
+        '1j' : 'oneJet && Alt$(CleanJet_pt[1],0)<30',
+        '2j' : '(mjj<65 || mjj>105) && mjj<120 && multiJet'
     }
+}

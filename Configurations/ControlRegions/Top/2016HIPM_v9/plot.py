@@ -38,7 +38,6 @@ groupPlot['DY']  = {
 }
 
 
-
 groupPlot['VVV']  = {  
     'nameHR' : 'VVV',
     'isSignal' : 0,
@@ -159,6 +158,7 @@ plot['VgS_H']  = {
     'isData'   : 0,
     'scale'    : 1.0
 }
+
 
 # Htautau
 
@@ -303,12 +303,12 @@ plot['ttH_hww'] = {
 # data
 
 plot['DATA']  = { 
-                  'nameHR' : 'Data',
-                  'color': 1 ,  
-                  'isSignal' : 0,
-                  'isData'   : 1 ,
-                  'isBlind'  : 0
-              }
+    'nameHR' : 'Data',
+    'color': 1 ,  
+    'isSignal' : 0,
+    'isData'   : 1 ,
+    'isBlind'  : 0
+}
 
 
 

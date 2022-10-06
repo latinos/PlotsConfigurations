@@ -38,7 +38,6 @@ groupPlot['DY']  = {
 }
 
 
-
 groupPlot['VVV']  = {  
     'nameHR' : 'VVV',
     'isSignal' : 0,

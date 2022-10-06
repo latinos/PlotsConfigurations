@@ -191,3 +191,21 @@ aliases['METFilter_DATA_fix'] = {
     'expr' : 'Flag_goodVertices*Flag_globalSuperTightHalo2016Filter*Flag_HBHENoiseFilter*Flag_HBHENoiseIsoFilter*Flag_EcalDeadCellTriggerPrimitiveFilter*Flag_BadPFMuonFilter*Flag_BadPFMuonDzFilter*Flag_eeBadScFilter',
     'samples': ['DATA']
 }
+
+# Two leading jets matched to gen-level jets with pT > 25 GeV 
+aliases['hardJets'] = {
+    'expr':  'Jet_genJetIdx[CleanJet_jetIdx[0]] >= 0 && Jet_genJetIdx[CleanJet_jetIdx[1]] >= 0 && GenJet_pt[Jet_genJetIdx[CleanJet_jetIdx[0]]] > 25 && GenJet_pt[Jet_genJetIdx[CleanJet_jetIdx[1]]] > 25', 
+    'samples': ['DY']
+}
+
+aliases['PUJets'] = {
+    'expr':  '!(Jet_genJetIdx[CleanJet_jetIdx[0]] >= 0 && Jet_genJetIdx[CleanJet_jetIdx[1]] >= 0 && GenJet_pt[Jet_genJetIdx[CleanJet_jetIdx[0]]] > 25 && GenJet_pt[Jet_genJetIdx[CleanJet_jetIdx[1]]] > 25)',
+    'samples': ['DY']
+}
+
+# Number of hard (= gen-matched) jets
+aliases['nHardJets'] = {
+    # 'expr':  '!(Jet_genJetIdx[CleanJet_jetIdx[0]] >= 0 && Jet_genJetIdx[CleanJet_jetIdx[1]] >= 0 && GenJet_pt[Jet_genJetIdx[CleanJet_jetIdx[0]]] > 25 && GenJet_pt[Jet_genJetIdx[CleanJet_jetIdx[1]]] > 25)',
+    'expr':  'Sum$(Jet_genJetIdx[CleanJet_jetIdx] >= 0 && GenJet_pt[Jet_genJetIdx[CleanJet_jetIdx]] > 25)',
+    'samples': ['DY']
+}

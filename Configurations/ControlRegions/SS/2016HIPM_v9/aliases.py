@@ -15,9 +15,13 @@ configurations = os.path.dirname(configurations) # Configurations
 mc     = [skey for skey in samples if skey not in ('Fake', 'DATA', 'Dyemb')]
 mc_emb = [skey for skey in samples if skey not in ('Fake', 'DATA')]
 
-# LepCut2l__ele_mvaFall17V2Iso_WP90_tthmva_70__mu_cut_Tight80x_tthmva_80
-eleWP = 'mvaFall17V2Iso_WP90_tthmva_70'
-muWP  = 'cut_Tight80x_tthmva_80'
+# # LepCut2l__ele_mvaFall17V2Iso_WP90_tthmva_70__mu_cut_Tight80x_tthmva_80
+# eleWP = 'mvaFall17V2Iso_WP90_tthmva_70'
+# muWP  = 'cut_Tight80x_tthmva_80'
+
+# LepCut2l__ele_mvaFall17V2Iso_WP90__mu_cut_Tight80x
+eleWP = 'mvaFall17V2Iso_WP90'
+muWP  = 'cut_Tight80x'
 
 aliases['LepWPCut'] = {
     'expr': 'LepCut2l__ele_'+eleWP+'__mu_'+muWP,

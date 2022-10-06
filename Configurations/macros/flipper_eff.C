@@ -17,13 +17,13 @@
 #include <map>
 
 typedef std::map<std::string,std::map<std::string,std::string>> map_dict;
-static std::map<const std::string,TH2D> SFmap_;
+static std::map<const std::string,TH2D> Effmap_;
 
-class flipper : public multidraw::TTreeFunction {
+class flipper_eff : public multidraw::TTreeFunction {
 public:
-  flipper( const char* year , const unsigned int nLep , std::string SF_type, std::string isTightCharge );
-  char const* getName() const override { return "flipper"; }
-  TTreeFunction* clone() const override { return new flipper( year_ , nLeptons_ , SF_type_, isTightCharge_ ); }
+  flipper_eff( const char* year , const unsigned int nLep , std::string SF_type, std::string isTightCharge );
+  char const* getName() const override { return "flipper_eff"; }
+  TTreeFunction* clone() const override { return new flipper_eff( year_ , nLeptons_ , SF_type_, isTightCharge_  ); }
   unsigned getNdata() override { return 1; }
   double evaluate(unsigned) override;
 
@@ -44,7 +44,7 @@ private:
   
 };
 
-flipper::flipper( const char* year , const unsigned int nLep, std::string SF_type, std::string isTightCharge = "false" ) : TTreeFunction()
+flipper_eff::flipper_eff( const char* year , const unsigned int nLep, std::string SF_type, std::string isTightCharge = "false" ) : TTreeFunction()
 {
   year_ = year;
   nLeptons_ = nLep;
@@ -63,12 +63,11 @@ flipper::flipper( const char* year , const unsigned int nLep, std::string SF_typ
     flipper_map_["2017"]["HWW_ttHMVA"] = cmssw_base + "/src/LatinoAnalysis/NanoGardener/python/data/scale_factor/Full2017v7/chargeFlip_2017_v7_SF_tightCharge.root"; // file doesn't exist!
     flipper_map_["2018"]["HWW_ttHMVA"] = cmssw_base + "/src/LatinoAnalysis/NanoGardener/python/data/scale_factor/Full2018v7/chargeFlip_2018_v7_SF_tightCharge.root";
   }
-
   // load histogram
   loadSF2D( flipper_map_[year_]["HWW_ttHMVA"] );
 }
 
-void flipper::loadSF2D( std::string filename ){
+void flipper_eff::loadSF2D( std::string filename ){
 
   TFile f(filename.c_str());
 
@@ -77,8 +76,13 @@ void flipper::loadSF2D( std::string filename ){
   TH2D h_sf = TH2D("","",2,eta_bins,2,pt_bins);
   TH2D h_sf_sys = TH2D("","",2,eta_bins,2,pt_bins);
 
-  TH2D* tmp_sf  = (TH2D*)f.Get("sf");
-  TH2D* tmp_sys = (TH2D*)f.Get("sf_sys");
+  // // Montecarlo eff
+  // TH2D* tmp_sf  = (TH2D*)f.Get("mc");
+  // TH2D* tmp_sys = (TH2D*)f.Get("mc_sys");
+
+  // Data eff
+  TH2D* tmp_sf  = (TH2D*)f.Get("data");
+  TH2D* tmp_sys = (TH2D*)f.Get("data_sys");
 
   for(int i=1; i<=2;i++){
     for(int j=1; j<=2;j++){
@@ -87,15 +91,20 @@ void flipper::loadSF2D( std::string filename ){
     }
   }
 
-  SFmap_.insert(std::make_pair( "sf"       , h_sf       ));
-  SFmap_.insert(std::make_pair( "sf_sys"   , h_sf_sys   ));
+  // // Montecarlo eff
+  // Effmap_.insert(std::make_pair( "mc"       , h_sf       ));
+  // Effmap_.insert(std::make_pair( "mc_sys"   , h_sf_sys   ));
+
+  // Data eff
+  Effmap_.insert(std::make_pair( "data"       , h_sf       ));
+  Effmap_.insert(std::make_pair( "data_sys"   , h_sf_sys   ));
 
   f.Close();
 }
 
 
 std::tuple<double,double>
-flipper::GetSF( double pt_in , double eta_in ){
+flipper_eff::GetSF( double pt_in , double eta_in ){
 
   double eta_max = 2.49;
   double pt_max = 199.;
@@ -105,8 +114,13 @@ flipper::GetSF( double pt_in , double eta_in ){
   if( pt_in < pt_min   ){ pt_in = pt_min; }
   if( pt_in > pt_max   ){ pt_in = pt_max; }
 
-  double sf     = SFmap_["sf"].GetBinContent( SFmap_["sf"].FindBin(eta_in , pt_in ) );
-  double sf_sys = SFmap_["sf_sys"].GetBinContent( SFmap_["sf_sys"].FindBin(eta_in , pt_in ) );
+  // // Montecarlo eff
+  // double sf     = Effmap_["mc"].GetBinContent( Effmap_["mc"].FindBin(eta_in , pt_in ) );
+  // double sf_sys = Effmap_["mc_sys"].GetBinContent( Effmap_["mc_sys"].FindBin(eta_in , pt_in ) );
+
+  // Data eff
+  double sf     = Effmap_["data"].GetBinContent( Effmap_["data"].FindBin(eta_in , pt_in ) );
+  double sf_sys = Effmap_["data_sys"].GetBinContent( Effmap_["data_sys"].FindBin(eta_in , pt_in ) );
 
   std::tuple<double,double> sfs = { sf , sf_sys };
   return sfs;
@@ -114,7 +128,7 @@ flipper::GetSF( double pt_in , double eta_in ){
 
 
 double
-flipper::evaluate(unsigned)
+flipper_eff::evaluate(unsigned)
 {
   double SF=1.; double SF_err=0.;
   std::vector<double> SF_vect {};
@@ -127,12 +141,37 @@ flipper::evaluate(unsigned)
       SF_err_vect.push_back( std::get<1>(res_ttHMVA) );
     }
   }
-  for(auto x : SF_vect) SF *= x;
-  
+
+  // We want efficiencies, not SFs --> Use formula:
+  // P_tot = P1(1 - P2) + (1-P1)P2
+  if (SF_vect.size() == 1) 
+    {
+      SF = SF_vect[0];
+    }
+  else if (SF_vect.size() == 2)
+    {
+      SF = SF_vect[0]*(1 - SF_vect[1]) + (1 - SF_vect[0])*SF_vect[1];
+    }
+  else {} // do nothing 
+
+  // for(auto x : SF_vect) SF *= x;
+
   // Variation
   // ??
   // Statistical error
-  for ( unsigned int i = 0 ; i < SF_vect.size() ; i++) SF_err += TMath::Power( SF_err_vect[i] , 2 ) / SF_vect[i];
+  // for ( unsigned int i = 0 ; i < SF_vect.size() ; i++) 
+  // SF_err += TMath::Power( SF_err_vect[i] , 2 ) / SF_vect[i];
+
+  // Check if error propagation is correct
+  if (SF_err_vect.size() == 1) 
+    {
+      SF_err = SF_err_vect[0]*SF_err_vect[0];
+    }
+  else if (SF_err_vect.size() == 2)
+    {
+      SF_err = TMath::Power((1-2*SF_vect[1])*SF_err_vect[0], 2) + TMath::Power((1-2*SF_vect[0])*SF_err_vect[1], 2);
+    }
+  else {} // do nothing
 
   if ( SF_type_.compare("Total_SF") == 0 ) { return SF; }
   else if ( SF_type_.compare("Total_SF_err") == 0 ) { return TMath::Sqrt( SF_err ); }
@@ -140,9 +179,9 @@ flipper::evaluate(unsigned)
 }
 
 void
-flipper::bindTree_(multidraw::FunctionLibrary& _library)
+flipper_eff::bindTree_(multidraw::FunctionLibrary& _library)
 {
-  std::cout << "Loading flipper" << std::endl;
+  std::cout << "Loading flipper_eff" << std::endl;
   _library.bindBranch(Lepton_pdgId, "Lepton_pdgId");
   _library.bindBranch(Lepton_pt, "Lepton_pt");
   _library.bindBranch(Lepton_eta, "Lepton_eta");

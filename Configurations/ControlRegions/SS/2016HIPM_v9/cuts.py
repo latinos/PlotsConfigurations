@@ -34,7 +34,7 @@ cuts['SS_em'] = {
 }
 
 # Different-flavor (me)
-cuts['SS_em'] = {
+cuts['SS_me'] = {
     'expr' : 'Lepton_pdgId[0]*Lepton_pdgId[1] == 11*13 && abs(Lepton_pdgId[0]) == 13 && abs(Lepton_pdgId[1]) == 11',
     'categories' : {
         '0j' : 'zeroJet',
