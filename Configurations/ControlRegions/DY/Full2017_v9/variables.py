@@ -127,6 +127,34 @@ variables['jeteta2']  = {
     'fold'  : 0
 }
 
+variables['jeteta1_more']  = {
+    'name': '(Sum$(CleanJet_pt>30)>0)*(Alt$(CleanJet_eta[0], 0)) - (Sum$(CleanJet_pt>30)==0)*99',
+    'range' : (50,-5.0,5.0),
+    'xaxis' : '#eta 1st jet',
+    'fold'  : 0
+}
+
+variables['jeteta2_more']  = {
+    'name': '(Sum$(CleanJet_pt>30)>1)*(Alt$(CleanJet_eta[1], 0)) - (Sum$(CleanJet_pt>30)<=1)*99',
+    'range' : (50,-5.0,5.0),
+    'xaxis' : '#eta 2nd jet',
+    'fold'  : 0
+}
+
+variables['jeteta1_50_more']  = {
+    'name': '(Sum$(CleanJet_pt>50)>0)*(Alt$(CleanJet_eta[0], 0)) - (Sum$(CleanJet_pt>50)==0)*99',
+    'range' : (50,-5.0,5.0),
+    'xaxis' : '#eta 1st jet',
+    'fold'  : 0
+}
+
+variables['jeteta2_50_more']  = {
+    'name': '(Sum$(CleanJet_pt>50)>1)*(Alt$(CleanJet_eta[1], 0)) - (Sum$(CleanJet_pt>50)<=1)*99',
+    'range' : (50,-5.0,5.0),
+    'xaxis' : '#eta 2nd jet',
+    'fold'  : 0
+}
+
 variables['trkMet']  = { 
     'name': 'TkMET_pt',
     'range' : (20,0,200),
