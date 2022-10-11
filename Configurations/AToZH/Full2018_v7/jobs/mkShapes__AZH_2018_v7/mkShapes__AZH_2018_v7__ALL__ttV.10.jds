@@ -1,0 +1,8 @@
+executable = /afs/cern.ch/work/s/srudrabh/AZH/Analysis/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/AToZH/Full2018_v7/jobs//mkShapes__AZH_2018_v7/mkShapes__AZH_2018_v7__ALL__ttV.10.sh
+universe = vanilla
+output = /afs/cern.ch/work/s/srudrabh/AZH/Analysis/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/AToZH/Full2018_v7/jobs//mkShapes__AZH_2018_v7/mkShapes__AZH_2018_v7__ALL__ttV.10.out
+error = /afs/cern.ch/work/s/srudrabh/AZH/Analysis/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/AToZH/Full2018_v7/jobs//mkShapes__AZH_2018_v7/mkShapes__AZH_2018_v7__ALL__ttV.10.err
+log = /afs/cern.ch/work/s/srudrabh/AZH/Analysis/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/AToZH/Full2018_v7/jobs//mkShapes__AZH_2018_v7/mkShapes__AZH_2018_v7__ALL__ttV.10.log
+request_cpus = 1
++JobFlavour = "longlunch"
+queue
