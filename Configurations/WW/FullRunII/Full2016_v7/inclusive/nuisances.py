@@ -572,7 +572,7 @@ for ibin in cuts['ww2l2v_13TeV_top']['categories']:
         'name'  : 'QCDscale_top_'+ibin,
         'kind'  : 'weight',
         'type'  : 'shape',
-        'cutspost' : lambda self, cuts: [cut for cut in cuts if ibin in cut],
+        'cutspost' : lambda self, cuts: [cut for cut in cuts if self['name'].split('_')[-1] in cut],
         'samples'  : {
             'top' : topvars,
         }
@@ -596,7 +596,7 @@ for ibin in cuts['ww2l2v_13TeV_top']['categories']:
         'samples'  : {
             'WW'   : ['nllW_Rup/nllW', 'nllW_Rdown/nllW'],
         },
-        'cutspost' : lambda self, cuts: [cut for cut in cuts if ibin in cut],
+        'cutspost' : lambda self, cuts: [cut for cut in cuts if self['name'].split('_')[-1] in cut],
     }
     nuisances['WWqscale'+ibin]  = {
         'name'  : 'CMS_hww_WWqscale_'+ibin,
@@ -605,7 +605,7 @@ for ibin in cuts['ww2l2v_13TeV_top']['categories']:
         'samples'  : {
             'WW'   : ['nllW_Qup/nllW', 'nllW_Qdown/nllW'],
         },
-        'cutspost' : lambda self, cuts: [cut for cut in cuts if ibin in cut],
+        'cutspost' : lambda self, cuts: [cut for cut in cuts if self['name'].split('_')[-1] in cut],
     }
 
 #### QCD scale uncertainties for Higgs signals other than ggH
@@ -698,12 +698,12 @@ nuisances['CRSR_accept_top'] = {
 
 for ibin in cuts['ww2l2v_13TeV_top']['categories']:
     nuisances['Topnorm'+ibin]  = {
-        'name'  : 'CMS_hww_Topnorm'+ibin,
+        'name'  : 'CMS_hww_Topnorm_'+ibin,
         'samples'  : {
             'top' : '1.00',
         },
         'type'  : 'rateParam',
-        'cutspost' : lambda self, cuts: [cut for cut in cuts if ibin in cut],
+        'cutspost' : lambda self, cuts: [cut for cut in cuts if self['name'].split('_')[-1] in cut],
     }
 
 ## Use the following if you want to apply the automatic combine MC stat nuisances.
