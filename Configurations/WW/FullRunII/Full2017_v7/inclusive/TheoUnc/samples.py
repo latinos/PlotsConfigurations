@@ -26,7 +26,7 @@ except NameError:
 
 mcProduction = 'Fall2017_102X_nAODv7_Full2017v7'
 
-mcSteps = 'MCl1loose2017v7__MCCorr2017v7'
+mcSteps = 'MCl1loose2017v7__MCCorr2017v7__l2loose' #TEMP while samples missing from MCCorr
 
 ##############################################
 ###### Tree base directory for the site ######
