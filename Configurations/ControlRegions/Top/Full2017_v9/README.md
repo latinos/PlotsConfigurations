@@ -31,20 +31,11 @@ Or, if they failed because the wall clock time has been exceeded, resubmit them 
 
 ## To check the effect of splitting Top into number of gen-matched jets
 
-    mkShapesMulti.py --pycfg=configuration_Toponly.py --doBatch=1 --batchSplit=Samples,Files --batchQueue=testmatch
+    mkShapesMulti.py --pycfg=configuration_TTonly.py --doBatch=1 --batchSplit=Samples,Files --batchQueue=testmatch
 
-    mkShapesMulti.py --pycfg=configuration_Toponly.py --doHadd=1 --batchSplit=Samples,Files --doNotCleanup --nThreads=8
+    mkShapesMulti.py --pycfg=configuration_TTonly.py --doHadd=1 --batchSplit=Samples,Files --doNotCleanup --nThreads=8
 
-    mkPlot.py --pycfg=configuration_Toponly.py --inputFile=rootFile_Toponly/plots_Top_2017_v9_Toponly.root --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1 --minLogCratio=1
-
-
-## To check the effect of applying the jet energy resolutions smearing factors only to jets with PT > 50 GeV and splitting Top into number of gen-matched jets
-
-    mkShapesMulti.py --pycfg=configuration_50GeVJER.py --doBatch=1 --batchSplit=Samples,Files --batchQueue=testmatch
-
-    mkShapesMulti.py --pycfg=configuration_50GeVJER.py --doHadd=1 --batchSplit=Samples,Files --doNotCleanup --nThreads=8
-
-    mkPlot.py --pycfg=configuration_50GeVJER.py --inputFile=rootFile_50GeVJER/plots_Top_2017_v9_50GeVJER.root --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1 --minLogCratio=1
+    mkPlot.py --pycfg=configuration_TTonly.py --inputFile=rootFile_TTonly/plots_Top_2017_v9_TTonly.root --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1 --minLogCratio=1
 
 
 ## To check the effect of COMPLETELY REMOVING the jet energy resolutions smearing factors
