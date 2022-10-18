@@ -70,12 +70,14 @@ structure['ggWW_nonfid'] = {
 
 structure['WWewk']  = {
                   'isSignal' : 0,
-                  'isData'   : 0
+                  'isData'   : 0,
+                  'removeFromCuts' :  ['ww2l2v_13TeV_top_1j', 'ww2l2v_13TeV_top_0j', 'ww2l2v_13TeV_sr_2j_B0', 'ww2l2v_13TeV_sr_1j_B0', 'ww2l2v_13TeV_top_2j', 'ww2l2v_13TeV_sr_0j_B0']
                   }
 
 structure['Wg']  = { 
                   'isSignal' : 0,
-                  'isData'   : 0 
+                  'isData'   : 0,
+                  'removeFromCuts' : ['ww2l2v_13TeV_top_1j','ww2l2v_13TeV_top_0j']
                   }
 
 structure['Vg']  = { 
@@ -84,7 +86,8 @@ structure['Vg']  = {
                   }
 structure['ZgS'] = {
                   'isSignal' : 0,
-                  'isData'   : 0
+                  'isData'   : 0,
+                  'removeFromCuts' : ['ww2l2v_13TeV_top_2j']
                   }
 structure['WgS'] = {
                   'isSignal' : 0,
@@ -107,7 +110,8 @@ structure['VgS_H'] = {
                   }
 structure['Zg']  = { 
                   'isSignal' : 0,
-                  'isData'   : 0 
+                  'isData'   : 0,
+                  'removeFromCuts' : ['ww2l2v_13TeV_top_1j']
                   }
 structure['VZ']  = { 
                   'isSignal' : 0,
@@ -143,7 +147,8 @@ structure['ggH_hww'] = {
 
 structure['qqH_hww'] = {
                   'isSignal' : 0,
-                  'isData'   : 0    
+                  'isData'   : 0,
+                  'removeFromCuts' : ['ww2l2v_13TeV_top_0j']
                   }
 
 structure['qqH_hww'] = {
@@ -158,7 +163,8 @@ structure['WH_hww'] = {
 
 structure['ZH_hww'] = {
                   'isSignal' : 0,
-                  'isData'   : 0    
+                  'isData'   : 0,
+                  'removeFromCuts' : ['ww2l2v_13TeV_top_0j']
                   }
 
 structure['ggZH_hww'] = {
@@ -189,6 +195,7 @@ structure['ggH_htt'] = {
 structure['qqH_htt'] = {
                   'isSignal' : 0,
                   'isData'   : 0,
+                  'removeFromCuts' : ['ww2l2v_13TeV_top_0j']
                   }
 
 structure['WH_htt'] = {

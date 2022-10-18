@@ -114,7 +114,7 @@ for shift in ['jes', 'lf', 'hf', 'hfstats1', 'hfstats2', 'lfstats1', 'lfstats2',
         'kind': 'weight',
         'type': 'shape',
         'samples': dict((skey, btag_syst) for skey in mc),
-        'AsLnN': '1'
+        'AsLnN': '0'
     }
 
 ##### Trigger Efficiency
@@ -126,7 +126,7 @@ nuisances['trigg'] = {
     'kind': 'weight',
     'type': 'shape',
     'samples': dict((skey, trig_syst) for skey in mc),
-    'AsLnN': '1'
+    'AsLnN': '0'
 }
 
 prefire_syst = ['PrefireWeight_Up/PrefireWeight', 'PrefireWeight_Down/PrefireWeight']
@@ -136,7 +136,7 @@ nuisances['prefire'] = {
     'kind': 'weight',
     'type': 'shape',
     'samples': dict((skey, prefire_syst) for skey in mc),
-    'AsLnN': '1'
+    'AsLnN': '0'
 }
 
 ##### Electron Efficiency and energy scale
@@ -158,7 +158,7 @@ nuisances['electronpt'] = {
     'samples': dict((skey, ['1', '1']) for skey in mc),
     'folderUp': 'root://eoscms.cern.ch/'+makeMCDirectory('ElepTup_suffix'),
     'folderDown': 'root://eoscms.cern.ch/'+makeMCDirectory('ElepTdo_suffix'),
-    'AsLnN': '1'
+    'AsLnN': '0'
 }
 
 ##### Muon Efficiency and energy scale
@@ -180,7 +180,7 @@ nuisances['muonpt'] = {
     'samples': dict((skey, ['1', '1']) for skey in mc),
     'folderUp': 'root://eoscms.cern.ch/'+makeMCDirectory('MupTup_suffix'),
     'folderDown': 'root://eoscms.cern.ch/'+makeMCDirectory('MupTdo_suffix'),
-    'AsLnN': '1'
+    'AsLnN': '0'
 }
 
 ###### Jet energy scale
@@ -218,7 +218,7 @@ for js in jes_systs:
       'samples': dict((skey, ['1', '1']) for skey in mc),
       'folderUp': folderup,
       'folderDown': folderdo,
-      'AsLnN': '1'
+      'AsLnN': '0'
   }
 
 ##### MET energy scale
@@ -232,7 +232,7 @@ nuisances['met'] = {
     'samples': dict((skey, ['1', '1']) for skey in mc),
     'folderUp': 'root://eoscms.cern.ch/'+makeMCDirectory('METup_suffix'),
     'folderDown': 'root://eoscms.cern.ch/'+makeMCDirectory('METdo_suffix'),
-    'AsLnN': '1'
+    'AsLnN': '0'
 }
 
 ### PU ID SF uncertainty
@@ -274,7 +274,7 @@ nuisances['PU'] = {
         'ggZH_hww': ['1.004855*(puWeightUp/puWeight)', '0.993307*(puWeightDown/puWeight)'],
         'ttH_hww' : ['1.002693*(puWeightUp/puWeight)', '0.997429*(puWeightDown/puWeight)'],
     },
-    'AsLnN': '1',
+    'AsLnN': '0',
 }
 
 nuisances['PS_ISR']  = {
@@ -524,7 +524,7 @@ nuisances['QCDscale_V'] = {
     'kind': 'weight_envelope',
     'type': 'shape',
     'samples': {'DY': variations},
-    'AsLnN': '1'
+    'AsLnN': '0'
 }
 
 nuisances['QCDscale_VV'] = {
@@ -553,6 +553,7 @@ nuisances['QCDscale_WW']  = {
     }
 }
 
+
 ## Factors computed to renormalize the top scale variations such that the integral is not changed in each RECO jet bin (we have rateParams for that)
 topScaleNormFactors = {
     '0j' : {'Alt$(LHEScaleWeight[0],1)' : 1.085156, 'Alt$(LHEScaleWeight[1],1)' : 1.074228, 'Alt$(LHEScaleWeight[3],1)' : 1.014694, 'Alt$(LHEScaleWeight[5],1)' : 0.989084, 'Alt$(LHEScaleWeight[7],1)' : 0.930511, 'Alt$(LHEScaleWeight[8],1)' : 0.917144},
@@ -571,7 +572,7 @@ for ibin in cuts['ww2l2v_13TeV_top']['categories']:
         'name'  : 'QCDscale_top_'+ibin,
         'kind'  : 'weight',
         'type'  : 'shape',
-        'cutspost' : lambda self, cuts: [cut for cut in cuts if ibin in cut],
+        'cutspost' : lambda self, cuts: [cut for cut in cuts if self['name'].split('_')[-1] in cut],
         'samples'  : {
             'top' : topvars,
         }
@@ -587,25 +588,29 @@ for ibin in cuts['ww2l2v_13TeV_top']['categories']:
 #}
 
 # WW resummation (to be updated, but keep for now)
-for ibin in cuts['ww2l2v_13TeV_top']['categories']:
-    nuisances['WWresum'+ibin]  = {
-        'name'  : 'CMS_hww_WWresum_'+ibin,
-        'kind'  : 'weight',
-        'type'  : 'shape',
-        'samples'  : {
-            'WW'   : ['nllW_Rup/nllW', 'nllW_Rdown/nllW'],
-        },
-        'cutspost' : lambda self, cuts: [cut for cut in cuts if ibin in cut],
-    }
-    nuisances['WWqscale'+ibin]  = {
-        'name'  : 'CMS_hww_WWqscale_'+ibin,
-        'kind'  : 'weight',
-        'type'  : 'shape',
-        'samples'  : {
-            'WW'   : ['nllW_Qup/nllW', 'nllW_Qdown/nllW'],
-        },
-        'cutspost' : lambda self, cuts: [cut for cut in cuts if ibin in cut],
-    }
+norm_WWresum = ['+'.join(['({})*1.0'.format(diffcuts[binname]) if binname == "nonfid" else '({})*({})'.format(diffcuts[binname],nfdict["CMS_hww_WWresum"]["WW_"+binname][0]) for binname in diffcuts]),
+                '+'.join(['({})*1.0'.format(diffcuts[binname]) if binname == "nonfid" else '({})*({})'.format(diffcuts[binname],nfdict["CMS_hww_WWresum"]["WW_"+binname][1]) for binname in diffcuts])]
+
+nuisances['WWresum']  = {
+    'name'  : 'CMS_hww_WWresum',
+    'kind'  : 'weight',
+    'type'  : 'shape',
+    'samples'  : {
+        'WW'   : ['nllW_Rup/nllW*('+norm_WWresum[0]+')', 'nllW_Rdown/nllW*('+norm_WWresum[1]+')'],
+    },
+}
+
+norm_WWqscale = ['+'.join(['({})*1.0'.format(diffcuts[binname]) if binname == "nonfid" else '({})*({})'.format(diffcuts[binname],nfdict["CMS_hww_WWqscale"]["WW_"+binname][0]) for binname in diffcuts]),
+                 '+'.join(['({})*1.0'.format(diffcuts[binname]) if binname == "nonfid" else '({})*({})'.format(diffcuts[binname],nfdict["CMS_hww_WWqscale"]["WW_"+binname][1]) for binname in diffcuts])]
+
+nuisances['WWqscale']  = {
+    'name'  : 'CMS_hww_WWqscale',
+    'kind'  : 'weight',
+    'type'  : 'shape',
+    'samples'  : {
+        'WW'   : ['nllW_Qup/nllW*('+norm_WWqscale[0]+')', 'nllW_Qdown/nllW*('+norm_WWqscale[1]+')'],
+    },
+}
 
 #### QCD scale uncertainties for Higgs signals other than ggH
 
@@ -697,12 +702,12 @@ nuisances['CRSR_accept_top'] = {
 
 for ibin in cuts['ww2l2v_13TeV_top']['categories']:
     nuisances['Topnorm'+ibin]  = {
-        'name'  : 'CMS_hww_Topnorm'+ibin,
+        'name'  : 'CMS_hww_Topnorm_'+ibin,
         'samples'  : {
             'top' : '1.00',
         },
         'type'  : 'rateParam',
-        'cutspost' : lambda self, cuts: [cut for cut in cuts if ibin in cut],
+        'cutspost' : lambda self, cuts: [cut for cut in cuts if self['name'].split('_')[-1] in cut],
     }
 
 ## Use the following if you want to apply the automatic combine MC stat nuisances.

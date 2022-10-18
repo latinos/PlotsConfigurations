@@ -603,7 +603,7 @@ for ibin in cuts['ww2l2v_13TeV_top']['categories']:
         'name'  : 'QCDscale_top_'+ibin,
         'kind'  : 'weight',
         'type'  : 'shape',
-        'cutspost' : lambda self, cuts: [cut for cut in cuts if ibin in cut],
+        'cutspost' : lambda self, cuts: [cut for cut in cuts if self['name'].split('_')[-1] in cut],
         'samples'  : {
             'top' : topvars,
         }
@@ -619,25 +619,29 @@ for ibin in cuts['ww2l2v_13TeV_top']['categories']:
 #}
 
 # WW resummation (to be updated, but keep for now)
-for ibin in cuts['ww2l2v_13TeV_top']['categories']:
-    nuisances['WWresum'+ibin]  = {
-        'name'  : 'CMS_hww_WWresum_'+ibin,
-        'kind'  : 'weight',
-        'type'  : 'shape',
-        'samples'  : {
-            'WW'   : ['nllW_Rup/nllW', 'nllW_Rdown/nllW'],
-        },
-        'cutspost' : lambda self, cuts: [cut for cut in cuts if ibin in cut],
-    }
-    nuisances['WWqscale'+ibin]  = {
-        'name'  : 'CMS_hww_WWqscale_'+ibin,
-        'kind'  : 'weight',
-        'type'  : 'shape',
-        'samples'  : {
-            'WW'   : ['nllW_Qup/nllW', 'nllW_Qdown/nllW'],
-        },
-        'cutspost' : lambda self, cuts: [cut for cut in cuts if ibin in cut],
-    }
+norm_WWresum = ['+'.join(['({})*1.0'.format(diffcuts[binname]) if binname == "nonfid" else '({})*({})'.format(diffcuts[binname],nfdict["CMS_hww_WWresum"]["WW_"+binname][0]) for binname in diffcuts]),
+                '+'.join(['({})*1.0'.format(diffcuts[binname]) if binname == "nonfid" else '({})*({})'.format(diffcuts[binname],nfdict["CMS_hww_WWresum"]["WW_"+binname][1]) for binname in diffcuts])]
+
+nuisances['WWresum']  = {
+    'name'  : 'CMS_hww_WWresum',
+    'kind'  : 'weight',
+    'type'  : 'shape',
+    'samples'  : {
+        'WW'   : ['nllW_Rup/nllW*('+norm_WWresum[0]+')', 'nllW_Rdown/nllW*('+norm_WWresum[1]+')'],
+    },
+}
+
+norm_WWqscale = ['+'.join(['({})*1.0'.format(diffcuts[binname]) if binname == "nonfid" else '({})*({})'.format(diffcuts[binname],nfdict["CMS_hww_WWqscale"]["WW_"+binname][0]) for binname in diffcuts]),
+                 '+'.join(['({})*1.0'.format(diffcuts[binname]) if binname == "nonfid" else '({})*({})'.format(diffcuts[binname],nfdict["CMS_hww_WWqscale"]["WW_"+binname][1]) for binname in diffcuts])]
+
+nuisances['WWqscale']  = {
+    'name'  : 'CMS_hww_WWqscale',
+    'kind'  : 'weight',
+    'type'  : 'shape',
+    'samples'  : {
+        'WW'   : ['nllW_Qup/nllW*('+norm_WWqscale[0]+')', 'nllW_Qdown/nllW*('+norm_WWqscale[1]+')'],
+    },
+}
 
 #### QCD scale uncertainties for Higgs signals other than ggH
 
@@ -729,12 +733,12 @@ nuisances['CRSR_accept_top'] = {
 
 for ibin in cuts['ww2l2v_13TeV_top']['categories']:
     nuisances['Topnorm'+ibin]  = {
-        'name'  : 'CMS_hww_Topnorm'+ibin,
+        'name'  : 'CMS_hww_Topnorm_'+ibin,
         'samples'  : {
             'top' : '1.00',
         },
         'type'  : 'rateParam',
-        'cutspost' : lambda self, cuts: [cut for cut in cuts if ibin in cut],
+        'cutspost' : lambda self, cuts: [cut for cut in cuts if self['name'].split('_')[-1] in cut],
     }
 
 ## Use the following if you want to apply the automatic combine MC stat nuisances.
