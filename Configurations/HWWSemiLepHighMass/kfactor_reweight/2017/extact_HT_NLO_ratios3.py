@@ -167,7 +167,7 @@ legend.Draw()
 raw_input('exit')
 
 # Store
-file_name = 'HT_to_NLO_QCD_k_factorsniu.root'
+file_name = 'HT_to_NLO_QCD_k_factors_bis.root'
 r_file = ROOT.TFile.Open(file_name, 'recreate')
 for year in run2:
     year_dict[year]['tg'] = ROOT.TGraph(year_dict[year]['ratio_s'])

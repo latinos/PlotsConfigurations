@@ -123,8 +123,8 @@ def CombineBaseW(directory, samples, proc, samplelist):
 #mcCommonWeightRaw     =                                                          'LepWPCut[0]*1tlVeto[0]*PromptGenLepMatch1l'
 #mcCommonWeight        = 'XSWeight*SFweight[0]*METFilter_MC*btagSF[0]*PUJetIdSF[0]*LepWPCut[0]*1tlVeto[0]*PromptGenLepMatch1l'
 
-mcCommonWeightNoMatch = 'XSWeight*METFilter_MC'
-mcCommonWeight = mcCommonWeightNoMatch+'*Lepton_promptgenmatched[0]'
+mcCommonWeightNoMatch = 'XSWeight'
+mcCommonWeight = mcCommonWeightNoMatch
 ###########################################
 #############  BACKGROUNDS  ###############
 ###########################################

@@ -36,7 +36,8 @@ variables['genW_pt_true']  = {
     'xaxis' : 'gen W p_T',
     'fold'  : 3                         
 }
-genW_pt_bin = [0, 5] + range(5, 200, 5) + range(200, 500, 20) + range(500, 800, 40) + range(800, 1500, 100)
+genW_pt_bin = [0, 10] + range(10, 200, 10) + range(200, 400, 20) + range(400, 700, 50)  +range(700,900,100) + range(900, 1500, 200)
+#genW_pt_bin = [0, 5] + range(5, 200, 5) + range(200, 500, 20) + range(500, 800, 40) + range(800, 1500, 100)
 variables['genW_pt2']  = {
     'name': 'GenW_pt',     
     #'range' : (50,0,250),   

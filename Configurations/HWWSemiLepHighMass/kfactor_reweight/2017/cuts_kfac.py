@@ -1,6 +1,5 @@
 super_cut = [ 
-    'nLepton>=1',
-    'MHlnjj_m_jj > -1', #Here to avoid -1 idex issue
+    'nLeptonGen>=1',
 ]
 
 supercut = ' && '.join(super_cut)
@@ -14,14 +13,14 @@ def combinecut(cut_list):
 def addcut(name, exprs):
     cuts[name] = ' && '.join(exprs)
 
-tk_jets   = ['(abs(CleanJet_eta[HM_idx_j1]) < 2.4 && abs(CleanJet_eta[HM_idx_j2]) < 2.4)']
-lep_kin   = ['((Lepton_pt[0]>27. && abs(Lepton_pdgId[0])==13) || (Lepton_pt[0]>35. && abs(Lepton_pdgId[0])==11))']
+#tk_jets   = ['(abs(CleanJet_eta[HM_idx_j1]) < 2.4 && abs(CleanJet_eta[HM_idx_j2]) < 2.4)']
+lep_kin   = ['((LeptonGen_pt[0]>20. && abs(LeptonGen_pdgId[0])==13) || (LeptonGen_pt[0]>20. && abs(LeptonGen_pdgId[0])==11))']
 clean_j   = ['Sum$(CleanJet_pt>30.)>=2', 'MHlnjj_m_jj > -1']
 
 #SC       = super_cut
 #LEP      = combinecut([super_cut, lep_kin])
 JET      = combinecut([super_cut, clean_j, lep_kin])
-NOM      = combinecut([super_cut, tk_jets, clean_j, lep_kin])
+NOM      = combinecut([super_cut, lep_kin])
 #NTK      = combinecut([super_cut, clean_j, lep_kin])
 
 ## Inclusive

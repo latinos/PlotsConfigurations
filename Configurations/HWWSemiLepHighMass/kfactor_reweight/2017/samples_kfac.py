@@ -99,8 +99,8 @@ def CombineBaseW(directory, samples, proc, samplelist):
 #mcCommonWeight = mcCommonWeightNoMatch+'*Lepton_promptgenmatched[0]'
 
 
-mcCommonWeightNoMatch = 'XSWeight*METFilter_MC'
-mcCommonWeight = mcCommonWeightNoMatch+'*Lepton_promptgenmatched[0]'
+mcCommonWeightNoMatch = 'XSWeight'
+mcCommonWeight = mcCommonWeightNoMatch
 ###########################################
 #############  BACKGROUNDS  ###############
 ###########################################
@@ -177,20 +177,20 @@ CombineBaseW(mcDirectory, samples, 'Wjets_NLOnj',
 #newbWlow = getCachedBaseW(['WJetsToLNu-LO', 'WJetsToLNu-LO_ext1'])
 #print(' LO old baseW: '+oldbWlo+', new baseW: '+newbWlo+', ext baseW: '+extbWlo)
 
-# LO sample
-files = nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-LO')
-files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-LO_ext1')
-
-samples['Wjets_LO'] = {
-    'name'   : files,
-    #'weight' : mcCommonWeight +'*EWKnloW[0]', # ewk nlo correction https://arxiv.org/pdf/1705.04664v2.pdf 
-    #'weight' : mcCommonWeight + '*ewknloW', 
-    'weight' : mcCommonWeight,
-    'FilesPerJob' : 4,
-}
-
-CombineBaseW(mcDirectory, samples, 'Wjets_LO',
-            ['WJetsToLNu-LO', 'WJetsToLNu-LO_ext1'])
+## LO sample
+#files = nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-LO')
+#files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-LO_ext1')
+#
+#samples['Wjets_LO'] = {
+#    'name'   : files,
+#    #'weight' : mcCommonWeight +'*EWKnloW[0]', # ewk nlo correction https://arxiv.org/pdf/1705.04664v2.pdf 
+#    #'weight' : mcCommonWeight + '*ewknloW', 
+#    'weight' : mcCommonWeight,
+#    'FilesPerJob' : 4,
+#}
+#
+#CombineBaseW(mcDirectory, samples, 'Wjets_LO',
+#            ['WJetsToLNu-LO', 'WJetsToLNu-LO_ext1'])
 
 # HT binned
 files = nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_HT70_100')
@@ -208,7 +208,7 @@ samples['Wjets_HT'] = {
     'name'   : files,
     #'weight' : mcCommonWeight +'*EWKnloW[0]', # ewk nlo correction https://arxiv.org/pdf/1705.04664v2.pdf 
     #'weight' : mcCommonWeight + '*ewknloW', 
-    'weight' : mcCommonWeight,
+    'weight' : mcCommonWeight, #+ '*kfact[0]',
     #'weight' : mcCommonWeight, 
     'FilesPerJob' : 4,
 }
