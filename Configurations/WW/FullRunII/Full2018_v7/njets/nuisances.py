@@ -548,7 +548,7 @@ for ibin in cuts['ww2l2v_13TeV_top']['categories']:
         'name'  : 'QCDscale_top_'+ibin,
         'kind'  : 'weight',
         'type'  : 'shape',
-        'cutspost' : lambda self, cuts: [cut for cut in cuts if ibin in cut],
+        'cutspost' : lambda self, cuts: [cut for cut in cuts if self['name'].split('_')[-1] in cut],
         'samples'  : {
             'top' : topvars,
         }
@@ -729,13 +729,13 @@ nuisances['stat'] = {
 }
 
 for ibin in cuts['ww2l2v_13TeV_top']['categories']:
-    nuisances['Topnorm'+ibin]  = {
-        'name'  : 'CMS_hww_Topnorm'+ibin,
+    nuisances['Topnorm_'+ibin]  = {
+        'name'  : 'CMS_hww_Topnorm_'+ibin,
         'samples'  : {
             'top' : '1.00',
         },
         'type'  : 'rateParam',
-        'cutspost' : lambda self, cuts: [cut for cut in cuts if ibin in cut],
+        'cutspost' : lambda self, cuts: [cut for cut in cuts if self['name'].split('_')[-1] in cut],
     }
 
 for n in nuisances.values():
