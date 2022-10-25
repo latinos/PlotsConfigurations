@@ -33,7 +33,7 @@ for year in ['2016','2017','2018']:
         pu_weight[sample] = [h_nom.Integral()/h_pu_up.Integral(), h_nom.Integral()/h_pu_down.Integral()]
 
     print "PU"
-    ordering = ['DY','WW','ggWW','WWewk','Wg','WgS','Zg','ZgS','WZ','ZZ','VVV','top','ggH_htt','qqH_htt','WH_htt','ZH_htt','ggH_hww','qqH_hww','WH_hww','ZH_hww','ggZH_hww','ttH_hww']
+    ordering = ['DY','WW','ggWW','WWewk','Vg','WZ','ZZ','VVV','top','Higgs']
     ordered_keys = sorted(pu_weight.keys(), key=lambda x : ordering.index(x) if x in ordering else -1)
     for sample in ordered_keys:
         if doTable :
