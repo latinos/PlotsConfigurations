@@ -599,7 +599,7 @@ values = {'ggH_hww' : '1.012',
 
 for cut in allcuts:
     nuisances['QCDscale_Higgs_ACCEPT_'+cut] = {
-        'name': 'QCDscale_qqbar_ACCEPT',
+        'name': 'QCDscale_Higgs_ACCEPT',
         'type': 'lnN',
         'samples': {
             'Higgs' : '{:.3f}'.format(sum([float(values[subsample])*sfdict[cut]['Higgs'][subsample] for subsample in values]))
