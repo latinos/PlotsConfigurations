@@ -1,5 +1,11 @@
 # nuisances
 # name of samples here must match keys in samples.py 
+
+# imported from samples.py:
+# samples, treeBaseDir, mcProduction, mcSteps
+# imported from cuts.py
+# cuts
+
 from LatinoAnalysis.Tools.commonTools import getSampleFiles, getBaseW, addSampleWeight
 
 def nanoGetSampleFiles(inputDir, Sample):
@@ -31,7 +37,7 @@ configurations = os.path.dirname(configurations) # Configurations
 diffcuts = samples['WW']['subsamples'] if 'WW' in samples else {}
 allcuts = [cut+'_'+cat for cut in cuts for cat in cuts[cut]['categories']]
 nfdict = json.load(open("%s/WW/FullRunII/Full2018_v7/njets/WWnorm.json"%configurations))
-sfdict = json.load(open("%s/WW/FullRunII/Full2016_v7/njets/sampleFrac.json"%configurations))
+sfdict = json.load(open("%s/WW/FullRunII/Full2018_v7/njets/sampleFrac.json"%configurations))
 
 ################################ EXPERIMENTAL UNCERTAINTIES  #################################
 
@@ -563,6 +569,30 @@ nuisances['QCDscale_ggVV'] = {
     },
 }
 '''
+# WW resummation (to be updated, but keep for now)
+norm_WWresum = ['+'.join(['({})*1.0'.format(diffcuts[binname]) if binname == "nonfid" else '({})*({})'.format(diffcuts[binname],nfdict["CMS_hww_WWresum"]["WW_"+binname][0]) for binname in diffcuts]),
+                '+'.join(['({})*1.0'.format(diffcuts[binname]) if binname == "nonfid" else '({})*({})'.format(diffcuts[binname],nfdict["CMS_hww_WWresum"]["WW_"+binname][1]) for binname in diffcuts])]
+
+nuisances['WWresum']  = {
+    'name'  : 'CMS_hww_WWresum',
+    'kind'  : 'weight',
+    'type'  : 'shape',
+    'samples'  : {
+        'WW'   : ['nllW_Rup/nllW*('+norm_WWresum[0]+')', 'nllW_Rdown/nllW*('+norm_WWresum[1]+')'],
+    },
+}
+
+norm_WWqscale = ['+'.join(['({})*1.0'.format(diffcuts[binname]) if binname == "nonfid" else '({})*({})'.format(diffcuts[binname],nfdict["CMS_hww_WWqscale"]["WW_"+binname][0]) for binname in diffcuts]),
+                 '+'.join(['({})*1.0'.format(diffcuts[binname]) if binname == "nonfid" else '({})*({})'.format(diffcuts[binname],nfdict["CMS_hww_WWqscale"]["WW_"+binname][1]) for binname in diffcuts])]
+
+nuisances['WWqscale']  = {
+    'name'  : 'CMS_hww_WWqscale',
+    'kind'  : 'weight',
+    'type'  : 'shape',
+    'samples'  : {
+        'WW'   : ['nllW_Qup/nllW*('+norm_WWqscale[0]+')', 'nllW_Qdown/nllW*('+norm_WWqscale[1]+')'],
+    },
+}
 
 # Uncertainty on SR/CR ratio
 nuisances['CRSR_accept_top'] = {
@@ -637,32 +667,6 @@ for name, vname in thusQQH:
         }
     }
 '''
-
-# WW resummation (to be updated, but keep for now)
-norm_WWresum = ['+'.join(['({})*1.0'.format(diffcuts[binname]) if binname == "nonfid" else '({})*({})'.format(diffcuts[binname],nfdict["CMS_hww_WWresum"]["WW_"+binname][0]) for binname in diffcuts]),
-                '+'.join(['({})*1.0'.format(diffcuts[binname]) if binname == "nonfid" else '({})*({})'.format(diffcuts[binname],nfdict["CMS_hww_WWresum"]["WW_"+binname][1]) for binname in diffcuts])]
-
-nuisances['WWresum']  = {
-    'name'  : 'CMS_hww_WWresum',
-    'kind'  : 'weight',
-    'type'  : 'shape',
-    'samples'  : {
-        'WW'   : ['nllW_Rup/nllW*('+norm_WWresum[0]+')', 'nllW_Rdown/nllW*('+norm_WWresum[1]+')'],
-    },
-}
-
-norm_WWqscale = ['+'.join(['({})*1.0'.format(diffcuts[binname]) if binname == "nonfid" else '({})*({})'.format(diffcuts[binname],nfdict["CMS_hww_WWqscale"]["WW_"+binname][0]) for binname in diffcuts]),
-                 '+'.join(['({})*1.0'.format(diffcuts[binname]) if binname == "nonfid" else '({})*({})'.format(diffcuts[binname],nfdict["CMS_hww_WWqscale"]["WW_"+binname][1]) for binname in diffcuts])]
-
-nuisances['WWqscale']  = {
-    'name'  : 'CMS_hww_WWqscale',
-    'kind'  : 'weight',
-    'type'  : 'shape',
-    'samples'  : {
-        'WW'   : ['nllW_Qup/nllW*('+norm_WWqscale[0]+')', 'nllW_Qdown/nllW*('+norm_WWqscale[1]+')'],
-    },
-}
-
 #### QCD scale uncertainties for Higgs signals other than ggH
 
 values = {

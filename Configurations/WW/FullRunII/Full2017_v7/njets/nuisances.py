@@ -30,7 +30,7 @@ configurations = os.path.dirname(configurations) # Configurations
 diffcuts = samples['WW']['subsamples'] if 'WW' in samples else {}
 allcuts = [cut+'_'+cat for cut in cuts for cat in cuts[cut]['categories']]
 nfdict = json.load(open("%s/WW/FullRunII/Full2017_v7/njets/WWnorm.json"%configurations))
-sfdict = json.load(open("%s/WW/FullRunII/Full2016_v7/njets/sampleFrac.json"%configurations))
+sfdict = json.load(open("%s/WW/FullRunII/Full2017_v7/njets/sampleFrac.json"%configurations))
 
 ################################ EXPERIMENTAL UNCERTAINTIES  #################################
 
