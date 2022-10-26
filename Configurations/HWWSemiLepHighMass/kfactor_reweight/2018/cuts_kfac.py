@@ -16,18 +16,18 @@ def addcut(name, exprs):
 
 #tk_jets   = ['(abs(CleanJet_eta[HM_idx_j1]) < 2.4 && abs(CleanJet_eta[HM_idx_j2]) < 2.4)']
 lep_kin   = ['((LeptonGen_pt[0]>20. && abs(LeptonGen_pdgId[0])==13) || (LeptonGen_pt[0]>20. && abs(LeptonGen_pdgId[0])==11))']
-clean_j   = ['MHlnjj_m_jj > -1', 'Sum$(CleanJet_pt>30.)>=2']
+#clean_j   = ['MHlnjj_m_jj > -1', 'Sum$(CleanJet_pt>30.)>=2']
 
 #SC       = super_cut
 #LEP      = combinecut([super_cut, lep_kin])
-JET      = combinecut([super_cut, clean_j, lep_kin])
+#JET      = combinecut([super_cut, clean_j, lep_kin])
 NOM      = combinecut([super_cut, lep_kin])
 #NTK      = combinecut([super_cut, clean_j, lep_kin])
 
 ## Inclusive
 #addcut('SC'   , combinecut([SC  ]))
 #addcut('LEP'  , combinecut([LEP  ]))
-addcut('JET'  , combinecut([JET  ]))
+#addcut('JET'  , combinecut([JET  ]))
 addcut('NOM'  , combinecut([NOM  ]))
 #addcut('NTK'  , combinecut([NTK  ]))
 

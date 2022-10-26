@@ -49,69 +49,69 @@ aliases['nTightLep'] = {
 }
 
 
-aliases['resolvHiggsMT'] = {
-    # 'expr': 'HM_Hlnjj_mt'
-    'expr': 'TMath::Sqrt( 2*Lepton_pt[0]*PuppiMET_pt \
-    *( 1-TMath::Cos(Lepton_phi[0]-PuppiMET_phi) ) )'
-}
-
-aliases['HM_Hlnjj_MT'] = {
-    # 'expr': 'HM_Hlnjj_mt'
-    'expr': 'TMath::Sqrt( 2*HM_Wlep_pt_Puppi*HM_Whad_pt \
-    *( 1-TMath::Cos(HM_Wlep_phi_Puppi-HM_Whad_phi) ) )'
-}
-
-
-aliases['mass_HIGGS_FAT'] = {
-    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/getResBoo.cc+'  % os.getenv('CMSSW_BASE')],
-    'class': 'getResBoo',
-    'args': 0
-}
-
-aliases['HvOverFat'] = {
-    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/getResBoo.cc+'  % os.getenv('CMSSW_BASE')],
-    'class': 'getResBoo',
-    'args': 1
-}
-
-aliases['mass_HIGGS_JJ'] = {
-    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/getResBoo.cc+'  % os.getenv('CMSSW_BASE')],
-    'class': 'getResBoo',
-    'args': 2
-}
+#aliases['resolvHiggsMT'] = {
+#    # 'expr': 'HM_Hlnjj_mt'
+#    'expr': 'TMath::Sqrt( 2*Lepton_pt[0]*PuppiMET_pt \
+#    *( 1-TMath::Cos(Lepton_phi[0]-PuppiMET_phi) ) )'
+#}
+#
+#aliases['HM_Hlnjj_MT'] = {
+#    # 'expr': 'HM_Hlnjj_mt'
+#    'expr': 'TMath::Sqrt( 2*HM_Wlep_pt_Puppi*HM_Whad_pt \
+#    *( 1-TMath::Cos(HM_Wlep_phi_Puppi-HM_Whad_phi) ) )'
+#}
+#
+#
+#aliases['mass_HIGGS_FAT'] = {
+#    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/getResBoo.cc+'  % os.getenv('CMSSW_BASE')],
+#    'class': 'getResBoo',
+#    'args': 0
+#}
+#
+#aliases['HvOverFat'] = {
+#    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/getResBoo.cc+'  % os.getenv('CMSSW_BASE')],
+#    'class': 'getResBoo',
+#    'args': 1
+#}
+#
+#aliases['mass_HIGGS_JJ'] = {
+#    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/getResBoo.cc+'  % os.getenv('CMSSW_BASE')],
+#    'class': 'getResBoo',
+#    'args': 2
+#}
 
 aliases['W_Lep_Gen'] ={
     'expr' : 'TMath::Sqrt( (LeptonGen_pt[0]*TMath::Cos(LeptonGen_phi[0]) + NeutrinoGen_pt[0]*TMath::Cos(NeutrinoGen_phi[0]))*(LeptonGen_pt[0]*TMath::Cos(LeptonGen_phi[0]) + NeutrinoGen_pt[0]*TMath::Cos(NeutrinoGen_phi[0])) + (LeptonGen_pt[0]*TMath::Sin(LeptonGen_phi[0]) + NeutrinoGen_pt[0]*TMath::Sin(NeutrinoGen_phi[0]))*(LeptonGen_pt[0]*TMath::Sin(LeptonGen_phi[0]) + NeutrinoGen_pt[0]*TMath::Sin(NeutrinoGen_phi[0])))',
 }
-aliases['HvOverJJ'] = {
-    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/getResBoo.cc+'  % os.getenv('CMSSW_BASE')],
-    'class': 'getResBoo',
-    'args': 3
-}
-
-aliases['HvOverLEP'] = {
-    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/getResBoo.cc+'  % os.getenv('CMSSW_BASE')],
-    'class': 'getResBoo',
-    'args': 4
-}
-
-
-
-aliases['boosted_nocut_res'] = {
-    'expr': 'PuppiMET_pt > 40 \
-            && Alt$(CleanFatJet_pt[0], 0) > 200 \
-            && FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]] > 0.961 \
-            && Alt$(CleanFatJet_eta[0], 999) < 2.4'
-}
-aliases['two_jet_res'] ={
-    'expr': 'nCleanJet >= 2 \
-            && HM_idx_j1 >= 0 \
-            && !boosted_nocut_res[0] \
-            && PuppiMET_pt[0] > 30 \
-            && HM_idx_j2 >= 0 \
-            && HM_Hlnjj_MT[0] > 60 \
-            && HvOverJJ[0] > 0.4'
-}
+#aliases['HvOverJJ'] = {
+#    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/getResBoo.cc+'  % os.getenv('CMSSW_BASE')],
+#    'class': 'getResBoo',
+#    'args': 3
+#}
+#
+#aliases['HvOverLEP'] = {
+#    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/getResBoo.cc+'  % os.getenv('CMSSW_BASE')],
+#    'class': 'getResBoo',
+#    'args': 4
+#}
+#
+#
+#
+#aliases['boosted_nocut_res'] = {
+#    'expr': 'PuppiMET_pt > 40 \
+#            && Alt$(CleanFatJet_pt[0], 0) > 200 \
+#            && FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]] > 0.961 \
+#            && Alt$(CleanFatJet_eta[0], 999) < 2.4'
+#}
+#aliases['two_jet_res'] ={
+#    'expr': 'nCleanJet >= 2 \
+#            && HM_idx_j1 >= 0 \
+#            && !boosted_nocut_res[0] \
+#            && PuppiMET_pt[0] > 30 \
+#            && HM_idx_j2 >= 0 \
+#            && HM_Hlnjj_MT[0] > 60 \
+#            && HvOverJJ[0] > 0.4'
+#}
 
 aliases['LHEPartWlepPt'] = {
     'linesToAdd': ['.L %s/LHEPartWlepPt.cc+' % configurations],
@@ -162,71 +162,71 @@ aliases['gstarHigh'] = {
 
 
 # # B-Stuff
-vetoThreshold = 20
-reqThreshold  = 30
-boostedJetBVetoCondition = '(\
-CleanJet_pt[CleanJetNotFat_jetIdx] > {threshold} \
-&& abs(CleanJet_eta[CleanJetNotFat_jetIdx]) < 2.5 \
-)'
-resolvedJetBVetoCondition = '(\
-HM_idx_j1 >= 0 && HM_idx_j2 >= 0\
-&& CleanJet_pt > {threshold} && abs(CleanJet_eta) < 2.5 \
-&& CleanJet_jetIdx != CleanJet_jetIdx[HM_idx_j1] \
-&& CleanJet_jetIdx != CleanJet_jetIdx[HM_idx_j2] \
-)'
-
-bTagBoosted = '(Sum$(Jet_btagDeepB[CleanJet_jetIdx[CleanJetNotFat_jetIdx]] > bWP[0] \
-    && {0}) == 0)'.format(boostedJetBVetoCondition)
-bTagResolved = '(Sum$(Jet_btagDeepB[CleanJet_jetIdx] > bWP[0] && {0}) == 0)'\
-                .format(resolvedJetBVetoCondition)
-
-bTemplate = '((boosted_nocut_res[0]*{0}) || ( two_jet_res[0]*{1}))'.format(bTagBoosted, bTagResolved)
-
-aliases['bVeto'] = {
-    'expr': bTemplate.format(threshold=vetoThreshold)
-}
-aliases['bReq'] = {
-    'expr': '!'+bTemplate.format(threshold=reqThreshold)
-}
-
-bSF = 'TMath::Exp(Sum$(TMath::Log( \
-    {0} * Jet_btagSF_deepcsv_shape[CleanJet_jetIdx] + !{0} * 1 \
-    )))'.format('(CleanJet_pt > {threshold} && abs(CleanJet_eta) < 2.5)')
-
-aliases['bVetoSF'] = {
-    'expr': bSF.format(threshold=vetoThreshold),
-    'samples': mc
-}
-aliases['bReqSF'] = {
-    'expr': bSF.format(threshold=reqThreshold),
-    'samples': mc
-}
-
-aliases['btagSF'] = {
-    'expr': 'bVeto*bVetoSF + bReq*bReqSF + (!bVeto && !bReq)',
-    'samples': mc
-}
-
-for shift in ['jes','lf','hf','lfstats1','lfstats2','hfstats1','hfstats2','cferr1','cferr2']:
-
-    for targ in ['bVeto', 'bReq']:
-        alias = aliases['%sSF%sup' % (targ, shift)] = copy.deepcopy(aliases['%sSF' % targ])
-        alias['expr'] = alias['expr'].replace('btagSF_deepcsv_shape', 'btagSF_deepcsv_shape_up_%s' % shift)
-
-        alias = aliases['%sSF%sdown' % (targ, shift)] = copy.deepcopy(aliases['%sSF' % targ])
-        alias['expr'] = alias['expr'].replace('btagSF_deepcsv_shape', 'btagSF_deepcsv_shape_down_%s' % shift)
-
-
-    aliases['btagSF%sup' % shift] = {
-        'expr': 'bVeto*bVetoSF{shift}up + bReq*bReqSF{shift}up + (!bVeto && !bReq)'\
-                .format(shift = shift),
-        'samples': mc
-    }
-    aliases['btagSF%sdown' % shift] = {
-        'expr': 'bVeto*bVetoSF{shift}down + bReq*bReqSF{shift}down + (!bVeto && !bReq)'\
-                .format(shift = shift),
-        'samples': mc
-    }
+#vetoThreshold = 20
+#reqThreshold  = 30
+#boostedJetBVetoCondition = '(\
+#CleanJet_pt[CleanJetNotFat_jetIdx] > {threshold} \
+#&& abs(CleanJet_eta[CleanJetNotFat_jetIdx]) < 2.5 \
+#)'
+#resolvedJetBVetoCondition = '(\
+#HM_idx_j1 >= 0 && HM_idx_j2 >= 0\
+#&& CleanJet_pt > {threshold} && abs(CleanJet_eta) < 2.5 \
+#&& CleanJet_jetIdx != CleanJet_jetIdx[HM_idx_j1] \
+#&& CleanJet_jetIdx != CleanJet_jetIdx[HM_idx_j2] \
+#)'
+#
+#bTagBoosted = '(Sum$(Jet_btagDeepB[CleanJet_jetIdx[CleanJetNotFat_jetIdx]] > bWP[0] \
+#    && {0}) == 0)'.format(boostedJetBVetoCondition)
+#bTagResolved = '(Sum$(Jet_btagDeepB[CleanJet_jetIdx] > bWP[0] && {0}) == 0)'\
+#                .format(resolvedJetBVetoCondition)
+#
+#bTemplate = '((boosted_nocut_res[0]*{0}) || ( two_jet_res[0]*{1}))'.format(bTagBoosted, bTagResolved)
+#
+#aliases['bVeto'] = {
+#    'expr': bTemplate.format(threshold=vetoThreshold)
+#}
+#aliases['bReq'] = {
+#    'expr': '!'+bTemplate.format(threshold=reqThreshold)
+#}
+#
+#bSF = 'TMath::Exp(Sum$(TMath::Log( \
+#    {0} * Jet_btagSF_deepcsv_shape[CleanJet_jetIdx] + !{0} * 1 \
+#    )))'.format('(CleanJet_pt > {threshold} && abs(CleanJet_eta) < 2.5)')
+#
+#aliases['bVetoSF'] = {
+#    'expr': bSF.format(threshold=vetoThreshold),
+#    'samples': mc
+#}
+#aliases['bReqSF'] = {
+#    'expr': bSF.format(threshold=reqThreshold),
+#    'samples': mc
+#}
+#
+#aliases['btagSF'] = {
+#    'expr': 'bVeto*bVetoSF + bReq*bReqSF + (!bVeto && !bReq)',
+#    'samples': mc
+#}
+#
+#for shift in ['jes','lf','hf','lfstats1','lfstats2','hfstats1','hfstats2','cferr1','cferr2']:
+#
+#    for targ in ['bVeto', 'bReq']:
+#        alias = aliases['%sSF%sup' % (targ, shift)] = copy.deepcopy(aliases['%sSF' % targ])
+#        alias['expr'] = alias['expr'].replace('btagSF_deepcsv_shape', 'btagSF_deepcsv_shape_up_%s' % shift)
+#
+#        alias = aliases['%sSF%sdown' % (targ, shift)] = copy.deepcopy(aliases['%sSF' % targ])
+#        alias['expr'] = alias['expr'].replace('btagSF_deepcsv_shape', 'btagSF_deepcsv_shape_down_%s' % shift)
+#
+#
+#    aliases['btagSF%sup' % shift] = {
+#        'expr': 'bVeto*bVetoSF{shift}up + bReq*bReqSF{shift}up + (!bVeto && !bReq)'\
+#                .format(shift = shift),
+#        'samples': mc
+#    }
+#    aliases['btagSF%sdown' % shift] = {
+#        'expr': 'bVeto*bVetoSF{shift}down + bReq*bReqSF{shift}down + (!bVeto && !bReq)'\
+#                .format(shift = shift),
+#        'samples': mc
+#    }
 
 
 
@@ -293,10 +293,10 @@ aliases['passSingleElectronHLT']= {
 
 
 
-aliases['SFweight'] = {
-    'expr': ' * '.join(['puWeight', 'TriggerEffWeight_1l', 'EMTFbug_veto', 'LepWPSF[0]', 'btagSF[0]', 'PUJetIdSF[0]']),
-    'samples': mc
-}
+#aliases['SFweight'] = {
+#    'expr': ' * '.join(['puWeight', 'TriggerEffWeight_1l', 'EMTFbug_veto', 'LepWPSF[0]', 'btagSF[0]', 'PUJetIdSF[0]']),
+#    'samples': mc
+#}
 
 
 
@@ -363,18 +363,18 @@ aliases['genW_pt'] = {
 #    'samples': mc
 #}
 
-aliases['kfact'] = {
-    'linesToAdd': [
-        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_RELEASE_BASE'),
-	'gSystem->Load("%s/src/JHUGenMELA/MELA/data/%s/libmcfm_707.so","", kTRUE);'%(os.getenv('CMSSW_BASE'), os.getenv('SCRAM_ARCH')),
-        'gSystem->Load("libJHUGenMELAMELA.so","", kTRUE);',
-        '.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/kFactorUnc2.cc+' % os.getenv('CMSSW_BASE')
-    ],
-    'class': 'kFactorUnc2',
-    'args': ('PlotsConfigurations/Configurations/HWWSemiLepHighMass/wjets_kfactor_DH/HT_to_NLO_QCD_k_factors_n.root', 'k_factor_2018'),
-    'samples': wjets, 
-    #'samples': "Wjets"
-}
+#aliases['kfact'] = {
+#    'linesToAdd': [
+#        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_RELEASE_BASE'),
+#	'gSystem->Load("%s/src/JHUGenMELA/MELA/data/%s/libmcfm_707.so","", kTRUE);'%(os.getenv('CMSSW_BASE'), os.getenv('SCRAM_ARCH')),
+#        'gSystem->Load("libJHUGenMELAMELA.so","", kTRUE);',
+#        '.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/kFactorUnc2.cc+' % os.getenv('CMSSW_BASE')
+#    ],
+#    'class': 'kFactorUnc2',
+#    'args': ('PlotsConfigurations/Configurations/HWWSemiLepHighMass/wjets_kfactor_DH/HT_to_NLO_QCD_k_factors_n.root', 'k_factor_2018'),
+#    'samples': wjets, 
+#    #'samples': "Wjets"
+#}
 #aliases['kfact'] = {
 #    'linesToAdd': [
 #        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_RELEASE_BASE'),

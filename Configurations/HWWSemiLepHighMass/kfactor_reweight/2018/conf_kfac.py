@@ -4,10 +4,10 @@
 
 treeName = 'Events'
 
-tag = 'Wjets_kfac_2018v7'
+tag = 'Wjets_kfac_2018v7_nano'
 
 # used by mkShape to define output directory for root files
-outputDir = 'Wjets_kfac_root'
+outputDir = 'Wjets_kfac_root_nano'
 
 # file with TTree aliases
 #aliasesFile = 'aliases_kfac.py'
@@ -20,7 +20,7 @@ variablesFile = 'variables_kfac.py'
 cutsFile = 'cuts_kfac.py'
 
 # file with list of samples
-samplesFile = 'samples_kfac.py'
+samplesFile = 'samples_nanoAOD.py'
 
 # file with list of samples
 plotFile = 'plot_LO_vs_NLO.py'
