@@ -30,5 +30,23 @@ nuisances['pdf_WW']  = {
    },
 }
 
+nuisances['WWresum']  = {
+    'name'  : 'CMS_hww_WWresum',
+    'kind'  : 'weight',
+    'type'  : 'shape',
+        'samples'  : {
+            'WW'   : ['nllW_Rup/nllW', 'nllW_Rdown/nllW'],
+        }
+}
+
+nuisances['WWqscale']  = {
+    'name'  : 'CMS_hww_WWqscale',
+    'kind'  : 'weight',
+    'type'  : 'shape',
+    'samples'  : {
+        'WW'   : ['nllW_Qup/nllW', 'nllW_Qdown/nllW'],
+    }
+}
+
 for n in nuisances.values():
     n['skipCMS'] = 1
