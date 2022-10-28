@@ -123,8 +123,8 @@ def CombineBaseW(directory, samples, proc, samplelist):
 mcCommonWeightNoMatch = 'XSWeight*SFweight*METFilter_MC*LepWPCut[0]*(nTightLep==1)'
 mcCommonWeight = mcCommonWeightNoMatch+'*Lepton_promptgenmatched[0]'
 
-mcCommonWeightTagger = 'XSWeight*SFweight_deep*METFilter_MC*LepWPCut[0]*(nTightLep==1)*Lepton_promptgenmatched[0]'
-mcCommonWeightTaggerTop = 'XSWeight*SFweight_top*METFilter_MC*LepWPCut[0]*(nTightLep==1)*Lepton_promptgenmatched[0]'
+mcCommonWeightTagger = 'XSWeight*SFweight_deep*METFilter_MC*LepWPCut[0]*Lepton_promptgenmatched[0]*(nTightLep==1)'
+mcCommonWeightTaggerTop = 'XSWeight*SFweight_top*METFilter_MC*LepWPCut[0]*Lepton_promptgenmatched[0]*(nTightLep==1)'
 
 ############################################
 ##############  BACKGROUNDS  ###############
@@ -188,7 +188,7 @@ print("top")
 files  = nanoGetSampleFiles(mcDirectory, 'TTToSemiLeptonic')
 files += nanoGetSampleFiles(mcDirectory, 'TTTo2L2Nu')
 files += nanoGetSampleFiles(mcDirectory, 'TTWjets')
-files += nanoGetSampleFiles(mcDirectory, 'TTWjets_ext1')
+#files += nanoGetSampleFiles(mcDirectory, 'TTWjets_ext1')
 #files += nanoGetSampleFiles(mcDirectory, 'TTTo2L2Nu')
 # files += nanoGetSampleFiles(mcDirectory, 'TTWJetsToLNu_ext2')
 # files += nanoGetSampleFiles(mcDirectory, 'TTZjets')
@@ -302,7 +302,7 @@ files += nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_HT800_1200')
 
 samples['Wjets'] = {
     'name'   : files,
-    'weight' : mcCommonWeight +"*EWK_W_correction[0]", #*kfact[0]",
+    'weight' : mcCommonWeight +"*EWK_W_correction[0]*kfact[0]",
     #'weight' : mcCommonWeight +"*EWK_W_correction[0]"
  #               +"*(resolved*{0}+!resolved*1)".format(whad_reweight),
     'FilesPerJob' : 3,
@@ -589,7 +589,7 @@ for key in samples:
 ################## DATA ###################
 ###########################################
 #print("FAKE")
-############# FAKE ###########
+############## FAKE ###########
 eleWP    = 'mvaFall17V1Iso_WP90'
 muWP     = 'cut_Tight_HWWW'
 
@@ -628,7 +628,7 @@ samples['DATA'] = {
   'weight': 'METFilter_DATA*LepWPCut[0]*(nTightLep==1)',
   'weights': [],
   'isData': ['all'],
-  'FilesPerJob': 40
+  'FilesPerJob': 20
 }
 
 for _, sd in DataRun:
