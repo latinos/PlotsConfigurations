@@ -51,9 +51,9 @@ else:
 subsamples = ["B%d"%i for i in xrange(nbins)]
 
 nuis_by_year = {
-    "2016" : ["QCDscale_WW","pdf_WW_2016"],
-    "2017" : ["QCDscale_WW"]+["pdf_WW_%d_2017"%i for i in range(1,33)],
-    "2018" : ["QCDscale_WW"]+["pdf_WW_%d_2018"%i for i in range(1,33)],
+    "2016" : ["QCDscale_WW","CMS_hww_WWresum","CMS_hww_WWqscale","pdf_WW_2016"],
+    "2017" : ["QCDscale_WW","CMS_hww_WWresum","CMS_hww_WWqscale"]+["pdf_WW_%d_2017"%i for i in range(1,33)],
+    "2018" : ["QCDscale_WW","CMS_hww_WWresum","CMS_hww_WWqscale"]+["pdf_WW_%d_2018"%i for i in range(1,33)],
 }
 
 nfdict = collections.OrderedDict()

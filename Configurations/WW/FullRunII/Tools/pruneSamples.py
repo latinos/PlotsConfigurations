@@ -27,7 +27,7 @@ for cutkey in f0.GetListOfKeys():
     for nomhist in nomhists:
         nom = histdir.Get(nomhist)
         sample = nomhist.replace('histo_','')
-        if nom.Integral() < 0.0:
+        if nom.Integral() <= 0.0:
             if sample in samples_remove:
                 samples_remove[sample].append(cutname)
             else:
