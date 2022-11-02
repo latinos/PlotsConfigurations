@@ -119,9 +119,9 @@ def CombineBaseW(directory, samples, proc, samplelist):
 #########################################
 
 mcCommonWeightNoMatch = 'XSWeight*SFweight*METFilter_MC*LepWPCut[0]'
-mcCommonWeight = mcCommonWeightNoMatch+'*Lepton_promptgenmatched[0]'
-mcCommonWeightTagger = 'XSWeight*SFweight_deep*METFilter_MC*LepWPCut[0]*Lepton_promptgenmatched[0]'
-mcCommonWeightTaggerTop = 'XSWeight*SFweight_top*METFilter_MC*LepWPCut[0]*Lepton_promptgenmatched[0]'
+mcCommonWeight = mcCommonWeightNoMatch+'*Lepton_promptgenmatched[0]*(nTightLep==1)'
+mcCommonWeightTagger = 'XSWeight*SFweight_deep*METFilter_MC*LepWPCut[0]*Lepton_promptgenmatched[0]*(nTightLep==1)'
+mcCommonWeightTaggerTop = 'XSWeight*SFweight_top*METFilter_MC*LepWPCut[0]*Lepton_promptgenmatched[0]*(nTightLep==1)'
 
 
 ############################################
@@ -600,18 +600,18 @@ for _, sd in DataRun:
 ##    samples['FAKE']['name'].extend(files)
 ##    samples['FAKE']['weights'].extend([DataTrig[pd]] * len(files))
 ##
-#print("DATA")
-#samples['DATA'] = {
-#  'name': [],
-#  'weight': 'METFilter_DATA*LepWPCut[0]',#*(nTightLep==1)',
-#  'weights': [],
-#  'isData': ['all'],
-#  'FilesPerJob': 40
-#}
-#
-#for _, sd in DataRun:
-#  for pd in DataSets:
-#    files = nanoGetSampleFiles(dataDirectory, pd + '_' + sd)
-#    samples['DATA']['name'].extend(files)
-#    samples['DATA']['weights'].extend([DataTrig[pd]] * len(files))
-#
+print("DATA")
+samples['DATA'] = {
+  'name': [],
+  'weight': 'METFilter_DATA*LepWPCut[0]*(nTightLep==1)',
+  'weights': [],
+  'isData': ['all'],
+  'FilesPerJob': 40
+}
+
+for _, sd in DataRun:
+  for pd in DataSets:
+    files = nanoGetSampleFiles(dataDirectory, pd + '_' + sd)
+    samples['DATA']['name'].extend(files)
+    samples['DATA']['weights'].extend([DataTrig[pd]] * len(files))
+

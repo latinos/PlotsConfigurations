@@ -473,51 +473,114 @@ aliases['GenLHE'] = {
 
 
 # # B-Stuff
-vetoThreshold = 20
-reqThreshold  = 30
-boostedJetBVetoCondition = '(\
-CleanJet_pt[CleanJetNotFat_jetIdx] > {threshold} \
-&& abs(CleanJet_eta[CleanJetNotFat_jetIdx]) < 2.5 \
-)'
-resolvedJetBVetoCondition = '(\
-HM_idx_j1 >= 0 && HM_idx_j2 >= 0\
-&& CleanJet_pt > {threshold} && abs(CleanJet_eta) < 2.5 \
-&& CleanJet_jetIdx != CleanJet_jetIdx[HM_idx_j1] \
-&& CleanJet_jetIdx != CleanJet_jetIdx[HM_idx_j2] \
-)'
+#vetoThreshold = 20
+#reqThreshold  = 30
+#boostedJetBVetoCondition = '(\
+#CleanJet_pt[CleanJetNotFat_jetIdx] > {threshold} \
+#&& abs(CleanJet_eta[CleanJetNotFat_jetIdx]) < 2.5 \
+#)'
+#resolvedJetBVetoCondition = '(\
+#HM_idx_j1 >= 0 && HM_idx_j2 >= 0\
+#&& CleanJet_pt > {threshold} && abs(CleanJet_eta) < 2.5 \
+#&& CleanJet_jetIdx != CleanJet_jetIdx[HM_idx_j1] \
+#&& CleanJet_jetIdx != CleanJet_jetIdx[HM_idx_j2] \
+#)'
+#
+#bTagBoosted = '(Sum$(Jet_btagDeepB[CleanJet_jetIdx[CleanJetNotFat_jetIdx]] > bWP[0] \
+#    && {0}) == 0)'.format(boostedJetBVetoCondition)
+#bTagResolved = '(Sum$(Jet_btagDeepB[CleanJet_jetIdx] > bWP[0] && {0}) == 0)'\
+#                .format(resolvedJetBVetoCondition)
+#
+##bTemplate = '((boosted_nocut[0]*{0}) || ( resolved_nocut[0]*{1}))'.format(bTagBoosted, bTagResolved)
+#
+##bTemplate = '((boosted_nocut_res[0]*{0}) || ( two_jet_res[0]*{1}))'.format(bTagBoosted, bTagResolved)
+#bTemplate = '(two_jet_res[0]*{0})'.format(bTagResolved)
+#aliases['bVeto'] = {
+#    'expr': bTemplate.format(threshold=vetoThreshold)
+#}
+#aliases['bReq'] = {
+#    'expr': '1'#'!'+bTemplate.format(threshold=reqThreshold)
+#}
+#if('boosted_nocut_res[0]'):	
+#bSF = 'TMath::Exp(Sum$(TMath::Log( \
+# {0} * Jet_btagSF_deepcsv_shape[CleanJet_jetIdx] + !{0} * 1 \
+#   	 )))'.format('(CleanJet_pt > {threshold} && abs(CleanJet_eta) < 2.5)')
+#bSF = 'TMath::Exp(Sum$(TMath::Log( \
+#   	 {0} * Jet_btagSF_deepcsv_shape[CleanJet_jetIdx] + !{0} * 1 \
+#   	 )))'.format('(CleanJet_pt > {threshold} && abs(CleanJet_eta) < 2.5)')# && CleanJet_jetIdx != CleanJet_jetIdx[HM_idx_j1] && CleanJet_jetIdx != CleanJet_jetIdx[HM_idx_j2])')
 
-bTagBoosted = '(Sum$(Jet_btagDeepB[CleanJet_jetIdx[CleanJetNotFat_jetIdx]] > bWP[0] \
-    && {0}) == 0)'.format(boostedJetBVetoCondition)
-bTagResolved = '(Sum$(Jet_btagDeepB[CleanJet_jetIdx] > bWP[0] && {0}) == 0)'\
-                .format(resolvedJetBVetoCondition)
+aliases['res_idx_j1'] = {
+    'expr': '((two_jet_res[0]==1)*CleanJet_jetIdx[HM_idx_j1] + !two_jet_res[0]*-9989.)'
+}
+aliases['res_idx_j2'] = {
+    'expr': '((two_jet_res[0]==1)*CleanJet_jetIdx[HM_idx_j2] + !two_jet_res[0]*-9989.)'
+}
+bJetV_req = '(two_jet_res[0] && CleanJet_pt > 20 && abs(CleanJet_eta) < 2.5 && CleanJet_jetIdx != res_idx_j1[0] && CleanJet_jetIdx != res_idx_j2[0])'
+bJetR_req = '(two_jet_res[0] && CleanJet_pt > 30 && abs(CleanJet_eta) < 2.5 && CleanJet_jetIdx != res_idx_j1[0] && CleanJet_jetIdx != res_idx_j2[0])'
 
-#bTemplate = '((boosted_nocut[0]*{0}) || ( resolved_nocut[0]*{1}))'.format(bTagBoosted, bTagResolved)
+aliases['nbJet'] = {
+    'expr': 'Sum$(Jet_btagDeepB[CleanJet_jetIdx] > bWP[0] && CleanJet_pt > 30)',
+}
 
-bTemplate = '((boosted_nocut_res[0]*{0}) || ( two_jet_res[0]*{1}))'.format(bTagBoosted, bTagResolved)
 aliases['bVeto'] = {
-    'expr': bTemplate.format(threshold=vetoThreshold)
+    'expr': 'Sum$(Jet_btagDeepB[CleanJet_jetIdx] > bWP[0] && '+bJetV_req+' ) == 0',
 }
+
 aliases['bReq'] = {
-    'expr': '!'+bTemplate.format(threshold=reqThreshold)
+    'expr': 'Sum$(Jet_btagDeepB[CleanJet_jetIdx] > bWP[0] && '+bJetR_req+' ) >= 1',
 }
-
-bSF = 'TMath::Exp(Sum$(TMath::Log( \
-    {0} * Jet_btagSF_deepcsv_shape[CleanJet_jetIdx] + !{0} * 1 \
-    )))'.format('(CleanJet_pt > {threshold} && abs(CleanJet_eta) < 2.5)')
-
 aliases['bVetoSF'] = {
-    'expr': bSF.format(threshold=vetoThreshold),
-    'samples': mc
-}
-aliases['bReqSF'] = {
-    'expr': bSF.format(threshold=reqThreshold),
+    'expr': 'TMath::Exp(Sum$(TMath::Log('+bJetV_req+'*Jet_btagSF_deepcsv_shape[CleanJet_jetIdx]+1*(!'+bJetV_req+'))))',
     'samples': mc
 }
 
-aliases['btagSF'] = {
-    'expr': 'bVeto*bVetoSF + bReq*bReqSF + (!bVeto && !bReq)',
+aliases['bReqSF'] = {
+    'expr': 'TMath::Exp(Sum$(TMath::Log('+bJetR_req+'*Jet_btagSF_deepcsv_shape[CleanJet_jetIdx]+1*(!'+bJetR_req+'))))',
     'samples': mc
 }
+
+bJetV_req_boo = '(boosted_nocut_res[0]  && CleanJet_pt[CleanJetNotFat_jetIdx] > 20 && abs(CleanJet_eta[CleanJetNotFat_jetIdx]) < 2.5 )'
+bJetR_req_boo = '(boosted_nocut_res[0]  && CleanJet_pt[CleanJetNotFat_jetIdx] > 20 && abs(CleanJet_eta[CleanJetNotFat_jetIdx]) < 2.5 )'
+
+aliases['bVeto_boo'] = {
+    'expr': 'Sum$(Jet_btagDeepB[CleanJet_jetIdx[CleanJetNotFat_jetIdx]] > bWP[0] && '+bJetV_req_boo+' ) == 0',
+}
+
+aliases['bReq_boo'] = {
+    'expr': 'Sum$(Jet_btagDeepB[CleanJet_jetIdx[CleanJetNotFat_jetIdx]] > bWP[0] && '+bJetR_req_boo+' ) >= 1',
+}
+aliases['bVetoSF_boo'] = {
+    'expr': 'TMath::Exp(Sum$(TMath::Log('+bJetV_req_boo+'*Jet_btagSF_deepcsv_shape[CleanJet_jetIdx[CleanJetNotFat_jetIdx]]+1*(!'+bJetV_req_boo+'))))',
+    'samples': mc
+}
+
+aliases['bReqSF_boo'] = {
+    'expr': 'TMath::Exp(Sum$(TMath::Log('+bJetR_req_boo+'*Jet_btagSF_deepcsv_shape[CleanJet_jetIdx[CleanJetNotFat_jetIdx]]+1*(!'+bJetR_req_boo+'))))',
+    'samples': mc
+}
+aliases['btagSF'] = {
+    'expr': 'two_jet_res[0]*(bVetoSF[0]*bVeto[0] + bReqSF[0]*bReq[0]) + boosted_nocut_res[0]*(bVetoSF_boo[0]*bVeto_boo[0] + bReqSF_boo[0]*bReq_boo[0])',
+    'samples': mc
+}
+
+#bSF = 'TMath::Exp(Sum$(TMath::Log( \
+#    {0} * Jet_btagSF_deepcsv_shape[CleanJet_jetIdx] + !{0} * 1 \
+#    )))'.format('(CleanJet_pt > {threshold} && abs(CleanJet_eta) < 2.5 && CleanJet_jetIdx != res_idx_j1 && CleanJet_jetIdx != res_idx_j2)')
+#
+#aliases['bVetoSF'] = {
+#    'expr': bSF.format(threshold=vetoThreshold),
+#    'samples': mc
+#}
+#	
+#aliases['bReqSF'] = {
+#    'expr': '1',#bSF.format(threshold=reqThreshold),
+#    'samples': mc
+#}
+#
+#aliases['btagSF'] = {
+#    'expr': 'bVeto*bVetoSF + bReq*bReqSF + (!bVeto && !bReq)',
+#    'samples': mc
+#}
 
 for shift in ['jes','lf','hf','lfstats1','lfstats2','hfstats1','hfstats2','cferr1','cferr2']:
 
