@@ -9,10 +9,9 @@ supercut = '\
 
 ##=== Define categories ===###
 LepCats={}
-LepCats['incl_']='( (abs(Lepton_pdgId[0])==11) && Lepton_pt[0]>35 \
-                 || (abs(Lepton_pdgId[0])==13) && Lepton_pt[0]>27 )'
-LepCats['ElCh_']='( (abs(Lepton_pdgId[0])==11) && Lepton_pt[0]>35 )'
-LepCats['MuCh_']='( (abs(Lepton_pdgId[0])==13) && Lepton_pt[0]>27 )'
+LepCats['incl_']='( (abs(Lepton_pdgId[0])==11) && Lepton_pt[0]>38 || (abs(Lepton_pdgId[0])==13) && Lepton_pt[0]>30)'
+LepCats['ElCh_']='( (abs(Lepton_pdgId[0])==11) && Lepton_pt[0]>38)'
+LepCats['MuCh_']='( (abs(Lepton_pdgId[0])==13) && Lepton_pt[0]>30)'
 # FIXME: maybe need to cut > 35 for ele due to fakeW calculation
 
 
@@ -26,31 +25,40 @@ BoostCats={}
 #BoostCats['fatjet'] = 'boosted_fat_jet[0] && bVeto[0]'
 #BoostCats['fatjet_noboost']='two_jet_res[0] && bVeto[0] '
 
-BoostCats['ResolvedSR_']='(1 \
-                       && two_jet_res[0] \
-                       && resolvedSignalWMass[0] \
-                       && bVeto[0])'
+#BoostCats['BoostedSR_']='(1 \
+#                       && boosted_nocut_res[0] \
+#                       && HvOverFat[0] > 0.4 \
+#                       && boostedSignalWMass[0] \
+#                       && bVeto[0])'
+BoostCats['BoostedSB_']='(1 \
+                       && boosted_nocut_res[0] \
+                       && HvOverFat[0] < 0.35 \
+                       && boostedSignalWMass[0] \
+                       && bVeto_boo[0])'
 BoostCats['ResolvedSB_']='(1 \
                        && two_jet_res[0] \
                        && !resolvedSignalWMass[0] \
                        && resolvedSidebandWMass[0] \
                        && bVeto[0])'
+#BoostCats['ResolvedSR_']='(1 \
+#                       && two_jet_res[0] \
+#                       && resolvedSignalWMass[0] \
+#                       && bVeto[0])'
+BoostCats['BoostedTopCR_']='(1 \
+                       && boosted_nocut_res[0] \
+                       && HvOverFat[0] > 0.4 \
+                       && boostedSignalWMass[0] \
+                       && bReq_boo[0])'
 BoostCats['ResolvedTopCR_']='(1 \
                        && two_jet_res[0] \
                        && resolvedSignalWMass[0] \
-                       && !bVeto[0])'
-BoostCats['BoostedSB_']='(1 \
-                       && boosted_nocut_do[0] \
-                       && boostedSignalWMass[0] \
-                       && bVeto[0])'
-BoostCats['BoostedSR_']='(1 \
-                       && boosted_fat_jet[0] \
-                       && boostedSignalWMass[0] \
-                       && bVeto[0])'
-BoostCats['BoostedTopCR_']='(1 \
-                       && boosted_fat_jet[0] \
-                       && boostedSignalWMass[0] \
-                       && !bVeto[0])'
+                       && bReq[0])'
+#BoostCats['BoostedCR_']='(1 \
+#                       && boosted_nocut_res[0] \
+#                       && HvOverFat[0] > 0.4 \
+#                       && !boostedSignalWMass[0] \
+#                       && boostedSidebandWMass[0] \
+#                       && bVeto[0])'
 ##=== Define cuts ===###
 for Lep in LepCats:
     for BProcCat in BoostProcCats:

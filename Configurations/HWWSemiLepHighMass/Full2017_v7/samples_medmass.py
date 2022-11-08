@@ -123,14 +123,14 @@ def CombineBaseW(directory, samples, proc, samplelist):
 mcCommonWeightNoMatch = 'XSWeight*SFweight*METFilter_MC*LepWPCut[0]*(nTightLep==1)'
 mcCommonWeight = mcCommonWeightNoMatch+'*Lepton_promptgenmatched[0]'
 
-mcCommonWeightTagger = 'XSWeight*SFweight_deep*METFilter_MC*LepWPCut[0]*(nTightLep==1)*Lepton_promptgenmatched[0]'
-mcCommonWeightTaggerTop = 'XSWeight*SFweight_top*METFilter_MC*LepWPCut[0]*(nTightLep==1)*Lepton_promptgenmatched[0]'
+mcCommonWeightTagger = 'XSWeight*SFweight_deep*METFilter_MC*LepWPCut[0]*Lepton_promptgenmatched[0]*(nTightLep==1)'
+mcCommonWeightTaggerTop = 'XSWeight*SFweight_top*METFilter_MC*LepWPCut[0]*Lepton_promptgenmatched[0]*(nTightLep==1)'
 
 ############################################
 ##############  BACKGROUNDS  ###############
 #############################################
 
-##### DY #######
+#### DY #######
 print("DY")
 
 # NLO
@@ -167,18 +167,18 @@ CombineBaseW(mcDirectory, samples, 'DY',
 #CombineBaseW(mcDirectory, samples, 'DY',
 #            ['DYJetsToLL_M-5to50_HT-600toinf', 'DYJetsToLL_M-5to50_HT-600toinf_ext1'])
 
-addSampleWeight(samples,'DY','DYJetsToLL_M-10to50'     ,'DY_NLO_pTllrw')
-addSampleWeight(samples,'DY','DYJetsToLL_M-10to50_ext1','DY_NLO_pTllrw')
-addSampleWeight(samples,'DY','DYJetsToLL_M-50_ext2'    ,'DY_NLO_pTllrw')
+addSampleWeight(samples,'DY','DYJetsToLL_M-50'     ,'DY_NLO_pTllrw')
+addSampleWeight(samples,'DY','DYJetsToLL_M-50_ext1'    ,'DY_NLO_pTllrw')
+addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO_ext1','DY_LO_pTllrw')
 
-addSampleWeight(samples,'DY','DYJetsToLL_M-5to50_HT-70to100'      ,'(gen_mll<10)*DY_LO_pTllrw')
-addSampleWeight(samples,'DY','DYJetsToLL_M-5to50_HT-100to200'     ,'(gen_mll<10)*DY_LO_pTllrw')
-addSampleWeight(samples,'DY','DYJetsToLL_M-5to50_HT-200to400'     ,'(gen_mll<10)*DY_LO_pTllrw')
-addSampleWeight(samples,'DY','DYJetsToLL_M-5to50_HT-400to600'     ,'(gen_mll<10)*DY_LO_pTllrw')
-addSampleWeight(samples,'DY','DYJetsToLL_M-5to50_HT-600toinf'     ,'(gen_mll<10)*DY_LO_pTllrw')
-addSampleWeight(samples,'DY','DYJetsToLL_M-5to50_HT-200to400_ext1','(gen_mll<10)*DY_LO_pTllrw')
-addSampleWeight(samples,'DY','DYJetsToLL_M-5to50_HT-400to600_ext1','(gen_mll<10)*DY_LO_pTllrw')
-addSampleWeight(samples,'DY','DYJetsToLL_M-5to50_HT-600toinf_ext1','(gen_mll<10)*DY_LO_pTllrw')
+##addSampleWeight(samples,'DY','DYJetsToLL_M-5to50_HT-70to100'      ,'(gen_mll<10)*DY_LO_pTllrw')
+##addSampleWeight(samples,'DY','DYJetsToLL_M-5to50_HT-100to200'     ,'(gen_mll<10)*DY_LO_pTllrw')
+##addSampleWeight(samples,'DY','DYJetsToLL_M-5to50_HT-200to400'     ,'(gen_mll<10)*DY_LO_pTllrw')
+##addSampleWeight(samples,'DY','DYJetsToLL_M-5to50_HT-400to600'     ,'(gen_mll<10)*DY_LO_pTllrw')
+##addSampleWeight(samples,'DY','DYJetsToLL_M-5to50_HT-600toinf'     ,'(gen_mll<10)*DY_LO_pTllrw')
+##addSampleWeight(samples,'DY','DYJetsToLL_M-5to50_HT-200to400_ext1','(gen_mll<10)*DY_LO_pTllrw')
+##addSampleWeight(samples,'DY','DYJetsToLL_M-5to50_HT-400to600_ext1','(gen_mll<10)*DY_LO_pTllrw')
+##addSampleWeight(samples,'DY','DYJetsToLL_M-5to50_HT-600toinf_ext1','(gen_mll<10)*DY_LO_pTllrw')
 
 
 
@@ -186,8 +186,9 @@ addSampleWeight(samples,'DY','DYJetsToLL_M-5to50_HT-600toinf_ext1','(gen_mll<10)
 print("top")
 
 files  = nanoGetSampleFiles(mcDirectory, 'TTToSemiLeptonic')
-# files += nanoGetSampleFiles(mcDirectory, 'TTTo2L2Nu')
+files += nanoGetSampleFiles(mcDirectory, 'TTTo2L2Nu')
 files += nanoGetSampleFiles(mcDirectory, 'TTWjets')
+#files += nanoGetSampleFiles(mcDirectory, 'TTWjets_ext1')
 #files += nanoGetSampleFiles(mcDirectory, 'TTTo2L2Nu')
 # files += nanoGetSampleFiles(mcDirectory, 'TTWJetsToLNu_ext2')
 # files += nanoGetSampleFiles(mcDirectory, 'TTZjets')
@@ -206,9 +207,11 @@ samples['top'] = {
 #CombineBaseW(mcDirectory, samples, 'top',
 #['TTWJetsToLNu_ext1', 'TTWJetsToLNu_ext2'])
 
+CombineBaseW(mcDirectory, samples, 'top',
+['TTWjets', 'TTWjets_ext1'])
 addSampleWeight(samples,'top','TTToSemiLeptonic','Top_pTrw')
 addSampleWeight(samples,'top','TTTo2L2Nu'       ,'Top_pTrw')
-addSampleWeight(samples,'top','TTWjets'         ,'Top_pTrw')
+#addSampleWeight(samples,'top','TTWjets'         ,'Top_pTrw')
 
 # Xsec correction single top t channel: xsec in tree is leptonDecays, but sample is inclusiveDecays
 lepD_to_incD = '(100./(10.75 + 10.57 + 11.25))'
@@ -216,7 +219,7 @@ addSampleWeight(samples,'top','ST_t-channel_antitop', lepD_to_incD)
 addSampleWeight(samples,'top','ST_t-channel_top',     lepD_to_incD)
 
 
-##### WW ########
+#### WW ########
 print("WW")
 
 files  = nanoGetSampleFiles(mcDirectory, 'WWToLNuQQ')
@@ -244,11 +247,11 @@ samples['WWewk'] = {
 
 
 samples['ggWW'] = {
-    'name'   : nanoGetSampleFiles(signalMCDirectory, 'GluGluHToWWToLNuQQ_M125'),
+    'name'   : nanoGetSampleFiles(mcDirectory, 'GluGluWWToLNuQQ'),
     'weight' : mcCommonWeightTagger,
     'FilesPerJob': 8
 }
-addSampleWeight(samples,'ggWW','GluGluHToWWToLNuQQ_M125', "{0} * ({0} < 50)".format(model_B))
+#addSampleWeight(samples,'ggWW','GluGluHToWWToLNuQQ', "{0} * ({0} < 50)".format(model_B))
 
 files  = nanoGetSampleFiles(mcDirectory,'WmToLNu_WmTo2J_QCD') 
 files += nanoGetSampleFiles(mcDirectory,'WmToLNu_ZTo2J_QCD',) 
@@ -278,9 +281,9 @@ samples['qqWWqq'] = {
 print("W+jets")
 whad_reweight = '(1.27217e+00 - 1.78593e-03*HM_Whad_mass)'
 
-files  = nanoGetSampleFiles(mcDirectory, 'WJetsToLNu')
+files  = nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-LO')
 #files  = nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-LO')
-#files += nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-LO_ext1')
+files += nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-LO_ext1')
 files += nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_HT100_200')
 #files += nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_HT100_200_ext1')
 files += nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_HT1200_2500')
@@ -302,7 +305,7 @@ samples['Wjets'] = {
     'weight' : mcCommonWeight +"*EWK_W_correction[0]*kfact[0]",
     #'weight' : mcCommonWeight +"*EWK_W_correction[0]"
  #               +"*(resolved*{0}+!resolved*1)".format(whad_reweight),
-    'FilesPerJob' : 1,
+    'FilesPerJob' : 3,
 }
 CombineBaseW(mcDirectory, samples, 'Wjets',
             ['WJetsToLNu-LO', 'WJetsToLNu-LO_ext1'])
@@ -321,9 +324,18 @@ CombineBaseW(mcDirectory, samples, 'Wjets',
 #CombineBaseW(mcDirectory, samples, 'Wjets',
 #            ['WJetsToLNu_HT800_1200', 'WJetsToLNu_HT800_1200_ext1'])
 
-addSampleWeight(samples,'Wjets','WJetsToLNu','(LHE_HT < 70)')
-addSampleWeight(samples,'Wjets','WJetsToLNu_ext2','(LHE_HT < 70)')
+addSampleWeight(samples,'Wjets','WJetsToLNu-LO','(LHE_HT < 70)')
+addSampleWeight(samples,'Wjets','WJetsToLNu-LO_ext1','(LHE_HT < 70)')
 addSampleWeight(samples, 'Wjets', 'WJetsToLNu_HT70_100', '1.21')
+addSampleWeight(samples, 'Wjets', 'WJetsToLNu_HT100_200', '0.993')
+addSampleWeight(samples, 'Wjets', 'WJetsToLNu_HT200_400', '1.002')
+addSampleWeight(samples, 'Wjets', 'WJetsToLNu_HT400_600', '1.009')
+addSampleWeight(samples, 'Wjets', 'WJetsToLNu_HT600_800', '1.120')
+addSampleWeight(samples, 'Wjets', 'WJetsToLNu_HT800_1200', '1.202')
+addSampleWeight(samples, 'Wjets', 'WJetsToLNu_HT1200_2500', '1.332')
+addSampleWeight(samples, 'Wjets', 'WJetsToLNu_HT2500_inf','4.2')
+#addSampleWeight(samples,'Wjets','WJetsToLNu_ext2','(LHE_HT < 70)')
+#addSampleWeight(samples,'Wjets','WJetsToLNu_ext2','(LHE_HT < 70)')
 
 
 
@@ -573,30 +585,25 @@ for key in samples:
 
 
 
-##########################################
-################# DATA ###################
-##########################################
-print("FAKE")
-########### FAKE ###########
+###########################################
+################## DATA ###################
+###########################################
+#print("FAKE")
+############## FAKE ###########
 eleWP    = 'mvaFall17V1Iso_WP90'
 muWP     = 'cut_Tight_HWWW'
 
 fakeW = 'fakeW_ele_'+eleWP+'_mu_'+muWP+'_1l_mu25_ele35'
-#samples['FAKE'] = {
-#  'name': [],
-#  'weight': 'METFilter_DATA*'+fakeW,
-#  'weights': [],
-#  'isData': ['all'],
-#  'FilesPerJob': 35,
-#  'suppressNegative': ['all'],
-#  'suppressNegativeNuisances' :['all'],
-#}
-#
-#for _, sd in DataRun:
-#  for pd in DataSets:
-#    files = nanoGetSampleFiles(fakeDirectory, pd + '_' + sd)
-#    samples['FAKE']['name'].extend(files)
-#    samples['FAKE']['weights'].extend([DataTrig[pd]] * len(files))
+###samples['FAKE'] = {
+###  'name': [],
+###  'weight': 'METFilter_DATA*'+fakeW,
+###  'weights': [],
+###  'isData': ['all'],
+###  'FilesPerJob': 35,
+###  'suppressNegative': ['all'],
+###  'suppressNegativeNuisances' :['all'],
+###}
+###
 Mu_jetEt = 35
 El_jetEt = 35
 fakeW = 'FW_mu'+str(Mu_jetEt)+ '_el'+str(El_jetEt)+'[0]'
@@ -621,7 +628,7 @@ samples['DATA'] = {
   'weight': 'METFilter_DATA*LepWPCut[0]*(nTightLep==1)',
   'weights': [],
   'isData': ['all'],
-  'FilesPerJob': 40
+  'FilesPerJob': 20
 }
 
 for _, sd in DataRun:

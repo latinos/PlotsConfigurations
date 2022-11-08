@@ -5,7 +5,7 @@ treeName = 'Events'
 tag = 'hm_trial'
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFile_2017_FIN'
+outputDir = 'rootFile_2017'
 
 # file with TTree aliases
 aliasesFile = 'aliases_medmass.py'
@@ -29,7 +29,7 @@ lumi = 41.5
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'Plottolini_bis'
+outputDirPlots = 'Plot_nokfac'
 
 
 # used by mkDatacards to define output directory for datacards
