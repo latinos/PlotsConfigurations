@@ -24,7 +24,7 @@ public:
         return new kFactorUnc2(n_file, n_graph); 
     }
     
-    unsigned getNdata() override { return 4; } // nominal, stat_up, stat_do, jetsel
+    unsigned getNdata() override { return 3; } // nominal, stat_up, stat_do, jetsel
     int getMultiplicity() override { return 1; }
     void beginEvent(long long) override;
     double evaluate(unsigned) override;
@@ -45,8 +45,8 @@ protected:
   TGraph* Wpt_map_nom;
   TGraph* Wpt_map_stat_up;
   TGraph* Wpt_map_stat_do;
-  TGraph* Wpt_map_jetsel;
-  std::array<float,4> outputValues;
+ // TGraph* Wpt_map_jetsel;
+  std::array<float,3> outputValues;
 
   float minWpt; 
 };
@@ -61,7 +61,7 @@ kFactorUnc2::kFactorUnc2(TString file_name, TString tgraph_name) :
     Wpt_map_nom     = (TGraph*)src_file->Get(n_graph+"_nom");
     Wpt_map_stat_up = (TGraph*)src_file->Get(n_graph+"_stat_up");
     Wpt_map_stat_do = (TGraph*)src_file->Get(n_graph+"_stat_do");
-    Wpt_map_jetsel  = (TGraph*)src_file->Get(n_graph+"_jetsel");
+//   Wpt_map_jetsel  = (TGraph*)src_file->Get(n_graph+"_jetsel");
     src_file->Close();
     minWpt = 2.5;
     if (n_graph.Contains("2016")) {
@@ -127,11 +127,11 @@ kFactorUnc2::beginEvent(long long _iEntry)
 
 
     // Get values from the graphs
-    std::array<float,4> output { 1.,1.,1.,1.};
+    std::array<float,3> output { 1.,1.,1.};//,1.};
     output[0] = Wpt_map_nom    ->Eval(W_pt); 
     output[1] = Wpt_map_stat_up->Eval(W_pt); 
     output[2] = Wpt_map_stat_do->Eval(W_pt); 
-    output[3] = Wpt_map_jetsel ->Eval(W_pt); 
+//    output[3] = Wpt_map_jetsel ->Eval(W_pt); 
 
     outputValues = output;
     //cout << "" << endl;
