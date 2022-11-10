@@ -18,7 +18,8 @@ if diffVar == "inclusive":
 else:
     shortname = diffVar
 
-for year in ['2016','2017','2018']:
+#for year in ['2016','2017','2018']:
+for year in ['2018']:
     filename = "../Full%s_v7/%s/rootFile/plots_WW%s_v7_%s.root"%(year,diffVar,year,shortname) #Fix path once separate configs exist
     if not os.path.isfile(filename):
         print "Warning: %s does not exist."%(filename)
