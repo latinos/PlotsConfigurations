@@ -2,7 +2,8 @@
 
 treeName = 'Events'
 
-tag = 'WW2017_v7_incl'
+#tag = 'WW2017_v7_incl'
+tag = 'WW2017_v7_incl_forBDTPlots'
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFile'
@@ -11,7 +12,8 @@ outputDir = 'rootFile'
 aliasesFile = 'aliases.py'
 
 # file with list of variables
-variablesFile = 'variables.py'
+#variablesFile = 'variables.py'
+variablesFile = 'variables_forBDTPlot.py'
 
 # file with list of cuts
 cutsFile = 'cuts.py' 

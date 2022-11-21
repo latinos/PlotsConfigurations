@@ -76,6 +76,7 @@ signals.append('WW')
 #}
 #signals.append('ggWW')
 
+
 ### Now bin in nonfiducial / fiducial x bins
 
 nbins = 13
