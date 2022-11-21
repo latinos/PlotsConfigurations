@@ -37,7 +37,10 @@ for year in ['2018']:
                 ratios[cut][sample][subsample] = hist.Integral()
             total = sum(ratios[cut][sample].values())
             for subsample in sample_splitting[sample]:
-                ratios[cut][sample][subsample] = ratios[cut][sample][subsample]/total
+                if total != 0:
+                    ratios[cut][sample][subsample] = ratios[cut][sample][subsample]/total
+                else:
+                    ratios[cut][sample][subsample] = 1.0
 
     with open("../Full%s_v7/%s/sampleFrac.json"%(year,diffVar),"w") as outfile:
         json.dump(ratios, outfile, indent=4)
