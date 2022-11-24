@@ -121,7 +121,6 @@ samples['DY'] = {
     'FilesPerJob': 10,
 }
 
-#DYbaseW = getBaseWnAOD(mcDirectory, mcProduction, ['DYJetsToLL_M-10to50-LO', 'DYJetsToLL_M-10to50-LO_ext1'])
 DYbaseW = getBaseWFast(mcDirectory, mcProduction, ['DYJetsToLL_M-10to50-LO', 'DYJetsToLL_M-10to50-LO_ext1'])
 
 addSampleWeight(samples,'DY','DYJetsToTT_MuEle_M-50',      'DY_NLO_pTllrw')
@@ -153,44 +152,20 @@ samples['WWewk'] = {
     'FilesPerJob': 8
 }
 
-######## Wg ########
-
-samples['Wg'] = {
-    'name': nanoGetSampleFiles(mcDirectory, 'Wg_MADGRAPHMLM'),
-    'weight': mcCommonWeightNoMatch+'*(Gen_ZGstar_mass <= 0)',
-    'FilesPerJob': 8
-}
-
-######## Zg ########
-
-samples['Zg'] = {
-    'name': nanoGetSampleFiles(mcDirectory, 'ZGToLLG'),
-    'weight': mcCommonWeightNoMatch+'*(Gen_ZGstar_mass <= 0)',
-    'FilesPerJob': 8
-}
-
-######## ZgS ########
-files = nanoGetSampleFiles(mcDirectory, 'ZGToLLG')
-
-samples['ZgS'] = {
-    'name': files,
-    'weight': mcCommonWeight,
-    'FilesPerJob': 8,
-    }
-addSampleWeight(samples, 'ZgS', 'ZGToLLG', '(Gen_ZGstar_mass > 0)')
-
-######## WgS ########
+######## Vg(S) ########
 
 files = nanoGetSampleFiles(mcDirectory, 'Wg_MADGRAPHMLM') + \
-    nanoGetSampleFiles(mcDirectory, 'WZTo3LNu_mllmin01')
+        nanoGetSampleFiles(mcDirectory, 'WZTo3LNu_mllmin01') + \
+        nanoGetSampleFiles(mcDirectory, 'ZGToLLG')
 
-samples['WgS'] = {
+samples['Vg'] = {
     'name': files,
-    'weight': mcCommonWeight + ' * (gstarLow * 0.94)',
-    'FilesPerJob': 8,
+    'weight': mcCommonWeightNoMatch+'*((Gen_ZGstar_mass>0)*PromptGenLepMatch2l + Gen_ZGstar_mass<=0)',
+    'FilesPerJob': 8
 }
-addSampleWeight(samples, 'WgS', 'Wg_MADGRAPHMLM', '(Gen_ZGstar_mass > 0 && Gen_ZGstar_mass < 0.1)')
-addSampleWeight(samples, 'WgS', 'WZTo3LNu_mllmin01', '(Gen_ZGstar_mass > 0.1)')
+
+addSampleWeight(samples,'Vg','Wg_MADGRAPHMLM',        'gstarLow*0.94*(Gen_ZGstar_mass < 0.1)')
+addSampleWeight(samples,'Vg','WZTo3LNu_mllmin01',     'gstarLow*0.94*(Gen_ZGstar_mass > 0.1)') 
 
 ######## WZ ########
 
@@ -217,8 +192,6 @@ samples['ZZ'] = {
     'FilesPerJob': 4
 }
 
-#ZZ2LbaseW = getBaseWnAOD(mcDirectory, mcProduction, ['ZZTo2L2Nu_ext1', 'ZZTo2L2Nu_ext2'])
-#ZZ4LbaseW = getBaseWnAOD(mcDirectory, mcProduction, ['ZZTo4L_ext1',    'ZZTo4L_ext2'])
 ZZ2LbaseW = getBaseWFast(mcDirectory, mcProduction, ['ZZTo2L2Nu_ext1', 'ZZTo2L2Nu_ext2'])
 ZZ4LbaseW = getBaseWFast(mcDirectory, mcProduction, ['ZZTo4L_ext1',    'ZZTo4L_ext2'])
 
@@ -240,74 +213,21 @@ samples['VVV'] = {
     'FilesPerJob': 8
 }
 
+########### Higgs ###########
 
-#### ggH -> WW
+files = nanoGetSampleFiles(mcDirectory, 'GluGluHToWWTo2L2Nu_M125') + \
+        nanoGetSampleFiles(mcDirectory, 'VBFHToWWTo2L2Nu_M125') + \
+        nanoGetSampleFiles(mcDirectory, 'HZJ_HToWW_M125') + \
+        nanoGetSampleFiles(mcDirectory, 'GluGluZH_HToWWTo2L2Nu_M125') + \
+        nanoGetSampleFiles(mcDirectory, 'HWplusJ_HToWW_M125') + nanoGetSampleFiles(mcDirectory, 'HWminusJ_HToWW_M125') + \
+        nanoGetSampleFiles(mcDirectory, 'ttHToNonbb_M125') + \
+        nanoGetSampleFiles(mcDirectory, 'GluGluHToTauTau_M125') + \
+        nanoGetSampleFiles(mcDirectory, 'VBFHToTauTau_M125') + \
+        nanoGetSampleFiles(mcDirectory, 'HZJ_HToTauTau_M125') + \
+        nanoGetSampleFiles(mcDirectory, 'HWplusJ_HToTauTau_M125') + nanoGetSampleFiles(mcDirectory, 'HWminusJ_HToTauTau_M125')
 
-samples['ggH_hww'] = {
-    'name': nanoGetSampleFiles(mcDirectory, 'GluGluHToWWTo2L2Nu_M125'),
-    'weight': mcCommonWeight,
-    'FilesPerJob': 4,
-}
-
-############ VBF H->WW ############
-samples['qqH_hww'] = {
-    'name': nanoGetSampleFiles(mcDirectory, 'VBFHToWWTo2L2Nu_M125'),
-    'weight': mcCommonWeight,
-    'FilesPerJob': 8
-}
-
-############ ZH H->WW ############
-
-samples['ZH_hww'] = {
-    'name':   nanoGetSampleFiles(mcDirectory, 'HZJ_HToWW_M125'),
-    'weight': mcCommonWeight,
-    'FilesPerJob': 8
-}
-
-samples['ggZH_hww'] = {
-    'name':   nanoGetSampleFiles(mcDirectory, 'GluGluZH_HToWWTo2L2Nu_M125'),
-    'weight': mcCommonWeight,
-    'FilesPerJob': 8
-}
-
-############ WH H->WW ############
-
-samples['WH_hww'] = {
-    'name':   nanoGetSampleFiles(mcDirectory, 'HWplusJ_HToWW_M125') + nanoGetSampleFiles(mcDirectory, 'HWminusJ_HToWW_M125'),
-    'weight': mcCommonWeight,
-    'FilesPerJob': 8
-}
-
-############ ttH ############
-
-samples['ttH_hww'] = {
-    'name':   nanoGetSampleFiles(mcDirectory, 'ttHToNonbb_M125'),
-    'weight': mcCommonWeight,
-    'FilesPerJob': 4
-}
-
-############ H->TauTau ############
-
-samples['ggH_htt'] = {
-    'name': nanoGetSampleFiles(mcDirectory, 'GluGluHToTauTau_M125'),
-    'weight': mcCommonWeight,
-    'FilesPerJob': 20
-}
-
-samples['qqH_htt'] = {
-    'name': nanoGetSampleFiles(mcDirectory, 'VBFHToTauTau_M125'),
-    'weight': mcCommonWeight,
-    'FilesPerJob': 10
-}
-
-samples['ZH_htt'] = {
-    'name': nanoGetSampleFiles(mcDirectory, 'HZJ_HToTauTau_M125'),
-    'weight': mcCommonWeight,
-    'FilesPerJob': 8
-}
-
-samples['WH_htt'] = {
-    'name':  nanoGetSampleFiles(mcDirectory, 'HWplusJ_HToTauTau_M125') + nanoGetSampleFiles(mcDirectory, 'HWminusJ_HToTauTau_M125'),
+samples['Higgs'] = {
+    'name' : files,
     'weight': mcCommonWeight,
     'FilesPerJob': 8
 }
@@ -346,7 +266,6 @@ samples['ggWW'] = {
 
 signals.append('ggWW')
 
-
 ### Now bin in nonfiducial / fiducial x bins
 
 nbins = 13
@@ -354,30 +273,11 @@ nbins = 13
 for sname in signals:
   sample = samples[sname]
   sample['subsamples'] = {}
-    
+
   sample['subsamples']['nonfid'] = '!(fid)'
 
   for i in range(nbins):
       sample['subsamples']['B%d'%i] = 'fid && B%d'%i
-
-'''
-for sname in signals:
-  sample = samples[sname]
-  sample['subsamples'] = {}
-
-  while nj < len(ptlowedge):
-    binName = 'fid_Bin%s' % (nj)
-    cut = '%s && %s > %s && %s <= %s ' % (fiducial, leadlepPT, ptlowedge[nj],leadlepPT,pthighedge[nj])
-    nj = nj+1
-    sample['subsamples'][binName] = cut
-
-  while nj1 < len(ptlowedge):
-    binName = 'nonfid_Bin%s' % (nj1)
-    cutnonfid = '%s && %s > %s && %s <= %s ' % ('!'+fiducial, leadlepPT, ptlowedge[nj1],leadlepPT,pthighedge[nj1])
-    nj1 = nj1+1
-    sample['subsamples'][binName] = cutnonfid
-'''
-
 
 ###########################################
 ################## FAKE ###################

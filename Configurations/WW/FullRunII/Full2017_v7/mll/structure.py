@@ -1,23 +1,38 @@
 # structure configuration for datacard
+# keys here must match keys in samples.py    
+structure ={}
+
+# keys here must match keys in samples.py 
+for iproc in samples.keys():
+    structure[iproc] = {
+        'isSignal' : 1 if 'WW_B' in iproc else 0,
+        'isData'   : 1 if iproc == 'DATA' else 0,
+    }
+
+#structure['ggWW_B3']['removeFromCuts'] = ['ww2l2v_13TeV_top_0j']
+#structure['WW_B0']['removeFromCuts'] = ['ww2l2v_13TeV_top_3j']
+#structure['WW_B3']['removeFromCuts'] = ['ww2l2v_13TeV_top_0j']
+
+for nuis in nuisances.itervalues():
+  if 'cutspost' in nuis:
+    nuis['cuts'] = nuis['cutspost'](nuis, cuts)
+
+    print nuis
+
+
+
+
+
+'''
+# structure configuration for datacard
 
 # keys here must match keys in samples.py    
 
-nbins = 13
+nbins = 1
 
 structure['DY']  = {  
                   'isSignal' : 0,
-                  'isData'   : 0,
- }
-
-structure['Dyemb']  = {
-                  'isSignal' : 0,
                   'isData'   : 0
-              }
-
-structure['Dyveto']  = {
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  'removeFromCuts' : [ k for k in cuts ],
               }
 
 structure['Wjets']  = {  
@@ -96,9 +111,8 @@ structure['Vg']  = {
 
 structure['ZgS'] = {
                   'isSignal' : 0,
-                  'isData'   : 0,
-#                  'removeFromCuts' : ['ww2l2v_13TeV_sr_2j_B2']
-}
+                  'isData'   : 0
+                  }
 
 structure['WgS'] = {
                   'isSignal' : 0,
@@ -119,13 +133,10 @@ structure['VgS_H'] = {
                   'isSignal' : 0,
                   'isData'   : 0
                   }
-
 structure['Zg']  = { 
                   'isSignal' : 0,
-                  'isData'   : 0, 
-#                  'removeFromCuts' : ['ww2l2v_13TeV_sr_2j_B13','ww2l2v_13TeV_sr_2j_B1','ww2l2v_13TeV_sr_2j_B2']
+                  'isData'   : 0 
                   }
-
 structure['VZ']  = { 
                   'isSignal' : 0,
                   'isData'   : 0 
@@ -223,7 +234,9 @@ structure['H_htt'] = {
                   'isData'   : 0    
                   }
 
+
 # data
+
 
 structure['DATA']  = { 
                   'isSignal' : 0,
@@ -235,3 +248,4 @@ for nuis in nuisances.itervalues():
     nuis['cuts'] = nuis['cutspost'](nuis, cuts)
 
     print nuis
+'''

@@ -3,7 +3,8 @@
 treeName = 'Events'
 
 #tag = 'WW2016_v7_incl_NoFid'
-tag = 'WW2016_v7_incl_27Oct'
+#tag = 'WW2016_v7_incl_27Oct'
+tag = 'WW2016_v7_incl_forBDTPlots'
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFile'
@@ -12,7 +13,8 @@ outputDir = 'rootFile'
 aliasesFile = 'aliases.py'
 
 # file with list of variables
-variablesFile = 'variables.py'
+#variablesFile = 'variables.py'
+variablesFile = 'variables_forBDTPlot.py'
 
 # file with list of cuts
 cutsFile = 'cuts.py' 
@@ -33,7 +35,7 @@ outputDirPlots = 'plots'
 # used by mkDatacards to define output directory for datacards
 #outputDirDatacard = 'datacards_shapesUncert'
 #outputDirDatacard = 'datacards_shapesUncert_total'
-outputDirDatacard = 'datacards_27Oct'
+outputDirDatacard = 'datacards'
 
 # structure file for datacard
 structureFile = 'structure.py'
