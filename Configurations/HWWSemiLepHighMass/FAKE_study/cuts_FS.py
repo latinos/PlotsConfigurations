@@ -42,7 +42,7 @@
 super_cut = [ 
     'nLepton>=1',
     # SingleMuon trigger: IsoMu24 or IsoTkMu24, SingleElectron trigger: Ele27_WPTight_Gsf or HLT_Ele25_eta2p1_WPTight_Gsf
-    '((Lepton_pt[0]>27. && abs(Lepton_pdgId[0])==13) || (Lepton_pt[0]>35. && abs(Lepton_pdgId[0])==11))',
+    '((Lepton_pt[0]>30. && abs(Lepton_pdgId[0])==13) || (Lepton_pt[0]>38. && abs(Lepton_pdgId[0])==11))',
     'Sum$(CleanJet_pt>30.)>=2',
     ' resolved_nocut == 1', # Require 2 good CleanJets (pt > 30; abs(eta) < 4.7; Jet_jetId >= 2; pujetid == 'custom')
  #   'MHlnjj_m_jj > -1', # Require 2 good CleanJets (pt > 30; abs(eta) < 4.7; Jet_jetId >= 2; pujetid == 'custom')
@@ -103,31 +103,31 @@ QER_no   = combinecut([super_cut, mt_lmet_I, met_I, m_jj, veto_b  , veto_1l, no_
 #addcut('ElCh_SC'  , combinecut([is_el, SC  ]))
 #addcut('ElCh_SR'  , combinecut([is_el, SR  ]))
 ##addcut('ElCh_CR'  , combinecut([is_el, CR  ]))
-addcut('ElCh_SB'  , combinecut([is_el, SB  ]))
+#addcut('ElCh_SB'  , combinecut([is_el, SB  ]))
 #addcut('ElCh_TCR' , combinecut([is_el, TCR ]))
 ##addcut('ElCh_DYCR', combinecut([is_el, DYCR]))
 addcut('ElCh_QER' , combinecut([is_el, QER ]))
-addcut('ElCh_QER_no' , combinecut([is_el, QER_no ]))
+#addcut('ElCh_QER_no' , combinecut([is_el, QER_no ]))
 
 ## Muon
 #addcut('MuCh_SC'  , combinecut([is_mu, SC  ]))
 #addcut('MuCh_SR'  , combinecut([is_mu, SR  ]))
 ##addcut('MuCh_CR'  , combinecut([is_mu, CR  ]))
-addcut('MuCh_SB'  , combinecut([is_mu, SB  ]))
+#addcut('MuCh_SB'  , combinecut([is_mu, SB  ]))
 #addcut('MuCh_TCR' , combinecut([is_mu, TCR ]))
 ##addcut('MuCh_DYCR', combinecut([is_mu, DYCR]))
 addcut('MuCh_QER' , combinecut([is_mu, QER ]))
-addcut('MuCh_QER_no' , combinecut([is_mu, QER_no ]))
+#addcut('MuCh_QER_no' , combinecut([is_mu, QER_no ]))
 
 ## Inclusive
 #addcut('InCh_SC'  , combinecut([SC  ]))
 #addcut('InCh_SR'  , combinecut([SR  ]))
 ##addcut('InCh_CR'  , combinecut([CR  ]))
-addcut('InCh_SB'  , combinecut([SB  ]))
+#addcut('InCh_SB'  , combinecut([SB  ]))
 #addcut('InCh_TCR' , combinecut([TCR ]))
 ##addcut('InCh_DYCR', combinecut([DYCR]))uaddcut('InCh_QER' , combinecut([QER ]))
 addcut('InCh_QER' , combinecut([QER ]))
-addcut('InCh_QER_no' , combinecut([QER_no ]))
+#addcut('InCh_QER_no' , combinecut([QER_no ]))
 
 # Mjj fit channel
 #addcut('Mjj_CR'  , combinecut([CR]))
