@@ -1,42 +1,41 @@
+# Load signal sample dict
+
 # Configuration file to produce initial root files
 
 treeName = 'Events'
 
-tag = 'hm_FAKE_2018'
+tag = 'FR_2016v7'
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFile_FAKE_2018'
+outputDir = 'FR_root'
 
 # file with TTree aliases
-aliasesFile = 'aliases_FS_2018.py'
+aliasesFile = 'aliases_FR.py'
 
 # file with list of variables
-variablesFile = 'variables_FS.py'
-# variablesFile = 'variablesPlot.py'
-# variablesFile = 'variablesLimits.py'
+variablesFile = 'variables_FR.py'
 
 # file with list of cuts
-cutsFile = 'cuts_FS.py'
+cutsFile = 'cuts_FR.py'
 
 # file with list of samples
-samplesFile = 'samples_FS_2018.py'
+samplesFile = 'samples_FR.py'
 
 # file with list of samples
-plotFile = 'plot_FS.py'
+plotFile = 'plot_FR.py'
 
 # luminosity to normalize to (in 1/fb)
-lumi = 59.7 #41.5 #35.9 #59.7
+lumi = 35.9
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'plottini_2018_Dec'
-
+outputDirPlots = 'FR_plots'
 
 # used by mkDatacards to define output directory for datacards
-outputDirDatacard = 'Datacards_last'
+outputDirDatacard = 'FR_datacards'
 
 # structure file for datacard
-structureFile = 'structure_FS.py'
+structureFile = 'structure.py'
 
 # nuisances file for mkDatacards and for mkShape
-nuisancesFile = 'nuisances_FS.py'
+nuisancesFile = 'nuisances_FR.py'
