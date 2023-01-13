@@ -111,13 +111,25 @@ fake_rate_reader::fake_rate_reader( TString year , TString ele_WP, TString muon_
   TString fake_muon_file_name_35 = cmssw_base + "/src/PlotsConfigurations/Configurations/WH_chargeAsymmetry/UL/data/fakerate/" + year + "/cut_Tight_HWWW_tthmva_" + muon_WP + "/MuonFR_jet35.root";
   TString fake_muon_file_name_45 = cmssw_base + "/src/PlotsConfigurations/Configurations/WH_chargeAsymmetry/UL/data/fakerate/" + year + "/cut_Tight_HWWW_tthmva_" + muon_WP + "/MuonFR_jet45.root";
 
-  TString fake_ele_file_name_25  = cmssw_base + "/src/PlotsConfigurations/Configurations/WH_chargeAsymmetry/UL/data/fakerate/" + year + "/mvaFall17V2Iso_WP90_tthmva_UL_" + ele_WP  + "/EleFR_jet25.root";
-  TString fake_ele_file_name_35  = cmssw_base + "/src/PlotsConfigurations/Configurations/WH_chargeAsymmetry/UL/data/fakerate/" + year + "/mvaFall17V2Iso_WP90_tthmva_UL_" + ele_WP  + "/EleFR_jet35.root";
-  TString fake_ele_file_name_45  = cmssw_base + "/src/PlotsConfigurations/Configurations/WH_chargeAsymmetry/UL/data/fakerate/" + year + "/mvaFall17V2Iso_WP90_tthmva_UL_" + ele_WP  + "/EleFR_jet45.root";
+  if (year_ == "2016_HIPM" || year_ == "2016_noHIPM"){
+    fake_muon_file_name_10 = cmssw_base + "/src/PlotsConfigurations/Configurations/WH_chargeAsymmetry/UL/data/fakerate/" + year + "/cut_Tight80x_tthmva_" + muon_WP + "/MuonFR_jet10.root";
+    fake_muon_file_name_15 = cmssw_base + "/src/PlotsConfigurations/Configurations/WH_chargeAsymmetry/UL/data/fakerate/" + year + "/cut_Tight80x_tthmva_" + muon_WP + "/MuonFR_jet15.root";
+    fake_muon_file_name_20 = cmssw_base + "/src/PlotsConfigurations/Configurations/WH_chargeAsymmetry/UL/data/fakerate/" + year + "/cut_Tight80x_tthmva_" + muon_WP + "/MuonFR_jet20.root";
+    fake_muon_file_name_25 = cmssw_base + "/src/PlotsConfigurations/Configurations/WH_chargeAsymmetry/UL/data/fakerate/" + year + "/cut_Tight80x_tthmva_" + muon_WP + "/MuonFR_jet25.root";
+    fake_muon_file_name_30 = cmssw_base + "/src/PlotsConfigurations/Configurations/WH_chargeAsymmetry/UL/data/fakerate/" + year + "/cut_Tight80x_tthmva_" + muon_WP + "/MuonFR_jet30.root";
+    fake_muon_file_name_35 = cmssw_base + "/src/PlotsConfigurations/Configurations/WH_chargeAsymmetry/UL/data/fakerate/" + year + "/cut_Tight80x_tthmva_" + muon_WP + "/MuonFR_jet35.root";
+    fake_muon_file_name_45 = cmssw_base + "/src/PlotsConfigurations/Configurations/WH_chargeAsymmetry/UL/data/fakerate/" + year + "/cut_Tight80x_tthmva_" + muon_WP + "/MuonFR_jet45.root";
+  }
+
+  TString fake_ele_file_name_25  = cmssw_base + "/src/PlotsConfigurations/Configurations/WH_chargeAsymmetry/UL/data/fakerate/" + year + "/mvaFall17V2Iso_WP90_SS_tthmva_UL_" + ele_WP  + "/EleFR_jet25.root";
+  TString fake_ele_file_name_35  = cmssw_base + "/src/PlotsConfigurations/Configurations/WH_chargeAsymmetry/UL/data/fakerate/" + year + "/mvaFall17V2Iso_WP90_SS_tthmva_UL_" + ele_WP  + "/EleFR_jet35.root";
+  TString fake_ele_file_name_45  = cmssw_base + "/src/PlotsConfigurations/Configurations/WH_chargeAsymmetry/UL/data/fakerate/" + year + "/mvaFall17V2Iso_WP90_SS_tthmva_UL_" + ele_WP  + "/EleFR_jet45.root";
 
   // Prompt rate input files
   TString pr_muon_file_name = cmssw_base + "/src/PlotsConfigurations/Configurations/WH_chargeAsymmetry/UL/data/fakerate/" + year + "/cut_Tight_HWWW_tthmva_"         + muon_WP + "/MuonPR.root";
-  TString pr_ele_file_name =  cmssw_base + "/src/PlotsConfigurations/Configurations/WH_chargeAsymmetry/UL/data/fakerate/" + year + "/mvaFall17V2Iso_WP90_tthmva_UL_" + ele_WP  + "/ElePR.root";
+  if (year_ == "2016_HIPM" || year_ == "2016_noHIPM")
+    pr_muon_file_name = cmssw_base + "/src/PlotsConfigurations/Configurations/WH_chargeAsymmetry/UL/data/fakerate/" + year + "/cut_Tight80x_tthmva_"         + muon_WP + "/MuonPR.root";
+  TString pr_ele_file_name =  cmssw_base + "/src/PlotsConfigurations/Configurations/WH_chargeAsymmetry/UL/data/fakerate/" + year + "/mvaFall17V2Iso_WP90_SS_tthmva_UL_" + ele_WP  + "/ElePR.root";
   
   // Get fake and prompt rates  
   // Muons
@@ -867,8 +879,10 @@ fake_rate_reader::bindTree_(multidraw::FunctionLibrary& _library)
   _library.bindBranch(Lepton_pdgId, "Lepton_pdgId");
   _library.bindBranch(Lepton_pt,    "Lepton_pt");
   _library.bindBranch(Lepton_eta,   "Lepton_eta");
-  _library.bindBranch(Lepton_isTightMuon_cut_Tight_HWWW,             "Lepton_isTightMuon_cut_Tight_HWWW");
-  // _library.bindBranch(Lepton_isTightElectron_mvaFall17V2Iso_WP90,    "Lepton_isTightElectron_mvaFall17V2Iso_WP90");
+  TString muonID;
+  if (year_ == "2016_HIPM" || year_ == "2016_noHIPM") muonID = "Lepton_isTightMuon_cut_Tight80x";
+  else                                                muonID = "Lepton_isTightMuon_cut_Tight_HWWW";
+  _library.bindBranch(Lepton_isTightMuon_cut_Tight_HWWW, muonID);
   _library.bindBranch(Lepton_isTightElectron_mvaFall17V2Iso_WP90_SS, "Lepton_isTightElectron_mvaFall17V2Iso_WP90_SS");
   _library.bindBranch(Lepton_mvaTTH_UL, "Lepton_mvaTTH_UL");
   _library.bindBranch(Muon_mvaTTH,      "Muon_mvaTTH");
