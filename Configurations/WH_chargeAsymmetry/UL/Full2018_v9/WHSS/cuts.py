@@ -233,6 +233,33 @@ cuts['hww2l2v_13TeV_WH_SS_DYee_1j'] = {
     }
 }
 
+# DY->mm CR. Just to check fakes.
+# CR 2jets
+cuts['hww2l2v_13TeV_WH_SS_DYmm_2j'] = {
+    'expr' : '(Lepton_pdgId[0]*Lepton_pdgId[1] == 13*13) && nLepton==2 && Alt$(CleanJet_pt[0],0)>30 && Alt$(CleanJet_pt[1],0)>30 && mjj < 100 && abs(Lepton_eta[0] - Lepton_eta[1])<2.0 && abs(mll-91.2)<15 && mlljj20_whss > 50.',
+    'categories' : {
+        # Sub-leading lepton pT >= 20 GeV
+        'plus_pt2ge20'  : 'Lepton_pdgId[0] == -13 && Lepton_pdgId[1] == -13 && Lepton_pt[1]>=20',
+        'minus_pt2ge20' : 'Lepton_pdgId[0] == +13 && Lepton_pdgId[1] == +13 && Lepton_pt[1]>=20',
+        # Sub-leading lepton pT < 20 GeV
+        'plus_pt2lt20'  : 'Lepton_pdgId[0] == -13 && Lepton_pdgId[1] == -13 && Lepton_pt[1]<20',
+        'minus_pt2lt20' : 'Lepton_pdgId[0] == +13 && Lepton_pdgId[1] == +13 && Lepton_pt[1]<20',
+    }
+}
+
+# CR 1jet
+cuts['hww2l2v_13TeV_WH_SS_DYmm_1j'] = {
+    'expr' : '(Lepton_pdgId[0]*Lepton_pdgId[1] == 13*13) && nLepton==2 && Alt$(CleanJet_pt[0],0)>30 && Alt$(CleanJet_pt[1],0)<30 && abs(Lepton_eta[0] - Lepton_eta[1])<2.0 && abs(mll-91.2)<15 && mlljj20_whss > 50.',
+    'categories' : {
+        # Sub-leading lepton pT >= 20 GeV
+        'plus_pt2ge20'  : 'Lepton_pdgId[0] == -13 && Lepton_pdgId[1] == -13 && Lepton_pt[1]>=20',
+        'minus_pt2ge20' : 'Lepton_pdgId[0] == +13 && Lepton_pdgId[1] == +13 && Lepton_pt[1]>=20',
+        # Sub-leading lepton pT < 20 GeV
+        'plus_pt2lt20'  : 'Lepton_pdgId[0] == -13 && Lepton_pdgId[1] == -13 && Lepton_pt[1]<20',
+        'minus_pt2lt20' : 'Lepton_pdgId[0] == +13 && Lepton_pdgId[1] == +13 && Lepton_pt[1]<20',
+    }
+}
+
 # mlljj20_whss:
 # inv_mass of: (jet1, jet2, 2*closest_lep_to_jets)
 # jets are considered with pT > 20 GeV 

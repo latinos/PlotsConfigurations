@@ -145,9 +145,9 @@ addSampleWeight(samples,'DY','DYJetsToLL_M-50', '(LHE_HT<70)')
 ##### Top #######
 
 files = nanoGetSampleFiles(mcDirectory, 'TTTo2L2Nu') + \
+        nanoGetSampleFiles(mcDirectory, 'ST_s-channel') + \
         nanoGetSampleFiles(mcDirectory, 'ST_t-channel_top') + \
         nanoGetSampleFiles(mcDirectory, 'ST_t-channel_antitop') + \
-        nanoGetSampleFiles(mcDirectory, 'ST_s-channel') + \
         nanoGetSampleFiles(mcDirectory, 'ST_tW_antitop') + \
         nanoGetSampleFiles(mcDirectory, 'ST_tW_top')
 
@@ -197,7 +197,7 @@ samples['ggWW'] = {
 # files = nanoGetSampleFiles(mcDirectory, 'WGToLNuG') + \
 #         nanoGetSampleFiles(mcDirectory, 'ZGToLLG')
 
-files = nanoGetSampleFiles(mcDirectory, 'ZGToLLG')
+files = nanoGetSampleFiles(mcDirectory, 'ZGToLLG') # Same sample as v7 - OK!
 
 samples['Zg'] = {
     'name': files,
@@ -214,7 +214,7 @@ samples['Zg'] = {
 
 # files = nanoGetSampleFiles(mcDirectory, 'Wg_MADGRAPHMLM')
 
-files = nanoGetSampleFiles(mcDirectory, 'WGToLNuG') 
+files = nanoGetSampleFiles(mcDirectory, 'WGToLNuG') # same sample as v7 - OK!
 
 samples['Wg'] = {
     'name': files,
@@ -234,46 +234,43 @@ samples['ZgS'] = {
     'suppressNegativeNuisances' :['all'],
     'FilesPerJob': 4,
 }
-addSampleWeight(samples, 'ZgS', 'ZGToLLG', '(Gen_ZGstar_mass > 0)*0.448')
+addSampleWeight(samples, 'ZgS', 'ZGToLLG', '(Gen_ZGstar_mass > 0)*0.448') # Do we still need this normalization factor?
 
 
 ######## WgS ######## 
+        # nanoGetSampleFiles(mcDirectory, 'ZGToLLG') + \
+        # nanoGetSampleFiles(mcDirectory, 'WZTo3LNu_mllmin4p0') # WZTo3LNu_mllmin01_ext1
 
 files = nanoGetSampleFiles(mcDirectory, 'WGToLNuG') + \
-        nanoGetSampleFiles(mcDirectory, 'WZTo3LNu_mllmin4p0') # WZTo3LNu_mllmin01_ext1
-        # nanoGetSampleFiles(mcDirectory, 'ZGToLLG') + \
+        nanoGetSampleFiles(mcDirectory, 'WZTo3LNu_mllmin0p1')
 
 samples['WgS'] = {
     'name': files,
-    # 'weight': mcCommonWeight + ' * (gstarLow * 0.94 + gstarHigh * 1.14)',
     'weight': mcCommonWeight + ' * (gstarLow * 0.94)',
     'FilesPerJob': 4,
-    # 'subsamples': {
-    #   'L': 'gstarLow',
-    #   'H': 'gstarHigh'
-    #}
 }
-addSampleWeight(samples, 'WgS', 'WGToLNuG', '(Gen_ZGstar_mass > 0 && Gen_ZGstar_mass <= 4.0)')
-# addSampleWeight(samples, 'WgS', 'ZGToLLG', '(Gen_ZGstar_mass > 0)')
-addSampleWeight(samples, 'WgS', 'WZTo3LNu_mllmin4p0', '(Gen_ZGstar_mass > 4.0)')
+addSampleWeight(samples, 'WgS', 'WGToLNuG', '(Gen_ZGstar_mass > 0 && Gen_ZGstar_mass <= 0.1)')
+addSampleWeight(samples, 'WgS', 'WZTo3LNu_mllmin0p1', '(Gen_ZGstar_mass > 0.1)*(0.601644*58.59/4.666)')
 
 
 ############ WZ ############
-
 # files = nanoGetSampleFiles(mcDirectory, 'ZZTo2L2Nu') + \
 #         nanoGetSampleFiles(mcDirectory, 'ZZTo2Q2L_mllmin4p0') + \
 #         nanoGetSampleFiles(mcDirectory, 'WZTo2Q2L_mllmin4p0') # 'WZTo2L2Q')
+        # nanoGetSampleFiles(mcDirectory, 'WZTo3LNu_mllmin4p0') + \
 
-files = nanoGetSampleFiles(mcDirectory, 'WZTo3LNu_mllmin4p0') + \
+files = nanoGetSampleFiles(mcDirectory, 'WZTo3LNu_mllmin0p1') + \
         nanoGetSampleFiles(mcDirectory, 'WZTo2Q2L_mllmin4p0')
 
 samples['WZ'] = {
     'name': files,
-    # 'weight': mcCommonWeight+embed_tautauveto + '*1.11',
     'weight': mcCommonWeight + ' * (gstarHigh)',
     'FilesPerJob': 4
 }
+addSampleWeight(samples, 'WZ', 'WZTo3LNu_mllmin0p1', '(0.601644*58.59/4.666)')
 
+
+# 'weight': mcCommonWeight+embed_tautauveto + '*1.11',
 
 ############ ZZ ############
 
