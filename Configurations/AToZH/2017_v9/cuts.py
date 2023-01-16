@@ -12,17 +12,28 @@ cuts['preselection']   = '1'
 
 cuts['zmass_cut'] = 'WH3l_ZVeto < 25'
 
+
+#cuts['b_veto_all']  = 'WH3l_ZVeto < 25 \
+#                     && bVeto \
+#                     '	     
+
+cuts['MET'] = 'PuppiMET_pt > 40 \
+              && WH3l_ZVeto < 25 \
+              '
+
 cuts['jet_cut_4j'] = ' Alt$( CleanJet_pt[0], 0) > 30 \
                     && Alt$( CleanJet_pt[1], 0) > 30 \
                     && Alt$( CleanJet_pt[2], 0) > 30 \
                     && Alt$( CleanJet_pt[3], 0) > 30 \
+                    && PuppiMET_pt > 40 \
                     && WH3l_ZVeto < 25 \
                     '
 
-cuts['breq'] = ' Alt$( CleanJet_pt[0], 0) > 30 \
+cuts['breq_SR'] = ' Alt$( CleanJet_pt[0], 0) > 30 \
                && Alt$( CleanJet_pt[1], 0) > 30 \
                && Alt$( CleanJet_pt[2], 0) > 30 \
                && Alt$( CleanJet_pt[3], 0) > 30 \
+               && PuppiMET_pt > 40 \
                && WH3l_ZVeto < 25 \
                && bReq \
                '
@@ -32,6 +43,7 @@ cuts['bveto_4j'] = ' Alt$( CleanJet_pt[0], 0) > 30 \
                && Alt$( CleanJet_pt[1], 0) > 30 \
                && Alt$( CleanJet_pt[2], 0) > 30 \
                && Alt$( CleanJet_pt[3], 0) > 30 \
+               && PuppiMET_pt > 40 \
                && WH3l_ZVeto < 25 \
                && bVeto \
                '
@@ -41,6 +53,7 @@ cuts['bveto_1j'] = ' Alt$( CleanJet_pt[0], 0) > 30 \
                && Alt$( CleanJet_pt[1], 0) > 30 \
                && Alt$( CleanJet_pt[2], 0) > 30 \
                && Alt$( CleanJet_pt[3], 0) > 30 \
+               && PuppiMET_pt > 40 \
                && WH3l_ZVeto < 25 \
                && bVeto_1j \
                '

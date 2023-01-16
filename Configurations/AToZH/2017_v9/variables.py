@@ -39,12 +39,12 @@ variables['ptjet0']     = { 'name' : 'CleanJet_pt[0]',
                             'fold' : 3 
                         }
 
-variables['ptjet1']     = { 'name' : 'CleanJet_pt[1]',
-                            'range' : (20,0,200),
-                            'xaxis' : 'Subleading jet p_{T}',
-                            'cuts' : [cut for cut in cuts if '1j' not in cut],
-                            'fold' : 3 
-                        }
+#variables['ptjet1']     = { 'name' : 'CleanJet_pt[1]',
+#                            'range' : (20,0,200),
+#                            'xaxis' : 'Subleading jet p_{T}',
+#                            'cuts' : [cut for cut in cuts if '1j' not in cut],
+#                            'fold' : 3 
+#                        }
 
 
 variables['ptz']        = { 'name' : 'ZH3l_pTZ',
@@ -54,9 +54,9 @@ variables['ptz']        = { 'name' : 'ZH3l_pTZ',
                         }
 
 #variables['chisquare']  = { 'name' : 'AZH_ChiSquare',
-#                            'range' : (20,0,100),
+ #                           'range' : (20,0,100),
 #			    'xaxis' : 'ChiSqaure distribution',
-#			    'fold'  : 3
+#         		    'fold'  : 3
 #                         }
 
 
@@ -72,7 +72,7 @@ variables['ptz']        = { 'name' : 'ZH3l_pTZ',
 #                            'range' : (20,0,2500),
 #			    'xaxis' : 'm_{A}',
 #			    'fold'  : 3
-#                         }
+ #                        }
 
 
 

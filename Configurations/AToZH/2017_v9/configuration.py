@@ -1,6 +1,6 @@
 # example of configuration file
 
-tag = 'AZH_2017_v9'
+tag = 'AZH_2017_v9_fit'
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFiles_'+tag
@@ -18,7 +18,7 @@ cutsFile = 'cuts.py'
 samplesFile = 'samples.py' 
 
 # file with list of samples
-plotFile = 'plot.py' 
+plotFile = 'plot_noDY.py' 
 
 # luminosity to normalize to (in 1/fb)
 lumi = 41.53
