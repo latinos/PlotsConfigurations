@@ -12,6 +12,25 @@ structure['DY']  = {
     'isData'   : 0
 }
 
+structure['WZ'] = {
+    'isSignal' : 0,
+    'isData'   : 0
+}
+
+structure['Fake_ee']  = {
+    'isSignal' : 0,
+    'isData'   : 0
+}
+
+structure['Fake_mm']  = {
+    'isSignal' : 0,
+    'isData'   : 0
+}
+
+structure['Fake_em']  = {
+    'isSignal' : 0,
+    'isData'   : 0
+}
 
 # Signals
 

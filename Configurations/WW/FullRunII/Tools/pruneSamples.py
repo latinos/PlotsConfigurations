@@ -36,7 +36,7 @@ for cutkey in f0.GetListOfKeys():
         for varhist in varhists:
             if not varhist.replace(nomhist,'').startswith('_'): continue
             var = histdir.Get(varhist)
-            if var.Integral() < 0.0 and not hist.endswith('Var'):
+            if var.Integral() <= 0.0 and not hist.endswith('Var'):
                 print 'nuisance edit drop %s %s %s'%(sample,cutname,varhist.replace(nomhist+'_','').replace('Up','').replace('Down',''))
 
 for sample in samples_remove:

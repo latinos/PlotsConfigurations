@@ -1,5 +1,6 @@
 # variables
 
+
 variables['BDTOutput_0j'] = {
     'name': 'BDTOutput_0j',
     'range' : ([-1.0,-0.5,-0.25,0.,0.25,0.5,1.0],),
