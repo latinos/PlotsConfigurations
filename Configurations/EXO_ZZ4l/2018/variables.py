@@ -53,6 +53,41 @@ variables['mllll_fine_4'] = {
      'fold' : 3,
 }
 
+
+
+variables['z0'] = {
+     'name': 'z0Mass_zh4l',
+     'range' : (50, 50, 150),
+     'xaxis' : 'm2l',
+     'fold' : 3,
+}
+
+
+variables['z1'] = {
+     'name': 'z1Mass_zh4l',
+     'range' : (50, 50, 150),
+     'xaxis' : 'm2l',
+     'fold' : 3,
+}
+
+
+
+
+
+variables['puppimet'] = {
+     'name': 'PuppiMET_pt',
+     'range' : (100, 0, 200),
+     'xaxis' : 'met',
+     'fold' : 3,
+}
+
+
+
+
+
+
+
+
 variables['events']  = {   'name': '1',      
                         'range' : (1,0,2),  
                         'xaxis' : 'events', 
