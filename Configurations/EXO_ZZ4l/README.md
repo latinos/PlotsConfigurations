@@ -33,8 +33,10 @@ Run:
     mkShapesMulti.py --pycfg=configuration.py --doHadd=1 --batchSplit=Samples,Files
 
     mkPlot.py --pycfg=configuration.py --inputFile=rootFiles_exo4l/plots_exo4l.root
-
-
+    
+    
+    hadd mio.root rootFiles_exo4l/*.root
+    mkPlot.py --pycfg=configuration.py --inputFile=mio.root
 
 Variables:
 
@@ -48,3 +50,7 @@ Resubmit:
     ls -alrth /afs/cern.ch/user/a/amassiro/jobs/jobs/mkShapes__exo4l__ALL/mkShapes__exo4l__*.jid | awk '{print "condor_submit " $9}'  | sed 's/jid/jds/'
     ls -alrth /afs/cern.ch/user/a/amassiro/jobs/jobs/mkShapes__exo4l__ALL/*/mkShapes__exo4l__*.jid | awk '{print "condor_submit " $9}'  | sed 's/jid/jds/'
 
+
+    
+    
+    

@@ -44,10 +44,46 @@ supercut = '   Lepton_pt[0]>25 \
 # 'mmmm' : '(Lepton_pdgId[0]*Lepton_pdgId[1]*Lepton_pdgId[2]*Lepton_pdgId[3] == 13*13*13*13)',
 
 
+   
+cuts['inclusive-ZZ']  = {
+    'expr' : ' abs(z0Mass_zh4l-91.1876)< 20 && abs(z1Mass_zh4l-91.1876)< 20',
+    'categories' : {
+           'eeee' : '(Lepton_pdgId[0]*Lepton_pdgId[1]*Lepton_pdgId[2]*Lepton_pdgId[3] == 11*11*11*11)',
+           'eemm' : '(Lepton_pdgId[0]*Lepton_pdgId[1]*Lepton_pdgId[2]*Lepton_pdgId[3] == 11*11*13*13)',
+           'mmmm' : '(Lepton_pdgId[0]*Lepton_pdgId[1]*Lepton_pdgId[2]*Lepton_pdgId[3] == 13*13*13*13)',
+    }
+}
+
+ 
+cuts['inclusive-ZZ-all']  = {
+    'expr' : ' abs(z0Mass_zh4l-91.1876)< 20 && abs(z1Mass_zh4l-91.1876)< 20',
+    'categories' : {
+           '1' : '1',
+    }
+}
 
     
-cuts['inclusive']  = {
-    'expr' : ' abs(z0Mass_zh4l-91.1876)< 20 && abs(z1Mass_zh4l-91.1876)< 20',
+cuts['inclusive-Z']  = {
+    'expr' : ' abs(z0Mass_zh4l-91.1876)< 20 ',
+    'categories' : {
+           'eeee' : '(Lepton_pdgId[0]*Lepton_pdgId[1]*Lepton_pdgId[2]*Lepton_pdgId[3] == 11*11*11*11)',
+           'eemm' : '(Lepton_pdgId[0]*Lepton_pdgId[1]*Lepton_pdgId[2]*Lepton_pdgId[3] == 11*11*13*13)',
+           'mmmm' : '(Lepton_pdgId[0]*Lepton_pdgId[1]*Lepton_pdgId[2]*Lepton_pdgId[3] == 13*13*13*13)',
+    }
+}
+
+   
+cuts['inclusive-Z-all']  = {
+    'expr' : ' abs(z0Mass_zh4l-91.1876)< 20 ',
+    'categories' : {
+           '1' : '1',
+    }
+}
+
+
+
+cuts['noH125']  = {
+    'expr' : 'mllll_zh4l>150',
     'categories' : {
            'eeee' : '(Lepton_pdgId[0]*Lepton_pdgId[1]*Lepton_pdgId[2]*Lepton_pdgId[3] == 11*11*11*11)',
            'eemm' : '(Lepton_pdgId[0]*Lepton_pdgId[1]*Lepton_pdgId[2]*Lepton_pdgId[3] == 11*11*13*13)',
@@ -57,12 +93,10 @@ cuts['inclusive']  = {
 
 
 
-cuts['noH125']  = {
-    'expr' : ' abs(z0Mass_zh4l-91.1876)< 20 && abs(z1Mass_zh4l-91.1876)< 20 && mllll_zh4l>150',
+cuts['noH125-all']  = {
+    'expr' : ' mllll_zh4l>150',
     'categories' : {
-           'eeee' : '(Lepton_pdgId[0]*Lepton_pdgId[1]*Lepton_pdgId[2]*Lepton_pdgId[3] == 11*11*11*11)',
-           'eemm' : '(Lepton_pdgId[0]*Lepton_pdgId[1]*Lepton_pdgId[2]*Lepton_pdgId[3] == 11*11*13*13)',
-           'mmmm' : '(Lepton_pdgId[0]*Lepton_pdgId[1]*Lepton_pdgId[2]*Lepton_pdgId[3] == 13*13*13*13)',
+           '1' : '1',
     }
 }
 
