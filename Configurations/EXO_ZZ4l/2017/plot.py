@@ -144,12 +144,12 @@ plot['ttZ']  = {
                   }
 
           
-plot['ttW']  = {
-                  'color': 419,    # kGreen+3
-                  'isSignal' : 0,
-                  'isData'   : 0,    
-                  'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
-                  }
+#plot['ttW']  = {
+                  #'color': 419,    # kGreen+3
+                  #'isSignal' : 0,
+                  #'isData'   : 0,    
+                  #'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
+                  #}
 
               
 #plot['top'] = {   
