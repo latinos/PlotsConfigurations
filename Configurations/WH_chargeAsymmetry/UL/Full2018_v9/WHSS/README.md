@@ -24,6 +24,10 @@ Or, if they failed because the wall clock time has been exceeded, resubmit them 
 
     mkShapesMulti.py --pycfg=configuration.py --doHadd=1 --batchSplit=Samples,Files --doNotCleanup --nThreads=8
 
+### Plot original distributions
+
+    ./do_plot_original_distributions.sh
+
 ### Include DY -> ee estimation from opposite-sign phase space
 
 Go into the `DY_OS_CR` directory and follow the instructions in the `README` file:
@@ -33,10 +37,6 @@ Go into the `DY_OS_CR` directory and follow the instructions in the `README` fil
 ### Plot distributions with DY->ee data-driven histograms
 
     ./do_plot_DYflip_distributions.sh
-
-### Plot original distributions
-
-    ./do_plot_original_distributions.sh
 
 ### Create datacards
 
