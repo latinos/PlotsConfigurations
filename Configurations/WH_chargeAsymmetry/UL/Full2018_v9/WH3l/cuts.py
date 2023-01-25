@@ -7,8 +7,9 @@ supercut = 'MinIf$( WH3l_mOSll[], WH3l_mOSll[Iteration$] > 0) > 12 \
             && (nLepton>=3 && Alt$(Lepton_pt[3],0)<10) \
             && abs(WH3l_chlll) == 1 \
             && Alt$( CleanJet_pt[0], 0) < 30 \
-            && Sum$( CleanJet_pt > 20. && abs(CleanJet_eta)<2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.4184) == 0\
+            && bVeto \
 '
+#             && Sum$( CleanJet_pt > 20. && abs(CleanJet_eta)<2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.4184) == 0\
 
 # Plus: two leptons with positive charge and one with negative charge: product of the three charges is negative (product of pdgIds is POSITIVE)
 # Minus: two leptons with negative charge and one with positive charge: product of the three charges is positive (product of pdgIds is NEGATIVE)
