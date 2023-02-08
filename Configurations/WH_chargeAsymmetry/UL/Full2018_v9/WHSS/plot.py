@@ -130,34 +130,6 @@ plot['DY']  = {
     'scale'    : 1.0,
 }
 
-# plot['Fake_em']  = {  
-#     'color'    : 921,    # kGray + 1
-#     'isSignal' : 0,
-#     'isData'   : 0,
-#     'scale'    : 1.0                  
-# }
-
-# plot['Fake_ee']  = {  
-#     'color'    : 921,    # kGray + 1
-#     'isSignal' : 0,
-#     'isData'   : 0,
-#     'scale'    : 1.0                  
-# }
-
-# plot['Fake_mm']  = { 
-#     'color'    : 921,    # kGray + 1
-#     'isSignal' : 0,
-#     'isData'   : 0,
-#     'scale'    : 1.0                  
-# }
-
-plot['Fake']  = { 
-    'color'    : 921,    # kGray + 1
-    'isSignal' : 0,
-    'isData'   : 0,
-    'scale'    : 1.0                  
-}
-
 plot['top'] = {   
     'nameHR' : 'tW and t#bar{t}',
     'color'    : 400,   # kYellow
@@ -173,13 +145,6 @@ plot['WW']  = {
     'scale'    : 1.0
 }
 
-plot['ggWW']  = {
-    'color'    : 850, # kAzure -10
-    'isSignal' : 0,
-    'isData'   : 0,    
-    'scale'    : 1.0
-}
-
 plot['WWewk']  = {
     'color'    : 850, # kAzure -10
     'isSignal' : 0,
@@ -187,21 +152,21 @@ plot['WWewk']  = {
     'scale'    : 1.0
 }
 
-plot['Wg']  = { 
-    'color'    : 859, # kAzure -1  
+plot['ggWW']  = {
+    'color'    : 850, # kAzure -10
     'isSignal' : 0,
-    'isData'   : 0,
-    'scale'    : 1.0
-}
-
-plot['WgS']  = { 
-    'color'    : 859, # kAzure -1  
-    'isSignal' : 0,
-    'isData'   : 0,
+    'isData'   : 0,    
     'scale'    : 1.0
 }
 
 plot['Zg']  = {
+    'color'    : 859, # kAzure -1  
+    'isSignal' : 0,
+    'isData'   : 0,
+    'scale'    : 1.0
+}
+
+plot['Wg']  = { 
     'color'    : 859, # kAzure -1  
     'isSignal' : 0,
     'isData'   : 0,
@@ -215,14 +180,21 @@ plot['ZgS'] = {
     'scale'    : 1.0
 }
 
-plot['ZZ']  = { 
-    'color'    : 858, # kAzure -2  
+plot['WgS']  = { 
+    'color'    : 859, # kAzure -1  
     'isSignal' : 0,
     'isData'   : 0,
     'scale'    : 1.0
 }
 
 plot['WZ']  = {
+    'color'    : 858, # kAzure -2  
+    'isSignal' : 0,
+    'isData'   : 0,
+    'scale'    : 1.0
+}
+
+plot['ZZ']  = { 
     'color'    : 858, # kAzure -2  
     'isSignal' : 0,
     'isData'   : 0,
@@ -270,15 +242,15 @@ plot['ggZH_hww'] = {
     'scale'    : 1
 }
 
-plot['WH_hww_minus'] = {
-    'color'    : 600, # kBlue 
+plot['WH_hww_plus'] = {
+    'color'    : 632+2, # kRed+2 
     'isSignal' : 2,
     'isData'   : 0,    
     'scale'    : 1
 }
 
-plot['WH_hww_plus'] = {
-    'color'    : 632+2, # kRed+2 
+plot['WH_hww_minus'] = {
+    'color'    : 600, # kBlue 
     'isSignal' : 2,
     'isData'   : 0,    
     'scale'    : 1
@@ -329,6 +301,38 @@ plot['WH_htt_minus'] = {
     'scale'    : 1
 }
 
+
+########
+# Fake #
+########
+
+# plot['Fake_em']  = {  
+#     'color'    : 921,    # kGray + 1
+#     'isSignal' : 0,
+#     'isData'   : 0,
+#     'scale'    : 1.0                  
+# }
+
+# plot['Fake_ee']  = {  
+#     'color'    : 921,    # kGray + 1
+#     'isSignal' : 0,
+#     'isData'   : 0,
+#     'scale'    : 1.0                  
+# }
+
+# plot['Fake_mm']  = { 
+#     'color'    : 921,    # kGray + 1
+#     'isSignal' : 0,
+#     'isData'   : 0,
+#     'scale'    : 1.0                  
+# }
+
+plot['Fake']  = { 
+    'color'    : 921,    # kGray + 1
+    'isSignal' : 0,
+    'isData'   : 0,
+    'scale'    : 1.0                  
+}
 
 ########
 # Data #

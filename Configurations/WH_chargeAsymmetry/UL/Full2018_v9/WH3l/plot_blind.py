@@ -12,18 +12,18 @@ groupPlot['top']  = {
     'samples'  : ['top']
 }
 
-groupPlot['WW']  = {  
-    'nameHR'   : 'WW',
-    'isSignal' : 0,
-    'color'    : 851, # kAzure -9 
-    'samples'  : ['WW', 'ggWW', 'WWewk']
-}
-
 groupPlot['Fake']  = {  
     'nameHR'   : 'Non-prompt',
     'isSignal' : 0,
     'color'    : 921,    # kGray + 1
     'samples'  : ['Fake']
+}
+
+groupPlot['WW']  = {  
+    'nameHR'   : 'WW',
+    'isSignal' : 0,
+    'color'    : 851, # kAzure -9 
+    'samples'  : ['WW'] # , 'ggWW', 'WWewk']
 }
 
 groupPlot['VVV']  = {  
@@ -101,13 +101,6 @@ groupPlot['WH_plus']  = {
 
 # keys here must match keys in samples.py    
 #     
-
-plot['Fake']  = { 
-    'color'    : 921,    # kGray + 1
-    'isSignal' : 0,
-    'isData'   : 0,
-    'scale'    : 1.0                  
-}
 
 plot['top'] = {   
     'nameHR' : 'tW and t#bar{t}',
@@ -264,6 +257,18 @@ plot['WH_htt_minus'] = {
     'isSignal' : 1,
     'isData'   : 0,    
     'scale'    : 1
+}
+
+
+########
+# Fake #
+########
+
+plot['Fake']  = { 
+    'color'    : 921,    # kGray + 1
+    'isSignal' : 0,
+    'isData'   : 0,
+    'scale'    : 1.0                  
 }
 
 

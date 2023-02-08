@@ -106,20 +106,8 @@ mcCommonWeight = 'XSWeight*METFilter_MC*PromptGenLepMatch2l*SFweight'
 ###########################################
 
 ###### DY #######
-
 useEmbeddedDY = False
 embed_tautauveto = ''
-
-# files = nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50') + \
-#         nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-10to50-LO')
-
-# samples['DY'] = {
-#     'name': files,
-#     'weight': mcCommonWeight + '*( !(Sum$(PhotonGen_isPrompt==1 && PhotonGen_pt>15 && abs(PhotonGen_eta)<2.6) > 0))',
-#     'FilesPerJob': 2,
-# }
-# # addSampleWeight(samples,'DY','DYJetsToLL_M-50',       'DY_NLO_pTllrw')
-# # addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO','DY_LO_pTllrw')
 
 files = nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-10to50-LO') + \
         nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50') + \
@@ -143,7 +131,6 @@ addSampleWeight(samples,'DY','DYJetsToLL_M-50', '(LHE_HT<70)')
 
 
 ##### Top #######
-
 files = nanoGetSampleFiles(mcDirectory, 'TTTo2L2Nu') + \
         nanoGetSampleFiles(mcDirectory, 'ST_s-channel') + \
         nanoGetSampleFiles(mcDirectory, 'ST_t-channel_top') + \
@@ -161,7 +148,6 @@ addSampleWeight(samples,'top','TTTo2L2Nu','Top_pTrw')
 
 
 ###### WW ########
-
 samples['WW'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'WWTo2L2Nu'),
     'weight': mcCommonWeight + '*nllW*ewknloW*ttHMVA_SF_flip_2l[0]', 
@@ -192,16 +178,23 @@ samples['ggWW'] = {
 }
 
 
-######## Vg ########
+######## Wg ########
+files = nanoGetSampleFiles(mcDirectory, 'Wg_AMCNLOFXFX_01J')
 
-# files = nanoGetSampleFiles(mcDirectory, 'WGToLNuG') + \
-#         nanoGetSampleFiles(mcDirectory, 'ZGToLLG')
+samples['Wg'] = {
+    'name': files,
+    'weight': mcCommonWeightNoMatch + '*(Gen_ZGstar_mass <= 0)',
+    'suppressNegative' :['all'],
+    'suppressNegativeNuisances' :['all'],
+    'FilesPerJob': 4,
+}
 
-files = nanoGetSampleFiles(mcDirectory, 'ZGToLLG') # Same sample as v7 - OK!
+######## Zg ########
+files = nanoGetSampleFiles(mcDirectory, 'ZGToLLG')
 
 samples['Zg'] = {
     'name': files,
-    'weight': mcCommonWeightNoMatch + '*(!(Gen_ZGstar_mass > 0))',
+    'weight': mcCommonWeightNoMatch + '*(Gen_ZGstar_mass <= 0)',
     'suppressNegative' :['all'],
     'suppressNegativeNuisances' :['all'],
     'FilesPerJob': 4
@@ -210,55 +203,34 @@ samples['Zg'] = {
 # addSampleWeight(samples, 'Zg', 'ZGToLLG', '0.448')
 
 
-######## Wg ########
-
-# files = nanoGetSampleFiles(mcDirectory, 'Wg_MADGRAPHMLM')
-
-files = nanoGetSampleFiles(mcDirectory, 'WGToLNuG') # same sample as v7 - OK!
-
-samples['Wg'] = {
-    'name': files,
-    'weight': mcCommonWeightNoMatch + '*(Gen_ZGstar_mass <= 0)',
-    'FilesPerJob': 4
-}
-
-
-######## ZgS ########
-
-files = nanoGetSampleFiles(mcDirectory, 'ZGToLLG')
-
-samples['ZgS'] = {
-    'name': files,
-    'weight': mcCommonWeight,
-    'suppressNegative' :['all'],
-    'suppressNegativeNuisances' :['all'],
-    'FilesPerJob': 4,
-}
-addSampleWeight(samples, 'ZgS', 'ZGToLLG', '(Gen_ZGstar_mass > 0)*0.448') # Do we still need this normalization factor?
-
-
 ######## WgS ######## 
-        # nanoGetSampleFiles(mcDirectory, 'ZGToLLG') + \
-        # nanoGetSampleFiles(mcDirectory, 'WZTo3LNu_mllmin4p0') # WZTo3LNu_mllmin01_ext1
-
-files = nanoGetSampleFiles(mcDirectory, 'WGToLNuG') + \
+files = nanoGetSampleFiles(mcDirectory, 'Wg_AMCNLOFXFX_01J') + \
         nanoGetSampleFiles(mcDirectory, 'WZTo3LNu_mllmin0p1')
 
 samples['WgS'] = {
     'name': files,
     'weight': mcCommonWeight + ' * (gstarLow * 0.94)',
+    'suppressNegative' :['all'],
+    'suppressNegativeNuisances' :['all'],
     'FilesPerJob': 4,
 }
-addSampleWeight(samples, 'WgS', 'WGToLNuG', '(Gen_ZGstar_mass > 0 && Gen_ZGstar_mass <= 0.1)')
+addSampleWeight(samples, 'WgS', 'Wg_AMCNLOFXFX_01J',  '(Gen_ZGstar_mass > 0 && Gen_ZGstar_mass <= 0.1)')
 addSampleWeight(samples, 'WgS', 'WZTo3LNu_mllmin0p1', '(Gen_ZGstar_mass > 0.1)*(0.601644*58.59/4.666)')
+
+######## ZgS ########
+files = nanoGetSampleFiles(mcDirectory, 'ZGToLLG')
+
+samples['ZgS'] = {
+    'name': files,
+    'weight': mcCommonWeight + '*(Gen_ZGstar_mass > 0)',
+    'suppressNegative' :['all'],
+    'suppressNegativeNuisances' :['all'],
+    'FilesPerJob': 4,
+}
+# addSampleWeight(samples, 'ZgS', 'ZGToLLG', '(Gen_ZGstar_mass > 0)*0.448') # Do we still need this normalization factor?
 
 
 ############ WZ ############
-# files = nanoGetSampleFiles(mcDirectory, 'ZZTo2L2Nu') + \
-#         nanoGetSampleFiles(mcDirectory, 'ZZTo2Q2L_mllmin4p0') + \
-#         nanoGetSampleFiles(mcDirectory, 'WZTo2Q2L_mllmin4p0') # 'WZTo2L2Q')
-        # nanoGetSampleFiles(mcDirectory, 'WZTo3LNu_mllmin4p0') + \
-
 files = nanoGetSampleFiles(mcDirectory, 'WZTo3LNu_mllmin0p1') + \
         nanoGetSampleFiles(mcDirectory, 'WZTo2Q2L_mllmin4p0')
 
@@ -268,12 +240,10 @@ samples['WZ'] = {
     'FilesPerJob': 4
 }
 addSampleWeight(samples, 'WZ', 'WZTo3LNu_mllmin0p1', '(0.601644*58.59/4.666)')
-
-
 # 'weight': mcCommonWeight+embed_tautauveto + '*1.11',
 
-############ ZZ ############
 
+############ ZZ ############
 files = nanoGetSampleFiles(mcDirectory, 'ZZTo2L2Nu') + \
         nanoGetSampleFiles(mcDirectory, 'ZZTo2Q2L_mllmin4p0') + \
         nanoGetSampleFiles(mcDirectory, 'ZZTo4L')
@@ -284,8 +254,8 @@ samples['ZZ'] = {
     'FilesPerJob': 4
 }
 
-########## VVV #########
 
+########## VVV #########
 files = nanoGetSampleFiles(mcDirectory, 'ZZZ') + \
         nanoGetSampleFiles(mcDirectory, 'WZZ') + \
         nanoGetSampleFiles(mcDirectory, 'WWZ') + \
@@ -304,8 +274,7 @@ samples['VVV'] = {
 
 signals = []
 
-#### ggH -> WW
-
+############ ggH H->WW ############
 samples['ggH_hww'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'GluGluHToWWTo2L2Nu_M125_Powheg'),
     'weight': mcCommonWeight,
@@ -324,7 +293,6 @@ samples['qqH_hww'] = {
 signals.append('qqH_hww')
 
 ############ ZH H->WW ############
-
 samples['ZH_hww'] = {
     'name':   nanoGetSampleFiles(mcDirectory, 'HZJ_HToWW_M125'),
     'weight': mcCommonWeight,
@@ -342,7 +310,6 @@ samples['ggZH_hww'] = {
 signals.append('ggZH_hww')
 
 ############ WH H->WW ############
-
 samples['WH_hww_plus'] = {
     'name':   nanoGetSampleFiles(mcDirectory, 'HWplusJ_HToWW_M125'),
     'weight': mcCommonWeight,
@@ -361,7 +328,6 @@ samples['WH_hww_minus'] = {
 signals.append('WH_hww_minus')
 
 ############ ttH ############
-
 samples['ttH_hww'] = {
     'name':   nanoGetSampleFiles(mcDirectory, 'ttHToNonbb_M125'),
     'weight': mcCommonWeight,
@@ -371,7 +337,6 @@ samples['ttH_hww'] = {
 signals.append('ttH_hww')
 
 ############ H->TauTau ############
-
 samples['ggH_htt'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'GluGluHToTauTau_M125_Powheg'),
     'weight': mcCommonWeight,
@@ -397,7 +362,6 @@ samples['ZH_htt'] = {
 signals.append('ZH_htt')
 
 ############ WH H->TauTau ############
-
 samples['WH_htt_plus'] = {
     'name':  nanoGetSampleFiles(mcDirectory, 'WplusHToTauTau_M125'),
     'weight': mcCommonWeight,
@@ -447,6 +411,7 @@ for _, sd in DataRun:
 
     samples['Fake']['name'].extend(files)
     samples['Fake']['weights'].extend([DataTrig[pd]] * len(files))
+
 
 ###########################################
 ################## DATA ###################

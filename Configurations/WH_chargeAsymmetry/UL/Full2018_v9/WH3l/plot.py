@@ -12,18 +12,18 @@ groupPlot['top']  = {
     'samples'  : ['top']
 }
 
-groupPlot['WW']  = {  
-    'nameHR'   : 'WW',
-    'isSignal' : 0,
-    'color'    : 851, # kAzure -9 
-    'samples'  : ['WW', 'ggWW', 'WWewk']
-}
-
 groupPlot['Fake']  = {  
     'nameHR'   : 'Non-prompt',
     'isSignal' : 0,
     'color'    : 921,    # kGray + 1
     'samples'  : ['Fake']
+}
+
+groupPlot['WW']  = {  
+    'nameHR'   : 'WW',
+    'isSignal' : 0,
+    'color'    : 851, # kAzure -9 
+    'samples'  : ['WW'] # , 'ggWW', 'WWewk']
 }
 
 groupPlot['VVV']  = {  
@@ -102,13 +102,6 @@ groupPlot['WH_plus']  = {
 # keys here must match keys in samples.py    
 #     
 
-plot['Fake']  = { 
-    'color'    : 921,    # kGray + 1
-    'isSignal' : 0,
-    'isData'   : 0,
-    'scale'    : 1.0                  
-}
-
 plot['top'] = {   
     'nameHR' : 'tW and t#bar{t}',
     'color'    : 400,   # kYellow
@@ -181,28 +174,28 @@ plot['VVV']  = {
 
 plot['ggH_hww'] = {
     'color'    : 632, # kRed 
-    'isSignal' : 1,
+    'isSignal' : 0,
     'isData'   : 0,    
     'scale'    : 1
 }
 
 plot['qqH_hww'] = {
     'color'    : 632+1, # kRed+1 
-    'isSignal' : 1,
+    'isSignal' : 0,
     'isData'   : 0,    
     'scale'    : 1
 }
 
 plot['ZH_hww'] = {
     'color'    : 632+3, # kRed+3 
-    'isSignal' : 1,
+    'isSignal' : 0,
     'isData'   : 0,    
     'scale'    : 1
 }
 
 plot['ggZH_hww'] = {
     'color'    : 632+4, # kRed+4
-    'isSignal' : 1,
+    'isSignal' : 0,
     'isData'   : 0,    
     'scale'    : 1
 }
@@ -223,7 +216,7 @@ plot['WH_hww_plus'] = {
 
 plot['ttH_hww'] = {
     'color'    : 632+3, # kRed+3 
-    'isSignal' : 1,
+    'isSignal' : 0,
     'isData'   : 0,    
     'scale'    : 1
 }
@@ -233,21 +226,21 @@ plot['ttH_hww'] = {
 
 plot['ggH_htt'] = {
     'color'    : 632, # kRed 
-    'isSignal' : 1,
+    'isSignal' : 0,
     'isData'   : 0,    
     'scale'    : 1
 }
 
 plot['qqH_htt'] = {
     'color'    : 632+1, # kRed+1 
-    'isSignal' : 1,
+    'isSignal' : 0,
     'isData'   : 0,    
     'scale'    : 1
 }
 
 plot['ZH_htt'] = {
     'color'    : 632+3, # kRed+3 
-    'isSignal' : 1,
+    'isSignal' : 0,
     'isData'   : 0,    
     'scale'    : 1
 }
@@ -264,6 +257,18 @@ plot['WH_htt_minus'] = {
     'isSignal' : 1,
     'isData'   : 0,    
     'scale'    : 1
+}
+
+
+########
+# Fake #
+########
+
+plot['Fake']  = { 
+    'color'    : 921,    # kGray + 1
+    'isSignal' : 0,
+    'isData'   : 0,
+    'scale'    : 1.0                  
 }
 
 
