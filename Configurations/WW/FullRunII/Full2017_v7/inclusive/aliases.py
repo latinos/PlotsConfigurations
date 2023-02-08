@@ -11,7 +11,6 @@ configurations = os.path.dirname(configurations) # Configurations
 
 mc = [skey for skey in samples if skey not in ('Fake', 'DATA')]
 
-btag_algo="deepflav" #deepflav or deepcsv
 btagWP = '0.3093' #BDT training
 
 eleWP = 'mvaFall17V1Iso_WP90'
@@ -119,23 +118,13 @@ aliases['DY_LO_pTllrw'] = {
 
 # B tagging
 
-if btag_algo=="deepcsv":
-    aliases['bVeto'] = {
-        'expr': 'Sum$(CleanJet_pt > 20. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > '+btagWP+') == 0'
-	}
+aliases['bVeto'] = {
+    'expr': 'Sum$(CleanJet_pt > 20. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepFlavB[CleanJet_jetIdx] >  '+btagWP+') == 0'
+}
 
-    aliases['bReq'] = {
-        'expr': 'Sum$(CleanJet_pt > 30. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > '+btagWP+') >= 1'
-	}
-
-elif btag_algo=="deepflav":
-    aliases['bVeto'] = {
-        'expr': 'Sum$(CleanJet_pt > 20. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepFlavB[CleanJet_jetIdx] >  '+btagWP+') == 0'
-	}
-    
-    aliases['bReq'] = {
-	'expr': 'Sum$(CleanJet_pt > 30. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepFlavB[CleanJet_jetIdx] >  '+btagWP+') >= 1'
-	}
+aliases['bReq'] = {
+    'expr': 'Sum$(CleanJet_pt > 30. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepFlavB[CleanJet_jetIdx] >  '+btagWP+') >= 1'
+}
 
 # CR definitions
 
@@ -158,100 +147,66 @@ aliases['sr'] = {
 }
 
 # B tag scale factors
-if btag_algo=="deepcsv":
 
-    aliases['bVetoSF'] = {
-        'expr': 'TMath::Exp(Sum$(TMath::Log((CleanJet_pt>20 && abs(CleanJet_eta)<2.5)*Jet_btagSF_deepcsv_shape[CleanJet_jetIdx]+1*(CleanJet_pt<20 || abs(CleanJet_eta)>2.5))))',
-        'samples': mc
-    }
-    
-    aliases['bReqSF'] = {
-        'expr': 'TMath::Exp(Sum$(TMath::Log((CleanJet_pt>30 && abs(CleanJet_eta)<2.5)*Jet_btagSF_deepcsv_shape[CleanJet_jetIdx]+1*(CleanJet_pt<30 || abs(CleanJet_eta)>2.5))))',
-        'samples': mc
-    }
-    
-    aliases['btagSF'] = {
-        'expr': '(bVeto || (topcr && Sum$(CleanJet_pt > 30.) == 0))*bVetoSF + (topcr && Sum$(CleanJet_pt > 30.) > 0)*bReqSF',
-        'samples': mc
-    }
-    
-    for shift in ['jes', 'lf', 'hf', 'lfstats1', 'lfstats2', 'hfstats1', 'hfstats2', 'cferr1', 'cferr2']:
-        for targ in ['bVeto', 'bReq']:
-            alias = aliases['%sSF%sup' % (targ, shift)] = copy.deepcopy(aliases['%sSF' % targ])
-            alias['expr'] = alias['expr'].replace('btagSF_deepcsv_shape', 'btagSF_deepcsv_shape_up_%s' % shift)
-    
-            alias = aliases['%sSF%sdown' % (targ, shift)] = copy.deepcopy(aliases['%sSF' % targ])
-            alias['expr'] = alias['expr'].replace('btagSF_deepcsv_shape', 'btagSF_deepcsv_shape_down_%s' % shift)
-    
-        aliases['btagSF%sup' % shift] = {
-            'expr': aliases['btagSF']['expr'].replace('SF', 'SF' + shift + 'up'),
-            'samples': mc
-        }
-    
-        aliases['btagSF%sdown' % shift] = {
-            'expr': aliases['btagSF']['expr'].replace('SF', 'SF' + shift + 'down'),
-            'samples': mc
-        }
+btagSFSource = '%s/src/PhysicsTools/NanoAODTools/data/btagSF/DeepFlavour_94XSF_V4_B_F.csv' % os.getenv('CMSSW_BASE')
 
-elif btag_algo=="deepflav":
-    btagSFSource = '%s/src/PhysicsTools/NanoAODTools/data/btagSF/DeepFlavour_94XSF_V4_B_F.csv' % os.getenv('CMSSW_BASE')
+aliases['Jet_btagSF_deepflav_shape'] = {
+    'linesToAdd': [
+        'gSystem->Load("libCondFormatsBTauObjects.so");',
+        'gSystem->Load("libCondToolsBTau.so");',
+        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_RELEASE_BASE'),
+        '.L %s/patches/btagsfpatch.cc+' % configurations
+    ],
+    'class': 'BtagSF',
+    'args': (btagSFSource,'central','deepjet'),
+    'samples': mc
+}
+
     
-    aliases['Jet_btagSF_deepflav_shape'] = {
-        'linesToAdd': [
-            'gSystem->Load("libCondFormatsBTauObjects.so");',
-            'gSystem->Load("libCondToolsBTau.so");',
-            'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_RELEASE_BASE'),
-            '.L %s/patches/btagsfpatch.cc+' % configurations
-        ],
+aliases['bVetoSF'] = {
+    'expr': 'TMath::Exp(Sum$(TMath::Log((CleanJet_pt>20 && abs(CleanJet_eta)<2.5)*Jet_btagSF_deepflav_shape[CleanJet_jetIdx]+1*(CleanJet_pt<20 || abs(CleanJet_eta)>2.5))))',
+    'samples': mc
+}
+
+aliases['bReqSF'] = {
+    'expr': 'TMath::Exp(Sum$(TMath::Log((CleanJet_pt>30 && abs(CleanJet_eta)<2.5)*Jet_btagSF_deepflav_shape[CleanJet_jetIdx]+1*(CleanJet_pt<30 || abs(CleanJet_eta)>2.5))))',
+    'samples': mc
+}
+
+aliases['btagSF'] = {
+    'expr': '(bVeto || (topcr && Sum$(CleanJet_pt > 30.) == 0))*bVetoSF + (topcr && Sum$(CleanJet_pt > 30.) > 0)*bReqSF',
+    'samples': mc
+}
+
+for shift in ['jes', 'lf', 'hf', 'lfstats1', 'lfstats2', 'hfstats1', 'hfstats2', 'cferr1', 'cferr2']:
+    aliases['Jet_btagSF_deepflav_shape_up_%s' % shift] = {
         'class': 'BtagSF',
-        'args': (btagSFSource,'central','deepjet'),
+        'args': (btagSFSource, 'up_' + shift,'deepjet'),
+        'samples': mc
+    }
+    aliases['Jet_btagSF_deepflav_shape_down_%s' % shift] = {
+        'class': 'BtagSF',
+        'args': (btagSFSource, 'down_' + shift,'deepjet'),
         'samples': mc
     }
     
-    aliases['bVetoSF'] = {
-        'expr': 'TMath::Exp(Sum$(TMath::Log((CleanJet_pt>20 && abs(CleanJet_eta)<2.5)*Jet_btagSF_deepflav_shape[CleanJet_jetIdx]+1*(CleanJet_pt<20 || abs(CleanJet_eta)>2.5))))',
+    for targ in ['bVeto', 'bReq']:
+        alias = aliases['%sSF%sup' % (targ, shift)] = copy.deepcopy(aliases['%sSF' % targ])
+        alias['expr'] = alias['expr'].replace('btagSF_deepflav_shape', 'btagSF_deepflav_shape_up_%s' % shift)
+        
+        alias = aliases['%sSF%sdown' % (targ, shift)] = copy.deepcopy(aliases['%sSF' % targ])
+        alias['expr'] = alias['expr'].replace('btagSF_deepflav_shape', 'btagSF_deepflav_shape_down_%s' % shift)
+        
+    aliases['btagSF%sup' % shift] = {
+        'expr': aliases['btagSF']['expr'].replace('SF', 'SF' + shift + 'up'),
         'samples': mc
     }
     
-    aliases['bReqSF'] = {
-        'expr': 'TMath::Exp(Sum$(TMath::Log((CleanJet_pt>30 && abs(CleanJet_eta)<2.5)*Jet_btagSF_deepflav_shape[CleanJet_jetIdx]+1*(CleanJet_pt<30 || abs(CleanJet_eta)>2.5))))',
+    aliases['btagSF%sdown' % shift] = {
+        'expr': aliases['btagSF']['expr'].replace('SF', 'SF' + shift + 'down'),
         'samples': mc
     }
     
-    aliases['btagSF'] = {
-        'expr': '(bVeto || (topcr && Sum$(CleanJet_pt > 30.) == 0))*bVetoSF + (topcr && Sum$(CleanJet_pt > 30.) > 0)*bReqSF',
-        'samples': mc
-    }
-    
-    for shift in ['jes', 'lf', 'hf', 'lfstats1', 'lfstats2', 'hfstats1', 'hfstats2', 'cferr1', 'cferr2']:
-        aliases['Jet_btagSF_deepflav_shape_up_%s' % shift] = {
-            'class': 'BtagSF',
-            'args': (btagSFSource, 'up_' + shift,'deepjet'),
-            'samples': mc
-        }
-        aliases['Jet_btagSF_deepflav_shape_down_%s' % shift] = {
-            'class': 'BtagSF',
-            'args': (btagSFSource, 'down_' + shift,'deepjet'),
-            'samples': mc
-        }
-    
-        for targ in ['bVeto', 'bReq']:
-            alias = aliases['%sSF%sup' % (targ, shift)] = copy.deepcopy(aliases['%sSF' % targ])
-            alias['expr'] = alias['expr'].replace('btagSF_deepflav_shape', 'btagSF_deepflav_shape_up_%s' % shift)
-    
-            alias = aliases['%sSF%sdown' % (targ, shift)] = copy.deepcopy(aliases['%sSF' % targ])
-            alias['expr'] = alias['expr'].replace('btagSF_deepflav_shape', 'btagSF_deepflav_shape_down_%s' % shift)
-    
-        aliases['btagSF%sup' % shift] = {
-            'expr': aliases['btagSF']['expr'].replace('SF', 'SF' + shift + 'up'),
-            'samples': mc
-        }
-    
-        aliases['btagSF%sdown' % shift] = {
-            'expr': aliases['btagSF']['expr'].replace('SF', 'SF' + shift + 'down'),
-            'samples': mc
-        }
-
 aliases['Jet_PUIDSF'] = { 
   'expr' : 'TMath::Exp(Sum$((Jet_jetId>=2)*TMath::Log(Jet_PUIDSF_loose)))',
   'samples': mc
@@ -266,6 +221,7 @@ aliases['Jet_PUIDSF_down'] = {
   'expr' : 'TMath::Exp(Sum$((Jet_jetId>=2)*TMath::Log(Jet_PUIDSF_loose_down)))',
   'samples': mc
 }
+
 
 # data/MC scale factors
 aliases['SFweight'] = {
@@ -290,54 +246,6 @@ aliases['SFweightMuDown'] = {
     'expr': 'LepSF2l__mu_'+muWP+'__Do',
     'samples': mc
 }
-'''
-aliases['Weight2MINLO'] = {
-    'linesToAdd': ['.L %s/Differential/weight2MINLO.cc+' % configurations],
-    'class': 'Weight2MINLO',
-    'args': '%s/src/LatinoAnalysis/Gardener/python/data/powheg2minlo/NNLOPS_reweight.root' % os.getenv('CMSSW_BASE'),
-    'samples' : [skey for skey in samples if 'ggH_hww' in skey],
-}
-
-thusQQ = [
-  "qqH_YIELD",
-  "qqH_PTH200",
-  "qqH_Mjj60",
-  "qqH_Mjj120",
-  "qqH_Mjj350",
-  "qqH_Mjj700",
-  "qqH_Mjj1000",
-  "qqH_Mjj1500",
-  "qqH_PTH25",
-  "qqH_JET01",
-  "qqH_EWK",
-]
-for thu in thusQQ:
-    aliases[thu] = {
-        'linesToAdd': ['.L %s/patches/qqhuncertainty.cc+' % configurations],
-        'class': 'QQHUncertainty',
-        'args': (thu,),
-        'samples': ['qqH_hww'],
-        'nominalOnly': True
-    }
-thus = [
-    'ggH_mu',
-    'ggH_res',
-    'ggH_mig01',
-    'ggH_mig12',
-    'ggH_VBF2j',
-    'ggH_VBF3j',
-    'ggH_pT60',
-    'ggH_pT120',
-    'ggH_qmtop'
-]
-for thu in thus:
-    aliases[thu+'_2'] = {
-        'linesToAdd': ['.L %s/Differential/gghuncertainty.cc+' % configurations],
-        'class': 'GGHUncertainty',
-        'args': (thu,),
-        'samples': ['ggH_hww']
-    }
-'''
 
 # Needed for top QCD scale uncertainty
 lastcopy = (1 << 13)
@@ -352,6 +260,23 @@ aliases['isSingleTop'] = {
     'samples': ['top']
 }
 
+# Macros / aliases needed to define differential variable
+# Want to only consider jets with |eta| < 2.5
+# dphijj defined from leading and subleading jets -- both must have pt > 30
+
+aliases['nGoodCleanJet'] = {
+    'linesToAdd': ['.L %s/WW/FullRunII/goodcleanjet.cc+' % configurations],
+    'class': 'GoodCleanJet',
+    'args': ("njet"),
+}
+
+aliases['nGoodGenJet'] = {
+    'linesToAdd': ['.L %s/WW/FullRunII/goodgenjet.cc+' % configurations],
+    'class': 'CleanGenJet',
+    'args': ("njet"),
+    'samples': mc
+}
+
 aliases['B0'] = {
     'expr' : '1',
     'samples' : ['WW','ggWW']
@@ -364,15 +289,15 @@ aliases['fid'] = {
 
 aliases['BDTOutput_0j'] = {
     'class': 'ww_top_bdt_0j',
-    'linesToAdd' : ['.L %s/WW/FullRunII/Full2018_v7/inclusive/WW_BDT_0j.cc+' % configurations],
+    'linesToAdd' : ['.L %s/WW/FullRunII/Full2016_v7/inclusive/WW_BDT_0j.cc+' % configurations],
 }
 
 aliases['BDTOutput_1j'] = {
     'class': 'ww_top_bdt_1j',
-    'linesToAdd' : ['.L %s/WW/FullRunII/Full2018_v7/inclusive/WW_BDT_1j.cc+' % configurations],
+    'linesToAdd' : ['.L %s/WW/FullRunII/Full2016_v7/inclusive/WW_BDT_1j.cc+' % configurations],
 }
 
 aliases['BDTOutput_2j'] = {
     'class': 'ww_top_bdt_2j',
-    'linesToAdd' : ['.L %s/WW/FullRunII/Full2018_v7/inclusive/WW_BDT_2j.cc+' % configurations],
+    'linesToAdd' : ['.L %s/WW/FullRunII/Full2016_v7/inclusive/WW_BDT_2j.cc+' % configurations],
 }

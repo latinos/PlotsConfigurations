@@ -37,6 +37,14 @@ mcProduction = 'Autumn18_102X_nAODv7_Full2018v7'
 
 mcSteps = 'MCl1loose2018v7__MCCorr2018v7__l2loose'
 
+dataReco = 'Run2018_102X_nAODv7_Full2018v7'
+
+fakeReco = dataReco
+
+fakeSteps = 'DATAl1loose2018v7__l2loose__fakeW'
+
+dataSteps = 'DATAl1loose2018v7__l2loose__l2tightOR2018v7'
+
 ##############################################
 ###### Tree base directory for the site ######
 ##############################################
@@ -54,6 +62,28 @@ def makeMCDirectory(var=''):
         return os.path.join(treeBaseDir, mcProduction, mcSteps.format(var=''))
 
 mcDirectory = makeMCDirectory()
+fakeDirectory = os.path.join(treeBaseDir, fakeReco, fakeSteps)
+dataDirectory = os.path.join(treeBaseDir, dataReco, dataSteps)
+
+################################################
+############ DATA DECLARATION ##################
+################################################
+
+DataRun = [
+    ['A','Run2018A-02Apr2020-v1'] ,
+    ['B','Run2018B-02Apr2020-v1'] ,
+    ['C','Run2018C-02Apr2020-v1'] ,
+    ['D','Run2018D-02Apr2020-v1'] ,
+]
+
+DataSets = ['MuonEG','DoubleMuon','SingleMuon','EGamma']
+
+DataTrig = {
+    'MuonEG'         : 'Trigger_ElMu' ,
+    'DoubleMuon'     : '!Trigger_ElMu && Trigger_dblMu' ,
+    'SingleMuon'     : '!Trigger_ElMu && !Trigger_dblMu && Trigger_sngMu' ,
+    'EGamma'         : '!Trigger_ElMu && !Trigger_dblMu && !Trigger_sngMu && (Trigger_sngEl || Trigger_dblEl)' ,
+}
 
 #########################################
 ############ MC COMMON ##################
@@ -68,7 +98,7 @@ mcCommonWeightMatched = 'XSWeight*SFweight*PromptGenLepMatch2l*METFilter_MC'
 #############  BACKGROUNDS  ###############
 ###########################################
 
-############ DY ############ 
+### DY
 
 files = nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_ext2') + \
         nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-10to50-LO') + \
@@ -80,6 +110,40 @@ samples['DY'] = {
     'FilesPerJob': 3,
     'suppressNegative' :['all'],
     'suppressNegativeNuisances' :['all'],
+}
+
+
+### WZ
+
+files = nanoGetSampleFiles(mcDirectory, 'WZTo3LNu_mllmin01') + \
+    nanoGetSampleFiles(mcDirectory, 'WZTo2L2Q')
+
+samples['WZ'] = {
+    'name': files,
+    'weight': mcCommonWeight + ' * (gstarHigh)',
+    'FilesPerJob': 4,
+}
+
+### FAKE
+
+samples['Fake'] = {
+  'name': [],
+  'weight': 'METFilter_DATA*fakeW',
+  'weights': [],
+  'isData': ['all'],
+  'FilesPerJob': 10
+}
+
+for _, sd in DataRun:
+  for pd in DataSets:
+    files = nanoGetSampleFiles(fakeDirectory, pd + '_' + sd)
+    samples['Fake']['name'].extend(files)
+    samples['Fake']['weights'].extend([DataTrig[pd]] * len(files))
+
+samples['Fake']['subsamples'] = {
+    'em': 'Lepton_pdgId[0]*Lepton_pdgId[1] == 11*13',
+    'mm': 'Lepton_pdgId[0]*Lepton_pdgId[1] == 13*13',
+    'ee': 'Lepton_pdgId[0]*Lepton_pdgId[1] == 11*11'
 }
 
 

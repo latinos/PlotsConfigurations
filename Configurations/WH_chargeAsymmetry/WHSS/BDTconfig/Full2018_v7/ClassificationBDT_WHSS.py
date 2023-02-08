@@ -10,14 +10,16 @@ def runJob():
     TMVA.Tools.Instance()
     TMVA.PyMethodBase.PyInitialize()
 
-    output = TFile.Open('TMVA_WHSS_mllCut.root', 'RECREATE')
+    output = TFile.Open('TMVA_WHSS_noCorrelatedVariables.root', 'RECREATE')
     factory = TMVA.Factory('TMVAClassification', output,   '!V:!Silent:Color:DrawProgressBar:AnalysisType=Classification')
 
-    dataloader = TMVA.DataLoader('dataset_WHSS_mllCut')
+    dataloader = TMVA.DataLoader('dataset_WHSS_noCorrelatedVariables')
     for br in config.mvaVariables:
         dataloader.AddVariable(br)
 
     for sampleName, sample in config.samples.items():
+        print(sampleName)
+        if config.structure[sampleName]=='Fake': continue
         if config.structure[sampleName]['isData']==1:
             continue
 

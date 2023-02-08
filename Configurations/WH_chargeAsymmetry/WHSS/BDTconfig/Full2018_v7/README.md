@@ -10,6 +10,8 @@ We consider as signals the WH samples:
 
 And as backgrounds:
 - DY
+- WZ
+- Fakes
 
 The instructions to run the trainings follow.
 
@@ -22,3 +24,13 @@ The instructions to run the trainings follow.
 
      root -l -b -q 'plotAll.C("./","TMVA_WHSS","plots_BDT_WHSS","dataset_WHSS")'
 
+### Files description
+
+In this directory, few files are used to prepare the configuration.
+
+- `config_WHSS_cfg.py`:
+    + List of variables for the training
+    + List of samples to be used. The files are defined in samples_BDTTrain.py
+- `ClassificationBDT_WHSS.py`:
+    + Defines the output file and folder names
+    + Defines the hyper-paramters of the trainings

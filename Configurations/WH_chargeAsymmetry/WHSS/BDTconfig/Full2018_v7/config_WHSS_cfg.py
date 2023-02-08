@@ -5,10 +5,10 @@ import os
 from ROOT import gROOT, TFile, TChain, TCut
 
 # import models
-import preselections
+# import preselections
 import cuts_BDTTrain
 
-isDEV=False
+isDEV=True
 
 # Load configuration
 with open("configuration.py") as handle:
@@ -25,13 +25,13 @@ for f in [samplesFile, structureFile, cutsFile]:
 # Reduce sample files for fast dev
 if isDEV:
     for sampleName, sample in samples.items():
-        if sampleName not in ['DY','WH_hww_plus','WH_hww_minus','WH_htt_plus','WH_htt_minus']:
+        if sampleName not in ['DY','WZ','Fake_ee','Fake_em','Fake_mm','WH_hww_plus','WH_hww_minus','WH_htt_plus','WH_htt_minus']:
             samples.pop(sampleName)
             continue
 
-# Define data to be loaded
-with open("./preselections.py") as handle:
-    exec handle
+# # Define data to be loaded
+# with open("./preselections.py") as handle:
+#     exec handle
 
 with open("./cuts_BDTTrain.py") as handle:
     exec handle
@@ -43,13 +43,31 @@ mvaVariables = [
     "Alt$(Lepton_pt[1],0)",
     "mll",
     "mjj",
+    # "mth",
+    "mtw1",
+    "mtw2",
     "ptll",
     "mlljj20_whss",
     "PuppiMET_pt",
     "dphill",
-    "detall",
+    # "detall",
+    "drll",
     "dphijj",
-    "detajj",
+    # "detajj",
+    "dphillmet",
+    # "dphilmet",
+    # "dphilmet1",
+    "dphilmet2",
+    # "dphilljet",
+    # "dphilljetjet",
+    "dphijet1met",
+    # "dphijet2met",
+    # "dphilep2jj",
+    # "dphilep1jj",
+    # "dphilep2jet2",
+    # "dphilep2jet1",
+    # "dphilep1jet2",
+    # "dphilep1jet1",
     "Alt$(CleanJet_pt[0],0)",
-    "Alt$(CleanJet_pt[1],0)",
+    # "Alt$(CleanJet_pt[1],0)",
 ]

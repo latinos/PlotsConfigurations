@@ -34,6 +34,7 @@ except NameError:
 
 # MC:   /eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Summer20UL17_106x_nAODv9_Full2017v9/MCl1loose2017v9__MCCorr2017v9__l2tightOR2017v9/
 # DATA: /eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Run2017_UL2017_nAODv9_Full2017v9/DATAl1loose2017v9__l2loose__l2tightOR2017v9/
+# FAKE: /eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Run2017_UL2017_nAODv9_Full2017v9/DATAl1loose2017v9__l2loose__fakeW/
 
 mcProduction = 'Summer20UL17_106x_nAODv9_Full2017v9'
 
@@ -43,7 +44,7 @@ dataReco = 'Run2017_UL2017_nAODv9_Full2017v9'
 
 mcSteps = 'MCl1loose2017v9__MCCorr2017v9__l2tightOR2017v9'
 
-# fakeSteps = 'DATAl1loose2016v7__l2loose__fakeW'
+fakeSteps = 'DATAl1loose2017v9__l2loose__fakeW'
 
 dataSteps = 'DATAl1loose2017v9__l2loose__l2tightOR2017v9'
 
@@ -66,7 +67,7 @@ def makeMCDirectory(var=''):
         return os.path.join(treeBaseDir, mcProduction, mcSteps.format(var=''))
 
 mcDirectory = makeMCDirectory()
-# fakeDirectory = os.path.join(treeBaseDir, dataReco, fakeSteps)
+fakeDirectory = os.path.join(treeBaseDir, dataReco, fakeSteps)
 dataDirectory = os.path.join(treeBaseDir, dataReco, dataSteps)
 # embedDirectory = os.path.join(treeBaseDir, embedReco, embedSteps)
 
@@ -142,7 +143,7 @@ addSampleWeight(samples,'top','TTTo2L2Nu','Top_pTrw')
 
 samples['WW'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'WWTo2L2Nu'),
-    'weight': mcCommonWeight + '*nllW', # temporary - nllW module not run on PS and UE variation samples
+    'weight': mcCommonWeight + '*nllW*ewknloW', # temporary - nllW module not run on PS and UE variation samples
     'FilesPerJob': 1
 }
 
@@ -229,20 +230,23 @@ samples['VVV'] = {
 # ################## FAKE ###################
 # ###########################################
 
-# samples['Fake'] = {
-#   'name': [],
-#   'weight': 'METFilter_DATA*fakeW',
-#   'weights': [],
-#   'isData': ['all'],
-#   'FilesPerJob': 50
-# }
+samples['Fake'] = {
+  'name': [],
+  'weight': 'METFilter_DATA*fakeW',
+  'weights': [],
+  'isData': ['all'],
+  'FilesPerJob': 50
+}
 
-# for _, sd in DataRun:
-#   for pd in DataSets:
-#     files = nanoGetSampleFiles(fakeDirectory, pd + '_' + sd)
+for _, sd in DataRun:
+  for pd in DataSets:
 
-#     samples['Fake']['name'].extend(files)
-#     samples['Fake']['weights'].extend([DataTrig[pd]] * len(files))
+    tag = pd + '_' + sd
+
+    files = nanoGetSampleFiles(fakeDirectory, tag)
+
+    samples['Fake']['name'].extend(files)
+    samples['Fake']['weights'].extend([DataTrig[pd]] * len(files))
 
 ###########################################
 ################## DATA ###################
@@ -259,12 +263,6 @@ samples['DATA'] = {
 for _, sd in DataRun:
   for pd in DataSets:
     tag = pd + '_' + sd
-    # if 'DoubleMuon' in pd and 'Run2016G' in sd: 
-    #     print("sd      = {}".format(sd))
-    #     print("pd      = {}".format(pd))
-    #     print("Old tag = {}".format(tag))
-    #     tag = tag.replace('v1','v2')
-    #     print("New tag = {}".format(tag))
 
     files = nanoGetSampleFiles(dataDirectory, tag)
 

@@ -28,6 +28,107 @@ aliases['LepWPSF'] = {
     'samples': mc_emb
 }
 
+# No jet with pt > 30 GeV
+aliases['zeroJet'] = {
+    'expr': 'Alt$(CleanJet_pt[0], 0) < 30.'
+}
+
+aliases['oneJet'] = {
+    'expr': 'Alt$(CleanJet_pt[0], 0) > 30.'
+}
+
+aliases['multiJet'] = {
+    'expr': 'Alt$(CleanJet_pt[1], 0) > 30.'
+}
+
+####################################################################################
+# b tagging WPs: https://twiki.cern.ch/twiki/bin/view/CMS/BtagRecommendation106XUL17
+####################################################################################
+
+# DeepB = DeepCSV
+bWP_loose_deepB  = '0.1355'
+bWP_medium_deepB = '0.4506' 
+bWP_tight_deepB  = '0.7738'
+
+# DeepFlavB = DeepJet
+bWP_loose_deepFlavB  = '0.0532'
+bWP_medium_deepFlavB = '0.3040'
+bWP_tight_deepFlavB  = '0.7476'
+
+# Actual algo and WP definition. BE CONSISTENT!!
+bAlgo = 'DeepB' # ['DeepB','DeepFlavB']
+bWP   = bWP_loose_deepB
+bSF   = 'deepcsv' # ['deepcsv','deepjet']
+
+# b veto
+aliases['bVeto'] = {
+    'expr': 'Sum$(CleanJet_pt > 20. && abs(CleanJet_eta) < 2.5 && Jet_btag{}[CleanJet_jetIdx] > {}) == 0'.format(bAlgo, bWP)
+}
+
+aliases['bVetoSF'] = {
+    'expr': 'TMath::Exp(Sum$(TMath::Log((CleanJet_pt>20 && abs(CleanJet_eta)<2.5)*Jet_btagSF_{}_shape[CleanJet_jetIdx]+1*(CleanJet_pt<20 || abs(CleanJet_eta)>2.5))))'.format(bSF),
+    'samples': mc
+}
+
+# At least one b-tagged jet
+aliases['bReq'] = {
+    'expr': 'Sum$(CleanJet_pt > 30. && abs(CleanJet_eta) < 2.5 && Jet_btag{}[CleanJet_jetIdx] > {}) >= 1'.format(bAlgo, bWP)
+}
+
+aliases['bReqSF'] = {
+    'expr': 'TMath::Exp(Sum$(TMath::Log((CleanJet_pt>30 && abs(CleanJet_eta)<2.5)*Jet_btagSF_{}_shape[CleanJet_jetIdx]+1*(CleanJet_pt<30 || abs(CleanJet_eta)>2.5))))'.format(bSF),
+    'samples': mc
+}
+
+# Leading jet is b-tagged
+aliases['bLead'] = {
+    'expr': 'Alt$(CleanJet_pt[0],0) > 30. && abs(Alt$(CleanJet_eta[0],0)) < 2.5 && Alt$(Jet_btag{}[CleanJet_jetIdx[0]],0) > {}'.format(bAlgo, bWP)
+}
+
+aliases['bLeadSF'] = {
+    'expr': 'TMath::Exp(Sum$(TMath::Log((CleanJet_pt>30 && abs(CleanJet_eta)<2.5)*Jet_btagSF_{}_shape[CleanJet_jetIdx]+1*(CleanJet_pt<30 || abs(CleanJet_eta)>2.5))))'.format(bSF), # same as bReqSF --> is it correct? Do we need this SF?
+    'samples': mc
+}
+
+# Top control region
+aliases['topcr'] = {
+    'expr': 'mtw2>30 && mll>50 && ((zeroJet && !bVeto) || bReq)'
+}
+
+# Top control region - only leading jet b tagged
+aliases['lead_topcr'] = {
+    'expr': 'mtw2>30 && mll>50 && ((zeroJet && !bVeto) || bLead)'
+}
+
+# Overall b tag SF
+aliases['btagSF'] = {
+    'expr': '(bVeto || (topcr && zeroJet))*bVetoSF + (topcr && !zeroJet)*bReqSF',
+    #    'expr': 'bVeto*bVetoSF',
+    'samples': mc
+}
+
+for shift in ['jes', 'lf', 'hf', 'lfstats1', 'lfstats2', 'hfstats1', 'hfstats2', 'cferr1', 'cferr2']:
+    for targ in ['bVeto', 'bReq']:
+        alias = aliases['%sSF%sup' % (targ, shift)] = copy.deepcopy(aliases['%sSF' % targ])
+        alias['expr'] = alias['expr'].replace('btagSF_{}_shape'.format(bSF), 'btagSF_{}_shape_up_{}'.format(bSF, shift))
+
+        alias = aliases['%sSF%sdown' % (targ, shift)] = copy.deepcopy(aliases['%sSF' % targ])
+        alias['expr'] = alias['expr'].replace('btagSF_{}_shape'.format(bSF), 'btagSF_{}_shape_down_{}'.format(bSF, shift))
+
+    aliases['btagSF%sup' % shift] = {
+        'expr': aliases['btagSF']['expr'].replace('SF', 'SF' + shift + 'up'),
+        'samples': mc
+    }
+
+    aliases['btagSF%sdown' % shift] = {
+        'expr': aliases['btagSF']['expr'].replace('SF', 'SF' + shift + 'down'),
+        'samples': mc
+    }
+
+####################################################################################
+# End of b tagging pippone
+####################################################################################
+
 
 aliases['gstarLow'] = {
     'expr': 'Gen_ZGstar_mass > 0 && Gen_ZGstar_mass < 4',
@@ -122,22 +223,6 @@ aliases['Top_pTrw'] = {
 # }
 
 
-# Jet bins
-# using Alt$(CleanJet_pt[n], 0) instead of Sum$(CleanJet_pt >= 30) because jet pt ordering is not strictly followed in JES-varied samples
-
-# No jet with pt > 30 GeV
-aliases['zeroJet'] = {
-    'expr': 'Alt$(CleanJet_pt[0], 0) < 30.'
-}
-
-aliases['oneJet'] = {
-    'expr': 'Alt$(CleanJet_pt[0], 0) > 30.'
-}
-
-aliases['multiJet'] = {
-    'expr': 'Alt$(CleanJet_pt[1], 0) > 30.'
-}
-
 # aliases['SFweight2lAlt'] = {
 #     'expr'   : 'puWeight*TriggerSFWeight_2l*Lepton_RecoSF[0]*Lepton_RecoSF[1]*EMTFbug_veto',
 #     'samples': mc
@@ -145,34 +230,9 @@ aliases['multiJet'] = {
 
 # data/MC scale factors
 aliases['SFweight'] = {
-    'expr': ' * '.join(['SFweight2l', 'LepWPCut', 'LepWPSF','PrefireWeight','Jet_PUIDSF_loose']),
+    'expr': ' * '.join(['SFweight2l', 'LepWPCut', 'LepWPSF','PrefireWeight','Jet_PUIDSF_loose', 'btagSF']),
     'samples': mc
 }
-
-# B tagging
-aliases['bVeto'] = {
-    'expr': 'Sum$(CleanJet_pt > 20. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.1522) == 0'
-}
-
-aliases['bReq'] = {
-    'expr': 'Sum$(CleanJet_pt > 30. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.1522) >= 1'
-}
-
-# Leading jet is b-tagged
-aliases['bLead'] = {
-    'expr': 'Alt$(CleanJet_pt[0],0) > 30. && abs(Alt$(CleanJet_eta[0],0)) < 2.5 && Alt$(Jet_btagDeepB[CleanJet_jetIdx[0]],0) > 0.1522'
-}
-
-# Top control region
-aliases['topcr'] = {
-    'expr': 'mtw2>30 && mll>50 && ((zeroJet && !bVeto) || bReq)'
-}
-
-# Top control region - only leading jet b tagged
-aliases['lead_topcr'] = {
-    'expr': 'mtw2>30 && mll>50 && ((zeroJet && !bVeto) || bLead)'
-}
-
 
 # # variations
 # aliases['SFweightEleUp'] = {
@@ -208,4 +268,10 @@ aliases['lead_topcr'] = {
 aliases['METFilter_DATA_fix'] = {
     'expr' : 'Flag_goodVertices*Flag_globalSuperTightHalo2016Filter*Flag_HBHENoiseFilter*Flag_HBHENoiseIsoFilter*Flag_EcalDeadCellTriggerPrimitiveFilter*Flag_BadPFMuonFilter*Flag_BadPFMuonDzFilter*Flag_eeBadScFilter',
     'samples': ['DATA']
+}
+
+# Number of hard (= gen-matched) jets
+aliases['nHardJets'] = {
+    'expr':  'Sum$(Jet_genJetIdx[CleanJet_jetIdx] >= 0 && GenJet_pt[Jet_genJetIdx[CleanJet_jetIdx]] > 25)',
+    'samples': ['DY','top']
 }
