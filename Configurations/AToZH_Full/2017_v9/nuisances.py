@@ -126,7 +126,8 @@ nuisances['pdf_AZH']  = {
       'name'  : 'CMS_AZH_pdf_2017',
       'kind'  : 'weight_rms',
       'type'  : 'shape',
-      'samples'  : dict((skey, variations) for skey in signal)
+      'samples'  : dict((skey, variations) for skey in signal),
+      'cuts' : fitcuts
 #      'scale' : nfdict["pdf_WW"] --> I should calculate my own norm factor here
 }
 
@@ -167,7 +168,7 @@ nuisances['PU'] = {
 
 
 nuisances['PU_AZH'] = {
-     'name': 'PU_AZH',
+     'name': 'CMS_PU_2017',
      'kind': 'weight',
      'type': 'shape',
      'samples': dict((skey, ['(puWeightUp/puWeight)', '(puWeightDown/puWeight)']) for skey in signal),
@@ -183,14 +184,15 @@ nuisances['jetPUID'] = {
     'name': 'CMS_PUID_2017',
     'kind': 'weight',
     'type': 'shape',
-    'samples': dict((skey, puid_syst) for skey in mc)
+    'samples': dict((skey, puid_syst) for skey in mc),
+    'cuts' : fitcuts
 }
 
 nuisances['UE']  = {
                 'name'  : 'UE',
                 'skipCMS' : 1,
                 'type'  : 'lnN',
-                'samples'  : dict((skey, puid_syst) for skey in mc), 
+                'samples'  : dict((skey, '1.015') for skey in mc), 
                 'cuts' : fitcuts
 }
 
