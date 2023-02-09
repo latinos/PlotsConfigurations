@@ -32,17 +32,20 @@ Or, if they failed because the wall clock time has been exceeded, resubmit them 
 
     mkChargeFlip.py --input_file=rootFile/plots_WHSS_2018_v9_chargeFlip.root --output_dir=charge_flip_2018_LegacyID
 
-### Validation: weight opposite-sign events according to the charge-flip probabilities or SFs
+### Validation: weight opposite-sign events according to charge-flip probabilities or scale factors
 
 Validate the SF approach:
 
     mkShapesMulti.py --pycfg=configuration_cf_SF.py --doBatch=1 --batchSplit=Samples,Files --batchQueue=testmatch
+
     mkShapesMulti.py --pycfg=configuration_cf_SF.py --doHadd=1 --batchSplit=Samples,Files --doNotCleanup --nThreads=8
+
     ./do_plots_SF_validation.sh
 
 Validate the efficiency approach:
 
     mkShapesMulti.py --pycfg=configuration_cf_eff.py --doBatch=1 --batchSplit=Samples,Files --batchQueue=testmatch
+
     mkShapesMulti.py --pycfg=configuration_cf_eff.py --doHadd=1 --batchSplit=Samples,Files --doNotCleanup --nThreads=8
 
     mkDYee_chargeFlip_OS_SS.py --os_ss_cutsFile=dict_os_ss_cuts.py --inputFileSS=rootFile/plots_WHSS_2018_v9_chargeFlip_eff_validation.root --inputFileOS=rootFile/plots_WHSS_2018_v9_chargeFlip_eff_validation.root --outputDir=rootFile/ --outputFile=plots_WHSS_2018_v9_chargeFlip_eff_validation_DYflip.root --year=2018
