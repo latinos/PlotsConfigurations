@@ -126,7 +126,7 @@ nuisances['pdf_AZH']  = {
       'name'  : 'CMS_AZH_pdf_2017',
       'kind'  : 'weight_rms',
       'type'  : 'shape',
-      'samples'  : dict((skey, variations) for skey in signal),
+      'samples'  : dict((skey, pdf_variations) for skey in signal),
       'cuts' : fitcuts
 #      'scale' : nfdict["pdf_WW"] --> I should calculate my own norm factor here
 }
