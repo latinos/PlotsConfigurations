@@ -8,22 +8,22 @@
 #include "Math/GenVector/PtEtaPhiM4D.h"
 #include <iostream>
 #include <TMath.h>
-#include "weights_dnn/generated_code_Resolved_even.h"
-#include "weights_dnn/generated_code_Resolved_odd.h"
+#include "weights_dnn/generated_code_Boosted_even_highmass.h"
+#include "weights_dnn/generated_code_Boosted_odd_highmass.h"
 #include <math.h>
 
-#ifndef DNNprodSemiNewRes_HH
-#define DNNprodSemiNewRes_HH
+#ifndef DNNprodSemiNewHigh_HH
+#define DNNprodSemiNewHigh_HH
 
 //#include "NNEvaluation/DNNTensorflow/interface/DNNEvaluator.hh"
 //using namespace NNEvaluation;
 
-class DNNprodSemiNewRes : public multidraw::TTreeFunction {
+class DNNprodSemiNewHigh : public multidraw::TTreeFunction {
 public:
-  DNNprodSemiNewRes(unsigned int var);
+  DNNprodSemiNewHigh(unsigned int var);
 
-  char const* getName() const override { return "DNNprodSemiNewRes"; }
-  TTreeFunction* clone() const override { return new DNNprodSemiNewRes(_var); }
+  char const* getName() const override { return "DNNprodSemiNewHigh"; }
+  TTreeFunction* clone() const override { return new DNNprodSemiNewHigh(_var); }
 
   unsigned getNdata() override { return 1; }
   double evaluate(unsigned) override;
@@ -68,7 +68,7 @@ protected:
 
 };
 
-DNNprodSemiNewRes::DNNprodSemiNewRes(unsigned int var) :
+DNNprodSemiNewHigh::DNNprodSemiNewHigh(unsigned int var) :
   TTreeFunction()
 {
   _var = var;
@@ -78,7 +78,7 @@ DNNprodSemiNewRes::DNNprodSemiNewRes(unsigned int var) :
 }
 
 double
-DNNprodSemiNewRes::evaluate(unsigned)
+DNNprodSemiNewHigh::evaluate(unsigned)
 {
 
   unsigned nJet{*nCleanJet->Get()};
@@ -132,7 +132,7 @@ DNNprodSemiNewRes::evaluate(unsigned)
   //int nCFJ{*HM_nCleanFatJetPassMBoosted->Get()};
   unsigned int nCFJ{*HM_nCleanFatJetPassMBoosted->Get()};
   
-/*  if (nCFJ > 0){
+  if (nCFJ > 0){
     wpt = HM_CleanFatJetPassMBoosted_pt->At(0);
     weta = HM_CleanFatJetPassMBoosted_eta->At(0);
     wphi = HM_CleanFatJetPassMBoosted_phi->At(0);
@@ -151,33 +151,32 @@ DNNprodSemiNewRes::evaluate(unsigned)
     }
 }else{
 return 0.0;
- }*/
-  if (*HM_idx_j1->Get() != -1 && *HM_idx_j2->Get() != -1){
-  //if (*HM_idx_j1->Get() != -1){
-    wpt = *HM_Whad_pt->Get();
-    weta = *HM_Whad_eta->Get();
-    wphi = *HM_Whad_phi->Get();
-    wmass = *HM_Whad_mass->Get();
-    //WWmass = *HM_Hlnjj_mass->Get();
-    wjet1 = *HM_idx_j1->Get();
-    wjet2 = *HM_idx_j2->Get();
-    wr1pt = CleanJet_pt->At(wjet1);
-    wr1eta = CleanJet_eta->At(wjet1);
-    wr1phi = CleanJet_phi->At(wjet1);
-    wr1mass = Jet_mass->At(CleanJet_phi->At(wjet1));
-    wr2pt = CleanJet_pt->At(wjet2);
-    wr2eta = CleanJet_eta->At(wjet2);
-    wr2phi = CleanJet_phi->At(wjet2);
-    wr2mass = Jet_mass->At(CleanJet_phi->At(wjet2));
-    for (int i{0}; j != 4 and (unsigned)i != nJet ; ++i) {
-      if ( (unsigned)i != wjet1 and (unsigned) i != wjet2){
-        vbfjet[j] = i;
-        j++;
-      }
-    }
-  }else{
-    return 0.0;
-  }
+ }
+  //}else if (*HM_idx_j1->Get() != -1){
+  //  wpt = *HM_Whad_pt->Get();
+  //  weta = *HM_Whad_eta->Get();
+  //  wphi = *HM_Whad_phi->Get();
+  //  wmass = *HM_Whad_mass->Get();
+  //  //WWmass = *HM_Hlnjj_mass->Get();
+  //  wjet1 = *HM_idx_j1->Get();
+  //  wjet2 = *HM_idx_j2->Get();
+  //  wr1pt = CleanJet_pt->At(wjet1);
+  //  wr1eta = CleanJet_eta->At(wjet1);
+  //  wr1phi = CleanJet_phi->At(wjet1);
+  //  wr1mass = Jet_mass->At(CleanJet_phi->At(wjet1));
+  //  wr2pt = CleanJet_pt->At(wjet2);
+  //  wr2eta = CleanJet_eta->At(wjet2);
+  //  wr2phi = CleanJet_phi->At(wjet2);
+  //  wr2mass = Jet_mass->At(CleanJet_phi->At(wjet2));
+  //  for (int i{0}; j != 4 and (unsigned)i != nJet ; ++i) {
+  //    if ( (unsigned)i != wjet1 and (unsigned) i != wjet2){
+  //      vbfjet[j] = i;
+  //      j++;
+  //    }
+  //  }
+  //}else{
+  //  return 0.0;
+  //}
 
   if (vbfjet[0]>-1){
     jetpt1 = CleanJet_pt->At(vbfjet[0]);
@@ -275,7 +274,7 @@ return 0.0;
 //  input.push_back(wr2mass);
 */
 
-  float input_dnn[51];
+  float input_dnn[43];
 
   input_dnn[0] =detajj_12;
   input_dnn[1] =detajj_13;
@@ -321,14 +320,6 @@ return 0.0;
   input_dnn[40] =*HM_Wlep_pt_Puppi->Get() * TMath::Cos(*HM_Wlep_phi_Puppi->Get());
   input_dnn[41] =*HM_Wlep_pt_Puppi->Get() * TMath::Sin(*HM_Wlep_phi_Puppi->Get());
   input_dnn[42] =*HM_Wlep_pt_Puppi->Get() * TMath::SinH(*HM_Wlep_eta_Puppi->Get());
-  input_dnn[43] = wr1mass;
-  input_dnn[44] = wr1pt * TMath::Cos(wr1phi);
-  input_dnn[45] = wr1pt * TMath::Sin(wr1phi);
-  input_dnn[46] = wr1pt * TMath::SinH(wr1eta);
-  input_dnn[47] = wr2mass;
-  input_dnn[48] = wr2pt * TMath::Cos(wr2phi);
-  input_dnn[49] = wr2pt * TMath::Sin(wr2phi);
-  input_dnn[50] = wr2pt * TMath::SinH(wr2eta);
 
 
 
@@ -339,16 +330,16 @@ return 0.0;
   if (ev % 2 == 0 ){
 
  //std::cout << guess_digit_odd(input_dnn, _var) << std::endl;
-  return guess_digit_res_odd(input_dnn, _var);
+  return guess_digit_odd(input_dnn, _var);
   }else{
  //std::cout << guess_digit_even(input_dnn, _var) << std::endl;
-  return guess_digit_res_even(input_dnn, _var);
+  return guess_digit_even(input_dnn, _var);
 }
 
 }
 
 void
-DNNprodSemiNewRes::bindTree_(multidraw::FunctionLibrary& _library)
+DNNprodSemiNewHigh::bindTree_(multidraw::FunctionLibrary& _library)
 {
   _library.bindBranch(event, "event");
   _library.bindBranch(Lepton_pt, "Lepton_pt");
