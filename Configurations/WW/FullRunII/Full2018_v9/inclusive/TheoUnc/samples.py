@@ -1,0 +1,116 @@
+import os
+import inspect
+
+
+configurations = os.path.realpath(inspect.getfile(inspect.currentframe())) # this file
+configurations = os.path.dirname(configurations) # inclusive
+configurations = os.path.dirname(configurations) # inclusive
+configurations = os.path.dirname(configurations) # Full2018_v9
+configurations = os.path.dirname(configurations) # FullRunII
+configurations = os.path.dirname(configurations) # WW
+configurations = os.path.dirname(configurations) # Configurations
+
+from LatinoAnalysis.Tools.commonTools import getSampleFiles, getBaseW, addSampleWeight
+
+def nanoGetSampleFiles(inputDir, sample):
+    try:
+        if _samples_noload:
+            return []
+    except NameError:
+        pass
+
+    return getSampleFiles(inputDir, sample, True, 'nanoLatino_')
+
+# samples
+
+try:
+    len(samples)
+except NameError:
+    import collections
+    samples = collections.OrderedDict()
+
+################################################
+################# SKIMS ########################
+################################################
+
+mcProduction = 'Summer20UL18_106x_nAODv9_Full2018v9'
+
+dataReco = 'Run2018_UL2018_nAODv9_Full2018v9'
+
+mcSteps = 'MCl1loose2018v9__MCCorr2018v9NoJERInHorn__l2tightOR2018v9'
+
+fakeSteps = 'DATAl1loose2018v9__l2loose__fakeW'
+
+dataSteps = 'DATAl1loose2018v9__l2loose__l2tightOR2018v9'
+
+##############################################
+###### Tree base directory for the site ######
+##############################################
+
+SITE=os.uname()[1]
+if    'iihe' in SITE:
+  treeBaseDir = '/pnfs/iihe/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano'
+elif  'cern' in SITE:
+  treeBaseDir = '/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano'
+
+def makeMCDirectory(var=''):
+    if var:
+        return os.path.join(treeBaseDir, mcProduction, mcSteps.format(var='__' + var))
+    else:
+        return os.path.join(treeBaseDir, mcProduction, mcSteps.format(var=''))
+
+mcDirectory = makeMCDirectory()
+fakeDirectory = os.path.join(treeBaseDir, dataReco, fakeSteps)
+dataDirectory = os.path.join(treeBaseDir, dataReco, dataSteps)
+
+
+# SFweight does not include btag weights
+mcCommonWeight = 'XSWeight'
+
+###########################################
+#############   SIGNALS  ##################
+###########################################
+
+signals = []
+
+###### WW ########
+
+samples['WW'] = {
+    'name': nanoGetSampleFiles(mcDirectory, 'WWTo2L2Nu'),
+    'weight': mcCommonWeight+'*nllW',
+    'FilesPerJob': 1
+}
+
+signals.append('WW')
+
+###### ggWW ########
+
+samples['ggWW'] = {
+    'name': nanoGetSampleFiles(mcDirectory, 'GluGluToWWToENEN') + \
+            nanoGetSampleFiles(mcDirectory, 'GluGluToWWToENMN') + \
+            nanoGetSampleFiles(mcDirectory, 'GluGluToWWToENTN') + \
+            nanoGetSampleFiles(mcDirectory, 'GluGluToWWToMNEN') + \
+            nanoGetSampleFiles(mcDirectory, 'GluGluToWWToMNMN') + \
+            nanoGetSampleFiles(mcDirectory, 'GluGluToWWToMNTN') + \
+            nanoGetSampleFiles(mcDirectory, 'GluGluToWWToTNEN') + \
+            nanoGetSampleFiles(mcDirectory, 'GluGluToWWToTNMN') + \
+            nanoGetSampleFiles(mcDirectory, 'GluGluToWWToTNTN'),
+    'weight': mcCommonWeight+'*1.53/1.4',
+    'FilesPerJob': 1
+}
+
+signals.append('ggWW')
+
+
+### Now bin in nonfiducial / fiducial x bins
+
+nbins = 1
+
+for sname in signals:
+  sample = samples[sname]
+  sample['subsamples'] = {}
+
+  sample['subsamples']['nonfid'] = '!(fid)'
+
+  for i in range(nbins):
+      sample['subsamples']['B%d'%i] = 'fid && B%d'%i
