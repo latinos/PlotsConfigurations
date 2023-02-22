@@ -30,9 +30,9 @@ typedef std::map<std::string,std::map<std::string,std::string>> map_dict;
 class fake_rate_reader : public multidraw::TTreeFunction {
 public:
   // fake_rate_reader( const char* year , std::string ele_WP, std::string muon_WP, float ele_WP_number, float muon_WP_number);
-  fake_rate_reader( TString year , TString ele_WP, TString muon_WP, float ele_WP_number, float muon_WP_number, TString kind, uint nLeptons );
+  fake_rate_reader( TString year , TString ele_WP, TString muon_WP, float ele_WP_number, float muon_WP_number, TString kind, uint nLeptons, TString electron_tight_charge );
   char const* getName() const override { return "fake_rate_reader"; }
-  TTreeFunction* clone() const override { return new fake_rate_reader( year_ , ele_WP_, muon_WP_, ele_WP_number_, muon_WP_number_, kind_, nLeptons_); }
+  TTreeFunction* clone() const override { return new fake_rate_reader( year_ , ele_WP_, muon_WP_, ele_WP_number_, muon_WP_number_, kind_, nLeptons_, electron_tight_charge_); }
   unsigned getNdata() override { return 1; }
   double evaluate(unsigned) override;
   // std::tuple<double,double> GetFR_2l( double pt1 , double eta1, double pdg1, double isTight1, double pt2 , double eta2, double pdg2, double isTight2);
@@ -43,6 +43,7 @@ public:
 protected:
   TString year_; 
   unsigned int nLeptons_;
+  TString electron_tight_charge_;
   std::string SF_type_;
   TString ele_WP_;
   TString muon_WP_;
@@ -82,15 +83,16 @@ private:
 
 
 // Read fake and prompt rate histograms
-fake_rate_reader::fake_rate_reader( TString year , TString ele_WP, TString muon_WP, float ele_WP_number, float muon_WP_number, TString kind, uint nLeptons ) : TTreeFunction(){
+fake_rate_reader::fake_rate_reader( TString year , TString ele_WP, TString muon_WP, float ele_WP_number, float muon_WP_number, TString kind, uint nLeptons, TString electron_tight_charge ) : TTreeFunction(){
 
-  cout << "Year:           " << year           << endl;
-  cout << "Ele WP:         " << ele_WP         << endl;
-  cout << "Muon WP:        " << muon_WP        << endl;
-  cout << "Ele WP number:  " << ele_WP_number  << endl;
-  cout << "Muon WP number: " << muon_WP_number << endl;
-  cout << "Kind:           " << kind           << endl;
-  cout << "nLeptons:       " << nLeptons       << endl;
+  cout << "Year:             " << year                  << endl;
+  cout << "Ele WP:           " << ele_WP                << endl;
+  cout << "Muon WP:          " << muon_WP               << endl;
+  cout << "Ele WP number:    " << ele_WP_number         << endl;
+  cout << "Muon WP number:   " << muon_WP_number        << endl;
+  cout << "Kind:             " << kind                  << endl;
+  cout << "nLeptons:         " << nLeptons              << endl;
+  cout << "Ele tight charge: " << electron_tight_charge << endl;
 
   year_ = year;
   ele_WP_  = ele_WP;
@@ -99,6 +101,11 @@ fake_rate_reader::fake_rate_reader( TString year , TString ele_WP, TString muon_
   muon_WP_number_ = muon_WP_number;
   kind_ = kind;
   nLeptons_ = nLeptons;
+  electron_tight_charge_ = electron_tight_charge; // ['std','ss']
+
+  TString ele_tight_suffix = "";
+  if (electron_tight_charge_ == "ss")
+    ele_tight_suffix = "_SS";
 
   std::string cmssw_base = std::getenv("CMSSW_BASE");
   
@@ -121,15 +128,15 @@ fake_rate_reader::fake_rate_reader( TString year , TString ele_WP, TString muon_
     fake_muon_file_name_45 = cmssw_base + "/src/PlotsConfigurations/Configurations/WH_chargeAsymmetry/UL/data/fakerate/" + year + "/cut_Tight80x_tthmva_" + muon_WP + "/MuonFR_jet45.root";
   }
 
-  TString fake_ele_file_name_25  = cmssw_base + "/src/PlotsConfigurations/Configurations/WH_chargeAsymmetry/UL/data/fakerate/" + year + "/mvaFall17V2Iso_WP90_SS_tthmva_UL_" + ele_WP  + "/EleFR_jet25.root";
-  TString fake_ele_file_name_35  = cmssw_base + "/src/PlotsConfigurations/Configurations/WH_chargeAsymmetry/UL/data/fakerate/" + year + "/mvaFall17V2Iso_WP90_SS_tthmva_UL_" + ele_WP  + "/EleFR_jet35.root";
-  TString fake_ele_file_name_45  = cmssw_base + "/src/PlotsConfigurations/Configurations/WH_chargeAsymmetry/UL/data/fakerate/" + year + "/mvaFall17V2Iso_WP90_SS_tthmva_UL_" + ele_WP  + "/EleFR_jet45.root";
+  TString fake_ele_file_name_25  = cmssw_base + "/src/PlotsConfigurations/Configurations/WH_chargeAsymmetry/UL/data/fakerate/" + year + "/mvaFall17V2Iso_WP90" + ele_tight_suffix + "_tthmva_UL_" + ele_WP  + "/EleFR_jet25.root";
+  TString fake_ele_file_name_35  = cmssw_base + "/src/PlotsConfigurations/Configurations/WH_chargeAsymmetry/UL/data/fakerate/" + year + "/mvaFall17V2Iso_WP90" + ele_tight_suffix + "_tthmva_UL_" + ele_WP  + "/EleFR_jet35.root";
+  TString fake_ele_file_name_45  = cmssw_base + "/src/PlotsConfigurations/Configurations/WH_chargeAsymmetry/UL/data/fakerate/" + year + "/mvaFall17V2Iso_WP90" + ele_tight_suffix + "_tthmva_UL_" + ele_WP  + "/EleFR_jet45.root";
 
   // Prompt rate input files
-  TString pr_muon_file_name = cmssw_base + "/src/PlotsConfigurations/Configurations/WH_chargeAsymmetry/UL/data/fakerate/" + year + "/cut_Tight_HWWW_tthmva_"         + muon_WP + "/MuonPR.root";
+  TString pr_muon_file_name = cmssw_base + "/src/PlotsConfigurations/Configurations/WH_chargeAsymmetry/UL/data/fakerate/" + year + "/cut_Tight_HWWW_tthmva_" + muon_WP + "/MuonPR.root";
   if (year_ == "2016_HIPM" || year_ == "2016_noHIPM")
-    pr_muon_file_name = cmssw_base + "/src/PlotsConfigurations/Configurations/WH_chargeAsymmetry/UL/data/fakerate/" + year + "/cut_Tight80x_tthmva_"         + muon_WP + "/MuonPR.root";
-  TString pr_ele_file_name =  cmssw_base + "/src/PlotsConfigurations/Configurations/WH_chargeAsymmetry/UL/data/fakerate/" + year + "/mvaFall17V2Iso_WP90_SS_tthmva_UL_" + ele_WP  + "/ElePR.root";
+    pr_muon_file_name = cmssw_base + "/src/PlotsConfigurations/Configurations/WH_chargeAsymmetry/UL/data/fakerate/" + year + "/cut_Tight80x_tthmva_" + muon_WP + "/MuonPR.root";
+  TString pr_ele_file_name =  cmssw_base + "/src/PlotsConfigurations/Configurations/WH_chargeAsymmetry/UL/data/fakerate/" + year + "/mvaFall17V2Iso_WP90" + ele_tight_suffix + "_tthmva_UL_" + ele_WP  + "/ElePR.root";
   
   // Get fake and prompt rates  
   // Muons
@@ -714,12 +721,12 @@ fake_rate_reader::evaluate(unsigned)
       
       float fakeWeightstatMuUp = 0.;
       if (fakeWeight != 0.){
-	float num = fakeWeight_2l0jstatMuUp*( *nCleanJet->Get() == 0 || CleanJet_pt->At(0) <  30) + 
+		float num = fakeWeight_2l0jstatMuUp*( *nCleanJet->Get() == 0 || CleanJet_pt->At(0) <  30) + 
                     fakeWeight_2l1jstatMuUp*((*nCleanJet->Get() == 1 && CleanJet_pt->At(0) >= 30) || 
 					     (*nCleanJet->Get() >  1 && CleanJet_pt->At(0) >= 30 && CleanJet_pt->At(1) < 30)) + 
                     fakeWeight_2l2jstatMuUp*( *nCleanJet->Get() >  1 && CleanJet_pt->At(1) >= 30);
 	
-	fakeWeightstatMuUp = num / fakeWeight;
+		fakeWeightstatMuUp = num / fakeWeight;
       }
       
       return fakeWeightstatMuUp;
@@ -742,15 +749,15 @@ fake_rate_reader::evaluate(unsigned)
       
       float fakeWeightstatMuDown = 0.;
       if (fakeWeight != 0.){
-	float num = fakeWeight_2l0jstatMuDown*( *nCleanJet->Get() == 0 || CleanJet_pt->At(0) <  30) + 
+		float num = fakeWeight_2l0jstatMuDown*( *nCleanJet->Get() == 0 || CleanJet_pt->At(0) <  30) + 
                     fakeWeight_2l1jstatMuDown*((*nCleanJet->Get() == 1 && CleanJet_pt->At(0) >= 30) || 
 					       (*nCleanJet->Get() >  1 && CleanJet_pt->At(0) >= 30 && CleanJet_pt->At(1) < 30)) + 
                     fakeWeight_2l2jstatMuDown*( *nCleanJet->Get() >  1 && CleanJet_pt->At(1) >= 30);
 	
-	fakeWeightstatMuDown = num / fakeWeight;
+		fakeWeightstatMuDown = num / fakeWeight;
       }
       
-      return fakeWeight_2l0jstatMuDown;
+      return fakeWeightstatMuDown;
     }
     
     else
@@ -879,13 +886,18 @@ fake_rate_reader::bindTree_(multidraw::FunctionLibrary& _library)
   _library.bindBranch(Lepton_pdgId, "Lepton_pdgId");
   _library.bindBranch(Lepton_pt,    "Lepton_pt");
   _library.bindBranch(Lepton_eta,   "Lepton_eta");
-  TString muonID;
-  if (year_ == "2016_HIPM" || year_ == "2016_noHIPM") muonID = "Lepton_isTightMuon_cut_Tight80x";
-  else                                                muonID = "Lepton_isTightMuon_cut_Tight_HWWW";
-  _library.bindBranch(Lepton_isTightMuon_cut_Tight_HWWW, muonID);
-  _library.bindBranch(Lepton_isTightElectron_mvaFall17V2Iso_WP90_SS, "Lepton_isTightElectron_mvaFall17V2Iso_WP90_SS");
   _library.bindBranch(Lepton_mvaTTH_UL, "Lepton_mvaTTH_UL");
   _library.bindBranch(Muon_mvaTTH,      "Muon_mvaTTH");
   _library.bindBranch(nCleanJet,        "nCleanJet");
   _library.bindBranch(CleanJet_pt,      "CleanJet_pt");
+
+  // Muon ID - variable name changes with year
+  TString muonID = "Lepton_isTightMuon_cut_Tight_HWWW";
+  if (year_ == "2016_HIPM" || year_ == "2016_noHIPM") muonID = "Lepton_isTightMuon_cut_Tight80x";
+  _library.bindBranch(Lepton_isTightMuon_cut_Tight_HWWW, muonID);
+
+  // Electron ID - we can choose between STD and SS
+  TString eleID = "Lepton_isTightElectron_mvaFall17V2Iso_WP90";
+  if (electron_tight_charge_ == "SS") eleID = "Lepton_isTightElectron_mvaFall17V2Iso_WP90_SS";
+  _library.bindBranch(Lepton_isTightElectron_mvaFall17V2Iso_WP90_SS, eleID);
 }
