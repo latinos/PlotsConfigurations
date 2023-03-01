@@ -99,11 +99,6 @@ aliases['SFweight1l'] = {
     'expr': ' * '.join(['puWeight', 'TriggerEffWeight_1l_fixed[0]', 'Lepton_RecoSF[0]', 'EMTFbug_veto']),
     'samples': mc
 }
-aliases['SFweight'] = {
-    #'expr': ' * '.join(['SFweight1l[0]', 'WPTightSF[0]', 'PrefireWeight']),
-    'expr': ' * '.join(['SFweight1l[0]']),
-    'samples': mc
-}
 
 ## # variations of tight lepton WP
 #aliases['SFweightEleUp'] = {
@@ -278,3 +273,60 @@ aliases['Top_pTrw'] = {
     'expr': 'isTTbar * (TMath::Sqrt((0.103*TMath::Exp(-0.0118*topGenPtOTF) - 0.000134*topGenPtOTF + 0.973) * (0.103*TMath::Exp(-0.0118*antitopGenPtOTF) - 0.000134*antitopGenPtOTF + 0.973))) + isSingleTop',
     'samples': ['top']
 }
+
+aliases['bWP'] = {
+    'expr': '0.1241'
+}
+bJetV_req = '( CleanJet_pt > 20 && abs(CleanJet_eta) < 2.5 )'
+bJetR_req = '( CleanJet_pt > 30 && abs(CleanJet_eta) < 2.5 )'
+
+aliases['nbJet'] = {
+    'expr': 'Sum$(Jet_btagDeepB[CleanJet_jetIdx] > bWP[0] && CleanJet_pt > 30)',
+}
+
+aliases['bVeto'] = {
+    'expr': 'Sum$(Jet_btagDeepB[CleanJet_jetIdx] > bWP[0] && '+bJetV_req+' ) == 0',
+}
+
+aliases['bReq'] = {
+    'expr': 'Sum$(Jet_btagDeepB[CleanJet_jetIdx] > bWP[0] && '+bJetR_req+' ) >= 1',
+}
+aliases['bVetoSF'] = {
+    'expr': 'TMath::Exp(Sum$(TMath::Log('+bJetV_req+'*Jet_btagSF_deepcsv_shape[CleanJet_jetIdx]+1*(!'+bJetV_req+'))))',
+    'samples': mc
+}
+
+aliases['bReqSF'] = {
+    'expr': 'TMath::Exp(Sum$(TMath::Log('+bJetR_req+'*Jet_btagSF_deepcsv_shape[CleanJet_jetIdx]+1*(!'+bJetR_req+'))))',
+    'samples': mc
+}
+aliases['btagSF'] = {
+    'expr': 'bVetoSF[0]*bVeto[0] + bReqSF[0]*bReq[0]',
+    'samples': mc
+}
+for shift in ['jes','lf','hf','lfstats1','lfstats2','hfstats1','hfstats2','cferr1','cferr2']:
+
+    for targ in ['bVeto', 'bReq']:
+        alias = aliases['%sSF%sup' % (targ, shift)] = copy.deepcopy(aliases['%sSF' % targ])
+        alias['expr'] = alias['expr'].replace('btagSF_deepcsv_shape', 'btagSF_deepcsv_shape_up_%s' % shift)
+
+        alias = aliases['%sSF%sdown' % (targ, shift)] = copy.deepcopy(aliases['%sSF' % targ])
+        alias['expr'] = alias['expr'].replace('btagSF_deepcsv_shape', 'btagSF_deepcsv_shape_down_%s' % shift)
+
+
+    aliases['btagSF%sup' % shift] = {
+        'expr': 'bVeto*bVetoSF{shift}up + bReq*bReqSF{shift}up + (!bVeto && !bReq)'\
+                .format(shift = shift),
+        'samples': mc
+    }
+    aliases['btagSF%sdown' % shift] = {
+        'expr': 'bVeto*bVetoSF{shift}down + bReq*bReqSF{shift}down + (!bVeto && !bReq)'\
+                .format(shift = shift),
+        'samples': mc
+    }
+aliases['SFweight'] = {
+    #'expr': ' * '.join(['SFweight1l[0]', 'WPTightSF[0]', 'PrefireWeight']),
+    'expr': ' * '.join(['SFweight1l[0]','btagSF[0]']),
+    'samples': mc
+}
+

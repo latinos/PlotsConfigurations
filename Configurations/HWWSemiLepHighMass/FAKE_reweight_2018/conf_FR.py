@@ -30,7 +30,7 @@ lumi = lumi = 59.74
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'FR_plots'
+outputDirPlots = 'FR_plots_Feb'
 
 # used by mkDatacards to define output directory for datacards
 outputDirDatacard = 'FR_datacards'

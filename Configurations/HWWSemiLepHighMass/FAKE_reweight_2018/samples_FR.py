@@ -52,7 +52,7 @@ except NameError:
 ################################################
 dataReco     = 'Run2018_102X_nAODv7_Full2018v7'
 
-mcSteps      = 'MCl1loose2018v7__MCCorr2018v7__MCCombJJLNu2018{var}'
+mcSteps      = 'MCl1loose2018v7__MCCorr2018v7{var}'
 
 dataSteps    = 'DATAl1loose2018v7__DATACombJJLNu2018'
 fakeSteps    = 'DATAl1loose2018v7__DATACombJJLNu2018'
@@ -172,6 +172,19 @@ addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO_ext1','DY_LO_pTllrw')
 #addSampleWeight(samples,'DYlow','DYJetsToLL_M-10to50-LO_ext1',    'DY_LO_pTllrw*(LHE_HT<100)')
 
 ###### Top #######
+print("top")
+
+files  = nanoGetSampleFiles(mcDirectory, 'TTToSemiLeptonic')
+samples['top'] = {
+    'name': files,
+    'weight': mcCommonWeight,
+    'FilesPerJob': 3,
+}
+
+# CombineBaseW(mcDirectory, samples, 'top',
+#             ['TTToSemiLeptonic', 'TTToSemiLeptonic_ext3'])
+
+addSampleWeight(samples,'top','TTToSemiLeptonic'     ,'Top_pTrw')
 
 # files = nanoGetSampleFiles(mcDirectory, 'TTToSemiLeptonic') + \
 #         nanoGetSampleFiles(mcDirectory, 'TTTo2L2Nu') + \

@@ -54,12 +54,12 @@ groupPlot['DY'] = {
 # }
 
 
-# groupPlot['top'] = {
-#     'nameHR' : 'tW and t#bar{t}',
-#     'isSignal' : 0,
-#     'color': 400,   # kYellow
-#     'samples'  : ['top']
-# }
+groupPlot['top'] = {
+    'nameHR' : 't#bar{t}',
+    'isSignal' : 0,
+    'color': 400,   # kYellow
+    'samples'  : ['top']
+}
 
 
 groupPlot['Wjets'] = {
@@ -160,13 +160,13 @@ plot['DYlow']  = {
     'scale'    : 1.0,
 }
 
-# plot['top'] = {
-#     'nameHR' : 'tW and t#bar{t}',
-#     'color': 400,   # kYellow
-#     'isSignal' : 0,
-#     'isData'   : 0,
-#     'scale'    : 1.0,
-# }
+plot['top'] = {
+    'nameHR' : 't#bar{t}',
+    'color': 400,   # kYellow
+    'isSignal' : 0,
+    'isData'   : 0,
+    'scale'    : 1.0,
+}
 
 
 # plot['WW']  = {
