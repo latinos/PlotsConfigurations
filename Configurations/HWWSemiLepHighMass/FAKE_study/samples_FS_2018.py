@@ -130,7 +130,7 @@ mcCommonWeightTaggerTop = 'XSWeight*SFweight_top*METFilter_MC*LepWPCut[0]*(nTigh
 ##############  BACKGROUNDS  ###############
 #############################################
 
-##### DY #######
+###### DY #######
 print("DY")
 
 
@@ -168,15 +168,15 @@ addSampleWeight(samples,'DY','DYJetsToLL_M-4to50_HT-200to400','(gen_mll<10)*'+'D
 addSampleWeight(samples,'DY','DYJetsToLL_M-4to50_HT-400to600','(gen_mll<10)*'+'DY_LO_pTllrw')
 addSampleWeight(samples,'DY','DYJetsToLL_M-4to50_HT-600toinf','(gen_mll<10)*'+'DY_LO_pTllrw')
 
-## NLO
-#
-#
+### NLO
+##
+##
 #### Top #######
 print("top")
 
 files  = nanoGetSampleFiles(mcDirectory, 'TTToSemiLeptonic')
 # files += nanoGetSampleFiles(mcDirectory, 'TTToSemiLeptonic_ext3')
-# files += nanoGetSampleFiles(mcDirectory, 'TTTo2L2Nu')
+files += nanoGetSampleFiles(mcDirectory, 'TTTo2L2Nu')
 # files += nanoGetSampleFiles(mcDirectory, 'TTWJetsToLNu')
 files += nanoGetSampleFiles(mcDirectory, 'TTWjets')
 files += nanoGetSampleFiles(mcDirectory, 'ST_s-channel_ext1')
@@ -250,18 +250,18 @@ samples['qqWWqq'] = {
     'FilesPerJob': 10
 }
 
-# nanoGetSampleFiles(signalMCDirectory,'WpWmJJ_QCD_noTop') ,
-#'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch,
-#mcCommonWeight+'*(mjjGen_OTF>=100)'+'*(GenLHE)',
-#samples['WW2J'] = {
-#    'name'   :   nanoGetSampleFiles(mcDirectory,'WpWmJJ_QCD_noTop') ,
-#    'weight' : mcCommonWeight+'*(mjjGen_OTF>=100)'+'*(!GenLHE)',
-#    'FilesPerJob': 10
-#}
+## nanoGetSampleFiles(signalMCDirectory,'WpWmJJ_QCD_noTop') ,
+##'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch,
+##mcCommonWeight+'*(mjjGen_OTF>=100)'+'*(GenLHE)',
+##samples['WW2J'] = {
+##    'name'   :   nanoGetSampleFiles(mcDirectory,'WpWmJJ_QCD_noTop') ,
+##    'weight' : mcCommonWeight+'*(mjjGen_OTF>=100)'+'*(!GenLHE)',
+##    'FilesPerJob': 10
+##}
 
 
 
-########## W+jets #########
+######### W+jets #########
 print("W+jets")
 whad_reweight = '(1.27217e+00 - 1.78593e-03*HM_Whad_mass)'
 
@@ -483,34 +483,34 @@ for key in samples:
     if 'INT' in key: continue
     samples[key]['suppressNegative'] = ['all']
     samples[key]['suppressNegativeNuisances'] =['all']
-
-
-
-##########################################
-################# DATA ###################
-##########################################
-print("FAKE")
-########### FAKE ###########
-eleWP    = 'mvaFall17V1Iso_WP90'
-muWP     = 'cut_Tight_HWWW'
-
-fakeW = 'fakeW_ele_'+eleWP+'_mu_'+muWP+'_1l_mu25_ele35'
-#samples['FAKE'] = {
-#  'name': [],
-#  'weight': 'METFilter_DATA*'+fakeW,
-#  'weights': [],
-#  'isData': ['all'],
-#  'FilesPerJob': 35,
-#  'suppressNegative': ['all'],
-#  'suppressNegativeNuisances' :['all'],
-#}
 #
-#for _, sd in DataRun:
-#  for pd in DataSets:
-#    files = nanoGetSampleFiles(fakeDirectory, pd + '_' + sd)
-#    samples['FAKE']['name'].extend(files)
-#    samples['FAKE']['weights'].extend([DataTrig[pd]] * len(files))
-
+#
+#
+#############################################
+#################### DATA ###################
+#############################################
+###print("FAKE")
+############## FAKE ###########
+##eleWP    = 'mvaFall17V1Iso_WP90'
+##muWP     = 'cut_Tight_HWWW'
+##
+##fakeW = 'fakeW_ele_'+eleWP+'_mu_'+muWP+'_1l_mu25_ele35'
+####samples['FAKE'] = {
+####  'name': [],
+####  'weight': 'METFilter_DATA*'+fakeW,
+####  'weights': [],
+####  'isData': ['all'],
+####  'FilesPerJob': 35,
+####  'suppressNegative': ['all'],
+####  'suppressNegativeNuisances' :['all'],
+####}
+####
+####for _, sd in DataRun:
+####  for pd in DataSets:
+####    files = nanoGetSampleFiles(fakeDirectory, pd + '_' + sd)
+####    samples['FAKE']['name'].extend(files)
+####    samples['FAKE']['weights'].extend([DataTrig[pd]] * len(files))
+###
 Mu_jetEt = 35
 El_jetEt = 35
 fakeW = 'FW_mu'+str(Mu_jetEt)+ '_el'+str(El_jetEt)+'[0]'
