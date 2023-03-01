@@ -233,36 +233,40 @@ nuisances['var_top_0_deep'] = {
     'name': 'CMS_var_top_deep_0',
     'kind'  : 'weight',
     'type'  : 'shape',
-    'samples': {
-        'top': ['Top_DeepTagrw_up_0/Top_DeepTagrw', 'Top_DeepTagrw_do_0/Top_DeepTagrw'],
-    },
+    'samples': dict((skey, ['Top_DeepTagrw_up_0/Top_DeepTagrw', 'Top_DeepTagrw_do_0/Top_DeepTagrw']) for skey in mc_deep),
+   # 'samples': {
+   #     'top': ['Top_DeepTagrw_up_0/Top_DeepTagrw', 'Top_DeepTagrw_do_0/Top_DeepTagrw'],
+   # },
     'cuts': cutdict['Boosted'],
 }
 nuisances['var_top_1_deep'] = {
     'name': 'CMS_var_top_deep_1',
     'kind'  : 'weight',
     'type'  : 'shape',
-    'samples': {
-        'top': ['Top_DeepTagrw_up_1/Top_DeepTagrw', 'Top_DeepTagrw_do_1/Top_DeepTagrw'],
-    },
+    'samples': dict((skey, ['Top_DeepTagrw_up_1/Top_DeepTagrw', 'Top_DeepTagrw_do_1/Top_DeepTagrw']) for skey in mc_deep),
+    #'samples': {
+    #    'top': ['Top_DeepTagrw_up_1/Top_DeepTagrw', 'Top_DeepTagrw_do_1/Top_DeepTagrw'],
+    #},
     'cuts': cutdict['Boosted'],
 }
 nuisances['var_top_2_deep'] = {
     'name': 'CMS_var_top_deep_2',
     'kind'  : 'weight',
     'type'  : 'shape',
-    'samples': {
-        'top': ['Top_DeepTagrw_up_2/Top_DeepTagrw', 'Top_DeepTagrw_do_2/Top_DeepTagrw'],
-    },
+    'samples': dict((skey, ['Top_DeepTagrw_up_2/Top_DeepTagrw', 'Top_DeepTagrw_do_2/Top_DeepTagrw']) for skey in mc_deep),
+    #'samples': {
+    #    'top': ['Top_DeepTagrw_up_2/Top_DeepTagrw', 'Top_DeepTagrw_do_2/Top_DeepTagrw'],
+    #},
     'cuts': cutdict['Boosted'],
 }
 nuisances['var_top_3_deep'] = {
     'name': 'CMS_var_top_deep_3',
     'kind'  : 'weight',
     'type'  : 'shape',
-    'samples': {
-        'top': ['Top_DeepTagrw_up_3/Top_DeepTagrw', 'Top_DeepTagrw_do_3/Top_DeepTagrw'],
-    },
+    'samples': dict((skey, ['Top_DeepTagrw_up_3/Top_DeepTagrw', 'Top_DeepTagrw_do_3/Top_DeepTagrw']) for skey in mc_deep),
+    #'samples': {
+    #    'top': ['Top_DeepTagrw_up_3/Top_DeepTagrw', 'Top_DeepTagrw_do_3/Top_DeepTagrw'],
+    #},
     'cuts': cutdict['Boosted'],
 }
 
@@ -392,7 +396,7 @@ nuisances['fatjet_jes']  = {
     'samples': dict((skey, ['1', '1']) for skey in mc if skey not in sig_mc),
     'folderUp'  : makeMCDirectory('fatjetJESup'),
     'folderDown': makeMCDirectory('fatjetJESdo'),
-#    'AsLnN': '1'
+    'AsLnN': '1'
 }
 nuisances['fatjet_jer']  = {
     'name'  : 'CMS_res_fatjer_2018',
@@ -403,7 +407,7 @@ nuisances['fatjet_jer']  = {
     'samples': dict((skey, ['1', '1']) for skey in mc if skey not in sig_mc),
     'folderUp'  : makeMCDirectory('fatjetJERup'),
     'folderDown': makeMCDirectory('fatjetJERdo'),
-#    'AsLnN': '1'
+    'AsLnN': '1'
 }
 nuisances['fatjet_jms']  = {
     'name'  : 'CMS_fatjms_2018',
@@ -414,7 +418,7 @@ nuisances['fatjet_jms']  = {
     'samples': dict((skey, ['1', '1']) for skey in mc if skey not in sig_mc),
     'folderUp'  : makeMCDirectory('fatjetJMSup'),
     'folderDown': makeMCDirectory('fatjetJMSdo'),
- #   'AsLnN': '1'
+    'AsLnN': '1'
 }
 nuisances['fatjet_jmr']  = {
     'name'  : 'CMS_res_fatjmr_2018',
@@ -425,7 +429,7 @@ nuisances['fatjet_jmr']  = {
     'samples': dict((skey, ['1', '1']) for skey in mc if skey not in sig_mc),
     'folderUp'  : makeMCDirectory('fatjetJMRup'),
     'folderDown': makeMCDirectory('fatjetJMRdo'),
-#    'AsLnN': '1'
+    'AsLnN': '1'
 }
 
 #nuisances['fatjet_jes_BWReweight']  = {
@@ -916,9 +920,6 @@ nuisances['Wjets_QCD_NLO_sf_stat'] = {
     'type'  : 'shape',
     'samples': {
         'Wjets': ['kfact[1]/kfact[0]', 'kfact[2]/kfact[0]'],
-        #'WjetsMjj': ['kfact[1]/kfact[0]', 'kfact[2]/kfact[0]'],
-        #'WjetsSP': ['kfactSP[1]/kfactSP[0]', 'kfactSP[2]/kfactSP[0]'],
-        #'WjetsSP': ['kfact[1]/kfact[0]', 'kfact[2]/kfact[0]'],
     }
 }
 
@@ -1038,7 +1039,7 @@ nuisances['QCDscale_VH_ACCEPT']  = {
 #fakeW = 'fakeW_ele_'+eleWP+'_mu_'+muWP+'_1l_mu25_ele35'
 #
 nuisances['fake_syst_2018'] = {
-    'name': 'CMS_fake_syst',
+    'name': 'CMS_fake_syst_2018',
     'type': 'lnN',
     'samples': {
         'FAKE': '1.3'

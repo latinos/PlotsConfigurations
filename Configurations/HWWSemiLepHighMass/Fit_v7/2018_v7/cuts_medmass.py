@@ -59,11 +59,11 @@ BoostCats={}
 #                       && HvOverFat[0] > 0.4 \
 #                       && boostedSignalWMass[0] \
 #                       && bVeto_boo[0])'
-BoostCats['BoostedSB_']='(1 \
-                       && boosted_nocut_res[0] \
-                       && HvOverFat[0] < 0.35 \
-                       && boostedSignalWMass[0] \
-                       && bVeto_boo[0])'
+#BoostCats['BoostedSB_']='(1 \
+#                       && boosted_nocut_res[0] \
+#                       && HvOverFat[0] < 0.35 \
+#                       && boostedSignalWMass[0] \
+#                       && bVeto_boo[0])'
 BoostCats['ResolvedSB_']='(1 \
                        && two_jet_res[0] \
                        && !resolvedSignalWMass[0] \
@@ -73,11 +73,11 @@ BoostCats['ResolvedSB_']='(1 \
 ##                       && two_jet_res[0] \
 ##                       && resolvedSignalWMass[0] \
 ##                       && bVeto[0])'
-BoostCats['BoostedTopCR_']='(1 \
-                       && boosted_nocut_res[0] \
-                       && HvOverFat[0] > 0.4 \
-                       && boostedSignalWMass[0] \
-                       && bReq_boo[0])'
+#BoostCats['BoostedTopCR_']='(1 \
+#                       && boosted_nocut_res[0] \
+#                       && HvOverFat[0] > 0.4 \
+#                       && boostedSignalWMass[0] \
+#                       && bReq_boo[0])'
 BoostCats['ResolvedTopCR_']='(1 \
                        && two_jet_res[0] \
                        && resolvedSignalWMass[0] \
@@ -88,7 +88,7 @@ BoostCats['ResolvedTopCR_']='(1 \
 ###                       && !boostedSignalWMass[0] \
 ###                       && boostedSidebandWMass[0] \
 ###                       && bVeto[0])'
-###=== Define cuts ===###
+##=== Define cuts ===###
 for Lep in LepCats:
     for BProcCat in BoostProcCats:
         for BCat in BoostCatsSR:  
@@ -101,9 +101,9 @@ for Lep in LepCats:
 		cuts[Lep+BCat+BProcCat]=  ResCatsSR[BCat]\
                 	            +'&&'+ResProcCats[BProcCat]\
                 	            +'&&'+LepCats[Lep]
-
+##
 for Lep in LepCats_P:
     for BCat in BoostCats:
 	cuts[Lep+BCat]=  BoostCats[BCat]\
                            +'&&'+LepCats_P[Lep]
-
+#

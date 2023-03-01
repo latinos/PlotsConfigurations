@@ -8,7 +8,7 @@ tag = 'hm_med_2018'
 outputDir = 'rootFile_medmass_2018'
 
 # file with TTree aliases
-aliasesFile = 'aliases_medhmass.py'#aliases_highmass to use the high mass trained DNN
+aliasesFile = 'aliases_medmass.py'#aliases_highmass to use the high mass trained DNN
 
 # file with list of variables
 variablesFile = 'variables_medmass.py'
@@ -29,11 +29,11 @@ lumi = 59.7
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'Plots_med_Boo'
+outputDirPlots = 'Plots_Med_Edit'
 
 
 # used by mkDatacards to define output directory for datacards
-outputDirDatacard = 'Datacards_med'
+outputDirDatacard = 'Datacards_Med_aslnn'
 
 # structure file for datacard
 structureFile = 'structure_medmass.py'

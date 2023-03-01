@@ -260,7 +260,7 @@ plot['WH_htt']  = {
 }
 
 
-# Signal
+## Signal
 #for MX in plotmasses:
 #    xs_ggf = 2*HiggsXS.GetHiggsXS4Sample('YR4','13TeV','GluGluHToWWToLNuQQ_M{}'.format(MX))['xs']
 #    xs_vbf = 2*HiggsXS.GetHiggsXS4Sample('YR4','13TeV','VBFHToWWToLNuQQ_M{}'.format(MX))['xs']
