@@ -255,6 +255,12 @@ for sname in signals:
       sample['subsamples']['B%d'%i] = 'fid && B%d'%i
 
 
+### BSFNORM This is very hacky, but should work to add per-sample norm factors
+#btagSFjson = json.load(open("%s/WW/FullRunII/Full2018_v9/inclusive/btagnorm.json"%configurations))
+#for sample in samples.keys():
+#    if sample in btagSFjson:
+#        samples[sample]['weight'] = '({})*{}'.format(samples[sample]['weight'],btagSFjson[sample]['nom'])
+
 # # ###########################################
 # # ################## FAKE ###################
 # # ###########################################
