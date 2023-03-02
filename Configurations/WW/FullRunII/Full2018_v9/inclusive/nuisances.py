@@ -38,6 +38,8 @@ diffcuts = samples['WW']['subsamples'] if 'WW' in samples else {}
 allcuts = [cut+'_'+cat for cut in cuts for cat in cuts[cut]['categories']]
 nfdict = json.load(open("%s/WW/FullRunII/Full2018_v9/inclusive/WWnorm.json"%configurations))
 sfdict = json.load(open("%s/WW/FullRunII/Full2018_v9/inclusive/sampleFrac.json"%configurations))
+# BSFNORM json to load with btag SF norm factors
+#bSFdict = json.load(open("%s/WW/FullRunII/Full2018_v9/inclusive/btagnorm.json"%configurations))
 
 ################################ EXPERIMENTAL UNCERTAINTIES  #################################
 
@@ -129,6 +131,10 @@ for shift in ['jes', 'lf', 'hf', 'hfstats1', 'hfstats2', 'lfstats1', 'lfstats2',
         'kind': 'weight',
         'type': 'shape',
         'samples': dict((skey, btag_syst) for skey in mc),
+        # BSFNORM Use lines below to normalize variations
+        #'samples': dict((skey,['(btagSF{shift}up)*{bSF}/(btagSF)'.format(shift=shift,bSF=(bSFdict[skey][shift][0] if skey in bSFdict else 1.0)),
+        #                       '(btagSF{shift}down)*{bSF}/(btagSF)'.format(shift=shift,bSF=(bSFdict[skey][shift][1] if skey in bSFdict else 1.0))]) for skey in mc),
+
         'AsLnN': '1'
     }
 
