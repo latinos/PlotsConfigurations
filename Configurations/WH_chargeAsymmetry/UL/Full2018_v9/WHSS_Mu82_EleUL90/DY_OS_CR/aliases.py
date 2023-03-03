@@ -2,9 +2,10 @@ import os
 import copy
 import inspect
 
-# /afs/cern.ch/user/n/ntrevisa/work/latinos/unblinding/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/WH_chargeAsymmetry/UL/Full2018_v9/WHSS
+# /afs/cern.ch/user/n/ntrevisa/work/latinos/unblinding/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/WH_chargeAsymmetry/UL/Full2018_v9/WHSS/DY_OS_CR
 
 configurations = os.path.realpath(inspect.getfile(inspect.currentframe())) # this file
+configurations = os.path.dirname(configurations) # DY_OS_CR
 configurations = os.path.dirname(configurations) # WHSS
 configurations = os.path.dirname(configurations) # Full2018_v9
 configurations = os.path.dirname(configurations) # UL
@@ -36,7 +37,7 @@ aliases['LepWPSF'] = {
 aliases['fakeW'] = {
     'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/fake_rate_reader.C+' % configurations],
     'class'      : 'fake_rate_reader',
-    'args'       : ('2018', '90', '82', 0.90, 0.82, 'nominal', 2, "std"),
+    'args'       : ('2018', '90', '82', 0.90, 0.82, 'nominal', 2, 'std'),
     'samples'    : ['Fake']
 }
 # aliases['fakeW'] = {
@@ -48,50 +49,57 @@ aliases['fakeW'] = {
 aliases['fakeWEleUp'] = {
     'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/fake_rate_reader.C+' % configurations],
     'class'      : 'fake_rate_reader',
-    'args'       : ('2018', '90', '82', 0.90, 0.82, 'EleUp', 2, "std"),
+    'args'       : ('2018', '90', '82', 0.90, 0.82, 'EleUp', 2, 'std'),
     'samples'    : ['Fake']
 }
+
 aliases['fakeWEleDown'] = {
     'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/fake_rate_reader.C+' % configurations],
     'class'      : 'fake_rate_reader',
-    'args'       : ('2018', '90', '82', 0.90, 0.82, 'EleDown', 2, "std"),
+    'args'       : ('2018', '90', '82', 0.90, 0.82, 'EleDown', 2, 'std'),
     'samples'    : ['Fake']
 }
+
 aliases['fakeWMuUp'] = {
     'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/fake_rate_reader.C+' % configurations],
     'class'      : 'fake_rate_reader',
-    'args'       : ('2018', '90', '82', 0.90, 0.82, 'MuUp', 2, "std"),
+    'args'       : ('2018', '90', '82', 0.90, 0.82, 'MuUp', 2, 'std'),
     'samples'    : ['Fake']
 }
+
 aliases['fakeWMuDown'] = {
     'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/fake_rate_reader.C+' % configurations],
     'class'      : 'fake_rate_reader',
-    'args'       : ('2018', '90', '82', 0.90, 0.82, 'MuDown', 2, "std"),
+    'args'       : ('2018', '90', '82', 0.90, 0.82, 'MuDown', 2, 'std'),
     'samples'    : ['Fake']
 }
+
 
 aliases['fakeWStatEleUp'] = {
     'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/fake_rate_reader.C+' % configurations],
     'class'      : 'fake_rate_reader',
-    'args'       : ('2018', '90', '82', 0.90, 0.82, 'StatEleUp', 2, "std"),
+    'args'       : ('2018', '90', '82', 0.90, 0.82, 'StatEleUp', 2, 'std'),
     'samples'    : ['Fake']
 }
+
 aliases['fakeWStatEleDown'] = {
     'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/fake_rate_reader.C+' % configurations],
     'class'      : 'fake_rate_reader',
-    'args'       : ('2018', '90', '82', 0.90, 0.82, 'StatEleDown', 2, "std"),
+    'args'       : ('2018', '90', '82', 0.90, 0.82, 'StatEleDown', 2, 'std'),
     'samples'    : ['Fake']
 }
+
 aliases['fakeWStatMuUp'] = {
     'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/fake_rate_reader.C+' % configurations],
     'class'      : 'fake_rate_reader',
-    'args'       : ('2018', '90', '82', 0.90, 0.82, 'StatMuUp', 2, "std"),
+    'args'       : ('2018', '90', '82', 0.90, 0.82, 'StatMuUp', 2, 'std'),
     'samples'    : ['Fake']
 }
+
 aliases['fakeWStatMuDown'] = {
     'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/fake_rate_reader.C+' % configurations],
     'class'      : 'fake_rate_reader',
-    'args'       : ('2018', '90', '82', 0.90, 0.82, 'StatMuDown', 2, "std"),
+    'args'       : ('2018', '90', '82', 0.90, 0.82, 'StatMuDown', 2, 'std'),
     'samples'    : ['Fake']
 }
 
@@ -333,7 +341,6 @@ aliases['SFweightEleDown'] = {
     'expr': 'LepSF2l__ele_'+eleWP+'__Do',
     'samples': mc_emb
 }
-
 aliases['SFweightMuUp'] = {
     'expr': 'LepSF2l__mu_'+muWP+'__Up',
     'samples': mc_emb
@@ -342,17 +349,6 @@ aliases['SFweightMuDown'] = {
     'expr': 'LepSF2l__mu_'+muWP+'__Do',
     'samples': mc_emb
 }
-
-# TriggerSFWeight_2l:TriggerSFWeight_2l_u:TriggerSFWeight_2l_d
-aliases['SFtriggUp'] = {
-    'expr': 'TriggerSFWeight_2l_u/TriggerSFWeight_2l',
-    'samples': mc_emb
-}
-aliases['SFtriggDown'] = {
-    'expr': 'TriggerSFWeight_2l_d/TriggerSFWeight_2l',
-    'samples': mc_emb
-}
-
 
 # # In WpWmJJ_EWK events, partons [0] and [1] are always the decay products of the first W
 # aliases['lhe_mW1'] = {
@@ -402,8 +398,9 @@ aliases['ttHMVA_eff_flip_2l'] = {
 }
 
 aliases['ttHMVA_eff_err_flip_2l'] = {
-    'linesToAdd': ['.L %s/WH_chargeAsymmetry/UL/macros/flipper_eff.C+' % configurations],
+    'linesToAdd': ['.L  %s/WH_chargeAsymmetry/UL/macros/flipper_eff.C+' % configurations],
     'class': 'flipper_eff',
     'args' : ('UL_2018', 2, 'Total_SF_err', 'false'),
     'samples': ['DY']
 }
+
