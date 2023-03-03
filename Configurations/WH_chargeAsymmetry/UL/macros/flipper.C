@@ -54,10 +54,10 @@ flipper::flipper( const char* year , const unsigned int nLep, std::string SF_typ
 
   // map
   if (isTightCharge == "false"){
-    flipper_map_["UL_2016HIPM"]["HWW_ttHMVA"]   = cmssw_base + "/src/PlotsConfigurations/Configurations/WH_chargeAsymmetry/UL/2016HIPM_v9/charge_flip_Mu82_EleUL90/charge_flip_2016HIPM_LegacyID_EleUL90/chargeFlip_SF.root";
-    flipper_map_["UL_2016noHIPM"]["HWW_ttHMVA"] = cmssw_base + "/src/PlotsConfigurations/Configurations/WH_chargeAsymmetry/UL/2016noHIPM_v9/charge_flip_Mu82_EleUL90/charge_flip_2016noHIPM_LegacyID_EleUL90/chargeFlip_SF.root";
-    flipper_map_["UL_2017"]["HWW_ttHMVA"]       = cmssw_base + "/src/PlotsConfigurations/Configurations/WH_chargeAsymmetry/UL/Full2017_v9/charge_flip_Mu82_EleUL90/charge_flip_2017_LegacyID_EleUL90/chargeFlip_SF.root";
-    flipper_map_["UL_2018"]["HWW_ttHMVA"]       = cmssw_base + "/src/PlotsConfigurations/Configurations/WH_chargeAsymmetry/UL/Full2018_v9/charge_flip_Mu82_EleUL90/charge_flip_2018_LegacyID_EleUL90/chargeFlip_SF.root";
+    flipper_map_["UL_2016HIPM"]["HWW_ttHMVA"]   = cmssw_base + "/src/PlotsConfigurations/Configurations/WH_chargeAsymmetry/UL/data/chargeflip/2016HIPM/chargeFlip_SF.root";
+    flipper_map_["UL_2016noHIPM"]["HWW_ttHMVA"] = cmssw_base + "/src/PlotsConfigurations/Configurations/WH_chargeAsymmetry/UL/data/chargeflip/2016noHIPM/chargeFlip_SF.root";
+    flipper_map_["UL_2017"]["HWW_ttHMVA"]       = cmssw_base + "/src/PlotsConfigurations/Configurations/WH_chargeAsymmetry/UL/data/chargeflip/2017/chargeFlip_SF.root";
+    flipper_map_["UL_2018"]["HWW_ttHMVA"]       = cmssw_base + "/src/PlotsConfigurations/Configurations/WH_chargeAsymmetry/UL/data/chargeflip/2018/chargeFlip_SF.root";
   }
   else{
     flipper_map_["2016"]["HWW_ttHMVA"] = cmssw_base + "/src/LatinoAnalysis/NanoGardener/python/data/scale_factor/Full2016v7/chargeFlip_2016_v7_SF_tightCharge.root"; // file doesn't exist!
