@@ -59,29 +59,6 @@ def makeMCDirectory(var=''):
         return os.path.join(treeBaseDir, mcProduction, mcSteps.format(var=''))
 
 mcDirectory = makeMCDirectory()
-fakeDirectory = os.path.join(treeBaseDir, dataReco, fakeSteps)
-dataDirectory = os.path.join(treeBaseDir, dataReco, dataSteps)
-# embedDirectory = os.path.join(treeBaseDir, embedReco, embedSteps)
-
-################################################
-############ DATA DECLARATION ##################
-################################################
-
-DataRun = [
-    ['A','Run2018A-UL2018-v1'],
-    ['B','Run2018B-UL2018-v1'],
-    ['C','Run2018C-UL2018-v1'],
-    ['D','Run2018D-UL2018-v1'],
-]
-
-DataSets = ['MuonEG','SingleMuon','EGamma','DoubleMuon']
-
-DataTrig = {
-    'MuonEG'         : 'Trigger_ElMu' ,
-    'DoubleMuon'     : '!Trigger_ElMu && Trigger_dblMu' ,
-    'SingleMuon'     : '!Trigger_ElMu && !Trigger_dblMu && Trigger_sngMu' ,
-    'EGamma'         : '!Trigger_ElMu && !Trigger_dblMu && !Trigger_sngMu && (Trigger_sngEl || Trigger_dblEl)' ,
-}
 
 #########################################
 ############ MC COMMON ##################
@@ -197,8 +174,8 @@ files = nanoGetSampleFiles(mcDirectory, 'GluGluHToWWTo2L2Nu_M125') + \
         nanoGetSampleFiles(mcDirectory, 'ttHToNonbb_M125') + \
         nanoGetSampleFiles(mcDirectory, 'GluGluHToTauTau_M125') + \
         nanoGetSampleFiles(mcDirectory, 'VBFHToTauTau_M125')
- #       nanoGetSampleFiles(mcDirectory, 'HZJ_HToTauTau_M125') + \
-  #      nanoGetSampleFiles(mcDirectory, 'HWplusJ_HToTauTau_M125') + nanoGetSampleFiles(mcDirectory, 'HWminusJ_HToTauTau_M125')
+        nanoGetSampleFiles(mcDirectory, 'ZHToTauTau_M125') + \
+        nanoGetSampleFiles(mcDirectory, 'WplusHToTauTau_M125') + nanoGetSampleFiles(mcDirectory, 'WminusHToTauTau_M125')
 
 samples['Higgs'] = {
     'name' : files,
@@ -211,8 +188,6 @@ samples['Higgs'] = {
 #############   SIGNALS  ##################
 ###########################################
 
-signals = []
-
 ###### WW ########
 
 samples['WW'] = {
@@ -220,8 +195,6 @@ samples['WW'] = {
     'weight': mcCommonWeight+'*nllW',
     'FilesPerJob': 1
 }
-
-signals.append('WW')
 
 ###### ggWW ########
 
@@ -238,97 +211,4 @@ samples['ggWW'] = {
     'weight': mcCommonWeight+'*1.53/1.4',
     'FilesPerJob': 1
 }
-
-signals.append('ggWW')
-
-### Now bin in nonfiducial / fiducial x bins
-
-nbins = 1
-
-for sname in signals:
-  sample = samples[sname]
-  sample['subsamples'] = {}
-
-  sample['subsamples']['nonfid'] = '!(fid)'
-
-  for i in range(nbins):
-      sample['subsamples']['B%d'%i] = 'fid && B%d'%i
-
-
-### BSFNORM This is very hacky, but should work to add per-sample norm factors
-#btagSFjson = json.load(open("%s/WW/FullRunII/Full2018_v9/inclusive/btagnorm.json"%configurations))
-#for sample in samples.keys():
-#    if sample in btagSFjson:
-#        samples[sample]['weight'] = '({})*{}'.format(samples[sample]['weight'],btagSFjson[sample]['nom'])
-
-# # ###########################################
-# # ################## FAKE ###################
-# # ###########################################
-
-samples['Fake'] = {
-  'name': [],
-  'weight': 'METFilter_DATA*fakeW',
-  'weights': [],
-  'isData': ['all'],
-  'FilesPerJob': 100,
-  'suppressNegativeNuisances' : ['all'],
-}
-
-for _, sd in DataRun:
-  for pd in DataSets:
-    tag = pd + '_' + sd
-
-    if (   ('DoubleMuon' in pd and 'Run2018B' in sd)
-        or ('DoubleMuon' in pd and 'Run2018D' in sd)
-        or ('DoubleMuon' in pd and 'Run2018D' in sd)
-        or ('SingleMuon' in pd and 'Run2018A' in sd)
-        or ('SingleMuon' in pd and 'Run2018B' in sd)
-        or ('SingleMuon' in pd and 'Run2018C' in sd)):
-        print("sd      = {}".format(sd))
-        print("pd      = {}".format(pd))
-        print("Old tag = {}".format(tag))
-        tag = tag.replace('v1','v2')
-        print("New tag = {}".format(tag))
-
-    files = nanoGetSampleFiles(fakeDirectory, tag)
-    samples['Fake']['name'].extend(files)
-    samples['Fake']['weights'].extend([DataTrig[pd]] * len(files))
-
-samples['Fake']['subsamples'] = {
-  'em': 'abs(Lepton_pdgId[0]) == 11',
-  'me': 'abs(Lepton_pdgId[0]) == 13'
-}
-
-###########################################
-################## DATA ###################
-###########################################
-
-samples['DATA'] = {
-  'name': [],
-  'weight': 'LepWPCut*METFilter_DATA',
-  'weights': [],
-  'isData': ['all'],
-  'FilesPerJob': 50
-}
-
-for _, sd in DataRun:
-  for pd in DataSets:
-    tag = pd + '_' + sd
-
-    if (   ('DoubleMuon' in pd and 'Run2018B' in sd)
-        or ('DoubleMuon' in pd and 'Run2018D' in sd)
-        or ('DoubleMuon' in pd and 'Run2018D' in sd)
-        or ('SingleMuon' in pd and 'Run2018A' in sd)
-        or ('SingleMuon' in pd and 'Run2018B' in sd)
-        or ('SingleMuon' in pd and 'Run2018C' in sd)):
-        print("sd      = {}".format(sd))
-        print("pd      = {}".format(pd))
-        print("Old tag = {}".format(tag))
-        tag = tag.replace('v1','v2')
-        print("New tag = {}".format(tag))
-
-    files = nanoGetSampleFiles(dataDirectory, tag)
-
-    samples['DATA']['name'].extend(files)
-    samples['DATA']['weights'].extend([DataTrig[pd]] * len(files))
 
