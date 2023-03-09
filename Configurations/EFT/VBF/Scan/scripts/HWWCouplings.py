@@ -173,7 +173,6 @@ class HWWCouplings(PhysicsModel):
          self.modelBuilder.doVar("expr::g(\""+str(self.g)+"\",)")
 
          poi='muV,muF,Fai'
-	 #poi='muV,Fai'
 
          self.modelBuilder.factory_( "expr::scale_Ewk_T1(\"pow(@0,2)*pow(1-abs(@1),2)\", muV, Fai)")
          self.modelBuilder.factory_( "expr::scale_Ewk_T2(\"pow(@0,2)*sign(@1)*pow(sqrt(1-abs(@1)),3)*sqrt(abs(@1))*@2\", muV, Fai, g)")
@@ -189,11 +188,6 @@ class HWWCouplings(PhysicsModel):
          self.modelBuilder.factory_( "expr::scale_ggH_T2_Neg(\"@0*sign(@1)*sqrt(1-abs(@1))*sqrt(abs(@1))*@2*-1\", muF, Fai, g)")
          self.modelBuilder.factory_( "expr::scale_ggH_T3(\"@0*abs(@1)*pow(@2,2)\", muF, Fai, g)")
         
-         #self.modelBuilder.factory_( "expr::scale_ggH_T1(\"@0*(1-abs(@1))\", muV, Fai)")
-         #self.modelBuilder.factory_( "expr::scale_ggH_T2(\"@0*sign(@1)*sqrt(1-abs(@1))*sqrt(abs(@1))*@2\", muV, Fai, g)")
-         #self.modelBuilder.factory_( "expr::scale_ggH_T2_Neg(\"@0*sign(@1)*sqrt(1-abs(@1))*sqrt(abs(@1))*@2*-1\", muV, Fai, g)")
-         #self.modelBuilder.factory_( "expr::scale_ggH_T3(\"@0*abs(@1)*pow(@2,2)\", muV, Fai, g)")
-
         self.modelBuilder.doSet("POI",poi)
        
 HWWCouplings = HWWCouplings()

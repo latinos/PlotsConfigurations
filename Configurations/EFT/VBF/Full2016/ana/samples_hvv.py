@@ -47,10 +47,11 @@ samples['WW']    = {}
 samples['WWewk']  = {}
 samples['ggWW'] = {}
 #samples['VgS'] = {}
-#samples['VgS_L'] = {}
-#samples['VgS_H'] = {}
+samples['VgS_L'] = {}
+samples['VgS_H'] = {}
 #samples['VgS'] = {}
 #samples['VgS']
+samples['Vg'] = {}
 samples['VZ'] = {}
 samples['VVV'] = {}
 #samples['Fake_em'] = {}

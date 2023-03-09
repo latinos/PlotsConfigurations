@@ -24,7 +24,7 @@ public:
   
   std::vector<float> CforHM(float mass);
 
-  TString loc = "/afs/cern.ch/work/l/lurda/CMS/Test/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/EFT/VBF/Tools/constants";
+  TString loc = "/afs/cern.ch/work/l/lurda/CMS/Test/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/EFT/BoostedVh/Tools/constants";
 
   TFile* f_DjjVBF = TFile::Open(""+loc+"/SmoothKDConstant_m4l_DjjVBF_13TeV.root","read");
   TSpline3 *DjjVBF = (TSpline3*)f_DjjVBF->Get("sp_gr_varReco_Constant_Smooth");

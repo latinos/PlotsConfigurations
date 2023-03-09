@@ -636,6 +636,14 @@ aliases['kd_Wh_hm']    = { 'expr': '1/(1+(me_Wh_hsm/(me_Wh_hm*G4WH**2)))' }
 aliases['kd_Zh_hm']    = { 'expr': '1/(1+(me_Zh_hsm/(me_Zh_hm*G4ZH**2)))' }
 aliases['kd_Vh_hm']    = { 'expr': 'max(kd_Wh_hm, kd_Zh_hm)' }
 
+aliases['kd_Wh_hm_01']    = { 'expr': '1/(1+(me_Wh_hsm/(me_Wh_hm*(0.1*G4WH)**2)))' }
+aliases['kd_Zh_hm_01']    = { 'expr': '1/(1+(me_Zh_hsm/(me_Zh_hm*(0.1*G4ZH)**2)))' }
+aliases['kd_Vh_hm_01']    = { 'expr': 'max(kd_Wh_hm_01, kd_Zh_hm_01)' }
+
+aliases['kd_Wh_hm_10']    = { 'expr': '1/(1+(me_Wh_hsm/(me_Wh_hm*(10*G4WH)**2)))' }
+aliases['kd_Zh_hm_10']    = { 'expr': '1/(1+(me_Zh_hsm/(me_Zh_hm*(10*G4ZH)**2)))' }
+aliases['kd_Vh_hm_10']    = { 'expr': 'max(kd_Wh_hm_10, kd_Zh_hm_10)' }
+
 aliases['kd_Wh_hp']    = { 'expr': '1/(1+(me_Wh_hsm/(me_Wh_hp*G2WH**2)))' }
 aliases['kd_Zh_hp']    = { 'expr': '1/(1+(me_Zh_hsm/(me_Zh_hp*G2ZH**2)))' }
 aliases['kd_Vh_hp']    = { 'expr': 'max(kd_Wh_hp, kd_Zh_hp)' }

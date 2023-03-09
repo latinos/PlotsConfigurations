@@ -298,7 +298,7 @@ for js in jes_systs:
       'type': 'shape',
       'mapUp': js+'up',
       'mapDown': js+'do',
-      'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['DY', 'Vg', 'VgS']),
+      'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['DY', 'Vg', 'VgS', 'VgS_L', 'VgS_H']),
       'folderUp': folderup,
       'folderDown': folderdo,
       'AsLnN': '1'

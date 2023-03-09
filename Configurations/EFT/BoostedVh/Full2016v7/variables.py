@@ -9,6 +9,18 @@ variables['events']  = {   'name': '1',
                        'cuts' : ['hww2l2v_13TeV_top_fj','hww2l2v_13TeV_dytt_fj','hww2l2v_13TeV_WW_fj']
                         }
  
+variables['kd_Wh_hm_01']  = {   'name': 'kd_Wh_hm_01',
+                        'range' : (10,0,1),
+                        'xaxis' : 'events',
+                         'fold' : 3,
+                       'cuts' : ['hww2l2v_13TeV_of2j_Vh']
+                        }
+variables['kd_Wh_hm_10']  = {   'name': 'kd_Wh_hm_10',
+                        'range' : (10,0,1),
+                        'xaxis' : 'events',
+                         'fold' : 3,
+                       'cuts' : ['hww2l2v_13TeV_of2j_Vh']
+                        }
 
 #variables['mll_1'] = { 'name' : 'mll',
 #                     'range': (20,10,210),
@@ -28,6 +40,7 @@ variables['nfjet'] = { 'name' : 'nCleanFatJet', # pt and tau21 cuts applied
                       'fold' : 3 
                    }
 '''
+'''
 variables['ptll'] = {   'name': 'ptll',
                         'range': (20,0,400),
                         'xaxis': 'p_{T}^{ll}',
@@ -42,6 +55,7 @@ variables['mjj'] = { 'name' : 'mjj',
                        'cuts' : ['hww2l2v_13TeV_top_fj','hww2l2v_13TeV_dytt_fj','hww2l2v_13TeV_WW_fj']
                    }
 '''
+'''
 variables['dphi'] = { 'name' : 'dphis',
                       'range': (10,-3.2,3.2),
                      'xaxis': 'DPhi_{jj}',
@@ -53,7 +67,7 @@ variables['dphi'] = { 'name' : 'dphis',
 #                     'xaxis': 'm_{ll}',
 #                     'fold' : 3 
 #                   }
-
+'''
 variables['mll'] = { 'name' : 'mll',
                      'range': ([10,40,106.2,210.],),
                      'xaxis': 'm_{ll}',
@@ -72,6 +86,7 @@ variables['mth'] = { 'name' : 'mth',
                      'fold' : 3,
                        'cuts' : ['hww2l2v_13TeV_top_fj','hww2l2v_13TeV_dytt_fj','hww2l2v_13TeV_WW_fj']
                    }
+'''
 '''
 variables['mtw2'] = { 'name' : 'mtw2',
                      'range': (20,0,200),
@@ -101,7 +116,7 @@ variables['hm'] = { 'name' : 'hm',
 ####################################
 ##################################
 ## Reco VH KD #####
-
+'''
 variables['kd_Vh_hm'] = { 'name' : 'kd_Vh_hm',
                        'range': (10,0,1),
                        'xaxis': 'D_{V*H 0^{-}}',
@@ -143,7 +158,7 @@ variables['kd_Vh_mixhp'] = { 'name' : 'kd_Vh_mixhp',
                           'fold' : 3,
                        'cuts' : ['hww2l2v_13TeV_top_fj','hww2l2v_13TeV_dytt_fj','hww2l2v_13TeV_WW_fj']
                         }
-
+'''
 ####################################
 '''
 variables['kd2d_Vh_hm'] = { 'name': 'kd_Vh_hm:mll',
@@ -164,6 +179,8 @@ variables['kd2d_Vh_hl'] = { 'name': 'kd_Vh_hl:mll',
                          'fold' : 3,
                          'cuts' : ['hww2l2v_13TeV_top_fj','hww2l2v_13TeV_dytt_fj','hww2l2v_13TeV_of2j_Vh','hww2l2v_13TeV_WW_fj']
                           }
+'''
+#GOOD ONES
 '''
 variables['kd2d_Vh_hm'] = { 'name': 'kd_Vh_hm:mll',
                          'range' : ([10,45,106.2],[0.0,0.6,0.8,1],),
@@ -197,6 +214,6 @@ variables['kd2d_Vh_hlzg'] = { 'name': 'kd_Vh_hlzg:mll',
                          'fold' : 3,
                          'cuts' : ['hww2l2v_13TeV_top_fj','hww2l2v_13TeV_dytt_fj','hww2l2v_13TeV_of2j_Vh','hww2l2v_13TeV_WW_fj']
                           }
-
+'''
 
 

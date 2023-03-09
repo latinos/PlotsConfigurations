@@ -52,6 +52,7 @@ for k in cuts:
 #    'type': 'lnN',
 #    'samples': dict((skey, '1.025') for skey in mc if skey not in ['WW', 'top', 'DY'])
 #}
+'''
 nuisances['lumi_Uncorrelated'] = {
     'name': 'lumi_13TeV_2016',
     'type': 'lnN',
@@ -302,7 +303,7 @@ nuisances['electronpt'] = {
     'folderDown': 'root://eoscms.cern.ch/'+makeMCDirectory('trigFix__ElepTdo_suffix'),
     'AsLnN': '1'
 }
-
+'''
 #DM
 ''' 
 if useEmbeddedDY:
@@ -317,6 +318,7 @@ if useEmbeddedDY:
     'folderDown': treeBaseDir+'/Embedding2016_102X_nAODv7_Full2016v7/DATAl1loose2016v7__l2loose__l2tightOR2016v7__Embedding__EmbElepTdo_suffix/',
     'AsLnN': '1'
   }
+'''
 '''
 if useEmbeddedDY:
   nuisances['electronpt_emb'] = {
@@ -357,6 +359,7 @@ nuisances['muonpt'] = {
     'folderDown': 'root://eoscms.cern.ch/'+makeMCDirectory('trigFix__MupTdo_suffix'),
     'AsLnN': '1'
 }
+'''
 #DM
 '''
 if useEmbeddedDY:
@@ -371,6 +374,7 @@ if useEmbeddedDY:
     'folderDown': treeBaseDir+'/Embedding2016_102X_nAODv7_Full2016v7/DATAl1loose2016v7__l2loose__l2tightOR2016v7__Embedding__EmbMupTdo_suffix/',
     'AsLnN': '1'
   }
+'''
 '''
 if useEmbeddedDY:
   nuisances['muonpt_emb'] = {
@@ -747,6 +751,7 @@ topScaleNormFactors2j = {'LHEScaleWeight[3]': 1.01676762423417, 'LHEScaleWeight[
 topvars2j.append('Alt$(LHEScaleWeight[0], 1.)/'+str(topScaleNormFactors2j['LHEScaleWeight[0]']))
 topvars2j.append('Alt$(LHEScaleWeight[8], 1.)/'+str(topScaleNormFactors2j['LHEScaleWeight[8]']))
 '''
+'''
 topScaleNormFactors2j = {'Alt$(LHEScaleWeight[3],1)': 1.0239541358390016, 'Alt$(LHEScaleWeight[0],1)': 1.125869020564376, 'Alt$(LHEScaleWeight[1],1)': 1.105896547188302, 'Alt$(LHEScaleWeight[7],1)': 0.9037581174447249, 'Alt$(LHEScaleWeight[8],1)': 0.8828417179568193, 'Alt$(LHEScaleWeight[5],1)': 0.981806136304384}
 
 for var in topvariations:
@@ -755,7 +760,7 @@ for var in topvariations:
   topvars2j.append(var+'/'+str(topScaleNormFactors2j[var]))
 '''
 ## QCD scale nuisances for top are decorrelated for each RECO jet bin: the QCD scale is different for different jet multiplicities so it doesn't make sense to correlate them
-
+'''
 nuisances['QCDscale_top_2j']  = {
     'name'  : 'QCDscale_top_2j_2016',
     'skipCMS' : 1,
@@ -1075,7 +1080,7 @@ nuisances['Topnorm2j']  = {
                'type'  : 'rateParam',
               }
 
-
+'''
 
 for n in nuisances.values():
     n['skipCMS'] = 1

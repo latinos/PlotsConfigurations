@@ -114,7 +114,7 @@ runDYveto = False
 embed_tautauveto = '' #Setup
 if useEmbeddedDY:
   embed_tautauveto = '*embed_tautauveto'
-
+'''
 if useEmbeddedDY:
   # Actual embedded data
   samples['Dyemb'] = {
@@ -143,7 +143,7 @@ if useEmbeddedDY:
       nanoGetSampleFiles(mcDirectory, 'WZTo2L2Q') + \
       nanoGetSampleFiles(mcDirectory, 'Zg') + \
       nanoGetSampleFiles(mcDirectory, 'WZTo3LNu_mllmin01')
-
+'''
 '''
   if runDYveto:
       samples['Dyveto'] = {
@@ -169,7 +169,7 @@ if useEmbeddedDY:
 ###### DY MC ######
 ## We need to keep DY MC as well, because only embedded events passing the ElMu trigger are considered
 ## Events failing ElMu but passing one of the other triggers are included in the DY MC
-
+'''
 if useDYtt:
     files = nanoGetSampleFiles(mcDirectory, 'DYJetsToTT_MuEle_M-50_ext1') + \
         nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-10to50-LO')
@@ -232,10 +232,10 @@ samples['ggWW'] = {
     'FilesPerJob': 4
 }
 
-
+'''
 ######## Vg ########
 useWgFXFX=True
-
+'''
 if useWgFXFX:
   files = nanoGetSampleFiles(mcDirectory, 'Wg_AMCNLOFXFX_01J') + \
       nanoGetSampleFiles(mcDirectory, 'Wg_AMCNLOFXFX_01J_ext1') + \
@@ -330,9 +330,9 @@ samples['VVV'] = {
 ###########################################
 #############   SIGNALS  ##################
 ###########################################
-
+'''
 signals = []
-
+'''
 #### ggH -> WW
 samples['ggH_hww'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'GluGluHToWWTo2L2Nu_alternative_M125')+nanoGetSampleFiles(mcDirectory, 'GGHjjToWWTo2L2Nu_minloHJJ_M125'),
@@ -443,7 +443,7 @@ for _, sd in DataRun:
 
     samples['Fake']['name'].extend(files)
     samples['Fake']['weights'].extend([DataTrig[pd]] * len(files))
-
+'''
 '''
 samples['Fake']['subsamples'] = {
   'em': 'abs(Lepton_pdgId[0]) == 11',
@@ -453,7 +453,7 @@ samples['Fake']['subsamples'] = {
 ###########################################
 ################## DATA ###################
 ###########################################
-
+'''
 samples['DATA'] = {
   'name': [],
   'weight': 'METFilter_DATA*LepWPCut',
@@ -470,13 +470,13 @@ for _, sd in DataRun:
     samples['DATA']['weights'].extend([DataTrig[pd]] * len(files))
 
 #### AC/EFT Signals 
-
+'''
 signals_rw = [] 
 
 # VBF MC samples 
  
 # Original VBF samples 
-
+'''
 samples['VBF_H0PM'] = { 
    'name':   nanoGetSampleFiles(mcDirectory, 'VBF_H0PM_ToWWTo2L2Nu'), 
    'weight': mcCommonWeight+ '*VBF_H0PM_W',   'FilesPerJob': 4, } 
@@ -1096,7 +1096,7 @@ samples['VBF_H0L1f05_H0LZg_M3'] = {
    'name':   nanoGetSampleFiles(mcDirectory, 'VBF_H0L1f05_ToWWTo2L2Nu'), 
    'weight': mcCommonWeight+ '*VBF_H0L1f05_W*(ME_H0LZg_M3/ME_H0L1f05)',   'FilesPerJob': 4, } 
 signals_rw.append('VBF_H0L1f05_H0LZg_M3')  
-
+'''
 # WH MC samples 
  
 # Original WH samples 
@@ -1130,7 +1130,7 @@ samples['WH_H0L1f05'] = {
    'weight': mcCommonWeight+ '*WH_H0L1f05_W'+'*VtagSF',   'FilesPerJob': 4, } 
  
 # Reweighted WH samples 
-
+'''
 samples['WH_H0PM_H0M_M0'] = { 
    'name':   nanoGetSampleFiles(mcDirectory, 'WH_H0PM_ToWWTo2L2Nu'), 
    'weight': mcCommonWeight+ '*WH_H0PM_W*(ME_H0M_M0/ME_H0PM)'+'*VtagSF',   'FilesPerJob': 4, } 
@@ -1580,7 +1580,7 @@ samples['WH_H0L1f05_H0L1_M3'] = {
    'name':   nanoGetSampleFiles(mcDirectory, 'WH_H0L1f05_ToWWTo2L2Nu'), 
    'weight': mcCommonWeight+ '*WH_H0L1f05_W*(ME_H0L1_M3/ME_H0L1f05)'+'*VtagSF',   'FilesPerJob': 4, } 
 signals_rw.append('WH_H0L1f05_H0L1_M3')  
-
+'''
 # ZH MC samples 
  
 # Original ZH samples 
@@ -1614,7 +1614,7 @@ samples['ZH_H0L1f05'] = {
    'weight': mcCommonWeight+ '*ZH_H0L1f05_W'+'*VtagSF',   'FilesPerJob': 4, } 
  
 # Reweighted ZH samples 
-
+'''
 samples['ZH_H0PM_H0M_M0'] = { 
    'name':   nanoGetSampleFiles(mcDirectory, 'ZH_H0PM_ToWWTo2L2Nu'), 
    'weight': mcCommonWeight+ '*ZH_H0PM_W*(ME_H0M_M0/ME_H0PM)'+'*VtagSF',   'FilesPerJob': 4, } 
@@ -2204,7 +2204,7 @@ samples['ZH_H0L1f05_H0LZg_M3'] = {
    'name':   nanoGetSampleFiles(mcDirectory, 'ZH_H0L1f05_ToWWTo2L2Nu'), 
    'weight': mcCommonWeight+ '*ZH_H0L1f05_W*(ME_H0LZg_M3/ME_H0L1f05)'+'*VtagSF',   'FilesPerJob': 4, } 
 signals_rw.append('ZH_H0L1f05_H0LZg_M3')  
-
+'''
 # GGH MC samples 
 ''' 
 # Original GGH samples 

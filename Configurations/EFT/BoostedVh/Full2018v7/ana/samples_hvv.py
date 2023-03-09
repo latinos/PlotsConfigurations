@@ -47,8 +47,8 @@ samples['WW']    = {}
 samples['WWewk']  = {}
 samples['ggWW'] = {}
 samples['Vg'] = {}
-#samples['VgS_L'] = {}
-#samples['VgS_H'] = {}
+samples['VgS_L'] = {}
+samples['VgS_H'] = {}
 #samples['VgS']
 samples['VZ'] = {}
 #samples['VVV'] = {}

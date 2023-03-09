@@ -52,7 +52,7 @@ for k in cuts:
 #    'type': 'lnN',
 #    'samples': dict((skey, '1.025') for skey in mc if skey not in ['WW', 'top', 'DY'])
 #}
-'''
+
 nuisances['lumi_Uncorrelated'] = {
     'name': 'lumi_13TeV_2018',
     'type': 'lnN',
@@ -160,7 +160,7 @@ nuisances['mV_jms'] = {
     'auxname': 'FatJet_msoftdrop',
     'mapUp' : 'jmsUp',
     'mapDown': 'jmsDown',
-    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in qqhAC+gghAC)),
+    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in qqhAC+gghAC),
     'AsLnN': '1'
 }
 nuisances['mV_jmr'] = {
@@ -170,7 +170,7 @@ nuisances['mV_jmr'] = {
     'auxname': 'FatJet_msoftdrop',
     'mapUp': 'jmrUp',
     'mapDown': 'jmrDown',
-    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in qqhAC+gghAC)),
+    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in qqhAC+gghAC),
     'AsLnN': '1'
 }
 nuisances['mV_jesTotal'] = {
@@ -180,7 +180,7 @@ nuisances['mV_jesTotal'] = {
     'auxname': 'FatJet_msoftdrop',
     'mapUp' : 'jesTotalUp',
     'mapDown': 'jesTotalDown',
-    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in qqhAC+gghAC)),
+    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in qqhAC+gghAC),
     'AsLnN': '1'
 }
 
@@ -191,7 +191,7 @@ nuisances['mV_jer'] = {
     'auxname': 'FatJet_msoftdrop',
     'mapUp' : 'jerUp',
     'mapDown': 'jerDown',
-    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in qqhAC+gghAC)),
+    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in qqhAC+gghAC),
     'AsLnN': '1'
 }
 
@@ -276,7 +276,7 @@ nuisances['eff_e'] = {
     'kind': 'weight',
     'type': 'shape',
     'samples': dict((skey, ['SFweightEleUp', 'SFweightEleDown']) for skey in mc_emb),
-    'cuts': [cut for cut in cuts if not ('_CR_' in cut or 'top' in cut or 'dytt' in cut)],
+    'cuts': [cut for cut in cuts if not ('_CR_' in cut or 'top' in cut or 'dytt' in cut or 'WW' in cut)],
     'perRecoBin': True
 }
 
@@ -285,7 +285,7 @@ nuisances['eff_e_CR'] = {
     'kind': 'weight',
     'type': 'shape',
     'samples': dict((skey, ['SFweightEleUp', 'SFweightEleDown']) for skey in mc_emb),
-    'cuts': [cut for cut in cuts if '_CR_' in cut or 'top' in cut or 'dytt' in cut],
+    'cuts': [cut for cut in cuts if '_CR_' in cut or 'top' in cut or 'dytt' in cut or 'WW' in cut],
     'perRecoBin': True
 }
 
@@ -333,7 +333,7 @@ nuisances['eff_m'] = {
     'type': 'shape',
     # 'samples': dict((skey, ['ttHMVA_2l_mu_SF_Up', 'ttHMVA_2l_mu_SF_Down']) for skey in mc_emb)
     'samples': dict((skey, ['SFweightMuUp', 'SFweightMuDown']) for skey in mc_emb),
-    'cuts': [cut for cut in cuts if not ('_CR_' in cut or 'top' in cut or 'dytt' in cut)],
+    'cuts': [cut for cut in cuts if not ('_CR_' in cut or 'top' in cut or 'dytt' in cut or 'WW' in cut)],
     'perRecoBin': True
 }
 
@@ -343,7 +343,7 @@ nuisances['eff_m'] = {
     'type': 'shape',
     # 'samples': dict((skey, ['ttHMVA_2l_mu_SF_Up', 'ttHMVA_2l_mu_SF_Down']) for skey in mc_emb)
     'samples': dict((skey, ['SFweightMuUp', 'SFweightMuDown']) for skey in mc_emb),
-    'cuts': [cut for cut in cuts if '_CR_' in cut or 'top' in cut or 'dytt' in cut],
+    'cuts': [cut for cut in cuts if '_CR_' in cut or 'top' in cut or 'dytt' in cut or 'WW' in cut],
     'perRecoBin': True
 }
 
@@ -1132,4 +1132,3 @@ for n in nuisances.values():
     n['skipCMS'] = 1
 
 print ' '.join(nuis['name'] for nname, nuis in nuisances.iteritems() if nname not in ('lumi', 'stat'))
-

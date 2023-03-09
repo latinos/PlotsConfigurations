@@ -79,18 +79,18 @@ groupPlot['HSM']  = {
                   'isSignal' : 2,
                   'color': 632,
                   'scale'    : scale,
-                  'samples'  : ['H0PM','ZH_H0PM','WH_H0PM','VBF_H0PM','ggH_htt','qqH_htt','ZH_htt','WH_htt', 'GGHjj_H0PM']
+                  'samples'  : ['H0PM','ZH_H0PM','WH_H0PM','VBF_H0PM','ggH_htt','qqH_htt','ZH_htt','WH_htt']
               }
 #                  'samples'  : ['H0PM','ZH_H0PM','WH_H0PM','VBF_H0PM','ggH_htt','ZH_htt','WH_htt']
-'''
-groupPlot['HBSM']  = {
+
+groupPlot['H0L1']  = {
                   'nameHR' : 'ggF+VBF+VH 0^{-}',
                   'isSignal' : 1,
                   'color': 1,
                   'scale'    : scale,
                   'samples'  : ['H0M','ZH_H0M','WH_H0M','VBF_H0M', 'GGHjj_H0M']
               }
-
+'''
 groupPlot['HBSM2']  = {
                   'nameHR' : 'ggF+VBF+VH 0^{+}',
                   'isSignal' : 2,
@@ -98,7 +98,7 @@ groupPlot['HBSM2']  = {
                   'scale'    : scale,
                   'samples'  : ['H0PH','ZH_H0PH','WH_H0PH','VBF_H0PH']
               }
-'''
+
 groupPlot['HBSM3']  = {
                   'nameHR' : 'ggF+VBF+VH 0^{#Lambda_{1}}',
                   'isSignal' : 2,
@@ -106,7 +106,7 @@ groupPlot['HBSM3']  = {
 		  'scale'    : scale,
                   'samples'  : ['H0L1','ZH_H0L1','WH_H0L1','VBF_H0L1']
               }
-'''
+
 groupPlot['HBSM3']  = {
                   'nameHR' : 'ggF+VBF+VH 0^{#Lambda_{1}}',
                   'isSignal' : 2,
@@ -539,7 +539,7 @@ plot['DATA']  = {
                   'color': 1 ,  
                   'isSignal' : 0,
                   'isData'   : 1 ,
-                  'isBlind'  : 1
+                  'isBlind'  : 0
               }
 
 

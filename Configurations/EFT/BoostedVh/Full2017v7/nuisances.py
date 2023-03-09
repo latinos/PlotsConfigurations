@@ -159,7 +159,7 @@ nuisances['mV_jms'] = {
     'auxname': 'FatJet_msoftdrop',
     'mapUp' : 'jmsUp',
     'mapDown': 'jmsDown',
-    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in qqhAC+gghAC)),
+    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in qqhAC+gghAC),
     'AsLnN': '1'
 }
 nuisances['mV_jmr'] = {
@@ -169,7 +169,7 @@ nuisances['mV_jmr'] = {
     'auxname': 'FatJet_msoftdrop',
     'mapUp': 'jmrUp',
     'mapDown': 'jmrDown',
-    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in qqhAC+gghAC)),
+    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in qqhAC+gghAC),
     'AsLnN': '1'
 }
 
@@ -180,7 +180,7 @@ nuisances['mV_jesTotal'] = {
     'auxname': 'FatJet_msoftdrop',
     'mapUp' : 'jesTotalUp',
     'mapDown': 'jesTotalDown',
-    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in qqhAC+gghAC)),
+    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in qqhAC+gghAC),
     'AsLnN': '1'
 }
 
@@ -191,7 +191,7 @@ nuisances['mV_jer'] = {
     'auxname': 'FatJet_msoftdrop',
     'mapUp' : 'jerUp',
     'mapDown': 'jerDown',
-    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in qqhAC+gghAC)),
+    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in qqhAC+gghAC),
     'AsLnN': '1'
 }
 
