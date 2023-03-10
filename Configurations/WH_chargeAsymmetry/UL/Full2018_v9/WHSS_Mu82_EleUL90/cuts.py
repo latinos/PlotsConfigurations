@@ -8,44 +8,44 @@ supercut = 'mll>12  \
             && PuppiMET_pt > 30 \
             '
 
-# Inclusive in sub-leading lepton pT 
-####################################
+# # Inclusive in sub-leading lepton pT 
+# ####################################
 
-cuts['hww2l2v_13TeV_WH_SS'] = {
-    'expr' : 'nLepton==2 && Alt$(CleanJet_pt[0],0)>30 && abs(Lepton_eta[0] - Lepton_eta[1])<2.0 && abs(mll-91.2)>15 && mlljj20_whss > 50.',
-    'categories' : {
-        # mm_2j
-        'mm_2j_plus_incl'  : 'Alt$(CleanJet_pt[1],0)>30 && Lepton_pdgId[0] == -13 && Lepton_pdgId[1] == -13 && mjj < 100',
-        'mm_2j_minus_incl' : 'Alt$(CleanJet_pt[1],0)>30 && Lepton_pdgId[0] == +13 && Lepton_pdgId[1] == +13 && mjj < 100',
-        # em_2j
-        'em_2j_plus_incl'  : 'Alt$(CleanJet_pt[1],0)>30 && ((Lepton_pdgId[0] == -13 && Lepton_pdgId[1] == -11) || (Lepton_pdgId[0] == -11 && Lepton_pdgId[1] == -13)) && mjj < 100',
-        'em_2j_minus_incl' : 'Alt$(CleanJet_pt[1],0)>30 && ((Lepton_pdgId[0] == +13 && Lepton_pdgId[1] == +11) || (Lepton_pdgId[0] == +11 && Lepton_pdgId[1] == +13)) && mjj < 100',
-        # ee_2j
-        'ee_2j_plus_incl'  : 'Alt$(CleanJet_pt[1],0)>30 && Lepton_pdgId[0] == -11 && Lepton_pdgId[1] == -11 && mjj < 100',
-        'ee_2j_minus_incl' : 'Alt$(CleanJet_pt[1],0)>30 && Lepton_pdgId[0] == +11 && Lepton_pdgId[1] == +11 && mjj < 100',
-        # mm_1j
-        'mm_1j_plus_incl'  : 'Alt$(CleanJet_pt[1],0)<30 && Lepton_pdgId[0] == -13 && Lepton_pdgId[1] == -13',
-        'mm_1j_minus_incl' : 'Alt$(CleanJet_pt[1],0)<30 && Lepton_pdgId[0] == +13 && Lepton_pdgId[1] == +13',
-        # em_1j
-        'em_1j_plus_incl'  : 'Alt$(CleanJet_pt[1],0)<30 && ((Lepton_pdgId[0] == -13 && Lepton_pdgId[1] == -11) || (Lepton_pdgId[0] == -11 && Lepton_pdgId[1] == -13))',
-        'em_1j_minus_incl' : 'Alt$(CleanJet_pt[1],0)<30 && ((Lepton_pdgId[0] == +13 && Lepton_pdgId[1] == +11) || (Lepton_pdgId[0] == +11 && Lepton_pdgId[1] == +13))',
-        # ee_1j
-        'ee_1j_plus_incl'  : 'Alt$(CleanJet_pt[1],0)<30 && Lepton_pdgId[0] == -11 && Lepton_pdgId[1] == -11',
-        'ee_1j_minus_incl' : 'Alt$(CleanJet_pt[1],0)<30 && Lepton_pdgId[0] == +11 && Lepton_pdgId[1] == +11',
-    }
-}
+# cuts['hww2l2v_13TeV_WH_SS'] = {
+#     'expr' : 'nLepton==2 && Alt$(CleanJet_pt[0],0)>30 && abs(Lepton_eta[0] - Lepton_eta[1])<2.0 && abs(mll-91.2)>15 && mlljj20_whss > 50.',
+#     'categories' : {
+#         # mm_2j
+#         'mm_2j_plus_incl'  : 'Alt$(CleanJet_pt[1],0)>30 && Lepton_pdgId[0] == -13 && Lepton_pdgId[1] == -13 && mjj < 100',
+#         'mm_2j_minus_incl' : 'Alt$(CleanJet_pt[1],0)>30 && Lepton_pdgId[0] == +13 && Lepton_pdgId[1] == +13 && mjj < 100',
+#         # em_2j
+#         'em_2j_plus_incl'  : 'Alt$(CleanJet_pt[1],0)>30 && ((Lepton_pdgId[0] == -13 && Lepton_pdgId[1] == -11) || (Lepton_pdgId[0] == -11 && Lepton_pdgId[1] == -13)) && mjj < 100',
+#         'em_2j_minus_incl' : 'Alt$(CleanJet_pt[1],0)>30 && ((Lepton_pdgId[0] == +13 && Lepton_pdgId[1] == +11) || (Lepton_pdgId[0] == +11 && Lepton_pdgId[1] == +13)) && mjj < 100',
+#         # ee_2j
+#         'ee_2j_plus_incl'  : 'Alt$(CleanJet_pt[1],0)>30 && Lepton_pdgId[0] == -11 && Lepton_pdgId[1] == -11 && mjj < 100',
+#         'ee_2j_minus_incl' : 'Alt$(CleanJet_pt[1],0)>30 && Lepton_pdgId[0] == +11 && Lepton_pdgId[1] == +11 && mjj < 100',
+#         # mm_1j
+#         'mm_1j_plus_incl'  : 'Alt$(CleanJet_pt[1],0)<30 && Lepton_pdgId[0] == -13 && Lepton_pdgId[1] == -13',
+#         'mm_1j_minus_incl' : 'Alt$(CleanJet_pt[1],0)<30 && Lepton_pdgId[0] == +13 && Lepton_pdgId[1] == +13',
+#         # em_1j
+#         'em_1j_plus_incl'  : 'Alt$(CleanJet_pt[1],0)<30 && ((Lepton_pdgId[0] == -13 && Lepton_pdgId[1] == -11) || (Lepton_pdgId[0] == -11 && Lepton_pdgId[1] == -13))',
+#         'em_1j_minus_incl' : 'Alt$(CleanJet_pt[1],0)<30 && ((Lepton_pdgId[0] == +13 && Lepton_pdgId[1] == +11) || (Lepton_pdgId[0] == +11 && Lepton_pdgId[1] == +13))',
+#         # ee_1j
+#         'ee_1j_plus_incl'  : 'Alt$(CleanJet_pt[1],0)<30 && Lepton_pdgId[0] == -11 && Lepton_pdgId[1] == -11',
+#         'ee_1j_minus_incl' : 'Alt$(CleanJet_pt[1],0)<30 && Lepton_pdgId[0] == +11 && Lepton_pdgId[1] == +11',
+#     }
+# }
 
-cuts['hww2l2v_13TeV_WH_SS_noZveto'] = {
-    'expr' : 'nLepton==2 && Alt$(CleanJet_pt[0],0)>30 && abs(Lepton_eta[0] - Lepton_eta[1])<2.0 && mlljj20_whss > 50.',
-    'categories' : {
-        # mm_2j
-        'mm_2j_plus_incl'  : 'Alt$(CleanJet_pt[1],0)>30 && Lepton_pdgId[0] == -13 && Lepton_pdgId[1] == -13 && mjj < 100',
-        'mm_2j_minus_incl' : 'Alt$(CleanJet_pt[1],0)>30 && Lepton_pdgId[0] == +13 && Lepton_pdgId[1] == +13 && mjj < 100',
-        # mm_1j
-        'mm_1j_plus_incl'  : 'Alt$(CleanJet_pt[1],0)<30 && Lepton_pdgId[0] == -13 && Lepton_pdgId[1] == -13',
-        'mm_1j_minus_incl' : 'Alt$(CleanJet_pt[1],0)<30 && Lepton_pdgId[0] == +13 && Lepton_pdgId[1] == +13',
-    }
-}
+# cuts['hww2l2v_13TeV_WH_SS_noZveto'] = {
+#     'expr' : 'nLepton==2 && Alt$(CleanJet_pt[0],0)>30 && abs(Lepton_eta[0] - Lepton_eta[1])<2.0 && mlljj20_whss > 50.',
+#     'categories' : {
+#         # mm_2j
+#         'mm_2j_plus_incl'  : 'Alt$(CleanJet_pt[1],0)>30 && Lepton_pdgId[0] == -13 && Lepton_pdgId[1] == -13 && mjj < 100',
+#         'mm_2j_minus_incl' : 'Alt$(CleanJet_pt[1],0)>30 && Lepton_pdgId[0] == +13 && Lepton_pdgId[1] == +13 && mjj < 100',
+#         # mm_1j
+#         'mm_1j_plus_incl'  : 'Alt$(CleanJet_pt[1],0)<30 && Lepton_pdgId[0] == -13 && Lepton_pdgId[1] == -13',
+#         'mm_1j_minus_incl' : 'Alt$(CleanJet_pt[1],0)<30 && Lepton_pdgId[0] == +13 && Lepton_pdgId[1] == +13',
+#     }
+# }
 
 # Splitting in sub-leading lepton pT 
 ####################################
