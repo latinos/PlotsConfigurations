@@ -19,7 +19,7 @@ mc = [skey for skey in samples if skey not in ('FAKE', 'DATA')]
 
 eleWP    = 'mva_90p_Iso2016'
 muWP     = 'cut_Tight80x'
-'''
+
 aliases['DNN_isVBF_OTF'] = {
     'class': 'DNNprodSemi',
     'linesToAdd':[
@@ -43,7 +43,6 @@ aliases['btagJetPt_boost'] = {
     'class': 'BtagJetPt',
     'args': ('boosted', '2016')
 }
-
 
 aliases['mjjGen_OTF'] = {
     'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/HighMass/HMvars_mjjgen.cc+' % os.getenv('CMSSW_BASE')],
@@ -244,7 +243,7 @@ aliases['GenLHE'] = {
 }
 
 
-aliases['mV'] = { 'expr': 'FatJet_msoftdrop[CleanFatJet_jetIdx[0]]'}
+
 
 # # B-Stuff
 vetoThreshold = 20
@@ -266,28 +265,12 @@ bTagResolved = '(Sum$(Jet_btagDeepB[CleanJet_jetIdx] > bWP[0] && {0}) == 0)'\
                 .format(resolvedJetBVetoCondition)
 
 bTemplate = '((boosted[0]*{0}) || (resolved[0]*{1}))'.format(bTagBoosted, bTagResolved)
-'''
+
 aliases['bVeto'] = {
     'expr': bTemplate.format(threshold=vetoThreshold)
 }
 aliases['bReq'] = {
     'expr': '!'+bTemplate.format(threshold=reqThreshold)
-}
-'''
-# B tagging
-
-aliases['bVeto'] = {
-    'expr': 'Sum$(CleanJet_pt > 20. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.1522) == 0'
-}
-
-aliases['bReq'] = {
-    'expr': 'Sum$(CleanJet_pt > 30. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.1522) >= 1'
-}
-
-# CR definitions
-
-aliases['topcr'] = {
-    'expr': 'mtw2>30 && mll>50 && ((zeroJet && !bVeto) || bReq)'
 }
 
 bSF = 'TMath::Exp(Sum$(TMath::Log( \
@@ -577,6 +560,9 @@ aliases['DY_LO_pTllrw'] = {
 }
 
 
+
+
+
 mc_sbi = [skey for skey in samples if "SBI" in skey]
 aliases['SBI_isSMggh'] = {
     'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/isSample.cc+' % os.getenv('CMSSW_BASE')],
@@ -602,67 +588,3 @@ aliases['SBI_isHM'] = {
     'expr': '( !SBI_isSMggh && !SBI_isSMVBF && !SBI_isggWW && !SBI_isqqWWqq )',
     'samples': mc_sbi
 }
-
-'''
-# Constants as a function of hm (c = VBF Vs QCD, g = SM Vs BSM)
-cons = [
-    'CVBF','CWH','CZH',
-    'G4VBF','G4WH','G4ZH','G4VH',
-    'G2VBF','G2WH','G2ZH','G2VH',
-    'L1VBF','L1WH','L1ZH',
-]
-
-for con in cons:
-    aliases[con] = {
-    'linesToAdd': ['.L %s/EFT/VBF/Tools/getconstant.cc+' % configurations ],
-    'class': 'GetConstant',
-    'args': (con,),
-}
-
-##Including matrix elements on the fly (LOURDES)
-
-mes_WH = ['me_Wh_hsm', 'me_Wh_hm', 'me_Wh_hp', 'me_Wh_hl', 'me_Wh_mixhm', 'me_Wh_mixhp', 'me_Wh_mixhl', 'pjjSm_Wh', 'pjjTr_Wh']
-
-#mes_WH = ['me_Wh_hsm', 'me_Wh_hm', 'me_Wh_hp', 'me_Wh_hl', 'me_Wh_mixhm', 'me_Wh_mixhp', 'me_Wh_mixhl', 'pjjSm_Wh', 'pjjTr_Wh']
-
-mes_ZH = ['me_Zh_hsm', 'me_Zh_hm', 'me_Zh_hp', 'me_Zh_hl', 'me_Zh_mixhm', 'me_Zh_mixhp','me_Zh_mixhl', 'pjjSm_Zh', 'pjjTr_Zh']
-
-#mes_WH = ['me_Wh_hsm_lou']
-#mes_ZH = ['me_Zh_hsm_lou']
-for me in mes_WH+mes_ZH:
-    aliases[me]={
-    'linesToAdd': [
-    'gSystem->Load("%s/src/ZZMatrixElement/MELA/data/%s/libmcfm_707.so","", kTRUE);'%(os.getenv('CMSSW_BASE'), os.getenv('SCRAM_ARCH')),
-    'gSystem->Load("libZZMatrixElementMELA.so","", kTRUE);',
-    '.L %s/patches/RecoLevelME_patch.cc+' % configurations],
-    'class': 'RecoLevelME',
-    'args': (me,)
-    }
-# RecoLevel Boosted VH KDs
-
-aliases['pjj_Wh'] = { 'expr':'pjjSm_Wh/pjjTr_Wh' }
-aliases['pjj_Zh'] = { 'expr':'pjjSm_Zh/pjjTr_Zh' }
-
-aliases['kd_Wh_hm']    = { 'expr': '1/(1+(me_Wh_hsm/(me_Wh_hm*G4WH**2)))' }
-aliases['kd_Zh_hm']    = { 'expr': '1/(1+(me_Zh_hsm/(me_Zh_hm*G4ZH**2)))' }
-aliases['kd_Vh_hm']    = { 'expr': 'max(kd_Wh_hm, kd_Zh_hm)' }
-
-aliases['kd_Wh_hp']    = { 'expr': '1/(1+(me_Wh_hsm/(me_Wh_hp*G2WH**2)))' }
-aliases['kd_Zh_hp']    = { 'expr': '1/(1+(me_Zh_hsm/(me_Zh_hp*G2ZH**2)))' }
-aliases['kd_Vh_hp']    = { 'expr': 'max(kd_Wh_hp, kd_Zh_hp)' }
-
-aliases['kd_Wh_hl']    = { 'expr': '1/(1+(me_Wh_hsm/(me_Wh_hl*L1WH**2)))' }
-aliases['kd_Zh_hl']    = { 'expr': '1/(1+(me_Zh_hsm/(me_Zh_hl*L1ZH**2)))' }
-aliases['kd_Vh_hl']    = { 'expr': 'max(kd_Wh_hl, kd_Zh_hl)' }
-
-aliases['me_Vh_hsm']    = { 'expr': '(me_Wh_hsm/meAvg_wh) + (me_Zh_hsm/meAvg_zh)' }
-aliases['me_Vh_hm']     = { 'expr': '(me_Wh_hm/meAvg_wh) + (me_Zh_hm/meAvg_zh)' }
-aliases['me_Vh_mixhm']  = { 'expr': '((me_Wh_mixhm - me_Wh_hsm - me_Wh_hm)/meAvg_wh) + ((me_Zh_mixhm - me_Zh_hsm - me_Zh_hm)/meAvg_zh)' }
-aliases['kd_Vh_mixhm'] = { 'expr': '(me_Vh_mixhm*G4VH) / (me_Vh_hsm + (me_Vh_hm*G4VH**2))' }
-
-aliases['me_Vh_hp']     = { 'expr': '(me_Wh_hp/meAvg_wh) + (me_Zh_hp/meAvg_zh)' }
-aliases['me_Vh_mixhp']  = { 'expr': '((me_Wh_mixhp - me_Wh_hsm - me_Wh_hp)/meAvg_wh) + ((me_Zh_mixhp - me_Zh_hsm - me_Zh_hp)/meAvg_zh)' }
-aliases['kd_Vh_mixhp'] = { 'expr': '(me_Vh_mixhp*G2VH) / (me_Vh_hsm + (me_Vh_hp*G2VH**2))' }
-
-# Constants as a function of hm (c = VBF Vs QCD, g = SM Vs BSM)
-

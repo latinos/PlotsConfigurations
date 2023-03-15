@@ -1,1 +1,0 @@
-/afs/cern.ch/work/l/lurda/CMS/ACHWW/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/patches/Samples/2016/Data/DATAl1loose2016v7_l2loose_l2tightOR2016v7/

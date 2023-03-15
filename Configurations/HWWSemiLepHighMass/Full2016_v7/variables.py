@@ -1,7 +1,7 @@
 # # variables
 #
 # variables = {}
-'''
+
 controlRegions = set(x for x in cuts if 'SB' in x or 'TopCR' in x)
 hmSR  = set(x for x in cuts if 'HMSR' in x)
 boostedSR   = set(x for x in cuts if 'BoostedSR' in x)
@@ -18,7 +18,7 @@ variables['events']  = {
     'fold' : 3,
     'cuts' : controlRegions
 }
-'''
+
 
 #####################################################
 ############  High Mass category ideas  #############
@@ -92,12 +92,12 @@ variables['events']  = {
 ######################  MET  ########################
 #####################################################
 
-variables['met_pt'] = {
-     'name' : 'PuppiMET_pt',
-     'range': (25,0,400),
-     'xaxis': 'MET [GeV]',
-     'fold' : 3
-}
+# variables['met_pt'] = {
+#     'name' : 'PuppiMET_pt',
+#     'range': (25,0,400),
+#     'xaxis': 'MET [GeV]',
+#     'fold' : 3
+# }
 # variables['met_phi'] = {
 #     'name' : 'PuppiMET_phi',
 #     'range': (12, -3.142, 3.142),
@@ -147,7 +147,7 @@ variables['met_pt'] = {
 #####################################################
 #############  High Mass HWW variables  ############
 #####################################################
-'''
+
 variables['resolvHiggsMass'] = {
     'name' : 'HM_Hlnjj_mass',
     # 'range': ([0, 200, 250, 300, 350, 400, 450, 500, 550, 600,
@@ -226,6 +226,8 @@ variables['HM_Wlep_mt'] = {
     'fold': 3,
     'cuts': resolved,
 }
+
+
 
 # variables['resolv_btagPt'] = {
 #     'name': 'btagJetPt_resolv[0]',
@@ -331,33 +333,15 @@ variables['HM_Wlep_mt'] = {
 #     'fold' : 3
 # }
 
-variables['nCleanJet'] = {
-     'name' : 'nCleanJet',
-     'range': ([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],),
-     'xaxis': 'nCleanJet',
-     'fold' : 3
-}
-variables['nCleanFatJet'] = {
-     'name' : 'nCleanFatJet',
-     'range': ([0, 1, 2, 3, 4, 5],),
-     'xaxis': 'nCleanFatJet',
-     'fold' : 3
-}
-
-variables['FatJet_msoftdrop'] = {'name' : 'FatJet_msoftdrop',
-                            'range' : (40, 50, 120),
-                            'xaxis' : 'FatJet_msoftdrop',
-                            'fold' : 3
-}
-variables['FatJet_pt'] = {'name' : 'FatJet_pt',
-                            'range' : (200, 200, 1000),
-                            'xaxis' : 'FatJet_pt',
-                            'fold' : 3
-}
-variables['mV'] = { 'name' : 'mV[0]',
-                     'range': (20,40,200),
-                     'xaxis': 'm_{V}',
-                     'fold' : 3
-}
-
-
+# variables['nCleanJet'] = {
+#     'name' : 'nCleanJet',
+#     'range': ([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],),
+#     'xaxis': 'nCleanJet',
+#     'fold' : 3
+# }
+# variables['nCleanFatJet'] = {
+#     'name' : 'nCleanFatJet',
+#     'range': ([0, 1, 2, 3, 4, 5],),
+#     'xaxis': 'nCleanFatJet',
+#     'fold' : 3
+# }
