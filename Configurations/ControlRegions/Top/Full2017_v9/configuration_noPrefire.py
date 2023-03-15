@@ -2,10 +2,10 @@
 
 treeName = 'Events'
 
-tag = 'Top_2017_v9_noJERinHorn'
+tag = 'Top_2017_v9_noPrefire'
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFile_noJERinHorn'
+outputDir = 'rootFile_noPrefire'
 
 # file with TTree aliases
 aliasesFile = 'aliases.py'
@@ -17,10 +17,10 @@ variablesFile = 'variables.py'
 cutsFile = 'cuts.py' 
 
 # file with list of samples
-samplesFile = 'samples_noJERinHorn.py'
+samplesFile = 'samples_noPrefire.py' 
 
 # file with list of samples
-plotFile = 'plot_TTonly.py' 
+plotFile = 'plot.py' 
 
 # luminosity to normalize to (in 1/fb)
 # https://github.com/latinos/LatinoAnalysis/blob/UL_production/NanoGardener/python/data/TrigMaker_cfg.py#L514 (519, 589, 660, 729, 798)
