@@ -25,6 +25,7 @@ def addcut(name, exprs):
 
 slist_njsignal = [sname for sname in samples if sname not in signals]
 for sname in signals:
+    if sname not in samples.keys(): continue
     sample = samples[sname]
     for bname in sample['subsamples']:
         if re.match('.*NJ_.*', bname):
@@ -32,6 +33,7 @@ for sname in signals:
 
 slist_pthsignal = [sname for sname in samples if sname not in signals]
 for sname in signals:
+    if sname not in samples.keys(): continue
     sample = samples[sname]
     for bname in sample['subsamples']:
         if re.match('.*PTH_.*', bname):

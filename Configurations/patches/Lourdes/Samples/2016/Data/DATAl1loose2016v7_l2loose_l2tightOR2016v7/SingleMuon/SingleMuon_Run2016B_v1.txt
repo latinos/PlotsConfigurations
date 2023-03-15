@@ -1,2 +1,0 @@
-/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Run2016_102X_nAODv7_Full2016v7/DATAl1loose2016v7__l2loose__l2tightOR2016v7/nanoLatino_SingleMuon_Run2016B-02Apr2020_ver1-v1__part
-5

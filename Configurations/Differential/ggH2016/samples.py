@@ -153,7 +153,7 @@ addSampleWeight(samples,'top','TTTo2L2Nu','Top_pTrw')
 samples['WW'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'WWTo2L2Nu'),
     #'weight': mcCommonWeight + '*nllW', # temporary - nllW module not run on PS and UE variation samples
-    'weight': mcCommonWeight + '*nllWOTF', # temporary
+    'weight': mcCommonWeight + '*nllWOTF*qq2vvOTF', # temporary
     'FilesPerJob': 1
 }
 
@@ -384,7 +384,6 @@ for sname, tname in [('WW', 'WWTo2L2Nu'), ('ggH_hww', 'GluGluHToWWTo2L2NuPowheg_
 
         if sname in signals:
             signals.append(ssname)
-
 for sname in signals:
   sample = samples[sname]
   sample['subsamples'] = {}

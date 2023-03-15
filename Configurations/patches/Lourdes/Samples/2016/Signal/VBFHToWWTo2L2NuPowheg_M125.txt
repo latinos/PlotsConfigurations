@@ -1,2 +1,0 @@
-/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Summer16_102X_nAODv7_Full2016v7/MCl1loose2016v7__MCCorr2016v7__l2loose__l2tightOR2016v7/nanoLatino_VBFHToWWTo2L2NuPowheg_M125__part
-3
