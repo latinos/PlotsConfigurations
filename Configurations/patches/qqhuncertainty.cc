@@ -292,7 +292,7 @@ void print_bigtable(bool relative=true){
 // correlation matrix
 double _cov(int ibin, int jbin) {
   double cov_ij=0;
-  for (int is=0; is < uncert_deltas.size(); ++is)
+  for (unsigned int is=0; is < uncert_deltas.size(); ++is)
     cov_ij+=(vbf_uncert_stage_1_1(is,ibin)-1)*(vbf_uncert_stage_1_1(is,jbin)-1)*hjets_xsec[ibin]*hjets_xsec[jbin];
   return cov_ij;
 }

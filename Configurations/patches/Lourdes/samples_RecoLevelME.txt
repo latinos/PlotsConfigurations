@@ -1,0 +1,13 @@
+#DATA
+/afs/cern.ch/work/l/lurda/CMS/ACHWW/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/patches/Samples/2016/Data/DATAl1loose2016v7_l2loose_l2tightOR2016v7/
+
+#SIGNAL
+/afs/cern.ch/work/l/lurda/CMS/ACHWW/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/patches/Samples/2016/Signal/VBF_H0PM_ToWWTo2L2Nu.txt
+/afs/cern.ch/work/l/lurda/CMS/ACHWW/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/patches/Samples/2016/Signal/VBF_H0M_ToWWTo2L2Nu.txt
+/afs/cern.ch/work/l/lurda/CMS/ACHWW/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/patches/Samples/2016/Signal/VBF_H0PH_ToWWTo2L2Nu.txt
+/afs/cern.ch/work/l/lurda/CMS/ACHWW/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/patches/Samples/2016/Signal/VBF_H0L1_ToWWTo2L2Nu.txt
+
+#BACKGROUND
+/afs/cern.ch/work/l/lurda/CMS/ACHWW/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/patches/Samples/2016/Background/DYJetsToLL_M-50-LO_ext1.txt
+/afs/cern.ch/work/l/lurda/CMS/ACHWW/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/patches/Samples/2016/Background/TTTo2L2Nu.txt
+/afs/cern.ch/work/l/lurda/CMS/ACHWW/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/patches/Samples/2016/Background/WWTo2L2Nu.txt

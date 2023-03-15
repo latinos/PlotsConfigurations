@@ -1,0 +1,100 @@
+
+JJH AC/EFT analysis
+==============
+
+-------Make samples.py config with all AC sample reweighting included :
+
+ python ../Tools/scripts/MakeSamplesConfig.py 2016
+ cp ../Tools/configs/samples.py .
+
+-------Produce shapes:
+
+ mkShapesMulti.py --pycfg=configuration.py --doBatch=1 --batchSplit=Samples,Files --batchQueue=tomorrow
+
+-------Resubmit failed jobs (condor_submit jds file) :
+
+ ls -alrth ../../../../../../../VBFHWW/jobs/mkShapes__JJH/mkShapes__JJH__ALL__*.jid | awk '{print "condor_submit " $9}'  | sed 's/jid/jds/'
+
+-------Add root files:
+
+ mkShapesMulti.py --pycfg=configuration.py --doHadd=1 --batchSplit=Samples,Files --doNotCleanup --nThreads=10
+
+-------Test reweighting of AC signals:
+
+ python ../Tools/scripts/TestSignalRW.py -b -l
+
+-------Make some plots:
+
+mkPlot.py -P ana/plot_cr.py --onlyCut=hww2l2v_13TeV_top_of2j --inputFile rootFileJJH/plots_JJH.root --showIntegralLegend 1 --fileFormats png,pdf --onlyPlot cratio --minLogCratio=0.1 --outputDirPlots=plotJJH/CR_Top/ 
+
+mkPlot.py -P ana/plot_cr.py --onlyCut=hww2l2v_13TeV_dytt_of2j --inputFile rootFileJJH/plots_JJH.root --showIntegralLegend 1 --fileFormats png,pdf --onlyPlot cratio --minLogCratio=0.1 --outputDirPlots=plotJJH/CR_DY/ 
+
+mkPlot.py -P ana/plot_hvv.py --onlyCut=hww2l2v_13TeV_of2j_vbf --inputFile rootFileJJH/plots_JJH.root --showIntegralLegend 1 --fileFormats png,pdf --onlyPlot cratio --minLogCratio=0.1 --outputDirPlots=plotJJH/HVV_VBF/ 
+
+mkPlot.py -P ana/plot_hvv.py --onlyCut=hww2l2v_13TeV_of2j_vh --inputFile rootFileJJH/plots_JJH.root --showIntegralLegend 1 --fileFormats png,pdf --onlyPlot cratio --minLogCratio=0.1 --outputDirPlots=plotJJH/HVV_VH/
+
+mkPlot.py -P ana/plot_hlzg.py --onlyCut=hww2l2v_13TeV_of2j_vbf --inputFile rootFileJJH/plots_JJH.root --showIntegralLegend 1 --fileFormats png,pdf --onlyPlot cratio --minLogCratio=0.1 --outputDirPlots=plotJJH/HLZg_VBF/ 
+
+mkPlot.py -P ana/plot_hlzg.py --onlyCut=hww2l2v_13TeV_of2j_vh --inputFile rootFileJJH/plots_JJH.root --showIntegralLegend 1 --fileFormats png,pdf --onlyPlot cratio --minLogCratio=0.1 --outputDirPlots=plotJJH/HLZg_VH/
+
+mkPlot.py -P ana/plot_hgg.py --onlyCut=hww2l2v_13TeV_of2j_ggh_t --inputFile rootFileJJH/plots_JJH.root --showIntegralLegend 1 --fileFormats png,pdf --onlyPlot cratio --minLogCratio=0.1 --outputDirPlots=plotJJH/HGG_T/
+
+mkPlot.py -P ana/plot_hgg.py --onlyCut=hww2l2v_13TeV_of2j_ggh_l --inputFile rootFileJJH/plots_JJH.root --showIntegralLegend 1 --fileFormats png,pdf --onlyPlot cratio --minLogCratio=0.1 --outputDirPlots=plotJJH/HGG_L/
+
+
+ ------Make analysis templates (T1-T5 for Ewk HVV, T1-T3 for ggH HVV, T1-T3 for HGG) for signal model:
+
+ python ../Tools/scripts/MakeAnaTemplates.py -b -l
+
+-------Make datacards for the HVV and HGG AC analysis :
+--- Add to mkDatacards line 88: if not os.path.isdir(outputDirDatacard + "/" + cutName) : (Makes the following a lot simpler!)
+
+ mkDatacards.py -S ana/samples_hvv.py -C ana/cuts_hvv.py -V ana/variables_hvv.py --nuisancesFile=ana/nuisances_ana.py --inputFile rootFileJJH/plots_JJH_AC.root --outputDirDatacard=datacards
+
+ mkDatacards.py -S ana/samples_hvv.py -C ana/cuts_hvv.py -V ana/variables_efthvv.py --nuisancesFile=ana/nuisances_ana.py --inputFile rootFileJJH/plots_JJH_AC.root --outputDirDatacard=datacards
+
+ mkDatacards.py -S ana/samples_hlzg.py -C ana/cuts_hlzg.py -V ana/variables_hlzg.py --nuisancesFile=ana/nuisances_ana.py --inputFile rootFileJJH/plots_JJH_AC.root --outputDirDatacard=datacards
+
+ mkDatacards.py -S ana/samples_hgg.py -C ana/cuts_hgg.py -V ana/variables_hgg.py --nuisancesFile=ana/nuisances_ana.py --inputFile rootFileJJH/plots_JJH_AC.root --outputDirDatacard=datacards
+
+-------Rebin Datacards :
+--Copy Scan/scripts/AutoRebin.cc to CombineHarvester/CombineTools/src/
+--Copy Scan/scripts/HWWACproc.py CombineHarvester/CombineTools/scripts/
+
+ HWWACproc.py hww2l2v_13TeV_of2j_vbf HVV_H0L1 
+ HWWACproc.py hww2l2v_13TeV_of2j_vbf HVV_H0L1 _2016_MCStatsOFF_set0
+ HWWACproc.py hww2l2v_13TeV_of2j_vbf HVV_H0LZg _2016_MCStatsOFF_set0
+ HWWACproc.py hww2l2v_13TeV_of2j_vbf_hmin HVV_H0M _2016_MCStatsOFF_set0
+ HWWACproc.py hww2l2v_13TeV_of2j_vbf_hmip HVV_H0M _2016_MCStatsOFF_set0
+ HWWACproc.py hww2l2v_13TeV_of2j_vbf_hpin HVV_H0PH _2016_MCStatsOFF_set0
+ HWWACproc.py hww2l2v_13TeV_of2j_vbf_hpip HVV_H0PH _2016_MCStatsOFF_set0
+
+ HWWACproc.py hww2l2v_13TeV_of2j_vh HVV_H0L1 _2016_MCStatsOFF_set0
+ HWWACproc.py hww2l2v_13TeV_of2j_vh HVV_H0LZg _2016_MCStatsOFF_set0
+ HWWACproc.py hww2l2v_13TeV_of2j_vh_hmin HVV_H0M _2016_MCStatsOFF_set0
+ HWWACproc.py hww2l2v_13TeV_of2j_vh_hmip HVV_H0M _2016_MCStatsOFF_set0
+ HWWACproc.py hww2l2v_13TeV_of2j_vh_hpin HVV_H0PH _2016_MCStatsOFF_set0
+ HWWACproc.py hww2l2v_13TeV_of2j_vh_hpip HVV_H0PH _2016_MCStatsOFF_set0
+
+ HWWACproc.py hww2l2v_13TeV_of2j_ggh_thmin HGG_H0M _2016_MCStatsOFF_set0
+ HWWACproc.py hww2l2v_13TeV_of2j_ggh_thmip HGG_H0M _2016_MCStatsOFF_set0
+ HWWACproc.py hww2l2v_13TeV_of2j_ggh_lhmin HGG_H0M _2016_MCStatsOFF_set0
+ HWWACproc.py hww2l2v_13TeV_of2j_ggh_lhmip HGG_H0M _2016_MCStatsOFF_set0
+
+ HWWACproc.py hww2l2v_13TeV_of2j_vbf HVV_EFTH0L1 _1
+ HWWACproc.py hww2l2v_13TeV_of2j_vbf_hmin HVV_EFTH0M _4
+ HWWACproc.py hww2l2v_13TeV_of2j_vbf_hmip HVV_EFTH0M _4
+ HWWACproc.py hww2l2v_13TeV_of2j_vbf_hpin HVV_EFTH0PH _4
+ HWWACproc.py hww2l2v_13TeV_of2j_vbf_hpip HVV_EFTH0PH _4
+
+ HWWACproc.py hww2l2v_13TeV_of2j_vh HVV_EFTH0L1 _4
+ HWWACproc.py hww2l2v_13TeV_of2j_vh_hmin HVV_EFTH0M _4
+ HWWACproc.py hww2l2v_13TeV_of2j_vh_hmip HVV_EFTH0M _4
+ HWWACproc.py hww2l2v_13TeV_of2j_vh_hpin HVV_EFTH0PH _4
+ HWWACproc.py hww2l2v_13TeV_of2j_vh_hpip HVV_EFTH0PH _4
+
+ HWWACproc.py hww2l2v_13TeV_of2j_ggh_thmin HGG_H0M _16_MCStatsOFF
+ HWWACproc.py hww2l2v_13TeV_of2j_ggh_thmip HGG_H0M _16_MCStatsOFF
+ HWWACproc.py hww2l2v_13TeV_of2j_ggh_lhmin HGG_H0M _16_MCStatsOFF
+ HWWACproc.py hww2l2v_13TeV_of2j_ggh_lhmip HGG_H0M _16_MCStatsOFF
+ 
