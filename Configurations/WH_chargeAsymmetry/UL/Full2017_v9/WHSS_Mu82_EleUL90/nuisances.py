@@ -146,7 +146,7 @@ nuisances['eff_e'] = {
 }
 
 # # nuisances['electronpt'] = {
-# #     'name': 'CMS_scale_e_2018',
+# #     'name': 'CMS_scale_e_2017',
 # #     'kind': 'suffix',
 # #     'type': 'shape',
 # #     'mapUp': 'ElepTup',
@@ -161,14 +161,14 @@ nuisances['eff_e'] = {
 ##### Muon Efficiency and energy scale
 
 nuisances['eff_m'] = {
-    'name': 'CMS_eff_m_2018',
+    'name': 'CMS_eff_m_2017',
     'kind': 'weight',
     'type': 'shape',
     'samples': dict((skey, ['SFweightMuUp', 'SFweightMuDown']) for skey in mc)
 }
 
 # # nuisances['muonpt'] = {
-# #     'name': 'CMS_scale_m_2018',
+# #     'name': 'CMS_scale_m_2017',
 # #     'kind': 'suffix',
 # #     'type': 'shape',
 # #     'mapUp': 'MupTup',
@@ -181,7 +181,7 @@ nuisances['eff_m'] = {
 
 
 # # ##### Jet energy scale
-# # jes_systs = ['JESAbsolute','JESAbsolute_2018','JESBBEC1','JESBBEC1_2018','JESEC2','JESEC2_2018','JESFlavorQCD','JESHF','JESHF_2018','JESRelativeBal','JESRelativeSample_2018']
+# # jes_systs = ['JESAbsolute','JESAbsolute_2017','JESBBEC1','JESBBEC1_2017','JESEC2','JESEC2_2017','JESFlavorQCD','JESHF','JESHF_2017','JESRelativeBal','JESRelativeSample_2017']
 
 # # for js in jes_systs:
 # #   if 'Absolute' in js:
@@ -215,10 +215,9 @@ nuisances['eff_m'] = {
 # #       'AsLnN': '1'
 # #   }
 
-
 # # ##### Jet energy resolution
 # # nuisances['JER'] = {
-# #     'name': 'CMS_res_j_2018',
+# #     'name': 'CMS_res_j_2017',
 # #     'kind': 'suffix',
 # #     'type': 'shape',
 # #     'mapUp': 'JERup',
@@ -229,12 +228,11 @@ nuisances['eff_m'] = {
 # #     'AsLnN': '1'
 # # }
 
-
 # ##### MET energy scale
 
 # # metUp.PuppiMET_pt_METup
 # nuisances['met'] = {
-#     'name'      : 'CMS_scale_met_2018',
+#     'name'      : 'CMS_scale_met_2017',
 #     'kind'      : 'suffix',
 #     'type'      : 'shape',
 #     'mapUp'     : 'METup',
@@ -248,9 +246,9 @@ nuisances['eff_m'] = {
 
 # ##### Pileup
 
-# puWeight_UL2018
+# puWeight_UL2017
 # nuisances['PU'] = {
-#     'name': 'CMS_PU_2018',
+#     'name': 'CMS_PU_2017',
 #     'kind': 'weight',
 #     'type': 'shape',
 #     'samples': {
@@ -269,7 +267,7 @@ nuisances['eff_m'] = {
 puid_syst = ['Jet_PUIDSF_loose_up/Jet_PUIDSF_loose', 'Jet_PUIDSF_loose_down/Jet_PUIDSF_loose']
 
 nuisances['jetPUID'] = {
-    'name': 'CMS_PUID_2018',
+    'name': 'CMS_PUID_2017',
     'kind': 'weight',
     'type': 'shape',
     'samples': dict((skey, puid_syst) for skey in mc)

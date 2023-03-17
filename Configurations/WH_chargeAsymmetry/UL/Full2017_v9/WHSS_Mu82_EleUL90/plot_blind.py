@@ -55,13 +55,6 @@ groupPlot['WZ']  = {
     'samples'  : ['WZ']
 }
 
-# groupPlot['Vg']  = {  
-#     'nameHR'   : "V#gamma",
-#     'isSignal' : 0,
-#     'color'    : 810,   # kOrange + 10
-#     'samples'  : ['Wg','Zg']
-# }
-
 groupPlot['Zg']  = {
     'nameHR' : "Z#gamma",
     'isSignal' : 0,
@@ -75,13 +68,6 @@ groupPlot['Wg']  = {
     'color'    : 859,
     'samples'  : ['Wg']
 }
-
-# groupPlot['VgS']  = {
-#     'nameHR'   : "V#gamma*",
-#     'isSignal' : 0,
-#     'color'    : 412,   # kGreen - 9
-#     'samples'  : ['ZgS','WgS']
-# }
 
 groupPlot['WgS']  = {
     'nameHR' : "W#gamma*",
@@ -350,5 +336,5 @@ plot['DATA']  = {
 
 # Additional options
 
-legend['lumi'] = 'L = 41.5/fb'
+legend['lumi'] = 'L = 41.5 fb^{-1}'
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
