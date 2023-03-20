@@ -18,15 +18,15 @@
 
 # Resubmit failed jobs
 
-    cd $HOME/cms/HWW2015/jobs/mkShapes__SS_2017_v9__ALL
+    pushd $HOME/cms/HWW2015/jobs/mkShapes__SS_2017_v9__ALL
     for i in */*jid; do condor_submit ${i/jid/jds}; done
-    cd -
+    popd
 
 If they failed because the wall clock time has been exceeded, resubmit them on a longer-time queue.
 
-    cd $HOME/cms/HWW2015/jobs/mkShapes__SS_2017_v9__ALL
+    pushd $HOME/cms/HWW2015/jobs/mkShapes__SS_2017_v9__ALL
     for i in */*jid; do sed -i "s/longlunch/workday/g" ${i/jid/jds}; condor_submit ${i/jid/jds}; done
-    cd -
+    popd
 
 # Group (hadd) histograms
 
