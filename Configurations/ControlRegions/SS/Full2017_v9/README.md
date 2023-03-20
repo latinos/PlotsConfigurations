@@ -1,4 +1,7 @@
-Distributions in a same-sign phase space using the Full 2017 Run 2 dataset.
+# Connect to GitHub with SSH
+
+    eval "$(ssh-agent -s)"
+    ssh-add ~/.ssh/id_ed25519
 
 # Produce a valid VOMS proxy
 
