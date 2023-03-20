@@ -42,11 +42,11 @@ Go into the `DY_OS_CR` directory and follow the instructions in the `README` fil
 
 Using DY->ee data-driven distributions:
 
-    mkDatacards.py --pycfg=configuration.py --inputFile=rootFile/plots_WHSS_2018_v7_chargeAsymmetry_DYflip.root --outputDirDatacard=datacards_DYflip --structureFile=structure_DYflip.py
+    mkDatacards.py --pycfg=configuration.py --inputFile=rootFile/plots_WHSS_2017_v7_chargeAsymmetry_DYflip.root --outputDirDatacard=datacards_DYflip --structureFile=structure_DYflip.py
 
 Using original distributions:
 
-    mkDatacards.py --pycfg=configuration.py --inputFile=rootFile/plots_WHSS_2018_v7_chargeAsymmetry.root --outputDirDatacard=datacards --structureFile=structure.py
+    mkDatacards.py --pycfg=configuration.py --inputFile=rootFile/plots_WHSS_2017_v9_chargeAsymmetry_Mu82_EleUL90.root --outputDirDatacard=datacards --structureFile=structure.py
 
 ### Combine datacards
 

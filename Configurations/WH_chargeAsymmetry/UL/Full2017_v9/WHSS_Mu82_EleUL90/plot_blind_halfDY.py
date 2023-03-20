@@ -114,7 +114,7 @@ plot['DY']  = {
     'color'    : 418,    # kGreen+2
     'isSignal' : 0,
     'isData'   : 0, 
-    'scale'    : 1.0,
+    'scale'    : 0.5,
 }
 
 plot['top'] = {   
@@ -330,7 +330,7 @@ plot['DATA']  = {
     'color'    : 1 ,  
     'isSignal' : 0,
     'isData'   : 1,
-    'isBlind'  : 0
+    'isBlind'  : 1
 }
 
 

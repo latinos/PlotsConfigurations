@@ -197,8 +197,6 @@ samples['Wg'] = {
     'weight': mcCommonWeightNoMatch + '*(Gen_ZGstar_mass <= 0)',
     'suppressNegative' :['all'],
     'suppressNegativeNuisances' :['all'],
-    'suppressNegative' :['all'],
-    'suppressNegativeNuisances' :['all'],
     'FilesPerJob': 4
 }
 
@@ -211,8 +209,6 @@ samples['Zg'] = {
     'weight': mcCommonWeightNoMatch + '*(Gen_ZGstar_mass <= 0)',
     'suppressNegative' :['all'],
     'suppressNegativeNuisances' :['all'],
-    'suppressNegative' :['all'],
-    'suppressNegativeNuisances' :['all'],
     'FilesPerJob': 4
 }
 # the following is needed in both v5 and v6 --> still needed in v9 ??
@@ -221,7 +217,7 @@ samples['Zg'] = {
 
 ######## WgS ######## 
 files = nanoGetSampleFiles(mcDirectory, 'Wg_AMCNLOFXFX_01J') + \
-        nanoGetSampleFiles(mcDirectory, 'WZTo3LNu_mllmin4p0') # WZTo3LNu_mllmin01_ext1
+        nanoGetSampleFiles(mcDirectory, 'WZTo3LNu_mllmin0p1')
 
 samples['WgS'] = {
     'name': files,
@@ -231,7 +227,7 @@ samples['WgS'] = {
     'FilesPerJob': 4,
 }
 addSampleWeight(samples, 'WgS', 'Wg_AMCNLOFXFX_01J',  '(Gen_ZGstar_mass > 0 && Gen_ZGstar_mass <= 4.0)')
-addSampleWeight(samples, 'WgS', 'WZTo3LNu_mllmin4p0', '(Gen_ZGstar_mass > 4.0)')
+addSampleWeight(samples, 'WgS', 'WZTo3LNu_mllmin0p1', '(Gen_ZGstar_mass > 0.1)*(0.601644*58.59/4.666)')
 
 
 ######## ZgS ########
@@ -248,7 +244,7 @@ addSampleWeight(samples, 'ZgS', 'ZGToLLG', '(Gen_ZGstar_mass > 0)*0.448')
 
 
 ############ WZ ############
-files = nanoGetSampleFiles(mcDirectory, 'WZTo3LNu_mllmin4p0') + \
+files = nanoGetSampleFiles(mcDirectory, 'WZTo3LNu_mllmin0p1') + \
         nanoGetSampleFiles(mcDirectory, 'WZTo2Q2L_mllmin4p0')
 
 samples['WZ'] = {
@@ -258,6 +254,7 @@ samples['WZ'] = {
     'suppressNegativeNuisances' :['all'],
     'FilesPerJob': 4
 }
+addSampleWeight(samples, 'WZ', 'WZTo3LNu_mllmin0p1', '(0.601644*58.59/4.666)')
 
 
 ############ ZZ ############
