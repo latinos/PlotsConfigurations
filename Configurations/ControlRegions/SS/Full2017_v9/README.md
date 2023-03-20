@@ -1,31 +1,35 @@
-# Same-sign Control Plots in 2017 UL
+Distributions in a same-sign phase space using the Full 2017 Run 2 dataset.
 
-Control plots in a same-sign phase space, using the Full 2017 Run 2 dataset.
+# Produce a valid VOMS proxy
 
-The instructions to produce the plots follow.
+    voms-proxy-init -voms cms -rfc --valid 168:0
+    cmsenv
 
-### Produce distributions using mkShapesMulti.py in batch mode
+# Produce histograms
 
     mkShapesMulti.py --pycfg=configuration.py --doBatch=1 --batchSplit=Samples,Files --batchQueue=testmatch
 
+# Check job status
+
+    condor_q
+
 Resubmit failed jobs.
 
-    cd $HOME/scripts/jobs/mkShapes__WW_2017_v9/
-    for i in *jid; do condor_submit ${i/jid/jds}; done
+    cd $HOME/cms/HWW2015/jobs/mkShapes__SS_2017_v9__ALL
+    for i in */*jid; do condor_submit ${i/jid/jds}; done
     cd -
 
-Or, if they failed because the wall clock time has been exceeded, resubmit them on a longer-time queue.
+If they failed because the wall clock time has been exceeded, resubmit them on a longer-time queue.
 
-    cd $HOME/scripts/jobs/mkShapes__WW_2017_v9/
+    cd $HOME/cms/HWW2015/jobs/mkShapes__SS_2017_v9__ALL
     for i in *jid; do sed -i "s/longlunch/workday/g" ${i/jid/jds}; condor_submit ${i/jid/jds}; done
     cd -
 
-### Merge rootfiles using hadd
+# Group (hadd) histograms
 
     mkShapesMulti.py --pycfg=configuration.py --doHadd=1 --batchSplit=Samples,Files --doNotCleanup --nThreads=8
 
-### Plot distributions
+# Draw distributions
 
     mkPlot.py --pycfg=configuration.py --inputFile=rootFile/plots_SS_2017_v9.root --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1 --minLogCratio=1
-
 
