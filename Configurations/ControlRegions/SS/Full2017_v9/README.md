@@ -16,7 +16,7 @@
 
     condor_q
 
-Resubmit failed jobs.
+# Resubmit failed jobs.
 
     cd $HOME/cms/HWW2015/jobs/mkShapes__SS_2017_v9__ALL
     for i in */*jid; do condor_submit ${i/jid/jds}; done
