@@ -1,31 +1,38 @@
-# Same-sign Control Plots in 2017 UL
+# Connect to GitHub with SSH
 
-Control plots in a same-sign phase space, using the Full 2017 Run 2 dataset.
+    eval "$(ssh-agent -s)"
+    ssh-add ~/.ssh/id_ed25519
 
-The instructions to produce the plots follow.
+# Produce a valid VOMS proxy
 
-### Produce distributions using mkShapesMulti.py in batch mode
+    voms-proxy-init -voms cms -rfc --valid 168:0
+    cmsenv
+
+# Produce histograms
 
     mkShapesMulti.py --pycfg=configuration.py --doBatch=1 --batchSplit=Samples,Files --batchQueue=testmatch
 
-Resubmit failed jobs.
+# Check job status
 
-    cd $HOME/scripts/jobs/mkShapes__WW_2017_v9/
-    for i in *jid; do condor_submit ${i/jid/jds}; done
-    cd -
+    condor_q
 
-Or, if they failed because the wall clock time has been exceeded, resubmit them on a longer-time queue.
+# Resubmit failed jobs
 
-    cd $HOME/scripts/jobs/mkShapes__WW_2017_v9/
-    for i in *jid; do sed -i "s/longlunch/workday/g" ${i/jid/jds}; condor_submit ${i/jid/jds}; done
-    cd -
+    pushd $HOME/cms/HWW2015/jobs/mkShapes__SS_2017_v9__ALL
+    for i in */*jid; do condor_submit ${i/jid/jds}; done
+    popd
 
-### Merge rootfiles using hadd
+If they failed because the wall clock time has been exceeded, resubmit them on a longer-time queue.
+
+    pushd $HOME/cms/HWW2015/jobs/mkShapes__SS_2017_v9__ALL
+    for i in */*jid; do sed -i "s/longlunch/workday/g" ${i/jid/jds}; condor_submit ${i/jid/jds}; done
+    popd
+
+# Group (hadd) histograms
 
     mkShapesMulti.py --pycfg=configuration.py --doHadd=1 --batchSplit=Samples,Files --doNotCleanup --nThreads=8
 
-### Plot distributions
+# Draw distributions
 
     mkPlot.py --pycfg=configuration.py --inputFile=rootFile/plots_SS_2017_v9.root --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1 --minLogCratio=1
-
 
