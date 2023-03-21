@@ -41,6 +41,8 @@ nuisances = ""
 if opt.freeze_nuisances == "True" or opt.freeze_nuisances == "1":
     nuisances = "--freezeParameters lumi_13TeV_2018,lumi_13TeV_XYFact,lumi_13TeV_CurrCalib,lumi_13TeV_LSCale,CMS_fake_syst_mm,CMS_fake_syst_em,CMS_fake_e_2018,CMS_fake_stat_e_2018,CMS_fake_m_2018,CMS_fake_stat_m_2018,CMS_btag_jes,CMS_btag_lf,CMS_btag_hf,CMS_btag_hfstats1_2018,CMS_btag_hfstats2_2018,CMS_btag_lfstats1_2018,CMS_btag_lfstats2_2018,CMS_btag_cferr1,CMS_btag_cferr2,CMS_eff_hwwtrigger_2018,CMS_eff_e_2018,CMS_scale_e_2018,CMS_eff_m_2018,CMS_scale_m_2018,CMS_scale_JESAbsolute,CMS_scale_JESAbsolute_2018,CMS_scale_JESBBEC1,CMS_scale_JESBBEC1_2018,CMS_scale_JESEC2,CMS_scale_JESEC2_2018,CMS_scale_JESFlavorQCD,CMS_scale_JESHF,CMS_scale_JESHF_2018,CMS_scale_JESRelativeBal,CMS_scale_JESRelativeSample_2018,CMS_res_j_2018,CMS_scale_met_2018,CMS_PU_2018,CMS_PUID_2018,UE_whss,CMS_whss_chargeFlip,pdf_Higgs_gg,pdf_Higgs_ttH,pdf_Higgs_qqbar,pdf_qqbar,pdf_Higgs_gg_ACCEPT,pdf_gg_ACCEPT,pdf_Higgs_qqbar_ACCEPT,pdf_qqbar_ACCEPT,QCDscale_V,QCDscale_VV,QCDscale_ggVV,QCDscale_qqH,QCDscale_VH,QCDscale_ggZH,QCDscale_ttH,QCDscale_WWewk,QCDscale_qqbar_ACCEPT,QCDscale_gg_ACCEPT,singleTopToTTbar,CMS_topPtRew,CMS_hww_WgStarScale"
     nuisances = "--freezeParameters allConstrainedNuisances"
+if opt.freeze_nuisances == "r_higgs":
+    nuisances = "--freezeParameters r_higgs"
 
     
 ### Create workspace

@@ -143,3 +143,44 @@ Using BDT variable (true/false refer to the usage of data-driven DYee):
 
     ./do_workspace_and_fit.sh mlljj20_whss_1j_bin true
     ./do_workspace_and_fit.sh mlljj20_whss_1j_bin false
+
+### Produce Impact Plots
+
+Source combine:
+
+    cd $HOME/work/combine/CMSSW_10_2_13/src/
+    cmsenv
+    cd -
+
+    ulimit -s unlimited
+
+Prepare directory:
+
+    mkdir -p Impact_plots
+
+Select datacard to use:
+
+    VAR=mlljj20_whss_1j_bin
+    VAR=BDTG6
+
+    FINAL_STATE=_allFinalStates
+    FINAL_STATE=_alsoLowPt
+    FINAL_STATE=_allFinalStates_alsoLowPt
+    FINAL_STATE=_allFinalStates_alsoLowPt_noZveto
+    FINAL_STATE=_allFinalStates_alsoLowPt_DYflip_noZveto
+
+Actually produce impact plots:
+
+    cd Impact_plots
+
+    combineTool.py -M Impacts -d ../Combination/WH_chargeAsymmetry_WH_SS_Full2018_v9_${VAR}${FINAL_STATE}.root -m 125 --doInitialFit -t -1 --setParameters r_S=1.3693,r_A=0.224,r_higgs=1 --setParameterRanges r_S=0,10:r_A=-1,1 --redefineSignalPOIs r_A --freezeParameters r_higgs
+
+    combineTool.py -M Impacts -d ../Combination/WH_chargeAsymmetry_WH_SS_Full2018_v9_${VAR}${FINAL_STATE}.root -m 125 --doFits -t -1 --setParameters r_S=1.3693,r_A=0.224,r_higgs=1 --setParameterRanges r_S=0,10:r_A=-1,1 --redefineSignalPOIs r_A --job-mode=condor --freezeParameters r_higgs
+
+    combineTool.py -M Impacts -d ../Combination/WH_chargeAsymmetry_WH_SS_Full2018_v9_${VAR}${FINAL_STATE}.root -m 125 -t -1 -o impacts_WHSS_2018_${VAR}${FINAL_STATE}.json --setParameters r_S=1.3693,r_A=0.224,r_higgs=1 --setParameterRanges r_S=0,10:r_A=-1,1 --redefineSignalPOIs r_A --freezeParameters r_higgs
+
+    plotImpacts.py -i impacts_WHSS_2018_${VAR}${FINAL_STATE}.json -o Impact_WHSS_2018_${VAR}${FINAL_STATE}
+
+    rm combine_*
+    rm condor_*
+    rm higgsCombine_*
