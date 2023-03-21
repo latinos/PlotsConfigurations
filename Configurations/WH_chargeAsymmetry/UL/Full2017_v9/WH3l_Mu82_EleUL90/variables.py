@@ -11,6 +11,49 @@ variables['events'] = {
     'fold'  : 3
 }
 
+variables['BDT_WH3l_OSSF_v9'] = { 
+    'name': 'BDT_WH3l_OSSF_v9',
+    'range' : (40,-1.,1.),
+    'xaxis' : 'MVA discriminant',
+    'fold' : 3,
+}
+
+variables['BDT_WH3l_SSSF_v9'] = { 
+    'name': 'BDT_WH3l_SSSF_v9',
+    'range' : (40,-1.,1.),
+    'xaxis' : 'MVA discriminant',
+    'fold' : 3,
+}
+
+variables['BDT_WH3l_OSSF_v9_more'] = { 
+    'name': 'BDT_WH3l_OSSF_v9',
+    'range' : (1000,-1.,1.),
+    'xaxis' : 'MVA discriminant',
+    'fold' : 3,
+}
+
+variables['BDT_WH3l_SSSF_v9_more'] = { 
+    'name': 'BDT_WH3l_SSSF_v9',
+    'range' : (1000,-1.,1.),
+    'xaxis' : 'MVA discriminant',
+    'fold' : 3,
+}
+
+variables['BDT_WH3l_OSSF_v9_LegacyBinning'] = { 
+    'name': 'BDT_WH3l_OSSF_v9',
+    'range' : ([-1.0,-0.2,0.,0.2,0.4,0.6,1.0],),
+    'xaxis' : 'MVA discriminant',
+    'fold' : 3,
+}
+
+variables['BDT_WH3l_SSSF_v9_LegacyBinning'] = {
+    'name': 'BDT_WH3l_SSSF_v9',
+    'range' : ([-1.0,-0.2,0.,0.2,0.4,0.6,1.0],),
+    'xaxis' : 'MVA discriminant',
+    'fold' : 3,
+}
+
+# Control variables
 variables['Jet_pt1'] = {
     'name': 'Alt$(Jet_pt[0],0)',
     'range' : (10,0.,200),
@@ -237,32 +280,3 @@ variables['WH3l_mlll'] = {
     'xaxis' : 'm_{lll}',
     'fold' : 0
 }
-
-# BDT on the fly
-variables['BDT_WH3l_OSSF_v9'] = { 
-    'name': 'BDT_WH3l_OSSF_v9',
-    'range' : (40,-1,1),
-    'xaxis' : 'MVA discriminant',
-    'fold' : 3,
-}
-
-variables['BDT_WH3l_SSSF_v9'] = { 
-    'name': 'BDT_WH3l_SSSF_v9',
-    'range' : (40,-1,1),
-    'xaxis' : 'MVA discriminant',
-    'fold' : 3,
-}
-
-# variables['BDTG_OSSF_bin2'] = { 
-#     'name': 'BDT_OSSF1718',
-#     'range' : ([-1.0,-0.2,0.,0.2,0.4,0.6,1.0],),    #   variable range
-#     'xaxis' : 'MVA discriminant',
-#     'fold' : 3,
-# }
-
-# variables['BDTG_SSSF_bin2'] = {
-#     'name': 'BDT_SSSF1718',
-#     'range' : ([-1.0,-0.2,0.,0.2,0.4,0.6,1.0],),    #   variable range
-#     'xaxis' : 'MVA discriminant',
-#     'fold' : 3,
-# }
