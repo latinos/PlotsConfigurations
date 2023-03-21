@@ -2,7 +2,7 @@ import sys,os
 
 # Define variables and strategy to use
 variables = ["mlljj20_whss_1j_bin"]
-suffix    = [""]
+suffix    = ["","_DYflip"]
 
 # Actually combine datacards
 for var in variables:
@@ -243,8 +243,8 @@ for var in variables:
                                        WH_SS_em_1j_plus=datacards{2}/hww2l2v_13TeV_WH_SS_em_1j_plus_pt2ge20/{0}/datacard.txt \
                                        WH_SS_mm_1j_minus=datacards{2}/hww2l2v_13TeV_WH_SS_noZveto_mm_1j_minus_pt2ge20/{0}/datacard.txt \
                                        WH_SS_mm_1j_plus=datacards{2}/hww2l2v_13TeV_WH_SS_noZveto_mm_1j_plus_pt2ge20/{0}/datacard.txt \
-                                       ZH3l_WZ_CR_1j=datacards{2}/hww2l2v_13TeV_ZH3l_WZ_CR_1j/events/datacard.txt \
-                                       ZH3l_WZ_CR_2j=datacards{2}/hww2l2v_13TeV_ZH3l_WZ_CR_2j/events/datacard.txt \
+                                       WH_SS_WZ_CR_1j=datacards{2}/hww2l2v_13TeV_WH_SS_WZ_1j/events/datacard.txt \
+                                       WH_SS_WZ_CR_2j=datacards{2}/hww2l2v_13TeV_WH_SS_WZ_2j/events/datacard.txt \
 		                       > Combination/WH_chargeAsymmetry_WH_SS_Full2017_v9_{0}{2}_noZveto.txt".format(var,var_2j,suff)
         print(tmp_command)
         print()
@@ -265,8 +265,8 @@ for var in variables:
                                        WH_SS_mm_1j_plus=datacards{2}/hww2l2v_13TeV_WH_SS_noZveto_mm_1j_plus_pt2ge20/{0}/datacard.txt \
                   		       WH_SS_ee_1j_minus=datacards{2}/hww2l2v_13TeV_WH_SS_ee_1j_minus_pt2ge20/{0}/datacard.txt \
                   		       WH_SS_ee_1j_plus=datacards{2}/hww2l2v_13TeV_WH_SS_ee_1j_plus_pt2ge20/{0}/datacard.txt \
-                                       ZH3l_WZ_CR_1j=datacards{2}/hww2l2v_13TeV_ZH3l_WZ_CR_1j/events/datacard.txt \
-                                       ZH3l_WZ_CR_2j=datacards{2}/hww2l2v_13TeV_ZH3l_WZ_CR_2j/events/datacard.txt \
+                                       WH_SS_WZ_CR_1j=datacards{2}/hww2l2v_13TeV_WH_SS_WZ_1j/events/datacard.txt \
+                                       WH_SS_WZ_CR_2j=datacards{2}/hww2l2v_13TeV_WH_SS_WZ_2j/events/datacard.txt \
 		                       > Combination/WH_chargeAsymmetry_WH_SS_Full2017_v9_{0}_allFinalStates{2}_noZveto.txt".format(var,var_2j,suff)
         print(tmp_command)
         print()
