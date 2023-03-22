@@ -48,6 +48,10 @@ Using original distributions:
 
     mkDatacards.py --pycfg=configuration.py --inputFile=rootFile/plots_WHSS_2017_v9_chargeAsymmetry_Mu82_EleUL90.root --outputDirDatacard=datacards --structureFile=structure.py
 
+Using DY->ee data-driven distributions and the correct signal scaling, for global combination:
+
+    mkDatacards.py --pycfg=configuration.py --inputFile=rootFile/plots_WHSS_2017_v9_chargeAsymmetry_Mu82_EleUL90_DYflip.root --outputDirDatacard=datacards_DYflip_original_signal_scale --structureFile=structure_DYflip_original_signal_scale.py
+
 ### Combine datacards
 
 Load combine:
