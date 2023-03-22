@@ -30,9 +30,13 @@ Or, if they failed because the wall clock time has been exceeded, resubmit them 
 
 ### Create datacards
 
-Using original distributions:
+Scaling the signal by a factor 10, to test different strategies in single eras:
 
     mkDatacards.py --pycfg=configuration.py --inputFile=rootFile/plots_WH3l_2017_v9_chargeAsymmetry_Mu82_EleUL90.root --outputDirDatacard=datacards --structureFile=structure.py
+
+Using the correct signal scaling, for global combination:
+
+    mkDatacards.py --pycfg=configuration.py --inputFile=rootFile/plots_WH3l_2017_v9_chargeAsymmetry_Mu82_EleUL90.root --outputDirDatacard=datacards_original_signal_scale --structureFile=structure_original_signal_scale.py
 
 ### Combine datacards
 
