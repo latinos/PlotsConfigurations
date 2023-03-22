@@ -74,13 +74,17 @@ Go into the `DY_OS_CR` directory and follow the instructions in the `README` fil
 
 ### Create datacards
 
-Using DY->ee data-driven distributions:
+Using DY->ee data-driven distributions and scaling the signal by a factor 10, to test different strategies in single eras:
 
     mkDatacards.py --pycfg=configuration.py --inputFile=rootFile/plots_WHSS_2016HIPM_v9_chargeAsymmetry_Mu82_EleUL90_DYflip.root --outputDirDatacard=datacards_DYflip --structureFile=structure_DYflip.py
 
-Using original distributions:
+Using original distributions and scaling the signal by a factor 10, to test different strategies in single eras:
 
     mkDatacards.py --pycfg=configuration.py --inputFile=rootFile/plots_WHSS_2016HIPM_v9_chargeAsymmetry_Mu82_EleUL90.root --outputDirDatacard=datacards --structureFile=structure.py
+
+Using DY->ee data-driven distributions and the correct signal scaling, for global combination:
+
+    mkDatacards.py --pycfg=configuration.py --inputFile=rootFile/plots_WHSS_2016HIPM_v9_chargeAsymmetry_Mu82_EleUL90_DYflip.root --outputDirDatacard=datacards_DYflip_original_signal_scale --structureFile=structure_DYflip_original_signal_scale.py
 
 ### Combine datacards
 
