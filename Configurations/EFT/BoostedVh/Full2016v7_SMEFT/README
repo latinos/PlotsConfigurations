@@ -1,0 +1,32 @@
+
+JJH AC/EFT analysis
+==============
+
+-------Make samples.py config with all AC sample reweighting included :
+
+ python ../Tools/scripts/MakeSamplesConfig.py 2016
+ cp ../Tools/configs/samples.py .
+
+-------Produce shapes:
+
+ mkShapesMulti.py --pycfg=configuration.py --doBatch=1 --batchSplit=Samples,Files --batchQueue=tomorrow
+
+-------Resubmit failed jobs (condor_submit jds file) :
+
+ ls -alrth ../../../../../../../VBFHWW/jobs/mkShapes__JJH/mkShapes__JJH__ALL__*.jid | awk '{print "condor_submit " $9}' | sed 's/jid/jds/'
+
+-------Add root files:
+
+ mkShapesMulti.py --pycfg=configuration.py --doHadd=1 --batchSplit=Samples,Files --doNotCleanup --nThreads=10
+
+------Make analysis templates (T1-T35 for Ewk HVV, T1-T10 for ggH HVV) for signal model:
+
+ python ../Tools/scripts/MakeSMEFTAnaTemplates.py -b -l
+
+-------Make datacards for the HVV and HGG AC analysis :
+--- Add to mkDatacards line 88: if not os.path.isdir(outputDirDatacard + "/" + cutName) : (Makes the following a lot simpler!)
+
+ mkDatacards.py -S ana/samples_hvv.py -C ana/cuts_hvv.py -V ana/variables_hvv.py --nuisancesFile=ana/nuisances.py --inputFile #introduce_path --outputDirDatacard=datacards
+
+-------Rebin Datacards :
+ 

@@ -1,0 +1,29 @@
+
+JJH AC/EFT analysis
+==============
+-------Produce shapes:
+
+ mkShapesMulti.py --pycfg=configuration.py --doBatch=1 --batchSplit=Samples,Files --batchQueue=tomorrow
+
+-------Resubmit failed jobs (condor_submit jds file) :
+
+ ls -alrth ../../../../../../../VBFHWW/jobs/mkShapes__JJH/mkShapes__JJH__ALL__*.jid | awk '{print "condor_submit " $9}'  | sed 's/jid/jds/'
+
+-------Add root files:
+
+ mkShapesMulti.py --pycfg=configuration.py --doHadd=1 --batchSplit=Samples,Files --doNotCleanup --nThreads=10
+
+-------Test reweighting of AC signals:
+
+ python ../Tools/scripts/TestSignalRW.py -b -l
+
+
+mkPlot.py -P ana/plot.py --onlyCut=hww2l2v_13TeV_of2j_vbf_hinn --inputFile #include_path --showIntegralLegend 1 --fileFormats png,pdf --onlyPlot cratio --minLogCratio=0.1 --outputDirPlots=plotJJH/HVV_VBF/ 
+
+ ------Make analysis templates (T1-T5 for Ewk HVV, T1-T3 for ggH HVV, T1-T3 for HGG) for signal model:
+
+ python ../Tools/scripts/MakeSMEFTAnaTemplates.py -b -l
+
+-------Make datacards for the HVV and HGG AC analysis :
+
+ mkDatacards.py -S ana/samples_hvv.py -C ana/cuts_hvv.py -V ana/variables_hvv.py --nuisancesFile=ana/nuisances.py --inputFile #include_path --outputDirDatacard=datacards

@@ -1,0 +1,67 @@
+JJH AC/EFT analysis
+==============
+
+-------Make samples.py config with all AC sample reweighting included :
+
+ python ../Tools/scripts/MakeSamplesConfig.py
+ cp ../Tools/configs/samples.py .
+
+-------Produce shapes:
+
+ mkShapesMulti.py --pycfg=configuration.py --doBatch=1 --batchSplit=Samples,Files --batchQueue=workday
+
+-------Resubmit failed jobs (condor_submit jds file) :
+
+ ls -alrth ../../../../../../../VBFHWW/jobs/mkShapes__JJH/mkShapes__JJH__ALL__*.jid | awk '{print "condor_submit " $9}'  | sed 's/jid/jds/'
+
+-------Add root files:
+
+ mkShapesMulti.py --pycfg=configuration.py --doHadd=1 --batchSplit=Samples,Files --doNotCleanup --nThreads=10
+
+-------Test reweighting of AC signals:
+
+ python ../Tools/scripts/TestSignalRW.py -b -l
+
+-------Make some plots:
+
+ mkPlot.py --pycfg=configuration.py --inputFile rootFileJJH/plots_JJH.root --showIntegralLegend 1 --fileFormats png,pdf --onlyPlot cratio
+
+ ------Make analysis templates (T1-T5 for Ewk HVV, T1-T3 for ggH HVV, T1-T3 for HGG) for signal model:
+
+ python ../Tools/scripts/MakeAnaTemplates.py -b -l
+
+-------Make datacards for the HVV AC analysis :
+
+ mkDatacards.py --pycfg=configuration_hvv.py --inputFile rootFileJJH/plots_JJH_HVV.root
+
+-------Rebin Datacards :
+--Copy Scan/scripts/AutoRebin.cc to CombineHarvester/CombineTools/src/
+--Copy Scan/scripts/HWWACproc.py CombineHarvester/CombineTools/scripts/
+
+ HWWACproc.py hww2l2v_13TeV_of2j_vbf KD_H0L1
+
+ HWWACproc.py hww2l2v_13TeV_of2j_vbf_hmin KD_H0M
+ HWWACproc.py hww2l2v_13TeV_of2j_vbf_hmip KD_H0M
+
+ HWWACproc.py hww2l2v_13TeV_of2j_vbf_hpin KD_H0PH
+ HWWACproc.py hww2l2v_13TeV_of2j_vbf_hpip KD_H0PH
+
+ HWWACproc.py hww2l2v_13TeV_of2j_vh KD_H0L1
+
+ HWWACproc.py hww2l2v_13TeV_of2j_vh_hmin KD_H0M
+ HWWACproc.py hww2l2v_13TeV_of2j_vh_hmip KD_H0M
+
+ HWWACproc.py hww2l2v_13TeV_of2j_vh_hpin KD_H0PH
+ HWWACproc.py hww2l2v_13TeV_of2j_vh_hpip KD_H0PH
+
+
+-------Make datacards for the HGG AC analysis -- To be updated! :
+
+ mkDatacards.py --pycfg=configuration_hgg.py --inputFile rootFileJJH/plots_JJH_HGG.root
+HWWACproc.py hww2l2v_13TeV_of2j_Vh HVV_H0L1 _17B_MCStatsOFF
+ HWWACproc.py hww2l2v_13TeV_of2j_Vh_hmin HVV_H0M _17B_MCStatsOFF
+ HWWACproc.py hww2l2v_13TeV_of2j_Vh_hmip HVV_H0M _17B_MCStatsOFF
+ HWWACproc.py hww2l2v_13TeV_of2j_Vh_hpin HVV_H0PH _17B_MCStatsOFF
+ HWWACproc.py hww2l2v_13TeV_of2j_Vh_hpip HVV_H0PH _17B_MCStatsOFF
+ HWWACproc.py hww2l2v_13TeV_of2j_Vh HVV_H0LZg _17B_MCStatsOFF
+

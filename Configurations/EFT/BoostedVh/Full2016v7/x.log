@@ -1,0 +1,159 @@
+Reading the 0 NegList
+- For each analysis channel we should check which templates are negative
+- They are added to lists (NegList.py) and forced positive -- Must be taken into account in Signal Model! 
+- For Ewk HVV (2V) need templates : T1 -(4,0), T2 -(3,1), T3 -(2,2), T4 -(1,3), T5 -(0,4)
+Get from SM-BSM mixture hypotheses : SM(1,0), M0(0,1), M1(1,.25), M2(1,.5), M3(1,.75) 
+and G matrices Gai, Gl1, Gl1Zg
+- Will create new file : rootFileJJH16B/plots_JJH16B_AC_MCStatsT2T4ScaleTo0OFF.root with HVV analysis templates
+ 
+- For ggF HVV (1V) need templates T1 -(2,0), T2 -(1,1), T3 -(0,2)
+Get from SM-BSM MC : SM(1,0), BSM(0,1), M1(1,gMix) 
+- Will create new file : rootFileJJH16B/plots_JJH16B_AC_MCStatsT2T4ScaleTo0OFF.root with HVV analysis templates
+ 
+- For ggH+2Jet HGG (1V) need templates T1 -(2,0), T2 -(1,1), T3 -(0,2)
+Get from SM-BSM MC : SM(1,0), BSM(0,1), M1(1,gMix) 
+- Will create new file : rootFileJJH16B/plots_JJH16B_AC_MCStatsT2T4ScaleTo0OFF.root with HGG analysis templates
+ 
+------------------------------------ VBF_
+ 
+  of2j_Vh_hmip kd2d_Vh_hm VBF_ H0M  True
+ 
+('pwg.Integral()', 0.03851073706213408, 'jhu.Integral()', 0.03851073706213408)
+of2j_Vh_hmip kd2d_Vh_hm VBF_ 1.0
+ 
+  of2j_Vh_hmin kd2d_Vh_hm VBF_ H0M  True
+ 
+('pwg.Integral()', 0.0525370977859258, 'jhu.Integral()', 0.0525370977859258)
+of2j_Vh_hmin kd2d_Vh_hm VBF_ 1.0
+ 
+  top_fj events VBF_ H0M  True
+ 
+('pwg.Integral()', 0.023908363859096442, 'jhu.Integral()', 0.023908363859096442)
+top_fj events VBF_ 1.0
+ 
+  of2j_Vh kd2d_Vh_hp VBF_ H0PH  True
+ 
+('pwg.Integral()', 0.09104783484805987, 'jhu.Integral()', 0.09104783484805987)
+of2j_Vh kd2d_Vh_hp VBF_ 1.0
+ 
+  top_fj events VBF_ H0PH  True
+ 
+('pwg.Integral()', 0.023908363859096442, 'jhu.Integral()', 0.023908363859096442)
+top_fj events VBF_ 1.0
+ 
+  of2j_Vh kd2d_Vh_hl VBF_ H0L1  True
+ 
+('pwg.Integral()', 0.09104783484805988, 'jhu.Integral()', 0.09104783484805988)
+of2j_Vh kd2d_Vh_hl VBF_ 1.0
+MESSAGE: H0L1  ("of2j_Vh","H0L1","VBF_","T4"),
+ 
+  top_fj events VBF_ H0L1  True
+ 
+('pwg.Integral()', 0.023908363859096442, 'jhu.Integral()', 0.023908363859096442)
+top_fj events VBF_ 1.0
+MESSAGE: H0L1  ("top_fj","H0L1","VBF_","T4"),
+ 
+  of2j_Vh kd2d_Vh_hlzg VBF_ H0LZg  True
+ 
+('pwg.Integral()', 0.09104783484805988, 'jhu.Integral()', 0.09104783484805988)
+of2j_Vh kd2d_Vh_hlzg VBF_ 1.0
+ 
+  top_fj events VBF_ H0LZg  True
+ 
+('pwg.Integral()', 0.023908363859096442, 'jhu.Integral()', 0.023908363859096442)
+top_fj events VBF_ 1.0
+------------------------------------ ZH_
+ 
+  of2j_Vh_hmip kd2d_Vh_hm ZH_ H0M  True
+ 
+('pwg.Integral()', 0.08421173404213673, 'jhu.Integral()', 0.02805416352153546)
+of2j_Vh_hmip kd2d_Vh_hm ZH_ 3.00175530015
+ 
+  of2j_Vh_hmin kd2d_Vh_hm ZH_ H0M  True
+ 
+('pwg.Integral()', 0.0706247049324677, 'jhu.Integral()', 0.018011685211258604)
+of2j_Vh_hmin kd2d_Vh_hm ZH_ 3.92104925797
+ 
+  top_fj events ZH_ H0M  True
+ 
+('pwg.Integral()', 0.12017582736242291, 'jhu.Integral()', 0.0285616135766072)
+top_fj events ZH_ 4.2075993725
+ 
+  of2j_Vh kd2d_Vh_hp ZH_ H0PH  True
+ 
+('pwg.Integral()', 0.15483643897460445, 'jhu.Integral()', 0.04606584873279406)
+of2j_Vh kd2d_Vh_hp ZH_ 3.3611980075
+MESSAGE: H0PH  ("of2j_Vh","H0PH","ZH_","T2"),
+ 
+  top_fj events ZH_ H0PH  True
+ 
+('pwg.Integral()', 0.12017582736242291, 'jhu.Integral()', 0.0285616135766072)
+top_fj events ZH_ 4.2075993725
+MESSAGE: H0PH  ("top_fj","H0PH","ZH_","T2"),
+ 
+  of2j_Vh kd2d_Vh_hl ZH_ H0L1  True
+ 
+('pwg.Integral()', 0.15483643897460445, 'jhu.Integral()', 0.04606584873279407)
+of2j_Vh kd2d_Vh_hl ZH_ 3.3611980075
+MESSAGE: H0L1  ("of2j_Vh","H0L1","ZH_","T2"),
+MESSAGE: H0L1  ("of2j_Vh","H0L1","ZH_","T4"),
+ 
+  top_fj events ZH_ H0L1  True
+ 
+('pwg.Integral()', 0.12017582736242291, 'jhu.Integral()', 0.0285616135766072)
+top_fj events ZH_ 4.2075993725
+MESSAGE: H0L1  ("top_fj","H0L1","ZH_","T2"),
+MESSAGE: H0L1  ("top_fj","H0L1","ZH_","T4"),
+ 
+  of2j_Vh kd2d_Vh_hlzg ZH_ H0LZg  True
+ 
+('pwg.Integral()', 0.15483643897460445, 'jhu.Integral()', 0.04606584873279407)
+of2j_Vh kd2d_Vh_hlzg ZH_ 3.3611980075
+ 
+  top_fj events ZH_ H0LZg  True
+ 
+('pwg.Integral()', 0.12017582736242291, 'jhu.Integral()', 0.0285616135766072)
+top_fj events ZH_ 4.2075993725
+------------------------------------ WH_
+ 
+  of2j_Vh_hmip kd2d_Vh_hm WH_ H0M  True
+ 
+('pwg.Integral()', 0.22897424233994174, 'jhu.Integral()', 0.07884785898276106)
+of2j_Vh_hmip kd2d_Vh_hm WH_ 2.90400075911
+ 
+  of2j_Vh_hmin kd2d_Vh_hm WH_ H0M  True
+ 
+('pwg.Integral()', 0.18739522595958208, 'jhu.Integral()', 0.07573861834473507)
+of2j_Vh_hmin kd2d_Vh_hm WH_ 2.47423613019
+ 
+  top_fj events WH_ H0M  True
+ 
+('pwg.Integral()', 0.2899636092068586, 'jhu.Integral()', 0.04788419875532138)
+top_fj events WH_ 6.05551761842
+ 
+  of2j_Vh kd2d_Vh_hp WH_ H0PH  True
+ 
+('pwg.Integral()', 0.4163694682995237, 'jhu.Integral()', 0.15458647732749617)
+of2j_Vh kd2d_Vh_hp WH_ 2.69344043216
+MESSAGE: H0PH  ("of2j_Vh","H0PH","WH_","T2"),
+ 
+  top_fj events WH_ H0PH  True
+ 
+('pwg.Integral()', 0.2899636092068586, 'jhu.Integral()', 0.04788419875532138)
+top_fj events WH_ 6.05551761842
+MESSAGE: H0PH  ("top_fj","H0PH","WH_","T2"),
+ 
+  of2j_Vh kd2d_Vh_hl WH_ H0L1  True
+ 
+('pwg.Integral()', 0.4163694682995238, 'jhu.Integral()', 0.1545864773274961)
+of2j_Vh kd2d_Vh_hl WH_ 2.69344043216
+MESSAGE: H0L1  ("of2j_Vh","H0L1","WH_","T2"),
+MESSAGE: H0L1  ("of2j_Vh","H0L1","WH_","T4"),
+ 
+  top_fj events WH_ H0L1  True
+ 
+('pwg.Integral()', 0.2899636092068586, 'jhu.Integral()', 0.04788419875532138)
+top_fj events WH_ 6.05551761842
+MESSAGE: H0L1  ("top_fj","H0L1","WH_","T2"),
+MESSAGE: H0L1  ("top_fj","H0L1","WH_","T4"),
+Its done!!!
