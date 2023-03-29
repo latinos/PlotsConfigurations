@@ -104,14 +104,14 @@ groupPlot['Higgs']  = {
 }
 
 groupPlot['WH_minus']  = {  
-    'nameHR'   : 'W^{-} H',
+    'nameHR'   : 'W^{-} H (x 10)',
     'isSignal' : 2,
     'color'    : 600, # kBlue 
     'samples'  : ['WH_hww_minus','WH_htt_minus']
 }
 
 groupPlot['WH_plus']  = {  
-    'nameHR'   : 'W^{+} H',
+    'nameHR'   : 'W^{+} H (x 10)',
     'isSignal' : 2,
     'color'    : 632, # kRed 
     'samples'  : ['WH_hww_plus', 'WH_htt_plus']
@@ -190,7 +190,7 @@ plot['WZ']  = {
     'color'    : 858, # kAzure -2  
     'isSignal' : 0,
     'isData'   : 0,
-    'scale'    : 1.0
+    'scale'    : 1.138 # NLO -> NNLO k-factor!
 }
 
 plot['ZZ']  = { 
@@ -245,14 +245,14 @@ plot['WH_hww_plus'] = {
     'color'    : 632+2, # kRed+2 
     'isSignal' : 2,
     'isData'   : 0,    
-    'scale'    : 1
+    'scale'    : 10
 }
 
 plot['WH_hww_minus'] = {
     'color'    : 600, # kBlue 
     'isSignal' : 2,
     'isData'   : 0,    
-    'scale'    : 1
+    'scale'    : 10
 }
 
 plot['ttH_hww'] = {
@@ -290,14 +290,14 @@ plot['WH_htt_plus'] = {
     'color'    : 632+2, # kRed+2 
     'isSignal' : 1,
     'isData'   : 0,    
-    'scale'    : 1
+    'scale'    : 10
 }
 
 plot['WH_htt_minus'] = {
     'color'    : 632+2, # kRed+2 
     'isSignal' : 1,
     'isData'   : 0,    
-    'scale'    : 1
+    'scale'    : 10
 }
 
 
