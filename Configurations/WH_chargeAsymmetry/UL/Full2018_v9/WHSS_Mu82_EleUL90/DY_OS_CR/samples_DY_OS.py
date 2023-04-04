@@ -1,11 +1,11 @@
 import os
 import inspect
 
-# /afs/cern.ch/user/n/ntrevisa/work/latinos/unblinding/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/WH_chargeAsymmetry/UL/Full2018_v9/WHSS/DY_OS_CR
+# /afs/cern.ch/user/n/ntrevisa/work/latinos/unblinding/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/WH_chargeAsymmetry/UL/Full2018_v9/WHSS_Mu82_EleUL90/DY_OS_CR
 
 configurations = os.path.realpath(inspect.getfile(inspect.currentframe())) # this file
 configurations = os.path.dirname(configurations) # DY_OS_CR
-configurations = os.path.dirname(configurations) # WHSS
+configurations = os.path.dirname(configurations) # WHSS_Mu82_EleUL90
 configurations = os.path.dirname(configurations) # Full2018_v9
 configurations = os.path.dirname(configurations) # UL
 configurations = os.path.dirname(configurations) # WH_chargeAsymmetry
