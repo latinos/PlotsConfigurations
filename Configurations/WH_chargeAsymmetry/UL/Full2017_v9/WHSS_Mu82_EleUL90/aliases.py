@@ -21,14 +21,10 @@ muWP  = 'cut_Tight_HWWW_tthmva_80'
 
 aliases['LepWPCut'] = {
     'expr': 'LepCut2l__ele_mvaFall17V2Iso_WP90__mu_cut_Tight_HWWW*\
-             ( (abs(Lepton_pdgId[0])==11 || Muon_mvaTTH[Lepton_muonIdx[0]]>0.82) && (abs(Lepton_pdgId[1])==11 || Muon_mvaTTH[Lepton_muonIdx[1]]>0.82) \
-            && (abs(Lepton_pdgId[0])==13 || Lepton_mvaTTH_UL[0]>0.90)            && (abs(Lepton_pdgId[1])==13 || Lepton_mvaTTH_UL[1]>0.90) )',
+         ( ((abs(Lepton_pdgId[0])==13 && Muon_mvaTTH[Lepton_muonIdx[0]]>0.82) || (abs(Lepton_pdgId[0])==11 && Lepton_mvaTTH_UL[0]>0.90)) \
+        && ((abs(Lepton_pdgId[1])==13 && Muon_mvaTTH[Lepton_muonIdx[1]]>0.82) || (abs(Lepton_pdgId[1])==11 && Lepton_mvaTTH_UL[1]>0.90)) )',
     'samples': mc_emb + ['DATA']
 }
-# aliases['LepWPCut'] = {
-#     'expr': 'LepCut2l__ele_'+eleWP+'__mu_'+muWP,
-#     'samples': mc_emb + ['DATA']
-# }
 
 aliases['LepWPSF'] = {
     'expr': 'LepSF2l__ele_'+eleWP+'__mu_'+muWP,
@@ -42,10 +38,6 @@ aliases['fakeW'] = {
     'args'       : ('2017', '90', '82', 0.90, 0.82, 'nominal', 2, 'std'),
     'samples'    : ['Fake']
 }
-# aliases['fakeW'] = {
-#     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP,
-#     'samples': ['Fake']
-# }
 
 # And variations - already divided by central values in formulas !
 aliases['fakeWEleUp'] = {
@@ -98,39 +90,6 @@ aliases['fakeWStatMuDown'] = {
     'samples'    : ['Fake']
 }
 
-# # And variations - already divided by central values in formulas !
-# aliases['fakeWEleUp'] = {
-#     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_EleUp',
-#     'samples': ['Fake']
-# }
-# aliases['fakeWEleDown'] = {
-#     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_EleDown',
-#     'samples': ['Fake']
-# }
-# aliases['fakeWMuUp'] = {
-#     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_MuUp',
-#     'samples': ['Fake']
-# }
-# aliases['fakeWMuDown'] = {
-#     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_MuDown',
-#     'samples': ['Fake']
-# }
-# aliases['fakeWStatEleUp'] = {
-#     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_statEleUp',
-#     'samples': ['Fake']
-# }
-# aliases['fakeWStatEleDown'] = {
-#     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_statEleDown',
-#     'samples': ['Fake']
-# }
-# aliases['fakeWStatMuUp'] = {
-#     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_statMuUp',
-#     'samples': ['Fake']
-# }
-# aliases['fakeWStatMuDown'] = {
-#     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_statMuDown',
-#     'samples': ['Fake']
-# }
 
 # gamma* mass range
 aliases['gstarLow'] = {
@@ -172,7 +131,7 @@ bWP_tight_deepFlavB  = '0.7476'
 
 # Actual algo and WP definition. BE CONSISTENT!!
 bAlgo = 'DeepB'         # ['DeepB',        'DeepFlavB'         ]
-bWP   = bWP_loose_deepB # [bWP_loose_deepB, bWP_loose_deepFlavB]
+bWP   = bWP_medium_deepB # [bWP_loose_deepB, bWP_loose_deepFlavB]
 bSF   = 'deepcsv'       # ['deepcsv',      'deepjet'           ]
 
 # b veto
@@ -328,9 +287,10 @@ aliases['SFtriggDown'] = {
 # }
 
 ### BDT on-the-fly
-aliases['BDT_SS_v7'] = {
-    'class': 'BDT_v7_noCorrelatedVariables',
-    'linesToAdd' : ['.L %s/WH_chargeAsymmetry/WHSS/Full2018_v7/macros/BDT_v7_noCorrelatedVariables.C+' % configurations],
+aliases['BDT_WHSS_v9'] = {
+    'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/BDT_WHSS_v9.C+' % configurations],
+    'class': 'BDT_WHSS_v9',
+    'args' : ('BDTG_6', '%s/WH_chargeAsymmetry/UL/data/BDT/2017/WHSS/weights/TMVAClassification_BDTG_6.weights.xml' % configurations),
 }
 
 ########################
@@ -358,14 +318,14 @@ aliases['ttHMVA_SF_err_flip_2l'] = {
 aliases['ttHMVA_eff_flip_2l'] = {
     'linesToAdd': ['.L %s/macros/flipper_eff.C+' % configurations],
     'class': 'flipper_eff',
-    'args' : ('UL_2017', 2, 'Total_SF'),
+    'args' : ('UL_2017', 2, 'Total_SF', 'false'),
     'samples': ['DY_OS']
 }
 
 aliases['ttHMVA_eff_err_flip_2l'] = {
     'linesToAdd': ['.L %s/macros/flipper_eff.C+' % configurations],
     'class': 'flipper_eff',
-    'args' : ('UL_2017', 2, 'Total_SF_err'),
+    'args' : ('UL_2017', 2, 'Total_SF_err', 'false'),
     'samples': ['DY_OS']
 }
 

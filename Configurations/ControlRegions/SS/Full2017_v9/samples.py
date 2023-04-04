@@ -34,7 +34,7 @@ except NameError:
 
 # MC:   /eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Summer20UL17_106x_nAODv9_Full2017v9/MCl1loose2017v9__MCCorr2017v9__l2tightOR2017v9/
 # DATA: /eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Run2017_UL2017_nAODv9_Full2017v9/DATAl1loose2017v9__l2loose__l2tightOR2017v9/
-# FAKE: /eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Run2017_UL2017_nAODv9_Full2017v9/DATAl1loose2017v9__l2loose__fakeWNewEWKCorr/
+# FAKE: /eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Run2017_UL2017_nAODv9_Full2017v9/DATAl1loose2017v9__l2loose__fakeW/
 
 mcProduction = 'Summer20UL17_106x_nAODv9_Full2017v9'
 
@@ -44,7 +44,7 @@ dataReco = 'Run2017_UL2017_nAODv9_Full2017v9'
 
 mcSteps = 'MCl1loose2017v9__MCCorr2017v9__l2tightOR2017v9'
 
-fakeSteps = 'DATAl1loose2017v9__l2loose__fakeWNewEWKCorr'
+fakeSteps = 'DATAl1loose2017v9__l2loose__fakeW'
 
 dataSteps = 'DATAl1loose2017v9__l2loose__l2tightOR2017v9'
 

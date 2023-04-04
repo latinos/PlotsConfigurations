@@ -5,7 +5,7 @@ treeName = 'Events'
 tag = 'Top_2017_v9_noJERinHorn'
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFile__noJERinHorn'
+outputDir = 'rootFile_noJERinHorn'
 
 # file with TTree aliases
 aliasesFile = 'aliases.py'
@@ -17,7 +17,7 @@ variablesFile = 'variables.py'
 cutsFile = 'cuts.py' 
 
 # file with list of samples
-samplesFile = 'samples__noJERinHorn.py'
+samplesFile = 'samples_noJERinHorn.py'
 
 # file with list of samples
 plotFile = 'plot_TTonly.py' 

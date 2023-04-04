@@ -100,18 +100,18 @@ groupPlot['Higgs']  = {
     'nameHR'   : 'Higgs',
     'isSignal' : 0,
     'color'    : 632, # kRed 
-    'samples'  : ['ggH_hww','qqH_hww','ZH_hww','ggZH_hww','ttH_hww','ggH_hww','qqH_htt','ZH_htt']
+    'samples'  : ['ggH_hww','qqH_hww','ZH_hww','ggZH_hww','ttH_hww','ggH_htt','qqH_htt','ZH_htt']
 }
 
 groupPlot['WH_minus']  = {  
-    'nameHR'   : 'W^{-} H',
+    'nameHR'   : 'W^{-} H (x 10)',
     'isSignal' : 2,
     'color'    : 600, # kBlue 
     'samples'  : ['WH_hww_minus','WH_htt_minus']
 }
 
 groupPlot['WH_plus']  = {  
-    'nameHR'   : 'W^{+} H',
+    'nameHR'   : 'W^{+} H (x 10)',
     'isSignal' : 2,
     'color'    : 632, # kRed 
     'samples'  : ['WH_hww_plus', 'WH_htt_plus']
@@ -190,7 +190,7 @@ plot['WZ']  = {
     'color'    : 858, # kAzure -2  
     'isSignal' : 0,
     'isData'   : 0,
-    'scale'    : 1.0
+    'scale'    : 1.138 # NLO -> NNLO k-factor!
 }
 
 plot['ZZ']  = { 
@@ -245,14 +245,14 @@ plot['WH_hww_plus'] = {
     'color'    : 632+2, # kRed+2 
     'isSignal' : 2,
     'isData'   : 0,    
-    'scale'    : 1
+    'scale'    : 10
 }
 
 plot['WH_hww_minus'] = {
     'color'    : 600, # kBlue 
     'isSignal' : 2,
     'isData'   : 0,    
-    'scale'    : 1
+    'scale'    : 10
 }
 
 plot['ttH_hww'] = {
@@ -288,16 +288,16 @@ plot['ZH_htt'] = {
 
 plot['WH_htt_plus'] = {
     'color'    : 632+2, # kRed+2 
-    'isSignal' : 1,
+    'isSignal' : 2,
     'isData'   : 0,    
-    'scale'    : 1
+    'scale'    : 10
 }
 
 plot['WH_htt_minus'] = {
     'color'    : 632+2, # kRed+2 
-    'isSignal' : 1,
+    'isSignal' : 2,
     'isData'   : 0,    
-    'scale'    : 1
+    'scale'    : 10
 }
 
 
@@ -348,5 +348,5 @@ plot['DATA']  = {
 
 # Additional options
 
-legend['lumi'] = 'L = 59.83/fb'
+legend['lumi'] = 'L = 59.8 fb^{-1}'
 legend['sqrt'] = '#sqrt{s} = 13 TeV'

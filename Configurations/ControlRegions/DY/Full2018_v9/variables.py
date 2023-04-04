@@ -1,16 +1,11 @@
 # variables
 
 #variables = {}
-#variables['nvtx']  = {   'name': 'PV_npvsGood',      
-#                        'range' : (20,0,100),  
-#                        'xaxis' : 'nvtx', 
-#                         'fold' : 3
-#                      }
 
 variables['mll'] = {
-    'name': 'mll',            #   variable name
-    'range' : (20,80,100),    #   variable range
-    'xaxis' : 'm_{ll} [GeV]',  #   x axis name
+    'name': 'mll',
+    'range' : (20,80,100),
+    'xaxis' : 'm_{ll} [GeV]',
     'fold' : 0
 }
 
@@ -75,6 +70,13 @@ variables['puppimet']  = {
     'name': 'PuppiMET_pt',
     'range' : (20,0,100),
     'xaxis' : 'puppimet [GeV]',
+    'fold'  : 3
+}
+
+variables['pfmet']  = {
+    'name': 'MET_pt',
+    'range' : (20,0,100),
+    'xaxis' : 'pfmet [GeV]',
     'fold'  : 3
 }
 
