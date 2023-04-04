@@ -297,7 +297,7 @@ signals.append('ggZH_hww')
 ############ WH H->WW ############
 
 samples['WH_hww_plus'] = {
-    'name':   nanoGetSampleFiles(mcDirectory, 'HWplusJ_HToWWTo2L2Nu_WTo2L_M125'),
+    'name':   nanoGetSampleFiles(mcDirectory, 'HWplusJ_HToWW_M125'),
     'weight': mcCommonWeight,
     'FilesPerJob': 4
 }
@@ -306,7 +306,7 @@ signals.append('WH_hww_plus')
 
 
 samples['WH_hww_minus'] = {
-    'name':   nanoGetSampleFiles(mcDirectory, 'HWminusJ_HToWW_M125'), # HWminusJ_HToWWTo2L2Nu_WToLNu_M125 is in submitted state in grasp
+    'name':   nanoGetSampleFiles(mcDirectory, 'HWminusJ_HToWW_M125'),
     'weight': mcCommonWeight,
     'FilesPerJob': 4
 }

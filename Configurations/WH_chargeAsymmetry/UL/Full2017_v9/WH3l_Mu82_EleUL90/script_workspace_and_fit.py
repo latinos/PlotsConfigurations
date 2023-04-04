@@ -43,6 +43,8 @@ if opt.freeze_nuisances == "True" or opt.freeze_nuisances == "1":
     nuisances = "--freezeParameters allConstrainedNuisances"
 if opt.freeze_nuisances == "r_higgs":
     nuisances = "--freezeParameters r_higgs"
+if opt.freeze_nuisances == "all":
+    nuisances = "--freezeParameters allConstrainedNuisances"
 
     
 ### Create workspace
@@ -54,14 +56,14 @@ workspace_command = "text2workspace.py \
                      -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel \
                      -m 125 \
                      --PO verbose \
-                     --PO 'map=.*/ggH_hww:r_higgs[1,-100,100]' \
-                     --PO 'map=.*/qqH_hww:r_higgs[1,-100,100]' \
-                     --PO 'map=.*/ZH_hww:r_higgs[1,-100,100]' \
-                     --PO 'map=.*/ggZH_hww:r_higgs[1,-100,100]' \
-                     --PO 'map=.*/ttH_hww:r_higgs[1,-100,100]' \
-                     --PO 'map=.*/ggH_htt:r_higgs[1,-100,100]' \
-                     --PO 'map=.*/qqH_htt:r_higgs[1,-100,100]' \
-                     --PO 'map=.*/ZH_htt:r_higgs[1,-100,100]' \
+                     --PO 'map=.*/ggH_hww:r_higgs[1,0.99,1.01]' \
+                     --PO 'map=.*/qqH_hww:r_higgs[1,0.99,1.01]' \
+                     --PO 'map=.*/ZH_hww:r_higgs[1,0.99,1.01]' \
+                     --PO 'map=.*/ggZH_hww:r_higgs[1,0.99,1.01]' \
+                     --PO 'map=.*/ttH_hww:r_higgs[1,0.99,1.01]' \
+                     --PO 'map=.*/ggH_htt:r_higgs[1,0.99,1.01]' \
+                     --PO 'map=.*/qqH_htt:r_higgs[1,0.99,1.01]' \
+                     --PO 'map=.*/ZH_htt:r_higgs[1,0.99,1.01]' \
                      --PO 'map=.*/WH_h.*_plus:r_WH_plus=expr;;r_WH_plus(\"@0*(1+@1)/(2*0.8380)\",r_S[1.3693,0.01,5],r_A[0.224,-1,1])' \
                      --PO 'map=.*/WH_h.*_minus:r_WH_minus=expr;;r_WH_minus(\"@0*(1-@1)/(2*0.5313)\",r_S,r_A)' \
                      ".format(datacard_name)
@@ -168,7 +170,7 @@ print("\n")
 
 print("Moving output to Combine folder...")
 root_output_name = output_name.replace(".txt",".root")
-if (opt.freeze_nuisances) == "1" or (opt.freeze_nuisances) == "True":
+if (opt.freeze_nuisances) != False:
     root_output_name = output_name.replace(".txt","_freeze.root")
 move_command = "mv higgsCombineTest.MultiDimFit.mH120.root {}".format(root_output_name)
 # os.system(move_command)
@@ -212,7 +214,7 @@ if sanity_check != False:
         print(likelihood_scan_command)
         os.system(likelihood_scan_command)
         ML_output_name = output_name.replace(".txt","_ML.root")
-        if (opt.freeze_nuisances) == "1" or (opt.freeze_nuisances) == "True":
+        if (opt.freeze_nuisances) != False:
             ML_output_name = output_name.replace(".txt","_ML_freeze.root")
         move_command = "mv higgsCombineTest.MultiDimFit.mH120.root {}".format(ML_output_name)
         print(move_command)
@@ -226,7 +228,7 @@ if sanity_check != False:
         print(rA_scan_command)
         os.system(rA_scan_command)
         rA_output_name = output_name.replace(".txt","_rA.root")
-        if (opt.freeze_nuisances) == "1" or (opt.freeze_nuisances) == "True":
+        if (opt.freeze_nuisances) != False:
             rA_output_name = output_name.replace(".txt","_rA_freeze.root")
         move_command = "mv higgsCombine_r_A_scan.MultiDimFit.mH120.root {}".format(rA_output_name)
         print(move_command)

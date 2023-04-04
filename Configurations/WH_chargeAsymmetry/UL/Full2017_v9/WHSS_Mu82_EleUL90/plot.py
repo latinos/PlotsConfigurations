@@ -87,8 +87,7 @@ groupPlot['Higgs']  = {
     'nameHR'   : 'Higgs',
     'isSignal' : 0,
     'color'    : 632, # kRed 
-    'samples'  : ['ggH_hww','qqH_hww','ZH_hww','ggZH_hww','ttH_hww','ggH_hww','qqH_htt','ZH_htt']
-    # 'samples'  : ['ggH_hww','qqH_hww','ZH_hww','ggZH_hww','ttH_hww','ggH_hww','qqH_htt','ZH_htt']
+    'samples'  : ['ggH_hww','qqH_hww','ZH_hww','ggZH_hww','ttH_hww','ggH_htt','qqH_htt','ZH_htt']
 }
 
 groupPlot['WH_minus']  = {  
@@ -203,28 +202,28 @@ plot['VVV']  = {
 
 plot['ggH_hww'] = {
     'color'    : 632, # kRed 
-    'isSignal' : 1,
+    'isSignal' : 0,
     'isData'   : 0,    
     'scale'    : 1
 }
 
 plot['qqH_hww'] = {
     'color'    : 632+1, # kRed+1 
-    'isSignal' : 1,
+    'isSignal' : 0,
     'isData'   : 0,    
     'scale'    : 1
 }
 
-# plot['ZH_hww'] = {
-#     'color'    : 632+3, # kRed+3 
-#     'isSignal' : 1,
-#     'isData'   : 0,    
-#     'scale'    : 1
-# }
+plot['ZH_hww'] = {
+    'color'    : 632+3, # kRed+3 
+    'isSignal' : 0,
+    'isData'   : 0,    
+    'scale'    : 1
+}
 
 plot['ggZH_hww'] = {
     'color'    : 632+4, # kRed+4
-    'isSignal' : 1,
+    'isSignal' : 0,
     'isData'   : 0,    
     'scale'    : 1
 }
@@ -245,7 +244,7 @@ plot['WH_hww_minus'] = {
 
 plot['ttH_hww'] = {
     'color'    : 632+3, # kRed+3 
-    'isSignal' : 1,
+    'isSignal' : 0,
     'isData'   : 0,    
     'scale'    : 1
 }
@@ -255,35 +254,35 @@ plot['ttH_hww'] = {
 
 plot['ggH_htt'] = {
     'color'    : 632, # kRed 
-    'isSignal' : 1,
+    'isSignal' : 0,
     'isData'   : 0,    
     'scale'    : 1
 }
 
 plot['qqH_htt'] = {
     'color'    : 632+1, # kRed+1 
-    'isSignal' : 1,
+    'isSignal' : 0,
     'isData'   : 0,    
     'scale'    : 1
 }
 
 plot['ZH_htt'] = {
     'color'    : 632+3, # kRed+3 
-    'isSignal' : 1,
+    'isSignal' : 0,
     'isData'   : 0,    
     'scale'    : 1
 }
 
 plot['WH_htt_plus'] = {
     'color'    : 632+2, # kRed+2 
-    'isSignal' : 1,
+    'isSignal' : 2,
     'isData'   : 0,    
     'scale'    : 10
 }
 
 plot['WH_htt_minus'] = {
     'color'    : 632+2, # kRed+2 
-    'isSignal' : 1,
+    'isSignal' : 2,
     'isData'   : 0,    
     'scale'    : 10
 }
