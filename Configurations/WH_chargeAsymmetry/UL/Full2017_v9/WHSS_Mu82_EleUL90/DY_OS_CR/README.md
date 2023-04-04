@@ -26,7 +26,7 @@ Or, if they failed because the wall clock time has been exceeded, resubmit them 
 
 ### Update same-sign histogram file with opposite-sign DY distributions, weighted to take into account charge flip:
 
-    mkDYee_chargeFlip_OS_SS.py --os_ss_cutsFile=dict_os_ss_cuts.py --inputFileSS=../rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --inputFileOS=rootFile/plots_WHSS_OSCR_2018_v9_chargeAsymmetry_Mu82_Ele90.root --outputDir=../rootFile/ --outputFile=plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90_DYflip.root --year=2018
+    mkDYee_chargeFlip_OS_SS.py --os_ss_cutsFile=dict_os_ss_cuts.py --inputFileSS=../rootFile/plots_WHSS_2017_v9_chargeAsymmetry_Mu82_EleUL90.root --inputFileOS=rootFile/plots_WHSS_OSCR_2017_v9_chargeAsymmetry_Mu82_Ele90.root --outputDir=../rootFile/ --outputFile=plots_WHSS_2017_v9_chargeAsymmetry_Mu82_EleUL90_DYflip.root --year=2017
 
 This step creates the file `../rootFile/plots_WHSS_2018_v7_chargeAsymmetry_DYflip.root`, with the updated DY->ee histograms. You can use it to plot distributions and create datacards. You can now go back to the main directory:
 
