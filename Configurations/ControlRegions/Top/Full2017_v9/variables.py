@@ -8,10 +8,10 @@
 #                      }
 
 variables['mll'] = {
-    'name': 'mll',            #   variable name
-    'range' : (20,80,100),    #   variable range
-    'xaxis' : 'm_{ll} [GeV]',  #   x axis name
-    'fold' : 0
+    'name'  : 'mll',
+    'range' : (20,80,100),
+    'xaxis' : 'm_{ll} [GeV]',
+    'fold'  : 0
 }
 
 variables['ptll']  = {  
@@ -86,23 +86,32 @@ variables['njet']  = {
 }
 
 variables['jetpt1']  = {
-    'name': '(Sum$(CleanJet_pt>30)>0)*(Alt$(CleanJet_pt[0], 0)) - (Sum$(CleanJet_pt>30)==0)*99',     
+    'name'  : 'Alt$(CleanJet_pt[0], -99)',     
     'range' : (20,0,200),   
     'xaxis' : 'p_{T} 1st jet',
-    'fold' : 0
+    'fold'  : 0
+}
+# 'name': '(Sum$(CleanJet_pt>30)>0)*(Alt$(CleanJet_pt[0], 0)) - (Sum$(CleanJet_pt>30)==0)*99',     
+
+variables['jetpt1_more']  = {
+    'name'  : 'Alt$(CleanJet_pt[0], -99)',     
+    'range' : (40,0,200),   
+    'xaxis' : 'p_{T} 1st jet',
+    'fold'  : 0
+}
+# 'name': '(Sum$(CleanJet_pt>30)>0)*(Alt$(CleanJet_pt[0], 0)) - (Sum$(CleanJet_pt>30)==0)*99',     
+
+variables['jetpt1_zoom']  = {
+    'name'  : 'Alt$(CleanJet_pt[0], -99)',
+    'range' : (40,0,40),   
+    'xaxis' : 'p_{T} 1st jet',
+    'fold'  : 0
 }
 
 variables['jetpt2']  = {
     'name': '(Sum$(CleanJet_pt>30)>1)*(Alt$(CleanJet_pt[1], 0)) - (Sum$(CleanJet_pt>30)<=1)*99',     
     'range' : (20,0,200),   
     'xaxis' : 'p_{T} 2nd jet',
-    'fold' : 0
-}
-
-variables['jetpt1_more']  = {
-    'name': '(Sum$(CleanJet_pt>30)>0)*(Alt$(CleanJet_pt[0], 0)) - (Sum$(CleanJet_pt>30)==0)*99',     
-    'range' : (40,0,200),   
-    'xaxis' : 'p_{T} 1st jet',
     'fold' : 0
 }
 
@@ -114,23 +123,25 @@ variables['jetpt2_more']  = {
 }
 
 variables['jeteta1']  = {
-    'name': '(Sum$(CleanJet_pt>30)>0)*(Alt$(CleanJet_eta[0], 0)) - (Sum$(CleanJet_pt>30)==0)*99',
+    'name'  : 'Alt$(CleanJet_eta[0], -99)',
     'range' : (20,-5.0,5.0),
     'xaxis' : '#eta 1st jet',
     'fold'  : 0
 }
+# 'name': '(Sum$(CleanJet_pt>30)>0)*(Alt$(CleanJet_eta[0], 0)) - (Sum$(CleanJet_pt>30)==0)*99',
+
+variables['jeteta1_more']  = {
+    'name'  : 'Alt$(CleanJet_eta[0], -99)',
+    'range' : (50,-5.0,5.0),
+    'xaxis' : '#eta 1st jet',
+    'fold'  : 0
+}
+# 'name': '(Sum$(CleanJet_pt>30)>0)*(Alt$(CleanJet_eta[0], 0)) - (Sum$(CleanJet_pt>30)==0)*99',
 
 variables['jeteta2']  = {
     'name': '(Sum$(CleanJet_pt>30)>1)*(Alt$(CleanJet_eta[1], 0)) - (Sum$(CleanJet_pt>30)<=1)*99',
     'range' : (20,-5.0,5.0),
     'xaxis' : '#eta 2nd jet',
-    'fold'  : 0
-}
-
-variables['jeteta1_more']  = {
-    'name': '(Sum$(CleanJet_pt>30)>0)*(Alt$(CleanJet_eta[0], 0)) - (Sum$(CleanJet_pt>30)==0)*99',
-    'range' : (50,-5.0,5.0),
-    'xaxis' : '#eta 1st jet',
     'fold'  : 0
 }
 

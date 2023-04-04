@@ -2,11 +2,11 @@ import os
 import copy
 import inspect
 
-# /afs/cern.ch/user/n/ntrevisa/work/latinos/unblinding/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/WH_chargeAsymmetry/UL/Full2018_v9/WHSS/DY_OS_CR
+# /afs/cern.ch/user/n/ntrevisa/work/latinos/unblinding/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/WH_chargeAsymmetry/UL/Full2018_v9/WHSS_Mu82_EleUL90/DY_OS_CR
 
 configurations = os.path.realpath(inspect.getfile(inspect.currentframe())) # this file
 configurations = os.path.dirname(configurations) # DY_OS_CR
-configurations = os.path.dirname(configurations) # WHSS
+configurations = os.path.dirname(configurations) # WHSS_Mu82_EleUL90
 configurations = os.path.dirname(configurations) # Full2018_v9
 configurations = os.path.dirname(configurations) # UL
 configurations = os.path.dirname(configurations) # WH_chargeAsymmetry
@@ -21,10 +21,9 @@ eleWP = 'mvaFall17V2Iso_WP90_tthmva_70'
 muWP  = 'cut_Tight_HWWW_tthmva_80'
 
 aliases['LepWPCut'] = {
-    # 'expr': 'LepCut2l__ele_'+eleWP+'__mu_'+muWP,
     'expr': 'LepCut2l__ele_mvaFall17V2Iso_WP90__mu_cut_Tight_HWWW*\
-             ( (abs(Lepton_pdgId[0])==11 || Muon_mvaTTH[Lepton_muonIdx[0]]>0.82) && (abs(Lepton_pdgId[1])==11 || Muon_mvaTTH[Lepton_muonIdx[1]]>0.82) \
-            && (abs(Lepton_pdgId[0])==13 || Lepton_mvaTTH_UL[0]>0.90)            && (abs(Lepton_pdgId[1])==13 || Lepton_mvaTTH_UL[1]>0.90) )',
+     ( ((abs(Lepton_pdgId[0])==13 && Muon_mvaTTH[Lepton_muonIdx[0]]>0.82) || (abs(Lepton_pdgId[0])==11 && Lepton_mvaTTH_UL[0]>0.90)) \
+    && ((abs(Lepton_pdgId[1])==13 && Muon_mvaTTH[Lepton_muonIdx[1]]>0.82) || (abs(Lepton_pdgId[1])==11 && Lepton_mvaTTH_UL[1]>0.90)) )',
     'samples': mc_emb + ['DATA']
 }
 
@@ -40,10 +39,6 @@ aliases['fakeW'] = {
     'args'       : ('2018', '90', '82', 0.90, 0.82, 'nominal', 2, 'std'),
     'samples'    : ['Fake']
 }
-# aliases['fakeW'] = {
-#     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP,
-#     'samples': ['Fake']
-# }
 
 # And variations - already divided by central values in formulas !
 aliases['fakeWEleUp'] = {
@@ -103,38 +98,6 @@ aliases['fakeWStatMuDown'] = {
     'samples'    : ['Fake']
 }
 
-# aliases['fakeWEleUp'] = {
-#     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_EleUp',
-#     'samples': ['Fake']
-# }
-# aliases['fakeWEleDown'] = {
-#     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_EleDown',
-#     'samples': ['Fake']
-# }
-# aliases['fakeWMuUp'] = {
-#     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_MuUp',
-#     'samples': ['Fake']
-# }
-# aliases['fakeWMuDown'] = {
-#     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_MuDown',
-#     'samples': ['Fake']
-# }
-# aliases['fakeWStatEleUp'] = {
-#     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_statEleUp',
-#     'samples': ['Fake']
-# }
-# aliases['fakeWStatEleDown'] = {
-#     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_statEleDown',
-#     'samples': ['Fake']
-# }
-# aliases['fakeWStatMuUp'] = {
-#     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_statMuUp',
-#     'samples': ['Fake']
-# }
-# aliases['fakeWStatMuDown'] = {
-#     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_statMuDown',
-#     'samples': ['Fake']
-# }
 
 # No jet with pt > 30 GeV
 aliases['zeroJet'] = {
@@ -164,9 +127,9 @@ bWP_medium_deepFlavB = '0.2783'
 bWP_tight_deepFlavB  = '0.7100'
 
 # Actual algo and WP definition. BE CONSISTENT!!
-bAlgo = 'DeepB'         # ['DeepB',        'DeepFlavB'         ]
-bWP   = bWP_loose_deepB # [bWP_loose_deepB, bWP_loose_deepFlavB]
-bSF   = 'deepcsv'       # ['deepcsv',      'deepjet'           ]
+bAlgo = 'DeepB'          # ['DeepB',        'DeepFlavB'         ]
+bWP   = bWP_medium_deepB # [bWP_loose_deepB, bWP_loose_deepFlavB]
+bSF   = 'deepcsv'        # ['deepcsv',      'deepjet'           ]
 
 # b veto
 aliases['bVeto'] = {
@@ -308,19 +271,6 @@ aliases['Top_pTrw'] = {
 # Jet bins
 # using Alt$(CleanJet_pt[n], 0) instead of Sum$(CleanJet_pt >= 30) because jet pt ordering is not strictly followed in JES-varied samples
 
-# No jet with pt > 30 GeV
-aliases['zeroJet'] = {
-    'expr': 'Alt$(CleanJet_pt[0], 0) < 30.'
-}
-
-aliases['oneJet'] = {
-    'expr': 'Alt$(CleanJet_pt[0], 0) > 30.'
-}
-
-aliases['multiJet'] = {
-    'expr': 'Alt$(CleanJet_pt[1], 0) > 30.'
-}
-
 # aliases['SFweight2lAlt'] = {
 #     'expr'   : 'puWeight*TriggerSFWeight_2l*Lepton_RecoSF[0]*Lepton_RecoSF[1]*EMTFbug_veto',
 #     'samples': mc
@@ -363,10 +313,12 @@ aliases['SFweightMuDown'] = {
 # }
 
 ### BDT on-the-fly
-aliases['BDT_SS_v7'] = {
-    'class': 'BDT_v7_noCorrelatedVariables',
-    'linesToAdd' : ['.L %s/WH_chargeAsymmetry/WHSS/Full2018_v7/macros/BDT_v7_noCorrelatedVariables.C+' % configurations],
+aliases['BDT_WHSS_v9'] = {
+    'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/BDT_WHSS_v9.C+' % configurations],
+    'class': 'BDT_WHSS_v9',
+    'args' : ('BDTG_6', '%s/WH_chargeAsymmetry/UL/Full2018_v9/BDTconfig_WHSS/dataset_WHSS_btagVariables_zveto_orthogonalsamples/weights/TMVAClassification_BDTG_6.weights.xml' % configurations),
 }
+
 
 ########################
 ### Charge misid SFs ###

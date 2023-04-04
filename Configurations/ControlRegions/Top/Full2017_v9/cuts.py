@@ -27,6 +27,9 @@ cuts['Top_cr']  = {
     }
 }
 
+# 0 Jets horns region
+cuts['Top_0j_Horns']  = 'topcr && Alt$(CleanJet_pt[0], 0) > 0 && abs(Alt$(CleanJet_eta[0],0)) > 2.5 && abs(Alt$(CleanJet_eta[0],0)) < 3.2'
+
 # Jet bins regions - only leading jet b tagged
 cuts['Lead_bjet']  = {
     'expr' : 'lead_topcr',

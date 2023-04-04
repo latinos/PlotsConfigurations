@@ -119,6 +119,8 @@ files = nanoGetSampleFiles(mcDirectory, 'TTTo2L2Nu') + \
 samples['top'] = {
     'name': files,
     'weight': mcCommonWeightMatched,
+    'suppressNegative' :['all'],
+    'suppressNegativeNuisances' :['all'],
     'FilesPerJob': 1,
 }
 
@@ -130,6 +132,8 @@ addSampleWeight(samples,'top','TTTo2L2Nu','Top_pTrw')
 samples['WW'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'WWTo2L2Nu'),
     'weight': mcCommonWeightMatched + '*nllW*ewknloW', 
+    'suppressNegative' :['all'],
+    'suppressNegativeNuisances' :['all'],
     'FilesPerJob': 1
 }
 
@@ -163,6 +167,8 @@ files = nanoGetSampleFiles(mcDirectory, 'WGToLNuG') # same sample as v7 - OK!
 samples['Wg'] = {
     'name': files,
     'weight': mcCommonWeight + '*(Gen_ZGstar_mass <= 0)',
+    'suppressNegative' :['all'],
+    'suppressNegativeNuisances' :['all'],
     'FilesPerJob': 4
 }
 
@@ -173,8 +179,8 @@ files = nanoGetSampleFiles(mcDirectory, 'ZGToLLG') # Same sample as v7 - OK!
 samples['Zg'] = {
     'name': files,
     'weight': mcCommonWeight + '*(Gen_ZGstar_mass <= 0)',
-    # 'suppressNegative' :['all'],
-    # 'suppressNegativeNuisances' :['all'],
+    'suppressNegative' :['all'],
+    'suppressNegativeNuisances' :['all'],
     'FilesPerJob': 4
 }
 
@@ -186,6 +192,8 @@ files = nanoGetSampleFiles(mcDirectory, 'WGToLNuG') + \
 samples['WgS'] = {
     'name': files,
     'weight': mcCommonWeightMatched + ' * (gstarLow * 0.94)',
+    'suppressNegative' :['all'],
+    'suppressNegativeNuisances' :['all'],
     'FilesPerJob': 4,
 }
 addSampleWeight(samples, 'WgS', 'WGToLNuG', '(Gen_ZGstar_mass > 0 && Gen_ZGstar_mass <= 0.1)')
@@ -199,8 +207,8 @@ files = nanoGetSampleFiles(mcDirectory, 'ZGToLLG')
 samples['ZgS'] = {
     'name': files,
     'weight': mcCommonWeightMatched,
-    # 'suppressNegative' :['all'],
-    # 'suppressNegativeNuisances' :['all'],
+    'suppressNegative' :['all'],
+    'suppressNegativeNuisances' :['all'],
     'FilesPerJob': 4,
 }
 addSampleWeight(samples, 'ZgS', 'ZGToLLG', '(Gen_ZGstar_mass > 0)*0.448') # Do we still need this normalization factor?
@@ -211,6 +219,8 @@ addSampleWeight(samples, 'ZgS', 'ZGToLLG', '(Gen_ZGstar_mass > 0)*0.448') # Do w
 samples['ZZ'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'ZZTo4L'),
     'weight': mcCommonWeightMatched,
+    'suppressNegative' :['all'],
+    'suppressNegativeNuisances' :['all'],
     'FilesPerJob': 4
 }
 
@@ -220,6 +230,8 @@ samples['ZZ'] = {
 samples['WZ'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'WZTo3LNu_mllmin4p0'), # WZTo3LNu_mllmin0p1
     'weight': mcCommonWeightMatched + ' * (gstarHigh)',
+    'suppressNegative' :['all'],
+    'suppressNegativeNuisances' :['all'],
     'FilesPerJob': 4
 }
 #addSampleWeight(samples, 'WZ', 'WZTo3LNu_mllmin4p0', '(0.601644*58.59/4.666)')
@@ -234,6 +246,8 @@ files = nanoGetSampleFiles(mcDirectory, 'ZZZ') + \
 samples['VVV'] = {
     'name': files,
     'weight': mcCommonWeight,
+    'suppressNegative' :['all'],
+    'suppressNegativeNuisances' :['all'],
     'FilesPerJob': 4
 }
 
@@ -283,7 +297,7 @@ signals.append('ggZH_hww')
 ############ WH H->WW ############
 
 samples['WH_hww_plus'] = {
-    'name':   nanoGetSampleFiles(mcDirectory, 'HWplusJ_HToWWTo2L2Nu_WTo2L_M125'),
+    'name':   nanoGetSampleFiles(mcDirectory, 'HWplusJ_HToWW_M125'),
     'weight': mcCommonWeight,
     'FilesPerJob': 4
 }
@@ -292,7 +306,7 @@ signals.append('WH_hww_plus')
 
 
 samples['WH_hww_minus'] = {
-    'name':   nanoGetSampleFiles(mcDirectory, 'HWminusJ_HToWW_M125'), # HWminusJ_HToWWTo2L2Nu_WToLNu_M125 is in submitted state in grasp
+    'name':   nanoGetSampleFiles(mcDirectory, 'HWminusJ_HToWW_M125'),
     'weight': mcCommonWeight,
     'FilesPerJob': 4
 }
@@ -359,11 +373,13 @@ signals.append('WH_htt_minus')
 ###########################################
 
 samples['Fake'] = {
-  'name': [],
-  'weight': 'METFilter_DATA*fakeW',
-  'weights': [],
-  'isData': ['all'],
-  'FilesPerJob': 50
+    'name': [],
+    'weight': 'METFilter_DATA*fakeW',
+    'weights': [],
+    'isData': ['all'],
+    'suppressNegative' :['all'],
+    'suppressNegativeNuisances' :['all'],
+    'FilesPerJob': 50
 }
 
 for _, sd in DataRun:

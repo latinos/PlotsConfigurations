@@ -1,11 +1,11 @@
 # variables
 
 #variables = {}
-#variables['nvtx']  = {   'name': 'PV_npvsGood',      
-#                        'range' : (20,0,100),  
-#                        'xaxis' : 'nvtx', 
-#                         'fold' : 3
-#                      }
+
+# 'fold' : 0 = not fold (default)
+# 'fold' : 1 = fold underflowbin
+# 'fold' : 2 = fold overflow bin
+# 'fold' : 3 = fold underflow and overflow
 
 variables['mll_peak'] = {
     'name': 'mll',
@@ -14,11 +14,11 @@ variables['mll_peak'] = {
     'fold' : 0
 }
 
-variables['mll_peak'] = {
+variables['mll'] = {
     'name': 'mll',
     'range' : (20,0,300),
     'xaxis' : 'm_{ll} [GeV]',
-    'fold' : 0
+    'fold' : 3
 }
 
 variables['ptll']  = {  
@@ -176,3 +176,9 @@ variables['mpmet']  = {
     'fold' : 3
 }
 
+variables['mth']  = {
+    'name': 'mth',
+    'range' : (20,0,200),
+    'xaxis' : 'm_{T}^{H} [GeV]',
+    'fold' : 3
+}
