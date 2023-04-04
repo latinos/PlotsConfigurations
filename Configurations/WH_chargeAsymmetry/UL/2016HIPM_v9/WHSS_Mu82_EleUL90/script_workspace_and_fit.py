@@ -54,14 +54,14 @@ workspace_command = "text2workspace.py \
                      -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel \
                      -m 125 \
                      --PO verbose \
-                     --PO 'map=.*/ggH_hww:r_higgs[1,-100,100]' \
-                     --PO 'map=.*/qqH_hww:r_higgs[1,-100,100]' \
-                     --PO 'map=.*/ZH_hww:r_higgs[1,-100,100]' \
-                     --PO 'map=.*/ggZH_hww:r_higgs[1,-100,100]' \
-                     --PO 'map=.*/ttH_hww:r_higgs[1,-100,100]' \
-                     --PO 'map=.*/ggH_htt:r_higgs[1,-100,100]' \
-                     --PO 'map=.*/qqH_htt:r_higgs[1,-100,100]' \
-                     --PO 'map=.*/ZH_htt:r_higgs[1,-100,100]' \
+                     --PO 'map=.*/ggH_hww:r_higgs[1,0.99,1.01]' \
+                     --PO 'map=.*/qqH_hww:r_higgs[1,0.99,1.01]' \
+                     --PO 'map=.*/ZH_hww:r_higgs[1,0.99,1.01]' \
+                     --PO 'map=.*/ggZH_hww:r_higgs[1,0.99,1.01]' \
+                     --PO 'map=.*/ttH_hww:r_higgs[1,0.99,1.01]' \
+                     --PO 'map=.*/ggH_htt:r_higgs[1,0.99,1.01]' \
+                     --PO 'map=.*/qqH_htt:r_higgs[1,0.99,1.01]' \
+                     --PO 'map=.*/ZH_htt:r_higgs[1,0.99,1.01]' \
                      --PO 'map=.*/WH_h.*_plus:r_WH_plus=expr;;r_WH_plus(\"@0*(1+@1)/(2*0.8380)\",r_S[1.3693,0.01,5],r_A[0.224,-1,1])' \
                      --PO 'map=.*/WH_h.*_minus:r_WH_minus=expr;;r_WH_minus(\"@0*(1-@1)/(2*0.5313)\",r_S,r_A)' \
                      ".format(datacard_name)
