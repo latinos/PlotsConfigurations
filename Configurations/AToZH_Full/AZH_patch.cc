@@ -37,6 +37,7 @@ protected:
   FloatArrayReader* CleanJet_phi;
   FloatValueReader* PuppiMET_pt;
   FloatValueReader* PuppiMET_phi;
+  
   FloatArrayReader* Jet_btagDeepB;
   IntArrayReader* CleanJet_jetIdx;
 };
@@ -65,7 +66,7 @@ AZH_patch::evaluate(unsigned)
   MET.SetPtEtaPhiM(METpt,0,METphi,0);
   float Zeta = 0.5* std::pow(Wmass, 2) + MET.Pt() *  XLepton.Pt() *(std::cos(std::abs(ROOT::Math::VectorUtil::DeltaPhi(XLepton,MET))));
   float A = (std::pow(Zeta,2)* std::pow(XLepton.Pz(), 2) / std::pow(XLepton.Pt(), 4) - (std::pow(MET.Pt(), 2)*std::pow(XLepton.E(), 2) - std::pow(Zeta, 2)) / std::pow(XLepton.Pt(), 2));
-  if (A > 0)  {A = std::sqrt(A);} 
+  if (A > 0)  {A = std::sqrt(A);} else {A = 0;} 
   float Pznu1 = ((Zeta * XLepton.Pz())/std::pow(XLepton.Pt(), 2)) + A;
   float Pznu2 = ((Zeta * XLepton.Pz())/std::pow(XLepton.Pt(), 2)) - A;
   float Enu1 = std::sqrt(std::pow(MET.Pt(), 2) + std::pow(Pznu1, 2));
@@ -206,6 +207,41 @@ AZH_patch::evaluate(unsigned)
   else if (variable == "AZH_Zmass") {
       if (nJet < 4 || nbJet < 2) return -9999.0;
       return (ZLepton1 + ZLepton2).M();
+   }
+
+  else if (variable == "AZH_Neutrinomass") {
+      if (nJet < 4 || nbJet < 2) return -9999.0;
+      return (AZH_Neutrino_best).M();
+    }
+  
+  else if (variable == "Zeta") {
+       if (nJet < 4 || nbJet < 2) return -9999.0;
+       return (Zeta);
+  }
+
+  else if (variable == "A") {
+      if (nJet < 4 || nbJet < 2) return -9999.0;
+      return A;
+   }
+
+  else if (variable == "Pznu1") {
+      if (nJet < 4 || nbJet < 2) return -9999.0;
+      return Pznu1;
+   }
+
+  else if (variable == "Pznu2") {
+      if (nJet < 4 || nbJet < 2) return -9999.0;
+      return Pznu2;
+  }
+
+  else if (variable == "Enu1") {
+      if (nJet < 4 || nbJet < 2) return -9999.0;
+      return Enu1;
+   }
+
+  else if (variable == "Enu2") {
+      if (nJet < 4 || nbJet < 2) return -9999.0;
+      return Enu2;
    }
 
   else {
