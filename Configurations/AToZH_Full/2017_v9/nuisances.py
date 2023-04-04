@@ -5,7 +5,6 @@ try:
     mc = [skey for skey in samples if skey != 'DATA' and not skey.startswith('Fake')]
 except NameError:
     mc = []
-
 try:
     signal = [skey for skey in samples if skey.startswith('AZH')]
 except NameError:
@@ -176,7 +175,6 @@ nuisances['PU_AZH'] = {
      'cuts' : fitcuts
 }
 
-
 ### PU ID SF uncertainty
 puid_syst = ['Jet_PUIDSF_up/Jet_PUIDSF', 'Jet_PUIDSF_down/Jet_PUIDSF']
 
@@ -235,20 +233,11 @@ fakeW_statEleDown = '( fakeW_ele_'+eleWP_new+'_mu_'+muWP_new+'_3lstatElDown / fa
 fakeW_statMuUp    = '( fakeW_ele_'+eleWP_new+'_mu_'+muWP_new+'_3lstatMuUp   / fakeW_ele_'+eleWP_new+'_mu_'+muWP_new+'_3l )'
 fakeW_statMuDown  = '( fakeW_ele_'+eleWP_new+'_mu_'+muWP_new+'_3lstatMuDown / fakeW_ele_'+eleWP_new+'_mu_'+muWP_new+'_3l )'
 
-nuisances['fake_syst_e']  = {
-               'name'  : 'CMS_fake_syst_e',
+nuisances['fake_syst']  = {
+               'name'  : 'CMS_fake_syst',
                'type'  : 'lnN',
                'samples'  : {
-                             'Fake_e' : '1.30',
-                             },
-               'cuts' : fitcuts
-}
-
-nuisances['fake_syst_m']  = {
-               'name'  : 'CMS_fake_syst_m',
-               'type'  : 'lnN',
-               'samples'  : {
-                             'Fake_m' : '1.30',
+                             'Fake' : '1.30',
                              },
                'cuts' : fitcuts
 }

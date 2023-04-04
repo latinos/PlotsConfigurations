@@ -78,6 +78,22 @@ groupPlot['tZq_ll']  = {
          'samples'  : ['tZq_ll']
       }
 
+groupPlot['WgS'] = {
+          'nameHR' : "WgS",
+          'isSignal' : 0,
+          'color'    : 884,  
+          'samples' : ['WgS']
+       }
+
+
+groupPlot['Wg'] = {
+          'nameHR' : "Wg",
+          'isSignal' : 0,
+          'color'    : 885,  
+          'samples' : ['Wg']
+}
+
+
 #groupPlot['AZH_800_600'] = {
 #          'nameHR' : "AZH_800_600",
 #          'isSignal' : 1,
@@ -350,6 +366,21 @@ plot['Fake']  = {
                   'isData'   : 0,
                   'scale'    : 1.0                  
               }
+
+plot['WgS']  = {
+                  'color': 922,
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0
+}
+
+
+plot['Wg']  = {
+                  'color': 923,
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0
+}
 
 #plot['AZH'] = {
 #                  'nameHR' : 'AZH',

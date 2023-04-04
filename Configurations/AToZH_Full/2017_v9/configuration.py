@@ -1,6 +1,6 @@
 # example of configuration file
 
-tag = 'AZH_2017_v9_fit_withsystematics'
+tag = 'AZH_2017_v9_checkpatchtest'
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFiles_'+tag
@@ -15,10 +15,10 @@ aliasesFile = 'aliases.py'
 cutsFile = 'cuts.py' 
 
 # file with list of samples
-samplesFile = 'samples.py' 
+samplesFile = 'samples_AZH.py' 
 
 # file with list of samples
-plotFile = 'plot.py' 
+plotFile = 'plot_test.py' 
 
 # luminosity to normalize to (in 1/fb)
 lumi = 41.53
@@ -33,4 +33,4 @@ outputDirDatacard = 'datacards_'+tag
 structureFile = 'structure.py'
 
 # nuisances file for mkDatacards and for mkShape
-nuisancesFile = 'nuisances.py'
+nuisancesFile = 'nuisances_lumi.py'

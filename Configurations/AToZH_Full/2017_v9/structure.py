@@ -2,12 +2,17 @@
 # keys here must match keys in samples.py    
 
 # Backgrounds                  
-structure['Fake_e']  = {  
+structure['Fake']  = {  
                   'isSignal' : 0,
                   'isData'   : 0,
               }
 
-structure['Fake_m']  = {  
+structure['ttH_hww']  = {  
+                  'isSignal' : 0,
+                  'isData'   : 0,
+              }
+
+structure['tZq_ll']  = {  
                   'isSignal' : 0,
                   'isData'   : 0,
               }
@@ -61,9 +66,9 @@ structure['DATA']  = {
                   }
 structure['AZH_900_400']  = {
                   'isSignal' : 1,
-#                  'isData' : 0
-                  'isData'   : 0,    
-                  'removeFromCuts' : ['breq_SR']
+                  'isData' : 0
+#                  'isData'   : 0,    
+#                  'removeFromCuts' : ['breq_SR']
                   }
 structure['AZH_900_370']  = {
                   'isSignal' : 1,
@@ -121,7 +126,7 @@ structure['AZH_1000_600']  = {
                   }
 structure['AZH_800_600']  = {
                   'isSignal' : 1,
-                  'isData' : 0
-#                  'isData'   : 0,    
-#                  'removeFromCuts' : ['breq_SR']
+#                  'isData' : 0
+                  'isData'   : 0,    
+                  'removeFromCuts' : ['breq_SR']
                   }

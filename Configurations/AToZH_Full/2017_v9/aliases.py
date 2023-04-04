@@ -2,7 +2,6 @@
 
 mc = [skey for skey in samples if skey not in ('Fake', 'DATA')]
 
-#2017
 #bWP = '0.1522' #Loose
 bWP = '0.4506'
 bWPtight = '0.7738'
@@ -19,11 +18,9 @@ aliases['bVeto_1j'] = {
     'expr': '(Sum$( CleanJet_pt > 30.0 && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > '+bWP+' ) == 1)'
 }
 
-
 aliases['bReq'] = {
     'expr': '(Sum$( CleanJet_pt > 30.0 && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > '+bWP+' ) >= 2)'
 }
-
 aliases['btagSF'] = {
 'expr': '( TMath::Exp(Sum$( TMath::Log( (CleanJet_pt>30 && abs(CleanJet_eta)<2.5)*Jet_btagSF_deepcsv_shape[CleanJet_jetIdx]+1*(CleanJet_pt<30 || abs(CleanJet_eta)>2.5) ) ) ) )',
 'samples': mc
@@ -79,19 +76,53 @@ aliases['Top_pTrw'] = {
     'samples': ['top']
 }
 
-#aliases['ZH3l_dphilmetjj_test'] = {
-#    'linesToAdd': [
-#        '.L %s/src/PlotsConfigurations/Configurations/ZH3l/scripts/ZH3l_patch.cc+' % os.getenv('CMSSW_BASE')
-#    ],
-#    'class': 'ZH3l_patch',
-#    'args': ("dphilmetjj")
-#}
+aliases['AZH_mA_minus_mH_test'] = {
+    'linesToAdd': [
+       '.L %s/src/PlotsConfigurations/Configurations/AToZH_Full/AZH_patch.cc++' % os.getenv('CMSSW_BASE')
+    ],
+    'class': 'AZH_patch',
+    'args': ("AZH_mA_minus_mH")
+}
 
-#aliases['ZH3l_dphilmetj_test'] = {
-#    'class': 'ZH3l_patch',
-#    'args': ("dphilmetj")
-#}
+aliases['AZH_Amass_test'] = {
+    'class': 'AZH_patch',
+    'args': ("AZH_Amass")
+}
 
+
+aliases['AZH_Hmass_test'] = {
+    'class': 'AZH_patch',
+    'args': ("AZH_Hmass")
+}
+
+aliases['AZH_Zmass'] = {
+    'class': 'AZH_patch',
+    'args': ("AZH_Zmass")
+}
+
+
+aliases['AZH_ChiSquare_test'] = {
+    'class': 'AZH_patch',
+    'args': ("AZH_ChiSquare")
+}
+
+aliases['AZH_Tophadronic_test'] = {
+    'class': 'AZH_patch',
+    'args': ("AZH_Tophadronic")
+}
+
+aliases['AZH_Topleptonic_test'] = {
+    'class': 'AZH_patch',
+    'args': ("AZH_Topleptonic")
+}
+aliases['AZH_Whadronic_test'] = {
+    'class': 'AZH_patch',
+    'args': ("AZH_Whadronic")
+}
+aliases['AZH_Wleptonic_test'] = {
+    'class': 'AZH_patch',
+    'args': ("AZH_Wleptonic")
+}
 #aliases['ZH3l_mTlmet_test'] = {
 #    'class': 'ZH3l_patch',
 #    'args': ("mTlmet")
@@ -102,10 +133,10 @@ aliases['Top_pTrw'] = {
 #    'args': ("mTlmetj")
 #}
 
-#aliases['ZH3l_mTlmetjj_test'] = {
-#    'class': 'ZH3l_patch',
-#    'args': ("mTlmetjj")
-#}
+aliases['ZH3l_mTlmetjj_test'] = {
+    'class': 'AZH_patch',
+    'args': ("mTlmetjj")
+}
 
 #######################
 ### SFs for tthMVA  ###

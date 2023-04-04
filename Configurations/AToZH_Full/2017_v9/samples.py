@@ -33,8 +33,6 @@ ZZWeight='1.07'
 ############### Lepton WP ######################
 ################################################
 
-eleWP='mvaFall17V1Iso_WP90'
-muWP ='cut_Tight_HWWW'
 eleWP_new = 'mvaFall17V2Iso_WP90_tthmva_70'
 muWP_new  = 'cut_Tight_HWWW_tthmva_80'
 
@@ -137,6 +135,16 @@ samples['ttH_hww']  = { 'name'   :   getSampleFilesNano(directory,'ttHToNonbb_M1
 samples['tZq_ll']  = { 'name'   :   getSampleFilesNano(directory,'tZq_ll'),
                         'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC ,
                       }
+
+samples['WgS']  =  {     'name'   :   getSampleFilesNano(directory,'Wg_AMCNLOFXFX_01J'),
+                        'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC+'*(Gen_ZGstar_mass > 0)',
+                        'FilesPerJob' : 5 ,			    
+}
+
+samples['Wg']  =  {     'name'   :   getSampleFilesNano(directory,'Wg_AMCNLOFXFX_01J'),
+                        'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC+'* (!(Gen_ZGstar_mass > 0))',
+                        'FilesPerJob' : 5 ,			    
+}
 ############ VVV ############
 
 samples['ZZ']  = {  'name'   :   getSampleFilesNano(directory_ZZ,'ZZTo2L2Nu')
