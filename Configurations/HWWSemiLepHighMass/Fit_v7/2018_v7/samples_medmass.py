@@ -127,7 +127,7 @@ mcCommonWeightTaggerTop = 'XSWeight*SFweight_top*METFilter_MC*LepWPCut[0]*Lepton
 #############################################
 ###############  BACKGROUNDS  ###############
 ###############################################
-#
+##
 ###### DY #######
 print("DY")
 
@@ -188,7 +188,7 @@ files += nanoGetSampleFiles(mcDirectory, 'ST_tW_top_ext1')
 
 samples['top'] = {
     'name': files,
-    'weight': mcCommonWeightTaggerTop,
+    'weight': mcCommonWeightTagger,
     'FilesPerJob': 1,
 #    'EventsPerJob': 100000,
 }
@@ -321,7 +321,7 @@ addSampleWeight(samples, 'Wjets', 'WJetsToLNu_HT800_1200', '1.202')
 addSampleWeight(samples, 'Wjets', 'WJetsToLNu_HT1200_2500', '1.332')
 addSampleWeight(samples, 'Wjets', 'WJetsToLNu_HT2500_inf','4.2')
 
-##### Vg ########
+###### Vg ########
 print("Vg")
 
 files  = nanoGetSampleFiles(mcDirectory, 'Wg_MADGRAPHMLM')
@@ -377,50 +377,50 @@ samples['VVV'] = {
     'FilesPerJob': 15
 }
 
-########### QCD ###########
-print("QCD")
-
-#files  = nanoGetSampleFiles(mcDirectory,'QCD_Pt-15to20_MuEnrichedPt5')
-#files += nanoGetSampleFiles(mcDirectory,'QCD_Pt-20toInf_MuEnrichedPt15')
-#\
-## files += nanoGetSampleFiles(mcDirectory,'QCD_Pt-15to20_EMEnriched')
-#files += nanoGetSampleFiles(mcDirectory,'QCD_Pt-20to30_EMEnriched')
-#files += nanoGetSampleFiles(mcDirectory,'QCD_Pt-30to50_EMEnriched')
-#files += nanoGetSampleFiles(mcDirectory,'QCD_Pt-50to80_EMEnriched')
-#files += nanoGetSampleFiles(mcDirectory,'QCD_Pt-80to120_EMEnriched')
-#files += nanoGetSampleFiles(mcDirectory,'QCD_Pt-120to170_EMEnriched')
-#files += nanoGetSampleFiles(mcDirectory,'QCD_Pt-170to300_EMEnriched')
-#files += nanoGetSampleFiles(mcDirectory,'QCD_Pt-300toInf_EMEnriched')
+############ QCD ###########
+#print("QCD")
 #
-#files += nanoGetSampleFiles(mcDirectory, 'QCD_Pt_20to30_bcToE')
-#files += nanoGetSampleFiles(mcDirectory, 'QCD_Pt_30to80_bcToE')
-#files += nanoGetSampleFiles(mcDirectory, 'QCD_Pt_80to170_bcToE')
-#files += nanoGetSampleFiles(mcDirectory, 'QCD_Pt_170to250_bcToE')
-#files += nanoGetSampleFiles(mcDirectory, 'QCD_Pt_250toInf_bcToE')
+##files  = nanoGetSampleFiles(mcDirectory,'QCD_Pt-15to20_MuEnrichedPt5')
+##files += nanoGetSampleFiles(mcDirectory,'QCD_Pt-20toInf_MuEnrichedPt15')
+##\
+### files += nanoGetSampleFiles(mcDirectory,'QCD_Pt-15to20_EMEnriched')
+##files += nanoGetSampleFiles(mcDirectory,'QCD_Pt-20to30_EMEnriched')
+##files += nanoGetSampleFiles(mcDirectory,'QCD_Pt-30to50_EMEnriched')
+##files += nanoGetSampleFiles(mcDirectory,'QCD_Pt-50to80_EMEnriched')
+##files += nanoGetSampleFiles(mcDirectory,'QCD_Pt-80to120_EMEnriched')
+##files += nanoGetSampleFiles(mcDirectory,'QCD_Pt-120to170_EMEnriched')
+##files += nanoGetSampleFiles(mcDirectory,'QCD_Pt-170to300_EMEnriched')
+##files += nanoGetSampleFiles(mcDirectory,'QCD_Pt-300toInf_EMEnriched')
+##
+##files += nanoGetSampleFiles(mcDirectory, 'QCD_Pt_20to30_bcToE')
+##files += nanoGetSampleFiles(mcDirectory, 'QCD_Pt_30to80_bcToE')
+##files += nanoGetSampleFiles(mcDirectory, 'QCD_Pt_80to170_bcToE')
+##files += nanoGetSampleFiles(mcDirectory, 'QCD_Pt_170to250_bcToE')
+##files += nanoGetSampleFiles(mcDirectory, 'QCD_Pt_250toInf_bcToE')
+##
+##samples['QCD'] = {
+##    'name'   :   files,
+##    'weight' : mcCommonWeight + '*(abs(' + mcCommonWeight + ') < 50)',
+##    'FilesPerJob' : 18,
+##}
+##
+##addSampleWeight(samples, 'QCD', 'QCD_Pt-15to20_MuEnrichedPt5'   , '(abs(Lepton_pdgId[0]) == 13)')
+##addSampleWeight(samples, 'QCD', 'QCD_Pt-20toInf_MuEnrichedPt15' , '(abs(Lepton_pdgId[0]) == 13)')
+### addSampleWeight(samples, 'QCD', 'QCD_Pt-15to20_EMEnriched'      , '(abs(Lepton_pdgId[0]) == 11)')
+##addSampleWeight(samples, 'QCD', 'QCD_Pt-20to30_EMEnriched'      , '(abs(Lepton_pdgId[0]) == 11)')
+##addSampleWeight(samples, 'QCD', 'QCD_Pt-30to50_EMEnriched'      , '(abs(Lepton_pdgId[0]) == 11)')
+##addSampleWeight(samples, 'QCD', 'QCD_Pt-50to80_EMEnriched'      , '(abs(Lepton_pdgId[0]) == 11)')
+##addSampleWeight(samples, 'QCD', 'QCD_Pt-80to120_EMEnriched'     , '(abs(Lepton_pdgId[0]) == 11)')
+##addSampleWeight(samples, 'QCD', 'QCD_Pt-120to170_EMEnriched'    , '(abs(Lepton_pdgId[0]) == 11)')
+##addSampleWeight(samples, 'QCD', 'QCD_Pt-170to300_EMEnriched'    , '(abs(Lepton_pdgId[0]) == 11)')
+##addSampleWeight(samples, 'QCD', 'QCD_Pt-300toInf_EMEnriched'    , '(abs(Lepton_pdgId[0]) == 11)')
+##addSampleWeight(samples, 'QCD', 'QCD_Pt_20to30_bcToE'           , '(abs(Lepton_pdgId[0]) == 11)')
+##addSampleWeight(samples, 'QCD', 'QCD_Pt_30to80_bcToE'           , '(abs(Lepton_pdgId[0]) == 11)')
+##addSampleWeight(samples, 'QCD', 'QCD_Pt_80to170_bcToE'          , '(abs(Lepton_pdgId[0]) == 11)')
+##addSampleWeight(samples, 'QCD', 'QCD_Pt_170to250_bcToE'         , '(abs(Lepton_pdgId[0]) == 11)')
+##addSampleWeight(samples, 'QCD', 'QCD_Pt_250toInf_bcToE'         , '(abs(Lepton_pdgId[0]) == 11)')
+##
 #
-#samples['QCD'] = {
-#    'name'   :   files,
-#    'weight' : mcCommonWeight + '*(abs(' + mcCommonWeight + ') < 50)',
-#    'FilesPerJob' : 18,
-#}
-#
-#addSampleWeight(samples, 'QCD', 'QCD_Pt-15to20_MuEnrichedPt5'   , '(abs(Lepton_pdgId[0]) == 13)')
-#addSampleWeight(samples, 'QCD', 'QCD_Pt-20toInf_MuEnrichedPt15' , '(abs(Lepton_pdgId[0]) == 13)')
-## addSampleWeight(samples, 'QCD', 'QCD_Pt-15to20_EMEnriched'      , '(abs(Lepton_pdgId[0]) == 11)')
-#addSampleWeight(samples, 'QCD', 'QCD_Pt-20to30_EMEnriched'      , '(abs(Lepton_pdgId[0]) == 11)')
-#addSampleWeight(samples, 'QCD', 'QCD_Pt-30to50_EMEnriched'      , '(abs(Lepton_pdgId[0]) == 11)')
-#addSampleWeight(samples, 'QCD', 'QCD_Pt-50to80_EMEnriched'      , '(abs(Lepton_pdgId[0]) == 11)')
-#addSampleWeight(samples, 'QCD', 'QCD_Pt-80to120_EMEnriched'     , '(abs(Lepton_pdgId[0]) == 11)')
-#addSampleWeight(samples, 'QCD', 'QCD_Pt-120to170_EMEnriched'    , '(abs(Lepton_pdgId[0]) == 11)')
-#addSampleWeight(samples, 'QCD', 'QCD_Pt-170to300_EMEnriched'    , '(abs(Lepton_pdgId[0]) == 11)')
-#addSampleWeight(samples, 'QCD', 'QCD_Pt-300toInf_EMEnriched'    , '(abs(Lepton_pdgId[0]) == 11)')
-#addSampleWeight(samples, 'QCD', 'QCD_Pt_20to30_bcToE'           , '(abs(Lepton_pdgId[0]) == 11)')
-#addSampleWeight(samples, 'QCD', 'QCD_Pt_30to80_bcToE'           , '(abs(Lepton_pdgId[0]) == 11)')
-#addSampleWeight(samples, 'QCD', 'QCD_Pt_80to170_bcToE'          , '(abs(Lepton_pdgId[0]) == 11)')
-#addSampleWeight(samples, 'QCD', 'QCD_Pt_170to250_bcToE'         , '(abs(Lepton_pdgId[0]) == 11)')
-#addSampleWeight(samples, 'QCD', 'QCD_Pt_250toInf_bcToE'         , '(abs(Lepton_pdgId[0]) == 11)')
-#
-
 
 ############## SM Higgs ############
 print("SM Higgs")
@@ -567,16 +567,16 @@ for key in samples:
 
 
 
-#################################################
-######################## DATA ###################
-#################################################
-######print("FAKE")
-################# FAKE ###########
-######eleWP    = 'mvaFall17V1Iso_WP90'
-######muWP     = 'cut_Tight_HWWW'
-#######
-#######fakeW = 'fakeW_ele_'+eleWP+'_mu_'+muWP+'_1l_mu25_ele35'
-#######
+##################################################
+######################### DATA ###################
+##################################################
+#######print("FAKE")
+################## FAKE ###########
+#######eleWP    = 'mvaFall17V1Iso_WP90'
+#######muWP     = 'cut_Tight_HWWW'
+########
+########fakeW = 'fakeW_ele_'+eleWP+'_mu_'+muWP+'_1l_mu25_ele35'
+########
 Mu_jetEt = 35
 El_jetEt = 35
 fakeW = 'FW_mu'+str(Mu_jetEt)+ '_el'+str(El_jetEt)+'[0]'

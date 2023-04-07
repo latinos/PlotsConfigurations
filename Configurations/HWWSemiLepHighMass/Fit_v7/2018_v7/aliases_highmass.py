@@ -500,7 +500,7 @@ aliases['bReqSF'] = {
 }
 
 bJetV_req_boo = '(boosted_nocut_res[0]  && CleanJet_pt[CleanJetNotFat_jetIdx] > 20 && abs(CleanJet_eta[CleanJetNotFat_jetIdx]) < 2.5 )'
-bJetR_req_boo = '(boosted_nocut_res[0]  && CleanJet_pt[CleanJetNotFat_jetIdx] > 20 && abs(CleanJet_eta[CleanJetNotFat_jetIdx]) < 2.5 )'
+bJetR_req_boo = '(boosted_nocut_res[0]  && CleanJet_pt[CleanJetNotFat_jetIdx] > 30 && abs(CleanJet_eta[CleanJetNotFat_jetIdx]) < 2.5 )'
 
 aliases['bVeto_boo'] = {
     'expr': 'Sum$(Jet_btagDeepB[CleanJet_jetIdx[CleanJetNotFat_jetIdx]] > bWP[0] && '+bJetV_req_boo+' ) == 0',
@@ -653,6 +653,24 @@ aliases['PUJetIdSF'] = {
         && ( (Jet_electronIdx1 != Lepton_electronIdx[0]) || Jet_electronIdx1 < 0 )  \
         && ( (Jet_muonIdx1 != Lepton_muonIdx[0] ) || Jet_muonIdx1 < 0 ) \
         )*TMath::Log(Jet_PUIDSF_loose)\
+    ))',
+  'samples': mc
+}
+aliases['PUJetIdSF_up'] = {
+    'expr' : 'TMath::Exp(Sum$( \
+        (Jet_jetId>=2 \
+        && ( (Jet_electronIdx1 != Lepton_electronIdx[0]) || Jet_electronIdx1 < 0 )  \
+        && ( (Jet_muonIdx1 != Lepton_muonIdx[0] ) || Jet_muonIdx1 < 0 ) \
+        )*TMath::Log(Jet_PUIDSF_loose_up)\
+    ))',
+  'samples': mc
+}
+aliases['PUJetIdSF_down'] = {
+    'expr' : 'TMath::Exp(Sum$( \
+        (Jet_jetId>=2 \
+        && ( (Jet_electronIdx1 != Lepton_electronIdx[0]) || Jet_electronIdx1 < 0 )  \
+        && ( (Jet_muonIdx1 != Lepton_muonIdx[0] ) || Jet_muonIdx1 < 0 ) \
+        )*TMath::Log(Jet_PUIDSF_loose_down)\
     ))',
   'samples': mc
 }
@@ -834,6 +852,11 @@ aliases['antitopGenPtOTF'] = {
 #    'samples': top,#['top',]
 #}
 
+aliases['Fat_rewei'] = {# New Top PAG
+    'expr': '(1 * !boosted_nocut_res[0] + (boosted_nocut_res[0]*(-11.3853 + 0.279639*CleanFatJet_mass[0] -0.00156272*CleanFatJet_mass[0]*CleanFatJet_mass[0])))',
+#    'expr': '1',
+    'samples': mc_deep, #['top',]#['top']
+}
 aliases['Top_DeepTagrw'] = {# New Top PAG
     'expr': '(1 * !boosted_nocut_res[0] + (boosted_nocut_res[0]*(-250.593 +264.777*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0) + 260.224*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0)*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0) -273.839*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0)*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0)*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0))))',
     'samples': top,#['top']
@@ -1009,7 +1032,7 @@ for lep in ['El', 'Mu']:
             'linesToAdd' : [
                 'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
                 #'.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/fakeweight_p1_OTF.cc+' % os.getenv('CMSSW_BASE')
-                '.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/fakeweight_OTF.cc+' % os.getenv('CMSSW_BASE')
+                '.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/fake_weight_min.cc+' % os.getenv('CMSSW_BASE')
             ],
             #'class': 'fakeWeight_p1_OTF',
             'class': 'fakeWeightOTF',

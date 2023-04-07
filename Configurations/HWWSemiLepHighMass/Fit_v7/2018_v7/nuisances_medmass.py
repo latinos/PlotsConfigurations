@@ -17,7 +17,7 @@ def nanoGetSampleFiles(inputDir, Sample):
 
 try:
     mc = [skey for skey in samples if skey not in ('FAKE', 'DATA')]
-    mc_deep =[skey for skey in samples if skey not in ['DY', 'top', 'Wjets', 'Vg', 'VgS','VZ', 'FAKE', 'DATA', 'VVV', 'ZH_htt', 'WH_htt', 'ggH_htt', 'qqH_htt']]  
+    mc_deep =[skey for skey in samples if skey not in ['DY', 'Wjets', 'Vg', 'VgS','VZ', 'FAKE', 'DATA', 'VVV', 'ZH_htt', 'WH_htt', 'ggH_htt', 'qqH_htt']]  
     sig_mc = [skey for skey in mc if ("GGH" in skey) or ("QQH" in skey) or (skey in ["ggWW", "ggH_hww", "qqWWqq", "qqH_hww"])] # ggWW is currently reweighted sig sample, while qqWWqq needs to be symlinked to the BWReweight!
     sig_mc_PS = [skey for skey in mc if ("GGH" in skey) or ("QQH" in skey)] # ggWW is currently reweighted sig sample, while qqWWqq needs to be symlinked to the BWReweight!
 
@@ -120,6 +120,8 @@ for shift in ['jes', 'lf', 'hf', 'hfstats1', 'hfstats2', 'lfstats1', 'lfstats2',
     name = 'CMS_btag_%s' % shift
     if 'stats' in shift:
         name += '_2018'
+    if 'jes' in shift:
+        name += '_2018'
 
     nuisances['btag_%s' % shift] = {
         'name': name,
@@ -151,7 +153,7 @@ if useDeepAK8 is False:
     }
 else:
     nuisances['wtag'] = {
-        'name': 'CMS_wtag_eff',
+        'name': 'CMS_wtag_eff_2018',
         'kind': 'weight',
         'type': 'shape',
         'samples': dict((skey, ['DeepAK8_SF_up/DeepAK8_SF', 'DeepAK8_SF_down/DeepAK8_SF']) for skey in mc_deep),
@@ -181,14 +183,14 @@ else:
         #'cuts': set.union(cutdict['Resolv'], cutdict['Boost'])
     }
 
-nuisances['wtag_top'] = {
-    'name': 'CMS_wtag_eff_top',
-    'kind': 'weight',
-    'type': 'shape',
-    'samples': {
-        'top': ['DeepAK8_SF_up/DeepAK8_SF', 'DeepAK8_SF_down/DeepAK8_SF'],
-    },
-}
+ #nuisances['wtag_top'] = {
+ #    'name': 'CMS_wtag_eff_top',
+ #    'kind': 'weight',
+ #    'type': 'shape',
+ #    'samples': {
+ #        'top': ['DeepAK8_SF_up/DeepAK8_SF', 'DeepAK8_SF_down/DeepAK8_SF'],
+ #    },
+ #}
 ##nuisances['wtag_top'] = {
 ##    'name': 'CMS_wtag_eff_top',
 ##    'kind'  : 'weight',
@@ -270,6 +272,14 @@ nuisances['var_top_3_deep'] = {
     'cuts': cutdict['Boosted'],
 }
 
+nuisances['Fat_rewei_unc'] = {
+    'name': 'CMS_Fat_rewei_unc_2018',
+    'kind'  : 'weight',
+    'type'  : 'shape',
+    'samples': dict((skey,['Fat_rewei[0]', '1']) for skey in mc_deep),
+    'symmetrize':True,
+    'cuts': cutdict['Boosted']
+}
 ##### Trigger Efficiency
 
 #trig_syst = ['((TriggerEffWeight_1l_u)/(TriggerEffWeight_1l))*(TriggerEffWeight_1l>0.02) + (TriggerEffWeight_1l<=0.02)', '(TriggerEffWeight_1l_d)/(TriggerEffWeight_1l)*(TriggerEffWeight_1l>0.02) + (TriggerEffWeight_1l<=0.02)']
@@ -309,7 +319,7 @@ nuisances['electronpt'] = {
     'samples': dict((skey, ['1', '1']) for skey in mc if skey not in sig_mc ),
     'folderUp'  : makeMCDirectory('ElepTup'),
     'folderDown': makeMCDirectory('ElepTdo'),
-    'AsLnN': '1'
+#    'AsLnN': '1'
 }
 #nuisances['electronpt_BWReweight'] = {
 #    'name' : 'CMS_scale_e_2017',
@@ -341,7 +351,7 @@ nuisances['muonpt'] = {
     'samples': dict((skey, ['1', '1']) for skey in mc if skey not in sig_mc),
     'folderUp'  : makeMCDirectory('MupTup'),
     'folderDown': makeMCDirectory('MupTdo'),
-    'AsLnN': '1'
+#    'AsLnN': '1'
 }
 #nuisances['muonpt_BWReweight'] = {
 #    'name' : 'CMS_scale_m_2017',
@@ -369,7 +379,7 @@ for js in jes_systs:
       'samples': dict((skey, ['1', '1']) for skey in mc if skey not in sig_mc),
       'folderUp'  : makeMCDirectory('JESup'),
       'folderDown': makeMCDirectory('JESdo'),
-      'AsLnN': '1'
+#      'AsLnN': '1'
   }
 
 
@@ -396,7 +406,7 @@ nuisances['fatjet_jes']  = {
     'samples': dict((skey, ['1', '1']) for skey in mc if skey not in sig_mc),
     'folderUp'  : makeMCDirectory('fatjetJESup'),
     'folderDown': makeMCDirectory('fatjetJESdo'),
-    'AsLnN': '1'
+ #   'AsLnN': '1'
 }
 nuisances['fatjet_jer']  = {
     'name'  : 'CMS_res_fatjer_2018',
@@ -407,7 +417,7 @@ nuisances['fatjet_jer']  = {
     'samples': dict((skey, ['1', '1']) for skey in mc if skey not in sig_mc),
     'folderUp'  : makeMCDirectory('fatjetJERup'),
     'folderDown': makeMCDirectory('fatjetJERdo'),
-    'AsLnN': '1'
+ #   'AsLnN': '1'
 }
 nuisances['fatjet_jms']  = {
     'name'  : 'CMS_fatjms_2018',
@@ -418,7 +428,7 @@ nuisances['fatjet_jms']  = {
     'samples': dict((skey, ['1', '1']) for skey in mc if skey not in sig_mc),
     'folderUp'  : makeMCDirectory('fatjetJMSup'),
     'folderDown': makeMCDirectory('fatjetJMSdo'),
-    'AsLnN': '1'
+ #   'AsLnN': '1'
 }
 nuisances['fatjet_jmr']  = {
     'name'  : 'CMS_res_fatjmr_2018',
@@ -429,9 +439,20 @@ nuisances['fatjet_jmr']  = {
     'samples': dict((skey, ['1', '1']) for skey in mc if skey not in sig_mc),
     'folderUp'  : makeMCDirectory('fatjetJMRup'),
     'folderDown': makeMCDirectory('fatjetJMRdo'),
-    'AsLnN': '1'
+ #   'AsLnN': '1'
 }
 
+nuisances['jet_jer']  = {
+    'name'  : 'CMS_jer_2018',
+    'kind'  : 'suffix',
+    'type'  : 'shape',
+    'mapUp'  : 'JERup',
+    'mapDown': 'JERdo',
+    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in sig_mc),
+    'folderUp'  : makeMCDirectory('JERup'),
+    'folderDown': makeMCDirectory('JERdo'),
+ #   'AsLnN': '1'
+}
 #nuisances['fatjet_jes_BWReweight']  = {
 #    'name'  : 'CMS_scale_fatj_2017',
 #    'kind'  : 'suffix',
@@ -489,7 +510,7 @@ nuisances['met'] = {
     'samples': dict((skey, ['1', '1']) for skey in mc if skey not in sig_mc),
     'folderUp' : makeMCDirectory('METup'),
     'folderDown': makeMCDirectory('METdo'),
-    'AsLnN': '1'
+ #   'AsLnN': '1'
 }
 #nuisances['met_BWReweight'] = {
 #    'name' : 'CMS_scale_met_2017',
@@ -517,7 +538,7 @@ nuisances['PU'] = {
         'ggH_hww': ['1.0036768006*(puWeightUp/puWeight)', '0.995996570285*(puWeightDown/puWeight)'],
         'qqH_hww': ['1.00374694528*(puWeightUp/puWeight)', '0.995878596852*(puWeightDown/puWeight)'],
     },
-    'AsLnN': '1',
+ #   'AsLnN': '1',
 }
 handle = open("../PUunc_Semi.py",'r')
 exec(handle)
@@ -557,8 +578,8 @@ nuisances['PS_ISR']['samples'].update({'WWewk': ['1.000046239608802*(nCleanGenJe
 nuisances['PS_ISR']['samples'].update({'Vg': ['1.0039055667905552*(nCleanGenJet==0) + 1.0059752448648116*(nCleanGenJet==1) + 0.9926179336643974*(nCleanGenJet==2) + 0.9524471129275528*(nCleanGenJet>=3)', '0.9949355050284215*(nCleanGenJet==0) + 0.9926938538727195*(nCleanGenJet==1) + 1.0093671414600691*(nCleanGenJet==2) + 1.060578524662196*(nCleanGenJet>=3)']}) # From Zg
 nuisances['PS_ISR']['samples'].update({'VgS': ['1.0000536116408023*(nCleanGenJet==0) + 1.0100100693580492*(nCleanGenJet==1) + 0.959068359375*(nCleanGenJet==2) + 0.9117049260469496*(nCleanGenJet>=3)', '0.9999367833485968*(nCleanGenJet==0) + 0.9873682892005163*(nCleanGenJet==1) + 1.0492717737268518*(nCleanGenJet==2) + 1.1176958835210322*(nCleanGenJet>=3)']}) # From WZTo3LNu_mllmin01
 
-nuisances['PS_ISR']  = {
-    'name': 'PS_ISR',
+nuisances['PS_ISR_sig']  = {
+    'name': 'PS_ISR_sig',
     'kind': 'weight',
     'type': 'shape',
     'samples': dict((skey, ['Alt$(PSWeight[2], 1.0)', 'Alt$(PSWeight[0], 1.0)']) for skey in sig_mc_PS)
@@ -603,8 +624,8 @@ nuisances['PS_FSR']['samples'].update({'VgS': ['0.9976593177227735*(nCleanGenJet
 #  nuisances['PS_FSR']['samples'].update({'QQH_'+m+model_name: PSstring})
 #  nuisances['PS_FSR']['samples'].update({'QQHINT_'+m+model_name: PSstring})
 
-nuisances['PS_FSR']  = {
-    'name': 'PS_FSR',
+nuisances['PS_FSR_sig']  = {
+    'name': 'PS_FSR_sig',
     'kind': 'weight',
     'type': 'shape',
     'samples': dict((skey, ['Alt$(PSWeight[3], 1.0)', 'Alt$(PSWeight[1], 1.0)']) for skey in sig_mc_PS)
@@ -617,9 +638,41 @@ nuisances['UE']  = {
                 'type': 'lnN',
                 'samples': dict((skey, '1.015') for skey in mc),
 }
+for i in range(1,33):
+  # LHEPdfWeight are PDF4LHC variations, while nominal is NNPDF.
+  # LHEPdfWeight[i] reweights from NNPDF nominal to PDF4LHC member i
+  # LHEPdfWeight[0] in particular reweights from NNPDF nominal to PDF4LHC nominal
+  pdf_variations = ["LHEPdfWeight[%d]/LHEPdfWeight[0]" %i, "2. - LHEPdfWeight[%d]/LHEPdfWeight[0]" %i ]
+
+  nuisances['pdf_Wjets_eigen'+str(i)]  = {
+    'name'  : 'CMS_hww_pdf_Wjets_eigen'+str(i),
+    'skipCMS' : 1,
+    'kind'  : 'weight',
+    'type'  : 'shape',
+    'samples'  : {
+      'Wjets'   : pdf_variations,
+    },
+  }
+  nuisances['pdf_top_eigen'+str(i)]  = {
+    'name'  : 'CMS_hww_pdf_top_eigen'+str(i),
+    'skipCMS' : 1,
+    'kind'  : 'weight',
+    'type'  : 'shape',
+    'samples'  : {
+      'top'   : pdf_variations,
+    },
+  }
 
 
+### PU ID SF uncertainty
+puid_syst = ['PUJetIdSF_up/PUJetIdSF', 'PUJetIdSF_down/PUJetIdSF']
 
+nuisances['jetPUID'] = {
+    'name': 'CMS_PUID_2018',
+    'kind': 'weight',
+    'type': 'shape',
+    'samples': dict((skey, puid_syst) for skey in mc)
+}
 # ####### Generic "cross section uncertainties"
 
 apply_on = {
@@ -804,14 +857,23 @@ nuisances['pdf_qqbar_ACCEPT'] = {
 
 variations = ['LHEScaleWeight[0]', 'LHEScaleWeight[1]', 'LHEScaleWeight[3]', 'LHEScaleWeight[Length$(LHEScaleWeight)-4]', 'LHEScaleWeight[Length$(LHEScaleWeight)-2]', 'LHEScaleWeight[Length$(LHEScaleWeight)-1]']
 
-#nuisances['QCDscale_V'] = {
-#    'name': 'QCDscale_V',
-#    'kind': 'weight_envelope',
-#    'type': 'shape',
-#    'samples': {
-#        'DY': variations
-#    },
-#}
+nuisances['QCDscale_V'] = {
+    'name': 'QCDscale_V',
+    'kind': 'weight_envelope',
+    'type': 'shape',
+    'samples': {
+        'DY': variations
+    },
+}
+
+nuisances['QCDscale_Wjets'] = {
+    'name': 'QCDscale_Wjets',
+    'kind': 'weight_envelope',
+    'type': 'shape',
+    'samples': {
+        'Wjets': variations
+    },
+}
 
 
 # Variations for all other samples are consistent.
@@ -1092,7 +1154,7 @@ for syst in ['El', 'statEl', 'Mu', 'statMu']:
     else: name_tag += '_recoil'
 
     nuisances['fake_'+syst] = {
-        'name': 'CMS_fake'+name_tag+'_2016',
+        'name': 'CMS_fake'+name_tag+'_2018',
         'kind': 'weight',
         'type': 'shape',
         'samples': {

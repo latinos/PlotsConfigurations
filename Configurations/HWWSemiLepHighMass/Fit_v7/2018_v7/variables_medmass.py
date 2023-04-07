@@ -183,6 +183,12 @@ variables['CleanFatJet_mass_zoom'] = {
     'cuts' : controlRegions,
     'fold' : 0
 }
+variables['HvOverFAT'] = {
+   'name' : 'HvOverFat[0]',
+   'range': (20, 0, 1.),
+   'xaxis': 'p_{T}^{W}/m_{X}',
+   'fold' : 0
+}
 #variables['Fatjet_eta'] = {
 #    'name' : 'FatJet_eta[0]',
 #    'range': (30, -2.4, 2.4),
@@ -429,6 +435,23 @@ variables['mass_HIGGS_twojet_binned'] = {
    'fold' : 0,
    'cuts' : resolved, 
 }
+variables['mass_HIGGS_FAT_rebin'] = {
+   'name' : 'mass_HIGGS_FAT[0]',
+   'range': ([0, 250, 350, 400, 450, 500, 550, 600,
+               650, 700, 750, 800, 850, 900, 950, 1000, 1050,
+  	       1100, 1150, 1200, 1250, 1300, 1350, 1500, 1700, 2000, 5000 ],),
+   'xaxis': 'Higgs Mass [GeV]',
+   'fold' : 0 ,
+   'cuts' : boosted ,
+}
+variables['mass_HIGGS_twojet_rebin'] = {
+   'name' : 'mass_HIGGS_JJ[0]',
+   'range': ([0, 200, 250, 300, 350, 400, 450, 500, 550, 600,
+              650, 700, 750, 800, 850, 900, 950, 1000, 1250, 1500, 3000],),
+   'xaxis': 'Higgs Mass [GeV]',
+   'fold' : 0,
+   'cuts' : resolved, 
+}
 ##variables['mass_HIGGS_twojet_fit'] = {
 ##   'name' : 'mass_HIGGS_JJ[0]',
 ##   'range': ([0, 150, 200, 260, 300, 350, 400, 450, 500, 550, 600,
@@ -518,50 +541,50 @@ variables['wlep_pt'] = {
     'cuts' : controlRegions,
     'fold' : 0, 
 }
-variables['whad_pt'] = {
-    'name' : 'HM_Whad_pt',
-    'range': (40, 0, 800),
-    'xaxis': 'reconstr. W had Pt [GeV]',
-    'fold' : 0, 
-    'cuts' : controlRegions,
-}
-######variables['whad_eta'] = {
-######    'name' : 'HM_Whad_eta',
-######    'range': (25, -2.5, 2.5),
-######    'xaxis': 'reconstr. W had eta',
-######    'fold' : 0, 
-######}
-variables['whad_mass'] = {
-    'name' : 'HM_Whad_mass',
-    'range': (25, 0, 250),
-    'xaxis': 'reconstr. W had mass [GeV]',
-    'cuts' : controlRegions,
-    'fold' : 0, 
-}
-variables['classvbf'] = {
-     'name': 'vbfdnn_odd',
-     'range' : (10,0,1.),
-     'xaxis' : 'VBF output',
-     'fold' : 3,
-     'cuts' : boostedSR,
-     'divideByBinWidth':1
-}
-variables['classbkg'] = {
-     'name': 'bkgdnn_odd',
-     'range' : (10,0,1.),
-     'xaxis' : 'BKG output',
-     'fold'  : 3,
-     'cuts' : boostedSR,
-     'divideByBinWidth':1
-}
-variables['classggh'] = {
-     'name': 'gghdnn_odd',
-     'range' : (10,0,1.),
-     'xaxis' : 'ggH output',
-     'fold'  : 3,
-     'cuts' : boostedSR,
-     'divideByBinWidth':1
-}
+#variables['whad_pt'] = {
+#    'name' : 'HM_Whad_pt',
+#    'range': (40, 0, 800),
+#    'xaxis': 'reconstr. W had Pt [GeV]',
+#    'fold' : 0, 
+#    'cuts' : controlRegions,
+#}
+#######variables['whad_eta'] = {
+#######    'name' : 'HM_Whad_eta',
+#######    'range': (25, -2.5, 2.5),
+#######    'xaxis': 'reconstr. W had eta',
+#######    'fold' : 0, 
+#######}
+#variables['whad_mass'] = {
+#    'name' : 'HM_Whad_mass',
+#    'range': (25, 0, 250),
+#    'xaxis': 'reconstr. W had mass [GeV]',
+#    'cuts' : controlRegions,
+#    'fold' : 0, 
+#}
+#variables['classvbf'] = {
+#     'name': 'vbfdnn_odd',
+#     'range' : (10,0,1.),
+#     'xaxis' : 'VBF output',
+#     'fold' : 3,
+#     'cuts' : boostedSR,
+#     'divideByBinWidth':1
+#}
+#variables['classbkg'] = {
+#     'name': 'bkgdnn_odd',
+#     'range' : (10,0,1.),
+#     'xaxis' : 'BKG output',
+#     'fold'  : 3,
+#     'cuts' : boostedSR,
+#     'divideByBinWidth':1
+#}
+#variables['classggh'] = {
+#     'name': 'gghdnn_odd',
+#     'range' : (10,0,1.),
+#     'xaxis' : 'ggH output',
+#     'fold'  : 3,
+#     'cuts' : boostedSR,
+#     'divideByBinWidth':1
+#}
 #variables['classvbf_bin'] = {
 #     'name': 'vbfdnn_odd',
 #     'range' : (20,0,1.),
@@ -599,30 +622,30 @@ variables['classggh'] = {
 #     'xaxis' : 'is BKG',
 #     'fold' : 0,
 #}
-variables['classvbf_res'] = {
-     'name': 'vbfdnn_res',
-     'range' : (10,0,1.),
-     'xaxis' : 'VBF output',
-     'cuts' : resolvedSR,
-     'fold' : 3,
-     'divideByBinWidth':1
-}
-variables['classbkg_res'] = {
-     'name': 'bkgdnn_res',
-     'range' : (10,0,1.),
-     'xaxis' : 'BKG output',
-     'cuts' : resolvedSR,
-     'fold'  : 3,
-     'divideByBinWidth':1
-}
-variables['classggh_res'] = {
-     'name': 'gghdnn_res',
-     'range' : (10,0,1.),
-     'xaxis' : 'ggH output',
-     'fold'  : 3,
-     'cuts' : resolvedSR,
-     'divideByBinWidth':1
-}
+#variables['classvbf_res'] = {
+#     'name': 'vbfdnn_res',
+#     'range' : (10,0,1.),
+#     'xaxis' : 'VBF output',
+#     'cuts' : resolvedSR,
+#     'fold' : 3,
+#     'divideByBinWidth':1
+#}
+#variables['classbkg_res'] = {
+#     'name': 'bkgdnn_res',
+#     'range' : (10,0,1.),
+#     'xaxis' : 'BKG output',
+#     'cuts' : resolvedSR,
+#     'fold'  : 3,
+#     'divideByBinWidth':1
+#}
+#variables['classggh_res'] = {
+#     'name': 'gghdnn_res',
+#     'range' : (10,0,1.),
+#     'xaxis' : 'ggH output',
+#     'fold'  : 3,
+#     'cuts' : resolvedSR,
+#     'divideByBinWidth':1
+#}
 ##variables['classvbf_bin'] = {
 ##     'name': 'vbfdnn_res',
 ##     'range' : (20,0,1.),
