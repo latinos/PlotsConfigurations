@@ -2,11 +2,26 @@ import sys,os
 
 # Define variables and strategy to use
 variables = ["BDTG6"]
-suffix    = ["_DYflip",""]
+suffix    = ["_DYflip"] # ,""]
 
 # Actually combine datacards
 for var in variables:
     for suff in suffix:
+        # # S/sqrt(B) optimization
+        # var_1j_em_highpt = "BDTG6_binning_0_0"
+        # var_2j_em_highpt = "BDTG6_binning_0_3"
+        # var_1j_mm_highpt = "BDTG6_binning_0_0"
+        # var_2j_mm_highpt = "BDTG6_binning_0_1"
+        # var_1j_ee_highpt = "BDTG6_binning_0_4"
+        # var_2j_ee_highpt = "BDTG6_binning_0_0"
+        # var_1j_em_lowpt  = "BDTG6_binning_0_0"
+        # var_2j_em_lowpt  = "BDTG6_binning_0_1"
+        # var_1j_mm_lowpt  = "BDTG6_binning_0_0"
+        # var_2j_mm_lowpt  = "BDTG6_binning_0_2"
+        # var_1j_ee_lowpt  = "BDTG6_binning_0_0"
+        # var_2j_ee_lowpt  = "BDTG6_binning_0_0"
+
+        # S/B optimization
         var_1j_em_highpt = "BDTG6_binning_0_6"
         var_2j_em_highpt = "BDTG6_binning_0_6"
         var_1j_mm_highpt = "BDTG6_binning_0_7"

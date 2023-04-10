@@ -2,7 +2,7 @@ import sys,os
 
 # Define variables and strategy to use
 variables = ["BDTG6"]
-suffix    = ["_DYflip",""]
+suffix    = ["_DYflip"] # ,""]
 
 # Load combine
 current_directory = os.getcwd()

@@ -132,9 +132,9 @@ bWP_medium_deepFlavB = '0.3040'
 bWP_tight_deepFlavB  = '0.7476'
 
 # Actual algo and WP definition. BE CONSISTENT!!
-bAlgo = 'DeepB' # ['DeepB','DeepFlavB']
-bWP   = bWP_medium_deepB
-bSF   = 'deepcsv' # ['deepcsv','deepjet']
+bAlgo = 'DeepB'          # ['DeepB',            'DeepFlavB'           ]
+bWP   = bWP_medium_deepB # ['bWP_medium_deepB', 'bWP_medium_deepFlavB']
+bSF   = 'deepcsv'        # ['deepcsv',          'deepjet'             ]
 
 # b veto
 aliases['bVeto'] = {
@@ -331,11 +331,11 @@ aliases['SFtriggDown'] = {
 aliases['BDT_WH3l_OSSF_v9'] = {
     'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/BDT_WH3l_OSSF_v9.C+' % configurations],
     'class': 'BDT_WH3l_OSSF_v9',
-    'args' : ('BDTG4F07', '%s/WH_chargeAsymmetry/UL/data/BDT/2018/WH3l/OSSF/weights/TMVAClassification_BDTG4F07.weights.xml' % configurations),
+    'args' : ('BDTG4F07', '%s/WH_chargeAsymmetry/UL/data/BDT/2017/WH3l/OSSF/weights/TMVAClassification_BDTG4F07.weights.xml' % configurations),
 }
 
 aliases['BDT_WH3l_SSSF_v9'] = {
     'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/BDT_WH3l_SSSF_v9.C+' % configurations],
     'class': 'BDT_WH3l_SSSF_v9',
-    'args' : ('BDTG4SK01_1000Trees_02baggingfraction', '%s/WH_chargeAsymmetry/UL/data/BDT/2018/WH3l/SSSF/weights/TMVAClassification_BDTG4SK01_1000Trees_02baggingfraction.weights.xml' % configurations),
+    'args' : ('BDTG4SK01_1000Trees_02baggingfraction', '%s/WH_chargeAsymmetry/UL/data/BDT/2017/WH3l/SSSF/weights/TMVAClassification_BDTG4SK01_1000Trees_02baggingfraction.weights.xml' % configurations),
 }

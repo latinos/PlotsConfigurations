@@ -429,11 +429,13 @@ signals.append('WH_htt_minus')
 ###########################################
 
 samples['Fake'] = {
-  'name': [],
-  'weight': 'METFilter_DATA_fix*fakeW',
-  'weights': [],
-  'isData': ['all'],
-  'FilesPerJob': 50
+    'name': [],
+    'weight': 'METFilter_DATA_fix*fakeW',
+    'weights': [],
+    'isData': ['all'],
+    'suppressNegative' :['all'],
+    'suppressNegativeNuisances' :['all'],
+    'FilesPerJob': 50
 }
 
 for _, sd in DataRun:

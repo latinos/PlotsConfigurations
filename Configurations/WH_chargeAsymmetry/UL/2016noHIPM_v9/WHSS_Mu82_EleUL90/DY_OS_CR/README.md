@@ -55,4 +55,4 @@ We can plot all the distributions in the OS-like signal region. This allows to c
 
     mkShapesMulti.py --pycfg=configuration_DY_OS.py --doHadd=1 --batchSplit=Samples,Files --doNotCleanup --nThreads=8
 
-    mkPlot.py        --pycfg=configuration_DY_OS.py --inputFile=rootFile_OS/plots_WHSS_DY_OSCR_2018_v9_chargeAsymmetry_Mu82_Ele90.root --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1
+    mkPlot.py        --pycfg=configuration_DY_OS.py --inputFile=rootFile_OS/plots_WHSS_DY_OSCR_2016noHIPM_v9_chargeAsymmetry_Mu82_Ele90.root --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1

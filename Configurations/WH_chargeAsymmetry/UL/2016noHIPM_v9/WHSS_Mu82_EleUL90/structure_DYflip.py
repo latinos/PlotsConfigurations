@@ -48,6 +48,7 @@ structure['WgS'] = {
 structure['ZgS']  = {
     'isSignal' : 0,
     'isData'   : 0,
+    'scaleSampleForDatacard' : 1.138 # NLO -> NNLO k-factor
 }
 
 structure['WZ'] = {

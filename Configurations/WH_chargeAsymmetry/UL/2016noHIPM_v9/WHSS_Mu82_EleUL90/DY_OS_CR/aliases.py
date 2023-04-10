@@ -127,9 +127,9 @@ bWP_medium_deepFlavB = '0.2489'
 bWP_tight_deepFlavB  = '0.6377'
 
 # Actual algo and WP definition. BE CONSISTENT!!
-bAlgo = 'DeepB'         # ['DeepB',         'DeepFlavB'        ]
-bWP   = bWP_loose_deepB # [bWP_loose_deepB, bWP_loose_deepFlavB]
-bSF   = 'deepcsv'       # ['deepcsv',       'deepjet'          ]
+bAlgo = 'DeepB'          # ['DeepB',         'DeepFlavB'          ]
+bWP   = bWP_medium_deepB # [bWP_medium_deepB, bWP_medium_deepFlavB]
+bSF   = 'deepcsv'        # ['deepcsv',       'deepjet'            ]
 
 # b veto
 aliases['bVeto'] = {

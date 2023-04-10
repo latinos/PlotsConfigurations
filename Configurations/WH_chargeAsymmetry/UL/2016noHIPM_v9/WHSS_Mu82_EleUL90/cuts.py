@@ -180,29 +180,29 @@ cuts['hww2l2v_13TeV_WH_SS_WZ_2j'] = '((Lepton_pdgId[0]*Lepton_pdgId[1] == 13*13)
                                        && abs(WH3l_chlll) == 1 \
                                        '
 
-# CR 1jet (from ZH3l analysis)
-cuts['hww2l2v_13TeV_ZH3l_WZ_CR_1j'] = 'MinIf$( WH3l_mOSll[], WH3l_mOSll[Iteration$] > 0) > 12 \
-                                    && Alt$(Lepton_pt[2],0)>15 \
-                                    && Alt$(Lepton_pt[3],0)<10 \
-                                    && abs(WH3l_chlll) == 1 \
-                                    && Alt$( CleanJet_pt[0], 0) > 30 \
-                                    && Alt$( CleanJet_pt[1], 0) < 30 \
-                                    && WH3l_ZVeto < 25 \
-                                    && ZH3l_Z4lveto > 20 \
-                                    && ZH3l_dphilmetj > 3.14159/2 \
-                                    '         
+# # CR 1jet (from ZH3l analysis)
+# cuts['hww2l2v_13TeV_ZH3l_WZ_CR_1j'] = 'MinIf$( WH3l_mOSll[], WH3l_mOSll[Iteration$] > 0) > 12 \
+#                                     && Alt$(Lepton_pt[2],0)>15 \
+#                                     && Alt$(Lepton_pt[3],0)<10 \
+#                                     && abs(WH3l_chlll) == 1 \
+#                                     && Alt$( CleanJet_pt[0], 0) > 30 \
+#                                     && Alt$( CleanJet_pt[1], 0) < 30 \
+#                                     && WH3l_ZVeto < 25 \
+#                                     && ZH3l_Z4lveto > 20 \
+#                                     && ZH3l_dphilmetj > 3.14159/2 \
+#                                     '         
 
-# CR 1jet (from ZH3l analysis)
-cuts['hww2l2v_13TeV_ZH3l_WZ_CR_2j'] = 'MinIf$( WH3l_mOSll[], WH3l_mOSll[Iteration$] > 0) > 12 \
-                                    && Alt$(Lepton_pt[2],0)>15 \
-                                    && Alt$(Lepton_pt[3],0)<10 \
-                                    && abs(WH3l_chlll) == 1 \
-                                    && Alt$( CleanJet_pt[0], 0) > 30 \
-                                    && Alt$( CleanJet_pt[1], 0) > 30 \
-                                    && WH3l_ZVeto < 25 \
-                                    && ZH3l_Z4lveto > 20 \
-                                    && ZH3l_dphilmetj > 3.14159/2 \
-                                    '         
+# # CR 1jet (from ZH3l analysis)
+# cuts['hww2l2v_13TeV_ZH3l_WZ_CR_2j'] = 'MinIf$( WH3l_mOSll[], WH3l_mOSll[Iteration$] > 0) > 12 \
+#                                     && Alt$(Lepton_pt[2],0)>15 \
+#                                     && Alt$(Lepton_pt[3],0)<10 \
+#                                     && abs(WH3l_chlll) == 1 \
+#                                     && Alt$( CleanJet_pt[0], 0) > 30 \
+#                                     && Alt$( CleanJet_pt[1], 0) > 30 \
+#                                     && WH3l_ZVeto < 25 \
+#                                     && ZH3l_Z4lveto > 20 \
+#                                     && ZH3l_dphilmetj > 3.14159/2 \
+#                                     '         
 
 
 ## DY->ee CR - 2 same-sign electrons IN the Z peak. To check the charge-flip probability method to estimate DY in the signal region
