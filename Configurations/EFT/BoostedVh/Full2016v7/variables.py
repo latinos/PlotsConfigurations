@@ -9,19 +9,6 @@ variables['events']  = {   'name': '1',
                        'cuts' : ['hww2l2v_13TeV_top_fj','hww2l2v_13TeV_dytt_fj','hww2l2v_13TeV_WW_fj']
                         }
  
-variables['kd_Wh_hm_01']  = {   'name': 'kd_Wh_hm_01',
-                        'range' : (10,0,1),
-                        'xaxis' : 'events',
-                         'fold' : 3,
-                       'cuts' : ['hww2l2v_13TeV_of2j_Vh']
-                        }
-variables['kd_Wh_hm_10']  = {   'name': 'kd_Wh_hm_10',
-                        'range' : (10,0,1),
-                        'xaxis' : 'events',
-                         'fold' : 3,
-                       'cuts' : ['hww2l2v_13TeV_of2j_Vh']
-                        }
-
 #variables['mll_1'] = { 'name' : 'mll',
 #                     'range': (20,10,210),
 #                     'xaxis': 'm_{ll}',
@@ -181,7 +168,7 @@ variables['kd2d_Vh_hl'] = { 'name': 'kd_Vh_hl:mll',
                           }
 '''
 #GOOD ONES
-'''
+
 variables['kd2d_Vh_hm'] = { 'name': 'kd_Vh_hm:mll',
                          'range' : ([10,45,106.2],[0.0,0.6,0.8,1],),
                          'xaxis' : 'D_{VH 0^{-}:m_{ll}}',
@@ -214,6 +201,3 @@ variables['kd2d_Vh_hlzg'] = { 'name': 'kd_Vh_hlzg:mll',
                          'fold' : 3,
                          'cuts' : ['hww2l2v_13TeV_top_fj','hww2l2v_13TeV_dytt_fj','hww2l2v_13TeV_of2j_Vh','hww2l2v_13TeV_WW_fj']
                           }
-'''
-
-
