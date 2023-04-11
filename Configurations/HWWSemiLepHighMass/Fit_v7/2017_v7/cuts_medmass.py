@@ -15,13 +15,13 @@ LepCats['incl_']='( (abs(Lepton_pdgId[0])==11) && Lepton_pt[0]>38 || (abs(Lepton
 # FIXME: maybe need to cut > 35 for ele due to fakeW calculation
 
 LepCats_P={}
-LepCats_P['incl_']='( (abs(Lepton_pdgId[0])==11) && Lepton_pt[0]>35 \
-                 || (abs(Lepton_pdgId[0])==13) && Lepton_pt[0]>27 )'
-#LepCats_P['ElCh_']='( (abs(Lepton_pdgId[0])==11) && Lepton_pt[0]>35 )'
-#LepCats_P['MuCh_']='( (abs(Lepton_pdgId[0])==13) && Lepton_pt[0]>27 )'
+LepCats_P['incl_']='( (abs(Lepton_pdgId[0])==11) && Lepton_pt[0]>38 \
+                 || (abs(Lepton_pdgId[0])==13) && Lepton_pt[0]>30 )'
+#LepCats_P['ElCh_']='( (abs(Lepton_pdgId[0])==11) && Lepton_pt[0]>38 )'
+#LepCats_P['MuCh_']='( (abs(Lepton_pdgId[0])==13) && Lepton_pt[0]>30 )'
 
 BoostProcCats={}
-BoostProcCats['all']='1'
+#BoostProcCats['all']='1'
 #BoostProcCats['isVBF_']='(vbflike_res[0] > 0)'
 #BoostProcCats['isGGH_']='(gghlike_res[0] > 0)'
 #BoostProcCats['isBKG_']='(bkglike_res[0] > 0)'
@@ -30,7 +30,7 @@ BoostProcCats['isGGH_']='(gghlike_odd[0] > 0)'
 BoostProcCats['isBKG_']='(bkglike_odd[0] > 0)'
 
 ResProcCats={}
-ResProcCats['all']='1'
+#ResProcCats['all']='1'
 ResProcCats['isVBF_']='(vbflike_res[0] > 0)'
 ResProcCats['isGGH_']='(gghlike_res[0] > 0)'
 ResProcCats['isBKG_']='(bkglike_res[0] > 0)'
@@ -69,10 +69,10 @@ BoostCats['ResolvedSB_']='(1 \
                        && !resolvedSignalWMass[0] \
                        && resolvedSidebandWMass[0] \
                        && bVeto[0])'
-#BoostCats['ResolvedSR_']='(1 \
-#                       && two_jet_res[0] \
-#                       && resolvedSignalWMass[0] \
-#                       && bVeto[0])'
+##BoostCats['ResolvedSR_']='(1 \
+##                       && two_jet_res[0] \
+##                       && resolvedSignalWMass[0] \
+##                       && bVeto[0])'
 BoostCats['BoostedTopCR_']='(1 \
                        && boosted_nocut_res[0] \
                        && HvOverFat[0] > 0.4 \

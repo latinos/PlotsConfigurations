@@ -123,8 +123,8 @@ def CombineBaseW(directory, samples, proc, samplelist):
 mcCommonWeightNoMatch = 'XSWeight*SFweight*METFilter_MC*LepWPCut[0]*(nTightLep==1)'
 mcCommonWeight = mcCommonWeightNoMatch+'*Lepton_promptgenmatched[0]'
 
-mcCommonWeightTagger = 'XSWeight*SFweight_deep*METFilter_MC*LepWPCut[0]*Lepton_promptgenmatched[0]*(nTightLep==1)'
-mcCommonWeightTaggerTop = 'XSWeight*SFweight_top*METFilter_MC*LepWPCut[0]*Lepton_promptgenmatched[0]*(nTightLep==1)'
+mcCommonWeightTagger = 'XSWeight*SFweight_top*METFilter_MC*LepWPCut[0]*Lepton_promptgenmatched[0]*(nTightLep==1)'
+#mcCommonWeightTaggerTop = 'XSWeight*SFweight_top*METFilter_MC*LepWPCut[0]*Lepton_promptgenmatched[0]*(nTightLep==1)'
 
 ##############################################
 ################  BACKGROUNDS  ###############
@@ -200,7 +200,7 @@ files += nanoGetSampleFiles(mcDirectory, 'ST_tW_top')
 
 samples['top'] = {
     'name': files,
-    'weight': mcCommonWeightTaggerTop,
+    'weight': mcCommonWeightTagger,
     'FilesPerJob': 1,
 #    'EventsPerJob': 100000,
 }
@@ -266,17 +266,17 @@ samples['qqWWqq'] = {
     'FilesPerJob': 10
 }
 
-## nanoGetSampleFiles(signalMCDirectory,'WpWmJJ_QCD_noTop') ,
-##'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch,
-##mcCommonWeight+'*(mjjGen_OTF>=100)'+'*(GenLHE)',
-##samples['WW2J'] = {
-##    'name'   :   nanoGetSampleFiles(mcDirectory,'WpWmJJ_QCD_noTop') ,
-##    'weight' : mcCommonWeight+'*(mjjGen_OTF>=100)'+'*(!GenLHE)',
-##    'FilesPerJob': 10
-##}
-#
-#
-#
+### nanoGetSampleFiles(signalMCDirectory,'WpWmJJ_QCD_noTop') ,
+###'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch,
+###mcCommonWeight+'*(mjjGen_OTF>=100)'+'*(GenLHE)',
+###samples['WW2J'] = {
+###    'name'   :   nanoGetSampleFiles(mcDirectory,'WpWmJJ_QCD_noTop') ,
+###    'weight' : mcCommonWeight+'*(mjjGen_OTF>=100)'+'*(!GenLHE)',
+###    'FilesPerJob': 10
+###}
+##
+##
+##
 ######### W+jets #########
 #Print("W+jets")
 whad_reweight = '(1.27217e+00 - 1.78593e-03*HM_Whad_mass)'
@@ -337,9 +337,9 @@ addSampleWeight(samples, 'Wjets', 'WJetsToLNu_HT2500_inf','4.2')
 addSampleWeight(samples,'Wjets','WJetsToLNu_ext2','(LHE_HT < 70)')
 addSampleWeight(samples,'Wjets','WJetsToLNu_ext2','(LHE_HT < 70)')
 
-
-
-####### Vg ########
+#
+#
+######## Vg ########
 print("Vg")
 
 files  = nanoGetSampleFiles(mcDirectory, 'Wg_MADGRAPHMLM')
@@ -580,33 +580,33 @@ for MX in massvbf:
 #
 #
 #
-#for key in samples:
-#    if key in ['DATA','FAKE']: continue
-#    if 'INT' in key: continue
-#    samples[key]['suppressNegative'] = ['all']
-#    samples[key]['suppressNegativeNuisances'] =['all']
-#
-#
+##for key in samples:
+##    if key in ['DATA','FAKE']: continue
+##    if 'INT' in key: continue
+##    samples[key]['suppressNegative'] = ['all']
+##    samples[key]['suppressNegativeNuisances'] =['all']
 ##
-##################################################
-######################### DATA ###################
-##################################################
-########print("FAKE")
-##################### FAKE ###########
-####eleWP    = 'mvaFall17V1Iso_WP90'
-####muWP     = 'cut_Tight_HWWW'
-######
-######fakeW = 'fakeW_ele_'+eleWP+'_mu_'+muWP+'_1l_mu25_ele35'
-##########samples['FAKE'] = {
-##########  'name': [],
-##########  'weight': 'METFilter_DATA*'+fakeW,
-##########  'weights': [],
-##########  'isData': ['all'],
-##########  'FilesPerJob': 35,
-##########  'suppressNegative': ['all'],
-##########  'suppressNegativeNuisances' :['all'],
-##########}
-##########
+##
+###
+###################################################
+########################## DATA ###################
+###################################################
+#########print("FAKE")
+###################### FAKE ###########
+#####eleWP    = 'mvaFall17V1Iso_WP90'
+#####muWP     = 'cut_Tight_HWWW'
+#######
+#######fakeW = 'fakeW_ele_'+eleWP+'_mu_'+muWP+'_1l_mu25_ele35'
+###########samples['FAKE'] = {
+###########  'name': [],
+###########  'weight': 'METFilter_DATA*'+fakeW,
+###########  'weights': [],
+###########  'isData': ['all'],
+###########  'FilesPerJob': 35,
+###########  'suppressNegative': ['all'],
+###########  'suppressNegativeNuisances' :['all'],
+###########}
+###########
 Mu_jetEt = 35
 El_jetEt = 35
 fakeW = 'FW_mu'+str(Mu_jetEt)+ '_el'+str(El_jetEt)+'[0]'

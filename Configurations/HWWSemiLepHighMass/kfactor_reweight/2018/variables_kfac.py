@@ -59,31 +59,31 @@ variables['genW_pt2_true']  = {
     'xaxis' : 'gen W p_T',
     'fold'  : 3                         
 }
-variables['genW_pt2_gb']  = {
-    'name': 'W_Lep_Gen',     
-    #'range' : (50,0,250),   
-    'range' : (genW_pt_bin,),   
-    'xaxis' : 'gen W p_T',
-    'fold'  : 3                         
-}
-variables['genW_m']  = {
-    'name': 'GenW_mass',     
-    'range' : (50,0,250),   
-    'xaxis' : 'gen W mass',
-    'fold'  : 2                         
-}
-variables['genW_mt']  = {
-    'name': 'GenW_mt',     
-    'range' : (50,0,250),   
-    'xaxis' : 'gen W m_T',
-    'fold'  : 2                         
-}
-variables['nGenW']  = {
-    'name': 'nGenW',     
-    'range' : (3,0,3),   
-    'xaxis' : 'gen W m_T',
-    'fold'  : 3                         
-}
+#variables['genW_pt2_gb']  = {
+#    'name': 'W_Lep_Gen',     
+#    #'range' : (50,0,250),   
+#    'range' : (genW_pt_bin,),   
+#    'xaxis' : 'gen W p_T',
+#    'fold'  : 3                         
+#}
+#variables['genW_m']  = {
+#    'name': 'GenW_mass',     
+#    'range' : (50,0,250),   
+#    'xaxis' : 'gen W mass',
+#    'fold'  : 2                         
+#}
+#variables['genW_mt']  = {
+#    'name': 'GenW_mt',     
+#    'range' : (50,0,250),   
+#    'xaxis' : 'gen W m_T',
+#    'fold'  : 2                         
+#}
+#variables['nGenW']  = {
+#    'name': 'nGenW',     
+#    'range' : (3,0,3),   
+#    'xaxis' : 'gen W m_T',
+#    'fold'  : 3                         
+#}
 
 # Recoil
 #variables['Wrecoil_pt']  = {

@@ -3,13 +3,13 @@ import ROOT
 #var = 'genW_pt'
 #var = 'genW_pt_inc'
 #var = 'genW_pt2_true'
-var = 'genW_pt2'
+var = 'genW_pt2_true'
 #var = 'genW_pt2_inc'
 cut = 'NOM'
-cut_nuis = 'JET'
+#cut_nuis = 'JET'
 
 LO_samp = 'Wjets_HT'
-NLO_samp = 'Wjets_NLOnj'
+NLO_samp = 'Wjets_NLO_inc'
 
 def error2hist(hist, times=1.):
     hist_up = hist.Clone()
@@ -27,9 +27,8 @@ run2 = ['2018']
 year_dict = {}
 for year in run2:
     year_dict[year] = {}
-    #year_dict[year]['r_file'] = ROOT.TFile('Wjets_kfac_root/plots_Wjets_kfac_'+year+'v7.root')
-    year_dict[year]['r_file'] = ROOT.TFile('plots_Wjets_kfac_'+year+'v7.root')
-
+    year_dict[year]['r_file'] = ROOT.TFile('Wjets_kfac_root_nano_stud/plots_Wjets_kfac_'+year+'v7_nano_stud.root')
+    #year_dict[year]['r_file'] = ROOT.TFile('plots_Wjets_kfac_2018v7_nano.root')
     nlo_samp = NLO_samp
     #if year == '2016': nlo_samp = 'Wjets_NLOin'
     if year == '2016': nlo_samp = 'Wjets_NLOmerge'
@@ -38,14 +37,14 @@ for year in run2:
 
     year_dict[year]['LO'] = year_dict[year]['r_file'].Get(cut+'/'+eff_var+'/histo_'+LO_samp)
     year_dict[year]['NLO'] = year_dict[year]['r_file'].Get(cut+'/'+eff_var+'/histo_'+nlo_samp)
-    year_dict[year]['LO_n'] = year_dict[year]['r_file'].Get(cut_nuis+'/'+eff_var+'/histo_'+LO_samp)
-    year_dict[year]['NLO_n'] = year_dict[year]['r_file'].Get(cut_nuis+'/'+eff_var+'/histo_'+nlo_samp)
+#    year_dict[year]['LO_n'] = year_dict[year]['r_file'].Get(cut_nuis+'/'+eff_var+'/histo_'+LO_samp)
+ #   year_dict[year]['NLO_n'] = year_dict[year]['r_file'].Get(cut_nuis+'/'+eff_var+'/histo_'+nlo_samp)
 
     year_dict[year]['ratio'] = year_dict[year]['NLO'].Clone()
     year_dict[year]['ratio'].Divide(year_dict[year]['LO'])
 
-    year_dict[year]['ratio_n'] = year_dict[year]['NLO_n'].Clone()
-    year_dict[year]['ratio_n'].Divide(year_dict[year]['LO_n'])
+ #   year_dict[year]['ratio_n'] = year_dict[year]['NLO_n'].Clone()
+ #   year_dict[year]['ratio_n'].Divide(year_dict[year]['LO_n'])
 
     ## Smooth
     #year_dict[year]['ratio_s'] = year_dict[year]['ratio'].Clone()
@@ -112,8 +111,8 @@ for year in run2:
     # Smooth
     year_dict[year]['ratio_s'] = year_dict[year]['ratio'].Clone()
     year_dict[year]['ratio_s'].Smooth()
-    year_dict[year]['ratio_ns'] = year_dict[year]['ratio_n'].Clone()
-    year_dict[year]['ratio_ns'].Smooth()
+ #   year_dict[year]['ratio_ns'] = year_dict[year]['ratio_n'].Clone()
+  #  year_dict[year]['ratio_ns'].Smooth()
 
     # Stat fluc
     year_dict[year]['ratio_s_up'], year_dict[year]['ratio_s_do'] = error2hist(year_dict[year]['ratio'], 1.)
@@ -137,12 +136,12 @@ col_idx = 2
 for year in run2:
     year_dict[year]['ratio'].SetLineColor(col_idx)
     year_dict[year]['ratio_s'].SetLineColor(col_idx)
-    year_dict[year]['ratio_ns'].SetLineColor(col_idx)
+   # year_dict[year]['ratio_ns'].SetLineColor(col_idx)
     year_dict[year]['ratio_s_up'].SetLineColor(col_idx)
     year_dict[year]['ratio_s_do'].SetLineColor(col_idx)
     year_dict[year]['ratio_s_up'].SetLineStyle(2)
     year_dict[year]['ratio_s_do'].SetLineStyle(2)
-    year_dict[year]['ratio_ns'].SetLineStyle(3)
+    #year_dict[year]['ratio_ns'].SetLineStyle(3)
     if first:
         first = False
         year_dict[year]['ratio_s'].SetTitle('k-factors')
@@ -152,7 +151,7 @@ for year in run2:
     else: year_dict[year]['ratio_s'].Draw('hist same')
     year_dict[year]['ratio_s_up'].Draw('hist same')
     year_dict[year]['ratio_s_do'].Draw('hist same')
-    year_dict[year]['ratio_ns'].Draw('hist same')
+    #year_dict[year]['ratio_ns'].Draw('hist same')
     #year_dict[year]['ratio'].Draw('same')
 
     legend.AddEntry(year_dict[year]['ratio_s'], year, 'l')
@@ -168,19 +167,19 @@ legend.Draw()
 raw_input('exit')
 
 # Store
-file_name = 'HT_to_NLO_QCD_k_factors_pippo.root'
+file_name = 'HT_to_NLO_QCD_k_factors_n_stud_2.root'
 r_file = ROOT.TFile.Open(file_name, 'recreate')
 for year in run2:
     year_dict[year]['tg'] = ROOT.TGraph(year_dict[year]['ratio_s'])
-    year_dict[year]['tg_n'] = ROOT.TGraph(year_dict[year]['ratio_ns'])
+    #year_dict[year]['tg_n'] = ROOT.TGraph(year_dict[year]['ratio_ns'])
     year_dict[year]['tg_up'] = ROOT.TGraph(year_dict[year]['ratio_s_up'])
     year_dict[year]['tg_do'] = ROOT.TGraph(year_dict[year]['ratio_s_do'])
    
     #year_dict[year]['tg'].SetDirectory(r_file)
     year_dict[year]['tg'].SetName('k_factor_'+year+'_nom')
     year_dict[year]['tg'].Write()
-    year_dict[year]['tg_n'].SetName('k_factor_'+year+'_jetsel')
-    year_dict[year]['tg_n'].Write()
+    #year_dict[year]['tg_n'].SetName('k_factor_'+year+'_jetsel')
+    #year_dict[year]['tg_n'].Write()
     year_dict[year]['tg_up'].SetName('k_factor_'+year+'_stat_up')
     year_dict[year]['tg_up'].Write()
     year_dict[year]['tg_do'].SetName('k_factor_'+year+'_stat_do')

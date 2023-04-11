@@ -36,18 +36,18 @@ aliases['bWP'] = {
 aliases['tau21WP'] = {
     'expr': '0.45'
 }
-aliases['LepWPCut'] = {
-    'expr': '(Lepton_isTightElectron_'+eleWP+'[0] > 0.5 \
-            || Lepton_isTightMuon_'+muWP+'[0] > 0.5)'
-}
-aliases['Lep1WPCut'] = {
-    'expr': '(Alt$(Lepton_isTightElectron_'+eleWP+'[1], 0) > 0.5 \
-            || Alt$(Lepton_isTightMuon_'+muWP+'[1], 0) > 0.5)'
-}
-aliases['nTightLep'] = {
-    'expr': '(Sum$(Lepton_isTightElectron_'+eleWP+') + Sum$(Lepton_isTightMuon_'+muWP+'))',
-}
-
+#aliases['LepWPCut'] = {
+#    'expr': '(Lepton_isTightElectron_'+eleWP+'[0] > 0.5 \
+#            || Lepton_isTightMuon_'+muWP+'[0] > 0.5)'
+#}
+#aliases['Lep1WPCut'] = {
+#    'expr': '(Alt$(Lepton_isTightElectron_'+eleWP+'[1], 0) > 0.5 \
+#            || Alt$(Lepton_isTightMuon_'+muWP+'[1], 0) > 0.5)'
+#}
+#aliases['nTightLep'] = {
+#    'expr': '(Sum$(Lepton_isTightElectron_'+eleWP+') + Sum$(Lepton_isTightMuon_'+muWP+'))',
+#}
+#
 
 #aliases['resolvHiggsMT'] = {
 #    # 'expr': 'HM_Hlnjj_mt'
@@ -80,10 +80,13 @@ aliases['nTightLep'] = {
 #    'args': 2
 #}
 
-aliases['W_Lep_Gen'] ={
-    'expr' : 'TMath::Sqrt( (LeptonGen_pt[0]*TMath::Cos(LeptonGen_phi[0]) + NeutrinoGen_pt[0]*TMath::Cos(NeutrinoGen_phi[0]))*(LeptonGen_pt[0]*TMath::Cos(LeptonGen_phi[0]) + NeutrinoGen_pt[0]*TMath::Cos(NeutrinoGen_phi[0])) + (LeptonGen_pt[0]*TMath::Sin(LeptonGen_phi[0]) + NeutrinoGen_pt[0]*TMath::Sin(NeutrinoGen_phi[0]))*(LeptonGen_pt[0]*TMath::Sin(LeptonGen_phi[0]) + NeutrinoGen_pt[0]*TMath::Sin(NeutrinoGen_phi[0])))',
-}
-#aliases['HvOverJJ'] = {
+#aliases['W_Lep_Gen'] ={
+#    'expr' : 'TMath::Sqrt( (LeptonGen_pt[0]*TMath::Cos(LeptonGen_phi[0]) + NeutrinoGen_pt[0]*TMath::Cos(NeutrinoGen_phi[0]))*(LeptonGen_pt[0]*TMath::Cos(LeptonGen_phi[0]) + NeutrinoGen_pt[0]*TMath::Cos(NeutrinoGen_phi[0])) + (LeptonGen_pt[0]*TMath::Sin(LeptonGen_phi[0]) + NeutrinoGen_pt[0]*TMath::Sin(NeutrinoGen_phi[0]))*(LeptonGen_pt[0]*TMath::Sin(LeptonGen_phi[0]) + NeutrinoGen_pt[0]*TMath::Sin(NeutrinoGen_phi[0])))',
+#}
+#aliases['W_Lep_Gen'] ={
+#    'expr' : 'TMath::Sqrt( (GenDressedLepton_pt[0]*TMath::Cos(GenDressedLepton_phi[0]) + NeutrinoGen_pt[0]*TMath::Cos(NeutrinoGen_phi[0]))*(GenDressedLepton_pt[0]*TMath::Cos(GenDressedLepton_phi[0]) + NeutrinoGen_pt[0]*TMath::Cos(NeutrinoGen_phi[0])) + (GenDressedLepton_pt[0]*TMath::Sin(GenDressedLepton_phi[0]) + NeutrinoGen_pt[0]*TMath::Sin(NeutrinoGen_phi[0]))*(GenDressedLepton_pt[0]*TMath::Sin(GenDressedLepton_phi[0]) + NeutrinoGen_pt[0]*TMath::Sin(NeutrinoGen_phi[0])))',
+#}
+##aliases['HvOverJJ'] = {
 #    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/getResBoo.cc+'  % os.getenv('CMSSW_BASE')],
 #    'class': 'getResBoo',
 #    'args': 3
@@ -113,49 +116,49 @@ aliases['W_Lep_Gen'] ={
 #            && HvOverJJ[0] > 0.4'
 #}
 
-aliases['LHEPartWlepPt'] = {
-    'linesToAdd': ['.L %s/LHEPartWlepPt.cc+' % configurations],
-    'class': 'LHEPartWlepPt',
-    'samples': wjets,
-}
-data = np.genfromtxt(os.getenv('CMSSW_BASE')+'/src/LatinoAnalysis/Gardener/python/data/ewk/kewk_w.dat', skip_header=2, skip_footer=7)
-
-weight_string = "("
-uncert_string = "("
-for row in data:
-    low  = row[0]
-    high = row[1]
-    weight = (1+row[2])
-    ucert = row[3]
-
-    weight_string+="({}<LHEPartWlepPt[0] && LHEPartWlepPt[0]<={})\
-                    *{}+".format(low, high, weight)
-    uncert_string+="({}<LHEPartWlepPt[0] && LHEPartWlepPt[0]<={})\
-                    *{}+".format(low, high, weight)
-# remove trailing + sign and close parentheses
-weight_string=weight_string[:-1]+")"
-uncert_string=uncert_string[:-1]+")"
-
-aliases['EWK_W_correction'] = {
-    'expr': weight_string,
-    'samples': wjets,
-}
-aliases['EWK_W_correction_uncert'] = {
-    'expr': uncert_string,
-    'samples': wjets,
-}
-
-
-
-
-aliases['gstarLow'] = {
-    'expr': '( Gen_ZGstar_mass >0 && Gen_ZGstar_mass < 4 )',
-    'samples': 'VgS'
-}
-aliases['gstarHigh'] = {
-    'expr': '( Gen_ZGstar_mass <0 || Gen_ZGstar_mass > 4 )',
-    'samples': 'VgS'
-}
+#aliases['LHEPartWlepPt'] = {
+#    'linesToAdd': ['.L %s/LHEPartWlepPt.cc+' % configurations],
+#    'class': 'LHEPartWlepPt',
+#    'samples': wjets,
+#}
+#data = np.genfromtxt(os.getenv('CMSSW_BASE')+'/src/LatinoAnalysis/Gardener/python/data/ewk/kewk_w.dat', skip_header=2, skip_footer=7)
+#
+#weight_string = "("
+#uncert_string = "("
+#for row in data:
+#    low  = row[0]
+#    high = row[1]
+#    weight = (1+row[2])
+#    ucert = row[3]
+#
+#    weight_string+="({}<LHEPartWlepPt[0] && LHEPartWlepPt[0]<={})\
+#                    *{}+".format(low, high, weight)
+#    uncert_string+="({}<LHEPartWlepPt[0] && LHEPartWlepPt[0]<={})\
+#                    *{}+".format(low, high, weight)
+## remove trailing + sign and close parentheses
+#weight_string=weight_string[:-1]+")"
+#uncert_string=uncert_string[:-1]+")"
+#
+#aliases['EWK_W_correction'] = {
+#    'expr': weight_string,
+#    'samples': wjets,
+#}
+#aliases['EWK_W_correction_uncert'] = {
+#    'expr': uncert_string,
+#    'samples': wjets,
+#}
+#
+#
+#
+#
+#aliases['gstarLow'] = {
+#    'expr': '( Gen_ZGstar_mass >0 && Gen_ZGstar_mass < 4 )',
+#    'samples': 'VgS'
+#}
+#aliases['gstarHigh'] = {
+#    'expr': '( Gen_ZGstar_mass <0 || Gen_ZGstar_mass > 4 )',
+#    'samples': 'VgS'
+#}
 
 
 
@@ -234,28 +237,28 @@ aliases['gstarHigh'] = {
 
 # https://twiki.cern.ch/twiki/bin/viewauth/CMS/JetWtagging
 
-aliases['LepWPSF'] = {
-    'expr': '((Lepton_isTightElectron_'+eleWP+'[0] > 0.5) * Lepton_tightElectron_'+eleWP+'_TotSF[0] \
-    + (Lepton_isTightMuon_'+muWP+'[0] > 0.5)*Lepton_tightMuon_'+muWP+'_TotSF[0])',
-    'samples': mc
-}
-# # variations of tight lepton WP
-aliases['SFweightEleUp'] = {
-    'expr': '((TMath::Abs(Lepton_pdgId[0]) == 11)*(Lepton_tightElectron_'+eleWP+'_TotSF_Up[0]/Lepton_tightElectron_'+eleWP+'_TotSF[0]) + (TMath::Abs(Lepton_pdgId[0]) == 13))',
-    'samples': mc
-}
-aliases['SFweightEleDown'] = {
-    'expr': '((TMath::Abs(Lepton_pdgId[0]) == 11)*(Lepton_tightElectron_'+eleWP+'_TotSF_Down[0]/Lepton_tightElectron_'+eleWP+'_TotSF[0]) + (TMath::Abs(Lepton_pdgId[0]) == 13))',
-    'samples': mc
-}
-aliases['SFweightMuUp'] = {
-    'expr': '((TMath::Abs(Lepton_pdgId[0]) == 13)*(Lepton_tightMuon_'+muWP+'_TotSF_Up[0]/Lepton_tightMuon_'+muWP+'_TotSF[0]) + (TMath::Abs(Lepton_pdgId[0]) == 11))',
-    'samples': mc
-}
-aliases['SFweightMuDown'] = {
-    'expr': '((TMath::Abs(Lepton_pdgId[0]) == 13)*(Lepton_tightMuon_'+muWP+'_TotSF_Down[0]/Lepton_tightMuon_'+muWP+'_TotSF[0]) + (TMath::Abs(Lepton_pdgId[0]) == 11))',
-    'samples': mc
-}
+#aliases['LepWPSF'] = {
+#    'expr': '((Lepton_isTightElectron_'+eleWP+'[0] > 0.5) * Lepton_tightElectron_'+eleWP+'_TotSF[0] \
+#    + (Lepton_isTightMuon_'+muWP+'[0] > 0.5)*Lepton_tightMuon_'+muWP+'_TotSF[0])',
+#    'samples': mc
+#}
+## # variations of tight lepton WP
+#aliases['SFweightEleUp'] = {
+#    'expr': '((TMath::Abs(Lepton_pdgId[0]) == 11)*(Lepton_tightElectron_'+eleWP+'_TotSF_Up[0]/Lepton_tightElectron_'+eleWP+'_TotSF[0]) + (TMath::Abs(Lepton_pdgId[0]) == 13))',
+#    'samples': mc
+#}
+#aliases['SFweightEleDown'] = {
+#    'expr': '((TMath::Abs(Lepton_pdgId[0]) == 11)*(Lepton_tightElectron_'+eleWP+'_TotSF_Down[0]/Lepton_tightElectron_'+eleWP+'_TotSF[0]) + (TMath::Abs(Lepton_pdgId[0]) == 13))',
+#    'samples': mc
+#}
+#aliases['SFweightMuUp'] = {
+#    'expr': '((TMath::Abs(Lepton_pdgId[0]) == 13)*(Lepton_tightMuon_'+muWP+'_TotSF_Up[0]/Lepton_tightMuon_'+muWP+'_TotSF[0]) + (TMath::Abs(Lepton_pdgId[0]) == 11))',
+#    'samples': mc
+#}
+#aliases['SFweightMuDown'] = {
+#    'expr': '((TMath::Abs(Lepton_pdgId[0]) == 13)*(Lepton_tightMuon_'+muWP+'_TotSF_Down[0]/Lepton_tightMuon_'+muWP+'_TotSF[0]) + (TMath::Abs(Lepton_pdgId[0]) == 11))',
+#    'samples': mc
+#}
 
 
 
@@ -274,20 +277,20 @@ aliases['SFweightMuDown'] = {
 # }
 
 
-aliases['PUJetIdSF'] = {
-    'expr' : 'TMath::Exp(Sum$( \
-        (Jet_jetId>=2 \
-        && ( (Jet_electronIdx1 != Lepton_electronIdx[0]) || Jet_electronIdx1 < 0 )  \
-        && ( (Jet_muonIdx1 != Lepton_muonIdx[0] ) || Jet_muonIdx1 < 0 ) \
-        )*TMath::Log(Jet_PUIDSF_loose)\
-    ))',
-  'samples': mc
-}
-
-
-aliases['passSingleElectronHLT']= {
-    'expr':'HLT_Ele27_WPTight_Gsf'
-}
+#aliases['PUJetIdSF'] = {
+#    'expr' : 'TMath::Exp(Sum$( \
+#        (Jet_jetId>=2 \
+#        && ( (Jet_electronIdx1 != Lepton_electronIdx[0]) || Jet_electronIdx1 < 0 )  \
+#        && ( (Jet_muonIdx1 != Lepton_muonIdx[0] ) || Jet_muonIdx1 < 0 ) \
+#        )*TMath::Log(Jet_PUIDSF_loose)\
+#    ))',
+#  'samples': mc
+#}
+#
+#
+#aliases['passSingleElectronHLT']= {
+#    'expr':'HLT_Ele27_WPTight_Gsf'
+#}
 
 
 
@@ -307,11 +310,11 @@ aliases['passSingleElectronHLT']= {
 
 ###### PromptGenMatch ######
 
-# gen-matching to prompt only (GenLepMatch2l matches to *any* gen lepton)
-aliases['PromptGenLepMatch1l'] = {
-    'expr': 'Alt$(Lepton_promptgenmatched[0], 0)',
-    'samples': mc
-}
+## gen-matching to prompt only (GenLepMatch2l matches to *any* gen lepton)
+#aliases['PromptGenLepMatch1l'] = {
+#    'expr': 'Alt$(Lepton_promptgenmatched[0], 0)',
+#    'samples': mc
+#}
 
 ###### bVeto ######
 
@@ -363,18 +366,18 @@ aliases['genW_pt'] = {
 #    'samples': mc
 #}
 
-#aliases['kfact'] = {
-#    'linesToAdd': [
-#        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_RELEASE_BASE'),
-#	'gSystem->Load("%s/src/JHUGenMELA/MELA/data/%s/libmcfm_707.so","", kTRUE);'%(os.getenv('CMSSW_BASE'), os.getenv('SCRAM_ARCH')),
-#        'gSystem->Load("libJHUGenMELAMELA.so","", kTRUE);',
-#        '.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/kFactorUnc2.cc+' % os.getenv('CMSSW_BASE')
-#    ],
-#    'class': 'kFactorUnc2',
-#    'args': ('PlotsConfigurations/Configurations/HWWSemiLepHighMass/wjets_kfactor_DH/HT_to_NLO_QCD_k_factors_n.root', 'k_factor_2018'),
-#    'samples': wjets, 
-#    #'samples': "Wjets"
-#}
+aliases['kfact'] = {
+    'linesToAdd': [
+        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_RELEASE_BASE'),
+	'gSystem->Load("%s/src/JHUGenMELA/MELA/data/%s/libmcfm_707.so","", kTRUE);'%(os.getenv('CMSSW_BASE'), os.getenv('SCRAM_ARCH')),
+        'gSystem->Load("libJHUGenMELAMELA.so","", kTRUE);',
+        '.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/kFactorUnc2.cc+' % os.getenv('CMSSW_BASE')
+    ],
+    'class': 'kFactorUnc2',
+    'args': ('PlotsConfigurations/Configurations/HWWSemiLepHighMass/kfactor_reweight/2018/HT_to_NLO_QCD_k_factors_n_stud_2.root', 'k_factor_2018'),
+    'samples': wjets, 
+    #'samples': "Wjets"
+}
 #aliases['kfact'] = {
 #    'linesToAdd': [
 #        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_RELEASE_BASE'),

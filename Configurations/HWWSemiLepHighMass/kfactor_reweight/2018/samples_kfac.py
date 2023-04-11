@@ -55,6 +55,7 @@ mcSteps      = 'MCl1loose2018v7__MCCorr2018v7__MCCombJJLNu2018{var}'
 dataSteps    = 'DATAl1loose2018v7__DATACombJJLNu2018'
 fakeSteps    = 'DATAl1loose2018v7__DATACombJJLNu2018'
 
+mcSteps_mcc  = 'MCl1loose2018v7__MCCorr2018v7'
 
 ##############################################
 ###### Tree base directory for the site ######
@@ -63,7 +64,7 @@ fakeSteps    = 'DATAl1loose2018v7__DATACombJJLNu2018'
 SITE=os.uname()[1]
 if  'cern' in SITE:
   treeBaseDir = '/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano'
-  myEOSDir    = '/eos/user/g/gabrdell/HWWNano'
+  myEOSDir    = '/eos/user/g/gbardell/HWWNano'
 
 
 def makeMCDirectory(var=''):
@@ -77,6 +78,7 @@ signalMCDirectory = makeMCDirectory("_BWReweight")
 
 dataDirectory = os.path.join(treeBaseDir, dataReco, dataSteps)
 fakeDirectory = os.path.join(treeBaseDir, dataReco, fakeSteps)
+mc_stepDirectory = os.path.join(treeBaseDir, mcProduction, mcSteps_mcc)
 
 myeosMC = os.path.join(myEOSDir, mcProduction, mcSteps.format(var=''))
 
@@ -146,9 +148,9 @@ mcCommonWeight = mcCommonWeightNoMatch
 ## NLO samples
 
 # nJet binned
-files = nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-0J')
-files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-1J')
-files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-2J')
+files = nanoGetSampleFiles(mc_stepDirectory, 'WJetsToLNu-0J')
+files+= nanoGetSampleFiles(mc_stepDirectory, 'WJetsToLNu-1J')
+files+= nanoGetSampleFiles(mc_stepDirectory, 'WJetsToLNu-2J')
 
 samples['Wjets_NLOnj'] = {
     'name'   : files,
@@ -193,15 +195,15 @@ samples['Wjets_NLOnj'] = {
 ## LO samples
 
 # HT binned
-files = nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_HT70_100')
-files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_HT100_200')
-files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_HT200_400')
-files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_HT400_600')
-files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_HT600_800')
-files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_HT800_1200')
-files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_HT1200_2500')
-files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_HT2500_inf')
-files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-LO')
+files = nanoGetSampleFiles(mc_stepDirectory, 'WJetsToLNu_HT70_100')
+files+= nanoGetSampleFiles(mc_stepDirectory, 'WJetsToLNu_HT100_200')
+files+= nanoGetSampleFiles(mc_stepDirectory, 'WJetsToLNu_HT200_400')
+files+= nanoGetSampleFiles(mc_stepDirectory, 'WJetsToLNu_HT400_600')
+files+= nanoGetSampleFiles(mc_stepDirectory, 'WJetsToLNu_HT600_800')
+files+= nanoGetSampleFiles(mc_stepDirectory, 'WJetsToLNu_HT800_1200')
+files+= nanoGetSampleFiles(mc_stepDirectory, 'WJetsToLNu_HT1200_2500')
+files+= nanoGetSampleFiles(mc_stepDirectory, 'WJetsToLNu_HT2500_inf')
+files+= nanoGetSampleFiles(mc_stepDirectory, 'WJetsToLNu-LO')
 
 samples['Wjets_HT'] = {
     'name'   : files,
