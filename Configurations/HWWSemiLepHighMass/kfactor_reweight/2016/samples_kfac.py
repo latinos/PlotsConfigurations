@@ -78,8 +78,8 @@ myeosMC = os.path.join(myEOSDir, mcProduction, mcSteps.format(var=''))
 #mcCommonWeightRaw     =                                                          'LepWPCut[0]*1tlVeto[0]*PromptGenLepMatch1l'
 #mcCommonWeight        = 'XSWeight*SFweight[0]*METFilter_MC*btagSF[0]*PUJetIdSF[0]*LepWPCut[0]*1tlVeto[0]*PromptGenLepMatch1l'
 
-mcCommonWeightNoMatch = 'XSWeight*METFilter_MC'
-mcCommonWeight = mcCommonWeightNoMatch+'*Lepton_promptgenmatched[0]'
+mcCommonWeightNoMatch = 'XSWeight'
+mcCommonWeight = mcCommonWeightNoMatch
 
 
 #mcCommonWeightNoMatch = 'XSWeight*SFweight*METFilter_MC*LepWPCut[0]'
@@ -110,7 +110,54 @@ def CombineBaseW(directory, samples, proc, samplelist):
 
 ## NLO samples
 
+#files= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu')
+#files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_ext2')
+#
+#samples['Wjets_NLO'] = {
+#    'name'   : files,
+#    #'weight' : mcCommonWeight +'*EWKnloW[0]', # ewk nlo correction https://arxiv.org/pdf/1705.04664v2.pdf 
+#    #'weight' : mcCommonWeight + '*ewknloW', 
+#    'weight' : mcCommonWeight, 
+#    'FilesPerJob' : 4,
+#}
+#CombineBaseW(mcDirectory, samples, 'Wjets_NLO',
+#            ['WJetsToLNu', 'WJetsToLNu_ext2'])
+#
+
+
+
 # NLO merge
+
+
+
+oldbWpt1 = getBaseWnAOD(mcDirectory, 'Summer16_102X_nAODv7_Full2016v7', ['WJetsToLNu_Wpt100To250'])
+extbWpt1 = getBaseWnAOD(mcDirectory, 'Summer16_102X_nAODv7_Full2016v7', ['WJetsToLNu_Wpt100To250_ext1'])
+newbWpt1 = getBaseWnAOD(mcDirectory, 'Summer16_102X_nAODv7_Full2016v7', ['WJetsToLNu_Wpt100To250', 'WJetsToLNu_Wpt100To250_ext1'])
+#newbW2Jw = newbW2J+'/baseW'
+print(' wpt100 old baseW: '+oldbWpt1+', new baseW: '+newbWpt1+', ext baseW: '+extbWpt1)#+'Senne: '+newbW1Jw_2+'')
+
+oldbWpt2 = getBaseWnAOD(mcDirectory, 'Summer16_102X_nAODv7_Full2016v7', ['WJetsToLNu_Wpt250To400'])
+extbWpt2 = getBaseWnAOD(mcDirectory, 'Summer16_102X_nAODv7_Full2016v7', ['WJetsToLNu_Wpt250To400_ext1'])
+newbWpt2 = getBaseWnAOD(mcDirectory, 'Summer16_102X_nAODv7_Full2016v7', ['WJetsToLNu_Wpt250To400', 'WJetsToLNu_Wpt250To400_ext1'])
+#newbW2Jw = newbW2J+'/baseW'
+print(' wpt250 old baseW: '+oldbWpt2+', new baseW: '+newbWpt2+', ext baseW: '+extbWpt2)#+'Senne: '+newbW1Jw_2+'')
+
+oldbWpt3 = getBaseWnAOD(mcDirectory, 'Summer16_102X_nAODv7_Full2016v7', ['WJetsToLNu_Wpt400To600'])
+extbWpt3 = getBaseWnAOD(mcDirectory, 'Summer16_102X_nAODv7_Full2016v7', ['WJetsToLNu_Wpt400To600_ext1'])
+newbWpt3 = getBaseWnAOD(mcDirectory, 'Summer16_102X_nAODv7_Full2016v7', ['WJetsToLNu_Wpt400To600', 'WJetsToLNu_Wpt400To600_ext1'])
+#newbW2Jw = newbW2J+'/baseW'
+print(' wpt400 old baseW: '+oldbWpt3+', new baseW: '+newbWpt3+', ext baseW: '+extbWpt3)#+'Senne: '+newbW1Jw_2+'')
+
+
+oldbWpt4 = getBaseWnAOD(mcDirectory, 'Summer16_102X_nAODv7_Full2016v7', ['WJetsToLNu_Wpt600ToInf'])
+extbWpt4 = getBaseWnAOD(mcDirectory, 'Summer16_102X_nAODv7_Full2016v7', ['WJetsToLNu_Wpt600ToInf_ext1'])
+newbWpt4 = getBaseWnAOD(mcDirectory, 'Summer16_102X_nAODv7_Full2016v7', ['WJetsToLNu_Wpt600ToInf', 'WJetsToLNu_Wpt600ToInf_ext1'])
+#newbW2Jw = newbW2J+'/baseW'
+print(' wpt600 old baseW: '+oldbWpt4+', new baseW: '+newbWpt4+', ext baseW: '+extbWpt4)#+'Senne: '+newbW1Jw_2+'')
+
+oldbWNLO = getBaseWnAOD(mcDirectory, 'Summer16_102X_nAODv7_Full2016v7', ['WJetsToLNu'])#_ext2'])
+print('NLO: '+oldbWNLO+'')
+
 files = nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_Wpt100To250')
 files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_Wpt250To400')
 files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_Wpt400To600')
@@ -165,6 +212,60 @@ addSampleWeight(samples, 'Wjets_NLOmerge', 'WJetsToLNu_Wpt600ToInf_ext1', '(LHE_
 #addSampleWeight(samples, 'Wjets_LO', 'WJetsToLNu-LO',      newbWLOw) 
 #addSampleWeight(samples, 'Wjets_LO', 'WJetsToLNu-LO_ext2', newbWLOw) 
 
+oldbWHT1 = getBaseWnAOD(mcDirectory, 'Summer16_102X_nAODv7_Full2016v7', ['WJetsToLNu_HT100_200'])
+extbWHT1 = getBaseWnAOD(mcDirectory, 'Summer16_102X_nAODv7_Full2016v7', ['WJetsToLNu_HT100_200_ext1'])
+newbWHT1 = getBaseWnAOD(mcDirectory, 'Summer16_102X_nAODv7_Full2016v7', ['WJetsToLNu_HT100_200', 'WJetsToLNu_HT100_200_ext1'])
+#newbW2Jw = newbW2J+'/baseW'
+print(' wHT100 old baseW: '+oldbWHT1+', new baseW: '+newbWHT1+', ext baseW: '+extbWHT1)#+'Senne: '+newbW1Jw_2+'')
+
+oldbWHT2 = getBaseWnAOD(mcDirectory, 'Summer16_102X_nAODv7_Full2016v7', ['WJetsToLNu_HT200_400'])
+extbWHT2 = getBaseWnAOD(mcDirectory, 'Summer16_102X_nAODv7_Full2016v7', ['WJetsToLNu_HT200_400_ext1'])
+newbWHT2 = getBaseWnAOD(mcDirectory, 'Summer16_102X_nAODv7_Full2016v7', ['WJetsToLNu_HT200_400', 'WJetsToLNu_HT200_400_ext1'])
+#newbW2Jw = newbW2J+'/baseW'
+print(' wHT250 old baseW: '+oldbWHT2+', new baseW: '+newbWHT2+', ext baseW: '+extbWHT2)#+'Senne: '+newbW1Jw_2+'')
+
+oldbWHT3 = getBaseWnAOD(mcDirectory, 'Summer16_102X_nAODv7_Full2016v7', ['WJetsToLNu_HT400_600'])
+extbWHT3 = getBaseWnAOD(mcDirectory, 'Summer16_102X_nAODv7_Full2016v7', ['WJetsToLNu_HT400_600_ext1'])
+newbWHT3 = getBaseWnAOD(mcDirectory, 'Summer16_102X_nAODv7_Full2016v7', ['WJetsToLNu_HT400_600', 'WJetsToLNu_HT400_600_ext1'])
+#newbW2Jw = newbW2J+'/baseW'
+print(' wHT400 old baseW: '+oldbWHT3+', new baseW: '+newbWHT3+', ext baseW: '+extbWHT3)#+'Senne: '+newbW1Jw_2+'')
+
+
+oldbWHT4 = getBaseWnAOD(mcDirectory, 'Summer16_102X_nAODv7_Full2016v7', ['WJetsToLNu_HT600_800'])
+extbWHT4 = getBaseWnAOD(mcDirectory, 'Summer16_102X_nAODv7_Full2016v7', ['WJetsToLNu_HT600_800_ext1'])
+newbWHT4 = getBaseWnAOD(mcDirectory, 'Summer16_102X_nAODv7_Full2016v7', ['WJetsToLNu_HT600_800', 'WJetsToLNu_HT600_800_ext1'])
+#newbW2Jw = newbW2J+'/baseW'
+print(' wHT600 old baseW: '+oldbWHT4+', new baseW: '+newbWHT4+', ext baseW: '+extbWHT4)#+'Senne: '+newbW1Jw_2+'')
+
+oldbWHT5 = getBaseWnAOD(mcDirectory, 'Summer16_102X_nAODv7_Full2016v7', ['WJetsToLNu_HT800_1200'])
+extbWHT5 = getBaseWnAOD(mcDirectory, 'Summer16_102X_nAODv7_Full2016v7', ['WJetsToLNu_HT800_1200_ext1'])
+newbWHT5 = getBaseWnAOD(mcDirectory, 'Summer16_102X_nAODv7_Full2016v7', ['WJetsToLNu_HT800_1200', 'WJetsToLNu_HT800_1200_ext1'])
+#newbW2Jw = newbW2J+'/baseW'
+print(' wHT800 old baseW: '+oldbWHT5+', new baseW: '+newbWHT5+', ext baseW: '+extbWHT5)#+'Senne: '+newbW1Jw_2+'')
+
+oldbWHT6 = getBaseWnAOD(mcDirectory, 'Summer16_102X_nAODv7_Full2016v7', ['WJetsToLNu_HT1200_2500'])
+extbWHT6 = getBaseWnAOD(mcDirectory, 'Summer16_102X_nAODv7_Full2016v7', ['WJetsToLNu_HT1200_2500_ext1'])
+newbWHT6 = getBaseWnAOD(mcDirectory, 'Summer16_102X_nAODv7_Full2016v7', ['WJetsToLNu_HT1200_2500', 'WJetsToLNu_HT1200_2500_ext1'])
+#newbW2Jw = newbW2J+'/baseW'
+print(' wHT1200 old baseW: '+oldbWHT6+', new baseW: '+newbWHT6+', ext baseW: '+extbWHT6)#+'Senne: '+newbW1Jw_2+'')
+
+oldbWHT7 = getBaseWnAOD(mcDirectory, 'Summer16_102X_nAODv7_Full2016v7', ['WJetsToLNu_HT2500_inf'])
+extbWHT7 = getBaseWnAOD(mcDirectory, 'Summer16_102X_nAODv7_Full2016v7', ['WJetsToLNu_HT2500_inf_ext1'])
+newbWHT7 = getBaseWnAOD(mcDirectory, 'Summer16_102X_nAODv7_Full2016v7', ['WJetsToLNu_HT2500_inf', 'WJetsToLNu_HT2500_inf_ext1'])
+#newbW2Jw = newbW2J+'/baseW'
+print(' wHT2500 old baseW: '+oldbWHT7+', new baseW: '+newbWHT7+', ext baseW: '+extbWHT7)#+'Senne: '+newbW1Jw_2+'')
+
+
+oldbWLO = getBaseWnAOD(mcDirectory, 'Summer16_102X_nAODv7_Full2016v7', ['WJetsToLNu-LO'])
+extbWLO = getBaseWnAOD(mcDirectory, 'Summer16_102X_nAODv7_Full2016v7', ['WJetsToLNu-LO_ext2'])
+newbWLO = getBaseWnAOD(mcDirectory, 'Summer16_102X_nAODv7_Full2016v7', ['WJetsToLNu-LO', 'WJetsToLNu-LO_ext2'])
+#newbW2Jw = newbW2J+'/baseW'
+print(' wLO old baseW: '+oldbWLO+', new baseW: '+newbWLO+', ext baseW: '+extbWLO)#+'Senne: '+newbW1Jw_2+'')
+
+
+oldbWHT8 = getBaseWnAOD(mcDirectory, 'Summer16_102X_nAODv7_Full2016v7', ['WJetsToLNu_HT70_100'])
+print('HT70: '+oldbWHT8)
+
 files  = nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-LO')
 files += nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-LO_ext2')
 files += nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_HT100_200')
@@ -189,7 +290,7 @@ samples['Wjets_HT'] = {
     'name'   : files,
     #'weight' : mcCommonWeight +'*EWKnloW[0]', # ewk nlo correction https://arxiv.org/pdf/1705.04664v2.pdf 
     #'weight' : mcCommonWeight + '*ewknloW', 
-    'weight' : mcCommonWeight, 
+    'weight' : mcCommonWeight,# + '*kfact1D[0]', 
     'FilesPerJob' : 4,
 }
 
