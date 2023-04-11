@@ -90,6 +90,30 @@ def CombineBaseW(directory, samples, proc, samplelist):
   for s in samplelist:
     addSampleWeight(samples, proc, s, newbaseW+'/baseW')
 
+baseW_cache_file = 'cache_baseW.py'
+if not os.path.exists(baseW_cache_file):
+    baseW_cache_file_o = open(baseW_cache_file, 'w')
+    baseW_cache_file_o.write('{}\n')
+    baseW_cache_file_o.close()
+    baseW_cache = {}
+else: 
+    baseW_cache_file_o = open(baseW_cache_file, 'r')
+    baseW_cache = json.load(baseW_cache_file_o)
+    baseW_cache_file_o.close()
+
+def getCachedBaseW(sample_list):
+    sample_list.sort()
+    sample_key = '__'.join(sample_list)
+    if not sample_key in baseW_cache:
+        baseW_cache[sample_key] = getBaseWnAOD(mcDirectory, mcProduction, sample_list)
+        baseW_cache_file_o = open(baseW_cache_file, 'w')
+        baseW_cache_file_o.write(json.dumps(baseW_cache, indent=2))
+    print('getCachedBaseW return: '+baseW_cache[sample_key] +'/baseW')
+    return str(baseW_cache[sample_key] +'/baseW')
+
+
+
+
 
 #########################################
 ############ MC COMMON ##################
@@ -129,12 +153,12 @@ mcCommonWeight = mcCommonWeightNoMatch
 ## NLO samples
 
 # baseW
-#oldbW1J = getBaseWnAOD(mcDirectory, 'Fall2017_102X_nAODv7_Full2017v7', ['WJetsToLNu-1J'])
-#extbW1J = getBaseWnAOD(mcDirectory, 'Fall2017_102X_nAODv7_Full2017v7', ['WJetsToLNu-1J_ext1'])
-#newbW1J = getBaseWnAOD(mcDirectory, 'Fall2017_102X_nAODv7_Full2017v7', ['WJetsToLNu-1J', 'WJetsToLNu-1J_ext1'])
-#newbW1Jw = newbW1J+'/baseW'
-#newbW1Jw = getCachedBaseW(['WJetsToLNu-1J', 'WJetsToLNu-1J_ext1'])
-#print(' 1J old baseW: '+oldbW1J+', new baseW: '+newbW1J+', ext baseW: '+extbW1J)
+oldbW1J = getBaseWnAOD(mcDirectory, 'Fall2017_102X_nAODv7_Full2017v7', ['WJetsToLNu-1J'])
+extbW1J = getBaseWnAOD(mcDirectory, 'Fall2017_102X_nAODv7_Full2017v7', ['WJetsToLNu-1J_ext1'])
+newbW1J = getBaseWnAOD(mcDirectory, 'Fall2017_102X_nAODv7_Full2017v7', ['WJetsToLNu-1J', 'WJetsToLNu-1J_ext1'])
+newbW1Jw = newbW1J+'/baseW'
+#newbW1Jw_2 = getCachedBaseW(['WJetsToLNu-1J', 'WJetsToLNu-1J_ext1'])
+print(' 1J old baseW: '+oldbW1J+', new baseW: '+newbW1J+', ext baseW: '+extbW1J)#+'Senne: '+newbW1Jw_2+'')
 
 #oldbW2J = getBaseWnAOD(mcDirectory, 'Fall2017_102X_nAODv7_Full2017v7', ['WJetsToLNu-2J'])
 #extbW2J = getBaseWnAOD(mcDirectory, 'Fall2017_102X_nAODv7_Full2017v7', ['WJetsToLNu-2J_ext1'])
@@ -143,7 +167,14 @@ mcCommonWeight = mcCommonWeightNoMatch
 #newbW2Jw = getCachedBaseW(['WJetsToLNu-2J', 'WJetsToLNu-2J_ext1'])
 #print(' 2J old baseW: '+oldbW2J+', new baseW: '+newbW2J+', ext baseW: '+extbW2J)
 
+oldbW2J = getBaseWnAOD(mcDirectory, 'Fall2017_102X_nAODv7_Full2017v7', ['WJetsToLNu-2J'])
+extbW2J = getBaseWnAOD(mcDirectory, 'Fall2017_102X_nAODv7_Full2017v7', ['WJetsToLNu-2J_ext1'])
+newbW2J = getBaseWnAOD(mcDirectory, 'Fall2017_102X_nAODv7_Full2017v7', ['WJetsToLNu-2J', 'WJetsToLNu-2J_ext1'])
+#newbW2Jw = newbW2J+'/baseW'
+print(' 2J old baseW: '+oldbW2J+', new baseW: '+newbW2J+', ext baseW: '+extbW2J)#+'Senne: '+newbW1Jw_2+'')
+
 # nJet binned
+
 files = nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-0J')
 files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-1J')
 files+= nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-1J_ext1')
@@ -170,12 +201,12 @@ CombineBaseW(mcDirectory, samples, 'Wjets_NLOnj',
 ## LO samples
 
 # baseW
-#oldbWlo = getBaseWnAOD(mcDirectory, 'Fall2017_102X_nAODv7_Full2017v7', ['WJetsToLNu-LO'])
-#extbWlo = getBaseWnAOD(mcDirectory, 'Fall2017_102X_nAODv7_Full2017v7', ['WJetsToLNu-LO_ext1'])
-#newbWlo = getBaseWnAOD(mcDirectory, 'Fall2017_102X_nAODv7_Full2017v7', ['WJetsToLNu-LO', 'WJetsToLNu-LO_ext1'])
+oldbWlo = getBaseWnAOD(mcDirectory, 'Fall2017_102X_nAODv7_Full2017v7', ['WJetsToLNu-LO'])
+extbWlo = getBaseWnAOD(mcDirectory, 'Fall2017_102X_nAODv7_Full2017v7', ['WJetsToLNu-LO_ext1'])
+newbWlo = getBaseWnAOD(mcDirectory, 'Fall2017_102X_nAODv7_Full2017v7', ['WJetsToLNu-LO', 'WJetsToLNu-LO_ext1'])
 #newbWlow = newbWlo+'/baseW'
 #newbWlow = getCachedBaseW(['WJetsToLNu-LO', 'WJetsToLNu-LO_ext1'])
-#print(' LO old baseW: '+oldbWlo+', new baseW: '+newbWlo+', ext baseW: '+extbWlo)
+print(' LO old baseW: '+oldbWlo+', new baseW: '+newbWlo+', ext baseW: '+extbWlo)
 
 ## LO sample
 #files = nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-LO')
