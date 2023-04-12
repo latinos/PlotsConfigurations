@@ -917,43 +917,44 @@ aliases['antitopGenPtOTF'] = {
 #}
 
 aliases['Top_DeepTagrw'] = {# New Top PAG
-    'expr': '(1 * !boosted_nocut_res[0] + (boosted_nocut_res[0]*(-305.597 +319.266*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0) + 315.372*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0)*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0) -328.539*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0)*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0)*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0))))',
+    'expr': '(1 * !boosted_nocut_res[0] + (boosted_nocut_res[0]*(-322.949 +336.75*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0) + 332.998*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0)*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0) -346.311*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0)*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0)*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0))))',
     'samples':mc_deep,#['top']
 }
 
 aliases['Top_DeepTagrw_up_0'] = {
-    'expr': '(1 * !boosted_nocut_res[0] + (boosted_nocut_res[0]*(-305.596 +319.268*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0) + 315.374*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0)*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0) -328.537*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0)*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0)*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0))))',
+    'expr': '(1 * !boosted_nocut_res[0] + (boosted_nocut_res[0]*(-322.946 +336.752*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0) + 333.000*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0)*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0) -346.309*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0)*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0)*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0))))',
     'samples':mc_deep#['top']
 }
 aliases['Top_DeepTagrw_up_1'] = {
-    'expr': '(1 * !boosted_nocut_res[0] + (boosted_nocut_res[0]*(-305.490 +319.251*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0) + 315.329*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0)*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0) -328.621*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0)*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0)*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0))))',
+    'expr': '(1 * !boosted_nocut_res[0] + (boosted_nocut_res[0]*(-322.838 +336.765*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0) + 332.953*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0)*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0) -346.397*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0)*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0)*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0))))',
     'samples':mc_deep#['top']
 }
 aliases['Top_DeepTagrw_up_2'] = {
-    'expr': '(1 * !boosted_nocut_res[0] + (boosted_nocut_res[0]*(-305.656 +319.393*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0) + 315.341*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0)*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0) -328.577*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0)*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0)*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0))))',
+    'expr': '(1 * !boosted_nocut_res[0] + (boosted_nocut_res[0]*(-323.011 +336.883*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0) + 332.966*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0)*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0) -346.350*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0)*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0)*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0))))',
     'samples':mc_deep#['top']
 }
 aliases['Top_DeepTagrw_up_3'] = {
-    'expr': '(1 * !boosted_nocut_res[0] + (boosted_nocut_res[0]*(-305.576 +319.273*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0) + 315.253*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0)*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0) -328.448*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0)*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0)*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0))))',
+    'expr': '(1 * !boosted_nocut_res[0] + (boosted_nocut_res[0]*(-322.923 +336.758*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0) + 332.874*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0)*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0) -346.216*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0)*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0)*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0))))',
     'samples':mc_deep#['top']
 }
 
 aliases['Top_DeepTagrw_do_0'] = {
-    'expr': '(1 * !boosted_nocut_res[0] + (boosted_nocut_res[0]*(-305.599 +319.264*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0) + 315.370*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0)*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0) -328.541*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0)*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0)*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0))))',
+    'expr': '(1 * !boosted_nocut_res[0] + (boosted_nocut_res[0]*(-322.951 +336.747*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0) + 332.996*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0)*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0) -346.313*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0)*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0)*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0))))',
     'samples':mc_deep#['top']
 }
 aliases['Top_DeepTagrw_do_1'] = {
-    'expr': '(1 * !boosted_nocut_res[0] + (boosted_nocut_res[0]*(-305.704 +319.251*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0) + 315.415*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0)*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0) -328.547*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0)*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0)*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0))))',
+    'expr': '(1 * !boosted_nocut_res[0] + (boosted_nocut_res[0]*(-323.060+336.735*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0) + 333.043*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0)*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0) -346.225*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0)*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0)*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0))))',
     'samples':mc_deep#['top']
 }
 aliases['Top_DeepTagrw_do_2'] = {
-    'expr': '(1 * !boosted_nocut_res[0] + (boosted_nocut_res[0]*(-305.538 +319.138*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0) + 315.403*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0)*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0) -328.501*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0)*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0)*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0))))',
+    'expr': '(1 * !boosted_nocut_res[0] + (boosted_nocut_res[0]*(-322.887 +336.617*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0) + 333.030*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0)*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0) -346.272*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0)*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0)*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0))))',
     'samples':mc_deep#['top']
 }
 aliases['Top_DeepTagrw_do_3'] = {
-    'expr': '(1 * !boosted_nocut_res[0] + (boosted_nocut_res[0]*(-305.618 +319.258*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0) + 315.491*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0)*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0) -328.630*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0)*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0)*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0))))',
+    'expr': '(1 * !boosted_nocut_res[0] + (boosted_nocut_res[0]*(-322.971 +336.742*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0) + 333.122*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0)*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0) -346.401*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0)*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0)*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0))))',
     'samples':mc_deep#['top']
 }
+
 aliases['Fat_rewei'] = {# New Top PAG
     'expr': '(1 * !boosted_nocut_res[0] + (boosted_nocut_res[0]*(-5.27856 +0.115717*CleanFatJet_mass[0] -0.000502821*CleanFatJet_mass[0]*CleanFatJet_mass[0])))',
     'samples': mc_deep, #['top',]#['top']

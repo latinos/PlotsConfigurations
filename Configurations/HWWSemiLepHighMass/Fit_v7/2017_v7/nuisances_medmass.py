@@ -115,6 +115,8 @@ for shift in ['jes', 'lf', 'hf', 'hfstats1', 'hfstats2', 'lfstats1', 'lfstats2',
     name = 'CMS_btag_%s' % shift
     if 'stats' in shift:
         name += '_2017'
+    if 'jes' in shift:
+        name += '_2017'
 
     nuisances['btag_%s' % shift] = {
         'name': name,
@@ -130,7 +132,7 @@ useDeepAK8 = True
 
 if useDeepAK8 is False:
     nuisances['wtag'] = {
-        'name': 'CMS_wtag_eff',
+        'name': 'CMS_wtag_eff_2017',
         'kind': 'weight',
         'type': 'shape',
         'samples': dict((skey, ['SFWtagUp', 'SFWtagDown']) for skey in mc),
@@ -344,17 +346,17 @@ nuisances['fatjet_jmr']  = {
     'folderDown': makeMCDirectory('fatjetJMRdo'),
     'AsLnN': '1'
 }
-#nuisances['jet_jer']  = {
-#    'name'  : 'CMS_jer',
-#    'kind'  : 'suffix',
-#    'type'  : 'shape',
-#    'mapUp'  : 'JERup',
-#    'mapDown': 'JERdo',
-#    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in sig_mc),
-#    'folderUp'  : makeMCDirectory('JERup'),
-#    'folderDown': makeMCDirectory('JERdo'),
-#    'AsLnN': '1'
-#}
+nuisances['jet_jer']  = {
+    'name'  : 'CMS_jer_2017',
+    'kind'  : 'suffix',
+    'type'  : 'shape',
+    'mapUp'  : 'JERup',
+    'mapDown': 'JERdo',
+    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in sig_mc),
+    'folderUp'  : makeMCDirectory('JERup'),
+    'folderDown': makeMCDirectory('JERdo'),
+    'AsLnN': '1'
+}
 
 #nuisances['fatjet_jes_BWReweight']  = {
 #    'name'  : 'CMS_scale_fatj_2017',
@@ -1054,8 +1056,25 @@ nuisances['Fat_rewei_unc'] = {
     'symmetrize':True,
     'cuts': cutdict['Boosted']
 }
+for m in massggh:
+    	xs_ggf = 2*HiggsXS.GetHiggsXS4Sample('YR4','13TeV','GluGluHToWWToLNuQQ_M{}'.format(MX))['xs']
+	FatString = [ 'Fat_rewei[0]', '1.']
+	nuisances['Fat_rewei_unc']['samples'].update({'GGH_'+m+model_name: FatString})
+for m in massggh:
+   	xs_vbf = 2*HiggsXS.GetHiggsXS4Sample('YR4','13TeV','VBFHToWWToLNuQQ_M{}'.format(MX))['xs']
+	FatString = [ 'Fat_rewei[0]', '1.']
+	nuisances['Fat_rewei_unc']['samples'].update({'QQH_'+m+model_name: FatString})
 
-
+#for m in massggh:
+#    xs_ggf = 2*HiggsXS.GetHiggsXS4Sample('YR4','13TeV','GluGluHToWWToLNuQQ_M{}'.format(m))['xs']
+#    nuisances['Fat_rewei_ggH'] ={
+#    	'name': 'CMS_Fat_rewei_unc',
+#    	'kind'  : 'weight',
+#    	'type'  : 'shape',
+#    	'samples': dict((skey,['Fat_rewei[0]', '1']) ),
+#    	'symmetrize':True,
+#    	'cuts': cutdict['Boosted']
+#}
 
 ## ...except in sample "WpWmJJ_QCD_noTop"! weights are NOT normalized! (2016 only)
 #variations = ['LHEScaleWeight[%d]/LHEScaleWeight[4]' % i for i in [0, 1, 3, 5, 7, 8]]
@@ -1163,7 +1182,7 @@ for syst in ['El', 'statEl', 'Mu', 'statMu']:
     else: name_tag += '_recoil'
 
     nuisances['fake_'+syst] = {
-        'name': 'CMS_fake'+name_tag+'_2016',
+        'name': 'CMS_fake'+name_tag+'_2017',
         'kind': 'weight',
         'type': 'shape',
         'samples': {

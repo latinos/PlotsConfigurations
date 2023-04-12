@@ -33,7 +33,7 @@ outputDirPlots = 'Plots_Apr'
 
 
 # used by mkDatacards to define output directory for datacards
-outputDirDatacard = 'Datacards_March_CR_shape'
+outputDirDatacard = 'Datacards_March_CR_High'
 
 # structure file for datacard
 structureFile = 'structure_medmass.py'

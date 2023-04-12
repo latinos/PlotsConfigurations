@@ -96,16 +96,16 @@ for Lep in LepCats:
                 	            +'&&'+BoostProcCats[BProcCat]\
                 	            +'&&'+LepCats[Lep]
 
-for Lep in LepCats:
-    for BProcCat in ResProcCats:
-        for BCat in ResCatsSR:  
-		cuts[Lep+BCat+BProcCat]=  ResCatsSR[BCat]\
-                	            +'&&'+ResProcCats[BProcCat]\
-                	            +'&&'+LepCats[Lep]
-for Lep in LepCats_P:
-    for BCat in BoostCats:
-	cuts[Lep+BCat]=  BoostCats[BCat]\
-                           +'&&'+LepCats_P[Lep]
- #           cuts[Lep+BProcCat+BCat]=  BoostCats[BCat]\
+#for Lep in LepCats:
+#    for BProcCat in ResProcCats:
+#        for BCat in ResCatsSR:  
+#		cuts[Lep+BCat+BProcCat]=  ResCatsSR[BCat]\
+#                	            +'&&'+ResProcCats[BProcCat]\
+#                	            +'&&'+LepCats[Lep]
+#for Lep in LepCats_P:
+#    for BCat in BoostCats:
+#	cuts[Lep+BCat]=  BoostCats[BCat]\
+#                           +'&&'+LepCats_P[Lep]
+# #           cuts[Lep+BProcCat+BCat]=  BoostCats[BCat]\
   #                              +'&&'+BoostProcCats[BProcCat]\
    #                             +'&&'+LepCats[Lep]
