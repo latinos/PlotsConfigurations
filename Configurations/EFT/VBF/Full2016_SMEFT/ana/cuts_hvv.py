@@ -1,0 +1,10 @@
+cuts['hww2l2v_13TeV_of2j_vbf_hipp']  = ''
+cuts['hww2l2v_13TeV_of2j_vbf_hinn']  = ''
+cuts['hww2l2v_13TeV_of2j_vbf_hipn']  = ''
+cuts['hww2l2v_13TeV_of2j_vbf_hinp']  = ''
+cuts['hww2l2v_13TeV_of2j_vh_hip']  = ''
+cuts['hww2l2v_13TeV_of2j_vh_hin']  = ''
+cuts['hww2l2v_13TeV_top_of2j']  = ''
+cuts['hww2l2v_13TeV_dytt_of2j']   = ''
+cuts['hww2l2v_13TeV_WW_of2j']   = ''
+
