@@ -76,66 +76,42 @@ aliases['Top_pTrw'] = {
     'samples': ['top']
 }
 
-aliases['AZH_mA_minus_mH_test'] = {
+aliases['AZH_mA_minus_mH'] = {
     'linesToAdd': [
-       '.L %s/src/PlotsConfigurations/Configurations/AToZH_Full/AZH_patch.cc++' % os.getenv('CMSSW_BASE')
+       '.L %s/src/PlotsConfigurations/Configurations/AToZH_Full/AZH_patch.cc+' % os.getenv('CMSSW_BASE')
     ],
     'class': 'AZH_patch',
-    'args': ("AZH_mA_minus_mH")
+    'args': ("AZH_mA_minus_mH"),
+    'samples': [skey for skey in samples if skey not in mc]
 }
 
-aliases['AZH_Amass_test'] = {
+aliases['AZH_Amass'] = {
     'class': 'AZH_patch',
-    'args': ("AZH_Amass")
+    'args': ("AZH_Amass"),
+    'samples': [skey for skey in samples if skey not in mc]
 }
 
 
-aliases['AZH_Hmass_test'] = {
+aliases['AZH_Hmass'] = {
     'class': 'AZH_patch',
-    'args': ("AZH_Hmass")
+    'args': ("AZH_Hmass"),
+    'samples': [skey for skey in samples if skey not in mc]
 }
 
-aliases['AZH_Zmass'] = {
+aliases['AZH_ChiSquare'] = {
     'class': 'AZH_patch',
-    'args': ("AZH_Zmass")
+    'args': ("AZH_ChiSquare"),
+    'samples': [skey for skey in samples if skey not in mc]
 }
 
-
-aliases['AZH_ChiSquare_test'] = {
-    'class': 'AZH_patch',
-    'args': ("AZH_ChiSquare")
-}
-
-aliases['AZH_Tophadronic_test'] = {
+aliases['AZH_Tophadronic'] = {
     'class': 'AZH_patch',
     'args': ("AZH_Tophadronic")
 }
 
-aliases['AZH_Topleptonic_test'] = {
+aliases['AZH_Topleptonic'] = {
     'class': 'AZH_patch',
     'args': ("AZH_Topleptonic")
-}
-aliases['AZH_Whadronic_test'] = {
-    'class': 'AZH_patch',
-    'args': ("AZH_Whadronic")
-}
-aliases['AZH_Wleptonic_test'] = {
-    'class': 'AZH_patch',
-    'args': ("AZH_Wleptonic")
-}
-#aliases['ZH3l_mTlmet_test'] = {
-#    'class': 'ZH3l_patch',
-#    'args': ("mTlmet")
-#}
-
-#aliases['ZH3l_mTlmetj_test'] = {
-#    'class': 'ZH3l_patch',
-#    'args': ("mTlmetj")
-#}
-
-aliases['ZH3l_mTlmetjj_test'] = {
-    'class': 'AZH_patch',
-    'args': ("mTlmetjj")
 }
 
 #######################

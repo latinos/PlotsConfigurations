@@ -11,7 +11,7 @@ except NameError:
     signal = []
 
 try:
-    fitcuts = [cut for cut in cuts if 'SR' in cut or 'CR' in cut]
+    fitcuts = [cut for cut in cuts if 'SR' in cut or 'preselection' in cut]
 except NameError:
     fitcuts = []
 
@@ -334,19 +334,18 @@ nuisances['eff_e']  = {
                 'samples'  : dict((skey, id_syst_ele) for skey in mc),
                 'cuts' : fitcuts
 }
-##WIP for UL
-#nuisances['electronpt']  = {
-#                'name'  : 'CMS_scale_e_2017',
-#                'kind'  : 'suffix',
-#                'type'  : 'shape',
-#                'mapUp' : 'ElepTup',
-#                'mapDown' : 'ElepTdo',
-#                'samples'  : dict((skey, ['1', '1']) for skey in mc),
-#                'folderUp'   : treeBaseDir+'Fall2017_102X_nAODv7_Full2017v7/MCl1loose2017v7__MCCorr2017v7__l2loose__l2tightOR2017v7__ElepTup_suffix', 
-#                'folderDown' : treeBaseDir+'Fall2017_102X_nAODv7_Full2017v7/MCl1loose2017v7__MCCorr2017v7__l2loose__l2tightOR2017v7__ElepTdo_suffix', 
-#                'AsLnN' : '1',
-#                'cuts' : fitcuts
-#}
+nuisances['electronpt']  = {
+                'name'  : 'CMS_scale_e_2017',
+                'kind'  : 'suffix',
+                'type'  : 'shape',
+                'mapUp' : 'ElepTup',
+                'mapDown' : 'ElepTdo',
+                'samples'  : dict((skey, ['1', '1']) for skey in mc if skey not in signal+ ['TTWJets']),
+                'folderUp'   : treeBaseDir+'Summer20UL17_106x_nAODv9_Full2017v9/MCl1loose2017v9__MCCorr2017v9NoJERInHorn__l2tightOR2017v9__ElepTup_suffix', 
+                'folderDown' : treeBaseDir+'Summer20UL17_106x_nAODv9_Full2017v9/MCl1loose2017v9__MCCorr2017v9NoJERInHorn__l2tightOR2017v9__ElepTdo_suffix', 
+                'AsLnN' : '1',
+                'cuts' : fitcuts
+}
 
 ###### Muon Efficiency and energy scale
 
@@ -360,18 +359,18 @@ nuisances['eff_m']  = {
                 'cuts' : fitcuts
 }
 
-#nuisances['muonpt']  = {
-#                'name'  : 'CMS_scale_m_2017',
-#                'kind'  : 'suffix',
-#                'type'  : 'shape',
-#                'mapUp' : 'MupTup',
-#                'mapDown' : 'MupTdo',
-#                'samples'  : dict((skey, ['1', '1']) for skey in mc),
-#                'folderUp'   : treeBaseDir+'Fall2017_102X_nAODv7_Full2017v7/MCl1loose2017v7__MCCorr2017v7__l2loose__l2tightOR2017v7__MupTup_suffix', 
-#                'folderDown' : treeBaseDir+'Fall2017_102X_nAODv7_Full2017v7/MCl1loose2017v7__MCCorr2017v7__l2loose__l2tightOR2017v7__MupTdo_suffix', 
-#                'AsLnN' : '1',
-#                'cuts' : fitcuts
-#}
+nuisances['muonpt']  = {
+                'name'  : 'CMS_scale_m_2017',
+                'kind'  : 'suffix',
+                'type'  : 'shape',
+                'mapUp' : 'MupTup',
+                'mapDown' : 'MupTdo',
+                'samples'  : dict((skey, ['1', '1']) for skey in mc if skey not in signal+['TTWJets']),
+                'folderUp'   : treeBaseDir+'Summer20UL17_106x_nAODv9_Full2017v9/MCl1loose2017v9__MCCorr2017v9NoJERInHorn__l2tightOR2017v9__MupTup_suffix', 
+                'folderDown' : treeBaseDir+'Summer20UL17_106x_nAODv9_Full2017v9/MCl1loose2017v9__MCCorr2017v9NoJERInHorn__l2tightOR2017v9__MupTdo_suffix', 
+                'AsLnN' : '1',
+                'cuts' : fitcuts
+}
 
 ####### Jet energy scale
 
@@ -429,18 +428,18 @@ nuisances['eff_m']  = {
 #}
 ##### MET energy scale
 
-#nuisances['met']  = {
-#                'name'  : 'CMS_scale_met_2017',
-#                'kind'  : 'suffix',
-#                'type'  : 'shape',
-#                'mapUp' : 'METup',
-#                'mapDown' : 'METdo',
-#                'samples'  : dict((skey, ['1', '1']) for skey in mc),
-#                'folderUp'   : treeBaseDir+'Summer20UL17_106x_nAODv9_Full2017v9/MCl1loose2017v9__MCCorr2017v9NoJERInHorn__l2tightOR2017v9__METup_suffix', 
-#                'folderDown' : treeBaseDir+'Summer20UL17_106x_nAODv9_Full2017v9/MCl1loose2017v9__MCCorr2017v9NoJERInHorn__l2tightOR2017v9__METdo_suffix', 
-#                'AsLnN' : '1',
-#                'cuts' : fitcuts
-#}
+nuisances['met']  = {
+                'name'  : 'CMS_scale_met_2017',
+                'kind'  : 'suffix',
+                'type'  : 'shape',
+                'mapUp' : 'METup',
+                'mapDown' : 'METdo',
+                'samples'  : dict((skey, ['1', '1']) for skey in mc if skey not in signal+['TTWJets']),
+                'folderUp'   : treeBaseDir+'Summer20UL17_106x_nAODv9_Full2017v9/MCl1loose2017v9__MCCorr2017v9NoJERInHorn__l2tightOR2017v9__METup_suffix', 
+                'folderDown' : treeBaseDir+'Summer20UL17_106x_nAODv9_Full2017v9/MCl1loose2017v9__MCCorr2017v9NoJERInHorn__l2tightOR2017v9__METdo_suffix', 
+                'AsLnN' : '1',
+                'cuts' : fitcuts
+}
 
 # Use the following if you want to apply the automatic combine MC stat nuisances.
 nuisances['stat']  = {
