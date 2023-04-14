@@ -137,14 +137,16 @@ fakeWeightOTF::evaluate(unsigned)
       
       // Get fake rate
       float fake_rate, fake_rate_e; 
-      maxpt = fr_mu_h2->GetXaxis()->GetBinCenter(fr_mu_h2->GetNbinsX());
-      if (pt > maxpt){
-        fake_rate   = fr_mu_h2->GetBinContent(fr_mu_h2->FindBin(maxpt, aeta));
-        fake_rate_e = fr_mu_h2->GetBinError(fr_mu_h2->FindBin(maxpt, aeta));
-      }else{
-        fake_rate   = fr_mu_h2->GetBinContent(fr_mu_h2->FindBin(pt, aeta));
-        fake_rate_e = fr_mu_h2->GetBinError(fr_mu_h2->FindBin(pt, aeta));
-      }
+      //maxpt = fr_mu_h2->GetXaxis()->GetBinCenter(fr_mu_h2->GetNbinsX());
+      float maxpt_bin = fr_mu_h2->GetXaxis()->GetBinCenter((fr_mu_h2->GetNbinsX()-1));
+	fake_rate   = fr_mu_h2->GetBinContent(fr_mu_h2->FindBin(min(pt,maxpt_bin), aeta));
+	fake_rate_e = fr_mu_h2->GetBinError(fr_mu_h2->FindBin(min(pt,maxpt_bin), aeta));       //if (pt > maxpt_bin){
+        //fake_rate   = fr_mu_h2->GetBinContent(fr_mu_h2->FindBin(maxpt_bin, aeta));
+        //fake_rate_e = fr_mu_h2->GetBinError(fr_mu_h2->FindBin(maxpt_bin, aeta));
+      //}else{
+        //fake_rate   = fr_mu_h2->GetBinContent(fr_mu_h2->FindBin(pt, aeta));
+        //fake_rate_e = fr_mu_h2->GetBinError(fr_mu_h2->FindBin(pt, aeta));
+      //}
 
       // apply stat
       float fr = fake_rate;
@@ -172,15 +174,18 @@ fakeWeightOTF::evaluate(unsigned)
       }
 
       // Get fake rate
+      float maxpt_bin = fr_ele_h2->GetXaxis()->GetBinCenter((fr_ele_h2->GetNbinsX()-1));
       float fake_rate, fake_rate_e; 
-      maxpt = fr_ele_h2->GetXaxis()->GetBinCenter(fr_ele_h2->GetNbinsX());
-      if (pt > maxpt){
-        fake_rate   = fr_ele_h2->GetBinContent(fr_ele_h2->FindBin(maxpt,aeta));
-        fake_rate_e = fr_ele_h2->GetBinError(fr_ele_h2->FindBin(maxpt, aeta));
-      }else{
-        fake_rate   = fr_ele_h2->GetBinContent(fr_ele_h2->FindBin(pt,aeta));
-        fake_rate_e = fr_ele_h2->GetBinError(fr_ele_h2->FindBin(pt,aeta));
-      }
+	fake_rate   = fr_ele_h2->GetBinContent(fr_ele_h2->FindBin(min(pt,maxpt_bin), aeta));
+	fake_rate_e = fr_ele_h2->GetBinError(fr_ele_h2->FindBin(min(pt,maxpt_bin), aeta));       //if (pt > maxpt_bin){
+      //maxpt = fr_ele_h2->GetXaxis()->GetBinCenter(fr_ele_h2->GetNbinsX());
+      //if (pt > maxpt){
+      //  fake_rate   = fr_ele_h2->GetBinContent(fr_ele_h2->FindBin(maxpt,aeta));
+      //  fake_rate_e = fr_ele_h2->GetBinError(fr_ele_h2->FindBin(maxpt, aeta));
+      //}else{
+      //  fake_rate   = fr_ele_h2->GetBinContent(fr_ele_h2->FindBin(pt,aeta));
+      //  fake_rate_e = fr_ele_h2->GetBinError(fr_ele_h2->FindBin(pt,aeta));
+      //}
 
       // apply stat
       float fr = fake_rate;
