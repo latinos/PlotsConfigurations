@@ -83,6 +83,66 @@ aliases['HM_Hlnjj_MT'] = {
     *( 1-TMath::Cos(HM_Wlep_phi_Puppi-HM_Whad_phi) ) )'
 }
 
+eff_tr_dir = os.getenv('CMSSW_BASE') + "/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/TriggEff/fixedTextfiles/"
+aliases['ele_trig_eff_B'] = {
+    'linesToAdd': [
+        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
+        '.L %s/src/PlotsConfigurations/Configurations/patches/triggerEff_1lep.cc+' % os.getenv('CMSSW_BASE')
+    ],
+    'class': 'TrigEff_1lep',
+    'args': (eff_tr_dir+'2017/mvaid/Ele35_pt_eta_efficiency_withSys_Run2017B.txt'),
+    'samples': mc
+}
+
+aliases['ele_trig_eff_CDE'] = {
+    'linesToAdd': [
+        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
+        '.L %s/src/PlotsConfigurations/Configurations/patches/triggerEff_1lep.cc+' % os.getenv('CMSSW_BASE')
+    ],
+    'class': 'TrigEff_1lep',
+    'args': (eff_tr_dir+'2017/mvaid/Ele35_pt_eta_efficiency_withSys_Run2017CDE.txt'),
+    'samples': mc
+}
+
+aliases['ele_trig_eff_F'] = {
+    'linesToAdd': [
+        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_BASE'),
+        '.L %s/src/PlotsConfigurations/Configurations/patches/triggerEff_1lep.cc+' % os.getenv('CMSSW_BASE')
+    ],
+    'class': 'TrigEff_1lep',
+    'args': (eff_tr_dir+'2017/mvaid/Ele35_pt_eta_efficiency_withSys_Run2017F.txt'),
+    'samples': mc
+}
+
+aliases['ele_trig_eff'] = {
+    'expr' : '(run_period==1)*ele_trig_eff_B[0] + (run_period>1 && run_period<5)*ele_trig_eff_CDE[0] + (run_period==5)*ele_trig_eff_F[0]',
+    'samples': mc
+}
+
+aliases['ele_trig_eff_u'] = {
+    'expr' : '(run_period==1)*ele_trig_eff_B[1] + (run_period>1 && run_period<5)*ele_trig_eff_CDE[1] + (run_period==5)*ele_trig_eff_F[1]',
+    'samples': mc
+}
+
+aliases['ele_trig_eff_d'] = {
+    'expr' : '(run_period==1)*ele_trig_eff_B[2] + (run_period>1 && run_period<5)*ele_trig_eff_CDE[2] + (run_period==5)*ele_trig_eff_F[2]',
+    'samples': mc
+}
+
+aliases['TriggerEffWeight_1l_fixed'] = {
+    'expr': '(abs(Lepton_pdgId[0])==11)*ele_trig_eff +  (abs(Lepton_pdgId[0])==13)*TriggerEffWeight_1l',
+    'samples': mc
+}
+
+aliases['TriggerEffWeight_1l_fixed_u'] = {
+    'expr': '(abs(Lepton_pdgId[0])==11)*ele_trig_eff_u +  (abs(Lepton_pdgId[0])==13)*TriggerEffWeight_1l_u',
+    'samples': mc
+}
+
+aliases['TriggerEffWeight_1l_fixed_d'] = {
+    'expr': '(abs(Lepton_pdgId[0])==11)*ele_trig_eff_d +  (abs(Lepton_pdgId[0])==13)*TriggerEffWeight_1l_d',
+    'samples': mc
+}
 #aliases['WptOvFat_nocut'] = {
 #    # 'expr': 'HM_Hlnjj_mt'
 #    'expr': ' TMath::Sqrt( 2*HM_Wlep_pt_Puppi*HM_Whad_pt)'
@@ -214,6 +274,20 @@ aliases['dPhi_LNu'] = {
 
 aliases['deltaR'] = {
     'expr' : 'TMath::Sqrt((HM_Whad_phi - Alt$(CleanFatJet_phi[0],0))*(HM_Whad_phi - Alt$(CleanFatJet_phi[0],0)) + (HM_Whad_eta - Alt$(CleanFatJet_eta[0],0))*(HM_Whad_eta - Alt$(CleanFatJet_eta[0],0))) '
+}
+
+aliases['deltaR_jl'] = {
+    'expr' : 'TMath::Sqrt((Lepton_phi[0] - CleanJet_phi[0])*(Lepton_phi[0] - CleanJet_phi[0]) + (Lepton_eta[0] - CleanJet_eta[0])*(Lepton_eta[0] - CleanJet_eta[0])) '
+}
+
+aliases['IndexMatchingJet'] = {
+    'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/DeltaR_Ljj.cc' % os.getenv('CMSSW_BASE')],
+    'class': 'DeltaR_Ljj',
+
+}
+
+aliases['deltaR_jl_match'] = {
+    'expr' : 'TMath::Sqrt((Lepton_phi[0] - CleanJet_phi[CleanJet_jetIdx == IndexMatchingJet[0]])*(Lepton_phi[0] - CleanJet_phi[CleanJet_jetIdx == IndexMatchingJet[0]]) + (Lepton_eta[0] - CleanJet_eta[CleanJet_jetIdx == IndexMatchingJet[0]])*(Lepton_eta[0] - CleanJet_eta[CleanJet_jetIdx == IndexMatchingJet[0]])) '
 }
 
 aliases['mass_HIGGS_FAT'] = {
@@ -391,34 +465,61 @@ bTagBoosted = '(Sum$(Jet_btagDeepB[CleanJet_jetIdx[CleanJetNotFat_jetIdx]] > bWP
 bTagResolved = '(Sum$(Jet_btagDeepB[CleanJet_jetIdx] > bWP[0] && {0}) == 0)'\
                 .format(resolvedJetBVetoCondition)
 
-#bTemplate = '((boosted_fat_jet[0]*{0}) || ( two_jet_res[0]*{1}))'.format(bTagBoosted, bTagResolved)
-bTemplate = '((boosted_nocut[0]*{0}) || ( resolved_nocut[0]*{1}))'.format(bTagBoosted, bTagResolved)
+##bTemplate = '((boosted_fat_jet[0]*{0}) || ( two_jet_res[0]*{1}))'.format(bTagBoosted, bTagResolved)
+#bTemplate = '((boosted_nocut[0]*{0}) || ( resolved_nocut[0]*{1}))'.format(bTagBoosted, bTagResolved)
+#
+#aliases['bVeto'] = {
+#    'expr': bTemplate.format(threshold=vetoThreshold)
+#}
+#aliases['bReq'] = {
+#    'expr': '!'+bTemplate.format(threshold=reqThreshold)
+#}
+#
+#bSF = 'TMath::Exp(Sum$(TMath::Log( \
+#    {0} * Jet_btagSF_deepcsv_shape[CleanJet_jetIdx] + !{0} * 1 \
+#    )))'.format('(CleanJet_pt > {threshold} && abs(CleanJet_eta) < 2.5)')
+#
+#aliases['bVetoSF'] = {
+#    'expr': bSF.format(threshold=vetoThreshold),
+#    'samples': mc
+#}
+#aliases['bReqSF'] = {
+#    'expr': bSF.format(threshold=reqThreshold),
+#    'samples': mc
+#}
+#
+#aliases['btagSF'] = {
+#    'expr': 'bVeto*bVetoSF + bReq*bReqSF + (!bVeto && !bReq)',
+#    'samples': mc
+#}
+
+bJetV_req = '(CleanJet_pt > 20 && abs(CleanJet_eta) < 2.5)'
+bJetR_req = '(CleanJet_pt > 30 && abs(CleanJet_eta) < 2.5)'
+
+aliases['nbJet'] = {
+    'expr': 'Sum$(Jet_btagDeepB[CleanJet_jetIdx] > bWP[0] && CleanJet_pt > 30)',
+}
 
 aliases['bVeto'] = {
-    'expr': bTemplate.format(threshold=vetoThreshold)
+    'expr': 'Sum$(Jet_btagDeepB[CleanJet_jetIdx] > bWP[0] && '+bJetV_req+' ) == 0',
 }
+
 aliases['bReq'] = {
-    'expr': '!'+bTemplate.format(threshold=reqThreshold)
+    'expr': 'Sum$(Jet_btagDeepB[CleanJet_jetIdx] > bWP[0] && '+bJetR_req+' ) >= 1',
 }
-
-bSF = 'TMath::Exp(Sum$(TMath::Log( \
-    {0} * Jet_btagSF_deepcsv_shape[CleanJet_jetIdx] + !{0} * 1 \
-    )))'.format('(CleanJet_pt > {threshold} && abs(CleanJet_eta) < 2.5)')
-
 aliases['bVetoSF'] = {
-    'expr': bSF.format(threshold=vetoThreshold),
+    'expr': 'TMath::Exp(Sum$(TMath::Log('+bJetV_req+'*Jet_btagSF_deepcsv_shape[CleanJet_jetIdx]+1*(!'+bJetV_req+'))))',
     'samples': mc
 }
+
 aliases['bReqSF'] = {
-    'expr': bSF.format(threshold=reqThreshold),
+    'expr': 'TMath::Exp(Sum$(TMath::Log('+bJetR_req+'*Jet_btagSF_deepcsv_shape[CleanJet_jetIdx]+1*(!'+bJetR_req+'))))',
     'samples': mc
 }
-
 aliases['btagSF'] = {
-    'expr': 'bVeto*bVetoSF + bReq*bReqSF + (!bVeto && !bReq)',
+    'expr': 'bVetoSF[0]*bVeto[0] + bReqSF[0]*bReq[0]',
     'samples': mc
 }
-
 for shift in ['jes','lf','hf','lfstats1','lfstats2','hfstats1','hfstats2','cferr1','cferr2']:
 
     for targ in ['bVeto', 'bReq']:
@@ -580,7 +681,7 @@ aliases['DeepAK8_SF_down'] = {
 
 aliases['SFweight'] = {
     #'expr': ' * '.join(['puWeight', 'TriggerEffWeight_1l', 'EMTFbug_veto',  'PrefireWeight', 'LepWPSF[0]', 'btagSF[0]', 'PUJetIdSF[0]']),
-    'expr': ' * '.join(['puWeight', 'TriggerEffWeight_1l', 'EMTFbug_veto',  'PrefireWeight', 'LepWPSF[0]', 'btagSF[0]', 'PUJetIdSF[0]']),
+    'expr': ' * '.join(['puWeight', 'TriggerEffWeight_1l_fixed', 'EMTFbug_veto',  'PrefireWeight', 'LepWPSF[0]', 'btagSF[0]', 'PUJetIdSF[0]']),
     #'expr': ' * '.join(['puWeight', 'TriggerEffWeight_1l', 'EMTFbug_veto',  'PrefireWeight', 'LepWPSF[0]', 'btagSF[0]', 'PUJetIdSF[0]', 'DeepAK8_SF[0]']),
     #'expr': ' * '.join(['puWeight', 'TriggerEffWeight_1l', 'EMTFbug_veto',  'PrefireWeight', 'LepWPSF[0]', 'btagSF[0]', 'PUJetIdSF[0]', 'WtagSF[0]']),
     #'expr': ' * '.join(['puWeight', 'trigWeight', 'EMTFbug_veto',  'PrefireWeight', 'LepWPSF[0]', 'btagSF[0]', 'PUJetIdSF[0]', 'DeepAK8_SF[0]']),
@@ -591,7 +692,7 @@ aliases['SFweight'] = {
 aliases['SFweight_deep'] = {
     #'expr': ' * '.join(['puWeight', 'TriggerEffWeight_1l', 'EMTFbug_veto',  'PrefireWeight', 'LepWPSF[0]', 'btagSF[0]', 'PUJetIdSF[0]']),
 #    'expr': ' * '.join(['puWeight', 'TriggerEffWeight_1l', 'EMTFbug_veto',  'PrefireWeight', 'LepWPSF[0]', 'btagSF[0]', 'PUJetIdSF[0]']),
-    'expr': ' * '.join(['puWeight', 'TriggerEffWeight_1l', 'EMTFbug_veto',  'PrefireWeight', 'LepWPSF[0]', 'btagSF[0]', 'PUJetIdSF[0]', 'DeepAK8_SF[0]']),
+    'expr': ' * '.join(['puWeight', 'TriggerEffWeight_1l_fixed', 'EMTFbug_veto',  'PrefireWeight', 'LepWPSF[0]', 'btagSF[0]', 'PUJetIdSF[0]', 'DeepAK8_SF[0]']),
     #'expr': ' * '.join(['puWeight', 'TriggerEffWeight_1l', 'EMTFbug_veto',  'PrefireWeight', 'LepWPSF[0]', 'btagSF[0]', 'PUJetIdSF[0]', 'WtagSF[0]']),
     #'expr': ' * '.join(['puWeight', 'trigWeight', 'EMTFbug_veto',  'PrefireWeight', 'LepWPSF[0]', 'btagSF[0]', 'PUJetIdSF[0]', 'DeepAK8_SF[0]']),
     'samples': mc_deep
@@ -675,7 +776,7 @@ aliases['DeepAK8_SF_top_down'] = {
 
 aliases['SFweight_top'] = {
     #'expr': ' * '.join(['puWeight', 'TriggerEffWeight_1l', 'EMTFbug_veto',  'PrefireWeight', 'LepWPSF[0]', 'btagSF[0]', 'PUJetIdSF[0]']),
-    'expr': ' * '.join(['puWeight', 'TriggerEffWeight_1l', 'EMTFbug_veto',  'PrefireWeight', 'LepWPSF[0]', 'btagSF[0]', 'PUJetIdSF[0]', 'DeepAK8_SF_top[0]']),
+    'expr': ' * '.join(['puWeight', 'TriggerEffWeight_1l_fixed', 'EMTFbug_veto',  'PrefireWeight', 'LepWPSF[0]', 'btagSF[0]', 'PUJetIdSF[0]', 'DeepAK8_SF_top[0]']),
     #'expr': ' * '.join(['puWeight', 'TriggerEffWeight_1l', 'EMTFbug_veto',  'PrefireWeight', 'LepWPSF[0]', 'btagSF[0]', 'PUJetIdSF[0]']),
     #'expr': ' * '.join(['puWeight', 'TriggerEffWeight_1l', 'EMTFbug_veto',  'PrefireWeight', 'LepWPSF[0]', 'btagSF[0]', 'PUJetIdSF[0]', 'WtagSF[0]']),
     #'expr': ' * '.join(['puWeight', 'trigWeight', 'EMTFbug_veto',  'PrefireWeight', 'LepWPSF[0]', 'btagSF[0]', 'PUJetIdSF[0]', 'DeepAK8_SF[0]']),
@@ -782,6 +883,10 @@ aliases["nJetHigh2"]={
 #    'args': 1
 #}
 
+#aliases['LeadingJet_reweight'] = {
+#    'expr': '((abs(Lepton_pdgId[0])==11)*(1.09523 + -0.000962106*Alt$(CleanJet_pt[0], -1) )+  (abs(Lepton_pdgId[0])==13)*(1.12694 + -0.0010882*Alt$(CleanJet_pt[0], -1) ))',
+#    'samples': 'Wjets'
+#}
 
 aliases['kfact'] = { 
     'linesToAdd': [
@@ -791,13 +896,13 @@ aliases['kfact'] = {
         '.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/kFactorUnc2.cc+' % os.getenv('CMSSW_BASE')
     ],  
     'class': 'kFactorUnc2',
-    'args': ('PlotsConfigurations/Configurations/HWWSemiLepHighMass/wjets_kfactor_DH/HT_to_NLO_QCD_k_factors3.root', 'k_factor_2017'),
+    'args': ('PlotsConfigurations/Configurations/HWWSemiLepHighMass/wjets_kfactor_DH/HT_to_NLO_QCD_k_factors_all.root', 'k_factor_2017'),
     'samples': 'Wjets', 
 }
 
 ### Fake-Weight stuff
 #FR_dir = os.getenv('CMSSW_BASE') + "/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/Full2018_v7/2HDMa/FReleTrig/"
-FR_dir = os.getenv('CMSSW_BASE') + "/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/FAKE_RW/FR/2017/"
+FR_dir = os.getenv('CMSSW_BASE') + "/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/FAKE_RW/FR/2017_rewei_bis/"
 PR_dir = os.getenv('CMSSW_BASE') + "/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/FAKE_RW/PR/2017/"
 el_pr_file = PR_dir+"plot_ElCh_l1_etaVpt_ptel_2D_pr.root"
 mu_pr_file = PR_dir+"plot_MuCh_l1_etaVpt_ptmu_2D_pr.root"
@@ -817,7 +922,7 @@ for lep in ['El', 'Mu']:
             'linesToAdd' : [
                 'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
                 #'.L %s/src/PlotsConfigurations/Configurations/monoHWW/SemiLep/Full2018_v7/Fake/fakeweight_p1_OTF.cc+' % os.getenv('CMSSW_BASE')
-                '.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/fakeweight_OTF.cc+' % os.getenv('CMSSW_BASE')
+                '.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/fake_weight_min.cc+' % os.getenv('CMSSW_BASE')
             ],
             #'class': 'fakeWeight_p1_OTF',
             'class': 'fakeWeightOTF',

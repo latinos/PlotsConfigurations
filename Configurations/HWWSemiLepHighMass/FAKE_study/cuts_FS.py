@@ -55,7 +55,7 @@ super_cut_2 = [
     'nLepton>=1',
     # SingleMuon trigger: IsoMu24 or IsoTkMu24, SingleElectron trigger: Ele27_WPTight_Gsf or HLT_Ele25_eta2p1_WPTight_Gsf
     '((Lepton_pt[0]>27. && abs(Lepton_pdgId[0])==13) || (Lepton_pt[0]>35. && abs(Lepton_pdgId[0])==11))',
-#    '!hole_ex[0]',
+    '!hole_ex[0]',
     'Sum$(CleanJet_pt>30.)>=2',
 ]#    ' resolved_nocut == 1', # Require 2 good CleanJets (pt > 30; abs(eta) < 4.7; Jet_jetId >= 2; pujetid == 'custom')
  #   'MHlnjj_m_jj > -1', # Require 2 good CleanJets (pt > 30; abs(eta) < 4.7; Jet_jetId >= 2; pujetid == 'custom')
@@ -115,7 +115,7 @@ TCR      = combinecut([super_cut, mt_lmet  , met  , m_jj, veto_b_I, veto_1l  ])
 #QER_met   = combinecut([super_cut, m_jj, veto_b  , veto_1l, met])
 QER      = combinecut([super_cut, m_jj, met_I, veto_b, veto_1l ])
 QER_imet      = combinecut([super_cut, m_jj, met_I, mt_lmet_I,veto_b, veto_1l ])
-#QER_ho      = combinecut([super_cut_2, m_jj, met_I, veto_b, mt_lmet_I, veto_1l ])
+QER_ho      = combinecut([super_cut_2, m_jj, met_I, veto_b, mt_lmet_I, veto_1l ])
 
 ## Electron
 #addcut('ElCh_SC'  , combinecut([is_el, SC  ]))
@@ -124,7 +124,7 @@ QER_imet      = combinecut([super_cut, m_jj, met_I, mt_lmet_I,veto_b, veto_1l ])
 #addcut('ElCh_SB'  , combinecut([is_el, SB  ]))
 #addcut('ElCh_TCR' , combinecut([is_el, TCR ]))
 ##addcut('ElCh_DYCR', combinecut([is_el, DYCR]))
-addcut('ElCh_QER' , combinecut([is_el, QER]))
+#addcut('ElCh_QER' , combinecut([is_el, QER]))
 addcut('ElCh_QER_mt' , combinecut([is_el, QER_imet]))
 #addcut('ElCh_QER_ho' , combinecut([is_el, QER_ho]))
 #addcut('ElCh_QER_met' , combinecut([is_el, QER_met]))
@@ -136,7 +136,7 @@ addcut('ElCh_QER_mt' , combinecut([is_el, QER_imet]))
 #addcut('MuCh_SB'  , combinecut([is_mu, SB  ]))
 #addcut('MuCh_TCR' , combinecut([is_mu, TCR ]))
 ##addcut('MuCh_DYCR', combinecut([is_mu, DYCR]))
-addcut('MuCh_QER' , combinecut([is_mu, QER]))
+#addcut('MuCh_QER' , combinecut([is_mu, QER]))
 addcut('MuCh_QER_mt' , combinecut([is_mu, QER_imet]))
 #addcut('MuCh_QER_ho' , combinecut([is_mu, QER_ho]))
 #addcut('MuCh_QER_met' , combinecut([is_mu, QER_met]))
@@ -148,7 +148,7 @@ addcut('MuCh_QER_mt' , combinecut([is_mu, QER_imet]))
 #addcut('InCh_SB'  , combinecut([SB  ]))
 #addcut('InCh_TCR' , combinecut([TCR ]))
 ##addcut('InCh_DYCR', combinecut([DYCR]))uaddcut('InCh_QER' , combinecut([QER ]))
-addcut('InCh_QER' , combinecut([QER]))
+#addcut('InCh_QER' , combinecut([QER]))
 addcut('InCh_QER' , combinecut([QER_imet]))
 #addcut('InCh_QER_met' , combinecut([QER_met]))
 #addcut('InCh_QER_ho' , combinecut([QER_ho]))

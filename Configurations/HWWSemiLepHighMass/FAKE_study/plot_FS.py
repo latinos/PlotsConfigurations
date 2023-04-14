@@ -21,6 +21,13 @@ else:
 # 'samples'  : [] #['ggH_hww', 'qqH_hww', 'ZH_hww', 'WH_hww', 'ggH_htt', 'qqH_htt', 'ZH_htt', 'WH_htt']
 ##}
 
+#groupPlot['HadronicWg']  = {
+#'nameHR' : 'Hadronic Wg',
+#'isSignal' : 0,
+#'color': 800, # kAzure -3
+#'samples'  : ['VgHad'],
+##'samples'  : ['WW', 'ggWW', 'WWewk', 'qqWWqq', 'WW2J', 'VVV', 'VZ', 'Vg', 'VgS_H',  'VgS_L', 'ggH_hww', 'qqH_hww', 'ZH_hww', 'WH_hww', 'ggH_htt', 'qqH_htt', 'ZH_htt', 'WH_htt']
+#}
 groupPlot['multiboson']  = {
 'nameHR' : 'multiboson',
 'isSignal' : 0,
@@ -102,7 +109,7 @@ plot['Wjets']  = {
     'color': 856, # kAzure -4
     'isSignal' : 0,
     'isData'   : 0,
-    'scale'    : 1.0
+    'scale'    : 0.8
 }
 
 plot['top']  = {
@@ -140,6 +147,12 @@ plot['qqWWqq']  = {
     'scale'    : 1.0
 }
 
+#plot['VgHad']  = {
+#    'color': 851, # kAzure -2
+#    'isSignal' : 0,
+#    'isData'   : 0,
+#    'scale'    : 1.0
+#}
 
 plot['Vg']  = {
     'color': 859, # kAzure -1
@@ -247,6 +260,6 @@ plot['DATA']  = {
 
 # additional options
 
-legend['lumi'] = 'L = 59.7/fb'
+legend['lumi'] = 'L = 41.5/fb'
 
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
