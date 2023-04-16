@@ -4,7 +4,7 @@
 
 controlRegions = set(x for x in cuts if 'SB' in x or 'CR'in x)
 hmSR  = set(x for x in cuts if 'HMSR' in x)
-boostedSR   = set(x for x in cuts if 'BoostedSR_all' in x)
+boostedSR   = set(x for x in cuts if 'BoostedSR' in x)
 #boostedSR   = set(x for x in cuts if 'BoostedSR' in x)
 resolvedSR  = set(x for x in cuts if 'ResolvedSR' in x)
 ak8SR = set(x for x in cuts if 'AK8SR' in x)
@@ -272,6 +272,7 @@ variables['HvOverFAT'] = {
    'name' : 'HvOverFat[0]',
    'range': (20, 0, 1.),
    'xaxis': 'p_{T}^{W}/m_{X}',
+   'cuts' : controlRegions,
    'fold' : 0
 }
 
@@ -367,7 +368,7 @@ variables['mass_HIGGS_FAT_VBF'] = {
   	       1100, 1200, 1300, 1500, 2000, 5000 ],),
    'xaxis': 'Higgs Mass [GeV]',
    'fold' : 0 ,
-   'cuts' : boosted ,
+   'cuts' : boostedSR ,
 }
 variables['mass_HIGGS_FAT_rebin'] = {
    'name' : 'mass_HIGGS_FAT[0]',
@@ -376,7 +377,7 @@ variables['mass_HIGGS_FAT_rebin'] = {
   	       1100, 1150, 1200, 1250, 1300, 1350, 1500, 1700, 2000, 5000 ],),
    'xaxis': 'Higgs Mass [GeV]',
    'fold' : 0 ,
-   'cuts' : boosted ,
+   'cuts' : boostedSR ,
 }
 variables['mass_HIGGS_FAT_fit'] = {
    'name' : 'mass_HIGGS_FAT[0]',
@@ -420,7 +421,7 @@ variables['mass_HIGGS_twojet_rebin'] = {
               650, 700, 750, 800, 850, 900, 950, 1000, 1250, 1500, 3000],),
    'xaxis': 'Higgs Mass [GeV]',
    'fold' : 0,
-   'cuts' : resolved, 
+   'cuts' : resolvedSR, 
 }
 ##variables['mass_HIGGS_twojet'] = {
 ##   'name' : 'mass_HIGGS_JJ[0]',
@@ -490,7 +491,7 @@ variables['mass_HIGGS_twojet_rebin'] = {
 ##}
 variables['wlep_mass'] = {
     'name' : 'HM_Wlep_mass_Puppi',
-    'range': (20, 0, 200),
+    'range': (15, 50, 200),
     'xaxis': 'reconstr. W lep Mass [GeV]',
     'cuts' : controlRegions,
     'fold' : 0, 
@@ -502,26 +503,26 @@ variables['wlep_pt'] = {
     'cuts' : controlRegions,
     'fold' : 0, 
 }
-##variables['whad_pt'] = {
-##    'name' : 'HM_Whad_pt',
-##    'range': (40, 0, 800),
-##    'xaxis': 'reconstr. W had Pt [GeV]',
-##    'cuts' : controlRegions,
-##    'fold' : 0, 
-##}
-######variables['whad_eta'] = {
-######    'name' : 'HM_Whad_eta',
-######    'range': (25, -2.5, 2.5),
-######    'xaxis': 'reconstr. W had eta',
-######    'fold' : 0, 
-######}
-##variables['whad_mass'] = {
-##    'name' : 'HM_Whad_mass',
-##    'range': (25, 0, 250),
-##    'xaxis': 'reconstr. W had mass [GeV]',
-##    'fold' : 0, 
-##    'cuts' : controlRegions,
-##}
+variables['whad_pt'] = {
+    'name' : 'HM_Whad_pt',
+    'range': (40, 0, 800),
+    'xaxis': 'reconstr. W had Pt [GeV]',
+    'cuts' : controlRegions,
+    'fold' : 0, 
+}
+####variables['whad_eta'] = {
+####    'name' : 'HM_Whad_eta',
+####    'range': (25, -2.5, 2.5),
+####    'xaxis': 'reconstr. W had eta',
+####    'fold' : 0, 
+####}
+variables['whad_mass'] = {
+    'name' : 'HM_Whad_mass',
+    'range': (25, 0, 250),
+    'xaxis': 'reconstr. W had mass [GeV]',
+    'fold' : 0, 
+    'cuts' : controlRegions,
+}
 ##variables['classvbf'] = {
 ##     'name': 'vbfdnn_odd',
 ##     'range' : (10,0,1.),

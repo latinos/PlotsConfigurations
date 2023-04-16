@@ -148,7 +148,7 @@ if useDeepAK8 is False:
     }
 else:
     nuisances['wtag'] = {
-        'name': 'CMS_wtag_eff',
+        'name': 'CMS_wtag_eff_2017',
         'kind': 'weight',
         'type': 'shape',
         'samples': dict((skey, ['DeepAK8_SF_up/DeepAK8_SF', 'DeepAK8_SF_down/DeepAK8_SF']) for skey in mc_deep),
@@ -443,7 +443,7 @@ nuisances['PU'] = {
         'ggH_hww': ['1.0036768006*(puWeightUp/puWeight)', '0.995996570285*(puWeightDown/puWeight)'],
         'qqH_hww': ['1.00374694528*(puWeightUp/puWeight)', '0.995878596852*(puWeightDown/puWeight)'],
     },
-    'AsLnN': '1',
+#    'AsLnN': '1',
 }
 #handle = open("../../HighMass/PUunc_Semi.py",'r')
 handle = open("../PUunc_Semi.py",'r')
@@ -1020,7 +1020,7 @@ nuisances['CRSR_accept_top'] = {
 
 
 nuisances['var_top_0_deep'] = {
-    'name': 'CMS_var_top_deep_0',
+    'name': 'CMS_var_top_deep_0_2017',
     'kind'  : 'weight',
     'type'  : 'shape',
     'samples': dict((skey,['Top_DeepTagrw_up_0/Top_DeepTagrw', 'Top_DeepTagrw_do_0/Top_DeepTagrw']) for skey in mc_deep),
@@ -1028,28 +1028,28 @@ nuisances['var_top_0_deep'] = {
 #    'AsLnN': '1'
 }
 nuisances['var_top_1_deep'] = {
-    'name': 'CMS_var_top_deep_1',
+    'name': 'CMS_var_top_deep_1_2017',
     'kind'  : 'weight',
     'type'  : 'shape',
     'samples': dict((skey,['Top_DeepTagrw_up_1/Top_DeepTagrw', 'Top_DeepTagrw_do_1/Top_DeepTagrw']) for skey in mc_deep),
     'cuts': cutdict['Boosted'],
 }
 nuisances['var_top_2_deep'] = {
-    'name': 'CMS_var_top_deep_2',
+    'name': 'CMS_var_top_deep_2_2017',
     'kind'  : 'weight',
     'type'  : 'shape',
     'samples': dict((skey,['Top_DeepTagrw_up_2/Top_DeepTagrw', 'Top_DeepTagrw_do_2/Top_DeepTagrw']) for skey in mc_deep),
     'cuts': cutdict['Boosted'],
 }
 nuisances['var_top_3_deep'] = {
-    'name': 'CMS_var_top_deep_3',
+    'name': 'CMS_var_top_deep_3_2017',
     'kind'  : 'weight',
     'type'  : 'shape',
     'samples': dict((skey,['Top_DeepTagrw_up_3/Top_DeepTagrw', 'Top_DeepTagrw_do_3/Top_DeepTagrw']) for skey in mc_deep),
     'cuts': cutdict['Boosted']
 }
 nuisances['Fat_rewei_unc'] = {
-    'name': 'CMS_Fat_rewei_unc',
+    'name': 'CMS_Fat_rewei_unc_2017',
     'kind'  : 'weight',
     'type'  : 'shape',
     'samples': dict((skey,['Fat_rewei[0]', '1']) for skey in mc_deep),
@@ -1057,11 +1057,11 @@ nuisances['Fat_rewei_unc'] = {
     'cuts': cutdict['Boosted']
 }
 for m in massggh:
-    	xs_ggf = 2*HiggsXS.GetHiggsXS4Sample('YR4','13TeV','GluGluHToWWToLNuQQ_M{}'.format(MX))['xs']
+    	xs_ggf = 2*HiggsXS.GetHiggsXS4Sample('YR4','13TeV','GluGluHToWWToLNuQQ_M{}'.format(m))['xs']
 	FatString = [ 'Fat_rewei[0]', '1.']
 	nuisances['Fat_rewei_unc']['samples'].update({'GGH_'+m+model_name: FatString})
 for m in massggh:
-   	xs_vbf = 2*HiggsXS.GetHiggsXS4Sample('YR4','13TeV','VBFHToWWToLNuQQ_M{}'.format(MX))['xs']
+   	xs_vbf = 2*HiggsXS.GetHiggsXS4Sample('YR4','13TeV','VBFHToWWToLNuQQ_M{}'.format(m))['xs']
 	FatString = [ 'Fat_rewei[0]', '1.']
 	nuisances['Fat_rewei_unc']['samples'].update({'QQH_'+m+model_name: FatString})
 

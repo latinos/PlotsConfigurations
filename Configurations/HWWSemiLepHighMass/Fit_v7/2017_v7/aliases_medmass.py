@@ -956,7 +956,7 @@ aliases['Top_DeepTagrw_do_3'] = {
 }
 
 aliases['Fat_rewei'] = {# New Top PAG
-    'expr': '(1 * !boosted_nocut_res[0] + (boosted_nocut_res[0]*(-5.27856 +0.115717*CleanFatJet_mass[0] -0.000502821*CleanFatJet_mass[0]*CleanFatJet_mass[0])))',
+    'expr': '(1 * !boosted_nocut_res[0] + (boosted_nocut_res[0]*(-5.27856 +0.115717*Alt$(CleanFatJet_mass[0],0) -0.000502821*Alt$(CleanFatJet_mass[0],0)*Alt$(CleanFatJet_mass[0],0))))',
     'samples': mc_deep, #['top',]#['top']
 }
 aliases['SFweight_top'] = {
@@ -1071,7 +1071,7 @@ aliases['kfact'] = {
 }
 
 
-FR_dir = os.getenv('CMSSW_BASE') + "/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/FAKE_RW/FR/2017_rewei_bis/"
+FR_dir = os.getenv('CMSSW_BASE') + "/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/FAKE_RW/FR/2017_final/"
 PR_dir = os.getenv('CMSSW_BASE') + "/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/FAKE_RW/PR/2017/"
 el_pr_file = PR_dir+"plot_ElCh_l1_etaVpt_ptel_2D_pr.root"
 mu_pr_file = PR_dir+"plot_MuCh_l1_etaVpt_ptmu_2D_pr.root"
@@ -1091,7 +1091,7 @@ for lep in ['El', 'Mu']:
             'linesToAdd' : [
                 'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
                 #'.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/fakeweight_p1_OTF.cc+' % os.getenv('CMSSW_BASE')
-                '.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/fake_weight_min.cc+' % os.getenv('CMSSW_BASE')
+                '.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/fakeweight_OTF.cc+' % os.getenv('CMSSW_BASE')
             ],
             #'class': 'fakeWeight_p1_OTF',
             'class': 'fakeWeightOTF',
@@ -1452,6 +1452,33 @@ aliases['bkglike_res'] = {
 aliases['gghlike_res'] = {
         'expr': 'gghdnn_res>vbfdnn_res && gghdnn_res>bkgdnn_res ',
 }
+aliases['vbfdnn_high'] = {
+    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/DNN_prod_semi_new_high.cc+'% os.getenv('CMSSW_BASE') ],
+    'class': 'DNNprodSemiNewHigh',
+    'args': 0,
+}
+aliases['gghdnn_high'] = {
+    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/DNN_prod_semi_new_high.cc+'% os.getenv('CMSSW_BASE') ],
+    'class': 'DNNprodSemiNewHigh',
+    'args': 1,
+}
+aliases['bkgdnn_high'] = {
+    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/DNN_prod_semi_new_high.cc+'% os.getenv('CMSSW_BASE') ],
+    'class': 'DNNprodSemiNewHigh',
+    'args': 2,
+}
+aliases['vbflike_high'] = {
+        'expr': 'vbfdnn_high>gghdnn_high && vbfdnn_high>bkgdnn_high ',
+}
+
+aliases['bkglike_high'] = {
+        'expr': 'bkgdnn_high>gghdnn_high && bkgdnn_high>vbfdnn_high ',
+}
+
+aliases['gghlike_high'] = {
+        'expr': 'gghdnn_high>vbfdnn_high && gghdnn_high>bkgdnn_high ',
+}
+
 #aliases['SBI_isSMggh'] = {
  #   'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/isSample.cc+' % os.getenv('CMSSW_BASE')],
  #   'expr' : 'is_SMggh()',
