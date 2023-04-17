@@ -232,7 +232,7 @@ else:
 ##}
 
 nuisances['var_top_0_deep'] = {
-    'name': 'CMS_var_top_deep_0',
+    'name': 'CMS_var_top_deep_0_2018',
     'kind'  : 'weight',
     'type'  : 'shape',
     'samples': dict((skey, ['Top_DeepTagrw_up_0/Top_DeepTagrw', 'Top_DeepTagrw_do_0/Top_DeepTagrw']) for skey in mc_deep),
@@ -242,7 +242,7 @@ nuisances['var_top_0_deep'] = {
     'cuts': cutdict['Boosted'],
 }
 nuisances['var_top_1_deep'] = {
-    'name': 'CMS_var_top_deep_1',
+    'name': 'CMS_var_top_deep_1_2018',
     'kind'  : 'weight',
     'type'  : 'shape',
     'samples': dict((skey, ['Top_DeepTagrw_up_1/Top_DeepTagrw', 'Top_DeepTagrw_do_1/Top_DeepTagrw']) for skey in mc_deep),
@@ -252,7 +252,7 @@ nuisances['var_top_1_deep'] = {
     'cuts': cutdict['Boosted'],
 }
 nuisances['var_top_2_deep'] = {
-    'name': 'CMS_var_top_deep_2',
+    'name': 'CMS_var_top_deep_2_2018',
     'kind'  : 'weight',
     'type'  : 'shape',
     'samples': dict((skey, ['Top_DeepTagrw_up_2/Top_DeepTagrw', 'Top_DeepTagrw_do_2/Top_DeepTagrw']) for skey in mc_deep),
@@ -262,7 +262,7 @@ nuisances['var_top_2_deep'] = {
     'cuts': cutdict['Boosted'],
 }
 nuisances['var_top_3_deep'] = {
-    'name': 'CMS_var_top_deep_3',
+    'name': 'CMS_var_top_deep_3_2018',
     'kind'  : 'weight',
     'type'  : 'shape',
     'samples': dict((skey, ['Top_DeepTagrw_up_3/Top_DeepTagrw', 'Top_DeepTagrw_do_3/Top_DeepTagrw']) for skey in mc_deep),
@@ -280,6 +280,12 @@ nuisances['Fat_rewei_unc'] = {
     'symmetrize':True,
     'cuts': cutdict['Boosted']
 }
+for m in massggh:
+	FatString = [ 'Fat_rewei[0]', '1.']
+	nuisances['Fat_rewei_unc']['samples'].update({'GGH_'+m+model_name: FatString})
+for m in massggh:
+	FatString = [ 'Fat_rewei[0]', '1.']
+	nuisances['Fat_rewei_unc']['samples'].update({'QQH_'+m+model_name: FatString})
 ##### Trigger Efficiency
 
 #trig_syst = ['((TriggerEffWeight_1l_u)/(TriggerEffWeight_1l))*(TriggerEffWeight_1l>0.02) + (TriggerEffWeight_1l<=0.02)', '(TriggerEffWeight_1l_d)/(TriggerEffWeight_1l)*(TriggerEffWeight_1l>0.02) + (TriggerEffWeight_1l<=0.02)']
