@@ -82,10 +82,10 @@ BoostCats['ResolvedTopCR_']='(1 \
                        && two_jet_res[0] \
                        && resolvedSignalWMass[0] \
                        && bReq[0])'
-##BoostCats['ResolvedSR_']='(1 \
-##                       && two_jet_res[0] \
-##                       && resolvedSignalWMass[0] \
-##                       && bVeto[0])'
+###BoostCats['ResolvedSR_']='(1 \
+###                       && two_jet_res[0] \
+###                       && resolvedSignalWMass[0] \
+###                       && bVeto[0])'
 BoostCats['BoostedTopCR_']='(1 \
                        && boosted_nocut_res[0] \
                        && HvOverFat[0] > 0.4 \

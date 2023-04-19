@@ -594,12 +594,13 @@ for _, sd in DataRun:
     files = nanoGetSampleFiles(fakeDirectory, pd + '_' + sd)
     samples['FAKE']['name'].extend(files)
     samples['FAKE']['weights'].extend([DataTrig[pd]] * len(files))
-##for _, sd in DataRun:
-##  for pd in DataSets:
-##    files = nanoGetSampleFiles(fakeDirectory, pd + '_' + sd)
-##    samples['FAKE']['name'].extend(files)
-##    samples['FAKE']['weights'].extend([DataTrig[pd]] * len(files))
-##
+
+samples['FAKE']['subsamples'] = {
+  'el': 'abs(Lepton_pdgId[0]) == 11',
+  'mu': 'abs(Lepton_pdgId[0]) == 13'
+}
+
+
 print("DATA")
 samples['DATA'] = {
   'name': [],
