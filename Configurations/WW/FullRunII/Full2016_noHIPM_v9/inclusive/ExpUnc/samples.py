@@ -26,7 +26,7 @@ except NameError:
 
 mcProduction = 'Summer20UL16_106x_nAODv9_noHIPM_Full2016v9'
 
-mcSteps = 'MCl1loose2016v9__MCCorr2016v9NoJERInHorn__l2tightOR2016v9__btagULFix'
+mcSteps = 'MCl1loose2016v9__MCCorr2016v9NoJERInHorn__l2tightOR2016v9'
 
 ##############################################
 ###### Tree base directory for the site ######
@@ -54,11 +54,9 @@ mcDirectory = makeMCDirectory()
 mcCommonWeightNoMatch = 'XSWeight*SFweight*METFilter_MC'
 mcCommonWeight = 'XSWeight*SFweight*PromptGenLepMatch2l*METFilter_MC'
 
-
 ###########################################
 #############  BACKGROUNDS  ###############
 ###########################################
-
 
 ###### DY #######
 
@@ -67,7 +65,8 @@ files = nanoGetSampleFiles(mcDirectory, 'DYJetsToTT_MuEle_M-50') + \
 
 samples['DY'] = {
     'name': files,
-    'weight': mcCommonWeight + '*( !(Sum$(PhotonGen_isPrompt==1 && PhotonGen_pt>15 && abs(PhotonGen_eta)<2.6) > 0))',
+    'weight': mcCommonWeight + "*( !(Sum$(PhotonGen_isPrompt==1 && PhotonGen_pt>15 && abs(PhotonGen_eta)<2.6) > 0 &&\
+                                    Sum$(LeptonGen_isPrompt==1 && LeptonGen_pt>15)>=2) )",
     'FilesPerJob': 8,
 }
 
@@ -110,8 +109,8 @@ samples['Vg'] = {
     'FilesPerJob': 8
 }
 
-addSampleWeight(samples,'Vg','Wg_AMCNLOFXFX_01J',     'gstarLow*0.94*(Gen_ZGstar_mass < 0.1)')
-addSampleWeight(samples,'Vg','WZTo3LNu_mllmin01',     'gstarLow*0.94*(Gen_ZGstar_mass > 0.1)')
+addSampleWeight(samples,'Vg','Wg_AMCNLOFXFX_01J', 'gstarLow*0.94*(Gen_ZGstar_mass < 0.1)')
+addSampleWeight(samples,'Vg','WZTo3LNu_mllmin0p1','gstarLow*0.94*(Gen_ZGstar_mass > 0.1)*1.138*0.601644*58.59/4.666')
 
 ######## WZ ########
 
@@ -123,6 +122,8 @@ samples['WZ'] = {
     'weight': mcCommonWeight + ' * (gstarHigh)',
     'FilesPerJob': 4,
 }
+
+addSampleWeight(samples,'WZ','WZTo3LNu_mllmin0p1','1.138*0.601644*58.59/4.666')
 
 ############ ZZ ############
 

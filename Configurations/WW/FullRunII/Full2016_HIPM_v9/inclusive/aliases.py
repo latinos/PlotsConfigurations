@@ -74,9 +74,9 @@ aliases['PromptGenLepMatch2l'] = {
     'samples': mc
 }
 
-#TEMP does this need to change for UL? Currently using pre-UL 2017/2018 (CP5) values
+#Note: this is the data-NLO correction recommended by the TOP PAG in most use cases
 aliases['Top_pTrw'] = {
-    'expr': '(topGenPt * antitopGenPt > 0.) * (TMath::Sqrt((0.103*TMath::Exp(-0.0118*topGenPt) - 0.000134*topGenPt + 0.973) * (0.103*TMath::Exp(-0.0118*antitopGenPt) - 0.000134*antitopGenPt + 0.973))) + (topGenPt * antitopGenPt <= 0.)',
+    'expr': '(topGenPt * antitopGenPt > 0.) * (TMath::Sqrt(TMath::Exp(0.0615 - 0.0005 * topGenPt) * TMath::Exp(0.0615 - 0.0005 * antitopGenPt))) + (topGenPt * antitopGenPt <= 0.)',
     'samples': ['top']
 }
 
@@ -256,17 +256,17 @@ aliases['fid'] = {
     'samples' : ['WW','ggWW']
 }
 
-#aliases['BDTOutput_0j'] = {
-#    'class': 'ww_top_bdt_0j',
-#    'linesToAdd' : ['.L %s/WW/FullRunII/Full2016_v7/inclusive/WW_BDT_0j.cc+' % configurations],
-#}
+aliases['BDTOutput_0j'] = {
+    'class': 'ww_top_bdt_0j',
+    'linesToAdd' : ['.L %s/WW/FullRunII/WW_BDT_0j.cc+' % configurations],
+}
 
-#aliases['BDTOutput_1j'] = {
-#    'class': 'ww_top_bdt_1j',
-#    'linesToAdd' : ['.L %s/WW/FullRunII/Full2016_v7/inclusive/WW_BDT_1j.cc+' % configurations],
-#}
+aliases['BDTOutput_1j'] = {
+    'class': 'ww_top_bdt_1j',
+    'linesToAdd' : ['.L %s/WW/FullRunII/WW_BDT_1j.cc+' % configurations],
+}
 
-#aliases['BDTOutput_2j'] = {
-#    'class': 'ww_top_bdt_2j',
-#    'linesToAdd' : ['.L %s/WW/FullRunII/Full2016_v7/inclusive/WW_BDT_2j.cc+' % configurations],
-#}
+aliases['BDTOutput_2j'] = {
+    'class': 'ww_top_bdt_2j',
+    'linesToAdd' : ['.L %s/WW/FullRunII/WW_BDT_2j.cc+' % configurations],
+}
