@@ -569,6 +569,7 @@ for i in range(1,33):
     'samples'  : {
       'Wjets'   : pdf_variations,
     },
+    'cuts': cutdict['Boosted']
   }
   nuisances['pdf_top_eigen'+str(i)]  = {
     'name'  : 'CMS_hww_pdf_top_eigen'+str(i),
@@ -578,6 +579,7 @@ for i in range(1,33):
     'samples'  : {
       'top'   : pdf_variations,
     },
+    'cuts': cutdict['Boosted']
   }
 #for m in massggh:
 #  PSup = PSunc['GGF'+m]['FSRup']
@@ -984,15 +986,29 @@ nuisances['QCDscale_VH_ACCEPT']  = {
 #muWP  = 'cut_Tight_HWWW'
 #fakeW = 'fakeW_ele_'+eleWP+'_mu_'+muWP+'_1l_mu25_ele35'
 
-nuisances['fake_syst_2017'] = {
-    'name': 'CMS_fake_syst_2017',
+#nuisances['fake_syst_2017'] = {
+#    'name': 'CMS_fake_syst_2017',
+#    'type': 'lnN',
+#    'samples': {
+#        'FAKE': '1.3'
+#    },
+#}
+
+
+nuisances['fake_syst_Mu_2017'] = {
+    'name': 'CMS_fake_syst_Mu_2017',
     'type': 'lnN',
     'samples': {
-        'FAKE': '1.3'
+        'FAKE_mu': '1.3',
     },
 }
-
-
+nuisances['fake_syst_El_2017'] = {
+    'name': 'CMS_fake_syst_El_2017',
+    'type': 'lnN',
+    'samples': {
+        'FAKE_el': '1.3',
+    },
+}
 # Uncertainty on SR/CR ratio
 nuisances['CRSR_accept_ResolvSB'] = {
     'name': 'CMS_hww_CRSR_accept_SB',

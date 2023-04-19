@@ -70,10 +70,10 @@ BoostCats['ResolvedSB_']='(1 \
                        && !resolvedSignalWMass[0] \
                        && resolvedSidebandWMass[0] \
                        && bVeto[0])'
-##BoostCats['ResolvedSR_']='(1 \
-##                       && two_jet_res[0] \
-##                       && resolvedSignalWMass[0] \
-##                       && bVeto[0])'
+####BoostCats['ResolvedSR_']='(1 \
+####                       && two_jet_res[0] \
+####                       && resolvedSignalWMass[0] \
+####                       && bVeto[0])'
 BoostCats['BoostedTopCR_']='(1 \
                        && boosted_nocut_res[0] \
                        && HvOverFat[0] > 0.4 \
@@ -89,7 +89,7 @@ BoostCats['ResolvedTopCR_']='(1 \
 ###                       && !boostedSignalWMass[0] \
 ###                       && boostedSidebandWMass[0] \
 ###                       && bVeto[0])'
-###=== Define cuts ===###
+####=== Define cuts ===###
 for Lep in LepCats:
     for BProcCat in BoostProcCats:
         for BCat in BoostCatsSR:  

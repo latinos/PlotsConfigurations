@@ -29,7 +29,7 @@ lumi = 41.5
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'Plots_Apr_new'
+outputDirPlots = 'Plots_Apr_new_CR'
 
 
 # used by mkDatacards to define output directory for datacards
@@ -39,4 +39,4 @@ outputDirDatacard = 'Datacards_March_CR_Apr'
 structureFile = 'structure_medmass.py'
 
 # nuisances file for mkDatacards and for mkShape
-nuisancesFile = 'nuisances_test.py'
+nuisancesFile = 'nuisances_medmass.py'
