@@ -34,8 +34,14 @@ groupPlot['FAKE'] = {
 'nameHR' : "Fake",
 'isSignal' : 0,
 'color'    : 617,   # kViolet + 1
-'samples'  : ['FAKE', 'QCD']
+'samples'  : ['FAKE_mu','FAKE_el']
 }
+#groupPlot['FAKE'] = {
+#'nameHR' : "Fake",
+#'isSignal' : 0,
+#'color'    : 617,   # kViolet + 1
+#'samples'  : ['FAKE', 'QCD']
+#}
 #groupPlot['QCD'] = {
 # 'nameHR' : "QCD",
 # 'isSignal' : 0,
@@ -78,12 +84,25 @@ groupPlot['Wjets'] = {
 # keys here must match keys in samples.py
 #
 
-plot['FAKE']  = {
+plot['FAKE_el']  = {
     'color': 855, # kAzure -5
     'isSignal' : 0,
     'isData'   : 0,
     'scale'    : 1.0
 }
+
+plot['FAKE_mu']  = {
+    'color': 854, # kAzure -5
+    'isSignal' : 0,
+    'isData'   : 0,
+    'scale'    : 1.0
+}
+#plot['FAKE']  = {
+#    'color': 855, # kAzure -5
+#    'isSignal' : 0,
+#    'isData'   : 0,
+#    'scale'    : 1.0
+#}
 
 plot['QCD']  = {
     'color': 1,

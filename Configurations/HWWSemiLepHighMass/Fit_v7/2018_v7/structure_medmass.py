@@ -156,12 +156,14 @@ structure['ZH_htt'] = {
                   'isData'   : 0,
                   }
 
-
-structure['FAKE'] = {
+structure['FAKE_mu'] = {
                   'isSignal' : 0,
                   'isData'   : 0,
                   }
-
+structure['FAKE_el'] = {
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  }
 
 for MX in plotmasses:
     xs_ggf = HiggsXS.GetHiggsXS4Sample('YR4','13TeV','GluGluHToWWToLNuQQ_M{}'.format(MX))['xs']

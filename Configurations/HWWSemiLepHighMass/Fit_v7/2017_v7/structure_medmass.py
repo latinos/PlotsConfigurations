@@ -156,8 +156,11 @@ structure['ZH_htt'] = {
                   'isData'   : 0,
                   }
 
-
-structure['FAKE'] = {
+structure['FAKE_mu'] = {
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  }
+structure['FAKE_el'] = {
                   'isSignal' : 0,
                   'isData'   : 0,
                   }

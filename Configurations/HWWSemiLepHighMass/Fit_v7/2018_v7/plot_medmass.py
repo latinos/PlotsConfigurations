@@ -32,7 +32,7 @@ groupPlot['FAKE'] = {
 'nameHR' : "Fake",
 'isSignal' : 0,
 'color'    : 617,   # kViolet + 1
-'samples'  : ['FAKE'],
+'samples'  : ['FAKE_mu', "FAKE_el"],
 #'scale': 1/479866.,
 }
 #groupPlot['QCD'] = {
@@ -93,13 +93,26 @@ groupPlot['Wjets'] = {
 #}
 
 
-plot['FAKE']  = {
+#plot['FAKE']  = {
+#    'color': 855, # kAzure -5
+#    'isSignal' : 0,
+#    'isData'   : 0,
+#    'scale'    : 1.0
+#}
+
+plot['FAKE_el']  = {
     'color': 855, # kAzure -5
     'isSignal' : 0,
     'isData'   : 0,
     'scale'    : 1.0
 }
 
+plot['FAKE_mu']  = {
+    'color': 854, # kAzure -5
+    'isSignal' : 0,
+    'isData'   : 0,
+    'scale'    : 1.0
+}
 #plot['QCD']  = {
 #    'color': 1,
 #    'isSignal' : 0,
