@@ -600,6 +600,7 @@ nuisances['VZ'] = {
 #    'samples'  : {
 #      'Wjets'   : pdf_variations,
 #    },
+#    'cuts': cutdict['Boosted']
 #  }
 #  nuisances['pdf_top_eigen'+str(i)]  = {
 #    'name'  : 'CMS_hww_pdf_top_eigen'+str(i),
@@ -609,8 +610,9 @@ nuisances['VZ'] = {
 #    'samples'  : {
 #      'top'   : pdf_variations,
 #    },
+#    'cuts': cutdict['Boosted']
 #  }
-#
+
 
 ###### pdf uncertainties
 
@@ -949,11 +951,25 @@ nuisances['QCDscale_VH_ACCEPT']  = {
 #muWP  = 'cut_Tight80x'
 #fakeW = 'fakeW_ele_'+eleWP+'_mu_'+muWP+'_1l_mu25_ele35'
 #
-nuisances['fake_syst_2016'] = {
-    'name': 'CMS_fake_syst_2016',
+#nuisances['fake_syst_2016'] = {
+#    'name': 'CMS_fake_syst_2016',
+#    'type': 'lnN',
+#    'samples': {
+#        'FAKE': '1.3'
+#    },
+#}
+nuisances['fake_syst_Mu'] = {
+    'name': 'CMS_fake_syst_Mu',
     'type': 'lnN',
     'samples': {
-        'FAKE': '1.3'
+        'FAKE_mu': '1.3',
+    },
+}
+nuisances['fake_syst_El'] = {
+    'name': 'CMS_fake_syst_El',
+    'type': 'lnN',
+    'samples': {
+        'FAKE_el': '1.3',
     },
 }
 ##nuisances['fake_ele'] = {
