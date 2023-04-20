@@ -6,22 +6,22 @@
 
     #include <math.h>
 
-    float norma_even;
+    float norma_high_even;
     
-inline float activation_even_0 (float x, float n) 
+inline float activation_high_even_0 (float x, float n) 
 { return x > 0 ? x : 0;}
-inline float activation_even_1 (float x, float n) 
+inline float activation_high_even_1 (float x, float n) 
 { return x > 0 ? x : 0;}
-inline float activation_even_2 (float x, float n) 
+inline float activation_high_even_2 (float x, float n) 
 { return x > 0 ? x : 0;}
-inline float activation_even_3 (float x, float n) 
+inline float activation_high_even_3 (float x, float n) 
 { return x > 0 ? x : 0;}
-inline float activation_even_4 (float x, float n) 
+inline float activation_high_even_4 (float x, float n) 
 { return x > 0 ? x : 0;}
-inline float activation_even_5 (float x, float n) 
+inline float activation_high_even_5 (float x, float n) 
 { return exp(x)/n;  }
 
-    float guess_digit_even (const float *img, int flag)
+    float guess_digit_high_even (const float *img, int flag)
     {
     
   // Declare the arrays in the stack
@@ -281,11 +281,11 @@ inline float activation_even_5 (float x, float n)
               for (i = 0; i < 43; ++i)
                 buffer_out[c] += buffer_in[i] * kernel_0[i][c];
 
-            norma_even = 0;
+            norma_high_even = 0;
 
             // Prepares for next layer 
             for (c = 0; c < 35; ++c )
-              buffer_in[c] = activation_even_0(buffer_out[c], norma_even);
+              buffer_in[c] = activation_high_even_0(buffer_out[c], norma_high_even);
 
 
             
@@ -298,11 +298,11 @@ inline float activation_even_5 (float x, float n)
               for (i = 0; i < 35; ++i)
                 buffer_out[c] += buffer_in[i] * kernel_1[i][c];
 
-            norma_even = 0;
+            norma_high_even = 0;
 
             // Prepares for next layer 
             for (c = 0; c < 35; ++c )
-              buffer_in[c] = activation_even_1(buffer_out[c], norma_even);
+              buffer_in[c] = activation_high_even_1(buffer_out[c], norma_high_even);
 
 
             
@@ -315,11 +315,11 @@ inline float activation_even_5 (float x, float n)
               for (i = 0; i < 35; ++i)
                 buffer_out[c] += buffer_in[i] * kernel_2[i][c];
 
-            norma_even = 0;
+            norma_high_even = 0;
 
             // Prepares for next layer 
             for (c = 0; c < 35; ++c )
-              buffer_in[c] = activation_even_2(buffer_out[c], norma_even);
+              buffer_in[c] = activation_high_even_2(buffer_out[c], norma_high_even);
 
 
             
@@ -332,11 +332,11 @@ inline float activation_even_5 (float x, float n)
               for (i = 0; i < 35; ++i)
                 buffer_out[c] += buffer_in[i] * kernel_3[i][c];
 
-            norma_even = 0;
+            norma_high_even = 0;
 
             // Prepares for next layer 
             for (c = 0; c < 35; ++c )
-              buffer_in[c] = activation_even_3(buffer_out[c], norma_even);
+              buffer_in[c] = activation_high_even_3(buffer_out[c], norma_high_even);
 
 
             
@@ -349,11 +349,11 @@ inline float activation_even_5 (float x, float n)
               for (i = 0; i < 35; ++i)
                 buffer_out[c] += buffer_in[i] * kernel_4[i][c];
 
-            norma_even = 0;
+            norma_high_even = 0;
 
             // Prepares for next layer 
             for (c = 0; c < 35; ++c )
-              buffer_in[c] = activation_even_4(buffer_out[c], norma_even);
+              buffer_in[c] = activation_high_even_4(buffer_out[c], norma_high_even);
 
 
             
@@ -366,14 +366,14 @@ inline float activation_even_5 (float x, float n)
               for (i = 0; i < 35; ++i)
                 buffer_out[c] += buffer_in[i] * kernel_5[i][c];
 
-            norma_even = 0;
+            norma_high_even = 0;
 
             for(c=0;c<3;++c)
-              norma_even+=exp(buffer_out[c]);
+              norma_high_even+=exp(buffer_out[c]);
 
             // Prepares for next layer 
             for (c = 0; c < 3; ++c )
-              buffer_in[c] = activation_even_5(buffer_out[c], norma_even);
+              buffer_in[c] = activation_high_even_5(buffer_out[c], norma_high_even);
 
 
             

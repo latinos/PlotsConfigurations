@@ -6,22 +6,22 @@
 
     #include <math.h>
 
-    float norma;
+    float norma_high;
     
-inline float activation_0 (float x, float n) 
+inline float activation_high_0 (float x, float n) 
 { return x > 0 ? x : 0;}
-inline float activation_1 (float x, float n) 
+inline float activation_high_1 (float x, float n) 
 { return x > 0 ? x : 0;}
-inline float activation_2 (float x, float n) 
+inline float activation_high_2 (float x, float n) 
 { return x > 0 ? x : 0;}
-inline float activation_3 (float x, float n) 
+inline float activation_high_3 (float x, float n) 
 { return x > 0 ? x : 0;}
-inline float activation_4 (float x, float n) 
+inline float activation_high_4 (float x, float n) 
 { return x > 0 ? x : 0;}
-inline float activation_5 (float x, float n) 
+inline float activation_high_5 (float x, float n) 
 { return exp(x)/n;  }
 
-    float guess_digit_odd (const float *img, int flag)
+    float guess_digit_high_odd (const float *img, int flag)
     {
     
   // Declare the arrays in the stack
@@ -281,11 +281,11 @@ inline float activation_5 (float x, float n)
               for (i = 0; i < 43; ++i)
                 buffer_out[c] += buffer_in[i] * kernel_0[i][c];
 
-            norma = 0;
+            norma_high = 0;
 
             // Prepares for next layer 
             for (c = 0; c < 35; ++c )
-              buffer_in[c] = activation_0(buffer_out[c], norma);
+              buffer_in[c] = activation_high_0(buffer_out[c], norma_high);
 
 
             
@@ -298,11 +298,11 @@ inline float activation_5 (float x, float n)
               for (i = 0; i < 35; ++i)
                 buffer_out[c] += buffer_in[i] * kernel_1[i][c];
 
-            norma = 0;
+            norma_high = 0;
 
             // Prepares for next layer 
             for (c = 0; c < 35; ++c )
-              buffer_in[c] = activation_1(buffer_out[c], norma);
+              buffer_in[c] = activation_high_1(buffer_out[c], norma_high);
 
 
             
@@ -315,11 +315,11 @@ inline float activation_5 (float x, float n)
               for (i = 0; i < 35; ++i)
                 buffer_out[c] += buffer_in[i] * kernel_2[i][c];
 
-            norma = 0;
+            norma_high = 0;
 
             // Prepares for next layer 
             for (c = 0; c < 35; ++c )
-              buffer_in[c] = activation_2(buffer_out[c], norma);
+              buffer_in[c] = activation_high_2(buffer_out[c], norma_high);
 
 
             
@@ -332,11 +332,11 @@ inline float activation_5 (float x, float n)
               for (i = 0; i < 35; ++i)
                 buffer_out[c] += buffer_in[i] * kernel_3[i][c];
 
-            norma = 0;
+            norma_high = 0;
 
             // Prepares for next layer 
             for (c = 0; c < 35; ++c )
-              buffer_in[c] = activation_3(buffer_out[c], norma);
+              buffer_in[c] = activation_high_3(buffer_out[c], norma_high);
 
 
             
@@ -349,11 +349,11 @@ inline float activation_5 (float x, float n)
               for (i = 0; i < 35; ++i)
                 buffer_out[c] += buffer_in[i] * kernel_4[i][c];
 
-            norma = 0;
+            norma_high = 0;
 
             // Prepares for next layer 
             for (c = 0; c < 35; ++c )
-              buffer_in[c] = activation_4(buffer_out[c], norma);
+              buffer_in[c] = activation_high_4(buffer_out[c], norma_high);
 
 
             
@@ -366,14 +366,14 @@ inline float activation_5 (float x, float n)
               for (i = 0; i < 35; ++i)
                 buffer_out[c] += buffer_in[i] * kernel_5[i][c];
 
-            norma = 0;
+            norma_high = 0;
 
             for(c=0;c<3;++c)
-              norma+=exp(buffer_out[c]);
+              norma_high+=exp(buffer_out[c]);
 
             // Prepares for next layer 
             for (c = 0; c < 3; ++c )
-              buffer_in[c] = activation_5(buffer_out[c], norma);
+              buffer_in[c] = activation_high_5(buffer_out[c], norma_high);
 
 
             

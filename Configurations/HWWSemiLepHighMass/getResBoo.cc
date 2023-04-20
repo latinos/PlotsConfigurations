@@ -145,6 +145,7 @@ double lepovM = *Lep_pt->Get() / HjjM;
    if(_var == 2)	return HjjM;
    if(_var == 3) 	return Hovjj;
    if(_var == 4)	return lepovM;
+   if(_var == 5)	return jjovM;
     if((*WJJ_pt->Get() > 40 ) && (*WJJ_pt->Get() / HjjM > 0.35) && ( *MET_pt->Get() > 30)) {
         isRes = 1;
 	if( isBoo == 1){
