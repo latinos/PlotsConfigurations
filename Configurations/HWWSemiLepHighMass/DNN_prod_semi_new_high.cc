@@ -330,10 +330,10 @@ return 0.0;
   if (ev % 2 == 0 ){
 
  //std::cout << guess_digit_odd(input_dnn, _var) << std::endl;
-  return guess_digit_odd(input_dnn, _var);
+  return guess_digit_high_odd(input_dnn, _var);
   }else{
  //std::cout << guess_digit_even(input_dnn, _var) << std::endl;
-  return guess_digit_even(input_dnn, _var);
+  return guess_digit_high_even(input_dnn, _var);
 }
 
 }
