@@ -33,19 +33,19 @@ HiggsXS = HiggsXSection()
 nuisances['lumi_Uncorrelated'] = {
     'name': 'lumi_13TeV_2017',
     'type': 'lnN',
-    'samples': dict((skey, '1.020') for skey in mc if skey not in ['Zg','ZgS','WZ'])
+    'samples': dict((skey, '1.020') for skey in mc if skey not in ['WZ'])
 }
 
 nuisances['lumi_Correlated_Run2'] = {
     'name': 'lumi_13TeV_Run2',
     'type': 'lnN',
-    'samples': dict((skey, '1.009') for skey in mc if skey not in ['WgS','WZ'])
+    'samples': dict((skey, '1.009') for skey in mc if skey not in ['WZ'])
 }
 
 nuisances['lumi_Correlated_2017_2018'] = {
     'name': 'lumi_13TeV_2017_2018',
     'type': 'lnN',
-    'samples': dict((skey, '1.006') for skey in mc if skey not in ['WgS','WZ'])
+    'samples': dict((skey, '1.006') for skey in mc if skey not in ['WZ'])
 }
 
 ### FAKES

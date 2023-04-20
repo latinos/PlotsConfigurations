@@ -23,29 +23,31 @@ HiggsXS = HiggsXSection()
 
 #### Luminosity
 
+# https://twiki.cern.ch/twiki/bin/view/CMS/LumiRecommendationsRun2#LumiComb
+# Uncorrelated 2016               1.0
+# Uncorrelated       2017              2.0
+# Uncorrelated             2018             1.5
+# Correlated   2016, 2017, 2018   0.6, 0.9, 2.0
+# Correlated         2017, 2018        0.6, 0.2
+
 nuisances['lumi_Uncorrelated'] = {
     'name': 'lumi_13TeV_2018',
     'type': 'lnN',
-    'samples': dict((skey, '1.015') for skey in mc if skey not in ['Zg','ZgS','WZ'])
+    'samples': dict((skey, '1.015') for skey in mc if skey not in ['WZ'])
 }
 
-nuisances['lumi_XYFact'] = {
-    'name': 'lumi_13TeV_XYFact',
+nuisances['lumi_Correlated_Run2'] = {
+    'name': 'lumi_13TeV_Run2',
     'type': 'lnN',
-    'samples': dict((skey, '1.02') for skey in mc if skey not in ['Zg','ZgS','WZ'])
+    'samples': dict((skey, '1.020') for skey in mc if skey not in ['WZ'])
 }
 
-nuisances['lumi_LScale'] = {
-    'name': 'lumi_13TeV_LSCale',
+nuisances['lumi_Correlated_2017_2018'] = {
+    'name': 'lumi_13TeV_2017_2018',
     'type': 'lnN',
-    'samples': dict((skey, '1.002') for skey in mc if skey not in ['Zg','ZgS','WZ'])
+    'samples': dict((skey, '1.002') for skey in mc if skey not in ['WZ'])
 }
 
-nuisances['lumi_CurrCalib'] = {
-    'name': 'lumi_13TeV_CurrCalib',
-    'type': 'lnN',
-    'samples': dict((skey, '1.002') for skey in mc if skey not in ['Zg','ZgS','WZ'])
-}
 
 ### FAKES
 nuisances['fake_syst']  = {
