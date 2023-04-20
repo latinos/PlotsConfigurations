@@ -47,7 +47,7 @@ muWP     = 'cut_Tight80x'
 #}
 
 aliases['mjjGen_max'] = {
-    'linesToAdd' : ['.L %s/patches/GetGenObservables.cc+' % configurations],
+    'linesToAdd' : ['.L %s/../patches/GetGenObservables.cc+' % configurations],
     'class' : 'GetGenObservables',
     'args': 'mjjmax',
 }
