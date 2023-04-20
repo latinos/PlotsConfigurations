@@ -3,7 +3,7 @@ import copy
 import inspect
 
 configurations = os.path.realpath(inspect.getfile(inspect.currentframe())) # this file
-configurations = os.path.dirname(configurations) # ExpNorm
+configurations = os.path.dirname(configurations) # ExpUnc
 configurations = os.path.dirname(configurations) # inclusive
 configurations = os.path.dirname(configurations) # Full2016_noHIPM_v9
 configurations = os.path.dirname(configurations) # FullRunII
@@ -36,9 +36,9 @@ aliases['PromptGenLepMatch2l'] = {
     'samples': mc
 }
 
-# TEMP do we need to fix this? Currently using the 2017/2018 formula from pre-UL
+#Note: this is the data-NLO correction recommended by the TOP PAG in most use cases
 aliases['Top_pTrw'] = {
-    'expr': '(topGenPt * antitopGenPt > 0.) * (TMath::Sqrt((0.103*TMath::Exp(-0.0118*topGenPt) - 0.000134*topGenPt + 0.973) * (0.103*TMath::Exp(-0.0118*antitopGenPt) - 0.000134*antitopGenPt + 0.973))) + (topGenPt * antitopGenPt <= 0.)',
+    'expr': '(topGenPt * antitopGenPt > 0.) * (TMath::Sqrt(TMath::Exp(0.0615 - 0.0005 * topGenPt) * TMath::Exp(0.0615 - 0.0005 * antitopGenPt))) + (topGenPt * antitopGenPt <= 0.)',
     'samples': ['top']
 }
 
@@ -49,7 +49,7 @@ aliases['nCleanGenJet'] = {
 }
 
 ##### DY Z pT reweighting
-##### TEMP this also needs fixing
+##### TEMP does this need to be updated?
 aliases['getGenZpt_OTF'] = {
     'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/patches/getGenZpt.cc+' % os.getenv('CMSSW_BASE')],
     'class': 'getGenZpt',
@@ -128,7 +128,7 @@ aliases['sr'] = {
 
 # Overall b tag SF
 aliases['btagSF'] = {
-    'expr': '(bVeto || (topcr && Sum$(CleanJet_pt > 30.) == 0))*bVetoSF + (topcr && Sum$(CleanJet_pt > 30.) > 0)*bReqSF',
+    'expr': '(bVeto || (!bVeto && Sum$(CleanJet_pt > 30.) == 0))*bVetoSF + (bReq)*bReqSF',
     'samples': mc
 }
 
@@ -142,19 +142,6 @@ aliases['Jet_PUIDSF'] = {
 aliases['SFweight'] = {
     'expr': ' * '.join(['SFweight2l','LepWPCut', 'LepSF2l__ele_' + eleWP + '__mu_' + muWP, 'btagSF', 'PrefireWeight', 'Jet_PUIDSF']),
     'samples': mc
-}
-
-# Needed for top QCD scale uncertainty
-lastcopy = (1 << 13)
-
-aliases['isTTbar'] = {
-    'expr': 'Sum$(TMath::Abs(GenPart_pdgId) == 6 && TMath::Odd(GenPart_statusFlags / %d)) == 2' % lastcopy,
-    'samples': ['top']
-}
-
-aliases['isSingleTop'] = {
-    'expr': 'Sum$(TMath::Abs(GenPart_pdgId) == 6 && TMath::Odd(GenPart_statusFlags / %d)) == 1' % lastcopy,
-    'samples': ['top']
 }
 
 # In WpWmJJ_EWK events, partons [0] and [1] are always the decay products of the first W

@@ -29,44 +29,41 @@ nuisances['QCDscale_WW']  = {
     'kind'  : 'weight',
     'type'  : 'shape',
     'samples'  : {
-       'WW' : ['Alt$(LHEScaleWeight[0],1)','Alt$(LHEScaleWeight[8],1)']
+       'WW' : ['Alt$(LHEScaleWeight[0],1)','Alt$(LHEScaleWeight[8],1)'],
+       'ggWW' : ['Alt$(LHEScaleWeight[0],1)','Alt$(LHEScaleWeight[8],1)']
     }
 }
 
 # PDF
-for i in range(1,33):
-  # LHEPdfWeight are PDF4LHC variations, while nominal is NNPDF.
-  # LHEPdfWeight[i] reweights from NNPDF nominal to PDF4LHC member i
-  # LHEPdfWeight[0] in particular reweights from NNPDF nominal to PDF4LHC nominal
-  pdf_variations = ["LHEPdfWeight[%d]/LHEPdfWeight[0]*(abs(LHEPdfWeight[%d]/LHEPdfWeight[0])<=100)+1.0*(abs(LHEPdfWeight[%d]/LHEPdfWeight[0])>100)"%(i,i,i), "(2.0-(LHEPdfWeight[%d]/LHEPdfWeight[0]))*(abs(LHEPdfWeight[%d]/LHEPdfWeight[0])<=100)+1.0*(abs(LHEPdfWeight[%d]/LHEPdfWeight[0])>100)"%(i,i,i)] # Float_t LHE pdf variation weights (w_var / w_nominal) for LHA IDs 91400 - 91432*
+pdf_variations = ["LHEPdfWeight[%d]" %i for i in range(1,101)] # Float_t LHE pdf variation weights (w_var / w_nominal) for LHA IDs 320901 - 321000
 
-  nuisances['pdf_WW_'+str(i)]  = {
-    'name'  : 'pdf_WW_'+str(i)+'_2018',
+nuisances['pdf_WW']  = {
+  'name'  : 'pdf_WW',
+  'kind'  : 'weight_rms',
+  'type'  : 'shape',
+  'samples'  : {
+     'WW'     : pdf_variations,
+   },
+}
+
+nuisances['WWresum']  = {
+    'name'  : 'CMS_hww_WWresum',
     'kind'  : 'weight',
     'type'  : 'shape',
     'samples'  : {
-      'WW'   : pdf_variations,
+        'WW'   : ['nllW_Rup/nllW', 'nllW_Rdown/nllW'],
     },
-  }
+}
 
-  nuisances['WWresum']  = {
-      'name'  : 'CMS_hww_WWresum',
-      'kind'  : 'weight',
-      'type'  : 'shape',
-      'samples'  : {
-          'WW'   : ['nllW_Rup/nllW', 'nllW_Rdown/nllW'],
-      },
-  }
+nuisances['WWqscale']  = {
+    'name'  : 'CMS_hww_WWqscale',
+    'kind'  : 'weight',
+    'type'  : 'shape',
+    'samples'  : {
+        'WW'   : ['nllW_Qup/nllW', 'nllW_Qdown/nllW'],
+    },
+}
 
-  nuisances['WWqscale']  = {
-      'name'  : 'CMS_hww_WWqscale',
-      'kind'  : 'weight',
-      'type'  : 'shape',
-      'samples'  : {
-          'WW'   : ['nllW_Qup/nllW', 'nllW_Qdown/nllW'],
-      },
-  }
-  
 
 for n in nuisances.values():
     n['skipCMS'] = 1

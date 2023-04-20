@@ -43,7 +43,6 @@ nuisances['pdf_WW']  = {
   'type'  : 'shape',
   'samples'  : {
      'WW'     : pdf_variations,
-     'ggWW'   : pdf_variations,
    },
 }
 

@@ -20,7 +20,7 @@ cutsFile = 'cuts.py'
 samplesFile = 'samples.py' 
 
 # luminosity to normalize to (in 1/fb)
-lumi = 35.867
+lumi = 19.52
 
 # nuisances file for mkDatacards and for mkShape
 nuisancesFile = 'nuisances.py'
