@@ -46,6 +46,12 @@ muWP     = 'cut_Tight80x'
    # 'args': ('boosted', '2016')
 #}
 
+aliases['mjjGen_max'] = {
+    'linesToAdd' : ['.L %s/patches/GetGenObservables.cc+' % configurations],
+    'class' : 'GetGenObservables',
+    'args': 'mjjmax',
+}
+
 aliases['mjjGen_OTF'] = {
     'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/HighMass/HMvars_mjjgen.cc+' % os.getenv('CMSSW_BASE')],
     'class': 'HMvarsmjjgen',
