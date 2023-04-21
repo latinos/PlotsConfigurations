@@ -191,12 +191,6 @@ aliases['gstarHigh'] = {
     'samples': 'WZ'
 }
 
-# aliases['embedtotal'] = {
-#     'expr': 'embed_total_mva16',  # wrt. eleWP
-#     'samples': 'Dyemb'
-# }
-
-
 # gen-matching to prompt only (GenLepMatch2l matches to *any* gen lepton)
 aliases['PromptGenLepMatch2l'] = {
     'expr': 'Alt$(Lepton_promptgenmatched[0]*Lepton_promptgenmatched[1], 0)',
@@ -332,7 +326,9 @@ aliases['SFtriggDown'] = {
 aliases['BDT_WHSS_v9'] = {
     'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/BDT_WHSS_v9.C+' % configurations],
     'class': 'BDT_WHSS_v9',
-    'args' : ('BDTG_6', '%s/WH_chargeAsymmetry/UL/Full2018_v9/BDTconfig_WHSS/dataset_WHSS_btagVariables_zveto_orthogonalsamples/weights/TMVAClassification_BDTG_6.weights.xml' % configurations),
+    'args' : ('BDTG_6', '%s/WH_chargeAsymmetry/UL/data/BDT/2018/WHSS/weights/TMVAClassification_BDTG_6.weights.xml' % configurations),
+    # 'args' : ('BDTG_6', '%s/WH_chargeAsymmetry/UL/Full2018_v9/BDTconfig_WHSS/dataset_WHSS_btagVariables_zveto_orthogonalsamples/weights/TMVAClassification_BDTG_6.weights.xml' % configurations),
+    # BDT/2018/WHSS/weights/TMVAClassification_BDTG_6.weights.xml
 }
 
 ########################
