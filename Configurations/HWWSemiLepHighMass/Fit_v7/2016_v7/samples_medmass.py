@@ -72,6 +72,7 @@ def makeMCDirectory(var=''):
 
 mcDirectory = makeMCDirectory()
 signalMCDirectory = makeMCDirectory("_BWReweight_LNuQQ")
+signalMCDirectoryOLD = makeMCDirectory("_BWReweight")
 
 dataDirectory = os.path.join(treeBaseDir, dataReco, dataSteps)
 fakeDirectory = os.path.join(treeBaseDir, dataReco, fakeSteps)
@@ -524,7 +525,7 @@ samples['WH_htt'] = {
 ##############   SIGNALS  ##################
 ###########################################
 print("Signals")
-
+noSMxsec = '(1.0/Xsec)'
 ####### ggH -> WW #################
 for MX in massggh:
   for model in models:
@@ -539,13 +540,19 @@ for MX in massggh:
 
     samples['GGH_'+MX+model_name]  = {
         'name': nanoGetSampleFiles(signalMCDirectory, 'GluGluHToWWToLNuQQ_M'+MX),
-        'weight': mcCommonWeight + '*( {0}*(abs({0})<50) )'.format(model),
+        'weight': mcCommonWeightTagger + '*( {0}*(abs({0})<50) )'.format(model),
         'FilesPerJob': 15,
     }
     
+    samples['GGH_'+MX+model_name+"_old"]  = {
+        'name': nanoGetSampleFiles(signalMCDirectoryOLD, 'GluGluHToWWToLNuQQ_M'+MX),
+        'weight': mcCommonWeightTagger +'*( {0} * (abs({0}) < 50) )'.format(model),
+        'FilesPerJob': 15,
+    }
+
     samples['GGHINT_'+MX+model_name]  = {
         'name': nanoGetSampleFiles(signalMCDirectory, 'GluGluHToWWToLNuQQ_M'+MX),
-        'weight': mcCommonWeight + '*( {0}*(abs({0})<50) )'.format(model_I),
+        'weight': mcCommonWeightTagger + '*( {0}*(abs({0})<50) )'.format(model_I),
         'FilesPerJob': 15,
     }
 
@@ -557,7 +564,7 @@ for MX in massggh:
     files += nanoGetSampleFiles(mcDirectory, 'GluGluWWToLNuQQ')               # no further weighting, is directly part of B
     samples['GGHSBI_'+MX+model_name]  = {
         'name': files,
-        'weight': mcCommonWeight,
+        'weight': mcCommonWeightTagger,
         'FilesPerJob': 10,
     }
     addSampleWeight(samples, 'GGHSBI_'+MX+model_name, 'GluGluHToWWToLNuQQ_M'+MX,
@@ -567,22 +574,22 @@ for MX in massggh:
     
     samples['GGHINT_H_'+MX+model_name]  = {
         'name': nanoGetSampleFiles(signalMCDirectory, 'GluGluHToWWToLNuQQ_M'+MX),
-        'weight': mcCommonWeight + '*( {0}*(abs({0})<50) )'.format(model_I_H),
+        'weight': mcCommonWeightTagger + '*( {0}*(abs({0})<50) )'.format(model_I_H),
         'FilesPerJob': 15,
     }
     samples['GGHINT_B_'+MX+model_name]  = {
         'name': nanoGetSampleFiles(signalMCDirectory, 'GluGluHToWWToLNuQQ_M'+MX),
-        'weight': mcCommonWeight + '*( {0}*(abs({0})<50) )'.format(model_I_B),
+        'weight': mcCommonWeightTagger + '*( {0}*(abs({0})<50) )'.format(model_I_B),
         'FilesPerJob': 15,
     }
     samples['GGH_HSM_'+MX+model_name]  = {
         'name': nanoGetSampleFiles(signalMCDirectory, 'GluGluHToWWToLNuQQ_M'+MX),
-        'weight': mcCommonWeight + '*( {0} )'.format(model_H),
+        'weight': mcCommonWeightTagger + '*( {0} )'.format(model_H),
         'FilesPerJob': 15,
     }
     samples['GGH_B_'+MX+model_name]  = {
         'name': nanoGetSampleFiles(signalMCDirectory, 'GluGluHToWWToLNuQQ_M'+MX),
-        'weight': mcCommonWeight + '*( {0} )'.format(model_B),
+        'weight': mcCommonWeightTagger + '*( {0} )'.format(model_B),
         'FilesPerJob': 15,
     }
 #
@@ -604,13 +611,20 @@ for MX in massvbf:
 
     samples['QQH_'+MX+model_name]  = {
         'name': nanoGetSampleFiles(signalMCDirectory, 'VBFHToWWToLNuQQ_M'+MX),
-        'weight': mcCommonWeight + '*( {0}*(abs({0})<50) )'.format(model),
+        'weight': mcCommonWeightTagger + '*( {0}*(abs({0})<50) )'.format(model),
+        'FilesPerJob': 15,
+    }
+
+
+    samples['QQH_'+MX+model_name+"_old"]  = {
+        'name': nanoGetSampleFiles(signalMCDirectoryOLD, 'VBFHToWWToLNuQQ_M'+MX),
+        'weight': mcCommonWeightTagger +'*( {0} * (abs({0}) < 50) )'.format(model),
         'FilesPerJob': 15,
     }
 
     samples['QQHINT_'+MX+model_name]  = {
         'name': nanoGetSampleFiles(signalMCDirectory, 'VBFHToWWToLNuQQ_M'+MX),
-        'weight': mcCommonWeight + '*( {0}*(abs({0})<50) )'.format(model_I),
+        'weight': mcCommonWeightTagger + '*( {0}*(abs({0})<50) )'.format(model_I),
         'FilesPerJob': 15,
     }
 
@@ -637,24 +651,24 @@ for MX in massvbf:
     
     samples['QQHINT_H_'+MX+model_name]  = {
         'name': nanoGetSampleFiles(signalMCDirectory, 'VBFHToWWToLNuQQ_M'+MX),
-        'weight': mcCommonWeight+'*( {0}* (abs({0})<50) )'.format(model_I_H),
+        'weight': mcCommonWeightTagger+'*( {0}* (abs({0})<50) )'.format(model_I_H),
         'FilesPerJob': 15,
     }
 
     samples['QQHINT_B_'+MX+model_name]  = {
         'name': nanoGetSampleFiles(signalMCDirectory, 'VBFHToWWToLNuQQ_M'+MX),
-        'weight': mcCommonWeight+'*( {0}* (abs({0})<50) )'.format(model_I_B),
+        'weight': mcCommonWeightTagger+'*( {0}* (abs({0})<50) )'.format(model_I_B),
         'FilesPerJob': 15,
     }
 
     samples['QQH_HSM_'+MX+model_name]  = {
         'name': nanoGetSampleFiles(signalMCDirectory, 'VBFHToWWToLNuQQ_M'+MX),
-        'weight': mcCommonWeight +'*( {0} )'.format(model_H),
+        'weight': mcCommonWeightTagger +'*( {0} )'.format(model_H),
         'FilesPerJob': 15,
     }
     samples['QQH_B_'+MX+model_name]  = {
         'name': nanoGetSampleFiles(signalMCDirectory, 'VBFHToWWToLNuQQ_M'+MX),
-        'weight': mcCommonWeight +'*( {0} )'.format(model_B),
+        'weight': mcCommonWeightTagger +'*( {0} )'.format(model_B),
         'FilesPerJob': 15,
     }
 
