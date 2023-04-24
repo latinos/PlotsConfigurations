@@ -603,8 +603,8 @@ for MX in massvbf:
     model_I = model+'_I'
     model_I_H = model+'_I_Honly'
     model_I_B = model+'_I_Bonly'
-    model_B = model+'_B'
-    model_H = model+'_H' 
+    model_B = 'B'
+    model_H = 'H' 
     # Model dependent -> Xsec*BR is applied in later step, so remove "SM"-Xsec*BR
     # SMxsec = HiggsXS.GetHiggsXS4Sample('YR4','13TeV','VBFHToWWToLNuQQ_M'+MX)['xs']
     # noSMxsec = '(1.0/{})'.format(SMxsec)
