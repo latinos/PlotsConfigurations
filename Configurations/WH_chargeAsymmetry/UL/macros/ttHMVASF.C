@@ -179,13 +179,13 @@ ttHMVASF::ttHMVASF( const char* year, const int nLeptons, std::string requested_
 		
 		if(eta >= lines[i][0] && eta <= lines[i][1] && pt >= lines[i][2] && pt <= lines[i][3]){
 		  
-		  cout << lines[i][0] << " "
-			   << lines[i][1] << " "
-			   << lines[i][2] << " "
-			   << lines[i][3] << " "
-			   << lines[i][4] << " "
-			   << lines[i][7] << " "
-			   << endl;
+		  // cout << lines[i][0] << " "
+		  // 	   << lines[i][1] << " "
+		  // 	   << lines[i][2] << " "
+		  // 	   << lines[i][3] << " "
+		  // 	   << lines[i][4] << " "
+		  // 	   << lines[i][7] << " "
+		  // 	   << endl;
 		
 		  // efficiencies
 		  double data = lines[i][4];
@@ -266,15 +266,15 @@ ttHMVASF::ttHMVASF( const char* year, const int nLeptons, std::string requested_
   h_SF_mu_stat_ = h_SF_mu_stat;
   h_SF_mu_syst_ = h_SF_mu_syst;
 
-  cout << "Ele  SF test: " << h_SF_ele_ -> GetBinContent(5,5) << endl;
-  cout << "Muon SF test: " << h_SF_mu_  -> GetBinContent(5,5) << endl;
+  // cout << "Ele  SF test: " << h_SF_ele_ -> GetBinContent(5,5) << endl;
+  // cout << "Muon SF test: " << h_SF_mu_  -> GetBinContent(5,5) << endl;
   
   cout << "Done with loading SFs" << endl;
 }
 
 std::tuple<double, double, double> ttHMVASF::GetSF(int flavor, double eta, double pt){
 
-  cout << "Get SF function" << endl;
+  // cout << "Get SF function" << endl;
 
   double eta_temp = eta;
   double pt_temp  = pt;
@@ -329,7 +329,7 @@ std::tuple<double, double, double> ttHMVASF::GetSF(int flavor, double eta, doubl
 
 double ttHMVASF::evaluate(unsigned){
 
-  cout << "Starting actual SF application" << endl;
+  // cout << "Starting actual SF application" << endl;
 
   std::vector<double> SF_vect {};
   std::vector<double> SF_err_vect {};
@@ -339,10 +339,10 @@ double ttHMVASF::evaluate(unsigned){
   // Loop over leptons
   for (int i = 0; i < nLeptons_; i++){
 
-	cout << "Lepton " << i << ":" << endl;
-	cout << "    pT    = " << lepton_pt    -> At(0) << endl;
-	cout << "    eta   = " << lepton_eta   -> At(0) << endl;
-	cout << "    pdgId = " << lepton_pdgId -> At(0) << endl;
+	// cout << "Lepton " << i << ":" << endl;
+	// cout << "    pT    = " << lepton_pt    -> At(0) << endl;
+	// cout << "    eta   = " << lepton_eta   -> At(0) << endl;
+	// cout << "    pdgId = " << lepton_pdgId -> At(0) << endl;
 
 	// Get electron SF and uncertainty
 	if(TMath::Abs(lepton_pdgId->At(i)) == 11){
@@ -351,14 +351,14 @@ double ttHMVASF::evaluate(unsigned){
 
 	  std::tuple<double, double, double> res = GetSF(11, lepton_eta->At(i), lepton_pt->At(i));
 
-	  cout << "Nominal SF value --> " << std::get<0>(res) << endl;
+	  // cout << "Nominal SF value --> " << std::get<0>(res) << endl;
 
 	  SF_vect.push_back(std::get<0>(res));
 	  
 	  SF_err_vect.push_back(TMath::Sqrt(TMath::Power(std::get<1>(res), 2) + TMath::Power(std::get<2>(res), 2)));
 
-	  cout << "Up variation SF value --> " << (std::get<0>(res) + TMath::Sqrt(TMath::Power(std::get<1>(res), 2) + TMath::Power(std::get<2>(res), 2))) / std::get<0>(res) << endl;
-	  cout << "Do variation SF value --> " << (std::get<0>(res) - TMath::Sqrt(TMath::Power(std::get<1>(res), 2) + TMath::Power(std::get<2>(res), 2))) / std::get<0>(res) << endl;
+	  // cout << "Up variation SF value --> " << (std::get<0>(res) + TMath::Sqrt(TMath::Power(std::get<1>(res), 2) + TMath::Power(std::get<2>(res), 2))) / std::get<0>(res) << endl;
+	  // cout << "Do variation SF value --> " << (std::get<0>(res) - TMath::Sqrt(TMath::Power(std::get<1>(res), 2) + TMath::Power(std::get<2>(res), 2))) / std::get<0>(res) << endl;
 	}
 
 	// Get muon SF and uncertainty
@@ -368,7 +368,7 @@ double ttHMVASF::evaluate(unsigned){
             
 	  std::tuple<double, double, double> res = GetSF(13, lepton_eta->At(i), lepton_pt->At(i));
 
-	  cout << "Nominal SF value --> " << std::get<0>(res) << endl;
+	  // cout << "Nominal SF value --> " << std::get<0>(res) << endl;
 
 	  double SF_ttHMVA = std::get<0>(res);
 
@@ -376,8 +376,8 @@ double ttHMVASF::evaluate(unsigned){
 	  // SF_err_vect.push_back((SF_ttHMVA) * TMath::Sqrt( (TMath::Power(std::get<1>(res), 2) + TMath::Power(std::get<2>(res), 2))/SF_ttHMVA/SF_ttHMVA ) );
 	  SF_err_vect.push_back(TMath::Sqrt( (TMath::Power(std::get<1>(res), 2) + TMath::Power(std::get<2>(res), 2))) );
 
-	  cout << "Up variation SF value --> " << (std::get<0>(res) + TMath::Sqrt(TMath::Power(std::get<1>(res), 2) + TMath::Power(std::get<2>(res), 2))) / std::get<0>(res) << endl;
-	  cout << "Do variation SF value --> " << (std::get<0>(res) - TMath::Sqrt(TMath::Power(std::get<1>(res), 2) + TMath::Power(std::get<2>(res), 2))) / std::get<0>(res) << endl;
+	  // cout << "Up variation SF value --> " << (std::get<0>(res) + TMath::Sqrt(TMath::Power(std::get<1>(res), 2) + TMath::Power(std::get<2>(res), 2))) / std::get<0>(res) << endl;
+	  // cout << "Do variation SF value --> " << (std::get<0>(res) - TMath::Sqrt(TMath::Power(std::get<1>(res), 2) + TMath::Power(std::get<2>(res), 2))) / std::get<0>(res) << endl;
 	}
   }
 
@@ -409,9 +409,9 @@ double ttHMVASF::evaluate(unsigned){
 	SF_down_out *= SF_do[i];
   }
 
-  cout << "Total event nominal SF = " << SF          << endl;
-  cout << "Total event up vari SF = " << SF_up_out   << endl;
-  cout << "Total event do vari SF = " << SF_down_out << endl;
+  // cout << "Total event nominal SF = " << SF          << endl;
+  // cout << "Total event up vari SF = " << SF_up_out   << endl;
+  // cout << "Total event do vari SF = " << SF_down_out << endl;
 
   if(requested_SF_.compare("nominal") == 0) { 
   	return SF; 
