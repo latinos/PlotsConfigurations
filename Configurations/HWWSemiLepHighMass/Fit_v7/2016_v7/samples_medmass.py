@@ -533,8 +533,8 @@ for MX in massggh:
     model_I = model+'_I'
     model_I_H = model+'_I_Honly'
     model_I_B = model+'_I_Bonly'
-    model_B = model+'_B'
-    model_H = model+'_H'
+    model_B = 'B'
+    model_H = 'H'
     # Model dependent -> Xsec*BR is applied in later step, so remove "SM"-Xsec*BR
     # SMxsec = HiggsXS.GetHiggsXS4Sample('YR4','13TeV','GluGluHToWWToLNuQQ_M'+MX)['xs']
 
@@ -703,6 +703,7 @@ for key in samples:
 #######  'suppressNegativeNuisances' :['all'],
 #######}
 ######
+
 Mu_jetEt = 35
 El_jetEt = 35
 fakeW = 'FW_mu'+str(Mu_jetEt)+ '_el'+str(El_jetEt)+'[0]'
@@ -739,4 +740,3 @@ for _, sd in DataRun:
     files = nanoGetSampleFiles(dataDirectory, pd + '_' + sd)
     samples['DATA']['name'].extend(files)
     samples['DATA']['weights'].extend([DataTrig[pd]] * len(files))
-
