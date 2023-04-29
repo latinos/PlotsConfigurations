@@ -298,57 +298,57 @@ samples['qqWWqq'] = {
 
 
 
-######### W+jets #########
-print("W+jets")
-whad_reweight = '(1.17301e+00 - 8.66070e-04*HM_Whad_mass)'
-wboo_reweight = '1.12388e+00'
+########## W+jets #########
+#print("W+jets")
+#whad_reweight = '(1.17301e+00 - 8.66070e-04*HM_Whad_mass)'
+#wboo_reweight = '1.12388e+00'
+#
+#files  = nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-LO')
+#files += nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-LO_ext2')
+#files += nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_HT100_200')
+#files += nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_HT100_200_ext1')
+#files += nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_HT1200_2500')
+#files += nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_HT1200_2500_ext1')
+#files += nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_HT200_400')
+#files += nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_HT200_400_ext1')
+#files += nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_HT2500_inf')
+#files += nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_HT2500_inf_ext1')
+#files += nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_HT400_600')
+#files += nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_HT400_600_ext1')
+#files += nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_HT600_800')
+#files += nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_HT600_800_ext1')
+#files += nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_HT70_100')
+#files += nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_HT800_1200')
+#files += nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_HT800_1200_ext1')
+#
+#samples['Wjets'] = {
+#    'name'   : files,
+#    'weight' : mcCommonWeight +"*EWK_W_correction[0]*kfact[0]",
+##+"*(boosted_fat_jet*{0}+!boosted_fat_jet*1)".format(wboo_reweight),
+#    'FilesPerJob' : 1,
+#}
+#CombineBaseW(mcDirectory, samples, 'Wjets',
+#            ['WJetsToLNu-LO', 'WJetsToLNu-LO_ext2'])
+#CombineBaseW(mcDirectory, samples, 'Wjets',
+#            ['WJetsToLNu_HT100_200', 'WJetsToLNu_HT100_200_ext1'])
+#CombineBaseW(mcDirectory, samples, 'Wjets',
+#            ['WJetsToLNu_HT1200_2500', 'WJetsToLNu_HT1200_2500_ext1'])
+#CombineBaseW(mcDirectory, samples, 'Wjets',
+#            ['WJetsToLNu_HT200_400', 'WJetsToLNu_HT200_400_ext1'])
+#CombineBaseW(mcDirectory, samples, 'Wjets',
+#            ['WJetsToLNu_HT2500_inf', 'WJetsToLNu_HT2500_inf_ext1'])
+#CombineBaseW(mcDirectory, samples, 'Wjets',
+#            ['WJetsToLNu_HT400_600', 'WJetsToLNu_HT400_600_ext1'])
+#CombineBaseW(mcDirectory, samples, 'Wjets',
+#            ['WJetsToLNu_HT600_800', 'WJetsToLNu_HT600_800_ext1'])
+#CombineBaseW(mcDirectory, samples, 'Wjets',
+#            ['WJetsToLNu_HT800_1200', 'WJetsToLNu_HT800_1200_ext1'])
+#
+#addSampleWeight(samples,'Wjets','WJetsToLNu-LO','(LHE_HT < 70)')
+#addSampleWeight(samples,'Wjets','WJetsToLNu-LO_ext2','(LHE_HT < 70)')
+#addSampleWeight(samples,'Wjets','WJetsToLNu_HT70_100','1.2')
 
-files  = nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-LO')
-files += nanoGetSampleFiles(mcDirectory, 'WJetsToLNu-LO_ext2')
-files += nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_HT100_200')
-files += nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_HT100_200_ext1')
-files += nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_HT1200_2500')
-files += nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_HT1200_2500_ext1')
-files += nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_HT200_400')
-files += nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_HT200_400_ext1')
-files += nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_HT2500_inf')
-files += nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_HT2500_inf_ext1')
-files += nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_HT400_600')
-files += nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_HT400_600_ext1')
-files += nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_HT600_800')
-files += nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_HT600_800_ext1')
-files += nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_HT70_100')
-files += nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_HT800_1200')
-files += nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_HT800_1200_ext1')
-
-samples['Wjets'] = {
-    'name'   : files,
-    'weight' : mcCommonWeight +"*EWK_W_correction[0]*kfact[0]",
-#+"*(boosted_fat_jet*{0}+!boosted_fat_jet*1)".format(wboo_reweight),
-    'FilesPerJob' : 1,
-}
-CombineBaseW(mcDirectory, samples, 'Wjets',
-            ['WJetsToLNu-LO', 'WJetsToLNu-LO_ext2'])
-CombineBaseW(mcDirectory, samples, 'Wjets',
-            ['WJetsToLNu_HT100_200', 'WJetsToLNu_HT100_200_ext1'])
-CombineBaseW(mcDirectory, samples, 'Wjets',
-            ['WJetsToLNu_HT1200_2500', 'WJetsToLNu_HT1200_2500_ext1'])
-CombineBaseW(mcDirectory, samples, 'Wjets',
-            ['WJetsToLNu_HT200_400', 'WJetsToLNu_HT200_400_ext1'])
-CombineBaseW(mcDirectory, samples, 'Wjets',
-            ['WJetsToLNu_HT2500_inf', 'WJetsToLNu_HT2500_inf_ext1'])
-CombineBaseW(mcDirectory, samples, 'Wjets',
-            ['WJetsToLNu_HT400_600', 'WJetsToLNu_HT400_600_ext1'])
-CombineBaseW(mcDirectory, samples, 'Wjets',
-            ['WJetsToLNu_HT600_800', 'WJetsToLNu_HT600_800_ext1'])
-CombineBaseW(mcDirectory, samples, 'Wjets',
-            ['WJetsToLNu_HT800_1200', 'WJetsToLNu_HT800_1200_ext1'])
-
-addSampleWeight(samples,'Wjets','WJetsToLNu-LO','(LHE_HT < 70)')
-addSampleWeight(samples,'Wjets','WJetsToLNu-LO_ext2','(LHE_HT < 70)')
-addSampleWeight(samples,'Wjets','WJetsToLNu_HT70_100','1.2')
-
-####### Vg ########
+###### Vg ########
 print("Vg")
 
 files  = nanoGetSampleFiles(mcDirectory, 'Wg_MADGRAPHMLM')
@@ -590,27 +590,27 @@ for key in samples:
     samples[key]['suppressNegative'] = ['all']
     samples[key]['suppressNegativeNuisances'] =['all']
 
-#
-#
-###############################################
-###################### DATA ###################
-###############################################
-#####print("FAKE")
-################ FAKE ###########
-####eleWP    = 'mva_90p_Iso2016'
-####muWP     = 'cut_Tight80x'
-######
-#######fakeW = 'fakeW_ele_'+eleWP+'_mu_'+muWP+'_1l_mu25_ele35'
-#######samples['FAKE'] = {
-#######  'name': [],
-#######  'weight': 'METFilter_DATA*'+fakeW,
-#######  'weights': [],
-#######  'isData': ['all'],
-#######  'FilesPerJob': 35,
-#######  'suppressNegative': ['all'],
-#######  'suppressNegativeNuisances' :['all'],
-#######}
-######
+##
+##
+################################################
+####################### DATA ###################
+################################################
+######print("FAKE")
+################# FAKE ###########
+#####eleWP    = 'mva_90p_Iso2016'
+#####muWP     = 'cut_Tight80x'
+#######
+########fakeW = 'fakeW_ele_'+eleWP+'_mu_'+muWP+'_1l_mu25_ele35'
+########samples['FAKE'] = {
+########  'name': [],
+########  'weight': 'METFilter_DATA*'+fakeW,
+########  'weights': [],
+########  'isData': ['all'],
+########  'FilesPerJob': 35,
+########  'suppressNegative': ['all'],
+########  'suppressNegativeNuisances' :['all'],
+########}
+#######
 Mu_jetEt = 35
 El_jetEt = 35
 fakeW = 'FW_mu'+str(Mu_jetEt)+ '_el'+str(El_jetEt)+'[0]'
