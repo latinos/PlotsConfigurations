@@ -473,13 +473,13 @@ samples['qqWWqq'] = {
 #    'FilesPerJob': 10,
 #}
 #
-############# VBF H->WW ############
-#samples['qqH_hww'] = {
-#    'name': nanoGetSampleFiles(signalMCDirectory, 'VBFHToWWToLNuQQ_M125'),
-#    'weight': mcCommonWeightTagger,
-#    'FilesPerJob': 10
-#}
-#
+############ VBF H->WW ############
+samples['qqH_hww'] = {
+    'name': nanoGetSampleFiles(signalMCDirectory, 'VBFHToWWToLNuQQ_M125'),
+    'weight': mcCommonWeightTagger,
+    'FilesPerJob': 10
+}
+
 ############# ZH H->WW ############
 #samples['ZH_hww'] = {
 #    'name':   nanoGetSampleFiles(mcDirectory, 'HZJ_HToWW_M125'),
@@ -689,26 +689,6 @@ for MX in massvbf:
     addSampleWeight(samples, 'QQHSBI_test'+MX+model_name, 'WpTo2J_WmToLNu_QCD',
                     '(mjjGen_max>=150)*(GenLHE)')
     addSampleWeight(samples, 'QQHSBI_test'+MX+model_name, 'WpToLNu_WmTo2J_QCD',
-                    '(mjjGen_max>=150)*(GenLHE)')
-    files  = nanoGetSampleFiles(signalMCDirectory, 'VBFHToWWToLNuQQ_M'+MX)
-    files += nanoGetSampleFiles(signalMCDirectory, 'VBFHToWWToLNuQQ_M500_copybkg') # just any mass, reweighted to HSM. But not the nominal 125 because that one has no off shell part
-                                                                           # CAUTION when processing the 500 GeV signal.  We cannot have a sample with the same name weighted in two different ways
-                                                                           # One solution is to symlink the 500 GeV signal with a different name in the directory (e.g. appending _copybgk to the name)                                                                               # and weight the copy as the background.
-    files += nanoGetSampleFiles(mcDirectory, 'WpTo2J_WmToLNu_QCD') # this is part of b with the same gen level selection as in qqWWqq
-    files += nanoGetSampleFiles(mcDirectory, 'WpToLNu_WmTo2J_QCD') # this is part of b with the same gen level selection as in qqWWqq
- 
-    samples['QQHSBI_test'+MX+model_name]  = {
-        'name': files,
-        'weight': mcCommonWeight,
-        'FilesPerJob': 10,
-    }
-    addSampleWeight(samples, 'QQHSBI_'+MX+model_name, 'VBFHToWWToLNuQQ_M'+MX,
-                    '( ({0}+{1})*(abs({0}+{1})<50) )'.format(model, model_I))                
-    addSampleWeight(samples, 'QQHSBI_'+MX+model_name, 'VBFHToWWToLNuQQ_M500_copybkg',
-                    '({0} )'.format(model_H))                
-    addSampleWeight(samples, 'QQHSBI_'+MX+model_name, 'WpTo2J_WmToLNu_QCD',
-                    '(mjjGen_max>=150)*(GenLHE)')
-    addSampleWeight(samples, 'QQHSBI_'+MX+model_name, 'WpToLNu_WmTo2J_QCD',
                     '(mjjGen_max>=150)*(GenLHE)')
 #    
 #    samples['QQHINT_H_'+MX+model_name]  = {
