@@ -31,24 +31,23 @@ typedef std::map<std::string, std::map<std::string, std::string>> map_dict;
 class ttHMVASF : public multidraw::TTreeFunction {
  
 public:
-  ttHMVASF( const char* year, const int nLeptons, std::string requested_SF );
+  ttHMVASF( const char* year, const int nLeptons, const char* muOrEle, std::string requested_SF );
+  ~ttHMVASF();
   char const* getName() const override { return "ttHMVASF"; }
-  TTreeFunction* clone() const override { return new ttHMVASF(year_, nLeptons_, requested_SF_); }
+  TTreeFunction* clone() const override { return new ttHMVASF(year_, nLeptons_, muOrEle_, requested_SF_); }
   unsigned getNdata() override { return 1; }
   double evaluate(unsigned) override;
   
 protected:
   int nLeptons_;
   const char* year_;
+  const char* muOrEle_;
   std::string requested_SF_;
   void bindTree_(multidraw::FunctionLibrary&) override;
 
   FloatArrayReader* lepton_pt;
   FloatArrayReader* lepton_eta;
   IntArrayReader*   lepton_pdgId;
-  // FloatArrayReader* reco_SF_;
-  // FloatArrayReader* reco_SF_up_;
-  // FloatArrayReader* reco_SF_do_;
 
   map_dict SF_files_map_;
 
@@ -66,15 +65,17 @@ private:
 };
 
 // Load scale factors from files
-ttHMVASF::ttHMVASF( const char* year, const int nLeptons, std::string requested_SF ) : TTreeFunction() {
+ttHMVASF::ttHMVASF( const char* year, const int nLeptons, const char* muOrEle, std::string requested_SF ) : TTreeFunction() {
 
   cout << "Year:         " << year         << endl;
   cout << "nLeptons:     " << nLeptons     << endl;
   cout << "Requested SF: " << requested_SF << endl;
+  cout << "muOrEle:      " << muOrEle      << endl;
 
   year_         = year;
   nLeptons_     = nLeptons;
   requested_SF_ = requested_SF;
+  muOrEle_      = muOrEle;
 
   std::string cmssw_base = std::getenv("CMSSW_BASE");
 
@@ -120,161 +121,124 @@ ttHMVASF::ttHMVASF( const char* year, const int nLeptons, std::string requested_
 
 
   //////////////////////////////
-  // Load electron SFs in memory
+  // Load electron SFs in memory (if needed)
   //////////////////////////////
 
-  TH2D* h_SF_ele      = new TH2D("", "", ele_nbins_eta, ele_eta_bins, ele_nbins_pt, ele_pt_bins);
-  TH2D* h_SF_ele_stat = new TH2D("", "", ele_nbins_eta, ele_eta_bins, ele_nbins_pt, ele_pt_bins);
-  TH2D* h_SF_ele_syst = new TH2D("", "", ele_nbins_eta, ele_eta_bins, ele_nbins_pt, ele_pt_bins);
-	
-  // Filling TH2D objects by reading txt input files
-  cout << "SF files map = " << SF_files_map_["electron"][year_] << endl;
+  if (strncmp(muOrEle_,"ele",3) || strncmp(muOrEle_,"all",3)){
 
-  // Prepare grid to read the txt file: 70 lines and 14 columns  
-  double lines[70][14];
+    h_SF_ele_      = new TH2D("h_SF_ele",      "h_SF_ele",      ele_nbins_eta, ele_eta_bins, ele_nbins_pt, ele_pt_bins);
+    h_SF_ele_stat_ = new TH2D("h_SF_ele_stat", "h_SF_ele_stat", ele_nbins_eta, ele_eta_bins, ele_nbins_pt, ele_pt_bins);
+    h_SF_ele_syst_ = new TH2D("h_SF_ele_syst", "h_SF_ele_syst", ele_nbins_eta, ele_eta_bins, ele_nbins_pt, ele_pt_bins);
+    h_SF_ele_->SetDirectory(0);
+    h_SF_ele_stat_->SetDirectory(0);
+    h_SF_ele_syst_->SetDirectory(0);
+
+    // Filling TH2D objects by reading txt input files
+    cout << "SF files map = " << SF_files_map_["electron"][year_] << endl;
+    
+    // Prepare grid to read the txt file: 70 lines and 14 columns  
+    double lines[70][14];
   
-  // Parsing the .txt file
-  std::string line;
-  std::istringstream strm;
-  double num;
-  std::ifstream ifs(SF_files_map_["electron"][year_]);
+    // Parsing the .txt file
+    std::string line;
+    std::istringstream strm;
+    double num;
+    std::ifstream ifs(SF_files_map_["electron"][year_]);
   
-  int i = 0;
-  int j = 0;
-  while(getline(ifs, line)){
-	j = 0;
-	std::istringstream strm(line);
-	while(strm >> num){
-	  lines[i][j] = num;
-	  j++;
-	}
-	i++;
-  }
-  ifs.close();
+    int i = 0;
+    int j = 0;
+    while(getline(ifs, line)){
+      j = 0;
+      std::istringstream strm(line);
+      while(strm >> num){
+	lines[i][j] = num;
+	j++;
+      }
+      i++;
+    }
+    ifs.close();
   
-  for(int iBinX = 1; iBinX <= h_SF_ele->GetNbinsX(); iBinX++){
-	for(int iBinY = 1; iBinY <= h_SF_ele->GetNbinsY(); iBinY++){
+    for(int iBinX = 1; iBinX <= h_SF_ele_->GetNbinsX(); iBinX++){
+      for(int iBinY = 1; iBinY <= h_SF_ele_->GetNbinsY(); iBinY++){
+	
+	double eta = h_SF_ele_ -> GetXaxis() -> GetBinCenter(iBinX);
+	double pt  = h_SF_ele_ -> GetYaxis() -> GetBinCenter(iBinY);
+	
+	// txt columns structure:
+	// 0:  eta Low  
+	// 1:  eta High  
+	// 2:  pt Low  
+	// 3:  pt High 
+	// 4:  effData 
+	// 5:  statErrData 
+	// 6:  systErrData 
+	// 7:  effMC 
+	// 8:  statErrMC 
+	// 9:  systErrMC 
+	// 10: effDataAltBkg 
+	// 11: effDataAltSig 
+	// 12: effMCAltMC 
+	// 13: effMCTagSel
+	
+	// Looking for correct eta, pt bin
+	for(unsigned i = 0; i < 70; i++){
 	  
-	  double eta = h_SF_ele -> GetXaxis() -> GetBinCenter(iBinX);
-	  double pt  = h_SF_ele -> GetYaxis() -> GetBinCenter(iBinY);
-	  
-	  // txt columns structure:
-	  // 0:  eta Low  
-	  // 1:  eta High  
-	  // 2:  pt Low  
-	  // 3:  pt High 
-	  // 4:  effData 
-	  // 5:  statErrData 
-	  // 6:  systErrData 
-	  // 7:  effMC 
-	  // 8:  statErrMC 
-	  // 9:  systErrMC 
-	  // 10: effDataAltBkg 
-	  // 11: effDataAltSig 
-	  // 12: effMCAltMC 
-	  // 13: effMCTagSel
-	  
-	  // Looking for correct eta, pt bin
-	  for(unsigned i = 0; i < 70; i++){
-		
-		if(eta >= lines[i][0] && eta <= lines[i][1] && pt >= lines[i][2] && pt <= lines[i][3]){
-		  
-		  // cout << lines[i][0] << " "
-		  // 	   << lines[i][1] << " "
-		  // 	   << lines[i][2] << " "
-		  // 	   << lines[i][3] << " "
-		  // 	   << lines[i][4] << " "
-		  // 	   << lines[i][7] << " "
-		  // 	   << endl;
-		
-		  // efficiencies
-		  double data = lines[i][4];
-		  double mc   = lines[i][7];
-		  double sf   = 1;
-		  if (mc != 0) sf = data/mc;
-		  
-		  // statistical uncertainty on efficiencies
-		  double sigma_data = lines[i][5];
-		  double sigma_mc   = lines[i][7];
-		  double sigma_sf   = 0.0;
-		  if (mc != 0) sigma_sf = TMath::Sqrt( TMath::Power(sigma_data/mc, 2) + TMath::Power(data*sigma_mc/(mc*mc), 2));
-		  
-		  // systematic uncertainty on efficiencies
-		  double syst_data = lines[i][6];
-		  double syst_mc   = lines[i][9];
-		  double syst_sf   = 0.0;
-		  if (mc != 0) syst_sf = TMath::Sqrt( TMath::Power(syst_data/mc, 2) + TMath::Power(data*syst_mc/(mc*mc), 2));
-		  
-		  h_SF_ele      -> SetBinContent(iBinX, iBinY, sf);
-		  h_SF_ele_stat -> SetBinContent(iBinX, iBinY, sigma_sf);
-		  h_SF_ele_syst -> SetBinContent(iBinX, iBinY, syst_sf);
-		  
-		  break;
-		}
+	  if(eta >= lines[i][0] && eta <= lines[i][1] && pt >= lines[i][2] && pt <= lines[i][3]){
+	    
+	    // efficiencies
+	    double data = lines[i][4];
+	    double mc   = lines[i][7];
+	    double sf   = 1;
+	    if (mc != 0) sf = data/mc;
+	    
+	    // statistical uncertainty on efficiencies
+	    double sigma_data = lines[i][5];
+	    double sigma_mc   = lines[i][8];
+	    double sigma_sf   = 0.0;
+	    if (mc != 0) sigma_sf = TMath::Sqrt( TMath::Power(sigma_data/mc, 2) + TMath::Power(data*sigma_mc/(mc*mc), 2));
+	    
+	    // systematic uncertainty on efficiencies
+	    double syst_data = lines[i][6];
+	    double syst_mc   = lines[i][9];
+	    double syst_sf   = 0.0;
+	    if (mc != 0) syst_sf = TMath::Sqrt( TMath::Power(syst_data/mc, 2) + TMath::Power(data*syst_mc/(mc*mc), 2));
+	    
+	    h_SF_ele_      -> SetBinContent(iBinX, iBinY, sf);
+	    h_SF_ele_stat_ -> SetBinContent(iBinX, iBinY, sigma_sf);
+	    h_SF_ele_syst_ -> SetBinContent(iBinX, iBinY, syst_sf);
+	    
+	    break;
 	  }
 	}
+      }
+    }
+    cout << "Done with loading electrons scale factors" << endl;
   }
-
-  cout << "Done with loading electrons scale factors" << endl;
-  
-  h_SF_ele_      = h_SF_ele;
-  h_SF_ele_stat_ = h_SF_ele_stat;
-  h_SF_ele_syst_ = h_SF_ele_syst;
 
   //////////////////////////
-  // Load muon SFs in memory
+  // Load muon SFs in memory (if needed)
   //////////////////////////
 
-  cout << "Muons rootfile: " << SF_files_map_["muon"][year_] << endl;
+  if (strncmp(muOrEle_,"mu",2) || strncmp(muOrEle_,"all",3)){
 
-  TFile* rootfile = new TFile(SF_files_map_["muon"][year_].c_str());
-  
-  cout << "Loaded!" << endl;
+    cout << "Muons rootfile: " << SF_files_map_["muon"][year_] << endl;
+    TFile* rootfile = new TFile(SF_files_map_["muon"][year_].c_str());
+    cout << "Loaded!" << endl;
 
-  // Nominal SF histogram - temp are needed to properly handle BinContent and BinError (maybe) 
-  TH2D* htemp      = (TH2D*)rootfile -> Get("NUM_TightIDIso_tthmva_DEN_TightIDIso_eta_pt");
-  TH2D* htemp_stat = (TH2D*)rootfile -> Get("NUM_TightIDIso_tthmva_DEN_TightIDIso_eta_pt_stat");
-  TH2D* htemp_syst = (TH2D*)rootfile -> Get("NUM_TightIDIso_tthmva_DEN_TightIDIso_eta_pt_syst");
+    // Nominal SF histogram - temp are needed to properly handle BinContent and BinError (maybe) 
+    h_SF_mu_      = (TH2D*)rootfile->Get("NUM_TightIDIso_tthmva_DEN_TightIDIso_eta_pt")->Clone();
+    h_SF_mu_stat_ = (TH2D*)rootfile->Get("NUM_TightIDIso_tthmva_DEN_TightIDIso_eta_pt_stat")->Clone();
+    h_SF_mu_syst_ = (TH2D*)rootfile->Get("NUM_TightIDIso_tthmva_DEN_TightIDIso_eta_pt_syst")->Clone();
+    h_SF_mu_->SetDirectory(0);
+    h_SF_mu_stat_->SetDirectory(0);
+    h_SF_mu_syst_->SetDirectory(0);
 
-  int mu_nbins_eta = htemp->GetNbinsX(); 
-  int mu_nbins_pt  = htemp->GetNbinsY();
-  double mu_eta_bins[mu_nbins_eta + 1]; 
-  double mu_pt_bins[mu_nbins_pt + 1];
-
-  for(int k = 0; k <= mu_nbins_eta; k++) { 
-	mu_eta_bins[k] = htemp->GetXaxis()->GetXbins()->At(k); 
+    rootfile->Close();
+    cout << "Done with loading muons scale factors" << endl;
   }
-  for(int k = 0; k<= mu_nbins_pt; k++) { 
-	mu_pt_bins[k] = htemp->GetYaxis()->GetXbins()->At(k); 
-  }
-  
-  TH2D* h_SF_mu      = new TH2D("", "", mu_nbins_eta, mu_eta_bins, mu_nbins_pt, mu_pt_bins);
-  TH2D* h_SF_mu_stat = new TH2D("", "", mu_nbins_eta, mu_eta_bins, mu_nbins_pt, mu_pt_bins);
-  TH2D* h_SF_mu_syst = new TH2D("", "", mu_nbins_eta, mu_eta_bins, mu_nbins_pt, mu_pt_bins);
-
-  for(int i = 1; i <= mu_nbins_eta; i++){
-	for(int j = 1; j <= mu_nbins_pt; j++){
-	  h_SF_mu      -> SetBinContent(i, j, htemp      -> GetBinContent(i, j));
-	  h_SF_mu_stat -> SetBinContent(i, j, htemp_stat -> GetBinError  (i, j));
-	  h_SF_mu_syst -> SetBinContent(i, j, htemp_syst -> GetBinError  (i, j));
-	}
-  }
-
-  cout << "Done with loading muons scale factors" << endl;
-
-  h_SF_mu_      = h_SF_mu;
-  h_SF_mu_stat_ = h_SF_mu_stat;
-  h_SF_mu_syst_ = h_SF_mu_syst;
-
-  // cout << "Ele  SF test: " << h_SF_ele_ -> GetBinContent(5,5) << endl;
-  // cout << "Muon SF test: " << h_SF_mu_  -> GetBinContent(5,5) << endl;
-  
-  cout << "Done with loading SFs" << endl;
 }
 
 std::tuple<double, double, double> ttHMVASF::GetSF(int flavor, double eta, double pt){
-
-  // cout << "Get SF function" << endl;
 
   double eta_temp = eta;
   double pt_temp  = pt;
@@ -312,9 +276,9 @@ std::tuple<double, double, double> ttHMVASF::GetSF(int flavor, double eta, doubl
 	if(pt_temp < pt_min)   {pt_temp  = pt_min;}
 	if(pt_temp > pt_max)   {pt_temp  = pt_max;}
 
-	SF      = h_SF_mu_      -> GetBinContent(h_SF_mu_      -> FindBin(eta_temp, pt_temp));
-	SF_stat = h_SF_mu_stat_ -> GetBinContent(h_SF_mu_stat_ -> FindBin(eta_temp, pt_temp));
-	SF_syst = h_SF_mu_syst_ -> GetBinContent(h_SF_mu_syst_ -> FindBin(eta_temp, pt_temp));
+	SF      = h_SF_mu_      -> GetBinContent(h_SF_mu_    -> FindBin(eta_temp, pt_temp));
+	SF_stat = h_SF_mu_stat_ -> GetBinError(h_SF_mu_stat_ -> FindBin(eta_temp, pt_temp)); //Note -- uncertainty histograms store uncertainty as error per bin
+	SF_syst = h_SF_mu_syst_ -> GetBinError(h_SF_mu_syst_ -> FindBin(eta_temp, pt_temp));
   }
   
   else {
@@ -332,53 +296,35 @@ double ttHMVASF::evaluate(unsigned){
   // cout << "Starting actual SF application" << endl;
 
   std::vector<double> SF_vect {};
-  std::vector<double> SF_err_vect {};
-  std::vector<double> SF_up {};
-  std::vector<double> SF_do {};
+  std::vector<double> SF_err_vect_el {};
+  std::vector<double> SF_err_vect_mu {};
+  std::vector<double> SF_up_el {};
+  std::vector<double> SF_up_mu {};
+  std::vector<double> SF_do_el {};
+  std::vector<double> SF_do_mu {};
 
   // Loop over leptons
   for (int i = 0; i < nLeptons_; i++){
 
-	// cout << "Lepton " << i << ":" << endl;
-	// cout << "    pT    = " << lepton_pt    -> At(0) << endl;
-	// cout << "    eta   = " << lepton_eta   -> At(0) << endl;
-	// cout << "    pdgId = " << lepton_pdgId -> At(0) << endl;
+    // Get electron SF and uncertainty
+    if(TMath::Abs(lepton_pdgId->At(i)) == 11 && (strncmp(muOrEle_,"ele",3) || strncmp(muOrEle_,"all",3))){
 
-	// Get electron SF and uncertainty
-	if(TMath::Abs(lepton_pdgId->At(i)) == 11){
+      std::tuple<double, double, double> res = GetSF(11, lepton_eta->At(i), lepton_pt->At(i));
+      
+      SF_vect.push_back(std::get<0>(res));
+      SF_err_vect_el.push_back(TMath::Sqrt(TMath::Power(std::get<1>(res), 2) + TMath::Power(std::get<2>(res), 2)));
+      SF_err_vect_mu.push_back(0.0);
+    }
 
-	  std::string SF_path = SF_files_map_["electron"][year_];
+    // Get muon SF and uncertainty
+    else if(TMath::Abs(lepton_pdgId->At(i)) == 13 && (strncmp(muOrEle_,"mu",2) || strncmp(muOrEle_,"all",3))){
 
-	  std::tuple<double, double, double> res = GetSF(11, lepton_eta->At(i), lepton_pt->At(i));
-
-	  // cout << "Nominal SF value --> " << std::get<0>(res) << endl;
-
-	  SF_vect.push_back(std::get<0>(res));
-	  
-	  SF_err_vect.push_back(TMath::Sqrt(TMath::Power(std::get<1>(res), 2) + TMath::Power(std::get<2>(res), 2)));
-
-	  // cout << "Up variation SF value --> " << (std::get<0>(res) + TMath::Sqrt(TMath::Power(std::get<1>(res), 2) + TMath::Power(std::get<2>(res), 2))) / std::get<0>(res) << endl;
-	  // cout << "Do variation SF value --> " << (std::get<0>(res) - TMath::Sqrt(TMath::Power(std::get<1>(res), 2) + TMath::Power(std::get<2>(res), 2))) / std::get<0>(res) << endl;
-	}
-
-	// Get muon SF and uncertainty
-	else if(TMath::Abs(lepton_pdgId->At(i)) == 13){
-
-	  std::string SF_path = SF_files_map_["muon"][year_];
-            
-	  std::tuple<double, double, double> res = GetSF(13, lepton_eta->At(i), lepton_pt->At(i));
-
-	  // cout << "Nominal SF value --> " << std::get<0>(res) << endl;
-
-	  double SF_ttHMVA = std::get<0>(res);
-
-	  SF_vect.push_back(SF_ttHMVA);
-	  // SF_err_vect.push_back((SF_ttHMVA) * TMath::Sqrt( (TMath::Power(std::get<1>(res), 2) + TMath::Power(std::get<2>(res), 2))/SF_ttHMVA/SF_ttHMVA ) );
-	  SF_err_vect.push_back(TMath::Sqrt( (TMath::Power(std::get<1>(res), 2) + TMath::Power(std::get<2>(res), 2))) );
-
-	  // cout << "Up variation SF value --> " << (std::get<0>(res) + TMath::Sqrt(TMath::Power(std::get<1>(res), 2) + TMath::Power(std::get<2>(res), 2))) / std::get<0>(res) << endl;
-	  // cout << "Do variation SF value --> " << (std::get<0>(res) - TMath::Sqrt(TMath::Power(std::get<1>(res), 2) + TMath::Power(std::get<2>(res), 2))) / std::get<0>(res) << endl;
-	}
+      std::tuple<double, double, double> res = GetSF(13, lepton_eta->At(i), lepton_pt->At(i));
+      
+      SF_vect.push_back(std::get<0>(res));
+      SF_err_vect_el.push_back(0.0);
+      SF_err_vect_mu.push_back(TMath::Sqrt(TMath::Power(std::get<1>(res), 2) + TMath::Power(std::get<2>(res), 2)));
+    }
   }
 
   double SF     = 1.;
@@ -391,72 +337,65 @@ double ttHMVASF::evaluate(unsigned){
   // Now for the variations, these also have to account for the recoSF --> why? I guess not in our case
   for(int i = 0; i < nLeptons_; i++){
 
-	// SF_up.push_back( ((SF_vect[i] * reco_SF_->At(i)) + TMath::Sqrt(TMath::Power(SF_err_vect[i], 2) + TMath::Power(reco_SF_up_->At(i) - reco_SF_->At(i), 2) ))/(SF_vect[i] * reco_SF_->At(i)) );
-	// SF_do.push_back( ((SF_vect[i] * reco_SF_->At(i)) - TMath::Sqrt(TMath::Power(SF_err_vect[i], 2) + TMath::Power(reco_SF_do_->At(i) - reco_SF_->At(i), 2) ))/(SF_vect[i] * reco_SF_->At(i)) );
-
-	SF_up.push_back( (SF_vect[i] + SF_err_vect[i]) / SF_vect[i] );
-	SF_do.push_back( (SF_vect[i] - SF_err_vect[i]) / SF_vect[i] );
-
+    double SFref = SF_vect[i] == 0. ? 1.0 : SF_vect[i]; // Not sure how to handle uncertainty on 0 SF ... for now act as if SF is 1 in this case
+    SF_up_el.push_back( (SFref + SF_err_vect_el[i]) / SFref );
+    SF_up_mu.push_back( (SFref + SF_err_vect_mu[i]) / SFref );
+    SF_do_el.push_back( (SFref - SF_err_vect_el[i]) / SFref );
+    SF_do_mu.push_back( (SFref - SF_err_vect_mu[i]) / SFref );
   }
 
   // Now build the up and down variation SFs
-  double SF_up_out   = 1.;
-  double SF_down_out = 1.;
+  double SF_up_out_el   = 1.;
+  double SF_up_out_mu   = 1.;
+  double SF_down_out_el = 1.;
+  double SF_down_out_mu = 1.;
 
   // Up/down variations are already divided by the central SF value
   for(int i = 0; i < nLeptons_; i++){
-	SF_up_out   *= SF_up[i];
-	SF_down_out *= SF_do[i];
+	SF_up_out_el   *= SF_up_el[i];
+	SF_up_out_mu   *= SF_up_mu[i];
+	SF_down_out_el *= SF_do_el[i];
+	SF_down_out_mu *= SF_do_mu[i];
   }
-
-  // cout << "Total event nominal SF = " << SF          << endl;
-  // cout << "Total event up vari SF = " << SF_up_out   << endl;
-  // cout << "Total event do vari SF = " << SF_down_out << endl;
 
   if(requested_SF_.compare("nominal") == 0) { 
   	return SF; 
   }
-  else if(requested_SF_.compare("up") == 0) { 
-  	return SF_up_out; 
+  else if(requested_SF_.compare("eleUp") == 0) { 
+    return SF_up_out_el; 
   }
-  else if(requested_SF_.compare("down") == 0) { 
-  	return SF_down_out; 
+  else if(requested_SF_.compare("muUp") == 0) { 
+    return SF_up_out_mu; 
+  }
+  else if(requested_SF_.compare("eleDown") == 0) { 
+    return SF_down_out_el; 
+  }
+  else if(requested_SF_.compare("muDown") == 0) { 
+    return SF_down_out_mu; 
   }
   else{ 
   	std::cout << "invalid option: please choose from [nominal, up, down]" << std::endl; 
   	return 0; 
   }
-
-  // // What is this?????
-  // if(requested_SF_.compare("total_SF") == 0) { 
-  // 	return SF; 
-  // }
-  // else if(requested_SF_.compare("single_SF_up") == 0) { 
-  // 	return requested_lepton_ < SF_vect.size() ? SF_up[requested_lepton_] : 0.; 
-  // }
-  // else if(requested_SF_.compare("single_SF_down") == 0) { 
-  // 	return requested_lepton_<SF_vect.size() ? SF_do[requested_lepton_] : 0.; 
-  // }
-  // else if(requested_SF_.compare("single_SF") == 0) { 
-  // 	return requested_lepton_<SF_vect.size() ? SF_vect[requested_lepton_] : 0.; 
-  // }
-  // else{ 
-  // 	std::cout << "invalid option: please choose from [total_SF, single_SF, single_SF_up, single_SF_down]" << std::endl; 
-  // 	return 0; 
-  // }
-
 }
 
 void ttHMVASF::bindTree_(multidraw::FunctionLibrary& _library){
 
-  cout << "Binding tree" << endl;
+  std::cout << "Binding tree" << std::endl;
 
   _library.bindBranch(lepton_pt,    "Lepton_pt");
   _library.bindBranch(lepton_eta,   "Lepton_eta");
   _library.bindBranch(lepton_pdgId, "Lepton_pdgId");
-  // _library.bindBranch(reco_SF_,     "Lepton_RecoSF");
-  // _library.bindBranch(reco_SF_up_,  "Lepton_RecoSF_Up");
-  // _library.bindBranch(reco_SF_do_,  "Lepton_RecoSF_Down");
-
 }
 
+ttHMVASF::~ttHMVASF(){
+
+  std::cout << "Doing histogram cleanup" << std::endl;
+
+  h_SF_ele_->Delete();
+  h_SF_ele_stat_->Delete();
+  h_SF_ele_syst_->Delete();
+  h_SF_mu_->Delete();
+  h_SF_mu_stat_->Delete();
+  h_SF_mu_syst_->Delete();
+}
