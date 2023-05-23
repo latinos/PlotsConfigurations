@@ -66,19 +66,16 @@ nuisances['QCDscale_V'] = {
     'cuts' : fitcuts
 }
 
-nuisances['QCDscale_VV'] = {
-    'name': 'QCDscale_VV',
+nuisances['QCDscale_VVV'] = {
+    'name': 'QCDscale_VVV',
     'kind': 'weight_envelope',
     'type': 'shape',
-    'samples': {
-        'WW'      : variations,
-        'Zg'      : variations,
-        'ZgS'     : variations,
-        'WZ'      : variations,
-        'ZZ'      : variations
-    },
+    'samples': {'VVV': variations},
+    'AsLnN': '0',
     'cuts' : fitcuts
 }
+
+
 
 nuisances['QCDscale_VH'] = {
     'name': 'QCDscale_VH',

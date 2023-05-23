@@ -43,7 +43,7 @@ groupPlot['WZ']  = {
          'nameHR' : "WZ",
          'isSignal' : 0,
          'color'    : 400,   # Yellow
-         'samples'  : ['WZ', 'WZ_had']
+         'samples'  : ['WZ']
 }
 groupPlot['Fake']  = {  
                   'nameHR' : 'Non-prompt',
@@ -55,7 +55,7 @@ groupPlot['ttZ']  = {
   		   'nameHR' : 'ttZ',
 		   'color': 419,    # kGreen+3
 		   'isSignal' : 0,
-		   'samples' : ['ttV']
+		   'samples' : ['ttZ']
 }
 
 groupPlot['ttW']  = {
@@ -77,22 +77,6 @@ groupPlot['tZq_ll']  = {
          'color'    : 883,   # kViolet + 3  
          'samples'  : ['tZq_ll']
       }
-
-groupPlot['WgS'] = {
-          'nameHR' : "WgS",
-          'isSignal' : 0,
-          'color'    : 884,  
-          'samples' : ['WgS']
-       }
-
-
-groupPlot['Wg'] = {
-          'nameHR' : "Wg",
-          'isSignal' : 0,
-          'color'    : 885,  
-          'samples' : ['Wg']
-}
-
 
 #groupPlot['AZH_800_600'] = {
 #          'nameHR' : "AZH_800_600",
@@ -271,21 +255,11 @@ plot['WZ']  = {
     'color': 858, # kAzure -2  
     'isSignal' : 0,
     'isData'   : 0,
-    'scale'    : 1.0
-	    #'scale'    : 0.87 #1j norm
-	   #'scale'    : 1.42 #2j norm
+    #'scale'    : 1.0
+    'scale'    : 1.79 #4j norm
 }
 
 
-plot['WZ_had']  = {
-    'nameHR' : 'WZ_had',
-    'color': 888, # kAzure -2  
-    'isSignal' : 0,
-    'isData'   : 0,
-    'scale'    : 1.0
-#	    #'scale'    : 0.87 #1j norm
-#	   #'scale'    : 1.42 #2j norm
-}
 
 
 plot['TTWJets']  = {
@@ -294,8 +268,6 @@ plot['TTWJets']  = {
     'isSignal' : 0,
     'isData'   : 0,
     'scale'    : 1.0
-	    #'scale'    : 0.87 #1j norm
-	   #'scale'    : 1.42 #2j norm
 }
 
 
@@ -340,7 +312,7 @@ plot['VVV']  = {
                   'scale'    : 1.0
                   }
 
-plot['ttV']  = {
+plot['ttZ']  = {
 		  'color': 419,    # kGreen+3
 		  'isSignal' : 0,
 		  'isData'   : 0,
@@ -367,20 +339,6 @@ plot['Fake']  = {
                   'scale'    : 1.0                  
               }
 
-plot['WgS']  = {
-                  'color': 922,
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  'scale'    : 1.0
-}
-
-
-plot['Wg']  = {
-                  'color': 923,
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  'scale'    : 1.0
-}
 
 #plot['AZH'] = {
 #                  'nameHR' : 'AZH',
@@ -396,7 +354,7 @@ plot['DATA']  = {
                   'color': 1 ,
                   'isSignal' : 0,
                   'isData'   : 1 ,
-                  'isBlind'  : 0 
+                  'isBlind'  : 1 
                 }
 
 # additional options

@@ -110,18 +110,14 @@ samples['ZgS']  = {    'name'   :   getSampleFilesNano(directory,'ZGToLLG'),
 
 
 
-samples['WZ']  = {    'name':   getSampleFilesNano(directory,'WZTo3LNu_mllmin4p0'),
+samples['WZ']  = {    'name':   getSampleFilesNano(directory,'WZTo3LNu_mllmin4p0')
+                              + getSampleFilesNano(directory,'WZTo2Q2L_mllmin4p0'),
                        'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch3l+'*'+METFilter_MC+'*'+WZWeight,
                        'FilesPerJob' : 2 ,
              }
 
 
-samples['WZ_had']  = {    'name': getSampleFilesNano(directory,'WZTo2Q2L_mllmin4p0'),
-                       'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC+'*'+WZWeight,
-                       'FilesPerJob' : 2 ,
-             }
-
-samples['ttV'] = {    'name'   :   getSampleFilesNano(directory,'TTZToLLNuNu_M-10'), 
+samples['ttZ'] = {    'name'   :   getSampleFilesNano(directory,'TTZToLLNuNu_M-10'), 
                      'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC ,
                      'FilesPerJob' : 5,
                  }
@@ -133,8 +129,9 @@ samples['ttH_hww']  = { 'name'   :   getSampleFilesNano(directory,'ttHToNonbb_M1
 
 
 samples['tZq_ll']  = { 'name'   :   getSampleFilesNano(directory,'tZq_ll'),
-                        'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC ,
-                      }
+                       'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC ,
+                       'FilesPerJob' : 5,                 
+}
 
 ############ VVV ############
 

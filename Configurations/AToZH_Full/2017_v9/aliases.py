@@ -3,7 +3,7 @@
 mc = [skey for skey in samples if skey not in ('Fake', 'DATA')]
 
 #bWP = '0.1522' #Loose
-bWP = '0.4506'
+bWP = '0.4941'
 bWPtight = '0.7738'
 
 eleWP_new = 'mvaFall17V2Iso_WP90_tthmva_70'
@@ -78,7 +78,7 @@ aliases['Top_pTrw'] = {
 
 aliases['AZH_mA_minus_mH'] = {
     'linesToAdd': [
-       '.L %s/src/PlotsConfigurations/Configurations/AToZH_Full/AZH_patch.cc+' % os.getenv('CMSSW_BASE')
+       '.L %s/src/PlotsConfigurations/Configurations/AToZH_Full/scripts/AZH_patch.cc+' % os.getenv('CMSSW_BASE')
     ],
     'class': 'AZH_patch',
     'args': ("AZH_mA_minus_mH"),
