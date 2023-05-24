@@ -211,6 +211,8 @@ files = nanoGetSampleFiles(mcDirectory, 'GluGluHToWWTo2L2Nu_M125') + \
         nanoGetSampleFiles(mcDirectory, 'ttHToNonbb_M125') + \
         nanoGetSampleFiles(mcDirectory, 'GluGluHToTauTau_M125') + \
         nanoGetSampleFiles(mcDirectory, 'VBFHToTauTau_M125') #+ \
+        #nanoGetSampleFiles(mcDirectory, 'HZJ_HToWW_M125') + \ #TODO add back when variation samples ready
+        #nanoGetSampleFiles(mcDirectory, 'HZJ_HToWW_M125_ext1') + \
         #nanoGetSampleFiles(mcDirectory, 'ZHToTauTau_M125') + \
         #nanoGetSampleFiles(mcDirectory, 'WplusHToTauTau_M125') + nanoGetSampleFiles(mcDirectory, 'WminusHToTauTau_M125')
 

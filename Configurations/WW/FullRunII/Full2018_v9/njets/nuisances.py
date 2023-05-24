@@ -256,7 +256,7 @@ nuisances['PU'] = {
         'ggWW'    : ['1.001400*(puWeightUp/puWeight)', '0.998575*(puWeightDown/puWeight)'],
         'WWewk'   : ['0.998941*(puWeightUp/puWeight)', '1.000945*(puWeightDown/puWeight)'],
         'Vg'      : ['1.002615*(puWeightUp/puWeight)', '1.000225*(puWeightDown/puWeight)'],
-        'WZ'      : ['0.995915*(puWeightUp/puWeight)', '1.004206*(puWeightDown/puWeight)'],
+        'WZ'      : ['0.995091*(puWeightUp/puWeight)', '1.004907*(puWeightDown/puWeight)'],
         'ZZ'      : ['0.995006*(puWeightUp/puWeight)', '1.005298*(puWeightDown/puWeight)'],
         'VVV'     : ['1.000067*(puWeightUp/puWeight)', '1.000922*(puWeightDown/puWeight)'],
         'top'     : ['0.999420*(puWeightUp/puWeight)', '1.000466*(puWeightDown/puWeight)'],
@@ -371,8 +371,8 @@ values = {
     'ttH_hww'  : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ttH', '125.09','pdf','sm'),
     'ggH_htt'  : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ggH', '125.09','pdf','sm'),
     'qqH_htt'  : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','vbfH','125.09','pdf','sm'),
-#    'WH_htt'   : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','WH',  '125.09','pdf','sm'),
-#    'ZH_htt'   : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ZH',  '125.09','pdf','sm')
+    'WH_htt'   : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','WH',  '125.09','pdf','sm'),
+    'ZH_htt'   : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ZH',  '125.09','pdf','sm')
 }
 
 for cut in allcuts:
@@ -403,8 +403,8 @@ values = {'ggH_hww' : '1.006',
           'ttH_hww' : '1.000', #No value for ttH_hww?
           'ggH_htt' : '1.006',
           'qqH_htt' : '1.002',
-#          'WH_htt'  : '1.003',
-#          'ZH_htt'  : '1.002'
+          'WH_htt'  : '1.003',
+          'ZH_htt'  : '1.002'
          }
 
 for cut in allcuts:
@@ -486,9 +486,9 @@ nuisances['QCDscale_WW']  = {
 }
 
 topScaleNormFactors = {
-    '0j' : {'Alt$(LHEScaleWeight[0],1)' : 1.076353, 'Alt$(LHEScaleWeight[1],1)' : 1.076156, 'Alt$(LHEScaleWeight[3],1)' : 1.002586, 'Alt$(LHEScaleWeight[5],1)' : 1.000531, 'Alt$(LHEScaleWeight[7],1)' : 0.923878, 'Alt$(LHEScaleWeight[8],1)' : 0.922079},
-    '1j' : {'Alt$(LHEScaleWeight[0],1)' : 1.085249, 'Alt$(LHEScaleWeight[1],1)' : 1.080768, 'Alt$(LHEScaleWeight[3],1)' : 1.008539, 'Alt$(LHEScaleWeight[5],1)' : 0.995310, 'Alt$(LHEScaleWeight[7],1)' : 0.919422, 'Alt$(LHEScaleWeight[8],1)' : 0.911726},
-    '2j' : {'Alt$(LHEScaleWeight[0],1)' : 1.124696, 'Alt$(LHEScaleWeight[1],1)' : 1.105242, 'Alt$(LHEScaleWeight[3],1)' : 1.023673, 'Alt$(LHEScaleWeight[5],1)' : 0.981918, 'Alt$(LHEScaleWeight[7],1)' : 0.902668, 'Alt$(LHEScaleWeight[8],1)' : 0.882067},
+    '0j' : {'Alt$(LHEScaleWeight[0],1)' : 1.080606, 'Alt$(LHEScaleWeight[1],1)' : 1.078914, 'Alt$(LHEScaleWeight[3],1)' : 1.004670, 'Alt$(LHEScaleWeight[5],1)' : 0.998731, 'Alt$(LHEScaleWeight[7],1)' : 0.921912, 'Alt$(LHEScaleWeight[8],1)' : 0.918074},
+    '1j' : {'Alt$(LHEScaleWeight[0],1)' : 1.091895, 'Alt$(LHEScaleWeight[1],1)' : 1.084842, 'Alt$(LHEScaleWeight[3],1)' : 1.011352, 'Alt$(LHEScaleWeight[5],1)' : 0.992816, 'Alt$(LHEScaleWeight[7],1)' : 0.916612, 'Alt$(LHEScaleWeight[8],1)' : 0.906422},
+    '2j' : {'Alt$(LHEScaleWeight[0],1)' : 1.107511, 'Alt$(LHEScaleWeight[1],1)' : 1.094565, 'Alt$(LHEScaleWeight[3],1)' : 1.018706, 'Alt$(LHEScaleWeight[5],1)' : 0.986221, 'Alt$(LHEScaleWeight[7],1)' : 0.908908, 'Alt$(LHEScaleWeight[8],1)' : 0.891633},
     '3j' : {'Alt$(LHEScaleWeight[0],1)' : 1.148296, 'Alt$(LHEScaleWeight[1],1)' : 1.119891, 'Alt$(LHEScaleWeight[3],1)' : 1.030622, 'Alt$(LHEScaleWeight[5],1)' : 0.975877, 'Alt$(LHEScaleWeight[7],1)' : 0.893899, 'Alt$(LHEScaleWeight[8],1)' : 0.868533},
 }
 
@@ -561,8 +561,8 @@ values = {
     'ttH_hww'  : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ttH' ,'125.09','scale','sm'),
     'ggH_htt'  : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ggH' ,'125.09','scale','sm'),
     'qqH_htt'  : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','vbfH','125.09','scale','sm'),
-#    'WH_htt'   : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','WH'  ,'125.09','scale','sm'),
-#    'ZH_htt'   : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ZH'  ,'125.09','scale','sm')
+    'WH_htt'   : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','WH'  ,'125.09','scale','sm'),
+    'ZH_htt'   : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ZH'  ,'125.09','scale','sm')
 }
 
 for cut in allcuts:
@@ -592,8 +592,8 @@ values = {'ggH_hww' : '1.012',
           'ttH_hww' : '1.000', #Missing value for ttH
           'ggH_htt' : '1.012',
           'qqH_htt' : '1.003',
-#          'WH_htt'  : '1.010',
-#          'ZH_htt'  : '1.015'
+          'WH_htt'  : '1.010',
+          'ZH_htt'  : '1.015'
          }
 
 for cut in allcuts:
