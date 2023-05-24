@@ -28,14 +28,12 @@ catSR = {
     'B8'  : 'mll > 80       && mll <= 100',
     'B9'  : 'mll > 100       && mll <= 150',
     'B10'  : 'mll > 150       && mll <= 200',
-    'B11'  : 'mll > 200       && mll <= 300',
-    'B12'  : 'mll > 300'
+    'B11'  : 'mll > 200',
 }
 
 ##  signal regions
 cuts['ww2l2v_13TeV_sr']  = {
     'expr' : 'sr',
-    # Define the sub-categorization of signal region
     'categories' : dict((iCR+'_'+iSR,catCR[iCR]+' && '+catSR[iSR]) for iCR in catCR.keys() for iSR in catSR.keys())
 }
 
@@ -44,3 +42,6 @@ cuts['ww2l2v_13TeV_top']  = {
     'expr' : 'topcr',
     'categories' : catCR
 }
+
+
+

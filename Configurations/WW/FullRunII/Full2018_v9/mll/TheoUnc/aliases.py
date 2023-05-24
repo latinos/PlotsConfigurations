@@ -40,14 +40,17 @@ aliases['B0'] = {
     'expr' : 'genmll > 20. && genmll <= 30.',
     'samples' : ['WW','ggWW']
 }
+
 aliases['B1'] = {
     'expr' : 'genmll > 30. && genmll <= 40.',
     'samples' : ['WW','ggWW']
 }
+
 aliases['B2'] = {
     'expr' : 'genmll > 40. && genmll <= 45.',
     'samples' : ['WW','ggWW']
 }
+
 aliases['B3'] = {
     'expr' : 'genmll > 45. && genmll <= 50.',
     'samples' : ['WW','ggWW']
@@ -89,12 +92,7 @@ aliases['B10'] = {
 }
 
 aliases['B11'] = {
-    'expr' : 'genmll > 200. && genmll <= 300.',
-    'samples' : ['WW','ggWW']
-}
-
-aliases['B12'] = {
-    'expr' : 'genmll > 300.',
+    'expr' : 'genmll > 200.',
     'samples' : ['WW','ggWW']
 }
 
@@ -102,3 +100,4 @@ aliases['fid'] = {
     'expr' : 'fiducial',
     'samples' : ['WW','ggWW']
 }
+
