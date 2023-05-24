@@ -14,7 +14,6 @@ myfile = uproot.open("/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Su
 Events = myfile["Events"]
 zpt = Events["ZH3l_pTZ"].array()
 dm = Events["AZH_mA_minus_mH"].array() #defined only in SR
-#weights = tree["weight"].array()
 
 ################# weights ############################
 
@@ -103,7 +102,7 @@ dm_cuts = dm[supercut&SR_cut]
 weights_cuts = weights[supercut&SR_cut]
 #################################################################################################
 bins = None
-my_dict = []
+line = []
 def _fit_ellipse(x, y, w, n_std):
     w_pos = w
     if min(w) < 0:
@@ -119,15 +118,8 @@ def _fit_ellipse(x, y, w, n_std):
     z = integrate.quad(utils.normal_distribution, -n_std, n_std)[0]
     width, height = 2 * np.sqrt(vals * chi2.ppf(z, df=2))
     print(mean_x, mean_y, width, height, angle, n_std)
-    dictionary = {
-	"mean_x" : mean_x,
-	"mean_y" : mean_y,
-	"width" : width,
-	"height" : height,
-	"angle" : angle,
-	"n_std" : n_std
-    }
-    my_dict.append(dictionary)
+    lines =  "mA"+" "+"mH"+" "+str(mean_x)+" "+str(mean_y)+" "+str(width)+" "+str(height)+" "+str(angle)+" "+str(n_std)+"\n"
+    line.append(lines)
 
 
 def _compute_ellipses():
@@ -137,27 +129,6 @@ def _compute_ellipses():
           ell = _fit_ellipse(ptz_cuts, dm_cuts, weights_cuts, n_std)
 
 ellipses = _compute_ellipses()
-with open("ellipse.json", "w") as outfile:
-          json.dump(str(my_dict), outfile)
-
-
-
-#def _build_elliptically_binned_hist_fast(x, y, weights=None):
-#    assert isinstance(weights, np.ndarray)
-#    bin_values = [0 for _ in ellipses]
-#    bin_values_sq = [0 for _ in ellipses]
-#    for i, ell in enumerate(ellipses):
-#        sel_in = ell.is_point_included(x, y)
-#        bin_values[i] = np.sum(weights[sel_in])
-#        bin_values_sq[i] = np.sum(weights[sel_in] ** 2)
-#        x = x[~sel_in]
-#        y = y[~sel_in]
-#        weights = weights[~sel_in]
-
-#    return (
-#            np.array(bin_values),
-#            np.array(bin_values_sq),
-#            np.array([0] + [e.n_std for e in ellipses])
-#	 )
-
-#elliptically_binned_hist = _build_elliptically_binned_hist_fast(zpt, dm, weights)
+outfile = open('ellipse.txt', 'w')
+outfile.writelines(line)
+outfile.close()
