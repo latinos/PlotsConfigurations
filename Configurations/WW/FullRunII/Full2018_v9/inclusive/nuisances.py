@@ -372,15 +372,15 @@ values = {
     'ttH_hww'  : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ttH', '125.09','pdf','sm'),
     'ggH_htt'  : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ggH', '125.09','pdf','sm'),
     'qqH_htt'  : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','vbfH','125.09','pdf','sm'),
-    'WH_htt'   : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','WH',  '125.09','pdf','sm'),
-    'ZH_htt'   : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ZH',  '125.09','pdf','sm')
+#    'WH_htt'   : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','WH',  '125.09','pdf','sm'),
+#    'ZH_htt'   : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ZH',  '125.09','pdf','sm')
 }
 
 for cut in allcuts:
     nuisances['pdf_Higgs_'+cut] = {
         'name': 'pdf_Higgs',
         'samples': {
-            'Higgs' : '{:.3f}'.format(sum([float(values[subsample])*sfdict[cut]['Higgs'][subsample] for subsample in values]))
+            'Higgs' : '{:.3f}'.format(sum([float(values[subsample])*sfdict[cut]['Higgs'][subsample] for subsample in values])),
         },
         'type': 'lnN',
         'cuts' : [cut]
@@ -404,8 +404,8 @@ values = {'ggH_hww' : '1.006',
           'ttH_hww' : '1.000', #No value for ttH_hww?
           'ggH_htt' : '1.006',
           'qqH_htt' : '1.002',
-          'WH_htt'  : '1.003',
-          'ZH_htt'  : '1.002'
+#          'WH_htt'  : '1.003',
+#          'ZH_htt'  : '1.002'
          }
 
 for cut in allcuts:
@@ -561,8 +561,8 @@ values = {
     'ttH_hww'  : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ttH' ,'125.09','scale','sm'),
     'ggH_htt'  : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ggH' ,'125.09','scale','sm'),
     'qqH_htt'  : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','vbfH','125.09','scale','sm'),
-    'WH_htt'   : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','WH'  ,'125.09','scale','sm'),
-    'ZH_htt'   : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ZH'  ,'125.09','scale','sm')
+#    'WH_htt'   : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','WH'  ,'125.09','scale','sm'),
+#    'ZH_htt'   : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ZH'  ,'125.09','scale','sm')
 }
 
 for cut in allcuts:
@@ -592,8 +592,8 @@ values = {'ggH_hww' : '1.012',
           'ttH_hww' : '1.000', #Missing value for ttH
           'ggH_htt' : '1.012',
           'qqH_htt' : '1.003',
-          'WH_htt'  : '1.010',
-          'ZH_htt'  : '1.015'
+#          'WH_htt'  : '1.010',
+#          'ZH_htt'  : '1.015'
          }
 
 for cut in allcuts:
