@@ -71,9 +71,9 @@ for era in ["2016_HIPM","2016_noHIPM","2017","2018"]:
                 continue
 
             for subsample in subsamples:
-                h_nom  = f0.Get("presel/events/histo_%s_%s"%(sample,subsample))
-                h_up   = f0.Get("presel/events/histo_%s_%s_%sUp"%(sample,subsample,nuisance))
-                h_down = f0.Get("presel/events/histo_%s_%s_%sDown"%(sample,subsample,nuisance))
+                h_nom  = f0.Get("presel/nCleanGenJet/histo_%s_%s"%(sample,subsample))
+                h_up   = f0.Get("presel/nCleanGenJet/histo_%s_%s_%sUp"%(sample,subsample,nuisance))
+                h_down = f0.Get("presel/nCleanGenJet/histo_%s_%s_%sDown"%(sample,subsample,nuisance))
                 norm_up   = 1.0 if h_up.Integral() == 0 else h_nom.Integral()/h_up.Integral()
                 norm_down = 1.0 if h_down.Integral() == 0 else h_nom.Integral()/h_down.Integral()
             
