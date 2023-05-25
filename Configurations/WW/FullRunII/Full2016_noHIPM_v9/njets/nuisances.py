@@ -223,6 +223,19 @@ for js in jes_systs:
       'folderDown': folderdo,
       'AsLnN': '0'
   }
+
+##### Jet energy resolution
+nuisances['JER'] = {
+    'name': 'CMS_res_j_2017',
+    'kind': 'suffix',
+    'type': 'shape',
+    'mapUp': 'JERup',
+    'mapDown': 'JERdo',
+    'samples': dict((skey, ['1', '1']) for skey in mc),
+    'folderUp': 'root://eoscms.cern.ch/'+makeMCDirectory('JERup_suffix'),
+    'folderDown': 'root://eoscms.cern.ch/'+makeMCDirectory('JERdo_suffix'),
+    #'AsLnN': '1'
+}
 '''
 ##### MET energy scale
 
@@ -259,7 +272,7 @@ nuisances['PU'] = {
         'WW'      : ['1.001983*(puWeightUp/puWeight)', '0.998168*(puWeightDown/puWeight)'],
         'ggWW'    : ['1.002042*(puWeightUp/puWeight)', '0.997943*(puWeightDown/puWeight)'],
         'Vg'      : ['1.000142*(puWeightUp/puWeight)', '1.002914*(puWeightDown/puWeight)'],
-        'WZ'      : ['0.995965*(puWeightUp/puWeight)', '1.002645*(puWeightDown/puWeight)'],
+        'WZ'      : ['0.997637*(puWeightUp/puWeight)', '1.003244*(puWeightDown/puWeight)'],
         'ZZ'      : ['0.993454*(puWeightUp/puWeight)', '1.006092*(puWeightDown/puWeight)'],
         'VVV'     : ['0.991182*(puWeightUp/puWeight)', '1.010841*(puWeightDown/puWeight)'],
         'top'     : ['1.000434*(puWeightUp/puWeight)', '0.999549*(puWeightDown/puWeight)'],
@@ -479,9 +492,9 @@ nuisances['QCDscale_WW']  = {
 
 ## Factors computed to renormalize the top scale variations such that the integral is not changed in each RECO jet bin (we have rateParams for that)
 topScaleNormFactors = {
-    '0j' : {'Alt$(LHEScaleWeight[0],1)' : 1.075395, 'Alt$(LHEScaleWeight[1],1)' : 1.075257, 'Alt$(LHEScaleWeight[3],1)' : 1.002401, 'Alt$(LHEScaleWeight[5],1)' : 1.000729, 'Alt$(LHEScaleWeight[7],1)' : 0.924480, 'Alt$(LHEScaleWeight[8],1)' : 0.922940},
-    '1j' : {'Alt$(LHEScaleWeight[0],1)' : 1.085455, 'Alt$(LHEScaleWeight[1],1)' : 1.081093, 'Alt$(LHEScaleWeight[3],1)' : 1.008452, 'Alt$(LHEScaleWeight[5],1)' : 0.995362, 'Alt$(LHEScaleWeight[7],1)' : 0.919194, 'Alt$(LHEScaleWeight[8],1)' : 0.911532},
-    '2j' : {'Alt$(LHEScaleWeight[0],1)' : 1.123796, 'Alt$(LHEScaleWeight[1],1)' : 1.104903, 'Alt$(LHEScaleWeight[3],1)' : 1.023195, 'Alt$(LHEScaleWeight[5],1)' : 0.982324, 'Alt$(LHEScaleWeight[7],1)' : 0.902848, 'Alt$(LHEScaleWeight[8],1)' : 0.882591},
+    '0j' : {'Alt$(LHEScaleWeight[0],1)' : 1.079774, 'Alt$(LHEScaleWeight[1],1)' : 1.078504, 'Alt$(LHEScaleWeight[3],1)' : 1.004122, 'Alt$(LHEScaleWeight[5],1)' : 0.999216, 'Alt$(LHEScaleWeight[7],1)' : 0.922250, 'Alt$(LHEScaleWeight[8],1)' : 0.918952},
+    '1j' : {'Alt$(LHEScaleWeight[0],1)' : 1.091591, 'Alt$(LHEScaleWeight[1],1)' : 1.084766, 'Alt$(LHEScaleWeight[3],1)' : 1.011066, 'Alt$(LHEScaleWeight[5],1)' : 0.993043, 'Alt$(LHEScaleWeight[7],1)' : 0.916691, 'Alt$(LHEScaleWeight[8],1)' : 0.906746},
+    '2j' : {'Alt$(LHEScaleWeight[0],1)' : 1.106637, 'Alt$(LHEScaleWeight[1],1)' : 1.094329, 'Alt$(LHEScaleWeight[3],1)' : 1.018148, 'Alt$(LHEScaleWeight[5],1)' : 0.986725, 'Alt$(LHEScaleWeight[7],1)' : 0.909026, 'Alt$(LHEScaleWeight[8],1)' : 0.892185},
     '3j' : {'Alt$(LHEScaleWeight[0],1)' : 1.147051, 'Alt$(LHEScaleWeight[1],1)' : 1.119262, 'Alt$(LHEScaleWeight[3],1)' : 1.030128, 'Alt$(LHEScaleWeight[5],1)' : 0.976271, 'Alt$(LHEScaleWeight[7],1)' : 0.894252, 'Alt$(LHEScaleWeight[8],1)' : 0.869203},
 }
 
@@ -624,4 +637,3 @@ for n in nuisances.values():
     n['skipCMS'] = 1
 
 #print ' '.join(nuis['name'] for nname, nuis in nuisances.iteritems() if nname not in ('lumi', 'stat'))
-

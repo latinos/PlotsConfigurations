@@ -223,6 +223,19 @@ for js in jes_systs:
       'reweight' : ['btagSF'+js.replace('JES','jes')+'up/btagSF','btagSF'+js.replace('JES','jes')+'down/btagSF'],
       'AsLnN': '0'
   }
+
+##### Jet energy resolution
+nuisances['JER'] = {
+    'name': 'CMS_res_j_2016',
+    'kind': 'suffix',
+    'type': 'shape',
+    'mapUp': 'JERup',
+    'mapDown': 'JERdo',
+    'samples': dict((skey, ['1', '1']) for skey in mc),
+    'folderUp': 'root://eoscms.cern.ch/'+makeMCDirectory('JERup_suffix'),
+    'folderDown': 'root://eoscms.cern.ch/'+makeMCDirectory('JERdo_suffix'),
+    #'AsLnN': '1'
+}
 '''
 ##### MET energy scale
 
@@ -259,7 +272,7 @@ nuisances['PU'] = {
         'WW'      : ['1.005842*(puWeightUp/puWeight)', '0.994781*(puWeightDown/puWeight)'],
         'ggWW'    : ['1.008167*(puWeightUp/puWeight)', '0.992452*(puWeightDown/puWeight)'],
         'Vg'      : ['0.995811*(puWeightUp/puWeight)', '1.005036*(puWeightDown/puWeight)'],
-        'WZ'      : ['0.997658*(puWeightUp/puWeight)', '1.002301*(puWeightDown/puWeight)'],
+        'WZ'      : ['0.996220*(puWeightUp/puWeight)', '1.003307*(puWeightDown/puWeight)'],
         'ZZ'      : ['1.001171*(puWeightUp/puWeight)', '0.998350*(puWeightDown/puWeight)'],
         'VVV'     : ['1.005770*(puWeightUp/puWeight)', '0.996468*(puWeightDown/puWeight)'],
         'top'     : ['1.005322*(puWeightUp/puWeight)', '0.995195*(puWeightDown/puWeight)'],
@@ -479,9 +492,9 @@ nuisances['QCDscale_WW']  = {
 
 ## Factors computed to renormalize the top scale variations such that the integral is not changed in each RECO jet bin (we have rateParams for that)
 topScaleNormFactors = {
-    '0j' : {'Alt$(LHEScaleWeight[0],1)' : 1.076370, 'Alt$(LHEScaleWeight[1],1)' : 1.075482, 'Alt$(LHEScaleWeight[3],1)' : 1.003165, 'Alt$(LHEScaleWeight[5],1)' : 0.999958, 'Alt$(LHEScaleWeight[7],1)' : 0.924178, 'Alt$(LHEScaleWeight[8],1)' : 0.921896},
-    '1j' : {'Alt$(LHEScaleWeight[0],1)' : 1.085799, 'Alt$(LHEScaleWeight[1],1)' : 1.081509, 'Alt$(LHEScaleWeight[3],1)' : 1.008318, 'Alt$(LHEScaleWeight[5],1)' : 0.995526, 'Alt$(LHEScaleWeight[7],1)' : 0.919022, 'Alt$(LHEScaleWeight[8],1)' : 0.911542},
-    '2j' : {'Alt$(LHEScaleWeight[0],1)' : 1.123881, 'Alt$(LHEScaleWeight[1],1)' : 1.104965, 'Alt$(LHEScaleWeight[3],1)' : 1.023234, 'Alt$(LHEScaleWeight[5],1)' : 0.982333, 'Alt$(LHEScaleWeight[7],1)' : 0.902790, 'Alt$(LHEScaleWeight[8],1)' : 0.882525},
+    '0j' : {'Alt$(LHEScaleWeight[0],1)' : 1.080752, 'Alt$(LHEScaleWeight[1],1)' : 1.078573, 'Alt$(LHEScaleWeight[3],1)' : 1.004963, 'Alt$(LHEScaleWeight[5],1)' : 0.998516, 'Alt$(LHEScaleWeight[7],1)' : 0.922189, 'Alt$(LHEScaleWeight[8],1)' : 0.918228},
+    '1j' : {'Alt$(LHEScaleWeight[0],1)' : 1.091438, 'Alt$(LHEScaleWeight[1],1)' : 1.084930, 'Alt$(LHEScaleWeight[3],1)' : 1.010796, 'Alt$(LHEScaleWeight[5],1)' : 0.993327, 'Alt$(LHEScaleWeight[7],1)' : 0.916617, 'Alt$(LHEScaleWeight[8],1)' : 0.906916},
+    '2j' : {'Alt$(LHEScaleWeight[0],1)' : 1.106816, 'Alt$(LHEScaleWeight[1],1)' : 1.094275, 'Alt$(LHEScaleWeight[3],1)' : 1.018379, 'Alt$(LHEScaleWeight[5],1)' : 0.986547, 'Alt$(LHEScaleWeight[7],1)' : 0.909031, 'Alt$(LHEScaleWeight[8],1)' : 0.892015},
     '3j' : {'Alt$(LHEScaleWeight[0],1)' : 1.147652, 'Alt$(LHEScaleWeight[1],1)' : 1.119822, 'Alt$(LHEScaleWeight[3],1)' : 1.030119, 'Alt$(LHEScaleWeight[5],1)' : 0.976332, 'Alt$(LHEScaleWeight[7],1)' : 0.893917, 'Alt$(LHEScaleWeight[8],1)' : 0.868943},
 }
 

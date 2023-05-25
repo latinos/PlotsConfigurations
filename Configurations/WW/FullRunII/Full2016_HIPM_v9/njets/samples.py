@@ -146,7 +146,7 @@ samples['WWewk'] = {
 }
 
 ######## Vg(S) ########
-'''
+
 files = nanoGetSampleFiles(mcDirectory, 'Wg_AMCNLOFXFX_01J') + \
         nanoGetSampleFiles(mcDirectory, 'WZTo3LNu_mllmin0p1') + \
         nanoGetSampleFiles(mcDirectory, 'ZGToLLG')
@@ -159,7 +159,7 @@ samples['Vg'] = {
 
 addSampleWeight(samples,'Vg','Wg_AMCNLOFXFX_01J', 'gstarLow*0.94*(Gen_ZGstar_mass < 0.1)')
 addSampleWeight(samples,'Vg','WZTo3LNu_mllmin0p1','gstarLow*0.94*(Gen_ZGstar_mass > 0.1)*1.138*0.601644*58.59/4.666') #Correction for wrong xsec
-'''
+
 ######## WZ ########
 
 files = nanoGetSampleFiles(mcDirectory, 'WZTo3LNu_mllmin0p1') + \

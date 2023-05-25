@@ -279,11 +279,11 @@ nuisances['PU'] = {
         'ggWW'    : ['1.002508*(puWeightUp/puWeight)', '0.997212*(puWeightDown/puWeight)'],
         'WWewk'   : ['1.000733*(puWeightUp/puWeight)', '0.999560*(puWeightDown/puWeight)'],
         'Vg'      : ['0.999480*(puWeightUp/puWeight)', '1.007483*(puWeightDown/puWeight)'],
-        'WZ'      : ['0.992706*(puWeightUp/puWeight)', '1.006041*(puWeightDown/puWeight)'],
+        'WZ'      : ['0.994217*(puWeightUp/puWeight)', '1.006324*(puWeightDown/puWeight)'],
         'ZZ'      : ['0.992288*(puWeightUp/puWeight)', '1.007397*(puWeightDown/puWeight)'],
         'VVV'     : ['1.002746*(puWeightUp/puWeight)', '0.996125*(puWeightDown/puWeight)'],
         'top'     : ['1.000097*(puWeightUp/puWeight)', '0.999872*(puWeightDown/puWeight)'],
-        'Higgs'   : ['1.002013*(puWeightUp/puWeight)', '0.998205*(puWeightDown/puWeight)'],
+        'Higgs'   : ['1.002063*(puWeightUp/puWeight)', '0.998170*(puWeightDown/puWeight)'],
     },
     'AsLnN': '1',
 }
@@ -502,9 +502,9 @@ nuisances['QCDscale_WW']  = {
 
 ## Factors computed to renormalize the top scale variations such that the integral is not changed in each RECO jet bin (we have rateParams for that)
 topScaleNormFactors = {
-    '0j' : {'Alt$(LHEScaleWeight[0],1)' : 1.065948, 'Alt$(LHEScaleWeight[1],1)' : 1.069469, 'Alt$(LHEScaleWeight[3],1)' : 0.997454, 'Alt$(LHEScaleWeight[5],1)' : 1.005262, 'Alt$(LHEScaleWeight[7],1)' : 0.929835, 'Alt$(LHEScaleWeight[8],1)' : 0.933293},
-    '1j' : {'Alt$(LHEScaleWeight[0],1)' : 1.078308, 'Alt$(LHEScaleWeight[1],1)' : 1.076672, 'Alt$(LHEScaleWeight[3],1)' : 1.004510, 'Alt$(LHEScaleWeight[5],1)' : 0.999019, 'Alt$(LHEScaleWeight[7],1)' : 0.923437, 'Alt$(LHEScaleWeight[8],1)' : 0.919897},
-    '2j' : {'Alt$(LHEScaleWeight[0],1)' : 1.120997, 'Alt$(LHEScaleWeight[1],1)' : 1.103084, 'Alt$(LHEScaleWeight[3],1)' : 1.021865, 'Alt$(LHEScaleWeight[5],1)' : 0.983541, 'Alt$(LHEScaleWeight[7],1)' : 0.904450, 'Alt$(LHEScaleWeight[8],1)' : 0.885537},
+    '0j' : {'Alt$(LHEScaleWeight[0],1)' : 1.070706, 'Alt$(LHEScaleWeight[1],1)' : 1.072709, 'Alt$(LHEScaleWeight[3],1)' : 0.999526, 'Alt$(LHEScaleWeight[5],1)' : 1.003378, 'Alt$(LHEScaleWeight[7],1)' : 0.927482, 'Alt$(LHEScaleWeight[8],1)' : 0.928845},
+    '1j' : {'Alt$(LHEScaleWeight[0],1)' : 1.084841, 'Alt$(LHEScaleWeight[1],1)' : 1.080657, 'Alt$(LHEScaleWeight[3],1)' : 1.007401, 'Alt$(LHEScaleWeight[5],1)' : 0.996462, 'Alt$(LHEScaleWeight[7],1)' : 0.920565, 'Alt$(LHEScaleWeight[8],1)' : 0.914410},
+    '2j' : {'Alt$(LHEScaleWeight[0],1)' : 1.104168, 'Alt$(LHEScaleWeight[1],1)' : 1.092630, 'Alt$(LHEScaleWeight[3],1)' : 1.016936, 'Alt$(LHEScaleWeight[5],1)' : 0.987836, 'Alt$(LHEScaleWeight[7],1)' : 0.910617, 'Alt$(LHEScaleWeight[8],1)' : 0.895069},
     '3j' : {'Alt$(LHEScaleWeight[0],1)' : 1.144993, 'Alt$(LHEScaleWeight[1],1)' : 1.117968, 'Alt$(LHEScaleWeight[3],1)' : 1.029172, 'Alt$(LHEScaleWeight[5],1)' : 0.977138, 'Alt$(LHEScaleWeight[7],1)' : 0.895353, 'Alt$(LHEScaleWeight[8],1)' : 0.871233},
 }
 
