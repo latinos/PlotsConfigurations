@@ -53,7 +53,7 @@ variables['ptjet1']     = { 'name' : 'CleanJet_pt[1]',
 
 
 variables['ptz']        = { 'name' : 'ZH3l_pTZ',
-                            'range' : (20,0,1000),
+                            'range' : (6,0,1000),
                             'xaxis' : 'ptz',
                             'fold' : 3 
                         }
@@ -65,32 +65,28 @@ variables['ChiSquare']  = { 'name' : 'AZH_ChiSquare',
                          }
 
 
-variables['mA-mH']  = { 'name' : 'AZH_mA_minus_mH',
-                            'range' : (20,0,1000),
+variables['DeltaM']  = { 'name' : 'AZH_mA_minus_mH',
+                            'range' : (6,0,1000),
 			    'xaxis' : 'm_{A}-m_{H}',
+			    'cuts' : [cut for cut in cuts if '1j' not in cut],
 			    'fold'  : 3
                          }
 
-variables['mA']  = { 'name' : 'AZH_Amass',
-                            'range' : (20,0,2500),
-			    'xaxis' : 'm_{A}',
-			    'fold'  : 3
-                        }
-
-variables['mH']  = { 'name' : 'AZH_Hmass',
-                            'range' : (20,0,2500),
-			    'xaxis' : 'm_{H}',
-			    'fold'  : 3
-                        }
+variables['DeltaM_onebjet'] = { 'name' : 'AZH_mA_minus_mH_onebjet',
+                       'range' : (6,0,1000),
+		       'xaxis' : 'm_{A}-m_{H}',
+		       'cuts' : [cut for cut in cuts if '1j' in cut],
+		       'fold'  : 3
+		}
 
 
 variables['ptzVSdeltam']  = { 'name' : 'ZH3l_pTZ:AZH_mA_minus_mH',
-                            'range' : ([0,100,200,300,400,500,600,700,800,900,1000],[0,100,200,300,400,500,600,700,800,900,1000],),
+                            'range' : ([0,100,200,300,400,600,600,1000],[0,200,300,400,500,600,800],),
 			    'xaxis' : 'ptz:m_{A}-m_{H}',
 			    'fold'  : 3,
-			    'doWeight' : 1,
-			    'binX' : 10,
-			    'binY' : 10
+			#    'doWeight' : 1,
+			#    'binX' : 10,
+			#    'binY' : 10
 }
 #variables['tree'] = { 'name' : 'tree',
 #                       'tree': {'ZH3l_mTlmetjj_test':'ZH3l_mTlmetjj_test', 'ZH3l_mTlmetjj':'ZH3l_mTlmetjj', 'AZH_Zmass':'AZH_Zmass', 'ZH3l_checkmZ':'ZH3l_checkmZ','AZH_Amass':'AZH_Amass', 'AZH_Amass_test':'AZH_Amass_test', 'AZH_ChiSquare':'AZH_ChiSquare', 'AZH_ChiSquare_test':'AZH_ChiSquare_test'},

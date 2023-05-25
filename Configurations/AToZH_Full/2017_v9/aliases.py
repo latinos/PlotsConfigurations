@@ -114,6 +114,11 @@ aliases['AZH_Topleptonic'] = {
     'args': ("AZH_Topleptonic")
 }
 
+aliases['AZH_mA_minus_mH_onebjet'] = {
+    'class' : 'AZH_patch',
+    'args' : ("AZH_mA_minus_mH_onebjet")
+}
+
 #######################
 ### SFs for tthMVA  ###
 #######################
