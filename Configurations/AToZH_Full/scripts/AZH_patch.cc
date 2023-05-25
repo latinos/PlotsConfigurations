@@ -142,6 +142,7 @@ AZH_patch::evaluate(unsigned)
     TLorentzVector bJetHadronic_best_onebjet;
     TLorentzVector bJetLeptonic_best_onebjet;
     TLorentzVector AZH_Neutrino_best_onebjet;
+if (AZH_bJet_4vecId.size()==1){
     for (TLorentzVector Neutrino : Neutrinos) {
 	int ibJet2 = 0; 
 	std::vector<TLorentzVector> WJets;
@@ -181,7 +182,7 @@ AZH_patch::evaluate(unsigned)
 	    }
 	}
     }
-
+}
 
 
     unsigned nJet = 0;
@@ -208,7 +209,7 @@ AZH_patch::evaluate(unsigned)
     }
 
     else if (variable == "AZH_mA_minus_mH_onebjet"){
-	if (nJet < 4 || nbJet < 1) return -9999.0;
+	if (nJet < 4 || nbJet != 1) return -9999.0;
 	return (XLepton + AZH_Neutrino_best_onebjet + bJetLeptonic_best_onebjet + bJetHadronic_best_onebjet + WJet1_best_onebjet + WJet2_best_onebjet + ZLepton1 + ZLepton2).M() - (XLepton + AZH_Neutrino_best_onebjet + bJetLeptonic_best_onebjet + bJetHadronic_best_onebjet + WJet1_best_onebjet + WJet2_best_onebjet).M();
     }
 
