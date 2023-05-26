@@ -12,7 +12,7 @@ class Ellipse {
 public:
   Ellipse() {}; //default constructor to make arrays work
   Ellipse(float mean_x_, float mean_y_, float width_, float height_, float angle_, int n_std_);
-  bool is_point_included(float x, double y);
+  bool is_point_included(float x, float y);
 
 protected:
   float mean_x;
@@ -32,7 +32,7 @@ Ellipse::Ellipse(float mean_x_, float mean_y_, float width_, float height_, floa
   n_std{n_std_}
 {}
 
-bool Ellipse::is_point_included(float x, double y){
+bool Ellipse::is_point_included(float x, float y){
   float rad_angle = (M_PI / 180.0) * angle;
   float semi_w = width / 2;
   float semi_h = height / 2;
@@ -58,8 +58,8 @@ public:
 
 protected:
   void bindTree_(multidraw::FunctionLibrary&) override;
-  TTreeReaderValue<double>* AZH_mA_minus_mH;
-  TTreeReaderValue<double>* AZH_mA_minus_mH_onebjet;
+  FloatValueReader* AZH_mA_minus_mH;
+  FloatValueReader* AZH_mA_minus_mH_onebjet;
   FloatValueReader* ZH3l_pTZ;
   float mA;
   float mH;
@@ -76,8 +76,8 @@ elliptical_bin::elliptical_bin(const float mA_, const float mH_, const bool ison
   // - Each mA, mH point will have 6 ellipses, corresponding to 6 consecutive lines in the .txt file
   std::string cmssw_base = std::getenv("CMSSW_BASE");
   std::string filename;
-  if (isonebjet) filename = cmssw_base + "/src/PlotsConfigurations/Configurations/AToZH_Full/scripts/ellipse.txt"; //TEMP update with correct filename
-  else           filename = cmssw_base + "/src/PlotsConfigurations/Configurations/AToZH_Full/scripts/ellipse.txt";
+  if (isonebjet) filename = cmssw_base + "/src/PlotsConfigurations/Configurations/AToZH_Full/scripts/ellipse_onebjet.txt"; //TEMP update with correct filename
+  else           filename = cmssw_base + "/src/PlotsConfigurations/Configurations/AToZH_Full/scripts/ellipse_breq.txt";
   std::ifstream ifs(filename);
 
   std::string line;
@@ -101,7 +101,7 @@ elliptical_bin::elliptical_bin(const float mA_, const float mH_, const bool ison
 }
 
 double elliptical_bin::evaluate(unsigned){
-  double dM;
+  float dM;
   if (isonebjet) dM = *AZH_mA_minus_mH_onebjet->Get();
   else           dM = *AZH_mA_minus_mH->Get();
   float ptZ{*ZH3l_pTZ->Get()};
