@@ -66,7 +66,7 @@ groupPlot['Wjets'] = {
     'color': 921,      # kGray + 1
     'samples'  : ['Wjets'],
 }
-
+#
 #for counter, MX in enumerate(plotmasses):
 #    groupPlot['Higgs{}'.format(MX)] = {
 #        'nameHR'  : 'Higgs {}'.format(MX),
@@ -75,7 +75,13 @@ groupPlot['Wjets'] = {
 #        'samples' : ['GGH_{}_RelW002'.format(MX), 'QQH_{}_RelW002'.format(MX)] #'GGHINT_{}_RelW002'.format(MX), 'QQH_{}_RelW002'.format(MX),'QQHINT_{}_RelW002'.format(MX), 'QQHSBI_{}_RelW002'.format(MX), 'GGHSBI_{}_RelW002'.format(MX)]
 #    }
 
-
+#for counter, MX in enumerate(plotmasses):
+#    groupPlot['GGH{}'.format(MX)] = {
+#        'nameHR'  : 'Higgs GGH {}'.format(MX),
+#        'isSignal': 1,
+#        'color'   : counter+5,
+#        'samples' : ['GGH_{}_RelW002'.format(MX)] #'GGHINT_{}_RelW002'.format(MX), 'QQH_{}_RelW002'.format(MX),'QQHINT_{}_RelW002'.format(MX), 'QQHSBI_{}_RelW002'.format(MX), 'GGHSBI_{}_RelW002'.format(MX)]
+#    }
 
 
 
@@ -128,12 +134,12 @@ plot['top'] = {
 }
 
 
-#plot['WW']  = {
-#    'color': 851, # kAzure -9
-#    'isSignal' : 0,
-#    'isData'   : 0,
-#    'scale'    : 1.0
-#}
+plot['WW']  = {
+    'color': 851, # kAzure -9
+    'isSignal' : 0,
+    'isData'   : 0,
+    'scale'    : 1.0
+}
 
 plot['ggWW']  = {
     'color': 850, # kAzure -10
@@ -274,7 +280,7 @@ plot['WH_htt']  = {
 #        'color'   : 1,
 #        'isSignal': 1,
 #        'isData'  : 0,
-#        'scale'   : 1.0 * xs_ggf
+#        'scale'   : 1.0 * xs_vbf
 #    }
 #   # plot['QQHINT_{}_RelW002'.format(MX)] = {
 #   #     'nameHR'  : 'qqH{}'.format(MX),
@@ -295,7 +301,7 @@ plot['WH_htt']  = {
 #        'color'   : 1,
 #        'isSignal': 1,
 #        'isData'  : 0,
-#        'scale'   : 1.0 * xs_vbf
+#        'scale'   : 1.0 * xs_ggf
 #    }
 #   # plot['GGHINT_{}_RelW002'.format(MX)] = {
 #   #     'nameHR'  : 'ggH{}'.format(MX),

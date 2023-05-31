@@ -11,7 +11,7 @@ outputDir = 'rootFile_resolved_2018'
 aliasesFile = 'aliases_medmass.py'#aliases_highmass to use the high mass trained DNN
 
 # file with list of variables
-variablesFile = 'variables_medmass.py'
+variablesFile = 'variables_fit.py'
 # variablesFile = 'variablesPlot.py'
 # variablesFile = 'variablesLimits.py'
 
@@ -29,11 +29,11 @@ lumi = 59.7
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'Plots_Med_CRs_Apr'
+outputDirPlots = 'Plots_CRs'
 
 
 # used by mkDatacards to define output directory for datacards
-outputDirDatacard = 'Datacards_High_Apr'
+outputDirDatacard = 'Datacards_good'
 
 # structure file for datacard
 structureFile = 'structure_medmass.py'

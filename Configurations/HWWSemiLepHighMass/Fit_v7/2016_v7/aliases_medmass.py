@@ -50,6 +50,7 @@ aliases['mjjGen_max'] = {
     'linesToAdd' : ['.L %s/../patches/GetGenObservables.cc+' % configurations],
     'class' : 'GetGenObservables',
     'args': 'mjjmax',
+    'samples': mc,
 }
 
 aliases['mjjGen_OTF'] = {
@@ -420,7 +421,7 @@ aliases['gstarHigh'] = {
 
 aliases['GenLHE'] = {
 'expr': '(Sum$(LHEPart_pdgId == 21) == 0)',
-'samples': [x for x in samples if x in ['qqWWqq', 'WW2J'] or 'QQHSBI' in x]
+'samples': [x for x in samples if x in ['qqWWqq', 'WW2J','WW'] or 'QQHSBI' in x]
 }
 
 
@@ -887,36 +888,36 @@ aliases['DY_LO_pTllrw'] = {
 
 
 
-mc_sbi = [skey for skey in samples if "SBI" in skey]
-aliases['CheckforSM'] = {
-    'linesToAdd' : [
-        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
-        '.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/CheckForSM125.cc+' % os.getenv('CMSSW_BASE')
-    ],
-    'expr': 'CheckforSM()',
-    'samples': mc_sbi
-}
-
-aliases['SBI_isSMggh'] = {
-    'expr': '( abs(Xsec-1.091343e+00) < 1.0e-06 && CheckforSM )', # With protection against "HM" 125 sample
-    'samples': mc_sbi
-}
-aliases['SBI_isSMVBF'] = {
-    'expr': '( abs(Xsec-8.496211e-02) < 1.0e-08 && CheckforSM )', # With protection against "HM" 125 sample
-    'samples': mc_sbi
-}
-aliases['SBI_isggWW'] = {
-    'expr': '( abs(Xsec-6.387000e-02) < 1.0e-08 )',
-    'samples': mc_sbi
-}
-aliases['SBI_isqqWWqq'] = {
-    'expr': '( abs(Xsec-2.160000e+00) < 1.0e-06)',
-    'samples': mc_sbi
-}
-aliases['SBI_isHM'] = {
-    'expr': '( !SBI_isSMggh && !SBI_isSMVBF && !SBI_isggWW && !SBI_isqqWWqq )',
-    'samples': mc_sbi
-}
+#mc_sbi = [skey for skey in samples if "SBI" in skey]
+#aliases['CheckforSM'] = {
+#    'linesToAdd' : [
+#        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+#        '.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/CheckForSM125.cc+' % os.getenv('CMSSW_BASE')
+#    ],
+#    'expr': 'CheckforSM()',
+#    'samples': mc_sbi
+#}
+#
+#aliases['SBI_isSMggh'] = {
+#    'expr': '( abs(Xsec-1.091343e+00) < 1.0e-06 && CheckforSM )', # With protection against "HM" 125 sample
+#    'samples': mc_sbi
+#}
+#aliases['SBI_isSMVBF'] = {
+#    'expr': '( abs(Xsec-1.772666e-01) < 1.0e-08 && CheckforSM )', # With protection against "HM" 125 sample
+#    'samples': mc_sbi
+#}
+#aliases['SBI_isggWW'] = {
+#    'expr': '( abs(Xsec-6.387000e-02) < 1.0e-08 )',
+#    'samples': mc_sbi
+#}
+#aliases['SBI_isqqWWqq'] = {
+#    'expr': '( abs(Xsec-2.160000e+00) < 1.0e-06)',
+#    'samples': mc_sbi
+#}
+#aliases['SBI_isHM'] = {
+#    'expr': '( !SBI_isSMggh && !SBI_isSMVBF && !SBI_isggWW && !SBI_isqqWWqq )',
+#    'samples': mc_sbi
+#}
 
 aliases["nJetHigh2"]={
     'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/getNJet.cc+'  % os.getenv('CMSSW_BASE')],
@@ -931,7 +932,7 @@ aliases['kfact'] = {
         '.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/kFactorUnc2.cc+' % os.getenv('CMSSW_BASE')
     ],  
     'class': 'kFactorUnc2',
-    'args': ('PlotsConfigurations/Configurations/HWWSemiLepHighMass/wjets_kfactor_DH/HT_to_NLO_QCD_k_factors_all.root', 'k_factor_2016','PlotsConfigurations/Configurations/HWWSemiLepHighMass/wjets_kfactor_DH/HT_to_NLO_QCD_k_factors_all.root', 'k_factor_2016'),
+    'args': ('PlotsConfigurations/Configurations/HWWSemiLepHighMass/wjets_kfactor_DH/HT_to_NLO_QCD_k_factors_Boo_2016.root', 'k_factor_2016','PlotsConfigurations/Configurations/HWWSemiLepHighMass/wjets_kfactor_DH/HT_to_NLO_QCD_k_factors_noBoo_2016.root', 'k_factor_2016'),
     'samples': 'Wjets', 
 }
 
@@ -1373,6 +1374,42 @@ aliases['gghlike_high'] = {
 #    'args': ('PlotsConfigurations/Configurations/HWWSemiLepHighMass/wjets_kfactor_DH/HT_to_NLO_QCD_k_factors_mjj.root', 'k_factor_2016'),
 #    'samples': 'Wjets', 
 #}
+
+mc_sbi = [skey for skey in samples if "SBI" in skey]
+aliases['CheckforSM'] = {
+    'linesToAdd' : [
+        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+        '.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/CheckForSM125.cc+' % os.getenv('CMSSW_BASE')
+    ],
+    'expr': 'CheckforSM()',
+    'samples': mc_sbi
+}
+
+aliases['SBI_isSMggh'] = {
+    'expr': '( abs(Xsec-2.2769997e+00) < 1.0e-06 && CheckforSM )', # With protection against "HM" 125 sample
+    'samples': mc_sbi
+}
+aliases['SBI_isSMVBF'] = {
+    'expr': '( abs(Xsec-1.772666e-01) < 1.0e-08 && CheckforSM )', # With protection against "HM" 125 sample
+    'samples': mc_sbi
+}
+aliases['SBI_isggWW'] = {
+    'expr': '( abs(Xsec-1.7956000e+00) < 1.0e-08 )',
+    'samples': mc_sbi
+}
+aliases['SBI_isqqWWqq'] = {
+    'expr': '(( abs(Xsec-5.5480e+00) < 1.0e-06) || ( abs(Xsec-5.5670e+00) < 1.0e-06))',
+    'samples': mc_sbi
+}
+aliases['SBI_isHM'] = {
+    'expr': '( !SBI_isSMggh && !SBI_isSMVBF && !SBI_isggWW && !SBI_isqqWWqq )',
+    'samples': mc_sbi
+}
+
+aliases["nJetHigh2"]={
+    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/getNJet.cc+'  % os.getenv('CMSSW_BASE')],
+    'class': 'getNJet',
+}
 
 
 #aliases['DNN_out_isVBF'] = {

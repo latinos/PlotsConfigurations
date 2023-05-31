@@ -17,10 +17,11 @@ LepCats['incl_']='( ((abs(Lepton_pdgId[0])==11) && Lepton_pt[0]>33 \
 LepCats_CR={}
 LepCats_CR['incl_']='( ((abs(Lepton_pdgId[0])==11) && Lepton_pt[0]>33 \
                  || (abs(Lepton_pdgId[0])==13) && Lepton_pt[0]>30))'
-LepCats_CR['ElCh_']='( (abs(Lepton_pdgId[0])==11) && Lepton_pt[0]>33)'
-LepCats_CR['MuCh_']='( (abs(Lepton_pdgId[0])==13) && Lepton_pt[0]>30)'
+#LepCats_CR['ElCh_']='( (abs(Lepton_pdgId[0])==11) && Lepton_pt[0]>33)'
+#LepCats_CR['MuCh_']='( (abs(Lepton_pdgId[0])==13) && Lepton_pt[0]>30)'
 
 BoostProcCats_H={}
+#BoostProcCats_H['']='1'
 BoostProcCats_H['isVBF_H']='(vbflike_high[0] > 0)'
 BoostProcCats_H['isGGH_H']='(gghlike_high[0] > 0)'
 BoostProcCats_H['isBKG_H']='(bkglike_high[0] > 0)'
@@ -94,7 +95,7 @@ ResCats['ResolvedTopCR_']='(1 \
                        && resolvedSignalWMass[0] \
                        && bReq[0])'
 
-###=== Define cuts ===###
+#####=== Define cuts ===###
 for Lep in LepCats:
     for BProcCat in ResProcCats:
         for BCat in ResCatsSR:  
@@ -116,7 +117,7 @@ for Lep in LepCats:
 		cuts[Lep+BCat+BProcCat]=  BoostCatsSR[BCat]\
                 	            +'&&'+BoostProcCats[BProcCat]\
                 	            +'&&'+LepCats[Lep]
-#####
+##########
 for Lep in LepCats_CR:
     for BCat in ResCats:
 	cuts[Lep+BCat]=  ResCats[BCat]\

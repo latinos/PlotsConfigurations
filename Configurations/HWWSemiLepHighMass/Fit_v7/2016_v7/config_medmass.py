@@ -11,7 +11,7 @@ outputDir = 'rootFile_medmass_2016'
 aliasesFile = 'aliases_medmass.py'
 
 # file with list of variables
-variablesFile = 'variables_medmass.py'
+variablesFile = 'variables_fit.py'
 # variablesFile = 'variablesPlot.py'
 # variablesFile = 'variablesLimits.py'
 
@@ -29,11 +29,11 @@ lumi = 36.3
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'Plotts_CRs_note'
+outputDirPlots = 'Plotts_SRs'
 
 
 # used by mkDatacards to define output directory for datacards
-outputDirDatacard = 'Datacards_2016_CR_new'
+outputDirDatacard = 'Datacards_good'
 
 # structure file for datacard
 structureFile = 'structure_medmass.py'

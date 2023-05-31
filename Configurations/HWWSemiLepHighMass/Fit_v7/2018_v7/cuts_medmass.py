@@ -18,11 +18,12 @@ LepCats['incl_']='( (abs(Lepton_pdgId[0])==11) && Lepton_pt[0]>35 && !hole_ex[0]
 LepCats_P={}
 LepCats_P['incl_']='( (abs(Lepton_pdgId[0])==11) && Lepton_pt[0]>35 && !hole_ex[0]\
                  || (abs(Lepton_pdgId[0])==13) && Lepton_pt[0]>27 && !hole_ex[0])'
-LepCats_P['ElCh_']='( (abs(Lepton_pdgId[0])==11) && Lepton_pt[0]>35 && !hole_ex[0])'
-LepCats_P['MuCh_']='( (abs(Lepton_pdgId[0])==13) && Lepton_pt[0]>27 && !hole_ex[0])'
+#LepCats_P['ElCh_']='( (abs(Lepton_pdgId[0])==11) && Lepton_pt[0]>35 && !hole_ex[0])'
+#LepCats_P['MuCh_']='( (abs(Lepton_pdgId[0])==13) && Lepton_pt[0]>27 && !hole_ex[0])'
 # FIXME: maybe need to cut > 35 for ele due to fakeW calculation
 
 BoostProcCats_H={}
+#BoostProcCats_H['all']='1'
 BoostProcCats_H['isVBF_H']='(vbflike_high[0] > 0)'
 BoostProcCats_H['isGGH_H']='(gghlike_high[0] > 0)'
 BoostProcCats_H['isBKG_H']='(bkglike_high[0] > 0)'
@@ -111,14 +112,14 @@ for Lep in LepCats:
                 	            +'&&'+ResProcCats[BProcCat]\
                 	            +'&&'+LepCats[Lep]
 
-for Lep in LepCats_P:
-    for BCat in BoostCats:
-	cuts[Lep+BCat]=  BoostCats[BCat]\
-                           +'&&'+LepCats_P[Lep]
-
 for Lep in LepCats:
     for BProcCat in BoostProcCats_H:
         for BCat in BoostCatsSR:  
 		cuts[Lep+BCat+BProcCat]=  BoostCatsSR[BCat]\
                 	            +'&&'+BoostProcCats_H[BProcCat]\
                 	            +'&&'+LepCats[Lep]
+for Lep in LepCats_P:
+    for BCat in BoostCats:
+	cuts[Lep+BCat]=  BoostCats[BCat]\
+                           +'&&'+LepCats_P[Lep]
+##

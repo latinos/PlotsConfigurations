@@ -17,15 +17,17 @@ LepCats['incl_']='( (abs(Lepton_pdgId[0])==11) && Lepton_pt[0]>38 || (abs(Lepton
 LepCats_P={}
 LepCats_P['incl_']='( (abs(Lepton_pdgId[0])==11) && Lepton_pt[0]>38 \
                  || (abs(Lepton_pdgId[0])==13) && Lepton_pt[0]>30 )'
-LepCats_P['ElCh_']='( (abs(Lepton_pdgId[0])==11) && Lepton_pt[0]>38 )'
-LepCats_P['MuCh_']='( (abs(Lepton_pdgId[0])==13) && Lepton_pt[0]>30 )'
+#LepCats_P['ElCh_']='( (abs(Lepton_pdgId[0])==11) && Lepton_pt[0]>38 )'
+#LepCats_P['MuCh_']='( (abs(Lepton_pdgId[0])==13) && Lepton_pt[0]>30 )'
 
 BoostProcCats={}
+#BoostProcCats['all']='1'
 BoostProcCats['isVBF_']='(vbflike_odd[0] > 0)'
 BoostProcCats['isGGH_']='(gghlike_odd[0] > 0)'
 BoostProcCats['isBKG_']='(bkglike_odd[0] > 0)'
 
 BoostProcCats_H={}
+#BoostProcCats_H['all']='1'
 BoostProcCats_H['isVBF_H']='(vbflike_high[0] > 0)'
 BoostProcCats_H['isGGH_H']='(gghlike_high[0] > 0)'
 BoostProcCats_H['isBKG_H']='(bkglike_high[0] > 0)'
@@ -101,7 +103,7 @@ for Lep in LepCats:
         for BCat in BoostCatsSR:  
 		cuts[Lep+BCat+BProcCat]=  BoostCatsSR[BCat]\
                 	            +'&&'+BoostProcCats_H[BProcCat]\
-                	            +'&&'+LepCats[Lep]
+               	            +'&&'+LepCats[Lep]
 
 for Lep in LepCats:
     for BProcCat in ResProcCats:

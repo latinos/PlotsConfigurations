@@ -18,7 +18,8 @@ def nanoGetSampleFiles(inputDir, Sample):
 try:
     mc = [skey for skey in samples if skey not in ('FAKE', 'DATA')]
     mc_deep =[skey for skey in samples if skey not in ['DY', 'Wjets', 'Vg', 'VgS','VZ', 'FAKE', 'DATA', 'VVV', 'ZH_htt', 'WH_htt', 'ggH_htt', 'qqH_htt']]  
-    sig_mc = [skey for skey in mc if ("GGH" in skey) or ("QQH" in skey) or (skey in ["ggWW", "ggH_hww", "qqWWqq", "qqH_hww"])] # ggWW is currently reweighted sig sample, while qqWWqq needs to be symlinked to the BWReweight!
+    sig_mc = [skey for skey in mc if ("GGH" in skey) or ("QQH" in skey) or (skey in ["ggWW", "ggH_hww", "qqWWqq", "qqH_hww","WW","VZ"])] # ggWW is currently reweighted sig sample, while qqWWqq needs to be symlinked to the BWReweight!
+    sig_mc_fat = [skey for skey in mc if ("GGH" in skey) or ("QQH" in skey) or (skey in ["ggWW", "ggH_hww", "qqWWqq", "qqH_hww","WW","VZ"])] # ggWW is currently reweighted sig sample, while qqWWqq needs to be symlinked to the BWReweight!
 
 except NameError:
     mc = []
@@ -209,11 +210,11 @@ nuisances['Fat_rewei_unc'] = {
     'cuts': cutdict['Boosted']
 }
 for m in massggh:
-    	xs_ggf = 2*HiggsXS.GetHiggsXS4Sample('YR4','13TeV','GluGluHToWWToLNuQQ_M{}'.format(MX))['xs']
+    	xs_ggf = 2*HiggsXS.GetHiggsXS4Sample('YR4','13TeV','GluGluHToWWToLNuQQ_M{}'.format(m))['xs']
 	FatString = [ 'Fat_rewei[0]', '1.']
 	nuisances['Fat_rewei_unc']['samples'].update({'GGH_'+m+model_name: FatString})
 for m in massggh:
-   	xs_vbf = 2*HiggsXS.GetHiggsXS4Sample('YR4','13TeV','VBFHToWWToLNuQQ_M{}'.format(MX))['xs']
+   	xs_vbf = 2*HiggsXS.GetHiggsXS4Sample('YR4','13TeV','VBFHToWWToLNuQQ_M{}'.format(m))['xs']
 	FatString = [ 'Fat_rewei[0]', '1.']
 	nuisances['Fat_rewei_unc']['samples'].update({'QQH_'+m+model_name: FatString})
 ##### Trigger Efficiency
@@ -334,7 +335,7 @@ nuisances['fatjet_jes']  = {
     'type'  : 'shape',
     'mapUp'  : 'fatjetJESup',
     'mapDown': 'fatjetJESdo',
-    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in sig_mc),
+    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in sig_mc_fat),
     'folderUp'  : makeMCDirectory('fatjetJESup'),
     'folderDown': makeMCDirectory('fatjetJESdo'),
 #    'AsLnN': '1'
@@ -345,7 +346,7 @@ nuisances['fatjet_jer']  = {
     'type'  : 'shape',
     'mapUp'  : 'fatjetJERup',
     'mapDown': 'fatjetJERdo',
-    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in sig_mc),
+    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in sig_mc_fat),
     'folderUp'  : makeMCDirectory('fatjetJERup'),
     'folderDown': makeMCDirectory('fatjetJERdo'),
 #    'AsLnN': '1'
@@ -356,10 +357,11 @@ nuisances['fatjet_jms']  = {
     'type'  : 'shape',
     'mapUp'  : 'fatjetJMSup',
     'mapDown': 'fatjetJMSdo',
-    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in sig_mc),
+    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in sig_mc_fat),
     'folderUp'  : makeMCDirectory('fatjetJMSup'),
     'folderDown': makeMCDirectory('fatjetJMSdo'),
-#    'AsLnN': '1'
+    'AsLnN': '1'
+#
 }
 nuisances['fatjet_jmr']  = {
     'name'  : 'CMS_res_fatjmr_2016',
@@ -367,7 +369,7 @@ nuisances['fatjet_jmr']  = {
     'type'  : 'shape',
     'mapUp'  : 'fatjetJMRup',
     'mapDown': 'fatjetJMRdo',
-    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in sig_mc),
+    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in sig_mc_fat),
     'folderUp'  : makeMCDirectory('fatjetJMRup'),
     'folderDown': makeMCDirectory('fatjetJMRdo'),
 #    'AsLnN': '1'
@@ -944,7 +946,27 @@ nuisances['QCDscale_VH_ACCEPT']  = {
     },
 }
 
+pdf_variations = ["LHEPdfWeight[%d]" %i for i in range(100)] # Float_t LHE pdf variation weights (w_var / w_nominal) for LHA IDs 260001 - 260100
 
+nuisances['pdf_WJets']  = {
+  'name'  : 'pdf_WJets_2016',
+  'skipCMS' : 1,
+  'kind'  : 'weight_rms',
+  'type'  : 'shape',
+  'samples'  : {
+     'Wjets'   : pdf_variations,
+   },
+}
+
+nuisances['pdf_top']  = {
+  'name'  : 'pdf_top_2016',
+  'skipCMS' : 1,
+  'kind'  : 'weight_rms',
+  'type'  : 'shape',
+  'samples'  : {
+     'top'   : pdf_variations,
+   },
+}
 
 #### FAKES
 #eleWP = 'mva_90p_Iso2016'
@@ -1031,7 +1053,8 @@ nuisances['Wjets_QCD_NLO_sf_stat'] = {
 
 el_et = El_jetEt
 mu_et = Mu_jetEt
-for syst in ['El', 'statEl', 'Mu', 'statMu']:
+for syst in ['Mu', 'statMu']:
+#for syst in ['El', 'statEl', 'Mu', 'statMu']:
     name_tag = ''
     #if 'stat' in syst: name_tag += '_stat'
     #if 'El' in syst: name_tag += '_e'
@@ -1047,11 +1070,134 @@ for syst in ['El', 'statEl', 'Mu', 'statMu']:
         'kind': 'weight',
         'type': 'shape',
         'samples': {
-            'FAKE': ['FW_mu'+str(mu_et)+'_el'+str(el_et)+'_'+syst+'Up[0]', 'FW_mu'+str(mu_et)+'_el'+str(el_et)+'_'+syst+'Down[0]'],
-            #'FAKE': ['FW_mu20_el35_'+syst+'Up[0]', 'FW_mu20_el35_'+syst+'Down[0]'],
+            'FAKE_mu': ['FW_mu'+str(mu_et)+'_el'+str(el_et)+'_'+syst+'Up[0]', 'FW_mu'+str(mu_et)+'_el'+str(el_et)+'_'+syst+'Down[0]'],
+           # 'FAKE': ['FW_mu'+str(mu_et)+'_el'+str(el_et)+'_'+syst+'Up[0]', 'FW_mu'+str(mu_et)+'_el'+str(el_et)+'_'+syst+'Down[0]'],
         },
     }
 
+for syst in ['El', 'statEl']:
+#for syst in ['El', 'statEl', 'Mu', 'statMu']:
+    name_tag = ''
+    #if 'stat' in syst: name_tag += '_stat'
+    #if 'El' in syst: name_tag += '_e'
+    #else: name_tag += '_m'
+
+    if 'El' in syst: name_tag += '_e'
+    else: name_tag += '_m'
+    if 'stat' in syst: name_tag += '_stat'
+    else: name_tag += '_recoil'
+
+    nuisances['fake_'+syst] = {
+        'name': 'CMS_fake'+name_tag+'_2016',
+        'kind': 'weight',
+        'type': 'shape',
+        'samples': {
+            'FAKE_el': ['FW_mu'+str(mu_et)+'_el'+str(el_et)+'_'+syst+'Up[0]', 'FW_mu'+str(mu_et)+'_el'+str(el_et)+'_'+syst+'Down[0]'],
+            #'FAKE': ['FW_mu'+str(mu_et)+'_el'+str(el_et)+'_'+syst+'Up[0]', 'FW_mu'+str(mu_et)+'_el'+str(el_et)+'_'+syst+'Down[0]'],
+        },
+    }
+#for syst in ['El', 'statEl', 'Mu', 'statMu']:
+#    name_tag = ''
+#    #if 'stat' in syst: name_tag += '_stat'
+#    #if 'El' in syst: name_tag += '_e'
+#    #else: name_tag += '_m'
+#
+#    if 'El' in syst: name_tag += '_e'
+#    else: name_tag += '_m'
+#    if 'stat' in syst: name_tag += '_stat'
+#    else: name_tag += '_recoil'
+#
+#    nuisances['fake_'+syst] = {
+#        'name': 'CMS_fake'+name_tag+'_2016',
+#        'kind': 'weight',
+#        'type': 'shape',
+#        'samples': {
+#            'FAKE': ['FW_mu'+str(mu_et)+'_el'+str(el_et)+'_'+syst+'Up[0]', 'FW_mu'+str(mu_et)+'_el'+str(el_et)+'_'+syst+'Down[0]'],
+#            #'FAKE': ['FW_mu20_el35_'+syst+'Up[0]', 'FW_mu20_el35_'+syst+'Down[0]'],
+#        },
+#    }
+#
+oldnuisances = copy.deepcopy(nuisances)
+for nuis in oldnuisances:
+  if nuisances[nuis]['type'] == "lnN" and (("QCD" in nuis) or ("pdf" in nuis)):
+    for samp in oldnuisances[nuis]['samples']:
+      if ("GGH" in samp) or ("QQH" in samp) or (samp in ["ggWW", "ggH_hww", "qqWWqq", "qqH_hww"]):
+        lnNval = nuisances[nuis]['samples'][samp]
+        if "/" in lnNval:
+          lnNvalUp = lnNval.split('/')[0]
+          lnNvalDn = lnNval.split('/')[1]
+        else:
+          lnNvalUp = lnNval
+          lnNvalDn = str(1.0/float(lnNval))
+        if nuis+'_shape' in nuisances:
+          nuisances[nuis+'_shape']['samples'].update({samp: [lnNvalUp, lnNvalDn]})
+        else:
+          nuisances[nuis+'_shape'] = {
+                'name'  : nuisances[nuis]['name'],
+                'kind'  : 'weight',
+                'type'  : 'shape',
+                'samples' : { samp : [lnNvalUp, lnNvalDn] },
+                }
+        del nuisances[nuis]['samples'][samp]
+        if nuisances[nuis]['samples'] == {}: del nuisances[nuis]
+
+nuisancename = {}
+for nuis in nuisances:
+  if nuisances[nuis]['type'] == "shape":
+    if nuisances[nuis]['name'] not in nuisancename: nuisancename[nuisances[nuis]['name']] = []
+    nuisancename[nuisances[nuis]['name']].append(nuis)
+for nuisname in nuisancename:
+  allsamples = {}
+  for nuis in nuisancename[nuisname]:
+    allsamples.update(nuisances[nuis]['samples']) # Sometimes have 2 dict keys doing shapes for the same nuisance for different samples; combine them here
+  if [samp for samp in allsamples if 'SBI' in samp] == []:
+    dogg=0
+    doqq=0
+    for samp in allsamples:
+      if ("GGH" in samp) or (samp in ["ggWW", "ggH_hww"]): dogg=1
+      elif ("QQH" in samp) or (samp in ["qqWWqq", "qqH_hww"]): doqq=1
+    if dogg==1:
+        SM_up = '1.0'
+        SM_dn = '1.0'
+        WW_up = '1.0'
+        WW_dn = '1.0'
+        sig_up = '1.0'
+        sig_dn = '1.0'
+        for nuis in nuisancename[nuisname]:
+          if "ggH_hww" in nuisances[nuis]['samples']: SM_up = nuisances[nuis]['samples']["ggH_hww"][0]
+          if "ggH_hww" in nuisances[nuis]['samples']: SM_dn = nuisances[nuis]['samples']["ggH_hww"][1]
+          if "ggWW" in nuisances[nuis]['samples']: WW_up = nuisances[nuis]['samples']["ggWW"][0]
+          if "ggWW" in nuisances[nuis]['samples']: WW_dn = nuisances[nuis]['samples']["ggWW"][1]
+        for model in models:
+          model_name = '_'+model.replace(".","")
+          for m in massggh:
+            for nuis in nuisancename[nuisname]:
+              if 'GGH_'+m+model_name in nuisances[nuis]['samples']: sig_up = nuisances[nuis]['samples']['GGH_'+m+model_name][0]
+              if 'GGH_'+m+model_name in nuisances[nuis]['samples']: sig_dn = nuisances[nuis]['samples']['GGH_'+m+model_name][1]
+            SBI_string = ['('+sig_up+')*SBI_isHM + ('+SM_up+')*SBI_isSMggh + ('+WW_up+')*SBI_isggWW',
+                          '('+sig_dn+')*SBI_isHM + ('+SM_dn+')*SBI_isSMggh + ('+WW_dn+')*SBI_isggWW']
+            nuisances[nuis]['samples'].update({'GGHSBI_'+m+model_name: SBI_string})
+    if doqq==1:
+        SM_up = '1.0'
+        SM_dn = '1.0'
+        WW_up = '1.0'
+        WW_dn = '1.0'
+        sig_up = '1.0'
+        sig_dn = '1.0'
+        for nuis in nuisancename[nuisname]:
+          if "qqH_hww" in nuisances[nuis]['samples']: SM_up = nuisances[nuis]['samples']["qqH_hww"][0]
+          if "qqH_hww" in nuisances[nuis]['samples']: SM_dn = nuisances[nuis]['samples']["qqH_hww"][1]
+          if "qqWWqq" in nuisances[nuis]['samples']: WW_up = nuisances[nuis]['samples']["qqWWqq"][0]
+          if "qqWWqq" in nuisances[nuis]['samples']: WW_dn = nuisances[nuis]['samples']["qqWWqq"][1]
+        for model in models:
+          model_name = '_'+model.replace(".","")
+          for m in massvbf:
+            for nuis in nuisancename[nuisname]:
+              if 'QQH_'+m+model_name in nuisances[nuis]['samples']: sig_up = nuisances[nuis]['samples']['QQH_'+m+model_name][0]
+              if 'QQH_'+m+model_name in nuisances[nuis]['samples']: sig_dn = nuisances[nuis]['samples']['QQH_'+m+model_name][1]
+            SBI_string = ['('+sig_up+')*SBI_isHM + ('+SM_up+')*SBI_isSMVBF + ('+WW_up+')*SBI_isqqWWqq',
+                          '('+sig_dn+')*SBI_isHM + ('+SM_dn+')*SBI_isSMVBF + ('+WW_dn+')*SBI_isqqWWqq']
+            nuisances[nuis]['samples'].update({'QQHSBI_'+m+model_name: SBI_string})
 
 ##################### rate parameter ##########
 
@@ -1112,11 +1258,62 @@ nuisances['top_boo'] ={
 
 
 ######################### MC stat #
-nuisances['stat'] = {
-    'type': 'auto',
-    'maxPoiss': '10',
-    'includeSignal': '0',
-    #  nuisance ['maxPoiss'] =  Number of threshold events for Poisson modelling
-    #  nuisance ['includeSignal'] =  Include MC stat nuisances on signal processes (1=True, 0=False)
-    'samples': {}
-}
+#nuisances['stat'] = {
+#    'type': 'auto',
+#    'maxPoiss': '10',
+#    'includeSignal': '0',
+#    #  nuisance ['maxPoiss'] =  Number of threshold events for Poisson modelling
+#    #  nuisance ['includeSignal'] =  Include MC stat nuisances on signal processes (1=True, 0=False)
+#    'samples': {}
+#}
+
+StatSwitch = True
+# Doing zeroMCError=0 now because apparently it's not well defined otherwise for this analysis (or so I've been told)
+# Also remove individual bbb from background (ggWW/qqWWqq/SM HWW), I'm now absorbing their statistical uncertainty into the nuisances of other more significant backgrounds (unaffected by r), so there's nothing to correlate
+if StatSwitch:
+  nuisances['stat']  = {
+                  # apply to the following samples: name of samples here must match keys in samples.py
+                 'samples'  : {
+
+#                     'ggWW': {
+#                           'typeStat' : 'bbb',
+#                           'zeroMCError' : '0',
+#                           'correlate': []
+#                     },
+#                     'ggH_hww':{
+#                           'typeStat' : 'bbb',
+#                           'zeroMCError' : '0',
+#                           'correlate': []
+#                     },
+#                     'qqWWqq': {
+#                          'typeStat' : 'bbb',
+#                           'zeroMCError' : '0',
+#                           'correlate': []
+#                     },
+#                     'qqH_hww':{
+#                           'typeStat' : 'bbb',
+#                           'zeroMCError' : '0',
+#                           'correlate': []
+#                     },
+
+
+                   },
+                 'type'  : 'auto',
+	         'maxPoiss': '10',
+                 'includeSignal': '0',
+                 'cuts'  : [cut for cut in cuts]
+                }
+
+  for model in models:
+    model_name = '_'+model.replace(".","")
+    for m in massggh:
+      nuisances['stat']['samples']['GGH_'+m+model_name] = { 'typeStat' : 'bbb', 'zeroMCError' : '0', 'correlate': [] }
+      #nuisances['stat']['samples']['ggWW']["correlate"].append('GGHSBI_'+m+model_name)
+      #nuisances['stat']['samples']['ggH_hww']["correlate"].append('GGHSBI_'+m+model_name)
+      nuisances['stat']['samples']['GGH_'+m+model_name]['correlate'].append('GGHSBI_'+m+model_name)
+
+    for m in massvbf:
+      nuisances['stat']['samples']['QQH_'+m+model_name] = { 'typeStat' : 'bbb', 'zeroMCError' : '0', 'correlate': [] }
+      #nuisances['stat']['samples']['qqWWqq']["correlate"].append('QQHSBI_'+m+model_name)
+      #nuisances['stat']['samples']['qqH_hww']["correlate"].append('QQHSBI_'+m+model_name)
+      nuisances['stat']['samples']['QQH_'+m+model_name]['correlate'].append('QQHSBI_'+m+model_name)

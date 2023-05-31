@@ -32,6 +32,7 @@ groupPlot['FAKE'] = {
 'isSignal' : 0,
 'color'    : 617,   # kViolet + 1
 'samples'  : ['FAKE_mu','FAKE_el']
+#'samples'  : ['FAKE']
 }
 
 
@@ -255,19 +256,14 @@ plot['WH_htt']  = {
     'isData'   : 0,
     'scale'    : 1.0,
 }
-
-
-
-## Signal
-#for MX in plotmasses:
-#    xs_ggf = 2*HiggsXS.GetHiggsXS4Sample('YR4','13TeV','GluGluHToWWToLNuQQ_M{}'.format(MX))['xs']
-#    xs_vbf = 2*HiggsXS.GetHiggsXS4Sample('YR4','13TeV','VBFHToWWToLNuQQ_M{}'.format(MX))['xs']
+##### Signal
+#for MX in massggh:
 #    plot['QQH_{}_RelW002'.format(MX)] = {
 #        'nameHR'  : 'qqH{}'.format(MX),
 #        'color'   : 1,
 #        'isSignal': 1,
 #        'isData'  : 0,
-#        'scale'   : 1.0 * xs_ggf
+#        'scale'   : 1.0
 #    }
 #   # plot['QQHINT_{}_RelW002'.format(MX)] = {
 #   #     'nameHR'  : 'qqH{}'.format(MX),
@@ -276,19 +272,19 @@ plot['WH_htt']  = {
 #   #     'isData'  : 0,
 #   #     'scale'   : 1.0 * xs_ggf
 #   # }
-#   # plot['QQHSBI_{}_RelW002'.format(MX)] = {
-#   #     'nameHR'  : 'qqH{}'.format(MX),
-#   #     'color'   : 1,
-#   #     'isSignal': 1,
-#   #     'isData'  : 0,
-#   #     'scale'   : 1.0 * xs_ggf
-#   # }
+#    plot['QQHSBI_{}_RelW002'.format(MX)] = {
+#        'nameHR'  : 'qqH{}'.format(MX),
+#        'color'   : 1,
+#        'isSignal': 1,
+#        'isData'  : 0,
+#        'scale'   : 1.0 
+#    }
 #    plot['GGH_{}_RelW002'.format(MX)] = {
 #        'nameHR'  : 'ggH{}'.format(MX),
 #        'color'   : 1,
 #        'isSignal': 1,
 #        'isData'  : 0,
-#        'scale'   : 1.0 * xs_vbf
+#        'scale'   : 1.0
 #    }
 #   # plot['GGHINT_{}_RelW002'.format(MX)] = {
 #   #     'nameHR'  : 'ggH{}'.format(MX),
@@ -298,13 +294,13 @@ plot['WH_htt']  = {
 #   #     'scale'   : 1.0 * xs_vbf
 #   # }
 #
-#   # plot['GGHSBI_{}_RelW002'.format(MX)] = {
-#   #     'nameHR'  : 'ggH{}'.format(MX),
-#   #     'color'   : 1,
-#   #     'isSignal': 1,
-#   #     'isData'  : 0,
-#   #     'scale'   : 1.0 * xs_vbf
-#   # }
+#    plot['GGHSBI_{}_RelW002'.format(MX)] = {
+#        'nameHR'  : 'ggH{}'.format(MX),
+#        'color'   : 1,
+#        'isSignal': 1,
+#        'isData'  : 0,
+#        'scale'   : 1.0 
+#    }
 
 
 

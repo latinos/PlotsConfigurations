@@ -67,7 +67,7 @@ groupPlot['Wjets'] = {
 #        'color'   : counter+1,
 #        'samples' : ['GGH_{}_RelW002'.format(MX), 'QQH_{}_RelW002'.format(MX)] #'GGHINT_{}_RelW002'.format(MX), 'QQH_{}_RelW002'.format(MX),'QQHINT_{}_RelW002'.format(MX), 'QQHSBI_{}_RelW002'.format(MX), 'GGHSBI_{}_RelW002'.format(MX)]
 #    }
-
+#
 
 
 
@@ -273,7 +273,7 @@ plot['WH_htt']  = {
 }
 
 
-## Signal
+### Signal
 #for MX in plotmasses:
 #    xs_ggf = 2*HiggsXS.GetHiggsXS4Sample('YR4','13TeV','GluGluHToWWToLNuQQ_M{}'.format(MX))['xs']
 #    xs_vbf = 2*HiggsXS.GetHiggsXS4Sample('YR4','13TeV','VBFHToWWToLNuQQ_M{}'.format(MX))['xs']
@@ -282,7 +282,7 @@ plot['WH_htt']  = {
 #        'color'   : 1,
 #        'isSignal': 1,
 #        'isData'  : 0,
-#        'scale'   : 1.0 * xs_ggf
+#        'scale'   : 1.0 * xs_vbf
 #    }
 #   # plot['QQHINT_{}_RelW002'.format(MX)] = {
 #   #     'nameHR'  : 'qqH{}'.format(MX),
@@ -303,7 +303,7 @@ plot['WH_htt']  = {
 #        'color'   : 1,
 #        'isSignal': 1,
 #        'isData'  : 0,
-#        'scale'   : 1.0 * xs_vbf
+#        'scale'   : 1.0 * xs_ggf
 #    }
 #   # plot['GGHINT_{}_RelW002'.format(MX)] = {
 #   #     'nameHR'  : 'ggH{}'.format(MX),

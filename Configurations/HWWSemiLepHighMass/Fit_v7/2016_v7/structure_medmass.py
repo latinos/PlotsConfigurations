@@ -167,21 +167,21 @@ structure['FAKE_el'] = {
 
 
 
-for MX in plotmasses:
-    xs_ggf = 2*HiggsXS.GetHiggsXS4Sample('YR4','13TeV','GluGluHToWWToLNuQQ_M{}'.format(MX))['xs']
-    xs_vbf = 2*HiggsXS.GetHiggsXS4Sample('YR4','13TeV','VBFHToWWToLNuQQ_M{}'.format(MX))['xs']
-    structure['GGH_'+MX+'_RelW002'] = {
-        'isSignal': 1,
-        'isData'  : 0,
-        'scaleSampleForDatacard' : {cut : xs_ggf for cut in cuts}
-    }
-    print xs_ggf
-
-    structure['QQH_'+MX+'_RelW002'] = {
-        'isSignal': 1,
-        'isData'  : 0,
-        'scaleSampleForDatacard' : {cut : xs_vbf for cut in cuts}
-    }
+#for MX in plotmasses:
+#    xs_ggf = 2*HiggsXS.GetHiggsXS4Sample('YR4','13TeV','GluGluHToWWToLNuQQ_M{}'.format(MX))['xs']
+#    xs_vbf = 2*HiggsXS.GetHiggsXS4Sample('YR4','13TeV','VBFHToWWToLNuQQ_M{}'.format(MX))['xs']
+#    structure['GGH_'+MX+'_RelW002'] = {
+#        'isSignal': 1,
+#        'isData'  : 0,
+#        'scaleSampleForDatacard' : {cut : xs_ggf for cut in cuts}
+#    }
+#    print xs_ggf
+#
+#    structure['QQH_'+MX+'_RelW002'] = {
+#        'isSignal': 1,
+#        'isData'  : 0,
+#        'scaleSampleForDatacard' : {cut : xs_vbf for cut in cuts}
+#    }
 
 
 
@@ -191,7 +191,112 @@ for MX in plotmasses:
 #        'isData'  : 0
 #    }
 
+for MX in massggh:
+  for model in models:
+    model_name = '_'+model.replace('.','')
+    model_I = model+'_I'
+    model_I_H = model+'_I_Honly'
+    model_I_B = model+'_I_Bonly'
+    model_B = 'B'
+    model_H = 'H'
+    # Model dependent -> Xsec*BR is applied in later step, so remove "SM"-Xsec*BR
+    # SMxsec = HiggsXS.GetHiggsXS4Sample('YR4','13TeV','GluGluHToWWToLNuQQ_M'+MX)['xs']
 
+    structure['GGH_'+MX+model_name]  = {
+        'isSignal': 1,
+        'isData'  : 0,
+        'scaleSampleForDatacard' : '2.0'
+    }
+    
+#    structure['GGH_'+MX+model_name+"_old"]  = {
+#        'isSignal': 1,
+#        'isData'  : 0,
+#    }
+#
+#    structure['GGHINT_'+MX+model_name]  = {
+#        'isSignal': 1,
+#        'isData'  : 0,
+#    }
+
+    structure['GGHSBI_'+MX+model_name]  = {
+        'isSignal': 1,
+        'isData'  : 0,
+    }
+#    structure['GGHINT_H_'+MX+model_name]  = {
+#        'isSignal': 1,
+#        'isData'  : 0,
+#    }
+#    structure['GGHINT_B_'+MX+model_name]  = {
+#        'isSignal': 1,
+#        'isData'  : 0,
+#    }
+    structure['GGH_HSM_'+MX+model_name]  = {
+        'isSignal': 1,
+        'isData'  : 0,
+    }
+#    structure['GGH_B_'+MX+model_name]  = {
+#        'isSignal': 1,
+#        'isData'  : 0,
+#    }
+
+
+
+
+############ VBF H->WW ############
+for MX in massvbf:
+  for model in models:
+    model_name = '_'+model.replace('.','')
+    model_I = model+'_I'
+    model_I_H = model+'_I_Honly'
+    model_I_B = model+'_I_Bonly'
+    model_B = 'B'
+    model_H = 'H' 
+    # Model dependent -> Xsec*BR is applied in later step, so remove "SM"-Xsec*BR
+    # SMxsec = HiggsXS.GetHiggsXS4Sample('YR4','13TeV','VBFHToWWToLNuQQ_M'+MX)['xs']
+    # noSMxsec = '(1.0/{})'.format(SMxsec)
+
+    structure['QQH_'+MX+model_name]  = {
+        'isSignal': 1,
+        'isData'  : 0,
+        'scaleSampleForDatacard' : '2.0'
+    }
+ 
+ 
+#    structure['QQH_'+MX+model_name+"_old"]  = {
+#        'isSignal': 1,
+#        'isData'  : 0,
+#    }
+# 
+#    structure['QQHINT_'+MX+model_name]  = {
+#        'isSignal': 1,
+#        'isData'  : 0,
+#    }
+ 
+ 
+    structure['QQHSBI_'+MX+model_name]  = {
+        'isSignal': 1,
+        'isData'  : 0,
+    }
+    
+#    structure['QQHINT_H_'+MX+model_name]  = {
+#        'isSignal': 1,
+#        'isData'  : 0,
+#    }
+#
+#    structure['QQHINT_B_'+MX+model_name]  = {
+#        'isSignal': 1,
+#        'isData'  : 0,
+#    }
+#
+    structure['QQH_HSM_'+MX+model_name]  = {
+        'isSignal': 1,
+        'isData'  : 0,
+    }
+#    structure['QQH_B_'+MX+model_name]  = {
+#        'isSignal': 1,
+#        'isData'  : 0,
+#    }
+#
 
 
 
