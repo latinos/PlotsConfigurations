@@ -142,109 +142,172 @@ AZH_patch::evaluate(unsigned)
     TLorentzVector bJetHadronic_best_onebjet;
     TLorentzVector bJetLeptonic_best_onebjet;
     TLorentzVector AZH_Neutrino_best_onebjet;
-if (AZH_bJet_4vecId.size()==1){
-    for (TLorentzVector Neutrino : Neutrinos) {
-	int ibJet2 = 0; 
-	std::vector<TLorentzVector> WJets;
-	for (int ij = 0; ij < CleanJet_4vecId.size(); ++ij){
-	    if((CleanJet_4vecId[ij] != AZH_bJet_4vecId[0]) && ((Jet_btagDeepB->At(CleanJet_jetIdx->At(ij)))>(Jet_btagDeepB->At(CleanJet_jetIdx->At(ibJet2))))){
-		ibJet2 = ij;
+    if (AZH_bJet_4vecId.size()==1){
+	for (TLorentzVector Neutrino : Neutrinos) {
+	    int ibJet2 = 0; 
+	    std::vector<TLorentzVector> WJets;
+	    for (int ij = 0; ij < CleanJet_4vecId.size(); ++ij){
+		if((CleanJet_4vecId[ij] != AZH_bJet_4vecId[0]) && ((Jet_btagDeepB->At(CleanJet_jetIdx->At(ij)))>(Jet_btagDeepB->At(CleanJet_jetIdx->At(ibJet2))))){
+		    ibJet2 = ij;
+		}
 	    }
-	}
-	TLorentzVector bJetPair[2] = {AZH_bJet_4vecId[0], CleanJet_4vecId[ibJet2]};
-	for (int iw =0; iw < CleanJet_4vecId.size(); ++iw){
-	    if((CleanJet_4vecId[iw] != AZH_bJet_4vecId[0]) && (CleanJet_4vecId[iw] != CleanJet_4vecId[ibJet2])) {
-		WJets.push_back(CleanJet_4vecId[iw]);
+	    TLorentzVector bJetPair[2] = {AZH_bJet_4vecId[0], CleanJet_4vecId[ibJet2]};
+	    for (int iw =0; iw < CleanJet_4vecId.size(); ++iw){
+		if((CleanJet_4vecId[iw] != AZH_bJet_4vecId[0]) && (CleanJet_4vecId[iw] != CleanJet_4vecId[ibJet2])) {
+		    WJets.push_back(CleanJet_4vecId[iw]);
+		}
 	    }
-	}
-	for(int k = 0; k < 2; k++) {
-	    for (int iWJet1 = 0; iWJet1 < WJets.size(); ++iWJet1){
-		for (int iWJet2 = iWJet1 + 1; iWJet2 < WJets.size(); ++iWJet2){ 
-		    TLorentzVector WJet1_onebjet = WJets[iWJet1];
-		    TLorentzVector WJet2_onebjet = WJets[iWJet2];
-		    TLorentzVector bJetHadronic_onebjet = bJetPair[k];
-		    TLorentzVector bJetLeptonic_onebjet = bJetPair[1-k];
-		    float WMassLeptonic_onebjet = (XLepton + Neutrino).M();
-		    float WMassHadronic_onebjet = (WJet1_onebjet + WJet2_onebjet).M();
-		    float TopMassLeptonic_onebjet = (XLepton + Neutrino + bJetLeptonic_onebjet).M();
-		    float TopMassHadronic_onebjet = (WJet1_onebjet + WJet2_onebjet + bJetHadronic_onebjet).M();
-		    float  Chisq_onebjet = std::pow((TopMassLeptonic_onebjet-TopMassLeptonic_true)/sigmaleptonic,2) + std::pow((TopMassHadronic_onebjet-TopMassHadronic_true)/sigmahadronic, 2);
-		    if(Chisq_onebjet < ChisqMin) { 
-			ChisqMin = Chisq_onebjet;
-			WJet1_best_onebjet = WJet1_onebjet;
-			WJet2_best_onebjet = WJet2_onebjet;
-			bJetHadronic_best_onebjet = bJetHadronic_onebjet;
-			bJetLeptonic_best_onebjet = bJetLeptonic_onebjet;
-			AZH_Neutrino_best_onebjet = Neutrino;
+	    for(int k = 0; k < 2; k++) {
+		for (int iWJet1 = 0; iWJet1 < WJets.size(); ++iWJet1){
+		    for (int iWJet2 = iWJet1 + 1; iWJet2 < WJets.size(); ++iWJet2){ 
+			TLorentzVector WJet1_onebjet = WJets[iWJet1];
+			TLorentzVector WJet2_onebjet = WJets[iWJet2];
+			TLorentzVector bJetHadronic_onebjet = bJetPair[k];
+			TLorentzVector bJetLeptonic_onebjet = bJetPair[1-k];
+			float WMassLeptonic_onebjet = (XLepton + Neutrino).M();
+			float WMassHadronic_onebjet = (WJet1_onebjet + WJet2_onebjet).M();
+			float TopMassLeptonic_onebjet = (XLepton + Neutrino + bJetLeptonic_onebjet).M();
+			float TopMassHadronic_onebjet = (WJet1_onebjet + WJet2_onebjet + bJetHadronic_onebjet).M();
+			float  Chisq_onebjet = std::pow((TopMassLeptonic_onebjet-TopMassLeptonic_true)/sigmaleptonic,2) + std::pow((TopMassHadronic_onebjet-TopMassHadronic_true)/sigmahadronic, 2);
+			if(Chisq_onebjet < ChisqMin) { 
+			    ChisqMin = Chisq_onebjet;
+			    WJet1_best_onebjet = WJet1_onebjet;
+			    WJet2_best_onebjet = WJet2_onebjet;
+			    bJetHadronic_best_onebjet = bJetHadronic_onebjet;
+			    bJetLeptonic_best_onebjet = bJetLeptonic_onebjet;
+			    AZH_Neutrino_best_onebjet = Neutrino;
 
+			}
 		    }
 		}
 	    }
 	}
     }
+//4 jets region definition
+    TLorentzVector WJet1_best_4jets;
+    TLorentzVector WJet2_best_4jets;
+    TLorentzVector bJetHadronic_best_4jets;
+    TLorentzVector bJetLeptonic_best_4jets;
+    TLorentzVector AZH_Neutrino_best_4jets;
+
+    if (AZH_bJet_4vecId.size()==0){
+	for (TLorentzVector Neutrino : Neutrinos) {
+        	std::vector<TLorentzVector> WJets;
+	        int ibJet1 = 0;
+		int ibJet2 = 0;
+		for (int ij = 0; ij < CleanJet_4vecId.size(); ++ij){
+		    for (int k = ij+1; k < CleanJet_4vecId.size(); ++k){
+		           if(((Jet_btagDeepB->At(CleanJet_jetIdx->At(ij)))>(Jet_btagDeepB->At(CleanJet_jetIdx->At(ibJet1))))){
+		              ibJet1 = ij;}
+		           if(((Jet_btagDeepB->At(CleanJet_jetIdx->At(k)))>(Jet_btagDeepB->At(CleanJet_jetIdx->At(ibJet2))))){
+	   			ibJet2 = k;}
+		}
+	}
+		TLorentzVector bJetPair[2] = {CleanJet_4vecId[ibJet1], CleanJet_4vecId[ibJet2]};
+		for (int w = 0; w < CleanJet_4vecId.size(); ++w){
+			if ((CleanJet_4vecId[w] != bJetPair[0]) && (CleanJet_4vecId[w] != bJetPair[1])) {
+				WJets.push_back(CleanJet_4vecId[w]);}
+		}
+		for(int k = 0; k < 2; k++){                   
+		    for (int iWJet1 = 0; iWJet1 < WJets.size(); ++iWJet1){
+			for (int iWJet2 = iWJet1 + 1; iWJet2 < WJets.size(); ++iWJet2){ 
+			    TLorentzVector WJet1_4jets = WJets[iWJet1];
+			    TLorentzVector WJet2_4jets = WJets[iWJet2];
+			    TLorentzVector bJetHadronic_4jets = bJetPair[k];
+			    TLorentzVector bJetLeptonic_4jets = bJetPair[1-k];
+			    float WMassLeptonic_4jets = (XLepton + Neutrino).M();
+			    float WMassHadronic_4jets = (WJet1_4jets + WJet2_4jets).M();
+			    float TopMassLeptonic_4jets = (XLepton + Neutrino + bJetLeptonic_4jets).M();
+			    float TopMassHadronic_4jets = (WJet1_4jets + WJet2_4jets + bJetHadronic_4jets).M();
+			    float  Chisq_4jets = std::pow((TopMassLeptonic_4jets-TopMassLeptonic_true)/sigmaleptonic,2) + std::pow((TopMassHadronic_4jets-TopMassHadronic_true)/sigmahadronic, 2);
+			    if(Chisq_4jets < ChisqMin) { 
+				ChisqMin = Chisq_4jets;
+				WJet1_best_4jets = WJet1_4jets;
+				WJet2_best_4jets = WJet2_4jets;
+				bJetHadronic_best_4jets = bJetHadronic_4jets;
+				bJetLeptonic_best_4jets = bJetLeptonic_4jets;
+				AZH_Neutrino_best_4jets = Neutrino;
+
+			    }
+			}
+	          }
+	     }
+	}
 }
 
 
-    unsigned nJet = 0;
-    unsigned nbJet = 0;
-    for (unsigned ij = 0; ij < nJetLoose; ij++){
-	if (CleanJet_pt->At(ij) > 30 && std::abs(CleanJet_eta->At(ij)) < 4.7) {
-	    nJet++;
-	    if (Jet_btagDeepB->At(CleanJet_jetIdx->At(ij)) > 0.4941) nbJet++; }
-    }
 
-    if (variable == "AZH_mA_minus_mH"){
-	if (nJet < 4 || nbJet < 2) return -9999.0;
-	return (XLepton + AZH_Neutrino_best + bJetLeptonic_best + bJetHadronic_best + WJet1_best + WJet2_best + ZLepton1 + ZLepton2).M() - (XLepton + AZH_Neutrino_best + bJetLeptonic_best + bJetHadronic_best + WJet1_best + WJet2_best).M();  
-    }      
 
-    else if (variable == "AZH_Amass") {
-	if (nJet < 4 || nbJet < 2) return -9999.0;
-	return (XLepton + AZH_Neutrino_best + bJetLeptonic_best + bJetHadronic_best + WJet1_best + WJet2_best + ZLepton1 + ZLepton2).M();
-    }
+unsigned nJet = 0;
+unsigned nbJet = 0;
+for (unsigned ij = 0; ij < nJetLoose; ij++){
+    if (CleanJet_pt->At(ij) > 30 && std::abs(CleanJet_eta->At(ij)) < 4.7) {
+	nJet++;
+	if (Jet_btagDeepB->At(CleanJet_jetIdx->At(ij)) > 0.4941) nbJet++; }
+}
 
-    else if (variable == "AZH_Hmass") {
-	if (nJet < 4 || nbJet < 2) return -9999.0;
-	return (XLepton + AZH_Neutrino_best + bJetLeptonic_best + bJetHadronic_best + WJet1_best + WJet2_best).M();
-    }
+if (variable == "AZH_mA_minus_mH"){
+    if (nJet < 4 || nbJet < 2) return -9999.0;
+    return (XLepton + AZH_Neutrino_best + bJetLeptonic_best + bJetHadronic_best + WJet1_best + WJet2_best + ZLepton1 + ZLepton2).M() - (XLepton + AZH_Neutrino_best + bJetLeptonic_best + bJetHadronic_best + WJet1_best + WJet2_best).M();  
+}      
 
-    else if (variable == "AZH_mA_minus_mH_onebjet"){
-	if (nJet < 4 || nbJet != 1) return -9999.0;
-	return (XLepton + AZH_Neutrino_best_onebjet + bJetLeptonic_best_onebjet + bJetHadronic_best_onebjet + WJet1_best_onebjet + WJet2_best_onebjet + ZLepton1 + ZLepton2).M() - (XLepton + AZH_Neutrino_best_onebjet + bJetLeptonic_best_onebjet + bJetHadronic_best_onebjet + WJet1_best_onebjet + WJet2_best_onebjet).M();
-    }
+else if (variable == "AZH_Amass") {
+    if (nJet < 4 || nbJet < 2) return -9999.0;
+    return (XLepton + AZH_Neutrino_best + bJetLeptonic_best + bJetHadronic_best + WJet1_best + WJet2_best + ZLepton1 + ZLepton2).M();
+}
 
-    else if (variable == "mTlmetjj"){
-	if (nJet < 2) return -9999.0;
-	TLorentzVector Jet0;
-	TLorentzVector Jet1;
-	Jet0.SetPtEtaPhiM(CleanJet_pt->At(0),CleanJet_eta->At(0),CleanJet_phi->At(0),0);
-	Jet1.SetPtEtaPhiM(CleanJet_pt->At(1),CleanJet_eta->At(1),CleanJet_phi->At(1),0);
-	TLorentzVector sumvec;
-	sumvec = MET      + XLepton      + Jet0      + Jet1;
-	float sumpt            = MET.Pt() + XLepton.Pt() + Jet0.Pt() + Jet1.Pt();
-	return std::sqrt(std::pow(sumpt,2) - std::pow(sumvec.Px(),2) - std::pow(sumvec.Py(),2));
-    }
+else if (variable == "AZH_Hmass") {
+    if (nJet < 4 || nbJet < 2) return -9999.0;
+    return (XLepton + AZH_Neutrino_best + bJetLeptonic_best + bJetHadronic_best + WJet1_best + WJet2_best).M();
+}
+else if (variable == "nbjet") {
+    return nbJet;
+}
 
-    else if (variable == "AZH_ChiSquare") {
-	if (nJet < 4 || nbJet < 2) return -9999.0;
-	return ChisqMin;
+else if (variable == "AZH_mA_minus_mH_onebjet"){
+    if (nJet < 4 || nbJet != 1) return -9999.0;
+    return (XLepton + AZH_Neutrino_best_onebjet + bJetLeptonic_best_onebjet + bJetHadronic_best_onebjet + WJet1_best_onebjet + WJet2_best_onebjet + ZLepton1 + ZLepton2).M() - (XLepton + AZH_Neutrino_best_onebjet + bJetLeptonic_best_onebjet + bJetHadronic_best_onebjet + WJet1_best_onebjet + WJet2_best_onebjet).M();
+}
 
-    }
 
-    else if (variable == "AZH_Tophadronic") {
-	if (nJet < 4 || nbJet < 2) return -9999.0;
-	return (WJet1_best +  WJet2_best + bJetHadronic_best).M();
-    }
+else if (variable == "AZH_mA_minus_mH_4jets"){
+    if (nJet < 4 || nbJet != 0) return -9999.0;
+    return (XLepton + AZH_Neutrino_best_4jets + bJetLeptonic_best_4jets + bJetHadronic_best_4jets + WJet1_best_4jets + WJet2_best_4jets + ZLepton1 + ZLepton2).M() - (XLepton + AZH_Neutrino_best_4jets + bJetLeptonic_best_4jets + bJetHadronic_best_4jets + WJet1_best_4jets + WJet2_best_4jets).M();
+}
 
-    else if (variable == "AZH_Topleptonic") {
-	if (nJet < 4 || nbJet < 2) return -9999.0;
-	return (XLepton + AZH_Neutrino_best + bJetLeptonic_best).M();
-    }
 
-    else {
-	std::cout << "Invalid variable! Supported variables are AZH_mA_minus_mH, AZH_Amass, AZH_Hmass and AZH_ChiSquare" << std::endl;
-	return -9999.0;
-    }
+else if (variable == "mTlmetjj"){
+    if (nJet < 2) return -9999.0;
+    TLorentzVector Jet0;
+    TLorentzVector Jet1;
+    Jet0.SetPtEtaPhiM(CleanJet_pt->At(0),CleanJet_eta->At(0),CleanJet_phi->At(0),0);
+    Jet1.SetPtEtaPhiM(CleanJet_pt->At(1),CleanJet_eta->At(1),CleanJet_phi->At(1),0);
+    TLorentzVector sumvec;
+    sumvec = MET      + XLepton      + Jet0      + Jet1;
+    float sumpt            = MET.Pt() + XLepton.Pt() + Jet0.Pt() + Jet1.Pt();
+    return std::sqrt(std::pow(sumpt,2) - std::pow(sumvec.Px(),2) - std::pow(sumvec.Py(),2));
+}
+
+else if (variable == "AZH_ChiSquare") {
+    if (nJet < 4 || nbJet < 2) return -9999.0;
+    return ChisqMin;
+
+}
+
+else if (variable == "AZH_Tophadronic") {
+    if (nJet < 4 || nbJet < 2) return -9999.0;
+    return (WJet1_best +  WJet2_best + bJetHadronic_best).M();
+}
+
+else if (variable == "AZH_Topleptonic") {
+    if (nJet < 4 || nbJet < 2) return -9999.0;
+    return (XLepton + AZH_Neutrino_best + bJetLeptonic_best).M();
+}
+
+else {
+    std::cout << "Invalid variable! Supported variables are AZH_mA_minus_mH, AZH_Amass, AZH_Hmass and AZH_ChiSquare" << std::endl;
+    return -9999.0;
+}
 
 
 } 
