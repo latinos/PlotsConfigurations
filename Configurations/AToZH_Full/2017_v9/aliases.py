@@ -1,13 +1,15 @@
 #Aliases (mostly btag)
 
 mc = [skey for skey in samples if skey not in ('Fake', 'DATA')]
-
+bkg = [skey for skey in samples if not skey.startswith('AZH')]
 #bWP = '0.1522' #Loose
 bWP = '0.4941'
 bWPtight = '0.7738'
 
 eleWP_new = 'mvaFall17V2Iso_WP90_tthmva_70'
 muWP_new  = 'cut_Tight_HWWW_tthmva_80'
+
+#######################################  b-tag definitions #######################
 
 aliases['bVeto'] = {
     'expr': '(Sum$( CleanJet_pt > 20.0 && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > '+bWP+' ) == 0)'
@@ -21,6 +23,9 @@ aliases['bVeto_1j'] = {
 aliases['bReq'] = {
     'expr': '(Sum$( CleanJet_pt > 30.0 && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > '+bWP+' ) >= 2)'
 }
+
+####################################### b-tagging SFs ################################
+
 aliases['bReqSF'] = {
 'expr': '( TMath::Exp(Sum$( TMath::Log( (CleanJet_pt>30 && abs(CleanJet_eta)<2.5)*Jet_btagSF_deepcsv_shape[CleanJet_jetIdx]+1*(CleanJet_pt<30 || abs(CleanJet_eta)>2.5) ) ) ) )',
 'samples': mc
@@ -32,7 +37,7 @@ aliases['bVetoSF'] = {
 }
 
 aliases['btagSF'] = {
-    'expr': '(bVeto*bVetoSF + (bReq || bVeto_1j)*bReqSF)',
+    'expr': '((bVeto*bVetoSF) + ((bReq || bVeto_1j)*bReqSF))',
     'samples': mc
 }
 
@@ -78,29 +83,20 @@ aliases['PromptGenLepMatch3l'] = {
 }
 
 
-aliases['PromptGenLepMatch2l'] = {
-    'expr': 'Alt$(Lepton_promptgenmatched[0]*Lepton_promptgenmatched[1], 0)',
-    'samples': mc
-}
-
-aliases['PromptGenLepMatch4l'] = {
-        'expr': 'Alt$(Lepton_promptgenmatched[0]*Lepton_promptgenmatched[1]*Lepton_promptgenmatched[2]*Lepton_promptgenmatched[3], 0)',
-    	'samples': mc
-}
-
 
 aliases['Top_pTrw'] = {
     'expr': '(topGenPt * antitopGenPt > 0.) * (TMath::Sqrt(TMath::Exp(0.0615 - 0.0005 * topGenPt) * TMath::Exp(0.0615 - 0.0005 * antitopGenPt))) + (topGenPt * antitopGenPt <= 0.)',
     'samples': ['top']
 }
 
-aliases['AZH_mA_minus_mH'] = {
+#################################### AZH variables ####################################################
+
+aliases['AZH_mA_minus_mH_patch'] = {
     'linesToAdd': [
        '.L %s/src/PlotsConfigurations/Configurations/AToZH_Full/scripts/AZH_patch.cc+' % os.getenv('CMSSW_BASE')
     ],
     'class': 'AZH_patch',
     'args': ("AZH_mA_minus_mH"),
-    'samples': [skey for skey in samples if skey not in mc]
 }
 
 aliases['AZH_Amass'] = {
@@ -109,6 +105,10 @@ aliases['AZH_Amass'] = {
     'samples': [skey for skey in samples if skey not in mc]
 }
 
+aliases['nbjet'] = {
+    'class': 'AZH_patch',
+    'args': ("nbjet"),
+}
 
 aliases['AZH_Hmass'] = {
     'class': 'AZH_patch',
@@ -127,14 +127,37 @@ aliases['AZH_Tophadronic'] = {
     'args': ("AZH_Tophadronic")
 }
 
-aliases['AZH_Topleptonic'] = {
-    'class': 'AZH_patch',
-    'args': ("AZH_Topleptonic")
-}
 
 aliases['AZH_mA_minus_mH_onebjet'] = {
     'class' : 'AZH_patch',
     'args' : ("AZH_mA_minus_mH_onebjet")
+}
+
+############## ellipse variables ###############
+
+aliases['ellipse_mA_900_mH_400'] = {
+    'linesToAdd' : ['.L %s/src/PlotsConfigurations/Configurations/AToZH_Full/scripts/elliptical_bin.cc+' % os.getenv('CMSSW_BASE')],
+    'class' : 'elliptical_bin',
+    'args'  : (900,400,False),
+    'samples' : bkg+['AZH_900_400']
+}
+
+aliases['ellipse_mA_500_mH_350'] = {
+    'class' : 'elliptical_bin',
+    'args'  : (500,350,False),
+    'samples' : bkg+['AZH_500_350']
+}
+
+aliases['ellipse_mA_1000_mH_600'] = {
+    'class' : 'elliptical_bin',
+    'args'  : (1000,600,False),
+    'samples' : bkg+['AZH_1000_600']
+}
+
+aliases['ellipse_mA_800_mH_600'] = {
+    'class' : 'elliptical_bin',
+    'args'  : (800,600,False),
+    'samples' : bkg+['AZH_800_600']
 }
 
 #######################

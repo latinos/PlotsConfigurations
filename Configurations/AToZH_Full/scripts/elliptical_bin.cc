@@ -3,7 +3,7 @@
 #include <string>
 #include <cmath>
 #include <math.h>
-
+//only works when we use the AZH_patch.cc for mA-mH -- is defined as float in l3kin
 ////////////////////////////////
 // Putting ellipse class here //
 ////////////////////////////////
@@ -58,8 +58,8 @@ public:
 
 protected:
   void bindTree_(multidraw::FunctionLibrary&) override;
-  FloatValueReader* AZH_mA_minus_mH;
-  FloatValueReader* AZH_mA_minus_mH_onebjet;
+  TTreeReaderValue<double>* AZH_mA_minus_mH_patch;
+  TTreeReaderValue<double>* AZH_mA_minus_mH_onebjet;
   FloatValueReader* ZH3l_pTZ;
   float mA;
   float mH;
@@ -101,9 +101,9 @@ elliptical_bin::elliptical_bin(const float mA_, const float mH_, const bool ison
 }
 
 double elliptical_bin::evaluate(unsigned){
-  float dM;
+  double dM;
   if (isonebjet) dM = *AZH_mA_minus_mH_onebjet->Get();
-  else           dM = *AZH_mA_minus_mH->Get();
+  else           dM = *AZH_mA_minus_mH_patch->Get();
   float ptZ{*ZH3l_pTZ->Get()};
   for (int i = 0; i < 6; i++){
     if (ellipses[i].is_point_included(ptZ,dM)){
@@ -115,7 +115,7 @@ double elliptical_bin::evaluate(unsigned){
 
 void elliptical_bin::bindTree_(multidraw::FunctionLibrary& _library)
 {
-  _library.bindBranch(AZH_mA_minus_mH,         "AZH_mA_minus_mH");
+  _library.bindBranch(AZH_mA_minus_mH_patch,   "AZH_mA_minus_mH_patch");
   _library.bindBranch(AZH_mA_minus_mH_onebjet, "AZH_mA_minus_mH_onebjet");
   _library.bindBranch(ZH3l_pTZ,                "ZH3l_pTZ");
 }

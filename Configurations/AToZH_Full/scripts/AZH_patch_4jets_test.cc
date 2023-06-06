@@ -183,8 +183,57 @@ AZH_patch::evaluate(unsigned)
 	    }
 	}
     }
+//4 jets region definition
+    TLorentzVector WJet1_best_4jets;
+    TLorentzVector WJet2_best_4jets;
+    TLorentzVector bJetHadronic_best_4jets;
+    TLorentzVector bJetLeptonic_best_4jets;
+    TLorentzVector AZH_Neutrino_best_4jets;
 
+    if (AZH_bJet_4vecId.size()==0){
+	for (TLorentzVector Neutrino : Neutrinos) {
+        	std::vector<TLorentzVector> WJets;
+	        int ibJet1 = 0;
+		int ibJet2 = 0;
+		for (int ij = 0; ij < CleanJet_4vecId.size(); ++ij){
+		    for (int ik = ij+1; ik < CleanJet_4vecId.size(); ++ik){
+		           if(((Jet_btagDeepB->At(CleanJet_jetIdx->At(ij)))>(Jet_btagDeepB->At(CleanJet_jetIdx->At(ibJet1))))){
+		              ibJet1 = ij;}
+		           if(((Jet_btagDeepB->At(CleanJet_jetIdx->At(ik)))>(Jet_btagDeepB->At(CleanJet_jetIdx->At(ibJet2))))){
+	   			ibJet2 = ik;}
+		}
+	}
+		TLorentzVector bJetPair[2] = {CleanJet_4vecId[ibJet1], CleanJet_4vecId[ibJet2]};
+		for (int w = 0; w < CleanJet_4vecId.size(); ++w){
+			if ((CleanJet_4vecId[w] != bJetPair[0]) && (CleanJet_4vecId[w] != bJetPair[1])) {
+				WJets.push_back(CleanJet_4vecId[w]);}
+		}
+		for(int k = 0; k < 2; k++){                   
+		    for (int iWJet1 = 0; iWJet1 < WJets.size(); ++iWJet1){
+			for (int iWJet2 = iWJet1 + 1; iWJet2 < WJets.size(); ++iWJet2){ 
+			    TLorentzVector WJet1_4jets = WJets[iWJet1];
+			    TLorentzVector WJet2_4jets = WJets[iWJet2];
+			    TLorentzVector bJetHadronic_4jets = bJetPair[k];
+			    TLorentzVector bJetLeptonic_4jets = bJetPair[1-k];
+			    float WMassLeptonic_4jets = (XLepton + Neutrino).M();
+			    float WMassHadronic_4jets = (WJet1_4jets + WJet2_4jets).M();
+			    float TopMassLeptonic_4jets = (XLepton + Neutrino + bJetLeptonic_4jets).M();
+			    float TopMassHadronic_4jets = (WJet1_4jets + WJet2_4jets + bJetHadronic_4jets).M();
+			    float  Chisq_4jets = std::pow((TopMassLeptonic_4jets-TopMassLeptonic_true)/sigmaleptonic,2) + std::pow((TopMassHadronic_4jets-TopMassHadronic_true)/sigmahadronic, 2);
+			    if(Chisq_4jets < ChisqMin) { 
+				ChisqMin = Chisq_4jets;
+				WJet1_best_4jets = WJet1_4jets;
+				WJet2_best_4jets = WJet2_4jets;
+				bJetHadronic_best_4jets = bJetHadronic_4jets;
+				bJetLeptonic_best_4jets = bJetLeptonic_4jets;
+				AZH_Neutrino_best_4jets = Neutrino;
 
+			    }
+			}
+	          }
+	     }
+	}
+}
 
 
 
@@ -220,6 +269,11 @@ else if (variable == "AZH_mA_minus_mH_onebjet"){
     return (XLepton + AZH_Neutrino_best_onebjet + bJetLeptonic_best_onebjet + bJetHadronic_best_onebjet + WJet1_best_onebjet + WJet2_best_onebjet + ZLepton1 + ZLepton2).M() - (XLepton + AZH_Neutrino_best_onebjet + bJetLeptonic_best_onebjet + bJetHadronic_best_onebjet + WJet1_best_onebjet + WJet2_best_onebjet).M();
 }
 
+
+else if (variable == "AZH_mA_minus_mH_4jets"){
+    if (nJet < 4 || nbJet != 0) return -9999.0;
+    return (XLepton + AZH_Neutrino_best_4jets + bJetLeptonic_best_4jets + bJetHadronic_best_4jets + WJet1_best_4jets + WJet2_best_4jets + ZLepton1 + ZLepton2).M() - (XLepton + AZH_Neutrino_best_4jets + bJetLeptonic_best_4jets + bJetHadronic_best_4jets + WJet1_best_4jets + WJet2_best_4jets).M();
+}
 
 
 else if (variable == "mTlmetjj"){
