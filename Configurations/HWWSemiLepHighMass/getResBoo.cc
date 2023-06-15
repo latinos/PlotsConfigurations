@@ -27,7 +27,7 @@ protected:
   unsigned int _var;
   void bindTree_(multidraw::FunctionLibrary&) override;
 
-  UIntValueReader* nCleanFatJet{};
+  UIntValueReader* nFatJet{};
 
   IntArrayReader* Lep_Id;
   FloatValueReader* Lep_pt{}; 
@@ -35,11 +35,10 @@ protected:
   FloatValueReader* Lep_phi{};
   FloatValueReader* Lep_mass{};
   FloatValueReader* MET_pt{};	  
-  FloatArrayReader* CleanFatJet_pt{};	  
-  FloatArrayReader* CleanFatJet_eta{};	   
-  FloatArrayReader* CleanFatJet_phi{};
-  FloatArrayReader* CleanFatJet_mass{};	  
-  FloatArrayReader* CleanFatJet_tau21{};	  
+  FloatArrayReader* FatJet_pt{};	  
+  FloatArrayReader* FatJet_eta{};	   
+  FloatArrayReader* FatJet_phi{};
+  FloatArrayReader* FatJet_mass{};	  
   FloatValueReader* WJJ_pt{};	  
   FloatValueReader* WJJ_eta{};	   
   FloatValueReader* WJJ_phi{};
@@ -76,7 +75,7 @@ ROOT::Math::PtEtaPhiMVector wLep_4v{
 };		
 
 
-const unsigned int nJ{*nCleanFatJet->Get()};
+const unsigned int nJ{*nFatJet->Get()};
 double value_used = -1;
 double *HiggFat;
 isRes = value_used;
@@ -93,13 +92,13 @@ ROOT::Math::PtEtaPhiMVector wHadJJ_4v{
 	 
 //std::cout << isRes<< "ehehe" << std::endl;
 for (unsigned int ix{0}; ix < nJ; ix++) {
-    const float Wfat_pt   = CleanFatJet_pt->At(ix);
-    const float Wfat_eta  = CleanFatJet_eta->At(ix);
+    const float Wfat_pt   = FatJet_pt->At(ix);
+    const float Wfat_eta  = FatJet_eta->At(ix);
     		ROOT::Math::PtEtaPhiMVector wHad_4v{
       			Wfat_pt,
       			Wfat_eta,
-      			CleanFatJet_phi->At(ix),
-     			CleanFatJet_mass->At(ix)
+      			FatJet_phi->At(ix),
+     			FatJet_mass->At(ix)
  	 };
 
     double HfatM{(wHad_4v + wLep_4v).M()};
@@ -110,10 +109,24 @@ for (unsigned int ix{0}; ix < nJ; ix++) {
 		if (_var == 1) return HovFat;
    //		if(_var == 4) return lepovM;
   
+    		ROOT::Math::PtEtaPhiMVector wHad_4v_Real{
+      			Wfat_pt,
+      			Wfat_eta,
+      			FatJet_phi->At(ix),
+     			FatJet_mass->At(ix)
+ 	 };
+
+    double HfatM_Real{(wHad_4v_Real + wLep_4v).M()};
+    double HovFat_Real = min( Wfat_pt, *Lep_pt->Get()  )/ HfatM_Real;
+ //   double lepovM = *Lep_pt->Get() / HfatM;
+
+		if (_var == 5) return HfatM_Real;
+		if (_var == 6) return HovFat_Real;
     if (Wfat_pt < 200 || abs(Wfat_eta) > 2.4)
       continue;
      
     
+}
 
  /*   ROOT::Math::PtEtaPhiMVector wHad_4v{
       Wfat_pt,
@@ -125,16 +138,6 @@ for (unsigned int ix{0}; ix < nJ; ix++) {
     double HfatM{(wHad_4v + wLep_4v).M()};*/
 
 
-    if( (Wfat_pt / HfatM > 0.4) && (CleanFatJet_tau21->At(ix)) < 0.4 && (CleanFatJet_mass->At(ix)> 40) && (*MET_pt->Get() >40)){
-      isBoo = 1;
-
-	//std::cout << " vs " << HfatM << std::endl;
-
- 
-    }else{
-      isBoo= 0;
-  }
-}
 
 if(( *CJet1_index->Get() != -1 ) && (*CJet2_index->Get() != -1)){
  double HjjM{(wHadJJ_4v + wLep_4v).M()};	  
@@ -145,7 +148,7 @@ double lepovM = *Lep_pt->Get() / HjjM;
    if(_var == 2)	return HjjM;
    if(_var == 3) 	return Hovjj;
    if(_var == 4)	return lepovM;
-   if(_var == 5)	return jjovM;
+//   if(_var == 5)	return jjovM;
     if((*WJJ_pt->Get() > 40 ) && (*WJJ_pt->Get() / HjjM > 0.35) && ( *MET_pt->Get() > 30)) {
         isRes = 1;
 	if( isBoo == 1){
@@ -163,18 +166,17 @@ return -999;
 void 
 getResBoo::bindTree_(multidraw::FunctionLibrary& _library)
 {
-_library.bindBranch(nCleanFatJet, "nCleanFatJet"); 
+_library.bindBranch(nFatJet, "nFatJet"); 
 _library.bindBranch(Lep_Id, "Lepton_pdgId"); 
 _library.bindBranch(Lep_pt, "HM_Wlep_pt_Puppi");
 _library.bindBranch(Lep_eta, "HM_Wlep_eta_Puppi");
 _library.bindBranch(Lep_phi, "HM_Wlep_phi_Puppi");
 _library.bindBranch(Lep_mass, "HM_Wlep_mass_Puppi");
 _library.bindBranch(MET_pt, "PuppiMET_pt");
-_library.bindBranch(CleanFatJet_pt, "CleanFatJet_pt");
-_library.bindBranch(CleanFatJet_eta, "CleanFatJet_eta");
-_library.bindBranch(CleanFatJet_phi, "CleanFatJet_phi");
-_library.bindBranch(CleanFatJet_mass, "CleanFatJet_mass");
-_library.bindBranch(CleanFatJet_tau21, "CleanFatJet_tau21");
+_library.bindBranch(FatJet_pt, "FatJet_pt");
+_library.bindBranch(FatJet_eta, "FatJet_eta");
+_library.bindBranch(FatJet_phi, "FatJet_phi");
+_library.bindBranch(FatJet_mass, "FatJet_mass");
 _library.bindBranch(WJJ_pt, "HM_Whad_pt");
 _library.bindBranch(WJJ_eta, "HM_Whad_eta");
 _library.bindBranch(WJJ_phi, "HM_Whad_phi");
