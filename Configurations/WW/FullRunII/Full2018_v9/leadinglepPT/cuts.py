@@ -24,13 +24,12 @@ catSR = {
     'B4'  : 'Lepton_pt[0] > 55       && Lepton_pt[0] <= 60',
     'B5'  : 'Lepton_pt[0] > 60       && Lepton_pt[0] <= 70',
     'B6'  : 'Lepton_pt[0] > 70       && Lepton_pt[0] <= 80',
-    'B7'  : 'Lepton_pt[0] > 80',
+    'B7'  : 'Lepton_pt[0] > 80',        
 }
 
 ##  signal regions
 cuts['ww2l2v_13TeV_sr']  = {
     'expr' : 'sr',
-    # Define the sub-categorization of signal region
     'categories' : dict((iCR+'_'+iSR,catCR[iCR]+' && '+catSR[iSR]) for iCR in catCR.keys() for iSR in catSR.keys())
 }
 
@@ -39,3 +38,6 @@ cuts['ww2l2v_13TeV_top']  = {
     'expr' : 'topcr',
     'categories' : catCR
 }
+
+
+
