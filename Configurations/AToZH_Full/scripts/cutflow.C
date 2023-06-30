@@ -1,5 +1,5 @@
 {
-  TFile *f0 = TFile::Open("../2017_v9/rootFiles_AZH_2017_v9/plots_AZH_2017_v9.root");
+  TFile *f0 = TFile::Open("../2017_v9/rootFiles_AZH_2017_v9_ellipsefit/plots_AZH_2017_v9_ellipsefit.root");
 
   // Fragile, because it must match the name and ordering in cuts.py
   TString cutslist[7] = {"preselection", "zmass_cut", "MET", "jet_cut_4j", "breq_SR", "bveto_4j", "bveto_1j_SR"};
