@@ -87,10 +87,7 @@ for (unsigned int ix{0}; ix < nFat; ix++) {
 	if(FatJet_pt->At(ix) < 200){
 	GoodJet = false;
 	}
-	if(abs(FatJet_eta->At(ix)) < 2.4){
-	GoodJet = false;
-	}
-	if(abs(FatJet_eta->At(ix)) < 2.4){
+	if(abs(FatJet_eta->At(ix)) > 2.4){
 	GoodJet = false;
 	}
 	if(FatJet_mass->At(ix) < 55 || FatJet_mass->At(ix) > 115){
@@ -155,11 +152,11 @@ _library.bindBranch(Lep_eta, "Lepton_eta");
 _library.bindBranch(Lep_phi, "Lepton_phi");
 _library.bindBranch(nLepton, "nLepton");
 _library.bindBranch(MET_pt, "PuppiMET_pt");
-_library.bindBranch(FatJet_pt, "FatJet_pt");
+_library.bindBranch(FatJet_pt, "FatJet_pt_nom");
 _library.bindBranch(FatJet_eta, "FatJet_eta");
 _library.bindBranch(FatJet_phi, "FatJet_phi");
 _library.bindBranch(FatJet_tau1, "FatJet_tau1");
-_library.bindBranch(FatJet_mass, "FatJet_msoftdrop");
+_library.bindBranch(FatJet_mass, "FatJet_msoftdrop_nom");
 _library.bindBranch(FatJet_jetId, "FatJet_jetId");
 _library.bindBranch(nCleanJet, "nCleanJet"); 
 _library.bindBranch(CleanJet_pt, "CleanJet_pt");

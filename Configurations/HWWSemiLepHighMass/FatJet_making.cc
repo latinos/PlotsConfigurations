@@ -86,7 +86,7 @@ for (unsigned int ix{0}; ix < nFat; ix++) {
 	if(FatJet_pt->At(ix) < 200){
 	GoodJet = false;
 	}
-	if(abs(FatJet_eta->At(ix)) < 2.4){
+	if(abs(FatJet_eta->At(ix)) > 2.4){
 	GoodJet = false;
 	}
 	if(FatJet_mass->At(ix) < 55 || FatJet_mass->At(ix) > 115){
@@ -114,11 +114,11 @@ for (unsigned int ix{0}; ix < nFat; ix++) {
 		}else if(ix == 3){
 			GoodJet_cd = true;
 			index_Good_3 = 3;
-		}
 		}else{
 			GoodJet_cd = true;
 			last_idx = ix;
 		}
+	}	
  	//vector<unsigned int> v_jets;  	
  	//vector<unsigned int> v_jets_0;  	
         
@@ -131,27 +131,9 @@ for (unsigned int ix{0}; ix < nFat; ix++) {
 	}
 	if (GoodJet_cd == true){
 		count_FJ = count_FJ +1 ;
-	}		
-} 
+	} 
+}		
 	
-	if(_var==0){
-		return count_FJ;
-	}	
-
-	if(_var==0){
-		if (GoodJet_cd == true){
-		return 1;
-		}else{
-		return -1;
-              }
-	}	
-	if(_var==0){
-		if (GoodJet_cd == true){
-		return 1;
-		}else{
-		return -1;
-              }
-	}	
 
 	if(_var==0){
 		if (GoodJet_cd == true){
@@ -182,6 +164,9 @@ for (unsigned int ix{0}; ix < nFat; ix++) {
 		return -10;
               }
 	}	
+	if(_var==3){
+		return count_FJ;
+	}	
 return -10;
 
 }
@@ -196,11 +181,11 @@ _library.bindBranch(Lep_eta, "Lepton_eta");
 _library.bindBranch(Lep_phi, "Lepton_phi");
 _library.bindBranch(nLepton, "nLepton");
 _library.bindBranch(MET_pt, "PuppiMET_pt");
-_library.bindBranch(FatJet_pt, "FatJet_pt");
+_library.bindBranch(FatJet_pt, "FatJet_pt_nom");
 _library.bindBranch(FatJet_eta, "FatJet_eta");
 _library.bindBranch(FatJet_phi, "FatJet_phi");
 _library.bindBranch(FatJet_tau1, "FatJet_tau1");
-_library.bindBranch(FatJet_mass, "FatJet_msoftdrop");
+_library.bindBranch(FatJet_mass, "FatJet_msoftdrop_nom");
 _library.bindBranch(FatJet_jetId, "FatJet_jetId");
 _library.bindBranch(nCleanJet, "nCleanJet"); 
 _library.bindBranch(CleanJet_pt, "CleanJet_pt");
