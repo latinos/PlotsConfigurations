@@ -17,11 +17,11 @@
 
 class kFactorUnc2 : public multidraw::TTreeFunction {
 public:
-    kFactorUnc2(TString file_name, TString tgraph_name); 
+    kFactorUnc2(TString file_name, TString tgraph_name, TString file_name_res, TString tgraph_name_res); 
     
     char const* getName() const override { return "kFactorUnc2"; }
     TTreeFunction* clone() const override { 
-        return new kFactorUnc2(n_file, n_graph); 
+        return new kFactorUnc2(n_file, n_graph, n_file_res, n_graph_res); 
     }
     
     unsigned getNdata() override { return 3; } // nominal, stat_up, stat_do, jetsel
@@ -34,6 +34,8 @@ protected:
 
   TString n_file;
   TString n_graph;
+  TString n_file_res;
+  TString n_graph_res;
 
   UIntValueReader* nGenPart;
   FloatArrayReader* GenPart_pt;
@@ -41,19 +43,28 @@ protected:
   FloatArrayReader* GenPart_phi;
   IntArrayReader* GenPart_pdgId;
   IntArrayReader* GenPart_statusFlags;
+ // IntArrayReader* HM_nCleanFatJetPassMBoosted;
+  IntArrayReader* CleanFatJet_jetIdx;
+  FloatArrayReader* FatJet_deepTag_WvsQCD;
+  FloatArrayReader* GenJetAK8_pt;
 
   TGraph* Wpt_map_nom;
   TGraph* Wpt_map_stat_up;
   TGraph* Wpt_map_stat_do;
+  TGraph* Wpt_map_nom_res;
+  TGraph* Wpt_map_stat_up_res;
+  TGraph* Wpt_map_stat_do_res;
  // TGraph* Wpt_map_jetsel;
   std::array<float,3> outputValues;
 
   float minWpt; 
 };
 
-kFactorUnc2::kFactorUnc2(TString file_name, TString tgraph_name) :
+kFactorUnc2::kFactorUnc2(TString file_name, TString tgraph_name, TString file_name_res, TString tgraph_name_res) :
     n_file(file_name),
     n_graph(tgraph_name),
+    n_file_res(file_name_res),
+    n_graph_res(tgraph_name_res),
     TTreeFunction()
 {
     //std::cout << "kFactorUnc2 constructor" << std::endl;
@@ -61,8 +72,14 @@ kFactorUnc2::kFactorUnc2(TString file_name, TString tgraph_name) :
     Wpt_map_nom     = (TGraph*)src_file->Get(n_graph+"_nom");
     Wpt_map_stat_up = (TGraph*)src_file->Get(n_graph+"_stat_up");
     Wpt_map_stat_do = (TGraph*)src_file->Get(n_graph+"_stat_do");
+    TFile* src_file_res = new TFile(TString(std::getenv("CMSSW_BASE"))+"/src/" + n_file_res);
+    Wpt_map_nom_res     = (TGraph*)src_file_res->Get(n_graph_res+"_nom");
+    Wpt_map_stat_up_res = (TGraph*)src_file_res->Get(n_graph_res+"_stat_up");
+    Wpt_map_stat_do_res = (TGraph*)src_file_res->Get(n_graph_res+"_stat_do");
+//   Wpt_map_jetsel  = (TGraph*)src_file->Get(n_graph+"_jetsel");
 //   Wpt_map_jetsel  = (TGraph*)src_file->Get(n_graph+"_jetsel");
     src_file->Close();
+    src_file_res->Close();
     minWpt = 2.5;
     if (n_graph.Contains("2016")) {
         minWpt = 5.;
@@ -122,18 +139,31 @@ kFactorUnc2::beginEvent(long long _iEntry)
     }
 
     // Correct edges
-    if (W_pt < 0.) W_pt = 0.;
-    else if (W_pt > 1200.) W_pt = 1200.;
+   // if (W_pt < 0.) W_pt = 0.;
+   // else if (W_pt > 1200.) W_pt = 1200.;
 
 
     // Get values from the graphs
+    //
     std::array<float,3> output { 1.,1.,1.};//,1.};
+ //   if( FatJet_deepTag_WvsQCD->At(CleanFatJet_jetIdx->At(0)) > 0.964){ 
+    if( GenJetAK8_pt->At(0)>180){ 
+    if (W_pt < 20.) W_pt = 20.;
+    else if (W_pt > 1200.) W_pt = 1200.;
     output[0] = Wpt_map_nom    ->Eval(W_pt); 
     output[1] = Wpt_map_stat_up->Eval(W_pt); 
     output[2] = Wpt_map_stat_do->Eval(W_pt); 
 //    output[3] = Wpt_map_jetsel ->Eval(W_pt); 
+}else{
+    if (W_pt < 0.) W_pt = 0.;
+    else if (W_pt > 400.) W_pt = 400.;
 
+    output[0] = Wpt_map_nom_res    ->Eval(W_pt); 
+    output[1] = Wpt_map_stat_up_res->Eval(W_pt); 
+    output[2] = Wpt_map_stat_do_res->Eval(W_pt); 
+}
     outputValues = output;
+
     //cout << "" << endl;
     //cout << " - k-factor : " << outputValues[0] << ", " << outputValues[1] << ", " << outputValues[2] << ", "<< outputValues[3]  << endl;
     //cout << ""; 
@@ -157,6 +187,10 @@ kFactorUnc2::bindTree_(multidraw::FunctionLibrary& _library)
     _library.bindBranch(GenPart_phi, "GenPart_phi");
     _library.bindBranch(GenPart_pdgId, "GenPart_pdgId");
     _library.bindBranch(GenPart_statusFlags, "GenPart_statusFlags");
+  //  _library.bindBranch(HM_nCleanFatJetPassMBoosted, "HM_nCleanFatJetPassMBoosted");
+    _library.bindBranch(FatJet_deepTag_WvsQCD, "FatJet_deepTag_WvsQCD");
+    _library.bindBranch(CleanFatJet_jetIdx, "CleanFatJet_jetIdx");
+    _library.bindBranch(GenJetAK8_pt, "GenJetAK8_pt");
 }
 
 #endif
