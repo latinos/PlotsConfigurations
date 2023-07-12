@@ -1,6 +1,6 @@
 # example of configuration file
 
-tag = 'AZH_2017_v9'
+tag = 'AZH_2017_v9_ttZnorm'
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFiles_'+tag

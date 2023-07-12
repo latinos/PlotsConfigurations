@@ -21,14 +21,36 @@ aliases['bVeto_1j'] = {
 aliases['bReq'] = {
     'expr': '(Sum$( CleanJet_pt > 30.0 && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > '+bWP+' ) >= 2)'
 }
-aliases['btagSF'] = {
+
+####################################### b-tagging SFs ################################
+
+aliases['bReqSF'] = {
 'expr': '( TMath::Exp(Sum$( TMath::Log( (CleanJet_pt>30 && abs(CleanJet_eta)<2.5)*Jet_btagSF_deepcsv_shape[CleanJet_jetIdx]+1*(CleanJet_pt<30 || abs(CleanJet_eta)>2.5) ) ) ) )',
 'samples': mc
 }
 
-systs = ['jes','lf','hf','lfstats1','lfstats2','hfstats1','hfstats2','cferr1','cferr2']
+aliases['bVetoSF'] = {
+    'expr': 'TMath::Exp(Sum$(TMath::Log((CleanJet_pt>20 && abs(CleanJet_eta)<2.5)*Jet_btagSF_deepcsv_shape[CleanJet_jetIdx]+1*(CleanJet_pt<20 || abs(CleanJet_eta)>2.5))))',
+    'samples': mc
+}
+
+aliases['btagSF'] = {
+    'expr': '((bVeto*bVetoSF) + ((bReq || bVeto_1j)*bReqSF))',
+    'samples': mc
+}
+
+
+systs = ['lf','hf','lfstats1','lfstats2','hfstats1','hfstats2','cferr1','cferr2']
 
 for s in systs:
+    for targ in ['bVeto', 'bReq']:
+      alias = aliases['%sSF%sup' % (targ, s)] = copy.deepcopy(aliases['%sSF' % targ])
+      alias['expr'] = alias['expr'].replace('btagSF_deepcsv_shape', 'btagSF_deepcsv_shape_up_'+s)
+
+      alias = aliases['%sSF%sdown' % (targ, s)] = copy.deepcopy(aliases['%sSF' % targ])
+      alias['expr'] = alias['expr'].replace('btagSF_deepcsv_shape', 'btagSF_deepcsv_shape_down_'+s)
+
+
 
     aliases['btagSF'+s+'up']   = { 
         'expr': aliases['btagSF']['expr'].replace('shape','shape_up_'+s),
@@ -70,39 +92,82 @@ aliases['PromptGenLepMatch4l'] = {
     	'samples': mc
 }
 
+#################################### AZH variables ####################################################
+
+aliases['AZH_mA_minus_mH_patch'] = {
+    'linesToAdd': [
+       '.L %s/src/PlotsConfigurations/Configurations/AToZH_Full/scripts/AZH_patch_2016.cc+' % os.getenv('CMSSW_BASE')
+    ],
+    'class': 'AZH_patch',
+    'args': ("AZH_mA_minus_mH"),
+}
+
+aliases['AZH_Amass'] = {
+    'class': 'AZH_patch',
+    'args': ("AZH_Amass"),
+    'samples': [skey for skey in samples if skey not in mc]
+}
+
+aliases['nbjet'] = {
+    'class': 'AZH_patch',
+    'args': ("nbjet"),
+}
+
+aliases['AZH_Hmass'] = {
+    'class': 'AZH_patch',
+    'args': ("AZH_Hmass"),
+    'samples': [skey for skey in samples if skey not in mc]
+}
+
+aliases['AZH_ChiSquare'] = {
+    'class': 'AZH_patch',
+    'args': ("AZH_ChiSquare"),
+    'samples': [skey for skey in samples if skey not in mc]
+}
+
+aliases['AZH_Tophadronic'] = {
+    'class': 'AZH_patch',
+    'args': ("AZH_Tophadronic")
+}
+aliases['AZH_mA_minus_mH_onebjet'] = {
+    'class' : 'AZH_patch',
+    'args' : ("AZH_mA_minus_mH_onebjet")
+}
+
+############## ellipse variables ###############
+
+aliases['ellipse_mA_900_mH_400'] = {
+    'linesToAdd' : ['.L %s/src/PlotsConfigurations/Configurations/AToZH_Full/scripts/elliptical_bin.cc+' % os.getenv('CMSSW_BASE')],
+    'class' : 'elliptical_bin',
+    'args'  : (900,400,False),
+    'samples' : bkg+['AZH_900_400']
+}
+
+aliases['ellipse_mA_500_mH_350'] = {
+    'class' : 'elliptical_bin',
+    'args'  : (500,350,False),
+    'samples' : bkg+['AZH_500_350']
+}
+
+aliases['ellipse_mA_1000_mH_600'] = {
+    'class' : 'elliptical_bin',
+    'args'  : (1000,600,False),
+    'samples' : bkg+['AZH_1000_600']
+}
+
+aliases['ellipse_mA_800_mH_600'] = {
+    'class' : 'elliptical_bin',
+    'args'  : (800,600,False),
+    'samples' : bkg+['AZH_800_600']
+}
+
+#######################
 
 aliases['Top_pTrw'] = {
     'expr': '(topGenPt * antitopGenPt > 0.) * (TMath::Sqrt(TMath::Exp(0.0615 - 0.0005 * topGenPt) * TMath::Exp(0.0615 - 0.0005 * antitopGenPt))) + (topGenPt * antitopGenPt <= 0.)',
     'samples': ['top']
 }
 
-#aliases['ZH3l_dphilmetjj_test'] = {
-#    'linesToAdd': [
-#        '.L %s/src/PlotsConfigurations/Configurations/ZH3l/scripts/ZH3l_patch.cc+' % os.getenv('CMSSW_BASE')
-#    ],
-#   'class': 'ZH3l_patch',
-#   'args': ("dphilmetjj")
-#}
-
-#aliases['ZH3l_dphilmetj_test'] = {
-#    'class': 'ZH3l_patch',
-#    'args': ("dphilmetj")
-#}
-
-#aliases['ZH3l_mTlmet_test'] = {
-#    'class': 'ZH3l_patch',
-#    'args': ("mTlmet")
-#}
-
-#aliases['ZH3l_mTlmetj_test'] = {
-#    'class': 'ZH3l_patch',
-#    'args': ("mTlmetj")
-#}
-
-#aliases['ZH3l_mTlmetjj_test'] = {
-#    'class': 'ZH3l_patch',
-#    'args': ("mTlmetjj")
-#}
 
 #######################
 ### SFs for tthMVA  ###
@@ -128,17 +193,6 @@ aliases['SFweightMuDown'] = {
    'samples': mc
 }
 
-# In WpWmJJ_EWK events, partons [0] and [1] are always the decay products of the first W
-aliases['lhe_mW1'] = {
-    'expr': 'TMath::Sqrt(2. * LHEPart_pt[0] * LHEPart_pt[1] * (TMath::CosH(LHEPart_eta[0] - LHEPart_eta[1]) - TMath::Cos(LHEPart_phi[0] - LHEPart_phi[1])))',
-    'samples': ['WWewk']
-}
-
-# and [2] [3] are the second W
-aliases['lhe_mW2'] = {
-    'expr': 'TMath::Sqrt(2. * LHEPart_pt[2] * LHEPart_pt[3] * (TMath::CosH(LHEPart_eta[2] - LHEPart_eta[3]) - TMath::Cos(LHEPart_phi[2] - LHEPart_phi[3])))',
-    'samples': ['WWewk']
-}
 
 aliases['gstarHigh'] = {
     'expr': 'Gen_ZGstar_mass <0 || Gen_ZGstar_mass > 4',
@@ -150,10 +204,4 @@ aliases['gstarHigh'] = {
 #    'samples' : ['ggZH_hww']
 #}
 
-aliases['nCleanGenJet'] = {
-    'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/Differential/ngenjet.cc+' % os.getenv('CMSSW_BASE')
-      ],
-    'class': 'CountGenJet',
-    'samples': mc
-}
 

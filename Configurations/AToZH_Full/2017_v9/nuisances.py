@@ -25,7 +25,7 @@ nuisances['lumi_Uncorrelated'] = {
 }
 
 nuisances['lumi_Correlated'] = {
-    'name': 'lumi_correlated',
+    'name': 'lumi_13TeV_correlated',
     'type': 'lnN',
     'samples': dict((skey, '1.009') for skey in mc),
  #   'cuts' : fitcuts
@@ -174,6 +174,7 @@ nuisances['PU_AZH'] = {
      'AsLnN': '1', 
  #    'cuts' : fitcuts
 }
+
 
 ### PU ID SF uncertainty
 puid_syst = ['Jet_PUIDSF_up/Jet_PUIDSF', 'Jet_PUIDSF_down/Jet_PUIDSF']
@@ -340,7 +341,7 @@ nuisances['electronpt']  = {
                 'type'  : 'shape',
                 'mapUp' : 'ElepTup',
                 'mapDown' : 'ElepTdo',
-                'samples'  : dict((skey, ['1', '1']) for skey in mc if skey not in 'TTWJets'),
+                'samples'  : dict((skey, ['1', '1']) for skey in mc),
                 'folderUp'   : treeBaseDir+'Summer20UL17_106x_nAODv9_Full2017v9/MCl1loose2017v9__MCCorr2017v9NoJERInHorn__l2tightOR2017v9__ElepTup_suffix', 
                 'folderDown' : treeBaseDir+'Summer20UL17_106x_nAODv9_Full2017v9/MCl1loose2017v9__MCCorr2017v9NoJERInHorn__l2tightOR2017v9__ElepTdo_suffix', 
                 'AsLnN' : '1',
@@ -365,12 +366,25 @@ nuisances['muonpt']  = {
                 'type'  : 'shape',
                 'mapUp' : 'MupTup',
                 'mapDown' : 'MupTdo',
-                'samples'  : dict((skey, ['1', '1']) for skey in mc if skey not in 'TTWJets'),
+                'samples'  : dict((skey, ['1', '1']) for skey in mc),
                 'folderUp'   : treeBaseDir+'Summer20UL17_106x_nAODv9_Full2017v9/MCl1loose2017v9__MCCorr2017v9NoJERInHorn__l2tightOR2017v9__MupTup_suffix', 
                 'folderDown' : treeBaseDir+'Summer20UL17_106x_nAODv9_Full2017v9/MCl1loose2017v9__MCCorr2017v9NoJERInHorn__l2tightOR2017v9__MupTdo_suffix', 
                 'AsLnN' : '1',
  #               'cuts' : fitcuts
 }
+
+
+nuisances['ttZ_norm2017'] = {
+    'name' : 'CMS_ttZ_norm2017',
+    'samples' : {
+	'ttZ' : '1.00',
+    },
+    'type' : 'rateParam',
+    'cuts' : [
+	'breq_SR',
+   ]
+ }
+
 
 ####### Jet energy scale
 
@@ -421,7 +435,7 @@ nuisances['JER'] = {
     'type': 'shape',
     'mapUp': 'JERup',
     'mapDown': 'JERdo',
-    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in 'TTWJets'),
+    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['TTWJets', 'tZq_ll']),
     'folderUp': treeBaseDir+'Summer20UL17_106x_nAODv9_Full2017v9/MCl1loose2017v9__MCCorr2017v9NoJERInHorn__l2tightOR2017v9__JERup_suffix',
     'folderDown': treeBaseDir+'Summer20UL17_106x_nAODv9_Full2017v9/MCl1loose2017v9__MCCorr2017v9NoJERInHorn__l2tightOR2017v9__JERdo_suffix',
     'AsLnN': '1',
@@ -434,7 +448,7 @@ nuisances['met']  = {
                 'type'  : 'shape',
                 'mapUp' : 'METup',
                 'mapDown' : 'METdo',
-                'samples'  : dict((skey, ['1', '1']) for skey in mc if skey not in 'TTWJets'),
+                'samples'  : dict((skey, ['1', '1']) for skey in mc),
                 'folderUp'   : treeBaseDir+'Summer20UL17_106x_nAODv9_Full2017v9/MCl1loose2017v9__MCCorr2017v9NoJERInHorn__l2tightOR2017v9__METup_suffix', 
                 'folderDown' : treeBaseDir+'Summer20UL17_106x_nAODv9_Full2017v9/MCl1loose2017v9__MCCorr2017v9NoJERInHorn__l2tightOR2017v9__METdo_suffix', 
                 'AsLnN' : '1',
@@ -445,7 +459,7 @@ nuisances['met']  = {
 nuisances['stat']  = {
               'type'  : 'auto',
               'maxPoiss'  : '10',
-              'includeSignal'  : '1',
+              'includeSignal'  : '0',
               #  nuisance ['maxPoiss'] =  Number of threshold events for Poisson modelling
               #  nuisance ['includeSignal'] =  Include MC stat nuisances on signal processes (1=True, 0=False)
               'samples' : {},

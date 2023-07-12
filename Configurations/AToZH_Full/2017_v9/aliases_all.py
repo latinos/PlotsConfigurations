@@ -83,6 +83,10 @@ aliases['PromptGenLepMatch3l'] = {
 }
 
 
+aliases['PromptGenLepMatch2l'] = {
+    'expr': 'Alt$(Lepton_promptgenmatched[0]*Lepton_promptgenmatched[1], 0)',
+    'samples': mc
+}
 
 aliases['Top_pTrw'] = {
     'expr': '(topGenPt * antitopGenPt > 0.) * (TMath::Sqrt(TMath::Exp(0.0615 - 0.0005 * topGenPt) * TMath::Exp(0.0615 - 0.0005 * antitopGenPt))) + (topGenPt * antitopGenPt <= 0.)',
@@ -132,7 +136,6 @@ aliases['AZH_mA_minus_mH_onebjet'] = {
     'class' : 'AZH_patch',
     'args' : ("AZH_mA_minus_mH_onebjet")
 }
-
 
 ############## ellipse variables ###############
 
@@ -1755,14 +1758,14 @@ aliases['ellipse_mA_950_mH_850'] = {
 ### SFs for tthMVA  ###
 #######################
 
-aliases['SFweightEleUp'] = { 
-    'expr': 'LepSF3l__ele_'+eleWP_new+'__Up',
-    'samples': mc
+aliases['SFweightEleUp'] = {
+  'expr': 'LepSF3l__ele_'+eleWP_new+'__Up',
+  'samples': mc
 }
 
 aliases['SFweightEleDown'] = {
-    'expr': 'LepSF3l__ele_'+eleWP_new+'__Do',
-    'samples': mc
+   'expr': 'LepSF3l__ele_'+eleWP_new+'__Do',
+   'samples': mc
 }
 
 aliases['SFweightMuUp'] = {
@@ -1771,7 +1774,7 @@ aliases['SFweightMuUp'] = {
 }
 
 aliases['SFweightMuDown'] = {
-    'expr': 'LepSF3l__mu_'+muWP_new+'__Do',
-    'samples': mc
+   'expr': 'LepSF3l__mu_'+muWP_new+'__Do',
+   'samples': mc
 }
 

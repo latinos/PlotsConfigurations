@@ -130,8 +130,6 @@ aliases['AZH_Tophadronic'] = {
     'class': 'AZH_patch',
     'args': ("AZH_Tophadronic")
 }
-
-
 aliases['AZH_mA_minus_mH_onebjet'] = {
     'class' : 'AZH_patch',
     'args' : ("AZH_mA_minus_mH_onebjet")
@@ -163,6 +161,7 @@ aliases['ellipse_mA_800_mH_600'] = {
     'args'  : (800,600,False),
     'samples' : bkg+['AZH_800_600']
 }
+
 
 #######################
 ### SFs for tthMVA  ###

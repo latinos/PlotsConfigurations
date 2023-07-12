@@ -164,9 +164,9 @@ samples['top'] = {    'name'   :   getSampleFilesNano(directory,'TTTo2L2Nu')
 addSampleWeight(samples,'top','TTTo2L2Nu_PSWeights','Top_pTrw')
 
 samples['TTWJets'] = { 'name': getSampleFilesNano(directory,'TTWJets'),
-                              'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC ,
-                              'FilesPerJob' : 5,
-                                }
+                       'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC ,
+                       'FilesPerJob' : 5,
+}
 
 ############ AZH SIGNAL SAMPLES ############
 

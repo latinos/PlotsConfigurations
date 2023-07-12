@@ -4,15 +4,6 @@
 # Groups of samples to improve the plots.
 # If not defined, normal plots is used
 
-groupPlot['VVV']  = {  
-                  'nameHR' : 'VVV',
-                  'isSignal' : 0,
-                  'color': 806, # kOrange + 6
-                  'samples'  : ['VVV']
-              }
-
-
-
 groupPlot['ttV']  = {
   		   'nameHR' : 'ttV',
 		   'color': 419,    # kGreen+3
@@ -27,15 +18,16 @@ groupPlot['Fake']  = {
                   'samples'  : ['Fake_e', 'Fake_m']
               }
 
+groupPlot['AZH']  = {  
+                 'nameHR' : 'AZH',
+                  'isSignal' : 1,
+#                  'isSignal' :0, # to turn the overlay off
+		  'color': 632, # kRed 
+                 'scaleMultiplicativeOverlaid' : 10.0, #Turn on for SR plots
+                  'samples'  : ['AZH']
+              }
 
 # Individual plots
-
-plot['VVV']  = { 
-                  'color': 857, # kAzure -3  
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  'scale'    : 1.0
-                  }
 
 
 plot['ttV']  = {
@@ -59,7 +51,17 @@ plot['Fake_m']  = {
                   'scale'    : 1.0                  
               }
 
+plot['AZH'] = {
+                  'nameHR' : 'AZH',
+                  'color': 632+3, # kRed+3 
+                  'isSignal' : 1,
+                  'isData'   : 0,    
+                  'scale'    : 1
+                  }
+
+
+
 # additional options
 
-legend['lumi'] = 'L = 35.9/fb'
+legend['lumi'] = 'L = 41.5/fb'
 legend['sqrt'] = '#sqrt{s} = 13 TeV'

@@ -9,7 +9,7 @@
 #include "Math/GenVector/VectorUtil.h"
 using std::cout;
 using std::endl;
-
+float bWP_2017 = 0.4941;
 using PtEtaPhiMVector = ROOT::Math::PtEtaPhiMVector;
 class AZH_patch : public multidraw::TTreeFunction {
     public:
@@ -84,7 +84,7 @@ AZH_patch::evaluate(unsigned)
 	    TLorentzVector j; 
 	    j.SetPtEtaPhiM(CleanJet_pt->At(z), CleanJet_eta->At(z), CleanJet_phi->At(z), 0);
 	    CleanJet_4vecId.push_back(j);
-	    if (Jet_btagDeepB->At(CleanJet_jetIdx->At(z)) > 0.4941) {
+	    if (Jet_btagDeepB->At(CleanJet_jetIdx->At(z)) > bWP_2017) {
 		AZH_bJet_4vecId.push_back(j);
 	    }
 	}
@@ -194,7 +194,7 @@ unsigned nbJet = 0;
 for (unsigned ij = 0; ij < nJetLoose; ij++){
     if (CleanJet_pt->At(ij) > 30 && std::abs(CleanJet_eta->At(ij)) < 4.7) {
 	nJet++;
-	if (Jet_btagDeepB->At(CleanJet_jetIdx->At(ij)) > 0.4941) nbJet++; }
+	if (Jet_btagDeepB->At(CleanJet_jetIdx->At(ij)) > bWP_2017) nbJet++; }
 }
 
 if (variable == "AZH_mA_minus_mH"){
