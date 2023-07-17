@@ -14,8 +14,8 @@ configurations = os.path.dirname(configurations) # Configurations
 # imported from samples.py:
 # samples, signals
 
-mc = [skey for skey in samples if skey not in ('FAKE', 'DATA')]
-mc_deep =[skey for skey in samples if skey not in ['DY', 'Wjets', 'Vg', 'VgS','VZ', 'FAKE', 'DATA', 'VVV', 'ZH_htt', 'WH_htt', 'ggH_htt', 'qqH_htt']]  
+mc = [skey for skey in samples if skey not in ('FAKE', 'data_obs')]
+mc_deep =[skey for skey in samples if skey not in ['DY', 'Wjets', 'Vg', 'VgS','VZ', 'FAKE', 'data_obs', 'VVV', 'ZH_htt', 'WH_htt', 'ggH_htt', 'qqH_htt']]  
 wjets = [skey for skey in samples if skey.startswith('Wjets')]
 top = [skey for skey in samples if skey.startswith('top')]
 
@@ -161,10 +161,10 @@ aliases['resolved'] = {
             && HM_Whad_pt > 30'
 }
 
-aliases['boostedSignalWMass'] = {
-    'expr': '(65 < Alt$(CleanFatJet_mass[0], 0) \
-            && Alt$(CleanFatJet_mass[0], 999) < 105)'
-}
+#aliases['boostedSignalWMass'] = {
+#    'expr': '(65 < Alt$(CleanFatJet_mass[0], 0) \
+#            && Alt$(CleanFatJet_mass[0], 999) < 105)'
+#}
 aliases['boostedSignalWMassNoTau21'] = {
     'expr': '(65 < Alt$(CleanFatJet_mass[idxCleanFatJetW], 0) \
             && Alt$(CleanFatJet_mass[idxCleanFatJetW], 999) < 105)'
@@ -249,101 +249,80 @@ aliases['deltaR'] = {
     'expr' : 'TMath::Sqrt((HM_Whad_phi - Alt$(CleanFatJet_phi[0],0))*(HM_Whad_phi - Alt$(CleanFatJet_phi[0],0)) + (HM_Whad_eta - Alt$(CleanFatJet_eta[0],0))*(HM_Whad_eta - Alt$(CleanFatJet_eta[0],0))) '
 }
 
+aliases['isJetBoo'] = {
+    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/FatJet_making.cc+'  % os.getenv('CMSSW_BASE')],
+    'class': 'FatJet_making',
+    'args': 0
+}
+
+aliases['nCleanJetOverlap'] = {
+    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/FatJet_making.cc+'  % os.getenv('CMSSW_BASE')],
+    'class': 'FatJet_making',
+    'args': 1
+}
+
+aliases['FatJet_idx_clean'] = {
+    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/FatJet_making.cc+'  % os.getenv('CMSSW_BASE')],
+    'class': 'FatJet_making',
+    'args': 2
+}
+aliases['FatJet_Num'] = {
+    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/FatJet_making.cc+'  % os.getenv('CMSSW_BASE')],
+    'class': 'FatJet_making',
+    'args': 3
+}
+aliases['CleanJet_notOverlapping'] = { 
+    'linesToAdd': [
+	'gSystem->Load("%s/src/JHUGenMELA/MELA/data/%s/libmcfm_707.so","", kTRUE);'%(os.getenv('CMSSW_BASE'), os.getenv('SCRAM_ARCH')),
+        'gSystem->Load("libJHUGenMELAMELA.so","", kTRUE);',
+        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_RELEASE_BASE'),
+        '.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/FatJet_JetExcluding.cc+' % os.getenv('CMSSW_BASE')
+    ],  
+    'class': 'FatJet_JetExcluding',
+}
+#aliases['idx_JetOver'] = {
+#    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/FatJet_making.cc+'  % os.getenv('CMSSW_BASE')],
+#    'class': 'FatJet_making',
+#    'args': 2
+#}
+
 aliases['mass_HIGGS_FAT'] = {
-    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/getResBoo.cc+'  % os.getenv('CMSSW_BASE')],
-    'class': 'getResBoo',
+    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/getResBoo_var.cc+'  % os.getenv('CMSSW_BASE')],
+    'class': 'getResBoo_var',
     'args': 0
 }
 
 aliases['HvOverFat'] = {
-    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/getResBoo.cc+'  % os.getenv('CMSSW_BASE')],
-    'class': 'getResBoo',
+    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/getResBoo_var.cc+'  % os.getenv('CMSSW_BASE')],
+    'class': 'getResBoo_var',
     'args': 1
 }
 
 aliases['mass_HIGGS_JJ'] = {
-    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/getResBoo.cc+'  % os.getenv('CMSSW_BASE')],
-    'class': 'getResBoo',
+    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/getResBoo_var.cc+'  % os.getenv('CMSSW_BASE')],
+    'class': 'getResBoo_var',
     'args': 2
 }
 
 aliases['HvOverJJ'] = {
-    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/getResBoo.cc+'  % os.getenv('CMSSW_BASE')],
-    'class': 'getResBoo',
+    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/getResBoo_var.cc+'  % os.getenv('CMSSW_BASE')],
+    'class': 'getResBoo_var',
     'args': 3
 }
 
-#aliases['DeltaR_jj'] = {
-#    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/DeltaR_jj.cc+'  % os.getenv('CMSSW_BASE')],
-#    'class': 'DeltaR_jj',
-#}
-
-
 aliases['HvOverLEP'] = {
-    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/getResBoo.cc+'  % os.getenv('CMSSW_BASE')],
-    'class': 'getResBoo',
+    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/getResBoo_var.cc+'  % os.getenv('CMSSW_BASE')],
+    'class': 'getResBoo_var',
     'args': 4
 }
 
-aliases['cohe_jet'] ={
-    'expr': 'deltaR < 1 \
-            && nCleanFatJet >= 1 \
-            && nCleanJet >= 2 \
-            && CleanJet_pt[0] > 30 \
-            && CleanJet_pt[1] > 30 \
-            && PuppiMET_pt[0] > 40 \
-            && Alt$(CleanFatJet_pt[idxCleanFatJetW], 0) > 200 \
-            && Alt$(CleanFatJet_eta[idxCleanFatJetW], 999) < 2.4'
-}
-
-
-aliases['fat_jet'] ={
-    'expr': 'nCleanFatJet >= 1 '
-}
-
-#aliases['DeltaR_jj'] ={
-#    'expr' : 'TMath::Sqrt((Alt$(CleanJet_phi[HM_idx_j1], -1) - Alt$(CleanJet_phi[HM_idx_j2], -1))*(Alt$(CleanJet_phi[HM_idx_j1], -1) - Alt$(CleanJet_phi[HM_idx_j2], -1)) + (Alt$(CleanJet_eta[HM_idx_j1],-1) - Alt$(CleanJet_eta[HM_idx_j2], -1))*(Alt$(CleanJet_eta[HM_idx_j1], -1) - Alt$(CleanJet_eta[HM_idx_j2], -1)))'
-#}
-#
-aliases['DeltaR_jj_Lpt'] ={
-    'expr' : 'TMath::Sqrt((CleanJet_phi[0] - CleanJet_phi[1])*(CleanJet_phi[0] - CleanJet_phi[1]) + (CleanJet_eta[0] - CleanJet_eta[1])*(CleanJet_eta[0] - CleanJet_eta[1]))'
-}
-
-
-#aliases['boosted_nocut_tau_up'] = {
-#    'expr': 'PuppiMET_pt > 40 \
-#            && Alt$(CleanFatJet_pt[0], 0) > 200 \
-#            && FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]] > 0.960 \
-#            && Alt$(CleanFatJet_eta[0], 999) < 2.4'
-#}
-
-#aliases['boosted_nocut_tau_down'] = {
-#    'expr': 'PuppiMET_pt > 40 \
-#            && Alt$(CleanFatJet_pt[0], 0) > 200 \
-#            && FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]] < 0.960 \
-#            && Alt$(CleanFatJet_eta[0], 999) < 2.4'
-#}
-
-aliases['boosted_nocut'] = {
-    'expr': 'PuppiMET_pt > 40 \
-            && Alt$(CleanFatJet_pt[0], 0) > 200 \
-            && Alt$(CleanFatJet_eta[0], 999) < 2.4'
-}
-
-            #&& FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]] > 0.960 \
-#aliases['boosted_nocut_do'] = {
-#    'expr': 'PuppiMET_pt > 40 \
-#            && Alt$(CleanFatJet_pt[0], 0) > 200 \
-#            && FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]] > 0.960 \
-#            && HvOverFat < 0.3 \
-#            && Alt$(CleanFatJet_eta[0], 999) < 2.4'
-#}
 
 aliases['boosted_nocut_res'] = {
     'expr': 'PuppiMET_pt > 40 \
-            && Alt$(CleanFatJet_pt[0], 0) > 200 \
-            && Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0) > 0.960 \
-            && Alt$(CleanFatJet_eta[0], 999) < 2.4'
+            && isJetBoo > 0 \
+            && Alt$(FatJet_pt[FatJet_idx_clean], 0) > 200 \
+            && Alt$(FatJet_deepTag_WvsQCD[FatJet_idx_clean[0]],0) > 0.960 \
+            && Alt$(FatJet_eta[FatJet_idx_clean], 999) < 2.4'
 }
 aliases['resolved_nocut'] = {
     'expr': 'nCleanJet >= 2 \
@@ -352,6 +331,16 @@ aliases['resolved_nocut'] = {
             && PuppiMET_pt[0] > 30 \
             && CleanJet_pt[1] > 30'
 }
+
+
+aliases['boostedSignalWMass'] = {
+    'expr': '(isJetBoo > 0 && (65 < FatJet_msoftdrop[FatJet_idx_clean] \
+            && FatJet_msoftdrop[FatJet_idx_clean] < 105))'
+}
+aliases['DeltaR_jj_Lpt'] ={
+    'expr' : 'TMath::Sqrt((CleanJet_phi[0] - CleanJet_phi[1])*(CleanJet_phi[0] - CleanJet_phi[1]) + (CleanJet_eta[0] - CleanJet_eta[1])*(CleanJet_eta[0] - CleanJet_eta[1]))'
+}
+
 
 
 aliases['two_jet_res'] ={
@@ -507,25 +496,27 @@ aliases['bReqSF'] = {
     'samples': mc
 }
 
-bJetV_req_boo = '(boosted_nocut_res[0]  && CleanJet_pt[CleanJetNotFat_jetIdx] > 20 && abs(CleanJet_eta[CleanJetNotFat_jetIdx]) < 2.5 )'
-bJetR_req_boo = '(boosted_nocut_res[0]  && CleanJet_pt[CleanJetNotFat_jetIdx] > 30 && abs(CleanJet_eta[CleanJetNotFat_jetIdx]) < 2.5 )'
+
+bJetV_req_boo = '(CleanJet_pt[CleanJet_notOverlapping] > 20 && abs(CleanJet_eta[CleanJet_notOverlapping]) < 2.5  && isJetBoo[0])'
+bJetR_req_boo = '(CleanJet_pt[CleanJet_notOverlapping] > 30 && abs(CleanJet_eta[CleanJet_notOverlapping]) < 2.5 && isJetBoo[0])'
 
 aliases['bVeto_boo'] = {
-    'expr': 'Sum$(Jet_btagDeepB[CleanJet_jetIdx[CleanJetNotFat_jetIdx]] > bWP[0] && '+bJetV_req_boo+' ) == 0',
+    'expr': 'Sum$(Jet_btagDeepB[CleanJet_jetIdx[CleanJet_notOverlapping]] > bWP[0] && '+bJetV_req_boo+' ) == 0',
 }
 
 aliases['bReq_boo'] = {
-    'expr': 'Sum$(Jet_btagDeepB[CleanJet_jetIdx[CleanJetNotFat_jetIdx]] > bWP[0] && '+bJetR_req_boo+' ) >= 1',
+    'expr': 'Sum$(Jet_btagDeepB[CleanJet_jetIdx[CleanJet_notOverlapping]] > bWP[0] && '+bJetR_req_boo+' ) >= 1',
 }
 aliases['bVeto_booSF'] = {
-    'expr': 'TMath::Exp(Sum$(TMath::Log('+bJetV_req_boo+'*Jet_btagSF_deepcsv_shape[CleanJet_jetIdx[CleanJetNotFat_jetIdx]]+1*(!'+bJetV_req_boo+'))))',
+    'expr': 'TMath::Exp(Sum$(TMath::Log('+bJetV_req_boo+'*Jet_btagSF_deepcsv_shape[CleanJet_jetIdx[CleanJet_notOverlapping]]+1*(!'+bJetV_req_boo+'))))',
     'samples': mc
 }
 
 aliases['bReq_booSF'] = {
-    'expr': 'TMath::Exp(Sum$(TMath::Log('+bJetR_req_boo+'*Jet_btagSF_deepcsv_shape[CleanJet_jetIdx[CleanJetNotFat_jetIdx]]+1*(!'+bJetR_req_boo+'))))',
+    'expr': 'TMath::Exp(Sum$(TMath::Log('+bJetR_req_boo+'*Jet_btagSF_deepcsv_shape[CleanJet_jetIdx[CleanJet_notOverlapping]]+1*(!'+bJetR_req_boo+'))))',
     'samples': mc
 }
+
 aliases['btagSF'] = {
     'expr': 'two_jet_res[0]*(bVetoSF[0]*bVeto[0] + bReqSF[0]*bReq[0]) + boosted_nocut_res[0]*(bVeto_booSF[0]*bVeto_boo[0] + bReq_booSF[0]*bReq_boo[0])',
     'samples': mc
@@ -648,7 +639,21 @@ aliases['PUJetIdSF_down'] = {
     ))',
   'samples': mc
 }
+aliases['DeltaR_comp'] = {
+    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/FatJet_matching.cc+'  % os.getenv('CMSSW_BASE')],
+    'class': 'FatJet_matching',
+    'args': 0,
+    'samples': mc_deep,
+}
 
+aliases['deltaR_ov'] = {
+    'expr' : 'DeltaR_comp < 0.8 ',
+    'samples': mc_deep
+}
+
+aliases['FatJet_tau21'] = {
+    'expr' : 'FatJet_tau2/FatJet_tau1',
+}
 
 with open(configurations+'/DeepAK8V2_W_SFs.csv') as csvfile:
     reader = csv.DictReader(row for row in csvfile if not row.startswith('#'))
@@ -670,57 +675,54 @@ with open(configurations+'/DeepAK8V2_W_SFs.csv') as csvfile:
 year = '2016'
 mtr = '0p5'
 aliases['DeepAK8_SF'] = {
-    'expr': "( 1 * !boosted_nocut_res[0] + boosted_nocut_res[0]*(" +\
-    #'expr': "( 1 * two_jet_res[0] + !two_jet_res[0]*(" +\
+    'expr': "( 1 * !boosted_nocut_res[0] + boosted_nocut_res[0]*( 1*!deltaR_ov[0] + deltaR_ov[0]*( " +\
         \
         deepAK8Dict[year+'_Nominal_'+mtr+'_200_300'] +\
-        "* (100 < Alt$(CleanFatJet_pt[0],0) \
-        && Alt$(CleanFatJet_pt[0],0) < 300)   +" +\
+        "* (100 < Alt$(FatJet_pt[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0)\
+        && Alt$(FatJet_pt[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0) < 300)   +" +\
         \
         deepAK8Dict[year+'_Nominal_'+mtr+'_300_400'] +\
-        "* (300 < Alt$(CleanFatJet_pt[0],0) \
-        && Alt$(CleanFatJet_pt[0],0) < 400)   +" +\
+        "* (300 < Alt$(FatJet_pt[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0) \
+        && Alt$(FatJet_pt[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0) < 400)   +" +\
         \
         deepAK8Dict[year+'_Nominal_'+mtr+'_400_800'] +\
-        "* (400 < Alt$(CleanFatJet_pt[0],0))   ))",
+        "* (400 < Alt$(FatJet_pt[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0))  ) ))",
     'samples': mc_deep
 }
 
 aliases['DeepAK8_SF_up'] = {
     #'expr': "( 1 * two_jet_res[0] + !two_jet_res[0]*(" +\
-    'expr': "( 1 * !boosted_nocut_res[0] + boosted_nocut_res[0]*(" +\
+    'expr': "( 1 * !boosted_nocut_res[0] + boosted_nocut_res[0]*(1*!deltaR_ov[0] + deltaR_ov[0]*(" +\
         \
         deepAK8Dict[year+'_Nominal_'+mtr+'_200_300_up'] +\
-        "* (100 < Alt$(CleanFatJet_pt[0],0) \
-        && Alt$(CleanFatJet_pt[0],0) < 300)   +" +\
+        "* (100 < Alt$(FatJet_pt[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0) \
+        && Alt$(FatJet_pt[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0) < 300)   +" +\
         \
         deepAK8Dict[year+'_Nominal_'+mtr+'_300_400_up'] +\
-        "* (300 < Alt$(CleanFatJet_pt[0],0) \
-        && Alt$(CleanFatJet_pt[0],0) < 400)   +" +\
+        "* (300 < Alt$(FatJet_pt[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0) \
+        && Alt$(FatJet_pt[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0) < 400)   +" +\
         \
         deepAK8Dict[year+'_Nominal_'+mtr+'_400_800_up'] +\
-        "* (400 < Alt$(CleanFatJet_pt[0],0))   ))",
+        "* (400 < Alt$(FatJet_pt[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0) ) )))",
     'samples': mc_deep
 }
 
 aliases['DeepAK8_SF_down'] = {
     #'expr': "( 1 * two_jet_res[0] + !two_jet_res[0]*(" +\
-    'expr': "( 1 * !boosted_nocut_res[0] + boosted_nocut_res[0]*(" +\
+    'expr': "( 1 * !boosted_nocut_res[0] + boosted_nocut_res[0]*(1*!deltaR_ov[0] + deltaR_ov[0]*(" +\
         \
         deepAK8Dict[year+'_Nominal_'+mtr+'_200_300_down'] +\
-        "* (100 < Alt$(CleanFatJet_pt[0],0) \
-        && Alt$(CleanFatJet_pt[0],0) < 300)   +" +\
+        "* (100 < Alt$(FatJet_pt[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0) \
+        && Alt$(FatJet_pt[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0) < 300)   +" +\
         \
         deepAK8Dict[year+'_Nominal_'+mtr+'_300_400_down'] +\
-        "* (300 < Alt$(CleanFatJet_pt[0],0) \
-        && Alt$(CleanFatJet_pt[0],0) < 400)   +" +\
+        "* (300 < Alt$(FatJet_pt[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0) \
+        && Alt$(FatJet_pt[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0) < 400)   +" +\
         \
         deepAK8Dict[year+'_Nominal_'+mtr+'_400_800_down'] +\
-        "* (400 < Alt$(CleanFatJet_pt[0],0))   ))",
+        "* (400 < Alt$(FatJet_pt[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0))  )))",
     'samples': mc_deep
 }
-
-
 
 
 # Fix for single ele trigger eff in 2016
@@ -808,46 +810,47 @@ aliases['Fat_rewei'] = {# New Top PAG
 }
 
 aliases['Top_DeepTagrw'] = {# New Top PAG
-    'expr': '(1 * !boosted_nocut_res[0] + (boosted_nocut_res[0]*(-208.313 +217.871*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0) + 216.839*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0)*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0) -225.739*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0)*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0)*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0))))',
-    'samples': mc_deep, #['top',]#['top']
+    'expr': '(1 * !boosted_nocut_res[0] + (boosted_nocut_res[0]*(-179.237 + 188.287*Alt$(FatJet_deepTag_WvsQCD[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0)+ 187.385*Alt$(FatJet_deepTag_WvsQCD[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0)*Alt$(FatJet_deepTag_WvsQCD[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0) -195.792*Alt$(FatJet_deepTag_WvsQCD[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0)*Alt$(FatJet_deepTag_WvsQCD[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0)*Alt$(FatJet_deepTag_WvsQCD[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0))))',
+    'samples':mc_deep,#['top']
 }
-aliases['Top_DeepTagrw_up_0'] = {
-    'expr': '(1 * !boosted_nocut_res[0] + (boosted_nocut_res[0]*(-208.310 +217.874*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0) + 216.842*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0)*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0) -225.736*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0)*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0)*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0))))',
-    'samples': mc_deep,#['top',]#['top']
+
+aliases['Top_DeepTagrw_up_0'] = {# New Top PAG
+    'expr': '(1 * !boosted_nocut_res[0] + (boosted_nocut_res[0]*(-179.234 +188.290*Alt$(FatJet_deepTag_WvsQCD[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0)+ 187.388*Alt$(FatJet_deepTag_WvsQCD[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0)*Alt$(FatJet_deepTag_WvsQCD[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0) -195.789*Alt$(FatJet_deepTag_WvsQCD[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0)*Alt$(FatJet_deepTag_WvsQCD[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0)*Alt$(FatJet_deepTag_WvsQCD[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0))))',
+    'samples':mc_deep,#['top']
 }
 aliases['Top_DeepTagrw_up_1'] = {
-    'expr': '(1 * !boosted_nocut_res[0] + (boosted_nocut_res[0]*(-208.182 + 217.889*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0) + 216.786*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0)*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0) -225.841*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0)*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0)*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0))))',
-    'samples': mc_deep,#['top',]#['top']
+    'expr': '(1 * !boosted_nocut_res[0] + (boosted_nocut_res[0]*(-179.112 +188.304*Alt$(FatJet_deepTag_WvsQCD[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0)+ 187.334*Alt$(FatJet_deepTag_WvsQCD[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0)*Alt$(FatJet_deepTag_WvsQCD[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0) -195.889*Alt$(FatJet_deepTag_WvsQCD[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0)*Alt$(FatJet_deepTag_WvsQCD[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0)*Alt$(FatJet_deepTag_WvsQCD[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0))))',
+    'samples':mc_deep#['top']
 }
 aliases['Top_DeepTagrw_up_2'] = {
-    'expr': '(1 * !boosted_nocut_res[0] + (boosted_nocut_res[0]*(-208.387 +218.030*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0) + 216.800*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0)*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0) -225.786*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0)*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0)*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0))))',
-    'samples': mc_deep,#['top',]#['top']
+    'expr': '(1 * !boosted_nocut_res[0] + (boosted_nocut_res[0]*(-179.308 +188.440*Alt$(FatJet_deepTag_WvsQCD[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0)+ 187.348*Alt$(FatJet_deepTag_WvsQCD[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0)*Alt$(FatJet_deepTag_WvsQCD[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0) -195.837*Alt$(FatJet_deepTag_WvsQCD[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0)*Alt$(FatJet_deepTag_WvsQCD[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0)*Alt$(FatJet_deepTag_WvsQCD[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0))))',
+    'samples':mc_deep#['top']
 }
 aliases['Top_DeepTagrw_up_3'] = {
-    'expr': '(1 * !boosted_nocut_res[0] + (boosted_nocut_res[0]*(-208.286 +217.881*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0) + 216.690*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0)*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0) -225.625*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0)*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0)*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0))))',
-    'samples': mc_deep, #['top',]#['top']
+    'expr': '(1 * !boosted_nocut_res[0] + (boosted_nocut_res[0]*(-179.211 +188.296*Alt$(FatJet_deepTag_WvsQCD[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0)+ 187.242*Alt$(FatJet_deepTag_WvsQCD[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0)*Alt$(FatJet_deepTag_WvsQCD[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0) -195.683*Alt$(FatJet_deepTag_WvsQCD[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0)*Alt$(FatJet_deepTag_WvsQCD[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0)*Alt$(FatJet_deepTag_WvsQCD[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0))))',
+    'samples':mc_deep#['top']
 }
 
 aliases['Top_DeepTagrw_do_0'] = {
-    'expr': '(1 * !boosted_nocut_res[0] + (boosted_nocut_res[0]*(-208.316 +217.868*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0) + 216.836*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0)*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0) -225.742*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0)*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0)*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0))))',
-    'samples': mc_deep, #['top',]#['top']
+    'expr': '(1 * !boosted_nocut_res[0] + (boosted_nocut_res[0]*(-179.240 +188.284*Alt$(FatJet_deepTag_WvsQCD[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0)+ 187.382*Alt$(FatJet_deepTag_WvsQCD[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0)*Alt$(FatJet_deepTag_WvsQCD[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0) -195.795*Alt$(FatJet_deepTag_WvsQCD[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0)*Alt$(FatJet_deepTag_WvsQCD[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0)*Alt$(FatJet_deepTag_WvsQCD[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0))))',
+    'samples':mc_deep#['top']
 }
 aliases['Top_DeepTagrw_do_1'] = {
-    'expr': '(1 * !boosted_nocut_res[0] + (boosted_nocut_res[0]*(-208.444 +217.853*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0) + 216.892*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0)*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0) -225.637*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0)*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0)*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0))))',
-    'samples': mc_deep,#['top',]#['top']
+    'expr': '(1 * !boosted_nocut_res[0] + (boosted_nocut_res[0]*(-179.362 +188.269*Alt$(FatJet_deepTag_WvsQCD[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0)+ 187.436*Alt$(FatJet_deepTag_WvsQCD[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0)*Alt$(FatJet_deepTag_WvsQCD[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0) -195.694*Alt$(FatJet_deepTag_WvsQCD[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0)*Alt$(FatJet_deepTag_WvsQCD[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0)*Alt$(FatJet_deepTag_WvsQCD[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0))))',
+    'samples':mc_deep#['top']
 }
 aliases['Top_DeepTagrw_do_2'] = {
-    'expr': '(1 * !boosted_nocut_res[0] + (boosted_nocut_res[0]*(-208.239 +217.711*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0) + 216.878*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0)*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0) -225.692*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0)*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0)*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0))))',
-    'samples': mc_deep,#['top',]#['top']
+    'expr': '(1 * !boosted_nocut_res[0] + (boosted_nocut_res[0]*(-179.166 +188.134*Alt$(FatJet_deepTag_WvsQCD[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0)+ 187.422*Alt$(FatJet_deepTag_WvsQCD[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0)*Alt$(FatJet_deepTag_WvsQCD[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0) -195.747*Alt$(FatJet_deepTag_WvsQCD[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0)*Alt$(FatJet_deepTag_WvsQCD[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0)*Alt$(FatJet_deepTag_WvsQCD[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0))))',
+    'samples':mc_deep#['top']
 }
 aliases['Top_DeepTagrw_do_3'] = {
-    'expr': '(1 * !boosted_nocut_res[0] + (boosted_nocut_res[0]*(-208.340 +217.861*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0) + 216.988*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0)*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0) -225.853*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0)*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0)*Alt$(FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]],0))))',
-    'samples': mc_deep,#['top',]#['top']
+    'expr': '(1 * !boosted_nocut_res[0] + (boosted_nocut_res[0]*(-179.263 +188.278*Alt$(FatJet_deepTag_WvsQCD[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0)+ 187.528*Alt$(FatJet_deepTag_WvsQCD[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0)*Alt$(FatJet_deepTag_WvsQCD[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0) -195.901*Alt$(FatJet_deepTag_WvsQCD[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0)*Alt$(FatJet_deepTag_WvsQCD[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0)*Alt$(FatJet_deepTag_WvsQCD[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0))))',
+    'samples':mc_deep#['top']
 }
 aliases['SFweight_top'] = {
     #'expr': ' * '.join(['puWeight', 'TriggerEffWeight_1l', 'EMTFbug_veto',  'PrefireWeight', 'LepWPSF[0]', 'btagSF[0]', 'PUJetIdSF[0]']),
     #'expr': ' * '.join(['puWeight', 'TriggerEffWeight_1l_fixed', 'EMTFbug_veto',  'PrefireWeight', 'LepWPSF[0]', 'btagSF[0]', 'PUJetIdSF[0]', 'DeepAK8_SF[0]', 'Top_DeepTagrw[0]', 'Fat_rewei[0]']),
-    'expr': ' * '.join(['puWeight', 'TriggerEffWeight_1l_fixed', 'EMTFbug_veto',  'PrefireWeight', 'LepWPSF[0]', 'btagSF[0]', 'PUJetIdSF[0]', 'DeepAK8_SF[0]','Top_DeepTagrw[0]', 'Fat_rewei[0]']),
+    'expr': ' * '.join(['puWeight', 'TriggerEffWeight_1l_fixed', 'EMTFbug_veto',  'PrefireWeight', 'LepWPSF[0]', 'btagSF[0]', 'PUJetIdSF[0]','DeepAK8_SF[0]', 'Top_DeepTagrw[0]']), #,'DeepAK8_SF[0]']),# 'Fat_rewei[0]']),
     #'expr': ' * '.join(['puWeight', 'TriggerEffWeight_1l', 'EMTFbug_veto',  'PrefireWeight', 'LepWPSF[0]', 'btagSF[0]', 'PUJetIdSF[0]']),
     #'expr': ' * '.join(['puWeight', 'TriggerEffWeight_1l', 'EMTFbug_veto',  'PrefireWeight', 'LepWPSF[0]', 'btagSF[0]', 'PUJetIdSF[0]', 'WtagSF[0]']),
     #'expr': ' * '.join(['puWeight', 'trigWeight', 'EMTFbug_veto',  'PrefireWeight', 'LepWPSF[0]', 'btagSF[0]', 'PUJetIdSF[0]', 'DeepAK8_SF[0]']),

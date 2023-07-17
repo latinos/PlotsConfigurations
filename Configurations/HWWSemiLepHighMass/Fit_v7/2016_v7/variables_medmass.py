@@ -331,7 +331,7 @@ variables['CleanFatJet_mass_zoom'] = {
 variables['HvOverFAT'] = {
    'name' : 'HvOverFat[0]',
    'range': (20, 0, 1.),
-   'xaxis': 'p_{t}^{W}/m_{Xp_{t}^{W}/m_{X}}',
+   'xaxis': 'p_{t}^{W}/m_{X}',
    'cuts' : controlRegions,
    'fold' : 0
 }

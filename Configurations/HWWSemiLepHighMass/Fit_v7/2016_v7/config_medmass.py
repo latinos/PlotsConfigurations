@@ -29,7 +29,7 @@ lumi = 36.3
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'Plotts_SRs'
+outputDirPlots = 'Plotts_SRs_CrossCheck'
 
 
 # used by mkDatacards to define output directory for datacards
