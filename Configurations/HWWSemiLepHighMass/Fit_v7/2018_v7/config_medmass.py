@@ -5,13 +5,13 @@ treeName = 'Events'
 tag = 'hm_CR_2018_Update'
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFile_resolved_2018'
+outputDir = 'rootFile_highmass_2018_good'
 
 # file with TTree aliases
 aliasesFile = 'aliases_medmass.py'#aliases_highmass to use the high mass trained DNN
 
 # file with list of variables
-variablesFile = 'variables_fit.py'
+variablesFile = 'variables_medmass.py'
 # variablesFile = 'variablesPlot.py'
 # variablesFile = 'variablesLimits.py'
 
@@ -29,7 +29,7 @@ lumi = 59.7
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'Plots_CRs'
+outputDirPlots = 'Plots_CRs_test'
 
 
 # used by mkDatacards to define output directory for datacards

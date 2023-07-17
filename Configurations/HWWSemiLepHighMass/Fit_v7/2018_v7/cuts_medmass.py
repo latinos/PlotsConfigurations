@@ -18,8 +18,8 @@ LepCats['incl_']='( (abs(Lepton_pdgId[0])==11) && Lepton_pt[0]>35 && !hole_ex[0]
 LepCats_P={}
 LepCats_P['incl_']='( (abs(Lepton_pdgId[0])==11) && Lepton_pt[0]>35 && !hole_ex[0]\
                  || (abs(Lepton_pdgId[0])==13) && Lepton_pt[0]>27 && !hole_ex[0])'
-#LepCats_P['ElCh_']='( (abs(Lepton_pdgId[0])==11) && Lepton_pt[0]>35 && !hole_ex[0])'
-#LepCats_P['MuCh_']='( (abs(Lepton_pdgId[0])==13) && Lepton_pt[0]>27 && !hole_ex[0])'
+LepCats_P['ElCh_']='( (abs(Lepton_pdgId[0])==11) && Lepton_pt[0]>35 && !hole_ex[0])'
+LepCats_P['MuCh_']='( (abs(Lepton_pdgId[0])==13) && Lepton_pt[0]>27 && !hole_ex[0])'
 # FIXME: maybe need to cut > 35 for ele due to fakeW calculation
 
 BoostProcCats_H={}
