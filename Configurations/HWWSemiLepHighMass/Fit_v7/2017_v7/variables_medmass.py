@@ -523,73 +523,73 @@ variables['whad_mass'] = {
     'fold' : 0, 
     'cuts' : controlRegions,
 }
-##variables['classvbf'] = {
-##     'name': 'vbfdnn_odd',
-##     'range' : (10,0,1.),
-##     'xaxis' : 'VBF output',
-##     'fold' : 3,
-##     'cuts' : boostedSR,
-##     'divideByBinWidth':1
-##}
-##variables['classbkg'] = {
-##     'name': 'bkgdnn_odd',
-##     'range' : (10,0,1.),
-##     'xaxis' : 'BKG output',
-##     'fold'  : 3,
-##     'cuts' : boostedSR,
-##     'divideByBinWidth':1
-##}
-##variables['classggh'] = {
-##     'name': 'gghdnn_odd',
-##     'range' : (10,0,1.),
-##     'xaxis' : 'ggH output',
-##     'fold'  : 3,
-##     'cuts' : boostedSR,
-##     'divideByBinWidth':1
-##}
-##variables['classvbf_bin'] = {
-##     'name': 'vbfdnn_odd',
-##     'range' : (20,0,1.),
-##     'xaxis' : 'VBF output',
-##     'fold' : 3,
-##}
-##variables['classbkg_bin'] = {
-##     'name': 'bkgdnn_odd',
-##     'range' : (6,0,1.),
-##     'xaxis' : 'BKG output',
-##     'fold'  : 3,
-##     'divideByBinWidth':1
-##}
-##variables['classggh_bin'] = {
-##     'name': 'gghdnn_odd',
-##     'range' : (20,0,1.),
-##     'xaxis' : 'ggH output',
-##     'fold'  : 3,
-##}
-##variables['isvbf'] = {
-##     'name': 'vbflike_odd',
-##     'range' : ([0.,0.5,1.0,1.5],),
-##     'xaxis' : 'is VBF',
-##     'fold' : 0,
-##}
-##variables['isggh'] = {
-##     'name': 'gghlike_odd',
-##     'range' : ([0.,0.5,1.0,1.5],),
-##     'xaxis' : 'is GGH',
-##     'fold' : 0,
-##}
-##variables['isbkg'] = {
-##     'name': 'bkglike_odd',
-##     'range' : ([0.,0.5,1.0,1.5],),
-##     'xaxis' : 'is BKG',
-##     'fold' : 0,
-##}
+#variables['classvbf'] = {
+#     'name': 'vbfdnn_odd',
+#     'range' : (10,0,1.),
+#     'xaxis' : 'VBF output',
+#     'fold' : 3,
+#     'cuts' : controlRegions,
+#     'divideByBinWidth':1
+#}
+#variables['classbkg'] = {
+#     'name': 'bkgdnn_odd',
+#     'range' : (10,0,1.),
+#     'xaxis' : 'BKG output',
+#     'fold'  : 3,
+#     'cuts' : controlRegions,
+#     'divideByBinWidth':1
+#}
+#variables['classggh'] = {
+#     'name': 'gghdnn_odd',
+#     'range' : (10,0,1.),
+#     'xaxis' : 'ggH output',
+#     'fold'  : 3,
+#     'cuts' : controlRegions,
+#     'divideByBinWidth':1
+#}
+###variables['classvbf_bin'] = {
+###     'name': 'vbfdnn_odd',
+###     'range' : (20,0,1.),
+###     'xaxis' : 'VBF output',
+###     'fold' : 3,
+###}
+###variables['classbkg_bin'] = {
+###     'name': 'bkgdnn_odd',
+###     'range' : (6,0,1.),
+###     'xaxis' : 'BKG output',
+###     'fold'  : 3,
+###     'divideByBinWidth':1
+###}
+###variables['classggh_bin'] = {
+###     'name': 'gghdnn_odd',
+###     'range' : (20,0,1.),
+###     'xaxis' : 'ggH output',
+###     'fold'  : 3,
+###}
+###variables['isvbf'] = {
+###     'name': 'vbflike_odd',
+###     'range' : ([0.,0.5,1.0,1.5],),
+###     'xaxis' : 'is VBF',
+###     'fold' : 0,
+###}
+###variables['isggh'] = {
+###     'name': 'gghlike_odd',
+###     'range' : ([0.,0.5,1.0,1.5],),
+###     'xaxis' : 'is GGH',
+###     'fold' : 0,
+###}
+###variables['isbkg'] = {
+###     'name': 'bkglike_odd',
+###     'range' : ([0.,0.5,1.0,1.5],),
+###     'xaxis' : 'is BKG',
+###     'fold' : 0,
+###}
 #variables['classvbf_res'] = {
 #     'name': 'vbfdnn_res',
 #     'range' : (10,0,1.),
 #     'xaxis' : 'VBF output',
 #     'fold' : 3,
-#     'cuts' : resolvedSR,
+#     'cuts' : controlRegions,
 #     'divideByBinWidth':1
 #}
 #variables['classbkg_res'] = {
@@ -597,7 +597,7 @@ variables['whad_mass'] = {
 #     'range' : (10,0,1.),
 #     'xaxis' : 'BKG output',
 #     'fold'  : 3,
-#     'cuts' : resolvedSR,
+#     'cuts' : controlRegions,
 #     'divideByBinWidth':1
 #}
 #variables['classggh_res'] = {
@@ -605,7 +605,7 @@ variables['whad_mass'] = {
 #     'range' : (10,0,1.),
 #     'xaxis' : 'ggH output',
 #     'fold'  : 3,
-#     'cuts' : resolvedSR,
+#     'cuts' : controlRegions,
 #     'divideByBinWidth':1
 #}
 #variables['classvbf_bin'] = {

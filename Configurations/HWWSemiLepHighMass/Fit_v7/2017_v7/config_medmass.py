@@ -11,7 +11,7 @@ outputDir = 'rootFile_resolved_2017'
 aliasesFile = 'aliases_medmass.py'#DNN trained with the high mass with aliases_highmass.py
 
 # file with list of variables
-variablesFile = 'variables_fit.py'
+variablesFile = 'variables_medmass.py'
 # variablesFile = 'variablesPlot.py'
 # variablesFile = 'variablesLimits.py'
 
