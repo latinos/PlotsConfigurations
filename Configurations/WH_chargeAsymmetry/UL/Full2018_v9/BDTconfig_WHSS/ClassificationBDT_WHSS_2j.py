@@ -3,7 +3,7 @@ from ROOT import TMVA, TFile, TTree, TCut, TChain
 from subprocess import call
 from os.path import isfile
 
-import config_WHSS_cfg as config
+import config_WHSS_2j_cfg as config
 
 import sys
 
@@ -12,11 +12,11 @@ def runJob(output_and_dataset_name = ""):
     TMVA.Tools.Instance()
     TMVA.PyMethodBase.PyInitialize()
 
-    output  = TFile.Open('TMVA{}.root'.format(output_and_dataset_name), 'RECREATE')
+    output  = TFile.Open('TMVA_2j{}.root'.format(output_and_dataset_name), 'RECREATE')
     factory = TMVA.Factory('TMVAClassification', output,   '!V:!Silent:Color:DrawProgressBar:AnalysisType=Classification')
 
     # dataloader = TMVA.DataLoader('dataset_WHSS_noCorrelatedVariables')
-    dataloader = TMVA.DataLoader("dataset{}".format(output_and_dataset_name))
+    dataloader = TMVA.DataLoader("dataset_2j{}".format(output_and_dataset_name))
 
     for br in config.mvaVariables:
         dataloader.AddVariable(br)

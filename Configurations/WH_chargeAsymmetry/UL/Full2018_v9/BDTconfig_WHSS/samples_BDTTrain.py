@@ -98,7 +98,7 @@ DataTrig = {
 #########################################
 
 # SFweight does not include btag weights
-mcCommonWeightNoMatch = 'XSWeight*METFilter_MC*SFweight'
+mcCommonWeightNoMatch = 'XSWeight*METFilter_MC*SFweight*(1-PromptGenLepMatch2l)'
 mcCommonWeight = 'XSWeight*METFilter_MC*PromptGenLepMatch2l*SFweight'
 
 ###########################################
@@ -128,6 +128,9 @@ samples['WZ'] = {
 }
 # addSampleWeight(samples, 'WZ', 'WZTo3LNu_mllmin0p1', '(0.601644*58.59/4.666)')
 
+
+# For Fakes, we don't want both leptons to be gen-matched
+
 ############ WJets (Fakes) ############
 files = nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_0J') + \
         nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_1J') + \
@@ -135,10 +138,30 @@ files = nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_0J') + \
 
 samples['WJets'] = {
     'name': files,
-    'weight': mcCommonWeight,
+    'weight': mcCommonWeightNoMatch,
     'FilesPerJob': 4
 }
 
+##### Top (Fakes) #######
+# files = nanoGetSampleFiles(mcDirectory, 'TTTo2L2Nu') + \
+#         nanoGetSampleFiles(mcDirectory, 'ST_s-channel') + \
+#         nanoGetSampleFiles(mcDirectory, 'ST_t-channel_top') + \
+#         nanoGetSampleFiles(mcDirectory, 'ST_t-channel_antitop') + \
+#         nanoGetSampleFiles(mcDirectory, 'ST_tW_antitop') + \
+#         nanoGetSampleFiles(mcDirectory, 'ST_tW_top')
+
+files = nanoGetSampleFiles(mcDirectory, 'TTToSemiLeptonic') + \
+        nanoGetSampleFiles(mcDirectory, 'ST_s-channel') + \
+        nanoGetSampleFiles(mcDirectory, 'ST_t-channel_top') + \
+        nanoGetSampleFiles(mcDirectory, 'ST_t-channel_antitop') + \
+        nanoGetSampleFiles(mcDirectory, 'ST_tW_antitop') + \
+        nanoGetSampleFiles(mcDirectory, 'ST_tW_top')
+
+samples['top'] = {
+    'name': files,
+    'weight': mcCommonWeightNoMatch,
+    'FilesPerJob': 1,
+}
 
 # ################## FAKE ###################
 # samples['Fake'] = {

@@ -11,7 +11,7 @@ import cuts_BDTTrain
 isDEV=True
 
 # Load configuration
-with open("configuration.py") as handle:
+with open("configuration_2j.py") as handle:
     exec handle
 
 samples={}
@@ -25,7 +25,7 @@ for f in [samplesFile, structureFile, cutsFile]:
 # Reduce sample files for fast dev
 if isDEV:
     for sampleName, sample in samples.items():
-        if sampleName not in ['DY', 'WZ', 'WJets', 'top', 'WH_hww_plus', 'WH_hww_minus', 'WH_htt_plus', 'WH_htt_minus']:
+        if sampleName not in ['DY', 'WZ', 'WJets', 'WH_hww_plus', 'WH_hww_minus', 'WH_htt_plus', 'WH_htt_minus']:
             samples.pop(sampleName)
             continue
 
@@ -33,7 +33,7 @@ if isDEV:
 # with open("./preselections.py") as handle:
 #     exec handle
 
-with open("./cuts_BDTTrain.py") as handle:
+with open("./cuts_BDTTrain_2j.py") as handle:
     exec handle
 
 cut="(({0}))".format(supercut)
