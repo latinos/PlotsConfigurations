@@ -259,7 +259,7 @@ nuisances['PU'] = {
         'WW'      : ['1.001983*(puWeightUp/puWeight)', '0.998168*(puWeightDown/puWeight)'],
         'ggWW'    : ['1.002042*(puWeightUp/puWeight)', '0.997943*(puWeightDown/puWeight)'],
         'Vg'      : ['1.000142*(puWeightUp/puWeight)', '1.002914*(puWeightDown/puWeight)'],
-        'WZ'      : ['0.995965*(puWeightUp/puWeight)', '1.002645*(puWeightDown/puWeight)'],
+        'WZ'      : ['0.997637*(puWeightUp/puWeight)', '1.003244*(puWeightDown/puWeight)'],
         'ZZ'      : ['0.993454*(puWeightUp/puWeight)', '1.006092*(puWeightDown/puWeight)'],
         'VVV'     : ['0.991182*(puWeightUp/puWeight)', '1.010841*(puWeightDown/puWeight)'],
         'top'     : ['1.000434*(puWeightUp/puWeight)', '0.999549*(puWeightDown/puWeight)'],

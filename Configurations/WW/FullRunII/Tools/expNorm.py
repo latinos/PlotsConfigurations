@@ -5,6 +5,7 @@ import json
 TH1.AddDirectory(0)
 
 doTable = False
+append = ''
 
 for year in ['2016_HIPM','2016_noHIPM','2017','2018']:
 
@@ -19,7 +20,7 @@ for year in ['2016_HIPM','2016_noHIPM','2017','2018']:
     exec(handle)
     handle.close()
 
-    f0 = TFile("../Full{year}_v9/inclusive/ExpUnc/rootFile/plots_WW{year}_v9_ExpNorm.root".format(year=year))
+    f0 = TFile("../Full{year}_v9/inclusive/ExpUnc/rootFile{append}/plots_WW{year}_v9_ExpNorm{append}.root".format(year=year,append=append))
     pu_weight = {}
     for sample in samples.keys():
 
@@ -88,28 +89,3 @@ for year in ['2016_HIPM','2016_noHIPM','2017','2018']:
     print "    '2j' : {"+", ".join(["'%s' : %f"%(var,(hvar_tot[ivar].GetBinContent(3)+hvar_tot[ivar].GetBinContent(4))/(hnom_tot.GetBinContent(3)+hnom_tot.GetBinContent(4))) for ivar,var in enumerate(variations)])+"},"
     print "}"
 
-    ##########################
-    # Calculate btag SF norm #
-    ##########################
-
-    btagSF_weight = collections.OrderedDict()
-
-    for sample in samples.keys():
-
-        # Nominal norm applied to SFweight in aliases (along with btagSF)
-        h_nom = f0.Get("ww2l2v_13TeV_presel/nGoodCleanJet/histo_"+sample)
-        if h_nom.Integral() <= 0:
-            print 'Nominal histogram is empty for %s! Will not compute weights'%sample
-            continue
-        h_raw = f0.Get("ww2l2v_13TeV_presel/nGoodCleanJet/histo_"+sample+'_rawUp') #Name aside, this is the distribution w/o btagSF
-        btagSF_weight[sample] = collections.OrderedDict()
-        btagSF_weight[sample]['nom'] = h_raw.Integral()/h_nom.Integral()
-
-        # Variation norms applied in nuisances
-        for shift in ['lf', 'hf', 'hfstats1', 'hfstats2', 'lfstats1', 'lfstats2', 'cferr1', 'cferr2']:
-            h_up   = f0.Get("ww2l2v_13TeV_presel/nGoodCleanJet/histo_"+sample+'_'+shift+'Up')
-            h_down = f0.Get("ww2l2v_13TeV_presel/nGoodCleanJet/histo_"+sample+'_'+shift+'Down')
-            btagSF_weight[sample][shift] = [h_nom.Integral()/h_up.Integral(), h_nom.Integral()/h_down.Integral()]
-
-    with open("../Full{}_v9/inclusive/btagnorm.json".format(year),"w") as outfile:
-        json.dump(btagSF_weight, outfile, indent=4)

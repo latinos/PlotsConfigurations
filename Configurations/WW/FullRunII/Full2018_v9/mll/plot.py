@@ -1,6 +1,6 @@
 # plot configuration
 
-nbins = 13
+nbins = 12
 
 # groupPlot = {}
 # 

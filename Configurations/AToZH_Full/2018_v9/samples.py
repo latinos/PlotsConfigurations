@@ -18,7 +18,7 @@ elif  'cern' in SITE :
   #xrootdPath='root://eoscms.cern.ch/'
   treeBaseDir = '/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/'
 
-directory = treeBaseDir+'Summer20UL18_106x_nAODv9_Full2018v9/MCl1loose2018v9__MCCorr2018v9NoJERInHorn__l2tightOR2018v9__btagULFix'
+directory = treeBaseDir+'Summer20UL18_106x_nAODv9_Full2018v9/MCl1loose2018v9__MCCorr2018v9NoJERInHorn__l2tightOR2018v9'
 
 ################################################
 ############ NUMBER OF LEPTONS #################
@@ -28,7 +28,7 @@ directory = treeBaseDir+'Summer20UL18_106x_nAODv9_Full2018v9/MCl1loose2018v9__MC
 Nlep='3'
 #Nlep='4'
 ZZWeight='1.07'
-
+WZWeight = '1.138'   #NLO to NNLO k-factor
 ################################################
 ############### Lepton WP ######################
 ################################################
@@ -98,7 +98,7 @@ DataTrig = {
 #############  BACKGROUNDS  ###############
 ###########################################
 samples['Zg']  =  {     'name'   :    getSampleFilesNano(directory,'ZGToLLG'),
-                        'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC + '*(Gen_ZGstar_mass <= 0)',
+                        'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC + '*(Gen_ZGstar_mass <= 0)',
                         'FilesPerJob' : 3 ,
                  }
 
@@ -110,19 +110,15 @@ samples['ZgS']  = {    'name'   :   getSampleFilesNano(directory,'ZGToLLG'),
 
 
 
-samples['WZ']  = {    'name':   getSampleFilesNano(directory,'WZTo3LNu_mllmin4p0'),
-                       'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch3l+'*'+METFilter_MC ,
+samples['WZ']  = {    'name':   getSampleFilesNano(directory,'WZTo3LNu_mllmin4p0')
+                               + getSampleFilesNano(directory,'WZTo2Q2L_mllmin4p0'),
+                       'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch3l+'*'+METFilter_MC+'*'+WZWeight,
                        'FilesPerJob' : 2 ,
              }
 
 
-samples['WZ_had']  = {    'name': getSampleFilesNano(directory,'WZTo2Q2L_mllmin4p0'),
-                       'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC ,
-                       'FilesPerJob' : 2 ,
-             }
 
-samples['ttV'] = {    'name'   :   getSampleFilesNano(directory,'TTWJetsToLNu')
-                                 + getSampleFilesNano(directory,'TTZToLLNuNu_M-10'),
+samples['ttZ'] = {    'name'   :  getSampleFilesNano(directory,'TTZToLLNuNu_M-10'),
                      'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC ,
                      'FilesPerJob' : 5,
                  }
@@ -134,18 +130,9 @@ samples['ttH_hww']  = { 'name'   :   getSampleFilesNano(directory,'ttHToNonbb_M1
 
 
 samples['tZq_ll']  = { 'name'   :   getSampleFilesNano(directory,'tZq_ll'),
-                        'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC ,
+                       'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC ,
                       }
 
-samples['WgS']  =  {     'name'   :   getSampleFilesNano(directory,'Wg_AMCNLOFXFX_01J'),
-                        'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC+'*(Gen_ZGstar_mass > 0)',
-                        'FilesPerJob' : 5 ,			    
-}
-
-samples['Wg']  =  {     'name'   :   getSampleFilesNano(directory,'Wg_AMCNLOFXFX_01J'),
-                        'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC+'* (!(Gen_ZGstar_mass > 0))',
-                        'FilesPerJob' : 5 ,			    
-}
 
 samples['ZZ']  = {  'name'   :   getSampleFilesNano(directory,'ZZTo2L2Nu')
                                + getSampleFilesNano(directory,'ZZTo2Q2L_mllmin4p0')
@@ -163,40 +150,6 @@ samples['VVV']  = {  'name'   :   getSampleFilesNano(directory,'ZZZ')
                     'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC ,
                   }
 
-##########################################
-################ SIGNALS #################
-##########################################
-samples['AZH_1000_700'] = { 'name': ['###/eos/user/s/srudrabh/AZH/postprocessing/AZH_UL_Private/Summer20UL18_106x_nAODv9_Full2018v9/MCl1loose2018v9__MCCorr2018v9NoJERInHorn/nanoLatino_AToZHToLLTTbar_MA-1000_MH-700__part0.root',],
-                         'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch3l+'*'+METFilter_MC ,
-}
-
-
-samples['AZH_1200_1000'] = { 'name': ['###/eos/user/s/srudrabh/AZH/postprocessing/AZH_UL_Private/Summer20UL18_106x_nAODv9_Full2018v9/MCl1loose2018v9__MCCorr2018v9NoJERInHorn/nanoLatino_AToZHToLLTTbar_MA-1200_MH-1000__part0.root',],
-                         'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch3l+'*'+METFilter_MC ,
-}
-
-
-samples['AZH_500_350'] = { 'name': ['###/eos/user/s/srudrabh/AZH/postprocessing/AZH_UL_Private/Summer20UL18_106x_nAODv9_Full2018v9/MCl1loose2018v9__MCCorr2018v9NoJERInHorn/nanoLatino_AToZHToLLTTbar_MA-500_MH-350__part0.root',],
-                         'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch3l+'*'+METFilter_MC ,
-}
-
-samples['AZH_700_350'] = { 'name': ['###/eos/user/s/srudrabh/AZH/postprocessing/AZH_UL_Private/Summer20UL18_106x_nAODv9_Full2018v9/MCl1loose2018v9__MCCorr2018v9NoJERInHorn/nanoLatino_AToZHToLLTTbar_MA-700_MH-350__part0.root',],
-                         'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch3l+'*'+METFilter_MC ,
-}
-
-samples['AZH_700_400'] = { 'name': ['###/eos/user/s/srudrabh/AZH/postprocessing/AZH_UL_Private/Summer20UL18_106x_nAODv9_Full2018v9/MCl1loose2018v9__MCCorr2018v9NoJERInHorn/nanoLatino_AToZHToLLTTbar_MA-700_MH-400__part0.root',],
-                         'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch3l+'*'+METFilter_MC ,
-}
-
-samples['AZH_900_350'] = { 'name': ['###/eos/user/s/srudrabh/AZH/postprocessing/AZH_UL_Private/Summer20UL18_106x_nAODv9_Full2018v9/MCl1loose2018v9__MCCorr2018v9NoJERInHorn/nanoLatino_AToZHToLLTTbar_MA-900_MH-350__part0.root',],
-                         'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch3l+'*'+METFilter_MC ,
-}
-
-samples['AZH_900_400'] = { 'name': ['###/eos/user/s/srudrabh/AZH/postprocessing/AZH_UL_Private/Summer20UL18_106x_nAODv9_Full2018v9/MCl1loose2018v9__MCCorr2018v9NoJERInHorn/nanoLatino_AToZHToLLTTbar_MA-900_MH-400__part0.root',],
-                         'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch3l+'*'+METFilter_MC ,
-}
-
-
 ###################### TOP #######################################
 
 samples['top'] = {    'name'   :   getSampleFilesNano(directory,'TTTo2L2Nu') 
@@ -211,6 +164,61 @@ samples['top'] = {    'name'   :   getSampleFilesNano(directory,'TTTo2L2Nu')
 
 addSampleWeight(samples,'top','TTTo2L2Nu_PSWeights','Top_pTrw')
 
+samples['TTWJets'] = { 'name': getSampleFilesNano(directory,'TTWJetsToLNu'),
+                       'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC ,
+		       'FilesPerJob' : 5,
+}
+
+##########################################
+################ SIGNALS #################
+##########################################
+samples['AZH_800_600'] = {  'name':  getSampleFilesNano(directory,'AToZHToLLTTbar_MA-800_MH-600'),
+                    'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch3l+'*'+METFilter_MC ,
+                  }
+
+samples['AZH_1000_600'] = { 'name': getSampleFilesNano(directory,'AToZHToLLTTbar_MA-1000_MH-600'),
+                     'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch3l+'*'+METFilter_MC ,
+                   }
+
+#samples['AZH_1200_1000'] = { 'name': getSampleFilesNano(directory,'AToZHToLLTTbar_MA-1200_MH-1000'),
+#                     'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch3l+'*'+METFilter_MC ,
+#}
+
+
+#samples['AZH_1200_850'] = { 'name': getSampleFilesNano(directory,'AToZHToLLTTbar_MA-1200_MH-850'),
+#                     'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch3l+'*'+METFilter_MC ,
+#}
+
+
+samples['AZH_500_350'] = { 'name': getSampleFilesNano(directory,'AToZHToLLTTbar_MA-500_MH-350'),
+                     'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch3l+'*'+METFilter_MC ,
+}
+
+
+#samples['AZH_500_400'] = { 'name': getSampleFilesNano(directory,'AToZHToLLTTbar_MA-500_MH-400'),
+#                     'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch3l+'*'+METFilter_MC ,
+#}
+
+
+#samples['AZH_700_350'] = { 'name': getSampleFilesNano(directory,'AToZHToLLTTbar_MA-700_MH-350'),
+#                     'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch3l+'*'+METFilter_MC ,
+#}
+
+#samples['AZH_700_370'] = { 'name': getSampleFilesNano(directory,'AToZHToLLTTbar_MA-700_MH-370'),
+#                     'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch3l+'*'+METFilter_MC ,
+#}
+
+#samples['AZH_700_400'] = { 'name': getSampleFilesNano(directory,'AToZHToLLTTbar_MA-700_MH-400'),
+#                     'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch3l+'*'+METFilter_MC ,
+#}
+
+#samples['AZH_900_370'] = { 'name': getSampleFilesNano(directory,'AToZHToLLTTbar_MA-900_MH-370'),
+#                     'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch3l+'*'+METFilter_MC ,
+#}
+
+samples['AZH_900_400'] = { 'name': getSampleFilesNano(directory,'AToZHToLLTTbar_MA-900_MH-400'),
+                     'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch3l+'*'+METFilter_MC ,
+}
 ################## FAKE ###################
 ###########################################
 Fakedirectory = treeBaseDir+'Run2018_UL2018_nAODv9_Full2018v9/DATAl1loose2018v9__l2loose__fakeW'

@@ -1,4 +1,4 @@
-# Configuration file to get normalizations of WW theoretical uncertainties
+# Configuration file to produce initial root files -- has both merged and binned ggH samples
 
 treeName = 'Events'
 
@@ -20,7 +20,8 @@ cutsFile = 'cuts.py'
 samplesFile = 'samples.py' 
 
 # luminosity to normalize to (in 1/fb)
-lumi = 59.74
+# https://github.com/latinos/LatinoAnalysis/blob/UL_production/NanoGardener/python/data/TrigMaker_cfg.py#L868 (874)
+lumi =  59.83
 
 # nuisances file for mkDatacards and for mkShape
 nuisancesFile = 'nuisances.py'

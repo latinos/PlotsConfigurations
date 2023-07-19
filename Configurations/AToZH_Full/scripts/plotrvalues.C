@@ -1,0 +1,86 @@
+#include <cassert>
+#include <cmath>
+#include "TH1.h"
+#include "TH1D.h"
+#include "TCanvas.h"
+#include "TRandom.h"
+
+
+void plotrvalues() {
+std::vector<float> r_valuesh1;
+std::vector<float> r_valuesh2;
+std::vector<float> r_valuesh3;
+for (int i = 1; i < 100; i++) {
+     TFile* _fileh1 = new TFile(((std::string("multidimfitresult_1000_600_NoSyst0signal0.5ttZ")+std::to_string(i)+std::string(".root")).c_str()));
+     TFile* _fileh2 = new TFile(((std::string("multidimfitresult_1000_600_NoSyst0signal1ttZ")+std::to_string(i)+std::string(".root")).c_str()));
+     TFile* _fileh3 = new TFile(((std::string("multidimfitresult_1000_600_NoSyst0signal1.5ttZ")+std::to_string(i)+std::string(".root")).c_str()));
+    //_file0->cd();
+    RooFitResult* fit_mdfh1;
+    RooFitResult* fit_mdfh2;
+    RooFitResult* fit_mdfh3;
+    fit_mdfh1 = (RooFitResult*) _fileh1->Get("fit_mdf");
+    fit_mdfh2 = (RooFitResult*) _fileh2->Get("fit_mdf");
+    fit_mdfh3 = (RooFitResult*) _fileh3->Get("fit_mdf");
+    unsigned long sh1 = fit_mdfh1->floatParsFinal().size();
+    unsigned long sh2 = fit_mdfh2->floatParsFinal().size();
+    unsigned long sh3 = fit_mdfh3->floatParsFinal().size();
+    for (unsigned kh1 = 0; kh1 < sh1; kh1++){
+	if ((((RooRealVar*) fit_mdfh1->floatParsFinal().at(kh1))->GetName())==std::string("r")){
+              float rh1 = ((RooRealVar*) fit_mdfh1->floatParsFinal().at(kh1))->getValV();
+	      r_valuesh1.push_back(rh1);
+	}
+    }
+
+    for (unsigned kh2 = 0; kh2 < sh2; kh2++){
+	if ((((RooRealVar*) fit_mdfh2->floatParsFinal().at(kh2))->GetName())==std::string("r")){
+              float rh2 = ((RooRealVar*) fit_mdfh2->floatParsFinal().at(kh2))->getValV();
+	      r_valuesh2.push_back(rh2);
+	}
+    }
+
+    for (unsigned kh3 = 0; kh3 < sh3; kh3++){
+	if ((((RooRealVar*) fit_mdfh3->floatParsFinal().at(kh3))->GetName())==std::string("r")){
+              float rh3 = ((RooRealVar*) fit_mdfh3->floatParsFinal().at(kh3))->getValV();
+	      r_valuesh3.push_back(rh3);
+	}
+    }
+
+}
+
+TH1F* h1 = new TH1F("h1", "postfit signal strength", 20, -0.05, 0.1);
+TH1F* h2 = new TH1F("h2", "postfit signal strength", 20, -0.05, 0.05);
+TH1F* h3 = new TH1F("h3", "postfit signal strength", 20, -0.05, 0.05);
+TCanvas *c1 = new TCanvas("c1","signal strength",200,10,700,500);
+//for(vector<float>::iterator it = r_values.begin(); it != r_values.end(); it++)
+
+for(int k1 = 0; k1 < r_valuesh1.size(); k1++) {
+    h1->Fill(r_valuesh1.at(k1));
+}
+
+
+for(int k2 = 0; k2 < r_valuesh2.size(); k2++) {
+    h2->Fill(r_valuesh2.at(k2));
+}
+
+
+for(int k3 = 0; k3 < r_valuesh3.size(); k3++) {
+    h3->Fill(r_valuesh3.at(k3));
+}
+
+
+auto legend = new TLegend(0.1,0.7,0.48,0.9);
+legend->AddEntry(h1,"ttZ_norm=0.5","f");
+legend->AddEntry(h2,"ttZ_norm=1","f");
+legend->AddEntry(h3,"ttZ_norm=1.5","f");
+
+c1->cd();
+h1->SetLineColor(kRed);
+h1->Draw();
+h2->SetLineColor(kBlue);
+h2->Draw("SAME");
+h3->SetLineColor(kGreen);
+h3->Draw("SAME");
+legend->Draw();
+c1->Update();
+c1->SaveAs("signalstrength.png");
+}

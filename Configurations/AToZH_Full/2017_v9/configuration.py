@@ -1,12 +1,12 @@
 # example of configuration file
 
-tag = 'AZH_2017_v9_withSystematics'
+tag = 'AZH_2017_v9_ttZnorm'
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFiles_'+tag
 
 # file with list of variables
-variablesFile = 'variables.py'
+variablesFile = 'variables_fit.py'
 
 # file with TTree aliases
 aliasesFile = 'aliases.py'
@@ -18,7 +18,7 @@ cutsFile = 'cuts.py'
 samplesFile = 'samples.py' 
 
 # file with list of samples
-plotFile = 'plot.py' 
+plotFile = 'plot_SR.py' 
 
 # luminosity to normalize to (in 1/fb)
 lumi = 41.53
