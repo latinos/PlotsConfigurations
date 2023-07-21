@@ -16,8 +16,17 @@ eleWP = 'mvaFall17V2Iso_WP90'
 muWP = 'cut_Tight_HWWW'
 
 aliases['LepWPCut'] = {
-    'expr': 'LepCut2l__ele_'+eleWP+'__mu_'+muWP,
+    'expr': 'LepCut2l__ele_'+eleWP+'__mu_'+muWP+'*\
+     ( ((abs(Lepton_pdgId[0])==13 && Muon_mvaTTH[Lepton_muonIdx[0]]>0.82) || (abs(Lepton_pdgId[0])==11 && Lepton_mvaTTH_UL[0]>0.90)) \
+    && ((abs(Lepton_pdgId[1])==13 && Muon_mvaTTH[Lepton_muonIdx[1]]>0.82) || (abs(Lepton_pdgId[1])==11 && Lepton_mvaTTH_UL[1]>0.90)) )',
     'samples': mc + ['DATA']
+}
+
+aliases['ttHMVASF'] = {
+    'linesToAdd' : ['.L %s/WW/FullRunII/Tools/ttHMVASF.C+' % configurations],
+    'class'      : 'ttHMVASF',
+    'args'       : ("2018", 2, "all", "nominal"),
+    'samples'    : mc
 }
 
 aliases['gstarLow'] = {
@@ -140,7 +149,7 @@ aliases['Jet_PUIDSF'] = {
 
 # data/MC scale factors
 aliases['SFweight'] = {
-    'expr': ' * '.join(['SFweight2l','LepWPCut', 'LepSF2l__ele_' + eleWP + '__mu_' + muWP, 'btagSF', 'Jet_PUIDSF']),
+    'expr': ' * '.join(['SFweight2l','LepWPCut', 'LepSF2l__ele_' + eleWP + '__mu_' + muWP, 'btagSF', 'Jet_PUIDSF', 'ttHMVASF']),
     'samples': mc
 }
 

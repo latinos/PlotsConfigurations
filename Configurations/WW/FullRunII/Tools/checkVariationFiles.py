@@ -3,7 +3,7 @@ import sys
 from collections import OrderedDict
 
 if len(sys.argv) != 2:
-    print 'Usage: python matchInputSample.py <sampleFile>'
+    print 'Usage: python checkVariationFiles.py <sampleFile>'
     exit()
 
 suffix_list = ['ElepT', 'MupT', 'JESAbsolute', 'JESBBEC1', 'JESEC2', 'JESHF', 'JESRelative', 'JESFlavorQCD', 'JER', 'MET']

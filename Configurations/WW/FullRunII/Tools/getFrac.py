@@ -34,13 +34,11 @@ for year in ['2016_HIPM','2016_noHIPM','2017','2018']:
         for sample in sample_splitting:
             ratios[cut][sample] = {}
             for subsample in sample_splitting[sample]:
-                if year == '2017' and subsample in ['ZH_hww','ZH_htt','WH_htt']: continue
                 histname = cutkey.GetName()+"/events/histo_"+subsample
                 hist = f0.Get(histname)
                 ratios[cut][sample][subsample] = hist.Integral()
             total = sum(ratios[cut][sample].values())
             for subsample in sample_splitting[sample]:
-                if year == '2017' and subsample in ['ZH_hww','ZH_htt','WH_htt']: continue
                 if total != 0:
                     ratios[cut][sample][subsample] = ratios[cut][sample][subsample]/total
                 else:

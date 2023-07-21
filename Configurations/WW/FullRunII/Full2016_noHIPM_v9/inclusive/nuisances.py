@@ -148,7 +148,7 @@ nuisances['eff_e'] = {
     'kind': 'weight',
     'type': 'shape',
     'samples': dict((skey, ['SFweightEleUp', 'SFweightEleDown']) for skey in mc),
-    #'AsLnN': '1'
+    'AsLnN': '0'
 }
 
 nuisances['electronpt'] = {
@@ -170,7 +170,7 @@ nuisances['eff_m'] = {
     'kind': 'weight',
     'type': 'shape',
     'samples': dict((skey, ['SFweightMuUp', 'SFweightMuDown']) for skey in mc),
-    #'AsLnN': '1'
+    'AsLnN': '0'
 }
 
 nuisances['muonpt'] = {
@@ -186,43 +186,56 @@ nuisances['muonpt'] = {
 }
 
 ###### Jet energy scale
-
+'''
 ##### Jet energy scale
-#jes_systs = ['JESAbsolute','JESAbsolute_2016','JESBBEC1','JESBBEC1_2016','JESEC2','JESEC2_2016','JESFlavorQCD','JESHF','JESHF_2016','JESRelativeBal','JESRelativeSample_2016']
-#folderup = ""
-#folderdo = ""
+jes_systs = ['JESAbsolute','JESAbsolute_2016','JESBBEC1','JESBBEC1_2016','JESEC2','JESEC2_2016','JESFlavorQCD','JESHF','JESHF_2016','JESRelativeBal','JESRelativeSample_2016']
+folderup = ""
+folderdo = ""
 
-#for js in jes_systs:
-#  if 'Absolute' in js:
-#    folderup = 'root://eoscms.cern.ch/'+makeMCDirectory('JESAbsoluteup_suffix')
-#    folderdo = 'root://eoscms.cern.ch/'+makeMCDirectory('JESAbsolutedo_suffix')
-#  elif 'BBEC1' in js:
-#    folderup = 'root://eoscms.cern.ch/'+makeMCDirectory('JESBBEC1up_suffix')
-#    folderdo = 'root://eoscms.cern.ch/'+makeMCDirectory('JESBBEC1do_suffix')
-#  elif 'EC2' in js:
-#    folderup = 'root://eoscms.cern.ch/'+makeMCDirectory('JESEC2up_suffix')
-#    folderdo = 'root://eoscms.cern.ch/'+makeMCDirectory('JESEC2do_suffix')
-#  elif 'HF' in js:
-#    folderup = 'root://eoscms.cern.ch/'+makeMCDirectory('JESHFup_suffix')
-#    folderdo = 'root://eoscms.cern.ch/'+makeMCDirectory('JESHFdo_suffix')
-#  elif 'Relative' in js:
-#    folderup = 'root://eoscms.cern.ch/'+makeMCDirectory('JESRelativeup_suffix')
-#    folderdo = 'root://eoscms.cern.ch/'+makeMCDirectory('JESRelativedo_suffix')
-#  elif 'FlavorQCD' in js:
-#    folderup = 'root://eoscms.cern.ch/'+makeMCDirectory('JESFlavorQCDup_suffix')
-#    folderdo = 'root://eoscms.cern.ch/'+makeMCDirectory('JESFlavorQCDdo_suffix')
+for js in jes_systs:
+  if 'Absolute' in js:
+    folderup = 'root://eoscms.cern.ch/'+makeMCDirectory('JESAbsoluteup_suffix')
+    folderdo = 'root://eoscms.cern.ch/'+makeMCDirectory('JESAbsolutedo_suffix')
+  elif 'BBEC1' in js:
+    folderup = 'root://eoscms.cern.ch/'+makeMCDirectory('JESBBEC1up_suffix')
+    folderdo = 'root://eoscms.cern.ch/'+makeMCDirectory('JESBBEC1do_suffix')
+  elif 'EC2' in js:
+    folderup = 'root://eoscms.cern.ch/'+makeMCDirectory('JESEC2up_suffix')
+    folderdo = 'root://eoscms.cern.ch/'+makeMCDirectory('JESEC2do_suffix')
+  elif 'HF' in js:
+    folderup = 'root://eoscms.cern.ch/'+makeMCDirectory('JESHFup_suffix')
+    folderdo = 'root://eoscms.cern.ch/'+makeMCDirectory('JESHFdo_suffix')
+  elif 'Relative' in js:
+    folderup = 'root://eoscms.cern.ch/'+makeMCDirectory('JESRelativeup_suffix')
+    folderdo = 'root://eoscms.cern.ch/'+makeMCDirectory('JESRelativedo_suffix')
+  elif 'FlavorQCD' in js:
+    folderup = 'root://eoscms.cern.ch/'+makeMCDirectory('JESFlavorQCDup_suffix')
+    folderdo = 'root://eoscms.cern.ch/'+makeMCDirectory('JESFlavorQCDdo_suffix')
 
-#  nuisances[js] = {
-#      'name': 'CMS_scale_'+js,
-#      'kind': 'suffix',
-#      'type': 'shape',
-#      'mapUp': js+'up',
-#      'mapDown': js+'do',
-#      'samples': dict((skey, ['1', '1']) for skey in mc),
-#      'folderUp': folderup,
-#      'folderDown': folderdo,
-#      'AsLnN': '0'
-#  }
+  nuisances[js] = {
+      'name': 'CMS_scale_'+js,
+      'kind': 'suffix',
+      'type': 'shape',
+      'mapUp': js+'up',
+      'mapDown': js+'do',
+      'samples': dict((skey, ['1', '1']) for skey in mc),
+      'folderUp': folderup,
+      'folderDown': folderdo,
+      'AsLnN': '0'
+  }
+'''
+##### Jet energy resolution
+nuisances['JER'] = {
+    'name': 'CMS_res_j_2016',
+    'kind': 'suffix',
+    'type': 'shape',
+    'mapUp': 'JERup',
+    'mapDown': 'JERdo',
+    'samples': dict((skey, ['1', '1']) for skey in mc),
+    'folderUp': 'root://eoscms.cern.ch/'+makeMCDirectory('JERup_suffix'),
+    'folderDown': 'root://eoscms.cern.ch/'+makeMCDirectory('JERdo_suffix'),
+    'AsLnN': '0'
+}
 
 ##### MET energy scale
 
@@ -255,15 +268,15 @@ nuisances['PU'] = {
     'kind': 'weight',
     'type': 'shape',
     'samples': {
-        'DY'      : ['0.994257*(puWeightUp/puWeight)', '1.004972*(puWeightDown/puWeight)'],
-        'WW'      : ['1.001983*(puWeightUp/puWeight)', '0.998168*(puWeightDown/puWeight)'],
-        'ggWW'    : ['1.002042*(puWeightUp/puWeight)', '0.997943*(puWeightDown/puWeight)'],
-        'Vg'      : ['1.000142*(puWeightUp/puWeight)', '1.002914*(puWeightDown/puWeight)'],
-        'WZ'      : ['0.997637*(puWeightUp/puWeight)', '1.003244*(puWeightDown/puWeight)'],
-        'ZZ'      : ['0.993454*(puWeightUp/puWeight)', '1.006092*(puWeightDown/puWeight)'],
-        'VVV'     : ['0.991182*(puWeightUp/puWeight)', '1.010841*(puWeightDown/puWeight)'],
-        'top'     : ['1.000434*(puWeightUp/puWeight)', '0.999549*(puWeightDown/puWeight)'],
-        'Higgs'   : ['0.999859*(puWeightUp/puWeight)', '0.999678*(puWeightDown/puWeight)'],
+        'DY'      : ['1.001416*(puWeightUp/puWeight)', '0.998236*(puWeightDown/puWeight)'],
+        'WW'      : ['1.008048*(puWeightUp/puWeight)', '0.992443*(puWeightDown/puWeight)'],
+        'ggWW'    : ['1.006841*(puWeightUp/puWeight)', '0.993293*(puWeightDown/puWeight)'],
+        'Vg'      : ['1.005988*(puWeightUp/puWeight)', '0.997575*(puWeightDown/puWeight)'],
+        'WZ'      : ['1.002985*(puWeightUp/puWeight)', '0.997694*(puWeightDown/puWeight)'],
+        'ZZ'      : ['1.000384*(puWeightUp/puWeight)', '0.999417*(puWeightDown/puWeight)'],
+        'VVV'     : ['0.996380*(puWeightUp/puWeight)', '1.003605*(puWeightDown/puWeight)'],
+        'top'     : ['1.004568*(puWeightUp/puWeight)', '0.995479*(puWeightDown/puWeight)'],
+        'Higgs'   : ['1.006655*(puWeightUp/puWeight)', '0.993370*(puWeightDown/puWeight)'],
     },
     'AsLnN': '0',
 }
@@ -479,9 +492,9 @@ nuisances['QCDscale_WW']  = {
 
 ## Factors computed to renormalize the top scale variations such that the integral is not changed in each RECO jet bin (we have rateParams for that)
 topScaleNormFactors = {
-    '0j' : {'Alt$(LHEScaleWeight[0],1)' : 1.075395, 'Alt$(LHEScaleWeight[1],1)' : 1.075257, 'Alt$(LHEScaleWeight[3],1)' : 1.002401, 'Alt$(LHEScaleWeight[5],1)' : 1.000729, 'Alt$(LHEScaleWeight[7],1)' : 0.924480, 'Alt$(LHEScaleWeight[8],1)' : 0.922940},
-    '1j' : {'Alt$(LHEScaleWeight[0],1)' : 1.085455, 'Alt$(LHEScaleWeight[1],1)' : 1.081093, 'Alt$(LHEScaleWeight[3],1)' : 1.008452, 'Alt$(LHEScaleWeight[5],1)' : 0.995362, 'Alt$(LHEScaleWeight[7],1)' : 0.919194, 'Alt$(LHEScaleWeight[8],1)' : 0.911532},
-    '2j' : {'Alt$(LHEScaleWeight[0],1)' : 1.123796, 'Alt$(LHEScaleWeight[1],1)' : 1.104903, 'Alt$(LHEScaleWeight[3],1)' : 1.023195, 'Alt$(LHEScaleWeight[5],1)' : 0.982324, 'Alt$(LHEScaleWeight[7],1)' : 0.902848, 'Alt$(LHEScaleWeight[8],1)' : 0.882591},
+    '0j' : {'Alt$(LHEScaleWeight[0],1)' : 1.076951, 'Alt$(LHEScaleWeight[1],1)' : 1.076767, 'Alt$(LHEScaleWeight[3],1)' : 1.001993, 'Alt$(LHEScaleWeight[5],1)' : 1.000967, 'Alt$(LHEScaleWeight[7],1)' : 0.923553, 'Alt$(LHEScaleWeight[8],1)' : 0.922494},
+    '1j' : {'Alt$(LHEScaleWeight[0],1)' : 1.086661, 'Alt$(LHEScaleWeight[1],1)' : 1.082418, 'Alt$(LHEScaleWeight[3],1)' : 1.007964, 'Alt$(LHEScaleWeight[5],1)' : 0.995711, 'Alt$(LHEScaleWeight[7],1)' : 0.918342, 'Alt$(LHEScaleWeight[8],1)' : 0.911211},
+    '2j' : {'Alt$(LHEScaleWeight[0],1)' : 1.123334, 'Alt$(LHEScaleWeight[1],1)' : 1.105163, 'Alt$(LHEScaleWeight[3],1)' : 1.022368, 'Alt$(LHEScaleWeight[5],1)' : 0.983020, 'Alt$(LHEScaleWeight[7],1)' : 0.902566, 'Alt$(LHEScaleWeight[8],1)' : 0.883015},
 }
 
 ## QCD scale nuisances for top are decorrelated for each RECO jet bin: the QCD scale is different for different jet multiplicities so it doesn't make sense to correlate them
