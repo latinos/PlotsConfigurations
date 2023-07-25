@@ -12,6 +12,7 @@ And as backgrounds:
 - DY
 - WZ
 - WJets
+- Top
 
 The instructions to run the trainings follow.
 
