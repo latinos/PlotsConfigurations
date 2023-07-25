@@ -15,12 +15,11 @@ configurations = os.path.dirname(configurations) # Configurations
 mc     = [skey for skey in samples if skey not in ('Fake', 'DATA', 'Dyemb')]
 mc_emb = [skey for skey in samples if skey not in ('Fake', 'DATA')]
 
-# LepCut2l__ele_mvaFall17V2Iso_WP90_tthmva_70__mu_cut_Tight_HWWW_tthmva_80
-eleWP = 'mvaFall17V2Iso_WP90_tthmva_70'
-muWP  = 'cut_Tight_HWWW_tthmva_80'
+# LepCut2l__ele_mvaFall17V2Iso_WP90__mu_cut_Tight_HWWW
+eleWP = 'mvaFall17V2Iso_WP90'
+muWP  = 'cut_Tight_HWWW'
 
 aliases['LepWPCut'] = {
-    # 'expr': 'LepCut3l__ele_' + eleWP + '__mu_' + muWP,
     'expr': 'LepCut3l__ele_mvaFall17V2Iso_WP90__mu_cut_Tight_HWWW*\
      ( ((abs(Lepton_pdgId[0])==13 && Muon_mvaTTH[Lepton_muonIdx[0]]>0.82) || (abs(Lepton_pdgId[0])==11 && Lepton_mvaTTH_UL[0]>0.90)) \
     && ((abs(Lepton_pdgId[1])==13 && Muon_mvaTTH[Lepton_muonIdx[1]]>0.82) || (abs(Lepton_pdgId[1])==11 && Lepton_mvaTTH_UL[1]>0.90)) \
@@ -28,10 +27,48 @@ aliases['LepWPCut'] = {
     'samples': mc +  ['DATA']
 }
 
+# Lepton SF (not considering the ttHMVA discriminant)
 aliases['LepWPSF'] = {
     'expr': 'LepSF3l__ele_' + eleWP + '__mu_' + muWP,
     'samples': mc
 }
+
+# ttHMVA SFs and uncertainties
+aliases['LepWPttHMVASF'] = {
+    'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/ttHMVASF.C+' % configurations],
+    'class'      : 'ttHMVASF',
+    'args'       : ("2018", 3, "all", "nominal"),
+    'samples'    : mc_emb
+}
+
+aliases['LepWPttHMVASFEleUp'] = {
+    'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/ttHMVASF.C+' % configurations],
+    'class'      : 'ttHMVASF',
+    'args'       : ("2018", 3, "all", "eleUp"),
+    'samples'    : mc_emb
+}
+
+aliases['LepWPttHMVASFEleDown'] = {
+    'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/ttHMVASF.C+' % configurations],
+    'class'      : 'ttHMVASF',
+    'args'       : ("2018", 3, "all", "eleDown"),
+    'samples'    : mc_emb
+}
+
+aliases['LepWPttHMVASFMuUp'] = {
+    'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/ttHMVASF.C+' % configurations],
+    'class'      : 'ttHMVASF',
+    'args'       : ("2018", 3, "all", "muUp"),
+    'samples'    : mc_emb
+}
+
+aliases['LepWPttHMVASFMuDown'] = {
+    'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/ttHMVASF.C+' % configurations],
+    'class'      : 'ttHMVASF',
+    'args'       : ("2018", 3, "all", "muDown"),
+    'samples'    : mc_emb
+}
+
 
 # Fake leptons transfer factor
 aliases['fakeW'] = {
@@ -40,10 +77,6 @@ aliases['fakeW'] = {
     'args'       : ('2018', '90', '82', 0.90, 0.82, 'nominal', 3, "std"),
     'samples'    : ['Fake']
 }
-# aliases['fakeW'] = {
-#     'expr': 'fakeW_ele_'+eleWP+'_mu_'+muWP+'_3l',
-#     'samples': ['Fake']
-# }
 
 # And variations - already divided by central values in formulas !
 aliases['fakeWEleUp'] = {
@@ -95,40 +128,6 @@ aliases['fakeWStatMuDown'] = {
     'args'       : ('2018', '90', '82', 0.90, 0.82, 'StatMuDown', 3, "std"),
     'samples'    : ['Fake']
 }
-
-# # And variations - already divided by central values in formulas !
-# aliases['fakeWEleUp'] = {
-#     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_EleUp',
-#     'samples': ['Fake']
-# }
-# aliases['fakeWEleDown'] = {
-#     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_EleDown',
-#     'samples': ['Fake']
-# }
-# aliases['fakeWMuUp'] = {
-#     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_MuUp',
-#     'samples': ['Fake']
-# }
-# aliases['fakeWMuDown'] = {
-#     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_MuDown',
-#     'samples': ['Fake']
-# }
-# aliases['fakeWStatEleUp'] = {
-#     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_statEleUp',
-#     'samples': ['Fake']
-# }
-# aliases['fakeWStatEleDown'] = {
-#     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_statEleDown',
-#     'samples': ['Fake']
-# }
-# aliases['fakeWStatMuUp'] = {
-#     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_statMuUp',
-#     'samples': ['Fake']
-# }
-# aliases['fakeWStatMuDown'] = {
-#     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_statMuDown',
-#     'samples': ['Fake']
-# }
 
 # No jet with pt > 30 GeV
 aliases['zeroJet'] = {
@@ -231,12 +230,6 @@ aliases['gstarHigh'] = {
     'samples': 'WZ'
 }
 
-# aliases['embedtotal'] = {
-#     'expr': 'embed_total_mva16',  # wrt. eleWP
-#     'samples': 'Dyemb'
-# }
-
-
 # gen-matching to prompt only (GenLepMatch3l matches to *any* gen lepton)
 aliases['PromptGenLepMatch3l'] = {
     'expr': 'Alt$(Lepton_promptgenmatched[0]*Lepton_promptgenmatched[1]*Lepton_promptgenmatched[2], 0)',
@@ -309,7 +302,7 @@ aliases['nCleanGenJet'] = {
 
 # data/MC scale factors
 aliases['SFweight'] = {
-    'expr': ' * '.join(['SFweight3l', 'LepWPCut', 'LepWPSF','Jet_PUIDSF_loose', 'btagSF']),
+    'expr': ' * '.join(['SFweight3l', 'LepWPCut', 'LepWPSF','Jet_PUIDSF_loose', 'btagSF', 'LepWPttHMVASF']),
     'samples': mc
 }
 
@@ -344,6 +337,8 @@ aliases['SFweightMuDown'] = {
 # }
 
 ### BDT on-the-fly
+
+# Default trainings in AN-22-120_v1
 aliases['BDT_WH3l_OSSF_v9'] = {
     'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/BDT_WH3l_OSSF_v9.C+' % configurations],
     'class' : 'BDT_WH3l_OSSF_v9',
@@ -355,6 +350,22 @@ aliases['BDT_WH3l_SSSF_v9'] = {
     'class' : 'BDT_WH3l_SSSF_v9',
     'args'  : ('BDTG4SK01_1000Trees_02baggingfraction', '%s/WH_chargeAsymmetry/UL/data/BDT/2018/WH3l/SSSF/weights/TMVAClassification_BDTG4SK01_1000Trees_02baggingfraction.weights.xml' % configurations),
 }
+
+# Considering Top and Z+jets (DY) as sources of fake leptons
+aliases['BDT_WH3l_OSSF_new_v9'] = {
+    'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/BDT_WH3l_OSSF_v9.C+' % configurations],
+    'class' : 'BDT_WH3l_OSSF_v9',
+    'args'  : ('BDTG4C3', '%s/WH_chargeAsymmetry/UL/Full2018_v9/BDTconfig_WH3l/dataset/weights/TMVAClassification_BDTG4C3.weights.xml' % configurations),
+}
+
+aliases['BDT_WH3l_SSSF_new_v9'] = {
+    'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/BDT_WH3l_SSSF_v9.C+' % configurations],
+    'class' : 'BDT_WH3l_SSSF_v9',
+    'args'  : ('BDTG4SK01_05shrinkage', '%s/WH_chargeAsymmetry/UL/Full2018_v9/BDTconfig_WH3l/datasetSSSF/weights/TMVAClassification_BDTG4SK01_05shrinkage.weights.xml' % configurations),
+}
+
+# /WH_chargeAsymmetry/UL/Full2018_v9/BDTconfig_WH3l/dataset/weights/TMVAClassification_BDTG4C3.weights.xml
+
 
 # ########################
 # ### Charge misid SFs ###
