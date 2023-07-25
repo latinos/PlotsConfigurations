@@ -17,7 +17,7 @@ preselections['SSSF'] = 'WH3l_flagOSSF == 0 \
 preselections['OSSF']  = 'WH3l_flagOSSF == 1 \
                        && WH3l_ZVeto > 20 \
                        && Alt$( CleanJet_pt[0], 0) < 30 \
-                       && PuppiMET_pt > 50 \
+                       && PuppiMET_pt > 40 \
                        && MinIf$( WH3l_mOSll[], WH3l_mOSll[Iteration$] > 0) > 12 \
                        && Alt$(Lepton_pt[0],0)>10 \
                        && Alt$(Lepton_pt[1],0)>10 \

@@ -10,7 +10,7 @@ import preselections
 isDEV=False
 
 # Load configuration
-with open("configuration.py") as handle:
+with open("configuration_OSSF.py") as handle:
     exec handle
 
 samples={}
@@ -24,7 +24,8 @@ for f in [samplesFile, structureFile, cutsFile]:
 # Reduce sample files for fast dev
 if isDEV:
     for sampleName, sample in samples.items():
-        if sampleName not in ['Wg','Zg','WgS','ZgS','ZZ','WZ','WJets','WH_hww_plus','WH_hww_minus','WH_htt_plus','WH_htt_minus']:
+        # if sampleName not in ['Wg','Zg','WgS','ZgS','ZZ','WZ','WJets','WH_hww_plus','WH_hww_minus','WH_htt_plus','WH_htt_minus']:
+        if sampleName not in ['Wg','Zg','WgS','ZgS','ZZ','WZ','top','DY','WH_hww_plus','WH_hww_minus','WH_htt_plus','WH_htt_minus']:
             samples.pop(sampleName)
             continue
 

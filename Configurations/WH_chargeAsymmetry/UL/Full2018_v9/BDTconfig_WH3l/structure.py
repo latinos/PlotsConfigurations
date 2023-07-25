@@ -7,6 +7,17 @@
 
 # Backgrounds
 
+structure['DY']  = {  
+    'isSignal' : 0,
+    'isData'   : 0,
+}
+
+structure['top'] = {   
+    'isSignal' : 0,
+    'isData'   : 0,
+}
+
+
 structure['Wg']  = {
     'isSignal' : 0,
     'isData'   : 0
@@ -41,10 +52,10 @@ structure['WZ']  = {
 }
 
 
-structure['WJets']  = {
-    'isSignal' : 0,
-    'isData'   : 0
-}
+# structure['WJets']  = {
+#     'isSignal' : 0,
+#     'isData'   : 0
+# }
 
 
 # Signals
