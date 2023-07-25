@@ -20,7 +20,7 @@ Create output directory:
 
 All the combinations, by era or final state, are described in the `script_combine_datacards.py` script. In this case, to have sensitivity to the asymmetry, we enhance the signal normalization by a factor 10. Run the script using:
 
-    python script_combine_datacards.py
+    python script_combine_datacards_TT.py
 
 For the combination of the full Run 2, we use the original signal normalization. Run the script using:
 
