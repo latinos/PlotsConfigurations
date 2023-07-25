@@ -42,7 +42,7 @@ mcProduction = 'Summer20UL18_106x_nAODv9_Full2018v9'
 
 dataReco     = 'Run2018_UL2018_nAODv9_Full2018v9'
 
-mcSteps      = 'MCl1loose2018v9__MCCorr2018v9NoJERInHorn__l2tightOR2018v9'
+mcSteps      = 'MCl1loose2018v9__MCCorr2018v9NoJERInHorn__l2tightOR2018v9{var}'
 
 fakeSteps    = 'DATAl1loose2018v9__l2loose__fakeW'
 
@@ -122,10 +122,10 @@ files = nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-10to50-LO') + \
 
 samples['DY'] = {
     'name': files,
-    'weight': mcCommonWeight + '*( !(Sum$(PhotonGen_isPrompt==1 && PhotonGen_pt>15 && abs(PhotonGen_eta)<2.6) > 0))',
+    'weight': mcCommonWeight + '*( !(Sum$(PhotonGen_isPrompt==1 && PhotonGen_pt>15 && abs(PhotonGen_eta)<2.6) > 0))*(abs(XSWeight*METFilter_MC*PromptGenLepMatch2l*SFweight) < 0.03)',
     'suppressNegative' :['all'],
     'suppressNegativeNuisances' :['all'],
-    'FilesPerJob': 2,
+    'FilesPerJob': 4,
 }
 
 # Remove high HT from inclusive samples
@@ -145,7 +145,7 @@ samples['top'] = {
     'weight': mcCommonWeight+'*ttHMVA_SF_flip_2l[0]',
     'suppressNegative' :['all'],
     'suppressNegativeNuisances' :['all'],
-    'FilesPerJob': 1,
+    'FilesPerJob': 5,
 }
 addSampleWeight(samples,'top','TTTo2L2Nu','Top_pTrw')
 
@@ -156,7 +156,7 @@ samples['WW'] = {
     'weight': mcCommonWeight + '*nllW*ewknloW*ttHMVA_SF_flip_2l[0]', 
     'suppressNegative' :['all'],
     'suppressNegativeNuisances' :['all'],
-    'FilesPerJob': 1
+    'FilesPerJob': 2
 }
 
 samples['WWewk'] = {
@@ -296,7 +296,7 @@ samples['ggH_hww'] = {
     'weight': mcCommonWeight,
     'suppressNegative' :['all'],
     'suppressNegativeNuisances' :['all'],
-    'FilesPerJob': 1
+    'FilesPerJob': 2
 }
 
 signals.append('ggH_hww')
@@ -361,7 +361,7 @@ samples['ttH_hww'] = {
     'weight': mcCommonWeight,
     'suppressNegative' :['all'],
     'suppressNegativeNuisances' :['all'],
-    'FilesPerJob': 1
+    'FilesPerJob': 2
 }
 
 signals.append('ttH_hww')

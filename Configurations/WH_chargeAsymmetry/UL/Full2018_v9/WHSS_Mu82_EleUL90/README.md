@@ -10,13 +10,13 @@ The instructions to run the analysis follow.
 
 Resubmit failed jobs.
 
-    cd $HOME/scripts/jobs/mkShapes__WHSS2018_v9_chargeAsymmetry/
-    for i in *jid; do condor_submit ${i/jid/jds}; done
+    cd $HOME/scripts/jobs/mkShapes__WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90__ALL/
+    for i in */*jid; do condor_submit ${i/jid/jds}; done
     cd -
 
 Or, if they failed because the wall clock time has been exceeded, resubmit them on a longer-time queue.
 
-    cd $HOME/scripts/jobs/mkShapes__WHSS2018_v9_chargeAsymmetry/
+    cd $HOME/scripts/jobs/mkShapes__WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90/
     for i in *jid; do sed -i "s/longlunch/workday/g" ${i/jid/jds}; condor_submit ${i/jid/jds}; done
     cd -
 
@@ -40,51 +40,153 @@ Go into the `DY_OS_CR` directory and follow the instructions in the `README` fil
 
 ### Select binning for BDT
 
-    mkBinningOptimization.py --pyCfg=binning_mm.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_mm_2j_plus_pt2ge20  --variable=BDTG6_more --figure=S_sqrtB
-    mkBinningOptimization.py --pyCfg=binning_mm.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_mm_2j_minus_pt2ge20 --variable=BDTG6_more --figure=S_sqrtB
-    mkBinningOptimization.py --pyCfg=binning_mm.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_mm_1j_plus_pt2ge20  --variable=BDTG6_more --figure=S_sqrtB
-    mkBinningOptimization.py --pyCfg=binning_mm.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_mm_1j_minus_pt2ge20 --variable=BDTG6_more --figure=S_sqrtB
+Training inclusive in njet:
 
-    mkBinningOptimization.py --pyCfg=binning_mm.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_mm_2j_plus_pt2lt20  --variable=BDTG6_more --figure=S_sqrtB
-    mkBinningOptimization.py --pyCfg=binning_mm.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_mm_2j_minus_pt2lt20 --variable=BDTG6_more --figure=S_sqrtB
-    mkBinningOptimization.py --pyCfg=binning_mm.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_mm_1j_plus_pt2lt20  --variable=BDTG6_more --figure=S_sqrtB
-    mkBinningOptimization.py --pyCfg=binning_mm.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_mm_1j_minus_pt2lt20 --variable=BDTG6_more --figure=S_sqrtB
+    mkBinningOptimization.py --pyCfg=binning_mm.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_noZveto_mm_2j_plus_pt2ge20  --variable=BDTG6_more --figure=S_B
+    mkBinningOptimization.py --pyCfg=binning_mm.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_noZveto_mm_2j_minus_pt2ge20 --variable=BDTG6_more --figure=S_B
+    mkBinningOptimization.py --pyCfg=binning_mm.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_noZveto_mm_1j_plus_pt2ge20  --variable=BDTG6_more --figure=S_B
+    mkBinningOptimization.py --pyCfg=binning_mm.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_noZveto_mm_1j_minus_pt2ge20 --variable=BDTG6_more --figure=S_B
 
-
-    mkBinningOptimization.py --pyCfg=binning_em.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_em_2j_plus_pt2ge20  --variable=BDTG6_more --figure=S_sqrtB
-    mkBinningOptimization.py --pyCfg=binning_em.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_em_2j_minus_pt2ge20 --variable=BDTG6_more --figure=S_sqrtB
-    mkBinningOptimization.py --pyCfg=binning_em.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_em_1j_plus_pt2ge20  --variable=BDTG6_more --figure=S_sqrtB
-    mkBinningOptimization.py --pyCfg=binning_em.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_em_1j_minus_pt2ge20 --variable=BDTG6_more --figure=S_sqrtB
-
-    mkBinningOptimization.py --pyCfg=binning_em.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_em_2j_plus_pt2lt20  --variable=BDTG6_more --figure=S_sqrtB
-    mkBinningOptimization.py --pyCfg=binning_em.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_em_2j_minus_pt2lt20 --variable=BDTG6_more --figure=S_sqrtB
-    mkBinningOptimization.py --pyCfg=binning_em.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_em_1j_plus_pt2lt20  --variable=BDTG6_more --figure=S_sqrtB
-    mkBinningOptimization.py --pyCfg=binning_em.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_em_1j_minus_pt2lt20 --variable=BDTG6_more --figure=S_sqrtB
+    mkBinningOptimization.py --pyCfg=binning_mm.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_noZveto_mm_2j_plus_pt2lt20  --variable=BDTG6_more --figure=S_B
+    mkBinningOptimization.py --pyCfg=binning_mm.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_noZveto_mm_2j_minus_pt2lt20 --variable=BDTG6_more --figure=S_B
+    mkBinningOptimization.py --pyCfg=binning_mm.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_noZveto_mm_1j_plus_pt2lt20  --variable=BDTG6_more --figure=S_B
+    mkBinningOptimization.py --pyCfg=binning_mm.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_noZveto_mm_1j_minus_pt2lt20 --variable=BDTG6_more --figure=S_B
 
 
-    mkBinningOptimization.py --pyCfg=binning_ee.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_ee_2j_plus_pt2ge20  --variable=BDTG6_more --figure=S_sqrtB
-    mkBinningOptimization.py --pyCfg=binning_ee.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_ee_2j_minus_pt2ge20 --variable=BDTG6_more --figure=S_sqrtB
-    mkBinningOptimization.py --pyCfg=binning_ee.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_ee_1j_plus_pt2ge20  --variable=BDTG6_more --figure=S_sqrtB
-    mkBinningOptimization.py --pyCfg=binning_ee.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_ee_1j_minus_pt2ge20 --variable=BDTG6_more --figure=S_sqrtB
+    mkBinningOptimization.py --pyCfg=binning_em.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_em_2j_plus_pt2ge20  --variable=BDTG6_more --figure=S_B
+    mkBinningOptimization.py --pyCfg=binning_em.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_em_2j_minus_pt2ge20 --variable=BDTG6_more --figure=S_B
+    mkBinningOptimization.py --pyCfg=binning_em.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_em_1j_plus_pt2ge20  --variable=BDTG6_more --figure=S_B
+    mkBinningOptimization.py --pyCfg=binning_em.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_em_1j_minus_pt2ge20 --variable=BDTG6_more --figure=S_B
 
-    mkBinningOptimization.py --pyCfg=binning_ee.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_ee_2j_plus_pt2lt20  --variable=BDTG6_more --figure=S_sqrtB
-    mkBinningOptimization.py --pyCfg=binning_ee.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_ee_2j_minus_pt2lt20 --variable=BDTG6_more --figure=S_sqrtB
-    mkBinningOptimization.py --pyCfg=binning_ee.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_ee_1j_plus_pt2lt20  --variable=BDTG6_more --figure=S_sqrtB
-    mkBinningOptimization.py --pyCfg=binning_ee.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_ee_1j_minus_pt2lt20 --variable=BDTG6_more --figure=S_sqrtB
+    mkBinningOptimization.py --pyCfg=binning_em.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_em_2j_plus_pt2lt20  --variable=BDTG6_more --figure=S_B
+    mkBinningOptimization.py --pyCfg=binning_em.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_em_2j_minus_pt2lt20 --variable=BDTG6_more --figure=S_B
+    mkBinningOptimization.py --pyCfg=binning_em.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_em_1j_plus_pt2lt20  --variable=BDTG6_more --figure=S_B
+    mkBinningOptimization.py --pyCfg=binning_em.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_em_1j_minus_pt2lt20 --variable=BDTG6_more --figure=S_B
+
+
+    mkBinningOptimization.py --pyCfg=binning_ee.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_ee_2j_plus_pt2ge20  --variable=BDTG6_more --figure=S_B
+    mkBinningOptimization.py --pyCfg=binning_ee.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_ee_2j_minus_pt2ge20 --variable=BDTG6_more --figure=S_B
+    mkBinningOptimization.py --pyCfg=binning_ee.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_ee_1j_plus_pt2ge20  --variable=BDTG6_more --figure=S_B
+    mkBinningOptimization.py --pyCfg=binning_ee.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_ee_1j_minus_pt2ge20 --variable=BDTG6_more --figure=S_B
+
+    mkBinningOptimization.py --pyCfg=binning_ee.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_ee_2j_plus_pt2lt20  --variable=BDTG6_more --figure=S_B
+    mkBinningOptimization.py --pyCfg=binning_ee.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_ee_2j_minus_pt2lt20 --variable=BDTG6_more --figure=S_B
+    mkBinningOptimization.py --pyCfg=binning_ee.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_ee_1j_plus_pt2lt20  --variable=BDTG6_more --figure=S_B
+    mkBinningOptimization.py --pyCfg=binning_ee.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_ee_1j_minus_pt2lt20 --variable=BDTG6_more --figure=S_B
+
+Training specific for 1 jet:
+
+    mkBinningOptimization.py --pyCfg=binning_mm.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_noZveto_mm_1j_plus_pt2ge20  --variable=BDTG6_1j_more --figure=S_B
+    mkBinningOptimization.py --pyCfg=binning_mm.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_noZveto_mm_1j_minus_pt2ge20 --variable=BDTG6_1j_more --figure=S_B
+    mkBinningOptimization.py --pyCfg=binning_mm.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_noZveto_mm_1j_plus_pt2lt20  --variable=BDTG6_1j_more --figure=S_B
+    mkBinningOptimization.py --pyCfg=binning_mm.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_noZveto_mm_1j_minus_pt2lt20 --variable=BDTG6_1j_more --figure=S_B
+
+    mkBinningOptimization.py --pyCfg=binning_em.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_em_1j_plus_pt2ge20  --variable=BDTG6_1j_more --figure=S_B
+    mkBinningOptimization.py --pyCfg=binning_em.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_em_1j_minus_pt2ge20 --variable=BDTG6_1j_more --figure=S_B
+    mkBinningOptimization.py --pyCfg=binning_em.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_em_1j_plus_pt2lt20  --variable=BDTG6_1j_more --figure=S_B
+    mkBinningOptimization.py --pyCfg=binning_em.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_em_1j_minus_pt2lt20 --variable=BDTG6_1j_more --figure=S_B
+
+    mkBinningOptimization.py --pyCfg=binning_ee.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_ee_1j_plus_pt2ge20  --variable=BDTG6_1j_more --figure=S_B
+    mkBinningOptimization.py --pyCfg=binning_ee.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_ee_1j_minus_pt2ge20 --variable=BDTG6_1j_more --figure=S_B
+    mkBinningOptimization.py --pyCfg=binning_ee.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_ee_1j_plus_pt2lt20  --variable=BDTG6_1j_more --figure=S_B
+    mkBinningOptimization.py --pyCfg=binning_ee.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_ee_1j_minus_pt2lt20 --variable=BDTG6_1j_more --figure=S_B
+
+Training specific for 2 jets:
+
+    mkBinningOptimization.py --pyCfg=binning_mm.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_noZveto_mm_2j_plus_pt2ge20  --variable=BDTG5_2j_more --figure=S_B
+    mkBinningOptimization.py --pyCfg=binning_mm.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_noZveto_mm_2j_minus_pt2ge20 --variable=BDTG5_2j_more --figure=S_B
+    mkBinningOptimization.py --pyCfg=binning_mm.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_noZveto_mm_2j_plus_pt2lt20  --variable=BDTG5_2j_more --figure=S_B
+    mkBinningOptimization.py --pyCfg=binning_mm.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_noZveto_mm_2j_minus_pt2lt20 --variable=BDTG5_2j_more --figure=S_B
+
+    mkBinningOptimization.py --pyCfg=binning_em.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_em_2j_plus_pt2ge20  --variable=BDTG5_2j_more --figure=S_B
+    mkBinningOptimization.py --pyCfg=binning_em.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_em_2j_minus_pt2ge20 --variable=BDTG5_2j_more --figure=S_B
+    mkBinningOptimization.py --pyCfg=binning_em.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_em_2j_plus_pt2lt20  --variable=BDTG5_2j_more --figure=S_B
+    mkBinningOptimization.py --pyCfg=binning_em.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_em_2j_minus_pt2lt20 --variable=BDTG5_2j_more --figure=S_B
+
+    mkBinningOptimization.py --pyCfg=binning_ee.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_ee_2j_plus_pt2ge20  --variable=BDTG5_2j_more --figure=S_B
+    mkBinningOptimization.py --pyCfg=binning_ee.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_ee_2j_minus_pt2ge20 --variable=BDTG5_2j_more --figure=S_B
+    mkBinningOptimization.py --pyCfg=binning_ee.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_ee_2j_plus_pt2lt20  --variable=BDTG5_2j_more --figure=S_B
+    mkBinningOptimization.py --pyCfg=binning_ee.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_ee_2j_minus_pt2lt20 --variable=BDTG5_2j_more --figure=S_B
+
+Training using TTbar and WJets as fakes:
+
+    mkBinningOptimization.py --pyCfg=binning_mm.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_noZveto_mm_1j_plus_pt2ge20  --variable=BDTG6_TT_more --figure=S_B
+    mkBinningOptimization.py --pyCfg=binning_mm.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_noZveto_mm_1j_minus_pt2ge20 --variable=BDTG6_TT_more --figure=S_B
+    mkBinningOptimization.py --pyCfg=binning_mm.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_noZveto_mm_1j_plus_pt2lt20  --variable=BDTG6_TT_more --figure=S_B
+    mkBinningOptimization.py --pyCfg=binning_mm.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_noZveto_mm_1j_minus_pt2lt20 --variable=BDTG6_TT_more --figure=S_B
+
+    mkBinningOptimization.py --pyCfg=binning_em.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_em_1j_plus_pt2ge20  --variable=BDTG6_TT_more --figure=S_B
+    mkBinningOptimization.py --pyCfg=binning_em.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_em_1j_minus_pt2ge20 --variable=BDTG6_TT_more --figure=S_B
+    mkBinningOptimization.py --pyCfg=binning_em.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_em_1j_plus_pt2lt20  --variable=BDTG6_TT_more --figure=S_B
+    mkBinningOptimization.py --pyCfg=binning_em.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_em_1j_minus_pt2lt20 --variable=BDTG6_TT_more --figure=S_B
+
+    mkBinningOptimization.py --pyCfg=binning_ee.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_ee_1j_plus_pt2ge20  --variable=BDTG6_TT_more --figure=S_B
+    mkBinningOptimization.py --pyCfg=binning_ee.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_ee_1j_minus_pt2ge20 --variable=BDTG6_TT_more --figure=S_B
+    mkBinningOptimization.py --pyCfg=binning_ee.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_ee_1j_plus_pt2lt20  --variable=BDTG6_TT_more --figure=S_B
+    mkBinningOptimization.py --pyCfg=binning_ee.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_ee_1j_minus_pt2lt20 --variable=BDTG6_TT_more --figure=S_B
+
+
+    mkBinningOptimization.py --pyCfg=binning_mm.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_noZveto_mm_2j_plus_pt2ge20  --variable=BDTG6_TT_more --figure=S_B
+    mkBinningOptimization.py --pyCfg=binning_mm.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_noZveto_mm_2j_minus_pt2ge20 --variable=BDTG6_TT_more --figure=S_B
+    mkBinningOptimization.py --pyCfg=binning_mm.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_noZveto_mm_2j_plus_pt2lt20  --variable=BDTG6_TT_more --figure=S_B
+    mkBinningOptimization.py --pyCfg=binning_mm.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_noZveto_mm_2j_minus_pt2lt20 --variable=BDTG6_TT_more --figure=S_B
+
+    mkBinningOptimization.py --pyCfg=binning_em.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_em_2j_plus_pt2ge20  --variable=BDTG6_TT_more --figure=S_B
+    mkBinningOptimization.py --pyCfg=binning_em.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_em_2j_minus_pt2ge20 --variable=BDTG6_TT_more --figure=S_B
+    mkBinningOptimization.py --pyCfg=binning_em.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_em_2j_plus_pt2lt20  --variable=BDTG6_TT_more --figure=S_B
+    mkBinningOptimization.py --pyCfg=binning_em.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_em_2j_minus_pt2lt20 --variable=BDTG6_TT_more --figure=S_B
+
+    mkBinningOptimization.py --pyCfg=binning_ee.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_ee_2j_plus_pt2ge20  --variable=BDTG6_TT_more --figure=S_B
+    mkBinningOptimization.py --pyCfg=binning_ee.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_ee_2j_minus_pt2ge20 --variable=BDTG6_TT_more --figure=S_B
+    mkBinningOptimization.py --pyCfg=binning_ee.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_ee_2j_plus_pt2lt20  --variable=BDTG6_TT_more --figure=S_B
+    mkBinningOptimization.py --pyCfg=binning_ee.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_ee_2j_minus_pt2lt20 --variable=BDTG6_TT_more --figure=S_B
+
+Training using TTbar and WJets as fakes and split in jet bins:
+
+    mkBinningOptimization.py --pyCfg=binning_mm.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_noZveto_mm_1j_plus_pt2ge20  --variable=BDTG2_TT_1j_more --figure=S_B
+    mkBinningOptimization.py --pyCfg=binning_mm.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_noZveto_mm_1j_minus_pt2ge20 --variable=BDTG2_TT_1j_more --figure=S_B
+    mkBinningOptimization.py --pyCfg=binning_mm.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_noZveto_mm_1j_plus_pt2lt20  --variable=BDTG2_TT_1j_more --figure=S_B
+    mkBinningOptimization.py --pyCfg=binning_mm.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_noZveto_mm_1j_minus_pt2lt20 --variable=BDTG2_TT_1j_more --figure=S_B
+
+    mkBinningOptimization.py --pyCfg=binning_em.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_em_1j_plus_pt2ge20  --variable=BDTG2_TT_1j_more --figure=S_B
+    mkBinningOptimization.py --pyCfg=binning_em.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_em_1j_minus_pt2ge20 --variable=BDTG2_TT_1j_more --figure=S_B
+    mkBinningOptimization.py --pyCfg=binning_em.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_em_1j_plus_pt2lt20  --variable=BDTG2_TT_1j_more --figure=S_B
+    mkBinningOptimization.py --pyCfg=binning_em.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_em_1j_minus_pt2lt20 --variable=BDTG2_TT_1j_more --figure=S_B
+
+    mkBinningOptimization.py --pyCfg=binning_ee.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_ee_1j_plus_pt2ge20  --variable=BDTG2_TT_1j_more --figure=S_B
+    mkBinningOptimization.py --pyCfg=binning_ee.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_ee_1j_minus_pt2ge20 --variable=BDTG2_TT_1j_more --figure=S_B
+    mkBinningOptimization.py --pyCfg=binning_ee.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_ee_1j_plus_pt2lt20  --variable=BDTG2_TT_1j_more --figure=S_B
+    mkBinningOptimization.py --pyCfg=binning_ee.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_ee_1j_minus_pt2lt20 --variable=BDTG2_TT_1j_more --figure=S_B
+
+
+    mkBinningOptimization.py --pyCfg=binning_mm.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_noZveto_mm_2j_plus_pt2ge20  --variable=BDTG5_TT_2j_more --figure=S_B
+    mkBinningOptimization.py --pyCfg=binning_mm.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_noZveto_mm_2j_minus_pt2ge20 --variable=BDTG5_TT_2j_more --figure=S_B
+    mkBinningOptimization.py --pyCfg=binning_mm.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_noZveto_mm_2j_plus_pt2lt20  --variable=BDTG5_TT_2j_more --figure=S_B
+    mkBinningOptimization.py --pyCfg=binning_mm.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_noZveto_mm_2j_minus_pt2lt20 --variable=BDTG5_TT_2j_more --figure=S_B
+
+    mkBinningOptimization.py --pyCfg=binning_em.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_em_2j_plus_pt2ge20  --variable=BDTG5_TT_2j_more --figure=S_B
+    mkBinningOptimization.py --pyCfg=binning_em.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_em_2j_minus_pt2ge20 --variable=BDTG5_TT_2j_more --figure=S_B
+    mkBinningOptimization.py --pyCfg=binning_em.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_em_2j_plus_pt2lt20  --variable=BDTG5_TT_2j_more --figure=S_B
+    mkBinningOptimization.py --pyCfg=binning_em.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_em_2j_minus_pt2lt20 --variable=BDTG5_TT_2j_more --figure=S_B
+
+    mkBinningOptimization.py --pyCfg=binning_ee.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_ee_2j_plus_pt2ge20  --variable=BDTG5_TT_2j_more --figure=S_B
+    mkBinningOptimization.py --pyCfg=binning_ee.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_ee_2j_minus_pt2ge20 --variable=BDTG5_TT_2j_more --figure=S_B
+    mkBinningOptimization.py --pyCfg=binning_ee.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_ee_2j_plus_pt2lt20  --variable=BDTG5_TT_2j_more --figure=S_B
+    mkBinningOptimization.py --pyCfg=binning_ee.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_ee_2j_minus_pt2lt20 --variable=BDTG5_TT_2j_more --figure=S_B
 
 ### Create datacards
 
 Using DY->ee data-driven distributions and scaling the signal by a factor 10, to test different strategies in single eras:
 
-    mkDatacards.py --pycfg=configuration.py --inputFile=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90_DYflip.root --outputDirDatacard=datacards_DYflip --structureFile=structure_DYflip.py
+    mkDatacards.py --pycfg=configuration_datacard.py --inputFile=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90_DYflip.root
 
 Using original distributions and scaling the signal by a factor 10, to test different strategies in single eras:
 
-    mkDatacards.py --pycfg=configuration.py --inputFile=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --outputDirDatacard=datacards --structureFile=structure.py
+    mkDatacards.py --pycfg=configuration.py --inputFile=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --outputDirDatacard=datacards --structureFile=structure.py --variablesFile=variables_datacard.py
 
 Using DY->ee data-driven distributions and the correct signal scaling, for global combination:
 
-    mkDatacards.py --pycfg=configuration.py --inputFile=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90_DYflip.root --outputDirDatacard=datacards_DYflip_original_signal_scale --structureFile=structure_DYflip_original_signal_scale.py
+    mkDatacards.py --pycfg=configuration.py --inputFile=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90_DYflip.root --outputDirDatacard=datacards_DYflip_original_signal_scale --structureFile=structure_DYflip_original_signal_scale.py --variablesFile=variables_datacard.py
 
 ### Combine datacards
 
@@ -101,6 +203,12 @@ Actually combine datacards:
      python script_datacards.py
 
      python script_datacards_BDTG.py
+
+     python script_datacards_BDTG_jetbins.py
+
+     python script_datacards_BDTG_TT.py
+
+     python script_datacards_BDTG_TT_jetbins.py
 
 ### Interpret the results in terms of asymmetry
 
@@ -147,6 +255,15 @@ Using BDT variable (true/false refer to the usage of data-driven DYee):
 
     ./do_workspace_and_fit.sh mlljj20_whss_1j_bin true
     ./do_workspace_and_fit.sh mlljj20_whss_1j_bin false
+
+    ./do_workspace_and_fit.sh BDTG6_jetbins true
+    ./do_workspace_and_fit.sh BDTG6_jetbins false
+
+    ./do_workspace_and_fit.sh BDTG6_TT true
+    ./do_workspace_and_fit.sh BDTG6_TT false
+
+    ./do_workspace_and_fit.sh BDTG6_TT_jetbins true
+    ./do_workspace_and_fit.sh BDTG6_TT_jetbins false
 
 ### Produce Impact Plots
 

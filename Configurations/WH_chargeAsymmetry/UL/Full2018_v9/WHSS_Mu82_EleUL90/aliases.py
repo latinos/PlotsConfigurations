@@ -15,9 +15,9 @@ configurations = os.path.dirname(configurations) # Configurations
 mc     = [skey for skey in samples if skey not in ('Fake', 'DATA', 'Dyemb')]
 mc_emb = [skey for skey in samples if skey not in ('Fake', 'DATA')]
 
-# LepCut2l__ele_mvaFall17V2Iso_WP90_tthmva_70__mu_cut_Tight_HWWW_tthmva_80
-eleWP = 'mvaFall17V2Iso_WP90_tthmva_70'
-muWP  = 'cut_Tight_HWWW_tthmva_80'
+# LepCut2l__ele_mvaFall17V2Iso_WP90__mu_cut_Tight_HWWW
+eleWP = 'mvaFall17V2Iso_WP90'
+muWP  = 'cut_Tight_HWWW'
 
 aliases['LepWPCut'] = {
     'expr': 'LepCut2l__ele_mvaFall17V2Iso_WP90__mu_cut_Tight_HWWW*\
@@ -26,9 +26,46 @@ aliases['LepWPCut'] = {
     'samples': mc_emb + ['DATA']
 }
 
+# Lepton SF (not considering the ttHMVA discriminant)
 aliases['LepWPSF'] = {
     'expr': 'LepSF2l__ele_'+eleWP+'__mu_'+muWP,
     'samples': mc_emb
+}
+
+# ttHMVA SFs and uncertainties
+aliases['LepWPttHMVASF'] = {
+    'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/ttHMVASF.C+' % configurations],
+    'class'      : 'ttHMVASF',
+    'args'       : ("2018", 2, "all", "nominal"),
+    'samples'    : mc_emb
+}
+
+aliases['LepWPttHMVASFEleUp'] = {
+    'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/ttHMVASF.C+' % configurations],
+    'class'      : 'ttHMVASF',
+    'args'       : ("2018", 2, "all", "eleUp"),
+    'samples'    : mc_emb
+}
+
+aliases['LepWPttHMVASFEleDown'] = {
+    'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/ttHMVASF.C+' % configurations],
+    'class'      : 'ttHMVASF',
+    'args'       : ("2018", 2, "all", "eleDown"),
+    'samples'    : mc_emb
+}
+
+aliases['LepWPttHMVASFMuUp'] = {
+    'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/ttHMVASF.C+' % configurations],
+    'class'      : 'ttHMVASF',
+    'args'       : ("2018", 2, "all", "muUp"),
+    'samples'    : mc_emb
+}
+
+aliases['LepWPttHMVASFMuDown'] = {
+    'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/ttHMVASF.C+' % configurations],
+    'class'      : 'ttHMVASF',
+    'args'       : ("2018", 2, "all", "muDown"),
+    'samples'    : mc_emb
 }
 
 # Fake leptons transfer factor
@@ -216,18 +253,6 @@ aliases['Top_pTrw'] = {
 }
 
 
-# aliases['topGenPtOTF'] = {
-#     'expr': 'Sum$((GenPart_pdgId == 6 && TMath::Odd(GenPart_statusFlags / %d)) * GenPart_pt)' % lastcopy,
-#     'samples': ['top']
-# }
-
-# aliases['antitopGenPtOTF'] = {
-#     'expr': 'Sum$((GenPart_pdgId == -6 && TMath::Odd(GenPart_statusFlags / %d)) * GenPart_pt)' % lastcopy,
-#     'samples': ['top']
-# }
-
-
-
 # ##### DY Z pT reweighting
 # aliases['nCleanGenJet'] = {
 #     'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/Differential/ngenjet.cc+' % os.getenv('CMSSW_BASE')],
@@ -253,30 +278,9 @@ aliases['Top_pTrw'] = {
 # }
 
 
-# Jet bins
-# using Alt$(CleanJet_pt[n], 0) instead of Sum$(CleanJet_pt >= 30) because jet pt ordering is not strictly followed in JES-varied samples
-
-# No jet with pt > 30 GeV
-aliases['zeroJet'] = {
-    'expr': 'Alt$(CleanJet_pt[0], 0) < 30.'
-}
-
-aliases['oneJet'] = {
-    'expr': 'Alt$(CleanJet_pt[0], 0) > 30.'
-}
-
-aliases['multiJet'] = {
-    'expr': 'Alt$(CleanJet_pt[1], 0) > 30.'
-}
-
-# aliases['SFweight2lAlt'] = {
-#     'expr'   : 'puWeight*TriggerSFWeight_2l*Lepton_RecoSF[0]*Lepton_RecoSF[1]*EMTFbug_veto',
-#     'samples': mc
-# }
-
 # data/MC scale factors
 aliases['SFweight'] = {
-    'expr': ' * '.join(['SFweight2l', 'LepWPCut', 'LepWPSF','Jet_PUIDSF_loose', 'btagSF']),
+    'expr': ' * '.join(['SFweight2l', 'LepWPCut', 'LepWPSF','Jet_PUIDSF_loose', 'btagSF', 'LepWPttHMVASF']),
     'samples': mc
 }
 
@@ -322,13 +326,48 @@ aliases['SFtriggDown'] = {
 #     'samples': ['WWewk']
 # }
 
-### BDT on-the-fly
+### BDT on-the-fly 
+
+# Default training in AN-22-120_v1
 aliases['BDT_WHSS_v9'] = {
     'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/BDT_WHSS_v9.C+' % configurations],
     'class': 'BDT_WHSS_v9',
     'args' : ('BDTG_6', '%s/WH_chargeAsymmetry/UL/data/BDT/2018/WHSS/weights/TMVAClassification_BDTG_6.weights.xml' % configurations),
-    # 'args' : ('BDTG_6', '%s/WH_chargeAsymmetry/UL/Full2018_v9/BDTconfig_WHSS/dataset_WHSS_btagVariables_zveto_orthogonalsamples/weights/TMVAClassification_BDTG_6.weights.xml' % configurations),
-    # BDT/2018/WHSS/weights/TMVAClassification_BDTG_6.weights.xml
+}
+
+# WJets and Semileptonic Top are considered as fake.
+aliases['BDT_WHSS_TopSemileptonic_v9'] = {
+    'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/BDT_WHSS_TopSemileptonic_v9.C+' % configurations],
+    'class': 'BDT_WHSS_TopSemileptonic_v9',
+    'args' : ('BDTG_6', '%s/WH_chargeAsymmetry/UL/Full2018_v9/BDTconfig_WHSS/dataset_WHSS_TTToSemiLeptonic/weights/TMVAClassification_BDTG_6.weights.xml' % configurations), # provisional address
+}
+
+# WJets and Semileptonic Top are considered as fake. Specific training for 1j events.
+aliases['BDT_WHSS_TopSemileptonic_1j_v9'] = {
+    'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/BDT_WHSS_1j_v9.C+' % configurations],
+    'class': 'BDT_WHSS_1j_v9',
+    'args' : ('BDTG_2', '%s/WH_chargeAsymmetry/UL/Full2018_v9/BDTconfig_WHSS/dataset_1j_WHSS_TTToSemiLeptonic_1j/weights/TMVAClassification_BDTG_2.weights.xml' % configurations), # provisional address
+}
+
+# WJets and Semileptonic Top are considered as fake. Specific training for 2j events.
+aliases['BDT_WHSS_TopSemileptonic_2j_v9'] = {
+    'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/BDT_WHSS_2j_v9.C+' % configurations],
+    'class': 'BDT_WHSS_2j_v9',
+    'args' : ('BDTG_5', '%s/WH_chargeAsymmetry/UL/Full2018_v9/BDTconfig_WHSS/dataset_2j_WHSS_TTToSemiLeptonic_2j/weights/TMVAClassification_BDTG_5.weights.xml' % configurations), # provisional address
+}
+
+# WJets and Top are considered as fake. Specific training for 1j events
+aliases['BDT_WHSS_1j_v9'] = {
+    'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/BDT_WHSS_1j_v9.C+' % configurations],
+    'class': 'BDT_WHSS_1j_v9',
+    'args' : ('BDTG_6', '%s/WH_chargeAsymmetry/UL/Full2018_v9/BDTconfig_WHSS/dataset_1j_WHSS_btagVariables_noZveto_orthogonalsamples/weights/TMVAClassification_BDTG_6.weights.xml' % configurations), # provisional address
+}
+
+# WJets and Top are considered as fake. Specific training for 2j events
+aliases['BDT_WHSS_2j_v9'] = {
+    'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/BDT_WHSS_2j_v9.C+' % configurations],
+    'class': 'BDT_WHSS_2j_v9',
+    'args' : ('BDTG_5', '%s/WH_chargeAsymmetry/UL/Full2018_v9/BDTconfig_WHSS/dataset_2j_WHSS_btagVariables_noZveto_orthogonalsamples/weights/TMVAClassification_BDTG_5.weights.xml' % configurations), # provisional address
 }
 
 ########################

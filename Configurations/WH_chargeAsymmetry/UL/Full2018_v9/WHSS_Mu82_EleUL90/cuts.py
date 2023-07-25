@@ -31,11 +31,11 @@ cuts['hww2l2v_13TeV_WH_SS_em_2j'] = {
     'expr' : '(Lepton_pdgId[0]*Lepton_pdgId[1] == 11*13) && nLepton==2 && Alt$(CleanJet_pt[0],0)>30 && Alt$(CleanJet_pt[1],0)>30 && mjj < 100 && abs(Lepton_eta[0] - Lepton_eta[1])<2.0 && mlljj20_whss > 50.',
     'categories' : {
         # Sub-leading lepton pT >= 20 GeV
-        'plus_pt2ge20'  : '(Lepton_pdgId[0] == -13 && Lepton_pdgId[1] == -11) || (Lepton_pdgId[0] == -11 && Lepton_pdgId[1] == -13) && Lepton_pt[1]>=20',
-        'minus_pt2ge20' : '(Lepton_pdgId[0] == +13 && Lepton_pdgId[1] == +11) || (Lepton_pdgId[0] == +11 && Lepton_pdgId[1] == +13) && Lepton_pt[1]>=20',
+        'plus_pt2ge20'  : '((Lepton_pdgId[0] == -13 && Lepton_pdgId[1] == -11) || (Lepton_pdgId[0] == -11 && Lepton_pdgId[1] == -13)) && Lepton_pt[1]>=20',
+        'minus_pt2ge20' : '((Lepton_pdgId[0] == +13 && Lepton_pdgId[1] == +11) || (Lepton_pdgId[0] == +11 && Lepton_pdgId[1] == +13)) && Lepton_pt[1]>=20',
         # Sub-leading lepton pT < 20 GeV
-        'plus_pt2lt20'  : '(Lepton_pdgId[0] == -13 && Lepton_pdgId[1] == -11) || (Lepton_pdgId[0] == -11 && Lepton_pdgId[1] == -13) && Lepton_pt[1]<20',
-        'minus_pt2lt20' : '(Lepton_pdgId[0] == +13 && Lepton_pdgId[1] == +11) || (Lepton_pdgId[0] == +11 && Lepton_pdgId[1] == +13) && Lepton_pt[1]<20',
+        'plus_pt2lt20'  : '((Lepton_pdgId[0] == -13 && Lepton_pdgId[1] == -11) || (Lepton_pdgId[0] == -11 && Lepton_pdgId[1] == -13)) && Lepton_pt[1]<20',
+        'minus_pt2lt20' : '((Lepton_pdgId[0] == +13 && Lepton_pdgId[1] == +11) || (Lepton_pdgId[0] == +11 && Lepton_pdgId[1] == +13)) && Lepton_pt[1]<20',
     }
 }
 
@@ -73,11 +73,11 @@ cuts['hww2l2v_13TeV_WH_SS_em_1j'] = {
     'expr' : '(Lepton_pdgId[0]*Lepton_pdgId[1] == 11*13) && nLepton==2 && Alt$(CleanJet_pt[0],0)>30 && Alt$(CleanJet_pt[1],0)<30 && abs(Lepton_eta[0] - Lepton_eta[1])<2.0 && mlljj20_whss > 50.',
     'categories' : {
         # Sub-leading lepton pT >= 20 GeV
-        'plus_pt2ge20'  : '(Lepton_pdgId[0] == -13 && Lepton_pdgId[1] == -11) || (Lepton_pdgId[0] == -11 && Lepton_pdgId[1] == -13) && Lepton_pt[1]>=20',
-        'minus_pt2ge20' : '(Lepton_pdgId[0] == +13 && Lepton_pdgId[1] == +11) || (Lepton_pdgId[0] == +11 && Lepton_pdgId[1] == +13) && Lepton_pt[1]>=20',
+        'plus_pt2ge20'  : '((Lepton_pdgId[0] == -13 && Lepton_pdgId[1] == -11) || (Lepton_pdgId[0] == -11 && Lepton_pdgId[1] == -13)) && Lepton_pt[1]>=20',
+        'minus_pt2ge20' : '((Lepton_pdgId[0] == +13 && Lepton_pdgId[1] == +11) || (Lepton_pdgId[0] == +11 && Lepton_pdgId[1] == +13)) && Lepton_pt[1]>=20',
         # Sub-leading lepton pT < 20 GeV
-        'plus_pt2lt20'  : '(Lepton_pdgId[0] == -13 && Lepton_pdgId[1] == -11) || (Lepton_pdgId[0] == -11 && Lepton_pdgId[1] == -13) && Lepton_pt[1]<20',
-        'minus_pt2lt20' : '(Lepton_pdgId[0] == +13 && Lepton_pdgId[1] == +11) || (Lepton_pdgId[0] == +11 && Lepton_pdgId[1] == +13) && Lepton_pt[1]<20',
+        'plus_pt2lt20'  : '((Lepton_pdgId[0] == -13 && Lepton_pdgId[1] == -11) || (Lepton_pdgId[0] == -11 && Lepton_pdgId[1] == -13)) && Lepton_pt[1]<20',
+        'minus_pt2lt20' : '((Lepton_pdgId[0] == +13 && Lepton_pdgId[1] == +11) || (Lepton_pdgId[0] == +11 && Lepton_pdgId[1] == +13)) && Lepton_pt[1]<20',
     }
 }
 
@@ -95,27 +95,27 @@ cuts['hww2l2v_13TeV_WH_SS_ee_1j'] = {
 }
 
 
-## WZ CR --> 3l control region: should it go in a different cfg, due to lepton selections and SFs? Check it!
+# ## WZ CR --> 3l control region: should it go in a different cfg, due to lepton selections and SFs? Check it!
 
-# CR 1jet
-cuts['hww2l2v_13TeV_WH_SS_WZ_1j'] = '((Lepton_pdgId[0]*Lepton_pdgId[1] == 13*13) || (Lepton_pdgId[0]*Lepton_pdgId[1] == 11*13) || (Lepton_pdgId[0]*Lepton_pdgId[1] == 11*11))\
-                                       && (nLepton>=3 && Alt$(Lepton_pt[3],0)<10) \
-                                       && Lepton_pt[2]>15 \
-                                       && Alt$(CleanJet_pt[0],0)>30 \
-                                       && Alt$(CleanJet_pt[1],0)<30 \
-                                       && WH3l_mlll > 100 \
-                                       && abs(WH3l_chlll) == 1 \
-                                       '
+# # CR 1jet
+# cuts['hww2l2v_13TeV_WH_SS_WZ_1j'] = '((Lepton_pdgId[0]*Lepton_pdgId[1] == 13*13) || (Lepton_pdgId[0]*Lepton_pdgId[1] == 11*13) || (Lepton_pdgId[0]*Lepton_pdgId[1] == 11*11))\
+#                                        && (nLepton>=3 && Alt$(Lepton_pt[3],0)<10) \
+#                                        && Lepton_pt[2]>15 \
+#                                        && Alt$(CleanJet_pt[0],0)>30 \
+#                                        && Alt$(CleanJet_pt[1],0)<30 \
+#                                        && WH3l_mlll > 100 \
+#                                        && abs(WH3l_chlll) == 1 \
+#                                        '
 
-# CR 2jets
-cuts['hww2l2v_13TeV_WH_SS_WZ_2j'] = '((Lepton_pdgId[0]*Lepton_pdgId[1] == 13*13) || (Lepton_pdgId[0]*Lepton_pdgId[1] == 11*13) || (Lepton_pdgId[0]*Lepton_pdgId[1] == 11*11)) \
-                                       && (nLepton>=3 && Alt$(Lepton_pt[3],0)<10) \
-                                       && Lepton_pt[2]>15 \
-                                       && Alt$(CleanJet_pt[0],0)>30 \
-                                       && Alt$(CleanJet_pt[1],0)>30 \
-                                       && WH3l_mlll > 100 \
-                                       && abs(WH3l_chlll) == 1 \
-                                       '
+# # CR 2jets
+# cuts['hww2l2v_13TeV_WH_SS_WZ_2j'] = '((Lepton_pdgId[0]*Lepton_pdgId[1] == 13*13) || (Lepton_pdgId[0]*Lepton_pdgId[1] == 11*13) || (Lepton_pdgId[0]*Lepton_pdgId[1] == 11*11)) \
+#                                        && (nLepton>=3 && Alt$(Lepton_pt[3],0)<10) \
+#                                        && Lepton_pt[2]>15 \
+#                                        && Alt$(CleanJet_pt[0],0)>30 \
+#                                        && Alt$(CleanJet_pt[1],0)>30 \
+#                                        && WH3l_mlll > 100 \
+#                                        && abs(WH3l_chlll) == 1 \
+#                                        '
 
 ## DY->ee CR - 2 same-sign electrons IN the Z peak. To check the charge-flip probability method to estimate DY in the signal region
 

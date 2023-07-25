@@ -50,7 +50,6 @@ nuisances['lumi_Correlated_2017_2018'] = {
 
 
 #### FAKES
-
 nuisances['fake_syst_mm'] = {
     'name': 'CMS_fake_syst_mm_2018',
     'type': 'lnN',
@@ -143,6 +142,13 @@ nuisances['eff_e'] = {
     'samples': dict((skey, ['SFweightEleUp', 'SFweightEleDown']) for skey in mc)
 }
 
+nuisances['eff_ttHMVA_e'] = {
+    'name': 'CMS_eff_ttHMVA_e_2018',
+    'kind': 'weight',
+    'type': 'shape',
+    'samples': dict((skey, ['LepWPttHMVASFEleUp', 'LepWPttHMVASFEleDown']) for skey in mc)
+}
+
 nuisances['electronpt'] = {
     'name': 'CMS_scale_e_2018',
     'kind': 'suffix',
@@ -162,6 +168,13 @@ nuisances['eff_m'] = {
     'kind': 'weight',
     'type': 'shape',
     'samples': dict((skey, ['SFweightMuUp', 'SFweightMuDown']) for skey in mc)
+}
+
+nuisances['eff_ttHMVA_m'] = {
+    'name': 'CMS_eff_ttHMVA_m_2018',
+    'kind': 'weight',
+    'type': 'shape',
+    'samples': dict((skey, ['LepWPttHMVASFMuUp', 'LepWPttHMVASFMuDown']) for skey in mc)
 }
 
 nuisances['muonpt'] = {
@@ -211,18 +224,18 @@ nuisances['muonpt'] = {
 # #       'AsLnN': '1'
 # #   }
 
-##### Jet energy resolution
-nuisances['JER'] = {
-    'name'      : 'CMS_res_j_2018',
-    'kind'      : 'suffix',
-    'type'      : 'shape',
-    'mapUp'     : 'JERup',
-    'mapDown'   : 'JERdo',
-    'samples'   : dict((skey, ['1', '1']) for skey in mc),
-    'folderUp'  : makeMCDirectory('JERup_suffix'),
-    'folderDown': makeMCDirectory('JERdo_suffix'),
-    'AsLnN': '1'
-}
+# ##### Jet energy resolution
+# nuisances['JER'] = {
+#     'name'      : 'CMS_res_j_2018',
+#     'kind'      : 'suffix',
+#     'type'      : 'shape',
+#     'mapUp'     : 'JERup',
+#     'mapDown'   : 'JERdo',
+#     'samples'   : dict((skey, ['1', '1']) for skey in mc),
+#     'folderUp'  : makeMCDirectory('JERup_suffix'),
+#     'folderDown': makeMCDirectory('JERdo_suffix'),
+#     'AsLnN': '1'
+# }
 
 
 ##### MET energy scale
@@ -237,8 +250,8 @@ nuisances['met'] = {
     'samples'   : dict((skey, ['1', '1']) for skey in mc),
     'folderUp'  : makeMCDirectory('METup_suffix'),
     'folderDown': makeMCDirectory('METdo_suffix'),
+    'AsLnN'     : '1'
 }
-#    'AsLnN': '1'
 
 
 ##### Pileup
@@ -263,10 +276,10 @@ nuisances['PU'] = {
 puid_syst = ['Jet_PUIDSF_loose_up/Jet_PUIDSF_loose', 'Jet_PUIDSF_loose_down/Jet_PUIDSF_loose']
 
 nuisances['jetPUID'] = {
-    'name': 'CMS_PUID_2018',
-    'kind': 'weight',
-    'type': 'shape',
-    'samples': dict((skey, puid_syst) for skey in mc)
+    'name'    : 'CMS_PUID_2018',
+    'kind'    : 'weight',
+    'type'    : 'shape',
+    'samples' : dict((skey, puid_syst) for skey in mc)
 }
 
 
@@ -346,9 +359,20 @@ nuisances['PS_FSR_2jet']  = {
 # #     'samples' : dict((skey, '1.015') for skey in mc),
 # # }
 
+
+### Comment out just for plotting
 ## Charge flip SF
-nuisances['chargeFlip'] = {
-    'name'    : 'CMS_whss_chargeFlip',
+nuisances['chargeFlipSF'] = {
+    'name'    : 'CMS_whss_chargeFlipSF',
+    'kind'    : 'weight',
+    'type'    : 'shape',
+    'samples' : dict((skey, ['1-ttHMVA_SF_err_flip_2l[0]', '1+ttHMVA_SF_err_flip_2l[0]']) for skey in ['top', 'WW']),
+    'cuts'    : [cut for cut in cuts if ('_ee_' in cut or '_em_' in cut)]
+}
+
+## Charge flip efficiency
+nuisances['chargeFlipEff'] = {
+    'name'    : 'CMS_whss_chargeFlipEff',
     'kind'    : 'weight',
     'type'    : 'shape',
     'samples' : dict((skey, ['1-ttHMVA_eff_err_flip_2l[0]', '1+ttHMVA_eff_err_flip_2l[0]']) for skey in ['DY']),
@@ -459,21 +483,21 @@ nuisances['pdf_qqbar_ACCEPT'] = {
 ##### Renormalization & factorization scales
 
 ## Shape nuisance due to QCD scale variations for DY
-# LHE scale variation weights (w_var / w_nominal)
+## LHE scale variation weights (w_var / w_nominal)
 
 ## This should work for samples with either 8 or 9 LHE scale weights (Length$(LHEScaleWeight) == 8 or 9)
 variations = ['LHEScaleWeight[0]', 'LHEScaleWeight[1]', 'LHEScaleWeight[3]', 'LHEScaleWeight[Length$(LHEScaleWeight)-4]', 'LHEScaleWeight[Length$(LHEScaleWeight)-2]', 'LHEScaleWeight[Length$(LHEScaleWeight)-1]']
 
-nuisances['QCDscale_V'] = {
-    'name'    : 'QCDscale_V',
-    'skipCMS' : 1,
-    'kind'    : 'weight_envelope',
-    'type'    : 'shape',
-    'samples' : {
-        'DY': variations
-    },
-    'AsLnN'   : '1'
-}
+# nuisances['QCDscale_V'] = {
+#     'name'    : 'QCDscale_V',
+#     'skipCMS' : 1,
+#     'kind'    : 'weight_envelope',
+#     'type'    : 'shape',
+#     'samples' : {
+#         'DY' : variations
+#     },
+#     'AsLnN'   : '1'
+# }
 
 nuisances['QCDscale_VV'] = {
     'name' : 'QCDscale_VV',
@@ -491,8 +515,8 @@ nuisances['QCDscale_VV'] = {
 }
 
 nuisances['QCDscale_ggVV'] = {
-    'name' : 'QCDscale_ggVV',
-    'type' : 'lnN',
+    'name'    : 'QCDscale_ggVV',
+    'type'    : 'lnN',
     'samples' : {
         'ggWW' : '1.15',
     },
@@ -503,19 +527,19 @@ nuisances['QCDscale_ggVV'] = {
 values = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','vbfH','125.09','scale','sm')
 
 nuisances['QCDscale_qqH'] = {
-    'name' : 'QCDscale_qqH',
+    'name'    : 'QCDscale_qqH',
     'samples' : {
         'qqH_hww' : values,
         'qqH_htt' : values
     },
-    'type' : 'lnN'
+    'type'    : 'lnN'
 }
 
 valueswh = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','WH','125.09','scale','sm')
 valueszh = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ZH','125.09','scale','sm')
 
 nuisances['QCDscale_VH'] = {
-    'name' : 'QCDscale_VH',
+    'name'    : 'QCDscale_VH',
     'samples' : {
         'WH_hww_plus'  : valueswh,
         'WH_hww_minus' : valueswh,
@@ -524,7 +548,7 @@ nuisances['QCDscale_VH'] = {
         'ZH_hww'       : valueszh,
         'ZH_htt'       : valueszh
     },
-    'type' : 'lnN',
+    'type'    : 'lnN',
 }
 
 values = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ggZH','125.09','scale','sm')
@@ -570,14 +594,14 @@ nuisances['QCDscale_qqbar_ACCEPT'] = {
     }
 }
 
-#FIXME: these come from HIG-16-042, maybe should be recomputed?
+# FIXME: these come from HIG-16-042, maybe should be recomputed?
 nuisances['QCDscale_gg_ACCEPT'] = {
     'name' : 'QCDscale_gg_ACCEPT',
     'samples' : {
         'ggH_htt'  : '1.012',
         'ggH_hww'  : '1.012',
         'ggZH_hww' : '1.012',
-        'ggWW' : '1.012',
+        'ggWW'     : '1.012',
     },
     'type' : 'lnN',
 }
@@ -618,6 +642,8 @@ nuisances['WgStar'] = {
         'WgS' : '1.25'
     }
 }
+
+# WZ normalization from control region
 
 nuisances['WZ2jnorm']  = {
     'name'    : 'CMS_hww_WZ3l2jnorm',
