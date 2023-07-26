@@ -119,14 +119,12 @@ samples['DY'] = {
 
 ############ WZ ############
 files = nanoGetSampleFiles(mcDirectory, 'WZTo3LNu')
-#        nanoGetSampleFiles(mcDirectory, 'WZTo2Q2L_mllmin4p0')
 
 samples['WZ'] = {
     'name': files,
     'weight': mcCommonWeight + ' * (gstarHigh)',
     'FilesPerJob': 4
 }
-# addSampleWeight(samples, 'WZ', 'WZTo3LNu_mllmin0p1', '(0.601644*58.59/4.666)')
 
 
 # For Fakes, we don't want both leptons to be gen-matched
@@ -143,13 +141,6 @@ samples['WJets'] = {
 }
 
 ##### Top (Fakes) #######
-# files = nanoGetSampleFiles(mcDirectory, 'TTTo2L2Nu') + \
-#         nanoGetSampleFiles(mcDirectory, 'ST_s-channel') + \
-#         nanoGetSampleFiles(mcDirectory, 'ST_t-channel_top') + \
-#         nanoGetSampleFiles(mcDirectory, 'ST_t-channel_antitop') + \
-#         nanoGetSampleFiles(mcDirectory, 'ST_tW_antitop') + \
-#         nanoGetSampleFiles(mcDirectory, 'ST_tW_top')
-
 files = nanoGetSampleFiles(mcDirectory, 'TTToSemiLeptonic') + \
         nanoGetSampleFiles(mcDirectory, 'ST_s-channel') + \
         nanoGetSampleFiles(mcDirectory, 'ST_t-channel_top') + \
@@ -162,38 +153,6 @@ samples['top'] = {
     'weight': mcCommonWeightNoMatch,
     'FilesPerJob': 1,
 }
-
-# ################## FAKE ###################
-# samples['Fake'] = {
-#   'name': [],
-#   'weight': 'METFilter_DATA*fakeW',
-#   'weights': [],
-#   'isData': ['all'],
-#   'FilesPerJob': 50
-# }
-
-# for _, sd in DataRun:
-#   for pd in DataSets:
-#     tag = pd + '_' + sd
-
-#     if (   ('DoubleMuon' in pd and 'Run2018B' in sd)
-#         or ('DoubleMuon' in pd and 'Run2018D' in sd)
-#         or ('DoubleMuon' in pd and 'Run2018D' in sd) 
-#         or ('SingleMuon' in pd and 'Run2018A' in sd)
-#         or ('SingleMuon' in pd and 'Run2018B' in sd)
-#         or ('SingleMuon' in pd and 'Run2018C' in sd)):
-#         print("sd      = {}".format(sd))
-#         print("pd      = {}".format(pd))
-#         print("Old tag = {}".format(tag))
-#         tag = tag.replace('v1','v2')
-#         print("New tag = {}".format(tag))
-
-#     files = nanoGetSampleFiles(fakeDirectory, tag)
-
-#     samples['Fake']['name'].extend(files)
-#     samples['Fake']['weights'].extend([DataTrig[pd]] * len(files))
-
-
 
 ###########################################
 #############   SIGNALS  ##################
