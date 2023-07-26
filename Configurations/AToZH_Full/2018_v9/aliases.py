@@ -2,38 +2,52 @@
 
 mc = [skey for skey in samples if skey not in ('Fake', 'DATA')]
 bkg = [skey for skey in samples if not skey.startswith('AZH')]
-#2018
-#bWP = '0.1241' #Loose
-bWP = '0.4184'
-bWPtight = '0.8953'
 
 eleWP_new = 'mvaFall17V2Iso_WP90_tthmva_70'
 muWP_new  = 'cut_Tight_HWWW_tthmva_80'
 
+####################################################################################
+# b tagging WPs: https://twiki.cern.ch/twiki/bin/view/CMS/BtagRecommendation106XUL18
+####################################################################################
+
+# DeepB = DeepCSV
+bWP_loose_deepB  = '0.1208'
+bWP_medium_deepB = '0.4168' 
+bWP_tight_deepB  = '0.7665'
+
+# DeepFlavB = DeepJet
+bWP_loose_deepFlavB  = '0.0490'
+bWP_medium_deepFlavB = '0.2783'
+bWP_tight_deepFlavB  = '0.7100'
+
+# Actual algo and WP definition. BE CONSISTENT!!
+bAlgo = 'DeepFlavB' # ['DeepB','DeepFlavB']
+bWP   = bWP_tight_deepFlavB
+bSF   = 'deepjet' # ['deepcsv','deepjet']
+
 #######################################  b-tag definitions #######################
 
 aliases['bVeto'] = {
-    'expr': '(Sum$( CleanJet_pt > 20.0 && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > '+bWP+' ) == 0)'
+        'expr': 'Sum$(CleanJet_pt > 20.0 && abs(CleanJet_eta) < 2.5 && Jet_btag{}[CleanJet_jetIdx] > {}) == 0'.format(bAlgo, bWP)
 }
 
-
 aliases['bVeto_1j'] = {
-    'expr': '(Sum$( CleanJet_pt > 30.0 && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > '+bWP+' ) == 1)'
+       'expr': '(Sum$(CleanJet_pt > 30.0 && abs(CleanJet_eta) < 2.5 && Jet_btag{}[CleanJet_jetIdx] > {}) == 1)'.format(bAlgo, bWP)
 }
 
 aliases['bReq'] = {
-    'expr': '(Sum$( CleanJet_pt > 30.0 && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > '+bWP+' ) >= 2)'
+       'expr': '(Sum$(CleanJet_pt > 30.0 && abs(CleanJet_eta) < 2.5 && Jet_btag{}[CleanJet_jetIdx] > {}) >= 2)'. format(bAlgo, bWP)
 }
 
 ####################################### b-tagging SFs ################################
 
 aliases['bReqSF'] = {
-'expr': '( TMath::Exp(Sum$( TMath::Log( (CleanJet_pt>30 && abs(CleanJet_eta)<2.5)*Jet_btagSF_deepcsv_shape[CleanJet_jetIdx]+1*(CleanJet_pt<30 || abs(CleanJet_eta)>2.5) ) ) ) )',
-'samples': mc
+     'expr': '(TMath::Exp(Sum$(TMath::Log((CleanJet_pt>30 && abs(CleanJet_eta)<2.5)*Jet_btagSF_{}_shape[CleanJet_jetIdx]+1*(CleanJet_pt<30 || abs(CleanJet_eta)>2.5)))))'.format(bSF),
+     'samples': mc
 }
 
 aliases['bVetoSF'] = {
-    'expr': 'TMath::Exp(Sum$(TMath::Log((CleanJet_pt>20 && abs(CleanJet_eta)<2.5)*Jet_btagSF_deepcsv_shape[CleanJet_jetIdx]+1*(CleanJet_pt<20 || abs(CleanJet_eta)>2.5))))',
+    'expr': 'TMath::Exp(Sum$(TMath::Log((CleanJet_pt>20 && abs(CleanJet_eta)<2.5)*Jet_btagSF_{}_shape[CleanJet_jetIdx]+1*(CleanJet_pt<20 || abs(CleanJet_eta)>2.5))))'.format(bSF),
     'samples': mc
 }
 
@@ -43,25 +57,24 @@ aliases['btagSF'] = {
 }
 
 
-systs = ['lf','hf','lfstats1','lfstats2','hfstats1','hfstats2','cferr1','cferr2']
-
-for s in systs:
+for syst in ['lf','hf','lfstats1','lfstats2','hfstats1','hfstats2','cferr1','cferr2']:
     for targ in ['bVeto', 'bReq']:
-         alias = aliases['%sSF%sup' % (targ, s)] = copy.deepcopy(aliases['%sSF' % targ])
-	 alias['expr'] = alias['expr'].replace('btagSF_deepcsv_shape', 'btagSF_deepcsv_shape_up_'+s)
+        alias = aliases['%sSF%sup' % (targ, syst)] = copy.deepcopy(aliases['%sSF' % targ])
+        alias['expr'] = alias['expr'].replace('btagSF_{}_shape'.format(bSF), 'btagSF_{}_shape_up_{}'.format(bSF,syst))
 
-	 alias = aliases['%sSF%sdown' % (targ, s)] = copy.deepcopy(aliases['%sSF' % targ])
-	 alias['expr'] = alias['expr'].replace('btagSF_deepcsv_shape', 'btagSF_deepcsv_shape_down_'+s)
+	    alias = aliases['%sSF%sdown' % (targ, syst)] = copy.deepcopy(aliases['%sSF' % targ])
+	    alias['expr'] = alias['expr'].replace('btagSF_{}_shape'.format(bSF), 'btagSF_{}_shape_down_{}'.format(bSF,syst))
          
+    aliases['btagSF'+syst+'up']   = { 
+        'expr': aliases['btagSF']['expr'].replace('shape','shape_up_'+syst),
+        'samples':mc  
+    }
 
-    aliases['btagSF'+s+'up']   = { 
-        'expr': aliases['btagSF']['expr'].replace('shape','shape_up_'+s),
+    aliases['btagSF'+syst+'down'] = { 
+        'expr': aliases['btagSF']['expr'].replace('shape','shape_down_'+syst),
         'samples':mc  
     }
-    aliases['btagSF'+s+'down'] = { 
-        'expr': aliases['btagSF']['expr'].replace('shape','shape_down_'+s),
-        'samples':mc  
-    }
+
 
 aliases['Jet_PUIDSF'] = {
    'expr' : 'TMath::Exp(Sum$((Jet_jetId>=2)*TMath::Log(Jet_PUIDSF_loose)))',
@@ -78,14 +91,18 @@ aliases['Jet_PUIDSF_down'] = {
     'samples': mc
 }
 
+aliases['PromptGenLepMatch2l'] = {
+    'expr': 'Alt$(Lepton_promptgenmatched[0]*Lepton_promptgenmatched[1], 0)',
+    'samples': mc
+}
+
 aliases['PromptGenLepMatch3l'] = {
     'expr': 'Alt$(Lepton_promptgenmatched[0]*Lepton_promptgenmatched[1]*Lepton_promptgenmatched[2], 0)',
     'samples': mc
 }
 
-
-aliases['PromptGenLepMatch2l'] = {
-    'expr': 'Alt$(Lepton_promptgenmatched[0]*Lepton_promptgenmatched[1], 0)',
+aliases['PromptGenLepMatch4l'] = {
+    'expr': 'Alt$(Lepton_promptgenmatched[0]*Lepton_promptgenmatched[1]*Lepton_promptgenmatched[2]*Lepton_promptgenmatched[3], 0)',
     'samples': mc
 }
 
@@ -131,7 +148,6 @@ aliases['AZH_Tophadronic'] = {
     'class': 'AZH_patch_2018',
     'args': ("AZH_Tophadronic")
 }
-
 
 aliases['AZH_mA_minus_mH_onebjet'] = {
     'class' : 'AZH_patch_2018',

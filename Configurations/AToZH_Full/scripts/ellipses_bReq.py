@@ -31,11 +31,11 @@ for b in range(len(pairs)):
 
     CleanJet_pt = Events["CleanJet_pt"].array()
     CleanJeteta = abs(Events["CleanJet_eta"].array())
-    Jet_btagSF_deepcsv_shape = Events["Jet_btagSF_deepcsv_shape"].array()
+    Jet_btagSF_deepjet_shape = Events["Jet_btagSF_deepjet_shape"].array()
     CleanJet_jetIdx = Events["CleanJet_jetIdx"].array()
-    Jet_btagSF = Jet_btagSF_deepcsv_shape[CleanJet_jetIdx]
+    Jet_btagSF = Jet_btagSF_deepjet_shape[CleanJet_jetIdx]
 
-    btag = np.log(((CleanJet_pt>30) & (CleanJeteta<2.5))*(Jet_btagSF_deepcsv_shape[CleanJet_jetIdx])+1*((CleanJet_pt<30) | (CleanJeteta>2.5)))
+    btag = np.log(((CleanJet_pt>30) & (CleanJeteta<2.5))*(Jet_btagSF_deepjet_shape[CleanJet_jetIdx])+1*((CleanJet_pt<30) | (CleanJeteta>2.5)))
     btagSF = np.exp((btag.sum()))  #array([1.47603836, 0.66089104, 0.86333407, ..., 1.42880052, 0.97982071, 0.97606693]) - same as directly doing array.prod() without the log and the exp
 
     SFweight = SFweight3l*LepSF*LepCut*Prefire*Jet_PUIDSF*btagSF
@@ -94,8 +94,8 @@ for b in range(len(pairs)):
     CleanJet_pt1 = np.array([CleanJet_pt[i][1] if nCleanJet[i]>1 else 0 for i in range(len(CleanJet_pt))])
     CleanJet_pt2 = np.array([CleanJet_pt[i][2] if nCleanJet[i]>2 else 0 for i in range(len(CleanJet_pt))])
     CleanJet_pt3 = np.array([CleanJet_pt[i][3] if nCleanJet[i]>3 else 0 for i in range(len(CleanJet_pt))])
-    Jet_btagDeepB = Events["Jet_btagDeepB"].array()
-    bReq = ((CleanJet_pt>30) & (CleanJeteta<2.5) & ((Jet_btagDeepB[CleanJet_jetIdx])>0.4941)).sum() #counts no. of true elements in each array of the jagged array
+    Jet_btagDeepFlavB = Events["Jet_btagDeepFlavB"].array()
+    bReq = ((CleanJet_pt>30) & (CleanJeteta<2.5) & ((Jet_btagDeepFlavB[CleanJet_jetIdx])>0.7476)).sum() #counts no. of true elements in each array of the jagged array
 
     SR_cut = ((zmass_cut<25) & (MET>40) & (CleanJet_pt0>30) & (CleanJet_pt1>30) & (CleanJet_pt2>30) & (CleanJet_pt3>30) & (bReq>=2))
 
