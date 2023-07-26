@@ -16,16 +16,30 @@ configurations = os.path.dirname(configurations) # Configurations
 
 mc = [skey for skey in samples if skey not in ('Fake', 'DATA')]
 
-# LepCut2l__ele_mvaFall17V2Iso_WP90_tthmva_70__mu_cut_Tight_HWWW_tthmva_80
-eleWP = 'mvaFall17V2Iso_WP90_tthmva_70'
-muWP  = 'cut_Tight_HWWW_tthmva_80'
+# LepCut2l__ele_mvaFall17V2Iso_WP90__mu_cut_Tight_HWWW
+eleWP = 'mvaFall17V2Iso_WP90'
+muWP  = 'cut_Tight_HWWW'
 
 aliases['LepWPCut'] = {
-    'expr': 'LepCut2l__ele_'+eleWP+'__mu_'+muWP,
-    # 'expr': 'LepCut2l__ele_mvaFall17V2Iso_WP90_SS__mu_cut_Tight_HWWW*\
-    #          ( (abs(Lepton_pdgId[0])==11 || Muon_mvaTTH[Lepton_muonIdx[0]]>0.85) && (abs(Lepton_pdgId[1])==11 || Muon_mvaTTH[Lepton_muonIdx[1]]>0.85) \
-    #         && (abs(Lepton_pdgId[0])==13 || Lepton_mvaTTH_UL[0]>0.95)            && (abs(Lepton_pdgId[1])==13 || Lepton_mvaTTH_UL[1]>0.95) )',
+    'expr': 'LepCut3l__ele_mvaFall17V2Iso_WP90__mu_cut_Tight_HWWW * \
+     ( ((abs(Lepton_pdgId[0])==13 && Muon_mvaTTH[Lepton_muonIdx[0]]>0.82) || (abs(Lepton_pdgId[0])==11 && Lepton_mvaTTH_UL[0]>0.90)) \
+    && ((abs(Lepton_pdgId[1])==13 && Muon_mvaTTH[Lepton_muonIdx[1]]>0.82) || (abs(Lepton_pdgId[1])==11 && Lepton_mvaTTH_UL[1]>0.90)) \
+    && ((abs(Lepton_pdgId[2])==13 && Muon_mvaTTH[Lepton_muonIdx[2]]>0.82) || (abs(Lepton_pdgId[2])==11 && Lepton_mvaTTH_UL[2]>0.90)) )',
     'samples': mc_emb + ['DATA']
+}
+
+# Lepton SF (not considering the ttHMVA discriminant)
+aliases['LepWPSF'] = {
+    'expr': 'LepSF3l__ele_' + eleWP + '__mu_' + muWP,
+    'samples': mc
+}
+
+# ttHMVA SFs
+aliases['LepWPttHMVASF'] = {
+    'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/ttHMVASF.C+' % configurations],
+    'class'      : 'ttHMVASF',
+    'args'       : ("2018", 3, "all", "nominal"),
+    'samples'    : mc_emb
 }
 
 aliases['gstarLow'] = {
@@ -44,49 +58,37 @@ aliases['PromptGenLepMatch3l'] = {
     'samples': mc
 }
 
-aliases['nCleanGenJet'] = {
-    'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/Differential/ngenjet.cc+' % os.getenv('CMSSW_BASE')
-    ],
-    'class': 'CountGenJet',
-    'samples': mc
-}
-
-
-#######################
-### SFs for tthMVA  ###
-#######################
-
-# aliases['bVetoSF'] = {
-#     'expr': 'TMath::Exp(Sum$(TMath::Log((CleanJet_pt>20 && abs(CleanJet_eta)<2.5)*Jet_btagSF_deepcsv_shape[CleanJet_jetIdx]+1*(CleanJet_pt<20 || abs(CleanJet_eta)>2.5))))',
+# aliases['nCleanGenJet'] = {
+#     'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/Differential/ngenjet.cc+' % os.getenv('CMSSW_BASE')
+#     ],
+#     'class': 'CountGenJet',
 #     'samples': mc
 # }
 
-# aliases['bVeto'] = {
-#     'expr': 'Sum$(CleanJet_pt > 20. && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.4184) == 0'
-# }
 
-# aliases['btagSF'] = {
-#     'expr': 'bVetoSF*bVeto',
+# ### SFs for tthMVA
+# aliases['ttHMVA_SF_3l'] = {
+#     'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/patches/compute_SF_BETA.C+' % os.getenv('CMSSW_BASE')],
+#     'class': 'compute_SF',
+#     'args' : ('2018', 3, 'total_SF'),
 #     'samples': mc
 # }
 
-aliases['ttHMVA_SF_3l'] = {
-    'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/patches/compute_SF_BETA.C+' % os.getenv('CMSSW_BASE')],
-    'class': 'compute_SF',
-    'args' : ('2018', 3, 'total_SF'),
-    'samples': mc
-}
-
-aliases['SFweight3l_noTrigg'] = {
-    'expr': ' * '.join(['puWeight','Alt$(Lepton_RecoSF[0],0)','Alt$(Lepton_RecoSF[1],0)','Alt$(Lepton_RecoSF[2],0)','EMTFbug_veto']),
-    'samples': mc
-}
+# aliases['SFweight3l_noTrigg'] = {
+#     'expr': ' * '.join(['puWeight','Alt$(Lepton_RecoSF[0],0)','Alt$(Lepton_RecoSF[1],0)','Alt$(Lepton_RecoSF[2],0)','EMTFbug_veto']),
+#     'samples': mc
+# }
 
 # data/MC scale factors
 aliases['SFweight'] = {
-    'expr': ' * '.join(['SFweight3l_noTrigg', 'ttHMVA_SF_3l' , 'LepWPCut']),
-    # 'expr': ' * '.join(['SFweight3l_noTrigg', 'ttHMVA_SF_3l' , 'LepWPCut', 'btagSF']),
+    'expr': ' * '.join(['SFweight3l', 'LepWPCut', 'LepWPSF','Jet_PUIDSF_loose', 'LepWPttHMVASF']),
     'samples': mc
 }
+
+# # data/MC scale factors
+# aliases['SFweight'] = {
+#     'expr': ' * '.join(['SFweight3l_noTrigg', 'ttHMVA_SF_3l' , 'LepWPCut']),
+#     'samples': mc
+# }
 
 

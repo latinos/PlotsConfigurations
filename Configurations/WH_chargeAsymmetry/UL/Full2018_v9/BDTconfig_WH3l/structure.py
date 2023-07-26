@@ -52,12 +52,6 @@ structure['WZ']  = {
 }
 
 
-# structure['WJets']  = {
-#     'isSignal' : 0,
-#     'isData'   : 0
-# }
-
-
 # Signals
 
 structure['WH_hww_plus'] = {
@@ -79,14 +73,4 @@ structure['WH_htt_minus'] = {
     'isSignal' : 1,
     'isData'   : 0
 }
-
-# data
-
-# structure['DATA']  = {
-#     'isSignal' : 0,
-#     'isData'   : 1
-# }
-
-
-
 
