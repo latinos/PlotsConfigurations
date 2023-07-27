@@ -1,0 +1,8 @@
+executable = /afs/cern.ch/user/n/ntrevisa/work/latinos/UL_production/CMSSW_10_6_27/src/PlotsConfigurations/Configurations/WH_chargeAsymmetry/UL/2016noHIPM_v9/BDTconfig_WHSS/do_WHSS_training.sh
+universe = vanilla
+output = /afs/cern.ch/user/n/ntrevisa/work/latinos/UL_production/CMSSW_10_6_27/src/PlotsConfigurations/Configurations/WH_chargeAsymmetry/UL/2016noHIPM_v9/BDTconfig_WHSS/logs_WHSS/WHSS.out
+error = /afs/cern.ch/user/n/ntrevisa/work/latinos/UL_production/CMSSW_10_6_27/src/PlotsConfigurations/Configurations/WH_chargeAsymmetry/UL/2016noHIPM_v9/BDTconfig_WHSS/logs_WHSS/WHSS.err
+log = /afs/cern.ch/user/n/ntrevisa/work/latinos/UL_production/CMSSW_10_6_27/src/PlotsConfigurations/Configurations/WH_chargeAsymmetry/UL/2016noHIPM_v9/BDTconfig_WHSS/logs_WHSS/WHSS.log
+request_cpus = 1
++JobFlavour = "testmatch"
+queue
