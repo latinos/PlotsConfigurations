@@ -135,10 +135,23 @@ files = nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_0J') + \
 
 samples['WJets'] = {
     'name': files,
-    'weight': mcCommonWeight,
+    'weight': mcCommonWeightNoMatch,
     'FilesPerJob': 4
 }
 
+##### Top (Fakes) #######
+files = nanoGetSampleFiles(mcDirectory, 'TTToSemiLeptonic') + \
+        nanoGetSampleFiles(mcDirectory, 'ST_s-channel') + \
+        nanoGetSampleFiles(mcDirectory, 'ST_t-channel_top') + \
+        nanoGetSampleFiles(mcDirectory, 'ST_t-channel_antitop') + \
+        nanoGetSampleFiles(mcDirectory, 'ST_tW_antitop') + \
+        nanoGetSampleFiles(mcDirectory, 'ST_tW_top')
+
+samples['top'] = {
+    'name': files,
+    'weight': mcCommonWeightNoMatch,
+    'FilesPerJob': 1,
+}
 
 ###########################################
 #############   SIGNALS  ##################

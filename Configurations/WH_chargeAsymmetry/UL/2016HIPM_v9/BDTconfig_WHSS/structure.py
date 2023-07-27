@@ -22,6 +22,10 @@ structure['WJets']  = {
     'isData'   : 0
 }
 
+structure['top']  = {
+    'isSignal' : 0,
+    'isData'   : 0
+}
 
 # Signals
 

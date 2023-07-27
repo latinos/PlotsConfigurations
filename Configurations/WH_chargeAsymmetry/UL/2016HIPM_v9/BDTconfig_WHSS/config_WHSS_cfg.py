@@ -25,7 +25,7 @@ for f in [samplesFile, structureFile, cutsFile]:
 # Reduce sample files for fast dev
 if isDEV:
     for sampleName, sample in samples.items():
-        if sampleName not in ['DY', 'WZ', 'WJets', 'WH_hww_plus', 'WH_hww_minus', 'WH_htt_plus', 'WH_htt_minus']:
+        if sampleName not in ['DY', 'WZ', 'WJets', 'top', 'WH_hww_plus', 'WH_hww_minus', 'WH_htt_plus', 'WH_htt_minus']:
             samples.pop(sampleName)
             continue
 
