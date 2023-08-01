@@ -16,18 +16,36 @@ configurations = os.path.dirname(configurations) # Configurations
 
 mc = [skey for skey in samples if skey not in ('Fake', 'DATA')]
 
-# LepCut2l__ele_mvaFall17V2Iso_WP90_tthmva_70__mu_cut_Tight_HWWW_tthmva_80
-eleWP = 'mvaFall17V2Iso_WP90_tthmva_70'
-muWP  = 'cut_Tight_HWWW_tthmva_80'
+# LepCut2l__ele_mvaFall17V2Iso_WP90__mu_cut_Tight_HWWW
+eleWP = 'mvaFall17V2Iso_WP90'
+muWP  = 'cut_Tight80x'
 
 aliases['LepWPCut'] = {
-    'expr': 'LepCut3l__ele_mvaFall17V2Iso_WP90__mu_cut_Tight_HWWW*\
+    'expr': 'LepCut3l__ele_mvaFall17V2Iso_WP90__mu_cut_Tight80x*\
      ( ((abs(Lepton_pdgId[0])==13 && Muon_mvaTTH[Lepton_muonIdx[0]]>0.82) || (abs(Lepton_pdgId[0])==11 && Lepton_mvaTTH_UL[0]>0.90)) \
     && ((abs(Lepton_pdgId[1])==13 && Muon_mvaTTH[Lepton_muonIdx[1]]>0.82) || (abs(Lepton_pdgId[1])==11 && Lepton_mvaTTH_UL[1]>0.90)) \
     && ((abs(Lepton_pdgId[2])==13 && Muon_mvaTTH[Lepton_muonIdx[2]]>0.82) || (abs(Lepton_pdgId[2])==11 && Lepton_mvaTTH_UL[2]>0.90)) )',
     'samples': mc_emb + ['DATA']
 }
 
+# Standard leptons SFs
+aliases['LepWPSF'] = {
+    'expr': 'LepSF3l__ele_' + eleWP + '__mu_' + muWP,
+    'samples': mc
+}
+
+# ttHMVA SFs
+aliases['LepWPttHMVASF'] = {
+    'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/ttHMVASF.C+' % configurations],
+    'class'      : 'ttHMVASF',
+    'args'       : ("2016HIPM", 3, "all", "nominal"),
+    'samples'    : mc_emb
+}
+
+# No jet with pt > 30 GeV
+aliases['zeroJet'] = {
+    'expr': 'Alt$(CleanJet_pt[0], 0) < 30.'
+}
 
 aliases['gstarLow'] = {
     'expr': 'Gen_ZGstar_mass >0 && Gen_ZGstar_mass < 4',
@@ -46,18 +64,16 @@ aliases['PromptGenLepMatch3l'] = {
     'samples': mc
 }
 
-aliases['nCleanGenJet'] = {
-    'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/Differential/ngenjet.cc+' % os.getenv('CMSSW_BASE')
-    ],
-    'class': 'CountGenJet',
-    'samples': mc
-}
+# aliases['nCleanGenJet'] = {
+#     'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/Differential/ngenjet.cc+' % os.getenv('CMSSW_BASE')
+#     ],
+#     'class': 'CountGenJet',
+#     'samples': mc
+# }
 
 
 # data/MC scale factors
 aliases['SFweight'] = {
-    'expr': ' * '.join(['SFweight3l_noTrigg', 'ttHMVA_SF_3l' , 'LepWPCut']),
+    'expr': ' * '.join(['SFweight3l', 'LepWPCut', 'LepWPSF','Jet_PUIDSF_loose', 'LepWPttHMVASF']),
     'samples': mc
 }
-
-

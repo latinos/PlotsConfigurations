@@ -1,0 +1,8 @@
+executable = /afs/cern.ch/user/n/ntrevisa/work/latinos/UL_production/CMSSW_10_6_27/src/PlotsConfigurations/Configurations/WH_chargeAsymmetry/UL/2016HIPM_v9/BDTconfig_WH3l/do_SSSF_train.sh
+universe = vanilla
+output = /afs/cern.ch/user/n/ntrevisa/work/latinos/UL_production/CMSSW_10_6_27/src/PlotsConfigurations/Configurations/WH_chargeAsymmetry/UL/2016HIPM_v9/BDTconfig_WH3l/logs_SSSF/SSSF.out
+error = /afs/cern.ch/user/n/ntrevisa/work/latinos/UL_production/CMSSW_10_6_27/src/PlotsConfigurations/Configurations/WH_chargeAsymmetry/UL/2016HIPM_v9/BDTconfig_WH3l/logs_SSSF/SSSF.err
+log = /afs/cern.ch/user/n/ntrevisa/work/latinos/UL_production/CMSSW_10_6_27/src/PlotsConfigurations/Configurations/WH_chargeAsymmetry/UL/2016HIPM_v9/BDTconfig_WH3l/logs_SSSF/SSSF.log
+request_cpus = 1
++JobFlavour = "testmatch"
+queue

@@ -12,7 +12,7 @@ def runJob(output_and_dataset_name = ""):
     TMVA.Tools.Instance()
     TMVA.PyMethodBase.PyInitialize()
 
-    output = TFile.Open('TMVA{}.root'.format(output_and_dataset_name), 'RECREATE')
+    output = TFile.Open('TMVA_OSSF{}.root'.format(output_and_dataset_name), 'RECREATE')
     factory = TMVA.Factory('TMVAClassification', output,'!V:!Silent:Color:DrawProgressBar:AnalysisType=Classification')
     # factory = TMVA.Factory('TMVAClassification', output,'!V:!Silent:Color:DrawProgressBar:Transformations=D,G:AnalysisType=Classification')
 

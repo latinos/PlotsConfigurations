@@ -74,12 +74,41 @@ mcDirectory = makeMCDirectory()
 #########################################
 
 # SFweight does not include btag weights
-mcCommonWeight        = 'XSWeight*SFweight*METFilter_MC'
+mcCommonWeight        = 'XSWeight*SFweight*METFilter_MC*(1-PromptGenLepMatch3l)'
 mcCommonWeightMatched = 'XSWeight*SFweight*PromptGenLepMatch3l*METFilter_MC'
 
 ###########################################
 #############  BACKGROUNDS  ###############
 ###########################################
+
+# For Fakes, we don't want the three leptons to be genmatched
+
+###### DY (Fakes) #######
+
+files = nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-10to50') + \
+        nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50')
+
+samples['DY'] = {
+    'name': files,
+    'weight': mcCommonWeight + '*( !(Sum$(PhotonGen_isPrompt==1 && PhotonGen_pt>15 && abs(PhotonGen_eta)<2.6) > 0))',
+    'FilesPerJob': 2,
+}
+
+##### Top (Fakes) #######
+files = nanoGetSampleFiles(mcDirectory, 'TTTo2L2Nu') + \
+        nanoGetSampleFiles(mcDirectory, 'ST_s-channel') + \
+        nanoGetSampleFiles(mcDirectory, 'ST_t-channel_top') + \
+        nanoGetSampleFiles(mcDirectory, 'ST_t-channel_antitop') + \
+        nanoGetSampleFiles(mcDirectory, 'ST_tW_antitop') + \
+        nanoGetSampleFiles(mcDirectory, 'ST_tW_top')
+
+samples['top'] = {
+    'name': files,
+    'weight': mcCommonWeight,
+    'FilesPerJob': 1,
+}
+addSampleWeight(samples,'top','TTTo2L2Nu','Top_pTrw')
+
 
 ######## Vg ########
 
@@ -144,16 +173,16 @@ addSampleWeight(samples,'WZ','WZTo3LNu', '(Gen_ZGstar_mass>=0.1)')
 #     'FilesPerJob': 4
 # }
 
-############ WJets (Fakes) ############
-files = nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_0J') + \
-        nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_1J') + \
-        nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_2J')
+# ############ WJets (Fakes) ############
+# files = nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_0J') + \
+#         nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_1J') + \
+#         nanoGetSampleFiles(mcDirectory, 'WJetsToLNu_2J')
 
-samples['WJets'] = {
-    'name': files,
-    'weight': mcCommonWeight,
-    'FilesPerJob': 4
-}
+# samples['WJets'] = {
+#     'name': files,
+#     'weight': mcCommonWeight,
+#     'FilesPerJob': 4
+# }
 
 ###########################################
 #############   SIGNALS  ##################
@@ -163,14 +192,14 @@ signals = []
 
 samples['WH_hww_plus'] = {
     'name':  nanoGetSampleFiles(mcDirectory, 'HWplusJ_HToWWTo2L2Nu_WToLNu_M125'),
-    'weight': mcCommonWeight,
+    'weight': mcCommonWeightMatched,
     'FilesPerJob': 4
 }
 signals.append('WH_hww_plus')
 
 samples['WH_hww_minus'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'HWminusJ_HToWWTo2L2Nu_WToLNu_M125'),
-    'weight': mcCommonWeight,
+    'weight': mcCommonWeightMatched,
     'FilesPerJob': 4
 }
 signals.append('WH_hww_minus')
@@ -179,14 +208,14 @@ signals.append('WH_hww_minus')
 
 samples['WH_htt_plus'] = {
     'name':  nanoGetSampleFiles(mcDirectory, 'WplusHToTauTau_M125'),
-    'weight': mcCommonWeight + '*2*(event % 2 == 0)',
+    'weight': mcCommonWeightMatched + '*2*(event % 2 == 0)',
     'FilesPerJob': 4
 }
 signals.append('WH_htt_plus')
 
 samples['WH_htt_minus'] = {
     'name':  nanoGetSampleFiles(mcDirectory, 'WminusHToTauTau_M125'),
-    'weight': mcCommonWeight + '*2*(event % 2 == 0)',
+    'weight': mcCommonWeightMatched + '*2*(event % 2 == 0)',
     'FilesPerJob': 4
 }
 signals.append('WH_htt_minus')

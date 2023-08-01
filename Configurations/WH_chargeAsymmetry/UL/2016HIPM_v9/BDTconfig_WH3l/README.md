@@ -38,6 +38,7 @@ OS-SF:
 SS-SF:
 
 	root -l -b -q 'plotAll.C("./","TMVA_SSSFno_btag","plots_BDT_WH3l_2016HIPM_v9_SSSF_no_b_tag","datasetSSSFno_btag")'
+	root -l -b -q 'plotAll.C("./","TMVA_SSSF_matched_signal","plots_BDT_WH3l_2016HIPM_v9_SSSF_matched_signal","datasetSSSF_SSSF_matched_signal")'
 
 OS-SF:
 
