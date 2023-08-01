@@ -9,7 +9,7 @@
 #include "Math/GenVector/VectorUtil.h"
 using std::cout;
 using std::endl;
-float bWP_2017 = 0.4941;
+
 using PtEtaPhiMVector = ROOT::Math::PtEtaPhiMVector;
 class AZH_patch : public multidraw::TTreeFunction {
     public:
@@ -38,7 +38,7 @@ class AZH_patch : public multidraw::TTreeFunction {
 	FloatValueReader* PuppiMET_pt;
 	FloatValueReader* PuppiMET_phi;
 
-	FloatArrayReader* Jet_btagDeepB;
+	FloatArrayReader* Jet_btagDeepFlavB;
 	IntArrayReader* CleanJet_jetIdx;
 };
 
@@ -84,7 +84,7 @@ AZH_patch::evaluate(unsigned)
 	    TLorentzVector j; 
 	    j.SetPtEtaPhiM(CleanJet_pt->At(z), CleanJet_eta->At(z), CleanJet_phi->At(z), 0);
 	    CleanJet_4vecId.push_back(j);
-	    if (Jet_btagDeepB->At(CleanJet_jetIdx->At(z)) > bWP_2017) {
+	    if (Jet_btagDeepFlavB->At(CleanJet_jetIdx->At(z)) > 0.7476) {
 		AZH_bJet_4vecId.push_back(j);
 	    }
 	}
@@ -147,7 +147,7 @@ AZH_patch::evaluate(unsigned)
 	    int ibJet2 = 0; 
 	    std::vector<TLorentzVector> WJets;
 	    for (int ij = 0; ij < CleanJet_4vecId.size(); ++ij){
-		if((CleanJet_4vecId[ij] != AZH_bJet_4vecId[0]) && ((Jet_btagDeepB->At(CleanJet_jetIdx->At(ij)))>(Jet_btagDeepB->At(CleanJet_jetIdx->At(ibJet2))))){
+		if((CleanJet_4vecId[ij] != AZH_bJet_4vecId[0]) && ((Jet_btagDeepFlavB->At(CleanJet_jetIdx->At(ij)))>(Jet_btagDeepFlavB->At(CleanJet_jetIdx->At(ibJet2))))){
 		    ibJet2 = ij;
 		}
 	    }
@@ -194,7 +194,7 @@ unsigned nbJet = 0;
 for (unsigned ij = 0; ij < nJetLoose; ij++){
     if (CleanJet_pt->At(ij) > 30 && std::abs(CleanJet_eta->At(ij)) < 4.7) {
 	nJet++;
-	if (Jet_btagDeepB->At(CleanJet_jetIdx->At(ij)) > bWP_2017) nbJet++; }
+	if (Jet_btagDeepFlavB->At(CleanJet_jetIdx->At(ij)) > 0.7476) nbJet++; }
 }
 
 if (variable == "AZH_mA_minus_mH"){
@@ -303,7 +303,7 @@ AZH_patch::bindTree_(multidraw::FunctionLibrary& _library)
     _library.bindBranch(CleanJet_phi,  "CleanJet_phi");
     _library.bindBranch(PuppiMET_pt,   "PuppiMET_pt");
     _library.bindBranch(PuppiMET_phi,  "PuppiMET_phi");
-    _library.bindBranch(Jet_btagDeepB, "Jet_btagDeepB");
+    _library.bindBranch(Jet_btagDeepFlavB, "Jet_btagDeepFlavB");
     _library.bindBranch(CleanJet_jetIdx, "CleanJet_jetIdx");
 
 }

@@ -1,38 +1,53 @@
 #Aliases (mostly btag)
 
 mc = [skey for skey in samples if skey not in ('Fake', 'DATA')]
-
-#bWP = '0.2217' #Loose
-bWP = '0.5847'
-bWPtight = '0.8767'
+bkg = [skey for skey in samples if not skey.startswith('AZH')]
 
 eleWP_new = 'mvaFall17V2Iso_WP90_tthmva_70'
 muWP_new  = 'cut_Tight_HWWW_tthmva_80'
 
+############################################################################################
+# b tagging WPs: https://twiki.cern.ch/twiki/bin/view/CMS/BtagRecommendation106XUL16postVFP
+############################################################################################
+
+# DeepB = DeepCSV
+bWP_loose_deepB  = '0.1918'
+bWP_medium_deepB = '0.5847' 
+bWP_tight_deepB  = '0.8767'
+
+# DeepFlavB = DeepJet
+bWP_loose_deepFlavB  = '0.0489'
+bWP_medium_deepFlavB = '0.2489'
+bWP_tight_deepFlavB  = '0.6377'
+
+# Actual algo and WP definition. BE CONSISTENT!!
+bAlgo = 'DeepFlavB' # ['DeepB','DeepFlavB']
+bWP   = bWP_tight_deepFlavB
+bSF   = 'deepjet' # ['deepcsv','deepjet']
+
 #######################################  b-tag definitions #######################
 
 aliases['bVeto'] = {
-    'expr': '(Sum$( CleanJet_pt > 20.0 && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > '+bWP+' ) == 0)'
+        'expr': 'Sum$(CleanJet_pt > 20.0 && abs(CleanJet_eta) < 2.5 && Jet_btag{}[CleanJet_jetIdx] > {}) == 0'.format(bAlgo, bWP)
 }
 
-
 aliases['bVeto_1j'] = {
-    'expr': '(Sum$( CleanJet_pt > 30.0 && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > '+bWP+' ) == 1)'
+       'expr': '(Sum$(CleanJet_pt > 30.0 && abs(CleanJet_eta) < 2.5 && Jet_btag{}[CleanJet_jetIdx] > {}) == 1)'.format(bAlgo, bWP)
 }
 
 aliases['bReq'] = {
-    'expr': '(Sum$( CleanJet_pt > 30.0 && abs(CleanJet_eta) < 2.5 && Jet_btagDeepB[CleanJet_jetIdx] > '+bWP+' ) >= 2)'
+       'expr': '(Sum$(CleanJet_pt > 30.0 && abs(CleanJet_eta) < 2.5 && Jet_btag{}[CleanJet_jetIdx] > {}) >= 2)'. format(bAlgo, bWP)
 }
 
 ####################################### b-tagging SFs ################################
 
 aliases['bReqSF'] = {
-'expr': '( TMath::Exp(Sum$( TMath::Log( (CleanJet_pt>30 && abs(CleanJet_eta)<2.5)*Jet_btagSF_deepcsv_shape[CleanJet_jetIdx]+1*(CleanJet_pt<30 || abs(CleanJet_eta)>2.5) ) ) ) )',
-'samples': mc
+     'expr': '(TMath::Exp(Sum$(TMath::Log((CleanJet_pt>30 && abs(CleanJet_eta)<2.5)*Jet_btagSF_{}_shape[CleanJet_jetIdx]+1*(CleanJet_pt<30 || abs(CleanJet_eta)>2.5)))))'.format(bSF),
+     'samples': mc
 }
 
 aliases['bVetoSF'] = {
-    'expr': 'TMath::Exp(Sum$(TMath::Log((CleanJet_pt>20 && abs(CleanJet_eta)<2.5)*Jet_btagSF_deepcsv_shape[CleanJet_jetIdx]+1*(CleanJet_pt<20 || abs(CleanJet_eta)>2.5))))',
+    'expr': 'TMath::Exp(Sum$(TMath::Log((CleanJet_pt>20 && abs(CleanJet_eta)<2.5)*Jet_btagSF_{}_shape[CleanJet_jetIdx]+1*(CleanJet_pt<20 || abs(CleanJet_eta)>2.5))))'.format(bSF),
     'samples': mc
 }
 
@@ -42,26 +57,24 @@ aliases['btagSF'] = {
 }
 
 
-systs = ['lf','hf','lfstats1','lfstats2','hfstats1','hfstats2','cferr1','cferr2']
-
-for s in systs:
+for syst in ['lf','hf','lfstats1','lfstats2','hfstats1','hfstats2','cferr1','cferr2']:
     for targ in ['bVeto', 'bReq']:
-      alias = aliases['%sSF%sup' % (targ, s)] = copy.deepcopy(aliases['%sSF' % targ])
-      alias['expr'] = alias['expr'].replace('btagSF_deepcsv_shape', 'btagSF_deepcsv_shape_up_'+s)
+        alias = aliases['%sSF%sup' % (targ, syst)] = copy.deepcopy(aliases['%sSF' % targ])
+        alias['expr'] = alias['expr'].replace('btagSF_{}_shape'.format(bSF), 'btagSF_{}_shape_up_{}'.format(bSF,syst))
 
-      alias = aliases['%sSF%sdown' % (targ, s)] = copy.deepcopy(aliases['%sSF' % targ])
-      alias['expr'] = alias['expr'].replace('btagSF_deepcsv_shape', 'btagSF_deepcsv_shape_down_'+s)
-
-
-
-    aliases['btagSF'+s+'up']   = { 
-        'expr': aliases['btagSF']['expr'].replace('shape','shape_up_'+s),
+        alias = aliases['%sSF%sdown' % (targ, syst)] = copy.deepcopy(aliases['%sSF' % targ])
+        alias['expr'] = alias['expr'].replace('btagSF_{}_shape'.format(bSF), 'btagSF_{}_shape_down_{}'.format(bSF,syst))
+         
+    aliases['btagSF'+syst+'up']   = { 
+        'expr': aliases['btagSF']['expr'].replace('shape','shape_up_'+syst),
         'samples':mc  
     }
-    aliases['btagSF'+s+'down'] = { 
-        'expr': aliases['btagSF']['expr'].replace('shape','shape_down_'+s),
+
+    aliases['btagSF'+syst+'down'] = { 
+        'expr': aliases['btagSF']['expr'].replace('shape','shape_down_'+syst),
         'samples':mc  
     }
+
 
 aliases['Jet_PUIDSF'] = {
    'expr' : 'TMath::Exp(Sum$((Jet_jetId>=2)*TMath::Log(Jet_PUIDSF_loose)))',
@@ -78,20 +91,24 @@ aliases['Jet_PUIDSF_down'] = {
     'samples': mc
 }
 
-aliases['PromptGenLepMatch3l'] = {
-    'expr': 'Alt$(Lepton_promptgenmatched[0]*Lepton_promptgenmatched[1]*Lepton_promptgenmatched[2], 0)',
-    'samples': mc
-}
-
-
 aliases['PromptGenLepMatch2l'] = {
     'expr': 'Alt$(Lepton_promptgenmatched[0]*Lepton_promptgenmatched[1], 0)',
     'samples': mc
 }
 
+aliases['PromptGenLepMatch3l'] = {
+    'expr': 'Alt$(Lepton_promptgenmatched[0]*Lepton_promptgenmatched[1]*Lepton_promptgenmatched[2], 0)',
+    'samples': mc
+}
+
 aliases['PromptGenLepMatch4l'] = {
-        'expr': 'Alt$(Lepton_promptgenmatched[0]*Lepton_promptgenmatched[1]*Lepton_promptgenmatched[2]*Lepton_promptgenmatched[3], 0)',
-    	'samples': mc
+    'expr': 'Alt$(Lepton_promptgenmatched[0]*Lepton_promptgenmatched[1]*Lepton_promptgenmatched[2]*Lepton_promptgenmatched[3], 0)',
+    'samples': mc
+}
+
+aliases['Top_pTrw'] = {
+    'expr': '(topGenPt * antitopGenPt > 0.) * (TMath::Sqrt(TMath::Exp(0.0615 - 0.0005 * topGenPt) * TMath::Exp(0.0615 - 0.0005 * antitopGenPt))) + (topGenPt * antitopGenPt <= 0.)',
+    'samples': ['top']
 }
 
 #################################### AZH variables ####################################################
@@ -131,6 +148,7 @@ aliases['AZH_Tophadronic'] = {
     'class': 'AZH_patch',
     'args': ("AZH_Tophadronic")
 }
+
 aliases['AZH_mA_minus_mH_onebjet'] = {
     'class' : 'AZH_patch',
     'args' : ("AZH_mA_minus_mH_onebjet")
@@ -1753,24 +1771,18 @@ aliases['ellipse_mA_950_mH_850'] = {
     'samples' : bkg+['AZH_950_850']
 }
 
-aliases['Top_pTrw'] = {
-    'expr': '(topGenPt * antitopGenPt > 0.) * (TMath::Sqrt(TMath::Exp(0.0615 - 0.0005 * topGenPt) * TMath::Exp(0.0615 - 0.0005 * antitopGenPt))) + (topGenPt * antitopGenPt <= 0.)',
-    'samples': ['top']
-}
-
-
 #######################
 ### SFs for tthMVA  ###
 #######################
 
-aliases['SFweightEleUp'] = {
-  'expr': 'LepSF3l__ele_'+eleWP_new+'__Up',
-  'samples': mc
+aliases['SFweightEleUp'] = { 
+    'expr': 'LepSF3l__ele_'+eleWP_new+'__Up',
+    'samples': mc
 }
 
 aliases['SFweightEleDown'] = {
-   'expr': 'LepSF3l__ele_'+eleWP_new+'__Do',
-   'samples': mc
+    'expr': 'LepSF3l__ele_'+eleWP_new+'__Do',
+    'samples': mc
 }
 
 aliases['SFweightMuUp'] = {
@@ -1779,8 +1791,8 @@ aliases['SFweightMuUp'] = {
 }
 
 aliases['SFweightMuDown'] = {
-   'expr': 'LepSF3l__mu_'+muWP_new+'__Do',
-   'samples': mc
+    'expr': 'LepSF3l__mu_'+muWP_new+'__Do',
+    'samples': mc
 }
 
 
