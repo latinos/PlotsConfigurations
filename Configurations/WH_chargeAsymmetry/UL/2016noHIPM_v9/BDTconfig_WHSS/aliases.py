@@ -19,10 +19,10 @@ mc_emb = [skey for skey in samples if skey not in ('Fake', 'DATA')]
 
 # LepCut2l__ele_mvaFall17V2Iso_WP90__mu_cut_Tight_HWWW
 eleWP = 'mvaFall17V2Iso_WP90'
-muWP  = 'cut_Tight_HWWW'
+muWP  = 'cut_Tight80x'
 
 aliases['LepWPCut'] = {
-    'expr': 'LepCut2l__ele_mvaFall17V2Iso_WP90__mu_cut_Tight_HWWW*\
+    'expr': 'LepCut2l__ele_mvaFall17V2Iso_WP90__mu_cut_Tight80x*\
      ( ((abs(Lepton_pdgId[0])==13 && Muon_mvaTTH[Lepton_muonIdx[0]]>0.82) || (abs(Lepton_pdgId[0])==11 && Lepton_mvaTTH_UL[0]>0.90)) \
     && ((abs(Lepton_pdgId[1])==13 && Muon_mvaTTH[Lepton_muonIdx[1]]>0.82) || (abs(Lepton_pdgId[1])==11 && Lepton_mvaTTH_UL[1]>0.90)) )',
     'samples': mc_emb + ['DATA']
