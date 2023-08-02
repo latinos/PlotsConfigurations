@@ -84,7 +84,7 @@ AZH_patch::evaluate(unsigned)
 	    TLorentzVector j; 
 	    j.SetPtEtaPhiM(CleanJet_pt->At(z), CleanJet_eta->At(z), CleanJet_phi->At(z), 0);
 	    CleanJet_4vecId.push_back(j);
-	    if (Jet_btagDeepFlavB->At(CleanJet_jetIdx->At(z)) > 0.7476) {
+	    if (Jet_btagDeepFlavB->At(CleanJet_jetIdx->At(z)) > 0.3040) {
 		AZH_bJet_4vecId.push_back(j);
 	    }
 	}
@@ -194,7 +194,7 @@ unsigned nbJet = 0;
 for (unsigned ij = 0; ij < nJetLoose; ij++){
     if (CleanJet_pt->At(ij) > 30 && std::abs(CleanJet_eta->At(ij)) < 4.7) {
 	nJet++;
-	if (Jet_btagDeepFlavB->At(CleanJet_jetIdx->At(ij)) > 0.7476) nbJet++; }
+	if (Jet_btagDeepFlavB->At(CleanJet_jetIdx->At(ij)) > 0.3040) nbJet++; }
 }
 
 if (variable == "AZH_mA_minus_mH"){

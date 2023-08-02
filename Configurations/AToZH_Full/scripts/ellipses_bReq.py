@@ -95,7 +95,7 @@ for b in range(len(pairs)):
     CleanJet_pt2 = np.array([CleanJet_pt[i][2] if nCleanJet[i]>2 else 0 for i in range(len(CleanJet_pt))])
     CleanJet_pt3 = np.array([CleanJet_pt[i][3] if nCleanJet[i]>3 else 0 for i in range(len(CleanJet_pt))])
     Jet_btagDeepFlavB = Events["Jet_btagDeepFlavB"].array()
-    bReq = ((CleanJet_pt>30) & (CleanJeteta<2.5) & ((Jet_btagDeepFlavB[CleanJet_jetIdx])>0.7476)).sum() #counts no. of true elements in each array of the jagged array
+    bReq = ((CleanJet_pt>30) & (CleanJeteta<2.5) & ((Jet_btagDeepFlavB[CleanJet_jetIdx])>0.3040)).sum() #counts no. of true elements in each array of the jagged array
 
     SR_cut = ((zmass_cut<25) & (MET>40) & (CleanJet_pt0>30) & (CleanJet_pt1>30) & (CleanJet_pt2>30) & (CleanJet_pt3>30) & (bReq>=2))
 

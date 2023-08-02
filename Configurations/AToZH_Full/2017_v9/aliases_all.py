@@ -22,7 +22,7 @@ bWP_tight_deepFlavB  = '0.7476'
 
 # Actual algo and WP definition. BE CONSISTENT!!
 bAlgo = 'DeepFlavB' # ['DeepB','DeepFlavB']
-bWP   = bWP_tight_deepFlavB
+bWP   = bWP_medium_deepFlavB
 bSF   = 'deepjet' # ['deepcsv','deepjet']
 
 #######################################  b-tag definitions #######################
