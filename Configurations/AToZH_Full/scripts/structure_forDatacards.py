@@ -60,6 +60,6 @@ structure['DATA']  = {
                   'isData'   : 1    
                   }
 structure['AZH_900_400']   = {'isSignal':1, 'isData':0, 'removeFromCuts':['breq_SR', 'bveto_1j_SR']}
-structure['AZH_500_350']   = {'isSignal':1, 'isData':0, 'removeFromCuts':['breq_SR']}
-structure['AZH_1000_600']  = {'isSignal':1, 'isData':0, 'removeFromCuts':['breq_SR']}
-structure['AZH_800_600']   = {'isSignal':1, 'isData':0, 'removeFromCuts':['breq_SR']}
+structure['AZH_500_350']   = {'isSignal':1, 'isData':0, 'removeFromCuts':['breq_SR', 'bveto_1j_SR']}
+structure['AZH_1000_600']  = {'isSignal':1, 'isData':0, 'removeFromCuts':['breq_SR', 'bveto_1j_SR']}
+structure['AZH_800_600']   = {'isSignal':1, 'isData':0, 'removeFromCuts':['breq_SR', 'bveto_1j_SR']}
