@@ -13,7 +13,7 @@ cd ../${1}_v9/
 
 ## scrape mass points from samples_all.py
 #for only few mass points, use samples.py
-samplesFile='samples.py'
+samplesFile='samples_all.py'
 
 ### scrape names of files from input configuration file
 configFile='configuration.py'
@@ -21,7 +21,7 @@ var=$(cat $configFile | awk '/variablesFile =/ {print $3}' | tr -d \')
 struct=$(cat $configFile | awk '/structureFile =/ {print $3}' | tr -d \')
 
 variablesFile='../scripts/variables_fit_forDatacards.py'
-structureFile='../scripts/structure_forDatacards.py'
+structureFile='../scripts/structure_all_forDatacards.py'
 
 #create parent directory to hold per-mass-point datacards
 tag=$(cat $configFile | awk '/tag =/ {print $3}' | tr -d \')
