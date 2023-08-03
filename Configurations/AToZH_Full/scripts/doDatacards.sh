@@ -16,7 +16,7 @@ cd ../${1}_v9/
 samplesFile='samples_all.py'
 
 ### scrape names of files from input configuration file
-configFile='configuration.py'
+configFile='configuration_forDatacards.py'
 var=$(cat $configFile | awk '/variablesFile =/ {print $3}' | tr -d \')
 struct=$(cat $configFile | awk '/structureFile =/ {print $3}' | tr -d \')
 
