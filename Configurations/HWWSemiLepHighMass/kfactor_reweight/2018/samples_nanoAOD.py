@@ -136,7 +136,7 @@ files+= getFilesFromDAS('/WJetsToLNu_TuneCP5_13TeV-madgraphMLM-pythia8/RunIIAutu
 
 samples['Wjets_HT'] = {
     'name'   : files,
-    'weight' : 'kfact[0]', 
+    'weight' : '1.', 
     'FilesPerJob' : 1,
 }
 

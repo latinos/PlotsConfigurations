@@ -21,6 +21,12 @@ wjets = [skey for skey in samples if skey.startswith('Wjets')]
 eleWP    = 'mvaFall17V1Iso_WP90'
 muWP     = 'cut_Tight_HWWW'
 
+aliases['nCleanGenJet'] = {
+    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/kfactor_reweight/ngenjet.cc+'  % os.getenv('CMSSW_BASE')],
+    'class': 'CountGenJet',
+    'samples': wjets,
+}
+
 
 #aliases['mjjGen_OTF'] = {
 #    'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/HighMass/HMvars_mjjgen.cc+' % os.getenv('CMSSW_BASE')],
@@ -146,6 +152,12 @@ aliases['tau21WP'] = {
 #    'samples': mc
 #}
 #
+aliases['boos_kfac'] = {
+    'expr': 'Sum$(Alt$(GenJetAK8_pt[0], 0) > 180)' 
+}
+aliases['no_boo'] = {
+    'expr': '!boos_kfac[0]' 
+}
 #
 #
 ##aliases['gstarLow'] = {
@@ -412,24 +424,24 @@ aliases['genW_pt'] = {
 
 
 
-aliases['kfact'] = {
-    'linesToAdd': [
-        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_RELEASE_BASE'),
-        '.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/kFactorUnc2.cc+' % os.getenv('CMSSW_BASE')
-    ],
-    'class': 'kFactorUnc2',
-    'args': ('PlotsConfigurations/Configurations/HWWSemiLepHighMass/wjets_kfactor_DH/HT_to_NLO_QCD_k_factors_all.root', 'k_factor_2017'),
-    'samples': wjets,
-    #'samples': "Wjets"
-}
-
-aliases['kfact_try'] = { 
-    'linesToAdd': [
-        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_RELEASE_BASE'),
-        '.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/kFactorUnc2histo.cc' % os.getenv('CMSSW_BASE')
-    ],  
-    'class': 'kFactorUnc2histo',
-    'args': ('PlotsConfigurations/Configurations/HWWSemiLepHighMass/NLO_validation/HT_to_NLO_QCD_k_factors_March.root', 'k_factor_2017'),
-    'samples': wjets, 
-}
+#aliases['kfact'] = {
+#    'linesToAdd': [
+#        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_RELEASE_BASE'),
+#        '.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/kFactorUnc2.cc+' % os.getenv('CMSSW_BASE')
+#    ],
+#    'class': 'kFactorUnc2',
+#    'args': ('PlotsConfigurations/Configurations/HWWSemiLepHighMass/wjets_kfactor_DH/HT_to_NLO_QCD_k_factors_all.root', 'k_factor_2017'),
+#    'samples': wjets,
+#    #'samples': "Wjets"
+#}
+#
+#aliases['kfact_try'] = { 
+#    'linesToAdd': [
+#        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_RELEASE_BASE'),
+#        '.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/kFactorUnc2histo.cc' % os.getenv('CMSSW_BASE')
+#    ],  
+#    'class': 'kFactorUnc2histo',
+#    'args': ('PlotsConfigurations/Configurations/HWWSemiLepHighMass/NLO_validation/HT_to_NLO_QCD_k_factors_March.root', 'k_factor_2017'),
+#    'samples': wjets, 
+#}
 

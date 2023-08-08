@@ -52,26 +52,47 @@ variables['genW_pt2_inc']  = {
     'xaxis' : 'gen W p_T',
     'fold'  : 3                         
 }
-variables['genW_pt2_true']  = {
-    'name': 'genW_pt',     
+#variables['genW_pt2_true']  = {
+#    'name': 'genW_pt',     
+#    #'range' : (50,0,250),   
+#    'range' : (genW_pt_bin,),   
+#    'xaxis' : 'gen W p_T',
+#    'fold'  : 3                         
+#}
+#genW_pt_bin_2 = [0, 20] + [20,40] + range(40, 200, 10) + range(200, 400, 20) + range(400, 700, 50)  +range(700,900,100) + range(900, 1500, 200)
+
+genW_pt_bin_6 =  range(10,50, 20) + range(50, 200, 10) + range(200, 400, 20) + range(400, 700, 50)  +range(700,900,100) + range(900, 1500, 200)
+#genW_pt_bin = [0, 5] + range(5, 200, 5) + range(200, 500, 20) + range(500, 800, 40) + range(800, 1500, 100)
+variables['genW_pt2_inc_bin_n']  = {
+    'name': 'GenW_pt',     
     #'range' : (50,0,250),   
-    'range' : (genW_pt_bin,),   
+    'range' : (genW_pt_bin_6,),   
     'xaxis' : 'gen W p_T',
     'fold'  : 3                         
 }
-#genW_pt_bin_2 = [0, 20] + [20,40] + range(40, 200, 10) + range(200, 400, 20) + range(400, 700, 50)  +range(700,900,100) + range(900, 1500, 200)
+genW_pt_bin_7 =  range(10,50, 20) + range(50, 200, 10) + range(200, 400, 20) + range(400, 700, 50)  +range(700,900,100) + range(900, 1200, 300)
+#genW_pt_bin = [0, 5] + range(5, 200, 5) + range(200, 500, 20) + range(500, 800, 40) + range(800, 1500, 100)
+variables['genW_pt2_inc_bin_nu']  = {
+    'name': 'GenW_pt',     
+    #'range' : (50,0,250),   
+    'range' : (genW_pt_bin_7,),   
+    'xaxis' : 'gen W p_T',
+    'fold'  : 3                         
+}
+genW_pt_bin_8 =  range(20,60, 20) + range(60, 200, 10) + range(200, 400, 20) + range(400, 700, 50)  +range(700,900,100) + range(900, 1200, 300)
+#genW_pt_bin = [0, 5] + range(5, 200, 5) + range(200, 500, 20) + range(500, 800, 40) + range(800, 1500, 100)
+variables['genW_pt2_inc_bin_nuo']  = {
+    'name': 'GenW_pt',     
+    #'range' : (50,0,250),   
+    'range' : (genW_pt_bin_8,),   
+    'xaxis' : 'gen W p_T',
+    'fold'  : 3                         
+}
 
-genW_pt_bin_3 = [0, 20] + range(20, 400, 20) + range(400, 700, 50)  +range(700,900,100) + range(900, 1500, 200)
+genW_pt_bin_3 =  range(0, 60, 30) + range(60, 200, 10) + range(200, 400, 20) + range(400, 700, 50)  +range(700,900,100) + range(900, 1500, 200)
 #genW_pt_bin = [0, 5] + range(5, 200, 5) + range(200, 500, 20) + range(500, 800, 40) + range(800, 1500, 100)
 variables['genW_pt2_inc_bin']  = {
     'name': 'GenW_pt',     
-    #'range' : (50,0,250),   
-    'range' : (genW_pt_bin_3,),   
-    'xaxis' : 'gen W p_T',
-    'fold'  : 3                         
-}
-variables['genW_pt2_true_bin']  = {
-    'name': 'genW_pt',     
     #'range' : (50,0,250),   
     'range' : (genW_pt_bin_3,),   
     'xaxis' : 'gen W p_T',
@@ -85,19 +106,35 @@ variables['genW_pt2_inc_boo']  = {
     'xaxis' : 'gen W p_T',
     'fold'  : 3                         
 }
-variables['genW_pt2_true_boo']  = {
-    'name': 'genW_pt',     
+genW_pt_bin_9 =  range(20,60, 20) + range(60, 200, 10) + range(200, 400, 20) + range(400, 900, 100) + range(900, 1200, 300)
+#genW_pt_bin = [0, 5] + range(5, 200, 5) + range(200, 500, 20) + range(500, 800, 40) + range(800, 1500, 100)
+variables['genW_pt2_inc_bin_wig']  = {
+    'name': 'GenW_pt',     
     #'range' : (50,0,250),   
-    'range' : (genW_pt_bin_2,),   
+    'range' : (genW_pt_bin_9,),   
     'xaxis' : 'gen W p_T',
     'fold'  : 3                         
 }
-genW_pt_bin_4 = [0, 10] + range(10, 200, 10) + range(200, 400, 20) + range(400, 600, 50)  
-#genW_pt_bin = [0, 5] + range(5, 200, 5) + range(200, 500, 20) + range(500, 800, 40) + range(800, 1500, 100)
+#variables['genW_pt2_true_boo']  = {
+#    'name': 'genW_pt',     
+#    #'range' : (50,0,250),   
+#    'range' : (genW_pt_bin_2,),   
+#    'xaxis' : 'gen W p_T',
+#    'fold'  : 3                         
+#}
+genW_pt_bin_4 = [0, 20] + range(20, 190, 10) + range(190, 250, 20) + range(250, 400, 50) + [400,600] 
 variables['genW_pt2_true_res']  = {
-    'name': 'genW_pt',     
+    'name': 'GenW_pt',     
     #'range' : (50,0,250),   
     'range' : (genW_pt_bin_4,),   
+    'xaxis' : 'gen W p_T',
+    'fold'  : 3                         
+}
+genW_pt_bin_5 = [0, 20] + range(20, 190, 10) + range(190, 250, 20) + range(250, 400, 50)
+variables['genW_pt2_true_res_n']  = {
+    'name': 'GenW_pt',     
+    #'range' : (50,0,250),   
+    'range' : (genW_pt_bin_5,),   
     'xaxis' : 'gen W p_T',
     'fold'  : 3                         
 }

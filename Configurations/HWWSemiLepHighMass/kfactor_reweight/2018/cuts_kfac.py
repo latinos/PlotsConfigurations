@@ -16,7 +16,8 @@ def addcut(name, exprs):
     cuts[name] = ' && '.join(exprs)
 #
 ##tk_jets   = ['(abs(CleanJet_eta[HM_idx_j1]) < 2.4 && abs(CleanJet_eta[HM_idx_j2]) < 2.4)']
-lep_kin   = ['1.']#['((LeptonGen_pt[0]>20. && abs(LeptonGen_pdgId[0])==13) || (LeptonGen_pt[0]>20. && abs(LeptonGen_pdgId[0])==11))']
+#lep_kin   = ['1.']#['((LeptonGen_pt[0]>20. && abs(LeptonGen_pdgId[0])==13) || (LeptonGen_pt[0]>20. && abs(LeptonGen_pdgId[0])==11))']
+lep_kin   = ['((GenDressedLepton_pt[0]>20. && abs(GenDressedLepton_pdgId[0])==13) || (GenDressedLepton_pt[0]>20. && abs(GenDressedLepton_pdgId[0])==11)) &&  Sum$(GenJetAK8_pt>180)>0']
 ##clean_j   = ['MHlnjj_m_jj > -1', 'Sum$(CleanJet_pt>30.)>=2']
 #
 ##SC       = super_cut

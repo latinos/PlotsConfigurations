@@ -356,6 +356,11 @@ aliases['genW_pt'] = {
     'class': 'getGenWpt',
     'samples': mc
 }
+aliases['nCleanGenJet'] = {
+    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/kfactor_reweight/ngenjet.cc+'  % os.getenv('CMSSW_BASE')],
+    'class': 'CountGenJet',
+    'samples': wjets,
+}
 
 #aliases['Wrecoil'] = {
 #    'linesToAdd': [
@@ -366,18 +371,18 @@ aliases['genW_pt'] = {
 #    'samples': mc
 #}
 
-aliases['kfact'] = {
-    'linesToAdd': [
-        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_RELEASE_BASE'),
-	'gSystem->Load("%s/src/JHUGenMELA/MELA/data/%s/libmcfm_707.so","", kTRUE);'%(os.getenv('CMSSW_BASE'), os.getenv('SCRAM_ARCH')),
-        'gSystem->Load("libJHUGenMELAMELA.so","", kTRUE);',
-        '.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/kFactorUnc2.cc+' % os.getenv('CMSSW_BASE')
-    ],
-    'class': 'kFactorUnc2',
-    'args': ('PlotsConfigurations/Configurations/HWWSemiLepHighMass/kfactor_reweight/2018/HT_to_NLO_QCD_k_factors_n_stud_2.root', 'k_factor_2018'),
-    'samples': wjets, 
-    #'samples': "Wjets"
-}
+#aliases['kfact'] = {
+#    'linesToAdd': [
+#        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_RELEASE_BASE'),
+#	'gSystem->Load("%s/src/JHUGenMELA/MELA/data/%s/libmcfm_707.so","", kTRUE);'%(os.getenv('CMSSW_BASE'), os.getenv('SCRAM_ARCH')),
+#        'gSystem->Load("libJHUGenMELAMELA.so","", kTRUE);',
+#        '.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/kFactorUnc2.cc+' % os.getenv('CMSSW_BASE')
+#    ],
+#    'class': 'kFactorUnc2',
+#    'args': ('PlotsConfigurations/Configurations/HWWSemiLepHighMass/kfactor_reweight/2018/HT_to_NLO_QCD_k_factors_n_stud_2.root', 'k_factor_2018'),
+#    'samples': wjets, 
+#    #'samples': "Wjets"
+#}
 #aliases['kfact'] = {
 #    'linesToAdd': [
 #        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_RELEASE_BASE'),

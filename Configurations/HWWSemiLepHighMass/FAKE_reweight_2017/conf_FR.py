@@ -4,40 +4,38 @@
 
 treeName = 'Events'
 
-tag = 'Wjets_kfac_2017v7_nano_Test'
+tag = 'FR_2017v7'
 
 # used by mkShape to define output directory for root files
-outputDir = 'Wjets_kfac_nano_root_Mar_2'
+outputDir = 'FR_root_step'
 
 # file with TTree aliases
-aliasesFile = 'aliases_kfac.py'
-#aliasesFile = 'aliases.py'
+aliasesFile = 'aliases_FR.py'
 
 # file with list of variables
-variablesFile = 'variables_kfac_new.py'
+variablesFile = 'variables_FR.py'
 
 # file with list of cuts
-cutsFile = 'cuts_kfac_pg.py'
+cutsFile = 'cuts_FR.py'
 
 # file with list of samples
-samplesFile = 'samples_new.py'
+samplesFile = 'samples_FR.py'
 
 # file with list of samples
-plotFile = 'plot_LO_vs_NLO.py'
+plotFile = 'plot_FR_QCD.py'
 
 # luminosity to normalize to (in 1/fb)
 lumi = 41.5
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'Wjets_kfac_plots'
+outputDirPlots = 'FR_plots_5'
 
 # used by mkDatacards to define output directory for datacards
-outputDirDatacard = 'Wjets_kfac_datacards'
+outputDirDatacard = 'FR_datacards'
 
 # structure file for datacard
 structureFile = 'structure.py'
 
 # nuisances file for mkDatacards and for mkShape
-#nuisancesFile = 'nuisances.py'
-#nuisancesFile = 'nuisances_full.py'
+nuisancesFile = 'nuisances_FR.py'

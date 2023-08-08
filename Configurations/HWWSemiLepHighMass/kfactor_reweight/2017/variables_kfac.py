@@ -129,7 +129,22 @@ variables['genW_pt2_uni']  = {
 #}
 
 
+genW_pt_bin_2 = range(0, 40, 20) + range(40, 200, 10) + range(200, 400, 20) + range(400, 700, 50)  +range(700,900,100) + range(900, 1500, 200)
 
+variables['genW_pt2_inc_boo']  = {
+    'name': 'GenW_pt',     
+    #'range' : (50,0,250),   
+    'range' : (genW_pt_bin_2,),   
+    'xaxis' : 'gen W p_T',
+    'fold'  : 3                         
+}
+variables['genW_pt2_true_boo']  = {
+    'name': 'genW_pt',     
+    #'range' : (50,0,250),   
+    'range' : (genW_pt_bin_2,),   
+    'xaxis' : 'gen W p_T',
+    'fold'  : 3                         
+}
 
 
 #variables['m_jj']  = {
