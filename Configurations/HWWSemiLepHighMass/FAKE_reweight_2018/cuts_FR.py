@@ -22,14 +22,15 @@ is_el    = ['abs(Lepton_pdgId[0])==11']
 is_mu    = ['abs(Lepton_pdgId[0])==13']
 tight    = ['WPTight[0] > 0.5']
 
-for Jet_Et in [10, 15, 20, 25, 30, 35, 40, 45]:
+#for Jet_Et in [10, 15, 20, 25, 30, 35, 40, 45]:
+for Jet_Et in [ 35]:
     pass_jet = ['PassJet_Et'+str(Jet_Et)+' > 0.5']
     
     # Electron
-    addcut('ElCh_JetEt'+str(Jet_Et)+'_loose' , combinecut([super_cut, pass_jet, is_el, veto_b]))
-    addcut('ElCh_JetEt'+str(Jet_Et)+'_tight' , combinecut([super_cut, pass_jet, is_el, tight, veto_b]))
+    addcut('ElCh_JetEt'+str(Jet_Et)+'_loose' , combinecut([super_cut, pass_jet, is_el]))
+    addcut('ElCh_JetEt'+str(Jet_Et)+'_tight' , combinecut([super_cut, pass_jet, is_el,tight]))
     
     # Muon
-    addcut('MuCh_JetEt'+str(Jet_Et)+'_loose' , combinecut([super_cut, pass_jet, is_mu, veto_b]))
-    addcut('MuCh_JetEt'+str(Jet_Et)+'_tight' , combinecut([super_cut, pass_jet, is_mu, tight, veto_b]))
+    addcut('MuCh_JetEt'+str(Jet_Et)+'_loose' , combinecut([super_cut, pass_jet, is_mu]))
+    addcut('MuCh_JetEt'+str(Jet_Et)+'_tight' , combinecut([super_cut, pass_jet, is_mu, tight]))
 

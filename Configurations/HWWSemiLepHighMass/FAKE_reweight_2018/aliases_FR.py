@@ -204,7 +204,7 @@ aliases['kfact'] = {
 	'gSystem->Load("%s/src/JHUGenMELA/MELA/data/%s/libmcfm_707.so","", kTRUE);'%(os.getenv('CMSSW_BASE'), os.getenv('SCRAM_ARCH')),
         'gSystem->Load("libJHUGenMELAMELA.so","", kTRUE);',
         'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_RELEASE_BASE'),
-        '.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/kFactorUnc2.cc+' % os.getenv('CMSSW_BASE')
+        '.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/kFactorUnc2_copy.cc+' % os.getenv('CMSSW_BASE')
     ],  
     'class': 'kFactorUnc2',
     'args': ('PlotsConfigurations/Configurations/HWWSemiLepHighMass/wjets_kfactor_DH/HT_to_NLO_QCD_k_factors_all.root', 'k_factor_2017'),
@@ -326,7 +326,7 @@ for shift in ['jes','lf','hf','lfstats1','lfstats2','hfstats1','hfstats2','cferr
     }
 aliases['SFweight'] = {
     #'expr': ' * '.join(['SFweight1l[0]', 'WPTightSF[0]', 'PrefireWeight']),
-    'expr': ' * '.join(['SFweight1l[0]','btagSF[0]']),
+    'expr': ' * '.join(['SFweight1l[0]']),
     'samples': mc
 }
 
