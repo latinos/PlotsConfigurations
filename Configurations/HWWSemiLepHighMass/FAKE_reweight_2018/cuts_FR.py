@@ -17,13 +17,13 @@ def combinecut(cut_list):
 def addcut(name, exprs):
     cuts[name] = ' && '.join(exprs)
 
-veto_b   = ['bVeto']
+#veto_b   = ['bVeto']
 is_el    = ['abs(Lepton_pdgId[0])==11']
 is_mu    = ['abs(Lepton_pdgId[0])==13']
 tight    = ['WPTight[0] > 0.5']
 
-#for Jet_Et in [10, 15, 20, 25, 30, 35, 40, 45]:
-for Jet_Et in [ 35]:
+for Jet_Et in [10, 15, 20, 25, 30, 35, 40, 45]:
+#for Jet_Et in [ 35]:
     pass_jet = ['PassJet_Et'+str(Jet_Et)+' > 0.5']
     
     # Electron
