@@ -130,11 +130,11 @@ for cut in clean_cuts:
             histograms_l[h_name_total_ewk] = copy.deepcopy(histograms_l[h_name]) 
 
         # Substract ewk
-#        for sample in samples:
-#            if 'DATA' in sample: continue
-#            h_name = '_'.join(['h', cut, var, sample])
-#            histograms_t[h_name_total_ewk].Add(histograms_t[h_name], -1.)
-#            histograms_l[h_name_total_ewk].Add(histograms_l[h_name], -1.)
+        for sample in samples:
+            if 'DATA' in sample: continue
+            h_name = '_'.join(['h', cut, var, sample])
+            histograms_t[h_name_total_ewk].Add(histograms_t[h_name], -1.)
+            histograms_l[h_name_total_ewk].Add(histograms_l[h_name], -1.)
  
         # Calculate fw
         histograms_fr[h_name_total] = copy.deepcopy(histograms_t[h_name_total])
@@ -214,134 +214,35 @@ for cut in clean_cuts:
                     )
 
 
-histograms_fr_bkg = {}
-for cut in clean_cuts:
-    for var in variables:
-        h_name_total     = '_'.join(['h', cut, var, 'total'])
-        h_name_total_ewk = '_'.join(['h', cut, var, 'total_ewk'])
-
-        # Prepare totals
-        for sample in samples:
-            if not 'DATA' in sample: continue
-            h_name = '_'.join(['h', cut, var, sample])
-            histograms_t[h_name_total]     = copy.deepcopy(histograms_t[h_name]) 
-            histograms_t[h_name_total_ewk] = copy.deepcopy(histograms_t[h_name]) 
-            histograms_l[h_name_total]     = copy.deepcopy(histograms_l[h_name]) 
-            histograms_l[h_name_total_ewk] = copy.deepcopy(histograms_l[h_name]) 
-
-        # Substract ewk
-        for sample in samples:
-            if 'DATA' in sample: continue
-            h_name = '_'.join(['h', cut, var, sample])
-            histograms_t[h_name_total_ewk].Add(histograms_t[h_name], -1.)
-            histograms_l[h_name_total_ewk].Add(histograms_l[h_name], -1.)
- 
-        # Calculate fw
-        histograms_fr[h_name_total] = copy.deepcopy(histograms_t[h_name_total])
-        histograms_fr[h_name_total].Divide(histograms_l[h_name_total])
-
-        if 'MuCh_JetEt10_l1_pt_ptmu' in h_name_total_ewk: 
-            bin_l = histograms_l[h_name_total_ewk].GetNbinsX()
-            bin_t = histograms_t[h_name_total_ewk].GetNbinsX()
-            h_name = '_'.join(['h', cut, var, 'Wjets'])
-            print(h_name_total_ewk, 
-                histograms_t[h_name_total_ewk].GetBinContent(bin_t), 
-                histograms_l[h_name_total_ewk].GetBinContent(bin_l),
-                histograms_t[h_name_total].GetBinContent(bin_t), 
-                histograms_l[h_name_total].GetBinContent(bin_l),
-                histograms_t[h_name].GetBinContent(bin_l)/histograms_t[h_name_total].GetBinContent(bin_t),
-                histograms_l[h_name].GetBinContent(bin_l)/histograms_l[h_name_total].GetBinContent(bin_t),
-                )
-        histograms_fr_bkg[h_name_total_ewk] = copy.deepcopy(histograms_t[h_name_total_ewk])
-        histograms_fr_bkg[h_name_total_ewk].Divide(histograms_l[h_name_total_ewk])
-
-        if ':' in variables[var]['name']:
-            if len(variables[var]['range']) == 6:
-                time.sleep(0.01)
-                histograms_fr_bkg[h_name_total_ewk+'_2D'] = re_roll_2Dh(
-                    histograms_fr_bkg[h_name_total_ewk], 
-                    variables[var]['range'][0], variables[var]['range'][1], variables[var]['range'][2], 
-                    variables[var]['range'][3], variables[var]['range'][4], variables[var]['range'][5], 
-                    name = 'FW_ewk_'+cut+'_'+var,
-                    title = 'FW_ewk_'+cut+'_'+var,
-                    invert = True,
-                    )
-                time.sleep(0.01)
-                histograms_fr_bkg[h_name_total+'_2D'] = re_roll_2Dh(
-                    histograms_fr_bkg[h_name_total], 
-                    variables[var]['range'][0], variables[var]['range'][1], variables[var]['range'][2], 
-                    variables[var]['range'][3], variables[var]['range'][4], variables[var]['range'][5], 
-                    name = 'FW_no_ewk_'+cut+'_'+var,
-                    title = 'FW_no_ewk_'+cut+'_'+var,
-                    invert = True,
-                    )
-            elif len(variables[var]['range']) == 2:
-                time.sleep(0.01)
-                histograms_fr_bkg[h_name_total_ewk+'_2D'] = re_roll_2Dh_array(
-                    histograms_fr_bkg[h_name_total_ewk], 
-                    variables[var]['range'][0], 
-                    variables[var]['range'][1], 
-                    name = 'FW_ewk_'+cut+'_'+var,
-                    title = 'FW_ewk_'+cut+'_'+var,
-                    invert = True,
-                    )
-                time.sleep(0.01)
-                histograms_fr_bkg[h_name_total+'_2D'] = re_roll_2Dh_array(
-                    histograms_fr_bkg[h_name_total], 
-                    variables[var]['range'][0], 
-                    variables[var]['range'][1], 
-                    name = 'FW_no_ewk_'+cut+'_'+var,
-                    title = 'FW_no_ewk_'+cut+'_'+var,
-                    invert = True,
-                    )
-                time.sleep(0.01)
-                histograms_fr_bkg[h_name_total_ewk+'_2D_invert'] = re_roll_2Dh_array(
-                    histograms_fr_bkg[h_name_total_ewk], 
-                    variables[var]['range'][0], 
-                    variables[var]['range'][1], 
-                    name = 'FW_ewk_'+cut+'_'+var+'_inv',
-                    title = 'FW_ewk_'+cut+'_'+var,
-                    invert = False,
-                    )
-                time.sleep(0.01)
-                histograms_fr_bkg[h_name_total+'_2D_invert'] = re_roll_2Dh_array(
-                    histograms_fr_bkg[h_name_total], 
-                    variables[var]['range'][0], 
-                    variables[var]['range'][1], 
-                    name = 'FW_no_ewk_'+cut+'_'+var+'_inv',
-                    title = 'FW_no_ewk_'+cut+'_'+var,
-                    invert = False,
-                    )
-
 print('Create plots')
 
 #fr_dir = 'FReleTrig'
 #fr_dir = 'FR_HT'
-fr_dir = 'FR_NLOWjet_text'
+fr_dir = 'FR_NLOWjet_STEP'
 canvas = ROOT.TCanvas('canvas', 'FW canvas', 610, 600)
-#for fw in histograms_fr:
-#    canvas.SetLogy(0)
-#    name = 'plot'+fw[1:].replace('_total', '_fw')
-#    if fw.endswith('_2D'):
-#        tmp_file = ROOT.TFile(fr_dir+'/'+name+'.root', 'RECREATE')
-#        histograms_fr[fw].SetName('FR_pT_eta_EWKcorr') #For reading script
-#        histograms_fr[fw].Write()
-#        tmp_file.Close()
-#        histograms_fr[fw].Draw('colz text')
-#    elif fw.endswith('_2D_invert'):
-#        title = ''
-#        if 'MuCh' in fw: title += 'Muon'
-#        else: title += 'Electron'
-#        title += ' fake rate 2018' 
-#        histograms_fr[fw].SetTitle(title)
-#        histograms_fr[fw].GetYaxis().SetTitle('p_{T}')
-#        histograms_fr[fw].GetXaxis().SetTitle('#eta')
-#        histograms_fr[fw].GetZaxis().SetRangeUser(.0, 1.00)
-#        canvas.SetLogy()
-#        histograms_fr[fw].Draw('colz text')
-#    else: histograms_fr[fw].Draw()
-#    canvas.Update()
-#    canvas.SaveAs(fr_dir+'/'+name+'.png')
+for fw in histograms_fr:
+    canvas.SetLogy(0)
+    name = 'plot'+fw[1:].replace('_total', '_fw')
+    if fw.endswith('_2D'):
+        tmp_file = ROOT.TFile(fr_dir+'/'+name+'.root', 'RECREATE')
+        histograms_fr[fw].SetName('FR_pT_eta_EWKcorr') #For reading script
+        histograms_fr[fw].Write()
+        tmp_file.Close()
+        histograms_fr[fw].Draw('colz text')
+    elif fw.endswith('_2D_invert'):
+        title = ''
+        if 'MuCh' in fw: title += 'Muon'
+        else: title += 'Electron'
+        title += ' fake rate 2018' 
+        histograms_fr[fw].SetTitle(title)
+        histograms_fr[fw].GetYaxis().SetTitle('p_{T}')
+        histograms_fr[fw].GetXaxis().SetTitle('#eta')
+        histograms_fr[fw].GetZaxis().SetRangeUser(.0, 1.00)
+        canvas.SetLogy()
+        histograms_fr[fw].Draw('colz text')
+    else: histograms_fr[fw].Draw()
+    canvas.Update()
+    canvas.SaveAs(fr_dir+'/'+name+'.png')
 
 # draw all in one
 for var in variables:
@@ -358,7 +259,7 @@ for var in variables:
     
     for key in jet_et_dict:
         jet_et_dict[key].sort()
-        legend = ROOT.TLegend(0.15,0.15,0.75,0.45)
+        legend = ROOT.TLegend(0.15,0.15,0.55,0.45)
         legend.SetLineColor(0)
         color = 622 #kRed
         for idx,cut in enumerate(jet_et_dict[key]):
@@ -367,14 +268,10 @@ for var in variables:
             for part in cut_splt:
                 if 'JetEt' in part: jet_et = part
             h_name = '_'.join(['h', cut, var, 'total_ewk'])
-            histograms_fr[h_name].SetLineColor(color)
-            histograms_fr_bkg[h_name].SetLineColor(600)
-            histograms_fr_bkg[h_name].GetYaxis().SetRangeUser(0., 1.0)
+            histograms_fr[h_name].SetLineColor(color + idx)
             histograms_fr[h_name].GetYaxis().SetRangeUser(0., 1.0)
-            jet_et_str_2 = 'Recoiling jet E_{T} > '+ jet_et.replace('JetEt', '') + ' GeV before subtracting ewk contribution'
-            jet_et_str = 'Recoiling jet E_{T} > '+ jet_et.replace('JetEt', '') + ' GeV after subtracting ewk contribution'
-            legend.AddEntry(histograms_fr[h_name], jet_et_str_2, 'l')
-            legend.AddEntry(histograms_fr_bkg[h_name], jet_et_str, 'l')
+            jet_et_str = 'Recoiling jet E_{T} > '+ jet_et.replace('JetEt', '') + ' GeV'
+            legend.AddEntry(histograms_fr[h_name], jet_et_str, 'l')
             title = ''
             if 'MuCh' in key: title += 'Muon'
             else: title += 'Electron'
@@ -384,14 +281,10 @@ for var in variables:
             elif 'l1_etaVpt' in var: histograms_fr[h_name].GetXaxis().SetTitle('bin')
             else: histograms_fr[h_name].GetXaxis().SetTitle('#eta')
             histograms_fr[h_name].GetYaxis().SetTitle('fake rate')
-            if idx == 0:
-		histograms_fr[h_name].Draw()
-		histograms_fr_bkg[h_name].Draw('same')
-            else:
-		histograms_fr[h_name].Draw('same')
-		histograms_fr_bkg[h_name].Draw('same')
+            if idx == 0: histograms_fr[h_name].Draw()
+            else: histograms_fr[h_name].Draw('same')
         legend.Draw('same')
         canvas.Update()
         name = '_'.join(['plot', 'allJetEt', key, var])
-        canvas.SaveAs(fr_dir+'/'+name+'_2bkg.png')
+        canvas.SaveAs(fr_dir+'/'+name+'.png')
 
