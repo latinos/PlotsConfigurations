@@ -20,7 +20,7 @@ variablesFile = 'variables_kfac_new.py'
 cutsFile = 'cuts_kfac_pg.py'
 
 # file with list of samples
-samplesFile = 'samples_new.py'
+samplesFile = 'samples_new_unrolled.py'
 
 # file with list of samples
 plotFile = 'plot_LO_vs_NLOmerge.py'
