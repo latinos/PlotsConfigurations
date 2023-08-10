@@ -3,11 +3,11 @@ import ROOT
 #var = 'genW_pt'
 #var = 'genW_pt_inc'
 #var = 'genW_pt2_true'
-var = 'genW_pt2_inc_bin'
+var = 'genW_pt2_inc_bin' # for the one in resolved phase space use the variable = 'genW_pt2_true_res_n'
 #var = 'genW_pt2_true_res_n'
 #var = 'genW_pt2_inc'
 #cut = 'RESOLVED_NOTBOOSTED'
-cut = 'BOOSTED'
+cut = 'BOOSTED'  # for the one in resolved phase space use the cut = 'RESOLVED_NOTBOOSTED'
 #cut_nuis = 'JET'
 
 LO_samp = 'Wjets_HT'
@@ -186,7 +186,7 @@ legend.Draw()
 raw_input('exit')
 
 # Store
-file_name = 'HT_to_NLO_QCD_k_factors_noBoo_2017pl2018.root'
+file_name = 'HT_to_NLO_QCD_k_factors_Boo_2017pl2018.root'# for the one in resolved phase space save it as  'HT_to_NLO_QCD_k_factors_noBoo_2017pl2018.root'
 r_file = ROOT.TFile.Open(file_name, 'recreate')
 for year in run2:
     year_dict[year]['tg'] = ROOT.TGraph(year_dict[year]['ratio_s'])
