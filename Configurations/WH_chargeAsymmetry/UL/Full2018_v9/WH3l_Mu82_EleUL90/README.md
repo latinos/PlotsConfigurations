@@ -116,6 +116,8 @@ Since S appears in the denominator of the asymmetry expression, it cannot be 0, 
 
     python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_3l_Full2018_v9_opt           --output_name=Combination/FitResults_opt.txt           --freeze_nuisances=r_higgs
     python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_3l_Full2018_v9_alsoLowPt_opt --output_name=Combination/FitResults_alsoLowPt_opt.txt --freeze_nuisances=r_higgs
+    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_3l_Full2018_v9_new_opt           --output_name=Combination/FitResults_new_opt.txt           --freeze_nuisances=r_higgs
+    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_3l_Full2018_v9_alsoLowPt_new_opt --output_name=Combination/FitResults_alsoLowPt_new_opt.txt --freeze_nuisances=r_higgs
 
 ### Produce Impact Plots
 

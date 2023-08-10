@@ -6,6 +6,10 @@ variables = ['BDT_WH3l_OSSF_v9_more','BDT_WH3l_OSSF_new_v9_more']
 # Actually combine datacards
 for var in variables:
 
+    suffix = ''
+    if var == 'BDT_WH3l_OSSF_new_v9_more':
+        suffix = '_new'
+
     var_OSSF_plus  = var
     var_OSSF_minus = var
     var_SSSF_plus  = var.replace('OSSF','SSSF')
@@ -31,11 +35,12 @@ for var in variables:
                                    WH_3l_ossf_plus=datacards_opt/wh3l_13TeV_ossf_plus_pt2ge20/{2}/datacard.txt \
                                    WH_3l_ossf_minus=datacards_opt/wh3l_13TeV_ossf_minus_pt2ge20/{3}/datacard.txt \
                                    WH_3l_WZ_CR_0j=datacards/wh3l_wz_13TeV/events/datacard.txt \
-                                   > Combination/WH_chargeAsymmetry_WH_3l_Full2018_v9_opt.txt".format(
+                                   > Combination/WH_chargeAsymmetry_WH_3l_Full2018_v9{4}_opt.txt".format(
                                        var_SSSF_plus,
                                        var_SSSF_minus,
                                        var_OSSF_plus,
-                                       var_OSSF_minus
+                                       var_OSSF_minus,
+                                       suffix
                                    )
     
     print(tmp_command)
@@ -54,7 +59,7 @@ for var in variables:
                                    WH_3l_ossf_plus_low_pt=datacards_opt/wh3l_13TeV_ossf_plus_pt2lt20/{6}/datacard.txt \
                                    WH_3l_ossf_minus_low_pt=datacards_opt/wh3l_13TeV_ossf_minus_pt2lt20/{7}/datacard.txt \
                                    WH_3l_WZ_CR_0j=datacards/wh3l_wz_13TeV/events/datacard.txt \
-                                   > Combination/WH_chargeAsymmetry_WH_3l_Full2018_v9_alsoLowPt_opt.txt".format(
+                                   > Combination/WH_chargeAsymmetry_WH_3l_Full2018_v9_alsoLowPt{8}_opt.txt".format(
                                        var_SSSF_plus,
                                        var_SSSF_minus,
                                        var_OSSF_plus,
@@ -63,6 +68,7 @@ for var in variables:
                                        var_SSSF_minus,
                                        var_OSSF_plus,
                                        var_OSSF_minus,
+                                       suffix
                                    )
     
     print(tmp_command)
