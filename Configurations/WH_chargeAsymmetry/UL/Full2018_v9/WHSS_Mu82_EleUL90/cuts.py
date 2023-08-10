@@ -95,7 +95,7 @@ cuts['hww2l2v_13TeV_WH_SS_ee_1j'] = {
 }
 
 
-# ## WZ CR --> 3l control region: should it go in a different cfg, due to lepton selections and SFs? Check it!
+## WZ CR --> 3l control region: should it go in a different cfg, due to lepton selections and SFs? Check it!
 
 # # CR 1jet
 # cuts['hww2l2v_13TeV_WH_SS_WZ_1j'] = '((Lepton_pdgId[0]*Lepton_pdgId[1] == 13*13) || (Lepton_pdgId[0]*Lepton_pdgId[1] == 11*13) || (Lepton_pdgId[0]*Lepton_pdgId[1] == 11*11))\
@@ -151,5 +151,3 @@ cuts['hww2l2v_13TeV_WH_SS_DYee_1j'] = {
 
 # Definitions of WH3l variables:
 # https://github.com/latinos/LatinoAnalysis/blob/76e7c4b93aa5f056c92440d4e8d24e7de749c8fe/NanoGardener/python/modules/l3KinProducer.py
-
-

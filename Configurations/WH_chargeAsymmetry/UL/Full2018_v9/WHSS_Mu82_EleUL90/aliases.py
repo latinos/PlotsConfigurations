@@ -133,7 +133,7 @@ aliases['zeroJet'] = {
 }
 
 aliases['oneJet'] = {
-    'expr': 'Alt$(CleanJet_pt[0], 0) > 30.'
+    'expr': 'Alt$(CleanJet_pt[0], 0) > 30. && Alt$(CleanJet_pt[1], 0) < 30.'
 }
 
 aliases['multiJet'] = {
@@ -326,49 +326,64 @@ aliases['SFtriggDown'] = {
 #     'samples': ['WWewk']
 # }
 
-### BDT on-the-fly 
+### BDT on-the-fly
 
 # Default training in AN-22-120_v1
 aliases['BDT_WHSS_v9'] = {
     'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/BDT_WHSS_v9.C+' % configurations],
     'class': 'BDT_WHSS_v9',
-    'args' : ('BDTG_6', '%s/WH_chargeAsymmetry/UL/data/BDT/2018/WHSS/weights/TMVAClassification_BDTG_6.weights.xml' % configurations),
+    'args' : ('BDTG_6', '%s/WH_chargeAsymmetry/UL/data/BDT/2018/WHSS/weights_old_no_TT/TMVAClassification_BDTG_6.weights.xml' % configurations),
 }
 
 # WJets and Semileptonic Top are considered as fake.
 aliases['BDT_WHSS_TopSemileptonic_v9'] = {
     'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/BDT_WHSS_TopSemileptonic_v9.C+' % configurations],
     'class': 'BDT_WHSS_TopSemileptonic_v9',
-    'args' : ('BDTG_6', '%s/WH_chargeAsymmetry/UL/Full2018_v9/BDTconfig_WHSS/dataset_WHSS_TTToSemiLeptonic/weights/TMVAClassification_BDTG_6.weights.xml' % configurations), # provisional address
+    'args' : ('BDTG_6', '%s/WH_chargeAsymmetry/UL/data/BDT/2018/WHSS/weights/TMVAClassification_BDTG_6.weights.xml' % configurations),
+    # 'args' : ('BDTG_6', '%s/WH_chargeAsymmetry/UL/Full2018_v9/BDTconfig_WHSS/dataset_WHSS_TTToSemiLeptonic/weights/TMVAClassification_BDTG_6.weights.xml' % configurations), # provisional address
 }
 
-# WJets and Semileptonic Top are considered as fake. Specific training for 1j events.
-aliases['BDT_WHSS_TopSemileptonic_1j_v9'] = {
-    'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/BDT_WHSS_1j_v9.C+' % configurations],
-    'class': 'BDT_WHSS_1j_v9',
-    'args' : ('BDTG_2', '%s/WH_chargeAsymmetry/UL/Full2018_v9/BDTconfig_WHSS/dataset_1j_WHSS_TTToSemiLeptonic_1j/weights/TMVAClassification_BDTG_2.weights.xml' % configurations), # provisional address
-}
+# # WJets and Semileptonic Top are considered as fake. Properly applying events weights
+# aliases['BDT_WHSS_TopSemileptonic_weight_v9'] = {
+#     'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/BDT_WHSS_TopSemileptonic_v9.C+' % configurations],
+#     'class': 'BDT_WHSS_TopSemileptonic_v9',
+#     'args' : ('BDTG_5', '%s/WH_chargeAsymmetry/UL/Full2018_v9/BDTconfig_WHSS/dataset_WHSS_TTToSemiLeptonic_weights/weights/TMVAClassification_BDTG_5.weights.xml' % configurations), # provisional address
+# }
 
-# WJets and Semileptonic Top are considered as fake. Specific training for 2j events.
-aliases['BDT_WHSS_TopSemileptonic_2j_v9'] = {
-    'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/BDT_WHSS_2j_v9.C+' % configurations],
-    'class': 'BDT_WHSS_2j_v9',
-    'args' : ('BDTG_5', '%s/WH_chargeAsymmetry/UL/Full2018_v9/BDTconfig_WHSS/dataset_2j_WHSS_TTToSemiLeptonic_2j/weights/TMVAClassification_BDTG_5.weights.xml' % configurations), # provisional address
-}
+# # WJets and Semileptonic Top are considered as fake. Properly applying cross-section weights
+# aliases['BDT_WHSS_TopSemileptonic_XSweight_v9'] = {
+#     'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/BDT_WHSS_TopSemileptonic_v9.C+' % configurations],
+#     'class': 'BDT_WHSS_TopSemileptonic_v9',
+#     'args' : ('BDTG_5', '%s/WH_chargeAsymmetry/UL/Full2018_v9/BDTconfig_WHSS/dataset_WHSS_TTToSemiLeptonic_XSweight_correct/weights/TMVAClassification_BDTG_6.weights.xml' % configurations), # provisional address
+# }
 
-# WJets and Top are considered as fake. Specific training for 1j events
-aliases['BDT_WHSS_1j_v9'] = {
-    'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/BDT_WHSS_1j_v9.C+' % configurations],
-    'class': 'BDT_WHSS_1j_v9',
-    'args' : ('BDTG_6', '%s/WH_chargeAsymmetry/UL/Full2018_v9/BDTconfig_WHSS/dataset_1j_WHSS_btagVariables_noZveto_orthogonalsamples/weights/TMVAClassification_BDTG_6.weights.xml' % configurations), # provisional address
-}
+# # WJets and Semileptonic Top are considered as fake. Specific training for 1j events.
+# aliases['BDT_WHSS_TopSemileptonic_1j_v9'] = {
+#     'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/BDT_WHSS_1j_v9.C+' % configurations],
+#     'class': 'BDT_WHSS_1j_v9',
+#     'args' : ('BDTG_2', '%s/WH_chargeAsymmetry/UL/Full2018_v9/BDTconfig_WHSS/dataset_1j_WHSS_TTToSemiLeptonic_1j/weights/TMVAClassification_BDTG_2.weights.xml' % configurations), # provisional address
+# }
 
-# WJets and Top are considered as fake. Specific training for 2j events
-aliases['BDT_WHSS_2j_v9'] = {
-    'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/BDT_WHSS_2j_v9.C+' % configurations],
-    'class': 'BDT_WHSS_2j_v9',
-    'args' : ('BDTG_5', '%s/WH_chargeAsymmetry/UL/Full2018_v9/BDTconfig_WHSS/dataset_2j_WHSS_btagVariables_noZveto_orthogonalsamples/weights/TMVAClassification_BDTG_5.weights.xml' % configurations), # provisional address
-}
+# # WJets and Semileptonic Top are considered as fake. Specific training for 2j events.
+# aliases['BDT_WHSS_TopSemileptonic_2j_v9'] = {
+#     'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/BDT_WHSS_2j_v9.C+' % configurations],
+#     'class': 'BDT_WHSS_2j_v9',
+#     'args' : ('BDTG_5', '%s/WH_chargeAsymmetry/UL/Full2018_v9/BDTconfig_WHSS/dataset_2j_WHSS_TTToSemiLeptonic_2j/weights/TMVAClassification_BDTG_5.weights.xml' % configurations), # provisional address
+# }
+
+# # WJets and Top are considered as fake. Specific training for 1j events
+# aliases['BDT_WHSS_1j_v9'] = {
+#     'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/BDT_WHSS_1j_v9.C+' % configurations],
+#     'class': 'BDT_WHSS_1j_v9',
+#     'args' : ('BDTG_6', '%s/WH_chargeAsymmetry/UL/Full2018_v9/BDTconfig_WHSS/dataset_1j_WHSS_btagVariables_noZveto_orthogonalsamples/weights/TMVAClassification_BDTG_6.weights.xml' % configurations), # provisional address
+# }
+
+# # WJets and Top are considered as fake. Specific training for 2j events
+# aliases['BDT_WHSS_2j_v9'] = {
+#     'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/BDT_WHSS_2j_v9.C+' % configurations],
+#     'class': 'BDT_WHSS_2j_v9',
+#     'args' : ('BDTG_5', '%s/WH_chargeAsymmetry/UL/Full2018_v9/BDTconfig_WHSS/dataset_2j_WHSS_btagVariables_noZveto_orthogonalsamples/weights/TMVAClassification_BDTG_5.weights.xml' % configurations), # provisional address
+# }
 
 ########################
 ### Charge misid SFs ###

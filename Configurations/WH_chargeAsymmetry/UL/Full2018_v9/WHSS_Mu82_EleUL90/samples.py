@@ -162,7 +162,7 @@ samples['WW'] = {
 samples['WWewk'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'WpWmJJ_EWK_noTop'),
     # 'weight': mcCommonWeight+embed_tautauveto + '*(Sum$(abs(GenPart_pdgId)==6 || GenPart_pdgId==25)==0)*(lhe_mW1[0] > 60. && lhe_mW1[0] < 100. && lhe_mW2[0] > 60. && lhe_mW2[0] < 100.)', # Filter tops and Higgs, limit w mass
-    'weight': mcCommonWeight+embed_tautauveto + '*(Sum$(abs(GenPart_pdgId)==6 || GenPart_pdgId==25)==0)', # Filter tops and Higgs, limit w mass
+    'weight': mcCommonWeight + '*(Sum$(abs(GenPart_pdgId)==6 || GenPart_pdgId==25)==0)', # Filter tops and Higgs, limit w mass
     'suppressNegative' :['all'],
     'suppressNegativeNuisances' :['all'],
     'FilesPerJob': 4
@@ -237,7 +237,7 @@ samples['ZgS'] = {
     'suppressNegativeNuisances' :['all'],
     'FilesPerJob': 4,
 }
-# addSampleWeight(samples, 'ZgS', 'ZGToLLG', '(Gen_ZGstar_mass > 0)*0.448') # Do we still need this normalization factor?
+# addSampleWeight(samples, 'ZgS', 'ZGToLLG', '(Gen_ZGstar_mass > 0)*0.448')
 
 
 ############ WZ ############
@@ -252,7 +252,6 @@ samples['WZ'] = {
     'FilesPerJob': 4
 }
 addSampleWeight(samples, 'WZ', 'WZTo3LNu_mllmin0p1', '(0.601644*58.59/4.666)')
-# 'weight': mcCommonWeight+embed_tautauveto + '*1.11',
 
 
 ############ ZZ ############
@@ -298,7 +297,6 @@ samples['ggH_hww'] = {
     'suppressNegativeNuisances' :['all'],
     'FilesPerJob': 2
 }
-
 signals.append('ggH_hww')
 
 ############ VBF H->WW ############
@@ -309,7 +307,6 @@ samples['qqH_hww'] = {
     'suppressNegativeNuisances' :['all'],
     'FilesPerJob': 4
 }
-
 signals.append('qqH_hww')
 
 ############ ZH H->WW ############
@@ -320,7 +317,6 @@ samples['ZH_hww'] = {
     'suppressNegativeNuisances' :['all'],
     'FilesPerJob': 4
 }
-
 signals.append('ZH_hww')
 
 samples['ggZH_hww'] = {
@@ -330,7 +326,6 @@ samples['ggZH_hww'] = {
     'suppressNegativeNuisances' :['all'],
     'FilesPerJob': 4
 }
-
 signals.append('ggZH_hww')
 
 ############ WH H->WW ############
@@ -341,9 +336,7 @@ samples['WH_hww_plus'] = {
     'suppressNegativeNuisances' :['all'],
     'FilesPerJob': 4
 }
-
 signals.append('WH_hww_plus')
-
 
 samples['WH_hww_minus'] = {
     'name':   nanoGetSampleFiles(mcDirectory, 'HWminusJ_HToWW_M125'),
@@ -363,7 +356,6 @@ samples['ttH_hww'] = {
     'suppressNegativeNuisances' :['all'],
     'FilesPerJob': 2
 }
-
 signals.append('ttH_hww')
 
 ############ H->TauTau ############
@@ -374,7 +366,6 @@ samples['ggH_htt'] = {
     'suppressNegativeNuisances' :['all'],
     'FilesPerJob': 20
 }
-
 signals.append('ggH_htt')
 
 samples['qqH_htt'] = {
@@ -384,7 +375,6 @@ samples['qqH_htt'] = {
     'suppressNegativeNuisances' :['all'],
     'FilesPerJob': 10
 }
-
 signals.append('qqH_htt')
 
 samples['ZH_htt'] = {
@@ -394,7 +384,6 @@ samples['ZH_htt'] = {
     'suppressNegativeNuisances' :['all'],
     'FilesPerJob': 4
 }
-
 signals.append('ZH_htt')
 
 ############ WH H->TauTau ############
@@ -405,7 +394,6 @@ samples['WH_htt_plus'] = {
     'suppressNegativeNuisances' :['all'],
     'FilesPerJob': 4
 }
-
 signals.append('WH_htt_plus')
 
 samples['WH_htt_minus'] = {
@@ -415,7 +403,6 @@ samples['WH_htt_minus'] = {
     'suppressNegativeNuisances' :['all'],
     'FilesPerJob': 4
 }
-
 signals.append('WH_htt_minus')
 
 
