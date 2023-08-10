@@ -25,6 +25,7 @@ def nanoGetSampleFiles(inputDir, sample):
 
 def getFilesFromDAS(dataset,dasInstance='prod/global'):
    dasCmd='dasgoclient -query="instance='+dasInstance+' file dataset='+dataset+'"'
+   print dasCmd
    proc=subprocess.Popen(dasCmd, stderr = subprocess.PIPE,stdout = subprocess.PIPE, shell = True)
    out, err = proc.communicate()
    if not proc.returncode == 0 :
@@ -34,26 +35,12 @@ def getFilesFromDAS(dataset,dasInstance='prod/global'):
    FileList=string.split(out)
    return FileList
 
-def getBaseWFromDAS(iProd, iSampleXS, samples=[], prodCfg='LatinoAnalysis/NanoGardener/python/framework/Productions_cfg.py' ):
+def getBaseWFromDAS(iProd, iSampleXS, samples=[], recomputeSumOfWeighsWithSign=False, prodCfg='LatinoAnalysis/NanoGardener/python/framework/Productions_cfg.py'):
 
   # Compute #evts
   genEventCount = 0
   genEventSumw  = 0.0
   genEventSumw2 = 0.0
-  for iSample in samples :
-    FileList = getFilesFromDAS(iSample)
-    print 'file list for'+iSample, FileList
-    for iFile in FileList:
-      f = ROOT.TFile.Open('root://cms-xrd-global.cern.ch/'+iFile,'READ')
-      Runs = f.Get("Runs")
-      for iRun in Runs :
-        trailer = ""
-        if hasattr(iRun, "genEventSumw_"): trailer = "_"
-        genEventCount += getattr(iRun, "genEventCount"+trailer)
-        genEventSumw  += getattr(iRun, "genEventSumw" +trailer)
-        genEventSumw2 += getattr(iRun, "genEventSumw2"+trailer)
-        print(genEventCount)
-      f.Close()
   CMSSW=os.environ["CMSSW_BASE"]
   if os.path.exists(CMSSW+'/src/'+prodCfg) :
     handle = open(CMSSW+'/src/'+prodCfg)
@@ -65,20 +52,50 @@ def getBaseWFromDAS(iProd, iSampleXS, samples=[], prodCfg='LatinoAnalysis/NanoGa
     exit(1)
   if not iProd in prodList:
     print 'ERROR: iProd not in prodList: ',prodList
-  
   # Load X-section
   xsDB = xsectionDB()
   xsDB.readPython(CMSSW+'/src/'+Productions[iProd]['xsFile'])
   xsDB.readYR(Productions[iProd]['YRver'][0],Productions[iProd]['YRver'][1])
   # Get x-sections + checks
+  Xsec  = xsDB.get(iSampleXS) if isinstance(iSampleXS, str) else iSampleXS
+  for iSample in samples :
+    FileList = getFilesFromDAS(iSample)
+    print 'file list for'+iSample, FileList
+    for iFile in FileList:
+      f = ROOT.TFile.Open('root://cms-xrd-global.cern.ch/'+iFile,'READ')
+      if recomputeSumOfWeighsWithSign:
+        Events = f.Get("Events")
+        Events_np = rnp.tree2array(Events, branches=['genWeight'])
+        Events_np_new = Events_np.astype(float)
+        genEventSumw += np.sum(Events_np_new/np.abs(Events_np_new))
+        print genEventSumw
+        continue
+      Runs = f.Get("Runs")
+      for iRun in Runs :
+          
+        trailer = ""
+        if hasattr(iRun, "genEventSumw_"): trailer = "_"
+        thisgenEventCount = getattr(iRun, "genEventCount"+trailer)
+        thisgenEventSumw  = getattr(iRun, "genEventSumw" +trailer)
+        thisgenEventSumw2 = getattr(iRun, "genEventSumw2"+trailer)
+        print(iFile.split("/")[-1],"{:e}".format(thisgenEventCount),"{:e}".format(thisgenEventSumw), "{:e}".format(thisgenEventSumw/thisgenEventCount))
+        #protection for MiNNLO files with crazy weights
+        #if thisgenEventSumw/thisgenEventCount > 2*Xsec:
+        #  print "excluding file ",iFile.split("/")[-1]
+        #  thisgenEventCount = 0
+        #  thisgenEventSumw = 0
+        #  thisgenEventSumw2 = 0
+        genEventCount += thisgenEventCount
+        genEventSumw  += thisgenEventSumw
+        genEventSumw2 += thisgenEventSumw2
+      f.Close()
+  
 
   ### AND NOW: Compute new baseW
   nEvt = genEventSumw
-  Xsec  = xsDB.get(iSampleXS)
-  baseW = float(Xsec)*1000./nEvt
+  print Xsec
+  baseW = float(Xsec)*1000./nEvt if nEvt>0 else 0.
   return str(baseW)
-
-
 
 def addSampleWeightFromNano(sampleDic,key,Sample,Weight):
   ### Add Weights in sampleDic if needed
@@ -173,6 +190,7 @@ def getFilesFromDAS(dataset,dasInstance='prod/global'):
 ## NLO samples
 
 files = getFilesFromDAS('/WJetsToLNu_TuneCP5_13TeV-amcatnloFXFX-pythia8/RunIIFall17NanoAODv7-PU2017_12Apr2018_Nano02Apr2020_102X_mc2017_realistic_v8-v1/NANOAODSIM')
+print files
 
 samples['Wjets_NLO_inc'] = {
 	'name' : files,
@@ -188,6 +206,20 @@ samples['Wjets_NLO_inc'] = {
 #}
 addSampleWeightFromNano(samples, 'Wjets_NLO_inc', 'WJetsToLNu_TuneCP5_13TeV-amcatnloFXFX-pythia8', \
                         getBaseWFromDAS(mcProduction, 'WJetsToLNu', ['/WJetsToLNu_TuneCP5_13TeV-amcatnloFXFX-pythia8/RunIIFall17NanoAODv7-PU2017_12Apr2018_Nano02Apr2020_102X_mc2017_realistic_v8-v1/NANOAODSIM']))
+
+#MiNNLO from 2018, but we care only about GEN so it does not matter
+files  = getFilesFromDAS('/WminusJetsToMuNu_H2ErratumFix_TuneCP5_13TeV-powhegMiNNLO-pythia8-photos/RunIISummer20UL18NanoAODv9-106X_upgrade2018_realistic_v16_L1v1-v1/NANOAODSIM')
+files += getFilesFromDAS('/WplusJetsToMuNu_H2ErratumFix_TuneCP5_13TeV-powhegMiNNLO-pythia8-photos/RunIISummer20UL18NanoAODv9-106X_upgrade2018_realistic_v16_L1v1-v1/NANOAODSIM')
+samples['Wjets_MiNNLO_inc'] = {
+        'name' : files,
+        'weight' : 'genWeight/abs(genWeight)',
+        'FilesPerJob': 1,
+}
+addSampleWeightFromNano(samples, 'Wjets_MiNNLO_inc', 'WminusJetsToMuNu_H2ErratumFix_TuneCP5_13TeV-powhegMiNNLO-pythia8-photos', \
+                        getBaseWFromDAS(mcProduction, 8704., ['/WminusJetsToMuNu_H2ErratumFix_TuneCP5_13TeV-powhegMiNNLO-pythia8-photos/RunIISummer20UL18NanoAODv9-106X_upgrade2018_realistic_v16_L1v1-v1/NANOAODSIM'], recomputeSumOfWeighsWithSign=True))
+addSampleWeightFromNano(samples, 'Wjets_MiNNLO_inc', 'WplusJetsToMuNu_H2ErratumFix_TuneCP5_13TeV-powhegMiNNLO-pythia8-photos', \
+                        getBaseWFromDAS(mcProduction, 11770., ['/WplusJetsToMuNu_H2ErratumFix_TuneCP5_13TeV-powhegMiNNLO-pythia8-photos/RunIISummer20UL18NanoAODv9-106X_upgrade2018_realistic_v16_L1v1-v1/NANOAODSIM'], recomputeSumOfWeighsWithSign=True))
+
 
 ## LO samples
 
