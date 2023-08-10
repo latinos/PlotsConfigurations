@@ -135,7 +135,7 @@ aliases['zeroJet'] = {
 }
 
 aliases['oneJet'] = {
-    'expr': 'Alt$(CleanJet_pt[0], 0) > 30.'
+    'expr': 'Alt$(CleanJet_pt[0], 0) > 30. && Alt$(CleanJet_pt[1], 0) < 30.'
 }
 
 aliases['multiJet'] = {
@@ -365,60 +365,3 @@ aliases['BDT_WH3l_SSSF_new_v9'] = {
 }
 
 # /WH_chargeAsymmetry/UL/Full2018_v9/BDTconfig_WH3l/dataset/weights/TMVAClassification_BDTG4C3.weights.xml
-
-
-# ########################
-# ### Charge misid SFs ###
-# ########################
-
-# aliases['ttHMVA_SF_flip_2l'] = {
-#     'linesToAdd': ['.L %s/macros/flipper.C+' % configurations],
-#     'class': 'flipper',
-#     'args' : ('2018', 2, 'Total_SF', 'false'),
-#     'samples': ['DY','WW','top']
-# }
-
-# aliases['ttHMVA_SF_err_flip_2l'] = {
-#     'linesToAdd': ['.L %s/macros/flipper.C+' % configurations],
-#     'class': 'flipper',
-#     'args' : ('2018', 2, 'Total_SF_err', 'false'),
-#     'samples': ['DY','WW','top']
-# }
-
-# ##################################
-# ### Charge misid probabilities ###
-# ##################################
-
-# aliases['ttHMVA_eff_flip_2l'] = {
-#     'linesToAdd': ['.L %s/macros/flipper_eff.C+' % configurations],
-#     'class': 'flipper_eff',
-#     'args' : ('2018', 2, 'Total_SF'),
-#     'samples': ['DY_OS']
-# }
-
-# aliases['ttHMVA_eff_err_flip_2l'] = {
-#     'linesToAdd': ['.L %s/macros/flipper_eff.C+' % configurations],
-#     'class': 'flipper_eff',
-#     'args' : ('2018', 2, 'Total_SF_err'),
-#     'samples': ['DY_OS']
-# }
-
-## WH3l variables
-
-# aliases['WH3l_dphilllmet_test'] = {
-#     'linesToAdd': [
-#         '.L %s/src/PlotsConfigurations/Configurations/WH_chargeAsymmetry/WH3l/scripts/WH3l_patch_BDT1718.cc+' % os.getenv('CMSSW_BASE')
-#     ],
-#     'class': 'WH3l_patch_BDT1718',
-#     'args': ("dphilllmet")
-# }
-
-# aliases['BDT_SSSF1718'] = {
-#     'linesToAdd': [
-#         '.L %s/src/PlotsConfigurations/Configurations/WH_chargeAsymmetry/WH3l/scripts/WH3l_patch_BDT1718.cc+' % os.getenv('CMSSW_BASE')
-#     ],
-#     'class': 'WH3l_patch_BDT1718',
-#     'args': ("BDT_SSSF1718")
-# }
-
-

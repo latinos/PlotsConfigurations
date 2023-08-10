@@ -28,44 +28,25 @@ Or, if they failed because the wall clock time has been exceeded, resubmit them 
 
     ./do_plots.sh
 
-### Select binning for BDT
-
-Training used in AN-22-120_v2:
-
-    mkBinningOptimization.py --pyCfg=binning_ossf.py --input=rootFile/plots_WH3l_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=wh3l_13TeV_ossf_plus_pt2ge20  --variable=BDT_WH3l_OSSF_v9_more --figure=S_B
-    mkBinningOptimization.py --pyCfg=binning_ossf.py --input=rootFile/plots_WH3l_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=wh3l_13TeV_ossf_minus_pt2ge20 --variable=BDT_WH3l_OSSF_v9_more --figure=S_B
-    
-    mkBinningOptimization.py --pyCfg=binning_ossf.py --input=rootFile/plots_WH3l_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=wh3l_13TeV_ossf_plus_pt2lt20  --variable=BDT_WH3l_OSSF_v9_more --figure=S_B
-    mkBinningOptimization.py --pyCfg=binning_ossf.py --input=rootFile/plots_WH3l_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=wh3l_13TeV_ossf_minus_pt2lt20 --variable=BDT_WH3l_OSSF_v9_more --figure=S_B
-    
-    
-    mkBinningOptimization.py --pyCfg=binning_sssf.py --input=rootFile/plots_WH3l_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=wh3l_13TeV_sssf_plus_pt2ge20  --variable=BDT_WH3l_SSSF_v9_more --figure=S_B
-    mkBinningOptimization.py --pyCfg=binning_sssf.py --input=rootFile/plots_WH3l_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=wh3l_13TeV_sssf_minus_pt2ge20 --variable=BDT_WH3l_SSSF_v9_more --figure=S_B
-    
-    mkBinningOptimization.py --pyCfg=binning_sssf.py --input=rootFile/plots_WH3l_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=wh3l_13TeV_sssf_plus_pt2lt20  --variable=BDT_WH3l_SSSF_v9_more --figure=S_B
-    mkBinningOptimization.py --pyCfg=binning_sssf.py --input=rootFile/plots_WH3l_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=wh3l_13TeV_sssf_minus_pt2lt20 --variable=BDT_WH3l_SSSF_v9_more --figure=S_B
-
-Training considering Z+jets and Top as Fakes:
-
-    mkBinningOptimization.py --pyCfg=binning_ossf.py --input=rootFile/plots_WH3l_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=wh3l_13TeV_ossf_plus_pt2ge20  --variable=BDT_WH3l_OSSF_new_v9_more --figure=S_sqrtB
-    mkBinningOptimization.py --pyCfg=binning_ossf.py --input=rootFile/plots_WH3l_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=wh3l_13TeV_ossf_minus_pt2ge20 --variable=BDT_WH3l_OSSF_new_v9_more --figure=S_sqrtB
-
-    mkBinningOptimization.py --pyCfg=binning_ossf.py --input=rootFile/plots_WH3l_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=wh3l_13TeV_ossf_plus_pt2lt20  --variable=BDT_WH3l_OSSF_new_v9_more --figure=S_sqrtB
-    mkBinningOptimization.py --pyCfg=binning_ossf.py --input=rootFile/plots_WH3l_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=wh3l_13TeV_ossf_minus_pt2lt20 --variable=BDT_WH3l_OSSF_new_v9_more --figure=S_sqrtB
-
-
-    mkBinningOptimization.py --pyCfg=binning_sssf.py --input=rootFile/plots_WH3l_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=wh3l_13TeV_sssf_plus_pt2ge20  --variable=BDT_WH3l_SSSF_new_v9_more --figure=S_sqrtB
-    mkBinningOptimization.py --pyCfg=binning_sssf.py --input=rootFile/plots_WH3l_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=wh3l_13TeV_sssf_minus_pt2ge20 --variable=BDT_WH3l_SSSF_new_v9_more --figure=S_sqrtB
-
-    mkBinningOptimization.py --pyCfg=binning_sssf.py --input=rootFile/plots_WH3l_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=wh3l_13TeV_sssf_plus_pt2lt20  --variable=BDT_WH3l_SSSF_new_v9_more --figure=S_sqrtB
-    mkBinningOptimization.py --pyCfg=binning_sssf.py --input=rootFile/plots_WH3l_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=wh3l_13TeV_sssf_minus_pt2lt20 --variable=BDT_WH3l_SSSF_new_v9_more --figure=S_sqrtB
-
-
 ### Create datacards
 
 Using original distributions:
 
     mkDatacards.py --pycfg=configuration.py --inputFile=rootFile/plots_WH3l_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --outputDirDatacard=datacards --structureFile=structure.py
+
+### Optimize binning using combine harvester
+
+Load combine:
+
+     cd $HOME/work/combine/CMSSW_10_2_13/src/
+     cmsenv
+     cd -
+
+Now optimize:
+
+    ./do_optimize_cards.sh BDT_WH3l_OSSF_v9_more
+
+    ./do_optimize_cards.sh BDT_WH3l_OSSF_new_v9_more
 
 ### Combine datacards
 
@@ -82,6 +63,8 @@ Actually combine datacards:
     python script_datacards.py
 
     python script_datacards_new_training.py
+
+    python script_datacards_opt.py
 
 ### Interpret the results in terms of asymmetry
 
@@ -131,6 +114,9 @@ Since S appears in the denominator of the asymmetry expression, it cannot be 0, 
     python script_workspace_and_fit.py --datacard_name=Combination/WH_chargeAsymmetry_WH_3l_new_Full2018_v9_0_7       --output_name=Combination/FitResults_new_0_7.txt       --freeze_nuisances=r_higgs
     python script_workspace_and_fit.py --datacard_name=Combination/WH_chargeAsymmetry_WH_3l_new_Full2018_v9_0_9       --output_name=Combination/FitResults_new_0_9.txt       --freeze_nuisances=r_higgs
 
+    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_3l_Full2018_v9_opt           --output_name=Combination/FitResults_opt.txt           --freeze_nuisances=r_higgs
+    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_3l_Full2018_v9_alsoLowPt_opt --output_name=Combination/FitResults_alsoLowPt_opt.txt --freeze_nuisances=r_higgs
+
 ### Produce Impact Plots
 
 Source combine:
@@ -176,4 +162,38 @@ Using new training with top and Z+jets as fakes
     rm combine_*
     rm condor_*
     rm higgsCombine_*
+
+
+### OLD: Select binning for BDT
+
+Training used in AN-22-120_v2:
+
+    mkBinningOptimization.py --pyCfg=binning_ossf.py --input=rootFile/plots_WH3l_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=wh3l_13TeV_ossf_plus_pt2ge20  --variable=BDT_WH3l_OSSF_v9_more --figure=S_B
+    mkBinningOptimization.py --pyCfg=binning_ossf.py --input=rootFile/plots_WH3l_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=wh3l_13TeV_ossf_minus_pt2ge20 --variable=BDT_WH3l_OSSF_v9_more --figure=S_B
+    
+    mkBinningOptimization.py --pyCfg=binning_ossf.py --input=rootFile/plots_WH3l_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=wh3l_13TeV_ossf_plus_pt2lt20  --variable=BDT_WH3l_OSSF_v9_more --figure=S_B
+    mkBinningOptimization.py --pyCfg=binning_ossf.py --input=rootFile/plots_WH3l_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=wh3l_13TeV_ossf_minus_pt2lt20 --variable=BDT_WH3l_OSSF_v9_more --figure=S_B
+    
+    
+    mkBinningOptimization.py --pyCfg=binning_sssf.py --input=rootFile/plots_WH3l_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=wh3l_13TeV_sssf_plus_pt2ge20  --variable=BDT_WH3l_SSSF_v9_more --figure=S_B
+    mkBinningOptimization.py --pyCfg=binning_sssf.py --input=rootFile/plots_WH3l_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=wh3l_13TeV_sssf_minus_pt2ge20 --variable=BDT_WH3l_SSSF_v9_more --figure=S_B
+    
+    mkBinningOptimization.py --pyCfg=binning_sssf.py --input=rootFile/plots_WH3l_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=wh3l_13TeV_sssf_plus_pt2lt20  --variable=BDT_WH3l_SSSF_v9_more --figure=S_B
+    mkBinningOptimization.py --pyCfg=binning_sssf.py --input=rootFile/plots_WH3l_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=wh3l_13TeV_sssf_minus_pt2lt20 --variable=BDT_WH3l_SSSF_v9_more --figure=S_B
+
+Training considering Z+jets and Top as Fakes:
+
+    mkBinningOptimization.py --pyCfg=binning_ossf.py --input=rootFile/plots_WH3l_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=wh3l_13TeV_ossf_plus_pt2ge20  --variable=BDT_WH3l_OSSF_new_v9_more --figure=S_sqrtB
+    mkBinningOptimization.py --pyCfg=binning_ossf.py --input=rootFile/plots_WH3l_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=wh3l_13TeV_ossf_minus_pt2ge20 --variable=BDT_WH3l_OSSF_new_v9_more --figure=S_sqrtB
+
+    mkBinningOptimization.py --pyCfg=binning_ossf.py --input=rootFile/plots_WH3l_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=wh3l_13TeV_ossf_plus_pt2lt20  --variable=BDT_WH3l_OSSF_new_v9_more --figure=S_sqrtB
+    mkBinningOptimization.py --pyCfg=binning_ossf.py --input=rootFile/plots_WH3l_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=wh3l_13TeV_ossf_minus_pt2lt20 --variable=BDT_WH3l_OSSF_new_v9_more --figure=S_sqrtB
+
+
+    mkBinningOptimization.py --pyCfg=binning_sssf.py --input=rootFile/plots_WH3l_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=wh3l_13TeV_sssf_plus_pt2ge20  --variable=BDT_WH3l_SSSF_new_v9_more --figure=S_sqrtB
+    mkBinningOptimization.py --pyCfg=binning_sssf.py --input=rootFile/plots_WH3l_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=wh3l_13TeV_sssf_minus_pt2ge20 --variable=BDT_WH3l_SSSF_new_v9_more --figure=S_sqrtB
+
+    mkBinningOptimization.py --pyCfg=binning_sssf.py --input=rootFile/plots_WH3l_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=wh3l_13TeV_sssf_plus_pt2lt20  --variable=BDT_WH3l_SSSF_new_v9_more --figure=S_sqrtB
+    mkBinningOptimization.py --pyCfg=binning_sssf.py --input=rootFile/plots_WH3l_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=wh3l_13TeV_sssf_minus_pt2lt20 --variable=BDT_WH3l_SSSF_new_v9_more --figure=S_sqrtB
+
 
