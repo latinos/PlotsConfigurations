@@ -122,12 +122,12 @@ aliases['tau21WP'] = {
 #
 #
 #
-#aliases['boosted_nocut_res'] = {
-#    'expr': 'PuppiMET_pt > 40 \
-#            && Alt$(CleanFatJet_pt[0], 0) > 200 \
-#            && FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]] > 0.960 \
-#            && Alt$(CleanFatJet_eta[0], 999) < 2.4'
-#}
+aliases['boos_kfac'] = {
+    'expr': 'Sum$(Alt$(GenJetAK8_pt[0], 0) > 180)' 
+}
+aliases['no_boo'] = {
+    'expr': '!boos_kfac[0]' 
+}
 #aliases['resolved_nocut'] = {
 #    'expr': 'nCleanJet >= 2 \
 #            && HM_Whad_mass > 0 \
@@ -356,6 +356,11 @@ aliases['genW_pt'] = {
     'samples': mc
 }
 
+aliases['nCleanGenJet'] = {
+    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/kfactor_reweight/ngenjet.cc+'  % os.getenv('CMSSW_BASE')],
+    'class': 'CountGenJet',
+    'samples': wjets,
+}
 
 #aliases['W_Lep_Gen'] ={
 #    'expr' : 'TMath::Sqrt( (LeptonGen_pt[0]*TMath::Cos(LeptonGen_phi[0]) + NeutrinoGen_pt[0]*TMath::Cos(NeutrinoGen_phi[0]))*(LeptonGen_pt[0]*TMath::Cos(LeptonGen_phi[0]) + NeutrinoGen_pt[0]*TMath::Cos(NeutrinoGen_phi[0])) + (LeptonGen_pt[0]*TMath::Sin(LeptonGen_phi[0]) + NeutrinoGen_pt[0]*TMath::Sin(NeutrinoGen_phi[0]))*(LeptonGen_pt[0]*TMath::Sin(LeptonGen_phi[0]) + NeutrinoGen_pt[0]*TMath::Sin(NeutrinoGen_phi[0])))',
