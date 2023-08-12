@@ -1,0 +1,7 @@
+executable = doDatacards_condor.sh 
+arguments = $(ProcId) 
+output = ./jobs_datacards/datacards_2018.$(ProcId).out
+error = ./jobs_datacards/datacards_2018.$(ProcId).err
+log = ./jobs_datacards/datacards_2018_condor.log
+
+queue 269 
