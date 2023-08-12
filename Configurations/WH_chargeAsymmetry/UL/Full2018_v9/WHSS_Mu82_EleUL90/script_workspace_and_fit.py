@@ -124,6 +124,7 @@ combine_command_WH = "combine \
 
 # combineTool.py -M MultiDimFit --algo grid -t -1 --setParameters r=1 --X-rtd MINIMIZER_analytic --cminDefaultMinimizerStrategy=0 -d ../../globalMu_htt.root -n globalMu_scan --task-name globalMu_scan --autoRange 2 --points 40 --split-points 1 --job-mode=condor --redefineSignalPOIs r --floatOtherPOIs 1
 # grid
+
 # Likelihood scan on POIs - focusing on r_A
 rA_scan_command = "combine \
                    -M MultiDimFit \

@@ -10,7 +10,9 @@ import uproot
 
 
 #can put the whole thing in a for looping over masses? add masses to the json dictionary
-pairs = [(900, 400), (500, 350), (1000, 600), (800, 600)]
+with open("signals.txt", 'r') as f:
+    pairs = np.array([(int(re.findall(r"\d+", x)[0]), int(re.findall(r"\d+", x)[1])) for x in f])
+
 for b in range(len(pairs)):
     myfile = uproot.open("/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/Summer20UL17_106x_nAODv9_Full2017v9/MCl1loose2017v9__MCCorr2017v9NoJERInHorn__l2tightOR2017v9/nanoLatino_AToZHToLLTTbar_MA-"+str(pairs[b][0])+"_MH-"+str(pairs[b][1])+"__part0.root")
     Events = myfile["Events"]

@@ -2,7 +2,7 @@ import sys,os
 
 # Define variables and strategy to use
 variables = ["BDTG6_TT_XSweight_more","BDTG5_TT_weight_more","BDTG6_TT_more"]
-suffix    = ["_opt"]
+suffix    = ["_opt","_DYflip_original_signal_scale_opt"]
 
 # Actually combine datacards
 for var in variables:
