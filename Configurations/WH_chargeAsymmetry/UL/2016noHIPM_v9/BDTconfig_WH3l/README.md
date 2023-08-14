@@ -11,13 +11,14 @@ We consider as signals the WH samples:
 - WH_minus_htt
 
 And as backgrounds:
+- DY (fakes)
+- Top (fakes)
 - Wg
 - Zg
 - Wg*
 - Zg*
 - ZZ
 - WZ
-- WJets
 
 The instructions to run the trainings follow.
 
@@ -32,8 +33,12 @@ SS-SF:
 OS-SF:
 
     python ClassificationBDTOSSF.py
-
     python ClassificationBDTOSSF.py even_less_variables
+
+Using condor:
+
+    condor_submit do_OSSF_train.jds
+    condor_submit do_SSSF_train.jds
 
 
 ### Plot training results
