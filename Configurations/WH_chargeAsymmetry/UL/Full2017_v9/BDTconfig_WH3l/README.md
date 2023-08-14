@@ -34,6 +34,12 @@ OS-SF:
 
     python ClassificationBDTOSSF.py
 
+Using condor:
+
+    condor_submit do_OSSF_train.jds
+    condor_submit do_SSSF_train.jds
+
+
 ### Plot training results
 
 SS-SF:
