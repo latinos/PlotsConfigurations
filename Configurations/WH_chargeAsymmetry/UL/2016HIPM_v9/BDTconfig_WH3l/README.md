@@ -11,13 +11,14 @@ We consider as signals the WH samples:
 - WH_minus_htt
 
 And as backgrounds:
+- DY (fakes)
+- Top (fakes)
 - Wg
 - Zg
 - Wg*
 - Zg*
 - ZZ
 - WZ
-- WJets
 
 The instructions to run the trainings follow.
 
@@ -32,6 +33,10 @@ OS-SF:
 
     python ClassificationBDTOSSF.py
 
+Using condor:
+
+    condor_submit do_OSSF_train.jds
+    condor_submit do_SSSF_train.jds
 
 ### Plot training results
 
@@ -42,5 +47,7 @@ SS-SF:
 
 OS-SF:
 
-     root -l -b -q 'plotAll.C("./","TMVA","plots_BDT_WH3l_2016HIPM_v9_OSSF","dataset")'
+    root -l -b -q 'plotAll.C("./","TMVA","plots_BDT_WH3l_2016HIPM_v9_OSSF","dataset")'
+    root -l -b -q 'plotAll.C("./","TMVA_OSSF_matched_signal","plots_BDT_WH3l_2016HIPM_v9_OSSF_matched_signal","dataset_matched_signal")'
+
 
