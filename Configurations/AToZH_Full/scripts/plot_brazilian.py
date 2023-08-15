@@ -90,10 +90,10 @@ class BrazilianPlotter:
             ax.set_xlabel(fr"$m_H$ [GeV] ($m_A={mA}$)")
             self.plot_common(ax)
 
-            os.makedirs("plot_output/brasilians", exist_ok=True)
+            os.makedirs(os.path.join(self.path_to_limits, "plot_output/brasilians"), exist_ok=True)
             fname = f"MA-{mA}_{self.year}"
-            plt.savefig(f"plot_output/brasilians/{fname}.png")
-            plt.savefig(f"plot_output/brasilians/{fname}.pdf")
+            plt.savefig(os.path.join(self.path_to_limits, f"plot_output/brasilians/{fname}.png"))
+            plt.savefig(os.path.join(self.path_to_limits, f"plot_output/brasilians/{fname}.pdf"))
             plt.close()
 
     def plot_fixed_mH(self):
@@ -116,7 +116,9 @@ class BrazilianPlotter:
             self.plot_common(ax)
 
             os.makedirs(os.path.join(self.path_to_limits, "plot_output/brasilians"), exist_ok=True)
-            plt.savefig(os.path.join(self.path_to_limits, f"plot_output/brasilians/MH-{mH}_{self.year}.png"))
+            fname = f"MH-{mA}_{self.year}"
+            plt.savefig(os.path.join(self.path_to_limits, f"plot_output/brasilians/{fname}.png"))
+            plt.savefig(os.path.join(self.path_to_limits, f"plot_output/brasilians/{fname}.pdf"))
             plt.close()
 
 
