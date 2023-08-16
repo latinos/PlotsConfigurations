@@ -6,46 +6,7 @@ supercut = 'mll>12  \
             && abs(Lepton_eta[0])<2.5 && abs(Lepton_eta[1])<2.5 \
             && bVeto \
             && PuppiMET_pt > 30 \
-'
-
-# # Inclusive in sub-leading lepton pT 
-# ####################################
-
-# cuts['hww2l2v_13TeV_WH_SS'] = {
-#     'expr' : 'nLepton==2 && Alt$(CleanJet_pt[0],0)>30 && abs(Lepton_eta[0] - Lepton_eta[1])<2.0 && abs(mll-91.2)>15 && mlljj20_whss > 50.',
-#     'categories' : {
-#         # mm_2j
-#         'mm_2j_plus_incl'  : 'Alt$(CleanJet_pt[1],0)>30 && Lepton_pdgId[0] == -13 && Lepton_pdgId[1] == -13 && mjj < 100',
-#         'mm_2j_minus_incl' : 'Alt$(CleanJet_pt[1],0)>30 && Lepton_pdgId[0] == +13 && Lepton_pdgId[1] == +13 && mjj < 100',
-#         # em_2j
-#         'em_2j_plus_incl'  : 'Alt$(CleanJet_pt[1],0)>30 && ((Lepton_pdgId[0] == -13 && Lepton_pdgId[1] == -11) || (Lepton_pdgId[0] == -11 && Lepton_pdgId[1] == -13)) && mjj < 100',
-#         'em_2j_minus_incl' : 'Alt$(CleanJet_pt[1],0)>30 && ((Lepton_pdgId[0] == +13 && Lepton_pdgId[1] == +11) || (Lepton_pdgId[0] == +11 && Lepton_pdgId[1] == +13)) && mjj < 100',
-#         # ee_2j
-#         'ee_2j_plus_incl'  : 'Alt$(CleanJet_pt[1],0)>30 && Lepton_pdgId[0] == -11 && Lepton_pdgId[1] == -11 && mjj < 100',
-#         'ee_2j_minus_incl' : 'Alt$(CleanJet_pt[1],0)>30 && Lepton_pdgId[0] == +11 && Lepton_pdgId[1] == +11 && mjj < 100',
-#         # mm_1j
-#         'mm_1j_plus_incl'  : 'Alt$(CleanJet_pt[1],0)<30 && Lepton_pdgId[0] == -13 && Lepton_pdgId[1] == -13',
-#         'mm_1j_minus_incl' : 'Alt$(CleanJet_pt[1],0)<30 && Lepton_pdgId[0] == +13 && Lepton_pdgId[1] == +13',
-#         # em_1j
-#         'em_1j_plus_incl'  : 'Alt$(CleanJet_pt[1],0)<30 && ((Lepton_pdgId[0] == -13 && Lepton_pdgId[1] == -11) || (Lepton_pdgId[0] == -11 && Lepton_pdgId[1] == -13))',
-#         'em_1j_minus_incl' : 'Alt$(CleanJet_pt[1],0)<30 && ((Lepton_pdgId[0] == +13 && Lepton_pdgId[1] == +11) || (Lepton_pdgId[0] == +11 && Lepton_pdgId[1] == +13))',
-#         # ee_1j
-#         'ee_1j_plus_incl'  : 'Alt$(CleanJet_pt[1],0)<30 && Lepton_pdgId[0] == -11 && Lepton_pdgId[1] == -11',
-#         'ee_1j_minus_incl' : 'Alt$(CleanJet_pt[1],0)<30 && Lepton_pdgId[0] == +11 && Lepton_pdgId[1] == +11',
-#     }
-# }
-
-# cuts['hww2l2v_13TeV_WH_SS_noZveto'] = {
-#     'expr' : 'nLepton==2 && Alt$(CleanJet_pt[0],0)>30 && abs(Lepton_eta[0] - Lepton_eta[1])<2.0 && mlljj20_whss > 50.',
-#     'categories' : {
-#         # mm_2j
-#         'mm_2j_plus_incl'  : 'Alt$(CleanJet_pt[1],0)>30 && Lepton_pdgId[0] == -13 && Lepton_pdgId[1] == -13 && mjj < 100',
-#         'mm_2j_minus_incl' : 'Alt$(CleanJet_pt[1],0)>30 && Lepton_pdgId[0] == +13 && Lepton_pdgId[1] == +13 && mjj < 100',
-#         # mm_1j
-#         'mm_1j_plus_incl'  : 'Alt$(CleanJet_pt[1],0)<30 && Lepton_pdgId[0] == -13 && Lepton_pdgId[1] == -13',
-#         'mm_1j_minus_incl' : 'Alt$(CleanJet_pt[1],0)<30 && Lepton_pdgId[0] == +13 && Lepton_pdgId[1] == +13',
-#     }
-# }
+            '
 
 # Splitting in sub-leading lepton pT 
 ####################################
@@ -53,18 +14,6 @@ supercut = 'mll>12  \
 ## SR 2jets
 
 # mu-mu
-cuts['hww2l2v_13TeV_WH_SS_mm_2j'] = {
-    'expr' : '(Lepton_pdgId[0]*Lepton_pdgId[1] == 13*13) && nLepton==2 && Alt$(CleanJet_pt[0],0)>30 && Alt$(CleanJet_pt[1],0)>30 && mjj < 100 && abs(Lepton_eta[0] - Lepton_eta[1])<2.0 && abs(mll-91.2)>15 && mlljj20_whss > 50.',
-    'categories' : {
-        # Sub-leading lepton pT >= 20 GeV
-        'plus_pt2ge20'  : 'Lepton_pdgId[0] == -13 && Lepton_pdgId[1] == -13 && Lepton_pt[1]>=20',
-        'minus_pt2ge20' : 'Lepton_pdgId[0] == +13 && Lepton_pdgId[1] == +13 && Lepton_pt[1]>=20',
-        # Sub-leading lepton pT < 20 GeV
-        'plus_pt2lt20'  : 'Lepton_pdgId[0] == -13 && Lepton_pdgId[1] == -13 && Lepton_pt[1]<20',
-        'minus_pt2lt20' : 'Lepton_pdgId[0] == +13 && Lepton_pdgId[1] == +13 && Lepton_pt[1]<20',
-    }
-}
-
 cuts['hww2l2v_13TeV_WH_SS_noZveto_mm_2j'] = {
     'expr' : '(Lepton_pdgId[0]*Lepton_pdgId[1] == 13*13) && nLepton==2 && Alt$(CleanJet_pt[0],0)>30 && Alt$(CleanJet_pt[1],0)>30 && mjj < 100 && abs(Lepton_eta[0] - Lepton_eta[1])<2.0 && mlljj20_whss > 50.',
     'categories' : {
@@ -82,11 +31,11 @@ cuts['hww2l2v_13TeV_WH_SS_em_2j'] = {
     'expr' : '(Lepton_pdgId[0]*Lepton_pdgId[1] == 11*13) && nLepton==2 && Alt$(CleanJet_pt[0],0)>30 && Alt$(CleanJet_pt[1],0)>30 && mjj < 100 && abs(Lepton_eta[0] - Lepton_eta[1])<2.0 && mlljj20_whss > 50.',
     'categories' : {
         # Sub-leading lepton pT >= 20 GeV
-        'plus_pt2ge20'  : '(Lepton_pdgId[0] == -13 && Lepton_pdgId[1] == -11) || (Lepton_pdgId[0] == -11 && Lepton_pdgId[1] == -13) && Lepton_pt[1]>=20',
-        'minus_pt2ge20' : '(Lepton_pdgId[0] == +13 && Lepton_pdgId[1] == +11) || (Lepton_pdgId[0] == +11 && Lepton_pdgId[1] == +13) && Lepton_pt[1]>=20',
+        'plus_pt2ge20'  : '((Lepton_pdgId[0] == -13 && Lepton_pdgId[1] == -11) || (Lepton_pdgId[0] == -11 && Lepton_pdgId[1] == -13)) && Lepton_pt[1]>=20',
+        'minus_pt2ge20' : '((Lepton_pdgId[0] == +13 && Lepton_pdgId[1] == +11) || (Lepton_pdgId[0] == +11 && Lepton_pdgId[1] == +13)) && Lepton_pt[1]>=20',
         # Sub-leading lepton pT < 20 GeV
-        'plus_pt2lt20'  : '(Lepton_pdgId[0] == -13 && Lepton_pdgId[1] == -11) || (Lepton_pdgId[0] == -11 && Lepton_pdgId[1] == -13) && Lepton_pt[1]<20',
-        'minus_pt2lt20' : '(Lepton_pdgId[0] == +13 && Lepton_pdgId[1] == +11) || (Lepton_pdgId[0] == +11 && Lepton_pdgId[1] == +13) && Lepton_pt[1]<20',
+        'plus_pt2lt20'  : '((Lepton_pdgId[0] == -13 && Lepton_pdgId[1] == -11) || (Lepton_pdgId[0] == -11 && Lepton_pdgId[1] == -13)) && Lepton_pt[1]<20',
+        'minus_pt2lt20' : '((Lepton_pdgId[0] == +13 && Lepton_pdgId[1] == +11) || (Lepton_pdgId[0] == +11 && Lepton_pdgId[1] == +13)) && Lepton_pt[1]<20',
     }
 }
 
@@ -107,18 +56,6 @@ cuts['hww2l2v_13TeV_WH_SS_ee_2j'] = {
 ## SR 1jet
 
 # mu-mu
-cuts['hww2l2v_13TeV_WH_SS_mm_1j'] = {
-    'expr' : '(Lepton_pdgId[0]*Lepton_pdgId[1] == 13*13) && nLepton==2 && Alt$(CleanJet_pt[0],0)>30 && Alt$(CleanJet_pt[1],0)<30 && abs(Lepton_eta[0] - Lepton_eta[1])<2.0 && abs(mll-91.2)>15 && mlljj20_whss > 50.',
-    'categories' : {
-        # Sub-leading lepton pT >= 20 GeV
-        'plus_pt2ge20'  : 'Lepton_pdgId[0] == -13 && Lepton_pdgId[1] == -13 && Lepton_pt[1]>=20',
-        'minus_pt2ge20' : 'Lepton_pdgId[0] == +13 && Lepton_pdgId[1] == +13 && Lepton_pt[1]>=20',
-        # Sub-leading lepton pT < 20 GeV
-        'plus_pt2lt20'  : 'Lepton_pdgId[0] == -13 && Lepton_pdgId[1] == -13 && Lepton_pt[1]<20',
-        'minus_pt2lt20' : 'Lepton_pdgId[0] == +13 && Lepton_pdgId[1] == +13 && Lepton_pt[1]<20',
-    }
-}
-
 cuts['hww2l2v_13TeV_WH_SS_noZveto_mm_1j'] = {
     'expr' : '(Lepton_pdgId[0]*Lepton_pdgId[1] == 13*13) && nLepton==2 && Alt$(CleanJet_pt[0],0)>30 && Alt$(CleanJet_pt[1],0)<30 && abs(Lepton_eta[0] - Lepton_eta[1])<2.0 && mlljj20_whss > 50.',
     'categories' : {
@@ -136,11 +73,11 @@ cuts['hww2l2v_13TeV_WH_SS_em_1j'] = {
     'expr' : '(Lepton_pdgId[0]*Lepton_pdgId[1] == 11*13) && nLepton==2 && Alt$(CleanJet_pt[0],0)>30 && Alt$(CleanJet_pt[1],0)<30 && abs(Lepton_eta[0] - Lepton_eta[1])<2.0 && mlljj20_whss > 50.',
     'categories' : {
         # Sub-leading lepton pT >= 20 GeV
-        'plus_pt2ge20'  : '(Lepton_pdgId[0] == -13 && Lepton_pdgId[1] == -11) || (Lepton_pdgId[0] == -11 && Lepton_pdgId[1] == -13) && Lepton_pt[1]>=20',
-        'minus_pt2ge20' : '(Lepton_pdgId[0] == +13 && Lepton_pdgId[1] == +11) || (Lepton_pdgId[0] == +11 && Lepton_pdgId[1] == +13) && Lepton_pt[1]>=20',
+        'plus_pt2ge20'  : '((Lepton_pdgId[0] == -13 && Lepton_pdgId[1] == -11) || (Lepton_pdgId[0] == -11 && Lepton_pdgId[1] == -13)) && Lepton_pt[1]>=20',
+        'minus_pt2ge20' : '((Lepton_pdgId[0] == +13 && Lepton_pdgId[1] == +11) || (Lepton_pdgId[0] == +11 && Lepton_pdgId[1] == +13)) && Lepton_pt[1]>=20',
         # Sub-leading lepton pT < 20 GeV
-        'plus_pt2lt20'  : '(Lepton_pdgId[0] == -13 && Lepton_pdgId[1] == -11) || (Lepton_pdgId[0] == -11 && Lepton_pdgId[1] == -13) && Lepton_pt[1]<20',
-        'minus_pt2lt20' : '(Lepton_pdgId[0] == +13 && Lepton_pdgId[1] == +11) || (Lepton_pdgId[0] == +11 && Lepton_pdgId[1] == +13) && Lepton_pt[1]<20',
+        'plus_pt2lt20'  : '((Lepton_pdgId[0] == -13 && Lepton_pdgId[1] == -11) || (Lepton_pdgId[0] == -11 && Lepton_pdgId[1] == -13)) && Lepton_pt[1]<20',
+        'minus_pt2lt20' : '((Lepton_pdgId[0] == +13 && Lepton_pdgId[1] == +11) || (Lepton_pdgId[0] == +11 && Lepton_pdgId[1] == +13)) && Lepton_pt[1]<20',
     }
 }
 
@@ -160,50 +97,25 @@ cuts['hww2l2v_13TeV_WH_SS_ee_1j'] = {
 
 ## WZ CR --> 3l control region: should it go in a different cfg, due to lepton selections and SFs? Check it!
 
-# CR 1jet
-cuts['hww2l2v_13TeV_WH_SS_WZ_1j'] = '((Lepton_pdgId[0]*Lepton_pdgId[1] == 13*13) || (Lepton_pdgId[0]*Lepton_pdgId[1] == 11*13) || (Lepton_pdgId[0]*Lepton_pdgId[1] == 11*11))\
-                                       && (nLepton>=3 && Alt$(Lepton_pt[3],0)<10) \
-                                       && Lepton_pt[2]>15 \
-                                       && Alt$(CleanJet_pt[0],0)>30 \
-                                       && Alt$(CleanJet_pt[1],0)<30 \
-                                       && WH3l_mlll > 100 \
-                                       && abs(WH3l_chlll) == 1 \
-                                       '
+# # CR 1jet
+# cuts['hww2l2v_13TeV_WH_SS_WZ_1j'] = '((Lepton_pdgId[0]*Lepton_pdgId[1] == 13*13) || (Lepton_pdgId[0]*Lepton_pdgId[1] == 11*13) || (Lepton_pdgId[0]*Lepton_pdgId[1] == 11*11))\
+#                                        && (nLepton>=3 && Alt$(Lepton_pt[3],0)<10) \
+#                                        && Lepton_pt[2]>15 \
+#                                        && Alt$(CleanJet_pt[0],0)>30 \
+#                                        && Alt$(CleanJet_pt[1],0)<30 \
+#                                        && WH3l_mlll > 100 \
+#                                        && abs(WH3l_chlll) == 1 \
+#                                        '
 
-# CR 2jets
-cuts['hww2l2v_13TeV_WH_SS_WZ_2j'] = '((Lepton_pdgId[0]*Lepton_pdgId[1] == 13*13) || (Lepton_pdgId[0]*Lepton_pdgId[1] == 11*13) || (Lepton_pdgId[0]*Lepton_pdgId[1] == 11*11)) \
-                                       && (nLepton>=3 && Alt$(Lepton_pt[3],0)<10) \
-                                       && Lepton_pt[2]>15 \
-                                       && Alt$(CleanJet_pt[0],0)>30 \
-                                       && Alt$(CleanJet_pt[1],0)>30 \
-                                       && WH3l_mlll > 100 \
-                                       && abs(WH3l_chlll) == 1 \
-                                       '
-
-# # CR 1jet (from ZH3l analysis)
-# cuts['hww2l2v_13TeV_ZH3l_WZ_CR_1j'] = 'MinIf$( WH3l_mOSll[], WH3l_mOSll[Iteration$] > 0) > 12 \
-#                                     && Alt$(Lepton_pt[2],0)>15 \
-#                                     && Alt$(Lepton_pt[3],0)<10 \
-#                                     && abs(WH3l_chlll) == 1 \
-#                                     && Alt$( CleanJet_pt[0], 0) > 30 \
-#                                     && Alt$( CleanJet_pt[1], 0) < 30 \
-#                                     && WH3l_ZVeto < 25 \
-#                                     && ZH3l_Z4lveto > 20 \
-#                                     && ZH3l_dphilmetj > 3.14159/2 \
-#                                     '         
-
-# # CR 1jet (from ZH3l analysis)
-# cuts['hww2l2v_13TeV_ZH3l_WZ_CR_2j'] = 'MinIf$( WH3l_mOSll[], WH3l_mOSll[Iteration$] > 0) > 12 \
-#                                     && Alt$(Lepton_pt[2],0)>15 \
-#                                     && Alt$(Lepton_pt[3],0)<10 \
-#                                     && abs(WH3l_chlll) == 1 \
-#                                     && Alt$( CleanJet_pt[0], 0) > 30 \
-#                                     && Alt$( CleanJet_pt[1], 0) > 30 \
-#                                     && WH3l_ZVeto < 25 \
-#                                     && ZH3l_Z4lveto > 20 \
-#                                     && ZH3l_dphilmetj > 3.14159/2 \
-#                                     '         
-
+# # CR 2jets
+# cuts['hww2l2v_13TeV_WH_SS_WZ_2j'] = '((Lepton_pdgId[0]*Lepton_pdgId[1] == 13*13) || (Lepton_pdgId[0]*Lepton_pdgId[1] == 11*13) || (Lepton_pdgId[0]*Lepton_pdgId[1] == 11*11)) \
+#                                        && (nLepton>=3 && Alt$(Lepton_pt[3],0)<10) \
+#                                        && Lepton_pt[2]>15 \
+#                                        && Alt$(CleanJet_pt[0],0)>30 \
+#                                        && Alt$(CleanJet_pt[1],0)>30 \
+#                                        && WH3l_mlll > 100 \
+#                                        && abs(WH3l_chlll) == 1 \
+#                                        '
 
 ## DY->ee CR - 2 same-sign electrons IN the Z peak. To check the charge-flip probability method to estimate DY in the signal region
 
@@ -304,3 +216,29 @@ cuts['hww2l2v_13TeV_WH_SS_DYee_1j'] = {
 #                                        && abs(Lepton_eta[0] - Lepton_eta[1])<2.0 \
 #                                        && mlljj20_whss > 50. \
 #                                        '
+
+# # CR 1jet (from ZH3l analysis)
+# cuts['hww2l2v_13TeV_ZH3l_WZ_CR_1j'] = 'MinIf$( WH3l_mOSll[], WH3l_mOSll[Iteration$] > 0) > 12 \
+#                                     && Alt$(Lepton_pt[2],0)>15 \
+#                                     && Alt$(Lepton_pt[3],0)<10 \
+#                                     && abs(WH3l_chlll) == 1 \
+#                                     && Alt$( CleanJet_pt[0], 0) > 30 \
+#                                     && Alt$( CleanJet_pt[1], 0) < 30 \
+#                                     && WH3l_ZVeto < 25 \
+#                                     && ZH3l_Z4lveto > 20 \
+#                                     && ZH3l_dphilmetj > 3.14159/2 \
+#                                     '         
+
+# # CR 1jet (from ZH3l analysis)
+# cuts['hww2l2v_13TeV_ZH3l_WZ_CR_2j'] = 'MinIf$( WH3l_mOSll[], WH3l_mOSll[Iteration$] > 0) > 12 \
+#                                     && Alt$(Lepton_pt[2],0)>15 \
+#                                     && Alt$(Lepton_pt[3],0)<10 \
+#                                     && abs(WH3l_chlll) == 1 \
+#                                     && Alt$( CleanJet_pt[0], 0) > 30 \
+#                                     && Alt$( CleanJet_pt[1], 0) > 30 \
+#                                     && WH3l_ZVeto < 25 \
+#                                     && ZH3l_Z4lveto > 20 \
+#                                     && ZH3l_dphilmetj > 3.14159/2 \
+#                                     '         
+
+

@@ -42,7 +42,7 @@ mcProduction = 'Summer20UL16_106x_nAODv9_noHIPM_Full2016v9'
 
 dataReco     = 'Run2016_UL2016_nAODv9_noHIPM_Full2016v9'
 
-mcSteps      = 'MCl1loose2016v9__MCCorr2016v9NoJERInHorn__l2tightOR2016v9'
+mcSteps      = 'MCl1loose2016v9__MCCorr2016v9NoJERInHorn__l2tightOR2016v9{var}'
 
 fakeSteps    = 'DATAl1loose2016v9__l2loose__fakeW'
 
@@ -300,6 +300,8 @@ signals.append('ggH_hww')
 samples['qqH_hww'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'VBFHToWWTo2L2Nu_M125'),
     'weight': mcCommonWeight,
+    'suppressNegative' :['all'],
+    'suppressNegativeNuisances' :['all'],
     'FilesPerJob': 4
 }
 signals.append('qqH_hww')
