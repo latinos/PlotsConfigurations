@@ -28,21 +28,6 @@ Or, if they failed because the wall clock time has been exceeded, resubmit them 
 
     ./do_plots.sh
 
-### Select binning for BDT
-
-    mkBinningOptimization.py --pyCfg=binning_ossf.py --input=rootFile/plots_WH3l_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=wh3l_13TeV_ossf_plus_pt2ge20  --variable=BDT_WH3l_OSSF_v9_more --figure=S_B
-    mkBinningOptimization.py --pyCfg=binning_ossf.py --input=rootFile/plots_WH3l_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=wh3l_13TeV_ossf_minus_pt2ge20 --variable=BDT_WH3l_OSSF_v9_more --figure=S_B
-    
-    mkBinningOptimization.py --pyCfg=binning_ossf.py --input=rootFile/plots_WH3l_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=wh3l_13TeV_ossf_plus_pt2lt20  --variable=BDT_WH3l_OSSF_v9_more --figure=S_B
-    mkBinningOptimization.py --pyCfg=binning_ossf.py --input=rootFile/plots_WH3l_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=wh3l_13TeV_ossf_minus_pt2lt20 --variable=BDT_WH3l_OSSF_v9_more --figure=S_B
-    
-    
-    mkBinningOptimization.py --pyCfg=binning_sssf.py --input=rootFile/plots_WH3l_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=wh3l_13TeV_sssf_plus_pt2ge20  --variable=BDT_WH3l_SSSF_v9_more --figure=S_B
-    mkBinningOptimization.py --pyCfg=binning_sssf.py --input=rootFile/plots_WH3l_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=wh3l_13TeV_sssf_minus_pt2ge20 --variable=BDT_WH3l_SSSF_v9_more --figure=S_B
-    
-    mkBinningOptimization.py --pyCfg=binning_sssf.py --input=rootFile/plots_WH3l_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=wh3l_13TeV_sssf_plus_pt2lt20  --variable=BDT_WH3l_SSSF_v9_more --figure=S_B
-    mkBinningOptimization.py --pyCfg=binning_sssf.py --input=rootFile/plots_WH3l_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=wh3l_13TeV_sssf_minus_pt2lt20 --variable=BDT_WH3l_SSSF_v9_more --figure=S_B
-
 ### Create datacards
 
 Scaling the signal by a factor 10, to test different strategies in single eras:
@@ -52,6 +37,20 @@ Scaling the signal by a factor 10, to test different strategies in single eras:
 Using the correct signal scaling, for global combination:
 
     mkDatacards.py --pycfg=configuration.py --inputFile=rootFile/plots_WH3l_2016noHIPM_v9_chargeAsymmetry_Mu82_EleUL90.root --outputDirDatacard=datacards_original_signal_scale --structureFile=structure_original_signal_scale.py
+
+### Optimize binning using combine harvester
+
+Load combine:
+
+     cd $HOME/work/combine/CMSSW_10_2_13/src/
+     cmsenv
+     cd -
+
+Now optimize:
+
+    ./do_optimize_cards.sh BDT_WH3l_OSSF_v9_more
+
+    ./do_optimize_cards.sh BDT_WH3l_OSSF_new_v9_more
 
 ### Combine datacards
 
@@ -66,6 +65,8 @@ Actually combine datacards:
     mkdir -p Combination
 
     python script_datacards.py
+
+    python script_datacards_opt.py
 
 ### Interpret the results in terms of asymmetry
 
@@ -105,8 +106,18 @@ Since S appears in the denominator of the asymmetry expression, it cannot be 0, 
 
 ### Use script to extract asymmetry
 
-    python script_workspace_and_fit.py --datacard_name=Combination/WH_chargeAsymmetry_WH_3l_2016noHIPM_v9           --output_name=Combination/FitResults.txt           --freeze_nuisances=r_higgs
-    python script_workspace_and_fit.py --datacard_name=Combination/WH_chargeAsymmetry_WH_3l_2016noHIPM_v9_alsoLowPt --output_name=Combination/FitResults_alsoLowPt.txt --freeze_nuisances=r_higgs
+Using datacards with enhanced signal scaling:
+
+    python script_workspace_and_fit.py --datacard_name=Combination/WH_chargeAsymmetry_WH_3l_2016noHIPM_v9_opt           --output_name=Combination/FitResults_opt.txt           --freeze_nuisances=r_higgs
+    python script_workspace_and_fit.py --datacard_name=Combination/WH_chargeAsymmetry_WH_3l_2016noHIPM_v9_alsoLowPt_opt --output_name=Combination/FitResults_alsoLowPt_opt.txt --freeze_nuisances=r_higgs
+
+    python script_workspace_and_fit.py --datacard_name=Combination/WH_chargeAsymmetry_WH_3l_2016noHIPM_v9_new_opt           --output_name=Combination/FitResults_new_opt.txt           --freeze_nuisances=r_higgs
+    python script_workspace_and_fit.py --datacard_name=Combination/WH_chargeAsymmetry_WH_3l_2016noHIPM_v9_alsoLowPt_new_opt --output_name=Combination/FitResults_alsoLowPt_new_opt.txt --freeze_nuisances=r_higgs
+
+Using datacards with correct signal scaling:
+
+    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_3l_2016noHIPM_v9_original_signal_scale_opt     --output_name=Combination/FitResults_original_signal_scale_opt.txt     --freeze_nuisances=r_higgs
+    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_3l_2016noHIPM_v9_original_signal_scale_new_opt --output_name=Combination/FitResults_original_signal_scale_new_opt.txt --freeze_nuisances=r_higgs
 
 ### Produce Impact Plots
 
