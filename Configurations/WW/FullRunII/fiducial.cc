@@ -71,7 +71,7 @@ FiducialRegion::evaluate(unsigned)
     return 0.;
 
 //  if ((DressedLepton_pdgId->At(iPromptL[0]) * DressedLepton_pdgId->At(iPromptL[1]) != -143) && (DressedLepton_pdgId->At(iPromptL[0]) * DressedLepton_pdgId->At(iPromptL[1]) != -121) && (DressedLepton_pdgId->At(iPromptL[0]) * DressedLepton_pdgId->At(iPromptL[1]) != -169))
-  if (DressedLepton_pdgId->At(iPromptL[0]) * DressedLepton_pdgId->At(iPromptL[1]) != -143) 
+  if (DressedLepton_pdgId->At(iPromptL[0]) * DressedLepton_pdgId->At(iPromptL[1]) > 0) 
     return 0.;
 
   if(abs(LeptonGen_MotherPID->At(iPromptL[0])) == 15 || abs(LeptonGen_MotherPID->At(iPromptL[1])) == 15)
