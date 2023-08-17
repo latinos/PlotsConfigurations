@@ -24,10 +24,6 @@ Or, if they failed because the wall clock time has been exceeded, resubmit them 
 
     mkShapesMulti.py --pycfg=configuration.py --doHadd=1 --batchSplit=Samples,Files --doNotCleanup --nThreads=8
 
-### Plot original distributions
-
-    ./do_plot_original_distributions.sh
-
 ### Include DY -> ee estimation from opposite-sign phase space
 
 Go into the `DY_OS_CR` directory and follow the instructions in the `README` file:
@@ -37,6 +33,46 @@ Go into the `DY_OS_CR` directory and follow the instructions in the `README` fil
 ### Plot distributions with DY->ee data-driven histograms
 
     ./do_plot_DYflip_distributions.sh
+
+### Plot original distributions
+
+    ./do_plot_original_distributions.sh
+
+### Select binning for BDT
+
+    mkBinningOptimization.py --pyCfg=binning_mm.py --input=rootFile/plots_WHSS_2016HIPM_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_mm_2j_plus_pt2ge20  --variable=BDTG6_more --figure=S_B
+    mkBinningOptimization.py --pyCfg=binning_mm.py --input=rootFile/plots_WHSS_2016HIPM_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_mm_2j_minus_pt2ge20 --variable=BDTG6_more --figure=S_B
+    mkBinningOptimization.py --pyCfg=binning_mm.py --input=rootFile/plots_WHSS_2016HIPM_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_mm_1j_plus_pt2ge20  --variable=BDTG6_more --figure=S_B
+    mkBinningOptimization.py --pyCfg=binning_mm.py --input=rootFile/plots_WHSS_2016HIPM_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_mm_1j_minus_pt2ge20 --variable=BDTG6_more --figure=S_B
+
+    mkBinningOptimization.py --pyCfg=binning_mm.py --input=rootFile/plots_WHSS_2016HIPM_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_mm_2j_plus_pt2lt20  --variable=BDTG6_more --figure=S_B
+    mkBinningOptimization.py --pyCfg=binning_mm.py --input=rootFile/plots_WHSS_2016HIPM_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_mm_2j_minus_pt2lt20 --variable=BDTG6_more --figure=S_B
+    mkBinningOptimization.py --pyCfg=binning_mm.py --input=rootFile/plots_WHSS_2016HIPM_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_mm_1j_plus_pt2lt20  --variable=BDTG6_more --figure=S_B
+    mkBinningOptimization.py --pyCfg=binning_mm.py --input=rootFile/plots_WHSS_2016HIPM_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_mm_1j_minus_pt2lt20 --variable=BDTG6_more --figure=S_B
+
+
+    mkBinningOptimization.py --pyCfg=binning_em.py --input=rootFile/plots_WHSS_2016HIPM_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_em_2j_plus_pt2ge20  --variable=BDTG6_more --figure=S_B
+    mkBinningOptimization.py --pyCfg=binning_em.py --input=rootFile/plots_WHSS_2016HIPM_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_em_2j_minus_pt2ge20 --variable=BDTG6_more --figure=S_B
+    mkBinningOptimization.py --pyCfg=binning_em.py --input=rootFile/plots_WHSS_2016HIPM_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_em_1j_plus_pt2ge20  --variable=BDTG6_more --figure=S_B
+    mkBinningOptimization.py --pyCfg=binning_em.py --input=rootFile/plots_WHSS_2016HIPM_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_em_1j_minus_pt2ge20 --variable=BDTG6_more --figure=S_B
+
+    mkBinningOptimization.py --pyCfg=binning_em.py --input=rootFile/plots_WHSS_2016HIPM_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_em_2j_plus_pt2lt20  --variable=BDTG6_more --figure=S_B
+    mkBinningOptimization.py --pyCfg=binning_em.py --input=rootFile/plots_WHSS_2016HIPM_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_em_2j_minus_pt2lt20 --variable=BDTG6_more --figure=S_B
+    mkBinningOptimization.py --pyCfg=binning_em.py --input=rootFile/plots_WHSS_2016HIPM_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_em_1j_plus_pt2lt20  --variable=BDTG6_more --figure=S_B
+    mkBinningOptimization.py --pyCfg=binning_em.py --input=rootFile/plots_WHSS_2016HIPM_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_em_1j_minus_pt2lt20 --variable=BDTG6_more --figure=S_B
+
+
+    mkBinningOptimization.py --pyCfg=binning_ee.py --input=rootFile/plots_WHSS_2016HIPM_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_ee_2j_plus_pt2ge20  --variable=BDTG6_more --figure=S_B
+    mkBinningOptimization.py --pyCfg=binning_ee.py --input=rootFile/plots_WHSS_2016HIPM_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_ee_2j_minus_pt2ge20 --variable=BDTG6_more --figure=S_B
+    mkBinningOptimization.py --pyCfg=binning_ee.py --input=rootFile/plots_WHSS_2016HIPM_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_ee_1j_plus_pt2ge20  --variable=BDTG6_more --figure=S_B
+    mkBinningOptimization.py --pyCfg=binning_ee.py --input=rootFile/plots_WHSS_2016HIPM_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_ee_1j_minus_pt2ge20 --variable=BDTG6_more --figure=S_B
+
+    mkBinningOptimization.py --pyCfg=binning_ee.py --input=rootFile/plots_WHSS_2016HIPM_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_ee_2j_plus_pt2lt20  --variable=BDTG6_more --figure=S_B
+    mkBinningOptimization.py --pyCfg=binning_ee.py --input=rootFile/plots_WHSS_2016HIPM_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_ee_2j_minus_pt2lt20 --variable=BDTG6_more --figure=S_B
+    mkBinningOptimization.py --pyCfg=binning_ee.py --input=rootFile/plots_WHSS_2016HIPM_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_ee_1j_plus_pt2lt20  --variable=BDTG6_more --figure=S_B
+    mkBinningOptimization.py --pyCfg=binning_ee.py --input=rootFile/plots_WHSS_2016HIPM_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_ee_1j_minus_pt2lt20 --variable=BDTG6_more --figure=S_B
+
+### Create datacards
 
 Using DY->ee data-driven distributions and scaling the signal by a factor 10, to test different strategies in single eras:
 
@@ -50,23 +86,7 @@ Using DY->ee data-driven distributions and the correct signal scaling, for globa
 
     mkDatacards.py --pycfg=configuration.py --inputFile=rootFile/plots_WHSS_2016HIPM_v9_chargeAsymmetry_Mu82_EleUL90_DYflip.root --outputDirDatacard=datacards_DYflip_original_signal_scale --structureFile=structure_DYflip_original_signal_scale.py
 
-### Optimize binning using combine harvester
-
-Load combine:
-
-     cd $HOME/work/combine/CMSSW_10_2_13/src/
-     cmsenv
-     cd -
-
-Now optimize:
-
-    ./do_optimize_cards.sh BDTG6_TT_more
-
 ### Combine datacards
-
-Create Combination directory:
-
-     mkdir -p Combination
 
 Load combine:
 
@@ -76,7 +96,7 @@ Load combine:
 
 Actually combine datacards:
 
-     python script_datacards_opt.py
+     mkdir -p Combination
 
      python script_datacards.py
 
@@ -127,14 +147,6 @@ Using BDT variable (true/false refer to the usage of data-driven DYee):
 
     ./do_workspace_and_fit.sh mlljj20_whss_1j_bin true
     ./do_workspace_and_fit.sh mlljj20_whss_1j_bin false
-
-For newer trainings, where we only want to compare the full strategy:
-
-    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_SS_2016HIPM_v9_BDTG6_TT_more_allFinalStates_alsoLowPt_opt_noZveto --output_name Combination/FitResults_BDTG6_TT_more.txt --freeze_nuisances r_higgs
-
-Using datacards with correct signal scaling:
-
-    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_SS_2016HIPM_v9_BDTG6_TT_more_allFinalStates_alsoLowPt_DYflip_original_signal_scale_opt_noZveto --output_name Combination/FitResults_BDTG6_TT_more_original_signal_scale.txt --freeze_nuisances r_higgs
 
 ### Produce Impact Plots
 

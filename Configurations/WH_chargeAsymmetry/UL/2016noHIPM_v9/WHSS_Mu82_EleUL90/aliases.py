@@ -15,9 +15,9 @@ configurations = os.path.dirname(configurations) # Configurations
 mc     = [skey for skey in samples if skey not in ('Fake', 'DATA', 'Dyemb')]
 mc_emb = [skey for skey in samples if skey not in ('Fake', 'DATA')]
 
-# LepCut2l__ele_mvaFall17V2Iso_WP90__mu_cut_Tight80x
-eleWP = 'mvaFall17V2Iso_WP90'
-muWP  = 'cut_Tight80x'
+# LepCut2l__ele_mvaFall17V2Iso_WP90_tthmva_70__mu_cut_Tight_HWWW_tthmva_80
+eleWP = 'mvaFall17V2Iso_WP90_tthmva_70'
+muWP  = 'cut_Tight80x_tthmva_80'
 
 aliases['LepWPCut'] = {
     'expr': 'LepCut2l__ele_mvaFall17V2Iso_WP90__mu_cut_Tight80x*\
@@ -26,50 +26,16 @@ aliases['LepWPCut'] = {
     'samples': mc_emb + ['DATA']
 }
 
-# Lepton SF (not considering the ttHMVA discriminant)
 aliases['LepWPSF'] = {
     'expr': 'LepSF2l__ele_'+eleWP+'__mu_'+muWP,
     'samples': mc_emb
-}
-
-# ttHMVA SFs and uncertainties
-aliases['LepWPttHMVASF'] = {
-    'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/ttHMVASF.C+' % configurations],
-    'class'      : 'ttHMVASF',
-    'args'       : ("2016noHIPM", 2, "all", "nominal"),
-    'samples'    : mc_emb
-}
-
-aliases['LepWPttHMVASFEleUp'] = {
-    'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/ttHMVASF.C+' % configurations],
-    'class'      : 'ttHMVASF',
-    'args'       : ("2016noHIPM", 2, "all", "eleUp"),
-    'samples'    : mc_emb
-}
-aliases['LepWPttHMVASFEleDown'] = {
-    'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/ttHMVASF.C+' % configurations],
-    'class'      : 'ttHMVASF',
-    'args'       : ("2016noHIPM", 2, "all", "eleDown"),
-    'samples'    : mc_emb
-}
-aliases['LepWPttHMVASFMuUp'] = {
-    'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/ttHMVASF.C+' % configurations],
-    'class'      : 'ttHMVASF',
-    'args'       : ("2016noHIPM", 2, "all", "muUp"),
-    'samples'    : mc_emb
-}
-aliases['LepWPttHMVASFMuDown'] = {
-    'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/ttHMVASF.C+' % configurations],
-    'class'      : 'ttHMVASF',
-    'args'       : ("2016noHIPM", 2, "all", "muDown"),
-    'samples'    : mc_emb
 }
 
 # Fake leptons transfer factor
 aliases['fakeW'] = {
     'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/fake_rate_reader.C+' % configurations],
     'class'      : 'fake_rate_reader',
-    'args'       : ('2016noHIPM', '90', '82', 0.90, 0.82, 'nominal', 2, 'std'),
+    'args'       : ('2016_noHIPM', '90', '82', 0.90, 0.82, 'nominal', 2, 'std'),
     'samples'    : ['Fake']
 }
 
@@ -80,18 +46,21 @@ aliases['fakeWEleUp'] = {
     'args'       : ('2016_noHIPM', '90', '82', 0.90, 0.82, 'EleUp', 2, 'std'),
     'samples'    : ['Fake']
 }
+
 aliases['fakeWEleDown'] = {
     'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/fake_rate_reader.C+' % configurations],
     'class'      : 'fake_rate_reader',
     'args'       : ('2016_noHIPM', '90', '82', 0.90, 0.82, 'EleDown', 2, 'std'),
     'samples'    : ['Fake']
 }
+
 aliases['fakeWMuUp'] = {
     'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/fake_rate_reader.C+' % configurations],
     'class'      : 'fake_rate_reader',
     'args'       : ('2016_noHIPM', '90', '82', 0.90, 0.82, 'MuUp', 2, 'std'),
     'samples'    : ['Fake']
 }
+
 aliases['fakeWMuDown'] = {
     'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/fake_rate_reader.C+' % configurations],
     'class'      : 'fake_rate_reader',
@@ -99,24 +68,28 @@ aliases['fakeWMuDown'] = {
     'samples'    : ['Fake']
 }
 
+
 aliases['fakeWStatEleUp'] = {
     'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/fake_rate_reader.C+' % configurations],
     'class'      : 'fake_rate_reader',
     'args'       : ('2016_noHIPM', '90', '82', 0.90, 0.82, 'StatEleUp', 2, 'std'),
     'samples'    : ['Fake']
 }
+
 aliases['fakeWStatEleDown'] = {
     'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/fake_rate_reader.C+' % configurations],
     'class'      : 'fake_rate_reader',
     'args'       : ('2016_noHIPM', '90', '82', 0.90, 0.82, 'StatEleDown', 2, 'std'),
     'samples'    : ['Fake']
 }
+
 aliases['fakeWStatMuUp'] = {
     'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/fake_rate_reader.C+' % configurations],
     'class'      : 'fake_rate_reader',
     'args'       : ('2016_noHIPM', '90', '82', 0.90, 0.82, 'StatMuUp', 2, 'std'),
     'samples'    : ['Fake']
 }
+
 aliases['fakeWStatMuDown'] = {
     'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/fake_rate_reader.C+' % configurations],
     'class'      : 'fake_rate_reader',
@@ -124,13 +97,14 @@ aliases['fakeWStatMuDown'] = {
     'samples'    : ['Fake']
 }
 
+
 # No jet with pt > 30 GeV
 aliases['zeroJet'] = {
     'expr': 'Alt$(CleanJet_pt[0], 0) < 30.'
 }
 
 aliases['oneJet'] = {
-    'expr': 'Alt$(CleanJet_pt[0], 0) > 30. && Alt$(CleanJet_pt[1], 0) < 30.'
+    'expr': 'Alt$(CleanJet_pt[0], 0) > 30.'
 }
 
 aliases['multiJet'] = {
@@ -214,6 +188,7 @@ for shift in ['jes', 'lf', 'hf', 'lfstats1', 'lfstats2', 'hfstats1', 'hfstats2',
 # End of b tagging pippone
 ####################################################################################
 
+
 aliases['gstarLow'] = {
     'expr': 'Gen_ZGstar_mass > 0 && Gen_ZGstar_mass < 4',
     'samples': 'WgS'
@@ -223,6 +198,12 @@ aliases['gstarHigh'] = {
     'expr': 'Gen_ZGstar_mass < 0 || Gen_ZGstar_mass > 4',
     'samples': 'WZ'
 }
+
+# aliases['embedtotal'] = {
+#     'expr': 'embed_total_mva16',  # wrt. eleWP
+#     'samples': 'Dyemb'
+# }
+
 
 # gen-matching to prompt only (GenLepMatch2l matches to *any* gen lepton)
 aliases['PromptGenLepMatch2l'] = {
@@ -248,9 +229,50 @@ aliases['Top_pTrw'] = {
     'samples': ['top']
 }
 
+
+# aliases['topGenPtOTF'] = {
+#     'expr': 'Sum$((GenPart_pdgId == 6 && TMath::Odd(GenPart_statusFlags / %d)) * GenPart_pt)' % lastcopy,
+#     'samples': ['top']
+# }
+
+# aliases['antitopGenPtOTF'] = {
+#     'expr': 'Sum$((GenPart_pdgId == -6 && TMath::Odd(GenPart_statusFlags / %d)) * GenPart_pt)' % lastcopy,
+#     'samples': ['top']
+# }
+
+
+
+##### DY Z pT reweighting
+aliases['nCleanGenJet'] = {
+    'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/Differential/ngenjet.cc+' % os.getenv('CMSSW_BASE')],
+    'class': 'CountGenJet',
+    'samples': mc
+}
+
+# aliases['getGenZpt_OTF'] = {
+#     'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/patches/getGenZpt.cc+' % os.getenv('CMSSW_BASE')],
+#     'class': 'getGenZpt',
+#     'samples': ['DY']
+# }
+# handle = open('%s/src/PlotsConfigurations/Configurations/patches/DYrew30.py' % os.getenv('CMSSW_BASE'),'r')
+# exec(handle)
+# handle.close()
+# aliases['DY_NLO_pTllrw'] = {
+#     'expr': '('+DYrew['2016']['NLO'].replace('x', 'getGenZpt_OTF')+')*(nCleanGenJet == 0)+1.0*(nCleanGenJet > 0)',
+#     'samples': ['DY']
+# }
+# aliases['DY_LO_pTllrw'] = {
+#     'expr': '('+DYrew['2016']['LO'].replace('x', 'getGenZpt_OTF')+')*(nCleanGenJet == 0)+1.0*(nCleanGenJet > 0)',
+#     'samples': ['DY']
+# }
+
+
+# Jet bins
+# using Alt$(CleanJet_pt[n], 0) instead of Sum$(CleanJet_pt >= 30) because jet pt ordering is not strictly followed in JES-varied samples
+
 # data/MC scale factors
 aliases['SFweight'] = {
-    'expr': ' * '.join(['SFweight2l', 'LepWPCut', 'LepWPSF','PrefireWeight','Jet_PUIDSF_loose','btagSF','LepWPttHMVASF']),
+    'expr': ' * '.join(['SFweight2l', 'LepWPCut', 'LepWPSF','PrefireWeight','Jet_PUIDSF_loose','btagSF']),
     'samples': mc
 }
 
@@ -263,7 +285,6 @@ aliases['SFweightEleDown'] = {
     'expr': 'LepSF2l__ele_'+eleWP+'__Do',
     'samples': mc_emb
 }
-
 aliases['SFweightMuUp'] = {
     'expr': 'LepSF2l__mu_'+muWP+'__Up',
     'samples': mc_emb
@@ -296,18 +317,9 @@ aliases['SFtriggDown'] = {
 # }
 
 ### BDT on-the-fly
-
-# Default training in AN-22-120_v1
 aliases['BDT_WHSS_v9'] = {
     'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/BDT_WHSS_v9.C+' % configurations],
     'class': 'BDT_WHSS_v9',
-    'args' : ('BDTG_6', '%s/WH_chargeAsymmetry/UL/data/BDT/2016noHIPM/WHSS/weights_old_no_TT/TMVAClassification_BDTG_6.weights.xml' % configurations),
-}
-
-# WJets and Semileptonic Top are considered as fake.
-aliases['BDT_WHSS_TopSemileptonic_v9'] = {
-    'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/BDT_WHSS_TopSemileptonic_v9.C+' % configurations],
-    'class': 'BDT_WHSS_TopSemileptonic_v9',
     'args' : ('BDTG_6', '%s/WH_chargeAsymmetry/UL/data/BDT/2016noHIPM/WHSS/weights/TMVAClassification_BDTG_6.weights.xml' % configurations),
 }
 
