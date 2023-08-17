@@ -20,17 +20,17 @@ aliases['ZVeto'] = {
 
 aliases['BDTOutput_0j_DY'] = {
     'class': 'ww_dy_bdt_0j',
-    'linesToAdd' : ['.L %s/WW/FullRunII/Full2018_v7/inclusive_SF/WW_BDT_0j_DY.cc+' % configurations],
+    'linesToAdd' : ['.L %s/WW/FullRunII/Full2018_v9/inclusive_SF/WW_BDT_0j_DY.cc+' % configurations],
 }
 
 aliases['BDTOutput_1j_DY'] = {
     'class': 'ww_dy_bdt_1j',
-    'linesToAdd' : ['.L %s/WW/FullRunII/Full2018_v7/inclusive_SF/WW_BDT_1j_DY.cc+' % configurations],
+    'linesToAdd' : ['.L %s/WW/FullRunII/Full2018_v9/inclusive_SF/WW_BDT_1j_DY.cc+' % configurations],
 }
 
 aliases['BDTOutput_2j_DY'] = {
     'class': 'ww_dy_bdt_2j',
-    'linesToAdd' : ['.L %s/WW/FullRunII/Full2018_v7/inclusive_SF/WW_BDT_2j_DY.cc+' % configurations],
+    'linesToAdd' : ['.L %s/WW/FullRunII/Full2018_v9/inclusive_SF/WW_BDT_2j_DY.cc+' % configurations],
 }
 
 aliases['zeroJet'] = {
