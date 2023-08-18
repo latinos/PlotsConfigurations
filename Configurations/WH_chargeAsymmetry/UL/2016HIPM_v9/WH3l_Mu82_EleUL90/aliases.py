@@ -15,9 +15,9 @@ configurations = os.path.dirname(configurations) # Configurations
 mc     = [skey for skey in samples if skey not in ('Fake', 'DATA', 'Dyemb')]
 mc_emb = [skey for skey in samples if skey not in ('Fake', 'DATA')]
 
-# LepCut2l__ele_mvaFall17V2Iso_WP90_tthmva_70__mu_cut_Tight_HWWW_tthmva_80
-eleWP = 'mvaFall17V2Iso_WP90_tthmva_70'
-muWP  = 'cut_Tight80x_tthmva_80'
+# LepCut2l__ele_mvaFall17V2Iso_WP90__mu_cut_Tight80x
+eleWP = 'mvaFall17V2Iso_WP90'
+muWP  = 'cut_Tight80x'
 
 aliases['LepWPCut'] = {
     'expr': 'LepCut3l__ele_mvaFall17V2Iso_WP90__mu_cut_Tight80x*\
@@ -27,9 +27,46 @@ aliases['LepWPCut'] = {
     'samples': mc +  ['DATA']
 }
 
+# Lepton SF (not considering the ttHMVA discriminant)
 aliases['LepWPSF'] = {
     'expr': 'LepSF3l__ele_' + eleWP + '__mu_' + muWP,
     'samples': mc
+}
+
+# ttHMVA SFs and uncertainties
+aliases['LepWPttHMVASF'] = {
+    'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/ttHMVASF.C+' % configurations],
+    'class'      : 'ttHMVASF',
+    'args'       : ("2016HIPM", 3, "all", "nominal"),
+    'samples'    : mc_emb
+}
+
+aliases['LepWPttHMVASFEleUp'] = {
+    'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/ttHMVASF.C+' % configurations],
+    'class'      : 'ttHMVASF',
+    'args'       : ("2016HIPM", 3, "all", "eleUp"),
+    'samples'    : mc_emb
+}
+
+aliases['LepWPttHMVASFEleDown'] = {
+    'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/ttHMVASF.C+' % configurations],
+    'class'      : 'ttHMVASF',
+    'args'       : ("2016HIPM", 3, "all", "eleDown"),
+    'samples'    : mc_emb
+}
+
+aliases['LepWPttHMVASFMuUp'] = {
+    'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/ttHMVASF.C+' % configurations],
+    'class'      : 'ttHMVASF',
+    'args'       : ("2016HIPM", 3, "all", "muUp"),
+    'samples'    : mc_emb
+}
+
+aliases['LepWPttHMVASFMuDown'] = {
+    'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/ttHMVASF.C+' % configurations],
+    'class'      : 'ttHMVASF',
+    'args'       : ("2016HIPM", 3, "all", "muDown"),
+    'samples'    : mc_emb
 }
 
 # Fake leptons transfer factor
@@ -97,7 +134,7 @@ aliases['zeroJet'] = {
 }
 
 aliases['oneJet'] = {
-    'expr': 'Alt$(CleanJet_pt[0], 0) > 30.'
+    'expr': 'Alt$(CleanJet_pt[0], 0) > 30. && Alt$(CleanJet_pt[1], 0) < 30.'
 }
 
 aliases['multiJet'] = {
@@ -119,9 +156,9 @@ bWP_medium_deepFlavB = '0.2598'
 bWP_tight_deepFlavB  = '0.6502'
 
 # Actual algo and WP definition. BE CONSISTENT!!
-bAlgo = 'DeepB' # ['DeepB','DeepFlavB']
-bWP   = bWP_medium_deepB
-bSF   = 'deepcsv' # ['deepcsv','deepjet']
+bAlgo = 'DeepB'          # ['DeepB','DeepFlavB']
+bWP   = bWP_medium_deepB # [bWP_loose_deepB, bWP_loose_deepFlavB]
+bSF   = 'deepcsv'        # ['deepcsv','deepjet']
 
 # b veto
 aliases['bVeto'] = {
@@ -233,7 +270,7 @@ aliases['nCleanGenJet'] = {
 
 # data/MC scale factors
 aliases['SFweight'] = {
-    'expr': ' * '.join(['SFweight3l', 'LepWPCut', 'LepWPSF','PrefireWeight','Jet_PUIDSF_loose', 'btagSF']),
+    'expr': ' * '.join(['SFweight3l', 'LepWPCut', 'LepWPSF','PrefireWeight','Jet_PUIDSF_loose', 'btagSF','LepWPttHMVASF']),
     'samples': mc
 }
 
@@ -268,16 +305,31 @@ aliases['SFweightMuDown'] = {
 # }
 
 ### BDT on-the-fly
+
+# Default trainings in AN-22-120_v1
 aliases['BDT_WH3l_OSSF_v9'] = {
     'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/BDT_WH3l_OSSF_v9.C+' % configurations],
     'class' : 'BDT_WH3l_OSSF_v9',
-    'args'  : ('BDTG4F07', '%s/WH_chargeAsymmetry/UL/2016HIPM_v9/BDTconfig_WH3l/dataset_OSSF/weights/TMVAClassification_BDTG4F07.weights.xml' % configurations),
+    'args'  : ('BDTG4F07', '%s/WH_chargeAsymmetry/UL/data/BDT/2016HIPM/WH3l/OSSF/weights_old/TMVAClassification_BDTG4F07.weights.xml' % configurations),
 }
 
 aliases['BDT_WH3l_SSSF_v9'] = {
     'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/BDT_WH3l_SSSF_v9.C+' % configurations],
     'class' : 'BDT_WH3l_SSSF_v9',
-    'args'  : ('BDTG4SK01_1000Trees_02baggingfraction', '%s/WH_chargeAsymmetry/UL/2016HIPM_v9/BDTconfig_WH3l/dataset_SSSF_no_btag/weights/TMVAClassification_BDTG4SK01_1000Trees_02baggingfraction.weights.xml' % configurations),
+    'args'  : ('BDTG4SK01_1000Trees_02baggingfraction', '%s/WH_chargeAsymmetry/UL/data/BDT/2016HIPM/WH3l/SSSF/weights_old/TMVAClassification_BDTG4SK01_1000Trees_02baggingfraction.weights.xml' % configurations),
+}
+
+# Considering Top and Z+jets (DY) as sources of fake leptons
+aliases['BDT_WH3l_OSSF_new_v9'] = {
+    'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/BDT_WH3l_OSSF_v9.C+' % configurations],
+    'class' : 'BDT_WH3l_OSSF_v9',
+    'args'  : ('BDTG4C3', '%s/WH_chargeAsymmetry/UL/data/BDT/2016HIPM/WH3l/OSSF/weights/TMVAClassification_BDTG4C3.weights.xml' % configurations),
+}
+
+aliases['BDT_WH3l_SSSF_new_v9'] = {
+    'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/BDT_WH3l_SSSF_v9.C+' % configurations],
+    'class' : 'BDT_WH3l_SSSF_v9',
+    'args'  : ('BDTG4SK01_05shrinkage', '%s/WH_chargeAsymmetry/UL/data/BDT/2016HIPM/WH3l/SSSF/weights/TMVAClassification_BDTG4SK01_05shrinkage.weights.xml' % configurations),
 }
 
 # Fix METFilter_DATA definition: Flag_ecalBadCalibFilter is removed since it is not needed in 2016
