@@ -18,7 +18,7 @@ variables['events']     = { 'name': '1',
 variables['ellipse_mA_tmp1_mH_tmp2']          = { 'name'  : 'ellipse_mA_tmp1_mH_tmp2',
                                                 'range' : (7,-0.5,6.5),
                                                 'xaxis' : 'elliptical bin in mA-mH, pTZ',
-                                                'cuts'  : ['breq_SR'],
+                                                'cuts'  : ['breq_SR', 'bveto_1j_SR'],
 						'samples' : bkg+['AZH_tmp1_tmp2'],
                                                'fold'  : 0
                                             }

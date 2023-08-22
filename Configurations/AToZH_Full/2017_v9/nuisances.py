@@ -381,7 +381,7 @@ nuisances['ttZ_norm2017'] = {
     },
     'type' : 'rateParam',
     'cuts' : [
-	'breq_SR',
+	'breq_SR', 'bveto_1j_SR'
    ]
  }
 
