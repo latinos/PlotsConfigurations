@@ -33,11 +33,13 @@ class BrazilianPlotter:
             return json.load(f)
     
     def load_limits(self, mA, mH):
-        with open(os.path.join(self.path_to_limits, "CL.log"), 'r') as f:
+        with open(os.path.join(self.path_to_limits, f"CL_MA-{mA}_MH-{mH}.log"), 'r') as f:
+            flines = [x for x in f if x.startswith("Expected")]
             limit_vals = []
-            for line in f:
-                if f"{mA} {mH}" in line:
-                    limit_vals = np.array(line.split(" ")[2:],float)
+            for line in flines:
+                pct_val = float(re.findall(r"\d.\d+", line.split("<")[1])[0])
+                limit_vals.append(pct_val)
+
             return limit_vals
 
     def load_brasilians(self):
@@ -116,7 +118,7 @@ class BrazilianPlotter:
             self.plot_common(ax)
 
             os.makedirs(os.path.join(self.path_to_limits, "plot_output/brasilians"), exist_ok=True)
-            fname = f"MH-{mA}_{self.year}"
+            fname = f"MH-{mH}_{self.year}"
             plt.savefig(os.path.join(self.path_to_limits, f"plot_output/brasilians/{fname}.png"))
             plt.savefig(os.path.join(self.path_to_limits, f"plot_output/brasilians/{fname}.pdf"))
             plt.close()

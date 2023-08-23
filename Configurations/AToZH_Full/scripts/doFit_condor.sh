@@ -17,7 +17,7 @@ configFile='configuration_forDatacards.py'
 
 ## scrape tag from configuration file and
 ## create parent directory to hold per-mass-point combine output
-tag=$(cat configuration.py | awk '/tag =/ {print $3}' | tr -d \')
+tag=$(cat $configFile | awk '/tag =/ {print $3}' | tr -d \')
 datacardDir="datacards_condor_${tag}"
 mkdir higgsCombine_$tag
 
@@ -37,34 +37,23 @@ echo "          next mass point = ($mA, $mH)"
 echo "--------------------------------------------------"
 
 ### make workspaces
-path="${datacardDir}/mA_${mA}_mH_${mH}/breq_SR/ellipse_mA_${mA}_mH_${mH}"
-datacardPath="${path}/datacard.txt"
-workspacePath="${path}/workspace.root"
-echo -e "\n{doFit.sh} >> text2workspace.py $datacardPath -m 125 -o $workspacePath"
-text2workspace.py $datacardPath -m 125 -o $workspacePath
+breq_path="${datacardDir}/mA_${mA}_mH_${mH}/breq_SR/ellipse_mA_${mA}_mH_${mH}/datacard.txt"
+bveto_1j_path="${datacardDir}/mA_${mA}_mH_${mH}/bveto_1j_SR/ellipse_mA_${mA}_mH_${mH}/datacard.txt"
+
+combinedPath="${datacardDir}/mA_${mA}_mH_${mH}/combined_SR/"
+mkdir $combinedPath
+combineCards.py breq_SR=$breq_path bveto_1j_SR=$bveto_1j_path > $combinedPath/datacard.txt
+
+echo -e "\n{doFit.sh} >> text2workspace.py ${combinedPath}/datacard.txt -m 125 -o $combinedPath/workspace.root"
+text2workspace.py $combinedPath/datacard.txt -m 125 -o ${combinedPath}/workspace.root
+
 
 ### run AsymptoticLimits
 cd higgsCombine_${tag}/
-fitTag="_AZH_mA${mA}_mH${mH}_breq_SR"
-echo -e "\n\n{doFit.sh} >> combine -M AsymptoticLimits -m 125 --run blind -d $workspacePath -n $fitTag"
-combine -M AsymptoticLimits -m 125 --run blind -d ../$workspacePath -n $fitTag > CL.txt
-cat CL.txt
+fitTag="_AZH_mA${mA}_mH${mH}_SR"
+echo -e "\n\n{doFit.sh} >> combine -M AsymptoticLimits -m 125 --run blind -d ${combinedPath}/workspace.root -n $fitTag"
+combine -M AsymptoticLimits -m 125 --run blind -d ../${combinedPath}/workspace.root -n $fitTag > CL_${mass_point}.log
+cat CL_${mass_point}.log
 
-### save CLs to text file
-#------------------------------------------------------------------------------
-CL_2=$(grep "2.5%" CL.txt | awk '{print $5}')
-CL_16=$(grep "16.0%" CL.txt | awk '{print $5}')
-CL_50=$(grep "50.0%" CL.txt | awk '{print $5}')
-CL_84=$(grep "84.0%" CL.txt | awk '{print $5}')
-CL_98=$(grep "97.5%" CL.txt | awk '{print $5}')
-        
-echo "$mA $mH $CL_2 $CL_16 $CL_50 $CL_84 $CL_98" >> CL.log
-echo -e "\n{doFit.sh} >> CLs saved to CL.log"
-cd ..
-
-
-echo -e "\n\ncleaning up temporary files..."
-#rm higgsCombine_${tag}/CL.txt
 
 echo -e "\n\ndone :)"
-echo -e "per-mass-point higgsCombine files and CL.log found in parent folder ./higgsCombine_${tag}\n"

@@ -27,14 +27,14 @@ class MassPlaneContourPlotter:
             return json.load(f)
 
     def load_limit(self, mA, mH):
-        with open(os.path.join(self.path_to_limits, "CL.log"), 'r') as f:
+        with open(os.path.join(self.path_to_limits, f"CL_MA-{mA}_MH-{mH}.txt"), 'r') as f:
+            flines = [x for x in f if x.startswith("Expected")]
             limit_vals = []
-            for line in f:
-                if f"{mA} {mH}" in line:
-                    limit_vals = np.array(line.split(" ")[2:],float)
-            return limit_vals[2]
+            for line in flines:
+                pct_val = float(re.findall(r"\d.\d+", line.split("<")[1])[0])
+                limit_vals.append(pct_val)
 
-        return limit_value
+            return limit_vals[2]
 
     def load_mass_points(self):
         with open("signals.txt", 'r') as f:
