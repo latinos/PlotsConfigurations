@@ -117,40 +117,40 @@ aliases['AZH_mA_minus_mH_patch'] = {
     'linesToAdd': [
        '.L %s/src/PlotsConfigurations/Configurations/AToZH_Full/scripts/AZH_patch_2016.cc+' % os.getenv('CMSSW_BASE')
     ],
-    'class': 'AZH_patch',
+    'class': 'AZH_patch_2016',
     'args': ("AZH_mA_minus_mH"),
 }
 
 aliases['AZH_Amass'] = {
-    'class': 'AZH_patch',
+    'class': 'AZH_patch_2016',
     'args': ("AZH_Amass"),
     'samples': [skey for skey in samples if skey not in mc]
 }
 
 aliases['nbjet'] = {
-    'class': 'AZH_patch',
+    'class': 'AZH_patch_2016',
     'args': ("nbjet"),
 }
 
 aliases['AZH_Hmass'] = {
-    'class': 'AZH_patch',
+    'class': 'AZH_patch_2016',
     'args': ("AZH_Hmass"),
     'samples': [skey for skey in samples if skey not in mc]
 }
 
 aliases['AZH_ChiSquare'] = {
-    'class': 'AZH_patch',
+    'class': 'AZH_patch_2016',
     'args': ("AZH_ChiSquare"),
     'samples': [skey for skey in samples if skey not in mc]
 }
 
 aliases['AZH_Tophadronic'] = {
-    'class': 'AZH_patch',
+    'class': 'AZH_patch_2016',
     'args': ("AZH_Tophadronic")
 }
 
 aliases['AZH_mA_minus_mH_onebjet'] = {
-    'class' : 'AZH_patch',
+    'class' : 'AZH_patch_2016',
     'args' : ("AZH_mA_minus_mH_onebjet")
 }
 
