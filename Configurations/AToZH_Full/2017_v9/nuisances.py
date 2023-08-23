@@ -388,45 +388,20 @@ nuisances['ttZ_norm2017'] = {
 
 ####### Jet energy scale
 
-#jes_systs = ['JESAbsolute','JESAbsolute_2017','JESBBEC1','JESBBEC1_2017','JESEC2','JESEC2_2017','JESFlavorQCD','JESHF','JESHF_2017','JESRelativeBal','JESRelativeSample_2017']
-#folderup = ""
-#folderdo = ""
-
-#for js in jes_systs:
-#  if 'Absolute' in js:
-#    folderup =  treeBaseDir+'Fall2017_102X_nAODv7_Full2017v7/MCl1loose2017v7__MCCorr2017v7__l2loose__l2tightOR2017v7__JESAbsoluteup_suffix' 
-#    folderdo = treeBaseDir+'Fall2017_102X_nAODv7_Full2017v7/MCl1loose2017v7__MCCorr2017v7__l2loose__l2tightOR2017v7__JESAbsolutedo_suffix' 
-#  elif 'BBEC1' in js:
-#    folderup = treeBaseDir+'Fall2017_102X_nAODv7_Full2017v7/MCl1loose2017v7__MCCorr2017v7__l2loose__l2tightOR2017v7__JESBBEC1up_suffix'
-#    folderdo = treeBaseDir+'Fall2017_102X_nAODv7_Full2017v7/MCl1loose2017v7__MCCorr2017v7__l2loose__l2tightOR2017v7__JESBBEC1do_suffix'
-#  elif 'EC2' in js:
-#    folderup = treeBaseDir+'Fall2017_102X_nAODv7_Full2017v7/MCl1loose2017v7__MCCorr2017v7__l2loose__l2tightOR2017v7__JESEC2up_suffix'
-#    folderdo =  treeBaseDir+'Fall2017_102X_nAODv7_Full2017v7/MCl1loose2017v7__MCCorr2017v7__l2loose__l2tightOR2017v7__JESEC2do_suffix'
-#  elif 'HF' in js:
-#    folderup = treeBaseDir+'Fall2017_102X_nAODv7_Full2017v7/MCl1loose2017v7__MCCorr2017v7__l2loose__l2tightOR2017v7__JESHFup_suffix'
-#    folderdo = treeBaseDir+'Fall2017_102X_nAODv7_Full2017v7/MCl1loose2017v7__MCCorr2017v7__l2loose__l2tightOR2017v7__JESHFdo_suffix'
-#  elif 'Relative' in js:
-#    folderup = treeBaseDir+'Fall2017_102X_nAODv7_Full2017v7/MCl1loose2017v7__MCCorr2017v7__l2loose__l2tightOR2017v7__JESRelativeup_suffix'
-#    folderdo = treeBaseDir+'Fall2017_102X_nAODv7_Full2017v7/MCl1loose2017v7__MCCorr2017v7__l2loose__l2tightOR2017v7__JESRelativedo_suffix'
-#  elif 'FlavorQCD' in js:
-#    folderup = treeBaseDir+'Fall2017_102X_nAODv7_Full2017v7/MCl1loose2017v7__MCCorr2017v7__l2loose__l2tightOR2017v7__JESFlavorQCDup_suffix'
-#    folderdo = treeBaseDir+'Fall2017_102X_nAODv7_Full2017v7/MCl1loose2017v7__MCCorr2017v7__l2loose__l2tightOR2017v7__JESFlavorQCDdo_suffix'
-#
-#  nuisances[js] = {
-#                'name': 'CMS_scale_'+js,
-#                'kind': 'suffix',
-#                'type': 'shape',
-#                'mapUp': js+'up',
-#                'mapDown': js+'do',
-#                'samples': dict((skey, ['1', '1']) for skey in mc),
-#                'samples': {'ttZ': ['1','1'], 'VVV': ['1','1'], 'ZH_hww': ['1','1'], 'ggZH_hww': ['1','1'], 'WH_hww': ['1','1'], 'ttH_hww': ['1','1'], 'ZH_htt': ['1','1'], 'WH_htt': ['1','1']},
-#		'folderUp': folderup,
-#	        'folderDown': folderdo,	
-#                'folderUp'   : treeBaseDir+'Fall2017_102X_nAODv7_Full2017v7/MCl1loose2017v7__MCCorr2017v7__l2loose__l2tightOR2017v7__JESup_suffix', 
-#                'folderDown' : treeBaseDir+'Fall2017_102X_nAODv7_Full2017v7/MCl1loose2017v7__MCCorr2017v7__l2loose__l2tightOR2017v7__JESdo_suffix', 
-#                'AsLnN': '1',
+jes_systs = ['JESAbsolute','JESAbsolute_2017','JESBBEC1','JESBBEC1_2017','JESEC2','JESEC2_2017','JESFlavorQCD','JESHF','JESHF_2017','JESRelativeBal','JESRelativeSample_2017']
+for js in jes_systs:
+      nuisances[js] = {
+                'name': 'CMS_scale_'+js,
+                'kind': 'suffix',
+                'type': 'shape',
+                'mapUp': js+'up',
+                'mapDown': js+'do',
+                'samples': dict((skey, ['1', '1']) for skey in mc),
+                'folderUp'   : treeBaseDir+'Summer20UL17_106x_nAODv9_Full2017v9/MCl1loose2017v9__MCCorr2017v9NoJERInHorn__l2tightOR2017v9__RDF__JESup_suffix', 
+                'folderDown' : treeBaseDir+'Summer20UL17_106x_nAODv9_Full2017v9/MCl1loose2017v9__MCCorr2017v9NoJERInHorn__l2tightOR2017v9__RDF__JESdo_suffix', 
+                'AsLnN': '1',
 #                'cuts' : fitcuts
-#  }
+}
 
 ##### Jet energy resolution
 nuisances['JER'] = {
