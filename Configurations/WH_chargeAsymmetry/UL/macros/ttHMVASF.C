@@ -98,16 +98,16 @@ ttHMVASF::ttHMVASF( const char* year, const int nLeptons, const char* muOrEle, s
 
   // Muon
   SF_files_map["muon"]["2016HIPM"] = {
-	cmssw_base + "/src/PlotsConfigurations/Configurations/WH_chargeAsymmetry/UL/data/muon_ttHMVA_SF/2016HIPM/NUM_TightIDIso_tthmva_DEN_TightIDIso_eta_pt.root"
+	cmssw_base + "/src/PlotsConfigurations/Configurations/WH_chargeAsymmetry/UL/data/muon_ttHMVA_SF/2016HIPM/NUM_TightHWW_ISO_tthmva_DEN_TightHWW_ISO_eta_pt.root"
   };
   SF_files_map["muon"]["2016noHIPM"] = {
-	cmssw_base + "/src/PlotsConfigurations/Configurations/WH_chargeAsymmetry/UL/data/muon_ttHMVA_SF/2016noHIPM/NUM_TightIDIso_tthmva_DEN_TightIDIso_eta_pt.root"
+	cmssw_base + "/src/PlotsConfigurations/Configurations/WH_chargeAsymmetry/UL/data/muon_ttHMVA_SF/2016noHIPM/NUM_TightHWW_ISO_tthmva_DEN_TightHWW_ISO_eta_pt.root"
   };
   SF_files_map["muon"]["2017"] = {
-	cmssw_base + "/src/PlotsConfigurations/Configurations/WH_chargeAsymmetry/UL/data/muon_ttHMVA_SF/2017/NUM_TightIDIso_tthmva_DEN_TightIDIso_eta_pt.root"
+	cmssw_base + "/src/PlotsConfigurations/Configurations/WH_chargeAsymmetry/UL/data/muon_ttHMVA_SF/2017/NUM_TightHWW_ISO_tthmva_DEN_TightHWW_ISO_eta_pt.root"
   };
   SF_files_map["muon"]["2018"] = {
-	cmssw_base + "/src/PlotsConfigurations/Configurations/WH_chargeAsymmetry/UL/data/muon_ttHMVA_SF/2018/NUM_TightIDIso_tthmva_DEN_TightIDIso_eta_pt.root"
+	cmssw_base + "/src/PlotsConfigurations/Configurations/WH_chargeAsymmetry/UL/data/muon_ttHMVA_SF/2018/NUM_TightHWW_ISO_tthmva_DEN_TightHWW_ISO_eta_pt.root"
   };
 
 
@@ -125,20 +125,20 @@ ttHMVASF::ttHMVASF( const char* year, const int nLeptons, const char* muOrEle, s
   //////////////////////////////
 
   if (strncmp(muOrEle_,"ele",3) || strncmp(muOrEle_,"all",3)){
-
+	
     h_SF_ele_      = new TH2D("h_SF_ele",      "h_SF_ele",      ele_nbins_eta, ele_eta_bins, ele_nbins_pt, ele_pt_bins);
     h_SF_ele_stat_ = new TH2D("h_SF_ele_stat", "h_SF_ele_stat", ele_nbins_eta, ele_eta_bins, ele_nbins_pt, ele_pt_bins);
     h_SF_ele_syst_ = new TH2D("h_SF_ele_syst", "h_SF_ele_syst", ele_nbins_eta, ele_eta_bins, ele_nbins_pt, ele_pt_bins);
     h_SF_ele_->SetDirectory(0);
     h_SF_ele_stat_->SetDirectory(0);
     h_SF_ele_syst_->SetDirectory(0);
-
+	
     // Filling TH2D objects by reading txt input files
     cout << "SF files map = " << SF_files_map_["electron"][year_] << endl;
     
     // Prepare grid to read the txt file: 70 lines and 14 columns  
     double lines[70][14];
-  
+	
     // Parsing the .txt file
     std::string line;
     std::istringstream strm;
@@ -151,70 +151,70 @@ ttHMVASF::ttHMVASF( const char* year, const int nLeptons, const char* muOrEle, s
       j = 0;
       std::istringstream strm(line);
       while(strm >> num){
-	lines[i][j] = num;
-	j++;
+		lines[i][j] = num;
+		j++;
       }
       i++;
     }
     ifs.close();
-  
+	
     for(int iBinX = 1; iBinX <= h_SF_ele_->GetNbinsX(); iBinX++){
       for(int iBinY = 1; iBinY <= h_SF_ele_->GetNbinsY(); iBinY++){
-	
-	double eta = h_SF_ele_ -> GetXaxis() -> GetBinCenter(iBinX);
-	double pt  = h_SF_ele_ -> GetYaxis() -> GetBinCenter(iBinY);
-	
-	// txt columns structure:
-	// 0:  eta Low  
-	// 1:  eta High  
-	// 2:  pt Low  
-	// 3:  pt High 
-	// 4:  effData 
-	// 5:  statErrData 
-	// 6:  systErrData 
-	// 7:  effMC 
-	// 8:  statErrMC 
-	// 9:  systErrMC 
-	// 10: effDataAltBkg 
-	// 11: effDataAltSig 
-	// 12: effMCAltMC 
-	// 13: effMCTagSel
-	
-	// Looking for correct eta, pt bin
-	for(unsigned i = 0; i < 70; i++){
-	  
-	  if(eta >= lines[i][0] && eta <= lines[i][1] && pt >= lines[i][2] && pt <= lines[i][3]){
+		
+		double eta = h_SF_ele_ -> GetXaxis() -> GetBinCenter(iBinX);
+		double pt  = h_SF_ele_ -> GetYaxis() -> GetBinCenter(iBinY);
+		
+		// txt columns structure:
+		// 0:  eta Low  
+		// 1:  eta High  
+		// 2:  pt Low  
+		// 3:  pt High 
+		// 4:  effData 
+		// 5:  statErrData 
+		// 6:  systErrData 
+		// 7:  effMC 
+		// 8:  statErrMC 
+		// 9:  systErrMC 
+		// 10: effDataAltBkg 
+		// 11: effDataAltSig 
+		// 12: effMCAltMC 
+		// 13: effMCTagSel
+		
+		// Looking for correct eta, pt bin
+		for(unsigned i = 0; i < 70; i++){
+		  
+		  if(eta >= lines[i][0] && eta <= lines[i][1] && pt >= lines[i][2] && pt <= lines[i][3]){
 	    
-	    // efficiencies
-	    double data = lines[i][4];
-	    double mc   = lines[i][7];
-	    double sf   = 1;
-	    if (mc != 0) sf = data/mc;
-	    
-	    // statistical uncertainty on efficiencies
-	    double sigma_data = lines[i][5];
-	    double sigma_mc   = lines[i][8];
-	    double sigma_sf   = 0.0;
-	    if (mc != 0) sigma_sf = TMath::Sqrt( TMath::Power(sigma_data/mc, 2) + TMath::Power(data*sigma_mc/(mc*mc), 2));
-	    
-	    // systematic uncertainty on efficiencies
-	    double syst_data = lines[i][6];
-	    double syst_mc   = lines[i][9];
-	    double syst_sf   = 0.0;
-	    if (mc != 0) syst_sf = TMath::Sqrt( TMath::Power(syst_data/mc, 2) + TMath::Power(data*syst_mc/(mc*mc), 2));
-	    
-	    h_SF_ele_      -> SetBinContent(iBinX, iBinY, sf);
-	    h_SF_ele_stat_ -> SetBinContent(iBinX, iBinY, sigma_sf);
-	    h_SF_ele_syst_ -> SetBinContent(iBinX, iBinY, syst_sf);
-	    
-	    break;
-	  }
-	}
+			// efficiencies
+			double data = lines[i][4];
+			double mc   = lines[i][7];
+			double sf   = 1;
+			if (mc != 0) sf = data/mc;
+			
+			// statistical uncertainty on efficiencies
+			double sigma_data = lines[i][5];
+			double sigma_mc   = lines[i][8];
+			double sigma_sf   = 0.0;
+			if (mc != 0) sigma_sf = TMath::Sqrt( TMath::Power(sigma_data/mc, 2) + TMath::Power(data*sigma_mc/(mc*mc), 2));
+			
+			// systematic uncertainty on efficiencies
+			double syst_data = lines[i][6];
+			double syst_mc   = lines[i][9];
+			double syst_sf   = 0.0;
+			if (mc != 0) syst_sf = TMath::Sqrt( TMath::Power(syst_data/mc, 2) + TMath::Power(data*syst_mc/(mc*mc), 2));
+			
+			h_SF_ele_      -> SetBinContent(iBinX, iBinY, sf);
+			h_SF_ele_stat_ -> SetBinContent(iBinX, iBinY, sigma_sf);
+			h_SF_ele_syst_ -> SetBinContent(iBinX, iBinY, syst_sf);
+			
+			break;
+		  }
+		}
       }
     }
     cout << "Done with loading electrons scale factors" << endl;
   }
-
+  
   //////////////////////////
   // Load muon SFs in memory (if needed)
   //////////////////////////
@@ -224,15 +224,15 @@ ttHMVASF::ttHMVASF( const char* year, const int nLeptons, const char* muOrEle, s
     cout << "Muons rootfile: " << SF_files_map_["muon"][year_] << endl;
     TFile* rootfile = new TFile(SF_files_map_["muon"][year_].c_str());
     cout << "Loaded!" << endl;
-
+	
     // Nominal SF histogram - temp are needed to properly handle BinContent and BinError (maybe) 
-    h_SF_mu_      = (TH2D*)rootfile->Get("NUM_TightIDIso_tthmva_DEN_TightIDIso_eta_pt")->Clone();
-    h_SF_mu_stat_ = (TH2D*)rootfile->Get("NUM_TightIDIso_tthmva_DEN_TightIDIso_eta_pt_stat")->Clone();
-    h_SF_mu_syst_ = (TH2D*)rootfile->Get("NUM_TightIDIso_tthmva_DEN_TightIDIso_eta_pt_syst")->Clone();
+    h_SF_mu_      = (TH2D*)rootfile->Get("NUM_TightHWW_ISO_tthmva_DEN_TightHWW_ISO_eta_pt")->Clone();
+    h_SF_mu_stat_ = (TH2D*)rootfile->Get("NUM_TightHWW_ISO_tthmva_DEN_TightHWW_ISO_eta_pt_stat")->Clone();
+    h_SF_mu_syst_ = (TH2D*)rootfile->Get("NUM_TightHWW_ISO_tthmva_DEN_TightHWW_ISO_eta_pt_syst")->Clone();
     h_SF_mu_->SetDirectory(0);
     h_SF_mu_stat_->SetDirectory(0);
     h_SF_mu_syst_->SetDirectory(0);
-
+	
     rootfile->Close();
     cout << "Done with loading muons scale factors" << endl;
   }
@@ -251,7 +251,7 @@ std::tuple<double, double, double> ttHMVASF::GetSF(int flavor, double eta, doubl
 	double eta_max = 2.49;
 	double eta_min = -2.5;
 	double pt_max  = 499.;
-	double pt_min  = 10.;
+	double pt_min  = 15.;
 
 	if(eta_temp < eta_min) {eta_temp = eta_min;}
 	if(eta_temp > eta_max) {eta_temp = eta_max;}
@@ -268,8 +268,8 @@ std::tuple<double, double, double> ttHMVASF::GetSF(int flavor, double eta, doubl
 
 	double eta_max = 2.39;
 	double eta_min = -2.4;
-	double pt_max = 199.;
-	double pt_min = 10.;
+	double pt_max = 119.9; // 199.;
+	double pt_min = 10.1;
 
 	if(eta_temp < eta_min) {eta_temp = eta_min;}
 	if(eta_temp > eta_max) {eta_temp = eta_max;}
@@ -359,22 +359,32 @@ double ttHMVASF::evaluate(unsigned){
   }
 
   if(requested_SF_.compare("nominal") == 0) { 
-  	return SF; 
+	// if (lepton_pt->At(1) > 20 && lepton_pdgId->At(0)*lepton_pdgId->At(1) == 169){
+	//   cout << "=========================" << SF << endl;
+	//   cout << "Lepton 1 (pT, eta, flavor, SF): " << lepton_pt->At(0) << ", " << lepton_eta->At(0) << ", " << lepton_pdgId->At(0) << ", " << SF_vect[0] << endl;
+	//   cout << "Lepton 2 (pT, eta, flavor, SF): " << lepton_pt->At(1) << ", " << lepton_eta->At(1) << ", " << lepton_pdgId->At(1) << ", " << SF_vect[1] << endl;
+	//   cout << "ttHMVA global SF: " << SF << endl;
+	// }
+	return SF; 
   }
   else if(requested_SF_.compare("eleUp") == 0) { 
+	// cout << "ttHMVA ele SF up: " << SF_up_out_el << endl;
     return SF_up_out_el; 
   }
   else if(requested_SF_.compare("muUp") == 0) { 
+	// cout << "ttHMVA muon SF up: " << SF_up_out_mu << endl;
     return SF_up_out_mu; 
   }
   else if(requested_SF_.compare("eleDown") == 0) { 
+	// cout << "ttHMVA ele SF down: " << SF_down_out_el << endl;
     return SF_down_out_el; 
   }
   else if(requested_SF_.compare("muDown") == 0) { 
+	// cout << "ttHMVA muon SF down: " << SF_down_out_mu << endl;
     return SF_down_out_mu; 
   }
   else{ 
-  	std::cout << "invalid option: please choose from [nominal, up, down]" << std::endl; 
+  	std::cout << "invalid option: please choose from [nominal, eleUp, eleDown, muUp, muDown]" << std::endl; 
   	return 0; 
   }
 }

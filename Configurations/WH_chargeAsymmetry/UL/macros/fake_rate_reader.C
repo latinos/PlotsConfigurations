@@ -58,6 +58,7 @@ protected:
   IntArrayReader*   Lepton_isTightElectron_mvaFall17V2Iso_WP90_SS;
   FloatArrayReader* Lepton_mvaTTH_UL;
   FloatArrayReader* Muon_mvaTTH;
+  IntArrayReader*   Lepton_muonIdx;
   FloatArrayReader* CleanJet_pt;
   UIntValueReader* nCleanJet;
   map_dict fake_rate_reader_map_;
@@ -509,7 +510,7 @@ fake_rate_reader::evaluate(unsigned)
       if (Lepton_isTightElectron_mvaFall17V2Iso_WP90_SS->At(i) == 1 && Lepton_mvaTTH_UL->At(i) > ele_WP_number_) 
 	isTight_[i] = 1;
     if (TMath::Abs(Lepton_pdgId->At(i)) == 13)
-      if (Lepton_isTightMuon_cut_Tight_HWWW->At(i) == 1 && Muon_mvaTTH->At(i) > muon_WP_number_) 
+      if (Lepton_isTightMuon_cut_Tight_HWWW->At(i) == 1 && Muon_mvaTTH->At(Lepton_muonIdx->At(i)) > muon_WP_number_) 
 	isTight_[i] = 1;
   }
 
@@ -883,11 +884,12 @@ void
 fake_rate_reader::bindTree_(multidraw::FunctionLibrary& _library)
 {
   std::cout << "Loading fake_rate_reader" << std::endl;
-  _library.bindBranch(Lepton_pdgId, "Lepton_pdgId");
-  _library.bindBranch(Lepton_pt,    "Lepton_pt");
-  _library.bindBranch(Lepton_eta,   "Lepton_eta");
+  _library.bindBranch(Lepton_pdgId,     "Lepton_pdgId");
+  _library.bindBranch(Lepton_pt,        "Lepton_pt");
+  _library.bindBranch(Lepton_eta,       "Lepton_eta");
   _library.bindBranch(Lepton_mvaTTH_UL, "Lepton_mvaTTH_UL");
   _library.bindBranch(Muon_mvaTTH,      "Muon_mvaTTH");
+  _library.bindBranch(Lepton_muonIdx,   "Lepton_muonIdx");
   _library.bindBranch(nCleanJet,        "nCleanJet");
   _library.bindBranch(CleanJet_pt,      "CleanJet_pt");
 
