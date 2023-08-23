@@ -49,8 +49,8 @@ nuisances['QCDscale_ttH']  = {
 
 variations = ['Alt$(LHEScaleWeight[0],1)', 'Alt$(LHEScaleWeight[1],1)', 'Alt$(LHEScaleWeight[3],1)', 'Alt$(LHEScaleWeight[5],1)', 'Alt$(LHEScaleWeight[7],1)', 'Alt$(LHEScaleWeight[8],1)']
 
-nuisances['QCDscale_V'] = {
-    'name': 'QCDscale_V',
+nuisances['QCDscale_ttZ'] = {
+    'name': 'QCDscale_ttZ',
     'kind': 'weight_envelope',
     'type': 'shape',
     'samples': {'ttZ': variations},
@@ -67,8 +67,8 @@ nuisances['QCDscale_VVV'] = {
 #    'cuts' : fitcuts
 }
 
-nuisances['QCDscale_VH'] = {
-    'name': 'QCDscale_VH',
+nuisances['QCDscale_AZH'] = {
+    'name': 'QCDscale_AZH',
     'kind': 'weight_envelope',
     'type': 'shape',
     'samples': dict((skey, variations) for skey in signal),
@@ -375,9 +375,10 @@ nuisances['ttZ_norm2016'] = {
     },
     'type' : 'rateParam',
     'cuts' : [
-	'breq_SR',
+	'breq_SR', 'bveto_1j_SR'
    ]
  }
+
 
 ####### Jet energy scale
 jes_systs = ['JESAbsolute','JESAbsolute_2016','JESBBEC1','JESBBEC1_2016','JESEC2','JESEC2_2016','JESFlavorQCD','JESHF','JESHF_2016','JESRelativeBal','JESRelativeSample_2016']

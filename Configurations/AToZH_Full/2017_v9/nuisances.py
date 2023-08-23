@@ -56,8 +56,8 @@ nuisances['QCDscale_ttH']  = {
 
 variations = ['Alt$(LHEScaleWeight[0],1)', 'Alt$(LHEScaleWeight[1],1)', 'Alt$(LHEScaleWeight[3],1)', 'Alt$(LHEScaleWeight[5],1)', 'Alt$(LHEScaleWeight[7],1)', 'Alt$(LHEScaleWeight[8],1)']
 
-nuisances['QCDscale_V'] = {
-    'name': 'QCDscale_V',
+nuisances['QCDscale_ttZ'] = {
+    'name': 'QCDscale_ttZ',
     'kind': 'weight_envelope',
     'type': 'shape',
     'samples': {'ttZ': variations},
@@ -74,8 +74,8 @@ nuisances['QCDscale_VVV'] = {
  #   'cuts' : fitcuts
 }
 
-nuisances['QCDscale_VH'] = {
-    'name': 'QCDscale_VH',
+nuisances['QCDscale_AZH'] = {
+    'name': 'QCDscale_AZH',
     'kind': 'weight_envelope',
     'type': 'shape',
     'samples': dict((skey, variations) for skey in signal),
@@ -126,7 +126,7 @@ nuisances['pdf_AZH']  = {
       'kind'  : 'weight_rms',
       'type'  : 'shape',
       'samples'  : dict((skey, pdf_variations) for skey in signal),
-      'cuts' : fitcuts
+#      'cuts' : fitcuts
 #      'scale' : nfdict["pdf_WW"] --> I should calculate my own norm factor here
 }
 
