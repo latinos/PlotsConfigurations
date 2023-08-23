@@ -7,7 +7,10 @@
 #'doWeight' : 1
 #'binX' : 1 
 #'binY' : <# of bins>
+
 bkg = [skey for skey in samples if not skey.startswith('AZH')]
+
+# Currently using same ellipses for 1 bjet and 2 bjet SRs
 
 variables['events']     = { 'name': '1',      
                             'range' : (1,0,2),  
@@ -26,9 +29,16 @@ variables['ptz']        = { 'name' : 'ZH3l_pTZ',
 variables['DeltaM']  = { 'name' : 'AZH_mA_minus_mH_patch',
                             'range' : (6,0,1000),
 			    'xaxis' : 'm_{A}-m_{H}',
-			    'cuts' : [cut for cut in cuts if 'SR' in cut],
+			    'cuts' : ['breq_SR'],
 			    'fold'  : 3
                          }
+
+variables['DeltaM_onebjet'] = { 'name' : 'AZH_mA_minus_mH_onebjet',
+                                   'range' : (6,0,1000),
+				   'xaxis' : 'm_{A}-m_{H}',
+				   'cuts' : ['bveto_1j_SR'],
+                                   'fold'  : 3
+                            }
 
 variables['ellipse_mA_1000_mH_330'] = { 'name' : 'ellipse_mA_1000_mH_330',
                                                 'range' : (7,-0.5,6.5),
