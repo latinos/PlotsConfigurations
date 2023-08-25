@@ -28,14 +28,14 @@ nuisances['lumi_Correlated'] = {
     'name': 'lumi_13TeV_correlated',
     'type': 'lnN',
     'samples': dict((skey, '1.02') for skey in mc),
-    'cuts' : fitcuts
+#    'cuts' : fitcuts
 }
 
 nuisances['lumi_1718'] = {
     'name': 'lumi_13TeV_1718',
     'type': 'lnN',
     'samples': dict((skey, '1.002') for skey in mc),
-    'cuts' : fitcuts
+#    'cuts' : fitcuts
 }
 
 
@@ -51,13 +51,13 @@ nuisances['QCDscale_ttH']  = {
     'ttH_hww': HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ttH','125.09','scale','sm'),                  
   },
   'type'  : 'lnN',
-  'cuts' : fitcuts
+#  'cuts' : fitcuts
 }
 
 variations = ['Alt$(LHEScaleWeight[0],1)', 'Alt$(LHEScaleWeight[1],1)', 'Alt$(LHEScaleWeight[3],1)', 'Alt$(LHEScaleWeight[5],1)', 'Alt$(LHEScaleWeight[7],1)', 'Alt$(LHEScaleWeight[8],1)']
 
-nuisances['QCDscale_V'] = {
-    'name': 'QCDscale_V',
+nuisances['QCDscale_ttZ'] = {
+    'name': 'QCDscale_ttZ',
     'kind': 'weight_envelope',
     'type': 'shape',
     'samples': {'ttZ': variations},
@@ -71,11 +71,11 @@ nuisances['QCDscale_VVV'] = {
     'type': 'shape',
     'samples': {'VVV': variations},
     'AsLnN': '0',
-    'cuts' : fitcuts
+#    'cuts' : fitcuts
 }
 
-nuisances['QCDscale_VH'] = {
-    'name': 'QCDscale_VH',
+nuisances['QCDscale_AZH'] = {
+    'name': 'QCDscale_AZH',
     'kind': 'weight_envelope',
     'type': 'shape',
     'samples': dict((skey, variations) for skey in signal),
@@ -159,7 +159,7 @@ nuisances['PU'] = {
           'top'     : ['0.998941*(puWeightUp/puWeight)', '1.000953*(puWeightDown/puWeight)'],
     },
     'AsLnN': '1',
-    'cuts' : fitcuts
+#    'cuts' : fitcuts
 }
 
 
@@ -292,7 +292,7 @@ for shift in [ 'lf', 'hf', 'hfstats1', 'hfstats2', 'lfstats1', 'lfstats2', 'cfer
         'kind': 'weight',
         'type': 'shape',
         'samples': dict((skey, btag_syst) for skey in mc),
-        'cuts' : fitcuts
+#        'cuts' : fitcuts
     }
 
 #### Trigger Efficiency
@@ -329,7 +329,7 @@ nuisances['electronpt']  = {
                 'folderUp'   : treeBaseDir+'Summer20UL18_106x_nAODv9_Full2018v9/MCl1loose2018v9__MCCorr2018v9NoJERInHorn__l2tightOR2018v9__ElepTup_suffix', 
                 'folderDown' : treeBaseDir+'Summer20UL18_106x_nAODv9_Full2018v9/MCl1loose2018v9__MCCorr2018v9NoJERInHorn__l2tightOR2018v9__ElepTdo_suffix', 
                 'AsLnN' : '1',
-                'cuts' : fitcuts
+#                'cuts' : fitcuts
 }
 
 ###### Muon Efficiency and energy scale
@@ -341,7 +341,7 @@ nuisances['eff_m']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : dict((skey, id_syst_mu) for skey in mc),
-                'cuts' : fitcuts
+#                'cuts' : fitcuts
 }
 
 nuisances['muonpt']  = {
@@ -354,7 +354,7 @@ nuisances['muonpt']  = {
                 'folderUp'   : treeBaseDir+'Summer20UL18_106x_nAODv9_Full2018v9/MCl1loose2018v9__MCCorr2018v9NoJERInHorn__l2tightOR2018v9__MupTup_suffix', 
                 'folderDown' : treeBaseDir+'Summer20UL18_106x_nAODv9_Full2018v9/MCl1loose2018v9__MCCorr2018v9NoJERInHorn__l2tightOR2018v9__MupTdo_suffix', 
                 'AsLnN' : '1',
-                'cuts' : fitcuts
+#                'cuts' : fitcuts
 }
 
 
@@ -365,9 +365,9 @@ nuisances['ttZ_norm2018'] = {
     },
     'type' : 'rateParam',
     'cuts' : [
-	'breq_SR',
-   ] 
-}
+	'breq_SR', 'bveto_1j_SR'
+   ]
+ }
 
 ####### Jet energy scale
 
@@ -401,11 +401,11 @@ for js in jes_systs:
                 'type': 'shape',
                 'mapUp': js+'up',
                 'mapDown': js+'do',
-                'samples': dict((skey, ['1', '1']) for skey in mc  if skey not in ['ZZ','DY', 'ggZH_hww', 'ttV']),
+                'samples': dict((skey, ['1', '1']) for skey in mc  if skey not in ['ZZ','ttZ', 'top', 'Zg', 'ZgS', 'WZ', 'tZq_ll']),
                 'folderUp'   : folderup, 
                 'folderDown' : folderdo, 
                 'AsLnN': '1',
-                'cuts' : fitcuts
+#                'cuts' : fitcuts
   }
 
 ###### Jet energy resolution
@@ -432,7 +432,7 @@ nuisances['met']  = {
                 'folderUp'   : treeBaseDir+'Summer20UL18_106x_nAODv9_Full2018v9/MCl1loose2018v9__MCCorr2018v9NoJERInHorn__l2tightOR2018v9__METup_suffix', 
                 'folderDown' : treeBaseDir+'Summer20UL18_106x_nAODv9_Full2018v9/MCl1loose2018v9__MCCorr2018v9NoJERInHorn__l2tightOR2018v9__METdo_suffix', 
                 'AsLnN' : '1',
-                'cuts' : fitcuts
+#                'cuts' : fitcuts
 }
 
 # Use the following if you want to apply the automatic combine MC stat nuisances.

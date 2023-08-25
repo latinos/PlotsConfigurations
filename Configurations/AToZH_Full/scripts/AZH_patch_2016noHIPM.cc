@@ -11,12 +11,12 @@ using std::cout;
 using std::endl;
 float bWP_2016 = 0.2489;
 using PtEtaPhiMVector = ROOT::Math::PtEtaPhiMVector;
-class AZH_patch : public multidraw::TTreeFunction {
+class AZH_patch_2016noHIPM : public multidraw::TTreeFunction {
     public:
-	AZH_patch(const char* variable_);
+	AZH_patch_2016noHIPM(const char* variable_);
 
-	char const* getName() const override { return "AZH_patch"; }
-	TTreeFunction* clone() const override { return new AZH_patch(variable.c_str()); }
+	char const* getName() const override { return "AZH_patch_2016noHIPM"; }
+	TTreeFunction* clone() const override { return new AZH_patch_2016noHIPM(variable.c_str()); }
 	unsigned getNdata() override { return 1; }
 	double evaluate(unsigned) override;
 
@@ -42,13 +42,13 @@ class AZH_patch : public multidraw::TTreeFunction {
 	IntArrayReader* CleanJet_jetIdx;
 };
 
-AZH_patch::AZH_patch(const char* variable_) :  //constructor
+AZH_patch_2016noHIPM::AZH_patch_2016noHIPM(const char* variable_) :  //constructor
     TTreeFunction(),
     variable{variable_}
 {}
 
 double
-AZH_patch::evaluate(unsigned)
+AZH_patch_2016noHIPM::evaluate(unsigned)
 {
     int iL = getXLepton();
     if (iL == -1) return -9999.0;
@@ -260,7 +260,7 @@ else {
 
 
 int
-AZH_patch::getXLepton(){
+AZH_patch_2016noHIPM::getXLepton(){
     //Require an event with 3 leptons and chlll = 1
     unsigned nLep{*nLepton->Get()};
     if (nLep<3) return -1;
@@ -290,7 +290,7 @@ AZH_patch::getXLepton(){
 
 
 void
-AZH_patch::bindTree_(multidraw::FunctionLibrary& _library)
+AZH_patch_2016noHIPM::bindTree_(multidraw::FunctionLibrary& _library)
 {
     _library.bindBranch(nLepton,       "nLepton");
     _library.bindBranch(Lepton_pt,     "Lepton_pt");
