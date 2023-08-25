@@ -69,7 +69,7 @@ aliases['LepWPttHMVASFMuDown'] = {
 aliases['fakeW'] = {
     'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/fake_rate_reader.C+' % configurations],
     'class'      : 'fake_rate_reader',
-    'args'       : ('2016noHIPM', '90', '82', 0.90, 0.82, 'nominal', 2, 'std'),
+    'args'       : ('2016_noHIPM', '90', '82', 0.90, 0.82, 'nominal', 2, 'std'),
     'samples'    : ['Fake']
 }
 

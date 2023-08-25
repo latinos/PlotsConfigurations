@@ -355,16 +355,16 @@ nuisances['PS_FSR_2jet']  = {
 
 ## Charge flip SF
 nuisances['chargeFlip'] = {
-    'name'    : 'CMS_whss_chargeFlip', # fix --> 2016 in next iteration
+    'name'    : 'CMS_whss_chargeFlip_2016',
     'kind'    : 'weight',
     'type'    : 'shape',
-    'samples' : dict((skey, ['1-ttHMVA_eff_err_flip_2l[0]', '1+ttHMVA_eff_err_flip_2l[0]']) for skey in ['DY']),
+    'samples' : dict((skey, ['1-ttHMVA_SF_err_flip_2l[0]', '1+ttHMVA_SF_err_flip_2l[0]']) for skey in ['top','WW']),
     'cuts'    : [cut for cut in cuts if ('_ee_' in cut)]
 }
 
 # Charge flip efficiency
 nuisances['chargeFlipEff'] = {
-    'name'    : 'CMS_whss_chargeFlipEff_2018', # fix 2018 --> 2016 in next iteration
+    'name'    : 'CMS_whss_chargeFlipEff_2016',
     'kind'    : 'weight',
     'type'    : 'shape',
     'samples' : dict((skey, ['1-ttHMVA_eff_err_flip_2l[0]', '1+ttHMVA_eff_err_flip_2l[0]']) for skey in ['DY']),

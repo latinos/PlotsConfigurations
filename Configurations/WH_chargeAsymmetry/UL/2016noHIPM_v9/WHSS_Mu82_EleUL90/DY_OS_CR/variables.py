@@ -27,89 +27,24 @@ variables['mlljj20_whss_2j_bin'] = {
     'fold'  : 3
 }
 
-# BDT
-variables['BDTG6'] = {
-    'name'  : 'BDT_WHSS_v9',     
-    'range' : (40,-1,1),   
-    'xaxis' : 'BDT discriminant',
-    'fold'  : 3
+########################################################
+# Default BDT training but with TopSemileptonic as fakes
+########################################################
+
+variables['BDTG6_TT'] = {
+    'name'     : 'BDT_WHSS_TopSemileptonic_v9',     
+    'range'    : (40,-1,1),   
+    'doWeight' : 1,
+    'binX'     : 1,
+    'binY'     : 40,
+    'xaxis'    : 'BDT discriminant',
+    'yaxis'    : 'Events',
+    'fold'     : 3
 }
 
-variables['BDTG6_more'] = {
-    'name'  : 'BDT_WHSS_v9',     
+variables['BDTG6_TT_more'] = {
+    'name'  : 'BDT_WHSS_TopSemileptonic_v9',     
     'range' : (1000,-1,1),   
-    'xaxis' : 'BDT discriminant',
-    'fold'  : 3
-}
-
-# BDT binnings
-##############
-variables['BDTG6_binning_0_0'] = {
-    'name'  : 'BDT_WHSS_v9',
-    'range' : ([-1.0, -0.8, -0.6, -0.4, -0.2, 0.0, 1.0],),
-    'xaxis' : 'BDT discriminant',
-    'fold'  : 3
-}
-
-variables['BDTG6_binning_0_1'] = {
-    'name'  : 'BDT_WHSS_v9',
-    'range' : ([-1.0, -0.8, -0.6, -0.4, -0.2, 0.0, 0.1, 1.0],),
-    'xaxis' : 'BDT discriminant',
-    'fold'  : 3
-}
-
-variables['BDTG6_binning_0_2'] = {
-    'name'  : 'BDT_WHSS_v9',
-    'range' : ([-1.0, -0.8, -0.6, -0.4, -0.2, 0.0, 0.1, 0.2, 1.0],),
-    'xaxis' : 'BDT discriminant',
-    'fold'  : 3
-}
-
-variables['BDTG6_binning_0_3'] = {
-    'name'  : 'BDT_WHSS_v9',
-    'range' : ([-1.0, -0.8, -0.6, -0.4, -0.2, 0.0, 0.1, 0.2, 0.3, 1.0],),
-    'xaxis' : 'BDT discriminant',
-    'fold'  : 3
-}
-
-variables['BDTG6_binning_0_4'] = {
-    'name'  : 'BDT_WHSS_v9',
-    'range' : ([-1.0, -0.8, -0.6, -0.4, -0.2, 0.0, 0.1, 0.2, 0.3, 0.4, 1.0],),
-    'xaxis' : 'BDT discriminant',
-    'fold'  : 3
-}
-
-variables['BDTG6_binning_0_5'] = {
-    'name'  : 'BDT_WHSS_v9',
-    'range' : ([-1.0, -0.8, -0.6, -0.4, -0.2, 0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 1.0],),
-    'xaxis' : 'BDT discriminant',
-    'fold'  : 3
-}
-
-variables['BDTG6_binning_0_5'] = {
-    'name'  : 'BDT_WHSS_v9',
-    'range' : ([-1.0, -0.8, -0.6, -0.4, -0.2, 0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 1.0],),
-    'xaxis' : 'BDT discriminant',
-    'fold'  : 3
-}
-
-variables['BDTG6_binning_0_6'] = {
-    'name'  : 'BDT_WHSS_v9',
-    'range' : ([-1.0, -0.8, -0.6, -0.4, -0.2, 0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 1.0],),
-    'xaxis' : 'BDT discriminant',
-    'fold'  : 3
-}
-
-variables['BDTG6_binning_0_7'] = {
-    'name'  : 'BDT_WHSS_v9',
-    'range' : ([-1.0, -0.8, -0.6, -0.4, -0.2, 0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 1.0],),
-    'xaxis' : 'BDT discriminant',
-    'fold'  : 3
-}
-
-variables['BDTG6_binning_0_75'] = {
-    'name'  : 'BDT_WHSS_v9',
-    'range' : ([-1.0, -0.8, -0.6, -0.4, -0.2, 0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.75, 1.0],),
     'xaxis' : 'BDT discriminant',
     'fold'  : 3
 }
@@ -299,3 +234,4 @@ variables['ht'] = {
     'xaxis' : 'ht [GeV]',
     'fold'  : 3
 }
+
