@@ -56,7 +56,7 @@ class BrazilianPlotter:
 
     def compute_theory_value(self, mA, mH):
         try:
-            br_z_ll = 0.066
+            br_z_ll = 0.1
             br_h_tt = self.thdmc_brs[f"{mA},{mH}"]["HtottBR"]
             br_a_zh = self.thdmc_brs[f"{mA},{mH}"]["AtoZHBR"]
             xsec_a = self.thdmc_brs[f"{mA},{mH}"]["xsec_ggH"]
@@ -77,6 +77,7 @@ class BrazilianPlotter:
             print(f"-- MA fixed at {mA} GeV")
             limits = np.array([self.load_limits(mA, mH) for mH in mHs])
             fig, ax = plt.subplots(figsize=(12, 8))
+            print(limits[:, 4])
             ax.fill_between(mHs, limits[:, 0], limits[:, 4], color=self.BRAZILIAN_GOLD, label=r"$2\sigma$")
             ax.fill_between(mHs, limits[:, 1], limits[:, 3], color=self.BRAZILIAN_GREEN, label=r"$1\sigma$")
             ax.plot(mHs, limits[:, 2], marker='D', linestyle='--', color=self.BRAZILIAN_BLUE, label="expected limit")
