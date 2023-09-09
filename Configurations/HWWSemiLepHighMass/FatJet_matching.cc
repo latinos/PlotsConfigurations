@@ -196,7 +196,7 @@ _library.bindBranch(FatJet_pt, "FatJet_pt_nom");
 _library.bindBranch(FatJet_eta, "FatJet_eta");
 _library.bindBranch(FatJet_phi, "FatJet_phi");
 _library.bindBranch(FatJet_tau1, "FatJet_tau1");
-_library.bindBranch(FatJet_mass, "FatJet_mass_nom");
+_library.bindBranch(FatJet_mass, "FatJet_msoftdrop_nom");
 _library.bindBranch(FatJet_jetId, "FatJet_jetId");
 _library.bindBranch(GenPart_pdgId, "GenPart_pdgId"); 
 _library.bindBranch(GenPart_eta, "GenPart_eta");

@@ -40,9 +40,11 @@ protected:
   FloatArrayReader* SingLep_phi{};
   UIntValueReader*  nSingLepton{};
   FloatArrayReader* FatJet_pt{};	  
+  FloatArrayReader* FatJet_pt_sof{};	  
   FloatArrayReader* FatJet_eta{};	   
   FloatArrayReader* FatJet_phi{};
   FloatArrayReader* FatJet_mass{};	  
+  FloatArrayReader* FatJet_msof{};	  
   IntArrayReader*   FatJet_jetId{};	  
   FloatValueReader* WJJ_pt{};	  
   FloatValueReader* WJJ_eta{};	   
@@ -108,13 +110,13 @@ for (unsigned int ix{0}; ix < nJ; ix++) {
 	if(FatJet_jetId->At(ix) < 0){
 	GoodJet = false;
 	}
-	if(FatJet_pt->At(ix) < 200){
+	if(FatJet_pt_sof->At(ix) < 200){
 	GoodJet = false;
 	}
 	if(abs(FatJet_eta->At(ix)) > 2.4){
 	GoodJet = false;
 	}
-	if(FatJet_mass->At(ix) < 55 || FatJet_mass->At(ix) > 115){
+	if(FatJet_msof->At(ix) < 55 || FatJet_msof->At(ix) > 115){
 	GoodJet = false;
 	}
 
@@ -199,7 +201,7 @@ if(GoodJet_cd == true){
    if(_var == 2)	return HjjM;
    if(_var == 3) 	return Hovjj;
    if(_var == 4)	return lepovM;
-//   if(_var == 5)	return jjovM;
+   if(_var == 5)	return sqrt(pow((Wfat_eta-*WJJ_eta->Get()),2)+pow((Wfat_phi-*WJJ_phi->Get()),2));
 //   }
     }
 }
@@ -226,9 +228,11 @@ _library.bindBranch(SingLep_eta, "Lepton_eta");
 _library.bindBranch(SingLep_phi, "Lepton_phi");
 _library.bindBranch(nSingLepton, "nLepton");  
 _library.bindBranch(MET_pt, "PuppiMET_pt");
+_library.bindBranch(FatJet_pt_sof, "FatJet_pt_nom");
 _library.bindBranch(FatJet_pt, "FatJet_pt");
 _library.bindBranch(FatJet_eta, "FatJet_eta");
 _library.bindBranch(FatJet_phi, "FatJet_phi");
+_library.bindBranch(FatJet_msof, "FatJet_msoftdrop_nom");
 _library.bindBranch(FatJet_mass, "FatJet_mass");
 _library.bindBranch(FatJet_jetId, "FatJet_jetId");
 _library.bindBranch(WJJ_pt, "HM_Whad_pt");

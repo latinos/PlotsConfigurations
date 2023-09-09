@@ -18,7 +18,7 @@ structure['DY']  = {
     'isData'   : 0
 }
 
-
+#
 structure['Wjets']  = {
     'isSignal' : 0,
     'isData'   : 0
@@ -50,15 +50,15 @@ structure['qqWWqq']  = {
     'isData'   : 0
 }
 
-structure['WW2J']  = {
-    'isSignal' : 0,
-    'isData'   : 0
-}
-
-# structure['Wg']  = {
-#                   'isSignal' : 0,
-#                   'isData'   : 0
-#                   }
+#structure['WW2J']  = {
+#    'isSignal' : 0,
+#    'isData'   : 0
+#}
+#
+## structure['Wg']  = {
+##                   'isSignal' : 0,
+##                   'isData'   : 0
+##                   }
 
 structure['Vg']  = {
                   'isSignal' : 0,
@@ -163,21 +163,21 @@ structure['FAKE'] = {
                   }
 
 
-for MX in plotmasses:
-    xs_ggf = HiggsXS.GetHiggsXS4Sample('YR4','13TeV','GluGluHToWWToLNuQQ_M{}'.format(MX))['xs']
-    xs_vbf = HiggsXS.GetHiggsXS4Sample('YR4','13TeV','VBFHToWWToLNuQQ_M{}'.format(MX))['xs']
-    structure['GGH_'+MX+'_RelW002'] = {
-        'isSignal': 1,
-        'isData'  : 0,
-        'scaleSampleForDatacard' : {cut : xs_ggf for cut in cuts}
-    }
-    print xs_ggf
-
-    structure['QQH_'+MX+'_RelW002'] = {
-        'isSignal': 1,
-        'isData'  : 0,
-        'scaleSampleForDatacard' : {cut : xs_vbf for cut in cuts}
-    }
+#for MX in plotmasses:
+#    xs_ggf = HiggsXS.GetHiggsXS4Sample('YR4','13TeV','GluGluHToWWToLNuQQ_M{}'.format(MX))['xs']
+#    xs_vbf = HiggsXS.GetHiggsXS4Sample('YR4','13TeV','VBFHToWWToLNuQQ_M{}'.format(MX))['xs']
+#    structure['GGH_'+MX+'_RelW002'] = {
+#        'isSignal': 1,
+#        'isData'  : 0,
+#        'scaleSampleForDatacard' : {cut : xs_ggf for cut in cuts}
+#    }
+#    print xs_ggf
+#
+#    structure['QQH_'+MX+'_RelW002'] = {
+#        'isSignal': 1,
+#        'isData'  : 0,
+#        'scaleSampleForDatacard' : {cut : xs_vbf for cut in cuts}
+#    }
 
 
 

@@ -2,13 +2,13 @@
 
 treeName = 'Events'
 
-tag = 'hm_res_2018'
+tag = 'hm_2018_Test_Variab'
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFile_new'
+outputDir = 'rootFile_2018_try'
 
 # file with TTree aliases
-aliasesFile = 'aliases_medmass.py'
+aliasesFile = 'aliases_newNtuple.py'
 
 # file with list of variables
 variablesFile = 'variables_medmass.py'
@@ -29,11 +29,11 @@ lumi = 59.7
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'Plots_Res'
+outputDirPlots = 'Plot_DNN_var'
 
 
 # used by mkDatacards to define output directory for datacards
-outputDirDatacard = 'Datacards_2018'
+outputDirDatacard = 'Datacards_fin'
 
 # structure file for datacard
 structureFile = 'structure_medmass.py'
