@@ -78,11 +78,11 @@ aliases['resolvHiggsMT'] = {
     *( 1-TMath::Cos(Lepton_phi[0]-PuppiMET_phi) ) )'
 }
 
-aliases['HM_Hlnjj_MT'] = {
-    # 'expr': 'HM_Hlnjj_mt'
-    'expr': 'TMath::Sqrt( 2*HM_Wlep_pt_Puppi*HM_Whad_pt \
-    *( 1-TMath::Cos(HM_Wlep_phi_Puppi-HM_Whad_phi) ) )'
-}
+#aliases['HM_Hlnjj_MT'] = {
+#    # 'expr': 'HM_Hlnjj_mt'
+#    'expr': 'TMath::Sqrt( 2*HM_Wlep_pt_Puppi*HM_Whad_pt \
+#    *( 1-TMath::Cos(HM_Wlep_phi_Puppi-HM_Whad_phi) ) )'
+#}
 
 #aliases['WptOvFat_nocut'] = {
 #    # 'expr': 'HM_Hlnjj_mt'
@@ -154,13 +154,13 @@ aliases['boosted'] = {
 #            && Alt$(CleanFatJet_eta[idxCleanFatJetW], 999) < 2.4'
 #}
 #
-aliases['resolved'] = {
-    'expr': '!boosted[0] \
-            && PuppiMET_pt > 30 \
-            && HM_WptOvHak4M > 0.35 \
-            && resolvHiggsMT > 60 \
-            && HM_Whad_pt > 30'
-}
+#aliases['resolved'] = {
+#    'expr': '!boosted[0] \
+#            && PuppiMET_pt > 30 \
+#            && HM_WptOvHak4M > 0.35 \
+#            && resolvHiggsMT > 60 \
+#            && HM_Whad_pt > 30'
+#}
 
 aliases['boostedSignalWMassNoTau21'] = {
     'expr': '(65 < Alt$(CleanFatJet_mass[idxCleanFatJetW], 0) \
@@ -295,23 +295,23 @@ aliases['HvOverFat'] = {
     'class': 'getResBoo_var',
     'args': 1
 }
-aliases['mass_HIGGS_JJ'] = {
-    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/getResBoo_var.cc+'  % os.getenv('CMSSW_BASE')],
-    'class': 'getResBoo_var',
-    'args': 2
-}
-
-aliases['HvOverJJ'] = {
-    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/getResBoo_var.cc+'  % os.getenv('CMSSW_BASE')],
-    'class': 'getResBoo_var',
-    'args': 3
-}
-
-aliases['HvOverLEP'] = {
-    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/getResBoo_var.cc+'  % os.getenv('CMSSW_BASE')],
-    'class': 'getResBoo_var',
-    'args': 4
-}
+#aliases['mass_HIGGS_JJ'] = {
+#    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/getResBoo_var.cc+'  % os.getenv('CMSSW_BASE')],
+#    'class': 'getResBoo_var',
+#    'args': 2
+#}
+#
+#aliases['HvOverJJ'] = {
+#    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/getResBoo_var.cc+'  % os.getenv('CMSSW_BASE')],
+#    'class': 'getResBoo_var',
+#    'args': 3
+#}
+#
+#aliases['HvOverLEP'] = {
+#    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/getResBoo_var.cc+'  % os.getenv('CMSSW_BASE')],
+#    'class': 'getResBoo_var',
+#    'args': 4
+#}
 
 aliases['mass_HIGGS_FAT_fatjetJERup'] = {
     'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/FatJet_Uncertainties.cc+'  % os.getenv('CMSSW_BASE')],
@@ -365,13 +365,17 @@ aliases['nCleanFatJet_fatjetJERup'] = {
 aliases['nCleanFatJet_fatjetJERdo'] = {
     'expr': 'nCleanFatJet[0]',
 }
-aliases['HM_Whad_pt_fatjetJERup'] = {
-    'expr': 'HM_Whad_pt[0]',
-}
-
-aliases['HM_Whad_pt_fatjetJERdo'] = {
-    'expr': 'HM_Whad_pt[0]',
-}
+#aliases['HM_Whad_pt_fatjetJERup'] = {
+#    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/FatJet_Uncertainties.cc+'  % os.getenv('CMSSW_BASE')],
+#    'class': 'FatJet_Unc',
+#    'args': (4,'jerUp'),
+#}
+#
+#aliases['HM_Whad_pt_fatjetJERdo'] = {
+#    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/FatJet_Uncertainties.cc+'  % os.getenv('CMSSW_BASE')],
+#    'class': 'FatJet_Unc',
+#    'args': (4,'jerDo'),
+#}
 #aliases['mass_HIGGS_FAT_fatjetJMRup'] = {
 #    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/FatJet_Uncertainties.cc+'  % os.getenv('CMSSW_BASE')],
 #    'class': 'FatJet_Unc',
@@ -468,10 +472,10 @@ aliases['two_jet_res'] ={
             && HM_idx_j1 >= 0 \
             && !boosted_nocut_res[0] \
             && PuppiMET_pt[0] > 30 \
-            && HM_idx_j2 >= 0 \
-            && HM_Hlnjj_MT[0] > 60 \
-            && HvOverJJ[0] > 0.35'
+            && HM_idx_j2 >= 0'
 }
+            #&& HvOverJJ[0] > 0.35'
+#            && HM_Hlnjj_MT[0] > 60 \
 #aliases['boosted_nocut_res_gen'] ={
 #    'expr': 'Sum$(GenJetAK8_pt>180)>0'
 #}

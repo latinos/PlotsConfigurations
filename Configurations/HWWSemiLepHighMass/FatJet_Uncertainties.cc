@@ -54,6 +54,10 @@ protected:
   FloatArrayReader* FatJet_pt_jerDo{}; 
   FloatArrayReader* FatJet_pt_jesUp{}; 
   FloatArrayReader* FatJet_pt_jesDo{}; 
+  //FloatValueReader* WHad_pt{};
+  //FloatValueReader* WHad_eta{}; 
+  //FloatValueReader* WHad_phi{}; 
+  //FloatValueReader* WHad_mass{};
   IntArrayReader*   FatJet_jetId{};	  
   UIntValueReader*  nCleanJet{};
   FloatArrayReader* CleanJet_pt{};	  
@@ -104,6 +108,11 @@ int last_idx = -1;
 int count_jet_ov = 0;
 bool GoodJet_cd = false;
 int index_Good_3 = -1;
+//float wpt= *WHad_pt->Get();
+//float wmass= *WHad_mass->Get();
+//float wphi= *WHad_phi->Get();
+//float weta= *WHad_eta->Get();
+
 for (unsigned int ix{0}; ix < nFat; ix++) {
 	bool GoodJet = true;
 	if (FatJet_tau1->At(ix) == 0.0) continue;
@@ -173,11 +182,23 @@ if (GoodJet_cd == true){
 	 	 };
 		 double HfatM{(wHad_4v + wLep_4v).M()};
 	    	 double HovFat = min( Wfat_pt, *WLep_pt->Get()  )/ HfatM;
-	
+		 const float Wfat_pt_nom   = FatJet_pt->At(jx);
+		 const float Wfat_mass_nom = FatJet_mass->At(jx);
+	    	 ROOT::Math::PtEtaPhiMVector wHad_nom_4v{
+	      			Wfat_pt_nom,
+	      			Wfat_eta,
+	      			FatJet_phi->At(jx),
+	     			FatJet_mass->At(jx)
+	     			
+	 	 };
+		 double HfatM_nom{(wHad_nom_4v + wLep_4v).M()};
+
+		 cout << " Comparison is" <<  Wfat_mass_nom << "and " << Wfat_mass << " then" << Wfat_pt << "compared " << Wfat_pt_nom <<" and eventually " << HfatM << "with " << HfatM_nom << endl;	
 	 	 if (_var == 0) return HfatM;
 	 	 if (_var == 1) return HovFat;
 	 	 if (_var == 2) return Wfat_pt;
 	 	 if (_var == 3) return Wfat_mass;
+	 	 //if (_var == 4) return wpt;
 	}
          if ( _unc == "jesUp"){
 		 const float Wfat_pt   = FatJet_pt_jesUp->At(jx);
@@ -196,6 +217,7 @@ if (GoodJet_cd == true){
 	 	 if (_var == 1) return HovFat;
 	 	 if (_var == 2) return Wfat_pt;
 	 	 if (_var == 3) return Wfat_mass;
+	 	 //if (_var == 4) return wpt;
 	}
          if ( _unc == "jmsUp"){
 		 const float Wfat_pt   = FatJet_pt->At(jx);
@@ -214,6 +236,7 @@ if (GoodJet_cd == true){
 	 	 if (_var == 1) return HovFat;
 	 	 if (_var == 2) return Wfat_pt;
 	 	 if (_var == 3) return Wfat_mass;
+	 	 //if (_var == 4) return wpt;
 	}
          if ( _unc == "jmrUp"){
 		 const float Wfat_pt   = FatJet_pt->At(jx);
@@ -232,6 +255,7 @@ if (GoodJet_cd == true){
 	 	 if (_var == 1) return HovFat;
 	 	 if (_var == 2) return Wfat_pt;
 	 	 if (_var == 3) return Wfat_mass;
+	 	 //if (_var == 4) return wpt;
 	}
          if ( _unc == "jerDo"){
 		 const float Wfat_pt   = FatJet_pt_jerDo->At(jx);
@@ -250,6 +274,7 @@ if (GoodJet_cd == true){
 	 	 if (_var == 1) return HovFat;
 	 	 if (_var == 2) return Wfat_pt;
 	 	 if (_var == 3) return Wfat_mass;
+	 	 //if (_var == 4) return wpt;
 	}
          if ( _unc == "jesDo"){
 		 const float Wfat_pt   = FatJet_pt_jesDo->At(jx);
@@ -268,6 +293,7 @@ if (GoodJet_cd == true){
 	 	 if (_var == 1) return HovFat;
 	 	 if (_var == 2) return Wfat_pt;
 	 	 if (_var == 3) return Wfat_mass;
+	 	 //if (_var == 4) return wpt;
 	}
          if ( _unc == "jmsDo"){
 		 const float Wfat_pt   = FatJet_pt->At(jx);
@@ -286,6 +312,7 @@ if (GoodJet_cd == true){
 	 	 if (_var == 1) return HovFat;
 	 	 if (_var == 2) return Wfat_pt;
 	 	 if (_var == 3) return Wfat_mass;
+	 	 //if (_var == 4) return wpt;
 	}
          if ( _unc == "jmrDo"){
 		 const float Wfat_pt   = FatJet_pt->At(jx);
@@ -304,6 +331,7 @@ if (GoodJet_cd == true){
 	 	 if (_var == 1) return HovFat;
 	 	 if (_var == 2) return Wfat_pt;
 	 	 if (_var == 3) return Wfat_mass;
+	 	 //if (_var == 4) return wpt;
 	}
 }
 return -999;
@@ -350,5 +378,9 @@ _library.bindBranch(WLep_pt, "HM_Wlep_pt_Puppi");
 _library.bindBranch(WLep_eta, "HM_Wlep_eta_Puppi");
 _library.bindBranch(WLep_phi, "HM_Wlep_phi_Puppi");
 _library.bindBranch(WLep_mass, "HM_Wlep_mass_Puppi");
+//_library.bindBranch(WHad_pt, "HM_Whad_pt");
+//_library.bindBranch(WHad_eta, "HM_Whad_eta");
+//_library.bindBranch(WHad_phi, "HM_Whad_phi");
+//_library.bindBranch(WHad_mass, "HM_Whad_mass");
 }
 #endif

@@ -46,12 +46,12 @@ protected:
   FloatArrayReader* FatJet_mass{};	  
   FloatArrayReader* FatJet_msof{};	  
   IntArrayReader*   FatJet_jetId{};	  
-  FloatValueReader* WJJ_pt{};	  
-  FloatValueReader* WJJ_eta{};	   
-  FloatValueReader* WJJ_phi{};
-  FloatValueReader* WJJ_mass{};	  
-  IntValueReader* CJet1_index{};
-  IntValueReader* CJet2_index{};
+//  FloatValueReader* WJJ_pt{};	  
+//  FloatValueReader* WJJ_eta{};	   
+//  FloatValueReader* WJJ_phi{};
+//  FloatValueReader* WJJ_mass{};	  
+//  IntValueReader* CJet1_index{};
+//  IntValueReader* CJet2_index{};
   FloatValueReader* Wlep_mt{}; 
   double isRes;
 double isBoo;
@@ -95,13 +95,13 @@ isRes = value_used;
 isBoo = value_used;
  //  std::cout << nJ << std::endl;
  
-ROOT::Math::PtEtaPhiMVector wHadJJ_4v{
-    *WJJ_pt->Get(),
-    *WJJ_eta->Get(),
-    *WJJ_phi->Get(),
-    *WJJ_mass->Get()
-
-};
+//ROOT::Math::PtEtaPhiMVector wHadJJ_4v{
+//    *WJJ_pt->Get(),
+//    *WJJ_eta->Get(),
+//    *WJJ_phi->Get(),
+//    *WJJ_mass->Get()
+//
+//};
 	 
 //std::cout << isRes<< "ehehe" << std::endl;
 for (unsigned int ix{0}; ix < nJ; ix++) {
@@ -167,7 +167,7 @@ for (unsigned int ix{0}; ix < nJ; ix++) {
     double HfatM{(wHad_4v + wLep_4v).M()};
     double HovFat = min( Wfat_pt, *Lep_pt->Get()  )/ HfatM;
  //   double lepovM = *Lep_pt->Get() / HfatM;
-
+                cout << " Instead in this var" <<  Wfat_pt << "and eventually " << HfatM << "and " << FatJet_mass->At(jx) << endl;
 		if (_var == 0) return HfatM;
 		if (_var == 1) return HovFat;
    //		if(_var == 4) return lepovM;
@@ -211,25 +211,25 @@ for (unsigned int ix{0}; ix < nJ; ix++) {
 ////}
 
 
-if(( *CJet1_index->Get() != -1 ) && (*CJet2_index->Get() != -1)){
- double HjjM{(wHadJJ_4v + wLep_4v).M()};	  
-    isRes= 0;
-double Hovjj = min(*WJJ_pt->Get(), *Lep_pt->Get() ) / HjjM;
-double jjovM = *WJJ_pt->Get() / HjjM;
-double lepovM = *Lep_pt->Get() / HjjM;
-   if(_var == 2)	return HjjM;
-   if(_var == 3) 	return Hovjj;
-   if(_var == 4)	return lepovM;
-//   if(_var == 5)	return jjovM;
-    if((*WJJ_pt->Get() > 40 ) && (*WJJ_pt->Get() / HjjM > 0.35) && ( *MET_pt->Get() > 30)) {
-        isRes = 1;
-	if( isBoo == 1){
-	   isRes =2;
-//		std::cout << HjjM << " vs " << *HiggFat << std::endl;
-	 //return *WJJ_mass->Get();
-	}
-    }
-}
+//if(( *CJet1_index->Get() != -1 ) && (*CJet2_index->Get() != -1)){
+// double HjjM{(wHadJJ_4v + wLep_4v).M()};	  
+//    isRes= 0;
+//double Hovjj = min(*WJJ_pt->Get(), *Lep_pt->Get() ) / HjjM;
+//double jjovM = *WJJ_pt->Get() / HjjM;
+//double lepovM = *Lep_pt->Get() / HjjM;
+//   if(_var == 2)	return HjjM;
+//   if(_var == 3) 	return Hovjj;
+//   if(_var == 4)	return lepovM;
+////   if(_var == 5)	return jjovM;
+//    if((*WJJ_pt->Get() > 40 ) && (*WJJ_pt->Get() / HjjM > 0.35) && ( *MET_pt->Get() > 30)) {
+//        isRes = 1;
+//	if( isBoo == 1){
+//	   isRes =2;
+////		std::cout << HjjM << " vs " << *HiggFat << std::endl;
+//	 //return *WJJ_mass->Get();
+//	}
+//    }
+//}
 return -999;
 //return *Lep_phi->Get(); 
 
@@ -256,12 +256,12 @@ _library.bindBranch(FatJet_phi, "FatJet_phi");
 _library.bindBranch(FatJet_msof, "FatJet_msoftdrop_nom");
 _library.bindBranch(FatJet_mass, "FatJet_mass_nom");
 _library.bindBranch(FatJet_jetId, "FatJet_jetId");
-_library.bindBranch(WJJ_pt, "HM_Whad_pt");
-_library.bindBranch(WJJ_eta, "HM_Whad_eta");
-_library.bindBranch(WJJ_phi, "HM_Whad_phi");
-_library.bindBranch(WJJ_mass, "HM_Whad_mass");
-_library.bindBranch(CJet1_index, "HM_idx_j1");
-_library.bindBranch(CJet2_index, "HM_idx_j2");
+//_library.bindBranch(WJJ_pt, "HM_Whad_pt");
+//_library.bindBranch(WJJ_eta, "HM_Whad_eta");
+//_library.bindBranch(WJJ_phi, "HM_Whad_phi");
+//_library.bindBranch(WJJ_mass, "HM_Whad_mass");
+//_library.bindBranch(CJet1_index, "HM_idx_j1");
+//_library.bindBranch(CJet2_index, "HM_idx_j2");
 _library.bindBranch(Wlep_mt, "HM_Wlep_mt");
 }
 #endif

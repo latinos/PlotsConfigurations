@@ -46,12 +46,12 @@ protected:
   FloatArrayReader* FatJet_mass{};	  
   FloatArrayReader* FatJet_msof{};	  
   IntArrayReader*   FatJet_jetId{};	  
-  FloatValueReader* WJJ_pt{};	  
-  FloatValueReader* WJJ_eta{};	   
-  FloatValueReader* WJJ_phi{};
-  FloatValueReader* WJJ_mass{};	  
-  IntValueReader* CJet1_index{};
-  IntValueReader* CJet2_index{};
+  //FloatValueReader* WJJ_pt{};	  
+  //FloatValueReader* WJJ_eta{};	   
+  //FloatValueReader* WJJ_phi{};
+  //FloatValueReader* WJJ_mass{};	  
+ // IntValueReader* CJet1_index{};
+ // IntValueReader* CJet2_index{};
   FloatValueReader* Wlep_mt{}; 
   double isRes;
 double isBoo;
@@ -95,13 +95,13 @@ isRes = value_used;
 isBoo = value_used;
  //  std::cout << nJ << std::endl;
  
-ROOT::Math::PtEtaPhiMVector wHadJJ_4v{
-    *WJJ_pt->Get(),
-    *WJJ_eta->Get(),
-    *WJJ_phi->Get(),
-    *WJJ_mass->Get()
-
-};
+//ROOT::Math::PtEtaPhiMVector wHadJJ_4v{
+//    *WJJ_pt->Get(),
+//    *WJJ_eta->Get(),
+//    *WJJ_phi->Get(),
+//    *WJJ_mass->Get()
+//
+//};
 	 
 //std::cout << isRes<< "ehehe" << std::endl;
 for (unsigned int ix{0}; ix < nJ; ix++) {
@@ -178,37 +178,37 @@ for (unsigned int ix{0}; ix < nJ; ix++) {
 
 
 
-if(( *CJet1_index->Get() != -1 ) && (*CJet2_index->Get() != -1)){
- double HjjM{(wHadJJ_4v + wLep_4v).M()};	  
-isRes= 0;
-double Hovjj = min(*WJJ_pt->Get(), *Lep_pt->Get() ) / HjjM;
-double jjovM = *WJJ_pt->Get() / HjjM;
-double lepovM = *Lep_pt->Get() / HjjM;
-if(GoodJet_cd == true){
- 
-  if(index_Good_0 >= 0){ jx = 0;
-  }else if(index_Good_1 >= 1){jx = 1;
-  }else if(index_Good_2 >= 2){jx = 2;
-  }else if(index_Good_3 >= 3){jx = 3;
-  }else{ jx = last_idx;}
-    const float Wfat_pt   = FatJet_pt->At(jx);
-    const float Wfat_eta  = FatJet_eta->At(jx);
-    const float Wfat_phi = FatJet_phi->At(jx);
-//    const float WJJ_pt   = *WJJ_pt->Get();
-//    const float WJJ_eta  = *WJJ_eta->Get();
-//    const float WJJ_phi = *WJJ_phi->Get();
-   if(sqrt(pow((Wfat_eta-*WJJ_eta->Get()),2)+pow((Wfat_phi-*WJJ_phi->Get()),2)) < 0.8){
-   if(_var == 2)	return HjjM;
-   if(_var == 3) 	return Hovjj;
-   if(_var == 4)	return lepovM;
-   if(_var == 5)	return sqrt(pow((Wfat_eta-*WJJ_eta->Get()),2)+pow((Wfat_phi-*WJJ_phi->Get()),2));
-//   }
-    }
-}
-   if(_var == 6)	return HjjM;
-   if(_var == 7) 	return Hovjj;
-   if(_var == 8)	return lepovM;
-}
+//if(( *CJet1_index->Get() != -1 ) && (*CJet2_index->Get() != -1)){
+// double HjjM{(wHadJJ_4v + wLep_4v).M()};	  
+//isRes= 0;
+//double Hovjj = min(*WJJ_pt->Get(), *Lep_pt->Get() ) / HjjM;
+//double jjovM = *WJJ_pt->Get() / HjjM;
+//double lepovM = *Lep_pt->Get() / HjjM;
+//if(GoodJet_cd == true){
+// 
+//  if(index_Good_0 >= 0){ jx = 0;
+//  }else if(index_Good_1 >= 1){jx = 1;
+//  }else if(index_Good_2 >= 2){jx = 2;
+//  }else if(index_Good_3 >= 3){jx = 3;
+//  }else{ jx = last_idx;}
+//    const float Wfat_pt   = FatJet_pt->At(jx);
+//    const float Wfat_eta  = FatJet_eta->At(jx);
+//    const float Wfat_phi = FatJet_phi->At(jx);
+////    const float WJJ_pt   = *WJJ_pt->Get();
+////    const float WJJ_eta  = *WJJ_eta->Get();
+////    const float WJJ_phi = *WJJ_phi->Get();
+//   if(sqrt(pow((Wfat_eta-*WJJ_eta->Get()),2)+pow((Wfat_phi-*WJJ_phi->Get()),2)) < 0.8){
+//   if(_var == 2)	return HjjM;
+//   if(_var == 3) 	return Hovjj;
+//   if(_var == 4)	return lepovM;
+//   if(_var == 5)	return sqrt(pow((Wfat_eta-*WJJ_eta->Get()),2)+pow((Wfat_phi-*WJJ_phi->Get()),2));
+////   }
+//    }
+//}
+//   if(_var == 6)	return HjjM;
+//   if(_var == 7) 	return Hovjj;
+//   if(_var == 8)	return lepovM;
+//}
 return -999;
 //return *Lep_phi->Get(); 
 
@@ -235,12 +235,12 @@ _library.bindBranch(FatJet_phi, "FatJet_phi");
 _library.bindBranch(FatJet_msof, "FatJet_msoftdrop_nom");
 _library.bindBranch(FatJet_mass, "FatJet_mass");
 _library.bindBranch(FatJet_jetId, "FatJet_jetId");
-_library.bindBranch(WJJ_pt, "HM_Whad_pt");
-_library.bindBranch(WJJ_eta, "HM_Whad_eta");
-_library.bindBranch(WJJ_phi, "HM_Whad_phi");
-_library.bindBranch(WJJ_mass, "HM_Whad_mass");
-_library.bindBranch(CJet1_index, "HM_idx_j1");
-_library.bindBranch(CJet2_index, "HM_idx_j2");
+//_library.bindBranch(WJJ_pt, "HM_Whad_pt");
+//_library.bindBranch(WJJ_eta, "HM_Whad_eta");
+//_library.bindBranch(WJJ_phi, "HM_Whad_phi");
+//_library.bindBranch(WJJ_mass, "HM_Whad_mass");
+//_library.bindBranch(CJet1_index, "HM_idx_j1");
+//_library.bindBranch(CJet2_index, "HM_idx_j2");
 _library.bindBranch(Wlep_mt, "HM_Wlep_mt");
 }
 #endif
