@@ -26,10 +26,7 @@ catSR = {
     'B6'  : 'ptll > 60       && ptll <= 70',
     'B7'  : 'ptll > 70       && ptll <= 80',
     'B8'  : 'ptll > 80       && ptll <= 100',
-    'B9'  : 'ptll > 100       && ptll <= 150',
-    'B10'  : 'ptll > 150       && ptll <= 200',
-    'B11'  : 'ptll > 200       && ptll <= 300',
-    'B12'  : 'ptll > 300'
+    'B9'  : 'ptll > 100'
 }
 
 ##  signal regions

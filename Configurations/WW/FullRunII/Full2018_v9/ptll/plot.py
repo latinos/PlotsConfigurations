@@ -1,6 +1,6 @@
 # plot configuration
 
-nbins = 13
+nbins = 10
 
 # groupPlot = {}
 # 
@@ -210,8 +210,8 @@ plot['DATA']  = {
                   'nameHR' : 'Data',
                   'color': 1 ,  
                   'isSignal' : 0,
-                  'isData'   : 1 ,
-                  'isBlind'  : 1
+                  'isData'   : 1,
+                  'isBlind'  : 1 
               }
 
 

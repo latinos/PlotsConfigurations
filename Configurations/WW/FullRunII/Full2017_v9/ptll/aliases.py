@@ -34,35 +34,43 @@ aliases['fakeW'] = {
     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP,
     'samples': ['Fake']
 }
+
 # And variations - already divided by central values in formulas !
 aliases['fakeWEleUp'] = {
     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_EleUp',
     'samples': ['Fake']
 }
+
 aliases['fakeWEleDown'] = {
     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_EleDown',
     'samples': ['Fake']
 }
+
 aliases['fakeWMuUp'] = {
     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_MuUp',
     'samples': ['Fake']
 }
+
 aliases['fakeWMuDown'] = {
     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_MuDown',
     'samples': ['Fake']
 }
+
 aliases['fakeWStatEleUp'] = {
     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_statEleUp',
     'samples': ['Fake']
 }
+
 aliases['fakeWStatEleDown'] = {
     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_statEleDown',
     'samples': ['Fake']
 }
+
 aliases['fakeWStatMuUp'] = {
     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_statMuUp',
     'samples': ['Fake']
 }
+
 aliases['fakeWStatMuDown'] = {
     'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_statMuDown',
     'samples': ['Fake']
@@ -254,21 +262,24 @@ aliases['nGoodGenJet'] = {
 aliases['genptll'] = {
     'linesToAdd': ['.L %s/WW/FullRunII/Tools/ptll.cc+' % configurations],
     'class': 'PTLL',
-    'samples': mc
+    'samples': ['WW','ggWW']
 }
 
 aliases['B0'] = {
     'expr' : 'genptll > 30. && genptll <= 35.',
     'samples' : ['WW','ggWW']
 }
+
 aliases['B1'] = {
     'expr' : 'genptll > 35. && genptll <= 40.',
     'samples' : ['WW','ggWW']
 }
+
 aliases['B2'] = {
     'expr' : 'genptll > 40. && genptll <= 45.',
     'samples' : ['WW','ggWW']
 }
+
 aliases['B3'] = {
     'expr' : 'genptll > 45. && genptll <= 50.',
     'samples' : ['WW','ggWW']
@@ -300,24 +311,10 @@ aliases['B8'] = {
 }
 
 aliases['B9'] = {
-    'expr' : 'genptll > 100. && genptll <= 150.',
+    'expr' : 'genptll > 100.',
     'samples' : ['WW','ggWW']
 }
 
-aliases['B10'] = {
-    'expr' : 'genptll > 150. && genptll <= 200.',
-    'samples' : ['WW','ggWW']
-}
-
-aliases['B11'] = {
-    'expr' : 'genptll > 200. && genptll <= 300.',
-    'samples' : ['WW','ggWW']
-}
-
-aliases['B12'] = {
-    'expr' : 'genptll > 300.',
-    'samples' : ['WW','ggWW']
-}
 aliases['fid'] = {
     'expr' : 'fiducial',
     'samples' : ['WW','ggWW']

@@ -1,7 +1,7 @@
 import os
 import inspect
 
-from LatinoAnalysis.Tools.commonTools import getSampleFiles, getBaseW, addSampleWeight
+from LatinoAnalysis.Tools.commonTools import getSampleFiles, getBaseWnAOD, addSampleWeight
 
 def nanoGetSampleFiles(inputDir, sample):
     try:

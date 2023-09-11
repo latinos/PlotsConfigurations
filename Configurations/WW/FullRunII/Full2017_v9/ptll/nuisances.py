@@ -21,7 +21,7 @@ HiggsXS = HiggsXSection()
 import os
 import json
 configurations = os.path.realpath(inspect.getfile(inspect.currentframe())) # this file
-configurations = os.path.dirname(configurations) # mll
+configurations = os.path.dirname(configurations) # ptll
 configurations = os.path.dirname(configurations) # Full2017_v9
 configurations = os.path.dirname(configurations) # FullRunII
 configurations = os.path.dirname(configurations) # WW
@@ -192,43 +192,43 @@ nuisances['muonpt'] = {
 }
 
 ###### Jet energy scale
-'''
+
 ##### Jet energy scale
-jes_systs = ['JESAbsolute','JESAbsolute_2017','JESBBEC1','JESBBEC1_2017','JESEC2','JESEC2_2017','JESFlavorQCD','JESHF','JESHF_2017','JESRelativeBal','JESRelativeSample_2017']
-folderup = ""
-folderdo = ""
+#jes_systs = ['JESAbsolute','JESAbsolute_2017','JESBBEC1','JESBBEC1_2017','JESEC2','JESEC2_2017','JESFlavorQCD','JESHF','JESHF_2017','JESRelativeBal','JESRelativeSample_2017']
+#folderup = ""
+#folderdo = ""
 
-for js in jes_systs:
-  if 'Absolute' in js:
-    folderup = 'root://eoscms.cern.ch/'+makeMCDirectory('JESAbsoluteup_suffix')
-    folderdo = 'root://eoscms.cern.ch/'+makeMCDirectory('JESAbsolutedo_suffix')
-  elif 'BBEC1' in js:
-    folderup = 'root://eoscms.cern.ch/'+makeMCDirectory('JESBBEC1up_suffix')
-    folderdo = 'root://eoscms.cern.ch/'+makeMCDirectory('JESBBEC1do_suffix')
-  elif 'EC2' in js:
-    folderup = 'root://eoscms.cern.ch/'+makeMCDirectory('JESEC2up_suffix')
-    folderdo = 'root://eoscms.cern.ch/'+makeMCDirectory('JESEC2do_suffix')
-  elif 'HF' in js:
-    folderup = 'root://eoscms.cern.ch/'+makeMCDirectory('JESHFup_suffix')
-    folderdo = 'root://eoscms.cern.ch/'+makeMCDirectory('JESHFdo_suffix')
-  elif 'Relative' in js:
-    folderup = 'root://eoscms.cern.ch/'+makeMCDirectory('JESRelativeup_suffix')
-    folderdo = 'root://eoscms.cern.ch/'+makeMCDirectory('JESRelativedo_suffix')
-  elif 'FlavorQCD' in js:
-    folderup = 'root://eoscms.cern.ch/'+makeMCDirectory('JESFlavorQCDup_suffix')
-    folderdo = 'root://eoscms.cern.ch/'+makeMCDirectory('JESFlavorQCDdo_suffix')
-
-  nuisances[js] = {
-      'name': 'CMS_scale_'+js,
-      'kind': 'suffix',
-      'type': 'shape',
-      'mapUp': js+'up',
-      'mapDown': js+'do',
-      'samples': dict((skey, ['1', '1']) for skey in mc),
-      'folderUp': folderup,
-      'folderDown': folderdo,
-      'AsLnN': '1'
-  }
+#for js in jes_systs:
+#  if 'Absolute' in js:
+#    folderup = 'root://eoscms.cern.ch/'+makeMCDirectory('JESAbsoluteup_suffix')
+#    folderdo = 'root://eoscms.cern.ch/'+makeMCDirectory('JESAbsolutedo_suffix')
+#  elif 'BBEC1' in js:
+#    folderup = 'root://eoscms.cern.ch/'+makeMCDirectory('JESBBEC1up_suffix')
+#    folderdo = 'root://eoscms.cern.ch/'+makeMCDirectory('JESBBEC1do_suffix')
+#  elif 'EC2' in js:
+#    folderup = 'root://eoscms.cern.ch/'+makeMCDirectory('JESEC2up_suffix')
+#    folderdo = 'root://eoscms.cern.ch/'+makeMCDirectory('JESEC2do_suffix')
+#  elif 'HF' in js:
+#    folderup = 'root://eoscms.cern.ch/'+makeMCDirectory('JESHFup_suffix')
+#    folderdo = 'root://eoscms.cern.ch/'+makeMCDirectory('JESHFdo_suffix')
+#  elif 'Relative' in js:
+#    folderup = 'root://eoscms.cern.ch/'+makeMCDirectory('JESRelativeup_suffix')
+#    folderdo = 'root://eoscms.cern.ch/'+makeMCDirectory('JESRelativedo_suffix')
+#  elif 'FlavorQCD' in js:
+#    folderup = 'root://eoscms.cern.ch/'+makeMCDirectory('JESFlavorQCDup_suffix')
+#    folderdo = 'root://eoscms.cern.ch/'+makeMCDirectory('JESFlavorQCDdo_suffix')
+#
+#  nuisances[js] = {
+#      'name': 'CMS_scale_'+js,
+#      'kind': 'suffix',
+#      'type': 'shape',
+#      'mapUp': js+'up',
+#      'mapDown': js+'do',
+#      'samples': dict((skey, ['1', '1']) for skey in mc),
+#      'folderUp': folderup,
+#      'folderDown': folderdo,
+#      'AsLnN': '1'
+#  }
 '''
 ##### Jet energy resolution
 nuisances['JER'] = {
@@ -242,7 +242,7 @@ nuisances['JER'] = {
     'folderDown': 'root://eoscms.cern.ch/'+makeMCDirectory('JERdo_suffix'),
     'AsLnN': '1'
 }
-
+'''
 ##### MET energy scale
 
 nuisances['met'] = {
@@ -449,7 +449,6 @@ nuisances['pdf_qqbar_ACCEPT'] = {
 }
 
 # PDF
-'''
 pdf_variations = ["LHEPdfWeight[%d]" %(i+1) for i in range(100)] # Float_t LHE pdf variation weights (w_var / w_nominal) for LHA IDs 320901 - 321000
 nuisances['pdf_WW']  = {
     'name'  : 'CMS_hww_pdf_WW',
@@ -460,7 +459,7 @@ nuisances['pdf_WW']  = {
     },
     'scale' : nfdict["pdf_WW"]
 }
-'''
+
 ##### Renormalization & factorization scales
 
 ## Shape nuisance due to QCD scale variations for DY
@@ -647,4 +646,3 @@ for n in nuisances.values():
     n['skipCMS'] = 1
 
 #print ' '.join(nuis['name'] for nname, nuis in nuisances.iteritems() if nname not in ('lumi', 'stat'))
-

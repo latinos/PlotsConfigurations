@@ -181,42 +181,42 @@ nuisances['muonpt'] = {
     'AsLnN': '1'
 }
 
-'''
+
 ##### Jet energy scale
-jes_systs = ['JESAbsolute','JESAbsolute_2018','JESBBEC1','JESBBEC1_2018','JESEC2','JESEC2_2018','JESFlavorQCD','JESHF','JESHF_2018','JESRelativeBal','JESRelativeSample_2018']
+#jes_systs = ['JESAbsolute','JESAbsolute_2018','JESBBEC1','JESBBEC1_2018','JESEC2','JESEC2_2018','JESFlavorQCD','JESHF','JESHF_2018','JESRelativeBal','JESRelativeSample_2018']
 
-for js in jes_systs:
-  if 'Absolute' in js:
-    folderup = 'root://eoscms.cern.ch/'+makeMCDirectory('JESAbsoluteup_suffix')
-    folderdo = 'root://eoscms.cern.ch/'+makeMCDirectory('JESAbsolutedo_suffix')
-  elif 'BBEC1' in js:
-    folderup = 'root://eoscms.cern.ch/'+makeMCDirectory('JESBBEC1up_suffix')
-    folderdo = 'root://eoscms.cern.ch/'+makeMCDirectory('JESBBEC1do_suffix')
-  elif 'EC2' in js:
-    folderup = 'root://eoscms.cern.ch/'+makeMCDirectory('JESEC2up_suffix')
-    folderdo = 'root://eoscms.cern.ch/'+makeMCDirectory('JESEC2do_suffix')
-  elif 'HF' in js:
-    folderup = 'root://eoscms.cern.ch/'+makeMCDirectory('JESHFup_suffix')
-    folderdo = 'root://eoscms.cern.ch/'+makeMCDirectory('JESHFdo_suffix')
-  elif 'Relative' in js:
-    folderup = 'root://eoscms.cern.ch/'+makeMCDirectory('JESRelativeup_suffix')
-    folderdo = 'root://eoscms.cern.ch/'+makeMCDirectory('JESRelativedo_suffix')
-  elif 'FlavorQCD' in js:
-    folderup = 'root://eoscms.cern.ch/'+makeMCDirectory('JESFlavorQCDup_suffix')
-    folderdo = 'root://eoscms.cern.ch/'+makeMCDirectory('JESFlavorQCDdo_suffix')
+#for js in jes_systs:
+#  if 'Absolute' in js:
+#    folderup = 'root://eoscms.cern.ch/'+makeMCDirectory('JESAbsoluteup_suffix')
+#    folderdo = 'root://eoscms.cern.ch/'+makeMCDirectory('JESAbsolutedo_suffix')
+#  elif 'BBEC1' in js:
+#    folderup = 'root://eoscms.cern.ch/'+makeMCDirectory('JESBBEC1up_suffix')
+#    folderdo = 'root://eoscms.cern.ch/'+makeMCDirectory('JESBBEC1do_suffix')
+#  elif 'EC2' in js:
+#    folderup = 'root://eoscms.cern.ch/'+makeMCDirectory('JESEC2up_suffix')
+#    folderdo = 'root://eoscms.cern.ch/'+makeMCDirectory('JESEC2do_suffix')
+#  elif 'HF' in js:
+#    folderup = 'root://eoscms.cern.ch/'+makeMCDirectory('JESHFup_suffix')
+#    folderdo = 'root://eoscms.cern.ch/'+makeMCDirectory('JESHFdo_suffix')
+#  elif 'Relative' in js:
+#    folderup = 'root://eoscms.cern.ch/'+makeMCDirectory('JESRelativeup_suffix')
+#    folderdo = 'root://eoscms.cern.ch/'+makeMCDirectory('JESRelativedo_suffix')
+#  elif 'FlavorQCD' in js:
+#    folderup = 'root://eoscms.cern.ch/'+makeMCDirectory('JESFlavorQCDup_suffix')
+#    folderdo = 'root://eoscms.cern.ch/'+makeMCDirectory('JESFlavorQCDdo_suffix')
 
-  nuisances[js] = {
-      'name': 'CMS_scale_'+js,
-      'kind': 'suffix',
-      'type': 'shape',
-      'mapUp': js+'up',
-      'mapDown': js+'do',
-      'samples': dict((skey, ['1', '1']) for skey in mc),
-      'folderUp': folderup,
-      'folderDown': folderdo,
-      'AsLnN': '1'
-  }
-'''
+#  nuisances[js] = {
+#      'name': 'CMS_scale_'+js,
+#      'kind': 'suffix',
+#      'type': 'shape',
+#      'mapUp': js+'up',
+#      'mapDown': js+'do',
+#      'samples': dict((skey, ['1', '1']) for skey in mc),
+#      'folderUp': folderup,
+#      'folderDown': folderdo,
+#      'AsLnN': '1'
+#  }
+
 ##### Jet energy resolution
 nuisances['JER'] = {
     'name': 'CMS_res_j_2018',
@@ -351,6 +351,7 @@ for cut in allcuts:
         },
         'cuts' : [cut]
     }
+
 
 nuisances['VZ'] = {
     'name': 'CMS_hww_VZScale',
@@ -629,4 +630,3 @@ for n in nuisances.values():
     n['skipCMS'] = 1
 
 #print ' '.join(nuis['name'] for nname, nuis in nuisances.iteritems() if nname not in ('lumi', 'stat'))
-
