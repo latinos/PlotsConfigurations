@@ -7,7 +7,47 @@ import json
 import utils
 from utils import Ellipse, CHANNEL_ID_MAP, REGION_ID_MAP
 import uproot
+import ROOT
 
+#get muon tth mva sf histogram
+mu_rootfile = ROOT.TFile(os.getenv("CMSSW_BASE") + "/src/PlotsConfigurations/Configurations/WH_chargeAsymmetry/UL/data/muon_ttHMVA_SF/2018/NUM_TightHWW_ISO_tthmva_DEN_TightHWW_ISO_eta_pt.root")
+h_SF_mu = mu_rootfile.Get("NUM_TightHWW_ISO_tthmva_DEN_TightHWW_ISO_eta_pt").Clone()
+h_SF_mu.SetDirectory(0)
+mu_rootfile.Close()
+
+# Create electron tth mva sf histogram
+xbins = np.array([-2.5, -2.0, -1.566, -1.442, -0.8, 0.0, 0.8, 1.442, 1.566, 2.0, 2.5])
+ybins = np.array([10.0, 15.0, 20.0, 35.0, 50.0, 90.0, 150.0, 500.0])
+h_SF_ele = ROOT.TH2D("h_SF_ele", "h_SF_ele", len(xbins) - 1, xbins, len(ybins) - 1, ybins)
+h_SF_ele.SetDirectory(0)
+# scrape values from electron txt file
+ele_sf_file_path = os.getenv("CMSSW_BASE") + "/src/PlotsConfigurations/Configurations/WH_chargeAsymmetry/UL/data/electron_ttHMVA_UL_SF/2017/egammaEffi.txt"
+lines = np.zeros((70,14))
+with open(ele_sf_file_path, 'r') as ele_sf_file:
+    i = 0
+    for line in ele_sf_file:
+        j = 0
+        parts = line.strip().split()
+        for part in parts:
+            num = float(part)
+            lines[i][j] = num
+            j += 1
+        i += 1
+#fill 2D histogram with sf values
+for iBinX in range (1,h_SF_ele.GetNbinsX()+1):
+    for iBinY in range (1,h_SF_ele.GetNbinsY()+1):
+        eta = h_SF_ele.GetXaxis().GetBinCenter(iBinX)
+        pt =  h_SF_ele.GetYaxis().GetBinCenter(iBinY)
+        
+        for i in range (70):
+            if eta >= lines[i][0] and eta <= lines[i][1] and pt >= lines[i][2] and pt <= lines[i][3]:
+                data = lines[i][4]
+                mc = lines[i][7]
+                if mc != 0:
+                    sf = data/mc
+                else: 
+                    sf = 1
+                h_SF_ele.SetBinContent(iBinX, iBinY, sf)
 
 #can put the whole thing in a for looping over masses? add masses to the json dictionary
 with open("signals.txt", 'r') as f:
@@ -20,11 +60,63 @@ for b in range(len(pairs)):
     dm = Events["AZH_mA_minus_mH"].array() #defined only in SR
 
 ################# weights ############################
-
     XSWeight = Events["XSWeight"].array()
     SFweight3l = Events["SFweight3l"].array()
-    LepSF = Events["LepSF3l__ele_mvaFall17V2Iso_WP90_tthmva_70__mu_cut_Tight_HWWW_tthmva_80"].array()
-    LepCut = Events["LepCut3l__ele_mvaFall17V2Iso_WP90_tthmva_70__mu_cut_Tight_HWWW_tthmva_80"].array()
+    LepSF = Events["LepSF3l__ele_mvaFall17V2Iso_WP90__mu_cut_Tight_HWWW"].array()
+    LepCut3l = Events["LepCut3l__ele_mvaFall17V2Iso_WP90__mu_cut_Tight_HWWW"].array()
+
+    Lepton_pt = Events["Lepton_pt"].array()
+    Lepton_eta = Events["Lepton_eta"].array()
+    Lepton_pdgId = Events["Lepton_pdgId"].array()
+    nLepton = Events["nLepton"].array()
+    Muon_mvaTTH = Events["Muon_mvaTTH"].array()
+    Lepton_muonIdx = Events["Lepton_muonIdx"].array()
+    Lepton_mvaTTH_UL = Events["Lepton_mvaTTH_UL"].array()
+    tthmvasf = []
+    lepcut = []
+    for i in range(len(nLepton)) :
+        lepcut_temp = 0
+        if nLepton[i] >=3 :
+            lepcut_temp = LepCut3l[i]           
+            SF_vect = []
+            for j in range(3):
+                eta_temp, pt_temp = Lepton_eta[i][j], Lepton_pt[i][j]
+                tempval = 0
+                
+                # Get electron SF
+                if abs(Lepton_pdgId[i][j]) == 11:
+                    lepcut_temp *= Lepton_mvaTTH_UL[i][j]>0.90
+                    eta_temp = min(max(eta_temp, -2.5), 2.49) #keep eta within (-2.5,2.49)
+                    pt_temp = min(max(pt_temp, 15.0), 499.0) #keep pt within (15.0,499.0)
+   
+                    SF_vect.append(h_SF_ele.GetBinContent(h_SF_ele.FindBin(eta_temp, pt_temp)))
+
+                # Get muon SF and uncertainty
+                elif abs(Lepton_pdgId[i][j]) == 13:
+                    lepcut_temp *= Muon_mvaTTH[i][Lepton_muonIdx[i][j]] > 0.82
+                    eta_temp = min(max(eta_temp, -2.4), 2.39) #keep eta within (-2.4,2.39)
+                    pt_temp = min(max(pt_temp, 10.1), 119.9) #keep pt within (10.1,119.9)
+
+                    SF_vect.append(h_SF_mu.GetBinContent(h_SF_mu.FindBin(eta_temp, pt_temp)))
+
+                else:
+                    lepcut_temp = 0
+                    SF_vect.append(0)
+
+            SF = 1.0
+            for sf in SF_vect:
+                SF *= sf
+            tthmvasf.append(SF)
+            lepcut.append(lepcut_temp)
+
+        else:
+            lepcut.append(0)
+            tthmvasf.append(0)
+
+    LepCut = np.array(lepcut)
+    ttHMVAULSF = np.array(tthmvasf)
+
+
     Prefire = Events["PrefireWeight"].array()
     JetPUIDSF = Events["Jet_PUIDSF_loose"].array()
     JetID = Events["Jet_jetId"].array()
@@ -40,7 +132,7 @@ for b in range(len(pairs)):
     btag = np.log(((CleanJet_pt>30) & (CleanJeteta<2.5))*(Jet_btagSF_deepjet_shape[CleanJet_jetIdx])+1*((CleanJet_pt<30) | (CleanJeteta>2.5)))
     btagSF = np.exp((btag.sum()))  #array([1.47603836, 0.66089104, 0.86333407, ..., 1.42880052, 0.97982071, 0.97606693]) - same as directly doing array.prod() without the log and the exp
 
-    SFweight = SFweight3l*LepSF*LepCut*Prefire*Jet_PUIDSF*btagSF
+    SFweight = SFweight3l*LepSF*LepCut*Prefire*Jet_PUIDSF*btagSF*ttHMVAULSF
 
     Lepton_promptgenmatched = Events["Lepton_promptgenmatched"].array()
     length = [len(x) for x in Lepton_promptgenmatched]

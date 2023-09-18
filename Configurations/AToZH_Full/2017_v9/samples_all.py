@@ -33,10 +33,10 @@ WZWeight = '1.138' # NLO to NNLO k-factor
 ############### Lepton WP ######################
 ################################################
 
-eleWP_new = 'mvaFall17V2Iso_WP90_tthmva_70'
-muWP_new  = 'cut_Tight_HWWW_tthmva_80'
+eleWP_new = 'mvaFall17V2Iso_WP90'
+muWP_new  = 'cut_Tight_HWWW'
 
-LepWPCut         = 'LepCut'+Nlep+'l__ele_'+eleWP_new+'__mu_'+muWP_new  
+#LepWPCut         = 'LepCut'+Nlep+'l__ele_'+eleWP_new+'__mu_'+muWP_new  
 LepWPweight      = 'LepSF'+Nlep+'l__ele_'+eleWP_new+'__mu_'+muWP_new
 
 ################################################
@@ -44,7 +44,7 @@ LepWPweight      = 'LepSF'+Nlep+'l__ele_'+eleWP_new+'__mu_'+muWP_new
 ################################################
 
 XSWeight      = 'XSWeight'
-SFweight      = 'SFweight'+Nlep+'l*'+LepWPweight+'*'+LepWPCut+'*PrefireWeight*Jet_PUIDSF'
+SFweight      = 'SFweight'+Nlep+'l*'+LepWPweight+'*LepWPCut*PrefireWeight*Jet_PUIDSF*ttHMVAULSF'
 PromptGenLepMatch   = 'PromptGenLepMatch'+Nlep+'l'
 PromptGenLepMatch2l   = 'PromptGenLepMatch'+'2l'
 PromptGenLepMatch3l   = 'PromptGenLepMatch'+'3l'
@@ -54,10 +54,10 @@ PromptGenLepMatch3l   = 'PromptGenLepMatch'+'3l'
 ################################################
 
 
-if Nlep == '2' :
-  fakeW = 'fakeW2l_ele_'+eleWP_new+'_mu_'+muWP_new
-else:
-  fakeW = 'fakeW_ele_'+eleWP_new+'_mu_'+muWP_new+'_'+Nlep+'l'
+#if Nlep == '2' :
+#  fakeW = 'fakeW2l_ele_'+eleWP_new+'_mu_'+muWP_new
+#else:
+#  fakeW = 'fakeW_ele_'+eleWP_new+'_mu_'+muWP_new+'_'+Nlep+'l'
 
 ################################################
 ############### B-Tag  WP ######################
@@ -84,15 +84,18 @@ DataRun = [
     ['F','Run2017F-UL2017-v1']
 ]
 
-DataSets = ['MuonEG','DoubleMuon','SingleMuon','DoubleEG','SingleElectron']
+DataSets = ['MuonEG','SingleMuon','SingleElectron','DoubleMuon', 'DoubleEG']
 
 DataTrig = {
-            'MuonEG'         : ' Trigger_ElMu' ,
-            'DoubleMuon'     : '!Trigger_ElMu &&  Trigger_dblMu' ,
-            'SingleMuon'     : '!Trigger_ElMu && !Trigger_dblMu &&  Trigger_sngMu' ,
-            'DoubleEG'       : '!Trigger_ElMu && !Trigger_dblMu && !Trigger_sngMu &&  Trigger_dblEl' ,
-            'SingleElectron' : '!Trigger_ElMu && !Trigger_dblMu && !Trigger_sngMu && !Trigger_dblEl && Trigger_sngEl' ,
-           }
+    'MuonEG'         : ' Trigger_ElMu' ,
+    'SingleMuon'     : '!Trigger_ElMu && Trigger_sngMu' ,
+    'SingleElectron' : '!Trigger_ElMu && !Trigger_sngMu && Trigger_sngEl',
+    'DoubleMuon'     : '!Trigger_ElMu && !Trigger_sngMu && !Trigger_sngEl && Trigger_dblMu',
+    'DoubleEG'       : '!Trigger_ElMu && !Trigger_sngMu && !Trigger_sngEl && !Trigger_dblMu && Trigger_dblEl'
+}
+
+
+           
 
 ###########################################
 #############  BACKGROUNDS  ###############
@@ -106,10 +109,6 @@ samples['ZgS']  = {    'name'   :   getSampleFilesNano(directory,'ZGToLLG'),
                        'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch3l+'*'+METFilter_MC+'*(Gen_ZGstar_mass > 0)',
                        'FilesPerJob' : 3 ,
                  }
-
-
-
-
 samples['WZ']  = {    'name':   getSampleFilesNano(directory,'WZTo3LNu_mllmin4p0')
                               + getSampleFilesNano(directory,'WZTo2Q2L_mllmin4p0'),
                        'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch3l+'*'+METFilter_MC+'*'+WZWeight,
@@ -165,7 +164,7 @@ addSampleWeight(samples,'top','TTTo2L2Nu_PSWeights','Top_pTrw')
 
 samples['TTWJets'] = { 'name': getSampleFilesNano(directory,'TTWJets'),
                        'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC ,
-                       'FilesPerJob' : 5,
+		       'FilesPerJob' : 5,
 }
 
 ############ AZH SIGNAL SAMPLES ############
@@ -1250,7 +1249,7 @@ samples['AZH_950_850'] = { 'name': getSampleFilesNano(directory, 'AToZHToLLTTbar
 ###########################################
 
 samples['Fake']  = {   'name': [ ] ,
-                       'weight' : fakeW+'*'+METFilter_DATA,
+                       'weight' : 'fakeW*'+ METFilter_DATA,
                        'weights' : [ ] ,
                        'isData': ['all'],
                        'FilesPerJob' : 500 ,
@@ -1270,7 +1269,7 @@ for Run in DataRun :
 ###########################################
 
 samples['DATA']  = {   'name': [ ] ,
-                       'weight' : METFilter_DATA+'*'+LepWPCut,
+                       'weight' : METFilter_DATA+'*LepWPCut',
                        'weights' : [ ],
                        'isData': ['all'],
                        'FilesPerJob' : 500 ,

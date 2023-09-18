@@ -3,8 +3,22 @@
 mc = [skey for skey in samples if skey not in ('Fake', 'DATA')]
 bkg = [skey for skey in samples if not skey.startswith('AZH')]
 
-eleWP_new = 'mvaFall17V2Iso_WP90_tthmva_70'
-muWP_new  = 'cut_Tight_HWWW_tthmva_80'
+eleWP = 'mvaFall17V2Iso_WP90'
+muWP  = 'cut_Tight_HWWW'
+
+aliases['LepWPCut'] = {
+    'expr': 'LepCut3l__ele_'+eleWP+'__mu_'+muWP+'*\
+     ( ((abs(Lepton_pdgId[0])==13 && Muon_mvaTTH[Lepton_muonIdx[0]]>0.82) || (abs(Lepton_pdgId[0])==11 && Lepton_mvaTTH_UL[0]>0.90)) \
+    && ((abs(Lepton_pdgId[1])==13 && Muon_mvaTTH[Lepton_muonIdx[1]]>0.82) || (abs(Lepton_pdgId[1])==11 && Lepton_mvaTTH_UL[1]>0.90)) \
+    && ((abs(Lepton_pdgId[2])==13 && Muon_mvaTTH[Lepton_muonIdx[2]]>0.82) || (abs(Lepton_pdgId[2])==11 && Lepton_mvaTTH_UL[2]>0.90)) )'
+}
+
+aliases['ttHMVAULSF'] = {
+    'linesToAdd' : ['.L %s/src/PlotsConfigurations/Configurations/WH_chargeAsymmetry/UL/macros/ttHMVASF.C+' % os.getenv('CMSSW_BASE')],
+    'class'      : 'ttHMVASF',
+    'args'       : ("2017", 3, "all","nominal"),
+    'samples'    : mc
+}
 
 ####################################################################################
 # b tagging WPs: https://twiki.cern.ch/twiki/bin/view/CMS/BtagRecommendation106XUL17
@@ -111,6 +125,56 @@ aliases['Top_pTrw'] = {
     'samples': ['top']
 }
 
+# Fake leptons transfer factor
+aliases['fakeW'] = {
+    'linesToAdd' : ['.L %s/src/PlotsConfigurations/Configurations/WW/FullRunII/Tools/fake_rate_reader.C+' % os.getenv('CMSSW_BASE')],
+    'class'      : 'fake_rate_reader',
+    'args'       : ('2017', '90', '82', 0.90, 0.82, 'nominal', 3, "std"),
+    'samples'    : ['Fake']
+}
+
+# And variations - already divided by central values in formulas !
+aliases['fakeW_EleUp'] = {
+    'class'      : 'fake_rate_reader',
+    'args'       : ('2017', '90', '82', 0.90, 0.82, 'EleUp', 3, "std"),
+    'samples'    : ['Fake']
+}
+aliases['fakeW_EleDown'] = {
+    'class'      : 'fake_rate_reader',
+    'args'       : ('2017', '90', '82', 0.90, 0.82, 'EleDown', 3, "std"),
+    'samples'    : ['Fake']
+}
+aliases['fakeW_MuUp'] = {
+    'class'      : 'fake_rate_reader',
+    'args'       : ('2017', '90', '82', 0.90, 0.82, 'MuUp', 3, "std"),
+    'samples'    : ['Fake']
+}
+aliases['fakeW_MuDown'] = {
+    'class'      : 'fake_rate_reader',
+    'args'       : ('2017', '90', '82', 0.90, 0.82, 'MuDown', 3, "std"),
+    'samples'    : ['Fake']
+}
+
+aliases['fakeW_statEleUp'] = {
+    'class'      : 'fake_rate_reader',
+    'args'       : ('2017', '90', '82', 0.90, 0.82, 'StatEleUp', 3, "std"),
+    'samples'    : ['Fake']
+}
+aliases['fakeW_statEleDown'] = {
+    'class'      : 'fake_rate_reader',
+    'args'       : ('2017', '90', '82', 0.90, 0.82, 'StatEleDown', 3, "std"),
+    'samples'    : ['Fake']
+}
+aliases['fakeW_statMuUp'] = {
+    'class'      : 'fake_rate_reader',
+    'args'       : ('2017', '90', '82', 0.90, 0.82, 'StatMuUp', 3, "std"),
+    'samples'    : ['Fake']
+}
+aliases['fakeW_statMuDown'] = {
+    'class'      : 'fake_rate_reader',
+    'args'       : ('2017', '90', '82', 0.90, 0.82, 'StatMuDown', 3, "std"),
+    'samples'    : ['Fake']
+}
 #################################### AZH variables ####################################################
 
 aliases['AZH_mA_minus_mH_patch'] = {
@@ -185,23 +249,53 @@ aliases['ellipse_mA_800_mH_600'] = {
 ### SFs for tthMVA  ###
 #######################
 
-aliases['SFweightEleUp'] = { 
-    'expr': 'LepSF3l__ele_'+eleWP_new+'__Up',
-    'samples': mc
+# ttHMVA, LepSF variations are 1+delta
+# Combining uncertainties, we want 1+sqrt(delta1^2+delta2^2)
+aliases['ttHMVASFUL_eleUp'] = {
+    'class'      : 'ttHMVASF',
+    'args'       : ("2017", 3, "all", "eleUp"),
+    'samples'    : mc,
+    'nominalOnly': 1
+}
+aliases['SFweightEleUp'] = {
+    'expr': '1+TMath::Sqrt(TMath::Power(LepSF3l__ele_'+eleWP+'__Up-1,2)+TMath::Power(ttHMVASFUL_eleUp-1,2))',
+    'samples': mc,
+    'nominalOnly': 1
+}
+aliases['ttHMVAULSF_eleDown'] = {
+    'class'      : 'ttHMVASF',
+    'args'       : ("2017", 3, "all", "eleDown"),
+    'samples'    : mc,
+    'nominalOnly': 1
 }
 
 aliases['SFweightEleDown'] = {
-    'expr': 'LepSF3l__ele_'+eleWP_new+'__Do',
-    'samples': mc
+    'expr': '1-TMath::Sqrt(TMath::Power(LepSF3l__ele_'+eleWP+'__Do-1,2)+TMath::Power(ttHMVAULSF_eleDown-1,2))',
+    'samples': mc,
+    'nominalOnly': 1
+}
+aliases['ttHMVAULSF_muUp'] = {
+    'class'      : 'ttHMVASF',
+    'args'       : ("2017", 3, "all", "muUp"),
+    'samples'    : mc,
+    'nominalOnly': 1
 }
 
 aliases['SFweightMuUp'] = {
-    'expr': 'LepSF3l__mu_'+muWP_new+'__Up',
-    'samples': mc
+    'expr': '1+TMath::Sqrt(TMath::Power(LepSF3l__mu_'+muWP+'__Up-1,2)+TMath::Power(ttHMVAULSF_muUp-1,2))',
+    'samples': mc,
+    'nominalOnly': 1
+}
+aliases['ttHMVAULSF_muDown'] = {
+    'class'      : 'ttHMVASF',
+    'args'       : ("2017", 3, "all", "muDown"),
+    'samples'    : mc,
+    'nominalOnly': 1
 }
 
 aliases['SFweightMuDown'] = {
-    'expr': 'LepSF3l__mu_'+muWP_new+'__Do',
-    'samples': mc
+    'expr': '1-TMath::Sqrt(TMath::Power(LepSF3l__mu_'+muWP+'__Do-1,2)+TMath::Power(ttHMVAULSF_muDown-1,2))',
+    'samples': mc,
+    'nominalOnly': 1
 }
 
