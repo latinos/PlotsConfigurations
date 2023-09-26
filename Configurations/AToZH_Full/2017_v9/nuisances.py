@@ -309,6 +309,7 @@ nuisances['trigg']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : dict((skey, trig_syst) for skey in mc),
+		'AsLnN' : '1',
  #               'cuts' : fitcuts
 }
 
@@ -357,6 +358,7 @@ nuisances['eff_m']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : dict((skey, id_syst_mu) for skey in mc),
+		'AsLnN' : '1',
  #               'cuts' : fitcuts
 }
 
@@ -396,7 +398,7 @@ for js in jes_systs:
                 'type': 'shape',
                 'mapUp': js+'up',
                 'mapDown': js+'do',
-                'samples': dict((skey, ['1', '1']) for skey in mc),
+                'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['TTWJets', 'AZH_1050_650']),
                 'folderUp'   : treeBaseDir+'Summer20UL17_106x_nAODv9_Full2017v9/MCl1loose2017v9__MCCorr2017v9NoJERInHorn__l2tightOR2017v9__RDFconv__JESup_suffix', 
                 'folderDown' : treeBaseDir+'Summer20UL17_106x_nAODv9_Full2017v9/MCl1loose2017v9__MCCorr2017v9NoJERInHorn__l2tightOR2017v9__RDFconv__JESdo_suffix', 
                 'AsLnN': '1',
@@ -426,7 +428,7 @@ nuisances['met']  = {
                 'samples'  : dict((skey, ['1', '1']) for skey in mc),
                 'folderUp'   : treeBaseDir+'Summer20UL17_106x_nAODv9_Full2017v9/MCl1loose2017v9__MCCorr2017v9NoJERInHorn__l2tightOR2017v9__METup_suffix', 
                 'folderDown' : treeBaseDir+'Summer20UL17_106x_nAODv9_Full2017v9/MCl1loose2017v9__MCCorr2017v9NoJERInHorn__l2tightOR2017v9__METdo_suffix', 
-                'AsLnN' : '1',
+ #               'AsLnN' : '1',
  #               'cuts' : fitcuts
 }
 

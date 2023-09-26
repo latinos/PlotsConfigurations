@@ -18,6 +18,12 @@ variables['events']     = { 'name': '1',
                             'fold' : 3
                         }
 
+variables['njet']       = { 'name'  : 'ZH3l_njet',
+                            'range' : (10,0,10),
+                            'xaxis' : 'N_{jet}',
+                            'fold' : 3 
+                        }
+
 variables['ptz']        = { 'name' : 'ZH3l_pTZ',
                             'range' : (6,0,1000),
                             'xaxis' : 'ptz',
@@ -25,7 +31,11 @@ variables['ptz']        = { 'name' : 'ZH3l_pTZ',
                             'fold' : 3 
                         }
 
-
+variables['nbjet']       = { 'name'  : 'nbjet',
+                            'range' : (10,0,10),
+                            'xaxis' : 'N_{bjet}',
+                            'fold' : 3 
+                        }
 variables['DeltaM']  = { 'name' : 'AZH_mA_minus_mH_patch',
                             'range' : (6,0,1000),
 			    'xaxis' : 'm_{A}-m_{H}',
