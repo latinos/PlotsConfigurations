@@ -62,13 +62,16 @@ Load combine:
 
 Now optimize:
 
-    ./do_optimize_cards.sh BDTG6_TT_more
+    ./do_optimize_cards.sh BDTG6_TT_more 0.10
 
     ./do_optimize_cards.sh BDTG5_TT_weight_more
-
     ./do_optimize_cards.sh BDTG6_TT_XSweight_more
 
 ### Combine datacards
+
+Create Combination directory:
+
+     mkdir -p Combination
 
 Load combine:
 
@@ -77,8 +80,6 @@ Load combine:
      cd -
 
 Actually combine datacards:
-
-     mkdir -p Combination
 
      python script_datacards.py
 
@@ -149,19 +150,22 @@ Using BDT variable (true/false refer to the usage of data-driven DYee):
 
     ./do_workspace_and_fit.sh BDTG6_TT_XSweight_more 
     ./do_workspace_and_fit.sh BDTG5_TT_weight_more 
-    ./do_workspace_and_fit.sh BDTG6_TT_more
+
+    ./do_workspace_and_fit.sh BDTG6_TT_more true
 
 
 For newer trainings, where we only want to compare the full strategy:
 
     python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_SS_Full2018_v9_BDTG6_TT_XSweight_more_allFinalStates_alsoLowPt_opt_noZveto --output_name Combination/FitResults_BDTG6_TT_XSweight_more.txt  --freeze_nuisances r_higgs
     python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_SS_Full2018_v9_BDTG5_TT_weight_more_allFinalStates_alsoLowPt_opt_noZveto   --output_name Combination/FitResults_BDTG6_TT_weight_more.txt    --freeze_nuisances r_higgs
+
     python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_SS_Full2018_v9_BDTG6_TT_more_allFinalStates_alsoLowPt_opt_noZveto          --output_name Combination/FitResults_BDTG6_TT_more.txt           --freeze_nuisances r_higgs
 
 Using datacards with correct signal scaling:
 
     python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_SS_Full2018_v9_BDTG6_TT_XSweight_more_allFinalStates_alsoLowPt_DYflip_original_signal_scale_opt_noZveto --output_name Combination/FitResults_BDTG6_TT_XSweight_more_original_signal_scale.txt  --freeze_nuisances r_higgs
     python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_SS_Full2018_v9_BDTG5_TT_weight_more_allFinalStates_alsoLowPt_DYflip_original_signal_scale_opt_noZveto   --output_name Combination/FitResults_BDTG6_TT_weight_more_original_signal_scale.txt    --freeze_nuisances r_higgs
+
     python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_SS_Full2018_v9_BDTG6_TT_more_allFinalStates_alsoLowPt_DYflip_original_signal_scale_opt_noZveto          --output_name Combination/FitResults_BDTG6_TT_more_original_signal_scale.txt           --freeze_nuisances r_higgs
 
 ### Produce Impact Plots
@@ -191,6 +195,9 @@ Select datacard to use:
 
 Actually produce impact plots:
 
+	VAR=BDTG6_TT_more
+	FINAL_STATE=_allFinalStates_alsoLowPt_opt_noZveto
+
     cd Impact_plots
 
     combineTool.py -M Impacts -d ../Combination/WH_chargeAsymmetry_WH_SS_Full2018_v9_${VAR}${FINAL_STATE}.root -m 125 --doInitialFit -t -1 --setParameters r_S=1.3693,r_A=0.224,r_higgs=1 --setParameterRanges r_S=0,10:r_A=-1,1 --redefineSignalPOIs r_A --freezeParameters r_higgs
@@ -204,6 +211,26 @@ Actually produce impact plots:
     rm combine_*
     rm condor_*
     rm higgsCombine_*
+
+Produce impact plots for signal strength measurement. Using original signal scale:
+
+	VAR=BDTG6_TT_more
+	FINAL_STATE=_allFinalStates_alsoLowPt_DYflip_original_signal_scale_opt_noZveto_WH_strength
+
+    cd Impact_plots
+
+    combineTool.py -M Impacts -d ../Combination/WH_chargeAsymmetry_WH_SS_Full2018_v9_${VAR}${FINAL_STATE}.root -m 125 --doInitialFit -t -1 --setParameters r_WH=1 --setParameterRanges r_WH=0.01,10 --redefineSignalPOIs r_WH --freezeParameters r_higgs -n signal_strength
+
+    combineTool.py -M Impacts -d ../Combination/WH_chargeAsymmetry_WH_SS_Full2018_v9_${VAR}${FINAL_STATE}.root -m 125 --doFits -t -1 --setParameters r_WH=1 --setParameterRanges r_WH=0.01,10 --redefineSignalPOIs r_WH --job-mode=condor -n signal_strength
+
+    combineTool.py -M Impacts -d ../Combination/WH_chargeAsymmetry_WH_SS_Full2018_v9_${VAR}${FINAL_STATE}.root -m 125 -t -1 -o impacts_WHSS_2018_${VAR}${FINAL_STATE}.json --setParameters r_WH=1 --setParameterRanges r_WH=0.01,10 --redefineSignalPOIs r_WH -n signal_strength
+
+    plotImpacts.py -i impacts_WHSS_2018_${VAR}${FINAL_STATE}.json -o Impact_WHSS_2018_${VAR}${FINAL_STATE}
+
+    rm combine_*
+    rm condor_*
+    rm higgsCombine_*
+
 
 ### OLD: Select binning for BDT
 

@@ -10,8 +10,8 @@ The instructions to produce the distributions and use them in the actual analysi
 
 Resubmit failed jobs.
 
-    cd $HOME/scripts/jobs/mkShapes__WHSS2018_v9_chargeAsymmetry/
-    for i in *jid; do condor_submit ${i/jid/jds}; done
+    cd $HOME/scripts/jobs/mkShapes__WHSS_OSCR_2018_v9_chargeAsymmetry_Mu82_Ele90__ALL/
+    for i in */*jid; do condor_submit ${i/jid/jds}; done
     cd -
 
 Or, if they failed because the wall clock time has been exceeded, resubmit them on a longer-time queue.

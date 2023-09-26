@@ -217,7 +217,6 @@ for shift in ['jes', 'lf', 'hf', 'lfstats1', 'lfstats2', 'hfstats1', 'hfstats2',
 # End of b tagging pippone
 ####################################################################################
 
-
 aliases['gstarLow'] = {
     'expr': 'Gen_ZGstar_mass > 0 && Gen_ZGstar_mass < 4',
     'samples': 'WgS'
@@ -251,32 +250,6 @@ aliases['Top_pTrw'] = {
     'expr': 'isTTbar * (topGenPt * antitopGenPt > 0.) * (TMath::Sqrt((0.103*TMath::Exp(-0.0118*topGenPt) - 0.000134*topGenPt + 0.973) * (0.103*TMath::Exp(-0.0118*antitopGenPt) - 0.000134*antitopGenPt + 0.973))) + (topGenPt * antitopGenPt <= 0.)',
     'samples': ['top']
 }
-
-
-# ##### DY Z pT reweighting
-# aliases['nCleanGenJet'] = {
-#     'linesToAdd': ['.L %s/src/PlotsConfigurations/Configurations/Differential/ngenjet.cc+' % os.getenv('CMSSW_BASE')],
-#     'class': 'CountGenJet',
-#     'samples': mc
-# }
-
-# aliases['getGenZpt_OTF'] = {
-#     'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/patches/getGenZpt.cc+' % os.getenv('CMSSW_BASE')],
-#     'class': 'getGenZpt',
-#     'samples': ['DY']
-# }
-# handle = open('%s/src/PlotsConfigurations/Configurations/patches/DYrew30.py' % os.getenv('CMSSW_BASE'),'r')
-# exec(handle)
-# handle.close()
-# aliases['DY_NLO_pTllrw'] = {
-#     'expr': '('+DYrew['2016']['NLO'].replace('x', 'getGenZpt_OTF')+')*(nCleanGenJet == 0)+1.0*(nCleanGenJet > 0)',
-#     'samples': ['DY']
-# }
-# aliases['DY_LO_pTllrw'] = {
-#     'expr': '('+DYrew['2016']['LO'].replace('x', 'getGenZpt_OTF')+')*(nCleanGenJet == 0)+1.0*(nCleanGenJet > 0)',
-#     'samples': ['DY']
-# }
-
 
 # data/MC scale factors
 aliases['SFweight'] = {
@@ -312,7 +285,6 @@ aliases['SFtriggDown'] = {
     'expr': 'TriggerSFWeight_2l_d/TriggerSFWeight_2l',
     'samples': mc_emb
 }
-
 
 # # In WpWmJJ_EWK events, partons [0] and [1] are always the decay products of the first W
 # aliases['lhe_mW1'] = {

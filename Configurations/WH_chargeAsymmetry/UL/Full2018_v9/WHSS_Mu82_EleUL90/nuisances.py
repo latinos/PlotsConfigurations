@@ -50,7 +50,6 @@ nuisances['lumi_Correlated_2017_2018'] = {
 
 
 #### FAKES
-
 nuisances['fake_syst_mm'] = {
     'name': 'CMS_fake_syst_mm_2018',
     'type': 'lnN',
@@ -238,7 +237,6 @@ nuisances['JER'] = {
     'AsLnN'     : '1'
 }
 
-
 ##### MET energy scale
 
 # metUp.PuppiMET_pt_METup
@@ -352,7 +350,6 @@ nuisances['PS_FSR_2jet']  = {
     'cuts': [cut for cut in cuts if '2j' in cut],
 }
 
-
 # # nuisances['UE_whss']  = {
 # #     'name'    : 'UE_whss',
 # #     'skipCMS' : 1,
@@ -360,8 +357,6 @@ nuisances['PS_FSR_2jet']  = {
 # #     'samples' : dict((skey, '1.015') for skey in mc),
 # # }
 
-
-### Comment out just for plotting
 # Charge flip SF
 nuisances['chargeFlipSF'] = {
     'name'    : 'CMS_whss_chargeFlipSF_2018',
@@ -504,7 +499,7 @@ nuisances['QCDscale_VV'] = {
     'name' : 'QCDscale_VV',
     'kind' : 'weight_envelope',
     'type' : 'shape',
-    'samples': {
+    'samples' : {
         'WW'  : variations,
         'Zg'  : variations,
         'Wg'  : variations,
