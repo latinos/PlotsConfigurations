@@ -11,8 +11,6 @@ for var in variables:
         suffix = ''
         if var == 'BDT_WH3l_OSSF_new_v9_more':
             suffix = '_new'
-
-
     
         var_OSSF_plus  = var
         var_OSSF_minus = var

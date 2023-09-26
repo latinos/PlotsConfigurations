@@ -506,7 +506,7 @@ nuisances['QCDscale_qqbar_ACCEPT'] = {
     }
 }
 
-#FIXME: these come from HIG-16-042, maybe should be recomputed?
+# FIXME: these come from HIG-16-042, maybe should be recomputed?
 nuisances['QCDscale_gg_ACCEPT'] = {
     'name'    : 'QCDscale_gg_ACCEPT',
     'samples' : {
@@ -554,6 +554,7 @@ nuisances['QCDscale_VH']  = {
     },
     'type'  : 'lnN',
 }
+
 nuisances['QCDscale_qqbar_ACCEPT']  = {
     'name'  : 'QCDscale_qqbar_ACCEPT',
     'type'  : 'lnN',

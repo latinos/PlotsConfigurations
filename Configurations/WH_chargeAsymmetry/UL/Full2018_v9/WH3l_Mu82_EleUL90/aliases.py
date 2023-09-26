@@ -2,10 +2,10 @@ import os
 import copy
 import inspect
 
-# /afs/cern.ch/user/n/ntrevisa/work/latinos/unblinding/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/WH_chargeAsymmetry/UL/Full2018_v9/WH3l
+# /afs/cern.ch/user/n/ntrevisa/work/latinos/unblinding/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/WH_chargeAsymmetry/UL/Full2018_v9/WH3l_Mu82_EleUL90
 
 configurations = os.path.realpath(inspect.getfile(inspect.currentframe())) # this file
-configurations = os.path.dirname(configurations) # WH3l
+configurations = os.path.dirname(configurations) # WH3l_Mu82_EleUL90
 configurations = os.path.dirname(configurations) # Full2018_v9
 configurations = os.path.dirname(configurations) # UL
 configurations = os.path.dirname(configurations) # WH_chargeAsymmetry
@@ -68,7 +68,6 @@ aliases['LepWPttHMVASFMuDown'] = {
     'args'       : ("2018", 3, "all", "muDown"),
     'samples'    : mc_emb
 }
-
 
 # Fake leptons transfer factor
 aliases['fakeW'] = {
@@ -218,7 +217,6 @@ for shift in ['jes', 'lf', 'hf', 'lfstats1', 'lfstats2', 'hfstats1', 'hfstats2',
 ####################################################################################
 # End of b tagging pippone
 ####################################################################################
-
 
 aliases['gstarLow'] = {
     'expr': 'Gen_ZGstar_mass > 0 && Gen_ZGstar_mass < 4',
