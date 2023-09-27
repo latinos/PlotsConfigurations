@@ -44,8 +44,10 @@ if opt.freeze_nuisances == "True" or opt.freeze_nuisances == "1":
 if opt.freeze_nuisances == "r_higgs":
     nuisances = "--freezeParameters r_higgs"
 
-    
+
+####################    
 ### Create workspace
+####################
 
 # Using POIs: r_S, r_A
 workspace_command = "text2workspace.py \
@@ -54,20 +56,43 @@ workspace_command = "text2workspace.py \
                      -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel \
                      -m 125 \
                      --PO verbose \
-                     --PO 'map=.*/ggH_hww:r_higgs[1,-100,100]' \
-                     --PO 'map=.*/qqH_hww:r_higgs[1,-100,100]' \
-                     --PO 'map=.*/ZH_hww:r_higgs[1,-100,100]' \
-                     --PO 'map=.*/ggZH_hww:r_higgs[1,-100,100]' \
-                     --PO 'map=.*/ttH_hww:r_higgs[1,-100,100]' \
-                     --PO 'map=.*/ggH_htt:r_higgs[1,-100,100]' \
-                     --PO 'map=.*/qqH_htt:r_higgs[1,-100,100]' \
-                     --PO 'map=.*/ZH_htt:r_higgs[1,-100,100]' \
+                     --PO 'map=.*/ggH_hww:r_higgs[1,0.99,1.01]' \
+                     --PO 'map=.*/qqH_hww:r_higgs[1,0.99,1.01]' \
+                     --PO 'map=.*/ZH_hww:r_higgs[1,0.99,1.01]' \
+                     --PO 'map=.*/ggZH_hww:r_higgs[1,0.99,1.01]' \
+                     --PO 'map=.*/ttH_hww:r_higgs[1,0.99,1.01]' \
+                     --PO 'map=.*/ggH_htt:r_higgs[1,0.99,1.01]' \
+                     --PO 'map=.*/qqH_htt:r_higgs[1,0.99,1.01]' \
+                     --PO 'map=.*/ZH_htt:r_higgs[1,0.99,1.01]' \
                      --PO 'map=.*/WH_h.*_plus:r_WH_plus=expr;;r_WH_plus(\"@0*(1+@1)/(2*0.8380)\",r_S[1.3693,0.01,5],r_A[0.224,-1,1])' \
                      --PO 'map=.*/WH_h.*_minus:r_WH_minus=expr;;r_WH_minus(\"@0*(1-@1)/(2*0.5313)\",r_S,r_A)' \
                      ".format(datacard_name)
 
 #                     --PO 'map=.*/WH_h.*_minus:r_WH_minus=expr;;r_WH_minus(\"(@0-@1*0.8380)/0.5313\",r_S,r_WH_plus)' \
 
+# Using only one POI for the total WH signal strength
+workspace_command_WH = "text2workspace.py \
+                        {0}.txt \
+                        -o {0}_WH_strength.root \
+                        -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel \
+                        -m 125 \
+                        --PO verbose \
+                        --PO 'map=.*/ggH_hww:r_higgs[1,0.99,1.01]' \
+                        --PO 'map=.*/qqH_hww:r_higgs[1,0.99,1.01]' \
+                        --PO 'map=.*/ZH_hww:r_higgs[1,0.99,1.01]' \
+                        --PO 'map=.*/ggZH_hww:r_higgs[1,0.99,1.01]' \
+                        --PO 'map=.*/ttH_hww:r_higgs[1,0.99,1.01]' \
+                        --PO 'map=.*/ggH_htt:r_higgs[1,0.99,1.01]' \
+                        --PO 'map=.*/qqH_htt:r_higgs[1,0.99,1.01]' \
+                        --PO 'map=.*/ZH_htt:r_higgs[1,0.99,1.01]' \
+                        --PO 'map=.*/WH_h.*_plus:r_WH[1,0.01,10.0]' \
+                        --PO 'map=.*/WH_h.*_minus:r_WH[1,0.01,10.0]' \
+                        ".format(datacard_name)
+
+
+################
+### Actually fit
+################
 
 # Fit to get the asymmetry value
 combine_command = "combine \
@@ -84,8 +109,22 @@ combine_command = "combine \
 #                   --X-rtd MINIMIZER_analytic \
 #                   -v 9 \
 
+# Fit to get the total WH signal strength
+combine_command_WH = "combine \
+                      -M MultiDimFit \
+                      --algo=singles \
+                      -d {0}_WH_strength.root \
+                      -t -1 \
+                      --setParameters r_WH=1 \
+                      --setParameterRanges r_WH=0.01,10 \
+                      --redefineSignalPOIs r_WH \
+                      {2} \
+                      > {1} \
+                      ".format(datacard_name,output_name.replace(".txt","_WH_strength.txt"),nuisances)
+
 # combineTool.py -M MultiDimFit --algo grid -t -1 --setParameters r=1 --X-rtd MINIMIZER_analytic --cminDefaultMinimizerStrategy=0 -d ../../globalMu_htt.root -n globalMu_scan --task-name globalMu_scan --autoRange 2 --points 40 --split-points 1 --job-mode=condor --redefineSignalPOIs r --floatOtherPOIs 1
 # grid
+
 # Likelihood scan on POIs - focusing on r_A
 rA_scan_command = "combine \
                    -M MultiDimFit \
@@ -153,8 +192,12 @@ fit_diagnostics_command = "combine \
                            ".format(datacard_name)
 
 
+######################
 # Now use the commands
-print("Preparing workspace...")
+######################
+
+# Asymmetry extraction
+print("Preparing workspace for asymmetry...")
 print(workspace_command)
 os.system(workspace_command)
 print("\n")
@@ -171,6 +214,30 @@ root_output_name = output_name.replace(".txt",".root")
 if (opt.freeze_nuisances) == "1" or (opt.freeze_nuisances) == "True":
     root_output_name = output_name.replace(".txt","_freeze.root")
 move_command = "mv higgsCombineTest.MultiDimFit.mH120.root {}".format(root_output_name)
+# os.system(move_command)
+print(move_command)
+print("\n")
+print("\n")
+
+
+# Total signal strength extraction
+print("Preparing workspace for WH signal strength...")
+print(workspace_command_WH)
+os.system(workspace_command_WH)
+print("\n")
+print("\n")
+
+print("Fitting the signal strength value...")
+print(combine_command_WH)
+os.system(combine_command_WH)
+print("\n")
+print("\n")
+
+print("Moving output to Combine folder...")
+root_output_name_WH = output_name.replace(".txt","_WH_strength.root")
+if (opt.freeze_nuisances) == "1" or (opt.freeze_nuisances) == "True":
+    root_output_name_WH = output_name.replace(".txt","_WH_strength_freeze.root")
+move_command = "mv higgsCombineTest.MultiDimFit.mH120.root {}".format(root_output_name_WH)
 # os.system(move_command)
 print(move_command)
 print("\n")

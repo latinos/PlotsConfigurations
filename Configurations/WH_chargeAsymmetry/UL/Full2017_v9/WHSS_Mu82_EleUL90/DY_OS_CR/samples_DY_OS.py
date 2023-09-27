@@ -43,7 +43,7 @@ mcProduction = 'Summer20UL17_106x_nAODv9_Full2017v9'
 
 dataReco     = 'Run2017_UL2017_nAODv9_Full2017v9'
 
-mcSteps      = 'MCl1loose2017v9__MCCorr2017v9NoJERInHorn__l2tightOR2017v9'
+mcSteps      = 'MCl1loose2017v9__MCCorr2017v9NoJERInHorn__l2tightOR2017v9{var}'
 
 fakeSteps    = 'DATAl1loose2017v9__l2loose__fakeW'
 

@@ -15,9 +15,9 @@ configurations = os.path.dirname(configurations) # Configurations
 mc     = [skey for skey in samples if skey not in ('Fake', 'DATA', 'Dyemb')]
 mc_emb = [skey for skey in samples if skey not in ('Fake', 'DATA')]
 
-# LepCut2l__ele_mvaFall17V2Iso_WP90_tthmva_70__mu_cut_Tight_HWWW_tthmva_80
-eleWP = 'mvaFall17V2Iso_WP90_tthmva_70'
-muWP  = 'cut_Tight_HWWW_tthmva_80'
+# LepCut2l__ele_mvaFall17V2Iso_WP90__mu_cut_Tight_HWWW
+eleWP = 'mvaFall17V2Iso_WP90'
+muWP  = 'cut_Tight_HWWW'
 
 aliases['LepWPCut'] = {
     'expr': 'LepCut2l__ele_mvaFall17V2Iso_WP90__mu_cut_Tight_HWWW*\
@@ -26,9 +26,46 @@ aliases['LepWPCut'] = {
     'samples': mc_emb + ['DATA']
 }
 
+# Lepton SF (not considering the ttHMVA discriminant)
 aliases['LepWPSF'] = {
     'expr': 'LepSF2l__ele_'+eleWP+'__mu_'+muWP,
     'samples': mc_emb
+}
+
+# ttHMVA SFs and uncertainties
+aliases['LepWPttHMVASF'] = {
+    'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/ttHMVASF.C+' % configurations],
+    'class'      : 'ttHMVASF',
+    'args'       : ("2017", 2, "all", "nominal"),
+    'samples'    : mc_emb
+}
+
+aliases['LepWPttHMVASFEleUp'] = {
+    'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/ttHMVASF.C+' % configurations],
+    'class'      : 'ttHMVASF',
+    'args'       : ("2017", 2, "all", "eleUp"),
+    'samples'    : mc_emb
+}
+
+aliases['LepWPttHMVASFEleDown'] = {
+    'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/ttHMVASF.C+' % configurations],
+    'class'      : 'ttHMVASF',
+    'args'       : ("2017", 2, "all", "eleDown"),
+    'samples'    : mc_emb
+}
+
+aliases['LepWPttHMVASFMuUp'] = {
+    'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/ttHMVASF.C+' % configurations],
+    'class'      : 'ttHMVASF',
+    'args'       : ("2017", 2, "all", "muUp"),
+    'samples'    : mc_emb
+}
+
+aliases['LepWPttHMVASFMuDown'] = {
+    'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/ttHMVASF.C+' % configurations],
+    'class'      : 'ttHMVASF',
+    'args'       : ("2017", 2, "all", "muDown"),
+    'samples'    : mc_emb
 }
 
 # Fake leptons transfer factor
@@ -90,25 +127,13 @@ aliases['fakeWStatMuDown'] = {
     'samples'    : ['Fake']
 }
 
-
-# gamma* mass range
-aliases['gstarLow'] = {
-    'expr': 'Gen_ZGstar_mass > 0 && Gen_ZGstar_mass < 4',
-    'samples': 'WgS'
-}
-
-aliases['gstarHigh'] = {
-    'expr': 'Gen_ZGstar_mass < 0 || Gen_ZGstar_mass > 4',
-    'samples': 'WZ'
-}
-
 # No jet with pt > 30 GeV
 aliases['zeroJet'] = {
     'expr': 'Alt$(CleanJet_pt[0], 0) < 30.'
 }
 
 aliases['oneJet'] = {
-    'expr': 'Alt$(CleanJet_pt[0], 0) > 30.'
+    'expr': 'Alt$(CleanJet_pt[0], 0) > 30. && Alt$(CleanJet_pt[1], 0) < 30.'
 }
 
 aliases['multiJet'] = {
@@ -130,9 +155,9 @@ bWP_medium_deepFlavB = '0.3040'
 bWP_tight_deepFlavB  = '0.7476'
 
 # Actual algo and WP definition. BE CONSISTENT!!
-bAlgo = 'DeepB'         # ['DeepB',        'DeepFlavB'         ]
+bAlgo = 'DeepB'          # ['DeepB',        'DeepFlavB'         ]
 bWP   = bWP_medium_deepB # [bWP_loose_deepB, bWP_loose_deepFlavB]
-bSF   = 'deepcsv'       # ['deepcsv',      'deepjet'           ]
+bSF   = 'deepcsv'        # ['deepcsv',      'deepjet'           ]
 
 # b veto
 aliases['bVeto'] = {
@@ -193,16 +218,33 @@ for shift in ['jes', 'lf', 'hf', 'lfstats1', 'lfstats2', 'hfstats1', 'hfstats2',
 ####################################################################################
 
 
-# aliases['embedtotal'] = {
-#     'expr': 'embed_total_mva16',  # wrt. eleWP
-#     'samples': 'Dyemb'
-# }
+aliases['gstarLow'] = {
+    'expr': 'Gen_ZGstar_mass > 0 && Gen_ZGstar_mass < 4',
+    'samples': 'WgS'
+}
 
+aliases['gstarHigh'] = {
+    'expr': 'Gen_ZGstar_mass < 0 || Gen_ZGstar_mass > 4',
+    'samples': 'WZ'
+}
 
 # gen-matching to prompt only (GenLepMatch2l matches to *any* gen lepton)
 aliases['PromptGenLepMatch2l'] = {
     'expr': 'Alt$(Lepton_promptgenmatched[0]*Lepton_promptgenmatched[1], 0)',
     'samples': mc
+}
+
+# PostProcessing did not create (anti)topGenPt for ST samples with _ext1
+lastcopy = (1 << 13)
+
+aliases['isTTbar'] = {
+    'expr': 'Sum$(TMath::Abs(GenPart_pdgId) == 6 && TMath::Odd(GenPart_statusFlags / %d)) == 2' % lastcopy,
+    'samples': ['top']
+}
+
+aliases['isSingleTop'] = {
+    'expr': 'Sum$(TMath::Abs(GenPart_pdgId) == 6 && TMath::Odd(GenPart_statusFlags / %d)) == 1' % lastcopy,
+    'samples': ['top']
 }
 
 aliases['Top_pTrw'] = {
@@ -236,12 +278,9 @@ aliases['Top_pTrw'] = {
 # }
 
 
-# Jet bins
-# using Alt$(CleanJet_pt[n], 0) instead of Sum$(CleanJet_pt >= 30) because jet pt ordering is not strictly followed in JES-varied samples
-
 # data/MC scale factors
 aliases['SFweight'] = {
-    'expr': ' * '.join(['SFweight2l', 'LepWPCut', 'LepWPSF','PrefireWeight','Jet_PUIDSF_loose', 'btagSF']),
+    'expr': ' * '.join(['SFweight2l', 'LepWPCut', 'LepWPSF','PrefireWeight','Jet_PUIDSF_loose', 'btagSF','LepWPttHMVASF']),
     'samples': mc
 }
 
@@ -287,25 +326,35 @@ aliases['SFtriggDown'] = {
 # }
 
 ### BDT on-the-fly
+
+# Default training in AN-22-120_v1
 aliases['BDT_WHSS_v9'] = {
     'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/BDT_WHSS_v9.C+' % configurations],
     'class': 'BDT_WHSS_v9',
+    'args' : ('BDTG_6', '%s/WH_chargeAsymmetry/UL/data/BDT/2017/WHSS/weights_old_no_TT/TMVAClassification_BDTG_6.weights.xml' % configurations),
+}
+
+# WJets and Semileptonic Top are considered as fake.
+aliases['BDT_WHSS_TopSemileptonic_v9'] = {
+    'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/BDT_WHSS_TopSemileptonic_v9.C+' % configurations],
+    'class': 'BDT_WHSS_TopSemileptonic_v9',
     'args' : ('BDTG_6', '%s/WH_chargeAsymmetry/UL/data/BDT/2017/WHSS/weights/TMVAClassification_BDTG_6.weights.xml' % configurations),
 }
+# 'args' : ('BDTG_6', '%s/WH_chargeAsymmetry/UL/Full2017_v9/BDTconfig_WHSS/dataset_WHSS_TTToSemiLeptonic/weights/TMVAClassification_BDTG_6.weights.xml' % configurations), # provisional address
 
 ########################
 ### Charge misid SFs ###
 ########################
 
 aliases['ttHMVA_SF_flip_2l'] = {
-    'linesToAdd': ['.L %s/macros/flipper.C+' % configurations],
+    'linesToAdd': ['.L %s/WH_chargeAsymmetry/UL/macros/flipper.C+' % configurations],
     'class': 'flipper',
     'args' : ('UL_2017', 2, 'Total_SF', 'false'),
     'samples': ['DY','WW','top']
 }
 
 aliases['ttHMVA_SF_err_flip_2l'] = {
-    'linesToAdd': ['.L %s/macros/flipper.C+' % configurations],
+    'linesToAdd': ['.L %s/WH_chargeAsymmetry/UL/macros/flipper.C+' % configurations],
     'class': 'flipper',
     'args' : ('UL_2017', 2, 'Total_SF_err', 'false'),
     'samples': ['DY','WW','top']
@@ -316,16 +365,16 @@ aliases['ttHMVA_SF_err_flip_2l'] = {
 ##################################
 
 aliases['ttHMVA_eff_flip_2l'] = {
-    'linesToAdd': ['.L %s/macros/flipper_eff.C+' % configurations],
+    'linesToAdd': ['.L %s/WH_chargeAsymmetry/UL/macros/flipper_eff.C+' % configurations],
     'class': 'flipper_eff',
     'args' : ('UL_2017', 2, 'Total_SF', 'false'),
-    'samples': ['DY_OS']
+    'samples': ['DY']
 }
 
 aliases['ttHMVA_eff_err_flip_2l'] = {
-    'linesToAdd': ['.L %s/macros/flipper_eff.C+' % configurations],
+    'linesToAdd': ['.L %s/WH_chargeAsymmetry/UL/macros/flipper_eff.C+' % configurations],
     'class': 'flipper_eff',
     'args' : ('UL_2017', 2, 'Total_SF_err', 'false'),
-    'samples': ['DY_OS']
+    'samples': ['DY']
 }
 

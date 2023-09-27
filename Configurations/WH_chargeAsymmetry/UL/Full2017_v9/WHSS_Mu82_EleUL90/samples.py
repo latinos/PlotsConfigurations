@@ -42,7 +42,7 @@ mcProduction = 'Summer20UL17_106x_nAODv9_Full2017v9'
 
 dataReco     = 'Run2017_UL2017_nAODv9_Full2017v9'
 
-mcSteps      = 'MCl1loose2017v9__MCCorr2017v9NoJERInHorn__l2tightOR2017v9'
+mcSteps      = 'MCl1loose2017v9__MCCorr2017v9NoJERInHorn__l2tightOR2017v9{var}'
 
 fakeSteps    = 'DATAl1loose2017v9__l2loose__fakeW'
 
@@ -70,6 +70,7 @@ def makeMCDirectory(var=''):
 mcDirectory   = makeMCDirectory()
 fakeDirectory = os.path.join(treeBaseDir, dataReco, fakeSteps)
 dataDirectory = os.path.join(treeBaseDir, dataReco, dataSteps)
+
 # embedDirectory = os.path.join(treeBaseDir, embedReco, embedSteps)
 
 ################################################
@@ -123,10 +124,10 @@ files = nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-10to50-LO') + \
 
 samples['DY'] = {
     'name': files,
-    'weight': mcCommonWeight + '*( !(Sum$(PhotonGen_isPrompt==1 && PhotonGen_pt>15 && abs(PhotonGen_eta)<2.6) > 0))',
+    'weight': mcCommonWeight + '*( !(Sum$(PhotonGen_isPrompt==1 && PhotonGen_pt>15 && abs(PhotonGen_eta)<2.6) > 0))*(abs(XSWeight*METFilter_MC*PromptGenLepMatch2l*SFweight) < 0.03)',
     'suppressNegative' :['all'],
     'suppressNegativeNuisances' :['all'],
-    'FilesPerJob': 2,
+    'FilesPerJob': 4,
 }
 
 # Remove high HT from inclusive samples
@@ -146,7 +147,7 @@ samples['top'] = {
     'weight': mcCommonWeight+'*ttHMVA_SF_flip_2l[0]',
     'suppressNegative' :['all'],
     'suppressNegativeNuisances' :['all'],
-    'FilesPerJob': 1,
+    'FilesPerJob': 5,
 }
 
 addSampleWeight(samples,'top','TTTo2L2Nu','Top_pTrw')
@@ -158,7 +159,7 @@ samples['WW'] = {
     'weight': mcCommonWeight + '*nllW*ewknloW*ttHMVA_SF_flip_2l[0]', 
     'suppressNegative' :['all'],
     'suppressNegativeNuisances' :['all'],
-    'FilesPerJob': 1
+    'FilesPerJob': 2
 }
 
 samples['WWewk'] = {
@@ -226,7 +227,7 @@ samples['WgS'] = {
     'suppressNegativeNuisances' :['all'],
     'FilesPerJob': 4,
 }
-addSampleWeight(samples, 'WgS', 'Wg_AMCNLOFXFX_01J',  '(Gen_ZGstar_mass > 0 && Gen_ZGstar_mass <= 4.0)')
+addSampleWeight(samples, 'WgS', 'Wg_AMCNLOFXFX_01J',  '(Gen_ZGstar_mass > 0 && Gen_ZGstar_mass <= 0.1)')
 addSampleWeight(samples, 'WgS', 'WZTo3LNu_mllmin0p1', '(Gen_ZGstar_mass > 0.1)*(0.601644*58.59/4.666)')
 
 
@@ -240,7 +241,7 @@ samples['ZgS'] = {
     'suppressNegativeNuisances' :['all'],
     'FilesPerJob': 4,
 }
-addSampleWeight(samples, 'ZgS', 'ZGToLLG', '(Gen_ZGstar_mass > 0)*0.448')
+# addSampleWeight(samples, 'ZgS', 'ZGToLLG', '(Gen_ZGstar_mass > 0)*0.448')
 
 
 ############ WZ ############
@@ -298,7 +299,7 @@ samples['ggH_hww'] = {
     'weight': mcCommonWeight,
     'suppressNegative' :['all'],
     'suppressNegativeNuisances' :['all'],
-    'FilesPerJob': 1
+    'FilesPerJob': 2
 }
 signals.append('ggH_hww')
 
@@ -356,7 +357,7 @@ samples['ttH_hww'] = {
     'weight': mcCommonWeight,
     'suppressNegative' :['all'],
     'suppressNegativeNuisances' :['all'],
-    'FilesPerJob': 1
+    'FilesPerJob': 2
 }
 signals.append('ttH_hww')
 
@@ -389,7 +390,6 @@ samples['ZH_htt'] = {
 signals.append('ZH_htt')
 
 ############ WH H->TauTau ############
-
 samples['WH_htt_plus'] = {
     'name':  nanoGetSampleFiles(mcDirectory, 'WplusHToTauTau_M125'),
     'weight': mcCommonWeight,
