@@ -38,6 +38,20 @@ Using the correct signal scaling, for global combination:
 
     mkDatacards.py --pycfg=configuration.py --inputFile=rootFile/plots_WH3l_2017_v9_chargeAsymmetry_Mu82_EleUL90.root --outputDirDatacard=datacards_original_signal_scale --structureFile=structure_original_signal_scale.py
 
+### Optimize binning using combine harvester
+
+Load combine:
+
+     cd $HOME/work/combine/CMSSW_10_2_13/src/
+     cmsenv
+     cd -
+
+Now optimize:
+
+    ./do_optimize_cards.sh BDT_WH3l_OSSF_v9_more 0.10
+
+    ./do_optimize_cards.sh BDT_WH3l_OSSF_new_v9_more 0.10
+
 ### Combine datacards
 
 Load combine:
@@ -51,6 +65,8 @@ Actually combine datacards:
      mkdir -p Combination
 
      python script_datacards.py
+
+     python script_datacards_opt.py
 
 ### Interpret the results in terms of asymmetry
 
@@ -90,8 +106,25 @@ Since S appears in the denominator of the asymmetry expression, it cannot be 0, 
 
 ### Use script to extract asymmetry
 
+Old binnings:
+
     python script_workspace_and_fit.py --datacard_name=Combination/WH_chargeAsymmetry_WH_3l_Full2017_v9           --output_name=Combination/FitResults.txt           --freeze_nuisances=r_higgs
     python script_workspace_and_fit.py --datacard_name=Combination/WH_chargeAsymmetry_WH_3l_Full2017_v9_alsoLowPt --output_name=Combination/FitResults_alsoLowPt.txt --freeze_nuisances=r_higgs
+
+Optimized binning, and including low-pT categories (deprecated):
+
+    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_3l_Full2017_v9_alsoLowPt_opt --output_name=Combination/FitResults_alsoLowPt_opt.txt --freeze_nuisances=r_higgs
+    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_3l_Full2017_v9_alsoLowPt_new_opt --output_name=Combination/FitResults_alsoLowPt_new_opt.txt --freeze_nuisances=r_higgs
+
+Optimized binning, using only the high-pT categories:
+
+    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_3l_Full2017_v9_opt     --output_name=Combination/FitResults_opt.txt     --freeze_nuisances=r_higgs
+    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_3l_Full2017_v9_new_opt --output_name=Combination/FitResults_new_opt.txt --freeze_nuisances=r_higgs
+
+Using datacards with correct signal scaling:
+
+    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_3l_Full2017_v9_original_signal_scale_new_opt --output_name=Combination/FitResults_original_signal_scale_new_opt.txt --freeze_nuisances=r_higgs
+    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_3l_Full2017_v9_original_signal_scale_opt     --output_name=Combination/FitResults_original_signal_scale_opt.txt     --freeze_nuisances=r_higgs
 
 ### Produce Impact Plots
 
@@ -107,19 +140,30 @@ Prepare directory:
 
     mkdir -p Impact_plots
 
-Actually produce impact plots:
+Using new training with top and Z+jets as fakes
 
-    cd Impact_plots
+    combineTool.py -M Impacts -d ../Combination/WH_chargeAsymmetry_WH_3l_Full2017_v9_new_opt.root -m 125 --doInitialFit -t -1 --setParameters r_S=1.3693,r_A=0.224,r_higgs=1 --setParameterRanges r_S=0,10:r_A=-1,1 --redefineSignalPOIs r_A --freezeParameters r_higgs
 
-    combineTool.py -M Impacts -d ../Combination/WH_chargeAsymmetry_WH_3l_Full2017_v9.root -m 125 --doInitialFit -t -1 --setParameters r_S=1.3693,r_A=0.224,r_higgs=1 --setParameterRanges r_S=0,10:r_A=-1,1 --redefineSignalPOIs r_A --freezeParameters r_higgs
+    combineTool.py -M Impacts -d ../Combination/WH_chargeAsymmetry_WH_3l_Full2017_v9_new_opt.root -m 125 --doFits -t -1 --setParameters r_S=1.3693,r_A=0.224,r_higgs=1 --setParameterRanges r_S=0,10:r_A=-1,1 --redefineSignalPOIs r_A --job-mode=condor --freezeParameters r_higgs
 
-    combineTool.py -M Impacts -d ../Combination/WH_chargeAsymmetry_WH_3l_Full2017_v9.root -m 125 --doFits -t -1 --setParameters r_S=1.3693,r_A=0.224,r_higgs=1 --setParameterRanges r_S=0,10:r_A=-1,1 --redefineSignalPOIs r_A --job-mode=condor --freezeParameters r_higgs
+    combineTool.py -M Impacts -d ../Combination/WH_chargeAsymmetry_WH_3l_Full2017_v9_new_opt.root -m 125 -t -1 -o impacts_WH3l_2017_new_opt.json --setParameters r_S=1.3693,r_A=0.224,r_higgs=1 --setParameterRanges r_S=0,10:r_A=-1,1 --redefineSignalPOIs r_A
 
-    combineTool.py -M Impacts -d ../Combination/WH_chargeAsymmetry_WH_3l_Full2017_v9.root -m 125 -t -1 -o impacts_WH3l_2017.json --setParameters r_S=1.3693,r_A=0.224,r_higgs=1 --setParameterRanges r_S=0,10:r_A=-1,1 --redefineSignalPOIs r_A
-
-    plotImpacts.py -i impacts_WH3l_2017.json -o Impact_WH3l_2017
+    plotImpacts.py -i impacts_WH3l_2017_new_opt.json -o Impact_WH3l_2017_new_opt
 
     rm combine_*
     rm condor_*
     rm higgsCombine_*
 
+Produce impact plots for signal strength measurement. Using original signal scale:
+
+    combineTool.py -M Impacts -d ../Combination/WH_chargeAsymmetry_WH_3l_Full2017_v9_original_signal_scale_new_opt_WH_strength.root -m 125 --doInitialFit -t -1 --setParameters r_WH=1 --setParameterRanges r_WH=0.01,10 --redefineSignalPOIs r_WH --freezeParameters r_higgs -n signal_strength
+
+    combineTool.py -M Impacts -d ../Combination/WH_chargeAsymmetry_WH_3l_Full2017_v9_original_signal_scale_new_opt_WH_strength.root -m 125 --doFits -t -1 --setParameters r_WH=1 --setParameterRanges r_WH=0.01,10 --redefineSignalPOIs r_WH --job-mode=condor -n signal_strength
+
+    combineTool.py -M Impacts -d ../Combination/WH_chargeAsymmetry_WH_3l_Full2017_v9_original_signal_scale_new_opt_WH_strength.root -m 125 -t -1 -o impacts_WH3l_2017_new_opt_WH_strength.json --setParameters r_WH=1 --setParameterRanges r_WH=0.01,10 --redefineSignalPOIs r_WH -n signal_strength
+
+    plotImpacts.py -i impacts_WH3l_2017_new_opt_WH_strength.json -o Impact_WH3l_2017_new_opt_WH_strength
+
+    rm combine_*
+    rm condor_*
+    rm higgsCombine_*
