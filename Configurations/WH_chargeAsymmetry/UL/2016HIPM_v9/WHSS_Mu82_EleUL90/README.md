@@ -60,7 +60,7 @@ Load combine:
 
 Now optimize:
 
-    ./do_optimize_cards.sh BDTG6_TT_more
+    ./do_optimize_cards.sh BDTG6_TT_more 0.10
 
 ### Combine datacards
 
@@ -77,10 +77,6 @@ Load combine:
 Actually combine datacards:
 
      python script_datacards_opt.py
-
-     python script_datacards.py
-
-	 python script_datacards_BDTG.py
 
 ### Interpret the results in terms of asymmetry
 
@@ -165,11 +161,49 @@ Actually produce impact plots:
 
     cd Impact_plots
 
+	VAR=BDTG6_TT_more
+	FINAL_STATE=_allFinalStates_alsoLowPt_opt_noZveto
+
+Using r_A as POI:
+
     combineTool.py -M Impacts -d ../Combination/WH_chargeAsymmetry_WH_SS_2016HIPM_v9_${VAR}${FINAL_STATE}.root -m 125 --doInitialFit -t -1 --setParameters r_S=1.3693,r_A=0.224,r_higgs=1 --setParameterRanges r_S=0,10:r_A=-1,1 --redefineSignalPOIs r_A --freezeParameters r_higgs
 
-    combineTool.py -M Impacts -d ../Combination/WH_chargeAsymmetry_WH_SS_2016HIPM_v9_${VAR}${FINAL_STATE}.root -m 125 --doFits -t -1 --setParameters r_S=1.3693,r_A=0.224,r_higgs=1 --setParameterRanges r_S=0,10:r_A=-1,1 --redefineSignalPOIs r_A --job-mode=condor --freezeParameters r_higgs
+    combineTool.py -M Impacts -d ../Combination/WH_chargeAsymmetry_WH_SS_2016HIPM_v9_${VAR}${FINAL_STATE}.root -m 125 --doFits -t -1 --setParameters r_S=1.3693,r_A=0.224,r_higgs=1 --setParameterRanges r_S=0,10:r_A=-1,1 --redefineSignalPOIs r_A --job-mode interactive --parallel 8 --freezeParameters r_higgs
 
     combineTool.py -M Impacts -d ../Combination/WH_chargeAsymmetry_WH_SS_2016HIPM_v9_${VAR}${FINAL_STATE}.root -m 125 -t -1 -o impacts_WHSS_2016HIPM_${VAR}${FINAL_STATE}.json --setParameters r_S=1.3693,r_A=0.224,r_higgs=1 --setParameterRanges r_S=0,10:r_A=-1,1 --redefineSignalPOIs r_A
+
+    plotImpacts.py -i impacts_WHSS_2016HIPM_${VAR}${FINAL_STATE}.json -o Impact_WHSS_2016HIPM_${VAR}${FINAL_STATE}
+
+    rm combine_*
+    rm condor_*
+    rm higgsCombine_*
+
+Using r_S as POI:
+
+    combineTool.py -M Impacts -d ../Combination/WH_chargeAsymmetry_WH_SS_2016HIPM_v9_${VAR}${FINAL_STATE}.root -m 125 --doInitialFit -t -1 --setParameters r_S=1.3693,r_A=0.224,r_higgs=1 --setParameterRanges r_S=0,10:r_A=-1,1 --redefineSignalPOIs r_S --freezeParameters r_higgs
+
+    combineTool.py -M Impacts -d ../Combination/WH_chargeAsymmetry_WH_SS_2016HIPM_v9_${VAR}${FINAL_STATE}.root -m 125 --doFits -t -1 --setParameters r_S=1.3693,r_A=0.224,r_higgs=1 --setParameterRanges r_S=0,10:r_A=-1,1 --redefineSignalPOIs r_S --job-mode interactive --parallel 8 --freezeParameters r_higgs
+
+    combineTool.py -M Impacts -d ../Combination/WH_chargeAsymmetry_WH_SS_2016HIPM_v9_${VAR}${FINAL_STATE}.root -m 125 -t -1 -o impacts_WHSS_2016HIPM_${VAR}${FINAL_STATE}_r_S.json --setParameters r_S=1.3693,r_A=0.224,r_higgs=1 --setParameterRanges r_S=0,10:r_A=-1,1 --redefineSignalPOIs r_S
+
+    plotImpacts.py -i impacts_WHSS_2016HIPM_${VAR}${FINAL_STATE}_r_S.json -o Impact_WHSS_2016HIPM_${VAR}${FINAL_STATE}_r_S
+
+    rm combine_*
+    rm condor_*
+    rm higgsCombine_*
+
+Produce impact plots for signal strength measurement. Using original signal scale:
+
+	VAR=BDTG6_TT_more
+	FINAL_STATE=_allFinalStates_alsoLowPt_DYflip_original_signal_scale_opt_noZveto_WH_strength
+
+    cd Impact_plots
+
+    combineTool.py -M Impacts -d ../Combination/WH_chargeAsymmetry_WH_SS_2016HIPM_v9_${VAR}${FINAL_STATE}.root -m 125 --doInitialFit -t -1 --setParameters r_WH=1 --setParameterRanges r_WH=0.01,10 --redefineSignalPOIs r_WH --freezeParameters r_higgs -n signal_strength
+
+    combineTool.py -M Impacts -d ../Combination/WH_chargeAsymmetry_WH_SS_2016HIPM_v9_${VAR}${FINAL_STATE}.root -m 125 --doFits -t -1 --setParameters r_WH=1 --setParameterRanges r_WH=0.01,10 --redefineSignalPOIs r_WH --job-mode interactive --parallel 8 -n signal_strength
+
+    combineTool.py -M Impacts -d ../Combination/WH_chargeAsymmetry_WH_SS_2016HIPM_v9_${VAR}${FINAL_STATE}.root -m 125 -t -1 -o impacts_WHSS_2016HIPM_${VAR}${FINAL_STATE}.json --setParameters r_WH=1 --setParameterRanges r_WH=0.01,10 --redefineSignalPOIs r_WH -n signal_strength
 
     plotImpacts.py -i impacts_WHSS_2016HIPM_${VAR}${FINAL_STATE}.json -o Impact_WHSS_2016HIPM_${VAR}${FINAL_STATE}
 
