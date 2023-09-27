@@ -35,7 +35,7 @@ for var in variables:
                                        WH_SS_ee_1j_plus_low_pt=datacards{0}/hww2l2v_13TeV_WH_SS_ee_1j_plus_pt2lt20/{1}/datacard.txt \
                                        WH_SS_WZ_1j=../WH3l_Mu82_EleUL90/datacards/hww2l2v_13TeV_WH_SS_WZ_1j/events/datacard.txt \
                                        WH_SS_WZ_2j=../WH3l_Mu82_EleUL90/datacards/hww2l2v_13TeV_WH_SS_WZ_2j/events/datacard.txt \
-                     		       > Combination/WH_chargeAsymmetry_WH_SS_Full2016noHIPM_v9_{1}_allFinalStates_alsoLowPt{0}_noZveto.txt".format(suff,var)
+                     		       > Combination/WH_chargeAsymmetry_WH_SS_2016noHIPM_v9_{1}_allFinalStates_alsoLowPt{0}_noZveto.txt".format(suff,var)
         print(tmp_command)
         print()
         print()
