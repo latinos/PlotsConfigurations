@@ -22,9 +22,13 @@ All the combinations, by era or final state, are described in the `script_combin
 
     python script_combine_datacards_TT.py
 
+    python script_combine_datacards_TT_opt.py
+
 For the combination of the full Run 2, we use the original signal normalization. Run the script using:
 
     python script_combine_datacards.py 1
+
+    python script_combine_datacards_TT_opt.py 1
 
 To compare with old approach: loose bVeto WP in WHSS channel and old WZ normalization
 
@@ -36,12 +40,12 @@ Extract the results associated to the combination of categories described in the
 
 Scaling the signal processes by a factor 10 and considering all systematic uncertainties:
 
-    python script_workspace_and_fit.py --datacard_name=Combination/WH_chargeAsymmetry_WH_Full2018_v9   --output_name=Combination/FitResults_WH_Full2018_v9.txt   --freeze_nuisances=r_higgs
-    python script_workspace_and_fit.py --datacard_name=Combination/WH_chargeAsymmetry_WH_Full2017_v9   --output_name=Combination/FitResults_WH_Full2017_v9.txt   --freeze_nuisances=r_higgs
-    python script_workspace_and_fit.py --datacard_name=Combination/WH_chargeAsymmetry_WH_2016noHIPM_v9 --output_name=Combination/FitResults_WH_2016noHIPM_v9.txt --freeze_nuisances=r_higgs
-    python script_workspace_and_fit.py --datacard_name=Combination/WH_chargeAsymmetry_WH_2016HIPM_v9   --output_name=Combination/FitResults_WH_2016HIPM_v9.txt   --freeze_nuisances=r_higgs
+    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_Full2018_v9   --output_name Combination/FitResults_WH_Full2018_v9.txt   --freeze_nuisances r_higgs
+    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_Full2017_v9   --output_name Combination/FitResults_WH_Full2017_v9.txt   --freeze_nuisances r_higgs
+    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_2016noHIPM_v9 --output_name Combination/FitResults_WH_2016noHIPM_v9.txt --freeze_nuisances r_higgs
+    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_2016HIPM_v9   --output_name Combination/FitResults_WH_2016HIPM_v9.txt   --freeze_nuisances r_higgs
 
-    python script_workspace_and_fit.py --datacard_name=Combination/WH_chargeAsymmetry_WH_FullRun2_v9   --output_name=Combination/FitResults_WH_FullRun2_v9.txt   --freeze_nuisances=r_higgs
+    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_FullRun2_v9   --output_name Combination/FitResults_WH_FullRun2_v9.txt   --freeze_nuisances r_higgs
 
 Scaling the signal processes by a factor 10 and freezing all constrained nuisances, to check the effect of systematic uncertainties:
 
@@ -55,21 +59,21 @@ Scaling the signal processes by a factor 10 and freezing all constrained nuisanc
 
 Using correct signal scaling and considering all systematic uncertainties:
 
-    python script_workspace_and_fit.py --datacard_name=Combination/WH_chargeAsymmetry_WH_Full2018_v9_original_signal_scale   --output_name=Combination/FitResults_WH_Full2018_v9_original_signal_scale.txt   --freeze_nuisances=r_higgs
-    python script_workspace_and_fit.py --datacard_name=Combination/WH_chargeAsymmetry_WH_Full2017_v9_original_signal_scale   --output_name=Combination/FitResults_WH_Full2017_v9_original_signal_scale.txt   --freeze_nuisances=r_higgs
-    python script_workspace_and_fit.py --datacard_name=Combination/WH_chargeAsymmetry_WH_2016noHIPM_v9_original_signal_scale --output_name=Combination/FitResults_WH_2016noHIPM_v9_original_signal_scale.txt --freeze_nuisances=r_higgs
-    python script_workspace_and_fit.py --datacard_name=Combination/WH_chargeAsymmetry_WH_2016HIPM_v9_original_signal_scale   --output_name=Combination/FitResults_WH_2016HIPM_v9_original_signal_scale.txt   --freeze_nuisances=r_higgs
-
-    python script_workspace_and_fit.py --datacard_name=Combination/WH_chargeAsymmetry_WH_FullRun2_v9_original_signal_scale   --output_name=Combination/FitResults_WH_FullRun2_v9_original_signal_scale.txt   --freeze_nuisances=r_higgs
-
-Freezing all constrained nuisances, to check the effect of systematic uncertainties:
-
-    python script_workspace_and_fit.py --datacard_name=Combination/WH_chargeAsymmetry_WH_Full2018_v9_original_signal_scale   --output_name=Combination/FitResults_WH_Full2018_v9_original_signal_scale_freeze_all.txt   --freeze_nuisances=all
-    python script_workspace_and_fit.py --datacard_name=Combination/WH_chargeAsymmetry_WH_Full2017_v9_original_signal_scale   --output_name=Combination/FitResults_WH_Full2017_v9_original_signal_scale_freeze_all.txt   --freeze_nuisances=all
-    python script_workspace_and_fit.py --datacard_name=Combination/WH_chargeAsymmetry_WH_2016noHIPM_v9_original_signal_scale --output_name=Combination/FitResults_WH_2016noHIPM_v9_original_signal_scale_freeze_all.txt --freeze_nuisances=all
-    python script_workspace_and_fit.py --datacard_name=Combination/WH_chargeAsymmetry_WH_2016HIPM_v9_original_signal_scale   --output_name=Combination/FitResults_WH_2016HIPM_v9_original_signal_scale_freeze_all.txt   --freeze_nuisances=all
-
-    python script_workspace_and_fit.py --datacard_name=Combination/WH_chargeAsymmetry_WH_FullRun2_v9_original_signal_scale   --output_name=Combination/FitResults_WH_FullRun2_v9_original_signal_scale_freeze_all.txt   --freeze_nuisances=all
+    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_Full2018_v9_original_signal_scale   --output_name Combination/FitResults_WH_Full2018_v9_original_signal_scale.txt   --freeze_nuisances r_higgs
+    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_Full2017_v9_original_signal_scale   --output_name Combination/FitResults_WH_Full2017_v9_original_signal_scale.txt   --freeze_nuisances r_higgs
+    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_2016noHIPM_v9_original_signal_scale --output_name Combination/FitResults_WH_2016noHIPM_v9_original_signal_scale.txt --freeze_nuisances r_higgs
+    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_2016HIPM_v9_original_signal_scale   --output_name Combination/FitResults_WH_2016HIPM_v9_original_signal_scale.txt   --freeze_nuisances r_higgs
+													   																					   																					    
+    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_FullRun2_v9_original_signal_scale   --output_name Combination/FitResults_WH_FullRun2_v9_original_signal_scale.txt   --freeze_nuisances r_higgs
+																																		   
+Freezing all constrained nuisances, to check the effect of systematic uncertainties:													   
+																																		   
+    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_Full2018_v9_original_signal_scale   --output_name Combination/FitResults_WH_Full2018_v9_original_signal_scale_freeze_all.txt   --freeze_nuisances all
+    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_Full2017_v9_original_signal_scale   --output_name Combination/FitResults_WH_Full2017_v9_original_signal_scale_freeze_all.txt   --freeze_nuisances all
+    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_2016noHIPM_v9_original_signal_scale --output_name Combination/FitResults_WH_2016noHIPM_v9_original_signal_scale_freeze_all.txt --freeze_nuisances all
+    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_2016HIPM_v9_original_signal_scale   --output_name Combination/FitResults_WH_2016HIPM_v9_original_signal_scale_freeze_all.txt   --freeze_nuisances all
+																																		   																								   
+    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_FullRun2_v9_original_signal_scale   --output_name Combination/FitResults_WH_FullRun2_v9_original_signal_scale_freeze_all.txt   --freeze_nuisances all
 
 ### Produce Impact Plots
 
@@ -89,17 +93,34 @@ Actually produce impact plots:
 
     cd Impact_plots
 
-    combineTool.py -M Impacts -d ../Combination/WH_chargeAsymmetry_WH_FullRun2_v9.root -m 125 --doInitialFit -t -1 --setParameters r_S=1.3693,r_A=0.224,r_higgs=1 --setParameterRanges r_S=0,10:r_A=-1,1 --redefineSignalPOIs r_A --freezeParameters r_higgs
+Using r_A as POI:
 
-    combineTool.py -M Impacts -d ../Combination/WH_chargeAsymmetry_WH_FullRun2_v9.root -m 125 --doFits -t -1 --setParameters r_S=1.3693,r_A=0.224,r_higgs=1 --setParameterRanges r_S=0,10:r_A=-1,1 --redefineSignalPOIs r_A --job-mode=condor --freezeParameters r_higgs --sub-opts='+JobFlavour="workday"'
+    combineTool.py -M Impacts -d ../Combination/WH_chargeAsymmetry_WH_FullRun2_v9_original_signal_scale.root -m 125 --doInitialFit -t -1 --setParameters r_S=1.3693,r_A=0.224,r_higgs=1 --setParameterRanges r_S=0,10:r_A=-1,1 --redefineSignalPOIs r_A --freezeParameters r_higgs
 
-    combineTool.py -M Impacts -d ../Combination/WH_chargeAsymmetry_WH_FullRun2_v9.root -m 125 -t -1 -o impacts_WHSS_FullRun2_v9.json --setParameters r_S=1.3693,r_A=0.224,r_higgs=1 --setParameterRanges r_S=0,10:r_A=-1,1 --redefineSignalPOIs r_A --freezeParameters r_higgs
+    combineTool.py -M Impacts -d ../Combination/WH_chargeAsymmetry_WH_FullRun2_v9_original_signal_scale.root -m 125 --doFits -t -1 --setParameters r_S=1.3693,r_A=0.224,r_higgs=1 --setParameterRanges r_S=0,10:r_A=-1,1 --redefineSignalPOIs r_A --job-mode=condor --freezeParameters r_higgs --sub-opts='+JobFlavour="workday"'
+
+    combineTool.py -M Impacts -d ../Combination/WH_chargeAsymmetry_WH_FullRun2_v9_original_signal_scale.root -m 125 -t -1 -o impacts_WHSS_FullRun2_v9.json --setParameters r_S=1.3693,r_A=0.224,r_higgs=1 --setParameterRanges r_S=0,10:r_A=-1,1 --redefineSignalPOIs r_A --freezeParameters r_higgs
 
     plotImpacts.py -i impacts_WHSS_FullRun2_v9.json -o Impact_WHSS_FullRun2_v9
 
     rm combine_*
     rm condor_*
     rm higgsCombine_*
+
+Using r_S as POI:
+
+    combineTool.py -M Impacts -d ../Combination/WH_chargeAsymmetry_WH_FullRun2_v9_original_signal_scale.root -m 125 --doInitialFit -t -1 --setParameters r_S=1.3693,r_A=0.224,r_higgs=1 --setParameterRanges r_S=0,10:r_A=-1,1 --redefineSignalPOIs r_S --freezeParameters r_higgs
+
+    combineTool.py -M Impacts -d ../Combination/WH_chargeAsymmetry_WH_FullRun2_v9_original_signal_scale.root -m 125 --doFits -t -1 --setParameters r_S=1.3693,r_A=0.224,r_higgs=1 --setParameterRanges r_S=0,10:r_A=-1,1 --redefineSignalPOIs r_S --job-mode=condor --freezeParameters r_higgs --sub-opts='+JobFlavour="workday"'
+
+    combineTool.py -M Impacts -d ../Combination/WH_chargeAsymmetry_WH_FullRun2_v9_original_signal_scale.root -m 125 -t -1 -o impacts_WHSS_FullRun2_v9_r_S.json --setParameters r_S=1.3693,r_A=0.224,r_higgs=1 --setParameterRanges r_S=0,10:r_A=-1,1 --redefineSignalPOIs r_S --freezeParameters r_higgs
+
+    plotImpacts.py -i impacts_WHSS_FullRun2_v9_r_S.json -o Impact_WHSS_FullRun2_v9_r_S
+
+    rm combine_*
+    rm condor_*
+    rm higgsCombine_*
+
 
 ### Produce Likelihood scan
 
