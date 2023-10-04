@@ -11,7 +11,7 @@ outputDir = 'rootFile_resolved_2017'
 aliasesFile = 'aliases_medmass.py'#DNN trained with the high mass with aliases_highmass.py
 
 # file with list of variables
-variablesFile = 'variables_medmass.py'
+variablesFile = 'variables_fit.py'
 # variablesFile = 'variablesPlot.py'
 # variablesFile = 'variablesLimits.py'
 
@@ -33,7 +33,7 @@ outputDirPlots = 'Plots_CR'
 
 
 # used by mkDatacards to define output directory for datacards
-outputDirDatacard = 'Datacards_good'
+outputDirDatacard = 'Datacards_test'
 
 # structure file for datacard
 structureFile = 'structure_medmass.py'

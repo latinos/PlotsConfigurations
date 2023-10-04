@@ -131,11 +131,11 @@ mcCommonWeightTagger = 'XSWeight*SFweight_top*METFilter_MC*LepWPCut[0]*Lepton_pr
 ################  BACKGROUNDS  ###############
 ###############################################
 
-########## DY #######
-print("DY")
-
-# NLO
-# prefer M-10to50 NLO and fill M-5to10 with HT-binned LO
+############# DY #######
+#print("DY")
+#
+## NLO
+## prefer M-10to50 NLO and fill M-5to10 with HT-binned LO
 #files  = nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-10to50')
 files  = nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50')
 files += nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_ext1')
@@ -241,8 +241,8 @@ samples['ggWW'] = {
 }
 #addSampleWeight(samples,'ggWW','GluGluHToWWToLNuQQ_M125', "{0} * ({0} < 50)".format(model_B))
 
-#files  = nanoGetSampleFiles(mcDirectory,'WmToLNu_WmTo2J_QCD') #moved to WW
-#files += nanoGetSampleFiles(mcDirectory,'WmToLNu_ZTo2J_QCD',) #moved to VZ
+files  = nanoGetSampleFiles(mcDirectory,'WmToLNu_WmTo2J_QCD') #moved to WW
+files += nanoGetSampleFiles(mcDirectory,'WmToLNu_ZTo2J_QCD',) #moved to VZ
 files  = nanoGetSampleFiles(mcDirectory,'WpTo2J_WmToLNu_QCD')
 files += nanoGetSampleFiles(mcDirectory,'WpToLNu_WmTo2J_QCD') 
 #files += nanoGetSampleFiles(mcDirectory,'WpToLNu_WpTo2J_QCD') #moved to WW
@@ -253,8 +253,8 @@ samples['qqWWqq'] = {
     'weight' : mcCommonWeightTagger + "*(mjjGen_max>150)*(GenLHE)", 
     'FilesPerJob': 10
 }
-### nanoGetSampleFiles(signalMCDirectory,'WpWmJJ_QCD_noTop') ,
-####'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch,
+## nanoGetSampleFiles(signalMCDirectory,'WpWmJJ_QCD_noTop') ,
+###'weight': XSWeight+'*'+SFweight+'*'+METFilter_MC+'*'+GenLepMatch,
 ####mcCommonWeight+'*(mjjGen_OTF>=100)'+'*(GenLHE)',
 ####samples['WW2J'] = {
 ####    'name'   :   nanoGetSampleFiles(mcDirectory,'WpWmJJ_QCD_noTop') ,
@@ -484,17 +484,17 @@ samples['ZH_htt'] = {
    'FilesPerJob': 10
 }
 
-#samples['WH_htt'] = {
-#   'name':  nanoGetSampleFiles(mcDirectory, 'HWplusJ_HToTauTau_M125') + nanoGetSampleFiles(mcDirectory, 'HWminusJ_HToTauTau_M125'),
-#   'weight': mcCommonWeight,
-#   'FilesPerJob': 15
-#}
+samples['WH_htt'] = {
+   'name':  nanoGetSampleFiles(mcDirectory, 'HWplusJ_HToTauTau_M125') + nanoGetSampleFiles(mcDirectory, 'HWminusJ_HToTauTau_M125'),
+   'weight': mcCommonWeight,
+   'FilesPerJob': 5
+}
 
 
-#############################################
-##print("Signals")
-##noSMxsec = '(1.0/Xsec)'
-########## ggH -> WW #################
+##############################################
+###print("Signals")
+###noSMxsec = '(1.0/Xsec)'
+########### ggH -> WW #################
 for MX in massggh:
   for model in models:
     model_name = '_'+model.replace('.','')
@@ -533,38 +533,38 @@ for MX in massggh:
     samples['GGHSBI_'+MX+model_name]  = {
         'name': files,
         'weight': mcCommonWeightTagger,
-        'FilesPerJob': 10,
+        'FilesPerJob': 120,
     }
     addSampleWeight(samples, 'GGHSBI_'+MX+model_name, 'GluGluHToWWToLNuQQ_M'+MX,
                     '( (2*{0}+sqrt(2)*{1})*(abs({0}+{1})<50) )'.format(model, model_I))
-#    addSampleWeight(samples, 'GGHSBI_'+MX+model_name, 'GluGluHToWWToLNuQQ_M500_copybkg',
-#                    '( {0} )'.format(model_H))
-#    
-#    samples['GGHINT_H_'+MX+model_name]  = {
-#        'name': nanoGetSampleFiles(signalMCDirectory, 'GluGluHToWWToLNuQQ_M'+MX),
-#        'weight': mcCommonWeightTagger + '*( {0}*(abs({0})<50) )'.format(model_I_H),
-#        'FilesPerJob': 15,
-#    }
-#    samples['GGHINT_B_'+MX+model_name]  = {
-#        'name': nanoGetSampleFiles(signalMCDirectory, 'GluGluHToWWToLNuQQ_M'+MX),
-#        'weight': mcCommonWeightTagger + '*( {0}*(abs({0})<50) )'.format(model_I_B),
-#        'FilesPerJob': 15,
-#    }
-    samples['GGH_HSM_'+MX+model_name]  = {
-        'name': nanoGetSampleFiles(signalMCDirectory, 'GluGluHToWWToLNuQQ_M'+MX),
-        'weight': mcCommonWeightTagger + '*( {0} )'.format(model_H),
-        'FilesPerJob': 15,
-    }
-##    samples['GGH_B_'+MX+model_name]  = {
-##        'name': nanoGetSampleFiles(signalMCDirectory, 'GluGluHToWWToLNuQQ_M'+MX),
-##        'weight': mcCommonWeightTagger + '*( {0} )'.format(model_B),
-##        'FilesPerJob': 15,
-##    }
-#
-#
-#
-#
-################### VBF H->WW ############
+###    addSampleWeight(samples, 'GGHSBI_'+MX+model_name, 'GluGluHToWWToLNuQQ_M500_copybkg',
+###                    '( {0} )'.format(model_H))
+###    
+###    samples['GGHINT_H_'+MX+model_name]  = {
+###        'name': nanoGetSampleFiles(signalMCDirectory, 'GluGluHToWWToLNuQQ_M'+MX),
+###        'weight': mcCommonWeightTagger + '*( {0}*(abs({0})<50) )'.format(model_I_H),
+###        'FilesPerJob': 15,
+###    }
+###    samples['GGHINT_B_'+MX+model_name]  = {
+###        'name': nanoGetSampleFiles(signalMCDirectory, 'GluGluHToWWToLNuQQ_M'+MX),
+###        'weight': mcCommonWeightTagger + '*( {0}*(abs({0})<50) )'.format(model_I_B),
+###        'FilesPerJob': 15,
+###    }
+###    samples['GGH_HSM_'+MX+model_name]  = {
+###        'name': nanoGetSampleFiles(signalMCDirectory, 'GluGluHToWWToLNuQQ_M'+MX),
+###        'weight': mcCommonWeightTagger + '*( {0} )'.format(model_H),
+###        'FilesPerJob': 15,
+###    }
+####    samples['GGH_B_'+MX+model_name]  = {
+####        'name': nanoGetSampleFiles(signalMCDirectory, 'GluGluHToWWToLNuQQ_M'+MX),
+####        'weight': mcCommonWeightTagger + '*( {0} )'.format(model_B),
+####        'FilesPerJob': 15,
+####    }
+###
+###
+###
+###
+#################### VBF H->WW ############
 for MX in massvbf:
   for model in models:
     model_name = '_'+model.replace('.','')
@@ -583,19 +583,19 @@ for MX in massvbf:
         'FilesPerJob': 15,
     }
  
- 
-#    samples['QQH_'+MX+model_name+"_old"]  = {
-#        'name': nanoGetSampleFiles(signalMCDirectoryOLD, 'VBFHToWWToLNuQQ_M'+MX),
-#        'weight': mcCommonWeightTagger +'*( {0} * (abs({0}) < 50) )'.format(model),
-#        'FilesPerJob': 15,
-#    }
- 
-#    samples['QQHINT_'+MX+model_name]  = {
-#        'name': nanoGetSampleFiles(signalMCDirectory, 'VBFHToWWToLNuQQ_M'+MX),
-#        'weight': mcCommonWeightTagger + '*( {0}*(abs({0})<50) )'.format(model_I),
-#        'FilesPerJob': 30,
-#    }
+## 
+##    samples['QQH_'+MX+model_name+"_old"]  = {
+##        'name': nanoGetSampleFiles(signalMCDirectoryOLD, 'VBFHToWWToLNuQQ_M'+MX),
+##        'weight': mcCommonWeightTagger +'*( {0} * (abs({0}) < 50) )'.format(model),
+##        'FilesPerJob': 15,
+##    }
 # 
+##    samples['QQHINT_'+MX+model_name]  = {
+##        'name': nanoGetSampleFiles(signalMCDirectory, 'VBFHToWWToLNuQQ_M'+MX),
+##        'weight': mcCommonWeightTagger + '*( {0}*(abs({0})<50) )'.format(model_I),
+##        'FilesPerJob': 30,
+##    }
+ 
     files  = nanoGetSampleFiles(signalMCDirectory, 'VBFHToWWToLNuQQ_M'+MX)
     files += nanoGetSampleFiles(signalMCDirectory, 'VBFHToWWToLNuQQ_M125') # just any mass, reweighted to HSM. But not the nominal 125 because that one has no off shell part
                                                                            # CAUTION when processing the 500 GeV signal.  We cannot have a sample with the same name weighted in two different ways
@@ -629,98 +629,98 @@ for MX in massvbf:
 ##        'FilesPerJob': 15,
 ##    }
 ##
-    samples['QQH_HSM_'+MX+model_name]  = {
-        'name': nanoGetSampleFiles(signalMCDirectory, 'VBFHToWWToLNuQQ_M'+MX),
-        'weight': mcCommonWeightTagger +'*( {0} )'.format(model_H),
-        'FilesPerJob': 15,
-    }
-##    samples['QQH_B_'+MX+model_name]  = {
+##    samples['QQH_HSM_'+MX+model_name]  = {
 ##        'name': nanoGetSampleFiles(signalMCDirectory, 'VBFHToWWToLNuQQ_M'+MX),
-##        'weight': mcCommonWeightTagger +'*( {0} )'.format(model_B),
+##        'weight': mcCommonWeightTagger +'*( {0} )'.format(model_H),
 ##        'FilesPerJob': 15,
 ##    }
-##
-##############################################
-#################   SIGNALS  ##################
+###    samples['QQH_B_'+MX+model_name]  = {
+###        'name': nanoGetSampleFiles(signalMCDirectory, 'VBFHToWWToLNuQQ_M'+MX),
+###        'weight': mcCommonWeightTagger +'*( {0} )'.format(model_B),
+###        'FilesPerJob': 15,
+###    }
+###
 ###############################################
-#####print("Signals")
-#####
-####noSMxsec = '(1.0/Xsec)'
-########## ggH -> WW #################
-####for MX in massggh:
-####    # Model dependent -> Xsec*BR is applied in later step, so remove "SM"-Xsec*BR
-####    # SMxsec = HiggsXS.GetHiggsXS4Sample('YR4','13TeV','GluGluHToWWToLNuQQ_M'+MX)['xs']
-#### 
-####    samples['GGH_'+MX+model_name]  = {
-####        'name': nanoGetSampleFiles(signalMCDirectory, 'GluGluHToWWToLNuQQ_M'+MX),
-####        'weight': mcCommonWeightTagger+'*'+noSMxsec+'*( {0} * (abs({0}) < 50) )'.format(model),
-####        'FilesPerJob': 15,
-####    }
-#### 
-#####    samples['GGHINT_'+MX+model_name]  = {
+##################   SIGNALS  ##################
+################################################
+######print("Signals")
+######
+#####noSMxsec = '(1.0/Xsec)'
+########### ggH -> WW #################
+#####for MX in massggh:
+#####    # Model dependent -> Xsec*BR is applied in later step, so remove "SM"-Xsec*BR
+#####    # SMxsec = HiggsXS.GetHiggsXS4Sample('YR4','13TeV','GluGluHToWWToLNuQQ_M'+MX)['xs']
+##### 
+#####    samples['GGH_'+MX+model_name]  = {
 #####        'name': nanoGetSampleFiles(signalMCDirectory, 'GluGluHToWWToLNuQQ_M'+MX),
-#####        'weight': mcCommonWeight+'*'+noSMxsec+'*( {0} * (abs({0}) < 50) )'.format(model_I),
+#####        'weight': mcCommonWeightTagger+'*'+noSMxsec+'*( {0} * (abs({0}) < 50) )'.format(model),
 #####        'FilesPerJob': 15,
 #####    }
+##### 
+######    samples['GGHINT_'+MX+model_name]  = {
+######        'name': nanoGetSampleFiles(signalMCDirectory, 'GluGluHToWWToLNuQQ_M'+MX),
+######        'weight': mcCommonWeight+'*'+noSMxsec+'*( {0} * (abs({0}) < 50) )'.format(model_I),
+######        'FilesPerJob': 15,
+######    }
+######
+######    files  = nanoGetSampleFiles(signalMCDirectory, 'GluGluHToWWToLNuQQ_M'+MX)
+######    files += nanoGetSampleFiles(signalMCDirectory, 'GluGluHToWWToLNuQQ_M125')
+######    files += nanoGetSampleFiles(signalMCDirectory, 'GluGluHToWWToLNuQQ_M125_copyBG') ### These are symlinks to M125
+######    samples['GGHSBI_'+MX+model_name]  = {
+######        'name': files,
+######        'weight': mcCommonWeight,
+######        'FilesPerJob': 10,
+######    }
+######    addSampleWeight(samples, 'GGHSBI_'+MX+model_name, 'GluGluHToWWToLNuQQ_M'+MX,
+######                    '( ({0}+{1}) * (abs({0}+{1}) < 50) *{2})'.format(model, model_I, noSMxsec))
+######    addSampleWeight(samples, 'GGHSBI_'+MX+model_name, 'GluGluHToWWToLNuQQ_M125_copyBG',
+######                   '( ({0}) * (abs({0}) < 50) )'.format(model_B))
+######
 #####
-#####    files  = nanoGetSampleFiles(signalMCDirectory, 'GluGluHToWWToLNuQQ_M'+MX)
-#####    files += nanoGetSampleFiles(signalMCDirectory, 'GluGluHToWWToLNuQQ_M125')
-#####    files += nanoGetSampleFiles(signalMCDirectory, 'GluGluHToWWToLNuQQ_M125_copyBG') ### These are symlinks to M125
-#####    samples['GGHSBI_'+MX+model_name]  = {
-#####        'name': files,
-#####        'weight': mcCommonWeight,
-#####        'FilesPerJob': 10,
-#####    }
-#####    addSampleWeight(samples, 'GGHSBI_'+MX+model_name, 'GluGluHToWWToLNuQQ_M'+MX,
-#####                    '( ({0}+{1}) * (abs({0}+{1}) < 50) *{2})'.format(model, model_I, noSMxsec))
-#####    addSampleWeight(samples, 'GGHSBI_'+MX+model_name, 'GluGluHToWWToLNuQQ_M125_copyBG',
-#####                   '( ({0}) * (abs({0}) < 50) )'.format(model_B))
 #####
-####
-####
-####
-####
-####
-####
-################ VBF H->WW ############
-####for MX in massvbf:
-####    # Model dependent -> Xsec*BR is applied in later step, so remove "SM"-Xsec*BR
-####    # SMxsec = HiggsXS.GetHiggsXS4Sample('YR4','13TeV','VBFHToWWToLNuQQ_M'+MX)['xs']
-####    # noSMxsec = '(1.0/{})'.format(SMxsec)
-####
-####    samples['QQH_'+MX+model_name]  = {
-####        'name': nanoGetSampleFiles(signalMCDirectory, 'VBFHToWWToLNuQQ_M'+MX),
-####        'weight': mcCommonWeightTagger+'*'+noSMxsec+'*( {0} * (abs({0}) < 50) )'.format(model),
-####        'FilesPerJob': 15,
-####    }
 #####
-######    samples['QQHINT_'+MX+model_name]  = {
+#####
+#####
+#####
+################# VBF H->WW ############
+#####for MX in massvbf:
+#####    # Model dependent -> Xsec*BR is applied in later step, so remove "SM"-Xsec*BR
+#####    # SMxsec = HiggsXS.GetHiggsXS4Sample('YR4','13TeV','VBFHToWWToLNuQQ_M'+MX)['xs']
+#####    # noSMxsec = '(1.0/{})'.format(SMxsec)
+#####
+#####    samples['QQH_'+MX+model_name]  = {
 #####        'name': nanoGetSampleFiles(signalMCDirectory, 'VBFHToWWToLNuQQ_M'+MX),
-#####        'weight': mcCommonWeight+'*'+noSMxsec+'*( {0} * (abs({0}) < 50) )'.format(model_I),
+#####        'weight': mcCommonWeightTagger+'*'+noSMxsec+'*( {0} * (abs({0}) < 50) )'.format(model),
 #####        'FilesPerJob': 15,
 #####    }
-#####
-#####    files  = nanoGetSampleFiles(signalMCDirectory, 'VBFHToWWToLNuQQ_M'+MX)
-#####    files += nanoGetSampleFiles(signalMCDirectory, 'VBFHToWWToLNuQQ_M125')
-#####    files += nanoGetSampleFiles(signalMCDirectory, 'WpWmJJ_QCD_noTop')#THIS IS NOT INCLUDED IN BWREWEIGHT
-#####    ### IT NEEDS TO BE SYMLINKED THERE IN ORDER TO MAKE SUFFIX NUISANCES WORK
-#####    ### eg execute this in HWWNano/Summer... directory:
-#####    ### find ~+/MCl1loose2016v7__MCCorr2016v7__MCCombJJLNu2016* -type f -name "*WpWmJJ_QCD_noTop*" -exec bash -c 'ln -s "$0" "${0/JJLNu2016/JJLNu2016__BWReweight}"' {} \;
-#####
-#####    samples['QQHSBI_'+MX+model_name]  = {
-#####        'name': files,
-#####        'weight': mcCommonWeight,
-#####        'FilesPerJob': 10,
-#####    }
-#####    addSampleWeight(samples, 'QQHSBI_'+MX+model_name, 'VBFHToWWToLNuQQ_M'+MX,
-#####                    '( ({0}+{1}) * (abs({0}+{1}) < 50) * {2})'.format(model, model_I, noSMxsec))
-#####    addSampleWeight(samples, 'QQHSBI_'+MX+model_name, 'WpWmJJ_QCD_noTop',
-#####                    '(mjjGen_OTF>=100)*(GenLHE)')
-#####
-#####
-#####
-#####
-#####
+######
+#######    samples['QQHINT_'+MX+model_name]  = {
+######        'name': nanoGetSampleFiles(signalMCDirectory, 'VBFHToWWToLNuQQ_M'+MX),
+######        'weight': mcCommonWeight+'*'+noSMxsec+'*( {0} * (abs({0}) < 50) )'.format(model_I),
+######        'FilesPerJob': 15,
+######    }
+######
+######    files  = nanoGetSampleFiles(signalMCDirectory, 'VBFHToWWToLNuQQ_M'+MX)
+######    files += nanoGetSampleFiles(signalMCDirectory, 'VBFHToWWToLNuQQ_M125')
+######    files += nanoGetSampleFiles(signalMCDirectory, 'WpWmJJ_QCD_noTop')#THIS IS NOT INCLUDED IN BWREWEIGHT
+######    ### IT NEEDS TO BE SYMLINKED THERE IN ORDER TO MAKE SUFFIX NUISANCES WORK
+######    ### eg execute this in HWWNano/Summer... directory:
+######    ### find ~+/MCl1loose2016v7__MCCorr2016v7__MCCombJJLNu2016* -type f -name "*WpWmJJ_QCD_noTop*" -exec bash -c 'ln -s "$0" "${0/JJLNu2016/JJLNu2016__BWReweight}"' {} \;
+######
+######    samples['QQHSBI_'+MX+model_name]  = {
+######        'name': files,
+######        'weight': mcCommonWeight,
+######        'FilesPerJob': 10,
+######    }
+######    addSampleWeight(samples, 'QQHSBI_'+MX+model_name, 'VBFHToWWToLNuQQ_M'+MX,
+######                    '( ({0}+{1}) * (abs({0}+{1}) < 50) * {2})'.format(model, model_I, noSMxsec))
+######    addSampleWeight(samples, 'QQHSBI_'+MX+model_name, 'WpWmJJ_QCD_noTop',
+######                    '(mjjGen_OTF>=100)*(GenLHE)')
+######
+######
+######
+######
+######
 for key in samples:
     if key in ['data_obs','FAKE']: continue
     if 'INT' in key: continue
@@ -728,26 +728,26 @@ for key in samples:
     samples[key]['suppressNegativeNuisances'] =['all']
 
 
-############
-############################################################
-################################### DATA ###################
-############################################################
-##################print("FAKE")
-############################### FAKE ###########
-##############eleWP    = 'mvaFall17V1Iso_WP90'
-##############muWP     = 'cut_Tight_HWWW'
-################
-################fakeW = 'fakeW_ele_'+eleWP+'_mu_'+muWP+'_1l_mu25_ele35'
-####################samples['FAKE'] = {
-####################  'name': [],
-####################  'weight': 'METFilter_DATA*'+fakeW,
-####################  'weights': [],
-####################  'isData': ['all'],
-####################  'FilesPerJob': 35,
-####################  'suppressNegative': ['all'],
-####################  'suppressNegativeNuisances' :['all'],
-####################}
-####################
+#############
+#############################################################
+#################################### DATA ###################
+#############################################################
+###################print("FAKE")
+################################ FAKE ###########
+###############eleWP    = 'mvaFall17V1Iso_WP90'
+###############muWP     = 'cut_Tight_HWWW'
+#################
+#################fakeW = 'fakeW_ele_'+eleWP+'_mu_'+muWP+'_1l_mu25_ele35'
+#####################samples['FAKE'] = {
+#####################  'name': [],
+#####################  'weight': 'METFilter_DATA*'+fakeW,
+#####################  'weights': [],
+#####################  'isData': ['all'],
+#####################  'FilesPerJob': 35,
+#####################  'suppressNegative': ['all'],
+#####################  'suppressNegativeNuisances' :['all'],
+#####################}
+#####################
 Mu_jetEt = 35
 El_jetEt = 35
 fakeW = 'FW_mu'+str(Mu_jetEt)+ '_el'+str(El_jetEt)+'[0]'

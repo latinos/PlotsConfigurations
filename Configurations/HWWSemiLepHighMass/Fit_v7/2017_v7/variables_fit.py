@@ -14,13 +14,13 @@ boosted  = set(x for x in cuts if 'Boosted' in x)
 #boosted_general = set(x for x in cuts if 'boosted_gen' in x)
 fat_jet = set(x for x in cuts if 'fatjet' in x)
 
-variables['events']  = {
-    'name' : '1',
-    'range': (1,0,2),
-    'xaxis': 'events',
-    'fold' : 3,
-#    'cuts' : controlRegions
-}
+#variables['events']  = {
+#    'name' : '1',
+#    'range': (1,0,2),
+#    'xaxis': 'events',
+#    'fold' : 3,
+##    'cuts' : controlRegions
+#}
 
 
 ######################################################
@@ -428,41 +428,41 @@ variables['events']  = {
 ######   'fold' : 0
 ######}
 #####
-variables['mass_HIGGS_FAT_VBF'] = {
-   'name' : 'mass_HIGGS_FAT[0]',
-   'range': ([0, 600, 650, 700, 750, 800, 850, 900, 950, 1000,
-  	       1100, 1200, 1300, 1500, 2000, 5000 ],),
-   'xaxis': 'Higgs Mass [GeV]',
-   'fold' : 0 ,
-   'cuts' : boostedSR,
-}
-variables['mass_HIGGS_FAT_rebin'] = {
-   'name' : 'mass_HIGGS_FAT[0]',
-   'range': ([0, 250, 350, 400, 450, 500, 550, 600,
-               650, 700, 750, 800, 850, 900, 950, 1000, 1050,
-  	       1100, 1150, 1200, 1250, 1300, 1350, 1500, 1700, 2000, 5000 ],),
-   'xaxis': 'Higgs Mass [GeV]',
-   'fold' : 0 ,
-   'cuts' : boostedSR,
-}
-variables['mass_HIGGS_FAT_fit'] = {
-   'name' : 'mass_HIGGS_FAT[0]',
-   'range': ([0, 200, 250, 300, 350, 400, 450, 500, 550, 600,
-               650, 700, 750, 800, 850, 900, 950, 1000, 1050,
-  	       1100, 1150, 1200, 1250, 1300, 1350, 1400, 1450, 1500, 1700, 2000, 3000, 5000 ],),
-   'xaxis': 'Higgs Mass [GeV]',
-   'fold' : 0 ,
-   'cuts' : boosted ,
-}
-variables['mass_HIGGS_FAT_binned'] = {
-   'name' : 'mass_HIGGS_FAT[0]',
-   'range': ([0, 200, 250, 300, 350, 400, 450, 500, 550, 600,
-               650, 700, 750, 800, 850, 900, 950, 1000, 1050,
-  	       1100, 1150, 1200, 1250, 1300, 1350, 1400, 1450, 1500, 1700, 2000, 3000 ],),
-   'xaxis': 'Higgs Mass [GeV]',
-   'fold' : 0 ,
-   'cuts' : boosted ,
-}
+#variables['mass_HIGGS_FAT_VBF'] = {
+#   'name' : 'mass_HIGGS_FAT[0]',
+#   'range': ([0, 600, 650, 700, 750, 800, 850, 900, 950, 1000,
+#  	       1100, 1200, 1300, 1500, 2000, 5000 ],),
+#   'xaxis': 'Higgs Mass [GeV]',
+#   'fold' : 0 ,
+#   'cuts' : boostedSR,
+#}
+#variables['mass_HIGGS_FAT_rebin'] = {
+#   'name' : 'mass_HIGGS_FAT[0]',
+#   'range': ([0, 250, 350, 400, 450, 500, 550, 600,
+#               650, 700, 750, 800, 850, 900, 950, 1000, 1050,
+#  	       1100, 1150, 1200, 1250, 1300, 1350, 1500, 1700, 2000, 5000 ],),
+#   'xaxis': 'Higgs Mass [GeV]',
+#   'fold' : 0 ,
+#   'cuts' : boostedSR,
+#}
+#variables['mass_HIGGS_FAT_fit'] = {
+#   'name' : 'mass_HIGGS_FAT[0]',
+#   'range': ([0, 200, 250, 300, 350, 400, 450, 500, 550, 600,
+#               650, 700, 750, 800, 850, 900, 950, 1000, 1050,
+#  	       1100, 1150, 1200, 1250, 1300, 1350, 1400, 1450, 1500, 1700, 2000, 3000, 5000 ],),
+#   'xaxis': 'Higgs Mass [GeV]',
+#   'fold' : 0 ,
+#   'cuts' : boosted ,
+#}
+#variables['mass_HIGGS_FAT_binned'] = {
+#   'name' : 'mass_HIGGS_FAT[0]',
+#   'range': ([0, 200, 250, 300, 350, 400, 450, 500, 550, 600,
+#               650, 700, 750, 800, 850, 900, 950, 1000, 1050,
+#  	       1100, 1150, 1200, 1250, 1300, 1350, 1400, 1450, 1500, 1700, 2000, 3000 ],),
+#   'xaxis': 'Higgs Mass [GeV]',
+#   'fold' : 0 ,
+#   'cuts' : boosted ,
+#}
 ####
 ####
 ####variables['mass_HIGGS_FAT'] = {
@@ -481,14 +481,14 @@ variables['mass_HIGGS_twojet_binned'] = {
    'cuts' : resolved, 
 }
 
-variables['mass_HIGGS_twojet_rebin'] = {
-   'name' : 'mass_HIGGS_JJ[0]',
-   'range': ([0, 200, 250, 300, 350, 400, 450, 500, 550, 600,
-              650, 700, 750, 800, 850, 900, 950, 1000, 1250, 1500, 3000],),
-   'xaxis': 'Higgs Mass [GeV]',
-   'fold' : 0,
-   'cuts' : resolvedSR, 
-}
+#variables['mass_HIGGS_twojet_rebin'] = {
+#   'name' : 'mass_HIGGS_JJ[0]',
+#   'range': ([0, 200, 250, 300, 350, 400, 450, 500, 550, 600,
+#              650, 700, 750, 800, 850, 900, 950, 1000, 1250, 1500, 3000],),
+#   'xaxis': 'Higgs Mass [GeV]',
+#   'fold' : 0,
+#   'cuts' : resolvedSR, 
+#}
 #####variables['Mela_boosted'] = {
 #####   'name': 'MelaVBFvsGGH_boosted[0]',
 #####   'range': (15,0,1),

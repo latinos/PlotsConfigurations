@@ -5,7 +5,7 @@
 # keys here must match keys in samples.py
 #
 
-massesAndModelsFile = "massesAndModels.py"
+massesAndModelsFile = "../massesAndModels.py"
 if os.path.exists(massesAndModelsFile) :
     handle = open(massesAndModelsFile,'r')
     exec(handle)
@@ -262,7 +262,7 @@ for MX in massvbf:
 # data
 
 
-structure['DATA']  = {
+structure['data_obs']  = {
                   'isSignal' : 0,
                   'isData'   : 1
               }
