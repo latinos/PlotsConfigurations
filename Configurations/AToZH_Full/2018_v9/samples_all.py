@@ -33,10 +33,10 @@ WZWeight = '1.138' #NLO to NNLO k-factor
 ############### Lepton WP ######################
 ################################################
 
-eleWP_new = 'mvaFall17V2Iso_WP90_tthmva_70'
-muWP_new  = 'cut_Tight_HWWW_tthmva_80'
+eleWP_new = 'mvaFall17V2Iso_WP90'
+muWP_new  = 'cut_Tight_HWWW'
 
-LepWPCut         = 'LepCut'+Nlep+'l__ele_'+eleWP_new+'__mu_'+muWP_new  
+#LepWPCut         = 'LepCut'+Nlep+'l__ele_'+eleWP_new+'__mu_'+muWP_new  
 LepWPweight      = 'LepSF'+Nlep+'l__ele_'+eleWP_new+'__mu_'+muWP_new
 
 ################################################
@@ -44,7 +44,7 @@ LepWPweight      = 'LepSF'+Nlep+'l__ele_'+eleWP_new+'__mu_'+muWP_new
 ################################################
 
 XSWeight      = 'XSWeight'
-SFweight      = 'SFweight'+Nlep+'l*'+LepWPweight+'*'+LepWPCut+'*Jet_PUIDSF'
+SFweight      = 'SFweight'+Nlep+'l*'+LepWPweight+'*LepWPCut*Jet_PUIDSF*ttHMVAULSF'
 PromptGenLepMatch   = 'PromptGenLepMatch'+Nlep+'l'
 PromptGenLepMatch2l   = 'PromptGenLepMatch'+'2l'
 PromptGenLepMatch3l   = 'PromptGenLepMatch'+'3l'
@@ -54,10 +54,10 @@ PromptGenLepMatch3l   = 'PromptGenLepMatch'+'3l'
 ################################################
 
 
-if Nlep == '2' :
-  fakeW = 'fakeW2l_ele_'+eleWP_new+'_mu_'+muWP_new
-else:
-  fakeW = 'fakeW_ele_'+eleWP_new+'_mu_'+muWP_new+'_'+Nlep+'l'
+#if Nlep == '2' :
+#  fakeW = 'fakeW2l_ele_'+eleWP_new+'_mu_'+muWP_new
+#else:
+#  fakeW = 'fakeW_ele_'+eleWP_new+'_mu_'+muWP_new+'_'+Nlep+'l'
 
 ################################################
 ############### B-Tag  WP ######################
@@ -130,7 +130,8 @@ samples['ttH_hww']  = { 'name'   :   getSampleFilesNano(directory,'ttHToNonbb_M1
 
 samples['tZq_ll']  = { 'name'   :   getSampleFilesNano(directory,'tZq_ll'),
                        'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC ,
-                      }
+                       'FilesPerJob' : 5,                 
+}
 
 
 samples['ZZ']  = {  'name'   :   getSampleFilesNano(directory,'ZZTo2L2Nu')
@@ -1252,7 +1253,7 @@ samples['AZH_950_850'] = { 'name': getSampleFilesNano(directory, 'AToZHToLLTTbar
 Fakedirectory = treeBaseDir+'Run2018_UL2018_nAODv9_Full2018v9/DATAl1loose2018v9__l2loose__fakeW'
 
 samples['Fake']  = {   'name': [ ] ,
-                       'weight' : fakeW+'*'+METFilter_DATA,
+                       'weight' : 'fakeW*'+ METFilter_DATA,
                        'weights' : [ ] ,
                        'isData': ['all'],
                        'FilesPerJob' : 500 ,
@@ -1287,7 +1288,7 @@ for _, sd in DataRun:
 ###########################################
 Datadirectory = treeBaseDir+'Run2018_UL2018_nAODv9_Full2018v9/DATAl1loose2018v9__l2loose__l2tightOR2018v9'
 samples['DATA']  = {   'name': [ ] ,
-                       'weight' : METFilter_DATA+'*'+LepWPCut,
+                       'weight' : METFilter_DATA+'*LepWPCut',
                        'weights' : [ ],
                        'isData': ['all'],
                        'FilesPerJob' : 500 ,
