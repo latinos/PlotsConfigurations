@@ -159,19 +159,49 @@ Using new training with top and Z+jets as fakes
 
     plotImpacts.py -i impacts_WH3l_2018_new_opt.json -o Impact_WH3l_2018_new_opt
 
+
+    combineTool.py -M Impacts -d ../Combination/WH_chargeAsymmetry_WH_3l_Full2018_v9_new_opt.root -m 125 --doInitialFit -t -1 --setParameters r_S=1.3693,r_A=0.224,r_higgs=1 --setParameterRanges r_S=0,10:r_A=-1,1 --redefineSignalPOIs r_S --freezeParameters r_higgs
+
+    combineTool.py -M Impacts -d ../Combination/WH_chargeAsymmetry_WH_3l_Full2018_v9_new_opt.root -m 125 --doFits -t -1 --setParameters r_S=1.3693,r_A=0.224,r_higgs=1 --setParameterRanges r_S=0,10:r_A=-1,1 --redefineSignalPOIs r_S --job-mode=condor --freezeParameters r_higgs
+
+    combineTool.py -M Impacts -d ../Combination/WH_chargeAsymmetry_WH_3l_Full2018_v9_new_opt.root -m 125 -t -1 -o impacts_WH3l_2018_new_opt_r_S.json --setParameters r_S=1.3693,r_A=0.224,r_higgs=1 --setParameterRanges r_S=0,10:r_A=-1,1 --redefineSignalPOIs r_S
+
+    plotImpacts.py -i impacts_WH3l_2018_new_opt_r_S.json -o Impact_WH3l_2018_new_opt_r_S
+
+
     rm combine_*
     rm condor_*
     rm higgsCombine_*
 
 Produce impact plots for signal strength measurement. Using original signal scale:
 
-    combineTool.py -M Impacts -d ../Combination/WH_chargeAsymmetry_WH_3l_Full2018_v9_new_opt_WH_strength.root -m 125 --doInitialFit -t -1 --setParameters r_WH=1 --setParameterRanges r_WH=0.01,10 --redefineSignalPOIs r_WH --freezeParameters r_higgs -n signal_strength
+    combineTool.py -M Impacts -d ../Combination/WH_chargeAsymmetry_WH_3l_Full2018_v9_original_signal_scale_new_opt_WH_strength.root -m 125 --doInitialFit -t -1 --setParameters r_WH=1 --setParameterRanges r_WH=0.01,10 --redefineSignalPOIs r_WH --freezeParameters r_higgs -n signal_strength
 
-    combineTool.py -M Impacts -d ../Combination/WH_chargeAsymmetry_WH_3l_Full2018_v9_new_opt_WH_strength.root -m 125 --doFits -t -1 --setParameters r_WH=1 --setParameterRanges r_WH=0.01,10 --redefineSignalPOIs r_WH --job-mode=condor -n signal_strength
+    combineTool.py -M Impacts -d ../Combination/WH_chargeAsymmetry_WH_3l_Full2018_v9_original_signal_scale_new_opt_WH_strength.root -m 125 --doFits -t -1 --setParameters r_WH=1 --setParameterRanges r_WH=0.01,10 --redefineSignalPOIs r_WH --job-mode=condor -n signal_strength
 
-    combineTool.py -M Impacts -d ../Combination/WH_chargeAsymmetry_WH_3l_Full2018_v9_new_opt_WH_strength.root -m 125 -t -1 -o impacts_WH3l_2018_new_opt_WH_strength.json --setParameters r_WH=1 --setParameterRanges r_WH=0.01,10 --redefineSignalPOIs r_WH -n signal_strength
+    combineTool.py -M Impacts -d ../Combination/WH_chargeAsymmetry_WH_3l_Full2018_v9_original_signal_scale_new_opt_WH_strength.root -m 125 -t -1 -o impacts_WH3l_2018_new_opt_WH_strength.json --setParameters r_WH=1 --setParameterRanges r_WH=0.01,10 --redefineSignalPOIs r_WH -n signal_strength
 
-    plotImpacts.py -i impacts_WH3l_2018_new_opt_WH_strength.json -o Impacts_WH3l_2018_new_opt_WH_strength
+    plotImpacts.py -i impacts_WH3l_2018_new_opt_WH_strength.json -o Impact_WH3l_2018_new_opt_WH_strength
+
+    rm combine_*
+    rm condor_*
+    rm higgsCombine_*
+
+### Produce likelihood scans and post-fit plots
+
+To produce likelihood scans, we need to perform the fit using the FitDiagnostic option. If we then save both the shapes and their uncertainties, we will obtain an output file with everything we need to also produce post-fit plots. If we optimized the binning of our discriminant using CombineHarvester, this is also the only way to produce plots of the discriminant with the correct binning.
+
+Run combine using the FitDiagnostic option:
+
+    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_3l_Full2018_v9_new_opt --output_name Combination/FitResults_new_opt.txt --freeze_nuisances r_higgs --sanity_check FD
+
+This will create the output file `fitDiagnostics.root`, storing all the pre- and post-fit shapes. Then, we can produce a rootfile with all the shapes, in the format that mkPlot can read, and then plot:
+
+    bash do_postfit_plots.sh
+
+
+
+
 
 
 ### OLD: Select binning for BDT

@@ -231,6 +231,21 @@ Produce impact plots for signal strength measurement. Using original signal scal
     rm condor_*
     rm higgsCombine_*
 
+### Produce likelihood scans and post-fit plots
+
+To produce likelihood scans, we need to perform the fit using the FitDiagnostic option. If we then save both the shapes and their uncertainties, we will obtain an output file with everything we need to also produce post-fit plots. If we optimized the binning of our discriminant using CombineHarvester, this is also the only way to produce plots of the discriminant with the correct binning.
+
+Run combine using the FitDiagnostic option:
+
+    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_SS_Full2018_v9_BDTG6_TT_more_allFinalStates_alsoLowPt_opt_noZveto --output_name Combination/FitResults_BDTG6_TT_more.txt --freeze_nuisances r_higgs --sanity_check FD
+
+This will create the output file `fitDiagnostics.root`, storing all the pre- and post-fit shapes. Then, we can produce a rootfile with all the shapes, in the format that mkPlot can read, and then plot:
+
+    bash do_postfit_plots.sh
+
+
+
+
 
 ### OLD: Select binning for BDT
 

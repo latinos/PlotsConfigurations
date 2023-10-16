@@ -44,10 +44,10 @@ if opt.freeze_nuisances == "True" or opt.freeze_nuisances == "1":
 if opt.freeze_nuisances == "r_higgs":
     nuisances = "--freezeParameters r_higgs"
 
-    
+
 ####################    
 ### Create workspace
-####################    
+####################
 
 # Using POIs: r_S, r_A
 workspace_command = "text2workspace.py \
@@ -56,14 +56,14 @@ workspace_command = "text2workspace.py \
                      -P HiggsAnalysis.CombinedLimit.PhysicsModel:multiSignalModel \
                      -m 125 \
                      --PO verbose \
-                     --PO 'map=.*/ggH_hww:r_higgs[1,-100,100]' \
-                     --PO 'map=.*/qqH_hww:r_higgs[1,-100,100]' \
-                     --PO 'map=.*/ZH_hww:r_higgs[1,-100,100]' \
-                     --PO 'map=.*/ggZH_hww:r_higgs[1,-100,100]' \
-                     --PO 'map=.*/ttH_hww:r_higgs[1,-100,100]' \
-                     --PO 'map=.*/ggH_htt:r_higgs[1,-100,100]' \
-                     --PO 'map=.*/qqH_htt:r_higgs[1,-100,100]' \
-                     --PO 'map=.*/ZH_htt:r_higgs[1,-100,100]' \
+                     --PO 'map=.*/ggH_hww:r_higgs[1,0.99,1.01]' \
+                     --PO 'map=.*/qqH_hww:r_higgs[1,0.99,1.01]' \
+                     --PO 'map=.*/ZH_hww:r_higgs[1,0.99,1.01]' \
+                     --PO 'map=.*/ggZH_hww:r_higgs[1,0.99,1.01]' \
+                     --PO 'map=.*/ttH_hww:r_higgs[1,0.99,1.01]' \
+                     --PO 'map=.*/ggH_htt:r_higgs[1,0.99,1.01]' \
+                     --PO 'map=.*/qqH_htt:r_higgs[1,0.99,1.01]' \
+                     --PO 'map=.*/ZH_htt:r_higgs[1,0.99,1.01]' \
                      --PO 'map=.*/WH_h.*_plus:r_WH_plus=expr;;r_WH_plus(\"@0*(1+@1)/(2*0.8380)\",r_S[1.3693,0.01,5],r_A[0.224,-1,1])' \
                      --PO 'map=.*/WH_h.*_minus:r_WH_minus=expr;;r_WH_minus(\"@0*(1-@1)/(2*0.5313)\",r_S,r_A)' \
                      ".format(datacard_name)
@@ -106,6 +106,7 @@ combine_command = "combine \
                    {2} \
                    > {1} \
                    ".format(datacard_name,output_name,nuisances)
+
 #                   --X-rtd MINIMIZER_analytic \
 #                   -v 9 \
 
@@ -186,18 +187,20 @@ fit_diagnostics_command = "combine \
                            -M FitDiagnostics {0}.root \
                            -t -1 \
                            --setParameters r_S=1.3693,r_A=0.224 \
+                           --saveShapes \
                            --saveWithUncertainties \
-                           --saveOverallShapes \
-                           --numToysForShapes 200 \
                            ".format(datacard_name)
 
+# --saveOverallShapes \
+# --numToysForShapes 200 \
+
 
 ######################
 # Now use the commands
 ######################
 
-# Now use the commands
-print("Preparing workspace...")
+# Asymmetry extraction
+print("Preparing workspace for asymmetry...")
 print(workspace_command)
 os.system(workspace_command)
 print("\n")
@@ -315,8 +318,9 @@ if sanity_check != False:
         print("\n")
         print("\n")
 
-    # print("Doing FitDiagnistics...")
-    # print(fit_diagnostics_command)
-    # os.system(fit_diagnostics_command)
-    # print("\n")
-    # print("\n")
+    if "FD" in sanity_check:
+        print("Doing FitDiagnistics...")
+        print(fit_diagnostics_command)
+        os.system(fit_diagnostics_command)
+        print("\n")
+        print("\n")

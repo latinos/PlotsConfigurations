@@ -106,6 +106,7 @@ combine_command = "combine \
                    {2} \
                    > {1} \
                    ".format(datacard_name,output_name,nuisances)
+
 #                   --X-rtd MINIMIZER_analytic \
 #                   -v 9 \
 
@@ -186,10 +187,12 @@ fit_diagnostics_command = "combine \
                            -M FitDiagnostics {0}.root \
                            -t -1 \
                            --setParameters r_S=1.3693,r_A=0.224 \
+                           --saveShapes \
                            --saveWithUncertainties \
-                           --saveOverallShapes \
-                           --numToysForShapes 200 \
                            ".format(datacard_name)
+
+# --saveOverallShapes \
+# --numToysForShapes 200 \
 
 
 ######################
@@ -315,8 +318,9 @@ if sanity_check != False:
         print("\n")
         print("\n")
 
-    # print("Doing FitDiagnistics...")
-    # print(fit_diagnostics_command)
-    # os.system(fit_diagnostics_command)
-    # print("\n")
-    # print("\n")
+    if "FD" in sanity_check:
+        print("Doing FitDiagnistics...")
+        print(fit_diagnostics_command)
+        os.system(fit_diagnostics_command)
+        print("\n")
+        print("\n")
