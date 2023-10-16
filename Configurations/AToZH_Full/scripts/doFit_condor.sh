@@ -38,7 +38,7 @@ echo "--------------------------------------------------"
 
 ### make workspaces
 breq_path="${datacardDir}/mA_${mA}_mH_${mH}/breq_SR/ellipse_mA_${mA}_mH_${mH}/datacard.txt"
-bveto_1j_path="${datacardDir}/mA_${mA}_mH_${mH}/bveto_1j_SR/ellipse_mA_${mA}_mH_${mH}/datacard.txt"
+bveto_1j_path="${datacardDir}/mA_${mA}_mH_${mH}/bveto_1j_SR/ellipse_onebjet_mA_${mA}_mH_${mH}/datacard.txt"
 
 combinedPath="${datacardDir}/mA_${mA}_mH_${mH}/combined_SR/"
 mkdir $combinedPath

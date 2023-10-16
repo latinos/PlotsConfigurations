@@ -26,7 +26,7 @@ variables['events']  = {   'name': '1',
                         'xaxis' : 'events', 
                         'fold' : 3
                         }
-'''
+
 variables['mll']  = {   'name': 'mll',
                         'range' : (20, 80,200),
                         'xaxis' : 'm_{ll} [GeV]',
@@ -98,7 +98,7 @@ variables['dphijj'] = { 'name': 'dphijj',
                         'xaxis' : 'dphijj',
                         'fold'  : 3
                         }
-
+'''
 variables['dphijet2met'] = { 'name': 'dphijet2met',
                              'range' : (20,0,3.15),
                              'xaxis' : 'dphijet2met',
@@ -128,7 +128,7 @@ variables['mindetajl'] = { 'name'  : 'mindetajl',
                            'xaxis' : 'mindetajl',
                            'fold'  : 3
                         }
-
+'''
 variables['jetpt0'] = { 'name'  : 'Alt$(CleanJet_pt[0],0)',
                         'range' : (20,0,100),
                         'xaxis' : 'Alt$(CleanJet_pt[0],0)',
@@ -177,4 +177,4 @@ variables['njets'] = { 'name'  : 'Sum$(CleanJet_pt>30)',
                                  'fold'  : 3
                         }
 
-'''
+

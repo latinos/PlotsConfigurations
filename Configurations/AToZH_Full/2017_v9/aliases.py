@@ -245,6 +245,32 @@ aliases['ellipse_mA_800_mH_600'] = {
     'samples' : bkg+['AZH_800_600']
 }
 
+############## onebjet ellipse variables ###############
+
+aliases['ellipse_onebjet_mA_900_mH_400'] = {
+    'class' : 'elliptical_bin',
+    'args'  : (900,400,True),
+    'samples' : bkg+['AZH_900_400']
+}
+
+aliases['ellipse_onebjet_mA_500_mH_350'] = {
+    'class' : 'elliptical_bin',
+    'args'  : (500,350,True),
+    'samples' : bkg+['AZH_500_350']
+}
+
+aliases['ellipse_onebjet_mA_1000_mH_600'] = {
+    'class' : 'elliptical_bin',
+    'args'  : (1000,600,True),
+    'samples' : bkg+['AZH_1000_600']
+}
+
+aliases['ellipse_onebjet_mA_800_mH_600'] = {
+    'class' : 'elliptical_bin',
+    'args'  : (800,600,True),
+    'samples' : bkg+['AZH_800_600']
+}
+
 #######################
 ### SFs for tthMVA  ###
 #######################

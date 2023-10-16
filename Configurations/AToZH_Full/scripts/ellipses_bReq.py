@@ -10,7 +10,7 @@ import uproot
 import ROOT
 
 #get muon tth mva sf histogram
-mu_rootfile = ROOT.TFile(os.getenv("CMSSW_BASE") + "/src/PlotsConfigurations/Configurations/WH_chargeAsymmetry/UL/data/muon_ttHMVA_SF/2018/NUM_TightHWW_ISO_tthmva_DEN_TightHWW_ISO_eta_pt.root")
+mu_rootfile = ROOT.TFile(os.getenv("CMSSW_BASE") + "/src/PlotsConfigurations/Configurations/WH_chargeAsymmetry/UL/data/muon_ttHMVA_SF/2017/NUM_TightHWW_ISO_tthmva_DEN_TightHWW_ISO_eta_pt.root")
 h_SF_mu = mu_rootfile.Get("NUM_TightHWW_ISO_tthmva_DEN_TightHWW_ISO_eta_pt").Clone()
 h_SF_mu.SetDirectory(0)
 mu_rootfile.Close()
@@ -132,7 +132,7 @@ for b in range(len(pairs)):
     btag = np.log(((CleanJet_pt>30) & (CleanJeteta<2.5))*(Jet_btagSF_deepjet_shape[CleanJet_jetIdx])+1*((CleanJet_pt<30) | (CleanJeteta>2.5)))
     btagSF = np.exp((btag.sum()))  #array([1.47603836, 0.66089104, 0.86333407, ..., 1.42880052, 0.97982071, 0.97606693]) - same as directly doing array.prod() without the log and the exp
 
-    SFweight = SFweight3l*LepSF*LepCut*Prefire*Jet_PUIDSF*btagSF*ttHMVAULSF
+    SFweight = SFweight3l*LepSF*LepCut*Jet_PUIDSF*btagSF*ttHMVAULSF*Prefire
 
     Lepton_promptgenmatched = Events["Lepton_promptgenmatched"].array()
     length = [len(x) for x in Lepton_promptgenmatched]
@@ -227,6 +227,6 @@ for b in range(len(pairs)):
 
     ellipses = _compute_ellipses()
     print(line)
-    outfile = open('ellipse_breq.txt', 'a')
+    outfile = open('ellipse_breq_17.txt', 'a')
     outfile.writelines(line)
     outfile.close()
