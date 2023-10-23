@@ -29,7 +29,8 @@ structure['ttZ']  = {
 
 structure['ZgS']  = {
                   'isSignal' : 0,
-                  'isData'   : 0    
+                  'isData'   : 0,
+		  'removeFromCuts': ['breq_SR', 'bveto_1j']
                   }
 structure['ZZ']  = {
                   'isSignal' : 0,
@@ -41,7 +42,8 @@ structure['DY']  = {
                   }
 structure['Zg']  = {
                   'isSignal' : 0,
-                  'isData'   : 0    
+                  'isData'   : 0,
+		  'removeFromCuts' : ['bveto_4j']
                   }
 structure['WZ']  = {
                   'isSignal' : 0,
@@ -49,7 +51,8 @@ structure['WZ']  = {
                   }
 structure['top']  = {
                   'isSignal' : 0,
-                  'isData'   : 0    
+                  'isData'   : 0,
+		  'removeFromCuts': ['bveto_4j']
                   }
 structure['TTWJets']  = {
                   'isSignal' : 0,
@@ -59,7 +62,7 @@ structure['DATA']  = {
                   'isSignal' : 0,
                   'isData'   : 1    
                   }
-structure['AZH_900_400']   = {'isSignal':1, 'isData':0, 'removeFromCuts':['breq_SR', 'bveto_1j_SR']}
-structure['AZH_500_350']   = {'isSignal':1, 'isData':0, 'removeFromCuts':['breq_SR', 'bveto_1j_SR']}
-structure['AZH_1000_600']  = {'isSignal':1, 'isData':0, 'removeFromCuts':['breq_SR', 'bveto_1j_SR']}
-structure['AZH_800_600']   = {'isSignal':1, 'isData':0, 'removeFromCuts':['breq_SR', 'bveto_1j_SR']}
+structure['AZH_900_400']   = {'isSignal':1, 'isData':0, 'removeFromCuts':['breq_SR', 'bveto_1j_SR', 'bveto_4j']}
+structure['AZH_500_350']   = {'isSignal':1, 'isData':0, 'removeFromCuts':['breq_SR', 'bveto_1j_SR', 'bveto_4j']}
+structure['AZH_1000_600']  = {'isSignal':1, 'isData':0, 'removeFromCuts':['breq_SR', 'bveto_1j_SR', 'bveto_4j']}
+structure['AZH_800_600']   = {'isSignal':1, 'isData':0, 'removeFromCuts':['breq_SR', 'bveto_1j_SR', 'bveto_4j']}

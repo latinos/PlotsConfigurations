@@ -383,9 +383,22 @@ nuisances['ttZ_norm2017'] = {
     },
     'type' : 'rateParam',
     'cuts' : [
-	'breq_SR', 'bveto_1j_SR'
+	'breq_SR', 'bveto_1j_SR', 'bveto_4j'
    ]
  }
+
+nuisances['WZ_norm2017'] = {
+    'name' : 'CMS_WZ_norm2017',
+    'samples' : {
+	'WZ' : '1.00',
+    },
+    'type' : 'rateParam',
+    'cuts': [
+	'breq_SR', 'bveto_1j_SR', 'bveto_4j'
+    ]
+  }
+
+
 
 
 ####### Jet energy scale
@@ -398,9 +411,9 @@ for js in jes_systs:
                 'type': 'shape',
                 'mapUp': js+'up',
                 'mapDown': js+'do',
-                'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['TTWJets', 'AZH_1050_650']),
-                'folderUp'   : treeBaseDir+'Summer20UL17_106x_nAODv9_Full2017v9/MCl1loose2017v9__MCCorr2017v9NoJERInHorn__l2tightOR2017v9__RDFconv__JESup_suffix', 
-                'folderDown' : treeBaseDir+'Summer20UL17_106x_nAODv9_Full2017v9/MCl1loose2017v9__MCCorr2017v9NoJERInHorn__l2tightOR2017v9__RDFconv__JESdo_suffix', 
+                'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['TTWJets']),
+                'folderUp'   : treeBaseDir+'Summer20UL17_106x_nAODv9_Full2017v9/MCl1loose2017v9__MCCorr2017v9NoJERInHorn__l2tightOR2017v9__RDFfix__JESup_suffix', 
+                'folderDown' : treeBaseDir+'Summer20UL17_106x_nAODv9_Full2017v9/MCl1loose2017v9__MCCorr2017v9NoJERInHorn__l2tightOR2017v9__RDFfix__JESdo_suffix', 
                 'AsLnN': '1',
 #                'cuts' : fitcuts
 }
