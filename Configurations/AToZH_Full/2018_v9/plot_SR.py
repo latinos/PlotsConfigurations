@@ -17,6 +17,12 @@ groupPlot['Fake']  = {
                   'samples'  : ['Fake']
               }
 
+groupPlot['WZ'] = {
+    'nameHR' : 'WZ',
+    'isSignal' : 0,
+    'color': 858,
+    'samples'  : ['WZ']
+}
 groupPlot['other top']  = {
          'nameHR' : "other top",
          'isSignal' : 0,
@@ -25,50 +31,80 @@ groupPlot['other top']  = {
       }
 
 
-groupPlot['Multi-Boson']  = {  
-                  'nameHR' : 'Multi-Boson',
+groupPlot['Other Multi-Boson']  = {  
+                  'nameHR' : 'Other Multi-Boson',
                   'isSignal' : 0,
                   'color': 806, # kOrange + 6
-                  'samples'  : ['VVV', 'WZ', 'ZZ']
+                  'samples'  : ['VVV', 'ZZ']
               }
-groupPlot['AZH_1000_600'] = {
-          'nameHR' : "AZH_1000_600",
-          'color': 632,
- 	  'isSignal' : 2,
-	  'scaleMultiplicativeOverlaid' : 0,
-          'samples'  : ['AZH_1000_600'],
-}
-#groupPlot['AZH_500_350'] = {
-#          'nameHR' : "AZH_500_350",
+
+
+#groupPlot['AZH_1000_600'] = {
+#          'nameHR' : "AZH_1000_600",
 #          'color': 632,
 # 	  'isSignal' : 2,
 #	  'scaleMultiplicativeOverlaid' : 0,
-#	  'samples' : ['AZH_500_350'],
+#          'samples'  : ['AZH_1000_600'],
 #}
+#groupPlot['AZH_900_400'] = {
+#          'nameHR' : "AZH_900_400",
+#          'color': 632,
+# 	  'isSignal' : 2,
+#	  'scaleMultiplicativeOverlaid' : 0,
+#          'samples'  : ['AZH_900_400'],
+#}
+#groupPlot['AZH_800_600'] = {
+#          'nameHR' : "AZH_800_600",
+#          'color': 632,
+# 	  'isSignal' : 2,
+#	  'scaleMultiplicativeOverlaid' : 0,
+#          'samples'  : ['AZH_800_600'],
+#}
+groupPlot['AZH_500_350'] = {
+          'nameHR' : "AZH_500_350",
+          'color': 632,
+ 	  'isSignal' : 2,
+	  'scaleMultiplicativeOverlaid' : 0,
+	  'samples' : ['AZH_500_350'],
+}
 
 # Individual plots
 
-plot['AZH_1000_600'] = {
-          'nameHR' : "AZH_1000_600",
-          'color': 632,
- 	  'isSignal' : 2,
-	  'scale'    : 0.040, # To make nice looking plots - scaled to ttZ
-          'isData'  : 0,
-}
-#plot['AZH_500_350'] = {
-#          'nameHR' : "AZH_500_350",
+#plot['AZH_1000_600'] = {
+#          'nameHR' : "AZH_1000_600",
 #          'color': 632,
-#	  'scale'    : 0.040*2.5,
 # 	  'isSignal' : 2,
+#	  'scale'    : 0.00908, # scaled by theory xsec
 #          'isData'  : 0,
 #}
+#plot['AZH_900_400'] = {
+#          'nameHR' : "AZH_900_400",
+#          'color': 632,
+# 	  'isSignal' : 2,
+#	  'scale'    : 0.020509, # scaled by theory xsec
+#          'isData'  : 0,
+#}
+#plot['AZH_800_600'] = {
+#          'nameHR' : "AZH_800_600",
+#          'color': 632,
+# 	  'isSignal' : 2,
+#	  'scale'    : 0.01164675, # scaled by theory xsec
+#          'isData'  : 0,
+#}
+plot['AZH_500_350'] = {
+          'nameHR' : "AZH_500_350",
+          'color': 632,
+	  'scale'    : 0.07915,
+ 	  'isSignal' : 2,
+          'isData'  : 0,
+}
 plot['WZ']  = {
     'nameHR' : 'WZ',
     'color': 858, # kAzure -2  
     'isSignal' : 0,
     'isData'   : 0,
-    #'scale'    : 1.0
-    'scale'    : 1.77 #4j norm
+#    'scale'    : 1.0
+    'scale'    : 1.33 #4j norm
 }
 
 
@@ -146,5 +182,5 @@ plot['DATA']  = {
 
 # additional options
 
-legend['lumi'] = 'L = 41.5/fb'
+legend['lumi'] = 'L = 59.8/fb'
 legend['sqrt'] = '#sqrt{s} = 13 TeV'

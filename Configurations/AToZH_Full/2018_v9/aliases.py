@@ -221,26 +221,26 @@ aliases['AZH_mA_minus_mH_onebjet'] = {
 ############## ellipse variables ###############
 
 aliases['ellipse_mA_900_mH_400'] = {
-    'linesToAdd' : ['.L %s/src/PlotsConfigurations/Configurations/AToZH_Full/scripts/elliptical_bin.cc+' % os.getenv('CMSSW_BASE')],
-    'class' : 'elliptical_bin',
+    'linesToAdd' : ['.L %s/src/PlotsConfigurations/Configurations/AToZH_Full/scripts/elliptical_bin_2018.cc+' % os.getenv('CMSSW_BASE')],
+    'class' : 'elliptical_bin_2018',
     'args'  : (900,400,False),
     'samples' : bkg+['AZH_900_400']
 }
 
 aliases['ellipse_mA_500_mH_350'] = {
-    'class' : 'elliptical_bin',
+    'class' : 'elliptical_bin_2018',
     'args'  : (500,350,False),
     'samples' : bkg+['AZH_500_350']
 }
 
 aliases['ellipse_mA_1000_mH_600'] = {
-    'class' : 'elliptical_bin',
+    'class' : 'elliptical_bin_2018',
     'args'  : (1000,600,False),
     'samples' : bkg+['AZH_1000_600']
 }
 
 aliases['ellipse_mA_800_mH_600'] = {
-    'class' : 'elliptical_bin',
+    'class' : 'elliptical_bin_2018',
     'args'  : (800,600,False),
     'samples' : bkg+['AZH_800_600']
 }
@@ -248,25 +248,25 @@ aliases['ellipse_mA_800_mH_600'] = {
 ############## onebjet ellipse variables ###############
 
 aliases['ellipse_onebjet_mA_900_mH_400'] = {
-    'class' : 'elliptical_bin',
+    'class' : 'elliptical_bin_2018',
     'args'  : (900,400,True),
     'samples' : bkg+['AZH_900_400']
 }
 
 aliases['ellipse_onebjet_mA_500_mH_350'] = {
-    'class' : 'elliptical_bin',
+    'class' : 'elliptical_bin_2018',
     'args'  : (500,350,True),
     'samples' : bkg+['AZH_500_350']
 }
 
 aliases['ellipse_onebjet_mA_1000_mH_600'] = {
-    'class' : 'elliptical_bin',
+    'class' : 'elliptical_bin_2018',
     'args'  : (1000,600,True),
     'samples' : bkg+['AZH_1000_600']
 }
 
 aliases['ellipse_onebjet_mA_800_mH_600'] = {
-    'class' : 'elliptical_bin',
+    'class' : 'elliptical_bin_2018',
     'args'  : (800,600,True),
     'samples' : bkg+['AZH_800_600']
 }
