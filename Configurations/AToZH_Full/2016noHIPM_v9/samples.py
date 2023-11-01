@@ -164,54 +164,78 @@ samples['TTWJets'] = { 'name': getSampleFilesNano(directory,'TTWJetsToLNu'),
 		       'FilesPerJob' : 5,
 }
 
-############ AZH SIGNAL SAMPLES ############
-samples['AZH_800_600'] = {  'name':  getSampleFilesNano(directory,'AToZHToLLTTbar_MA-800_MH-600'),
-                    'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch3l+'*'+METFilter_MC ,
-                  }
+##########################################
+################ SIGNALS #################
+##########################################
 
-samples['AZH_1000_600'] = { 'name': getSampleFilesNano(directory,'AToZHToLLTTbar_MA-1000_MH-600'),
-                     'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch3l+'*'+METFilter_MC ,
-                   }
+samples['AZH_1000_700'] = { 'name': getSampleFilesNano(directory, 'AToZHToLLTTbar_MA-1000_MH-700'),
+                             'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch3l+'*'+METFilter_MC
+                            }
 
-#samples['AZH_1200_1000'] = { 'name': getSampleFilesNano(directory,'AToZHToLLTTbar_MA-1200_MH-1000'),
-#                     'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch3l+'*'+METFilter_MC ,
-#}
-
-
-#samples['AZH_1200_850'] = { 'name': getSampleFilesNano(directory,'AToZHToLLTTbar_MA-1200_MH-850'),
-#                     'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch3l+'*'+METFilter_MC ,
-#}
+samples['AZH_1200_1000'] = { 'name': getSampleFilesNano(directory, 'AToZHToLLTTbar_MA-1200_MH-1000'),
+                             'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch3l+'*'+METFilter_MC
+                            }
 
 
-samples['AZH_500_350'] = { 'name': getSampleFilesNano(directory,'AToZHToLLTTbar_MA-500_MH-350'),
-                     'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch3l+'*'+METFilter_MC ,
-}
+samples['AZH_1200_850'] = { 'name': getSampleFilesNano(directory, 'AToZHToLLTTbar_MA-1200_MH-850'),
+                             'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch3l+'*'+METFilter_MC
+                            }
+samples['AZH_1200_400'] = { 'name': getSampleFilesNano(directory, 'AToZHToLLTTbar_MA-1200_MH-400'),
+                             'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch3l+'*'+METFilter_MC
+                            }
 
 
-#samples['AZH_500_400'] = { 'name': getSampleFilesNano(directory,'AToZHToLLTTbar_MA-500_MH-400'),
-#                     'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch3l+'*'+METFilter_MC ,
-#}
+samples['AZH_1500_1000'] = { 'name': getSampleFilesNano(directory, 'AToZHToLLTTbar_MA-1500_MH-1000'),
+                             'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch3l+'*'+METFilter_MC
+                            }
+
+samples['AZH_1500_400'] = { 'name': getSampleFilesNano(directory, 'AToZHToLLTTbar_MA-1500_MH-400'),
+                             'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch3l+'*'+METFilter_MC
+                            }
+
+samples['AZH_1800_400'] = { 'name': getSampleFilesNano(directory, 'AToZHToLLTTbar_MA-1800_MH-400'),
+                             'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch3l+'*'+METFilter_MC
+                            }
+
+samples['AZH_2100_1000'] = { 'name': getSampleFilesNano(directory, 'AToZHToLLTTbar_MA-2100_MH-1000'),
+                             'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch3l+'*'+METFilter_MC
+                            }
+
+samples['AZH_2100_1600'] = { 'name': getSampleFilesNano(directory, 'AToZHToLLTTbar_MA-2100_MH-1600'),
+                             'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch3l+'*'+METFilter_MC
+                            }
+
+samples['AZH_2100_400'] = { 'name': getSampleFilesNano(directory, 'AToZHToLLTTbar_MA-2100_MH-400'),
+                             'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch3l+'*'+METFilter_MC
+                            }
+samples['AZH_500_350'] = { 'name': getSampleFilesNano(directory, 'AToZHToLLTTbar_MA-500_MH-350'),
+                             'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch3l+'*'+METFilter_MC
+                            }
+
+samples['AZH_500_370'] = { 'name': getSampleFilesNano(directory, 'AToZHToLLTTbar_MA-500_MH-370'),
+                             'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch3l+'*'+METFilter_MC
+                            }
+
+samples['AZH_500_400'] = { 'name': getSampleFilesNano(directory, 'AToZHToLLTTbar_MA-500_MH-400'),
+                             'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch3l+'*'+METFilter_MC
+                            }
 
 
-#samples['AZH_700_350'] = { 'name': getSampleFilesNano(directory,'AToZHToLLTTbar_MA-700_MH-350'),
-#                     'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch3l+'*'+METFilter_MC ,
-#}
 
-#samples['AZH_700_370'] = { 'name': getSampleFilesNano(directory,'AToZHToLLTTbar_MA-700_MH-370'),
-#                     'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch3l+'*'+METFilter_MC ,
-#}
+samples['AZH_700_350'] = { 'name': getSampleFilesNano(directory, 'AToZHToLLTTbar_MA-700_MH-350'),
+                             'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch3l+'*'+METFilter_MC
+                            }
 
-#samples['AZH_700_400'] = { 'name': getSampleFilesNano(directory,'AToZHToLLTTbar_MA-700_MH-400'),
-#                     'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch3l+'*'+METFilter_MC ,
-#}
+samples['AZH_700_370'] = { 'name': getSampleFilesNano(directory, 'AToZHToLLTTbar_MA-700_MH-370'),
+                             'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch3l+'*'+METFilter_MC
+                            }
 
-#samples['AZH_900_370'] = { 'name': getSampleFilesNano(directory,'AToZHToLLTTbar_MA-900_MH-370'),
-#                     'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch3l+'*'+METFilter_MC ,
-#}
 
-samples['AZH_900_400'] = { 'name': getSampleFilesNano(directory,'AToZHToLLTTbar_MA-900_MH-400'),
-                     'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch3l+'*'+METFilter_MC ,
-}
+samples['AZH_900_350'] = { 'name': getSampleFilesNano(directory, 'AToZHToLLTTbar_MA-900_MH-350'),
+                             'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch3l+'*'+METFilter_MC
+                            }
+
+
 ################## FAKE ###################
 ###########################################
 Fakedirectory = treeBaseDir+'Run2016_UL2016_nAODv9_noHIPM_Full2016v9/DATAl1loose2016v9__l2loose__fakeW'

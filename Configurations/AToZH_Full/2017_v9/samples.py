@@ -94,7 +94,7 @@ DataTrig = {
     'DoubleEG'       : '!Trigger_ElMu && !Trigger_sngMu && !Trigger_sngEl && !Trigger_dblMu && Trigger_dblEl'
 }
 
-
+#trigger overlap removal
            
 
 ###########################################
@@ -160,7 +160,7 @@ samples['top'] = {    'name'   :   getSampleFilesNano(directory,'TTTo2L2Nu')
                       'FilesPerJob' : 5,
 }
 
-addSampleWeight(samples,'top','TTTo2L2Nu_PSWeights','Top_pTrw')
+addSampleWeight(samples,'top','TTTo2L2Nu','Top_pTrw')
 
 samples['TTWJets'] = { 'name': getSampleFilesNano(directory,'TTWJets'),
                        'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC ,
@@ -172,9 +172,9 @@ samples['AZH_800_600'] = {  'name':  getSampleFilesNano(directory,'AToZHToLLTTba
                     'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch3l+'*'+METFilter_MC ,
                   }
 
-samples['AZH_1000_600'] = { 'name': getSampleFilesNano(directory,'AToZHToLLTTbar_MA-1000_MH-600'),
-                     'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch3l+'*'+METFilter_MC ,
-                   }
+#samples['AZH_1000_600'] = { 'name': getSampleFilesNano(directory,'AToZHToLLTTbar_MA-1000_MH-600'),
+#                     'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch3l+'*'+METFilter_MC ,
+#                   }
 
 #samples['AZH_1200_1000'] = { 'name': getSampleFilesNano(directory,'AToZHToLLTTbar_MA-1200_MH-1000'),
 #                     'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch3l+'*'+METFilter_MC ,
@@ -186,9 +186,9 @@ samples['AZH_1000_600'] = { 'name': getSampleFilesNano(directory,'AToZHToLLTTbar
 #}
 
 
-samples['AZH_500_350'] = { 'name': getSampleFilesNano(directory,'AToZHToLLTTbar_MA-500_MH-350'),
-                     'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch3l+'*'+METFilter_MC ,
-}
+#samples['AZH_500_350'] = { 'name': getSampleFilesNano(directory,'AToZHToLLTTbar_MA-500_MH-350'),
+#                     'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch3l+'*'+METFilter_MC ,
+#}
 
 
 #samples['AZH_500_400'] = { 'name': getSampleFilesNano(directory,'AToZHToLLTTbar_MA-500_MH-400'),
@@ -212,9 +212,9 @@ samples['AZH_500_350'] = { 'name': getSampleFilesNano(directory,'AToZHToLLTTbar_
 #                     'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch3l+'*'+METFilter_MC ,
 #}
 
-samples['AZH_900_400'] = { 'name': getSampleFilesNano(directory,'AToZHToLLTTbar_MA-900_MH-400'),
-                     'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch3l+'*'+METFilter_MC ,
-}
+#samples['AZH_900_400'] = { 'name': getSampleFilesNano(directory,'AToZHToLLTTbar_MA-900_MH-400'),
+#                     'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch3l+'*'+METFilter_MC ,
+#}
 ################## FAKE ###################
 ###########################################
 

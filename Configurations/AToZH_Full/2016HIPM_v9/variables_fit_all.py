@@ -15,14 +15,28 @@ variables['events']     = { 'name': '1',
                             'fold' : 3
                         }
 
+variables['njet']       = { 'name'  : 'ZH3l_njet',
+                            'range' : (10,0,10),
+                            'xaxis' : 'N_{jet}',
+                            'fold' : 3 
+                        }
 variables['ptz']        = { 'name' : 'ZH3l_pTZ',
                             'range' : (6,0,1000),
                             'xaxis' : 'ptz',
-			    'cuts' : ['breq_SR','bveto_1j_SR'],
+#			    'cuts' : ['breq_SR','bveto_1j_SR'],
                             'fold' : 3 
                         }
 
-
+variables['nbjet']       = { 'name'  : 'nbjet',
+                            'range' : (10,0,10),
+                            'xaxis' : 'N_{bjet}',
+                            'fold' : 3 
+                        }
+variables['pt1']        = { 'name': 'Lepton_pt[0]',
+                            'range' : (10,0.,200),
+                            'xaxis' : 'lept1_p_{T} [GeV]',
+                            'fold' : 3 
+                        }
 variables['DeltaM']  = { 'name' : 'AZH_mA_minus_mH_patch',
                             'range' : (6,0,1000),
 			    'xaxis' : 'm_{A}-m_{H}',
@@ -30,6 +44,24 @@ variables['DeltaM']  = { 'name' : 'AZH_mA_minus_mH_patch',
 			    'fold'  : 3
                          }
 
+variables['pt_subleadinglepton'] = { 'name': 'Lepton_pt[1]',
+                                     'range' : (10,0.,200),
+                                     'xaxis' : 'lept2_p_{T} [GeV]',
+                                     'fold' : 3
+}
+
+variables['pt_thirdlepton'] = { 'name': 'Lepton_pt[2]',
+                                      'range' : (10,0.,200),
+				      'xaxis' : 'lept3_p_{T} [GeV]',
+				      'fold' : 3
+}
+
+
+variables['checkmZ']    = { 'name' : 'ZH3l_checkmZ',
+                            'range' : (20,0,200),
+                            'xaxis' : 'checkmZ',
+                            'fold' : 3 
+                        }
 variables['DeltaM_onebjet'] = { 'name' : 'AZH_mA_minus_mH_onebjet',
                                    'range' : (6,0,1000),
 				   'xaxis' : 'm_{A}-m_{H}',
@@ -37,6 +69,11 @@ variables['DeltaM_onebjet'] = { 'name' : 'AZH_mA_minus_mH_onebjet',
                                    'fold'  : 3
                             }
 
+variables['ptjet0']     = { 'name' : 'CleanJet_pt[0]',
+                            'range' : (20,0,200),
+                            'xaxis' : 'Leading jet p_{T}',
+                            'fold' : 3 
+                        }
 variables['ellipse_mA_1000_mH_330'] = { 'name' : 'ellipse_mA_1000_mH_330',
                                                 'range' : (7,-0.5,6.5),
                                                 'xaxis' : 'elliptical bin in mA-mH, pTZ',
@@ -45,6 +82,11 @@ variables['ellipse_mA_1000_mH_330'] = { 'name' : 'ellipse_mA_1000_mH_330',
                                                'fold'  : 0
                                             }
 
+variables['ptjet1']     = { 'name' : 'CleanJet_pt[1]',
+                            'range' : (20,0,200),
+                            'xaxis' : 'Subleading jet p_{T}',
+                            'fold' : 3 
+                        }
 variables['ellipse_mA_1000_mH_350'] = { 'name' : 'ellipse_mA_1000_mH_350',
                                                 'range' : (7,-0.5,6.5),
                                                 'xaxis' : 'elliptical bin in mA-mH, pTZ',
