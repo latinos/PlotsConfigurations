@@ -131,6 +131,41 @@ aliases['DY_LO_pTllrw'] = {
     'samples': ['DY']
 }
 
+#############################################
+# Patching MET variables for JES variations #
+#############################################
+
+aliases['mtw1_patch'] = {
+    'linesToAdd': ['.L %s/WW/FullRunII/METpatch.cc+' % configurations],
+    'class': 'METpatch',
+    'args': ("mtw1"),
+}
+
+aliases['mtw2_patch'] = {
+    'class': 'METpatch',
+    'args': ("mtw2"),
+}
+
+aliases['mth_patch'] = {
+    'class': 'METpatch',
+    'args': ("mth"),
+}
+
+aliases['dphillmet_patch'] = {
+    'class': 'METpatch',
+    'args': ("dphillmet"),
+}
+
+aliases['pTWW_patch'] = {
+    'class': 'METpatch',
+    'args': ("pTWW"),
+}
+
+aliases['pTHjj_patch'] = {
+    'class': 'METpatch',
+    'args': ("pTHjj"),
+}
+
 ####################################################################################
 # b tagging WPs: https://twiki.cern.ch/twiki/bin/view/CMS/BtagRecommendation106XUL17
 ####################################################################################
@@ -173,21 +208,21 @@ aliases['bReqSF'] = {
 # CR definitions
 
 aliases['topcr'] = {
-    'expr': 'mtw2>30 && mll>50 && ((Sum$(CleanJet_pt > 30.) == 0 && !bVeto) || bReq)'
+    'expr': 'mtw2_patch>30 && mll>50 && ((Sum$(CleanJet_pt > 30.) == 0 && !bVeto) || bReq)'
 }
 
 aliases['dycr'] = {
-    'expr': 'mth<60 && mll>40 && mll<80 && bVeto'
+    'expr': 'mth_patch<60 && mll>40 && mll<80 && bVeto'
 }
 
 aliases['wwcr'] = {
-    'expr': 'mth>60 && mtw2>30 && mll>100 && bVeto'
+    'expr': 'mth_patch>60 && mtw2_patch>30 && mll>100 && bVeto'
 }
 
 # SR definition
 
 aliases['sr'] = {
-    'expr': 'mth>60 && mtw2>30 && bVeto'
+    'expr': 'mth_patch>60 && mtw2_patch>30 && bVeto'
 }
 
 # Overall b tag SF
@@ -313,16 +348,16 @@ aliases['fid'] = {
 }
 
 aliases['BDTOutput_0j'] = {
-    'class': 'ww_top_bdt_0j',
-    'linesToAdd' : ['.L %s/WW/FullRunII/WW_BDT_0j.cc+' % configurations],
+    'class': 'METpatch',
+    'args': ("WW_BDT_0j"),
 }
 
 aliases['BDTOutput_1j'] = {
-    'class': 'ww_top_bdt_1j',
-    'linesToAdd' : ['.L %s/WW/FullRunII/WW_BDT_1j.cc+' % configurations],
+    'class': 'METpatch',
+    'args': ("WW_BDT_1j"),
 }
 
 aliases['BDTOutput_2j'] = {
-    'class': 'ww_top_bdt_2j',
-    'linesToAdd' : ['.L %s/WW/FullRunII/WW_BDT_2j.cc+' % configurations],
+    'class': 'METpatch',
+    'args': ("WW_BDT_2j"),
 }

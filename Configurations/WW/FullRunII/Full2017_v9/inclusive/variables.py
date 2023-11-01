@@ -33,7 +33,7 @@ variables['mll']  = {   'name': 'mll',
                         'fold' : 3
                         }
 
-variables['mth']  = {   'name': 'mth',
+variables['mth']  = {   'name': 'mth_patch',
                         'range' : (20, 60,300),
                         'xaxis' : 'm_{T}^{WW} [GeV]',
                         'fold' : 3
@@ -51,31 +51,31 @@ variables['drll']  = {  'name': 'drll',
                         'fold'  : 3
                         }
 
-variables['dphillmet'] = { 'name': 'dphillmet',
+variables['dphillmet'] = { 'name': 'dphillmet_patch',
                            'range' : (20,0,3.15),
                            'xaxis' : 'dphillmet',
                            'fold'  : 3
                        }
 
-variables['mtw1']  = {  'name': 'mtw1',
+variables['mtw1']  = {  'name': 'mtw1_patch',
                         'range' : (20,0,200),
                         'xaxis' : 'mtw1',
-                        'fold'  : 3
+                        'fold'  : 0
                         }
 
-variables['mtw2']  = {  'name': 'mtw2',
+variables['mtw2']  = {  'name': 'mtw2_patch',
                         'range' : (20,0,200),
                         'xaxis' : 'mtw2',
-                        'fold'  : 3
+                        'fold'  : 0
                         }
 
-variables['pTWW']  = {  'name': 'pTWW',
+variables['pTWW']  = {  'name': 'pTWW_patch',
                         'range' : (20,0,200),
                         'xaxis' : 'pTWW',
                         'fold'  : 3
                         }
 
-variables['pTHjj']  = { 'name': 'pTHjj',
+variables['pTHjj']  = { 'name': 'pTHjj_patch',
                         'range' : (20,0,200),
                         'xaxis' : 'pTHjj',
                         'fold'  : 3
