@@ -1069,7 +1069,7 @@ aliases['Tag_massSF'] = {
     'samples': mc_deep
 }
 aliases['SFweight_top'] = {
-    'expr': ' * '.join(['puWeight', 'TriggerEffWeight_1l_fixed', 'EMTFbug_veto',  'LepWPSF[0]','PUJetIdSF[0]','btagSF[0]', 'PUJetIdSF[0]','DeepAK8_SF[0]', 'Tag_massSF[0]']),#, 'Top_DeepTagrw[0]']),#'Fat_rewei[0]']),
+    'expr': ' * '.join(['puWeight', 'TriggerEffWeight_1l_fixed', 'EMTFbug_veto',  'LepWPSF[0]','PUJetIdSF[0]','btagSF[0]','DeepAK8_SF[0]', 'Tag_massSF[0]']),#, 'Top_DeepTagrw[0]']),#'Fat_rewei[0]']),
     'samples': mc_deep
 }
 
