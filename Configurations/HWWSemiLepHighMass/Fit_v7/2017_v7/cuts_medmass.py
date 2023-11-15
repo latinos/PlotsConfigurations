@@ -103,7 +103,7 @@ for Lep in LepCats:
         for BCat in BoostCatsSR:  
 		cuts[Lep+BCat+BProcCat]=  BoostCatsSR[BCat]\
                 	            +'&&'+BoostProcCats_H[BProcCat]\
-               	            +'&&'+LepCats[Lep]
+               	           	    +'&&'+LepCats[Lep]
 
 for Lep in LepCats:
     for BProcCat in ResProcCats:
@@ -111,10 +111,10 @@ for Lep in LepCats:
 		cuts[Lep+BCat+BProcCat]=  ResCatsSR[BCat]\
                 	            +'&&'+ResProcCats[BProcCat]\
                 	            +'&&'+LepCats[Lep]
-for Lep in LepCats_P:
-    for BCat in BoostCats:
-	cuts[Lep+BCat]=  BoostCats[BCat]\
-                           +'&&'+LepCats_P[Lep]
+#for Lep in LepCats_P:
+#    for BCat in BoostCats:
+#	cuts[Lep+BCat]=  BoostCats[BCat]\
+#                           +'&&'+LepCats_P[Lep]
 # #           cuts[Lep+BProcCat+BCat]=  BoostCats[BCat]\
   #                              +'&&'+BoostProcCats[BProcCat]\
    #                             +'&&'+LepCats[Lep]

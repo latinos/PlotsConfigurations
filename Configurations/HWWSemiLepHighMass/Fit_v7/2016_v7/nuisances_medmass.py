@@ -16,10 +16,13 @@ def nanoGetSampleFiles(inputDir, Sample):
     return getSampleFiles(inputDir, Sample, False, 'nanoLatino_')
 
 try:
-    mc = [skey for skey in samples if skey not in ('FAKE', 'DATA')]
-    mc_deep =[skey for skey in samples if skey not in ['DY', 'Wjets', 'Vg', 'VgS','VZ', 'FAKE', 'DATA', 'VVV', 'ZH_htt', 'WH_htt', 'ggH_htt', 'qqH_htt']]  
+    mc = [skey for skey in samples if skey not in ('FAKE', 'data_obs')]
+    mc_deep =[skey for skey in samples if skey not in ['DY', 'Wjets', 'Vg', 'VgS','VZ', 'FAKE', 'data_obs', 'VVV', 'ZH_htt', 'WH_htt', 'ggH_htt', 'qqH_htt']]  
     sig_mc = [skey for skey in mc if ("GGH" in skey) or ("QQH" in skey) or (skey in ["ggWW", "ggH_hww", "qqWWqq", "qqH_hww","WW","VZ"])] # ggWW is currently reweighted sig sample, while qqWWqq needs to be symlinked to the BWReweight!
-    sig_mc_fat = [skey for skey in mc if ("GGH" in skey) or ("QQH" in skey) or (skey in ["ggWW", "ggH_hww", "qqWWqq", "qqH_hww","WW","VZ"])] # ggWW is currently reweighted sig sample, while qqWWqq needs to be symlinked to the BWReweight!
+    sig_mc_fat = [skey for skey in mc if ("GGH" in skey) or ("QQH" in skey) or ("SBI" in skey) or (skey in ["ggWW", "ggH_hww", "qqWWqq", "qqH_hww","WW","VZ"])] # ggWW is currently reweighted sig sample, while qqWWqq needs to be symlinked to the BWReweight!
+    sig_diff = [skey for skey in mc if ("GGH" in skey) or ("QQH" in skey)] # ggWW is currently reweighted sig sample, while qqWWqq needs to be symlinked to the BWReweight!
+    sig_mc_PS = [skey for skey in mc if(( ("GGH" in skey) or ("QQH" in skey) ) and ("SBI" not in skey)) ] # ggWW is currently reweighted sig sample, while qqWWqq needs to be symlinked to the BWReweight!
+    sig_mc_I = [skey for skey in mc if(( ("GGH" in skey) or ("QQH" in skey) ) and ("SBI"  in skey)) ] # ggWW is currently reweighted sig sample, while qqWWqq needs to be symlinked to the BWReweight!
 
 except NameError:
     mc = []
@@ -76,31 +79,13 @@ cutdict = {
 nuisances['lumi_Uncorrelated'] = {
     'name': 'lumi_13TeV_2016',
     'type': 'lnN',
-    'samples': dict((skey, '1.022') for skey in mc if skey not in ['Wjets', 'top'])
+    'samples': dict((skey, '1.010') for skey in mc if skey not in ['Wjets', 'top'])
 }
 
-nuisances['lumi_XY'] = {
-    'name': 'lumi_13TeV_XY',
+nuisances['lumi_Correlated'] = {
+    'name': 'lumi_13TeV_correlated',
     'type': 'lnN',
-    'samples': dict((skey, '1.009') for skey in mc if skey not in ['Wjets', 'top'])
-}
-
-nuisances['lumi_BBD'] = {
-    'name': 'lumi_13TeV_BBD',
-    'type': 'lnN',
-    'samples': dict((skey, '1.004') for skey in mc if skey not in ['Wjets', 'top'])
-}
-
-nuisances['lumi_DB'] = {
-    'name': 'lumi_13TeV_DB',
-    'type': 'lnN',
-    'samples': dict((skey, '1.005') for skey in mc if skey not in ['Wjets', 'top'])
-}
-
-nuisances['lumi_GS'] = {
-    'name': 'lumi_13TeV_GS',
-    'type': 'lnN',
-    'samples': dict((skey, '1.004') for skey in mc if skey not in ['Wjets', 'top'])
+    'samples': dict((skey, '1.006') for skey in mc if skey not in ['Wjets' 'top'])
 }
 
 
@@ -172,52 +157,52 @@ else:
         #       ]
     }
 
-nuisances['var_top_0_deep'] = {
-    'name': 'CMS_var_top_deep_0_2016',
-    'kind'  : 'weight',
-    'type'  : 'shape',
-    'samples': dict((skey,['Top_DeepTagrw_up_0/Top_DeepTagrw', 'Top_DeepTagrw_do_0/Top_DeepTagrw']) for skey in mc_deep),
-    'cuts': cutdict['Boosted']
-}
-nuisances['var_top_1_deep'] = {
-    'name': 'CMS_var_top_deep_1_2016',
-    'kind'  : 'weight',
-    'type'  : 'shape',
-    'samples': dict((skey,['Top_DeepTagrw_up_1/Top_DeepTagrw', 'Top_DeepTagrw_do_1/Top_DeepTagrw']) for skey in mc_deep),
-    'cuts': cutdict['Boosted']
-}
-nuisances['var_top_2_deep'] = {
-    'name': 'CMS_var_top_deep_2_2016',
-    'kind'  : 'weight',
-    'type'  : 'shape',
-    'samples': dict((skey,['Top_DeepTagrw_up_2/Top_DeepTagrw', 'Top_DeepTagrw_do_2/Top_DeepTagrw']) for skey in mc_deep),
-    'cuts': cutdict['Boosted']
-}
-nuisances['var_top_3_deep'] = {
-    'name': 'CMS_var_top_deep_3_2016',
-    'kind'  : 'weight',
-    'type'  : 'shape',
-    'samples': dict((skey,['Top_DeepTagrw_up_3/Top_DeepTagrw', 'Top_DeepTagrw_do_3/Top_DeepTagrw']) for skey in mc_deep),
-    'cuts': cutdict['Boosted']
-}
+#nuisances['var_top_0_deep'] = {
+#    'name': 'CMS_var_top_deep_0_2016',
+#    'kind'  : 'weight',
+#    'type'  : 'shape',
+#    'samples': dict((skey,['Top_DeepTagrw_up_0/Top_DeepTagrw', 'Top_DeepTagrw_do_0/Top_DeepTagrw']) for skey in mc_deep),
+#    'cuts': cutdict['Boosted']
+#}
+#nuisances['var_top_1_deep'] = {
+#    'name': 'CMS_var_top_deep_1_2016',
+#    'kind'  : 'weight',
+#    'type'  : 'shape',
+#    'samples': dict((skey,['Top_DeepTagrw_up_1/Top_DeepTagrw', 'Top_DeepTagrw_do_1/Top_DeepTagrw']) for skey in mc_deep),
+#    'cuts': cutdict['Boosted']
+#}
+#nuisances['var_top_2_deep'] = {
+#    'name': 'CMS_var_top_deep_2_2016',
+#    'kind'  : 'weight',
+#    'type'  : 'shape',
+#    'samples': dict((skey,['Top_DeepTagrw_up_2/Top_DeepTagrw', 'Top_DeepTagrw_do_2/Top_DeepTagrw']) for skey in mc_deep),
+#    'cuts': cutdict['Boosted']
+#}
+#nuisances['var_top_3_deep'] = {
+#    'name': 'CMS_var_top_deep_3_2016',
+#    'kind'  : 'weight',
+#    'type'  : 'shape',
+#    'samples': dict((skey,['Top_DeepTagrw_up_3/Top_DeepTagrw', 'Top_DeepTagrw_do_3/Top_DeepTagrw']) for skey in mc_deep),
+#    'cuts': cutdict['Boosted']
+#}
 
-nuisances['Fat_rewei_unc'] = {
-    'name': 'CMS_Fat_rewei_unc_2016',
-    'kind'  : 'weight',
-    'type'  : 'shape',
-    'samples': dict((skey,['Fat_rewei[0]', '1']) for skey in mc_deep),
-    'symmetrize':True,
-    'cuts': cutdict['Boosted']
-}
-for m in massggh:
-    	xs_ggf = 2*HiggsXS.GetHiggsXS4Sample('YR4','13TeV','GluGluHToWWToLNuQQ_M{}'.format(m))['xs']
-	FatString = [ 'Fat_rewei[0]', '1.']
-	nuisances['Fat_rewei_unc']['samples'].update({'GGH_'+m+model_name: FatString})
-for m in massggh:
-   	xs_vbf = 2*HiggsXS.GetHiggsXS4Sample('YR4','13TeV','VBFHToWWToLNuQQ_M{}'.format(m))['xs']
-	FatString = [ 'Fat_rewei[0]', '1.']
-	nuisances['Fat_rewei_unc']['samples'].update({'QQH_'+m+model_name: FatString})
-##### Trigger Efficiency
+#nuisances['Fat_rewei_unc'] = {
+#    'name': 'CMS_Fat_rewei_unc_2016',
+#    'kind'  : 'weight',
+#    'type'  : 'shape',
+#    'samples': dict((skey,['Fat_rewei[0]', '1']) for skey in mc_deep),
+#    'symmetrize':True,
+#    'cuts': cutdict['Boosted']
+#}
+#for m in massggh:
+#    	xs_ggf = 2*HiggsXS.GetHiggsXS4Sample('YR4','13TeV','GluGluHToWWToLNuQQ_M{}'.format(m))['xs']
+#	FatString = [ 'Fat_rewei[0]', '1.']
+#	nuisances['Fat_rewei_unc']['samples'].update({'GGH_'+m+model_name: FatString})
+#for m in massggh:
+#   	xs_vbf = 2*HiggsXS.GetHiggsXS4Sample('YR4','13TeV','VBFHToWWToLNuQQ_M{}'.format(m))['xs']
+#	FatString = [ 'Fat_rewei[0]', '1.']
+#	nuisances['Fat_rewei_unc']['samples'].update({'QQH_'+m+model_name: FatString})
+###### Trigger Efficiency
 
 #trig_syst = ['((TriggerEffWeight_1l_u)/(TriggerEffWeight_1l))*(TriggerEffWeight_1l>0.02) + (TriggerEffWeight_1l<=0.02)', '(TriggerEffWeight_1l_d)/(TriggerEffWeight_1l)*(TriggerEffWeight_1l>0.02) + (TriggerEffWeight_1l<=0.02)']
 
@@ -254,12 +239,38 @@ nuisances['electronpt'] = {
     'type' : 'shape',
     'mapUp'  : 'ElepTup',
     'mapDown': 'ElepTdo',
-    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in sig_mc),
+    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in sig_mc_fat),
     'folderUp'  : makeMCDirectory('ElepTup'),
     'folderDown': makeMCDirectory('ElepTdo'),
 #    'AsLnN': '1'
 }
 
+nuisances['electronpt_ln']={
+    'name'  : 'CMS_scale_e_2016',
+    'type' : 'lnn',
+    'samples': {
+    	  'VZ': '1.04',
+    	  'WW': '1.04',
+    	  'qqWWqq': '1.04',
+     }
+}
+nuisances['electronpt_BWReweight'] = {
+    'name' : 'CMS_scale_e_2016',
+    'kind' : 'suffix',
+    'type' : 'shape',
+    'mapUp'  : 'ElepTup',
+    'mapDown': 'ElepTdo',
+    'samples': dict((skey, ['1', '1']) for skey in sig_mc_PS),
+    'folderUp'  : makeMCDirectory('_BWReweight_LNuQQ__MCCombJJLNu2016_ElepTup'),
+    'folderDown': makeMCDirectory('_BWReweight_LNuQQ__MCCombJJLNu2016_ElepTdo'),
+    'AsLnN': '1'
+}
+
+nuisances['electronpt_BWReweight_I'] = {
+    'name' : 'CMS_scale_e_2016',
+    'type' : 'lnn',
+    'samples': dict((skey, '1.03') for skey in sig_mc_I),
+}
 
 
 ##### Muon Efficiency and energy scale
@@ -277,14 +288,40 @@ nuisances['muonpt'] = {
     'type' : 'shape',
     'mapUp'  : 'MupTup',
     'mapDown': 'MupTdo',
-    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in sig_mc),
+    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in sig_mc_fat),
     'folderUp'  : makeMCDirectory('MupTup'),
     'folderDown': makeMCDirectory('MupTdo'),
 #    'AsLnN': '1'
 }
 
+nuisances['muonpt_ln']={
+    'name'  : 'CMS_scale_m_2016',
+    'type' : 'lnn',
+    'samples': {
+    	  'VZ': '1.05',
+    	  'WW': '1.05',
+    	  'qqWWqq': '1.05',
+     }
+}
+nuisances['muonpt_BWReweight'] = {
+    'name' : 'CMS_scale_m_2016',
+    'kind' : 'suffix',
+    'type' : 'shape',
+    'mapUp'  : 'MupTup',
+    'mapDown': 'MupTdo',
+    'samples': dict((skey, ['1', '1']) for skey in sig_mc_PS),
+    'folderUp'  : makeMCDirectory('_BWReweight_LNuQQ__MCCombJJLNu2016_MupTup'),
+    'folderDown': makeMCDirectory('_BWReweight_LNuQQ__MCCombJJLNu2016_MupTdo'),
+#    'AsLnN': '1'
+}
 
-#nuisances['jet_jer']  = {
+nuisances['muonpt_BWReweight_I'] = {
+    'name' : 'CMS_scale_m_2016',
+    'type' : 'lnn',
+    'samples': dict((skey, '1.02') for skey in sig_mc_I),
+}
+
+#nuisances['jet_jer']  diff{
 #    'name'  : 'CMS_jer',
 #    'kind'  : 'suffix',
 #    'type'  : 'shape',
@@ -308,9 +345,20 @@ for js in jes_systs:
       'type' : 'shape',
       'mapUp'  : js+'up',
       'mapDown': js+'do',
-      'samples': dict((skey, ['1', '1']) for skey in mc if skey not in sig_mc),
+      'samples': dict((skey, ['1', '1']) for skey in mc if skey not in sig_mc_fat),
       'folderUp'  : makeMCDirectory('JESup'),
       'folderDown': makeMCDirectory('JESdo'),
+#      'AsLnN': '1'
+ }
+  nuisances[js+'_BWReweight'] = {
+      'name' : 'CMS_scale_'+js,
+      'kind' : 'suffix',
+      'type' : 'shape',
+      'mapUp'  : js+'up',
+      'mapDown': js+'do',
+      'samples': dict((skey, ['1', '1']) for skey in sig_mc_PS),
+      'folderUp'  : makeMCDirectory('_BWReweight_LNuQQ__MCCombJJLNu2016_JESup'),
+      'folderDown': makeMCDirectory('_BWReweight_LNuQQ__MCCombJJLNu2016_JESdo'),
 #      'AsLnN': '1'
  }
 #  nuisances['fatjet'+js] = {
@@ -325,9 +373,23 @@ for js in jes_systs:
 #      'AsLnN': '1'
 # }
 
+for js in jes_systs:
+  nuisances[js+'lnn'] = {
+      'name' : 'CMS_scale_'+js,
+      'type' : 'lnn',
+      'samples': {
+      	  'VZ': '1.02',
+      	  'WW': '1.02',
+      	  'qqWWqq': '1.025',
+       }
+}
+#  nuisances['fatjet'+js] = {
 
-
-##### FatJet scale and resolution
+  nuisances[js+'lnn_I'] = {
+      'name' : 'CMS_scale_'+js,
+      'type' : 'lnn',
+      'samples': dict((skey, '1.01') for skey in sig_mc_I),
+ }
 
 nuisances['fatjet_jes']  = {
     'name'  : 'CMS_scale_fatj_2016',
@@ -335,10 +397,11 @@ nuisances['fatjet_jes']  = {
     'type'  : 'shape',
     'mapUp'  : 'fatjetJESup',
     'mapDown': 'fatjetJESdo',
-    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in sig_mc_fat),
-    'folderUp'  : makeMCDirectory('fatjetJESup'),
-    'folderDown': makeMCDirectory('fatjetJESdo'),
-#    'AsLnN': '1'
+    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['VgS']),
+    'cuts': cutdict['Boosted'],
+#    'folderUp'  : makeMCDirectory('fatjetJESup'),
+#    'folderDown': makeMCDirectory('fatjetJESdo'),
+    'AsLnN': '1'
 }
 nuisances['fatjet_jer']  = {
     'name'  : 'CMS_res_fatjer_2016',
@@ -346,10 +409,11 @@ nuisances['fatjet_jer']  = {
     'type'  : 'shape',
     'mapUp'  : 'fatjetJERup',
     'mapDown': 'fatjetJERdo',
-    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in sig_mc_fat),
-    'folderUp'  : makeMCDirectory('fatjetJERup'),
-    'folderDown': makeMCDirectory('fatjetJERdo'),
-#    'AsLnN': '1'
+    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['VgS']),
+    'cuts': cutdict['Boosted'],
+#    'folderUp'  : makeMCDirectory('fatjetJERup'),
+#    'folderDown': makeMCDirectory('fatjetJERdo'),
+    'AsLnN': '1'
 }
 nuisances['fatjet_jms']  = {
     'name'  : 'CMS_fatjms_2016',
@@ -357,11 +421,11 @@ nuisances['fatjet_jms']  = {
     'type'  : 'shape',
     'mapUp'  : 'fatjetJMSup',
     'mapDown': 'fatjetJMSdo',
-    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in sig_mc_fat),
-    'folderUp'  : makeMCDirectory('fatjetJMSup'),
-    'folderDown': makeMCDirectory('fatjetJMSdo'),
-    'AsLnN': '1'
-#
+    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['VgS']),
+    'cuts': cutdict['Boosted'],
+#    'folderUp'  : makeMCDirectory('fatjetJMSup'),
+#    'folderDown': makeMCDirectory('fatjetJMSdo'),
+# #   'AsLnN': '1'
 }
 nuisances['fatjet_jmr']  = {
     'name'  : 'CMS_res_fatjmr_2016',
@@ -369,14 +433,197 @@ nuisances['fatjet_jmr']  = {
     'type'  : 'shape',
     'mapUp'  : 'fatjetJMRup',
     'mapDown': 'fatjetJMRdo',
-    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in sig_mc_fat),
-    'folderUp'  : makeMCDirectory('fatjetJMRup'),
-    'folderDown': makeMCDirectory('fatjetJMRdo'),
-#    'AsLnN': '1'
+    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['VgS']),
+    'cuts': cutdict['Boosted'],
+##    'folderUp'  : makeMCDirectory('fatjetJMRup'),
+##    'folderDown': makeMCDirectory('fatjetJMRdo'),
+ #   'AsLnN': '1'
 }
 
+nuisances['fatjet_jes_lnn']={
+    'name'  : 'CMS_scale_fatj_2016',
+    'type' : 'lnn',
+    'samples': {
+    	  'VgS': '1.04',
+     }
+    'cuts': cutdict['Boosted'],
+}
+nuisances['fatjet_jer_lnn']={
+    'name'  : 'CMS_res_fatjer_2016',
+    'type' : 'lnn',
+    'samples': {
+    	  'VgS': '1.05',
+     }
+    'cuts': cutdict['Boosted'],
+}
+nuisances['fatjet_jms_lnn']={
+    'name'  : 'CMS_fatjms_2016',
+    'type' : 'lnn',
+    'samples': {
+    	  'VgS': '1.03',
+     }
+    'cuts': cutdict['Boosted'],
+}
+nuisances['fatjet_jmr_lnn']={
+    'name'  : 'CMS_res_fatjmr_2016',
+    'type' : 'lnn',
+    'samples': {
+    	  'VgS': '1.06',
+     }
+    'cuts': cutdict['Boosted'],
+}
+###### FatJet scale and resolution
 
-
+#nuisances['fatjet_jes']  = {
+#    'name'  : 'CMS_scale_fatj_2016',
+#    'kind'  : 'suffix',
+#    'type'  : 'shape',
+#    'mapUp'  : 'fatjetJESup',
+#    'mapDown': 'fatjetJESdo',
+#    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in sig_mc_fat),
+#    'folderUp'  : makeMCDirectory('fatjetJESup'),
+#    'folderDown': makeMCDirectory('fatjetJESdo'),
+##    'AsLnN': '1'
+#}
+#nuisances['fatjet_jes_lnn']={
+#    'name'  : 'CMS_scale_fatj_2016',
+#    'type' : 'lnn',
+#    'samples': {
+#    	  'VZ': '1.04',
+#    	  'WW': '1.04',
+#    	  'qqWWqq': '1.04',
+#     }
+#}
+#nuisances['fatjet_jes_BWReweight']  = {
+#    'name'  : 'CMS_scale_fatj_2016',
+#    'kind'  : 'suffix',
+#    'type'  : 'shape',
+#    'mapUp'  : 'fatjetJESup',
+#    'mapDown': 'fatjetJESdo',
+#    'samples': dict((skey, ['1', '1']) for skey in sig_mc_PS),
+#    'folderUp'  : makeMCDirectory('_BWReweight_LNuQQ__MCCombJJLNu2016_fatjetJESup'),
+#    'folderDown': makeMCDirectory('_BWReweight_LNuQQ__MCCombJJLNu2016_fatjetJESdo'),
+#    'AsLnN': '1'
+#}
+#nuisances['fatjet_jes_BWReweight_I'] = {
+#    'name' : 'CMS_scale_fatj_2016',
+#    'type' : 'lnn',
+#    'samples': dict((skey, '1.04') for skey in sig_mc_I),
+#}
+#nuisances['fatjet_jer']  = {
+#    'name'  : 'CMS_res_fatjer_2016',
+#    'kind'  : 'suffix',
+#    'type'  : 'shape',
+#    'mapUp'  : 'fatjetJERup',
+#    'mapDown': 'fatjetJERdo',
+#    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in sig_mc_fat),
+#    'folderUp'  : makeMCDirectory('fatjetJERup'),
+#    'folderDown': makeMCDirectory('fatjetJERdo'),
+##    'AsLnN': '1'
+#}
+#nuisances['fatjet_jer_lnn']={
+#    'name'  : 'CMS_res_fatjer_2016',
+#    'type' : 'lnn',
+#    'samples': {
+#    	  'VZ': '1.05',
+#    	  'WW': '1.05',
+#    	  'qqWWqq': '1.05',
+#     }
+#}
+#nuisances['fatjet_jer_BWReweight']  = {
+#    'name'  : 'CMS_res_fatjer_2016',
+#    'kind'  : 'suffix',
+#    'type'  : 'shape',
+#    'mapUp'  : 'fatjetJERup',
+#    'mapDown': 'fatjetJERdo',
+#    'samples': dict((skey, ['1', '1']) for skey in sig_mc_PS),
+#    'folderUp'  : makeMCDirectory('_BWReweight_LNuQQ__MCCombJJLNu2016_fatjetJERup'),
+#    'folderDown': makeMCDirectory('_BWReweight_LNuQQ__MCCombJJLNu2016_fatjetJERdo'),
+#    'AsLnN': '1'
+#}
+#nuisances['fatjet_jer_BWReweight_I']  = {
+#    'name'  : 'CMS_res_fatjer_2016',
+#    'type' : 'lnn',
+#    'samples': dict((skey, '1.05') for skey in sig_mc_I),
+#}
+#
+#nuisances['fatjet_jms']  = {
+#    'name'  : 'CMS_fatjms_2016',
+#    'kind'  : 'suffix',
+#    'type'  : 'shape',
+#    'mapUp'  : 'fatjetJMSup',
+#    'mapDown': 'fatjetJMSdo',
+#    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in sig_mc_fat),
+#    'folderUp'  : makeMCDirectory('fatjetJMSup'),
+#    'folderDown': makeMCDirectory('fatjetJMSdo'),
+#    'AsLnN': '1'
+##
+#}
+#nuisances['fatjet_jms_lnn']={
+#    'name'  : 'CMS_fatjms_2016',
+#    'type' : 'lnn',
+#    'samples': {
+#    	  'VZ': '1.03',
+#    	  'WW': '1.03',
+#    	  'qqWWqq': '1.03',
+#     }
+#}
+#nuisances['fatjet_jms_BWReweight']  = {
+#    'name'  : 'CMS_fatjms_2016',
+#    'kind'  : 'suffix',
+#    'type'  : 'shape',
+#    'mapUp'  : 'fatjetJMSup',
+#    'mapDown': 'fatjetJMSdo',
+#    'samples': dict((skey, ['1', '1']) for skey in sig_mc_PS ),
+#    'folderUp'  : makeMCDirectory('_BWReweight_LNuQQ__MCCombJJLNu2016_fatjetJMSup'),
+#    'folderDown': makeMCDirectory('_BWReweight_LNuQQ__MCCombJJLNu2016_fatjetJMSdo'),
+#    'AsLnN': '1'
+##
+#}
+#nuisances['fatjet_jms_BWReweight_I']={
+#    'name'  : 'CMS_fatjms_2016',
+#    'type' : 'lnn',
+#    'samples': dict((skey, '1.03') for skey in sig_mc_I),
+#}
+#nuisances['fatjet_jmr']  = {
+#    'name'  : 'CMS_res_fatjmr_2016',
+#    'kind'  : 'suffix',
+#    'type'  : 'shape',
+#    'mapUp'  : 'fatjetJMRup',
+#    'mapDown': 'fatjetJMRdo',
+#    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in sig_mc_fat),
+#    'folderUp'  : makeMCDirectory('fatjetJMRup'),
+#    'folderDown': makeMCDirectory('fatjetJMRdo'),
+##    'AsLnN': '1'
+#}
+#
+#nuisances['fatjet_jmr_lnn']={
+#    'name'  : 'CMS_res_fatjmr_2016',
+#    'type' : 'lnn',
+#    'samples': {
+#    	  'VZ': '1.06',
+#    	  'WW': '1.06',
+#    	  'qqWWqq': '1.06',
+#     }
+#}
+#
+#nuisances['fatjet_jmr_BWReweight']  = {
+#    'name'  : 'CMS_res_fatjmr_2016',
+#    'kind'  : 'suffix',
+#    'type'  : 'shape',
+#    'mapUp'  : 'fatjetJMRup',
+#    'mapDown': 'fatjetJMRdo',
+#    'samples': dict((skey, ['1', '1']) for skey in sig_mc_PS),
+#    'folderUp'  : makeMCDirectory('_BWReweight_LNuQQ__MCCombJJLNu2016_fatjetJMRup'),
+#    'folderDown': makeMCDirectory('_BWReweight_LNuQQ__MCCombJJLNu2016_fatjetJMRdo'),
+#    'AsLnN': '1'
+#}
+#
+#nuisances['fatjet_jmr_BWReweight_I']={
+#    'name'  : 'CMS_fatjmr_2016',
+#    'type' : 'lnn',
+#    'samples': dict((skey, '1.06') for skey in sig_mc_I),
+#}
 
 ##### MET energy scale
 
@@ -386,12 +633,28 @@ nuisances['met'] = {
     'type' : 'shape',
     'mapUp'  : 'METup',
     'mapDown': 'METdo',
-    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in sig_mc),
+    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in sig_diff),
     'folderUp' : makeMCDirectory('METup'),
     'folderDown': makeMCDirectory('METdo'),
 #    'AsLnN': '1'
 }
 
+nuisances['met_BWReweight'] = {
+    'name' : 'CMS_scale_met_2016',
+    'kind' : 'suffix',
+    'type' : 'shape',
+    'mapUp'  : 'METup',
+    'mapDown': 'METdo',
+    'samples': dict((skey, ['1', '1']) for skey in sig_mc_PS),
+    'folderUp' : makeMCDirectory('_BWReweight_LNuQQ__MCCombJJLNu2016_METup'),
+    'folderDown': makeMCDirectory('_BWReweight_LNuQQ__MCCombJJLNu2016_METdo'),
+#    'AsLnN': '1'
+}
+nuisances['met_BWReweight_I'] = {
+    'name' : 'CMS_scale_met_2016',
+    'type' : 'lnn',
+    'samples': dict((skey, '1.03') for skey in sig_mc_I),
+}
 ######### pile-up
 
 nuisances['PU'] = {
@@ -563,13 +826,13 @@ nuisances['singleTopToTTbar'] = {
 
 ### Top pT reweighting uncertainty -> not needed if the DATA/MC agreement is within the uncertainties after reweighting
 # currently replaced by QCD scale
-# nuisances['TopPtRew'] = {
-#     'name': 'CMS_topPtRew',   # Theory uncertainty
-#     'kind': 'weight',
-#     'type': 'shape',
-#     'samples': {'top': ["1.", "1./Top_pTrw"]},
-#     'symmetrize': True
-# }
+nuisances['TopPtRew'] = {
+    'name': 'CMS_topPtRew',   # Theory uncertainty
+    'kind': 'weight',
+    'type': 'shape',
+    'samples': {'top': ["1.", "1./Top_pTrw"]},
+    'symmetrize': True
+}
 
 
 nuisances['VgStar'] = {
@@ -775,17 +1038,17 @@ nuisances['QCDscale_Wjets'] = {
 ## ...except in sample "WpWmJJ_QCD_noTop"! weights are NOT normalized! (2016 only)
 variations = ['LHEScaleWeight[%d]/LHEScaleWeight[4]' % i for i in [0, 1, 3, 5, 7, 8]]
 variations = ['LHEScaleWeight[0]', 'LHEScaleWeight[5]', 'LHEScaleWeight[15]', 'LHEScaleWeight[25]', 'LHEScaleWeight[35]', 'LHEScaleWeight[40]']
-#
-#nuisances['QCDscale_WWJJ']  = {
-#                'name'  : 'QCDscale_VV',
-#                'skipCMS' : 1,
-#                'kind'  : 'weight_envelope',
-#                'type'  : 'shape',
-#                'samples'  : {
-#                   'qqWWqq' : variations,
-##                   'WW2J' : variations,
-#                }
-#}
+
+nuisances['QCDscale_WWJJ']  = {
+                'name'  : 'QCDscale_VV',
+                'skipCMS' : 1,
+                'kind'  : 'weight_envelope',
+                'type'  : 'shape',
+                'samples'  : {
+                   'qqWWqq' : variations,
+#                   'WW2J' : variations,
+                }
+}
 
 
 variations = ['LHEScaleWeight[%d]' % i for i in [0, 1, 3, 5, 7, 8]]
@@ -799,6 +1062,15 @@ nuisances['QCDscale_VV'] = {
         # 'VZ': variations, #FIXME not all VZ have LHEScaleWeight
         'VgS': variations
     }
+}
+
+nuisances['QCDscale_VZ']  = {
+    'name'  : 'QCDscale_VV',
+    'type'  : 'lnN',
+    'samples'  : {
+        'VZ' : '1.10',
+        'WW' : '1.15',
+    },
 }
 
 topvars = variations
@@ -968,6 +1240,24 @@ nuisances['pdf_top']  = {
    },
 }
 
+nuisances['pdf_DY']  = {
+  'name'  : 'pdf_DY_2016',
+  'skipCMS' : 1,
+  'kind'  : 'weight_rms',
+  'type'  : 'shape',
+  'samples'  : {
+     'DY'   : pdf_variations,
+   },
+}
+nuisances['pdf_WW']  = {
+  'name'  : 'pdf_WW_2016',
+  'skipCMS' : 1,
+  'kind'  : 'weight_rms',
+  'type'  : 'shape',
+  'samples'  : {
+     'WW'   : pdf_variations,
+   },
+}
 #### FAKES
 #eleWP = 'mva_90p_Iso2016'
 #muWP  = 'cut_Tight80x'
@@ -981,14 +1271,14 @@ nuisances['pdf_top']  = {
 #    },
 #}
 nuisances['fake_syst_Mu'] = {
-    'name': 'CMS_fake_syst_Mu',
+    'name': 'CMS_fake_syst_Mu_2016',
     'type': 'lnN',
     'samples': {
         'FAKE_mu': '1.3',
     },
 }
 nuisances['fake_syst_El'] = {
-    'name': 'CMS_fake_syst_El',
+    'name': 'CMS_fake_syst_El_2016',
     'type': 'lnN',
     'samples': {
         'FAKE_el': '1.3',
@@ -1039,6 +1329,17 @@ nuisances['fake_syst_El'] = {
 #    }
 #}
 
+for j in range(1,6):
+	for i in range(1,6):
+ 		tagger_variations = ["Tag_mass_rewei_up_"+str(j)+"_"+str(i)+"/Tag_mass_rewei",  "Tag_mass_rewei_do_"+str(j)+"_"+str(i)+"/Tag_mass_rewei"]
+		nuisances["Top_massVsTagger_reweighting_bin_"+str(j)+"_"+str(i)] = {
+  		  'name': "Top_massVsTagger_reweighting_bin_"+str(j)+"_"+str(i)+"2016",
+  		  'kind'  : 'weight',
+    		  'type'  : 'shape',
+		  'samples': dict((skey,tagger_variations ) for skey in mc_deep),
+                  'cuts': cutdict['Boosted']
+		}
+
 nuisances['Wjets_QCD_NLO_sf_stat'] = {
     'name': 'Wjets_QCD_NLO_sf_stat_2016',
     'kind'  : 'weight',
@@ -1071,7 +1372,7 @@ for syst in ['Mu', 'statMu']:
         'type': 'shape',
         'samples': {
             'FAKE_mu': ['FW_mu'+str(mu_et)+'_el'+str(el_et)+'_'+syst+'Up[0]', 'FW_mu'+str(mu_et)+'_el'+str(el_et)+'_'+syst+'Down[0]'],
-           # 'FAKE': ['FW_mu'+str(mu_et)+'_el'+str(el_et)+'_'+syst+'Up[0]', 'FW_mu'+str(mu_et)+'_el'+str(el_et)+'_'+syst+'Down[0]'],
+            #'FAKE': ['FW_mu'+str(mu_et)+'_el'+str(el_et)+'_'+syst+'Up[0]', 'FW_mu'+str(mu_et)+'_el'+str(el_et)+'_'+syst+'Down[0]'],
         },
     }
 
@@ -1119,7 +1420,7 @@ for syst in ['El', 'statEl']:
 #
 oldnuisances = copy.deepcopy(nuisances)
 for nuis in oldnuisances:
-  if nuisances[nuis]['type'] == "lnN" and (("QCD" in nuis) or ("pdf" in nuis)):
+  if nuisances[nuis]['type'] == "lnN" and (("QCDscale" in nuis) or ("pdf" in nuis)):
     for samp in oldnuisances[nuis]['samples']:
       if ("GGH" in samp) or ("QQH" in samp) or (samp in ["ggWW", "ggH_hww", "qqWWqq", "qqH_hww"]):
         lnNval = nuisances[nuis]['samples'][samp]

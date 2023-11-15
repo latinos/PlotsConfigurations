@@ -445,15 +445,15 @@ fat_jet = set(x for x in cuts if 'fatjet' in x)
 #   'fold' : 0 ,
 #   'cuts' : boostedSR,
 #}
-#variables['mass_HIGGS_FAT_fit'] = {
-#   'name' : 'mass_HIGGS_FAT[0]',
-#   'range': ([0, 200, 250, 300, 350, 400, 450, 500, 550, 600,
-#               650, 700, 750, 800, 850, 900, 950, 1000, 1050,
-#  	       1100, 1150, 1200, 1250, 1300, 1350, 1400, 1450, 1500, 1700, 2000, 3000, 5000 ],),
-#   'xaxis': 'Higgs Mass [GeV]',
-#   'fold' : 0 ,
-#   'cuts' : boosted ,
-#}
+variables['mass_HIGGS_FAT_fit'] = {
+   'name' : 'mass_HIGGS_FAT[0]',
+   'range': ([0, 200, 250, 300, 350, 400, 450, 500, 550, 600,
+               650, 700, 750, 800, 850, 900, 950, 1000, 1050,
+  	       1100, 1150, 1200, 1250, 1300, 1350, 1400, 1450, 1500, 1700, 2000, 3000, 5000 ],),
+   'xaxis': 'Higgs Mass [GeV]',
+   'fold' : 0 ,
+   'cuts' : boosted ,
+}
 #variables['mass_HIGGS_FAT_binned'] = {
 #   'name' : 'mass_HIGGS_FAT[0]',
 #   'range': ([0, 200, 250, 300, 350, 400, 450, 500, 550, 600,
@@ -463,15 +463,87 @@ fat_jet = set(x for x in cuts if 'fatjet' in x)
 #   'fold' : 0 ,
 #   'cuts' : boosted ,
 #}
+#variables['mass_HIGGS_FAT_fatjetJERup'] = {
+#   'name' : 'mass_HIGGS_FAT_fatjetJERup[FatJet_idx_clean[0]]',
+#   'range': ([0, 200, 250, 300, 350, 400, 450, 500, 550, 600,
+#               650, 700, 750, 800, 850, 900, 950, 1000, 1050,
+#  	       1100, 1150, 1200, 1250, 1300, 1350, 1400, 1450, 1500, 1700, 2000, 3000, 5000 ],),
+#   'xaxis': 'Higgs Mass [GeV]',
+#   'fold' : 0 ,
+#   'cuts' : boosted ,
+#}
+#variables['mass_HIGGS_FAT_fatjetJERdo'] = {
+#   'name' : 'mass_HIGGS_FAT_fatjetJERdo[FatJet_idx_clean[0]]',
+#   'range': ([0, 200, 250, 300, 350, 400, 450, 500, 550, 600,
+#               650, 700, 750, 800, 850, 900, 950, 1000, 1050,
+#  	       1100, 1150, 1200, 1250, 1300, 1350, 1400, 1450, 1500, 1700, 2000, 3000, 5000 ],),
+#   'xaxis': 'Higgs Mass [GeV]',
+#   'fold' : 0 ,
+#   'cuts' : boosted ,
+#}
+#variables['mass_HIGGS_FAT_fatjetJMRup'] = {
+#   'name' : 'mass_HIGGS_FAT_fatjetJMRup[FatJet_idx_clean[0]]',
+#   'range': ([0, 200, 250, 300, 350, 400, 450, 500, 550, 600,
+#               650, 700, 750, 800, 850, 900, 950, 1000, 1050,
+#  	       1100, 1150, 1200, 1250, 1300, 1350, 1400, 1450, 1500, 1700, 2000, 3000, 5000 ],),
+#   'xaxis': 'Higgs Mass [GeV]',
+#   'fold' : 0 ,
+#   'cuts' : boosted ,
+#}
+#variables['mass_HIGGS_FAT_fatjetJMRdo'] = {
+#   'name' : 'mass_HIGGS_FAT_fatjetJMRdo[FatJet_idx_clean[0]]',
+#   'range': ([0, 200, 250, 300, 350, 400, 450, 500, 550, 600,
+#               650, 700, 750, 800, 850, 900, 950, 1000, 1050,
+#  	       1100, 1150, 1200, 1250, 1300, 1350, 1400, 1450, 1500, 1700, 2000, 3000, 5000 ],),
+#   'xaxis': 'Higgs Mass [GeV]',
+#   'fold' : 0 ,
+#   'cuts' : boosted ,
+#}
+#variables['mass_HIGGS_FAT_fatjetJMSup'] = {
+#   'name' : 'mass_HIGGS_FAT_fatjetJMSup[FatJet_idx_clean[0]]',
+#   'range': ([0, 200, 250, 300, 350, 400, 450, 500, 550, 600,
+#               650, 700, 750, 800, 850, 900, 950, 1000, 1050,
+#  	       1100, 1150, 1200, 1250, 1300, 1350, 1400, 1450, 1500, 1700, 2000, 3000, 5000 ],),
+#   'xaxis': 'Higgs Mass [GeV]',
+#   'fold' : 0 ,
+#   'cuts' : boosted ,
+#}
+#variables['mass_HIGGS_FAT_fatjetJMSdo'] = {
+#   'name' : 'mass_HIGGS_FAT_fatjetJMSdo[FatJet_idx_clean[0]]',
+#   'range': ([0, 200, 250, 300, 350, 400, 450, 500, 550, 600,
+#               650, 700, 750, 800, 850, 900, 950, 1000, 1050,
+#  	       1100, 1150, 1200, 1250, 1300, 1350, 1400, 1450, 1500, 1700, 2000, 3000, 5000 ],),
+#   'xaxis': 'Higgs Mass [GeV]',
+#   'fold' : 0 ,
+#   'cuts' : boosted ,
+#}
+#variables['mass_HIGGS_FAT_fatjetJESup'] = {
+#   'name' : 'mass_HIGGS_FAT_fatjetJESup[FatJet_idx_clean[0]]',
+#   'range': ([0, 200, 250, 300, 350, 400, 450, 500, 550, 600,
+#               650, 700, 750, 800, 850, 900, 950, 1000, 1050,
+#  	       1100, 1150, 1200, 1250, 1300, 1350, 1400, 1450, 1500, 1700, 2000, 3000, 5000 ],),
+#   'xaxis': 'Higgs Mass [GeV]',
+#   'fold' : 0 ,
+#   'cuts' : boosted ,
+#}
+#variables['mass_HIGGS_FAT_fatjetJESdo'] = {
+#   'name' : 'mass_HIGGS_FAT_fatjetJESdo[FatJet_idx_clean[0]]',
+#   'range': ([0, 200, 250, 300, 350, 400, 450, 500, 550, 600,
+#               650, 700, 750, 800, 850, 900, 950, 1000, 1050,
+#  	       1100, 1150, 1200, 1250, 1300, 1350, 1400, 1450, 1500, 1700, 2000, 3000, 5000 ],),
+#   'xaxis': 'Higgs Mass [GeV]',
+#   'fold' : 0 ,
+#   'cuts' : boosted ,
+#}
+#####
+#####
+#####variables['mass_HIGGS_FAT'] = {
+#####   'name' : 'mass_HIGGS_FAT[0]',
+#####   'range': (15, 0, 3000),
+#####   'xaxis': 'Higgs Mass [GeV]',
+#####   'fold' : 0
+#####}
 ####
-####
-####variables['mass_HIGGS_FAT'] = {
-####   'name' : 'mass_HIGGS_FAT[0]',
-####   'range': (15, 0, 3000),
-####   'xaxis': 'Higgs Mass [GeV]',
-####   'fold' : 0
-####}
-###
 variables['mass_HIGGS_twojet_binned'] = {
    'name' : 'mass_HIGGS_JJ[0]',
    'range': ([0, 150, 200, 260, 300, 350, 400, 450, 500, 550, 600,

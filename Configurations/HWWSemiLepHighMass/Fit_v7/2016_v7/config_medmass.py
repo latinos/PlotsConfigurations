@@ -2,7 +2,7 @@
 
 treeName = 'Events'
 
-tag = 'hm_Med_2016_Update'
+tag = 'hm_Med_2016_Fit'
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFile_medmass_2016'
@@ -29,7 +29,7 @@ lumi = 36.3
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'Plotts_SRs_CrossCheck'
+outputDirPlots = 'Plotts_SR_new'
 
 
 # used by mkDatacards to define output directory for datacards
