@@ -2,16 +2,16 @@
 
 treeName = 'Events'
 
-tag = 'hm_SBI_16'
+tag = 'hm_SR_class'
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFile_test_16'
+outputDir = 'rootFile_18_bkup/'
 
 # file with TTree aliases
-aliasesFile = 'aliases_medmass.py'
+aliasesFile = 'aliases_medmass.py'#aliases_highmass to use the high mass trained DNN
 
 # file with list of variables
-variablesFile = 'variables_fit.py'
+variablesFile = 'variables_f.py'
 # variablesFile = 'variablesPlot.py'
 # variablesFile = 'variablesLimits.py'
 
@@ -25,18 +25,18 @@ samplesFile = 'samples_medmass.py'
 plotFile = 'plot_medmass.py'
 
 # luminosity to normalize to (in 1/fb)
-lumi = 36.3
+lumi = 59.7
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'Plotts_SRs'
+outputDirPlots = 'Plots_2018_class'
 
 
 # used by mkDatacards to define output directory for datacards
-outputDirDatacard = 'Datacards_test'
+outputDirDatacard = 'Datacards_Test_New'
 
 # structure file for datacard
 structureFile = 'structure_medmass.py'
 
 # nuisances file for mkDatacards and for mkShape
-nuisancesFile = 'nuisances_no.py'
+nuisancesFile = 'nuisances_medmass.py'

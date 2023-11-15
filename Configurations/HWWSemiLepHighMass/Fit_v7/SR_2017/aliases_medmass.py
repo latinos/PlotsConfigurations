@@ -447,8 +447,8 @@ aliases['resolved_nocut'] = {
 
 
 aliases['boostedSignalWMass'] = {
-    'expr': '(isJetBoo > 0 && (65 < FatJet_msoftdrop[FatJet_idx_clean] \
-            && FatJet_msoftdrop[FatJet_idx_clean] < 105))'
+    'expr': '(isJetBoo > 0 && (65 < FatJet_msoftdrop_nom[FatJet_idx_clean] \
+            && FatJet_msoftdrop_nom[FatJet_idx_clean] < 105))'
 }
 aliases['DeltaR_jj_Lpt'] ={
     'expr' : 'TMath::Sqrt((CleanJet_phi[0] - CleanJet_phi[1])*(CleanJet_phi[0] - CleanJet_phi[1]) + (CleanJet_eta[0] - CleanJet_eta[1])*(CleanJet_eta[0] - CleanJet_eta[1]))'

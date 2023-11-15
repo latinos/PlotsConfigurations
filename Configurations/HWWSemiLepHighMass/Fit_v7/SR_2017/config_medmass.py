@@ -11,7 +11,7 @@ outputDir = 'rootFile_17_bkup/'
 aliasesFile = 'aliases_medmass.py'#DNN trained with the high mass with aliases_highmass.py
 
 # file with list of variables
-variablesFile = 'variables_fit_noNui.py'
+variablesFile = 'variables_f.py'
 # variablesFile = 'variablesPlot.py'
 # variablesFile = 'variablesLimits.py'
 
@@ -29,7 +29,7 @@ lumi = 41.5
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'Plots_post_cor'
+outputDirPlots = 'Plot_Classifier'
 
 
 # used by mkDatacards to define output directory for datacards
