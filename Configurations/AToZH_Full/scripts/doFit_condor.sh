@@ -10,7 +10,7 @@ cd /afs/cern.ch/work/s/srudrabh/AZH/postprocessing/combine/CMSSW_11_3_4/src/
 export SCRAM_ARCH=slc7_amd64_gcc700
 source /cvmfs/cms.cern.ch/cmsset_default.sh
 eval `scramv1 runtime -sh`
-cd /afs/cern.ch/work/s/srudrabh/AZH/postprocessing/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/AToZH_Full/2018_v9/
+cd /afs/cern.ch/work/s/srudrabh/AZH/postprocessing/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/AToZH_Full/2017_v9/
 
 
 configFile='configuration_forDatacards.py'
@@ -39,10 +39,10 @@ echo "--------------------------------------------------"
 ### make workspaces
 breq_path="${datacardDir}/mA_${mA}_mH_${mH}/breq_SR/ellipse_mA_${mA}_mH_${mH}/datacard.txt"
 bveto_1j_path="${datacardDir}/mA_${mA}_mH_${mH}/bveto_1j_SR/ellipse_onebjet_mA_${mA}_mH_${mH}/datacard.txt"
-
+bveto_4j_path="${datacardDir}/mA_${mA}_mH_${mH}/bveto_4j/events/datacard.txt"
 combinedPath="${datacardDir}/mA_${mA}_mH_${mH}/combined_SR/"
 mkdir $combinedPath
-combineCards.py breq_SR=$breq_path bveto_1j_SR=$bveto_1j_path > $combinedPath/datacard.txt
+combineCards.py breq_SR=$breq_path bveto_1j_SR=$bveto_1j_path bveto_4j_path=$bveto_4j_path > $combinedPath/datacard.txt
 
 echo -e "\n{doFit.sh} >> text2workspace.py ${combinedPath}/datacard.txt -m 125 -o $combinedPath/workspace.root"
 text2workspace.py $combinedPath/datacard.txt -m 125 -o ${combinedPath}/workspace.root

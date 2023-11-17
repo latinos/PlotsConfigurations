@@ -304,7 +304,8 @@ nuisances['trigg']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : dict((skey, trig_syst) for skey in mc),
-  #              'cuts' : fitcuts
+		'AsLnN' : '1', #check this later
+ #               'cuts' : fitcuts
 }
 
 
@@ -341,7 +342,8 @@ nuisances['eff_m']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : dict((skey, id_syst_mu) for skey in mc),
-#                'cuts' : fitcuts
+		'AsLnN' : '1', #check this later
+ #               'cuts' : fitcuts
 }
 
 nuisances['muonpt']  = {
@@ -365,26 +367,40 @@ nuisances['ttZ_norm2018'] = {
     },
     'type' : 'rateParam',
     'cuts' : [
-	'breq_SR', 'bveto_1j_SR'
+	'breq_SR', 'bveto_1j_SR', 'bveto_4j'
    ]
  }
 
+nuisances['WZ_norm2018'] = {
+    'name' : 'CMS_WZ_norm2018',
+    'samples' : {
+	'WZ' : '1.00',
+    },
+    'type' : 'rateParam',
+    'cuts': [
+	'breq_SR', 'bveto_1j_SR', 'bveto_4j'
+    ]
+  }
+
+
+
+
 ####### Jet energy scale
 
-jes_systs = ['JESAbsolute','JESAbsolute_2018','JESBBEC1','JESBBEC1_2017','JESEC2','JESEC2_2018','JESFlavorQCD','JESHF','JESHF_2018','JESRelativeBal','JESRelativeSample_2018']
-for js in jes_systs:
-      nuisances[js] = {
-                'name': 'CMS_scale_'+js,
-                'kind': 'suffix',
-                'type': 'shape',
-                'mapUp': js+'up',
-                'mapDown': js+'do',
-                'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['TTWJets', 'AZH_1050_650']),
-                'folderUp'   : treeBaseDir+'Summer20UL18_106x_nAODv9_Full2018v9/MCl1loose2018v9__MCCorr2018v9NoJERInHorn__l2tightOR2018v9__RDFconv__JESup_suffix', 
-                'folderDown' : treeBaseDir+'Summer20UL18_106x_nAODv9_Full2018v9/MCl1loose2018v9__MCCorr2018v9NoJERInHorn__l2tightOR2018v9__RDFconv__JESdo_suffix', 
-                'AsLnN': '1',
-#                'cuts' : fitcuts
-  }
+#jes_systs = ['JESAbsolute','JESAbsolute_2018','JESBBEC1','JESBBEC1_2017','JESEC2','JESEC2_2018','JESFlavorQCD','JESHF','JESHF_2018','JESRelativeBal','JESRelativeSample_2018']
+#for js in jes_systs:
+#      nuisances[js] = {
+#                'name': 'CMS_scale_'+js,
+#                'kind': 'suffix',
+#                'type': 'shape',
+#                'mapUp': js+'up',
+#                'mapDown': js+'do',
+#                'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['TTWJets', 'AZH_1050_650']),
+#                'folderUp'   : treeBaseDir+'Summer20UL18_106x_nAODv9_Full2018v9/MCl1loose2018v9__MCCorr2018v9NoJERInHorn__l2tightOR2018v9__RDFfix__JESup_suffix', 
+#                'folderDown' : treeBaseDir+'Summer20UL18_106x_nAODv9_Full2018v9/MCl1loose2018v9__MCCorr2018v9NoJERInHorn__l2tightOR2018v9__RDFfix__JESdo_suffix', 
+#                'AsLnN': '1',
+##                'cuts' : fitcuts
+#  }
 
 ###### Jet energy resolution
 nuisances['JER'] = {

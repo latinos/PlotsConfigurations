@@ -4,11 +4,17 @@
 # Groups of samples to improve the plots.
 # If not defined, normal plots is used
 
-groupPlot['Multi-Boson']  = {  
-                  'nameHR' : 'Multi-Boson',
+groupPlot['WZ']  = {  
+                  'nameHR' : 'WZ',
+                  'isSignal' : 0,
+                  'color': 858, 
+                  'samples'  : ['WZ']
+              }
+groupPlot['other Multi-Boson']  = {  
+                  'nameHR' : 'other Multi-Boson',
                   'isSignal' : 0,
                   'color': 806, # kOrange + 6
-                  'samples'  : ['VVV', 'WZ', 'ZZ', 'Zg', 'ZgS']
+                  'samples'  : ['VVV', 'ZZ', 'Zg', 'ZgS']
               }
 
 groupPlot['Fake']  = {  
@@ -17,6 +23,7 @@ groupPlot['Fake']  = {
                   'color': 921,    # kGray + 1
                   'samples'  : ['Fake']
               }
+
 groupPlot['ttV']  = {
   		   'nameHR' : 'ttV',
 		   'color': 419,    # kGreen+3
@@ -39,7 +46,7 @@ plot['WZ']  = {
     'isSignal' : 0,
     'isData'   : 0,
     'scale'    : 1.0
-#    'scale'    : 1.77 #4j norm
+#    'scale'    : 1.44 #4j norm
 }
 
 

@@ -218,14 +218,14 @@ nuisances['TopPtRew'] = {
 
 #### FAKES
 
-fakeW_EleUp       = '( fakeW_ele_'+eleWP_new+'_mu_'+muWP_new+'_3lElUp       / fakeW_ele_'+eleWP_new+'_mu_'+muWP_new+'_3l )'
-fakeW_EleDown     = '( fakeW_ele_'+eleWP_new+'_mu_'+muWP_new+'_3lElDown     / fakeW_ele_'+eleWP_new+'_mu_'+muWP_new+'_3l )'
-fakeW_MuUp        = '( fakeW_ele_'+eleWP_new+'_mu_'+muWP_new+'_3lMuUp       / fakeW_ele_'+eleWP_new+'_mu_'+muWP_new+'_3l )'
-fakeW_MuDown      = '( fakeW_ele_'+eleWP_new+'_mu_'+muWP_new+'_3lMuDown     / fakeW_ele_'+eleWP_new+'_mu_'+muWP_new+'_3l )'
-fakeW_statEleUp   = '( fakeW_ele_'+eleWP_new+'_mu_'+muWP_new+'_3lstatElUp   / fakeW_ele_'+eleWP_new+'_mu_'+muWP_new+'_3l )'
-fakeW_statEleDown = '( fakeW_ele_'+eleWP_new+'_mu_'+muWP_new+'_3lstatElDown / fakeW_ele_'+eleWP_new+'_mu_'+muWP_new+'_3l )'
-fakeW_statMuUp    = '( fakeW_ele_'+eleWP_new+'_mu_'+muWP_new+'_3lstatMuUp   / fakeW_ele_'+eleWP_new+'_mu_'+muWP_new+'_3l )'
-fakeW_statMuDown  = '( fakeW_ele_'+eleWP_new+'_mu_'+muWP_new+'_3lstatMuDown / fakeW_ele_'+eleWP_new+'_mu_'+muWP_new+'_3l )'
+#fakeW_EleUp       = '( fakeW_ele_'+eleWP_new+'_mu_'+muWP_new+'_3lElUp       / fakeW_ele_'+eleWP_new+'_mu_'+muWP_new+'_3l )'
+#fakeW_EleDown     = '( fakeW_ele_'+eleWP_new+'_mu_'+muWP_new+'_3lElDown     / fakeW_ele_'+eleWP_new+'_mu_'+muWP_new+'_3l )'
+#fakeW_MuUp        = '( fakeW_ele_'+eleWP_new+'_mu_'+muWP_new+'_3lMuUp       / fakeW_ele_'+eleWP_new+'_mu_'+muWP_new+'_3l )'
+#fakeW_MuDown      = '( fakeW_ele_'+eleWP_new+'_mu_'+muWP_new+'_3lMuDown     / fakeW_ele_'+eleWP_new+'_mu_'+muWP_new+'_3l )'
+#fakeW_statEleUp   = '( fakeW_ele_'+eleWP_new+'_mu_'+muWP_new+'_3lstatElUp   / fakeW_ele_'+eleWP_new+'_mu_'+muWP_new+'_3l )'
+#fakeW_statEleDown = '( fakeW_ele_'+eleWP_new+'_mu_'+muWP_new+'_3lstatElDown / fakeW_ele_'+eleWP_new+'_mu_'+muWP_new+'_3l )'
+#fakeW_statMuUp    = '( fakeW_ele_'+eleWP_new+'_mu_'+muWP_new+'_3lstatMuUp   / fakeW_ele_'+eleWP_new+'_mu_'+muWP_new+'_3l )'
+#fakeW_statMuDown  = '( fakeW_ele_'+eleWP_new+'_mu_'+muWP_new+'_3lstatMuDown / fakeW_ele_'+eleWP_new+'_mu_'+muWP_new+'_3l )'
 
 nuisances['fake_syst']  = {
                'name'  : 'CMS_fake_syst',
@@ -241,7 +241,7 @@ nuisances['fake_ele']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
-                              'Fake'     : [ fakeW_EleUp , fakeW_EleDown ],
+                              'Fake'     : [ 'fakeW_EleUp' , 'fakeW_EleDown' ],
                              },
  #               'cuts' : fitcuts
 }
@@ -251,7 +251,7 @@ nuisances['fake_ele_stat']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
-                              'Fake'      : [ fakeW_statEleUp , fakeW_statEleDown ],
+                              'Fake'      : [ 'fakeW_statEleUp' , 'fakeW_statEleDown' ],
                              },
  #               'cuts' : fitcuts
 }
@@ -261,7 +261,7 @@ nuisances['fake_mu']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
-                              'Fake'     : [ fakeW_MuUp , fakeW_MuDown ],
+                              'Fake'     : [ 'fakeW_MuUp' , 'fakeW_MuDown' ],
                              },
  #               'cuts' : fitcuts
 }
@@ -271,8 +271,8 @@ nuisances['fake_mu_stat']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : {
-                              'Fake'     : [ fakeW_statMuUp , fakeW_statMuDown ],
-                             },
+                              'Fake'     : [ 'fakeW_statMuUp' , 'fakeW_statMuDown' ],
+                             }
  #               'cuts' : fitcuts
 }
 
@@ -302,7 +302,8 @@ nuisances['trigg']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : dict((skey, trig_syst) for skey in mc),
-  #              'cuts' : fitcuts
+		'AsLnN' : '1',
+ #               'cuts' : fitcuts
 }
 
 #### Prefiring
@@ -351,6 +352,7 @@ nuisances['eff_m']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : dict((skey, id_syst_mu) for skey in mc),
+		'AsLnN' : '1',
  #               'cuts' : fitcuts
 }
 
@@ -375,47 +377,39 @@ nuisances['ttZ_norm2016'] = {
     },
     'type' : 'rateParam',
     'cuts' : [
-	'breq_SR', 'bveto_1j_SR'
+	'breq_SR', 'bveto_1j_SR', 'bveto_4j'
    ]
  }
 
-####### Jet energy scale
-jes_systs = ['JESAbsolute','JESAbsolute_2016','JESBBEC1','JESBBEC1_2016','JESEC2','JESEC2_2016','JESFlavorQCD','JESHF','JESHF_2016','JESRelativeBal','JESRelativeSample_2016']
-folderup = ""
-folderdo = ""
-
-for js in jes_systs:
-  if 'Absolute' in js:
-    folderup =  treeBaseDir+'Summer20UL16_106x_nAODv9_noHIPM_Full2016v9/MCl1loose2016v9__MCCorr2016v9NoJERInHorn__l2tightOR2016v9__JESAbsoluteup_suffix' 
-    folderdo = treeBaseDir+'Summer20UL16_106x_nAODv9_noHIPM_Full2016v9/MCl1loose2016v9__MCCorr2016v9NoJERInHorn__l2tightOR2016v9__JESAbsolutedo_suffix' 
-  elif 'BBEC1' in js:
-    folderup = treeBaseDir+'Summer20UL16_106x_nAODv9_noHIPM_Full2016v9/MCl1loose2016v9__MCCorr2016v9NoJERInHorn__l2tightOR2016v9__JESBBEC1up_suffix'
-    folderdo = treeBaseDir+'Summer20UL16_106x_nAODv9_noHIPM_Full2016v9/MCl1loose2016v9__MCCorr2016v9NoJERInHorn__l2tightOR2016v9__JESBBEC1do_suffix'
-  elif 'EC2' in js:
-    folderup = treeBaseDir+'Summer20UL16_106x_nAODv9_noHIPM_Full2016v9/MCl1loose2016v9__MCCorr2016v9NoJERInHorn__l2tightOR2016v9__JESEC2up_suffix'
-    folderdo =  treeBaseDir+'Summer20UL16_106x_nAODv9_noHIPM_Full2016v9/MCl1loose2016v9__MCCorr2016v9NoJERInHorn__l2tightOR2016v9__JESEC2do_suffix'
-  elif 'HF' in js:
-    folderup = treeBaseDir+'Summer20UL16_106x_nAODv9_noHIPM_Full2016v9/MCl1loose2016v9__MCCorr2016v9NoJERInHorn__l2tightOR2016v9__JESHFup_suffix'
-    folderdo = treeBaseDir+'Summer20UL16_106x_nAODv9_noHIPM_Full2016v9/MCl1loose2016v9__MCCorr2016v9NoJERInHorn__l2tightOR2016v9__JESHFdo_suffix'
-  elif 'Relative' in js:
-    folderup = treeBaseDir+'Summer20UL16_106x_nAODv9_noHIPM_Full2016v9/MCl1loose2016v9__MCCorr2016v9NoJERInHorn__l2tightOR2016v9__JESRelativeup_suffix'
-    folderdo = treeBaseDir+'Summer20UL16_106x_nAODv9_noHIPM_Full2016v9/MCl1loose2016v9__MCCorr2016v9NoJERInHorn__l2tightOR2016v9__JESRelativedo_suffix'
-  elif 'FlavorQCD' in js:
-    folderup = treeBaseDir+'Summer20UL16_106x_nAODv9_noHIPM_Full2016v9/MCl1loose2016v9__MCCorr2016v9NoJERInHorn__l2tightOR2016v9__JESFlavorQCDup_suffix'
-    folderdo = treeBaseDir+'Summer20UL16_106x_nAODv9_noHIPM_Full2016v9/MCl1loose2016v9__MCCorr2016v9NoJERInHorn__l2tightOR2016v9__JESFlavorQCDdo_suffix'
-#
-  nuisances[js] = {
-                'name': 'CMS_scale_'+js,
-                'kind': 'suffix',
-                'type': 'shape',
-                'mapUp': js+'up',
-                'mapDown': js+'do',
-                'samples': dict((skey, ['1', '1']) for skey in mc),
-		'folderUp': folderup,
-	        'folderDown': folderdo,	
-                'AsLnN': '1',
-#                'cuts' : fitcuts
+nuisances['WZ_norm2016'] = {
+    'name' : 'CMS_WZ_norm2016',
+    'samples' : {
+	'WZ' : '1.00',
+    },
+    'type' : 'rateParam',
+    'cuts': [
+	'breq_SR', 'bveto_1j_SR', 'bveto_4j'
+    ]
   }
+
+
+
+
+####### Jet energy scale
+#jes_systs = ['JESAbsolute','JESAbsolute_2016','JESBBEC1','JESBBEC1_2016','JESEC2','JESEC2_2016','JESFlavorQCD','JESHF','JESHF_2016','JESRelativeBal','JESRelativeSample_2016']
+#for js in jes_systs:
+#      nuisances[js] = {
+#                'name': 'CMS_scale_'+js,
+#                'kind': 'suffix',
+#                'type': 'shape',
+#                'mapUp': js+'up',
+#                'mapDown': js+'do',
+#                'samples': dict((skey, ['1', '1']) for skey in mc),
+#                'folderUp'   : treeBaseDir+'Summer20UL16_106x_nAODv9_noHPIM_Full2016v9/MCl1loose2016v9__MCCorr2016v9NoJERInHorn__l2tightOR2016v9__RDFfix__JESup_suffix', 
+#                'folderDown' : treeBaseDir+'Summer20UL16_106x_nAODv9_noHIPM_Full2016v9/MCl1loose2016v9__MCCorr2016v9NoJERInHorn__l2tightOR2016v9__RDFfix__JESdo_suffix', 
+#                'AsLnN': '1',
+##                'cuts' : fitcuts
+#  }
 
 ##### Jet energy resolution
 nuisances['JER'] = {
