@@ -51,21 +51,21 @@ nuisances['lumi_Correlated_2017_2018'] = {
 
 #### FAKES
 nuisances['fake_syst_mm'] = {
-    'name': 'CMS_fake_syst_mm_2018',
+    'name': 'CMS_fake_syst_mm',
     'type': 'lnN',
     'samples': {
         'Fake_mm': '1.3'
     },
 }
 nuisances['fake_syst_em'] = {
-    'name': 'CMS_fake_syst_em_2018',
+    'name': 'CMS_fake_syst_em',
     'type': 'lnN',
     'samples': {
         'Fake_em': '1.3'
     },
 }
 nuisances['fake_syst_mm'] = {
-    'name': 'CMS_fake_syst_mm_2018',
+    'name': 'CMS_fake_syst_mm',
     'type': 'lnN',
     'samples': {
         'Fake_ee': '1.3'

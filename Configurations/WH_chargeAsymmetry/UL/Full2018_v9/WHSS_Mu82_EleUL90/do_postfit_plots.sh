@@ -1,3 +1,20 @@
+#!/bin/bash
+if [ $# -eq 0 ];
+then
+  echo "$0: Missing arguments"
+  exit 1
+else
+  echo "We got some argument(s)"
+  echo "==========================="
+  echo "Number of arguments. : $#"
+  echo "List of arguments... : $@"
+  echo "Arg #1: Variable     : $1"
+  echo "Arg #2: Input file   : $2"
+  echo "==========================="
+  VAR=$1
+  INPUT=$2
+fi
+
 CUTS=(
 "WH_SS_em_1j_plus" 
 "WH_SS_em_1j_minus"
@@ -35,12 +52,12 @@ rm output.root
 for ((idx=0; idx<${#CUTS[@]}; ++idx)); do
 
 	mkPostFitPlot.py \
-		--inputFileCombine fitDiagnostics.root \
+		--inputFileCombine ${INPUT} \
 		--outputFile output.root \
-		--variable BDTG6_TT_more \
+		--variable ${VAR} \
 		--cut ${CUTS[$idx]} \
 		--cutNameInOriginal ${CUTS_ORIGINAL[$idx]} \
-		--inputFile datacards_opt/${CUTS_ORIGINAL[$idx]}/BDTG6_TT_more/shapes/histos_${CUTS_ORIGINAL[$idx]}.root \
+		--inputFile datacards_opt/${CUTS_ORIGINAL[$idx]}/${VAR}/shapes/histos_${CUTS_ORIGINAL[$idx]}.root \
 		--isInputFileFromDatacard 1 \
 		--kind p \
 		--pycfg configuration_preFit.py \

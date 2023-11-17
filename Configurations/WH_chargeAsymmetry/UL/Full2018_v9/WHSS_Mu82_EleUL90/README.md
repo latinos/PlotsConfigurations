@@ -62,10 +62,8 @@ Load combine:
 
 Now optimize:
 
-    ./do_optimize_cards.sh BDTG6_TT_more 0.10
-
-    ./do_optimize_cards.sh BDTG5_TT_weight_more
-    ./do_optimize_cards.sh BDTG6_TT_XSweight_more
+    ./do_optimize_cards.sh BDTG6_TT_more     0.10
+    ./do_optimize_cards.sh BDTG6_TT_100_bins 0.10
 
 ### Combine datacards
 
@@ -81,17 +79,23 @@ Load combine:
 
 Actually combine datacards:
 
-     python script_datacards.py
-
-     python script_datacards_BDTG.py
-
-     python script_datacards_BDTG_jetbins.py
-
-     python script_datacards_BDTG_TT.py
-
-     python script_datacards_BDTG_TT_jetbins.py
-
      python script_datacards_opt.py
+
+### Produce prefit, postfit, and likelihood scans plots
+
+To produce likelihood scans, we need to perform the fit using the FitDiagnostic option. If we then save both the shapes and their uncertainties, we will obtain an output file with everything we need to also produce post-fit plots. If we optimized the binning of our discriminant using CombineHarvester, this is also the only way to produce plots of the discriminant with the correct binning.
+
+Run combine using the FitDiagnostic option:
+
+    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_SS_Full2018_v9_BDTG6_TT_more_allFinalStates_alsoLowPt_opt_noZveto --output_name Combination/FitResults_BDTG6_TT_more.txt --freeze_nuisances r_higgs --sanity_check FD
+
+    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_SS_Full2018_v9_BDTG6_TT_100_bins_allFinalStates_alsoLowPt_opt_noZveto --output_name Combination/FitResults_BDTG6_TT_100_bins.txt --freeze_nuisances r_higgs --sanity_check FD
+
+This will create the output file `fitDiagnostics.root`, storing all the pre- and post-fit shapes. Then, we can produce a rootfile with all the shapes, in the format that mkPlot can read, and then plot:
+
+    bash do_postfit_plots.sh BDTG6_TT_more Combination/FitResults_BDTG6_TT_more_fitDiagnostics.root
+
+    bash do_postfit_plots.sh BDTG6_TT_100_bins Combination/FitResults_BDTG6_TT_100_bins_fitDiagnostics.root
 
 ### Interpret the results in terms of asymmetry
 
@@ -131,42 +135,15 @@ Since S appears in the denominator of the asymmetry expression, it cannot be 0, 
 
 ### Use script to extract asymmetry
 
-Using BDT variable (true/false refer to the usage of data-driven DYee):
-
-    ./do_workspace_and_fit.sh BDTG6 true
-    ./do_workspace_and_fit.sh BDTG6 false
-
-    ./do_workspace_and_fit.sh mlljj20_whss_1j_bin true
-    ./do_workspace_and_fit.sh mlljj20_whss_1j_bin false
-
-    ./do_workspace_and_fit.sh BDTG6_jetbins true
-    ./do_workspace_and_fit.sh BDTG6_jetbins false
-
-    ./do_workspace_and_fit.sh BDTG6_TT true
-    ./do_workspace_and_fit.sh BDTG6_TT false
-
-    ./do_workspace_and_fit.sh BDTG6_TT_jetbins true
-    ./do_workspace_and_fit.sh BDTG6_TT_jetbins false
-
-    ./do_workspace_and_fit.sh BDTG6_TT_XSweight_more 
-    ./do_workspace_and_fit.sh BDTG5_TT_weight_more 
-
-    ./do_workspace_and_fit.sh BDTG6_TT_more true
-
-
 For newer trainings, where we only want to compare the full strategy:
 
-    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_SS_Full2018_v9_BDTG6_TT_XSweight_more_allFinalStates_alsoLowPt_opt_noZveto --output_name Combination/FitResults_BDTG6_TT_XSweight_more.txt  --freeze_nuisances r_higgs
-    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_SS_Full2018_v9_BDTG5_TT_weight_more_allFinalStates_alsoLowPt_opt_noZveto   --output_name Combination/FitResults_BDTG6_TT_weight_more.txt    --freeze_nuisances r_higgs
-
-    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_SS_Full2018_v9_BDTG6_TT_more_allFinalStates_alsoLowPt_opt_noZveto          --output_name Combination/FitResults_BDTG6_TT_more.txt           --freeze_nuisances r_higgs
+    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_SS_Full2018_v9_BDTG6_TT_more_allFinalStates_alsoLowPt_opt_noZveto     --output_name Combination/FitResults_BDTG6_TT_more.txt     --freeze_nuisances r_higgs
+    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_SS_Full2018_v9_BDTG6_TT_100_bins_allFinalStates_alsoLowPt_opt_noZveto --output_name Combination/FitResults_BDTG6_TT_100_bins.txt --freeze_nuisances r_higgs
 
 Using datacards with correct signal scaling:
 
-    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_SS_Full2018_v9_BDTG6_TT_XSweight_more_allFinalStates_alsoLowPt_DYflip_original_signal_scale_opt_noZveto --output_name Combination/FitResults_BDTG6_TT_XSweight_more_original_signal_scale.txt  --freeze_nuisances r_higgs
-    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_SS_Full2018_v9_BDTG5_TT_weight_more_allFinalStates_alsoLowPt_DYflip_original_signal_scale_opt_noZveto   --output_name Combination/FitResults_BDTG6_TT_weight_more_original_signal_scale.txt    --freeze_nuisances r_higgs
-
-    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_SS_Full2018_v9_BDTG6_TT_more_allFinalStates_alsoLowPt_DYflip_original_signal_scale_opt_noZveto          --output_name Combination/FitResults_BDTG6_TT_more_original_signal_scale.txt           --freeze_nuisances r_higgs
+    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_SS_Full2018_v9_BDTG6_TT_more_allFinalStates_alsoLowPt_DYflip_original_signal_scale_opt_noZveto --output_name Combination/FitResults_BDTG6_TT_more_original_signal_scale.txt --freeze_nuisances r_higgs
+    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_SS_Full2018_v9_BDTG6_TT_100_bins_allFinalStates_alsoLowPt_DYflip_original_signal_scale_opt_noZveto --output_name Combination/FitResults_BDTG6_TT_100_bins_original_signal_scale.txt --freeze_nuisances r_higgs
 
 ### Produce Impact Plots
 
@@ -182,20 +159,9 @@ Prepare directory:
 
     mkdir -p Impact_plots
 
-Select datacard to use:
+Select datacard to use and actually produce impact plots:
 
-    VAR=mlljj20_whss_1j_bin
-    VAR=BDTG6
-
-    FINAL_STATE=_allFinalStates
-    FINAL_STATE=_alsoLowPt
-    FINAL_STATE=_allFinalStates_alsoLowPt
-    FINAL_STATE=_allFinalStates_alsoLowPt_noZveto
-    FINAL_STATE=_allFinalStates_alsoLowPt_DYflip_noZveto
-
-Actually produce impact plots:
-
-	VAR=BDTG6_TT_more
+	VAR=BDTG6_TT_100_bins
 	FINAL_STATE=_allFinalStates_alsoLowPt_opt_noZveto
 
     cd Impact_plots
@@ -245,8 +211,6 @@ This will create the output file `fitDiagnostics.root`, storing all the pre- and
 
 
 
-
-
 ### OLD: Select binning for BDT
 
     mkBinningOptimization.py --pyCfg=binning_em.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_em_2j_plus_pt2ge20  --variable=BDTG6_more --figure=S_B
@@ -269,4 +233,43 @@ This will create the output file `fitDiagnostics.root`, storing all the pre- and
     mkBinningOptimization.py --pyCfg=binning_ee.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_ee_2j_minus_pt2lt20 --variable=BDTG6_more --figure=S_B
     mkBinningOptimization.py --pyCfg=binning_ee.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_ee_1j_plus_pt2lt20  --variable=BDTG6_more --figure=S_B
     mkBinningOptimization.py --pyCfg=binning_ee.py --input=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --cut=hww2l2v_13TeV_WH_SS_ee_1j_minus_pt2lt20 --variable=BDTG6_more --figure=S_B
+
+### OLD: Use script to extract asymmetry
+
+Using BDT variable (true/false refer to the usage of data-driven DYee):
+
+    ./do_workspace_and_fit.sh BDTG6 true
+    ./do_workspace_and_fit.sh BDTG6 false
+
+    ./do_workspace_and_fit.sh mlljj20_whss_1j_bin true
+    ./do_workspace_and_fit.sh mlljj20_whss_1j_bin false
+
+    ./do_workspace_and_fit.sh BDTG6_jetbins true
+    ./do_workspace_and_fit.sh BDTG6_jetbins false
+
+    ./do_workspace_and_fit.sh BDTG6_TT true
+    ./do_workspace_and_fit.sh BDTG6_TT false
+
+    ./do_workspace_and_fit.sh BDTG6_TT_jetbins true
+    ./do_workspace_and_fit.sh BDTG6_TT_jetbins false
+
+    ./do_workspace_and_fit.sh BDTG6_TT_XSweight_more 
+    ./do_workspace_and_fit.sh BDTG5_TT_weight_more 
+
+    ./do_workspace_and_fit.sh BDTG6_TT_more true
+    ./do_workspace_and_fit.sh BDTG6_TT_100_bins true
+
+    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_SS_Full2018_v9_BDTG6_TT_XSweight_more_allFinalStates_alsoLowPt_opt_noZveto --output_name Combination/FitResults_BDTG6_TT_XSweight_more.txt  --freeze_nuisances r_higgs
+    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_SS_Full2018_v9_BDTG5_TT_weight_more_allFinalStates_alsoLowPt_opt_noZveto   --output_name Combination/FitResults_BDTG6_TT_weight_more.txt    --freeze_nuisances r_higgs
+
+Select datacard to use:
+
+    VAR=mlljj20_whss_1j_bin
+    VAR=BDTG6
+
+    FINAL_STATE=_allFinalStates
+    FINAL_STATE=_alsoLowPt
+    FINAL_STATE=_allFinalStates_alsoLowPt
+    FINAL_STATE=_allFinalStates_alsoLowPt_noZveto
+    FINAL_STATE=_allFinalStates_alsoLowPt_DYflip_noZveto
 

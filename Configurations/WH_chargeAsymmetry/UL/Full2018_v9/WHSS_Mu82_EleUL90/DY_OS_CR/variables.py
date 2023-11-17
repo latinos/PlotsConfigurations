@@ -49,6 +49,13 @@ variables['BDTG6_TT_more'] = {
     'fold'  : 3
 }
 
+variables['BDTG6_TT_100_bins'] = {
+    'name'  : 'BDT_WHSS_TopSemileptonic_v9',     
+    'range' : (100,-1,1),   
+    'xaxis' : 'BDT discriminant',
+    'fold'  : 3
+}
+
 ###################
 # Control variables
 ###################
