@@ -40,6 +40,20 @@ variables['BDT_WH3l_SSSF_v9_more'] = {
     'fold' : 3,
 }
 
+variables['BDT_WH3l_OSSF_v9_100_bins'] = { 
+    'name': 'BDT_WH3l_OSSF_v9',
+    'range' : (100,-1.,1.),
+    'xaxis' : 'MVA discriminant',
+    'fold' : 3,
+}
+
+variables['BDT_WH3l_SSSF_v9_100_bins'] = { 
+    'name': 'BDT_WH3l_SSSF_v9',
+    'range' : (100,-1.,1.),
+    'xaxis' : 'MVA discriminant',
+    'fold' : 3,
+}
+
 # New training considering Top and Z+jets as Fakes
 variables['BDT_WH3l_OSSF_new_v9'] = { 
     'name': 'BDT_WH3l_OSSF_new_v9',
@@ -65,6 +79,20 @@ variables['BDT_WH3l_OSSF_new_v9_more'] = {
 variables['BDT_WH3l_SSSF_new_v9_more'] = { 
     'name': 'BDT_WH3l_SSSF_new_v9',
     'range' : (1000,-1.,1.),
+    'xaxis' : 'MVA discriminant',
+    'fold' : 3,
+}
+
+variables['BDT_WH3l_OSSF_new_v9_100_bins'] = { 
+    'name': 'BDT_WH3l_OSSF_new_v9',
+    'range' : (100,-1.,1.),
+    'xaxis' : 'MVA discriminant',
+    'fold' : 3,
+}
+
+variables['BDT_WH3l_SSSF_new_v9_100_bins'] = { 
+    'name': 'BDT_WH3l_SSSF_new_v9',
+    'range' : (100,-1.,1.),
     'xaxis' : 'MVA discriminant',
     'fold' : 3,
 }

@@ -48,9 +48,11 @@ Load combine:
 
 Now optimize:
 
-    ./do_optimize_cards.sh BDT_WH3l_OSSF_v9_more 0.10
+    ./do_optimize_cards.sh BDT_WH3l_OSSF_new_v9_more ossf 0.10
+    ./do_optimize_cards.sh BDT_WH3l_OSSF_new_v9_100_bins ossf 0.10
 
-    ./do_optimize_cards.sh BDT_WH3l_OSSF_new_v9_more 0.10
+    ./do_optimize_cards.sh BDT_WH3l_SSSF_new_v9_more sssf 0.30
+    ./do_optimize_cards.sh BDT_WH3l_SSSF_new_v9_100_bins sssf 0.30
 
 ### Combine datacards
 
@@ -68,6 +70,20 @@ Actually combine datacards:
     python script_datacards_new_training.py
 
     python script_datacards_opt.py
+
+### Produce likelihood scans and post-fit plots
+
+To produce likelihood scans, we need to perform the fit using the FitDiagnostic option. If we then save both the shapes and their uncertainties, we will obtain an output file with everything we need to also produce post-fit plots. If we optimized the binning of our discriminant using CombineHarvester, this is also the only way to produce plots of the discriminant with the correct binning.
+
+Run combine using the FitDiagnostic option:
+
+    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_3l_Full2018_v9_new_opt          --output_name Combination/FitResults_new_opt.txt      --freeze_nuisances r_higgs --sanity_check FD
+    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_3l_Full2018_v9_100_bins_new_opt --output_name Combination/FitResults_100_bins_opt.txt --freeze_nuisances r_higgs --sanity_check FD
+
+This will create the output file `fitDiagnostics.root`, storing all the pre- and post-fit shapes. Then, we can produce a rootfile with all the shapes, in the format that mkPlot can read, and then plot:
+
+    bash do_postfit_plots.sh new_v9_more Combination/FitResults_new_opt_fitDiagnostics.root
+    bash do_postfit_plots.sh new_v9_100_bins Combination/FitResults_100_bins_opt_fitDiagnostics.root
 
 ### Interpret the results in terms of asymmetry
 
@@ -109,27 +125,13 @@ Since S appears in the denominator of the asymmetry expression, it cannot be 0, 
 
 Using datacards with enhanced signal scaling:
 
-    python script_workspace_and_fit.py --datacard_name=Combination/WH_chargeAsymmetry_WH_3l_Full2018_v9               --output_name=Combination/FitResults.txt               --freeze_nuisances=r_higgs
-    python script_workspace_and_fit.py --datacard_name=Combination/WH_chargeAsymmetry_WH_3l_Full2018_v9_optimizedSSSF --output_name=Combination/FitResults_optimizedSSSF.txt --freeze_nuisances=r_higgs
-    python script_workspace_and_fit.py --datacard_name=Combination/WH_chargeAsymmetry_WH_3l_Full2018_v9_alsoLowPt     --output_name=Combination/FitResults_alsoLowPt.txt     --freeze_nuisances=r_higgs
-
-    python script_workspace_and_fit.py --datacard_name=Combination/WH_chargeAsymmetry_WH_3l_new_Full2018_v9           --output_name=Combination/FitResults_new.txt           --freeze_nuisances=r_higgs
-    python script_workspace_and_fit.py --datacard_name=Combination/WH_chargeAsymmetry_WH_3l_new_Full2018_v9_optimized --output_name=Combination/FitResults_new_optimized.txt --freeze_nuisances=r_higgs
-    python script_workspace_and_fit.py --datacard_name=Combination/WH_chargeAsymmetry_WH_3l_new_Full2018_v9_alsoLowPt --output_name=Combination/FitResults_new_alsoLowPt.txt --freeze_nuisances=r_higgs
-    python script_workspace_and_fit.py --datacard_name=Combination/WH_chargeAsymmetry_WH_3l_new_Full2018_v9_0_7       --output_name=Combination/FitResults_new_0_7.txt       --freeze_nuisances=r_higgs
-    python script_workspace_and_fit.py --datacard_name=Combination/WH_chargeAsymmetry_WH_3l_new_Full2018_v9_0_9       --output_name=Combination/FitResults_new_0_9.txt       --freeze_nuisances=r_higgs
-
-    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_3l_Full2018_v9_alsoLowPt_opt     --output_name=Combination/FitResults_alsoLowPt_opt.txt     --freeze_nuisances=r_higgs
-    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_3l_Full2018_v9_alsoLowPt_new_opt --output_name=Combination/FitResults_alsoLowPt_new_opt.txt --freeze_nuisances=r_higgs
-
-    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_3l_Full2018_v9_opt               --output_name=Combination/FitResults_opt.txt               --freeze_nuisances=r_higgs
-    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_3l_Full2018_v9_new_opt           --output_name=Combination/FitResults_new_opt.txt           --freeze_nuisances=r_higgs
+    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_3l_Full2018_v9_new_opt          --output_name=Combination/FitResults_new_opt.txt          --freeze_nuisances=r_higgs
+    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_3l_Full2018_v9_100_bins_new_opt --output_name=Combination/FitResults_100_bins_new_opt.txt --freeze_nuisances=r_higgs
 
 Using datacards with correct signal scaling:
 
     python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_3l_Full2018_v9_original_signal_scale_new_opt --output_name=Combination/FitResults_original_signal_scale_new_opt.txt --freeze_nuisances=r_higgs
-    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_3l_Full2018_v9_original_signal_scale_opt     --output_name=Combination/FitResults_original_signal_scale_opt.txt     --freeze_nuisances=r_higgs
-
+    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_3l_Full2018_v9_original_signal_scale_100_bins_new_opt --output_name=Combination/FitResults_original_signal_scale_100_bins_new_opt.txt --freeze_nuisances=r_higgs
 
 ### Produce Impact Plots
 
@@ -151,13 +153,13 @@ Actually produce impact plots:
 
 Using new training with top and Z+jets as fakes
 
-    combineTool.py -M Impacts -d ../Combination/WH_chargeAsymmetry_WH_3l_Full2018_v9_new_opt.root -m 125 --doInitialFit -t -1 --setParameters r_S=1.3693,r_A=0.224,r_higgs=1 --setParameterRanges r_S=0,10:r_A=-1,1 --redefineSignalPOIs r_A --freezeParameters r_higgs
+    combineTool.py -M Impacts -d ../Combination/WH_chargeAsymmetry_WH_3l_Full2018_v9_100_bins_new_opt.root -m 125 --doInitialFit -t -1 --setParameters r_S=1.3693,r_A=0.224,r_higgs=1 --setParameterRanges r_S=0,10:r_A=-1,1 --redefineSignalPOIs r_A --freezeParameters r_higgs
 
-    combineTool.py -M Impacts -d ../Combination/WH_chargeAsymmetry_WH_3l_Full2018_v9_new_opt.root -m 125 --doFits -t -1 --setParameters r_S=1.3693,r_A=0.224,r_higgs=1 --setParameterRanges r_S=0,10:r_A=-1,1 --redefineSignalPOIs r_A --job-mode=condor --freezeParameters r_higgs
+    combineTool.py -M Impacts -d ../Combination/WH_chargeAsymmetry_WH_3l_Full2018_v9_100_bins_new_opt.root -m 125 --doFits -t -1 --setParameters r_S=1.3693,r_A=0.224,r_higgs=1 --setParameterRanges r_S=0,10:r_A=-1,1 --redefineSignalPOIs r_A --job-mode=condor --freezeParameters r_higgs
 
-    combineTool.py -M Impacts -d ../Combination/WH_chargeAsymmetry_WH_3l_Full2018_v9_new_opt.root -m 125 -t -1 -o impacts_WH3l_2018_new_opt.json --setParameters r_S=1.3693,r_A=0.224,r_higgs=1 --setParameterRanges r_S=0,10:r_A=-1,1 --redefineSignalPOIs r_A
+    combineTool.py -M Impacts -d ../Combination/WH_chargeAsymmetry_WH_3l_Full2018_v9_100_bins_new_opt.root -m 125 -t -1 -o impacts_WH3l_2018_100_bins_new_opt.json --setParameters r_S=1.3693,r_A=0.224,r_higgs=1 --setParameterRanges r_S=0,10:r_A=-1,1 --redefineSignalPOIs r_A
 
-    plotImpacts.py -i impacts_WH3l_2018_new_opt.json -o Impact_WH3l_2018_new_opt
+    plotImpacts.py -i impacts_WH3l_2018_100_bins_new_opt.json -o Impact_WH3l_2018_100_bins_new_opt
 
 
     combineTool.py -M Impacts -d ../Combination/WH_chargeAsymmetry_WH_3l_Full2018_v9_new_opt.root -m 125 --doInitialFit -t -1 --setParameters r_S=1.3693,r_A=0.224,r_higgs=1 --setParameterRanges r_S=0,10:r_A=-1,1 --redefineSignalPOIs r_S --freezeParameters r_higgs
@@ -251,3 +253,29 @@ OLD: impact plots using standard strategy from AN-22-120:
     rm condor_*
     rm higgsCombine_*
 
+
+OLD: ### Use script to extract asymmetry
+
+Using datacards with enhanced signal scaling:
+
+    python script_workspace_and_fit.py --datacard_name=Combination/WH_chargeAsymmetry_WH_3l_Full2018_v9               --output_name=Combination/FitResults.txt               --freeze_nuisances=r_higgs
+    python script_workspace_and_fit.py --datacard_name=Combination/WH_chargeAsymmetry_WH_3l_Full2018_v9_optimizedSSSF --output_name=Combination/FitResults_optimizedSSSF.txt --freeze_nuisances=r_higgs
+    python script_workspace_and_fit.py --datacard_name=Combination/WH_chargeAsymmetry_WH_3l_Full2018_v9_alsoLowPt     --output_name=Combination/FitResults_alsoLowPt.txt     --freeze_nuisances=r_higgs
+
+    python script_workspace_and_fit.py --datacard_name=Combination/WH_chargeAsymmetry_WH_3l_new_Full2018_v9           --output_name=Combination/FitResults_new.txt           --freeze_nuisances=r_higgs
+    python script_workspace_and_fit.py --datacard_name=Combination/WH_chargeAsymmetry_WH_3l_new_Full2018_v9_optimized --output_name=Combination/FitResults_new_optimized.txt --freeze_nuisances=r_higgs
+    python script_workspace_and_fit.py --datacard_name=Combination/WH_chargeAsymmetry_WH_3l_new_Full2018_v9_alsoLowPt --output_name=Combination/FitResults_new_alsoLowPt.txt --freeze_nuisances=r_higgs
+    python script_workspace_and_fit.py --datacard_name=Combination/WH_chargeAsymmetry_WH_3l_new_Full2018_v9_0_7       --output_name=Combination/FitResults_new_0_7.txt       --freeze_nuisances=r_higgs
+    python script_workspace_and_fit.py --datacard_name=Combination/WH_chargeAsymmetry_WH_3l_new_Full2018_v9_0_9       --output_name=Combination/FitResults_new_0_9.txt       --freeze_nuisances=r_higgs
+
+    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_3l_Full2018_v9_alsoLowPt_opt     --output_name=Combination/FitResults_alsoLowPt_opt.txt     --freeze_nuisances=r_higgs
+    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_3l_Full2018_v9_alsoLowPt_new_opt --output_name=Combination/FitResults_alsoLowPt_new_opt.txt --freeze_nuisances=r_higgs
+
+    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_3l_Full2018_v9_opt               --output_name=Combination/FitResults_opt.txt               --freeze_nuisances=r_higgs
+    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_3l_Full2018_v9_original_signal_scale_opt     --output_name=Combination/FitResults_original_signal_scale_opt.txt     --freeze_nuisances=r_higgs
+
+
+    ./do_optimize_cards.sh BDT_WH3l_OSSF_v9_more     ossf 0.10
+    ./do_optimize_cards.sh BDT_WH3l_OSSF_v9_100_bins     ossf 0.10
+    ./do_optimize_cards.sh BDT_WH3l_SSSF_v9_more sssf     0.30
+    ./do_optimize_cards.sh BDT_WH3l_SSSF_v9_100_bins     sssf 0.30

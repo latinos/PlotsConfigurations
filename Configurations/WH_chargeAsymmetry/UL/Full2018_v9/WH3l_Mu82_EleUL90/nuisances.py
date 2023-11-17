@@ -50,8 +50,8 @@ nuisances['lumi_Correlated_2017_2018'] = {
 
 
 ### FAKES
-nuisances['fake_syst']  = {
-    'name'  : 'CMS_fake_syst_2018',
+nuisances['fake_syst']  = { # The flat 30% should be correlated among years
+    'name'  : 'CMS_fake_syst',
     'type'  : 'lnN',
     'samples'  : {
         'Fake' : '1.30',

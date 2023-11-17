@@ -91,6 +91,24 @@ print()
 os.system(tmp_command)
 
 
+tmp_command = "combineCards.py WH_3l_sssf_plus=datacards/wh3l_13TeV_sssf_plus_pt2ge20/{0}/datacard.txt \
+                               WH_3l_sssf_minus=datacards/wh3l_13TeV_sssf_minus_pt2ge20/{1}/datacard.txt \
+                               WH_3l_ossf_plus=datacards/wh3l_13TeV_ossf_plus_pt2ge20/{2}/datacard.txt \
+                               WH_3l_ossf_minus=datacards/wh3l_13TeV_ossf_minus_pt2ge20/{3}/datacard.txt \
+                               WH_3l_WZ_CR_0j=datacards/wh3l_wz_13TeV/events/datacard.txt \
+                               > Combination/WH_chargeAsymmetry_WH_3l_new_Full2018_v9_0_9_OSSF.txt".format(
+                                   'BDT_WH3l_OSSF_new_v9_OptimizedBinning',
+                                   'BDT_WH3l_OSSF_new_v9_OptimizedBinning',
+                                   'BDT_WH3l_OSSF_new_v9_OptimizedBinning',
+                                   'BDT_WH3l_OSSF_new_v9_OptimizedBinning'
+                               )
+
+print(tmp_command)
+print()
+print()
+os.system(tmp_command)
+
+
 # Also low-pT categories
 tmp_command = "combineCards.py WH_3l_sssf_plus=datacards/wh3l_13TeV_sssf_plus_pt2ge20/{0}/datacard.txt \
                                WH_3l_sssf_minus=datacards/wh3l_13TeV_sssf_minus_pt2ge20/{0}/datacard.txt \
