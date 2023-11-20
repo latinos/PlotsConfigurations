@@ -17,8 +17,8 @@ LepCats['incl_']='( ((abs(Lepton_pdgId[0])==11) && Lepton_pt[0]>33 \
 LepCats_CR={}
 LepCats_CR['incl_']='( ((abs(Lepton_pdgId[0])==11) && Lepton_pt[0]>33 \
                  || (abs(Lepton_pdgId[0])==13) && Lepton_pt[0]>30))'
-#LepCats_CR['ElCh_']='( (abs(Lepton_pdgId[0])==11) && Lepton_pt[0]>33)'
-#LepCats_CR['MuCh_']='( (abs(Lepton_pdgId[0])==13) && Lepton_pt[0]>30)'
+LepCats_CR['ElCh_']='( (abs(Lepton_pdgId[0])==11) && Lepton_pt[0]>33)'
+LepCats_CR['MuCh_']='( (abs(Lepton_pdgId[0])==13) && Lepton_pt[0]>30)'
 
 BoostProcCats_H={}
 #BoostProcCats_H['']='1'
@@ -58,11 +58,11 @@ ResCatsSR['ResolvedSR_']='(1 \
                        && bVeto[0])'
 
 BoostCats={}
-BoostCats['BoostedSR_']='(1 \
-                       && boosted_nocut_res[0] \
-                       && HvOverFat[0] > 0.4 \
-                       && boostedSignalWMass[0] \
-                       && bVeto_boo[0])'
+#BoostCats['BoostedSR_']='(1 \
+#                       && boosted_nocut_res[0] \
+#                       && HvOverFat[0] > 0.4 \
+#                       && boostedSignalWMass[0] \
+#                       && bVeto_boo[0])'
 BoostCats['BoostedSB_']='(1 \
                        && boosted_nocut_res[0] \
                        && HvOverFat[0] < 0.35 \

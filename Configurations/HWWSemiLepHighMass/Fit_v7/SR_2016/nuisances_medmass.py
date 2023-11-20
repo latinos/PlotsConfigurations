@@ -273,29 +273,29 @@ nuisances['eff_m'] = {
     'samples': dict((skey, ['SFweightMuUp', 'SFweightMuDown']) for skey in mc)
 }
 
-nuisances['muonpt'] = {
-    'name' : 'CMS_scale_m_2016',
-    'kind' : 'suffix',
-    'type' : 'shape',
-    'mapUp'  : 'MupTup',
-    'mapDown': 'MupTdo',
-    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in sig_mc_fat),
-    'folderUp'  : makeMCDirectory('MupTup'),
-    'folderDown': makeMCDirectory('MupTdo'),
-#    'AsLnN': '1'
-}
-
-nuisances['muonpt_ln']={
-    'name'  : 'CMS_scale_m_2016',
-    'type' : 'lnN',
-    'samples': dict((skey, '1.05') for skey in mc),
-}
-nuisances['electronpt_ln']={
-    'name'  : 'CMS_scale_e_2016',
-    'type' : 'lnN',
-    'samples': dict((skey, '1.04') for skey in mc),
-     
-}
+#nuisances['muonpt'] = {
+#    'name' : 'CMS_scale_m_2016',
+#    'kind' : 'suffix',
+#    'type' : 'shape',
+#    'mapUp'  : 'MupTup',
+#    'mapDown': 'MupTdo',
+#    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in sig_mc_fat),
+#    'folderUp'  : makeMCDirectory('MupTup'),
+#    'folderDown': makeMCDirectory('MupTdo'),
+##    'AsLnN': '1'
+#}
+#
+#nuisances['muonpt_ln']={
+#    'name'  : 'CMS_scale_m_2016',
+#    'type' : 'lnN',
+#    'samples': dict((skey, '1.05') for skey in mc),
+#}
+#nuisances['electronpt_ln']={
+#    'name'  : 'CMS_scale_e_2016',
+#    'type' : 'lnN',
+#    'samples': dict((skey, '1.04') for skey in mc),
+#     
+#}
 #nuisances['muonpt_BWReweight'] = {
 #    'name' : 'CMS_scale_m_2016',
 #    'kind' : 'suffix',
@@ -328,134 +328,134 @@ nuisances['electronpt_ln']={
 #
 ###### Jet energy scale
 
-jes_systs = ['JESAbsolute','JESAbsolute_2016','JESBBEC1','JESBBEC1_2016','JESEC2','JESEC2_2016','JESFlavorQCD','JESHF','JESHF_2016','JESRelativeBal','JESRelativeSample_2016']
-for js in jes_systs:
-  nuisances[js+'lnn_I'] = {
-      'name' : 'CMS_scale_'+js,
-      'type' : 'lnN',
-      'samples': dict((skey, '1.02') for skey in mc),
- }
-
-
+#jes_systs = ['JESAbsolute','JESAbsolute_2016','JESBBEC1','JESBBEC1_2016','JESEC2','JESEC2_2016','JESFlavorQCD','JESHF','JESHF_2016','JESRelativeBal','JESRelativeSample_2016']
 #for js in jes_systs:
-#  nuisances[js] = {
+#  nuisances[js+'lnn_I'] = {
 #      'name' : 'CMS_scale_'+js,
-#      'kind' : 'suffix',
-#      'type' : 'shape',
-#      'mapUp'  : js+'up',
-#      'mapDown': js+'do',
-#      'samples': dict((skey, ['1', '1']) for skey in mc if skey not in sig_mc_fat),
-#      'folderUp'  : makeMCDirectory('JESup'),
-#      'folderDown': makeMCDirectory('JESdo'),
-##      'AsLnN': '1'
+#      'type' : 'lnN',
+#      'samples': dict((skey, '1.02') for skey in mc),
 # }
-#  nuisances[js+'_BWReweight'] = {
-#      'name' : 'CMS_scale_'+js,
-#      'kind' : 'suffix',
-#      'type' : 'shape',
-#      'mapUp'  : js+'up',
-#      'mapDown': js+'do',
-#      'samples': dict((skey, ['1', '1']) for skey in sig_mc_PS),
-#      'folderUp'  : makeMCDirectory('_BWReweight_LNuQQ__MCCombJJLNu2016_JESup'),
-#      'folderDown': makeMCDirectory('_BWReweight_LNuQQ__MCCombJJLNu2016_JESdo'),
-##      'AsLnN': '1'
-# }
-##  nuisances['fatjet'+js] = {
-##      'name' : 'CMS_scale_fj'+js,
+#
+#
+##for js in jes_systs:
+##  nuisances[js] = {
+##      'name' : 'CMS_scale_'+js,
 ##      'kind' : 'suffix',
 ##      'type' : 'shape',
-##      'mapUp'  : 'fatjet'+js+'up',
-##      'mapDown': 'fatjet'+js+'do',
-##      'samples': dict((skey, ['1', '1']) for skey in mc if skey not in sig_mc),
-##      'folderUp'  : makeMCDirectory('fatjetJESup'),
-##      'folderDown': makeMCDirectory('fatjetJESdo'),
-##      'AsLnN': '1'
+##      'mapUp'  : js+'up',
+##      'mapDown': js+'do',
+##      'samples': dict((skey, ['1', '1']) for skey in mc if skey not in sig_mc_fat),
+##      'folderUp'  : makeMCDirectory('JESup'),
+##      'folderDown': makeMCDirectory('JESdo'),
+###      'AsLnN': '1'
 ## }
-#
-#for js in jes_systs:
-#  nuisances[js+'lnn'] = {
-#      'name' : 'CMS_scale_'+js,
-#      'type' : 'lnn',
-#      'samples': {
-#      	  'VZ': '1.02',
-#      	  'WW': '1.02',
-#      	  'qqWWqq': '1.025',
-#       }
-#}
-##  nuisances['fatjet'+js] = {
-#
-#
-##nuisances['fatjet_jes']  = {
-##    'name'  : 'CMS_scale_fatj_2016',
-##    'kind'  : 'suffix',
-##    'type'  : 'shape',
-##    'mapUp'  : 'fatjetJESup',
-##    'mapDown': 'fatjetJESdo',
-##    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['VgS']),
-###    'folderUp'  : makeMCDirectory('fatjetJESup'),
-###    'folderDown': makeMCDirectory('fatjetJESdo'),
-#####    'AsLnN': '1'
-##}
-##nuisances['fatjet_jer']  = {
-##    'name'  : 'CMS_res_fatjer_2016',
-##    'kind'  : 'suffix',
-##    'type'  : 'shape',
-##    'mapUp'  : 'fatjetJERup',
-##    'mapDown': 'fatjetJERdo',
-##    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['VgS']),
-###    'folderUp'  : makeMCDirectory('fatjetJERup'),
-###    'folderDown': makeMCDirectory('fatjetJERdo'),
-###    'AsLnN': '1'
-##}
-##nuisances['fatjet_jms']  = {
-##    'name'  : 'CMS_fatjms_2016',
-##    'kind'  : 'suffix',
-##    'type'  : 'shape',
-##    'mapUp'  : 'fatjetJMSup',
-##    'mapDown': 'fatjetJMSdo',
-##    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['VgS']),
-###    'folderUp'  : makeMCDirectory('fatjetJMSup'),
-###    'folderDown': makeMCDirectory('fatjetJMSdo'),
-### #   'AsLnN': '1'
-##}
-##nuisances['fatjet_jmr']  = {
-##    'name'  : 'CMS_res_fatjmr_2016',
-##    'kind'  : 'suffix',
-##    'type'  : 'shape',
-##    'mapUp'  : 'fatjetJMRup',
-##    'mapDown': 'fatjetJMRdo',
-##    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['VgS']),
-####    'folderUp'  : makeMCDirectory('fatjetJMRup'),
-####    'folderDown': makeMCDirectory('fatjetJMRdo'),
-## #   'AsLnN': '1'
-##}
+##  nuisances[js+'_BWReweight'] = {
+##      'name' : 'CMS_scale_'+js,
+##      'kind' : 'suffix',
+##      'type' : 'shape',
+##      'mapUp'  : js+'up',
+##      'mapDown': js+'do',
+##      'samples': dict((skey, ['1', '1']) for skey in sig_mc_PS),
+##      'folderUp'  : makeMCDirectory('_BWReweight_LNuQQ__MCCombJJLNu2016_JESup'),
+##      'folderDown': makeMCDirectory('_BWReweight_LNuQQ__MCCombJJLNu2016_JESdo'),
+###      'AsLnN': '1'
+## }
+###  nuisances['fatjet'+js] = {
+###      'name' : 'CMS_scale_fj'+js,
+###      'kind' : 'suffix',
+###      'type' : 'shape',
+###      'mapUp'  : 'fatjet'+js+'up',
+###      'mapDown': 'fatjet'+js+'do',
+###      'samples': dict((skey, ['1', '1']) for skey in mc if skey not in sig_mc),
+###      'folderUp'  : makeMCDirectory('fatjetJESup'),
+###      'folderDown': makeMCDirectory('fatjetJESdo'),
+###      'AsLnN': '1'
+### }
 ##
-nuisances['fatjet_jes_lnn']={
-    'name'  : 'CMS_scale_fatj_2016',
-    'type' : 'lnM',
-    'samples': dict((skey, '1.06') for skey in mc),
-}
-nuisances['fatjet_jer_lnn']={
-    'name'  : 'CMS_res_fatjer_2016',
-    'type' : 'lnN',
-    'samples': dict((skey, '1.03') for skey in mc),
-}
-nuisances['fatjet_jms_lnn']={
-    'name'  : 'CMS_fatjms_2016',
-    'type' : 'lnN',
-    'samples': dict((skey, '1.01') for skey in mc),
-
-}
-nuisances['fatjet_jmr_lnn']={
-    'name'  : 'CMS_res_fatjmr_2016',
-    'type' : 'lnN',
-    'samples': dict((skey, '1.02') for skey in mc),
-}
-nuisances['met_BWReweight_I'] = {
-    'name' : 'CMS_scale_met_2016',
-    'type' : 'lnN',
-    'samples': dict((skey, '1.03') for skey in mc),
-}
+##for js in jes_systs:
+##  nuisances[js+'lnn'] = {
+##      'name' : 'CMS_scale_'+js,
+##      'type' : 'lnn',
+##      'samples': {
+##      	  'VZ': '1.02',
+##      	  'WW': '1.02',
+##      	  'qqWWqq': '1.025',
+##       }
+##}
+###  nuisances['fatjet'+js] = {
+##
+##
+###nuisances['fatjet_jes']  = {
+###    'name'  : 'CMS_scale_fatj_2016',
+###    'kind'  : 'suffix',
+###    'type'  : 'shape',
+###    'mapUp'  : 'fatjetJESup',
+###    'mapDown': 'fatjetJESdo',
+###    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['VgS']),
+####    'folderUp'  : makeMCDirectory('fatjetJESup'),
+####    'folderDown': makeMCDirectory('fatjetJESdo'),
+######    'AsLnN': '1'
+###}
+###nuisances['fatjet_jer']  = {
+###    'name'  : 'CMS_res_fatjer_2016',
+###    'kind'  : 'suffix',
+###    'type'  : 'shape',
+###    'mapUp'  : 'fatjetJERup',
+###    'mapDown': 'fatjetJERdo',
+###    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['VgS']),
+####    'folderUp'  : makeMCDirectory('fatjetJERup'),
+####    'folderDown': makeMCDirectory('fatjetJERdo'),
+####    'AsLnN': '1'
+###}
+###nuisances['fatjet_jms']  = {
+###    'name'  : 'CMS_fatjms_2016',
+###    'kind'  : 'suffix',
+###    'type'  : 'shape',
+###    'mapUp'  : 'fatjetJMSup',
+###    'mapDown': 'fatjetJMSdo',
+###    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['VgS']),
+####    'folderUp'  : makeMCDirectory('fatjetJMSup'),
+####    'folderDown': makeMCDirectory('fatjetJMSdo'),
+#### #   'AsLnN': '1'
+###}
+###nuisances['fatjet_jmr']  = {
+###    'name'  : 'CMS_res_fatjmr_2016',
+###    'kind'  : 'suffix',
+###    'type'  : 'shape',
+###    'mapUp'  : 'fatjetJMRup',
+###    'mapDown': 'fatjetJMRdo',
+###    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['VgS']),
+#####    'folderUp'  : makeMCDirectory('fatjetJMRup'),
+#####    'folderDown': makeMCDirectory('fatjetJMRdo'),
+### #   'AsLnN': '1'
+###}
+###
+#nuisances['fatjet_jes_lnn']={
+#    'name'  : 'CMS_scale_fatj_2016',
+#    'type' : 'lnM',
+#    'samples': dict((skey, '1.06') for skey in mc),
+#}
+#nuisances['fatjet_jer_lnn']={
+#    'name'  : 'CMS_res_fatjer_2016',
+#    'type' : 'lnN',
+#    'samples': dict((skey, '1.03') for skey in mc),
+#}
+#nuisances['fatjet_jms_lnn']={
+#    'name'  : 'CMS_fatjms_2016',
+#    'type' : 'lnN',
+#    'samples': dict((skey, '1.01') for skey in mc),
+#
+#}
+#nuisances['fatjet_jmr_lnn']={
+#    'name'  : 'CMS_res_fatjmr_2016',
+#    'type' : 'lnN',
+#    'samples': dict((skey, '1.02') for skey in mc),
+#}
+#nuisances['met_BWReweight_I'] = {
+#    'name' : 'CMS_scale_met_2016',
+#    'type' : 'lnN',
+#    'samples': dict((skey, '1.03') for skey in mc),
+#}
 ######## FatJet scale and resolution
 ###
 ####nuisances['fatjet_jes']  = {
@@ -1313,17 +1313,17 @@ nuisances['fake_syst_El'] = {
 #    }
 #}
 
-for j in range(1,6):
-	for i in range(1,6):
- 		tagger_variations = ["Tag_mass_rewei_up_"+str(j)+"_"+str(i)+"/Tag_mass_rewei",  "Tag_mass_rewei_do_"+str(j)+"_"+str(i)+"/Tag_mass_rewei"]
-		nuisances["Top_massVsTagger_reweighting_bin_"+str(j)+"_"+str(i)] = {
-  		  'name': "Top_massVsTagger_reweighting_bin_"+str(j)+"_"+str(i)+"2016",
-  		  'kind'  : 'weight',
-    		  'type'  : 'shape',
-		  'samples': dict((skey,tagger_variations ) for skey in mc_deep),
-                  'cuts': cutdict['Boosted']
-		}
-
+#For j in range(1,6):
+#	for i in range(1,6):
+# 		tagger_variations = ["Tag_mass_rewei_up_"+str(j)+"_"+str(i)+"/Tag_mass_rewei",  "Tag_mass_rewei_do_"+str(j)+"_"+str(i)+"/Tag_mass_rewei"]
+#		nuisances["Top_massVsTagger_reweighting_bin_"+str(j)+"_"+str(i)] = {
+#  		  'name': "Top_massVsTagger_reweighting_bin_"+str(j)+"_"+str(i)+"2016",
+#  		  'kind'  : 'weight',
+#    		  'type'  : 'shape',
+#		  'samples': dict((skey,tagger_variations ) for skey in mc_deep),
+#                  'cuts': cutdict['Boosted']
+#		}
+#
 nuisances['Wjets_QCD_NLO_sf_stat'] = {
     'name': 'Wjets_QCD_NLO_sf_stat_2016',
     'kind'  : 'weight',
@@ -1355,8 +1355,8 @@ for syst in ['Mu', 'statMu']:
         'kind': 'weight',
         'type': 'shape',
         'samples': {
-            'FAKE_mu': ['FW_mu'+str(mu_et)+'_el'+str(el_et)+'_'+syst+'Up[0]', 'FW_mu'+str(mu_et)+'_el'+str(el_et)+'_'+syst+'Down[0]'],
-            #'FAKE': ['FW_mu'+str(mu_et)+'_el'+str(el_et)+'_'+syst+'Up[0]', 'FW_mu'+str(mu_et)+'_el'+str(el_et)+'_'+syst+'Down[0]'],
+            #'FAKE_mu': ['FW_mu'+str(mu_et)+'_el'+str(el_et)+'_'+syst+'Up[0]', 'FW_mu'+str(mu_et)+'_el'+str(el_et)+'_'+syst+'Down[0]'],
+            'FAKE': ['FW_mu'+str(mu_et)+'_el'+str(el_et)+'_'+syst+'Up[0]', 'FW_mu'+str(mu_et)+'_el'+str(el_et)+'_'+syst+'Down[0]'],
         },
     }
 
@@ -1377,8 +1377,8 @@ for syst in ['El', 'statEl']:
         'kind': 'weight',
         'type': 'shape',
         'samples': {
-            'FAKE_el': ['FW_mu'+str(mu_et)+'_el'+str(el_et)+'_'+syst+'Up[0]', 'FW_mu'+str(mu_et)+'_el'+str(el_et)+'_'+syst+'Down[0]'],
-            #'FAKE': ['FW_mu'+str(mu_et)+'_el'+str(el_et)+'_'+syst+'Up[0]', 'FW_mu'+str(mu_et)+'_el'+str(el_et)+'_'+syst+'Down[0]'],
+            #'FAKE_el': ['FW_mu'+str(mu_et)+'_el'+str(el_et)+'_'+syst+'Up[0]', 'FW_mu'+str(mu_et)+'_el'+str(el_et)+'_'+syst+'Down[0]'],
+            'FAKE': ['FW_mu'+str(mu_et)+'_el'+str(el_et)+'_'+syst+'Up[0]', 'FW_mu'+str(mu_et)+'_el'+str(el_et)+'_'+syst+'Down[0]'],
         },
     }
 #for syst in ['El', 'statEl', 'Mu', 'statMu']:

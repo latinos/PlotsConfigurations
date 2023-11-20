@@ -11,7 +11,7 @@ outputDir = 'rootFile_16_bkup'
 aliasesFile = 'aliases_medmass.py'
 
 # file with list of variables
-variablesFile = 'variables_f.py'
+variablesFile = 'variables_fit_noNui.py'
 # variablesFile = 'variablesPlot.py'
 # variablesFile = 'variablesLimits.py'
 
