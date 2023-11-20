@@ -11,7 +11,7 @@ outputDir = 'rootFile_17_bkup/'
 aliasesFile = 'aliases_medmass.py'#DNN trained with the high mass with aliases_highmass.py
 
 # file with list of variables
-variablesFile = 'variables_f.py'
+variablesFile = 'variables_fit_noNui.py'
 # variablesFile = 'variablesPlot.py'
 # variablesFile = 'variablesLimits.py'
 

@@ -236,11 +236,11 @@ nuisances['eff_e'] = {
 #    'samples': dict((skey, '1.03') for skey in sig_mc_I),
 #}
 #
-nuisances['electronpt_lnn'] = {
-    'name' : 'CMS_scale_e_2017',
-    'type' : 'lnN',
-    'samples': dict((skey, '1.05') for skey in mc),
-}
+#nuisances['electronpt_lnn'] = {
+#    'name' : 'CMS_scale_e_2017',
+#    'type' : 'lnN',
+#    'samples': dict((skey, '1.05') for skey in mc),
+#}
 
 ##### Muon Efficiency and energy scale
 
@@ -251,11 +251,11 @@ nuisances['eff_m'] = {
     'samples': dict((skey, ['SFweightMuUp', 'SFweightMuDown']) for skey in mc)
 }
 
-nuisances['muonpt_BWReweight_I'] = {
-    'name' : 'CMS_scale_m_2017',
-    'type' : 'lnN',
-    'samples': dict((skey, '1.05') for skey in mc),
-}
+#nuisances['muonpt_BWReweight_I'] = {
+#    'name' : 'CMS_scale_m_2017',
+#    'type' : 'lnN',
+#    'samples': dict((skey, '1.05') for skey in mc),
+#}
 
 #nuisances['muonpt'] = {
 #    'name' : 'CMS_scale_m_2017',
@@ -303,45 +303,45 @@ nuisances['muonpt_BWReweight_I'] = {
 #
 #print("list is ")
 #print(list(set(mc).symmetric_difference(set(sig_mc))))
-jes_systs = ['JESAbsolute','JESAbsolute_2017','JESBBEC1','JESBBEC1_2017','JESEC2','JESEC2_2017','JESFlavorQCD','JESHF','JESHF_2017','JESRelativeBal','JESRelativeSample_2017']
-
-for js in jes_systs:
-  nuisances[js] = {
-      'name' : 'CMS_scale_'+js,
-      'type' : 'lnN',
-      'samples': dict((skey, '1.025') for skey in mc),
-#      'AsLnN': '1'
- }
-nuisances['met_BWReweight_I'] = {
-    'name' : 'CMS_scale_met_2017',
-    'type' : 'lnN',
-    'samples': dict((skey, '1.05') for skey in mc),
-    'cuts': cutdict['Boosted'],
-}
-nuisances['fatjet_jes_lnn']={
-    'name'  : 'CMS_scale_fatj_2017',
-    'type' : 'lnN',
-    'samples': dict((skey, '1.05') for skey in mc),
-    'cuts': cutdict['Boosted'],
-}
-nuisances['fatjet_jer_lnn']={
-    'name'  : 'CMS_res_fatjer_2017',
-    'type' : 'lnN',
-    'samples': dict((skey, '1.04') for skey in mc),
-    'cuts': cutdict['Boosted'],
-}
-nuisances['fatjet_jms_lnn']={
-    'name'  : 'CMS_fatjms_2017',
-    'type' : 'lnN',
-    'samples': dict((skey, '1.005') for skey in mc),
-    'cuts': cutdict['Boosted'],
-}
-nuisances['fatjet_jmr_lnn']={
-    'name'  : 'CMS_res_fatjmr_2017',
-    'type' : 'lnN',
-    'samples': dict((skey, '1.002') for skey in mc),
-    'cuts': cutdict['Boosted'],
-}
+#jes_systs = ['JESAbsolute','JESAbsolute_2017','JESBBEC1','JESBBEC1_2017','JESEC2','JESEC2_2017','JESFlavorQCD','JESHF','JESHF_2017','JESRelativeBal','JESRelativeSample_2017']
+#
+#for js in jes_systs:
+#  nuisances[js] = {
+#      'name' : 'CMS_scale_'+js,
+#      'type' : 'lnN',
+#      'samples': dict((skey, '1.025') for skey in mc),
+##      'AsLnN': '1'
+# }
+#nuisances['met_BWReweight_I'] = {
+#    'name' : 'CMS_scale_met_2017',
+#    'type' : 'lnN',
+#    'samples': dict((skey, '1.05') for skey in mc),
+#    'cuts': cutdict['Boosted'],
+#}
+#nuisances['fatjet_jes_lnn']={
+#    'name'  : 'CMS_scale_fatj_2017',
+#    'type' : 'lnN',
+#    'samples': dict((skey, '1.05') for skey in mc),
+#    'cuts': cutdict['Boosted'],
+#}
+#nuisances['fatjet_jer_lnn']={
+#    'name'  : 'CMS_res_fatjer_2017',
+#    'type' : 'lnN',
+#    'samples': dict((skey, '1.04') for skey in mc),
+#    'cuts': cutdict['Boosted'],
+#}
+#nuisances['fatjet_jms_lnn']={
+#    'name'  : 'CMS_fatjms_2017',
+#    'type' : 'lnN',
+#    'samples': dict((skey, '1.005') for skey in mc),
+#    'cuts': cutdict['Boosted'],
+#}
+#nuisances['fatjet_jmr_lnn']={
+#    'name'  : 'CMS_res_fatjmr_2017',
+#    'type' : 'lnN',
+#    'samples': dict((skey, '1.002') for skey in mc),
+#    'cuts': cutdict['Boosted'],
+#}
 #  nuisances[js+'_BWReweight'] = {
 #      'name' : 'CMS_scale_'+js,
 #      'kind' : 'suffix',
@@ -1489,17 +1489,17 @@ nuisances['CRSR_accept_top'] = {
 #    },
 #}
 
-for j in range(1,6):
-	for i in range(1,6):
- 		tagger_variations = ["Tag_mass_rewei_up_"+str(j)+"_"+str(i)+"/Tag_mass_rewei",  "Tag_mass_rewei_do_"+str(j)+"_"+str(i)+"/Tag_mass_rewei"]
-		nuisances["Top_massVsTagger_reweighting_bin_"+str(j)+"_"+str(i)] = {
-  		  'name': "Top_massVsTagger_reweighting_bin_"+str(j)+"_"+str(i)+"2017",
-  		  'kind'  : 'weight',
-    		  'type'  : 'shape',
-		  'samples': dict((skey,tagger_variations ) for skey in mc_deep),
-                  'cuts': cutdict['Boosted']
-		}
-
+#for j in range(1,6):
+#	for i in range(1,6):
+# 		tagger_variations = ["Tag_mass_rewei_up_"+str(j)+"_"+str(i)+"/Tag_mass_rewei",  "Tag_mass_rewei_do_"+str(j)+"_"+str(i)+"/Tag_mass_rewei"]
+#		nuisances["Top_massVsTagger_reweighting_bin_"+str(j)+"_"+str(i)] = {
+#  		  'name': "Top_massVsTagger_reweighting_bin_"+str(j)+"_"+str(i)+"2017",
+#  		  'kind'  : 'weight',
+#    		  'type'  : 'shape',
+#		  'samples': dict((skey,tagger_variations ) for skey in mc_deep),
+#                  'cuts': cutdict['Boosted']
+#		}
+#
 #### FAKES
 #eleWP = 'mva_90p_Iso2016'
 #muWP  = 'cut_Tight80x'

@@ -272,17 +272,17 @@ variables['events']  = {
 ##### #   'cuts' : set.union(boostedSR, ak8SR),
 ######    'fold' : 3
 ######}
-######variables['hmHiggsMass'] = {
-######    'name' : 'HM_CleanFatJetPassMBoosted_HlnFat_mass[0]',
-#####    # 'range': ([0, 900, 1000, 1100, 1200, 1350, 1500, 1700, 2000, 3000, 5000],),
-#####    # 'range': ([0, 900, 1000, 1100, 1200, 1325, 1580, 2050, 5000],),
-##### #   'range': ([0, 900, 990, 1085, 1185, 1300, 1500, 2000, 5000],),
-##### #   'xaxis': 'reconstr. H mass [GeV]',
-##### #   'cuts' : set.union(hmSR, ak8SR),
-##### #   'fold' : 3
-######}
-#####
-#####
+#######variables['hmHiggsMass'] = {
+#######    'name' : 'HM_CleanFatJetPassMBoosted_HlnFat_mass[0]',
+######    # 'range': ([0, 900, 1000, 1100, 1200, 1350, 1500, 1700, 2000, 3000, 5000],),
+######    # 'range': ([0, 900, 1000, 1100, 1200, 1325, 1580, 2050, 5000],),
+###### #   'range': ([0, 900, 990, 1085, 1185, 1300, 1500, 2000, 5000],),
+###### #   'xaxis': 'reconstr. H mass [GeV]',
+###### #   'cuts' : set.union(hmSR, ak8SR),
+###### #   'fold' : 3
+#######}
+######
+######
 variables['Fat_jet_pt'] = {
    'name' : 'FatJet_pt[FatJet_idx_clean]',
    'range': ([200,225,250,275,300,350,400,450,500,600,700,800,900, 1000],),
@@ -290,39 +290,39 @@ variables['Fat_jet_pt'] = {
    'xaxis': 'FatJet pt [GeV]',
    'fold' : 0
 }
-#variables['Fat_jet_pt_new'] = {
-#   'name' : 'FatJet_pt[FatJet_idx_clean]',
-#   'range': ([200,225,250,275,300,350,400,450,500,600,700,800,900, 1000],),
-#    'cuts' : boosted ,
-#   'xaxis': 'FatJet pt [GeV]',
-#   'fold' : 0
-#}
-########variables['FatJet_mass'] = {
-########    'name' : 'FatJet_mass[0]',
-########    'range': (25,0,250),
-########    'xaxis': 'CleanFatJetMass [GeV]',
-########    'fold' : 0
-########}
-###variables['CleanFatJet_mass'] = {
-###    'name' : 'CleanFatJet_mass[0]',
-###    'range': (25,0,250),
-###    'xaxis': 'FatJetMass [GeV]',
-###    'fold' : 0
+##variables['Fat_jet_pt_new'] = {
+##   'name' : 'FatJet_pt[FatJet_idx_clean]',
+##   'range': ([200,225,250,275,300,350,400,450,500,600,700,800,900, 1000],),
+##    'cuts' : boosted ,
+##   'xaxis': 'FatJet pt [GeV]',
+##   'fold' : 0
 ##}
-#variables['FatJet_mass_zoom'] = {
-#    'name' : 'FatJet_mass[FatJet_idx_clean]',
-#    'range': (20,60,110),
-#    'cuts' : boosted ,
-#    'xaxis': 'FatJet Mass [GeV]',
-#    'fold' : 0
-#}
-#variables['FatJet_mass_softdrop'] = {
-#    'name' : 'FatJet_msoftdrop[FatJet_idx_clean]',
-#    'range': (20,60,110),
-#    'cuts' : boosted ,
-#    'xaxis': 'FatJet Mass [GeV]',
-#    'fold' : 0
-#}
+#########variables['FatJet_mass'] = {
+#########    'name' : 'FatJet_mass[0]',
+#########    'range': (25,0,250),
+#########    'xaxis': 'CleanFatJetMass [GeV]',
+#########    'fold' : 0
+#########}
+####variables['CleanFatJet_mass'] = {
+####    'name' : 'CleanFatJet_mass[0]',
+####    'range': (25,0,250),
+####    'xaxis': 'FatJetMass [GeV]',
+####    'fold' : 0
+###}
+##variables['FatJet_mass_zoom'] = {
+##    'name' : 'FatJet_mass[FatJet_idx_clean]',
+##    'range': (20,60,110),
+##    'cuts' : boosted ,
+##    'xaxis': 'FatJet Mass [GeV]',
+##    'fold' : 0
+##}
+##variables['FatJet_mass_softdrop'] = {
+##    'name' : 'FatJet_msoftdrop[FatJet_idx_clean]',
+##    'range': (20,60,110),
+##    'cuts' : boosted ,
+##    'xaxis': 'FatJet Mass [GeV]',
+##    'fold' : 0
+##}
 variables['FatJet_mass_zoom_softdrop'] = {
     'name' : 'FatJet_msoftdrop_nom[FatJet_idx_clean]',
     'range': (20,60,110),
@@ -330,20 +330,20 @@ variables['FatJet_mass_zoom_softdrop'] = {
     'xaxis': 'FatJet Mass [GeV]',
     'fold' : 0
 }
-variables['FatJet_mass_zoom'] = {
-    'name' : 'FatJet_mass_nom[FatJet_idx_clean]',
-    'range': (20,60,110),
-    'cuts' : boosted ,
-    'xaxis': 'FatJet Mass [GeV]',
-    'fold' : 0
-}
-#variables['CleanFatJet_mass_zoom'] = {
-#    'name' : 'CleanFatJet_mass[0]',
-#    'range': (10,60,110),
+#variables['FatJet_mass_zoom'] = {
+#    'name' : 'FatJet_mass_nom[FatJet_idx_clean]',
+#    'range': (20,60,110),
+#    'cuts' : boosted ,
 #    'xaxis': 'FatJet Mass [GeV]',
-#    'cuts' : controlRegions,
 #    'fold' : 0
 #}
+##variables['CleanFatJet_mass_zoom'] = {
+##    'name' : 'CleanFatJet_mass[0]',
+##    'range': (10,60,110),
+##    'xaxis': 'FatJet Mass [GeV]',
+##    'cuts' : controlRegions,
+##    'fold' : 0
+##}
 variables['HvOverFAT'] = {
    'name' : 'HvOverFat[0]',
    'range': (20, 0, 1.),
@@ -351,168 +351,203 @@ variables['HvOverFAT'] = {
    'cuts' : controlRegions,
    'fold' : 0
 }
-######variables['plot_resolvHMass'] = {
-######    'name' : 'HM_Hlnjj_mass',
-######    'range': (24, 0, 1200),
-######    'xaxis': 'reconstr. H mass [GeV]',
-######    'fold' : 3,
-######    'cuts': resolved,
-######}
-######variables['plot_boostHMass'] = {
-######    'name' : 'HM_CleanFatJetPassMBoosted_HlnFat_mass[0]',
-######    'range': (40, 0, 2000),
-######    'xaxis': 'reconstr. H mass [GeV]',
-######    'fold' : 0,
-######    'cuts': set.union(boosted,boosted_general)
-######}
-#####
-######variables['plot_boostHMass_nocut'] = {
-######    'name' : 'HM_CleanFatJetPassMBoosted_HlnFat_mass[0]',
-######    'range': (30, 0, 1500),
-######    'xaxis': 'reconstr. H mass [GeV]',
-######    'fold' : 0, 
-######}
-######
-######variables['plot_whad_jj_patches'] = {
-######    'name' : 'mass_WHAD_JJ[0]',
-######    'range': (25, 0, 250),
-######    'xaxis': 'reconstr. W had mass [GeV]',
-######    'fold' : 0, 
-######}
-######
-######variables['plot_whad_fat_patches'] = {
-######    'name' : 'mass_WHAD_FAT[0]',
-######    'range': (25, 0, 250),
-######    'xaxis': 'reconstr. W had mass [GeV]',
-######    'fold' : 0, 
-######}
-#####
-#####
-######variables['deltaR'] = {
-######    'name' : 'deltaR[0]',
-######    'range': (15, 0, 3),
-######    'xaxis': 'delta R resolved or Boosted',
-######    'fold' : 0, 
-######}
-######
-######
+variables['Fat_jet_pt_again'] = {
+   'name' : 'FatJet_pt[FatJet_idx_clean]',
+   'range': ([200,300,400,800],),
+    'cuts' : boosted ,
+   'xaxis': 'FatJet pt [GeV]',
+   'fold' : 0
+}
+variables['Fatjet_eta'] = {
+    'name' : 'FatJet_eta[FatJet_idx_clean]',
+    'range': (30, -2.4, 2.4),
+    'cuts' : boosted ,
+    'xaxis': 'FatJet #eta',
+    'fold' : 0
+}
+variables['DeepTag_long_MD'] = {
+   'name' : 'Alt$(FatJet_deepTagMD_WvsQCD[FatJet_idx_clean[0]],0)',
+   'range': (20, 0.80, 1.),
+   'xaxis': 'DeepTag_FatJet',
+   'cuts' : boosted ,
+   'fold' : 0
+}
+variables['DeepTag_long_MD_ext'] = {
+   'name' : 'Alt$(FatJet_deepTagMD_WvsQCD[FatJet_idx_clean[0]],0)',
+   'range': (20, 0, 1.),
+   'xaxis': 'DeepTag_FatJet',
+   'cuts' : boosted ,
+   'fold' : 0
+}
 #variables['HvOverFAT'] = {
 #   'name' : 'HvOverFat[0]',
 #   'range': (20, 0, 1.),
-#   'xaxis': 'p_{t}^{W}/m_{Xp_{t}^{W}/m_{X}}',
+#   'xaxis': 'p_{T}^{W}/m_{X}',
 #   'cuts' : controlRegions,
 #   'fold' : 0
 #}
-#
-###variables['HvOverJJ'] = {
-###   'name' : 'HvOverJJ[0]',
-###   'range': (20, 0, 1.),
-###   'xaxis': 'Min el pt vs had pt',
-###   'fold' : 0
-###}
-###
-#######variables['Tau21decorrelated'] = {
-#######   'name' : 'tau21DDT[0]',
-#######   'range': (20, 0, 1.),
-#######   'xaxis': 'TAU 21 DDT',
-#######   'fold' : 0
+#######variables['plot_resolvHMass'] = {
+#######    'name' : 'HM_Hlnjj_mass',
+#######    'range': (24, 0, 1200),
+#######    'xaxis': 'reconstr. H mass [GeV]',
+#######    'fold' : 3,
+#######    'cuts': resolved,
+#######}
+#######variables['plot_boostHMass'] = {
+#######    'name' : 'HM_CleanFatJetPassMBoosted_HlnFat_mass[0]',
+#######    'range': (40, 0, 2000),
+#######    'xaxis': 'reconstr. H mass [GeV]',
+#######    'fold' : 0,
+#######    'cuts': set.union(boosted,boosted_general)
+#######}
+######
+#######variables['plot_boostHMass_nocut'] = {
+#######    'name' : 'HM_CleanFatJetPassMBoosted_HlnFat_mass[0]',
+#######    'range': (30, 0, 1500),
+#######    'xaxis': 'reconstr. H mass [GeV]',
+#######    'fold' : 0, 
 #######}
 #######
-####
-####variables['DeepTag'] = {
-####   'name' : 'FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]] ',
-####   'range': (20,0.,1.),
-####   'xaxis': 'DeepTag_FatJet',
-####   'fold' : 0
-####}
-####
-####
-####variables['DeepTag_bin'] = {
-####   'name' : 'FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]] ',
-####   'range': (10, 0.96, 1.),
-####   'xaxis': 'DeepTag_FatJet',
-####   'fold' : 0
-####}
-####
-####variables['DeepTag_index'] = {
-####   'name' : 'FatJet_deepTag_WvsQCD ',
-####   'range': (20,0.,1.),
-####   'xaxis': 'DeepTag_FatJet',
-####   'fold' : 0
-####}
-####
-####
-####variables['DeepTag_bin_index'] = {
-####   'name' : 'FatJet_deepTag_WvsQCD',
-####   'range': (10, 0.96, 1.),
-####   'xaxis': 'DeepTag_FatJet',
-####   'fold' : 0
-####}
-####variables['DeepTag_FatJet'] = {
-####   'name' : 'FatJet_deepTag_WvsQCD ',
-####   'range': (20,0.,1),
-####   'xaxis': 'DeepTag_FatJet',
-####   'fold' : 0
-####}
-####
-####
-####variables['DeepTag_FatJet_MD'] = {
-####   'name' : 'FatJet_deepTagMD_WvsQCD',
-####   'range': (20, 0., 1.),
-####   'xaxis': 'DeepTag_FatJet_MD',
-####   'fold' : 0
-####}
-##
-####variables['Delta_Rjj'] = {
-####   'name' : 'DeltaR_jj',
-####   'range': (40, 0., 4.),
-####   'xaxis': 'Delta_Rjj',
-####   'fold' : 0
-####}
-###
-###
-####variables['Delta_Rjj_Lpt'] = {
-####   'name' : 'DeltaR_jj_Lpt',
-####   'range': (40, 0., 4.),
-####   'xaxis': 'Delta_Rjj',
-####   'fold' : 0
-####}
-###variables['Gen_ZGstar_mass'] = {
-###   'name' : 'Gen_ZGstar_mass',
-###   'range': (40, 0., 200.),
-###   'xaxis': 'Gen_ZGstar_mass',
-###   'fold' : 0
-###}
-###
-###
-###
-###
-###
+#######variables['plot_whad_jj_patches'] = {
+#######    'name' : 'mass_WHAD_JJ[0]',
+#######    'range': (25, 0, 250),
+#######    'xaxis': 'reconstr. W had mass [GeV]',
+#######    'fold' : 0, 
+#######}
+#######
+#######variables['plot_whad_fat_patches'] = {
+#######    'name' : 'mass_WHAD_FAT[0]',
+#######    'range': (25, 0, 250),
+#######    'xaxis': 'reconstr. W had mass [GeV]',
+#######    'fold' : 0, 
+#######}
 ######
-######variables['DeepTag_leadingFatJet'] = {
-######   'name' : 'FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]] ',
-######   'range': ([0,0.960,1],),
-######   'xaxis': 'DeepTag_FatJet',
-######   'fold' : 0
-######}
+######
+#######variables['deltaR'] = {
+#######    'name' : 'deltaR[0]',
+#######    'range': (15, 0, 3),
+#######    'xaxis': 'delta R resolved or Boosted',
+#######    'fold' : 0, 
+#######}
+#######
+#######
+##variables['HvOverFAT'] = {
+##   'name' : 'HvOverFat[0]',
+##   'range': (20, 0, 1.),
+##   'xaxis': 'p_{t}^{W}/m_{Xp_{t}^{W}/m_{X}}',
+##   'cuts' : controlRegions,
+##   'fold' : 0
+##}
+##
+####variables['HvOverJJ'] = {
+####   'name' : 'HvOverJJ[0]',
+####   'range': (20, 0, 1.),
+####   'xaxis': 'Min el pt vs had pt',
+####   'fold' : 0
+####}
+####
+########variables['Tau21decorrelated'] = {
+########   'name' : 'tau21DDT[0]',
+########   'range': (20, 0, 1.),
+########   'xaxis': 'TAU 21 DDT',
+########   'fold' : 0
+########}
+########
 #####
-variables['mass_HIGGS_FAT_VBF'] = {
-   'name' : 'mass_HIGGS_FAT[0]',
-   'range': ([0, 600, 650, 700, 750, 800, 850, 900, 950, 1000,
-  	       1100, 1200, 1300, 1500, 2000, 5000 ],),
-   'xaxis': 'Higgs Mass [GeV]',
-   'fold' : 0 ,
-   'cuts' : boostedSR,
-}
-variables['mass_HIGGS_FAT_rebin'] = {
-   'name' : 'mass_HIGGS_FAT[0]',
-   'range': ([0, 250, 350, 400, 450, 500, 550, 600,
-               650, 700, 750, 800, 850, 900, 950, 1000, 1050,
-  	       1100, 1150, 1200, 1250, 1300, 1350, 1500, 1700, 2000, 5000 ],),
-   'xaxis': 'Higgs Mass [GeV]',
-   'fold' : 0 ,
-   'cuts' : boostedSR,
-}
+#####variables['DeepTag'] = {
+#####   'name' : 'FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]] ',
+#####   'range': (20,0.,1.),
+#####   'xaxis': 'DeepTag_FatJet',
+#####   'fold' : 0
+#####}
+#####
+#####
+#####variables['DeepTag_bin'] = {
+#####   'name' : 'FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]] ',
+#####   'range': (10, 0.96, 1.),
+#####   'xaxis': 'DeepTag_FatJet',
+#####   'fold' : 0
+#####}
+#####
+#####variables['DeepTag_index'] = {
+#####   'name' : 'FatJet_deepTag_WvsQCD ',
+#####   'range': (20,0.,1.),
+#####   'xaxis': 'DeepTag_FatJet',
+#####   'fold' : 0
+#####}
+#####
+#####
+#####variables['DeepTag_bin_index'] = {
+#####   'name' : 'FatJet_deepTag_WvsQCD',
+#####   'range': (10, 0.96, 1.),
+#####   'xaxis': 'DeepTag_FatJet',
+#####   'fold' : 0
+#####}
+#####variables['DeepTag_FatJet'] = {
+#####   'name' : 'FatJet_deepTag_WvsQCD ',
+#####   'range': (20,0.,1),
+#####   'xaxis': 'DeepTag_FatJet',
+#####   'fold' : 0
+#####}
+#####
+#####
+#####variables['DeepTag_FatJet_MD'] = {
+#####   'name' : 'FatJet_deepTagMD_WvsQCD',
+#####   'range': (20, 0., 1.),
+#####   'xaxis': 'DeepTag_FatJet_MD',
+#####   'fold' : 0
+#####}
+###
+#####variables['Delta_Rjj'] = {
+#####   'name' : 'DeltaR_jj',
+#####   'range': (40, 0., 4.),
+#####   'xaxis': 'Delta_Rjj',
+#####   'fold' : 0
+#####}
+####
+####
+#####variables['Delta_Rjj_Lpt'] = {
+#####   'name' : 'DeltaR_jj_Lpt',
+#####   'range': (40, 0., 4.),
+#####   'xaxis': 'Delta_Rjj',
+#####   'fold' : 0
+#####}
+####variables['Gen_ZGstar_mass'] = {
+####   'name' : 'Gen_ZGstar_mass',
+####   'range': (40, 0., 200.),
+####   'xaxis': 'Gen_ZGstar_mass',
+####   'fold' : 0
+####}
+####
+####
+####
+####
+####
+#######
+#######variables['DeepTag_leadingFatJet'] = {
+#######   'name' : 'FatJet_deepTag_WvsQCD[CleanFatJet_jetIdx[0]] ',
+#######   'range': ([0,0.960,1],),
+#######   'xaxis': 'DeepTag_FatJet',
+#######   'fold' : 0
+#######}
+######
+#variables['mass_HIGGS_FAT_VBF'] = {
+#   'name' : 'mass_HIGGS_FAT[0]',
+#   'range': ([0, 600, 650, 700, 750, 800, 850, 900, 950, 1000,
+#  	       1100, 1200, 1300, 1500, 2000, 5000 ],),
+#   'xaxis': 'Higgs Mass [GeV]',
+#   'fold' : 0 ,
+#   'cuts' : boostedSR,
+#}
+#variables['mass_HIGGS_FAT_rebin'] = {
+#   'name' : 'mass_HIGGS_FAT[0]',
+#   'range': ([0, 250, 350, 400, 450, 500, 550, 600,
+#               650, 700, 750, 800, 850, 900, 950, 1000, 1050,
+#  	       1100, 1150, 1200, 1250, 1300, 1350, 1500, 1700, 2000, 5000 ],),
+#   'xaxis': 'Higgs Mass [GeV]',
+#   'fold' : 0 ,
+#   'cuts' : boostedSR,
+#}
 variables['mass_HIGGS_FAT_fit'] = {
    'name' : 'mass_HIGGS_FAT[0]',
    'range': ([0, 200, 250, 300, 350, 400, 450, 500, 550, 600,
@@ -531,15 +566,15 @@ variables['mass_HIGGS_FAT_binned'] = {
    'fold' : 0 ,
    'cuts' : boosted ,
 }
+#####
+#####
+#####variables['mass_HIGGS_FAT'] = {
+#####   'name' : 'mass_HIGGS_FAT[0]',
+#####   'range': (15, 0, 3000),
+#####   'xaxis': 'Higgs Mass [GeV]',
+#####   'fold' : 0
+#####}
 ####
-####
-####variables['mass_HIGGS_FAT'] = {
-####   'name' : 'mass_HIGGS_FAT[0]',
-####   'range': (15, 0, 3000),
-####   'xaxis': 'Higgs Mass [GeV]',
-####   'fold' : 0
-####}
-###
 variables['mass_HIGGS_twojet_binned'] = {
    'name' : 'mass_HIGGS_JJ[0]',
    'range': ([0, 150, 200, 260, 300, 350, 400, 450, 500, 550, 600,
@@ -549,60 +584,60 @@ variables['mass_HIGGS_twojet_binned'] = {
    'cuts' : resolved, 
 }
 
-variables['mass_HIGGS_twojet_rebin'] = {
-   'name' : 'mass_HIGGS_JJ[0]',
-   'range': ([0, 200, 250, 300, 350, 400, 450, 500, 550, 600,
-              650, 700, 750, 800, 850, 900, 950, 1000, 1250, 1500, 3000],),
-   'xaxis': 'Higgs Mass [GeV]',
-   'fold' : 0,
-   'cuts' : resolvedSR, 
-}
-#####variables['Mela_boosted'] = {
-#####   'name': 'MelaVBFvsGGH_boosted[0]',
-#####   'range': (15,0,1),
-#####   'xaxis': 'Mela_disc',
-#####   'fold': 0,
-#####}
+#variables['mass_HIGGS_twojet_rebin'] = {
+#   'name' : 'mass_HIGGS_JJ[0]',
+#   'range': ([0, 200, 250, 300, 350, 400, 450, 500, 550, 600,
+#              650, 700, 750, 800, 850, 900, 950, 1000, 1250, 1500, 3000],),
+#   'xaxis': 'Higgs Mass [GeV]',
+#   'fold' : 0,
+#   'cuts' : resolvedSR, 
+#}
+######variables['Mela_boosted'] = {
+######   'name': 'MelaVBFvsGGH_boosted[0]',
+######   'range': (15,0,1),
+######   'xaxis': 'Mela_disc',
+######   'fold': 0,
+######}
+######
+######variables['Mela_resolved'] = {
+######   'name': 'MelaVBFvsGGH_resolved[0]',
+######   'range': (15,0,1),
+######   'xaxis': 'Mela_disc',
+######   'fold': 0,
+######}
 #####
-#####variables['Mela_resolved'] = {
-#####   'name': 'MelaVBFvsGGH_resolved[0]',
-#####   'range': (15,0,1),
-#####   'xaxis': 'Mela_disc',
-#####   'fold': 0,
-#####}
-####
-####
-###variables['tree'] = {
-###   'tree' :{
-####   	'HvOverFAT_stud': 'HvOverFat[0]',
-### #   	'CleanFatPt_stud': 'CleanFatJet_pt[0]',
-###    	'mass_HIGGS': 'mass_HIGGS_FAT[0]',
-###    	'mass_HIGGS_res': 'mass_HIGGS_JJ[0]',
-###  #  	'MELA_resolved': 'MelaVBFvsGGH_resolved[0]',
-###  #  	'MELA_boosted': 'MelaVBFvsGGH_boosted[0]',
-###   }
-###}
-#####variables['Higgs_Res_Mt'] = {
-#####   'name' : 'HM_Hlnjj_MT[0]',
-#####   'range': (30, 0, 150),
-#####   'xaxis': 'MT higgs',
-#####   'fold' : 0
-#####}
 #####
-#####variables['Had_pt'] = {
-#####   'name' : 'HM_Whad_pt[0]',
-#####   'range': (20, 0, 100),
-#####   'xaxis': 'HAD pt [GeV]',
-#####   'fold' : 0
-#####}
-#####variables['plot_whad_jjANDfat_patches'] = {
-#####    'name' : 'mass_WHAD_JJFAT[0]',
-#####    'range': (25, 0, 250),
-#####    'xaxis': 'reconstr. W had mass [GeV]',
-#####    'fold' : 0, 
-#####}
-#####
-#####variables['plot_whad_fatANDjj_patches'] = {
+####variables['tree'] = {
+####   'tree' :{
+#####   	'HvOverFAT_stud': 'HvOverFat[0]',
+#### #   	'CleanFatPt_stud': 'CleanFatJet_pt[0]',
+####    	'mass_HIGGS': 'mass_HIGGS_FAT[0]',
+####    	'mass_HIGGS_res': 'mass_HIGGS_JJ[0]',
+####  #  	'MELA_resolved': 'MelaVBFvsGGH_resolved[0]',
+####  #  	'MELA_boosted': 'MelaVBFvsGGH_boosted[0]',
+####   }
+####}
+######variables['Higgs_Res_Mt'] = {
+######   'name' : 'HM_Hlnjj_MT[0]',
+######   'range': (30, 0, 150),
+######   'xaxis': 'MT higgs',
+######   'fold' : 0
+######}
+######
+######variables['Had_pt'] = {
+######   'name' : 'HM_Whad_pt[0]',
+######   'range': (20, 0, 100),
+######   'xaxis': 'HAD pt [GeV]',
+######   'fold' : 0
+######}
+######variables['plot_whad_jjANDfat_patches'] = {
+######    'name' : 'mass_WHAD_JJFAT[0]',
+######    'range': (25, 0, 250),
+######    'xaxis': 'reconstr. W had mass [GeV]',
+######    'fold' : 0, 
+######}
+######
+######variables['plot_whad_fatANDjj_patches'] = {
 #####    'name' : 'mass_WHAD_FATJJ[0]',
 #####    'range': (25, 0, 250),
 #####    'xaxis': 'reconstr. W had mass [GeV]',
@@ -649,54 +684,54 @@ variables['whad_mass'] = {
     'fold' : 0, 
     'cuts' : controlRegions
 }
-variables['classvbf'] = {
-     'name': 'vbfdnn_odd',
-     'range' : (10,0,1.),
-     'xaxis' : 'VBF output',
-     'fold' : 3,
-     'cuts' : boostedSR,
-     'divideByBinWidth':1
-}
-variables['classbkg'] = {
-     'name': 'bkgdnn_odd',
-     'range' : (10,0,1.),
-     'xaxis' : 'BKG output',
-     'fold'  : 3,
-     'cuts' : boostedSR,
-     'divideByBinWidth':1
-}
-variables['classggh'] = {
-     'name': 'gghdnn_odd',
-     'range' : (10,0,1.),
-     'xaxis' : 'ggH output',
-     'fold'  : 3,
-     'cuts' : boostedSR,
-     'divideByBinWidth':1
-}
-variables['classvbf_high'] = {
-     'name': 'vbfdnn_high',
-     'range' : (10,0,1.),
-     'xaxis' : 'VBF output',
-     'fold' : 3,
-     'cuts' : boostedSR,
-     'divideByBinWidth':1
-}
-variables['classbkg_high'] = {
-     'name': 'bkgdnn_high',
-     'range' : (10,0,1.),
-     'xaxis' : 'BKG output',
-     'fold'  : 3,
-     'cuts' : boostedSR,
-     'divideByBinWidth':1
-}
-variables['classggh_high'] = {
-     'name': 'gghdnn_high',
-     'range' : (10,0,1.),
-     'xaxis' : 'ggH output',
-     'fold'  : 3,
-     'cuts' : boostedSR,
-     'divideByBinWidth':1
-}
+#variables['classvbf'] = {
+#     'name': 'vbfdnn_odd',
+#     'range' : (10,0,1.),
+#     'xaxis' : 'VBF output',
+#     'fold' : 3,
+#     'cuts' : boostedSR,
+#     'divideByBinWidth':1
+#}
+#variables['classbkg'] = {
+#     'name': 'bkgdnn_odd',
+#     'range' : (10,0,1.),
+#     'xaxis' : 'BKG output',
+#     'fold'  : 3,
+#     'cuts' : boostedSR,
+#     'divideByBinWidth':1
+#}
+#variables['classggh'] = {
+#     'name': 'gghdnn_odd',
+#     'range' : (10,0,1.),
+#     'xaxis' : 'ggH output',
+#     'fold'  : 3,
+#     'cuts' : boostedSR,
+#     'divideByBinWidth':1
+#}
+#variables['classvbf_high'] = {
+#     'name': 'vbfdnn_high',
+#     'range' : (10,0,1.),
+#     'xaxis' : 'VBF output',
+#     'fold' : 3,
+#     'cuts' : boostedSR,
+#     'divideByBinWidth':1
+#}
+#variables['classbkg_high'] = {
+#     'name': 'bkgdnn_high',
+#     'range' : (10,0,1.),
+#     'xaxis' : 'BKG output',
+#     'fold'  : 3,
+#     'cuts' : boostedSR,
+#     'divideByBinWidth':1
+#}
+#variables['classggh_high'] = {
+#     'name': 'gghdnn_high',
+#     'range' : (10,0,1.),
+#     'xaxis' : 'ggH output',
+#     'fold'  : 3,
+#     'cuts' : boostedSR,
+#     'divideByBinWidth':1
+#}
 #variables['classvbf_bin'] = {
 ###     'name': 'vbfdnn_odd',
 ###     'range' : (20,0,1.),
