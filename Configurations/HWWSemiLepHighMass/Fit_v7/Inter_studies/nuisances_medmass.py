@@ -327,11 +327,11 @@ nuisances['eff_e'] = {
 #    'AsLnN': '1'
 #}
 #
-nuisances['electronpt_BWReweight_I'] = {
-    'name' : 'CMS_scale_e_2018',
-    'type' : 'lnN',
-    'samples': dict((skey, '1.02') for skey in mc),
-}
+#nuisances['electronpt_BWReweight_I'] = {
+#    'name' : 'CMS_scale_e_2018',
+#    'type' : 'lnN',
+#    'samples': dict((skey, '1.02') for skey in mc),
+#}
 
 #nuisances['electronpt_BWReweight'] = {
 #    'name' : 'CMS_scale_e_2017',
@@ -377,11 +377,11 @@ nuisances['eff_m'] = {
 ##    'AsLnN': '1'
 #}
 #
-nuisances['muonpt_BWReweight_I'] = {
-    'name' : 'CMS_scale_m_2018',
-    'type' : 'lnN',
-    'samples': dict((skey, '1.02') for skey in mc),
-}
+#nuisances['muonpt_BWReweight_I'] = {
+#    'name' : 'CMS_scale_m_2018',
+#    'type' : 'lnN',
+#    'samples': dict((skey, '1.02') for skey in mc),
+#}
 ##nuisances['muonpt_BWReweight'] = {
 ##    'name' : 'CMS_scale_m_2017',
 ##    'kind' : 'suffix',
@@ -398,13 +398,13 @@ nuisances['muonpt_BWReweight_I'] = {
 ###### Jet energy scale
 jes_systs = ['JESAbsolute','JESAbsolute_2018','JESBBEC1','JESBBEC1_2018','JESEC2','JESEC2_2018','JESFlavorQCD','JESHF','JESHF_2018','JESRelativeBal','JESRelativeSample_2018']
 
-for js in jes_systs:
-    nuisances[js] = {
-      'name' : 'CMS_scale_'+js,
-      'kind' : 'suffix',
-      'type' : 'lnN',
-      'samples': dict((skey, '1.015') for skey in mc),
-  }
+#for js in jes_systs:
+#    nuisances[js] = {
+#      'name' : 'CMS_scale_'+js,
+#      'kind' : 'suffix',
+#      'type' : 'lnN',
+#      'samples': dict((skey, '1.015') for skey in mc),
+#  }
 ##
 ##
 ##    nuisances[js+'_BWReweight'] = {
@@ -428,36 +428,36 @@ for js in jes_systs:
 #   }
 
 
-nuisances['met_BWReweight_I'] = {
-    'name' : 'CMS_scale_met_2018',
-    'type' : 'lnN',
-    'samples': dict((skey, '1.06') for skey in mc),
-}
-nuisances['fatjet_jes_lnn']={
-    'name'  : 'CMS_scale_fatj_2018',
-    'type' : 'lnN',
-    'samples': dict((skey, '1.08') for skey in mc),
-    'cuts': cutdict['Boosted'],
-}
-nuisances['fatjet_jer_lnn']={
-    'name'  : 'CMS_res_fatjer_2018',
-    'type' : 'lnN',
-    'samples': dict((skey, '1.06') for skey in mc),
-    'cuts': cutdict['Boosted'],
-}
-nuisances['fatjet_jms_lnn']={
-    'name'  : 'CMS_fatjms_2018',
-    'type' : 'lnN',
-    'samples': dict((skey, '1.01') for skey in mc),
-    'cuts': cutdict['Boosted'],
-
-}
-nuisances['fatjet_jmr_lnn']={
-    'name'  : 'CMS_res_fatjmr_2018',
-    'type' : 'lnN',
-    'samples': dict((skey, '1.03') for skey in mc),
-    'cuts': cutdict['Boosted'],
-}
+#nuisances['met_BWReweight_I'] = {
+#    'name' : 'CMS_scale_met_2018',
+#    'type' : 'lnN',
+#    'samples': dict((skey, '1.06') for skey in mc),
+#}
+#nuisances['fatjet_jes_lnn']={
+#    'name'  : 'CMS_scale_fatj_2018',
+#    'type' : 'lnN',
+#    'samples': dict((skey, '1.08') for skey in mc),
+#    'cuts': cutdict['Boosted'],
+#}
+#nuisances['fatjet_jer_lnn']={
+#    'name'  : 'CMS_res_fatjer_2018',
+#    'type' : 'lnN',
+#    'samples': dict((skey, '1.06') for skey in mc),
+#    'cuts': cutdict['Boosted'],
+#}
+#nuisances['fatjet_jms_lnn']={
+#    'name'  : 'CMS_fatjms_2018',
+#    'type' : 'lnN',
+#    'samples': dict((skey, '1.01') for skey in mc),
+#    'cuts': cutdict['Boosted'],
+#
+#}
+#nuisances['fatjet_jmr_lnn']={
+#    'name'  : 'CMS_res_fatjmr_2018',
+#    'type' : 'lnN',
+#    'samples': dict((skey, '1.03') for skey in mc),
+#    'cuts': cutdict['Boosted'],
+#}
 #  nuisances['fatjet'+js] = {
 #
 #  nuisances[js+'lnn_I'] = {
@@ -703,11 +703,11 @@ nuisances['fatjet_jmr_lnn']={
 # #   'AsLnN': '1'
 #}
 #
-nuisances['jer_BWReweight_lnn'] = {
-    'name' : 'CMS_res_j_2018',
-    'type' : 'lnN',
-    'samples': dict((skey, '1.02') for skey in mc),
-}
+#nuisances['jer_BWReweight_lnn'] = {
+#    'name' : 'CMS_res_j_2018',
+#    'type' : 'lnN',
+#    'samples': dict((skey, '1.02') for skey in mc),
+#}
 #nuisances['jer_BWReweight'] = {
 #    'name' : 'CMS_res_j_2018',
 #    'kind' : 'suffix',
@@ -1503,8 +1503,8 @@ for syst in ['Mu', 'statMu']:
         'kind': 'weight',
         'type': 'shape',
         'samples': {
-           # 'FAKE': ['FW_mu'+str(mu_et)+'_el'+str(el_et)+'_'+syst+'Up[0]', 'FW_mu'+str(mu_et)+'_el'+str(el_et)+'_'+syst+'Down[0]'],
-            'FAKE_mu': ['FW_mu'+str(mu_et)+'_el'+str(el_et)+'_'+syst+'Up[0]', 'FW_mu'+str(mu_et)+'_el'+str(el_et)+'_'+syst+'Down[0]'],
+            'FAKE': ['FW_mu'+str(mu_et)+'_el'+str(el_et)+'_'+syst+'Up[0]', 'FW_mu'+str(mu_et)+'_el'+str(el_et)+'_'+syst+'Down[0]'],
+           # 'FAKE_mu': ['FW_mu'+str(mu_et)+'_el'+str(el_et)+'_'+syst+'Up[0]', 'FW_mu'+str(mu_et)+'_el'+str(el_et)+'_'+syst+'Down[0]'],
         },
     }
 
@@ -1525,8 +1525,8 @@ for syst in ['El', 'statEl']:
         'kind': 'weight',
         'type': 'shape',
         'samples': {
-            #'FAKE': ['FW_mu'+str(mu_et)+'_el'+str(el_et)+'_'+syst+'Up[0]', 'FW_mu'+str(mu_et)+'_el'+str(el_et)+'_'+syst+'Down[0]'],
-            'FAKE_el': ['FW_mu'+str(mu_et)+'_el'+str(el_et)+'_'+syst+'Up[0]', 'FW_mu'+str(mu_et)+'_el'+str(el_et)+'_'+syst+'Down[0]'],
+            'FAKE': ['FW_mu'+str(mu_et)+'_el'+str(el_et)+'_'+syst+'Up[0]', 'FW_mu'+str(mu_et)+'_el'+str(el_et)+'_'+syst+'Down[0]'],
+            #'FAKE_el': ['FW_mu'+str(mu_et)+'_el'+str(el_et)+'_'+syst+'Up[0]', 'FW_mu'+str(mu_et)+'_el'+str(el_et)+'_'+syst+'Down[0]'],
         },
     }
 #for syst in ['El', 'statEl', 'Mu', 'statMu']:

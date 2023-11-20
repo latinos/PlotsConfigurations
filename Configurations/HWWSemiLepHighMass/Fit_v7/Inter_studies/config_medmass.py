@@ -2,7 +2,7 @@
 
 treeName = 'Events'
 
-tag = 'hm_SR_class'
+tag = 'hm_Try'
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFile_18_bkup/'
@@ -11,7 +11,7 @@ outputDir = 'rootFile_18_bkup/'
 aliasesFile = 'aliases_medmass.py'#aliases_highmass to use the high mass trained DNN
 
 # file with list of variables
-variablesFile = 'variables_f.py'
+variablesFile = 'variables_fit_noNui.py'
 # variablesFile = 'variablesPlot.py'
 # variablesFile = 'variablesLimits.py'
 
@@ -39,4 +39,4 @@ outputDirDatacard = 'Datacards_Test_New'
 structureFile = 'structure_medmass.py'
 
 # nuisances file for mkDatacards and for mkShape
-nuisancesFile = 'nuisances_medmass.py'
+nuisancesFile = 'nuisances_no.py'
