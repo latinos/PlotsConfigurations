@@ -10,6 +10,8 @@
 #include <TMath.h>
 #include "weights_dnn/generated_code_Boosted_odd_alpha_mid.h"
 #include "weights_dnn/generated_code_Boosted_even_alpha_mid.h"
+//#include "weights_dnn/generated_code_Boosted_odd_alpha_mid.h"
+//#include "weights_dnn/generated_code_Boosted_even_alpha_mid.h"
 //#include "weights_dnn/generated_code_Boosted_odd_highmass_wei.h"
 #include <math.h>
 
@@ -48,12 +50,15 @@ protected:
   FloatValueReader* PuppiMET_pt;
   FloatValueReader* PuppiMET_phi;
   UIntValueReader* nCleanJet;
+  UIntValueReader*  nLepton{};
   //IntValueReader* HM_nCleanFatJetPassMBoosted;
   UIntValueReader* HM_nCleanFatJetPassMBoosted;
   FloatArrayReader* HM_CleanFatJetPassMBoosted_pt;
   FloatArrayReader* HM_CleanFatJetPassMBoosted_eta;
   FloatArrayReader* HM_CleanFatJetPassMBoosted_phi;
   FloatArrayReader* HM_CleanFatJetPassMBoosted_mass;
+  FloatArrayReader* FatJet_msof;
+  IntArrayReader*   FatJet_jetId{};
   //FloatArrayReader* HM_CleanFatJetPassMBoosted_HlnFat_mass;
   FloatValueReader* HM_Whad_pt;
   FloatValueReader* HM_Whad_eta;
@@ -129,15 +134,71 @@ DNNprodSemiNewOdd::evaluate(unsigned)
   unsigned j = 0;
   TLorentzVector J1,J2;
 
+bool GoodJet_cd = false;
+int index_Good_0 = -1;
+int index_Good_1 = -1;
+int index_Good_2 = -1;
+int index_Good_3 = -1;
+int last_idx = -1;
 //const unsigned int nJ{*nCleanFatJet->Get()};
   //int nCFJ{*HM_nCleanFatJetPassMBoosted->Get()};
-  unsigned int nCFJ{*HM_nCleanFatJetPassMBoosted->Get()};
+unsigned int nCFJ{*HM_nCleanFatJetPassMBoosted->Get()};
+const unsigned int nLep{*nLepton->Get()};
   
-  if (nCFJ > 0){
-    wpt = HM_CleanFatJetPassMBoosted_pt->At(0);
-    weta = HM_CleanFatJetPassMBoosted_eta->At(0);
-    wphi = HM_CleanFatJetPassMBoosted_phi->At(0);
-    wmass = HM_CleanFatJetPassMBoosted_mass->At(0);
+for (unsigned int ix{0}; ix < nCFJ; ix++) {
+	bool GoodJet = true;
+	
+	if(FatJet_jetId->At(ix) < 0){
+	GoodJet = false;
+	}
+	if(HM_CleanFatJetPassMBoosted_pt->At(ix) < 200){
+	GoodJet = false;
+	}
+	if(abs(HM_CleanFatJetPassMBoosted_eta->At(ix)) > 2.4){
+	GoodJet = false;
+	}
+	if(FatJet_msof->At(ix) < 55 || FatJet_msof->At(ix) > 115){
+	GoodJet = false;
+	}
+
+	if(GoodJet == true){
+		for(unsigned int px{0}; px < nLep; px++) {
+			if(sqrt( pow((HM_CleanFatJetPassMBoosted_eta->At(ix) - Lepton_eta->At(px)),2) + pow((HM_CleanFatJetPassMBoosted_phi->At(ix) - Lepton_phi->At(px)),2)) < 0.8){
+				GoodJet = false;
+			}
+		}
+	}
+
+	if(GoodJet == true){
+		if( ix == 0){
+			GoodJet_cd = true;
+			index_Good_0 = 0;
+		}else if(ix == 1){
+			GoodJet_cd = true;
+			index_Good_1 = 1;
+		}else if(ix == 2){
+			GoodJet_cd = true;
+			index_Good_2 = 2;
+		}else if(ix == 3){
+			GoodJet_cd = true;
+			index_Good_3 = 3;
+		}else{
+			GoodJet_cd = true;
+			last_idx = ix;
+		}
+	}
+}
+	unsigned int jx ;
+	if (GoodJet_cd == true){
+		  if(index_Good_0 >= 0){ jx = 0;
+                  }else if(index_Good_1 >= 1){jx = 1;
+                  }else if(index_Good_2 >= 2){jx = 2;
+                  }else if(index_Good_3 >= 3){jx = 3;
+                  }else{ jx = last_idx;}
+    wpt = HM_CleanFatJetPassMBoosted_pt->At(jx);
+    weta = HM_CleanFatJetPassMBoosted_eta->At(jx);
+    wphi = HM_CleanFatJetPassMBoosted_phi->At(jx);
+    wmass = HM_CleanFatJetPassMBoosted_mass->At(jx);
     //WWmass = HM_CleanFatJetPassMBoosted_HlnFat_mass->At(0);
     wr1pt = 0.0;
     wr1eta = 0.0;
@@ -353,12 +414,15 @@ DNNprodSemiNewOdd::bindTree_(multidraw::FunctionLibrary& _library)
   _library.bindBranch(PuppiMET_pt, "PuppiMET_pt");
   _library.bindBranch(PuppiMET_phi, "PuppiMET_phi");
   _library.bindBranch(nCleanJet, "nCleanJet");
-  _library.bindBranch(HM_nCleanFatJetPassMBoosted,     "nCleanFatJet");
+  _library.bindBranch(HM_nCleanFatJetPassMBoosted,     "nFatJet");
  // _library.bindBranch(HM_nCleanFatJetPassMBoosted,     "HM_idxWfat_noTau21Cut");
-  _library.bindBranch(HM_CleanFatJetPassMBoosted_pt,   "CleanFatJet_pt");
-  _library.bindBranch(HM_CleanFatJetPassMBoosted_eta,  "CleanFatJet_eta");
-  _library.bindBranch(HM_CleanFatJetPassMBoosted_phi,  "CleanFatJet_phi");
-  _library.bindBranch(HM_CleanFatJetPassMBoosted_mass, "CleanFatJet_mass");
+  _library.bindBranch(HM_CleanFatJetPassMBoosted_pt,   "FatJet_pt");
+  _library.bindBranch(HM_CleanFatJetPassMBoosted_eta,  "FatJet_eta");
+  _library.bindBranch(HM_CleanFatJetPassMBoosted_phi,  "FatJet_phi");
+  _library.bindBranch(HM_CleanFatJetPassMBoosted_mass, "FatJet_mass_nom");
+  _library.bindBranch(FatJet_msof, "FatJet_msoftdrop_nom");
+  _library.bindBranch(FatJet_jetId, "FatJet_jetId");
+  _library.bindBranch(nLepton, "nLepton");  
   //_library.bindBranch(HM_nCleanFatJetPassMBoosted, "HM_nCleanFatJetPassMBoosted");
   //_library.bindBranch(HM_CleanFatJetPassMBoosted_pt, "HM_CleanFatJetPassMBoosted_pt");
   //_library.bindBranch(HM_CleanFatJetPassMBoosted_eta, "HM_CleanFatJetPassMBoosted_eta");

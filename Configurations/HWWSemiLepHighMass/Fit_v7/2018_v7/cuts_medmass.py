@@ -38,10 +38,10 @@ BoostProcCats['isVBF_']='(vbflike_odd[0] > 0)'
 BoostProcCats['isGGH_']='(gghlike_odd[0] > 0)'
 BoostProcCats['isBKG_']='(bkglike_odd[0] > 0)'
 ResProcCats={}
-ResProcCats['all']='1'
-#ResProcCats['isVBF_']='(vbflike_res[0] > 0)'
-#ResProcCats['isGGH_']='(gghlike_res[0] > 0)'
-#ResProcCats['isBKG_']='(bkglike_res[0] > 0)'
+#ResProcCats['all']='1'
+ResProcCats['isVBF_']='(vbflike_res[0] > 0)'
+ResProcCats['isGGH_']='(gghlike_res[0] > 0)'
+ResProcCats['isBKG_']='(bkglike_res[0] > 0)'
 
 BoostCatsSR={}
 
@@ -74,15 +74,15 @@ BoostCats['BoostedSB_']='(1 \
 #                       && HvOverFat[0] < 0.4 \
 #                       && boostedSignalWMass[0] \
 #                       && bVeto_boo[0])'
-#BoostCats['ResolvedSB_']='(1 \
-#                       && two_jet_res[0] \
-#                       && !resolvedSignalWMass[0] \
-#                       && resolvedSidebandWMass[0] \
-#                       && bVeto[0])'
-#BoostCats['ResolvedTopCR_']='(1 \
-#                       && two_jet_res[0] \
-#                       && resolvedSignalWMass[0] \
-#                       && bReq[0])'
+BoostCats['ResolvedSB_']='(1 \
+                       && two_jet_res[0] \
+                       && !resolvedSignalWMass[0] \
+                       && resolvedSidebandWMass[0] \
+                       && bVeto[0])'
+BoostCats['ResolvedTopCR_']='(1 \
+                       && two_jet_res[0] \
+                       && resolvedSignalWMass[0] \
+                       && bReq[0])'
 ###BoostCats['ResolvedSR_']='(1 \
 ###                       && two_jet_res[0] \
 ###                       && resolvedSignalWMass[0] \
@@ -118,8 +118,8 @@ for Lep in LepCats:
 		cuts[Lep+BCat+BProcCat]=  BoostCatsSR[BCat]\
                 	            +'&&'+BoostProcCats_H[BProcCat]\
                 	            +'&&'+LepCats[Lep]
-#for Lep in LepCats_P:
-#    for BCat in BoostCats:
-#	cuts[Lep+BCat]=  BoostCats[BCat]\
-#                           +'&&'+LepCats_P[Lep]
+for Lep in LepCats_P:
+    for BCat in BoostCats:
+	cuts[Lep+BCat]=  BoostCats[BCat]\
+                           +'&&'+LepCats_P[Lep]
 ##

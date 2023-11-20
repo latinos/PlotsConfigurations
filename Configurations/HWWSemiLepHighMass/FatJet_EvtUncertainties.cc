@@ -8,15 +8,15 @@
 #include <iostream>
 
 
-#ifndef FatJet_Unc_HH
-#define FatJet_Unc_HH
+#ifndef FatJet_EvtUnc_HH
+#define FatJet_EvtUnc_HH
 
-class FatJet_Unc : public multidraw::TTreeFunction {
+class FatJet_EvtUnc : public multidraw::TTreeFunction {
 public:
-  FatJet_Unc(unsigned int var, TString unc);
+  FatJet_EvtUnc(unsigned int var, TString unc);
    
-  char const* getName() const override { return "FatJet_Unc"; }
-  TTreeFunction* clone() const override { return new FatJet_Unc(_var, _unc); }
+  char const* getName() const override { return "FatJet_EvtUnc"; }
+  TTreeFunction* clone() const override { return new FatJet_EvtUnc(_var, _unc); }
 
   unsigned getNdata() override { return 1; }
 
@@ -77,7 +77,7 @@ std::vector <float> mass_H;
   //:ROOT::Math::LorentzVector* vFat_4v;		
 };
 
-FatJet_Unc::FatJet_Unc(unsigned int var, TString unc) :
+FatJet_EvtUnc::FatJet_EvtUnc(unsigned int var, TString unc) :
  TTreeFunction()
 {
     _var = var;
@@ -88,7 +88,7 @@ FatJet_Unc::FatJet_Unc(unsigned int var, TString unc) :
 
 
 double
-FatJet_Unc::evaluate(unsigned)
+FatJet_EvtUnc::evaluate(unsigned)
 {
 ROOT::Math::PtEtaPhiMVector wLep_4v{
     *WLep_pt->Get(),
@@ -112,21 +112,55 @@ int index_Good_3 = -1;
 //float wmass= *WHad_mass->Get();
 //float wphi= *WHad_phi->Get();
 //float weta= *WHad_eta->Get();
-
+float disc_pt =0;
+float disc_mass=0;
 for (unsigned int ix{0}; ix < nFat; ix++) {
+	
+	if ( _unc == "jerUp"){
+		disc_pt = FatJet_pt_jerUp->At(ix);
+		disc_mass = FatJet_mass_jerUp->At(ix);
+	}
+	if ( _unc == "jesUp"){
+		disc_pt   = FatJet_pt_jesUp->At(ix);
+		disc_mass = FatJet_mass_jesUp->At(ix);
+	}
+	if ( _unc == "jmsUp"){
+	        disc_pt   = FatJet_pt->At(ix);
+	        disc_mass = FatJet_mass_jmsUp->At(ix);
+	}
+	if ( _unc == "jmrUp"){
+		disc_pt   = FatJet_pt->At(ix);
+		disc_mass = FatJet_mass_jmrUp->At(ix);
+	}
+	if ( _unc == "jerDo"){
+	        disc_pt   = FatJet_pt_jerDo->At(ix);
+	        disc_mass = FatJet_mass_jerDo->At(ix);
+	}
+	if ( _unc == "jesDo"){
+	        disc_pt   = FatJet_pt_jesDo->At(ix);
+	        disc_mass = FatJet_mass_jesDo->At(ix);
+	}
+	if ( _unc == "jmsDo"){
+	       disc_pt   = FatJet_pt->At(ix);
+	       disc_mass = FatJet_mass_jmsDo->At(ix);
+	}
+	if ( _unc == "jmrDo"){
+		disc_pt = FatJet_pt->At(ix);
+		disc_mass = FatJet_mass_jmrDo->At(ix);
+	}
 	bool GoodJet = true;
 	if (FatJet_tau1->At(ix) == 0.0) continue;
 	
 	if(FatJet_jetId->At(ix) < 0){
 	GoodJet = false;
 	}
-	if(FatJet_pt_sof->At(ix) < 200){
+	if(disc_pt < 200){
 	GoodJet = false;
 	}
 	if(abs(FatJet_eta->At(ix)) > 2.4){
 	GoodJet = false;
 	}
-	if(FatJet_msof->At(ix) < 55 || FatJet_msof->At(ix) > 115){
+	if(disc_mass < 55 || disc_mass > 115){
 	GoodJet = false;
 	}
 
@@ -198,6 +232,7 @@ if (GoodJet_cd == true){
 	 	 if (_var == 1) return HovFat;
 	 	 if (_var == 2) return Wfat_pt;
 	 	 if (_var == 3) return Wfat_mass;
+	 	 if (_var == 4) return 1;
 	 	 //if (_var == 4) return wpt;
 	}
          if ( _unc == "jesUp"){
@@ -217,6 +252,7 @@ if (GoodJet_cd == true){
 	 	 if (_var == 1) return HovFat;
 	 	 if (_var == 2) return Wfat_pt;
 	 	 if (_var == 3) return Wfat_mass;
+	 	 if (_var == 4) return 1;
 	 	 //if (_var == 4) return wpt;
 	}
          if ( _unc == "jmsUp"){
@@ -236,6 +272,7 @@ if (GoodJet_cd == true){
 	 	 if (_var == 1) return HovFat;
 	 	 if (_var == 2) return Wfat_pt;
 	 	 if (_var == 3) return Wfat_mass;
+	 	 if (_var == 4) return 1;
 	 	 //if (_var == 4) return wpt;
 	}
          if ( _unc == "jmrUp"){
@@ -255,6 +292,7 @@ if (GoodJet_cd == true){
 	 	 if (_var == 1) return HovFat;
 	 	 if (_var == 2) return Wfat_pt;
 	 	 if (_var == 3) return Wfat_mass;
+	 	 if (_var == 4) return 1;
 	 	 //if (_var == 4) return wpt;
 	}
          if ( _unc == "jerDo"){
@@ -274,6 +312,7 @@ if (GoodJet_cd == true){
 	 	 if (_var == 1) return HovFat;
 	 	 if (_var == 2) return Wfat_pt;
 	 	 if (_var == 3) return Wfat_mass;
+	 	 if (_var == 4) return 1;
 	 	 //if (_var == 4) return wpt;
 	}
          if ( _unc == "jesDo"){
@@ -293,6 +332,7 @@ if (GoodJet_cd == true){
 	 	 if (_var == 1) return HovFat;
 	 	 if (_var == 2) return Wfat_pt;
 	 	 if (_var == 3) return Wfat_mass;
+	 	 if (_var == 4) return 1;
 	 	 //if (_var == 4) return wpt;
 	}
          if ( _unc == "jmsDo"){
@@ -312,6 +352,7 @@ if (GoodJet_cd == true){
 	 	 if (_var == 1) return HovFat;
 	 	 if (_var == 2) return Wfat_pt;
 	 	 if (_var == 3) return Wfat_mass;
+	 	 if (_var == 4) return 1;
 	 	 //if (_var == 4) return wpt;
 	}
          if ( _unc == "jmrDo"){
@@ -331,6 +372,7 @@ if (GoodJet_cd == true){
 	 	 if (_var == 1) return HovFat;
 	 	 if (_var == 2) return Wfat_pt;
 	 	 if (_var == 3) return Wfat_mass;
+	 	 if (_var == 4) return 1;
 	 	 //if (_var == 4) return wpt;
 	}
 }
@@ -339,7 +381,7 @@ return -999;
 }
 
 void 
-FatJet_Unc::bindTree_(multidraw::FunctionLibrary& _library)
+FatJet_EvtUnc::bindTree_(multidraw::FunctionLibrary& _library)
 {
 _library.bindBranch(nFatJet, "nFatJet"); 
 _library.bindBranch(Lep_Id, "Lepton_pdgId"); 
