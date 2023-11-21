@@ -44,10 +44,6 @@ Using DY->ee data-driven distributions and scaling the signal by a factor 10, to
 
     mkDatacards.py --pycfg=configuration_datacard.py --inputFile=rootFile/plots_WHSS_2017_v9_chargeAsymmetry_Mu82_EleUL90_DYflip.root
 
-Using original distributions and scaling the signal by a factor 10, to test different strategies in single eras:
-
-    mkDatacards.py --pycfg=configuration.py --inputFile=rootFile/plots_WHSS_2017_v9_chargeAsymmetry_Mu82_EleUL90.root --outputDirDatacard=datacards --structureFile=structure.py --variablesFile=variables_datacard.py
-
 Using DY->ee data-driven distributions and the correct signal scaling, for global combination:
 
     mkDatacards.py --pycfg=configuration.py --inputFile=rootFile/plots_WHSS_2017_v9_chargeAsymmetry_Mu82_EleUL90_DYflip.root --outputDirDatacard=datacards_DYflip_original_signal_scale --structureFile=structure_DYflip_original_signal_scale.py --variablesFile=variables_datacard.py
@@ -56,27 +52,46 @@ Using DY->ee data-driven distributions and the correct signal scaling, for globa
 
 Load combine:
 
-     cd $HOME/work/combine/CMSSW_10_2_13/src/
+     cd $HOME/work/combine/CMSSW_11_3_4/src/
      cmsenv
      cd -
 
 Now optimize:
 
-    ./do_optimize_cards.sh BDTG6_TT_more 0.10
+    ./do_optimize_cards.sh BDTG6_TT_more     0.10
+    ./do_optimize_cards.sh BDTG6_TT_100_bins 0.10
 
 ### Combine datacards
 
+Create Combination directory:
+
+     mkdir -p Combination
+
 Load combine:
 
-     cd $HOME/work/combine/CMSSW_10_2_13/src/
+     cd $HOME/work/combine/CMSSW_11_3_4/src/
      cmsenv
      cd -
 
 Actually combine datacards:
 
-     mkdir -p Combination
-
      python script_datacards_opt.py
+
+### Produce prefit, postfit, and likelihood scans plots
+
+To produce likelihood scans, we need to perform the fit using the FitDiagnostic option. If we then save both the shapes and their uncertainties, we will obtain an output file with everything we need to also produce post-fit plots. If we optimized the binning of our discriminant using CombineHarvester, this is also the only way to produce plots of the discriminant with the correct binning.
+
+Run combine using the FitDiagnostic option:
+
+    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_SS_Full2017_v9_BDTG6_TT_more_allFinalStates_alsoLowPt_opt_noZveto --output_name Combination/FitResults_BDTG6_TT_more.txt --freeze_nuisances r_higgs --sanity_check FD
+
+    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_SS_Full2017_v9_BDTG6_TT_100_bins_allFinalStates_alsoLowPt_opt_noZveto --output_name Combination/FitResults_BDTG6_TT_100_bins.txt --freeze_nuisances r_higgs --sanity_check FD
+
+This will create the output file `fitDiagnostics.root`, storing all the pre- and post-fit shapes. Then, we can produce a rootfile with all the shapes, in the format that mkPlot can read, and then plot:
+
+    bash do_postfit_plots.sh BDTG6_TT_more Combination/FitResults_BDTG6_TT_more_fitDiagnostics.root
+
+    bash do_postfit_plots.sh BDTG6_TT_100_bins Combination/FitResults_BDTG6_TT_100_bins_fitDiagnostics.root
 
 ### Interpret the results in terms of asymmetry
 
@@ -116,27 +131,21 @@ Since S appears in the denominator of the asymmetry expression, it cannot be 0, 
 
 ### Use script to extract asymmetry
 
-Using BDT variable (true/false refer to the usage of data-driven DYee):
+For newer trainings, where we only want to compare the full strategy:
 
-    ./do_workspace_and_fit.sh BDTG6 true
-    ./do_workspace_and_fit.sh BDTG6 false
+    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_SS_Full2017_v9_BDTG6_TT_more_allFinalStates_alsoLowPt_opt_noZveto     --output_name Combination/FitResults_BDTG6_TT_more.txt     --freeze_nuisances r_higgs
+    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_SS_Full2017_v9_BDTG6_TT_100_bins_allFinalStates_alsoLowPt_opt_noZveto --output_name Combination/FitResults_BDTG6_TT_100_bins.txt --freeze_nuisances r_higgs
 
-    ./do_workspace_and_fit.sh mlljj20_whss_1j_bin true
-    ./do_workspace_and_fit.sh mlljj20_whss_1j_bin false
-
-    ./do_workspace_and_fit.sh BDTG6_TT_more
-
-For newer training, where we only want to compare the full strategy:
-
-    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_SS_Full2017_v9_BDTG6_TT_more_allFinalStates_alsoLowPt_opt_noZveto --output_name=Combination/FitResults_BDTG6_TT_more.txt --freeze_nuisances=r_higgs
+Using datacards with correct signal scaling:
 
     python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_SS_Full2017_v9_BDTG6_TT_more_allFinalStates_alsoLowPt_DYflip_original_signal_scale_opt_noZveto --output_name Combination/FitResults_BDTG6_TT_more_original_signal_scale.txt --freeze_nuisances r_higgs
+    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_SS_Full2017_v9_BDTG6_TT_100_bins_allFinalStates_alsoLowPt_DYflip_original_signal_scale_opt_noZveto --output_name Combination/FitResults_BDTG6_TT_100_bins_original_signal_scale.txt --freeze_nuisances r_higgs
 
 ### Produce Impact Plots
 
 Source combine:
 
-    cd $HOME/work/combine/CMSSW_10_2_13/src/
+    cd $HOME/work/combine/CMSSW_11_3_4/src/
     cmsenv
     cd -
 
@@ -150,7 +159,7 @@ Actually produce impact plots:
 
     cd Impact_plots
 
-	VAR=BDTG6_TT_more
+	VAR=BDTG6_TT_100_bins
 	FINAL_STATE=_allFinalStates_alsoLowPt_opt_noZveto
 
     combineTool.py -M Impacts -d ../Combination/WH_chargeAsymmetry_WH_SS_Full2017_v9_${VAR}${FINAL_STATE}.root -m 125 --doInitialFit -t -1 --setParameters r_S=1.3693,r_A=0.224,r_higgs=1 --setParameterRanges r_S=0,10:r_A=-1,1 --redefineSignalPOIs r_A --freezeParameters r_higgs
@@ -167,7 +176,7 @@ Actually produce impact plots:
 
 Produce impact plots for signal strength measurement. Using original signal scale:
 
-	VAR=BDTG6_TT_more
+	VAR=BDTG6_TT_100_bins
 	FINAL_STATE=_allFinalStates_alsoLowPt_DYflip_original_signal_scale_opt_noZveto_WH_strength
 
     cd Impact_plots
@@ -184,3 +193,34 @@ Produce impact plots for signal strength measurement. Using original signal scal
     rm condor_*
     rm higgsCombine_*
 
+### Produce likelihood scans and post-fit plots
+
+To produce likelihood scans, we need to perform the fit using the FitDiagnostic option. If we then save both the shapes and their uncertainties, we will obtain an output file with everything we need to also produce post-fit plots. If we optimized the binning of our discriminant using CombineHarvester, this is also the only way to produce plots of the discriminant with the correct binning.
+
+Run combine using the FitDiagnostic option:
+
+    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_SS_Full2017_v9_BDTG6_TT_more_allFinalStates_alsoLowPt_opt_noZveto --output_name Combination/FitResults_BDTG6_TT_more.txt --freeze_nuisances r_higgs --sanity_check FD
+
+This will create the output file `fitDiagnostics.root`, storing all the pre- and post-fit shapes. Then, we can produce a rootfile with all the shapes, in the format that mkPlot can read, and then plot:
+
+    bash do_postfit_plots.sh
+
+Using original distributions and scaling the signal by a factor 10, to test different strategies in single eras:
+
+    mkDatacards.py --pycfg=configuration.py --inputFile=rootFile/plots_WHSS_2017_v9_chargeAsymmetry_Mu82_EleUL90.root --outputDirDatacard=datacards --structureFile=structure.py --variablesFile=variables_datacard.py
+
+Using BDT variable (true/false refer to the usage of data-driven DYee):
+
+    ./do_workspace_and_fit.sh BDTG6 true
+    ./do_workspace_and_fit.sh BDTG6 false
+
+    ./do_workspace_and_fit.sh mlljj20_whss_1j_bin true
+    ./do_workspace_and_fit.sh mlljj20_whss_1j_bin false
+
+    ./do_workspace_and_fit.sh BDTG6_TT_more
+
+For newer training, where we only want to compare the full strategy:
+
+    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_SS_Full2017_v9_BDTG6_TT_more_allFinalStates_alsoLowPt_opt_noZveto --output_name=Combination/FitResults_BDTG6_TT_more.txt --freeze_nuisances=r_higgs
+
+    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_SS_Full2017_v9_BDTG6_TT_more_allFinalStates_alsoLowPt_DYflip_original_signal_scale_opt_noZveto --output_name Combination/FitResults_BDTG6_TT_more_original_signal_scale.txt --freeze_nuisances r_higgs
