@@ -2,7 +2,7 @@
 
 treeName = 'Events'
 
-tag = 'hm_Try'
+tag = 'hm_Try_2018_Plots'
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFile_18_bkup/'
@@ -39,4 +39,4 @@ outputDirDatacard = 'Datacards_Test_New'
 structureFile = 'structure_medmass.py'
 
 # nuisances file for mkDatacards and for mkShape
-nuisancesFile = 'nuisances_no.py'
+nuisancesFile = 'nuisances_medmass.py'
