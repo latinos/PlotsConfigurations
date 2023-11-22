@@ -28,7 +28,7 @@ for var in variables:
     
         # Load combine
         current_directory = os.getcwd()
-        combine_directory = "/afs/cern.ch/user/n/ntrevisa/work/combine/CMSSW_10_2_13/src/"
+        combine_directory = "/afs/cern.ch/user/n/ntrevisa/work/combine/CMSSW_11_3_4/src/"
         
         os.chdir(combine_directory)
         os.system("cmsenv")

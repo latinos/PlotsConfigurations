@@ -44,10 +44,6 @@ Using DY->ee data-driven distributions and scaling the signal by a factor 10, to
 
     mkDatacards.py --pycfg=configuration_datacard.py --inputFile=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90_DYflip.root
 
-Using original distributions and scaling the signal by a factor 10, to test different strategies in single eras:
-
-    mkDatacards.py --pycfg=configuration.py --inputFile=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --outputDirDatacard=datacards --structureFile=structure.py --variablesFile=variables_datacard.py
-
 Using DY->ee data-driven distributions and the correct signal scaling, for global combination:
 
     mkDatacards.py --pycfg=configuration.py --inputFile=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90_DYflip.root --outputDirDatacard=datacards_DYflip_original_signal_scale --structureFile=structure_DYflip_original_signal_scale.py --variablesFile=variables_datacard.py
@@ -56,7 +52,7 @@ Using DY->ee data-driven distributions and the correct signal scaling, for globa
 
 Load combine:
 
-     cd $HOME/work/combine/CMSSW_10_2_13/src/
+     cd $HOME/work/combine/CMSSW_11_3_4/src/
      cmsenv
      cd -
 
@@ -73,7 +69,7 @@ Create Combination directory:
 
 Load combine:
 
-     cd $HOME/work/combine/CMSSW_10_2_13/src/
+     cd $HOME/work/combine/CMSSW_11_3_4/src/
      cmsenv
      cd -
 
@@ -149,7 +145,7 @@ Using datacards with correct signal scaling:
 
 Source combine:
 
-    cd $HOME/work/combine/CMSSW_10_2_13/src/
+    cd $HOME/work/combine/CMSSW_11_3_4/src/
     cmsenv
     cd -
 
@@ -180,7 +176,7 @@ Select datacard to use and actually produce impact plots:
 
 Produce impact plots for signal strength measurement. Using original signal scale:
 
-	VAR=BDTG6_TT_more
+	VAR=BDTG6_TT_100_bins
 	FINAL_STATE=_allFinalStates_alsoLowPt_DYflip_original_signal_scale_opt_noZveto_WH_strength
 
     cd Impact_plots
@@ -272,4 +268,8 @@ Select datacard to use:
     FINAL_STATE=_allFinalStates_alsoLowPt
     FINAL_STATE=_allFinalStates_alsoLowPt_noZveto
     FINAL_STATE=_allFinalStates_alsoLowPt_DYflip_noZveto
+
+Using original distributions and scaling the signal by a factor 10, to test different strategies in single eras:
+
+    mkDatacards.py --pycfg=configuration.py --inputFile=rootFile/plots_WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --outputDirDatacard=datacards --structureFile=structure.py --variablesFile=variables_datacard.py
 

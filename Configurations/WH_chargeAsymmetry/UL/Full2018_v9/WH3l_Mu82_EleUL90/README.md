@@ -42,7 +42,7 @@ Using the correct signal scaling, for global combination:
 
 Load combine:
 
-     cd $HOME/work/combine/CMSSW_10_2_13/src/
+     cd $HOME/work/combine/CMSSW_11_3_4/src/
      cmsenv
      cd -
 
@@ -58,7 +58,7 @@ Now optimize:
 
 Load combine:
 
-    cd $HOME/work/combine/CMSSW_10_2_13/src/
+    cd $HOME/work/combine/CMSSW_11_3_4/src/
     cmsenv
     cd -
 
@@ -82,7 +82,7 @@ Run combine using the FitDiagnostic option:
 
 This will create the output file `fitDiagnostics.root`, storing all the pre- and post-fit shapes. Then, we can produce a rootfile with all the shapes, in the format that mkPlot can read, and then plot:
 
-    bash do_postfit_plots.sh new_v9_more Combination/FitResults_new_opt_fitDiagnostics.root
+    bash do_postfit_plots.sh new_v9_more     Combination/FitResults_new_opt_fitDiagnostics.root
     bash do_postfit_plots.sh new_v9_100_bins Combination/FitResults_100_bins_opt_fitDiagnostics.root
 
 ### Interpret the results in terms of asymmetry
@@ -137,7 +137,7 @@ Using datacards with correct signal scaling:
 
 Source combine:
 
-    cd $HOME/work/combine/CMSSW_10_2_13/src/
+    cd $HOME/work/combine/CMSSW_11_3_4/src/
     cmsenv
     cd -
 
@@ -177,13 +177,13 @@ Using new training with top and Z+jets as fakes
 
 Produce impact plots for signal strength measurement. Using original signal scale:
 
-    combineTool.py -M Impacts -d ../Combination/WH_chargeAsymmetry_WH_3l_Full2018_v9_original_signal_scale_new_opt_WH_strength.root -m 125 --doInitialFit -t -1 --setParameters r_WH=1 --setParameterRanges r_WH=0.01,10 --redefineSignalPOIs r_WH --freezeParameters r_higgs -n signal_strength
+    combineTool.py -M Impacts -d ../Combination/WH_chargeAsymmetry_WH_3l_Full2018_v9_original_signal_scale_100_bins_new_opt_WH_strength.root -m 125 --doInitialFit -t -1 --setParameters r_WH=1 --setParameterRanges r_WH=0.01,10 --redefineSignalPOIs r_WH --freezeParameters r_higgs -n signal_strength
 
-    combineTool.py -M Impacts -d ../Combination/WH_chargeAsymmetry_WH_3l_Full2018_v9_original_signal_scale_new_opt_WH_strength.root -m 125 --doFits -t -1 --setParameters r_WH=1 --setParameterRanges r_WH=0.01,10 --redefineSignalPOIs r_WH --job-mode=condor -n signal_strength
+    combineTool.py -M Impacts -d ../Combination/WH_chargeAsymmetry_WH_3l_Full2018_v9_original_signal_scale_100_bins_new_opt_WH_strength.root -m 125 --doFits -t -1 --setParameters r_WH=1 --setParameterRanges r_WH=0.01,10 --redefineSignalPOIs r_WH --job-mode interactive --parallel 8 -n signal_strength
 
-    combineTool.py -M Impacts -d ../Combination/WH_chargeAsymmetry_WH_3l_Full2018_v9_original_signal_scale_new_opt_WH_strength.root -m 125 -t -1 -o impacts_WH3l_2018_new_opt_WH_strength.json --setParameters r_WH=1 --setParameterRanges r_WH=0.01,10 --redefineSignalPOIs r_WH -n signal_strength
+    combineTool.py -M Impacts -d ../Combination/WH_chargeAsymmetry_WH_3l_Full2018_v9_original_signal_scale_100_bins_new_opt_WH_strength.root -m 125 -t -1 -o impacts_WH3l_2018_100_bins_new_opt_WH_strength.json --setParameters r_WH=1 --setParameterRanges r_WH=0.01,10 --redefineSignalPOIs r_WH -n signal_strength
 
-    plotImpacts.py -i impacts_WH3l_2018_new_opt_WH_strength.json -o Impact_WH3l_2018_new_opt_WH_strength
+    plotImpacts.py -i impacts_WH3l_2018_100_bins_new_opt_WH_strength.json -o Impact_WH3l_2018_100_bins_new_opt_WH_strength
 
     rm combine_*
     rm condor_*

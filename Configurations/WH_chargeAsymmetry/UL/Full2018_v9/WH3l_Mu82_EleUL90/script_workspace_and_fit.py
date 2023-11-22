@@ -327,7 +327,7 @@ if sanity_check != False:
         FD_output_name = output_name.replace(".txt","_fitDiagnostics.root")
         if (opt.freeze_nuisances) == "1" or (opt.freeze_nuisances) == "True":
             rA_output_name = output_name.replace(".txt","_fitDiagnostics_freeze.root")
-        move_command = "mv fitDiagnostics.root {}".format(FD_output_name)
+        move_command = "mv fitDiagnosticsTest.root {}".format(FD_output_name)
         print(move_command)
         os.system(move_command)
         print("\n")
