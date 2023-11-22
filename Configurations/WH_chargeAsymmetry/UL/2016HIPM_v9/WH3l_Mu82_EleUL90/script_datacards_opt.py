@@ -1,7 +1,7 @@
 import sys,os
 
 # Define variables and strategy to use
-variables = ['BDT_WH3l_OSSF_v9_more','BDT_WH3l_OSSF_new_v9_more']
+variables = ['BDT_WH3l_OSSF_v9_more','BDT_WH3l_OSSF_new_v9_more','BDT_WH3l_OSSF_v9_100_bins','BDT_WH3l_OSSF_new_v9_100_bins']
 scaling   = ['','_original_signal_scale']
 
 # Actually combine datacards
@@ -11,6 +11,10 @@ for var in variables:
         suffix = ''
         if var == 'BDT_WH3l_OSSF_new_v9_more':
             suffix = '_new'
+        if var == 'BDT_WH3l_OSSF_v9_100_bins':
+            suffix = '_100_bins'
+        if var == 'BDT_WH3l_OSSF_new_v9_100_bins':
+            suffix = '_100_bins_new'
     
         var_OSSF_plus  = var
         var_OSSF_minus = var
@@ -24,7 +28,7 @@ for var in variables:
     
         # Load combine
         current_directory = os.getcwd()
-        combine_directory = "/afs/cern.ch/user/n/ntrevisa/work/combine/CMSSW_10_2_13/src/"
+        combine_directory = "/afs/cern.ch/user/n/ntrevisa/work/combine/CMSSW_11_3_4/src/"
         
         os.chdir(combine_directory)
         os.system("cmsenv")

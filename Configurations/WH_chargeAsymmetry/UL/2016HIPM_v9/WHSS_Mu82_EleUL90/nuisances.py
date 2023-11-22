@@ -44,22 +44,22 @@ nuisances['lumi_Correlated_Run2'] = {
 
 
 #### FAKES
-nuisances['fake_syst_mm'] = {
-    'name': 'CMS_fake_syst_mm_2016',
+nuisances['fake_syst_mm'] = { # The flat 30% should be correlated among years
+    'name': 'CMS_fake_syst_mm',
     'type': 'lnN',
     'samples': {
         'Fake_mm': '1.3'
     },
 }
-nuisances['fake_syst_em'] = {
-    'name': 'CMS_fake_syst_em_2016',
+nuisances['fake_syst_em'] = { # The flat 30% should be correlated among years
+    'name': 'CMS_fake_syst_em',
     'type': 'lnN',
     'samples': {
         'Fake_em': '1.3'
     },
 }
-nuisances['fake_syst_ee'] = {
-    'name': 'CMS_fake_syst_ee_2016',
+nuisances['fake_syst_ee'] = { # The flat 30% should be correlated among years
+    'name': 'CMS_fake_syst_ee',
     'type': 'lnN',
     'samples': {
         'Fake_ee': '1.3'
