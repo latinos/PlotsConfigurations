@@ -1,76 +1,82 @@
 # plot configuration
 
-
-
 # groupPlot = {}
 # 
 # Groups of samples to improve the plots.
 # If not defined, normal plots is used
 #
 
-
-# groupPlot['VZ']  = {  
-#                   'nameHR' : "VZ",
-#                   'isSignal' : 0,
-#                   'color'    : 617,   # kViolet + 1  
-#                   'samples'  : ['VZ', 'WZ', 'ZZ']
-#               }
-
-# groupPlot['VVV']  = {  
-#                   'nameHR' : 'VVV',
-#                   'isSignal' : 0,
-#                   'color': 857, # kAzure -3  
-#                   'samples'  : ['VVV']
-#               }
-
-# groupPlot['Vg']  = {  
-#                   'nameHR' : "V#gamma",
-#                   'isSignal' : 0,
-#                   'color'    : 800,   # kOrange
-#                   'samples'  : ['Vg', 'Wg']
-#               }
-
-
-# groupPlot['VgS']  = {
-#                   'nameHR' : "V#gamma*",
-#                   'isSignal' : 0,
-#                   'color'    : 409,   # kGreen - 9
-#                   'samples'  : ['VgS']
-#               }
-
-
-groupPlot['Other']  = {  
-                  'nameHR' : "Other background",
+groupPlot['Vg']  = {
+                  'nameHR' : "V#gamma",
                   'isSignal' : 0,
-                  'color'    : 617,   # kOrange
-                  'samples'  : ['Vg', 'Wg', 'VgS', 'VVV', 'VZ', 'WZ', 'ZZ']
+                  'color'    : 811,   # kOrange + 10
+                  'samples'  : ['Vg']
               }
 
+groupPlot['Higgs']  = {
+                  'nameHR' : 'Higgs',
+                  'isSignal' : 0,
+                  'color': 632, # kRed 
+                  'samples'  : ['Higgs' ]
+              }
 
-groupPlot['DY']  = {  
-                  'nameHR' : "Drell-Yan",
+groupPlot['ZZ']  = {
+                  'nameHR' : "ZZ",
+                  'isSignal' : 0,
+                  'color'    : 618,   # kViolet + 1  
+                  'samples'  : ['ZZ']
+              }
+
+groupPlot['VVV']  = {
+                  'nameHR' : 'VVV',
+                  'isSignal' : 0,
+                  'color': 857, # kAzure -3  
+                  'samples'  : ['VVV']
+              }
+
+groupPlot['DY']  = {
+                  'nameHR' : "DY",
                   'isSignal' : 0,
                   'color': 418,    # kGreen+2
                   'samples'  : ['DY']
               }
 
+groupPlot['WZ']  = {
+                  'nameHR' : "WZ",
+                  'isSignal' : 0,
+                  'color'    : 617,   # kViolet + 1  
+                  'samples'  : ['WZ']
+              }
+
+groupPlot['ggHToWWOnshell']  = {
+                  'nameHR' : 'ggH Onshell',
+                  'isSignal' : 0,
+                  'color': 603, # kBlue+3                                                                                                                                                                  
+                  'samples'  : ['ggHToWWOnshell' ]
+              }
 
 groupPlot['Fake']  = {
-                  'nameHR' : 'Nonprompt',
+                  'nameHR' : 'nonprompt',
                   'isSignal' : 0,
                   'color': 921,    # kGray + 1
-                  'samples'  : ['Fake']
+                  'samples'  : ['Fake_me', 'Fake_em']
 }
 
+groupPlot['ggHToWWOffshell']  = {
+                  'nameHR' : 'ggH Offshell',
+                  'isSignal' : 1,
+                  'color': 432, # kCyan
+                  'samples'  : ['ggHToWWOffshell' ]
+              }
 
-groupPlot['WW']  = {  
+groupPlot['WW']  = {
                   'nameHR' : 'WW',
                   'isSignal' : 0,
                   'color': 851, # kAzure -9 
                   'samples'  : ['WW', 'ggWW', 'WWewk']
               }
 
-groupPlot['top']  = {  
+groupPlot['top']  = {
                   'nameHR' : 'tW and t#bar{t}',
                   'isSignal' : 0,
                   'color': 400,   # kYellow
@@ -78,53 +84,20 @@ groupPlot['top']  = {
               }
 
 
-groupPlot['Higgs_onshell']  = {  
-                  'nameHR' : 'Higgs onshell',
-                  'isSignal' : 0,
-                  'color': 632,   # kYellow
-                  'samples'  : ['Higgs_onshell']
-              }
-
-
-groupPlot['Higgs_offshell']  = {
-                  'nameHR' : 'Higgs offshell',
-                  'isSignal' : 2,
-                  'color': 1, # kRed
-                  'samples'  : ['Higgs_offshell' ]
-              }
-
-
-
-
-
-
-
 #plot = {}
 
 # keys here must match keys in samples.py    
 #                    
+
 plot['DY']  = {  
                   'color': 418,    # kGreen+2
                   'isSignal' : 0,
                   'isData'   : 0, 
                   'scale'    : 1.0,
-                  #'cuts'  : {
-                       #'hww2l2v_13TeV_of0j'      : 0.95 ,
-                       #'hww2l2v_13TeV_top_of0j'  : 0.95 , 
-                       #'hww2l2v_13TeV_dytt_of0j' : 0.95 ,
-                       #'hww2l2v_13TeV_em_0j'     : 0.95 , 
-                       #'hww2l2v_13TeV_me_0j'     : 0.95 , 
-                       ##
-                       #'hww2l2v_13TeV_of1j'      : 1.08 ,
-                       #'hww2l2v_13TeV_top_of1j'  : 1.08 , 
-                       #'hww2l2v_13TeV_dytt_of1j' : 1.08 ,
-                       #'hww2l2v_13TeV_em_1j'     : 1.08 , 
-                       #'hww2l2v_13TeV_me_1j'     : 1.08 , 
-                        #},
-
               }
 
-plot['Fake']  = {  
+
+plot['Fake_me']  = {  
                   'color': 921,    # kGray + 1
                   'isSignal' : 0,
                   'isData'   : 0,
@@ -132,39 +105,33 @@ plot['Fake']  = {
               }
 
 
+plot['Fake_em']  = {  
+                  'color': 921,    # kGray + 1
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0                  
+              }
+
+              
 plot['top'] = {   
                   'nameHR' : 'tW and t#bar{t}',
                   'color': 400,   # kYellow
                   'isSignal' : 0,
                   'isData'   : 0, 
                   'scale'    : 1.0,
-                  #'cuts'  : {
-                       #'hww2l2v_13TeV_of0j'      : 0.94 ,
-                       #'hww2l2v_13TeV_top_of0j'  : 0.94 , 
-                       #'hww2l2v_13TeV_dytt_of0j' : 0.94 ,
-                       #'hww2l2v_13TeV_em_0j'     : 0.94 , 
-                       #'hww2l2v_13TeV_me_0j'     : 0.94 , 
-                       ##
-                       #'hww2l2v_13TeV_of1j'      : 0.86 ,
-                       #'hww2l2v_13TeV_top_of1j'  : 0.86 , 
-                       #'hww2l2v_13TeV_dytt_of1j' : 0.86 ,
-                       #'hww2l2v_13TeV_em_1j'     : 0.86 , 
-                       #'hww2l2v_13TeV_me_1j'     : 0.86 , 
-                        #},
                   }
-
 
 plot['WW']  = {
                   'color': 851, # kAzure -9 
                   'isSignal' : 0,
-                  'isData'   : 0,    
+                  'isData'   : 0,
                   'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
                   }
 
 plot['ggWW']  = {
                   'color': 850, # kAzure -10
                   'isSignal' : 0,
-                  'isData'   : 0,    
+                  'isData'   : 0,
                   'scale'    : 1.0
                   }
 
@@ -175,24 +142,21 @@ plot['WWewk']  = {
                   'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
                   }
 
-
-
-plot['Vg']  = { 
+plot['Vg']  = {
                   'color': 859, # kAzure -1  
                   'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.0
                   }
 
-plot['VgS'] = { 
-                  'color'    : 617,   # kViolet + 1  
+plot['WZ']  = { 
+                  'color': 858, # kAzure -2  
                   'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.0
                   }
 
-
-plot['VZ']  = { 
+plot['ZZ']  = {
                   'color': 858, # kAzure -2  
                   'isSignal' : 0,
                   'isData'   : 0,
@@ -206,21 +170,33 @@ plot['VVV']  = {
                   'scale'    : 1.0
                   }
 
+# Higgs
 
-plot['Higgs_onshell']  = { 
-                  'color': 632, # kAzure -3  
+plot['Higgs'] = {
+                  'nameHR' : 'Higgs',
+                  'color': 632, # kRed 
+                  'isSignal' : 0,
+                  'isData'   : 0,    
+                  'scale'    : 1    #
+                  }
+
+
+plot['ggHToWWOnshell']  = {
+                  'color': 603, # kRed  
                   'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.0
                   }
 
 
-plot['Higgs_offshell']  = { 
-                  'color': 1, # kAzure -3  
-                  'isSignal' : 2,
+plot['ggHToWWOffshell']  = {
+                  'color': 432, # kRed  
+                  'isSignal' : 1,
                   'isData'   : 0,
                   'scale'    : 1.0
                   }
+
+
 
 # data
 
@@ -229,17 +205,14 @@ plot['DATA']  = {
                   'color': 1 ,  
                   'isSignal' : 0,
                   'isData'   : 1 ,
-                  'isBlind'  : 0
-              } ##plot data overlay (isBlind: 0)
+                  'isBlind'  : 1
+              }
+
 
 
 
 # additional options
 
-legend['lumi'] = '59.83 fb^{-1}'
+legend['lumi'] = 'L = 59.8/fb'
 
 legend['sqrt'] = '#sqrt{s} = 13 TeV'
-
-
-
-

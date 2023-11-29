@@ -1,7 +1,7 @@
 # example of configuration file
 treeName= 'Events'
 
-tag = 'offshell2018_v7_ggH'
+tag = 'offshell2018_v9_ggH'
 
 
 # used by mkShape to define output directory for root files
