@@ -441,7 +441,7 @@ for js in jes_systs:
 #    'mapUp'  : 'fatjetJESup',
 #    'mapDown': 'fatjetJESdo',
 #    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['VgS']),
-#    'cuts': cutdict['Boosted'],
+##    'cuts': cutdict['Boosted'],
 ##    'folderUp'  : makeMCDirectory('fatjetJESup'),
 ##    'folderDown': makeMCDirectory('fatjetJESdo'),
 #    'AsLnN': '1'
@@ -453,7 +453,7 @@ for js in jes_systs:
 #    'mapUp'  : 'fatjetJERup',
 #    'mapDown': 'fatjetJERdo',
 #    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['VgS']),
-#    'cuts': cutdict['Boosted'],
+##    'cuts': cutdict['Boosted'],
 ##    'folderUp'  : makeMCDirectory('fatjetJERup'),
 ##    'folderDown': makeMCDirectory('fatjetJERdo'),
 #    'AsLnN': '1'
@@ -465,7 +465,7 @@ for js in jes_systs:
 #    'mapUp'  : 'fatjetJMSup',
 #    'mapDown': 'fatjetJMSdo',
 #    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['VgS']),
-#    'cuts': cutdict['Boosted'],
+##    'cuts': cutdict['Boosted'],
 ##    'folderUp'  : makeMCDirectory('fatjetJMSup'),
 ##    'folderDown': makeMCDirectory('fatjetJMSdo'),
 ## #   'AsLnN': '1'
@@ -477,7 +477,7 @@ for js in jes_systs:
 #    'mapUp'  : 'fatjetJMRup',
 #    'mapDown': 'fatjetJMRdo',
 #    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['VgS']),
-#    'cuts': cutdict['Boosted'],
+##    'cuts': cutdict['Boosted'],
 ###    'folderUp'  : makeMCDirectory('fatjetJMRup'),
 ###    'folderDown': makeMCDirectory('fatjetJMRdo'),
 # #   'AsLnN': '1'
@@ -489,7 +489,7 @@ for js in jes_systs:
 #    'samples': {
 #    	  'VgS': '1.04',
 #     }
-#    'cuts': cutdict['Boosted'],
+# #   'cuts': cutdict['Boosted'],
 #}
 #nuisances['fatjet_jer_lnn']={
 #    'name'  : 'CMS_res_fatjer_2018',
@@ -497,7 +497,7 @@ for js in jes_systs:
 #    'samples': {
 #    	  'VgS': '1.05',
 #     }
-#    'cuts': cutdict['Boosted'],
+# #   'cuts': cutdict['Boosted'],
 #}
 #nuisances['fatjet_jms_lnn']={
 #    'name'  : 'CMS_fatjms_2018',
@@ -505,7 +505,7 @@ for js in jes_systs:
 #    'samples': {
 #    	  'VgS': '1.03',
 #     }
-#    'cuts': cutdict['Boosted'],
+# #   'cuts': cutdict['Boosted'],
 #}
 #nuisances['fatjet_jmr_lnn']={
 #    'name'  : 'CMS_res_fatjmr_2018',
@@ -513,7 +513,7 @@ for js in jes_systs:
 #    'samples': {
 #    	  'VgS': '1.06',
 #     }
-#    'cuts': cutdict['Boosted'],
+# #   'cuts': cutdict['Boosted'],
 #}
  ##### FatJet scale and resolution
 
@@ -1710,62 +1710,62 @@ for nuis in oldnuisances:
         if nuisances[nuis]['samples'] == {}: del nuisances[nuis]
 
 nuisancename = {}
-for nuis in nuisances:
-  if nuisances[nuis]['type'] == "shape":
-    if nuisances[nuis]['name'] not in nuisancename: nuisancename[nuisances[nuis]['name']] = []
-    nuisancename[nuisances[nuis]['name']].append(nuis)
-for nuisname in nuisancename:
-  allsamples = {}
-  for nuis in nuisancename[nuisname]:
-    allsamples.update(nuisances[nuis]['samples']) # Sometimes have 2 dict keys doing shapes for the same nuisance for different samples; combine them here
-  if [samp for samp in allsamples if 'SBI' in samp] == []:
-    dogg=0
-    doqq=0
-    for samp in allsamples:
-      if ("GGH" in samp) or (samp in ["ggWW", "ggH_hww"]): dogg=1
-      elif ("QQH" in samp) or (samp in ["qqWWqq", "qqH_hww"]): doqq=1
-    if dogg==1:
-        SM_up = '1.0'
-        SM_dn = '1.0'
-        WW_up = '1.0'
-        WW_dn = '1.0'
-        sig_up = '1.0'
-        sig_dn = '1.0'
-        for nuis in nuisancename[nuisname]:
-          if "ggH_hww" in nuisances[nuis]['samples']: SM_up = nuisances[nuis]['samples']["ggH_hww"][0]
-          if "ggH_hww" in nuisances[nuis]['samples']: SM_dn = nuisances[nuis]['samples']["ggH_hww"][1]
-          if "ggWW" in nuisances[nuis]['samples']: WW_up = nuisances[nuis]['samples']["ggWW"][0]
-          if "ggWW" in nuisances[nuis]['samples']: WW_dn = nuisances[nuis]['samples']["ggWW"][1]
-        for model in models:
-          model_name = '_'+model.replace(".","")
-          for m in massggh:
-            for nuis in nuisancename[nuisname]:
-              if 'GGH_'+m+model_name in nuisances[nuis]['samples']: sig_up = nuisances[nuis]['samples']['GGH_'+m+model_name][0]
-              if 'GGH_'+m+model_name in nuisances[nuis]['samples']: sig_dn = nuisances[nuis]['samples']['GGH_'+m+model_name][1]
-            SBI_string = ['('+sig_up+')*SBI_isHM + ('+SM_up+')*SBI_isSMggh + ('+WW_up+')*SBI_isggWW',
-                          '('+sig_dn+')*SBI_isHM + ('+SM_dn+')*SBI_isSMggh + ('+WW_dn+')*SBI_isggWW']
-            nuisances[nuis]['samples'].update({'GGHSBI_'+m+model_name: SBI_string})
-    if doqq==1:
-        SM_up = '1.0'
-        SM_dn = '1.0'
-        WW_up = '1.0'
-        WW_dn = '1.0'
-        sig_up = '1.0'
-        sig_dn = '1.0'
-        for nuis in nuisancename[nuisname]:
-          if "qqH_hww" in nuisances[nuis]['samples']: SM_up = nuisances[nuis]['samples']["qqH_hww"][0]
-          if "qqH_hww" in nuisances[nuis]['samples']: SM_dn = nuisances[nuis]['samples']["qqH_hww"][1]
-          if "qqWWqq" in nuisances[nuis]['samples']: WW_up = nuisances[nuis]['samples']["qqWWqq"][0]
-          if "qqWWqq" in nuisances[nuis]['samples']: WW_dn = nuisances[nuis]['samples']["qqWWqq"][1]
-        for model in models:
-          model_name = '_'+model.replace(".","")
-          for m in massvbf:
-            for nuis in nuisancename[nuisname]:
-              if 'QQH_'+m+model_name in nuisances[nuis]['samples']: sig_up = nuisances[nuis]['samples']['QQH_'+m+model_name][0]
-              if 'QQH_'+m+model_name in nuisances[nuis]['samples']: sig_dn = nuisances[nuis]['samples']['QQH_'+m+model_name][1]
-            SBI_string = ['('+sig_up+')*SBI_isHM + ('+SM_up+')*SBI_isSMVBF + ('+WW_up+')*SBI_isqqWWqq',
-                          '('+sig_dn+')*SBI_isHM + ('+SM_dn+')*SBI_isSMVBF + ('+WW_dn+')*SBI_isqqWWqq']
-            nuisances[nuis]['samples'].update({'QQHSBI_'+m+model_name: SBI_string})
+#for nuis in nuisances:
+#  if nuisances[nuis]['type'] == "shape":
+#    if nuisances[nuis]['name'] not in nuisancename: nuisancename[nuisances[nuis]['name']] = []
+#    nuisancename[nuisances[nuis]['name']].append(nuis)
+#for nuisname in nuisancename:
+#  allsamples = {}
+#  for nuis in nuisancename[nuisname]:
+#    allsamples.update(nuisances[nuis]['samples']) # Sometimes have 2 dict keys doing shapes for the same nuisance for different samples; combine them here
+#  if [samp for samp in allsamples if 'SBI' in samp] == []:
+#    dogg=0
+#    doqq=0
+#    for samp in allsamples:
+#      if ("GGH" in samp) or (samp in ["ggWW", "ggH_hww"]): dogg=1
+#      elif ("QQH" in samp) or (samp in ["qqWWqq", "qqH_hww"]): doqq=1
+#    if dogg==1:
+#        SM_up = '1.0'
+#        SM_dn = '1.0'
+#        WW_up = '1.0'
+#        WW_dn = '1.0'
+#        sig_up = '1.0'
+#        sig_dn = '1.0'
+#        for nuis in nuisancename[nuisname]:
+#          if "ggH_hww" in nuisances[nuis]['samples']: SM_up = nuisances[nuis]['samples']["ggH_hww"][0]
+#          if "ggH_hww" in nuisances[nuis]['samples']: SM_dn = nuisances[nuis]['samples']["ggH_hww"][1]
+#          if "ggWW" in nuisances[nuis]['samples']: WW_up = nuisances[nuis]['samples']["ggWW"][0]
+#          if "ggWW" in nuisances[nuis]['samples']: WW_dn = nuisances[nuis]['samples']["ggWW"][1]
+#        for model in models:
+#          model_name = '_'+model.replace(".","")
+#          for m in massggh:
+#            for nuis in nuisancename[nuisname]:
+#              if 'GGH_'+m+model_name in nuisances[nuis]['samples']: sig_up = nuisances[nuis]['samples']['GGH_'+m+model_name][0]
+#              if 'GGH_'+m+model_name in nuisances[nuis]['samples']: sig_dn = nuisances[nuis]['samples']['GGH_'+m+model_name][1]
+#            SBI_string = ['('+sig_up+')*SBI_isHM + ('+SM_up+')*SBI_isSMggh + ('+WW_up+')*SBI_isggWW',
+#                          '('+sig_dn+')*SBI_isHM + ('+SM_dn+')*SBI_isSMggh + ('+WW_dn+')*SBI_isggWW']
+#            nuisances[nuis]['samples'].update({'GGHSBI_'+m+model_name: SBI_string})
+#    if doqq==1:
+#        SM_up = '1.0'
+#        SM_dn = '1.0'
+#        WW_up = '1.0'
+#        WW_dn = '1.0'
+#        sig_up = '1.0'
+#        sig_dn = '1.0'
+#        for nuis in nuisancename[nuisname]:
+#          if "qqH_hww" in nuisances[nuis]['samples']: SM_up = nuisances[nuis]['samples']["qqH_hww"][0]
+#          if "qqH_hww" in nuisances[nuis]['samples']: SM_dn = nuisances[nuis]['samples']["qqH_hww"][1]
+#          if "qqWWqq" in nuisances[nuis]['samples']: WW_up = nuisances[nuis]['samples']["qqWWqq"][0]
+#          if "qqWWqq" in nuisances[nuis]['samples']: WW_dn = nuisances[nuis]['samples']["qqWWqq"][1]
+#        for model in models:
+#          model_name = '_'+model.replace(".","")
+#          for m in massvbf:
+#            for nuis in nuisancename[nuisname]:
+#              if 'QQH_'+m+model_name in nuisances[nuis]['samples']: sig_up = nuisances[nuis]['samples']['QQH_'+m+model_name][0]
+#              if 'QQH_'+m+model_name in nuisances[nuis]['samples']: sig_dn = nuisances[nuis]['samples']['QQH_'+m+model_name][1]
+#            SBI_string = ['('+sig_up+')*SBI_isHM + ('+SM_up+')*SBI_isSMVBF + ('+WW_up+')*SBI_isqqWWqq',
+#                          '('+sig_dn+')*SBI_isHM + ('+SM_dn+')*SBI_isSMVBF + ('+WW_dn+')*SBI_isqqWWqq']
+#            nuisances[nuis]['samples'].update({'QQHSBI_'+m+model_name: SBI_string})
 
 
 
