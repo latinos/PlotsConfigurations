@@ -10,57 +10,55 @@
 #include "TString.h" 
 #include <string.h> 
 class AddDNNScoresv1_1jet : public multidraw::TTreeFunction {  
-	public: 
-		//Class Constructor  
-		AddDNNScoresv1_1jet(char const* name); 
-		//Class Destructor  
-		~AddDNNScoresv1_1jet() { 
-   		} 
-		//Functions from Multidraw namespace (TTreeFunction class) 
-		char const* getName() const override {return "AddDNNScoresv1_1jet"; } 
-		TTreeFunction* clone() const override {return new AddDNNScoresv1_1jet(name_.c_str());} 
-		unsigned getNdata() override {return 1; } 
-		//This function will return the required value 
-		double evaluate(unsigned) override; 
+public: 
+//Class Constructor  
+AddDNNScoresv1_1jet(char const* name); 
+//Class Destructor  
+~AddDNNScoresv1_1jet() { 
+   } 
+//Functions from Multidraw namespace (TTreeFunction class) 
+char const* getName() const override {return "AddDNNScoresv1_1jet"; } 
+TTreeFunction* clone() const override {return new AddDNNScoresv1_1jet(name_.c_str());} 
+unsigned getNdata() override {return 1; } 
+//This function will return the required value 
+double evaluate(unsigned) override; 
  
-	protected: 
-		void bindTree_(multidraw::FunctionLibrary&) override; 
+protected: 
+void bindTree_(multidraw::FunctionLibrary&) override; 
  
-		//name of the required ME 
-		std::string name_; 
+//name of the required ME 
+std::string name_; 
  
-		//Needed variables to select the events 
-		TTreeReaderValue<float> *mll{}; 
+//Needed variables to select the events 
+TTreeReaderValue<float> *mll{}; 
                TTreeReaderValue<float> *dphill{}; 
                TTreeReaderValue<float> *detall{}; 
                TTreeReaderValue<float> *ptll{}; 
                TTreeReaderValue<float> *drll{}; 
                FloatArrayReader* Lepton_pt{}; 
                IntArrayReader* CleanJet_jetIdx{}; 
+               FloatArrayReader* CleanJet_pt{}; 
                FloatArrayReader* Jet_btagDeepFlavB{}; 
                TTreeReaderValue<float> *pt1{}; 
                TTreeReaderValue<float> *pt2{}; 
                TTreeReaderValue<float> *mth{}; 
-               TTreeReaderValue<float> *mjj{}; 
-               TTreeReaderValue<float> *detajj{}; 
-               TTreeReaderValue<float> *dphijj{}; 
                TTreeReaderValue<float> *PuppiMET_pt{}; 
                TTreeReaderValue<float> *dphillmet{}; 
                TTreeReaderValue<float> *mcollWW{}; 
  
-	private: 
-		Double_t LHCsqrts_= 13., mh_= 125.; 
+private: 
+Double_t LHCsqrts_= 13., mh_= 125.; 
  
 }; 
-	AddDNNScoresv1_1jet::AddDNNScoresv1_1jet(char const* name): 
-		TTreeFunction() 
-	{ 
-		name_ = name; 
-	} 
+AddDNNScoresv1_1jet::AddDNNScoresv1_1jet(char const* name): 
+TTreeFunction() 
+{ 
+name_ = name; 
+} 
  
-	double 
-	AddDNNScoresv1_1jet::evaluate(unsigned) 
-	{
+double 
+AddDNNScoresv1_1jet::evaluate(unsigned) 
+{
             const float weight_0[60][15] = {{-0.446532040834, -0.225437954068, -0.203469023108, -0.12083067745, 0.0121358642355, -0.15945930779, 0.0923854932189, -0.34868863225, 0.0290998164564, 0.0628294199705, -0.184756934643, 0.105229273438, -0.093757212162, 0.0906227231026, 0.21477496624}, 
                 {-0.0229026060551, -0.114736109972, 0.0353154949844, 0.160380363464, 0.0531019642949, 0.350434839725, -0.194281592965, -0.136813938618, 0.0430366918445, -0.0436433143914, -0.240254893899, -0.180683746934, 0.443427801132, 0.0680757761002, 0.344057381153}, 
                 {-0.0208853110671, 0.165824100375, -0.201995790005, 0.00426129065454, 0.212577521801, -0.128909602761, -0.14444167912, -0.122338786721, -0.00216754013672, -0.0718056932092, 0.0567817166448, -0.118728794158, -0.219517529011, 0.157805681229, -0.10030310601}, 
@@ -197,17 +195,15 @@ class AddDNNScoresv1_1jet : public multidraw::TTreeFunction {
             float pt2_var = Lepton_pt->At(1);
             int jet1_idx = CleanJet_jetIdx->At(0);
             float jet1_btag = Jet_btagDeepFlavB->At(jet1_idx);
+            float jet1_pt = CleanJet_pt->At(0);
             //float pt1_var{*pt1->Get()};
             //float pt2_var{*pt2->Get()};
             float mth_var{*mth->Get()};
-            float mjj_var{*mjj->Get()};
-            float detajj_var{*detajj->Get()};
-            float dphijj_var{*dphijj->Get()};
             float PuppiMET_pt_var{*PuppiMET_pt->Get()};
             float dphillmet_var{*dphillmet->Get()};
             float mcollWW_var{*mcollWW->Get()};
 
-            float input_layer[15] = { mll_var, dphill_var, detall_var, ptll_var, drll_var, pt1_var, pt2_var, mth_var, mjj_var, detajj_var, dphijj_var, PuppiMET_pt_var, dphillmet_var, mcollWW_var, jet1_btag};
+            float input_layer[15] = { mll_var, dphill_var, detall_var, ptll_var, drll_var, pt1_var, pt2_var, mth_var, PuppiMET_pt_var, dphillmet_var, mcollWW_var, jet1_btag};
             for (int index = 0; index < 15; index = index + 1) { 
                 input_layer[index] = (input_layer[index]-var_means[index])/var_std[index];            }
             float layer0[60] = { 0 };
@@ -288,11 +284,11 @@ class AddDNNScoresv1_1jet : public multidraw::TTreeFunction {
             }
             return -1.0;
 
-	} 
-	void 
-	AddDNNScoresv1_1jet::bindTree_(multidraw::FunctionLibrary& _library) 
-	{ 
-		_library.bindBranch(mll, "mll"); 
+} 
+void 
+AddDNNScoresv1_1jet::bindTree_(multidraw::FunctionLibrary& _library) 
+{ 
+_library.bindBranch(mll, "mll"); 
                 _library.bindBranch(dphill, "dphill"); 
                 _library.bindBranch(detall, "detall"); 
                 _library.bindBranch(ptll, "ptll"); 
@@ -303,10 +299,8 @@ class AddDNNScoresv1_1jet : public multidraw::TTreeFunction {
                 _library.bindBranch(pt1, "pt1"); 
                 _library.bindBranch(pt2, "pt2"); 
                 _library.bindBranch(mth, "mth"); 
-                _library.bindBranch(mjj, "mjj"); 
-                _library.bindBranch(detajj, "detajj"); 
-                _library.bindBranch(dphijj, "dphijj"); 
                 _library.bindBranch(PuppiMET_pt, "PuppiMET_pt"); 
                 _library.bindBranch(dphillmet, "dphillmet"); 
                 _library.bindBranch(mcollWW, "mcollWW"); 
-	}
+                _library.bindBranch(CleanJet_pt, "CleanJet_pt"); 
+}
