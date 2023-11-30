@@ -53,6 +53,7 @@ protected:
   FloatArrayReader* SubJet_phi{};
   FloatArrayReader* SubJet_mass{};	  
   FloatArrayReader* FatJet_pt{};	  
+  FloatArrayReader* FatJet_pt_nom{};	  
   FloatArrayReader* FatJet_eta{};	   
   FloatArrayReader* FatJet_phi{};
   FloatArrayReader* FatJet_mass{};	  
@@ -60,7 +61,7 @@ protected:
   IntArrayReader*   FatJet_jetId{};	  
   IntArrayReader*   SubJet_idx1{};	  
   IntArrayReader*   SubJet_idx2{};	  
-  DoubleValueReader* WJJ_pt{};	  
+  FloatValueReader* WJJ_pt{};	  
   FloatValueReader* WJJ_eta{};	   
   FloatValueReader* WJJ_phi{};
   FloatValueReader* WJJ_mass{};	  
@@ -170,7 +171,7 @@ for (unsigned int ix{0}; ix < nJ; ix++) {
 	if(FatJet_jetId->At(ix) < 0){
 	GoodJet = false;
 	}
-	if(FatJet_pt->At(ix) < 200){
+	if(FatJet_pt_nom->At(ix) < 200){
 	GoodJet = false;
 	}
 	if(abs(FatJet_eta->At(ix)) > 2.4){
@@ -240,7 +241,9 @@ for (unsigned int ix{0}; ix < nJ; ix++) {
 	    wr2phi = 0.0;
 	    wr2mass = 0.0;
 	    for (int i{0}; i != 4 and (unsigned)i != nJet ; ++i) {
+//	     if(CleanJet_pt->At(i) > 30){
 	      vbfjet[i] = i;
+//	     }
 	    }
 	/*  }else if (*HM_idx_j1->Get() != -1 && *HM_idx_j2->Get() != -1){
 	    wpt = *HM_Whad_pt->Get();
@@ -364,6 +367,10 @@ for (unsigned int ix{0}; ix < nJ; ix++) {
 	  if(_var==49) return detajj_24;
 	  if(_var==50) return mjj_34;
 	  if(_var==51) return detajj_34;
+  	  if(_var==52) return jetpt1;
+  	  if(_var==53) return jetpt2;
+  	  if(_var==54) return jetpt3;
+  	  if(_var==55) return jetpt4;
 
   
     
@@ -404,6 +411,7 @@ _library.bindBranch(SubJet_mass, "SubJet_mass");
 _library.bindBranch(SubJet_idx1, "FatJet_subJetIdx1");
 _library.bindBranch(SubJet_idx2, "FatJet_subJetIdx2");
 _library.bindBranch(FatJet_pt, "FatJet_pt");
+_library.bindBranch(FatJet_pt_nom, "FatJet_pt_nom");
 _library.bindBranch(FatJet_eta, "FatJet_eta");
 _library.bindBranch(FatJet_phi, "FatJet_phi");
 _library.bindBranch(FatJet_mass, "FatJet_mass_nom");
