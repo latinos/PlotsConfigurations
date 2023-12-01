@@ -16,70 +16,70 @@ variables['events']  = {
 ##when running on 1 jet, change 0j -> 1j on cuts and variable name
 ##0jet
 variables['dnnScore_MAX_0j']  = {   'name': 'dnnScore_MAX_0j',
-                                     'range' : (8, -1.0,7.0), # 4 cat so maybe (6, -1.0,6.0)
+                                     'range' : (6, -1.0,6.0), # 4 cat so maybe (6, -1.0,6.0)
                                      'xaxis' : 'CAT INDEX',
                                      'fold' : 3,
                                      'cuts' : [cut for cut in cuts if '0j' in cut]
                         }
 
 variables['dnnScore_ggH_OFF_0j']  = {   'name': 'dnnScore_ggH_OFF_0j',
-                                     'range' : (20, 0,1.0), 
+                                     'range' : (20, 0.5,1.0), 
                                      'xaxis' : 'dnn_{ggH_off} [GeV]',
                                      'fold' : 3,
                                      'cuts' : [cut for cut in cuts if 'OFF_0j' in cut]
                         }
 
 variables['dnnScore_ggH_ON_0j']  = {   'name': 'dnnScore_ggH_ON_0j',
-                                    'range' : (20, 0,1.0),
+                                    'range' : (20, 0.5,1.0),
                                     'xaxis' : 'dnn_{ggH_on} [GeV]',
                                     'fold' : 3,
                                     'cuts' : [cut for cut in cuts if 'ON_0j' in cut]
                                 }
 
 variables['dnnScore_top_0j']  = {   'name': 'dnnScore_top_0j',
-                                 'range' : (20, 0,1.0),
+                                 'range' : (20, 0.5,1.0),
                                  'xaxis' : 'dnn_{top} [GeV]',
                                  'fold' : 3,
                                  'cuts' : [cut for cut in cuts if 'topCR_0j' in cut]
                                 }
 
 variables['dnnScore_WW_0j']  = {   'name': 'dnnScore_WW_0j',
-                                'range' : (20, 0,1.0),
+                                'range' : (20, 0.5,1.0),
                                 'xaxis' : 'dnn_{WW} [GeV]',
                                 'fold' : 3,
                                 'cuts' : [cut for cut in cuts if 'WWCR_0j' in cut]
                                 }
 ##1jet
 variables['dnnScore_MAX_1j']  = {   'name': 'dnnScore_MAX_1j',
-                                     'range' : (8, -1.0,7.0), # 4 cat so maybe (6, -1.0,6.0)   
+                                     'range' : (6, -1.0,6.0), # 4 cat so maybe (6, -1.0,6.0)   
                                      'xaxis' : 'CAT INDEX',
                                      'fold' : 3,
                                      'cuts' : [cut for cut in cuts if '1j' in cut]
                         }
 
 variables['dnnScore_ggH_OFF_1j']  = {   'name': 'dnnScore_ggH_OFF_1j',
-                                     'range' : (20, 0,1.0),
+                                     'range' : (20, 0.5,1.0),
                                      'xaxis' : 'dnn_{ggH_off} [GeV]',
                                      'fold' : 3,
                                      'cuts' : [cut for cut in cuts if 'OFF_1j' in cut]
                         }
 
 variables['dnnScore_ggH_ON_1j']  = {   'name': 'dnnScore_ggH_ON_1j',
-                                    'range' : (20, 0,1.0),
+                                    'range' : (20, 0.5,1.0),
                                     'xaxis' : 'dnn_{ggH_on} [GeV]',
                                     'fold' : 3,
                                     'cuts' : [cut for cut in cuts if 'ON_1j' in cut]
                                 }
 
 variables['dnnScore_top_1j']  = {   'name': 'dnnScore_top_1j',
-                                 'range' : (20, 0,1.0),
+                                 'range' : (20, 0.5,1.0),
                                  'xaxis' : 'dnn_{top} [GeV]',
                                  'fold' : 3,
                                  'cuts' : [cut for cut in cuts if 'topCR_1j' in cut]
                                 }
 
 variables['dnnScore_WW_1j']  = {   'name': 'dnnScore_WW_1j',
-                                'range' : (20, 0,1.0),
+                                'range' : (20, 0.5,1.0),
                                 'xaxis' : 'dnn_{WW} [GeV]',
                                 'fold' : 3,
                                 'cuts' : [cut for cut in cuts if 'WWCR_1j' in cut]
@@ -87,14 +87,14 @@ variables['dnnScore_WW_1j']  = {   'name': 'dnnScore_WW_1j',
 ##
 
 variables['mll']  = {   'name': 'mll',
-                        'range' : (30, 30,250),
+                        'range' : (20, 30,250),
                         'xaxis' : 'm_{ll} [GeV]',
                         'fold' : 3
                         }
 
 
 variables['drll']  = {   'name': 'drll',
-                         'range' : (30, 0.25, 2.5),
+                         'range' : (20, 0.25, 2.5),
                         'xaxis' : '#Delta R_{ll}',
                         'fold' : 3
                         }
@@ -139,13 +139,13 @@ variables['drll']  = {   'name': 'drll',
 
 
 variables['mth']  = {   'name': 'mth',
-                        'range' : (30, 50,400),
+                        'range' : (20, 50,400),
                         'xaxis' : 'm_{T}^{ll, p_{T}^{miss}} [GeV]',
                         'fold' : 3
                         }
 
 variables['mtw2']  = {   'name': 'mtw2',
-                        'range' : (30, 20,300),
+                        'range' : (20, 20,300),
                          'xaxis' : 'm_{T}^{p_{T}^{min}, p_{T}^{miss}} [GeV]',
                         'fold' : 3
                         }
@@ -166,19 +166,19 @@ variables['mtw2']  = {   'name': 'mtw2',
 #                         }
 
 variables['ptll']  = {   'name': 'ptll',     
-                        'range' : (30, 30,300),   
+                        'range' : (20, 30,300),   
                         'xaxis' : 'p_{T}^{ll} [GeV]',
                         'fold' : 3
                         }
 
 variables['pt1']  = {   'name': 'Lepton_pt[0]',     
-                        'range' : (30,25,250),   
+                        'range' : (20,25,250),   
                         'xaxis' : 'p_{T}^{max} [GeV]',
                         'fold'  : 3
                         }
 
 variables['pt2']  = {   'name': 'Lepton_pt[1]',     
-                        'range' : (30,20,150),   
+                        'range' : (20,20,150),   
                         'xaxis' : 'p_{T}^{min} [GeV]',
                         'fold'  : 3 
                         }
@@ -210,7 +210,7 @@ variables['pt2']  = {   'name': 'Lepton_pt[1]',
 
 variables['puppimet']  = {
                         'name': 'PuppiMET_pt',
-                        'range' : (30,20,300),
+                        'range' : (20,20,300),
                         'xaxis' : 'p_{T}^{miss} [GeV]',
                         'fold'  : 3
                         }
@@ -280,14 +280,14 @@ variables['puppimet']  = {
 #                         }
 
 variables['dphill']  = {   'name': 'abs(dphill)',     
-                        'range' : (30,0,3.14),   
+                        'range' : (20,0,3.14),   
                         'xaxis' : '#Delta#phi_{ll}',
                         'fold' : 3
                         }
 
 
 variables['dphillmet']  = {   'name': 'dphillmet',     
-                        'range' : (30,0.5,3.14),   
+                        'range' : (20,0.5,3.14),   
                         'xaxis' : '#Delta#phi_{ll, p_{T}^{miss}}',
                         'fold' : 3
                         }

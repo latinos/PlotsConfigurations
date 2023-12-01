@@ -67,6 +67,7 @@ _tmp = [
     'oneJet',
     'bVeto',
     'dnnScore_WW_1j > .5',
+    'dnnScore_top_1j < .1',
        ]
 addcut('WWCR_1j', _tmp)
 
