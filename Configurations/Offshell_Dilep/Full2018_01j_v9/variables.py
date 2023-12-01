@@ -26,64 +26,64 @@ variables['dnnScore_ggH_OFF_0j']  = {   'name': 'dnnScore_ggH_OFF_0j',
                                      'range' : (20, 0,1.0), 
                                      'xaxis' : 'dnn_{ggH_off} [GeV]',
                                      'fold' : 3,
-                                     'cuts' : [cut for cut in cuts if '0j' in cut]
+                                     'cuts' : [cut for cut in cuts if 'OFF_0j' in cut]
                         }
 
 variables['dnnScore_ggH_ON_0j']  = {   'name': 'dnnScore_ggH_ON_0j',
                                     'range' : (20, 0,1.0),
                                     'xaxis' : 'dnn_{ggH_on} [GeV]',
                                     'fold' : 3,
-                                    'cuts' : [cut for cut in cuts if '0j' in cut]
+                                    'cuts' : [cut for cut in cuts if 'ON_0j' in cut]
                                 }
 
 variables['dnnScore_top_0j']  = {   'name': 'dnnScore_top_0j',
                                  'range' : (20, 0,1.0),
                                  'xaxis' : 'dnn_{top} [GeV]',
                                  'fold' : 3,
-                                 'cuts' : [cut for cut in cuts if '0j' in cut]
+                                 'cuts' : [cut for cut in cuts if 'topCR_0j' in cut]
                                 }
 
 variables['dnnScore_WW_0j']  = {   'name': 'dnnScore_WW_0j',
                                 'range' : (20, 0,1.0),
                                 'xaxis' : 'dnn_{WW} [GeV]',
                                 'fold' : 3,
-                                'cuts' : [cut for cut in cuts if '0j' in cut]
+                                'cuts' : [cut for cut in cuts if 'WWCR_0j' in cut]
                                 }
 ##1jet
-# variables['dnnScore_MAX_1j']  = {   'name': 'dnnScore_MAX_1j',
-#                                      'range' : (8, -1.0,7.0), # 4 cat so maybe (6, -1.0,6.0)   
-#                                      'xaxis' : 'CAT INDEX',
-#                                      'fold' : 3,
-#                                      'cuts' : [cut for cut in cuts if '1j' in cut]
-#                         }
+variables['dnnScore_MAX_1j']  = {   'name': 'dnnScore_MAX_1j',
+                                     'range' : (8, -1.0,7.0), # 4 cat so maybe (6, -1.0,6.0)   
+                                     'xaxis' : 'CAT INDEX',
+                                     'fold' : 3,
+                                     'cuts' : [cut for cut in cuts if '1j' in cut]
+                        }
 
-# variables['dnnScore_ggH_OFF_1j']  = {   'name': 'dnnScore_ggH_OFF_1j',
-#                                      'range' : (20, 0,1.0),
-#                                      'xaxis' : 'dnn_{ggH_off} [GeV]',
-#                                      'fold' : 3,
-#                                      'cuts' : [cut for cut in cuts if '1j' in cut]
-#                         }
+variables['dnnScore_ggH_OFF_1j']  = {   'name': 'dnnScore_ggH_OFF_1j',
+                                     'range' : (20, 0,1.0),
+                                     'xaxis' : 'dnn_{ggH_off} [GeV]',
+                                     'fold' : 3,
+                                     'cuts' : [cut for cut in cuts if 'OFF_1j' in cut]
+                        }
 
-# variables['dnnScore_ggH_ON_1j']  = {   'name': 'dnnScore_ggH_ON_1j',
-#                                     'range' : (20, 0,1.0),
-#                                     'xaxis' : 'dnn_{ggH_on} [GeV]',
-#                                     'fold' : 3,
-#                                     'cuts' : [cut for cut in cuts if '1j' in cut]
-#                                 }
+variables['dnnScore_ggH_ON_1j']  = {   'name': 'dnnScore_ggH_ON_1j',
+                                    'range' : (20, 0,1.0),
+                                    'xaxis' : 'dnn_{ggH_on} [GeV]',
+                                    'fold' : 3,
+                                    'cuts' : [cut for cut in cuts if 'ON_1j' in cut]
+                                }
 
-# variables['dnnScore_top_1j']  = {   'name': 'dnnScore_top_1j',
-#                                  'range' : (20, 0,1.0),
-#                                  'xaxis' : 'dnn_{top} [GeV]',
-#                                  'fold' : 3,
-#                                  'cuts' : [cut for cut in cuts if '1j' in cut]
-#                                 }
+variables['dnnScore_top_1j']  = {   'name': 'dnnScore_top_1j',
+                                 'range' : (20, 0,1.0),
+                                 'xaxis' : 'dnn_{top} [GeV]',
+                                 'fold' : 3,
+                                 'cuts' : [cut for cut in cuts if 'topCR_1j' in cut]
+                                }
 
-# variables['dnnScore_WW_1j']  = {   'name': 'dnnScore_WW_1j',
-#                                 'range' : (20, 0,1.0),
-#                                 'xaxis' : 'dnn_{WW} [GeV]',
-#                                 'fold' : 3,
-#                                 'cuts' : [cut for cut in cuts if '1j' in cut]
-#                                 }
+variables['dnnScore_WW_1j']  = {   'name': 'dnnScore_WW_1j',
+                                'range' : (20, 0,1.0),
+                                'xaxis' : 'dnn_{WW} [GeV]',
+                                'fold' : 3,
+                                'cuts' : [cut for cut in cuts if 'WWCR_1j' in cut]
+                                }
 ##
 
 variables['mll']  = {   'name': 'mll',

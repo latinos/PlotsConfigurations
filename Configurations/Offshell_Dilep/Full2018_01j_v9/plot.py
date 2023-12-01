@@ -5,47 +5,11 @@
 # Groups of samples to improve the plots.
 # If not defined, normal plots is used
 #
-
-groupPlot['Vg']  = {
-                  'nameHR' : "V#gamma",
-                  'isSignal' : 0,
-                  'color'    : 811,   # kOrange + 10
-                  'samples'  : ['Vg']
-              }
-
-groupPlot['Higgs']  = {
-                  'nameHR' : 'Higgs',
+groupPlot['VH+ttH+qqH']  = {
+                  'nameHR' : 'VH+ttH+qqH',
                   'isSignal' : 0,
                   'color': 632, # kRed 
                   'samples'  : ['Higgs' ]
-              }
-
-groupPlot['ZZ']  = {
-                  'nameHR' : "ZZ",
-                  'isSignal' : 0,
-                  'color'    : 618,   # kViolet + 1  
-                  'samples'  : ['ZZ']
-              }
-
-groupPlot['VVV']  = {
-                  'nameHR' : 'VVV',
-                  'isSignal' : 0,
-                  'color': 857, # kAzure -3  
-                  'samples'  : ['VVV']
-              }
-
-groupPlot['DY']  = {
-                  'nameHR' : "DY",
-                  'isSignal' : 0,
-                  'color': 418,    # kGreen+2
-                  'samples'  : ['DY']
-              }
-
-groupPlot['WZ']  = {
-                  'nameHR' : "WZ",
-                  'isSignal' : 0,
-                  'color'    : 617,   # kViolet + 1  
-                  'samples'  : ['WZ']
               }
 
 groupPlot['ggHToWWOnshell']  = {
@@ -55,19 +19,27 @@ groupPlot['ggHToWWOnshell']  = {
                   'samples'  : ['ggHToWWOnshell' ]
               }
 
+groupPlot['Vg+VZ+VVV']  = {
+                  'nameHR' : "Vg+VZ+VVV",
+                  'isSignal' : 0,
+                  'color'    : 618,   # kOrange + 10
+                  'samples'  : ['Vg', 'WZ', 'ZZ', 'VVV']
+              }
+
+
+groupPlot['DY']  = {
+                  'nameHR' : "DY",
+                  'isSignal' : 0,
+                  'color': 418,    # kGreen+2
+                  'samples'  : ['DY']
+              }
+
 groupPlot['Fake']  = {
                   'nameHR' : 'nonprompt',
                   'isSignal' : 0,
                   'color': 921,    # kGray + 1
                   'samples'  : ['Fake_me', 'Fake_em']
 }
-
-groupPlot['ggHToWWOffshell']  = {
-                  'nameHR' : 'ggH Offshell',
-                  'isSignal' : 1,
-                  'color': 432, # kCyan
-                  'samples'  : ['ggHToWWOffshell' ]
-              }
 
 groupPlot['WW']  = {
                   'nameHR' : 'WW',
@@ -83,6 +55,12 @@ groupPlot['top']  = {
                   'samples'  : ['top']
               }
 
+groupPlot['ggHToWWOffshell']  = {
+                  'nameHR' : 'ggH Offshell',
+                  'isSignal' : 1,
+                  'color': 1, # kCyan
+                  'samples'  : ['ggHToWWOffshell' ]
+              }
 
 #plot = {}
 
@@ -196,8 +174,6 @@ plot['ggHToWWOffshell']  = {
                   'scale'    : 1.0
                   }
 
-
-
 # data
 
 plot['DATA']  = { 
@@ -205,10 +181,8 @@ plot['DATA']  = {
                   'color': 1 ,  
                   'isSignal' : 0,
                   'isData'   : 1 ,
-                  'isBlind'  : 1
+                  'isBlind'  : 0
               }
-
-
 
 
 # additional options
