@@ -12,8 +12,6 @@ _tmp = [
     'mth > 60.',
 ] ##mth > 60 to kill onshell - selections cross-reference dnn_ntuplemaker.py cuts
 
-
-
 supercut = ' && '.join(_tmp)
 
 def addcut(name, exprs):
