@@ -201,8 +201,8 @@ jes_systs = ['JESAbsolute','JESAbsolute_2017','JESBBEC1','JESBBEC1_2017','JESEC2
 
 for js in jes_systs:
     # Split source, applied to jets only
-    bmap_up = dict((bname, js+'_jetUp.'+bname+'_'+js+'up') for bname in jet_branches)
-    bmap_do = dict((bname, js+'_jetDown.'+bname+'_'+js+'do') for bname in jet_branches)
+    bmap_up = dict((bname, js+'Up.'+bname+'_'+js+'up') for bname in jet_branches)
+    bmap_do = dict((bname, js+'Down.'+bname+'_'+js+'do') for bname in jet_branches)
 
     nuisances[js] = {
         'name': 'CMS_scale_'+js,
