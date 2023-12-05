@@ -11,9 +11,7 @@ configurations = os.path.dirname(configurations) # Configurations
 
 mc = [skey for skey in samples if skey not in ('Fake', 'DATA')]
 
-configurations += 'src/PlotsConfigurations/Configurations'
-
-mc     = [skey for skey in samples if skey not in ('Fake', 'DATA', 'Dyemb')]
+configurations += '/src/PlotsConfigurations/Configurations'
 
 HWW_OFFSHELL_DNN_PATH = ".L "+ configurations + "/Offshell_Dilep/Tools/AddDNNScoresv4_2jet.cc+"
 
