@@ -19,3 +19,8 @@ The DNN is located in the `Tools` directory. The DNN is trained and tested in py
 ```
 python make_DNN_code_six_cats_v2.py
 ``` 
+
+## Binning Optimization
+
+Binning for variables of interest are optimized using [Combine Rebin](https://github.com/latinos/PlotsConfigurations/blob/master/Configurations/WH_chargeAsymmetry/UL/Full2018_v9/WHSS_Mu82_EleUL90/Rebin.py). Variables are plotted with many fine bins and bins are combined until they all have equal uncertainty.
+
