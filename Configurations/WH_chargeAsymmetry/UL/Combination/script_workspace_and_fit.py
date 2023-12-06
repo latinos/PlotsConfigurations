@@ -10,6 +10,7 @@ parser.add_option('--datacard_name',    dest='datacard_name',    help='datacard 
 parser.add_option('--output_name',      dest='output_name',      help='txt file where fit results are saved',  default="DEFAULT")
 parser.add_option('--sanity_check',     dest='sanity_check',     help='flag for additional fit sanity checks', default=False)
 parser.add_option('--freeze_nuisances', dest='freeze_nuisances', help='freeze systematic uncertainties',       default=False)
+# parser.add_option('--combine_name',     dest='combine_name',     help='name of output combine file',           default="DEFAULT")
 
 (opt, args) = parser.parse_args()
 
@@ -17,6 +18,7 @@ print("Datacard name    = {}".format(opt.datacard_name))
 print("Output name      = {}".format(opt.output_name))
 print("Do santy checks  = {}".format(opt.sanity_check))
 print("Freeze nuisances = {}".format(opt.freeze_nuisances))
+# print("Combine name     = {}".format(opt.combine_name))
 
 
 # Exceptions
@@ -38,11 +40,15 @@ else:
     sanity_check = opt.sanity_check
 
 nuisances = ""
-if opt.freeze_nuisances == "True" or opt.freeze_nuisances == "1":
-    nuisances = "--freezeParameters lumi_13TeV_2018,lumi_13TeV_XYFact,lumi_13TeV_CurrCalib,lumi_13TeV_LSCale,CMS_fake_syst_mm,CMS_fake_syst_em,CMS_fake_e_2018,CMS_fake_stat_e_2018,CMS_fake_m_2018,CMS_fake_stat_m_2018,CMS_btag_jes,CMS_btag_lf,CMS_btag_hf,CMS_btag_hfstats1_2018,CMS_btag_hfstats2_2018,CMS_btag_lfstats1_2018,CMS_btag_lfstats2_2018,CMS_btag_cferr1,CMS_btag_cferr2,CMS_eff_hwwtrigger_2018,CMS_eff_e_2018,CMS_scale_e_2018,CMS_eff_m_2018,CMS_scale_m_2018,CMS_scale_JESAbsolute,CMS_scale_JESAbsolute_2018,CMS_scale_JESBBEC1,CMS_scale_JESBBEC1_2018,CMS_scale_JESEC2,CMS_scale_JESEC2_2018,CMS_scale_JESFlavorQCD,CMS_scale_JESHF,CMS_scale_JESHF_2018,CMS_scale_JESRelativeBal,CMS_scale_JESRelativeSample_2018,CMS_res_j_2018,CMS_scale_met_2018,CMS_PU_2018,CMS_PUID_2018,UE_whss,CMS_whss_chargeFlip,pdf_Higgs_gg,pdf_Higgs_ttH,pdf_Higgs_qqbar,pdf_qqbar,pdf_Higgs_gg_ACCEPT,pdf_gg_ACCEPT,pdf_Higgs_qqbar_ACCEPT,pdf_qqbar_ACCEPT,QCDscale_V,QCDscale_VV,QCDscale_ggVV,QCDscale_qqH,QCDscale_VH,QCDscale_ggZH,QCDscale_ttH,QCDscale_WWewk,QCDscale_qqbar_ACCEPT,QCDscale_gg_ACCEPT,singleTopToTTbar,CMS_topPtRew,CMS_hww_WgStarScale"
+if opt.freeze_nuisances == "True" or opt.freeze_nuisances == "1" or opt.freeze_nuisances=="all":
+    # nuisances = "--freezeParameters lumi_13TeV_2018,lumi_13TeV_XYFact,lumi_13TeV_CurrCalib,lumi_13TeV_LSCale,CMS_fake_syst_mm,CMS_fake_syst_em,CMS_fake_e_2018,CMS_fake_stat_e_2018,CMS_fake_m_2018,CMS_fake_stat_m_2018,CMS_btag_jes,CMS_btag_lf,CMS_btag_hf,CMS_btag_hfstats1_2018,CMS_btag_hfstats2_2018,CMS_btag_lfstats1_2018,CMS_btag_lfstats2_2018,CMS_btag_cferr1,CMS_btag_cferr2,CMS_eff_hwwtrigger_2018,CMS_eff_e_2018,CMS_scale_e_2018,CMS_eff_m_2018,CMS_scale_m_2018,CMS_scale_JESAbsolute,CMS_scale_JESAbsolute_2018,CMS_scale_JESBBEC1,CMS_scale_JESBBEC1_2018,CMS_scale_JESEC2,CMS_scale_JESEC2_2018,CMS_scale_JESFlavorQCD,CMS_scale_JESHF,CMS_scale_JESHF_2018,CMS_scale_JESRelativeBal,CMS_scale_JESRelativeSample_2018,CMS_res_j_2018,CMS_scale_met_2018,CMS_PU_2018,CMS_PUID_2018,UE_whss,CMS_whss_chargeFlip,pdf_Higgs_gg,pdf_Higgs_ttH,pdf_Higgs_qqbar,pdf_qqbar,pdf_Higgs_gg_ACCEPT,pdf_gg_ACCEPT,pdf_Higgs_qqbar_ACCEPT,pdf_qqbar_ACCEPT,QCDscale_V,QCDscale_VV,QCDscale_ggVV,QCDscale_qqH,QCDscale_VH,QCDscale_ggZH,QCDscale_ttH,QCDscale_WWewk,QCDscale_qqbar_ACCEPT,QCDscale_gg_ACCEPT,singleTopToTTbar,CMS_topPtRew,CMS_hww_WgStarScale"
     nuisances = "--freezeParameters allConstrainedNuisances"
 if opt.freeze_nuisances == "r_higgs":
     nuisances = "--freezeParameters r_higgs"
+
+# combine_name = ""
+# if opt.combine_name != "DEFAULT":
+#     combine_name = opt.combine_name
 
 
 ####################    
@@ -106,6 +112,9 @@ combine_command = "combine \
                    {2} \
                    > {1} \
                    ".format(datacard_name,output_name,nuisances)
+
+# mv_command = "mv higgsCombineTest.MultiDimFit.mH120.root Combination/higgsCombineTest.MultiDimFit{}.mH120.root".format(combine_name)
+
 #                   --X-rtd MINIMIZER_analytic \
 #                   -v 9 \
 
@@ -121,6 +130,8 @@ combine_command_WH = "combine \
                       {2} \
                       > {1} \
                       ".format(datacard_name,output_name.replace(".txt","_WH_strength.txt"),nuisances)
+
+# mv_command_WH = "mv higgsCombineTest.MultiDimFit.mH120.root Combination/higgsCombineTest.MultiDimFit_WH_strength{}.mH120.root".format(combine_name)
 
 # combineTool.py -M MultiDimFit --algo grid -t -1 --setParameters r=1 --X-rtd MINIMIZER_analytic --cminDefaultMinimizerStrategy=0 -d ../../globalMu_htt.root -n globalMu_scan --task-name globalMu_scan --autoRange 2 --points 40 --split-points 1 --job-mode=condor --redefineSignalPOIs r --floatOtherPOIs 1
 # grid
@@ -186,10 +197,12 @@ fit_diagnostics_command = "combine \
                            -M FitDiagnostics {0}.root \
                            -t -1 \
                            --setParameters r_S=1.3693,r_A=0.224 \
+                           --saveShapes \
                            --saveWithUncertainties \
-                           --saveOverallShapes \
-                           --numToysForShapes 200 \
                            ".format(datacard_name)
+
+# --saveOverallShapes \
+# --numToysForShapes 200 \
 
 
 ######################
@@ -214,7 +227,7 @@ root_output_name = output_name.replace(".txt",".root")
 if (opt.freeze_nuisances) == "1" or (opt.freeze_nuisances) == "True":
     root_output_name = output_name.replace(".txt","_freeze.root")
 move_command = "mv higgsCombineTest.MultiDimFit.mH120.root {}".format(root_output_name)
-# os.system(move_command)
+os.system(move_command)
 print(move_command)
 print("\n")
 print("\n")
@@ -238,7 +251,7 @@ root_output_name_WH = output_name.replace(".txt","_WH_strength.root")
 if (opt.freeze_nuisances) == "1" or (opt.freeze_nuisances) == "True":
     root_output_name_WH = output_name.replace(".txt","_WH_strength_freeze.root")
 move_command = "mv higgsCombineTest.MultiDimFit.mH120.root {}".format(root_output_name_WH)
-# os.system(move_command)
+os.system(move_command)
 print(move_command)
 print("\n")
 print("\n")
@@ -315,8 +328,9 @@ if sanity_check != False:
         print("\n")
         print("\n")
 
-    # print("Doing FitDiagnistics...")
-    # print(fit_diagnostics_command)
-    # os.system(fit_diagnostics_command)
-    # print("\n")
-    # print("\n")
+    if "FD" in sanity_check:
+        print("Doing FitDiagnistics...")
+        print(fit_diagnostics_command)
+        os.system(fit_diagnostics_command)
+        print("\n")
+        print("\n")

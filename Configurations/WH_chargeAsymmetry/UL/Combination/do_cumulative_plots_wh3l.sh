@@ -6,8 +6,8 @@ wh3l_13TeV_ossf_minus_pt2ge20 \
 "
 
 VARIABLES="
-BDT_WH3l_OSSF_v9 \
-BDT_WH3l_SSSF_v9 \
+BDT_WH3l_OSSF_new_v9 \
+BDT_WH3l_SSSF_new_v9 \
 "
 
 for CUT in $CUTS_WH3L; do

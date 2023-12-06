@@ -1,12 +1,12 @@
 CUTS_WHSS="
-hww2l2v_13TeV_WH_SS_mm_1j_minus_pt2ge20 \
-hww2l2v_13TeV_WH_SS_mm_1j_plus_pt2ge20 \
-hww2l2v_13TeV_WH_SS_mm_1j_plus_pt2lt20 \
-hww2l2v_13TeV_WH_SS_mm_1j_minus_pt2lt20 \
-hww2l2v_13TeV_WH_SS_mm_2j_plus_pt2ge20 \
-hww2l2v_13TeV_WH_SS_mm_2j_minus_pt2ge20 \
-hww2l2v_13TeV_WH_SS_mm_2j_plus_pt2lt20 \
-hww2l2v_13TeV_WH_SS_mm_2j_minus_pt2lt20 \
+hww2l2v_13TeV_WH_SS_noZveto_mm_1j_minus_pt2ge20 \
+hww2l2v_13TeV_WH_SS_noZveto_mm_1j_plus_pt2ge20 \
+hww2l2v_13TeV_WH_SS_noZveto_mm_1j_plus_pt2lt20 \
+hww2l2v_13TeV_WH_SS_noZveto_mm_1j_minus_pt2lt20 \
+hww2l2v_13TeV_WH_SS_noZveto_mm_2j_plus_pt2ge20 \
+hww2l2v_13TeV_WH_SS_noZveto_mm_2j_minus_pt2ge20 \
+hww2l2v_13TeV_WH_SS_noZveto_mm_2j_plus_pt2lt20 \
+hww2l2v_13TeV_WH_SS_noZveto_mm_2j_minus_pt2lt20 \
 hww2l2v_13TeV_WH_SS_em_1j_plus_pt2ge20 \
 hww2l2v_13TeV_WH_SS_em_1j_minus_pt2ge20 \
 hww2l2v_13TeV_WH_SS_em_1j_plus_pt2lt20 \
@@ -35,7 +35,7 @@ for CUT in $CUTS_WHSS; do
               --variablesFile  ../Full2018_v9/WHSS_Mu82_EleUL90/variables.py \
               --samplesFile    ../Full2018_v9/WHSS_Mu82_EleUL90/samples.py \
               --cutsFile       ../Full2018_v9/WHSS_Mu82_EleUL90/cuts.py \
-              --onlyVariable   BDTG6 \
+              --onlyVariable   BDTG6_TT \
               --onlyCut        ${CUT} \
               --plotFile       plot_blind.py \
               --outputDirPlots plots_Full2018 \
@@ -47,7 +47,7 @@ for CUT in $CUTS_WHSS; do
               --variablesFile  ../Full2017_v9/WHSS_Mu82_EleUL90/variables.py \
               --samplesFile    ../Full2017_v9/WHSS_Mu82_EleUL90/samples.py \
               --cutsFile       ../Full2017_v9/WHSS_Mu82_EleUL90/cuts.py \
-              --onlyVariable   BDTG6 \
+              --onlyVariable   BDTG6_TT \
               --onlyCut        ${CUT} \
               --plotFile       plot_blind.py \
               --outputDirPlots plots_Full2017 \
@@ -59,7 +59,7 @@ for CUT in $CUTS_WHSS; do
               --variablesFile  ../2016noHIPM_v9/WHSS_Mu82_EleUL90/variables.py \
               --samplesFile    ../2016noHIPM_v9/WHSS_Mu82_EleUL90/samples.py \
               --cutsFile       ../2016noHIPM_v9/WHSS_Mu82_EleUL90/cuts.py \
-              --onlyVariable   BDTG6 \
+              --onlyVariable   BDTG6_TT \
               --onlyCut        ${CUT} \
               --plotFile       plot_blind.py \
               --outputDirPlots plots_2016noHIPM \
@@ -71,7 +71,7 @@ for CUT in $CUTS_WHSS; do
               --variablesFile  ../2016HIPM_v9/WHSS_Mu82_EleUL90/variables.py \
               --samplesFile    ../2016HIPM_v9/WHSS_Mu82_EleUL90/samples.py \
               --cutsFile       ../2016HIPM_v9/WHSS_Mu82_EleUL90/cuts.py \
-              --onlyVariable   BDTG6 \
+              --onlyVariable   BDTG6_TT \
               --onlyCut        ${CUT} \
               --plotFile       plot_blind.py \
               --outputDirPlots plots_2016HIPM \
@@ -84,7 +84,7 @@ for CUT in $CUTS_WHSS; do
                       --variablesFile  ../Full2018_v9/WHSS_Mu82_EleUL90/variables.py \
                       --inputCutsList  cuts_to_merge_WHSS.py \
                       --outputDirPlots plots_WHSS_cumulative \
-                      --variable       BDTG6 \
+                      --variable       BDTG6_TT \
                       --minvariable    -1.0 \
                       --maxvariable    +1.0 \
                       --variableHR     "BDT Discriminant" \
