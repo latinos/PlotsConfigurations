@@ -361,21 +361,3 @@ aliases['SFweightMuDown'] = {
     'nominalOnly': 1
 }
 
-aliases['nGoodCleanJet'] = {
-    'linesToAdd': ['.L %s/WW/FullRunII/goodcleanjet.cc+' % configurations],
-    'class': 'GoodCleanJet',
-    'args': ("njet"),
-}
-
-aliases['nGoodGenJet'] = {
-    'linesToAdd': ['.L %s/WW/FullRunII/goodgenjet.cc+' % configurations],
-    'class': 'CleanGenJet',
-    'args': ("njet"),
-    'samples': mc
-}
-
-# aliases['LHE_mWW'] = {
-#     'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/Offshell_Dilep/Tools/computeLHEmWW.cc+' % os.getenv('CMSSW_BASE')],
-#     'class': 'computeLHEmWW',
-#     'samples': ['Higgs_offshell', 'Higgs_onshell']
-# }

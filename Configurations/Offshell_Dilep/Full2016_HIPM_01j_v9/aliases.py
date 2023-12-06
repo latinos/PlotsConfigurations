@@ -4,7 +4,7 @@ import inspect
 
 configurations = os.path.realpath(inspect.getfile(inspect.currentframe())) # this file
 configurations = os.path.dirname(configurations) # inclusive
-configurations = os.path.dirname(configurations) # Full2016_HIPM_v9
+configurations = os.path.dirname(configurations) # Full2018_v9
 configurations = os.path.dirname(configurations) # FullRunII
 configurations = os.path.dirname(configurations) # WW
 configurations = os.path.dirname(configurations) # Configurations
@@ -12,44 +12,77 @@ configurations += '/PlotsConfigurations/Configurations'
 
 mc = [skey for skey in samples if skey not in ('Fake', 'DATA')]
 
+HWW_OFFSHELL_DNN_PATH0jet = '.L %s/src/PlotsConfigurations/Configurations/Offshell_Dilep/Tools/AddDNNScoresv1_0jet.cc+' % os.getenv('CMSSW_BASE')
+HWW_OFFSHELL_DNN_PATH1jet = '.L %s/src/PlotsConfigurations/Configurations/Offshell_Dilep/Tools/AddDNNScoresv1_1jet.cc+' % os.getenv('CMSSW_BASE')
 
-HWW_OFFSHELL_DNN_PATH = '.L %s/src/PlotsConfigurations/Configurations/Offshell_Dilep/Tools/AddDNNScoresv4_2jet.cc+' % os.getenv('CMSSW_BASE')
+# No jet with pt > 30 GeV
+aliases['zeroJet'] = {
+    'expr': 'Alt$(CleanJet_pt[0], 0) < 30.'
+}
 
-aliases['dnnScore_VBF_OFF'] = {
-    'linesToAdd' : [HWW_OFFSHELL_DNN_PATH],
-    'class' : 'AddDNNScoresv4',
-    'args': ("VBF_OFF")
+aliases['oneJet'] = {
+    'expr': 'Alt$(CleanJet_pt[0],0) > 30. && Alt$(CleanJet_pt[1],0) < 30.'
 }
-aliases['dnnScore_VBF_ON'] = {
-    'linesToAdd' : [HWW_OFFSHELL_DNN_PATH],
-    'class' : 'AddDNNScoresv4',
-    'args': ("VBF_ON")
+
+aliases['multiJet'] = {
+    'expr': 'Alt$(CleanJet_pt[0],0) > 30. && Alt$(CleanJet_pt[1],0) > 30.'
 }
-aliases['dnnScore_ggH_OFF'] = {
-    'linesToAdd' : [HWW_OFFSHELL_DNN_PATH],
-    'class' : 'AddDNNScoresv4',
+
+
+aliases['dnnScore_ggH_OFF_0j'] = {
+    'linesToAdd' : [HWW_OFFSHELL_DNN_PATH0jet],
+    'class' : 'AddDNNScoresv1_0jet',
     'args': ("ggH_OFF",)
 }
-aliases['dnnScore_ggH_ON'] = {
-    'linesToAdd' : [HWW_OFFSHELL_DNN_PATH],
-    'class' : 'AddDNNScoresv4',
+aliases['dnnScore_ggH_ON_0j'] = {
+    'linesToAdd' : [HWW_OFFSHELL_DNN_PATH0jet],
+    'class' : 'AddDNNScoresv1_0jet',
     'args': ("ggH_ON",)
 }
-aliases['dnnScore_top'] = {
-    'linesToAdd' : [HWW_OFFSHELL_DNN_PATH],
-    'class' : 'AddDNNScoresv4',
+aliases['dnnScore_top_0j'] = {
+    'linesToAdd' : [HWW_OFFSHELL_DNN_PATH0jet],
+    'class' : 'AddDNNScoresv1_0jet',
     'args': ("top",)
 }
-aliases['dnnScore_WW'] = {
-    'linesToAdd' : [HWW_OFFSHELL_DNN_PATH],
-    'class' : 'AddDNNScoresv4',
+aliases['dnnScore_WW_0j'] = {
+    'linesToAdd' : [HWW_OFFSHELL_DNN_PATH0jet],
+    'class' : 'AddDNNScoresv1_0jet',
     'args': ("WW",)
 }
-aliases['dnnScore_MAX'] = {
-    'linesToAdd' : [HWW_OFFSHELL_DNN_PATH],
-    'class' : 'AddDNNScoresv4',
-    'args': ("MAX",)
+# aliases['dnnScore_MAX_0j'] = {
+#     'linesToAdd' : [HWW_OFFSHELL_DNN_PATH0jet],
+#     'class' : 'AddDNNScoresv1_0jet',
+#     'args': ("MAX",)
+# }
+
+#1jet
+
+aliases['dnnScore_ggH_OFF_1j'] = {
+    'linesToAdd' : [HWW_OFFSHELL_DNN_PATH1jet],
+    'class' : 'AddDNNScoresv1_1jet',
+    'args': ("ggH_OFF",)
 }
+aliases['dnnScore_ggH_ON_1j'] = {
+    'linesToAdd' : [HWW_OFFSHELL_DNN_PATH1jet],
+    'class' : 'AddDNNScoresv1_1jet',
+    'args': ("ggH_ON",)
+}
+aliases['dnnScore_top_1j'] = {
+    'linesToAdd' : [HWW_OFFSHELL_DNN_PATH1jet],
+    'class' : 'AddDNNScoresv1_1jet',
+    'args': ("top",)
+}
+aliases['dnnScore_WW_1j'] = {
+    'linesToAdd' : [HWW_OFFSHELL_DNN_PATH1jet],
+    'class' : 'AddDNNScoresv1_1jet',
+    'args': ("WW",)
+}
+# aliases['dnnScore_MAX_1j'] = {
+#     'linesToAdd' : [HWW_OFFSHELL_DNN_PATH1jet],
+#     'class' : 'AddDNNScoresv1_1jet',
+#     'args': ("MAX",)
+# }
+
 
 eleWP = 'mvaFall17V2Iso_WP90'
 muWP = 'cut_Tight80x'
@@ -214,8 +247,8 @@ aliases['bReqSF'] = {
 # CR definitions
 
 aliases['topcr'] = {
-    'expr': '(((Sum$(CleanJet_pt > 30.) == 0 && !bVeto) || bReq) * (dnnScore_top > .5))'
-}
+    'expr': '((zeroJet && dnnScore_top_0j > .5) || (oneJet && dnnScore_top_1j > .5)) * ((Sum$(CleanJet_pt > 30.) == 0 && !bVeto) || bReq)'
+} ##combined 0 and 1 jet definition
 
 #aliases['dycr'] = {
 #    'expr': 'mth<60 && mll>40 && mll<80 && bVeto'
@@ -335,28 +368,4 @@ aliases['lhe_mW1'] = {
 aliases['lhe_mW2'] = {
     'expr': 'TMath::Sqrt(2. * LHEPart_pt[2] * LHEPart_pt[3] * (TMath::CosH(LHEPart_eta[2] - LHEPart_eta[3]) - TMath::Cos(LHEPart_phi[2] - LHEPart_phi[3])))',
     'samples': ['WWewk']
-}
-aliases['B0'] = {
-    'expr' : '1',
-    'samples' : ['WW','ggWW']
-}
-
-#aliases['fid'] = {
-#    'expr' : 'fiducial',
-#    'samples' : ['WW','ggWW']
-#}
-
-aliases['BDTOutput_0j'] = {
-    'class': 'ww_top_bdt_0j',
-    'linesToAdd' : ['.L %s/WW/FullRunII/WW_BDT_0j.cc+' % configurations],
-}
-
-aliases['BDTOutput_1j'] = {
-    'class': 'ww_top_bdt_1j',
-    'linesToAdd' : ['.L %s/WW/FullRunII/WW_BDT_1j.cc+' % configurations],
-}
-
-aliases['BDTOutput_2j'] = {
-    'class': 'ww_top_bdt_2j',
-    'linesToAdd' : ['.L %s/WW/FullRunII/WW_BDT_2j.cc+' % configurations],
 }

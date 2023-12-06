@@ -119,6 +119,8 @@ samples['DY'] = {
     'weight': mcCommonWeight + "*( !(Sum$(PhotonGen_isPrompt==1 && PhotonGen_pt>15 && abs(PhotonGen_eta)<2.6) > 0 &&\
                                     Sum$(LeptonGen_isPrompt==1 && LeptonGen_pt>15)>=2) )",
     'FilesPerJob': 10,
+    'suppressNegative' :['all'],
+    'suppressNegativeNuisances' :['all']
 }
 addSampleWeight(samples,'DY','DYJetsToTT_MuEle_M-50', 'DY_NLO_pTllrw')
 addSampleWeight(samples,'DY','DYJetsToLL_M-10to50-LO','DY_LO_pTllrw')
@@ -136,6 +138,8 @@ samples['top'] = {
     'name': files,
     'weight': mcCommonWeight,
     'FilesPerJob': 1,
+    'suppressNegative' :['all'],
+    'suppressNegativeNuisances' :['all']
 }
 
 addSampleWeight(samples,'top','TTTo2L2Nu','Top_pTrw')
@@ -144,7 +148,9 @@ addSampleWeight(samples,'top','TTTo2L2Nu','Top_pTrw')
 samples['WWewk'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'WpWmJJ_EWK_noTop'),
     'weight': mcCommonWeight + '*(Sum$(abs(GenPart_pdgId)==6 || GenPart_pdgId==25)==0)', #filter tops and Higgs
-    'FilesPerJob': 4
+    'FilesPerJob': 4,
+    'suppressNegative' :['all'],
+    'suppressNegativeNuisances' :['all']
 }
 
 ######## Vg(S) ########
@@ -155,7 +161,9 @@ files = nanoGetSampleFiles(mcDirectory, 'Wg_AMCNLOFXFX_01J_PDF') + \
 samples['Vg'] = {
     'name': files,
     'weight': mcCommonWeightNoMatch+'*((Gen_ZGstar_mass>0)*PromptGenLepMatch2l + Gen_ZGstar_mass<=0)',
-    'FilesPerJob': 8
+    'FilesPerJob': 8,
+    'suppressNegative' :['all'],
+    'suppressNegativeNuisances' :['all']
 }
 
 addSampleWeight(samples,'Vg','Wg_AMCNLOFXFX_01J_PDF', 'gstarLow*0.94')
@@ -169,6 +177,8 @@ samples['WZ'] = {
     'name': files,
     'weight': mcCommonWeight + ' * (gstarHigh)',
     'FilesPerJob': 4,
+    'suppressNegative' :['all'],
+    'suppressNegativeNuisances' :['all']
 }
 
 ############ ZZ ############
@@ -180,7 +190,9 @@ files = nanoGetSampleFiles(mcDirectory, 'ZZTo2L2Nu') + \
 samples['ZZ'] = {
     'name': files,
     'weight': mcCommonWeight,
-    'FilesPerJob': 4
+    'FilesPerJob': 4,
+    'suppressNegative' :['all'],
+    'suppressNegativeNuisances' :['all']
 }
 
 
@@ -197,6 +209,8 @@ samples['VVV'] = {
     'name': files,
     'weight': mcCommonWeight,
     'FilesPerJob': 4,
+    'suppressNegative' :['all'],
+    'suppressNegativeNuisances' :['all']
 }
 
 #WWZbaseW = getBaseWFast(mcDirectory, mcProduction, ['WWZ', 'WWZ_ext1'])
@@ -218,7 +232,9 @@ files = nanoGetSampleFiles(mcDirectory, 'HZJ_HToWWTo2L2Nu_ZTo2L_M125') + \
 samples['Higgs'] = {
     'name' : files,
     'weight': mcCommonWeight,
-    'FilesPerJob': 8
+    'FilesPerJob': 8,
+    'suppressNegative' :['all'],
+    'suppressNegativeNuisances' :['all']
 }
 
 ##########################################
@@ -228,7 +244,9 @@ samples['Higgs'] = {
 samples['WW'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'WWTo2L2Nu'),
     'weight': mcCommonWeight+'*nllW',
-    'FilesPerJob': 2
+    'FilesPerJob': 2,
+    'suppressNegative' :['all'],
+    'suppressNegativeNuisances' :['all']
 }
 
 samples['ggWW'] = {
@@ -242,7 +260,9 @@ samples['ggWW'] = {
             nanoGetSampleFiles(mcDirectory, 'GluGluToWWToTNMN') + \
             nanoGetSampleFiles(mcDirectory, 'GluGluToWWToTNTN'),
     'weight': mcCommonWeight+'*1.53/1.4', # updating k-factor
-    'FilesPerJob': 4
+    'FilesPerJob': 4,
+    'suppressNegative' :['all'],
+    'suppressNegativeNuisances' :['all']
 }
 
 
@@ -256,7 +276,8 @@ samples['Fake'] = {
   'weights': [],
   'isData': ['all'],
   'FilesPerJob': 100,
-  'suppressNegativeNuisances' : ['all'],
+   'suppressNegative' :['all'],
+   'suppressNegativeNuisances' :['all']
 }
 
 for _, sd in DataRun:
@@ -367,7 +388,7 @@ samples['ggHToWWOffshell'] = {
     'weight': mcCommonWeight_custom + ' * p_Gen_GG_SIG_kappaTopBot_1_ghz1_1_MCFM * p_Gen_CPStoBWPropRewgt * HWWOffshell_combineWgt * (LHECandMass > 160)',
     'FilesPerJob': 10,
     'suppressNegative' :['all'],
-    'suppressNegativeNuisances' :['all'],
+    'suppressNegativeNuisances' :['all']
 }
 
 samples['ggHToWWOnshell'] = {
@@ -375,7 +396,7 @@ samples['ggHToWWOnshell'] = {
     'weight': mcCommonWeight_custom + ' * p_Gen_GG_SIG_kappaTopBot_1_ghz1_1_MCFM * p_Gen_CPStoBWPropRewgt * HWWOffshell_combineWgt * (LHECandMass <= 160)',
     'FilesPerJob': 10,
     'suppressNegative' :['all'],
-    'suppressNegativeNuisances' :['all'],
+    'suppressNegativeNuisances' :['all']
 }
 
 
