@@ -28,6 +28,18 @@ CUTS=(
 "WH_SS_mm_2j_minus"
 "WH_SS_ee_2j_plus"
 "WH_SS_ee_2j_minus"
+"WH_SS_em_1j_plus_low_pt" 
+"WH_SS_em_1j_minus_low_pt"
+"WH_SS_mm_1j_plus_low_pt"
+"WH_SS_mm_1j_minus_low_pt"
+"WH_SS_ee_1j_plus_low_pt"
+"WH_SS_ee_1j_minus_low_pt"
+"WH_SS_em_2j_plus_low_pt"
+"WH_SS_em_2j_minus_low_pt"
+"WH_SS_mm_2j_plus_low_pt"
+"WH_SS_mm_2j_minus_low_pt"
+"WH_SS_ee_2j_plus_low_pt"
+"WH_SS_ee_2j_minus_low_pt"
 )
 
 CUTS_ORIGINAL=(
@@ -43,6 +55,18 @@ CUTS_ORIGINAL=(
 "hww2l2v_13TeV_WH_SS_noZveto_mm_2j_minus_pt2ge20" 
 "hww2l2v_13TeV_WH_SS_ee_2j_plus_pt2ge20" 
 "hww2l2v_13TeV_WH_SS_ee_2j_minus_pt2ge20" 
+"hww2l2v_13TeV_WH_SS_em_1j_plus_pt2lt20" 
+"hww2l2v_13TeV_WH_SS_em_1j_minus_pt2lt20" 
+"hww2l2v_13TeV_WH_SS_noZveto_mm_1j_plus_pt2lt20" 
+"hww2l2v_13TeV_WH_SS_noZveto_mm_1j_minus_pt2lt20" 
+"hww2l2v_13TeV_WH_SS_ee_1j_plus_pt2lt20" 
+"hww2l2v_13TeV_WH_SS_ee_1j_minus_pt2lt20" 
+"hww2l2v_13TeV_WH_SS_em_2j_plus_pt2lt20" 
+"hww2l2v_13TeV_WH_SS_em_2j_minus_pt2lt20" 
+"hww2l2v_13TeV_WH_SS_noZveto_mm_2j_plus_pt2lt20" 
+"hww2l2v_13TeV_WH_SS_noZveto_mm_2j_minus_pt2lt20" 
+"hww2l2v_13TeV_WH_SS_ee_2j_plus_pt2lt20" 
+"hww2l2v_13TeV_WH_SS_ee_2j_minus_pt2lt20" 
 )
 
 # Pre-fit plots for discriminant variable
