@@ -1,26 +1,15 @@
 # plot configuration
 
-nbins = 1
-
-groupPlot = {}
-plot = {}
+# groupPlot = {}
 # 
 # Groups of samples to improve the plots.
 # If not defined, normal plots is used
 #
-
 groupPlot['VH+ttH+qqH']  = {
                   'nameHR' : 'VH+ttH+qqH',
                   'isSignal' : 0,
                   'color': 632, # kRed 
                   'samples'  : ['Higgs' ]
-              }
-
-groupPlot['VBFHToWWOnshell']  = {
-                  'nameHR' : 'VBF Onshell',
-                  'isSignal' : 0,
-                  'color': 409, # kRed                                                                                                                                                                      
-                  'samples'  : ['VBFHToWWOnshell' ]
               }
 
 groupPlot['ggHToWWOnshell']  = {
@@ -36,6 +25,7 @@ groupPlot['Vg+VZ+VVV']  = {
                   'color'    : 618,   # kOrange + 10
                   'samples'  : ['Vg', 'WZ', 'ZZ', 'VVV']
               }
+
 
 groupPlot['DY']  = {
                   'nameHR' : "DY",
@@ -64,20 +54,18 @@ groupPlot['top']  = {
                   'color': 400,   # kYellow
                   'samples'  : ['top']
               }
+
 groupPlot['ggHToWWOffshell']  = {
                   'nameHR' : 'ggH Offshell',
                   'isSignal' : 1,
-                  'color': 432, # kCyan
+                  'color': 1, # kCyan
                   'samples'  : ['ggHToWWOffshell' ]
               }
 
-groupPlot['VBFHToWWOffshell']  = {
-                  'nameHR' : 'VBF Offshell',
-                  'isSignal' : 1,
-                  'color': 632, # kRed                                                                                                                                                                    
-                  'samples'  : ['VBFHToWWOffshell' ]
-              }
+#plot = {}
 
+# keys here must match keys in samples.py    
+#                    
 
 plot['DY']  = {  
                   'color': 418,    # kGreen+2
@@ -170,12 +158,6 @@ plot['Higgs'] = {
                   'scale'    : 1    #
                   }
 
-plot['VBFHToWWOnshell']  = {
-                  'color': 409, # kRed  
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  'scale'    : 1.0
-                  }
 
 plot['ggHToWWOnshell']  = {
                   'color': 603, # kRed  
@@ -184,12 +166,6 @@ plot['ggHToWWOnshell']  = {
                   'scale'    : 1.0
                   }
 
-plot['VBFHToWWOffshell']  = {
-                  'color': 632, # kRed  
-                  'isSignal' : 1,
-                  'isData'   : 0,
-                  'scale'    : 1.0
-                  }
 
 plot['ggHToWWOffshell']  = {
                   'color': 432, # kRed  
@@ -197,8 +173,6 @@ plot['ggHToWWOffshell']  = {
                   'isData'   : 0,
                   'scale'    : 1.0
                   }
-
-
 
 # data
 
@@ -211,10 +185,8 @@ plot['DATA']  = {
               }
 
 
-
-
 # additional options
 
-legend['lumi'] = 'L = 59.83/fb'
+legend['lumi'] = 'L = 59.8/fb'
 
 legend['sqrt'] = '#sqrt{s} = 13 TeV'

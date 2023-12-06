@@ -9,7 +9,7 @@ mkShapesMulti.py --pycfg=configuration.py  --inputDir=/eos/cms/store/group/phys_
 
 mkShapesMulti.py --pycfg=configuration.py  --inputDir=/eos/cms/store/group/phys_higgs/cmshww/fernanpe/HWWNano/ --doHadd=True --batchSplit=Samples,Files --doNotCleanup --nThreads=100
 
-mkPlot.py  --pycfg=configuration.py  --inputFile=rootFile/plots_offshell2018_UL_v9.root --minLogC=0.01 --minLogCratio=0.01 --maxLogC=1000 --maxLogCratio=1000 --fileFormats=png,pdf --showIntegralLegend=
+mkPlot.py  --pycfg=configuration.py  --inputFile=rootFile/plots_hww_offshell_UL_2018.root --minLogC=0.01 --minLogCratio=0.01 --maxLogC=1000 --maxLogCratio=1000 --fileFormats=png,pdf --showIntegralLegend=
 ```
 
 ## DNN Tools
@@ -19,3 +19,8 @@ The DNN is located in the `Tools` directory. The DNN is trained and tested in py
 ```
 python make_DNN_code_six_cats_v2.py
 ``` 
+
+## Binning Optimization
+
+Binning for variables of interest are optimized using [Combine Rebin](https://github.com/latinos/PlotsConfigurations/blob/master/Configurations/WH_chargeAsymmetry/UL/Full2018_v9/WHSS_Mu82_EleUL90/Rebin.py). Variables are plotted with many fine bins and bins are combined until they all have equal uncertainty.
+

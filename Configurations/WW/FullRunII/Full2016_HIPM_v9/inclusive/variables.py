@@ -26,14 +26,14 @@ variables['events']  = {   'name': '1',
                         'xaxis' : 'events', 
                         'fold' : 3
                         }
-'''
+
 variables['mll']  = {   'name': 'mll',
                         'range' : (20, 80,200),
                         'xaxis' : 'm_{ll} [GeV]',
                         'fold' : 3
                         }
 
-variables['mth']  = {   'name': 'mth',
+variables['mth']  = {   'name': 'mth_patch',
                         'range' : (20, 60,300),
                         'xaxis' : 'm_{T}^{WW} [GeV]',
                         'fold' : 3
@@ -51,31 +51,31 @@ variables['drll']  = {  'name': 'drll',
                         'fold'  : 3
                         }
 
-variables['dphillmet'] = { 'name': 'dphillmet',
+variables['dphillmet'] = { 'name': 'dphillmet_patch',
                            'range' : (20,0,3.15),
                            'xaxis' : 'dphillmet',
                            'fold'  : 3
                        }
 
-variables['mtw1']  = {  'name': 'mtw1',
+variables['mtw1']  = {  'name': 'mtw1_patch',
                         'range' : (20,0,200),
                         'xaxis' : 'mtw1',
                         'fold'  : 3
                         }
 
-variables['mtw2']  = {  'name': 'mtw2',
+variables['mtw2']  = {  'name': 'mtw2_patch',
                         'range' : (20,0,200),
                         'xaxis' : 'mtw2',
                         'fold'  : 3
                         }
 
-variables['pTWW']  = {  'name': 'pTWW',
+variables['pTWW']  = {  'name': 'pTWW_patch',
                         'range' : (20,0,200),
                         'xaxis' : 'pTWW',
                         'fold'  : 3
                         }
 
-variables['pTHjj']  = { 'name': 'pTHjj',
+variables['pTHjj']  = { 'name': 'pTHjj_patch',
                         'range' : (20,0,200),
                         'xaxis' : 'pTHjj',
                         'fold'  : 3
@@ -98,7 +98,7 @@ variables['dphijj'] = { 'name': 'dphijj',
                         'xaxis' : 'dphijj',
                         'fold'  : 3
                         }
-
+'''
 variables['dphijet2met'] = { 'name': 'dphijet2met',
                              'range' : (20,0,3.15),
                              'xaxis' : 'dphijet2met',
@@ -128,7 +128,7 @@ variables['mindetajl'] = { 'name'  : 'mindetajl',
                            'xaxis' : 'mindetajl',
                            'fold'  : 3
                         }
-
+'''
 variables['jetpt0'] = { 'name'  : 'Alt$(CleanJet_pt[0],0)',
                         'range' : (20,0,100),
                         'xaxis' : 'Alt$(CleanJet_pt[0],0)',
@@ -177,4 +177,4 @@ variables['njets'] = { 'name'  : 'Sum$(CleanJet_pt>30)',
                                  'fold'  : 3
                         }
 
-'''
+

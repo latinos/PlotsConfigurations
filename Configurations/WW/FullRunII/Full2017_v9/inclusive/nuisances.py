@@ -200,64 +200,37 @@ jet_branches = ['CleanJet_pt','CleanJet_eta','CleanJet_phi','CleanJet_mass','Cle
 jes_systs = ['JESAbsolute','JESAbsolute_2017','JESBBEC1','JESBBEC1_2017','JESEC2','JESEC2_2017','JESFlavorQCD','JESHF','JESHF_2017','JESRelativeBal','JESRelativeSample_2017']
 
 for js in jes_systs:
-    # Split source, applied to jets and MET
-    nuisances[js+'_all'] = {
-        'name': 'CMS_scale_'+js+'_all',
-        'kind': 'suffix',
-        'type': 'shape',
-        'mapUp': js+'up',
-        'mapDown': js+'do',
-        'samples': dict((skey, ['1', '1']) for skey in mc),
-        'folderUp': 'root://eoscms.cern.ch/'+makeMCDirectory('RDFfix__JESup_suffix'),
-        'folderDown': 'root://eoscms.cern.ch/'+makeMCDirectory('RDFfix__JESdo_suffix'),
-        'reweight' : ['btagSF'+js.replace('JES','jes')+'up/btagSF','btagSF'+js.replace('JES','jes')+'down/btagSF'],
-        'AsLnN': '0'
-    }
-
     # Split source, applied to jets only
-    bmap_up = dict((bname, js+'_jetUp.'+bname+'_'+js+'up') for bname in jet_branches)
-    bmap_do = dict((bname, js+'_jetDown.'+bname+'_'+js+'do') for bname in jet_branches)
+    bmap_up = dict((bname, js+'Up.'+bname+'_'+js+'up') for bname in jet_branches)
+    bmap_do = dict((bname, js+'Down.'+bname+'_'+js+'do') for bname in jet_branches)
 
-    nuisances[js+'_jet'] = {
-        'name': 'CMS_scale_'+js+'_jet',
+    nuisances[js] = {
+        'name': 'CMS_scale_'+js,
         'kind': 'branch_custom',
         'type': 'shape',
         'BrFromToUp': bmap_up,
         'BrFromToDown': bmap_do,
         'samples': dict((skey, ['1', '1']) for skey in mc),
-        'folderUp': 'root://eoscms.cern.ch/'+makeMCDirectory('RDFfix__JESup_suffix'),
-        'folderDown': 'root://eoscms.cern.ch/'+makeMCDirectory('RDFfix__JESdo_suffix'),
+        'folderUp': 'root://eoscms.cern.ch/'+makeMCDirectory('RDF__JESup_suffix'),
+        'folderDown': 'root://eoscms.cern.ch/'+makeMCDirectory('RDF__JESdo_suffix'),
         'reweight' : ['btagSF'+js.replace('JES','jes')+'up/btagSF','btagSF'+js.replace('JES','jes')+'down/btagSF'],
         'AsLnN': '0'
     }
 
-for coll in ['all']:#['jet','met','all']
-    if coll == 'jet':
-        bmap_up = dict((bname, 'JESTotal_jetUp.'+bname+'_JESTotalup') for bname in jet_branches)
-        bmap_do = dict((bname, 'JESTotal_jetDown.'+bname+'_JESTotaldo') for bname in jet_branches)
-    elif coll == 'met':
-        bmap_up = {'PuppiMET_pt' : 'PuppiMET_ptJESUp', 'PuppiMET_phi' : 'PuppiMET_phiJESUp'}
-        bmap_do = {'PuppiMET_pt' : 'PuppiMET_ptJESDown', 'PuppiMET_phi' : 'PuppiMET_phiJESDown'}
-    else:
-        bmap_up = dict((bname, 'JESTotal_allUp.'+bname+'_JESTotalup') for bname in jet_branches)
-        bmap_up['PuppiMET_pt']  = 'PuppiMET_ptJESUp'
-        bmap_up['PuppiMET_phi'] = 'PuppiMET_phiJESUp'
-        bmap_do = dict((bname, 'JESTotal_allDown.'+bname+'_JESTotaldo') for bname in jet_branches)
-        bmap_do['PuppiMET_pt']  = 'PuppiMET_ptJESDown'
-        bmap_do['PuppiMET_phi'] = 'PuppiMET_phiJESDown'
+bmap_up = {'PuppiMET_pt' : 'PuppiMET_ptJESUp', 'PuppiMET_phi' : 'PuppiMET_phiJESUp'}
+bmap_do = {'PuppiMET_pt' : 'PuppiMET_ptJESDown', 'PuppiMET_phi' : 'PuppiMET_phiJESDown'}
         
-    nuisances['JESTotal_'+coll] = {
-        'name': 'CMS_scale_JESTotal_'+coll,
-        'kind': 'branch_custom',
-        'type': 'shape',
-        'BrFromToUp': bmap_up,
-        'BrFromToDown': bmap_do,
-        'samples': dict((skey, ['1', '1']) for skey in mc),
-        'folderUp': 'root://eoscms.cern.ch/'+makeMCDirectory('RDFfix__JESup_suffix'),
-        'folderDown': 'root://eoscms.cern.ch/'+makeMCDirectory('RDFfix__JESdo_suffix'),
-        'reweight' : ['btagSFjesup/btagSF','btagSFjesdown/btagSF'],
-        'AsLnN': '0'
-    }
+nuisances['JESTotal_met'] = {
+    'name': 'CMS_scale_JESTotal_met',
+    'kind': 'branch_custom',
+    'type': 'shape',
+    'BrFromToUp': bmap_up,
+    'BrFromToDown': bmap_do,
+    'samples': dict((skey, ['1', '1']) for skey in mc),
+    'folderUp': 'root://eoscms.cern.ch/'+makeMCDirectory('RDF__JESup_suffix'),
+    'folderDown': 'root://eoscms.cern.ch/'+makeMCDirectory('RDF__JESdo_suffix'),
+    'AsLnN': '0'
+}
 
 ##### Jet energy resolution
 nuisances['JER'] = {

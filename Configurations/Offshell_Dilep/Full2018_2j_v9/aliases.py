@@ -10,12 +10,12 @@ configurations = os.path.dirname(configurations) # WW
 configurations = os.path.dirname(configurations) # Configurations
 
 
-configurations += '/PlotsConfigurations/Configurations'
+configurations += '/src/PlotsConfigurations/Configurations'
 
 mc     = [skey for skey in samples if skey not in ('Fake', 'DATA', 'Dyemb')]
 
 
-HWW_OFFSHELL_DNN_PATH = ".L "+ configurations + "/Offshell_Dilep/Full2016_noHIPM_2j_v9/Tools/AddDNNScoresv4.cc+"
+HWW_OFFSHELL_DNN_PATH = ".L "+ configurations + "/Offshell_Dilep/Tools/AddDNNScoresv4_2jet.cc+"
 
 aliases['dnnScore_VBF_OFF'] = {
     'linesToAdd' : [HWW_OFFSHELL_DNN_PATH],

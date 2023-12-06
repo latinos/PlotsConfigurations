@@ -1,3 +1,4 @@
+##running 0 jet
 import os
 import copy
 import inspect
@@ -8,8 +9,81 @@ configurations = os.path.dirname(configurations) # Full2018_v9
 configurations = os.path.dirname(configurations) # FullRunII
 configurations = os.path.dirname(configurations) # WW
 configurations = os.path.dirname(configurations) # Configurations
+configurations += '/PlotsConfigurations/Configurations'
 
-mc     = [skey for skey in samples if skey not in ('Fake', 'DATA', 'Dyemb')]
+HWW_OFFSHELL_DNN_PATH0jet = '.L %s/src/PlotsConfigurations/Configurations/Offshell_Dilep/Tools/AddDNNScoresv1_0jet.cc+' % os.getenv('CMSSW_BASE')
+HWW_OFFSHELL_DNN_PATH1jet = '.L %s/src/PlotsConfigurations/Configurations/Offshell_Dilep/Tools/AddDNNScoresv1_1jet.cc+' % os.getenv('CMSSW_BASE')
+
+
+#aliases = {}
+
+# imported from samples.py:
+# samples, signals
+
+mc = [skey for skey in samples if skey not in ('Fake', 'DATA')]
+
+eleWP='mvaFall17V1Iso_WP90'
+muWP='cut_Tight_HWWW'
+
+###DNN initiatlization#######
+
+##Add 0j on each and add 1j
+
+aliases['dnnScore_ggH_OFF_0j'] = {
+    'linesToAdd' : [HWW_OFFSHELL_DNN_PATH0jet],
+    'class' : 'AddDNNScoresv1_0jet',
+    'args': ("ggH_OFF",)
+}
+aliases['dnnScore_ggH_ON_0j'] = {
+    'linesToAdd' : [HWW_OFFSHELL_DNN_PATH0jet],
+    'class' : 'AddDNNScoresv1_0jet',
+    'args': ("ggH_ON",)
+}
+aliases['dnnScore_top_0j'] = {
+    'linesToAdd' : [HWW_OFFSHELL_DNN_PATH0jet],
+    'class' : 'AddDNNScoresv1_0jet',
+    'args': ("top",)
+}
+aliases['dnnScore_WW_0j'] = {
+    'linesToAdd' : [HWW_OFFSHELL_DNN_PATH0jet],
+    'class' : 'AddDNNScoresv1_0jet',
+    'args': ("WW",)
+}
+aliases['dnnScore_MAX_0j'] = {
+    'linesToAdd' : [HWW_OFFSHELL_DNN_PATH0jet],
+    'class' : 'AddDNNScoresv1_0jet',
+    'args': ("MAX",)
+}
+
+#1jet
+
+aliases['dnnScore_ggH_OFF_1j'] = {
+    'linesToAdd' : [HWW_OFFSHELL_DNN_PATH1jet],
+    'class' : 'AddDNNScoresv1_1jet',
+    'args': ("ggH_OFF",)
+}
+aliases['dnnScore_ggH_ON_1j'] = {
+    'linesToAdd' : [HWW_OFFSHELL_DNN_PATH1jet],
+    'class' : 'AddDNNScoresv1_1jet',
+    'args': ("ggH_ON",)
+}
+aliases['dnnScore_top_1j'] = {
+    'linesToAdd' : [HWW_OFFSHELL_DNN_PATH1jet],
+    'class' : 'AddDNNScoresv1_1jet',
+    'args': ("top",)
+}
+aliases['dnnScore_WW_1j'] = {
+    'linesToAdd' : [HWW_OFFSHELL_DNN_PATH1jet],
+    'class' : 'AddDNNScoresv1_1jet',
+    'args': ("WW",)
+}
+aliases['dnnScore_MAX_1j'] = {
+    'linesToAdd' : [HWW_OFFSHELL_DNN_PATH1jet],
+    'class' : 'AddDNNScoresv1_1jet',
+    'args': ("MAX",)
+}
+
+#####DNN complete#######
 
 eleWP = 'mvaFall17V2Iso_WP90'
 muWP  = 'cut_Tight_HWWW'
@@ -100,52 +174,17 @@ aliases['zeroJet'] = {
 }
 
 aliases['oneJet'] = {
-    'expr': 'Alt$(CleanJet_pt[0], 0) > 30.'
+    'expr': 'Alt$(CleanJet_pt[0],0) > 30. && Alt$(CleanJet_pt[1],0) < 30.'
 }
 
 aliases['multiJet'] = {
-    'expr': 'Alt$(CleanJet_pt[1], 0) > 30.'
+    'expr': 'Alt$(CleanJet_pt[0],0) > 30. && Alt$(CleanJet_pt[1],0) > 30.'
 }
 
 # gen-matching to prompt only (GenLepMatch2l matches to *any* gen lepton)
 aliases['PromptGenLepMatch2l'] = {
     'expr': 'Alt$(Lepton_promptgenmatched[0]*Lepton_promptgenmatched[1], 0)',
     'samples': mc
-}
-
-#############################################
-# Patching MET variables for JES variations #
-#############################################
-
-aliases['mtw1_patch'] = {
-    'linesToAdd': ['.L %s/WW/FullRunII/METpatch.cc+' % configurations],
-    'class': 'METpatch',
-    'args': ("mtw1"),
-}
-
-aliases['mtw2_patch'] = {
-    'class': 'METpatch',
-    'args': ("mtw2"),
-}
-
-aliases['mth_patch'] = {
-    'class': 'METpatch',
-    'args': ("mth"),
-}
-
-aliases['dphillmet_patch'] = {
-    'class': 'METpatch',
-    'args': ("dphillmet"),
-}
-
-aliases['pTWW_patch'] = {
-    'class': 'METpatch',
-    'args': ("pTWW"),
-}
-
-aliases['pTHjj_patch'] = {
-    'class': 'METpatch',
-    'args': ("pTHjj"),
 }
 
 ####################################################################################
@@ -190,22 +229,8 @@ aliases['bReqSF'] = {
 # CR definitions
 
 aliases['topcr'] = {
-    'expr': 'mtw2_patch>30 && mll>50 && ((Sum$(CleanJet_pt > 30.) == 0 && !bVeto) || bReq)'
-}
-
-aliases['dycr'] = {
-    'expr': 'mth_patch<60 && mll>40 && mll<80 && bVeto'
-}
-
-aliases['wwcr'] = {
-    'expr': 'mth_patch>60 && mtw2_patch>30 && mll>100 && bVeto'
-}
-
-# SR definition
-
-aliases['sr'] = {
-    'expr': 'mth_patch>60 && mtw2_patch>30 && bVeto'
-}
+    'expr': '((zeroJet && dnnScore_top_0j > .5) || (oneJet && dnnScore_top_1j > .5)) * ((Sum$(CleanJet_pt > 30.) == 0 && !bVeto) || bReq)'
+} ##combined 0 and 1 jet definition
 
 # Overall b tag SF
 aliases['btagSF'] = {
@@ -213,23 +238,26 @@ aliases['btagSF'] = {
     'samples': mc
 }
 
-for shift in ['jes', 'jesAbsolute', 'jesAbsolute_2018', 'jesBBEC1', 'jesBBEC1_2018', 'jesEC2', 'jesEC2_2018', 'jesFlavorQCD', 'jesHF', 'jesHF_2018', 'jesRelativeBal', 'jesRelativeSample_2018', 'lf', 'hf', 'lfstats1', 'lfstats2', 'hfstats1', 'hfstats2', 'cferr1', 'cferr2']:
-
+for shift in ['lf', 'hf', 'lfstats1', 'lfstats2', 'hfstats1', 'hfstats2', 'cferr1', 'cferr2']:
     for targ in ['bVeto', 'bReq']:
         alias = aliases['%sSF%sup' % (targ, shift)] = copy.deepcopy(aliases['%sSF' % targ])
         alias['expr'] = alias['expr'].replace('btagSF_{}_shape'.format(bSF), 'btagSF_{}_shape_up_{}'.format(bSF, shift))
+        alias['nominalOnly'] = True
 
         alias = aliases['%sSF%sdown' % (targ, shift)] = copy.deepcopy(aliases['%sSF' % targ])
         alias['expr'] = alias['expr'].replace('btagSF_{}_shape'.format(bSF), 'btagSF_{}_shape_down_{}'.format(bSF, shift))
+        alias['nominalOnly'] = True
 
     aliases['btagSF%sup' % shift] = {
         'expr': aliases['btagSF']['expr'].replace('SF', 'SF' + shift + 'up'),
         'samples': mc,
+        'nominalOnly': True
     }
 
     aliases['btagSF%sdown' % shift] = {
         'expr': aliases['btagSF']['expr'].replace('SF', 'SF' + shift + 'down'),
         'samples': mc,
+        'nominalOnly': True
     }
 
 #Note: this is the data-NLO correction recommended by the TOP PAG in most use cases
@@ -244,11 +272,6 @@ aliases['nCleanGenJet'] = {
     'samples': mc
 }
 
-aliases['fiducial'] = {
-    'linesToAdd': ['.L %s/WW/FullRunII/fiducial.cc+' % configurations],
-    'class': 'FiducialRegion',
-    'samples': mc
-}
 
 ##### DY Z pT reweighting
 aliases['getGenZpt_OTF'] = {
@@ -351,27 +374,8 @@ aliases['nGoodGenJet'] = {
     'samples': mc
 }
 
-aliases['B0'] = {
-    'expr' : '1',
-    'samples' : ['WW','ggWW']
-}
-
-aliases['fid'] = {
-    'expr' : 'fiducial',
-    'samples' : ['WW','ggWW']
-}
-
-aliases['BDTOutput_0j'] = {
-    'class': 'METpatch',
-    'args': ("WW_BDT_0j"),
-}
-
-aliases['BDTOutput_1j'] = {
-    'class': 'METpatch',
-    'args': ("WW_BDT_1j"),
-}
-
-aliases['BDTOutput_2j'] = {
-    'class': 'METpatch',
-    'args': ("WW_BDT_2j"),
-}
+# aliases['LHE_mWW'] = {
+#     'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/Offshell_Dilep/Tools/computeLHEmWW.cc+' % os.getenv('CMSSW_BASE')],
+#     'class': 'computeLHEmWW',
+#     'samples': ['Higgs_offshell', 'Higgs_onshell']
+# }
