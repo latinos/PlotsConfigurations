@@ -42,6 +42,14 @@ protected:
   FloatArrayReader* FatJet_tau1{};	  
   FloatArrayReader* FatJet_mass{};	  
   FloatArrayReader* FatJet_msof{};	  
+  FloatArrayReader* FatJet_msof_jmsUp{};
+  FloatArrayReader* FatJet_msof_jmsDo{};
+  FloatArrayReader* FatJet_msof_jmrUp{};
+  FloatArrayReader* FatJet_msof_jmrDo{};
+  FloatArrayReader* FatJet_msof_jerUp{};
+  FloatArrayReader* FatJet_msof_jerDo{};
+  FloatArrayReader* FatJet_msof_jesUp{};
+  FloatArrayReader* FatJet_msof_jesDo{};
   FloatArrayReader* FatJet_mass_jmsUp{};
   FloatArrayReader* FatJet_mass_jmsDo{};
   FloatArrayReader* FatJet_mass_jmrUp{};
@@ -118,38 +126,38 @@ for (unsigned int ix{0}; ix < nFat; ix++) {
 	
 	if ( _unc == "jerUp"){
 		disc_pt = FatJet_pt_jerUp->At(ix);
-		disc_mass = FatJet_mass_jerUp->At(ix);
+		disc_mass = FatJet_msof_jerUp->At(ix);
 	}
 	if ( _unc == "jesUp"){
 		disc_pt   = FatJet_pt_jesUp->At(ix);
-		disc_mass = FatJet_mass_jesUp->At(ix);
+		disc_mass = FatJet_msof_jesUp->At(ix);
 	}
 	if ( _unc == "jmsUp"){
 	        disc_pt   = FatJet_pt->At(ix);
-	        disc_mass = FatJet_mass_jmsUp->At(ix);
+	        disc_mass = FatJet_msof_jmsUp->At(ix);
 	}
 	if ( _unc == "jmrUp"){
 		disc_pt   = FatJet_pt->At(ix);
-		disc_mass = FatJet_mass_jmrUp->At(ix);
+		disc_mass = FatJet_msof_jmrUp->At(ix);
 	}
 	if ( _unc == "jerDo"){
 	        disc_pt   = FatJet_pt_jerDo->At(ix);
-	        disc_mass = FatJet_mass_jerDo->At(ix);
+	        disc_mass = FatJet_msof_jerDo->At(ix);
 	}
 	if ( _unc == "jesDo"){
 	        disc_pt   = FatJet_pt_jesDo->At(ix);
-	        disc_mass = FatJet_mass_jesDo->At(ix);
+	        disc_mass = FatJet_msof_jesDo->At(ix);
 	}
 	if ( _unc == "jmsDo"){
 	       disc_pt   = FatJet_pt->At(ix);
-	       disc_mass = FatJet_mass_jmsDo->At(ix);
+	       disc_mass = FatJet_msof_jmsDo->At(ix);
 	}
 	if ( _unc == "jmrDo"){
 		disc_pt = FatJet_pt->At(ix);
-		disc_mass = FatJet_mass_jmrDo->At(ix);
+		disc_mass = FatJet_msof_jmrDo->At(ix);
 	}
 	bool GoodJet = true;
-	if (FatJet_tau1->At(ix) == 0.0) continue;
+//	if (FatJet_tau1->At(ix) == 0.0) continue;
 	
 	if(FatJet_jetId->At(ix) < 0){
 	GoodJet = false;
@@ -412,6 +420,14 @@ _library.bindBranch(FatJet_mass_jerUp, "FatJet_mass_jerUp");
 _library.bindBranch(FatJet_mass_jerDo, "FatJet_mass_jerDown");
 _library.bindBranch(FatJet_mass_jesUp, "FatJet_mass_jesTotalUp");
 _library.bindBranch(FatJet_mass_jesDo, "FatJet_mass_jesTotalDown");
+_library.bindBranch(FatJet_msof_jmsUp, "FatJet_msoftdrop_jmsUp");
+_library.bindBranch(FatJet_msof_jmsDo, "FatJet_msoftdrop_jmsDown");
+_library.bindBranch(FatJet_msof_jmrUp, "FatJet_msoftdrop_jmrUp");
+_library.bindBranch(FatJet_msof_jmrDo, "FatJet_msoftdrop_jmrDown");
+_library.bindBranch(FatJet_msof_jerUp, "FatJet_msoftdrop_jerUp");
+_library.bindBranch(FatJet_msof_jerDo, "FatJet_msoftdrop_jerDown");
+_library.bindBranch(FatJet_msof_jesUp, "FatJet_msoftdrop_jesTotalUp");
+_library.bindBranch(FatJet_msof_jesDo, "FatJet_msoftdrop_jesTotalDown");
 _library.bindBranch(FatJet_pt_jerUp, "FatJet_pt_jerUp");
 _library.bindBranch(FatJet_pt_jerDo, "FatJet_pt_jerDown");
 _library.bindBranch(FatJet_pt_jesUp, "FatJet_pt_jesTotalUp");
