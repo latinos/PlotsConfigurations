@@ -181,12 +181,12 @@ plot['DATA']  = {
                   'color': 1 ,  
                   'isSignal' : 0,
                   'isData'   : 1 ,
-                  'isBlind'  : 1
+                  'isBlind'  : 0
               }
 
 
 # additional options
 
-legend['lumi'] = 'L = 59.8/fb'
+legend['lumi'] = 'L = 16.8/fb'
 
 legend['sqrt'] = '#sqrt{s} = 13 TeV'

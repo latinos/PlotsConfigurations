@@ -27,10 +27,22 @@ except NameError:
 
 #### Luminosity
 
-nuisances['lumi'] = {
-   'name': 'lumi_13TeV',
-   'type': 'lnN',
-   'samples': dict((skey, '1.023') for skey in mc if skey not in ['top'])
+nuisances['lumi_Uncorrelated'] = {
+    'name': 'lumi_13TeV_2018',
+    'type': 'lnN',
+    'samples': dict((skey, '1.015') for skey in mc)
+}
+
+nuisances['lumi_Correlated'] = {
+    'name': 'lumi_13TeV_correlated',
+    'type': 'lnN',
+    'samples': dict((skey, '1.020') for skey in mc)
+}
+
+nuisances['lumi_1718'] = {
+    'name': 'lumi_13TeV_1718',
+    'type': 'lnN',
+    'samples': dict((skey, '1.002') for skey in mc)
 }
 
 ## Use the following if you want to apply the automatic combine MC stat nuisances.
