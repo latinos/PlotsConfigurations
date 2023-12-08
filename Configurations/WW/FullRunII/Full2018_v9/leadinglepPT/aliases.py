@@ -15,8 +15,17 @@ eleWP = 'mvaFall17V2Iso_WP90'
 muWP  = 'cut_Tight_HWWW'
 
 aliases['LepWPCut'] = {
-    'expr': 'LepCut2l__ele_'+eleWP+'__mu_'+muWP,
+    'expr': 'LepCut2l__ele_'+eleWP+'__mu_'+muWP+'*\
+     ( ((abs(Lepton_pdgId[0])==13 && Muon_mvaTTH[Lepton_muonIdx[0]]>0.82) || (abs(Lepton_pdgId[0])==11 && Lepton_mvaTTH_UL[0]>0.90)) \
+    && ((abs(Lepton_pdgId[1])==13 && Muon_mvaTTH[Lepton_muonIdx[1]]>0.82) || (abs(Lepton_pdgId[1])==11 && Lepton_mvaTTH_UL[1]>0.90)) )',
     'samples': mc + ['DATA']
+}
+
+aliases['ttHMVAULSF'] = {
+    'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/ttHMVASF.C+' % configurations],
+    'class'      : 'ttHMVASF',
+    'args'       : ("2018", 2, "all","nominal"),
+    'samples'    : mc
 }
 
 aliases['LepWPSF'] = {
@@ -40,38 +49,47 @@ aliases['fakeW'] = {
     'samples': ['Fake']
 }
 
- # And variations - already divided by central values in formulas !
+# And variations - already divided by central values in formulas !
 aliases['fakeWEleUp'] = {
-    'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_EleUp',
-    'samples': ['Fake']
+    'class'      : 'fake_rate_reader',
+    'args'       : ('2018', '90', '82', 0.90, 0.82, 'EleUp', 2, "std"),
+    'samples'    : ['Fake']
 }
 aliases['fakeWEleDown'] = {
-    'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_EleDown',
-    'samples': ['Fake']
+    'class'      : 'fake_rate_reader',
+    'args'       : ('2018', '90', '82', 0.90, 0.82, 'EleDown', 2, "std"),
+    'samples'    : ['Fake']
 }
 aliases['fakeWMuUp'] = {
-    'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_MuUp',
-    'samples': ['Fake']
+    'class'      : 'fake_rate_reader',
+    'args'       : ('2018', '90', '82', 0.90, 0.82, 'MuUp', 2, "std"),
+    'samples'    : ['Fake']
 }
 aliases['fakeWMuDown'] = {
-    'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_MuDown',
-    'samples': ['Fake']
+    'class'      : 'fake_rate_reader',
+    'args'       : ('2018', '90', '82', 0.90, 0.82, 'MuDown', 2, "std"),
+    'samples'    : ['Fake']
 }
+
 aliases['fakeWStatEleUp'] = {
-    'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_statEleUp',
-    'samples': ['Fake']
+    'class'      : 'fake_rate_reader',
+    'args'       : ('2018', '90', '82', 0.90, 0.82, 'StatEleUp', 2, "std"),
+    'samples'    : ['Fake']
 }
 aliases['fakeWStatEleDown'] = {
-    'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_statEleDown',
-    'samples': ['Fake']
+    'class'      : 'fake_rate_reader',
+    'args'       : ('2018', '90', '82', 0.90, 0.82, 'StatEleDown', 2, "std"),
+    'samples'    : ['Fake']
 }
 aliases['fakeWStatMuUp'] = {
-    'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_statMuUp',
-    'samples': ['Fake']
+    'class'      : 'fake_rate_reader',
+    'args'       : ('2018', '90', '82', 0.90, 0.82, 'StatMuUp', 2, "std"),
+    'samples'    : ['Fake']
 }
 aliases['fakeWStatMuDown'] = {
-    'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_statMuDown',
-    'samples': ['Fake']
+    'class'      : 'fake_rate_reader',
+    'args'       : ('2018', '90', '82', 0.90, 0.82, 'StatMuDown', 2, "std"),
+    'samples'    : ['Fake']
 }
 
 # No jet with pt > 30 GeV
@@ -91,6 +109,41 @@ aliases['multiJet'] = {
 aliases['PromptGenLepMatch2l'] = {
     'expr': 'Alt$(Lepton_promptgenmatched[0]*Lepton_promptgenmatched[1], 0)',
     'samples': mc
+}
+
+#############################################
+# Patching MET variables for JES variations #
+#############################################
+
+aliases['mtw1_patch'] = {
+    'linesToAdd': ['.L %s/WW/FullRunII/METpatch.cc+' % configurations],
+    'class': 'METpatch',
+    'args': ("mtw1"),
+}
+
+aliases['mtw2_patch'] = {
+    'class': 'METpatch',
+    'args': ("mtw2"),
+}
+
+aliases['mth_patch'] = {
+    'class': 'METpatch',
+    'args': ("mth"),
+}
+
+aliases['dphillmet_patch'] = {
+    'class': 'METpatch',
+    'args': ("dphillmet"),
+}
+
+aliases['pTWW_patch'] = {
+    'class': 'METpatch',
+    'args': ("pTWW"),
+}
+
+aliases['pTHjj_patch'] = {
+    'class': 'METpatch',
+    'args': ("pTHjj"),
 }
 
 ####################################################################################
@@ -135,21 +188,21 @@ aliases['bReqSF'] = {
 # CR definitions
 
 aliases['topcr'] = {
-    'expr': 'mtw2>30 && mll>50 && ((Sum$(CleanJet_pt > 30.) == 0 && !bVeto) || bReq)'
+    'expr': 'mtw2_patch>30 && mll>50 && ((Sum$(CleanJet_pt > 30.) == 0 && !bVeto) || bReq)'
 }
 
 aliases['dycr'] = {
-    'expr': 'mth<60 && mll>40 && mll<80 && bVeto'
+    'expr': 'mth_patch<60 && mll>40 && mll<80 && bVeto'
 }
 
 aliases['wwcr'] = {
-    'expr': 'mth>60 && mtw2>30 && mll>100 && bVeto'
+    'expr': 'mth_patch>60 && mtw2_patch>30 && mll>100 && bVeto'
 }
 
 # SR definition
 
 aliases['sr'] = {
-    'expr': 'mth>60 && mtw2>30 && bVeto'
+    'expr': 'mth_patch>60 && mtw2_patch>30 && bVeto'
 }
 
 # Overall b tag SF
@@ -158,7 +211,7 @@ aliases['btagSF'] = {
     'samples': mc
 }
 
-for shift in ['lf', 'hf', 'lfstats1', 'lfstats2', 'hfstats1', 'hfstats2', 'cferr1', 'cferr2']:
+for shift in ['jes', 'jesAbsolute', 'jesAbsolute_2018', 'jesBBEC1', 'jesBBEC1_2018', 'jesEC2', 'jesEC2_2018', 'jesFlavorQCD', 'jesHF', 'jesHF_2018', 'jesRelativeBal', 'jesRelativeSample_2018', 'lf', 'hf', 'lfstats1', 'lfstats2', 'hfstats1', 'hfstats2', 'cferr1', 'cferr2']:
     for targ in ['bVeto', 'bReq']:
         alias = aliases['%sSF%sup' % (targ, shift)] = copy.deepcopy(aliases['%sSF' % targ])
         alias['expr'] = alias['expr'].replace('btagSF_{}_shape'.format(bSF), 'btagSF_{}_shape_up_{}'.format(bSF, shift))
@@ -219,36 +272,67 @@ aliases['Jet_PUIDSF'] = {
 
 aliases['Jet_PUIDSF_up'] = {
   'expr' : 'TMath::Exp(Sum$((Jet_jetId>=2)*TMath::Log(Jet_PUIDSF_loose_up)))',
-  'samples': mc
+  'samples': mc,
+  'nominalOnly' : True
 }
 
 aliases['Jet_PUIDSF_down'] = {
   'expr' : 'TMath::Exp(Sum$((Jet_jetId>=2)*TMath::Log(Jet_PUIDSF_loose_down)))',
-  'samples': mc
+  'samples': mc,
+  'nominalOnly' : True
 }
 
 # data/MC scale factors
 aliases['SFweight'] = {
-    'expr': ' * '.join(['SFweight2l', 'LepWPCut', 'LepWPSF','Jet_PUIDSF', 'btagSF']),
+    'expr': ' * '.join(['SFweight2l', 'LepWPCut', 'LepWPSF','Jet_PUIDSF', 'btagSF', 'ttHMVAULSF']),
     'samples': mc
 }
 
-# variations
+# ttHMVA, LepSF variations are 1+delta
+# Combining uncertainties, we want 1+sqrt(delta1^2+delta2^2)
+aliases['ttHMVASFUL_eleUp'] = {
+    'class'      : 'ttHMVASF',
+    'args'       : ("2018", 2, "all", "eleUp"),
+    'samples'    : mc,
+    'nominalOnly': 1
+}
 aliases['SFweightEleUp'] = {
-    'expr': 'LepSF2l__ele_'+eleWP+'__Up',
-    'samples': mc
+    'expr': '1+TMath::Sqrt(TMath::Power(LepSF2l__ele_'+eleWP+'__Up-1,2)+TMath::Power(ttHMVASFUL_eleUp-1,2))',
+    'samples': mc,
+    'nominalOnly': 1
+}
+aliases['ttHMVAULSF_eleDown'] = {
+    'class'      : 'ttHMVASF',
+    'args'       : ("2018", 2, "all", "eleDown"),
+    'samples'    : mc,
+    'nominalOnly': 1
 }
 aliases['SFweightEleDown'] = {
-    'expr': 'LepSF2l__ele_'+eleWP+'__Do',
-    'samples': mc
+    'expr': '1-TMath::Sqrt(TMath::Power(LepSF2l__ele_'+eleWP+'__Do-1,2)+TMath::Power(ttHMVAULSF_eleDown-1,2))',
+    'samples': mc,
+    'nominalOnly': 1
+}
+aliases['ttHMVAULSF_muUp'] = {
+    'class'      : 'ttHMVASF',
+    'args'       : ("2018", 2, "all", "muUp"),
+    'samples'    : mc,
+    'nominalOnly': 1
 }
 aliases['SFweightMuUp'] = {
-    'expr': 'LepSF2l__mu_'+muWP+'__Up',
-    'samples': mc
+    'expr': '1+TMath::Sqrt(TMath::Power(LepSF2l__mu_'+muWP+'__Up-1,2)+TMath::Power(ttHMVAULSF_muUp-1,2))',
+    'samples': mc,
+    'nominalOnly': 1
+}
+aliases['ttHMVAULSF_muDown'] = {
+    'class'      : 'ttHMVASF',
+    'args'       : ("2018", 2, "all", "muDown"),
+    'samples'    : mc,
+    'nominalOnly': 1
 }
 aliases['SFweightMuDown'] = {
-    'expr': 'LepSF2l__mu_'+muWP+'__Do',
-    'samples': mc
+    'expr': '1-TMath::Sqrt(TMath::Power(LepSF2l__mu_'+muWP+'__Do-1,2)+TMath::Power(ttHMVAULSF_muDown-1,2))',
+    'samples': mc,
+    'nominalOnly': 1
 }
 
 aliases['nGoodCleanJet'] = {
@@ -310,17 +394,16 @@ aliases['fid'] = {
 }
 
 aliases['BDTOutput_0j'] = {
-    'class': 'ww_top_bdt_0j',
-    'linesToAdd' : ['.L %s/WW/FullRunII/WW_BDT_0j.cc+' % configurations],
+    'class': 'METpatch',
+    'args': ("WW_BDT_0j"),
 }
 
 aliases['BDTOutput_1j'] = {
-    'class': 'ww_top_bdt_1j',
-    'linesToAdd' : ['.L %s/WW/FullRunII/WW_BDT_1j.cc+' % configurations],
+    'class': 'METpatch',
+    'args': ("WW_BDT_1j"),
 }
 
 aliases['BDTOutput_2j'] = {
-    'class': 'ww_top_bdt_2j',
-    'linesToAdd' : ['.L %s/WW/FullRunII/WW_BDT_2j.cc+' % configurations],
+    'class': 'METpatch',
+    'args': ("WW_BDT_2j"),
 }
-
