@@ -7,11 +7,11 @@ import re
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.tri import Triangulation, LinearTriInterpolator
-#import mplhep as hep
+import mplhep as hep
 
-#from plot_utils import CMSSW_BASE
+from plot_utils import CMSSW_BASE
 
-#plt.style.use(hep.style.CMS)
+plt.style.use(hep.style.CMS)
 
 
 class MassPlaneContourPlotter:
@@ -27,7 +27,7 @@ class MassPlaneContourPlotter:
             return json.load(f)
 
     def load_limit(self, mA, mH):
-        with open(os.path.join(self.path_to_limits, f"CL_MA-{mA}_MH-{mH}.txt"), 'r') as f:
+        with open(os.path.join(self.path_to_limits, f"CL_MA-{mA}_MH-{mH}.log"), 'r') as f:
             flines = [x for x in f if x.startswith("Expected")]
             limit_vals = []
             for line in flines:
@@ -43,7 +43,7 @@ class MassPlaneContourPlotter:
 
     def compute_theory_value(self, mA, mH):
         try:
-            br_z_ll = 0.066
+            br_z_ll = 0.1
             br_h_tt = self.thdmc_brs[f"{mA},{mH}"]["HtottBR"]
             br_a_zh = self.thdmc_brs[f"{mA},{mH}"]["AtoZHBR"]
             xsec_a = self.thdmc_brs[f"{mA},{mH}"]["xsec_ggH"]
