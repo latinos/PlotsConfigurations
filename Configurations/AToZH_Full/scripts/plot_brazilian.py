@@ -5,13 +5,13 @@ import re
 
 import numpy as np
 import matplotlib.pyplot as plt
-#import mplhep as hep
+import mplhep as hep
 
-#from plot_utils import CMSSW_BASE
-#from plot_utils import PlotMeta
+from plot_utils import CMSSW_BASE
+from plot_utils import PlotMeta
 
 
-#plt.style.use(hep.style.CMS)
+plt.style.use(hep.style.CMS)
 
 class BrazilianPlotter:
 
@@ -65,10 +65,11 @@ class BrazilianPlotter:
         return xsec_a*br_a_zh*br_h_tt*br_z_ll
 
     def plot_common(self, ax):
-#        hep.cms.label(ax=ax, llabel="Work in progress", data=True,
-#            lumi=PlotMeta.YEAR_LUMI_MAP[self.year],
-#            year=PlotMeta.UL_YEAR_MAP[self.year])
-        ax.set_ylabel(r"$\sigma(A) \times BR(A\rightarrow Z(l\bar{l})H(t\bar{t}))$")
+        hep.cms.label(ax=ax, llabel="Work in progress", data=True,
+            lumi=PlotMeta.YEAR_LUMI_MAP[self.year],
+            year=PlotMeta.UL_YEAR_MAP[self.year],
+            fontsize=19.5)
+        ax.set_ylabel(r"$\sigma(A) \times BR(A\rightarrow ZH) \times BR(H\rightarrow t\bar{t}) \times BR(Z\rightarrow l\bar{l})  [{pb}]$", fontsize=14)
         ax.legend()
         ax.set_yscale("log")
 
@@ -80,8 +81,9 @@ class BrazilianPlotter:
             print(limits[:, 4])
             ax.fill_between(mHs, limits[:, 0], limits[:, 4], color=self.BRAZILIAN_GOLD, label=r"$2\sigma$")
             ax.fill_between(mHs, limits[:, 1], limits[:, 3], color=self.BRAZILIAN_GREEN, label=r"$1\sigma$")
+            
+
             ax.plot(mHs, limits[:, 2], marker='D', linestyle='--', color=self.BRAZILIAN_BLUE, label="expected limit")
-	    
 	    
 	        #Plot Theory Curves
             theory_colors = ['r']
@@ -104,6 +106,7 @@ class BrazilianPlotter:
             print(f"-- MH fixed at {mH} GeV")
             limits = np.array([self.load_limits(mA, mH) for mA in mAs])
             fig, ax = plt.subplots(figsize=(12, 8))
+            print(limits[:, 4])
             ax.fill_between(mAs, limits[:, 0], limits[:, 4], color=self.BRAZILIAN_GOLD, label=r"$2\sigma$")
             ax.fill_between(mAs, limits[:, 1], limits[:, 3], color=self.BRAZILIAN_GREEN, label=r"$1\sigma$")
             ax.plot(mAs, limits[:, 2], marker='D', linestyle='--', color=self.BRAZILIAN_BLUE, label="expected limit")
@@ -136,7 +139,6 @@ if __name__ == "__main__":
         YEARS = [args.year]
     if args.year == "all":
         YEARS = ["UL16", "UL17", "UL18", "ULCombined"]
-
 
     for year in YEARS:
         plotter = BrazilianPlotter(year=year, path_to_limits=args.path_to_limits)

@@ -19,6 +19,11 @@ def addcut(name, exprs):
 #0jet
 _tmp = [
     'zeroJet',
+       ]
+addcut('supercut_0j', _tmp)
+
+_tmp = [
+    'zeroJet',
     'bVeto', 
     'dnnScore_ggH_OFF_0j > .5',
        ]
@@ -29,7 +34,7 @@ _tmp = [
     'bVeto', 
     'dnnScore_ggH_ON_0j > .5',
        ]
-addcut('SR_ggH_ON_0j', _tmp)
+addcut('CR_ggH_ON_0j', _tmp)
 
 _tmp = [
     'zeroJet',
@@ -46,6 +51,10 @@ _tmp = [
 addcut('topCR_0j', _tmp)
 
 #1jet
+_tmp = [
+    'oneJet',
+       ]
+addcut('supercut_1j', _tmp)
 
 _tmp = [
     'oneJet',
@@ -59,7 +68,7 @@ _tmp = [
     'bVeto', 
     'dnnScore_ggH_ON_1j > .5',
        ]
-addcut('SR_ggH_ON_1j', _tmp)
+addcut('CR_ggH_ON_1j', _tmp)
 
 _tmp = [
     'oneJet',
