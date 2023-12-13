@@ -365,3 +365,10 @@ aliases['BDT_WH3l_SSSF_new_v9'] = {
 # 'args'  : ('BDTG4SK01_05shrinkage', '%s/WH_chargeAsymmetry/UL/Full2018_v9/BDTconfig_WH3l/datasetSSSF/weights/TMVAClassification_BDTG4SK01_05shrinkage.weights.xml' % configurations),
 
 # /WH_chargeAsymmetry/UL/Full2018_v9/BDTconfig_WH3l/dataset/weights/TMVAClassification_BDTG4C3.weights.xml
+
+# WHSS training needed for WZ control region. WJets and Semileptonic Top are considered as fake.
+aliases['BDT_WHSS_TopSemileptonic_v9'] = {
+    'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/BDT_WHSS_TopSemileptonic_v9.C+' % configurations],
+    'class': 'BDT_WHSS_TopSemileptonic_v9',
+    'args' : ('BDTG_6', '%s/WH_chargeAsymmetry/UL/data/BDT/2018/WHSS/weights/TMVAClassification_BDTG_6.weights.xml' % configurations),
+}
