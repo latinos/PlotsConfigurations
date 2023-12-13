@@ -10,6 +10,7 @@ from matplotlib.tri import Triangulation, LinearTriInterpolator
 import mplhep as hep
 
 from plot_utils import CMSSW_BASE
+from plot_utils import PlotMeta
 
 plt.style.use(hep.style.CMS)
 
@@ -68,13 +69,18 @@ class MassPlaneContourPlotter:
         theory_limit_ratio = theory_values / expected_values_interpolated
         contour = ax.tricontourf(self.mass_points[:, 0], self.mass_points[:, 1], theory_limit_ratio, levels=10, cmap="viridis")
         ax.tricontour(self.mass_points[:, 0], self.mass_points[:, 1], theory_limit_ratio, levels=[0,1], colors="red")
-        ax.scatter(self.mass_points[:, 0], self.mass_points[:, 1], color="orange", s=12)
+        ax.scatter(self.mass_points[:, 0], self.mass_points[:, 1], color="orange", s=15)
 
         fig.colorbar(contour, ax=ax, label=r"$\sigma_{Theory}/\sigma_{Expected}$")
         ax.set_xlabel(r"m$_{A}$ [GeV]")
         ax.set_ylabel(r"m$_{H}$ [GeV]")
-        ax.set_xlim(500, 2100)
-        ax.set_ylim(350, 2000)
+        ax.set_xlim(475, 2125)
+        ax.set_ylim(325, 2025)
+
+        hep.cms.label(ax=ax, llabel="Work in progress", data=True,
+            lumi=PlotMeta.YEAR_LUMI_MAP[self.year],
+            year=PlotMeta.UL_YEAR_MAP[self.year],
+            fontsize=22.5)
 
         os.makedirs(os.path.join(self.path_to_limits, "plot_output/contours"), exist_ok=True)
         fname = "mass_plane_contour_tanb1"
