@@ -1,7 +1,8 @@
 executable = doFit_condor.sh 
+universe = vanilla
 arguments = $(ProcId) 
 output = ./jobs_fits/fit_2018.$(ProcId).out
 error = ./jobs_fits/fit_2018.$(ProcId).err
-log = ./jobs_fits/fit_2018_condor.log
-
+log = ./jobs_fits/fit_2018_condor.$(ProcId).log
+MY.WantOS = "el7"
 queue 269 

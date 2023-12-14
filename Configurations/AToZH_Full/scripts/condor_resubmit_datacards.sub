@@ -1,0 +1,9 @@
+executable = ./doDatacards_condor.sh
+universe = vanilla
+arguments = $(num)
+output = ./scripts/jobs_datacards/datacards.$(num).out
+error = ./jobs_datacards/datacards.$(num).err
+log = ./jobs_datacards/datacards.$(num).log
+MY.WantOS = "el7"
+max_materialize = 10
+queue num in TMP

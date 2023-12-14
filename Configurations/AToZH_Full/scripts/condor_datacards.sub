@@ -1,7 +1,8 @@
 executable = doDatacards_condor.sh 
+universe = vanilla
 arguments = $(ProcId) 
 output = ./jobs_datacards/datacards_2018.$(ProcId).out
 error = ./jobs_datacards/datacards_2018.$(ProcId).err
-log = ./jobs_datacards/datacards_2018_condor.log
-
+log = ./jobs_datacards/datacards_2018_condor.$(ProcId).log
+MY.WantOS = "el7"
 queue 269 
