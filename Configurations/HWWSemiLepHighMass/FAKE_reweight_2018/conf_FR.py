@@ -7,7 +7,7 @@ treeName = 'Events'
 tag = 'FR_2018v7'
 
 # used by mkShape to define output directory for root files
-outputDir = 'FR_root_noBv_test'
+outputDir = 'FR_root_old'
 
 # file with TTree aliases
 aliasesFile = 'aliases_FR.py'
@@ -30,7 +30,7 @@ lumi = lumi = 59.74
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'FR_plots_Feb'
+outputDirPlots = 'FR_plots_Step2'
 
 # used by mkDatacards to define output directory for datacards
 outputDirDatacard = 'FR_datacards'

@@ -218,7 +218,7 @@ print('Create plots')
 
 #fr_dir = 'FReleTrig'
 #fr_dir = 'FR_HT'
-fr_dir = 'FR_NLOWjet_STEP'
+fr_dir = 'FR_NLOWjet_step'
 canvas = ROOT.TCanvas('canvas', 'FW canvas', 610, 600)
 for fw in histograms_fr:
     canvas.SetLogy(0)

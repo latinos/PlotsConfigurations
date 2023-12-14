@@ -52,7 +52,7 @@ except NameError:
 ################################################
 dataReco     = 'Run2018_102X_nAODv7_Full2018v7'
 
-mcSteps      = 'MCl1loose2018v7__MCCorr2018v7{var}'
+mcSteps      = 'MCl1loose2018v7__MCCorr2018v7__MCCombJJLNu2018{var}'
 
 dataSteps    = 'DATAl1loose2018v7__DATACombJJLNu2018'
 fakeSteps    = 'DATAl1loose2018v7__DATACombJJLNu2018'
