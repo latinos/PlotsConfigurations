@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 
 def CMSSW_BASE():
     cwd = os.getcwd()
-    cmssw_path = "/afs/cern.ch/work/s/srudrabh/AZH/postprocessing/CMSSW_10_6_4"
+    cmssw_path = "/afs/cern.ch/user/m/mihawksw/private/azh/analysis/CMSSW_10_6_28"
     return cmssw_path
 
 
@@ -16,14 +16,18 @@ class PlotMeta:
         "UL18": 59.8,
         "UL17": 41.5,
         "UL16": 36.3,
-        "ULCombined": 138
+        "ULCombined": 138,
+        "UL16preVFP": 19.5,
+        "UL16postVFP": 16.8,
     }
 
     UL_YEAR_MAP = {
         "UL18": 2018,
         "UL17": 2017,
         "UL16": 2016,
-    }
+        "UL16preVFP": "2016 preVFP",
+        "UL16postVFP": "2016 postVFP",
+   }
 
     CMAP = plt.cm.get_cmap("Set3")
 

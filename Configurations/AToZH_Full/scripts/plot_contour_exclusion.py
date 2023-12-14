@@ -74,13 +74,13 @@ class MassPlaneContourPlotter:
         fig.colorbar(contour, ax=ax, label=r"$\sigma_{Theory}/\sigma_{Expected}$")
         ax.set_xlabel(r"m$_{A}$ [GeV]")
         ax.set_ylabel(r"m$_{H}$ [GeV]")
-        ax.set_xlim(475, 2125)
-        ax.set_ylim(325, 2025)
+        ax.set_xlim(475, 2110)
+        ax.set_ylim(320, 2025)
 
-        hep.cms.label(ax=ax, llabel="Work in progress", data=True,
+        hep.cms.label(ax=ax, llabel="Work in progress", loc=3, data=True,
             lumi=PlotMeta.YEAR_LUMI_MAP[self.year],
             year=PlotMeta.UL_YEAR_MAP[self.year],
-            fontsize=22.5)
+            fontsize=25)
 
         os.makedirs(os.path.join(self.path_to_limits, "plot_output/contours"), exist_ok=True)
         fname = "mass_plane_contour_tanb1"
@@ -95,10 +95,10 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
 
-    if args.year in ["UL16", "UL17", "UL18", "ULCombined"]:
+    if args.year in ["UL16preVFP", "UL16postVFP", "UL17", "UL18", "ULCombined"]:
         YEARS = [args.year]
     if args.year == "all":
-        YEARS = ["UL16", "UL17", "UL18", "ULCombined"]
+        YEARS = ["UL16preVFP", "UL16postVFP", "UL17", "UL18", "ULCombined"]
 
     for year in YEARS:
         plotter = MassPlaneContourPlotter(year=year, path_to_limits=args.path_to_limits)
