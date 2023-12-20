@@ -68,64 +68,51 @@ class BrazilianPlotter:
         hep.cms.label(ax=ax, llabel="Work in progress", data=True,
             lumi=PlotMeta.YEAR_LUMI_MAP[self.year],
             year=PlotMeta.UL_YEAR_MAP[self.year],
-            fontsize=19.5)
-        ax.set_ylabel(r"$\sigma(A) \times BR(A\rightarrow ZH) \times BR(H\rightarrow t\bar{t}) \times BR(Z\rightarrow l\bar{l})  [{pb}]$", fontsize=19.5)
-        ax.legend(fontsize=18)
+            fontsize=22.5)
+        ax.set_ylabel(r"$\sigma(A) \times BR(A\rightarrow ZH) \times BR(H\rightarrow t\bar{t}) \times BR(Z\rightarrow l\bar{l})  [{pb}]$", fontsize=18.5)
         ax.set_yscale("log")
 
     def plot_fixed_mA(self):
+        fig, ax = plt.subplots(figsize=(10, 12))
+        num = 0
         for mA, mHs in self.brasilians["mA_fixed"].items():
-            print(f"-- MA fixed at {mA} GeV")
             limits = np.array([self.load_limits(mA, mH) for mH in mHs])
-            fig, ax = plt.subplots(figsize=(12, 8))
-            print(limits[:, 4])
-            ax.fill_between(mHs, limits[:, 0], limits[:, 4], color=self.BRAZILIAN_GOLD, label=r"$2\sigma$")
-            ax.fill_between(mHs, limits[:, 1], limits[:, 3], color=self.BRAZILIAN_GREEN, label=r"$1\sigma$")
-            
+            l1 =ax.fill_between(mHs, limits[:, 0]*float(pow(10,num)), limits[:, 4]*float(pow(10,num)), color=self.BRAZILIAN_GOLD)
+            l2 = ax.fill_between(mHs, limits[:, 1]*float(pow(10,num)), limits[:, 3]*float(pow(10,num)), color=self.BRAZILIAN_GREEN)
+            l3, = ax.plot(mHs, limits[:, 2]*float(pow(10,num)), marker='D', linestyle='--', color=self.BRAZILIAN_BLUE)
+            ax.annotate(fr'$m_A = {mA}$ $(x1E{num})$',xy=(min(2100,max(mHs))+50 , (limits[-1][2]*float(pow(10,num)))*0.5 ), xycoords='data', horizontalalignment='left', fontsize=12)
+            num = num + 1
+        ax.legend((l1, l2, l3), ('2 std. deviation', '1 std. deviation', 'Expected CLs'), loc='lower right', shadow=False, fontsize=16)
+        ax.set_xlim(250,2600)
+        ax.set_xlabel(fr"$m_H$ [GeV]", fontsize=19.5)
+        self.plot_common(ax)
 
-            ax.plot(mHs, limits[:, 2], marker='D', linestyle='--', color=self.BRAZILIAN_BLUE, label="expected limit")
-	    
-	        #Plot Theory Curves
-            theory_colors = ['r']
-            theory_mHs = [i for i in range(min(mHs), min(1200, max(mHs) + 1), 2)]
-            for color in theory_colors:
-                theory_values = [self.compute_theory_value(mA, mH) for mH in mHs]
-                ax.plot(mHs, theory_values, color=color, label=fr"2HDM type-II $\tan(\beta)=1$")
-
-            ax.set_xlabel(fr"$m_H$ [GeV] ($m_A={mA}$)", fontsize=19.5)
-            self.plot_common(ax)
-
-            os.makedirs(os.path.join(self.path_to_limits, "plot_output/brasilians"), exist_ok=True)
-            fname = f"MA-{mA}_{self.year}"
-            plt.savefig(os.path.join(self.path_to_limits, f"plot_output/brasilians/{fname}.png"))
-            plt.savefig(os.path.join(self.path_to_limits, f"plot_output/brasilians/{fname}.pdf"))
-            plt.close()
+        os.makedirs(os.path.join(self.path_to_limits, "plot_output_all/brasilians_stacked"), exist_ok=True)
+        fname = f"MA_fixed_{self.year}"
+        plt.savefig(os.path.join(self.path_to_limits, f"plot_output_all/brasilians_stacked/{fname}.png"))
+        plt.savefig(os.path.join(self.path_to_limits, f"plot_output_all/brasilians_stacked/{fname}.pdf"))
+        plt.close()
 
     def plot_fixed_mH(self):
+        fig, ax = plt.subplots(figsize=(12, 8))
+        num=0
         for mH, mAs in self.brasilians["mH_fixed"].items():
-            print(f"-- MH fixed at {mH} GeV")
             limits = np.array([self.load_limits(mA, mH) for mA in mAs])
-            fig, ax = plt.subplots(figsize=(12, 8))
-            print(limits[:, 4])
-            ax.fill_between(mAs, limits[:, 0], limits[:, 4], color=self.BRAZILIAN_GOLD, label=r"$2\sigma$")
-            ax.fill_between(mAs, limits[:, 1], limits[:, 3], color=self.BRAZILIAN_GREEN, label=r"$1\sigma$")
-            ax.plot(mAs, limits[:, 2], marker='D', linestyle='--', color=self.BRAZILIAN_BLUE, label="expected limit")
-    
-	        # Plot Theory Curves
-            theory_colors = ['r']
-            theory_mAs = [i for i in range(min(mAs), min(1200, max(mAs) + 1), 2)]
-            for color in theory_colors:
-                theory_values = [self.compute_theory_value(mA, mH) for mA in mAs]
-                ax.plot(mAs, theory_values, color=color, label=fr"2HDM type-II $\tan(\beta)=1$")
+            l1 = ax.fill_between(mAs, limits[:, 0]*float(pow(10,num)), limits[:, 4]*float(pow(10,num)), color=self.BRAZILIAN_GOLD)
+            l2 = ax.fill_between(mAs, limits[:, 1]*float(pow(10,num)), limits[:, 3]*float(pow(10,num)), color=self.BRAZILIAN_GREEN)
+            l3, = ax.plot(mAs, limits[:, 2]*float(pow(10,num)), marker='D', linestyle='--', color=self.BRAZILIAN_BLUE)
+            ax.annotate(fr'$m_H = {mH}$ $(x1E{num}$)',xy=(min(2100,max(mAs))+35 , (limits[-1][2]*float(pow(10,num)))*0.21 ), xycoords='data', horizontalalignment='left', verticalalignment='bottom', fontsize=11.5)
+            num=num+1
+        ax.legend((l1, l2, l3), ('2 std. deviation', '1 std. deviation', 'Expected CLs'), loc='upper left', shadow=False, fontsize=18)
+        ax.set_xlim(250,2600)
+        ax.set_xlabel(fr"$m_A$ [GeV]", fontsize=22)
+        self.plot_common(ax)
 
-            ax.set_xlabel(fr"$m_A$ [GeV] ($m_H={mH}$)", fontsize=19.5)
-            self.plot_common(ax)
-
-            os.makedirs(os.path.join(self.path_to_limits, "plot_output/brasilians"), exist_ok=True)
-            fname = f"MH-{mH}_{self.year}"
-            plt.savefig(os.path.join(self.path_to_limits, f"plot_output/brasilians/{fname}.png"))
-            plt.savefig(os.path.join(self.path_to_limits, f"plot_output/brasilians/{fname}.pdf"))
-            plt.close()
+        os.makedirs(os.path.join(self.path_to_limits, "plot_output_all/brasilians_stacked"), exist_ok=True)
+        fname = f"MH_fixed_{self.year}"
+        plt.savefig(os.path.join(self.path_to_limits, f"plot_output_all/brasilians_stacked/{fname}.png"))
+        plt.savefig(os.path.join(self.path_to_limits, f"plot_output_all/brasilians_stacked/{fname}.pdf"))
+        plt.close()
 
 
 if __name__ == "__main__":

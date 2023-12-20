@@ -1,0 +1,9 @@
+executable = ./doFits_condor.sh
+universe = vanilla
+arguments = $(num)
+output = ./jobs_fit/fit.$(num).out
+error = ./jobs_fit/fit.$(num).err
+log = ./jobs_fit/fit.$(num).log
+MY.WantOS = "el7"
+max_materialize = 10
+queue num in TMP

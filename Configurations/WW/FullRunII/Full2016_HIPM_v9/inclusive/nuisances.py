@@ -189,41 +189,21 @@ nuisances['muonpt'] = {
 }
 
 ###### Jet energy scale
-jet_branches = ['CleanJet_pt','CleanJet_eta','CleanJet_phi','CleanJet_mass','CleanJet_jetIdx','dphilljet','mjj','detajj','dphijj','dphilep1jet1','dphilep1jet2','mindetajl']
 jes_systs = ['JESAbsolute','JESAbsolute_2016','JESBBEC1','JESBBEC1_2016','JESEC2','JESEC2_2016','JESFlavorQCD','JESHF','JESHF_2016','JESRelativeBal','JESRelativeSample_2016']
 
 for js in jes_systs:
-    # Split source, applied to jets only
-    bmap_up = dict((bname, js+'Up.'+bname+'_'+js+'up') for bname in jet_branches)
-    bmap_do = dict((bname, js+'Down.'+bname+'_'+js+'do') for bname in jet_branches)
-
     nuisances[js] = {
         'name': 'CMS_scale_'+js,
-        'kind': 'branch_custom',
+        'kind': 'suffix',
         'type': 'shape',
-        'BrFromToUp': bmap_up,
-        'BrFromToDown': bmap_do,
+        'mapUp': js+'up',
+        'mapDown': js+'do',
         'samples': dict((skey, ['1', '1']) for skey in mc),
         'folderUp': 'root://eoscms.cern.ch/'+makeMCDirectory('RDF__JESup_suffix'),
         'folderDown': 'root://eoscms.cern.ch/'+makeMCDirectory('RDF__JESdo_suffix'),
         'reweight' : ['btagSF'+js.replace('JES','jes')+'up/btagSF','btagSF'+js.replace('JES','jes')+'down/btagSF'],
         'AsLnN': '0'
     }
-
-bmap_up = {'PuppiMET_pt' : 'PuppiMET_ptJESUp', 'PuppiMET_phi' : 'PuppiMET_phiJESUp'}
-bmap_do = {'PuppiMET_pt' : 'PuppiMET_ptJESDown', 'PuppiMET_phi' : 'PuppiMET_phiJESDown'}
-        
-nuisances['JESTotal_met'] = {
-    'name': 'CMS_scale_JESTotal_met',
-    'kind': 'branch_custom',
-    'type': 'shape',
-    'BrFromToUp': bmap_up,
-    'BrFromToDown': bmap_do,
-    'samples': dict((skey, ['1', '1']) for skey in mc),
-    'folderUp': 'root://eoscms.cern.ch/'+makeMCDirectory('RDF__JESup_suffix'),
-    'folderDown': 'root://eoscms.cern.ch/'+makeMCDirectory('RDF__JESdo_suffix'),
-    'AsLnN': '0'
-}
 
 ##### Jet energy resolution
 nuisances['JER'] = {
