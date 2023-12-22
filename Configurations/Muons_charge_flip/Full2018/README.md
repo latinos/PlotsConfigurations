@@ -34,6 +34,6 @@ Or, if they failed because the wall clock time has been exceeded, resubmit them 
 
 ### Plots
 
-The latest version of the plots are available at:
+The latest version of the plots is available at:
 
 	https://ntrevisa.web.cern.ch/ntrevisa/plots/2023_11_16/
