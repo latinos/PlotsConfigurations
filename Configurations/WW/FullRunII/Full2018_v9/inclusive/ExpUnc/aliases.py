@@ -23,7 +23,7 @@ aliases['LepWPCut'] = {
 }
 
 aliases['ttHMVASF'] = {
-    'linesToAdd' : ['.L %s/WW/FullRunII/Tools/ttHMVASF.C+' % configurations],
+    'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/ttHMVASF.C+' % configurations],
     'class'      : 'ttHMVASF',
     'args'       : ("2018", 2, "all", "nominal"),
     'samples'    : mc
