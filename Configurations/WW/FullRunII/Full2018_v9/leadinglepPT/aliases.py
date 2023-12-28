@@ -45,8 +45,10 @@ aliases['gstarHigh'] = {
 
 # Fake leptons transfer factor
 aliases['fakeW'] = {
-    'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP,
-    'samples': ['Fake']
+    'linesToAdd' : ['.L %s/WW/FullRunII/Tools/fake_rate_reader.C+' % configurations],
+    'class'      : 'fake_rate_reader',
+    'args'       : ('2018', '90', '82', 0.90, 0.82, 'nominal', 2, "std"),
+    'samples'    : ['Fake']
 }
 
 # And variations - already divided by central values in formulas !
@@ -111,41 +113,6 @@ aliases['PromptGenLepMatch2l'] = {
     'samples': mc
 }
 
-#############################################
-# Patching MET variables for JES variations #
-#############################################
-
-aliases['mtw1_patch'] = {
-    'linesToAdd': ['.L %s/WW/FullRunII/METpatch.cc+' % configurations],
-    'class': 'METpatch',
-    'args': ("mtw1"),
-}
-
-aliases['mtw2_patch'] = {
-    'class': 'METpatch',
-    'args': ("mtw2"),
-}
-
-aliases['mth_patch'] = {
-    'class': 'METpatch',
-    'args': ("mth"),
-}
-
-aliases['dphillmet_patch'] = {
-    'class': 'METpatch',
-    'args': ("dphillmet"),
-}
-
-aliases['pTWW_patch'] = {
-    'class': 'METpatch',
-    'args': ("pTWW"),
-}
-
-aliases['pTHjj_patch'] = {
-    'class': 'METpatch',
-    'args': ("pTHjj"),
-}
-
 ####################################################################################
 # b tagging WPs: https://btv-wiki.docs.cern.ch/ScaleFactors/UL2018/
 ####################################################################################
@@ -188,21 +155,21 @@ aliases['bReqSF'] = {
 # CR definitions
 
 aliases['topcr'] = {
-    'expr': 'mtw2_patch>30 && mll>50 && ((Sum$(CleanJet_pt > 30.) == 0 && !bVeto) || bReq)'
+    'expr': 'mtw2>30 && mll>50 && ((Sum$(CleanJet_pt > 30.) == 0 && !bVeto) || bReq)'
 }
 
 aliases['dycr'] = {
-    'expr': 'mth_patch<60 && mll>40 && mll<80 && bVeto'
+    'expr': 'mth<60 && mll>40 && mll<80 && bVeto'
 }
 
 aliases['wwcr'] = {
-    'expr': 'mth_patch>60 && mtw2_patch>30 && mll>100 && bVeto'
+    'expr': 'mth>60 && mtw2>30 && mll>100 && bVeto'
 }
 
 # SR definition
 
 aliases['sr'] = {
-    'expr': 'mth_patch>60 && mtw2_patch>30 && bVeto'
+    'expr': 'mth>60 && mtw2>30 && bVeto'
 }
 
 # Overall b tag SF
@@ -211,7 +178,8 @@ aliases['btagSF'] = {
     'samples': mc
 }
 
-for shift in ['jes', 'jesAbsolute', 'jesAbsolute_2018', 'jesBBEC1', 'jesBBEC1_2018', 'jesEC2', 'jesEC2_2018', 'jesFlavorQCD', 'jesHF', 'jesHF_2018', 'jesRelativeBal', 'jesRelativeSample_2018', 'lf', 'hf', 'lfstats1', 'lfstats2', 'hfstats1', 'hfstats2', 'cferr1', 'cferr2']:
+for shift in ['jesAbsolute', 'jesAbsolute_2018', 'jesBBEC1', 'jesBBEC1_2018', 'jesEC2', 'jesEC2_2018', 'jesFlavorQCD', 'jesHF', 'jesHF_2018', 'jesRelativeBal', 'jesRelativeSample_2018', 'lf', 'hf', 'lfstats1', 'lfstats2', 'hfstats1', 'hfstats2', 'cferr1', 'cferr2']:
+
     for targ in ['bVeto', 'bReq']:
         alias = aliases['%sSF%sup' % (targ, shift)] = copy.deepcopy(aliases['%sSF' % targ])
         alias['expr'] = alias['expr'].replace('btagSF_{}_shape'.format(bSF), 'btagSF_{}_shape_up_{}'.format(bSF, shift))
@@ -221,12 +189,12 @@ for shift in ['jes', 'jesAbsolute', 'jesAbsolute_2018', 'jesBBEC1', 'jesBBEC1_20
 
     aliases['btagSF%sup' % shift] = {
         'expr': aliases['btagSF']['expr'].replace('SF', 'SF' + shift + 'up'),
-        'samples': mc
+        'samples': mc,
     }
 
     aliases['btagSF%sdown' % shift] = {
         'expr': aliases['btagSF']['expr'].replace('SF', 'SF' + shift + 'down'),
-        'samples': mc
+        'samples': mc,
     }
 
 #Note: this is the data-NLO correction recommended by the TOP PAG in most use cases
@@ -394,16 +362,16 @@ aliases['fid'] = {
 }
 
 aliases['BDTOutput_0j'] = {
-    'class': 'METpatch',
-    'args': ("WW_BDT_0j"),
+    'class': 'ww_top_bdt_0j',
+    'linesToAdd' : ['.L %s/WW/FullRunII/WW_BDT_0j.cc+' % configurations],
 }
 
 aliases['BDTOutput_1j'] = {
-    'class': 'METpatch',
-    'args': ("WW_BDT_1j"),
+    'class': 'ww_top_bdt_1j',
+    'linesToAdd' : ['.L %s/WW/FullRunII/WW_BDT_1j.cc+' % configurations],
 }
 
 aliases['BDTOutput_2j'] = {
-    'class': 'METpatch',
-    'args': ("WW_BDT_2j"),
+    'class': 'ww_top_bdt_2j',
+    'linesToAdd' : ['.L %s/WW/FullRunII/WW_BDT_2j.cc+' % configurations],
 }
