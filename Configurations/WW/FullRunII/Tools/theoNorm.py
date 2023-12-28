@@ -26,9 +26,9 @@ elif diffVar == "dphijj":
 elif diffVar == "leadinglepPT":
     shortname = "leadinglepPT"
     nbins = 8
-elif diffVar == "sublepPT":
-    shortname = "sublepPT"
-    nbins = 13
+elif diffVar == "subleadinglepPT":
+    shortname = "subleadinglepPT"
+    nbins = 7
 elif diffVar == "mll":
     shortname = "mll"
     nbins = 13
