@@ -31,7 +31,7 @@ elif diffVar == "subleadinglepPT":
     nbins = 7
 elif diffVar == "mll":
     shortname = "mll"
-    nbins = 13
+    nbins = 12
 elif diffVar == "ptll":
     shortname = "ptll"
     nbins = 13
