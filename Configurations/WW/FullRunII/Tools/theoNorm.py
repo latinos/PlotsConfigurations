@@ -34,7 +34,10 @@ elif diffVar == "mll":
     nbins = 12
 elif diffVar == "ptll":
     shortname = "ptll"
-    nbins = 13
+    nbins = 10
+elif diffVar == "ptWW":
+    shortname = "ptWW"
+    nbins = 7
 elif diffVar == "mjj":
     shortname = "mjj"
     nbins = 12
@@ -45,7 +48,7 @@ elif diffVar == "jetpt1":
     shortname = "jetpt1"
     nbins = 8
 else:
-    print 'Allowed variables are: inclusive, njets, dphijj, mjj, jetpt0, jetpt1, leadlepPT, sublepPT, mll, ptll.'
+    print 'Allowed variables are: inclusive, njets, dphijj, mjj, jetpt0, jetpt1, leadlepPT, sublepPT, mll, ptll, ptWW'
     exit()
 
 subsamples = ["B%d"%i for i in xrange(nbins)]
