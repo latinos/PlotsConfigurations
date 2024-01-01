@@ -33,6 +33,19 @@ variables['mll']  = {   'name': 'mll',
                         'fold' : 3
                         }
 
+variables['ptll']  = {   'name': 'ptll',
+                        'range' : (20, 0.,200),
+                        'xaxis' : 'p_{T}^{ll} [GeV]',
+                        'fold' : 0
+                        }
+
+variables['puppimet']  = {
+                        'name': 'PuppiMET_pt',
+                        'range' : (20,0,200),
+                        'xaxis' : 'puppimet [GeV]',
+                        'fold'  : 3
+                        }
+
 variables['mth']  = {   'name': 'mth',
                         'range' : (20, 60,300),
                         'xaxis' : 'm_{T}^{WW} [GeV]',
@@ -45,17 +58,53 @@ variables['pt1']  = {   'name': 'pt1',
                         'fold'  : 3
                         }
 
+variables['pt2']  = {   'name': 'Lepton_pt[1]',
+                        'range' : (20,10,100),
+                        'xaxis' : 'p_{T} 2nd lep',
+                        'fold'  : 0
+                        }
+
+variables['eta1']  = {  'name': 'Lepton_eta[0]',
+                        'range' : (20,-3,3),
+                        'xaxis' : '#eta 1st lep',
+                        'fold'  : 3
+                        }
+
+variables['eta2']  = {  'name': 'Lepton_eta[1]',
+                        'range' : (20,-3,3),
+                        'xaxis' : '#eta 2nd lep',
+                        'fold'  : 3
+                        }
+
+variables['phi1']  = {  'name': 'Lepton_phi[0]',
+                        'range' : (20,-3.2,3.2),
+                        'xaxis' : '#phi 1st lep',
+                        'fold'  : 3
+                        }
+
+variables['phi2']  = {  'name': 'Lepton_phi[1]',
+                        'range' : (20,-3.2,3.2),
+                        'xaxis' : '#phi 2nd lep',
+                        'fold'  : 3
+                        }
+
 variables['drll']  = {  'name': 'drll',
                         'range' : (20,0,6),
                         'xaxis' : 'drll',
                         'fold'  : 3
                         }
 
+variables['dphilmet'] = { 'name': 'dphilmet',
+                          'range' : (20,0,3.15),
+                          'xaxis' : 'dphilmet',
+                          'fold'  : 3
+                        }
+
 variables['dphillmet'] = { 'name': 'dphillmet',
                            'range' : (20,0,3.15),
                            'xaxis' : 'dphillmet',
                            'fold'  : 3
-                       }
+                        }
 
 variables['mtw1']  = {  'name': 'mtw1',
                         'range' : (20,0,200),
@@ -170,10 +219,9 @@ variables['jetbtag1'] = { 'name'  : 'Alt$(Jet_btagDeepFlavB[CleanJet_jetIdx[1]],
 #                          'xaxis' : 'nGoodGenJet',
 #                          'fold'  : 3
 #                        }
-
+'''
 variables['njets'] = { 'name'  : 'Sum$(CleanJet_pt>30)',
                                  'range' : (4,-0.5,3.5),
                                  'xaxis' : 'njets',
                                  'fold'  : 3
                         }
-'''
