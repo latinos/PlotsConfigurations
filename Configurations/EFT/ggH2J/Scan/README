@@ -1,0 +1,16 @@
+
+source scripts/MakeWorkSpace.sh 
+
+source scripts/ScanAndProfile-Exp.sh 16
+source scripts/ScanAndProfile-Exp.sh 17
+source scripts/ScanAndProfile-Exp.sh 18
+source scripts/ScanAndProfile-Exp.sh All
+
+source scripts/ScanAndFreeze-Exp.sh 16
+source scripts/ScanAndFreeze-Exp.sh 17
+source scripts/ScanAndFreeze-Exp.sh 18
+source scripts/ScanAndFreeze-Exp.sh All
+
+
+
+python scripts/PlotScan.py
