@@ -142,7 +142,7 @@ samples['WWewk'] = {
 }
 
 ######## Vg(S) ########
-'''
+
 files = nanoGetSampleFiles(mcDirectory, 'Wg_AMCNLOFXFX_01J') + \
         nanoGetSampleFiles(mcDirectory, 'WZTo3LNu_mllmin0p1') + \
         nanoGetSampleFiles(mcDirectory, 'ZGToLLG')
@@ -155,7 +155,7 @@ samples['Vg'] = {
 
 addSampleWeight(samples,'Vg','Wg_AMCNLOFXFX_01J', 'gstarLow*0.94*(Gen_ZGstar_mass < 0.1)')
 addSampleWeight(samples,'Vg','WZTo3LNu_mllmin0p1','gstarLow*0.94*(Gen_ZGstar_mass > 0.1)*1.138*0.601644*58.59/4.666') #Correction for wrong xsec
-'''
+
 ######## WZ ########
 
 files = nanoGetSampleFiles(mcDirectory, 'WZTo3LNu_mllmin0p1') + \
@@ -206,24 +206,20 @@ addSampleWeight(samples,'VVV','WWZ_ext1',WWZbaseW+'/baseW')
 
 files = nanoGetSampleFiles(mcDirectory, 'GluGluHToWWTo2L2Nu_M125') + \
         nanoGetSampleFiles(mcDirectory, 'VBFHToWWTo2L2Nu_M125') + \
+        nanoGetSampleFiles(mcDirectory, 'HZJ_HToWW_M125') + \
         nanoGetSampleFiles(mcDirectory, 'GluGluZH_HToWWTo2L2Nu_M125') + \
         nanoGetSampleFiles(mcDirectory, 'HWplusJ_HToWW_M125') + nanoGetSampleFiles(mcDirectory, 'HWminusJ_HToWW_M125') + \
         nanoGetSampleFiles(mcDirectory, 'ttHToNonbb_M125') + \
         nanoGetSampleFiles(mcDirectory, 'GluGluHToTauTau_M125') + \
-        nanoGetSampleFiles(mcDirectory, 'VBFHToTauTau_M125') #+ \
-        #nanoGetSampleFiles(mcDirectory, 'ZHToTauTau_M125') + \
-        #nanoGetSampleFiles(mcDirectory, 'WplusHToTauTau_M125') + nanoGetSampleFiles(mcDirectory, 'WminusHToTauTau_M125')
+        nanoGetSampleFiles(mcDirectory, 'VBFHToTauTau_M125') + \
+        nanoGetSampleFiles(mcDirectory, 'ZHToTauTau_M125') + \
+        nanoGetSampleFiles(mcDirectory, 'WplusHToTauTau_M125') + nanoGetSampleFiles(mcDirectory, 'WminusHToTauTau_M125')
 
 samples['Higgs'] = {
     'name' : files,
     'weight': mcCommonWeight,
     'FilesPerJob': 20
 }
-
-#HZJbaseW = getBaseWFast(mcDirectory, mcProduction, ['HZJ_HToWW_M125', 'HZJ_HToWW_M125_ext1'])
-
-#addSampleWeight(samples,'Higgs','HZJ_HToWW_M125',     HZJbaseW+'/baseW')
-#addSampleWeight(samples,'Higgs','HZJ_HToWW_M125_ext1',HZJbaseW+'/baseW')
 
 
 ###########################################

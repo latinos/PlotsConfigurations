@@ -10,8 +10,6 @@ configurations = os.path.dirname(configurations) # FullRunII_UL
 configurations = os.path.dirname(configurations) # WW
 configurations = os.path.dirname(configurations) # Configurations
 
-#aliases = {}
-
 aliases['nCleanGenJet'] = {
     'linesToAdd': ['.L %s/Differential/ngenjet.cc+' % configurations],
     'class': 'CountGenJet',
