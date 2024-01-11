@@ -32,40 +32,40 @@ Extract the results associated to the combination of categories described in the
 
 Scaling the signal processes by a factor 10 and considering all systematic uncertainties:
 
-    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_Full2018_v9_100_bins   --output_name Combination/FitResults_WH_Full2018_v9_100_bins.txt   --freeze_nuisances r_higgs
-    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_Full2017_v9_100_bins   --output_name Combination/FitResults_WH_Full2017_v9_100_bins.txt   --freeze_nuisances r_higgs
-    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_2016noHIPM_v9_100_bins --output_name Combination/FitResults_WH_2016noHIPM_v9_100_bins.txt --freeze_nuisances r_higgs
-    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_2016HIPM_v9_100_bins   --output_name Combination/FitResults_WH_2016HIPM_v9_100_bins.txt   --freeze_nuisances r_higgs
+    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_Full2018_v9_100_bins   --output_name Combination/FitResults_WH_Full2018_v9_100_bins.txt   --freeze_nuisances r_higgs &
+    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_Full2017_v9_100_bins   --output_name Combination/FitResults_WH_Full2017_v9_100_bins.txt   --freeze_nuisances r_higgs &
+    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_2016noHIPM_v9_100_bins --output_name Combination/FitResults_WH_2016noHIPM_v9_100_bins.txt --freeze_nuisances r_higgs &
+    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_2016HIPM_v9_100_bins   --output_name Combination/FitResults_WH_2016HIPM_v9_100_bins.txt   --freeze_nuisances r_higgs &
 
-    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_FullRun2_v9_100_bins   --output_name Combination/FitResults_WH_FullRun2_v9_100_bins.txt   --freeze_nuisances r_higgs
+    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_FullRun2_v9_100_bins   --output_name Combination/FitResults_WH_FullRun2_v9_100_bins.txt   --freeze_nuisances r_higgs &
 
 Scaling the signal processes by a factor 10 and freezing all constrained nuisances, to check the effect of systematic uncertainties:
 
-    python script_workspace_and_fit.py --datacard_name=Combination/WH_chargeAsymmetry_WH_Full2018_v9_100_bins   --output_name=Combination/FitResults_WH_Full2018_v9_100_bins_freeze_all.txt   --freeze_nuisances all
-    python script_workspace_and_fit.py --datacard_name=Combination/WH_chargeAsymmetry_WH_Full2017_v9_100_bins   --output_name=Combination/FitResults_WH_Full2017_v9_100_bins_freeze_all.txt   --freeze_nuisances all
-    python script_workspace_and_fit.py --datacard_name=Combination/WH_chargeAsymmetry_WH_2016noHIPM_v9_100_bins --output_name=Combination/FitResults_WH_2016noHIPM_v9_100_bins_freeze_all.txt --freeze_nuisances all
-    python script_workspace_and_fit.py --datacard_name=Combination/WH_chargeAsymmetry_WH_2016HIPM_v9_100_bins   --output_name=Combination/FitResults_WH_2016HIPM_v9_100_bins_freeze_all.txt   --freeze_nuisances all
+    python script_workspace_and_fit.py --datacard_name=Combination/WH_chargeAsymmetry_WH_Full2018_v9_100_bins   --output_name=Combination/FitResults_WH_Full2018_v9_100_bins_freeze_all.txt   --freeze_nuisances all &
+    python script_workspace_and_fit.py --datacard_name=Combination/WH_chargeAsymmetry_WH_Full2017_v9_100_bins   --output_name=Combination/FitResults_WH_Full2017_v9_100_bins_freeze_all.txt   --freeze_nuisances all &
+    python script_workspace_and_fit.py --datacard_name=Combination/WH_chargeAsymmetry_WH_2016noHIPM_v9_100_bins --output_name=Combination/FitResults_WH_2016noHIPM_v9_100_bins_freeze_all.txt --freeze_nuisances all & 
+    python script_workspace_and_fit.py --datacard_name=Combination/WH_chargeAsymmetry_WH_2016HIPM_v9_100_bins   --output_name=Combination/FitResults_WH_2016HIPM_v9_100_bins_freeze_all.txt   --freeze_nuisances all &
 
-    python script_workspace_and_fit.py --datacard_name=Combination/WH_chargeAsymmetry_WH_FullRun2_v9_100_bins   --output_name=Combination/FitResults_WH_FullRun2_v9_100_bins_freeze_all.txt   --freeze_nuisances all
+    python script_workspace_and_fit.py --datacard_name=Combination/WH_chargeAsymmetry_WH_FullRun2_v9_100_bins   --output_name=Combination/FitResults_WH_FullRun2_v9_100_bins_freeze_all.txt   --freeze_nuisances all &
 
 
 Using correct signal scaling and considering all systematic uncertainties:
 
-    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_Full2018_v9_100_bins_original_signal_scale   --output_name Combination/FitResults_WH_Full2018_v9_100_bins_original_signal_scale.txt   --freeze_nuisances r_higgs
-    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_Full2017_v9_100_bins_original_signal_scale   --output_name Combination/FitResults_WH_Full2017_v9_100_bins_original_signal_scale.txt   --freeze_nuisances r_higgs
-    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_2016noHIPM_v9_100_bins_original_signal_scale --output_name Combination/FitResults_WH_2016noHIPM_v9_100_bins_original_signal_scale.txt --freeze_nuisances r_higgs
-    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_2016HIPM_v9_100_bins_original_signal_scale   --output_name Combination/FitResults_WH_2016HIPM_v9_100_bins_original_signal_scale.txt   --freeze_nuisances r_higgs
+    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_Full2018_v9_100_bins_original_signal_scale   --output_name Combination/FitResults_WH_Full2018_v9_100_bins_original_signal_scale.txt   --freeze_nuisances r_higgs &
+    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_Full2017_v9_100_bins_original_signal_scale   --output_name Combination/FitResults_WH_Full2017_v9_100_bins_original_signal_scale.txt   --freeze_nuisances r_higgs & 
+    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_2016noHIPM_v9_100_bins_original_signal_scale --output_name Combination/FitResults_WH_2016noHIPM_v9_100_bins_original_signal_scale.txt --freeze_nuisances r_higgs &
+    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_2016HIPM_v9_100_bins_original_signal_scale   --output_name Combination/FitResults_WH_2016HIPM_v9_100_bins_original_signal_scale.txt   --freeze_nuisances r_higgs & 
 													   																					   																					    
-    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_FullRun2_v9_100_bins_original_signal_scale   --output_name Combination/FitResults_WH_FullRun2_v9_100_bins_original_signal_scale.txt   --freeze_nuisances r_higgs
+    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_FullRun2_v9_100_bins_original_signal_scale   --output_name Combination/FitResults_WH_FullRun2_v9_100_bins_original_signal_scale.txt   --freeze_nuisances r_higgs &
 																																		   
 Freezing all constrained nuisances, to check the effect of systematic uncertainties:													   
 																																		   
-    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_Full2018_v9_100_bins_original_signal_scale   --output_name Combination/FitResults_WH_Full2018_v9_100_bins_original_signal_scale_freeze_all.txt   --freeze_nuisances all
-    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_Full2017_v9_100_bins_original_signal_scale   --output_name Combination/FitResults_WH_Full2017_v9_100_bins_original_signal_scale_freeze_all.txt   --freeze_nuisances all
-    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_2016noHIPM_v9_100_bins_original_signal_scale --output_name Combination/FitResults_WH_2016noHIPM_v9_100_bins_original_signal_scale_freeze_all.txt --freeze_nuisances all
-    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_2016HIPM_v9_100_bins_original_signal_scale   --output_name Combination/FitResults_WH_2016HIPM_v9_100_bins_original_signal_scale_freeze_all.txt   --freeze_nuisances all
+    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_Full2018_v9_100_bins_original_signal_scale   --output_name Combination/FitResults_WH_Full2018_v9_100_bins_original_signal_scale_freeze_all.txt   --freeze_nuisances all &
+    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_Full2017_v9_100_bins_original_signal_scale   --output_name Combination/FitResults_WH_Full2017_v9_100_bins_original_signal_scale_freeze_all.txt   --freeze_nuisances all &
+    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_2016noHIPM_v9_100_bins_original_signal_scale --output_name Combination/FitResults_WH_2016noHIPM_v9_100_bins_original_signal_scale_freeze_all.txt --freeze_nuisances all &
+    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_2016HIPM_v9_100_bins_original_signal_scale   --output_name Combination/FitResults_WH_2016HIPM_v9_100_bins_original_signal_scale_freeze_all.txt   --freeze_nuisances all &
 																																		   																								   
-    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_FullRun2_v9_100_bins_original_signal_scale   --output_name Combination/FitResults_WH_FullRun2_v9_100_bins_original_signal_scale_freeze_all.txt   --freeze_nuisances all
+    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_FullRun2_v9_100_bins_original_signal_scale   --output_name Combination/FitResults_WH_FullRun2_v9_100_bins_original_signal_scale_freeze_all.txt   --freeze_nuisances all &
 
 ### Produce Impact Plots
 
@@ -130,7 +130,7 @@ Produce likelihood scan plots:
     --others 'Combination/FitResults_WH_FullRun2_v9_100_bins_freeze_all_rA.root:Freeze all:600' \
     -o scan1D --POI r_A  --y-max 3 
                        
-Example in case more scan need to be compared:
+Example in case more scans need to be compared:
 
     plot1DScan.py higgsCombineimpactWorkspace.nominal.MultiDimFit.mH120.root --main-label "some label  \
     --others \
@@ -144,23 +144,11 @@ Example in case more scan need to be compared:
     --breakdown "RateParams,QCDscaleVV,PS,otherQCDscale,MCstat,rest,stat"
 
 
-### Produce maximum likelihood fit and post-fit plots
-
-To produce likelihood scans, we need to perform the fit using the FitDiagnostic option. If we then save both the shapes and their uncertainties, we will obtain an output file with everything we need to also produce post-fit plots. If we optimized the binning of our discriminant using CombineHarvester, this is also the only way to produce plots of the discriminant with the correct binning.
-
-Run combine using the FitDiagnostic option:
-
-    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_FullRun2_v9  --output_name Combination/FitResults_WH_FullRun2_v9_FD.txt --freeze_nuisances r_higgs --sanity_check FD
-
-This will create the output file `fitDiagnostics.root`, storing all the pre- and post-fit shapes. Then, we can produce a rootfile with all the shapes, in the format that mkPlot can read, and then plot:
-
-    bash do_postfit_plots.sh
-
 ### Produce cumulative plots for the four eras of Run 2
 
-    ./do_cumulative_plots_whss.sh	 
+    ./do_cumulative_plots_whss.sh &
 
-    ./do_cumulative_plots_wh3l.sh	 
+    ./do_cumulative_plots_wh3l.sh &
 
 One example, step by step:
 
@@ -230,4 +218,19 @@ One example, step by step:
                       --maxvariable    +1 \
                       --divideByBinWidth
 
+
+
+
+
+### Really needed?? Produce maximum likelihood fit and post-fit plots
+
+To produce likelihood scans, we need to perform the fit using the FitDiagnostic option. If we then save both the shapes and their uncertainties, we will obtain an output file with everything we need to also produce post-fit plots. If we optimized the binning of our discriminant using CombineHarvester, this is also the only way to produce plots of the discriminant with the correct binning.
+
+Run combine using the FitDiagnostic option:
+
+    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_FullRun2_v9_100_bins.txt  --output_name Combination/WH_chargeAsymmetry_WH_FullRun2_v9_100_bins_FD.txt --freeze_nuisances r_higgs --sanity_check FD
+
+This will create the output file `fitDiagnostics.root`, storing all the pre- and post-fit shapes. Then, we can produce a rootfile with all the shapes, in the format that mkPlot can read, and then plot:
+
+    bash do_postfit_plots.sh
 
