@@ -335,6 +335,13 @@ aliases['BDT_WH3l_SSSF_new_v9'] = {
     'args'  : ('BDTG4SK01_05shrinkage', '%s/WH_chargeAsymmetry/UL/data/BDT/2016noHIPM/WH3l/SSSF/weights/TMVAClassification_BDTG4SK01_05shrinkage.weights.xml' % configurations),
 }
 
+# WJets and Semileptonic Top are considered as fake.
+aliases['BDT_WHSS_TopSemileptonic_v9'] = {
+    'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/BDT_WHSS_TopSemileptonic_v9.C+' % configurations],
+    'class': 'BDT_WHSS_TopSemileptonic_v9',
+    'args' : ('BDTG_6', '%s/WH_chargeAsymmetry/UL/data/BDT/2016noHIPM/WHSS/weights/TMVAClassification_BDTG_6.weights.xml' % configurations),
+}
+
 # Fix METFilter_DATA definition: Flag_ecalBadCalibFilter is removed since it is not needed in 2016
 aliases['METFilter_DATA_fix'] = {
     'expr' : 'Flag_goodVertices*Flag_globalSuperTightHalo2016Filter*Flag_HBHENoiseFilter*Flag_HBHENoiseIsoFilter*Flag_EcalDeadCellTriggerPrimitiveFilter*Flag_BadPFMuonFilter*Flag_BadPFMuonDzFilter*Flag_eeBadScFilter',

@@ -32,11 +32,12 @@ Or, if they failed because the wall clock time has been exceeded, resubmit them 
 
 Scaling the signal by a factor 10, to test different strategies in single eras:
 
-    mkDatacards.py --pycfg=configuration.py --inputFile=rootFile/plots_WH3l_2016noHIPM_v9_chargeAsymmetry_Mu82_EleUL90.root --outputDirDatacard=datacards --structureFile=structure.py
+    mkDatacards.py --pycfg=configuration.py --inputFile=rootFile/plots_WH3l_2016noHIPM_v9_chargeAsymmetry_Mu82_EleUL90.root --outputDirDatacard=datacards --structureFile=structure.py --variablesFile=variables_datacard.py
 
 Using the correct signal scaling, for global combination:
 
-    mkDatacards.py --pycfg=configuration.py --inputFile=rootFile/plots_WH3l_2016noHIPM_v9_chargeAsymmetry_Mu82_EleUL90.root --outputDirDatacard=datacards_original_signal_scale --structureFile=structure_original_signal_scale.py
+    mkDatacards.py --pycfg=configuration.py --inputFile=rootFile/plots_WH3l_2016noHIPM_v9_chargeAsymmetry_Mu82_EleUL90.root --outputDirDatacard=datacards_original_signal_scale --structureFile=structure_original_signal_scale.py --variablesFile=variables_datacard.py
+
 ### Optimize binning using combine harvester
 
 Load combine:
@@ -47,10 +48,7 @@ Load combine:
 
 Now optimize:
 
-    ./do_optimize_cards.sh BDT_WH3l_OSSF_new_v9_more     ossf 0.10
     ./do_optimize_cards.sh BDT_WH3l_OSSF_new_v9_100_bins ossf 0.10
-
-    ./do_optimize_cards.sh BDT_WH3l_SSSF_new_v9_more     sssf 0.30
     ./do_optimize_cards.sh BDT_WH3l_SSSF_new_v9_100_bins sssf 0.30
 
 ### Combine datacards
@@ -73,14 +71,12 @@ To produce likelihood scans, we need to perform the fit using the FitDiagnostic 
 
 Run combine using the FitDiagnostic option:
 
-    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_3l_2016noHIPM_v9_new_opt          --output_name Combination/FitResults_new_opt.txt      --freeze_nuisances r_higgs --sanity_check FD
     python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_3l_2016noHIPM_v9_100_bins_new_opt --output_name Combination/FitResults_100_bins_opt.txt --freeze_nuisances r_higgs --sanity_check FD
 
 This will create the output file `fitDiagnostics.root`, storing all the pre- and post-fit shapes. Then, we can produce a rootfile with all the shapes, in the format that mkPlot can read, and then plot:
 
     cmsenv
 
-    bash do_postfit_plots.sh new_v9_more     Combination/FitResults_new_opt_fitDiagnostics.root
     bash do_postfit_plots.sh new_v9_100_bins Combination/FitResults_100_bins_opt_fitDiagnostics.root
 
 ### Interpret the results in terms of asymmetry
@@ -121,12 +117,10 @@ Since S appears in the denominator of the asymmetry expression, it cannot be 0, 
 
 ### Use script to extract asymmetry
 
-    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_3l_2016noHIPM_v9_new_opt          --output_name=Combination/FitResults_new_opt.txt          --freeze_nuisances=r_higgs
     python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_3l_2016noHIPM_v9_100_bins_new_opt --output_name=Combination/FitResults_100_bins_new_opt.txt --freeze_nuisances=r_higgs
 
 Using datacards with correct signal scaling:
 
-    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_3l_2016noHIPM_v9_original_signal_scale_new_opt --output_name=Combination/FitResults_original_signal_scale_new_opt.txt --freeze_nuisances=r_higgs
     python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_3l_2016noHIPM_v9_original_signal_scale_100_bins_new_opt --output_name=Combination/FitResults_original_signal_scale_100_bins_new_opt.txt --freeze_nuisances=r_higgs
 
 ### Produce Impact Plots
@@ -156,20 +150,6 @@ Using r_A as POI:
     combineTool.py -M Impacts -d ../Combination/WH_chargeAsymmetry_WH_3l_2016noHIPM_v9_100_bins_new_opt.root -m 125 -t -1 -o impacts_WH3l_2016noHIPM_100_bins_new_opt.json --setParameters r_S=1.3693,r_A=0.224,r_higgs=1 --setParameterRanges r_S=0,10:r_A=-1,1 --redefineSignalPOIs r_A
 
     plotImpacts.py -i impacts_WH3l_2016noHIPM_100_bins_new_opt.json -o Impact_WH3l_2016noHIPM_100_bins_new_opt
-
-    rm combine_*
-    rm condor_*
-    rm higgsCombine_*
-
-Using r_S as POI:
-
-    combineTool.py -M Impacts -d ../Combination/WH_chargeAsymmetry_WH_3l_2016noHIPM_v9_opt.root -m 125 --doInitialFit -t -1 --setParameters r_S=1.3693,r_A=0.224,r_higgs=1 --setParameterRanges r_S=0,10:r_A=-1,1 --redefineSignalPOIs r_S --freezeParameters r_higgs
-
-    combineTool.py -M Impacts -d ../Combination/WH_chargeAsymmetry_WH_3l_2016noHIPM_v9_opt.root -m 125 --doFits -t -1 --setParameters r_S=1.3693,r_A=0.224,r_higgs=1 --setParameterRanges r_S=0,10:r_A=-1,1 --redefineSignalPOIs r_S --job-mode interactive --parallel 8 --freezeParameters r_higgs
-
-    combineTool.py -M Impacts -d ../Combination/WH_chargeAsymmetry_WH_3l_2016noHIPM_v9_opt.root -m 125 -t -1 -o impacts_WH3l_2016noHIPM_r_S.json --setParameters r_S=1.3693,r_A=0.224,r_higgs=1 --setParameterRanges r_S=0,10:r_A=-1,1 --redefineSignalPOIs r_S
-
-    plotImpacts.py -i impacts_WH3l_2016noHIPM_r_S.json -o Impact_WH3l_2016noHIPM_r_S
 
     rm combine_*
     rm condor_*
