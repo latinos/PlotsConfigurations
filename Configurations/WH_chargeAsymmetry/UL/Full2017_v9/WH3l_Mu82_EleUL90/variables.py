@@ -11,35 +11,6 @@ variables['events'] = {
     'fold'  : 3
 }
 
-# Default trainings in AN-22-120_v1
-variables['BDT_WH3l_OSSF_v9'] = { 
-    'name': 'BDT_WH3l_OSSF_v9',
-    'range' : (40,-1.,1.),
-    'xaxis' : 'MVA discriminant',
-    'fold' : 3,
-}
-
-variables['BDT_WH3l_SSSF_v9'] = { 
-    'name': 'BDT_WH3l_SSSF_v9',
-    'range' : (40,-1.,1.),
-    'xaxis' : 'MVA discriminant',
-    'fold' : 3,
-}
-
-variables['BDT_WH3l_OSSF_v9_more'] = { 
-    'name': 'BDT_WH3l_OSSF_v9',
-    'range' : (1000,-1.,1.),
-    'xaxis' : 'MVA discriminant',
-    'fold' : 3,
-}
-
-variables['BDT_WH3l_SSSF_v9_more'] = { 
-    'name': 'BDT_WH3l_SSSF_v9',
-    'range' : (1000,-1.,1.),
-    'xaxis' : 'MVA discriminant',
-    'fold' : 3,
-}
-
 # New training considering Top and Z+jets as Fakes
 variables['BDT_WH3l_OSSF_new_v9'] = { 
     'name'     : 'BDT_WH3l_OSSF_new_v9',
@@ -61,20 +32,6 @@ variables['BDT_WH3l_SSSF_new_v9'] = {
     'xaxis'    : 'MVA discriminant',
     'yaxis'    : 'Events',
     'fold'     : 3,
-}
-
-variables['BDT_WH3l_OSSF_new_v9_more'] = { 
-    'name': 'BDT_WH3l_OSSF_new_v9',
-    'range' : (1000,-1.,1.),
-    'xaxis' : 'MVA discriminant',
-    'fold' : 3,
-}
-
-variables['BDT_WH3l_SSSF_new_v9_more'] = { 
-    'name': 'BDT_WH3l_SSSF_new_v9',
-    'range' : (1000,-1.,1.),
-    'xaxis' : 'MVA discriminant',
-    'fold' : 3,
 }
 
 variables['BDT_WH3l_OSSF_new_v9_100_bins'] = {
@@ -320,4 +277,57 @@ variables['WH3l_mlll'] = {
     'range' : (10,0,400),
     'xaxis' : 'm_{lll}',
     'fold' : 0
+}
+
+# Variable specifically used for WZ CR
+variables['dphillmet'] = {
+    'name'  : 'dphillmet',
+    'range' : (20,0,3.2),
+    'xaxis' : 'dphillmet',
+    'fold'  : 3
+}
+
+variables['mlljj20_whss_bin2'] = {
+    'name'  : 'mlljj20_whss',
+    'range' : ([60.,100.,110.,120.,130.,140.,150.,160.,170.,180.,190.,200.,250.,300.],),
+    'xaxis' : 'mlljj20_whss [GeV]',
+    'fold'  : 3
+}
+
+variables['dphilep1jet1'] = {
+    'name'  : 'dphilep1jet1',
+    'range' : (20,0,3.2),
+    'xaxis' : 'dphilep1jet1',
+    'fold'  : 3
+}
+
+variables['BDTG6_TT'] = {
+    'name'     : 'BDT_WHSS_TopSemileptonic_v9',     
+    'range'    : (40,-1,1),   
+    'doWeight' : 1,
+    'binX'     : 1,
+    'binY'     : 40,
+    'xaxis'    : 'BDT discriminant',
+    'fold'     : 3
+}
+
+variables['mll'] = {
+    'name'  : 'mll',
+    'range' : (20, 40,120),
+    'xaxis' : 'm_{ll} [GeV]',
+    'fold'  : 0
+}
+
+variables['mtw1'] = {
+    'name'  : 'mtw1',
+    'range' : (40,0,200),
+    'xaxis' : 'm_{T}^{W_{1}} [GeV]',
+    'fold'  : 3
+}
+
+variables['dphill']  = {  
+    'name'  : 'abs(dphill)',     
+    'range' : (20,0,3.14),   
+    'xaxis' : '#Delta#phi_{ll}',
+    'fold'  : 3
 }
