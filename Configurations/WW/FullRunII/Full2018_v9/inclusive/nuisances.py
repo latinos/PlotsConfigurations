@@ -279,8 +279,8 @@ nuisances['PS_ISR_WW']  = {
     'type': 'shape',
     'AsLnN': '0',
     'samples': {        
-        'WW'   : ['({})*PSWeight[3]'.format(norm_ISR_WW[0]),'({})*PSWeight[1]'.format(norm_ISR_WW[1])],
-        'ggWW' : ['({})*PSWeight[3]'.format(norm_ISR_ggWW[0]),'({})*PSWeight[1]'.format(norm_ISR_ggWW[1])]
+        'WW'   : ['({})*PSWeight[2]'.format(norm_ISR_WW[0]),'({})*PSWeight[0]'.format(norm_ISR_WW[1])],
+        'ggWW' : ['({})*PSWeight[2]'.format(norm_ISR_ggWW[0]),'({})*PSWeight[0]'.format(norm_ISR_ggWW[1])]
     }
 }
 
@@ -310,7 +310,6 @@ nuisances['PS_FSR_WW']  = {
 # And we don't observe any dependency of UE variations on njet
 nuisances['UE']  = {
                 'name'  : 'UE_CP5',
-                'skipCMS' : 1,
                 'type': 'lnN',
                 'samples': dict((skey, '1.015') for skey in mc if skey not in ['WW','ggWW']), 
 }

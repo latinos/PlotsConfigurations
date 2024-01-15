@@ -317,9 +317,8 @@ nuisances['PS_FSR_WW']  = {
 }
 
 # UE
-nuisances['UE_whss']  = {
+nuisances['UE']  = {
                 'name'  : 'UE_CP5',
-                'skipCMS' : 1,
                 'type'  : 'lnN',
                 'samples': dict((skey, '1.015') for skey in mc if skey not in ['WW','ggWW']),
 }
