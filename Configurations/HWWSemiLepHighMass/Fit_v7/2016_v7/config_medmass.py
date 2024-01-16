@@ -2,7 +2,7 @@
 
 treeName = 'Events'
 
-tag = 'hm_Med_2016_Fit'
+tag = 'hm_2016_Fit_SrCr_wDeepCor'
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFile_medmass_2016'
@@ -29,11 +29,11 @@ lumi = 36.3
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'Plotts_SR_new'
+outputDirPlots = 'Plotts_tets'
 
 
 # used by mkDatacards to define output directory for datacards
-outputDirDatacard = 'Datacards_good'
+outputDirDatacard = 'Datacards_test'
 
 # structure file for datacard
 structureFile = 'structure_medmass.py'

@@ -2,7 +2,7 @@
 
 treeName = 'Events'
 
-tag = 'hm_2018_Fit_SRCR'
+tag = 'hm_2018_Fit_SRCR_wTagCor'
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFile_highmass_2018_good'

@@ -338,9 +338,11 @@ return 0.0;
  // std::cout << guess_digit(input_dnn, _var) << std::endl;
   if (ev % 2 == 0 ){
 
+ // cout << "The number is " << ev <<" and the output is " << guess_digit_res_odd(input_dnn, _var) << " with var " << _var << endl; 
  //std::cout << guess_digit_odd(input_dnn, _var) << std::endl;
   return guess_digit_res_odd(input_dnn, _var);
   }else{
+//  cout << "The number is " << ev <<" and the output is " << guess_digit_res_odd(input_dnn, _var) << " with var " << _var << endl; 
  //std::cout << guess_digit_even(input_dnn, _var) << std::endl;
   return guess_digit_res_even(input_dnn, _var);
 }

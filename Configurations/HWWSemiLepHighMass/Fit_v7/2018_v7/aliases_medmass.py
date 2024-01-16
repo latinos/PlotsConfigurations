@@ -325,126 +325,126 @@ aliases['HvOverLEP'] = {
     'args': 4
 }
 
-aliases['Event_fatjetJERup'] = {
-    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/FatJet_EvtUncertainties.cc+'  % os.getenv('CMSSW_BASE')],
-    'class': 'FatJet_EvtUnc',
-    'args': (4,'jerUp'),
-    'samples': mc,
-}
-
-aliases['Event_fatjetJERdo'] = {
-    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/FatJet_EvtUncertainties.cc+'  % os.getenv('CMSSW_BASE')],
-    'class': 'FatJet_EvtUnc',
-    'args': (4,'jerDo'),
-    'samples': mc,
-}
-
-aliases['Event_fatjetJESup'] = {
-    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/FatJet_EvtUncertainties.cc+'  % os.getenv('CMSSW_BASE')],
-    'class': 'FatJet_EvtUnc',
-    'args': (4,'jesUp'),
-    'samples': mc,
-}
-
-aliases['Event_fatjetJESdo'] = {
-    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/FatJet_EvtUncertainties.cc+'  % os.getenv('CMSSW_BASE')],
-    'class': 'FatJet_EvtUnc',
-    'args': (4,'jesDo'),
-    'samples': mc,
-}
-aliases['Event_fatjetJMSup'] = {
-    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/FatJet_EvtUncertainties.cc+'  % os.getenv('CMSSW_BASE')],
-    'class': 'FatJet_EvtUnc',
-    'args': (4,'jmsUp'),
-    'samples': mc,
-}
-
-aliases['Event_fatjetJMSdo'] = {
-    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/FatJet_EvtUncertainties.cc+'  % os.getenv('CMSSW_BASE')],
-    'class': 'FatJet_EvtUnc',
-    'args': (4,'jmsDo'),
-    'samples': mc,
-}
-aliases['Event_fatjetJMRup'] = {
-    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/FatJet_EvtUncertainties.cc+'  % os.getenv('CMSSW_BASE')],
-    'class': 'FatJet_EvtUnc',
-    'args': (4,'jmrUp'),
-    'samples': mc,
-}
-
-aliases['Event_fatjetJMRdo'] = {
-    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/FatJet_EvtUncertainties.cc+'  % os.getenv('CMSSW_BASE')],
-    'class': 'FatJet_EvtUnc',
-    'args': (4,'jmrDo'),
-    'samples': mc,
-}
-
-aliases['mass_HIGGS_FAT_fatjetJERup'] = {
-    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/FatJet_EvtUncertainties.cc+'  % os.getenv('CMSSW_BASE')],
-    'class': 'FatJet_EvtUnc',
-    'args': (0,'jerUp'),
-    'samples': mc,
-}
-
-aliases['mass_HIGGS_FAT_fatjetJERdo'] = {
-    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/FatJet_EvtUncertainties.cc+'  % os.getenv('CMSSW_BASE')],
-    'class': 'FatJet_EvtUnc',
-    'args': (0,'jerDo'),
-    'samples': mc,
-}
-
-aliases['mass_HIGGS_FAT_fatjetJESup'] = {
-    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/FatJet_EvtUncertainties.cc+'  % os.getenv('CMSSW_BASE')],
-    'class': 'FatJet_EvtUnc',
-    'args': (0,'jesUp'),
-    'samples': mc,
-}
-
-aliases['mass_HIGGS_FAT_fatjetJESdo'] = {
-    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/FatJet_EvtUncertainties.cc+'  % os.getenv('CMSSW_BASE')],
-    'class': 'FatJet_EvtUnc',
-    'args': (0,'jesDo'),
-    'samples': mc,
-}
-aliases['mass_HIGGS_FAT_fatjetJMSup'] = {
-    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/FatJet_EvtUncertainties.cc+'  % os.getenv('CMSSW_BASE')],
-    'class': 'FatJet_EvtUnc',
-    'args': (0,'jmsUp'),
-    'samples': mc,
-}
-
-aliases['mass_HIGGS_FAT_fatjetJMSdo'] = {
-    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/FatJet_EvtUncertainties.cc+'  % os.getenv('CMSSW_BASE')],
-    'class': 'FatJet_EvtUnc',
-    'args': (0,'jmsDo'),
-    'samples': mc,
-}
-aliases['mass_HIGGS_FAT_fatjetJMRup'] = {
-    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/FatJet_EvtUncertainties.cc+'  % os.getenv('CMSSW_BASE')],
-    'class': 'FatJet_EvtUnc',
-    'args': (0,'jmrUp'),
-    'samples': mc,
-}
-
-aliases['mass_HIGGS_FAT_fatjetJMRdo'] = {
-    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/FatJet_EvtUncertainties.cc+'  % os.getenv('CMSSW_BASE')],
-    'class': 'FatJet_EvtUnc',
-    'args': (0,'jmrDo'),
-    'samples': mc,
-}
-aliases['HvOverFat_fatjetJERup'] = {
-    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/FatJet_Uncertainties.cc+'  % os.getenv('CMSSW_BASE')],
-    'class': 'FatJet_Unc',
-    'args': (1,'jerUp'),
-    'samples': mc,
-}
-
-aliases['HvOverFat_fatjetJERdo'] = {
-    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/FatJet_Uncertainties.cc+'  % os.getenv('CMSSW_BASE')],
-    'class': 'FatJet_Unc',
-    'args': (1,'jerDo'),
-    'samples': mc,
-}
+#aliases['Event_fatjetJERup'] = {
+#    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/FatJet_EvtUncertainties.cc+'  % os.getenv('CMSSW_BASE')],
+#    'class': 'FatJet_EvtUnc',
+#    'args': (4,'jerUp'),
+#    'samples': mc,
+#}
+#
+#aliases['Event_fatjetJERdo'] = {
+#    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/FatJet_EvtUncertainties.cc+'  % os.getenv('CMSSW_BASE')],
+#    'class': 'FatJet_EvtUnc',
+#    'args': (4,'jerDo'),
+#    'samples': mc,
+#}
+#
+#aliases['Event_fatjetJESup'] = {
+#    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/FatJet_EvtUncertainties.cc+'  % os.getenv('CMSSW_BASE')],
+#    'class': 'FatJet_EvtUnc',
+#    'args': (4,'jesUp'),
+#    'samples': mc,
+#}
+#
+#aliases['Event_fatjetJESdo'] = {
+#    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/FatJet_EvtUncertainties.cc+'  % os.getenv('CMSSW_BASE')],
+#    'class': 'FatJet_EvtUnc',
+#    'args': (4,'jesDo'),
+#    'samples': mc,
+#}
+#aliases['Event_fatjetJMSup'] = {
+#    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/FatJet_EvtUncertainties.cc+'  % os.getenv('CMSSW_BASE')],
+#    'class': 'FatJet_EvtUnc',
+#    'args': (4,'jmsUp'),
+#    'samples': mc,
+#}
+#
+#aliases['Event_fatjetJMSdo'] = {
+#    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/FatJet_EvtUncertainties.cc+'  % os.getenv('CMSSW_BASE')],
+#    'class': 'FatJet_EvtUnc',
+#    'args': (4,'jmsDo'),
+#    'samples': mc,
+#}
+#aliases['Event_fatjetJMRup'] = {
+#    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/FatJet_EvtUncertainties.cc+'  % os.getenv('CMSSW_BASE')],
+#    'class': 'FatJet_EvtUnc',
+#    'args': (4,'jmrUp'),
+#    'samples': mc,
+#}
+#
+#aliases['Event_fatjetJMRdo'] = {
+#    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/FatJet_EvtUncertainties.cc+'  % os.getenv('CMSSW_BASE')],
+#    'class': 'FatJet_EvtUnc',
+#    'args': (4,'jmrDo'),
+#    'samples': mc,
+#}
+#
+#aliases['mass_HIGGS_FAT_fatjetJERup'] = {
+#    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/FatJet_EvtUncertainties.cc+'  % os.getenv('CMSSW_BASE')],
+#    'class': 'FatJet_EvtUnc',
+#    'args': (0,'jerUp'),
+#    'samples': mc,
+#}
+#
+#aliases['mass_HIGGS_FAT_fatjetJERdo'] = {
+#    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/FatJet_EvtUncertainties.cc+'  % os.getenv('CMSSW_BASE')],
+#    'class': 'FatJet_EvtUnc',
+#    'args': (0,'jerDo'),
+#    'samples': mc,
+#}
+#
+#aliases['mass_HIGGS_FAT_fatjetJESup'] = {
+#    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/FatJet_EvtUncertainties.cc+'  % os.getenv('CMSSW_BASE')],
+#    'class': 'FatJet_EvtUnc',
+#    'args': (0,'jesUp'),
+#    'samples': mc,
+#}
+#
+#aliases['mass_HIGGS_FAT_fatjetJESdo'] = {
+#    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/FatJet_EvtUncertainties.cc+'  % os.getenv('CMSSW_BASE')],
+#    'class': 'FatJet_EvtUnc',
+#    'args': (0,'jesDo'),
+#    'samples': mc,
+#}
+#aliases['mass_HIGGS_FAT_fatjetJMSup'] = {
+#    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/FatJet_EvtUncertainties.cc+'  % os.getenv('CMSSW_BASE')],
+#    'class': 'FatJet_EvtUnc',
+#    'args': (0,'jmsUp'),
+#    'samples': mc,
+#}
+#
+#aliases['mass_HIGGS_FAT_fatjetJMSdo'] = {
+#    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/FatJet_EvtUncertainties.cc+'  % os.getenv('CMSSW_BASE')],
+#    'class': 'FatJet_EvtUnc',
+#    'args': (0,'jmsDo'),
+#    'samples': mc,
+#}
+#aliases['mass_HIGGS_FAT_fatjetJMRup'] = {
+#    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/FatJet_EvtUncertainties.cc+'  % os.getenv('CMSSW_BASE')],
+#    'class': 'FatJet_EvtUnc',
+#    'args': (0,'jmrUp'),
+#    'samples': mc,
+#}
+#
+#aliases['mass_HIGGS_FAT_fatjetJMRdo'] = {
+#    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/FatJet_EvtUncertainties.cc+'  % os.getenv('CMSSW_BASE')],
+#    'class': 'FatJet_EvtUnc',
+#    'args': (0,'jmrDo'),
+#    'samples': mc,
+#}
+#aliases['HvOverFat_fatjetJERup'] = {
+#    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/FatJet_Uncertainties.cc+'  % os.getenv('CMSSW_BASE')],
+#    'class': 'FatJet_Unc',
+#    'args': (1,'jerUp'),
+#    'samples': mc,
+#}
+#
+#aliases['HvOverFat_fatjetJERdo'] = {
+#    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/FatJet_Uncertainties.cc+'  % os.getenv('CMSSW_BASE')],
+#    'class': 'FatJet_Unc',
+#    'args': (1,'jerDo'),
+#    'samples': mc,
+#}
 
 #aliases['mass_HIGGS_FAT_fatjetJERup'] = {
 #    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/FatJet_Uncertainties.cc+'  % os.getenv('CMSSW_BASE')],
@@ -523,7 +523,7 @@ aliases['boosted_nocut_res'] = {
     'expr': 'PuppiMET_pt > 40 \
             && isJetBoo > 0 \
             && Alt$(FatJet_pt_nom[FatJet_idx_clean], 0) > 200 \
-            && Alt$(FatJet_deepTagMD_WvsQCD[FatJet_idx_clean[0]],0) > 0.806 \
+            && Alt$(FatJet_deepTag_WvsQCD[FatJet_idx_clean[0]],0) > 0.961 \
             && Alt$(FatJet_eta[FatJet_idx_clean], 999) < 2.4'
 }
 aliases['resolved_nocut'] = {
@@ -920,16 +920,16 @@ mtr = '0p5'
 aliases['DeepAK8_SF'] = {
     'expr': "( 1 * !boosted_nocut_res[0] + boosted_nocut_res[0]*( 1*!deltaR_ov[0] + deltaR_ov[0]*( " +\
         \
-        deepAK8Dict[year+'_MassDecorr_'+mtr+'_200_300'] +\
-        "* (100 < Alt$(FatJet_pt[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0)\
-        && Alt$(FatJet_pt[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0) < 300)   +" +\
+        deepAK8Dict[year+'_Nominal_'+mtr+'_200_300'] +\
+        "* (100 < Alt$(FatJet_pt_nom[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0)\
+        && Alt$(FatJet_pt_nom[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0) < 300)   +" +\
         \
-        deepAK8Dict[year+'_MassDecorr_'+mtr+'_300_400'] +\
-        "* (300 < Alt$(FatJet_pt[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0) \
-        && Alt$(FatJet_pt[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0) < 400)   +" +\
+        deepAK8Dict[year+'_Nominal_'+mtr+'_300_400'] +\
+        "* (300 < Alt$(FatJet_pt_nom[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0) \
+        && Alt$(FatJet_pt_nom[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0) < 400)   +" +\
         \
-        deepAK8Dict[year+'_MassDecorr_'+mtr+'_400_800'] +\
-        "* (400 < Alt$(FatJet_pt[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0))  ) ))",
+        deepAK8Dict[year+'_Nominal_'+mtr+'_400_800'] +\
+        "* (400 < Alt$(FatJet_pt_nom[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0))  ) ))",
     'samples': mc
 }
 
@@ -937,16 +937,16 @@ aliases['DeepAK8_SF_up'] = {
     #'expr': "( 1 * two_jet_res[0] + !two_jet_res[0]*(" +\
     'expr': "( 1 * !boosted_nocut_res[0] + boosted_nocut_res[0]*(1*!deltaR_ov[0] + deltaR_ov[0]*(" +\
         \
-        deepAK8Dict[year+'_MassDecorr_'+mtr+'_200_300_up'] +\
-        "* (100 < Alt$(FatJet_pt[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0) \
-        && Alt$(FatJet_pt[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0) < 300)   +" +\
+        deepAK8Dict[year+'_Nominal_'+mtr+'_200_300_up'] +\
+        "* (100 < Alt$(FatJet_pt_nom[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0) \
+        && Alt$(FatJet_pt_nom[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0) < 300)   +" +\
         \
-        deepAK8Dict[year+'_MassDecorr_'+mtr+'_300_400_up'] +\
-        "* (300 < Alt$(FatJet_pt[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0) \
-        && Alt$(FatJet_pt[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0) < 400)   +" +\
+        deepAK8Dict[year+'_Nominal_'+mtr+'_300_400_up'] +\
+        "* (300 < Alt$(FatJet_pt_nom[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0) \
+        && Alt$(FatJet_pt_nom[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0) < 400)   +" +\
         \
-        deepAK8Dict[year+'_MassDecorr_'+mtr+'_400_800_up'] +\
-        "* (400 < Alt$(FatJet_pt[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0) ) )))",
+        deepAK8Dict[year+'_Nominal_'+mtr+'_400_800_up'] +\
+        "* (400 < Alt$(FatJet_pt_nom[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0) ) )))",
     'samples': mc
 }
 
@@ -954,16 +954,16 @@ aliases['DeepAK8_SF_down'] = {
     #'expr': "( 1 * two_jet_res[0] + !two_jet_res[0]*(" +\
     'expr': "( 1 * !boosted_nocut_res[0] + boosted_nocut_res[0]*(1*!deltaR_ov[0] + deltaR_ov[0]*(" +\
         \
-        deepAK8Dict[year+'_MassDecorr_'+mtr+'_200_300_down'] +\
-        "* (100 < Alt$(FatJet_pt[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0) \
-        && Alt$(FatJet_pt[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0) < 300)   +" +\
+        deepAK8Dict[year+'_Nominal_'+mtr+'_200_300_down'] +\
+        "* (100 < Alt$(FatJet_pt_nom[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0) \
+        && Alt$(FatJet_pt_nom[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0) < 300)   +" +\
         \
-        deepAK8Dict[year+'_MassDecorr_'+mtr+'_300_400_down'] +\
-        "* (300 < Alt$(FatJet_pt[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0) \
-        && Alt$(FatJet_pt[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0) < 400)   +" +\
+        deepAK8Dict[year+'_Nominal_'+mtr+'_300_400_down'] +\
+        "* (300 < Alt$(FatJet_pt_nom[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0) \
+        && Alt$(FatJet_pt_nom[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0) < 400)   +" +\
         \
-        deepAK8Dict[year+'_MassDecorr_'+mtr+'_400_800_down'] +\
-        "* (400 < Alt$(FatJet_pt[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0))  )))",
+        deepAK8Dict[year+'_Nominal_'+mtr+'_400_800_down'] +\
+        "* (400 < Alt$(FatJet_pt_nom[Alt$(FatJet_idx_clean[0]*(isJetBoo > 0),0)],0))  )))",
     'samples': mc
 }
 
@@ -1151,6 +1151,51 @@ aliases["nJetHigh2"]={
 #    'samples': 'Wjets', 
 #}
 
+aliases['Unc_teptrig'] = { 
+    'linesToAdd': [
+        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_RELEASE_BASE'),
+        '.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/apply_ratio_trig_MC.cc+' % os.getenv('CMSSW_BASE')
+    ],  
+    'class': 'apply_ratio_trig_MC',
+    'args': ('PlotsConfigurations/Configurations/HWWSemiLepHighMass/TriggEff/diff_trigger_2018.root'),
+    'samples': mc, 
+}
+aliases['Tag_mass_rewei'] = { 
+    'linesToAdd': [
+	'gSystem->Load("%s/src/JHUGenMELA/MELA/data/%s/libmcfm_707.so","", kTRUE);'%(os.getenv('CMSSW_BASE'), os.getenv('SCRAM_ARCH')),
+        'gSystem->Load("libJHUGenMELAMELA.so","", kTRUE);',
+        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_RELEASE_BASE'),
+        '.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/apply_TaggerW_ptstep.cc+' % os.getenv('CMSSW_BASE')
+    ],  
+    'class': 'apply_TaggerW_ptstep',
+    'args': ('PlotsConfigurations/Configurations/HWWSemiLepHighMass/top_tagger_mass_reweight/ratio_tagger_mass_2018_ptstep.root','histo_reweight_2018_200_300_nom','histo_reweight_2018_300_400_nom','histo_reweight_2018_400_800_nom'),
+    'samples': mc_deep, 
+}
+for j in range(1,4):	
+	for i in range(1,4):
+		aliases['Tag_mass_rewei_up_'+str(j)+'_'+str(i)] = { 
+		    'linesToAdd': [
+		        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_RELEASE_BASE'),
+		        '.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/apply_TaggerW_ptstep.cc+' % os.getenv('CMSSW_BASE')
+		    ],  
+		    'class': 'apply_TaggerW_ptstep',
+		    'args': ('PlotsConfigurations/Configurations/HWWSemiLepHighMass/top_tagger_mass_reweight/ratio_tagger_mass_2018_ptstep.root','histo_reweight_2018_200_300_up_'+str(j)+'_'+str(i), 'histo_reweight_2018_300_400_up_'+str(j)+'_'+str(i),'histo_reweight_2018_400_800_up_'+str(j)+'_'+str(i)),
+		    'samples': mc_deep, 
+		}
+		aliases['Tag_mass_rewei_do_'+str(j)+'_'+str(i)] = { 
+		    'linesToAdd': [
+		        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_RELEASE_BASE'),
+		        '.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/apply_TaggerW_ptstep.cc+' % os.getenv('CMSSW_BASE')
+		    ],  
+		    'class': 'apply_TaggerW_ptstep',
+		    'args': ('PlotsConfigurations/Configurations/HWWSemiLepHighMass/top_tagger_mass_reweight/ratio_tagger_mass_2018_ptstep.root','histo_reweight_2018_200_300_do_'+str(j)+'_'+str(i), 'histo_reweight_2018_300_400_do_'+str(j)+'_'+str(i),'histo_reweight_2018_400_800_do_'+str(j)+'_'+str(i)),
+		    'samples': mc_deep, 
+		}
+
+aliases['Tag_massSF'] = {
+    'expr': '(1 * !boosted_nocut_res[0] + boosted_nocut_res[0]*Tag_mass_rewei[0])',
+    'samples': mc_deep
+}
 
 #aliases['Tag_mass_rewei'] = { 
 #    'linesToAdd': [
@@ -1189,7 +1234,7 @@ aliases["nJetHigh2"]={
 #    'samples': mc_deep
 #}
 aliases['SFweight_top'] = {
-    'expr': ' * '.join(['puWeight', 'TriggerEffWeight_1l_fixed', 'EMTFbug_veto',  'LepWPSF[0]','PUJetIdSF[0]','btagSF[0]','DeepAK8_SF[0]']), #'Tag_massSF[0]']),#, 'Top_DeepTagrw[0]']),#'Fat_rewei[0]']),
+    'expr': ' * '.join(['puWeight', 'TriggerEffWeight_1l_fixed', 'EMTFbug_veto',  'LepWPSF[0]','PUJetIdSF[0]','btagSF[0]','DeepAK8_SF[0]','Tag_massSF[0]']),#, 'Top_DeepTagrw[0]']),#'Fat_rewei[0]']),
     'samples': mc_deep
 }
 

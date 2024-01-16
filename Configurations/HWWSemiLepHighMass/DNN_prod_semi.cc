@@ -1,32 +1,28 @@
 #include "LatinoAnalysis/MultiDraw/interface/TTreeFunction.h"
 #include "LatinoAnalysis/MultiDraw/interface/FunctionLibrary.h"
+#include "NNEvaluation/DNNTensorflow/interface/DNNEvaluator.hh"
 
-#include "TMath.h"
-#include <vector>
-#include "Math/Vector4D.h"                                              
-#include <Math/GenVector/LorentzVector.h>                                              
 #include "TLorentzVector.h"
-#include <iostream>
+#include "TSystem.h"
+#include "TMath.h"
 
+using namespace NNEvaluation;
 
-#ifndef comp_jets_res_HH
-#define comp_jets_res_HH
-
-class comp_jets_res : public multidraw::TTreeFunction {
+class DNNprodSemi : public multidraw::TTreeFunction {
 public:
-  comp_jets_res(unsigned int var);
-   
-  char const* getName() const override { return "comp_jets_res"; }
-  TTreeFunction* clone() const override { return new comp_jets_res(_var); }
+  DNNprodSemi();
+
+  char const* getName() const override { return "DNNprodSemi"; }
+  TTreeFunction* clone() const override { return new DNNprodSemi(); }
 
   unsigned getNdata() override { return 1; }
-
   double evaluate(unsigned) override;
- 
 
 protected:
-  unsigned int _var;
   void bindTree_(multidraw::FunctionLibrary&) override;
+
+  DNNEvaluator* dnn_tensorflow0;
+  DNNEvaluator* dnn_tensorflow1;
 
   ULong64ValueReader* event;
   FloatArrayReader* Lepton_pt;
@@ -40,7 +36,7 @@ protected:
   FloatValueReader* PuppiMET_pt;
   FloatValueReader* PuppiMET_phi;
   UIntValueReader* nCleanJet;
-  IntValueReader* HM_nCleanFatJetPassMBoosted;
+  UIntValueReader* HM_nCleanFatJetPassMBoosted;
   FloatArrayReader* HM_CleanFatJetPassMBoosted_pt;
   FloatArrayReader* HM_CleanFatJetPassMBoosted_eta;
   FloatArrayReader* HM_CleanFatJetPassMBoosted_phi;
@@ -58,23 +54,20 @@ protected:
   IntValueReader* HM_idx_j1;
   IntValueReader* HM_idx_j2;
   FloatValueReader* HM_largest_nonW_mjj;
-  UIntValueReader* nCleanFatJet{};
 
 };
 
-comp_jets_res::comp_jets_res(unsigned int var) :
- TTreeFunction()
+DNNprodSemi::DNNprodSemi() :
+  TTreeFunction()
 {
-    _var = var;
+  std::string cmsswbase(gSystem->Getenv("CMSSW_BASE"));
+  dnn_tensorflow0 = new DNNEvaluator(cmsswbase + "/src/PlotsConfigurations/Configurations/HighMass/DNNs/ProdSemi_0/", false);
+  dnn_tensorflow1 = new DNNEvaluator(cmsswbase + "/src/PlotsConfigurations/Configurations/HighMass/DNNs/ProdSemi_1/", false);
 }
 
-
-
-
 double
-comp_jets_res::evaluate(unsigned)
+DNNprodSemi::evaluate(unsigned)
 {
-
 
   unsigned nJet{*nCleanJet->Get()};
   float njet30 = 0.0;
@@ -123,25 +116,25 @@ comp_jets_res::evaluate(unsigned)
   unsigned j = 0;
   TLorentzVector J1,J2;
 
-  int nCFJ{*HM_nCleanFatJetPassMBoosted->Get()};
- // if (nCFJ >= 0){
- //   wpt = HM_CleanFatJetPassMBoosted_pt->At(0);
- //   weta = HM_CleanFatJetPassMBoosted_eta->At(0);
- //   wphi = HM_CleanFatJetPassMBoosted_phi->At(0);
- //   wmass = HM_CleanFatJetPassMBoosted_mass->At(0);
- //   //WWmass = HM_CleanFatJetPassMBoosted_HlnFat_mass->At(0);
- //   wr1pt = 0.0;
- //   wr1eta = 0.0;
- //   wr1phi = 0.0;
- //   wr1mass = 0.0;
- //   wr2pt = 0.0;
- //   wr2eta = 0.0;
- //   wr2phi = 0.0;
- //   wr2mass = 0.0;
- //   for (int i{0}; i != 4 and (unsigned)i != nJet ; ++i) {
- //     vbfjet[i] = i;
- //   }
-  if (*HM_idx_j1->Get() != -1 && *HM_idx_j2->Get() != -1){
+  unsigned nCFJ{*HM_nCleanFatJetPassMBoosted->Get()};
+  if (nCFJ >= 1){
+    wpt = HM_CleanFatJetPassMBoosted_pt->At(0);
+    weta = HM_CleanFatJetPassMBoosted_eta->At(0);
+    wphi = HM_CleanFatJetPassMBoosted_phi->At(0);
+    wmass = HM_CleanFatJetPassMBoosted_mass->At(0);
+    //WWmass = HM_CleanFatJetPassMBoosted_HlnFat_mass->At(0);
+    wr1pt = 0.0;
+    wr1eta = 0.0;
+    wr1phi = 0.0;
+    wr1mass = 0.0;
+    wr2pt = 0.0;
+    wr2eta = 0.0;
+    wr2phi = 0.0;
+    wr2mass = 0.0;
+    for (int i{0}; i != 4 and (unsigned)i != nJet ; ++i) {
+      vbfjet[i] = i;
+    }
+  }else if (*HM_idx_j1->Get() != -1){
     wpt = *HM_Whad_pt->Get();
     weta = *HM_Whad_eta->Get();
     wphi = *HM_Whad_phi->Get();
@@ -152,18 +145,16 @@ comp_jets_res::evaluate(unsigned)
     wr1pt = CleanJet_pt->At(wjet1);
     wr1eta = CleanJet_eta->At(wjet1);
     wr1phi = CleanJet_phi->At(wjet1);
-    wr1mass = Jet_mass->At(CleanJet_jetIdx->At(wjet1));
+    wr1mass = Jet_mass->At(CleanJet_phi->At(wjet1));
     wr2pt = CleanJet_pt->At(wjet2);
     wr2eta = CleanJet_eta->At(wjet2);
     wr2phi = CleanJet_phi->At(wjet2);
-    wr2mass = Jet_mass->At(CleanJet_jetIdx->At(wjet2));
+    wr2mass = Jet_mass->At(CleanJet_phi->At(wjet2));
     for (int i{0}; j != 4 and (unsigned)i != nJet ; ++i) {
       if ( (unsigned)i != wjet1 and (unsigned) i != wjet2){
-//if (CleanJet_pt->At(i)>30){
         vbfjet[j] = i;
         j++;
- //     }
-    }
+      }
     }
   }else{
     return 0.0;
@@ -210,82 +201,83 @@ comp_jets_res::evaluate(unsigned)
     detajj_34 = abs(LorJ3.Eta()-LorJ4.Eta());
   }
 
+  input.push_back(detajj_12);
+  input.push_back(detajj_13);
+  input.push_back(detajj_14);
+  input.push_back(detajj_23);
+  input.push_back(detajj_24);
+  input.push_back(detajj_34);
 
-  if(_var==0) return Lepton_pt->At(0) * TMath::Cos(Lepton_phi->At(0));
-  if(_var==1) return Lepton_pt->At(0) * TMath::Sin(Lepton_phi->At(0));
-  if(_var==2) return Lepton_pt->At(0) * TMath::SinH(Lepton_eta->At(0));
+  input.push_back(jetmass1);
+  input.push_back(jetpt1 * TMath::Cos(jetphi1));
+  input.push_back(jetpt1 * TMath::Sin(jetphi1));
+  input.push_back(jetpt1 * TMath::SinH(jeteta1));
 
-  if(_var==3) return jetpt1 * TMath::Cos(jetphi1);
-  if(_var==4) return jetpt1 * TMath::Sin(jetphi1);
-  if(_var==5) return jetpt1 * TMath::SinH(jeteta1);
-  if(_var==6) return jetmass1;
-  if(_var==7) return jetpt2 * TMath::Cos(jetphi2);
-  if(_var==8) return jetpt2 * TMath::Sin(jetphi2);
-  if(_var==9) return jetpt2 * TMath::SinH(jeteta2);
-  if(_var==10) return jetmass2;
-  if(_var==11) return jetpt3 * TMath::Cos(jetphi3);
-  if(_var==12) return jetpt3 * TMath::Sin(jetphi3);
-  if(_var==13) return jetpt3 * TMath::SinH(jeteta3);
-  if(_var==14) return jetmass3;
-  if(_var==15) return jetpt4 * TMath::Cos(jetphi4);
-  if(_var==16) return jetpt4 * TMath::Sin(jetphi4);
-  if(_var==17) return jetpt4 * TMath::SinH(jeteta4);
-  if(_var==18) return jetmass4;
+  input.push_back(jetmass2);
+  input.push_back(jetpt2 * TMath::Cos(jetphi2));
+  input.push_back(jetpt2 * TMath::Sin(jetphi2));
+  input.push_back(jetpt2 * TMath::SinH(jeteta2));
 
-  if(_var==19) return wpt * TMath::Cos(wphi);
-  if(_var==20) return wpt * TMath::Sin(wphi);
-  if(_var==21) return wpt * TMath::SinH(weta);
-  if(_var==22) return wmass;
-  if(_var==23) return *HM_Wlep_pt_Puppi->Get() * TMath::Cos(*HM_Wlep_phi_Puppi->Get());
-  if(_var==24) return *HM_Wlep_pt_Puppi->Get() * TMath::Sin(*HM_Wlep_phi_Puppi->Get());
-  if(_var==25) return *HM_Wlep_pt_Puppi->Get() * TMath::SinH(*HM_Wlep_eta_Puppi->Get());
-  if(_var==26) return *HM_Wlep_mass_Puppi->Get();
-  if(_var==27) return wr1pt * TMath::Cos(wr1phi);
-  if(_var==28) return wr1pt * TMath::Sin(wr1phi);
-  if(_var==29) return wr1pt * TMath::SinH(wr1eta);
-  if(_var==30) return wr1mass;
-  if(_var==31) return wr2pt * TMath::Cos(wr2phi);
-  if(_var==32) return wr2pt * TMath::Sin(wr2phi);
-  if(_var==33) return wr2pt * TMath::SinH(wr2eta);
-  if(_var==34) return wr2mass;
+  input.push_back(jetmass3);
+  input.push_back(jetpt3 * TMath::Cos(jetphi3));
+  input.push_back(jetpt3 * TMath::Sin(jetphi3));
+  input.push_back(jetpt3 * TMath::SinH(jeteta3));
 
-  if(_var==35) return *PuppiMET_pt->Get() * TMath::Cos(*PuppiMET_phi->Get());
-  if(_var==36) return *PuppiMET_pt->Get() * TMath::Sin(*PuppiMET_phi->Get());
-  if(_var==37) return *nCleanJet->Get();
-  if(_var==38) return njet30;
-  if(_var==39) return *HM_largest_nonW_mjj->Get();
-  //if(_var==0) return WWmass);
+  input.push_back(jetmass4);
+  input.push_back(jetpt4 * TMath::Cos(jetphi4));
+  input.push_back(jetpt4 * TMath::Sin(jetphi4));
+  input.push_back(jetpt4 * TMath::SinH(jeteta4));
 
-  if(_var==40) return mjj_12;
-  if(_var==41) return detajj_12;
-  if(_var==42) return mjj_13;
-  if(_var==43) return detajj_13;
-  if(_var==44) return mjj_14;
-  if(_var==45) return detajj_14;
-  if(_var==46) return mjj_23;
-  if(_var==47) return detajj_23;
-  if(_var==48) return mjj_24;
-  if(_var==49) return detajj_24;
-  if(_var==50) return mjj_34;
-  if(_var==51) return detajj_34;
+  input.push_back(Lepton_pt->At(0) * TMath::Cos(Lepton_phi->At(0)));
+  input.push_back(Lepton_pt->At(0) * TMath::Sin(Lepton_phi->At(0)));
+  input.push_back(Lepton_pt->At(0) * TMath::SinH(Lepton_eta->At(0)));
 
-  if(_var==52) return jetpt1;
-  if(_var==53) return jetpt2;
-  if(_var==54) return jetpt3;
-  if(_var==55) return jetpt4;
-  if(_var==56) return wr1pt;
-  if(_var==57) return wr2pt;;
+  input.push_back(*PuppiMET_pt->Get() * TMath::Cos(*PuppiMET_phi->Get()));
+  input.push_back(*PuppiMET_pt->Get() * TMath::Sin(*PuppiMET_phi->Get()));
 
+  input.push_back(mjj_12);
+  input.push_back(mjj_13);
+  input.push_back(mjj_14);
+  input.push_back(mjj_23);
+  input.push_back(mjj_24);
+  input.push_back(mjj_34);
+
+  input.push_back(njet30);
+  input.push_back(*nCleanJet->Get());
+
+  input.push_back(wmass);
+  input.push_back(wpt * TMath::Cos(wphi));
+  input.push_back(wpt * TMath::Sin(wphi));
+  input.push_back(wpt * TMath::SinH(weta));
+
+  input.push_back(*HM_Wlep_mass_Puppi->Get());
+  input.push_back(*HM_Wlep_pt_Puppi->Get() * TMath::Cos(*HM_Wlep_phi_Puppi->Get()));
+  input.push_back(*HM_Wlep_pt_Puppi->Get() * TMath::Sin(*HM_Wlep_phi_Puppi->Get()));
+  input.push_back(*HM_Wlep_pt_Puppi->Get() * TMath::SinH(*HM_Wlep_eta_Puppi->Get()));
+//  input.push_back(wr1pt * TMath::Cos(wr1phi));
+//  input.push_back(wr1pt * TMath::Sin(wr1phi));
+//  input.push_back(wr1pt * TMath::SinH(wr1eta));
+//  input.push_back(wr1mass);
+//  input.push_back(wr2pt * TMath::Cos(wr2phi));
+//  input.push_back(wr2pt * TMath::Sin(wr2phi));
+//  input.push_back(wr2pt * TMath::SinH(wr2eta));
+//  input.push_back(wr2mass);
+
+// input.push_back(*HM_largest_nonW_mjj->Get());
+  //input.push_back(WWmass);
 
 
-
-return -999;
-//return *Lep_phi->Get(); 
+  auto ev{*event->Get()};
+  if (ev % 2 == 0){
+    return dnn_tensorflow0->analyze(input)[0];
+  }else{
+    return dnn_tensorflow1->analyze(input)[0];
+  }
 
 }
 
-void 
-comp_jets_res::bindTree_(multidraw::FunctionLibrary& _library)
+void
+DNNprodSemi::bindTree_(multidraw::FunctionLibrary& _library)
 {
   _library.bindBranch(event, "event");
   _library.bindBranch(Lepton_pt, "Lepton_pt");
@@ -299,16 +291,11 @@ comp_jets_res::bindTree_(multidraw::FunctionLibrary& _library)
   _library.bindBranch(PuppiMET_pt, "PuppiMET_pt");
   _library.bindBranch(PuppiMET_phi, "PuppiMET_phi");
   _library.bindBranch(nCleanJet, "nCleanJet");
-  _library.bindBranch(HM_nCleanFatJetPassMBoosted,     "HM_idxWfat_noTau21Cut");
-  _library.bindBranch(HM_CleanFatJetPassMBoosted_pt,   "CleanFatJet_pt");
-  _library.bindBranch(HM_CleanFatJetPassMBoosted_eta,  "CleanFatJet_eta");
-  _library.bindBranch(HM_CleanFatJetPassMBoosted_phi,  "CleanFatJet_phi");
-  _library.bindBranch(HM_CleanFatJetPassMBoosted_mass, "CleanFatJet_mass");
-//  _library.bindBranch(HM_nCleanFatJetPassMBoosted,     "HM_nCleanFatJetPassMBoosted");
-//  _library.bindBranch(HM_CleanFatJetPassMBoosted_pt,   "HM_CleanFatJetPassMBoosted_pt");
-//  _library.bindBranch(HM_CleanFatJetPassMBoosted_eta,  "HM_CleanFatJetPassMBoosted_eta");
-//  _library.bindBranch(HM_CleanFatJetPassMBoosted_phi,  "HM_CleanFatJetPassMBoosted_phi");
-//  _library.bindBranch(HM_CleanFatJetPassMBoosted_mass, "HM_CleanFatJetPassMBoosted_mass");
+  _library.bindBranch(HM_nCleanFatJetPassMBoosted, "HM_nCleanFatJetPassMBoosted");
+  _library.bindBranch(HM_CleanFatJetPassMBoosted_pt, "HM_CleanFatJetPassMBoosted_pt");
+  _library.bindBranch(HM_CleanFatJetPassMBoosted_eta, "HM_CleanFatJetPassMBoosted_eta");
+  _library.bindBranch(HM_CleanFatJetPassMBoosted_phi, "HM_CleanFatJetPassMBoosted_phi");
+  _library.bindBranch(HM_CleanFatJetPassMBoosted_mass, "HM_CleanFatJetPassMBoosted_mass");
   //_library.bindBranch(HM_CleanFatJetPassMBoosted_HlnFat_mass, "HM_CleanFatJetPassMBoosted_HlnFat_mass");
   _library.bindBranch(HM_Whad_pt, "HM_Whad_pt");
   _library.bindBranch(HM_Whad_eta, "HM_Whad_eta");
@@ -323,6 +310,3 @@ comp_jets_res::bindTree_(multidraw::FunctionLibrary& _library)
   _library.bindBranch(HM_idx_j2, "HM_idx_j2");
   _library.bindBranch(HM_largest_nonW_mjj, "HM_largest_nonW_mjj");
 }
-
-
-#endif

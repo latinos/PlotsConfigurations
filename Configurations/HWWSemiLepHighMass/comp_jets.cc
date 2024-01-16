@@ -124,7 +124,7 @@ comp_jets::evaluate(unsigned)
   TLorentzVector J1,J2;
 
   int nCFJ{*HM_nCleanFatJetPassMBoosted->Get()};
-  /*if (nCFJ >= 0){
+  if (nCFJ >= 0){
     wpt = HM_CleanFatJetPassMBoosted_pt->At(0);
     weta = HM_CleanFatJetPassMBoosted_eta->At(0);
     wphi = HM_CleanFatJetPassMBoosted_phi->At(0);
@@ -141,7 +141,7 @@ comp_jets::evaluate(unsigned)
     for (int i{0}; i != 4 and (unsigned)i != nJet ; ++i) {
       vbfjet[i] = i;
     }
-  }else*/ if (*HM_idx_j1->Get() != -1 && *HM_idx_j2->Get() != -1){
+/*  }else if (*HM_idx_j1->Get() != -1 && *HM_idx_j2->Get() != -1){
     wpt = *HM_Whad_pt->Get();
     weta = *HM_Whad_eta->Get();
     wphi = *HM_Whad_phi->Get();
@@ -162,7 +162,7 @@ comp_jets::evaluate(unsigned)
         vbfjet[j] = i;
         j++;
       }
-    }
+    }*/
   }else{
     return 0.0;
   }
@@ -266,6 +266,10 @@ comp_jets::evaluate(unsigned)
   if(_var==49) return detajj_24;
   if(_var==50) return mjj_34;
   if(_var==51) return detajj_34;
+  if(_var==52) return jetpt1;
+  if(_var==53) return jetpt2;
+  if(_var==54) return jetpt3;
+  if(_var==55) return jetpt4;
 
 
 

@@ -278,6 +278,12 @@ nuisances['trigg'] = {
     'samples': dict((skey, trig_syst) for skey in mc)
 }
 
+nuisances['UncTePTrig'] = {
+    'name': 'TagAndProbe_corr',   # Theory uncertainty
+    'kind': 'weight',
+    'type': 'shape',
+    'samples': dict((skey,['1 + 2*Unc_teptrig[0]', '1 -2*Unc_teptrig[0]']) for skey in mc),
+}
 #prefire_syst = ['PrefireWeight_Up/PrefireWeight', 'PrefireWeight_Down/PrefireWeight']
 #
 #nuisances['prefire'] = {
@@ -397,7 +403,7 @@ for js in jes_systs:
       'type' : 'shape',
       'mapUp'  : js+'up',
       'mapDown': js+'do',
-      'samples': dict((skey, ['1', '1']) for skey in mc_mod ),
+      'samples': dict((skey, ['1', '1']) for skey in mc if skey not in sig_mc),
       'folderUp'  : makeMCDirectory('JESup'),
       'folderDown': makeMCDirectory('JESdo'),
 #      'AsLnN': '1'
@@ -434,6 +440,149 @@ for js in jes_systs:
       'samples': dict((skey, '1.01') for skey in sig_mc_I),
  }
 
+nuisances['fatjet_jes']  = {
+    'name'  : 'CMS_scale_fatj_2018',
+    'kind'  : 'branch_custom',
+    'type'  : 'shape',
+    'BrFromToUp':{'FatJet_msoftdrop_nom':'FatJet_msoftdrop_jesTotalUp' , 'FatJet_pt_nom':'FatJet_pt_jesTotalUp', 'FatJet_mass_nom':'FatJet_mass_jesTotalUp'},
+    'BrFromToDown' : {'FatJet_msoftdrop_nom':'FatJet_msoftdrop_jesTotalDown' , 'FatJet_pt_nom':'FatJet_pt_jesTotalDown', 'FatJet_mass_nom':'FatJet_mass_jesTotalDown'},
+    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in sig_diff),
+    'folderUp': mcDirectory,
+    'folderDown': mcDirectory,
+   # 'mapUp'  : 'fatjetJESup',
+   # 'mapDown': 'fatjetJESdo',
+   # 'samples': dict((skey, ['1', '1']) for skey in mc if skey not in sig_diff),
+   # 'folderUp'  : makeMCDirectory('fatjetJESup'),
+   # 'folderDown': makeMCDirectory('fatjetJESdo'),
+#    'AsLnN': '1'
+}
+nuisances['fatjet_jer']  = {
+    'name'  : 'CMS_res_fatjer_2018',
+    'kind'  : 'branch_custom',
+    'type'  : 'shape',
+    'BrFromToUp':{'FatJet_msoftdrop_nom':'FatJet_msoftdrop_jerUp' , 'FatJet_pt_nom':'FatJet_pt_jerUp', 'FatJet_mass_nom':'FatJet_mass_jerUp'},
+    'BrFromToDown' : {'FatJet_msoftdrop_nom':'FatJet_msoftdrop_jerDown' , 'FatJet_pt_nom':'FatJet_pt_jerDown', 'FatJet_mass_nom':'FatJet_mass_jerDown'},
+    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in sig_diff),
+    'folderUp': mcDirectory,
+    'folderDown': mcDirectory,
+#    'kind'  : 'suffix',
+#    'type'  : 'shape',
+#    'mapUp'  : 'fatjetJERup',
+#    'mapDown': 'fatjetJERdo',
+#    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in sig_diff),
+#    'folderUp'  : makeMCDirectory('fatjetJERup'),
+#    'folderDown': makeMCDirectory('fatjetJERdo'),
+#     'AsLnN': '1'
+}
+#
+nuisances['fatjet_jms']  = {
+    'name'  : 'CMS_fatjms_2018',
+    'kind'  : 'branch_custom',
+    'type'  : 'shape',
+    'BrFromToUp':{'FatJet_msoftdrop_nom':'FatJet_msoftdrop_jmsUp' ,  'FatJet_mass_nom':'FatJet_mass_jmsUp'},
+    'BrFromToDown' : {'FatJet_msoftdrop_nom':'FatJet_msoftdrop_jmsDown' ,  'FatJet_mass_nom':'FatJet_mass_jmsDown'},
+    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in sig_diff),
+    'folderUp': mcDirectory,
+    'folderDown': mcDirectory,
+#    'kind'  : 'suffix',
+#    'type'  : 'shape',
+#    'mapUp'  : 'fatjetJMSup',
+#    'mapDown': 'fatjetJMSdo',
+#    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in sig_diff),
+#    'folderUp'  : makeMCDirectory('fatjetJMSup'),
+#    'folderDown': makeMCDirectory('fatjetJMSdo'),
+# #   'AsLnN': '1'
+}
+nuisances['fatjet_jmr']  = {
+    'name'  : 'CMS_res_fatjmr_2018',
+    'kind'  : 'branch_custom',
+    'type'  : 'shape',
+    'BrFromToUp':{'FatJet_msoftdrop_nom':'FatJet_msoftdrop_jmrUp' ,  'FatJet_mass_nom':'FatJet_mass_jmrUp'},
+    'BrFromToDown' : {'FatJet_msoftdrop_nom':'FatJet_msoftdrop_jmrDown' ,  'FatJet_mass_nom':'FatJet_mass_jmrDown'},
+    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in sig_diff),
+    'folderUp': mcDirectory,
+    'folderDown': mcDirectory,
+#    'kind'  : 'suffix',
+#    'type'  : 'shape',
+#    'mapUp'  : 'fatjetJMRup',
+#    'mapDown': 'fatjetJMRdo',
+#    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in sig_diff),
+# #    'folderUp'  : makeMCDirectory('fatjetJMSup'),
+# #    'folderDown': makeMCDirectory('fatjetJMSdo'),
+# #   'AsLnN': '1'
+} 
+
+nuisances['fatjet_jes_signal']  = {
+    'name'  : 'CMS_scale_fatj_2018',
+    'kind'  : 'branch_custom',
+    'type'  : 'shape',
+    'BrFromToUp':{'FatJet_msoftdrop_nom':'FatJet_msoftdrop_jesTotalUp' ,  'FatJet_mass_nom':'FatJet_mass_jesTotalUp'},
+    'BrFromToDown' : {'FatJet_msoftdrop_nom':'FatJet_msoftdrop_jesTotalDown' ,  'FatJet_mass_nom':'FatJet_mass_jesTotalDown'},
+    'samples': dict((skey, ['1', '1']) for skey in sig_diff),
+    'folderUp': signalMCDirectory,
+    'folderDown': signalMCDirectory,
+   # 'mapUp'  : 'fatjetJESup',
+   # 'mapDown': 'fatjetJESdo',
+   # 'samples': dict((skey, ['1', '1']) for skey in mc if skey not in sig_diff),
+   # 'folderUp'  : makeMCDirectory('fatjetJESup'),
+   # 'folderDown': makeMCDirectory('fatjetJESdo'),
+#    'AsLnN': '1'
+}
+nuisances['fatjet_jer_signal']  = {
+    'name'  : 'CMS_res_fatjer_2018',
+    'kind'  : 'branch_custom',
+    'type'  : 'shape',
+    'BrFromToUp':{'FatJet_msoftdrop_nom':'FatJet_msoftdrop_jerUp' , 'FatJet_pt_nom':'FatJet_pt_jerUp', 'FatJet_mass_nom':'FatJet_mass_jerUp'},
+    'BrFromToDown' : {'FatJet_msoftdrop_nom':'FatJet_msoftdrop_jerDown' , 'FatJet_pt_nom':'FatJet_pt_jerDown', 'FatJet_mass_nom':'FatJet_mass_jerDown'},
+    'samples': dict((skey, ['1', '1']) for skey in sig_diff),
+    'folderUp': signalMCDirectory, 
+    'folderDown': signalMCDirectory, 
+#    'kind'  : 'suffix',
+#    'type'  : 'shape',
+#    'mapUp'  : 'fatjetJERup',
+#    'mapDown': 'fatjetJERdo',
+#    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in sig_diff),
+#    'folderUp'  : makeMCDirectory('fatjetJERup'),
+#    'folderDown': makeMCDirectory('fatjetJERdo'),
+#     'AsLnN': '1'
+}
+#
+nuisances['fatjet_jms_signal']  = {
+    'name'  : 'CMS_fatjms_2018',
+    'kind'  : 'branch_custom',
+    'type'  : 'shape',
+    'BrFromToUp':{'FatJet_msoftdrop_nom':'FatJet_msoftdrop_jmsUp' ,  'FatJet_mass_nom':'FatJet_mass_jmsUp'},
+    'BrFromToDown' : {'FatJet_msoftdrop_nom':'FatJet_msoftdrop_jmsDown' ,  'FatJet_mass_nom':'FatJet_mass_jmsDown'},
+    'samples': dict((skey, ['1', '1']) for skey in sig_diff),
+    'folderUp': signalMCDirectory,
+    'folderDown': signalMCDirectory, 
+#    'kind'  : 'suffix',
+#    'type'  : 'shape',
+#    'mapUp'  : 'fatjetJMSup',
+#    'mapDown': 'fatjetJMSdo',
+#    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in sig_diff),
+#    'folderUp'  : makeMCDirectory('fatjetJMSup'),
+#    'folderDown': makeMCDirectory('fatjetJMSdo'),
+# #   'AsLnN': '1'
+}
+nuisances['fatjet_jmr_signal']  = {
+    'name'  : 'CMS_res_fatjmr_2018',
+    'kind'  : 'branch_custom',
+    'type'  : 'shape',
+    'BrFromToUp':{'FatJet_msoftdrop_nom':'FatJet_msoftdrop_jmrUp' ,  'FatJet_mass_nom':'FatJet_mass_jmrUp'},
+    'BrFromToDown' : {'FatJet_msoftdrop_nom':'FatJet_msoftdrop_jmrDown' ,  'FatJet_mass_nom':'FatJet_mass_jmrDown'},
+    'samples': dict((skey, ['1', '1']) for skey in sig_diff),
+    'folderUp': signalMCDirectory,
+    'folderDown': signalMCDirectory, 
+#    'kind'  : 'suffix',
+#    'type'  : 'shape',
+#    'mapUp'  : 'fatjetJMRup',
+#    'mapDown': 'fatjetJMRdo',
+#    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in sig_diff),
+# #    'folderUp'  : makeMCDirectory('fatjetJMSup'),
+# #    'folderDown': makeMCDirectory('fatjetJMSdo'),
+# #   'AsLnN': '1'
+} 
 #nuisances['fatjet_jes']  = {
 #    'name'  : 'CMS_scale_fatj_2018',
 #    'kind'  : 'suffix',
@@ -794,6 +943,16 @@ for m in massvbf:
   nuisances['PU']['samples'].update({'QQHINT_'+m+model_name: PUstring})
   nuisances['PU']['samples'].update({'QQHSBI_'+m+model_name: PUstring})
 
+for j in range(1,4):
+	for i in range(1,4):
+ 		tagger_variations = ["Tag_mass_rewei_up_"+str(j)+"_"+str(i)+"/Tag_mass_rewei",  "Tag_mass_rewei_do_"+str(j)+"_"+str(i)+"/Tag_mass_rewei"]
+		nuisances["Top_massVsTagger_reweighting_bin_"+str(j)+"_"+str(i)] = {
+  		  'name': "Top_massVsTagger_reweighting_bin_"+str(j)+"_"+str(i),
+  		  'kind'  : 'weight',
+    		  'type'  : 'shape',
+		  'samples': dict((skey,tagger_variations ) for skey in mc_deep),
+	          'cuts': cutdict['Boosted'],
+		}
 #for j in range(1,6):
 #	for i in range(1,6):
 # 		tagger_variations = ["Tag_mass_rewei_up_"+str(j)+"_"+str(i)+"/Tag_mass_rewei",  "Tag_mass_rewei_do_"+str(j)+"_"+str(i)+"/Tag_mass_rewei"]

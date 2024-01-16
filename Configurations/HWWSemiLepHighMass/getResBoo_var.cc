@@ -155,7 +155,7 @@ for (unsigned int ix{0}; ix < nJ; ix++) {
                   }else if(index_Good_3 >= 3){jx = 3;
                   }else{ jx = last_idx;}
 	
-    const float Wfat_pt   = FatJet_pt->At(jx);
+    const float Wfat_pt   = FatJet_pt_sof->At(jx);
     const float Wfat_eta  = FatJet_eta->At(jx);
     		ROOT::Math::PtEtaPhiMVector wHad_4v{
       			Wfat_pt,
