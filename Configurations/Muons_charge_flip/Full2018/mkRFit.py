@@ -5,24 +5,14 @@ argv = sys.argv
 sys.argv = argv[:1]
 
 import optparse
-# import LatinoAnalysis.Gardener.hwwtools as hwwtools
-# import math
-# import LatinoAnalysis.ShapeAnalysis.utils as utils
 
 import ROOT
 
 from array import array
 
-#from ROOT import gBenchmark, gStyle, gROOT, TStyle
-
-#from ROOT import TCanvas, TPad, TFile, TPaveText, TLegend
-#from ROOT import TH1D, TH1F, TF1, TGraphErrors, TMultiGraph, TGraph, TMath, TFitResultPtr
-
-# functions used in everyday life ...
-# from LatinoAnalysis.Tools.commonTools import *
-
 def flatten_cuts(cuts):
-    ## flatten the categories (create full cuts named cut_category)
+    '''Flatten the categories (create full cuts named cut_category).'''
+
     categoriesmap = []
     for cname in cuts.keys():
         cut = cuts[cname]
@@ -54,8 +44,6 @@ if __name__ == '__main__':
     parser.add_option('--outputDir',  dest='outputDir',  help='Output directory for plots',  default='DEFAULT')
 
     # Read default parsing options as well
-    # hwwtools.addOptions(parser)
-    # hwwtools.loadOptDefaults(parser)
     (opt, args) = parser.parse_args()
 
     sys.argv.append( '-b' )
@@ -142,14 +130,33 @@ if __name__ == '__main__':
             eta_region = cut_split[8]
             eta        = eta_regions_dict[eta_region]
 
+            # Skip the sub-leading muon histograms:
+            # We treat them together with the leading muons
+            # --> We are not interested in splitting into leading/sub-leading muons,
+            # but just on momentum and eta
+            if which_muon == 'mu2': continue
+
             # We fill the 2D map entry associated to the average momentum in the bin
             p_to_fill_map = 0.5*(float(p_min) + float(p_max))
 
-            # If we are looking at a 'mu2' cut, we need to look at the correct variable (e.g., 'R_reco_gen2_zoom' instead of 'R_reco_gen1_zoom')
-            variable = opt.variable.replace("mu1","mu2")
-            print("Histo name: {}/{}/histo_DY".format(cut,variable))
+            # Starting by getting the leading muon histogram
+            print("Histo name for leading muon:     {}/{}/histo_DY".format(cut,variable))
             histo_name = "{}/{}/histo_DY".format(cut,variable)
             histo_tmp  = in_file.Get(histo_name)
+
+            # Then, the sub-leading muon
+            # If we are looking at a 'mu2' cut, we need to look at the correct variable (e.g., 'R_reco_gen2_zoom' instead of 'R_reco_gen1_zoom')
+            variable_sub   = opt.variable.replace("gen1","gen2")
+            cut_sub        = cut.replace("mu1","mu2")
+            print("Histo name for sub-leading muon: {}/{}/histo_DY".format(cut_sub,variable_sub))
+            histo_name_sub = "{}/{}/histo_DY".format(cut_sub,variable_sub)
+            histo_tmp_sub  = in_file.Get(histo_name_sub)
+            
+            # Add the two histograms together
+            print("Leading muon histogram integral     = {}".format(histo_tmp.Integral()))
+            print("Sub-leading muon histogram integral = {}".format(histo_tmp_sub.Integral()))
+            histo_tmp.Add(histo_tmp_sub, 1)
+            print("Integral sum = {}".format(histo_tmp.Integral()))
 
             # Let's start by just assuming the RMS is the std deviation of the gaussian distribution we will fit
             print("Mean = {}".format(histo_tmp.GetMean()))
