@@ -2,7 +2,7 @@
 
 treeName = 'Events'
 
-tag = 'WW2016_noHIPM_v9_njet'
+tag = 'WW2016_noHIPM_v9_njets'
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFile'
@@ -17,7 +17,7 @@ variablesFile = 'variables.py'
 cutsFile = 'cuts.py' 
 
 # file with list of samples
-samplesFile = 'samples.py' 
+samplesFile = 'samples.py'
 #samplesFile = 'samples_split.py'
 
 # file with list of samples

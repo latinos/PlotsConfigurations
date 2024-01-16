@@ -2,7 +2,7 @@
 
 treeName = 'Events'
 
-tag = 'WW2018_v9_njet'
+tag = 'WW2018_v9_njets'
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFile'
