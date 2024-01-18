@@ -7,7 +7,11 @@
 #------------------------------------------------------------------------
 
 cd ../${1}_v9/
-
+cd /afs/cern.ch/work/s/srudrabh/AZH/postprocessing/combine/CMSSW_11_3_4/src/ 
+export SCRAM_ARCH=slc7_amd64_gcc700
+source /cvmfs/cms.cern.ch/cmsset_default.sh
+eval `scramv1 runtime -sh`
+cd -
 ## scrape mass points from samples_all.py
 ## for only few mass points, use samples.py
 samplesFile='samples.py'
@@ -15,7 +19,7 @@ samplesFile='samples.py'
 ## scrape tag from configuration file and
 ## create parent directory to hold per-mass-point combine output
 tag=$(cat configuration.py | awk '/tag =/ {print $3}' | tr -d \')
-datacardDir="datacards_${tag}"
+datacardDir="datacards_test_${tag}"
 mkdir higgsCombine_$tag
 
 echo -e "\n\ndatacard directory: $datacardDir"
@@ -37,18 +41,23 @@ do
         echo "          next mass point = ($mA, $mH)"
         echo "--------------------------------------------------"
 
-        ### make workspaces
-        path="${datacardDir}/mA_${mA}_mH_${mH}/breq_SR/ellipse_mA_${mA}_mH_${mH}"
-        datacardPath="${path}/datacard.txt"
-        workspacePath="${path}/workspace.root"
-        echo -e "\n{doFit.sh} >> text2workspace.py $datacardPath -m 125 -o $workspacePath"
-        text2workspace.py $datacardPath -m 125 -o $workspacePath
+### make workspaces
+        breq_path="${datacardDir}/mA_${mA}_mH_${mH}/breq_SR/ellipse_mA_${mA}_mH_${mH}/datacard.txt"
+        bveto_1j_path="${datacardDir}/mA_${mA}_mH_${mH}/bveto_1j_SR/ellipse_onebjet_mA_${mA}_mH_${mH}/datacard.txt"
+        bveto_4j_path="${datacardDir}/mA_${mA}_mH_${mH}/bveto_4j/events/datacard.txt"
+        combinedPath="${datacardDir}/mA_${mA}_mH_${mH}/combined_SR/"
+        mkdir $combinedPath
+        combineCards.py breq_SR=$breq_path bveto_1j_SR=$bveto_1j_path bveto_4j_path=$bveto_4j_path > $combinedPath/datacard.txt
+        
+        echo -e "\n{doFit.sh} >> text2workspace.py ${combinedPath}/datacard.txt -m 125 -o $combinedPath/workspace.root"
+        text2workspace.py $combinedPath/datacard.txt -m 125 -o ${combinedPath}/workspace.root
 
+       
         ### run AsymptoticLimits
         cd higgsCombine_${tag}/
-        fitTag="_AZH_mA${mA}_mH${mH}_breq_SR"
-        echo -e "\n\n{doFit.sh} >> combine -M AsymptoticLimits -m 125 --run blind -d $workspacePath -n $fitTag"
-        combine -M AsymptoticLimits -m 125 --run blind -d ../$workspacePath -n $fitTag > CL.txt
+        fitTag="_AZH_mA${mA}_mH${mH}_SR"
+        echo -e "\n\n{doFit.sh} >> combine -M AsymptoticLimits -m 125 --run blind -d ${combinedPath}/workspace.root -n $fitTag"
+        combine -M AsymptoticLimits -m 125 --run blind -d ../${combinedPath}/workspace.root -n $fitTag > CL.txt
         cat CL.txt
 
         ### save CLs to text file
