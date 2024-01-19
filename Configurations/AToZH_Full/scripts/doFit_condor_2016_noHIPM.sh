@@ -36,8 +36,7 @@ echo -e "\n\n--------------------------------------------------"
 echo "          next mass point = ($mA, $mH)"
 echo "--------------------------------------------------"
 
-
-xsec_mA_mH=$(cat ../scripts/total_xsec_results.json | jq ".[\"${mA},${mH}\"]")
+xsec_mA_mH=$(python -c "import json; data = json.load(open('../scripts/total_xsec_results.json')); print(data.get('${mA},${mH}', ''))")
 echo "xsec_mA_${mA}_mH_${mH} = ${xsec_mA_mH}"
 
 ### make workspaces
