@@ -6,19 +6,19 @@ tag = 'AZH_2016_HIPM_UL'
 outputDir = 'rootFiles_'+tag
 
 # file with list of variables
-variablesFile = 'variables.py'
+variablesFile = 'variables_fit_all.py'
 
 # file with TTree aliases
-aliasesFile = 'aliases.py'
+aliasesFile = 'aliases_all.py'
 
 # file with list of cuts
 cutsFile = 'cuts.py' 
 
 # file with list of samples
-samplesFile = 'samples.py' 
+samplesFile = 'samples_all.py' 
 
 # file with list of samples
-plotFile = 'plot.py' 
+plotFile = 'plot_SR.py' 
 
 # luminosity to normalize to (in 1/fb)
 lumi = 19.52 

@@ -277,20 +277,36 @@ nuisances['fake_mu_stat']  = {
 }
 
 ##### B-tagger
-
-for shift in [ 'lf', 'hf', 'hfstats1', 'hfstats2', 'lfstats1', 'lfstats2', 'cferr1', 'cferr2']:
+## WP based approach
+for shift in [ 'isr', 'fsr','hdamp', 'jes','jer', 'pileup','qcdscale', 'statistic','topmass', 'type3']:
     btag_syst = ['(btagSF%sup)/(btagSF)' % shift, '(btagSF%sdown)/(btagSF)' % shift]
 
-    name = 'CMS_btag_%s' % shift
-    if 'stats' in shift:
-        name += '_2016'
+    name = 'CMS_btag_bc_%s' % shift
+    if 'statistic' in shift:
+        name += '_2016postVFP'
 
-    nuisances['btag_shape_%s' % shift] = {
+    nuisances['btag_M_bc_%s' % shift] = {
         'name': name,
         'kind': 'weight',
         'type': 'shape',
         'samples': dict((skey, btag_syst) for skey in mc),
- #       'cuts' : fitcuts
+       # 'cuts' : fitcuts
+    }
+
+nuisances['btag_M_light_2016postVFP'] = {
+        'name': 'CMS_btag_light_2016postVFP',
+        'kind': 'weight',
+        'type': 'shape',
+        'samples': dict((skey, ['(btagSFuncorrelatedup)/(btagSF)', '(btagSFuncorrelateddown)/(btagSF)']) for skey in mc)
+    
+    }
+
+nuisances['btag_M_light_correlated'] = {
+        'name': 'CMS_btag_light_correlated',
+        'kind': 'weight',
+        'type': 'shape',
+        'samples': dict((skey, ['(btagSFcorrelatedup)/(btagSF)', '(btagSFcorrelateddown)/(btagSF)']) for skey in mc)
+    
     }
 
 #### Trigger Efficiency
@@ -394,22 +410,26 @@ nuisances['WZ_norm2016'] = {
 
 
 
-
 ####### Jet energy scale
-#jes_systs = ['JESAbsolute','JESAbsolute_2016','JESBBEC1','JESBBEC1_2016','JESEC2','JESEC2_2016','JESFlavorQCD','JESHF','JESHF_2016','JESRelativeBal','JESRelativeSample_2016']
-#for js in jes_systs:
-#      nuisances[js] = {
-#                'name': 'CMS_scale_'+js,
-#                'kind': 'suffix',
-#                'type': 'shape',
-#                'mapUp': js+'up',
-#                'mapDown': js+'do',
-#                'samples': dict((skey, ['1', '1']) for skey in mc),
-#                'folderUp'   : treeBaseDir+'Summer20UL16_106x_nAODv9_HIPM_Full2016v9/MCl1loose2016v9__MCCorr2016v9NoJERInHorn__l2tightOR2016v9__RDFfix__JESup_suffix', 
-#                'folderDown' : treeBaseDir+'Summer20UL16_106x_nAODv9_HIPM_Full2016v9/MCl1loose2016v9__MCCorr2016v9NoJERInHorn__l2tightOR2016v9__RDFfix__JESdo_suffix', 
-#                'AsLnN': '1',
-##                'cuts' : fitcuts
-#  }
+
+jes_systs = ['JESAbsolute','JESAbsolute_2016','JESBBEC1','JESBBEC1_2016','JESEC2','JESEC2_2016','JESFlavorQCD','JESHF','JESHF_2016','JESRelativeBal','JESRelativeSample_2016']
+jet_branches = ['CleanJet_pt','CleanJet_eta','CleanJet_phi','CleanJet_mass','CleanJet_jetIdx']
+
+for js in jes_systs:
+     # Split source, applied to jets and MET
+      nuisances[js+'_all'] = {
+                'name': 'CMS_scale_'+js+'_all',
+                'kind': 'suffix',
+                'type': 'shape',
+                'mapUp': js+'up',
+                'mapDown': js+'do',
+                'samples': dict((skey, ['1', '1']) for skey in mc),# if skey not in ['TTWJets','AZH_1100_700', 'AZH_1800_1700', 'AZH_800_350', 'AZH_800_400', 'AZH_800_450', 'AZH_800_500', 'AZH_800_550', 'AZH_800_600', 'AZH_800_700', 'AZH_850_330'] ),
+                'folderUp'   : treeBaseDir+'Summer20UL16_106x_nAODv9_HIPM_Full2016v9/MCl1loose2016v9__MCCorr2016v9NoJERInHorn__l2tightOR2016v9__RDF__JESup_suffix', 
+                'folderDown' : treeBaseDir+'Summer20UL16_106x_nAODv9_HIPM_Full2016v9/MCl1loose2016v9__MCCorr2016v9NoJERInHorn__l2tightOR2016v9__RDF__JESdo_suffix', 
+                'AsLnN': '0',
+#                'cuts' : fitcuts
+}
+
 
 ##### Jet energy resolution
 nuisances['JER'] = {

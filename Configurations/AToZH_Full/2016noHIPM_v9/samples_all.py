@@ -115,7 +115,7 @@ samples['WZ']  = {    'name':   getSampleFilesNano(directory,'WZTo3LNu_mllmin4p0
 ######### TTZToLLNuNu needs to be postprocessed #####################
 samples['ttZ'] = {    'name'   :   getSampleFilesNano(directory,'TTZToLLNuNu_M-10'), 
                      'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC ,
-                     'FilesPerJob' : 5,
+                     'FilesPerJob' : 3,
                  }
 ################## ttH ###############
 
@@ -126,7 +126,7 @@ samples['ttH_hww']  = { 'name'   :   getSampleFilesNano(directory,'ttHToNonbb_M1
 
 samples['tZq_ll']  = { 'name'   :   getSampleFilesNano(directory,'tZq_ll_4f'),
                        'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC ,
-                       'FilesPerJob' : 5,                 
+                       'FilesPerJob' : 4,                 
 }
 
 ############ VVV ############
@@ -135,7 +135,7 @@ samples['ZZ']  = {  'name'   :   getSampleFilesNano(directory,'ZZTo2L2Nu')
                                + getSampleFilesNano(directory,'ZZTo2Q2L_mllmin4p0')
                                + getSampleFilesNano(directory,'ZZTo4L'),    #check if ggZZ samples are there and add them
                     'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC+'*'+ZZWeight,
-                    'FilesPerJob' : 5,
+                    'FilesPerJob' : 4,
              }
 
 
@@ -154,7 +154,7 @@ samples['top'] = {    'name'   :   getSampleFilesNano(directory,'TTTo2L2Nu')
                                   + getSampleFilesNano(directory,'ST_tW_antitop') 
                                   + getSampleFilesNano(directory,'ST_tW_top'),
                       'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC ,
-                      'FilesPerJob' : 5,
+                      'FilesPerJob' : 4,
 }
 
 addSampleWeight(samples,'top','TTTo2L2Nu','Top_pTrw')
@@ -1251,7 +1251,7 @@ samples['Fake']  = {   'name': [ ] ,
                        'weight' : 'fakeW*'+ METFilter_DATA,
                        'weights' : [ ] ,
                        'isData': ['all'],
-                       'FilesPerJob' : 500 ,
+                       'FilesPerJob' : 300 ,
                        'suppressNegativeNuisances' :['all'],
                      }
 
@@ -1281,7 +1281,7 @@ samples['DATA']  = {   'name': [ ] ,
                        'weight' : METFilter_DATA+'*LepWPCut',
                        'weights' : [ ],
                        'isData': ['all'],
-                       'FilesPerJob' : 500 ,
+                       'FilesPerJob' : 300 ,
                     }
 
 
