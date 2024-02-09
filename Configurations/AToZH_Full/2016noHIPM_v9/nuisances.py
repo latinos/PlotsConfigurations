@@ -396,20 +396,21 @@ nuisances['WZ_norm2016'] = {
 
 
 ####### Jet energy scale
-#jes_systs = ['JESAbsolute','JESAbsolute_2016','JESBBEC1','JESBBEC1_2016','JESEC2','JESEC2_2016','JESFlavorQCD','JESHF','JESHF_2016','JESRelativeBal','JESRelativeSample_2016']
-#for js in jes_systs:
-#      nuisances[js] = {
-#                'name': 'CMS_scale_'+js,
-#                'kind': 'suffix',
-#                'type': 'shape',
-#                'mapUp': js+'up',
-#                'mapDown': js+'do',
-#                'samples': dict((skey, ['1', '1']) for skey in mc),
-#                'folderUp'   : treeBaseDir+'Summer20UL16_106x_nAODv9_noHPIM_Full2016v9/MCl1loose2016v9__MCCorr2016v9NoJERInHorn__l2tightOR2016v9__RDFfix__JESup_suffix', 
-#                'folderDown' : treeBaseDir+'Summer20UL16_106x_nAODv9_noHIPM_Full2016v9/MCl1loose2016v9__MCCorr2016v9NoJERInHorn__l2tightOR2016v9__RDFfix__JESdo_suffix', 
-#                'AsLnN': '1',
-##                'cuts' : fitcuts
-#  }
+
+jes_systs = ['JESAbsolute','JESAbsolute_2016','JESBBEC1','JESBBEC1_2016','JESEC2','JESEC2_2016','JESFlavorQCD','JESHF','JESHF_2016','JESRelativeBal','JESRelativeSample_2016']
+for js in jes_systs:
+      nuisances[js] = {
+                'name': 'CMS_scale_'+js,
+                'kind': 'suffix',
+                'type': 'shape',
+                'mapUp': js+'up',
+                'mapDown': js+'do',
+                'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['TTWJets']),
+                'folderUp'   : treeBaseDir+'Summer20UL16_106x_nAODv9_noHIPM_Full2016v9/MCl1loose2016v9__MCCorr2016v9NoJERInHorn__l2tightOR2016v9__RDF__JESup_suffix', 
+                'folderDown' : treeBaseDir+'Summer20UL16_106x_nAODv9_noHIPM_Full2016v9/MCl1loose2016v9__MCCorr2016v9NoJERInHorn__l2tightOR2016v9__RDF__JESdo_suffix', 
+                'AsLnN': '1',
+#                'cuts' : fitcuts
+}
 
 ##### Jet energy resolution
 nuisances['JER'] = {
