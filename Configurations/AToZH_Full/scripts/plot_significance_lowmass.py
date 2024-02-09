@@ -43,8 +43,10 @@ class MassPlaneContourPlotter:
         expected_values = np.array(
             [self.load_significance(MA, MH) for MA, MH in zip(self.mass_points[:, 0], self.mass_points[:, 1])]
         )
-
         norm = mcolors.TwoSlopeNorm(vmin=0, vcenter=np.max(expected_values)/2, vmax=np.max(expected_values))
+        orig_map=plt.cm.get_cmap('RdBu')
+        reversed_map = orig_map.reversed()
+
         ax.scatter(self.mass_points[:, 0], self.mass_points[:, 1], c=expected_values, cmap='coolwarm', marker="s", s=300, norm=norm)
         for MA, MH in zip(self.mass_points[:, 0], self.mass_points[:, 1]):
             significance = round((self.load_significance(MA, MH)), 2)

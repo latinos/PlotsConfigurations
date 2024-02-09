@@ -19,6 +19,7 @@ class PlotMeta:
         "ULCombined": 138,
         "UL16preVFP": 19.5,
         "UL16postVFP": 16.8,
+        "ULCombined": 137,
     }
 
     UL_YEAR_MAP = {
@@ -27,6 +28,7 @@ class PlotMeta:
         "UL16": 2016,
         "UL16preVFP": "2016 preVFP",
         "UL16postVFP": "2016 postVFP",
+        "ULCombined": "Full Run II"
    }
 
     CMAP = plt.cm.get_cmap("Set3")

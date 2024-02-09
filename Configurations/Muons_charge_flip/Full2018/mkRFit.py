@@ -166,13 +166,14 @@ if __name__ == '__main__':
             # Now actually estimate the mean and sigma using a gaussian fit
 
             # f1 = ROOT.TF1("my_gauss", "[0]*(1./([2]*sqrt(3.1415)))*exp(-0.5*(x-[1])/sqrt([2]))**2", -1.0, 1.0)
-            f1 = ROOT.TF1("my_gauss", "gaus", -1.0, 1.0)
+            f1 = ROOT.TF1("my_gauss", "gaus", -0.8, 0.8)
             f1.SetParameters(histo_tmp.Integral(),histo_tmp.GetMean(),histo_tmp.GetRMS())
-            histo_tmp.Fit(f1, "", "", -1.0, 1.0)            
+            histo_tmp.Fit(f1, "", "", -0.8, 0.8)
             # histo_tmp.Fit(f1)
             print("New histo name and title = {}".format("histo_DY_" + cut))
             histo_tmp.SetName("histo_DY_" + cut)
             histo_tmp.SetTitle("histo_DY_" + cut)
+            histo_tmp.GetXaxis().SetTitle("R_{reco-gen}")
             histo_tmp.Write()
             print("Fit constant = {} +- {}".format(f1.GetParameter(0),f1.GetParError(0)))
             print("Fit mean     = {} +- {}".format(f1.GetParameter(1),f1.GetParError(1)))
@@ -180,6 +181,22 @@ if __name__ == '__main__':
 
             sigma_map.SetBinContent( sigma_map.FindBin(p_to_fill_map, eta), f1.GetParameter(2) )
             sigma_map.SetBinError(   sigma_map.FindBin(p_to_fill_map, eta), f1.GetParError(2)  )
+
+            # Plot histograms with fit
+            # ROOT.gStyle.SetOptStat(0)
+            ROOT.gStyle.SetOptFit(1111)
+            fit_canvas = ROOT.TCanvas("c1","c1",600,600)
+            fit_canvas.cd()
+            
+            fit_pad = ROOT.TPad("fit_pad", "fit_pad", 0.0, 0.0, 1.0, 1.0)
+            fit_pad.SetLeftMargin(0.20)
+            fit_pad.Draw()
+            fit_pad.cd()
+
+            histo_tmp.Draw()
+
+            fit_canvas.Print("sigma_plots/" + histo_tmp.GetName() + ".png")
+            fit_canvas.Print("sigma_plots/" + histo_tmp.GetName() + ".pdf")
 
         sigma_map.Write()
     
@@ -194,7 +211,6 @@ if __name__ == '__main__':
 
     out_file.Close()
 
-
     # Plot sigma distributions
     histo_file   = ROOT.TFile(outputFile)
     
@@ -204,7 +220,7 @@ if __name__ == '__main__':
     sigma_canvas.cd()
     
     pad = ROOT.TPad("pad", "pad", 0.0, 0.0, 1.0, 1.0)
-    pad.SetLeftMargin(0.15)
+    pad.SetLeftMargin(0.20)
     pad.Draw()
     pad.cd()
 
@@ -228,7 +244,9 @@ if __name__ == '__main__':
     histo_os_B.SetTitle("")
     histo_os_B.GetYaxis().SetRangeUser(0.0, 0.2)
     histo_os_B.GetXaxis().SetTitle("Muon p [GeV]")
-    histo_os_B.GetYaxis().SetTitle("q/p relative residual")
+    histo_os_B.GetYaxis().SetTitleOffset(2.5)
+    # histo_os_B.GetYaxis().SetTitle("q/p relative residual")
+    histo_os_B.GetYaxis().SetTitle("#frac{q/p_{reco} - q/p_{gen}}{q/p_{gen}} relative residual") # ((q/p)_reco - (q/p)_gen))/(q/p)_gen
 
     # Draw
     histo_os_B.Draw("pe")
