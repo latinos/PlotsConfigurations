@@ -5,7 +5,6 @@ import re
 
 
 import numpy as np
-import matplotlib.colors as mcolors
 import matplotlib.pyplot as plt
 from matplotlib.tri import Triangulation, LinearTriInterpolator
 import mplhep as hep
@@ -36,7 +35,7 @@ class MassPlaneContourPlotter:
                 pct_val = float(re.findall(r"\d.\d+", line.split("<")[1])[0])
                 limit_vals.append(pct_val)
 
-            return limit_vals
+            return limit_vals[2]
 
     def load_mass_points(self):
         with open("signals_comb.txt", 'r') as f:
@@ -59,39 +58,25 @@ class MassPlaneContourPlotter:
             [self.load_limit(MA, MH) for MA, MH in zip(self.mass_points[:, 0], self.mass_points[:, 1])]
         )
 
+        triObj = Triangulation(self.mass_points[:, 0], self.mass_points[:, 1])
+        f_interpolate = LinearTriInterpolator(triObj, expected_values)
+        expected_values_interpolated = f_interpolate(self.mass_points[:, 0], self.mass_points[:, 1])
+
+
         theory_values = np.array(
             [self.compute_theory_value(MA, MH) for MA, MH in zip(self.mass_points[:, 0], self.mass_points[:, 1])]
         )
-        triObj = Triangulation(self.mass_points[:, 0], self.mass_points[:, 1])
+        theory_limit_ratio = theory_values / expected_values_interpolated
         
-        theory_limit_ratio = []
-        for i in [0,1,2,3,4]:
-            f_interpolate = LinearTriInterpolator(triObj, expected_values[:,i])
-            expected_values_interpolated = f_interpolate(self.mass_points[:, 0], self.mass_points[:, 1])
-            theory_limit_ratio.append(theory_values / expected_values_interpolated)
-
-        norm = mcolors.TwoSlopeNorm(vmin=0, vcenter=1.0, vmax=np.max(theory_limit_ratio[2]))
-        
-        orig_map=plt.cm.get_cmap('RdBu') 
+        orig_map=plt.cm.get_cmap('RdYlBu') 
         reversed_map = orig_map.reversed() 
-        contour = ax.tricontourf(self.mass_points[:, 0], self.mass_points[:, 1], theory_limit_ratio[2], levels=40, cmap=reversed_map, norm=norm)
+        contour = ax.tricontourf(self.mass_points[:, 0], self.mass_points[:, 1], expected_values, levels=20, cmap=reversed_map)
 
-        my_styles = ['--', '-.', '-', '-.', '--']
-        my_colors = ['y','g','k','g','y']
-        for i in [0,1,2,3,4]:
-            ax.tricontour(self.mass_points[:, 0], self.mass_points[:, 1], theory_limit_ratio[i], levels=[0,1], linestyles=my_styles[i], colors=my_colors[i], linewidths=2)
-        #ax.scatter(self.mass_points[:, 0], self.mass_points[:, 1], color="orange", s=12)
-
-        fig.colorbar(contour, ax=ax, label=r"$\sigma_{Theory}/\sigma_{Expected}$")
-        l1, = ax.plot([1,2], linestyle='-', linewidth=1.5, color='k')
-        l2, = ax.plot([1,2], linestyle='-.', linewidth=1.5, color='g')
-        l3, = ax.plot([1,2], linestyle='--', linewidth=1.5, color='y')
-        ax.legend((l3,l2,l1), ('2 std. deviation', '1 std. deviation', 'Expected CLs'), loc='center', shadow=False, fontsize=16, bbox_to_anchor=(0.2, 0.65))
-       
+        fig.colorbar(contour, ax=ax, label=r"Expected $CL_S$ $\sigma$ $\cdot$ B [pb]")
         ax.set_xlabel(r"m$_{A}$ [GeV]")
         ax.set_ylabel(r"m$_{H}$ [GeV]")
-        ax.set_xlim(325, 2000)
-        ax.set_ylim(320, 1900)
+        ax.set_xlim(325, 2110)
+        ax.set_ylim(320, 2025)
 
         hep.cms.label(ax=ax, llabel="Work in progress", loc=3, data=True,
             lumi=PlotMeta.YEAR_LUMI_MAP[self.year],
@@ -99,8 +84,7 @@ class MassPlaneContourPlotter:
             fontsize=25)
 
         os.makedirs(os.path.join(self.path_to_limits, "plot_output/contours"), exist_ok=True)
-        fname = "mass_plane_contour_tanb1"
-        fname = "test"
+        fname = "limit_map_tanb1"
         plt.savefig(os.path.join(self.path_to_limits, f"plot_output/contours/{fname}.png"))
         plt.savefig(os.path.join(self.path_to_limits, f"plot_output/contours/{fname}.pdf"))
         plt.close()
