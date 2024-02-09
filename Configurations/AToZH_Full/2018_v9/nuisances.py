@@ -126,7 +126,7 @@ nuisances['pdf_AZH']  = {
       'kind'  : 'weight_rms',
       'type'  : 'shape',
       'samples'  : dict((skey, pdf_variations) for skey in signal),
-      'cuts' : fitcuts
+#      'cuts' : fitcuts
 #      'scale' : nfdict["pdf_WW"] --> I should calculate my own norm factor here
 }
 
@@ -279,20 +279,50 @@ nuisances['fake_mu_stat']  = {
 }
 
 ###### B-tagger
+### shape based approach
+#for shift in [ 'lf', 'hf', 'hfstats1', 'hfstats2', 'lfstats1', 'lfstats2', 'cferr1', 'cferr2']:
+ #   btag_syst = ['(btagSF%sup)/(btagSF)' % shift, '(btagSF%sdown)/(btagSF)' % shift]
 
-for shift in [ 'lf', 'hf', 'hfstats1', 'hfstats2', 'lfstats1', 'lfstats2', 'cferr1', 'cferr2']:
-    btag_syst = ['(btagSF%sup)/(btagSF)' % shift, '(btagSF%sdown)/(btagSF)' % shift]
+ #   name = 'CMS_btag_%s' % shift
+ #   if 'stats' in shift:
+ #       name += '_2018'
 
-    name = 'CMS_btag_%s' % shift
-    if 'stats' in shift:
+#    nuisances['btag_shape_%s' % shift] = {
+#        'name': name,
+#        'kind': 'weight',
+#        'type': 'shape',
+#        'samples': dict((skey, btag_syst) for skey in mc),
+##        'cuts' : fitcuts
+#    }
+
+## WP based approach
+for shift in [ 'isr', 'fsr','hdamp', 'jes','jer', 'pileup','qcdscale', 'statistic','topmass', 'type3']:
+    btag_syst = ['(btagSF%sup_WP)/(btagSF_WP)' % shift, '(btagSF%sdown_WP)/(btagSF_WP)' % shift]
+
+    name = 'CMS_btag_bc_%s' % shift
+    if 'statistic' in shift:
         name += '_2018'
 
-    nuisances['btag_shape_%s' % shift] = {
+    nuisances['btag_M_bc_%s' % shift] = {
         'name': name,
         'kind': 'weight',
         'type': 'shape',
         'samples': dict((skey, btag_syst) for skey in mc),
-#        'cuts' : fitcuts
+       # 'cuts' : fitcuts
+    }
+
+nuisances['btag_M_light_2018'] = {
+        'name': 'CMS_btag_light_2018',
+        'kind': 'weight',
+        'type': 'shape',
+        'samples': dict((skey, ['(btagSFuncorrelatedup_WP)/(btagSF_WP)', '(btagSFuncorrelateddown_WP)/(btagSF_WP)']) for skey in mc),
+    }
+
+nuisances['btag_M_light_correlated'] = {
+        'name': 'CMS_btag_light_correlated',
+        'kind': 'weight',
+        'type': 'shape',
+        'samples': dict((skey, ['(btagSFcorrelatedup_WP)/(btagSF_WP)', '(btagSFcorrelateddown_WP)/(btagSF_WP)']) for skey in mc),
     }
 
 #### Trigger Efficiency
@@ -314,7 +344,7 @@ nuisances['trigg']  = {
 id_syst_ele = ['SFweightEleUp', 'SFweightEleDown']
 
 nuisances['eff_e']  = {
-                'name'  : 'CMS_eff_e_2018',
+                'name'  : 'CMS_eff_e',
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : dict((skey, id_syst_ele) for skey in mc),
@@ -326,7 +356,7 @@ nuisances['electronpt']  = {
                 'type'  : 'shape',
                 'mapUp' : 'ElepTup',
                 'mapDown' : 'ElepTdo',
-                'samples'  : dict((skey, ['1', '1']) for skey in mc if skey not in signal),
+                'samples'  : dict((skey, ['1', '1']) for skey in mc),
                 'folderUp'   : treeBaseDir+'Summer20UL18_106x_nAODv9_Full2018v9/MCl1loose2018v9__MCCorr2018v9NoJERInHorn__l2tightOR2018v9__ElepTup_suffix', 
                 'folderDown' : treeBaseDir+'Summer20UL18_106x_nAODv9_Full2018v9/MCl1loose2018v9__MCCorr2018v9NoJERInHorn__l2tightOR2018v9__ElepTdo_suffix', 
                 'AsLnN' : '1',
@@ -335,10 +365,10 @@ nuisances['electronpt']  = {
 
 ###### Muon Efficiency and energy scale
 
-id_syst_mu = [ 'SFweightMuUp', 'SFweightMuDown']
+id_syst_mu = ['SFweightMuUp', 'SFweightMuDown']
 
 nuisances['eff_m']  = {
-                'name'  : 'CMS_eff_m_2018',
+                'name'  : 'CMS_eff_m',
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : dict((skey, id_syst_mu) for skey in mc),
@@ -352,7 +382,7 @@ nuisances['muonpt']  = {
                 'type'  : 'shape',
                 'mapUp' : 'MupTup',
                 'mapDown' : 'MupTdo',
-                'samples'  : dict((skey, ['1', '1']) for skey in mc if skey not in signal),
+                'samples'  : dict((skey, ['1', '1']) for skey in mc),
                 'folderUp'   : treeBaseDir+'Summer20UL18_106x_nAODv9_Full2018v9/MCl1loose2018v9__MCCorr2018v9NoJERInHorn__l2tightOR2018v9__MupTup_suffix', 
                 'folderDown' : treeBaseDir+'Summer20UL18_106x_nAODv9_Full2018v9/MCl1loose2018v9__MCCorr2018v9NoJERInHorn__l2tightOR2018v9__MupTdo_suffix', 
                 'AsLnN' : '1',
@@ -361,7 +391,7 @@ nuisances['muonpt']  = {
 
 
 nuisances['ttZ_norm2018'] = {
-    'name' : 'CMS_ttZ_norm2018',
+    'name' : 'CMS_ttZ_norm',
     'samples' : {
 	'ttZ' : '1.00',
     },
@@ -372,7 +402,7 @@ nuisances['ttZ_norm2018'] = {
  }
 
 nuisances['WZ_norm2018'] = {
-    'name' : 'CMS_WZ_norm2018',
+    'name' : 'CMS_WZ_norm',
     'samples' : {
 	'WZ' : '1.00',
     },
@@ -384,25 +414,28 @@ nuisances['WZ_norm2018'] = {
 
 
 
-
 ####### Jet energy scale
 
-#jes_systs = ['JESAbsolute','JESAbsolute_2018','JESBBEC1','JESBBEC1_2017','JESEC2','JESEC2_2018','JESFlavorQCD','JESHF','JESHF_2018','JESRelativeBal','JESRelativeSample_2018']
-#for js in jes_systs:
-#      nuisances[js] = {
-#                'name': 'CMS_scale_'+js,
-#                'kind': 'suffix',
-#                'type': 'shape',
-#                'mapUp': js+'up',
-#                'mapDown': js+'do',
-#                'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['TTWJets', 'AZH_1050_650']),
-#                'folderUp'   : treeBaseDir+'Summer20UL18_106x_nAODv9_Full2018v9/MCl1loose2018v9__MCCorr2018v9NoJERInHorn__l2tightOR2018v9__RDFfix__JESup_suffix', 
-#                'folderDown' : treeBaseDir+'Summer20UL18_106x_nAODv9_Full2018v9/MCl1loose2018v9__MCCorr2018v9NoJERInHorn__l2tightOR2018v9__RDFfix__JESdo_suffix', 
-#                'AsLnN': '1',
-##                'cuts' : fitcuts
-#  }
+jes_systs = ['JESAbsolute','JESAbsolute_2018','JESBBEC1','JESBBEC1_2018','JESEC2','JESEC2_2018','JESFlavorQCD','JESHF','JESHF_2018','JESRelativeBal','JESRelativeSample_2018']
 
-###### Jet energy resolution
+
+for js in jes_systs:
+
+      nuisances[js] = {
+                'name': 'CMS_scale_'+js+'_all',
+                'kind': 'suffix',
+                'type': 'shape',
+                'mapUp': js+'up',
+                'mapDown': js+'do',
+                'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['TTWJets', 'AZH_1050_650']),
+                'folderUp'   : treeBaseDir+'Summer20UL18_106x_nAODv9_Full2018v9/MCl1loose2018v9__MCCorr2018v9NoJERInHorn__l2tightOR2018v9__RDF__JESup_suffix', 
+                'folderDown' : treeBaseDir+'Summer20UL18_106x_nAODv9_Full2018v9/MCl1loose2018v9__MCCorr2018v9NoJERInHorn__l2tightOR2018v9__RDF__JESdo_suffix', 
+                'AsLnN': '0',
+#                'cuts' : fitcuts
+}
+
+
+##### Jet energy resolution
 nuisances['JER'] = {
     'name' : 'CMS_res_j_2018',
     'kind': 'suffix',
@@ -412,7 +445,7 @@ nuisances['JER'] = {
     'samples': dict((skey, ['1', '1']) for skey in mc),
     'folderUp': treeBaseDir+'Summer20UL18_106x_nAODv9_Full2018v9/MCl1loose2018v9__MCCorr2018v9NoJERInHorn__l2tightOR2018v9__JERup_suffix',
     'folderDown': treeBaseDir+'Summer20UL18_106x_nAODv9_Full2018v9/MCl1loose2018v9__MCCorr2018v9NoJERInHorn__l2tightOR2018v9__JERdo_suffix', 
-    'AsLnN' : '1'
+    'AsLnN': '1'
 }
 ##### MET energy scale
 
@@ -425,8 +458,8 @@ nuisances['met']  = {
                 'samples'  : dict((skey, ['1', '1']) for skey in mc),
                 'folderUp'   : treeBaseDir+'Summer20UL18_106x_nAODv9_Full2018v9/MCl1loose2018v9__MCCorr2018v9NoJERInHorn__l2tightOR2018v9__METup_suffix', 
                 'folderDown' : treeBaseDir+'Summer20UL18_106x_nAODv9_Full2018v9/MCl1loose2018v9__MCCorr2018v9NoJERInHorn__l2tightOR2018v9__METdo_suffix', 
-                'AsLnN' : '1',
-#                'cuts' : fitcuts
+ #               'AsLnN' : '1',
+ #               'cuts' : fitcuts
 }
 
 # Use the following if you want to apply the automatic combine MC stat nuisances.
@@ -437,7 +470,7 @@ nuisances['stat']  = {
               #  nuisance ['maxPoiss'] =  Number of threshold events for Poisson modelling
               #  nuisance ['includeSignal'] =  Include MC stat nuisances on signal processes (1=True, 0=False)
               'samples' : {},
-  #            'cuts' : fitcuts
+ #            'cuts' : fitcuts
              }
 
 for n in nuisances.values():

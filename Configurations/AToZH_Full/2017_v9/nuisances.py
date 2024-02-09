@@ -284,20 +284,50 @@ nuisances['fake_mu_stat']  = {
 }
 
 ##### B-tagger
+### shape based approach
+#for shift in [ 'lf', 'hf', 'hfstats1', 'hfstats2', 'lfstats1', 'lfstats2', 'cferr1', 'cferr2']:
+#    btag_syst = ['(btagSF%sup)/(btagSF)' % shift, '(btagSF%sdown)/(btagSF)' % shift]
 
-for shift in [ 'lf', 'hf', 'hfstats1', 'hfstats2', 'lfstats1', 'lfstats2', 'cferr1', 'cferr2']:
-    btag_syst = ['(btagSF%sup)/(btagSF)' % shift, '(btagSF%sdown)/(btagSF)' % shift]
+#    name = 'CMS_btag_%s' % shift
+#    if 'stats' in shift:
+#        name += '_2017'
 
-    name = 'CMS_btag_%s' % shift
-    if 'stats' in shift:
+#    nuisances['btag_shape_%s' % shift] = {
+#        'name': name,
+#        'kind': 'weight',
+#        'type': 'shape',
+#        'samples': dict((skey, btag_syst) for skey in mc),
+#       # 'cuts' : fitcuts
+#    }
+
+## WP based approach
+for shift in [ 'isr', 'fsr','hdamp', 'jes','jer', 'pileup','qcdscale', 'statistic','topmass', 'type3']:
+    btag_syst = ['(btagSF%sup_WP)/(btagSF_WP)' % shift, '(btagSF%sdown_WP)/(btagSF_WP)' % shift]
+
+    name = 'CMS_btag_bc_%s' % shift
+    if 'statistic' in shift:
         name += '_2017'
 
-    nuisances['btag_shape_%s' % shift] = {
+    nuisances['btag_M_bc_%s' % shift] = {
         'name': name,
         'kind': 'weight',
         'type': 'shape',
         'samples': dict((skey, btag_syst) for skey in mc),
        # 'cuts' : fitcuts
+    }
+
+nuisances['btag_M_light_2017'] = {
+        'name': 'CMS_btag_light_2017',
+        'kind': 'weight',
+        'type': 'shape',
+        'samples': dict((skey, ['(btagSFuncorrelatedup_WP)/(btagSF_WP)', '(btagSFuncorrelateddown_WP)/(btagSF_WP)']) for skey in mc),
+    }
+
+nuisances['btag_M_light_correlated'] = {
+        'name': 'CMS_btag_light_correlated',
+        'kind': 'weight',
+        'type': 'shape',
+        'samples': dict((skey, ['(btagSFcorrelatedup_WP)/(btagSF_WP)', '(btagSFcorrelateddown_WP)/(btagSF_WP)']) for skey in mc),
     }
 
 #### Trigger Efficiency
@@ -330,7 +360,7 @@ nuisances['prefire'] = {
 id_syst_ele = ['SFweightEleUp', 'SFweightEleDown'] #defined in aliases
 
 nuisances['eff_e']  = {
-                'name'  : 'CMS_eff_e_2017',
+                'name'  : 'CMS_eff_e',
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : dict((skey, id_syst_ele) for skey in mc),
@@ -342,7 +372,7 @@ nuisances['electronpt']  = {
                 'type'  : 'shape',
                 'mapUp' : 'ElepTup',
                 'mapDown' : 'ElepTdo',
-                'samples'  : dict((skey, ['1', '1']) for skey in mc),
+                'samples'  : dict((skey, ['1', '1']) for skey in mc if skey not in ['top']),
                 'folderUp'   : treeBaseDir+'Summer20UL17_106x_nAODv9_Full2017v9/MCl1loose2017v9__MCCorr2017v9NoJERInHorn__l2tightOR2017v9__ElepTup_suffix', 
                 'folderDown' : treeBaseDir+'Summer20UL17_106x_nAODv9_Full2017v9/MCl1loose2017v9__MCCorr2017v9NoJERInHorn__l2tightOR2017v9__ElepTdo_suffix', 
                 'AsLnN' : '1',
@@ -354,7 +384,7 @@ nuisances['electronpt']  = {
 id_syst_mu = ['SFweightMuUp', 'SFweightMuDown']  #defined in aliases
 
 nuisances['eff_m']  = {
-                'name'  : 'CMS_eff_m_2017',
+                'name'  : 'CMS_eff_m',     #drop the _Year 
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : dict((skey, id_syst_mu) for skey in mc),
@@ -368,7 +398,7 @@ nuisances['muonpt']  = {
                 'type'  : 'shape',
                 'mapUp' : 'MupTup',
                 'mapDown' : 'MupTdo',
-                'samples'  : dict((skey, ['1', '1']) for skey in mc),
+                'samples'  : dict((skey, ['1', '1']) for skey in mc if skey not in ['top']),
                 'folderUp'   : treeBaseDir+'Summer20UL17_106x_nAODv9_Full2017v9/MCl1loose2017v9__MCCorr2017v9NoJERInHorn__l2tightOR2017v9__MupTup_suffix', 
                 'folderDown' : treeBaseDir+'Summer20UL17_106x_nAODv9_Full2017v9/MCl1loose2017v9__MCCorr2017v9NoJERInHorn__l2tightOR2017v9__MupTdo_suffix', 
                 'AsLnN' : '1',
@@ -377,7 +407,7 @@ nuisances['muonpt']  = {
 
 
 nuisances['ttZ_norm2017'] = {
-    'name' : 'CMS_ttZ_norm2017',
+    'name' : 'CMS_ttZ_norm',
     'samples' : {
 	'ttZ' : '1.00',
     },
@@ -388,7 +418,7 @@ nuisances['ttZ_norm2017'] = {
  }
 
 nuisances['WZ_norm2017'] = {
-    'name' : 'CMS_WZ_norm2017',
+    'name' : 'CMS_WZ_norm',
     'samples' : {
 	'WZ' : '1.00',
     },
@@ -403,7 +433,7 @@ nuisances['WZ_norm2017'] = {
 ####### Jet energy scale
 
 jes_systs = ['JESAbsolute','JESAbsolute_2017','JESBBEC1','JESBBEC1_2017','JESEC2','JESEC2_2017','JESFlavorQCD','JESHF','JESHF_2017','JESRelativeBal','JESRelativeSample_2017']
-jet_branches = ['CleanJet_pt','CleanJet_eta','CleanJet_phi','CleanJet_mass','CleanJet_jetIdx']
+#jet_branches = ['CleanJet_pt','CleanJet_eta','CleanJet_phi','CleanJet_mass','CleanJet_jetIdx']
 
 for js in jes_systs:
      # Split source, applied to jets and MET
@@ -414,57 +444,60 @@ for js in jes_systs:
                 'mapUp': js+'up',
                 'mapDown': js+'do',
                 'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['TTWJets']),
-                'folderUp'   : treeBaseDir+'Summer20UL17_106x_nAODv9_Full2017v9/MCl1loose2017v9__MCCorr2017v9NoJERInHorn__l2tightOR2017v9__RDFfix__JESup_suffix', 
-                'folderDown' : treeBaseDir+'Summer20UL17_106x_nAODv9_Full2017v9/MCl1loose2017v9__MCCorr2017v9NoJERInHorn__l2tightOR2017v9__RDFfix__JESdo_suffix', 
+                'folderUp'   : treeBaseDir+'Summer20UL17_106x_nAODv9_Full2017v9/MCl1loose2017v9__MCCorr2017v9NoJERInHorn__l2tightOR2017v9__RDF__JESup_suffix', 
+                'folderDown' : treeBaseDir+'Summer20UL17_106x_nAODv9_Full2017v9/MCl1loose2017v9__MCCorr2017v9NoJERInHorn__l2tightOR2017v9__RDF__JESdo_suffix', 
                 'AsLnN': '0',
 #                'cuts' : fitcuts
 }
 
       # Split source, applied to jets only
-      bmap_up = dict((bname, js+'_jetUp.'+bname+'_'+js+'up') for bname in jet_branches)
-      bmap_do = dict((bname, js+'_jetDown.'+bname+'_'+js+'do') for bname in jet_branches)
+ #     bmap_up = dict((bname, js+'_jetUp.'+bname+'_'+js+'up') for bname in jet_branches)
+ #     bmap_do = dict((bname, js+'_jetDown.'+bname+'_'+js+'do') for bname in jet_branches)
 
-      nuisances[js+'_jet'] = {
-	  'name': 'CMS_scale_'+js+'_jet',
-	  'kind': 'branch_custom',
-	  'type': 'shape',
-	  'BrFromToUp': bmap_up,
-	  'BrFromToDown': bmap_do,
-          'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['TTWJets']),
-	  'folderUp': treeBaseDir+'Summer20UL17_106x_nAODv9_Full2017v9/MCl1loose2017v9__MCCorr2017v9NoJERInHorn__l2tightOR2017v9__RDFfix__JESup_suffix',
-	  'folderDown': treeBaseDir+'Summer20UL17_106x_nAODv9_Full2017v9/MCl1loose2017v9__MCCorr2017v9NoJERInHorn__l2tightOR2017v9__RDFfix__JESdo_suffix',
-	  'reweight' : ['btagSF'+js.replace('JES','jes')+'up/btagSF','btagSF'+js.replace('JES','jes')+'down/btagSF'],
-	  'AsLnN': '0'
-}
+  #    nuisances[js+'_jet'] = {
+#	  'name': 'CMS_scale_'+js+'_jet',
+#	  'kind': 'branch_custom',
+#	  'type': 'shape',
+#	  'BrFromToUp': bmap_up,
+#	  'BrFromToDown': bmap_do,
+#          'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['TTWJets']),
+#	  'folderUp': treeBaseDir+'Summer20UL17_106x_nAODv9_Full2017v9/MCl1loose2017v9__MCCorr2017v9NoJERInHorn__l2tightOR2017v9__RDF__JESup_suffix',
+#	  'folderDown': treeBaseDir+'Summer20UL17_106x_nAODv9_Full2017v9/MCl1loose2017v9__MCCorr2017v9NoJERInHorn__l2tightOR2017v9__RDF__JESdo_suffix',
+#	  'reweight' : ['btagSF'+js.replace('JES','jes')+'up/btagSF','btagSF'+js.replace('JES','jes')+'down/btagSF'],
+#	  'AsLnN': '0'
+#}
 
-for coll in ['jet','met','all']:#['jet','met','all']
-  if coll == 'jet':
-     bmap_up = dict((bname, 'JESTotal_jetUp.'+bname+'_JESTotalup') for bname in jet_branches)
-     bmap_do = dict((bname, 'JESTotal_jetDown.'+bname+'_JESTotaldo') for bname in jet_branches)
-  elif coll == 'met':
-     bmap_up = {'PuppiMET_pt' : 'PuppiMET_ptJESUp', 'PuppiMET_phi' : 'PuppiMET_phiJESUp'}
-     bmap_do = {'PuppiMET_pt' : 'PuppiMET_ptJESDown', 'PuppiMET_phi' : 'PuppiMET_phiJESDown'}
-  else:
-     bmap_up = dict((bname, 'JESTotal_allUp.'+bname+'_JESTotalup') for bname in jet_branches)
-     bmap_up['PuppiMET_pt']  = 'PuppiMET_ptJESUp'
-     bmap_up['PuppiMET_phi'] = 'PuppiMET_phiJESUp'
-     bmap_do = dict((bname, 'JESTotal_allDown.'+bname+'_JESTotaldo') for bname in jet_branches)
-     bmap_do['PuppiMET_pt']  = 'PuppiMET_ptJESDown'
-     bmap_do['PuppiMET_phi'] = 'PuppiMET_phiJESDown'
+#for coll in ['jet','met','metv2','all']:#['jet','met','all']
+#  if coll == 'jet':
+#     bmap_up = dict((bname, 'JESTotal_jetUp.'+bname+'_JESTotalup') for bname in jet_branches)
+#     bmap_do = dict((bname, 'JESTotal_jetDown.'+bname+'_JESTotaldo') for bname in jet_branches)
+#  elif coll == 'met':
+#     bmap_up = {'PuppiMET_pt' : 'PuppiMET_ptJESUp', 'PuppiMET_phi' : 'PuppiMET_phiJESUp'}
+#     bmap_do = {'PuppiMET_pt' : 'PuppiMET_ptJESDown', 'PuppiMET_phi' : 'PuppiMET_phiJESDown'}
+#  elif coll == 'metv2':
+#     bmap_up = {'PuppiMET_pt' : 'JESTotal_metv2Up.PuppiMET_pt_JESTotalup', 'PuppiMET_phi' : 'JESTotal_metv2Up.PuppiMET_phi_JESTotalup'}
+#     bmap_do = {'PuppiMET_pt' : 'JESTotal_metv2Down.PuppiMET_pt_JESTotaldo', 'PuppiMET_phi' : 'JESTotal_metv2Down.PuppiMET_phi_JEStotaldo'}
+#  else:
+#     bmap_up = dict((bname, 'JESTotal_allUp.'+bname+'_JESTotalup') for bname in jet_branches)
+#     bmap_up['PuppiMET_pt']  = 'PuppiMET_ptJESUp'
+#     bmap_up['PuppiMET_phi'] = 'PuppiMET_phiJESUp'
+#     bmap_do = dict((bname, 'JESTotal_allDown.'+bname+'_JESTotaldo') for bname in jet_branches)
+#     bmap_do['PuppiMET_pt']  = 'PuppiMET_ptJESDown'
+#     bmap_do['PuppiMET_phi'] = 'PuppiMET_phiJESDown'
 
-  nuisances['JESTotal_'+coll] = {
-      'name': 'CMS_scale_JESTotal_'+coll,
-      'kind': 'branch_custom',
-      'type': 'shape',
-      'BrFromToUp': bmap_up,
-      'BrFromToDown': bmap_do,
-      'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['TTWJets']),
-      'folderUp': treeBaseDir+'Summer20UL17_106x_nAODv9_Full2017v9/MCl1loose2017v9__MCCorr2017v9NoJERInHorn__l2tightOR2017v9__RDFfix__JESup_suffix',
-      'folderDown': treeBaseDir+'Summer20UL17_106x_nAODv9_Full2017v9/MCl1loose2017v9__MCCorr2017v9NoJERInHorn__l2tightOR2017v9__RDFfix__JESdo_suffix',
-       'reweight' : ['btagSFjesup/btagSF','btagSFjesdown/btagSF'],
-       'AsLnN': '0'
-}
-
+#  nuisances['JESTotal_'+coll] = {
+#      'name': 'CMS_scale_JESTotal_'+coll,
+#      'kind': 'branch_custom',
+#      'type': 'shape',
+#      'BrFromToUp': bmap_up,
+#      'BrFromToDown': bmap_do,
+#      'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['TTWJets']),
+#      'folderUp': treeBaseDir+'Summer20UL17_106x_nAODv9_Full2017v9/MCl1loose2017v9__MCCorr2017v9NoJERInHorn__l2tightOR2017v9__RDF__JESup_suffix',
+#      'folderDown': treeBaseDir+'Summer20UL17_106x_nAODv9_Full2017v9/MCl1loose2017v9__MCCorr2017v9NoJERInHorn__l2tightOR2017v9__RDF__JESdo_suffix',
+#       'AsLnN': '0'
+#}
+#  if coll in ['jet','all']:  
+#     nuisances['JESTotal_'+coll]['reweight'] = ['btagSFjesup/btagSF','btagSFjesdown/btagSF']
 
 
 ##### Jet energy resolution
@@ -474,7 +507,7 @@ nuisances['JER'] = {
     'type': 'shape',
     'mapUp': 'JERup',
     'mapDown': 'JERdo',
-    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['tZq_ll']),
+    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['tZq_ll','top']),
     'folderUp': treeBaseDir+'Summer20UL17_106x_nAODv9_Full2017v9/MCl1loose2017v9__MCCorr2017v9NoJERInHorn__l2tightOR2017v9__JERup_suffix',
     'folderDown': treeBaseDir+'Summer20UL17_106x_nAODv9_Full2017v9/MCl1loose2017v9__MCCorr2017v9NoJERInHorn__l2tightOR2017v9__JERdo_suffix',
     'AsLnN': '1',
@@ -487,7 +520,7 @@ nuisances['met']  = {
                 'type'  : 'shape',
                 'mapUp' : 'METup',
                 'mapDown' : 'METdo',
-                'samples'  : dict((skey, ['1', '1']) for skey in mc),
+                'samples'  : dict((skey, ['1', '1']) for skey in mc if skey not in ['top']),
                 'folderUp'   : treeBaseDir+'Summer20UL17_106x_nAODv9_Full2017v9/MCl1loose2017v9__MCCorr2017v9NoJERInHorn__l2tightOR2017v9__METup_suffix', 
                 'folderDown' : treeBaseDir+'Summer20UL17_106x_nAODv9_Full2017v9/MCl1loose2017v9__MCCorr2017v9NoJERInHorn__l2tightOR2017v9__METdo_suffix', 
  #               'AsLnN' : '1',
