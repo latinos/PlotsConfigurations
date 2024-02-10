@@ -427,7 +427,7 @@ for js in jes_systs:
                 'type': 'shape',
                 'mapUp': js+'up',
                 'mapDown': js+'do',
-                'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['TTWJets', 'AZH_1050_650']),
+                'samples': dict((skey, ['1', '1']) for skey in mc),
                 'folderUp'   : treeBaseDir+'Summer20UL18_106x_nAODv9_Full2018v9/MCl1loose2018v9__MCCorr2018v9NoJERInHorn__l2tightOR2018v9__RDF__JESup_suffix', 
                 'folderDown' : treeBaseDir+'Summer20UL18_106x_nAODv9_Full2018v9/MCl1loose2018v9__MCCorr2018v9NoJERInHorn__l2tightOR2018v9__RDF__JESdo_suffix', 
                 'AsLnN': '0',
