@@ -297,7 +297,7 @@ nuisances['fake_mu_stat']  = {
 
 ## WP based approach
 for shift in [ 'isr', 'fsr','hdamp', 'jes','jer', 'pileup','qcdscale', 'statistic','topmass', 'type3']:
-    btag_syst = ['(btagSF%sup_WP)/(btagSF_WP)' % shift, '(btagSF%sdown_WP)/(btagSF_WP)' % shift]
+    btag_syst = ['(btagSF%sup)/(btagSF)' % shift, '(btagSF%sdown)/(btagSF)' % shift]
 
     name = 'CMS_btag_bc_%s' % shift
     if 'statistic' in shift:
@@ -315,14 +315,14 @@ nuisances['btag_M_light_2018'] = {
         'name': 'CMS_btag_light_2018',
         'kind': 'weight',
         'type': 'shape',
-        'samples': dict((skey, ['(btagSFuncorrelatedup_WP)/(btagSF_WP)', '(btagSFuncorrelateddown_WP)/(btagSF_WP)']) for skey in mc),
+        'samples': dict((skey, ['(btagSFuncorrelatedup)/(btagSF)', '(btagSFuncorrelateddown)/(btagSF)']) for skey in mc),
     }
 
 nuisances['btag_M_light_correlated'] = {
         'name': 'CMS_btag_light_correlated',
         'kind': 'weight',
         'type': 'shape',
-        'samples': dict((skey, ['(btagSFcorrelatedup_WP)/(btagSF_WP)', '(btagSFcorrelateddown_WP)/(btagSF_WP)']) for skey in mc),
+        'samples': dict((skey, ['(btagSFcorrelatedup)/(btagSF)', '(btagSFcorrelateddown)/(btagSF)']) for skey in mc),
     }
 
 #### Trigger Efficiency
