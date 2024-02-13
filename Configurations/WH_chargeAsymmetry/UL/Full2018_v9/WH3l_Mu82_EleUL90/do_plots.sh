@@ -19,3 +19,16 @@ mkPlot.py --pycfg=configuration.py --inputFile=rootFile/plots_WH3l_2018_v9_charg
 mkPlot.py --pycfg=configuration.py --inputFile=rootFile/plots_WH3l_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1 --onlyCut=wh3l_13TeV_ossf_minus_pt2ge20 --plotFile=plot_blind.py
 mkPlot.py --pycfg=configuration.py --inputFile=rootFile/plots_WH3l_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1 --onlyCut=wh3l_13TeV_ossf_plus_pt2lt20 --plotFile=plot_blind.py
 mkPlot.py --pycfg=configuration.py --inputFile=rootFile/plots_WH3l_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1 --onlyCut=wh3l_13TeV_ossf_minus_pt2lt20 --plotFile=plot_blind.py
+
+# # Unblind distributions in signal region
+# ######################################
+
+# mkPlot.py --pycfg=configuration.py --inputFile=rootFile/plots_WH3l_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1 --onlyCut=wh3l_13TeV_sssf_plus_pt2ge20 --plotFile=plot.py
+# mkPlot.py --pycfg=configuration.py --inputFile=rootFile/plots_WH3l_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1 --onlyCut=wh3l_13TeV_sssf_minus_pt2ge20 --plotFile=plot.py
+# mkPlot.py --pycfg=configuration.py --inputFile=rootFile/plots_WH3l_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1 --onlyCut=wh3l_13TeV_sssf_plus_pt2lt20 --plotFile=plot.py
+# mkPlot.py --pycfg=configuration.py --inputFile=rootFile/plots_WH3l_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1 --onlyCut=wh3l_13TeV_sssf_minus_pt2lt20 --plotFile=plot.py
+
+# mkPlot.py --pycfg=configuration.py --inputFile=rootFile/plots_WH3l_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1 --onlyCut=wh3l_13TeV_ossf_plus_pt2ge20 --plotFile=plot.py
+# mkPlot.py --pycfg=configuration.py --inputFile=rootFile/plots_WH3l_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1 --onlyCut=wh3l_13TeV_ossf_minus_pt2ge20 --plotFile=plot.py
+# mkPlot.py --pycfg=configuration.py --inputFile=rootFile/plots_WH3l_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1 --onlyCut=wh3l_13TeV_ossf_plus_pt2lt20 --plotFile=plot.py
+# mkPlot.py --pycfg=configuration.py --inputFile=rootFile/plots_WH3l_2018_v9_chargeAsymmetry_Mu82_EleUL90.root --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1 --onlyCut=wh3l_13TeV_ossf_minus_pt2lt20 --plotFile=plot.py

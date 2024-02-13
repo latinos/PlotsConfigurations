@@ -2,7 +2,7 @@
 
 treeName = 'Events'
 
-tag = 'WHSS_2018_v9_chargeAsymmetry_Mu82_EleUL90'
+tag = 'WHSS_2018_v9_control_plots'
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFile'
@@ -11,13 +11,13 @@ outputDir = 'rootFile'
 aliasesFile = 'aliases.py'
 
 # file with list of variables
-variablesFile = 'variables_datacard.py'
+variablesFile = 'variables.py'
 
 # file with list of cuts
-cutsFile = 'cuts.py' 
+cutsFile = 'cuts.py'
 
 # file with list of samples
-samplesFile = 'samples.py' 
+samplesFile = 'samples_control_plots.py'
 
 # file with list of samples
 plotFile = 'plot.py' 
@@ -38,4 +38,4 @@ outputDirDatacard = 'datacards'
 structureFile = 'structure.py'
 
 # nuisances file for mkDatacards and for mkShape
-nuisancesFile = 'nuisances.py'
+nuisancesFile = 'nuisances_control_plots.py'

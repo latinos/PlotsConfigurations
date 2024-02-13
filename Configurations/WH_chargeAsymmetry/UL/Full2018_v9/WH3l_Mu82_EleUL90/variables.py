@@ -15,9 +15,9 @@ variables['events'] = {
 variables['BDT_WH3l_OSSF_new_v9'] = { 
     'name'     : 'BDT_WH3l_OSSF_new_v9',
     'range'    : (40,-1.,1.),
-    'doWeight' : 1,
-    'binX'     : 1,
-    'binY'     : 40,
+    # 'doWeight' : 1,
+    # 'binX'     : 1,
+    # 'binY'     : 40,
     'xaxis'    : 'MVA discriminant',
     'yaxis'    : 'Events',
     'fold'     : 3,
@@ -26,9 +26,9 @@ variables['BDT_WH3l_OSSF_new_v9'] = {
 variables['BDT_WH3l_SSSF_new_v9'] = { 
     'name'     : 'BDT_WH3l_SSSF_new_v9',
     'range'    : (40,-1.,1.),
-    'doWeight' : 1,
-    'binX'     : 1,
-    'binY'     : 40,
+    # 'doWeight' : 1,
+    # 'binX'     : 1,
+    # 'binY'     : 40,
     'xaxis'    : 'MVA discriminant',
     'yaxis'    : 'Events',
     'fold'     : 3,
@@ -304,9 +304,9 @@ variables['dphilep1jet1'] = {
 variables['BDTG6_TT'] = {
     'name'     : 'BDT_WHSS_TopSemileptonic_v9',     
     'range'    : (40,-1,1),   
-    'doWeight' : 1,
-    'binX'     : 1,
-    'binY'     : 40,
+    # 'doWeight' : 1,
+    # 'binX'     : 1,
+    # 'binY'     : 40,
     'xaxis'    : 'BDT discriminant',
     'fold'     : 3
 }

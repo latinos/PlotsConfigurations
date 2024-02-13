@@ -42,15 +42,52 @@ variables['BDTG6_TT'] = {
     'fold'     : 3
 }
 
-variables['BDTG6_TT_more'] = {
+variables['BDTG6_TT_100_bins'] = {
     'name'  : 'BDT_WHSS_TopSemileptonic_v9',     
-    'range' : (1000,-1,1),   
+    'range' : (100,-1,1),   
     'xaxis' : 'BDT discriminant',
     'fold'  : 3
 }
 
-variables['BDTG6_TT_100_bins'] = {
-    'name'  : 'BDT_WHSS_TopSemileptonic_v9',     
+##########################################################
+# BDT training with TopSemileptonic as fakes and weights
+##########################################################
+
+variables['BDTG5_TT_weight'] = {
+    'name'     : 'BDT_WHSS_TopSemileptonic_weight_v9',     
+    'range'    : (40,-1,1),   
+    'doWeight' : 1,
+    'binX'     : 1,
+    'binY'     : 40,
+    'xaxis'    : 'BDT discriminant',
+    'yaxis'    : 'Events',
+    'fold'     : 3
+}
+
+variables['BDTG5_TT_weight_100_bins'] = {
+    'name'  : 'BDT_WHSS_TopSemileptonic_weight_v9',
+    'range' : (100,-1,1),   
+    'xaxis' : 'BDT discriminant',
+    'fold'  : 3
+}
+
+########################################################
+# BDT training with TopSemileptonic as fakes and weights
+# Training using the 4 eras of Run 2 merged
+########################################################
+
+variables['BDTG5_TT_weight_FullRun2'] = {
+    'name'     : 'BDT_WHSS_TopSemileptonic_weight_FullRun2_v9',
+    'range'    : (40,-1,1),   
+    'doWeight' : 1,
+    'binX'     : 1,
+    'binY'     : 40,
+    'xaxis'    : 'BDT discriminant',
+    'fold'     : 3
+}
+
+variables['BDTG5_TT_weight_FullRun2_100_bins'] = {
+    'name'  : 'BDT_WHSS_TopSemileptonic_weight_FullRun2_v9',
     'range' : (100,-1,1),   
     'xaxis' : 'BDT discriminant',
     'fold'  : 3
@@ -83,9 +120,9 @@ variables['ptll'] = {
 
 variables['pt1'] = {
     'name'  : 'Lepton_pt[0]',     
-    'range' : (20,0,100),   
+    'range' : (30,0,150),   
     'xaxis' : 'p_{T} 1st lep',
-    'fold'  : 3                         
+    'fold'  : 0                         
 }
 
 variables['pt2'] = {

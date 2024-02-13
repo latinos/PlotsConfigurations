@@ -109,16 +109,16 @@ mcCommonWeight = 'XSWeight*METFilter_MC*PromptGenLepMatch2l*SFweight'
 useEmbeddedDY = False
 embed_tautauveto = ''
 
-files = nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-10to50-LO') + \
-        nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50') + \
-        nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-70to100') + \
-        nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-100to200') + \
-        nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-200to400') + \
-        nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-400to600') + \
-        nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-600to800') + \
-        nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-800to1200')  + \
-        nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-1200to2500') + \
-        nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-2500toInf')
+files = nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-10to50_NLO') + \
+        nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50') # + \
+        # nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-70to100') + \
+        # nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-100to200') + \
+        # nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-200to400') + \
+        # nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-400to600') + \
+        # nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-600to800') + \
+        # nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-800to1200')  + \
+        # nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-1200to2500') + \
+        # nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50_HT-2500toInf')
 
 samples['DY'] = {
     'name': files,
@@ -129,7 +129,7 @@ samples['DY'] = {
 }
 
 # Remove high HT from inclusive samples
-addSampleWeight(samples,'DY','DYJetsToLL_M-50', '(LHE_HT<70)')
+# addSampleWeight(samples,'DY','DYJetsToLL_M-50', '(LHE_HT<70)')
 
 
 ##### Top #######
@@ -145,7 +145,7 @@ samples['top'] = {
     'weight': mcCommonWeight+'*ttHMVA_SF_flip_2l[0]',
     'suppressNegative' :['all'],
     'suppressNegativeNuisances' :['all'],
-    'FilesPerJob': 5,
+    'FilesPerJob': 4,
 }
 addSampleWeight(samples,'top','TTTo2L2Nu','Top_pTrw')
 
