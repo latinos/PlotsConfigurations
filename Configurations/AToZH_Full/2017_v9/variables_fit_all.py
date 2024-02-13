@@ -17,7 +17,6 @@ variables['events']     = { 'name': '1',
                             'xaxis' : 'events', 
                             'fold' : 3
                         }
-
 variables['njet']       = { 'name'  : 'ZH3l_njet',
                             'range' : (10,0,10),
                             'xaxis' : 'N_{jet}',
@@ -46,6 +45,29 @@ variables['DeltaM']  = { 'name' : 'AZH_mA_minus_mH_patch',
 			    'cuts' : ['breq_SR'],
 			    'fold'  : 3
                          }
+variables['mH'] = { 'name' : 'AZH_Hmass',
+                    'range' : (12,0,2000),
+                    'xaxis' : 'm_{H}',
+                    'cuts' : ['breq_SR'],
+                    'fold'  : 3
+}
+
+variables['mA'] = { 'name' : 'AZH_Hmass',
+                     'range' : (14,0,2500),
+                     'xaxis' : 'm_{A}',
+                     'cuts' : ['breq_SR'],
+                     'fold'  : 3
+}
+
+
+
+variables['PuppiMET_pt']  = { 'name': 'PuppiMET_pt',
+                            'range' : (10,0.,400),
+                            'xaxis' : 'PuppiMET_p_{T} [GeV]',
+                            'fold' : 3 
+                        }
+
+
 
 variables['pt_subleadinglepton'] = { 'name': 'Lepton_pt[1]',
                                      'range' : (10,0.,200),
