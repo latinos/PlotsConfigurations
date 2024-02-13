@@ -6,7 +6,7 @@ The instructions to run the analysis follow.
 
 ### Produce distributions using mkShapesMulti.py in batch mode
 
-    mkShapesMulti.py --pycfg=configuration.py --doBatch=1 --batchSplit=Samples,Files --batchQueue=testmatch
+    mkShapesMulti.py --pycfg=configuration.py --doBatch=1 --batchSplit=Samples,Files --batchQueue=testmatch --FixNegativeAfterHadd
 
 Resubmit failed jobs.
 
@@ -22,7 +22,7 @@ Or, if they failed because the wall clock time has been exceeded, resubmit them 
 
 ### Merge rootfiles using hadd
 
-    mkShapesMulti.py --pycfg=configuration.py --doHadd=1 --batchSplit=Samples,Files --doNotCleanup --nThreads=8
+    mkShapesMulti.py --pycfg=configuration.py --doHadd=1 --batchSplit=Samples,Files --doNotCleanup --nThreads=8 --FixNegativeAfterHadd
 
 ### Plot original distributions
 
@@ -37,6 +37,23 @@ Go into the `DY_OS_CR` directory and follow the instructions in the `README` fil
 ### Plot distributions with DY->ee data-driven histograms
 
     ./do_plot_DYflip_distributions.sh
+
+### Produce control plots
+
+We draw distributions for all variables with a reduced set of nuisances, to speed up the production:
+
+    mkShapesMulti.py --pycfg=configuration_control_plots.py --doBatch=1 --batchSplit=Samples,Files --batchQueue=testmatch --FixNegativeAfterHadd
+
+    mkShapesMulti.py --pycfg=configuration_control_plots.py --doHadd=1 --batchSplit=Samples,Files --doNotCleanup --nThreads=8 --FixNegativeAfterHadd
+
+Go into the `DY_OS_CR` directory and follow the instructions in the `README` file to produce the DYee corrections:
+
+    cd DY_OS_CR/
+
+Then, plots the distributions:
+
+    ./do_plot_original_distributions_control.sh &
+    ./do_plot_DYflip_distributions_control.sh &
 
 ### Create datacards
 
@@ -58,7 +75,9 @@ Load combine:
 
 Now optimize:
 
-    ./do_optimize_cards.sh BDTG6_TT_100_bins 0.10
+    ./do_optimize_cards.sh BDTG6_TT_100_bins                 0.10 &
+    ./do_optimize_cards.sh BDTG5_TT_weight_100_bins          0.10 &
+    ./do_optimize_cards.sh BDTG5_TT_weight_FullRun2_100_bins 0.10 &
 
 ### Combine datacards
 
@@ -129,6 +148,8 @@ Since S appears in the denominator of the asymmetry expression, it cannot be 0, 
 For newer trainings, where we only want to compare the full strategy:
 
     python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_SS_2016HIPM_v9_BDTG6_TT_100_bins_allFinalStates_alsoLowPt_opt_noZveto --output_name Combination/FitResults_BDTG6_TT_100_bins.txt --freeze_nuisances r_higgs
+    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_SS_2016HIPM_v9_BDTG5_TT_weight_100_bins_allFinalStates_alsoLowPt_opt_noZveto --output_name Combination/FitResults_BDTG5_TT_weight_100_bins.txt --freeze_nuisances r_higgs
+    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_SS_2016HIPM_v9_BDTG5_TT_weight_FullRun2_100_bins_allFinalStates_alsoLowPt_opt_noZveto --output_name Combination/FitResults_BDTG5_TT_weight_FullRun2_100_bins.txt --freeze_nuisances r_higgs
 
 Using datacards with correct signal scaling:
 
@@ -157,7 +178,7 @@ Select datacard to use and actually produce impact plots:
 
     combineTool.py -M Impacts -d ../Combination/WH_chargeAsymmetry_WH_SS_2016HIPM_v9_${VAR}${FINAL_STATE}.root -m 125 --doInitialFit -t -1 --setParameters r_S=1.3693,r_A=0.224,r_higgs=1 --setParameterRanges r_S=0,10:r_A=-1,1 --redefineSignalPOIs r_A --freezeParameters r_higgs
 
-    combineTool.py -M Impacts -d ../Combination/WH_chargeAsymmetry_WH_SS_2016HIPM_v9_${VAR}${FINAL_STATE}.root -m 125 --doFits -t -1 --setParameters r_S=1.3693,r_A=0.224,r_higgs=1 --setParameterRanges r_S=0,10:r_A=-1,1 --redefineSignalPOIs r_A --job-mode interactive --parallel 8 --freezeParameters r_higgs
+    combineTool.py -M Impacts -d ../Combination/WH_chargeAsymmetry_WH_SS_2016HIPM_v9_${VAR}${FINAL_STATE}.root -m 125 --doFits -t -1 --setParameters r_S=1.3693,r_A=0.224,r_higgs=1 --setParameterRanges r_S=0,10:r_A=-1,1 --redefineSignalPOIs r_A --job-mode condor --freezeParameters r_higgs --sub-opts='+JobFlavour="workday"'
 
     combineTool.py -M Impacts -d ../Combination/WH_chargeAsymmetry_WH_SS_2016HIPM_v9_${VAR}${FINAL_STATE}.root -m 125 -t -1 -o impacts_WHSS_2016HIPM_${VAR}${FINAL_STATE}.json --setParameters r_S=1.3693,r_A=0.224,r_higgs=1 --setParameterRanges r_S=0,10:r_A=-1,1 --redefineSignalPOIs r_A
 

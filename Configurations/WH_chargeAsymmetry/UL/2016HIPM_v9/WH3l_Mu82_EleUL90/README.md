@@ -6,7 +6,7 @@ The instructions to run the analysis follow.
 
 ### Produce distributions using mkShapesMulti.py in batch mode
 
-    mkShapesMulti.py --pycfg=configuration.py --doBatch=1 --batchSplit=Samples,Files --batchQueue=testmatch
+    mkShapesMulti.py --pycfg=configuration.py --doBatch=1 --batchSplit=Samples,Files --batchQueue=testmatch --FixNegativeAfterHadd
 
 Resubmit failed jobs.
 
@@ -22,11 +22,23 @@ Or, if they failed because the wall clock time has been exceeded, resubmit them 
 
 ### Merge rootfiles using hadd
 
-    mkShapesMulti.py --pycfg=configuration.py --doHadd=1 --batchSplit=Samples,Files --doNotCleanup --nThreads=8
+    mkShapesMulti.py --pycfg=configuration.py --doHadd=1 --batchSplit=Samples,Files --doNotCleanup --nThreads=8 --FixNegativeAfterHadd
 
 ### Plot original distributions
 
     ./do_plots.sh
+
+### Produce control plots
+
+We draw distributions for all variables with a reduced set of nuisances, to speed up the production:
+
+    mkShapesMulti.py --pycfg=configuration_control_plots.py --doBatch=1 --batchSplit=Samples,Files --batchQueue=testmatch --FixNegativeAfterHadd
+
+    mkShapesMulti.py --pycfg=configuration_control_plots.py --doHadd=1 --batchSplit=Samples,Files --doNotCleanup --nThreads=8 --FixNegativeAfterHadd
+
+Then, plots the distributions:
+
+    ./do_plots_control.sh
 
 ### Create datacards
 
@@ -48,9 +60,11 @@ Load combine:
 
 Now optimize:
 
-    ./do_optimize_cards.sh BDT_WH3l_OSSF_new_v9_100_bins ossf 0.10
+    ./do_optimize_cards.sh BDT_WH3l_OSSF_new_v9_100_bins    ossf 0.10 &
+    ./do_optimize_cards.sh BDT_WH3l_OSSF_weight_v9_100_bins ossf 0.10 &
 
-    ./do_optimize_cards.sh BDT_WH3l_SSSF_new_v9_100_bins sssf 0.30
+    ./do_optimize_cards.sh BDT_WH3l_SSSF_new_v9_100_bins    sssf 0.30 &
+    ./do_optimize_cards.sh BDT_WH3l_SSSF_weight_v9_100_bins sssf 0.30 &
 
 ### Combine datacards
 
@@ -120,6 +134,8 @@ Using datacards with enhanced signal scaling:
 
     python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_3l_2016HIPM_v9_100_bins_new_opt --output_name=Combination/FitResults_100_bins_new_opt.txt --freeze_nuisances=r_higgs
 
+    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_3l_2016HIPM_v9_100_bins_weight_opt --output_name=Combination/FitResults_100_bins_weight_opt.txt --freeze_nuisances=r_higgs
+
 Using datacards with correct signal scaling:
 
     python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_3l_2016HIPM_v9_original_signal_scale_100_bins_new_opt --output_name=Combination/FitResults_original_signal_scale_100_bins_new_opt.txt --freeze_nuisances=r_higgs
@@ -146,7 +162,7 @@ Using r_A as POI:
 
     combineTool.py -M Impacts -d ../Combination/WH_chargeAsymmetry_WH_3l_2016HIPM_v9_100_bins_new_opt.root -m 125 --doInitialFit -t -1 --setParameters r_S=1.3693,r_A=0.224,r_higgs=1 --setParameterRanges r_S=0,10:r_A=-1,1 --redefineSignalPOIs r_A --freezeParameters r_higgs
 
-    combineTool.py -M Impacts -d ../Combination/WH_chargeAsymmetry_WH_3l_2016HIPM_v9_100_bins_new_opt.root -m 125 --doFits -t -1 --setParameters r_S=1.3693,r_A=0.224,r_higgs=1 --setParameterRanges r_S=0,10:r_A=-1,1 --redefineSignalPOIs r_A --job-mode interactive --parallel 8 --freezeParameters r_higgs
+    combineTool.py -M Impacts -d ../Combination/WH_chargeAsymmetry_WH_3l_2016HIPM_v9_100_bins_new_opt.root -m 125 --doFits -t -1 --setParameters r_S=1.3693,r_A=0.224,r_higgs=1 --setParameterRanges r_S=0,10:r_A=-1,1 --redefineSignalPOIs r_A --job-mode condor --freezeParameters r_higgs --sub-opts='+JobFlavour="workday"'
 
     combineTool.py -M Impacts -d ../Combination/WH_chargeAsymmetry_WH_3l_2016HIPM_v9_100_bins_new_opt.root -m 125 -t -1 -o impacts_WH3l_2016HIPM_100_bins_new_opt.json --setParameters r_S=1.3693,r_A=0.224,r_higgs=1 --setParameterRanges r_S=0,10:r_A=-1,1 --redefineSignalPOIs r_A
 

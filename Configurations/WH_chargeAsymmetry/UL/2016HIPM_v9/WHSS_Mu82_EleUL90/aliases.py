@@ -311,7 +311,21 @@ aliases['BDT_WHSS_v9'] = {
 aliases['BDT_WHSS_TopSemileptonic_v9'] = {
     'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/BDT_WHSS_TopSemileptonic_v9.C+' % configurations],
     'class': 'BDT_WHSS_TopSemileptonic_v9',
-    'args' : ('BDTG_6', '%s/WH_chargeAsymmetry/UL/data/BDT/2018/WHSS/weights/TMVAClassification_BDTG_6.weights.xml' % configurations),
+    'args' : ('BDTG_6', '%s/WH_chargeAsymmetry/UL/data/BDT/2016HIPM/WHSS/weights/TMVAClassification_BDTG_6.weights.xml' % configurations),
+}
+
+# WJets and Semileptonic Top are considered as fake. Properly applying events weights
+aliases['BDT_WHSS_TopSemileptonic_weight_v9'] = {
+    'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/BDT_WHSS_TopSemileptonic_v9.C+' % configurations],
+    'class': 'BDT_WHSS_TopSemileptonic_v9',
+    'args' : ('BDTG_5', '%s/WH_chargeAsymmetry/UL/2016HIPM_v9/BDTconfig_WHSS/dataset_WHSS_weight/weights/TMVAClassification_BDTG_5.weights.xml' % configurations), # provisional address
+}
+
+# WJets and Semileptonic Top are considered as fake. Properly applying events weights. Trained using the four eras of Run 2 merged together.
+aliases['BDT_WHSS_TopSemileptonic_weight_FullRun2_v9'] = {
+    'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/BDT_WHSS_TopSemileptonic_v9.C+' % configurations],
+    'class': 'BDT_WHSS_TopSemileptonic_v9',
+    'args' : ('BDTG_5', '%s/WH_chargeAsymmetry/UL/FullRun2/BDTconfig_WHSS/datasetWHSS_weight/weights/TMVAClassification_BDTG_5.weights.xml' % configurations), # provisional address
 }
 
 ########################
@@ -349,7 +363,6 @@ aliases['ttHMVA_eff_err_flip_2l'] = {
     'args' : ('UL_2016HIPM', 2, 'Total_SF_err', 'false'),
     'samples': ['DY']
 }
-
 
 # Fix METFilter_DATA definition: Flag_ecalBadCalibFilter is removed since it is not needed in 2016
 aliases['METFilter_DATA_fix'] = {
