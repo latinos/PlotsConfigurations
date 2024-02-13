@@ -349,7 +349,7 @@ aliases['SFweight'] = {
 ########################
 
 aliases['ttHMVA_SF_flip_2l'] = {
-    'linesToAdd': ['.L %s/macros/flipper.C+' % configurations],
+    'linesToAdd': ['.L %s/WH_chargeAsymmetry/UL/macros/flipper.C+' % configurations],
     'class': 'flipper',
     'args' : ('UL_2017', 2, 'Total_SF', 'false'),
     'samples': ['DY','DY_LO']
@@ -367,7 +367,7 @@ aliases['ttHMVA_SF_flip_2l'] = {
 ##################################
 
 aliases['ttHMVA_eff_flip_2l'] = {
-    'linesToAdd': ['.L %s/macros/flipper_eff.C+' % configurations],
+    'linesToAdd': ['.L %s/WH_chargeAsymmetry/UL/macros/flipper_eff.C+' % configurations],
     'class': 'flipper_eff',
     'args' : ('UL_2017', 2, 'Total_SF', 'false'),
     'samples': ['DY','DY_LO']
