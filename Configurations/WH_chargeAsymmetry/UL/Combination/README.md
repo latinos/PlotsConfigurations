@@ -55,7 +55,7 @@ Using correct signal scaling and considering all systematic uncertainties:
     python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_Full2017_v9_100_bins_original_signal_scale   --output_name Combination/FitResults_WH_Full2017_v9_100_bins_original_signal_scale.txt   --freeze_nuisances r_higgs & 
     python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_2016noHIPM_v9_100_bins_original_signal_scale --output_name Combination/FitResults_WH_2016noHIPM_v9_100_bins_original_signal_scale.txt --freeze_nuisances r_higgs &
     python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_2016HIPM_v9_100_bins_original_signal_scale   --output_name Combination/FitResults_WH_2016HIPM_v9_100_bins_original_signal_scale.txt   --freeze_nuisances r_higgs & 
-													   																					   																					    
+
     python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_FullRun2_v9_100_bins_original_signal_scale   --output_name Combination/FitResults_WH_FullRun2_v9_100_bins_original_signal_scale.txt   --freeze_nuisances r_higgs &
 																																		   
 Freezing all constrained nuisances, to check the effect of systematic uncertainties:													   
@@ -64,7 +64,7 @@ Freezing all constrained nuisances, to check the effect of systematic uncertaint
     python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_Full2017_v9_100_bins_original_signal_scale   --output_name Combination/FitResults_WH_Full2017_v9_100_bins_original_signal_scale_freeze_all.txt   --freeze_nuisances all &
     python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_2016noHIPM_v9_100_bins_original_signal_scale --output_name Combination/FitResults_WH_2016noHIPM_v9_100_bins_original_signal_scale_freeze_all.txt --freeze_nuisances all &
     python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_2016HIPM_v9_100_bins_original_signal_scale   --output_name Combination/FitResults_WH_2016HIPM_v9_100_bins_original_signal_scale_freeze_all.txt   --freeze_nuisances all &
-																																		   																								   
+
     python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_FullRun2_v9_100_bins_original_signal_scale   --output_name Combination/FitResults_WH_FullRun2_v9_100_bins_original_signal_scale_freeze_all.txt   --freeze_nuisances all &
 
 ### Produce Impact Plots
@@ -217,6 +217,62 @@ One example, step by step:
                       --minvariable    -1 \
                       --maxvariable    +1 \
                       --divideByBinWidth
+
+### Goodness of Fit Test
+
+Move to the dedicated directory before running the commands:
+
+	 mkdir -p GoF
+	 cd GoF
+
+Run fit on real data:
+
+	combineTool.py -M GoodnessOfFit ../Combination/WH_chargeAsymmetry_WH_FullRun2_v9_100_bins_original_signal_scale.root --algo=saturated
+
+Run fit on many MC toys:
+
+	combineTool.py -M GoodnessOfFit ../Combination/WH_chargeAsymmetry_WH_FullRun2_v9_100_bins_original_signal_scale.root --algo=saturated -t 1 -s 0:1000:1  --job-mode=condor --freezeParameters r_higgs --sub-opts='+JobFlavour="workday"'
+	hadd higgsCombine.GoF.root higgsCombine.Test.GoodnessOfFit.mH120.*root
+
+Produce plot comparing toys distribution and actual fit:
+
+    python GoF.py
+
+### Unblinded Impact Plots
+
+Create a dedicated directory:
+
+    mkdir -p Impact_unblid
+	cd Impact_unblid/
+
+Using r_A as POI:
+
+    combineTool.py -M Impacts -d ../Combination/WH_chargeAsymmetry_WH_FullRun2_v9_100_bins_original_signal_scale.root -m 125 --doInitialFit --setParameters r_S=1.3693,r_A=0.224,r_higgs=1 --setParameterRanges r_S=0,10:r_A=-1,1 --redefineSignalPOIs r_A --freezeParameters r_higgs --robustFit 1
+
+    combineTool.py -M Impacts -d ../Combination/WH_chargeAsymmetry_WH_FullRun2_v9_100_bins_original_signal_scale.root -m 125 --doFits --setParameters r_S=1.3693,r_A=0.224,r_higgs=1 --setParameterRanges r_S=0,10:r_A=-1,1 --redefineSignalPOIs r_A --job-mode=condor --freezeParameters r_higgs --sub-opts='+JobFlavour="workday"' --robustFit 1
+
+    combineTool.py -M Impacts -d ../Combination/WH_chargeAsymmetry_WH_FullRun2_v9_100_bins_original_signal_scale.root -m 125 -o impacts_FullRun2_v9_100_bins.json --setParameters r_S=1.3693,r_A=0.224,r_higgs=1 --setParameterRanges r_S=0,10:r_A=-1,1 --redefineSignalPOIs r_A --freezeParameters r_higgs --robustFit 1
+
+    plotImpacts.py -i impacts_FullRun2_v9_100_bins.json -o Impact_FullRun2_v9_100_bins --blind
+
+    rm combine_*
+    rm condor_*
+    rm higgsCombine_*
+	
+
+### Unblinded results
+
+Using correct signal scaling and considering all systematic uncertainties:
+
+    python script_workspace_and_fit_unblind.py --datacard_name Combination/WH_chargeAsymmetry_WH_FullRun2_v9_100_bins_original_signal_scale --output_name Combination/FitResults_WH_FullRun2_v9_100_bins_original_signal_scale_unblind.txt --freeze_nuisances r_higgs --sanity_check rA_scan
+																																		   
+Freezing all constrained nuisances, to check the effect of systematic uncertainties:													   
+																																		   
+    python script_workspace_and_fit_unblind.py --datacard_name Combination/WH_chargeAsymmetry_WH_FullRun2_v9_100_bins_original_signal_scale --output_name Combination/FitResults_WH_FullRun2_v9_100_bins_original_signal_scale_freeze_all_unblind.txt --freeze_nuisances all --sanity_check rA_scan
+
+
+
+
 
 
 

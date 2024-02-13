@@ -21,8 +21,6 @@ suffix_WH3l = ''
 suffix_WHSS_original_scale = "_DYflip_original_signal_scale" # datacards{_DYflip_original_signal_scale}_opt/
 suffix_WH3l_original_scale = "_original_signal_scale"        # datacards{_original_signal_scale}_opt/
 
-# suffix_loose_bVeto         = "_DYflip_loose_bVeto"
-# suffix_WH3l_old_wz_scaling = "_old_wz_scaling"
 
 if (len(sys.argv) > 1):
     if (sys.argv[1] == "1"):

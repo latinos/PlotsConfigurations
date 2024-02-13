@@ -68,7 +68,7 @@ workspace_command = "text2workspace.py \
                      --PO 'map=.*/ggH_htt:r_higgs[1,0.99,1.01]' \
                      --PO 'map=.*/qqH_htt:r_higgs[1,0.99,1.01]' \
                      --PO 'map=.*/ZH_htt:r_higgs[1,0.99,1.01]' \
-                     --PO 'map=.*/WH_h.*_plus:r_WH_plus=expr;;r_WH_plus(\"@0*(1+@1)/(2*0.8380)\",r_S[1.3693,0.01,5],r_A[0.224,-1,1])' \
+                     --PO 'map=.*/WH_h.*_plus:r_WH_plus=expr;;r_WH_plus(\"@0*(1+@1)/(2*0.8380)\",r_S[1.3693,0.01,3],r_A[0.224,-4,4])' \
                      --PO 'map=.*/WH_h.*_minus:r_WH_minus=expr;;r_WH_minus(\"@0*(1-@1)/(2*0.5313)\",r_S,r_A)' \
                      ".format(datacard_name)
 
@@ -122,10 +122,10 @@ combine_command = "combine \
                    -M MultiDimFit \
                    --algo=singles \
                    -d {0}.root \
-                   -t -1 \
                    --setParameters r_S=1.3693,r_A=0.224 \
-                   --setParameterRanges r_S=0.01,5:r_A=-1,1 \
+                   --setParameterRanges r_S=0.01,3:r_A=-4,4 \
                    --redefineSignalPOIs r_S,r_A \
+                   --robustFit 1 \
                    {2} \
                    > {1} \
                    ".format(datacard_name,output_name,nuisances)
@@ -140,10 +140,10 @@ combine_command_WH = "combine \
                       -M MultiDimFit \
                       --algo=singles \
                       -d {0}_WH_strength.root \
-                      -t -1 \
                       --setParameters r_WH=1 \
                       --setParameterRanges r_WH=0.01,10 \
                       --redefineSignalPOIs r_WH \
+                      --robustFit 1 \
                       {2} \
                       > {1} \
                       ".format(datacard_name,output_name.replace(".txt","_WH_strength.txt"),nuisances)
@@ -153,10 +153,10 @@ combine_command_WH_plus_minus = "combine \
                                  -M MultiDimFit \
                                  --algo=singles \
                                  -d {0}_WH_plus_minus.root \
-                                 -t -1 \
                                  --setParameters r_WH_plus=1,r_WH_minus=1 \
                                  --setParameterRanges r_WH_plus=0.01,10:r_WH_minus=0.01,10 \
                                  --redefineSignalPOIs r_WH_plus,r_WH_minus \
+                                 --robustFit 1 \
                                  {2} \
                                  > {1} \
                                  ".format(datacard_name,output_name.replace(".txt","_WH_plus_minus.txt"),nuisances)
@@ -170,7 +170,6 @@ combine_command_WH_plus_minus = "combine \
 rA_scan_command = "combine \
                    -M MultiDimFit \
                    --algo grid \
-                   -t -1 \
                    --setParameters r_A=0.224,r_S=1.3693 \
                    -d {0}.root \
                    -n _r_A_scan \
@@ -197,9 +196,8 @@ likelihood_scan_command = "combine \
                            --algo=grid \
                            --points=50 \
                            -d {0}.root \
-                           -t -1 \
                            --setParameters r_S=1.3693,r_A=0.224 \
-                           --setParameterRanges r_S=-0.01,5:r_A=-1,1 \
+                           --setParameterRanges r_S=-0.01,3:r_A=-4,4 \
                            --redefineSignalPOIs r_A,r_S \
                            --floatOtherPOIs 1 \
                           {1} \
@@ -210,7 +208,6 @@ likelihood_scan_command = "combine \
 prepare_toy_command = "combine \
                        -M GenerateOnly \
                        -d {0}.root \
-                       -t -1 \
                        --saveToys \
                        --setParameters r_S=1.3693,r_A=0.224 \
                        ".format(datacard_name)
@@ -225,7 +222,6 @@ fast_scan_command = "combineTool.py \
 # Fit diagnostic  
 fit_diagnostics_command = "combine \
                            -M FitDiagnostics {0}.root \
-                           -t -1 \
                            --setParameters r_S=1.3693,r_A=0.224 \
                            --saveShapes \
                            --saveWithUncertainties \
