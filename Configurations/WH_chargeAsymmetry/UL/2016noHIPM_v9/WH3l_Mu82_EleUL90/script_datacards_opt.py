@@ -1,7 +1,7 @@
 import sys,os
 
 # Define variables and strategy to use
-variables = ['BDT_WH3l_OSSF_v9_more','BDT_WH3l_OSSF_new_v9_more','BDT_WH3l_OSSF_v9_100_bins','BDT_WH3l_OSSF_new_v9_100_bins']
+variables = ['BDT_WH3l_OSSF_new_v9_100_bins','BDT_WH3l_OSSF_weight_v9_100_bins'] # ,'BDT_WH3l_SSSF_weight_v9_100_bins','BDT_WH3l_OSSF_weight_FullRun2_v9_100_bins']
 scaling   = ['','_original_signal_scale']
 
 # Actually combine datacards
@@ -9,15 +9,14 @@ for var in variables:
     for scale in scaling:
 
         suffix = ''
-        if var == 'BDT_WH3l_OSSF_new_v9_more':
-            suffix = '_new'
-        if var == 'BDT_WH3l_OSSF_v9_100_bins':
-            suffix = '_100_bins'
         if var == 'BDT_WH3l_OSSF_new_v9_100_bins':
             suffix = '_100_bins_new'
-    
+        if var == 'BDT_WH3l_OSSF_weight_v9_100_bins':
+            suffix = '_100_bins_weight'
+
         var_OSSF_plus  = var
         var_OSSF_minus = var
+
         var_SSSF_plus  = var.replace('OSSF','SSSF')
         var_SSSF_minus = var.replace('OSSF','SSSF')
         

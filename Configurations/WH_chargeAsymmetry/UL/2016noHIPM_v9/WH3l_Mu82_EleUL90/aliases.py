@@ -335,11 +335,55 @@ aliases['BDT_WH3l_SSSF_new_v9'] = {
     'args'  : ('BDTG4SK01_05shrinkage', '%s/WH_chargeAsymmetry/UL/data/BDT/2016noHIPM/WH3l/SSSF/weights/TMVAClassification_BDTG4SK01_05shrinkage.weights.xml' % configurations),
 }
 
+# Considering Top and Z+jets (DY) as sources of fake leptons and weights
+aliases['BDT_WH3l_OSSF_weight_v9'] = {
+    'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/BDT_WH3l_OSSF_v9.C+' % configurations],
+    'class' : 'BDT_WH3l_OSSF_v9',
+    'args'  : ('BDTG4F07', '%s/WH_chargeAsymmetry/UL/2016noHIPM_v9/BDTconfig_WH3l/dataset_OSSF_weight/weights/TMVAClassification_BDTG4F07.weights.xml' % configurations),
+}
+
+aliases['BDT_WH3l_SSSF_weight_v9'] = {
+    'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/BDT_WH3l_SSSF_v9.C+' % configurations],
+    'class' : 'BDT_WH3l_SSSF_v9',
+    'args'  : ('BDTG4SK01', '%s/WH_chargeAsymmetry/UL/2016noHIPM_v9/BDTconfig_WH3l/dataset_SSSF_weight/weights/TMVAClassification_BDTG4SK01.weights.xml' % configurations),
+}
+
+# Considering Top and Z+jets (DY) as sources of fake leptons and weights. Trained using Full Run 2 dataset
+aliases['BDT_WH3l_OSSF_weight_FullRun2_v9'] = {
+    'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/BDT_WH3l_OSSF_v9.C+' % configurations],
+    'class' : 'BDT_WH3l_OSSF_v9',
+    'args'  : ('BDTG4F07', '%s/WH_chargeAsymmetry/UL/FullRun2/BDTconfig_WH3l/dataset_OSSF_weight/weights/TMVAClassification_BDTG4F07.weights.xml' % configurations),
+}
+
+# aliases['BDT_WH3l_SSSF_weight_FullRun2_v9'] = {
+#     'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/BDT_WH3l_SSSF_v9.C+' % configurations],
+#     'class' : 'BDT_WH3l_SSSF_v9',
+#     'args'  : ('BDTG4SK01', '%s/%s/WH_chargeAsymmetry/UL/FullRun2/BDTconfig_WH3l/dataset_SSSF_weight/weights/TMVAClassification_BDTG4SK01.weights.xml' % configurations),
+# }
+
+# WHSS training needed for WZ control region. 
 # WJets and Semileptonic Top are considered as fake.
 aliases['BDT_WHSS_TopSemileptonic_v9'] = {
     'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/BDT_WHSS_TopSemileptonic_v9.C+' % configurations],
     'class': 'BDT_WHSS_TopSemileptonic_v9',
     'args' : ('BDTG_6', '%s/WH_chargeAsymmetry/UL/data/BDT/2016noHIPM/WHSS/weights/TMVAClassification_BDTG_6.weights.xml' % configurations),
+}
+
+# WHSS training needed for WZ control region. 
+# WJets and Semileptonic Top are considered as fake. Properly applying events weights
+aliases['BDT_WHSS_TopSemileptonic_weight_v9'] = {
+    'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/BDT_WHSS_TopSemileptonic_v9.C+' % configurations],
+    'class': 'BDT_WHSS_TopSemileptonic_v9',
+    'args' : ('BDTG_5', '%s/WH_chargeAsymmetry/UL/2016noHIPM_v9/BDTconfig_WHSS/dataset_WHSS_weight/weights/TMVAClassification_BDTG_5.weights.xml' % configurations), # provisional address
+}
+
+# WHSS training needed for WZ control region. 
+# WJets and Semileptonic Top are considered as fake. 
+# Properly applying events weights. Trained using the four eras of Run 2 merged together.
+aliases['BDT_WHSS_TopSemileptonic_weight_FullRun2_v9'] = {
+    'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/BDT_WHSS_TopSemileptonic_v9.C+' % configurations],
+    'class': 'BDT_WHSS_TopSemileptonic_v9',
+    'args' : ('BDTG_5', '%s/WH_chargeAsymmetry/UL/FullRun2/BDTconfig_WHSS/datasetWHSS_weight/weights/TMVAClassification_BDTG_5.weights.xml' % configurations), # provisional address
 }
 
 # Fix METFilter_DATA definition: Flag_ecalBadCalibFilter is removed since it is not needed in 2016
