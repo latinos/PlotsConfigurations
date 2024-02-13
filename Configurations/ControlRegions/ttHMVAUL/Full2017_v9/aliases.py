@@ -2,10 +2,10 @@ import os
 import copy
 import inspect
 
-# /afs/cern.ch/user/n/ntrevisa/work/latinos/unblinding/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/ControlRegions/ttHMVAUL/Full2018_v9
+# /afs/cern.ch/user/n/ntrevisa/work/latinos/unblinding/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/ControlRegions/ttHMVAUL/Full2017_v9
 
 configurations = os.path.realpath(inspect.getfile(inspect.currentframe())) # this file
-configurations = os.path.dirname(configurations) # Full2018_v9
+configurations = os.path.dirname(configurations) # Full2017_v9
 configurations = os.path.dirname(configurations) # ttHMVAUL
 configurations = os.path.dirname(configurations) # ControlRegions
 configurations = os.path.dirname(configurations) # Configurations
@@ -52,14 +52,14 @@ aliases['multiJet'] = {
 ####################################################################################
 
 # DeepB = DeepCSV
-bWP_loose_deepB  = '0.1208'
-bWP_medium_deepB = '0.4168' 
-bWP_tight_deepB  = '0.7665'
+bWP_loose_deepB  = '0.1355'
+bWP_medium_deepB = '0.4506' 
+bWP_tight_deepB  = '0.7738'
 
 # DeepFlavB = DeepJet
-bWP_loose_deepFlavB  = '0.0490'
-bWP_medium_deepFlavB = '0.2783'
-bWP_tight_deepFlavB  = '0.7100'
+bWP_loose_deepFlavB  = '0.0532'
+bWP_medium_deepFlavB = '0.3040'
+bWP_tight_deepFlavB  = '0.7476'
 
 # Actual algo and WP definition. BE CONSISTENT!!
 bAlgo = 'DeepB' # ['DeepB','DeepFlavB']
@@ -162,11 +162,6 @@ aliases['oneJet'] = {
 aliases['multiJet'] = {
     'expr': 'Alt$(CleanJet_pt[1], 0) > 30.'
 }
-
-# aliases['SFweight2lAlt'] = {
-#     'expr'   : 'puWeight*TriggerSFWeight_2l*Lepton_RecoSF[0]*Lepton_RecoSF[1]*EMTFbug_veto',
-#     'samples': mc
-# }
 
 # data/MC scale factors
 aliases['SFweight'] = {

@@ -2,10 +2,10 @@ import os
 import copy
 import inspect
 
-# /afs/cern.ch/user/n/ntrevisa/work/latinos/unblinding/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/ControlRegions/ttHMVAUL/Full2018_v9
+# /afs/cern.ch/user/n/ntrevisa/work/latinos/unblinding/CMSSW_10_6_4/src/PlotsConfigurations/Configurations/ControlRegions/ttHMVAUL/2016noHIPM_v9
 
 configurations = os.path.realpath(inspect.getfile(inspect.currentframe())) # this file
-configurations = os.path.dirname(configurations) # Full2018_v9
+configurations = os.path.dirname(configurations) # 2016noHIPM_v9
 configurations = os.path.dirname(configurations) # ttHMVAUL
 configurations = os.path.dirname(configurations) # ControlRegions
 configurations = os.path.dirname(configurations) # Configurations
@@ -14,9 +14,9 @@ configurations = os.path.dirname(configurations) # Configurations
 mc     = [skey for skey in samples if skey not in ('Fake', 'DATA', 'Dyemb')]
 mc_emb = [skey for skey in samples if skey not in ('Fake', 'DATA')]
 
-# LepCut2l__ele_mvaFall17V2Iso_WP90__mu_cut_Tight_HWWW_tthmva_80
+# LepCut2l__ele_mvaFall17V2Iso_WP90__mu_cut_Tight80x
 eleWP = 'mvaFall17V2Iso_WP90'
-muWP  = 'cut_Tight_HWWW_tthmva_80'
+muWP  = 'cut_Tight80x'
 
 aliases['LepWPCut'] = {
     'expr': 'LepCut2l__ele_'+eleWP+'__mu_'+muWP,
@@ -52,19 +52,19 @@ aliases['multiJet'] = {
 ####################################################################################
 
 # DeepB = DeepCSV
-bWP_loose_deepB  = '0.1208'
-bWP_medium_deepB = '0.4168' 
-bWP_tight_deepB  = '0.7665'
+bWP_loose_deepB  = '0.1918'
+bWP_medium_deepB = '0.5847' 
+bWP_tight_deepB  = '0.8767'
 
 # DeepFlavB = DeepJet
-bWP_loose_deepFlavB  = '0.0490'
-bWP_medium_deepFlavB = '0.2783'
-bWP_tight_deepFlavB  = '0.7100'
+bWP_loose_deepFlavB  = '0.0480'
+bWP_medium_deepFlavB = '0.2489'
+bWP_tight_deepFlavB  = '0.6377'
 
 # Actual algo and WP definition. BE CONSISTENT!!
-bAlgo = 'DeepB' # ['DeepB','DeepFlavB']
+bAlgo = 'DeepB'         # ['DeepB','DeepFlavB']
 bWP   = bWP_loose_deepB
-bSF   = 'deepcsv' # ['deepcsv','deepjet']
+bSF   = 'deepcsv'       # ['deepcsv','deepjet']
 
 # b veto
 aliases['bVeto'] = {

@@ -1,6 +1,6 @@
-# ttHMVA Control Plots in Full2018 UL
+# ttHMVA Control Plots in Full2017 UL
 
-Control plots in a Top and a WW phase spaces, targeting the input and output variables used for the electron ttHMVA UL training, using the Full2018 UL dataset.
+Control plots in a Top and a WW phase spaces, targeting the input and output variables used for the electron ttHMVA UL training, using the Full2017 UL dataset.
 
 The instructions to produce the plots follow.
 
@@ -14,6 +14,6 @@ The instructions to produce the plots follow.
 
 ### Plot distributions
 
-    mkPlot.py --pycfg=configuration.py --inputFile=rootFile/plots_ttHMVAUL_2018_v9.root --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1 --minLogCratio=1
+    mkPlot.py --pycfg=configuration.py --inputFile=rootFile/plots_ttHMVAUL_2017_v9.root --fileFormats=png --onlyPlot=cratio --showIntegralLegend=1 --minLogCratio=1
 
 
