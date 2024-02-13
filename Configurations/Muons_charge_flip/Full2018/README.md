@@ -6,7 +6,7 @@ The instructions to run the workflow follow.
 
 ### Produce same-sign and opposite-sign distributions in a DY phase space using mkShapesMulti.py in batch mode
 
-    mkShapesMulti.py --pycfg=configuration.py --doBatch=1 --batchSplit=Samples,Files --batchQueue=testmatch
+    mkShapesMulti.py --pycfg=configuration.py --doBatch=1 --batchSplit=Samples,Files --batchQueue=testmatch --FixNegativeAfterHadd
 
 Resubmit failed jobs.
 
@@ -22,7 +22,7 @@ Or, if they failed because the wall clock time has been exceeded, resubmit them 
 
 ### Merge rootfiles using hadd
 
-    mkShapesMulti.py --pycfg=configuration.py --doHadd=1 --batchSplit=Samples,Files --doNotCleanup --nThreads=8
+    mkShapesMulti.py --pycfg=configuration.py --doHadd=1 --batchSplit=Samples,Files --doNotCleanup --nThreads=8 --FixNegativeAfterHadd
 
 ### Plot distributions
 
