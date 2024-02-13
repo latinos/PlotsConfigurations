@@ -1,7 +1,7 @@
 import sys,os
 
 # Define variables and strategy to use
-variables = ["BDTG6_TT_more","BDTG6_TT_100_bins"]
+variables = ["BDTG6_TT_100_bins","BDTG5_TT_weight_100_bins","BDTG5_TT_weight_FullRun2_100_bins"]
 suffix    = ["_opt","_DYflip_original_signal_scale_opt"]
 
 # Actually combine datacards

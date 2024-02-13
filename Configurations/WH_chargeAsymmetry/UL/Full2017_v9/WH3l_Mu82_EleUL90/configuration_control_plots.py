@@ -1,8 +1,8 @@
-# Configuration file for charge asymmetry WHSS analysis using the UL 2017 dataset
+# Configuration file for charge asymmetry WH3l analysis using the UL 2017 dataset
 
 treeName = 'Events'
 
-tag = 'WHSS_2017_v9_chargeAsymmetry_Mu82_EleUL90'
+tag = 'WH3l_2017_v9_control_plots'
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFile'
@@ -11,7 +11,7 @@ outputDir = 'rootFile'
 aliasesFile = 'aliases.py'
 
 # file with list of variables
-variablesFile = 'variables_datacard.py'
+variablesFile = 'variables.py'
 
 # file with list of cuts
 cutsFile = 'cuts.py' 
@@ -38,4 +38,4 @@ outputDirDatacard = 'datacards'
 structureFile = 'structure.py'
 
 # nuisances file for mkDatacards and for mkShape
-nuisancesFile = 'nuisances.py'
+nuisancesFile = 'nuisances_control_plots.py'

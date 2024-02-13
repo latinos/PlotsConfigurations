@@ -2,7 +2,11 @@
 
 #variables = {}
     
-#'fold' : # 0 = not fold (default), 1 = fold underflowbin, 2 = fold overflow bin, 3 = fold underflow and overflow
+# 'fold' : 
+# 0 = not fold (default),
+# 1 = fold underflowbin,
+# 2 = fold overflow bin,
+# 3 = fold underflow and overflow
 
 variables['events'] = {
     'name'  : '1',
@@ -11,29 +15,9 @@ variables['events'] = {
     'fold'  : 3
 }
 
+##################################################
 # New training considering Top and Z+jets as Fakes
-variables['BDT_WH3l_OSSF_new_v9'] = { 
-    'name'     : 'BDT_WH3l_OSSF_new_v9',
-    'range'    : (40,-1.,1.),
-    'doWeight' : 1,
-    'binX'     : 1,
-    'binY'     : 40,
-    'xaxis'    : 'MVA discriminant',
-    'yaxis'    : 'Events',
-    'fold'     : 3,
-}
-
-variables['BDT_WH3l_SSSF_new_v9'] = { 
-    'name'     : 'BDT_WH3l_SSSF_new_v9',
-    'range'    : (40,-1.,1.),
-    'doWeight' : 1,
-    'binX'     : 1,
-    'binY'     : 40,
-    'xaxis'    : 'MVA discriminant',
-    'yaxis'    : 'Events',
-    'fold'     : 3,
-}
-
+##################################################
 variables['BDT_WH3l_OSSF_new_v9_100_bins'] = { 
     'name': 'BDT_WH3l_OSSF_new_v9',
     'range' : (100,-1.,1.),
@@ -46,4 +30,63 @@ variables['BDT_WH3l_SSSF_new_v9_100_bins'] = {
     'range' : (100,-1.,1.),
     'xaxis' : 'MVA discriminant',
     'fold' : 3,
+}
+
+##############################################################
+# BDT training considering Top and Z+jets as Fakes and weights
+##############################################################
+variables['BDT_WH3l_OSSF_weight_v9_100_bins'] = { 
+    'name': 'BDT_WH3l_OSSF_weight_v9',
+    'range' : (100,-1.,1.),
+    'xaxis' : 'MVA discriminant',
+    'fold' : 3,
+}
+
+variables['BDT_WH3l_SSSF_weight_v9_100_bins'] = { 
+    'name': 'BDT_WH3l_SSSF_weight_v9',
+    'range' : (100,-1.,1.),
+    'xaxis' : 'MVA discriminant',
+    'fold' : 3,
+}
+
+##############################################################
+# BDT training considering Top and Z+jets as Fakes and weights
+# Training using the 4 eras of Run 2 merged
+##############################################################
+variables['BDT_WH3l_OSSF_weight_FullRun2_v9_100_bins'] = { 
+    'name': 'BDT_WH3l_OSSF_weight_FullRun2_v9',
+    'range' : (100,-1.,1.),
+    'xaxis' : 'MVA discriminant',
+    'fold' : 3,
+}
+
+# variables['BDT_WH3l_SSSF_weight_FullRun2_v9_100_bins'] = { 
+#     'name': 'BDT_WH3l_SSSF_weight_FullRun2_v9',
+#     'range' : (100,-1.,1.),
+#     'xaxis' : 'MVA discriminant',
+#     'fold' : 3,
+# }
+
+###########################
+# For WHSS WZ normalization
+###########################
+variables['BDTG6_TT_100_bins'] = {
+    'name'     : 'BDT_WHSS_TopSemileptonic_v9',
+    'range'    : (100,-1,1),
+    'xaxis'    : 'BDT discriminant',
+    'fold'     : 3
+}
+
+variables['BDTG5_TT_weight_100_bins'] = {
+    'name'     : 'BDT_WHSS_TopSemileptonic_weight_v9',
+    'range'    : (100,-1,1),
+    'xaxis'    : 'BDT discriminant',
+    'fold'     : 3
+}
+
+variables['BDTG5_TT_weight_FullRun2_100_bins'] = {
+    'name'     : 'BDT_WHSS_TopSemileptonic_weight_FullRun2_v9',
+    'range'    : (100,-1,1),
+    'xaxis'    : 'BDT discriminant',
+    'fold'     : 3
 }
