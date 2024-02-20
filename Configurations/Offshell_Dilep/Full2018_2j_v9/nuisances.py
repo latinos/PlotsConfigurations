@@ -285,7 +285,6 @@ nuisances['met'] = {
     'AsLnN'     : '1'
 }
 
-"""
 nuisances['met_sig'] = {
     'name'      : 'CMS_scale_met_2018',
     'kind'      : 'suffix',
@@ -297,7 +296,6 @@ nuisances['met_sig'] = {
     'folderDown': makeSignalDirectory('METdo_suffix'),
     'AsLnN'     : '1'
 }
-"""
 
 # # nuisances['PS_whss']  = {
 #                 # 'name'  : 'PS_whss',
