@@ -2,25 +2,34 @@
 
 nbins = 1
 
-#groupPlot = {}
-#plot = {}
+groupPlot = {}
+plot = {}
 # 
 # Groups of samples to improve the plots.
 # If not defined, normal plots is used
 #
 
-groupPlot['VH+ttH+qqH']  = {
-                  'nameHR' : 'VH+ttH+qqH',
-                  'isSignal' : 0,
-                  'color': 632, # kRed 
-                  'samples'  : ['Higgs' ]
+
+
+groupPlot['ggHToWWOffshell']  = {
+                  'nameHR' : 'ggH Offshell',
+                  'isSignal' : 1,
+                  'color': 1, # kCyan
+                  'samples'  : ['ggHToWWOffshell' ]
               }
 
-groupPlot['VBFToWWOnshell']  = {
+groupPlot['VBFHToWWOffshell']  = {
+                  'nameHR' : 'VBF Offshell',
+                  'isSignal' : 1,
+                  'color': 632, # kRed                                                                                                                                                                    
+                  'samples'  : ['VBFHToWWOffshell' ]
+              }
+
+groupPlot['VBFHToWWOnshell']  = {
                   'nameHR' : 'VBF Onshell',
                   'isSignal' : 0,
                   'color': 409, # kRed                                                                                                                                                                      
-                  'samples'  : ['qqH_sonly_on' ]
+                  'samples'  : ['VBFHToWWOnshell' ]
               }
 
 groupPlot['ggHToWWOnshell']  = {
@@ -30,18 +39,19 @@ groupPlot['ggHToWWOnshell']  = {
                   'samples'  : ['ggHToWWOnshell' ]
               }
 
-groupPlot['Vg+VZ+VVV']  = {
-                  'nameHR' : "Vg+VZ+VVV",
+
+groupPlot['WW']  = {
+                  'nameHR' : 'WW',
                   'isSignal' : 0,
-                  'color'    : 618,   # kOrange + 10
-                  'samples'  : ['Vg', 'WZ', 'ZZ', 'VVV']
+                  'color': 851, # kAzure -9 
+                  'samples'  : ['WW', 'ggWW', 'WWewk']
               }
 
-groupPlot['DY']  = {
-                  'nameHR' : "DY",
+groupPlot['top']  = {
+                  'nameHR' : 'tW and t#bar{t}',
                   'isSignal' : 0,
-                  'color': 418,    # kGreen+2
-                  'samples'  : ['DY']
+                  'color': 400,   # kYellow
+                  'samples'  : ['top']
               }
 
 groupPlot['Fake']  = {
@@ -51,46 +61,27 @@ groupPlot['Fake']  = {
                   'samples'  : ['Fake_me', 'Fake_em']
 }
 
-groupPlot['WW']  = {
-                  'nameHR' : 'WW',
+groupPlot['DY']  = {
+                  'nameHR' : "DY",
                   'isSignal' : 0,
-                  'color': 851, # kAzure -9 
-                  'samples'  : ['WW', 'ggWW']
+                  'color': 418,    # kGreen+2
+                  'samples'  : ['DY']
               }
 
-groupPlot['qqWW'] = {
-                  'nameHR' : 'qqWW',
+groupPlot['Vg+VZ+VVV']  = {
+                  'nameHR' : "Vg+VZ+VVV",
                   'isSignal' : 0,
-                  'color': 849, # kAzure -9 
-                  'samples' : ['qqH_bonly_on', 'qqH_bonly_off']
+                  'color'    : 618,   # kOrange + 10
+                  'samples'  : ['Vg', 'WZ', 'ZZ', 'VVV']
               }
 
-groupPlot['top']  = {
-                  'nameHR' : 'tW and t#bar{t}',
+groupPlot['VH+ttH+qqH']  = {
+                  'nameHR' : 'VH+ttH+qqH',
                   'isSignal' : 0,
-                  'color': 400,   # kYellow
-                  'samples'  : ['top']
-              }
-groupPlot['ggHToWWOffshell']  = {
-                  'nameHR' : 'ggH Offshell',
-                  'isSignal' : 1,
-                  'color': 1, # kCyan
-                  'samples'  : ['ggHToWWOffshell' ]
+                  'color': 632, # kRed 
+                  'samples'  : ['Higgs' ]
               }
 
-groupPlot['VBFToWWOffshell']  = {
-                  'nameHR' : 'VBF Offshell',
-                  'isSignal' : 1,
-                  'color': 632, # kRed                                                                                                                                                                    
-                  'samples'  : ['qqH_sonly_off']
-              }
-
-groupPlot['VBF_WW_Int']  = {
-                  'nameHR' : 'VBF Offshell',
-                  'isSignal' : 1,
-                  'color': 640, # kRed                                                                                                                                                                    
-                  'samples'  : ['qqH_sand_off', 'qqH_sand_on']
-              }
 
 
 plot['DY']  = {  
@@ -139,12 +130,12 @@ plot['ggWW']  = {
                   'scale'    : 1.0
                   }
 
-#plot['WWewk']  = {
-#                  'color': 851, # kAzure -9 
-#                  'isSignal' : 0,
-#                  'isData'   : 0,
-#                  'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
-#                  }
+plot['WWewk']  = {
+                  'color': 851, # kAzure -9 
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
+                  }
 
 plot['Vg']  = {
                   'color': 859, # kAzure -1  
@@ -184,6 +175,13 @@ plot['Higgs'] = {
                   'scale'    : 1    #
                   }
 
+plot['VBFHToWWOnshell']  = {
+                  'color': 409, # kRed  
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0
+                  }
+
 plot['ggHToWWOnshell']  = {
                   'color': 603, # kRed  
                   'isSignal' : 0,
@@ -191,51 +189,16 @@ plot['ggHToWWOnshell']  = {
                   'scale'    : 1.0
                   }
 
-plot['ggHToWWOffshell']  = {
-                  'color': 1, # kRed  
+plot['VBFHToWWOffshell']  = {
+                  'color': 632, # kRed  
                   'isSignal' : 1,
                   'isData'   : 0,
                   'scale'    : 1.0
                   }
 
-plot['qqH_bonly_on']  = {
-                  'color': 409,  #kRed  
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  'scale'    : 1.0
-                  }
-
-plot['qqH_sonly_off']  = {
-                  'color': 632,  #kRed  
-                  'isSignal' : 2,
-                  'isData'   : 0,
-                  'scale'    : 1.0
-                  }
-
-plot['qqH_sand_on']  = {
-                  'color': 411,  #kRed + 2
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  'scale'    : 1.0
-                  }
-
-plot['qqH_bonly_off']  = {
-                  'color': 851,  #kRed  
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  'scale'    : 1.0
-                  }
-
-plot['qqH_sonly_on']  = {
-                  'color': 921,  #kRed  
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  'scale'    : 1.0
-                  }
-
-plot['qqH_sand_off']  = {
-                  'color': 857,  #kRed + 2
-                  'isSignal' : 0,
+plot['ggHToWWOffshell']  = {
+                  'color': 1, # kRed  
+                  'isSignal' : 1,
                   'isData'   : 0,
                   'scale'    : 1.0
                   }
@@ -256,7 +219,6 @@ plot['DATA']  = {
 
 
 # additional options
-
-legend['lumi'] = 'L = 59.83/fb'
+legend['lumi'] = 'L = 41.5/fb'
 
 legend['sqrt'] = '#sqrt{s} = 13 TeV'

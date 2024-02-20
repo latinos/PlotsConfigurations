@@ -5,6 +5,15 @@ from LatinoAnalysis.Tools.commonTools import getSampleFiles, getBaseW, addSample
 def nanoGetSampleFiles(inputDir, Sample):
     return getSampleFiles(inputDir, Sample, False, 'nanoLatino_')
 
+
+def makeSignalDirectory(var=''):
+    base_path_sig = '/eos/cms/store/group/phys_higgs/cmshww/fernanpe/HWWNano/Summer20UL16_106x_nAODv9_HIPM_Full2016v9/AddLHE_MEs__AddMC_baseW__AddHWW_Offshell_Wgts__MCl1loose2016v9__MCCorr2016v9NoJERInHorn__l2tightOR2016v9'
+    if var:
+        return base_path_sig + "__" + var
+    else:
+        return base_path_sig
+
+
 try:
     mc = [skey for skey in samples if skey != 'DATA' and not skey.startswith('Fake')]
 except NameError:
@@ -17,610 +26,833 @@ except NameError:
 from LatinoAnalysis.Tools.HiggsXSection import HiggsXSection
 HiggsXS = HiggsXSection()
 
-############ Load norm factors / differential binning to normalize signal ####################
-import os
-import json
-configurations = os.path.realpath(inspect.getfile(inspect.currentframe())) # this file
-configurations = os.path.dirname(configurations) # inclusive
-configurations = os.path.dirname(configurations) # Full2016_HIPM_v9
-configurations = os.path.dirname(configurations) # FullRunII
-configurations = os.path.dirname(configurations) # WW
-configurations = os.path.dirname(configurations) # Configurations
 
-diffcuts = samples['WW']['subsamples'] if 'WW' in samples else {}
-allcuts = [cut+'_'+cat for cut in cuts for cat in cuts[cut]['categories']]
-nfdict = json.load(open("%s/WW/FullRunII/Full2016_HIPM_v9/inclusive/WWnorm.json"%configurations))
-sfdict = json.load(open("%s/WW/FullRunII/Full2016_HIPM_v9/inclusive/sampleFrac.json"%configurations))
 
 ################################ EXPERIMENTAL UNCERTAINTIES  #################################
 
 #### Luminosity
 
+# https://twiki.cern.ch/twiki/bin/view/CMS/LumiRecommendationsRun2#LumiComb
+# Uncorrelated 2016               1.0
+# Uncorrelated       2017              2.0
+# Uncorrelated             2018             1.5
+# Correlated   2016, 2017, 2018   0.6, 0.9, 2.0
+# Correlated         2017, 2018        0.6, 0.2
+
 nuisances['lumi_Uncorrelated'] = {
     'name': 'lumi_13TeV_2016',
     'type': 'lnN',
-    'samples': dict((skey, '1.010') for skey in mc if skey not in ['top'])
+    'samples': dict((skey, '1.012') for skey in mc if skey not in ['top','WW'])
 }
 
-nuisances['lumi_Correlated'] = {
-    'name': 'lumi_13TeV_correlated',
+nuisances['lumi_Correlated_Run2'] = {
+    'name': 'lumi_13TeV_Run2',
     'type': 'lnN',
-    'samples': dict((skey, '1.006') for skey in mc if skey not in ['top'])
+    'samples': dict((skey, '1.020') for skey in mc if skey not in ['top','WW'])
 }
 
-#### FAKES
 
-nuisances['fake_syst_em'] = {
-    'name': 'CMS_fake_syst_em',
+## ASK PEDRO
+nuisances['lumi_Correlated_2016'] = {
+    'name': 'lumi_13TeV_2016',
     'type': 'lnN',
-    'samples': {
-        'Fake_em': '1.3'
+    'samples': dict((skey, '1.006') for skey in mc if skey not in ['top','WW'])
+}
+
+### FAKES
+nuisances['fake_syst'] = {
+    'name'  : 'CMS_fake_syst',
+    'type'  : 'lnN',
+    'samples'  : {
+        'Fake' : '1.30',
     },
 }
 
-nuisances['fake_syst_me'] = {
-    'name': 'CMS_fake_syst_me',
-    'type': 'lnN',
-    'samples': {
-        'Fake_me': '1.3'
+nuisances['fake_ele']  = {
+    'name'  : 'CMS_fake_e_2016_HIPM',
+    'kind'  : 'weight',
+    'type'  : 'shape',
+    'samples'  : {
+        'Fake': ['fakeWEleUp', 'fakeWEleDown'],
     },
 }
 
-nuisances['fake_ele'] = {
-    'name': 'CMS_fake_e_2016',
-    'kind': 'weight',
-    'type': 'shape',
-    'samples': {
-        'Fake': ['fakeWEleUp', 'fakeWEleDown']
-    }
+nuisances['fake_ele_stat']  = {
+    'name'  : 'CMS_fake_stat_e_2016_HIPM',
+    'kind'  : 'weight',
+    'type'  : 'shape',
+    'samples'  : {
+        'Fake': ['fakeWStatEleUp', 'fakeWStatEleDown']
+    },
 }
 
-nuisances['fake_ele_stat'] = {
-    'name': 'CMS_fake_stat_e_2016',
-    'kind': 'weight',
-    'type': 'shape',
-    'samples': {
-        'Fake': ['fakeWStatEleUp', 'fakeWStatEleDown'],
-    }
-}
-
-nuisances['fake_mu'] = {
-    'name': 'CMS_fake_m_2016',
-    'kind': 'weight',
-    'type': 'shape',
-    'samples': {
+nuisances['fake_mu']  = {
+    'name'  : 'CMS_fake_m__2016_HIPM',
+    'kind'  : 'weight',
+    'type'  : 'shape',
+    'samples'  : {
         'Fake': ['fakeWMuUp', 'fakeWMuDown'],
-    }
+    },
 }
 
-nuisances['fake_mu_stat'] = {
-    'name': 'CMS_fake_stat_m_2016',
-    'kind': 'weight',
-    'type': 'shape',
-    'samples': {
+nuisances['fake_mu_stat']  = {
+    'name'  : 'CMS_fake_stat_m__2016_HIPM',
+    'kind'  : 'weight',
+    'type'  : 'shape',
+    'samples'  : {
         'Fake': ['fakeWStatMuUp', 'fakeWStatMuDown'],
-    }
+    },
 }
 
-###### B-tagger
-for shift in ['lf', 'hf', 'hfstats1', 'hfstats2', 'lfstats1', 'lfstats2', 'cferr1', 'cferr2']:
+
+##### B-tagger
+
+#for shift in ['jes', 'lf', 'hf', 'hfstats1', 'hfstats2', 'lfstats1', 'lfstats2', 'cferr1', 'cferr2']:
+for shift in ['lf', 'hf', 'lfstats1', 'lfstats2', 'hfstats1', 'hfstats2', 'cferr1', 'cferr2']:
     btag_syst = ['(btagSF%sup)/(btagSF)' % shift, '(btagSF%sdown)/(btagSF)' % shift]
 
     name = 'CMS_btag_%s' % shift
     if 'stats' in shift:
-        name += '_2016'
+        name += '_2016_HIPM'
 
     nuisances['btag_shape_%s' % shift] = {
         'name': name,
         'kind': 'weight',
         'type': 'shape',
         'samples': dict((skey, btag_syst) for skey in mc),
-        'AsLnN': '0'
     }
 
 ##### Trigger Efficiency
 
 trig_syst = ['((TriggerSFWeight_2l_u)/(TriggerSFWeight_2l))*(TriggerSFWeight_2l>0.02) + (TriggerSFWeight_2l<=0.02)', '(TriggerSFWeight_2l_d)/(TriggerSFWeight_2l)']
 
-nuisances['trigg'] = {
-    'name': 'CMS_eff_hwwtrigger_2016',
+nuisances['trigg']  = {
+    'name': 'CMS_eff_hwwtrigger_2016_HIPM',
     'kind': 'weight',
     'type': 'shape',
-    'samples': dict((skey, trig_syst) for skey in mc),
-    'AsLnN': '0'
-}
-
-prefire_syst = ['PrefireWeight_Up/PrefireWeight', 'PrefireWeight_Down/PrefireWeight']
-
-nuisances['prefire'] = {
-    'name': 'CMS_eff_prefiring_2016',
-    'kind': 'weight',
-    'type': 'shape',
-    'samples': dict((skey, prefire_syst) for skey in mc),
-    'AsLnN': '0'
+    'samples': dict((skey, trig_syst) for skey in mc)
 }
 
 ##### Electron Efficiency and energy scale
 
+id_syst_ele = ['SFweightEleUp', 'SFweightEleDown']
+
 nuisances['eff_e'] = {
-    'name': 'CMS_eff_e_2016',
-    'kind': 'weight',
-    'type': 'shape',
-    'samples': dict((skey, ['SFweightEleUp', 'SFweightEleDown']) for skey in mc),
-    #'AsLnN': '1'
+    'name'    : 'CMS_eff_e_2016_HIPM',
+    'kind'    : 'weight',
+    'type'    : 'shape',
+    'samples' : dict((skey, id_syst_ele) for skey in mc)
 }
 
-#nuisances['electronpt'] = {
-#    'name': 'CMS_scale_e_2016',
-#    'kind': 'suffix',
-#    'type': 'shape',
-#    'mapUp' : 'ElepTup',
-#    'mapDown': 'ElepTdo',
-#    'samples': dict((skey, ['1', '1']) for skey in mc),
-#    'folderUp': 'root://eoscms.cern.ch/'+makeMCDirectory('ElepTup_suffix'),
-#    'folderDown': 'root://eoscms.cern.ch/'+makeMCDirectory('ElepTdo_suffix'),
-#    'AsLnN': '0'
-#}
+nuisances['eff_ttHMVA_e'] = {
+    'name'    : 'CMS_eff_ttHMVA_e_2016_HIPM',
+    'kind'    : 'weight',
+    'type'    : 'shape',
+    'samples' : dict((skey, ['ttHMVASFUL_eleUp', 'ttHMVAULSF_eleDown']) for skey in mc)
+}
+
+nuisances['electronpt'] = {
+    'name'       : 'CMS_scale_e_2016_HIPM',
+    'kind'       : 'suffix',
+    'type'       : 'shape',
+    'mapUp'      : 'ElepTup',
+    'mapDown'    : 'ElepTdo',
+    'samples'    : dict((skey, ['1', '1']) for skey in mc if not skey in ["ggHToWWOnshell", "ggHToWWOffshell", "qqH_sand_off", "qqH_bonly_off", "qqH_sonly_off", "qqH_sand_on", "qqH_sonly_on", "qqH_bonly_on"]),
+    'folderUp'   : makeMCDirectory('ElepTup_suffix'),
+    'folderDown' : makeMCDirectory('ElepTdo_suffix'),
+    'AsLnN'      : '1'
+}
+
+
+nuisances['electronpt_sig'] = {
+    'name'       : 'CMS_scale_e_2016_HIPM',
+    'kind'       : 'suffix',
+    'type'       : 'shape',
+    'mapUp'      : 'ElepTup',
+    'mapDown'    : 'ElepTdo',
+    'samples'    : dict((skey, ['1', '1']) for skey in mc if skey in ["ggHToWWOnshell", "ggHToWWOffshell", "qqH_sand_off", "qqH_bonly_off", "qqH_sonly_off", "qqH_sand_on", "qqH_sonly_on", "qqH_bonly_on"]),
+    'folderUp'   : makeSignalDirectory('ElepTup_suffix'),
+    'folderDown' : makeSignalDirectory('ElepTdo_suffix'),
+    'AsLnN'      : '1'
+}
 
 ##### Muon Efficiency and energy scale
 
+id_syst_mu = ['SFweightMuUp', 'SFweightMuDown']
+
 nuisances['eff_m'] = {
-    'name': 'CMS_eff_m_2016',
-    'kind': 'weight',
-    'type': 'shape',
-    'samples': dict((skey, ['SFweightMuUp', 'SFweightMuDown']) for skey in mc),
-    #'AsLnN': '1'
+    'name'   : 'CMS_eff_m_2016_HIPM',
+    'kind'   : 'weight',
+    'type'   : 'shape',
+    'samples': dict((skey, id_syst_mu) for skey in mc),
 }
 
-#nuisances['muonpt'] = {
-#    'name': 'CMS_scale_m_2016',
-#    'kind': 'suffix',
-#    'type': 'shape',
-#    'mapUp': 'MupTup',
-#    'mapDown': 'MupTdo',
-#    'samples': dict((skey, ['1', '1']) for skey in mc),
-#    'folderUp': 'root://eoscms.cern.ch/'+makeMCDirectory('MupTup_suffix'),
-#    'folderDown': 'root://eoscms.cern.ch/'+makeMCDirectory('MupTdo_suffix'),
-#    'AsLnN': '0'
-#}
+nuisances['eff_ttHMVA_m'] = {
+    'name'   : 'CMS_eff_ttHMVA_m_2016_HIPM',
+    'kind'   : 'weight',
+    'type'   : 'shape',
+    'samples': dict((skey, ['ttHMVAULSF_muUp', 'ttHMVAULSF_muDown']) for skey in mc)
+}
 
-###### Jet energy scale
+nuisances['muonpt'] = {
+    'name'       : 'CMS_scale_m_2016_HIPM',
+    'kind'       : 'suffix',
+    'type'       : 'shape',
+    'mapUp'      : 'MupTup',
+    'mapDown'    : 'MupTdo',
+    'samples'    : dict((skey, ['1', '1']) for skey in mc if not skey in ["ggHToWWOnshell", "ggHToWWOffshell", "qqH_sand_off", "qqH_bonly_off", "qqH_sonly_off", "qqH_sand_on", "qqH_sonly_on", "qqH_bonly_on"]),
+    'folderUp'   : makeMCDirectory('MupTup_suffix'),
+    'folderDown' : makeMCDirectory('MupTdo_suffix'),
+    'AsLnN'      : '1'
+}
+
+
+nuisances['muonpt_sig'] = {
+    'name'       : 'CMS_scale_m_2016_HIPM',
+    'kind'       : 'suffix',
+    'type'       : 'shape',
+    'mapUp'      : 'MupTup',
+    'mapDown'    : 'MupTdo',
+    'samples'    : dict((skey, ['1', '1']) for skey in mc if skey in ["ggHToWWOnshell", "ggHToWWOffshell", "qqH_sand_off", "qqH_bonly_off", "qqH_sonly_off", "qqH_sand_on", "qqH_sonly_on", "qqH_bonly_on"]),
+    'folderUp'   : makeSignalDirectory('MupTup_suffix'),
+    'folderDown' : makeSignalDirectory('MupTdo_suffix'),
+    'AsLnN'      : '1'
+}
 
 ##### Jet energy scale
-#jes_systs = ['JESAbsolute','JESAbsolute_2016','JESBBEC1','JESBBEC1_2016','JESEC2','JESEC2_2016','JESFlavorQCD','JESHF','JESHF_2016','JESRelativeBal','JESRelativeSample_2016']
-#folderup = ""
-#folderdo = ""
+"""
+jes_systs = ['JESAbsolute','JESAbsolute_2017','JESBBEC1','JESBBEC1_2017','JESEC2','JESEC2_2017','JESFlavorQCD','JESHF','JESHF_2017','JESRelativeBal','JESRelativeSample_2017']
 
-#for js in jes_systs:
-#  if 'Absolute' in js:
-#    folderup = 'root://eoscms.cern.ch/'+makeMCDirectory('JESAbsoluteup_suffix')
-#    folderdo = 'root://eoscms.cern.ch/'+makeMCDirectory('JESAbsolutedo_suffix')
-#  elif 'BBEC1' in js:
-#    folderup = 'root://eoscms.cern.ch/'+makeMCDirectory('JESBBEC1up_suffix')
-#    folderdo = 'root://eoscms.cern.ch/'+makeMCDirectory('JESBBEC1do_suffix')
-#  elif 'EC2' in js:
-#    folderup = 'root://eoscms.cern.ch/'+makeMCDirectory('JESEC2up_suffix')
-#    folderdo = 'root://eoscms.cern.ch/'+makeMCDirectory('JESEC2do_suffix')
-#  elif 'HF' in js:
-#    folderup = 'root://eoscms.cern.ch/'+makeMCDirectory('JESHFup_suffix')
-#    folderdo = 'root://eoscms.cern.ch/'+makeMCDirectory('JESHFdo_suffix')
-#  elif 'Relative' in js:
-#    folderup = 'root://eoscms.cern.ch/'+makeMCDirectory('JESRelativeup_suffix')
-#    folderdo = 'root://eoscms.cern.ch/'+makeMCDirectory('JESRelativedo_suffix')
-#  elif 'FlavorQCD' in js:
-#    folderup = 'root://eoscms.cern.ch/'+makeMCDirectory('JESFlavorQCDup_suffix')
-#    folderdo = 'root://eoscms.cern.ch/'+makeMCDirectory('JESFlavorQCDdo_suffix')
+for js in jes_systs:
 
-#  nuisances[js] = {
-#      'name': 'CMS_scale_'+js,
-#      'kind': 'suffix',
-#      'type': 'shape',
-#      'mapUp': js+'up',
-#      'mapDown': js+'do',
-#      'samples': dict((skey, ['1', '1']) for skey in mc),
-#      'folderUp': folderup,
-#      'folderDown': folderdo,
-#      'reweight' : ['btagSF'+js.replace('JES','jes')+'up/btagSF','btagSF'+js.replace('JES','jes')+'down/btagSF']
-#      'AsLnN': '0'
-#  }
+  nuisances[js] = {
+      'name'      : 'CMS_scale_' + js,
+      'kind'      : 'suffix',
+      'type'      : 'shape',
+      'mapUp'     : js + 'up',
+      'mapDown'   : js + 'do',
+      'samples'   : dict((skey, ['1', '1']) for skey in mc if not skey in ["ggHToWWOnshell", "ggHToWWOffshell", "qqH_sand_off", "qqH_bonly_off", "qqH_sonly_off", "qqH_sand_on", "qqH_sonly_on", "qqH_bonly_on"]),
+      'folderUp'  : makeMCDirectory('RDF__JESup_suffix'),
+      'folderDown': makeMCDirectory('RDF__JESdo_suffix'),
+      'AsLnN'     : '1'
+  }
 
-##### MET energy scale
-
-#nuisances['met'] = {
-#    'name': 'CMS_scale_met_2016',
-#    'kind': 'suffix',
-#    'type': 'shape',
-#    'mapUp': 'METup',
-#    'mapDown': 'METdo',
-#    'samples': dict((skey, ['1', '1']) for skey in mc),
-#    'folderUp': 'root://eoscms.cern.ch/'+makeMCDirectory('METup_suffix'),
-#    'folderDown': 'root://eoscms.cern.ch/'+makeMCDirectory('METdo_suffix'),
-#    'AsLnN': '0'
-#}
-
-### PU ID SF uncertainty
-puid_syst = ['Jet_PUIDSF_up/Jet_PUIDSF', 'Jet_PUIDSF_down/Jet_PUIDSF']
-
-nuisances['jetPUID'] = {
-    'name': 'CMS_PUID_2016',
-    'kind': 'weight',
-    'type': 'shape',
-    'samples': dict((skey, puid_syst) for skey in mc)
+"""
+##### Jet energy resolution
+nuisances['JER'] = {
+    'name'      : 'CMS_res_j_2016_HIPM',
+    'kind'      : 'suffix',
+    'type'      : 'shape',
+    'mapUp'     : 'JERup',
+    'mapDown'   : 'JERdo',
+    'samples'   : dict((skey, ['1', '1']) for skey in mc if not skey in ["ggHToWWOnshell", "ggHToWWOffshell", "qqH_sand_off", "qqH_bonly_off", "qqH_sonly_off", "qqH_sand_on", "qqH_sonly_on", "qqH_bonly_on"]),
+    'folderUp'  : makeMCDirectory('JERup_suffix'),
+    'folderDown': makeMCDirectory('JERdo_suffix'),
+    'AsLnN'     : '1'
 }
+
+nuisances['JER_sig'] = {
+    'name'      : 'CMS_res_j_2016_HIPM',
+    'kind'      : 'suffix',
+    'type'      : 'shape',
+    'mapUp'     : 'JERup',
+    'mapDown'   : 'JERdo',
+    'samples'   : dict((skey, ['1', '1']) for skey in mc if skey in ["ggHToWWOnshell", "ggHToWWOffshell", "qqH_sand_off", "qqH_bonly_off", "qqH_sonly_off", "qqH_sand_on", "qqH_sonly_on", "qqH_bonly_on"]),
+    'folderUp'  : makeSignalDirectory('JERup_suffix'),
+    'folderDown': makeSignalDirectory('JERdo_suffix'),
+    'AsLnN'     : '1'
+}
+##### MET unclustered energy
+
+nuisances['met'] = {
+    'name'      : 'CMS_scale_met_2016_HIPM',
+    'kind'      : 'suffix',
+    'type'      : 'shape',
+    'mapUp'     : 'METup',
+    'mapDown'   : 'METdo',
+    'samples'   : dict((skey, ['1', '1']) for skey in mc if not skey in ["ggHToWWOnshell", "ggHToWWOffshell", "qqH_sand_off", "qqH_bonly_off", "qqH_sonly_off", "qqH_sand_on", "qqH_sonly_on", "qqH_bonly_on"]),
+    'folderUp'  : makeMCDirectory('METup_suffix'),
+    'folderDown': makeMCDirectory('METdo_suffix'),
+    'AsLnN'     : '1'
+}
+
+"""
+nuisances['met_sig'] = {
+    'name'      : 'CMS_scale_met_2016_HIPM',
+    'kind'      : 'suffix',
+    'type'      : 'shape',
+    'mapUp'     : 'METup',
+    'mapDown'   : 'METdo',
+    'samples'   : dict((skey, ['1', '1']) for skey in mc if skey in ["ggHToWWOnshell", "ggHToWWOffshell", "qqH_sand_off", "qqH_bonly_off", "qqH_sonly_off", "qqH_sand_on", "qqH_sonly_on", "qqH_bonly_on"]),
+    'folderUp'  : makeSignalDirectory('METup_suffix'),
+    'folderDown': makeSignalDirectory('METdo_suffix'),
+    'AsLnN'     : '1'
+}
+"""
+
+# # nuisances['PS_whss']  = {
+#                 # 'name'  : 'PS_whss',
+#                 # 'skipCMS' : 1,
+#                 # 'type'  : 'lnN',
+#                 # 'samples': dict((skey, '1.037') for skey in mc),
+# # }
 
 ##### Pileup
 
+# puWeight_UL2017 ##### ASK PEDRO ---  PUT 1.0 for each of the samples qqH_sonly, qqH_bonly, qqH_sand
 nuisances['PU'] = {
-    'name': 'CMS_PU_2016',
-    'kind': 'weight',
-    'type': 'shape',
-    'samples': {
-        'DY'      : ['1.002111*(puWeightUp/puWeight)', '0.998604*(puWeightDown/puWeight)'],
-        'WW'      : ['1.005842*(puWeightUp/puWeight)', '0.994781*(puWeightDown/puWeight)'],
-        'ggWW'    : ['1.008167*(puWeightUp/puWeight)', '0.992452*(puWeightDown/puWeight)'],
-        'Vg'      : ['0.995811*(puWeightUp/puWeight)', '1.005036*(puWeightDown/puWeight)'],
-        'WZ'      : ['0.996220*(puWeightUp/puWeight)', '1.003307*(puWeightDown/puWeight)'],
-        'ZZ'      : ['1.001171*(puWeightUp/puWeight)', '0.998350*(puWeightDown/puWeight)'],
-        'VVV'     : ['1.005770*(puWeightUp/puWeight)', '0.996468*(puWeightDown/puWeight)'],
-        'top'     : ['1.005322*(puWeightUp/puWeight)', '0.995195*(puWeightDown/puWeight)'],
-        'Higgs'   : ['1.005818*(puWeightUp/puWeight)', '0.994707*(puWeightDown/puWeight)'],
+    'name'    : 'CMS_PU_2016_HIPM',
+    'kind'    : 'weight',
+    'type'    : 'shape',
+    'samples' : {
+        # 'DY'      : ['0.993259983266*(puWeightUp/puWeight)', '0.997656381501*(puWeightDown/puWeight)'],
+        # 'top'     : ['1.00331969187*(puWeightUp/puWeight)' , '0.999199609528*(puWeightDown/puWeight)'],
+        # 'WW'      : ['1.0033022059*(puWeightUp/puWeight)'  , '0.997085330608*(puWeightDown/puWeight)'],
+        # 'ggH_hww' : ['1.0036768006*(puWeightUp/puWeight)'  , '0.995996570285*(puWeightDown/puWeight)'],
+        # 'qqH_hww' : ['1.00374694528*(puWeightUp/puWeight)' , '0.995878596852*(puWeightDown/puWeight)'],
+        'DY'      : ['0.998687*(puWeightUp/puWeight)', '1.001976*(puWeightDown/puWeight)'],
+        'top'     : ['1.002595*(puWeightUp/puWeight)', '0.997470*(puWeightDown/puWeight)'],
+        'WW'      : ['1.004449*(puWeightUp/puWeight)', '0.995660*(puWeightDown/puWeight)'],
+        'ggWW'    : ['1.004870*(puWeightUp/puWeight)', '0.995315*(puWeightDown/puWeight)'],
+        #'WWewk'   : ['1.002122*(puWeightUp/puWeight)', '0.998087*(puWeightDown/puWeight)'],
+        'Vg'      : ['1.023232*(puWeightUp/puWeight)', '0.981481*(puWeightDown/puWeight)'],
+        'WZ'      : ['0.999330*(puWeightUp/puWeight)', '1.000992*(puWeightDown/puWeight)'],
+        'ZZ'      : ['0.999469*(puWeightUp/puWeight)', '1.000751*(puWeightDown/puWeight)'],
+        'VVV'     : ['1.003485*(puWeightUp/puWeight)', '0.997561*(puWeightDown/puWeight)'],
+        #'qqH_sonly_on'        : ['1.0*(puWeightUp/puWeight)', '1.0*(puWeightDown/puWeight)'],
+        #'qqH_sonly_off'        : ['1.0*(puWeightUp/puWeight)', '1.0*(puWeightDown/puWeight)'],
+        #'qqH_bonly_on'        : ['1.0*(puWeightUp/puWeight)', '1.0*(puWeightDown/puWeight)'],
+        #'qqH_bonly_off'        : ['1.0*(puWeightUp/puWeight)', '1.0*(puWeightDown/puWeight)'],
+        #'qqH_sand_on'        : ['1.0*(puWeightUp/puWeight)', '1.0*(puWeightDown/puWeight)'],
+        #'qqH_sand_off'        : ['1.0*(puWeightUp/puWeight)', '1.0*(puWeightDown/puWeight)'],
+        #'ggHToWWOffshell'        : ['1.0*(puWeightUp/puWeight)', '1.0*(puWeightDown/puWeight)'],
+        #'ggHToWWOnshell'        : ['1.0*(puWeightUp/puWeight)', '1.0*(puWeightDown/puWeight)'],
+        #'ggH_hww' : ['1.003677*(puWeightUp/puWeight)', '0.995996*(puWeightDown/puWeight)'],
+        #'qqH_hww' : ['1.003747*(puWeightUp/puWeight)', '0.995878*(puWeightDown/puWeight)'],
     },
-    'AsLnN': '0',
+    'AsLnN'   : '1',
 }
 
-##### PS
+### PU ID SF uncertainty
+
+puid_syst = ['Jet_PUIDSF_loose_up/Jet_PUIDSF_loose', 'Jet_PUIDSF_loose_down/Jet_PUIDSF_loose']
+
+nuisances['jetPUID'] = {
+    'name'    : 'CMS_PUID_2016_HIPM',
+    'kind'    : 'weight',
+    'type'    : 'shape',
+    'samples' : dict((skey, puid_syst) for skey in mc)
+}
+
+### PS and UE
+
 nuisances['PS_ISR']  = {
-    'name': 'PS_ISR',
-    'kind': 'weight',
-    'type': 'shape',
-    'samples': dict((skey, ['PSWeight[2]', 'PSWeight[0]']) for skey in mc if skey not in ['WW','ggWW']),
+    'name'    : 'PS_ISR',
+    'kind'    : 'weight',
+    'type'    : 'shape',
+    'samples' : dict((skey, ['PSWeight[2]', 'PSWeight[0]']) for skey in mc),
+    'AsLnN'   : '1',
 }
-
-norm_ISR_WW   = ['+'.join(['({})*1.0'.format(diffcuts[binname]) if binname == "nonfid" else '({})*({})'.format(diffcuts[binname],nfdict["PS_ISR"]["WW_"+binname][i]) for binname in diffcuts]) for i in range(2)]
-norm_ISR_ggWW = ['+'.join(['({})*1.0'.format(diffcuts[binname]) if binname == "nonfid" else '({})*({})'.format(diffcuts[binname],nfdict["PS_ISR"]["ggWW_"+binname][i]) for binname in diffcuts]) for i in range(2)]
-
-#nuisances['PS_ISR_WW']  = {
-#    'name': 'PS_ISR',
-#    'kind' : 'weight',
-#    'type': 'shape',
-#    'samples': {        
-#        'WW'   : ['({})*PSWeight[2]'.format(norm_ISR_WW[0]),'({})*PSWeight[0]'.format(norm_ISR_WW[1])],
-#        'ggWW' : ['({})*PSWeight[2]'.format(norm_ISR_ggWW[0]),'({})*PSWeight[0]'.format(norm_ISR_ggWW[1])]
-#    }
-#}
 
 nuisances['PS_FSR']  = {
-    'name': 'PS_FSR',
-    'kind': 'weight',
-    'type': 'shape',
-    'samples': dict((skey, ['PSWeight[3]', 'PSWeight[1]']) for skey in mc if skey not in ['WW','ggWW']),
+    'name'    : 'PS_FSR',
+    'kind'    : 'weight',
+    'type'    : 'shape',
+    'samples' : dict((skey, ['PSWeight[3]', 'PSWeight[1]']) for skey in mc),
+    'AsLnN'   : '1',
 }
 
-norm_FSR_WW   = ['+'.join(['({})*1.0'.format(diffcuts[binname]) if binname == "nonfid" else '({})*({})'.format(diffcuts[binname],nfdict["PS_FSR"]["WW_"+binname][i]) for binname in diffcuts]) for i in range(2)]
-norm_FSR_ggWW = ['+'.join(['({})*1.0'.format(diffcuts[binname]) if binname == "nonfid" else '({})*({})'.format(diffcuts[binname],nfdict["PS_FSR"]["ggWW_"+binname][i]) for binname in diffcuts]) for i in range(2)]
-
-#nuisances['PS_FSR_WW']  = {
-#    'name': 'PS_FSR',
-#    'kind' : 'weight',
-#    'type': 'shape',
-#    'samples': {        
-#        'WW'   : ['({})*PSWeight[3]'.format(norm_FSR_WW[0]),  '({})*PSWeight[1]'.format(norm_FSR_WW[1])],
-#        'ggWW' : ['({})*PSWeight[3]'.format(norm_FSR_ggWW[0]),'({})*PSWeight[1]'.format(norm_FSR_ggWW[1])]
-#    }
-#}
-
-# PS and UE
-nuisances['UE']  = {
-                'name'  : 'UE_CUET',
-                'type'  : 'lnN',
-                'samples': dict((skey, '1.015') for skey in mc if skey not in ['WW','ggWW']),
+nuisances['UE_CP5']  = {
+    'name'    : 'UE_CP5',
+    'skipCMS' : 1,
+    'type'    : 'lnN',
+    'samples' : dict((skey, '1.015') for skey in mc),
 }
 
-####### Generic "cross section uncertainties"
+# nuisances['PS_ISR'] = {
+#     'name' : 'PS_ISR',
+#     'kind' : 'weight',
+#     'type' : 'shape',
+#     'samples' : {
+#         'ggZH_hww' : ['1.066107*(nCleanGenJet==0) + 1.047857*(nCleanGenJet==1) + 1.030005*(nCleanGenJet==2) + 1.005028*(nCleanGenJet>=3)', '0.921874*(nCleanGenJet==0) + 0.941939*(nCleanGenJet==1) + 0.962282*(nCleanGenJet==2) + 0.991580*(nCleanGenJet>=3)'],
+#         'ZH_hww'   : ['1.000684*(nCleanGenJet==0) + 1.000924*(nCleanGenJet==1) + 1.001683*(nCleanGenJet==2) + 1.002104*(nCleanGenJet>=3)', '0.999150*(nCleanGenJet==0) + 0.998821*(nCleanGenJet==1) + 0.997859*(nCleanGenJet==2) + 0.997316*(nCleanGenJet>=3)'],
+#         'WZ'       : ['1.002552*(nCleanGenJet==0) + 1.010286*(nCleanGenJet==1) + 1.014420*(nCleanGenJet==2) + 1.006226*(nCleanGenJet>=3)', '0.996802*(nCleanGenJet==0) + 0.987227*(nCleanGenJet==1) + 0.982005*(nCleanGenJet==2) + 0.992030*(nCleanGenJet>=3)'],
+#         'ZZ'       : ['1.003210*(nCleanGenJet==0) + 1.005480*(nCleanGenJet==1) + 1.004674*(nCleanGenJet==2) + 0.987845*(nCleanGenJet>=3)', '0.995997*(nCleanGenJet==0) + 0.993056*(nCleanGenJet==1) + 0.993659*(nCleanGenJet==2) + 1.014695*(nCleanGenJet>=3)'],
+#     },
+# }
 
-apply_on = {
-    'top': [
-        '(topGenPt * antitopGenPt <= 0.) * 1.0816 + (topGenPt * antitopGenPt > 0.)',
-        '(topGenPt * antitopGenPt <= 0.) * 0.9184 + (topGenPt * antitopGenPt > 0.)'
-    ]
-}
+# nuisances['PS_FSR'] = {
+#     'name' : 'PS_FSR',
+#     'kind' : 'weight',
+#     'type' : 'shape',
+#     'samples' : {
+#         'ggZH_hww' : ['0.987316*(nCleanGenJet==0) + 0.986764*(nCleanGenJet==1) + 0.996498*(nCleanGenJet==2) + 1.004161*(nCleanGenJet>=3)', '1.019871*(nCleanGenJet==0) + 1.013853*(nCleanGenJet==1) + 1.005229*(nCleanGenJet==2) + 0.998573*(nCleanGenJet>=3)'],
+#         'ZH_hww'   : ['0.992867*(nCleanGenJet==0) + 0.992845*(nCleanGenJet==1) + 0.999470*(nCleanGenJet==2) + 1.007245*(nCleanGenJet>=3)', '1.012465*(nCleanGenJet==0) + 1.012743*(nCleanGenJet==1) + 1.003215*(nCleanGenJet==2) + 0.991286*(nCleanGenJet>=3)'],
+#         'WZ'       : ['0.992987*(nCleanGenJet==0) + 0.993725*(nCleanGenJet==1) + 1.000617*(nCleanGenJet==2) + 1.010869*(nCleanGenJet>=3)', '1.011267*(nCleanGenJet==0) + 1.010097*(nCleanGenJet==1) + 0.999445*(nCleanGenJet==2) + 0.983609*(nCleanGenJet>=3)'],
+#         'ZZ'       : ['0.997245*(nCleanGenJet==0) + 0.998689*(nCleanGenJet==1) + 1.004475*(nCleanGenJet==2) + 1.011440*(nCleanGenJet>=3)', '1.004482*(nCleanGenJet==0) + 1.002081*(nCleanGenJet==1) + 0.992617*(nCleanGenJet==2) + 0.981314*(nCleanGenJet>=3)'],
+#     },
+# }
 
-nuisances['singleTopToTTbar'] = {
-    'name': 'singleTopToTTbar',
-    'kind': 'weight',
-    'type': 'shape',
-    'samples': apply_on
-}
-
-## Top pT reweighting uncertainty
-
-#nuisances['TopPtRew'] = {
-#    'name': 'CMS_topPtRew',   # Theory uncertainty
-#    'kind': 'weight',
-#    'type': 'shape',
-#    'samples': {'top': ["1.", "1./Top_pTrw"]},
-#    'symmetrize': True
-#}
-
-for cut in allcuts:
-    nuisances['WgStar_'+cut] = {
-        'name': 'CMS_hww_WgStarScale',
-        'type': 'lnN',
-        'samples': {
-            'Vg': '{:.3f}'.format(1.25*sfdict[cut]['Vg']['WgS']+1.0*(1.0-sfdict[cut]['Vg']['WgS']))
-        },
-        'cuts' : [cut]
-    }
-
+###### pdf uncertainties #### 
 
 ###### pdf uncertainties
 
-values = {
-    'ggH_hww'  : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ggH', '125.09','pdf','sm'),
-    'qqH_hww'  : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','vbfH','125.09','pdf','sm'),
-    'WH_hww'   : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','WH',  '125.09','pdf','sm'),
-    'ZH_hww'   : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ZH',  '125.09','pdf','sm'),
-    'ggZH_hww' : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ggZH','125.09','pdf','sm'),
-    'ttH_hww'  : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ttH', '125.09','pdf','sm'),
-    'ggH_htt'  : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ggH', '125.09','pdf','sm'),
-    'qqH_htt'  : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','vbfH','125.09','pdf','sm'),
-    'WH_htt'   : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','WH',  '125.09','pdf','sm'),
-    'ZH_htt'   : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ZH',  '125.09','pdf','sm')
-}
+# PDF eigenvariations for WW and top
+for i in range(1,33):
+  # LHEPdfWeight are PDF4LHC variations, while nominal is NNPDF.
+  # LHEPdfWeight[i] reweights from NNPDF nominal to PDF4LHC member i
+  # LHEPdfWeight[0] in particular reweights from NNPDF nominal to PDF4LHC nominal
+  pdf_variations = ["LHEPdfWeight[%d]/LHEPdfWeight[0]" %i, "2. - LHEPdfWeight[%d]/LHEPdfWeight[0]" %i ]
 
-for cut in allcuts:
-    nuisances['pdf_Higgs_'+cut] = {
-        'name': 'pdf_Higgs',
-        'samples': {
-            'Higgs' : '{:.3f}'.format(sum([float(values[subsample])*sfdict[cut]['Higgs'][subsample] for subsample in values]))
-        },
-        'type': 'lnN',
-        'cuts' : [cut]
-    }
-
-nuisances['pdf_qqbar'] = {
-    'name': 'pdf_qqbar',
-    'type': 'lnN',
-    'samples': {
-        'Vg': '1.04',
-        'ZZ': '1.04',  # PDF: 0.0064 / 0.1427 = 0.0448493
-        'WZ': '1.04',  # PDF: 0.0064 / 0.1427 = 0.0448493
-    },
-}
-
-values = {'ggH_hww' : '1.006',
-          'qqH_hww' : '1.002',
-          'WH_hww'  : '1.003',
-          'ZH_hww'  : '1.002',
-          'ggZH_hww': '1.006',
-          'ttH_hww' : '1.000', #No value for ttH_hww?
-          'ggH_htt' : '1.006',
-          'qqH_htt' : '1.002',
-          'WH_htt'  : '1.003',
-          'ZH_htt'  : '1.002'}
-
-for cut in allcuts:
-    nuisances['pdf_Higgs_ACCEPT_'+cut] = {
-        'name': 'pdf_Higgs_ACCEPT',
-        'samples': {
-            'Higgs' : '{:.3f}'.format(sum([float(values[subsample])*sfdict[cut]['Higgs'][subsample] for subsample in values]))
-        },
-        'type': 'lnN',
-        'cuts' : [cut]
-    }
-
-#nuisances['pdf_gg_ACCEPT'] = {
-#    'name': 'pdf_gg_ACCEPT',
-#    'samples': {
-#        'ggWW': '1.006',
-#    },
-#    'type': 'lnN',
-#}
-
-nuisances['pdf_qqbar_ACCEPT'] = {
-    'name': 'pdf_qqbar_ACCEPT',
-    'type': 'lnN',
-    'samples': {
-        'ZZ': '1.001',
-        'WZ': '1.001',
-    },
-}
-
-# PDF
-pdf_variations = ["LHEPdfWeight[%d]" %i for i in range(1,101)] # Float_t LHE pdf variation weights (w_var / w_nominal) for LHA IDs 320901 - 321000
-nuisances['pdf_WW']  = {
-    'name'  : 'CMS_hww_pdf_WW',
-    'kind'  : 'weight_rms',
+  nuisances['pdf_WW_eigen'+str(i)]  = {
+    'name'  : 'CMS_hww_pdf_WW_eigen'+str(i)+'_2016_HIPM',
+    'skipCMS' : 1,
+    'kind'  : 'weight',
     'type'  : 'shape',
     'samples'  : {
-        'WW'   : pdf_variations,
+      'WW'   : pdf_variations,
     },
-    'scale' : nfdict["pdf_WW"]
-}
+  }
+  nuisances['pdf_top_eigen'+str(i)]  = {
+    'name'  : 'CMS_hww_pdf_top_eigen'+str(i)+'_2016_HIPM',
+    'skipCMS' : 1,
+    'kind'  : 'weight',
+    'type'  : 'shape',
+    'samples'  : {
+      'top'   : pdf_variations,
+    },
+  }
+  nuisances['pdf_ggH_eigen'+str(i)]  = {
+    'name'  : 'CMS_hww_pdf_ggH_eigen'+str(i)+'_2016_HIPM',
+    'skipCMS' : 1,
+    'kind'  : 'weight',
+    'type'  : 'shape',
+    'samples'  : {
+      'ggHToWWOnshell'   : pdf_variations,
+      'ggHToWWOffshell'   : pdf_variations,
+    },
+  }
+  nuisances['pdf_VBF_sonly_eigen'+str(i)]  = {
+    'name'  : 'CMS_hww_pdf_VBF_sonly_eigen'+str(i)+'_2016_HIPM',
+    'skipCMS' : 1,
+    'kind'  : 'weight',
+    'type'  : 'shape',
+    'samples'  : {
+      'qqH_sonly_on'   : pdf_variations, 
+      'qqH_sonly_off'   : pdf_variations,
+    },
+  }
+  nuisances['pdf_VBF_bonly_eigen'+str(i)]  = {
+    'name'  : 'CMS_hww_pdf_VBF_sonly_eigen'+str(i)+'_2016_HIPM',
+    'skipCMS' : 1,
+    'kind'  : 'weight',
+    'type'  : 'shape',
+    'samples'  : {
+      'qqH_bonly_on'   : pdf_variations,  
+      'qqH_bonly_off'   : pdf_variations,
+    },
+  }
+  nuisances['pdf_VBF_sand_eigen'+str(i)]  = {
+    'name'  : 'CMS_hww_pdf_VBF_sand_eigen'+str(i)+'_2016_HIPM',
+    'skipCMS' : 1,
+    'kind'  : 'weight',
+    'type'  : 'shape',
+    'samples'  : {
+      'qqH_sand_on'   : pdf_variations,  
+      'qqH_sand_off'   : pdf_variations,
+    },
+  }
 
-##### Renormalization & factorization scales
 
-## Shape nuisance due to QCD scale variations for DY
-# LHE scale variation weights (w_var / w_nominal)
-
-## This should work for samples with either 8 or 9 LHE scale weights (Length$(LHEScaleWeight) == 8 or 9)
-variations   = ['Alt$(LHEScaleWeight[0],1)', 'Alt$(LHEScaleWeight[1],1)', 'Alt$(LHEScaleWeight[3],1)', 'Alt$(LHEScaleWeight[nLHEScaleWeight-4],1)', 'Alt$(LHEScaleWeight[nLHEScaleWeight-2],1)', 'Alt$(LHEScaleWeight[nLHEScaleWeight-1],1)']
+### QCD
+variations = ['LHEScaleWeight[0]', 'LHEScaleWeight[1]', 'LHEScaleWeight[3]', 'LHEScaleWeight[Length$(LHEScaleWeight)-4]', 'LHEScaleWeight[Length$(LHEScaleWeight)-2]', 'LHEScaleWeight[Length$(LHEScaleWeight)-1]']
 
 nuisances['QCDscale_V'] = {
-    'name': 'QCDscale_V',
+    'name': 'QCDscale_V_2016_HIPM',
     'kind': 'weight_envelope',
     'type': 'shape',
     'samples': {'DY': variations},
-    'AsLnN': '0'
 }
-
 nuisances['QCDscale_VV'] = {
-    'name': 'QCDscale_VV',
+    'name': 'QCDscale_VV_2016_HIPM',
     'kind': 'weight_envelope',
     'type': 'shape',
     'samples': {
         'Vg': variations,
-        'ZZ': variations,
-        'WZ': variations,
-    }
+        'VZ': variations,
+        'VgS': variations
+    },
+}
+nuisances['QCDscale_top']  = {
+               'name'  : 'QCDscale_top_2016_HIPM',
+                'kind'  : 'weight_envelope',
+                'type'  : 'shape',
+                'samples'  : {
+                   'top' : variations,
+                   }
 }
 
-norm_QCD = ['+'.join(['({})*1.0'.format(diffcuts[binname]) if binname == "nonfid" else '({})*({})'.format(diffcuts[binname],nfdict["QCDscale_WW"]["WW_"+binname][0]) for binname in diffcuts]),
-            '+'.join(['({})*1.0'.format(diffcuts[binname]) if binname == "nonfid" else '({})*({})'.format(diffcuts[binname],nfdict["QCDscale_WW"]["WW_"+binname][1]) for binname in diffcuts])]
-
-nuisances['QCDscale_WW']  = {
-    'name'  : 'QCDscale_WW',
-    'kind'  : 'weight',
-    'type'  : 'shape',
-    'samples'  : {
-        'WW' : ['Alt$(LHEScaleWeight[0],1)*('+norm_QCD[0]+')','Alt$(LHEScaleWeight[8],1)*('+norm_QCD[1]+')'],
-    }
+nuisances['QCDscale_qqVV']  = {
+               'name'  : 'QCDscale_qqVV_2016_HIPM',
+                'kind'  : 'weight_envelope',
+                'type'  : 'shape',
+                'samples'  : {
+                   'qqH_bonly_on' : variations,
+                   'qqH_bonly_off' : variations,
+                   }
 }
 
-## Factors computed to renormalize the top scale variations such that the integral is not changed in each RECO jet bin (we have rateParams for that)
-topScaleNormFactors = {
-    '0j' : {'Alt$(LHEScaleWeight[0],1)' : 1.076370, 'Alt$(LHEScaleWeight[1],1)' : 1.075482, 'Alt$(LHEScaleWeight[3],1)' : 1.003165, 'Alt$(LHEScaleWeight[5],1)' : 0.999958, 'Alt$(LHEScaleWeight[7],1)' : 0.924178, 'Alt$(LHEScaleWeight[8],1)' : 0.921896},
-    '1j' : {'Alt$(LHEScaleWeight[0],1)' : 1.085799, 'Alt$(LHEScaleWeight[1],1)' : 1.081509, 'Alt$(LHEScaleWeight[3],1)' : 1.008318, 'Alt$(LHEScaleWeight[5],1)' : 0.995526, 'Alt$(LHEScaleWeight[7],1)' : 0.919022, 'Alt$(LHEScaleWeight[8],1)' : 0.911542},
-    '2j' : {'Alt$(LHEScaleWeight[0],1)' : 1.123881, 'Alt$(LHEScaleWeight[1],1)' : 1.104965, 'Alt$(LHEScaleWeight[3],1)' : 1.023234, 'Alt$(LHEScaleWeight[5],1)' : 0.982333, 'Alt$(LHEScaleWeight[7],1)' : 0.902790, 'Alt$(LHEScaleWeight[8],1)' : 0.882525},
-}
-
-## QCD scale nuisances for top are decorrelated for each RECO jet bin: the QCD scale is different for different jet multiplicities so it doesn't make sense to correlate them
-for ibin in cuts['ww2l2v_13TeV_top']['categories']:
-    topvars = []
-    topvars.append('Alt$(LHEScaleWeight[0],1)/'+str(topScaleNormFactors[ibin]['Alt$(LHEScaleWeight[0],1)']))
-    topvars.append('Alt$(LHEScaleWeight[8],1)/'+str(topScaleNormFactors[ibin]['Alt$(LHEScaleWeight[8],1)']))
-
-    nuisances['QCDscale_top_'+ibin]  = {
-        'name'  : 'QCDscale_top_'+ibin,
-        'kind'  : 'weight',
-        'type'  : 'shape',
-        'cutspost' : lambda self, cuts: [cut for cut in cuts if self['name'].split('_')[-1] in cut],
-        'samples'  : {
-            'top' : topvars,
-        }
-    }
-
-# ggww and interference
-#nuisances['QCDscale_ggVV'] = {
-#    'name': 'QCDscale_ggVV',
-#    'type': 'lnN',
-#    'samples': {
-#        'ggWW': '1.15',
-#    },
-#}
-
-# WW resummation (to be updated, but keep for now)
-norm_WWresum = ['+'.join(['({})*1.0'.format(diffcuts[binname]) if binname == "nonfid" else '({})*({})'.format(diffcuts[binname],nfdict["CMS_hww_WWresum"]["WW_"+binname][0]) for binname in diffcuts]),
-                '+'.join(['({})*1.0'.format(diffcuts[binname]) if binname == "nonfid" else '({})*({})'.format(diffcuts[binname],nfdict["CMS_hww_WWresum"]["WW_"+binname][1]) for binname in diffcuts])]
-
-nuisances['WWresum']  = {
-    'name'  : 'CMS_hww_WWresum',
-    'kind'  : 'weight',
-    'type'  : 'shape',
-    'samples'  : {
-        'WW'   : ['nllW_Rup/nllW*('+norm_WWresum[0]+')', 'nllW_Rdown/nllW*('+norm_WWresum[1]+')'],
+nuisances['QCDscale_ggVV'] = {
+    'name': 'QCDscale_ggVV_2016_HIPM',
+    'type': 'lnN',
+    'samples': {
+        'ggWW': '1.15',
     },
 }
 
-norm_WWqscale = ['+'.join(['({})*1.0'.format(diffcuts[binname]) if binname == "nonfid" else '({})*({})'.format(diffcuts[binname],nfdict["CMS_hww_WWqscale"]["WW_"+binname][0]) for binname in diffcuts]),
-                 '+'.join(['({})*1.0'.format(diffcuts[binname]) if binname == "nonfid" else '({})*({})'.format(diffcuts[binname],nfdict["CMS_hww_WWqscale"]["WW_"+binname][1]) for binname in diffcuts])]
+values_VBF_scale = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','vbfH','125.09','scale','sm')
+values_VBF_pdf = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','vbfH','125.09','pdf','sm')
+
+sances['QCDscale_VBF_ACCEPT'] = {
+    'name'    : 'QCDscale_VBF_accept_2016_HIPM',
+    'samples' : {
+        'qqH_sonly_on' : values_VBF_scale,
+        'qqH_sonly_off' : values_VBF_scale,
+    },
+    'type' : 'lnN'
+}
+}
+
+nuisances['pdf_VBF_ACCEPT'] = {
+    'name'    : 'pdf_VBF_accept_2016_HIPM',
+    'type'    : 'lnN',
+    'samples' : {
+        'qqH_sonly_on' : values_VBF_pdf,
+        'qqH_sonly_off' : values_VBF_pdf,
+    },
+}
+
+
+"""
+valuesggh  = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ggH', '125.09','pdf','sm')
+valuesggzh = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ggZH','125.09','pdf','sm')
+valuesbbh  = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','bbH', '125.09','pdf','sm')
+
+nuisances['pdf_Higgs_gg'] = {
+    'name' : 'pdf_Higgs_gg',
+    'samples' : {
+        'ggH_hww'  : valuesggh,
+        'ggH_htt'  : valuesggh,
+        'ggZH_hww' : valuesggzh,
+        'bbH_hww'  : valuesbbh
+    },
+    'type' : 'lnN',
+}
+
+values = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ttH','125.09','pdf','sm')
+
+nuisances['pdf_Higgs_ttH'] = {
+    'name'    : 'pdf_Higgs_ttH',
+    'samples' : {
+        'ttH_hww' : values
+    },
+    'type' : 'lnN',
+}
+
+valuesqqh = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','vbfH','125.09','pdf','sm')
+valueswh  = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','WH',  '125.09','pdf','sm')
+valueszh  = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ZH',  '125.09','pdf','sm')
+
+nuisances['pdf_Higgs_qqbar'] = {
+    'name'    : 'pdf_Higgs_qqbar',
+    'type'    : 'lnN',
+    'samples' : {
+        'qqH_hww'      : valuesqqh,
+        'qqH_htt'      : valuesqqh,
+        'WH_hww_plus'  : valueswh,
+        'WH_hww_minus' : valueswh,
+        'WH_htt_plus'  : valueswh,
+        'WH_htt_minus' : valueswh,
+        'ZH_hww'       : valueszh,
+        'ZH_htt'       : valueszh
+    },
+}
+
+nuisances['pdf_qqbar'] = {
+    'name'    : 'pdf_qqbar',
+    'type'    : 'lnN',
+    'samples' : {
+        'Wg'  : '1.04',
+        'Zg'  : '1.04',
+        'ZZ'  : '1.04', # PDF: 0.0064 / 0.1427 = 0.0448493
+        'WZ'  : '1.04', # PDF: 0.0064 / 0.1427 = 0.0448493
+        'WgS' : '1.04', # PDF: 0.0064 / 0.1427 = 0.0448493
+        'ZgS' : '1.04', # PDF: 0.0064 / 0.1427 = 0.0448493
+    },
+}
+
+nuisances['pdf_Higgs_gg_ACCEPT'] = {
+    'name'    : 'pdf_Higgs_gg_ACCEPT',
+    'samples' : {
+        'ggH_hww'  : '1.006',
+        'ggH_htt'  : '1.006',
+        'ggZH_hww' : '1.006',
+        'bbH_hww'  : '1.006'
+    },
+    'type'    : 'lnN',
+}
+nuisances['pdf_gg_ACCEPT'] = {
+    'name'    : 'pdf_gg_ACCEPT',
+    'samples' : {
+        'ggWW' : '1.006',
+    },
+    'type'    : 'lnN',
+}
+
+nuisances['pdf_Higgs_qqbar_ACCEPT'] = {
+    'name'    : 'pdf_Higgs_qqbar_ACCEPT',
+    'type'    : 'lnN',
+    'samples' : {
+        'qqH_hww'      : '1.002',
+        'qqH_htt'      : '1.002',
+        'WH_hww_plus'  : '1.003',
+        'WH_hww_minus' : '1.003',
+        'WH_htt_plus'  : '1.003',
+        'WH_htt_minus' : '1.003',
+        'ZH_hww'       : '1.002',
+        'ZH_htt'       : '1.002',
+    },
+}
+
+nuisances['pdf_qqbar_ACCEPT'] = {
+    'name'    : 'pdf_qqbar_ACCEPT',
+    'type'    : 'lnN',
+    'samples' : {
+        'ZZ' : '1.001',
+        'WZ' : '1.001',
+    },
+}
+"""
+
+# NLL resummation variations. Removed normalization effect
+nuisances['WWresum']  = {
+  'name'  : 'CMS_hww_WWresum',
+  'skipCMS' : 1,
+  'kind'  : 'weight',
+  'type'  : 'shape',
+  'samples'  : {
+      'WW'   : ['(nllW_Rup/nllW)/(9395.5/9280.9)', '(nllW_Rdown/nllW)/(8854.1/9280.9)'],
+   },
+}
 
 nuisances['WWqscale']  = {
-    'name'  : 'CMS_hww_WWqscale',
-    'kind'  : 'weight',
-    'type'  : 'shape',
-    'samples'  : {
-        'WW'   : ['nllW_Qup/nllW*('+norm_WWqscale[0]+')', 'nllW_Qdown/nllW*('+norm_WWqscale[1]+')'],
+   'name'  : 'CMS_hww_WWqscale',
+   'skipCMS' : 1,
+   'kind'  : 'weight',
+   'type'  : 'shape',
+   'samples'  : {
+      'WW'   : ['(nllW_Qup/nllW)/(9218.6/9280.9)', '(nllW_Qdown/nllW)/(9333.6/9280.9)'],
+    },
+}
+
+
+# WW EWK NLO correction uncertainty
+nuisances['EWKcorr_WW'] = {
+    'name': 'CMS_hww_EWKcorr_WW',
+    'skipCMS': 1,
+    'kind': 'weight',
+    'type': 'shape',
+    'samples': {
+        'WW': ['1.', '1./ewknloW']
+    },
+    'symmetrize' : True,
+}
+
+
+##### Renormalization & factorization scales
+"""
+## Shape nuisance due to QCD scale variations for DY
+# LHE scale variation weights (w_var / w_nominal)
+
+## This should work for samples with either 8 or 9 LHE scale weights (Length$(LHEScaleWeight) == 8 or 9)
+variations = ['Alt$(LHEScaleWeight[0],1)', 'Alt$(LHEScaleWeight[1],1)', 'Alt$(LHEScaleWeight[3],1)', 'Alt$(LHEScaleWeight[nLHEScaleWeight-4],1)', 'Alt$(LHEScaleWeight[nLHEScaleWeight-2],1)', 'Alt$(LHEScaleWeight[nLHEScaleWeight-1],1)']
+
+# nuisances['QCDscale_V'] = {
+#     'name': 'QCDscale_V',
+#     'skipCMS': 1,
+#     'kind': 'weight_envelope',
+#     'type': 'shape',
+#     'samples': {
+#         'DY': variations
+#     },
+#     'AsLnN': '1'
+# }
+
+nuisances['QCDscale_VV'] = {
+    'name'    : 'QCDscale_VV',
+    'kind'    : 'weight_envelope',
+    'type'    : 'shape',
+    'samples' : {
+        'WW'  : variations,
+        'Zg'  : variations,
+        'Wg'  : variations,
+        'ZZ'  : variations,
+        'WZ'  : variations,
+        'WgS' : variations,
+        'ZgS' : variations
+    }
+}
+
+nuisances['QCDscale_ggVV'] = {
+    'name'    : 'QCDscale_ggVV',
+    'type'    : 'lnN',
+    'samples' : {
+        'ggWW' : '1.15',
     },
 }
 
 #### QCD scale uncertainties for Higgs signals other than ggH
 
-values = {
-    'ggH_hww'  : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ggH' ,'125.09','scale','sm'),
-    'qqH_hww'  : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','vbfH','125.09','scale','sm'),
-    'WH_hww'   : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','WH'  ,'125.09','scale','sm'),
-    'ZH_hww'   : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ZH'  ,'125.09','scale','sm'),
-    'ggZH_hww' : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ggZH','125.09','scale','sm'),
-    'ttH_hww'  : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ttH' ,'125.09','scale','sm'),
-    'ggH_htt'  : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ggH' ,'125.09','scale','sm'),
-    'qqH_htt'  : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','vbfH','125.09','scale','sm'),
-    'WH_htt'   : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','WH'  ,'125.09','scale','sm'),
-    'ZH_htt'   : HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ZH'  ,'125.09','scale','sm')
-}
+values = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','vbfH','125.09','scale','sm')
 
-for cut in allcuts:
-    nuisances['QCDscale_Higgs_'+cut] = {
-        'name': 'QCDscale_Higgs',
-        'samples': {
-            'Higgs' : '{:.3f}/{:.3f}'.format(sum([float(values[subsample].split('/')[0])*sfdict[cut]['Higgs'][subsample] for subsample in values]),
-                                             sum([float(values[subsample].split('/')[1])*sfdict[cut]['Higgs'][subsample] for subsample in values]))
-        },
-        'type': 'lnN',
-        'cuts' : [cut]
-    }
-    
-nuisances['QCDscale_WWewk'] = {
-    'name': 'QCDscale_WWewk',
-    'samples': {
-        'WWewk': '1.11',
+nuisances['QCDscale_qqH'] = {
+    'name'    : 'QCDscale_qqH',
+    'samples' : {
+        'qqH_hww' : values,
+        'qqH_htt' : values
     },
-    'type': 'lnN'
+    'type' : 'lnN'
 }
 
-values = {'ggH_hww' : '1.012',
-          'qqH_hww' : '1.003',
-          'WH_hww'  : '1.010',
-          'ZH_hww'  : '1.015',
-          'ggZH_hww': '1.012',
-          'ttH_hww' : '1.000', #Missing value for ttH
-          'ggH_htt' : '1.012',
-          'qqH_htt' : '1.003',
-          'WH_htt'  : '1.010',
-          'ZH_htt'  : '1.015'}
+valueswh = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','WH','125.09','scale','sm')
+valueszh = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ZH','125.09','scale','sm')
 
-for cut in allcuts:
-    nuisances['QCDscale_Higgs_ACCEPT_'+cut] = {
-        'name': 'QCDscale_Higgs_ACCEPT',
-        'type': 'lnN',
-        'samples': {
-            'Higgs' : '{:.3f}'.format(sum([float(values[subsample])*sfdict[cut]['Higgs'][subsample] for subsample in values]))
-        },
-        'cuts' : [cut]
-    }
-
-# Uncertainty on SR/CR ratio
-nuisances['CRSR_accept_top'] = {
-    'name': 'CMS_hww_CRSR_accept_top',
-    'type': 'lnN',
-    'samples': {'top': '1.01'},
-    'cuts': [cut for cut in cuts if 'top' in cut],
+nuisances['QCDscale_VH'] = {
+    'name'    : 'QCDscale_VH',
+    'samples' : {
+        'WH_hww_plus'  : valueswh,
+        'WH_hww_minus' : valueswh,
+        'WH_htt_plus'  : valueswh,
+        'WH_htt_minus' : valueswh,
+        'ZH_hww'       : valueszh,
+        'ZH_htt'       : valueszh
+    },
+    'type' : 'lnN',
 }
 
-## rate parameters
+values = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ggZH','125.09','scale','sm')
 
-for ibin in cuts['ww2l2v_13TeV_top']['categories']:
-    nuisances['Topnorm_'+ibin]  = {
-        'name'  : 'CMS_hww_Topnorm_'+ibin,
-        'samples'  : {
-            'top' : '1.00',
-        },
-        'type'  : 'rateParam',
-        'cutspost' : lambda self, cuts: [cut for cut in cuts if self['name'].split('_')[-1] in cut],
+nuisances['QCDscale_ggZH'] = {
+    'name'    : 'QCDscale_ggZH',
+    'samples' : {
+        'ggZH_hww' : values
+    },
+    'type' : 'lnN',
+}
+
+values = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ttH','125.09','scale','sm')
+
+nuisances['QCDscale_ttH'] = {
+    'name'    : 'QCDscale_ttH',
+    'samples' : {
+        'ttH_hww' : values
+    },
+    'type' : 'lnN',
+}
+
+nuisances['QCDscale_WWewk'] = {
+    'name'    : 'QCDscale_WWewk',
+    'samples' : {
+        'WWewk' : '1.11',
+    },
+    'type' : 'lnN'
+}
+
+nuisances['QCDscale_qqbar_ACCEPT'] = {
+    'name'    : 'QCDscale_qqbar_ACCEPT',
+    'type'    : 'lnN',
+    'samples' : {
+        'qqH_hww'      : '1.003',
+        'qqH_htt'      : '1.003',
+        'WH_hww_plus'  : '1.010',
+        'WH_hww_minus' : '1.010',
+        'WH_htt_plus'  : '1.010',
+        'WH_htt_plus'  : '1.010',
+        'ZH_hww'       : '1.015',
+        'ZH_htt'       : '1.015',
     }
+}
+
+# FIXME: these come from HIG-16-042, maybe should be recomputed?
+nuisances['QCDscale_gg_ACCEPT'] = {
+    'name'    : 'QCDscale_gg_ACCEPT',
+    'samples' : {
+        'ggH_htt'  : '1.012',
+        'ggH_hww'  : '1.012',
+        'ggZH_hww' : '1.012',
+        'ggWW'     : '1.012',
+    },
+    'type' : 'lnN',
+}
+
+# Zg normalization from control region
+
+# nuisances['Zg3lnorm']  = {
+#     'name'    : 'CMS_hww_Zg3lnorm',
+#     'samples' : {
+#         'Zg' : '1.00',
+#     },
+#     'type' : 'rateParam',
+#     'cuts' : [
+#         'wh3l_13TeV_ossf_plus',
+#         'wh3l_13TeV_ossf_minus',
+#         'wh3l_13TeV_sssf_plus',
+#         'wh3l_13TeV_sssf_minus',
+#         'wh3l_zg_13TeV',
+#         'wh3l_wz_13TeV',
+#     ]
+# }
+
+"""
+# ## rate parameters
+
+nuisances['Topnorm']  = {
+               'name'  : 'Topnorm_2016_HIPM',
+               'samples'  : {
+                   'top' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : [
+                   'TopCR_2j',
+                   'SR_ggH_OFF_2j',
+                   'SR_VBF_OFF_2j'
+                   ]
+              }
+
+nuisances['WWnorm']  = {
+               'name'  : 'WWnorm_2016_HIPM',
+               'samples'  : {
+                   'WW' : '1.00',
+                   },
+               'type'  : 'rateParam',
+               'cuts'  : [
+                   'WWCR_2j',
+                   'SR_ggH_OFF_2j',
+                   'SR_VBF_OFF_2j'
+                   ]
+              }
 
 ## Use the following if you want to apply the automatic combine MC stat nuisances.
 nuisances['stat'] = {
-    'type': 'auto',
-    'maxPoiss': '10',
-    'includeSignal': '0',
+    'type'          : 'auto',
+    'maxPoiss'      : '10',
+    'includeSignal' : '1',
+    'samples' : {}
+}
     #  nuisance ['maxPoiss'] =  Number of threshold events for Poisson modelling
     #  nuisance ['includeSignal'] =  Include MC stat nuisances on signal processes (1=True, 0=False)
-    'samples': {}
-}
 
 for n in nuisances.values():
     n['skipCMS'] = 1
 
-#print ' '.join(nuis['name'] for nname, nuis in nuisances.iteritems() if nname not in ('lumi', 'stat'))
-
+# print ' '.join(nuis['name'] for nname, nuis in nuisances.iteritems() if nname not in ('lumi', 'stat'))

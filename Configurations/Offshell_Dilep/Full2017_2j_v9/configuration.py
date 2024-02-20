@@ -5,7 +5,10 @@ tag = 'hww_offshell_UL_2017'
 
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFile'
+
+eos_space = '/../../../../../../../../../../../../../eos/user/j/jrotter/Latinos_RootFiles/'
+
+outputDir = eos_space + 'Full2017_2j_v9/rootFiles'
 
 # file with TTree aliases
 aliasesFile = 'aliases.py'
@@ -30,11 +33,11 @@ lumi = 41.53
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
 # outputDirPlots = '~/www/plotCR'
-outputDirPlots = 'plots_2017'
+outputDirPlots =  eos_space + '../www/CR_Full2017_2j_v9' #'Full2017_2j_v9/plots_2017'
 
 
 # used by mkDatacards to define output directory for datacards
-outputDirDatacard = 'datacards_2017'
+outputDirDatacard =  eos_space + 'Full2017_2j_v9/datacards_2017'
 
 
 # structure file for datacard

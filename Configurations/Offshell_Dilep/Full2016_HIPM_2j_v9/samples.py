@@ -71,7 +71,7 @@ fakeDirectory = os.path.join(treeBaseDir, dataReco, fakeSteps)
 dataDirectory = os.path.join(treeBaseDir, dataReco, dataSteps)
 
 
-signalDirectory = '/eos/cms/store/group/phys_higgs/cmshww/fernanpe/HWWNano/Summer20UL16_106x_nAODv9_HIPM_Full2016v9/AddLHE_MEs__AddMC_baseW__AddHWW_Offshell_Wgts__MCl1loose2017v9__MCCorr2017v9NoJERInHorn__l2tightOR2017v9'
+signalDirectory = '/eos/cms/store/group/phys_higgs/cmshww/fernanpe/HWWNano/Summer20UL16_106x_nAODv9_HIPM_Full2016v9/AddLHE_MEs__AddMC_baseW__AddHWW_Offshell_Wgts__MCl1loose2016v9__MCCorr2016v9NoJERInHorn__l2tightOR2016v9'
 
 ################################################
 ############ DATA DECLARATION ##################
@@ -148,11 +148,11 @@ addSampleWeight(samples,'top','TTTo2L2Nu','Top_pTrw')
 
 ######################
 
-samples['WWewk'] = {
-    'name': nanoGetSampleFiles(mcDirectory, 'WpWmJJ_EWK_noTop'),
-    'weight': mcCommonWeight + '*(Sum$(abs(GenPart_pdgId)==6 || GenPart_pdgId==25)==0)*(lhe_mW1[0] > 60. && lhe_mW1[0] < 100. && lhe_mW2[0] > 60. && lhe_mW2[0] < 100.)', #filter tops and Higgs, limit w mass
-    'FilesPerJob': 8
-}
+#samples['WWewk'] = {
+#    'name': nanoGetSampleFiles(mcDirectory, 'WpWmJJ_EWK_noTop'),
+#    'weight': mcCommonWeight + '*(Sum$(abs(GenPart_pdgId)==6 || GenPart_pdgId==25)==0)*(lhe_mW1[0] > 60. && lhe_mW1[0] < 100. && lhe_mW2[0] > 60. && lhe_mW2[0] < 100.)', #filter tops and Higgs, limit w mass
+#    'FilesPerJob': 8
+#}
 
 ######## Vg(S) ########
 
@@ -371,21 +371,54 @@ files = nanoGetSampleFiles(signalDirectory, 'VBFHToWWTo2L2Nu_M125') + \
 
 print(files)
 
-samples['VBFHToWWOffshell'] = {
+samples['qqH_sonly_on'] = {
     'name': files,
-    'weight': mcCommonWeight_custom + ' * p_Gen_JJEW_SIG_ghv1_1_MCFM * p_Gen_CPStoBWPropRewgt * HWWOffshell_combineWgt * (LHECandMass > 160)',
-    'FilesPerJob': 10,
-    'suppressNegative' :['all'],
+    'weight': mcCommonWeight_custom + ' * p_Gen_JJEW_SIG_ghv1_1_MCFM * p_Gen_CPStoBWPropRewgt * HWWOffshell_combineWgt * (LHECandMass <= 160)',
+    'FilesPerJob': 1,
+    #'suppressNegative' :['all'],
     'suppressNegativeNuisances' :['all'],
 }
 
-samples['VBFHToWWOnshell'] = {
+samples['qqH_bonly_on'] = {
     'name': files,
-    'weight': mcCommonWeight_custom + ' * p_Gen_JJEW_SIG_ghv1_1_MCFM * p_Gen_CPStoBWPropRewgt * HWWOffshell_combineWgt * (LHECandMass <= 160)',
-    'FilesPerJob': 10,
-    'suppressNegative' :['all'],
+    'weight': mcCommonWeight_custom + ' * p_Gen_JJEW_BKG_MCFM * p_Gen_CPStoBWPropRewgt * HWWOffshell_combineWgt * (LHECandMass <= 160)',
+    'FilesPerJob': 1,
+    #'suppressNegative' :['all'],
     'suppressNegativeNuisances' :['all'],
 }
+
+samples['qqH_sand_on'] = {
+    'name': files,
+    'weight': mcCommonWeight_custom + ' * p_Gen_JJEW_BSI_ghv1_1_MCFM * p_Gen_CPStoBWPropRewgt * HWWOffshell_combineWgt * (LHECandMass <= 160)',
+    'FilesPerJob': 1,
+    #'suppressNegative' :['all'],
+    'suppressNegativeNuisances' :['all'],
+}
+
+samples['qqH_sonly_off'] = {
+    'name': files,
+    'weight': mcCommonWeight_custom + ' * p_Gen_JJEW_SIG_ghv1_1_MCFM * p_Gen_CPStoBWPropRewgt * HWWOffshell_combineWgt * (LHECandMass > 160)',
+    'FilesPerJob': 1,
+    #'suppressNegative' :['all'],
+    'suppressNegativeNuisances' :['all'],
+}
+
+samples['qqH_bonly_off'] = {
+    'name': files,
+    'weight': mcCommonWeight_custom + ' * p_Gen_JJEW_BKG_MCFM * p_Gen_CPStoBWPropRewgt * HWWOffshell_combineWgt',
+    'FilesPerJob': 1,
+    #'suppressNegative' :['all'],
+    'suppressNegativeNuisances' :['all'],
+}
+
+samples['qqH_sand_off'] = {
+    'name': files,
+    'weight': mcCommonWeight_custom + ' * p_Gen_JJEW_BSI_ghv1_1_MCFM * p_Gen_CPStoBWPropRewgt * HWWOffshell_combineWgt * (LHECandMass > 160)',
+    'FilesPerJob': 1,
+    #'suppressNegative' :['all'],
+    'suppressNegativeNuisances' :['all'],
+}
+
 
 ########### ggH ############
 files = nanoGetSampleFiles(signalDirectory, 'GluGluHToWWTo2L2Nu_M125') + \

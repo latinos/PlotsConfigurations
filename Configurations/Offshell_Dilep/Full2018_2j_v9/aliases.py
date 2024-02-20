@@ -13,41 +13,41 @@ configurations += '/PlotsConfigurations/Configurations'
 mc     = [skey for skey in samples if skey not in ('Fake', 'DATA', 'Dyemb')]
 
 
-HWW_OFFSHELL_DNN_PATH = '.L %s/src/PlotsConfigurations/Configurations/Offshell_Dilep/Tools/AddDNNScoresv4_2jet.cc+' % os.getenv('CMSSW_BASE')
+HWW_OFFSHELL_DNN_PATH = '.L %s/src/PlotsConfigurations/Configurations/Offshell_Dilep/Tools/AddDNNScoresv7.cc+' % os.getenv('CMSSW_BASE')
 
 aliases['dnnScore_VBF_OFF'] = {
     'linesToAdd' : [HWW_OFFSHELL_DNN_PATH],
-    'class' : 'AddDNNScoresv4',
+    'class' : 'AddDNNScoresv7',
     'args': ("VBF_OFF")
 }
 aliases['dnnScore_VBF_ON'] = {
     'linesToAdd' : [HWW_OFFSHELL_DNN_PATH],
-    'class' : 'AddDNNScoresv4',
+    'class' : 'AddDNNScoresv7',
     'args': ("VBF_ON")
 }
 aliases['dnnScore_ggH_OFF'] = {
     'linesToAdd' : [HWW_OFFSHELL_DNN_PATH],
-    'class' : 'AddDNNScoresv4',
+    'class' : 'AddDNNScoresv7',
     'args': ("ggH_OFF",)
 }
 aliases['dnnScore_ggH_ON'] = {
     'linesToAdd' : [HWW_OFFSHELL_DNN_PATH],
-    'class' : 'AddDNNScoresv4',
+    'class' : 'AddDNNScoresv7',
     'args': ("ggH_ON",)
 }
 aliases['dnnScore_top'] = {
     'linesToAdd' : [HWW_OFFSHELL_DNN_PATH],
-    'class' : 'AddDNNScoresv4',
+    'class' : 'AddDNNScoresv7',
     'args': ("top",)
 }
 aliases['dnnScore_WW'] = {
     'linesToAdd' : [HWW_OFFSHELL_DNN_PATH],
-    'class' : 'AddDNNScoresv4',
+    'class' : 'AddDNNScoresv7',
     'args': ("WW",)
 }
 aliases['dnnScore_MAX'] = {
     'linesToAdd' : [HWW_OFFSHELL_DNN_PATH],
-    'class' : 'AddDNNScoresv4',
+    'class' : 'AddDNNScoresv7',
     'args': ("MAX",)
 }
 
