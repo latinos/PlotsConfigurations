@@ -403,7 +403,7 @@ for i in range(1,33):
   pdf_variations = ["LHEPdfWeight[%d]/LHEPdfWeight[0]" %i, "2. - LHEPdfWeight[%d]/LHEPdfWeight[0]" %i ]
 
   nuisances['pdf_WW_eigen'+str(i)]  = {
-    'name'  : 'CMS_hww_pdf_WW_eigen'+str(i)+'2018',
+    'name'  : 'CMS_hww_pdf_WW_eigen'+str(i)+'_2018',
     'skipCMS' : 1,
     'kind'  : 'weight',
     'type'  : 'shape',
@@ -412,7 +412,7 @@ for i in range(1,33):
     },
   }
   nuisances['pdf_top_eigen'+str(i)]  = {
-    'name'  : 'CMS_hww_pdf_top_eigen'+str(i)+'2018',
+    'name'  : 'CMS_hww_pdf_top_eigen'+str(i)+'_2018',
     'skipCMS' : 1,
     'kind'  : 'weight',
     'type'  : 'shape',
@@ -421,7 +421,7 @@ for i in range(1,33):
     },
   }
   nuisances['pdf_ggH_eigen'+str(i)]  = {
-    'name'  : 'CMS_hww_pdf_ggH_eigen'+str(i)+'2018',
+    'name'  : 'CMS_hww_pdf_ggH_eigen'+str(i)+'_2018',
     'skipCMS' : 1,
     'kind'  : 'weight',
     'type'  : 'shape',
@@ -431,7 +431,7 @@ for i in range(1,33):
     },
   }
   nuisances['pdf_VBF_sonly_eigen'+str(i)]  = {
-    'name'  : 'CMS_hww_pdf_VBF_sonly_eigen'+str(i)+'2018',
+    'name'  : 'CMS_hww_pdf_VBF_sonly_eigen'+str(i)+'_2018',
     'skipCMS' : 1,
     'kind'  : 'weight',
     'type'  : 'shape',
@@ -441,7 +441,7 @@ for i in range(1,33):
     },
   }
   nuisances['pdf_VBF_bonly_eigen'+str(i)]  = {
-    'name'  : 'CMS_hww_pdf_VBF_sonly_eigen'+str(i)+'2018',
+    'name'  : 'CMS_hww_pdf_VBF_sonly_eigen'+str(i)+'_2018',
     'skipCMS' : 1,
     'kind'  : 'weight',
     'type'  : 'shape',
@@ -451,7 +451,7 @@ for i in range(1,33):
     },
   }
   nuisances['pdf_VBF_sand_eigen'+str(i)]  = {
-    'name'  : 'CMS_hww_pdf_VBF_sand_eigen'+str(i)+'2018',
+    'name'  : 'CMS_hww_pdf_VBF_sand_eigen'+str(i)+'_2018',
     'skipCMS' : 1,
     'kind'  : 'weight',
     'type'  : 'shape',
@@ -472,7 +472,7 @@ nuisances['QCDscale_V'] = {
     'samples': {'DY': variations},
 }
 nuisances['QCDscale_VV'] = {
-    'name': 'QCDscale_VV',
+    'name': 'QCDscale_VV_2018',
     'kind': 'weight_envelope',
     'type': 'shape',
     'samples': {
