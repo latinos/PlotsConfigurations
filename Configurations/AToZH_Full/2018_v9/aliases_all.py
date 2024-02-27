@@ -137,8 +137,8 @@ for syst in ['isr', 'fsr','hdamp', 'jes','jer', 'pileup','qcdscale', 'statistic'
     }
 
 aliases['hole_veto'] = {
-        'expr': 'Sum$( ((  Lepton_eta < -1.3 &&   Lepton_eta > -2.5) && (  Lepton_phi > -1.57 &&   Lepton_phi < -0.87) && (abs(Lepton_pdgId)==11)) \
-                    || ((CleanJet_eta < -1.3 && CleanJet_eta > -2.5) && (CleanJet_phi > -1.57 && CleanJet_phi < -0.87)) ) == 0', 
+        'expr': 'Sum$( ((  Lepton_eta < -1.3 &&   Lepton_eta > -2.5) && (  Lepton_phi > -1.57 &&   Lepton_phi < -0.87) && (abs(Lepton_pdgId)==11)) ) == 0 \
+              && Sum$( ((CleanJet_eta < -1.3 && CleanJet_eta > -2.5) && (CleanJet_phi > -1.57 && CleanJet_phi < -0.87)) ) == 0',
 }
 
 aliases['Jet_PUIDSF'] = {
