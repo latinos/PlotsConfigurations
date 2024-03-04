@@ -109,6 +109,7 @@ mcCommonWeight_custom = 'XSWeight'
 #############  BACKGROUNDS  ###############
 ###########################################
 
+
 ####### DY #######
 
 files = nanoGetSampleFiles(mcDirectory, 'DYJetsToTT_MuEle_M-50') + \
@@ -311,6 +312,7 @@ for _, sd in DataRun:
 
 ########### VBF ############
 
+
 files = nanoGetSampleFiles(signalDirectory, 'VBFHToWWTo2L2Nu_M125') + \
         nanoGetSampleFiles(signalDirectory, 'VBFHToWWTo2L2Nu_M160') + \
         nanoGetSampleFiles(signalDirectory, 'VBFHToWWTo2L2Nu_M170') + \
@@ -388,7 +390,6 @@ samples['qqH_sand_off'] = {
 }
 
 
-
 ########### ggH ############
 files = nanoGetSampleFiles(signalDirectory, 'GluGluHToWWTo2L2Nu_M125') + \
         nanoGetSampleFiles(signalDirectory, 'GluGluHToWWTo2L2Nu_M160') + \
@@ -419,7 +420,7 @@ files = nanoGetSampleFiles(signalDirectory, 'GluGluHToWWTo2L2Nu_M125') + \
 samples['ggHToWWOffshell'] = {
     'name': files,
     'weight': mcCommonWeight_custom + ' * p_Gen_GG_SIG_kappaTopBot_1_ghz1_1_MCFM * p_Gen_CPStoBWPropRewgt * HWWOffshell_combineWgt * (LHECandMass > 160)',
-    'FilesPerJob': 10,
+    'FilesPerJob': 1,
     'suppressNegative' :['all'],
     'suppressNegativeNuisances' :['all']
 }
@@ -427,11 +428,7 @@ samples['ggHToWWOffshell'] = {
 samples['ggHToWWOnshell'] = {
     'name': files,
     'weight': mcCommonWeight_custom + ' * p_Gen_GG_SIG_kappaTopBot_1_ghz1_1_MCFM * p_Gen_CPStoBWPropRewgt * HWWOffshell_combineWgt * (LHECandMass <= 160)',
-    'FilesPerJob': 10,
+    'FilesPerJob': 1,
     'suppressNegative' :['all'],
     'suppressNegativeNuisances' :['all']
 }
-
-
-
-

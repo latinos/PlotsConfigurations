@@ -73,6 +73,7 @@ dataDirectory = os.path.join(treeBaseDir, dataReco, dataSteps)
 
 signalDirectory = '/eos/cms/store/group/phys_higgs/cmshww/fernanpe/HWWNano/Summer20UL16_106x_nAODv9_HIPM_Full2016v9/AddLHE_MEs__AddMC_baseW__AddHWW_Offshell_Wgts__MCl1loose2016v9__MCCorr2016v9NoJERInHorn__l2tightOR2016v9'
 
+
 ################################################
 ############ DATA DECLARATION ##################
 ################################################
@@ -340,8 +341,8 @@ for _, sd in DataRun:
     samples['DATA']['name'].extend(files)
     samples['DATA']['weights'].extend([DataTrig[pd]] * len(files))
 
-
 ########### VBF ############
+
 
 files = nanoGetSampleFiles(signalDirectory, 'VBFHToWWTo2L2Nu_M125') + \
         nanoGetSampleFiles(signalDirectory, 'VBFHToWWTo2L2Nu_M160') + \
@@ -450,7 +451,7 @@ files = nanoGetSampleFiles(signalDirectory, 'GluGluHToWWTo2L2Nu_M125') + \
 samples['ggHToWWOffshell'] = {
     'name': files,
     'weight': mcCommonWeight_custom + ' * p_Gen_GG_SIG_kappaTopBot_1_ghz1_1_MCFM * p_Gen_CPStoBWPropRewgt * HWWOffshell_combineWgt * (LHECandMass > 160)',
-    'FilesPerJob': 10,
+    'FilesPerJob': 1,
     'suppressNegative' :['all'],
     'suppressNegativeNuisances' :['all'],
 }
@@ -458,9 +459,8 @@ samples['ggHToWWOffshell'] = {
 samples['ggHToWWOnshell'] = {
     'name': files,
     'weight': mcCommonWeight_custom + ' * p_Gen_GG_SIG_kappaTopBot_1_ghz1_1_MCFM * p_Gen_CPStoBWPropRewgt * HWWOffshell_combineWgt * (LHECandMass <= 160)',
-    'FilesPerJob': 10,
+    'FilesPerJob': 1,
     'suppressNegative' :['all'],
     'suppressNegativeNuisances' :['all']
 }
-
 
