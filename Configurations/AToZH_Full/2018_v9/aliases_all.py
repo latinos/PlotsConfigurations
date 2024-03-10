@@ -227,6 +227,10 @@ aliases['fakeW_statMuDown'] = {
     'samples'    : ['Fake']
 }
 #################################### AZH variables ####################################################
+aliases['hasGenA'] = {
+    'expr' : 'Sum$(GenPart_pdgId==36) != 0',
+    'samples' : [skey for skey in samples if skey.startswith('AZH')]
+    }
 
 aliases['AZH_mA_minus_mH_patch'] = {
     'linesToAdd': [
