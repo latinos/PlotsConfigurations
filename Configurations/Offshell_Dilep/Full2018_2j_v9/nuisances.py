@@ -893,7 +893,7 @@ nuisances['WWnorm']  = {
 nuisances['stat'] = {
     'type'          : 'auto',
     'maxPoiss'      : '10',
-    'includeSignal' : '1',
+    'includeSignal' : '0', ## <-- no longer want to include qqH_sonly or qqH_bonly
     'samples' : {}
 }
     #  nuisance ['maxPoiss'] =  Number of threshold events for Poisson modelling
