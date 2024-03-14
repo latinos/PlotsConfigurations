@@ -422,7 +422,7 @@ for i in range(1,101):
   # LHEPdfWeight are PDF4LHC variations, while nominal is NNPDF.
   # LHEPdfWeight[i] reweights from NNPDF nominal to PDF4LHC member i
   # LHEPdfWeight[0] in particular reweights from NNPDF nominal to PDF4LHC nominal
-  pdf_variations = ["LHEPdfWeight[%d]/LHEPdfWeight[0]" %i, "2. - LHEPdfWeight[%d]/LHEPdfWeight[0]" %i ]
+  pdf_variations = ["LHEPdfWeight[%d]" %i, "2. - LHEPdfWeight[%d]" %i ]
 
   #nuisances['pdf_WW_eigen'+str(i)]  = {
   #  'name'  : 'CMS_hww_pdf_WW_eigen'+str(i),
