@@ -12,11 +12,11 @@ groupPlot['VH+ttH+qqH']  = {
                   'samples'  : ['Higgs' ]
               }
 
-groupPlot['ggHToWWOnshell']  = {
+groupPlot['ggF_sonly_on']  = {
                   'nameHR' : 'ggH Onshell',
                   'isSignal' : 0,
-                  'color': 603, # kBlue+3                                                                                                                                                                  
-                  'samples'  : ['ggHToWWOnshell' ]
+                  'color': 603, # kBlue+                                                   
+                  'samples'  : ['ggF_sonly_on' ]
               }
 
 groupPlot['Vg+VZ+VVV']  = {
@@ -45,7 +45,7 @@ groupPlot['WW']  = {
                   'nameHR' : 'WW',
                   'isSignal' : 0,
                   'color': 851, # kAzure -9 
-                  'samples'  : ['WW', 'ggWW', 'WWewk']
+                  'samples'  : ['WW', 'ggWW', 'WWewk', 'ggF_bonly_off']
               }
 
 groupPlot['top']  = {
@@ -55,11 +55,11 @@ groupPlot['top']  = {
                   'samples'  : ['top']
               }
 
-groupPlot['ggHToWWOffshell']  = {
+groupPlot['ggF_sonly_off']  = {
                   'nameHR' : 'ggH Offshell',
                   'isSignal' : 1,
                   'color': 1, # kCyan
-                  'samples'  : ['ggHToWWOffshell' ]
+                  'samples'  : ['ggF_sonly_off' ]
               }
 
 #plot = {}
@@ -113,6 +113,13 @@ plot['ggWW']  = {
                   'scale'    : 1.0
                   }
 
+plot['ggF_bonly_off']  = {
+                  'color': 850, # kAzure -10
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0
+                  }
+
 plot['WWewk']  = {
                   'color': 851, # kAzure -9 
                   'isSignal' : 0,
@@ -159,7 +166,7 @@ plot['Higgs'] = {
                   }
 
 
-plot['ggHToWWOnshell']  = {
+plot['ggF_sonly_on']  = {
                   'color': 603, # kRed  
                   'isSignal' : 0,
                   'isData'   : 0,
@@ -167,7 +174,7 @@ plot['ggHToWWOnshell']  = {
                   }
 
 
-plot['ggHToWWOffshell']  = {
+plot['ggF_sonly_off']  = {
                   'color': 432, # kRed  
                   'isSignal' : 1,
                   'isData'   : 0,

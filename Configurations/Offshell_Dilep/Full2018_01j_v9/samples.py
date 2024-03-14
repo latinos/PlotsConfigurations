@@ -241,23 +241,6 @@ samples['WW'] = {
 }
 
 
-###### ggWW ########
-
-samples['ggWW'] = {
-    'name': nanoGetSampleFiles(mcDirectory, 'GluGluToWWToENEN') + \
-            nanoGetSampleFiles(mcDirectory, 'GluGluToWWToENMN') + \
-            nanoGetSampleFiles(mcDirectory, 'GluGluToWWToENTN') + \
-            nanoGetSampleFiles(mcDirectory, 'GluGluToWWToMNEN') + \
-            nanoGetSampleFiles(mcDirectory, 'GluGluToWWToMNMN') + \
-            nanoGetSampleFiles(mcDirectory, 'GluGluToWWToMNTN') + \
-            nanoGetSampleFiles(mcDirectory, 'GluGluToWWToTNEN') + \
-            nanoGetSampleFiles(mcDirectory, 'GluGluToWWToTNMN') + \
-            nanoGetSampleFiles(mcDirectory, 'GluGluToWWToTNTN'),
-    'weight': mcCommonWeight+'*1.53/1.4',
-    'FilesPerJob': 1,
-    'suppressNegative':['all'],
-    'suppressNegativeNuisances' :['all']
-}
 
 
 ###########################################
@@ -330,48 +313,83 @@ for _, sd in DataRun:
     samples['DATA']['name'].extend(files)
     samples['DATA']['weights'].extend([DataTrig[pd]] * len(files))
 
-# ########### ggH ############
-files = nanoGetSampleFiles(signalDirectory, 'GluGluHToWWTo2L2Nu_M125') + \
-        nanoGetSampleFiles(signalDirectory, 'GluGluHToWWTo2L2Nu_M160') + \
-        nanoGetSampleFiles(signalDirectory, 'GluGluHToWWTo2L2Nu_M170') + \
-        nanoGetSampleFiles(signalDirectory, 'GluGluHToWWTo2L2Nu_M180') + \
-        nanoGetSampleFiles(signalDirectory, 'GluGluHToWWTo2L2Nu_M190') + \
-        nanoGetSampleFiles(signalDirectory, 'GluGluHToWWTo2L2Nu_M200') + \
-        nanoGetSampleFiles(signalDirectory, 'GluGluHToWWTo2L2Nu_M210') + \
-        nanoGetSampleFiles(signalDirectory, 'GluGluHToWWTo2L2Nu_M230') + \
-        nanoGetSampleFiles(signalDirectory, 'GluGluHToWWTo2L2Nu_M250') + \
-        nanoGetSampleFiles(signalDirectory, 'GluGluHToWWTo2L2Nu_M270') + \
-        nanoGetSampleFiles(signalDirectory, 'GluGluHToWWTo2L2Nu_M300') + \
-        nanoGetSampleFiles(signalDirectory, 'GluGluHToWWTo2L2Nu_M350') + \
-        nanoGetSampleFiles(signalDirectory, 'GluGluHToWWTo2L2Nu_M400') + \
-        nanoGetSampleFiles(signalDirectory, 'GluGluHToWWTo2L2Nu_M450') + \
-        nanoGetSampleFiles(signalDirectory, 'GluGluHToWWTo2L2Nu_M500') + \
-        nanoGetSampleFiles(signalDirectory, 'GluGluHToWWTo2L2Nu_M550') + \
-        nanoGetSampleFiles(signalDirectory, 'GluGluHToWWTo2L2Nu_M600') + \
-        nanoGetSampleFiles(signalDirectory, 'GluGluHToWWTo2L2Nu_M700') + \
-        nanoGetSampleFiles(signalDirectory, 'GluGluHToWWTo2L2Nu_M800') + \
-        nanoGetSampleFiles(signalDirectory, 'GluGluHToWWTo2L2Nu_M900') + \
-        nanoGetSampleFiles(signalDirectory, 'GluGluHToWWTo2L2Nu_M1000') + \
-        nanoGetSampleFiles(signalDirectory, 'GluGluHToWWTo2L2Nu_M1500') + \
-        nanoGetSampleFiles(signalDirectory, 'GluGluHToWWTo2L2Nu_M2000') + \
-        nanoGetSampleFiles(signalDirectory, 'GluGluHToWWTo2L2Nu_M2500') + \
-        nanoGetSampleFiles(signalDirectory, 'GluGluHToWWTo2L2Nu_M3000')
 
-samples['ggHToWWOffshell'] = {
+
+
+    
+# ########### signals ############
+
+files = nanoGetSampleFiles(signalDirectory, 'GluGluToWWToENEN_SIG_private') + \
+        nanoGetSampleFiles(signalDirectory, 'GluGluToWWToENMN_SIG_private') + \
+        nanoGetSampleFiles(signalDirectory, 'GluGluToWWToENTN_SIG_private') + \
+        nanoGetSampleFiles(signalDirectory, 'GluGluToWWToMNEN_SIG_private') + \
+        nanoGetSampleFiles(signalDirectory, 'GluGluToWWToMNMN_SIG_private') + \
+        nanoGetSampleFiles(signalDirectory, 'GluGluToWWToMNTN_SIG_private') + \
+        nanoGetSampleFiles(signalDirectory, 'GluGluToWWToTNEN_SIG_private') + \
+        nanoGetSampleFiles(signalDirectory, 'GluGluToWWToTNMN_SIG_private') + \
+        nanoGetSampleFiles(signalDirectory, 'GluGluToWWToTNTN_SIG_private')
+
+
+samples['ggF_sonly_off'] = {
     'name': files,
-    'weight': mcCommonWeight_custom + ' * p_Gen_GG_SIG_kappaTopBot_1_ghz1_1_MCFM * p_Gen_CPStoBWPropRewgt * HWWOffshell_combineWgt * (LHECandMass > 160)',
+    'weight': mcCommonWeight + ' * (LHECandMass > 160)',
     'FilesPerJob': 4,
     'suppressNegative' :['all'],
     'suppressNegativeNuisances' :['all'],
 }
 
-samples['ggHToWWOnshell'] = {
+samples['ggF_sonly_on'] = {
     'name': files,
-    'weight': mcCommonWeight_custom + ' * p_Gen_GG_SIG_kappaTopBot_1_ghz1_1_MCFM * p_Gen_CPStoBWPropRewgt * HWWOffshell_combineWgt * (LHECandMass <= 160)',
+    'weight': mcCommonWeight + ' * (LHECandMass <= 160)',
+    'FilesPerJob': 4,
+    'suppressNegative' :['all'],
+    'suppressNegativeNuisances' :['all'],
+}
+
+files = nanoGetSampleFiles(signalDirectory, 'GluGluToWWToENEN_BSI_private') + \
+        nanoGetSampleFiles(signalDirectory, 'GluGluToWWToENMN_BSI_private') + \
+        nanoGetSampleFiles(signalDirectory, 'GluGluToWWToENTN_BSI_private') + \
+        nanoGetSampleFiles(signalDirectory, 'GluGluToWWToMNEN_BSI_private') + \
+        nanoGetSampleFiles(signalDirectory, 'GluGluToWWToMNMN_BSI_private') + \
+        nanoGetSampleFiles(signalDirectory, 'GluGluToWWToMNTN_BSI_private') + \
+        nanoGetSampleFiles(signalDirectory, 'GluGluToWWToTNEN_BSI_private') + \
+        nanoGetSampleFiles(signalDirectory, 'GluGluToWWToTNMN_BSI_private') + \
+        nanoGetSampleFiles(signalDirectory, 'GluGluToWWToTNTN_BSI_private')
+
+
+samples['ggF_sand_off'] = {
+    'name': files,
+    'weight': mcCommonWeight + ' * (LHECandMass > 160)',
     'FilesPerJob': 4,
     'suppressNegative' :['all'],
     'suppressNegativeNuisances' :['all'],
 }
 
 
+###### background ########
 
+files = nanoGetSampleFiles(mcDirectory, 'GluGluToWWToENEN') + \
+        nanoGetSampleFiles(mcDirectory, 'GluGluToWWToENMN') + \
+        nanoGetSampleFiles(mcDirectory, 'GluGluToWWToENTN') + \
+        nanoGetSampleFiles(mcDirectory, 'GluGluToWWToMNEN') + \
+        nanoGetSampleFiles(mcDirectory, 'GluGluToWWToMNMN') + \
+        nanoGetSampleFiles(mcDirectory, 'GluGluToWWToMNTN') + \
+        nanoGetSampleFiles(mcDirectory, 'GluGluToWWToTNEN') + \
+        nanoGetSampleFiles(mcDirectory, 'GluGluToWWToTNMN') + \
+        nanoGetSampleFiles(mcDirectory, 'GluGluToWWToTNTN')
+
+samples['ggWW'] = {
+    'name': files
+    'weight': mcCommonWeight+'*1./1.4 * (LHECandMass <= 160)',
+    'FilesPerJob': 1,
+    'suppressNegative':['all'],
+    'suppressNegativeNuisances' :['all']
+}
+
+samples['ggF_bonly_off'] = {
+    'name': files
+    'weight': mcCommonWeight+'*1./1.4 * (LHECandMass > 160)',
+    'FilesPerJob': 1,
+    'suppressNegative':['all'],
+    'suppressNegativeNuisances' :['all']
+}
