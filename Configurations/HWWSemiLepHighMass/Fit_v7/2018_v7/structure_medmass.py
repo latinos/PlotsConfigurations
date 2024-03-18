@@ -173,12 +173,15 @@ for MX in massggh:
     model_I_B = model+'_I_Bonly'
     model_B = 'B'
     model_H = 'H'
+    xs_ggf = HiggsXS.GetHiggsXS4Sample('YR4','13TeV','GluGluHToWWToLNuQQ_M{}'.format(MX))['xs']
+    print(xs_ggf)
     # Model dependent -> Xsec*BR is applied in later step, so remove "SM"-Xsec*BR
     # SMxsec = HiggsXS.GetHiggsXS4Sample('YR4','13TeV','GluGluHToWWToLNuQQ_M'+MX)['xs']
 
     structure['GGH_'+MX+model_name]  = {
         'isSignal': 1,
         'isData'  : 0,
+        'scaleSampleForDatacard' : {cut : xs_ggf for cut in cuts}
     }
     
 
@@ -190,6 +193,7 @@ for MX in massggh:
     structure['GGHSBI_'+MX+model_name]  = {
         'isSignal': 1,
         'isData'  : 0,
+        'scaleSampleForDatacard' : {cut : xs_ggf for cut in cuts}
     }
     structure['GGH_HSM_'+MX+model_name]  = {
         'isSignal': 1,
@@ -208,13 +212,16 @@ for MX in massvbf:
     model_I_B = model+'_I_Bonly'
     model_B = 'B'
     model_H = 'H' 
+    xs_vbf = HiggsXS.GetHiggsXS4Sample('YR4','13TeV','VBFHToWWToLNuQQ_M{}'.format(MX))['xs']
     # Model dependent -> Xsec*BR is applied in later step, so remove "SM"-Xsec*BR
     # SMxsec = HiggsXS.GetHiggsXS4Sample('YR4','13TeV','VBFHToWWToLNuQQ_M'+MX)['xs']
     # noSMxsec = '(1.0/{})'.format(SMxsec)
+    print(xs_vbf)
 
     structure['QQH_'+MX+model_name]  = {
         'isSignal': 1,
         'isData'  : 0,
+        'scaleSampleForDatacard' : {cut : xs_vbf for cut in cuts}
     }
  
     structure['QQHINT_'+MX+model_name]  = {
@@ -225,6 +232,7 @@ for MX in massvbf:
     structure['QQHSBI_'+MX+model_name]  = {
         'isSignal': 1,
         'isData'  : 0,
+        'scaleSampleForDatacard' : {cut : xs_vbf for cut in cuts}
     }
 
 
@@ -238,7 +246,7 @@ for MX in massvbf:
 # data
 
 
-structure['DATA']  = {
+structure['data_obs']  = {
                   'isSignal' : 0,
                   'isData'   : 1
               }
