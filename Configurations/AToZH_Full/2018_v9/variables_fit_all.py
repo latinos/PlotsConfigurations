@@ -21,41 +21,61 @@ variables['njet']       = { 'name'  : 'ZH3l_njet',
                             'fold' : 3 
                         }
 variables['ptz']        = { 'name' : 'ZH3l_pTZ',
-                            'range' : (6,0,1000),
+                            'range' : (20,0,1000),
                             'xaxis' : 'ptz',
                             'fold' : 3 
                         }
 
+
+variables['chisq']       = { 'name'  : 'AZH_ChiSquare_patch',
+                            'range' : (10,0,10),
+                            'xaxis' : 'ChiSq',
+                            'fold' : 3 
+                        }
 variables['nbjet']       = { 'name'  : 'nbjet',
                             'range' : (10,0,10),
                             'xaxis' : 'N_{bjet}',
                             'fold' : 3 
                         }
 variables['pt1']        = { 'name': 'Lepton_pt[0]',
-                            'range' : (10,0.,200),
+                            'range' : (50,0.,1000),
                             'xaxis' : 'lept1_p_{T} [GeV]',
                             'fold' : 3 
                         }
 variables['DeltaM']  = { 'name' : 'AZH_mA_minus_mH_patch',
-                            'range' : (6,0,1000),
+                            'range' : (20,0,1000),
 			    'xaxis' : 'm_{A}-m_{H}',
 			    'cuts' : ['breq_SR'],
 			    'fold'  : 3
                          }
-variables['mH'] = { 'name' : 'AZH_Hmass',
-                    'range' : (12,0,2000),
+variables['mH'] = { 'name' : 'AZH_Hmass_patch',
+                    'range' : (20,0,2000),
                     'xaxis' : 'm_{H}',
                     'cuts' : ['breq_SR'],
                     'fold'  : 3
 }
 
-variables['mA'] = { 'name' : 'AZH_Hmass',
-                     'range' : (14,0,2500),
+variables['mA'] = { 'name' : 'AZH_Amass_patch',
+                     'range' : (25,0,2500),
                      'xaxis' : 'm_{A}',
                      'cuts' : ['breq_SR'],
                      'fold'  : 3
 }
 
+
+variables['mH_onebjet'] = { 'name' : 'AZH_Hmass_patch_onebjet',
+                    'range' : (20,0,2000),
+                    'xaxis' : 'm_{H}',
+                    'cuts' : ['bveto_1j_SR'],
+                    'fold'  : 3
+}
+
+variables['mA_onebjet'] = { 'name' : 'AZH_Amass_patch_onebjet',
+                     'range' : (25,0,2500),
+                     'xaxis' : 'm_{A}',
+                     'cuts' : ['bveto_1j_SR'],
+                     'fold'  : 3
+}
 
 variables['PuppiMET_pt']  = { 'name': 'PuppiMET_pt',
                             'range' : (10,0.,400),
@@ -78,19 +98,19 @@ variables['pt_thirdlepton'] = { 'name': 'Lepton_pt[2]',
 
 
 variables['checkmZ']    = { 'name' : 'ZH3l_checkmZ',
-                            'range' : (20,0,200),
+                            'range' : (20,50,150),
                             'xaxis' : 'checkmZ',
                             'fold' : 3
                         }
-variables['DeltaM_onebjet'] = { 'name' : 'AZH_mA_minus_mH_onebjet',
-                                   'range' : (6,0,1000),
+variables['DeltaM_onebjet'] = { 'name' : 'AZH_mA_minus_mH_onebjet_patch',
+                                   'range' : (20,0,1000),
 				   'xaxis' : 'm_{A}-m_{H}',
 				   'cuts' : ['bveto_1j_SR'],
                                    'fold'  : 3
                             }
 
 variables['ptjet0']     = { 'name' : 'CleanJet_pt[0]',
-                            'range' : (20,0,200),
+                            'range' : (50,0,1000),
                             'xaxis' : 'Leading jet p_{T}',
                             'fold' : 3 
                         }

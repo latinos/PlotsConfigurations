@@ -99,12 +99,12 @@ DataTrig = {
 ###########################################
 samples['Zg']  =  {     'name'   :    getSampleFilesNano(directory,'ZGToLLG'),
                         'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC + '*(Gen_ZGstar_mass <= 0)',
-                        'FilesPerJob' : 3 ,
+                        'FilesPerJob' : 2 ,
                  }
 
 samples['ZgS']  = {    'name'   :   getSampleFilesNano(directory,'ZGToLLG'),
                        'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch3l+'*'+METFilter_MC+'*(Gen_ZGstar_mass > 0)',
-                       'FilesPerJob' : 3 ,
+                       'FilesPerJob' : 2 ,
                  }
 
 
@@ -119,18 +119,19 @@ samples['WZ']  = {    'name':   getSampleFilesNano(directory,'WZTo3LNu_mllmin4p0
 
 samples['ttZ'] = {    'name'   :   getSampleFilesNano(directory,'TTZToLLNuNu_M-10'), 
                      'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC ,
-                     'FilesPerJob' : 5,
+                     'FilesPerJob' : 1,
                  }
 ################## ttH ###############
 
 samples['ttH_hww']  = { 'name'   :   getSampleFilesNano(directory,'ttHToNonbb_M125'),
                         'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC ,
-                      }
+                        'FilesPerJob' : 3,                     
+}
 
 
 samples['tZq_ll']  = { 'name'   :   getSampleFilesNano(directory,'tZq_ll'),
                        'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC ,
-                       'FilesPerJob' : 5,                 
+                       'FilesPerJob' : 1,                 
 }
 
 
@@ -138,7 +139,7 @@ samples['ZZ']  = {  'name'   :   getSampleFilesNano(directory,'ZZTo2L2Nu')
                                + getSampleFilesNano(directory,'ZZTo2Q2L_mllmin4p0')
                                + getSampleFilesNano(directory,'ZZTo4L'),    #check if ggZZ samples are there and add them
                     'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC+'*'+ZZWeight,
-                    'FilesPerJob' : 5,
+                    'FilesPerJob' : 1,
              }
 
 ############ VVV ############
@@ -150,6 +151,16 @@ samples['VVV']  = {  'name'   :   getSampleFilesNano(directory,'ZZZ')
                     'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC ,
                   }
 
+############ Vh h->WW ############
+
+samples['Vh_hww']  = {  'name'   :   getSampleFilesNano(directory,'HZJ_HToWW_M125')
+                                   + getSampleFilesNano(directory,'GluGluZH_HToWW_M125')
+                                   + getSampleFilesNano(directory,'HWplusJ_HToWW_M125')
+                                   + getSampleFilesNano(directory,'HWminusJ_HToWW_M125'),
+                        'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC ,
+}
+
+
 ###################### TOP #######################################
 
 samples['top'] = {    'name'   :   getSampleFilesNano(directory,'TTTo2L2Nu') 
@@ -159,14 +170,14 @@ samples['top'] = {    'name'   :   getSampleFilesNano(directory,'TTTo2L2Nu')
                                   + getSampleFilesNano(directory,'ST_tW_antitop') 
                                   + getSampleFilesNano(directory,'ST_tW_top'),
                       'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC ,
-                      'FilesPerJob' : 5,
+                      'FilesPerJob' : 1,
 }
 
 addSampleWeight(samples,'top','TTTo2L2Nu','Top_pTrw')
 
 samples['TTWJets'] = { 'name': getSampleFilesNano(directory,'TTWJetsToLNu'),
                        'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC ,
-                       'FilesPerJob' : 5,
+                       'FilesPerJob' : 2,
 }
 
 ##########################################
@@ -1316,28 +1327,3 @@ for _, sd in DataRun:
       samples['DATA']['name'].extend(FileTarget)
       samples['DATA']['weights'].extend([DataTrig[pd]] * len(FileTarget))
 
-#samples['runD']  = {   'name': [ ] ,
-#                       'weight' : METFilter_DATA+'*LepWPCut',
-#                       'weights' : [ ],
-#                       'isData': ['all'],
-#                       'FilesPerJob' : 500 ,
-#                    }
-#
-#
-#for _, sd in DataRun:
-#  for pd in DataSets:
-#      tag = pd + '_' + sd
-#
-#      if (   ('DoubleMuon' in pd and 'Run2018D' in sd)
-#	    or ('DoubleMuon' in pd and 'Run2018D' in sd)):
-#            print("sd      = {}".format(sd))
-#	    print("pd      = {}".format(pd))
-#	    print("Old tag = {}".format(tag))
-#	    tag = tag.replace('v1','v2')
-#	    print("New tag = {}".format(tag))
-#
-#      if ('Run2018D'in sd):
-#        FileTarget = getSampleFilesNano(Datadirectory,tag)
-#        samples['runD']['name'].extend(FileTarget)
-#        samples['runD']['weights'].extend([DataTrig[pd]] * len(FileTarget))
-#
