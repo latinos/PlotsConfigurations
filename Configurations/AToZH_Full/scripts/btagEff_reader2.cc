@@ -74,7 +74,7 @@ btagEff_reader2::btagEff_reader2( std::string year ) : TTreeFunction(){
     strm >> etamin;
     strm >> etamax;
     strm >> eff;
-    binValues[jf].push_back( std::vector({ptmin, ptmax, eff}) );
+    binValues[jf].push_back( std::vector({ptmin, ptmax, etamin, etamax, eff}) );
   } 
   ifs.close();
 }
