@@ -207,10 +207,22 @@ else if (variable == "AZH_Amass") {
     return (XLepton + AZH_Neutrino_best + bJetLeptonic_best + bJetHadronic_best + WJet1_best + WJet2_best + ZLepton1 + ZLepton2).M();
 }
 
+else if (variable == "AZH_Amass_onebjet") {
+        if (nJet < 4 || nbJet != 1) return -9999.0;
+	    return (XLepton + AZH_Neutrino_best_onebjet + bJetLeptonic_best_onebjet + bJetHadronic_best_onebjet + WJet1_best_onebjet + WJet2_best_onebjet + ZLepton1 + ZLepton2).M();
+}
+
+
 else if (variable == "AZH_Hmass") {
     if (nJet < 4 || nbJet < 2) return -9999.0;
     return (XLepton + AZH_Neutrino_best + bJetLeptonic_best + bJetHadronic_best + WJet1_best + WJet2_best).M();
 }
+
+else if (variable == "AZH_Hmass_onebjet") {
+        if (nJet < 4 || nbJet != 1) return -9999.0;
+	    return (XLepton + AZH_Neutrino_best_onebjet + bJetLeptonic_best_onebjet + bJetHadronic_best_onebjet + WJet1_best_onebjet + WJet2_best_onebjet).M();
+}
+
 else if (variable == "nbjet") {
     return nbJet;
 }

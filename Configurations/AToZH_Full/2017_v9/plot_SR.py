@@ -16,6 +16,15 @@ groupPlot['Fake']  = {
                   'color': 921,    # kGray + 1
                   'samples'  : ['Fake']
               }
+groupPlot['Vh_hww'] = {
+                     'nameHR' : 'SM hWW',
+		     'isSignal' : 0,
+		     'color': 6, 
+                     'samples'  : ['Vh_hww']
+}
+
+
+
 
 groupPlot['WZ'] = {
     'nameHR' : 'WZ',
@@ -119,6 +128,13 @@ plot['TTWJets']  = {
 }
 
 
+plot['Vh_hww']  = {
+    'nameHR' : 'Vh_hww',
+    'color': 6, # kAzure -2  
+    'isSignal' : 0,
+    'isData'   : 0,
+    'scale'    : 1.0
+}
 plot['ZZ']  = {
        'nameHR' : 'ZZ',
        'color': 856, # kAzure -4  

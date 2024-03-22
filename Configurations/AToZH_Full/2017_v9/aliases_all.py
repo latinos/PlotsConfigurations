@@ -55,41 +55,6 @@ aliases['bReq'] = {
 
 ####################################### b-tagging SFs ################################
 
-### shape based approach
-#aliases['bReqSF'] = {
-#     'expr': '(TMath::Exp(Sum$(TMath::Log((CleanJet_pt>30 && abs(CleanJet_eta)<2.5)*Jet_btagSF_{}_shape[CleanJet_jetIdx]+1*(CleanJet_pt<30 || abs(CleanJet_eta)>2.5)))))'.format(bSF),
-#     'samples': mc
-#}
-
-#aliases['bVetoSF'] = {
-#    'expr': 'TMath::Exp(Sum$(TMath::Log((CleanJet_pt>20 && abs(CleanJet_eta)<2.5)*Jet_btagSF_{}_shape[CleanJet_jetIdx]+1*(CleanJet_pt<20 || abs(CleanJet_eta)>2.5))))'.format(bSF),
-#    'samples': mc
-#}
-
-#aliases['btagSF'] = {
-#    'expr': '((bVeto*bVetoSF) + ((bReq || bVeto_1j)*bReqSF))',
-#    'samples': mc
-#}
-#for syst in ['jes', 'jesAbsolute', 'jesAbsolute_2017', 'jesBBEC1', 'jesBBEC1_2017', 'jesEC2', 'jesEC2_2017', 'jesFlavorQCD', 'jesHF', 'jesHF_2017', 'jesRelativeBal', 'jesRelativeSample_2017','lf','hf','lfstats1','lfstats2','hfstats1','hfstats2','cferr1','cferr2']:
-#for syst in ['lf','hf','lfstats1','lfstats2','hfstats1','hfstats2','cferr1','cferr2']:
-#    for targ in ['bVeto','bReq']:
-#        alias = aliases['%sSF%sup' % (targ, syst)] = copy.deepcopy(aliases['%sSF' % targ])
-#        alias['expr'] = alias['expr'].replace('btagSF_{}_shape'.format(bSF), 'btagSF_{}_shape_up_{}'.format(bSF,syst))
-
-#        alias = aliases['%sSF%sdown' % (targ, syst)] = copy.deepcopy(aliases['%sSF' % targ])
-#        alias['expr'] = alias['expr'].replace('btagSF_{}_shape'.format(bSF), 'btagSF_{}_shape_down_{}'.format(bSF,syst))
-         
-#    aliases['btagSF%sup' % syst]   = { 
-#        'expr': aliases['btagSF']['expr'].replace('SF','SF' + syst + 'up'),
-#        'samples':mc  
-#    }
-
-#    aliases['btagSF%sdown' % syst] = { 
-#        'expr': aliases['btagSF']['expr'].replace('SF','SF' + syst + 'down'),
-#        'samples':mc 
-#    }
-
-
 ### WP based approach
 ### only up/down splitting of btag variations
 btagSFSource = '%s/src/LatinoAnalysis/NanoGardener/python/data/btagSF/wp_deepCSV_106XUL17_v3.csv' % os.getenv('CMSSW_BASE')
