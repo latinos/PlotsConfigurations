@@ -15,20 +15,20 @@ ellipse_5 = mpatches.Ellipse(xy=(93.77776,161.33923689584662), width=215.2826467
 ellipse_6 = mpatches.Ellipse(xy=(93.77776,161.33923689584662), width=249.926805724941, height =517.8113051275012, angle=145.9668747907025, ec='r', fc="None")
 
 
-file0 = ROOT.TFile.Open("../2018_v9/rootFiles_AZH_2018_v9_2D/plots_AZH_2018_v9_2D.root")
+file0 = ROOT.TFile.Open("../2018_v9/rootFiles_AZH_2018_v9_Full/plots_AZH_2018_v9_Full.root")
 #pairVec = [(900, 400), (900, 370), (700, 400), (700, 370), (700, 350),
 #	               (500, 400), (500, 350), (1200, 850), (1200, 1000), (1000, 600), (800, 600)]
-h_input = file0.Get("breq_SR/ptzVSdeltam/histo_Fake")
+h_input = file0.Get("breq_SR/ptzVSdeltam/histo_AZH_500_350")
 
-xbinedges = array('d', [0, 100, 200, 300, 400, 600, 1000])
-ybinedges = array('d', [0, 200, 300, 400, 500, 600, 800])
-h_output = ROOT.TH2D("h_output", "PtZ vs DeltaM", 6, xbinedges, 6, ybinedges)
+xbinedges = array('d', [0,10,20,30,40,50,60,70,80,90,100,110,120,130,140,150,160,170,180,190,200,210,220,230,240,250,260,270,280,290,300,350,400,450,500,550,600,700,800,900,1000])
+ybinedges = array('d', [0,10,20,30,40,50,60,70,80,90,100,110,120,130,140,150,160,170,180,190,200,210,220,230,240,250,260,270,280,290,300,350,400,450,500,550,600,700,800,900,1000])
+h_output = ROOT.TH2D("h_output", "PtZ vs DeltaM", 40, xbinedges, 40, ybinedges)
 
 hist_array = np.zeros((h_output.GetNbinsX(), h_output.GetNbinsY()))
 
-for ibinx in xrange(1, 7):
-    for ibiny in xrange(1, 7):
-        h_output.SetBinContent(ibinx, ibiny, h_input.GetBinContent(ibinx + 6 * (ibiny - 1)))
+for ibinx in xrange(1, 41):
+    for ibiny in xrange(1, 41):
+        h_output.SetBinContent(ibinx, ibiny, h_input.GetBinContent(ibinx + 40 * (ibiny - 1)))
 
 for i in range(1, h_output.GetNbinsX() + 1):
     for j in range(1, h_output.GetNbinsY() + 1):
