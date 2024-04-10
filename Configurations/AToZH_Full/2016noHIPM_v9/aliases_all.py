@@ -58,7 +58,7 @@ aliases['bReq'] = {
 
 ### WP based approach
 ### only up/down splitting of btag variations
-btagSFSource = '%s/src/LatinoAnalysis/NanoGardener/python/data/btagSF/wp_deepCSV_106XUL16preVFP_v3.csv' % os.getenv('CMSSW_BASE')
+btagSFSource = '%s/src/LatinoAnalysis/NanoGardener/python/data/btagSF/wp_deepJet_106XUL16preVFP_v3.csv' % os.getenv('CMSSW_BASE')
 
 aliases['Jet_btagSF_deepjet_M'] = {
     'linesToAdd': [
