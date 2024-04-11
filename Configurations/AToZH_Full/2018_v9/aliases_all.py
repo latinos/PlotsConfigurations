@@ -55,10 +55,9 @@ aliases['bReq'] = {
 
 ####################################### b-tagging SFs ################################
 
-
 ### WP based approach
 ### only up/down splitting of btag variations
-btagSFSource = '%s/src/LatinoAnalysis/NanoGardener/python/data/btagSF/wp_deepCSV_106XUL18_v3.csv' % os.getenv('CMSSW_BASE')
+btagSFSource = '%s/src/LatinoAnalysis/NanoGardener/python/data/btagSF/wp_deepJet_106XUL18_v3.csv' % os.getenv('CMSSW_BASE')
 
 aliases['Jet_btagSF_deepjet_M'] = {
     'linesToAdd': [
@@ -128,7 +127,7 @@ for syst in ['isr', 'fsr','hdamp', 'jes','jer', 'pileup','qcdscale', 'statistic'
          
     aliases['btagSF%sup' % syst]   = { 
         'expr': aliases['btagSF']['expr'].replace('SF','SF' + syst + 'up'),
-        'samples':mc  
+        'samples':mc
     }
 
     aliases['btagSF%sdown' % syst] = { 

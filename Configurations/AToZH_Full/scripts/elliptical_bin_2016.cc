@@ -59,7 +59,7 @@ public:
 protected:
   void bindTree_(multidraw::FunctionLibrary&) override;
   TTreeReaderValue<double>* AZH_mA_minus_mH_patch;
-  TTreeReaderValue<double>* AZH_mA_minus_mH_onebjet;
+  TTreeReaderValue<double>* AZH_mA_minus_mH_onebjet_patch;
   FloatValueReader* ZH3l_pTZ;
   float mA;
   float mH;
@@ -102,7 +102,7 @@ elliptical_bin_2016::elliptical_bin_2016(const float mA_, const float mH_, const
 
 double elliptical_bin_2016::evaluate(unsigned){
   double dM;
-  if (isonebjet) dM = *AZH_mA_minus_mH_onebjet->Get();
+  if (isonebjet) dM = *AZH_mA_minus_mH_onebjet_patch->Get();
   else           dM = *AZH_mA_minus_mH_patch->Get();
   float ptZ{*ZH3l_pTZ->Get()};
   for (int i = 0; i < 6; i++){
@@ -116,7 +116,7 @@ double elliptical_bin_2016::evaluate(unsigned){
 void elliptical_bin_2016::bindTree_(multidraw::FunctionLibrary& _library)
 {
   _library.bindBranch(AZH_mA_minus_mH_patch,   "AZH_mA_minus_mH_patch");
-  _library.bindBranch(AZH_mA_minus_mH_onebjet, "AZH_mA_minus_mH_onebjet");
+  _library.bindBranch(AZH_mA_minus_mH_onebjet_patch, "AZH_mA_minus_mH_onebjet_patch");
   _library.bindBranch(ZH3l_pTZ,                "ZH3l_pTZ");
 }
 

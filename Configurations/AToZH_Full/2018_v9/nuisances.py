@@ -390,19 +390,19 @@ nuisances['muonpt']  = {
 }
 
 
-nuisances['ttZ_norm2018'] = {
+nuisances['ttZ_norm'] = {
     'name' : 'CMS_ttZ_norm',
     'samples' : {
 	'ttZ' : '1.00',
     },
     'type' : 'rateParam',
     'cuts' : [
-	'breq_SR', 'bveto_1j_SR', 'bveto_4j'
+	'breq_SR', 'bveto_1j_SR', 'bveto_4j', 'jet_cut_3j', 'bveto_3j'
    ]
  }
 
-nuisances['WZ_norm2018'] = {
-    'name' : 'CMS_WZ_norm',
+nuisances['WZ_norm_4j'] = {
+    'name' : 'CMS_WZ_norm_4j',
     'samples' : {
 	'WZ' : '1.00',
     },
@@ -413,6 +413,16 @@ nuisances['WZ_norm2018'] = {
   }
 
 
+nuisances['WZ_norm_3j'] = {
+    'name' : 'CMS_WZ_norm_3j',
+    'samples' : {
+	'WZ' : '1.00',
+    },
+    'type' : 'rateParam',
+    'cuts': [
+	 'jet_cut_3j', 'bveto_3j'
+    ]
+  }
 
 ####### Jet energy scale
 

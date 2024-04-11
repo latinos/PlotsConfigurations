@@ -55,7 +55,6 @@ aliases['bReq'] = {
 
 ####################################### b-tagging SFs ################################
 
-
 ### WP based approach
 ### only up/down splitting of btag variations
 btagSFSource = '%s/src/LatinoAnalysis/NanoGardener/python/data/btagSF/wp_deepJet_106XUL16preVFP_v3.csv' % os.getenv('CMSSW_BASE')
@@ -128,13 +127,14 @@ for syst in ['isr', 'fsr','hdamp', 'jes','jer', 'pileup','qcdscale', 'statistic'
          
     aliases['btagSF%sup' % syst]   = { 
         'expr': aliases['btagSF']['expr'].replace('SF','SF' + syst + 'up'),
-        'samples':mc  
+        'samples':mc
     }
 
     aliases['btagSF%sdown' % syst] = { 
         'expr': aliases['btagSF']['expr'].replace('SF','SF' + syst + 'down'),
         'samples':mc  
     }
+
 
 
 aliases['Jet_PUIDSF'] = {
@@ -223,6 +223,10 @@ aliases['fakeW_statMuDown'] = {
     'samples'    : ['Fake']
 }
 #################################### AZH variables ####################################################
+aliases['hasGenA'] = {
+    'expr' : 'Sum$(GenPart_pdgId==36) != 0',
+    'samples' : [skey for skey in samples if skey.startswith('AZH')]
+    }
 
 aliases['AZH_mA_minus_mH_patch'] = {
     'linesToAdd': [
@@ -236,32 +240,40 @@ aliases['nbjet'] = {
     'args': ("nbjet"),
 }
 
-#commented variables below as they conflict with 'existing branches'
-'''
-aliases['AZH_Amass'] = {
+aliases['AZH_Amass_patch'] = {
     'class': 'AZH_patch_2016noHIPM',
     'args': ("AZH_Amass"),
-    'samples': [skey for skey in samples if skey not in mc]
 }
 
-aliases['AZH_Hmass'] = {
+aliases['AZH_Amass_patch_onebjet'] = {
+    'class': 'AZH_patch_2016noHIPM',
+    'args': ("AZH_Amass_onebjet"),
+}
+
+
+
+
+
+aliases['AZH_Hmass_patch'] = {
     'class': 'AZH_patch_2016noHIPM',
     'args': ("AZH_Hmass"),
-    'samples': [skey for skey in samples if skey not in mc]
 }
 
-aliases['AZH_ChiSquare'] = {
+aliases['AZH_Hmass_patch_onebjet'] = {
+    'class': 'AZH_patch_2016noHIPM',
+    'args': ("AZH_Hmass_onebjet"),
+}
+aliases['AZH_ChiSquare_patch'] = {
     'class': 'AZH_patch_2016noHIPM',
     'args': ("AZH_ChiSquare"),
-    'samples': [skey for skey in samples if skey not in mc]
 }
 
-aliases['AZH_Tophadronic'] = {
+aliases['AZH_Tophadronic_patch'] = {
     'class': 'AZH_patch_2016noHIPM',
     'args': ("AZH_Tophadronic")
 }
-'''
-aliases['AZH_mA_minus_mH_onebjet'] = {
+
+aliases['AZH_mA_minus_mH_onebjet_patch'] = {
     'class' : 'AZH_patch_2016noHIPM',
     'args' : ("AZH_mA_minus_mH_onebjet")
 }

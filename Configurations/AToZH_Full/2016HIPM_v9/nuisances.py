@@ -119,11 +119,10 @@ nuisances['pdf_AZH']  = {
       'kind'  : 'weight_rms',
       'type'  : 'shape',
       'samples'  : dict((skey, pdf_variations) for skey in signal),
- #     'cuts' : fitcuts
+#     'cuts' : fitcuts
 #      'scale' : nfdict["pdf_WW"] --> I should calculate my own norm factor here
 }
 
-#To be updated for v7
 nuisances['PS_ISR'] = {
      'name': 'PS_ISR',
      'kind': 'weight',
@@ -132,7 +131,6 @@ nuisances['PS_ISR'] = {
  #    'cuts' : fitcuts
 }
 
-#To be updated for v7
 nuisances['PS_FSR'] = {
      'name': 'PS_FSR',
      'kind': 'weight',
@@ -141,7 +139,6 @@ nuisances['PS_FSR'] = {
  #    'cuts' : fitcuts
 }
 
-#To be updated for v7
 nuisances['PU'] = {
     'name': 'CMS_PU_2016',
     'kind': 'weight',
@@ -167,7 +164,6 @@ nuisances['PU_AZH'] = {
      'AsLnN': '1', 
  #    'cuts' : fitcuts
 }
-
 
 ### PU ID SF uncertainty
 puid_syst = ['Jet_PUIDSF_up/Jet_PUIDSF', 'Jet_PUIDSF_down/Jet_PUIDSF']
@@ -279,7 +275,7 @@ nuisances['fake_mu_stat']  = {
 ##### B-tagger
 ## WP based approach
 for shift in [ 'isr', 'fsr','hdamp', 'jes','jer', 'pileup','qcdscale', 'statistic','topmass', 'type3']:
-    btag_syst = ['(btagSF%sup_WP)/(btagSF_WP)' % shift, '(btagSF%sdown)/(btagSF)' % shift]
+    btag_syst = ['(btagSF%sup)/(btagSF)' % shift, '(btagSF%sdown)/(btagSF)' % shift]
 
     name = 'CMS_btag_bc_%s' % shift
     if 'statistic' in shift:
@@ -297,14 +293,14 @@ nuisances['btag_M_light_2016postVFP'] = {
         'name': 'CMS_btag_light_2016postVFP',
         'kind': 'weight',
         'type': 'shape',
-        'samples': dict((skey, ['(btagSFuncorrelatedup_WP)/(btagSF_WP)', '(btagSFuncorrelateddown_WP)/(btagSF_WP)']) for skey in mc),
+        'samples': dict((skey, ['(btagSFuncorrelatedup)/(btagSF)', '(btagSFuncorrelateddown)/(btagSF)']) for skey in mc),
     }
 
 nuisances['btag_M_light_correlated'] = {
         'name': 'CMS_btag_light_correlated',
         'kind': 'weight',
         'type': 'shape',
-        'samples': dict((skey, ['(btagSFcorrelatedup_WP)/(btagSF_WP)', '(btagSFcorrelateddown_WP)/(btagSF_WP)']) for skey in mc),
+        'samples': dict((skey, ['(btagSFcorrelatedup)/(btagSF)', '(btagSFcorrelateddown)/(btagSF)']) for skey in mc),
     }
 
 #### Trigger Efficiency
@@ -343,7 +339,6 @@ nuisances['eff_e']  = {
                 'samples'  : dict((skey, id_syst_ele) for skey in mc),
  #               'cuts' : fitcuts
 }
-##WIP for UL
 nuisances['electronpt']  = {
                 'name'  : 'CMS_scale_e_2016',
                 'kind'  : 'suffix',
@@ -362,7 +357,7 @@ nuisances['electronpt']  = {
 id_syst_mu = ['SFweightMuUp', 'SFweightMuDown']  #defined in aliases
 
 nuisances['eff_m']  = {
-                'name'  : 'CMS_eff_m',
+                'name'  : 'CMS_eff_m',     
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : dict((skey, id_syst_mu) for skey in mc),
@@ -384,19 +379,19 @@ nuisances['muonpt']  = {
 }
 
 
-nuisances['ttZ_norm2016'] = {
+nuisances['ttZ_norm'] = {
     'name' : 'CMS_ttZ_norm',
     'samples' : {
 	'ttZ' : '1.00',
     },
     'type' : 'rateParam',
     'cuts' : [
-	'breq_SR', 'bveto_1j_SR', 'bveto_4j'
+	'breq_SR', 'bveto_1j_SR', 'bveto_4j', 'jet_cut_3j', 'bveto_3j'
    ]
  }
 
-nuisances['WZ_norm2016'] = {
-    'name' : 'CMS_WZ_norm',
+nuisances['WZ_norm_4j'] = {
+    'name' : 'CMS_WZ_norm_4j',
     'samples' : {
 	'WZ' : '1.00',
     },
@@ -407,6 +402,16 @@ nuisances['WZ_norm2016'] = {
   }
 
 
+nuisances['WZ_norm_3j'] = {
+    'name' : 'CMS_WZ_norm_3j',
+    'samples' : {
+	'WZ' : '1.00',
+    },
+    'type' : 'rateParam',
+    'cuts': [
+	 'jet_cut_3j', 'bveto_3j'
+    ]
+  }
 
 ####### Jet energy scale
 
@@ -414,7 +419,7 @@ jes_systs = ['JESAbsolute','JESAbsolute_2016','JESBBEC1','JESBBEC1_2016','JESEC2
 
 for js in jes_systs:
      # Split source, applied to jets and MET
-      nuisances[js+'_all'] = {
+      nuisances[js] = {
                 'name': 'CMS_scale_'+js+'_all',
                 'kind': 'suffix',
                 'type': 'shape',
@@ -423,7 +428,7 @@ for js in jes_systs:
                 'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['TTWJets']),
                 'folderUp'   : treeBaseDir+'Summer20UL16_106x_nAODv9_HIPM_Full2016v9/MCl1loose2016v9__MCCorr2016v9NoJERInHorn__l2tightOR2016v9__RDF__JESup_suffix', 
                 'folderDown' : treeBaseDir+'Summer20UL16_106x_nAODv9_HIPM_Full2016v9/MCl1loose2016v9__MCCorr2016v9NoJERInHorn__l2tightOR2016v9__RDF__JESdo_suffix', 
-                'AsLnN': '1',
+                'AsLnN': '0',
 #                'cuts' : fitcuts
 }
 
@@ -438,7 +443,7 @@ nuisances['JER'] = {
     'samples': dict((skey, ['1', '1']) for skey in mc),
     'folderUp': treeBaseDir+'Summer20UL16_106x_nAODv9_HIPM_Full2016v9/MCl1loose2016v9__MCCorr2016v9NoJERInHorn__l2tightOR2016v9__JERup_suffix',
     'folderDown': treeBaseDir+'Summer20UL16_106x_nAODv9_HIPM_Full2016v9/MCl1loose2016v9__MCCorr2016v9NoJERInHorn__l2tightOR2016v9__JERdo_suffix',
-    'AsLnN': '1'
+    'AsLnN': '1',
 }
 ##### MET energy scale
 
