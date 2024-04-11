@@ -51,8 +51,8 @@ cuts['bveto_4j'] = ' Alt$( CleanJet_pt[0], 0) > 30 \
                '
 
 cuts['bveto_3j'] = ' Alt$( CleanJet_pt[0], 0) > 30 \
+               && Alt$( CleanJet_pt[1], 0) > 30 \
                && Alt$( CleanJet_pt[2], 0) > 30 \
-               && Alt$( CleanJet_pt[3], 0) > 30 \
 	       && Alt$( CleanJet_pt[3], 0) < 30 \
                && PuppiMET_pt > 40 \
                && WH3l_ZVeto < 25 \
