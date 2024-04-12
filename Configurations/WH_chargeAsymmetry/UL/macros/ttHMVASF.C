@@ -67,10 +67,10 @@ private:
 // Load scale factors from files
 ttHMVASF::ttHMVASF( const char* year, const int nLeptons, const char* muOrEle, std::string requested_SF ) : TTreeFunction() {
 
-  cout << "Year:         " << year         << endl;
-  cout << "nLeptons:     " << nLeptons     << endl;
-  cout << "Requested SF: " << requested_SF << endl;
-  cout << "muOrEle:      " << muOrEle      << endl;
+  // cout << "Year:         " << year         << endl;
+  // cout << "nLeptons:     " << nLeptons     << endl;
+  // cout << "Requested SF: " << requested_SF << endl;
+  // cout << "muOrEle:      " << muOrEle      << endl;
 
   year_         = year;
   nLeptons_     = nLeptons;
@@ -87,7 +87,7 @@ ttHMVASF::ttHMVASF( const char* year, const int nLeptons, const char* muOrEle, s
 	cmssw_base + "/src/PlotsConfigurations/Configurations/WH_chargeAsymmetry/UL/data/electron_ttHMVA_UL_SF/2016HIPM/egammaEffi.txt"
   };
   SF_files_map["electron"]["2016noHIPM"] = {
-	cmssw_base + "/src/PlotsConfigurations/Configurations/WH_chargeAsymmetry/UL/data/electron_ttHMVA_UL_SF/2016HIPM/egammaEffi.txt"
+	cmssw_base + "/src/PlotsConfigurations/Configurations/WH_chargeAsymmetry/UL/data/electron_ttHMVA_UL_SF/2016noHIPM/egammaEffi.txt"
   };
   SF_files_map["electron"]["2017"] = {
 	cmssw_base + "/src/PlotsConfigurations/Configurations/WH_chargeAsymmetry/UL/data/electron_ttHMVA_UL_SF/2017/egammaEffi.txt"
@@ -134,7 +134,7 @@ ttHMVASF::ttHMVASF( const char* year, const int nLeptons, const char* muOrEle, s
     h_SF_ele_syst_->SetDirectory(0);
 	
     // Filling TH2D objects by reading txt input files
-    cout << "SF files map = " << SF_files_map_["electron"][year_] << endl;
+    // cout << "SF files map = " << SF_files_map_["electron"][year_] << endl;
     
     // Prepare grid to read the txt file: 70 lines and 14 columns  
     double lines[70][14];
@@ -212,7 +212,7 @@ ttHMVASF::ttHMVASF( const char* year, const int nLeptons, const char* muOrEle, s
 		}
       }
     }
-    cout << "Done with loading electrons scale factors" << endl;
+    // cout << "Done with loading electrons scale factors" << endl;
   }
   
   //////////////////////////
@@ -221,9 +221,9 @@ ttHMVASF::ttHMVASF( const char* year, const int nLeptons, const char* muOrEle, s
 
   if (strncmp(muOrEle_,"mu",2) || strncmp(muOrEle_,"all",3)){
 
-    cout << "Muons rootfile: " << SF_files_map_["muon"][year_] << endl;
+    // cout << "Muons rootfile: " << SF_files_map_["muon"][year_] << endl;
     TFile* rootfile = new TFile(SF_files_map_["muon"][year_].c_str());
-    cout << "Loaded!" << endl;
+    // cout << "Loaded!" << endl;
 	
     // Nominal SF histogram - temp are needed to properly handle BinContent and BinError (maybe) 
     h_SF_mu_      = (TH2D*)rootfile->Get("NUM_TightHWW_ISO_tthmva_DEN_TightHWW_ISO_eta_pt")->Clone();
@@ -234,7 +234,7 @@ ttHMVASF::ttHMVASF( const char* year, const int nLeptons, const char* muOrEle, s
     h_SF_mu_syst_->SetDirectory(0);
 	
     rootfile->Close();
-    cout << "Done with loading muons scale factors" << endl;
+    // cout << "Done with loading muons scale factors" << endl;
   }
 }
 
@@ -391,7 +391,7 @@ double ttHMVASF::evaluate(unsigned){
 
 void ttHMVASF::bindTree_(multidraw::FunctionLibrary& _library){
 
-  std::cout << "Binding tree" << std::endl;
+  // std::cout << "Binding tree" << std::endl;
 
   _library.bindBranch(lepton_pt,    "Lepton_pt");
   _library.bindBranch(lepton_eta,   "Lepton_eta");
@@ -400,7 +400,7 @@ void ttHMVASF::bindTree_(multidraw::FunctionLibrary& _library){
 
 ttHMVASF::~ttHMVASF(){
 
-  std::cout << "Doing histogram cleanup" << std::endl;
+  // std::cout << "Doing histogram cleanup" << std::endl;
 
   h_SF_ele_->Delete();
   h_SF_ele_stat_->Delete();
