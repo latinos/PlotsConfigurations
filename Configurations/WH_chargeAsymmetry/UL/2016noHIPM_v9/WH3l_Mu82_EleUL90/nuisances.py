@@ -43,11 +43,34 @@ nuisances['lumi_Correlated_Run2'] = {
 }
 
 ### FAKES
-nuisances['fake_syst'] = {
-    'name'  : 'CMS_fake_syst',
-    'type'  : 'lnN',
-    'samples'  : {
-        'Fake' : '1.30',
+# nuisances['fake_syst'] = {
+#     'name'  : 'CMS_fake_syst',
+#     'type'  : 'lnN',
+#     'samples'  : {
+#         'Fake' : '1.30',
+#     },
+# }
+
+fake_syst_endcap = ['1.0*(abs(Lepton_eta[1])<=1.4) +     1.3*(abs(Lepton_eta[1])>1.4)',
+                    '1.0*(abs(Lepton_eta[1])<=1.4) + 1.0/1.3*(abs(Lepton_eta[1])>1.4)']
+
+fake_syst_barrel = ['    1.3*(abs(Lepton_eta[1])<=1.4) + 1.0*(abs(Lepton_eta[1])>1.4)',
+                    '1.0/1.3*(abs(Lepton_eta[1])<=1.4) + 1.0*(abs(Lepton_eta[1])>1.4)']
+
+nuisances['fake_syst_barrel'] = {
+    'name'    : 'fake_syst_barrel',
+    'kind'    : 'weight',
+    'type'    : 'shape',
+    'samples' : {
+        'Fake' : fake_syst_barrel,
+    },
+}
+nuisances['fake_syst_endcap'] = {
+    'name'    : 'fake_syst_endcap',
+    'kind'    : 'weight',
+    'type'    : 'shape',
+    'samples' : {
+        'Fake' : fake_syst_endcap,
     },
 }
 
@@ -90,7 +113,7 @@ nuisances['fake_mu_stat']  = {
 
 ##### B-tagger
 
-for shift in ['jes', 'lf', 'hf', 'hfstats1', 'hfstats2', 'lfstats1', 'lfstats2', 'cferr1', 'cferr2']:
+for shift in ['lf', 'hf', 'hfstats1', 'hfstats2', 'lfstats1', 'lfstats2', 'cferr1', 'cferr2']:
     btag_syst = ['(btagSF%sup)/(btagSF)' % shift, '(btagSF%sdown)/(btagSF)' % shift]
 
     name = 'CMS_btag_%s' % shift
@@ -140,8 +163,8 @@ nuisances['electronpt'] = {
     'mapUp'     : 'ElepTup',
     'mapDown'   : 'ElepTdo',
     'samples'   : dict((skey, ['1', '1']) for skey in mc),
-    'folderUp'  : makeMCDirectory('ElepTup_suffix'),
-    'folderDown': makeMCDirectory('ElepTdo_suffix'),
+    'folderUp'  : 'root://eoscms.cern.ch/'+makeMCDirectory('ElepTup_suffix'),
+    'folderDown': 'root://eoscms.cern.ch/'+makeMCDirectory('ElepTdo_suffix'),
     'AsLnN'     : '0'
 }
 
@@ -164,15 +187,15 @@ nuisances['eff_ttHMVA_m'] = {
 }
 
 nuisances['muonpt'] = {
-    'name': 'CMS_scale_m_2016',
-    'kind': 'suffix',
-    'type': 'shape',
-    'mapUp': 'MupTup',
-    'mapDown': 'MupTdo',
-    'samples': dict((skey, ['1', '1']) for skey in mc),
-    'folderUp': makeMCDirectory('MupTup_suffix'),
-    'folderDown': makeMCDirectory('MupTdo_suffix'),
-    'AsLnN': '0'
+    'name'      : 'CMS_scale_m_2016',
+    'kind'      : 'suffix',
+    'type'      : 'shape',
+    'mapUp'     : 'MupTup',
+    'mapDown'   : 'MupTdo',
+    'samples'   : dict((skey, ['1', '1']) for skey in mc),
+    'folderUp'  : 'root://eoscms.cern.ch/'+makeMCDirectory('MupTup_suffix'),
+    'folderDown': 'root://eoscms.cern.ch/'+makeMCDirectory('MupTdo_suffix'),
+    'AsLnN'     : '0'
 }
 
 ##### Jet energy scale
@@ -187,8 +210,9 @@ for js in jes_systs:
       'mapUp'     : js + 'up',
       'mapDown'   : js + 'do',
       'samples'   : dict((skey, ['1', '1']) for skey in mc),
-      'folderUp'  : makeMCDirectory('RDF__JESup_suffix'),
-      'folderDown': makeMCDirectory('RDF__JESdo_suffix'),
+      'folderUp'  : 'root://eoscms.cern.ch/'+makeMCDirectory('RDF__JESup_suffix'),
+      'folderDown': 'root://eoscms.cern.ch/'+makeMCDirectory('RDF__JESdo_suffix'),
+      'reweight'  : ['btagSF'+js.replace('JES','jes')+'up/btagSF','btagSF'+js.replace('JES','jes')+'down/btagSF'],
       'AsLnN'     : '0'
   }
 
@@ -200,8 +224,8 @@ nuisances['JER'] = {
     'mapUp'     : 'JERup',
     'mapDown'   : 'JERdo',
     'samples'   : dict((skey, ['1', '1']) for skey in mc),
-    'folderUp'  : makeMCDirectory('JERup_suffix'),
-    'folderDown': makeMCDirectory('JERdo_suffix'),
+    'folderUp'  : 'root://eoscms.cern.ch/'+makeMCDirectory('JERup_suffix'),
+    'folderDown': 'root://eoscms.cern.ch/'+makeMCDirectory('JERdo_suffix'),
     'AsLnN'     : '0'
 }
 
@@ -214,8 +238,8 @@ nuisances['met'] = {
     'mapUp'      : 'METup',
     'mapDown'    : 'METdo',
     'samples'    : dict((skey, ['1', '1']) for skey in mc),
-    'folderUp'   : makeMCDirectory('METup_suffix'),
-    'folderDown' : makeMCDirectory('METdo_suffix'),
+    'folderUp'   : 'root://eoscms.cern.ch/'+makeMCDirectory('METup_suffix'),
+    'folderDown' : 'root://eoscms.cern.ch/'+makeMCDirectory('METdo_suffix'),
     'AsLnN'      : '0'
 }
 

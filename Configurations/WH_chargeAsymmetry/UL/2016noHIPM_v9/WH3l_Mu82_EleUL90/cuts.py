@@ -8,11 +8,12 @@ supercut = 'MinIf$( WH3l_mOSll[], WH3l_mOSll[Iteration$] > 0) > 12 \
             && abs(WH3l_chlll) == 1 \
             && bVeto \
 '
-#             && Sum$( CleanJet_pt > 20. && abs(CleanJet_eta)<2.5 && Jet_btagDeepB[CleanJet_jetIdx] > 0.4184) == 0\
-
 # Plus: two leptons with positive charge and one with negative charge: product of the three charges is negative (product of pdgIds is POSITIVE)
 # Minus: two leptons with negative charge and one with positive charge: product of the three charges is positive (product of pdgIds is NEGATIVE)
 
+## Signal region
+
+# SSSF
 cuts['wh3l_13TeV_sssf'] = {
     'expr' : 'WH3l_flagOSSF == 0 && Alt$(CleanJet_pt[0], 0) < 30',
     'categories' : {
@@ -23,6 +24,7 @@ cuts['wh3l_13TeV_sssf'] = {
     }
 }
 
+# OSSF
 cuts['wh3l_13TeV_ossf'] = {
     'expr' : 'WH3l_flagOSSF == 1 && WH3l_ZVeto > 20 && PuppiMET_pt > 40 && Alt$(CleanJet_pt[0], 0) < 30',
     'categories' : {
@@ -58,6 +60,12 @@ cuts['hww2l2v_13TeV_WH_SS_WZ_2j'] = '((Lepton_pdgId[0]*Lepton_pdgId[1] == 13*13)
                                        && Alt$(CleanJet_pt[1],0)>30 \
                                        && WH3l_mlll > 100 \
                                        '
+# # Zg control region - not used
+# cuts['wh3l_zg_13TeV'] = 'WH3l_ZVeto < 20\
+#                          && PuppiMET_pt < 40\
+#                          && WH3l_mlll > 80\
+#                          && WH3l_mlll < 100\
+#                          '
 
 # 11 = e
 # 13 = mu
