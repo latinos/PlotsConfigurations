@@ -16,58 +16,88 @@ else
 fi
 
 CUTS=(
-"WH_SS_em_1j_plus" 
-"WH_SS_em_1j_minus"
-"WH_SS_mm_1j_plus"
-"WH_SS_mm_1j_minus"
-"WH_SS_ee_1j_plus"
-"WH_SS_ee_1j_minus"
-"WH_SS_em_2j_plus"
-"WH_SS_em_2j_minus"
-"WH_SS_mm_2j_plus"
-"WH_SS_mm_2j_minus"
-"WH_SS_ee_2j_plus"
-"WH_SS_ee_2j_minus"
-"WH_SS_em_1j_plus_low_pt" 
-"WH_SS_em_1j_minus_low_pt"
-"WH_SS_mm_1j_plus_low_pt"
-"WH_SS_mm_1j_minus_low_pt"
-"WH_SS_ee_1j_plus_low_pt"
-"WH_SS_ee_1j_minus_low_pt"
-"WH_SS_em_2j_plus_low_pt"
-"WH_SS_em_2j_minus_low_pt"
-"WH_SS_mm_2j_plus_low_pt"
-"WH_SS_mm_2j_minus_low_pt"
-"WH_SS_ee_2j_plus_low_pt"
-"WH_SS_ee_2j_minus_low_pt"
+	"WH_SS_em_1j_plus" 
+	"WH_SS_em_1j_minus"
+	"WH_SS_mm_1j_plus"
+	"WH_SS_mm_1j_minus"
+	"WH_SS_ee_1j_plus"
+	"WH_SS_ee_1j_minus"
+	"WH_SS_em_2j_plus"
+	"WH_SS_em_2j_minus"
+	"WH_SS_mm_2j_plus"
+	"WH_SS_mm_2j_minus"
+	"WH_SS_ee_2j_plus"
+	"WH_SS_ee_2j_minus"
+	"WH_SS_em_1j_plus_low_pt" 
+	"WH_SS_em_1j_minus_low_pt"
+	"WH_SS_mm_1j_plus_low_pt"
+	"WH_SS_mm_1j_minus_low_pt"
+	"WH_SS_ee_1j_plus_low_pt"
+	"WH_SS_ee_1j_minus_low_pt"
+	"WH_SS_em_2j_plus_low_pt"
+	"WH_SS_em_2j_minus_low_pt"
+	"WH_SS_mm_2j_plus_low_pt"
+	"WH_SS_mm_2j_minus_low_pt"
+	"WH_SS_ee_2j_plus_low_pt"
+	"WH_SS_ee_2j_minus_low_pt"
 )
 
 CUTS_ORIGINAL=(
-"hww2l2v_13TeV_WH_SS_em_1j_plus_pt2ge20" 
-"hww2l2v_13TeV_WH_SS_em_1j_minus_pt2ge20" 
-"hww2l2v_13TeV_WH_SS_noZveto_mm_1j_plus_pt2ge20" 
-"hww2l2v_13TeV_WH_SS_noZveto_mm_1j_minus_pt2ge20" 
-"hww2l2v_13TeV_WH_SS_ee_1j_plus_pt2ge20" 
-"hww2l2v_13TeV_WH_SS_ee_1j_minus_pt2ge20" 
-"hww2l2v_13TeV_WH_SS_em_2j_plus_pt2ge20" 
-"hww2l2v_13TeV_WH_SS_em_2j_minus_pt2ge20" 
-"hww2l2v_13TeV_WH_SS_noZveto_mm_2j_plus_pt2ge20" 
-"hww2l2v_13TeV_WH_SS_noZveto_mm_2j_minus_pt2ge20" 
-"hww2l2v_13TeV_WH_SS_ee_2j_plus_pt2ge20" 
-"hww2l2v_13TeV_WH_SS_ee_2j_minus_pt2ge20" 
-"hww2l2v_13TeV_WH_SS_em_1j_plus_pt2lt20" 
-"hww2l2v_13TeV_WH_SS_em_1j_minus_pt2lt20" 
-"hww2l2v_13TeV_WH_SS_noZveto_mm_1j_plus_pt2lt20" 
-"hww2l2v_13TeV_WH_SS_noZveto_mm_1j_minus_pt2lt20" 
-"hww2l2v_13TeV_WH_SS_ee_1j_plus_pt2lt20" 
-"hww2l2v_13TeV_WH_SS_ee_1j_minus_pt2lt20" 
-"hww2l2v_13TeV_WH_SS_em_2j_plus_pt2lt20" 
-"hww2l2v_13TeV_WH_SS_em_2j_minus_pt2lt20" 
-"hww2l2v_13TeV_WH_SS_noZveto_mm_2j_plus_pt2lt20" 
-"hww2l2v_13TeV_WH_SS_noZveto_mm_2j_minus_pt2lt20" 
-"hww2l2v_13TeV_WH_SS_ee_2j_plus_pt2lt20" 
-"hww2l2v_13TeV_WH_SS_ee_2j_minus_pt2lt20" 
+	"hww2l2v_13TeV_WH_SS_em_1j_plus_pt2ge20" 
+	"hww2l2v_13TeV_WH_SS_em_1j_minus_pt2ge20" 
+	"hww2l2v_13TeV_WH_SS_noZveto_mm_1j_plus_pt2ge20" 
+	"hww2l2v_13TeV_WH_SS_noZveto_mm_1j_minus_pt2ge20" 
+	"hww2l2v_13TeV_WH_SS_ee_1j_plus_pt2ge20" 
+	"hww2l2v_13TeV_WH_SS_ee_1j_minus_pt2ge20" 
+	"hww2l2v_13TeV_WH_SS_em_2j_plus_pt2ge20" 
+	"hww2l2v_13TeV_WH_SS_em_2j_minus_pt2ge20" 
+	"hww2l2v_13TeV_WH_SS_noZveto_mm_2j_plus_pt2ge20" 
+	"hww2l2v_13TeV_WH_SS_noZveto_mm_2j_minus_pt2ge20" 
+	"hww2l2v_13TeV_WH_SS_ee_2j_plus_pt2ge20" 
+	"hww2l2v_13TeV_WH_SS_ee_2j_minus_pt2ge20" 
+	"hww2l2v_13TeV_WH_SS_em_1j_plus_pt2lt20" 
+	"hww2l2v_13TeV_WH_SS_em_1j_minus_pt2lt20" 
+	"hww2l2v_13TeV_WH_SS_noZveto_mm_1j_plus_pt2lt20" 
+	"hww2l2v_13TeV_WH_SS_noZveto_mm_1j_minus_pt2lt20" 
+	"hww2l2v_13TeV_WH_SS_ee_1j_plus_pt2lt20" 
+	"hww2l2v_13TeV_WH_SS_ee_1j_minus_pt2lt20" 
+	"hww2l2v_13TeV_WH_SS_em_2j_plus_pt2lt20" 
+	"hww2l2v_13TeV_WH_SS_em_2j_minus_pt2lt20" 
+	"hww2l2v_13TeV_WH_SS_noZveto_mm_2j_plus_pt2lt20" 
+	"hww2l2v_13TeV_WH_SS_noZveto_mm_2j_minus_pt2lt20" 
+	"hww2l2v_13TeV_WH_SS_ee_2j_plus_pt2lt20" 
+	"hww2l2v_13TeV_WH_SS_ee_2j_minus_pt2lt20" 
 )
+
+if [ $VAR == binning ];
+then
+	VARIABLES=(
+		"BDTG6_TT_0_6"
+		"BDTG6_TT_0_6"
+		"BDTG6_TT_0_6"
+		"BDTG6_TT_0_6"
+		"BDTG6_TT_0_6"
+		"BDTG6_TT_0_6"
+		"BDTG6_TT_0_5"
+		"BDTG6_TT_0_5"
+		"BDTG6_TT_0_0"
+		"BDTG6_TT_0_0"
+		"BDTG6_TT_0_0"
+		"BDTG6_TT_0_0"
+		"BDTG6_TT_0_5"
+		"BDTG6_TT_0_5"
+		"BDTG6_TT_0_5"
+		"BDTG6_TT_0_5"
+		"BDTG6_TT_0_0"
+		"BDTG6_TT_0_0"
+		"BDTG6_TT_0_0"
+		"BDTG6_TT_0_0"
+		"BDTG6_TT_0_0"
+		"BDTG6_TT_0_0"
+		"BDTG6_TT_0_0"
+		"BDTG6_TT_0_0"
+	)
+fi
 
 # Pre-fit plots for discriminant variable
 
@@ -78,10 +108,10 @@ for ((idx=0; idx<${#CUTS[@]}; ++idx)); do
 	mkPostFitPlot.py \
 		--inputFileCombine ${INPUT} \
 		--outputFile output.root \
-		--variable ${VAR} \
+		--variable ${VARIABLES[$idx]} \
 		--cut ${CUTS[$idx]} \
 		--cutNameInOriginal ${CUTS_ORIGINAL[$idx]} \
-		--inputFile datacards_opt/${CUTS_ORIGINAL[$idx]}/${VAR}/shapes/histos_${CUTS_ORIGINAL[$idx]}.root \
+		--inputFile datacards_opt/${CUTS_ORIGINAL[$idx]}/${VARIABLES[$idx]}/shapes/histos_${CUTS_ORIGINAL[$idx]}.root \
 		--isInputFileFromDatacard 1 \
 		--kind p \
 		--pycfg configuration_preFit.py \
@@ -130,7 +160,7 @@ done
 # 		--onlyCut=${CUTS_ORIGINAL[$idx]} \
 # 		--postFit 0 \
 # 		--skipMissingNuisance 1 \
-# 		--outputDirPlot post_fit_plots_2017 \
+# 		--outputDirPlot post_fit_plots_2018 \
 # 		--plotFile plot_blind_halfDY_preFit.py \
 # 		--samplesFile samples_preFit.py
 
