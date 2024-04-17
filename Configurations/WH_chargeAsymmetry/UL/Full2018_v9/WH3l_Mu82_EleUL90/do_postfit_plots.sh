@@ -51,6 +51,16 @@ then
 	)
 fi
 
+if [ $VAR == binning_opt ];
+then
+	VARIABLES=(
+		"BDT_WH3l_SSSF_new_v9_0_75"
+		"BDT_WH3l_SSSF_new_v9_0_75"
+		"BDT_WH3l_OSSF_new_v9_0_75"
+		"BDT_WH3l_OSSF_new_v9_0_75"
+	)
+fi
+
 echo $VARIABLES
 
 # Pre-fit plots for discriminant variable

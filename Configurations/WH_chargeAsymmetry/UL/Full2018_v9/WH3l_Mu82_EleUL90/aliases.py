@@ -196,7 +196,8 @@ aliases['btagSF'] = {
     'samples': mc
 }
 
-for shift in ['jes', 'lf', 'hf', 'lfstats1', 'lfstats2', 'hfstats1', 'hfstats2', 'cferr1', 'cferr2']:
+for shift in ['jesAbsolute', 'jesAbsolute_2018', 'jesBBEC1', 'jesBBEC1_2018', 'jesEC2', 'jesEC2_2018', 'jesFlavorQCD', 'jesHF', 'jesHF_2018', 'jesRelativeBal', 'jesRelativeSample_2018', 'lf', 'hf', 'lfstats1', 'lfstats2', 'hfstats1', 'hfstats2', 'cferr1', 'cferr2']:
+#for shift in ['jes', 'lf', 'hf', 'lfstats1', 'lfstats2', 'hfstats1', 'hfstats2', 'cferr1', 'cferr2']:
     for targ in ['bVeto', 'bReq']:
         alias = aliases['%sSF%sup' % (targ, shift)] = copy.deepcopy(aliases['%sSF' % targ])
         alias['expr'] = alias['expr'].replace('btagSF_{}_shape'.format(bSF), 'btagSF_{}_shape_up_{}'.format(bSF, shift))
@@ -362,25 +363,39 @@ aliases['BDT_WH3l_SSSF_new_v9'] = {
     'args'  : ('BDTG4SK01_05shrinkage', '%s/WH_chargeAsymmetry/UL/data/BDT/2018/WH3l/SSSF/weights/TMVAClassification_BDTG4SK01_05shrinkage.weights.xml' % configurations),
 }
 
-# Considering Top and Z+jets (DY) as sources of fake leptons and weights
-aliases['BDT_WH3l_OSSF_weight_v9'] = {
+# Including VVV as source of background
+aliases['BDT_WH3l_OSSF_VVV_v9'] = {
     'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/BDT_WH3l_OSSF_v9.C+' % configurations],
     'class' : 'BDT_WH3l_OSSF_v9',
-    'args'  : ('BDTG4F07', '%s/WH_chargeAsymmetry/UL/Full2018_v9/BDTconfig_WH3l/dataset_OSSF_weight/weights/TMVAClassification_BDTG4F07.weights.xml' % configurations),
+    'args'  : ('BDTG4', '%s/WH_chargeAsymmetry/UL/Full2018_v9/BDTconfig_WH3l/dataset_OSSF_VVV/weights/TMVAClassification_BDTG4.weights.xml' % configurations),
 }
 
-aliases['BDT_WH3l_SSSF_weight_v9'] = {
+aliases['BDT_WH3l_SSSF_VVV_v9'] = {
     'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/BDT_WH3l_SSSF_v9.C+' % configurations],
     'class' : 'BDT_WH3l_SSSF_v9',
-    'args'  : ('BDTG4SK01', '%s/WH_chargeAsymmetry/UL/Full2018_v9/BDTconfig_WH3l/dataset_SSSF_weight/weights/TMVAClassification_BDTG4SK01.weights.xml' % configurations),
+    'args'  : ('BDTG4SK01', '%s/WH_chargeAsymmetry/UL/Full2018_v9/BDTconfig_WH3l/dataset_SSSF_VVV/weights/TMVAClassification_BDTG4SK01.weights.xml' % configurations),
 }
 
-# Considering Top and Z+jets (DY) as sources of fake leptons and weights. Trained using Full Run 2 dataset
-aliases['BDT_WH3l_OSSF_weight_FullRun2_v9'] = {
-    'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/BDT_WH3l_OSSF_v9.C+' % configurations],
-    'class' : 'BDT_WH3l_OSSF_v9',
-    'args'  : ('BDTG4F07', '%s/WH_chargeAsymmetry/UL/FullRun2/BDTconfig_WH3l/dataset_OSSF_weight/weights/TMVAClassification_BDTG4F07.weights.xml' % configurations),
-}
+
+# # Considering Top and Z+jets (DY) as sources of fake leptons and weights
+# aliases['BDT_WH3l_OSSF_weight_v9'] = {
+#     'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/BDT_WH3l_OSSF_v9.C+' % configurations],
+#     'class' : 'BDT_WH3l_OSSF_v9',
+#     'args'  : ('BDTG4F07', '%s/WH_chargeAsymmetry/UL/Full2018_v9/BDTconfig_WH3l/dataset_OSSF_weight/weights/TMVAClassification_BDTG4F07.weights.xml' % configurations),
+# }
+
+# aliases['BDT_WH3l_SSSF_weight_v9'] = {
+#     'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/BDT_WH3l_SSSF_v9.C+' % configurations],
+#     'class' : 'BDT_WH3l_SSSF_v9',
+#     'args'  : ('BDTG4SK01', '%s/WH_chargeAsymmetry/UL/Full2018_v9/BDTconfig_WH3l/dataset_SSSF_weight/weights/TMVAClassification_BDTG4SK01.weights.xml' % configurations),
+# }
+
+# # Considering Top and Z+jets (DY) as sources of fake leptons and weights. Trained using Full Run 2 dataset
+# aliases['BDT_WH3l_OSSF_weight_FullRun2_v9'] = {
+#     'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/BDT_WH3l_OSSF_v9.C+' % configurations],
+#     'class' : 'BDT_WH3l_OSSF_v9',
+#     'args'  : ('BDTG4F07', '%s/WH_chargeAsymmetry/UL/FullRun2/BDTconfig_WH3l/dataset_OSSF_weight/weights/TMVAClassification_BDTG4F07.weights.xml' % configurations),
+# }
 
 # aliases['BDT_WH3l_SSSF_weight_FullRun2_v9'] = {
 #     'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/BDT_WH3l_SSSF_v9.C+' % configurations],
@@ -411,4 +426,17 @@ aliases['BDT_WHSS_TopSemileptonic_weight_FullRun2_v9'] = {
     'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/BDT_WHSS_TopSemileptonic_v9.C+' % configurations],
     'class': 'BDT_WHSS_TopSemileptonic_v9',
     'args' : ('BDTG_5', '%s/WH_chargeAsymmetry/UL/FullRun2/BDTconfig_WHSS/datasetWHSS_weight/weights/TMVAClassification_BDTG_5.weights.xml' % configurations), # provisional address
+}
+
+# Veto events in the problematic region: 
+# electrons or jets in:
+# (-1.57 < phi < -0.87) , (-2.5 < eta < -1.3)
+aliases['hole_veto'] = {
+    'expr': '( ( (Lepton_eta[0] < -1.3  && Lepton_eta[0] > -2.5 ) && (Lepton_phi[0] > -1.57 && Lepton_phi[0] < -0.87) && (abs(Lepton_pdgId[0])==11) ) \
+            || ( (Lepton_eta[1] < -1.3  && Lepton_eta[1] > -2.5 ) && (Lepton_phi[1] > -1.57 && Lepton_phi[1] < -0.87) && (abs(Lepton_pdgId[1])==11) ) \
+            || ( (Lepton_eta[2] < -1.3  && Lepton_eta[2] > -2.5 ) && (Lepton_phi[2] > -1.57 && Lepton_phi[2] < -0.87) && (abs(Lepton_pdgId[2])==11) ) \
+            || ( (Alt$(CleanJet_eta[0], 99) < -1.3 && (Alt$(CleanJet_eta[0], -99) > -2.5))  && (Alt$(CleanJet_phi[0], -99) > -1.57 && Alt$(CleanJet_phi[0], 99) < -0.87) ) \
+            || ( (Alt$(CleanJet_eta[1], 99) < -1.3 && (Alt$(CleanJet_eta[1], -99) > -2.5))  && (Alt$(CleanJet_phi[1], -99) > -1.57 && Alt$(CleanJet_phi[1], 99) < -0.87) ) \
+    ) ',
+
 }

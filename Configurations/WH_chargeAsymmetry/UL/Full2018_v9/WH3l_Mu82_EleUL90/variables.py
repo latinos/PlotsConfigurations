@@ -34,18 +34,35 @@ variables['BDT_WH3l_SSSF_new_v9'] = {
     'fold'     : 3,
 }
 
-variables['BDT_WH3l_OSSF_new_v9_100_bins'] = { 
-    'name': 'BDT_WH3l_OSSF_new_v9',
-    'range' : (100,-1.,1.),
-    'xaxis' : 'MVA discriminant',
-    'fold' : 3,
+# variables['BDT_WH3l_OSSF_new_v9_100_bins'] = { 
+#     'name': 'BDT_WH3l_OSSF_new_v9',
+#     'range' : (100,-1.,1.),
+#     'xaxis' : 'MVA discriminant',
+#     'fold' : 3,
+# }
+
+# variables['BDT_WH3l_SSSF_new_v9_100_bins'] = { 
+#     'name': 'BDT_WH3l_SSSF_new_v9',
+#     'range' : (100,-1.,1.),
+#     'xaxis' : 'MVA discriminant',
+#     'fold' : 3,
+# }
+
+# Training considering also VVV as background
+variables['BDT_WH3l_OSSF_VVV_v9'] = { 
+    'name'     : 'BDT_WH3l_OSSF_VVV_v9',
+    'range'    : (40,-1.,1.),
+    'xaxis'    : 'MVA discriminant',
+    'yaxis'    : 'Events',
+    'fold'     : 3,
 }
 
-variables['BDT_WH3l_SSSF_new_v9_100_bins'] = { 
-    'name': 'BDT_WH3l_SSSF_new_v9',
-    'range' : (100,-1.,1.),
-    'xaxis' : 'MVA discriminant',
-    'fold' : 3,
+variables['BDT_WH3l_SSSF_VVV_v9'] = { 
+    'name'     : 'BDT_WH3l_SSSF_VVV_v9',
+    'range'    : (40,-1.,1.),
+    'xaxis'    : 'MVA discriminant',
+    'yaxis'    : 'Events',
+    'fold'     : 3,
 }
 
 ###################
