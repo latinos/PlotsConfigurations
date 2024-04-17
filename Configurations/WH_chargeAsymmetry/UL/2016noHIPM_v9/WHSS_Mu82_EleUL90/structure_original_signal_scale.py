@@ -7,7 +7,6 @@
 structure['DY']  = {  
     'isSignal' : 0,
     'isData'   : 0,
-    'scaleSampleForDatacard' : 0.5
 }
 
 structure['top'] = {   
@@ -91,13 +90,11 @@ structure['ggZH_hww'] = {
 structure['WH_hww_plus'] = {
     'isSignal' : 1,
     'isData'   : 0,
-    'scaleSampleForDatacard' : 10 # scaling signal to have sensitivity
 }
 
 structure['WH_hww_minus'] = {
     'isSignal' : 1,
     'isData'   : 0,
-    'scaleSampleForDatacard' : 10 # scaling signal to have sensitivity
 }
 
 structure['ttH_hww'] = {
@@ -123,13 +120,11 @@ structure['ZH_htt'] = {
 structure['WH_htt_plus'] = {
     'isSignal' : 1,
     'isData'   : 0,
-    'scaleSampleForDatacard' : 10 # scaling signal to have sensitivity
 }
 
 structure['WH_htt_minus'] = {
     'isSignal' : 1,
     'isData'   : 0,
-    'scaleSampleForDatacard' : 10 # scaling signal to have sensitivity
 }
 
 

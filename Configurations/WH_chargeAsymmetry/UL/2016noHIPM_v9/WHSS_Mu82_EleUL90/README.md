@@ -57,6 +57,10 @@ Then, plots the distributions:
 
 ### Create datacards
 
+Using script:
+
+    ./do_datacards.sh
+
 Using DY->ee data-driven distributions and scaling the signal by a factor 10, to test different strategies in single eras:
 
     mkDatacards.py --pycfg=configuration.py --inputFile=rootFile/plots_WHSS_2016noHIPM_v9_chargeAsymmetry_Mu82_EleUL90_DYflip.root --outputDirDatacard=datacards_DYflip --structureFile=structure_DYflip.py  --variablesFile=variables_datacard.py
@@ -75,9 +79,12 @@ Load combine:
 
 Now optimize:
 
-    ./do_optimize_cards.sh BDTG6_TT_100_bins 0.10                 &
-    ./do_optimize_cards.sh BDTG5_TT_weight_100_bins 0.10          &
-    ./do_optimize_cards.sh BDTG5_TT_weight_FullRun2_100_bins 0.10 &
+    ./do_optimize_cards.sh BDTG6_TT_100_bins                 0.10 &
+
+    ./do_optimize_cards.sh BDTG6_TT_0_75                     0.10 &
+    ./do_optimize_cards.sh BDTG6_TT_0_6                      0.10 &
+    ./do_optimize_cards.sh BDTG6_TT_0_5                      0.10 &
+    ./do_optimize_cards.sh BDTG6_TT_0_0                      0.10 &
 
 ### Combine datacards
 
@@ -93,7 +100,7 @@ Load combine:
 
 Actually combine datacards:
 
-     python script_datacards_opt.py
+     python script_datacards_binning.py
 
 ### Produce prefit, postfit, and likelihood scans plots
 
@@ -101,11 +108,13 @@ To produce likelihood scans, we need to perform the fit using the FitDiagnostic 
 
 Run combine using the FitDiagnostic option:
 
-    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_SS_2016noHIPM_v9_BDTG6_TT_100_bins_allFinalStates_alsoLowPt_opt_noZveto --output_name Combination/FitResults_BDTG6_TT_100_bins.txt --freeze_nuisances r_higgs --sanity_check FD
+    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_SS_2016noHIPM_v9_binning_allFinalStates_alsoLowPt_opt_noZveto --output_name Combination/FitResults_binning_opt.txt --freeze_nuisances r_higgs --sanity_check FD
 
 This will create the output file `fitDiagnostics.root`, storing all the pre- and post-fit shapes. Then, we can produce a rootfile with all the shapes, in the format that mkPlot can read, and then plot:
 
-    bash do_postfit_plots.sh BDTG6_TT_100_bins Combination/FitResults_BDTG6_TT_100_bins_fitDiagnostics.root
+    cmsenv
+
+    bash do_postfit_plots.sh binning Combination/FitResults_binning_opt_fitDiagnostics.root
 
 ### Interpret the results in terms of asymmetry
 
@@ -147,13 +156,17 @@ Since S appears in the denominator of the asymmetry expression, it cannot be 0, 
 
 For newer trainings, where we only want to compare the full strategy:
 
+    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_SS_2016noHIPM_v9_binning_allFinalStates_alsoLowPt_DYflip_noZveto --output_name Combination/FitResults_binning.txt --freeze_nuisances r_higgs
+
+Old:
+
     python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_SS_2016noHIPM_v9_BDTG6_TT_100_bins_allFinalStates_alsoLowPt_opt_noZveto --output_name Combination/FitResults_BDTG6_TT_100_bins.txt --freeze_nuisances r_higgs
-    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_SS_2016noHIPM_v9_BDTG5_TT_weight_100_bins_allFinalStates_alsoLowPt_opt_noZveto --output_name Combination/FitResults_BDTG5_TT_weight_100_bins.txt --freeze_nuisances r_higgs
-    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_SS_2016noHIPM_v9_BDTG5_TT_weight_FullRun2_100_bins_allFinalStates_alsoLowPt_opt_noZveto --output_name Combination/FitResults_BDTG5_TT_weight_FullRun2_100_bins.txt --freeze_nuisances r_higgs
+
+    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_SS_2016noHIPM_v9_binning_allFinalStates_alsoLowPt_DYflip_noZveto --output_name Combination/FitResults_binning.txt --freeze_nuisances r_higgs
 
 Using datacards with correct signal scaling:
 
-    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_SS_2016noHIPM_v9_BDTG6_TT_100_bins_allFinalStates_alsoLowPt_DYflip_original_signal_scale_opt_noZveto --output_name Combination/FitResults_BDTG6_TT_100_bins_original_signal_scale.txt --freeze_nuisances r_higgs
+    python script_workspace_and_fit.py --datacard_name Combination/WH_chargeAsymmetry_WH_SS_2016noHIPM_v9_binning_allFinalStates_alsoLowPt_DYflip_original_signal_scale_noZveto --output_name Combination/FitResults_binning_original_signal_scale.txt --freeze_nuisances r_higgs
 
 ### Produce Impact Plots 
 
@@ -173,8 +186,8 @@ Select datacard to use and actually produce impact plots:
 
     cd Impact_plots
 
-	VAR=BDTG6_TT_100_bins
-	FINAL_STATE=_allFinalStates_alsoLowPt_opt_noZveto
+	VAR=binning
+	FINAL_STATE=_allFinalStates_alsoLowPt_DYflip_noZveto
 
     combineTool.py -M Impacts -d ../Combination/WH_chargeAsymmetry_WH_SS_2016noHIPM_v9_${VAR}${FINAL_STATE}.root -m 125 --doInitialFit -t -1 --setParameters r_S=1.3693,r_A=0.224,r_higgs=1 --setParameterRanges r_S=0,10:r_A=-1,1 --redefineSignalPOIs r_A --freezeParameters r_higgs
 

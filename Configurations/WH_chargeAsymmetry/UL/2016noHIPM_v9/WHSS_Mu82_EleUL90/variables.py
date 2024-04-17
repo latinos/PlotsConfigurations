@@ -257,3 +257,16 @@ variables['ht'] = {
     'fold'  : 3
 }
 
+variables['DeepCSV_jet1'] = {
+    'name'  : 'Alt$(Jet_btagDeepB[CleanJet_jetIdx[0]],-2)',
+    'range' : (50,0.0,1.0),
+    'xaxis' : 'Leading jet DeepCSV',
+    'fold'  : 3
+}
+
+variables['DeepCSV_jet2'] = {
+    'name'  : 'Alt$(Jet_btagDeepB[CleanJet_jetIdx[1]],-2)',
+    'range' : (50,0.0,1.0),
+    'xaxis' : 'Sub-leading jet DeepCSV',
+    'fold'  : 3
+}
