@@ -23,6 +23,16 @@ cuts['DY_ee_cf_ss'] = {
     }
 }
 
+cuts['DY_ee_cf_ss_incl'] = {
+    'expr'       : 'Lepton_pdgId[0]*Lepton_pdgId[1] == 11*11',
+    'categories' : {
+        'EBEB' : 'abs(Lepton_eta[0]) <  1.4 && abs(Lepton_eta[1]) <  1.4',
+        'EBEE' : 'abs(Lepton_eta[0]) <  1.4 && abs(Lepton_eta[1]) >= 1.4',
+        'EEEB' : 'abs(Lepton_eta[0]) >= 1.4 && abs(Lepton_eta[1]) <  1.4',
+        'EEEE' : 'abs(Lepton_eta[0]) >= 1.4 && abs(Lepton_eta[1]) >= 1.4',
+    }
+}
+
 # Opposite-sign category
 cuts['DY_ee_cf_os'] = {
     'expr'       : 'Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11',
@@ -35,5 +45,15 @@ cuts['DY_ee_cf_os'] = {
         'low_pt_EEEB'  : 'Lepton_pt[1] <= 20 && abs(Lepton_eta[0]) >= 1.4 && abs(Lepton_eta[1]) <  1.4',
         'high_pt_EEEE' : 'Lepton_pt[1] >  20 && abs(Lepton_eta[0]) >= 1.4 && abs(Lepton_eta[1]) >= 1.4',
         'low_pt_EEEE'  : 'Lepton_pt[1] <= 20 && abs(Lepton_eta[0]) >= 1.4 && abs(Lepton_eta[1]) >= 1.4',
+    }
+}
+
+cuts['DY_ee_cf_os_incl'] = {
+    'expr'       : 'Lepton_pdgId[0]*Lepton_pdgId[1] == -11*11',
+    'categories' : {
+        'EBEB' : 'abs(Lepton_eta[0]) <  1.4 && abs(Lepton_eta[1]) <  1.4',
+        'EBEE' : 'abs(Lepton_eta[0]) <  1.4 && abs(Lepton_eta[1]) >= 1.4',
+        'EEEB' : 'abs(Lepton_eta[0]) >= 1.4 && abs(Lepton_eta[1]) <  1.4',
+        'EEEE' : 'abs(Lepton_eta[0]) >= 1.4 && abs(Lepton_eta[1]) >= 1.4',
     }
 }
