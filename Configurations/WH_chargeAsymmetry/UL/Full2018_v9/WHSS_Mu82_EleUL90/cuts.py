@@ -6,6 +6,7 @@ supercut = 'mll>12  \
             && abs(Lepton_eta[0])<2.5 && abs(Lepton_eta[1])<2.5 \
             && bVeto \
             && PuppiMET_pt > 30 \
+            && !hole_veto[0] \
             '
 
 # Splitting in sub-leading lepton pT 

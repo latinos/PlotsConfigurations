@@ -102,75 +102,80 @@ mcCommonWeight = 'XSWeight*METFilter_MC*PromptGenLepMatch2l*SFweight'
 #############  BACKGROUNDS  ###############
 ###########################################
 
-###### DY #######
-useEmbeddedDY = False
-embed_tautauveto = ''
+# ###### DY #######
+# useEmbeddedDY = False
+# embed_tautauveto = ''
 
-files = nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-10to50_NLO') + \
-        nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50')
+# files = nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-10to50_NLO') + \
+#         nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50') # + \
 
-samples['DY'] = {
-    'name': files,
-    'weight': mcCommonWeight + '*( !(Sum$(PhotonGen_isPrompt==1 && PhotonGen_pt>15 && abs(PhotonGen_eta)<2.6) > 0))',
-    'suppressNegative' :['all'],
-    'suppressNegativeNuisances' :['all'],
-    'FilesPerJob': 4,
-}
+# samples['DY'] = {
+#     'name': files,
+#     'weight': mcCommonWeight + '*( !(Sum$(PhotonGen_isPrompt==1 && PhotonGen_pt>15 && abs(PhotonGen_eta)<2.6) > 0))',
+#     'suppressNegative' :['all'],
+#     'suppressNegativeNuisances' :['all'],
+#     'FilesPerJob': 4,
+# }
+
+# ##### Top #######
+# files = nanoGetSampleFiles(mcDirectory, 'TTTo2L2Nu') + \
+#         nanoGetSampleFiles(mcDirectory, 'ST_s-channel') + \
+#         nanoGetSampleFiles(mcDirectory, 'ST_t-channel_top') + \
+#         nanoGetSampleFiles(mcDirectory, 'ST_t-channel_antitop') + \
+#         nanoGetSampleFiles(mcDirectory, 'ST_tW_antitop') + \
+#         nanoGetSampleFiles(mcDirectory, 'ST_tW_top')
+
+# samples['top'] = {
+#     'name': files,
+#     'weight': mcCommonWeight+'*ttHMVA_SF_flip_2l[0]',
+#     'suppressNegative' :['all'],
+#     'suppressNegativeNuisances' :['all'],
+#     'FilesPerJob': 4,
+# }
+# addSampleWeight(samples,'top','TTTo2L2Nu','Top_pTrw')
 
 
-##### Top #######
-files = nanoGetSampleFiles(mcDirectory, 'TTTo2L2Nu') + \
-        nanoGetSampleFiles(mcDirectory, 'ST_s-channel') + \
-        nanoGetSampleFiles(mcDirectory, 'ST_t-channel_top') + \
-        nanoGetSampleFiles(mcDirectory, 'ST_t-channel_antitop') + \
-        nanoGetSampleFiles(mcDirectory, 'ST_tW_antitop') + \
-        nanoGetSampleFiles(mcDirectory, 'ST_tW_top')
+# ###### WW ########
+# samples['WW'] = {
+#     'name': nanoGetSampleFiles(mcDirectory, 'WWTo2L2Nu'),
+#     'weight': mcCommonWeight + '*nllW*ewknloW*ttHMVA_SF_flip_2l[0]', 
+#     'suppressNegative' :['all'],
+#     'suppressNegativeNuisances' :['all'],
+#     'FilesPerJob': 2
+# }
 
-samples['top'] = {
-    'name': files,
-    'weight': mcCommonWeight+'*ttHMVA_SF_flip_2l[0]',
-    'suppressNegative' :['all'],
-    'suppressNegativeNuisances' :['all'],
-    'FilesPerJob': 4,
-}
-addSampleWeight(samples,'top','TTTo2L2Nu','Top_pTrw')
+# samples['WWewk'] = {
+#     'name': nanoGetSampleFiles(mcDirectory, 'WpWmJJ_EWK_noTop'),
+#     'weight': mcCommonWeight + '*(Sum$(abs(GenPart_pdgId)==6 || GenPart_pdgId==25)==0)',
+#     'suppressNegative' :['all'],
+#     'suppressNegativeNuisances' :['all'],
+#     'FilesPerJob': 4
+# }
 
+# files = nanoGetSampleFiles(mcDirectory, 'GluGluToWWToENEN') + \
+#         nanoGetSampleFiles(mcDirectory, 'GluGluToWWToENMN') + \
+#         nanoGetSampleFiles(mcDirectory, 'GluGluToWWToENTN') + \
+#         nanoGetSampleFiles(mcDirectory, 'GluGluToWWToMNEN') + \
+#         nanoGetSampleFiles(mcDirectory, 'GluGluToWWToMNMN') + \
+#         nanoGetSampleFiles(mcDirectory, 'GluGluToWWToMNTN') + \
+#         nanoGetSampleFiles(mcDirectory, 'GluGluToWWToTNEN') + \
+#         nanoGetSampleFiles(mcDirectory, 'GluGluToWWToTNMN') + \
+#         nanoGetSampleFiles(mcDirectory, 'GluGluToWWToTNTN')
 
-###### WW ########
-samples['WW'] = {
-    'name': nanoGetSampleFiles(mcDirectory, 'WWTo2L2Nu'),
-    'weight': mcCommonWeight + '*nllW*ewknloW*ttHMVA_SF_flip_2l[0]', 
-    'suppressNegative' :['all'],
-    'suppressNegativeNuisances' :['all'],
-    'FilesPerJob': 2
-}
+# samples['ggWW'] = {
+#     'name': files,
+#     'weight': mcCommonWeight + '*1.53/1.4', # updating k-factor <-- do we still need the k-factor?
+#     'suppressNegative' :['all'],
+#     'suppressNegativeNuisances' :['all'],
+#     'FilesPerJob': 4
+# }
 
-samples['WWewk'] = {
-    'name': nanoGetSampleFiles(mcDirectory, 'WpWmJJ_EWK_noTop'),
-    'weight': mcCommonWeight + '*(Sum$(abs(GenPart_pdgId)==6 || GenPart_pdgId==25)==0)',
-    'suppressNegative' :['all'],
-    'suppressNegativeNuisances' :['all'],
+# Charge-flip estimated from data, and covering DY, WW, and Top
+samples['ChargeFlip'] = {
+    'name': nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-50'),
+    'weight': mcCommonWeight,
     'FilesPerJob': 4
 }
-
-files = nanoGetSampleFiles(mcDirectory, 'GluGluToWWToENEN') + \
-        nanoGetSampleFiles(mcDirectory, 'GluGluToWWToENMN') + \
-        nanoGetSampleFiles(mcDirectory, 'GluGluToWWToENTN') + \
-        nanoGetSampleFiles(mcDirectory, 'GluGluToWWToMNEN') + \
-        nanoGetSampleFiles(mcDirectory, 'GluGluToWWToMNMN') + \
-        nanoGetSampleFiles(mcDirectory, 'GluGluToWWToMNTN') + \
-        nanoGetSampleFiles(mcDirectory, 'GluGluToWWToTNEN') + \
-        nanoGetSampleFiles(mcDirectory, 'GluGluToWWToTNMN') + \
-        nanoGetSampleFiles(mcDirectory, 'GluGluToWWToTNTN')
-
-samples['ggWW'] = {
-    'name': files,
-    'weight': mcCommonWeight + '*1.53/1.4', # updating k-factor <-- do we still need the k-factor?
-    'suppressNegative' :['all'],
-    'suppressNegativeNuisances' :['all'],
-    'FilesPerJob': 4
-}
-
 
 ######## Wg ########
 files = nanoGetSampleFiles(mcDirectory, 'Wg_AMCNLOFXFX_01J')
@@ -193,6 +198,8 @@ samples['Zg'] = {
     'suppressNegativeNuisances' :['all'],
     'FilesPerJob': 4
 }
+# the following is needed in both v5 and v6 --> still needed in v9 ??
+# addSampleWeight(samples, 'Zg', 'ZGToLLG', '0.448')
 
 
 ######## WgS ######## 
@@ -220,6 +227,7 @@ samples['ZgS'] = {
     'suppressNegativeNuisances' :['all'],
     'FilesPerJob': 4,
 }
+# addSampleWeight(samples, 'ZgS', 'ZGToLLG', '(Gen_ZGstar_mass > 0)*0.448')
 
 
 ############ WZ ############
@@ -255,6 +263,7 @@ files = nanoGetSampleFiles(mcDirectory, 'ZZZ') + \
         nanoGetSampleFiles(mcDirectory, 'WZZ') + \
         nanoGetSampleFiles(mcDirectory, 'WWZ') + \
         nanoGetSampleFiles(mcDirectory, 'WWW')
+#+ nanoGetSampleFiles(mcDirectory, 'WWG'), #should this be included? or is it already taken into account in the WW sample?
 
 samples['VVV'] = {
     'name': files,
@@ -272,7 +281,7 @@ signals = []
 
 ############ ggH H->WW ############
 samples['ggH_hww'] = {
-    'name': nanoGetSampleFiles(mcDirectory, 'GluGluHToWWTo2L2Nu_M125'),
+    'name': nanoGetSampleFiles(mcDirectory, 'GluGluHToWWTo2L2Nu_M125_Powheg'),
     'weight': mcCommonWeight,
     'suppressNegative' :['all'],
     'suppressNegativeNuisances' :['all'],

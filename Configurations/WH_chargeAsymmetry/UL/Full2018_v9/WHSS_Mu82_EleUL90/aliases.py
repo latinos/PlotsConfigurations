@@ -195,7 +195,8 @@ aliases['btagSF'] = {
     'samples': mc
 }
 
-for shift in ['jes', 'lf', 'hf', 'lfstats1', 'lfstats2', 'hfstats1', 'hfstats2', 'cferr1', 'cferr2']:
+for shift in ['jesAbsolute', 'jesAbsolute_2018', 'jesBBEC1', 'jesBBEC1_2018', 'jesEC2', 'jesEC2_2018', 'jesFlavorQCD', 'jesHF', 'jesHF_2018', 'jesRelativeBal', 'jesRelativeSample_2018', 'lf', 'hf', 'lfstats1', 'lfstats2', 'hfstats1', 'hfstats2', 'cferr1', 'cferr2']:
+#for shift in ['jes', 'lf', 'hf', 'lfstats1', 'lfstats2', 'hfstats1', 'hfstats2', 'cferr1', 'cferr2']:
     for targ in ['bVeto', 'bReq']:
         alias = aliases['%sSF%sup' % (targ, shift)] = copy.deepcopy(aliases['%sSF' % targ])
         alias['expr'] = alias['expr'].replace('btagSF_{}_shape'.format(bSF), 'btagSF_{}_shape_up_{}'.format(bSF, shift))
@@ -314,19 +315,26 @@ aliases['BDT_WHSS_TopSemileptonic_v9'] = {
     'args' : ('BDTG_6', '%s/WH_chargeAsymmetry/UL/data/BDT/2018/WHSS/weights/TMVAClassification_BDTG_6.weights.xml' % configurations),
 }
 
-# WJets and Semileptonic Top are considered as fake. Properly applying events weights
-aliases['BDT_WHSS_TopSemileptonic_weight_v9'] = {
+# WJets and Semileptonic Top are considered as fake. Including also Wg process as background
+aliases['BDT_WHSS_Wg_v9'] = {
     'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/BDT_WHSS_TopSemileptonic_v9.C+' % configurations],
     'class': 'BDT_WHSS_TopSemileptonic_v9',
-    'args' : ('BDTG_5', '%s/WH_chargeAsymmetry/UL/Full2018_v9/BDTconfig_WHSS/dataset_WHSS_weight/weights/TMVAClassification_BDTG_5.weights.xml' % configurations), # provisional address
+    'args' : ('BDTG_5', '%s/WH_chargeAsymmetry/UL/Full2018_v9/BDTconfig_WHSS/dataset_WHSS_Wg/weights/TMVAClassification_BDTG_5.weights.xml' % configurations),
 }
 
-# WJets and Semileptonic Top are considered as fake. Properly applying events weights. Trained using the four eras of Run 2 merged together.
-aliases['BDT_WHSS_TopSemileptonic_weight_FullRun2_v9'] = {
-    'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/BDT_WHSS_TopSemileptonic_v9.C+' % configurations],
-    'class': 'BDT_WHSS_TopSemileptonic_v9',
-    'args' : ('BDTG_5', '%s/WH_chargeAsymmetry/UL/FullRun2/BDTconfig_WHSS/datasetWHSS_weight/weights/TMVAClassification_BDTG_5.weights.xml' % configurations), # provisional address
-}
+# # WJets and Semileptonic Top are considered as fake. Properly applying events weights
+# aliases['BDT_WHSS_TopSemileptonic_weight_v9'] = {
+#     'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/BDT_WHSS_TopSemileptonic_v9.C+' % configurations],
+#     'class': 'BDT_WHSS_TopSemileptonic_v9',
+#     'args' : ('BDTG_5', '%s/WH_chargeAsymmetry/UL/Full2018_v9/BDTconfig_WHSS/dataset_WHSS_weight/weights/TMVAClassification_BDTG_5.weights.xml' % configurations), # provisional address
+# }
+
+# # WJets and Semileptonic Top are considered as fake. Properly applying events weights. Trained using the four eras of Run 2 merged together.
+# aliases['BDT_WHSS_TopSemileptonic_weight_FullRun2_v9'] = {
+#     'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/BDT_WHSS_TopSemileptonic_v9.C+' % configurations],
+#     'class': 'BDT_WHSS_TopSemileptonic_v9',
+#     'args' : ('BDTG_5', '%s/WH_chargeAsymmetry/UL/FullRun2/BDTconfig_WHSS/datasetWHSS_weight/weights/TMVAClassification_BDTG_5.weights.xml' % configurations), # provisional address
+# }
 
 ########################
 ### Charge misid SFs ###
@@ -354,12 +362,26 @@ aliases['ttHMVA_eff_flip_2l'] = {
     'linesToAdd': ['.L %s/WH_chargeAsymmetry/UL/macros/flipper_eff.C+' % configurations],
     'class': 'flipper_eff',
     'args' : ('UL_2018', 2, 'Total_SF', 'false'),
-    'samples': ['DY']
+    'samples': mc_emb + ['DATA','Fake']
 }
 
 aliases['ttHMVA_eff_err_flip_2l'] = {
     'linesToAdd': ['.L %s/WH_chargeAsymmetry/UL/macros/flipper_eff.C+' % configurations],
     'class': 'flipper_eff',
     'args' : ('UL_2018', 2, 'Total_SF_err', 'false'),
-    'samples': ['DY']
+    'samples': mc_emb + ['DATA','Fake']
 }
+
+# Veto events in the problematic region: 
+# electrons or jets in:
+# (-1.57 < phi < -0.87) , (-2.5 < eta < -1.3)
+aliases['hole_veto'] = {
+    'expr': '( ( (Lepton_eta[0] < -1.3  && Lepton_eta[0] > -2.5 ) && (Lepton_phi[0] > -1.57 && Lepton_phi[0] < -0.87) && (abs(Lepton_pdgId[0])==11) ) \
+            || ( (Lepton_eta[1] < -1.3  && Lepton_eta[1] > -2.5 ) && (Lepton_phi[1] > -1.57 && Lepton_phi[1] < -0.87) && (abs(Lepton_pdgId[1])==11) ) \
+            || ( (Alt$(CleanJet_eta[0], 99) < -1.3 && (Alt$(CleanJet_eta[0], -99) > -2.5))  && (Alt$(CleanJet_phi[0], -99) > -1.57 && Alt$(CleanJet_phi[0], 99) < -0.87) ) \
+            || ( (Alt$(CleanJet_eta[1], 99) < -1.3 && (Alt$(CleanJet_eta[1], -99) > -2.5))  && (Alt$(CleanJet_phi[1], -99) > -1.57 && Alt$(CleanJet_phi[1], 99) < -0.87) ) \
+    ) ',
+}
+
+# LepCats['inclusive_']='( (abs(Lepton_pdgId[0])==11) && Lepton_pt[0]>35 && !hole_veto[0] \
+#                       || (abs(Lepton_pdgId[0])==13) && Lepton_pt[0]>27 && !hole_veto[0] )'
