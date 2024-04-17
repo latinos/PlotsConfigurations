@@ -34,19 +34,9 @@ variables['mlljj20_whss_2j_bin'] = {
 variables['BDTG6_TT'] = {
     'name'     : 'BDT_WHSS_TopSemileptonic_v9',     
     'range'    : (40,-1,1),   
-    'doWeight' : 1,
-    'binX'     : 1,
-    'binY'     : 40,
     'xaxis'    : 'BDT discriminant',
     'yaxis'    : 'Events',
     'fold'     : 3
-}
-
-variables['BDTG6_TT_more'] = {
-    'name'  : 'BDT_WHSS_TopSemileptonic_v9',     
-    'range' : (1000,-1,1),   
-    'xaxis' : 'BDT discriminant',
-    'fold'  : 3
 }
 
 variables['BDTG6_TT_100_bins'] = {
@@ -56,29 +46,24 @@ variables['BDTG6_TT_100_bins'] = {
     'fold'  : 3
 }
 
-######################################
-# Default BDT training in AN-22-120_v1
-######################################
+##########################################################
+# BDT training with TopSemileptonic as fakes and weights
+##########################################################
 
-# BDT
-variables['BDTG6'] = {
-    'name'     : 'BDT_WHSS_v9',     
+variables['BDTG5_TT_weight'] = {
+    'name'     : 'BDT_WHSS_TopSemileptonic_weight_v9',     
     'range'    : (40,-1,1),   
-    'doWeight' : 1,
-    'binX'     : 1,
-    'binY'     : 40,
     'xaxis'    : 'BDT discriminant',
     'yaxis'    : 'Events',
     'fold'     : 3
 }
 
-variables['BDTG6_more'] = {
-    'name'  : 'BDT_WHSS_v9',     
-    'range' : (1000,-1,1),   
+variables['BDTG5_TT_weight_100_bins'] = {
+    'name'  : 'BDT_WHSS_TopSemileptonic_weight_v9',
+    'range' : (100,-1,1),   
     'xaxis' : 'BDT discriminant',
     'fold'  : 3
 }
-
 
 ###################
 # Control variables
@@ -107,9 +92,9 @@ variables['ptll'] = {
 
 variables['pt1'] = {
     'name'  : 'Lepton_pt[0]',     
-    'range' : (20,0,100),   
+    'range' : (30,0,150),   
     'xaxis' : 'p_{T} 1st lep',
-    'fold'  : 3                         
+    'fold'  : 0                  
 }
 
 variables['pt2'] = {
@@ -293,76 +278,4 @@ variables['DeepCSV_jet2'] = {
     'xaxis' : 'Sub-leading jet DeepCSV',
     'fold'  : 3
 }
-
-# # BDT binnings
-# ##############
-# variables['BDTG6_binning_0_0'] = {
-#     'name'  : 'BDT_WHSS_v9',
-#     'range' : ([-1.0, -0.8, -0.6, -0.4, -0.2, 0.0, 1.0],),
-#     'xaxis' : 'BDT discriminant',
-#     'fold'  : 3
-# }
-
-# variables['BDTG6_binning_0_1'] = {
-#     'name'  : 'BDT_WHSS_v9',
-#     'range' : ([-1.0, -0.8, -0.6, -0.4, -0.2, 0.0, 0.1, 1.0],),
-#     'xaxis' : 'BDT discriminant',
-#     'fold'  : 3
-# }
-
-# variables['BDTG6_binning_0_2'] = {
-#     'name'  : 'BDT_WHSS_v9',
-#     'range' : ([-1.0, -0.8, -0.6, -0.4, -0.2, 0.0, 0.1, 0.2, 1.0],),
-#     'xaxis' : 'BDT discriminant',
-#     'fold'  : 3
-# }
-
-# variables['BDTG6_binning_0_3'] = {
-#     'name'  : 'BDT_WHSS_v9',
-#     'range' : ([-1.0, -0.8, -0.6, -0.4, -0.2, 0.0, 0.1, 0.2, 0.3, 1.0],),
-#     'xaxis' : 'BDT discriminant',
-#     'fold'  : 3
-# }
-
-# variables['BDTG6_binning_0_4'] = {
-#     'name'  : 'BDT_WHSS_v9',
-#     'range' : ([-1.0, -0.8, -0.6, -0.4, -0.2, 0.0, 0.1, 0.2, 0.3, 0.4, 1.0],),
-#     'xaxis' : 'BDT discriminant',
-#     'fold'  : 3
-# }
-
-# variables['BDTG6_binning_0_5'] = {
-#     'name'  : 'BDT_WHSS_v9',
-#     'range' : ([-1.0, -0.8, -0.6, -0.4, -0.2, 0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 1.0],),
-#     'xaxis' : 'BDT discriminant',
-#     'fold'  : 3
-# }
-
-# variables['BDTG6_binning_0_5'] = {
-#     'name'  : 'BDT_WHSS_v9',
-#     'range' : ([-1.0, -0.8, -0.6, -0.4, -0.2, 0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 1.0],),
-#     'xaxis' : 'BDT discriminant',
-#     'fold'  : 3
-# }
-
-# variables['BDTG6_binning_0_6'] = {
-#     'name'  : 'BDT_WHSS_v9',
-#     'range' : ([-1.0, -0.8, -0.6, -0.4, -0.2, 0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 1.0],),
-#     'xaxis' : 'BDT discriminant',
-#     'fold'  : 3
-# }
-
-# variables['BDTG6_binning_0_7'] = {
-#     'name'  : 'BDT_WHSS_v9',
-#     'range' : ([-1.0, -0.8, -0.6, -0.4, -0.2, 0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 1.0],),
-#     'xaxis' : 'BDT discriminant',
-#     'fold'  : 3
-# }
-
-# variables['BDTG6_binning_0_75'] = {
-#     'name'  : 'BDT_WHSS_v9',
-#     'range' : ([-1.0, -0.8, -0.6, -0.4, -0.2, 0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.75, 1.0],),
-#     'xaxis' : 'BDT discriminant',
-#     'fold'  : 3
-# }
 

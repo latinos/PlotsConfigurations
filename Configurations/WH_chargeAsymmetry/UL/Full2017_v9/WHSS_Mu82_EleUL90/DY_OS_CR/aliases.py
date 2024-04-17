@@ -77,56 +77,56 @@ aliases['fakeW'] = {
     'samples'    : ['Fake']
 }
 
-# # And variations - already divided by central values in formulas !
-# aliases['fakeWEleUp'] = {
-#     'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/fake_rate_reader.C+' % configurations],
-#     'class'      : 'fake_rate_reader',
-#     'args'       : ('2017', '90', '82', 0.90, 0.82, 'EleUp', 2, 'std'),
-#     'samples'    : ['Fake']
-# }
-# aliases['fakeWEleDown'] = {
-#     'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/fake_rate_reader.C+' % configurations],
-#     'class'      : 'fake_rate_reader',
-#     'args'       : ('2017', '90', '82', 0.90, 0.82, 'EleDown', 2, 'std'),
-#     'samples'    : ['Fake']
-# }
-# aliases['fakeWMuUp'] = {
-#     'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/fake_rate_reader.C+' % configurations],
-#     'class'      : 'fake_rate_reader',
-#     'args'       : ('2017', '90', '82', 0.90, 0.82, 'MuUp', 2, 'std'),
-#     'samples'    : ['Fake']
-# }
-# aliases['fakeWMuDown'] = {
-#     'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/fake_rate_reader.C+' % configurations],
-#     'class'      : 'fake_rate_reader',
-#     'args'       : ('2017', '90', '82', 0.90, 0.82, 'MuDown', 2, 'std'),
-#     'samples'    : ['Fake']
-# }
+# And variations - already divided by central values in formulas !
+aliases['fakeWEleUp'] = {
+    'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/fake_rate_reader.C+' % configurations],
+    'class'      : 'fake_rate_reader',
+    'args'       : ('2017', '90', '82', 0.90, 0.82, 'EleUp', 2, 'std'),
+    'samples'    : ['Fake']
+}
+aliases['fakeWEleDown'] = {
+    'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/fake_rate_reader.C+' % configurations],
+    'class'      : 'fake_rate_reader',
+    'args'       : ('2017', '90', '82', 0.90, 0.82, 'EleDown', 2, 'std'),
+    'samples'    : ['Fake']
+}
+aliases['fakeWMuUp'] = {
+    'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/fake_rate_reader.C+' % configurations],
+    'class'      : 'fake_rate_reader',
+    'args'       : ('2017', '90', '82', 0.90, 0.82, 'MuUp', 2, 'std'),
+    'samples'    : ['Fake']
+}
+aliases['fakeWMuDown'] = {
+    'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/fake_rate_reader.C+' % configurations],
+    'class'      : 'fake_rate_reader',
+    'args'       : ('2017', '90', '82', 0.90, 0.82, 'MuDown', 2, 'std'),
+    'samples'    : ['Fake']
+}
 
-# aliases['fakeWStatEleUp'] = {
-#     'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/fake_rate_reader.C+' % configurations],
-#     'class'      : 'fake_rate_reader',
-#     'args'       : ('2017', '90', '82', 0.90, 0.82, 'StatEleUp', 2, 'std'),
-#     'samples'    : ['Fake']
-# }
-# aliases['fakeWStatEleDown'] = {
-#     'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/fake_rate_reader.C+' % configurations],
-#     'class'      : 'fake_rate_reader',
-#     'args'       : ('2017', '90', '82', 0.90, 0.82, 'StatEleDown', 2, 'std'),
-#     'samples'    : ['Fake']
-# }
-# aliases['fakeWStatMuUp'] = {
-#     'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/fake_rate_reader.C+' % configurations],
-#     'class'      : 'fake_rate_reader',
-#     'args'       : ('2017', '90', '82', 0.90, 0.82, 'StatMuUp', 2, 'std'),
-#     'samples'    : ['Fake']
-# }
-# aliases['fakeWStatMuDown'] = {
-#     'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/fake_rate_reader.C+' % configurations],
-#     'class'      : 'fake_rate_reader',
-#     'args'       : ('2017', '90', '82', 0.90, 0.82, 'StatMuDown', 2, 'std'),
-#     'samples'    : ['Fake']
-# }
+aliases['fakeWStatEleUp'] = {
+    'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/fake_rate_reader.C+' % configurations],
+    'class'      : 'fake_rate_reader',
+    'args'       : ('2017', '90', '82', 0.90, 0.82, 'StatEleUp', 2, 'std'),
+    'samples'    : ['Fake']
+}
+aliases['fakeWStatEleDown'] = {
+    'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/fake_rate_reader.C+' % configurations],
+    'class'      : 'fake_rate_reader',
+    'args'       : ('2017', '90', '82', 0.90, 0.82, 'StatEleDown', 2, 'std'),
+    'samples'    : ['Fake']
+}
+aliases['fakeWStatMuUp'] = {
+    'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/fake_rate_reader.C+' % configurations],
+    'class'      : 'fake_rate_reader',
+    'args'       : ('2017', '90', '82', 0.90, 0.82, 'StatMuUp', 2, 'std'),
+    'samples'    : ['Fake']
+}
+aliases['fakeWStatMuDown'] = {
+    'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/fake_rate_reader.C+' % configurations],
+    'class'      : 'fake_rate_reader',
+    'args'       : ('2017', '90', '82', 0.90, 0.82, 'StatMuDown', 2, 'std'),
+    'samples'    : ['Fake']
+}
 
 
 # No jet with pt > 30 GeV
@@ -197,7 +197,8 @@ aliases['btagSF'] = {
     'samples': mc
 }
 
-for shift in ['jes', 'lf', 'hf', 'lfstats1', 'lfstats2', 'hfstats1', 'hfstats2', 'cferr1', 'cferr2']:
+for shift in ['jesAbsolute', 'jesAbsolute_2017', 'jesBBEC1', 'jesBBEC1_2017', 'jesEC2', 'jesEC2_2017', 'jesFlavorQCD', 'jesHF', 'jesHF_2017', 'jesRelativeBal', 'jesRelativeSample_2017', 'lf', 'hf', 'lfstats1', 'lfstats2', 'hfstats1', 'hfstats2', 'cferr1', 'cferr2']:
+
     for targ in ['bVeto', 'bReq']:
         alias = aliases['%sSF%sup' % (targ, shift)] = copy.deepcopy(aliases['%sSF' % targ])
         alias['expr'] = alias['expr'].replace('btagSF_{}_shape'.format(bSF), 'btagSF_{}_shape_up_{}'.format(bSF, shift))
@@ -342,7 +343,20 @@ aliases['BDT_WHSS_TopSemileptonic_v9'] = {
     'class': 'BDT_WHSS_TopSemileptonic_v9',
     'args' : ('BDTG_6', '%s/WH_chargeAsymmetry/UL/data/BDT/2017/WHSS/weights/TMVAClassification_BDTG_6.weights.xml' % configurations),
 }
-# 'args' : ('BDTG_6', '%s/WH_chargeAsymmetry/UL/Full2017_v9/BDTconfig_WHSS/dataset_WHSS_TTToSemiLeptonic/weights/TMVAClassification_BDTG_6.weights.xml' % configurations), # provisional address
+
+# WJets and Semileptonic Top are considered as fake. Properly applying events weights
+aliases['BDT_WHSS_TopSemileptonic_weight_v9'] = {
+    'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/BDT_WHSS_TopSemileptonic_v9.C+' % configurations],
+    'class': 'BDT_WHSS_TopSemileptonic_v9',
+    'args' : ('BDTG_5', '%s/WH_chargeAsymmetry/UL/Full2017_v9/BDTconfig_WHSS/dataset_WHSS_weight/weights/TMVAClassification_BDTG_5.weights.xml' % configurations), # provisional address
+}
+
+# WJets and Semileptonic Top are considered as fake. Properly applying events weights. Trained using the four eras of Run 2 merged together.
+aliases['BDT_WHSS_TopSemileptonic_weight_FullRun2_v9'] = {
+    'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/BDT_WHSS_TopSemileptonic_v9.C+' % configurations],
+    'class': 'BDT_WHSS_TopSemileptonic_v9',
+    'args' : ('BDTG_5', '%s/WH_chargeAsymmetry/UL/FullRun2/BDTconfig_WHSS/datasetWHSS_weight/weights/TMVAClassification_BDTG_5.weights.xml' % configurations), # provisional address
+}
 
 ########################
 ### Charge misid SFs ###
@@ -370,13 +384,13 @@ aliases['ttHMVA_eff_flip_2l'] = {
     'linesToAdd': ['.L %s/WH_chargeAsymmetry/UL/macros/flipper_eff.C+' % configurations],
     'class': 'flipper_eff',
     'args' : ('UL_2017', 2, 'Total_SF', 'false'),
-    'samples': ['DY']
+    'samples': mc_emb + ['DATA','Fake'],
 }
 
 aliases['ttHMVA_eff_err_flip_2l'] = {
     'linesToAdd': ['.L  %s/WH_chargeAsymmetry/UL/macros/flipper_eff.C+' % configurations],
     'class': 'flipper_eff',
     'args' : ('UL_2017', 2, 'Total_SF_err', 'false'),
-    'samples': ['DY']
+    'samples': mc_emb + ['DATA','Fake'],
 }
 
