@@ -1,10 +1,11 @@
-# Configuration file for charge asymmetry WH_SS analysis
-treeName= 'Events'
+# Configuration file for charge asymmetry WHSS analysis using the UL 2018 dataset
 
-tag = 'WHSS_DY_OSCR_2016noHIPM_v9_chargeAsymmetry_Mu82_Ele90' 
+treeName = 'Events'
+
+tag = 'WHSS_OSCR_2016noHIPM_v9_control_plots'
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFile_OS'
+outputDir = 'rootFile'
 
 # file with TTree aliases
 aliasesFile = 'aliases.py'
@@ -16,7 +17,7 @@ variablesFile = 'variables.py'
 cutsFile = 'cuts.py' 
 
 # file with list of samples
-samplesFile = 'samples_DY_OS.py' 
+samplesFile = 'samples.py' 
 
 # file with list of samples
 plotFile = 'plot.py' 
@@ -28,7 +29,7 @@ lumi = 16.81
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'plots_'+tag
+outputDirPlots = 'plots_' + tag
 
 # used by mkDatacards to define output directory for datacards
 outputDirDatacard = 'datacards'

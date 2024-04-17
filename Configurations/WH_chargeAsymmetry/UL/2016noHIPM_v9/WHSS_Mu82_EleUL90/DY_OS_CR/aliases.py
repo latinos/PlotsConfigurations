@@ -197,7 +197,8 @@ aliases['btagSF'] = {
     'samples': mc
 }
 
-for shift in ['jes', 'lf', 'hf', 'lfstats1', 'lfstats2', 'hfstats1', 'hfstats2', 'cferr1', 'cferr2']:
+for shift in ['jesAbsolute', 'jesAbsolute_2016', 'jesBBEC1', 'jesBBEC1_2016', 'jesEC2', 'jesEC2_2016', 'jesFlavorQCD', 'jesHF', 'jesHF_2016', 'jesRelativeBal', 'jesRelativeSample_2016', 'lf', 'hf', 'lfstats1', 'lfstats2', 'hfstats1', 'hfstats2', 'cferr1', 'cferr2']:
+
     for targ in ['bVeto', 'bReq']:
         alias = aliases['%sSF%sup' % (targ, shift)] = copy.deepcopy(aliases['%sSF' % targ])
         alias['expr'] = alias['expr'].replace('btagSF_{}_shape'.format(bSF), 'btagSF_{}_shape_up_{}'.format(bSF, shift))
@@ -338,7 +339,21 @@ aliases['BDT_WHSS_v9'] = {
 aliases['BDT_WHSS_TopSemileptonic_v9'] = {
     'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/BDT_WHSS_TopSemileptonic_v9.C+' % configurations],
     'class': 'BDT_WHSS_TopSemileptonic_v9',
-    'args' : ('BDTG_6', '%s/WH_chargeAsymmetry/UL/data/BDT/2018/WHSS/weights/TMVAClassification_BDTG_6.weights.xml' % configurations),
+    'args' : ('BDTG_6', '%s/WH_chargeAsymmetry/UL/data/BDT/2016noHIPM/WHSS/weights/TMVAClassification_BDTG_6.weights.xml' % configurations),
+}
+
+# WJets and Semileptonic Top are considered as fake. Properly applying events weights
+aliases['BDT_WHSS_TopSemileptonic_weight_v9'] = {
+    'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/BDT_WHSS_TopSemileptonic_v9.C+' % configurations],
+    'class': 'BDT_WHSS_TopSemileptonic_v9',
+    'args' : ('BDTG_5', '%s/WH_chargeAsymmetry/UL/2016noHIPM_v9/BDTconfig_WHSS/dataset_WHSS_weight/weights/TMVAClassification_BDTG_5.weights.xml' % configurations), # provisional address
+}
+
+# WJets and Semileptonic Top are considered as fake. Properly applying events weights. Trained using the four eras of Run 2 merged together.
+aliases['BDT_WHSS_TopSemileptonic_weight_FullRun2_v9'] = {
+    'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/BDT_WHSS_TopSemileptonic_v9.C+' % configurations],
+    'class': 'BDT_WHSS_TopSemileptonic_v9',
+    'args' : ('BDTG_5', '%s/WH_chargeAsymmetry/UL/FullRun2/BDTconfig_WHSS/datasetWHSS_weight/weights/TMVAClassification_BDTG_5.weights.xml' % configurations), # provisional address
 }
 
 ########################
@@ -367,14 +382,14 @@ aliases['ttHMVA_eff_flip_2l'] = {
     'linesToAdd': ['.L %s/WH_chargeAsymmetry/UL/macros/flipper_eff.C+' % configurations],
     'class': 'flipper_eff',
     'args' : ('UL_2016noHIPM', 2, 'Total_SF', 'false'),
-    'samples': ['DY']
+    'samples': mc_emb + ['DATA','Fake'],
 }
 
 aliases['ttHMVA_eff_err_flip_2l'] = {
     'linesToAdd': ['.L  %s/WH_chargeAsymmetry/UL/macros/flipper_eff.C+' % configurations],
     'class': 'flipper_eff',
     'args' : ('UL_2016noHIPM', 2, 'Total_SF_err', 'false'),
-    'samples': ['DY']
+    'samples': mc_emb + ['DATA','Fake'],
 }
 
 # Fix METFilter_DATA definition: Flag_ecalBadCalibFilter is removed since it is not needed in 2016

@@ -37,33 +37,96 @@ nuisances['lumi_Uncorrelated'] = {
 }
 
 nuisances['lumi_Correlated_Run2'] = {
-    'name': 'lumi_13TeV_Run2',
+    'name': 'lumi_13TeV_correlated',
     'type': 'lnN',
     'samples': dict((skey, '1.006') for skey in mc if skey not in ['WgS','WZ'])
 }
 
 
 #### FAKES
-nuisances['fake_syst_mm'] = {
-    'name': 'CMS_fake_syst_mm',
-    'type': 'lnN',
-    'samples': {
-        'Fake_mm': '1.3'
+# nuisances['fake_syst_mm'] = {
+#     'name': 'CMS_fake_syst_mm',
+#     'type': 'lnN',
+#     'samples': {
+#         'Fake_mm': '1.3'
+#     },
+# }
+# nuisances['fake_syst_em'] = {
+#     'name': 'CMS_fake_syst_em',
+#     'type': 'lnN',
+#     'samples': {
+#         'Fake_em': '1.3'
+#     },
+# }
+# nuisances['fake_syst_mm'] = {
+#     'name': 'CMS_fake_syst_mm',
+#     'type': 'lnN',
+#     'samples': {
+#         'Fake_ee': '1.3'
+#     },
+# }
+
+fake_syst_endcap = ['1.0*(abs(Lepton_eta[1])<=1.4) +     1.3*(abs(Lepton_eta[1])>1.4)',
+                    '1.0*(abs(Lepton_eta[1])<=1.4) + 1.0/1.3*(abs(Lepton_eta[1])>1.4)']
+
+fake_syst_barrel = ['    1.3*(abs(Lepton_eta[1])<=1.4) + 1.0*(abs(Lepton_eta[1])>1.4)',
+                    '1.0/1.3*(abs(Lepton_eta[1])<=1.4) + 1.0*(abs(Lepton_eta[1])>1.4)']
+
+nuisances['fake_syst_mm_barrel'] = {
+    'name'    : 'fake_syst_mm_barrel',
+    'kind'    : 'weight',
+    'type'    : 'shape',
+    'samples' : {
+        'Fake' : fake_syst_barrel,
     },
+    'cuts'    : [cut for cut in cuts if ('_mm_' in cut)]
 }
-nuisances['fake_syst_em'] = {
-    'name': 'CMS_fake_syst_em',
-    'type': 'lnN',
-    'samples': {
-        'Fake_em': '1.3'
+nuisances['fake_syst_mm_endcap'] = {
+    'name'    : 'fake_syst_mm_endcap',
+    'kind'    : 'weight',
+    'type'    : 'shape',
+    'samples' : {
+        'Fake' : fake_syst_endcap,
     },
+    'cuts'    : [cut for cut in cuts if ('_mm_' in cut)]
 }
-nuisances['fake_syst_mm'] = {
-    'name': 'CMS_fake_syst_mm',
-    'type': 'lnN',
-    'samples': {
-        'Fake_ee': '1.3'
+
+nuisances['fake_syst_em_barrel'] = {
+    'name'    : 'fake_syst_em_barrel',
+    'kind'    : 'weight',
+    'type'    : 'shape',
+    'samples' : {
+        'Fake' : fake_syst_barrel,
     },
+    'cuts'    : [cut for cut in cuts if ('_em_' in cut)]
+}
+nuisances['fake_syst_em_endcap'] = {
+    'name'    : 'fake_syst_em_endcap',
+    'kind'    : 'weight',
+    'type'    : 'shape',
+    'samples' : {
+        'Fake' : fake_syst_endcap,
+    },
+    'cuts'    : [cut for cut in cuts if ('_em_' in cut)]
+}
+
+nuisances['fake_syst_ee_barrel'] = {
+    'name'    : 'fake_syst_ee_barrel',
+    'kind'    : 'weight',
+    'type'    : 'shape',
+    'samples' : {
+        'Fake' : fake_syst_barrel,
+    },
+    'cuts'    : [cut for cut in cuts if ('_ee_' in cut)]
+}
+nuisances['fake_syst_ee_endcap'] = {
+    'name'    : 'fake_syst_ee_endcap',
+    'kind'    : 'weight',
+    'type'    : 'shape',
+    'samples' : {
+        'Fake' : fake_syst_endcap,
+    },
+    'cuts'    : [cut for cut in cuts if ('_ee_' in cut)]
 }
 
 nuisances['fake_ele'] = {
@@ -101,7 +164,7 @@ nuisances['fake_mu_stat'] = {
 
 ###### B-tagger
 
-for shift in ['jes', 'lf', 'hf', 'hfstats1', 'hfstats2', 'lfstats1', 'lfstats2', 'cferr1', 'cferr2']:
+for shift in ['lf', 'hf', 'hfstats1', 'hfstats2', 'lfstats1', 'lfstats2', 'cferr1', 'cferr2']:
     btag_syst = ['(btagSF%sup)/(btagSF)' % shift, '(btagSF%sdown)/(btagSF)' % shift]
 
     name = 'CMS_btag_%s' % shift
@@ -150,9 +213,9 @@ nuisances['electronpt'] = {
     'mapUp'      : 'ElepTup',
     'mapDown'    : 'ElepTdo',
     'samples'    : dict((skey, ['1', '1']) for skey in mc),
-    'folderUp'   : makeMCDirectory('ElepTup_suffix'),
-    'folderDown' : makeMCDirectory('ElepTdo_suffix'),
-    'AsLnN'      : '1'
+    'folderUp'   : 'root://eoscms.cern.ch/'+makeMCDirectory('ElepTup_suffix'),
+    'folderDown' : 'root://eoscms.cern.ch/'+makeMCDirectory('ElepTdo_suffix'),
+    'AsLnN'      : '0'
 }
 
 ##### Muon Efficiency and energy scale
@@ -178,9 +241,9 @@ nuisances['muonpt'] = {
     'mapUp'      : 'MupTup',
     'mapDown'    : 'MupTdo',
     'samples'    : dict((skey, ['1', '1']) for skey in mc),
-    'folderUp'   : makeMCDirectory('MupTup_suffix'),
-    'folderDown' : makeMCDirectory('MupTdo_suffix'),
-    'AsLnN'      : '1'
+    'folderUp'   : 'root://eoscms.cern.ch/'+makeMCDirectory('MupTup_suffix'),
+    'folderDown' : 'root://eoscms.cern.ch/'+makeMCDirectory('MupTdo_suffix'),
+    'AsLnN'      : '0'
 }
 
 ##### Jet energy scale
@@ -189,15 +252,16 @@ jes_systs = ['JESAbsolute','JESAbsolute_2016','JESBBEC1','JESBBEC1_2016','JESEC2
 for js in jes_systs:
 
   nuisances[js] = {
-      'name'      : 'CMS_scale_' + js,
+      'name'      : 'CMS_scale_' + js.replace("JES","j_"),
       'kind'      : 'suffix',
       'type'      : 'shape',
       'mapUp'     : js + 'up',
       'mapDown'   : js + 'do',
       'samples'   : dict((skey, ['1', '1']) for skey in mc),
-      'folderUp'  : makeMCDirectory('RDF__JESup_suffix'),
-      'folderDown': makeMCDirectory('RDF__JESdo_suffix'),
-      'AsLnN'     : '1'
+      'folderUp'  : 'root://eoscms.cern.ch/'+makeMCDirectory('RDF__JESup_suffix'),
+      'folderDown': 'root://eoscms.cern.ch/'+makeMCDirectory('RDF__JESdo_suffix'),
+      'reweight'  : ['btagSF'+js.replace('JES','jes')+'up/btagSF','btagSF'+js.replace('JES','jes')+'down/btagSF'],
+      'AsLnN'     : '0'
   }
 
 ##### Jet energy resolution
@@ -208,9 +272,9 @@ nuisances['JER'] = {
     'mapUp'      : 'JERup',
     'mapDown'    : 'JERdo',
     'samples'    : dict((skey, ['1', '1']) for skey in mc),
-    'folderUp'   : makeMCDirectory('JERup_suffix'),
-    'folderDown' : makeMCDirectory('JERdo_suffix'),
-    'AsLnN'      : '1'
+    'folderUp'   : 'root://eoscms.cern.ch/'+makeMCDirectory('JERup_suffix'),
+    'folderDown' : 'root://eoscms.cern.ch/'+makeMCDirectory('JERdo_suffix'),
+    'AsLnN'      : '0'
 }
 
 ##### MET unclustered energy
@@ -223,9 +287,9 @@ nuisances['met'] = {
     'mapUp'      : 'METup',
     'mapDown'    : 'METdo',
     'samples'    : dict((skey, ['1', '1']) for skey in mc),
-    'folderUp'   : makeMCDirectory('METup_suffix'),
-    'folderDown' : makeMCDirectory('METdo_suffix'),
-    'AsLnN'      : '1'
+    'folderUp'   : 'root://eoscms.cern.ch/'+makeMCDirectory('METup_suffix'),
+    'folderDown' : 'root://eoscms.cern.ch/'+makeMCDirectory('METdo_suffix'),
+    'AsLnN'      : '0'
 }
 
 
@@ -233,7 +297,7 @@ nuisances['met'] = {
 
 # puWeight_UL2016
 nuisances['PU'] = {
-    'name': 'CMS_PU_2016',
+    'name': 'CMS_pileup_2016',
     'kind': 'weight',
     'type': 'shape',
     'samples': {
@@ -247,7 +311,7 @@ nuisances['PU'] = {
         'top'     : ['1.004374*(puWeightUp/puWeight)', '0.995684*(puWeightDown/puWeight)'],
         'Higgs'   : ['1.006460*(puWeightUp/puWeight)', '0.993559*(puWeightDown/puWeight)'],
     },
-    'AsLnN': '1',
+    'AsLnN': '0',
 }
 
 ### PU ID SF uncertainty
@@ -255,7 +319,7 @@ nuisances['PU'] = {
 puid_syst = ['Jet_PUIDSF_loose_up/Jet_PUIDSF_loose', 'Jet_PUIDSF_loose_down/Jet_PUIDSF_loose']
 
 nuisances['jetPUID'] = {
-    'name': 'CMS_PUID_2016',
+    'name': 'CMS_eff_j_PUJET_id_2016',
     'kind': 'weight',
     'type': 'shape',
     'samples': dict((skey, puid_syst) for skey in mc)
@@ -265,34 +329,34 @@ nuisances['jetPUID'] = {
 ### PS and UE
 
 nuisances['PS_ISR']  = {
-    'name'    : 'PS_ISR',
+    'name'    : 'PS_WH_hww_ISR',
     'kind'    : 'weight',
     'type'    : 'shape',
     'samples' : dict((skey, ['PSWeight[2]', 'PSWeight[0]']) for skey in mc),
-    'AsLnN'   : '1',
+    'AsLnN'   : '0',
 }
 
 nuisances['PS_FSR']  = {
-    'name'    : 'PS_FSR',
+    'name'    : 'PS_WH_hww_FSR',
     'kind'    : 'weight',
     'type'    : 'shape',
     'samples' : dict((skey, ['PSWeight[3]', 'PSWeight[1]']) for skey in mc),
-    'AsLnN'   : '1',
+    'AsLnN'   : '0',
 }
 
 nuisances['UE_CP5']  = {
-    'name'    : 'UE_CP5',
+    'name'    : 'CMS_WH_hww_UE',
     'skipCMS' : 1,
     'type'    : 'lnN',
     'samples' : dict((skey, '1.015') for skey in mc),
 }
 
 ## Charge flip SF
-nuisances['chargeFlip'] = {
-    'name'    : 'CMS_whss_chargeFlip_2016',
+nuisances['chargeFlipSF'] = {
+    'name'    : 'CMS_whss_chargeFlipSF_2016',
     'kind'    : 'weight',
     'type'    : 'shape',
-    'samples' : dict((skey, ['1-ttHMVA_eff_err_flip_2l[0]', '1+ttHMVA_eff_err_flip_2l[0]']) for skey in ['top','WW']),
+    'samples' : dict((skey, ['1-ttHMVA_SF_err_flip_2l[0]', '1+ttHMVA_SF_err_flip_2l[0]']) for skey in ['top','WW']),
     'cuts'    : [cut for cut in cuts if ('_ee_' in cut)]
 }
 
@@ -301,75 +365,15 @@ nuisances['chargeFlipEff'] = {
     'name'    : 'CMS_whss_chargeFlipEff_2016',
     'kind'    : 'weight',
     'type'    : 'shape',
-    'samples' : dict((skey, ['1-ttHMVA_eff_err_flip_2l[0]', '1+ttHMVA_eff_err_flip_2l[0]']) for skey in ['DY']),
-    'cuts'    : [cut for cut in cuts if ('_ee_' in cut)]
-}
-
-##### Renormalization & factorization scales
-
-## Shape nuisance due to QCD scale variations for DY
-# LHE scale variation weights (w_var / w_nominal)
-
-## This should work for samples with either 8 or 9 LHE scale weights (Length$(LHEScaleWeight) == 8 or 9)
-variations = ['LHEScaleWeight[0]', 'LHEScaleWeight[1]', 'LHEScaleWeight[3]', 'LHEScaleWeight[Length$(LHEScaleWeight)-4]', 'LHEScaleWeight[Length$(LHEScaleWeight)-2]', 'LHEScaleWeight[Length$(LHEScaleWeight)-1]']
-
-# nuisances['QCDscale_V'] = {
-#     'name': 'QCDscale_V',
-#     'skipCMS': 1,
-#     'kind': 'weight_envelope',
-#     'type': 'shape',
-#     'samples': {'DY': variations},
-#     'AsLnN': '1'
-# }
-
-nuisances['QCDscale_VV'] = {
-    'name' : 'QCDscale_VV',
-    'kind' : 'weight_envelope',
-    'type' : 'shape',
-    'samples' : {
-        'WW'  : variations,
-        'Zg'  : variations,
-        'Wg'  : variations,
-        'ZZ'  : variations,
-        'WZ'  : variations,
-        'WgS' : variations,
-        'ZgS' : variations
-    }
-}
-
-nuisances['QCDscale_ggVV'] = {
-    'name': 'QCDscale_ggVV',
-    'type': 'lnN',
-    'samples': {
-        'ggWW': '1.15',
-    },
-}
-
-# WZ normalization from control region
-
-nuisances['WZ2jnorm']  = {
-    'name'    : 'CMS_hww_WZ3l2jnorm',
-    'samples' : {
-        'WZ' : '1.00',
-    },
-    'type' : 'rateParam',
-    'cuts' : [cut for cut in cuts if '2j' in cut],
-}
-
-nuisances['WZ1jnorm']  = {
-    'name'    : 'CMS_hww_WZ3l1jnorm',
-    'samples' : {
-        'WZ' : '1.00',
-    },
-    'type' : 'rateParam',
-    'cuts' : [cut for cut in cuts if '1j' in cut],
+    'samples' : dict((skey, ['1-ttHMVA_eff_err_flip_2l[0]', '1+ttHMVA_eff_err_flip_2l[0]']) for skey in ['DY','DATA']),
+    'cuts'    : [cut for cut in cuts if ('_ee_' in cut or '_em_' in cut)]
 }
 
 ## Use the following if you want to apply the automatic combine MC stat nuisances.
 nuisances['stat']  = {
     'type'          : 'auto',
     'maxPoiss'      : '10',
-    'includeSignal' : '1',
+    'includeSignal' : '0',
     'samples'       : {}
 }
 #  nuisance ['maxPoiss'] =  Number of threshold events for Poisson modelling
