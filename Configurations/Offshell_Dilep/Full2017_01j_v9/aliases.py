@@ -357,3 +357,9 @@ aliases['SFweightMuDown'] = {
     'samples': mc,
     'nominalOnly': 1
 }
+# aliases['LHE_mWW'] = {
+#     'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/Offshell_Dilep/Tools/computeLHEmWW.cc+' % os.getenv('CMSSW_BASE')],
+#     'class': 'computeLHEmWW',
+#     'samples': ['ggF_bonly_off', 'ggWW', 'ggF_sand_off', 'ggF_sonly_on', 'ggF_sonly_off']
+# }
+#

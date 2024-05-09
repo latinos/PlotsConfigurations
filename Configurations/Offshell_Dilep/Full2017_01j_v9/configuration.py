@@ -22,8 +22,6 @@ samplesFile = 'samples.py'
 # file with list of samples
 plotFile = 'plot.py'
 
-
-
 # luminosity to normalize to (in 1/fb)
 lumi = 41.53
 
@@ -42,4 +40,5 @@ structureFile = 'structure.py'
 
 
 # nuisances file for mkDatacards and for mkShape
-nuisancesFile = 'nuisances.py'
+nuisancesFile = 'nuisances.py' ##systematics
+#nuisancesFile = 'nuisances_light.py'

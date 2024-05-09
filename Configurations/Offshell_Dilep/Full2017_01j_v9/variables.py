@@ -23,6 +23,21 @@ variables['dnnScore_ggH_OFF_1j_Opt']  = {   'name': 'dnnScore_ggH_OFF_1j',
                                      'cuts' : [cut for cut in cuts if 'OFF_1j' in cut]
                         }
 
+variables['dnnScore_ggH_ON_0j_Opt']  = {   'name': 'dnnScore_ggH_ON_0j', #variables['dnnScore_ggH_ON_0j_binning']
+                                    'range' : ([0.5, 0.685, 0.87, 0.885, 0.895, 1.0],), ##Optimized May 2024
+                                    'xaxis' : 'dnn_{ggH_on} [GeV]',
+                                    'fold' : 3,
+                                    'cuts' : [cut for cut in cuts if 'ON_0j' in cut] ##ON     
+}
+
+variables['dnnScore_ggH_ON_1j_Opt']  = {   'name': 'dnnScore_ggH_ON_1j', #variables['dnnScore_ggH_ON_1j_binning']
+                                    'range' : ([0.5, 0.67875, 0.8574999999999999, 0.8725, 0.8875, 1.0],),
+                                    'xaxis' : 'dnn_{ggH_on} [GeV]',
+                                    'fold' : 3,
+                                    'cuts' : [cut for cut in cuts if 'ON_1j' in cut] ##ON                                
+                        }
+
+
 # variables['dnnScore_MAX_0j']  = {   'name': 'dnnScore_MAX_0j',
 #                                      'range' : (4, -0.5, 3.5),
 #                                      'xaxis' : 'CAT INDEX',
@@ -44,13 +59,18 @@ variables['dnnScore_ggH_OFF_0j']  = {   'name': 'dnnScore_ggH_OFF_0j',
                                      'cuts' : [cut for cut in cuts if 'OFF_0j' in cut]
                         }
 
-variables['dnnScore_ggH_ON_0j']  = {   'name': 'dnnScore_ggH_ON_0j',
-                                    'range' : (10, 0.5,1.0),
-                                    'xaxis' : 'dnn_{ggH_on} [GeV]',
-                                    'fold' : 3,
-                                    'cuts' : [cut for cut in cuts if 'ON_0j' in cut]
-                                }
-
+# variables['dnnScore_ggH_ON_0j']  = {   'name': 'dnnScore_ggH_ON_0j',
+#                                     'range' : (10, 0.5,1.0),
+#                                     'xaxis' : 'dnn_{ggH_on} [GeV]',
+#                                     'fold' : 3,
+#                                     'cuts' : [cut for cut in cuts if 'ON_0j' in cut]
+#                                 }
+# variables['dnnScore_ggH_ON_0j_binning']  = {   'name': 'dnnScore_ggH_ON_0j', #variables['dnnScore_ggH_ON_0j_binning']                                            
+#                                     'range' : (200, 0.5,1.0),
+#                                     'xaxis' : 'dnn_{ggH_on} [GeV]',
+#                                     'fold' : 3,
+#                                     'cuts' : [cut for cut in cuts if 'ON_0j' in cut] ##ON     
+# }
 variables['dnnScore_top_0j']  = {   'name': 'dnnScore_top_0j',
                                  'range' : (10, 0.5,1.0),
                                  'xaxis' : 'dnn_{top} [GeV]',
@@ -86,12 +106,18 @@ variables['dnnScore_ggH_OFF_1j']  = {   'name': 'dnnScore_ggH_OFF_1j',
                                      'cuts' : [cut for cut in cuts if 'OFF_1j' in cut]
                         }
 
-variables['dnnScore_ggH_ON_1j']  = {   'name': 'dnnScore_ggH_ON_1j',
-                                    'range' : (10, 0.5,1.0),
-                                    'xaxis' : 'dnn_{ggH_on} [GeV]',
-                                    'fold' : 3,
-                                    'cuts' : [cut for cut in cuts if 'ON_1j' in cut]
-                                }
+# variables['dnnScore_ggH_ON_1j']  = {   'name': 'dnnScore_ggH_ON_1j',
+#                                     'range' : (10, 0.5,1.0),
+#                                     'xaxis' : 'dnn_{ggH_on} [GeV]',
+#                                     'fold' : 3,
+#                                     'cuts' : [cut for cut in cuts if 'ON_1j' in cut]
+#                                 }
+# variables['dnnScore_ggH_ON_1j_binning']  = {   'name': 'dnnScore_ggH_ON_1j', #variables['dnnScore_ggH_ON_1j_binning']
+#                                     'range' : (200, 0.5,1.0),
+#                                     'xaxis' : 'dnn_{ggH_on} [GeV]',
+#                                     'fold' : 3,
+#                                     'cuts' : [cut for cut in cuts if 'ON_1j' in cut] ##ON                                
+#                         }
 
 variables['dnnScore_top_1j']  = {   'name': 'dnnScore_top_1j',
                                  'range' : (10, 0.5,1.0),
@@ -203,18 +229,3 @@ variables['dphillmet']  = {   'name': 'dphillmet',
                         'fold' : 3
                         }
 
-variables['jet_btag_0j']  = {
-                        'name': '(Sum$(CleanJet_pt>20)>0)*Jet_btagDeepFlavB[CleanJet_jetIdx[0]] + (Sum$(CleanJet_pt>20)==0)*-1.0',
-                        'range' : (20,-0.3,1.0),
-                        'xaxis' : 'Jet btag score',
-                        'fold' : 3   ,
-                        'cuts' : [cut for cut in cuts if '0j' in cut]
-                        }
-
-variables['jet_btag_1j']  = {
-                        'name': 'Jet_btagDeepFlavB[CleanJet_jetIdx[0]]',
-                        'range' : (20,0.0,1.0),
-                        'xaxis' : 'Jet btag score',
-                        'fold' : 3   ,
-                        'cuts' : [cut for cut in cuts if '1j' in cut]
-                        }
