@@ -12,16 +12,18 @@ _tmp = [
     'mth > 60.',
 ] ##mth > 60 to kill onshell - selections cross-reference dnn_ntuplemaker.py cuts
 
+##to speed things up, can remove supercuts--not using and will speed things up
 supercut = ' && '.join(_tmp)
 
 def addcut(name, exprs):
     cuts[name] = ' && '.join(exprs)
 #0jet
-_tmp = [
-    'zeroJet',
-       ]
-addcut('supercut_0j', _tmp)
+# _tmp = [
+#     'zeroJet',
+#        ]
+# addcut('supercut_0j', _tmp)
 
+##SR
 _tmp = [
     'zeroJet',
     'bVeto', 
@@ -34,7 +36,7 @@ _tmp = [
     'bVeto', 
     'dnnScore_ggH_ON_0j > .5',
        ]
-addcut('CR_ggH_ON_0j', _tmp)
+addcut('CR_ggH_ON_0j', _tmp) ##TC
 
 _tmp = [
     'zeroJet',
@@ -51,11 +53,12 @@ _tmp = [
 addcut('topCR_0j', _tmp)
 
 #1jet
-_tmp = [
-    'oneJet',
-       ]
-addcut('supercut_1j', _tmp)
+# _tmp = [
+#     'oneJet',
+#        ]
+# addcut('supercut_1j', _tmp)
 
+##SR
 _tmp = [
     'oneJet',
     'bVeto', 

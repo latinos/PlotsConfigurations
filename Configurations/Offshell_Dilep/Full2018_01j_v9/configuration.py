@@ -42,6 +42,6 @@ structureFile = 'structure.py'
 
 
 # nuisances file for mkDatacards and for mkShape
-nuisancesFile = 'nuisances.py' ##TC don't need syst unc. now
-
+nuisancesFile = 'nuisances.py' ##TC don't need syst unc. now 4-2024
+#nuisancesFile = 'nuisances_light.py'
 

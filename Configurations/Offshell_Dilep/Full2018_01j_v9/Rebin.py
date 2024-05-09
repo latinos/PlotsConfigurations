@@ -5,7 +5,7 @@ datacard directory structure:
 
 Threshold: [0.25, 0.30]
 
-python Rebin.py <FOLDER> <BIN> <VAR> threshols <OUTPUT_FOLDER>
+python Rebin.py <FOLDER> <BIN> <VAR> threshold <OUTPUT_FOLDER>
 
 e.g.,
 python Rebin.py datacards_2018 SR_ggH_OFF_0j dnnScore_ggH_OFF_0j_binning datacards_opt 0.25
