@@ -241,10 +241,18 @@ samples['Higgs'] = {
 #############   WW  ##################
 ###########################################
 
-samples['WW'] = {
-    'name': nanoGetSampleFiles(mcDirectory, 'WWTo2L2Nu'),
-    'weight': mcCommonWeight+'*nllW',
-    'FilesPerJob': 2,
+# samples['WW'] = {
+#     'name': nanoGetSampleFiles(mcDirectory, 'WWTo2L2Nu'),
+#     'weight': mcCommonWeight+'*nllW',
+#     'FilesPerJob': 2,
+#     'suppressNegative' :['all'],
+#     'suppressNegativeNuisances' :['all'],
+# }
+
+samples['WW_minnlo'] = {
+    'name': nanoGetSampleFiles(mcDirectory, 'WWJTo2L2Nu_minnlo'),
+    'weight': mcCommonWeight,
+    'FilesPerJob': 7,
     'suppressNegative' :['all'],
     'suppressNegativeNuisances' :['all'],
 }
@@ -358,10 +366,10 @@ files = nanoGetSampleFiles(signalDirectory, 'GluGluHToWWTo2L2Nu_M125') + \
         nanoGetSampleFiles(signalDirectory, 'GluGluHToWWTo2L2Nu_M2000') + \
         nanoGetSampleFiles(signalDirectory, 'GluGluHToWWTo2L2Nu_M2500') + \
         nanoGetSampleFiles(signalDirectory, 'GluGluHToWWTo2L2Nu_M3000')
-
+##sig only hyp
 samples['ggHToWWOffshell'] = {
     'name': files,
-    'weight': mcCommonWeight_custom + ' * p_Gen_GG_SIG_kappaTopBot_1_ghz1_1_MCFM * p_Gen_CPStoBWPropRewgt * HWWOffshell_combineWgt * (LHECandMass > 160)',
+    'weight': mcCommonWeight + ' * p_Gen_GG_SIG_kappaTopBot_1_ghz1_1_MCFM * p_Gen_CPStoBWPropRewgt * HWWOffshell_combineWgt * (LHECandMass > 160)',
     'FilesPerJob': 4,
     'suppressNegative' :['all'],
     'suppressNegativeNuisances' :['all'],
@@ -369,7 +377,7 @@ samples['ggHToWWOffshell'] = {
 
 samples['ggHToWWOnshell'] = {
     'name': files,
-    'weight': mcCommonWeight_custom + ' * p_Gen_GG_SIG_kappaTopBot_1_ghz1_1_MCFM * p_Gen_CPStoBWPropRewgt * HWWOffshell_combineWgt * (LHECandMass <= 160)',
+    'weight': mcCommonWeight + ' * p_Gen_GG_SIG_kappaTopBot_1_ghz1_1_MCFM * p_Gen_CPStoBWPropRewgt * HWWOffshell_combineWgt * (LHECandMass <= 160)',
     'FilesPerJob': 4,
     'suppressNegative' :['all'],
     'suppressNegativeNuisances' :['all'],

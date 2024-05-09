@@ -15,7 +15,7 @@ groupPlot['VH+ttH+qqH']  = {
 groupPlot['ggHToWWOnshell']  = {
                   'nameHR' : 'ggH Onshell',
                   'isSignal' : 0,
-                  'color': 603, # kBlue+3                                                                                                                                                                  
+                  'color': 603, # kBlue+3                       
                   'samples'  : ['ggHToWWOnshell' ]
               }
 
@@ -41,11 +41,11 @@ groupPlot['Fake']  = {
                   'samples'  : ['Fake_me', 'Fake_em']
 }
 
-groupPlot['WW']  = {
+groupPlot['WW_minnlo']  = {
                   'nameHR' : 'WW',
                   'isSignal' : 0,
                   'color': 851, # kAzure -9 
-                  'samples'  : ['WW', 'ggWW', 'WWewk']
+                  'samples'  : ['WW_minnlo', 'ggWW', 'WWewk']
               }
 
 groupPlot['top']  = {
@@ -99,7 +99,7 @@ plot['top'] = {
                   'scale'    : 1.0,
                   }
 
-plot['WW']  = {
+plot['WW_minnlo']  = {
                   'color': 851, # kAzure -9 
                   'isSignal' : 0,
                   'isData'   : 0,
@@ -181,7 +181,7 @@ plot['DATA']  = {
                   'color': 1 ,  
                   'isSignal' : 0,
                   'isData'   : 1 ,
-                  'isBlind'  : 1
+                  'isBlind'  : 0 #1
               }
 
 
