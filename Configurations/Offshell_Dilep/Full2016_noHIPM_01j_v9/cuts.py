@@ -17,11 +17,11 @@ supercut = ' && '.join(_tmp)
 def addcut(name, exprs):
     cuts[name] = ' && '.join(exprs)
 #0jet
-_tmp = [
-    'zeroJet',
-       ]
-addcut('supercut_0j', _tmp)
-
+# _tmp = [
+#     'zeroJet',
+#        ]
+# addcut('supercut_0j', _tmp)
+##SR
 _tmp = [
     'zeroJet',
     'bVeto', 
@@ -51,11 +51,11 @@ _tmp = [
 addcut('topCR_0j', _tmp)
 
 #1jet
-_tmp = [
-    'oneJet',
-       ]
-addcut('supercut_1j', _tmp)
-
+# _tmp = [
+#     'oneJet',
+#        ]
+# addcut('supercut_1j', _tmp)
+##SR
 _tmp = [
     'oneJet',
     'bVeto', 

@@ -372,3 +372,9 @@ aliases['lhe_mW2'] = {
     'expr': 'TMath::Sqrt(2. * LHEPart_pt[2] * LHEPart_pt[3] * (TMath::CosH(LHEPart_eta[2] - LHEPart_eta[3]) - TMath::Cos(LHEPart_phi[2] - LHEPart_phi[3])))',
     'samples': ['WWewk']
 }
+
+# aliases['LHE_mWW'] = {
+#     'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/Offshell_Dilep/Tools/computeLHEmWW.cc+' % os.getenv('CMSSW_BASE')],
+#     'class': 'computeLHEmWW',
+#     'samples': ['ggF_bonly_off', 'ggWW', 'ggF_sand_off', 'ggF_sonly_on', 'ggF_sonly_off']
+# }
