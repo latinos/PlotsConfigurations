@@ -65,6 +65,14 @@ nuisances['QCDscale_ttZ'] = {
  #   'cuts' : fitcuts
 }
 
+#nuisances['QCDscale_ttZ']  = {
+#  'name'  : 'QCDscale_ttZ', 
+#  'samples'  : {
+#    'ttZ': '1.07',                  
+#  },
+#  'type'  : 'lnN',
+ # 'cuts' : fitcuts
+#}
 nuisances['QCDscale_VVV'] = {
     'name': 'QCDscale_VVV',
     'kind': 'weight_envelope',
@@ -335,7 +343,7 @@ nuisances['trigg']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : dict((skey, trig_syst) for skey in mc),
-		'AsLnN' : '1',
+#		'AsLnN' : '1',
  #               'cuts' : fitcuts
 }
 
@@ -371,7 +379,7 @@ nuisances['electronpt']  = {
                 'samples'  : dict((skey, ['1', '1']) for skey in mc if skey not in ['top']),
                 'folderUp'   : treeBaseDir+'Summer20UL17_106x_nAODv9_Full2017v9/MCl1loose2017v9__MCCorr2017v9NoJERInHorn__l2tightOR2017v9__ElepTup_suffix', 
                 'folderDown' : treeBaseDir+'Summer20UL17_106x_nAODv9_Full2017v9/MCl1loose2017v9__MCCorr2017v9NoJERInHorn__l2tightOR2017v9__ElepTdo_suffix', 
-                'AsLnN' : '1',
+#                'AsLnN' : '1',
  #               'cuts' : fitcuts
 }
 
@@ -384,7 +392,7 @@ nuisances['eff_m']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : dict((skey, id_syst_mu) for skey in mc),
-		'AsLnN' : '1',
+#		'AsLnN' : '1',
  #               'cuts' : fitcuts
 }
 
@@ -397,7 +405,7 @@ nuisances['muonpt']  = {
                 'samples'  : dict((skey, ['1', '1']) for skey in mc if skey not in ['top']),
                 'folderUp'   : treeBaseDir+'Summer20UL17_106x_nAODv9_Full2017v9/MCl1loose2017v9__MCCorr2017v9NoJERInHorn__l2tightOR2017v9__MupTup_suffix', 
                 'folderDown' : treeBaseDir+'Summer20UL17_106x_nAODv9_Full2017v9/MCl1loose2017v9__MCCorr2017v9NoJERInHorn__l2tightOR2017v9__MupTdo_suffix', 
-                'AsLnN' : '1',
+ #               'AsLnN' : '1',
  #               'cuts' : fitcuts
 }
 
@@ -409,9 +417,21 @@ nuisances['ttZ_norm'] = {
     },
     'type' : 'rateParam',
     'cuts' : [
-	'breq_SR', 'bveto_1j_SR', 'bveto_4j', 'jet_cut_3j', 'bveto_3j'
+	'breq_SR', 'bveto_1j_SR',  'bveto_4j'
    ]
  }
+
+
+#nuisances['ttZ_norm_1bjet'] = {
+#    'name' : 'CMS_ttZ_norm_1bjet',
+#    'samples' : {
+#	'ttZ' : '1.00',
+#    },
+#    'type' : 'rateParam',
+#    'cuts' : [
+#	'bveto_1j_SR', 'bveto_4j'
+ #  ]
+# }
 
 nuisances['WZ_norm_4j'] = {
     'name' : 'CMS_WZ_norm_4j',
@@ -425,16 +445,16 @@ nuisances['WZ_norm_4j'] = {
   }
 
 
-nuisances['WZ_norm_3j'] = {
-    'name' : 'CMS_WZ_norm_3j',
-    'samples' : {
-	'WZ' : '1.00',
-    },
-    'type' : 'rateParam',
-    'cuts': [
-	 'jet_cut_3j', 'bveto_3j'
-    ]
-  }
+#nuisances['WZ_norm_3j'] = {
+#    'name' : 'CMS_WZ_norm_3j',
+#    'samples' : {
+#	'WZ' : '1.00',
+#    },
+#    'type' : 'rateParam',
+#    'cuts': [
+#	 'jet_cut_3j', 'bveto_3j'
+#    ]
+#  }
 
 ####### Jet energy scale
 
@@ -452,7 +472,7 @@ for js in jes_systs:
                 'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['TTWJets']),
                 'folderUp'   : treeBaseDir+'Summer20UL17_106x_nAODv9_Full2017v9/MCl1loose2017v9__MCCorr2017v9NoJERInHorn__l2tightOR2017v9__RDF__JESup_suffix', 
                 'folderDown' : treeBaseDir+'Summer20UL17_106x_nAODv9_Full2017v9/MCl1loose2017v9__MCCorr2017v9NoJERInHorn__l2tightOR2017v9__RDF__JESdo_suffix', 
-                'AsLnN': '0',
+ #               'AsLnN': '1',
 #                'cuts' : fitcuts
 }
 
@@ -516,7 +536,7 @@ nuisances['JER'] = {
     'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['tZq_ll','top']),
     'folderUp': treeBaseDir+'Summer20UL17_106x_nAODv9_Full2017v9/MCl1loose2017v9__MCCorr2017v9NoJERInHorn__l2tightOR2017v9__JERup_suffix',
     'folderDown': treeBaseDir+'Summer20UL17_106x_nAODv9_Full2017v9/MCl1loose2017v9__MCCorr2017v9NoJERInHorn__l2tightOR2017v9__JERdo_suffix',
-    'AsLnN': '1',
+ #   'AsLnN': '1',
 }
 ##### MET energy scale
 
@@ -529,7 +549,7 @@ nuisances['met']  = {
                 'samples'  : dict((skey, ['1', '1']) for skey in mc if skey not in ['top']),
                 'folderUp'   : treeBaseDir+'Summer20UL17_106x_nAODv9_Full2017v9/MCl1loose2017v9__MCCorr2017v9NoJERInHorn__l2tightOR2017v9__METup_suffix', 
                 'folderDown' : treeBaseDir+'Summer20UL17_106x_nAODv9_Full2017v9/MCl1loose2017v9__MCCorr2017v9NoJERInHorn__l2tightOR2017v9__METdo_suffix', 
- #               'AsLnN' : '1',
+   #             'AsLnN' : '1',
  #               'cuts' : fitcuts
 }
 
