@@ -8,6 +8,17 @@ for iproc in samples.keys():
         'isData'   : 1 if iproc == 'DATA' else 0,
     }
 
+structure['Vg']['removeFromCuts'] = ['ww2l2v_13TeV_sr_1j_B5','ww2l2v_13TeV_top_0j','ww2l2v_13TeV_sr_2j_B5']
+structure['ggWW_B2']['removeFromCuts'] = ['ww2l2v_13TeV_sr_1j_B6', 'ww2l2v_13TeV_sr_0j_B6', 'ww2l2v_13TeV_sr_2j_B5', 'ww2l2v_13TeV_sr_2j_B6']
+structure['ggWW_B3']['removeFromCuts'] = ['ww2l2v_13TeV_sr_1j_B6', 'ww2l2v_13TeV_sr_0j_B6', 'ww2l2v_13TeV_sr_2j_B5']
+structure['ggWW_B0']['removeFromCuts'] = ['ww2l2v_13TeV_sr_1j_B6', 'ww2l2v_13TeV_sr_1j_B5', 'ww2l2v_13TeV_sr_1j_B3', 'ww2l2v_13TeV_sr_0j_B6', 'ww2l2v_13TeV_sr_0j_B5', 'ww2l2v_13TeV_sr_0j_B4', 'ww2l2v_13TeV_sr_0j_B3', 'ww2l2v_13TeV_sr_2j_B5', 'ww2l2v_13TeV_sr_2j_B4', 'ww2l2v_13TeV_sr_1j_B4', 'ww2l2v_13TeV_sr_2j_B6', 'ww2l2v_13TeV_sr_2j_B3']
+structure['ggWW_B1']['removeFromCuts'] = ['ww2l2v_13TeV_sr_1j_B5', 'ww2l2v_13TeV_sr_0j_B6', 'ww2l2v_13TeV_sr_2j_B5', 'ww2l2v_13TeV_sr_2j_B4', 'ww2l2v_13TeV_sr_1j_B4', 'ww2l2v_13TeV_sr_2j_B6']
+structure['WW_B4']['removeFromCuts'] = ['ww2l2v_13TeV_sr_1j_B6', 'ww2l2v_13TeV_sr_0j_B6', 'ww2l2v_13TeV_sr_2j_B6']
+structure['WW_B2']['removeFromCuts'] = ['ww2l2v_13TeV_sr_1j_B6', 'ww2l2v_13TeV_sr_0j_B6', 'ww2l2v_13TeV_sr_2j_B5', 'ww2l2v_13TeV_sr_2j_B4', 'ww2l2v_13TeV_sr_1j_B4', 'ww2l2v_13TeV_sr_2j_B6']
+structure['WW_B3']['removeFromCuts'] = ['ww2l2v_13TeV_sr_1j_B6', 'ww2l2v_13TeV_sr_1j_B5', 'ww2l2v_13TeV_sr_0j_B6', 'ww2l2v_13TeV_sr_2j_B5', 'ww2l2v_13TeV_sr_2j_B6']
+structure['WW_B0']['removeFromCuts'] = ['ww2l2v_13TeV_sr_1j_B6', 'ww2l2v_13TeV_sr_1j_B5', 'ww2l2v_13TeV_sr_1j_B2', 'ww2l2v_13TeV_sr_1j_B3', 'ww2l2v_13TeV_sr_0j_B6', 'ww2l2v_13TeV_sr_0j_B5', 'ww2l2v_13TeV_sr_0j_B4', 'ww2l2v_13TeV_sr_0j_B3', 'ww2l2v_13TeV_sr_0j_B2', 'ww2l2v_13TeV_sr_2j_B5', 'ww2l2v_13TeV_sr_2j_B4', 'ww2l2v_13TeV_sr_1j_B4', 'ww2l2v_13TeV_sr_2j_B6', 'ww2l2v_13TeV_sr_2j_B3', 'ww2l2v_13TeV_sr_2j_B2']
+structure['WW_B1']['removeFromCuts'] = ['ww2l2v_13TeV_sr_1j_B6', 'ww2l2v_13TeV_sr_1j_B5', 'ww2l2v_13TeV_sr_0j_B6', 'ww2l2v_13TeV_sr_0j_B4', 'ww2l2v_13TeV_sr_2j_B5', 'ww2l2v_13TeV_sr_2j_B4', 'ww2l2v_13TeV_sr_1j_B4', 'ww2l2v_13TeV_sr_2j_B6', 'ww2l2v_13TeV_sr_2j_B3']
+
 for nuis in nuisances.itervalues():
   if 'cutspost' in nuis:
     nuis['cuts'] = nuis['cutspost'](nuis, cuts)

@@ -279,8 +279,8 @@ nuisances['PS_ISR_WW']  = {
     'type': 'shape',
     'AsLnN': '0',
     'samples': {        
-        'WW'   : ['({})*PSWeight[3]'.format(norm_ISR_WW[0]),'({})*PSWeight[1]'.format(norm_ISR_WW[1])],
-        'ggWW' : ['({})*PSWeight[3]'.format(norm_ISR_ggWW[0]),'({})*PSWeight[1]'.format(norm_ISR_ggWW[1])]
+        'WW'   : ['({})*PSWeight[2]'.format(norm_ISR_WW[0]),'({})*PSWeight[0]'.format(norm_ISR_WW[1])],
+        'ggWW' : ['({})*PSWeight[2]'.format(norm_ISR_ggWW[0]),'({})*PSWeight[0]'.format(norm_ISR_ggWW[1])]
     }
 }
 
@@ -310,7 +310,6 @@ nuisances['PS_FSR_WW']  = {
 # And we don't observe any dependency of UE variations on njet
 nuisances['UE']  = {
                 'name'  : 'UE_CP5',
-                'skipCMS' : 1,
                 'type': 'lnN',
                 'samples': dict((skey, '1.015') for skey in mc if skey not in ['WW','ggWW']), 
 }
@@ -343,7 +342,6 @@ for cut in allcuts:
         'cuts' : [cut]
     }
 
-'''
 nuisances['VZ'] = {
     'name': 'CMS_hww_VZScale',
     'type': 'lnN',
@@ -351,7 +349,7 @@ nuisances['VZ'] = {
         'WZ': '1.16'
     }
 }
-'''
+
 ###### pdf uncertainties
 
 values = {
@@ -480,6 +478,7 @@ nuisances['QCDscale_WW']  = {
     }
 }
 
+## Factors computed to renormalize the top scale variations such that the integral is not changed in each RECO jet bin (we have rateParams for that)
 topScaleNormFactors = {
     '0j' : {'Alt$(LHEScaleWeight[0],1)' : 1.075737, 'Alt$(LHEScaleWeight[1],1)' : 1.075697, 'Alt$(LHEScaleWeight[3],1)' : 1.002443, 'Alt$(LHEScaleWeight[5],1)' : 1.000645, 'Alt$(LHEScaleWeight[7],1)' : 0.924158, 'Alt$(LHEScaleWeight[8],1)' : 0.922467},
     '1j' : {'Alt$(LHEScaleWeight[0],1)' : 1.084646, 'Alt$(LHEScaleWeight[1],1)' : 1.080333, 'Alt$(LHEScaleWeight[3],1)' : 1.008348, 'Alt$(LHEScaleWeight[5],1)' : 0.995477, 'Alt$(LHEScaleWeight[7],1)' : 0.919717, 'Alt$(LHEScaleWeight[8],1)' : 0.912192},
@@ -502,7 +501,6 @@ for ibin in cuts['ww2l2v_13TeV_top']['categories']:
             'top' : topvars,
         }
     }
-
 
 nuisances['QCDscale_ggVV'] = {
     'name': 'QCDscale_ggVV',

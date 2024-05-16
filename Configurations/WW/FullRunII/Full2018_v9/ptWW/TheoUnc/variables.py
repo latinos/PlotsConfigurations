@@ -1,7 +1,7 @@
 # variables
 
-variables['nCleanGenJet']  = {   'name': 'nCleanGenJet',
-                           'range' : (4,0,4),
+variables['events']  = {   'name': '1',
+                           'range' : (1,0,2),
                            'xaxis' : 'events',
                            'fold' : 3
                        }

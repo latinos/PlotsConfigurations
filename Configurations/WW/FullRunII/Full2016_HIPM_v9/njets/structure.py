@@ -8,6 +8,13 @@ for iproc in samples.keys():
         'isData'   : 1 if iproc == 'DATA' else 0,
     }
 
+structure['WW_B2']['removeFromCuts'] = ['ww2l2v_13TeV_top_0j']
+structure['Vg']['removeFromCuts'] = ['ww2l2v_13TeV_top_3j']
+structure['WWewk']['removeFromCuts'] = ['ww2l2v_13TeV_top_1j', 'ww2l2v_13TeV_top_0j', 'ww2l2v_13TeV_sr_3j_B0', 'ww2l2v_13TeV_sr_2j_B0', 'ww2l2v_13TeV_sr_1j_B0', 'ww2l2v_13TeV_top_3j', 'ww2l2v_13TeV_top_2j', 'ww2l2v_13TeV_sr_0j_B0']
+structure['ggWW_B3']['removeFromCuts'] = ['ww2l2v_13TeV_top_0j']
+structure['WW_B3']['removeFromCuts'] = ['ww2l2v_13TeV_top_0j','ww2l2v_13TeV_sr_0j_B0']
+structure['WW_B0']['removeFromCuts'] = ['ww2l2v_13TeV_sr_3j_B0']
+
 for nuis in nuisances.itervalues():
   if 'cutspost' in nuis:
     nuis['cuts'] = nuis['cutspost'](nuis, cuts)

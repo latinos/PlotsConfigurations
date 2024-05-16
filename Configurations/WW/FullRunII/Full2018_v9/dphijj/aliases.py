@@ -15,8 +15,17 @@ eleWP = 'mvaFall17V2Iso_WP90'
 muWP  = 'cut_Tight_HWWW'
 
 aliases['LepWPCut'] = {
-    'expr': 'LepCut2l__ele_'+eleWP+'__mu_'+muWP,
+    'expr': 'LepCut2l__ele_'+eleWP+'__mu_'+muWP+'*\
+     ( ((abs(Lepton_pdgId[0])==13 && Muon_mvaTTH[Lepton_muonIdx[0]]>0.82) || (abs(Lepton_pdgId[0])==11 && Lepton_mvaTTH_UL[0]>0.90)) \
+    && ((abs(Lepton_pdgId[1])==13 && Muon_mvaTTH[Lepton_muonIdx[1]]>0.82) || (abs(Lepton_pdgId[1])==11 && Lepton_mvaTTH_UL[1]>0.90)) )',
     'samples': mc + ['DATA']
+}
+
+aliases['ttHMVAULSF'] = {
+    'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/ttHMVASF.C+' % configurations],
+    'class'      : 'ttHMVASF',
+    'args'       : ("2018", 2, "all","nominal"),
+    'samples'    : mc
 }
 
 aliases['LepWPSF'] = {
@@ -36,42 +45,53 @@ aliases['gstarHigh'] = {
 
 # Fake leptons transfer factor
 aliases['fakeW'] = {
-    'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP,
-    'samples': ['Fake']
+    'linesToAdd' : ['.L %s/WW/FullRunII/Tools/fake_rate_reader.C+' % configurations],
+    'class'      : 'fake_rate_reader',
+    'args'       : ('2018', '90', '82', 0.90, 0.82, 'nominal', 2, "std"),
+    'samples'    : ['Fake']
 }
 
- # And variations - already divided by central values in formulas !
+# And variations - already divided by central values in formulas !
 aliases['fakeWEleUp'] = {
-    'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_EleUp',
-    'samples': ['Fake']
+    'class'      : 'fake_rate_reader',
+    'args'       : ('2018', '90', '82', 0.90, 0.82, 'EleUp', 2, "std"),
+    'samples'    : ['Fake']
 }
 aliases['fakeWEleDown'] = {
-    'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_EleDown',
-    'samples': ['Fake']
+    'class'      : 'fake_rate_reader',
+    'args'       : ('2018', '90', '82', 0.90, 0.82, 'EleDown', 2, "std"),
+    'samples'    : ['Fake']
 }
 aliases['fakeWMuUp'] = {
-    'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_MuUp',
-    'samples': ['Fake']
+    'class'      : 'fake_rate_reader',
+    'args'       : ('2018', '90', '82', 0.90, 0.82, 'MuUp', 2, "std"),
+    'samples'    : ['Fake']
 }
 aliases['fakeWMuDown'] = {
-    'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_MuDown',
-    'samples': ['Fake']
+    'class'      : 'fake_rate_reader',
+    'args'       : ('2018', '90', '82', 0.90, 0.82, 'MuDown', 2, "std"),
+    'samples'    : ['Fake']
 }
+
 aliases['fakeWStatEleUp'] = {
-    'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_statEleUp',
-    'samples': ['Fake']
+    'class'      : 'fake_rate_reader',
+    'args'       : ('2018', '90', '82', 0.90, 0.82, 'StatEleUp', 2, "std"),
+    'samples'    : ['Fake']
 }
 aliases['fakeWStatEleDown'] = {
-    'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_statEleDown',
-    'samples': ['Fake']
+    'class'      : 'fake_rate_reader',
+    'args'       : ('2018', '90', '82', 0.90, 0.82, 'StatEleDown', 2, "std"),
+    'samples'    : ['Fake']
 }
 aliases['fakeWStatMuUp'] = {
-    'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_statMuUp',
-    'samples': ['Fake']
+    'class'      : 'fake_rate_reader',
+    'args'       : ('2018', '90', '82', 0.90, 0.82, 'StatMuUp', 2, "std"),
+    'samples'    : ['Fake']
 }
 aliases['fakeWStatMuDown'] = {
-    'expr': 'fakeW2l_ele_'+eleWP+'_mu_'+muWP+'_statMuDown',
-    'samples': ['Fake']
+    'class'      : 'fake_rate_reader',
+    'args'       : ('2018', '90', '82', 0.90, 0.82, 'StatMuDown', 2, "std"),
+    'samples'    : ['Fake']
 }
 
 # No jet with pt > 30 GeV
@@ -158,7 +178,8 @@ aliases['btagSF'] = {
     'samples': mc
 }
 
-for shift in ['lf', 'hf', 'lfstats1', 'lfstats2', 'hfstats1', 'hfstats2', 'cferr1', 'cferr2']:
+for shift in ['jesAbsolute', 'jesAbsolute_2018', 'jesBBEC1', 'jesBBEC1_2018', 'jesEC2', 'jesEC2_2018', 'jesFlavorQCD', 'jesHF', 'jesHF_2018', 'jesRelativeBal', 'jesRelativeSample_2018', 'lf', 'hf', 'lfstats1', 'lfstats2', 'hfstats1', 'hfstats2', 'cferr1', 'cferr2']:
+
     for targ in ['bVeto', 'bReq']:
         alias = aliases['%sSF%sup' % (targ, shift)] = copy.deepcopy(aliases['%sSF' % targ])
         alias['expr'] = alias['expr'].replace('btagSF_{}_shape'.format(bSF), 'btagSF_{}_shape_up_{}'.format(bSF, shift))
@@ -168,12 +189,12 @@ for shift in ['lf', 'hf', 'lfstats1', 'lfstats2', 'hfstats1', 'hfstats2', 'cferr
 
     aliases['btagSF%sup' % shift] = {
         'expr': aliases['btagSF']['expr'].replace('SF', 'SF' + shift + 'up'),
-        'samples': mc
+        'samples': mc,
     }
 
     aliases['btagSF%sdown' % shift] = {
         'expr': aliases['btagSF']['expr'].replace('SF', 'SF' + shift + 'down'),
-        'samples': mc
+        'samples': mc,
     }
 
 #Note: this is the data-NLO correction recommended by the TOP PAG in most use cases
@@ -219,36 +240,67 @@ aliases['Jet_PUIDSF'] = {
 
 aliases['Jet_PUIDSF_up'] = {
   'expr' : 'TMath::Exp(Sum$((Jet_jetId>=2)*TMath::Log(Jet_PUIDSF_loose_up)))',
-  'samples': mc
+  'samples': mc,
+  'nominalOnly' : True
 }
 
 aliases['Jet_PUIDSF_down'] = {
   'expr' : 'TMath::Exp(Sum$((Jet_jetId>=2)*TMath::Log(Jet_PUIDSF_loose_down)))',
-  'samples': mc
+  'samples': mc,
+  'nominalOnly' : True
 }
 
 # data/MC scale factors
 aliases['SFweight'] = {
-    'expr': ' * '.join(['SFweight2l', 'LepWPCut', 'LepWPSF','Jet_PUIDSF', 'btagSF']),
+    'expr': ' * '.join(['SFweight2l', 'LepWPCut', 'LepWPSF','Jet_PUIDSF', 'btagSF', 'ttHMVAULSF']),
     'samples': mc
 }
 
-# variations
+# ttHMVA, LepSF variations are 1+delta
+# Combining uncertainties, we want 1+sqrt(delta1^2+delta2^2)
+aliases['ttHMVASFUL_eleUp'] = {
+    'class'      : 'ttHMVASF',
+    'args'       : ("2018", 2, "all", "eleUp"),
+    'samples'    : mc,
+    'nominalOnly': 1
+}
 aliases['SFweightEleUp'] = {
-    'expr': 'LepSF2l__ele_'+eleWP+'__Up',
-    'samples': mc
+    'expr': '1+TMath::Sqrt(TMath::Power(LepSF2l__ele_'+eleWP+'__Up-1,2)+TMath::Power(ttHMVASFUL_eleUp-1,2))',
+    'samples': mc,
+    'nominalOnly': 1
+}
+aliases['ttHMVAULSF_eleDown'] = {
+    'class'      : 'ttHMVASF',
+    'args'       : ("2018", 2, "all", "eleDown"),
+    'samples'    : mc,
+    'nominalOnly': 1
 }
 aliases['SFweightEleDown'] = {
-    'expr': 'LepSF2l__ele_'+eleWP+'__Do',
-    'samples': mc
+    'expr': '1-TMath::Sqrt(TMath::Power(LepSF2l__ele_'+eleWP+'__Do-1,2)+TMath::Power(ttHMVAULSF_eleDown-1,2))',
+    'samples': mc,
+    'nominalOnly': 1
+}
+aliases['ttHMVAULSF_muUp'] = {
+    'class'      : 'ttHMVASF',
+    'args'       : ("2018", 2, "all", "muUp"),
+    'samples'    : mc,
+    'nominalOnly': 1
 }
 aliases['SFweightMuUp'] = {
-    'expr': 'LepSF2l__mu_'+muWP+'__Up',
-    'samples': mc
+    'expr': '1+TMath::Sqrt(TMath::Power(LepSF2l__mu_'+muWP+'__Up-1,2)+TMath::Power(ttHMVAULSF_muUp-1,2))',
+    'samples': mc,
+    'nominalOnly': 1
+}
+aliases['ttHMVAULSF_muDown'] = {
+    'class'      : 'ttHMVASF',
+    'args'       : ("2018", 2, "all", "muDown"),
+    'samples'    : mc,
+    'nominalOnly': 1
 }
 aliases['SFweightMuDown'] = {
-    'expr': 'LepSF2l__mu_'+muWP+'__Do',
-    'samples': mc
+    'expr': '1-TMath::Sqrt(TMath::Power(LepSF2l__mu_'+muWP+'__Do-1,2)+TMath::Power(ttHMVAULSF_muDown-1,2))',
+    'samples': mc,
+    'nominalOnly': 1
 }
 
 aliases['nGoodCleanJet'] = {
@@ -279,54 +331,67 @@ aliases['B0'] = {
     'expr' : 'dphijjsigngen >= 0.0       && dphijjsigngen < 1./7.*pi',
     'samples' : ['WW','ggWW']
 }
+
 aliases['B1'] = {
     'expr' : 'dphijjsigngen >= 1./7.*pi  && dphijjsigngen < 2./7.*pi',
     'samples' : ['WW','ggWW']
 }
+
 aliases['B2'] = {
     'expr' : 'dphijjsigngen >= 2./7.*pi  && dphijjsigngen < 3./7.*pi',
     'samples' : ['WW','ggWW']
 }
+
 aliases['B3'] = {
     'expr' : 'dphijjsigngen >= 3./7.*pi  && dphijjsigngen < 4./7.*pi',
     'samples' : ['WW','ggWW']
 }
+
 aliases['B4'] = {
     'expr' : 'dphijjsigngen >= 4./7.*pi  && dphijjsigngen < 5./7.*pi',
     'samples' : ['WW','ggWW']
 }
+
 aliases['B5'] = {
     'expr' : 'dphijjsigngen >= 5./7.*pi  && dphijjsigngen < 6./7.*pi',
     'samples' : ['WW','ggWW']
 }
+
 aliases['B6'] = {
     'expr' : 'dphijjsigngen >= 6./7.*pi  && dphijjsigngen < pi',
     'samples' : ['WW','ggWW']
 }
+
 aliases['B7'] = {
     'expr' : 'dphijjsigngen >= pi        && dphijjsigngen < 8./7.*pi',
     'samples' : ['WW','ggWW']
 }
+
 aliases['B8'] = {
     'expr' : 'dphijjsigngen >= 8./7.*pi  && dphijjsigngen < 9./7.*pi',
     'samples' : ['WW','ggWW']
 }
+
 aliases['B9'] = {
     'expr' : 'dphijjsigngen >= 9./7.*pi  && dphijjsigngen < 10./7.*pi',
     'samples' : ['WW','ggWW']
 }
+
 aliases['B10'] = {
     'expr' : 'dphijjsigngen >= 10./7.*pi && dphijjsigngen < 11./7.*pi',
     'samples' : ['WW','ggWW']
 }
+
 aliases['B11'] = {
     'expr' : 'dphijjsigngen >= 11./7.*pi && dphijjsigngen < 12./7.*pi',
     'samples' : ['WW','ggWW']
 }
+
 aliases['B12'] = {
     'expr' : 'dphijjsigngen >= 12./7.*pi && dphijjsigngen < 13./7.*pi',
     'samples' : ['WW','ggWW']
 }
+
 aliases['B13'] = {
     'expr' : 'dphijjsigngen >= 13./7.*pi && dphijjsigngen < 2.*pi',
     'samples' : ['WW','ggWW']
@@ -341,4 +406,3 @@ aliases['BDTOutput_2j'] = {
     'class': 'ww_top_bdt_2j',
     'linesToAdd' : ['.L %s/WW/FullRunII/WW_BDT_2j.cc+' % configurations],
 }
-

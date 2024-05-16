@@ -18,6 +18,7 @@ cutsFile = 'cuts.py'
 
 # file with list of samples
 samplesFile = 'samples.py' 
+#samplesFile = 'samples_split.py'
 
 # file with list of samples
 plotFile = 'plot.py' 

@@ -151,17 +151,12 @@ samples['qqH_hww'] = {
 }
 
 ############ ZH H->WW ############
-#TODO add back when variation samples ready
-#samples['ZH_hww'] = {
-#    'name':   nanoGetSampleFiles(mcDirectory, 'HZJ_HToWW_M125') + nanoGetSampleFiles(mcDirectory, 'HZJ_HToWW_M125_ext1'),
-#    'weight': mcCommonWeight,
-#    'FilesPerJob': 20
-#}
 
-#HZJbaseW = getBaseWFast(mcDirectory, mcProduction, ['HZJ_HToWW_M125', 'HZJ_HToWW_M125_ext1'])
-
-#addSampleWeight(samples,'ZH_hww','HZJ_HToWW_M125',     HZJbaseW+'/baseW')
-#addSampleWeight(samples,'ZH_hww','HZJ_HToWW_M125_ext1',HZJbaseW+'/baseW')
+samples['ZH_hww'] = {
+    'name':   nanoGetSampleFiles(mcDirectory, 'HZJ_HToWW_M125'),
+    'weight': mcCommonWeight,
+    'FilesPerJob': 20
+}
 
 samples['ggZH_hww'] = {
     'name':   nanoGetSampleFiles(mcDirectory, 'GluGluZH_HToWWTo2L2Nu_M125'),

@@ -206,6 +206,7 @@ addSampleWeight(samples,'VVV','WWZ_ext1',WWZbaseW+'/baseW')
 
 files = nanoGetSampleFiles(mcDirectory, 'GluGluHToWWTo2L2Nu_M125') + \
         nanoGetSampleFiles(mcDirectory, 'VBFHToWWTo2L2Nu_M125') + \
+        nanoGetSampleFiles(mcDirectory, 'HZJ_HToWW_M125') + \
         nanoGetSampleFiles(mcDirectory, 'GluGluZH_HToWWTo2L2Nu_M125') + \
         nanoGetSampleFiles(mcDirectory, 'HWplusJ_HToWW_M125') + nanoGetSampleFiles(mcDirectory, 'HWminusJ_HToWW_M125') + \
         nanoGetSampleFiles(mcDirectory, 'ttHToNonbb_M125') + \
@@ -213,20 +214,12 @@ files = nanoGetSampleFiles(mcDirectory, 'GluGluHToWWTo2L2Nu_M125') + \
         nanoGetSampleFiles(mcDirectory, 'VBFHToTauTau_M125') + \
         nanoGetSampleFiles(mcDirectory, 'ZHToTauTau_M125') + \
         nanoGetSampleFiles(mcDirectory, 'WplusHToTauTau_M125') + nanoGetSampleFiles(mcDirectory, 'WminusHToTauTau_M125')
-        #nanoGetSampleFiles(mcDirectory, 'HZJ_HToWW_M125') + \ #TODO add back when variation samples ready
-        #nanoGetSampleFiles(mcDirectory, 'HZJ_HToWW_M125_ext1') + \
 
 samples['Higgs'] = {
     'name' : files,
     'weight': mcCommonWeight,
-    'FilesPerJob': 15
+    'FilesPerJob': 20
 }
-
-#HZJbaseW = getBaseWFast(mcDirectory, mcProduction, ['HZJ_HToWW_M125', 'HZJ_HToWW_M125_ext1'])
-
-#addSampleWeight(samples,'Higgs','HZJ_HToWW_M125',     HZJbaseW+'/baseW')
-#addSampleWeight(samples,'Higgs','HZJ_HToWW_M125_ext1',HZJbaseW+'/baseW')
-
 
 ###########################################
 #############   SIGNALS  ##################

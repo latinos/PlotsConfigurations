@@ -1,5 +1,4 @@
 # structure configuration for datacard
-# keys here must match keys in samples.py    
 structure ={}
 
 # keys here must match keys in samples.py 
@@ -10,6 +9,7 @@ for iproc in samples.keys():
     }
 
 structure['WW_B10']['removeFromCuts'] = ['ww2l2v_13TeV_sr_2j_B0']
+structure['Vg']['removeFromCuts'] = ['ww2l2v_13TeV_sr_2j_B7', 'ww2l2v_13TeV_sr_2j_B1','ww2l2v_13TeV_sr_2j_B4','ww2l2v_13TeV_sr_2j_B0']
 
 for nuis in nuisances.itervalues():
   if 'cutspost' in nuis:

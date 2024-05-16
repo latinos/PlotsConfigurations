@@ -32,7 +32,7 @@ catSR = {
 ##  signal regions
 cuts['ww2l2v_13TeV_sr']  = {
     'expr' : 'sr',
-    'categories' : dict((iCR+'_'+iSR,catCR[iCR]+' && '+catSR[iSR]) for iCR in catCR.keys() for iSR in catSR.keys()) 
+    'categories' : dict((iCR+'_'+iSR,catCR[iCR]+' && '+catSR[iSR]) for iCR in catCR.keys() for iSR in catSR.keys())
 }
 
 # Top control region
