@@ -38,9 +38,9 @@ for diffvar in ['inclusive', 'inclusive_SF', 'leadinglepPT', 'subleadinglepPT', 
             filename = outpath+'/cuts_to_merge_'+variable+'.py'
             with open(filename,'w') as outfile:
                 for era in ['2016_HIPM','2016_noHIPM','2017','2018']:
-                    outfile.write("cutsToMerge['{era}'] = {'rootFile': 'Full{era}_v9/{diffvar}/plots/cratio_weight_X_{cut}_{variable}.root', 'cutUsed': '{cut}'}\n".format(era=era,diffvar=diffvar,variable=variable,cut=cut))
+                    outfile.write("cutsToMerge['{era}'] = {{'rootFile': 'Full{era}_v9/{diffvar}/plots/cratio_weight_X_{cut}_{variable}.root', 'cutUsed': '{cut}'}}\n".format(era=era,diffvar=diffvar,variable=variable,cut=cut))
             # Run mkCombinedPlot with specified pycfg and inputCutsList
-            command = 'mkCombinedPlot.py --pycfg=plots_combined/{diffvar}/configuration.py --inputCutsList={filename} --variable={variable} --variableHR="{variable}" --getVarFromFile=1 --outputDirPlots=plots_combined/{diffvar}/{cut}'
+            command = 'mkCombinedPlot.py --pycfg=plots_combined/{diffvar}/configuration.py --inputCutsList={filename} --variable={variable} --variableHR="{variable}" --getVarFromFile=1 --outputDirPlots=plots_combined/{diffvar}/{cut} --plotFile=plots_combined/plot.py'.format(filename=filename,diffvar=diffvar,variable=variable,cut=cut)
             print(command)
             os.system(command)
 
