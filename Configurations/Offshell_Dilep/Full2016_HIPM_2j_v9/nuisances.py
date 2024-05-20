@@ -444,17 +444,17 @@ for i in range(1,33):
     },
     'symmetrize' : True,
   }
-  nuisances['pdf_ggH_eigen'+str(i)]  = {
-    'name'  : 'CMS_hww_pdf_ggH_eigen'+str(i),
-    'skipCMS' : 1,
-    'kind'  : 'weight',
-    'type'  : 'shape',
-    'samples'  : {
-      'ggH_sonly_on'   : pdf_variations,
-      'ggH_sonly_off'   : pdf_variations,
-    },
-    'symmetrize' : True,
-  }
+  #nuisances['pdf_ggH_eigen'+str(i)]  = {
+  #  'name'  : 'CMS_hww_pdf_ggH_eigen'+str(i),
+  #  'skipCMS' : 1,
+  #  'kind'  : 'weight',
+  #  'type'  : 'shape',
+  #  'samples'  : {
+  #    'ggH_sonly_on'   : pdf_variations,
+  #    'ggH_sonly_off'   : pdf_variations,
+  #  },
+  #  'symmetrize' : True,
+  #}
   nuisances['pdf_VBF_sonly_eigen'+str(i)]  = {
     'name'  : 'CMS_hww_pdf_VBF_sonly_eigen'+str(i),
     'skipCMS' : 1,
