@@ -467,7 +467,7 @@ samples['ggH_sonly_off'] = {
 }
 
 samples['ggH_sonly_on'] = {
-    'name': files
+    'name': files,
     'weight': mcCommonWeight+'* 1.68 * (LHE_mWW <= 160)',
     'FilesPerJob': 3,
     'suppressNegative':['all'],
