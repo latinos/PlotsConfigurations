@@ -10,7 +10,7 @@ nbins = 1
 #
 
 groupPlot['VH+ttH+qqH']  = {
-                  'nameHR' : 'VH+ttH+qqH',
+                  'nameHR' : 'Higgs Other',
                   'isSignal' : 0,
                   'color': 632, # kRed 
                   'samples'  : ['Higgs' ]
@@ -55,7 +55,7 @@ groupPlot['WW']  = {
                   'nameHR' : 'WW',
                   'isSignal' : 0,
                   'color': 851, # kAzure -9 
-                  'samples'  : ['WW', 'ggWW']
+                  'samples'  : ['WW_minnlo', 'ggWW']
               }
 
 groupPlot['qqWW'] = {
@@ -73,25 +73,27 @@ groupPlot['top']  = {
               }
 groupPlot['ggHToWWOffshell']  = {
                   'nameHR' : 'ggH Offshell',
-                  'isSignal' : 1,
+                  'isSignal' : 2,
                   'color': 1, # kCyan
                   'samples'  : ['ggHToWWOffshell' ]
               }
 
 groupPlot['VBFToWWOffshell']  = {
                   'nameHR' : 'VBF Offshell',
-                  'isSignal' : 1,
+                  'isSignal' : 2,
                   'color': 632, # kRed                                                                                                                                                                    
                   'samples'  : ['qqH_sonly_off']
               }
 
+
+"""
 groupPlot['VBF_WW_Int']  = {
                   'nameHR' : 'VBF Offshell',
                   'isSignal' : 1,
                   'color': 640, # kRed                                                                                                                                                                    
                   'samples'  : ['qqH_sand_off', 'qqH_sand_on']
               }
-
+"""
 
 plot['DY']  = {  
                   'color': 418,    # kGreen+2
@@ -125,12 +127,20 @@ plot['top'] = {
                   'scale'    : 1.0,
                   }
 
-plot['WW']  = {
+#plot['WW']  = {
+#                  'color': 851, # kAzure -9 
+#                  'isSignal' : 0,
+#                  'isData'   : 0,
+#                  'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
+#                  }
+
+plot['WW_minnlo']  = {
                   'color': 851, # kAzure -9 
                   'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
                   }
+
 
 plot['ggWW']  = {
                   'color': 850, # kAzure -10
@@ -211,13 +221,14 @@ plot['qqH_sonly_off']  = {
                   'isData'   : 0,
                   'scale'    : 1.0
                   }
-
+"""
 plot['qqH_sand_on']  = {
                   'color': 411,  #kRed + 2
                   'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.0
                   }
+"""
 
 plot['qqH_bonly_off']  = {
                   'color': 851,  #kRed  
@@ -233,13 +244,14 @@ plot['qqH_sonly_on']  = {
                   'scale'    : 1.0
                   }
 
+"""
 plot['qqH_sand_off']  = {
                   'color': 857,  #kRed + 2
                   'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.0
                   }
-
+"""
 
 
 # data
@@ -249,7 +261,7 @@ plot['DATA']  = {
                   'color': 1 ,  
                   'isSignal' : 0,
                   'isData'   : 1 ,
-                  'isBlind'  : 1
+                  'isBlind'  : 0
               }
 
 

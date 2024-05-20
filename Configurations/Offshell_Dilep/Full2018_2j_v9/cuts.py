@@ -19,6 +19,7 @@ supercut = ' && '.join(_tmp)
 def addcut(name, exprs):
     cuts[name] = ' && '.join(exprs)
 
+"""
 _tmp = [
     'multiJet',
     'bVeto',
@@ -26,6 +27,7 @@ _tmp = [
     #'mjj >= 120.',
        ]
 addcut('SR_VBF_noNN_2j', _tmp)
+"""
 
 _tmp = [
     'multiJet',
@@ -36,14 +38,15 @@ _tmp = [
        ]
 addcut('SR_VBF_OFF_2j', _tmp)
 
-#_tmp = [
-#    'multiJet',
-#    'bVeto',
+
+_tmp = [
+    'multiJet',
+    'bVeto',
     #'detajj > 3.5',
     #'mjj >= 120.',
-#    'dnnScore_VBF_ON > .5',
-#       ]
-#addcut('SR_VBF_ON_2j', _tmp)
+    'dnnScore_VBF_ON > .5',
+       ]
+addcut('CR_VBF_ON_2j', _tmp)
 
 _tmp = [
     'multiJet',
@@ -54,14 +57,15 @@ _tmp = [
        ]
 addcut('SR_ggH_OFF_2j', _tmp)
 
-#_tmp = [
-#    'multiJet',
-#    'bVeto',
+_tmp = [
+    'multiJet',
+    'bVeto',
     #'detajj < 3.5',
     #'mjj >= 120.' ,
-#    'dnnScore_ggH_ON > .5',
-#       ]
-#addcut('SR_ggH_ON_2j', _tmp)
+    'dnnScore_ggH_ON > .5',
+       ]
+addcut('CR_ggH_ON_2j', _tmp)
+
 
 _tmp = [
     'multiJet',
@@ -81,5 +85,4 @@ _tmp = [
     'dnnScore_top > .5',
        ]
 addcut('TopCR_2j', _tmp)
-
 

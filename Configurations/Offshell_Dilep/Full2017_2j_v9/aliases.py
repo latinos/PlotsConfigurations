@@ -12,6 +12,15 @@ configurations += '/PlotsConfigurations/Configurations'
 
 mc = [skey for skey in samples if skey not in ('Fake', 'DATA')]
 
+
+aliases['LHE_mWW'] = {
+    'linesToAdd' : ['.L %s/src/PlotsConfigurations/Configurations/Offshell_Dilep/Tools/computeLHEmWW.cc' % os.getenv('CMSSW_BASE'],
+    'class' : 'computeLHEmWW',
+    'samples' : ['ggH_bonly_off', 'ggH_bonly_on', 'ggH_sand_off', 'ggH_sand_on', 'ggH_sonly_off', 'ggH_sonly_on']
+    'args': ()
+}
+
+
 HWW_OFFSHELL_DNN_PATH = '.L %s/src/PlotsConfigurations/Configurations/Offshell_Dilep/Tools/AddDNNScoresv7.cc+' % os.getenv('CMSSW_BASE')
 
 # No jet with pt > 30 GeV

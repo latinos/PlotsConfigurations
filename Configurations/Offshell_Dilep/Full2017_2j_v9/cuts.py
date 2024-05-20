@@ -24,6 +24,25 @@ _tmp = [
     'bVeto',
     #'detajj > 3.5',
     #'mjj >= 120.',
+    'dnnScore_VBF_ON > .5',
+       ]
+addcut('CR_VBF_ON_2j', _tmp)
+_tmp = [
+    'multiJet',
+    'bVeto',
+    #'detajj < 3.5',
+    #'mjj >= 120.' ,
+    'dnnScore_ggH_ON > .5',
+       ]
+addcut('CR_ggH_ON_2j', _tmp)
+
+
+"""
+_tmp = [
+    'multiJet',
+    'bVeto',
+    #'detajj > 3.5',
+    #'mjj >= 120.',
     'dnnScore_VBF_OFF > .5',
        ]
 addcut('SR_VBF_OFF_2j', _tmp)
@@ -36,6 +55,7 @@ _tmp = [
     'dnnScore_ggH_OFF > .5',
        ]
 addcut('SR_ggH_OFF_2j', _tmp)
+"""
 
 
 _tmp = [

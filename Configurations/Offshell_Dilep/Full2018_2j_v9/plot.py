@@ -10,11 +10,12 @@ nbins = 1
 #
 
 groupPlot['VH+ttH+qqH']  = {
-                  'nameHR' : 'VH+ttH+qqH',
+                  'nameHR' : 'Higgs Other',
                   'isSignal' : 0,
                   'color': 632, # kRed 
                   'samples'  : ['Higgs' ]
               }
+
 
 groupPlot['VBFToWWOnshell']  = {
                   'nameHR' : 'VBF Onshell',
@@ -55,7 +56,7 @@ groupPlot['WW']  = {
                   'nameHR' : 'WW',
                   'isSignal' : 0,
                   'color': 851, # kAzure -9 
-                  'samples'  : ['WW', 'ggWW']
+                  'samples'  : ['WW_minnlo', 'ggWW']
               }
 
 groupPlot['qqWW'] = {
@@ -71,27 +72,29 @@ groupPlot['top']  = {
                   'color': 400,   # kYellow
                   'samples'  : ['top']
               }
+
 groupPlot['ggHToWWOffshell']  = {
                   'nameHR' : 'ggH Offshell',
-                  'isSignal' : 1,
+                  'isSignal' : 2,
                   'color': 1, # kCyan
                   'samples'  : ['ggHToWWOffshell' ]
               }
 
 groupPlot['VBFToWWOffshell']  = {
                   'nameHR' : 'VBF Offshell',
-                  'isSignal' : 1,
+                  'isSignal' : 2,
                   'color': 632, # kRed                                                                                                                                                                    
                   'samples'  : ['qqH_sonly_off']
               }
 
+"""
 groupPlot['VBF_WW_Int']  = {
                   'nameHR' : 'VBF Offshell',
                   'isSignal' : 1,
                   'color': 640, # kRed                                                                                                                                                                    
                   'samples'  : ['qqH_sand_off', 'qqH_sand_on']
               }
-
+"""
 
 plot['DY']  = {  
                   'color': 418,    # kGreen+2
@@ -125,7 +128,14 @@ plot['top'] = {
                   'scale'    : 1.0,
                   }
 
-plot['WW']  = {
+#plot['WW']  = {
+#                  'color': 851, # kAzure -9 
+#                  'isSignal' : 0,
+#                  'isData'   : 0,
+#                  'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
+#                  }
+
+plot['WW_minnlo']  = {
                   'color': 851, # kAzure -9 
                   'isSignal' : 0,
                   'isData'   : 0,
@@ -185,15 +195,15 @@ plot['Higgs'] = {
                   }
 
 plot['ggHToWWOnshell']  = {
-                  'color': 603, # kRed  
-                  'isSignal' : 0,
+                  'color': 404, # kRed  
+                  'isSignal' : 2,
                   'isData'   : 0,
                   'scale'    : 1.0
                   }
 
 plot['ggHToWWOffshell']  = {
                   'color': 1, # kRed  
-                  'isSignal' : 1,
+                  'isSignal' : 2,
                   'isData'   : 0,
                   'scale'    : 1.0
                   }
@@ -212,13 +222,14 @@ plot['qqH_sonly_off']  = {
                   'scale'    : 1.0
                   }
 
+"""
 plot['qqH_sand_on']  = {
                   'color': 411,  #kRed + 2
                   'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.0
                   }
-
+"""
 plot['qqH_bonly_off']  = {
                   'color': 851,  #kRed  
                   'isSignal' : 0,
@@ -227,19 +238,19 @@ plot['qqH_bonly_off']  = {
                   }
 
 plot['qqH_sonly_on']  = {
-                  'color': 921,  #kRed  
-                  'isSignal' : 0,
+                  'color': 420,  #kRed  
+                  'isSignal' : 2,
                   'isData'   : 0,
                   'scale'    : 1.0
                   }
-
+"""
 plot['qqH_sand_off']  = {
                   'color': 857,  #kRed + 2
                   'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.0
                   }
-
+"""
 
 
 # data
@@ -251,8 +262,6 @@ plot['DATA']  = {
                   'isData'   : 1 ,
                   'isBlind'  : 1
               }
-
-
 
 
 # additional options

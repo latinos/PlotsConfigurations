@@ -5,9 +5,12 @@
 #########################################################################
 
 
-dnnScore_VBF_OFF_binning = [.5, .6, 0.7, 0.79, 0.86, 1.]
+dnnScore_VBF_OFF_binning = [0, .25, .5, .6, 0.7, 0.79, 0.86, 1.]
+dnnScore_VBF_ON_binning = [0, .25, .5, 0.565, 0.63, 0.79, 0.85, 1.]
 
-dnnScore_ggH_OFF_binning = [0.5, 0.55, 0.7, 0.8,  0.85, 1.]
+dnnScore_ggH_OFF_binning = [0, .25, 0.5, 0.55, 0.7, 0.8,  0.85, 1.]
+dnnScore_ggH_ON_binning = [0, .25, .5, 0.585, 0.67, 0.71, 0.74, 1.]
+
 
 variables['events']  = {   
     'name': '1',
@@ -29,7 +32,7 @@ variables['dnnScore_VBF_OFF']  = {   'name': 'dnnScore_VBF_OFF',
                         }
 
 variables['dnnScore_VBF_ON']  = {   'name': 'dnnScore_VBF_ON',
-                        'range' : (20, 0,1.0),
+                        'range' : (dnnScore_VBF_ON_binning,),
                         'xaxis' : 'dnn_{VBF_on}',
                         'fold' : 3
                         }
@@ -39,7 +42,7 @@ variables['dnnScore_ggH_OFF']  = {   'name': 'dnnScore_ggH_OFF',
                         'fold' : 3
                         }
 variables['dnnScore_ggH_ON']  = {   'name': 'dnnScore_ggH_ON',
-                        'range' : (20, 0,1.0),
+                        'range' : (dnnScore_ggH_ON_binning,),
                         'xaxis' : 'dnn_{ggH_on}',
                         'fold' : 3
                         }

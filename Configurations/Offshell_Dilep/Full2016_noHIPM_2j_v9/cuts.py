@@ -18,7 +18,7 @@ supercut = ' && '.join(_tmp)
 def addcut(name, exprs):
     cuts[name] = ' && '.join(exprs)
 
-
+"""
 _tmp = [
     'multiJet',
     'bVeto',
@@ -36,6 +36,8 @@ _tmp = [
     'dnnScore_ggH_OFF > .5',
        ]
 addcut('SR_ggH_OFF_2j', _tmp)
+
+"""
 
 _tmp = [
     'multiJet',
@@ -55,3 +57,19 @@ _tmp = [
     'dnnScore_top > .5',
        ]
 addcut('TopCR_2j', _tmp)
+_tmp = [
+    'multiJet',
+    'bVeto',
+    #'detajj > 3.5',
+    #'mjj >= 120.',
+    'dnnScore_VBF_ON > .5',
+       ]
+addcut('CR_VBF_ON_2j', _tmp)
+_tmp = [
+    'multiJet',
+    'bVeto',
+    #'detajj < 3.5',
+    #'mjj >= 120.' ,
+    'dnnScore_ggH_ON > .5',
+       ]
+addcut('CR_ggH_ON_2j', _tmp)
