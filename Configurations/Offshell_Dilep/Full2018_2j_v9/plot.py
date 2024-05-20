@@ -28,7 +28,7 @@ groupPlot['ggHToWWOnshell']  = {
                   'nameHR' : 'ggH Onshell',
                   'isSignal' : 0,
                   'color': 603, # kBlue+3                                                                                                                                                                  
-                  'samples'  : ['ggHToWWOnshell' ]
+                  'samples'  : ['ggH_sonly_on']
               }
 
 groupPlot['Vg+VZ+VVV']  = {
@@ -56,7 +56,7 @@ groupPlot['WW']  = {
                   'nameHR' : 'WW',
                   'isSignal' : 0,
                   'color': 851, # kAzure -9 
-                  'samples'  : ['WW_minnlo', 'ggWW']
+                  'samples'  : ['WW_minnlo', 'ggH_bonly_on', 'ggH_bonly_off']
               }
 
 groupPlot['qqWW'] = {
@@ -77,7 +77,7 @@ groupPlot['ggHToWWOffshell']  = {
                   'nameHR' : 'ggH Offshell',
                   'isSignal' : 2,
                   'color': 1, # kCyan
-                  'samples'  : ['ggHToWWOffshell' ]
+                  'samples'  : ['ggH_sonly_off' ]
               }
 
 groupPlot['VBFToWWOffshell']  = {
@@ -142,8 +142,16 @@ plot['WW_minnlo']  = {
                   'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
                   }
 
-plot['ggWW']  = {
+plot['ggH_bonly_on']  = {
                   'color': 850, # kAzure -10
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0
+                  }
+
+
+plot['ggH_bonly_off']  = {
+                  'color': 849, # kAzure -10
                   'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.0
@@ -194,14 +202,14 @@ plot['Higgs'] = {
                   'scale'    : 1    #
                   }
 
-plot['ggHToWWOnshell']  = {
+plot['ggH_sonly_on']  = {
                   'color': 404, # kRed  
                   'isSignal' : 2,
                   'isData'   : 0,
                   'scale'    : 1.0
                   }
 
-plot['ggHToWWOffshell']  = {
+plot['ggH_sonly_off']  = {
                   'color': 1, # kRed  
                   'isSignal' : 2,
                   'isData'   : 0,
