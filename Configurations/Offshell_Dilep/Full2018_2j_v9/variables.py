@@ -5,13 +5,13 @@
 #########################################################################
 
 
-dnnScore_VBF_OFF_binning = [0, .25, 0.5,.65,0.800, 0.852, 0.926, 1.]
+dnnScore_VBF_OFF_binning = [0.5,.65,0.800, 0.852, 0.926, 1.]
 
-dnnScore_ggH_OFF_binning = [0, .25, 0.5,0.6655, 0.831, 0.851, 0.877, 1.]
+dnnScore_ggH_OFF_binning = [0.5,0.6655, 0.831, 0.851, 0.877, 1.]
 
-dnnScore_VBF_ON_binning = [0, .25, 0.5, 0.636, 0.772, 0.866,0.922, 1. ] 
+dnnScore_VBF_ON_binning = [0.5, 0.636, 0.772, 0.866,0.922, 1. ] 
 
-dnnScore_ggH_ON_binning =[0, .25, 0.5, 0.629,  0.758, 0.78, 0.81,  1.]
+dnnScore_ggH_ON_binning =[0.5, 0.629,  0.758, 0.78, 0.81,  1.]
 
 variables['events']  = {
     'name': '1',
