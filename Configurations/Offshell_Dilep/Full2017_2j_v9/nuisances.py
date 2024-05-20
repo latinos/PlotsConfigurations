@@ -571,6 +571,15 @@ nuisances['QCDscale_ggVV'] = {
     },
 }
 
+nuisances['QCDscale_ggH_SBI'] = {
+    'name': 'QCDscale_ggH_SBI',
+    'type': 'lnN',
+    'samples': {
+        'ggH_sand_on': '1.15',
+        'ggH_sand_off': '1.15',
+    },
+}
+
 nuisances['QCDscale_ggH'] = {
     'name': 'QCDscale_ggH',
     'type': 'lnN',
