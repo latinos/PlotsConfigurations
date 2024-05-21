@@ -45,19 +45,19 @@ HiggsXS = HiggsXSection()
 nuisances['lumi_Uncorrelated'] = {
     'name': 'lumi_13TeV_2018',
     'type': 'lnN',
-    'samples': dict((skey, '1.015') for skey in mc if skey not in ['top','WW']#, 'WW_minnlo']) ##TC2024
+    'samples': dict((skey, '1.015') for skey in mc if skey not in ['top','WW'])#, 'WW_minnlo']) ##TC2024
 }
 
 nuisances['lumi_Correlated_Run2'] = {
     'name': 'lumi_13TeV_Run2',
     'type': 'lnN',
-    'samples': dict((skey, '1.020') for skey in mc if skey not in ['top','WW']#, 'WW_minnlo']) ##TC2024
+    'samples': dict((skey, '1.020') for skey in mc if skey not in ['top','WW'])#, 'WW_minnlo']) ##TC2024
 }
 
 nuisances['lumi_Correlated_2017_2018'] = {
     'name': 'lumi_13TeV_2017_2018',
     'type': 'lnN',
-    'samples': dict((skey, '1.002') for skey in mc if skey not in ['top','WW']#, 'WW_minnlo']) ##TC2024
+    'samples': dict((skey, '1.002') for skey in mc if skey not in ['top','WW'])#, 'WW_minnlo']) ##TC2024
 }
 
 ### FAKES
@@ -1059,7 +1059,7 @@ nuisances['stat'] = {
 
     'type'          : 'auto',
     'maxPoiss'      : '10',
-    'includeSignal' : '0'#bc want to avoid overcounting ##TC 2024 ##'1', ## <-- no longer want to include qqH_sonly or qqH_bonly; CR -- since hypotheses coming from different samples, we need to include unc. in shapes!!!
+    'includeSignal' : '0', #bc want to avoid overcounting ##TC 2024 ##'1', ## <-- no longer want to include qqH_sonly or qqH_bonly; CR -- since hypotheses coming from different samples, we need to include unc. in shapes!!!
     'samples' : {}
 }
     #  nuisance ['maxPoiss'] =  Number of threshold events for Poisson modelling

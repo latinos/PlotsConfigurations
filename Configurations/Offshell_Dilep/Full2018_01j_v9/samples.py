@@ -238,15 +238,16 @@ samples['Higgs'] = {
 
 ###### WW ########
 
-files = nanoGetSampleFiles(mcDirectory, 'GluGluToWWToENEN') + \
-        nanoGetSampleFiles(mcDirectory, 'GluGluToWWToENMN') + \
-        nanoGetSampleFiles(mcDirectory, 'GluGluToWWToENTN') + \
-        nanoGetSampleFiles(mcDirectory, 'GluGluToWWToMNEN') + \
-        nanoGetSampleFiles(mcDirectory, 'GluGluToWWToMNMN') + \
-        nanoGetSampleFiles(mcDirectory, 'GluGluToWWToMNTN') + \
-        nanoGetSampleFiles(mcDirectory, 'GluGluToWWToTNEN') + \
-        nanoGetSampleFiles(mcDirectory, 'GluGluToWWToTNMN') + \
-        nanoGetSampleFiles(mcDirectory, 'GluGluToWWToTNTN')
+##TC 2024
+# files = nanoGetSampleFiles(mcDirectory, 'GluGluToWWToENEN') + \
+#         nanoGetSampleFiles(mcDirectory, 'GluGluToWWToENMN') + \
+#         nanoGetSampleFiles(mcDirectory, 'GluGluToWWToENTN') + \
+#         nanoGetSampleFiles(mcDirectory, 'GluGluToWWToMNEN') + \
+#         nanoGetSampleFiles(mcDirectory, 'GluGluToWWToMNMN') + \
+#         nanoGetSampleFiles(mcDirectory, 'GluGluToWWToMNTN') + \
+#         nanoGetSampleFiles(mcDirectory, 'GluGluToWWToTNEN') + \
+#         nanoGetSampleFiles(mcDirectory, 'GluGluToWWToTNMN') + \
+#         nanoGetSampleFiles(mcDirectory, 'GluGluToWWToTNTN')
 
 ##TC May 2024 - initialize this elsewhere
 
@@ -512,7 +513,7 @@ samples['ggH_sonly_off'] = {
 }
 
 samples['ggH_sonly_on'] = {
-    'name': files
+    'name': files,
     'weight': mcCommonWeight+'* 1.68 * (LHE_mWW <= 160)',
     'FilesPerJob': 3,
     'suppressNegative':['all'],
@@ -565,14 +566,14 @@ files = nanoGetSampleFiles(mcDirectory, 'GluGluHToWWToENEN_BSI') + \
 
 samples['ggH_sand_off'] = {
     'name': files,
-    'weight': mcCommonWeight+'*1.85 * (LHE_mWW > 160)',
+    'weight': mcCommonWeight+'*1.60 * (LHE_mWW > 160)', ##TC 2024 SBI scaled by 151.6/95.0 {https://www.arxiv.org/pdf/1605.04610#page=18}
     'FilesPerJob': 3,
     'suppressNegative':['all'],
     'suppressNegativeNuisances' :['all']
 }
 samples['ggH_sand_on'] = {
     'name': files,
-    'weight': mcCommonWeight+'*1.85 * (LHE_mWW <= 160)',
+    'weight': mcCommonWeight+'*1.60 * (LHE_mWW <= 160)', ##TC 2024 SBI scaled
     'FilesPerJob': 3,
     'suppressNegative':['all'],
     'suppressNegativeNuisances' :['all']
