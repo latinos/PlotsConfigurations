@@ -473,14 +473,14 @@ files = nanoGetSampleFiles(mcDirectory, 'GluGluHToWWToENEN_BSI') + \
 
 samples['ggH_sand_off'] = {
     'name': files,
-    'weight': mcCommonWeight+'*1.85 * (LHE_mWW > 160)',
+    'weight': mcCommonWeight+'*1.60 * (LHE_mWW > 160)',
     'FilesPerJob': 3,
     'suppressNegative':['all'],
     'suppressNegativeNuisances' :['all']
 }
 samples['ggH_sand_on'] = {
     'name': files,
-    'weight': mcCommonWeight+'*1.85 * (LHE_mWW <= 160)',
+    'weight': mcCommonWeight+'*1.60 * (LHE_mWW <= 160)',
     'FilesPerJob': 3,
     'suppressNegative':['all'],
     'suppressNegativeNuisances' :['all']
