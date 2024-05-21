@@ -45,19 +45,19 @@ HiggsXS = HiggsXSection()
 nuisances['lumi_Uncorrelated'] = {
     'name': 'lumi_13TeV_2018',
     'type': 'lnN',
-    'samples': dict((skey, '1.015') for skey in mc if skey not in ['top','WW', 'WW_minnlo'])
+    'samples': dict((skey, '1.015') for skey in mc if skey not in ['top','WW']#, 'WW_minnlo']) ##TC2024
 }
 
 nuisances['lumi_Correlated_Run2'] = {
     'name': 'lumi_13TeV_Run2',
     'type': 'lnN',
-    'samples': dict((skey, '1.020') for skey in mc if skey not in ['top','WW', 'WW_minnlo'])
+    'samples': dict((skey, '1.020') for skey in mc if skey not in ['top','WW']#, 'WW_minnlo']) ##TC2024
 }
 
 nuisances['lumi_Correlated_2017_2018'] = {
     'name': 'lumi_13TeV_2017_2018',
     'type': 'lnN',
-    'samples': dict((skey, '1.002') for skey in mc if skey not in ['top','WW', 'WW_minnlo'])
+    'samples': dict((skey, '1.002') for skey in mc if skey not in ['top','WW']#, 'WW_minnlo']) ##TC2024
 }
 
 ### FAKES
@@ -401,7 +401,8 @@ nuisances['PU'] = {
         # 'qqH_hww' : ['1.00374694528*(puWeightUp/puWeight)' , '0.995878596852*(puWeightDown/puWeight)'],
         'DY'      : ['0.998687*(puWeightUp/puWeight)', '1.001976*(puWeightDown/puWeight)'],
         'top'     : ['1.002595*(puWeightUp/puWeight)', '0.997470*(puWeightDown/puWeight)'],
-        'WW_minnlo'      : ['1.004449*(puWeightUp/puWeight)', '0.995660*(puWeightDown/puWeight)'],
+        #'WW_minnlo'      : ['1.004449*(puWeightUp/puWeight)', '0.995660*(puWeightDown/puWeight)'], ##TC2024
+        'WW'      : ['1.004449*(puWeightUp/puWeight)', '0.995660*(puWeightDown/puWeight)'], ##TC2024
         'ggWW'    : ['1.004870*(puWeightUp/puWeight)', '0.995315*(puWeightDown/puWeight)'],
         #'WWewk'   : ['1.002122*(puWeightUp/puWeight)', '0.998087*(puWeightDown/puWeight)'],
         'Vg'      : ['1.023232*(puWeightUp/puWeight)', '0.981481*(puWeightDown/puWeight)'],
@@ -500,7 +501,7 @@ nuisances['pdf_WW']  = {
     'type'  : 'shape',
     'AsLnN': '0',
     'samples'  : {
-        'WW_minnlo'   : pdf_variations,
+    'WW' : pdf_variations, #'WW_minnlo'   : pdf_variations, ##TC2024
     },
 }
 
@@ -611,7 +612,7 @@ nuisances['QCDscale_WW']  = {
     'type'  : 'shape',
     'AsLnN': '0',
     'samples'  : {
-        'WW_minnlo' : ['Alt$(LHEScaleWeight[0],1)','Alt$(LHEScaleWeight[8],1)'],
+        'WW' : ['Alt$(LHEScaleWeight[0],1)','Alt$(LHEScaleWeight[8],1)'], ##WW_minnlo ##TC2024
     }
 }
 
@@ -1007,7 +1008,7 @@ nuisances['Topnorm_0j']  = {
 nuisances['WWnorm_0j']  = {
                'name'  : 'WWnorm_0j',
                'samples'  : {
-                   'WW_minnlo' : '1.00',
+                   'WW' : '1.00', ##WW_minnlo ##TC2024
                    },
                'type'  : 'rateParam',
                'cuts'  : [
@@ -1035,7 +1036,7 @@ nuisances['Topnorm_1j']  = {
 nuisances['WWnorm_1j']  = {
                'name'  : 'WWnorm_1j',
                'samples'  : {
-                   'WW_minnlo' : '1.00',
+                   'WW' : '1.00', ##WW_minnlo ##TC2024
                    },
                'type'  : 'rateParam',
                'cuts'  : [
