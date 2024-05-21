@@ -41,11 +41,11 @@ groupPlot['Fake']  = {
                   'samples'  : ['Fake_me', 'Fake_em']
 }
 
-groupPlot['WW_minnlo']  = {
+groupPlot['WW']  = { ##WW_minnlo ##TC 2024
                   'nameHR' : 'WW',
                   'isSignal' : 0,
                   'color': 851, # kAzure -9 
-                  'samples'  : ['WW_minnlo', 'ggH_bonly_on', 'ggH_bonly_off'] #'ggWW','WWewk'] ##TC
+                  'samples'  : ['WW', 'ggH_bonly_on', 'ggH_bonly_off', 'qqH_bonly_off', 'qqH_bonly_on'] ##TC 2024 plot together qqWW, ggWW, and qqWW VBS
               }
 
 groupPlot['top']  = {
@@ -99,7 +99,7 @@ plot['top'] = {
                   'scale'    : 1.0,
                   }
 
-plot['WW_minnlo']  = {
+plot['WW']  = { ##TC 2024
                   'color': 851, # kAzure -9 
                   'isSignal' : 0,
                   'isData'   : 0,
