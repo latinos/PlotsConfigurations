@@ -45,19 +45,19 @@ HiggsXS = HiggsXSection()
 nuisances['lumi_Uncorrelated'] = {
     'name': 'lumi_13TeV_2017',
     'type': 'lnN',
-    'samples': dict((skey, '1.020') for skey in mc if skey not in ['top','WW_minnlo'])
+    'samples': dict((skey, '1.020') for skey in mc if skey not in ['top','WW'])
 }
 
 nuisances['lumi_Correlated_Run2'] = {
     'name': 'lumi_13TeV_Run2',
     'type': 'lnN',
-    'samples': dict((skey, '1.009') for skey in mc if skey not in ['top','WW_minnlo'])
+    'samples': dict((skey, '1.009') for skey in mc if skey not in ['top','WW'])
 }
 
 nuisances['lumi_Correlated_2017_2018'] = {
     'name': 'lumi_13TeV_2017_2018',
     'type': 'lnN',
-    'samples': dict((skey, '1.006') for skey in mc if skey not in ['top','WW_minnlo'])
+    'samples': dict((skey, '1.006') for skey in mc if skey not in ['top','WW'])
 }
 
 ### FAKES
@@ -326,7 +326,7 @@ nuisances['PU'] = {
         'DY'      : ['0.998687*(puWeightUp/puWeight)', '1.001976*(puWeightDown/puWeight)'],
         'top'     : ['1.002595*(puWeightUp/puWeight)', '0.997470*(puWeightDown/puWeight)'],
         #'WW'      : ['1.004449*(puWeightUp/puWeight)', '0.995660*(puWeightDown/puWeight)'],
-        'WW_minnlo'      : ['1.00*(puWeightUp/puWeight)',  '1.00*(puWeightDown/puWeight)'],
+        'WW'      : ['1.00*(puWeightUp/puWeight)',  '1.00*(puWeightDown/puWeight)'],
         'ggH_bonly_on'    : ['1.004870*(puWeightUp/puWeight)', '0.995315*(puWeightDown/puWeight)'],
         'ggH_bonly_off'    : ['1.004870*(puWeightUp/puWeight)', '0.995315*(puWeightDown/puWeight)'],
         'ggH_sonly_on'        : ['1.0*(puWeightUp/puWeight)', '1.0*(puWeightDown/puWeight)'],
@@ -424,7 +424,7 @@ nuisances['pdf_WW']  = {
     'type'  : 'shape',
     'AsLnN': '0',
     'samples'  : {
-        'WW_minnlo'   : pdf_variations,
+        'WW'   : pdf_variations,
     },
 }
 
@@ -595,7 +595,7 @@ nuisances['QCDscale_WW']  = {
     'type'  : 'shape',
     'AsLnN': '0',
     'samples'  : {
-        'WW_minnlo' : ['Alt$(LHEScaleWeight[0],1)','Alt$(LHEScaleWeight[8],1)'],
+        'WW' : ['Alt$(LHEScaleWeight[0],1)','Alt$(LHEScaleWeight[8],1)'],
     }
 }
 
@@ -661,7 +661,7 @@ nuisances['Topnorm_2j']  = {
 nuisances['WWnorm_2j']  = {
                'name'  : 'WWnorm_2j',
                'samples'  : {
-                   'WW_minnlo' : '1.00',
+                   'WW' : '1.00',
                    },
                'type'  : 'rateParam',
                'cuts'  : [

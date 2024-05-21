@@ -241,15 +241,15 @@ samples['Higgs'] = {
 ################# WW ###################
 ##########################################
 
-samples['WW'] = {
-    'name': nanoGetSampleFiles(mcDirectory, 'WWTo2L2Nu'),
-    'weight': mcCommonWeight+'*nllW',
-    'FilesPerJob': 2,
-    'suppressNegative' :['all'],
-    'suppressNegativeNuisances' :['all']
-}
+#samples['WW'] = {
+#    'name': nanoGetSampleFiles(mcDirectory, 'WWTo2L2Nu'),
+#    'weight': mcCommonWeight+'*nllW',
+#    'FilesPerJob': 2,
+#    'suppressNegative' :['all'],
+#    'suppressNegativeNuisances' :['all']
+#}
 
-samples['WW_minnlo'] = {
+samples['WW'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'WWJTo2L2Nu_minnlo'),
     'weight': mcCommonWeight,
     'FilesPerJob': 7,
@@ -353,7 +353,7 @@ samples['qqH_sonly_on'] = {
     'name': files,
     'weight': mcCommonWeight_custom + ' * p_Gen_JJEW_SIG_ghv1_1_MCFM * p_Gen_CPStoBWPropRewgt * HWWOffshell_combineWgt * (LHECandMass <= 160)',
     'FilesPerJob': 1,
-    #'suppressNegative' :['all'],
+    'suppressNegative' :['all'],
     'suppressNegativeNuisances' :['all'],
 }
 
@@ -361,7 +361,7 @@ samples['qqH_bonly_on'] = {
     'name': files,
     'weight': mcCommonWeight_custom + ' * p_Gen_JJEW_BKG_MCFM * p_Gen_CPStoBWPropRewgt * HWWOffshell_combineWgt * (LHECandMass <= 160)',
     'FilesPerJob': 1,
-    #'suppressNegative' :['all'],
+    'suppressNegative' :['all'],
     'suppressNegativeNuisances' :['all'],
 }
 
@@ -369,7 +369,7 @@ samples['qqH_sand_on'] = {
     'name': files,
     'weight': mcCommonWeight_custom + ' * p_Gen_JJEW_BSI_ghv1_1_MCFM * p_Gen_CPStoBWPropRewgt * HWWOffshell_combineWgt * (LHECandMass <= 160)',
     'FilesPerJob': 1,
-    #'suppressNegative' :['all'],
+    'suppressNegative' :['all'],
     'suppressNegativeNuisances' :['all'],
 }
 
@@ -377,7 +377,7 @@ samples['qqH_sonly_off'] = {
     'name': files,
     'weight': mcCommonWeight_custom + ' * p_Gen_JJEW_SIG_ghv1_1_MCFM * p_Gen_CPStoBWPropRewgt * HWWOffshell_combineWgt * (LHECandMass > 160)',
     'FilesPerJob': 1,
-    #'suppressNegative' :['all'],
+    'suppressNegative' :['all'],
     'suppressNegativeNuisances' :['all'],
 }
 
@@ -385,7 +385,7 @@ samples['qqH_bonly_off'] = {
     'name': files,
     'weight': mcCommonWeight_custom + ' * p_Gen_JJEW_BKG_MCFM * p_Gen_CPStoBWPropRewgt * HWWOffshell_combineWgt  * (LHECandMass > 160)',
     'FilesPerJob': 1,
-    #'suppressNegative' :['all'],
+    'suppressNegative' :['all'],
     'suppressNegativeNuisances' :['all'],
 }
 
@@ -393,7 +393,7 @@ samples['qqH_sand_off'] = {
     'name': files,
     'weight': mcCommonWeight_custom + ' * p_Gen_JJEW_BSI_ghv1_1_MCFM * p_Gen_CPStoBWPropRewgt * HWWOffshell_combineWgt * (LHECandMass > 160)',
     'FilesPerJob': 1,
-    #'suppressNegative' :['all'],
+    'suppressNegative' :['all'],
     'suppressNegativeNuisances' :['all'],
 }
 

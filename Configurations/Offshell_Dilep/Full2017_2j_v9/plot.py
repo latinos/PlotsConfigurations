@@ -56,14 +56,7 @@ groupPlot['WW']  = {
                   'nameHR' : 'WW',
                   'isSignal' : 0,
                   'color': 851, # kAzure -9 
-                  'samples'  : ['WW_minnlo', 'ggH_bonly_on', 'ggH_bonly_off']
-              }
-
-groupPlot['qqWW'] = {
-                  'nameHR' : 'qqWW',
-                  'isSignal' : 0,
-                  'color': 849, # kAzure -9 
-                  'samples' : ['qqH_bonly_on', 'qqH_bonly_off']
+                  'samples'  : ['WW', 'ggH_bonly_on', 'ggH_bonly_off', 'qqH_bonly_on', 'qqH_bonly_off']
               }
 
 groupPlot['top']  = {
