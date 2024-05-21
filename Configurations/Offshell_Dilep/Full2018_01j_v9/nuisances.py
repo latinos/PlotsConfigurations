@@ -8,7 +8,7 @@ def nanoGetSampleFiles(inputDir, Sample):
 
 
 def makeSignalDirectory(var=''):
-    base_path_sig = '/eos/cms/store/group/phys_higgs/cmshww/fernanpe/HWWNano/Summer20UL18_106x_nAODv9_Full2018v9/MCl1loose2018v9__MCCorr2018v9NoJERInHorn__l2tightOR2018v9'
+    base_path_sig = '/eos/cms/store/group/phys_higgs/cmshww/fernanpe/HWWNano/Summer20UL18_106x_nAODv9_Full2018v9/AddLHE_MEs__AddMC_baseW__AddHWW_Offshell_Wgts__MCl1loose2018v9__MCCorr2018v9NoJERInHorn__l2tightOR2018v9' ##TC 2024
     #if("RDF__JES" in var):
     #    base_path_sig = '/eos/cms/store/group/phys_higgs/cmshww/fernanpe/HWWNano/Summer20UL18_106x_nAODv9_Full2018v9/MCl1loose2018v9__MCCorr2018v9NoJERInHorn__l2tightOR2018v9'
     if var:
@@ -152,18 +152,31 @@ nuisances['eff_ttHMVA_e'] = {
     'samples' : dict((skey, ['ttHMVASFUL_eleUp', 'ttHMVAULSF_eleDown']) for skey in mc)
 }
 
+##TC 2024 - added all the way to comment section
+
 nuisances['electronpt'] = {
     'name'       : 'CMS_scale_e_2018',
     'kind'       : 'suffix',
     'type'       : 'shape',
     'mapUp'      : 'ElepTup',
     'mapDown'    : 'ElepTdo',
-    'samples'    : dict((skey, ['1', '1']) for skey in mc if not skey in ["ggHToWWOffshell", "ggHToWWOnshell"]), ##
+    'samples'    : dict((skey, ['1', '1']) for skey in mc if not skey in ["qqH_sand_off", "qqH_bonly_off", "qqH_sonly_off", "qqH_sand_on", "qqH_sonly_on", "qqH_bonly_on"]),
     'folderUp'   : makeMCDirectory('ElepTup_suffix'),
     'folderDown' : makeMCDirectory('ElepTdo_suffix'),
 #    'AsLnN'      : '1'
 }
 
+nuisances['electronpt_sig'] = {
+    'name'       : 'CMS_scale_e_2018',
+    'kind'       : 'suffix',
+    'type'       : 'shape',
+    'mapUp'      : 'ElepTup',
+    'mapDown'    : 'ElepTdo',
+    'samples'    : dict((skey, ['1', '1']) for skey in mc if skey in ["qqH_sand_off", "qqH_bonly_off", "qqH_sonly_off", "qqH_sand_on", "qqH_sonly_on", "qqH_bonly_on"]),
+    'folderUp'   : makeSignalDirectory('ElepTup_suffix'),
+    'folderDown' : makeSignalDirectory('ElepTdo_suffix'),
+#    'AsLnN'      : '1'
+}
 
 ##### Muon Efficiency and energy scale
 
@@ -190,11 +203,23 @@ nuisances['muonpt'] = {
     'type'       : 'shape',
     'mapUp'      : 'MupTup',
     'mapDown'    : 'MupTdo',
-    'samples'    : dict((skey, ['1', '1']) for skey in mc if not skey in ["ggHToWWOffshell", "ggHToWWOnshell"]), ##
+    'samples'    : dict((skey, ['1', '1']) for skey in mc if not skey in ["qqH_sand_off", "qqH_bonly_off", "qqH_sonly_off", "qqH_sand_on", "qqH_sonly_on", "qqH_bonly_on"]),
     'folderUp'   : makeMCDirectory('MupTup_suffix'),
     'folderDown' : makeMCDirectory('MupTdo_suffix'),
 #    'AsLnN'      : '1'
 }
+nuisances['muonpt_sig'] = {
+    'name'       : 'CMS_scale_m_2018',
+    'kind'       : 'suffix',
+    'type'       : 'shape',
+    'mapUp'      : 'MupTup',
+    'mapDown'    : 'MupTdo',
+    'samples'    : dict((skey, ['1', '1']) for skey in mc if skey in ["qqH_sand_off", "qqH_bonly_off", "qqH_sonly_off", "qqH_sand_on", "qqH_sonly_on", "qqH_bonly_on"]),
+    'folderUp'   : makeSignalDirectory('MupTup_suffix'),
+    'folderDown' : makeSignalDirectory('MupTdo_suffix'),
+#    'AsLnN'      : '1'
+}
+
 
 ##### Jet energy scale
 
@@ -207,10 +232,22 @@ for js in jes_systs:
       'type'      : 'shape',
       'mapUp'     : js + 'up',
       'mapDown'   : js + 'do',
-    'samples'    : dict((skey, ['1', '1']) for skey in mc if not skey in ["ggHToWWOffshell", "ggHToWWOnshell"]), ##
+      'samples'   : dict((skey, ['1', '1']) for skey in mc if not skey in ["qqH_sand_off", "qqH_bonly_off", "qqH_sonly_off", "qqH_sand_on", "qqH_sonly_on", "qqH_bonly_on"]),
       'folderUp'  : makeMCDirectory('RDF__JESup_suffix'),
       'folderDown': makeMCDirectory('RDF__JESdo_suffix'),
  #     'AsLnN'     : '1'
+  }
+for js in jes_systs:
+  nuisances[js + "_sig"] = {
+      'name'      : 'CMS_scale_' + js,
+      'kind'      : 'suffix',
+      'type'      : 'shape',
+      'mapUp'     : js + 'up',
+      'mapDown'   : js + 'do',
+      'samples'   : dict((skey, ['1', '1']) for skey in mc if skey in ["qqH_sand_off", "qqH_bonly_off", "qqH_sonly_off", "qqH_sand_on", "qqH_sonly_on", "qqH_bonly_on"]),
+      'folderUp'  : makeSignalDirectory('RDF__JESup_suffix'),
+      'folderDown': makeSignalDirectory('RDF__JESdo_suffix'),
+   #   'AsLnN'     : '1'
   }
 
 ##### Jet energy resolution
@@ -220,25 +257,127 @@ nuisances['JER'] = {
     'type'      : 'shape',
     'mapUp'     : 'JERup',
     'mapDown'   : 'JERdo',
-    'samples'    : dict((skey, ['1', '1']) for skey in mc if not skey in ["ggHToWWOffshell", "ggHToWWOnshell"]), ##
+    'samples'   : dict((skey, ['1', '1']) for skey in mc if not skey in ["qqH_sand_off", "qqH_bonly_off", "qqH_sonly_off", "qqH_sand_on", "qqH_sonly_on", "qqH_bonly_on"]),
     'folderUp'  : makeMCDirectory('JERup_suffix'),
     'folderDown': makeMCDirectory('JERdo_suffix'),
 #    'AsLnN'     : '1'
 }
 
+nuisances['JER_sig'] = {
+    'name'      : 'CMS_res_j_2018',
+    'kind'      : 'suffix',
+    'type'      : 'shape',
+    'mapUp'     : 'JERup',
+    'mapDown'   : 'JERdo',
+    'samples'   : dict((skey, ['1', '1']) for skey in mc if skey in ["qqH_sand_off", "qqH_bonly_off", "qqH_sonly_off", "qqH_sand_on", "qqH_sonly_on", "qqH_bonly_on"]),
+    'folderUp'  : makeSignalDirectory('JERup_suffix'),
+    'folderDown': makeSignalDirectory('JERdo_suffix'),
+ #   'AsLnN'     : '1'
+}
+
+##TC2024 -- comment out until met_sig!
+# nuisances['electronpt'] = {
+#     'name'       : 'CMS_scale_e_2018',
+#     'kind'       : 'suffix',
+#     'type'       : 'shape',
+#     'mapUp'      : 'ElepTup',
+#     'mapDown'    : 'ElepTdo',
+#     'samples'    : dict((skey, ['1', '1']) for skey in mc if not skey in ["ggHToWWOffshell", "ggHToWWOnshell"]), ##
+#     'folderUp'   : makeMCDirectory('ElepTup_suffix'),
+#     'folderDown' : makeMCDirectory('ElepTdo_suffix'),
+# #    'AsLnN'      : '1'
+# }
+
+
+# ##### Muon Efficiency and energy scale
+
+# id_syst_mu = ['SFweightMuUp', 'SFweightMuDown']
+
+# nuisances['eff_m'] = {
+#     'name'   : 'CMS_eff_m_2018',
+#     'kind'   : 'weight',
+#     'type'   : 'shape',
+#     'samples': dict((skey, id_syst_mu) for skey in mc),
+# }
+
+# nuisances['eff_ttHMVA_m'] = {
+#     'name'   : 'CMS_eff_ttHMVA_m_2018',
+#     'kind'   : 'weight',
+#     'type'   : 'shape',
+#     'samples': dict((skey, ['ttHMVAULSF_muUp', 'ttHMVAULSF_muDown']) for skey in mc)
+# }
+
+
+# nuisances['muonpt'] = {
+#     'name'       : 'CMS_scale_m_2018',
+#     'kind'       : 'suffix',
+#     'type'       : 'shape',
+#     'mapUp'      : 'MupTup',
+#     'mapDown'    : 'MupTdo',
+#     'samples'    : dict((skey, ['1', '1']) for skey in mc if not skey in ["ggHToWWOffshell", "ggHToWWOnshell"]), ##
+#     'folderUp'   : makeMCDirectory('MupTup_suffix'),
+#     'folderDown' : makeMCDirectory('MupTdo_suffix'),
+# #    'AsLnN'      : '1'
+# }
+
+# ##### Jet energy scale
+
+# jes_systs = ['JESAbsolute','JESAbsolute_2018','JESBBEC1','JESBBEC1_2018','JESEC2','JESEC2_2018','JESFlavorQCD','JESHF','JESHF_2018','JESRelativeBal' ,'JESRelativeSample_2018']
+
+# for js in jes_systs:
+#   nuisances[js] = {
+#       'name'      : 'CMS_scale_' + js,
+#       'kind'      : 'suffix',
+#       'type'      : 'shape',
+#       'mapUp'     : js + 'up',
+#       'mapDown'   : js + 'do',
+#     'samples'    : dict((skey, ['1', '1']) for skey in mc if not skey in ["ggHToWWOffshell", "ggHToWWOnshell"]), ##
+#       'folderUp'  : makeMCDirectory('RDF__JESup_suffix'),
+#       'folderDown': makeMCDirectory('RDF__JESdo_suffix'),
+#  #     'AsLnN'     : '1'
+#   }
+
+# ##### Jet energy resolution
+# nuisances['JER'] = {
+#     'name'      : 'CMS_res_j_2018',
+#     'kind'      : 'suffix',
+#     'type'      : 'shape',
+#     'mapUp'     : 'JERup',
+#     'mapDown'   : 'JERdo',
+#     'samples'    : dict((skey, ['1', '1']) for skey in mc if not skey in ["ggHToWWOffshell", "ggHToWWOnshell"]), ##
+#     'folderUp'  : makeMCDirectory('JERup_suffix'),
+#     'folderDown': makeMCDirectory('JERdo_suffix'),
+# #    'AsLnN'     : '1'
+# }
+
 ##### MET unclustered energy
 
+##met runs for all samples in MC as long as key is not in list...
 nuisances['met'] = {
     'name'      : 'CMS_scale_met_2018',
     'kind'      : 'suffix',
     'type'      : 'shape',
     'mapUp'     : 'METup',
     'mapDown'   : 'METdo',
-    'samples'    : dict((skey, ['1', '1']) for skey in mc if not skey in ["ggHToWWOffshell", "ggHToWWOnshell"]), ##
+    'samples'    : dict((skey, ['1', '1']) for skey in mc if not skey in ["qqH_sand_off", "qqH_bonly_off", "qqH_sonly_off", "qqH_sand_on", "qqH_sonly_on", "qqH_bonly_on"]), ##["ggHToWWOffshell", "ggHToWWOnshell"]), ##TC2024
     'folderUp'  : makeMCDirectory('METup_suffix'),
     'folderDown': makeMCDirectory('METdo_suffix'),
   #  'AsLnN'     : '1'
 }
+
+##TC2024 will run if key is in the list
+nuisances['met_sig'] = {
+    'name'      : 'CMS_scale_met_2018', ##same name as above - same nuisance - just get right directory
+    'kind'      : 'suffix',
+    'type'      : 'shape',
+    'mapUp'     : 'METup',
+    'mapDown'   : 'METdo',
+    'samples'   : dict((skey, ['1', '1']) for skey in mc if skey in ["qqH_sand_off", "qqH_bonly_off", "qqH_sonly_off", "qqH_sand_on", "qqH_sonly_on", "qqH_bonly_on"]),
+    'folderUp'  : makeSignalDirectory('METup_suffix'),
+    'folderDown': makeSignalDirectory('METdo_suffix'),
+  #  'AsLnN'     : '1'
+}
+##TC2024 - bc VBF samples not in same dir
 
 # # nuisances['PS_whss']  = {
 #                 # 'name'  : 'PS_whss',
@@ -274,9 +413,14 @@ nuisances['PU'] = {
         'qqH_bonly_on'        : ['1.0*(puWeightUp/puWeight)', '1.0*(puWeightDown/puWeight)'],
         'qqH_bonly_off'        : ['1.0*(puWeightUp/puWeight)', '1.0*(puWeightDown/puWeight)'],
         'qqH_sand_on'        : ['1.0*(puWeightUp/puWeight)', '1.0*(puWeightDown/puWeight)'],
-        'ggF_sand_off'        : ['1.0*(puWeightUp/puWeight)', '1.0*(puWeightDown/puWeight)'],
-        'ggF_sonly_off'        : ['1.0*(puWeightUp/puWeight)', '1.0*(puWeightDown/puWeight)'],
-        'ggF_sonly_on'        : ['1.0*(puWeightUp/puWeight)', '1.0*(puWeightDown/puWeight)'],
+        'ggH_bonly_on'    : ['1.004870*(puWeightUp/puWeight)', '0.995315*(puWeightDown/puWeight)'], ##TC
+        'ggH_bonly_off'    : ['1.004870*(puWeightUp/puWeight)', '0.995315*(puWeightDown/puWeight)'],
+        'ggH_sonly_on'    : ['1.00*(puWeightUp/puWeight)', '1.00*(puWeightDown/puWeight)'],
+        'ggH_sonly_off'    : ['1.00*(puWeightUp/puWeight)', '1.00*(puWeightDown/puWeight)'],
+        'ggH_sand_on'    : ['1.00*(puWeightUp/puWeight)', '1.00*(puWeightDown/puWeight)'],
+        'ggH_sand_off'    : ['1.00*(puWeightUp/puWeight)', '1.00*(puWeightDown/puWeight)'], ##TC
+        #'ggHToWWOffshell'        : ['1.0*(puWeightUp/puWeight)', '1.0*(puWeightDown/puWeight)'],
+        #'ggHToWWOnshell'        : ['1.0*(puWeightUp/puWeight)', '1.0*(puWeightDown/puWeight)'],
         #'ggH_hww' : ['1.003677*(puWeightUp/puWeight)', '0.995996*(puWeightDown/puWeight)'],
         #'qqH_hww' : ['1.003747*(puWeightUp/puWeight)', '0.995878*(puWeightDown/puWeight)'],
     },
@@ -365,7 +509,10 @@ for i in range(1,101):
   # LHEPdfWeight are PDF4LHC variations, while nominal is NNPDF.
   # LHEPdfWeight[i] reweights from NNPDF nominal to PDF4LHC member i
   # LHEPdfWeight[0] in particular reweights from NNPDF nominal to PDF4LHC nominal
-  pdf_variations = ["LHEPdfWeight[%d]" %i, "2. - LHEPdfWeight[%d]" %i ]
+  #pdf_variations = ["LHEPdfWeight[%d]" %i, "2. - LHEPdfWeight[%d]" %i ]
+
+##TC2024 added new definition:
+  pdf_variations = ["LHEPdfWeight[%d]/LHEPdfWeight[0]" %i, "1"]
 
   #nuisances['pdf_WW_eigen'+str(i)]  = {
   #  'name'  : 'CMS_hww_pdf_WW_eigen'+str(i),
@@ -385,16 +532,19 @@ for i in range(1,101):
       'top'   : pdf_variations,
     },
   }
-  nuisances['pdf_ggH_eigen'+str(i)]  = {
-    'name'  : 'CMS_hww_pdf_ggH_eigen'+str(i),
-    'skipCMS' : 1,
-    'kind'  : 'weight',
-    'type'  : 'shape',
-    'samples'  : {
-      'ggF_sonly_on'   : pdf_variations,
-      'ggF_sonly_off'   : pdf_variations,
-    },
-  }
+
+  # nuisances['pdf_ggH_eigen'+str(i)]  = {
+  #   'name'  : 'CMS_hww_pdf_ggH_eigen'+str(i),
+  #   'skipCMS' : 1,
+  #   'kind'  : 'weight',
+  #   'type'  : 'shape',
+  #   'samples'  : {
+  #     'ggH_sonly_on'   : pdf_variations,  ##TC
+  #     'ggH_sonly_off'   : pdf_variations, ##TC -- do these pdf variations exist in real time?
+  #   },
+  #   'symmetrize' : True,
+  # } ##TC2024
+
   nuisances['pdf_VBF_sonly_eigen'+str(i)]  = {
     'name'  : 'CMS_hww_pdf_VBF_sonly_eigen'+str(i),
     'skipCMS' : 1,
@@ -470,7 +620,7 @@ nuisances['QCDscale_qqVV']  = {
                 'kind'  : 'weight_envelope',
                 'type'  : 'shape',
                 'samples'  : {
-                   'qqH_bonly_on' : variations,
+                   'qqH_bonly_on' : variations, ##shapes bc from POWHEG - which gives shape variation
                    'qqH_bonly_off' : variations,
                    }
 }
@@ -490,25 +640,35 @@ nuisances['QCDscale_ggH']  = {
                 'kind'  : 'weight_envelope',
                 'type'  : 'shape',
                 'samples'  : {
-                   'ggF_sonly_on' : variations,
-                   'ggF_sonly_off' : variations,
+                   'ggH_sonly_on' : 1.15, ##TC - variations = shape; we don't want anymore
+                   'ggH_sonly_off' : 1.15, ##TC
                    }
 }
+##TC 2024
+nuisances['QCDscale_ggH_SBI'] = {
+    'name': 'QCDscale_ggH_SBI',
+    'type': 'lnN',
+    'samples': {
+        'ggH_sand_on': '1.15',
+        'ggH_sand_off': '1.15',
+    },
+}
+##TC2024
 
 nuisances['QCDscale_ggVV'] = {
     'name': 'QCDscale_ggVV',
-    'type': 'lnN',
+    'type': 'lnN', ##as log normal 1.15
     'samples': {
-        'ggWW': '1.15',
-        'ggF_bonly_off': '1.15',
+        'ggH_bonly_on': '1.15', ##TC
+        'ggH_bonly_off': '1.15', ##TC
     },
 }
 
-values_VBF_scale = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','vbfH','125.09','scale','sm')
-values_VBF_pdf = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','vbfH','125.09','pdf','sm')
+values_VBF_scale = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ggH','125.09','scale','sm') ##TC
+values_VBF_pdf = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ggH','125.09','pdf','sm') ##TC
 
-values_ggH_scale = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','vbfH','125.09','scale','sm')
-values_ggH_pdf = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','vbfH','125.09','pdf','sm')
+values_ggH_scale = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ggH','125.09','scale','sm') ##TC 'vbfH'
+values_ggH_pdf = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ggH','125.09','pdf','sm') ##TC
 
 nuisances['QCDscale_VBF_ACCEPT'] = {
     'name'    : 'QCDscale_VBF_accept',
@@ -531,8 +691,8 @@ nuisances['pdf_VBF_ACCEPT'] = {
 nuisances['QCDscale_ggH_ACCEPT'] = {
     'name'    : 'QCDscale_ggH_accept',
     'samples' : {
-        'ggF_sonly_on' : values_ggH_scale,
-        'ggF_sonly_off' : values_ggH_scale,
+        'ggH_sonly_on' : values_ggH_scale,
+        'ggH_sonly_off' : values_ggH_scale, ##TC
     },
     'type' : 'lnN'
 }
@@ -541,8 +701,8 @@ nuisances['pdf_ggH_ACCEPT'] = {
     'name'    : 'pdf_ggH_accept',
     'type'    : 'lnN',
     'samples' : {
-        'ggF_sonly_on' : values_ggH_pdf,
-        'ggF_sonly_off' : values_ggH_pdf,
+        'ggH_sonly_on' : values_ggH_pdf,
+        'ggH_sonly_off' : values_ggH_pdf, ##TC
     },
 }
 
@@ -885,13 +1045,20 @@ nuisances['WWnorm_1j']  = {
                    'CR_ggH_ON_1j',
                    ]
               }
-
+##TC 2024 --add
+nuisances['MELA_Hyp_qqWW'] = {
+    'name': 'MELA_Hyp_qqWW',
+    'type': 'lnN',
+    'samples': {
+        'qqH_bonly_off': '1.1',
+    },
+}
 ## Use the following if you want to apply the automatic combine MC stat nuisances.
 nuisances['stat'] = {
 
     'type'          : 'auto',
     'maxPoiss'      : '10',
-    'includeSignal' : '1', ## <-- no longer want to include qqH_sonly or qqH_bonly; CR -- since hypotheses coming from different samples, we need to include unc. in shapes!!!
+    'includeSignal' : '0'#bc want to avoid overcounting ##TC 2024 ##'1', ## <-- no longer want to include qqH_sonly or qqH_bonly; CR -- since hypotheses coming from different samples, we need to include unc. in shapes!!!
     'samples' : {}
 }
     #  nuisance ['maxPoiss'] =  Number of threshold events for Poisson modelling

@@ -229,7 +229,8 @@ aliases['bReqSF'] = {
 # CR definitions
 
 aliases['topcr'] = {
-    'expr': '((zeroJet && dnnScore_top_0j > .5) || (oneJet && dnnScore_top_1j > .5)) * ((Sum$(CleanJet_pt > 30.) == 0 && !bVeto) || bReq)'
+#    'expr': '((zeroJet && dnnScore_top_0j > .5) || (oneJet && dnnScore_top_1j > .5)) * ((Sum$(CleanJet_pt > 30.) == 0 && !bVeto) || bReq)' ##uncomment for real run!
+    'expr': '(zeroJet || oneJet * ((Sum$(CleanJet_pt > 30.) == 0 && !bVeto) || bReq)' ##TC May 2024 for SF - match cuts.py
 } ##combined 0 and 1 jet definition
 
 # Overall b tag SF
@@ -360,9 +361,12 @@ aliases['SFweightMuDown'] = {
     'samples': mc,
     'nominalOnly': 1
 }
-## not necessary anymore (used for splitting); we have branch mWW for wgt (samples.py)
-#aliases['LHE_mWW'] = {
-#    'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/Offshell_Dilep/Tools/computeLHEmWW.cc+' % os.getenv('CMSSW_BASE')],
-#    'class': 'computeLHEmWW',
-#    'samples': ['ggF_bonly_off', 'ggWW', 'ggF_sand_off', 'ggF_sonly_on', 'ggF_sonly_off']
-#}
+##used for splitting; we have branch mWW for wgt (samples.py)
+
+##TC 2024 -- keep for processing certain sample
+aliases['LHE_mWW'] = {
+    'linesToAdd' : ['.L %s/src/PlotsConfigurations/Configurations/Offshell_Dilep/Tools/computeLHEmWW.cc' % os.getenv('CMSSW_BASE'],
+    'class' : 'computeLHEmWW',
+    'samples' : ['ggH_bonly_off', 'ggH_bonly_on', 'ggH_sand_off', 'ggH_sand_on', 'ggH_sonly_off', 'ggH_sonly_on'],
+    'args': ()
+}

@@ -6,17 +6,17 @@
 # If not defined, normal plots is used
 #
 groupPlot['VH+ttH+qqH']  = {
-                  'nameHR' : 'VH+ttH+qqH',
+                  'nameHR' : 'Higgs Other', ##TC
                   'isSignal' : 0,
                   'color': 632, # kRed 
-                  'samples'  : ['Higgs' ]
+                  'samples'  : ['Higgs']
               }
 
 groupPlot['ggHToWWOnshell']  = {
                   'nameHR' : 'ggH Onshell',
                   'isSignal' : 0,
-                  'color': 603, # kBlue+3                                                                                                                                                                  
-                  'samples'  : ['ggHToWWOnshell' ]
+                  'color': 603, # kBlue+3          
+                  'samples'  : ['ggH_sonly_on' ] ##TC
               }
 
 groupPlot['Vg+VZ+VVV']  = {
@@ -45,7 +45,7 @@ groupPlot['WW_minnlo']  = {
                   'nameHR' : 'WW',
                   'isSignal' : 0,
                   'color': 851, # kAzure -9 
-                  'samples'  : ['WW_minnlo', 'ggWW','WWewk']
+                  'samples'  : ['WW_minnlo', 'ggH_bonly_on', 'ggH_bonly_off'] #'ggWW','WWewk'] ##TC
               }
 
 groupPlot['top']  = {
@@ -59,7 +59,7 @@ groupPlot['ggHToWWOffshell']  = {
                   'nameHR' : 'ggH Offshell',
                   'isSignal' : 1,
                   'color': 1, # kCyan
-                  'samples'  : ['ggHToWWOffshell' ]
+                  'samples'  : ['ggH_sonly_off' ]
               }
 
 #plot = {}
@@ -113,12 +113,29 @@ plot['ggWW']  = {
                   'scale'    : 1.0
                   }
 
-plot['WWewk']  = {
-                  'color': 851, # kAzure -9 
+##TC 2024
+plot['ggH_bonly_on']  = {
+                  'color': 850, # kAzure -10
                   'isSignal' : 0,
                   'isData'   : 0,
-                  'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
+                  'scale'    : 1.0
                   }
+
+##TC 2024
+plot['ggH_bonly_off']  = {
+                  'color': 849, # kAzure -10
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0
+                  }
+
+##TC 2024
+# plot['WWewk']  = {
+#                   'color': 851, # kAzure -9 
+#                   'isSignal' : 0,
+#                   'isData'   : 0,
+#                   'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
+#                   }
 
 plot['Vg']  = {
                   'color': 859, # kAzure -1  
@@ -159,7 +176,7 @@ plot['Higgs'] = {
                   }
 
 
-plot['ggHToWWOnshell']  = {
+plot['ggH_sonly_on']  = { ##TC
                   'color': 603, # kRed  
                   'isSignal' : 0,
                   'isData'   : 0,
@@ -167,9 +184,37 @@ plot['ggHToWWOnshell']  = {
                   }
 
 
-plot['ggHToWWOffshell']  = {
+plot['ggH_sonly_off']  = { ##TC
                   'color': 432, # kRed  
                   'isSignal' : 1,
+                  'isData'   : 0,
+                  'scale'    : 1.0
+                  }
+##TC 2024
+plot['qqH_bonly_on']  = {
+                  'color': 409,  #kRed  
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0
+                  }
+##TC 2024
+plot['qqH_sonly_off']  = {
+                  'color': 632,  #kRed  
+                  'isSignal' : 2,
+                  'isData'   : 0,
+                  'scale'    : 1.0
+                  }
+##TC 2024
+plot['qqH_bonly_off']  = {
+                  'color': 851,  #kRed  
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0
+                  }
+##TC 2024
+plot['qqH_sonly_on']  = {
+                  'color': 420,  #kRed  
+                  'isSignal' : 2,
                   'isData'   : 0,
                   'scale'    : 1.0
                   }
