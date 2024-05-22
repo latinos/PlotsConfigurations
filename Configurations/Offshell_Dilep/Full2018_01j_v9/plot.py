@@ -106,12 +106,12 @@ plot['WW']  = { ##TC 2024
                   'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
                   }
 
-plot['ggWW']  = {
-                  'color': 850, # kAzure -10
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  'scale'    : 1.0
-                  }
+# plot['ggWW']  = {
+#                   'color': 850, # kAzure -10
+#                   'isSignal' : 0,
+#                   'isData'   : 0,
+#                   'scale'    : 1.0
+#                   }
 
 ##TC 2024
 plot['ggH_bonly_on']  = {

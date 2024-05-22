@@ -638,7 +638,7 @@ nuisances['QCDscale_VBF']  = {
 
 nuisances['QCDscale_ggH']  = {
                'name'  : 'QCDscale_VBF',
-                #'kind'  : 'weight_envelope', ##
+                #'kind'  : 'weight_envelope', ##TC
                 'type'  : 'lnN', ##TC
                 'samples'  : {
                    'ggH_sonly_on' : 1.15, ##TC - variations = shape; we don't want anymore

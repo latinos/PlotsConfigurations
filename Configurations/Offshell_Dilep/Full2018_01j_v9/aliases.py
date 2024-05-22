@@ -229,8 +229,8 @@ aliases['bReqSF'] = {
 # CR definitions
 
 aliases['topcr'] = {
-#    'expr': '((zeroJet && dnnScore_top_0j > .5) || (oneJet && dnnScore_top_1j > .5)) * ((Sum$(CleanJet_pt > 30.) == 0 && !bVeto) || bReq)' ##uncomment for real run!
-    'expr': '(zeroJet || oneJet * ((Sum$(CleanJet_pt > 30.) == 0 && !bVeto) || bReq)' ##TC May 2024 for SF - match cuts.py
+    'expr': '((zeroJet && dnnScore_top_0j > .5) || (oneJet && dnnScore_top_1j > .5)) * ((Sum$(CleanJet_pt > 30.) == 0 && !bVeto) || bReq)' ##uncomment for real run!
+#    'expr': '(zeroJet || oneJet * ((Sum$(CleanJet_pt > 30.) == 0 && !bVeto) || bReq)' ##TC May 2024 for SF - match cuts.py
 } ##combined 0 and 1 jet definition
 
 # Overall b tag SF

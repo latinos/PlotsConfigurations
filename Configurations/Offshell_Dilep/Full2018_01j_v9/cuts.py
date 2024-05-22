@@ -17,12 +17,13 @@ supercut = ' && '.join(_tmp)
 
 def addcut(name, exprs):
     cuts[name] = ' && '.join(exprs)
-#0jet
-_tmp = [
-    'zeroJet',
-    'bVeto',
-]
-addcut('supercut_0j', _tmp)
+
+# #0jet for SFs
+# _tmp = [
+#     'zeroJet',
+#     'bVeto',
+# ]
+# addcut('supercut_0j', _tmp)
 
 ##SR
 _tmp = [
@@ -37,7 +38,7 @@ _tmp = [
     'bVeto', 
     'dnnScore_ggH_ON_0j > .5',
        ]
-addcut('CR_ggH_ON_0j', _tmp) ##TC
+addcut('CR_ggH_ON_0j', _tmp)
 
 _tmp = [
     'zeroJet',
@@ -46,24 +47,26 @@ _tmp = [
        ]
 addcut('WWCR_0j', _tmp)
 
-_tmp = [
-    'zeroJet',
-    '(bReq || (!bVeto && zeroJet))',
-       ]
-addcut('topCR_0j', _tmp)
+# #for SFs
 # _tmp = [
 #     'zeroJet',
 #     '(bReq || (!bVeto && zeroJet))',
-#     #'dnnScore_top_0j > .5',
-#   ]
+#        ]
 # addcut('topCR_0j', _tmp)
 
-##1jet
 _tmp = [
-    'oneJet',
-    'bVeto',
-]
-addcut('supercut_1j', _tmp)
+    'zeroJet',
+    '(bReq || (!bVeto && zeroJet))',
+    'dnnScore_top_0j > .5',
+  ]
+addcut('topCR_0j', _tmp)
+
+##1jet for SFs
+# _tmp = [
+#     'oneJet',
+#     'bVeto',
+# ]
+# addcut('supercut_1j', _tmp)
 
 ##SR
 _tmp = [
@@ -88,14 +91,16 @@ _tmp = [
        ]
 addcut('WWCR_1j', _tmp)
 
-_tmp = [
-    'oneJet',
-    '(bReq || (!bVeto && zeroJet))',
-       ]
-addcut('topCR_1j', _tmp)
+# #for SFs
 # _tmp = [
 #     'oneJet',
 #     '(bReq || (!bVeto && zeroJet))',
-#     'dnnScore_top_1j > .5',                                                                                                                                                                          
-#     ]
-# #addcut('topCR_1j', _tmp)
+#        ]
+# addcut('topCR_1j', _tmp)
+
+_tmp = [
+    'oneJet',
+    '(bReq || (!bVeto && zeroJet))',
+    'dnnScore_top_1j > .5',                                                                  
+    ]
+addcut('topCR_1j', _tmp)
