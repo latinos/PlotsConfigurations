@@ -135,10 +135,34 @@ for syst in ['isr', 'fsr','hdamp', 'jes','jer', 'pileup','qcdscale', 'statistic'
         'samples':mc  
     }
 
-aliases['hole_veto'] = {
-        'expr': 'Sum$( ((  Lepton_eta < -1.3 &&   Lepton_eta > -2.5) && (  Lepton_phi > -1.57 &&   Lepton_phi < -0.87) && (abs(Lepton_pdgId)==11)) ) == 0 \
-              && Sum$( ((CleanJet_eta < -1.3 && CleanJet_eta > -2.5) && (CleanJet_phi > -1.57 && CleanJet_phi < -0.87)) ) == 0',
+### HEM veto ###
+#0.65 is lumi fraction of affected data (run >= 319077)
+#<obj>_in_HEM = True if ( Sum$( no. of electrons/jets in HEM15/16 region) != 0 )
+aliases['ele_in_HEM'] = {
+        'expr': 'Sum$( ((  Lepton_eta < -1.3 &&   Lepton_eta > -2.5) && (  Lepton_phi > -1.57 &&   Lepton_phi < -0.87) && (abs(Lepton_pdgId)==11)) )'
 }
+
+aliases['jet_in_HEM'] = {
+        'expr': 'Sum$( ((CleanJet_eta < -1.3 && CleanJet_eta > -2.5) && (CleanJet_phi > -1.57 && CleanJet_phi < -0.87)) )',
+}
+
+#HEMselection = True for events that have an electron/jet in the affected region (HEMselection)
+aliases['HEMselection'] = {
+        'expr': '(ele_in_HEM  != 0 || jet_in_HEM != 0)',
+}
+
+#in MC, scale events with electrons/jets in affected region (HEMselection = True) by 0.35
+aliases['HEMveto_MC'] = {
+        'expr': '((1.0 * !HEMselection) + ((1.0 - 0.64844705699) * HEMselection))',
+        'samples': mc
+}
+#in DATA or Fakes if run >= 319077, veto events with electrons/jets in affected region (HEMselection = True)
+aliases['HEMveto_DATA'] = {
+        'expr': '(((run >= 319077)*((1.0 * !HEMselection) + (0 * HEMselection))) + ((run < 319077)*1.0))',
+        'samples': ['DATA','Fake']
+}
+
+
 
 aliases['Jet_PUIDSF'] = {
    'expr' : 'TMath::Exp(Sum$((Jet_jetId>=2)*TMath::Log(Jet_PUIDSF_loose)))',

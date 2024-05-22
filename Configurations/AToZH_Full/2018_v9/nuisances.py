@@ -334,7 +334,7 @@ nuisances['trigg']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : dict((skey, trig_syst) for skey in mc),
-		'AsLnN' : '1', #check this later
+#		'AsLnN' : '1', #check this later
  #               'cuts' : fitcuts
 }
 
@@ -359,7 +359,7 @@ nuisances['electronpt']  = {
                 'samples'  : dict((skey, ['1', '1']) for skey in mc),
                 'folderUp'   : treeBaseDir+'Summer20UL18_106x_nAODv9_Full2018v9/MCl1loose2018v9__MCCorr2018v9NoJERInHorn__l2tightOR2018v9__ElepTup_suffix', 
                 'folderDown' : treeBaseDir+'Summer20UL18_106x_nAODv9_Full2018v9/MCl1loose2018v9__MCCorr2018v9NoJERInHorn__l2tightOR2018v9__ElepTdo_suffix', 
-                'AsLnN' : '1',
+#                'AsLnN' : '1',
 #                'cuts' : fitcuts
 }
 
@@ -372,7 +372,7 @@ nuisances['eff_m']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : dict((skey, id_syst_mu) for skey in mc),
-		'AsLnN' : '1', #check this later
+#		'AsLnN' : '1', #check this later
  #               'cuts' : fitcuts
 }
 
@@ -385,7 +385,7 @@ nuisances['muonpt']  = {
                 'samples'  : dict((skey, ['1', '1']) for skey in mc),
                 'folderUp'   : treeBaseDir+'Summer20UL18_106x_nAODv9_Full2018v9/MCl1loose2018v9__MCCorr2018v9NoJERInHorn__l2tightOR2018v9__MupTup_suffix', 
                 'folderDown' : treeBaseDir+'Summer20UL18_106x_nAODv9_Full2018v9/MCl1loose2018v9__MCCorr2018v9NoJERInHorn__l2tightOR2018v9__MupTdo_suffix', 
-                'AsLnN' : '1',
+ #               'AsLnN' : '1',
 #                'cuts' : fitcuts
 }
 
@@ -397,7 +397,7 @@ nuisances['ttZ_norm'] = {
     },
     'type' : 'rateParam',
     'cuts' : [
-	'breq_SR', 'bveto_1j_SR', 'bveto_4j', 'jet_cut_3j', 'bveto_3j'
+	'breq_SR', 'bveto_1j_SR',  'bveto_4j'
    ]
  }
 
@@ -413,16 +413,16 @@ nuisances['WZ_norm_4j'] = {
   }
 
 
-nuisances['WZ_norm_3j'] = {
-    'name' : 'CMS_WZ_norm_3j',
-    'samples' : {
-	'WZ' : '1.00',
-    },
-    'type' : 'rateParam',
-    'cuts': [
-	 'jet_cut_3j', 'bveto_3j'
-    ]
-  }
+#nuisances['WZ_norm_3j'] = {
+#    'name' : 'CMS_WZ_norm_3j',
+#    'samples' : {
+#	'WZ' : '1.00',
+#    },
+#    'type' : 'rateParam',
+#    'cuts': [
+#	 'jet_cut_3j', 'bveto_3j'
+#    ]
+#  }
 
 ####### Jet energy scale
 
@@ -440,7 +440,7 @@ for js in jes_systs:
                 'samples': dict((skey, ['1', '1']) for skey in mc),
                 'folderUp'   : treeBaseDir+'Summer20UL18_106x_nAODv9_Full2018v9/MCl1loose2018v9__MCCorr2018v9NoJERInHorn__l2tightOR2018v9__RDF__JESup_suffix', 
                 'folderDown' : treeBaseDir+'Summer20UL18_106x_nAODv9_Full2018v9/MCl1loose2018v9__MCCorr2018v9NoJERInHorn__l2tightOR2018v9__RDF__JESdo_suffix', 
-                'AsLnN': '0',
+ #               'AsLnN': '0',
 #                'cuts' : fitcuts
 }
 
@@ -455,7 +455,7 @@ nuisances['JER'] = {
     'samples': dict((skey, ['1', '1']) for skey in mc),
     'folderUp': treeBaseDir+'Summer20UL18_106x_nAODv9_Full2018v9/MCl1loose2018v9__MCCorr2018v9NoJERInHorn__l2tightOR2018v9__JERup_suffix',
     'folderDown': treeBaseDir+'Summer20UL18_106x_nAODv9_Full2018v9/MCl1loose2018v9__MCCorr2018v9NoJERInHorn__l2tightOR2018v9__JERdo_suffix', 
-    'AsLnN': '1'
+ #   'AsLnN': '1'
 }
 ##### MET energy scale
 
