@@ -250,10 +250,6 @@ aliases['AZH_Amass_patch_onebjet'] = {
     'args': ("AZH_Amass_onebjet"),
 }
 
-
-
-
-
 aliases['AZH_Hmass_patch'] = {
     'class': 'AZH_patch_2016noHIPM',
     'args': ("AZH_Hmass"),

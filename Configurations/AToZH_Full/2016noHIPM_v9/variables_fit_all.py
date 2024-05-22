@@ -37,17 +37,19 @@ variables['nbjet']       = { 'name'  : 'nbjet',
                             'xaxis' : 'N_{bjet}',
                             'fold' : 3 
                         }
-variables['pt1']        = { 'name': 'Lepton_pt[0]',
-                            'range' : (25,0.,500),
-                            'xaxis' : 'lept1_p_{T} [GeV]',
-                            'fold' : 3 
-                        }
 variables['DeltaM']  = { 'name' : 'AZH_mA_minus_mH_patch',
                             'range' : (20,0,1000),
 			    'xaxis' : 'm_{A}-m_{H}',
 			    'cuts' : ['breq_SR'],
 			    'fold'  : 3
                          }
+variables['DeltaM_onebjet'] = { 'name' : 'AZH_mA_minus_mH_onebjet_patch',
+                             'range' : (20,0,1000),
+				   'xaxis' : 'm_{A}-m_{H}',
+				   'cuts' : ['bveto_1j_SR'],
+                                   'fold'  : 3
+                            }
+
 variables['mH'] = { 'name' : 'AZH_Hmass_patch',
                     'range' : (20,0,2000),
                     'xaxis' : 'm_{H}',
@@ -62,7 +64,6 @@ variables['mA'] = { 'name' : 'AZH_Amass_patch',
                      'fold'  : 3
 }
 
-
 variables['mH_onebjet'] = { 'name' : 'AZH_Hmass_patch_onebjet',
                     'range' : (20,0,2000),
                     'xaxis' : 'm_{H}',
@@ -76,52 +77,120 @@ variables['mA_onebjet'] = { 'name' : 'AZH_Amass_patch_onebjet',
                      'cuts' : ['bveto_1j_SR'],
                      'fold'  : 3
 }
-
-variables['PuppiMET_pt']  = { 'name': 'PuppiMET_pt',
-                            'range' : (20,0.,400),
-                            'xaxis' : 'PuppiMET_p_{T} [GeV]',
-                            'fold' : 3 
-                        }
-
-
-variables['pt_subleadinglepton'] = { 'name': 'Lepton_pt[1]',
-                                     'range' : (10,0.,200),
-                                     'xaxis' : 'lept2_p_{T} [GeV]',
-                                     'fold' : 3
-}
-
-variables['pt_thirdlepton'] = { 'name': 'Lepton_pt[2]',
-                                      'range' : (10,0.,200),
-				      'xaxis' : 'lept3_p_{T} [GeV]',
-				      'fold' : 3
-}
-
-
 variables['checkmZ']    = { 'name' : 'ZH3l_checkmZ',
                             'range' : (10,60,120),
                             'xaxis' : 'checkmZ',
                             'fold' : 3
                         }
-variables['DeltaM_onebjet'] = { 'name' : 'AZH_mA_minus_mH_onebjet_patch',
-                                   'range' : (20,0,1000),
-				   'xaxis' : 'm_{A}-m_{H}',
-				   'cuts' : ['bveto_1j_SR'],
-                                   'fold'  : 3
-                            }
 
-#variables['ptzVSdeltam'] = { 'name' : 'ZH3l_pTZ:AZH_mA_minus_mH_patch',
-#                          'range': ([0,10,20,30,40,50,60,70,80,90,100,110,120,130,140,150,160,170,180,190,200,210,220,230,240,250,260,270,280,290,300,350,400,450,500,550,600,700,800,900,1000],[0,10,20,30,40,50,60,70,80,90,100,110,120,130,140,150,160,170,180,190,200,210,220,230,240,250,260,270,280,290,300,350,400,450,500,550,600,700,800,900,1000],),
-#			  'xaxis' : 'pTZ X m_{A}-m_{H}',
-#			  'cuts' : ['breq_SR','bveto_1j_SR'],
-#			  'fold' : 3,
-#			  'binX' : 40, 
-#			  'binY' : 40 
-#}
-variables['ptjet0']     = { 'name' : 'CleanJet_pt[0]',
-                            'range' : (50,0,500),
-                            'xaxis' : 'Leading jet p_{T}',
-                            'fold' : 3 
-                        }
+#variables['pt1']        = { 'name': 'Lepton_pt[0]',
+#                            'range' : (15,0.,500),
+#                            'xaxis' : 'lept1_p_{T} [GeV]',
+#                            'fold' : 3
+#                        }
+#variables['eta1']        = { 'name': 'Lepton_eta[0]',
+#                            'range' : (17,-3,3),
+#                            'xaxis' : 'leading lepton #eta',
+#                            'fold' : 3
+#                        }
+#variables['phi1']        = { 'name': 'Lepton_phi[0]',
+#                            'range' : (17,-3.2,3.2),
+#                            'xaxis' : 'leading lepton #phi',
+#                            'fold' : 3
+#                        }
+#
+#variables['pt_subleadinglepton'] = { 'name': 'Lepton_pt[1]',
+#                                     'range' : (15,0.,200),
+#                                     'xaxis' : 'lept2_p_{T} [GeV]',
+#                                     'fold' : 3
+#                                    }
+#variables['eta_subleadinglepton'] = { 'name': 'Lepton_eta[1]',
+#                                     'range' : (17,-3,3),
+#                                     'xaxis' : 'subleading lepton #eta',
+#                                     'fold' : 3
+#                                    }
+#
+#variables['phi_subleadinglepton'] = { 'name': 'Lepton_phi[1]',
+#                                     'range' : (17,-3.2,3.2),
+#                                     'xaxis' : 'subleading lepton #phi',
+#                                     'fold' : 3
+#                                    }
+#
+#variables['ptjet0']     = { 'name' : 'CleanJet_pt[0]',
+#                            'range' : (15,0,500),
+#                            'xaxis' : 'Leading jet p_{T}',
+#                            'fold' : 3
+#                        }
+#variables['phijet0']     = { 'name' : 'CleanJet_phi[0]',
+#                            'range' : (17,-3.2,3.2),
+#                            'xaxis' : 'Leading jet #phi',
+#                            'fold' : 3
+#                        }
+#variables['etajet0']     = { 'name' : 'CleanJet_eta[0]',
+#                            'range' : (17,-3,3),
+#                            'xaxis' : 'Leading jet #eta',
+#                            'fold' : 3
+#                        }
+#
+#variables['ptjet1']     = { 'name' : 'CleanJet_pt[1]',
+#                            'range' : (15,0,200),
+#                            'xaxis' : 'Subleading jet p_{T}',
+#                            'fold' : 3
+#                        }
+#variables['phijet1']     = { 'name' : 'CleanJet_phi[1]',
+#                            'range' : (17,-3.2,3.2),
+#                            'xaxis' : 'Subleading jet #phi',
+#                            'fold' : 3
+#                        }
+#
+#variables['etajet1']     = { 'name' : 'CleanJet_eta[1]',
+#                            'range' : (17,-3,3),
+#                            'xaxis' : 'Subleading jet #eta',
+#                            'fold' : 3
+#                        }
+#variables['etaphijet0']     = { 'name' : 'CleanJet_eta[0]:CleanJet_phi[0]',
+#                            'range' : ([-3.0,-1.3,-0.5,0.5,1.3,3.0],[-3.2,-1.57,-0.87,0.87,1.57,3.2]),
+#                            'xaxis' : ' leading jet #eta : #phi}',
+#                            'fold' : 3
+#                        }
+#variables['etaphijet1']     = { 'name' : 'CleanJet_eta[1]:CleanJet_phi[1]',
+#                            'range' : ([-3.0,-1.3,-0.5,0.5,1.3,3.0],[-3.2,-1.57,-0.87,0.87,1.57,3.2]),
+#                            'xaxis' : ' subleading jet #eta : #phi}',
+#                            'fold' : 3
+#                        }
+#variables['etaphilep0']     = { 'name' : 'Lepton_eta[0]:Lepton_phi[0]',
+#                            'range' : ([-3.0,-1.3,-0.5,0.5,1.3,3.0],[-3.2,-1.57,-0.87,0.87,1.57,3.2]),
+#                            'xaxis' : ' leading lepton #eta : #phi}',
+#                            'fold' : 3
+#                        }
+#variables['etaphilep1']     = { 'name' : 'Lepton_eta[1]:Lepton_phi[1]',
+#                            'range' : ([-3.0,-1.3,-0.5,0.5,1.3,3.0],[-3.2,-1.57,-0.87,0.87,1.57,3.2]),
+#                            'xaxis' : ' subleading lepton #eta : #phi}',
+#                            'fold' : 3
+#                        }
+#
+#variables['PuppiMET_pt']        = { 'name' : 'PuppiMET_pt',
+#                            'range' : (15,0,500),
+#                            'xaxis' : 'PuppiMET p_{t}',
+#                            'fold' : 3
+#                        }
+#variables['PuppiMET_phi']        = { 'name' : 'PuppiMET_phi',
+#                            'range' : (17,-3.2,3.2),
+#                            'xaxis' : 'PuppiMET phi',
+#                            'fold' : 3
+#                        }
+#variables['MET_pt']        = { 'name' : 'MET_pt',
+#                            'range' : (15,0,500),
+#                            'xaxis' : 'MET p_{t}',
+#                            'fold' : 3
+#                        }
+#variables['MET_phi']        = { 'name' : 'MET_phi',
+#                            'range' : (17,-3.2,3.2),
+#                            'xaxis' : 'MET phi',
+#                            'fold' : 3
+#                        }
+#
+####################################################################################################
 variables['ellipse_mA_1000_mH_330'] = { 'name' : 'ellipse_mA_1000_mH_330',
                                                 'range' : (7,-0.5,6.5),
                                                 'xaxis' : 'elliptical bin in mA-mH, pTZ',
@@ -130,11 +199,6 @@ variables['ellipse_mA_1000_mH_330'] = { 'name' : 'ellipse_mA_1000_mH_330',
                                                'fold'  : 0
                                             }
 
-variables['ptjet1']     = { 'name' : 'CleanJet_pt[1]',
-                            'range' : (20,0,400),
-                            'xaxis' : 'Subleading jet p_{T}',
-                            'fold' : 3 
-                        }
 variables['ellipse_mA_1000_mH_350'] = { 'name' : 'ellipse_mA_1000_mH_350',
                                                 'range' : (7,-0.5,6.5),
                                                 'xaxis' : 'elliptical bin in mA-mH, pTZ',
@@ -2353,6 +2417,7 @@ variables['ellipse_onebjet_mA_1000_mH_700'] = { 'name' : 'ellipse_onebjet_mA_100
                         'samples' : bkg+['AZH_1000_700'],
                                                'fold'  : 0
                                             }
+
 variables['ellipse_onebjet_mA_1000_mH_750'] = { 'name' : 'ellipse_onebjet_mA_1000_mH_750',
                                                 'range' : (7,-0.5,6.5),
                                                 'xaxis' : 'elliptical bin in mA-mH, pTZ',
@@ -4432,3 +4497,12 @@ variables['ellipse_onebjet_mA_950_mH_850'] = { 'name' : 'ellipse_onebjet_mA_950_
                         'samples' : bkg+['AZH_950_850'],
                                                'fold'  : 0
                                             }
+#variables['ptzVSdeltam'] = { 'name' : 'ZH3l_pTZ:AZH_mA_minus_mH_patch',
+#                          'range': ([0,10,20,30,40,50,60,70,80,90,100,110,120,130,140,150,160,170,180,190,200,210,220,230,240,250,260,270,280,290,300,350,400,450,500,550,600,700,800,900,1000],[0,10,20,30,40,50,60,70,80,90,100,110,120,130,140,150,160,170,180,190,200,210,220,230,240,250,260,270,280,290,300,350,400,450,500,550,600,700,800,900,1000],),
+#			  'xaxis' : 'pTZ X m_{A}-m_{H}',
+#			  'cuts' : ['breq_SR','bveto_1j_SR'],
+#			  'fold' : 3,
+#			  'binX' : 40, 
+#			  'binY' : 40 
+#}
+

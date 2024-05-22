@@ -312,7 +312,7 @@ nuisances['trigg']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : dict((skey, trig_syst) for skey in mc),
-		'AsLnN' : '1',
+#		'AsLnN' : '1',
  #               'cuts' : fitcuts
 }
 
@@ -348,7 +348,7 @@ nuisances['electronpt']  = {
                 'samples'  : dict((skey, ['1', '1']) for skey in mc),
                 'folderUp'   : treeBaseDir+'Summer20UL16_106x_nAODv9_noHIPM_Full2016v9/MCl1loose2016v9__MCCorr2016v9NoJERInHorn__l2tightOR2016v9__ElepTup_suffix', 
                 'folderDown' : treeBaseDir+'Summer20UL16_106x_nAODv9_noHIPM_Full2016v9/MCl1loose2016v9__MCCorr2016v9NoJERInHorn__l2tightOR2016v9__ElepTdo_suffix', 
-                'AsLnN' : '1',
+#                'AsLnN' : '1',
  #               'cuts' : fitcuts
 }
 
@@ -361,7 +361,7 @@ nuisances['eff_m']  = {
                 'kind'  : 'weight',
                 'type'  : 'shape',
                 'samples'  : dict((skey, id_syst_mu) for skey in mc),
-		'AsLnN' : '1',
+#		'AsLnN' : '1',
  #               'cuts' : fitcuts
 }
 
@@ -374,7 +374,7 @@ nuisances['muonpt']  = {
                 'samples'  : dict((skey, ['1', '1']) for skey in mc),
                 'folderUp'   : treeBaseDir+'Summer20UL16_106x_nAODv9_noHIPM_Full2016v9/MCl1loose2016v9__MCCorr2016v9NoJERInHorn__l2tightOR2016v9__MupTup_suffix', 
                 'folderDown' : treeBaseDir+'Summer20UL16_106x_nAODv9_noHIPM_Full2016v9/MCl1loose2016v9__MCCorr2016v9NoJERInHorn__l2tightOR2016v9__MupTdo_suffix', 
-                'AsLnN' : '1',
+ #               'AsLnN' : '1',
  #               'cuts' : fitcuts
 }
 
@@ -386,7 +386,7 @@ nuisances['ttZ_norm'] = {
     },
     'type' : 'rateParam',
     'cuts' : [
-	'breq_SR', 'bveto_1j_SR', 'bveto_4j', 'jet_cut_3j', 'bveto_3j'
+	'breq_SR', 'bveto_1j_SR', 'bveto_4j'#, 'jet_cut_3j', 'bveto_3j'
    ]
  }
 
@@ -402,16 +402,16 @@ nuisances['WZ_norm_4j'] = {
   }
 
 
-nuisances['WZ_norm_3j'] = {
-    'name' : 'CMS_WZ_norm_3j',
-    'samples' : {
-	'WZ' : '1.00',
-    },
-    'type' : 'rateParam',
-    'cuts': [
-	 'jet_cut_3j', 'bveto_3j'
-    ]
-  }
+#nuisances['WZ_norm_3j'] = {
+#    'name' : 'CMS_WZ_norm_3j',
+#    'samples' : {
+#	'WZ' : '1.00',
+#    },
+#    'type' : 'rateParam',
+#    'cuts': [
+#	 'jet_cut_3j', 'bveto_3j'
+#    ]
+#  }
 
 ####### Jet energy scale
 
@@ -425,10 +425,10 @@ for js in jes_systs:
                 'type': 'shape',
                 'mapUp': js+'up',
                 'mapDown': js+'do',
-                'samples': dict((skey, ['1', '1']) for skey in mc if skey not in ['TTWJets']),
+                'samples': dict((skey, ['1', '1']) for skey in mc),
                 'folderUp'   : treeBaseDir+'Summer20UL16_106x_nAODv9_noHIPM_Full2016v9/MCl1loose2016v9__MCCorr2016v9NoJERInHorn__l2tightOR2016v9__RDF__JESup_suffix', 
                 'folderDown' : treeBaseDir+'Summer20UL16_106x_nAODv9_noHIPM_Full2016v9/MCl1loose2016v9__MCCorr2016v9NoJERInHorn__l2tightOR2016v9__RDF__JESdo_suffix', 
-                'AsLnN': '0',
+ #               'AsLnN': '0',
 #                'cuts' : fitcuts
 }
 
@@ -442,7 +442,7 @@ nuisances['JER'] = {
     'samples': dict((skey, ['1', '1']) for skey in mc),
     'folderUp': treeBaseDir+'Summer20UL16_106x_nAODv9_noHIPM_Full2016v9/MCl1loose2016v9__MCCorr2016v9NoJERInHorn__l2tightOR2016v9__JERup_suffix',
     'folderDown': treeBaseDir+'Summer20UL16_106x_nAODv9_noHIPM_Full2016v9/MCl1loose2016v9__MCCorr2016v9NoJERInHorn__l2tightOR2016v9__JERdo_suffix',
-    'AsLnN': '1',
+ #   'AsLnN': '1',
 }
 ##### MET energy scale
 
@@ -455,7 +455,7 @@ nuisances['met']  = {
                 'samples'  : dict((skey, ['1', '1']) for skey in mc),
                 'folderUp'   : treeBaseDir+'Summer20UL16_106x_nAODv9_noHIPM_Full2016v9/MCl1loose2016v9__MCCorr2016v9NoJERInHorn__l2tightOR2016v9__METup_suffix', 
                 'folderDown' : treeBaseDir+'Summer20UL16_106x_nAODv9_noHIPM_Full2016v9/MCl1loose2016v9__MCCorr2016v9NoJERInHorn__l2tightOR2016v9__METdo_suffix', 
-                'AsLnN' : '1',
+ #               'AsLnN' : '1',
  #               'cuts' : fitcuts
 }
 
