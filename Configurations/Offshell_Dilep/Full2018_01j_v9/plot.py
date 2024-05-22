@@ -59,7 +59,7 @@ groupPlot['ggHToWWOffshell']  = {
                   'nameHR' : 'ggH Offshell',
                   'isSignal' : 1,
                   'color': 1, # kCyan
-                  'samples'  : ['ggH_sonly_off' ]
+                  'samples'  : ['ggH_sonly_off' ] ##TC
               }
 
 #plot = {}
