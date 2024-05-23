@@ -5,7 +5,7 @@ structure ={}
 # keys here must match keys in samples.py 
 for iproc in samples.keys():
     structure[iproc] = {
-        'isSignal' : 1 if '_off' in iproc else 0,#'Offshell' in iproc else 0,
+        'isSignal' : 1 if ('Offshell' in iproc or 'qqH_sonly_off' in iproc or 'qqH_bonly_off'  in iproc or 'qqH_sonly_on'  in iproc or 'qqH_bonly_on'  in iproc) else 0, ##TC
         'isData'   : 1 if iproc == 'DATA' else 0,
     }
 

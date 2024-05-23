@@ -6,7 +6,7 @@
 # If not defined, normal plots is used
 #
 groupPlot['VH+ttH+qqH']  = {
-                  'nameHR' : 'VH+ttH+qqH',
+                  'nameHR' : 'Higgs Other', ##
                   'isSignal' : 0,
                   'color': 632, # kRed 
                   'samples'  : ['Higgs' ]
@@ -16,7 +16,7 @@ groupPlot['ggHToWWOnshell']  = {
                   'nameHR' : 'ggH Onshell',
                   'isSignal' : 0,
                   'color': 603, # kBlue+3                                          
-                  'samples'  : ['ggHToWWOnshell' ]
+                  'samples'  : ['ggH_sonly_on' ] ##
               }
 
 groupPlot['Vg+VZ+VVV']  = {
@@ -41,11 +41,11 @@ groupPlot['Fake']  = {
                   'samples'  : ['Fake_me', 'Fake_em']
 }
 
-groupPlot['WW_minnlo']  = {
+groupPlot['WW']  = {
                   'nameHR' : 'WW',
                   'isSignal' : 0,
                   'color': 851, # kAzure -9 
-                  'samples'  : ['WW_minnlo', 'ggWW', 'WWewk']
+                  'samples'  : ['WW', 'ggH_bonly_on', 'ggH_bonly_off', 'qqH_bonly_off', 'qqH_bonly_on']#'ggWW', 'WWewk'] ##
               }
 
 groupPlot['top']  = {
@@ -59,7 +59,7 @@ groupPlot['ggHToWWOffshell']  = {
                   'nameHR' : 'ggH Offshell',
                   'isSignal' : 1,
                   'color': 1, # kCyan
-                  'samples'  : ['ggHToWWOffshell' ]
+                  'samples'  : ['ggH_sonly_off' ]
               }
 
 #plot = {}
@@ -99,20 +99,39 @@ plot['top'] = {
                   'scale'    : 1.0,
                   }
 
-plot['WW_minnlo']  = {
+##
+plot['WW']  = {
                   'color': 851, # kAzure -9 
                   'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
                   }
 
-plot['ggWW']  = {
+##TC 2024
+plot['ggH_bonly_on']  = {
                   'color': 850, # kAzure -10
                   'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.0
                   }
 
+##TC 2024
+plot['ggH_bonly_off']  = {
+                  'color': 849, # kAzure -10
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0
+                  }
+
+##
+# plot['ggWW']  = {
+#                   'color': 850, # kAzure -10
+#                   'isSignal' : 0,
+#                   'isData'   : 0,
+#                   'scale'    : 1.0
+#                   }
+
+##
 # plot['WWewk']  = {
 #                   'color': 851, # kAzure -9 
 #                   'isSignal' : 0,
@@ -158,21 +177,63 @@ plot['Higgs'] = {
                   'scale'    : 1    #
                   }
 
-
-plot['ggHToWWOnshell']  = {
-                  'color': 603, # kRed  
+plot['ggH_sonly_on']  = { ##TC
+                  'color': 404, # kRed  
                   'isSignal' : 0,
                   'isData'   : 0,
                   'scale'    : 1.0
                   }
 
 
-plot['ggHToWWOffshell']  = {
-                  'color': 432, # kRed  
-                  'isSignal' : 1,
+plot['ggH_sonly_off']  = { ##TC
+                  'color': 1, # kRed  
+                  'isSignal' : 2,
                   'isData'   : 0,
                   'scale'    : 1.0
                   }
+##TC 2024
+plot['qqH_bonly_on']  = {
+                  'color': 409,  #kRed  
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0
+                  }
+##TC 2024
+plot['qqH_sonly_off']  = {
+                  'color': 632,  #kRed  
+                  'isSignal' : 2,
+                  'isData'   : 0,
+                  'scale'    : 1.0
+                  }
+##TC 2024
+plot['qqH_bonly_off']  = {
+                  'color': 851,  #kRed  
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0
+                  }
+##TC 2024
+plot['qqH_sonly_on']  = {
+                  'color': 420,  #kRed  
+                  'isSignal' : 0,
+                  'isData'   : 0,
+                  'scale'    : 1.0
+                  }
+
+# plot['ggHToWWOnshell']  = {
+#                   'color': 603, # kRed  
+#                   'isSignal' : 0,
+#                   'isData'   : 0,
+#                   'scale'    : 1.0
+#                   }
+
+
+# plot['ggHToWWOffshell']  = {
+#                   'color': 432, # kRed  
+#                   'isSignal' : 1,
+#                   'isData'   : 0,
+#                   'scale'    : 1.0
+#                   }
 
 # data
 
@@ -181,7 +242,7 @@ plot['DATA']  = {
                   'color': 1 ,  
                   'isSignal' : 0,
                   'isData'   : 1 ,
-                  'isBlind'  : 0 #1
+                  'isBlind'  : 1 ##blinded
               }
 
 
