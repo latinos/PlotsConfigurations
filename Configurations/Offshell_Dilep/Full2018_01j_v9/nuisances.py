@@ -642,8 +642,8 @@ nuisances['QCDscale_ggH']  = {
                 #'kind'  : 'weight_envelope', ##TC
                 'type'  : 'lnN', ##TC
                 'samples'  : {
-                   'ggH_sonly_on' : 1.15, ##TC - variations = shape; we don't want anymore
-                   'ggH_sonly_off' : 1.15, ##TC
+                   'ggH_sonly_on' : '1.15', ##TC - variations = shape; we don't want anymore
+                   'ggH_sonly_off' : '1.15', ##TC
                    }
 }
 ##TC 2024
@@ -666,8 +666,8 @@ nuisances['QCDscale_ggVV'] = {
     },
 }
 
-values_VBF_scale = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ggH','125.09','scale','sm') ##TC
-values_VBF_pdf = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ggH','125.09','pdf','sm') ##TC
+values_VBF_scale = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','vbfH','125.09','scale','sm') ##TC
+values_VBF_pdf = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','vbfH','125.09','pdf','sm') ##TC
 
 values_ggH_scale = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ggH','125.09','scale','sm') ##TC 'vbfH'
 values_ggH_pdf = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ggH','125.09','pdf','sm') ##TC

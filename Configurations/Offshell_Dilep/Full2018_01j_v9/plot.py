@@ -59,7 +59,7 @@ groupPlot['ggHToWWOffshell']  = {
                   'nameHR' : 'ggH Offshell',
                   'isSignal' : 1,
                   'color': 1, # kCyan
-                  'samples'  : ['ggH_sonly_off' ] ##TC
+                  'samples'  : ['ggH_sonly_off' ]
               }
 
 #plot = {}
@@ -177,16 +177,16 @@ plot['Higgs'] = {
 
 
 plot['ggH_sonly_on']  = { ##TC
-                  'color': 603, # kRed  
-                  'isSignal' : 0,
+                  'color': 404, ##  
+                  'isSignal' : 0, ##
                   'isData'   : 0,
                   'scale'    : 1.0
                   }
 
 
 plot['ggH_sonly_off']  = { ##TC
-                  'color': 432, # kRed  
-                  'isSignal' : 1,
+                  'color': 1, ##  
+                  'isSignal' : 2, ##
                   'isData'   : 0,
                   'scale'    : 1.0
                   }
@@ -200,7 +200,7 @@ plot['qqH_bonly_on']  = {
 ##TC 2024
 plot['qqH_sonly_off']  = {
                   'color': 632,  #kRed  
-                  'isSignal' : 2,
+                  'isSignal' : 2, ##
                   'isData'   : 0,
                   'scale'    : 1.0
                   }
@@ -214,7 +214,7 @@ plot['qqH_bonly_off']  = {
 ##TC 2024
 plot['qqH_sonly_on']  = {
                   'color': 420,  #kRed  
-                  'isSignal' : 2,
+                  'isSignal' : 0, ##
                   'isData'   : 0,
                   'scale'    : 1.0
                   }
@@ -226,7 +226,7 @@ plot['DATA']  = {
                   'color': 1 ,  
                   'isSignal' : 0,
                   'isData'   : 1 ,
-                  'isBlind'  : 0 #1
+                  'isBlind'  : 1, ##0 unblind
               }
 
 
