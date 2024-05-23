@@ -44,13 +44,13 @@ HiggsXS = HiggsXSection()
 nuisances['lumi_Uncorrelated'] = {
     'name': 'lumi_13TeV_2016',
     'type': 'lnN',
-    'samples': dict((skey, '1.010') for skey in mc if skey not in ['top','WW', 'WW_minnlo'])#for skey in mc)
+    'samples': dict((skey, '1.010') for skey in mc if skey not in ['top','WW']) ##
 }
 
 nuisances['lumi_Correlated'] = {
     'name': 'lumi_13TeV_correlated',
     'type': 'lnN',
-    'samples': dict((skey, '1.006') for skey in mc if skey not in ['top','WW', 'WW_minnlo'])#for skey in mc)
+    'samples': dict((skey, '1.006') for skey in mc if skey not in ['top','WW']) ##
 }
 
 
@@ -146,19 +146,31 @@ nuisances['eff_ttHMVA_e'] = {
     'samples' : dict((skey, ['ttHMVASFUL_eleUp', 'ttHMVAULSF_eleDown']) for skey in mc)
 }
 
+##TC 2024 - added all the way to comment section
+
 nuisances['electronpt'] = {
     'name'       : 'CMS_scale_e_2016',
     'kind'       : 'suffix',
     'type'       : 'shape',
     'mapUp'      : 'ElepTup',
     'mapDown'    : 'ElepTdo',
-    'samples'    : dict((skey, ['1', '1']) for skey in mc if not skey in ["ggHToWWOffshell", "ggHToWWOnshell"]),
+    'samples'    : dict((skey, ['1', '1']) for skey in mc if not skey in ["qqH_sand_off", "qqH_bonly_off", "qqH_sonly_off", "qqH_sand_on", "qqH_sonly_on", "qqH_bonly_on"]),
     'folderUp'   : makeMCDirectory('ElepTup_suffix'),
     'folderDown' : makeMCDirectory('ElepTdo_suffix'),
 #    'AsLnN'      : '1'
 }
 
-
+nuisances['electronpt_sig'] = {
+    'name'       : 'CMS_scale_e_2016',
+    'kind'       : 'suffix',
+    'type'       : 'shape',
+    'mapUp'      : 'ElepTup',
+    'mapDown'    : 'ElepTdo',
+    'samples'    : dict((skey, ['1', '1']) for skey in mc if skey in ["qqH_sand_off", "qqH_bonly_off", "qqH_sonly_off", "qqH_sand_on", "qqH_sonly_on", "qqH_bonly_on"]),
+    'folderUp'   : makeSignalDirectory('ElepTup_suffix'),
+    'folderDown' : makeSignalDirectory('ElepTdo_suffix'),
+#    'AsLnN'      : '1'
+}
 
 ##### Muon Efficiency and energy scale
 
@@ -185,9 +197,20 @@ nuisances['muonpt'] = {
     'type'       : 'shape',
     'mapUp'      : 'MupTup',
     'mapDown'    : 'MupTdo',
-    'samples'    : dict((skey, ['1', '1']) for skey in mc if not skey in ["ggHToWWOffshell", "ggHToWWOnshell"]),
+    'samples'    : dict((skey, ['1', '1']) for skey in mc if not skey in ["qqH_sand_off", "qqH_bonly_off", "qqH_sonly_off", "qqH_sand_on", "qqH_sonly_on", "qqH_bonly_on"]),
     'folderUp'   : makeMCDirectory('MupTup_suffix'),
     'folderDown' : makeMCDirectory('MupTdo_suffix'),
+#    'AsLnN'      : '1'
+}
+nuisances['muonpt_sig'] = {
+    'name'       : 'CMS_scale_m_2016',
+    'kind'       : 'suffix',
+    'type'       : 'shape',
+    'mapUp'      : 'MupTup',
+    'mapDown'    : 'MupTdo',
+    'samples'    : dict((skey, ['1', '1']) for skey in mc if skey in ["qqH_sand_off", "qqH_bonly_off", "qqH_sonly_off", "qqH_sand_on", "qqH_sonly_on", "qqH_bonly_on"]),
+    'folderUp'   : makeSignalDirectory('MupTup_suffix'),
+    'folderDown' : makeSignalDirectory('MupTdo_suffix'),
 #    'AsLnN'      : '1'
 }
 
@@ -203,10 +226,22 @@ for js in jes_systs:
       'type'      : 'shape',
       'mapUp'     : js + 'up',
       'mapDown'   : js + 'do',
-      'samples'   : dict((skey, ['1', '1']) for skey in mc if not skey in ["ggHToWWOffshell", "ggHToWWOnshell"]),
+      'samples'   : dict((skey, ['1', '1']) for skey in mc if not skey in ["qqH_sand_off", "qqH_bonly_off", "qqH_sonly_off", "qqH_sand_on", "qqH_sonly_on", "qqH_bonly_on"]),
       'folderUp'  : makeMCDirectory('RDF__JESup_suffix'),
       'folderDown': makeMCDirectory('RDF__JESdo_suffix'),
  #     'AsLnN'     : '1'
+  }
+for js in jes_systs:
+  nuisances[js + "_sig"] = {
+      'name'      : 'CMS_scale_' + js,
+      'kind'      : 'suffix',
+      'type'      : 'shape',
+      'mapUp'     : js + 'up',
+      'mapDown'   : js + 'do',
+      'samples'   : dict((skey, ['1', '1']) for skey in mc if skey in ["qqH_sand_off", "qqH_bonly_off", "qqH_sonly_off", "qqH_sand_on", "qqH_sonly_on", "qqH_bonly_on"]),
+      'folderUp'  : makeSignalDirectory('RDF__JESup_suffix'),
+      'folderDown': makeSignalDirectory('RDF__JESdo_suffix'),
+   #   'AsLnN'     : '1'
   }
 
 ##### Jet energy resolution
@@ -216,25 +251,143 @@ nuisances['JER'] = {
     'type'      : 'shape',
     'mapUp'     : 'JERup',
     'mapDown'   : 'JERdo',
-    'samples'   : dict((skey, ['1', '1']) for skey in mc if not skey in ["ggHToWWOffshell", "ggHToWWOnshell"]),
+    'samples'   : dict((skey, ['1', '1']) for skey in mc if not skey in ["qqH_sand_off", "qqH_bonly_off", "qqH_sonly_off", "qqH_sand_on", "qqH_sonly_on", "qqH_bonly_on"]),
     'folderUp'  : makeMCDirectory('JERup_suffix'),
     'folderDown': makeMCDirectory('JERdo_suffix'),
 #    'AsLnN'     : '1'
 }
 
+nuisances['JER_sig'] = {
+    'name'      : 'CMS_res_j_2016',
+    'kind'      : 'suffix',
+    'type'      : 'shape',
+    'mapUp'     : 'JERup',
+    'mapDown'   : 'JERdo',
+    'samples'   : dict((skey, ['1', '1']) for skey in mc if skey in ["qqH_sand_off", "qqH_bonly_off", "qqH_sonly_off", "qqH_sand_on", "qqH_sonly_on", "qqH_bonly_on"]),
+    'folderUp'  : makeSignalDirectory('JERup_suffix'),
+    'folderDown': makeSignalDirectory('JERdo_suffix'),
+ #   'AsLnN'     : '1'
+}
+
 ##### MET unclustered energy
 
+##met runs for all samples in MC as long as key is not in list...
 nuisances['met'] = {
     'name'      : 'CMS_scale_met_2016',
     'kind'      : 'suffix',
     'type'      : 'shape',
     'mapUp'     : 'METup',
     'mapDown'   : 'METdo',
-    'samples'   : dict((skey, ['1', '1']) for skey in mc if not skey in ["ggHToWWOffshell", "ggHToWWOnshell"]),
+    'samples'    : dict((skey, ['1', '1']) for skey in mc if not skey in ["qqH_sand_off", "qqH_bonly_off", "qqH_sonly_off", "qqH_sand_on", "qqH_sonly_on", "qqH_bonly_on"]), ##["ggHToWWOffshell", "ggHToWWOnshell"]), ##TC2024
     'folderUp'  : makeMCDirectory('METup_suffix'),
     'folderDown': makeMCDirectory('METdo_suffix'),
   #  'AsLnN'     : '1'
 }
+
+##TC2024 will run if key is in the list
+nuisances['met_sig'] = {
+    'name'      : 'CMS_scale_met_2016', ##same name as above - same nuisance - just get right directory
+    'kind'      : 'suffix',
+    'type'      : 'shape',
+    'mapUp'     : 'METup',
+    'mapDown'   : 'METdo',
+    'samples'   : dict((skey, ['1', '1']) for skey in mc if skey in ["qqH_sand_off", "qqH_bonly_off", "qqH_sonly_off", "qqH_sand_on", "qqH_sonly_on", "qqH_bonly_on"]),
+    'folderUp'  : makeSignalDirectory('METup_suffix'),
+    'folderDown': makeSignalDirectory('METdo_suffix'),
+  #  'AsLnN'     : '1'
+}
+##TC2024 - bc VBF samples not in same dir
+
+##
+# nuisances['electronpt'] = {
+#     'name'       : 'CMS_scale_e_2016',
+#     'kind'       : 'suffix',
+#     'type'       : 'shape',
+#     'mapUp'      : 'ElepTup',
+#     'mapDown'    : 'ElepTdo',
+#     'samples'    : dict((skey, ['1', '1']) for skey in mc if not skey in ["ggHToWWOffshell", "ggHToWWOnshell"]),
+#     'folderUp'   : makeMCDirectory('ElepTup_suffix'),
+#     'folderDown' : makeMCDirectory('ElepTdo_suffix'),
+# #    'AsLnN'      : '1'
+# }
+
+
+
+# ##### Muon Efficiency and energy scale
+
+# id_syst_mu = ['SFweightMuUp', 'SFweightMuDown']
+
+# nuisances['eff_m'] = {
+#     'name'   : 'CMS_eff_m_2016',
+#     'kind'   : 'weight',
+#     'type'   : 'shape',
+#     'samples': dict((skey, id_syst_mu) for skey in mc),
+# }
+
+# nuisances['eff_ttHMVA_m'] = {
+#     'name'   : 'CMS_eff_ttHMVA_m_2016',
+#     'kind'   : 'weight',
+#     'type'   : 'shape',
+#     'samples': dict((skey, ['ttHMVAULSF_muUp', 'ttHMVAULSF_muDown']) for skey in mc)
+# }
+
+
+# nuisances['muonpt'] = {
+#     'name'       : 'CMS_scale_m_2016',
+#     'kind'       : 'suffix',
+#     'type'       : 'shape',
+#     'mapUp'      : 'MupTup',
+#     'mapDown'    : 'MupTdo',
+#     'samples'    : dict((skey, ['1', '1']) for skey in mc if not skey in ["ggHToWWOffshell", "ggHToWWOnshell"]),
+#     'folderUp'   : makeMCDirectory('MupTup_suffix'),
+#     'folderDown' : makeMCDirectory('MupTdo_suffix'),
+# #    'AsLnN'      : '1'
+# }
+
+
+# ##### Jet energy scale
+
+# jes_systs = ['JESAbsolute','JESAbsolute_2016','JESBBEC1','JESBBEC1_2016','JESEC2','JESEC2_2016','JESFlavorQCD','JESHF','JESHF_2016','JESRelativeBal' ,'JESRelativeSample_2016']
+
+# for js in jes_systs:
+#   nuisances[js] = {
+#       'name'      : 'CMS_scale_' + js,
+#       'kind'      : 'suffix',
+#       'type'      : 'shape',
+#       'mapUp'     : js + 'up',
+#       'mapDown'   : js + 'do',
+#       'samples'   : dict((skey, ['1', '1']) for skey in mc if not skey in ["ggHToWWOffshell", "ggHToWWOnshell"]),
+#       'folderUp'  : makeMCDirectory('RDF__JESup_suffix'),
+#       'folderDown': makeMCDirectory('RDF__JESdo_suffix'),
+#  #     'AsLnN'     : '1'
+#   }
+
+# ##### Jet energy resolution
+# nuisances['JER'] = {
+#     'name'      : 'CMS_res_j_2016',
+#     'kind'      : 'suffix',
+#     'type'      : 'shape',
+#     'mapUp'     : 'JERup',
+#     'mapDown'   : 'JERdo',
+#     'samples'   : dict((skey, ['1', '1']) for skey in mc if not skey in ["ggHToWWOffshell", "ggHToWWOnshell"]),
+#     'folderUp'  : makeMCDirectory('JERup_suffix'),
+#     'folderDown': makeMCDirectory('JERdo_suffix'),
+# #    'AsLnN'     : '1'
+# }
+
+# ##### MET unclustered energy
+
+# nuisances['met'] = {
+#     'name'      : 'CMS_scale_met_2016',
+#     'kind'      : 'suffix',
+#     'type'      : 'shape',
+#     'mapUp'     : 'METup',
+#     'mapDown'   : 'METdo',
+#     'samples'   : dict((skey, ['1', '1']) for skey in mc if not skey in ["ggHToWWOffshell", "ggHToWWOnshell"]),
+#     'folderUp'  : makeMCDirectory('METup_suffix'),
+#     'folderDown': makeMCDirectory('METdo_suffix'),
+#   #  'AsLnN'     : '1'
+# }
 
 
 # # nuisances['PS_whss']  = {
@@ -259,21 +412,25 @@ nuisances['PU'] = {
         # 'qqH_hww' : ['1.00374694528*(puWeightUp/puWeight)' , '0.995878596852*(puWeightDown/puWeight)'],
         'DY'      : ['0.998687*(puWeightUp/puWeight)', '1.001976*(puWeightDown/puWeight)'],
         'top'     : ['1.002595*(puWeightUp/puWeight)', '0.997470*(puWeightDown/puWeight)'],
-        'WW_minnlo'      : ['1.004449*(puWeightUp/puWeight)', '0.995660*(puWeightDown/puWeight)'],
+        'WW'      : ['1.004449*(puWeightUp/puWeight)', '0.995660*(puWeightDown/puWeight)'], ##
         'ggWW'    : ['1.004870*(puWeightUp/puWeight)', '0.995315*(puWeightDown/puWeight)'],
         #'WWewk'   : ['1.002122*(puWeightUp/puWeight)', '0.998087*(puWeightDown/puWeight)'],
         'Vg'      : ['1.023232*(puWeightUp/puWeight)', '0.981481*(puWeightDown/puWeight)'],
         'WZ'      : ['0.999330*(puWeightUp/puWeight)', '1.000992*(puWeightDown/puWeight)'],
         'ZZ'      : ['0.999469*(puWeightUp/puWeight)', '1.000751*(puWeightDown/puWeight)'],
         'VVV'     : ['1.003485*(puWeightUp/puWeight)', '0.997561*(puWeightDown/puWeight)'],
-        'qqH_sonly_on'        : ['1.0*(puWeightUp/puWeight)', '1.0*(puWeightDown/puWeight)'],
+        'qqH_sonly_on'        : ['1.0*(puWeightUp/puWeight)', '1.0*(puWeightDown/puWeight)'], ##TC
         'qqH_sonly_off'        : ['1.0*(puWeightUp/puWeight)', '1.0*(puWeightDown/puWeight)'],
         'qqH_bonly_on'        : ['1.0*(puWeightUp/puWeight)', '1.0*(puWeightDown/puWeight)'],
         'qqH_bonly_off'        : ['1.0*(puWeightUp/puWeight)', '1.0*(puWeightDown/puWeight)'],
         'qqH_sand_on'        : ['1.0*(puWeightUp/puWeight)', '1.0*(puWeightDown/puWeight)'],
-        'ggF_sand_off'        : ['1.0*(puWeightUp/puWeight)', '1.0*(puWeightDown/puWeight)'],
-        'ggF_sonly_off'        : ['1.0*(puWeightUp/puWeight)', '1.0*(puWeightDown/puWeight)'],
-        'ggF_sonly_on'        : ['1.0*(puWeightUp/puWeight)', '1.0*(puWeightDown/puWeight)'],
+        'qqH_sand_off'        : ['1.0*(puWeightUp/puWeight)', '1.0*(puWeightDown/puWeight)'], ##TC
+        'ggH_bonly_on'    : ['1.004870*(puWeightUp/puWeight)', '0.995315*(puWeightDown/puWeight)'], ##TC
+        'ggH_bonly_off'    : ['1.004870*(puWeightUp/puWeight)', '0.995315*(puWeightDown/puWeight)'],
+        'ggH_sonly_on'    : ['1.00*(puWeightUp/puWeight)', '1.00*(puWeightDown/puWeight)'],
+        'ggH_sonly_off'    : ['1.00*(puWeightUp/puWeight)', '1.00*(puWeightDown/puWeight)'],
+        'ggH_sand_on'    : ['1.00*(puWeightUp/puWeight)', '1.00*(puWeightDown/puWeight)'],
+        'ggH_sand_off'    : ['1.00*(puWeightUp/puWeight)', '1.00*(puWeightDown/puWeight)'], ##TC
         #'ggH_hww' : ['1.003677*(puWeightUp/puWeight)', '0.995996*(puWeightDown/puWeight)'],
         #'qqH_hww' : ['1.003747*(puWeightUp/puWeight)', '0.995878*(puWeightDown/puWeight)'],
     },
@@ -353,7 +510,7 @@ nuisances['pdf_WW']  = {
     'type'  : 'shape',
     'AsLnN': '0',
     'samples'  : {
-        'WW_minnlo'   : pdf_variations,
+        'WW'   : pdf_variations, ##
     },
 }
 
@@ -362,15 +519,16 @@ for i in range(1,101):
   # LHEPdfWeight are PDF4LHC variations, while nominal is NNPDF.
   # LHEPdfWeight[i] reweights from NNPDF nominal to PDF4LHC member i
   # LHEPdfWeight[0] in particular reweights from NNPDF nominal to PDF4LHC nominal
-  pdf_variations = ["LHEPdfWeight[%d]" %i, "2. - LHEPdfWeight[%d]" %i ]
-
+  ##pdf_variations = ["LHEPdfWeight[%d]" %i, "2. - LHEPdfWeight[%d]" %i ]
+##TC2024 added new definition:
+  pdf_variations = ["LHEPdfWeight[%d]/LHEPdfWeight[0]" %i, "1"]
   #nuisances['pdf_WW_eigen'+str(i)]  = {
   #  'name'  : 'CMS_hww_pdf_WW_eigen'+str(i),
   #  'skipCMS' : 1,
   #  'kind'  : 'weight',
   #  'type'  : 'shape',
   #  'samples'  : {
-  #    'WW_minnlo'   : pdf_variations,
+  #    'WW'   : pdf_variations,
   #  },
   #}
   nuisances['pdf_top_eigen'+str(i)] = {
@@ -382,16 +540,17 @@ for i in range(1,101):
       'top'   : pdf_variations,
     },
   }
-  nuisances['pdf_ggH_eigen'+str(i)]  = {
-    'name'  : 'CMS_hww_pdf_ggH_eigen'+str(i),
-    'skipCMS' : 1,
-    'kind'  : 'weight',
-    'type'  : 'shape',
-    'samples'  : {
-      'ggF_sonly_on'   : pdf_variations,
-      'ggF_sonly_off'   : pdf_variations,
-    },
-  }
+  # nuisances['pdf_ggH_eigen'+str(i)]  = {
+  #   'name'  : 'CMS_hww_pdf_ggH_eigen'+str(i),
+  #   'skipCMS' : 1,
+  #   'kind'  : 'weight',
+  #   'type'  : 'shape',
+  #   'samples'  : {
+  #     'ggH_sonly_on'   : pdf_variations,
+  #     'ggH_sonly_off'   : pdf_variations, ##exist quest
+  #   },
+  #    'symmetrize' : True,
+  # }
   nuisances['pdf_VBF_sonly_eigen'+str(i)]  = {
     'name'  : 'CMS_hww_pdf_VBF_sonly_eigen'+str(i),
     'skipCMS' : 1,
@@ -458,7 +617,7 @@ nuisances['QCDscale_WW']  = {
     'type'  : 'shape',
     'AsLnN': '0',
     'samples'  : {
-        'WW_minnlo' : ['Alt$(LHEScaleWeight[0],1)','Alt$(LHEScaleWeight[8],1)'],
+        'WW' : ['Alt$(LHEScaleWeight[0],1)','Alt$(LHEScaleWeight[8],1)'], ##
     }
 }
 
@@ -484,28 +643,39 @@ nuisances['QCDscale_VBF']  = {
 
 nuisances['QCDscale_ggH']  = {
                'name'  : 'QCDscale_VBF',
-                'kind'  : 'weight_envelope',
-                'type'  : 'shape',
+                #'kind'  : 'weight_envelope',
+                'type'  : 'lnN',
                 'samples'  : {
-                   'ggF_sonly_on' : variations,
-                   'ggF_sonly_off' : variations,
+                   'ggH_sonly_on' : '1.15',
+                   'ggH_sonly_off' : '1.15', ##
                    }
 }
+
+##TC 2024
+nuisances['QCDscale_ggH_SBI'] = {
+    'name': 'QCDscale_ggH_SBI',
+    'type': 'lnN',
+    'samples': {
+        'ggH_sand_on': '1.15',
+        'ggH_sand_off': '1.15',
+    },
+}
+##TC2024
 
 nuisances['QCDscale_ggVV'] = {
     'name': 'QCDscale_ggVV',
     'type': 'lnN',
     'samples': {
-        'ggWW': '1.15',
-        'ggF_bonly_off': '1.15',
+        'ggH_bonly_on': '1.15', ##TC
+        'ggH_bonly_off': '1.15', ##TC
     },
 }
 
 values_VBF_scale = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','vbfH','125.09','scale','sm')
 values_VBF_pdf = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','vbfH','125.09','pdf','sm')
 
-values_ggH_scale = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','vbfH','125.09','scale','sm')
-values_ggH_pdf = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','vbfH','125.09','pdf','sm')
+values_ggH_scale = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ggH','125.09','scale','sm')
+values_ggH_pdf = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ggH','125.09','pdf','sm') ##
 
 nuisances['QCDscale_VBF_ACCEPT'] = {
     'name'    : 'QCDscale_VBF_accept',
@@ -528,8 +698,8 @@ nuisances['pdf_VBF_ACCEPT'] = {
 nuisances['QCDscale_ggH_ACCEPT'] = {
     'name'    : 'QCDscale_ggH_accept',
     'samples' : {
-        'ggF_sonly_on' : values_ggH_scale,
-        'ggF_sonly_off' : values_ggH_scale,
+        'ggH_sonly_on' : values_ggH_scale,
+        'ggH_sonly_off' : values_ggH_scale, ##
     },
     'type' : 'lnN'
 }
@@ -538,8 +708,8 @@ nuisances['pdf_ggH_ACCEPT'] = {
     'name'    : 'pdf_ggH_accept',
     'type'    : 'lnN',
     'samples' : {
-        'ggF_sonly_on' : values_ggH_pdf,
-        'ggF_sonly_off' : values_ggH_pdf,
+        'ggH_sonly_on' : values_ggH_pdf,
+        'ggH_sonly_off' : values_ggH_pdf, ##
     },
 }
 
@@ -844,7 +1014,7 @@ nuisances['Topnorm_0j']  = {
 nuisances['WWnorm_0j']  = {
                'name'  : 'WWnorm_0j',
                'samples'  : {
-                   'WW_minnlo' : '1.00',
+                   'WW' : '1.00', ##
                    },
                'type'  : 'rateParam',
                'cuts'  : [
@@ -872,7 +1042,7 @@ nuisances['Topnorm_1j']  = {
 nuisances['WWnorm_1j']  = {
                'name'  : 'WWnorm_1j',
                'samples'  : {
-                   'WW_minnlo' : '1.00',
+                   'WW' : '1.00', ##
                    },
                'type'  : 'rateParam',
                'cuts'  : [
@@ -883,12 +1053,21 @@ nuisances['WWnorm_1j']  = {
                    ]
               }
 
+##TC 2024 --add
+nuisances['MELA_Hyp_qqWW'] = {
+    'name': 'MELA_Hyp_qqWW',
+    'type': 'lnN',
+    'samples': {
+        'qqH_bonly_off': '1.1',
+    },
+}
+
 ## Use the following if you want to apply the automatic combine MC stat nuisances.
 nuisances['stat'] = {
 
     'type'          : 'auto',
     'maxPoiss'      : '10',
-    'includeSignal' : '1', ## <-- no longer want to include qqH_sonly or qqH_bonly
+    'includeSignal' : '0', ##
     'samples' : {}
 }
     #  nuisance ['maxPoiss'] =  Number of threshold events for Poisson modelling
