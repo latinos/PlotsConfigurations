@@ -357,9 +357,11 @@ aliases['SFweightMuDown'] = {
     'samples': mc,
     'nominalOnly': 1
 }
-# aliases['LHE_mWW'] = {
-#     'linesToAdd':['.L %s/src/PlotsConfigurations/Configurations/Offshell_Dilep/Tools/computeLHEmWW.cc+' % os.getenv('CMSSW_BASE')],
-#     'class': 'computeLHEmWW',
-#     'samples': ['ggF_bonly_off', 'ggWW', 'ggF_sand_off', 'ggF_sonly_on', 'ggF_sonly_off']
-# }
-#
+
+##TC 2024
+aliases['LHE_mWW'] = {
+    'linesToAdd' : ['.L %s/src/PlotsConfigurations/Configurations/Offshell_Dilep/Tools/computeLHEmWW.cc' % os.getenv('CMSSW_BASE')],
+    'class' : 'computeLHEmWW',
+    'samples' : ['ggH_bonly_off', 'ggH_bonly_on', 'ggH_sand_off', 'ggH_sand_on', 'ggH_sonly_off', 'ggH_sonly_on'],
+    'args': ()
+}
