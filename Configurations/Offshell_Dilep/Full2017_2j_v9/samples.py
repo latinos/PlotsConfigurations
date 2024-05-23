@@ -101,7 +101,7 @@ DataTrig = {
 # SFweight does not include btag weights
 mcCommonWeightNoMatch = 'XSWeight*SFweight*METFilter_MC'
 mcCommonWeight = 'XSWeight*SFweight*PromptGenLepMatch2l*METFilter_MC'
-mcCommonWeight_custom = 'XSWeight'
+mcCommonWeight_custom = 'XSWeight*SFweight*PromptGenLepMatch2l*METFilter_MC'
 
 
 ###########################################
@@ -444,7 +444,7 @@ files = nanoGetSampleFiles(mcDirectory, 'GluGluToWWToENEN') + \
 samples['ggH_bonly_off'] = {
     'name': files,
     'weight': mcCommonWeight+'*1.53/1.4  * (LHE_mWW > 160)',
-    'FilesPerJob': 3,
+    'FilesPerJob': 1,
     'suppressNegative':['all'],
     'suppressNegativeNuisances' :['all']
 }
@@ -452,7 +452,7 @@ samples['ggH_bonly_off'] = {
 samples['ggH_bonly_on'] = {
     'name': files,
     'weight': mcCommonWeight+'*1.53/1.4  * (LHE_mWW <= 160)',
-    'FilesPerJob': 3,
+    'FilesPerJob': 1,
     'suppressNegative':['all'],
     'suppressNegativeNuisances' :['all']
 }

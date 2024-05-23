@@ -18,7 +18,6 @@ supercut = ' && '.join(_tmp)
 def addcut(name, exprs):
     cuts[name] = ' && '.join(exprs)
 
-"""
 _tmp = [
     'multiJet',
     'bVeto',
@@ -37,7 +36,6 @@ _tmp = [
        ]
 addcut('SR_ggH_OFF_2j', _tmp)
 
-"""
 
 _tmp = [
     'multiJet',

@@ -19,7 +19,6 @@ def addcut(name, exprs):
     cuts[name] = ' && '.join(exprs)
 
 
-"""
 _tmp = [
     'multiJet',
     'bVeto',
@@ -37,7 +36,6 @@ _tmp = [
     'dnnScore_ggH_OFF > .5',
        ]
 addcut('SR_ggH_OFF_2j', _tmp)
-"""
 
 _tmp = [
     'multiJet',
