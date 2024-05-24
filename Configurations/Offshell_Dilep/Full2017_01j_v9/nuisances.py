@@ -161,18 +161,18 @@ nuisances['eff_ttHMVA_e'] = {
     'samples' : dict((skey, ['ttHMVASFUL_eleUp', 'ttHMVAULSF_eleDown']) for skey in mc)
 }
 
-##TC 2024 - just for 2017 protect the ggWW sample because it is void
-# nuisances['electronpt'] = {
-#     'name'       : 'CMS_scale_e_2017',
-#     'kind'       : 'suffix',
-#     'type'       : 'shape',
-#     'mapUp'      : 'ElepTup',
-#     'mapDown'    : 'ElepTdo',
-#     'samples'    : dict((skey, ['1', '1']) for skey in mc if not skey in ["qqH_sand_off", "qqH_bonly_off", "qqH_sonly_off", "qqH_sand_on", "qqH_sonly_on", "qqH_bonly_on"]),
-#     'folderUp'   : makeMCDirectory('ElepTup_suffix'),
-#     'folderDown' : makeMCDirectory('ElepTdo_suffix'),
-# #    'AsLnN'      : '1'
-# }
+##TC 2024 - just for 2017 protect the ggWW sample because it is void -- comment out makeMCDirectory functions for ggH_bonly == electronpT, muonpT, JER, JES, MET
+nuisances['electronpt'] = {
+    'name'       : 'CMS_scale_e_2017',
+    'kind'       : 'suffix',
+    'type'       : 'shape',
+    'mapUp'      : 'ElepTup',
+    'mapDown'    : 'ElepTdo',
+    'samples'    : dict((skey, ['1', '1']) for skey in mc if not skey in ["qqH_sand_off", "qqH_bonly_off", "qqH_sonly_off", "qqH_sand_on", "qqH_sonly_on", "qqH_bonly_on"]),
+    'folderUp'   : makeMCDirectory('ElepTup_suffix'),
+    'folderDown' : makeMCDirectory('ElepTdo_suffix'),
+#    'AsLnN'      : '1'
+}
 
 nuisances['electronpt_sig'] = {
     'name'       : 'CMS_scale_e_2017',
@@ -204,6 +204,7 @@ nuisances['eff_ttHMVA_m'] = {
     'samples': dict((skey, ['ttHMVAULSF_muUp', 'ttHMVAULSF_muDown']) for skey in mc)
 }
 
+##comment ggH_bonly
 
 nuisances['muonpt'] = {
     'name'       : 'CMS_scale_m_2017',
@@ -230,6 +231,8 @@ nuisances['muonpt_sig'] = {
 
 
 ##### Jet energy scale
+
+##comment ggH_bonly
 
 jes_systs = ['JESAbsolute','JESAbsolute_2017','JESBBEC1','JESBBEC1_2017','JESEC2','JESEC2_2017','JESFlavorQCD','JESHF','JESHF_2017','JESRelativeBal' ,'JESRelativeSample_2017']
 
@@ -282,85 +285,15 @@ nuisances['JER_sig'] = {
     'folderDown': makeSignalDirectory('JERdo_suffix'),
  #   'AsLnN'     : '1'
 }
+
+
+
 ##TC 2024
 
-##TC - if some files are missing in second step, place name here to skip unnecessary DY combinations
-# nuisances['electronpt'] = {
-#     'name'       : 'CMS_scale_e_2017',
-#     'kind'       : 'suffix',
-#     'type'       : 'shape',
-#     'mapUp'      : 'ElepTup',
-#     'mapDown'    : 'ElepTdo',
-#     'samples'    : dict((skey, ['1', '1']) for skey in mc if not skey in ["ggWW","ggHToWWOffshell", "ggHToWWOnshell"]),
-#     'folderUp'   : makeMCDirectory('ElepTup_suffix'),
-#     'folderDown' : makeMCDirectory('ElepTdo_suffix'),
-# #    'AsLnN'      : '1'
-# }
-
-
-# ##### Muon Efficiency and energy scale
-
-# id_syst_mu = ['SFweightMuUp', 'SFweightMuDown']
-
-# nuisances['eff_m'] = {
-#     'name'   : 'CMS_eff_m_2017',
-#     'kind'   : 'weight',
-#     'type'   : 'shape',
-#     'samples': dict((skey, id_syst_mu) for skey in mc),
-# }
-
-# nuisances['eff_ttHMVA_m'] = {
-#     'name'   : 'CMS_eff_ttHMVA_m_2017',
-#     'kind'   : 'weight',
-#     'type'   : 'shape',
-#     'samples': dict((skey, ['ttHMVAULSF_muUp', 'ttHMVAULSF_muDown']) for skey in mc)
-# }
-
-
-# nuisances['muonpt'] = {
-#     'name'       : 'CMS_scale_m_2017',
-#     'kind'       : 'suffix',
-#     'type'       : 'shape',
-#     'mapUp'      : 'MupTup',
-#     'mapDown'    : 'MupTdo',
-#     'samples'    : dict((skey, ['1', '1']) for skey in mc if not skey in ["ggWW","ggHToWWOffshell", "ggHToWWOnshell"]),
-#     'folderUp'   : makeMCDirectory('MupTup_suffix'),
-#     'folderDown' : makeMCDirectory('MupTdo_suffix'),
-# #    'AsLnN'      : '1'
-# }
-
-
-# ##### Jet energy scale
-
-# jes_systs = ['JESAbsolute','JESAbsolute_2017','JESBBEC1','JESBBEC1_2017','JESEC2','JESEC2_2017','JESFlavorQCD','JESHF','JESHF_2017','JESRelativeBal' ,'JESRelativeSample_2017']
-
-# for js in jes_systs:
-#   nuisances[js] = {
-#       'name'      : 'CMS_scale_' + js,
-#       'kind'      : 'suffix',
-#       'type'      : 'shape',
-#       'mapUp'     : js + 'up',
-#       'mapDown'   : js + 'do',
-#       'samples'   : dict((skey, ['1', '1']) for skey in mc if not skey in ["ggHToWWOffshell", "ggHToWWOnshell"]),
-#       'folderUp'  : makeMCDirectory('RDF__JESup_suffix'),
-#       'folderDown': makeMCDirectory('RDF__JESdo_suffix'),
-#  #     'AsLnN'     : '1'
-#   }
-
-# ##### Jet energy resolution
-# nuisances['JER'] = {
-#     'name'      : 'CMS_res_j_2017',
-#     'kind'      : 'suffix',
-#     'type'      : 'shape',
-#     'mapUp'     : 'JERup',
-#     'mapDown'   : 'JERdo',
-#     'samples'   : dict((skey, ['1', '1']) for skey in mc if not skey in ["ggWW", "ggHToWWOffshell", "ggHToWWOnshell"]),
-#     'folderUp'  : makeMCDirectory('JERup_suffix'),
-#     'folderDown': makeMCDirectory('JERdo_suffix'),
-# #    'AsLnN'     : '1'
-# }
 
 ##### MET unclustered energy
+
+##comment ggH_bonly
 
 nuisances['met'] = {
     'name'      : 'CMS_scale_met_2017',
