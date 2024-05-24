@@ -168,13 +168,13 @@ nuisances['electronpt'] = {
     'type'       : 'shape',
     'mapUp'      : 'ElepTup',
     'mapDown'    : 'ElepTdo',
-    'samples'    : dict((skey, ['1', '1']) for skey in mc if not skey in ["qqH_sand_off", "qqH_bonly_off", "qqH_sonly_off", "qqH_sand_on", "qqH_sonly_on", "qqH_bonly_on"]),
+    'samples'    : dict((skey, ['1', '1']) for skey in mc if not skey in ["ggH_bonly_on", "ggH_bonly_off", "qqH_sand_off", "qqH_bonly_off", "qqH_sonly_off", "qqH_sand_on", "qqH_sonly_on", "qqH_bonly_on"]), ##
     'folderUp'   : makeMCDirectory('ElepTup_suffix'),
     'folderDown' : makeMCDirectory('ElepTdo_suffix'),
 #    'AsLnN'      : '1'
 }
 
-nuisances['electronpt_sig'] = {
+nuisances['electronpt_sig'] = { ##sig applied to hypothesis
     'name'       : 'CMS_scale_e_2017',
     'kind'       : 'suffix',
     'type'       : 'shape',
@@ -212,7 +212,7 @@ nuisances['muonpt'] = {
     'type'       : 'shape',
     'mapUp'      : 'MupTup',
     'mapDown'    : 'MupTdo',
-    'samples'    : dict((skey, ['1', '1']) for skey in mc if not skey in ["qqH_sand_off", "qqH_bonly_off", "qqH_sonly_off", "qqH_sand_on", "qqH_sonly_on", "qqH_bonly_on"]),
+    'samples'    : dict((skey, ['1', '1']) for skey in mc if not skey in ["ggH_bonly_on", "ggH_bonly_off", "qqH_sand_off", "qqH_bonly_off", "qqH_sonly_off", "qqH_sand_on", "qqH_sonly_on", "qqH_bonly_on"]),##
     'folderUp'   : makeMCDirectory('MupTup_suffix'),
     'folderDown' : makeMCDirectory('MupTdo_suffix'),
 #    'AsLnN'      : '1'
@@ -268,7 +268,7 @@ nuisances['JER'] = {
     'type'      : 'shape',
     'mapUp'     : 'JERup',
     'mapDown'   : 'JERdo',
-    'samples'   : dict((skey, ['1', '1']) for skey in mc if not skey in ["qqH_sand_off", "qqH_bonly_off", "qqH_sonly_off", "qqH_sand_on", "qqH_sonly_on", "qqH_bonly_on"]),
+    'samples'   : dict((skey, ['1', '1']) for skey in mc if not skey in ["ggH_bonly_on", "ggH_bonly_off", "qqH_sand_off", "qqH_bonly_off", "qqH_sonly_off", "qqH_sand_on", "qqH_sonly_on", "qqH_bonly_on"]),##
     'folderUp'  : makeMCDirectory('JERup_suffix'),
     'folderDown': makeMCDirectory('JERdo_suffix'),
 #    'AsLnN'     : '1'
