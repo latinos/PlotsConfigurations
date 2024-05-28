@@ -942,7 +942,7 @@ nuisances['Topnorm_1j']  = {
 nuisances['WWnorm_1j']  = {
                'name'  : 'WWnorm_1j',
                'samples'  : {
-                   'WW_minnlo' : '1.00',
+                   'WW' : '1.00', ##
                    },
                'type'  : 'rateParam',
                'cuts'  : [
