@@ -542,7 +542,7 @@ nuisances['QCDscale_VBF']  = {
 }
 
 nuisances['QCDscale_ggH']  = {
-               'name'  : 'QCDscale_VBF',
+               'name'  : 'QCDscale_ggH',
                 #'kind'  : 'weight_envelope', ##TC
                 'type'  : 'lnN', ##TC
                 'samples'  : {
