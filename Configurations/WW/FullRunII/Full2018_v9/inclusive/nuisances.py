@@ -27,7 +27,7 @@ configurations = os.path.dirname(configurations) # FullRunII
 configurations = os.path.dirname(configurations) # WW
 configurations = os.path.dirname(configurations) # Configurations
 
-diffcuts = samples['WW']['subsamples'] if 'WW' in samples else {}
+diffcuts = samples['WW_minnlo']['subsamples'] if 'WW_minnlo' in samples else {}
 allcuts = [cut+'_'+cat for cut in cuts for cat in cuts[cut]['categories']]
 nfdict = json.load(open("%s/WW/FullRunII/Full2018_v9/inclusive/WWnorm.json"%configurations))
 sfdict = json.load(open("%s/WW/FullRunII/Full2018_v9/inclusive/sampleFrac.json"%configurations))
@@ -236,8 +236,8 @@ nuisances['PU'] = {
     'kind': 'weight',
     'type': 'shape',
     'samples': {
+        'WW_minnlo': ['1.003520*(puWeightUp/puWeight)', '0.996578*(puWeightDown/puWeight)'],
         'DY'      : ['0.998687*(puWeightUp/puWeight)', '1.001976*(puWeightDown/puWeight)'],
-        'WW'      : ['1.004449*(puWeightUp/puWeight)', '0.995660*(puWeightDown/puWeight)'],
         'ggWW'    : ['1.004894*(puWeightUp/puWeight)', '0.995288*(puWeightDown/puWeight)'],
         'WWewk'   : ['1.002122*(puWeightUp/puWeight)', '0.998087*(puWeightDown/puWeight)'],
         'Vg'      : ['1.023232*(puWeightUp/puWeight)', '0.981481*(puWeightDown/puWeight)'],
@@ -267,10 +267,10 @@ nuisances['PS_ISR']  = {
     'kind': 'weight',
     'type': 'shape',
     'AsLnN': '0',
-    'samples': dict((skey, ['PSWeight[2]', 'PSWeight[0]']) for skey in mc if skey not in ['WW','ggWW']),
+    'samples': dict((skey, ['PSWeight[2]', 'PSWeight[0]']) for skey in mc if skey not in ['WW_minnlo','ggWW']),
 }
 
-norm_ISR_WW   = ['+'.join(['({})*1.0'.format(diffcuts[binname]) if binname == "nonfid" else '({})*({})'.format(diffcuts[binname],nfdict["PS_ISR"]["WW_"+binname][i]) for binname in diffcuts]) for i in range(2)]
+norm_ISR_WW   = ['+'.join(['({})*1.0'.format(diffcuts[binname]) if binname == "nonfid" else '({})*({})'.format(diffcuts[binname],nfdict["PS_ISR"]["WW_minnlo_"+binname][i]) for binname in diffcuts]) for i in range(2)]
 norm_ISR_ggWW = ['+'.join(['({})*1.0'.format(diffcuts[binname]) if binname == "nonfid" else '({})*({})'.format(diffcuts[binname],nfdict["PS_ISR"]["ggWW_"+binname][i]) for binname in diffcuts]) for i in range(2)]
 
 nuisances['PS_ISR_WW']  = {
@@ -279,7 +279,7 @@ nuisances['PS_ISR_WW']  = {
     'type': 'shape',
     'AsLnN': '0',
     'samples': {        
-        'WW'   : ['({})*PSWeight[2]'.format(norm_ISR_WW[0]),'({})*PSWeight[0]'.format(norm_ISR_WW[1])],
+        'WW_minnlo'   : ['({})*PSWeight[2]'.format(norm_ISR_WW[0]),'({})*PSWeight[0]'.format(norm_ISR_WW[1])],
         'ggWW' : ['({})*PSWeight[2]'.format(norm_ISR_ggWW[0]),'({})*PSWeight[0]'.format(norm_ISR_ggWW[1])]
     }
 }
@@ -289,10 +289,10 @@ nuisances['PS_FSR']  = {
     'kind': 'weight',
     'type': 'shape',
     'AsLnN': '0',
-    'samples': dict((skey, ['PSWeight[3]', 'PSWeight[1]']) for skey in mc if skey not in ['WW','ggWW']),
+    'samples': dict((skey, ['PSWeight[3]', 'PSWeight[1]']) for skey in mc if skey not in ['WW_minnlo','ggWW']),
 }
 
-norm_FSR_WW   = ['+'.join(['({})*1.0'.format(diffcuts[binname]) if binname == "nonfid" else '({})*({})'.format(diffcuts[binname],nfdict["PS_FSR"]["WW_"+binname][i]) for binname in diffcuts]) for i in range(2)]
+norm_FSR_WW   = ['+'.join(['({})*1.0'.format(diffcuts[binname]) if binname == "nonfid" else '({})*({})'.format(diffcuts[binname],nfdict["PS_FSR"]["WW_minnlo_"+binname][i]) for binname in diffcuts]) for i in range(2)]
 norm_FSR_ggWW = ['+'.join(['({})*1.0'.format(diffcuts[binname]) if binname == "nonfid" else '({})*({})'.format(diffcuts[binname],nfdict["PS_FSR"]["ggWW_"+binname][i]) for binname in diffcuts]) for i in range(2)]
 
 nuisances['PS_FSR_WW']  = {
@@ -301,7 +301,7 @@ nuisances['PS_FSR_WW']  = {
     'type': 'shape',
     'AsLnN': '0',
     'samples': {        
-        'WW'   : ['({})*PSWeight[3]'.format(norm_FSR_WW[0]),'({})*PSWeight[1]'.format(norm_FSR_WW[1])],
+        'WW_minnlo'   : ['({})*PSWeight[3]'.format(norm_FSR_WW[0]),'({})*PSWeight[1]'.format(norm_FSR_WW[1])],
         'ggWW' : ['({})*PSWeight[3]'.format(norm_FSR_ggWW[0]),'({})*PSWeight[1]'.format(norm_FSR_ggWW[1])]
     }
 }
@@ -311,7 +311,7 @@ nuisances['PS_FSR_WW']  = {
 nuisances['UE']  = {
                 'name'  : 'UE_CP5',
                 'type': 'lnN',
-                'samples': dict((skey, '1.015') for skey in mc if skey not in ['WW','ggWW']), 
+                'samples': dict((skey, '1.015') for skey in mc if skey not in ['WW_minnlo','ggWW']),
 }
 
 ####### Generic "cross section uncertainties"
@@ -342,7 +342,6 @@ for cut in allcuts:
         'cuts' : [cut]
     }
 
-'''
 nuisances['VZ'] = {
     'name': 'CMS_hww_VZScale',
     'type': 'lnN',
@@ -350,7 +349,7 @@ nuisances['VZ'] = {
         'WZ': '1.16'
     }
 }
-'''
+
 ###### pdf uncertainties
 
 values = {
@@ -432,7 +431,7 @@ nuisances['pdf_WW']  = {
     'type'  : 'shape',
     'AsLnN': '0',
     'samples'  : {
-        'WW'   : pdf_variations,
+        'WW_minnlo'   : pdf_variations,
     },
     'scale' : nfdict["pdf_WW"]
 }
@@ -466,8 +465,8 @@ nuisances['QCDscale_VV'] = {
     }
 }
 
-norm_QCD = ['+'.join(['({})*1.0'.format(diffcuts[binname]) if binname == "nonfid" else '({})*({})'.format(diffcuts[binname],nfdict["QCDscale_WW"]["WW_"+binname][0]) for binname in diffcuts]),
-            '+'.join(['({})*1.0'.format(diffcuts[binname]) if binname == "nonfid" else '({})*({})'.format(diffcuts[binname],nfdict["QCDscale_WW"]["WW_"+binname][1]) for binname in diffcuts])]
+norm_QCD = ['+'.join(['({})*1.0'.format(diffcuts[binname]) if binname == "nonfid" else '({})*({})'.format(diffcuts[binname],nfdict["QCDscale_WW"]["WW_minnlo_"+binname][0]) for binname in diffcuts]),
+            '+'.join(['({})*1.0'.format(diffcuts[binname]) if binname == "nonfid" else '({})*({})'.format(diffcuts[binname],nfdict["QCDscale_WW"]["WW_minnlo_"+binname][1]) for binname in diffcuts])]
 
 nuisances['QCDscale_WW']  = {
     'name'  : 'QCDscale_WW',
@@ -475,10 +474,11 @@ nuisances['QCDscale_WW']  = {
     'type'  : 'shape',
     'AsLnN': '0',
     'samples'  : {
-        'WW' : ['Alt$(LHEScaleWeight[0],1)*('+norm_QCD[0]+')','Alt$(LHEScaleWeight[8],1)*('+norm_QCD[1]+')'],
+        'WW_minnlo' : ['Alt$(LHEScaleWeight[0],1)*('+norm_QCD[0]+')','Alt$(LHEScaleWeight[8],1)*('+norm_QCD[1]+')'],
     }
 }
 
+## Factors computed to renormalize the top scale variations such that the integral is not changed in each RECO jet bin (we have rateParams for that)
 topScaleNormFactors = {
     '0j' : {'Alt$(LHEScaleWeight[0],1)' : 1.075737, 'Alt$(LHEScaleWeight[1],1)' : 1.075697, 'Alt$(LHEScaleWeight[3],1)' : 1.002443, 'Alt$(LHEScaleWeight[5],1)' : 1.000645, 'Alt$(LHEScaleWeight[7],1)' : 0.924158, 'Alt$(LHEScaleWeight[8],1)' : 0.922467},
     '1j' : {'Alt$(LHEScaleWeight[0],1)' : 1.084646, 'Alt$(LHEScaleWeight[1],1)' : 1.080333, 'Alt$(LHEScaleWeight[3],1)' : 1.008348, 'Alt$(LHEScaleWeight[5],1)' : 0.995477, 'Alt$(LHEScaleWeight[7],1)' : 0.919717, 'Alt$(LHEScaleWeight[8],1)' : 0.912192},
@@ -502,7 +502,6 @@ for ibin in cuts['ww2l2v_13TeV_top']['categories']:
         }
     }
 
-
 nuisances['QCDscale_ggVV'] = {
     'name': 'QCDscale_ggVV',
     'type': 'lnN',
@@ -512,31 +511,31 @@ nuisances['QCDscale_ggVV'] = {
 }
 
 # WW resummation (to be updated, but keep for now)
-norm_WWresum = ['+'.join(['({})*1.0'.format(diffcuts[binname]) if binname == "nonfid" else '({})*({})'.format(diffcuts[binname],nfdict["CMS_hww_WWresum"]["WW_"+binname][0]) for binname in diffcuts]),
-                '+'.join(['({})*1.0'.format(diffcuts[binname]) if binname == "nonfid" else '({})*({})'.format(diffcuts[binname],nfdict["CMS_hww_WWresum"]["WW_"+binname][1]) for binname in diffcuts])]
+#norm_WWresum = ['+'.join(['({})*1.0'.format(diffcuts[binname]) if binname == "nonfid" else '({})*({})'.format(diffcuts[binname],nfdict["CMS_hww_WWresum"]["WW_"+binname][0]) for binname in diffcuts]),
+#                '+'.join(['({})*1.0'.format(diffcuts[binname]) if binname == "nonfid" else '({})*({})'.format(diffcuts[binname],nfdict["CMS_hww_WWresum"]["WW_"+binname][1]) for binname in diffcuts])]
+#
+#nuisances['WWresum']  = {
+#    'name'  : 'CMS_hww_WWresum',
+#    'kind'  : 'weight',
+#    'type'  : 'shape',
+#    'AsLnN': '0',
+#    'samples'  : {
+#        'WW'   : ['nllW_Rup/nllW*('+norm_WWresum[0]+')', 'nllW_Rdown/nllW*('+norm_WWresum[1]+')'],
+#    },
+#}
 
-nuisances['WWresum']  = {
-    'name'  : 'CMS_hww_WWresum',
-    'kind'  : 'weight',
-    'type'  : 'shape',
-    'AsLnN': '0',
-    'samples'  : {
-        'WW'   : ['nllW_Rup/nllW*('+norm_WWresum[0]+')', 'nllW_Rdown/nllW*('+norm_WWresum[1]+')'],
-    },
-}
-
-norm_WWqscale = ['+'.join(['({})*1.0'.format(diffcuts[binname]) if binname == "nonfid" else '({})*({})'.format(diffcuts[binname],nfdict["CMS_hww_WWqscale"]["WW_"+binname][0]) for binname in diffcuts]),
-                 '+'.join(['({})*1.0'.format(diffcuts[binname]) if binname == "nonfid" else '({})*({})'.format(diffcuts[binname],nfdict["CMS_hww_WWqscale"]["WW_"+binname][1]) for binname in diffcuts])]
-
-nuisances['WWqscale']  = {
-    'name'  : 'CMS_hww_WWqscale',
-    'kind'  : 'weight',
-    'type'  : 'shape',
-    'AsLnN': '0',
-    'samples'  : {
-        'WW'   : ['nllW_Qup/nllW*('+norm_WWqscale[0]+')', 'nllW_Qdown/nllW*('+norm_WWqscale[1]+')'],
-    },
-}
+#norm_WWqscale = ['+'.join(['({})*1.0'.format(diffcuts[binname]) if binname == "nonfid" else '({})*({})'.format(diffcuts[binname],nfdict["CMS_hww_WWqscale"]["WW_"+binname][0]) for binname in diffcuts]),
+#                 '+'.join(['({})*1.0'.format(diffcuts[binname]) if binname == "nonfid" else '({})*({})'.format(diffcuts[binname],nfdict["CMS_hww_WWqscale"]["WW_"+binname][1]) for binname in diffcuts])]
+#
+#nuisances['WWqscale']  = {
+#    'name'  : 'CMS_hww_WWqscale',
+#    'kind'  : 'weight',
+#    'type'  : 'shape',
+#    'AsLnN': '0',
+#    'samples'  : {
+#        'WW'   : ['nllW_Qup/nllW*('+norm_WWqscale[0]+')', 'nllW_Qdown/nllW*('+norm_WWqscale[1]+')'],
+#    },
+#}
 
 # Uncertainty on SR/CR ratio
 nuisances['CRSR_accept_top'] = {

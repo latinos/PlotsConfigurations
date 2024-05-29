@@ -16,18 +16,18 @@ groupPlot['top']  = {
                   'samples'  : ['top']
               }
 
-groupPlot['WW']  = {  
+groupPlot['WW_minnlo']  = {
                   'nameHR' : 'WW',
                   'isSignal' : 0,
                   'color': 851, # kAzure -9 
-                  'samples'  : ['WW_B%d'%i for i in xrange(nbins)]+['ggWW_B%d'%i for i in xrange(nbins)]
+                  'samples'  : ['WW_minnlo_B%d'%i for i in xrange(nbins)]+['ggWW_B%d'%i for i in xrange(nbins)]
               }
 
-groupPlot['WW_nonfid']  = {
+groupPlot['WW_minnlo_nonfid']  = {
                   'nameHR' : 'WW nonfid',
                   'isSignal' : 0,
                   'color': 853, # kAzure -9 
-                  'samples'  : ['WW_nonfid', 'ggWW_nonfid']
+                  'samples'  : ['WW_minnlo_nonfid', 'ggWW_nonfid']
               }
 
 groupPlot['WWewk']  = {
@@ -131,7 +131,7 @@ plot['top'] = {
                   }
 
 for i in xrange(nbins):
-    plot['WW_B%d'%i] = {
+    plot['WW_minnlo_B%d'%i] = {
         'color': 851, # kAzure -9 
         'isSignal' : 0,
         'isData'   : 0,
@@ -145,7 +145,7 @@ for i in xrange(nbins):
         'scale'    : 1.0   # ele/mu trigger efficiency   datadriven
     }
 
-plot['WW_nonfid'] = {
+plot['WW_minnlo_nonfid'] = {
                   'color': 853, # kAzure -9 
                   'isSignal' : 0,
                   'isData'   : 0,
