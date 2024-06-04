@@ -100,7 +100,7 @@ DataTrig = {
 #############  BACKGROUNDS  ###############
 ###########################################
 samples['Zg']  =  {     'name'   :    getSampleFilesNano(directory,'ZGToLLG'),
-                        'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch2l+'*'+METFilter_MC + '*(Gen_ZGstar_mass <= 0)',
+                        'weight' : XSWeight+'*'+SFweight+'*'+METFilter_MC + '*(Gen_ZGstar_mass <= 0)',
                         'FilesPerJob' : 3 ,
                  }
 
@@ -172,6 +172,8 @@ samples['top'] = {    'name'   :   getSampleFilesNano(directory,'TTTo2L2Nu')
 }
 
 addSampleWeight(samples,'top','TTTo2L2Nu','Top_pTrw')
+addSampleWeight(samples, 'top', 'ST_t-channel_antitop', 3.086)
+addSampleWeight(samples, 'top', 'ST_t-channel_top', 3.086)
 
 samples['TTWJets'] = { 'name': getSampleFilesNano(directory,'TTWJets'),
                        'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC ,
