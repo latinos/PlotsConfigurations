@@ -180,8 +180,8 @@ samples['top'] = {    'name'   :   getSampleFilesNano(directory,'TTTo2L2Nu')
 }
 
 addSampleWeight(samples,'top','TTTo2L2Nu','Top_pTrw')
-addSampleWeight(samples, 'top', 'ST_t-channel_antitop', 3.086)
-addSampleWeight(samples, 'top', 'ST_t-channel_top', 3.086)
+addSampleWeight(samples, 'top', 'ST_t-channel_antitop', '3.086')
+addSampleWeight(samples, 'top', 'ST_t-channel_top', '3.086')
 
 samples['TTWJets'] = { 'name': getSampleFilesNano(directory,'TTWJetsToLNu'),
                        'weight' : XSWeight+'*'+SFweight+'*'+PromptGenLepMatch+'*'+METFilter_MC+'*'+HEMveto_MC ,
