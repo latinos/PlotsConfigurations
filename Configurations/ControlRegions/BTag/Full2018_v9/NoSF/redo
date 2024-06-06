@@ -1,0 +1,14 @@
+python ~/scripts/jobs/mkShapes__BTagNoSF_Full2018_v9__ALL/*/mkShapes__BTagNoSF_Full2018_v9__ALL__DY.30.py &
+python ~/scripts/jobs/mkShapes__BTagNoSF_Full2018_v9__ALL/*/mkShapes__BTagNoSF_Full2018_v9__ALL__DY.97.py &
+python ~/scripts/jobs/mkShapes__BTagNoSF_Full2018_v9__ALL/*/mkShapes__BTagNoSF_Full2018_v9__ALL__top.5.py &
+python ~/scripts/jobs/mkShapes__BTagNoSF_Full2018_v9__ALL/*/mkShapes__BTagNoSF_Full2018_v9__ALL__top.61.py &
+python ~/scripts/jobs/mkShapes__BTagNoSF_Full2018_v9__ALL/*/mkShapes__BTagNoSF_Full2018_v9__ALL__top.127.py &
+python ~/scripts/jobs/mkShapes__BTagNoSF_Full2018_v9__ALL/*/mkShapes__BTagNoSF_Full2018_v9__ALL__top.180.py &
+python ~/scripts/jobs/mkShapes__BTagNoSF_Full2018_v9__ALL/*/mkShapes__BTagNoSF_Full2018_v9__ALL__top.235.py &
+python ~/scripts/jobs/mkShapes__BTagNoSF_Full2018_v9__ALL/*/mkShapes__BTagNoSF_Full2018_v9__ALL__top.302.py &
+python ~/scripts/jobs/mkShapes__BTagNoSF_Full2018_v9__ALL/*/mkShapes__BTagNoSF_Full2018_v9__ALL__top.409.py &
+python ~/scripts/jobs/mkShapes__BTagNoSF_Full2018_v9__ALL/*/mkShapes__BTagNoSF_Full2018_v9__ALL__top.444.py &
+python ~/scripts/jobs/mkShapes__BTagNoSF_Full2018_v9__ALL/*/mkShapes__BTagNoSF_Full2018_v9__ALL__top.476.py &
+python ~/scripts/jobs/mkShapes__BTagNoSF_Full2018_v9__ALL/*/mkShapes__BTagNoSF_Full2018_v9__ALL__ggWW.18.py &
+python ~/scripts/jobs/mkShapes__BTagNoSF_Full2018_v9__ALL/*/mkShapes__BTagNoSF_Full2018_v9__ALL__Vg.5.py &
+python ~/scripts/jobs/mkShapes__BTagNoSF_Full2018_v9__ALL/*/mkShapes__BTagNoSF_Full2018_v9__ALL__VgS.19.py &

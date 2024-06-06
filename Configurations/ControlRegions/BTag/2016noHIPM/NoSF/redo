@@ -1,0 +1,30 @@
+python /afs/cern.ch/user/n/ntrevisa/scripts/jobs//mkShapes__BTagNoSF_2016noHIPM_v9__ALL/Fake.0/mkShapes__BTagNoSF_2016noHIPM_v9__ALL__Fake.0.py &
+python /afs/cern.ch/user/n/ntrevisa/scripts/jobs//mkShapes__BTagNoSF_2016noHIPM_v9__ALL/Fake.1/mkShapes__BTagNoSF_2016noHIPM_v9__ALL__Fake.1.py &
+python /afs/cern.ch/user/n/ntrevisa/scripts/jobs//mkShapes__BTagNoSF_2016noHIPM_v9__ALL/Fake.2/mkShapes__BTagNoSF_2016noHIPM_v9__ALL__Fake.2.py &
+python /afs/cern.ch/user/n/ntrevisa/scripts/jobs//mkShapes__BTagNoSF_2016noHIPM_v9__ALL/Fake.3/mkShapes__BTagNoSF_2016noHIPM_v9__ALL__Fake.3.py &
+python /afs/cern.ch/user/n/ntrevisa/scripts/jobs//mkShapes__BTagNoSF_2016noHIPM_v9__ALL/Fake.4/mkShapes__BTagNoSF_2016noHIPM_v9__ALL__Fake.4.py &
+python /afs/cern.ch/user/n/ntrevisa/scripts/jobs//mkShapes__BTagNoSF_2016noHIPM_v9__ALL/Fake.5/mkShapes__BTagNoSF_2016noHIPM_v9__ALL__Fake.5.py &
+python /afs/cern.ch/user/n/ntrevisa/scripts/jobs//mkShapes__BTagNoSF_2016noHIPM_v9__ALL/Fake.6/mkShapes__BTagNoSF_2016noHIPM_v9__ALL__Fake.6.py &
+python /afs/cern.ch/user/n/ntrevisa/scripts/jobs//mkShapes__BTagNoSF_2016noHIPM_v9__ALL/Fake.7/mkShapes__BTagNoSF_2016noHIPM_v9__ALL__Fake.7.py &
+python /afs/cern.ch/user/n/ntrevisa/scripts/jobs//mkShapes__BTagNoSF_2016noHIPM_v9__ALL/Fake.8/mkShapes__BTagNoSF_2016noHIPM_v9__ALL__Fake.8.py &
+python /afs/cern.ch/user/n/ntrevisa/scripts/jobs//mkShapes__BTagNoSF_2016noHIPM_v9__ALL/Fake.9/mkShapes__BTagNoSF_2016noHIPM_v9__ALL__Fake.9.py &
+python /afs/cern.ch/user/n/ntrevisa/scripts/jobs//mkShapes__BTagNoSF_2016noHIPM_v9__ALL/Fake.10/mkShapes__BTagNoSF_2016noHIPM_v9__ALL__Fake.10.py &
+python /afs/cern.ch/user/n/ntrevisa/scripts/jobs//mkShapes__BTagNoSF_2016noHIPM_v9__ALL/Fake.11/mkShapes__BTagNoSF_2016noHIPM_v9__ALL__Fake.11.py &
+
+
+
+
+
+
+python /afs/cern.ch/user/n/ntrevisa/scripts/jobs//mkShapes__BTagNoSF_2016noHIPM_v9__ALL/DATA.0/mkShapes__BTagNoSF_2016noHIPM_v9__ALL__DATA.0.py &
+python /afs/cern.ch/user/n/ntrevisa/scripts/jobs//mkShapes__BTagNoSF_2016noHIPM_v9__ALL/DATA.1/mkShapes__BTagNoSF_2016noHIPM_v9__ALL__DATA.1.py &
+python /afs/cern.ch/user/n/ntrevisa/scripts/jobs//mkShapes__BTagNoSF_2016noHIPM_v9__ALL/DATA.2/mkShapes__BTagNoSF_2016noHIPM_v9__ALL__DATA.2.py &
+python /afs/cern.ch/user/n/ntrevisa/scripts/jobs//mkShapes__BTagNoSF_2016noHIPM_v9__ALL/DATA.3/mkShapes__BTagNoSF_2016noHIPM_v9__ALL__DATA.3.py &
+python /afs/cern.ch/user/n/ntrevisa/scripts/jobs//mkShapes__BTagNoSF_2016noHIPM_v9__ALL/DATA.4/mkShapes__BTagNoSF_2016noHIPM_v9__ALL__DATA.4.py &
+python /afs/cern.ch/user/n/ntrevisa/scripts/jobs//mkShapes__BTagNoSF_2016noHIPM_v9__ALL/DATA.5/mkShapes__BTagNoSF_2016noHIPM_v9__ALL__DATA.5.py &
+python /afs/cern.ch/user/n/ntrevisa/scripts/jobs//mkShapes__BTagNoSF_2016noHIPM_v9__ALL/DATA.6/mkShapes__BTagNoSF_2016noHIPM_v9__ALL__DATA.6.py &
+python /afs/cern.ch/user/n/ntrevisa/scripts/jobs//mkShapes__BTagNoSF_2016noHIPM_v9__ALL/DATA.7/mkShapes__BTagNoSF_2016noHIPM_v9__ALL__DATA.7.py &
+python /afs/cern.ch/user/n/ntrevisa/scripts/jobs//mkShapes__BTagNoSF_2016noHIPM_v9__ALL/DATA.8/mkShapes__BTagNoSF_2016noHIPM_v9__ALL__DATA.8.py &
+python /afs/cern.ch/user/n/ntrevisa/scripts/jobs//mkShapes__BTagNoSF_2016noHIPM_v9__ALL/DATA.9/mkShapes__BTagNoSF_2016noHIPM_v9__ALL__DATA.9.py &
+python /afs/cern.ch/user/n/ntrevisa/scripts/jobs//mkShapes__BTagNoSF_2016noHIPM_v9__ALL/DATA.10/mkShapes__BTagNoSF_2016noHIPM_v9__ALL__DATA.10.py &
+python /afs/cern.ch/user/n/ntrevisa/scripts/jobs//mkShapes__BTagNoSF_2016noHIPM_v9__ALL/DATA.11/mkShapes__BTagNoSF_2016noHIPM_v9__ALL__DATA.11.py &
