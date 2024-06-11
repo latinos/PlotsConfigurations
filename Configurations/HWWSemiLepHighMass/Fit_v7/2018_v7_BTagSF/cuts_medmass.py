@@ -36,8 +36,8 @@ BoostProcCats['isGGH_']='(gghlike_odd[0] > 0)'
 BoostProcCats['isBKG_']='(bkglike_odd[0] > 0)'
 ResProcCats={}
 #ResProcCats['all']='1'
-#ResProcCats['isVBF_']='(vbflike_res[0] > 0)'
-#ResProcCats['isGGH_']='(gghlike_res[0] > 0)'
+ResProcCats['isVBF_']='(vbflike_res[0] > 0)'
+ResProcCats['isGGH_']='(gghlike_res[0] > 0)'
 ResProcCats['isBKG_']='(bkglike_res[0] > 0)'
 #
 BoostCatsSR={}
@@ -96,27 +96,27 @@ BoostCats['BoostedTopCR_']='(1 \
 ###                       && boostedSidebandWMass[0] \
 ###                       && bVeto[0])'
 #=== Define cuts ===###
-#for Lep in LepCats:
-#    for BProcCat in BoostProcCats:
-#        for BCat in BoostCatsSR:  
-#		cuts[Lep+BCat+BProcCat]=  BoostCatsSR[BCat]\
-#                	            +'&&'+BoostProcCats[BProcCat]\
-#                	            +'&&'+LepCats[Lep]
+for Lep in LepCats:
+    for BProcCat in BoostProcCats:
+        for BCat in BoostCatsSR:  
+		cuts[Lep+BCat+BProcCat]=  BoostCatsSR[BCat]\
+                	            +'&&'+BoostProcCats[BProcCat]\
+                	            +'&&'+LepCats[Lep]
 for Lep in LepCats:
     for BProcCat in ResProcCats:
         for BCat in ResCatsSR:  
 		cuts[Lep+BCat+BProcCat]=  ResCatsSR[BCat]\
                 	            +'&&'+ResProcCats[BProcCat]\
                 	            +'&&'+LepCats[Lep]
-#
-#for Lep in LepCats:
-#    for BProcCat in BoostProcCats_H:
-#        for BCat in BoostCatsSR:  
-#		cuts[Lep+BCat+BProcCat]=  BoostCatsSR[BCat]\
-#                	            +'&&'+BoostProcCats_H[BProcCat]\
-#                	            +'&&'+LepCats[Lep]
-#for Lep in LepCats_P:
-#    for BCat in BoostCats:
-#	cuts[Lep+BCat]=  BoostCats[BCat]\
-#                           +'&&'+LepCats_P[Lep]
+
+for Lep in LepCats:
+    for BProcCat in BoostProcCats_H:
+        for BCat in BoostCatsSR:  
+		cuts[Lep+BCat+BProcCat]=  BoostCatsSR[BCat]\
+                	            +'&&'+BoostProcCats_H[BProcCat]\
+                	            +'&&'+LepCats[Lep]
+for Lep in LepCats_P:
+    for BCat in BoostCats:
+	cuts[Lep+BCat]=  BoostCats[BCat]\
+                           +'&&'+LepCats_P[Lep]
 #

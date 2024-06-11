@@ -23,7 +23,7 @@ mc_mod = [skey for skey in samples if skey not in ('FAKE', 'data_obs','ggWW', 'g
 mc_deep =[skey for skey in samples if skey not in ['DY', 'Wjets', 'Vg', 'VgS','VZ', 'data_obs', 'FAKE', 'VVV', 'ZH_htt', 'WH_htt', 'ggH_htt', 'qqH_htt']]  
 sig_mc = [skey for skey in mc if ("GGH" in skey) or ("QQH" in skey) or (skey in ["ggWW", "ggH_hww", "qqWWqq", "qqH_hww"])] # ggWW is currently reweighted sig sample, while qqWWqq needs to be symlinked to the BWReweight!
 sig_mc_I = [skey for skey in mc if(( ("GGH" in skey) or ("QQH" in skey) ) and ("SBI"  in skey)) ] # ggWW is currently reweighted sig sample, while qqWWqq needs to be symlinked to the BWReweight!
-sig_mc_fat = [skey for skey in mc if ('GGH' in skey) or ('QQH' in skey) or ('SBI' in skey) or (skey in ('ggWW', 'ggH_hww', 'qqWWqq', 'qqH_hww','WW','VZ'))]
+sig_mc_fat = [skey for skey in mc if ('GGH' in skey) or ('QQH' in skey) or ('SBI' in skey) or (skey in ('ggWW', 'ggH_hww', 'qqWWqq', 'qqH_hww'))]#,'WW','VZ'))]
 sig_diff = [skey for skey in mc if ("GGH" in skey) or ("QQH" in skey)] # ggWW is currently reweighted sig sample, while qqWWqq needs to be symlinked to the BWReweight!
 sig_mc_PS = [skey for skey in mc if(( ("GGH" in skey) or ("QQH" in skey) ) and ("SBI" not in skey)) ] # ggWW is currently reweighted sig sample, while qqWWqq needs to be symlinked to the BWReweight!
 
@@ -670,17 +670,37 @@ with open(configurations+'/Full2018_v7/weights_btag_sample.csv') as csvfile:
 
 
 
-for sample in ["qqWWqq","WW","ggH_htt","ggWW","ZH_hww","ggH_hww","WH_htt","ZH_htt","WH_hww","DY","qqH_hww","qqH_htt","VVV","VZ"]:
+for sample in ["WW","ggH_htt","ZH_hww","WH_htt","ZH_htt","WH_hww","DY","qqH_htt","VVV","VZ"]:
 #for sample in ["qqWWqq","QQH_200","GGH_125","GGH_3000","WW","QQH_250","QQH_4000","GGH_190","QQH_500","GGH_250","VVV","QQH_155","QQH_450","QQH_600","GGH_145","GGH_120","GGH_2000","QQH_180","GGH_230","GGH_1000","ggH_htt","QQH_800","QQH_1000","GGH_155","QQH_126","QQH_550","GGH_4000","QQH_160","GGH_550","ggWW","GGH_650","GGH_400","ZH_hww ","QQH_5000","GGH_270","QQH_2500","QQH_1500","ggH_hww","GGH_450","QQH_3000","QQH_650","QQH_2000","QQH_400","QQH_210","QQH_150","WH_htt ","GGH_900","GGH_350","ZH_htt","GGH_1500","GGH_165","QQH_700","QQH_130","GGH_170","WH_hww","GGH_200","GGH_300","GGH_750","QQH_350","top","QQH_300","QQH_165","GGH_800","QQH_125","QQH_135","Wjets","GGH_600","GGH_700","GGH_160","QQH_145","GGH_180","GGH_175","QQH_170","GGH_124","GGH_135","QQH_190","DY","QQH_175","GGH_115","qqH_hww","QQH_124","QQH_120","QQH_230","GGH_126","QQH_115","QQH_140","QQH_750","GGH_130","qqH_htt","GGH_140","QQH_900","Vg","GGH_5000","GGH_500","QQH_270","GGH_2500","GGH_210","GGH_150"]:
 		aliases['BtagSF_corr_nJets_'+sample] = {
               	    'expr': '(boosted_nocut[0]*'+btag_adj['incl_BoostedGen__'+sample+'_ratio']+' + two_jet_gen[0]*'+btag_adj['incl_ResolvedGen__'+sample+'_ratio']+')',
                     'samples': sample 
 		}
+aliases['BtagSF_corr_nJets_qqH_hww'] = {
+    'expr': '(boosted_nocut[0]*'+btag_adj['incl_BoostedGen__qqH_hww_ratio']+' + two_jet_gen[0]*'+btag_adj['incl_ResolvedGen__qqH_hww_ratio']+')',
+    'samples': sig_mc_fat,
+}
+aliases['BtagSF_corr_nJets_ggH_hww'] = {
+    'expr': '(boosted_nocut[0]*'+btag_adj['incl_BoostedGen__ggH_hww_ratio']+' + two_jet_gen[0]*'+btag_adj['incl_ResolvedGen__ggH_hww_ratio']+')',
+    'samples': sig_mc_fat,
+}
+aliases['BtagSF_corr_nJets_qqWWqq'] = {
+    'expr': '(boosted_nocut[0]*'+btag_adj['incl_BoostedGen__qqWWqq_ratio']+' + two_jet_gen[0]*'+btag_adj['incl_ResolvedGen__qqWWqq_ratio']+')',
+    'samples': sig_mc_fat,
+}
+aliases['BtagSF_corr_nJets_ggWW'] = {
+    'expr': '(boosted_nocut[0]*'+btag_adj['incl_BoostedGen__ggWW_ratio']+' + two_jet_gen[0]*'+btag_adj['incl_ResolvedGen__ggWW_ratio']+')',
+    'samples': sig_mc_fat,
+}
 aliases['BtagSF_corr_nJets_Vg'] = {
     'expr': '(boosted_nocut[0]*'+btag_adj['incl_BoostedGen__Vg_ratio']+' + two_jet_gen[0]*'+btag_adj['incl_ResolvedGen__Vg_ratio']+')',
     'samples': ['Vg', 'VgS'], 
 }
 
+aliases['BtagSF_corr_nJets_VBF_V'] = {
+    'expr': '(boosted_nocut[0]*'+btag_adj['incl_BoostedGen__WW_ratio']+' + two_jet_gen[0]*'+btag_adj['incl_ResolvedGen__WW_ratio']+')',
+    'samples': ['VBF_V','WWewk'], 
+}
 massesAndModelsFile = "{}/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/Fit_v7/2016_v7_BTagSF/massesAndModels.py".format(os.getenv("CMSSW_BASE"))
 if os.path.exists(massesAndModelsFile) :
     handle = open(massesAndModelsFile,'r')
@@ -695,11 +715,12 @@ for MX in massvbf:
     model_name = '_'+model.replace('.','')
     sample = 'QQH_' + MX +'_RelW002'  
     sample_sbi = 'QQHSBI_'+ MX + model_name 
+    sample_int = 'QQHINT_'+ MX + model_name 
     sample_name =  'QQH_'+ MX + model_name
     print(sample)
     aliases['BtagSF_corr_nJets_'+sample] = {
         'expr': '(boosted_nocut[0]*'+btag_adj['incl_BoostedGen__'+sample+'_ratio']+' + two_jet_gen[0]*'+btag_adj['incl_ResolvedGen__'+sample+'_ratio']+')',
-        'samples': [sample_name, sample_sbi], 
+        'samples': [sample_name, sample_sbi, sample_int], 
 		}
     	
 for MX in massggh:
@@ -707,10 +728,11 @@ for MX in massggh:
     model_name = '_'+model.replace('.','')
     sample = 'GGH_'+MX+'_RelW002'  
     sample_sbi = 'GGHSBI_'+MX+model_name 
+    sample_int = 'GGHINT_'+ MX + model_name 
     sample_name =  'GGH_'+MX+model_name
     aliases['BtagSF_corr_nJets_'+sample] = {
         'expr': '(boosted_nocut[0]*'+btag_adj['incl_BoostedGen__'+sample+'_ratio']+' + two_jet_gen[0]*'+btag_adj['incl_ResolvedGen__'+sample+'_ratio']+')',
-        'samples': [sample_name, sample_sbi] 
+        'samples': [sample_name, sample_sbi,sample_int] 
 		}
 
 
@@ -1742,6 +1764,38 @@ aliases['bkglike_high'] = {
 aliases['gghlike_high'] = {
         'expr': 'gghdnn_high>vbfdnn_high && gghdnn_high>bkgdnn_high ',
 }
+
+mc_sbi = [skey for skey in samples if "SBI" in skey]
+aliases['CheckforSM'] = {
+    'linesToAdd' : [
+        'gSystem->Load("libLatinoAnalysisMultiDraw.so")',
+        '.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/CheckForSM125.cc+' % os.getenv('CMSSW_BASE')
+    ],
+    'expr': 'CheckforSM()',
+    'samples': mc_sbi
+}
+
+aliases['SBI_isSMggh'] = {
+    'expr': '( abs(Xsec-2.2769997e+00) < 1.0e-06 && CheckforSM )', # With protection against "HM" 125 sample
+    'samples': mc_sbi
+}
+aliases['SBI_isSMVBF'] = {
+    'expr': '( abs(Xsec-1.772666e-01) < 1.0e-06 && CheckforSM )', # With protection against "HM" 125 sample
+    'samples': mc_sbi
+}
+aliases['SBI_isggWW'] = {
+    'expr': '( abs(Xsec-1.7956000e+00) < 1.0e-04 )',
+    'samples': mc_sbi
+}
+aliases['SBI_isqqWWqq'] = {
+    'expr': '(( abs(Xsec-5.5609998) < 1.0e-04) || ( abs(Xsec-5.5440001) < 1.0e-04))',
+    'samples': mc_sbi
+}
+aliases['SBI_isHM'] = {
+    'expr': '( !SBI_isSMggh && !SBI_isSMVBF && !SBI_isggWW && !SBI_isqqWWqq )',
+    'samples': mc_sbi
+}
+
 #mc_sbi = [skey for skey in samples if "SBI" in skey]
 #aliases['CheckforSM'] = {
 #    'linesToAdd' : [

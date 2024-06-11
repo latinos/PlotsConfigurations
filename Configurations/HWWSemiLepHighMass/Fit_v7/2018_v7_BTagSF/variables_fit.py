@@ -25,14 +25,14 @@ resolvedSR_isGGH  = set(x for x in cuts if 'ResolvedSR_isGGH' in x)
 resolvedSR_isBKG  = set(x for x in cuts if 'ResolvedSR_isBKG' in x)
 resolvedSR_isVBF  = set(x for x in cuts if 'ResolvedSR_isVBF' in x)
 
-#variables['events']  = {
-#    'name' : '1',
-#    'range': (1,0,2),
-#    'xaxis': 'events',
-#    'cuts' : controlRegions,
-#    'fold' : 3,
-#}
-#
+variables['events']  = {
+    'name' : '1',
+    'range': (1,0,2),
+    'xaxis': 'events',
+    'cuts' : controlRegions,
+    'fold' : 3,
+}
+
 #variables['Event_fatjetJERup']  = {
 #    'name' : 'Event_fatjetJERup',
 #    'range': (1,0,2),
@@ -521,69 +521,77 @@ resolvedSR_isVBF  = set(x for x in cuts if 'ResolvedSR_isVBF' in x)
 #   'fold' : 0 ,
 #   'cuts' : boostedSR,
 ##}
-#variables['mass_HIGGS_FAT_fit'] = {
-#   'name' : 'mass_HIGGS_FAT[0]',
+#variables['Higgs_GenMass'] = {
+#   'name' : 'higgsGenMass[0]',
 #   'range': ([0, 200, 250, 300, 350, 400, 450, 500, 550, 600,
 #               650, 700, 750, 800, 850, 900, 950, 1000, 1050,
-#  	       1100, 1150, 1200, 1250, 1300, 1350, 1400, 1450, 1500, 1700, 2000, 3000, 5000 ],),
+#  	       1100, 1150, 1200, 1250, 1300, 1350, 1400, 1450, 1500, 1700, 2000, 3000],),
 #   'xaxis': 'Higgs Mass [GeV]',
 #   'fold' : 0 ,
-#   'cuts' : boostedSR ,
 #}
-#variables['mass_HIGGS_BooGGH'] = {
-#   'name' : 'mass_HIGGS_FAT[0]',
-#   'range': ([0, 250, 350,500, 550, 600,
-#               650, 700, 750, 800, 850, 900, 950, 1000, 1050,
-#  	       1100, 1150, 1200, 1250, 1300, 1350, 1400, 1450, 1500,1600, 1700, 
-#  	       1800, 2000, 2100, 2200, 2400, 2600, 2900, 3000, 5000],),
-#   'xaxis': 'Higgs Mass [GeV]',
-#   'fold' : 0 ,
-#   'cuts' : boostedSR_isGGH,
-#}
-#variables['mass_HIGGS_BooVBF'] = {
-#   'name' : 'mass_HIGGS_FAT[0]',
-#   'range': ([0, 450, 500, 550, 600,
-#               650, 700, 750, 800, 850, 900, 950, 1000, 1100, 1150, 
-#  	       1350, 1400, 1450, 1500, 1600, 1700, 1800, 2000, 2400, 2600, 3400, 5000],),
-#   'xaxis': 'Higgs Mass [GeV]',
-#   'fold' : 0 ,
-#   'cuts' : boostedSR_isVBF,
-#}
-#variables['mass_HIGGS_BooBKG'] = {
-#   'name' : 'mass_HIGGS_FAT[0]',
-#   'range': ([0, 200, 250, 300, 350, 400, 450, 500, 550, 600,
-#               650, 700, 750, 800, 850, 900, 950, 1000, 1050,
-#  	       1100, 1400, 5000],),
-#   'xaxis': 'Higgs Mass [GeV]',
-#   'fold' : 0 ,
-#   'cuts' : boostedSR_isBKG,
-#}
+variables['mass_HIGGS_FAT_fit'] = {
+   'name' : 'mass_HIGGS_FAT[0]',
+   'range': ([0, 200, 250, 300, 350, 400, 450, 500, 550, 600,
+               650, 700, 750, 800, 850, 900, 950, 1000, 1050,
+  	       1100, 1150, 1200, 1250, 1300, 1350, 1400, 1450, 1500, 1700, 2000, 3000, 5000 ],),
+   'xaxis': 'Higgs Mass [GeV]',
+   'fold' : 0 ,
+   'cuts' : boostedSR ,
+}
+variables['mass_HIGGS_BooGGH'] = {
+   'name' : 'mass_HIGGS_FAT[0]',
+   'range': ([0, 250, 350,500, 550, 600,
+               650, 700, 750, 800, 850, 900, 950, 1000, 1050,
+  	       1100, 1150, 1200, 1250, 1300, 1350, 1400, 1450, 1500,1600, 1700, 
+  	       1800, 2000, 2100, 2200, 2400, 2600, 2900, 3000, 5000],),
+   'xaxis': 'Higgs Mass [GeV]',
+   'fold' : 0 ,
+   'cuts' : boostedSR_isGGH,
+}
+variables['mass_HIGGS_BooVBF'] = {
+   'name' : 'mass_HIGGS_FAT[0]',
+   'range': ([0, 450, 500, 550, 600,
+               650, 700, 750, 800, 850, 900, 950, 1000, 1100, 1150, 
+  	       1350, 1400, 1450, 1500, 1600, 1700, 1800, 2000, 2400, 2600, 3400, 5000],),
+   'xaxis': 'Higgs Mass [GeV]',
+   'fold' : 0 ,
+   'cuts' : boostedSR_isVBF,
+}
+variables['mass_HIGGS_BooBKG'] = {
+   'name' : 'mass_HIGGS_FAT[0]',
+   'range': ([0, 200, 250, 300, 350, 400, 450, 500, 550, 600,
+               650, 700, 750, 800, 850, 900, 950, 1000, 1050,
+  	       1100, 1400, 5000],),
+   'xaxis': 'Higgs Mass [GeV]',
+   'fold' : 0 ,
+   'cuts' : boostedSR_isBKG,
+}
 
-#####variables['mass_HIGGS_twojet_binned'] = {
-#####   'name' : 'mass_HIGGS_JJ[0]',
-#####   'range': ([0, 150, 200, 260, 300, 350, 400, 450, 500, 550, 600,
-#####              650, 700, 750, 800, 850, 900, 950, 1000, 1100, 1300, 1500, 3000],),
-#####   'xaxis': 'Higgs Mass [GeV]',
-#####   'fold' : 0,
-#####   'cuts' : resolved, 
-#####}
-#####
-#variables['mass_HIGGS_ResVBF'] = {
-#   'name' : 'mass_HIGGS_JJ[0]',
-#   'range': ([0, 150, 200, 260, 300, 350, 400, 450, 500, 550, 600,
-#              650, 700, 750, 800, 850, 900, 950, 1000, 1100, 1300, 1500, 1700, 2000, 3000],),
-#   'xaxis': 'Higgs Mass [GeV]',
-#   'fold' : 0,
-#   'cuts' : resolvedSR_isVBF, 
-#}
-#variables['mass_HIGGS_ResGGH'] = {
-#   'name' : 'mass_HIGGS_JJ[0]',
-#   'range': ([0, 260, 300, 350, 400, 450, 500, 550, 600,
-#              650, 700, 750, 800, 850, 900, 950, 1000, 1100, 1300, 1500, 1700, 3000],),
-#   'xaxis': 'Higgs Mass [GeV]',
-#   'fold' : 0,
-#   'cuts' : resolvedSR_isGGH, 
-#}
+####variables['mass_HIGGS_twojet_binned'] = {
+####   'name' : 'mass_HIGGS_JJ[0]',
+####   'range': ([0, 150, 200, 260, 300, 350, 400, 450, 500, 550, 600,
+####              650, 700, 750, 800, 850, 900, 950, 1000, 1100, 1300, 1500, 3000],),
+####   'xaxis': 'Higgs Mass [GeV]',
+####   'fold' : 0,
+####   'cuts' : resolved, 
+####}
+####
+variables['mass_HIGGS_ResVBF'] = {
+   'name' : 'mass_HIGGS_JJ[0]',
+   'range': ([0, 150, 200, 260, 300, 350, 400, 450, 500, 550, 600,
+              650, 700, 750, 800, 850, 900, 950, 1000, 1100, 1300, 1500, 1700, 2000, 3000],),
+   'xaxis': 'Higgs Mass [GeV]',
+   'fold' : 0,
+   'cuts' : resolvedSR_isVBF, 
+}
+variables['mass_HIGGS_ResGGH'] = {
+   'name' : 'mass_HIGGS_JJ[0]',
+   'range': ([0, 260, 300, 350, 400, 450, 500, 550, 600,
+              650, 700, 750, 800, 850, 900, 950, 1000, 1100, 1300, 1500, 1700, 3000],),
+   'xaxis': 'Higgs Mass [GeV]',
+   'fold' : 0,
+   'cuts' : resolvedSR_isGGH, 
+}
 variables['mass_HIGGS_ResBKG'] = {
    'name' : 'mass_HIGGS_JJ[0]',
    'range': ([0, 200, 260, 300, 350, 400, 450, 500, 550, 600,

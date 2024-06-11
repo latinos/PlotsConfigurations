@@ -21,9 +21,10 @@ try:
     mc_deep =[skey for skey in samples if skey not in ['DY', 'Wjets', 'Vg', 'VgS','VZ', 'data_obs', 'FAKE', 'VVV', 'ZH_htt', 'WH_htt', 'ggH_htt', 'qqH_htt']]  
     sig_mc = [skey for skey in mc if ("GGH" in skey) or ("QQH" in skey) or (skey in ["ggWW", "ggH_hww", "qqWWqq", "qqH_hww"])] # ggWW is currently reweighted sig sample, while qqWWqq needs to be symlinked to the BWReweight!
     sig_mc_I = [skey for skey in mc if(( ("GGH" in skey) or ("QQH" in skey) ) and ("SBI"  in skey)) ] # ggWW is currently reweighted sig sample, while qqWWqq needs to be symlinked to the BWReweight!
-    sig_mc_fat = [skey for skey in mc if ('GGH' in skey) or ('QQH' in skey) or ('SBI' in skey) or (skey in ('ggWW', 'ggH_hww', 'qqWWqq', 'qqH_hww','WW','VZ'))]
+    sig_mc_fat = [skey for skey in mc if ('GGH' in skey) or ('QQH' in skey) or ('SBI' in skey) or (skey in ('ggWW', 'ggH_hww', 'qqWWqq', 'qqH_hww','WW','VZ','WWewk'))]
     sig_mc_fat_2 = [skey for skey in mc if ('GGH' in skey) or ('QQH' in skey) or ('SBI' in skey) or (skey in ('VZ'))]
     sig_diff = [skey for skey in mc if ("GGH" in skey) or ("QQH" in skey)] # ggWW is currently reweighted sig sample, while qqWWqq needs to be symlinked to the BWReweight!
+    sig_diff_new = [skey for skey in mc if ("GGH" in skey) or ("QQH" in skey)or('WWewk'in skey)] # ggWW is currently reweighted sig sample, while qqWWqq needs to be symlinked to the BWReweight!
     sig_mc_PS = [skey for skey in mc if(( ("GGH" in skey) or ("QQH" in skey) ) and ("SBI" not in skey)) ] # ggWW is currently reweighted sig sample, while qqWWqq needs to be symlinked to the BWReweight!
 except NameError:
     mc = []
@@ -396,6 +397,7 @@ nuisances['muonpt_BWReweight'] = {
 
 ##### Jet energy scale
 jes_systs = ['JESAbsolute','JESAbsolute_2018','JESBBEC1','JESBBEC1_2018','JESEC2','JESEC2_2018','JESFlavorQCD','JESHF','JESHF_2018','JESRelativeBal','JESRelativeSample_2018']
+jes_systs_BWR = ['JESAbsolute_BWReweight','JESAbsolute_2017_BWReweight','JESBBEC1_BWReweight','JESBBEC1_2017_BWReweight','JESEC2_BWReweight','JESEC2_2017_BWReweight','JESFlavorQCD_BWReweight','JESHF_BWReweight','JESHF_2017_BWReweight','JESRelativeBal_BWReweight','JESRelativeSample_2017_BWReweight']
 
 for js in jes_systs:
     nuisances[js] = {
@@ -433,6 +435,12 @@ for js in jes_systs:
       	  'qqWWqq': '1.02',
        }
 }
+  nuisances[js+'lnn_I'] = {
+       'name' : 'CMS_scale_'+js,
+       'type' : 'lnn',
+       'samples': dict((skey, '1.01') for skey in sig_mc_I),
+  }
+
 #  nuisances['fatjet'+js] = {
 
 #  nuisances[js+'lnn_I'] = {
@@ -823,7 +831,7 @@ nuisances['jet_jer']  = {
     'type'  : 'shape',
     'mapUp'  : 'JERup',
     'mapDown': 'JERdo',
-    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in sig_diff),
+    'samples': dict((skey, ['1', '1']) for skey in mc if skey not in sig_diff_new),
     'folderUp'  : makeMCDirectory('JERup'),
     'folderDown': makeMCDirectory('JERdo'),
     'AsLnN': '1'
@@ -935,14 +943,14 @@ for m in massggh:
   PUstring = [str(PUup)+'*(puWeightUp/puWeight)', str(PUdn)+'*(puWeightDown/puWeight)']
   nuisances['PU']['samples'].update({'GGH_'+m+model_name: PUstring})
   nuisances['PU']['samples'].update({'GGHINT_'+m+model_name: PUstring})
-  nuisances['PU']['samples'].update({'GGHSBI_'+m+model_name: PUstring})
+  #nuisances['PU']['samples'].update({'GGHSBI_'+m+model_name: PUstring})
 for m in massvbf:
   PUup = PUunc['VBF'+m]['Up']
   PUdn = PUunc['VBF'+m]['Down']
   PUstring = [str(PUup)+'*(puWeightUp/puWeight)', str(PUdn)+'*(puWeightDown/puWeight)']
   nuisances['PU']['samples'].update({'QQH_'+m+model_name: PUstring})
   nuisances['PU']['samples'].update({'QQHINT_'+m+model_name: PUstring})
-  nuisances['PU']['samples'].update({'QQHSBI_'+m+model_name: PUstring})
+  #nuisances['PU']['samples'].update({'QQHSBI_'+m+model_name: PUstring})
 
 for j in range(1,4):
 	for i in range(1,4):
@@ -989,7 +997,7 @@ nuisances['PS_ISR_sig']  = {
     'name': 'PS_ISR',
     'kind': 'weight',
     'type': 'shape',
-    'samples': dict((skey, ['Alt$(PSWeight[2], 1.0)', 'Alt$(PSWeight[0], 1.0)']) for skey in sig_diff)
+    'samples': dict((skey, ['Alt$(PSWeight[2], 1.0)', 'Alt$(PSWeight[0], 1.0)']) for skey in sig_mc_PS)
 }
 #for m in massggh:
 #  PSup = PSunc['GGF'+m]['ISRup']
@@ -1035,7 +1043,7 @@ nuisances['PS_FSR_sig']  = {
     'name': 'PS_FSR',
     'kind': 'weight',
     'type': 'shape',
-    'samples': dict((skey, ['Alt$(PSWeight[3], 1.0)', 'Alt$(PSWeight[1], 1.0)']) for skey in sig_diff)
+    'samples': dict((skey, ['Alt$(PSWeight[3], 1.0)', 'Alt$(PSWeight[1], 1.0)']) for skey in sig_mc_PS)
 }
 # An overall 1.5% UE uncertainty will cover all the UEup/UEdo variations
 # And we don't observe any dependency of UE variations on njet
@@ -1247,7 +1255,7 @@ for m in massggh:
     values = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ggH',int(m),'pdf','bsm')
     nuisances['pdf_Higgs_gg']['samples'].update({'GGH_'+m+model_name: values})
     nuisances['pdf_Higgs_gg']['samples'].update({'GGHINT_'+m+model_name: values})
-    nuisances['pdf_Higgs_gg']['samples'].update({'GGHSBI_'+m+model_name: values})
+    #nuisances['pdf_Higgs_gg']['samples'].update({'GGHSBI_'+m+model_name: values})
 
 
 
@@ -1268,10 +1276,10 @@ nuisances['pdf_Higgs_qqbar'] = {
     },
 }
 for m in massvbf:
-    values = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','vbfH',int(m),'bsm')
+    values = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','vbfH',int(m),'pdf','bsm')
     nuisances['pdf_Higgs_qqbar']['samples'].update({'QQH_'+m+model_name: values})
     nuisances['pdf_Higgs_qqbar']['samples'].update({'QQHINT_'+m+model_name: values})
-    nuisances['pdf_Higgs_qqbar']['samples'].update({'QQHSBI_'+m+model_name: values})
+    #nuisances['pdf_Higgs_qqbar']['samples'].update({'QQHSBI_'+m+model_name: values})
 
 
 
@@ -1292,8 +1300,8 @@ nuisances['pdf_gg']  = {
     },
 }
 
-for m in massggh:
-  nuisances['pdf_gg']['samples'].update({'GGHSBI_'+m+model_name:'1.05'})
+#for m in massggh:
+#  nuisances['pdf_gg']['samples'].update({'GGHSBI_'+m+model_name:'1.05'})
 
 
 nuisances['pdf_qqbar']  = {
@@ -1308,8 +1316,8 @@ nuisances['pdf_qqbar']  = {
     },
 }
 
-for m in massvbf:
-  nuisances['pdf_qqbar']['samples'].update({'QQHSBI_'+m+model_name:'1.05'})
+#for m in massvbf:
+#  nuisances['pdf_qqbar']['samples'].update({'QQHSBI_'+m+model_name:'1.05'})
 
 nuisances['pdf_Higgs_gg_ACCEPT'] = {
     'name': 'pdf_Higgs_gg_ACCEPT',
@@ -1326,7 +1334,7 @@ for m in massggh:
   pdfgg_weight = 1.0 + (-4.10343+1.19015e-03*int(m)-9.68156e-08*int(m)*int(m)+6.90171e+03/(int(m)+8.71935e+02)-8.94415e+05/((int(m)+4.72259e+02)*(int(m)+4.72259e+02)))/100.0
   nuisances['pdf_Higgs_gg_ACCEPT']['samples'].update({'GGH_'+m+model_name: str(pdfgg_weight)})
   nuisances['pdf_Higgs_gg_ACCEPT']['samples'].update({'GGHINT_'+m+model_name: str(pdfgg_weight)})
-  nuisances['pdf_Higgs_gg_ACCEPT']['samples'].update({'GGHSBI_'+m+model_name: str(pdfgg_weight)})
+#  nuisances['pdf_Higgs_gg_ACCEPT']['samples'].update({'GGHSBI_'+m+model_name: str(pdfgg_weight)})
 
 
 
@@ -1347,7 +1355,7 @@ for m in massvbf:
   pdfqq_weight = 1.0 + (1.46296e-01)/100.0
   nuisances['pdf_Higgs_qqbar_ACCEPT']['samples'].update({'QQH_'+m+model_name: str(pdfqq_weight)})
   nuisances['pdf_Higgs_qqbar_ACCEPT']['samples'].update({'QQHINT_'+m+model_name: str(pdfqq_weight)})
-  nuisances['pdf_Higgs_qqbar_ACCEPT']['samples'].update({'QQHSBI_'+m+model_name: str(pdfqq_weight)})
+#  nuisances['pdf_Higgs_qqbar_ACCEPT']['samples'].update({'QQHSBI_'+m+model_name: str(pdfqq_weight)})
 
 
 
@@ -1360,8 +1368,8 @@ nuisances['pdf_gg_ACCEPT'] = {
     'type': 'lnN',
 }
 
-for m in massggh:
-  nuisances['pdf_gg_ACCEPT']['samples'].update({'GGHSBI_'+m+model_name:'1.006'})
+#for m in massggh:
+#  nuisances['pdf_gg_ACCEPT']['samples'].update({'GGHSBI_'+m+model_name:'1.006'})
 
 nuisances['pdf_qqbar_ACCEPT'] = {
     'name': 'pdf_qqbar_ACCEPT',
@@ -1371,8 +1379,8 @@ nuisances['pdf_qqbar_ACCEPT'] = {
     },
 }
 
-for m in massvbf:
-  nuisances['pdf_qqbar_ACCEPT']['samples'].update({'QQHSBI_'+m+model_name:'1.001'})
+#for m in massvbf:
+#  nuisances['pdf_qqbar_ACCEPT']['samples'].update({'QQHSBI_'+m+model_name:'1.001'})
 
 
 
@@ -1500,10 +1508,10 @@ nuisances['QCDscale_ggVV'] = {
     },
 }
 
-for m in massggh:
-    nuisances['QCDscale_ggVV']['samples'].update({
-        'GGHSBI_'+m+model_name: '1.15'
-    })
+#for m in massggh:
+#    nuisances['QCDscale_ggVV']['samples'].update({
+#        'GGHSBI_'+m+model_name: '1.15'
+#    })
 
 nuisances['Wjets_QCD_NLO_sf_stat'] = {
     'name': 'Wjets_QCD_NLO_sf_stat_2018',
@@ -1534,9 +1542,9 @@ for m in massggh:
     nuisances['QCDscale_ggH']['samples'].update({
         'GGHINT_'+m+model_name: values
     })
-    nuisances['QCDscale_ggH']['samples'].update({
-        'GGHSBI_'+m+model_name: values
-    })
+    #nuisances['QCDscale_ggH']['samples'].update({
+    #    'GGHSBI_'+m+model_name: values
+    #})
 
 
 values = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','vbfH','125.09','scale','sm')
@@ -1556,9 +1564,9 @@ for m in massvbf:
     nuisances['QCDscale_qqH']['samples'].update({
         'QQHINT_'+m+model_name: values
     })
-    nuisances['QCDscale_qqH']['samples'].update({
-        'QQHSBI_'+m+model_name: values
-    })
+    #nuisances['QCDscale_qqH']['samples'].update({
+    #    'QQHSBI_'+m+model_name: values
+    #})
 
 
 
@@ -1597,8 +1605,8 @@ for m in massggh:
         'GGH_'+m+model_name: str(scalegg_weight)})
     nuisances['QCDscale_ggH_ACCEPT']['samples'].update({
         'GGHINT_'+m+model_name: str(scalegg_weight)})
-    nuisances['QCDscale_ggH_ACCEPT']['samples'].update({
-        'GGHSBI_'+m+model_name: str(scalegg_weight)})
+    #nuisances['QCDscale_ggH_ACCEPT']['samples'].update({
+    #    'GGHSBI_'+m+model_name: str(scalegg_weight)})
 
 
 nuisances['QCDscale_qqH_ACCEPT'] = {
@@ -1617,8 +1625,8 @@ for m in massvbf:
         'QQH_'+m+model_name: str(scaleqq_weight)})
     nuisances['QCDscale_qqH_ACCEPT']['samples'].update({
         'QQHINT_'+m+model_name: str(scaleqq_weight)})
-    nuisances['QCDscale_qqH_ACCEPT']['samples'].update({
-        'QQHSBI_'+m+model_name: str(scaleqq_weight)})
+    #nuisances['QCDscale_qqH_ACCEPT']['samples'].update({
+    #    'QQHSBI_'+m+model_name: str(scaleqq_weight)})
 
 
 nuisances['QCDscale_VH_ACCEPT']  = {
@@ -1885,7 +1893,77 @@ for nuis in oldnuisances:
         del nuisances[nuis]['samples'][samp]
         if nuisances[nuis]['samples'] == {}: del nuisances[nuis]
 
+#nuisancename = {}
 nuisancename = {}
+for nuis in nuisances:
+  if nuisances[nuis]['type'] == "shape":
+    if nuisances[nuis]['name'] not in nuisancename: nuisancename[nuisances[nuis]['name']] = []
+    nuisancename[nuisances[nuis]['name']].append(nuis)
+for nuisname in nuisancename:
+  allsamples = {}
+  for nuis in nuisancename[nuisname]:
+    print("Qui"+nuis)
+    allsamples.update(nuisances[nuis]['samples']) # Sometimes have 2 dict keys doing shapes for the same nuisance for different samples; combine them here
+  if [samp for samp in allsamples if 'SBI' in samp] == []:
+    dogg=0
+    doqq=0
+    for samp in allsamples:
+      if ("GGH" in samp) or (samp in ["ggWW", "ggH_hww"]): dogg=1
+      elif ("QQH" in samp) or (samp in ["qqWWqq", "qqH_hww"]): doqq=1
+    if dogg==1:
+	#print(samp)
+        SM_up = '1.0'
+        SM_dn = '1.0'
+        WW_up = '1.0'
+        WW_dn = '1.0'
+        sig_up = '1.0'
+        sig_dn = '1.0'
+        for nuis in nuisancename[nuisname]:
+          if "ggH_hww" in nuisances[nuis]['samples']: SM_up = nuisances[nuis]['samples']["ggH_hww"][0]
+          if "ggH_hww" in nuisances[nuis]['samples']: SM_dn = nuisances[nuis]['samples']["ggH_hww"][1]
+          if "ggWW" in nuisances[nuis]['samples']: WW_up = nuisances[nuis]['samples']["ggWW"][0]
+          if "ggWW" in nuisances[nuis]['samples']: WW_dn = nuisances[nuis]['samples']["ggWW"][1]
+        for model in models:
+          model_name = '_'+model.replace(".","")
+          for m in massggh:
+            for nuis in nuisancename[nuisname]:
+            #  print(nuis)
+              if 'GGH_'+m+model_name in nuisances[nuis]['samples']: sig_up = nuisances[nuis]['samples']['GGH_'+m+model_name][0]
+              if 'GGH_'+m+model_name in nuisances[nuis]['samples']: sig_dn = nuisances[nuis]['samples']['GGH_'+m+model_name][1]
+	 #   print(sig_up) 
+	 #   print(SM_up) 
+	 #   print(WW_up) 
+            SBI_string = ['('+sig_up+')*SBI_isHM + ('+SM_up+')*SBI_isSMggh + ('+WW_up+')*SBI_isggWW',
+                          '('+sig_dn+')*SBI_isHM + ('+SM_dn+')*SBI_isSMggh + ('+WW_dn+')*SBI_isggWW']
+            if ((nuis not in jes_systs) and (nuis not in jes_systs_BWR)): 
+              print("giu"+nuis)
+              nuisances[nuis]['samples'].update({'GGHSBI_'+m+model_name: SBI_string})
+
+    if doqq==1:
+        SM_up = '1.0'
+        SM_dn = '1.0'
+        WW_up = '1.0'
+        WW_dn = '1.0'
+        sig_up = '1.0'
+        sig_dn = '1.0'
+        for nuis in nuisancename[nuisname]:
+          if "qqH_hww" in nuisances[nuis]['samples']: SM_up = nuisances[nuis]['samples']["qqH_hww"][0]
+          if "qqH_hww" in nuisances[nuis]['samples']: SM_dn = nuisances[nuis]['samples']["qqH_hww"][1]
+          if "qqWWqq" in nuisances[nuis]['samples']: WW_up = nuisances[nuis]['samples']["qqWWqq"][0]
+          if "qqWWqq" in nuisances[nuis]['samples']: WW_dn = nuisances[nuis]['samples']["qqWWqq"][1]
+        for model in models:
+          model_name = '_'+model.replace(".","")
+          for m in massvbf:
+            for nuis in nuisancename[nuisname]:
+              if 'QQH_'+m+model_name in nuisances[nuis]['samples']: sig_up = nuisances[nuis]['samples']['QQH_'+m+model_name][0]
+              if 'QQH_'+m+model_name in nuisances[nuis]['samples']: sig_dn = nuisances[nuis]['samples']['QQH_'+m+model_name][1]
+            SBI_string = ['('+sig_up+')*SBI_isHM + ('+SM_up+')*SBI_isSMVBF + ('+WW_up+')*SBI_isqqWWqq',
+                          '('+sig_dn+')*SBI_isHM + ('+SM_dn+')*SBI_isSMVBF + ('+WW_dn+')*SBI_isqqWWqq']
+            #print(nuis)
+            if ((nuis not in jes_systs) and (nuis not in jes_systs_BWR)): 
+              print("giu"+nuis)
+              nuisances[nuis]['samples'].update({'QQHSBI_'+m+model_name: SBI_string})
+
 #for nuis in nuisances:
 #  if nuisances[nuis]['type'] == "shape":
 #    if nuisances[nuis]['name'] not in nuisancename: nuisancename[nuisances[nuis]['name']] = []
