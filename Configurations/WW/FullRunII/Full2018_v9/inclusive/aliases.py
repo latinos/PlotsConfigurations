@@ -197,9 +197,16 @@ for shift in ['jesAbsolute', 'jesAbsolute_2018', 'jesBBEC1', 'jesBBEC1_2018', 'j
         'samples': mc,
     }
 
-#Note: this is the data-NLO correction recommended by the TOP PAG in most use cases
+# There are three top pt reweighting schemes proposed by the TOP PAG
+# Data-NLO  : SF(pT) = e^(0.0615-0.0005*pT)  
+# Data-NNLO : SF(pT) = e^(0.0416-0.0003*pT)
+# NNLO-NLO  : SF(pT) = 0.103*e^(-0.0118*pT) - 0.000134*pT + 0.973
+# The event weight is applied as sqrt(SF(t)*SF(tbar))
+# We were initially using Data-NLO; now testing NNLO-NLO; Data-NNLO is a 3rd option
 aliases['Top_pTrw'] = {
-    'expr': '(topGenPt * antitopGenPt > 0.) * (TMath::Sqrt(TMath::Exp(0.0615 - 0.0005 * topGenPt) * TMath::Exp(0.0615 - 0.0005 * antitopGenPt))) + (topGenPt * antitopGenPt <= 0.)',
+    #'expr': '(topGenPt * antitopGenPt > 0.) * (TMath::Sqrt(TMath::Exp(0.0615 - 0.0005 * topGenPt) * TMath::Exp(0.0615 - 0.0005 * antitopGenPt))) + (topGenPt * antitopGenPt <= 0.)',
+    #'expr': '(topGenPt * antitopGenPt > 0.) * (TMath::Sqrt(TMath::Exp(0.0416 - 0.0003 * topGenPt) * TMath::Exp(0.0416 - 0.0003 * antitopGenPt))) + (topGenPt * antitopGenPt <= 0.)',
+    'expr': '(topGenPt * antitopGenPt > 0.) * (TMath::Sqrt((0.103*TMath::Exp(-0.0118 * topGenPt) - 0.000134 * topGenPt + 0.973) * (0.103*TMath::Exp(-0.0118 * antitopGenPt) - 0.000134 * topGenPt + 0.973))) + (topGenPt * antitopGenPt <= 0.)',
     'samples': ['top']
 }
 
