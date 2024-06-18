@@ -26,7 +26,6 @@ variables['ptz']        = { 'name' : 'ZH3l_pTZ',
                             'fold' : 3 
                         }
 
-
 variables['chisq']       = { 'name'  : 'AZH_ChiSquare_patch',
                             'range' : (10,0,10),
                             'xaxis' : 'ChiSq',
@@ -83,102 +82,82 @@ variables['checkmZ']    = { 'name' : 'ZH3l_checkmZ',
                             'fold' : 3
                         }
 
-#variables['pt1']        = { 'name': 'Lepton_pt[0]',
-#                            'range' : (15,0.,500),
-#                            'xaxis' : 'lept1_p_{T} [GeV]',
-#                            'fold' : 3
-#                        }
-#variables['eta1']        = { 'name': 'Lepton_eta[0]',
-#                            'range' : (17,-3,3),
-#                            'xaxis' : 'leading lepton #eta',
-#                            'fold' : 3
-#                        }
-#variables['phi1']        = { 'name': 'Lepton_phi[0]',
-#                            'range' : (17,-3.2,3.2),
-#                            'xaxis' : 'leading lepton #phi',
-#                            'fold' : 3
-#                        }
-#
-#variables['pt_subleadinglepton'] = { 'name': 'Lepton_pt[1]',
-#                                     'range' : (15,0.,200),
-#                                     'xaxis' : 'lept2_p_{T} [GeV]',
-#                                     'fold' : 3
-#                                    }
-#variables['eta_subleadinglepton'] = { 'name': 'Lepton_eta[1]',
-#                                     'range' : (17,-3,3),
-#                                     'xaxis' : 'subleading lepton #eta',
-#                                     'fold' : 3
-#                                    }
-#
-#variables['phi_subleadinglepton'] = { 'name': 'Lepton_phi[1]',
-#                                     'range' : (17,-3.2,3.2),
-#                                     'xaxis' : 'subleading lepton #phi',
-#                                     'fold' : 3
-#                                    }
-#
-#variables['ptjet0']     = { 'name' : 'CleanJet_pt[0]',
-#                            'range' : (15,0,500),
-#                            'xaxis' : 'Leading jet p_{T}',
-#                            'fold' : 3
-#                        }
-#variables['phijet0']     = { 'name' : 'CleanJet_phi[0]',
-#                            'range' : (17,-3.2,3.2),
-#                            'xaxis' : 'Leading jet #phi',
-#                            'fold' : 3
-#                        }
-#variables['etajet0']     = { 'name' : 'CleanJet_eta[0]',
-#                            'range' : (17,-3,3),
-#                            'xaxis' : 'Leading jet #eta',
-#                            'fold' : 3
-#                        }
-#
-#variables['ptjet1']     = { 'name' : 'CleanJet_pt[1]',
-#                            'range' : (15,0,200),
-#                            'xaxis' : 'Subleading jet p_{T}',
-#                            'fold' : 3
-#                        }
-#variables['phijet1']     = { 'name' : 'CleanJet_phi[1]',
-#                            'range' : (17,-3.2,3.2),
-#                            'xaxis' : 'Subleading jet #phi',
-#                            'fold' : 3
-#                        }
-#
-#variables['etajet1']     = { 'name' : 'CleanJet_eta[1]',
-#                            'range' : (17,-3,3),
-#                            'xaxis' : 'Subleading jet #eta',
-#                            'fold' : 3
-#                        }
-#variables['etaphijet0']     = { 'name' : 'CleanJet_eta[0]:CleanJet_phi[0]',
-#                            'range' : ([-3.0,-1.3,-0.5,0.5,1.3,3.0],[-3.2,-1.57,-0.87,0.87,1.57,3.2]),
-#                            'xaxis' : ' leading jet #eta : #phi}',
-#                            'fold' : 3
-#                        }
-#variables['etaphijet1']     = { 'name' : 'CleanJet_eta[1]:CleanJet_phi[1]',
-#                            'range' : ([-3.0,-1.3,-0.5,0.5,1.3,3.0],[-3.2,-1.57,-0.87,0.87,1.57,3.2]),
-#                            'xaxis' : ' subleading jet #eta : #phi}',
-#                            'fold' : 3
-#                        }
-#variables['etaphilep0']     = { 'name' : 'Lepton_eta[0]:Lepton_phi[0]',
-#                            'range' : ([-3.0,-1.3,-0.5,0.5,1.3,3.0],[-3.2,-1.57,-0.87,0.87,1.57,3.2]),
-#                            'xaxis' : ' leading lepton #eta : #phi}',
-#                            'fold' : 3
-#                        }
-#variables['etaphilep1']     = { 'name' : 'Lepton_eta[1]:Lepton_phi[1]',
-#                            'range' : ([-3.0,-1.3,-0.5,0.5,1.3,3.0],[-3.2,-1.57,-0.87,0.87,1.57,3.2]),
-#                            'xaxis' : ' subleading lepton #eta : #phi}',
-#                            'fold' : 3
-#                        }
-#
-#variables['PuppiMET_pt']        = { 'name' : 'PuppiMET_pt',
-#                            'range' : (15,0,500),
-#                            'xaxis' : 'PuppiMET p_{t}',
-#                            'fold' : 3
-#                        }
-#variables['PuppiMET_phi']        = { 'name' : 'PuppiMET_phi',
-#                            'range' : (17,-3.2,3.2),
-#                            'xaxis' : 'PuppiMET phi',
-#                            'fold' : 3
-#                        }
+variables['pt1']        = { 'name': 'Lepton_pt[0]',
+                            'range' : (15,0.,500),
+                            'xaxis' : 'lept1_p_{T} [GeV]',
+                            'fold' : 3
+                        }
+variables['eta1']        = { 'name': 'Lepton_eta[0]',
+                            'range' : (17,-3,3),
+                            'xaxis' : 'leading lepton #eta',
+                            'fold' : 3
+                        }
+variables['phi1']        = { 'name': 'Lepton_phi[0]',
+                            'range' : (17,-3.2,3.2),
+                            'xaxis' : 'leading lepton #phi',
+                            'fold' : 3
+                        }
+
+variables['pt_subleadinglepton'] = { 'name': 'Lepton_pt[1]',
+                                     'range' : (15,0.,200),
+                                     'xaxis' : 'lept2_p_{T} [GeV]',
+                                     'fold' : 3
+                                    }
+variables['eta_subleadinglepton'] = { 'name': 'Lepton_eta[1]',
+                                     'range' : (17,-3,3),
+                                     'xaxis' : 'subleading lepton #eta',
+                                     'fold' : 3
+                                    }
+
+variables['phi_subleadinglepton'] = { 'name': 'Lepton_phi[1]',
+                                     'range' : (17,-3.2,3.2),
+                                     'xaxis' : 'subleading lepton #phi',
+                                     'fold' : 3
+                                    }
+
+variables['ptjet0']     = { 'name' : 'CleanJet_pt[0]',
+                            'range' : (15,0,500),
+                            'xaxis' : 'Leading jet p_{T}',
+                            'fold' : 3
+                        }
+variables['phijet0']     = { 'name' : 'CleanJet_phi[0]',
+                            'range' : (17,-3.2,3.2),
+                            'xaxis' : 'Leading jet #phi',
+                            'fold' : 3
+                        }
+variables['etajet0']     = { 'name' : 'CleanJet_eta[0]',
+                            'range' : (17,-3,3),
+                            'xaxis' : 'Leading jet #eta',
+                            'fold' : 3
+                        }
+
+variables['ptjet1']     = { 'name' : 'CleanJet_pt[1]',
+                            'range' : (15,0,200),
+                            'xaxis' : 'Subleading jet p_{T}',
+                            'fold' : 3
+                        }
+variables['phijet1']     = { 'name' : 'CleanJet_phi[1]',
+                            'range' : (17,-3.2,3.2),
+                            'xaxis' : 'Subleading jet #phi',
+                            'fold' : 3
+                        }
+
+variables['etajet1']     = { 'name' : 'CleanJet_eta[1]',
+                            'range' : (17,-3,3),
+                            'xaxis' : 'Subleading jet #eta',
+                            'fold' : 3
+                        }
+
+variables['PuppiMET_pt']        = { 'name' : 'PuppiMET_pt',
+                            'range' : (15,0,500),
+                            'xaxis' : 'PuppiMET p_{t}',
+                            'fold' : 3
+                        }
+variables['PuppiMET_phi']        = { 'name' : 'PuppiMET_phi',
+                            'range' : (17,-3.2,3.2),
+                            'xaxis' : 'PuppiMET phi',
+                            'fold' : 3
+                        }
 #variables['MET_pt']        = { 'name' : 'MET_pt',
 #                            'range' : (15,0,500),
 #                            'xaxis' : 'MET p_{t}',

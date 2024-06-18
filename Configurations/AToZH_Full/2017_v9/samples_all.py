@@ -1262,7 +1262,7 @@ samples['AZH_950_850'] = { 'name': getSampleFilesNano(directory, 'AToZHToLLTTbar
 ###########################################
 
 samples['Fake']  = {   'name': [ ] ,
-                       'weight' : 'fakeW*'+ METFilter_DATA,
+                       'weight' : 'fakeW*'+ METFilter_DATA+'*transition_veto',
                        'weights' : [ ] ,
                        'isData': ['all'],
                        'FilesPerJob' : 500 ,

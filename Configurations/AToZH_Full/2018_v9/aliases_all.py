@@ -20,6 +20,11 @@ aliases['ttHMVAULSF'] = {
     'samples'    : mc
 }
 
+aliases['transition_veto'] = {
+    'expr': '( (abs(Lepton_pdgId[0])==13  || (abs(Lepton_pdgId[0])==11 && (abs(Lepton_eta) > 1.556 || abs(Lepton_eta) < 1.4442))) \
+            && (abs(Lepton_pdgId[1])==13  || (abs(Lepton_pdgId[1])==11 && (abs(Lepton_eta) > 1.556 || abs(Lepton_eta) < 1.4442))) \
+            && (abs(Lepton_pdgId[2])==13  || (abs(Lepton_pdgId[2])==11 && (abs(Lepton_eta) > 1.556 || abs(Lepton_eta) < 1.4442))) )'
+}
 ####################################################################################
 # b tagging WPs: https://twiki.cern.ch/twiki/bin/view/CMS/BtagRecommendation106XUL18
 ####################################################################################
