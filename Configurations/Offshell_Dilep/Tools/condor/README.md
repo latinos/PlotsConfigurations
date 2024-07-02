@@ -4,7 +4,7 @@ To initialize mkShapesMulti, use the in-line command $ cmssw-el7, which opens a 
 
 Step 1
 ```````
-In a normal LXplus machine, within the file `make_list_of_dirs.py`, insert your working directory (example therein)
+In a normal LXplus machine, within the file `make_list_of_dirs.py`, insert your working directory (example therein), which normally houses your `mkShapes__offshellDATE_v9_PROCESS__ALL` files to run on condor.
 Run with $ python3 make_list_of_dirs.py
 Will output a dirs.txt file, which houses all of your executable paths
 
