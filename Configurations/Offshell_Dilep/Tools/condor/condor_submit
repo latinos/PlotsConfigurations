@@ -1,0 +1,21 @@
+universe = vanilla
+executable = $(jds_dir)
+
+MY.WantOS = "el7"
+
+should_transfer_files = YES
+when_to_transfer_output = ON_EXIT_OR_EVICT
+output = log/$(Cluster)_$(Process).stdout
+error = log/$(Cluster)_$(Process).stderr
+log = log/$(Cluster)_$(Process).log
+
+request_cpus = 2
+request_memory = 10000
++JobFlavour = "workday"
+
+transfer_input_files = dirs.txt, $(jds_dir)
+requirements= (HAS_SINGULARITY=?=True) || (NODE_MOUNTS_CVMFS =?= true)
++SingularityImage = "/cvmfs/singularity.opensciencegrid.org/cmssw/cms:rhel7"
++RequiresCVMFS    = true
+
+queue jds_dir from dirs.txt
