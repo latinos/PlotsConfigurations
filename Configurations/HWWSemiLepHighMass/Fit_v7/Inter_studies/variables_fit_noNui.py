@@ -256,86 +256,86 @@ variables['events']  = {
 ######    'name' : 'HM_CleanFatJetPassMBoosted_HlnFat_mass[0]',
 #####    # 'range': ([0, 200, 300, 350, 400, 450, 500, 550, 600, 650, 700, 750, 800,
 #####    #           900, 1000, 1100, 1200, 1350, 1500, 1700, 2000, 3000, 5000],),
-######    'range': ([0, 220, 300, 350, 400, 450, 490, 530, 580, 630, 680,
-######               730, 780, 840, 950, 1075, 1175, 1370, 1900, 5000],),
-######    'xaxis': 'reconstr. H mass [GeV]',
-######    'cuts' : set.union(boostedSR, ak8SR),
-######    'fold' : 3
-######}
-######variables['boostHiggsMass_vbf'] = {
-######    'name' : 'HM_CleanFatJetPassMBoosted_HlnFat_mass[0]',
-#####    # 'range': ([0, 200, 300, 350, 400, 450, 500, 550, 600, 650, 700, 750, 800,
-#####    #           900, 1000, 1100, 1200, 1350, 1500, 1700, 2000, 3000, 5000],),
-######    'range': ([0, 220, 300, 350, 400, 450, 490, 530, 580, 630, 680,
-##### #              730, 780, 840, 950, 1100, 1300, 1800, 5000],),
-##### #   'xaxis': 'reconstr. H mass [GeV]',
-##### #   'cuts' : set.union(boostedSR, ak8SR),
-######    'fold' : 3
-######}
-######variables['hmHiggsMass'] = {
-######    'name' : 'HM_CleanFatJetPassMBoosted_HlnFat_mass[0]',
-#####    # 'range': ([0, 900, 1000, 1100, 1200, 1350, 1500, 1700, 2000, 3000, 5000],),
-#####    # 'range': ([0, 900, 1000, 1100, 1200, 1325, 1580, 2050, 5000],),
-##### #   'range': ([0, 900, 990, 1085, 1185, 1300, 1500, 2000, 5000],),
-##### #   'xaxis': 'reconstr. H mass [GeV]',
-##### #   'cuts' : set.union(hmSR, ak8SR),
-##### #   'fold' : 3
-######}
+#####    'range': ([0, 220, 300, 350, 400, 450, 490, 530, 580, 630, 680,
+#####               730, 780, 840, 950, 1075, 1175, 1370, 1900, 5000],),
+#####    'xaxis': 'reconstr. H mass [GeV]',
+#####    'cuts' : set.union(boostedSR, ak8SR),
+#####    'fold' : 3
+#####}
+#####variables['boostHiggsMass_vbf'] = {
+#####    'name' : 'HM_CleanFatJetPassMBoosted_HlnFat_mass[0]',
+####    # 'range': ([0, 200, 300, 350, 400, 450, 500, 550, 600, 650, 700, 750, 800,
+####    #           900, 1000, 1100, 1200, 1350, 1500, 1700, 2000, 3000, 5000],),
+#####    'range': ([0, 220, 300, 350, 400, 450, 490, 530, 580, 630, 680,
+#### #              730, 780, 840, 950, 1100, 1300, 1800, 5000],),
+#### #   'xaxis': 'reconstr. H mass [GeV]',
+#### #   'cuts' : set.union(boostedSR, ak8SR),
+#####    'fold' : 3
+#####}
+#####variables['hmHiggsMass'] = {
+#####    'name' : 'HM_CleanFatJetPassMBoosted_HlnFat_mass[0]',
+####    # 'range': ([0, 900, 1000, 1100, 1200, 1350, 1500, 1700, 2000, 3000, 5000],),
+####    # 'range': ([0, 900, 1000, 1100, 1200, 1325, 1580, 2050, 5000],),
+#### #   'range': ([0, 900, 990, 1085, 1185, 1300, 1500, 2000, 5000],),
+#### #   'xaxis': 'reconstr. H mass [GeV]',
+#### #   'cuts' : set.union(hmSR, ak8SR),
+#### #   'fold' : 3
+#####}
+####
+####
+#####variables['plot_resolvHMass'] = {
+#####    'name' : 'HM_Hlnjj_mass',
+#####    'range': (24, 0, 1200),
+#####    'xaxis': 'reconstr. H mass [GeV]',
+#####    'fold' : 3,
+#####    'cuts': resolved,
+#####}
+#####variables['plot_boostHMass'] = {
+#####    'name' : 'HM_CleanFatJetPassMBoosted_HlnFat_mass[0]',
+#####    'range': (40, 0, 2000),
+#####    'xaxis': 'reconstr. H mass [GeV]',
+#####    'fold' : 0,
+#####    'cuts': set.union(boosted,boosted_general)
+#####}
+####
+#####variables['plot_boostHMass_nocut'] = {
+#####    'name' : 'HM_CleanFatJetPassMBoosted_HlnFat_mass[0]',
+#####    'range': (30, 0, 1500),
+#####    'xaxis': 'reconstr. H mass [GeV]',
+#####    'fold' : 0, 
+#####}
+#####
+#####variables['plot_whad_jj_patches'] = {
+#####    'name' : 'mass_WHAD_JJ[0]',
+#####    'range': (25, 0, 250),
+#####    'xaxis': 'reconstr. W had mass [GeV]',
+#####    'fold' : 0, 
+#####}
+#####
+#####variables['plot_whad_fat_patches'] = {
+#####    'name' : 'mass_WHAD_FAT[0]',
+#####    'range': (25, 0, 250),
+#####    'xaxis': 'reconstr. W had mass [GeV]',
+#####    'fold' : 0, 
+#####}
+####
+####
+#####variables['deltaR'] = {
+#####    'name' : 'deltaR[0]',
+#####    'range': (15, 0, 3),
+#####    'xaxis': 'delta R resolved or Boosted',
+#####    'fold' : 0, 
+#####}
 #####
 #####
-######variables['plot_resolvHMass'] = {
-######    'name' : 'HM_Hlnjj_mass',
-######    'range': (24, 0, 1200),
-######    'xaxis': 'reconstr. H mass [GeV]',
-######    'fold' : 3,
-######    'cuts': resolved,
-######}
-######variables['plot_boostHMass'] = {
-######    'name' : 'HM_CleanFatJetPassMBoosted_HlnFat_mass[0]',
-######    'range': (40, 0, 2000),
-######    'xaxis': 'reconstr. H mass [GeV]',
-######    'fold' : 0,
-######    'cuts': set.union(boosted,boosted_general)
-######}
-#####
-######variables['plot_boostHMass_nocut'] = {
-######    'name' : 'HM_CleanFatJetPassMBoosted_HlnFat_mass[0]',
-######    'range': (30, 0, 1500),
-######    'xaxis': 'reconstr. H mass [GeV]',
-######    'fold' : 0, 
-######}
-######
-######variables['plot_whad_jj_patches'] = {
-######    'name' : 'mass_WHAD_JJ[0]',
-######    'range': (25, 0, 250),
-######    'xaxis': 'reconstr. W had mass [GeV]',
-######    'fold' : 0, 
-######}
-######
-######variables['plot_whad_fat_patches'] = {
-######    'name' : 'mass_WHAD_FAT[0]',
-######    'range': (25, 0, 250),
-######    'xaxis': 'reconstr. W had mass [GeV]',
-######    'fold' : 0, 
-######}
-#####
-#####
-######variables['deltaR'] = {
-######    'name' : 'deltaR[0]',
-######    'range': (15, 0, 3),
-######    'xaxis': 'delta R resolved or Boosted',
-######    'fold' : 0, 
-######}
-######
-######
-#variables['HvOverFAT'] = {
-#   'name' : 'HvOverFat[0]',
-#   'range': (20, 0, 1.),
-#   'xaxis': 'p_{t}^{W}/m_{Xp_{t}^{W}/m_{X}}',
-#   'cuts' : controlRegions,
-#   'fold' : 0
-#}
-#
+variables['HvOverFAT'] = {
+   'name' : 'HvOverFat[0]',
+   'range': (20, 0, 1.),
+   'xaxis': 'p_{t}^{W}/m_{Xp_{t}^{W}/m_{X}}',
+   'cuts' : controlRegions,
+   'fold' : 0
+}
+
 variables['HvOverFAT'] = {
    'name' : 'HvOverFat[0]',
    'range': (20, 0, 1.),
@@ -366,6 +366,20 @@ variables['DeepTag_long_MD'] = {
 }
 variables['DeepTag_long_MD_ext'] = {
    'name' : 'Alt$(FatJet_deepTagMD_WvsQCD[FatJet_idx_clean[0]],0)',
+   'range': (20, 0, 1.),
+   'xaxis': 'DeepTag_FatJet',
+   'cuts' : boosted ,
+   'fold' : 0
+}
+variables['DeepTag_long'] = {
+   'name' : 'Alt$(FatJet_deepTag_WvsQCD[FatJet_idx_clean[0]],0)',
+   'range': (20, 0.96, 1.),
+   'xaxis': 'DeepTag_FatJet',
+   'cuts' : boosted ,
+   'fold' : 0
+}
+variables['DeepTag_long_ext'] = {
+   'name' : 'Alt$(FatJet_deepTag_WvsQCD[FatJet_idx_clean[0]],0)',
    'range': (20, 0, 1.),
    'xaxis': 'DeepTag_FatJet',
    'cuts' : boosted ,
@@ -547,15 +561,15 @@ variables['mass_HIGGS_FAT_binned'] = {
    'fold' : 0 ,
    'cuts' : boosted ,
 }
+######
+######
+######variables['mass_HIGGS_FAT'] = {
+######   'name' : 'mass_HIGGS_FAT[0]',
+######   'range': (15, 0, 3000),
+######   'xaxis': 'Higgs Mass [GeV]',
+######   'fold' : 0
+######}
 #####
-#####
-#####variables['mass_HIGGS_FAT'] = {
-#####   'name' : 'mass_HIGGS_FAT[0]',
-#####   'range': (15, 0, 3000),
-#####   'xaxis': 'Higgs Mass [GeV]',
-#####   'fold' : 0
-#####}
-####
 variables['mass_HIGGS_twojet_binned'] = {
    'name' : 'mass_HIGGS_JJ[0]',
    'range': ([0, 150, 200, 260, 300, 350, 400, 450, 500, 550, 600,
@@ -565,14 +579,14 @@ variables['mass_HIGGS_twojet_binned'] = {
    'cuts' : resolved, 
 }
 
-variables['mass_HIGGS_twojet_rebin'] = {
-   'name' : 'mass_HIGGS_JJ[0]',
-   'range': ([0, 200, 250, 300, 350, 400, 450, 500, 550, 600,
-              650, 700, 750, 800, 850, 900, 950, 1000, 1250, 1500, 3000],),
-   'xaxis': 'Higgs Mass [GeV]',
-   'fold' : 0,
-   'cuts' : resolvedSR, 
-}
+#variables['mass_HIGGS_twojet_rebin'] = {
+#   'name' : 'mass_HIGGS_JJ[0]',
+#   'range': ([0, 200, 250, 300, 350, 400, 450, 500, 550, 600,
+#              650, 700, 750, 800, 850, 900, 950, 1000, 1250, 1500, 3000],),
+#   'xaxis': 'Higgs Mass [GeV]',
+#   'fold' : 0,
+#   'cuts' : resolvedSR, 
+#}
 variables['wlep_mass'] = {
     'name' : 'HM_Wlep_mass_Puppi',
     'range': (15, 50, 200),
@@ -1085,3 +1099,969 @@ variables['whad_mass'] = {
 ####    'xaxis': 'nCleanFatJet',
 ####    'fold' : 0
 ####}
+variables['classvbf_rebin'] = {
+     'name': 'vbfdnn_odd',
+     'range' : ([0, 0.1, 0.2,0.3, 0.4,0.5,0.6,0.8,1.0],),
+     'xaxis' : 'VBF output',
+     'fold' : 3,
+     'divideByBinWidth':1
+}
+variables['classbkg_rebin'] = {
+     'name': 'bkgdnn_odd',
+     'range' : ([0, 0.2, 0.4,0.5, 0.6,0.7,0.8,0.9,1.0],),
+     'xaxis' : 'BKG output',
+     'fold'  : 3,
+     'divideByBinWidth':1
+}
+variables['classggh_rebin'] = {
+     'name': 'gghdnn_odd',
+     'range' : ([0, 0.1, 0.2,0.3, 0.4,0.5,0.6,0.8,1.0],),
+     'xaxis' : 'ggH output',
+     'fold'  : 3,
+     'divideByBinWidth':1
+}
+variables['classvbf_res_rebin'] = {
+     'name': 'vbfdnn_res',
+     'range' : ([0, 0.1, 0.2,0.3, 0.4,0.5,0.6,0.8,1.0],),
+     'xaxis' : 'VBF output',
+     'fold' : 3,
+     'divideByBinWidth':1
+}
+variables['classbkg_res_rebin'] = {
+     'name': 'bkgdnn_res',
+     'range' : ([0, 0.2, 0.4,0.5, 0.6,0.7,0.8,0.9,1.0],),
+     'xaxis' : 'BKG output',
+     'fold'  : 3,
+     'divideByBinWidth':1
+}
+variables['classggh_res_rebin'] = {
+     'name': 'gghdnn_res',
+     'range' : ([0, 0.1, 0.2,0.3, 0.4,0.5,0.6,0.8,1.0],),
+     'xaxis' : 'ggH output',
+     'fold'  : 3,
+     'divideByBinWidth':1
+}
+variables['classvbf_high_rebin'] = {
+     'name': 'vbfdnn_high',
+     'range' : ([0, 0.1, 0.2,0.3, 0.4,0.5,0.6,0.8,1.0],),
+     'xaxis' : 'VBF output',
+     'fold' : 3,
+     'divideByBinWidth':1
+}
+variables['classbkg_high_rebin'] = {
+     'name': 'bkgdnn_high',
+     'range' : ([0, 0.2, 0.4,0.5, 0.6,0.7,0.8,0.9,1.0],),
+     'xaxis' : 'BKG output',
+     'fold'  : 3,
+     'divideByBinWidth':1
+}
+variables['classggh_high_rebin'] = {
+     'name': 'gghdnn_high',
+     'range' : ([0, 0.1, 0.2,0.3, 0.4,0.5,0.6,0.8,1.0],),
+     'xaxis' : 'ggH output',
+     'fold'  : 3,
+     'divideByBinWidth':1
+}
+variables['classvbf'] = {
+     'name': 'vbfdnn_odd',
+     'range' : (10,0,1.),
+     'xaxis' : 'VBF output',
+     'fold' : 3,
+     'divideByBinWidth':1
+}
+variables['classbkg'] = {
+     'name': 'bkgdnn_odd',
+     'range' : (10,0,1.),
+     'xaxis' : 'BKG output',
+     'fold'  : 3,
+     'divideByBinWidth':1
+}
+variables['classggh'] = {
+     'name': 'gghdnn_odd',
+     'range' : (10,0,1.),
+     'xaxis' : 'ggH output',
+     'fold'  : 3,
+     'divideByBinWidth':1
+}
+variables['classvbf_res'] = {
+     'name': 'vbfdnn_res',
+     'range' : (10,0,1.),
+     'xaxis' : 'VBF output',
+     'fold' : 3,
+     'divideByBinWidth':1
+}
+variables['classbkg_res'] = {
+     'name': 'bkgdnn_res',
+     'range' : (10,0,1.),
+     'xaxis' : 'BKG output',
+     'fold'  : 3,
+     'divideByBinWidth':1
+}
+variables['classggh_res'] = {
+     'name': 'gghdnn_res',
+     'range' : (10,0,1.),
+     'xaxis' : 'ggH output',
+     'fold'  : 3,
+     'divideByBinWidth':1
+}
+variables['classvbf_high'] = {
+     'name': 'vbfdnn_high',
+     'range' : (10,0,1.),
+     'xaxis' : 'VBF output',
+     'fold' : 3,
+     'divideByBinWidth':1
+}
+variables['classbkg_high'] = {
+     'name': 'bkgdnn_high',
+     'range' : (10,0,1.),
+     'xaxis' : 'BKG output',
+     'fold'  : 3,
+     'divideByBinWidth':1
+}
+variables['classggh_high'] = {
+     'name': 'gghdnn_high',
+     'range' : (10,0,1.),
+     'xaxis' : 'ggH output',
+     'fold'  : 3,
+     'divideByBinWidth':1
+}
+variables['lep_px'] = {
+     'name': 'lep_px',
+     'range' : (30,-1500,1500),
+     'xaxis' : 'lep_px',
+     'cuts' : boosted ,
+     'fold' : 3,
+}
+variables['lep_py'] = {
+     'name': 'lep_py',
+     'range' : (30,-1500,1500),
+     'xaxis' : 'lep_py',
+     'cuts' : boosted ,
+     'fold' : 3,
+}
+variables['lep_pz'] = {
+     'name': 'lep_pz',
+     'range' : (30,-1500,1500),
+     'xaxis' : 'lep_pz',
+     'cuts' : boosted ,
+     'fold' : 3,
+}
+variables['j1_px'] = {
+     'name': 'j1_px',
+     'range' : (40,-400,400),
+     'xaxis' : 'j1_px',
+     'cuts' : boosted ,
+     'fold' : 3,
+}
+variables['j1_py'] = {
+     'name': 'j1_py',
+     'range' : (40,-400,400),
+     'xaxis' : 'j1_py',
+     'cuts' : boosted ,
+     'fold' : 3,
+}
+variables['j1_pz'] = {
+     'name': 'j1_pz',
+     'range' : (50,-1000,1000),
+     'xaxis' : 'j1_pz',
+     'cuts' : boosted ,
+     'fold' : 3,
+}
+variables['j2_px'] = {
+     'name': 'j2_px',
+     'range' : (40,-400,400),
+     'xaxis' : 'j2_px',
+     'cuts' : boosted ,
+     'fold' : 3,
+}
+variables['j2_py'] = {
+     'name': 'j2_py',
+     'range' : (40,-400,400),
+     'xaxis' : 'j2_py',
+     'cuts' : boosted ,
+     'fold' : 3,
+}
+variables['j2_pz'] = {
+     'name': 'j2_pz',
+     'range' : (50,-1000,1000),
+     'xaxis' : 'j2_pz',
+     'cuts' : boosted ,
+     'fold' : 3,
+}
+variables['j3_px'] = {
+     'name': 'j3_px',
+     'range' : (40,-400,400),
+     'xaxis' : 'j3_px',
+     'cuts' : boosted ,
+     'fold' : 3,
+}
+variables['j3_py'] = {
+     'name': 'j3_py',
+     'range' : (40,-400,400),
+     'xaxis' : 'j3_py',
+     'cuts' : boosted ,
+     'fold' : 3,
+}
+variables['j3_pz'] = {
+     'name': 'j3_pz',
+     'range' : (50,-1000,1000),
+     'xaxis' : 'j3_pz',
+     'cuts' : boosted ,
+     'fold' : 3,
+}
+variables['j4_px'] = {
+     'name': 'j4_px',
+     'range' : (40,-400,400),
+     'xaxis' : 'j4_px',
+     'cuts' : boosted ,
+     'fold' : 3,
+}
+variables['j4_py'] = {
+     'name': 'j4_py',
+     'range' : (40,-400,400),
+     'xaxis' : 'j4_py',
+     'cuts' : boosted ,
+     'fold' : 3,
+}
+variables['j4_pz'] = {
+     'name': 'j4_pz',
+     'range' : (50,-1000,1000),
+     'xaxis' : 'j4_pz',
+     'cuts' : boosted ,
+     'fold' : 3,
+}
+variables['j4_mass'] = {
+     'name': 'j4_mass',
+     'range' : (25,0,100),
+     'xaxis' : 'j4_mass',
+     'cuts' : boosted ,
+     'fold' : 3,
+}
+variables['j1_mass'] = {
+     'name': 'j1_mass',
+     'range' : (25,0,100),
+     'xaxis' : 'j1_mass',
+     'cuts' : boosted ,
+     'fold' : 3,
+}
+variables['j2_mass'] = {
+     'name': 'j2_mass',
+     'range' : (25,0,100),
+     'xaxis' : 'j2_mass',
+     'cuts' : boosted ,
+     'fold' : 3,
+}
+variables['j3_mass'] = {
+     'name': 'j3_mass',
+     'range' : (25,0,100),
+     'xaxis' : 'j3_mass',
+     'cuts' : boosted ,
+     'fold' : 3,
+}
+variables['j1_pt'] = {
+     'name': 'j1_pt',
+     'range' : (30,0,1000),
+     'xaxis' : 'j1_pt',
+     'cuts' : boosted ,
+     'fold' : 3,
+}
+variables['j2_pt'] = {
+     'name': 'j2_pt',
+     'range' : (30,0,1000),
+     'xaxis' : 'j2_pt',
+     'cuts' : boosted ,
+     'fold' : 3,
+}
+variables['j3_pt'] = {
+     'name': 'j3_pt',
+     'range' : (30,0,1000),
+     'xaxis' : 'j3_pt',
+     'cuts' : boosted ,
+     'fold' : 3,
+}
+variables['j4_pt'] = {
+     'name': 'j4_pt',
+     'range' : (30,0,1000),
+     'xaxis' : 'j4_pt',
+     'cuts' : boosted ,
+     'fold' : 3,
+}
+variables['j1_pt_new'] = {
+     'name': 'j1_pt',
+     'range' : (30,0,150),
+     'xaxis' : 'j1_pt',
+     'cuts' : boosted ,
+     'fold' : 3,
+}
+variables['j2_pt_new'] = {
+     'name': 'j2_pt',
+     'range' : (30,0,150),
+     'xaxis' : 'j2_pt',
+     'cuts' : boosted ,
+     'fold' : 3,
+} 
+variables['j3_pt_new'] = {
+     'name': 'j3_pt',
+     'range' : (30,0,150),
+     'xaxis' : 'j3_pt',
+     'cuts' : boosted ,
+     'fold' : 3,
+} 
+variables['j4_pt_new'] = {
+     'name': 'j4_pt',
+     'range' : (30,0,150),
+     'xaxis' : 'j4_pt',
+     'cuts' : boosted ,
+     'fold' : 3,
+} 
+variables['j1_pt_new_unf'] = {
+     'name': 'j1_pt',
+     'range' : (30,0,150),
+     'xaxis' : 'j1_pt',
+     'cuts' : boosted ,
+     'fold' : 0,
+} 
+variables['j2_pt_new_unf'] = {
+     'name': 'j2_pt',
+     'range' : (30,0,150),
+     'xaxis' : 'j2_pt',
+     'cuts' : boosted ,
+     'fold' : 0,
+}
+variables['j3_pt_new_unf'] = {
+     'name': 'j3_pt',
+     'range' : (30,0,150),
+     'xaxis' : 'j3_pt',
+     'cuts' : boosted ,
+     'fold' : 0,
+} 
+variables['wh_px'] = {
+     'name': 'wh_px',
+     'range' : (40,-400,400),
+     'xaxis' : 'wh_px',
+     'cuts' : boosted ,
+     'fold' : 3,
+}
+variables['wh_py'] = {
+     'name': 'wh_py',
+     'range' : (40,-400,400),
+     'xaxis' : 'wh_py',
+     'cuts' : boosted ,
+     'fold' : 3,
+}
+variables['wh_pz'] = {
+     'name': 'wh_pz',
+     'range' : (50,-1000,1000),
+     'xaxis' : 'wh_pz',
+     'cuts' : boosted ,
+     'fold' : 3,
+}
+variables['wh_mass'] = {
+     'name': 'wh_mass',
+     'range' : (20,55,115),
+     'xaxis' : 'wh_mass',
+     'cuts' : boosted ,
+     'fold' : 3,
+}
+variables['wl_px'] = {
+     'name': 'wl_px',
+     'range' : (40,-400,400),
+     'xaxis' : 'wl_px',
+     'cuts' : boosted ,
+     'fold' : 3,
+}
+variables['wl_py'] = {
+     'name': 'wl_py',
+     'range' : (40,-400,400),
+     'xaxis' : 'wl_py',
+     'cuts' : boosted ,
+     'fold' : 3,
+}
+variables['wl_pz'] = {
+     'name': 'wl_pz',
+     'range' : (50,-1000,1000),
+     'xaxis' : 'wl_pz',
+     'cuts' : boosted ,
+     'fold' : 3,
+}
+variables['wl_mass'] = {
+     'name': 'wl_mass',
+     'range' : (20,55,115),
+     'xaxis' : 'wl_mass',
+     'cuts' : boosted ,
+     'fold' : 3,
+}
+variables['mjj_12'] = {
+     'name': 'mjj_12',
+     'range' : (40, 0,1000),
+     'xaxis' : 'mjj_12',
+     'cuts' : boosted ,
+     'fold' : 3,
+}
+variables['mjj_13'] = {
+     'name': 'mjj_13',
+     'range' : (40, 0,1000),
+     'xaxis' : 'mjj_13',
+     'cuts' : boosted ,
+     'fold' : 3,
+}
+variables['mjj_14'] = {
+     'name': 'mjj_14',
+     'range' : (40, 0,1000),
+     'xaxis' : 'mjj_14',
+     'cuts' : boosted ,
+     'fold' : 3,
+}
+variables['mjj_23'] = {
+     'name': 'mjj_23',
+     'range' : (40, 0,1000),
+     'xaxis' : 'mjj_23',
+     'cuts' : boosted ,
+     'fold' : 3,
+}
+variables['mjj_24'] = {
+     'name': 'mjj_24',
+     'range' : (40, 0,1000),
+     'xaxis' : 'mjj_24',
+     'cuts' : boosted ,
+     'fold' : 3,
+}
+variables['mjj_34'] = {
+     'name': 'mjj_34',
+     'range' : (40, 0,1000),
+     'xaxis' : 'mjj_34',
+     'cuts' : boosted ,
+     'fold' : 3,
+}
+variables['detajj_14'] = {
+     'name': 'detajj_14',
+     'range' : (30, 0,6),
+     'xaxis' : 'detajj_14',
+     'cuts' : boosted ,
+     'fold' : 3,
+}
+variables['detajj_12'] = {
+     'name': 'detajj_12',
+     'range' : (30, 0,6),
+     'xaxis' : 'detajj_12',
+     'cuts' : boosted ,
+     'fold' : 3,
+}
+variables['detajj_13'] = {
+     'name': 'detajj_13',
+     'range' : (30, 0,6),
+     'xaxis' : 'detajj_13',
+     'cuts' : boosted ,
+     'fold' : 3,
+}
+variables['detajj_23'] = {
+     'name': 'detajj_23',
+     'range' : (30, 0,6),
+     'xaxis' : 'detajj_23',
+     'cuts' : boosted ,
+     'fold' : 3,
+}
+variables['detajj_24'] = {
+     'name': 'detajj_24',
+     'range' : (30, 0,6),
+     'xaxis' : 'detajj_24',
+     'fold' : 3,
+     'cuts' : boosted ,
+}
+variables['detajj_34'] = {
+     'name': 'detajj_34',
+     'range' : (30, 0,6),
+     'xaxis' : 'detajj_34',
+     'cuts' : boosted ,
+     'fold' : 3,
+}
+variables['met_px'] = {
+     'name': 'met_px',
+     'range' : (40,-400,400),
+     'xaxis' : 'met_px',
+     'cuts' : boosted ,
+     'fold' : 3,
+}
+variables['met_py'] = {
+     'name': 'met_py',
+     'range' : (40,-400,400),
+     'xaxis' : 'met_px',
+     'cuts' : boosted ,
+     'fold' : 3,
+}
+variables['nJets_no'] = {
+     'name': 'nJets_no',
+     'range' : (10,0,10),
+     'xaxis' : 'nJets_no',
+     'cuts' : boosted ,
+     'fold' : 3,
+}
+variables['nJets_30'] = {
+     'name': 'nJets_30',
+     'range' : (10,0,10),
+     'xaxis' : 'nJets_30',
+     'cuts' : boosted ,
+     'fold' : 3,
+}
+variables['res_lep_px'] = {
+     'name': 'res_lep_px',
+     'range' : (30,-1500,1500),
+     'xaxis' : 'lep_px',
+     'cuts' : resolved ,
+     'fold' : 3,
+}
+variables['res_lep_py'] = {
+     'name': 'res_lep_py',
+     'range' : (30,-1500,1500),
+     'xaxis' : 'lep_py',
+     'cuts' : resolved ,
+     'fold' : 3,
+}
+variables['res_lep_pz'] = {
+     'name': 'res_lep_pz',
+     'range' : (30,-1500,1500),
+     'xaxis' : 'lep_pz',
+     'cuts' : resolved ,
+     'fold' : 3,
+}
+variables['res_j1_px'] = {
+     'name': 'res_j1_px',
+     'range' : (40,-400,400),
+     'xaxis' : 'j1_px',
+     'fold' : 3,
+     'cuts' : resolved ,
+}
+variables['res_j1_py'] = {
+     'name': 'res_j1_py',
+     'range' : (40,-400,400),
+     'xaxis' : 'j1_py',
+     'fold' : 3,
+     'cuts' : resolved ,
+}
+variables['res_j1_pz'] = {
+     'name': 'res_j1_pz',
+     'range' : (50,-1000,1000),
+     'xaxis' : 'j1_pz',
+     'cuts' : resolved ,
+     'fold' : 3,
+}
+variables['res_j2_px'] = {
+     'name': 'res_j2_px',
+     'range' : (40,-400,400),
+     'xaxis' : 'j2_px',
+     'cuts' : resolved ,
+     'fold' : 3,
+}
+variables['res_j2_py'] = {
+     'name': 'res_j2_py',
+     'range' : (40,-400,400),
+     'xaxis' : 'j2_py',
+     'cuts' : resolved ,
+     'fold' : 3,
+}
+variables['res_j2_pz'] = {
+     'name': 'res_j2_pz',
+     'range' : (50,-1000,1000),
+     'xaxis' : 'j2_pz',
+     'cuts' : resolved ,
+     'fold' : 3,
+}
+variables['res_j3_px'] = {
+     'name': 'res_j3_px',
+     'range' : (40,-400,400),
+     'xaxis' : 'j3_px',
+     'cuts' : resolved ,
+     'fold' : 3,
+}
+variables['res_j3_py'] = {
+     'name': 'res_j3_py',
+     'range' : (40,-400,400),
+     'xaxis' : 'j3_py',
+     'cuts' : resolved ,
+     'fold' : 3,
+}
+variables['res_j3_pz'] = {
+     'name': 'res_j3_pz',
+     'range' : (50,-1000,1000),
+     'xaxis' : 'j3_pz',
+     'cuts' : resolved ,
+     'fold' : 3,
+}
+variables['res_j4_px'] = {
+     'name': 'res_j4_px',
+     'range' : (40,-400,400),
+     'xaxis' : 'j4_px',
+     'cuts' : resolved ,
+     'fold' : 3,
+}
+variables['res_j4_py'] = {
+     'name': 'res_j4_py',
+     'range' : (40,-400,400),
+     'xaxis' : 'j4_py',
+     'cuts' : resolved ,
+     'fold' : 3,
+}
+variables['res_j4_pz'] = {
+     'name': 'res_j4_pz',
+     'range' : (50,-1000,1000),
+     'xaxis' : 'j4_pz',
+     'cuts' : resolved ,
+     'fold' : 3,
+}
+variables['res_j4_mass'] = {
+     'name': 'res_j4_mass',
+     'range' : (25,0,100),
+     'xaxis' : 'j4_mass',
+     'cuts' : resolved ,
+     'fold' : 3,
+}
+variables['res_j1_mass'] = {
+     'name': 'res_j1_mass',
+     'range' : (25,0,100),
+     'xaxis' : 'j1_mass',
+     'cuts' : resolved ,
+     'fold' : 3,
+}
+variables['res_j2_mass'] = {
+     'name': 'res_j2_mass',
+     'range' : (25,0,100),
+     'xaxis' : 'j2_mass',
+     'cuts' : resolved ,
+     'fold' : 3,
+}
+variables['res_j3_mass'] = {
+     'name': 'res_j3_mass',
+     'range' : (25,0,100),
+     'xaxis' : 'j3_mass',
+     'cuts' : resolved ,
+     'fold' : 3,
+}
+variables['res_wh_px'] = {
+     'name': 'res_wh_px',
+     'range' : (40,-400,400),
+     'xaxis' : 'wh_px',
+     'cuts' : resolved ,
+     'fold' : 3,
+}
+variables['res_wh_py'] = {
+     'name': 'res_wh_py',
+     'range' : (40,-400,400),
+     'xaxis' : 'wh_py',
+     'cuts' : resolved ,
+     'fold' : 3,
+}
+variables['res_wh_pz'] = {
+     'name': 'res_wh_pz',
+     'range' : (50,-1000,1000),
+     'xaxis' : 'wh_pz',
+     'cuts' : resolved ,
+     'fold' : 3,
+}
+variables['res_wh_mass'] = {
+     'name': 'res_wh_mass',
+     'range' : (20,55,115),
+     'xaxis' : 'wh_mass',
+     'cuts' : resolved ,
+     'fold' : 3,
+}
+variables['res_wl_px'] = {
+     'name': 'res_wl_px',
+     'range' : (40,-400,400),
+     'xaxis' : 'wl_px',
+     'cuts' : resolved ,
+     'fold' : 3,
+}
+variables['res_wl_py'] = {
+     'name': 'res_wl_py',
+     'range' : (40,-400,400),
+     'xaxis' : 'wl_py',
+     'cuts' : resolved ,
+     'fold' : 3,
+}
+variables['res_wl_pz'] = {
+     'name': 'res_wl_pz',
+     'range' : (50,-1000,1000),
+     'xaxis' : 'wl_pz',
+     'cuts' : resolved ,
+     'fold' : 3,
+}
+variables['res_wl_mass'] = {
+     'name': 'res_wl_mass',
+     'range' : (20,55,115),
+     'xaxis' : 'wl_mass',
+     'fold' : 3,
+     'cuts' : resolved ,
+}
+variables['res_mjj_12'] = {
+     'name': 'res_mjj_12',
+     'range' : (40, 0,1000),
+     'xaxis' : 'mjj_12',
+     'fold' : 3,
+     'cuts' : resolved ,
+}
+variables['res_mjj_13'] = {
+     'name': 'res_mjj_13',
+     'range' : (40, 0,1000),
+     'xaxis' : 'mjj_13',
+     'cuts' : resolved ,
+     'fold' : 3,
+}
+variables['res_mjj_14'] = {
+     'name': 'res_mjj_14',
+     'range' : (40, 0,1000),
+     'xaxis' : 'mjj_14',
+     'cuts' : resolved ,
+     'fold' : 3,
+}
+variables['res_mjj_23'] = {
+     'name': 'res_mjj_23',
+     'range' : (40, 0,1000),
+     'xaxis' : 'mjj_23',
+     'cuts' : resolved ,
+     'fold' : 3,
+}
+variables['res_mjj_24'] = {
+     'name': 'res_mjj_24',
+     'range' : (40, 0,1000),
+     'xaxis' : 'mjj_24',
+     'cuts' : resolved ,
+     'fold' : 3,
+}
+variables['res_mjj_34'] = {
+     'name': 'res_mjj_34',
+     'range' : (40, 0,1000),
+     'xaxis' : 'mjj_34',
+     'cuts' : resolved ,
+     'fold' : 3,
+}
+variables['res_detajj_14'] = {
+     'name': 'res_detajj_14',
+     'range' : (30, 0,6),
+     'xaxis' : 'detajj_14',
+     'cuts' : resolved ,
+     'fold' : 3,
+}
+variables['res_detajj_12'] = {
+     'name': 'res_detajj_12',
+     'range' : (30, 0,6),
+     'xaxis' : 'detajj_12',
+     'cuts' : resolved ,
+     'fold' : 3,
+}
+variables['res_detajj_13'] = {
+     'name': 'res_detajj_13',
+     'range' : (30, 0,6),
+     'xaxis' : 'detajj_13',
+     'cuts' : resolved ,
+     'fold' : 3,
+}
+variables['res_detajj_23'] = {
+     'name': 'res_detajj_23',
+     'range' : (30, 0,6),
+     'xaxis' : 'detajj_23',
+     'cuts' : resolved ,
+     'fold' : 3,
+}
+variables['res_detajj_24'] = {
+     'name': 'res_detajj_24',
+     'range' : (30, 0,6),
+     'xaxis' : 'detajj_24',
+     'cuts' : resolved ,
+     'fold' : 3,
+}
+variables['res_detajj_34'] = {
+     'name': 'res_detajj_34',
+     'range' : (30, 0,6),
+     'xaxis' : 'detajj_34',
+     'cuts' : resolved ,
+     'fold' : 3,
+}
+variables['res_met_px'] = {
+     'name': 'res_met_px',
+     'range' : (40,-400,400),
+     'xaxis' : 'met_px',
+     'cuts' : resolved ,
+     'fold' : 3,
+}
+variables['res_met_py'] = {
+     'name': 'res_met_py',
+     'range' : (40,-400,400),
+     'xaxis' : 'met_px',
+     'cuts' : resolved ,
+     'fold' : 3,
+}
+variables['res_nJets_no'] = {
+     'name': 'res_nJets_no',
+     'range' : (10,0,10),
+     'xaxis' : 'nJets_no',
+     'cuts' : resolved ,
+     'fold' : 3,
+}
+variables['res_nJets_30'] = {
+     'name': 'res_nJets_30',
+     'range' : (10,0,10),
+     'xaxis' : 'nJets_30',
+     'cuts' : resolved ,
+     'fold' : 3,
+}
+variables['res_w1_px'] = {
+     'name': 'res_w1_px',
+     'range' : (40,-400,400),
+     'xaxis' : 'w1_px',
+     'cuts' : resolved ,
+     'fold' : 3,
+}
+variables['res_w1_py'] = {
+     'name': 'res_w1_py',
+     'range' : (40,-400,400),
+     'xaxis' : 'w1_py',
+     'cuts' : resolved ,
+     'fold' : 3,
+}
+variables['res_w1_pz'] = {
+     'name': 'res_w1_pz',
+     'range' : (50,-1000,1000),
+     'xaxis' : 'w1_pz',
+     'cuts' : resolved ,
+     'fold' : 3,
+}
+variables['res_w1_mass'] = {
+     'name': 'res_w1_mass',
+     'range' : (20,55,115),
+     'xaxis' : 'w1_mass',
+     'cuts' : resolved ,
+     'fold' : 3,
+}
+variables['res_w2_px'] = {
+     'name': 'res_w2_px',
+     'range' : (40,-400,400),
+     'xaxis' : 'w2_px',
+     'cuts' : resolved ,
+     'fold' : 3,
+}
+variables['res_w2_py'] = {
+     'name': 'res_w2_py',
+     'range' : (40,-400,400),
+     'xaxis' : 'w2_py',
+     'cuts' : resolved ,
+     'fold' : 3,
+}
+variables['res_w2_pz'] = {
+     'name': 'res_w2_pz',
+     'range' : (50,-1000,1000),
+     'xaxis' : 'w2_pz',
+     'cuts' : resolved ,
+     'fold' : 3,
+}
+variables['res_w2_mass'] = {
+     'name': 'res_w2_mass',
+     'range' : (20,55,115),
+     'xaxis' : 'w2_mass',
+     'cuts' : resolved ,
+     'fold' : 3,
+}
+variables['res_w1_pt'] = {
+     'name': 'res_w1_pt',
+     'range' : (30,0,1000),
+     'xaxis' : 'w1_pt',
+     'cuts' : resolved ,
+     'fold' : 3,
+}
+variables['res_w2_pt'] = {
+     'name': 'res_w2_pt',
+     'range' : (30,0,1000),
+     'xaxis' : 'w2_pt',
+     'cuts' : resolved ,
+     'fold' : 3,
+}
+variables['res_j1_pt'] = {
+     'name': 'res_j1_pt',
+     'range' : (30,0,1000),
+     'xaxis' : 'j1_pt',
+     'cuts' : resolved ,
+     'fold' : 3,
+}
+variables['res_j2_pt'] = {
+     'name': 'res_j2_pt',
+     'range' : (30,0,1000),
+     'xaxis' : 'j2_pt',
+     'cuts' : resolved ,
+     'fold' : 3,
+}
+variables['res_j3_pt'] = {
+     'name': 'res_j3_pt',
+     'range' : (30,0,1000),
+     'xaxis' : 'j3_pt',
+     'cuts' : resolved ,
+     'fold' : 3,
+}
+variables['res_j4_pt'] = {
+     'name': 'res_j4_pt',
+     'range' : (30,0,1000),
+     'xaxis' : 'j4_pt',
+     'cuts' : resolved ,
+     'fold' : 3,
+}
+variables['res_w1_pt_new'] = {
+     'name': 'res_w1_pt',
+     'range' : (30,0,150),
+     'xaxis' : 'w1_pt',
+     'cuts' : resolved ,
+     'fold' : 3,
+}
+variables['res_w2_pt_new'] = {
+     'name': 'res_w2_pt',
+     'range' : (30,0,150),
+     'xaxis' : 'w2_pt',
+     'cuts' : resolved ,
+     'fold' : 3,
+}
+variables['res_j1_pt_new'] = {
+     'name': 'res_j1_pt',
+     'range' : (30,0,150),
+     'xaxis' : 'j1_pt',
+     'cuts' : resolved ,
+     'fold' : 3,
+}
+variables['res_j2_pt_new'] = {
+     'name': 'res_j2_pt',
+     'range' : (30,0,150),
+     'xaxis' : 'j2_pt',
+     'cuts' : resolved ,
+     'fold' : 3,
+}
+variables['res_j3_pt_new'] = {
+     'name': 'res_j3_pt',
+     'range' : (30,0,150),
+     'xaxis' : 'j3_pt',
+     'cuts' : resolved ,
+     'fold' : 3,
+}
+variables['res_j4_pt_new'] = {
+     'name': 'res_j4_pt',
+     'range' : (30,0,150),
+     'xaxis' : 'j4_pt',
+     'cuts' : resolved ,
+     'fold' : 3,
+}
+variables['res_j1_pt_new_unf'] = {
+     'name': 'res_j1_pt',
+     'range' : (30,0,150),
+     'xaxis' : 'j1_pt',
+     'cuts' : resolved ,
+     'fold' : 0,
+}
+variables['res_j2_pt_new_unf'] = {
+     'name': 'res_j2_pt',
+     'range' : (30,0,150),
+     'xaxis' : 'j2_pt',
+     'cuts' : resolved ,
+     'fold' : 0,
+}
+variables['res_j3_pt_new_unf'] = {
+     'name': 'res_j3_pt',
+     'range' : (30,0,150),
+     'xaxis' : 'j3_pt',
+     'cuts' : resolved ,
+     'fold' : 0,
+}
