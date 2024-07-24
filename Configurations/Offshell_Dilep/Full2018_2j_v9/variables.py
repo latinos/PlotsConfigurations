@@ -19,7 +19,6 @@ variables['events']  = {
     'xaxis' : 'events',
     'fold' : 3
 }
-
 variables['dnnScore_MAX']  = {   'name': 'dnnScore_MAX',
                         'range' : (8, -1.0,7.0),
                         'xaxis' : 'CAT INDEX',
@@ -149,6 +148,20 @@ variables['pt2']  = {   'name': 'Lepton_pt[1]',
                         'xaxis' : 'p_{T}^{min} [GeV]',
                         'fold'  : 3 
                         }
+
+"""
+variables['eta_j1']  = {   'name': 'CleanJet_eta[0]',
+                        'range' : (40,-5.5,5.5),
+                        'xaxis' : '\eta_{j1}',
+                        'fold'  : 3
+                        }
+
+variables['eta_j2']  = {   'name': 'CleanJet_eta[1]',
+                        'range' : (40,-5.5,5.5),
+                        'xaxis' : '\eta_{j2}',
+                        'fold'  : 3
+                        }
+"""
 #variables['qgl_j1'] = {'name': 'Jet_qgl[CleanJet_jetIdx[0]]',
 #                        'range' : (20,0,1),
 #                        'xaxis' : 'gql_{j1}',

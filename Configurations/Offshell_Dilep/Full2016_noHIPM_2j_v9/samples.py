@@ -104,7 +104,6 @@ mcCommonWeight_custom = 'XSWeight*SFweight*PromptGenLepMatch2l*METFilter_MC'
 #############  BACKGROUNDS  ###############
 ###########################################
 
-
 ###### DY #######
 
 files = nanoGetSampleFiles(mcDirectory, 'DYJetsToTT_MuEle_M-50') + \
@@ -251,23 +250,21 @@ samples['WW'] = {
 }
 
 
-"""
-samples['ggWW'] = {
-    'name': nanoGetSampleFiles(mcDirectory, 'GluGluToWWToENEN') + \
-            nanoGetSampleFiles(mcDirectory, 'GluGluToWWToENMN') + \
-            nanoGetSampleFiles(mcDirectory, 'GluGluToWWToENTN') + \
-            nanoGetSampleFiles(mcDirectory, 'GluGluToWWToMNEN') + \
-            nanoGetSampleFiles(mcDirectory, 'GluGluToWWToMNMN') + \
-            nanoGetSampleFiles(mcDirectory, 'GluGluToWWToMNTN') + \
-            nanoGetSampleFiles(mcDirectory, 'GluGluToWWToTNEN') + \
-            nanoGetSampleFiles(mcDirectory, 'GluGluToWWToTNMN') + \
-            nanoGetSampleFiles(mcDirectory, 'GluGluToWWToTNTN'),
-    'weight': mcCommonWeight+'*1.53/1.4', # updating k-factor
-    'FilesPerJob': 4,
-    'suppressNegative' :['all'],
-    'suppressNegativeNuisances' :['all']
-}
-"""
+#samples['ggWW'] = {
+#    'name': nanoGetSampleFiles(mcDirectory, 'GluGluToWWToENEN') + \
+#            nanoGetSampleFiles(mcDirectory, 'GluGluToWWToENMN') + \
+#            nanoGetSampleFiles(mcDirectory, 'GluGluToWWToENTN') + \
+#            nanoGetSampleFiles(mcDirectory, 'GluGluToWWToMNEN') + \
+#            nanoGetSampleFiles(mcDirectory, 'GluGluToWWToMNMN') + \
+#            nanoGetSampleFiles(mcDirectory, 'GluGluToWWToMNTN') + \
+#            nanoGetSampleFiles(mcDirectory, 'GluGluToWWToTNEN') + \
+#            nanoGetSampleFiles(mcDirectory, 'GluGluToWWToTNMN') + \
+#            nanoGetSampleFiles(mcDirectory, 'GluGluToWWToTNTN'),
+#    'weight': mcCommonWeight+'*1.53/1.4', # updating k-factor
+#    'FilesPerJob': 4,
+#    'suppressNegative' :['all'],
+#    'suppressNegativeNuisances' :['all']
+#}
 
 #### Now bin in nonfiducial / fiducial x bins
 #

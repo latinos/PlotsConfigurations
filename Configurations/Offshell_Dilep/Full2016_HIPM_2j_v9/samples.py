@@ -255,23 +255,21 @@ samples['WW'] = {
     'suppressNegativeNuisances' :['all'],
 }
 
-"""
-samples['ggWW'] = {
-    'name': nanoGetSampleFiles(mcDirectory, 'GluGluToWWToENEN') + \
-            nanoGetSampleFiles(mcDirectory, 'GluGluToWWToENMN') + \
-            nanoGetSampleFiles(mcDirectory, 'GluGluToWWToENTN') + \
-            nanoGetSampleFiles(mcDirectory, 'GluGluToWWToMNEN') + \
-            nanoGetSampleFiles(mcDirectory, 'GluGluToWWToMNMN') + \
-            nanoGetSampleFiles(mcDirectory, 'GluGluToWWToMNTN') + \
-            nanoGetSampleFiles(mcDirectory, 'GluGluToWWToTNEN') + \
-            nanoGetSampleFiles(mcDirectory, 'GluGluToWWToTNMN') + \
-            nanoGetSampleFiles(mcDirectory, 'GluGluToWWToTNTN'),
-    'weight': mcCommonWeight+'*1.53/1.4', # updating k-factor
-    'FilesPerJob': 4,
-    'suppressNegative' :['all'],
-    'suppressNegativeNuisances' :['all']
-}
-"""
+#samples['ggWW'] = {
+#    'name': nanoGetSampleFiles(mcDirectory, 'GluGluToWWToENEN') + \
+#            nanoGetSampleFiles(mcDirectory, 'GluGluToWWToENMN') + \
+#            nanoGetSampleFiles(mcDirectory, 'GluGluToWWToENTN') + \
+#            nanoGetSampleFiles(mcDirectory, 'GluGluToWWToMNEN') + \
+#            nanoGetSampleFiles(mcDirectory, 'GluGluToWWToMNMN') + \
+#            nanoGetSampleFiles(mcDirectory, 'GluGluToWWToMNTN') + \
+#            nanoGetSampleFiles(mcDirectory, 'GluGluToWWToTNEN') + \
+#            nanoGetSampleFiles(mcDirectory, 'GluGluToWWToTNMN') + \
+#            nanoGetSampleFiles(mcDirectory, 'GluGluToWWToTNTN'),
+#    'weight': mcCommonWeight+'*1.53/1.4', # updating k-factor
+#    'FilesPerJob': 4,
+#    'suppressNegative' :['all'],
+#    'suppressNegativeNuisances' :['all']
+#}
 
 #### Now bin in nonfiducial / fiducial x bins
 #
@@ -351,6 +349,7 @@ for _, sd in DataRun:
     samples['DATA']['weights'].extend([DataTrig[pd]] * len(files))
 
 ########### VBF ############
+
 
 
 files = nanoGetSampleFiles(signalDirectory, 'VBFHToWWTo2L2Nu_M125') + \
@@ -517,7 +516,6 @@ samples['ggH_sand_on'] = {
     'suppressNegativeNuisances' :['all']
 }
 
-
 """
 ########### ggH ############
 files = nanoGetSampleFiles(signalDirectory, 'GluGluHToWWTo2L2Nu_M125') + \
@@ -561,5 +559,5 @@ samples['ggHToWWOnshell'] = {
     'suppressNegative' :['all'],
     'suppressNegativeNuisances' :['all']
 }
-
 """
+

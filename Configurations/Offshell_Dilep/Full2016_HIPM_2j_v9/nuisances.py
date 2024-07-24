@@ -659,6 +659,19 @@ nuisances['WWnorm_2j']  = {
                    ]
               }
 
+qqWW_shape_weight = "1.2 * (dnnScore_VBF_OFF > .89) + 1.1 * (dnnScore_VBF_OFF <= .89) * (dnnScore_VBF_OFF > .78) + 1.1 * (dnnScore_VBF_OFF <= .78) * (dnnScore_VBF_OFF > .7) + 1.1 * (dnnScore_VBF_OFF <= .7) * (dnnScore_VBF_OFF > .6) + 1.20 * (dnnScore_VBF_OFF <= .6) * (dnnScore_VBF_OFF > .50)"
+
+nuisances['MELA_Hyp_qqWW'] = {
+    'name': 'MELA_Hyp_qqWW',
+    'type': 'shape',
+    'kind'  : 'weight',
+    'samples': {
+        'qqH_bonly_off': [qqWW_shape_weight, "1"],
+    },
+    'symmetrize' : True,
+}
+
+"""
 nuisances['MELA_Hyp_qqWW'] = {
     'name': 'MELA_Hyp_qqWW',
     'type': 'lnN',
@@ -666,6 +679,7 @@ nuisances['MELA_Hyp_qqWW'] = {
         'qqH_bonly_off': '1.1',
     },
 }
+"""
 
 
 ## Use the following if you want to apply the automatic combine MC stat nuisances.

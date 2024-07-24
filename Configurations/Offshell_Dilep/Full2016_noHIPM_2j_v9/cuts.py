@@ -36,7 +36,6 @@ _tmp = [
        ]
 addcut('SR_ggH_OFF_2j', _tmp)
 
-
 _tmp = [
     'multiJet',
     'bVeto',

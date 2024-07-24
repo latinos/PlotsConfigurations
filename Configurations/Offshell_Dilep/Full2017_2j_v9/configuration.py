@@ -30,10 +30,10 @@ plotFile = 'plot.py'
 # luminosity to normalize to (in 1/fb)
 lumi = 41.53
 
-outputDirPlots = eos_space + '../www/BLINDED_FINAL_W_SYST_Full2017_2j_v9_v4_NewSamples'
+outputDirPlots = eos_space + '../www/BLINDED_FINAL_W_SYST_Full2017_2j_v9_v4_NewBtagSF_andNewRateSF'
 
 # used by mkDatacards to define output directory for datacards
-outputDirDatacard =  eos_space + 'Full2017_2j_v9_W_SYST_FINAL_v4_NewSamples/datacards_2017'
+outputDirDatacard =  eos_space + 'Full2017_2j_v9_W_SYST_FINAL_v4_NewSamples/datacards_2017_Normed_NewBUnc_NewScale_v2'
 
 
 # structure file for datacard

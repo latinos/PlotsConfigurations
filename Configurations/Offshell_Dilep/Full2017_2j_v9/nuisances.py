@@ -203,7 +203,7 @@ nuisances['muonpt'] = {
     'type'       : 'shape',
     'mapUp'      : 'MupTup',
     'mapDown'    : 'MupTdo',
-    'samples'    : dict((skey, ['1', '1']) for skey in mc if not skey in ["ggH_bonly_on", "ggH_bonly_off", "qqH_sand_off", "qqH_bonly_off", "qqH_sonly_off", "qqH_sand_on", "qqH_sonly_on", "qqH_bonly_on"]),
+    'samples'    : dict((skey, ['1', '1']) for skey in mc if not skey in ["ggH_bonly_on", "ggH_bonly_off","qqH_sand_off", "qqH_bonly_off", "qqH_sonly_off", "qqH_sand_on", "qqH_sonly_on", "qqH_bonly_on"]),
     'folderUp'   : makeMCDirectory('MupTup_suffix'),
     'folderDown' : makeMCDirectory('MupTdo_suffix'),
 #    'AsLnN'      : '1'
@@ -260,7 +260,7 @@ nuisances['JER'] = {
     'type'      : 'shape',
     'mapUp'     : 'JERup',
     'mapDown'   : 'JERdo',
-    'samples'   : dict((skey, ['1', '1']) for skey in mc if not skey in ["ggH_bonly_on", "ggH_bonly_off", "qqH_sand_off", "qqH_bonly_off", "qqH_sonly_off", "qqH_sand_on", "qqH_sonly_on", "qqH_bonly_on"]),
+    'samples'   : dict((skey, ['1', '1']) for skey in mc if not skey in ["ggH_bonly_on", "ggH_bonly_off","qqH_sand_off", "qqH_bonly_off", "qqH_sonly_off", "qqH_sand_on", "qqH_sonly_on", "qqH_bonly_on"]),
     'folderUp'  : makeMCDirectory('JERup_suffix'),
     'folderDown': makeMCDirectory('JERdo_suffix'),
    # 'AsLnN'     : '1'
@@ -671,6 +671,19 @@ nuisances['WWnorm_2j']  = {
                    ]
               }
 
+
+qqWW_shape_weight = "1.3 * (dnnScore_VBF_OFF > .95) + 1.07 * (dnnScore_VBF_OFF <= .95) * (dnnScore_VBF_OFF > .91) + 1.0 * (dnnScore_VBF_OFF <= .91) * (dnnScore_VBF_OFF > .87) + 1.1 * (dnnScore_VBF_OFF <= .87) * (dnnScore_VBF_OFF > .685) + 1.10 * (dnnScore_VBF_OFF <= .686) * (dnnScore_VBF_OFF > .50)"
+
+nuisances['MELA_Hyp_qqWW'] = {
+    'name': 'MELA_Hyp_qqWW',
+    'type': 'shape',
+    'kind'  : 'weight',
+    'samples': {
+        'qqH_bonly_off': [qqWW_shape_weight, "1"],
+    },
+    'symmetrize' : True,
+}
+"""
 nuisances['MELA_Hyp_qqWW'] = {
     'name': 'MELA_Hyp_qqWW',
     'type': 'lnN',
@@ -678,6 +691,7 @@ nuisances['MELA_Hyp_qqWW'] = {
         'qqH_bonly_off': '1.1',
     },
 }
+"""
 
 ## Use the following if you want to apply the automatic combine MC stat nuisances.
 nuisances['stat'] = {

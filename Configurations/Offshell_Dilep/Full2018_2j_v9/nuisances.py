@@ -107,9 +107,28 @@ nuisances['fake_mu_stat']  = {
 
 ##### B-tagger
 
+#Up_SF_perNom_btag_top = ["1.11502", "0.99881", "1.01351", "1.01006" , "0.9851" , "0.99714", "0.9711", "0.98346"]
+#Down_SF_perNom_btag_top = ["0.90539", "1.00582", "0.98676", "0.99021", "1.01578", "1.00319", "1.02793", "1.01758"]
+
+#Up_SF_perNom_btag_WW = ["1.00028", "0.99853", "1.01675", "1.01218", "0.99997", "0.99999","0.97165", "0.98405"]
+#Down_SF_perNom_btag_WW = ["0.99972", "1.00607", "0.98345", "0.98797", "1.00003", "1.00001","1.02961", "1.01647"]
+
 #for shift in ['jes', 'lf', 'hf', 'hfstats1', 'hfstats2', 'lfstats1', 'lfstats2', 'cferr1', 'cferr2']:
-for shift in ['lf', 'hf', 'lfstats1', 'lfstats2', 'hfstats1', 'hfstats2', 'cferr1', 'cferr2']:
+for index, shift in enumerate(['lf', 'hf', 'lfstats1', 'lfstats2', 'hfstats1', 'hfstats2', 'cferr1', 'cferr2']):
     btag_syst = ['(btagSF%sup)/(btagSF)' % shift, '(btagSF%sdown)/(btagSF)' % shift]
+
+    #btag_syst_top = ["",""
+    #btag_syst_top[0] = btag_syst[0] + "*" + Up_SF_perNom_btag_top[index]
+    #btag_syst_top[1] = btag_syst[1] + "*" + Down_SF_perNom_btag_top[index]
+
+    #btag_syst_WW = ["",""]
+    #btag_syst_WW[0] = btag_syst[0] + "*" + Up_SF_perNom_btag_WW[index]
+    #btag_syst_WW[1] = btag_syst[1] + "*" + Down_SF_perNom_btag_WW[index]
+
+
+    sample_dict = dict((skey, btag_syst) for skey in mc if skey) # not in ['top','WW'])
+    #sample_dict["top"] = btag_syst_top
+    #sample_dist["WW"] = btag_syst_WW
 
     name = 'CMS_btag_%s' % shift
     if 'stats' in shift:
@@ -119,8 +138,10 @@ for shift in ['lf', 'hf', 'lfstats1', 'lfstats2', 'hfstats1', 'hfstats2', 'cferr
         'name': name,
         'kind': 'weight',
         'type': 'shape',
-        'samples': dict((skey, btag_syst) for skey in mc),
+        'samples': sample_dict, #dict((skey, btag_syst) for skey in mc),
     }
+
+
 
 ##### Trigger Efficiency
 
@@ -666,12 +687,17 @@ nuisances['WWnorm_2j']  = {
                    ]
               }
 
+
+qqWW_shape_weight = "1.4 * (dnnScore_VBF_OFF > .926) + 1.0 * (dnnScore_VBF_OFF <= .926) * (dnnScore_VBF_OFF > .852) + 1.1 * (dnnScore_VBF_OFF <= .852) * (dnnScore_VBF_OFF > .800) + 1.1 * (dnnScore_VBF_OFF <= .800) * (dnnScore_VBF_OFF > .650) + 1.15 * (dnnScore_VBF_OFF <= .65) * (dnnScore_VBF_OFF > .50)"
+
 nuisances['MELA_Hyp_qqWW'] = {
     'name': 'MELA_Hyp_qqWW',
-    'type': 'lnN',
+    'type': 'shape',
+    'kind'  : 'weight',
     'samples': {
-        'qqH_bonly_off': '1.1',
+        'qqH_bonly_off': [qqWW_shape_weight, "1"],
     },
+    'symmetrize' : True,
 }
 
 
