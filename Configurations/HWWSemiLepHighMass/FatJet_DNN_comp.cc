@@ -241,9 +241,9 @@ for (unsigned int ix{0}; ix < nJ; ix++) {
 	    wr2phi = 0.0;
 	    wr2mass = 0.0;
 	    for (int i{0}; i != 4 and (unsigned)i != nJet ; ++i) {
-	    // if(CleanJet_pt->At(i) > 30){
+	     if(CleanJet_pt->At(i) > 30){
 	      vbfjet[i] = i;
-	    // }
+	     }
 	    }
 	/*  }else if (*HM_idx_j1->Get() != -1 && *HM_idx_j2->Get() != -1){
 	    wpt = *HM_Whad_pt->Get();

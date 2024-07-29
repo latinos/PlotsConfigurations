@@ -18,8 +18,8 @@ bool CheckforSM(){
   //std::cout << currentSampleName << std::endl;
   //if ( currentSampleName.Contains("GluGluHToWWTo2L2Nu_M125")) return false;
   //if ( currentSampleName.Contains("VBFHToWWTo2L2Nu_M125")) return false;
-  if ( currentSampleName.Contains("125")) {
-	return false;
+  if ( currentSampleName.Contains("copybkg")) {
+	return true;
 }
-  return true;
+  return false;
 }

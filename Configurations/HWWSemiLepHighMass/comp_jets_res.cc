@@ -30,6 +30,7 @@ protected:
 
   ULong64ValueReader* event;
   FloatArrayReader* Lepton_pt;
+  //FloatValueReader* Xsec;
   FloatArrayReader* Lepton_eta;
   FloatArrayReader* Lepton_phi;
   FloatArrayReader* CleanJet_pt;
@@ -116,6 +117,11 @@ comp_jets_res::evaluate(unsigned)
   float detajj_34 = 0.0;
   TLorentzVector LorJ1,LorJ2,LorJ3,LorJ4;
 
+
+  //float xsec = *Xsec->Get();
+  //if(abs(xsec -1.7956000e+00) < 1.0e-04) std::cout << "This is GGWW" << std::endl;
+  //if((abs(xsec - 5.5609998) < 1.0e-04) || (abs(xsec - 5.5440001 ) < 1.0e-04)) std::cout << "This is qqWWqq" << std::endl;
+  //if(abs(xsec - 2.2769997e+00) < 1.0e-06) std::cout << "This is ggH_hww" << std::endl;
   std::vector<float> input{};
   float wpt, weta, wphi, wmass, wr1pt, wr1eta, wr1phi, wr1mass, wr2pt, wr2eta, wr2phi, wr2mass; //, WWmass
   unsigned wjet1, wjet2;
@@ -159,10 +165,10 @@ comp_jets_res::evaluate(unsigned)
     wr2mass = Jet_mass->At(CleanJet_jetIdx->At(wjet2));
     for (int i{0}; j != 4 and (unsigned)i != nJet ; ++i) {
       if ( (unsigned)i != wjet1 and (unsigned) i != wjet2){
-//if (CleanJet_pt->At(i)>30){
+	if (CleanJet_pt->At(i)>30){
         vbfjet[j] = i;
         j++;
- //     }
+      }
     }
     }
   }else{
@@ -288,6 +294,7 @@ void
 comp_jets_res::bindTree_(multidraw::FunctionLibrary& _library)
 {
   _library.bindBranch(event, "event");
+  //_library.bindBranch(Xsec, "Xsec");
   _library.bindBranch(Lepton_pt, "Lepton_pt");
   _library.bindBranch(Lepton_eta, "Lepton_eta");
   _library.bindBranch(Lepton_phi, "Lepton_phi");
