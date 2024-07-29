@@ -10,17 +10,18 @@ massvbf = ['115', '120', '124','125', '126', '130', '135', '140', '145', '150', 
 #massggh = ['400','500','600','700','800','1000', '1000', '2000', '3000']
 #massvbf = ['400','500','600','700','800','1000', '1000', '2000', '3000']#'500','1000', '1500', '2000', '2500', '3000',  '5000']
 
-massggh = ['1000']
-massvbf = ['1000']
-models = ['RelW0.02']#,'RelW0.01','RelW0.05']
+#massggh = ['500','800']
+#massvbf = ['500','800']
+#models = ['RelW0.02']#,'RelW0.01','RelW0.05']
 
-#models = ['RelW0.1']#,'RelW0.3', 'RelW0.01','RelW0.05']
+#models = ['RelW0.1','RelW0.3', 'RelW0.01','RelW0.05']
 #'RelW0.05',]
 #,'RelW10.0','RelW100.0']
 
-#models=['RelW0.02']
-#models=['RelW0.02']
-#,'RelW0.05','RelW0.02','RelW0.01']
+#models=['RelW0.1','RelW0.01']
+models=['RelW0.02']#,'RelW0.05','RelW0.3']#,'RelW0.01']
+#models=['RelW0.01','RelW0.05','RelW0.3','RelW0.1']
+
 #models = ['RelW100.0']#,'RelW100.0']
 
 #model_name = '_'+model.replace('.','')

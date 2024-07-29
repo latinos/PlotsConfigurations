@@ -2,8 +2,8 @@
 
 treeName = 'Events'
 
+#tag = 'hm_2018_Inte'
 tag = 'hm_2018_Fit_test'
-#tag = 'hm_2018_Fit'
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFile_highmass_2018'
@@ -34,7 +34,7 @@ outputDirPlots = 'Plots_Test_resBKG_prefit_Again'
 
 
 # used by mkDatacards to define output directory for datacards
-outputDirDatacard = 'Datacards_DiffWidth'
+outputDirDatacard = 'Datacards_forDrawing'
 
 # structure file for datacard
 structureFile = 'structure_medmass.py'

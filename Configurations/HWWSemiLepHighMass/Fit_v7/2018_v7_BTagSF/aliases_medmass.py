@@ -1266,6 +1266,38 @@ aliases['Unc_teptrig'] = {
     'args': ('PlotsConfigurations/Configurations/HWWSemiLepHighMass/TriggEff/diff_trigger_2018.root'),
     'samples': mc, 
 }
+aliases['Unc_WjetsDataMC'] = { 
+    'linesToAdd': [
+        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_RELEASE_BASE'),
+        '.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/apply_WjetsUnc.cc+' % os.getenv('CMSSW_BASE')
+    ],  
+    'class': 'apply_WjetsUnc',
+    'args': ('PlotsConfigurations/Configurations/HWWSemiLepHighMass/correct_Wjets/file_WjetsUncPt_2018.root', 'PlotsConfigurations/Configurations/HWWSemiLepHighMass/correct_Wjets/file_WjetsUncBoo_2018.root'),
+    'samples': ['Wjets'], 
+}
+aliases['Unc_WjetsDataMC_Boo'] = { 
+    'linesToAdd': [
+        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_RELEASE_BASE'),
+        '.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/apply_WjetsUnc_Boo.cc+' % os.getenv('CMSSW_BASE')
+    ],  
+    'class': 'apply_WjetsUnc_Boo',
+    'args': ('PlotsConfigurations/Configurations/HWWSemiLepHighMass/correct_Wjets/file_WjetsUncPt_2018.root', 'PlotsConfigurations/Configurations/HWWSemiLepHighMass/correct_Wjets/file_WjetsUncBoo_2018.root'),
+    'samples': ['Wjets'], 
+}
+
+aliases['Wjets_reweight'] = {
+    'linesToAdd': [
+        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_RELEASE_BASE'),
+        '.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/apply_CorrWjets_pt.cc+' % os.getenv('CMSSW_BASE')
+    ],
+    'class': 'apply_CorrWjets_pt',
+    'args': ('PlotsConfigurations/Configurations/HWWSemiLepHighMass/wjets_pt_model/file_WjetsUncPt_2018.root'),
+    'samples': ['Wjets'],
+}
+
+
+
+
 aliases['Tag_mass_rewei'] = { 
     'linesToAdd': [
 	'gSystem->Load("%s/src/JHUGenMELA/MELA/data/%s/libmcfm_707.so","", kTRUE);'%(os.getenv('CMSSW_BASE'), os.getenv('SCRAM_ARCH')),

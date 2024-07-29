@@ -26,6 +26,7 @@ try:
     sig_diff = [skey for skey in mc if ("GGH" in skey) or ("QQH" in skey)] # ggWW is currently reweighted sig sample, while qqWWqq needs to be symlinked to the BWReweight!
     sig_diff_new = [skey for skey in mc if ("GGH" in skey) or ("QQH" in skey)or('WWewk'in skey)] # ggWW is currently reweighted sig sample, while qqWWqq needs to be symlinked to the BWReweight!
     sig_mc_PS = [skey for skey in mc if(( ("GGH" in skey) or ("QQH" in skey) ) and ("SBI" not in skey)) ] # ggWW is currently reweighted sig sample, while qqWWqq needs to be symlinked to the BWReweight!
+    sig_mc_TEST = [skey for skey in mc if(( ("GGH" in skey) or ("QQH" in skey) ) and ("QQHSBI" not in skey)) ] # ggWW is currently reweighted sig sample, while qqWWqq needs to be symlinked to the BWReweight!
 except NameError:
     mc = []
     sig_mc = []
@@ -286,6 +287,26 @@ nuisances['UncTePTrig'] = {
     'type': 'shape',
     'samples': dict((skey,['1 + 2*Unc_teptrig[0]', '1 -2*Unc_teptrig[0]']) for skey in mc),
 }
+nuisances['UncTePTrig_WJ'] = {
+    'name': 'Wjets_Corrrection',   # Theory uncertainty
+    'kind': 'weight',
+    'type': 'shape',
+    'samples': {
+        'Wjets': ['Unc_WjetsDataMC[0]', '1/Unc_WjetsDataMC[0]'],
+    },
+    'cuts': cutdict['Resolv'],
+#    'samples': dict((skey,['1 + 2*Unc_teptrig[0]', '1 -2*Unc_teptrig[0]']) for skey in mc),
+}
+nuisances['UncTePTrig_WJ_Boo'] = {
+    'name': 'Wjets_Corrrection',   # Theory uncertainty
+    'kind': 'weight',
+    'type': 'shape',
+    'samples': {
+        'Wjets': ['Unc_WjetsDataMC_Boo[0]', '1/Unc_WjetsDataMC_Boo[0]'],
+    },
+    'cuts': cutdict['Boosted'],
+#    'samples': dict((skey,['1 + 2*Unc_teptrig[0]', '1 -2*Unc_teptrig[0]']) for skey in mc),
+}
 #prefire_syst = ['PrefireWeight_Up/PrefireWeight', 'PrefireWeight_Down/PrefireWeight']
 #
 #nuisances['prefire'] = {
@@ -397,6 +418,7 @@ nuisances['muonpt_BWReweight'] = {
 
 ##### Jet energy scale
 jes_systs = ['JESAbsolute','JESAbsolute_2018','JESBBEC1','JESBBEC1_2018','JESEC2','JESEC2_2018','JESFlavorQCD','JESHF','JESHF_2018','JESRelativeBal','JESRelativeSample_2018']
+Fatjet_systs = ['fatjet_jes','fatjet_jer','fatjet_jms','fatjet_jmr','fatjet_jes_signal','fatjet_jer_signal','fatjet_jms_signal','fatjet_jmr_signal']
 jes_systs_BWR = ['JESAbsolute_BWReweight','JESAbsolute_2017_BWReweight','JESBBEC1_BWReweight','JESBBEC1_2017_BWReweight','JESEC2_BWReweight','JESEC2_2017_BWReweight','JESFlavorQCD_BWReweight','JESHF_BWReweight','JESHF_2017_BWReweight','JESRelativeBal_BWReweight','JESRelativeSample_2017_BWReweight']
 
 for js in jes_systs:
@@ -962,23 +984,23 @@ for j in range(1,4):
 		  'samples': dict((skey,tagger_variations ) for skey in mc_deep),
 	          'cuts': cutdict['Boosted'],
 		}
-#for j in range(1,6):
-#	for i in range(1,6):
-# 		tagger_variations = ["Tag_mass_rewei_up_"+str(j)+"_"+str(i)+"/Tag_mass_rewei",  "Tag_mass_rewei_do_"+str(j)+"_"+str(i)+"/Tag_mass_rewei"]
-#		nuisances["Top_massVsTagger_reweighting_bin_"+str(j)+"_"+str(i)+"2018"] = {
-#  		  'name': "Top_massVsTagger_reweighting_bin_"+str(j)+"_"+str(i)+"2018",
-#  		  'kind'  : 'weight',
-#    		  'type'  : 'shape',
-#		  'samples': dict((skey,tagger_variations ) for skey in mc_deep),
-#	          'cuts': cutdict['Boosted'],
-#		}
-#
-#
-##### PS
-# high mass PS from dileptonic
-#handle = open("../../../../PlotsConfigurations/Configurations/HighMass/PSunc_Semi.py",'r')
-#exec(handle)
-#handle.close()
+##for j in range(1,6):
+##	for i in range(1,6):
+## 		tagger_variations = ["Tag_mass_rewei_up_"+str(j)+"_"+str(i)+"/Tag_mass_rewei",  "Tag_mass_rewei_do_"+str(j)+"_"+str(i)+"/Tag_mass_rewei"]
+##		nuisances["Top_massVsTagger_reweighting_bin_"+str(j)+"_"+str(i)+"2018"] = {
+##  		  'name': "Top_massVsTagger_reweighting_bin_"+str(j)+"_"+str(i)+"2018",
+##  		  'kind'  : 'weight',
+##    		  'type'  : 'shape',
+##		  'samples': dict((skey,tagger_variations ) for skey in mc_deep),
+##	          'cuts': cutdict['Boosted'],
+##		}
+##
+##
+###### PS
+## high mass PS from dileptonic
+##handle = open("../../../../PlotsConfigurations/Configurations/HighMass/PSunc_Semi.py",'r')
+##exec(handle)
+##handle.close()
 
 # WpWmJJ_EWK_noTop, WpWmJJ_QCD_noTop_ext1, Wg_MADGRAPHMLM: PS Weights not properly normalized!
 nuisances['PS_ISR']  = {
@@ -997,7 +1019,7 @@ nuisances['PS_ISR_sig']  = {
     'name': 'PS_ISR',
     'kind': 'weight',
     'type': 'shape',
-    'samples': dict((skey, ['Alt$(PSWeight[2], 1.0)', 'Alt$(PSWeight[0], 1.0)']) for skey in sig_mc_PS)
+    'samples': dict((skey, ['Alt$(PSWeight[2], 1.0)', 'Alt$(PSWeight[0], 1.0)']) for skey in sig_mc_TEST)
 }
 #for m in massggh:
 #  PSup = PSunc['GGF'+m]['ISRup']
@@ -1043,7 +1065,7 @@ nuisances['PS_FSR_sig']  = {
     'name': 'PS_FSR',
     'kind': 'weight',
     'type': 'shape',
-    'samples': dict((skey, ['Alt$(PSWeight[3], 1.0)', 'Alt$(PSWeight[1], 1.0)']) for skey in sig_mc_PS)
+    'samples': dict((skey, ['Alt$(PSWeight[3], 1.0)', 'Alt$(PSWeight[1], 1.0)']) for skey in sig_mc_TEST)
 }
 # An overall 1.5% UE uncertainty will cover all the UEup/UEdo variations
 # And we don't observe any dependency of UE variations on njet
@@ -1935,8 +1957,7 @@ for nuisname in nuisancename:
 	 #   print(WW_up) 
             SBI_string = ['('+sig_up+')*SBI_isHM + ('+SM_up+')*SBI_isSMggh + ('+WW_up+')*SBI_isggWW',
                           '('+sig_dn+')*SBI_isHM + ('+SM_dn+')*SBI_isSMggh + ('+WW_dn+')*SBI_isggWW']
-            if ((nuis not in jes_systs) and (nuis not in jes_systs_BWR)): 
-              print("giu"+nuis)
+            if ((nuis not in jes_systs) and (nuis not in jes_systs_BWR)):# and (nuis not in Fatjet_systs)): 
               nuisances[nuis]['samples'].update({'GGHSBI_'+m+model_name: SBI_string})
 
     if doqq==1:
@@ -1959,9 +1980,7 @@ for nuisname in nuisancename:
               if 'QQH_'+m+model_name in nuisances[nuis]['samples']: sig_dn = nuisances[nuis]['samples']['QQH_'+m+model_name][1]
             SBI_string = ['('+sig_up+')*SBI_isHM + ('+SM_up+')*SBI_isSMVBF + ('+WW_up+')*SBI_isqqWWqq',
                           '('+sig_dn+')*SBI_isHM + ('+SM_dn+')*SBI_isSMVBF + ('+WW_dn+')*SBI_isqqWWqq']
-            #print(nuis)
-            if ((nuis not in jes_systs) and (nuis not in jes_systs_BWR)): 
-              print("giu"+nuis)
+            if ((nuis not in jes_systs) and (nuis not in jes_systs_BWR)):# and (nuis not in Fatjet_systs)): 
               nuisances[nuis]['samples'].update({'QQHSBI_'+m+model_name: SBI_string})
 
 #for nuis in nuisances:
@@ -2011,7 +2030,7 @@ for nuisname in nuisancename:
 #          if "qqH_hww" in nuisances[nuis]['samples']: SM_dn = nuisances[nuis]['samples']["qqH_hww"][1]
 #          if "qqWWqq" in nuisances[nuis]['samples']: WW_up = nuisances[nuis]['samples']["qqWWqq"][0]
 #          if "qqWWqq" in nuisances[nuis]['samples']: WW_dn = nuisances[nuis]['samples']["qqWWqq"][1]
-#        for model in models:
+#     e  for model in models:
 #          model_name = '_'+model.replace(".","")
 #          for m in massvbf:
 #            for nuis in nuisancename[nuisname]:
