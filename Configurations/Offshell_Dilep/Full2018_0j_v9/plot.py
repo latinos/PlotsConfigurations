@@ -1,50 +1,56 @@
-# plot configuration
+# plot configuration -- SFs used for plots; make sure they match structure.py
+#With new BTV July2024:
+
+        # Topnorm_0j    0.959
+        #  WWnorm_0j    1.11
+
+        # Topnorm_1j    0.861
+        #  WWnorm_1j    0.867
+
 
 # 0j btagging SF scale factors
 
-scale_histo_Vg = 1
-scale_histo_qqH_bonly_off = 1
-scale_histo_VVV = 1
-scale_histo_top =  0.96622 ## Topnorm_0j    9.6622e-01 +/-  2.04e-02
-scale_histo_Higgs = 1
-scale_histo_qqH_bonly_on = 1
-scale_histo_WW = 1.1168 ## WWnorm_0j    1.1168e+00 +/-  3.21e-02 this is the data/mc, so data is above mc; you have 1.11 in data more than 1 WW
-scale_histo_qqH_sand_on = 1
-scale_histo_ggH_bonly_on = 1
-scale_histo_ZZ = 1
-scale_histo_DY = 1
-scale_histo_ggH_bonly_off = 1
-scale_histo_WZ = 1
-scale_histo_qqH_sonly_on = 1
-scale_histo_qqH_sand_off = 1
-scale_histo_ggH_sand_on = 1 
-scale_histo_ggH_sonly_on = 1
-scale_histo_ggH_sonly_off = 1
-scale_histo_qqH_sonly_off = 1
-scale_histo_ggH_sand_off = 1
+# scale_histo_Vg = 1
+# scale_histo_qqH_bonly_off = 1
+# scale_histo_VVV = 1
+# scale_histo_top =  0.96364
+# scale_histo_Higgs = 1
+# scale_histo_qqH_bonly_on = 1
+# scale_histo_WW = 1.1114 ## this is the data/mc, so data is above mc; you have 1.11 in data more than 1 WW
+# scale_histo_qqH_sand_on = 1
+# scale_histo_ggH_bonly_on = 1
+# scale_histo_ZZ = 1
+# scale_histo_DY = 1
+# scale_histo_ggH_bonly_off = 1
+# scale_histo_WZ = 1
+# scale_histo_qqH_sonly_on = 1
+# scale_histo_qqH_sand_off = 1
+# scale_histo_ggH_sand_on = 1 
+# scale_histo_ggH_sonly_on = 1
+# scale_histo_ggH_sonly_off = 1
+# scale_histo_qqH_sonly_off = 1
+# scale_histo_ggH_sand_off = 1
 
-
-###commented out:
-# scale_histo_Vg = 18.6674765356 / 18.6785556482
-# scale_histo_qqH_bonly_off = 11.6461471383 / 11.6658388208
-# scale_histo_VVV = 18.7437919714 / 18.8964007526
-# scale_histo_top = 8418.47286106 / 8388.95170962 ##                                                                                                                                  
-# scale_histo_Higgs = 32.1904363026 / 37.6365326295
-# scale_histo_qqH_bonly_on = 0.00109149607178 / 0.00109329036783
-# scale_histo_WW = 13173.8464907 / 13187.89789 ##                                                                                                                                     
-# scale_histo_qqH_sand_on = 5.06703708287 / 5.05911367399
-# scale_histo_ggH_bonly_on = 13.6131974827 / 13.6156798125
-# scale_histo_ZZ = 7.45085572639 / 7.52211457513
-# scale_histo_DY = 411.103785594 / 411.856079666
-# scale_histo_ggH_bonly_off = 963.929494719 / 963.87917819
-# scale_histo_WZ = 359.039645212 / 362.121780433
-# scale_histo_qqH_sonly_on = 5.06624453477 / 5.05830624994
-# scale_histo_qqH_sand_off = 10.0513026354 / 10.0683193663
-# scale_histo_ggH_sand_on = 271.745165913 / 271.773726277
-# scale_histo_ggH_sonly_on = 272.459048607 / 272.498387373
-# scale_histo_ggH_sonly_off = 49.0493036742 / 49.0351361851
-# scale_histo_qqH_sonly_off = 1.32546853709 / 1.32731490308
-# scale_histo_ggH_sand_off = 917.91893705 / 917.931927039
+Vg_sf = 18.6674765356 / 18.6785556482
+qqH_bonly_off_sf = 11.6461471383 / 11.6658388208
+VVV_sf = 18.7437919714 / 18.8964007526
+top_sf = (8418.47286106 / 8388.95170962)*0.959 ##                                                                                                                                  
+Higgs_other_sf = 32.1904363026 / 37.6365326295
+qqH_bonly_on_sf = 0.00109149607178 / 0.00109329036783
+WW_sf = (13173.8464907 / 13187.89789)*1.11 ##                                                                                                                                     
+qqH_sand_on_sf = 5.06703708287 / 5.05911367399
+ggH_bonly_on_sf = 13.6131974827 / 13.6156798125
+ZZ_sf = 7.45085572639 / 7.52211457513
+DY_sf = 411.103785594 / 411.856079666
+ggH_bonly_off_sf = 963.929494719 / 963.87917819
+WZ_sf = 359.039645212 / 362.121780433
+qqH_sonly_on_sf = 5.06624453477 / 5.05830624994
+qqH_sand_off_sf = 10.0513026354 / 10.0683193663
+ggH_sand_on_sf = 271.745165913 / 271.773726277
+ggH_sonly_on_sf = 272.459048607 / 272.498387373
+ggH_sonly_off_sf = 49.0493036742 / 49.0351361851
+qqH_sonly_off_sf = 1.32546853709 / 1.32731490308
+ggH_sand_off_sf = 917.91893705 / 917.931927039
 ###
 
 # # 1j btagging SF scale factors
@@ -179,11 +185,12 @@ groupPlot['VBF_WW_Int']  = {
                   'samples'  : ['qqH_sand_off', 'qqH_sand_on']
               }
 """
+##implement SFs above here:
 plot['DY']  = {  
                   'color': 418,    # kGreen+2
                   'isSignal' : 0,
                   'isData'   : 0, 
-                  'scale'    : scale_histo_DY,
+                  'scale'    : DY_sf,
               }
 
 
@@ -208,7 +215,7 @@ plot['top'] = {
                   'color': 400,   # kYellow
                   'isSignal' : 0,
                   'isData'   : 0, 
-                  'scale'    : scale_histo_top,
+                  'scale'    : top_sf,
                   }
 
 #plot['WW']  = {
@@ -222,14 +229,14 @@ plot['WW']  = {
                   'color': 851, # kAzure -9 
                   'isSignal' : 0,
                   'isData'   : 0,
-                  'scale'    : scale_histo_WW   # ele/mu trigger efficiency   datadriven
+                  'scale'    : WW_sf   # ele/mu trigger efficiency   datadriven
                   }
 
 plot['ggH_bonly_on']  = {
                   'color': 850, # kAzure -10
                   'isSignal' : 0,
                   'isData'   : 0,
-                  'scale'    : scale_histo_ggH_bonly_on
+                  'scale'    : ggH_bonly_on_sf
                   }
 
 
@@ -237,7 +244,7 @@ plot['ggH_bonly_off']  = {
                   'color': 849, # kAzure -10
                   'isSignal' : 0,
                   'isData'   : 0,
-                  'scale'    : scale_histo_ggH_bonly_off
+                  'scale'    : ggH_bonly_off_sf
                   }
 
 #plot['WWewk']  = {
@@ -251,21 +258,21 @@ plot['Vg']  = {
                   'color': 859, # kAzure -1  
                   'isSignal' : 0,
                   'isData'   : 0,
-                  'scale'    : scale_histo_Vg
+                  'scale'    : Vg_sf
                   }
 
 plot['WZ']  = { 
                   'color': 858, # kAzure -2  
                   'isSignal' : 0,
                   'isData'   : 0,
-                  'scale'    : scale_histo_WZ
+                  'scale'    : WZ_sf
                   }
 
 plot['ZZ']  = {
-                  'color': 858, # kAzure -2  
+                  'color': 890, # kAzure -2  
                   'isSignal' : 0,
                   'isData'   : 0,
-                  'scale'    : scale_histo_ZZ
+                  'scale'    : ZZ_sf
                   }
 
 plot['VVV']  = { 
@@ -282,63 +289,63 @@ plot['Higgs'] = {
                   'color': 632, # kRed 
                   'isSignal' : 0,
                   'isData'   : 0,    
-                  'scale'    : scale_histo_Higgs    #
+                  'scale'    : Higgs_other_sf    #
                   }
 
 plot['ggH_sonly_on']  = {
                   'color': 404, # kRed  
                   'isSignal' : 1,
                   'isData'   : 0,
-                  'scale'    : scale_histo_ggH_sonly_on
+                  'scale'    : ggH_sonly_on_sf
                   }
 
 plot['ggH_sonly_off']  = {
                   'color': 1, # kRed  
                   'isSignal' : 1,
                   'isData'   : 0,
-                  'scale'    : scale_histo_ggH_sonly_off
+                  'scale'    : ggH_sonly_off_sf
                   }
 
 plot['ggH_sand_on']  = {
                   'color': 404, # kRed  
                   'isSignal' : 1,
                   'isData'   : 0,
-                  'scale'    : scale_histo_ggH_sand_on
+                  'scale'    : ggH_sand_on_sf
                   }
 
 plot['ggH_sand_off']  = {
                   'color': 1, # kRed  
                   'isSignal' : 1,
                   'isData'   : 0,
-                  'scale'    : scale_histo_ggH_sand_off
+                  'scale'    : ggH_sand_off_sf
                   }
 
 plot['qqH_bonly_on']  = {
                   'color': 409,  #kRed  
                   'isSignal' : 0,
                   'isData'   : 0,
-                  'scale'    : scale_histo_qqH_bonly_on
+                  'scale'    : qqH_bonly_on_sf
                   }
 
 plot['qqH_sonly_off']  = {
                   'color': 632,  #kRed  
                   'isSignal' : 1,
                   'isData'   : 0,
-                  'scale'    : scale_histo_qqH_sonly_off
+                  'scale'    : qqH_sonly_off_sf
                   }
 
 plot['qqH_sand_on']  = {
                   'color': 409,  #kRed  
                   'isSignal' : 0,
                   'isData'   : 0,
-                  'scale'    : scale_histo_qqH_sand_on
+                  'scale'    : qqH_sand_on_sf
                   }
 
 plot['qqH_sand_off']  = {
                   'color': 632,  #kRed  
                   'isSignal' : 1,
                   'isData'   : 0,
-                  'scale'    : scale_histo_qqH_sand_off
+                  'scale'    : qqH_sand_off_sf
                   }
 
 """
@@ -353,14 +360,14 @@ plot['qqH_bonly_off']  = {
                   'color': 851,  #kRed  
                   'isSignal' : 0,
                   'isData'   : 0,
-                  'scale'    : scale_histo_qqH_bonly_off
+                  'scale'    : qqH_bonly_off_sf
                   }
 
 plot['qqH_sonly_on']  = {
                   'color': 420,  #kRed  
                   'isSignal' : 1,
                   'isData'   : 0,
-                  'scale'    : scale_histo_qqH_sonly_on
+                  'scale'    : qqH_sonly_on_sf
                   }
 """
 plot['qqH_sand_off']  = {
@@ -379,7 +386,7 @@ plot['DATA']  = {
                   'color': 1 ,  
                   'isSignal' : 0,
                   'isData'   : 1 ,
-                  'isBlind'  : 0 ##TC for CRs
+                  'isBlind'  : 1 ##0 = false so false for CR top/WW = 0, but when SR right now, 1 true
               }
 
 

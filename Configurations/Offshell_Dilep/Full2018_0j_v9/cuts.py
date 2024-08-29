@@ -17,12 +17,12 @@ supercut = ' && '.join(_tmp)
 def addcut(name, exprs):
     cuts[name] = ' && '.join(exprs)
 
-# _tmp = [
-#     'zeroJet',
-#     'bVeto', 
-#     'dnnScore_ggH_OFF_0j > .5',
-#        ]
-# addcut('SR_ggH_OFF_0j', _tmp) ##TCJune - unblinding CRs, so commenting out SR
+_tmp = [
+    'zeroJet',
+    'bVeto', 
+    'dnnScore_ggH_OFF_0j > .5',
+       ]
+addcut('SR_ggH_OFF_0j', _tmp) ##TCJune - unblinding CRs, so commenting out SR
 
 _tmp = [
     'zeroJet',

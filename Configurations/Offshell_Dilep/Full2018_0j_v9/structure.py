@@ -1,31 +1,42 @@
 # structure configuration for datacard
 # keys here must match keys in samples.py    
-structure ={}
-scale_histo_DATA = 1
-scale_histo_Fake_em = 1
-scale_histo_Fake_me = 1
+#structure ={} ##comment out due to mkDatacards.py change
+
+##new nomenclature instead of scale_histo_DATA = #/# etc
+
+        # Topnorm_0j    0.959                                                                                                                      
+        #  WWnorm_0j    1.11                                                                                                                        
+        # Topnorm_1j    0.861                                                                                                                      
+        #  WWnorm_1j    0.867 
+
+scale_factors = {
+
+    "DATA" : 1,
+    "Fake_em" : 1,
+    "Fake_me" : 1,
 
 # 0j btagging SF scale factors
-scale_histo_Vg = 18.6674765356 / 18.6785556482
-scale_histo_qqH_bonly_off = 11.6461471383 / 11.6658388208
-scale_histo_VVV = 18.7437919714 / 18.8964007526
-scale_histo_top = 8418.47286106 / 8388.95170962
-scale_histo_Higgs = 32.1904363026 / 37.6365326295
-scale_histo_qqH_bonly_on = 0.00109149607178 / 0.00109329036783
-scale_histo_WW = 13173.8464907 / 13187.89789
-scale_histo_qqH_sand_on = 5.06703708287 / 5.05911367399
-scale_histo_ggH_bonly_on = 13.6131974827 / 13.6156798125
-scale_histo_ZZ = 7.45085572639 / 7.52211457513
-scale_histo_DY = 411.103785594 / 411.856079666
-scale_histo_ggH_bonly_off = 963.929494719 / 963.87917819
-scale_histo_WZ = 359.039645212 / 362.121780433
-scale_histo_qqH_sonly_on = 5.06624453477 / 5.05830624994
-scale_histo_qqH_sand_off = 10.0513026354 / 10.0683193663
-scale_histo_ggH_sand_on = 271.745165913 / 271.773726277 
-scale_histo_ggH_sonly_on = 272.459048607 / 272.498387373
-scale_histo_ggH_sonly_off = 49.0493036742 / 49.0351361851
-scale_histo_qqH_sonly_off = 1.32546853709 / 1.32731490308
-scale_histo_ggH_sand_off = 917.91893705 / 917.931927039
+    "Vg" : 18.6674765356 / 18.6785556482,
+    "qqH_bonly_off" : 11.6461471383 / 11.6658388208,
+    "VVV" : 18.7437919714 / 18.8964007526,
+    "top" : (8418.47286106 / 8388.95170962)*0.959, ##
+    "Higgs" : 32.1904363026 / 37.6365326295,
+    "qqH_bonly_on" : 0.00109149607178 / 0.00109329036783,
+    "WW" : (13173.8464907 / 13187.89789)*1.11, ##
+    "qqH_sand_on" : 5.06703708287 / 5.05911367399,
+    "ggH_bonly_on" : 13.6131974827 / 13.6156798125,
+    "ZZ" : 7.45085572639 / 7.52211457513,
+    "DY" : 411.103785594 / 411.856079666,
+    "ggH_bonly_off" : 963.929494719 / 963.87917819,
+    "WZ" : 359.039645212 / 362.121780433,
+    "qqH_sonly_on" : 5.06624453477 / 5.05830624994,
+    "qqH_sand_off" : 10.0513026354 / 10.0683193663,
+    "ggH_sand_on" : 271.745165913 / 271.773726277,
+    "ggH_sonly_on" : 272.459048607 / 272.498387373,
+    "ggH_sonly_off" : 49.0493036742 / 49.0351361851,
+    "qqH_sonly_off" : 1.32546853709 / 1.32731490308,
+    "ggH_sand_off" : 917.91893705 / 917.931927039
+}
 
 # # 1j btagging SF scale factors
 # scale_histo_Vg = 16.8870788449 / 17.0351095305
@@ -79,7 +90,8 @@ for iproc in samples.keys():
     structure[iproc] = {
         'isSignal' : 1 if ('Offshell' in iproc or 'qqH_sonly_off' in iproc or 'qqH_bonly_off'  in iproc or 'qqH_sonly_on'  in iproc or 'qqH_bonly_on'  in iproc) else 0,
         'isData'   : 1 if iproc == 'DATA' else 0,
-        'scaleSampleForDatacard' : eval('scale_histo_' + iproc),
+        #'scaleSampleForDatacard' : eval('scale_histo_' + iproc), ##if using nomenclature scale_histo_NAME
+        'scaleSampleForDatacard' : scale_factors[iproc], ##using dictionary version
     }
 
 for nuis in nuisances.itervalues():
