@@ -267,7 +267,7 @@ samples['WW'] = {
 #             nanoGetSampleFiles(mcDirectory, 'GluGluToWWToTNEN') + \
 #             nanoGetSampleFiles(mcDirectory, 'GluGluToWWToTNMN') + \
 #             nanoGetSampleFiles(mcDirectory, 'GluGluToWWToTNTN'),
-#     'weight': mcCommonWeight+'*1.53/1.4', # updating k-factor
+#     'weight': mcCommonWeight+'*1.53/1.4 * 1.33 * norm_njet', # updating k-factor
 #     'FilesPerJob': 4,
 #     'suppressNegative' :['all'],
 #     'suppressNegativeNuisances' :['all'],
@@ -494,7 +494,7 @@ files = nanoGetSampleFiles(mcDirectory, 'GluGluHToWWToENEN_SIG') + \
 
 samples['ggH_sonly_off'] = {
     'name': files,
-    'weight': mcCommonWeight+'* 1.68 * (LHE_mWW > 160)',
+    'weight': mcCommonWeight+'* 1.68 * 1.645 * norm_njet * (LHE_mWW > 160)',
     'FilesPerJob': 3, ##tuning from 3
     'suppressNegative':['all'],
     'suppressNegativeNuisances' :['all']
@@ -502,7 +502,7 @@ samples['ggH_sonly_off'] = {
 
 samples['ggH_sonly_on'] = {
     'name': files,
-    'weight': mcCommonWeight+'* 1.68 * (LHE_mWW <= 160)',
+    'weight': mcCommonWeight+'* 1.68 * 1.645 * norm_njet * (LHE_mWW <= 160)',
     'FilesPerJob': 3, ##tuning from 3
     'suppressNegative':['all'],
     'suppressNegativeNuisances' :['all']
@@ -524,7 +524,7 @@ files = nanoGetSampleFiles(mcDirectory, 'GluGluToWWToENEN') + \
 
 samples['ggH_bonly_off'] = {
     'name': files,
-    'weight': mcCommonWeight+'*1.53/1.4  * (LHE_mWW > 160)',
+    'weight': mcCommonWeight+'*1.53/1.4 * 1.33 * norm_njet  * (LHE_mWW > 160)',
     'FilesPerJob': 3,
     'suppressNegative':['all'],
     'suppressNegativeNuisances' :['all']
@@ -532,7 +532,7 @@ samples['ggH_bonly_off'] = {
 
 samples['ggH_bonly_on'] = {
     'name': files,
-    'weight': mcCommonWeight+'*1.53/1.4  * (LHE_mWW <= 160)',
+    'weight': mcCommonWeight+'*1.53/1.4 * 1.33 * norm_njet  * (LHE_mWW <= 160)',
     'FilesPerJob': 3,
     'suppressNegative':['all'],
     'suppressNegativeNuisances' :['all']
@@ -554,14 +554,14 @@ files = nanoGetSampleFiles(mcDirectory, 'GluGluHToWWToENEN_BSI') + \
 
 samples['ggH_sand_off'] = {
     'name': files,
-    'weight': mcCommonWeight+'*1.60 * (LHE_mWW > 160)', ##TC 2024 SBI scaled by 151.6/95.0 {https://www.arxiv.org/pdf/1605.04610#page=18}
+    'weight': mcCommonWeight+'*1.60 * 1.52 * norm_njet * (LHE_mWW > 160)', ##TC 2024 SBI scaled by 151.6/95.0 {https://www.arxiv.org/pdf/1605.04610#page=18}
     'FilesPerJob': 3,
     'suppressNegative':['all'],
     'suppressNegativeNuisances' :['all']
 }
 samples['ggH_sand_on'] = {
     'name': files,
-    'weight': mcCommonWeight+'*1.60 * (LHE_mWW <= 160)', ##TC 2024 SBI scaled
+    'weight': mcCommonWeight+'*1.60 * 1.52 * norm_njet * (LHE_mWW <= 160)', ##TC 2024 SBI scaled
     'FilesPerJob': 3,
     'suppressNegative':['all'],
     'suppressNegativeNuisances' :['all']
