@@ -48,13 +48,13 @@ nuisances['lumi_Uncorrelated'] = {
 }
 
 nuisances['lumi_Correlated_Run2'] = {
-    'name': 'lumi_13TeV_Run2',
+    'name': 'lumi_13TeV_correlated',
     'type': 'lnN',
     'samples': dict((skey, '1.020') for skey in mc if skey not in ['top','WW'])
 }
 
 nuisances['lumi_Correlated_2017_2018'] = {
-    'name': 'lumi_13TeV_2017_2018',
+    'name': 'lumi_13TeV_1718',
     'type': 'lnN',
     'samples': dict((skey, '1.002') for skey in mc if skey not in ['top','WW'])
 }
@@ -329,7 +329,7 @@ nuisances['met_sig'] = {
 
 # puWeight_UL2018 ##### ASK PEDRO ---  PUT 1.0 for each of the samples qqH_sonly, qqH_bonly, qqH_sand
 nuisances['PU'] = {
-    'name'    : 'CMS_PU_2018',
+    'name'    : 'CMS_pileup_2018',
     'kind'    : 'weight',
     'type'    : 'shape',
     'samples' : {
@@ -372,7 +372,7 @@ nuisances['PU'] = {
 puid_syst = ['Jet_PUIDSF_loose_up/Jet_PUIDSF_loose', 'Jet_PUIDSF_loose_down/Jet_PUIDSF_loose']
 
 nuisances['jetPUID'] = {
-    'name'    : 'CMS_PUID_2018',
+    'name'    : 'CMS_PUJET_id_2018',
     'kind'    : 'weight',
     'type'    : 'shape',
     'samples' : dict((skey, puid_syst) for skey in mc)
@@ -396,8 +396,8 @@ nuisances['PS_FSR']  = {
 #    'AsLnN'   : '1',
 }
 
-nuisances['UE_CP5']  = {
-    'name'    : 'UE_CP5',
+nuisances['UEPS']  = {
+    'name'    : 'UEPS',
     'skipCMS' : 1,
     'type'    : 'lnN',
     'samples' : dict((skey, '1.015') for skey in mc),
@@ -567,8 +567,8 @@ nuisances['QCDscale_qqVV']  = {
                    }
 }
 
-nuisances['QCDscale_VBF']  = {
-               'name'  : 'QCDscale_VBF',
+nuisances['QCDscale_qqH']  = {
+               'name'  : 'QCDscale_qqH',
                 'kind'  : 'weight_envelope',
                 'type'  : 'shape',
                 'samples'  : {
@@ -579,7 +579,7 @@ nuisances['QCDscale_VBF']  = {
 
 """
 nuisances['QCDscale_ggH']  = {
-               'name'  : 'QCDscale_VBF',
+               'name'  : 'QCDscale_qqH',
                 'kind'  : 'weight_envelope',
                 'type'  : 'shape',
                 'samples'  : {
@@ -622,8 +622,8 @@ values_VBF_pdf = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','vbfH','125.09','pdf','s
 values_ggH_scale = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ggH','125.09','scale','sm')
 values_ggH_pdf = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ggH','125.09','pdf','sm')
 
-nuisances['QCDscale_VBF_ACCEPT'] = {
-    'name'    : 'QCDscale_VBF_accept',
+nuisances['QCDscale_qqH_ACCEPT'] = {
+    'name'    : 'QCDscale_qqH_accept',
     'samples' : {
         'qqH_sonly_on' : values_VBF_scale,
         'qqH_sonly_off' : values_VBF_scale,
@@ -632,7 +632,7 @@ nuisances['QCDscale_VBF_ACCEPT'] = {
 }
 
 nuisances['pdf_VBF_ACCEPT'] = {
-    'name'    : 'pdf_VBF_accept',
+    'name'    : 'pdf_Higgs_qqbar_accept',
     'type'    : 'lnN',
     'samples' : {
         'qqH_sonly_on' : values_VBF_pdf,

@@ -7,7 +7,7 @@ tag = 'hww_offshell_UL_2016_HIPM'
 eos_space = '/../../../../../../../../../../../../../eos/user/j/jrotter/Latinos_RootFiles/'
 
 # used by mkShape to define output directory for root files
-outputDir = eos_space + 'Full2016_HIPM_2j_v9_W_SYST_FINAL_v4_NewSamples_fixedDNNBins/rootFiles'
+outputDir = eos_space + 'Full2016_HIPM_2j_v9_W_SYST_FINAL_v5_Aug2024/rootFiles'
 
 # file with TTree aliases
 aliasesFile = 'aliases.py'
@@ -31,10 +31,10 @@ lumi = 19.52
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = eos_space + '../www/BLINDED_FINAL_W_SYST_Full2016_HIPM_2j_v9_v4_NewBtagSF_andNewRateSF'
+outputDirPlots = eos_space + '../www/BLINDED_FINAL_W_SYST_Full2016_HIPM_2j_v9_v5_Aug2024'
 
 # used by mkDatacards to define output directory for datacards
-outputDirDatacard = eos_space + 'Full2016_HIPM_2j_v9_W_SYST_FINAL_v4_NewSamples_fixedDNNBins/datacards_2016_HIPM_Normed_NewBUncc_NewScale_v2'
+outputDirDatacard = eos_space + 'Full2016_HIPM_2j_v9_W_SYST_FINAL_v5_Aug2024/datacards_2016_HIPM'
 
 
 # structure file for datacard

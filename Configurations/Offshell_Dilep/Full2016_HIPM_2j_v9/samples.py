@@ -443,7 +443,7 @@ files = nanoGetSampleFiles(mcDirectory, 'GluGluHToWWToENEN_SIG') + \
 
 samples['ggH_sonly_off'] = {
     'name': files,
-    'weight': mcCommonWeight+'* 1.68 * (LHE_mWW > 160)',
+    'weight': mcCommonWeight+'* 1.68 *1.645 * norm_njet * (LHE_mWW > 160)',
     'FilesPerJob': 3,
     'suppressNegative':['all'],
     'suppressNegativeNuisances' :['all']
@@ -451,7 +451,7 @@ samples['ggH_sonly_off'] = {
 
 samples['ggH_sonly_on'] = {
     'name': files,
-    'weight': mcCommonWeight+'* 1.68 * (LHE_mWW <= 160)',
+    'weight': mcCommonWeight+'* 1.68 *1.645 * norm_njet * (LHE_mWW <= 160)',
     'FilesPerJob': 3,
     'suppressNegative':['all'],
     'suppressNegativeNuisances' :['all']
@@ -473,7 +473,7 @@ files = nanoGetSampleFiles(mcDirectory, 'GluGluToWWToENEN') + \
 
 samples['ggH_bonly_off'] = {
     'name': files,
-    'weight': mcCommonWeight+'*1.53/1.4  * (LHE_mWW > 160)',
+    'weight': mcCommonWeight+'*1.53/1.4 * 1.33 * norm_njet  * (LHE_mWW > 160)',
     'FilesPerJob': 3,
     'suppressNegative':['all'],
     'suppressNegativeNuisances' :['all']
@@ -481,7 +481,7 @@ samples['ggH_bonly_off'] = {
 
 samples['ggH_bonly_on'] = {
     'name': files,
-    'weight': mcCommonWeight+'*1.53/1.4  * (LHE_mWW <= 160)',
+    'weight': mcCommonWeight+'*1.53/1.4 * 1.33 * norm_njet * (LHE_mWW <= 160)',
     'FilesPerJob': 3,
     'suppressNegative':['all'],
     'suppressNegativeNuisances' :['all']
@@ -503,14 +503,14 @@ files = nanoGetSampleFiles(mcDirectory, 'GluGluHToWWToENEN_BSI') + \
 
 samples['ggH_sand_off'] = {
     'name': files,
-    'weight': mcCommonWeight+'*1.60 * (LHE_mWW > 160)',
+    'weight': mcCommonWeight+'*1.60* 1.52 * norm_njet * (LHE_mWW > 160)',
     'FilesPerJob': 3,
     'suppressNegative':['all'],
     'suppressNegativeNuisances' :['all']
 }
 samples['ggH_sand_on'] = {
     'name': files,
-    'weight': mcCommonWeight+'*1.60 * (LHE_mWW <= 160)',
+    'weight': mcCommonWeight+'*1.60* 1.52 * norm_njet * (LHE_mWW <= 160)',
     'FilesPerJob': 3,
     'suppressNegative':['all'],
     'suppressNegativeNuisances' :['all']
