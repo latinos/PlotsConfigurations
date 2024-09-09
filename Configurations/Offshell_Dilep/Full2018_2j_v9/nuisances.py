@@ -443,7 +443,7 @@ nuisances['pdf_WW']  = {
 }
 
 # PDF eigenvariations for WW and top
-for i in range(1,101):
+for i in range(1,33):
   # LHEPdfWeight are PDF4LHC variations, while nominal is NNPDF.
   # LHEPdfWeight[i] reweights from NNPDF nominal to PDF4LHC member i
   # LHEPdfWeight[0] in particular reweights from NNPDF nominal to PDF4LHC nominal
