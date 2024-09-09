@@ -424,13 +424,14 @@ nuisances['pdf_WW']  = {
 
 
 # PDF eigenvariations for WW and top
-for i in range(1,101):
+for i in range(1,33):
   # LHEPdfWeight are PDF4LHC variations, while nominal is NNPDF.
   # LHEPdfWeight[i] reweights from NNPDF nominal to PDF4LHC member i
   # LHEPdfWeight[0] in particular reweights from NNPDF nominal to PDF4LHC nominal
   #pdf_variations = ["LHEPdfWeight[%d]" %i, "2. - LHEPdfWeight[%d]" %i ]
   pdf_variations = ["LHEPdfWeight[%d]/LHEPdfWeight[0]" %i, "1"] ##TC
 
+  ##TC2024
   # nuisances['pdf_top_eigen'+str(i)] = {
   #   'name'  : 'CMS_hww_pdf_top_eigen'+str(i),
   #   'skipCMS' : 1,
@@ -439,6 +440,7 @@ for i in range(1,101):
   #   'samples'  : {
   #     'top'   : pdf_variations,
   #   },
+  #     'symmetrize' : True,
   # }
   # nuisances['pdf_ggH_eigen'+str(i)]  = {
   #   'name'  : 'CMS_hww_pdf_ggH_eigen'+str(i),
@@ -460,6 +462,7 @@ for i in range(1,101):
       'qqH_sonly_on'   : pdf_variations, 
       'qqH_sonly_off'   : pdf_variations,
     },
+      'symmetrize' : True,
   }
   nuisances['pdf_VBF_bonly_eigen'+str(i)]  = {
     'name'  : 'CMS_hww_pdf_VBF_sonly_eigen'+str(i),
@@ -470,6 +473,7 @@ for i in range(1,101):
       'qqH_bonly_on'   : pdf_variations,  
       'qqH_bonly_off'   : pdf_variations,
     },
+      'symmetrize' : True,
   }
   nuisances['pdf_VBF_sand_eigen'+str(i)]  = {
     'name'  : 'CMS_hww_pdf_VBF_sand_eigen'+str(i),
@@ -480,6 +484,7 @@ for i in range(1,101):
       'qqH_sand_on'   : pdf_variations,  
       'qqH_sand_off'   : pdf_variations,
     },
+      'symmetrize' : True,
   }
 
 
