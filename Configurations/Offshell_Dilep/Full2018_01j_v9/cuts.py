@@ -12,26 +12,17 @@ _tmp = [
     'mth > 60.',
 ] ##mth > 60 to kill onshell - selections cross-reference dnn_ntuplemaker.py cuts
 
-##to speed things up, can remove supercuts--not using and will speed things up
 supercut = ' && '.join(_tmp)
 
 def addcut(name, exprs):
     cuts[name] = ' && '.join(exprs)
 
-# #0jet for SFs
-# _tmp = [
-#     'zeroJet',
-#     'bVeto',
-# ]
-# addcut('supercut_0j', _tmp)
-
-##SR
 _tmp = [
     'zeroJet',
     'bVeto', 
     'dnnScore_ggH_OFF_0j > .5',
        ]
-addcut('SR_ggH_OFF_0j', _tmp)
+addcut('SR_ggH_OFF_0j', _tmp) ##TCJune - unblinding CRs, so commenting out SR
 
 _tmp = [
     'zeroJet',
@@ -47,34 +38,19 @@ _tmp = [
        ]
 addcut('WWCR_0j', _tmp)
 
-# #for SFs
-# _tmp = [
-#     'zeroJet',
-#     '(bReq || (!bVeto && zeroJet))',
-#        ]
-# addcut('topCR_0j', _tmp)
-
 _tmp = [
     'zeroJet',
     '(bReq || (!bVeto && zeroJet))',
     'dnnScore_top_0j > .5',
-  ]
+       ]
 addcut('topCR_0j', _tmp)
 
-##1jet for SFs
-# _tmp = [
-#     'oneJet',
-#     'bVeto',
-# ]
-# addcut('supercut_1j', _tmp)
-
-##SR
 _tmp = [
     'oneJet',
     'bVeto', 
     'dnnScore_ggH_OFF_1j > .5',
        ]
-addcut('SR_ggH_OFF_1j', _tmp)
+addcut('SR_ggH_OFF_1j', _tmp) ##TCJune2024--comment out SR when CR so can unblind Top/WW
 
 _tmp = [
     'oneJet',
@@ -91,16 +67,9 @@ _tmp = [
        ]
 addcut('WWCR_1j', _tmp)
 
-# #for SFs
-# _tmp = [
-#     'oneJet',
-#     '(bReq || (!bVeto && zeroJet))',
-#        ]
-# addcut('topCR_1j', _tmp)
-
 _tmp = [
     'oneJet',
     '(bReq || (!bVeto && zeroJet))',
-    'dnnScore_top_1j > .5',                                                                  
-    ]
+    'dnnScore_top_1j > .5',
+       ]
 addcut('topCR_1j', _tmp)

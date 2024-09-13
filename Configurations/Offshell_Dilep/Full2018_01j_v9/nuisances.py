@@ -43,19 +43,19 @@ HiggsXS = HiggsXSection()
 # Correlated         2017, 2018        0.6, 0.2
 
 nuisances['lumi_Uncorrelated'] = {
-    'name': 'lumi_13TeV_2018',
+    'name': 'lumi_13TeV_1718', #'lumi_13TeV_2018', ##8-28
     'type': 'lnN',
     'samples': dict((skey, '1.015') for skey in mc if skey not in ['top','WW'])#, 'WW_minnlo']) ##TC2024
 }
 
 nuisances['lumi_Correlated_Run2'] = {
-    'name': 'lumi_13TeV_Run2',
+    'name': 'lumi_13TeV_correlated', #'lumi_13TeV_Run2', ##8-28
     'type': 'lnN',
     'samples': dict((skey, '1.020') for skey in mc if skey not in ['top','WW'])#, 'WW_minnlo']) ##TC2024
 }
 
 nuisances['lumi_Correlated_2017_2018'] = {
-    'name': 'lumi_13TeV_2017_2018',
+    'name': 'lumi_13TeV_1718', #'lumi_13TeV_2017_2018', ##8-28
     'type': 'lnN',
     'samples': dict((skey, '1.002') for skey in mc if skey not in ['top','WW'])#, 'WW_minnlo']) ##TC2024
 }
@@ -390,7 +390,7 @@ nuisances['met_sig'] = {
 
 # puWeight_UL2018 ##### ASK PEDRO ---  PUT 1.0 for each of the samples qqH_sonly, qqH_bonly, qqH_sand
 nuisances['PU'] = {
-    'name'    : 'CMS_PU_2018',
+    'name'    : 'CMS_pileup_2018', #'CMS_PU_2018', ##8-28
     'kind'    : 'weight',
     'type'    : 'shape',
     'samples' : {
@@ -434,7 +434,7 @@ nuisances['PU'] = {
 puid_syst = ['Jet_PUIDSF_loose_up/Jet_PUIDSF_loose', 'Jet_PUIDSF_loose_down/Jet_PUIDSF_loose']
 
 nuisances['jetPUID'] = {
-    'name'    : 'CMS_PUID_2018',
+    'name'    : 'CMS_PUJET_id_2018', #'CMS_PUID_2018', ##8-28
     'kind'    : 'weight',
     'type'    : 'shape',
     'samples' : dict((skey, puid_syst) for skey in mc)
@@ -458,8 +458,8 @@ nuisances['PS_FSR']  = {
 #    'AsLnN'   : '1',
 }
 
-nuisances['UE_CP5']  = {
-    'name'    : 'UE_CP5',
+nuisances['UEPS']  = {
+    'name'    : 'UEPS', ##8-28 UE_CP5 -> UEPS
     'skipCMS' : 1,
     'type'    : 'lnN',
     'samples' : dict((skey, '1.015') for skey in mc),
@@ -507,7 +507,7 @@ nuisances['pdf_WW']  = {
 }
 
 # PDF eigenvariations for WW and top
-for i in range(1,101):
+for i in range(1,33): ##TC2024 -- range(1,101) >> 33 for consistency with 2j (we have more PDF uncertainties in 0,1 jet with 101 rn
   # LHEPdfWeight are PDF4LHC variations, while nominal is NNPDF.
   # LHEPdfWeight[i] reweights from NNPDF nominal to PDF4LHC member i
   # LHEPdfWeight[0] in particular reweights from NNPDF nominal to PDF4LHC nominal
@@ -533,6 +533,7 @@ for i in range(1,101):
     'samples'  : {
       'top'   : pdf_variations,
     },
+      'symmetrize' : True, ##TC improve impacts for PDF unc
   }
 
   # nuisances['pdf_ggH_eigen'+str(i)]  = {
@@ -556,6 +557,7 @@ for i in range(1,101):
       'qqH_sonly_on'   : pdf_variations, 
       'qqH_sonly_off'   : pdf_variations,
     },
+      'symmetrize' : True,
   }
   nuisances['pdf_VBF_bonly_eigen'+str(i)]  = {
     'name'  : 'CMS_hww_pdf_VBF_sonly_eigen'+str(i),
@@ -566,6 +568,7 @@ for i in range(1,101):
       'qqH_bonly_on'   : pdf_variations,  
       'qqH_bonly_off'   : pdf_variations,
     },
+      'symmetrize' : True,
   }
   nuisances['pdf_VBF_sand_eigen'+str(i)]  = {
     'name'  : 'CMS_hww_pdf_VBF_sand_eigen'+str(i),
@@ -576,6 +579,7 @@ for i in range(1,101):
       'qqH_sand_on'   : pdf_variations,  
       'qqH_sand_off'   : pdf_variations,
     },
+      'symmetrize' : True,
   }
 
 
@@ -627,8 +631,18 @@ nuisances['QCDscale_qqVV']  = {
                    }
 }
 
-nuisances['QCDscale_VBF']  = {
-               'name'  : 'QCDscale_VBF',
+# nuisances['QCDscale_VBF']  = {
+#                'name'  : 'QCDscale_VBF',
+#                 'kind'  : 'weight_envelope',
+#                 'type'  : 'shape',
+#                 'samples'  : {
+#                    'qqH_sonly_on' : variations,
+#                    'qqH_sonly_off' : variations,
+#                    }
+# }
+##QCDscale_VBF -> QCDscale_qqH
+nuisances['QCDscale_qqH']  = {
+               'name'  : 'QCDscale_qqH',
                 'kind'  : 'weight_envelope',
                 'type'  : 'shape',
                 'samples'  : {
@@ -672,8 +686,19 @@ values_VBF_pdf = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','vbfH','125.09','pdf','s
 values_ggH_scale = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ggH','125.09','scale','sm') ##TC 'vbfH'
 values_ggH_pdf = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ggH','125.09','pdf','sm') ##TC
 
-nuisances['QCDscale_VBF_ACCEPT'] = {
-    'name'    : 'QCDscale_VBF_accept',
+
+
+# nuisances['QCDscale_VBF_ACCEPT'] = {
+#     'name'    : 'QCDscale_VBF_accept',
+#     'samples' : {
+#         'qqH_sonly_on' : values_VBF_scale,
+#         'qqH_sonly_off' : values_VBF_scale,
+#     },
+#     'type' : 'lnN'
+# }
+##QCDscale_VBF_ACCEPT -> QCDscale_qqH_accept
+nuisances['QCDscale_qqH_ACCEPT'] = {
+    'name'    : 'QCDscale_qqH_accept',
     'samples' : {
         'qqH_sonly_on' : values_VBF_scale,
         'qqH_sonly_off' : values_VBF_scale,
@@ -681,8 +706,17 @@ nuisances['QCDscale_VBF_ACCEPT'] = {
     'type' : 'lnN'
 }
 
-nuisances['pdf_VBF_ACCEPT'] = {
-    'name'    : 'pdf_VBF_accept',
+# nuisances['pdf_VBF_ACCEPT'] = {
+#     'name'    : 'pdf_VBF_accept',
+#     'type'    : 'lnN',
+#     'samples' : {
+#         'qqH_sonly_on' : values_VBF_pdf,
+#         'qqH_sonly_off' : values_VBF_pdf,
+#     },
+# }
+##pdf_VBF_ACCEPT -> pdf_Higgs_qqbar_accept
+nuisances['pdf_Higgs_qqbar_accept'] = {
+    'name'    : 'pdf_Higgs_qqbar_accept',
     'type'    : 'lnN',
     'samples' : {
         'qqH_sonly_on' : values_VBF_pdf,
@@ -1047,14 +1081,14 @@ nuisances['WWnorm_1j']  = {
                    'CR_ggH_ON_1j',
                    ]
               }
-##TC 2024 --add
-nuisances['MELA_Hyp_qqWW'] = {
-    'name': 'MELA_Hyp_qqWW',
-    'type': 'lnN',
-    'samples': {
-        'qqH_bonly_off': '1.1',
-    },
-}
+##TC 2024 --add --comment out June27 due to qqWW electroweak Bkg not contributing for 01j
+# nuisances['MELA_Hyp_qqWW'] = {
+#     'name': 'MELA_Hyp_qqWW',
+#     'type': 'lnN',
+#     'samples': {
+#         'qqH_bonly_off': '1.1',
+#     },
+# }
 ## Use the following if you want to apply the automatic combine MC stat nuisances.
 nuisances['stat'] = {
 
