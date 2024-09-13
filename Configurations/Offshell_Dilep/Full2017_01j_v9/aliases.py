@@ -365,3 +365,110 @@ aliases['LHE_mWW'] = {
     'samples' : ['ggH_bonly_off', 'ggH_bonly_on', 'ggH_sand_off', 'ggH_sand_on', 'ggH_sonly_off', 'ggH_sonly_on'],
     'args': ()
 }
+
+aliases['norm_njet'] = {
+    'expr': '(0.985 * (zeroJet && LHE_mWW <= 160) + 1.692 * (oneJet && LHE_mWW <= 160) + 4.805 * (multiJet && LHE_mWW <= 160) + 0.955 * (zeroJet && LHE_mWW > 160) + 0.794 * (oneJet && LHE_mWW > 160) + 0.823 * (multiJet && LHE_mWW > 160))',
+    'samples' : ['ggH_bonly_off', 'ggH_bonly_on', 'ggH_sand_off', 'ggH_sand_on', 'ggH_sonly_off', 'ggH_sonly_on'],
+}
+
+aliases['btagnorm_Vg'] = {
+    'expr': '(10.9206851392 / 11.0873090297 * zeroJet + 10.9056606804 / 10.8594594671 * oneJet)',
+    'samples' : ['Vg'],
+}
+
+aliases['btagnorm_qqH_bonly_off'] = {
+    'expr': '(7.39434023087 / 7.43678575797 * zeroJet + 34.8010685134 / 34.6446652889 * oneJet)',
+    'samples' : ['qqH_bonly_off'],
+}
+
+aliases['btagnorm_VVV'] = {
+    'expr': '(15.6406891714 / 15.8159937811 * zeroJet + 40.3784455814 / 39.2502382471 * oneJet)',
+    'samples' : ['VVV'],
+}
+
+aliases['btagnorm_top'] = {
+    'expr': '(6462.44053243 / 6484.35330286 * zeroJet + 37745.2605562 / 34004.5348012 * oneJet)',
+    'samples' : ['top'],
+}
+
+aliases['btagnorm_Higgs'] = {
+    'expr': '(15.4187794252 / 18.9050840021 * zeroJet + 21.1164809217 / 40.1538706528 * oneJet)',
+    'samples' : ['Higgs'],
+}
+
+aliases['btagnorm_qqH_bonly_on'] = {
+    'expr': '(0.000846393331778 / 0.00084268852286 * zeroJet + 0.00458316979855 / 0.0044919808299 * oneJet)',
+    'samples' : ['qqH_bonly_on'],
+}
+
+aliases['btagnorm_WW'] = {
+    'expr': '(8689.43584535 / 8709.79397273 * zeroJet + 3815.01274535 / 3774.78054939 * oneJet)',
+    'samples' : ['WW'],
+}
+
+aliases['btagnorm_qqH_sand_on'] = {
+    'expr': '(3.17571798274 / 3.16847882101 * zeroJet + 19.3663347204 / 19.0932273933 * oneJet)',
+    'samples' : ['qqH_sand_on'],
+}
+
+aliases['btagnorm_ggH_bonly_on'] = {
+    'expr': '(8.77035447497 / 8.77725228986 * zeroJet + 3.71410996085 / 3.67301850343 * oneJet)',
+    'samples' : ['ggH_bonly_on'],
+}
+
+aliases['btagnorm_ZZ'] = {
+    'expr': '(11.8285143506 / 12.1366078443 * zeroJet + 18.0584873932 / 18.7862077878 * oneJet)',
+    'samples' : ['ZZ'],
+}
+
+aliases['btagnorm_DY'] = {
+    'expr': '(265.11154055 / 266.541762003 * zeroJet + 371.529579352 / 370.067505961 * oneJet)',
+    'samples' : ['DY'],
+}
+
+aliases['btagnorm_ggH_bonly_off'] = {
+    'expr': '(638.281765355 / 639.136502385 * zeroJet + 380.247829513 / 374.983260918 * oneJet)',
+    'samples' : ['ggH_bonly_off'],
+}
+
+aliases['btagnorm_WZ'] = {
+    'expr': '(224.14419045 / 227.484378844 * zeroJet + 282.763419799 / 290.155225249 * oneJet)',
+    'samples' : ['WZ'],
+}
+
+aliases['btagnorm_qqH_sonly_on'] = {
+    'expr': '(3.17514258272 / 3.16791995101 * zeroJet + 19.371052989 / 19.0979671996 * oneJet)',
+    'samples' : ['qqH_sonly_on'],
+}
+
+aliases['btagnorm_qqH_sand_off'] = {
+    'expr': '(6.39262958753 / 6.43047571989 * zeroJet + 30.133851189 / 30.0108295192 * oneJet)',
+    'samples' : ['qqH_sand_off'],
+
+}
+
+aliases['btagnorm_ggH_sand_on'] = {
+    'expr': '(174.319807914 / 174.575123692 * zeroJet + 61.6968695624 / 60.9828724392 * oneJet)',
+    'samples' : ['ggH_sand_on'],
+}
+
+aliases['btagnorm_ggH_sonly_on'] = {
+    'expr': '(177.49409804 / 177.707314042 * zeroJet + 61.3428090241 / 60.5838069391 * oneJet)',
+    'samples' : ['ggH_sonly_on'],
+}
+
+aliases['btagnorm_ggH_sonly_off'] = {
+    'expr': '(33.208333638 / 33.2566735286 * zeroJet + 27.7041335845 / 27.297849819 * oneJet)',
+    'samples' : ['ggH_sonly_off'],
+}
+
+aliases['btagnorm_qqH_sonly_off'] = {
+    'expr': '(0.871688972207 / 0.874976871036 * zeroJet + 4.11801337096 / 4.08931161063 * oneJet)',
+    'samples' : ['qqH_sonly_off'],
+}
+
+aliases['btagnorm_ggH_sand_off'] = {
+    'expr': '(606.681941097 / 607.628839909 * zeroJet + 355.150773376 / 350.264181094 * oneJet)',
+    'samples' : ['ggH_sand_off'],
+}
+
