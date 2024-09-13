@@ -113,16 +113,16 @@ samples['DY'] = {
 }
 
 # Remove high HT from inclusive samples
-addSampleWeight(samples,'DY','DYJetsToLL_M-50', '(LHE_HT<70) * (RinoutSFs_0j + RinoutSFs_1j + RinoutSFs_2j)')
-addSampleWeight(samples,'DY','DYJetsToLL_M-10to50_NLO', '(RinoutSFs_0j + RinoutSFs_1j + RinoutSFs_2j)')
-addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-70to100', '(RinoutSFs_0j + RinoutSFs_1j + RinoutSFs_2j)')
-addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-100to200', '(RinoutSFs_0j + RinoutSFs_1j + RinoutSFs_2j)')
-addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-200to400', '(RinoutSFs_0j + RinoutSFs_1j + RinoutSFs_2j)')
-addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-400to600', '(RinoutSFs_0j + RinoutSFs_1j + RinoutSFs_2j)')
-addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-600to800', '(RinoutSFs_0j + RinoutSFs_1j + RinoutSFs_2j)')
-addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-800to1200', '(RinoutSFs_0j + RinoutSFs_1j + RinoutSFs_2j)')
-addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-1200to2500', '(RinoutSFs_0j + RinoutSFs_1j + RinoutSFs_2j)')
-addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-2500toInf', '(RinoutSFs_0j + RinoutSFs_1j + RinoutSFs_2j)')
+addSampleWeight(samples,'DY','DYJetsToLL_M-50', '(LHE_HT<70) * (RinoutSFs_0j + RinoutSFs_1j + RinoutSFs_2j) * (Zpt_0j + Zpt_1j + Zpt_2j)')
+addSampleWeight(samples,'DY','DYJetsToLL_M-10to50_NLO', '(RinoutSFs_0j + RinoutSFs_1j + RinoutSFs_2j) * (Zpt_0j + Zpt_1j + Zpt_2j)')
+addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-70to100', '(RinoutSFs_0j + RinoutSFs_1j + RinoutSFs_2j) * (Zpt_0j + Zpt_1j + Zpt_2j)')
+addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-100to200', '(RinoutSFs_0j + RinoutSFs_1j + RinoutSFs_2j) * (Zpt_0j + Zpt_1j + Zpt_2j)')
+addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-200to400', '(RinoutSFs_0j + RinoutSFs_1j + RinoutSFs_2j) * (Zpt_0j + Zpt_1j + Zpt_2j)')
+addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-400to600', '(RinoutSFs_0j + RinoutSFs_1j + RinoutSFs_2j) * (Zpt_0j + Zpt_1j + Zpt_2j)')
+addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-600to800', '(RinoutSFs_0j + RinoutSFs_1j + RinoutSFs_2j) * (Zpt_0j + Zpt_1j + Zpt_2j)')
+addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-800to1200', '(RinoutSFs_0j + RinoutSFs_1j + RinoutSFs_2j) * (Zpt_0j + Zpt_1j + Zpt_2j)')
+addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-1200to2500', '(RinoutSFs_0j + RinoutSFs_1j + RinoutSFs_2j) * (Zpt_0j + Zpt_1j + Zpt_2j)')
+addSampleWeight(samples,'DY','DYJetsToLL_M-50_HT-2500toInf', '(RinoutSFs_0j + RinoutSFs_1j + RinoutSFs_2j) * (Zpt_0j + Zpt_1j + Zpt_2j)')
 
 
 ###### Top #######
@@ -174,7 +174,7 @@ files = nanoGetSampleFiles(mcDirectory, 'WZTo3LNu_mllmin0p1') + \
 samples['WZ'] = {
     'name': files,
     'weight': mcCommonWeight + ' * (gstarHigh)',
-    'FilesPerJob': 4,
+    'FilesPerJob': 3,
 }
 
 addSampleWeight(samples,'WZ','WZTo3LNu_mllmin0p1','1.138*0.601644*58.59/4.666') #Correction for wrong xsec
@@ -188,7 +188,7 @@ files = nanoGetSampleFiles(mcDirectory, 'ZZTo2L2Nu') + \
 samples['ZZ'] = {
     'name': files,
     'weight': mcCommonWeight,
-    'FilesPerJob': 4
+    'FilesPerJob': 2
 }
 
 ########## VVV #########
@@ -232,9 +232,9 @@ signals = []
 ###### WW ########
 
 samples['WW'] = {
-    'name': nanoGetSampleFiles(mcDirectory, 'WWTo2L2Nu'),
-    'weight': mcCommonWeight+'*nllW',
-    'FilesPerJob': 1
+    'name': nanoGetSampleFiles(mcDirectory, 'WWJTo2L2Nu_minnlo'),
+    'weight': mcCommonWeight,
+    'FilesPerJob': 4
 }
 
 signals.append('WW')
