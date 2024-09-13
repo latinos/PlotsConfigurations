@@ -69,7 +69,7 @@ nuisances['fake_syst_ee'] = {
 }
 
 nuisances['fake_syst_mm'] = {
-    'namm': 'CMS_fake_syst_mm',
+    'name': 'CMS_fake_syst_mm',
     'type': 'lnN',
     'samples': {
         'Fake_mm': '1.3'
@@ -195,45 +195,24 @@ nuisances['muonpt'] = {
 }
 
 ###### Jet energy scale
-'''
-##### Jet energy scale
+
+###### Jet energy scale
 jes_systs = ['JESAbsolute','JESAbsolute_2016','JESBBEC1','JESBBEC1_2016','JESEC2','JESEC2_2016','JESFlavorQCD','JESHF','JESHF_2016','JESRelativeBal','JESRelativeSample_2016']
-folderup = ""
-folderdo = ""
 
 for js in jes_systs:
-  if 'Absolute' in js:
-    folderup = 'root://eoscms.cern.ch/'+makeMCDirectory('JESAbsoluteup_suffix')
-    folderdo = 'root://eoscms.cern.ch/'+makeMCDirectory('JESAbsolutedo_suffix')
-  elif 'BBEC1' in js:
-    folderup = 'root://eoscms.cern.ch/'+makeMCDirectory('JESBBEC1up_suffix')
-    folderdo = 'root://eoscms.cern.ch/'+makeMCDirectory('JESBBEC1do_suffix')
-  elif 'EC2' in js:
-    folderup = 'root://eoscms.cern.ch/'+makeMCDirectory('JESEC2up_suffix')
-    folderdo = 'root://eoscms.cern.ch/'+makeMCDirectory('JESEC2do_suffix')
-  elif 'HF' in js:
-    folderup = 'root://eoscms.cern.ch/'+makeMCDirectory('JESHFup_suffix')
-    folderdo = 'root://eoscms.cern.ch/'+makeMCDirectory('JESHFdo_suffix')
-  elif 'Relative' in js:
-    folderup = 'root://eoscms.cern.ch/'+makeMCDirectory('JESRelativeup_suffix')
-    folderdo = 'root://eoscms.cern.ch/'+makeMCDirectory('JESRelativedo_suffix')
-  elif 'FlavorQCD' in js:
-    folderup = 'root://eoscms.cern.ch/'+makeMCDirectory('JESFlavorQCDup_suffix')
-    folderdo = 'root://eoscms.cern.ch/'+makeMCDirectory('JESFlavorQCDdo_suffix')
+    nuisances[js] = {
+        'name': 'CMS_scale_'+js,
+        'kind': 'suffix',
+        'type': 'shape',
+        'mapUp': js+'up',
+        'mapDown': js+'do',
+        'samples': dict((skey, ['1', '1']) for skey in mc),
+        'folderUp': 'root://eoscms.cern.ch/'+makeMCDirectory('RDF__JESup_suffix'),
+        'folderDown': 'root://eoscms.cern.ch/'+makeMCDirectory('RDF__JESdo_suffix'),
+        'reweight' : ['btagSF'+js.replace('JES','jes')+'up/btagSF','btagSF'+js.replace('JES','jes')+'down/btagSF'],
+        'AsLnN': '0'
+    }
 
-  nuisances[js] = {
-      'name': 'CMS_scale_'+js,
-      'kind': 'suffix',
-      'type': 'shape',
-      'mapUp': js+'up',
-      'mapDown': js+'do',
-      'samples': dict((skey, ['1', '1']) for skey in mc),
-      'folderUp': folderup,
-      'folderDown': folderdo,
-      'reweight' : ['btagSF'+js.replace('JES','jes')+'up/btagSF','btagSF'+js.replace('JES','jes')+'down/btagSF']
-      'AsLnN': '0'
-  }
-'''
 ##### Jet energy resolution
 nuisances['JER'] = {
     'name': 'CMS_res_j_2016',
@@ -278,15 +257,15 @@ nuisances['PU'] = {
     'kind': 'weight',
     'type': 'shape',
     'samples': {
-        'DY'      : ['1.008696*(puWeightUp/puWeight)', '0.992185*(puWeightDown/puWeight)'],
-        'WW'      : ['1.010934*(puWeightUp/puWeight)', '0.989870*(puWeightDown/puWeight)'],
-        'ggWW'    : ['1.012688*(puWeightUp/puWeight)', '0.988100*(puWeightDown/puWeight)'],
-        'Vg'      : ['0.994951*(puWeightUp/puWeight)', '1.008158*(puWeightDown/puWeight)'],
-        'WZ'      : ['1.002893*(puWeightUp/puWeight)', '0.996865*(puWeightDown/puWeight)'],
-        'ZZ'      : ['1.006019*(puWeightUp/puWeight)', '0.993803*(puWeightDown/puWeight)'],
-        'VVV'     : ['1.015977*(puWeightUp/puWeight)', '0.985631*(puWeightDown/puWeight)'],
-        'top'     : ['1.009558*(puWeightUp/puWeight)', '0.991103*(puWeightDown/puWeight)'],
-        'Higgs'   : ['1.012006*(puWeightUp/puWeight)', '0.988684*(puWeightDown/puWeight)'],
+        'DY'      : ['1.008421*(puWeightUp/puWeight)', '0.992494*(puWeightDown/puWeight)'],
+        'WW': ['1.010767*(puWeightUp/puWeight)', '0.990112*(puWeightDown/puWeight)'],
+        'ggWW'    : ['1.012367*(puWeightUp/puWeight)', '0.988402*(puWeightDown/puWeight)'],
+        'Vg'      : ['0.995630*(puWeightUp/puWeight)', '1.007076*(puWeightDown/puWeight)'],
+        'WZ'      : ['1.002037*(puWeightUp/puWeight)', '0.997721*(puWeightDown/puWeight)'],
+        'ZZ'      : ['1.006574*(puWeightUp/puWeight)', '0.993175*(puWeightDown/puWeight)'],
+        'VVV'     : ['1.012827*(puWeightUp/puWeight)', '0.989623*(puWeightDown/puWeight)'],
+        'top'     : ['1.009336*(puWeightUp/puWeight)', '0.991324*(puWeightDown/puWeight)'],
+        'Higgs'   : ['1.011609*(puWeightUp/puWeight)', '0.989039*(puWeightDown/puWeight)'],
     },
     'AsLnN': '0',
 }
@@ -334,7 +313,7 @@ nuisances['PS_FSR_WW']  = {
 
 # PS and UE
 nuisances['UE']  = {
-                'name'  : 'UE_CUET',
+                'name'  : 'UE_CP5',
                 'type'  : 'lnN',
                 'samples': dict((skey, '1.015') for skey in mc if skey not in ['WW','ggWW']),
 }
@@ -524,37 +503,20 @@ for ibin in cuts['ww2l2v_13TeV_top']['categories']:
     }
 
 # ggww and interference
-#nuisances['QCDscale_ggVV'] = {
-#    'name': 'QCDscale_ggVV',
-#    'type': 'lnN',
-#    'samples': {
-#        'ggWW': '1.15',
-#    },
-#}
-
-# WW resummation (to be updated, but keep for now)
-norm_WWresum = ['+'.join(['({})*1.0'.format(diffcuts[binname]) if binname == "nonfid" else '({})*({})'.format(diffcuts[binname],nfdict["CMS_hww_WWresum"]["WW_"+binname][0]) for binname in diffcuts]),
-                '+'.join(['({})*1.0'.format(diffcuts[binname]) if binname == "nonfid" else '({})*({})'.format(diffcuts[binname],nfdict["CMS_hww_WWresum"]["WW_"+binname][1]) for binname in diffcuts])]
-
-nuisances['WWresum']  = {
-    'name'  : 'CMS_hww_WWresum',
-    'kind'  : 'weight',
-    'type'  : 'shape',
-    'samples'  : {
-        'WW'   : ['nllW_Rup/nllW*('+norm_WWresum[0]+')', 'nllW_Rdown/nllW*('+norm_WWresum[1]+')'],
+nuisances['QCDscale_ggVV'] = {
+    'name': 'QCDscale_ggVV',
+    'type': 'lnN',
+    'samples': {
+        'ggWW': '1.15',
     },
 }
 
-norm_WWqscale = ['+'.join(['({})*1.0'.format(diffcuts[binname]) if binname == "nonfid" else '({})*({})'.format(diffcuts[binname],nfdict["CMS_hww_WWqscale"]["WW_"+binname][0]) for binname in diffcuts]),
-                 '+'.join(['({})*1.0'.format(diffcuts[binname]) if binname == "nonfid" else '({})*({})'.format(diffcuts[binname],nfdict["CMS_hww_WWqscale"]["WW_"+binname][1]) for binname in diffcuts])]
-
-nuisances['WWqscale']  = {
-    'name'  : 'CMS_hww_WWqscale',
-    'kind'  : 'weight',
-    'type'  : 'shape',
-    'samples'  : {
-        'WW'   : ['nllW_Qup/nllW*('+norm_WWqscale[0]+')', 'nllW_Qdown/nllW*('+norm_WWqscale[1]+')'],
-    },
+nuisances['TopPtRew'] = {
+    'name': 'CMS_topPtRew',   # Theory uncertainty
+    'kind': 'weight',
+    'type': 'shape',
+    'samples': {'top': ["1.", "1./Top_pTrw"]},
+    'symmetrize': True
 }
 
 #### QCD scale uncertainties for Higgs signals other than ggH
