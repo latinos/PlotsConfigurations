@@ -401,7 +401,7 @@ nuisances['met_sig'] = {
 
 # puWeight_UL2016 ##### ASK PEDRO ---  PUT 1.0 for each of the samples qqH_sonly, qqH_bonly, qqH_sand
 nuisances['PU'] = {
-    'name'    : 'CMS_PU_2016',
+    'name'    : 'CMS_pileup_2016',
     'kind'    : 'weight',
     'type'    : 'shape',
     'samples' : {
@@ -442,7 +442,7 @@ nuisances['PU'] = {
 puid_syst = ['Jet_PUIDSF_loose_up/Jet_PUIDSF_loose', 'Jet_PUIDSF_loose_down/Jet_PUIDSF_loose']
 
 nuisances['jetPUID'] = {
-    'name'    : 'CMS_PUID_2016',
+    'name'    : 'CMS_PUJET_id_2016',
     'kind'    : 'weight',
     'type'    : 'shape',
     'samples' : dict((skey, puid_syst) for skey in mc)
@@ -466,8 +466,8 @@ nuisances['PS_FSR']  = {
 #    'AsLnN'   : '1',
 }
 
-nuisances['UE_CP5']  = {
-    'name'    : 'UE_CP5',
+nuisances['UEPS']  = {
+    'name'    : 'UEPS',
     'skipCMS' : 1,
     'type'    : 'lnN',
     'samples' : dict((skey, '1.015') for skey in mc),
@@ -515,7 +515,7 @@ nuisances['pdf_WW']  = {
 }
 
 # PDF eigenvariations for WW and top
-for i in range(1,101):
+for i in range(1,33):
   # LHEPdfWeight are PDF4LHC variations, while nominal is NNPDF.
   # LHEPdfWeight[i] reweights from NNPDF nominal to PDF4LHC member i
   # LHEPdfWeight[0] in particular reweights from NNPDF nominal to PDF4LHC nominal
@@ -539,6 +539,7 @@ for i in range(1,101):
     'samples'  : {
       'top'   : pdf_variations,
     },
+      'symmetrize' : True,
   }
   # nuisances['pdf_ggH_eigen'+str(i)]  = {
   #   'name'  : 'CMS_hww_pdf_ggH_eigen'+str(i),
@@ -560,6 +561,7 @@ for i in range(1,101):
       'qqH_sonly_on'   : pdf_variations, 
       'qqH_sonly_off'   : pdf_variations,
     },
+      'symmetrize' : True,
   }
   nuisances['pdf_VBF_bonly_eigen'+str(i)]  = {
     'name'  : 'CMS_hww_pdf_VBF_sonly_eigen'+str(i),
@@ -570,6 +572,7 @@ for i in range(1,101):
       'qqH_bonly_on'   : pdf_variations,  
       'qqH_bonly_off'   : pdf_variations,
     },
+      'symmetrize' : True,
   }
   nuisances['pdf_VBF_sand_eigen'+str(i)]  = {
     'name'  : 'CMS_hww_pdf_VBF_sand_eigen'+str(i),
@@ -580,6 +583,7 @@ for i in range(1,101):
       'qqH_sand_on'   : pdf_variations,  
       'qqH_sand_off'   : pdf_variations,
     },
+      'symmetrize' : True,
   }
 
 
@@ -631,8 +635,8 @@ nuisances['QCDscale_qqVV']  = {
                    }
 }
 
-nuisances['QCDscale_VBF']  = {
-               'name'  : 'QCDscale_VBF',
+nuisances['QCDscale_qqH']  = {
+               'name'  : 'QCDscale_qqH',
                 'kind'  : 'weight_envelope',
                 'type'  : 'shape',
                 'samples'  : {
@@ -677,8 +681,8 @@ values_VBF_pdf = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','vbfH','125.09','pdf','s
 values_ggH_scale = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ggH','125.09','scale','sm')
 values_ggH_pdf = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ggH','125.09','pdf','sm') ##
 
-nuisances['QCDscale_VBF_ACCEPT'] = {
-    'name'    : 'QCDscale_VBF_accept',
+nuisances['QCDscale_qqH_ACCEPT'] = {
+    'name'    : 'QCDscale_qqH_accept',
     'samples' : {
         'qqH_sonly_on' : values_VBF_scale,
         'qqH_sonly_off' : values_VBF_scale,
@@ -687,7 +691,7 @@ nuisances['QCDscale_VBF_ACCEPT'] = {
 }
 
 nuisances['pdf_VBF_ACCEPT'] = {
-    'name'    : 'pdf_VBF_accept',
+    'name'    : 'pdf_Higgs_qqbar_accept',
     'type'    : 'lnN',
     'samples' : {
         'qqH_sonly_on' : values_VBF_pdf,
@@ -1054,13 +1058,13 @@ nuisances['WWnorm_1j']  = {
               }
 
 ##TC 2024 --add
-nuisances['MELA_Hyp_qqWW'] = {
-    'name': 'MELA_Hyp_qqWW',
-    'type': 'lnN',
-    'samples': {
-        'qqH_bonly_off': '1.1',
-    },
-}
+# nuisances['MELA_Hyp_qqWW'] = {
+#     'name': 'MELA_Hyp_qqWW',
+#     'type': 'lnN',
+#     'samples': {
+#         'qqH_bonly_off': '1.1',
+#     },
+# }
 
 ## Use the following if you want to apply the automatic combine MC stat nuisances.
 nuisances['stat'] = {
