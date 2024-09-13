@@ -16,22 +16,30 @@ catCR = {
     '2j' : 'Alt$(CleanJet_pt[0],0) > 30 && Alt$(CleanJet_pt[1],0) > 30 && BDTOutput_2j_DY > 0.9'
 }
 
+catDYCR = {
+    '0j' : 'Alt$(CleanJet_pt[0],0) < 30 && BDTOutput_0j_DY <= 0.9',
+    '1j' : 'Alt$(CleanJet_pt[0],0) > 30 && Alt$(CleanJet_pt[1],0) < 30 && BDTOutput_1j_DY <= 0.9',
+    '2j' : 'Alt$(CleanJet_pt[0],0) > 30 && Alt$(CleanJet_pt[1],0) > 30 && BDTOutput_2j_DY <= 0.9'
+}
+
 catSR = {
     'B0' : '1'
 }
 
-##  signal regions
-cuts['ww2l2v_13TeV_sr']  = {
-    'expr' : 'bVeto && ZVeto',
-    'categories' : dict((iCR+'_'+iSR,catCR[iCR]+' && '+catSR[iSR]) for iCR in catCR.keys() for iSR in catSR.keys()) 
-}
-
-# cuts['ww2l2v_13TeV_DYCR']  = {
-#     'expr' : 'bVeto && !(ZVeto)',
+# ##  signal regions
+# cuts['ww2l2v_13TeV_sr']  = {
+#     'expr' : 'bVeto && ZVeto',
 #     'categories' : dict((iCR+'_'+iSR,catCR[iCR]+' && '+catSR[iSR]) for iCR in catCR.keys() for iSR in catSR.keys()) 
 # }
 
-# Top control region
+# ##  DY CR
+cuts['ww2l2v_13TeV_DYCR']  = {
+    'expr' : 'bVeto && ZVeto',
+    'categories' : dict((iDYCR+'_'+iSR,catDYCR[iDYCR]+' && '+catSR[iSR]) for iDYCR in catDYCR.keys() for iSR in catSR.keys()) 
+}
+
+
+# # Top control region
 cuts['ww2l2v_13TeV_top']  = {
     'expr' : 'ZVeto && ((Sum$(CleanJet_pt > 30.) == 0 && !bVeto) || bReq)',
     'categories' : catCR
