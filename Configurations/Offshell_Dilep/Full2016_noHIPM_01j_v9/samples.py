@@ -114,7 +114,7 @@ files = nanoGetSampleFiles(mcDirectory, 'DYJetsToTT_MuEle_M-50') + \
 samples['DY'] = {
     'name': files,
     'weight': mcCommonWeight + "*( !(Sum$(PhotonGen_isPrompt==1 && PhotonGen_pt>15 && abs(PhotonGen_eta)<2.6) > 0 &&\
-                                    Sum$(LeptonGen_isPrompt==1 && LeptonGen_pt>15)>=2) )",
+                                    Sum$(LeptonGen_isPrompt==1 && LeptonGen_pt>15)>=2) ) * btagnorm_DY",
     'FilesPerJob': 8,
     'suppressNegative' :['all'],
     'suppressNegativeNuisances' :['all']
@@ -134,7 +134,7 @@ files = nanoGetSampleFiles(mcDirectory, 'TTTo2L2Nu') + \
 
 samples['top'] = {
     'name': files,
-    'weight': mcCommonWeight,
+    'weight': mcCommonWeight + '* btagnorm_top',
     'FilesPerJob': 4,
     'suppressNegative' :['all'],
     'suppressNegativeNuisances' :['all']
@@ -161,7 +161,7 @@ files = nanoGetSampleFiles(mcDirectory, 'Wg_AMCNLOFXFX_01J') + \
 
 samples['Vg'] = {
     'name': files,
-    'weight': mcCommonWeightNoMatch+'*((Gen_ZGstar_mass>0)*PromptGenLepMatch2l + Gen_ZGstar_mass<=0)',
+    'weight': mcCommonWeightNoMatch+'*((Gen_ZGstar_mass>0)*PromptGenLepMatch2l + Gen_ZGstar_mass<=0) * btagnorm_Vg',
     'FilesPerJob': 8,
     'suppressNegative' :['all'],
     'suppressNegativeNuisances' :['all']
@@ -177,7 +177,7 @@ files = nanoGetSampleFiles(mcDirectory, 'WZTo3LNu_mllmin0p1') + \
 
 samples['WZ'] = {
     'name': files,
-    'weight': mcCommonWeight + ' * (gstarHigh)',
+    'weight': mcCommonWeight + ' * (gstarHigh) * btagnorm_WZ',
     'FilesPerJob': 4,
     'suppressNegative' :['all'],
     'suppressNegativeNuisances' :['all']
@@ -193,7 +193,7 @@ files = nanoGetSampleFiles(mcDirectory, 'ZZTo2L2Nu') + \
 
 samples['ZZ'] = {
     'name': files,
-    'weight': mcCommonWeight,
+    'weight': mcCommonWeight + '* btagnorm_ZZ',
     'FilesPerJob': 4,
     'suppressNegative' :['all'],
     'suppressNegativeNuisances' :['all']
@@ -209,7 +209,7 @@ files = nanoGetSampleFiles(mcDirectory, 'ZZZ') + \
 
 samples['VVV'] = {
     'name': files,
-    'weight': mcCommonWeight,
+    'weight': mcCommonWeight + '* btagnorm_VVV',
     'FilesPerJob': 8,
     'suppressNegative' :['all'],
     'suppressNegativeNuisances' :['all']
@@ -228,7 +228,7 @@ files = nanoGetSampleFiles(mcDirectory, 'HZJ_HToWW_M125') + \
 
 samples['Higgs'] = {
     'name' : files,
-    'weight': mcCommonWeight,
+    'weight': mcCommonWeight + '* btagnorm_Higgs',
     'FilesPerJob': 8,
     'suppressNegative' :['all'],
     'suppressNegativeNuisances' :['all']
@@ -248,7 +248,7 @@ samples['Higgs'] = {
 
 samples['WW'] = { ##
     'name': nanoGetSampleFiles(mcDirectory, 'WWJTo2L2Nu_minnlo'),
-    'weight': mcCommonWeight,
+    'weight': mcCommonWeight + '* btagnorm_WW',
     'FilesPerJob': 7,
     'suppressNegative' :['all'],
     'suppressNegativeNuisances' :['all'],
@@ -266,7 +266,7 @@ samples['WW'] = { ##
 #             nanoGetSampleFiles(mcDirectory, 'GluGluToWWToTNEN') + \
 #             nanoGetSampleFiles(mcDirectory, 'GluGluToWWToTNMN') + \
 #             nanoGetSampleFiles(mcDirectory, 'GluGluToWWToTNTN'),
-#     'weight': mcCommonWeight+'*1.53/1.4', # updating k-factor - split ggWW divide mass of WW
+#     'weight': mcCommonWeight+'*1.53/1.4 * 1.33 * norm_njet', # updating k-factor - split ggWW divide mass of WW
 #     'FilesPerJob': 4,
 #     'suppressNegative' :['all'],
 #     'suppressNegativeNuisances' :['all']
@@ -382,7 +382,7 @@ print(files)
 
 samples['qqH_sonly_on'] = {
     'name': files,
-    'weight': mcCommonWeight + ' * p_Gen_JJEW_SIG_ghv1_1_MCFM * p_Gen_CPStoBWPropRewgt * HWWOffshell_combineWgt * (LHECandMass <= 160)', ##mcCommonWeight_custom
+    'weight': mcCommonWeight + ' * p_Gen_JJEW_SIG_ghv1_1_MCFM * p_Gen_CPStoBWPropRewgt * HWWOffshell_combineWgt * (LHECandMass <= 160) * btagnorm_qqH_sonly_on', ##mcCommonWeight_custom
     'FilesPerJob': 1,
     'suppressNegative' :['all'], ##TC2024
     'suppressNegativeNuisances' :['all'],
@@ -390,7 +390,7 @@ samples['qqH_sonly_on'] = {
 
 samples['qqH_bonly_on'] = {
     'name': files,
-    'weight': mcCommonWeight + ' * p_Gen_JJEW_BKG_MCFM * p_Gen_CPStoBWPropRewgt * HWWOffshell_combineWgt * (LHECandMass <= 160)', ##mcCommonWeight_custom
+    'weight': mcCommonWeight + ' * p_Gen_JJEW_BKG_MCFM * p_Gen_CPStoBWPropRewgt * HWWOffshell_combineWgt * (LHECandMass <= 160) * btagnorm_qqH_bonly_on', ##mcCommonWeight_custom
     'FilesPerJob': 1,
     'suppressNegative' :['all'], ##TC2024
     'suppressNegativeNuisances' :['all'],
@@ -398,7 +398,7 @@ samples['qqH_bonly_on'] = {
 
 samples['qqH_sand_on'] = {
     'name': files,
-    'weight': mcCommonWeight + ' * p_Gen_JJEW_BSI_ghv1_1_MCFM * p_Gen_CPStoBWPropRewgt * HWWOffshell_combineWgt * (LHECandMass <= 160)', ##mcCommonWeight_custom
+    'weight': mcCommonWeight + ' * p_Gen_JJEW_BSI_ghv1_1_MCFM * p_Gen_CPStoBWPropRewgt * HWWOffshell_combineWgt * (LHECandMass <= 160) * btagnorm_qqH_sand_on', ##mcCommonWeight_custom
     'FilesPerJob': 1,
     'suppressNegative' :['all'], ##TC2024
     'suppressNegativeNuisances' :['all'],
@@ -406,7 +406,7 @@ samples['qqH_sand_on'] = {
 
 samples['qqH_sonly_off'] = {
     'name': files,
-    'weight': mcCommonWeight + ' * p_Gen_JJEW_SIG_ghv1_1_MCFM * p_Gen_CPStoBWPropRewgt * HWWOffshell_combineWgt * (LHECandMass > 160)', ##mcCommonWeight_custom
+    'weight': mcCommonWeight + ' * p_Gen_JJEW_SIG_ghv1_1_MCFM * p_Gen_CPStoBWPropRewgt * HWWOffshell_combineWgt * (LHECandMass > 160) * btagnorm_qqH_sonly_off', ##mcCommonWeight_custom
     'FilesPerJob': 1,
     'suppressNegative' :['all'], ##TC2024
     'suppressNegativeNuisances' :['all'],
@@ -414,7 +414,7 @@ samples['qqH_sonly_off'] = {
 
 samples['qqH_bonly_off'] = {
     'name': files,
-    'weight': mcCommonWeight + ' * p_Gen_JJEW_BKG_MCFM * p_Gen_CPStoBWPropRewgt * HWWOffshell_combineWgt', ##mcCommonWeight_custom
+    'weight': mcCommonWeight + ' * p_Gen_JJEW_BKG_MCFM * p_Gen_CPStoBWPropRewgt * HWWOffshell_combineWgt * (LHECandMass > 160) * btagnorm_qqH_bonly_off', ##mcCommonWeight_custom
     'FilesPerJob': 1,
     'suppressNegative' :['all'], ##TC2024
     'suppressNegativeNuisances' :['all'],
@@ -422,7 +422,7 @@ samples['qqH_bonly_off'] = {
 
 samples['qqH_sand_off'] = {
     'name': files,
-    'weight': mcCommonWeight + ' * p_Gen_JJEW_BSI_ghv1_1_MCFM * p_Gen_CPStoBWPropRewgt * HWWOffshell_combineWgt * (LHECandMass > 160)', ##mcCommonWeight_custom
+    'weight': mcCommonWeight + ' * p_Gen_JJEW_BSI_ghv1_1_MCFM * p_Gen_CPStoBWPropRewgt * HWWOffshell_combineWgt * (LHECandMass > 160) * btagnorm_qqH_sand_off', ##mcCommonWeight_custom
     'FilesPerJob': 1,
     'suppressNegative' :['all'], ##TC2024
     'suppressNegativeNuisances' :['all'],
@@ -490,7 +490,7 @@ files = nanoGetSampleFiles(mcDirectory, 'GluGluHToWWToENEN_SIG') + \
 
 samples['ggH_sonly_off'] = {
     'name': files,
-    'weight': mcCommonWeight+'* 1.68 * (LHE_mWW > 160)',
+    'weight': mcCommonWeight+'* 1.68 * 1.645 * norm_njet * (LHE_mWW > 160) * btagnorm_ggH_sonly_off',
     'FilesPerJob': 3,
     'suppressNegative':['all'],
     'suppressNegativeNuisances' :['all']
@@ -498,7 +498,7 @@ samples['ggH_sonly_off'] = {
 
 samples['ggH_sonly_on'] = {
     'name': files,
-    'weight': mcCommonWeight+'* 1.68 * (LHE_mWW <= 160)',
+    'weight': mcCommonWeight+'* 1.68 * 1.645 * norm_njet * (LHE_mWW <= 160) * btagnorm_ggH_sonly_on',
     'FilesPerJob': 3,
     'suppressNegative':['all'],
     'suppressNegativeNuisances' :['all']
@@ -520,7 +520,7 @@ files = nanoGetSampleFiles(mcDirectory, 'GluGluToWWToENEN') + \
 
 samples['ggH_bonly_off'] = {
     'name': files,
-    'weight': mcCommonWeight+'*1.53/1.4  * (LHE_mWW > 160)',
+    'weight': mcCommonWeight+'*1.53/1.4 * 1.33 * norm_njet  * (LHE_mWW > 160) * btagnorm_ggH_bonly_off',
     'FilesPerJob': 3,
     'suppressNegative':['all'],
     'suppressNegativeNuisances' :['all']
@@ -528,7 +528,7 @@ samples['ggH_bonly_off'] = {
 
 samples['ggH_bonly_on'] = {
     'name': files,
-    'weight': mcCommonWeight+'*1.53/1.4  * (LHE_mWW <= 160)',
+    'weight': mcCommonWeight+'*1.53/1.4 * 1.33 * norm_njet  * (LHE_mWW <= 160) * btagnorm_ggH_bonly_on',
     'FilesPerJob': 3,
     'suppressNegative':['all'],
     'suppressNegativeNuisances' :['all']
@@ -550,14 +550,14 @@ files = nanoGetSampleFiles(mcDirectory, 'GluGluHToWWToENEN_BSI') + \
 
 samples['ggH_sand_off'] = {
     'name': files,
-    'weight': mcCommonWeight+'*1.60 * (LHE_mWW > 160)', ##TC 2024 SBI scaled by 151.6/95.0 {https://www.arxiv.org/pdf/1605.04610#page=18}
+    'weight': mcCommonWeight+'*1.60 * 1.52 * norm_njet * (LHE_mWW > 160) * btagnorm_ggH_sand_off', ##TC 2024 SBI scaled by 151.6/95.0 {https://www.arxiv.org/pdf/1605.04610#page=18}
     'FilesPerJob': 3,
     'suppressNegative':['all'],
     'suppressNegativeNuisances' :['all']
 }
 samples['ggH_sand_on'] = {
     'name': files,
-    'weight': mcCommonWeight+'*1.60 * (LHE_mWW <= 160)', ##TC 2024 SBI scaled
+    'weight': mcCommonWeight+'*1.60 * 1.52 * norm_njet * (LHE_mWW <= 160) * btagnorm_ggH_sand_on', ##TC 2024 SBI scaled
     'FilesPerJob': 3,
     'suppressNegative':['all'],
     'suppressNegativeNuisances' :['all']
