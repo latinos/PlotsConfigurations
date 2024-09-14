@@ -431,7 +431,7 @@ samples['qqH_sonly_off'] = {
 
 samples['qqH_bonly_off'] = {
     'name': files,
-    'weight': mcCommonWeight + ' * p_Gen_JJEW_BKG_MCFM * p_Gen_CPStoBWPropRewgt * HWWOffshell_combineWgt', ##mcCommonWeight_custom
+    'weight': mcCommonWeight + ' * p_Gen_JJEW_BKG_MCFM * p_Gen_CPStoBWPropRewgt * HWWOffshell_combineWgt * (LHECandMass > 160)', ##mcCommonWeight_custom
     'FilesPerJob': 1,
     'suppressNegative' :['all'], ##TC2024
     'suppressNegativeNuisances' :['all'],
