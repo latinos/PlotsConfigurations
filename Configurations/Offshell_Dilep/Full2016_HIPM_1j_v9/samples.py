@@ -338,8 +338,8 @@ for _, sd in DataRun:
     samples['DATA']['name'].extend(files)
     samples['DATA']['weights'].extend([DataTrig[pd]] * len(files))
 
-##TC 2024
-########### VBF ############
+## TC 2024
+####### VBF ############
 
 files = nanoGetSampleFiles(signalDirectory, 'VBFHToWWTo2L2Nu_M125') + \
         nanoGetSampleFiles(signalDirectory, 'VBFHToWWTo2L2Nu_M160') + \
@@ -418,9 +418,9 @@ samples['qqH_sonly_off'] = {
 
 samples['qqH_bonly_off'] = {
     'name': files,
-    'weight': mcCommonWeight + ' * p_Gen_JJEW_BKG_MCFM * p_Gen_CPStoBWPropRewgt * HWWOffshell_combineWgt', ##mcCommonWeight_custom
+    'weight': mcCommonWeight + ' * p_Gen_JJEW_BKG_MCFM * p_Gen_CPStoBWPropRewgt * HWWOffshell_combineWgt * (LHECandMass > 160)',
     'FilesPerJob': 1,
-    'suppressNegative' :['all'], ##TC2024
+    'suppressNegative' :['all'],
     'suppressNegativeNuisances' :['all'],
 }
 
