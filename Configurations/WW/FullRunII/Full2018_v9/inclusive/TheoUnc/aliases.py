@@ -18,15 +18,15 @@ aliases['nCleanGenJet'] = {
 aliases['fiducial'] = {
     'linesToAdd': ['.L %s/WW/FullRunII/fiducial.cc+' % configurations],
     'class': 'FiducialRegion',
-    'samples': ['WW_minnlo','ggWW']
+    'samples': ['WW','ggWW']
 }
 
 aliases['B0'] = {
     'expr' : '1',
-    'samples' : ['WW_minnlo','ggWW']
+    'samples' : ['WW','ggWW']
 }
 
 aliases['fid'] = {
     'expr' : 'fiducial',
-    'samples' : ['WW_minnlo','ggWW']
+    'samples' : ['WW','ggWW']
 }

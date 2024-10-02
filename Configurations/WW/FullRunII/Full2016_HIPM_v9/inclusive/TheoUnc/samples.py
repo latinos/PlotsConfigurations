@@ -60,13 +60,13 @@ signals = []
 
 ###### WW ########
 
-samples['WW_minnlo'] = {
+samples['WW'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'WWJTo2L2Nu_minnlo'),
     'weight': mcCommonWeight,
     'FilesPerJob': 2
 }
 
-signals.append('WW_minnlo')
+signals.append('WW')
 
 samples['ggWW'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'GluGluToWWToENEN') + \

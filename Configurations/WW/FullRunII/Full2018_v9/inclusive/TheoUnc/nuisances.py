@@ -29,7 +29,7 @@ nuisances['QCDscale_WW']  = {
     'kind'  : 'weight',
     'type'  : 'shape',
     'samples'  : {
-       'WW_minnlo' : ['Alt$(LHEScaleWeight[0],1)','Alt$(LHEScaleWeight[8],1)'],
+       'WW' : ['Alt$(LHEScaleWeight[0],1)','Alt$(LHEScaleWeight[8],1)'],
        'ggWW' : ['Alt$(LHEScaleWeight[0],1)','Alt$(LHEScaleWeight[8],1)']
     }
 }
@@ -42,7 +42,7 @@ nuisances['pdf_WW']  = {
   'kind'  : 'weight_rms',
   'type'  : 'shape',
   'samples'  : {
-     'WW_minnlo'     : pdf_variations,
+     'WW'     : pdf_variations,
    },
 }
 

@@ -178,7 +178,7 @@ samples['Higgs'] = {
 
 ###### WW ########
 
-samples['WW_minnlo'] = {
+samples['WW'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'WWJTo2L2Nu_minnlo'),
     'weight': mcCommonWeight,
     'FilesPerJob': 7,

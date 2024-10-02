@@ -298,12 +298,12 @@ aliases['lhe_mW2'] = {
 }
 aliases['B0'] = {
     'expr' : '1',
-    'samples' : ['WW_minnlo','ggWW']
+    'samples' : ['WW','ggWW']
 }
 
 aliases['fid'] = {
     'expr' : 'fiducial',
-    'samples' : ['WW_minnlo','ggWW']
+    'samples' : ['WW','ggWW']
 }
 
 aliases['BDTOutput_0j'] = {
