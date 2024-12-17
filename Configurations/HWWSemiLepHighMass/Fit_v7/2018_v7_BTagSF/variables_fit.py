@@ -567,15 +567,15 @@ variables['mass_HIGGS_BooBKG'] = {
    'cuts' : boostedSR_isBKG,
 }
 
-####variables['mass_HIGGS_twojet_binned'] = {
-####   'name' : 'mass_HIGGS_JJ[0]',
-####   'range': ([0, 150, 200, 260, 300, 350, 400, 450, 500, 550, 600,
-####              650, 700, 750, 800, 850, 900, 950, 1000, 1100, 1300, 1500, 3000],),
-####   'xaxis': 'Higgs Mass [GeV]',
-####   'fold' : 0,
-####   'cuts' : resolved, 
-####}
-####
+variables['mass_HIGGS_twojet_binned'] = {
+   'name' : 'mass_HIGGS_JJ[0]',
+   'range': ([0, 150, 200, 260, 300, 350, 400, 450, 500, 550, 600,
+              650, 700, 750, 800, 850, 900, 950, 1000, 1100, 1300, 1500, 3000],),
+   'xaxis': 'Higgs Mass [GeV]',
+   'fold' : 0,
+   'cuts' : resolved, 
+}
+
 variables['mass_HIGGS_ResVBF'] = {
    'name' : 'mass_HIGGS_JJ[0]',
    'range': ([0, 150, 200, 260, 300, 350, 400, 450, 500, 550, 600,

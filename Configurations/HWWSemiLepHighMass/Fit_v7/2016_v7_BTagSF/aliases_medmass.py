@@ -1094,6 +1094,15 @@ aliases['Unc_WjetsDataMC_Boo'] = {
     'args': ('PlotsConfigurations/Configurations/HWWSemiLepHighMass/correct_Wjets/file_WjetsUncPt_2016.root', 'PlotsConfigurations/Configurations/HWWSemiLepHighMass/correct_Wjets/file_WjetsUncBoo_2016.root'),
     'samples': ['Wjets'], 
 }
+aliases['Unc_TopDataMC'] = { 
+    'linesToAdd': [
+        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_RELEASE_BASE'),
+        '.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/apply_TopUnc.cc+' % os.getenv('CMSSW_BASE')
+    ],  
+    'class': 'apply_TopUnc',
+    'args': ('PlotsConfigurations/Configurations/HWWSemiLepHighMass/correct_Wjets/file_TopUnc_2016.root','PlotsConfigurations/Configurations/HWWSemiLepHighMass/correct_Wjets/file_WjetsUncBoo_2016.root'),
+    'samples': ['top'], 
+}
 aliases['Wjets_reweight'] = { 
     'linesToAdd': [
         'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_RELEASE_BASE'),

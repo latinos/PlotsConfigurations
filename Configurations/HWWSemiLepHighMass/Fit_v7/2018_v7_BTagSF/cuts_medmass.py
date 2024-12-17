@@ -61,11 +61,11 @@ BoostCats={}
 #                       && HvOverFat[0] > 0.4 \
 #                       && boostedSignalWMass[0] \
 #                       && bVeto_boo[0])'
-BoostCats['BoostedSB_']='(1 \
-                       && boosted_nocut_res[0] \
-                       && HvOverFat[0] < 0.35 \
-                       && boostedSignalWMass[0] \
-                       && bVeto_boo[0])'
+#BoostCats['BoostedSB_']='(1 \
+#                       && boosted_nocut_res[0] \
+#                       && HvOverFat[0] < 0.35 \
+#                       && boostedSignalWMass[0] \
+#                       && bVeto_boo[0])'
 #BoostCats['BoostedSB_2']='(1 \
 #                       && boosted_nocut_res[0] \
 #                       && HvOverFat[0] < 0.4 \
@@ -84,11 +84,11 @@ BoostCats['ResolvedTopCR_']='(1 \
 ###                       && two_jet_res[0] \
 ###                       && resolvedSignalWMass[0] \
 ###                       && bVeto[0])'
-BoostCats['BoostedTopCR_']='(1 \
-                       && boosted_nocut_res[0] \
-                       && HvOverFat[0] > 0.4 \
-                       && boostedSignalWMass[0] \
-                       && bReq_boo[0])'
+#BoostCats['BoostedTopCR_']='(1 \
+#                       && boosted_nocut_res[0] \
+#                       && HvOverFat[0] > 0.4 \
+#                       && boostedSignalWMass[0] \
+#                       && bReq_boo[0])'
 ####BoostCats['BoostedCR_']='(1 \
 ###                       && boosted_nocut_res[0] \
 ###                       && HvOverFat[0] > 0.4 \
@@ -119,4 +119,4 @@ for Lep in LepCats_P:
     for BCat in BoostCats:
 	cuts[Lep+BCat]=  BoostCats[BCat]\
                            +'&&'+LepCats_P[Lep]
-
+#

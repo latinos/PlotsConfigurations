@@ -2,17 +2,16 @@
 
 treeName = 'Events'
 
-#tag = 'hm_2018_Inte'
-tag = 'hm_2018_SplitTheTwo'
+tag = 'hm_2016_SingleLep'
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFile_Debug'
+outputDir = 'rootFile_Debug_2016'
 
 # file with TTree aliases
-aliasesFile = 'aliases_medmass.py'#aliases_highmass to use the high mass trained DNN
+aliasesFile = 'aliases_medmass.py'
 
 # file with list of variables
-variablesFile = 'variables_fitUPD.py'
+variablesFile = 'variables_fit.py'
 # variablesFile = 'variablesPlot.py'
 # variablesFile = 'variablesLimits.py'
 
@@ -26,15 +25,15 @@ samplesFile = 'samples_medmass.py'
 plotFile = 'plot_medmass.py'
 
 # luminosity to normalize to (in 1/fb)
-lumi = 59.7
+lumi = 36.3
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'Plot_SR_INCL'
+outputDirPlots = 'Plotts_Test_fistUnblin'
 
 
 # used by mkDatacards to define output directory for datacards
-outputDirDatacard = 'Datacards_forDrawing'
+outputDirDatacard = 'Datacards_DiffWidth'
 
 # structure file for datacard
 structureFile = 'structure_medmass.py'

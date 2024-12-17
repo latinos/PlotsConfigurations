@@ -523,7 +523,6 @@ aliases['boosted_nocut'] = {
     'expr': 'PuppiMET_pt > 40 \
             && isJetBoo > 0 \
             && Alt$(FatJet_pt[FatJet_idx_clean], 0) > 200 \
-            && Alt$(FatJet_deepTag_WvsQCD[FatJet_idx_clean[0]],0) > 0.961 \
             && Alt$(FatJet_eta[FatJet_idx_clean], 999) < 2.4'
 }
 aliases['boosted_nocut_res'] = {
@@ -1285,6 +1284,15 @@ aliases['Unc_WjetsDataMC_Boo'] = {
     'samples': ['Wjets'], 
 }
 
+aliases['Unc_TopDataMC'] = { 
+    'linesToAdd': [
+        'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_RELEASE_BASE'),
+        '.L %s/src/PlotsConfigurations/Configurations/HWWSemiLepHighMass/apply_TopUnc.cc+' % os.getenv('CMSSW_BASE')
+    ],  
+    'class': 'apply_TopUnc',
+    'args': ('PlotsConfigurations/Configurations/HWWSemiLepHighMass/correct_Wjets/file_TopUnc_2018.root', 'PlotsConfigurations/Configurations/HWWSemiLepHighMass/correct_Wjets/file_WjetsUncBoo_2018.root'),
+    'samples': ['top'], 
+}
 aliases['Wjets_reweight'] = {
     'linesToAdd': [
         'gSystem->AddIncludePath("-I%s/src");' % os.getenv('CMSSW_RELEASE_BASE'),

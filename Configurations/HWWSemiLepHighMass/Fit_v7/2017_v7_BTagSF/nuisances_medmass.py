@@ -217,6 +217,17 @@ nuisances['UncTePTrig_WJ_Boo'] = {
     'cuts': cutdict['Boosted'],
 #    'samples': dict((skey,['1 + 2*Unc_teptrig[0]', '1 -2*Unc_teptrig[0]']) for skey in mc),
 }
+nuisances['UncCorr_Top'] = {
+    'name': 'top_Correction',   # Theory uncertainty
+    'kind': 'weight',
+    'type': 'shape',
+    'samples': {
+        'top': ['Unc_TopDataMC[0]', '1/Unc_TopDataMC[0]'],
+    },
+    'cuts': cutdict['Resolv'],
+#    'samples': dict((skey,['1 + 2*Unc_teptrig[0]', '1 -2*Unc_teptrig[0]']) for skey in mc),
+}
+
 prefire_syst = ['PrefireWeight_Up/PrefireWeight', 'PrefireWeight_Down/PrefireWeight']
 
 nuisances['prefire'] = {

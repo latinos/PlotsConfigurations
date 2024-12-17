@@ -73,9 +73,9 @@ cutdict = {
 }
 
 
-################################ EXPERIMENTAL UNCERTAINTIES  #################################
-
-#### Luminosity
+################################# EXPERIMENTAL UNCERTAINTIES  #################################
+#
+##### Luminosity
 
 nuisances['lumi_Uncorrelated'] = {
     'name': 'lumi_13TeV_2018',
@@ -1915,7 +1915,7 @@ for nuis in oldnuisances:
         del nuisances[nuis]['samples'][samp]
         if nuisances[nuis]['samples'] == {}: del nuisances[nuis]
 
-#nuisancename = {}
+nuisancename = {}
 nuisancename = {}
 for nuis in nuisances:
   if nuisances[nuis]['type'] == "shape":
@@ -1983,68 +1983,109 @@ for nuisname in nuisancename:
             if ((nuis not in jes_systs) and (nuis not in jes_systs_BWR)):# and (nuis not in Fatjet_systs)): 
               nuisances[nuis]['samples'].update({'QQHSBI_'+m+model_name: SBI_string})
 
-#for nuis in nuisances:
-#  if nuisances[nuis]['type'] == "shape":
-#    if nuisances[nuis]['name'] not in nuisancename: nuisancename[nuisances[nuis]['name']] = []
-#    nuisancename[nuisances[nuis]['name']].append(nuis)
-#for nuisname in nuisancename:
-#  allsamples = {}
-#  for nuis in nuisancename[nuisname]:
-#    allsamples.update(nuisances[nuis]['samples']) # Sometimes have 2 dict keys doing shapes for the same nuisance for different samples; combine them here
-#  if [samp for samp in allsamples if 'SBI' in samp] == []:
-#    dogg=0
-#    doqq=0
-#    for samp in allsamples:
-#      if ("GGH" in samp) or (samp in ["ggWW", "ggH_hww"]): dogg=1
-#      elif ("QQH" in samp) or (samp in ["qqWWqq", "qqH_hww"]): doqq=1
-#    if dogg==1:
-#        SM_up = '1.0'
-#        SM_dn = '1.0'
-#        WW_up = '1.0'
-#        WW_dn = '1.0'
-#        sig_up = '1.0'
-#        sig_dn = '1.0'
-#        for nuis in nuisancename[nuisname]:
-#          if "ggH_hww" in nuisances[nuis]['samples']: SM_up = nuisances[nuis]['samples']["ggH_hww"][0]
-#          if "ggH_hww" in nuisances[nuis]['samples']: SM_dn = nuisances[nuis]['samples']["ggH_hww"][1]
-#          if "ggWW" in nuisances[nuis]['samples']: WW_up = nuisances[nuis]['samples']["ggWW"][0]
-#          if "ggWW" in nuisances[nuis]['samples']: WW_dn = nuisances[nuis]['samples']["ggWW"][1]
-#        for model in models:
-#          model_name = '_'+model.replace(".","")
-#          for m in massggh:
-#            for nuis in nuisancename[nuisname]:
-#              if 'GGH_'+m+model_name in nuisances[nuis]['samples']: sig_up = nuisances[nuis]['samples']['GGH_'+m+model_name][0]
-#              if 'GGH_'+m+model_name in nuisances[nuis]['samples']: sig_dn = nuisances[nuis]['samples']['GGH_'+m+model_name][1]
-#            SBI_string = ['('+sig_up+')*SBI_isHM + ('+SM_up+')*SBI_isSMggh + ('+WW_up+')*SBI_isggWW',
-#                          '('+sig_dn+')*SBI_isHM + ('+SM_dn+')*SBI_isSMggh + ('+WW_dn+')*SBI_isggWW']
-#            nuisances[nuis]['samples'].update({'GGHSBI_'+m+model_name: SBI_string})
-#    if doqq==1:
-#        SM_up = '1.0'
-#        SM_dn = '1.0'
-#        WW_up = '1.0'
-#        WW_dn = '1.0'
-#        sig_up = '1.0'
-#        sig_dn = '1.0'
-#        for nuis in nuisancename[nuisname]:
-#          if "qqH_hww" in nuisances[nuis]['samples']: SM_up = nuisances[nuis]['samples']["qqH_hww"][0]
-#          if "qqH_hww" in nuisances[nuis]['samples']: SM_dn = nuisances[nuis]['samples']["qqH_hww"][1]
-#          if "qqWWqq" in nuisances[nuis]['samples']: WW_up = nuisances[nuis]['samples']["qqWWqq"][0]
-#          if "qqWWqq" in nuisances[nuis]['samples']: WW_dn = nuisances[nuis]['samples']["qqWWqq"][1]
-#     e  for model in models:
-#          model_name = '_'+model.replace(".","")
-#          for m in massvbf:
-#            for nuis in nuisancename[nuisname]:
-#              if 'QQH_'+m+model_name in nuisances[nuis]['samples']: sig_up = nuisances[nuis]['samples']['QQH_'+m+model_name][0]
-#              if 'QQH_'+m+model_name in nuisances[nuis]['samples']: sig_dn = nuisances[nuis]['samples']['QQH_'+m+model_name][1]
-#            SBI_string = ['('+sig_up+')*SBI_isHM + ('+SM_up+')*SBI_isSMVBF + ('+WW_up+')*SBI_isqqWWqq',
-#                          '('+sig_dn+')*SBI_isHM + ('+SM_dn+')*SBI_isSMVBF + ('+WW_dn+')*SBI_isqqWWqq']
-#            nuisances[nuis]['samples'].update({'QQHSBI_'+m+model_name: SBI_string})
+for nuis in nuisances:
+  if nuisances[nuis]['type'] == "shape":
+    if nuisances[nuis]['name'] not in nuisancename: nuisancename[nuisances[nuis]['name']] = []
+    nuisancename[nuisances[nuis]['name']].append(nuis)
+for nuisname in nuisancename:
+  allsamples = {}
+  for nuis in nuisancename[nuisname]:
+    allsamples.update(nuisances[nuis]['samples']) # Sometimes have 2 dict keys doing shapes for the same nuisance for different samples; combine them here
+  if [samp for samp in allsamples if 'SBI' in samp] == []:
+    dogg=0
+    doqq=0
+    for samp in allsamples:
+      if ("GGH" in samp) or (samp in ["ggWW", "ggH_hww"]): dogg=1
+      elif ("QQH" in samp) or (samp in ["qqWWqq", "qqH_hww"]): doqq=1
+    if dogg==1:
+        SM_up = '1.0'
+        SM_dn = '1.0'
+        WW_up = '1.0'
+        WW_dn = '1.0'
+        sig_up = '1.0'
+        sig_dn = '1.0'
+        for nuis in nuisancename[nuisname]:
+          if "ggH_hww" in nuisances[nuis]['samples']: SM_up = nuisances[nuis]['samples']["ggH_hww"][0]
+          if "ggH_hww" in nuisances[nuis]['samples']: SM_dn = nuisances[nuis]['samples']["ggH_hww"][1]
+          if "ggWW" in nuisances[nuis]['samples']: WW_up = nuisances[nuis]['samples']["ggWW"][0]
+          if "ggWW" in nuisances[nuis]['samples']: WW_dn = nuisances[nuis]['samples']["ggWW"][1]
+        for model in models:
+          model_name = '_'+model.replace(".","")
+          for m in massggh:
+            for nuis in nuisancename[nuisname]:
+              if 'GGH_'+m+model_name in nuisances[nuis]['samples']: sig_up = nuisances[nuis]['samples']['GGH_'+m+model_name][0]
+              if 'GGH_'+m+model_name in nuisances[nuis]['samples']: sig_dn = nuisances[nuis]['samples']['GGH_'+m+model_name][1]
+            SBI_string = ['('+sig_up+')*SBI_isHM + ('+SM_up+')*SBI_isSMggh + ('+WW_up+')*SBI_isggWW',
+                          '('+sig_dn+')*SBI_isHM + ('+SM_dn+')*SBI_isSMggh + ('+WW_dn+')*SBI_isggWW']
+            nuisances[nuis]['samples'].update({'GGHSBI_'+m+model_name: SBI_string})
+    if doqq==1:
+        SM_up = '1.0'
+        SM_dn = '1.0'
+        WW_up = '1.0'
+        WW_dn = '1.0'
+        sig_up = '1.0'
+        sig_dn = '1.0'
+        for nuis in nuisancename[nuisname]:
+          if "qqH_hww" in nuisances[nuis]['samples']: SM_up = nuisances[nuis]['samples']["qqH_hww"][0]
+          if "qqH_hww" in nuisances[nuis]['samples']: SM_dn = nuisances[nuis]['samples']["qqH_hww"][1]
+          if "qqWWqq" in nuisances[nuis]['samples']: WW_up = nuisances[nuis]['samples']["qqWWqq"][0]
+          if "qqWWqq" in nuisances[nuis]['samples']: WW_dn = nuisances[nuis]['samples']["qqWWqq"][1]
+        for model in models:
+          model_name = '_'+model.replace(".","")
+          for m in massvbf:
+            for nuis in nuisancename[nuisname]:
+              if 'QQH_'+m+model_name in nuisances[nuis]['samples']: sig_up = nuisances[nuis]['samples']['QQH_'+m+model_name][0]
+              if 'QQH_'+m+model_name in nuisances[nuis]['samples']: sig_dn = nuisances[nuis]['samples']['QQH_'+m+model_name][1]
+            SBI_string = ['('+sig_up+')*SBI_isHM + ('+SM_up+')*SBI_isSMVBF + ('+WW_up+')*SBI_isqqWWqq',
+                          '('+sig_dn+')*SBI_isHM + ('+SM_dn+')*SBI_isSMVBF + ('+WW_dn+')*SBI_isqqWWqq']
+            nuisances[nuis]['samples'].update({'QQHSBI_'+m+model_name: SBI_string})
 
 
 
 
 
 
+#StatSwitch = True
+## Doing zeroMCError=0 now because apparently it's not well defined otherwise for this analysis (or so I've been told)
+## Also remove individual bbb from background (ggWW/qqWWqq/SM HWW), I'm now absorbing their statistical uncertainty into the nuisances of other more significant backgrounds (unaffected by r), so there's nothing to correlate
+#if StatSwitch:
+#  nuisances['stat']  = {
+#                  # apply to the following samples: name of samples here must match keys in samples.py
+#                 'samples'  : {
+#
+##                     'ggWW': {
+##                           'typeStat' : 'bbb',
+##                           'zeroMCError' : '0',
+##                           'correlate': []
+##                     },
+##                     'ggH_hww':{
+##                           'typeStat' : 'bbb',
+##                           'zeroMCError' : '0',
+##                           'correlate': []
+##                     },
+##                     'qqWWqq': {
+##                          'typeStat' : 'bbb',
+##                           'zeroMCError' : '0',
+##                           'correlate': []
+##                     },
+##                     'qqH_hww':{
+##                           'typeStat' : 'bbb',
+##                           'zeroMCError' : '0',
+##                           'correlate': []
+##                     },
+#
+#
+#                   },
+##                 'type': 'auto',
+##                 'maxPoiss': '10',
+##                 'includeSignal': '0',
+##                 'cuts'  : [cut for cut in cuts]
+#                 'type'  : 'shape',
+#	         #'maxPoiss': '10',
+#                 #'includeSignal': '0',
+#                 'cuts'  : [cut for cut in cuts if ('SB' not in cut) and ('top' not in cut)]
+#                }
+########################### MC stat #
 StatSwitch = True
 # Doing zeroMCError=0 now because apparently it's not well defined otherwise for this analysis (or so I've been told)
 # Also remove individual bbb from background (ggWW/qqWWqq/SM HWW), I'm now absorbing their statistical uncertainty into the nuisances of other more significant backgrounds (unaffected by r), so there's nothing to correlate
@@ -2076,24 +2117,15 @@ if StatSwitch:
 
 
                    },
-#                 'type': 'auto',
-#                 'maxPoiss': '10',
-#                 'includeSignal': '0',
-#                 'cuts'  : [cut for cut in cuts]
+                # 'includeSignal': '0',
+                # 'type'  : 'auto',
+                # 'maxPoiss': '10',
+                # 'cuts'  : [cut for cut in cuts]
                  'type'  : 'shape',
 	         #'maxPoiss': '10',
                  #'includeSignal': '0',
                  'cuts'  : [cut for cut in cuts if ('SB' not in cut) and ('top' not in cut)]
                 }
-########################### MC stat #
-#nuisances['stat'] = {
-#    'type': 'auto',
-#    'maxPoiss': '10',
-#    'includeSignal': '0',
-#    #  nuisance ['maxPoiss'] =  Number of threshold events for Poisson modelling
-#    #  nuisance ['includeSignal'] =  Include MC stat nuisances on signal processes (1=True, 0=False)
-#    'samples': {}
-#}
 
   for model in models:
     model_name = '_'+model.replace(".","")
@@ -2108,3 +2140,26 @@ if StatSwitch:
       #nuisances['stat']['samples']['qqWWqq']["correlate"].append('QQHSBI_'+m+model_name)
       #nuisances['stat']['samples']['qqH_hww']["correlate"].append('QQHSBI_'+m+model_name)
       nuisances['stat']['samples']['QQH_'+m+model_name]['correlate'].append('QQHSBI_'+m+model_name)
+
+#nuisances['stat'] = {
+#   'type': 'auto',
+#   'maxPoiss': '10',
+#   'includeSignal': '0',
+#   #  nuisance ['maxPoiss'] =  Number of threshold events for Poisson modelling
+#   #  nuisance ['includeSignal'] =  Include MC stat nuisances on signal processes (1=True, 0=False)
+#   'samples': {}
+#
+#
+#  for model in models:
+#    model_name = '_'+model.replace(".","")
+#    for m in massggh:
+#      nuisances['stat']['samples']['GGH_'+m+model_name] = { 'typeStat' : 'bbb', 'zeroMCError' : '0', 'correlate': [] }
+#      #nuisances['stat']['samples']['ggWW']["correlate"].append('GGHSBI_'+m+model_name)
+#      #nuisances['stat']['samples']['ggH_hww']["correlate"].append('GGHSBI_'+m+model_name)
+#      nuisances['stat']['samples']['GGH_'+m+model_name]['correlate'].append('GGHSBI_'+m+model_name)
+#
+#    for m in massvbf:
+#      nuisances['stat']['samples']['QQH_'+m+model_name] = { 'typeStat' : 'bbb', 'zeroMCError' : '0', 'correlate': [] }
+#      #nuisances['stat']['samples']['qqWWqq']["correlate"].append('QQHSBI_'+m+model_name)
+#      #nuisances['stat']['samples']['qqH_hww']["correlate"].append('QQHSBI_'+m+model_name)
+#      nuisances['stat']['samples']['QQH_'+m+model_name]['correlate'].append('QQHSBI_'+m+model_name)
