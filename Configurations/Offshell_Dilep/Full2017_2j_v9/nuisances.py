@@ -60,14 +60,129 @@ nuisances['lumi_Correlated_2017_2018'] = {
     'samples': dict((skey, '1.006') for skey in mc if skey not in ['top','WW'])
 }
 
-### FAKES
-nuisances['fake_syst'] = {
-    'name'  : 'CMS_fake_syst',
-    'type'  : 'lnN',
-    'samples'  : {
-        'Fake' : '1.30',
-    },
+# ### FAKES
+# nuisances['fake_syst'] = {
+#     'name'  : 'CMS_fake_syst',
+#     'type'  : 'lnN',
+#     'samples'  : {
+#         'Fake' : '1.30',
+#     },
+# }
+
+fake_syst_bb_pt_ll_50 = "1.3 * (Lepton_pt[0] <= 50 && Lepton_pt[1] <= 50 && abs(Lepton_eta[0]) <= 0.9 && abs(Lepton_eta[1]) <= 0.9) + 1.0 * !(Lepton_pt[0] <= 50 && Lepton_pt[1] <= 50 && abs(Lepton_eta[0]) <= 0.9 && abs(Lepton_eta[1]) <= 0.9)"
+
+nuisances['fake_syst_bb_pt_ll_50'] = {
+    'name': 'fake_syst_bb_pt_ll_50',
+    'type': 'shape',
+    'kind'  : 'weight',
+    'samples': {
+        'Fake': [fake_syst_bb_pt_ll_50, "1"],
+        },
+    'symmetrize' : True,
 }
+
+fake_syst_bb_pt_gl_50 = "1.3 * (Lepton_pt[0] > 50 && Lepton_pt[1] <= 50 && abs(Lepton_eta[0]) <= 0.9 && abs(Lepton_eta[1]) <= 0.9) + 1.0 * !(Lepton_pt[0] > 50 && Lepton_pt[1] <= 50 && abs(Lepton_eta[0]) <= 0.9 && abs(Lepton_eta[1]) <= 0.9)"
+
+nuisances['fake_syst_bb_pt_gl_50'] = {
+    'name': 'fake_syst_bb_pt_gl_50',
+    'type': 'shape',
+    'kind'  : 'weight',
+    'samples': {
+        'Fake': [fake_syst_bb_pt_gl_50, "1"],
+        },
+    'symmetrize' : True,
+}
+
+fake_syst_bb_pt_gg_50 = "1.3 * (Lepton_pt[0] > 50 && Lepton_pt[1] > 50 && abs(Lepton_eta[0]) <= 0.9 && abs(Lepton_eta[1]) <= 0.9) + 1.0 * !(Lepton_pt[0] > 50 && Lepton_pt[1] > 50 && abs(Lepton_eta[0]) <= 0.9 && abs(Lepton_eta[1]) <= 0.9)"
+
+nuisances['fake_syst_bb_pt_gg_50'] = {
+    'name': 'fake_syst_bb_pt_gg_50',
+    'type': 'shape',
+    'kind'  : 'weight',
+    'samples': {
+        'Fake': [fake_syst_bb_pt_gg_50, "1"],
+        },
+    'symmetrize' : True,
+}
+
+
+################################
+
+fake_syst_ee_pt_ll_50 = "1.3 * (Lepton_pt[0] <= 50 && Lepton_pt[1] <= 50 && abs(Lepton_eta[0]) > 0.9 && abs(Lepton_eta[1]) > 0.9) + 1.0 * !(Lepton_pt[0] <= 50 && Lepton_pt[1] <= 50 && abs(Lepton_eta[0]) > 0.9 && abs(Lepton_eta[1]) > 0.9)"
+
+nuisances['fake_syst_ee_pt_ll_50'] = {
+    'name': 'fake_syst_ee_pt_ll_50',
+    'type': 'shape',
+    'kind'  : 'weight',
+    'samples': {
+        'Fake': [fake_syst_ee_pt_ll_50, "1"],
+        },
+    'symmetrize' : True,
+}
+
+fake_syst_ee_pt_gl_50 = "1.3 * (Lepton_pt[0] > 50 && Lepton_pt[1] <= 50 && abs(Lepton_eta[0]) > 0.9 && abs(Lepton_eta[1]) > 0.9) + 1.0 * !(Lepton_pt[0] > 50 && Lepton_pt[1] <= 50 && abs(Lepton_eta[0]) > 0.9 && abs(Lepton_eta[1]) > 0.9)"
+
+nuisances['fake_syst_ee_pt_gl_50'] = {
+    'name': 'fake_syst_ee_pt_gl_50',
+    'type': 'shape',
+    'kind'  : 'weight',
+    'samples': {
+        'Fake': [fake_syst_ee_pt_gl_50, "1"],
+        },
+    'symmetrize' : True,
+}
+
+fake_syst_ee_pt_gg_50 = "1.3 * (Lepton_pt[0] > 50 && Lepton_pt[1] > 50 && abs(Lepton_eta[0]) > 0.9 && abs(Lepton_eta[1]) > 0.9) + 1.0 * !(Lepton_pt[0] > 50 && Lepton_pt[1] > 50 && abs(Lepton_eta[0]) > 0.9 && abs(Lepton_eta[1]) > 0.9)"
+
+nuisances['fake_syst_ee_pt_gg_50'] = {
+    'name': 'fake_syst_ee_pt_gg_50',
+    'type': 'shape',
+    'kind'  : 'weight',
+    'samples': {
+        'Fake': [fake_syst_ee_pt_gg_50, "1"],
+        },
+    'symmetrize' : True,
+}
+
+################################
+
+fake_syst_be_pt_ll_50 = "1.3 * (Lepton_pt[0] <= 50 && Lepton_pt[1] <= 50 && ((abs(Lepton_eta[0]) <= 0.9 && abs(Lepton_eta[1]) > 0.9) || (abs(Lepton_eta[0]) > 0.9 && abs(Lepton_eta[1]) <= 0.9))) + 1.0 * !(Lepton_pt[0] <= 50 && Lepton_pt[1] <= 50 && ((abs(Lepton_eta[0]) <= 0.9 && abs(Lepton_eta[1]) > 0.9) || (abs(Lepton_eta[0]) > 0.9 && abs(Lepton_eta[1]) <= 0.9)))"
+
+nuisances['fake_syst_be_pt_ll_50'] = {
+    'name': 'fake_syst_be_pt_ll_50',
+    'type': 'shape',
+    'kind'  : 'weight',
+    'samples': {
+        'Fake': [fake_syst_be_pt_ll_50, "1"],
+        },
+    'symmetrize' : True,
+}
+
+fake_syst_be_pt_gl_50 = "1.3 * (Lepton_pt[0] > 50 && Lepton_pt[1] <= 50 && ((abs(Lepton_eta[0]) <= 0.9 && abs(Lepton_eta[1]) > 0.9) || (abs(Lepton_eta[0]) > 0.9 && abs(Lepton_eta[1]) <= 0.9))) + 1.0 * !(Lepton_pt[0] > 50 && Lepton_pt[1] <= 50 && ((abs(Lepton_eta[0]) <= 0.9 && abs(Lepton_eta[1]) > 0.9) || (abs(Lepton_eta[0]) > 0.9 && abs(Lepton_eta[1]) <= 0.9)))"
+
+nuisances['fake_syst_be_pt_gl_50'] = {
+    'name': 'fake_syst_be_pt_gl_50',
+    'type': 'shape',
+    'kind'  : 'weight',
+    'samples': {
+        'Fake': [fake_syst_be_pt_gl_50, "1"],
+        },
+    'symmetrize' : True,
+}
+
+fake_syst_be_pt_gg_50 = "1.3 * (Lepton_pt[0] > 50 && Lepton_pt[1] > 50 && ((abs(Lepton_eta[0]) <= 0.9 && abs(Lepton_eta[1]) > 0.9) || (abs(Lepton_eta[0]) > 0.9 && abs(Lepton_eta[1]) <= 0.9))) + 1.0 * !(Lepton_pt[0] > 50 && Lepton_pt[1] > 50 && ((abs(Lepton_eta[0]) <= 0.9 && abs(Lepton_eta[1]) > 0.9) || (abs(Lepton_eta[0]) > 0.9 && abs(Lepton_eta[1]) <= 0.9)))"
+
+nuisances['fake_syst_be_pt_gg_50'] = {
+    'name': 'fake_syst_be_pt_gg_50',
+    'type': 'shape',
+    'kind'  : 'weight',
+    'samples': {
+        'Fake': [fake_syst_be_pt_gg_50, "1"],
+        },
+    'symmetrize' : True,
+}
+
+
 
 nuisances['fake_ele']  = {
     'name'  : 'CMS_fake_e_2017',

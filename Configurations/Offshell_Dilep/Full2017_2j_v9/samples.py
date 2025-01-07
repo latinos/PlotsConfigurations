@@ -276,7 +276,6 @@ samples['WW'] = {
 ##########################################
 ################# FAKE ###################
 ##########################################
-
 samples['Fake'] = {
   'name': [],
   'weight': 'METFilter_DATA*fakeW',
@@ -363,6 +362,7 @@ samples['qqH_bonly_on'] = {
     'suppressNegativeNuisances' :['all'],
 }
 
+"""
 samples['qqH_sand_on'] = {
     'name': files,
     'weight': mcCommonWeight_custom + ' * p_Gen_JJEW_BSI_ghv1_1_MCFM * p_Gen_CPStoBWPropRewgt * HWWOffshell_combineWgt * (LHECandMass <= 160)',
@@ -370,7 +370,7 @@ samples['qqH_sand_on'] = {
     'suppressNegative' :['all'],
     'suppressNegativeNuisances' :['all'],
 }
-
+"""
 samples['qqH_sonly_off'] = {
     'name': files,
     'weight': mcCommonWeight_custom + ' * p_Gen_JJEW_SIG_ghv1_1_MCFM * p_Gen_CPStoBWPropRewgt * HWWOffshell_combineWgt * (LHECandMass > 160)',
@@ -395,6 +395,7 @@ samples['qqH_sand_off'] = {
     'suppressNegativeNuisances' :['all'],
 }
 
+"""
 ########### ggH NEW ###########
 
 files = nanoGetSampleFiles(mcDirectory, 'GluGluHToWWToENEN_SIG') + \
@@ -415,7 +416,6 @@ samples['ggH_sonly_off'] = {
     'suppressNegative':['all'],
     'suppressNegativeNuisances' :['all']
 }
-
 samples['ggH_sonly_on'] = {
     'name': files,
     'weight': mcCommonWeight+'* 1.68 * 1.645 * norm_njet * (LHE_mWW <= 160)',
@@ -423,7 +423,6 @@ samples['ggH_sonly_on'] = {
     'suppressNegative':['all'],
     'suppressNegativeNuisances' :['all']
 }
-
 ###### ggWW ########
 files = nanoGetSampleFiles(mcDirectory, 'GluGluToWWToENEN') + \
             nanoGetSampleFiles(mcDirectory, 'GluGluToWWToENMN') + \
@@ -438,7 +437,7 @@ files = nanoGetSampleFiles(mcDirectory, 'GluGluToWWToENEN') + \
 samples['ggH_bonly_off'] = {
     'name': files,
     'weight': mcCommonWeight+'*1.53/1.4 * 1.33 * norm_njet * (LHE_mWW > 160)',
-    'FilesPerJob': 1,
+    'FilesPerJob': 3,
     'suppressNegative':['all'],
     'suppressNegativeNuisances' :['all']
 }
@@ -446,11 +445,10 @@ samples['ggH_bonly_off'] = {
 samples['ggH_bonly_on'] = {
     'name': files,
     'weight': mcCommonWeight+'*1.53/1.4  * 1.33 * norm_njet * (LHE_mWW <= 160)',
-    'FilesPerJob': 1,
+    'FilesPerJob': 3,
     'suppressNegative':['all'],
     'suppressNegativeNuisances' :['all']
 }
-
 ########### ggH BSI ###########
 
 files = nanoGetSampleFiles(mcDirectory, 'GluGluHToWWToENEN_BSI') + \
@@ -471,6 +469,8 @@ samples['ggH_sand_off'] = {
     'suppressNegative':['all'],
     'suppressNegativeNuisances' :['all']
 }
+"""
+"""
 samples['ggH_sand_on'] = {
     'name': files,
     'weight': mcCommonWeight+'*1.60 * 1.52 * norm_njet * (LHE_mWW <= 160)',
@@ -478,7 +478,7 @@ samples['ggH_sand_on'] = {
     'suppressNegative':['all'],
     'suppressNegativeNuisances' :['all']
 }
-
+"""
 
 """
 ########### ggH OLD ############
@@ -524,3 +524,127 @@ samples['ggHToWWOnshell'] = {
     'suppressNegativeNuisances' :['all']
 }
 """
+
+########### ggH NEW ###########
+
+
+
+
+files = nanoGetSampleFiles(mcDirectory, 'GluGluHToWWToENEN_SIG') + \
+            nanoGetSampleFiles(mcDirectory, 'GluGluHToWWToENMN_SIG') + \
+            nanoGetSampleFiles(mcDirectory, 'GluGluHToWWToENTN_SIG') + \
+            nanoGetSampleFiles(mcDirectory, 'GluGluHToWWToMNEN_SIG') + \
+            nanoGetSampleFiles(mcDirectory, 'GluGluHToWWToMNMN_SIG') + \
+            nanoGetSampleFiles(mcDirectory, 'GluGluHToWWToMNTN_SIG') + \
+            nanoGetSampleFiles(mcDirectory, 'GluGluHToWWToTNEN_SIG') + \
+            nanoGetSampleFiles(mcDirectory, 'GluGluHToWWToTNMN_SIG') + \
+            nanoGetSampleFiles(mcDirectory, 'GluGluHToWWToTNTN_SIG')
+
+
+samples['ggH_sonly_off'] = {
+    'name': files,
+    'weight': mcCommonWeight+'* 1.68 * 1.645 * norm_njet * (LHE_mWW > 160)',
+    #'weight': mcCommonWeight+'* 1.68 * 1.645 * norm_njet * (LHE_mWW > 160) * btagnorm_ggH_sonly_off * ggH_NNLO_kFactor * 0.57861601',
+    # * 1.68: LO->NLO k-factor (https://www.arxiv.org/pdf/1605.04610#page=18)
+    # * ggH_NNLO_kFactor: NLO->NNLO mass dependent k-factor
+    # * 1.11899: NNLO->N(3)LO k-factor calculated dividing 48.58 pb (https://twiki.cern.ch/twiki/bin/view/LHCPhysics/CERNYellowReportPageAt13TeV#N3LO)
+    # by the NNLO xsec (xsec LO x k-factor_NLO x k_factor_NNLO), where k_factor_NNLO was calculated by dividing yields NNLO / NLO in an inclusive njet region
+    'FilesPerJob': 3, 
+    'suppressNegative':['all'],
+    'suppressNegativeNuisances' :['all']
+}
+
+samples['ggH_sonly_on'] = {
+    'name': files,
+    'weight': mcCommonWeight+'* 1.68 * 1.645 * norm_njet * (LHE_mWW <= 160)',
+    #'weight': mcCommonWeight+'* 1.68 * 1.645 * norm_njet * (LHE_mWW <= 160) * btagnorm_ggH_sonly_on * ggH_NNLO_kFactor * 0.57861601',
+    #'weight': mcCommonWeight+'* 1.68 * norm_njet * (LHE_mWW <= 160) * btagnorm_ggH_sonly_on * ggH_NNLO_kFactor * 1.11899',
+    # * 1.68: LO->NLO k-factor (https://www.arxiv.org/pdf/1605.04610#page=18)
+    # * ggH_NNLO_kFactor: NLO->NNLO mass dependent k-factor
+    # * 1.11899: NNLO->N(3)LO k-factor calculated dividing 48.58 pb (https://twiki.cern.ch/twiki/bin/view/LHCPhysics/CERNYellowReportPageAt13TeV#N3LO)
+    # by the NNLO xsec (xsec LO x k-factor_NLO x k_factor_NNLO), where k_factor_NNLO was calculated by dividing yields NNLO / NLO in an inclusive njet region
+    'FilesPerJob': 3, 
+    'suppressNegative':['all'],
+    'suppressNegativeNuisances' :['all']
+}
+
+
+
+# ###### ggWW ########
+
+files = nanoGetSampleFiles(mcDirectory, 'GluGluToWWToENEN') + \
+            nanoGetSampleFiles(mcDirectory, 'GluGluToWWToENMN') + \
+            nanoGetSampleFiles(mcDirectory, 'GluGluToWWToENTN') + \
+            nanoGetSampleFiles(mcDirectory, 'GluGluToWWToMNEN') + \
+            nanoGetSampleFiles(mcDirectory, 'GluGluToWWToMNMN') + \
+            nanoGetSampleFiles(mcDirectory, 'GluGluToWWToMNTN') + \
+            nanoGetSampleFiles(mcDirectory, 'GluGluToWWToTNEN') + \
+            nanoGetSampleFiles(mcDirectory, 'GluGluToWWToTNMN') + \
+            nanoGetSampleFiles(mcDirectory, 'GluGluToWWToTNTN')
+
+samples['ggH_bonly_off'] = {
+    'name': files,
+    'weight': mcCommonWeight+'*1.53/1.4 * 1.33 * norm_njet  * (LHE_mWW > 160)',
+    #'weight': mcCommonWeight+'*1.53/1.4 * 1.33 * norm_njet  * (LHE_mWW > 160) * btagnorm_ggH_bonly_off * ggH_NNLO_kFactor * 0.57861601',
+    # * 1.53: LO->NLO k-factor (https://www.arxiv.org/pdf/1605.04610#page=18).
+    # /1.4: Removed k-factor 1.4 that is supposed to scale to NNLO (https://github.com/latinos/LatinoAnalysis/blob/UL_production/NanoGardener/python/framework/samples/samplesCrossSections_UL.py#L109)
+    # * ggH_NNLO_kFactor: NLO->NNLO mass dependent k-factor
+    # * 1.11899: NNLO->N(3)LO k-factor calculated dividing 48.58 pb (https://twiki.cern.ch/twiki/bin/view/LHCPhysics/CERNYellowReportPageAt13TeV#N3LO)
+    # by the NNLO xsec (xsec LO x k-factor_NLO x k_factor_NNLO), where k_factor_NNLO was calculated by dividing yields NNLO / NLO in an inclusive njet region
+    'FilesPerJob': 3,
+    'suppressNegative':['all'],
+    'suppressNegativeNuisances' :['all']
+}
+
+samples['ggH_bonly_on'] = {
+    'name': files,
+    'weight': mcCommonWeight+'*1.53/1.4 * 1.33 * norm_njet  * (LHE_mWW <= 160)',
+    #'weight': mcCommonWeight+'*1.53/1.4 * 1.33 * norm_njet  * (LHE_mWW <= 160) * btagnorm_ggH_bonly_on * ggH_NNLO_kFactor * 0.57861601',
+    # * 1.53: LO->NLO k-factor (https://www.arxiv.org/pdf/1605.04610#page=18).
+    # /1.4: Removed k-factor 1.4 that is supposed to scale to NNLO (https://github.com/latinos/LatinoAnalysis/blob/UL_production/NanoGardener/python/framework/samples/samplesCrossSections_UL.py#L109)
+    # * ggH_NNLO_kFactor: NLO->NNLO mass dependent k-factor
+    # * 1.11899: NNLO->N(3)LO k-factor calculated dividing 48.58 pb (https://twiki.cern.ch/twiki/bin/view/LHCPhysics/CERNYellowReportPageAt13TeV#N3LO)
+    # by the NNLO xsec (xsec LO x k-factor_NLO x k_factor_NNLO), where k_factor_NNLO was calculated by dividing yields NNLO / NLO in an inclusive njet region
+    'FilesPerJob': 3,
+    'suppressNegative':['all'],
+    'suppressNegativeNuisances' :['all']
+}
+
+
+########### ggH BSI ###########
+
+files = nanoGetSampleFiles(mcDirectory, 'GluGluHToWWToENEN_BSI') + \
+            nanoGetSampleFiles(mcDirectory, 'GluGluHToWWToENMN_BSI') + \
+            nanoGetSampleFiles(mcDirectory, 'GluGluHToWWToENTN_BSI') + \
+            nanoGetSampleFiles(mcDirectory, 'GluGluHToWWToMNEN_BSI') + \
+            nanoGetSampleFiles(mcDirectory, 'GluGluHToWWToMNMN_BSI') + \
+            nanoGetSampleFiles(mcDirectory, 'GluGluHToWWToMNTN_BSI') + \
+            nanoGetSampleFiles(mcDirectory, 'GluGluHToWWToTNEN_BSI') + \
+            nanoGetSampleFiles(mcDirectory, 'GluGluHToWWToTNMN_BSI') + \
+            nanoGetSampleFiles(mcDirectory, 'GluGluHToWWToTNTN_BSI')
+
+
+samples['ggH_sand_off'] = {
+    'name': files,
+    'weight': mcCommonWeight+'*1.60 * 1.52 * norm_njet * (LHE_mWW > 160)',
+    #'weight': mcCommonWeight+'*1.60 * 1.52 * norm_njet * (LHE_mWW > 160) * btagnorm_ggH_sand_off * ggH_NNLO_kFactor * 0.57861601',
+    # * 1.60: LO->NLO k-factor (https://www.arxiv.org/pdf/1605.04610#page=18).
+    # * ggH_NNLO_kFactor: NLO->NNLO mass dependent k-factor
+    # * 1.11899: NNLO->N(3)LO k-factor calculated dividing 48.58 pb (https://twiki.cern.ch/twiki/bin/view/LHCPhysics/CERNYellowReportPageAt13TeV#N3LO)
+    # by the NNLO xsec (xsec LO x k-factor_NLO x k_factor_NNLO), where k_factor_NNLO was calculated by dividing yields NNLO / NLO in an inclusive njet region
+    'FilesPerJob': 3,
+    'suppressNegative':['all'],
+    'suppressNegativeNuisances' :['all']
+}
+
+# New model: consider SBI only in the off-shell region
+
+# samples['ggH_sand_on'] = {
+#     'name': files,
+#     'weight': mcCommonWeight+'*1.60 * 1.52 * norm_njet * (LHE_mWW <= 160) * btagnorm_ggH_sand_on * ggH_NNLO_kFactor * 0.57861601', 
+#     'FilesPerJob': 3,
+#     'suppressNegative':['all'],
+#     'suppressNegativeNuisances' :['all']
+# }
+# ##TC 2024
+
