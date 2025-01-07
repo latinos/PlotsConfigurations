@@ -396,3 +396,10 @@ aliases['norm_njet'] = {
 #    'class': 'ww_top_bdt_2j',
 #    'linesToAdd' : ['.L %s/WW/FullRunII/WW_BDT_2j.cc+' % configurations],
 #}
+
+aliases['ggH_NNLO_kFactor'] = {
+	'linesToAdd' : ['.L %s/src/PlotsConfigurations/Configurations/Offshell_Dilep/Tools/computeNNLOkfactor.cc' % os.getenv('CMSSW_BASE')],
+	'class' : 'computeNNLOkfactor',
+	'samples' : ['ggH_bonly_off', 'ggH_bonly_on', 'ggH_sand_off', 'ggH_sand_on', 'ggH_sonly_off', 'ggH_sonly_on'],
+	'args': ()
+}

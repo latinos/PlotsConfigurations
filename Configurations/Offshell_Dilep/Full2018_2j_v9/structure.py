@@ -6,10 +6,10 @@
 scale_factors = {"Vg" : 13.5251922103 / 14.0925982593,
 "qqH_bonly_off" : 108.384543103 / 110.698825047,
 "VVV" : 97.4356736902 / 98.4395568593,
-"top" : 199231.493393 / 194130.29306 * .944, #* .9697 ## INCLUDES RATE PARAM,
+"top" : 199231.493393 / 194130.29306, #* .9697 ## INCLUDES RATE PARAM,
 "Higgs" : 138.742189136 / 200.478702555,
 "qqH_bonly_on" : 0.459540234653 / 0.412521465569,
-"WW" : 3687.2061233 / 3703.45910658 * .591, #* .58833 ## INCLUDES RATE PARAM,
+"WW" : 3687.2061233 / 3703.45910658, #* .58833 ## INCLUDES RATE PARAM,
 "qqH_sand_on" : 57.8737442305 / 58.1395424243,
 "ggH_bonly_on" : 1.34789012113 / 1.34700308844,
 "ZZ" : 8.36442074344 / 9.06564163272,
@@ -32,7 +32,7 @@ scale_factors = {"Vg" : 13.5251922103 / 14.0925982593,
 # keys here must match keys in samples.py 
 for iproc in samples.keys():
     structure[iproc] = {
-        'isSignal' : 1 if ('Offshell' in iproc or 'qqH_sonly_off' in iproc or 'qqH_bonly_off'  in iproc or 'qqH_sonly_on'  in iproc or 'qqH_bonly_on'  in iproc) else 0,
+        'isSignal' : 1 if ('Offshell' in iproc or 'qqH_sonly_off' in iproc or 'qqH_bonly_off'  in iproc or 'qqH_sonly_on'  in iproc) else 0,
         'isData'   : 1 if iproc == 'DATA' else 0,
         'scaleSampleForDatacard' : scale_factors[iproc],
     }

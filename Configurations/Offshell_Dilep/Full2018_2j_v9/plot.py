@@ -13,10 +13,12 @@ nbins = 1
 Vg_sf = 13.5251922103 / 14.0925982593
 qqH_bonly_off_sf = 108.384543103 / 110.698825047
 VVV_sf = 97.4356736902 / 98.4395568593 
-top_sf = 199231.493393 / 194130.29306 * .944 ## INCLUDES RATE PARAM
+#top_sf = 199231.493393 / 194130.29306 * .944 ## INCLUDES RATE PARAM
+top_sf = 199231.493393 / 194130.29306 ## INCLUDES RATE PARAM
 Higgs_other_sf = 138.742189136 / 200.478702555
 qqH_bonly_on_sf = 0.459540234653 / 0.412521465569
-WW_sf = 3687.2061233 / 3703.45910658 * .591 ## INCLUDES RATE PARAM
+WW_sf = 3687.2061233 / 3703.45910658 ## INCLUDES RATE PARAM
+#WW_sf = 3687.2061233 / 3703.45910658 * .591 ## INCLUDES RATE PARAM
 qqH_sand_on_sf = 57.8737442305 / 58.1395424243
 ggH_bonly_on_sf = 1.34789012113 / 1.34700308844
 ZZ_sf = 8.36442074344 / 9.06564163272
@@ -246,12 +248,12 @@ plot['qqH_sonly_off']  = {
                   'scale'    : qqH_sonly_off_sf
                   }
 
-plot['qqH_sand_on']  = {
-                  'color': 411,  #kRed + 2
-                  'isSignal' : 0,
-                  'isData'   : 0,
-                  'scale'    : qqH_sand_on_sf
-                  }
+# plot['qqH_sand_on']  = {
+#                   'color': 411,  #kRed + 2
+#                   'isSignal' : 0,
+#                   'isData'   : 0,
+#                   'scale'    : qqH_sand_on_sf
+#                   }
 
 plot['qqH_bonly_off']  = {
                   'color': 851,  #kRed  
@@ -281,7 +283,7 @@ plot['DATA']  = {
                   'color': 1 ,  
                   'isSignal' : 0,
                   'isData'   : 1 ,
-                  'isBlind'  : 1
+                  'isBlind'  : 0
               }
 
 
