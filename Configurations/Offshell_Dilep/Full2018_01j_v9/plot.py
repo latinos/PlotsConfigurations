@@ -226,7 +226,7 @@ plot['DATA']  = {
                   'color': 1 ,  
                   'isSignal' : 0,
                   'isData'   : 1 ,
-                  'isBlind'  : 1, ##0 unblind
+                  'isBlind'  : 0, ##0 unblind
               }
 
 

@@ -60,14 +60,128 @@ nuisances['lumi_Correlated_2017_2018'] = {
     'samples': dict((skey, '1.002') for skey in mc if skey not in ['top','WW'])#, 'WW_minnlo']) ##TC2024
 }
 
-### FAKES
-nuisances['fake_syst'] = {
-    'name'  : 'CMS_fake_syst',
-    'type'  : 'lnN',
-    'samples'  : {
-        'Fake' : '1.30',
-    },
+# ### FAKES
+# nuisances['fake_syst'] = {
+#     'name'  : 'CMS_fake_syst',
+#     'type'  : 'lnN',
+#     'samples'  : {
+#         'Fake' : '1.30',
+#     },
+# }
+
+fake_syst_bb_pt_ll_50 = "1.3 * (Lepton_pt[0] <= 50 && Lepton_pt[1] <= 50 && abs(Lepton_eta[0]) <= 0.9 && abs(Lepton_eta[1]) <= 0.9) + 1.0 * !(Lepton_pt[0] <= 50 && Lepton_pt[1] <= 50 && abs(Lepton_eta[0]) <= 0.9 && abs(Lepton_eta[1]) <= 0.9)"
+
+nuisances['fake_syst_bb_pt_ll_50'] = {
+    'name': 'fake_syst_bb_pt_ll_50',
+    'type': 'shape',
+    'kind'  : 'weight',
+    'samples': {
+        'Fake': [fake_syst_bb_pt_ll_50, "1"],
+        },
+    'symmetrize' : True,
 }
+
+fake_syst_bb_pt_gl_50 = "1.3 * (Lepton_pt[0] > 50 && Lepton_pt[1] <= 50 && abs(Lepton_eta[0]) <= 0.9 && abs(Lepton_eta[1]) <= 0.9) + 1.0 * !(Lepton_pt[0] > 50 && Lepton_pt[1] <= 50 && abs(Lepton_eta[0]) <= 0.9 && abs(Lepton_eta[1]) <= 0.9)"
+
+nuisances['fake_syst_bb_pt_gl_50'] = {
+    'name': 'fake_syst_bb_pt_gl_50',
+    'type': 'shape',
+    'kind'  : 'weight',
+    'samples': {
+        'Fake': [fake_syst_bb_pt_gl_50, "1"],
+        },
+    'symmetrize' : True,
+}
+
+fake_syst_bb_pt_gg_50 = "1.3 * (Lepton_pt[0] > 50 && Lepton_pt[1] > 50 && abs(Lepton_eta[0]) <= 0.9 && abs(Lepton_eta[1]) <= 0.9) + 1.0 * !(Lepton_pt[0] > 50 && Lepton_pt[1] > 50 && abs(Lepton_eta[0]) <= 0.9 && abs(Lepton_eta[1]) <= 0.9)"
+
+nuisances['fake_syst_bb_pt_gg_50'] = {
+    'name': 'fake_syst_bb_pt_gg_50',
+    'type': 'shape',
+    'kind'  : 'weight',
+    'samples': {
+        'Fake': [fake_syst_bb_pt_gg_50, "1"],
+        },
+    'symmetrize' : True,
+}
+
+
+################################
+
+fake_syst_ee_pt_ll_50 = "1.3 * (Lepton_pt[0] <= 50 && Lepton_pt[1] <= 50 && abs(Lepton_eta[0]) > 0.9 && abs(Lepton_eta[1]) > 0.9) + 1.0 * !(Lepton_pt[0] <= 50 && Lepton_pt[1] <= 50 && abs(Lepton_eta[0]) > 0.9 && abs(Lepton_eta[1]) > 0.9)"
+
+nuisances['fake_syst_ee_pt_ll_50'] = {
+    'name': 'fake_syst_ee_pt_ll_50',
+    'type': 'shape',
+    'kind'  : 'weight',
+    'samples': {
+        'Fake': [fake_syst_ee_pt_ll_50, "1"],
+        },
+    'symmetrize' : True,
+}
+
+fake_syst_ee_pt_gl_50 = "1.3 * (Lepton_pt[0] > 50 && Lepton_pt[1] <= 50 && abs(Lepton_eta[0]) > 0.9 && abs(Lepton_eta[1]) > 0.9) + 1.0 * !(Lepton_pt[0] > 50 && Lepton_pt[1] <= 50 && abs(Lepton_eta[0]) > 0.9 && abs(Lepton_eta[1]) > 0.9)"
+
+nuisances['fake_syst_ee_pt_gl_50'] = {
+    'name': 'fake_syst_ee_pt_gl_50',
+    'type': 'shape',
+    'kind'  : 'weight',
+    'samples': {
+        'Fake': [fake_syst_ee_pt_gl_50, "1"],
+        },
+    'symmetrize' : True,
+}
+
+fake_syst_ee_pt_gg_50 = "1.3 * (Lepton_pt[0] > 50 && Lepton_pt[1] > 50 && abs(Lepton_eta[0]) > 0.9 && abs(Lepton_eta[1]) > 0.9) + 1.0 * !(Lepton_pt[0] > 50 && Lepton_pt[1] > 50 && abs(Lepton_eta[0]) > 0.9 && abs(Lepton_eta[1]) > 0.9)"
+
+nuisances['fake_syst_ee_pt_gg_50'] = {
+    'name': 'fake_syst_ee_pt_gg_50',
+    'type': 'shape',
+    'kind'  : 'weight',
+    'samples': {
+        'Fake': [fake_syst_ee_pt_gg_50, "1"],
+        },
+    'symmetrize' : True,
+}
+
+################################
+
+fake_syst_be_pt_ll_50 = "1.3 * (Lepton_pt[0] <= 50 && Lepton_pt[1] <= 50 && ((abs(Lepton_eta[0]) <= 0.9 && abs(Lepton_eta[1]) > 0.9) || (abs(Lepton_eta[0]) > 0.9 && abs(Lepton_eta[1]) <= 0.9))) + 1.0 * !(Lepton_pt[0] <= 50 && Lepton_pt[1] <= 50 && ((abs(Lepton_eta[0]) <= 0.9 && abs(Lepton_eta[1]) > 0.9) || (abs(Lepton_eta[0]) > 0.9 && abs(Lepton_eta[1]) <= 0.9)))"
+
+nuisances['fake_syst_be_pt_ll_50'] = {
+    'name': 'fake_syst_be_pt_ll_50',
+    'type': 'shape',
+    'kind'  : 'weight',
+    'samples': {
+        'Fake': [fake_syst_be_pt_ll_50, "1"],
+        },
+    'symmetrize' : True,
+}
+
+fake_syst_be_pt_gl_50 = "1.3 * (Lepton_pt[0] > 50 && Lepton_pt[1] <= 50 && ((abs(Lepton_eta[0]) <= 0.9 && abs(Lepton_eta[1]) > 0.9) || (abs(Lepton_eta[0]) > 0.9 && abs(Lepton_eta[1]) <= 0.9))) + 1.0 * !(Lepton_pt[0] > 50 && Lepton_pt[1] <= 50 && ((abs(Lepton_eta[0]) <= 0.9 && abs(Lepton_eta[1]) > 0.9) || (abs(Lepton_eta[0]) > 0.9 && abs(Lepton_eta[1]) <= 0.9)))"
+
+nuisances['fake_syst_be_pt_gl_50'] = {
+    'name': 'fake_syst_be_pt_gl_50',
+    'type': 'shape',
+    'kind'  : 'weight',
+    'samples': {
+        'Fake': [fake_syst_be_pt_gl_50, "1"],
+        },
+    'symmetrize' : True,
+}
+
+fake_syst_be_pt_gg_50 = "1.3 * (Lepton_pt[0] > 50 && Lepton_pt[1] > 50 && ((abs(Lepton_eta[0]) <= 0.9 && abs(Lepton_eta[1]) > 0.9) || (abs(Lepton_eta[0]) > 0.9 && abs(Lepton_eta[1]) <= 0.9))) + 1.0 * !(Lepton_pt[0] > 50 && Lepton_pt[1] > 50 && ((abs(Lepton_eta[0]) <= 0.9 && abs(Lepton_eta[1]) > 0.9) || (abs(Lepton_eta[0]) > 0.9 && abs(Lepton_eta[1]) <= 0.9)))"
+
+nuisances['fake_syst_be_pt_gg_50'] = {
+    'name': 'fake_syst_be_pt_gg_50',
+    'type': 'shape',
+    'kind'  : 'weight',
+    'samples': {
+        'Fake': [fake_syst_be_pt_gg_50, "1"],
+        },
+    'symmetrize' : True,
+}
+
 
 nuisances['fake_ele']  = {
     'name'  : 'CMS_fake_e_2018',
@@ -742,288 +856,6 @@ nuisances['pdf_ggH_ACCEPT'] = {
     },
 }
 
-
-"""
-valuesggh  = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ggH', '125.09','pdf','sm')
-valuesggzh = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ggZH','125.09','pdf','sm')
-valuesbbh  = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','bbH', '125.09','pdf','sm')
-
-nuisances['pdf_Higgs_gg'] = {
-    'name' : 'pdf_Higgs_gg',
-    'samples' : {
-        'ggH_hww'  : valuesggh,
-        'ggH_htt'  : valuesggh,
-        'ggZH_hww' : valuesggzh,
-        'bbH_hww'  : valuesbbh
-    },
-    'type' : 'lnN',
-}
-
-values = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ttH','125.09','pdf','sm')
-
-nuisances['pdf_Higgs_ttH'] = {
-    'name'    : 'pdf_Higgs_ttH',
-    'samples' : {
-        'ttH_hww' : values
-    },
-    'type' : 'lnN',
-}
-
-valuesqqh = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','vbfH','125.09','pdf','sm')
-valueswh  = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','WH',  '125.09','pdf','sm')
-valueszh  = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ZH',  '125.09','pdf','sm')
-
-nuisances['pdf_Higgs_qqbar'] = {
-    'name'    : 'pdf_Higgs_qqbar',
-    'type'    : 'lnN',
-    'samples' : {
-        'qqH_hww'      : valuesqqh,
-        'qqH_htt'      : valuesqqh,
-        'WH_hww_plus'  : valueswh,
-        'WH_hww_minus' : valueswh,
-        'WH_htt_plus'  : valueswh,
-        'WH_htt_minus' : valueswh,
-        'ZH_hww'       : valueszh,
-        'ZH_htt'       : valueszh
-    },
-}
-
-nuisances['pdf_qqbar'] = {
-    'name'    : 'pdf_qqbar',
-    'type'    : 'lnN',
-    'samples' : {
-        'Wg'  : '1.04',
-        'Zg'  : '1.04',
-        'ZZ'  : '1.04', # PDF: 0.0064 / 0.1427 = 0.0448493
-        'WZ'  : '1.04', # PDF: 0.0064 / 0.1427 = 0.0448493
-        'WgS' : '1.04', # PDF: 0.0064 / 0.1427 = 0.0448493
-        'ZgS' : '1.04', # PDF: 0.0064 / 0.1427 = 0.0448493
-    },
-}
-
-nuisances['pdf_Higgs_gg_ACCEPT'] = {
-    'name'    : 'pdf_Higgs_gg_ACCEPT',
-    'samples' : {
-        'ggH_hww'  : '1.006',
-        'ggH_htt'  : '1.006',
-        'ggZH_hww' : '1.006',
-        'bbH_hww'  : '1.006'
-    },
-    'type'    : 'lnN',
-}
-nuisances['pdf_gg_ACCEPT'] = {
-    'name'    : 'pdf_gg_ACCEPT',
-    'samples' : {
-        'ggWW' : '1.006',
-    },
-    'type'    : 'lnN',
-}
-
-nuisances['pdf_Higgs_qqbar_ACCEPT'] = {
-    'name'    : 'pdf_Higgs_qqbar_ACCEPT',
-    'type'    : 'lnN',
-    'samples' : {
-        'qqH_hww'      : '1.002',
-        'qqH_htt'      : '1.002',
-        'WH_hww_plus'  : '1.003',
-        'WH_hww_minus' : '1.003',
-        'WH_htt_plus'  : '1.003',
-        'WH_htt_minus' : '1.003',
-        'ZH_hww'       : '1.002',
-        'ZH_htt'       : '1.002',
-    },
-}
-
-nuisances['pdf_qqbar_ACCEPT'] = {
-    'name'    : 'pdf_qqbar_ACCEPT',
-    'type'    : 'lnN',
-    'samples' : {
-        'ZZ' : '1.001',
-        'WZ' : '1.001',
-    },
-}
-"""
-
-# # NLL resummation variations. Removed normalization effect
-# nuisances['WWresum']  = {
-#   'name'  : 'CMS_hww_WWresum',
-#   'skipCMS' : 1,
-#   'kind'  : 'weight',
-#   'type'  : 'shape',
-#   'samples'  : {
-#       'WW_minnlo'   : ['(nllW_Rup/nllW)/(9395.5/9280.9)', '(nllW_Rdown/nllW)/(8854.1/9280.9)'],
-#    },
-# }
-
-# nuisances['WWqscale']  = {
-#    'name'  : 'CMS_hww_WWqscale',
-#    'skipCMS' : 1,
-#    'kind'  : 'weight',
-#    'type'  : 'shape',
-#    'samples'  : {
-#       'WW_minnlo'   : ['(nllW_Qup/nllW)/(9218.6/9280.9)', '(nllW_Qdown/nllW)/(9333.6/9280.9)'],
-#     },
-# }
-
-
-# # WW EWK NLO correction uncertainty
-# nuisances['EWKcorr_WW'] = {
-#     'name': 'CMS_hww_EWKcorr_WW',
-#     'skipCMS': 1,
-#     'kind': 'weight',
-#     'type': 'shape',
-#     'samples': {
-#         'WW_minnlo': ['1.', '1./ewknloW']
-#     },
-#     'symmetrize' : True,
-# }
-
-
-##### Renormalization & factorization scales
-"""
-## Shape nuisance due to QCD scale variations for DY
-# LHE scale variation weights (w_var / w_nominal)
-
-## This should work for samples with either 8 or 9 LHE scale weights (Length$(LHEScaleWeight) == 8 or 9)
-variations = ['Alt$(LHEScaleWeight[0],1)', 'Alt$(LHEScaleWeight[1],1)', 'Alt$(LHEScaleWeight[3],1)', 'Alt$(LHEScaleWeight[nLHEScaleWeight-4],1)', 'Alt$(LHEScaleWeight[nLHEScaleWeight-2],1)', 'Alt$(LHEScaleWeight[nLHEScaleWeight-1],1)']
-
-# nuisances['QCDscale_V'] = {
-#     'name': 'QCDscale_V',
-#     'skipCMS': 1,
-#     'kind': 'weight_envelope',
-#     'type': 'shape',
-#     'samples': {
-#         'DY': variations
-#     },
-#     'AsLnN': '1'
-# }
-
-nuisances['QCDscale_VV'] = {
-    'name'    : 'QCDscale_VV',
-    'kind'    : 'weight_envelope',
-    'type'    : 'shape',
-    'samples' : {
-        'WW_minnlo'  : variations,
-        'Zg'  : variations,
-        'Wg'  : variations,
-        'ZZ'  : variations,
-        'WZ'  : variations,
-        'WgS' : variations,
-        'ZgS' : variations
-    }
-}
-
-nuisances['QCDscale_ggVV'] = {
-    'name'    : 'QCDscale_ggVV',
-    'type'    : 'lnN',
-    'samples' : {
-        'ggWW' : '1.15',
-    },
-}
-
-#### QCD scale uncertainties for Higgs signals other than ggH
-
-values = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','vbfH','125.09','scale','sm')
-
-nuisances['QCDscale_qqH'] = {
-    'name'    : 'QCDscale_qqH',
-    'samples' : {
-        'qqH_hww' : values,
-        'qqH_htt' : values
-    },
-    'type' : 'lnN'
-}
-
-valueswh = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','WH','125.09','scale','sm')
-valueszh = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ZH','125.09','scale','sm')
-
-nuisances['QCDscale_VH'] = {
-    'name'    : 'QCDscale_VH',
-    'samples' : {
-        'WH_hww_plus'  : valueswh,
-        'WH_hww_minus' : valueswh,
-        'WH_htt_plus'  : valueswh,
-        'WH_htt_minus' : valueswh,
-        'ZH_hww'       : valueszh,
-        'ZH_htt'       : valueszh
-    },
-    'type' : 'lnN',
-}
-
-values = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ggZH','125.09','scale','sm')
-
-nuisances['QCDscale_ggZH'] = {
-    'name'    : 'QCDscale_ggZH',
-    'samples' : {
-        'ggZH_hww' : values
-    },
-    'type' : 'lnN',
-}
-
-values = HiggsXS.GetHiggsProdXSNP('YR4','13TeV','ttH','125.09','scale','sm')
-
-nuisances['QCDscale_ttH'] = {
-    'name'    : 'QCDscale_ttH',
-    'samples' : {
-        'ttH_hww' : values
-    },
-    'type' : 'lnN',
-}
-
-nuisances['QCDscale_WWewk'] = {
-    'name'    : 'QCDscale_WWewk',
-    'samples' : {
-        'WWewk' : '1.11',
-    },
-    'type' : 'lnN'
-}
-
-nuisances['QCDscale_qqbar_ACCEPT'] = {
-    'name'    : 'QCDscale_qqbar_ACCEPT',
-    'type'    : 'lnN',
-    'samples' : {
-        'qqH_hww'      : '1.003',
-        'qqH_htt'      : '1.003',
-        'WH_hww_plus'  : '1.010',
-        'WH_hww_minus' : '1.010',
-        'WH_htt_plus'  : '1.010',
-        'WH_htt_plus'  : '1.010',
-        'ZH_hww'       : '1.015',
-        'ZH_htt'       : '1.015',
-    }
-}
-
-# FIXME: these come from HIG-16-042, maybe should be recomputed?
-nuisances['QCDscale_gg_ACCEPT'] = {
-    'name'    : 'QCDscale_gg_ACCEPT',
-    'samples' : {
-        'ggH_htt'  : '1.012',
-        'ggH_hww'  : '1.012',
-        'ggZH_hww' : '1.012',
-        'ggWW'     : '1.012',
-    },
-    'type' : 'lnN',
-}
-
-# Zg normalization from control region
-
-# nuisances['Zg3lnorm']  = {
-#     'name'    : 'CMS_hww_Zg3lnorm',
-#     'samples' : {
-#         'Zg' : '1.00',
-#     },
-#     'type' : 'rateParam',
-#     'cuts' : [
-#         'wh3l_13TeV_ossf_plus',
-#         'wh3l_13TeV_ossf_minus',
-#         'wh3l_13TeV_sssf_plus',
-#         'wh3l_13TeV_sssf_minus',
-#         'wh3l_zg_13TeV',
-#         'wh3l_wz_13TeV',
-#     ]
-# }
-
-"""
 # ## rate parameters ##update 2016 and 2017
 
 nuisances['Topnorm_0j']  = {
@@ -1081,14 +913,21 @@ nuisances['WWnorm_1j']  = {
                    'CR_ggH_ON_1j',
                    ]
               }
-##TC 2024 --add --comment out June27 due to qqWW electroweak Bkg not contributing for 01j
-# nuisances['MELA_Hyp_qqWW'] = {
-#     'name': 'MELA_Hyp_qqWW',
-#     'type': 'lnN',
-#     'samples': {
-#         'qqH_bonly_off': '1.1',
-#     },
-# }
+
+
+qqWW_shape_weight = "1.4 * (dnnScore_VBF_OFF > .926) + 1.0 * (dnnScore_VBF_OFF <= .926) * (dnnScore_VBF_OFF > .852) + 1.1 * (dnnScore_VBF_OFF <= .852) * (dnnScore_VBF_OFF > .800) + 1.1 * (dnnScore_VBF_OFF <= .800) * (dnnScore_VBF_OFF > .650) + 1.15 * (dnnScore_VBF_OFF <= .65) * (dnnScore_VBF_OFF > .50)"
+
+nuisances['MELA_Hyp_qqWW'] = {
+    'name': 'MELA_Hyp_qqWW',
+    'type': 'shape',
+    'kind'  : 'weight',
+    'samples': {
+        'qqH_bonly_off': [qqWW_shape_weight, "1"],
+    },
+    'symmetrize' : True,
+}
+
+
 ## Use the following if you want to apply the automatic combine MC stat nuisances.
 nuisances['stat'] = {
 
