@@ -18,6 +18,12 @@ def addcut(name, exprs):
     cuts[name] = ' && '.join(exprs)
 
 _tmp = [
+    'mth > 60.',
+    'bVeto', 
+       ]
+addcut('Incl', _tmp)
+
+_tmp = [
     'zeroJet',
     'bVeto', 
     'dnnScore_ggH_OFF_0j > .5',
@@ -73,3 +79,4 @@ _tmp = [
     'dnnScore_top_1j > .5',
        ]
 addcut('topCR_1j', _tmp)
+
