@@ -472,3 +472,17 @@ aliases['btagnorm_ggH_sand_off'] = {
     'samples' : ['ggH_sand_off'],
 }
 
+aliases['ggH_NNLO_kFactor'] = {
+    'linesToAdd' : ['.L %s/src/PlotsConfigurations/Configurations/Offshell_Dilep/Tools/computeNNLOkfactor.cc' % os.getenv('CMSSW_BASE')],
+    'class' : 'computeNNLOkfactor',
+    'samples' : ['ggH_bonly_off', 'ggH_bonly_on', 'ggH_sand_off', 'ggH_sand_on', 'ggH_sonly_off', 'ggH_sonly_on'],
+    'args': ()
+}
+
+HWW_OFFSHELL_DNN_PATH = '.L %s/src/PlotsConfigurations/Configurations/Offshell_Dilep/Tools/AddDNNScoresv7.cc+' % os.getenv('CMSSW_BASE')
+aliases['dnnScore_VBF_OFF'] = {
+    'linesToAdd' : [HWW_OFFSHELL_DNN_PATH],
+    'class' : 'AddDNNScoresv7',
+    'samples' : ['qqH_bonly_off'],
+    'args': ("VBF_OFF")
+}
