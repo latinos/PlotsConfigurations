@@ -1,0 +1,16 @@
+#preAppV02 version includes all of the missing nuisances introduced already in preAppV01 but also uses updated B21 binning
+
+#to submit jobs for all set of nuisances
+mkShapesMulti.py --pycfg=configuration_ggH_allSignals_fullNuis_preAppV02.py --doBatch=1 --batchSplit=Samples,Files --batchQueue=workday
+mkShapesMulti.py --pycfg=configuration_ggH_allSignals_fullNuis_preAppV02.py --doHadd=1 --batchSplit=Samples,Files --nThreads=50
+
+## to make datacards with JHU reweight
+mkDatacards.py --pycfg=configuration_ggH_allSignals_ana_fullNuis_preAppV02_JHUreweight.py --inputFile=rootFile_ggH2018_allSignals_fullNuis_preAppV02/plots_ggH2018_allSignals_fullNuis_Ana_preAppV02_killSignalMCstat_fullyOrthogonal_JHUreweight.root
+
+## to make prefit plots with JHUreweight
+python quickPlotter.py --type sigAndBkg --bsm H0M --sm H0PM --var mllVSmth --outputDir prefitPlots2018_preAppV02_JHUreweight --inputFile rootFile_ggH2018_allSignals_fullNuis_preAppV02/plots_ggH2018_allSignals_fullNuis_Ana_preAppV02_killSignalMCstat_fullyOrthogonal_JHUreweight_prefitPlots.root --onlyCut hww2l2v_13TeV_orig_mth125_mllCut_0j --plotLog --doNotStackSignal --showIntegral
+
+## to make CR lots
+mkPlot.py --pycfg=configuration_ggH_allSignals_fullNuis_preAppV02.py --onlyCut=hww2l2v_13TeV_dytt_0j --showIntegralLegend=1 --onlyPlot=cratio --inputFile=rootFile_ggH2018_allSignals_fullNuis_preAppV02/plots_ggH2018_allSignals_fullNuis_preAppV02.root --linearOnly --fileFormats="png,pdf"
+
+
