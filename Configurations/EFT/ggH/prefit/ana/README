@@ -1,0 +1,29 @@
+prefit plots dont contain pruning on DY done during unblinding
++ you might want to change range on ration pad in /afs/cern.ch/user/t/tkello/workspace/MainAnalysis/HWW_AC/CMSSW_10_6_27/src/LatinoAnalysis/ShapeAnalysis/python/PlotFactory.py 
+
+H0M
+set range to [0,3]
+mkPlot.py --pycfg=configuration_hvv_2016_of2j_ana_unblinded.py --showIntegralLegend=1 --onlyPlot=cratio --onlyCut hww2l2v_13TeV_of2j_Vh_hmin --inputFile=../AnaTemplates_rootfiles/plots_JJH16B_AC_MCStatsOFF.root --fileFormats="png,pdf" --onlyVariable HVV_H0M --minLogCratio=0.01 --scaleToPlot=10.
+mkPlot.py --pycfg=configuration_hvv_2017_of2j_ana_unblinded.py --showIntegralLegend=1 --onlyPlot=cratio --onlyCut hww2l2v_13TeV_of2j_vbf_hmin --inputFile=../AnaTemplates_rootfiles/plots_JJH17_AC_MCStatsOFF.root --fileFormats="png,pdf" --onlyVariable HVV_H0M --minLogCratio=0.1 --scaleToPlot=3.
+mkPlot.py --pycfg=configuration_hvv_2017_of2j_ana_unblinded.py --showIntegralLegend=1 --onlyPlot=cratio --onlyCut hww2l2v_13TeV_of2j_Vh_hmip --inputFile=../AnaTemplates_rootfiles/plots_JJH17B_AC_MCStatsOFF.root --fileFormats="png,pdf" --onlyVariable HVV_H0M --minLogCratio=0.01 --scaleToPlot=10.
+
+for 2017 H0M Vh hmin change range to [0,10]
+
+set range to [0,4]
+mkPlot.py --pycfg=configuration_hvv_2017_of2j_ana_unblinded.py --showIntegralLegend=1 --onlyPlot=cratio --onlyCut hww2l2v_13TeV_of2j_vbf_hmip --inputFile=../AnaTemplates_rootfiles/plots_JJH17_AC_MCStatsOFF.root --fileFormats="png,pdf" --onlyVariable HVV_H0M --minLogCratio=0.1 --scaleToPlot=3.
+
+H0PH
+set range to [0,2]
+mkPlot.py --pycfg=configuration_hvv_2016_of2j_ana_unblinded.py --showIntegralLegend=1 --onlyPlot=cratio --onlyCut hww2l2v_13TeV_of2j_Vh --inputFile=../AnaTemplates_rootfiles/plots_JJH16B_AC_MCStatsOFF.root --fileFormats="png,pdf" --onlyVariable HVV_H0PH --minLogCratio=0.01 --scaleToPlot=25.5
+
+set range [0.5, 1.75] for Run2
+mkPlot.py --pycfg=configuration_hvv_Run2_of2j_ana_unblinded.py --showIntegralLegend=1 --onlyPlot=cratio --onlyCut hww2l2v_13TeV_of2j_Vh --inputFile=../AnaTemplates_rootfiles/plots_JJHRun2B_AC_MCStatsOFF.root --fileFormats="png,pdf" --onlyVariable HVV_H0PH --minLogCratio=0.1 --scaleToPlot=15.0
+
+H0L1
+mkPlot.py --pycfg=configuration_hvv_2016_of2j_ana_unblinded.py --showIntegralLegend=1 --onlyPlot=cratio --onlyCut hww2l2v_13TeV_of2j_Vh --inputFile=../AnaTemplates_rootfiles/plots_JJH16B_AC_MCStatsOFF.root --fileFormats="png,pdf" --onlyVariable HVV_H0L1 --minLogCratio=0.01 --scaleToPlot=100.
+mkPlot.py --pycfg=configuration_hvv_2017_of2j_ana_unblinded.py --showIntegralLegend=1 --onlyPlot=cratio --onlyCut hww2l2v_13TeV_of2j_Vh --inputFile=../AnaTemplates_rootfiles/plots_JJH17B_AC_MCStatsOFF.root --fileFormats="png,pdf" --onlyVariable HVV_H0L1 --minLogCratio=0.01 --scaleToPlot=200.
+
+H0LZg
+mkPlot.py --pycfg=configuration_hvv_2016_of2j_ana_unblinded.py --showIntegralLegend=1 --onlyPlot=cratio --onlyCut hww2l2v_13TeV_of2j_vh --inputFile=../AnaTemplates_rootfiles/plots_JJH16_AC_MCStatsOFF.root --fileFormats="png,pdf" --onlyVariable HVV_H0LZg --minLogCratio=0.01 --scaleToPlot=100.
+mkPlot.py --pycfg=configuration_hvv_2016_of2j_ana_unblinded.py --showIntegralLegend=1 --onlyPlot=cratio --onlyCut hww2l2v_13TeV_of2j_Vh --inputFile=../AnaTemplates_rootfiles/plots_JJH16B_AC_MCStatsOFF.root --fileFormats="png,pdf" --onlyVariable HVV_H0LZg --minLogCratio=0.01 --scaleToPlot=100.
+mkPlot.py --pycfg=configuration_hvv_2016_of2j_ana_unblinded.py --showIntegralLegend=1 --onlyPlot=cratio --onlyCut hww2l2v_13TeV_of2j_vbf --inputFile=../AnaTemplates_rootfiles/plots_JJH16_AC_MCStatsOFF.root --fileFormats="png,pdf" --onlyVariable HVV_H0LZg --minLogCratio=1.1 --scaleToPlot=3.

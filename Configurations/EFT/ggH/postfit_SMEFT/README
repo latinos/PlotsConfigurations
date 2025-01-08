@@ -1,0 +1,39 @@
+#use to change ratio y-range
+$CMSSW_BASE/src/LatinoAnalysis/ShapeAnalysis/python/PlotFactory.py 
+
+####################################################################
+# Step 4: move to area with LatinoAnalysis and prepare shapes      #
+####################################################################
+mkPostFitCombinedPlot.py --inputFilePostFitShapesFromWorkspace postFitShapes_0j_invertedOrder_H0PH_fitS.root --outputFile output_postFitShapes_0j_invertedOrder_H0PH_fitS.root \
+--kind P \
+--cutName hww2l2v_13TeV_0j \
+--variable varH0PH \
+--structureFile structure_ggH_allSignals_preAppV02_ana.py \
+--plotFile plot_ggH_allSignals_forSRs_ana_unblinded.py \
+--lumiText "138 fb^{-1}" \
+--listOfFilesOriginal HVV_H0PH_0j_invertedOrder.root
+
+Notes: 
+- "P" in --kind option means post-fit
+- listOfFilesOriginal can be comma separated
+- cutName will be name of cut in outfile - it can be whatever tag name, in this (above) case it represents 0j SR + dytt 0j CR + top 0j CR
+- the same applies for variable, it is just a name of var in outfile, nth to do with a name of original
+- use following plotFile in case you want to plot postfit BSM signal contribution in S+B fit: plot_ggH_allSignals_forSRs_ana_unblinded_withBSM.py
+
+Example SMEFT 0j Run 2 - B only
+ mkPostFitCombinedPlot.py --inputFilePostFitShapesFromWorkspace postFitShapes_Run2_0j_H0M_fitB.root --outputFile output_postFitShapes_Run2_0j_H0M_fitB.root --kind P --cutName hww2l2v_13TeV_0j --variable varH0M --structureFile structure_ggH_SMEFT_preAppV03_ana.py --plotFile plot_allSignals_forSRs_H0ALL_ana_unblinded.py --lumiText "138 fb^{-1}" --listOfFilesOriginal HVV_H0M_Run2_0j.root
+
+Example SMEFT 0j Run 2 - S+B paper style
+mkPostFitCombinedPlot.py --inputFilePostFitShapesFromWorkspace postFitShapes_Run2_0j_H0M_fitS.root --outputFile output_postFitShapes_Run2_0j_H0M_fitS.root --kind P --cutName hww2l2v_13TeV_0j --variable varH0M --structureFile structure_ggH_SMEFT_preAppV03_ana.py --plotFile plot_allSignals_forSRs_H0ALL_ana_unblinded.py --lumiText "138 fb^{-1}" --listOfFilesOriginal HVV_H0M_Run2_0j.root
+
+#################################################
+# Step 5: Use generated config and finally plot #
+#################################################
+mkPlot.py --pycfg=configuration_combined.py --showIntegralLegend=1 --onlyPlot=cratio --inputFile=output_postFitShapes_Run2_0j_H0M_fitS.root --fileFormats="png,pdf" --minLogCratio=1.1
+
+--scaleToPlot 1.5 (for linear)
+#################################################
+# What we need:                                 #
+#################################################
+
+- repeat Steps 2-5 for 0j SR, 0j dytt, 0j top, 1j SR, ... separately! (probably not needed for CRs as there we use only #events) 

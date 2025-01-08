@@ -1,0 +1,23 @@
+#preAppV03 configuration is meant for signal samples and their alternative hypothesis only and is merged on MakeAnaTemplate level
+
+#to submit
+mkShapesMulti.py --pycfg=configuration_ggH_SMEFT_fullNuis_preAppV03.py --doBatch=1 --batchSplit=Samples,Files --batchQueue=workday
+mkShapesMulti.py --pycfg=configuration_ggH_SMEFT_fullNuis_preAppV03.py --doHadd=1 --batchSplit=Samples,Files --nThreads=10
+
+#to create Ana templates
+ 0) change input files in ../../Tools/scripts/MakeEFTAnaTemplates.py
+ 1) make signal templates: python ../../Tools/scripts/MakeEFTAnaTemplates.py H0A 0 -b
+ 2) make the rest:         python ../../Tools/scripts/MakeEFTAnaTemplates.py H0A 1 -b
+ 3) hadd both products
+
+Note: for signals use SMEFT rootfile:      rootFile_ggH2016_SMEFT_fullNuis_preAppV03/plots_ggH2016_SMEFT_fullNuis_preAppV03_H0A.root (no bkg nor data)
+      for bkg and data use preAppV02 file: rootFile_ggH2016_allSignals_fullNuis_preAppV02/plots_ggH2016_allSignals_fullNuis_preAppV02_H0A.root (also AC style signal but is ignored)
+      then hadd like this: 
+      
+      hadd rootFile_ggH2016_SMEFT_fullNuis_preAppV03/plots_ggH2016_SMEFT_fullNuis_preAppV03_Ana.root rootFile_ggH2016_SMEFT_fullNuis_preAppV03/plots_ggH2016_SMEFT_fullNuis_preAppV03_H0A.root rootFile_ggH2016_allSignals_fullNuis_preAppV02/plots_ggH2016_allSignals_fullNuis_preAppV02_H0A.root  
+
+Note: to speed up process you can specify `productionOnly = "_WH"` etc. inside MakeEFTAnaTemplates.py and run for all production separately (hadd them afterwards)
+
+#to create datacards:
+mkDatacards.py --pycfg=configuration_ggH_SMEFT_ana_fullNuis_preAppV03.py --inputFile=rootFile_ggH2016_SMEFT_fullNuis_preAppV03/plots_ggH2016_SMEFT_fullNuis_preAppV03_Ana.root
+
