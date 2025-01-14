@@ -679,8 +679,8 @@ nuisances['QCDscale_ggVV'] = {
     'name': 'QCDscale_ggVV',
     'type': 'lnN',
     'samples': {
-        'ggH_bonly_on': '1.15',
-        'ggH_bonly_off': '1.15',
+        'ggH_bonly_on': '1.10',
+        'ggH_bonly_off': '1.10',
     },
 }
 
@@ -688,8 +688,8 @@ nuisances['QCDscale_ggH_SBI'] = {
     'name': 'QCDscale_ggH_SBI',
     'type': 'lnN',
     'samples': {
-        'ggH_sand_on': '1.15',
-        'ggH_sand_off': '1.15',
+        'ggH_sand_on': '1.10',
+        'ggH_sand_off': '1.10',
     },
 }
 
@@ -697,8 +697,8 @@ nuisances['QCDscale_ggH'] = {
     'name': 'QCDscale_ggH',
     'type': 'lnN',
     'samples': {
-        'ggH_sonly_on': '1.15',
-        'ggH_sonly_off': '1.15',
+        'ggH_sonly_on': '1.10',
+        'ggH_sonly_off': '1.10',
     },
 }
 
