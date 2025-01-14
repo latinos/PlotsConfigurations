@@ -22,7 +22,7 @@ _tmp = [
     'bVeto', 
     'dnnScore_ggH_OFF_0j > .5',
        ]
-addcut('SR_ggH_OFF_0j', _tmp) ##TCJune - unblinding CRs, so commenting out SR
+addcut('SR_ggH_OFF_0j', _tmp)
 
 _tmp = [
     'zeroJet',
@@ -50,7 +50,7 @@ _tmp = [
     'bVeto', 
     'dnnScore_ggH_OFF_1j > .5',
        ]
-addcut('SR_ggH_OFF_1j', _tmp) ##TCJune2024--comment out SR when CR so can unblind Top/WW
+addcut('SR_ggH_OFF_1j', _tmp)
 
 _tmp = [
     'oneJet',
