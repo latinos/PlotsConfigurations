@@ -367,10 +367,15 @@ aliases['B0'] = {
 #}
 
 
+# aliases['norm_njet'] = {
+#     'expr': '(0.985 * (zeroJet && LHE_mWW <= 160) + 1.692 * (oneJet && LHE_mWW <= 160) + 4.805 * (multiJet && LHE_mWW <= 160) + 0.955 * (zeroJet && LHE_mWW > 160) + 0.794 * (oneJet && LHE_mWW > 160) + 0.823 * (multiJet && LHE_mWW > 160))',
+#     'samples' : ['ggH_bonly_off', 'ggH_bonly_on', 'ggH_sand_off', 'ggH_sand_on', 'ggH_sonly_off', 'ggH_sonly_on'],
+# }
 aliases['norm_njet'] = {
-    'expr': '(0.985 * (zeroJet && LHE_mWW <= 160) + 1.692 * (oneJet && LHE_mWW <= 160) + 4.805 * (multiJet && LHE_mWW <= 160) + 0.955 * (zeroJet && LHE_mWW > 160) + 0.794 * (oneJet && LHE_mWW > 160) + 0.823 * (multiJet && LHE_mWW > 160))',
+    'expr': '(2.7839950 * (zeroJet && LHE_mWW <= 160) + 4.6491455 * (oneJet && LHE_mWW <= 160) + 12.881013 * (multiJet && LHE_mWW <= 160) + 2.6366729 * (zeroJet && LHE_mWW > 160) + 2.1922905 * (oneJet && LHE_mWW > 160) + 2.2564790 * (multiJet && LHE_mWW > 160))',
     'samples' : ['ggH_bonly_off', 'ggH_bonly_on', 'ggH_sand_off', 'ggH_sand_on', 'ggH_sonly_off', 'ggH_sonly_on'],
 }
+
 
 aliases['ggH_NNLO_kFactor'] = {
 	'linesToAdd' : ['.L %s/src/PlotsConfigurations/Configurations/Offshell_Dilep/Tools/computeNNLOkfactor.cc' % os.getenv('CMSSW_BASE')],
