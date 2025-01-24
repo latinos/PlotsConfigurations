@@ -128,8 +128,8 @@ fake_rate_reader::fake_rate_reader( TString year , TString ele_WP, TString muon_
   TString fake_ele_file_name_45  = cmssw_base + "/src/PlotsConfigurations/Configurations/WH_chargeAsymmetry/UL/data/fakerate/" + year + "/mvaFall17V2Iso_WP90" + ele_tight_suffix + ele_WP + "/EleFR_jet45.root";
 
   // Prompt rate input files
-  TString pr_muon_file_name = cmssw_base + "/src/PlotsConfigurations/Configurations/WH_chargeAsymmetry/UL/data/fakerate/" + year + "/cut_" + muID + muon_WP + "/MuonPR.root";
-  TString pr_ele_file_name =  cmssw_base + "/src/PlotsConfigurations/Configurations/WH_chargeAsymmetry/UL/data/fakerate/" + year + "/mvaFall17V2Iso_WP90" + ele_tight_suffix + ele_WP + "/ElePR.root";
+  TString pr_muon_file_name = cmssw_base + "/src/PlotsConfigurations/Configurations/WW/FullRunII/fakerate/" + year + "/cut_" + muID + muon_WP + "/MuonDataPR.root";
+  TString pr_ele_file_name =  cmssw_base + "/src/PlotsConfigurations/Configurations/WW/FullRunII/fakerate/" + year + "/mvaFall17V2Iso_WP90" + ele_tight_suffix + ele_WP + "/EleDataPR.root";
   
   // Get fake and prompt rates  
   // Muons
