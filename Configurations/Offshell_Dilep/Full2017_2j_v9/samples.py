@@ -137,7 +137,7 @@ files = nanoGetSampleFiles(mcDirectory, 'TTTo2L2Nu') + \
 samples['top'] = {
     'name': files,
     'weight': mcCommonWeight,
-    'FilesPerJob': 1,
+    'FilesPerJob': 2,
     'suppressNegative' :['all'],
     'suppressNegativeNuisances' :['all']
 }
