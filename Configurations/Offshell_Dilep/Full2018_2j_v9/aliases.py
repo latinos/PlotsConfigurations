@@ -70,7 +70,7 @@ aliases['LepWPCut'] = {
 }
 
 aliases['ttHMVAULSF'] = {
-    'linesToAdd' : ['.L %s/WH_chargeAsymmetry/UL/macros/ttHMVASF.C+' % configurations],
+    'linesToAdd' : ['.L %s/WW/FullRunII/ttHMVASF.C+' % configurations],
     'class'      : 'ttHMVASF',
     'args'       : ("2018", 2, "all","nominal"),
     'samples'    : mc
@@ -259,12 +259,6 @@ aliases['nCleanGenJet'] = {
     'class': 'CountGenJet',
     'samples': mc
 }
-
-#aliases['fiducial'] = {
-#    'linesToAdd': ['.L %s/WW/FullRunII/fiducial.cc+' % configurations],
-#    'class': 'FiducialRegion',
-#    'samples': mc
-#}
 
 ##### DY Z pT reweighting
 aliases['getGenZpt_OTF'] = {
