@@ -905,6 +905,14 @@ nuisances['MELA_Hyp_qqWW'] = {
     'symmetrize' : True,
 }
 
+nuisances['TopPtRew'] = {
+    'name': 'CMS_topPtRew',   # Theory uncertainty
+    'kind': 'weight',
+    'type': 'shape',
+    'samples': {'top': ["1.", "1./Top_pTrw"]},
+    'symmetrize': True
+}
+
 ## Use the following if you want to apply the automatic combine MC stat nuisances.
 nuisances['stat'] = {
 

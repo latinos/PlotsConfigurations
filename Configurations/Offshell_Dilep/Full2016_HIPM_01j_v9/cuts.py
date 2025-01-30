@@ -17,11 +17,11 @@ supercut = ' && '.join(_tmp)
 def addcut(name, exprs):
     cuts[name] = ' && '.join(exprs)
 
-_tmp = [
-    'mth > 60.',
-    'bVeto', 
-       ]
-addcut('Incl', _tmp)
+# _tmp = [
+#     'mth > 60.',
+#     'bVeto', 
+#        ]
+# addcut('Incl', _tmp)
 
 _tmp = [
     'zeroJet',
