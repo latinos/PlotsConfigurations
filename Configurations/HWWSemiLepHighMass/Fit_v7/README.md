@@ -1,7 +1,4 @@
-Crete a singularity following this guide:
-https://gitlab.cern.ch/cms-cat/cmssw-lxplus/-/blob/master/README.md#usage
-
-and thens start the singularity 
+Create a singularity following (this guide)[https://gitlab.cern.ch/cms-cat/cmssw-lxplus/-/blob/master/README.md#usage] and then start the singularity 
 
 Download a CMS-SW version compatible with:
 ```
@@ -26,7 +23,7 @@ git clone https://github.com/latinos/PlotsConfigurations.git -b HWWSemi
 
 in a latino-suitable environment.
 
-Two Configs available: Test_Debug with lots of variables, electrons and muons splitted and inclusive the two leptons type / _v7_BTagSF with the configuration ready for the fit 
+Two Configs available: Test_Debug with lots of variables, electrons and muons split and inclusive the two leptons type / _v7_BTagSF with the configuration ready for the fit 
 
 Run them with:
 ```
@@ -41,4 +38,10 @@ If the jobs fail you can resubmit them with
 Once they are finished hadd the file:
 ```
 mkShapesMulti.py --pycfg=config_medmass.py --doHadd=1 --batchSplit=Samples,Files  --doNotCleanup --nThreads=10
+```
+Then Redo stat to correlate GGHSBI (QQHSBI) and GGH (QQH)  bin-by-bin nuisances. It's relevant for the fit but it can be avoided for plotting purposes. This has to be done for each variable and for each cut, because otherwise this will be done for every entry of the variable and cut files. Specifically, this has to be done for the (Boosted Cuts)[https://github.com/latinos/PlotsConfigurations/blob/HWWSemi/Configurations/HWWSemiLepHighMass/Fit_v7/2017_v7_BTagSF/cuts_medmass.py#L95-L100] the variable is the (mass_HIGGS)[https://github.com/latinos/PlotsConfigurations/blob/HWWSemi/Configurations/HWWSemiLepHighMass/Fit_v7/2017_v7_BTagSF/variables_fit.py#L503-L511], for the (CRs)[https://github.com/latinos/PlotsConfigurations/blob/HWWSemi/Configurations/HWWSemiLepHighMass/Fit_v7/2017_v7_BTagSF/cuts_medmass.py#L114-L117] the variables are the (events)[https://github.com/latinos/PlotsConfigurations/blob/HWWSemi/Configurations/HWWSemiLepHighMass/Fit_v7/2017_v7_BTagSF/variables_fit.py#L24-L30] for the (Boosted High Mass VBF)[https://github.com/latinos/PlotsConfigurations/blob/HWWSemi/Configurations/HWWSemiLepHighMass/Fit_v7/2017_v7_BTagSF/cuts_medmass.py#L31] [https://github.com/latinos/PlotsConfigurations/blob/HWWSemi/Configurations/HWWSemiLepHighMass/Fit_v7/2017_v7_BTagSF/cuts_medmass.py#L101-L106] the variable is the (Higgs Mass Boosted VBF)[https://github.com/latinos/PlotsConfigurations/blob/HWWSemi/Configurations/HWWSemiLepHighMass/Fit_v7/2017_v7_BTagSF/variables_fit.py#L522-L530]. This applies also for the (Boosted GGH High mass)[https://github.com/latinos/PlotsConfigurations/blob/HWWSemi/Configurations/HWWSemiLepHighMass/Fit_v7/2017_v7_BTagSF/cuts_medmass.py#L32] [https://github.com/latinos/PlotsConfigurations/blob/HWWSemi/Configurations/HWWSemiLepHighMass/Fit_v7/2017_v7_BTagSF/cuts_medmass.py#L101-L106] (here)[https://github.com/latinos/PlotsConfigurations/blob/HWWSemi/Configurations/HWWSemiLepHighMass/Fit_v7/2017_v7_BTagSF/variables_fit.py#L512-L521] and the (Boosted BKG High mass)[https://github.com/latinos/PlotsConfigurations/blob/HWWSemi/Configurations/HWWSemiLepHighMass/Fit_v7/2017_v7_BTagSF/cuts_medmass.py#L33] [https://github.com/latinos/PlotsConfigurations/blob/HWWSemi/Configurations/HWWSemiLepHighMass/Fit_v7/2017_v7_BTagSF/cuts_medmass.py#L101-L106] (here)[https://github.com/latinos/PlotsConfigurations/blob/HWWSemi/Configurations/HWWSemiLepHighMass/Fit_v7/2017_v7_BTagSF/variables_fit.py#L531-L539]. For the resolved SR cases: (Resolved VBF)[https://github.com/latinos/PlotsConfigurations/blob/HWWSemi/Configurations/HWWSemiLepHighMass/Fit_v7/2017_v7_BTagSF/cuts_medmass.py#L37] [https://github.com/latinos/PlotsConfigurations/blob/HWWSemi/Configurations/HWWSemiLepHighMass/Fit_v7/2017_v7_BTagSF/cuts_medmass.py#L108-L113] the variable is the (Higgs Mass Resolved VBF)[https://github.com/latinos/PlotsConfigurations/blob/HWWSemi/Configurations/HWWSemiLepHighMass/Fit_v7/2017_v7_BTagSF/variables_fit.py#L550-L557]. This applies also for the (Resolved GGH)[https://github.com/latinos/PlotsConfigurations/blob/HWWSemi/Configurations/HWWSemiLepHighMass/Fit_v7/2017_v7_BTagSF/cuts_medmass.py#L38] [https://github.com/latinos/PlotsConfigurations/blob/HWWSemi/Configurations/HWWSemiLepHighMass/Fit_v7/2017_v7_BTagSF/cuts_medmass.py#L108-L113] (here)[https://github.com/latinos/PlotsConfigurations/blob/HWWSemi/Configurations/HWWSemiLepHighMass/Fit_v7/2017_v7_BTagSF/variables_fit.py#L558-L565] and the (Resolved BKG)[https://github.com/latinos/PlotsConfigurations/blob/HWWSemi/Configurations/HWWSemiLepHighMass/Fit_v7/2017_v7_BTagSF/cuts_medmass.py#L39] [https://github.com/latinos/PlotsConfigurations/blob/HWWSemi/Configurations/HWWSemiLepHighMass/Fit_v7/2017_v7_BTagSF/cuts_medmass.py#L108-L113] (here)[https://github.com/latinos/PlotsConfigurations/blob/HWWSemi/Configurations/HWWSemiLepHighMass/Fit_v7/2017_v7_BTagSF/variables_fit.py#L566-L573]. The one highhlighted has to be uncommented while the rest must be commented out otherwise it will be processed by teh redoStat
+
+
+```
+mkShapesMulti.py --pycfg=config_medmass.py --redoStat=True --batchSplit=Samples,File
 ```
