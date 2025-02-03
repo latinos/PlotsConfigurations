@@ -1,4 +1,4 @@
-Create a singularity following (this guide)[https://gitlab.cern.ch/cms-cat/cmssw-lxplus/-/blob/master/README.md#usage] and then start the singularity 
+Create a singularity following [this guide](https://gitlab.cern.ch/cms-cat/cmssw-lxplus/-/blob/master/README.md#usage) and then start the singularity 
 
 Download a CMS-SW version compatible with:
 ```
