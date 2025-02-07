@@ -59,7 +59,22 @@ git clone https://github.com/cms-analysis/HiggsAnalysis-CombinedLimit.git HiggsA
 # IMPORTANT: Checkout the recommended tag on the link above
 git clone https://github.com/cms-analysis/CombineHarvester.git CombineHarvester
 git checkout v2.0.0
-scram b
-git clone https://github.com/DennRoy/CombineHarvester.git -b HWWcombRun2
+scram b -j 4
 ```
-Few files are different and can be found here, add them before doring the scram of the environment. The files are in this directory and are XWWInterfernce.py that is in this path CombinePdfs/python/XWWInterference.py, the MorphingMSSMFullRun2_HWW.cpp has to be replaced in this path of the cloned dir HWW/bin/MorphingMSSMFullRun2_HWW.cpp and HwwSystematics_MSSMFullRun2.cc will replace the one in HWW/src/HwwSystematics_MSSMFullRun2.cc
+There are few modifications for the files that are committed to this directory and need to be copied in the right path, the files are XWWInterference.py that will replace 'CMSSW_11_3_4/src/CombineHarvester/CombinePdfs/python/XWWInterference.py', 'MorphingMSSMFullRun2_HWW.cpp' to replace the same file in 'CMSSW_11_3_4/src/CombineHarvester/HWW/bin/MorphingMSSMFullRun2_HWW.cpp' and HwwSystematics_MSSMFullSemi_201X_FakeUnc.cc in 'CMSSW_11_3_4/src/CombineHarvester/HWW/bin/HwwSystematics_MSSMFullSemi.cc' 
+There is a configuration file for every year, which is committed to this directory directly, and has to be copied in  the abovementioned path and then compile with the usual 'scram b -j 4'
+
+In the HWW directory copy also the bash file doSemilep_201X.sh that is here and then doWorkspace.sh
+
+The different width needs to be specified in [this line](https://github.com/latinos/PlotsConfigurations/blob/HWWSemi/Configurations/HWWSemiLepHighMass/Fit_v7/MorphingMSSMFullRun2_HWW.cpp#L61) 
+Submit the limits with the combine options 
+```
+combineTool.py -m "300, 350, 400, 450, 500, 550, 600, 650, 700, 750" -M AsymptoticLimits --rAbsAcc 0 --rRelAcc 0.0005 --setParameters r=0 --run both -d WSRun2_semilep_unblind.indepSM_RW002.root --cminDefaultMinimizerStrategy 0 --cminApproxPreFitTolerance=100 --cminFallbackAlgo Minuit2,Migrad,0:0.1 --X-rtd MINIMIZER_MaxCalls=9999999 --X-rtd MINIMIZER_analytic --X-rtd FAST_VERTICAL_MORPH --X-rtd MINIMIZER_freezeDisassociatedParams --X-rtd MINIMIZER_multiMin_hideConstants --X-rtd MINIMIZER_multiMin_maskConstraints --X-rtd MINIMIZER_multiMin_maskChannels=2 --X-rtd OPTIMIZE_BOUNDS=0 -n relwidth_2per_All --job-mode condor --task-name condor-lowmassSMALL --sub-opts='+JobFlavour="tomorrow"'
+
+combineTool.py -m "800, 850, 900, 950, 1000, 1050, 1100, 1150, 1200, 1250, 1300, 1350, 1400, 1450, 1500, 1600, 1700, 1800, 1900, 2000, 2100, 2200, 2300, 2400, 2500, 2600, 2700, 2800, 2900, 3000, 3200, 3400, 3600, 3800, 4000, 4200, 4400, 4600, 4800, 5000" -M AsymptoticLimits --rAbsAcc 0 --rRelAcc 0.0005 --setParameters r=0 --run both -d WSRun2_semilep_unblind.indepSMhigh_RW002.root --cminDefaultMinimizerStrategy 0 --cminApproxPreFitTolerance=100 --cminFallbackAlgo Minuit2,Migrad,0:0.1 --X-rtd MINIMIZER_MaxCalls=9999999 --X-rtd MINIMIZER_analytic --X-rtd FAST_VERTICAL_MORPH --X-rtd MINIMIZER_freezeDisassociatedParams --X-rtd MINIMIZER_multiMin_hideConstants --X-rtd MINIMIZER_multiMin_maskConstraints --X-rtd MINIMIZER_multiMin_maskChannels=2 --X-rtd OPTIMIZE_BOUNDS=0 -n relwidth_2per_All --job-mode condor --task-name condor-HighmassSMALL --sub-opts='+JobFlavour="tomorrow"'
+```
+or the significance with
+```
+combineTool.py -m  "1000, 1050, 1100, 1150, 1200, 1250, 1300, 1350" -M Significance --expectSignal=1  -d WSRun2_semilep_unblind.indepSMhigh_RW002.root --cminDefaultMinimizerStrategy 0 --cminApproxPreFitTolerance=100 --cminFallbackAlgo Minuit2,Migrad,0:0.1 --X-rtd MINIMIZER_MaxCalls=9999999 --X-rtd MINIMIZER_analytic --X-rtd FAST_VERTICAL_MORPH --X-rtd MINIMIZER_freezeDisassociatedParams --X-rtd MINIMIZER_multiMin_hideConstants --X-rtd MINIMIZER_multiMin_maskConstraints --X-rtd MINIMIZER_multiMin_maskChannels=2  --X-rtd OPTIMIZE_BOUNDS=0 -n relwidth_2per_significance_PV --job-mode condor --task-name condor-HighmassSM_Significance_newPV  --sub-opts='+JobFlavour="tomorrow"'
+combineTool.py -m  "350, 400, 450, 500, 550, 600" -M Significance --expectSignal=1  -d WSRun2_semilep_unblind.indepSM_RW002.root --cminDefaultMinimizerStrategy 0 --cminApproxPreFitTolerance=100 --cminFallbackAlgo Minuit2,Migrad,0:0.1 --X-rtd MINIMIZER_MaxCalls=9999999 --X-rtd MINIMIZER_analytic --X-rtd FAST_VERTICAL_MORPH --X-rtd MINIMIZER_freezeDisassociatedParams --X-rtd MINIMIZER_multiMin_hideConstants --X-rtd MINIMIZER_multiMin_maskConstraints --X-rtd MINIMIZER_multiMin_maskChannels=2 --X-rtd OPTIMIZE_BOUNDS=0 -n relwidth_2per_significance_noPV --job-mode condor --task-name condor-LowmassSM_Significance_new_NoPV --sub-opts='+JobFlavour="tomorrow"'
+```
