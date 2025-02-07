@@ -44,3 +44,22 @@ Then Redo stat to correlate GGHSBI (QQHSBI) and GGH (QQH)  bin-by-bin nuisances.
 ```
 mkShapesMulti.py --pycfg=config_medmass.py --redoStat=True --batchSplit=Samples,File
 ```
+To be compliant with the nuisance format also run the script available in the 201X_v7_btagSF directory
+```
+python FixNegativeBins.py "directory/rootfile name"
+```
+
+To combine the cards, to morph and to do the workspaces:
+```
+export SCRAM_ARCH=slc7_amd64_gcc900
+scram project CMSSW CMSSW_11_3_4
+cd CMSSW_11_3_4/src
+cmsenv
+git clone https://github.com/cms-analysis/HiggsAnalysis-CombinedLimit.git HiggsAnalysis/CombinedLimit
+# IMPORTANT: Checkout the recommended tag on the link above
+git clone https://github.com/cms-analysis/CombineHarvester.git CombineHarvester
+git checkout v2.0.0
+scram b
+git clone https://github.com/DennRoy/CombineHarvester.git -b HWWcombRun2
+```
+Few files are different and can be found here, add them before doring the scram of the environment. The files are in this directory and are XWWInterfernce.py that is in this path CombinePdfs/python/XWWInterference.py, the MorphingMSSMFullRun2_HWW.cpp has to be replaced in this path of the cloned dir HWW/bin/MorphingMSSMFullRun2_HWW.cpp and HwwSystematics_MSSMFullRun2.cc will replace the one in HWW/src/HwwSystematics_MSSMFullRun2.cc
