@@ -160,7 +160,7 @@ int main(int argc, char** argv) {
 
   if (do2018semi){
     thisyear = "2018";
-    input_dir["lqq8_resol"]  =     shapedir+"plots_hm_2018_Fit_test_Lep_FakeUnc.root";
+    input_dir["lqq8_resol"]  =     shapedir+"plots_hm_2018_Fit_test_FakeUnc.root";
     input_dir["lqq8_resol_top"]  = input_dir["lqq8_resol"];
     input_dir["lqq8_resol_sb"]  =  input_dir["lqq8_resol"];
     input_dir["lqq8_boost"]  =     input_dir["lqq8_resol"];

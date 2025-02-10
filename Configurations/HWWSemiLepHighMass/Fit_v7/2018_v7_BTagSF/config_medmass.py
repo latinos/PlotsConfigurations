@@ -3,7 +3,7 @@
 treeName = 'Events'
 
 #tag = 'hm_2018_Inte'
-tag = 'hm_2018_Fit_test_Lep'
+tag = 'hm_2018_Fit_test'
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFile_highmass_2018'
