@@ -1548,21 +1548,81 @@ nuisances['QCDscale_VH_ACCEPT']  = {
 #    },
 #}
 
+nuisances['fake_syst_Mu_BarPos_2017'] = {
+    'name': 'CMS_fake_syst_Mu_BarPos_2017',
+    'type': 'lnN',
+    'samples': {
+        'FAKE_mu_barrel_pos': '1.3',
+    },
+}
+nuisances['fake_syst_Mu_BarNeg_2017'] = {
+    'name': 'CMS_fake_syst_Mu_BarNeg_2017',
+    'type': 'lnN',
+    'samples': {
+        'FAKE_mu_barrel_neg': '1.3',
 
-nuisances['fake_syst_Mu_2017'] = {
-    'name': 'CMS_fake_syst_Mu_2017',
-    'type': 'lnN',
-    'samples': {
-        'FAKE_mu': '1.3',
     },
 }
-nuisances['fake_syst_El_2017'] = {
-    'name': 'CMS_fake_syst_El_2017',
+nuisances['fake_syst_Mu_EndPos_2017'] = {
+    'name': 'CMS_fake_syst_Mu_EndPos_2017',
     'type': 'lnN',
     'samples': {
-        'FAKE_el': '1.3',
+        'FAKE_mu_endcap_pos': '1.3',
     },
 }
+nuisances['fake_syst_Mu_EndNeg_2017'] = {
+    'name': 'CMS_fake_syst_Mu_EndNeg_2017',
+    'type': 'lnN',
+    'samples': {
+        'FAKE_mu_endcap_neg': '1.3',
+
+    },
+}
+nuisances['fake_syst_El_BarPos_2017'] = {
+    'name': 'CMS_fake_syst_El_BarPos_2017',
+    'type': 'lnN',
+    'samples': {
+        'FAKE_el_barrel_pos': '1.3',
+    },
+}
+nuisances['fake_syst_El_BarNeg_2017'] = {
+    'name': 'CMS_fake_syst_El_BarNeg_2017',
+    'type': 'lnN',
+    'samples': {
+        'FAKE_el_barrel_neg': '1.3',
+
+    },
+}
+nuisances['fake_syst_El_EndPos_2017'] = {
+    'name': 'CMS_fake_syst_El_EndPos_2017',
+    'type': 'lnN',
+    'samples': {
+        'FAKE_el_endcap_pos': '1.3',
+    },
+}
+nuisances['fake_syst_El_EndNeg_2017'] = {
+    'name': 'CMS_fake_syst_El_EndNeg_2017',
+    'type': 'lnN',
+    'samples': {
+        'FAKE_el_endcap_neg': '1.3',
+
+    },
+}
+
+#nuisances['fake_syst_Mu_2017'] = {
+#    'name': 'CMS_fake_syst_Mu_2017',
+#    'type': 'lnN',
+#    'samples': {
+#        'FAKE_mu': '1.3',
+#    },
+#}
+#nuisances['fake_syst_El_2017'] = {
+#    'name': 'CMS_fake_syst_El_2017',
+#    'type': 'lnN',
+#    'samples': {
+#        'FAKE_el': '1.3',
+#    },
+#}
 # Uncertainty on SR/CR ratio
 nuisances['CRSR_accept_ResolvSB'] = {
     'name': 'CMS_hww_CRSR_accept_SB',
