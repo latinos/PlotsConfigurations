@@ -280,7 +280,8 @@ comp_jets_res::evaluate(unsigned)
   if(_var==54) return jetpt3;
   if(_var==55) return jetpt4;
   if(_var==56) return wr1pt;
-  if(_var==57) return wr2pt;;
+  if(_var==57) return wr2pt;
+  if(_var==58) return (*HM_Wlep_pt_Puppi->Get() * TMath::SinH(*HM_Wlep_eta_Puppi->Get()) - Lepton_pt->At(0) * TMath::SinH(Lepton_eta->At(0)));
 
 
 
