@@ -23,7 +23,7 @@ git clone https://github.com/latinos/PlotsConfigurations.git -b HWWSemi
 
 in a latino-suitable environment.
 
-Two Configs available: Test_Debug with lots of variables, electrons and muons split and inclusive the two leptons type / _v7_BTagSF with the configuration ready for the fit 
+Two Configs available: Test_Debug with lots of variables, electrons and muons split and inclusive in the two leptons type and _v7_BTagSF with the configuration ready for the fit with inclusive leptons  
 
 Run them with:
 ```
