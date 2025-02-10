@@ -128,9 +128,9 @@ mcCommonWeightTagger = 'XSWeight*SFweight_top*METFilter_MC*LepWPCut[0]*Lepton_pr
 ##############  BACKGROUNDS  ###############
 ##############################################
 
-##########print("DY")
-##
-###### NLO
+###########print("DY")
+###
+####### NLO
  #### prefer M-10to50 NLO and fill M-5to10 with HT-binned LO
 files  = nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-10to50')
 files += nanoGetSampleFiles(mcDirectory, 'DYJetsToLL_M-10to50_ext1')
@@ -811,8 +811,16 @@ for _, sd in DataRun:
     samples['FAKE']['weights'].extend([DataTrig[pd]] * len(files))
 
 samples['FAKE']['subsamples'] = {
-  'el': 'abs(Lepton_pdgId[0]) == 11',
-  'mu': 'abs(Lepton_pdgId[0]) == 13'
+  'el_barrel_pos': 'Lepton_eta[0] >= 0 && Lepton_eta[0] < 1.5 && abs(Lepton_pdgId[0]) == 11',
+  'el_barrel_neg': 'Lepton_eta[0] < 0 && Lepton_eta[0] >= -1.5 && abs(Lepton_pdgId[0]) == 11',
+  'el_endcap_pos': 'Lepton_eta[0] >= 1.5 && abs(Lepton_pdgId[0]) == 11',
+  'el_endcap_neg': 'Lepton_eta[0] < -1.5 && abs(Lepton_pdgId[0]) == 11',
+  'mu_barrel_pos': 'Lepton_eta[0] >= 0 && Lepton_eta[0] < 1.5 && abs(Lepton_pdgId[0]) == 13',
+  'mu_barrel_neg': 'Lepton_eta[0] < 0 && Lepton_eta[0] >= -1.5 && abs(Lepton_pdgId[0]) == 13',
+  'mu_endcap_pos': 'Lepton_eta[0] >= 1.5 && abs(Lepton_pdgId[0]) == 13',
+  'mu_endcap_neg': 'Lepton_eta[0] < -1.5 && abs(Lepton_pdgId[0]) == 13',
+  #'el': 'abs(Lepton_pdgId[0]) == 11',
+  #'mu': 'abs(Lepton_pdgId[0]) == 13'
 }
 print("DATA")
 samples['data_obs'] = {

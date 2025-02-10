@@ -1487,20 +1487,80 @@ nuisances['pdf_WW']  = {
 #        'FAKE': '1.3'
 #    },
 #}
-nuisances['fake_syst_Mu'] = {
-    'name': 'CMS_fake_syst_Mu_2016',
+nuisances['fake_syst_Mu_BarPos_2016'] = {
+    'name': 'CMS_fake_syst_Mu_BarPos_2016',
     'type': 'lnN',
     'samples': {
-        'FAKE_mu': '1.3',
+        'FAKE_mu_barrel_pos': '1.3',
     },
 }
-nuisances['fake_syst_El'] = {
-    'name': 'CMS_fake_syst_El_2016',
+nuisances['fake_syst_Mu_BarNeg_2016'] = {
+    'name': 'CMS_fake_syst_Mu_BarNeg_2016',
     'type': 'lnN',
     'samples': {
-        'FAKE_el': '1.3',
+        'FAKE_mu_barrel_neg': '1.3',
+
     },
 }
+nuisances['fake_syst_Mu_EndPos_2016'] = {
+    'name': 'CMS_fake_syst_Mu_EndPos_2016',
+    'type': 'lnN',
+    'samples': {
+        'FAKE_mu_endcap_pos': '1.3',
+    },
+}
+nuisances['fake_syst_Mu_EndNeg_2016'] = {
+    'name': 'CMS_fake_syst_Mu_EndNeg_2016',
+    'type': 'lnN',
+    'samples': {
+        'FAKE_mu_endcap_neg': '1.3',
+
+    },
+}
+nuisances['fake_syst_El_BarPos_2016'] = {
+    'name': 'CMS_fake_syst_El_BarPos_2016',
+    'type': 'lnN',
+    'samples': {
+        'FAKE_el_barrel_pos': '1.3',
+    },
+}
+nuisances['fake_syst_El_BarNeg_2016'] = {
+    'name': 'CMS_fake_syst_El_BarNeg_2016',
+    'type': 'lnN',
+    'samples': {
+        'FAKE_el_barrel_neg': '1.3',
+
+    },
+}
+nuisances['fake_syst_El_EndPos_2016'] = {
+    'name': 'CMS_fake_syst_El_EndPos_2016',
+    'type': 'lnN',
+    'samples': {
+        'FAKE_el_endcap_pos': '1.3',
+    },
+}
+nuisances['fake_syst_El_EndNeg_2016'] = {
+    'name': 'CMS_fake_syst_El_EndNeg_2016',
+    'type': 'lnN',
+    'samples': {
+        'FAKE_el_endcap_neg': '1.3',
+
+    },
+}
+#nuisances['fake_syst_Mu'] = {
+#    'name': 'CMS_fake_syst_Mu_2016',
+#    'type': 'lnN',
+#    'samples': {
+#        'FAKE_mu': '1.3',
+#    },
+#}
+#nuisances['fake_syst_El'] = {
+#    'name': 'CMS_fake_syst_El_2016',
+#    'type': 'lnN',
+#    'samples': {
+#        'FAKE_el': '1.3',
+#    },
+#}
 ##nuisances['fake_ele'] = {
 ##    'name': 'CMS_fake_e_2016',
 ##    'kind': 'weight',

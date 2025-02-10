@@ -11,14 +11,14 @@ supercut = '\
 LepCats={}
 LepCats['incl_']='( ((abs(Lepton_pdgId[0])==11) && Lepton_pt[0]>30 \
                  || (abs(Lepton_pdgId[0])==13) && Lepton_pt[0]>27))'
-#LepCats['ElCh_']='( (abs(Lepton_pdgId[0])==11) && Lepton_pt[0]>33)'
-#LepCats['MuCh_']='( (abs(Lepton_pdgId[0])==13) && Lepton_pt[0]>30)'
+LepCats['ElCh_']='( (abs(Lepton_pdgId[0])==11) && Lepton_pt[0]>33)'
+LepCats['MuCh_']='( (abs(Lepton_pdgId[0])==13) && Lepton_pt[0]>30)'
 # FIXME: maybe need to cut > 35 for ele due to fakeW calculation
 LepCats_CR={}
 LepCats_CR['incl_']='( ((abs(Lepton_pdgId[0])==11) && Lepton_pt[0]>30 \
-                 || (abs(Lepton_pdgId[0])==13) && Lepton_pt[0]>27))'
-#LepCats_CR['ElCh_']='( (abs(Lepton_pdgId[0])==11) && Lepton_pt[0]>33)'
-#LepCats_CR['MuCh_']='( (abs(Lepton_pdgId[0])==13) && Lepton_pt[0]>30)'
+                 || (abs(Lepton_pdgId[0])==13) && Lepton_pt[0]>27) && (abs(Lepton_eta[0]) < 1.5 ))'
+LepCats_CR['ElCh_']='( (abs(Lepton_pdgId[0])==11) && Lepton_pt[0]>33 && (abs(Lepton_eta[0]) < 1.5 ))'
+LepCats_CR['MuCh_']='( (abs(Lepton_pdgId[0])==13) && Lepton_pt[0]>30 && (abs(Lepton_eta[0]) < 1.5 ))'
 
 BoostProcCats_H={}
 #BoostProcCats_H['']='1'
@@ -99,7 +99,7 @@ for Lep in LepCats:
 		cuts[Lep+BCat+BProcCat]=  ResCatsSR[BCat]\
                 	            +'&&'+ResProcCats[BProcCat]\
                 	            +'&&'+LepCats[Lep]
-#
+##
 for Lep in LepCats:
     for BProcCat in BoostProcCats_H:
         for BCat in BoostCatsSR:  

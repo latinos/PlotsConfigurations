@@ -67,7 +67,7 @@ There is a configuration file for every year, which is committed to this directo
 In the HWW directory copy also the bash file doSemilep_201X.sh that is here and then doWorkspace.sh
 
 The different width needs to be specified in [this line](https://github.com/latinos/PlotsConfigurations/blob/HWWSemi/Configurations/HWWSemiLepHighMass/Fit_v7/MorphingMSSMFullRun2_HWW.cpp#L61) 
-Submit the limits with the combine options 
+From a combine suitable version such as CMSSW_11_3_4 with the latest package of Combine compliant submit the limits with the combine options. 
 ```
 combineTool.py -m "300, 350, 400, 450, 500, 550, 600, 650, 700, 750" -M AsymptoticLimits --rAbsAcc 0 --rRelAcc 0.0005 --setParameters r=0 --run both -d WSRun2_semilep_unblind.indepSM_RW002.root --cminDefaultMinimizerStrategy 0 --cminApproxPreFitTolerance=100 --cminFallbackAlgo Minuit2,Migrad,0:0.1 --X-rtd MINIMIZER_MaxCalls=9999999 --X-rtd MINIMIZER_analytic --X-rtd FAST_VERTICAL_MORPH --X-rtd MINIMIZER_freezeDisassociatedParams --X-rtd MINIMIZER_multiMin_hideConstants --X-rtd MINIMIZER_multiMin_maskConstraints --X-rtd MINIMIZER_multiMin_maskChannels=2 --X-rtd OPTIMIZE_BOUNDS=0 -n relwidth_2per_All --job-mode condor --task-name condor-lowmassSMALL --sub-opts='+JobFlavour="tomorrow"'
 
