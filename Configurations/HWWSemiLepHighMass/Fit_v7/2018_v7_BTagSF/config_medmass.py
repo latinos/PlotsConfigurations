@@ -3,7 +3,7 @@
 treeName = 'Events'
 
 #tag = 'hm_2018_Inte'
-tag = 'hm_2018_Fit_test'
+tag = 'hm_2018_Fit_test_Lep'
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFile_highmass_2018'
@@ -30,7 +30,7 @@ lumi = 59.7
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'Plots_Test_resBKG_prefit_Again'
+outputDirPlots = 'Plots_Test_UPD'
 
 
 # used by mkDatacards to define output directory for datacards

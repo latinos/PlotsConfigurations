@@ -25,13 +25,13 @@ resolvedSR_isGGH  = set(x for x in cuts if 'ResolvedSR_isGGH' in x)
 resolvedSR_isBKG  = set(x for x in cuts if 'ResolvedSR_isBKG' in x)
 resolvedSR_isVBF  = set(x for x in cuts if 'ResolvedSR_isVBF' in x)
 
-variables['events']  = {
-    'name' : '1',
-    'range': (1,0,2),
-    'xaxis': 'events',
-    'cuts' : controlRegions,
-    'fold' : 3,
-}
+#variables['events']  = {
+#    'name' : '1',
+#    'range': (1,0,2),
+#    'xaxis': 'events',
+#    'cuts' : controlRegions,
+#    'fold' : 3,
+#}
 
 #variables['Event_fatjetJERup']  = {
 #    'name' : 'Event_fatjetJERup',
@@ -528,7 +528,7 @@ variables['events']  = {
 #  	       1100, 1150, 1200, 1250, 1300, 1350, 1400, 1450, 1500, 1700, 2000, 3000],),
 #   'xaxis': 'Higgs Mass [GeV]',
 #   'fold' : 0 ,
-#}
+##}
 variables['mass_HIGGS_FAT_fit'] = {
    'name' : 'mass_HIGGS_FAT[0]',
    'range': ([0, 200, 250, 300, 350, 400, 450, 500, 550, 600,
@@ -566,16 +566,34 @@ variables['mass_HIGGS_BooBKG'] = {
    'fold' : 0 ,
    'cuts' : boostedSR_isBKG,
 }
+#variables['wlep_eta'] = {
+#    'name' : 'HM_Wlep_eta_Puppi',
+#    'range': (40, -4, 4),
+#    'xaxis': 'reconstr. W lep eta [GeV]',
+#    'fold' : 0, 
+#}
+#variables['whad_eta'] = {
+#    'name' : 'HM_Whad_eta',
+#    'range': (40, -4, 4),
+#    'xaxis': 'reconstr. W had eta [GeV]',
+#    'fold' : 0, 
+#}
+#variables['lep_eta'] = {
+#     'name': 'Lepton_eta',
+#     'range' : (30,-3,3),
+#     'xaxis' : 'lep_eta',
+#     'fold' : 3,
+#}
 
-variables['mass_HIGGS_twojet_binned'] = {
-   'name' : 'mass_HIGGS_JJ[0]',
-   'range': ([0, 150, 200, 260, 300, 350, 400, 450, 500, 550, 600,
-              650, 700, 750, 800, 850, 900, 950, 1000, 1100, 1300, 1500, 3000],),
-   'xaxis': 'Higgs Mass [GeV]',
-   'fold' : 0,
-   'cuts' : resolved, 
-}
-
+#variables['mass_HIGGS_twojet_binned'] = {
+#   'name' : 'mass_HIGGS_JJ[0]',
+#   'range': ([0, 150, 200, 260, 300, 350, 400, 450, 500, 550, 600,
+#              650, 700, 750, 800, 850, 900, 950, 1000, 1100, 1300, 1500, 3000],),
+#   'xaxis': 'Higgs Mass [GeV]',
+#   'fold' : 0,
+#   'cuts' : resolved, 
+#}
+#
 variables['mass_HIGGS_ResVBF'] = {
    'name' : 'mass_HIGGS_JJ[0]',
    'range': ([0, 150, 200, 260, 300, 350, 400, 450, 500, 550, 600,
