@@ -338,6 +338,13 @@ variables['jet2_eta'] = {
      'cuts' : resolved ,
      'fold' : 3,
 }
+variables['mass_HIGGS_twojet_binned'] = {
+   'name' : 'mass_HIGGS_JJ[0]',
+   'range': ([0, 150, 200, 260, 300, 350, 400, 450, 500, 550, 600,
+              650, 700, 750, 800, 850, 900, 950, 1000, 1100, 1300, 1500, 3000],),
+   'xaxis': 'Higgs Mass [GeV]',
+   'fold' : 0,
+}
 #variables['jet2_mass'] = {
 #     'name': 'CleanJet_mass[CleanJet_jetIdx[Alt$(HM_idx_j2 >= 0, 0)*HM_idx_j2]]',
 #     'range' : (40,0,120),
