@@ -3,7 +3,7 @@
 treeName = 'Events'
 
 #tag = 'hm_2017_Fit_SRCR_wDeepTag_corrMSFCHECK'
-tag = 'hm_2017_Fit_SplitLep'
+tag = 'hm_2017_Fit_SplitLep_etaCut_BefReStat'#_PerFitNewCut'
 #tag = 'hm_2017_Fit_SRCR_wDeepTag'
 
 # used by mkShape to define output directory for root files
@@ -24,14 +24,14 @@ cutsFile = 'cuts_medmass.py'
 samplesFile = 'samples_medmass.py'
 
 # file with list of samples
-plotFile = 'plot_medmass.py'
+plotFile = 'plot_medmass_UPD_pf.py'
 
 # luminosity to normalize to (in 1/fb)
 lumi = 41.5
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'PlotDebug_2017/PLOTT_SPLIT'
+outputDirPlots = 'Plot_NEWNoNui_NJoBar_ZoomLepPt'
 
 
 # used by mkDatacards to define output directory for datacards

@@ -39,13 +39,21 @@ ResCatsSR={}
 ResCatsSR['ResolvedSR_']='(1 \
                        && two_jet_res[0] \
                        && resolvedSignalWMass[0] \
+                       && bVeto[0])'
+ResCatsSR_cut={}
+ResCatsSR_cut['ResolvedSR_massWindow']='(1 \
+                       && two_jet_res[0] \
+                       && resolvedSignalWMass[0] \
                        && mass_HIGGS_JJ[0] >  350 \
                        && mass_HIGGS_JJ[0] <= 550 \
                        && bVeto[0])'
-ResCatsSR_nocut={}
-ResCatsSR['ResolvedSR_NOCUT']='(1 \
+ResCatsSR_cut['ResolvedSR_massWindowWetaCut']='(1 \
                        && two_jet_res[0] \
                        && resolvedSignalWMass[0] \
+                       && mass_HIGGS_JJ[0] >  350 \
+                       && mass_HIGGS_JJ[0] <= 550 \
+                       && abs(HM_Wlep_eta_Puppi[0]) <  1.5 \
+                       && abs(HM_Whad_eta[0]) <  1.5 \
                        && bVeto[0])'
 #BoostCats={}
 #BoostCatsSR['BoostedSR_']='(1 \
@@ -79,15 +87,15 @@ BoostCats={}
 #                       && HvOverFat[0] < 0.4 \
 #                       && boostedSignalWMass[0] \
 #                       && bVeto_boo[0])'
-BoostCats['ResolvedSB_']='(1 \
-                       && two_jet_res[0] \
-                       && !resolvedSignalWMass[0] \
-                       && resolvedSidebandWMass[0] \
-                       && bVeto[0])'
-BoostCats['ResolvedTopCR_']='(1 \
-                       && two_jet_res[0] \
-                       && resolvedSignalWMass[0] \
-                       && bReq[0])'
+#BoostCats['ResolvedSB_']='(1 \
+#                       && two_jet_res[0] \
+#                       && !resolvedSignalWMass[0] \
+#                       && resolvedSidebandWMass[0] \
+#                       && bVeto[0])'
+#BoostCats['ResolvedTopCR_']='(1 \
+#                       && two_jet_res[0] \
+#                       && resolvedSignalWMass[0] \
+#                       && bReq[0])'
 ###BoostCats['ResolvedSR_']='(1 \
 ###                       && two_jet_res[0] \
 ###                       && resolvedSignalWMass[0] \
@@ -116,11 +124,11 @@ for Lep in LepCats:
 		cuts[Lep+BCat+BProcCat]=  ResCatsSR[BCat]\
                 	            +'&&'+ResProcCats[BProcCat]\
                 	            +'&&'+LepCats[Lep]
-
+#
 for Lep in LepCats:
     for BProcCat in ResProcCats:
         for BCat in ResCatsSR_nocut:  
-		cuts[Lep+BCat+BProcCat]=  ResCatsSR[BCat]\
+		cuts[Lep+BCat+BProcCat]=  ResCatsSR_nocut[BCat]\
                 	            +'&&'+ResProcCats[BProcCat]\
                 	            +'&&'+LepCats[Lep]
 
@@ -135,7 +143,7 @@ for Lep in LepCats:
 	cuts[Lep+BCat]=  BoostCats[BCat]\
                            +'&&'+LepCats[Lep]
 
-
+#
 
 #BoostProcCats={}
 ##BoostProcCats['all']='1'

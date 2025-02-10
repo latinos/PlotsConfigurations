@@ -60,157 +60,157 @@ variables['mass_HIGGS'] = {
    'xaxis': 'Higgs Mass [GeV]',
    'fold' : 0,
 }
-variables['classvbf_res_rebin'] = {
-     'name': 'vbfdnn_res',
-     'range' : ([0, 0.1, 0.2,0.3, 0.4,0.5,0.6,0.8,1.0],),
-     'xaxis' : 'VBF output',
-     'fold' : 3,
-     'cuts' : resolvedSR, 
-     'divideByBinWidth':1
-}
-variables['classbkg_res_rebin'] = {
-     'name': 'bkgdnn_res',
-     'range' : ([0, 0.2, 0.4,0.5, 0.6,0.7,0.8,0.9,1.0],),
-     'xaxis' : 'BKG output',
-     'fold'  : 3,
-     'cuts' : resolvedSR, 
-     'divideByBinWidth':1
-}
-variables['classggh_res_rebin'] = {
-     'name': 'gghdnn_res',
-     'range' : ([0, 0.1, 0.2,0.3, 0.4,0.5,0.6,0.8,1.0],),
-     'xaxis' : 'ggH output',
-     'fold'  : 3,
-     'cuts' : resolvedSR, 
-     'divideByBinWidth':1
-}
-variables['classvbf_res'] = {
-     'name': 'vbfdnn_res',
-     'range' : (10,0,1.),
-     'xaxis' : 'VBF output',
-     'fold' : 3,
-     'cuts' : resolvedSR, 
-     'divideByBinWidth':1
-}
-variables['classbkg_res'] = {
-     'name': 'bkgdnn_res',
-     'range' : (10,0,1.),
-     'xaxis' : 'BKG output',
-     'fold'  : 3,
-     'cuts' : resolvedSR, 
-     'divideByBinWidth':1
-}
-variables['classggh_res'] = {
-     'name': 'gghdnn_res',
-     'range' : (10,0,1.),
-     'xaxis' : 'ggH output',
-     'fold'  : 3,
-     'cuts' : resolvedSR, 
-     'divideByBinWidth':1
-}
-
-variables['classvbf_rebin'] = {
-     'name': 'vbfdnn_odd',
-     'range' : ([0, 0.1, 0.2,0.3, 0.4,0.5,0.6,0.8,1.0],),
-     'xaxis' : 'VBF output',
-     'fold' : 3,
-     'cuts' : boostedSR, 
-     'divideByBinWidth':1
-}
-variables['classbkg_rebin'] = {
-     'name': 'bkgdnn_odd',
-     'range' : ([0, 0.2, 0.4,0.5, 0.6,0.7,0.8,0.9,1.0],),
-     'xaxis' : 'BKG output',
-     'fold'  : 3,
-     'cuts' : boostedSR, 
-     'divideByBinWidth':1
-}
-variables['classggh_rebin'] = {
-     'name': 'gghdnn_odd',
-     'range' : ([0, 0.1, 0.2,0.3, 0.4,0.5,0.6,0.8,1.0],),
-     'xaxis' : 'ggH output',
-     'fold'  : 3,
-     'cuts' : boostedSR, 
-     'divideByBinWidth':1
-}
-variables['classvbf_high_rebin'] = {
-     'name': 'vbfdnn_high',
-     'range' : ([0, 0.1, 0.2,0.3, 0.4,0.5,0.6,0.8,1.0],),
-     'xaxis' : 'VBF output',
-     'fold' : 3,
-     'cuts' : boostedSR, 
-     'divideByBinWidth':1
-}
-variables['classbkg_high_rebin'] = {
-     'name': 'bkgdnn_high',
-     'range' : ([0, 0.2, 0.4,0.5, 0.6,0.7,0.8,0.9,1.0],),
-     'xaxis' : 'BKG output',
-     'fold'  : 3,
-     'cuts' : boostedSR, 
-     'divideByBinWidth':1
-}
-variables['classggh_high_rebin'] = {
-     'name': 'gghdnn_high',
-     'range' : ([0, 0.1, 0.2,0.3, 0.4,0.5,0.6,0.8,1.0],),
-     'xaxis' : 'ggH output',
-     'fold'  : 3,
-     'cuts' : boostedSR, 
-     'divideByBinWidth':1
-}
-variables['classvbf'] = {
-     'name': 'vbfdnn_odd',
-     'range' : (10,0,1.),
-     'xaxis' : 'VBF output',
-     'fold' : 3,
-     'cuts' : boostedSR, 
-     'divideByBinWidth':1
-}
-variables['classbkg'] = {
-     'name': 'bkgdnn_odd',
-     'range' : (10,0,1.),
-     'xaxis' : 'BKG output',
-     'fold'  : 3,
-     'cuts' : boostedSR, 
-     'divideByBinWidth':1
-}
-variables['classggh'] = {
-     'name': 'gghdnn_odd',
-     'range' : (10,0,1.),
-     'xaxis' : 'ggH output',
-     'fold'  : 3,
-     'cuts' : boostedSR, 
-     'divideByBinWidth':1
-}
-variables['classvbf_high'] = {
-     'name': 'vbfdnn_high',
-     'range' : (10,0,1.),
-     'xaxis' : 'VBF output',
-     'fold' : 3,
-     'cuts' : boostedSR, 
-     'divideByBinWidth':1
-}
-variables['classbkg_high'] = {
-     'name': 'bkgdnn_high',
-     'range' : (10,0,1.),
-     'xaxis' : 'BKG output',
-     'fold'  : 3,
-     'cuts' : boostedSR, 
-     'divideByBinWidth':1
-}
-variables['classggh_high'] = {
-     'name': 'gghdnn_high',
-     'range' : (10,0,1.),
-     'xaxis' : 'ggH output',
-     'fold'  : 3,
-     'cuts' : boostedSR, 
-     'divideByBinWidth':1
-}
-variables['Pt_ratio_mass'] = {
-   'name' : 'HvOverJJ[0]',
-   'range': (20, 0, 1.),
-   'xaxis': 'p_{t}^{W}/m_{Xp_{t}^{W}/m_{X}}',
-   'fold' : 0
-}
+#variables['classvbf_res_rebin'] = {
+#     'name': 'vbfdnn_res',
+#     'range' : ([0, 0.1, 0.2,0.3, 0.4,0.5,0.6,0.8,1.0],),
+#     'xaxis' : 'VBF output',
+#     'fold' : 3,
+#     'cuts' : resolvedSR, 
+#     'divideByBinWidth':1
+#}
+#variables['classbkg_res_rebin'] = {
+#     'name': 'bkgdnn_res',
+#     'range' : ([0, 0.2, 0.4,0.5, 0.6,0.7,0.8,0.9,1.0],),
+#     'xaxis' : 'BKG output',
+#     'fold'  : 3,
+#     'cuts' : resolvedSR, 
+#     'divideByBinWidth':1
+#}
+#variables['classggh_res_rebin'] = {
+#     'name': 'gghdnn_res',
+#     'range' : ([0, 0.1, 0.2,0.3, 0.4,0.5,0.6,0.8,1.0],),
+#     'xaxis' : 'ggH output',
+#     'fold'  : 3,
+#     'cuts' : resolvedSR, 
+#     'divideByBinWidth':1
+#}
+#variables['classvbf_res'] = {
+#     'name': 'vbfdnn_res',
+#     'range' : (10,0,1.),
+#     'xaxis' : 'VBF output',
+#     'fold' : 3,
+#     'cuts' : resolvedSR, 
+#     'divideByBinWidth':1
+#}
+#variables['classbkg_res'] = {
+#     'name': 'bkgdnn_res',
+#     'range' : (10,0,1.),
+#     'xaxis' : 'BKG output',
+#     'fold'  : 3,
+#     'cuts' : resolvedSR, 
+#     'divideByBinWidth':1
+#}
+#variables['classggh_res'] = {
+#     'name': 'gghdnn_res',
+#     'range' : (10,0,1.),
+#     'xaxis' : 'ggH output',
+#     'fold'  : 3,
+#     'cuts' : resolvedSR, 
+#     'divideByBinWidth':1
+#}
+#
+#variables['classvbf_rebin'] = {
+#     'name': 'vbfdnn_odd',
+#     'range' : ([0, 0.1, 0.2,0.3, 0.4,0.5,0.6,0.8,1.0],),
+#     'xaxis' : 'VBF output',
+#     'fold' : 3,
+#     'cuts' : boostedSR, 
+#     'divideByBinWidth':1
+#}
+#variables['classbkg_rebin'] = {
+#     'name': 'bkgdnn_odd',
+#     'range' : ([0, 0.2, 0.4,0.5, 0.6,0.7,0.8,0.9,1.0],),
+#     'xaxis' : 'BKG output',
+#     'fold'  : 3,
+#     'cuts' : boostedSR, 
+#     'divideByBinWidth':1
+#}
+#variables['classggh_rebin'] = {
+#     'name': 'gghdnn_odd',
+#     'range' : ([0, 0.1, 0.2,0.3, 0.4,0.5,0.6,0.8,1.0],),
+#     'xaxis' : 'ggH output',
+#     'fold'  : 3,
+#     'cuts' : boostedSR, 
+#     'divideByBinWidth':1
+#}
+#variables['classvbf_high_rebin'] = {
+#     'name': 'vbfdnn_high',
+#     'range' : ([0, 0.1, 0.2,0.3, 0.4,0.5,0.6,0.8,1.0],),
+#     'xaxis' : 'VBF output',
+#     'fold' : 3,
+#     'cuts' : boostedSR, 
+#     'divideByBinWidth':1
+#}
+#variables['classbkg_high_rebin'] = {
+#     'name': 'bkgdnn_high',
+#     'range' : ([0, 0.2, 0.4,0.5, 0.6,0.7,0.8,0.9,1.0],),
+#     'xaxis' : 'BKG output',
+#     'fold'  : 3,
+#     'cuts' : boostedSR, 
+#     'divideByBinWidth':1
+#}
+#variables['classggh_high_rebin'] = {
+#     'name': 'gghdnn_high',
+#     'range' : ([0, 0.1, 0.2,0.3, 0.4,0.5,0.6,0.8,1.0],),
+#     'xaxis' : 'ggH output',
+#     'fold'  : 3,
+#     'cuts' : boostedSR, 
+#     'divideByBinWidth':1
+#}
+#variables['classvbf'] = {
+#     'name': 'vbfdnn_odd',
+#     'range' : (10,0,1.),
+#     'xaxis' : 'VBF output',
+#     'fold' : 3,
+#     'cuts' : boostedSR, 
+#     'divideByBinWidth':1
+#}
+#variables['classbkg'] = {
+#     'name': 'bkgdnn_odd',
+#     'range' : (10,0,1.),
+#     'xaxis' : 'BKG output',
+#     'fold'  : 3,
+#     'cuts' : boostedSR, 
+#     'divideByBinWidth':1
+#}
+#variables['classggh'] = {
+#     'name': 'gghdnn_odd',
+#     'range' : (10,0,1.),
+#     'xaxis' : 'ggH output',
+#     'fold'  : 3,
+#     'cuts' : boostedSR, 
+#     'divideByBinWidth':1
+#}
+#variables['classvbf_high'] = {
+#     'name': 'vbfdnn_high',
+#     'range' : (10,0,1.),
+#     'xaxis' : 'VBF output',
+#     'fold' : 3,
+#     'cuts' : boostedSR, 
+#     'divideByBinWidth':1
+#}
+#variables['classbkg_high'] = {
+#     'name': 'bkgdnn_high',
+#     'range' : (10,0,1.),
+#     'xaxis' : 'BKG output',
+#     'fold'  : 3,
+#     'cuts' : boostedSR, 
+#     'divideByBinWidth':1
+#}
+#variables['classggh_high'] = {
+#     'name': 'gghdnn_high',
+#     'range' : (10,0,1.),
+#     'xaxis' : 'ggH output',
+#     'fold'  : 3,
+#     'cuts' : boostedSR, 
+#     'divideByBinWidth':1
+#}
+#variables['Pt_ratio_mass'] = {
+#   'name' : 'HvOverJJ[0]',
+#   'range': (20, 0, 1.),
+#   'xaxis': 'p_{t}^{W}/m_{Xp_{t}^{W}/m_{X}}',
+#   'fold' : 0
+#}
 
 variables['HvOverJJ_rebin'] = {
    'name' : 'HvOverJJ[0]',
@@ -226,7 +226,7 @@ variables['wlep_mass'] = {
 }
 variables['wlep_eta'] = {
     'name' : 'HM_Wlep_eta_Puppi',
-    'range': (40, -5, 5),
+    'range': (40, -4, 4),
     'xaxis': 'reconstr. W lep eta [GeV]',
     'fold' : 0, 
 }
@@ -250,7 +250,7 @@ variables['whad_mass'] = {
 }
 variables['whad_eta'] = {
     'name' : 'HM_Whad_eta',
-    'range': (40, -5, 5),
+    'range': (40, -4, 4),
     'xaxis': 'reconstr. W had eta [GeV]',
     'fold' : 0, 
 }
@@ -261,16 +261,23 @@ variables['lep_pt'] = {
      'cuts' : resolved ,
      'fold' : 3,
 }
-variables['lep_phi'] = {
-     'name': 'Lepton_phi',
-     'range' : (30,-3.14,3.14),
-     'xaxis' : 'lep_phi',
+variables['lep_pt_zoom'] = {
+     'name': 'Lepton_pt',
+     'range' : (50,0,150),
+     'xaxis' : 'lep_pt',
      'cuts' : resolved ,
      'fold' : 3,
 }
+#variables['lep_phi'] = {
+#     'name': 'Lepton_phi',
+#     'range' : (30,-3.14,3.14),
+#     'xaxis' : 'lep_phi',
+#     'cuts' : resolved ,
+#     'fold' : 3,
+#}
 variables['lep_eta'] = {
      'name': 'Lepton_eta',
-     'range' : (30,-5,5),
+     'range' : (30,-3,3),
      'xaxis' : 'lep_eta',
      'cuts' : resolved ,
      'fold' : 3,
@@ -278,6 +285,13 @@ variables['lep_eta'] = {
 variables['jet1_pt'] = {
      'name': 'CleanJet_pt[CleanJet_jetIdx[Alt$(HM_idx_j1 >= 0, 0)*HM_idx_j1]]',
      'range' : (30,0,1500),
+     'xaxis' : 'jet1_pt',
+     'cuts' : resolved ,
+     'fold' : 3,
+}
+variables['jet1_pt_zoom'] = {
+     'name': 'CleanJet_pt[CleanJet_jetIdx[Alt$(HM_idx_j1 >= 0, 0)*HM_idx_j1]]',
+     'range' : (50,0,150),
      'xaxis' : 'jet1_pt',
      'cuts' : resolved ,
      'fold' : 3,
@@ -291,116 +305,115 @@ variables['jet1_phi'] = {
 }
 variables['jet1_eta'] = {
      'name': 'CleanJet_eta[CleanJet_jetIdx[Alt$(HM_idx_j1 >= 0, 0)*HM_idx_j1]]',
-     'range' : (30,-5,5),
+     'range' : (40,-4,4),
      'xaxis' : 'jet1_eta',
      'cuts' : resolved ,
      'fold' : 3,
 }
-#variables['jet1_mass'] = {
-#     'name': 'CleanJet_mass[CleanJet_jetIdx[Alt$(HM_idx_j1 >= 0, 0)*HM_idx_j1]]',
-#     'range' : (40,0,120),
-#     'xaxis' : 'jet1_mass',
+##variables['jet1_mass'] = {
+##     'name': 'CleanJet_mass[CleanJet_jetIdx[Alt$(HM_idx_j1 >= 0, 0)*HM_idx_j1]]',
+##     'range' : (40,0,120),
+##     'xaxis' : 'jet1_mass',
+##     'cuts' : resolved ,
+##     'fold' : 3,
+##}
+#variables['res_w1_pt_new'] = {
+#     'name': 'res_w1_pt',
+#     'range' : (30,0,150),
+#     'xaxis' : 'w1_pt',
 #     'cuts' : resolved ,
 #     'fold' : 3,
 #}
-variables['res_w1_pt_new'] = {
-     'name': 'res_w1_pt',
-     'range' : (30,0,150),
-     'xaxis' : 'w1_pt',
-     'cuts' : resolved ,
-     'fold' : 3,
-}
-variables['res_w2_pt_new'] = {
-     'name': 'res_w2_pt',
-     'range' : (30,0,150),
-     'xaxis' : 'w2_pt',
-     'cuts' : resolved ,
-     'fold' : 3,
-}
-variables['jet2_pt'] = {
-     'name': 'CleanJet_pt[CleanJet_jetIdx[Alt$(HM_idx_j2 >= 0, 0)*HM_idx_j2]]',
-     'range' : (30,0,1500),
-     'xaxis' : 'jet2_pt',
-     'cuts' : resolved ,
-     'fold' : 3,
-}
-variables['jet2_phi'] = {
-     'name': 'CleanJet_phi[CleanJet_jetIdx[Alt$(HM_idx_j2 >= 0, 0)*HM_idx_j2]]',
-     'range' : (30,-3.14,3.14),
-     'xaxis' : 'jet2_phi',
-     'cuts' : resolved ,
-     'fold' : 3,
-}
-variables['jet2_eta'] = {
-     'name': 'CleanJet_eta[CleanJet_jetIdx[Alt$(HM_idx_j2 >= 0, 0)*HM_idx_j2]]',
-     'range' : (30,-5,5),
-     'xaxis' : 'jet2_eta',
-     'cuts' : resolved ,
-     'fold' : 3,
-}
-#variables['jet2_mass'] = {
-#     'name': 'CleanJet_mass[CleanJet_jetIdx[Alt$(HM_idx_j2 >= 0, 0)*HM_idx_j2]]',
-#     'range' : (40,0,120),
-#     'xaxis' : 'jet2_mass',
+#variables['res_w2_pt_new'] = {
+#     'name': 'res_w2_pt',
+#     'range' : (30,0,150),
+#     'xaxis' : 'w2_pt',
 #     'cuts' : resolved ,
 #     'fold' : 3,
 #}
-#variables['events']  = {
-#    'name' : '1',
-#    'range': (1,0,2),
-#    'xaxis': 'events',
-#    'fold' : 3,
+#variables['jet2_pt'] = {
+#     'name': 'CleanJet_pt[CleanJet_jetIdx[Alt$(HM_idx_j2 >= 0, 0)*HM_idx_j2]]',
+#     'range' : (50,0,150),
+#     'xaxis' : 'jet2_pt',
+#     'cuts' : resolved ,
+#     'fold' : 3,
 #}
-#variables['HvOverJJ'] = {
-#   'name' : 'HvOverJJ[0]',
-#   'range': (20, 0, 1.),
-#   'xaxis': 'Min el pt vs had pt',
-#   'fold' : 0
+#variables['jet2_phi'] = {
+#     'name': 'CleanJet_phi[CleanJet_jetIdx[Alt$(HM_idx_j2 >= 0, 0)*HM_idx_j2]]',
+#     'range' : (30,-3.14,3.14),
+#     'xaxis' : 'jet2_phi',
+#     'cuts' : resolved ,
+#     'fold' : 3,
 #}
-#variables['HvOverJJ_rebin'] = {
-#   'name' : 'HvOverJJ[0]',
-#   'range': ([0, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7,1],),
-#   'xaxis': 'Min el pt vs had pt',
-#   'fold' : 0
+#variables['jet2_eta'] = {
+#     'name': 'CleanJet_eta[CleanJet_jetIdx[Alt$(HM_idx_j2 >= 0, 0)*HM_idx_j2]]',
+#     'range' : (30,-5,5),
+#     'xaxis' : 'jet2_eta',
+#     'cuts' : resolved ,
+#     'fold' : 3,
 #}
-#variables['HvOverJJ_new'] = {
-#   'name' : 'HvOverJJ[0]',
-#   'range': ([0, 0.4, 0.425, 0.45, 0.475, 0.5, 0.55, 0.6, 0.65, 0.7,0.8,1],),
-#   'xaxis': 'Min el pt vs had pt',
-#   'fold' : 0
-#}
-#variables['mass_HIGGS_ResVBF'] = {
-#   'name' : 'mass_HIGGS_JJ[0]',
-#   'range': ([0, 150, 200, 260, 300, 350, 400, 450, 500, 550, 600,
-#              650, 700, 750, 800, 850, 900, 950, 1000, 1100, 1300, 1500, 1700, 2000, 3000],),
-#   'xaxis': 'Higgs Mass [GeV]',
-#   'fold' : 0,
-#   'cuts' : resolvedSR_isVBF, 
-#}
-#variables['mass_HIGGS_ResGGH'] = {
-#   'name' : 'mass_HIGGS_JJ[0]',
-#   'range': ([0, 260, 300, 350, 400, 450, 500, 550, 600,
-#              650, 700, 750, 800, 850, 900, 950, 1000, 1100, 1300, 1500, 1700, 3000],),
-#   'xaxis': 'Higgs Mass [GeV]',
-#   'fold' : 0,
-#   'cuts' : resolvedSR_isGGH, 
-#}
-#variables['mass_HIGGS_ResBKG'] = {
-#   'name' : 'mass_HIGGS_JJ[0]',
-#   'range': ([0, 200, 260, 300, 350, 400, 450, 500, 550, 600,
-#              650, 700, 750, 800, 850, 900, 950, 1000, 1100, 1300,1500,1700,3000],),
-#   'xaxis': 'Higgs Mass [GeV]',
-#   'fold' : 0,
-#   'cuts' : resolvedSR_isBKG, 
-#}
-#variables['mass_HIGGS_twojet_binned'] = {
-#   'name' : 'mass_HIGGS_JJ[0]',
-#   'range': ([0, 150, 200, 260, 300, 350, 400, 450, 500, 550, 600,
-#              650, 700, 750, 800, 850, 900, 950, 1000, 1100, 1300, 1500, 3000],),
-#   'xaxis': 'Higgs Mass [GeV]',
-#   'fold' : 0,
-#   'cuts' : controlRegions, 
-#}
+##variables['jet2_mass'] = {
+##     'name': 'CleanJet_mass[CleanJet_jetIdx[Alt$(HM_idx_j2 >= 0, 0)*HM_idx_j2]]',
+##     'range' : (40,0,120),
+##     'xaxis' : 'jet2_mass',
+##     'cuts' : resolved ,
+##     'fold' : 3,
+##}
+##variables['events']  = {
+##    'name' : '1',
+##    'range': (1,0,2),
+##    'xaxis': 'events',
+##    'fold' : 3,
+##}
+##variables['HvOverJJ'] = {
+##   'name' : 'HvOverJJ[0]',
+##   'range': (20, 0, 1.),
+##   'xaxis': 'Min el pt vs had pt',
+##   'fold' : 0
+##}
+##variables['HvOverJJ_rebin'] = {
+##   'name' : 'HvOverJJ[0]',
+##   'range': ([0, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7,1],),
+##   'xaxis': 'Min el pt vs had pt',
+##   'fold' : 0
+##}
+##variables['HvOverJJ_new'] = {
+##   'name' : 'HvOverJJ[0]',
+##   'range': ([0, 0.4, 0.425, 0.45, 0.475, 0.5, 0.55, 0.6, 0.65, 0.7,0.8,1],),
+##   'xaxis': 'Min el pt vs had pt',
+##   'fold' : 0
+##}
+##variables['mass_HIGGS_ResVBF'] = {
+##   'name' : 'mass_HIGGS_JJ[0]',
+##   'range': ([0, 150, 200, 260, 300, 350, 400, 450, 500, 550, 600,
+##              650, 700, 750, 800, 850, 900, 950, 1000, 1100, 1300, 1500, 1700, 2000, 3000],),
+##   'xaxis': 'Higgs Mass [GeV]',
+##   'fold' : 0,
+##   'cuts' : resolvedSR_isVBF, 
+##}
+##variables['mass_HIGGS_ResGGH'] = {
+##   'name' : 'mass_HIGGS_JJ[0]',
+##   'range': ([0, 260, 300, 350, 400, 450, 500, 550, 600,
+##              650, 700, 750, 800, 850, 900, 950, 1000, 1100, 1300, 1500, 1700, 3000],),
+##   'xaxis': 'Higgs Mass [GeV]',
+##   'fold' : 0,
+##   'cuts' : resolvedSR_isGGH, 
+##}
+##variables['mass_HIGGS_ResBKG'] = {
+##   'name' : 'mass_HIGGS_JJ[0]',
+##   'range': ([0, 200, 260, 300, 350, 400, 450, 500, 550, 600,
+##              650, 700, 750, 800, 850, 900, 950, 1000, 1100, 1300,1500,1700,3000],),
+##   'xaxis': 'Higgs Mass [GeV]',
+##   'fold' : 0,
+##   'cuts' : resolvedSR_isBKG, 
+##}
+variables['mass_HIGGS_twojet_binned'] = {
+   'name' : 'mass_HIGGS_JJ[0]',
+   'range': ([0, 150, 200, 260, 300, 350, 400, 450, 500, 550, 600,
+              650, 700, 750, 800, 850, 900, 950, 1000, 1100, 1300, 1500, 3000],),
+   'xaxis': 'Higgs Mass [GeV]',
+   'fold' : 0,
+}
 #variables['wlep_pt'] = {
 #    'name' : 'HM_Wlep_pt_Puppi',
 #    'range': (40, 0, 800),

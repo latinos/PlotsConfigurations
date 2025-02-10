@@ -1676,20 +1676,73 @@ nuisances['QCDscale_VH_ACCEPT']  = {
 #        'FAKE': '1.3'
 #    },
 #}
-nuisances['fake_syst_Mu_2018'] = {
-    'name': 'CMS_fake_syst_Mu_2018',
+nuisances['fake_syst_Mu_BarPos_2018'] = {
+    'name': 'CMS_fake_syst_Mu_BarPos_2018',
     'type': 'lnN',
     'samples': {
-        'FAKE_mu': '1.3',
+        'FAKE_mu_barrel_pos': '1.3',
     },
 }
-nuisances['fake_syst_El_2018'] = {
-    'name': 'CMS_fake_syst_El_2018',
+nuisances['fake_syst_Mu_BarNeg_2018'] = {
+    'name': 'CMS_fake_syst_Mu_BarNeg_2018',
     'type': 'lnN',
     'samples': {
-        'FAKE_el': '1.3',
+        'FAKE_mu_barrel_neg': '1.3',
+
     },
 }
+nuisances['fake_syst_Mu_EndPos_2018'] = {
+    'name': 'CMS_fake_syst_Mu_EndPos_2018',
+    'type': 'lnN',
+    'samples': {
+        'FAKE_mu_endcap_pos': '1.3',
+    },
+}
+nuisances['fake_syst_Mu_EndNeg_2018'] = {
+    'name': 'CMS_fake_syst_Mu_EndNeg_2018',
+    'type': 'lnN',
+    'samples': {
+        'FAKE_mu_endcap_neg': '1.3',
+
+    },
+}
+nuisances['fake_syst_El_BarPos_2018'] = {
+    'name': 'CMS_fake_syst_El_BarPos_2018',
+    'type': 'lnN',
+    'samples': {
+        'FAKE_el_barrel_pos': '1.3',
+    },
+}
+nuisances['fake_syst_El_BarNeg_2018'] = {
+    'name': 'CMS_fake_syst_El_BarNeg_2018',
+    'type': 'lnN',
+    'samples': {
+        'FAKE_el_barrel_neg': '1.3',
+
+    },
+}
+nuisances['fake_syst_El_EndPos_2018'] = {
+    'name': 'CMS_fake_syst_El_EndPos_2018',
+    'type': 'lnN',
+    'samples': {
+        'FAKE_el_endcap_pos': '1.3',
+    },
+}
+nuisances['fake_syst_El_EndNeg_2018'] = {
+    'name': 'CMS_fake_syst_El_EndNeg_2018',
+    'type': 'lnN',
+    'samples': {
+        'FAKE_el_endcap_neg': '1.3',
+
+    },
+}
+#nuisances['fake_syst_El_2018'] = {
+#    'name': 'CMS_fake_syst_El_2018',
+#    'type': 'lnN',
+#    'samples': {
+#        'FAKE_el': '1.3',
+#    },
+#}
 ##nuisances['fake_ele'] = {
 ##    'name': 'CMS_fake_e_2018',
 ##    'kind': 'weight',

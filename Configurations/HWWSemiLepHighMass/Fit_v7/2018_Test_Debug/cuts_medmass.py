@@ -51,13 +51,13 @@ ResCatsSR={}
 ResCatsSR['ResolvedSR_']='(1 \
                        && two_jet_res[0] \
                        && resolvedSignalWMass[0] \
-                       && mass_HIGGS_JJ[0] >  350 \
-                       && mass_HIGGS_JJ[0] <= 550 \
                        && bVeto[0])'
-ResCatsSR_nocut={}
-ResCatsSR['ResolvedSR_NOCUT']='(1 \
+ResCatsSR_cut={}
+ResCatsSR_cut['ResolvedSR_massWindow']='(1 \
                        && two_jet_res[0] \
                        && resolvedSignalWMass[0] \
+                       && mass_HIGGS_JJ[0] <= 550 \
+		       && mass_HIGGS_JJ[0] >  350) \
                        && bVeto[0])'
 #BoostCats={}
 #BoostCatsSR['BoostedSR_']='(1 \
@@ -131,11 +131,11 @@ for Lep in LepCats:
 
 for Lep in LepCats:
     for BProcCat in ResProcCats:
-        for BCat in ResCatsSR_nocut:  
-		cuts[Lep+BCat+BProcCat]=  ResCatsSR[BCat]\
+        for BCat in ResCatsSR_cut:  
+		cuts[Lep+BCat+BProcCat]=  ResCatsSR_cut[BCat]\
                 	            +'&&'+ResProcCats[BProcCat]\
                 	            +'&&'+LepCats[Lep]
-
+#
 #for Lep in LepCats:
 #    for BProcCat in BoostProcCats_H:
 #        for BCat in BoostCatsSR:  

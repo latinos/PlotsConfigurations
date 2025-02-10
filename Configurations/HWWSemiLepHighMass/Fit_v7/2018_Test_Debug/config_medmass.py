@@ -3,7 +3,7 @@
 treeName = 'Events'
 
 #tag = 'hm_2018_Inte'
-tag = 'hm_2018_SplitTheTwo'
+tag = 'hm_2018_SplitTheTwo_out'
 
 # used by mkShape to define output directory for root files
 outputDir = 'rootFile_Debug'
@@ -12,7 +12,7 @@ outputDir = 'rootFile_Debug'
 aliasesFile = 'aliases_medmass.py'#aliases_highmass to use the high mass trained DNN
 
 # file with list of variables
-variablesFile = 'variables_fitUPD.py'
+variablesFile = 'variables_fit.py'
 # variablesFile = 'variablesPlot.py'
 # variablesFile = 'variablesLimits.py'
 
@@ -23,14 +23,14 @@ cutsFile = 'cuts_medmass.py'
 samplesFile = 'samples_medmass.py'
 
 # file with list of samples
-plotFile = 'plot_medmass.py'
+plotFile = 'plot_medmass_isGGH.py'
 
 # luminosity to normalize to (in 1/fb)
 lumi = 59.7
 
 # used by mkPlot to define output directory for plots
 # different from "outputDir" to do things more tidy
-outputDirPlots = 'Plot_SR_INCL'
+outputDirPlots = 'Plot_SR_INCL__OUT_NEW'
 
 
 # used by mkDatacards to define output directory for datacards
