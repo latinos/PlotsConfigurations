@@ -1,0 +1,9 @@
+executable = ./do_add_hnom.sh
+universe = vanilla
+arguments = $(Signal)
+output = /afs/cern.ch/user/m/mihawksw/private/azh/analysis/jobs/add_hnom.out
+error = /afs/cern.ch/user/m/mihawksw/private/azh/analysis/jobs/add_hnom.err
+log = /afs/cern.ch/user/m/mihawksw/private/azh/analysis/jobs/add_hnom.log
+MY.SingularityImage = "/cvmfs/unpacked.cern.ch/gitlab-registry.cern.ch/cms-cat/cmssw-lxplus/cmssw-el7-lxplus:latest/"
++JobFlavour = "testmatch"
+queue

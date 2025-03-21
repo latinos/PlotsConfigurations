@@ -137,6 +137,7 @@ AZH_patch_2016noHIPM::evaluate(unsigned)
     }
 
     //1 b-jet signal region definition
+    float ChisqMin_onebjet = 9999;
     TLorentzVector WJet1_best_onebjet;
     TLorentzVector WJet2_best_onebjet;
     TLorentzVector bJetHadronic_best_onebjet;
@@ -169,8 +170,8 @@ AZH_patch_2016noHIPM::evaluate(unsigned)
 			float TopMassLeptonic_onebjet = (XLepton + Neutrino + bJetLeptonic_onebjet).M();
 			float TopMassHadronic_onebjet = (WJet1_onebjet + WJet2_onebjet + bJetHadronic_onebjet).M();
 			float  Chisq_onebjet = std::pow((TopMassLeptonic_onebjet-TopMassLeptonic_true)/sigmaleptonic,2) + std::pow((TopMassHadronic_onebjet-TopMassHadronic_true)/sigmahadronic, 2);
-			if(Chisq_onebjet < ChisqMin) { 
-			    ChisqMin = Chisq_onebjet;
+			if(Chisq_onebjet < ChisqMin_onebjet) { 
+			    ChisqMin_onebjet = Chisq_onebjet;
 			    WJet1_best_onebjet = WJet1_onebjet;
 			    WJet2_best_onebjet = WJet2_onebjet;
 			    bJetHadronic_best_onebjet = bJetHadronic_onebjet;
@@ -252,6 +253,11 @@ else if (variable == "AZH_ChiSquare") {
 
 }
 
+else if (variable == "AZH_ChiSquare_onebjet") {
+    if (nJet < 4 || nbJet != 1) return -9999.0;
+    return ChisqMin_onebjet;
+
+}
 else if (variable == "AZH_Tophadronic") {
     if (nJet < 4 || nbJet < 2) return -9999.0;
     return (WJet1_best +  WJet2_best + bJetHadronic_best).M();

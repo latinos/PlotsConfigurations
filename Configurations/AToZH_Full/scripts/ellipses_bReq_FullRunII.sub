@@ -1,0 +1,9 @@
+executable = ./ellipses_bReq_FullRunII.sh
+universe = vanilla
+arguments = $(Signal)
+output = ./condor_jobs/ellipses_bReq/$(Signal).out
+error = ./condor_jobs/ellipses_bReq/$(Signal).err
+log = ./condor_jobs/ellipses_bReq/$(Signal).log
+MY.SingularityImage = "/cvmfs/unpacked.cern.ch/gitlab-registry.cern.ch/cms-cat/cmssw-lxplus/cmssw-el7-lxplus:latest/"
+max_materialize = 20
+queue Signal from ./signals.txt 
