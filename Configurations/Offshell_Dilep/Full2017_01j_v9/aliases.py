@@ -487,3 +487,9 @@ aliases['dnnScore_VBF_OFF'] = {
     'samples' : ['qqH_bonly_off'],
     'args': ("VBF_OFF")
 }
+
+
+aliases['ptll_0j'] = {
+    'expr': '((0.55665 + 0.0124063 * ptll - 6.41401e-05 * ptll * ptll + 4.67229e-08 * ptll * ptll * ptll) * (ptll > 30. && ptll < 100. && zeroJet) + (1.0) * (ptll > 100. && zeroJet) + (1.0) * (oneJet))',
+    'samples': ['WW', 'ggH_bonly_on', 'qqH_bonly_on']
+}
