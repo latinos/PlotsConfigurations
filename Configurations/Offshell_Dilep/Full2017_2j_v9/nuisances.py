@@ -70,153 +70,191 @@ nuisances['lumi_Correlated_2017_2018'] = {
 # }
 
 fake_syst_bb_pt_ll_50 = "1.3 * (Lepton_pt[0] <= 50 && Lepton_pt[1] <= 50 && abs(Lepton_eta[0]) <= 0.9 && abs(Lepton_eta[1]) <= 0.9) + 1.0 * !(Lepton_pt[0] <= 50 && Lepton_pt[1] <= 50 && abs(Lepton_eta[0]) <= 0.9 && abs(Lepton_eta[1]) <= 0.9)"
-
-nuisances['fake_syst_bb_pt_ll_50'] = {
-    'name': 'fake_syst_bb_pt_ll_50',
-    'type': 'shape',
-    'kind'  : 'weight',
-    'samples': {
-        'Fake': [fake_syst_bb_pt_ll_50, "1"],
-        },
-    'symmetrize' : True,
-}
-
 fake_syst_bb_pt_gl_50 = "1.3 * (Lepton_pt[0] > 50 && Lepton_pt[1] <= 50 && abs(Lepton_eta[0]) <= 0.9 && abs(Lepton_eta[1]) <= 0.9) + 1.0 * !(Lepton_pt[0] > 50 && Lepton_pt[1] <= 50 && abs(Lepton_eta[0]) <= 0.9 && abs(Lepton_eta[1]) <= 0.9)"
-
-nuisances['fake_syst_bb_pt_gl_50'] = {
-    'name': 'fake_syst_bb_pt_gl_50',
-    'type': 'shape',
-    'kind'  : 'weight',
-    'samples': {
-        'Fake': [fake_syst_bb_pt_gl_50, "1"],
-        },
-    'symmetrize' : True,
-}
-
 fake_syst_bb_pt_gg_50 = "1.3 * (Lepton_pt[0] > 50 && Lepton_pt[1] > 50 && abs(Lepton_eta[0]) <= 0.9 && abs(Lepton_eta[1]) <= 0.9) + 1.0 * !(Lepton_pt[0] > 50 && Lepton_pt[1] > 50 && abs(Lepton_eta[0]) <= 0.9 && abs(Lepton_eta[1]) <= 0.9)"
-
-nuisances['fake_syst_bb_pt_gg_50'] = {
-    'name': 'fake_syst_bb_pt_gg_50',
-    'type': 'shape',
-    'kind'  : 'weight',
-    'samples': {
-        'Fake': [fake_syst_bb_pt_gg_50, "1"],
-        },
-    'symmetrize' : True,
-}
-
-
-################################
-
 fake_syst_ee_pt_ll_50 = "1.3 * (Lepton_pt[0] <= 50 && Lepton_pt[1] <= 50 && abs(Lepton_eta[0]) > 0.9 && abs(Lepton_eta[1]) > 0.9) + 1.0 * !(Lepton_pt[0] <= 50 && Lepton_pt[1] <= 50 && abs(Lepton_eta[0]) > 0.9 && abs(Lepton_eta[1]) > 0.9)"
-
-nuisances['fake_syst_ee_pt_ll_50'] = {
-    'name': 'fake_syst_ee_pt_ll_50',
-    'type': 'shape',
-    'kind'  : 'weight',
-    'samples': {
-        'Fake': [fake_syst_ee_pt_ll_50, "1"],
-        },
-    'symmetrize' : True,
-}
-
 fake_syst_ee_pt_gl_50 = "1.3 * (Lepton_pt[0] > 50 && Lepton_pt[1] <= 50 && abs(Lepton_eta[0]) > 0.9 && abs(Lepton_eta[1]) > 0.9) + 1.0 * !(Lepton_pt[0] > 50 && Lepton_pt[1] <= 50 && abs(Lepton_eta[0]) > 0.9 && abs(Lepton_eta[1]) > 0.9)"
-
-nuisances['fake_syst_ee_pt_gl_50'] = {
-    'name': 'fake_syst_ee_pt_gl_50',
-    'type': 'shape',
-    'kind'  : 'weight',
-    'samples': {
-        'Fake': [fake_syst_ee_pt_gl_50, "1"],
-        },
-    'symmetrize' : True,
-}
-
 fake_syst_ee_pt_gg_50 = "1.3 * (Lepton_pt[0] > 50 && Lepton_pt[1] > 50 && abs(Lepton_eta[0]) > 0.9 && abs(Lepton_eta[1]) > 0.9) + 1.0 * !(Lepton_pt[0] > 50 && Lepton_pt[1] > 50 && abs(Lepton_eta[0]) > 0.9 && abs(Lepton_eta[1]) > 0.9)"
-
-nuisances['fake_syst_ee_pt_gg_50'] = {
-    'name': 'fake_syst_ee_pt_gg_50',
-    'type': 'shape',
-    'kind'  : 'weight',
-    'samples': {
-        'Fake': [fake_syst_ee_pt_gg_50, "1"],
-        },
-    'symmetrize' : True,
-}
-
-################################
-
 fake_syst_be_pt_ll_50 = "1.3 * (Lepton_pt[0] <= 50 && Lepton_pt[1] <= 50 && ((abs(Lepton_eta[0]) <= 0.9 && abs(Lepton_eta[1]) > 0.9) || (abs(Lepton_eta[0]) > 0.9 && abs(Lepton_eta[1]) <= 0.9))) + 1.0 * !(Lepton_pt[0] <= 50 && Lepton_pt[1] <= 50 && ((abs(Lepton_eta[0]) <= 0.9 && abs(Lepton_eta[1]) > 0.9) || (abs(Lepton_eta[0]) > 0.9 && abs(Lepton_eta[1]) <= 0.9)))"
-
-nuisances['fake_syst_be_pt_ll_50'] = {
-    'name': 'fake_syst_be_pt_ll_50',
-    'type': 'shape',
-    'kind'  : 'weight',
-    'samples': {
-        'Fake': [fake_syst_be_pt_ll_50, "1"],
-        },
-    'symmetrize' : True,
-}
-
 fake_syst_be_pt_gl_50 = "1.3 * (Lepton_pt[0] > 50 && Lepton_pt[1] <= 50 && ((abs(Lepton_eta[0]) <= 0.9 && abs(Lepton_eta[1]) > 0.9) || (abs(Lepton_eta[0]) > 0.9 && abs(Lepton_eta[1]) <= 0.9))) + 1.0 * !(Lepton_pt[0] > 50 && Lepton_pt[1] <= 50 && ((abs(Lepton_eta[0]) <= 0.9 && abs(Lepton_eta[1]) > 0.9) || (abs(Lepton_eta[0]) > 0.9 && abs(Lepton_eta[1]) <= 0.9)))"
-
-nuisances['fake_syst_be_pt_gl_50'] = {
-    'name': 'fake_syst_be_pt_gl_50',
-    'type': 'shape',
-    'kind'  : 'weight',
-    'samples': {
-        'Fake': [fake_syst_be_pt_gl_50, "1"],
-        },
-    'symmetrize' : True,
-}
-
 fake_syst_be_pt_gg_50 = "1.3 * (Lepton_pt[0] > 50 && Lepton_pt[1] > 50 && ((abs(Lepton_eta[0]) <= 0.9 && abs(Lepton_eta[1]) > 0.9) || (abs(Lepton_eta[0]) > 0.9 && abs(Lepton_eta[1]) <= 0.9))) + 1.0 * !(Lepton_pt[0] > 50 && Lepton_pt[1] > 50 && ((abs(Lepton_eta[0]) <= 0.9 && abs(Lepton_eta[1]) > 0.9) || (abs(Lepton_eta[0]) > 0.9 && abs(Lepton_eta[1]) <= 0.9)))"
 
-nuisances['fake_syst_be_pt_gg_50'] = {
-    'name': 'fake_syst_be_pt_gg_50',
-    'type': 'shape',
-    'kind'  : 'weight',
-    'samples': {
-        'Fake': [fake_syst_be_pt_gg_50, "1"],
+for cut in cuts:    
+    nuisances['fake_syst_bb_pt_ll_50_'+cut] = {
+        'name': 'fake_syst_bb_pt_ll_50_'+cut,
+        'type': 'shape',
+        'kind'  : 'weight',
+        'samples': {
+            'Fake': [fake_syst_bb_pt_ll_50, "1"],
         },
-    'symmetrize' : True,
-}
+        'cuts' : [cut],
+        'symmetrize' : True,
+    }
+    
+    nuisances['fake_syst_bb_pt_gl_50_'+cut] = {
+        'name': 'fake_syst_bb_pt_gl_50_'+cut,
+        'type': 'shape',
+        'kind'  : 'weight',
+        'samples': {
+            'Fake': [fake_syst_bb_pt_gl_50, "1"],
+        },
+        'cuts' : [cut],
+        'symmetrize' : True,
+    }
+
+    nuisances['fake_syst_bb_pt_gg_50_'+cut] = {
+        'name': 'fake_syst_bb_pt_gg_50_'+cut,
+        'type': 'shape',
+        'kind'  : 'weight',
+        'samples': {
+            'Fake': [fake_syst_bb_pt_gg_50, "1"],
+        },
+        'cuts' : [cut],
+        'symmetrize' : True,
+    }
+
+    ################################
+    
+    nuisances['fake_syst_ee_pt_ll_50_'+cut] = {
+        'name': 'fake_syst_ee_pt_ll_50_'+cut,
+        'type': 'shape',
+        'kind'  : 'weight',
+        'samples': {
+            'Fake': [fake_syst_ee_pt_ll_50, "1"],
+        },
+        'cuts' : [cut],        
+        'symmetrize' : True,
+    }
+
+    nuisances['fake_syst_ee_pt_gl_50_'+cut] = {
+        'name': 'fake_syst_ee_pt_gl_50_'+cut,
+        'type': 'shape',
+        'kind'  : 'weight',
+        'samples': {
+            'Fake': [fake_syst_ee_pt_gl_50, "1"],
+        },
+        'cuts' : [cut],        
+        'symmetrize' : True,
+    }
+    
+    nuisances['fake_syst_ee_pt_gg_50_'+cut] = {
+        'name': 'fake_syst_ee_pt_gg_50_'+cut,
+        'type': 'shape',
+        'kind'  : 'weight',
+        'samples': {
+            'Fake': [fake_syst_ee_pt_gg_50, "1"],
+        },
+        'cuts' : [cut],        
+        'symmetrize' : True,
+    }
+
+    ################################
+
+    nuisances['fake_syst_be_pt_ll_50_'+cut] = {
+        'name': 'fake_syst_be_pt_ll_50_'+cut,
+        'type': 'shape',
+        'kind'  : 'weight',
+        'samples': {
+            'Fake': [fake_syst_be_pt_ll_50, "1"],
+        },
+        'cuts' : [cut],        
+        'symmetrize' : True,
+    }
+    
+    nuisances['fake_syst_be_pt_gl_50_'+cut] = {
+        'name': 'fake_syst_be_pt_gl_50_'+cut,
+        'type': 'shape',
+        'kind'  : 'weight',
+        'samples': {
+            'Fake': [fake_syst_be_pt_gl_50, "1"],
+        },
+        'cuts' : [cut],        
+        'symmetrize' : True,
+    }
+    
+    nuisances['fake_syst_be_pt_gg_50_'+cut] = {
+        'name': 'fake_syst_be_pt_gg_50_'+cut,
+        'type': 'shape',
+        'kind'  : 'weight',
+        'samples': {
+            'Fake': [fake_syst_be_pt_gg_50, "1"],
+        },
+        'cuts' : [cut],        
+        'symmetrize' : True,
+    }
 
 
-
-nuisances['fake_ele']  = {
-    'name'  : 'CMS_fake_e_2017',
+##################################
+    
+nuisances['fake_ele_emu']  = {
+    'name'  : 'CMS_fake_e_2017_emu',
     'kind'  : 'weight',
     'type'  : 'shape',
     'samples'  : {
-        'Fake': ['fakeWEleUp', 'fakeWEleDown'],
+        'Fake': ['fakeWEleUp * (abs(Lepton_pdgId[0]) == 11) + 1.0 * !(abs(Lepton_pdgId[0]) == 11) ', 'fakeWEleDown * (abs(Lepton_pdgId[0]) == 11) + 1.0 * !(abs(Lepton_pdgId[0]) == 11)'],
     },
 }
 
-nuisances['fake_ele_stat']  = {
-    'name'  : 'CMS_fake_stat_e_2017',
+nuisances['fake_ele_mue']  = {
+    'name'  : 'CMS_fake_e_2017_mue',
     'kind'  : 'weight',
     'type'  : 'shape',
     'samples'  : {
-        'Fake': ['fakeWStatEleUp', 'fakeWStatEleDown']
+        'Fake': ['fakeWEleUp * (abs(Lepton_pdgId[0]) == 13) + 1.0 * !(abs(Lepton_pdgId[0]) == 13) ', 'fakeWEleDown * (abs(Lepton_pdgId[0]) == 13) + 1.0 * !(abs(Lepton_pdgId[0]) == 13)'],
     },
 }
 
-nuisances['fake_mu']  = {
-    'name'  : 'CMS_fake_m_2017',
+nuisances['fake_ele_stat_emu']  = {
+    'name'  : 'CMS_fake_stat_e_2017_emu',
     'kind'  : 'weight',
     'type'  : 'shape',
     'samples'  : {
-        'Fake': ['fakeWMuUp', 'fakeWMuDown'],
+        'Fake': ['fakeWStatEleUp * (abs(Lepton_pdgId[0]) == 11) + 1.0 * !(abs(Lepton_pdgId[0]) == 11)', 'fakeWStatEleDown * (abs(Lepton_pdgId[0]) == 11) + 1.0 * !(abs(Lepton_pdgId[0]) == 11)']
     },
 }
 
-nuisances['fake_mu_stat']  = {
-    'name'  : 'CMS_fake_stat_m_2017',
+nuisances['fake_ele_stat_mue']  = {
+    'name'  : 'CMS_fake_stat_e_2017_mue',
     'kind'  : 'weight',
     'type'  : 'shape',
     'samples'  : {
-        'Fake': ['fakeWStatMuUp', 'fakeWStatMuDown'],
+        'Fake': ['fakeWStatEleUp * (abs(Lepton_pdgId[0]) == 13) + 1.0 * !(abs(Lepton_pdgId[0]) == 13)', 'fakeWStatEleDown * (abs(Lepton_pdgId[0]) == 13) + 1.0 * !(abs(Lepton_pdgId[0]) == 13)']
+    },
+}
+
+nuisances['fake_mu_emu']  = {
+    'name'  : 'CMS_fake_m_2017_emu',
+    'kind'  : 'weight',
+    'type'  : 'shape',
+    'samples'  : {
+        'Fake': ['fakeWMuUp * (abs(Lepton_pdgId[0]) == 11) + 1.0 * !(abs(Lepton_pdgId[0]) == 11)', 'fakeWMuDown * (abs(Lepton_pdgId[0]) == 11) + 1.0 * !(abs(Lepton_pdgId[0]) == 11)'],
+    },
+}
+
+nuisances['fake_mu_mue']  = {
+    'name'  : 'CMS_fake_m_2017_mue',
+    'kind'  : 'weight',
+    'type'  : 'shape',
+    'samples'  : {
+        'Fake': ['fakeWMuUp * (abs(Lepton_pdgId[0]) == 13) + 1.0 * !(abs(Lepton_pdgId[0]) == 13)', 'fakeWMuDown * (abs(Lepton_pdgId[0]) == 13) + 1.0 * !(abs(Lepton_pdgId[0]) == 13)'],
+    },
+}
+
+nuisances['fake_mu_stat_emu']  = {
+    'name'  : 'CMS_fake_stat_m_2017_emu',
+    'kind'  : 'weight',
+    'type'  : 'shape',
+    'samples'  : {
+        'Fake': ['fakeWStatMuUp * (abs(Lepton_pdgId[0]) == 11) + 1.0 * !(abs(Lepton_pdgId[0]) == 11)', 'fakeWStatMuDown * (abs(Lepton_pdgId[0]) == 11) + 1.0 * !(abs(Lepton_pdgId[0]) == 11)'],
+    },
+}
+
+nuisances['fake_mu_stat_mue']  = {
+    'name'  : 'CMS_fake_stat_m_2017_mue',
+    'kind'  : 'weight',
+    'type'  : 'shape',
+    'samples'  : {
+        'Fake': ['fakeWStatMuUp * (abs(Lepton_pdgId[0]) == 13) + 1.0 * !(abs(Lepton_pdgId[0]) == 13)', 'fakeWStatMuDown * (abs(Lepton_pdgId[0]) == 13) + 1.0 * !(abs(Lepton_pdgId[0]) == 13)'],
     },
 }
 
@@ -530,8 +568,6 @@ nuisances['UEPS']  = {
 ###### pdf uncertainties #### 
 
 ###### pdf uncertainties
-
-
 pdf_variations = ["LHEPdfWeight[%d]" %i for i in range(1,101)] # Float_t LHE pdf variation weights (w_var / w_nominal) for LHA IDs  320901 - 321000
 nuisances['pdf_WW']  = {
     'name'  : 'CMS_hww_pdf_WW',
@@ -543,78 +579,48 @@ nuisances['pdf_WW']  = {
     },
 }
 
-# PDF eigenvariations for WW and top
-for i in range(1,33):
-  # LHEPdfWeight are PDF4LHC variations, while nominal is NNPDF.
-  # LHEPdfWeight[i] reweights from NNPDF nominal to PDF4LHC member i
-  # LHEPdfWeight[0] in particular reweights from NNPDF nominal to PDF4LHC nominal
-  #pdf_variations = ["LHEPdfWeight[%d]/LHEPdfWeight[0]" %i, "2. - LHEPdfWeight[%d]/LHEPdfWeight[0]" %i ]
+nuisances['pdf_top']  = {
+    'name'  : 'CMS_hww_pdf_top',
+    'kind'  : 'weight_rms',
+    'type'  : 'shape',
+    'AsLnN': '0',
+    'samples'  : {
+        'top'   : pdf_variations,
+    },
+}
 
-  pdf_variations = ["LHEPdfWeight[%d]/LHEPdfWeight[0]" %i, "1"]
+nuisances['pdf_qqH_sonly']  = {
+    'name'  : 'CMS_hww_pdf_qqH_sonly',
+    'kind'  : 'weight_rms',
+    'type'  : 'shape',
+    'AsLnN': '0',
+    'samples'  : {
+        'qqH_sonly_on'   : pdf_variations,
+        'qqH_sonly_off'   : pdf_variations,
+    },
+}
 
-  #nuisances['pdf_WW_eigen'+str(i)]  = {
-  #  'name'  : 'CMS_hww_pdf_WW_eigen'+str(i),
-  #  'skipCMS' : 1,
-  #  'kind'  : 'weight',
-  #  'type'  : 'shape',
-  #  'samples'  : {
-  #    'WW'   : pdf_variations,
-  #  },
-  #}
-  nuisances['pdf_top_eigen'+str(i)]  = {
-    'name'  : 'CMS_hww_pdf_top_eigen'+str(i),
-    'skipCMS' : 1,
-    'kind'  : 'weight',
+nuisances['pdf_qqH_bonly']  = {
+    'name'  : 'CMS_hww_pdf_qqH_bonly',
+    'kind'  : 'weight_rms',
     'type'  : 'shape',
+    'AsLnN': '0',
     'samples'  : {
-      'top'   : pdf_variations,
+        'qqH_bonly_on'   : pdf_variations,
+        'qqH_bonly_off'   : pdf_variations,
     },
-    'symmetrize' : True,
-  }
-  #nuisances['pdf_ggH_eigen'+str(i)]  = {
-  #  'name'  : 'CMS_hww_pdf_ggH_eigen'+str(i),
-  #  'skipCMS' : 1,
-  #  'kind'  : 'weight',
-  #  'type'  : 'shape',
-  #  'samples'  : {
-  #    'ggH_sonly_on'   : pdf_variations,
-  #    'ggH_sonly_off'   : pdf_variations,
-  #  },
-  #  'symmetrize' : True,
-  #}
-  nuisances['pdf_VBF_sonly_eigen'+str(i)]  = {
-    'name'  : 'CMS_hww_pdf_VBF_sonly_eigen'+str(i),
-    'skipCMS' : 1,
-    'kind'  : 'weight',
+}
+
+nuisances['pdf_qqH_sand']  = {
+    'name'  : 'CMS_hww_pdf_qqH_sand',
+    'kind'  : 'weight_rms',
     'type'  : 'shape',
+    'AsLnN': '0',
     'samples'  : {
-      'qqH_sonly_on'   : pdf_variations, 
-      'qqH_sonly_off'   : pdf_variations,
+        'qqH_sand_on'   : pdf_variations,
+        'qqH_sand_off'   : pdf_variations,
     },
-    'symmetrize' : True,
-  }
-  nuisances['pdf_VBF_bonly_eigen'+str(i)]  = {
-    'name'  : 'CMS_hww_pdf_VBF_bonly_eigen'+str(i),
-    'skipCMS' : 1,
-    'kind'  : 'weight',
-    'type'  : 'shape',
-    'samples'  : {
-      'qqH_bonly_on'   : pdf_variations,  
-      'qqH_bonly_off'   : pdf_variations,
-    },
-    'symmetrize' : True,
-  }
-  nuisances['pdf_VBF_sand_eigen'+str(i)]  = {
-    'name'  : 'CMS_hww_pdf_VBF_sand_eigen'+str(i),
-    'skipCMS' : 1,
-    'kind'  : 'weight',
-    'type'  : 'shape',
-    'samples'  : {
-      'qqH_sand_on'   : pdf_variations,  
-      'qqH_sand_off'   : pdf_variations,
-    },
-    'symmetrize' : True,
-  }
+}
 
 
 ### QCD
@@ -761,31 +767,54 @@ nuisances['pdf_ggH_ACCEPT'] = {
 # ## rate parameters
 
 nuisances['Topnorm_2j']  = {
-               'name'  : 'Topnorm_2j',
+               'name'  : 'Topnorm_2j_2017',
                'samples'  : {
                    'top' : '1.00',
                    },
                'type'  : 'rateParam',
                'cuts'  : [
                    'TopCR_2j',
+                   'WWCR_2j',
                    'SR_ggH_OFF_2j',
-                   'SR_VBF_OFF_2j'
+                   'SR_VBF_OFF_2j',
+                   'CR_VBF_ON_2j',
+                   'CR_ggH_ON_2j',
                    ]
               }
 
 nuisances['WWnorm_2j']  = {
-               'name'  : 'WWnorm_2j',
+               'name'  : 'WWnorm_2j_2017',
                'samples'  : {
                    'WW' : '1.00',
                    },
                'type'  : 'rateParam',
                'cuts'  : [
                    'WWCR_2j',
+                   'TopCR_2j',
                    'SR_ggH_OFF_2j',
-                   'SR_VBF_OFF_2j'
+                   'SR_VBF_OFF_2j',
+                   'CR_VBF_ON_2j',
+                   'CR_ggH_ON_2j',
                    ]
               }
 
+# Added during the unblinding review: https://cms-pub-talk.web.cern.ch/t/unblinding-process/30717/61
+
+# Uncertainty on SR/CR ratio
+nuisances['CRSR_accept_top_2j'] = {
+    'name': 'CMS_hww_CRSR_accept_top_2j',
+    'type': 'lnN',
+    'samples': {'top': '1.01'},
+    'cuts': [
+           'TopCR_2j'
+    ]   
+}
+
+nuisances['ttbar_st_RelativeComposition'] = {
+    'name': 'CMS_hww_ttbar_st_relcomp',
+    'type': 'lnN',
+    'samples': {'top': '1.08'},
+}
 
 qqWW_shape_weight = "1.3 * (dnnScore_VBF_OFF > .95) + 1.07 * (dnnScore_VBF_OFF <= .95) * (dnnScore_VBF_OFF > .91) + 1.0 * (dnnScore_VBF_OFF <= .91) * (dnnScore_VBF_OFF > .87) + 1.1 * (dnnScore_VBF_OFF <= .87) * (dnnScore_VBF_OFF > .685) + 1.10 * (dnnScore_VBF_OFF <= .686) * (dnnScore_VBF_OFF > .50)"
 
