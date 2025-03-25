@@ -238,43 +238,11 @@ samples['Higgs'] = {
     'suppressNegativeNuisances' :['all']
 }
 
-###### WW ########
-
-##TC 2024
-# files = nanoGetSampleFiles(mcDirectory, 'GluGluToWWToENEN') + \
-#         nanoGetSampleFiles(mcDirectory, 'GluGluToWWToENMN') + \
-#         nanoGetSampleFiles(mcDirectory, 'GluGluToWWToENTN') + \
-#         nanoGetSampleFiles(mcDirectory, 'GluGluToWWToMNEN') + \
-#         nanoGetSampleFiles(mcDirectory, 'GluGluToWWToMNMN') + \
-#         nanoGetSampleFiles(mcDirectory, 'GluGluToWWToMNTN') + \
-#         nanoGetSampleFiles(mcDirectory, 'GluGluToWWToTNEN') + \
-#         nanoGetSampleFiles(mcDirectory, 'GluGluToWWToTNMN') + \
-#         nanoGetSampleFiles(mcDirectory, 'GluGluToWWToTNTN')
-
-##TC May 2024 - initialize this elsewhere
-
-# samples['ggWW'] = {
-#     'name': files,
-#     'weight': mcCommonWeight+'*1.53/1.4 * 1.33 * norm_njet',# * (LHE_mWW <= 160)',                                             
-#     'FilesPerJob': 1,
-#     'suppressNegative':['all'],
-#     'suppressNegativeNuisances' :[' all']
-# }
-
-##TC 2024 -- keep only WW below
-# samples['WW'] = {
-#     'name': nanoGetSampleFiles(mcDirectory, 'WWTo2L2Nu'),
-#     'weight': mcCommonWeight+'*nllW',
-#     'FilesPerJob': 1,
-#     'suppressNegative':['all'],
-#     'suppressNegativeNuisances' :['all']
-# }
-##TC2024
 
 ##TC2024
 samples['WW'] = { ##WW_minnlo ##TC2024
     'name': nanoGetSampleFiles(mcDirectory, 'WWJTo2L2Nu_minnlo'),
-    'weight': mcCommonWeight + '* btagnorm_WW',
+    'weight': mcCommonWeight + '* btagnorm_WW * ptll_0j',
     'FilesPerJob': 7,
     'suppressNegative' :['all'],
     'suppressNegativeNuisances' :['all'],
@@ -410,7 +378,7 @@ samples['qqH_sonly_on'] = {
 
 samples['qqH_bonly_on'] = {
     'name': files,
-    'weight': mcCommonWeight + ' * p_Gen_JJEW_BKG_MCFM * p_Gen_CPStoBWPropRewgt * HWWOffshell_combineWgt * (LHECandMass <= 160) * btagnorm_qqH_bonly_on', ##mcCommonWeight_custom
+    'weight': mcCommonWeight + ' * p_Gen_JJEW_BKG_MCFM * p_Gen_CPStoBWPropRewgt * HWWOffshell_combineWgt * (LHECandMass <= 160) * btagnorm_qqH_bonly_on * ptll_0j', ##mcCommonWeight_custom
     'FilesPerJob': 1,
     'suppressNegative' :['all'], ##TC2024
     'suppressNegativeNuisances' :['all'],
@@ -570,7 +538,7 @@ samples['ggH_bonly_off'] = {
 samples['ggH_bonly_on'] = {
     'name': files,
     # 'weight': mcCommonWeight+'*1.53/1.4 * 1.33 * norm_njet  * (LHE_mWW <= 160) * btagnorm_ggH_bonly_on',
-    'weight': mcCommonWeight+'*1.0/1.4 * norm_njet  * (LHE_mWW <= 160) * btagnorm_ggH_bonly_on * ggH_NNLO_kFactor * 0.49721373',
+    'weight': mcCommonWeight+'*1.0/1.4 * norm_njet  * (LHE_mWW <= 160) * btagnorm_ggH_bonly_on * ggH_NNLO_kFactor * 0.49721373 * ptll_0j',
     # * 1.53: LO->NLO k-factor (https://www.arxiv.org/pdf/1605.04610#page=18).
     # /1.4: Removed k-factor 1.4 that is supposed to scale to NNLO (https://github.com/latinos/LatinoAnalysis/blob/UL_production/NanoGardener/python/framework/samples/samplesCrossSections_UL.py#L109)
     # * ggH_NNLO_kFactor: NLO->NNLO mass dependent k-factor
