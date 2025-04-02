@@ -16,8 +16,8 @@ LepCats['ElCh_']='( (abs(Lepton_pdgId[0])==11) && Lepton_pt[0]>35 && !hole_ex[0]
 LepCats['MuCh_']='( (abs(Lepton_pdgId[0])==13) && Lepton_pt[0]>27 && !hole_ex[0])'
 # FIXME: maybe need to cut > 35 for ele due to fakeW calculation
 LepCats_P={}
-#LepCats_P['incl_']='( (abs(Lepton_pdgId[0])==11) && Lepton_pt[0]>35 && !hole_ex[0]\
-#                 || (abs(Lepton_pdgId[0])==13) && Lepton_pt[0]>27 && !hole_ex[0])'
+LepCats_P['incl_']='( (abs(Lepton_pdgId[0])==11) && Lepton_pt[0]>35 && !hole_ex[0]\
+                   || (abs(Lepton_pdgId[0])==13) && Lepton_pt[0]>27 && !hole_ex[0])'
 #LepCats_P['ElCh_']='( (abs(Lepton_pdgId[0])==11) && Lepton_pt[0]>35 && !hole_ex[0])'
 #LepCats_P['MuCh_']='( (abs(Lepton_pdgId[0])==13) && Lepton_pt[0]>27 && !hole_ex[0])'
 # FIXME: maybe need to cut > 35 for ele due to fakeW calculation
@@ -53,12 +53,12 @@ ResCatsSR['ResolvedSR_']='(1 \
                        && resolvedSignalWMass[0] \
                        && bVeto[0])'
 ResCatsSR_cut={}
-ResCatsSR_cut['ResolvedSR_massWindow']='(1 \
-                       && two_jet_res[0] \
-                       && resolvedSignalWMass[0] \
-                       && mass_HIGGS_JJ[0] <= 550 \
-		       && mass_HIGGS_JJ[0] >  350) \
-                       && bVeto[0])'
+#ResCatsSR_cut['ResolvedSR_massWindow']='(1 \
+#                       && two_jet_res[0] \
+#                       && resolvedSignalWMass[0] \
+#                       && mass_HIGGS_JJ[0] <= 550 \
+#		       && mass_HIGGS_JJ[0] >  350) \
+#                       && bVeto[0])'
 #BoostCats={}
 #BoostCatsSR['BoostedSR_']='(1 \
 #                       && boosted_nocut_res[0] \
@@ -81,11 +81,11 @@ BoostCats={}
 #                       && HvOverFat[0] > 0.4 \
 #                       && boostedSignalWMass[0] \
 #                       && bVeto_boo[0])'
-#BoostCats['BoostedSB_']='(1 \
-#                       && boosted_nocut_res[0] \
-#                       && HvOverFat[0] < 0.35 \
-#                       && boostedSignalWMass[0] \
-#                       && bVeto_boo[0])'
+BoostCats['BoostedSB_']='(1 \
+                       && boosted_nocut_res[0] \
+                       && HvOverFat[0] < 0.35 \
+                       && boostedSignalWMass[0] \
+                       && bVeto_boo[0])'
 #BoostCats['BoostedSB_2']='(1 \
 #                       && boosted_nocut_res[0] \
 #                       && HvOverFat[0] < 0.4 \
@@ -104,11 +104,11 @@ BoostCats['ResolvedTopCR_']='(1 \
 ###                       && two_jet_res[0] \
 ###                       && resolvedSignalWMass[0] \
 ###                       && bVeto[0])'
-#BoostCats['BoostedTopCR_']='(1 \
-#                       && boosted_nocut_res[0] \
-#                       && HvOverFat[0] > 0.4 \
-#                       && boostedSignalWMass[0] \
-#                       && bReq_boo[0])'
+BoostCats['BoostedTopCR_']='(1 \
+                       && boosted_nocut_res[0] \
+                       && HvOverFat[0] > 0.4 \
+                       && boostedSignalWMass[0] \
+                       && bReq_boo[0])'
 ####BoostCats['BoostedCR_']='(1 \
 ###                       && boosted_nocut_res[0] \
 ###                       && HvOverFat[0] > 0.4 \
@@ -129,12 +129,12 @@ for Lep in LepCats:
                 	            +'&&'+ResProcCats[BProcCat]\
                 	            +'&&'+LepCats[Lep]
 
-for Lep in LepCats:
-    for BProcCat in ResProcCats:
-        for BCat in ResCatsSR_cut:  
-		cuts[Lep+BCat+BProcCat]=  ResCatsSR_cut[BCat]\
-                	            +'&&'+ResProcCats[BProcCat]\
-                	            +'&&'+LepCats[Lep]
+#for Lep in LepCats:
+#    for BProcCat in ResProcCats:
+#        for BCat in ResCatsSR_cut:  
+#		cuts[Lep+BCat+BProcCat]=  ResCatsSR_cut[BCat]\
+#                	            +'&&'+ResProcCats[BProcCat]\
+#                	            +'&&'+LepCats[Lep]
 #
 #for Lep in LepCats:
 #    for BProcCat in BoostProcCats_H:

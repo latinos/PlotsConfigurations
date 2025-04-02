@@ -15,7 +15,7 @@ configurations = os.path.dirname(configurations) # Configurations
 # samples, signals
 
 mc = [skey for skey in samples if skey not in ('FAKE', 'data_obs')]
-mc_deep =[skey for skey in samples if skey not in ['DY',  'Wjets', 'Vg', 'VgS','VZ', 'FAKE', 'data_obs', 'VVV', 'ZH_htt', 'WH_htt', 'ggH_htt', 'qqH_htt']]  
+mc_deep =[skey for skey in samples if skey not in ['DY',  'Wjets','Wjets_NLO', 'Vg', 'VgS','VZ', 'FAKE', 'data_obs', 'VVV', 'ZH_htt', 'WH_htt', 'ggH_htt', 'qqH_htt']]  
 sig_mc = [skey for skey in mc if ("GGH" in skey) or ("QQH" in skey) or (skey in ["qqWWqq","WW","VZ"])] # ggWW is currently reweighted sig sample, while qqWWqq needs to be symlinked to the BWReweight!
 sig_diff = [skey for skey in mc if ("GGH" in skey) or ("QQH" in skey)] # ggWW is currently reweighted sig sample, while qqWWqq needs to be symlinked to the BWReweight!
 sig_mc_I = [skey for skey in mc if(( ("GGH" in skey) or ("QQH" in skey) ) and ("SBI"  in skey)) ] # ggWW is currently reweighted sig sample, while qqWWqq needs to be symlinked to the BWReweight!
@@ -630,7 +630,7 @@ aliases['two_jet_res'] ={
 aliases['LHEPartWlepPt'] = {
     'linesToAdd': ['.L %s/LHEPartWlepPt.cc+' % configurations],
     'class': 'LHEPartWlepPt',
-    'samples': 'Wjets'
+    'samples': ['Wjets','Wjets_NLO']
 }
 data = np.genfromtxt(os.getenv('CMSSW_BASE')+'/src/LatinoAnalysis/Gardener/python/data/ewk/kewk_w.dat', skip_header=2, skip_footer=7)
 
@@ -652,11 +652,11 @@ uncert_string=uncert_string[:-1]+")"
 
 aliases['EWK_W_correction'] = {
     'expr': weight_string,
-    'samples': 'Wjets'
+    'samples': ['Wjets','Wjets_NLO']
 }
 aliases['EWK_W_correction_uncert'] = {
     'expr': uncert_string,
-    'samples': 'Wjets'
+    'samples': ['Wjets', 'Wjets_NLO']
 }
 
 
@@ -1505,7 +1505,7 @@ aliases['kfact'] = {
     #'args': ('PlotsConfigurations/Configurations/HWWSemiLepHighMass/wjets_kfactor_DH/HT_to_NLO_QCD_k_factors_Boo_2017pl2018.root', 'k_factor_2017','PlotsConfigurations/Configurations/HWWSemiLepHighMass/wjets_kfactor_DH/HT_to_NLO_QCD_k_factors_noBoo_2017pl2018.root', 'k_factor_2017'),
     'args': ('PlotsConfigurations/Configurations/HWWSemiLepHighMass/wjets_kfactor_DH/HT_to_NLO_QCD_k_factors_Boo_2017.root', 'k_factor_2017','PlotsConfigurations/Configurations/HWWSemiLepHighMass/wjets_kfactor_DH/HT_to_NLO_QCD_k_factors_noBoo_2017.root', 'k_factor_2017'),
     #'args': ('PlotsConfigurations/Configurations/HWWSemiLepHighMass/wjets_kfactor_DH/HT_to_NLO_QCD_k_factors_all.root', 'k_factor_2017'),
-    'samples': 'Wjets', 
+    'samples': ['Wjets','Wjets_NLO'], 
 }
 
     #'args': ('PlotsConfigurations/Configurations/HWWSemiLepHighMass/wjets_kfactor_DH/HT_to_NLO_QCD_k_factors_boo_2017.root', 'k_factor_2017','PlotsConfigurations/Configurations/HWWSemiLepHighMass/wjets_kfactor_DH/HT_to_NLO_QCD_k_factors_all.root', 'k_factor_2017'),
@@ -2237,4 +2237,23 @@ aliases['recoWlepMet_pz'] = {
 #    'class': 'comp_jets',
 #    'args': 51
 #}
+
+lastcopy = (1 << 13)
+aliases['GenW_pt'] = {
+    'expr': '(Sum$((GenPart_pt)*(abs(GenPart_pdgId) == 24 && (GenPart_statusFlags & '+str(lastcopy)+'))) - 1*(Sum$(abs(GenPart_pdgId) == 24 && (GenPart_statusFlags & '+str(lastcopy)+') == 0)))',
+    'samples': mc
+}
+aliases['GenW_mass'] = {
+    'expr': '(Sum$((GenPart_mass)*(abs(GenPart_pdgId) == 24 && (GenPart_statusFlags & '+str(lastcopy)+'))) - 1*(Sum$(abs(GenPart_pdgId) == 24 && (GenPart_statusFlags & '+str(lastcopy)+') == 0)))',
+    'samples': mc
+}
+aliases['nGenW'] = {
+    'expr': '(Sum$(abs(GenPart_pdgId) == 24 && (GenPart_statusFlags & '+str(lastcopy)+')))',
+    'samples': mc
+}
+aliases['GenW_mt'] = {
+    'expr': 'TMath::Sqrt(GenW_mass*GenW_mass + GenW_pt*GenW_pt)*(nGenW[0] == 1) - 1*(nGenW[0] == 0)',
+    'samples': mc
+}
+
 

@@ -215,12 +215,12 @@ variables['mass_HIGGS'] = {
 #   'fold' : 0
 #}
 #
-#variables['HvOverJJ_rebin'] = {
-#   'name' : 'HvOverJJ[0]',
-#   'range': ([0, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7,1],),
-#   'xaxis': 'Min el pt vs had pt',
-#   'fold' : 0
-#}
+variables['HvOverJJ_rebin'] = {
+   'name' : 'HvOverJJ[0]',
+   'range': ([0, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7,1],),
+   'xaxis': 'Min el pt vs had pt',
+   'fold' : 0
+}
 variables['wlep_mass'] = {
     'name' : 'HM_Wlep_mass_Puppi',
     'range': (15, 50, 200),
@@ -278,20 +278,20 @@ variables['lep_pt'] = {
 ##     'cuts' : resolved ,
 ##     'fold' : 3,
 ##}
-#variables['lep_eta'] = {
-#     'name': 'Lepton_eta',
-#     'range' : (30,-2.5,2.5),
-#     'xaxis' : 'lep_eta',
-#     'cuts' : resolved ,
-#     'fold' : 3,
-#}
-#variables['jet1_pt'] = {
-#     'name': 'CleanJet_pt[CleanJet_jetIdx[Alt$(HM_idx_j1 >= 0, 0)*HM_idx_j1]]',
-#     'range' : (30,0,1500),
-#     'xaxis' : 'jet1_pt',
-#     'cuts' : resolved ,
-#     'fold' : 3,
-#}
+variables['lep_eta'] = {
+     'name': 'Lepton_eta',
+     'range' : (30,-2.5,2.5),
+     'xaxis' : 'lep_eta',
+     'cuts' : resolved ,
+     'fold' : 3,
+}
+variables['jet1_pt'] = {
+     'name': 'CleanJet_pt[CleanJet_jetIdx[Alt$(HM_idx_j1 >= 0, 0)*HM_idx_j1]]',
+     'range' : (30,0,1500),
+     'xaxis' : 'jet1_pt',
+     'cuts' : resolved ,
+     'fold' : 3,
+}
 ##variables['jet1_phi'] = {
 ##     'name': 'CleanJet_phi[CleanJet_jetIdx[Alt$(HM_idx_j1 >= 0, 0)*HM_idx_j1]]',
 ##     'range' : (30,-3.14,3.14),
@@ -313,20 +313,20 @@ variables['lep_pt'] = {
 ##     'cuts' : resolved ,
 ##     'fold' : 3,
 ##}
-#variables['res_w1_pt_new'] = {
-#     'name': 'res_w1_pt',
-#     'range' : (30,0,150),
-#     'xaxis' : 'w1_pt',
-#     'cuts' : resolved ,
-#     'fold' : 3,
-#}
-#variables['res_w2_pt_new'] = {
-#     'name': 'res_w2_pt',
-#     'range' : (30,0,150),
-#     'xaxis' : 'w2_pt',
-#     'cuts' : resolved ,
-#     'fold' : 3,
-#}
+variables['res_w1_pt_new'] = {
+     'name': 'res_w1_pt',
+     'range' : (30,0,150),
+     'xaxis' : 'w1_pt',
+     'cuts' : resolved ,
+     'fold' : 3,
+}
+variables['res_w2_pt_new'] = {
+     'name': 'res_w2_pt',
+     'range' : (30,0,150),
+     'xaxis' : 'w2_pt',
+     'cuts' : resolved ,
+     'fold' : 3,
+}
 #variables['jet2_pt'] = {
 #     'name': 'CleanJet_pt[CleanJet_jetIdx[Alt$(HM_idx_j2 >= 0, 0)*HM_idx_j2]]',
 #     'range' : (30,0,1500),
@@ -348,13 +348,13 @@ variables['lep_pt'] = {
 #     'cuts' : resolved ,
 #     'fold' : 3,
 #}
-#variables['mass_HIGGS_twojet_binned'] = {
-#   'name' : 'mass_HIGGS_JJ[0]',
-#   'range': ([0, 150, 200, 260, 300, 350, 400, 450, 500, 550, 600,
-#              650, 700, 750, 800, 850, 900, 950, 1000, 1100, 1300, 1500, 3000],),
-#   'xaxis': 'Higgs Mass [GeV]',
-#   'fold' : 0,
-#}
+variables['mass_HIGGS_twojet_binned'] = {
+   'name' : 'mass_HIGGS_JJ[0]',
+   'range': ([0, 150, 200, 260, 300, 350, 400, 450, 500, 550, 600,
+              650, 700, 750, 800, 850, 900, 950, 1000, 1100, 1300, 1500, 3000],),
+   'xaxis': 'Higgs Mass [GeV]',
+   'fold' : 0,
+}
 #variables['jet2_mass'] = {
 #     'name': 'CleanJet_mass[CleanJet_jetIdx[Alt$(HM_idx_j2 >= 0, 0)*HM_idx_j2]]',
 #     'range' : (40,0,120),

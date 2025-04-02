@@ -84,55 +84,55 @@ variables['mass_HIGGS'] = {
 #     'cuts' : resolvedSR, 
 #     'divideByBinWidth':1
 #}
-#variables['classvbf_res'] = {
-#     'name': 'vbfdnn_res',
-#     'range' : (10,0,1.),
-#     'xaxis' : 'VBF output',
-#     'fold' : 3,
-#     'cuts' : resolvedSR, 
-#     'divideByBinWidth':1
-#}
-#variables['classbkg_res'] = {
-#     'name': 'bkgdnn_res',
-#     'range' : (10,0,1.),
-#     'xaxis' : 'BKG output',
-#     'fold'  : 3,
-#     'cuts' : resolvedSR, 
-#     'divideByBinWidth':1
-#}
-#variables['classggh_res'] = {
-#     'name': 'gghdnn_res',
-#     'range' : (10,0,1.),
-#     'xaxis' : 'ggH output',
-#     'fold'  : 3,
-#     'cuts' : resolvedSR, 
-#     'divideByBinWidth':1
-#}
-#
-#variables['classvbf_rebin'] = {
-#     'name': 'vbfdnn_odd',
-#     'range' : ([0, 0.1, 0.2,0.3, 0.4,0.5,0.6,0.8,1.0],),
-#     'xaxis' : 'VBF output',
-#     'fold' : 3,
-#     'cuts' : boostedSR, 
-#     'divideByBinWidth':1
-#}
-#variables['classbkg_rebin'] = {
-#     'name': 'bkgdnn_odd',
-#     'range' : ([0, 0.2, 0.4,0.5, 0.6,0.7,0.8,0.9,1.0],),
-#     'xaxis' : 'BKG output',
-#     'fold'  : 3,
-#     'cuts' : boostedSR, 
-#     'divideByBinWidth':1
-#}
-#variables['classggh_rebin'] = {
-#     'name': 'gghdnn_odd',
-#     'range' : ([0, 0.1, 0.2,0.3, 0.4,0.5,0.6,0.8,1.0],),
-#     'xaxis' : 'ggH output',
-#     'fold'  : 3,
-#     'cuts' : boostedSR, 
-#     'divideByBinWidth':1
-#}
+variables['classvbf_res'] = {
+     'name': 'vbfdnn_res',
+     'range' : (10,0,1.),
+     'xaxis' : 'VBF output',
+     'fold' : 3,
+     'cuts' : resolvedSR, 
+     'divideByBinWidth':1
+}
+variables['classbkg_res'] = {
+     'name': 'bkgdnn_res',
+     'range' : (10,0,1.),
+     'xaxis' : 'BKG output',
+     'fold'  : 3,
+     'cuts' : resolvedSR, 
+     'divideByBinWidth':1
+}
+variables['classggh_res'] = {
+     'name': 'gghdnn_res',
+     'range' : (10,0,1.),
+     'xaxis' : 'ggH output',
+     'fold'  : 3,
+     'cuts' : resolvedSR, 
+     'divideByBinWidth':1
+}
+
+variables['classvbf_rebin'] = {
+     'name': 'vbfdnn_odd',
+     'range' : ([0, 0.1, 0.2,0.3, 0.4,0.5,0.6,0.8,1.0],),
+     'xaxis' : 'VBF output',
+     'fold' : 3,
+     'cuts' : boostedSR, 
+     'divideByBinWidth':1
+}
+variables['classbkg_rebin'] = {
+     'name': 'bkgdnn_odd',
+     'range' : ([0, 0.2, 0.4,0.5, 0.6,0.7,0.8,0.9,1.0],),
+     'xaxis' : 'BKG output',
+     'fold'  : 3,
+     'cuts' : boostedSR, 
+     'divideByBinWidth':1
+}
+variables['classggh_rebin'] = {
+     'name': 'gghdnn_odd',
+     'range' : ([0, 0.1, 0.2,0.3, 0.4,0.5,0.6,0.8,1.0],),
+     'xaxis' : 'ggH output',
+     'fold'  : 3,
+     'cuts' : boostedSR, 
+     'divideByBinWidth':1
+}
 #variables['classvbf_high_rebin'] = {
 #     'name': 'vbfdnn_high',
 #     'range' : ([0, 0.1, 0.2,0.3, 0.4,0.5,0.6,0.8,1.0],),
@@ -157,30 +157,30 @@ variables['mass_HIGGS'] = {
 #     'cuts' : boostedSR, 
 #     'divideByBinWidth':1
 #}
-#variables['classvbf'] = {
-#     'name': 'vbfdnn_odd',
-#     'range' : (10,0,1.),
-#     'xaxis' : 'VBF output',
-#     'fold' : 3,
-#     'cuts' : boostedSR, 
-#     'divideByBinWidth':1
-#}
-#variables['classbkg'] = {
-#     'name': 'bkgdnn_odd',
-#     'range' : (10,0,1.),
-#     'xaxis' : 'BKG output',
-#     'fold'  : 3,
-#     'cuts' : boostedSR, 
-#     'divideByBinWidth':1
-#}
-#variables['classggh'] = {
-#     'name': 'gghdnn_odd',
-#     'range' : (10,0,1.),
-#     'xaxis' : 'ggH output',
-#     'fold'  : 3,
-#     'cuts' : boostedSR, 
-#     'divideByBinWidth':1
-#}
+variables['classvbf'] = {
+     'name': 'vbfdnn_odd',
+     'range' : (10,0,1.),
+     'xaxis' : 'VBF output',
+     'fold' : 3,
+     'cuts' : boostedSR, 
+     'divideByBinWidth':1
+}
+variables['classbkg'] = {
+     'name': 'bkgdnn_odd',
+     'range' : (10,0,1.),
+     'xaxis' : 'BKG output',
+     'fold'  : 3,
+     'cuts' : boostedSR, 
+     'divideByBinWidth':1
+}
+variables['classggh'] = {
+     'name': 'gghdnn_odd',
+     'range' : (10,0,1.),
+     'xaxis' : 'ggH output',
+     'fold'  : 3,
+     'cuts' : boostedSR, 
+     'divideByBinWidth':1
+}
 #variables['classvbf_high'] = {
 #     'name': 'vbfdnn_high',
 #     'range' : (10,0,1.),
@@ -205,13 +205,19 @@ variables['mass_HIGGS'] = {
 #     'cuts' : boostedSR, 
 #     'divideByBinWidth':1
 #}
-#variables['Pt_ratio_mass'] = {
-#   'name' : 'HvOverJJ[0]',
-#   'range': (20, 0, 1.),
-#   'xaxis': 'p_{t}^{W}/m_{Xp_{t}^{W}/m_{X}}',
-#   'fold' : 0
-#}
+variables['Pt_ratio_mass'] = {
+   'name' : 'HvOverJJ[0]',
+   'range': (20, 0, 1.),
+   'xaxis': 'p_{t}^{W}/m_{Xp_{t}^{W}/m_{X}}',
+   'fold' : 0
+}
 
+variables['HvOverFat_rebin'] = {
+   'name' : 'HvOverFat[0]',
+   'range': ([0, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7,1],),
+   'xaxis': 'Min el pt vs had pt',
+   'fold' : 0
+}
 variables['HvOverJJ_rebin'] = {
    'name' : 'HvOverJJ[0]',
    'range': ([0, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7,1],),
@@ -233,6 +239,12 @@ variables['wlep_eta'] = {
 variables['wlep_pt'] = {
     'name' : 'HM_Wlep_pt_Puppi',
     'range': (40, 0, 800),
+    'xaxis': 'reconstr. W lep Pt [GeV]',
+    'fold' : 0, 
+}
+variables['wlep_pt_zoom'] = {
+    'name' : 'HM_Wlep_pt_Puppi',
+    'range': (40, 0, 400),
     'xaxis': 'reconstr. W lep Pt [GeV]',
     'fold' : 0, 
 }

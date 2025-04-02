@@ -2210,3 +2210,22 @@ aliases['recoWlepMet_pz'] = {
 ##    'expr': '( !SBI_isSMggh && !SBI_isSMVBF && !SBI_isggWW && !SBI_isqqWWqq )',
 ##    'samples': mc_sbi
 ##}
+lastcopy = (1 << 13)
+aliases['GenW_pt'] = {
+    'expr': '(Sum$((GenPart_pt)*(abs(GenPart_pdgId) == 24 && (GenPart_statusFlags & '+str(lastcopy)+'))) - 1*(Sum$(abs(GenPart_pdgId) == 24 && (GenPart_statusFlags & '+str(lastcopy)+') == 0)))',
+    'samples': mc
+}
+aliases['GenW_mass'] = {
+    'expr': '(Sum$((GenPart_mass)*(abs(GenPart_pdgId) == 24 && (GenPart_statusFlags & '+str(lastcopy)+'))) - 1*(Sum$(abs(GenPart_pdgId) == 24 && (GenPart_statusFlags & '+str(lastcopy)+') == 0)))',
+    'samples': mc
+}
+aliases['nGenW'] = {
+    'expr': '(Sum$(abs(GenPart_pdgId) == 24 && (GenPart_statusFlags & '+str(lastcopy)+')))',
+    'samples': mc
+}
+aliases['GenW_mt'] = {
+    'expr': 'TMath::Sqrt(GenW_mass*GenW_mass + GenW_pt*GenW_pt)*(nGenW[0] == 1) - 1*(nGenW[0] == 0)',
+    'samples': mc
+}
+
+

@@ -287,26 +287,26 @@ nuisances['UncTePTrig'] = {
     'type': 'shape',
     'samples': dict((skey,['1 + 2*Unc_teptrig[0]', '1 -2*Unc_teptrig[0]']) for skey in mc),
 }
-nuisances['UncTePTrig_WJ'] = {
-    'name': 'Wjets_Corrrection',   # Theory uncertainty
-    'kind': 'weight',
-    'type': 'shape',
-    'samples': {
-        'Wjets': ['Unc_WjetsDataMC[0]', '1/Unc_WjetsDataMC[0]'],
-    },
-    'cuts': cutdict['Resolv'],
-#    'samples': dict((skey,['1 + 2*Unc_teptrig[0]', '1 -2*Unc_teptrig[0]']) for skey in mc),
-}
-nuisances['UncTePTrig_WJ_Boo'] = {
-    'name': 'Wjets_Corrrection',   # Theory uncertainty
-    'kind': 'weight',
-    'type': 'shape',
-    'samples': {
-        'Wjets': ['Unc_WjetsDataMC_Boo[0]', '1/Unc_WjetsDataMC_Boo[0]'],
-    },
-    'cuts': cutdict['Boosted'],
-#    'samples': dict((skey,['1 + 2*Unc_teptrig[0]', '1 -2*Unc_teptrig[0]']) for skey in mc),
-}
+#nuisances['UncTePTrig_WJ'] = {
+#    'name': 'Wjets_Corrrection',   # Theory uncertainty
+#    'kind': 'weight',
+#    'type': 'shape',
+#    'samples': {
+#        'Wjets': ['Unc_WjetsDataMC[0]', '1/Unc_WjetsDataMC[0]'],
+#    },
+#    'cuts': cutdict['Resolv'],
+##    'samples': dict((skey,['1 + 2*Unc_teptrig[0]', '1 -2*Unc_teptrig[0]']) for skey in mc),
+#}
+#nuisances['UncTePTrig_WJ_Boo'] = {
+#    'name': 'Wjets_Corrrection',   # Theory uncertainty
+#    'kind': 'weight',
+#    'type': 'shape',
+#    'samples': {
+#        'Wjets': ['Unc_WjetsDataMC_Boo[0]', '1/Unc_WjetsDataMC_Boo[0]'],
+#    },
+#    'cuts': cutdict['Boosted'],
+##    'samples': dict((skey,['1 + 2*Unc_teptrig[0]', '1 -2*Unc_teptrig[0]']) for skey in mc),
+#}
 #prefire_syst = ['PrefireWeight_Up/PrefireWeight', 'PrefireWeight_Down/PrefireWeight']
 #
 #nuisances['prefire'] = {
@@ -1535,14 +1535,14 @@ nuisances['QCDscale_ggVV'] = {
 #        'GGHSBI_'+m+model_name: '1.15'
 #    })
 
-nuisances['Wjets_QCD_NLO_sf_stat'] = {
-    'name': 'Wjets_QCD_NLO_sf_stat_2018',
-    'kind'  : 'weight',
-    'type'  : 'shape',
-    'samples': {
-        'Wjets': ['kfact[1]/kfact[0]', 'kfact[2]/kfact[0]'],
-    }
-}
+#nuisances['Wjets_QCD_NLO_sf_stat'] = {
+#    'name': 'Wjets_QCD_NLO_sf_stat_2018',
+#    'kind'  : 'weight',
+#    'type'  : 'shape',
+#    'samples': {
+#        'Wjets': ['kfact[1]/kfact[0]', 'kfact[2]/kfact[0]'],
+#    }
+#}
 
 
 

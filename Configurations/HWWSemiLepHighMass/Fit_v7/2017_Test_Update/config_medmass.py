@@ -3,7 +3,7 @@
 treeName = 'Events'
 
 #tag = 'hm_2017_Fit_SRCR_wDeepTag_corrMSFCHECK'
-tag = 'hm_2017_Fit_SplitLep_etaCut_BefReStat'#_PerFitNewCut'
+tag = 'hm_2017_Fit_VAR'#_PerFitNewCut'
 #tag = 'hm_2017_Fit_SRCR_wDeepTag'
 
 # used by mkShape to define output directory for root files
@@ -41,4 +41,4 @@ outputDirDatacard = 'Data_diffwidth'
 structureFile = 'structure_medmass.py'
 
 # nuisances file for mkDatacards and for mkShape
-nuisancesFile = 'nuisances_medmass.py'
+nuisancesFile = 'nuisances_medmass___.py'
