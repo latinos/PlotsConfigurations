@@ -32,6 +32,17 @@ allcuts = [cut+'_'+cat for cut in cuts for cat in cuts[cut]['categories']]
 nfdict = json.load(open("%s/WW/FullRunII/Full2017_v9/inclusive/WWnorm.json"%configurations))
 sfdict = json.load(open("%s/WW/FullRunII/Full2017_v9/inclusive/sampleFrac.json"%configurations))
 
+###############################################################################
+### Add nominal btag normalization weights to all MC samples                ###
+### Weird place for it, but here catCR from cuts.py has already been loaded ###
+###############################################################################
+ 
+btndict = json.load(open("%s/WW/FullRunII/Full2017_v9/inclusive/btagNorm.json"%configurations))
+ 
+for skey in mc:
+    btnWeight = '('+'+'.join(['({})*({})'.format(btndict[skey][jetbin]['nom'],catCR[jetbin]) for jetbin in catCR.keys()])+')'
+    samples[skey]['weight'] = samples[skey]['weight']+'*'+btnWeight
+
 ################################ EXPERIMENTAL UNCERTAINTIES  #################################
 
 #### Luminosity
@@ -115,17 +126,21 @@ nuisances['fake_mu_stat'] = {
 ###### B-tagger
 
 for shift in ['lf', 'hf', 'hfstats1', 'hfstats2', 'lfstats1', 'lfstats2', 'cferr1', 'cferr2']:
-    btag_syst = ['(btagSF%sup)/(btagSF)' % shift, '(btagSF%sdown)/(btagSF)' % shift]
 
     name = 'CMS_btag_%s' % shift
     if 'stats' in shift:
         name += '_2017'
 
+    btn = {}
+    for skey in mc:
+        btn[skey] = ['('+'+'.join(['({})*{}'.format(btndict[skey][jetbin][name+'Up'],  catCR[jetbin]) for jetbin in catCR.keys()])+')',
+                     '('+'+'.join(['({})*{}'.format(btndict[skey][jetbin][name+'Down'],catCR[jetbin]) for jetbin in catCR.keys()])+')']
+
     nuisances['btag_shape_%s' % shift] = {
         'name': name,
         'kind': 'weight',
         'type': 'shape',
-        'samples': dict((skey, btag_syst) for skey in mc),
+        'samples': dict((skey, ['(btagSF'+shift+'up)/(btagSF)*'+btn[skey][0],'(btagSF'+shift+'down)/(btagSF)*'+btn[skey][1]]) for skey in mc),
         'AsLnN': '0'
     }
 
@@ -199,13 +214,21 @@ nuisances['muonpt'] = {
 jes_systs = ['JESAbsolute','JESAbsolute_2017','JESBBEC1','JESBBEC1_2017','JESEC2','JESEC2_2017','JESFlavorQCD','JESHF','JESHF_2017','JESRelativeBal','JESRelativeSample_2017']
 
 for js in jes_systs:
+
+    name = 'CMS_scale_' + js.replace("JES","j_")
+
+    btn = {}
+    for skey in mc:
+        btn[skey] = ['('+'+'.join(['({})*{}'.format(btndict[skey][jetbin][name+"Up"],  catCR[jetbin]) for jetbin in catCR.keys()])+')',
+                     '('+'+'.join(['({})*{}'.format(btndict[skey][jetbin][name+"Down"],catCR[jetbin]) for jetbin in catCR.keys()])+')']
+
     nuisances[js] = {
-        'name': 'CMS_scale_' +js.replace("JES","j_"),
+        'name': name,
         'kind': 'suffix',
         'type': 'shape',
         'mapUp': js+'up',
         'mapDown': js+'do',
-        'samples': dict((skey, ['1', '1']) for skey in mc),
+        'samples': dict((skey, btn[skey]) for skey in mc),
         'folderUp': 'root://eoscms.cern.ch/'+makeMCDirectory('RDF__JESup_suffix'),
         'folderDown': 'root://eoscms.cern.ch/'+makeMCDirectory('RDF__JESdo_suffix'),
         'reweight' : ['btagSF'+js.replace('JES','jes')+'up/btagSF','btagSF'+js.replace('JES','jes')+'down/btagSF'],
