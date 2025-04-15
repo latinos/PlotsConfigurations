@@ -499,6 +499,52 @@ for year in YEARS:
 bins = None
 line = []
 
+def pct_points_in(x, y, w, params):
+    n_std = params[5]
+    norm = np.sum(w)
+    p_in = 0
+    for xi, yi,wi in zip(x, y, w):
+        if is_point_included(xi, yi, params):
+            p_in += wi / norm
+    return p_in
+
+def is_point_included(x, y, params):
+    mean_x = params[0]
+    mean_y = params[1]
+    semi_w = params[2] / 2     
+    semi_h = params[3] / 2    
+    rad_angle = np.radians(params[4])
+    cos = np.cos(rad_angle)
+    sin = np.sin(rad_angle)
+    n1 = pow(cos * (x - mean_x) + sin * (y - mean_y),2)
+    n2 = pow(sin * (x - mean_x) - cos * (y - mean_y),2)
+    v = n1 / (semi_w * semi_w) + n2 / (semi_h * semi_h)
+    return v < 1.0
+
+
+def rescale_to_nstd(x, y, w, params_in):
+    params = params_in[:]
+    n_std  = params[5] 
+    
+    target = integrate.quad(utils.normal_distribution, -n_std, n_std)[0]
+    pct_in = pct_points_in(x, y, w, params)
+    required_accuracy = 1  # in percent
+    f_scale = 0.5
+    i = 1
+    while abs(target - pct_in) * 100 > required_accuracy:
+        params[2] = params[2] * f_scale #width
+        params[3] = params[3] * f_scale #height
+        pct_in = pct_points_in(x, y, w, params)
+        if i > 1900:
+            print(target - pct_in)
+        if pct_in < 1e-4:
+            f_scale = 2
+        else:
+            f_scale = (target / pct_in) ** 0.3
+        assert (i < 2000), "Rescaling got stuck"
+        i += 1
+    return params[2], params[3] #width, height
+
 def _fit_ellipse(xi, yi, wi, n_std):
     x = np.concatenate(list(np.array(xi[year]) for year in YEARS))
     y = np.concatenate(list(np.array(yi[year]) for year in YEARS))
@@ -514,21 +560,22 @@ def _fit_ellipse(xi, yi, wi, n_std):
     vals, vecs = np.linalg.eigh(cov)
     angle = np.degrees(np.arctan2(*vecs[::-1, 0]))
     z = integrate.quad(utils.normal_distribution, -n_std, n_std)[0]
-    width, height = 2 * np.sqrt(vals * chi2.ppf(z, df=2))
-   # print(pairs[b][0], pairs[b][1], mean_x, mean_y, width, height, angle, n_std)
-    lines =  MA+" "+MH+" "+str(mean_x)+" "+str(mean_y)+" "+str(width)+" "+str(height)+" "+str(angle)+" "+str(n_std)+"\n"
-    #print(lines)
-    line.append(lines)
-#        print(line)
+    width_in, height_in = 2 * np.sqrt(vals * chi2.ppf(z, df=2))
+    
+    params = [mean_x, mean_y, width_in, height_in, angle, n_std]
+    width, height = rescale_to_nstd(x, y, w, params)
 
+    lines =  MA+" "+MH+" "+str(mean_x)+" "+str(mean_y)+" "+str(width)+" "+str(height)+" "+str(angle)+" "+str(n_std)+"\n"
+    print(lines)
+    line.append(lines)
+    
 def _compute_ellipses():
-    binning_map = {"stddevs_ellipses" : np.array([0.5, 1, 1.5, 2, 2.5, 3]), "ptz_cuts" : np.linspace(0, 800, 14), "dm_cuts": np.linspace(80, 1000, 3), }
+    binning_map = {"stddevs_ellipses" : np.array([0.5, 1.0, 1.5, 2.0, 2.5, 3.0]), "ptz_cuts" : np.linspace(0, 800, 14), "dm_cuts": np.linspace(80, 1000, 3), }
     ellipses = []
     for n_std in binning_map["stddevs_ellipses"]:
          ell = _fit_ellipse(ptz_cuts, dm_cuts, weights_cuts, n_std)
 
 ellipses = _compute_ellipses()
-print(line)
-outfile = open("condor_ellipses_onebjet_FullRunII/MA-{}_MH-{}_ellipse_onebjet_FullRunII.txt".format(MA,MH), 'a')
+outfile = open("condor_ellipses_FullRunII/MA-{}_MH-{}_ellipse_breq_FullRunII.txt".format(MA,MH), 'a')
 outfile.writelines(line)
 outfile.close()
