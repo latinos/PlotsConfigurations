@@ -127,8 +127,8 @@ for shift in ['lf', 'hf', 'hfstats1', 'hfstats2', 'lfstats1', 'lfstats2', 'cferr
 
     btn = {}
     for skey in mc:
-        btn[skey] = ['('+'+'.join(['({})*{}'.format(btndict[skey][jetbin][name+'Up'],  catCR[jetbin]) for jetbin in catCR.keys()])+')',
-                     '('+'+'.join(['({})*{}'.format(btndict[skey][jetbin][name+'Down'],catCR[jetbin]) for jetbin in catCR.keys()])+')']
+        btn[skey] = ['('+'+'.join(['({})*({})'.format(btndict[skey][jetbin][name+'Up'],  catCR[jetbin]) for jetbin in catCR.keys()])+')',
+                     '('+'+'.join(['({})*({})'.format(btndict[skey][jetbin][name+'Down'],catCR[jetbin]) for jetbin in catCR.keys()])+')']
 
     nuisances['btag_shape_%s' % shift] = {
         'name': name,
@@ -213,8 +213,8 @@ for js in jes_systs:
 
     btn = {}
     for skey in mc:
-        btn[skey] = ['('+'+'.join(['({})*{}'.format(btndict[skey][jetbin][name+"Up"],  catCR[jetbin]) for jetbin in catCR.keys()])+')',
-                     '('+'+'.join(['({})*{}'.format(btndict[skey][jetbin][name+"Down"],catCR[jetbin]) for jetbin in catCR.keys()])+')']
+        btn[skey] = ['('+'+'.join(['({})*({})'.format(btndict[skey][jetbin][name+"Up"],  catCR[jetbin]) for jetbin in catCR.keys()])+')',
+                     '('+'+'.join(['({})*({})'.format(btndict[skey][jetbin][name+"Down"],catCR[jetbin]) for jetbin in catCR.keys()])+')']
 
     nuisances[js] = {
         'name': name,
