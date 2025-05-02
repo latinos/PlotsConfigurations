@@ -153,10 +153,12 @@ LepWP_DICT = {
 ptz_cuts = {}
 dm_cuts = {}
 weights_cuts = {}
+events_cuts = {}
 for year in YEARS:
     print("\n\nyear : {}".format(year))
     myfile = uproot.open("/eos/cms/store/group/phys_higgs/cmshww/amassiro/HWWNano/"+EOS_PATH[year]+"/nanoLatino_AToZHToLLTTbar_MA-"+MA+"_MH-"+MH+"__part0.root")
     Events = myfile["Events"]
+    event = Events["event"].array()
     zpt = Events["ZH3l_pTZ"].array()
     dm__deprecated = Events["AZH_mA_minus_mH"].array() #defined only in SR
 
@@ -367,11 +369,12 @@ for year in YEARS:
 
     PuppiMET_pt = Events["PuppiMET_pt"].array()
     PuppiMET_phi = Events["PuppiMET_phi"].array()
-    
+    nJetLoose = Events["nCleanJet"].array()
     
     print("doing SR cuts...")
     deltam = []
     for i in range(len(Lepton_pt)):
+        dm_tmp = -9999
         if (len(Lepton_pt[i]) < 3):
             dm_tmp = -9999.0
         else:
@@ -419,12 +422,13 @@ for year in YEARS:
 
                 AZH_bJet_4vecId = []
                 CleanJet_4vecId = []   
-                for j in range(len(CleanJet_pt[i])): 
+                for j in range(nJetLoose[i]): 
                     if (CleanJet_pt[i][j] > 30 and abs(CleanJet_eta[i][j]) < 4.7): 
                         jj = ROOT.TLorentzVector()
                         jj.SetPtEtaPhiM(CleanJet_pt[i][j], CleanJet_eta[i][j], CleanJet_phi[i][j], 0)
                         CleanJet_4vecId.append(jj)
-                        if (Jet_btagDeepFlavB[i][int(CleanJet_jetIdx[i][j])] > BTAGWP_DICT[year]): AZH_bJet_4vecId.append(jj)
+                        if ( (abs(CleanJet_eta[i][j]) < 2.5) and (Jet_btagDeepFlavB[i][int(CleanJet_jetIdx[i][j])] > BTAGWP_DICT[year])):
+                            AZH_bJet_4vecId.append(jj)
             
                 ChisqMin = 9999
                 WJet1_best_onebjet = ROOT.TLorentzVector()
@@ -433,7 +437,9 @@ for year in YEARS:
                 bJetLeptonic_best_onebjet = ROOT.TLorentzVector()
                 AZH_Neutrino_best_onebjet = ROOT.TLorentzVector()
                 Neutrinos = {AZH_Neutrino1, AZH_Neutrino2}
-                if (len(AZH_bJet_4vecId)==1):
+                if ((len(AZH_bJet_4vecId)!=1) or (len(CleanJet_4vecId)<4)):
+                    dm_tmp = -9999
+                else:
                     for Neutrino in Neutrinos:
                         ibJet2 = 0 
                         WJets = []
@@ -446,7 +452,7 @@ for year in YEARS:
                                 WJets.append(CleanJet_4vecId[iw])
                         for k in range(2):
                             for iWJet1 in range(len(WJets)):
-                                for iWJet2 in range(1,len(WJets)):
+                                for iWJet2 in range((iWJet1 + 1),len(WJets)):
                                     WJet1_onebjet = WJets[iWJet1]
                                     WJet2_onebjet = WJets[iWJet2]
                                     bJetHadronic_onebjet = bJetPair[k]
@@ -465,8 +471,20 @@ for year in YEARS:
                                         AZH_Neutrino_best_onebjet = Neutrino
 
 
-                dm_tmp = (XLepton + AZH_Neutrino_best_onebjet + bJetLeptonic_best_onebjet + bJetHadronic_best_onebjet + WJet1_best_onebjet + WJet2_best_onebjet + ZLepton1 + ZLepton2).M() \
-                       - (XLepton + AZH_Neutrino_best_onebjet + bJetLeptonic_best_onebjet + bJetHadronic_best_onebjet + WJet1_best_onebjet + WJet2_best_onebjet).M();
+                    dm_tmp = (XLepton + AZH_Neutrino_best_onebjet + bJetLeptonic_best_onebjet + bJetHadronic_best_onebjet + WJet1_best_onebjet + WJet2_best_onebjet + ZLepton1 + ZLepton2).M() \
+                           - (XLepton + AZH_Neutrino_best_onebjet + bJetLeptonic_best_onebjet + bJetHadronic_best_onebjet + WJet1_best_onebjet + WJet2_best_onebjet).M()
+
+        nJet=0
+        nbJet=0
+        for j in range(nJetLoose[i]):
+            if (CleanJet_pt[i][j] > 30 and abs(CleanJet_eta[i][j]) < 4.7):
+                nJet+=1
+                if  ((abs(CleanJet_eta[i][j]) < 2.5) and (Jet_btagDeepFlavB[i][int(CleanJet_jetIdx[i][j])] > BTAGWP_DICT[year])):
+                    nbJet+=1
+        if (nJet<4 or nbJet !=1):
+            dm_tmp = -9999
+
+
         deltam.append(dm_tmp)
     deltaM = np.array(deltam)
 
@@ -487,6 +505,7 @@ for year in YEARS:
     ptz_cuts[year] = zpt[supercut&SR_cut]
     dm_cuts[year] = deltaM[supercut&SR_cut]
     weights_cuts[year] = weights[supercut&SR_cut]
+    events_cuts[year] = event[supercut&SR_cut]
     
     print("DONE")
     print("sum of weights = {}".format(sum(weights_cuts[year])))
@@ -494,8 +513,27 @@ for year in YEARS:
     print("scaling to lumi of {}".format(LUMI_DICT[year]))
     weights_cuts[year] *= LUMI_DICT[year]
     print("sum of weights (lumiscale)  = {}".format(sum(weights_cuts[year])))
+
+#    print("saving weights...\n")
+#    tmp1 = np.array(ptz_cuts[year])
+#    tmp2 = np.array(dm_cuts[year])
+#    tmp3 = np.array(weights_cuts[year])
+#    tmp4 = np.array(events_cuts[year])
+#    np.savez("ptz_dm_arrays_onebjet_mA{}_mH{}_{}_DEBUG".format(MA,MH,year), ptz=tmp1, dm=tmp2, w=tmp3, events=tmp4)
+
+
+ptz_all_tmp = np.concatenate(list(np.array(ptz_cuts[year]) for year in YEARS))
+dm_all_tmp  = np.concatenate(list(np.array(dm_cuts[year]) for year in YEARS))
+w_all_tmp   = np.concatenate(list(np.array(weights_cuts[year]) for year in YEARS))
+event_all_tmp  = np.concatenate(list(np.array(events_cuts[year]) for year in YEARS))
+np.savez("ptz_dm_arrays_onebjet_mA{}_mH{}_FullRunII_DEBUGv3".format(MA,MH), ptz=ptz_all_tmp, dm=dm_all_tmp, w=w_all_tmp, events=event_all_tmp)
+
+ptz_all = ptz_all_tmp#[dm_all_tmp > -9999]
+dm_all = dm_all_tmp#[dm_all_tmp > -9999]
+w_all = w_all_tmp#[dm_all_tmp > -9999]
+
 #################################################################################################
-    
+
 bins = None
 line = []
 
@@ -528,8 +566,8 @@ def rescale_to_nstd(x, y, w, params_in):
     
     target = integrate.quad(utils.normal_distribution, -n_std, n_std)[0]
     pct_in = pct_points_in(x, y, w, params)
-    required_accuracy = 1  # in percent
-    f_scale = 0.5
+    required_accuracy = 0.5  # in percent
+    f_scale = 1
     i = 1
     while abs(target - pct_in) * 100 > required_accuracy:
         params[2] = params[2] * f_scale #width
@@ -538,18 +576,14 @@ def rescale_to_nstd(x, y, w, params_in):
         if i > 1900:
             print(target - pct_in)
         if pct_in < 1e-4:
-            f_scale = 2
+            f_scale = 1.8
         else:
             f_scale = (target / pct_in) ** 0.3
-        assert (i < 2000), "Rescaling got stuck"
+        assert (i < 4000), "Rescaling got stuck"
         i += 1
     return params[2], params[3] #width, height
 
-def _fit_ellipse(xi, yi, wi, n_std):
-    x = np.concatenate(list(np.array(xi[year]) for year in YEARS))
-    y = np.concatenate(list(np.array(yi[year]) for year in YEARS))
-    w = np.concatenate(list(np.array(wi[year]) for year in YEARS))
-    #w_pos = np.concatenate(list(np.array(wi[year]) - min(wi[year]) if min(wi[year]) < 0 else wi[year] for year in YEARS)) 
+def _fit_ellipse(x, y, w, n_std):
     w_pos = (w - min(w)) if min(w) < 0 else w
     assert x.size == y.size == w.size, "x and y must be the same size"
 
@@ -573,9 +607,9 @@ def _compute_ellipses():
     binning_map = {"stddevs_ellipses" : np.array([0.5, 1.0, 1.5, 2.0, 2.5, 3.0]), "ptz_cuts" : np.linspace(0, 800, 14), "dm_cuts": np.linspace(80, 1000, 3), }
     ellipses = []
     for n_std in binning_map["stddevs_ellipses"]:
-         ell = _fit_ellipse(ptz_cuts, dm_cuts, weights_cuts, n_std)
+         ell = _fit_ellipse(ptz_all, dm_all, w_all, n_std)
 
 ellipses = _compute_ellipses()
-outfile = open("condor_ellipses_FullRunII/MA-{}_MH-{}_ellipse_breq_FullRunII.txt".format(MA,MH), 'a')
+outfile = open("condor_ellipses_onebjet_FullRunII_DEBUGv3/MA-{}_MH-{}_ellipse_onebjet_FullRunII.txt".format(MA,MH), 'a')
 outfile.writelines(line)
 outfile.close()

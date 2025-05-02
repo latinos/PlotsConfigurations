@@ -1264,7 +1264,7 @@ samples['AZH_950_850'] = { 'name': getSampleFilesNano(directory, 'AToZHToLLTTbar
 Fakedirectory = treeBaseDir+'Run2016_UL2016_nAODv9_HIPM_Full2016v9/DATAl1loose2016v9__l2loose__fakeW'
 
 samples['Fake']  = {   'name': [ ] ,
-                       'weight' : 'fakeW*'+ METFilter_DATA+'*transition_veto',
+                       'weight' : 'fakeW*'+ METFilter_DATA+'*transition_veto[0]',
                        'weights' : [ ] ,
                        'isData': ['all'],
                        'FilesPerJob' : 500 ,
