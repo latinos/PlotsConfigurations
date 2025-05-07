@@ -6,4 +6,5 @@ error = ./condor_jobs/ellipses_onebjet/$(Signal).err
 log = ./condor_jobs/ellipses_onebjet/$(Signal).log
 MY.SingularityImage = "/cvmfs/unpacked.cern.ch/gitlab-registry.cern.ch/cms-cat/cmssw-lxplus/cmssw-el7-lxplus:latest/"
 max_materialize = 20
++JobFlavour = "tomorrow"
 queue Signal from ./signals.txt 

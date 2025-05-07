@@ -15,44 +15,45 @@ variables['events']     = { 'name': '1',
                             'fold' : 3
                         }
 
-variables['njet']       = { 'name'  : 'ZH3l_njet',
-                            'range' : (10,0,10),
-                            'xaxis' : 'N_{jet}',
-                            'fold' : 3 
-                        }
-
-variables['nbjet']       = { 'name'  : 'nbjet',
-                            'range' : (10,0,10),
-                            'xaxis' : 'N_{bjet}',
-                            'fold' : 3 
-                        }
-
+#variables['njet']       = { 'name'  : 'ZH3l_njet',
+#                            'range' : (10,0,10),
+#                            'xaxis' : 'N_{jet}',
+#                            'fold' : 3 
+#                        }
+#
+#variables['nbjet']       = { 'name'  : 'nbjet',
+#                            'range' : (10,0,10),
+#                            'xaxis' : 'N_{bjet}',
+#                            'fold' : 3 
+#                        }
+#
 variables['ptz']        = { 'name' : 'ZH3l_pTZ',
                             'range' : (20,0,800),
                             'xaxis' : 'ptz',
                             'fold' : 3 
+			                'cuts' : ['breq_SR', 'bveto_1j_SR'],
                         }
 
-variables['checkmZ']    = { 'name' : 'ZH3l_checkmZ',
-                            'range' : (10,60,120),
-                            'xaxis' : 'checkmZ',
-                            'fold' : 3
-                        }
-
-variables['chisq']       = { 'name'  : 'AZH_ChiSquare_patch',
-                            'range' : (15,0,15),
-                            'xaxis' : 'ChiSq',
-			                'cuts' : ['breq_SR'],
-                            'fold' : 3 
-                        }
-
-variables['chisq_alt']       = { 'name'  : 'AZH_ChiSquare_patch',
-                            'range' : (20,0,10),
-                            'xaxis' : 'ChiSq',
-			                'cuts' : ['breq_SR'],
-                            'fold' : 3 
-                        }
-
+#variables['checkmZ']    = { 'name' : 'ZH3l_checkmZ',
+#                            'range' : (10,60,120),
+#                            'xaxis' : 'checkmZ',
+#                            'fold' : 3
+#                        }
+#
+#variables['chisq']       = { 'name'  : 'AZH_ChiSquare_patch',
+#                            'range' : (15,0,15),
+#                            'xaxis' : 'ChiSq',
+#			                'cuts' : ['breq_SR'],
+#                            'fold' : 3 
+#                        }
+#
+#variables['chisq_alt']       = { 'name'  : 'AZH_ChiSquare_patch',
+#                            'range' : (20,0,10),
+#                            'xaxis' : 'ChiSq',
+#			                'cuts' : ['breq_SR'],
+#                            'fold' : 3 
+#                        }
+#
 variables['DeltaM']  = { 'name' : 'AZH_mA_minus_mH_patch',
                     'range' : (20,0,1000),
     			    'xaxis' : 'm_{A}-m_{H}',
@@ -60,20 +61,20 @@ variables['DeltaM']  = { 'name' : 'AZH_mA_minus_mH_patch',
 			        'fold'  : 3
 }
 
-variables['mH'] = { 'name' : 'AZH_Hmass_patch',
-                    'range' : (20,0,2000),
-                    'xaxis' : 'm_{H}',
-                    'cuts' : ['breq_SR'],
-                    'fold'  : 3
-}
-
-variables['mA'] = { 'name' : 'AZH_Amass_patch',
-                     'range' : (25,0,2500),
-                     'xaxis' : 'm_{A}',
-                     'cuts' : ['breq_SR'],
-                     'fold'  : 3
-}
-
+#variables['mH'] = { 'name' : 'AZH_Hmass_patch',
+#                    'range' : (20,0,2000),
+#                    'xaxis' : 'm_{H}',
+#                    'cuts' : ['breq_SR'],
+#                    'fold'  : 3
+#}
+#
+#variables['mA'] = { 'name' : 'AZH_Amass_patch',
+#                     'range' : (25,0,2500),
+#                     'xaxis' : 'm_{A}',
+#                     'cuts' : ['breq_SR'],
+#                     'fold'  : 3
+#}
+#
 variables['DeltaM_onebjet'] = { 'name' : 'AZH_mA_minus_mH_onebjet_patch',
                     'range' : (20,0,1000),
                     'xaxis' : 'm_{A}-m_{H}',
@@ -81,32 +82,32 @@ variables['DeltaM_onebjet'] = { 'name' : 'AZH_mA_minus_mH_onebjet_patch',
                     'fold'  : 3
 }
 
-variables['mH_onebjet'] = { 'name' : 'AZH_Hmass_patch_onebjet',
-                    'range' : (20,0,2000),
-                    'xaxis' : 'm_{H}',
-                    'cuts' : ['bveto_1j_SR'],
-                    'fold'  : 3
-}
-
-variables['mA_onebjet'] = { 'name' : 'AZH_Amass_patch_onebjet',
-                     'range' : (25,0,2500),
-                     'xaxis' : 'm_{A}',
-                     'cuts' : ['bveto_1j_SR'],
-                     'fold'  : 3
-}
-variables['chisq_onebjet']  = { 'name'  : 'AZH_ChiSquare_onebjet_patch',
-                                'range' : (15,0,15),
-                                'xaxis' : 'ChiSq',
-			                    'cuts' : ['bveto_1j_SR'],
-                                'fold' : 3 
-                            }
-variables['chisq_onebjet_alt']  = { 'name'  : 'AZH_ChiSquare_onebjet_patch',
-                                'range' : (20,0,10),
-                                'xaxis' : 'ChiSq',
-			                    'cuts' : ['bveto_1j_SR'],
-                                'fold' : 3 
-                            }
-
+#variables['mH_onebjet'] = { 'name' : 'AZH_Hmass_patch_onebjet',
+#                    'range' : (20,0,2000),
+#                    'xaxis' : 'm_{H}',
+#                    'cuts' : ['bveto_1j_SR'],
+#                    'fold'  : 3
+#}
+#
+#variables['mA_onebjet'] = { 'name' : 'AZH_Amass_patch_onebjet',
+#                     'range' : (25,0,2500),
+#                     'xaxis' : 'm_{A}',
+#                     'cuts' : ['bveto_1j_SR'],
+#                     'fold'  : 3
+#}
+#variables['chisq_onebjet']  = { 'name'  : 'AZH_ChiSquare_onebjet_patch',
+#                                'range' : (15,0,15),
+#                                'xaxis' : 'ChiSq',
+#			                    'cuts' : ['bveto_1j_SR'],
+#                                'fold' : 3 
+#                            }
+#variables['chisq_onebjet_alt']  = { 'name'  : 'AZH_ChiSquare_onebjet_patch',
+#                                'range' : (20,0,10),
+#                                'xaxis' : 'ChiSq',
+#			                    'cuts' : ['bveto_1j_SR'],
+#                                'fold' : 3 
+#                            }
+#
 #variables['pt1']        = { 'name': 'Lepton_pt[0]',
 #                            'range' : (15,0.,500),
 #                            'xaxis' : 'lept1_p_{T} [GeV]',

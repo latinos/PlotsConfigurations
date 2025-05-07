@@ -6,5 +6,5 @@ eval `scramv1 runtime -sh`
 cd /afs/cern.ch/user/m/mihawksw/private/azh/analysis/CMSSW_10_6_28/src/PlotsConfigurations/Configurations/AToZH_Full/scripts/
 
 source /cvmfs/sft.cern.ch/lcg/views/setupViews.sh LCG_98python3 x86_64-centos7-gcc8-opt
-mkdir -p condor_ellipses_onebjet_FullRunII
+mkdir -p condor_ellipses_onebjet_FullRunII_DEBUGv3
 python3 ellipses_onebjet_FullRunII.py $1

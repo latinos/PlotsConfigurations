@@ -526,7 +526,7 @@ ptz_all_tmp = np.concatenate(list(np.array(ptz_cuts[year]) for year in YEARS))
 dm_all_tmp  = np.concatenate(list(np.array(dm_cuts[year]) for year in YEARS))
 w_all_tmp   = np.concatenate(list(np.array(weights_cuts[year]) for year in YEARS))
 event_all_tmp  = np.concatenate(list(np.array(events_cuts[year]) for year in YEARS))
-np.savez("ptz_dm_arrays_onebjet_mA{}_mH{}_FullRunII_DEBUGv3".format(MA,MH), ptz=ptz_all_tmp, dm=dm_all_tmp, w=w_all_tmp, events=event_all_tmp)
+#np.savez("ptz_dm_arrays_onebjet_mA{}_mH{}_FullRunII_DEBUGv3".format(MA,MH), ptz=ptz_all_tmp, dm=dm_all_tmp, w=w_all_tmp, events=event_all_tmp)
 
 ptz_all = ptz_all_tmp#[dm_all_tmp > -9999]
 dm_all = dm_all_tmp#[dm_all_tmp > -9999]
@@ -610,6 +610,6 @@ def _compute_ellipses():
          ell = _fit_ellipse(ptz_all, dm_all, w_all, n_std)
 
 ellipses = _compute_ellipses()
-outfile = open("condor_ellipses_onebjet_FullRunII_DEBUGv3/MA-{}_MH-{}_ellipse_onebjet_FullRunII.txt".format(MA,MH), 'a')
+outfile = open("condor_ellipses_onebjet_FullRunII_DEBUGv3_all/MA-{}_MH-{}_ellipse_onebjet_FullRunII.txt".format(MA,MH), 'w')
 outfile.writelines(line)
 outfile.close()
