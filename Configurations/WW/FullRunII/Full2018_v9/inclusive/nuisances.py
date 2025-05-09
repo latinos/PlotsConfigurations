@@ -654,6 +654,16 @@ for ibin in cuts['ww2l2v_13TeV_top']['categories']:
         'cutspost' : lambda self, cuts: [cut for cut in cuts if self['name'].split('_')[-1] in cut],
     }
 
+nuisances['ptWWRew'] = {
+    'name': 'CMS_SMP24008_ptWWRew',   # Theory uncertainty
+    'kind': 'weight',
+    'type': 'shape',
+    'samples': {
+        'WW': ["1.", "1./ptWW_Reweighing"],
+    },
+    'symmetrize': True
+}
+
 for n in nuisances.values():
     n['skipCMS'] = 1
 

@@ -14,6 +14,11 @@ mc = [skey for skey in samples if skey not in ('Fake', 'DATA')]
 eleWP = 'mvaFall17V2Iso_WP90'
 muWP = 'cut_Tight_HWWW'
 
+aliases['ptWW_Reweighing'] = {
+    'expr': '(1.42174 +  -0.0145188 * pTWW + 5.72616e-05 * pTWW * pTWW)',
+    'samples': ['WW']
+}
+
 aliases['LepWPCut'] = {
     'expr': 'LepCut2l__ele_'+eleWP+'__mu_'+muWP+'*\
      ( ((abs(Lepton_pdgId[0])==13 && Muon_mvaTTH[Lepton_muonIdx[0]]>0.82) || (abs(Lepton_pdgId[0])==11 && Lepton_mvaTTH_UL[0]>0.90)) \

@@ -631,6 +631,16 @@ nuisances['stat'] = {
     'samples': {}
 }
 
+nuisances['ptWWRew'] = {
+    'name': 'CMS_SMP24008_ptWWRew',   # Theory uncertainty
+    'kind': 'weight',
+    'type': 'shape',
+    'samples': {
+        'WW': ["1.", "1./ptWW_Reweighing"],
+    },
+    'symmetrize': True
+}
+
 for n in nuisances.values():
     n['skipCMS'] = 1
 
