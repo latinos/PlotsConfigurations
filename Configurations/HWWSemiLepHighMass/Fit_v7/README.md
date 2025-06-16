@@ -6,13 +6,13 @@ cmsrel CMSSW_10_6_4
 cd CMSSW_10_6_4/src/
 cmsenv
 ```
-Clone after also the needed repositories for LatinoAnalysis  
+The master branch is correct. Clone after also the needed repositories for LatinoAnalysis  
 
 To submit jobs in the singularity modify the submitter in /Tools/python/batchTools.py adding after "jdsFile.write('request_cpus = '+str(REQUEST_CPUS)+'\n')"
 ```
 jdsFile.write('MY.SingularityImage = "/cvmfs/unpacked.cern.ch/gitlab-registry.cern.ch/cms-cat/cmssw-lxplus/cmssw-el7-lxplus:latest/"\n')
 ```
-and after "jds += 'request_cpus = '+str(REQUEST_CPUS)+'\n'"
+and after "jds += 'request_cpus = '+str(REQUEST_CPUS)+'\n'" in line 357
 ```
 jds += 'MY.SingularityImage = "/cvmfs/unpacked.cern.ch/gitlab-registry.cern.ch/cms-cat/cmssw-lxplus/cmssw-el7-lxplus:latest/"\n' 
 ```
