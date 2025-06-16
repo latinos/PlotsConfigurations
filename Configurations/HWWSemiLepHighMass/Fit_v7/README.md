@@ -12,7 +12,7 @@ To submit jobs in the singularity modify the submitter in /Tools/python/batchToo
 ```
 jdsFile.write('MY.SingularityImage = "/cvmfs/unpacked.cern.ch/gitlab-registry.cern.ch/cms-cat/cmssw-lxplus/cmssw-el7-lxplus:latest/"\n')
 ```
-and after "jds += 'request_cpus = '+str(REQUEST_CPUS)+'\n'"
+and after "jds += 'request_cpus = '+str(REQUEST_CPUS)+'\n'" in line 357
 ```
 jds += 'MY.SingularityImage = "/cvmfs/unpacked.cern.ch/gitlab-registry.cern.ch/cms-cat/cmssw-lxplus/cmssw-el7-lxplus:latest/"\n' 
 ```
