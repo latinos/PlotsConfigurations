@@ -223,26 +223,26 @@ nuisances['UncTePTrig'] = {
     'type': 'shape',
     'samples': dict((skey,['1 + 2*Unc_teptrig[0]', '1 -2*Unc_teptrig[0]']) for skey in mc),
 }
-nuisances['UncTePTrig_WJ'] = {
-    'name': 'Wjets_Corrrection',   # Theory uncertainty
-    'kind': 'weight',
-    'type': 'shape',
-    'samples': {
-        'Wjets': ['Unc_WjetsDataMC[0]', '1/Unc_WjetsDataMC[0]'],
-    },
-    'cuts': cutdict['Resolv'],
-#    'samples': dict((skey,['1 + 2*Unc_teptrig[0]', '1 -2*Unc_teptrig[0]']) for skey in mc),
-}
-nuisances['UncTePTrig_WJ_Boo'] = {
-    'name': 'Wjets_Corrrection',   # Theory uncertainty
-    'kind': 'weight',
-    'type': 'shape',
-    'samples': {
-        'Wjets': ['Unc_WjetsDataMC_Boo[0]', '1/Unc_WjetsDataMC_Boo[0]'],
-    },
-    'cuts': cutdict['Boosted'],
-#    'samples': dict((skey,['1 + 2*Unc_teptrig[0]', '1 -2*Unc_teptrig[0]']) for skey in mc),
-}
+#nuisances['UncTePTrig_WJ'] = {
+#    'name': 'Wjets_Corrrection',   # Theory uncertainty
+#    'kind': 'weight',
+#    'type': 'shape',
+#    'samples': {
+#        'Wjets': ['Unc_WjetsDataMC[0]', '1/Unc_WjetsDataMC[0]'],
+#    },
+#    'cuts': cutdict['Resolv'],
+##    'samples': dict((skey,['1 + 2*Unc_teptrig[0]', '1 -2*Unc_teptrig[0]']) for skey in mc),
+#}
+#nuisances['UncTePTrig_WJ_Boo'] = {
+#    'name': 'Wjets_Corrrection',   # Theory uncertainty
+#    'kind': 'weight',
+#    'type': 'shape',
+#    'samples': {
+#        'Wjets': ['Unc_WjetsDataMC_Boo[0]', '1/Unc_WjetsDataMC_Boo[0]'],
+#    },
+#    'cuts': cutdict['Boosted'],
+##    'samples': dict((skey,['1 + 2*Unc_teptrig[0]', '1 -2*Unc_teptrig[0]']) for skey in mc),
+#}
 
 nuisances['UncCorr_Top'] = {
     'name': 'top_Correction',   # Theory uncertainty
@@ -340,7 +340,7 @@ nuisances['muonpt'] = {
 
 nuisances['muonpt_ln']={
     'name'  : 'CMS_scale_m_2016',
-    'type' : 'lnn',
+    'type' : 'lnN',
     'samples': {
     	  'VZ': '1.05',
     	  'WW': '1.05',
@@ -361,7 +361,7 @@ nuisances['muonpt_BWReweight'] = {
 
 nuisances['muonpt_BWReweight_I'] = {
     'name' : 'CMS_scale_m_2016',
-    'type' : 'lnn',
+    'type' : 'lnN',
     'samples': dict((skey, '1.02') for skey in sig_mc_I),
 }
 
@@ -380,7 +380,7 @@ nuisances['muonpt_BWReweight_I'] = {
 ##### Jet energy scale
 
 jes_systs = ['JESAbsolute','JESAbsolute_2016','JESBBEC1','JESBBEC1_2016','JESEC2','JESEC2_2016','JESFlavorQCD','JESHF','JESHF_2016','JESRelativeBal','JESRelativeSample_2016']
-jes_systs_BWR = ['JESAbsolute_BWReweight','JESAbsolute_2017_BWReweight','JESBBEC1_BWReweight','JESBBEC1_2017_BWReweight','JESEC2_BWReweight','JESEC2_2017_BWReweight','JESFlavorQCD_BWReweight','JESHF_BWReweight','JESHF_2017_BWReweight','JESRelativeBal_BWReweight','JESRelativeSample_2017_BWReweight']
+jes_systs_BWR = ['JESAbsolute_BWReweight','JESAbsolute_2016_BWReweight','JESBBEC1_BWReweight','JESBBEC1_2016_BWReweight','JESEC2_BWReweight','JESEC2_2016_BWReweight','JESFlavorQCD_BWReweight','JESHF_BWReweight','JESHF_2016_BWReweight','JESRelativeBal_BWReweight','JESRelativeSample_2016_BWReweight']
 
 
 for js in jes_systs:
@@ -421,7 +421,7 @@ for js in jes_systs:
 for js in jes_systs:
   nuisances[js+'lnn'] = {
       'name' : 'CMS_scale_'+js,
-      'type' : 'lnn',
+      'type' : 'lnN',
       'samples': {
       	  'VZ': '1.02',
       	  'WW': '1.02',
@@ -432,7 +432,7 @@ for js in jes_systs:
 
   nuisances[js+'lnn_I'] = {
       'name' : 'CMS_scale_'+js,
-      'type' : 'lnn',
+      'type' : 'lnN',
       'samples': dict((skey, '1.01') for skey in sig_mc_I),
  }
 
@@ -1627,17 +1627,17 @@ for j in range(1,4):
 		  'samples': dict((skey,tagger_variations ) for skey in mc_deep),
 		  'cuts':cutdict['Boosted']
 		}
-nuisances['Wjets_QCD_NLO_sf_stat'] = {
-    'name': 'Wjets_QCD_NLO_sf_stat_2016',
-    'kind'  : 'weight',
-    'type'  : 'shape',
-    'samples': {
-        'Wjets': ['kfact[1]/kfact[0]', 'kfact[2]/kfact[0]'],
-        #'WjetsMjj': ['kfact[1]/kfact[0]', 'kfact[2]/kfact[0]'],
-        #'WjetsSP': ['kfactSP[1]/kfactSP[0]', 'kfactSP[2]/kfactSP[0]'],
-        #'WjetsSP': ['kfact[1]/kfact[0]', 'kfact[2]/kfact[0]'],
-    }
-}
+#nuisances['Wjets_QCD_NLO_sf_stat'] = {
+#    'name': 'Wjets_QCD_NLO_sf_stat_2016',
+#    'kind'  : 'weight',
+#    'type'  : 'shape',
+#    'samples': {
+#        'Wjets': ['kfact[1]/kfact[0]', 'kfact[2]/kfact[0]'],
+#        #'WjetsMjj': ['kfact[1]/kfact[0]', 'kfact[2]/kfact[0]'],
+#        #'WjetsSP': ['kfactSP[1]/kfactSP[0]', 'kfactSP[2]/kfactSP[0]'],
+#        #'WjetsSP': ['kfact[1]/kfact[0]', 'kfact[2]/kfact[0]'],
+#    }
+#}
 
 el_et = El_jetEt
 mu_et = Mu_jetEt

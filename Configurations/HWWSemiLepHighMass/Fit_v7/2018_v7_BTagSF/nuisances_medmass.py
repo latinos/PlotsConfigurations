@@ -287,26 +287,26 @@ nuisances['UncTePTrig'] = {
     'type': 'shape',
     'samples': dict((skey,['1 + 2*Unc_teptrig[0]', '1 -2*Unc_teptrig[0]']) for skey in mc),
 }
-nuisances['UncTePTrig_WJ'] = {
-    'name': 'Wjets_Corrrection',   # Theory uncertainty
-    'kind': 'weight',
-    'type': 'shape',
-    'samples': {
-        'Wjets': ['Unc_WjetsDataMC[0]', '1/Unc_WjetsDataMC[0]'],
-    },
-    'cuts': cutdict['Resolv'],
-#    'samples': dict((skey,['1 + 2*Unc_teptrig[0]', '1 -2*Unc_teptrig[0]']) for skey in mc),
-}
-nuisances['UncTePTrig_WJ_Boo'] = {
-    'name': 'Wjets_Corrrection',   # Theory uncertainty
-    'kind': 'weight',
-    'type': 'shape',
-    'samples': {
-        'Wjets': ['Unc_WjetsDataMC_Boo[0]', '1/Unc_WjetsDataMC_Boo[0]'],
-    },
-    'cuts': cutdict['Boosted'],
-#    'samples': dict((skey,['1 + 2*Unc_teptrig[0]', '1 -2*Unc_teptrig[0]']) for skey in mc),
-}
+#nuisances['UncTePTrig_WJ'] = {
+#    'name': 'Wjets_Corrrection',   # Theory uncertainty
+#    'kind': 'weight',
+#    'type': 'shape',
+#    'samples': {
+#        'Wjets': ['Unc_WjetsDataMC[0]', '1/Unc_WjetsDataMC[0]'],
+#    },
+#    'cuts': cutdict['Resolv'],
+##    'samples': dict((skey,['1 + 2*Unc_teptrig[0]', '1 -2*Unc_teptrig[0]']) for skey in mc),
+#}
+#nuisances['UncTePTrig_WJ_Boo'] = {
+#    'name': 'Wjets_Corrrection',   # Theory uncertainty
+#    'kind': 'weight',
+#    'type': 'shape',
+#    'samples': {
+#        'Wjets': ['Unc_WjetsDataMC_Boo[0]', '1/Unc_WjetsDataMC_Boo[0]'],
+#    },
+#    'cuts': cutdict['Boosted'],
+##    'samples': dict((skey,['1 + 2*Unc_teptrig[0]', '1 -2*Unc_teptrig[0]']) for skey in mc),
+#}
 nuisances['UncCorr_Top'] = {
     'name': 'top_Correction',   # Theory uncertainty
     'kind': 'weight',
@@ -429,7 +429,7 @@ nuisances['muonpt_BWReweight'] = {
 ##### Jet energy scale
 jes_systs = ['JESAbsolute','JESAbsolute_2018','JESBBEC1','JESBBEC1_2018','JESEC2','JESEC2_2018','JESFlavorQCD','JESHF','JESHF_2018','JESRelativeBal','JESRelativeSample_2018']
 Fatjet_systs = ['fatjet_jes','fatjet_jer','fatjet_jms','fatjet_jmr','fatjet_jes_signal','fatjet_jer_signal','fatjet_jms_signal','fatjet_jmr_signal']
-jes_systs_BWR = ['JESAbsolute_BWReweight','JESAbsolute_2017_BWReweight','JESBBEC1_BWReweight','JESBBEC1_2017_BWReweight','JESEC2_BWReweight','JESEC2_2017_BWReweight','JESFlavorQCD_BWReweight','JESHF_BWReweight','JESHF_2017_BWReweight','JESRelativeBal_BWReweight','JESRelativeSample_2017_BWReweight']
+jes_systs_BWR = ['JESAbsolute_BWReweight','JESAbsolute_2018_BWReweight','JESBBEC1_BWReweight','JESBBEC1_2018_BWReweight','JESEC2_BWReweight','JESEC2_2018_BWReweight','JESFlavorQCD_BWReweight','JESHF_BWReweight','JESHF_2018_BWReweight','JESRelativeBal_BWReweight','JESRelativeSample_2018_BWReweight']
 
 for js in jes_systs:
     nuisances[js] = {
@@ -460,7 +460,7 @@ for js in jes_systs:
 for js in jes_systs:
   nuisances[js+'lnn'] = {
       'name' : 'CMS_scale_'+js,
-      'type' : 'lnn',
+      'type' : 'lnN',
       'samples': {
       	  'VZ': '1.015',
       	  'WW': '1.015',
@@ -469,7 +469,7 @@ for js in jes_systs:
 }
   nuisances[js+'lnn_I'] = {
        'name' : 'CMS_scale_'+js,
-       'type' : 'lnn',
+       'type' : 'lnN',
        'samples': dict((skey, '1.01') for skey in sig_mc_I),
   }
 
@@ -914,7 +914,7 @@ nuisances['met'] = {
 
 nuisances['met_BWReweight_lnn'] = {
     'name' : 'CMS_scale_met_2018',
-    'type' : 'lnn',
+    'type' : 'lnN',
     'samples': {
     	  'VZ': '1.04',
     	  #'WW': '1.04',
@@ -1545,14 +1545,14 @@ nuisances['QCDscale_ggVV'] = {
 #        'GGHSBI_'+m+model_name: '1.15'
 #    })
 
-nuisances['Wjets_QCD_NLO_sf_stat'] = {
-    'name': 'Wjets_QCD_NLO_sf_stat_2018',
-    'kind'  : 'weight',
-    'type'  : 'shape',
-    'samples': {
-        'Wjets': ['kfact[1]/kfact[0]', 'kfact[2]/kfact[0]'],
-    }
-}
+#nuisances['Wjets_QCD_NLO_sf_stat'] = {
+#    'name': 'Wjets_QCD_NLO_sf_stat_2018',
+#    'kind'  : 'weight',
+#    'type'  : 'shape',
+#    'samples': {
+#        'Wjets': ['kfact[1]/kfact[0]', 'kfact[2]/kfact[0]'],
+#    }
+#}
 
 
 
@@ -2027,7 +2027,6 @@ for nuisname in nuisancename:
           model_name = '_'+model.replace(".","")
           for m in massggh:
             for nuis in nuisancename[nuisname]:
-            #  print(nuis)
               if 'GGH_'+m+model_name in nuisances[nuis]['samples']: sig_up = nuisances[nuis]['samples']['GGH_'+m+model_name][0]
               if 'GGH_'+m+model_name in nuisances[nuis]['samples']: sig_dn = nuisances[nuis]['samples']['GGH_'+m+model_name][1]
 	 #   print(sig_up) 
@@ -2059,6 +2058,8 @@ for nuisname in nuisancename:
             SBI_string = ['('+sig_up+')*SBI_isHM + ('+SM_up+')*SBI_isSMVBF + ('+WW_up+')*SBI_isqqWWqq',
                           '('+sig_dn+')*SBI_isHM + ('+SM_dn+')*SBI_isSMVBF + ('+WW_dn+')*SBI_isqqWWqq']
             if ((nuis not in jes_systs) and (nuis not in jes_systs_BWR)):# and (nuis not in Fatjet_systs)): 
+              print("AAh")
+              print(nuis)
               nuisances[nuis]['samples'].update({'QQHSBI_'+m+model_name: SBI_string})
 
 #for nuis in nuisances:
