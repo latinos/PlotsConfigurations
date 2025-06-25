@@ -136,7 +136,7 @@ for i, event in enumerate(tree):
         
         # Select final state neutrinos (MET)
         if (status == 1 and  # Final state particles
-            abs(pdgId) in [12, 14, 16]):  # Electron, muon, and tau neutrinos
+            abs(pdgId) in [12, 14]):  # Electron and muon neutrinos
             lhe_neutrinos.append({
                 'pdgId': pdgId,
                 'pt': pt,
