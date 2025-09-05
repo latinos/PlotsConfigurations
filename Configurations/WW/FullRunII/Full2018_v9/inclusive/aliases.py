@@ -14,8 +14,14 @@ mc     = [skey for skey in samples if skey not in ('Fake', 'DATA', 'Dyemb')]
 eleWP = 'mvaFall17V2Iso_WP90'
 muWP  = 'cut_Tight_HWWW'
 
+aliases['genptww'] = {
+    'linesToAdd': ['.L %s/WW/FullRunII/Tools/wwpt.cc+' % configurations],
+    'class': 'WWPT',
+    'samples': ['WW']
+}
+
 aliases['ptWW_Reweighing'] = {
-    'expr': '(1.42174 +  -0.0145188 * pTWW + 5.72616e-05 * pTWW * pTWW)',
+    'expr': '(1.179620 + -0.005625 * genptww + 0.000043 * genptww * genptww)*(genptww>0 && genptww<180) + 1.0*(genptww>180 || genptww<=0)',
     'samples': ['WW']
 }
 
