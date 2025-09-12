@@ -44,19 +44,6 @@ aliases['gstarHigh'] = {
     'samples': mc
 }
 
-# No jet with pt > 30 GeV
-aliases['zeroJet'] = {
-    'expr': 'Alt$(CleanJet_pt[0], 0) < 30.'
-}
-
-aliases['oneJet'] = {
-    'expr': 'Alt$(CleanJet_pt[0], 0) > 30.'
-}
-
-aliases['multiJet'] = {
-    'expr': 'Alt$(CleanJet_pt[1], 0) > 30.'
-}
-
 # gen-matching to prompt only (GenLepMatch2l matches to *any* gen lepton)
 aliases['PromptGenLepMatch2l'] = {
     'expr': 'Alt$(Lepton_promptgenmatched[0]*Lepton_promptgenmatched[1], 0)',
@@ -102,32 +89,6 @@ aliases['bReqSF'] = {
     'samples': mc
 }
 
-# CR definitions
-
-aliases['topcr'] = {
-    'expr': 'mtw2>30 && mll>50 && ((Sum$(CleanJet_pt > 30.) == 0 && !bVeto) || bReq)'
-}
-
-aliases['dycr'] = {
-    'expr': 'mth<60 && mll>40 && mll<80 && bVeto'
-}
-
-aliases['wwcr'] = {
-    'expr': 'mth>60 && mtw2>30 && mll>100 && bVeto'
-}
-
-# SR definition
-
-aliases['sr'] = {
-    'expr': 'mth>60 && mtw2>30 && bVeto'
-}
-
-# Overall b tag SF
-aliases['btagSF'] = {
-    'expr': '(bVeto || (topcr && Sum$(CleanJet_pt > 30.) == 0))*bVetoSF + (topcr && Sum$(CleanJet_pt > 30.) > 0)*bReqSF',
-    'samples': mc
-}
-
 for shift in ['jesAbsolute', 'jesAbsolute_2018', 'jesBBEC1', 'jesBBEC1_2018', 'jesEC2', 'jesEC2_2018', 'jesFlavorQCD', 'jesHF', 'jesHF_2018', 'jesRelativeBal', 'jesRelativeSample_2018', 'lf', 'hf', 'lfstats1', 'lfstats2', 'hfstats1', 'hfstats2', 'cferr1', 'cferr2']:
 
     for targ in ['bVeto', 'bReq']:
@@ -136,16 +97,6 @@ for shift in ['jesAbsolute', 'jesAbsolute_2018', 'jesBBEC1', 'jesBBEC1_2018', 'j
 
         alias = aliases['%sSF%sdown' % (targ, shift)] = copy.deepcopy(aliases['%sSF' % targ])
         alias['expr'] = alias['expr'].replace('btagSF_{}_shape'.format(bSF), 'btagSF_{}_shape_down_{}'.format(bSF, shift))
-
-    aliases['btagSF%sup' % shift] = {
-        'expr': aliases['btagSF']['expr'].replace('SF', 'SF' + shift + 'up'),
-        'samples': mc,
-    }
-
-    aliases['btagSF%sdown' % shift] = {
-        'expr': aliases['btagSF']['expr'].replace('SF', 'SF' + shift + 'down'),
-        'samples': mc,
-    }
 
 # There are three top pt reweighting schemes proposed by the TOP PAG
 # Data-NLO  : SF(pT) = e^(0.0615-0.0005*pT)  
@@ -163,12 +114,6 @@ aliases['Top_pTrw'] = {
 aliases['nCleanGenJet'] = {
     'linesToAdd': ['.L %s/Differential/ngenjet.cc+' % configurations],
     'class': 'CountGenJet',
-    'samples': mc
-}
-
-aliases['fiducial'] = {
-    'linesToAdd': ['.L %s/WW/FullRunII/fiducial.cc+' % configurations],
-    'class': 'FiducialRegion',
     'samples': mc
 }
 
@@ -195,36 +140,9 @@ aliases['Jet_PUIDSF'] = {
   'samples': mc
 }
 
-aliases['Jet_PUIDSF_up'] = {
-  'expr' : 'TMath::Exp(Sum$((Jet_jetId>=2)*TMath::Log(Jet_PUIDSF_loose_up)))',
-  'samples': mc,
-  'nominalOnly' : True
-}
-
-aliases['Jet_PUIDSF_down'] = {
-  'expr' : 'TMath::Exp(Sum$((Jet_jetId>=2)*TMath::Log(Jet_PUIDSF_loose_down)))',
-  'samples': mc,
-  'nominalOnly' : True
-}
-
 # data/MC scale factors
 aliases['SFweight'] = {
     'expr': ' * '.join(['SFweight2l', 'LepWPCut', 'LepWPSF','Jet_PUIDSF', 'ttHMVAULSF']),
     'samples': mc
 }
 
-aliases['B0'] = {
-    'expr' : '1',
-    'samples' : ['WW','ggWW']
-}
-
-aliases['fid'] = {
-    'expr' : 'fiducial',
-    'samples' : ['WW','ggWW']
-}
-
-aliases['nGoodCleanJet'] = {
-    'linesToAdd': ['.L %s/WW/FullRunII/goodcleanjet.cc+' % configurations],
-    'class': 'GoodCleanJet',
-    'args': ("njet"),
-}

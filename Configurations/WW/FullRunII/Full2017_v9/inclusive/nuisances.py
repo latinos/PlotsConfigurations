@@ -40,7 +40,7 @@ sfdict = json.load(open("%s/WW/FullRunII/Full2017_v9/inclusive/sampleFrac.json"%
 btndict = json.load(open("%s/WW/FullRunII/Full2017_v9/inclusive/btagNorm.json"%configurations))
  
 for skey in mc:
-    btnWeight = '('+'+'.join(['({})*({})'.format(btndict[skey][jetbin]['nom'],catCR[jetbin]) for jetbin in catCR.keys()])+')'
+    btnWeight = '('+'+'.join(['({})*({})*({})'.format(btndict[skey][channel][jetbin]['nom'],channel,catCR[jetbin]) for jetbin in catCR.keys() for channel in ['topcr','sr']])+')'
     samples[skey]['weight'] = samples[skey]['weight']+'*'+btnWeight
 
 ################################ EXPERIMENTAL UNCERTAINTIES  #################################
@@ -133,8 +133,8 @@ for shift in ['lf', 'hf', 'hfstats1', 'hfstats2', 'lfstats1', 'lfstats2', 'cferr
 
     btn = {}
     for skey in mc:
-        btn[skey] = ['('+'+'.join(['({})*({})'.format(btndict[skey][jetbin][name+'Up'],  catCR[jetbin]) for jetbin in catCR.keys()])+')',
-                     '('+'+'.join(['({})*({})'.format(btndict[skey][jetbin][name+'Down'],catCR[jetbin]) for jetbin in catCR.keys()])+')']
+        btn[skey] = ['('+'+'.join(['({})*({})*({})'.format(btndict[skey][channel][jetbin][name+'Up'],  channel,catCR[jetbin]) for channel in ['topcr','sr'] for jetbin in catCR.keys()])+')',
+                     '('+'+'.join(['({})*({})*({})'.format(btndict[skey][channel][jetbin][name+'Down'],channel,catCR[jetbin]) for channel in ['topcr','sr'] for jetbin in catCR.keys()])+')']
 
     nuisances['btag_shape_%s' % shift] = {
         'name': name,
@@ -219,8 +219,8 @@ for js in jes_systs:
 
     btn = {}
     for skey in mc:
-        btn[skey] = ['('+'+'.join(['({})*({})'.format(btndict[skey][jetbin][name+"Up"],  catCR[jetbin]) for jetbin in catCR.keys()])+')',
-                     '('+'+'.join(['({})*({})'.format(btndict[skey][jetbin][name+"Down"],catCR[jetbin]) for jetbin in catCR.keys()])+')']
+        btn[skey] = ['('+'+'.join(['({})*({})*({})'.format(btndict[skey][channel][jetbin][name+'Up'],  channel,catCR[jetbin]) for channel in ['topcr','sr'] for jetbin in catCR.keys()])+')',
+                     '('+'+'.join(['({})*({})*({})'.format(btndict[skey][channel][jetbin][name+'Down'],channel,catCR[jetbin]) for channel in ['topcr','sr'] for jetbin in catCR.keys()])+')']
 
     nuisances[js] = {
         'name': name,

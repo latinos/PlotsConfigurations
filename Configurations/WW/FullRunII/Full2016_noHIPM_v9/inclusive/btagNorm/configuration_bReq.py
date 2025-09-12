@@ -2,10 +2,10 @@
 
 treeName = 'Events'
 
-tag = 'WW2018_v9_btagNorm'
+tag = 'WW2016_noHIPM_v9_bReqNorm'
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFile'
+outputDir = 'rootFile_bReq'
 
 # file with TTree aliases
 aliasesFile = 'aliases.py'
@@ -14,13 +14,13 @@ aliasesFile = 'aliases.py'
 variablesFile = 'variables.py'
 
 # file with list of cuts
-cutsFile = 'cuts.py' 
+cutsFile = 'cuts_bReq.py' 
 
 # file with list of samples
-samplesFile = 'samples.py' 
+samplesFile = 'samples.py'
 
 # luminosity to normalize to (in 1/fb)
-lumi =  59.83
+lumi = 16.81 
 
 # nuisances file for mkDatacards and for mkShape
-nuisancesFile = 'nuisances.py'
+nuisancesFile = 'nuisances_bReq.py'

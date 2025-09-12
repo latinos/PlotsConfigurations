@@ -57,12 +57,6 @@ aliases['nCleanGenJet'] = {
     'samples': mc
 }
 
-aliases['fiducial'] = {
-    'linesToAdd': ['.L %s/WW/FullRunII/fiducial.cc+' % configurations],
-    'class': 'FiducialRegion',
-    'samples': mc
-}
-
 ##### DY Z pT reweighting
 ##### TEMP this also needs updating
 aliases['getGenZpt_OTF'] = {
@@ -121,32 +115,6 @@ aliases['bReqSF'] = {
     'samples': mc
 }
 
-# CR definitions
-
-aliases['topcr'] = {
-    'expr': 'mtw2>30 && mll>50 && ((Sum$(CleanJet_pt > 30.) == 0 && !bVeto) || bReq)'
-}
-
-aliases['dycr'] = {
-    'expr': 'mth<60 && mll>40 && mll<80 && bVeto'
-}
-
-aliases['wwcr'] = {
-    'expr': 'mth>60 && mtw2>30 && mll>100 && bVeto'
-}
-
-# SR definition
-
-aliases['sr'] = {
-    'expr': 'mth>60 && mtw2>30 && bVeto'
-}
-
-# Overall b tag SF
-aliases['btagSF'] = {
-    'expr': '(bVeto || (topcr && Sum$(CleanJet_pt > 30.) == 0))*bVetoSF + (topcr && Sum$(CleanJet_pt > 30.) > 0)*bReqSF',
-    'samples': mc
-}
-
 for shift in ['jesAbsolute', 'jesAbsolute_2016', 'jesBBEC1', 'jesBBEC1_2016', 'jesEC2', 'jesEC2_2016', 'jesFlavorQCD', 'jesHF', 'jesHF_2016', 'jesRelativeBal', 'jesRelativeSample_2016', 'lf', 'hf', 'lfstats1', 'lfstats2', 'hfstats1', 'hfstats2', 'cferr1', 'cferr2']:
 
     for targ in ['bVeto', 'bReq']:
@@ -156,31 +124,10 @@ for shift in ['jesAbsolute', 'jesAbsolute_2016', 'jesBBEC1', 'jesBBEC1_2016', 'j
         alias = aliases['%sSF%sdown' % (targ, shift)] = copy.deepcopy(aliases['%sSF' % targ])
         alias['expr'] = alias['expr'].replace('btagSF_{}_shape'.format(bSF), 'btagSF_{}_shape_down_{}'.format(bSF, shift))
 
-    aliases['btagSF%sup' % shift] = {
-        'expr': aliases['btagSF']['expr'].replace('SF', 'SF' + shift + 'up'),
-        'samples': mc
-    }
-
-    aliases['btagSF%sdown' % shift] = {
-        'expr': aliases['btagSF']['expr'].replace('SF', 'SF' + shift + 'down'),
-        'samples': mc
-    }
-
 aliases['Jet_PUIDSF'] = {
   'expr' : 'TMath::Exp(Sum$((Jet_jetId>=2)*TMath::Log(Jet_PUIDSF_loose)))',
   'samples': mc
 }
-
-aliases['Jet_PUIDSF_up'] = {
-  'expr' : 'TMath::Exp(Sum$((Jet_jetId>=2)*TMath::Log(Jet_PUIDSF_loose_up)))',
-  'samples': mc
-}
-
-aliases['Jet_PUIDSF_down'] = {
-  'expr' : 'TMath::Exp(Sum$((Jet_jetId>=2)*TMath::Log(Jet_PUIDSF_loose_down)))',
-  'samples': mc
-}
-
 
 # data/MC scale factors
 aliases['SFweight'] = {
@@ -198,19 +145,4 @@ aliases['lhe_mW1'] = {
 aliases['lhe_mW2'] = {
     'expr': 'TMath::Sqrt(2. * LHEPart_pt[2] * LHEPart_pt[3] * (TMath::CosH(LHEPart_eta[2] - LHEPart_eta[3]) - TMath::Cos(LHEPart_phi[2] - LHEPart_phi[3])))',
     'samples': ['WWewk']
-}
-aliases['B0'] = {
-    'expr' : '1',
-    'samples' : ['WW','ggWW']
-}
-
-aliases['fid'] = {
-    'expr' : 'fiducial',
-    'samples' : ['WW','ggWW']
-}
-
-aliases['nGoodCleanJet'] = {
-    'linesToAdd': ['.L %s/WW/FullRunII/goodcleanjet.cc+' % configurations],
-    'class': 'GoodCleanJet',
-    'args': ("njet"),
 }

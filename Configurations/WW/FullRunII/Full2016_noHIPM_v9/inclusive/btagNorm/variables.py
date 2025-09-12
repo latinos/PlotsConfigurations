@@ -1,7 +1,7 @@
 # variables
 
-variables['nGoodCleanJet']  = {   'name': 'nGoodCleanJet',
-                                  'range' : (4, 0, 4),
-                                  'xaxis' : 'nGoodCleanJet',
-                                  'fold' : 3
-                              }
+variables['events']  = {   'name': '1',      
+                        'range' : (1,0,2),  
+                        'xaxis' : 'events', 
+                        'fold' : 3
+                        }

@@ -25,12 +25,12 @@ nuisances['btag_shape_nom'] = {
     'name': 'CMS_btag_nom',
     'kind': 'weight',
     'type': 'shape',
-    'samples': dict((skey, ["1.","btagSF"]) for skey in mc),
+    'samples': dict((skey, ["1.","bReqSF"]) for skey in mc),
     'AsLnN': '0'
 }
 
 for shift in ['lf', 'hf', 'hfstats1', 'hfstats2', 'lfstats1', 'lfstats2', 'cferr1', 'cferr2']:
-    btag_syst = ['(btagSF%sup)' % shift, '(btagSF%sdown)' % shift]
+    btag_syst = ['(bReqSF%sup)' % shift, '(bReqSF%sdown)' % shift]
 
     name = 'CMS_btag_%s' % shift
     if 'stats' in shift:
@@ -69,7 +69,7 @@ for js in jes_systs:
         'samples': dict((skey, ['1', '1']) for skey in mc),
         'folderUp': 'root://eoscms.cern.ch/'+makeMCDirectory('RDF__JESup_suffix'),
         'folderDown': 'root://eoscms.cern.ch/'+makeMCDirectory('RDF__JESdo_suffix'),
-        'reweight' : ['btagSF'+js.replace('JES','jes')+'up','btagSF'+js.replace('JES','jes')+'down'],
+        'reweight' : ['bReqSF'+js.replace('JES','jes')+'up','bReqSF'+js.replace('JES','jes')+'down'],
         'AsLnN': '0'
     }
 

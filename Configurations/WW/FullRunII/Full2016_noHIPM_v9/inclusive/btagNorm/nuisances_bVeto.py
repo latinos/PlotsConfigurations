@@ -19,22 +19,22 @@ HiggsXS = HiggsXSection()
 
 ################################ EXPERIMENTAL UNCERTAINTIES  #################################
 
-##### B-tagger
+###### B-tagger
 
 nuisances['btag_shape_nom'] = {
     'name': 'CMS_btag_nom',
     'kind': 'weight',
     'type': 'shape',
-    'samples': dict((skey, ["1.","btagSF"]) for skey in mc),
+    'samples': dict((skey, ["1.","bVetoSF"]) for skey in mc),
     'AsLnN': '0'
 }
 
 for shift in ['lf', 'hf', 'hfstats1', 'hfstats2', 'lfstats1', 'lfstats2', 'cferr1', 'cferr2']:
-    btag_syst = ['(btagSF%sup)' % shift, '(btagSF%sdown)' % shift]
+    btag_syst = ['(bVetoSF%sup)' % shift, '(bVetoSF%sdown)' % shift]
 
     name = 'CMS_btag_%s' % shift
     if 'stats' in shift:
-        name += '_2018'
+        name += '_2016'
 
     nuisances['btag_shape_%s' % shift] = {
         'name': name,
@@ -45,7 +45,7 @@ for shift in ['lf', 'hf', 'hfstats1', 'hfstats2', 'lfstats1', 'lfstats2', 'cferr
     }
 
 ###### Jet energy scale
-jes_systs = ['JESAbsolute','JESAbsolute_2018','JESBBEC1','JESBBEC1_2018','JESEC2','JESEC2_2018','JESFlavorQCD','JESHF','JESHF_2018','JESRelativeBal','JESRelativeSample_2018']
+jes_systs = ['JESAbsolute','JESAbsolute_2016','JESBBEC1','JESBBEC1_2016','JESEC2','JESEC2_2016','JESFlavorQCD','JESHF','JESHF_2016','JESRelativeBal','JESRelativeSample_2016']
 
 for js in jes_systs:
     nuisances[js] = {
@@ -69,7 +69,7 @@ for js in jes_systs:
         'samples': dict((skey, ['1', '1']) for skey in mc),
         'folderUp': 'root://eoscms.cern.ch/'+makeMCDirectory('RDF__JESup_suffix'),
         'folderDown': 'root://eoscms.cern.ch/'+makeMCDirectory('RDF__JESdo_suffix'),
-        'reweight' : ['btagSF'+js.replace('JES','jes')+'up','btagSF'+js.replace('JES','jes')+'down'],
+        'reweight' : ['bVetoSF'+js.replace('JES','jes')+'up','bVetoSF'+js.replace('JES','jes')+'down'],
         'AsLnN': '0'
     }
 

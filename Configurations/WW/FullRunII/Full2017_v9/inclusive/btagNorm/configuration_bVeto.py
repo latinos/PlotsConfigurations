@@ -2,10 +2,10 @@
 
 treeName = 'Events'
 
-tag = 'WW2017_v9_btagNorm'
+tag = 'WW2017_v9_bVetoNorm'
 
 # used by mkShape to define output directory for root files
-outputDir = 'rootFile'
+outputDir = 'rootFile_bVeto'
 
 # file with TTree aliases
 aliasesFile = 'aliases.py'
@@ -14,7 +14,7 @@ aliasesFile = 'aliases.py'
 variablesFile = 'variables.py'
 
 # file with list of cuts
-cutsFile = 'cuts.py' 
+cutsFile = 'cuts_bVeto.py' 
 
 # file with list of samples
 samplesFile = 'samples.py'
@@ -23,5 +23,5 @@ samplesFile = 'samples.py'
 lumi = 41.53
 
 # nuisances file for mkDatacards and for mkShape
-nuisancesFile = 'nuisances.py'
+nuisancesFile = 'nuisances_bVeto.py'
 
