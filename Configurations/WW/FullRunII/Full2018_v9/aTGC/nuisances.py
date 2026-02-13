@@ -37,7 +37,7 @@ configurations = os.path.dirname(configurations) # Configurations
 
 diffcuts = samples['WW']['subsamples'] if 'WW' in samples else {}
 allcuts = [cut+'_'+cat for cut in cuts for cat in cuts[cut]['categories']]
-# nfdict = json.load(open("%s/WW/FullRunII/Full2018_v9/inclusive/WWnorm.json"%configurations))
+nfdict = json.load(open("%s/WW/FullRunII/Full2018_v9/inclusive/WWnorm.json"%configurations))
 sfdict = json.load(open("%s/WW/FullRunII/Full2018_v9/inclusive/sampleFrac.json"%configurations))
 
 ################################ EXPERIMENTAL UNCERTAINTIES  #################################
@@ -49,7 +49,8 @@ nuisances['sm_LO_0j'] = {
     'samples': {
         'sm': '1.2573075446263673' 
     },
-    'cuts': ['ww2l2v_13TeV_sr_0j_B0'],
+    # 'cuts': ['ww2l2v_13TeV_sr_0j_B0'],
+    'cutspost': ['ww2l2v_13TeV_sr_0j_B0'],
 }
 
 nuisances['sm_LO_1j'] = {
@@ -58,18 +59,23 @@ nuisances['sm_LO_1j'] = {
     'samples': {
         'sm': '1.6768532686188662' 
     },
-    'cuts': ['ww2l2v_13TeV_sr_1j_B0'],
+    # 'cuts': ['ww2l2v_13TeV_sr_1j_B0'],
+    'cutspost': ['ww2l2v_13TeV_sr_1j_B0'],
 }
 
-nuisances['ptWWRew'] = {
-    'name': 'CMS_SMP24008_ptWWRew',   # Theory uncertainty                                                                                                                                                  
-    'kind': 'weight',
-    'type': 'shape',
-    'samples': {
-    'sm': ["1.", "1./ptWW_Reweighing"],
-    },
-    'symmetrize': True
-}
+for cat in cuts['ww2l2v_13TeV_sr']['categories']:
+    nuisances['ptWWRew_'+cat] = {
+        'name': 'CMS_SMP24008_ptWWRew_'+cat,   # Theory uncertainty                                                                                                                                                  
+        'kind': 'weight',
+        'type': 'shape',
+        'samples': {
+            'sm': ["ptWW_Reweighing", "1./ptWW_Reweighing"],
+            # 'sm': ["1.", "1./ptWW_Reweighing"],
+        },
+        # 'cuts': ['ww2l2v_13TeV_sr_'+cat],
+        'cutspost': ['ww2l2v_13TeV_sr_'+cat],
+        'symmetrize': True
+    }
 
 
 #### Luminosity
@@ -653,7 +659,7 @@ nuisances['stat'] = {
 
 for ibin in cuts['ww2l2v_13TeV_top']['categories']:
     nuisances['Topnorm_'+ibin]  = {
-        'name'  : 'CMS_hww_Topnorm_'+ibin,
+        'name'  : 'CMS_hww_Topnorm_2018_'+ibin,
         'samples'  : {
             'top' : '1.00',
         },
