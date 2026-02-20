@@ -20,8 +20,18 @@ aliases['genptww'] = {
     'samples': ['WW']
 }
 
-aliases['ptWW_Reweighing'] = {
+aliases['ptWW_Reweighing_pol2'] = {
     'expr': '(1.179620 + -0.005625 * genptww + 0.000043 * genptww * genptww)*(genptww>0 && genptww<180) + 1.0*(genptww>180 || genptww<=0)',
+    'samples': ['WW']
+}
+
+aliases['ptWW_Reweighing_pol4'] = {
+    'expr': '(1.22393 -0.00999212 * genptww + 0.000144584 * genptww * genptww -9.06047e-07 * genptww * genptww * genptww + 2.19729e-09 * genptww * genptww * genptww * genptww)*(genptww>0 && genptww<180) + 1.0*(genptww>180 || genptww<=0)',
+    'samples': ['WW']
+}
+
+aliases['ptWW_Reweighing_nuisance'] = {
+    'expr': 'ptWW_Reweighing_pol4/ptWW_Reweighing_pol2',
     'samples': ['WW']
 }
 

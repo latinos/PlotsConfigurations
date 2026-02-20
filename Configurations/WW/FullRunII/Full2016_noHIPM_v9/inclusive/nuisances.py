@@ -29,26 +29,15 @@ configurations = os.path.dirname(configurations) # Configurations
 
 diffcuts = samples['WW']['subsamples'] if 'WW' in samples else {}
 allcuts = [cut+'_'+cat for cut in cuts for cat in cuts[cut]['categories']]
-nfdict = json.load(open("%s/WW/FullRunII/Full2016_noHIPM_v9/inclusive/WWnorm.json"%configurations))
-sfdict = json.load(open("%s/WW/FullRunII/Full2016_noHIPM_v9/inclusive/sampleFrac.json"%configurations))
-
-###############################################################################
-### Add nominal btag normalization weights to all MC samples                ###
-### Weird place for it, but here catCR from cuts.py has already been loaded ###
-###############################################################################
- 
-btndict = json.load(open("%s/WW/FullRunII/Full2016_noHIPM_v9/inclusive/btagNorm.json"%configurations))
- 
-for skey in mc:
-    btnWeight = '('+'+'.join(['({})*({})*({})'.format(btndict[skey][channel][jetbin]['nom'],channel,catCR[jetbin]) for jetbin in catCR.keys() for channel in ['topcr','sr']])+')'
-    samples[skey]['weight'] = samples[skey]['weight']+'*'+btnWeight
+nfdict = json.load(open("%s/WW/FullRunII/Full2016_noHIPM_v9/inclusive_Backup/WWnorm.json"%configurations))
+sfdict = json.load(open("%s/WW/FullRunII/Full2016_noHIPM_v9/inclusive_Backup/sampleFrac.json"%configurations))
 
 ################################ EXPERIMENTAL UNCERTAINTIES  #################################
 
 #### Luminosity
 
 nuisances['lumi_Uncorrelated'] = {
-    'name': 'lumi_13TeV_2016',
+    'name': 'lumi_2016',
     'type': 'lnN',
     'samples': dict((skey, '1.010') for skey in mc if skey not in ['top'])
 }
@@ -120,21 +109,17 @@ nuisances['fake_mu_stat'] = {
 ###### B-tagger
 
 for shift in ['lf', 'hf', 'hfstats1', 'hfstats2', 'lfstats1', 'lfstats2', 'cferr1', 'cferr2']:
+    btag_syst = ['(btagSF%sup)/(btagSF)' % shift, '(btagSF%sdown)/(btagSF)' % shift]
 
     name = 'CMS_btag_%s' % shift
     if 'stats' in shift:
         name += '_2016'
 
-    btn = {}
-    for skey in mc:
-        btn[skey] = ['('+'+'.join(['({})*({})*({})'.format(btndict[skey][channel][jetbin][name+'Up'],  channel,catCR[jetbin]) for channel in ['topcr','sr'] for jetbin in catCR.keys()])+')',
-                     '('+'+'.join(['({})*({})*({})'.format(btndict[skey][channel][jetbin][name+'Down'],channel,catCR[jetbin]) for channel in ['topcr','sr'] for jetbin in catCR.keys()])+')']
-
     nuisances['btag_shape_%s' % shift] = {
         'name': name,
         'kind': 'weight',
         'type': 'shape',
-        'samples': dict((skey, ['(btagSF'+shift+'up)/(btagSF)*'+btn[skey][0],'(btagSF'+shift+'down)/(btagSF)*'+btn[skey][1]]) for skey in mc),
+        'samples': dict((skey, btag_syst) for skey in mc),
         'AsLnN': '0'
     }
 
@@ -208,21 +193,13 @@ nuisances['muonpt'] = {
 jes_systs = ['JESAbsolute','JESAbsolute_2016','JESBBEC1','JESBBEC1_2016','JESEC2','JESEC2_2016','JESFlavorQCD','JESHF','JESHF_2016','JESRelativeBal','JESRelativeSample_2016']
 
 for js in jes_systs:
-
-    name = 'CMS_scale_' + js.replace("JES","j_")
-
-    btn = {}
-    for skey in mc:
-        btn[skey] = ['('+'+'.join(['({})*({})*({})'.format(btndict[skey][channel][jetbin][name+'Up'],  channel,catCR[jetbin]) for channel in ['topcr','sr'] for jetbin in catCR.keys()])+')',
-                     '('+'+'.join(['({})*({})*({})'.format(btndict[skey][channel][jetbin][name+'Down'],channel,catCR[jetbin]) for channel in ['topcr','sr'] for jetbin in catCR.keys()])+')']
-
     nuisances[js] = {
-        'name': name,
+        'name': 'CMS_scale_' + js.replace("JES","j_"),
         'kind': 'suffix',
         'type': 'shape',
         'mapUp': js+'up',
         'mapDown': js+'do',
-        'samples': dict((skey, btn[skey]) for skey in mc),
+        'samples': dict((skey, ['1', '1']) for skey in mc),
         'folderUp': 'root://eoscms.cern.ch/'+makeMCDirectory('RDF__JESup_suffix'),
         'folderDown': 'root://eoscms.cern.ch/'+makeMCDirectory('RDF__JESdo_suffix'),
         'reweight' : ['btagSF'+js.replace('JES','jes')+'up/btagSF','btagSF'+js.replace('JES','jes')+'down/btagSF'],
@@ -600,11 +577,32 @@ nuisances['CRSR_accept_top'] = {
     'cuts': [cut for cut in cuts if 'top' in cut],
 }
 
-## rate parameters
+for ibin in cuts['ww2l2v_13TeV_sr']['categories']:
+    nuisances['ptWWRew_DF_'+ibin] = {
+        'name': 'CMS_SMP24008_ptWWRew_DF_'+ibin,   # Theory uncertainty
+        'kind': 'weight',
+        'type': 'shape',
+        'samples': {
+            'WW': ["1.", "1./ptWW_Reweighing_pol2"],
+        },
+        'cutspost' : lambda self, cuts: [cut for cut in cuts if self['name'].split('_')[-2] in cut],		
+        'symmetrize': True
+    }
 
+#nuisances['ptWWRew_DF_modelling'] = {
+#    'name': 'CMS_SMP24008_ptWWRew_DF_modelling',   # Theory uncertainty
+#    'kind': 'weight',
+#    'type': 'shape',
+#    'samples': {
+#        'WW': ["1.", "1./ptWW_Reweighing_nuisance"],
+#    },
+#    'symmetrize': True
+#}
+
+## rate parameters
 for ibin in cuts['ww2l2v_13TeV_top']['categories']:
-    nuisances['Topnorm_'+ibin]  = {
-        'name'  : 'CMS_SMP24008_Topnorm_'+ibin,
+    nuisances['Topnorm_2016noHIPM_'+ibin]  = {
+        'name'  : 'CMS_SMP24008_Topnorm_2016noHIPM_'+ibin,
         'samples'  : {
             'top' : '1.00',
         },
@@ -620,16 +618,6 @@ nuisances['stat'] = {
     #  nuisance ['maxPoiss'] =  Number of threshold events for Poisson modelling
     #  nuisance ['includeSignal'] =  Include MC stat nuisances on signal processes (1=True, 0=False)
     'samples': {}
-}
-
-nuisances['ptWWRew'] = {
-    'name': 'CMS_SMP24008_ptWWRew',   # Theory uncertainty
-    'kind': 'weight',
-    'type': 'shape',
-    'samples': {
-        'WW': ["1.", "1./ptWW_Reweighing"],
-    },
-    'symmetrize': True
 }
 
 for n in nuisances.values():

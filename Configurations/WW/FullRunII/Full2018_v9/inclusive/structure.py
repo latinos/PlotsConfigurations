@@ -9,7 +9,7 @@ for iproc in samples.keys():
         'isData'   : 1 if iproc == 'DATA' else 0,
     }
 
-structure['Vg']['removeFromCuts'] = ['ww2l2v_13TeV_top_0j']
+#structure['Vg']['removeFromCuts'] = ['ww2l2v_13TeV_top_0j']
 
 for nuis in nuisances.itervalues():
   if 'cutspost' in nuis:

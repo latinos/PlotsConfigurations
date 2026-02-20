@@ -246,7 +246,7 @@ signals = []
 
 samples['WW'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'WWJTo2L2Nu_minnlo'),
-    'weight': mcCommonWeight + '*0.92*ptWW_Reweighing',
+    'weight': mcCommonWeight + '*0.92*ptWW_Reweighing_pol2',
     'FilesPerJob': 7
 }
 

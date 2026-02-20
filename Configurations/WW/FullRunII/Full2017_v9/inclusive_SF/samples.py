@@ -252,8 +252,10 @@ signals = []
 
 samples['WW'] = {
     'name': nanoGetSampleFiles(mcDirectory, 'WWJTo2L2Nu_minnlo'),
-    'weight': mcCommonWeight + '*0.92*ptWW_Reweighing',
-    'FilesPerJob': 4
+    'weight': mcCommonWeight + '*0.92*ptWW_Reweighing_pol2',
+    'FilesPerJob': 4,
+    'suppressNegative' :['all'],
+    'suppressNegativeNuisances' :['all'],
 }
 
 signals.append('WW')
@@ -289,7 +291,7 @@ for sname in signals:
   for i in range(nbins):
       sample['subsamples']['B%d'%i] = 'fid && B%d'%i
 
-      
+   
 ###########################################
 ################## FAKE ###################
 ###########################################
@@ -332,3 +334,4 @@ for _, sd in DataRun:
     files = nanoGetSampleFiles(dataDirectory, pd + '_' + sd)
     samples['DATA']['name'].extend(files)
     samples['DATA']['weights'].extend([DataTrig[pd]] * len(files))
+	
