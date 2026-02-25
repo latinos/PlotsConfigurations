@@ -21,7 +21,10 @@ for i,op in enumerate(mops):
 
 for nuis in nuisances.itervalues():
   if 'cutspost' in nuis:
-    nuis['cuts'] = nuis['cutspost'](nuis, cuts)
+    if callable(nuis['cutspost']):
+        nuis['cuts'] = nuis['cutspost'](nuis, cuts)
+    elif 'ptWWRew' in nuis['name'] or 'sm_LO' in nuis['name']:
+        nuis['cuts'] = nuis['cutspost']
 
     print nuis
 

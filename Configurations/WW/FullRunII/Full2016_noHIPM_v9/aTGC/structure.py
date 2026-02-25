@@ -28,6 +28,9 @@ structure['Vg']['removeFromCuts'] = ['ww2l2v_13TeV_top_0j']
 
 for nuis in nuisances.itervalues():
   if 'cutspost' in nuis:
-    nuis['cuts'] = nuis['cutspost'](nuis, cuts)
+    if callable(nuis['cutspost']):
+        nuis['cuts'] = nuis['cutspost'](nuis, cuts)
+    elif 'ptWWRew' in nuis['name'] or 'sm_LO' in nuis['name']:
+        nuis['cuts'] = nuis['cutspost']
 
     print nuis
