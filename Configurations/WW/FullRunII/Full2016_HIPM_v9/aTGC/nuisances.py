@@ -41,7 +41,7 @@ nuisances['sm_LO_0j'] = {
     'name': 'sm_LO_0j',
     'type': 'lnN',
     'samples': {
-        'sm': '1.2573075446263673' 
+        'sm': '1.5400773944511326' 
     },
     # 'cuts': ['ww2l2v_13TeV_sr_0j_B0'],
     'cutspost': ['ww2l2v_13TeV_sr_0j_B0'],
@@ -51,7 +51,7 @@ nuisances['sm_LO_1j'] = {
     'name': 'sm_LO_1j',
     'type': 'lnN',
     'samples': {
-        'sm': '1.6768532686188662' 
+        'sm': '2.0539794132698463' 
     },
     # 'cuts': ['ww2l2v_13TeV_sr_1j_B0'],
     'cutspost': ['ww2l2v_13TeV_sr_1j_B0'],
