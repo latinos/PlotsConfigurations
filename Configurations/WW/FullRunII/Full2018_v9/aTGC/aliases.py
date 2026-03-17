@@ -10,6 +10,7 @@ configurations = os.path.dirname(configurations) # WW
 configurations = os.path.dirname(configurations) # Configurations
 
 mc     = [skey for skey in samples if skey not in ('Fake', 'DATA', 'Dyemb')]
+ac_mc = [skey for skey in signals if skey not in ['ggWW']]
 
 eleWP = 'mvaFall17V2Iso_WP90'
 muWP  = 'cut_Tight_HWWW'
@@ -330,5 +331,5 @@ aliases['B0'] = {
 
 aliases['ptWW_Reweighing'] = {
     'expr': '(1.42174 +  -0.0145188 * pTWW + 5.72616e-05 * pTWW * pTWW) * (pTWW <= 220.) + 1.0 * (pTWW > 220.)',
-    'samples': ['sm']
+    'samples': ac_mc
 }
