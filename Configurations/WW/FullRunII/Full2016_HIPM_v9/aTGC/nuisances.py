@@ -40,9 +40,7 @@ sfdict = json.load(open("%s/WW/FullRunII/Full2016_HIPM_v9/inclusive/sampleFrac.j
 nuisances['sm_LO_0j'] = {
     'name': 'sm_LO_0j',
     'type': 'lnN',
-    'samples': {
-        'sm': '1.5400773944511326' 
-    },
+    'samples': dict((skey,'1.5400773944511326') for skey in ac_mc),
     # 'cuts': ['ww2l2v_13TeV_sr_0j_B0'],
     'cutspost': ['ww2l2v_13TeV_sr_0j_B0'],
 }
@@ -50,9 +48,7 @@ nuisances['sm_LO_0j'] = {
 nuisances['sm_LO_1j'] = {
     'name': 'sm_LO_1j',
     'type': 'lnN',
-    'samples': {
-        'sm': '2.0539794132698463' 
-    },
+    'samples': dict((skey,'2.0539794132698463') for skey in ac_mc),
     # 'cuts': ['ww2l2v_13TeV_sr_1j_B0'],
     'cutspost': ['ww2l2v_13TeV_sr_1j_B0'],
 }
@@ -62,9 +58,7 @@ for cat in cuts['ww2l2v_13TeV_sr']['categories']:
         'name': 'CMS_SMP24008_ptWWRew_'+cat,   # Theory uncertainty                                                                                                                                                  
         'kind': 'weight',
         'type': 'shape',
-        'samples': {
-            'sm': ["ptWW_Reweighing", "1./ptWW_Reweighing"],
-        },
+        'samples': dict((skey,["ptWW_Reweighing", "1./ptWW_Reweighing"]) for skey in ac_mc),
         # 'cuts': ['ww2l2v_13TeV_sr_'+cat],
         'cutspost': ['ww2l2v_13TeV_sr_'+cat],
         'symmetrize': True
