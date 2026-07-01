@@ -1,0 +1,11 @@
+root -l -b -q finalPlotWWUnfolding_Modified.C'("PTL1", false)';
+root -l -b -q finalPlotWWUnfolding_Modified.C'("PTL2", false)';
+root -l -b -q finalPlotWWUnfolding_Modified.C'("MLL", false)';
+root -l -b -q finalPlotWWUnfolding_Modified.C'("PTLL", false)';
+root -l -b -q finalPlotWWUnfolding_Modified.C'("PTWW", false)';
+root -l -b -q finalPlotWWUnfolding_Modified.C'("NJET", false)';
+root -l -b -q finalPlotWWUnfolding_Modified.C'("PTJ1", false)';
+root -l -b -q finalPlotWWUnfolding_Modified.C'("PTJ2", false)';
+root -l -b -q finalPlotWWUnfolding_Modified.C'("MJJ", false)';
+root -l -b -q finalPlotWWUnfolding_Modified.C'("DPHIJJ", false)';
+#root -l -b -q finalPlotWWUnfolding.C'("NJET", true)';
